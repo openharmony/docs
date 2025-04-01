@@ -7898,7 +7898,9 @@ mediaSource.setMediaResourceLoaderDelegate(resourceLoader);
 type SourceOpenCallback = (request: MediaSourceLoadingRequest) => number
 
 由应用实现此回调函数，应用需处理传入的资源打开请求，并返回所打开资源对应的唯一句柄。
-<br/>**注意：**客户端在处理完请求后应立刻返回。
+>
+>**注意：**客户端在处理完请求后应立刻返回。
+>
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -7938,7 +7940,9 @@ let sourceOpenCallback: media.SourceOpenCallback = (request: media.MediaSourceLo
 type SourceReadCallback = (uuid: number, requestedOffset: number, requestedLength: number) => void
 
 由应用实现此回调函数，应用需记录读取请求，并在数据充足时通过对应的MediaSourceLoadingRequest对象的[respondData](#responddata18)方法推送数据。
-<br/>**注意：**客户端在处理完请求后应立刻返回。
+>
+>**注意：**客户端在处理完请求后应立刻返回。
+>
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -7950,14 +7954,14 @@ type SourceReadCallback = (uuid: number, requestedOffset: number, requestedLengt
 | -------- | -------- | ---- | -------------------- |
 | uuid | number | 是  | 	资源句柄的标识。 |
 | requestedOffset | number | 是  | 	当前媒体数据相对于资源起始位置的偏移量。 |
-| requestedLength | number | 是  | 	当前请求的长度。值为 - 1 时，表示到达资源末尾，此时推送完成后需通过[finishLoading](#finishloading18)方法通知播放器推送结束。 |
+| requestedLength | number | 是  | 	当前请求的长度。值为-1时，表示到达资源末尾，此时推送完成后需通过[finishLoading](#finishloading18)方法通知播放器推送结束。 |
 
 **示例：**
 
 ```ts
 let sourceReadCallback: media.SourceReadCallback = (uuid: number, requestedOffset: number, requestedLength: number) => {
   console.log(`Reading resource with handle ${uuid}, offset: ${requestedOffset}, length: ${requestedLength}`);
-  // 判断uuid是否合法、存储read请求、不要在read请求阻塞去推送数据和头信息。
+  // 判断uuid是否合法、存储read请求，不要在read请求阻塞去推送数据和头信息。
 }
 ```
 
@@ -7966,7 +7970,9 @@ let sourceReadCallback: media.SourceReadCallback = (uuid: number, requestedOffse
 type SourceCloseCallback(uuid: number): void
 
 由应用实现此回调函数，应用应释放相关资源。
-<br/>**注意：**客户端在处理完请求后应立刻返回。
+>
+>**注意：**客户端在处理完请求后应立刻返回。
+>
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -8027,7 +8033,7 @@ let mediaSourceLoader: media.MediaSourceLoader = {
   },
   read: (uuid: number, requestedOffset: number, requestedLength: number) => {
     console.log(`Reading resource with handle ${uuid}, offset: ${requestedOffset}, length: ${requestedLength}`);
-    // 判断uuid是否合法、存储read请求、不要在read请求阻塞去推送数据和头信息。
+    // 判断uuid是否合法、存储read请求，不要在read请求阻塞去推送数据和头信息。
   },
   close: (uuid: number) => {
     console.log(`Closing resource with handle ${uuid}`);
@@ -8068,13 +8074,13 @@ respondData(uuid: number, offset: number, buffer: ArrayBuffer): number
 | -------- | -------- | ---- | -------------------- |
 | uuid | number | 是  | 	资源句柄的标识。 |
 | offset | number | 是  | 	当前媒体数据相对于资源起始位置的偏移量。 |
-| buffer | ArrayBuffer | 是  | 	响应播放器的媒体数据。<br/>**注意:**不要传输无关数据，会影响正常数据解析和播放。 |
+| buffer | ArrayBuffer | 是  | 	响应播放器的媒体数据。<br/>**注意:** 不要传输无关数据，会影响正常数据解析和播放。 |
 
 **返回值：**
 
 | 类型           | 说明                                |
 | -------------- | ----------------------------------- |
-| number | 当前服务端接受的字节数。<br>-小于0表示操作失败。<br>-返回值为-2时，表示播放器不再需要当前数据，客户端应停止当前读取过程。<br>-返回值为-3时，表示播放器的缓冲区已满，客户端应等待下一次读取。 |
+| number | 当前服务端接受的字节数。<br>-返回值小于0表示操作失败。<br>-返回值为-2时，表示播放器不再需要当前数据，客户端应停止当前读取过程。<br>-返回值为-3时，表示播放器的缓冲区已满，客户端应等待下一次读取。 |
 
 **示例：**
 
@@ -8101,7 +8107,7 @@ respondHeader(uuid: number, header?: Record<string, string>, redirectUrl?: strin
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
 | uuid | number | 是  | 	资源句柄的标识。 |
-| header | Record<string, string> | 否  | HTTP响应中的头部信息。应用可将头部信息字段与底层支持解析字段取交集传递或直接传对应的所有头部信息。<br> -底层播放需要解析的字段包括Transfer-Encoding、Location、Content-Type、Content-Range、Content-Encode、Accept-Ranges、content-length。 |
+| header | Record<string, string> | 否  | HTTP响应中的头部信息。应用可将头部信息字段与底层支持解析字段取交集传递或直接传入对应的所有头部信息。<br> -底层播放需要解析的字段包括Transfer-Encoding、Location、Content-Type、Content-Range、Content-Encode、Accept-Ranges、content-length。 |
 | redirectUrl | string | 否  | 	如果存在，为HTTP响应中的重定向URL。 |
 
 **示例：**
@@ -8167,7 +8173,7 @@ request.finishLoading(uuid, loadingError);
 | LOADING_ERROR_NO_RESOURCE | 2    | 由客户端返回，表示请求的资源URL不存在。 |
 | LOADING_ERROR_INVAID_HANDLE | 3    | 由客户端返回，表示请求的资源句柄uuid无效。 |
 | LOADING_ERROR_ACCESS_DENIED | 4    | 由客户端返回，表示客户端没有权限请求该资源。 |
-| LOADING_ERROR_ACCESS_TIMEOUT | 5    | 由客户端返回，表示访问资源时超时。 |
+| LOADING_ERROR_ACCESS_TIMEOUT | 5    | 由客户端返回，表示访问资源过程超时。 |
 | LOADING_ERROR_AUTHORIZE_FAILED | 6    | 由客户端返回，表示授权失败。 |
 
 ## AVMimeTypes<sup>12+</sup>
