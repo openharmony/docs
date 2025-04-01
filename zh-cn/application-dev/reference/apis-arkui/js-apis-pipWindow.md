@@ -727,7 +727,7 @@ let context: UIContext | undefined = undefined; // 可传入UIContext或在布�
 
 try {
   let contentNode = typeNode.createNode(context, "XComponent");
-  pipcontroller.updateContentNode(contentNode);
+  pipController.updateContentNode(contentNode);
 } catch (exception) {
   console.error(`Failed to update content node. Cause: ${exception.code}, message: ${exception.message}`);
 }
