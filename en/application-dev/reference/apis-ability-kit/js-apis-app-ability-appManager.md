@@ -262,11 +262,12 @@ appManager.getAppMemorySize((err, data) => {
 
 getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 
-Obtains information about the running processes. This API uses a promise to return the result.
+Obtains information about the running processes of this application. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> In versions earlier than API version 11, this API requires the **ohos.permission.GET_RUNNING_INFO** permission, which is available only for system applications. Since API version 11, no permission is required for calling this API.
+> - In versions earlier than API version 11, this API requires the **ohos.permission.GET_RUNNING_INFO** permission, which is available only for system applications.
+> - Since API version 11, this API is used only to obtain the process information of the caller. No permission is required.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -303,11 +304,12 @@ appManager.getRunningProcessInformation().then((data) => {
 
 getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>>): void
 
-Obtains information about the running processes. This API uses an asynchronous callback to return the result.
+Obtains information about the running processes of this application. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> In versions earlier than API version 11, this API requires the **ohos.permission.GET_RUNNING_INFO** permission, which is available only for system applications. Since API version 11, no permission is required for calling this API.
+> - In versions earlier than API version 11, this API requires the **ohos.permission.GET_RUNNING_INFO** permission, which is available only for system applications.
+> - Since API version 11, this API is used only to obtain the process information of the caller. No permission is required.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
