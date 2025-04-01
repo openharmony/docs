@@ -49,7 +49,7 @@ A locale consists of four parts: language, script, country/region, and extended 
 
 ## How to Develop
 
-The following uses date and time formatting as an example. For details about APIs, see [getPluralStringValueSync](../reference/apis-localization-kit/js-apis-resource-manager.md#getpluralstringvaluesync10).
+The following uses date and time formatting as an example. For details about APIs, see [DateTimeFormat](../reference/apis-localization-kit/js-apis-intl.md#datetimeformat).
 
 1. Import the **intl** module.
    ```ts
