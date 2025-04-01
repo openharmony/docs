@@ -2723,7 +2723,7 @@ NR的选择模式。
 
 | 名称                   | 类型                                              | 必填 | 说明           |
 | ---------------------- | ------------------------------------------------- | ---- | -------------- |
-| isNetworkSearchSuccess | boolean                                           |  是  | 网络搜索是否成功。<br/>true表示网络搜索成功，false表示网络搜索失败。 |
+| isNetworkSearchSuccess | boolean                                           |  是  | 网络是否搜索成功。<br/>true表示网络搜索成功，false表示网络搜索失败。 |
 | networkSearchResult    | Array<[NetworkInformation](#networkinformation)\> |  是  | 网络搜索结果。 |
 
 ## NetworkInformation
