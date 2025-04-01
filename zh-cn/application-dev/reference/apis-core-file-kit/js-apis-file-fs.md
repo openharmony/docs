@@ -157,7 +157,7 @@ access(path: string, mode?: AccessModeType): Promise&lt;boolean&gt;
 
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;boolean&gt; | Promise对象。返回布尔值，表示文件是否存在。 |
+  | Promise&lt;boolean&gt; | Promise对象。返回布尔值。返回true，表示文件存在；返回false，表示文件不存在。 |
 
 **错误码：**
 
@@ -2324,7 +2324,7 @@ next(): ReaderIteratorResult
 
 | 名称        | 类型       | 说明                |
 | ----------- | --------------- | ------------------ |
-| done | boolean     |  迭代器是否已完成迭代。          |
+| done | boolean     |  迭代器是否已完成迭代。true：已完成迭代；false：未完成迭代。          |
 | value    | string     | 逐行读取的文件文本内容。 |
 
 ## fs.readText
@@ -4448,6 +4448,8 @@ delete(): void
 ```ts
 import { common } from '@kit.AbilityKit';
 import { fileIo as fs} from '@kit.CoreFileKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { util } from '@kit.ArkTS';
 
 let context = getContext(this) as common.UIAbilityContext;
 let pathDir = context.filesDir;
@@ -4690,10 +4692,10 @@ copySignal.onCancel().then(() => {
 | uid    | number | 是    | 否    | 文件所有者的ID。|
 | gid    | number | 是    | 否    | 文件所有组的ID。|
 | size   | number | 是    | 否    | 文件的大小，以字节为单位。仅对普通文件有效。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| atime  | number | 是    | 否    | 上次访问该文件的时间，表示距1970年1月1日0时0分0秒的秒数。  <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
+| atime  | number | 是    | 否    | 上次访问该文件的时间，表示距1970年1月1日0时0分0秒的秒数。<br>**注意：** 目前用户数据分区默认以“noatime”方式挂载，atime更新被禁用。  <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
 | mtime  | number | 是    | 否    | 上次修改该文件的时间，表示距1970年1月1日0时0分0秒的秒数。  <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
 | ctime  | number | 是    | 否    | 最近改变文件状态的时间，表示距1970年1月1日0时0分0秒的秒数。      |
-| atimeNs<sup>15+</sup>  | bigint | 是    | 是    | 上次访问该文件的时间，表示距1970年1月1日0时0分0秒的纳秒数。      |
+| atimeNs<sup>15+</sup>  | bigint | 是    | 是    | 上次访问该文件的时间，表示距1970年1月1日0时0分0秒的纳秒数。<br>**注意：** 目前用户数据分区默认以“noatime”方式挂载，atime更新被禁用。      |
 | mtimeNs<sup>15+</sup>  | bigint | 是    | 是    | 上次修改该文件的时间，表示距1970年1月1日0时0分0秒的纳秒数。      |
 | ctimeNs<sup>15+</sup>  | bigint | 是    | 是    | 最近改变文件状态的时间，表示距1970年1月1日0时0分0秒的纳秒数。      |
 | location<sup>11+</sup> | [LocaltionType](#locationtype11)| 是 |否| 文件的位置，表示该文件是本地文件或者云端文件。
@@ -4710,7 +4712,7 @@ isBlockDevice(): boolean
 
   | 类型     | 说明               |
   | ------- | ---------------- |
-  | boolean | 表示文件是否是块特殊设备。 |
+  | boolean | 表示文件是否是块特殊设备。true：是块特殊设备；false：不是块特殊设备。 |
 
 **错误码：**
 
@@ -4735,7 +4737,7 @@ isCharacterDevice(): boolean
 
   | 类型      | 说明                |
   | ------- | ----------------- |
-  | boolean | 表示文件是否是字符特殊设备。 |
+  | boolean | 表示文件是否是字符特殊设备。true：是字符特殊设备；false：不是字符特殊设备。 |
 
 **错误码：**
 
@@ -4762,7 +4764,7 @@ isDirectory(): boolean
 
   | 类型      | 说明            |
   | ------- | ------------- |
-  | boolean | 表示文件是否是目录。 |
+  | boolean | 表示文件是否是目录。true：是目录；false：不是目录。|
 
 **错误码：**
 
@@ -4787,7 +4789,7 @@ isFIFO(): boolean
 
   | 类型      | 说明                    |
   | ------- | --------------------- |
-  | boolean | 表示文件是否是&nbsp;FIFO。 |
+  | boolean | 表示文件是否是&nbsp;FIFO。true：是FIFO；false：不是FIFO。 |
 
 **错误码：**
 
@@ -4814,7 +4816,7 @@ isFile(): boolean
 
   | 类型      | 说明              |
   | ------- | --------------- |
-  | boolean | 表示文件是否是普通文件。 |
+  | boolean | 表示文件是否是普通文件。true：是普通文件；false：不是普通文件。 |
 
 **错误码：**
 
@@ -4839,7 +4841,7 @@ isSocket(): boolean
 
   | 类型      | 说明             |
   | ------- | -------------- |
-  | boolean | 表示文件是否是套接字。 |
+  | boolean | 表示文件是否是套接字。true：是套接字；false：不是套接字。 |
 
 **错误码：**
 
@@ -4864,7 +4866,7 @@ isSymbolicLink(): boolean
 
   | 类型      | 说明              |
   | ------- | --------------- |
-  | boolean | 表示文件是否是符号链接。 |
+  | boolean | 表示文件是否是符号链接。true：是符号链接；false：不是符号链接。 |
 
 **错误码：**
 
@@ -5368,7 +5370,7 @@ lock(exclusive?: boolean): Promise\<void>
 
   | 参数名     | 类型          | 必填   | 说明                                       |
   | ------- | ----------- | ---- | ---------------------------------------- |
-  | exclusive  | boolean | 否   | 是否施加独占锁，默认false。       |
+  | exclusive  | boolean | 否   | 是否施加独占锁，默认false。true：施加独占锁；false：不施加独占锁。      |
 
 **返回值：**
 
@@ -5407,7 +5409,7 @@ lock(exclusive?: boolean, callback: AsyncCallback\<void>): void
 
   | 参数名     | 类型          | 必填   | 说明                                       |
   | ------- | ----------- | ---- | ---------------------------------------- |
-  | exclusive  | boolean | 否   | 是否施加独占锁，默认false。       |
+  | exclusive  | boolean | 否   | 是否施加独占锁，默认false。true：施加独占锁；false：不施加独占锁。        |
   | callback | AsyncCallback&lt;void&gt; | 是    | 异步文件上锁之后的回调。   |
 
 **错误码：**
@@ -5442,7 +5444,7 @@ tryLock(exclusive?: boolean): void
 
   | 参数名     | 类型          | 必填   | 说明                                       |
   | ------- | ----------- | ---- | ---------------------------------------- |
-  | exclusive  | boolean | 否   | 是否施加独占锁，默认false。       |
+  | exclusive  | boolean | 否   | 是否施加独占锁，默认false。true：施加独占锁；false：不施加独占锁。       |
 
 **错误码：**
 
@@ -5969,7 +5971,7 @@ open接口flags参数常量。文件打开标签。
 | mimeType    | Array&lt;string&gt; | 否 | mime类型完全匹配，各个关键词OR关系。       |
 | fileSizeOver    | number | 否 | 文件大小匹配，大于等于指定大小的文件。       |
 | lastModifiedAfter    | number | 否 | 文件最近修改时间匹配，在指定时间点及之后的文件。       |
-| excludeMedia    | boolean | 否 | 是否排除Media中已有的文件。       |
+| excludeMedia    | boolean | 否 | 是否排除Media中已有的文件。true：排除Media中已有的文件；false：不排除Media中已有的文件。    |
 
 ## ConflictFiles<sup>10+</sup>
 

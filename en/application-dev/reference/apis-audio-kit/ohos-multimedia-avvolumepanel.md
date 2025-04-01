@@ -18,9 +18,10 @@ An application cannot directly adjust the system volume. However, it can invoke 
 ```js
 import { AVVolumePanel } from '@kit.AudioKit';
 ```
-## Attributes
 
-The [universal attributes](../apis-arkui/arkui-ts/ts-component-general-attributes.md) are supported.
+## Properties
+
+The [universal properties](../apis-arkui/arkui-ts/ts-component-general-attributes.md) are supported.
 
 ## AVVolumePanel
 
@@ -30,20 +31,22 @@ Volume panel, which can be used to display the volume adjustment panel in your a
 
 **Decorator**: [@Component](../../quick-start/arkts-create-custom-components.md)
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
-## Attributes
-
-In addition to the [universal attributes](../apis-arkui/arkui-ts/ts-component-general-attributes.md), the following attributes are supported.
-
-**Parameters**
-
-| Name| Type| Mandatory| Decorator| Description                                                                                                                                                                                                   |
-| -------- | -------- | -------- | -------- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|volumeLevel | number | No| @Prop | Target volume. The value must be between the minimum volume and the maximum volume supported by the device. If the value is greater than the maximum volume supported, the maximum volume is used. If the value is less than the minimum volume supported, the minimum volume is used. For details about how to obtain the maximum and minimum volume values, see [AudioVolumeGroupManager](../apis-audio-kit/js-apis-audio.md#audiovolumegroupmanager9).|
-|volumeParameter | [AVVolumePanelParameter](#avvolumepanelparameter)  | No|  @Prop | Custom parameter of the volume panel. If this parameter is not passed in, the system volume bar is invoked.                                                                                                                                                                     |
+| Name| Type| Mandatory| Decorator | Description                                                                                                                                                                                                   |
+| -------- | -------- | -------- |--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|volumeLevel | number | No| \@Prop | Target volume. The value must be between the minimum volume and the maximum volume supported by the device. If the value is greater than the maximum volume supported, the maximum volume is used. If the value is less than the minimum volume supported, the minimum volume is used. For details about how to obtain the maximum and minimum volume values, see [AudioVolumeGroupManager](../apis-audio-kit/js-apis-audio.md#audiovolumegroupmanager9).|
+|volumeParameter | [AVVolumePanelParameter](#avvolumepanelparameter)  | No| \@Prop | Custom parameter of the volume panel. If this parameter is not passed in, the system volume bar is invoked.                                                                                                                                                                     |
 
 ## AVVolumePanelParameter
+
+Describes the volume panel parameters.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
 
 | Name| Type| Mandatory| Description
 | -------- | -------- | -------- | -------- |

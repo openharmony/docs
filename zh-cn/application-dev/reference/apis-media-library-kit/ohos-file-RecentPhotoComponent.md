@@ -84,7 +84,7 @@ type RecentPhotoCheckResultCallback = (recentPhotoExists: boolean) => void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| recentPhotoExists | boolean | 是 | 查询最近图片是否存在。 |
+| recentPhotoExists | boolean | 是 | 查询最近图片是否存在，true为存在，false为不存在，默认为true。 |
 
 ## RecentPhotoClickCallback
 
@@ -122,7 +122,7 @@ type RecentPhotoCheckInfoCallback = (recentPhotoExists: boolean, info: RecentPho
 
 | 参数名               | 类型                                    | 必填 | 说明          |
 |-------------------|---------------------------------------| -------- |-------------|
-| recentPhotoExists | boolean                               | 是 | 查询最近图片是否存在。 |
+| recentPhotoExists | boolean                               | 是 | 查询最近图片是否存在，true为存在，false为不存在，默认为true。 |
 | info              | [RecentPhotoInfo](#recentphotoinfo13) | 是 | 最近图片相关信息。   |
 
 ## PhotoSource

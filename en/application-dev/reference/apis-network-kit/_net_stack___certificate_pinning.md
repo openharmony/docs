@@ -18,5 +18,5 @@ Defines the certificate lock information structure.
 | Name| Description|
 | -------- | -------- |
 | [kind](netstack.md#kind) | Certificate lock type.|
-| [hashAlgorithm](netstack.md#hashAlgorithm) | Hash algorithm|
-| [publicKeyHash](netstack.md#publicKeyHash) | Hash value.|
+| [hashAlgorithm](netstack.md#hashalgorithm) | Hash algorithm|
+| [publicKeyHash](netstack.md#publickeyhash) | Hash value.|

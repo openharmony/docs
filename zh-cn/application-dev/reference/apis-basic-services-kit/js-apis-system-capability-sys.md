@@ -16,7 +16,7 @@ import systemcapability from '@ohos.systemCapability';
 
 ## systemcapability.querySystemCapabilities
 
-querySystemCapabilities(callback: AsyncCallback&lt;string&gt;): void;
+querySystemCapabilities(callback: AsyncCallback&lt;string&gt;): void
 
 获取系统能力集合的字符串，并调用回调函数。
 

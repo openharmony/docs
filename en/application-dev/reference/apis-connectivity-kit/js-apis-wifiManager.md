@@ -1223,7 +1223,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
   });
 ```
 
-## wifiManager.getLinkedInfoSync<sup>16+</sup>
+## wifiManager.getLinkedInfoSync<sup>18+</sup>
 
 getLinkedInfoSync(): WifiLinkedInfo;
 
@@ -1416,7 +1416,7 @@ Checks whether the device supports the specified WLAN feature.
 | 0x0040 | Wi-Fi Aware|
 | 0x8000 | WLAN AP/STA concurrency|
 | 0x8000000 | WPA3 Personal (WPA-3 SAE)|
-| 0x10000000 | WPA3-Enterprise Suite B |
+| 0x10000000 | WPA3-Enterprise Suite B|
 | 0x20000000 | Enhanced open feature| 
 
 **Return value**

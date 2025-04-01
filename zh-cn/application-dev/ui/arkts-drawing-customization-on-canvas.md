@@ -201,7 +201,7 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
 
   ![2023022795105(1)](figures/2023022795105(1).jpg)
 
-- 使用自定义字体绘制文本
+- 使用自定义字体绘制文本。
 
   可以通过[font](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#font)接口（设置文本绘制中的字体样式）加载自定义字体，然后通过[fillText](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#filltext)（绘制填充类文本）、[strokeText](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#stroketext)（绘制描边类文本）等接口进行文本绘制。
 

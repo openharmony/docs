@@ -30,7 +30,7 @@
 void* OH_OnFrameAvailableListener::context
 ```
 
-**描述**
+**描述：**
 
 用户自定义的上下文信息，会在回调触发时返回给用户。
 
@@ -41,6 +41,6 @@ void* OH_OnFrameAvailableListener::context
 OH_OnFrameAvailable OH_OnFrameAvailableListener::onFrameAvailable
 ```
 
-**描述**
+**描述：**
 
 有buffer可获取时触发的回调函数。

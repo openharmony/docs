@@ -275,7 +275,7 @@ domStorageAccess(domStorageAccess: boolean)
 
 | 参数名              | 类型    | 必填   | 说明                                 |
 | ---------------- | ------- | ---- | ------------------------------------ |
-| domStorageAccess | boolean | 是    | 设置是否开启文档对象模型存储接口（DOM Storage API）权限。默认值：false。 |
+| domStorageAccess | boolean | 是    | ture表示设置开启文档对象模型存储接口（DOM Storage API）权限，false表示不设置开启文档对象模型存储接口（DOM Storage API）权限。默认值：false。 |
 
 **示例：**
 
@@ -371,6 +371,10 @@ imageAccess(imageAccess: boolean)
 javaScriptProxy(javaScriptProxy: JavaScriptProxy)
 
 注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。所有参数不支持更新。注册对象时，同步与异步方法列表请至少选择一项不为空，可同时注册两类方法。同一方法在同步与异步列表中重复注册，将默认异步调用。此接口只支持注册一个对象，若需要注册多个对象请使用[registerJavaScriptProxy<sup>9+</sup>](js-apis-webview.md#registerjavascriptproxy)。
+
+> **说明：**
+>
+> javaScriptProxy需要和deleteJavaScriptRegister接口配合使用，防止内存泄漏。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -514,7 +518,7 @@ mixedMode(mixedMode: MixedMode)
 
 | 参数名       | 类型                        | 必填   | 说明      |
 | --------- | --------------------------- | ---- | --------- |
-| mixedMode | [MixedMode](#mixedmode枚举说明) | 是    | 要设置的混合内容。默认值：MixedMode.None。 |
+| mixedMode | [MixedMode](#mixedmode枚举说明) | 是    | 要设置的混合内容。默认值：MixedMode.None，表示不允许安全来源（secure origin）加载不安全来源（insecure origin）的内容。 |
 
 **示例：**
 
@@ -1034,7 +1038,7 @@ textZoomAtio(textZoomAtio: number)
 
 | 参数名          | 类型   | 必填  | 说明                             |
 | ------------ | ------ | ---- | -------------------------------- |
-| textZoomAtio | number | 是   | 要设置的页面的文本缩放百分比。取值为整数，范围为(0, +∞)。默认值：100。 |
+| textZoomAtio | number | 是   | 要设置的页面的文本缩放百分比。取值为正整数。默认值：100。 |
 
 **示例：**
 
@@ -1066,7 +1070,7 @@ textZoomRatio(textZoomRatio: number)
 
 | 参数名           | 类型   | 必填   | 说明                             |
 | ------------- | ------ | ---- | -------------------------------- |
-| textZoomRatio | number | 是    | 要设置的页面的文本缩放百分比。取值为整数，范围为(0, +∞)。默认值：100。 |
+| textZoomRatio | number | 是    | 要设置的页面的文本缩放百分比。取值为整数，范围为(0, 2147483647]。默认值：100。 |
 
 **示例：**
 
@@ -1101,7 +1105,7 @@ initialScale(percent: number)
 
 | 参数名     | 类型   | 必填   | 说明                          |
 | ------- | ------ | ---- | ----------------------------- |
-| percent | number | 是    | 要设置的整体页面的缩放百分比。默认值：100。 |
+| percent | number | 是    | 要设置的整体页面的缩放百分比。<br>默认值：100。取值范围：(0, 1000]。 |
 
 **示例：**
 
@@ -1815,7 +1819,7 @@ javaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 > **说明：**
 >
 > - 该脚本将在页面的任何JavaScript代码之前运行，并且DOM树此时可能尚未加载、渲染完毕。
-> - 该脚本按照字典序执行，非数组本身顺序。
+> - 该脚本按照字典序执行，非数组本身顺序，若需数组本身顺序，建议使用[runJavaScriptOnDocumentStart](#runjavascriptondocumentstart15)接口。
 > - 不建议与[runJavaScriptOnDocumentStart](#runjavascriptondocumentstart15)同时使用。
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -3910,7 +3914,7 @@ onProgressChange(callback: Callback\<OnProgressChangeEvent\>)
 
 | 参数名         | 类型   | 必填   | 说明                  |
 | ----------- | ------ | ---- | --------------------- |
-| callback | Callback\<[OnProgressChangeEvent](#onprogresschangeevent12)\> | 是    | 页面加载进度时触发的功能。 |
+| callback | Callback\<[OnProgressChangeEvent](#onprogresschangeevent12)\> | 是    | 页面加载进度变化时触发的功能。 |
 
 **示例：**
 
@@ -4437,7 +4441,7 @@ onInterceptRequest(callback: Callback<OnInterceptRequestEvent, WebResourceRespon
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | Callback\<[OnInterceptRequestEvent](#oninterceptrequestevent12)\> | 是 | 当Web组件加载url之前触发。<br>返回值[WebResourceResponse](#webresourceresponse)。返回响应数据则按照响应数据加载，无响应数据则返回null表示按照原来的方式加载。 |
+| callback | Callback\<[OnInterceptRequestEvent](#oninterceptrequestevent12), [WebResourceResponse](#webresourceresponse)\> | 是 | 当Web组件加载url之前触发。<br>返回值[WebResourceResponse](#webresourceresponse)。返回响应数据则按照响应数据加载，无响应数据则返回null表示按照原来的方式加载。 |
 
 **示例：**
 
@@ -7206,7 +7210,7 @@ deleteForward(length: number): void
 
 | 参数名 | 类型 | 必填 | 说明                 |
 | ------ | -------- | ---- | ------------------------ |
-| length | number   | 是   | 从后往前删除字符的长度。 |
+| length | number   | 是   | 从后往前删除字符的长度。<br>参数无取值范围，当参数值大于字符长度时，默认删除光标前面所有字符；参数值为负数时，不执行删除操作。 |
 
 ### deleteBackward12+</sup>
 
@@ -7220,7 +7224,7 @@ deleteBackward(length: number): void
 
 | 参数名 | 类型 | 必填 | 说明                 |
 | ------ | -------- | ---- | ------------------------ |
-| length | number   | 是   | 从前往后删除字符的长度。 |
+| length | number   | 是   | 从前往后删除字符的长度。<br>参数无取值范围，当参数值大于字符长度时，默认删除光标后面所有字符；参数值为负数时，不执行删除操作。 |
 
 ### sendFunctionKey<sup>12+</sup>
 
@@ -8002,8 +8006,8 @@ confirm(priKeyFile : string, certChainFile : string): void
 
 | 参数名           | 类型   | 必填   | 说明               |
 | ------------- | ------ | ---- | ------------------ |
-| priKeyFile    | string | 是    | 存放私钥的文件，包含路径和文件名。  |
-| certChainFile | string | 是    | 存放证书链的文件，包含路径和文件名。 |
+| priKeyFile    | string | 是    | 存放私钥文件的完整路径。  |
+| certChainFile | string | 是    | 存放证书链文件的完整路径。 |
 
 ### confirm<sup>10+</sup>
 
@@ -8272,7 +8276,7 @@ x(): number
 
 | 类型     | 说明                 |
 | ------ | ------------------ |
-| number | 显示正常返回非负整数，否则返回-1。 |
+| number | 显示正常返回非负整数，否则返回-1。<br>单位：vp。 |
 
 ### y<sup>9+</sup>
 
@@ -8286,7 +8290,7 @@ y(): number
 
 | 类型     | 说明                 |
 | ------ | ------------------ |
-| number | 显示正常返回非负整数，否则返回-1。 |
+| number | 显示正常返回非负整数，否则返回-1。<br>单位：vp。 |
 
 ### getLinkUrl<sup>9+</sup>
 
@@ -8440,7 +8444,7 @@ getPreviewWidth(): number
 
 | 类型     | 说明       |
 | ------ | ----------- |
-| number | 预览图的宽。 |
+| number | 预览图的宽。<br>单位：vp。 |
 
 ### getPreviewHeight<sup>13+</sup>
 
@@ -8454,7 +8458,7 @@ getPreviewHeight(): number
 
 | 类型     | 说明       |
 | ------ | ----------  |
-| number | 预览图的高。 |
+| number | 预览图的高。<br>单位：vp。 |
 
 ## WebContextMenuResult<sup>9+</sup>
 
@@ -8688,7 +8692,7 @@ Web媒体策略的配置。
 
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ------- | ---- | ---------------------------------------- |
-| resumeInterval | number  | 否    | 被暂停的Web音频能够自动续播的有效期，单位：秒。最长有效期为60秒，由于近似值原因，该有效期可能存在一秒内的误差。 |
+| resumeInterval | number  | 否    | 被暂停的Web音频能够自动续播的有效期，单位：秒。有效期范围0~60秒，如若超过60秒，按照60s处理，由于近似值原因，该有效期可能存在一秒内的误差。 |
 | audioExclusive | boolean | 否    | 应用内多个Web实例的音频是否独占。                       |
 
 ## ScreenCaptureConfig<sup>10+</sup>
@@ -10291,8 +10295,8 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| xOffset | number | 是 | 以网页最左端为基准，水平滚动条滚动所在位置。 |
-| yOffset | number | 是 | 以网页最上端为基准，竖直滚动条滚动所在位置。 |
+| xOffset | number | 是 | 以网页最左端为基准，水平滚动条滚动所在位置。<br>单位：vp。 |
+| yOffset | number | 是 | 以网页最上端为基准，竖直滚动条滚动所在位置。<br>单位：vp。 |
 
 ## OnSslErrorEventReceiveEvent<sup>12+</sup>
 
@@ -10413,8 +10417,8 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| xOffset | number | 是 | 以网页最左端为基准，水平过度滚动的偏移量。 |
-| yOffset | number | 是 | 以网页最上端为基准，竖直过度滚动的偏移量。 |
+| xOffset | number | 是 | 以网页最左端为基准，水平过度滚动的偏移量。<br>单位：vp。 |
+| yOffset | number | 是 | 以网页最上端为基准，竖直过度滚动的偏移量。<br>单位：vp。 |
 
 ## JavaScriptProxy<sup>12+</sup>
 
@@ -10539,4 +10543,4 @@ Web同层渲染的配置。
 
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ------- | ---- | ---------------------------------------- |
-| supportDefaultIntrinsicSize | boolean | 否    | 设置同层渲染元素是否支持固定大小 300 * 150。<br>为true时，固定大小为 300 * 150<br>为false时，固定大小为 0 * 0<br>默认值：false<br>单位：px |
+| supportDefaultIntrinsicSize | boolean | 否    | 设置同层渲染元素是否支持固定大小 300 * 150。<br>当H5侧CSS设置了大小时，同层渲染元素大小为CSS大小，否则为固定大小。<br>为true时，固定大小为 300 * 150。<br>为false时，若H5侧CSS未设置大小，则同层渲染元素不渲染。<br>默认值：false<br>单位：px |

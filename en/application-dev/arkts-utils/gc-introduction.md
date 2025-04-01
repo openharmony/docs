@@ -31,7 +31,7 @@ function main() {
   let parent: Parent = new Parent();
   let child: Child = new Child();
   parent.child = child;
-
+  child.parent = parent;
 }
 ```
 In the example above, parent holds a reference to child, and child holds a reference to parent. This circular reference means that neither object's reference count will reach zero, even after the **main** function ends, resulting in a memory leak.
@@ -227,7 +227,7 @@ Note: The thread pool is used to execute concurrent tasks in the GC process. Dur
 
 #### Full GC
 
-- **When to trigger**: Full GC is not triggered based on the memory threshold. After the application transitions to the background, full GC is triggered if the predicted reclaimable object size exceeds 2 MB. You can also trigger full GC using the DumpHeapSnapshot and AllocationTracker tools or calling native interfaces and JS/TS interfaces.
+- **When to trigger**: Full GC is not triggered based on the memory threshold. After the application transitions to the background, full GC is triggered if the predicted reclaimable object size exceeds 2 MB. You can also trigger full GC using the DumpHeapSnapshot and AllocationTracker tools or calling native interfaces and ArkTS interfaces.
 - **Description**: fully compacts both young and old generations, maximizing memory reclamation in performance-insensitive scenarios.
 - **Scenario**: background
 - **Log keywords**: [ CompressGC ]
@@ -412,7 +412,7 @@ C03F00/ArkCompiler: Heap average alive rate: 0.635325
 ### ArkTools.hintGC()
 
 - Invocation: **ArkTools.hintGC()**
-- Type: JS interface
+- Type: ArkTS interface
 - Description: triggers the VM to assess whether a full GC should be executed. Full GC is initiated in the background or if the expected memory survival rate is below a threshold. It will not trigger in sensitive scenarios.
 - Use case: developers prompting the system to perform GC.
 - Log keywords: There is no direct log. Only external trigger (**GCReason::TRIGGER_BY_JS**) can be found.

@@ -4357,7 +4357,7 @@ setAsrVoiceControlMode(mode: AsrVoiceControlMode, enable: boolean): boolean
 
 | 类型 | 说明                                                            |
 |-------|---------------------------------------------------------------|
-| boolean | 返回设置在系统通话中上报mode及通话录音的上行通路的ASR音频通路选择的结果，true为设置成功，false为设置失败。 |
+| boolean | 返回设置在系统通话中上报mode及通话录音的上行通路的ASR音频通路选择的结果。true为设置成功，false为设置失败。 |
 
 **错误码：**
 
@@ -4391,13 +4391,13 @@ setAsrVoiceMuteMode(mode: AsrVoiceMuteMode, enable: boolean): boolean
 | 参数名  | 类型                                    | 必填 | 说明       |
 |------|---------------------------------------|-------|----------|
 | mode | [AsrVoiceMuteMode](#asrvoicemutemode12) | 是 | 静音控制模式。 |
-| enable   | boolean                               | 是 | 表示系统通话中，设置ASR音频通路静音状态。true表示静音，false表示非静音。 |
+| enable   | boolean                               | 是 | 表示在系统通话中设置ASR音频通路静音状态。true表示静音，false表示非静音。 |
 
 **返回值：**
 
 | 类型 | 说明                                               |
 |-------|--------------------------------------------------|
-| boolean | 返回在系统通话中，对ASR音频通路进行静音控制的结果，true为设置成功，false为设置失败。 |
+| boolean | 返回在系统通话中，对ASR音频通路进行静音控制的结果。true为设置成功，false为设置失败。 |
 
 **错误码：**
 

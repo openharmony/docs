@@ -17,6 +17,8 @@
 
 Stepper(value?: { index?: number })
 
+创建步骤导航器组件。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -68,8 +70,8 @@ onChange(callback:&nbsp;(prevIndex:&nbsp;number,&nbsp;index:&nbsp;number)&nbsp;=
 
 | 参数名    | 类型   | 必填 | 说明                                       |
 | --------- | ------ | ---- | ------------------------------------------ |
-| prevIndex | number | 是   | 切换前的步骤页索引值。                     |
-| index     | number | 是   | 切换后的步骤页（前一页或者下一页）索引值。 |
+| prevIndex | number | 是   | 切换前的步骤页索引值。<br/>取值范围：[0, +∞)。 |
+| index     | number | 是   | 切换后的步骤页（前一页或者下一页）索引值。<br/>取值范围：[0, +∞)。 |
 
 ### onNext
 

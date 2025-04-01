@@ -22,7 +22,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef enum [TimeService_ErrCode](#timeservice_errcode)[TimeService_ErrCode](#timeservice_errcode) | 枚举错误码。 | 
+| typedef enum [TimeService_ErrCode](#timeservice_errcode) [TimeService_ErrCode](#timeservice_errcode) | 枚举错误码。 | 
 
 
 ### 枚举
@@ -36,7 +36,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [TimeService_ErrCode](#timeservice_errcode)[OH_TimeService_GetTimeZone](#oh_timeservice_gettimezone) (char \*timeZone, uint32_t len) | 获取当前系统时区。 | 
+| [TimeService_ErrCode](#timeservice_errcode) [OH_TimeService_GetTimeZone](#oh_timeservice_gettimezone) (char \*timeZone, uint32_t len) | 获取当前系统时区。 | 
 
 
 ## 类型定义说明

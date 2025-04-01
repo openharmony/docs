@@ -73,75 +73,7 @@ struct Demo {
 }
 ```
 
-## cl.arkui.3 CanvasRenderingContext2D和Path2D未指定起始点时由默认(0, 0)为绘制起点变更为前两位参数作为绘制起点
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-CanvasRenderingContext2D绘制路径时，如果没有使用moveTo方法指定路径起始点，会默认从画布左上角(0,0)开始绘制路径，与W3C行为不一致。
-
-**变更影响**
-
-变更前：CanvasRenderingContext2D绘制路径时，如果没有使用moveTo方法指定路径起始点，会默认从画布左上角(0,0)开始绘制路径。
-
-变更后：CanvasRenderingContext2D绘制路径时，如果没有使用moveTo方法指定路径起始点，会以第一个有效的路径绘制方法的前两位number参数作为路径起始点。
-
-| 接口 | 示例 | 变更前 | 变更后 |
-|---------|---------|---------|---------|
-| lineTo | context.lineTo(100, 100)<br>context.lineTo(200, 100) |![变更前路径从左上角开始](figures/Canvas_lineTo_before.png)|![变更后路径从第一个绘制方法的前两位参数开始](figures/Canvas_lineTo_after.png)|
-| arcTo | context.arcTo(150, 20, 150, 70, 50) |![变更前路径从左上角开始](figures/Canvas_arcTo_before.png)|![变更后路径从第一个绘制方法的前两位参数开始](figures/Canvas_arcTo_after.png)|
-| bezierCurveTo | context.bezierCurveTo(20, 100, 200, 100, 200, 20)|![变更前路径从左上角开始](figures/Canvas_bezierCurveTo_before.png)|![变更后路径从第一个绘制方法的前两位参数开始](figures/Canvas_bezierCurveTo_after.png)|
-| quadraticCurveTo | context.quadraticCurveTo(100, 100, 200, 20)|![变更前路径从左上角开始](figures/Canvas_quadraticCurveTo_before.png)|![变更后路径从第一个绘制方法的前两位参数开始](figures/Canvas_quadraticCurveTo_after.png)|
-
-**起始API Level**
-
-API 9
-
-**变更发生版本**
-
-从OpenHarmony 5.1.0.48 版本开始。
-
-**变更的接口/组件**
-
-CanvasRenderingContext2D的lineTo, arcTo, bezierCurveTo, quadraticCurveTo接口
-
-Path2D的lineTo, arcTo, bezierCurveTo, quadraticCurveTo接口
-
-**适配指导**
-
-如需路径起点从(0, 0)出发，可以在开始绘制路径后使用moveTo(0, 0)。
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct LineTo {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-
-  build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Canvas(this.context)
-        .width('100%')
-        .height('100%')
-        .backgroundColor('#ffff00')
-        .onReady(() =>{
-          this.context.beginPath()
-          this.context.moveTo(0, 0)
-          this.context.lineTo(280, 160)
-          this.context.stroke()
-        })
-    }
-    .width('100%')
-    .height('100%')
-  }
-}
-```
-
-## cl.arkui.4 CanvasRenderingContext2D方法传NaN和Infinity值后执行的其他绘制方法由不绘制变更为正常绘制
+## cl.arkui.2 CanvasRenderingContext2D方法传NaN和Infinity值后执行的其他绘制方法由不绘制变更为正常绘制
 
 **访问级别**
 

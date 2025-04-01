@@ -94,7 +94,7 @@ IGeofenceCallback::ReportGeofenceOperateResult ([in] int fenceIndex, [in] enum G
 | 名称 | 描述 | 
 | -------- | -------- |
 | fenceIndex | 表示地理围栏编号。 | 
-| type | 表示地理围栏操作类型。详情参考[GeofenceOperateType](_hdi_geofence.md#geofenceoperatetype)。 | 
+| type | 表示地理围栏操作类型，详情参考[GeofenceOperateType](_hdi_geofence.md#geofenceoperatetype)。 | 
 | result | 表示地理围栏操作结果，详情参考[GeofenceOperateResult](_hdi_geofence.md#geofenceoperateresult)。 | 
 
 **返回：**

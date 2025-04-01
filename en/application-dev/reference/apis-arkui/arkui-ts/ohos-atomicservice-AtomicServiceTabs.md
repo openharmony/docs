@@ -64,12 +64,14 @@ AtomicServiceTabs ({
 | barBackgroundColor | [ResourceColor](ts-types.md#resourcecolor) | No| @Prop | Background color of the tab bar.|
 | index | number | No| @Prop | Index of the currently displayed tab.|
 | barOverlap | boolean| No| @Prop | Whether the tab bar is superimposed on the **TabContent** component after having its background blurred.|
-| controller|[TabsController](ts-container-tabs.md#tabscontroller) | No| @Prop |Tab controller, which is used to control switching of tabs.|
+| controller|[TabsController](ts-container-tabs.md#tabscontroller) | No| - |Tab controller, which is used to control switching of tabs.|
 | onChange | Callback\<number\> | No| - | Callback invoked when a tab is switched.|
 | onTabBarClick | Callback\<number\> | No| - |Callback invoked when a tab is clicked.|
 | onContentWillChange | [OnContentWillChangeCallback](#oncontentwillchangecallback) | No| - | Callback invoked when a new page is about to be displayed.|
 
 ## TabContentBuilder
+
+type TabContentBuilder = () => void
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -81,16 +83,23 @@ AtomicServiceTabs ({
 
 ## TabBarOptions
 
+### constructor
+constructor(icon: ResourceStr | TabBarSymbol, text: ResourceStr, unselectedColor?: ResourceColor, selectedColor?: ResourceColor)
+
+A constructor used to create an **TabBarOptions** instance.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
 
 | Name| Type| Mandatory| Description|
 | --------------- | ------ |------ |------ |
 | icon | [ResourceStr](ts-types.md#resourcestr) \| [TabBarSymbol](ts-container-tabcontent.md#tabbarsymbol12) | Yes| Icon of the tab.|
 | text | [ResourceStr](ts-types.md#resourcestr) | Yes| Text of the tab.|
-| unselectedColor | [ResourceColor](ts-types.md#resourcecolor) | Yes| Color of the tab when it is not selected.|
-| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | Yes| Color of the tab when it is selected.|
+| unselectedColor | [ResourceColor](ts-types.md#resourcecolor) | No| Color of the tab when it is not selected.<br>Default value: **#99182431**|
+| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | No| Color of the tab when it is selected.<br>Default value: **#FF007DFF**|
 
 ## TabBarPosition 
 
@@ -104,6 +113,8 @@ AtomicServiceTabs ({
 | BOTTOM  | 1 | The tab bar is at the bottom of the screen.|
 
 ## OnContentWillChangeCallback
+
+type OnContentWillChangeCallback = (currentIndex: number, comingIndex: number) => boolean
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -179,7 +190,7 @@ struct Index {
       onContentWillChange: this.onContentWillChangeCallBack,
     })
     Column() {
-      Text("onChange callback times:" + this.onClickNumber)
+      Text("onchange callback times:" + this.onClickNumber)
       Text("comingIndex = " + this.comingIndex + ", currentIndex = " + this.currentIndex)
     }.margin({top:500})
     }.height('100%')
@@ -251,7 +262,7 @@ struct Index {
       onContentWillChange: this.onContentWillChangeCallBack,
     })
     Column() {
-      Text("onChange callback times:" + this.onClickNumber)
+      Text("onchange callback times:" + this.onClickNumber)
       Text("comingIndex = " + this.comingIndex + ", currentIndex = " + this.currentIndex)
     }.margin({top:500})
     }.height('100%')

@@ -121,8 +121,8 @@ enum AudioCategory
 | AUDIO_IN_COMMUNICATION | 通信。 | 
 | AUDIO_IN_RINGTONE | 电话铃声。 | 
 | AUDIO_IN_CALL | 呼叫。 | 
-| AUDIO_MMAP_NOIRQ | Mmap模式 | 
-| AUDIO_OFFLOAD | 低功耗 | 
+| AUDIO_MMAP_NOIRQ | Mmap模式。 | 
+| AUDIO_OFFLOAD | 低功耗。 | 
 
 
 ### AudioChannelMask
@@ -199,8 +199,8 @@ enum AudioDeviceType
 | AUDIO_PRIMARY_DEVICE | 主音频设备。 | 
 | AUDIO_USB_DEVICE | USB音频设备。 | 
 | AUDIO_A2DP_DEVICE | 蓝牙音频设备。 | 
-| AUDIO_HDMI_DEVICE | HDMI音频设备 | 
-| AUDIO_ADAPTER_DEVICE | 声卡设备 | 
+| AUDIO_HDMI_DEVICE | HDMI音频设备。 | 
+| AUDIO_ADAPTER_DEVICE | 声卡设备。 | 
 | AUDIO_DEVICE_UNKNOWN | 未知设备。 | 
 
 
@@ -267,7 +267,7 @@ enum AudioExtParamKey
 | AUDIO_EXT_PARAM_KEY_BUTTON | 分布式音频-媒体按钮事件。 | 
 | AUDIO_EXT_PARAM_KEY_EFFECT | 分布式音频-音频效果事件。 | 
 | AUDIO_EXT_PARAM_KEY_STATUS | 分布式音频-设备状态事件。 | 
-| AUDIO_EXT_PARAM_KEY_USB_DEVICE | USB设备类型（ ARM 或 HIFI） | 
+| AUDIO_EXT_PARAM_KEY_USB_DEVICE | USB设备类型（ ARM 或 HIFI）。 | 
 | AUDIO_EXT_PARAM_KEY_PERF_INFO | 分布式音频-dsp加载事件。 | 
 | AUDIO_EXT_PARAM_KEY_LOWPOWER | 低电量事件。 | 
 

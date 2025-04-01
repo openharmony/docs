@@ -89,7 +89,15 @@ struct Star {
   | [Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md#searchoptions18对象说明) | value | 18   |
   | [BindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md) | isShow | 18   |
   | [BindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md) | isShow | 18   |
-
+  | [Toggle](../reference/apis-arkui/arkui-ts/ts-basic-components-toggle.md#toggleoptions18对象说明) | isOn | 18   |
+  | [Checkbox](../reference/apis-arkui/arkui-ts/ts-basic-components-checkbox.md#select) | select | 18   |
+  | [CheckboxGroup](../reference/apis-arkui/arkui-ts/ts-basic-components-checkboxgroup.md#selectall) | selectAll | 18   |  
+  | [Radio](../reference/apis-arkui/arkui-ts/ts-basic-components-radio.md#checked) | checked | 18   |  
+  | [Rating](../reference/apis-arkui/arkui-ts/ts-basic-components-rating.md#ratingoptions18对象说明) | rating | 18   |  
+  | [Slider](../reference/apis-arkui/arkui-ts/ts-basic-components-slider.md#slideroptions对象说明) | value | 18   |  
+  | [Select](../reference/apis-arkui/arkui-ts/ts-basic-components-select.md#selected) | selected | 18   |  
+  | [Select](../reference/apis-arkui/arkui-ts/ts-basic-components-select.md#value) | value | 18   |
+  | [MenuItem](../reference/apis-arkui/arkui-ts/ts-basic-components-menuitem.md#selected) | selected | 18   |
 - !!绑定的[\@Local](arkts-new-local.md)变量变化时，会触发UI的同步刷新。
 
 
