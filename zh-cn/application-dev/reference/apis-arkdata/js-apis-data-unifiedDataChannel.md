@@ -1826,13 +1826,13 @@ let plainTextObj : uniformDataStruct.PlainText = {
   uniformDataType: 'general.plain-text',
   textContent : 'This is plainText textContent example',
   abstract : 'this is abstract',
-  details : plainTextDetails,
+  details : details,
 }
 let htmlObj : uniformDataStruct.HTML = {
   uniformDataType :'general.html',
   htmlContent : '<div><p>标题</p></div>',
   plainContent : 'this is plainContent',
-  details : htmlObjDetails,
+  details : details,
 }
 let plainText = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainTextObj);
 let hyperlink = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.HYPERLINK, htmlObj);
