@@ -7831,7 +7831,7 @@ img.release().then(() => {
 | pixelFormat<sup>12+</sup> | [PixelMapFormat](#pixelmapformat7) | 否  |  否 | 像素格式。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
 | alphaType<sup>12+</sup> | [AlphaType](#alphatype9)  | 否  |  否  |透明度。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
 | mimeType<sup>12+</sup> | string  |  否  |   否  |图片真实格式（MIME type）。  |
-| isHdr<sup>12+</sup> | boolean  |  否  | 否  | 图片是否为高动态范围（HDR）。对于[ImageSource](#imagesource)，代表源图片是否为HDR；对于[PixelMap](#pixelmap7)，代表解码后的pixelmap是否为HDR。 |
+| isHdr<sup>12+</sup> | boolean  |  否  | 否  | true表示图片为高动态范围（HDR），false表示图片非高动态范围（SDR）。对于[ImageSource](#imagesource)，代表源图片是否为HDR；对于[PixelMap](#pixelmap7)，代表解码后的pixelmap是否为HDR。 |
 
 ## Size
 
