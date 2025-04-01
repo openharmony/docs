@@ -2756,7 +2756,7 @@ Image_ErrorCode OH_ImageSourceNative_CreateFromFd(int32_t fd, OH_ImageSourceNati
 Image_ErrorCode OH_ImageSourceNative_CreateFromRawFile(RawFileDescriptor *rawFile, OH_ImageSourceNative **res)
 ```
 **描述**
-通过图像资源文件的RawFileDescriptor创建OH_ImageSourceNative指针
+通过图像资源文件的RawFileDescriptor创建OH_ImageSourceNative指针。
 
 **起始版本：** 12
 
