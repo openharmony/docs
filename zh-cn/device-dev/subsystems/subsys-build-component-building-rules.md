@@ -205,7 +205,7 @@ ohos_shared_library("syscap_interface_shared") {
 
 部件内的引用使用相对路径的优点：
 
-- 脚本更简洁
+- 脚本更简洁。
 
 - 部件的编译脚本与部件的根目录解耦。
 

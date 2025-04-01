@@ -49,7 +49,7 @@ ohos开头的模板与内建模板的差异主要在于：推荐使用ohos定制
 
 ohos开头的模板对应的.gni文件路径在：openharmony/build/templates/cxx/cxx.gni。
 
-ohos_shared_library示例
+ohos_shared_library示例：
 
 ```shell
 import("//build/ohos.gni")
@@ -103,7 +103,7 @@ ohos_shared_library("helloworld") {
 }
 ```
 
-ohos_static_library示例
+ohos_static_library示例：
 
 ```shell
 import("//build/ohos.gni")
@@ -146,7 +146,7 @@ ohos_static_library("helloworld") {
 }
 ```
 
-ohos_executable示例
+ohos_executable示例：
 
 ```shell
 import("//build/ohos.gni")
@@ -193,7 +193,7 @@ ohos_executable("helloworld") {
 }
 ```
 
-ohos_source_set示例
+ohos_source_set示例：
 
 ```shell
 import("//build/ohos.gni")
@@ -246,7 +246,7 @@ ohos_source_set("helloworld") {
 
 预编译模板的.gni相关文件路径在：openharmony/build/templates/cxx/prebuilt.gni。
 
-ohos_prebuilt_executable示例
+ohos_prebuilt_executable示例：
 
 ```shell
 import("//build/ohos.gni")
@@ -274,7 +274,7 @@ ohos_prebuilt_executable("helloworld") {
 }
 ```
 
-ohos_prebuilt_shared_library示例
+ohos_prebuilt_shared_library示例：
 
 ```shell
 import("//build/ohos.gni")
@@ -302,7 +302,7 @@ ohos_prebuilt_shared_library("helloworld") {
 }
 ```
 
-ohos_prebuilt_static_library示例
+ohos_prebuilt_static_library示例：
 
 ```shell
 import("//build/ohos.gni")

@@ -26,12 +26,12 @@
 | --------- | ---- |
 | hap_profile | HAP的config.json，Stage模型对应module.json。 |
 | raw_assets | 原始assets，这些assets会直接拷贝到HAP的assets目录下。 |
-| resources | 资源文件，编译后放置在assets/entry/resources目录下 |
+| resources | 资源文件，编译后放置在assets/entry/resources目录下。 |
 | js_assets | js资源，编译后放置在assets/js/default目录下。|
-| ets_assets | ets资源，编译后放置在assets/js/default目录下 |
-| deps | 当前目标的依赖 |
-| shared_libraries | 当前目标依赖的native库 |
-| hap_name | HAP的名字，可选，默认为目标名 |
+| ets_assets | ets资源，编译后放置在assets/js/default目录下。 |
+| deps | 当前目标的依赖。 |
+| shared_libraries | 当前目标依赖的native库。 |
+| hap_name | HAP的名字，可选，默认为目标名。 |
 | final_hap_path | 用户可以制定生成的HAP的位置，可选，final_hap_path中会覆盖hap_name。|
 | subsystem_name | HAP从属的子系统名，需要和ohos.build中的名字对应，否则将导致无法安装到system镜像中。|
 | part_name | HAP从属的部件名，同subsystem_name。|
