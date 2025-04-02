@@ -399,7 +399,6 @@ export default class MigrationAbility extends UIAbility {
 ```
 
 ### 支持同应用不同BundleName的Ability跨端迁移
-
 相同应用在不同设备类型下可能使用了不同的BundleName，该场景下如果需要支持应用跨端迁移，需要在不同BundleName的应用的module.json5配置文件中的abilities标签进行如下配置：
 
 - continueBundleName字段：分别添加对端应用的BundleName。
@@ -453,7 +452,6 @@ export default class MigrationAbility extends UIAbility {
 ```
 
 ### 支持快速拉起目标应用
-
 默认情况下，发起迁移后不会立即拉起对端的目标应用，而是等待迁移数据从源端同步到对端后，才会拉起。为了发起迁移后能够立即拉起目标应用，做到及时响应，可以通过在continueType标签中添加“_ContinueQuickStart”后缀进行生效，这样待迁移数据从源端同步到对端后只恢复迁移数据即可，提升应用迁移体验。
 
    ```json
