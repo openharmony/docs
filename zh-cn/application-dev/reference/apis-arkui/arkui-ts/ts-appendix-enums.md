@@ -1180,11 +1180,11 @@ type Nullable\<T> = T | undefined;
 | MEDIUM         | 1   | 中灵敏度。                                 |
 | HIGH 	         | 2   | 高灵敏度。                                 |
 
-## AxisAction<sup>18+</sup>
+## AxisAction<sup>17+</sup>
 
 定义轴事件的轴动作类型。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -1224,3 +1224,15 @@ type Nullable\<T> = T | undefined;
 | -------------- | -- | ---------------------------------------- |
 | SELF  	     | 0   | 获焦框绘制在节点自身层级。                                 |
 | TOP            | 1   | 获焦框绘制在当前实例Z序的最上层。                                 |
+
+## EventQueryType<sup>18+</sup>
+
+要查询的交互事件类型。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| ON_CLICK  | 0 | 点击事件。 |

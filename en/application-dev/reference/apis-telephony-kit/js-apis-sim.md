@@ -26,7 +26,7 @@ Checks whether the SIM card in the specified slot is activated. This API uses an
 | Name  | Type                       | Mandatory| Description                                  |
 | -------- | --------------------------- | ---- | -------------------------------------- |
 | slotId   | number                      | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result, which indicates whether the SIM card in the specified slot is activated. The value **true** means yes and the value **false** means no.                            |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result, which indicates whether the SIM card in the specified slot is activated.<br>**true**: activated.<br>**false**: not activated.                              |
 
 **Example**
 
@@ -58,7 +58,7 @@ Checks whether the SIM card in the specified slot is activated. This API uses a 
 
 | Type                 | Description                              |
 | --------------------- | ---------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the SIM card in the specified slot is activated, and the value **false** indicates the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result.<br>**true**: activated.<br>**false**: not activated.|
 
 **Example**
 
@@ -91,7 +91,7 @@ Checks whether the SIM card in the specified slot is activated.
 
 | Type                 | Description                              |
 | --------------------- | ---------------------------------- |
-| boolean | Boolean value indicating whether the SIM card in the specified slot is activated. The value **true** means yes and the value **false** means no.|
+| boolean | which indicates whether the SIM card in the specified slot is activated.<br>**true**: activated.<br>**false**: not activated.|
 
 **Example**
 
@@ -140,7 +140,7 @@ Obtains the default slot ID of the SIM card that provides voice services. This A
 
 | Type             | Description                                   |
 | ----------------- | --------------------------------------- |
-| Promise\<number\> | Promise used to return the result.<br>- **0**: card slot 1.<br>- **1**: card slot 2.<br>- **-1**: card slot not set or service not unavailable.|
+| Promise\<number\> | Promise used to return the result.<br>- **0**: card slot 1.<br>- **1**: card slot 2.<br>- **-1**: card slot not set or service not unavailable|
 
 **Example**
 
@@ -833,7 +833,7 @@ Checks whether the SIM card in the specified slot is installed. This API uses an
 | Name  | Type                       | Mandatory| Description                                  |
 | -------- | --------------------------- | ---- | -------------------------------------- |
 | slotId   | number                      | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
-| callback | AsyncCallback&lt;boolean&gt; | Yes | Callback used to return the result. The value **true** indicates that the SIM card in the specified slot is installed, and the value **false** indicates the opposite.                          |
+| callback | AsyncCallback&lt;boolean&gt; | Yes | Callback used to return the result.<br>- **true**: installed.<br>- **false**: not installed.                          |
 
 **Error codes**
 
@@ -877,7 +877,7 @@ Checks whether the SIM card in the specified slot is installed. This API uses a 
 
 | Type                 | Description                              |
 | --------------------- | ---------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the SIM card in the specified slot is installed, and the value **false** indicates the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result.<br>- **true**: installed.<br>- **false**: not installed.|
 
 **Error codes**
 
@@ -922,7 +922,7 @@ Checks whether the SIM card in the specified slot is installed.
 
 | Type                 | Description                              |
 | --------------------- | ---------------------------------- |
-| boolean | Boolean value indicating whether the SIM card in the specified slot is installed. The value **true** means yes and the value **false** means no.|
+| boolean | Whether the SIM card in the specified slot is installed.<br>- **true**: installed.<br>- **false**: not installed.|
 
 **Example**
 

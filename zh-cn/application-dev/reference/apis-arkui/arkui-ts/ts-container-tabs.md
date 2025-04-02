@@ -869,8 +869,8 @@ Tabs自定义切换动画执行过程中，返回给开发者的proxy对象。�
 
 | 名称  | 类型     | 只读 | 可选 | 说明                         |
 | ----- | ------- | ---- | ---- | --------------------------- |
-| from | number | 否 | 否 | 自定义动画起始页面对应的index值。|
-| to | number | 否 | 否 | 自定义动画目标页面对应的index值。|
+| from | number | 否 | 否 | 自定义动画起始页面对应的index值，索引从0开始。|
+| to | number | 否 | 否 | 自定义动画目标页面对应的index值，索引从0开始。|
 
 ### finishTransition
 
@@ -1613,7 +1613,7 @@ struct TabsCustomAnimationExample {
         this.scaleList[to] = 0.5
         this.opacityList[from] = 1.0
         this.opacityList[to] = 0.5
-        animateTo({
+        this.getUIContext()?.animateTo({
           duration: this.durationList[from],
           onFinish: () => {
             proxy.finishTransition()
@@ -1898,7 +1898,7 @@ struct TabsExample {
 
   private startAnimateTo(duration: number, leftMargin: number, width: number) {
     this.isStartAnimateTo = true
-    animateTo({
+    this.getUIContext()?.animateTo({
       duration: duration, // 动画时长
       curve: Curve.Linear, // 动画曲线
       iterations: 1, // 播放次数
