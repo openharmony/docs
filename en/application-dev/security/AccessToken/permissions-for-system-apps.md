@@ -123,7 +123,7 @@ Allows a system application to write the protection advice database.
 
 ### ohos.permission.READ_PROTECTION_ADVICE_POLICY
 
-Allows a system application to read the protection advice database
+Allows a system application to read the protection advice database.
 
 **Permission level**: system_basic
 
