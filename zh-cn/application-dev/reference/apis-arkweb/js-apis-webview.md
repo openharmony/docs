@@ -957,7 +957,7 @@ struct WebComponent {
 }
 ```
 
-3.通过沙箱路径加载本地文件，可以参考[web](ts-basic-components-web.md#web)加载沙箱路径的示例代码。
+3.通过沙箱路径加载本地文件，可以参考[web](../../web/web-page-loading-with-web-components.md#加载本地页面)加载沙箱路径的示例代码。
 
 加载的html文件。
 ```html
