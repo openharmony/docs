@@ -25,6 +25,8 @@ renderFit(fitMode: RenderFit)
 >  **说明：**
 >
 >  对于TEXTURE和SURFACE类型的[XComponent](./ts-basic-components-xcomponent.md)组件，当不设置renderFit属性时，取默认值为RenderFit.RESIZE_FILL。
+>
+>对于SURFACE类型的[XComponent](./ts-basic-components-xcomponent.md)组件，当组件背景色为不透明的纯黑色时，其renderFit通用属性仅支持设置为RenderFit.RESIZE_FILL，设置为其他的RenderFit枚举值显示异常。
 
 ## RenderFit枚举说明
 
