@@ -33,12 +33,12 @@ The figure below shows the recommended API calling process of the dual-channel p
 
     ```ts
     import { image } from '@kit.ImageKit';
-    imageWidth: number = 1920; // Use the width in the profile size supported by the device.
-    imageHeight: number = 1080; // Use the height in the profile size supported by the device.
+    let imageWidth: number = 1920; // Use the width in the profile size supported by the device.
+    let imageHeight: number = 1080; // Use the height in the profile size supported by the device.
 
     async function initImageReceiver():Promise<void>{
       // Create an ImageReceiver object.
-      let size: image.Size = { width: this.imageWidth, height: this.imageHeight };
+      let size: image.Size = { width: imageWidth, height: imageHeight };
       let imageReceiver = image.createImageReceiver(size, image.ImageFormat.JPEG, 8);
       // Obtain the surface ID for the first preview stream.
       let imageReceiverSurfaceId = await imageReceiver.getReceivingSurfaceId();
@@ -162,6 +162,7 @@ struct example {
         this.surfaceId = this.xComponentCtl.getXComponentSurfaceId(); // Obtain the surface ID of the component.
         // Use the surface ID to create a preview stream and start the camera. The component renders the preview stream data of each frame in real time.
       })
+      // The width and height of the surface are opposite to those of the XComponent. Alternatively, you can use .renderFit(RenderFit.RESIZE_CONTAIN) to automatically adjust the display without manually setting the width and height.
       .width(px2vp(this.imageHeight))
       .height(px2vp(this.imageWidth))
   }
@@ -195,9 +196,7 @@ imageReceiverSurfaceId: string, xComponentSurfaceId: string): void {
 }
 ```
 
- 
-
-## Sample
+ ## Sample
 
 ```ts
 import { camera } from '@kit.CameraKit';
@@ -327,11 +326,11 @@ struct Index {
     .width('100%')
   }
 
-  // Initialize the camera.
+  // Initialize a camera.
   async initCamera(): Promise<void> {
     console.info(`initCamera imageReceiverSurfaceId:${this.imageReceiverSurfaceId} xComponentSurfaceId:${this.xComponentSurfaceId}`);
     try {
-      // Obtain the camera manager instance.
+      // Obtain a camera manager instance.
       this.cameraManager = camera.getCameraManager(getContext(this));
       if (!this.cameraManager) {
         console.error('initCamera getCameraManager');
