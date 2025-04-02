@@ -62,6 +62,7 @@
 | struct&nbsp;&nbsp;[ArkUI_TranslationOptions](_ark_u_i___translation_options.md) | 定义组件转场时的平移效果对象。  | 
 | struct&nbsp;&nbsp;[ArkUI_ScaleOptions](_ark_u_i___scale_options.md) | 定义组件转场时的缩放效果对象。  | 
 | struct&nbsp;&nbsp;[ArkUI_RotationOptions](_ark_u_i___rotation_options.md) | 定义组件转场时的旋转效果对象。  | 
+| struct&nbsp;&nbsp;[ArkUI_TextChangeEvent](_ark_u_i___text_change_event.md) | 定义输入框内容改变（包含预上屏内容）回调事件的返回值类型。  | 
 
 
 ### 宏定义
