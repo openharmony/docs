@@ -174,7 +174,7 @@ fontWeight(value: number | FontWeight | string): T
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| value | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string |是 |安全控件上文字粗细。<br/>默认值：FontWeight.Medium。|
+| value | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string |是 |安全控件上文字粗细，number类型取值[100, 900]，取值间隔为100，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Medium。|
 
 **返回值：**
 
