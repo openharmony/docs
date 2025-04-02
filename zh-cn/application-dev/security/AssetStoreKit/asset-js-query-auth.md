@@ -51,7 +51,7 @@
   | AUTH_TOKEN            | 类型为Uint8Array，长度为148字节。                              | 必选     | 用户认证通过的授权令牌。                         |
   | RETURN_TYPE           | 类型为number，asset.ReturnType.ALL。                           | 必选     | 关键资产查询返回的结果类型。                    |
   | ACCESSIBILITY         | 类型为number，取值范围详见[Accessibility](../../reference/apis-asset-store-kit/js-apis-asset.md#accessibility)。 | 可选     | 基于锁屏状态的访问控制。                                     |
-  | REQUIRE_PASSWORD_SET  | 类型为boolean。                                                   | 可选     | 是否仅在设置了锁屏密码的情况下，可访问关键资产。默认值为false。     |
+  | REQUIRE_PASSWORD_SET  | 类型为boolean。                                                   | 可选     | 是否仅在设置了锁屏密码的情况下，可访问关键资产。     |
   | AUTH_TYPE             | 类型为number，取值范围详见[AuthType](../../reference/apis-asset-store-kit/js-apis-asset.md#authtype)。 | 可选     | 访问关键资产所需的用户认证类型。                  |
   | SYNC_TYPE             | 类型为number，取值范围详见[SyncType](../../reference/apis-asset-store-kit/js-apis-asset.md#synctype)。 | 可选     | 关键资产支持的同步类型。                           |
   | IS_PERSISTENT         | 类型为boolean。                                                   | 可选     | 在应用卸载时是否需要保留关键资产。     |
@@ -83,7 +83,7 @@
 >
 > 本模块提供了异步和同步两套接口，以下为异步接口的使用示例，同步接口详见[API文档](../../reference/apis-asset-store-kit/js-apis-asset.md)。
 
-查询别名是demo_alias且需要用户认证的关键资产。示例中引入的@ohos.userIAM.userAuth用法详见[userAuth文档](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md##start10)。
+查询别名是demo_alias且需要用户认证的关键资产。示例中引入的@ohos.userIAM.userAuth用法详见[userAuth文档](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md###start10)。
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
