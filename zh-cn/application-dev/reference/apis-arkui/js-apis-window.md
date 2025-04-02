@@ -9037,7 +9037,7 @@ try {
 }
 ```
 
-### setFollowParentMultiScreenPolicy<sup>16+<sup>
+### setFollowParentMultiScreenPolicy<sup>17+<sup>
 
 setFollowParentMultiScreenPolicy(enabled: boolean): Promise&lt;void&gt;
 
@@ -9051,7 +9051,7 @@ setFollowParentMultiScreenPolicy(enabled: boolean): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
