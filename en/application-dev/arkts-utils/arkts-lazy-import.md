@@ -105,9 +105,9 @@ You can use <!--Del-->[<!--DelEnd-->Trace<!--Del-->](../performance/common-trace
 - The lazy import feature supports the following syntax:
 
 | Syntax                                           | ModuleRequest  | ImportName | LocalName   | Supported by API Version 12|
-|:----------------------------------------------|:---------------|:-----------|:------------|:-----------|
-| import lazy { x } from "mod";                 | "mod"          | "x"        | "x"         | Yes     |
-| import lazy { x as v } from "mod";            | "mod"          | "x"        | "v"         | Yes     |
+| :--------------------------------- | :------------ | :---------- | :---------- | :------------------- |
+| import lazy { x } from "mod";        | "mod"         | "x"         | "x"         | Yes                  |
+| import lazy { x as v } from "mod";   | "mod"         | "x"         | "v"         | Yes                  |
 
 - Lazy importing of shared modules or modules within a dependency path that includes shared modules
     Lazy import remains effective for shared modules. For details about the constraints, see [Shared Module](../arkts-utils/arkts-sendable-module.md).
@@ -143,7 +143,7 @@ If the **type** keyword is added to the syntax, an error is reported.
 ### Syntax Not Recommended
 
 - Incomplete **lazy** flags within the same .ets file
-  
+
     Incomplete marking will cause lazy imports to fail and increase the overhead of identifying lazy-imported modules.
     ```typescript
         // main.ets   
@@ -154,7 +154,7 @@ If the **type** keyword is added to the syntax, an error is reported.
         // ...
     ```
 - Re-exporting lazy-imported variables within the same .ets file without using them
-  
+
     The variable **c** is not used in **B.ets**, so **B.ets** does not trigger execution. When **c** is used in **A.ets**, it is not initialized, resulting in a JS exception.
     ```typescript
         // A.ets
@@ -169,7 +169,7 @@ If the **type** keyword is added to the syntax, an error is reported.
         let c = "c";
         export { c }
     ```
-    The execution result is as follows:
+    Result:
     ```typescript
         ReferenceError: c is not initaliized
              at func_main_0 (A.ets:2:13)
@@ -188,13 +188,13 @@ If the **type** keyword is added to the syntax, an error is reported.
         let c = "c";
         export { c }
     ```
-    The execution result is as follows:
+    Result:
     ```typescript
     ReferenceError: module environment is undefined
         at func_main_0 (A_ns.js:2:13)
     ```
 
-- Currently, lazy-import is not available for kit loading.
+- Currently, lazy import cannot be executed in kit.
 
 - You need to evaluate the impact of lazy imports.
     * Side effects that are independent of the module's execution (such as initializing global variables and mounting **globalThis**). For details, see [Side Effects and Optimization of Module Loading](./arkts-module-side-effects.md).
