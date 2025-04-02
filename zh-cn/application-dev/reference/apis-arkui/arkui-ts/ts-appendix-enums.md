@@ -1164,3 +1164,19 @@ type Nullable\<T> = T | undefined;
 | NONE     | 0   | 未知。 |
 | LEFT     | 1   | 左手。 |
 | RIGHT    | 2   | 右手。 |
+
+## AxisAction<sup>17+</sup>
+
+定义轴事件的轴动作类型。
+
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 值   | 说明                               |
+| ------- | ---- | ---------------------------------- |
+| NONE   | 0    | 无轴事件。 |
+| BEGIN  | 1    | 轴事件开始。 |
+| UPDATE | 2    | 轴事件触发中。 |
+| END    | 3    | 轴事件结束。 |
+| CANCEL | 4    | 轴事件取消。 |
