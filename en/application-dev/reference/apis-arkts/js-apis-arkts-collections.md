@@ -6,11 +6,13 @@ By default, ArkTS containers are passed by reference between concurrent instance
 
 ArkTS containers are not thread-safe. They adopt the fail-fast approach. An exception is thrown if multiple concurrent instances make structural changes to a container instance at the same time. Therefore, in update scenarios, you must use the ArkTS asynchronous lock to ensure secure access to the ArkTS containers.
 
-Currently, the following ArkTS containers are provided: [Array](#collectionsarray), [Map](#collectionsmap), [Set](#collectionsset), [TypedArray](#collectionstypedarray), [ArrayBuffer](#collectionsarraybuffer), [BitVector](#collectionsbitvector), and [ConcatArray] (#collectionsconcatarray).
+Currently, the following ArkTS containers are provided: [Array](#collectionsarray), [Map](#collectionsmap), [Set](#collectionsset), [TypedArray](#collectionstypedarray), [ArrayBuffer](#collectionsarraybuffer), [BitVector](#collectionsbitvector), and [ConcatArray](#collectionsconcatarray).
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> This module can be imported only to ArkTS files (with the file name extension .ets).
 
 ## Modules to Import
 
@@ -1035,7 +1037,7 @@ Checks whether this ArkTS array contains an element and returns a Boolean value.
 
 | Type   | Description                                               |
 | ------- | --------------------------------------------------- |
-| boolean | **true**: The element exists.<br>**false**: The element does not exist.|
+| boolean | Check result. The value **true** means that the element exists, and **false** means the opposite.|
 
 **Error codes**
 
@@ -1272,7 +1274,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ---------------------------------- |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified£»<br/>2.Incorrect parameter types. |
 | 10200011 | The splice method cannot be bound. |
 | 10200201 | Concurrent modification error.     |
 
@@ -1313,7 +1315,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ---------------------------------- |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified£»<br/>2.Incorrect parameter types. |
 | 10200011 | The splice method cannot be bound. |
 | 10200201 | Concurrent modification error.     |
 
@@ -1665,7 +1667,7 @@ Deletes a specified key from this ArkTS map.
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | **true**: The key exists and has been deleted.<br>**false**: The key does not exist.|
+| boolean | Operation result. The value **true** means that the key exists and has been deleted, and **false** means the opposite.|
 
 **Error codes**
 
@@ -1803,7 +1805,7 @@ Checks whether a key exists in this ArkTS map.
 
 | Type   | Description                                         |
 | ------- | --------------------------------------------- |
-| boolean | **true**: The key exists.<br>**false**: The key does not exist.|
+| boolean | Check result. The value **true** means that the key exists, and **false** means the opposite.|
 
 **Error codes**
 
@@ -2150,7 +2152,7 @@ Deletes an element from this ArkTS set.
 
 | Type   | Description                             |
 | ------- | --------------------------------- |
-| boolean | **true**: The key is deleted.<br>**false**: The key fails to be deleted.|
+| boolean | Operation result. The value **true** means that the key is deleted, and **false** means the opposite.|
 
 **Error codes**
 
@@ -2236,7 +2238,7 @@ Checks whether a value exists in this ArkTS set.
 
 | Type   | Description                                         |
 | ------- | --------------------------------------------- |
-| boolean | **true**: The value exists.<br>**false**: The value does not exist.|
+| boolean | Check result. The value **true** means that the value exists, and **false** means the opposite.|
 
 **Error codes**
 
@@ -2462,7 +2464,7 @@ Describes the assertion function of the ArkTS typed array.
 
 | Type  | Description                         |
 | ------ | --------------------------- |
-| boolean | **true**: The value meets the condition.<br>**false**: The value does not meet the condition.|
+| boolean | Operation result. The value **true** means that the value meets the condition, and **false** means the opposite.|
 
 ## TypedArrayForEachCallback
 type TypedArrayForEachCallback\<ElementType, ArrayType> = (value: ElementType, index: number, array: ArrayType) => void
@@ -2889,7 +2891,7 @@ Checks whether any element in this ArkTS typed array meets a given condition.
 
 | Type        | Description     |
 | ------------ | --------- |
-| boolean | **true**: An element meeting the given condition exists.<br>**false**: An element meeting the given condition does not exist.|
+| boolean | Check result. The value **true** means that an element meeting the given condition exists, and **false** means the opposite.|
 
 **Error codes**
 
@@ -2930,7 +2932,7 @@ Checks whether all elements in this ArkTS typed array meet a given condition.
 
 | Type        | Description     |
 | ------------ | --------- |
-| boolean | **true**: All elements meet the given condition.<br>**false**: Not all elements meet the given condition.|
+| boolean | Check result. The value **true** means that all elements meet the given condition, and **false** means the opposite.|
 
 **Error codes**
 
@@ -3608,7 +3610,7 @@ Checks whether elements are contained in this ArkTS typed array.
 
 | Type   | Description                                                       |
 | ------- | ---------------------------------------------------------- |
-| boolean | **true**: The element exists.<br>**false**: The element does not exist.|
+| boolean | Check result. The value **true** means that the element exists, and **false** means the opposite.|
 
 
 **Error codes**
@@ -3868,7 +3870,7 @@ Adds an element at the end of this bit vector.
 
 | Type   | Description                             |
 | ------- | --------------------------------- |
-| boolean | **true**: The element is added.<br>**false**: The element fails to add.|
+| boolean | Operation result. The value **true** means that the element is added, and **false** means the opposite.|
 
 **Error codes**
 
@@ -3876,7 +3878,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified£»<br/>2.Incorrect parameter types. |
 | 10200011 | The push method cannot be bound.                             |
 | 10200201 | Concurrent modification error.                               |
 
@@ -3951,7 +3953,7 @@ Checks whether a bit value is included in a given range of this bit vector.
 
 | Type   | Description                                  |
 | ------- | -------------------------------------- |
-| boolean | **true**: The bit value exists.<br>**false**: The bit value does not exist.|
+| boolean | Check result. The value **true** means that the bit value exists, and **false** means the opposite.|
 
 **Error codes**
 
@@ -3959,7 +3961,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified£»<br/>2.Incorrect parameter types. |
 | 10200001 | The value of fromIndex or toIndex is out of range.           |
 | 10200011 | The has method cannot be bound.                              |
 | 10200201 | Concurrent modification error.                               |
@@ -4001,7 +4003,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified£»<br/>2.Incorrect parameter types. |
 | 10200001 | The value of fromIndex or toIndex is out of range.           |
 | 10200011 | The setBitsByRange method cannot be bound.                   |
 | 10200201 | Concurrent modification error.                               |
@@ -4040,7 +4042,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified£»<br/>2.Incorrect parameter types. |
 | 10200011 | The setAllBits method cannot be bound.                       |
 | 10200201 | Concurrent modification error.                               |
 
@@ -4085,7 +4087,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified£»<br/>2.Incorrect parameter types. |
 | 10200001 | The value of fromIndex or toIndex is out of range.           |
 | 10200011 | The getBitsByRange method cannot be bound.                   |
 | 10200201 | Concurrent modification error.                               |
@@ -4129,7 +4131,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified£»<br/>2.Incorrect parameter types. |
 | 10200011 | The resize method cannot be bound.                           |
 | 10200201 | Concurrent modification error.                               |
 
@@ -4178,7 +4180,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified£»<br/>2.Incorrect parameter types. |
 | 10200001 | The value of fromIndex or toIndex is out of range.           |
 | 10200011 | The getBitCountByRange method cannot be bound.               |
 | 10200201 | Concurrent modification error.                               |
@@ -4226,7 +4228,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified£»<br/>2.Incorrect parameter types. |
 | 10200001 | The value of fromIndex or toIndex is out of range.           |
 | 10200011 | The getIndexOf method cannot be bound.                       |
 | 10200201 | Concurrent modification error.                               |
@@ -4274,7 +4276,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified£»<br/>2.Incorrect parameter types. |
 | 10200001 | The value of fromIndex or toIndex is out of range.           |
 | 10200011 | The getLastIndexOf method cannot be bound.                   |
 | 10200201 | Concurrent modification error.                               |
@@ -4314,7 +4316,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified£»<br/>2.Incorrect parameter types. |
 | 10200001 | The value of index is out of range.                          |
 | 10200011 | The flipBitByIndex method cannot be bound.                   |
 | 10200201 | Concurrent modification error.                               |
@@ -4354,7 +4356,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified£»<br/>2.Incorrect parameter types. |
 | 10200001 | The value of fromIndex or toIndex is out of range.           |
 | 10200011 | The flipBitsByRange method cannot be bound.                  |
 | 10200201 | Concurrent modification error.                               |

@@ -526,7 +526,7 @@ Checks whether a function is a concurrent function.
 
 | Type   | Description                                |
 | ------- | ------------------------------------ |
-| boolean | **true**: The function is a concurrent function, that is, a function decorated with [@Concurrent](../../arkts-utils/taskpool-introduction.md#concurrent-decorator).<br>**false**: The function is not a concurrent function.|
+| boolean | Check result. The value **true** means that the function is a concurrent function, that is, a function decorated with [@Concurrent](../../arkts-utils/taskpool-introduction.md#concurrent-decorator); **false** means the opposite.|
 
 **Error codes**
 
@@ -621,15 +621,15 @@ for (let i: number = 0; i < taskArray.length; i+=4) { // 4: Four tasks are execu
 
 Implements a task. Before calling any APIs in **Task**, you must use [constructor](#constructor) to create a **Task** instance. A task can be executed for multiple times, placed in a task group or serial queue for execution, or added with dependencies for execution.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name                | Type      | Readable| Writable| Description                                                        |
+| Name                | Type      | Readable| Writable| Description       
 | -------------------- | --------- | ---- | ---- | ------------------------------------------------------------ |
-| function             | Function  | Yes  | Yes  | Function to be passed in during task creation. For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).|
+| function             | Function  | Yes  | Yes  | Function to be passed in during task creation. For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types). |
 | arguments            | Object[]  | Yes  | Yes  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). |
 | name<sup>11+</sup>   | string    | Yes  | No  | Name of the task specified when the task is created. |
 | totalDuration<sup>11+</sup>  | number    | Yes  | No  | Total execution time of the task. |
@@ -856,7 +856,7 @@ Sets the task clone list. Before using this API, you must create a **Task** inst
 
 > **NOTE**
 >
-> This API must be used together with the [@Sendable decorator](../../arkts-utils/taskpool-introduction.md#concurrent-decorator). Otherwise, an exception is thrown.
+> This API must be used together with the [@Sendable decorator](../../arkts-utils/arkts-sendable.md#sendable-decorator). Otherwise, an exception is thrown.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -936,7 +936,7 @@ export class DeriveClass extends BaseClass {
 <!--code_no_check-->
 ```ts
 // index.ets
-// The host thread (UI main thread) calls the methods of BaseClass and DeriveClass in the task pool thread and accesses their attributes.
+// The host thread (UI main thread) calls the methods of BaseClass and DeriveClass in the task pool thread and accesses their properties.
 import { taskpool } from '@kit.ArkTS'
 import { BusinessError } from '@kit.BasicServicesKit'
 import { BaseClass, DeriveClass } from './sendable'
@@ -1461,7 +1461,7 @@ Checks whether the task is complete.
 
 | Type   | Description                                |
 | ------- | ------------------------------------ |
-| boolean | **true**: The task is complete.<br>**false**: The task is not complete.|
+| boolean | Check result. The value **true** means that the task is complete, and **false** means the opposite.|
 
 **Example**
 
@@ -1672,7 +1672,7 @@ let task: taskpool.Task = new taskpool.Task(printArgs, 200); // 200: test number
 taskGroup.addTask(task);
 ```
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1851,7 +1851,7 @@ Describes the internal information about a task.
 
 **System capability**: SystemCapability.Utils.Lang
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1868,7 +1868,7 @@ Describes the internal information about a worker thread.
 
 **System capability**: SystemCapability.Utils.Lang
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1886,7 +1886,7 @@ Describes the internal information about a task pool.
 
 **System capability**: SystemCapability.Utils.Lang
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Utils.Lang
 
