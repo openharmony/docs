@@ -286,7 +286,7 @@ Uses a secure random number generator to generate a random universally unique id
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| entropyCache | boolean | No| Whether a cached UUID can be used. The default value is **true**.|
+| entropyCache | boolean | No| Whether to use a cached UUID. The default value is **true**.|
 
 **Return value**
 
@@ -324,7 +324,7 @@ Uses a secure random number generator to generate a random UUID of the Uint8Arra
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| entropyCache | boolean | No| Whether a cached UUID can be used. The default value is **true**.|
+| entropyCache | boolean | No| Whether to use a cached UUID. The default value is **true**.|
 
 **Return value**
 
@@ -582,7 +582,7 @@ Inserts a function before a method of a class object. The inserted function is e
 | -------- | ------- | ---- | -------------------------------------|
 | targetClass  | Object   | Yes  | Target class object.                   |
 | methodName   | string   | Yes  | Name of the method. Read-only methods are not supported.                   |
-| isStatic     | boolean  | Yes  | Whether the method is a static method. The value **true** indicates a static method, and **false** indicates an instance method.     |
+| isStatic     | boolean  | Yes  | Whether the method is a static method. The value **true** means a static method, and **false** means an instance method.     |
 | before       | Function | Yes  | Function to insert. If the function carries parameters, then the first parameter is the **this** object, which is the target class object (specified by **targetClass**) if **isStatic** is **true** or the instance object of the method if **isStatic** is **false**; other parameters are the parameters carried in the original method. If the function does not carry any parameter, no processing is performed.|
 
 **Error codes**
@@ -674,7 +674,7 @@ Inserts a function after a method of a class object. The final return value is t
 | -------- | ------- | ---- | -------------------------------------|
 | targetClass  | Object   | Yes  | Target class object.                   |
 | methodName   | string   | Yes  | Name of the method. Read-only methods are not supported.                  |
-| isStatic     | boolean  | Yes  | Whether the method is a static method. The value **true** indicates a static method, and **false** indicates an instance method.     |
+| isStatic     | boolean  | Yes  | Whether the method is a static method. The value **true** means a static method, and **false** means an instance method.     |
 | after        | Function | Yes  | Function to insert. If the function carries parameters, then the first parameter is the **this** object, which is the target class object (specified by **targetClass**) if **isStatic** is **true** or the instance object of the method if **isStatic** is **false**; the second parameter is the return value of the original method (**undefined** if the original method does not have a return value); other parameters are the parameters carried by the original method. If the function does not carry any parameter, no processing is performed. |
 
 **Error codes**
@@ -757,7 +757,7 @@ Replaces a method of a class object with another function. After the replacement
 | -------- | ------- | ---- | -------------------------------------|
 | targetClass  | Object   | Yes  | Target class object.                   |
 | methodName   | string   | Yes  | Name of the method. Read-only methods are not supported.                 |
-| isStatic     | boolean  | Yes  | Whether the method is a static method. The value **true** indicates a static method, and **false** indicates an instance method.      |
+| isStatic     | boolean  | Yes  | Whether the method is a static method. The value **true** means a static method, and **false** means an instance method.      |
 | instead      | Function | Yes  | Function to be used replacement. If the function carries parameters, then the first parameter is the **this** object, which is the target class object (specified by **targetClass**) if **isStatic** is **true** or the instance object of the method if **isStatic** is **false**; other parameters are the parameters carried in the original method. If the function does not carry any parameter, no processing is performed.  |
 
 **Error codes**
@@ -1250,6 +1250,10 @@ let uint8 = new Uint8Array(buffer);
 let result = textEncoder.encodeIntoUint8Array('abcd', uint8);
 console.info("uint8 = " + uint8);
 // Output: uint8 = 97,98,99,100
+console.info("result.read = " + result.read);
+// Output: result.read = 4
+console.info("result.written = " + result.written);
+// Output: result.written = 4
 ```
 
 ### encodeInto<sup>(deprecated)</sup>
@@ -2721,7 +2725,7 @@ console.info("result = " + result);
 
 intersect(range: ScopeHelper): ScopeHelper
 
-Obtains the intersection of this **Scope** and the given **Scope**.
+Obtains the intersection of this **Scope** and the given **Scope**. If the intersection is empty, an exception is thrown.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3442,7 +3446,7 @@ Encodes the input content into a Uint8Array object. This API uses a promise to r
 | Name| Type      | Mandatory| Description                   |
 | ------ | ---------- | ---- | ----------------------- |
 | src    | Uint8Array | Yes  | Uint8Array object to encode.|
-| options<sup>12+</sup> | [Type](#type10) | No| Encoding format.<br>The following values are available:<br>- **util.Type.BASIC**: Base64 encoding.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL encoding.|
+| options<sup>12+</sup> | [Type](#type10) | No| Encoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default): Base64 encoding.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL encoding.|
 
 **Return value**
 
