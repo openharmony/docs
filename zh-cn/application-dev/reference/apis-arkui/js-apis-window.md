@@ -9071,7 +9071,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let isHighlighted = windowClass.isWindowHighlighted();
-  console.info(`Succeeded to get the window highlight status: ${isHighlighted}`);
+  console.info(`Succeeded in getting the window highlight status: ${isHighlighted}`);
 } catch (exception) {
   console.error(`Failed to get the window highlight status.. Cause code: ${exception.code}, message: ${exception.message}`);
 }
