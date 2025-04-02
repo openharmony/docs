@@ -289,7 +289,7 @@ console.info(buf.toString('hex'));
 
 ## buffer.from
 
-from(array: number[]): Buffer;
+from(array: number[]): Buffer
 
 Creates a **Buffer** instance with the specified array.
 
