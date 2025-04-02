@@ -522,7 +522,7 @@ Triggered when **NavDestination** component becomes inactive (not on top of the 
 | Name     | Type                                      | Mandatory  | Description      |
 | ------- | ---------------------------------------- | ---- | -------- |
 | builder | [CustomBuilder](ts-types.md#custombuilder8) | Yes   | Content of the title bar.|
-| height  | [TitleHeight](ts-appendix-enums.md#titleheight9) \| [Length](ts-types.md#length) | Yes   | Height of the title bar.<br>Value range: [0, +��)|
+| height  | [TitleHeight](ts-appendix-enums.md#titleheight9) \| [Length](ts-types.md#length) | Yes   | Height of the title bar.<br>Value range: [0, +∞)|
 
 ## NavDestinationContext<sup>11+</sup>
 

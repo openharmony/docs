@@ -48,13 +48,13 @@ How the picker is aligned with the entry component.
 | alignType | [CalendarAlign](#calendaralign) | Yes  | Alignment type.<br>Default value: **CalendarAlign.END**                |
 | offset    | [Offset](ts-types.md#offset)            | No  | Offset of the picker relative to the entry component after alignment based on the specified alignment type.<br>Default value: **{dx: 0, dy: 0}**|
 
-### edgeAlign<sup>16+</sup>
+### edgeAlign<sup>18+</sup>
 
 edgeAlign(alignType: Optional\<CalendarAlign>, offset?: Offset)
 
-How the picker is aligned with the entry component. Compared to [edgeAlign](#edgealign), the **alignType** parameter supports the **undefined** type.
+How the picker is aligned with the entry component. Compared to [edgeAlign](#edgealign), this API supports the **undefined** type for the **alignType** parameter.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -81,13 +81,13 @@ Sets the font color, font size, and font weight in the entry area.
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [PickerTextStyle](./ts-basic-components-datepicker.md#pickertextstyle10) | Yes  | Font color, font size, and font weight in the entry area.<br>Default value:<br>{<br>color: '#ff182431',<br>font: {<br>size: '16fp', <br>weight: FontWeight.Regular<br>}<br>} |
 
-### textStyle<sup>16+</sup>
+### textStyle<sup>18+</sup>
 
 textStyle(style: Optional\<PickerTextStyle>)
 
-Sets the font color, font size, and font weight in the entry area. Compared to [textStyle](#textstyle), the **style** parameter supports the **undefined** type.
+Sets the font color, font size, and font weight in the entry area. Compared to [textStyle](#textstyle), this API supports the **undefined** type for the **style** parameter.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -96,22 +96,6 @@ Sets the font color, font size, and font weight in the entry area. Compared to [
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](./ts-basic-components-datepicker.md#pickertextstyle10)> | Yes  | Font color, font size, and font weight in the entry area.<br>If **style** is set to **undefined**, the default value is used:<br>{<br>color: '#ff182431',<br>font: {<br>size: '16fp', <br>weight: FontWeight.Regular<br>}<br>} |
-
-### markToday<sup>16+</sup>
-
-markToday(enabled: boolean)
-
-Sets whether to highlight the current system date.
-
-**Atomic service API**: This API can be used in atomic services since API version 16.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name| Type                                                        | Mandatory| Description                                                        |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| enabled  | boolean | Yes  | Whether to highlight the current system date.<br>Default value: **false**<br> The value **true** means to highlight the current system date, and **false** means the opposite.|
 
 ## Events
 
@@ -137,7 +121,7 @@ Triggered when a date is selected.
 
 onChange(callback: Optional\<Callback\<Date>>)
 
-Triggered when a date is selected. Compared to [onChange](#onchange), the **callback** parameter supports the **undefined** type.
+Triggered when a date is selected. Compared to [onChange](#onchange), this API supports the **undefined** type for the **callback** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 16.
 
@@ -159,9 +143,8 @@ Triggered when a date is selected. Compared to [onChange](#onchange), the **call
 | ----------- | ---------- | ------| --------------------------------- |
 | hintRadius | number \| [Resource](ts-types.md#resource) | No   | Style of the background of the selected state.<br>Default value: The background is a circle.<br>**NOTE**<br>If the value is **0**, the background is a rectangle with square corners. If the value is in the 0–16 range, the background is a rectangle with rounded corners. If the value is greater than or equal to 16, the background is a circle.|
 | selected | Date | No   | Date of the selected item. If the value is not set or does not comply with the date format specifications, the default value will be used.<br>Default value: current system date|
-| start<sup>16+</sup> | Date | No   | Start date.|
-| end<sup>16+</sup> | Date | No   | End date.|
-| disabledDateRange<sup>16+</sup> | DateRange[] | No   | Disabled date range.<br>**NOTE**<br>1. If the start date or end date within a date range is invalid, the entire date range does not take effect.<br>2. If the end date is earlier than the start date within a date range, the entire date range does not take effect.<br>3. When users select a date and adjust it with the up or down arrow keys, the system skips over all dates in the disabled date range.|
+| start<sup>18+</sup> | Date | No   | Start date.|
+| end<sup>18+</sup> | Date | No   | End date.|
 
 **Rules for setting start and end**
 
@@ -243,38 +226,6 @@ struct CalendarPickerExample {
           })
       }.alignItems(HorizontalAlign.End).width("100%")
     }.width('100%').margin({ top: 350 })
-  }
-}
-```
-
-
-
-### Example 3: Highlighting the Current System Date and Disabling a Specific Date Range
-
-This example shows how to highlight the current system date using **markToday** and disable a specific date range using **disabledDateRange**.
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct CalendarPickerExample {
-  private disabledDateRange: DateRange[] = [
-    { start: new Date('2025-01-01'), end: new Date('2025-01-02') },
-    { start: new Date('2025-01-09'), end: new Date('2025-01-10') },
-    { start: new Date('2025-01-15'), end: new Date('2025-01-16') },
-    { start: new Date('2025-01-19'), end: new Date('2025-01-19') },
-    { start: new Date('2025-01-22'), end: new Date('2025-01-25') }
-  ]
-
-  build() {
-    Column() {
-      CalendarPicker({ disabledDateRange: this.disabledDateRange })
-        .margin(10)
-        .markToday(true)
-        .onChange((value) => {
-          console.info("CalendarPicker onChange:" + JSON.stringify(value))
-        })
-    }.alignItems(HorizontalAlign.End).width('100%')
   }
 }
 ```

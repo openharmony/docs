@@ -714,6 +714,7 @@ The [universal events](ts-component-general-events.md) are not supported.
 
 This example demonstrates the basic usage of **MultiNavigation**.
 
+<!--code_no_check-->
 ```typescript
 // pages/Index.ets
 import { MultiNavigation, MultiNavPathStack, SplitPolicy } from '@ohos.arkui.advanced.MultiNavigation';
