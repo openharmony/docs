@@ -1,9 +1,9 @@
 # Asset Store Kit（关键资产存储开发套件）
 
 - ArkTS API<!--asset-store-arkts-->
-  - [@ohos.security.asset (关键资产存储开发套件)](js-apis-asset.md)
+  - [@ohos.security.asset (关键资产存储服务)](js-apis-asset.md)
   <!--Del-->
-  - [@ohos.security.asset (关键资产存储开发套件)(系统接口)](js-apis-asset-sys.md)
+  - [@ohos.security.asset (关键资产存储服务)(系统接口)](js-apis-asset-sys.md)
   <!--DelEnd-->
 - C API<!--asset-store-c-->
   - 模块<!--asset-store-module-->

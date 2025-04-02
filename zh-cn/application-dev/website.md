@@ -3257,9 +3257,9 @@
     - 安全<!--system-security-api-->
       - Asset Store Kit（关键资产存储开发套件）<!--asset-store-api-->
         - ArkTS API<!--asset-store-arkts-->
-          - [@ohos.security.asset (关键资产存储开发套件)](reference/apis-asset-store-kit/js-apis-asset.md)
+          - [@ohos.security.asset (关键资产存储服务)](reference/apis-asset-store-kit/js-apis-asset.md)
           <!--Del-->
-          - [@ohos.security.asset (关键资产存储开发套件)(系统接口)](reference/apis-asset-store-kit/js-apis-asset-sys.md)
+          - [@ohos.security.asset (关键资产存储服务)(系统接口)](reference/apis-asset-store-kit/js-apis-asset-sys.md)
           <!--DelEnd-->
         - C API<!--asset-store-c-->
           - 模块<!--asset-store-module-->
