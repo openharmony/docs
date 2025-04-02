@@ -334,8 +334,8 @@ sendableImage下的PixelMap支持sendable属性，支持worker线程共享。sen
 
 | 名称              | 类型    | 可读 | 可写 | 说明                       |
 | -----------------| ------- | ---- | ---- | -------------------------- |
-| isEditable        | boolean | 是   | 否   | true表示图像像素可被编辑。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| isStrideAlignment | boolean | 是   | 否   | true表示图像内存为DMA内存，DMA内存的PixelMap会做256字节内存对齐，行末会存在padding区域。 |
+| isEditable        | boolean | 是   | 否   | true表示图像像素可被编辑，false表示不可被编辑。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| isStrideAlignment | boolean | 是   | 否   | true表示图像内存为DMA内存，false表示非DMA内存。DMA内存的PixelMap会做256字节内存对齐，行末会存在padding区域。 |
 
 ### readPixelsToBuffer
 
