@@ -174,7 +174,7 @@ onAcquired(callback:&nbsp;Callback[\<FormCallbackInfo>](#formcallbackinfo12))&nb
 
 | 参数名 | 类型                                | 必填 | 说明       |
 | ------ | ----------------------------------- | ---- | ---------- |
-| Callback | [FormCallbackInfo](#formcallbackinfo12) | 是   | 卡片的id。 |
+| callback | [FormCallbackInfo](#formcallbackinfo12) | 是   | 卡片的id。 |
 
 ### onError
 
@@ -222,7 +222,7 @@ onUninstall(callback:&nbsp;Callback[\<FormCallbackInfo>](#formcallbackinfo12))&n
 
 | 参数名 | 类型                                | 必填 | 说明       |
 | ------ | ----------------------------------- | ---- | ---------- |
-| Callback   | [FormCallbackInfo](#formcallbackinfo12) | 是   | 卡片的id。 |
+| callback   | [FormCallbackInfo](#formcallbackinfo12) | 是   | 卡片的id。 |
 
 
 ## 示例
