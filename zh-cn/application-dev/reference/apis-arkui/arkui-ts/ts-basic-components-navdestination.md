@@ -26,6 +26,8 @@
 
 NavDestination()
 
+创建[Navigation](ts-basic-components-navigation.md)子页面的根容器。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -138,7 +140,7 @@ mode(value: NavDestinationMode)
 
 | 参数名 | 类型                                                 | 必填 | 说明                                                         |
 | ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [NavDestinationMode](#navdestinationmode枚举说明-11) | 是   | NavDestination类型。<br/>默认值: NavDestinationMode.STANDARD |
+| value  | [NavDestinationMode](#navdestinationmode枚举说明11) | 是   | NavDestination类型。<br/>默认值: NavDestinationMode.STANDARD |
 
 ### backButtonIcon<sup>11+</sup>
 
@@ -336,7 +338,9 @@ customTransition(delegate: NavDestinationTransitionDelegate)
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | delegate  | [NavDestinationTransitionDelegate](#navdestinationtransitiondelegate15) | 是   | NavDestination自定义动画的代理函数。 |
 
-## NavDestinationMode枚举说明 <sup>11+</sup>
+## NavDestinationMode枚举说明<sup>11+</sup>
+
+NavDestination类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -348,6 +352,8 @@ customTransition(delegate: NavDestinationTransitionDelegate)
 | DIALOG | 1 | 默认透明，进出页面栈不影响下层NavDestination的生命周期。<br />API version 13之前，默认无系统转场动画。从API version 13开始，支持系统转场动画。  |
 
 ## NavigationSystemTransitionType<sup>14+</sup>枚举说明
+
+系统转场动画类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -505,6 +511,8 @@ NavDestination处于非激活态（处于非栈顶不可操作，或处于栈顶
 
 ## NavDestinationCommonTitle
 
+NavDestination通用标题。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -516,6 +524,8 @@ NavDestination处于非激活态（处于非栈顶不可操作，或处于栈顶
 
 ## NavDestinationCustomTitle
 
+NavDestination自定义标题。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -526,6 +536,8 @@ NavDestination处于非激活态（处于非栈顶不可操作，或处于栈顶
 | height  | [TitleHeight](ts-appendix-enums.md#titleheight9) \| [Length](ts-types.md#length) | 是    | 设置标题栏高度。<br/>取值范围：[0, +∞)。 |
 
 ## NavDestinationContext<sup>11+</sup>
+
+NavDestination上下文信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -539,6 +551,8 @@ NavDestination处于非激活态（处于非栈顶不可操作，或处于栈顶
 
 getConfigInRouteMap(): RouteMapConfig |undefined
 
+获取当前NavDestination的路由配置信息。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -551,6 +565,8 @@ getConfigInRouteMap(): RouteMapConfig |undefined
 | undefined | 当该页面不是通过路由表配置时返回undefined。 |
 
 ## RouteMapConfig<sup>12+</sup>
+
+路由配置信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
