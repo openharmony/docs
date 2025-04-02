@@ -111,7 +111,7 @@
 
 ### ohos.permission.WRITE_PROTECTION_ADVICE_POLICY
 
-允许系统应用读取“安全建议”的数据库。
+允许系统应用修改“安全建议”的数据库。
 
 **权限级别**：system_basic
 
@@ -123,7 +123,7 @@
 
 ### ohos.permission.READ_PROTECTION_ADVICE_POLICY
 
-允许系统应用修改“安全建议”的数据库。
+允许系统应用读取“安全建议”的数据库。
 
 **权限级别**：system_basic
 

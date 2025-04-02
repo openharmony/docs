@@ -111,7 +111,7 @@ Allows a system application to display the **Learn more** dialog for detailed in
 
 ### ohos.permission.WRITE_PROTECTION_ADVICE_POLIVY
 
-Allows an application to write the protection advice database.
+Allows a system application to write the protection advice database.
 
 **Permission level**: system_basic
 
@@ -123,7 +123,7 @@ Allows an application to write the protection advice database.
 
 ### ohos.permission.READ_PROTECTION_ADVICE_POLICY
 
-Allows an application to read the protection advice database.
+Allows a system application to read the protection advice database
 
 **Permission level**: system_basic
 
