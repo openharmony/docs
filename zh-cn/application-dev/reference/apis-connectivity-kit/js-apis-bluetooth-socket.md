@@ -391,6 +391,12 @@ sppWriteAsync(clientSocket: number, data: ArrayBuffer): Promise&lt;void&gt;
 | clientSocket | number                      | 是    | 客户端Socket的id。                            |
 | data         | ArrayBuffer                 | 是    | 写入的数据。 |
 
+**返回值：**
+
+| 类型                            | 说明         |
+| ----------------------------- | ---------- |
+| Promise&lt;void&gt; | 以Promise的形式返回结果。如果成功，err为undefined，否则为错误对象。 |
+
 **错误码**：
 
 以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
@@ -420,7 +426,7 @@ try {
 
 ## socket.sppReadAsync<sup>18+</sup>
 
-sppReadAsync(clientSocket: number): Promise&lt;void&gt;
+sppReadAsync(clientSocket: number): Promise&lt;ArrayBuffer&gt;
 
 通过socket读取对端所发送数据的异步接口，该接口支持断开连接时SPP操作异常错误返回。
 
@@ -437,6 +443,12 @@ sppReadAsync(clientSocket: number): Promise&lt;void&gt;
 | 参数名          | 类型                          | 必填   | 说明                                       |
 | ------------ | --------------------------- | ---- | ---------------------------------------- |
 | clientSocket | number                      | 是    | 客户端Socket的id。                            |
+
+**返回值：**
+
+| 类型                            | 说明         |
+| ----------------------------- | ---------- |
+| Promise&lt;ArrayBuffer&gt; | 以Promise的形式返回读取数据结果。如果成功，值在ArrayBuffer中返回，如果失败，返回对应错误码。 |
 
 **错误码**：
 

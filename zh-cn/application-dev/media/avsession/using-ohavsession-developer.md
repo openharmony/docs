@@ -142,11 +142,11 @@ target_link_libraries(entry PUBLIC libohavsession.so)
   
    | 接口                                                         | 说明         |
    | ------------------------------------------------------------ | ------------ |
-   |OH_AVSession_RegisterCommandCallback(OH_AVSession* avsession, AVSession_ControlCommand   command, OH_AVSessionCallback_OnCommand callback, void* userData);| 注册通用播控的回调，支持：播  放、暂停、停止、上一首、下一首回调。     |
-   |OH_AVSession_RegisterForwardCallback(OH_AVSession* avsession,   OH_AVSessionCallback_OnFastForward callback, void* userData); | 注册快进的回调。   |
-   |OH_AVSession_RegisterRewindCallback(OH_AVSession* avsession, OH_AVSessionCallback_OnRewind   callback, void* userData); | 注册快退的回调。     |
-   |OH_AVSession_RegisterSeekCallback(OH_AVSession* avsession, OH_AVSessionCallback_OnSeek   callback, void* userData); | 注册跳转的回调。  |
-   |OH_AVSession_RegisterToggleFavoriteCallback(OH_AVSession* avsession,   OH_AVSessionCallback_OnToggleFavorite callback, void* userData)| 注册收藏的回调。  |
+   |OH_AVSession_RegisterCommandCallback(OH_AVSession* avsession, AVSession_ControlCommand   command, OH_AVSessionCallback_OnCommand callback, void* userData) | 注册通用播控的回调，支持：播放、暂停、停止、上一首、下一首回调。     |
+   |OH_AVSession_RegisterForwardCallback(OH_AVSession* avsession,   OH_AVSessionCallback_OnFastForward callback, void* userData) | 注册快进的回调。   |
+   |OH_AVSession_RegisterRewindCallback(OH_AVSession* avsession, OH_AVSessionCallback_OnRewind   callback, void* userData) | 注册快退的回调。     |
+   |OH_AVSession_RegisterSeekCallback(OH_AVSession* avsession, OH_AVSessionCallback_OnSeek   callback, void* userData) | 注册跳转的回调。  |
+   |OH_AVSession_RegisterToggleFavoriteCallback(OH_AVSession* avsession,   OH_AVSessionCallback_OnToggleFavorite callback, void* userData) | 注册收藏的回调。  |
 5. 音视频应用在退出，并且不需要继续播放时，及时取消监听以及销毁媒体会话释放资源。示例代码如下所示 ：
  
    ```c++

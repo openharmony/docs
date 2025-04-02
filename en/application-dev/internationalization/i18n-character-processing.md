@@ -28,7 +28,7 @@ These functions are implemented by APIs of the **Unicode** class. For example, y
 3. Obtain the character type. The following code snippet uses the common type as an example. For details, see the **getType** API reference.
 
    ```ts
-   let type = i18n.Unicode.getType(char: string);
+   let unicodeType: string = i18n.Unicode.getType(char: string);
    ```
 
 **Development Example**
@@ -37,16 +37,16 @@ These functions are implemented by APIs of the **Unicode** class. For example, y
 import { i18n } from '@kit.LocalizationKit';
 
 // Check whether the input character is a digit.
-let isDigit = i18n.Unicode.isDigit('1'); // isDigit: true
+let isDigit: boolean = i18n.Unicode.isDigit('1'); // isDigit = true
 
 // Check whether a character is of the RTL language.
-let isRTL = i18n.Unicode.isRTL('a'); // isRTL: false
+let isRTL: boolean = i18n.Unicode.isRTL('a'); // isRTL = false
 
 // Check whether a character is an ideographic character.
-let isIdeograph = i18n.Unicode.isIdeograph('Hua'); // isIdeograph: true
+let isIdeograph: boolean = i18n.Unicode.isIdeograph ('华'); // isIdeograph = true
 
 // Obtain the character type.
-let type = i18n.Unicode.getType('a'); // type: U_LOWERCASE_LETTER
+let unicodeType: string = i18n.Unicode.getType('a'); // unicodeType = 'U_LOWERCASE_LETTER'
 ```
 
 
@@ -64,13 +64,13 @@ Transliteration means to use content with similar pronunciation in the local lan
 
 2. Create a **Transliterator** object to obtain the transliteration list.
    ```ts
-   let transliterator: i18n.Transliterator = i18n.Transliterator.getInstance(id: string);  // Pass in a valid ID to create a Transliterator object.
-   let ids: string[] = i18n.Transliterator.getAvailableIDs();  // Obtain the list of IDs supported by the Transliterator object.
+   let ids: string[] = i18n.Transliterator.getAvailableIDs(); // Obtain the list of IDs supported by the Transliterator object.
+   let transliterator: i18n.Transliterator = i18n.Transliterator.getInstance(id: string); // Pass in a valid ID to create a Transliterator object.
    ```
 
 3. Transliterate text.
    ```ts
-   let res: string = transliterator.transform(text: string);  // Transliterate the text content.
+   let translatedText: string = transliterator.transform(text: string); // Transliterate the text content.
    ```
 
 
@@ -80,24 +80,21 @@ Transliteration means to use content with similar pronunciation in the local lan
 import { i18n } from '@kit.LocalizationKit';
 
 // Transliterate the text into the Latn format.
-let transliterator = i18n.Transliterator.getInstance('Any-Latn');
-let wordArray = ["中国", "德国", "美国", "法国"]
-for (let i = 0; i < wordArray.length; i++) {
-    let res = transliterator.transform(wordArray[i]); // res: zhōng guó, dé guó, měi guó, fǎ guó
-}
+let transliterator: i18n.Transliterator = i18n.Transliterator.getInstance('Any-Latn');
+let text: string = '中国'
+let translatedText: string = transliterator.transform(text); // translatedText = 'zhōng guó'
 
 // Chinese transliteration and tone removal
-let transliter = i18n.Transliterator.getInstance('Any-Latn;Latin-Ascii');
-let result = transliter.transform('中国'); // result: zhong guo
+let toneLessTransliterator: i18n.Transliterator = i18n.Transliterator.getInstance('Any-Latn;Latin-Ascii');
+translatedText = toneLessTransliterator.transform ('中国'); // translatedText ='zhong guo'
 
 // Chinese surname pronunciation
-let nameTransliter = i18n.Transliterator.getInstance('Han-Latin/Names');
-let result1 = nameTransliter.transform('单老师'); // result1: shàn lǎo shī
-let result2 = nameTransliter.transform('长孙无忌'); // result2: zhǎng sūn wú jì
-
+let nameTransliterator: i18n.Transliterator = i18n.Transliterator.getInstance('Han-Latin/Names');
+translatedText = nameTransliterator.transform('单老师'); // translatedText = 'shàn lǎo shī'
+translatedText = nameTransliterator.transform('长孙无忌'); // translatedText = 'zhǎng sūn wú jì'
 
 // Obtain the list of IDs supported by the Transliterator object.
-let ids = i18n.Transliterator.getAvailableIDs(); // ids: ['ASCII-Latin', 'Accents-Any', ...]
+let ids: string[] = i18n.Transliterator.getAvailableIDs(); // ids = ['ASCII-Latin', 'Accents-Any', ...]
 ```
 
 
@@ -126,8 +123,8 @@ Character normalization means to the standardize characters according to the spe
 import { i18n } from '@kit.LocalizationKit';
 
 // Normalize characters in the NFC form.
-let normalizer = i18n.Normalizer.getInstance(i18n.NormalizerMode.NFC);
-let normalizedText = normalizer.normalize('\u1E9B\u0323'); // normalizedText: \u1E9B\u0323
+let normalizer: i18n.Normalizer = i18n.Normalizer.getInstance(i18n.NormalizerMode.NFC);
+let normalizedText: string = normalizer.normalize('\u1E9B\u0323'); // normalizedText = 'ẛ̣'
 ```
 
 
@@ -157,8 +154,8 @@ Line wrapping means to obtain the text break position based on the specified tex
    ```ts
    let currentPos: number = iterator.current(); // Obtain the position of BreakIterator in the text.
    let firstPos: number = iterator.first(); // Set the position of BreakIterator as the first break point and return the position of the break point. The first break point is always at the beginning of the text, that is firstPos = 0.
-   let nextPos: number = iterator.next(number); // Move BreakIterator by the specified number of break points. If the number is a positive number, the iterator is moved backward. If the number is a negative number, the iterator is moved forward. The default value is 1. nextPos indicates the position after moving. If BreakIterator is moved out of the text length range, -1 is returned.
-   let isBoundary: boolean = iterator.isBoundary(number); // Check whether the position indicated by the specified number is a break point.
+   let nextPos: number = iterator.next(index?: number); // Move BreakIterator by the specified number of break points. If the number is a positive number, the iterator is moved backward. If the number is a negative number, the iterator is moved forward. The default value is 1. nextPos indicates the position after moving. If BreakIterator is moved out of the text length range, -1 is returned.
+   let isBoundary: boolean = iterator.isBoundary(offset: number); // Check whether the position indicated by the specified number is a break point.
    ```
 
 
@@ -168,22 +165,22 @@ Line wrapping means to obtain the text break position based on the specified tex
 import { i18n } from '@kit.LocalizationKit';
 
 // Create a BreakIterator object.
-let iterator = i18n.getLineInstance('en-GB');
+let iterator: i18n.BreakIterator  = i18n.getLineInstance('en-GB');
 
 // Set the text to be processed.
 iterator.setLineBreakText('Apple is my favorite fruit.');
 
 // Move BreakIterator to the beginning of the text.
-let firstPos = iterator.first(); // firstPos: 0
+let firstPos: number = iterator.first(); // firstPos = 0
 
 // Move BreakIterator by several break points.
-let nextPos = iterator.next(2); // nextPos: 9
+let nextPos: number = iterator.next(2); // nextPos = 9
 
 // Check whether a position is a break point.
-let isBoundary = iterator.isBoundary(9); // isBoundary: true
+let isBoundary: boolean = iterator.isBoundary(9); // isBoundary = true
 
 // Obtain the text processed by BreakIterator.
-let breakText = iterator.getLineBreakText(); // breakText: Apple is my favorite fruit.
+let breakText: string = iterator.getLineBreakText(); // breakText = 'Apple is my favorite fruit.'
 ```
 
 ### Performs file path mirroring.
@@ -191,22 +188,14 @@ let breakText = iterator.getLineBreakText(); // breakText: Apple is my favorite 
 File path mirroring means to localize the input file paths. This function is implemented through the [getUnicodeWrappedFilePath](../reference/apis-localization-kit/js-apis-i18n.md#getunicodewrappedfilepath18) API of the **I18NUtil** class. The development procedure is as follows:
 
 1. Import the **i18n** module.
-```ts
-   import { BusinessError } from '@kit.BasicServicesKit';
+   ```ts
    import { i18n, intl } from '@kit.LocalizationKit';
-```
+   ```
 
 2. Call the file path mirroring API.
-```ts
-  try {
-    let path: string = "/data/out/tmp"; // Define a path.
-    let delimiter: string = "/"; // Define the path delimiter.
-    let locale: intl.Locale = new intl.Locale ("ar"); // Define the locale object.
-    let mirrorPath : string = i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, locale); // Call the API.
-  } catch (error) {
-    console.error(`call I18NUtil.getUnicodeWrappedFilePath failed, error code: ${error.code}, message: ${error.message}.`);
-  }
-```
+   ```ts
+   let mirrorPath: string = i18n.I18NUtil.getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: intl.Locale);
+   ```
 
 
 **Development Example**
@@ -216,17 +205,19 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { i18n, intl } from '@kit.LocalizationKit';
 
 try {
-    // Perform file path mirroring if mirrorPath is passed.
-    let path : string = "/data/out/tmp";
-    let delimiter : string = "/";
-    let locale : intl.Locale = new intl.Locale("ar");
-    let mirrorPath : string = i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, locale); // mirrorPath: tmp/out/data/
+  // Perform file path mirroring if mirrorPath is passed.
+  let path: string = 'data/out/tmp';
+  let delimiter: string = '/';
+  let locale: intl.Locale = new intl.Locale('ar');
+  // mirrorPath = 'tmp/out/data/'
+  let mirrorPath: string = i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, locale);
 
-    // Skip file path mirroring if unMirrorPath is passed.
-    let localeZh : intl.Locale = new intl.Locale("zh");
-    let unMirrorPath : string = i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, localeZh); // unMirrorPath: /data/out/tmp
+  // Skip file path mirroring if unMirrorPath is passed.
+  let localeZh: intl.Locale = new intl.Locale('zh');
+  // unMirrorPath = '/data/out/tmp'
+  let unMirrorPath: string = i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, localeZh);
 } catch (error) {
-    console.error(`call I18NUtil.getUnicodeWrappedFilePath failed, error code: ${error.code}, message: ${error.message}.`);
+  console.error(`call I18NUtil.getUnicodeWrappedFilePath failed, error code: ${error.code}, message: ${error.message}.`);
 }
 ```
 <!--RP1--><!--RP1End-->

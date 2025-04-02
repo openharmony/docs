@@ -9,69 +9,66 @@ Users in different locales use different calendars. To be specific, the Gregoria
 The following illustrates how to view the lunar calendar date corresponding to the Gregorian calendar date as an example to help you understand the usage of [Calendar](../reference/apis-localization-kit/js-apis-i18n.md#calendar8) APIs.
 
 1. Import the **i18n** module.
-
-    ```ts
-     import { i18n } from '@kit.LocalizationKit';
-    ```
+   ```ts
+   import { i18n } from '@kit.LocalizationKit';
+   ```
 
 2. Configure the Gregorian calendar.
+   ```ts
+   let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans', 'gregory');
+   // Set the date and time of the Calendar object to 2022.06.13 08:00:00.
+   calendar.setTime(new Date(2022, 5, 13, 8, 0, 0));
+   calendar.setTime(10540800000);
 
-    ```ts
-      let calendar : i18n.Calendar = i18n.getCalendar("zh-Hans", "gregory");
-      // Set the date and time of the Calendar object to 2022.06.13 08:00:00.
-      calendar.setTime(new Date(2022, 5, 13, 8, 0, 0));
-      calendar.setTime(10540800000);
+   // Set the date and time of the Calendar object to 2022.06.13 08:00:00.
+   calendar.set(2022, 5, 13, 8, 0, 0);
 
-      // Set the date and time of the Calendar object to 2022.06.13 08:00:00.
-      calendar.set(2022, 5, 13, 8, 0, 0);
+   // Set the time zone for the Calendar object.
+   calendar.setTimeZone('Asia/Shanghai');
 
-      // Set the time zone for the Calendar object.
-      calendar.setTimeZone("Asia/Shanghai");
+   // Obtain the time zone for the Calendar object.
+   let timezone: string = calendar.getTimeZone(); // timezone = 'Asia/Shanghai'
 
-      // Obtain the time zone for the Calendar object.
-      let timezone: string = calendar.getTimeZone(); // Asia/Shanghai
+   // Obtain the start day of a week for the Calendar object.
+   let firstDayOfWeek: number = calendar.getFirstDayOfWeek(); // firstDayOfWeek = 1
 
-      // Obtain the start day of a week for the Calendar object.
-      let firstDayOfWeek : number = calendar.getFirstDayOfWeek(); // 1
+   // Set the start day of a week for the Calendar object.
+   calendar.setFirstDayOfWeek(1);
 
-      // Set the start day of a week for the Calendar object.
-      calendar.setFirstDayOfWeek(1);
+   // Obtain the minimum number of days in the first week of a year for the Calendar object.
+   let minimalDaysInFirstWeek: number = calendar.getMinimalDaysInFirstWeek(); // minimalDaysInFirstWeek = 1
 
-      // Obtain the minimum number of days in the first week of a year for the Calendar object.
-      let minimalDaysInFirstWeek : number = calendar.getMinimalDaysInFirstWeek(); // 1
+   // Set the minimum number of days in the first week of a year for the Calendar object.
+   calendar.setMinimalDaysInFirstWeek(3);
 
-      // Set the minimum number of days in the first week of a year for the Calendar object.
-      calendar.setMinimalDaysInFirstWeek(3);
+   // Obtain the value of the specified field in the Calendar object.
+   let year: number = calendar.get('year'); // year = 2022
 
-      // Obtain the value of the specified field in the Calendar object.
-      let value: number = calendar.get("year"); // 2022
+   // Obtain the localized name of the Calendar object.
+   let calendarName: string = calendar.getDisplayName('zh-Hans'); // calendarName = 'Gregorian calendar'
 
-      // Obtain the localized name of the Calendar object.
-      let calendarName: string = calendar.getDisplayName("zh-Hans"); // Gregorian calendar
+   // Check whether a given date is a weekend for the Calendar object.
+   let isWeekend: boolean = calendar.isWeekend(new Date(2023, 9, 15)); // isWeekend = true
 
-      // Check whether a given date is a weekend for the Calendar object.
-      let isWeekend : boolean= calendar.isWeekend(new Date(2023, 9, 15)); // true
+   // Perform addition and subtraction operations on the specified field of the Calendar object.
+   calendar.set(2023, 10, 15);
+   calendar.add('date', 2);
+   let day: number = calendar.get('date'); // day = 17
 
-      // Perform addition and subtraction operations on the specified field of the Calendar object.
-      calendar.set(2023, 10, 15);
-      calendar.add("date", 2);
-      calendar.get("date"); // 17
-
-      // Check the number of days between the Calendar object and the specified date.
-      calendar.compareDays(new Date(2023, 10, 15)); // -3
-    ```
+   // Check the number of days between the Calendar object and the specified date.
+   let daysDifference: number = calendar.compareDays(new Date(2023, 10, 15)); // daysDifference = -3
+   ```
 
 3. Obtain the lunar calendar date corresponding to the Gregorian calendar date.
-
-    ```ts
-      let calendar : i18n.Calendar = i18n.getCalendar("zh-Hans", "chinese");
-      // Pass the Gregorian calendar information to the Calendar object, with the date and time being 2023.07.25 08:00:00.
-      calendar.setTime(new Date(2023, 6, 25, 8, 0, 0));
-      // Obtain the year, month, and day of the lunar calendar.
-      calendar.get("year"); // Year expressed in a heavenly stem and earthly branch, which is 40 in this example. The value ranges from 1 to 60.
-      calendar.get("month"); // The value 5 indicates June.
-      calendar.get ("date"); // Day, which is 8 in this example.
-    ```
+   ```ts
+   let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans', 'chinese');
+   // Pass the Gregorian calendar information to the Calendar object, with the date and time being 2023.07.25 08:00:00.
+   calendar.setTime(new Date(2023, 6, 25, 8, 0, 0));
+   // Obtain the year, month, and day of the lunar calendar.
+   let year: number = calendar.get('year'); // year = 40 indicates the age of the trunk branch. The value ranges from 1 to 60.
+   let month: number = calendar.get('month'); // month = 5 indicates June.
+   let day: number = calendar.get('date'); // day = 8 indicates the eighth day.
+   ```
 
 **Table 1** Supported calendar types
 

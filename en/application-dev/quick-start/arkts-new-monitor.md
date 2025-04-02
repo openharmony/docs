@@ -17,7 +17,7 @@ To listen for value changes of the state variables in a lower level, you can use
 - The \@Monitor decorator can be used in custom components decorated by \@ComponentV2. But it cannot listen for the changes of the state variables that are not decorated by these decorators: [\@Local](arkts-new-local.md), [\@Param](arkts-new-param.md), [\@Provider](arkts-new-Provider-and-Consumer.md), [\@Consumer](arkts-new-Provider-and-Consumer.md), and [\@Computed](arkts-new-Computed.md).
 
 - The \@Monitor decorator can be used in a class together with [\@ObservedV2 and \@Trace](arkts-new-observedV2-and-trace.md) decorators. But it cannot be used in a class that is not decorated by \@ObservedV2. \@Monitor cannot listen for the properties that are not decorated by \@Trace.
-- When the listened property changes, the callback defined by \@Monitor will be called. Strict equality (===) is used to determine whether a property changes. If **false** is returned, the \@Monitor callback is triggered. When a property is changed for multiple times in an event, the initial value will be compared with the final value to determine whether the property is changed.
+- When the listened property changes, the callback defined by \@Monitor will be called. Strict equality (===) is used to determine whether a property is changed. If **false** is return, the \@Monitor decorated callback is triggered. When a property is changed for multiple times in an event, the initial value will be compared with the final value to determine whether the property is changed.
 - A single \@Monitor decorator can listen for the changes of multiple properties at the same time. When these properties change together in an event, the \@Monitor callback method is triggered only once.
 - The \@Monitor decorator has lower-level listening capability and can listen for changes of specified items in nested classes, multi-dimensional arrays, and object arrays. The observation requires that \@ObservedV2 decorate the nested class and \@Trace decorate the member properties in an object array.
 - In the inheritance scenario, you can define \@Monitor for the same property in the parent and child components for listening. When the property changes, the \@Monitor callback defined in the parent and child components is called.
@@ -1059,7 +1059,7 @@ property path:age change from 24 to 25
 property path:name change from John to Johny
 ```
 
-Actually, the **name** attribute is not an observable variable and should not be added to the input parameters of \@Monitor. You are advised to remove the listening from the **name** attribute or add \@Trace to decorate the **name** attribute as a state variable.
+Actually, the **name** attribute is not an observable variable and should not be added to the input parameters of \@Monitor. You are advised to remove the listening from the **name** attribute or use \@Trace to decorate the **name** attribute as a state variable.
 
 [Correct example 1]
 

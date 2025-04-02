@@ -14,7 +14,7 @@
 
 1. 在CMake脚本中链接相关动态库。
     ```txt
-        target_link_libraries(entry PUBLIC libohcamera.so libhilog_ndk.z.so)
+    target_link_libraries(entry PUBLIC libohcamera.so libhilog_ndk.z.so)
     ```
 
 2. 创建头文件ndk_camera.h。

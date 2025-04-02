@@ -6,6 +6,7 @@
     - [构建第一个ArkTS应用（Stage模型）](quick-start/start-with-ets-stage.md)
   <!--DelEnd-->
   - 开发基础知识<!--development-fundamentals-->
+    - [应用程序包术语](quick-start/application-package-glossary.md)
     - 应用程序包基础知识<!--application-package-fundamentals-->
       - [应用程序包概述](quick-start/application-package-overview.md)
       - 应用程序包结构<!--application-package-structure-->
@@ -516,7 +517,7 @@
           - [自定义能力概述](ui/arkts-user-defined.md)
           - 自定义节点<!--arkts-nodes-->
             - [自定义节点概述](ui/arkts-user-defined-node.md)
-            - [自定义占位节点](ui/arkts-user-defined-place-hoder.md)
+            - [自定义占位节点](ui/arkts-user-defined-place-holder.md)
             - [自定义组件节点 (FrameNode)](ui/arkts-user-defined-arktsNode-frameNode.md)
             - [自定义渲染节点 (RenderNode)](ui/arkts-user-defined-arktsNode-renderNode.md)
             - [自定义声明式节点 (BuilderNode)](ui/arkts-user-defined-arktsNode-builderNode.md)
@@ -1302,7 +1303,7 @@
                 - [订阅主线程超时事件（C/C++）](dfx/hiappevent-watcher-mainthreadjank-events-ndk.md)
               - 任务执行超时事件<!--app-hicollie-events-->
                 - [任务执行超时事件介绍](dfx/hiappevent-watcher-apphicollie-events.md)
-                - [任务执行超时事件（C/C++）](dfx/hiappevent-watcher-apphicollie-events-ndk.md)
+                - [订阅任务执行超时事件（C/C++）](dfx/hiappevent-watcher-apphicollie-events-ndk.md)
         <!--Del-->
           - [事件上报](dfx/hiappevent-event-reporting.md)
         <!--DelEnd-->
@@ -1605,8 +1606,23 @@
           - [几何形状绘制（C/C++）](graphics/geometric-shape-drawing-c.md)
           - [图片绘制（C/C++）](graphics/pixelmap-drawing-c.md)
           - [字块绘制（C/C++）](graphics/textblock-drawing-c.md)
-      - [使用Text模块实现文本显示](graphics/text-js-guidelines.md)
-      - [使用主题字体（C/C++）](graphics/theme-font-c.md)
+      - 文本<!--text-->
+        - [文本开发概述](graphics/text-overview.md)
+        - 字体管理<!--font-manager-->
+          - [使用主题字体（ArkTS）](graphics/theme-font-arkts.md)
+          - [自定义字体的注册和使用（ArkTS）](graphics/custom-font-arkts.md)
+          - [系统字体的信息获取和使用（ArkTS）](graphics/system-font-arkts.md)
+          - [使用主题字体（C/C++）](graphics/theme-font-c.md)
+          - [自定义字体的注册和使用（C/C++）](graphics/custom-font-c.md)
+          - [系统字体的信息获取和使用（C/C++）](graphics/system-font-c.md)
+        - 文本测量<!--text-measure-->
+          - [文本测量（ArkTS）](graphics/text-measure-arkts.md)
+          - [文本测量（C/C++）](graphics/text-measure-c.md)
+        - 文本绘制与显示<!--draw-text-display-->
+          - [简单文本绘制与显示（ArkTS）](graphics/simple-text-arkts.md)
+          - [复杂文本绘制与显示（ArkTS）](graphics/complex-text-arkts.md)
+          - [简单文本绘制与显示（C/C++）](graphics/simple-text-c.md)
+          - [复杂文本绘制与显示（C/C++）](graphics/complex-text-c.md)
       - [NativeBuffer开发指导 (C/C++)](graphics/native-buffer-guidelines.md)
       - [NativeImage开发指导 (C/C++)](graphics/native-image-guidelines.md)
       - [NativeVSync开发指导 (C/C++)](graphics/native-vsync-guidelines.md)
@@ -3118,6 +3134,7 @@
         - [@ohos.file.fileAccess (公共文件访问与管理)(系统接口)](reference/apis-core-file-kit/js-apis-fileAccess-sys.md)
         - [@ohos.file.fileExtensionInfo (公共文件访问与管理属性信息)(系统接口)](reference/apis-core-file-kit/js-apis-fileExtensionInfo-sys.md)
         - [@ohos.file.keyManager (用户秘钥管理)(系统接口)](reference/apis-core-file-kit/js-apis-file-keymanager-sys.md)
+        - [@ohos.file.picker (选择器)(系统接口)](reference/apis-core-file-kit/js-apis-file-picker-sys.md)
         - [@ohos.file.recent(最近访问列表)(系统接口)](reference/apis-core-file-kit/js-apis-file-recent-sys.md)
         - [@ohos.file.storageStatistics (应用空间统计)(系统接口)](reference/apis-core-file-kit/js-apis-file-storage-statistics-sys.md)
         - [@ohos.file.trash (回收站)(系统接口)](reference/apis-core-file-kit/js-apis-file-trash-sys.md)
@@ -4401,7 +4418,6 @@
           - [OH_Drawing_RunBuffer](reference/apis-arkgraphics2d/_o_h___drawing___run_buffer.md)
           - [OH_Drawing_String](reference/apis-arkgraphics2d/_o_h___drawing___string.md)
           - [OH_Drawing_StrutStyle](reference/apis-arkgraphics2d/_o_h___drawing___strut_style.md)
-          - [OH_Filter](reference/apis-arkgraphics2d/_o_h___filter.md)
           - [OH_Filter_ColorMatrix](reference/apis-arkgraphics2d/_o_h___filter___color_matrix.md)
           - [OH_NativeBuffer_ColorXY](reference/apis-arkgraphics2d/_o_h___native_buffer___color_x_y.md)
           - [OH_NativeBuffer_Config](reference/apis-arkgraphics2d/_o_h___native_buffer___config.md)

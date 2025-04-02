@@ -550,7 +550,7 @@ In the preceding example:
 
 ### Reusing Components
 
-<!--RP1-->[Components reuse](../performance/component-recycle.md)<!--RP1End--> existing nodes in the cache pool instead of creating new nodes to optimize UI performance and improve application smoothness. Although the nodes in the reuse pool are not displayed in the UI component tree, the change of the state variable still triggers the UI re-render. To solve the problem that components in the reuse pool are re-rendered abnormally, you can perform component freezing.
+[Components reuse](./arkts-reusable.md) existing nodes in the cache pool instead of creating new nodes to optimize UI performance and improve application smoothness. Although the nodes in the reuse pool are not displayed in the UI component tree, the change of the state variable still triggers the UI re-render. To solve the problem that components in the reuse pool are re-rendered abnormally, you can perform component freezing.
 
 #### Mixed Use of Component Reuse, if, and Component Freezing
 The following example shows that when the state variable bound to the **if** component changes to **false**, the detach of **ChildComponent** is triggered. Because **ChildComponent** is marked as component reuse, it is not destroyed but enters the reuse pool, in this case, if the component freezing is enabled at the same time, the component will not be re-rendered in the reuse pool.
@@ -625,7 +625,7 @@ In this case, if you trigger the re-render of all subnodes in **List**, the numb
 Example:
 1. Swipe the list to the position whose index is 14. There are 15 **ChildComponent** in the visible area on the current page.
 2. During swiping:
-    - **ChildComponent** in the upper part of the list is swiped out of the visible area. In this case, **ChildComponent** enters the cache area of LazyForEach and is set to inactive. After the component slides out of the **LazyForEach** area, the component is not destructed and enters the reuse pool because the component is marked for reuse. In this case, the component is set to inactive again.
+    - **ChildComponent** in the upper part of the list is swiped out of the visible area. In this case, **ChildComponent** enters the cache area of LazyForEach and is set to inactive. After the component slides out of the **LazyForEach** cache area, the component is not destructed and enters the reuse pool because the component is marked for reuse. In this case, the component is set to inactive again.
     - The cache node of **LazyForEach** at the bottom of the list enters the list. In this case, the system attempts to create a node to enter the cache of **LazyForEach**. If a node that can be reused is found, the system takes out the existing node from the reuse pool and triggers the **aboutToReuse** lifecycle callback, in this case, the node enters the cache area of **LazyForEach** and the state of the node is still inactive.
 3. Click **change desc** to trigger the change of the member variable **desc** of **Page**.
     - The change of \@State decorated **desc** will be notified to \@Link decorated **desc** of **ChildComponent**.
@@ -1153,9 +1153,9 @@ struct pageTwoStack {
 
 Final effect
 
-![freeze](figures/freeze_tabcontent.png)
+![freeze](figures/freeze_tabcontent.gif)
 
-There are two tabs on the page. By default, the component freezing function is enabled on the **Update** tab. If the **Tabcontent** tab is not selected, the state variable is not refreshed.
+Click the **Next Page** button to enter the **pageOne** page. There are two tabs on the page and the **Update** tab is displayed by default. Enable component freezing. If the **Tabcontent** tab is not selected, the state variable is not refreshed.
 
 Click the **Incr state** button to query **Appmonitor** in the log. Three records are displayed.
 

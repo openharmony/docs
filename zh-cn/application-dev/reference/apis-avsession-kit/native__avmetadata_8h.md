@@ -23,8 +23,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef struct OH_AVMetadataBuilderStruct [OH_AVMetadataBuilder](_o_h_a_v_session.md#oh_avmetadatabuilder) | 会话元数据构造器。 构造器用于构造会话元数据。 | 
-| typedef struct OH_AVMetadataStruct [OH_AVMetadata](_o_h_a_v_session.md#oh_avmetadata) | 会话元数据。 资源设置的avmetadata的实例。 | 
+| typedef struct OH_AVMetadataBuilderStruct [OH_AVMetadataBuilder](_o_h_a_v_session.md#oh_avmetadatabuilder) | 会话元数据构造器。构造器用于构造会话元数据。 | 
+| typedef struct OH_AVMetadataStruct [OH_AVMetadata](_o_h_a_v_session.md#oh_avmetadata) | 会话元数据。资源设置的avmetadata的实例。 | 
 
 
 ### 枚举
@@ -32,7 +32,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [AVMetadata_Result](_o_h_a_v_session.md#avmetadata_result) {<br/>AVMETADATA_SUCCESS = 0,<br/>AVMETADATA_ERROR_INVALID_PARAM = 1,<br/>AVMETADATA_ERROR_NO_MEMORY = 2 } | 元数据操作的错误码。 | 
-| [AVMetadata_SkipIntervals](_o_h_a_v_session.md#avmetadata_skipintervals) {<br/>SECONDS_10 = 10,<br/>SECONDS_15 = 15,<br/>SECONDS_30 = 30 } | 表示session支持的快进快退时间间隔。 | 
+| [AVMetadata_SkipIntervals](_o_h_a_v_session.md#avmetadata_skipintervals) {<br/>SECONDS_10 = 10,<br/>SECONDS_15 = 15,<br/>SECONDS_30 = 30 } | 表示session支持的快进、快退时间间隔。 | 
 | [AVMetadata_DisplayTag](_o_h_a_v_session.md#avmetadata_displaytag) { AVSESSION_DISPLAYTAG_AUDIO_VIVID = 1 } | 应用媒体音源的特殊类型标识。 | 
 
 

@@ -40,7 +40,6 @@ publish(event: string, callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- | 
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
-| 1500004  | A third-party application cannot send system common events.                |
 | 1500007  | Failed to send the message to the common event service. |
 | 1500008  | Failed to initialize the common event service. |
 | 1500009  | Failed to obtain system parameters.  |
@@ -92,7 +91,6 @@ publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
-| 1500004  | A third-party application cannot send system common events.                |
 | 1500007  | Failed to send the message to the common event service. |
 | 1500008  | Failed to initialize the common event service. |
 | 1500009  | Failed to obtain system parameters.  |

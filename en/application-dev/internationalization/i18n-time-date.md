@@ -54,16 +54,16 @@ The following uses 13:04:00 and 00:25:00 on September 17, 2021 and locales **zh-
 
 | Value  | Description                                   | 2021-09-17 13:04:00 for Locale zh-CN| 2021-09-17 13:04:00 for Locale en|
 | ------ | --------------------------------------- | ------------------------------------------  | ---------------------------------------- |
-| full   | Complete date display, including the year, month, day, and week.| Friday, September 17, 2021                         | Friday, September 17, 2021               |
-| long   | Long date display, including the year, month, and day.    | September 17, 2021                               | September 17, 2021                       |
+| full   | Complete date display, including the year, month, day, and week.| 2021年9月17日星期五                         | Friday, September 17, 2021               |
+| long   | Long date display, including the year, month, and day.    | 2021年9月17日                               | September 17, 2021                       |
 | short  | Short date display, including the year, month, and day.    | 2021/9/17                                   | 9/17/21                                  |
-| medium | Medium date display, including the year, month, and day.  | September 17, 2021                               | Sep 17, 2021                             |
+| medium | Medium date display, including the year, month, and day.  | 2021年9月17日                               | Sep 17, 2021                             |
 
 **Table 2** Time display format (timeStyle)
 
 | Value  | Description| 2021-09-17 13:04:00 for Locale zh-CN|2021-09-17 13:04:00 for Locale en|
 | ------ | ------------- | -------- | -------- |
-| full   | Complete time display, including the time zone and time accurate to seconds.| 13:04:00 China Standard Time| 13:04:00 China Standard Time |
+| full   | Complete time display, including the time zone and time accurate to seconds.| 中国标准时间 13:04:00 | 13:04:00 China Standard Time |
 | long   | Long time display, including the time zone expressed in the format of GMT + time zone offset and time accurate to seconds.| GMT+8 13:04:00 | 13:04:00 GMT+8 |
 | short  | Short time display, including hour and minute.| 13:04 | 13:04 |
 | medium | Medium time display, including hour, minute, and second.| 13:04:00 | 13:04:00 |
@@ -87,8 +87,8 @@ The following uses 13:04:00 and 00:25:00 on September 17, 2021 and locales **zh-
 
 | Value| Description           | 2021-09-17 13:04:00 for Locale zh-CN| 2021-09-17 00:25:00 for Locale zh-CN|
 | --- | --------------- | -------------------------------------------- | ------------------------------------------- |
-| h11 | Use of 0-11 to indicate the hour| 下午1:04                                     |  上午0:25                                    |
-| h12 | Use of 1-12 to indicate the hour| 下午1:04                                     |  上午12:25                                   |
+| h11 | Use of 0-11 to indicate the hour| 下午1:04                                    |  上午0:25                                   |
+| h12 | Use of 1-12 to indicate the hour| 下午1:04                                    |  上午12:25                                  |
 | h23 | Use of 0-23 to indicate the hour| 13:04                                        | 00:25                                       |
 | h24 | Use of 1-24 to indicate the hour| 13:04                                        | 24:25                                       |
 
@@ -101,8 +101,8 @@ The following uses 13:04:00 and 00:25:00 on September 17, 2021 and locales **zh-
 
 | Value| Description           | 2021-09-17 13:04:00 for Locale zh-CN| 2021-09-17 00:25:00 for Locale zh-CN|
 | --- | --------------- | -------------------------------------------- | ------------------------------------------- |
-| h11 | Use of 1-24 to indicate the hour| 下午13:04                                    |  上午24:25                                   |
-| h12 | Use of 1-12 to indicate the hour| 下午1:04                                     |  上午12:25                                   |
+| h11 | Use of 1-24 to indicate the hour| 下午13:04                                   |  上午24:25                                  |
+| h12 | Use of 1-12 to indicate the hour| 下午1:04                                    |  上午12:25                                  |
 | h23 | Use of 0-11 to indicate the hour| 1:04                                         |  0:25                                       |
 | h24 | Use of 0-23 to indicate the hour| 13:04                                        |  0:25                                       |
 
@@ -148,42 +148,66 @@ The following uses 13:04:00 and 00:25:00 on September 17, 2021 and locales **zh-
 // Import the intl module.
 import { intl } from '@kit.LocalizationKit';
 
-let date = new Date(2021, 8, 17, 13, 4, 0); // The date and time is 2021.09.17 13:04:00.
-let startDate = new Date(2021, 8, 17, 13, 4, 0);
-let endDate = new Date(2021, 8, 18, 13, 4, 0);
+let date: Date = new Date(2021, 8, 17, 13, 4, 0); // The date and time is 2021.09.17 13:04:00.
+let startDate: Date = new Date(2021, 8, 17, 13, 4, 0);
+let endDate: Date = new Date(2021, 8, 18, 13, 4, 0);
 
 // Display complete time information.
-let dateFormat1 = new intl.DateTimeFormat('zh-CN', {dateStyle: 'full', timeStyle: 'full'});
-let formattedDate1 = dateFormat1.format(date); // formattedDate1: 2021年9月17日星期五 中国标准时间 13:04:00
+let fullFormat: intl.DateTimeFormat = new intl.DateTimeFormat('zh-CN', { dateStyle: 'full', timeStyle: 'full' });
+let formattedDate: string = fullFormat.format(date); // formattedDate = 'Friday, September 17, 2021 China Standard Time 13:04:00'
 
 // Display short time information in limited space.
-let dateFormat2 = new intl.DateTimeFormat('zh-CN', {dateStyle: 'short', timeStyle: 'short'});
-let formattedDate2 = dateFormat2.format(date); // formattedDate2: 2021/9/17 13:04
+let shortFormat: intl.DateTimeFormat = new intl.DateTimeFormat('zh-CN', { dateStyle: 'short', timeStyle: 'short' });
+formattedDate = shortFormat.format(date); // formattedDate = '2021/9/17 13:04'
 
 // Customize the display effect of year, month, day, hour, minute, and second.
-let dateFormat3 = new intl.DateTimeFormat('zh-CN', {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'});
-let formattedDate3 = dateFormat3.format(date); // formattedDate3: 2021/09/17 13:04:00
+let customFormat: intl.DateTimeFormat = new intl.DateTimeFormat('zh-CN',
+  {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit'
+  });
+formattedDate = customFormat.format(date); // formattedDate = '2021/09/17 13:04:00'
 
 // Display only part of the time.
-let dateFormat4 = new intl.DateTimeFormat('zh-CN', {month: 'long', day: 'numeric', weekday: 'long' });
-let formattedDate4 = dateFormat4.format(date); // formattedDate4: 9月17日星期五
+let partialFormat: intl.DateTimeFormat = new intl.DateTimeFormat('zh-CN',
+  {
+    month: 'long',
+    day: 'numeric',
+    weekday: 'long'
+  });
+formattedDate = partialFormat.format(date); // formattedDate = 'Friday, September 17'
 
 // Customize the date and time format.
-let dateFormat5 = new intl.DateTimeFormat('zh-CN', {dateStyle: 'short', timeStyle: 'short', hourCycle: 'h11'});
-let formattedDate5 = dateFormat5.format(date); // formattedDate5: 2021/9/17 下午13:04
+let hourCycleFormat: intl.DateTimeFormat = new intl.DateTimeFormat('zh-CN',
+  {
+    dateStyle: 'short',
+    timeStyle: 'short',
+    hourCycle: 'h11'
+  });
+formattedDate = hourCycleFormat.format(date); // formattedDate = '2021/9/17 1:04 PM'
 
 // Customize the date and time format for users accustomed to other numeral systems.
-let dateFormat6 = new intl.DateTimeFormat('zh-CN', {dateStyle: 'short', timeStyle: 'short', numberingSystem: 'arab'});
-let formattedDate6 = dateFormat6.format(date); // formattedDate6: ٢٠٢١/٩/١٧ ١٣:٠٤
+let numberingSystemFormat: intl.DateTimeFormat = new intl.DateTimeFormat('zh-CN',
+  {
+    dateStyle: 'short',
+    timeStyle: 'short',
+    numberingSystem: 'arab'
+  });
+formattedDate = numberingSystemFormat.format(date); // formattedDate = '٢٠٢١/٩/١٧ ١٣:٠٤'
 
 // Format a time segment.
-let dataFormat7 = new intl.DateTimeFormat('en-GB');
-let formattedDateRange = dataFormat7.formatRange(startDate, endDate); // formattedDateRange: 17/09/2021 - 18/09/2021
+let dateRangeFormat: intl.DateTimeFormat = new intl.DateTimeFormat('en-GB');
+let formattedDateRange: string =
+  dateRangeFormat.formatRange(startDate, endDate); // formattedDateRange = '17/09/2021 - 18/09/2021'
 
 // Obtain formatting options.
-let dataFormat8 = new intl.DateTimeFormat('en-GB', {dateStyle: 'full'});
-let options = dataFormat8.resolvedOptions();
-let dateStyle = options.dateStyle; // dateStyle: full
+let dateFormat: intl.DateTimeFormat = new intl.DateTimeFormat('en-GB', { dateStyle: 'full' });
+let options: intl.DateTimeOptions = dateFormat.resolvedOptions();
+let dateStyle: string | undefined = options.dateStyle; // dateStyle = 'full'
 ```
 
 ### Relative Time Formatting
@@ -242,27 +266,27 @@ The following uses the relative time **one day ago** and locales **fr-FR** and *
 import { intl } from '@kit.LocalizationKit';
 
 // Display the relative time.
-let relativeTimeFormat1 = new intl.RelativeTimeFormat('en-GB');
-let formattedRelativeTime1 = relativeTimeFormat1.format(-1, 'day'); // formattedRelativeTime1: 1 day ago
+let relativeTimeFormat: intl.RelativeTimeFormat = new intl.RelativeTimeFormat('en-GB');
+let formattedRelativeTime: string = relativeTimeFormat.format(-1, 'day'); // formattedRelativeTime = '1 day ago'
 
 // Display the relative time in a conversational style.
-let relativeTimeFormat2 = new intl.RelativeTimeFormat('en-GB', {numeric: "auto"});
-let formattedRelativeTime2 = relativeTimeFormat2.format(-1, 'day'); // formattedRelativeTime2: yesterday
+let numericAutoFormat: intl.RelativeTimeFormat = new intl.RelativeTimeFormat('en-GB', { numeric: 'auto' });
+formattedRelativeTime = numericAutoFormat.format(-1, 'day'); // formattedRelativeTime = 'yesterday'
 
 // Use the narrow style for certain languages.
-let relativeTimeFormat3 = new intl.RelativeTimeFormat('fr-FR'); // The default style is long.
-let formattedRelativeTime3 = relativeTimeFormat3.format(-1, 'day'); // formattedRelativeTime3: il y a 1 jour
-let relativeTimeFormat4 = new intl.RelativeTimeFormat('fr-FR', {style: 'narrow'});
-let formattedRelativeTime4 = relativeTimeFormat4.format(-1, 'day'); // formattedRelativeTime4: -1 j
+let longFormat: intl.RelativeTimeFormat = new intl.RelativeTimeFormat('fr-FR'); // The default style is long.
+formattedRelativeTime = longFormat.format(-1, 'day'); // formattedRelativeTime = 'il y a 1 jour'
+let narrowFormat: intl.RelativeTimeFormat = new intl.RelativeTimeFormat('fr-FR', { style: 'narrow' });
+formattedRelativeTime = narrowFormat.format(-1, 'day'); // formattedRelativeTime = '-1 j'
 
 // Display the custom relative time for the specified locale.
-let relativeTimeFormat5 = new intl.RelativeTimeFormat('en-GB', {style: 'long'});
-// parts: [{type: 'literal', value: 'in'}, {type: 'integer', value: 1, unit: 'day'}, {type: 'literal', value: 'day'}]
-let parts = relativeTimeFormat5.formatToParts(1, 'day');
+let partFormat: intl.RelativeTimeFormat = new intl.RelativeTimeFormat('en-GB', { style: 'long' });
+// parts = [{type: 'literal', value: 'in'}, {type: 'integer', value: 1, unit: 'day'}, {type: 'literal', value: 'day'}]
+let parts: object[] = partFormat.formatToParts(1, 'day');
 
 // Obtain the formatting options of RelativeTimeFormat.
-let relativeTimeFormat6 = new intl.RelativeTimeFormat('en-GB', {numeric: 'auto'});
-let options = relativeTimeFormat6.resolvedOptions();
-let numeric = options.numeric; // numeric: auto
+let resolvedFormat: intl.RelativeTimeFormat = new intl.RelativeTimeFormat('en-GB', { numeric: 'auto' });
+let options: intl.RelativeTimeFormatResolvedOptions = resolvedFormat.resolvedOptions();
+let numeric: string = options.numeric; // numeric = 'auto'
 ```
 <!--no_check-->
