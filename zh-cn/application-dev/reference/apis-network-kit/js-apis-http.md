@@ -1600,10 +1600,10 @@ type RemoteValidation = 'system' | 'skip'
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-|  名称  |  类型  |  必填  |说明     |
-| ------------------  |---- |-- | ----------- |
-| username       | string | 是 |用于身份验证的用户名。默认值为' '。 |
-| password        | string |  是  |用于身份验证的密码。默认值为' '。 |
+|  名称  |  类型  |  只读  | 可选  |说明     |
+| ------------------  |---- |-- | -- |----------- |
+| username       | string | 否 |否 |用于身份验证的用户名。默认值为' '。 |
+| password        | string |  否  |否 |用于身份验证的密码。默认值为' '。 |
 
 ## ServerAuthentication<sup>18+</sup>
 
@@ -1613,10 +1613,10 @@ HTTP服务器身份验证。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-|  名称  | 类型                              |  必填  | 说明            |
-| ------------------  |---------------------------------|-- |---------------|
-| credential       | [Credential](#credential18)     | 是 | 服务器的凭证。默认值为undefined。     |
-| authenticationType        | [AuthenticationType](#authenticationtype18)     |  否  | 服务器的认证类型。如果没有设置，需与服务器协商。     |
+|  名称               |  类型                                            | 只读    |    可选     |说明     |
+| ------------------  |-------------------------------------------------|-------- |------------ |---------------|
+| credential          | [Credential](#credential18)                     | 否      | 否         |服务器的凭证。默认值为undefined。     |
+| authenticationType  | [AuthenticationType](#authenticationtype18)     | 否      | 是        | 服务器的认证类型。如果没有设置，需与服务器协商。     |
 
 
 ## TlsConfig<sup>18+</sup>
@@ -1627,11 +1627,11 @@ TLS加密版本及套件配置。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-|  名称  | 类型                              |  必填  | 说明            |
-| ------------------  |---------------------------------|-- |---------------|
-| tlsVersionMin       | [TlsVersion](#tlsversion18)     | 是 | TLS最低版本号。     |
-| tlsVersionMax        | [TlsVersion](#tlsversion18)     |  是  | TLS最高版本号。     |
-| cipherSuites        | [CipherSuite](#ciphersuite18)[] |  是  | 声明加密套件类型的数组。 |
+|  名称               |  类型                            | 只读    |    可选     |说明     |
+| ------------------  |---------------------------------|-------- |-------- |---------------|
+| tlsVersionMin       | [TlsVersion](#tlsversion18)     | 否      |否       | TLS最低版本号。     |
+| tlsVersionMax        | [TlsVersion](#tlsversion18)    | 否      |否       | TLS最高版本号。     |
+| cipherSuites        | [CipherSuite](#ciphersuite18)[] | 否      |是       | 声明加密套件类型的数组。 |
 
 ## TlsVersion<sup>18+</sup>
 
@@ -1682,7 +1682,7 @@ type RemoteValidation = 'system' | 'skip'
 
 type AuthenticationType = 'basic' | 'ntlm' | 'digest'
 
-在会话中的服务器身份验证时可以设置中使用不同的身份验证机制。
+在会话中的服务器身份验证时可以设置使用不同的身份验证机制。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
