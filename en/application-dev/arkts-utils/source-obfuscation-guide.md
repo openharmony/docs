@@ -17,9 +17,9 @@ The source code obfuscation feature is integrated into the system and can be ena
           "files": ["./obfuscation-rules.txt"],
         }
       }
-}
+    }
     ```
-    
+
 * Configuring obfuscation rules 
   
     Enabling the obfuscation switch activates the default settings, which include obfuscation of local variables and parameters. To enable additional obfuscation features, customize the **obfuscation-rules.txt** file specified in the **files** field. Note that the default values in this file may vary across different versions of DevEco Studio.
@@ -61,26 +61,26 @@ The source code obfuscation feature is integrated into the system and can be ena
 * `obfuscation-rules.txt`
   
     For HAP, HAR, and HSP modules, the **arkOptions.obfuscation.ruleOptions.files** field in the **build-profile.json5** file specifies obfuscation rules applied during module compilation. A default **obfuscation-rules.txt** file is created when a new project is set up.
-    
-* `consumer-rules.txt` 
+
+* `consumer-rules.txt`
   
     For HAR and HSP modules, an additional **arkOptions.obfuscation.consumerFiles** field is available in the **build-profile.json5** file. This field specifies obfuscation rules that should be applied when this package is depended upon in the current compilation process. A default **consumer-rules.txt** file is created when a new HAR or HSP module is set up. The key difference between **consumer-rules.txt** and **obfuscation-rules.txt** is as follows: **obfuscation-rules.txt** applies to the compilation of the current module, whereas **consumer-rules.txt** applies to the compilation of other modules that depend on the current module.
     
     ```
-        "arkOptions": {
-          "obfuscation": {
-            "ruleOptions": {
-              "enable": true,
-              "files": ["./obfuscation-rules.txt"],
-            }
-            "consumerFiles": ["./consumer-rules.txt"]
-          }
+    "arkOptions": {
+      "obfuscation": {
+        "ruleOptions": {
+          "enable": true,
+          "files": ["./obfuscation-rules.txt"],
+        }
+        "consumerFiles": ["./consumer-rules.txt"]
+      }
     }
     ```
-    
-* `obfuscation.txt` 
 
-  Unlike the above two files, **obfuscation.txt** is automatically generated based on **consumer-rules.txt** and the obfuscation rules of dependent modules during HAR or HSP compilation. It exists as a compilation product within the released HAR or HSP package. When other applications depend on this package, the obfuscation rules are merged and applied to the current compilation process. For details about the generation and merging logic of **obfuscation.txt**, see [Obfuscation Rule Merging Strategies](source-obfuscation.md#obfuscation-rule-merging-strategies).
+* `obfuscation.txt`
+
+    Unlike the above two files, **obfuscation.txt** is automatically generated based on **consumer-rules.txt** and the obfuscation rules of dependent modules during HAR or HSP compilation. It exists as a compilation product within the released HAR or HSP package. When other applications depend on this package, the obfuscation rules are merged and applied to the current compilation process. For details about the generation and merging logic of **obfuscation.txt**, see [Obfuscation Rule Merging Strategies](source-obfuscation.md#obfuscation-rule-merging-strategies).
 
   > **NOTE**
   >
