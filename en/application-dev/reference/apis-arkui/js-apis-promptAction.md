@@ -1108,7 +1108,7 @@ Provides information about the action to dismiss the dialog box.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### Attributes
+### Properties
 
 | Name   | Type                                                        | Readable| Writable| Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
