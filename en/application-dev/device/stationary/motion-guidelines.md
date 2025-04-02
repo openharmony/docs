@@ -16,7 +16,14 @@ For details about the APIs, see [Motion API Reference](../../reference/apis-mult
 
 ## Constraints
 
-The device must support the touchscreen and be compatible with specific chips.
+ - The device must support the touchscreen and be compatible with specific chips.
+
+ - Knuckle operations are not categorized as hand operations.
+
+ - Multi-finger operations are not supported in window rotation scenarios.
+
+ - The effective range does not include the area within 8 mm from the screen edge.
+
 
 
 

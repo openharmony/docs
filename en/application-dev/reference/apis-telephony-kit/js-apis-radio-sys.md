@@ -2626,7 +2626,7 @@ LTE cell information.
 | bandwidth     | number  |  Yes | Bandwidth.                 |
 | mcc           | string  |  Yes | Mobile country code.           |
 | mnc           | string  |  Yes | Mobile network code.             |
-| isSupportEndc | boolean |  Yes | Whether New Radio Dual Connectivity (NR-DC) is supported.|
+| isSupportEndc | boolean |  Yes | Whether New Radio Dual Connectivity (NR-DC) is supported.<br>The value **true** indicates that NR-DC is supported, and the value **false** indicates the opposite.|
 
 ## NrCellInformation<sup>8+</sup>
 
@@ -2723,7 +2723,7 @@ Defines the network search result.
 
 | Name                  | Type                                             | Mandatory| Description          |
 | ---------------------- | ------------------------------------------------- | ---- | -------------- |
-| isNetworkSearchSuccess | boolean                                           |  Yes | Successful network search.|
+| isNetworkSearchSuccess | boolean                                           |  Yes | Whether the network search is successful.<br>The value **true** indicates that the network search is successful, and the value **false** indicates the opposite.|
 | networkSearchResult    | Array<[NetworkInformation](#networkinformation)\> |  Yes | Network search result.|
 
 ## NetworkInformation
@@ -2769,7 +2769,7 @@ Defines the network selection mode.
 | slotId             | number                                        |  Yes | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | selectMode         | [NetworkSelectionMode](js-apis-radio.md#networkselectionmode) |  Yes | Network selection mode.                        |
 | networkInformation | [NetworkInformation](#networkinformation)     |  Yes | Network information.                            |
-| resumeSelection    | boolean                                       |  Yes | Whether to resume selection.                            |
+| resumeSelection    | boolean                                       |  Yes | Whether to resume selection.<br>The value **true** means to resume selection, and the value **false** means the opposite.                             |
 
 ## ImsRegState<sup>9+</sup>
 
