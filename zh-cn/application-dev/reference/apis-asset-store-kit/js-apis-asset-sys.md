@@ -40,7 +40,7 @@ addAsUser(userId: number, attributes: AssetMap): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[关键资产存储开发套件错误码](errorcode-asset.md)
+以下错误码的详细介绍请参见[关键资产存储服务错误码](errorcode-asset.md)
 
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
@@ -116,7 +116,7 @@ removeAsUser(userId: number, query: AssetMap): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[关键资产存储开发套件错误码](errorcode-asset.md)
+以下错误码的详细介绍请参见[关键资产存储服务错误码](errorcode-asset.md)
 
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
@@ -187,7 +187,7 @@ updateAsUser(userId: number, query: AssetMap, attributesToUpdate: AssetMap): Pro
 
 **错误码：**
 
-以下错误码的详细介绍请参见[关键资产存储开发套件错误码](errorcode-asset.md)
+以下错误码的详细介绍请参见[关键资产存储服务错误码](errorcode-asset.md)
 
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
@@ -261,7 +261,7 @@ preQueryAsUser(userId: number, query: AssetMap): Promise\<Uint8Array>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[关键资产存储开发套件错误码](errorcode-asset.md)
+以下错误码的详细介绍请参见[关键资产存储服务错误码](errorcode-asset.md)
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -334,7 +334,7 @@ queryAsUser(userId: number, query: AssetMap): Promise\<Array\<AssetMap>>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[关键资产存储开发套件错误码](errorcode-asset.md)
+以下错误码的详细介绍请参见[关键资产存储服务错误码](errorcode-asset.md)
 
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
@@ -411,7 +411,7 @@ postQueryAsUser(userId: number, handle: AssetMap): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[关键资产存储开发套件错误码](errorcode-asset.md)
+以下错误码的详细介绍请参见[关键资产存储服务错误码](errorcode-asset.md)
 
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
