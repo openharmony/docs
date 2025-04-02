@@ -9,6 +9,7 @@
 
 **相关模块：**[OH_NativeImage](_o_h___native_image.md)
 
+**所在头文件：**[native_image.h](native__image_8h.md)
 
 ## 汇总
 
