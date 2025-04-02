@@ -83,7 +83,7 @@
 >
 > 本模块提供了异步和同步两套接口，以下为异步接口的使用示例，同步接口详见[API文档](../../reference/apis-asset-store-kit/js-apis-asset.md)。
 
-查询别名是demo_alias且需要用户认证的关键资产。示例中引入的@ohos.userIAM.userAuth用法详见[userAuth文档](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md###start10)。
+查询别名是demo_alias且需要用户认证的关键资产。示例中引入的@ohos.userIAM.userAuth用法详见[userAuth文档](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#start10)。
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
