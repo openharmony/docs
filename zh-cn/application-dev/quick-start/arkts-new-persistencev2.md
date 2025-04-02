@@ -133,6 +133,8 @@ static notifyOnError(callback: PersistenceErrorCallback | undefined): void;
 
 8、不宜大量持久化数据，可能会导致页面卡顿。
 
+9、不支持存储基本类型，如string、number、boolean等。
+
 ## 使用场景
 
 ### 在两个页面之间存储数据
