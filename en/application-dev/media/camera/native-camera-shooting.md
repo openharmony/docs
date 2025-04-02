@@ -287,12 +287,12 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
    import cameraDemo from 'libentry.so';
 
    interface PhotoSettings {
-     quality: number, // Photo quality
-     rotation: number, // Photo direction
-     mirror: boolean, // Mirror Enable
-     latitude: number, // geographic location
-     longitude: number, // geographic location
-     altitude: number // geographic location
+     quality: number, // Photo quality.
+     rotation: number, // Photo direction.
+     mirror: boolean, // Mirror Enabled.
+     latitude: number, // Geographic location.
+     longitude: number, // Geographic location.
+     altitude: number // Geographic location.
    };
 
    @Entry

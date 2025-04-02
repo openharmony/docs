@@ -33,7 +33,7 @@ char* Camera_Device::cameraId
 ```
 **Description**
 
-Camera ID.
+Pointer to the camera ID.
 
 
 ### cameraPosition
