@@ -4,8 +4,8 @@ The **MovingPhotoView** component is used to play moving photos and control the 
 
 > **NOTE**
 >
-> This component is supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
-> Currently, the **MovingPhotoView** component cannot be used in Previewer.
+> - This component is supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
+> - Currently, the **MovingPhotoView** component cannot be used in Previewer.
 
 ## Modules to Import
 
@@ -20,7 +20,7 @@ import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } 
 > - Currently, live attributes cannot be set.
 > - Currently, **expandSafeArea** in the ArkUI common attribute **ComponentOptions** cannot be set.
 > - When this component is long pressed to trigger playback, the component area is zoomed in to 1.1 times.
-> - This component uses [AVPlayer](../apis-media-kit/_a_v_player.md#avplayer) to play moving photos. The number of [AVPlayers](../apis-media-kit/_a_v_player.md#avplayer) being used at the same time cannot exceed three. Otherwise, frame freezing may occur during the playback.
+> - This component uses [AVPlayer](../apis-media-kit/_a_v_player.md#avplayer) to play moving photos. A maximum of three [AVPlayers](../apis-media-kit/_a_v_player.md#avplayer) can be used at the same time. Otherwise, frame freezing may occur during the playback.
 
 MovingPhotoView(options: MovingPhotoViewOptions)
 
@@ -29,15 +29,15 @@ MovingPhotoView(options: MovingPhotoViewOptions)
 
 | Name | Type                                                 | Mandatory| Description      |
 | ------- | --------------------------------------------------------- | ---- | -------------- |
-| options | [MovingPhotoViewOptions](#movingphotoviewoptions) | Yes  | Moving photo information.<br>Atomic service API: This API can be used in atomic services since API version 12. |
+| options | [MovingPhotoViewOptions](#movingphotoviewoptions) | Yes  | Moving photo information.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## MovingPhotoViewOptions
 
 
 | Name     | Type                                                                                        | Mandatory| Description                                                                                                                                       |
 | ----------- | ------------------------------------------------------------------------------------------------ | ---- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| movingPhoto | [MovingPhoto](js-apis-photoAccessHelper.md#movingphoto12) | Yes  | **MovingPhoto** instance. For details, see [MovingPhoto](js-apis-photoAccessHelper.md#movingphoto12).<br>Atomic service API: This API can be used in atomic services since API version 12.|
-| controller  | [MovingPhotoViewController](#movingphotoviewcontroller)                                          | No  | Controller used to control the playback status of the moving photo.<br>Atomic service API: This API can be used in atomic services since API version 12.|
+| movingPhoto | [MovingPhoto](js-apis-photoAccessHelper.md#movingphoto12) | Yes  | **MovingPhoto** instance. For details, see [MovingPhoto](js-apis-photoAccessHelper.md#movingphoto12).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| controller  | [MovingPhotoViewController](#movingphotoviewcontroller)                                          | No  | Controller used to control the playback status of the moving photo.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                     |
 
 ## Properties
 
@@ -58,13 +58,13 @@ Sets whether to mute the player.
 
 | Name | Type   | Mandatory| Description                        |
 | ------- | ------- | ---- | ---------------------------- |
-| isMuted | boolean | Yes  | Whether to mute the player.<br>Default value: **false**<br>The value **true** means to mute the player;<br>the value **false** means the opposite.|
+| isMuted | boolean | Yes  | Whether to mute the player.<br>Default value: **false**<br>The value **true** means to mute the player; the value **false** means the opposite.|
 
 ### objectFit
 
 objectFit(value: ImageFit)
 
-Set the display mode of the moving photo.
+Sets the display mode of the moving photo.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -85,7 +85,7 @@ In addition to [universal events](../apis-arkui/arkui-ts/ts-universal-events-cli
 
 onStart(callback: MovingPhotoViewEventCallback)
 
-Called when the moving photo is played.
+Called when a moving photo starts playing.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -153,7 +153,7 @@ Called when the playback fails.
 
 onStop(callback: MovingPhotoViewEventCallback)
 
-Called when the playback is stopped (by **stop()**).
+Called when the playback is stopped by **stop()**.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

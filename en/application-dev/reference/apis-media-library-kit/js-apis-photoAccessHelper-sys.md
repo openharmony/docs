@@ -1,6 +1,6 @@
 # @ohos.file.photoAccessHelper (Album Management) (System API)
 
-The **photoAccessHelper** module provides APIs for album management, including creating an album and accessing and modifying media data in an album.
+The photoAccessHelper module provides APIs for album management, including creating an album and accessing and modifying media data in an album.
 
 > **NOTE**
 >
@@ -24,7 +24,7 @@ Creates an image or video asset with the specified file name. This API uses an a
 The file name must comply with the following specifications:
 - The file name consists of a valid file name and an image or video file name extension.
 - The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- The file name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -37,7 +37,7 @@ The file name must comply with the following specifications:
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
 | displayName  | string        | Yes  | File name of the image or video to create.             |
-| callback |  AsyncCallback&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Callback invoked to return the image or video created.|
+| callback |  AsyncCallback&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Callback used to return the image or video created.|
 
 **Error codes**
 
@@ -78,7 +78,7 @@ Creates an image or video asset with the specified file name. This API uses a pr
 The file name must comply with the following specifications:
 - The file name consists of a valid file name and an image or video file name extension.
 - The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- The file name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -136,7 +136,7 @@ Creates an image or video asset with the specified file name and options. This A
 The file name must comply with the following specifications:
 - The file name consists of a valid file name and an image or video file name extension.
 - The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- The file name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -150,7 +150,7 @@ The file name must comply with the following specifications:
 | -------- | ------------------------ | ---- | ------------------------- |
 | displayName  | string        | Yes  | File name of the image or video to create.             |
 | options  | [PhotoCreateOptions](#photocreateoptions)        | Yes  | Options for creating an image or video asset.             |
-| callback |  AsyncCallback&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Callback invoked to return the image or video created.|
+| callback |  AsyncCallback&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Callback used to return the image or video created.|
 
 **Error codes**
 
@@ -194,7 +194,7 @@ Creates an image or video asset with the specified file name and options. This A
 The file name must comply with the following specifications:
 - The file name consists of a valid file name and an image or video file name extension.
 - The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- The file name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -255,7 +255,7 @@ Creates an album. This API uses an asynchronous callback to return the result.
 
 The album name must meet the following requirements:
 - The album name cannot exceed 255 characters.
-- The album name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -274,7 +274,7 @@ The album name must meet the following requirements:
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
 | name  | string         | Yes  | Name of the album to create.             |
-| callback |  AsyncCallback&lt;[Album](#album)&gt; | Yes  | Callback invoked to return the created album instance.|
+| callback |  AsyncCallback&lt;[Album](#album)&gt; | Yes  | Callback used to return the created album instance.|
 
 **Error codes**
 
@@ -313,7 +313,7 @@ Creates an album. This API uses a promise to return the result.
 
 The album name must meet the following requirements:
 - The album name cannot exceed 255 characters.
-- The album name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -516,9 +516,9 @@ Obtains hidden albums based on the specified display mode and retrieval options.
 
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | Yes  | Display mode of hidden files. |
-| options  | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions)         | Yes  |  Options for retrieving the hidden files. |
-| callback |  AsyncCallback&lt;[FetchResult](js-apis-photoAccessHelper.md#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback invoked to return the result.|
+| mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | Yes  | Display mode of hidden albums. |
+| options  | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions)         | Yes  |  Options for retrieving the hidden albums. |
+| callback |  AsyncCallback&lt;[FetchResult](js-apis-photoAccessHelper.md#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -574,8 +574,8 @@ Obtains hidden albums based on the specified display mode. This API uses an asyn
 
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | Yes  | Display mode of hidden files. |
-| callback |  AsyncCallback&lt;[FetchResult](js-apis-photoAccessHelper.md#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback invoked to return the result.|
+| mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | Yes  | Display mode of hidden albums. |
+| callback |  AsyncCallback&lt;[FetchResult](js-apis-photoAccessHelper.md#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -650,7 +650,7 @@ Obtains hidden albums based on the specified display mode and retrieval options.
 
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | Yes  | Display mode of hidden files. |
+| mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | Yes  | Display mode of hidden albums. |
 | options  | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions)         | No  |  Options for retrieving the files. If this parameter is not specified, the files are retrieved based on the display mode of hidden files.     |
 
 **Return value**
@@ -879,7 +879,7 @@ Obtains the index of an image or video in an album. This API uses an asynchronou
 | photoUri | string | Yes  | URI of the media asset whose index is to be obtained.|
 | albumUri | string | Yes  | Album URI, which can be an empty string. If it is an empty string, all the media assets in the Gallery are obtained by default.  |
 | options  | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions)       | Yes  |  Fetch options. Only one search condition or sorting mode must be set in **predicates**. If no value is set or multiple search criteria or sorting modes are set, the API cannot be called successfully.     |
-| callback | AsyncCallback&lt;number&gt;| Yes  | Callback invoked to return the index obtained.|
+| callback | AsyncCallback&lt;number&gt;| Yes  | Callback used to return the index obtained.|
 
 **Error codes**
 
@@ -906,7 +906,7 @@ async function example() {
       fetchColumns: [],
       predicates: predicatesForGetAsset
     };
-    // Obtain the uri of the album
+    // Obtain the uri of the album.
     let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE, fetchOp);
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -917,7 +917,7 @@ async function example() {
     };
     let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
     let expectIndex = 1;
-    // Obtain the uri of the second file
+    // Obtain the uri of the second file.
     let photoAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getObjectByPosition(expectIndex);
 
     phAccessHelper.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions, (err, index) => {
@@ -985,7 +985,7 @@ async function example() {
       fetchColumns: [],
       predicates: predicatesForGetAsset
     };
-    // Obtain the uri of the album
+    // Obtain the uri of the album.
     let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE, fetchOp);
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -996,7 +996,7 @@ async function example() {
     };
     let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
     let expectIndex = 1;
-    // Obtain the uri of the second file
+    // Obtain the uri of the second file.
     let photoAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getObjectByPosition(expectIndex);
     phAccessHelper.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions).then((index) => {
       console.info(`getPhotoIndex successfully and index is : ${index}`);
@@ -1250,7 +1250,7 @@ async function example() {
 
 createAssetsForApp(bundleName: string, appName: string, appId: string, photoCreationConfigs: Array&lt;PhotoCreationConfig&gt;): Promise&lt;Array&lt;string&gt;&gt;
 
-Creates media assets for an application. The returned URIs has been granted with the permission for writing the media assets (images or vides).
+Creates media assets for an application. The returned URIs has been granted with the permission for writing the media assets (images or videos).
 
 **System API**: This is a system API.
 
@@ -1271,7 +1271,7 @@ Creates media assets for an application. The returned URIs has been granted with
 
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the URIs of the media asset files in the media library. The target application (identified by **appid**) can write the media assets based on the URIs without requesting the write permission.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the URIs of the media asset files in the media library. The target application (identified by **appid**) can write the media assets based on the URIs without requesting the write permission. If the URIs fail to be generated, a batch creation error code will be returned.<br>The error code **-3006** means that there are invalid characters; **-2004** means that the image type does not match the file name extension; **-203** means that the file operation is abnormal.|
 
 **Error codes**
 
@@ -1335,7 +1335,7 @@ Grants an application the permission to access a URI. This API uses a promise to
 
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise&lt;number&gt; | Promise used to return the result. The value **0** indicates means the permission is granted to the application. The value **1** means the application already has the permission. The value **-1** means the permission fails to be granted.|
+| Promise&lt;number&gt; | Promise used to return the result. The value **0** means the permission is granted to the application. The value **1** means the application already has the permission. The value **-1** means the permission fails to be granted.|
 
 **Error codes**
 
@@ -1385,14 +1385,14 @@ Grants an application the permission to access multiple URIs. This API uses a pr
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
 | appid | string | Yes| ID of the target application.|
 | uriList | Array&lt;string&gt; | Yes| A list of URIs, which cannot exceed 1000.|
-| photoPermissionType | [PhotoPermissionType](#photopermissiontype12) | Yes| Type of the permission to be granted. For details, see **PhotoPermissionType**.|
+| photoPermissionType | [PhotoPermissionType](#photopermissiontype12) | Yes| Type of the permission to be granted. For details, see the enum.|
 | hideSensitiveType | [HideSensitiveType](#hidesensitivetype12) | Yes| Type of the information to hide. This parameter is reserved. Currently, any enumerated value of **HideSensitiveType** can be passed in.|
 
 **Return value**
 
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise&lt;number&gt; | Promise used to return the result. The value **0** indicates means the operation is successful; and the value **-1** means the opposite.|
+| Promise&lt;number&gt; | Promise used to return the result. The value **0** means the operation is successful; the value **-1** means the opposite.|
 
 **Error codes**
 
@@ -1431,7 +1431,7 @@ async function example() {
 
 cancelPhotoUriPermission(appid: string, uri: string, photoPermissionType: PhotoPermissionType): Promise&lt;number&gt;
 
-Cancels the permission for accessing an URI from an appliction. This API uses a promise to return the result.
+Cancels the permission for accessing an URI from an application. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1444,7 +1444,7 @@ Cancels the permission for accessing an URI from an appliction. This API uses a 
 | Name  | Type                                                                  | Mandatory| Description                     |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
 | appid | string | Yes| ID of the target application.|
-| uri | sring | Yes| URI of the media asset.|
+| uri | string | Yes| URI of the media asset.|
 | photoPermissionType | [PhotoPermissionType](#photopermissiontype12) | Yes| Permission type.|
 
 **Return value**
@@ -1509,7 +1509,7 @@ Creates assets with a temporary permission. This API uses a promise to return th
 
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise\<Array\<string>> | Promise used to return the URIs of the media asset files in the media library. The target application (identified by **appid**) can write the assets based on the URIs without has been authorized to the application specified by appId to allow the application to write data.|
+| Promise\<Array\<string>> | Promise used to return the URIs of the media asset files in the media library. The target application (identified by **appid**) can write the assets based on the URIs without has been authorized to the application specified by appId to allow the application to write data. If the URIs fail to be generated, a batch creation error code will be returned.<br>The error code **-3006** means that there are invalid characters; **-2004** means that the image type does not match the file name extension; **-203** means that the file operation is abnormal.|
 
 **Error codes**
 
@@ -1578,7 +1578,7 @@ Opens this file asset. This API uses an asynchronous callback to return the resu
 | Name     | Type                         | Mandatory  | Description                                 |
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | mode     | string                      | Yes   | Mode for opening the file, which can be **'r'** (read-only), **'w'** (write-only), or **'rw'** (read/write).|
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the file descriptor (FD) of the file opened.                           |
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the file descriptor (FD) of the file opened.                           |
 
 **Error codes**
 
@@ -2004,7 +2004,7 @@ The EXIF data obtained are provided by the [image](../apis-image-kit/js-apis-ima
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the EXIF data, in JSON strings.|
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the EXIF data, in JSON strings.|
 
 **Error codes**
 
@@ -2230,7 +2230,7 @@ async function example() {
         console.error(`setPending(true) failed with error: ${err.code}, ${err.message}`);
         return;
       }
-      // write photo buffer in fd
+      // write photo buffer in fd.
       photoAsset.setPending(false, async (err) => {
         if (err !== undefined) {
           console.error(`setPending(false) failed with error: ${err.code}, ${err.message}`);
@@ -2294,7 +2294,7 @@ async function example() {
     let photoAsset = await phAccessHelper.createAsset(testFileName);
     let fd = await photoAsset.open('rw');
     await photoAsset.setPending(true);
-    // write photo buffer in fd
+    // write photo buffer in fd.
     photoAsset.setPending(false);
     await photoAsset.close(fd);
   } catch (err) {
@@ -2319,7 +2319,7 @@ Checks whether this image or video asset is edited. This API uses an asynchronou
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback invoked to return the result.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result.|
 
 **Error codes**
 
@@ -2439,7 +2439,7 @@ If the asset has never been edited, an empty string is returned.
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback invoked to return the edit data obtained.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the edit data obtained.|
 
 **Error codes**
 
@@ -2606,7 +2606,7 @@ Opens the source file to obtain the FD. This API uses an asynchronous callback t
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the FD.|
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the FD.|
 
 **Error codes**
 
@@ -3025,7 +3025,7 @@ Obtains the thumbnails of an asset based on the specified options. This API uses
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
 | options | [RequestPhotoOptions](#requestphotooptions11) | Yes   | Options for obtaining the asset thumbnail.|
-| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Yes   | Callback invoked to return the thumbnails obtained. The callback may be invoked more than once, depending on **options**.|
+| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Yes   | Callback used to return the thumbnails obtained. The callback may be invoked more than once, depending on **options**.|
 
 **Return value**
 
@@ -3621,13 +3621,13 @@ Represents the edited media asset data.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-### Attributes
+### Properties
 
 | Name          | Type   | Readable  | Writable | Description  |
 | ------------ | ------ | ---- | ---- | ------- |
-| compatibleFormat | string | Yes   | Yes   | Format of the edited data. **System API**: This is a system API.   |
-| formatVersion | string | Yes   | Yes  | Version of the data format. **System API**: This is a system API.   |
-| data | string | Yes   | Yes  | Content edited. **System API**: This is a system API.   |
+| compatibleFormat | string | Yes   | Yes   | Format of the edited data. <br>**System API**: This is a system API.   |
+| formatVersion | string | Yes   | Yes  | Version of the data format. <br>**System API**: This is a system API.   |
+| data | string | Yes   | Yes  | Content edited. <br>**System API**: This is a system API.   |
 
 ### constructor<sup>11+</sup>
 
@@ -3677,7 +3677,7 @@ Creates an asset change request with the specified file name.
 The file name must comply with the following specifications:
 - The file name consists of a valid file name and an image or video file name extension.
 - The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- The file name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -4352,7 +4352,7 @@ Creates a **MediaAlbumChangeRequest** instance.
 
 The album name must comply with the following specifications:
 - The album name cannot exceed 255 characters.
-- The album name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -4952,18 +4952,6 @@ async function example() {
 }
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
 ## HighlightAlbum<sup>12+</sup>
 
 Provides APIs for managing the **Highlights** album, which is an automatically generated collection of memorable photos or videos.
@@ -5196,7 +5184,7 @@ Enumerates the [PhotoAsset](#photoasset) types.
 
 | Name |  Value|  Description|
 | ----- |  ---- |  ---- |
-| SCREENSHOT |  1 |  Screenshot and screen recording file. **System API**: This is a system API.|
+| SCREENSHOT |  1 |  Screenshot and screen recording file. <br>**System API**: This is a system API.|
 
 ## PositionType
 
@@ -5219,7 +5207,7 @@ Enumerates the album types.
 
 | Name                 | Value   | Description                       |
 | ------------------- | ---- | ------------------------- |
-| SMART<sup>11+</sup> | 4096 | Smart analysis album. **System API**: This is a system API.|
+| SMART<sup>11+</sup> | 4096 | Smart analysis album. <br>**System API**: This is a system API.|
 
 ## AlbumSubtype
 
@@ -5229,19 +5217,18 @@ Enumerate the album subtypes.
 
 | Name                               | Value         | Description                             |
 | --------------------------------- | ---------- | ------------------------------- |
-| HIDDEN                            | 1027       | Hidden album. **System API**: This is a system API.        |
-| TRASH                             | 1028       | Trash. **System API**: This is a system API.         |
-| SCREENSHOT                        | 1029       | Album for screenshots and screen recording files. **System API**: This is a system API.     |
-| CAMERA                            | 1030       | Album for photos and videos taken by the camera. **System API**: This is a system API.|
-| SOURCE\_GENERIC<sup>11+</sup>     | 2049       | Source album. **System API**: This is a system API.        |
-| CLASSIFY<sup>11+</sup>            | 4097       | Classified album. **System API**: This is a system API.        |
-| GEOGRAPHY\_LOCATION<sup>11+</sup> | 4099       | Geographic location album. **System API**: This is a system API.        |
-| GEOGRAPHY\_CITY<sup>11+</sup>     | 4100       | City album. **System API**: This is a system API.        |
-| SHOOTING\_MODE<sup>11+</sup>      | 4101       | Shooting mode album. **System API**: This is a system API.      |
-| PORTRAIT<sup>11+</sup>            | 4102       | Portrait album. **System API**: This is a system API.        |
-| GROUP_PHOTO<sup>12+</sup>         | 4103       | Group photo album. **System API**: This is a system API.        |
-| HIGHLIGHT<sup>12+</sup>           | 4104       | Highlights album. **System API**: This is a system API.        |
-| HIGHLIGHT_SUGGESTIONS<sup>12+</sup> | 4105     | Highlights suggestion album. **System API**: This is a system API.        |
+| HIDDEN                            | 1027       | Hidden album. <br>**System API**: This is a system API.        |
+| TRASH                             | 1028       | Trash. <br>**System API**: This is a system API.         |
+| SCREENSHOT                        | 1029       | Album for screenshots and screen recording files. <br>**System API**: This is a system API.     |
+| CAMERA                            | 1030       | Album for photos and videos taken by the camera. <br>**System API**: This is a system API.|
+| SOURCE\_GENERIC<sup>11+</sup>     | 2049       | Source album. <br>**System API**: This is a system API.        |
+| CLASSIFY<sup>11+</sup>            | 4097       | Classified album. <br>**System API**: This is a system API.        |
+| GEOGRAPHY\_LOCATION<sup>11+</sup> | 4099       | Geographic location album. <br>**System API**: This is a system API.        |
+| GEOGRAPHY\_CITY<sup>11+</sup>     | 4100       | City album. <br>**System API**: This is a system API.        |
+| SHOOTING\_MODE<sup>11+</sup>      | 4101       | Shooting mode album. <br>**System API**: This is a system API.      |
+| PORTRAIT<sup>11+</sup>            | 4102       | Portrait album. <br>**System API**: This is a system API.        |
+| HIGHLIGHT<sup>12+</sup>           | 4104       | Highlights album. <br>**System API**: This is a system API.        |
+| HIGHLIGHT_SUGGESTIONS<sup>12+</sup> | 4105     | Highlights suggestion album. <br>**System API**: This is a system API.        |
 
 ## RequestPhotoType<sup>11+</sup>
 
@@ -5364,7 +5351,6 @@ Enumerates the types of the resources to write.
 | Name |  Value|  Description|
 | ----- |  ---- |  ---- |
 | PHOTO_PROXY |  3 |  Photo proxy. <br>**System API**: This is a system API.|
-| PRIVATE_MOVING_PHOTO_RESOURCE<sup>12+</sup> |  4 |  Private moving photo. <br>**System API**: This is a system API.|
 
 ## DefaultChangeUri
 
@@ -5388,6 +5374,7 @@ Enumerates the types of the file to read.
 | ----- |  ---- |  ---- |
 | ORIGINAL_MODE |  0 |  Original file.|
 | EDITED_MODE |  1 |  Edited file.|
+
 ## AuthorizationMode<sup>12+</sup>
 
 Enumerates the authorization modes.
@@ -5472,14 +5459,12 @@ Enumerates the effects of a moving photo.
 | LOOP\_PLAY       | 2  | Continuously repeated animation.|
 | LONG\_EXPOSURE   | 3  | Long exposure. |
 | MULTI\_EXPOSURE  | 4  | Multiple exposures. |
-| CINEMA\_GRAPH  | 5  | Cinemagraph. |
-| IMAGE\_ONLY  | 10  | Image only. |
 
 ## PhotoPermissionType<sup>12+</sup>
 
 Enumerates the types of permissions for accessing media assets.
 
-The permissions include temporary read permission and persistent read permission. The temporary read permission will be removed when the application exits, while the persisten read permission will not.
+The permissions include temporary read permission and persistent read permission. The temporary read permission will be removed when the application is dead, while the persistent read permission will not.
 
 For the same media asset and application, the persistent read permission overwrites the temporary read permission. The temporary read permission does not overwrite the persistent read permission.
 

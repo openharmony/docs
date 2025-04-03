@@ -1,6 +1,6 @@
 # @ohos.file.AlbumPickerComponent (AlbumPickerComponent)
 
-The **AlbumPickerComponent** component embedded in the UI of an application allows the application to access the albums in the user directory without any permission.
+The AlbumPickerComponent embedded in the UI of an application allows the application to access the albums in the user directory without any permission.
 
 This component must be used together with [PhotoPickerComponent](ohos-file-PhotoPickerComponent.md). When a user selects an album by using **AlbumPickerComponent**, **PhotoPickerComponent** is instructed to update the photos and videos in the album.
 
@@ -35,10 +35,10 @@ Allows the application to access the albums in the user directory without any pe
 
 **Parameters**
 
-| Name | Type | Mandatory | Description   |
-|-------|-------|-----|------------|
-| albumPickerOptions    | [AlbumPickerOptions](#albumpickeroptions) | No  |  **AlbumPicker** configuration.                         |
-| onAlbumClick  | (albumInfo: [AlbumInfo](#albuminfo)) => boolean   | No  |  Callback used to return the album URI when an album is selected by a user.  |
+| Name                | Type                                                 | Mandatory | Description                             |
+|--------------------|-----------------------------------------------------|-----|---------------------------------|
+| albumPickerOptions | [AlbumPickerOptions](#albumpickeroptions)           | No  | **AlbumPicker** configuration.             |
+| onAlbumClick       | (albumInfo: [AlbumInfo](#albuminfo)) => boolean     | No  | Callback used to return the album URI when an album is selected by a user.   |
 
 ## AlbumPickerOptions
 
@@ -48,9 +48,9 @@ Represents the **AlbumPicker** configuration.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| Name | Type | Mandatory | Description   |
-|------|-------|-----|----------|
-| themeColorMode  | [PickerColorMode](ohos-file-PhotoPickerComponent.md#pickercolormode) | No  | Theme color of the album page. The options are **AUTO**, **Light**, and **Dark**. The default value is **AUTO**.|
+| Name            | Type | Mandatory | Description                                                         |
+|----------------|-------|-----|-------------------------------------------------------------|
+| themeColorMode | [PickerColorMode](ohos-file-PhotoPickerComponent.md#pickercolormode) | No  | Theme color of the album page. The options are **AUTO**, **Light**, and **Dark**. The default value is **AUTO**.                        |
 
 ## AlbumInfo
 
@@ -99,5 +99,3 @@ struct PickerDemo {
     }
   }
 }
-
-```
