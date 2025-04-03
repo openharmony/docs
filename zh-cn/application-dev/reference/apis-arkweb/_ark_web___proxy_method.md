@@ -9,6 +9,7 @@
 
 **相关模块：**[Web](_web.md)
 
+**所在头文件：** [arkweb_type.h](arkweb__type_8h.md)
 
 ## 汇总
 
