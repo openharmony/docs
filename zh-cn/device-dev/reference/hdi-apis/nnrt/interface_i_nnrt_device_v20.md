@@ -23,13 +23,13 @@
 | [GetVendorName](#getvendorname) ([out] String name) | 获取设备商名称。  | 
 | [GetDeviceType](#getdevicetype) ([out] enum [DeviceType](_n_n_rt_v20.md#devicetype) deviceType) | 获取设备类型。  | 
 | [GetDeviceStatus](#getdevicestatus) ([out] enum [DeviceStatus](_n_n_rt_v20.md#devicestatus) status) | 获取设备当前状态。  | 
-| [GetSupportedOperation](#getsupportedoperation) ([in] struct [Model](_model_v20.md) model, [out] boolean[] ops) | 查询设备对指定模型的算子支持程度。  | 
-| [IsFloat16PrecisionSupported](#isfloat16precisionsupported) ([out] boolean isSupported) | 查询设备是否支持以Float16精度运算Float32的模型。  | 
-| [IsPerformanceModeSupported](#isperformancemodesupported) ([out] boolean isSupported) | 查询设备是否支持性能偏好设置，性能偏好的定义可以参考[PerformanceMode](_n_n_rt_v20.md#performancemode)。  | 
-| [IsPrioritySupported](#isprioritysupported) ([out] boolean isSupported) | 查询设备是否支持任务优先级设置，优先级的定义可以参考[Priority](_n_n_rt_v20.md#priority)。  | 
-| [IsDynamicInputSupported](#isdynamicinputsupported) ([out] boolean isSupported) | 查询设备是否支持变尺寸输入，变尺寸输入意味着同一个模型的不同次运算输入的形状可以不一样。  | 
+| [GetSupportedOperation](#getsupportedoperation) ([in] struct [Model](_model_v20.md) model, [out] boolean[] ops) | ops为true事支持查询设备对指定模型的算子支持程度，反之则不支持。  | 
+| [IsFloat16PrecisionSupported](#isfloat16precisionsupported) ([out] boolean isSupported) | isSupported为true查询设备支持以Float16精度运算Float32的模型，反之则不支持。  | 
+| [IsPerformanceModeSupported](#isperformancemodesupported) ([out] boolean isSupported) | isSupported为true查询设备支持性能偏好设置，性能偏好的定义可以参考[PerformanceMode](_n_n_rt_v20.md#performancemode)，反之则不支持。  | 
+| [IsPrioritySupported](#isprioritysupported) ([out] boolean isSupported) | isSupported为true查询设备支持任务优先级设置，优先级的定义可以参考[Priority](_n_n_rt_v20.md#priority)，反之则不支持。  | 
+| [IsDynamicInputSupported](#isdynamicinputsupported) ([out] boolean isSupported) | isSupported为true查询设备支持变尺寸输入，变尺寸输入意味着同一个模型的不同次运算输入的形状可以不一样，反之则不支持。  | 
 | [PrepareModel](#preparemodel) ([in] struct [Model](_model_v20.md) model, [in] struct [ModelConfig](_model_config_v20.md) config, [out] [IPreparedModel](interface_i_prepared_model_v20.md) preparedModel) | 编译模型。  | 
-| [IsModelCacheSupported](#ismodelcachesupported) ([out] boolean isSupported) | 查询是否支持模型缓存功能。  | 
+| [IsModelCacheSupported](#ismodelcachesupported) ([out] boolean isSupported) | isSupported为true查询支持模型缓存功能，反之则不支持。  | 
 | [PrepareModelFromModelCache](#preparemodelfrommodelcache) ([in] struct [SharedBuffer](_shared_buffer_v20.md)[] modelCache, [in] struct [ModelConfig](_model_config_v20.md) config, [out] [IPreparedModel](interface_i_prepared_model_v20.md) preparedModel) | 加载模型缓存，该模型缓存是通过ExportModelCache接口导出的。  | 
 | [PrepareOfflineModel](#prepareofflinemodel) ([in] struct [SharedBuffer](_shared_buffer_v20.md)[] modelCache, [in] struct [ModelConfig](_model_config_v20.md) config, [out] [IPreparedModel](interface_i_prepared_model_v20.md) preparedModel) | 加载离线模型文件的缓存，该离线模型是由推理框架传入NNRt并由NNRt解析得到的。  | 
 | [AllocateBuffer](#allocatebuffer) ([in] unsigned int length, [out] struct [SharedBuffer](_shared_buffer_v20.md) buffer) | 申请设备共享内存，以文件描述符的形式返回，共享内存主要用于推理输入输出数据的快速传递。  | 

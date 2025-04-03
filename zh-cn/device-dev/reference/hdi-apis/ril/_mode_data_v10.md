@@ -19,7 +19,7 @@
 | -------- | -------- |
 | int [serial](#serial) | 请求的序列号  | 
 | boolean [result](#result) | 是否接收短信  | 
-| int [mode](#mode) | 接收短信处理模式，详见**AckIncomeCause** | 
+| int [mode](#mode) | 接收短信处理模式，详见**[AckIncomeCause](https://gitee.com/openharmony-sig/interface_native_header/blob/master/zh-cn/device_api/hdi/ril/v1_0/Types.idl)** | 
 | String [pdu](#pdu) | 协议数据单元  | 
 
 
@@ -33,7 +33,7 @@ int ModeData::mode
 ```
 **描述**
 
-接收短信处理模式，详见**AckIncomeCause**
+接收短信处理模式，详见**[AckIncomeCause](https://gitee.com/openharmony-sig/interface_native_header/blob/master/zh-cn/device_api/hdi/ril/v1_0/Types.idl)**
 
 
 ### pdu
