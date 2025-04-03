@@ -387,3 +387,218 @@ try {
   console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
 }
 ```
+
+## formProvider.openFormEditAbility<sup>18+</sup>
+
+openFormEditAbility(abilityName: string, formId: string, isMainPage?: boolean): void
+
+打开卡片编辑页。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                 |
+| ------ | ------ |----|----------------------------------------------------|
+| abilityName | string | 是  | 编辑页的ability名称。                                     |
+| formId | string | 是  | 卡片标识。                                              |
+| isMainPage | boolean | 否  | 是否为主编辑页，true表示是主编辑页，false表示不是主编辑页。<br/>默认值：true。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
+| 错误码ID    | 错误信息 |
+|----------| -------- |
+| 801      | Capability not supported.function openFormEditAbility can not work correctly due to limited device capabilities. |
+| 16500050 | IPC connection error. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+| 16501003 | The form cannot be operated by the current application. |
+| 16501007 | Form is not trust. |
+
+**示例：**
+
+```ts
+import { router } from '@kit.ArkUI';
+import { formProvider } from '@ohos.app.form.formProvider';
+import { common } from '@ohos.app.ability.common';
+
+const context = getContext(this) as common.UIAbilityContext;
+const TAG: string = 'FormEditDemo-Page] -->';
+
+@Entry
+@Component
+struct Page {
+  @State message: string = 'Hello World';
+
+  aboutToAppear(): void {
+    console.log(`${TAG} aboutToAppear.....`);
+  }
+
+  build() {
+    RelativeContainer() {
+      Text(this.message)
+        .id('PageHelloWorld')
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
+        .alignRules({
+          center: { anchor: '__container__', align: VerticalAlign.Top },
+          middle: { anchor: '__container__', align: HorizontalAlign.Center }
+        })
+        .onClick(() => {
+          console.log(`${TAG} onClick.....`);
+          formProvider.openFormEditAbility('ability://EntryFormEditAbility', '1386529921');
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+## formProvider.openFormManager<sup>18+</sup>
+
+openFormManager(want: Want): void
+
+打开卡片管理页面。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                                                                                                                                                                                                                                                                                                      |
+|------| ------ | ---- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| want     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 打开卡片管理页面的请求中的want参数，需包含以下字段。<br>bundleName: 卡片所属应用的包名。<br>abilityName: 卡片所属的ability名称。<br>parameters:<br>- ohos.extra.param.key.form_dimension: [卡片尺寸](js-apis-app-form-formInfo.md#formInfoformdimension)。<br>- ohos.extra.param.key.form_name: 卡片名称。<br>- ohos.extra.param.key.module_name: 卡片所属的模块名称。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+
+**示例：**
+
+```ts
+import { formProvider } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { Want } from '@kit.AbilityKit';
+
+const want: Want = {
+  bundleName: 'com.example.formbutton',
+  abilityName: 'EntryFormAbility',
+  parameters: {
+    'ohos.extra.param.key.form_dimension': 2,
+    'ohos.extra.param.key.form_name': 'widget',
+    'ohos.extra.param.key.module_name': 'entry'
+  },
+};
+try {
+  formProvider.openFormManager(this.want);
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
+}
+```
+
+## formProvider.getPublishedFormInfoById<sup>18+</sup>
+
+getPublishedFormInfoById(formId: string): Promise&lt;formInfo.FormInfo&gt;
+
+获取设备上当前应用程序已经加桌的指定卡片信息，使用Promise异步回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ |----| ------- |
+| formId | string | 是 | 卡片标识。 |
+
+**返回值：**
+
+| 类型                                                                | 说明                                |
+|-------------------------------------------------------------------| ---------------------------------- |
+| Promise&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md#forminfo)&gt; | Promise对象。返回查询到符合条件的卡片信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+
+**示例：**
+
+```ts
+import { formInfo, formProvider } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+const formId: string = '388344236';
+try {
+  formProvider.getPublishedFormInfoById(this.formId).then((data: formInfo.FormInfo) => {
+    console.log(`formProvider getPublishedFormInfoById, data: ${JSON.stringify(data)}`);
+  }).catch((error: BusinessError) => {
+    console.error(`promise error, code: ${error.code}, message: ${error.message})`);
+  });
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
+}
+```
+
+## formProvider.getPublishedFormInfos<sup>18+</sup>
+
+getPublishedFormInfos(): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;
+
+获取设备上当前应用程序所有已经加桌的卡片信息，使用Promise异步回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Ability.Form
+
+**返回值：**
+
+| 类型          | 说明                                |
+| ------------ | ---------------------------------- |
+| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise对象。返回查询到符合条件的卡片信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16500050 | IPC connection error. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+
+**示例：**
+
+```ts
+import { formInfo, formProvider } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  formProvider.getPublishedFormInfos().then((data: formInfo.FormInfo[]) => {
+    console.log(`formProvider getPublishedFormInfos, data: ${JSON.stringify(data)}`);
+  }).catch((error: BusinessError) => {
+    console.error(`promise error, code: ${error.code}, message: ${error.message})`);
+  });
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
+}
+```
