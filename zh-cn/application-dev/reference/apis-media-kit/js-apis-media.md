@@ -3052,7 +3052,7 @@ setVideoWindowSize(width: number, height: number) : Promise\<void>
 avPlayer.setVideoWindowSize(1920, 1080)
 ```
 
-### on('superResolutionChanged') <sup>18+</sup>
+### on('superResolutionChanged')<sup>18+</sup>
 
 on(type:'superResolutionChanged', callback: OnSuperResolutionChanged): void
 
@@ -3067,7 +3067,7 @@ on(type:'superResolutionChanged', callback: OnSuperResolutionChanged): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string | 是 | 事件回调类型，支持的事件为：'superResolutionChanged'，当超分算法开启/关闭状态变化时，触发该事件。 |
-| callback | [OnSuperResolutionChanged](#onsuperresolutionchanged18) | 是 | 超分开关事件回调方法。 |
+| callback | [OnSuperResolutionChanged](#onsuperresolutionchanged-18) | 是 | 超分开关事件回调方法。 |
 
 **示例：**
 
@@ -3092,7 +3092,7 @@ off(type:'superResolutionChanged', callback?: OnSuperResolutionChanged): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string | 是 | 事件回调类型，支持的事件为：'superResolutionChanged'，当超分算法开启/关闭状态变化时，触发该事件。 |
-| callback | [OnSuperResolutionChanged](#onsuperresolutionchanged18) | 否 | 超分开关事件回调方法。 |
+| callback | [OnSuperResolutionChanged](#onsuperresolutionchanged-18) | 否 | 超分开关事件回调方法。 |
 
 **示例：**
 
@@ -3182,7 +3182,7 @@ type OnVideoSizeChangeHandler = (width: number, height: number) => void
 | width  | number | 是 | 视频宽度，单位为像素（px）。|
 | height | number | 是 | 视频高度，单位为像素（px）。|
 
-## OnSuperResolutionChanged<sup>18+</sup>
+## OnSuperResolutionChanged <sup>18+</sup>
 
 type OnSuperResolutionChanged = (enabled: boolean) => void
 
