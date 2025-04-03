@@ -1789,9 +1789,11 @@ try {
 convertRecordsToEntries(data: UnifiedData): void
 
 本接口用于构造多样式数据结构。当入参使用不同的record表示单条数据的不同格式，且properties中tag标识为"records_to_entries_data_format"时，使用该接口能够将数据转换成单个数据的多样式结构。
+
 当满足以下规则时才进行转换：
 1. data中的record数量大于1;
 2. data中的properties中的tag值为"records_to_entries_data_format"。
+  
 否则不会产生任何行为。
 
 **原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
