@@ -16,7 +16,7 @@ OpenHarmony默认电池管理系统可以接收uevent事件，系统根据事件
 
 环境要求：
 
-Linux调测环境，相关要求和配置可参考《[快速入门](../quick-start/quickstart-overview.md)》
+Linux调测环境，相关要求和配置可参考《[快速入门](../quick-start/quickstart-overview.md)》。
 
 ### 开发步骤 
 
