@@ -1998,7 +1998,9 @@ Preferences.flush()保存并刷新文件内容。
 
 开发语言：ArkTS
 
-配套版本：API10版本SDK，版本号：4.0.10.13
+配套版本：API12版本SDK，版本号：5.0.0.20
+
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/Audio/OHAudio)
 
 #### Native Drawing
 
