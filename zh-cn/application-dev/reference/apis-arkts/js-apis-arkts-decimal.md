@@ -4216,7 +4216,7 @@ let d1 : Decimal = new Decimal(100000) // d1:'Infinity'
 ```
 
 **示例2：**
-
+<!--code_no_check-->
 ```ts
 // /entry/src/main/ets/pages/test.ets
 export function test(){
@@ -4235,7 +4235,7 @@ export function test(){
   console.info("test Decimal set:" + data1.toString()); // 'test Decimal set:1.7346'
 }
 ```
-
+<!--code_no_check-->
 ```ts
 // /entry/src/main/ets/pages/Index.ets
 import {test} from './test'
