@@ -111,7 +111,7 @@ wifi init success!
 [DEMO] Hello world.
 ```
 
-下一步学习
+## 下一步学习
 
 恭喜，您已完成Hi3861 WLAN模组快速上手！建议您下一步进入的学习 。可参考：
 
