@@ -1235,7 +1235,7 @@ systemTheme标签示例：
 
 在开发视图的resources/base/profile下面定义配置文件theme_config.json，其中文件名“theme_config.json”可自定义为“theme_config”开头文件名，例如"theme_config"、"theme_config_1"。需要和systemTheme标签指定的信息对应。配置文件中标识当前应用使用的系统主题。
 
-  **表30** systemTheme标签说明
+  **表30** theme_config.json配置说明
 
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
