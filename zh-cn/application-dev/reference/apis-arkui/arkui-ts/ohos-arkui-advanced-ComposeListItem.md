@@ -28,6 +28,8 @@ import { ComposeListItem } from "@kit.ArkUI"
 
 ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
+列表组件，可自定义左侧，中间元素以及右侧显示内容。
+
 **装饰器类型：**\@Component
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -39,6 +41,8 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 | operateItem | [OperateItem](#operateitem) | 否 | \@Prop | 定义右侧元素。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## ContentItem
+
+列表左侧显示的图标、图标大小以及中间元素文字内容。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -52,6 +56,8 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 | description | [ResourceStr](ts-types.md#resourcestr) | 否 | 中间元素的描述内容。<br/>**文字处理规则：** 文本超长后无限换行显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 
 ## IconType
+
+列表左侧图标大小。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -69,6 +75,8 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 | VERTICAL | 8 | 左侧图标为竖向特殊比例（高比宽大），保持最长边为96vp。 |
 
 ## OperateItem
+
+列表右侧显示的元素类型以及文字内容。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -88,6 +96,8 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 ## OperateIcon
 
+列表右侧显示的元素为图标的参数
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -99,6 +109,8 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 ## OperateButton
 
+列表右侧显示的元素为按钮的参数。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -108,6 +120,8 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 | text | [ResourceStr](ts-types.md#resourcestr) | 否 | 右侧按钮文字。 |
 
 ## OperateCheck
+
+列表右侧显示元素类型为Switch、CheckBox、Radio的参数。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
