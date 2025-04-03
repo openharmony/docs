@@ -140,5 +140,5 @@
 | int32_t [OH_ArkUI_UnregisterLayoutCallbackOnNodeHandle](_ark_u_i___native_module.md#oh_arkui_unregisterlayoutcallbackonnodehandle)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node)| 取消注册组件布局完成回调方法。  |
 | int32_t [OH_ArkUI_UnregisterDrawCallbackOnNodeHandle](_ark_u_i___native_module.md#oh_arkui_unregisterdrawcallbackonnodehandle)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node)| 取消注册组件绘制完成回调方法。  |
 | [ArkUI_TextChangeEvent](_ark_u_i___text_change_event.md) [OH_ArkUI_NodeEvent_GetTextChangeEvent](_ark_u_i___native_module.md#oh_arkui_nodeevent_gettextchangeevent)([ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent-12) \*event) | 获取输入框内容改变（包括预上屏内容）事件的相关数据。  | 
-| int32_t [OH_ArkUI_GetNodeSnapshot](_ark_u_i___native_module.md#oh_arkui_nodeevent_gettextchangeevent)([ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent-12) \*event) | 获取节点的快照像素图。  | 
+| int32_t [OH_ArkUI_GetNodeSnapshot](_ark_u_i___native_module.md#oh_arkui_getnodesnapshot)([ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent-12) \*event) | 获取节点的快照像素图。  | 
 | int32_t [OH_ArkUI_NodeUtils_GetPositionToParent](_ark_u_i___native_module.md#oh_arkui_nodeutils_getpositiontoparent) ([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_IntOffset](_ark_u_i___int_offset.md) \*globalOffset) | 获取目标节点相对于父节点的偏移值。  | 
