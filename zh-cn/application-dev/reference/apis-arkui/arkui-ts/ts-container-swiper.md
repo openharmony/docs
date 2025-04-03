@@ -413,7 +413,7 @@ displayArrow(value: ArrowStyle | boolean, isHoverShow?: boolean)
 | 参数名                     | 类型                                             | 必填 | 说明                                                         |
 | -------------------------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value                      | [ArrowStyle](#arrowstyle10对象说明)&nbsp;\|&nbsp;boolean | 是   | 支持设置箭头和底板样式，异常场景使用ArrowStyle对象中的默认值。设置为false不显示箭头和底板，true显示默认的箭头和底板样式。<br/>默认值：false |
-| isHoverShow                | boolean                                          | 否   | 设置鼠标悬停时是否显示箭头。<br/>默认值：false<br/>**说明：**<br/>isHoverShow为false时，常驻显示箭头，支持点击翻页。<br/>isHoverShow为true时，只有在鼠标悬停时才会显示箭头，并支持点击翻页。 |
+| isHoverShow                | boolean                                          | 否   | 设置鼠标悬停时是否显示箭头。<br/>默认值：false<br/>**说明：**<br/>1、isHoverShow为false时，常驻显示箭头。<br/>2、isHoverShow为true时，有导航点时鼠标悬停在导航点和箭头范围内显示箭头，无导航点时鼠标悬停在Swiper显示范围内显示箭头。<br/>3、箭头显示时，支持点击翻页。 |
 
 > **说明：**
 >
