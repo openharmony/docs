@@ -4578,7 +4578,7 @@ disableNotificationFeature(disabled: boolean, bundleList: Array\<string\>): Prom
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 或 ohos.permission.MANAGE_EDM_POLICY
 
 **系统接口**：此接口为系统接口。
 
