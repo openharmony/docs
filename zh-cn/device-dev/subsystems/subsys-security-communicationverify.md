@@ -25,6 +25,7 @@ IPC通信鉴权提供的API，仅供Samgr调用，开发者在开发服务时需
 本部分以BMS服务通过IPC通信方式对外开放接口为例，讲解如何通过IPC通信鉴权组件配置对应接口的访问策略。这里BMS在Samgr中注册的service为bundlems，为开放的接口注册的Feature为BmsFeature。
 
 1. OpenHarmony侧在源码路径下的头文件base/security/permission/services/permission_lite/ipc_auth/include/policy_preset.h中配置相应的访问策略，产品侧独有的在vendor/hisilicon/产品名称/hals/security/permission_lite/ipc_auth/include/policy_preset_product.h中配置相应的访问策略，配置策略后将头文件中的宏POLICY_PRODUCT 配置为1；访问策略主要有三种类型：
+   
    （1）type为RANGE类型：允许某个特定范围UID的进程访问，需要指定uidMin和uidMax；
 
    （2）type为FIXED类型：允许指定的几个UID的进程访问，需要指定fixedUid，最多配置8个；
