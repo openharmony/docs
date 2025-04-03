@@ -24,9 +24,9 @@ isWifiActive(): boolean
 
 **返回值：**
 
-  | **类型** | **说明** |
-  | -------- | -------- |
-  | boolean | true:已使能，&nbsp;false:未使能。 |
+| **类型** | **说明** |
+| -------- | -------- |
+| boolean | true:已使能，&nbsp;false:未使能。 |
 
 **错误码：**
 
@@ -2404,6 +2404,12 @@ getMultiLinkedInfo(): &nbsp;Array&lt;WifiLinkedInfo&gt;
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
+
+**返回值：**
+
+  | **类型** | **说明** |
+  | -------- | -------- |
+  | &nbsp;Array&lt;[WifiLinkedInfo](#wifilinkedinfo9)&gt; | Wi-Fi连接信息。|
 
 **错误码：**
 
