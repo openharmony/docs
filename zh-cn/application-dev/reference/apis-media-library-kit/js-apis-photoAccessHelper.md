@@ -4487,8 +4487,8 @@ static loadMovingPhoto(context: Context, imageFileUri: string, videoFileUri: str
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md)   | 是   | 传入AbilityContext或者UIExtensionContext的实例。 |
-| imageFileUri | string     | 是   | 应用沙箱动态照片的图片uri。 |
-| videoFileUri | string     | 是   | 应用沙箱动态照片的视频uri。 |
+| imageFileUri | string     | 是   | 应用沙箱动态照片的图片uri。<br>示例：'file://com.example.temptest/data/storage/el2/base/haps/ImageFile.jpg' |
+| videoFileUri | string     | 是   | 应用沙箱动态照片的视频uri。<br>示例：'file://com.example.temptest/data/storage/el2/base/haps/VideoFile.mp4' |
 
 **返回值：**
 
