@@ -1,10 +1,10 @@
 # Restricted Permissions
 
-## Request Mode
+## How to Request
 
 <!--RP1-->
 
-Restricted permissions are permissions available to normal applications but must be requested via access control list (ACL)(app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).
+Restricted permissions are permissions available to normal applications but must be requested via [access control list (ACL)](app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).
 
 To change the APL of a normal application to system_basic or system_core, modify the HarmonyAppProvision file (**Toolchains / _{Version} _/ lib / UnsgnedReleasedProfileTemplate.json** file in the SDK directory) of the application when developing the application installation package, and sign the application again.
 
@@ -21,6 +21,7 @@ Modify the **"bundle-info"** &gt; **"apl"** field in the file.
 ```
 
 > **NOTE**
+
 > Modifying the HarmonyAppProvision configuration file applies to the applications in the debug phase, but not to the applications released to the app market. For a commercial application, apply for a release certificate and profile in the app market.
 
 <!--RP1End-->
@@ -173,7 +174,7 @@ Allows a system application or carrier application to set the eSIM nickname and 
 
 Allows an application to have its system JS engine to apply for anonymous executable memory with the MAP_FORT identifier.
 
-After the application has this permission, the system JS engine can request anonymous executable memory with MAP_FORT for just-in-time (JIT) compilation, which increase the runtime execution efficiency.
+After the application has this permission, the system JS engine can request anonymous executable memory with MAP_FORT for just-in-time (JIT) compilation, which increases the runtime execution efficiency.
 
 <!--RP13--><!--RP13End-->
 
