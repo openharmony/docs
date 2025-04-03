@@ -9,6 +9,7 @@ ArkUI提供的Native侧动画接口集合。
 
 **相关模块：**[ArkUI_NativeModule](_ark_u_i___native_module.md)
 
+**所在头文件：** [native_animate.h](native__animate_8h.md)
 
 ## 汇总
 
