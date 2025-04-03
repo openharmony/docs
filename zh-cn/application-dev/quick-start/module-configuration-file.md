@@ -1222,7 +1222,7 @@ resources/base/profile路径下的start_window.json资源文件示例如下：
 
 ## systemTheme标签
 
-该标签是一个profile文件资源，用于指定当前应用使用的系统主题配置文件。
+该标签指向一个profile文件资源，用于指定当前应用使用的系统主题配置文件。
 
 systemTheme标签示例：
 
