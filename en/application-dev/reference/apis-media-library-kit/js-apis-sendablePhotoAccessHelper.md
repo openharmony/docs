@@ -1,6 +1,6 @@
-# @ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable object)
+# @ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object)
 
-The **sendablePhotoAccessHelper** module provides APIs for album management, including creating an album and accessing and modifying media data in an album, based on a sendable object.
+The sendablePhotoAccessHelper module provides APIs for album management, including creating an album and accessing and modifying media data in an album, based on a Sendable object.
 
 > **NOTE**
 >
@@ -133,7 +133,7 @@ Obtains burst assets. This API uses a promise to return the result.
 
 | Name  | Type                                                     | Mandatory| Description                                                        |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| burstKey | string                                                    | Yes  | Universally Unique Identifier (UUID) of a group of burst photos, that is, **BURST_KEY** of [PhotoKeys](js-apis-photoAccessHelper.md#photokeys).|
+| burstKey | string                                                    | Yes  | Universally Unique Identifier (UUID) of a group of burst photos, that is, **BURST_KEY** of [PhotoKeys](js-apis-photoAccessHelper.md#photokeys). |
 | options  | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | Yes  | Options for fetching the burst photos.                                          |
 
 **Return value**
@@ -170,22 +170,22 @@ async function example() {
   let photoAsset: sendablePhotoAccessHelper.PhotoAsset;
   // burstKey is a 36-bit UUID, which can be obtained from photoAccessHelper.PhotoKeys.
   for(photoAsset of photoAssetList){
-      let burstKey: string = photoAccessHelper.PhotoKeys.BURST_KEY.toString();
-      let photoAccessBurstKey: photoAccessHelper.MemberType = photoAsset.get(burstKey).toString();
-      try {
-         let fetchResult: sendablePhotoAccessHelper.FetchResult<sendablePhotoAccessHelper.PhotoAsset> = await 
+    let burstKey: string = photoAccessHelper.PhotoKeys.BURST_KEY.toString();
+    let photoAccessBurstKey: photoAccessHelper.MemberType = photoAsset.get(burstKey).toString();
+    try {
+      let fetchResult: sendablePhotoAccessHelper.FetchResult<sendablePhotoAccessHelper.PhotoAsset> = await
       phAccessHelper.getBurstAssets(photoAccessBurstKey, fetchOption);
-         if (fetchResult !== undefined) {
-           console.info('fetchResult success');
-           let photoAsset: sendablePhotoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-           if (photoAsset !== undefined) {
-              console.info('photoAsset.displayName :' + photoAsset.displayName);
+      if (fetchResult !== undefined) {
+        console.info('fetchResult success');
+        let photoAsset: sendablePhotoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+        if (photoAsset !== undefined) {
+          console.info('photoAsset.displayName :' + photoAsset.displayName);
+        }
       }
+    } catch (err) {
+      console.error(`getBurstAssets failed, error: ${err.code}, ${err.message}`);
     }
-  } catch (err) {
-    console.error(`getBurstAssets failed, error: ${err.code}, ${err.message}`);
   }
-}
 }
 ```
 
@@ -208,7 +208,7 @@ If the caller does not have the ohos.permission.WRITE_IMAGEVIDEO permission, you
 | Name   | Type                                                       | Mandatory| Description                                |
 | --------- | ----------------------------------------------------------- | ---- | ------------------------------------ |
 | photoType | [PhotoType](#phototype)                                     | Yes  | Type of the file to create, which can be **IMAGE** or **VIDEO**.|
-| extension | string                                                      | Yes  | File name extension, for example, **'jpg'**.       |
+| extension | string                                                      | Yes  | File name extension, for example, **'jpg'**.        |
 | options   | [CreateOptions](js-apis-photoAccessHelper.md#createoptions) | No  | Options for creating the media asset, for example, **{title: 'testPhoto'}**.|
 
 **Return value**
@@ -333,7 +333,7 @@ Before the operation, ensure that the albums to obtain exist.
 
 | Name | Type                                                     | Mandatory| Description    |
 | ------- | --------------------------------------------------------- | ---- | -------- |
-| options | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | Yes  | Options for obtaining the albums.|
+| options | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | Yes  | Options for fetching the albums.|
 
 **Return value**
 
@@ -438,14 +438,14 @@ Provides APIs for encapsulating file asset attributes.
 | Name       | Type                   | Read-Only| Optional| Description                                                        |
 | ----------- | ----------------------- | ---- | ---- | ------------------------------------------------------------ |
 | uri         | string                  | Yes  | No  | Media asset URI, for example, **file://media/Photo/1/IMG_datetime_0001/displayName.jpg**. For details, see [Media File URI](../../file-management/user-file-uri-intro.md#media-file-uri).|
-| photoType   | [PhotoType](#phototype) | Yes  | No  | Type of the file.                                                |
-| displayName | string                  | Yes  | No  | File name, including the file name extension, to display.                                    |
+| photoType   | [PhotoType](#phototype) | Yes  | No  | Type of the file.                                              |
+| displayName | string                  | Yes  | No  | File name, including the file name extension, to display.                                     |
 
 ### convertToPhotoAsset
 
 convertToPhotoAsset():  photoAccessHelper.PhotoAsset
 
-Converts a sendable **PhotoAsset** object to a non-sendable **PhotoAsset** object.
+Converts a Sendable **PhotoAsset** object to a non-Sendable **PhotoAsset** object.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -453,7 +453,7 @@ Converts a sendable **PhotoAsset** object to a non-sendable **PhotoAsset** objec
 
 | Type                        | Description                                                        |
 | ---------------------------- | ------------------------------------------------------------ |
-| photoAccessHelper.PhotoAsset | [PhotoAsset](js-apis-photoAccessHelper.md#photoasset) object of the non-sendable type.|
+| photoAccessHelper.PhotoAsset | [PhotoAsset](js-apis-photoAccessHelper.md#photoasset) object of the non-Sendable type.|
 
 **Error codes**
 
@@ -556,8 +556,8 @@ Sets a **PhotoAsset** member parameter.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| member | string | Yes  | Name of the parameter to set, for example, [PhotoKeys](js-apis-photoAccessHelper.md#photokeys).TITLE.|
-| value  | string | Yes  | Value to set. Only the value of [PhotoKeys](js-apis-photoAccessHelper.md#photokeys).TITLE can be changed.|
+| member | string | Yes  | Name of the parameter to set, for example, [PhotoKeys](js-apis-photoAccessHelper.md#photokeys).TITLE. |
+| value  | string | Yes  | Value to set. Only the value of [PhotoKeys](js-apis-photoAccessHelper.md#photokeys).TITLE can be changed. |
 
 **Error codes**
 
@@ -930,8 +930,8 @@ async function example() {
   };
   let fetchResult: sendablePhotoAccessHelper.FetchResult<sendablePhotoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   await fetchResult.getFirstObject();
-    let photoAsset: sendablePhotoAccessHelper.PhotoAsset = await fetchResult.getNextObject();
-    console.info('photoAsset displayName: ', photoAsset.displayName);
+  let photoAsset: sendablePhotoAccessHelper.PhotoAsset = await fetchResult.getNextObject();
+  console.info('photoAsset displayName: ', photoAsset.displayName);
 }
 ```
 
@@ -1093,17 +1093,15 @@ Provides APIs to manage albums.
 
 convertToPhotoAlbum(): photoAccessHelper.Album
 
-Converts this sendable album to a non-sendable album.
+Converts this Sendable album to a non-Sendable album.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**Return value**
-
 | Type                   | Description                                                     |
 | ----------------------- | --------------------------------------------------------- |
-| photoAccessHelper.Album | Non-sendable [Album](js-apis-photoAccessHelper.md#album).|
+| photoAccessHelper.Album | [Album](js-apis-photoAccessHelper.md#album) of the non-Sendable type.|
 
 **Error codes**
 

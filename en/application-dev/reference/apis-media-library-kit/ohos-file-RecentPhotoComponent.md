@@ -1,6 +1,6 @@
 # @ohos.file.RecentPhotoComponent (RecentPhotoComponent)
 
-The **RecentPhotoComponent** component embedded in the UI of an application allows the application to access the latest image or video in the user directory without the required permission. This component grants the application only the read permission.
+The RecentPhotoComponent embedded in the UI of an application allows the application to access the latest image or video in the user directory without the required permission. This component grants the application only the read permission.
 
 > **NOTE**
 >
