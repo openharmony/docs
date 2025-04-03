@@ -871,7 +871,7 @@
           - [安全控件概述](security/AccessToken/security-component-overview.md)
           - [使用粘贴控件](security/AccessToken/pastebutton.md)
           - [使用保存控件](security/AccessToken/savebutton.md)
-      - Asset Store Kit（关键资产存储开发套件）<!--asset-store-kit-->
+      - Asset Store Kit（关键资产存储服务）<!--asset-store-kit-->
         - [Asset Store Kit简介](security/AssetStoreKit/asset-store-kit-overview.md)
         - 常见场景<!--asset-scenarios-->
           - [保护密码类数据](security/AssetStoreKit/asset-scenario1.md)
@@ -3255,7 +3255,7 @@
         - [资源管理错误码](reference/apis-localization-kit/errorcode-resource-manager.md)
   - 系统<!--system-api-->
     - 安全<!--system-security-api-->
-      - Asset Store Kit（关键资产存储开发套件）<!--asset-store-api-->
+      - Asset Store Kit（关键资产存储服务）<!--asset-store-api-->
         - ArkTS API<!--asset-store-arkts-->
           - [@ohos.security.asset (关键资产存储服务)](reference/apis-asset-store-kit/js-apis-asset.md)
           <!--Del-->

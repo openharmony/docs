@@ -1,6 +1,6 @@
 # Asset Store Kit简介
 
-Asset Store Kit（关键资产存储开发套件）包含了关键资产存储服务（ASSET）开放的接口能力集合，提供了用户短敏感数据的安全存储及管理能力。其中，短敏感数据可以是密码类（账号/密码）、Token类（应用凭据）、其他关键明文（如银行卡号）等长度较短的用户敏感数据。
+Asset Store Kit包含了关键资产存储服务（ASSET）开放的接口能力集合，提供了用户短敏感数据的安全存储及管理能力。其中，短敏感数据可以是密码类（账号/密码）、Token类（应用凭据）、其他关键明文（如银行卡号）等长度较短的用户敏感数据。
 
 ## 基本概念
 
@@ -65,4 +65,4 @@ Asset Store Kit（关键资产存储开发套件）包含了关键资产存储�
 
 ## 与相关Kit的关系
 
-关键资产存储开发套件仅提供短敏感数据（不超过1KB）的安全存储能力，如业务希望对超长的数据提供保护时，请考虑使用[通用密钥库系统](../UniversalKeystoreKit/huks-overview.md)或[加解密算法库框架](../CryptoArchitectureKit/crypto-architecture-kit-intro.md)保护您的数据。
+关键资产存储服务仅提供短敏感数据（不超过1KB）的安全存储能力，如业务希望对超长的数据提供保护时，请考虑使用[通用密钥库系统](../UniversalKeystoreKit/huks-overview.md)或[加解密算法库框架](../CryptoArchitectureKit/crypto-architecture-kit-intro.md)保护您的数据。

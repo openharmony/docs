@@ -22,7 +22,7 @@
   - 系统<!--system-->
     - 安全<!--system-security-->
       - [程序访问控制](security/AccessToken/Readme-CN.md)
-      - [Asset Store Kit（关键资产存储开发套件）](security/AssetStoreKit/Readme-CN.md)
+      - [Asset Store Kit（关键资产存储服务）](security/AssetStoreKit/Readme-CN.md)
       - [Crypto Architecture Kit（加解密算法框架服务）](security/CryptoArchitectureKit/Readme-CN.md)
       - [Data Protection Kit（数据保护服务）](security/DataProtectionKit/Readme-CN.md)
       - [Device Certificate Kit（设备证书服务）](security/DeviceCertificateKit/Readme-CN.md)

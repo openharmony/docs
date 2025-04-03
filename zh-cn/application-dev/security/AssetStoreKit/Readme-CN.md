@@ -1,4 +1,4 @@
-# Asset Store Kit（关键资产存储开发套件）
+# Asset Store Kit
 
 - [Asset Store Kit简介](asset-store-kit-overview.md)
 - 常见场景<!--asset-scenarios-->
