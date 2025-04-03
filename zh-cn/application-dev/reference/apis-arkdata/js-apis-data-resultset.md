@@ -66,11 +66,13 @@ getColumnIndex(columnName: string): number
 **示例：**
 
 ```js
-resultSet.goToFirstRow();
-const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+const success = resultSet.goToFirstRow();
+if (success) {
+  const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+  const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+  const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+  const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+}
 ```
 
 ### getColumnName
