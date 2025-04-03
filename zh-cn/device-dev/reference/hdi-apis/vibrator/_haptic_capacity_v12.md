@@ -19,10 +19,10 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| boolean [isSupportHdHaptic](#issupporthdhaptic) | 是否支持高清振动。  | 
-| boolean [isSupportPresetMapping](#issupportpresetmapping) | 是否支持预定义振动。  | 
-| boolean [isSupportTimeDelay](#issupporttimedelay) | 是否支持延时振动。  | 
-| boolean [reserved0](#reserved0) | 预留参数。  | 
+| boolean [isSupportHdHaptic](#issupporthdhaptic) | isSupportHdHaptic为true支持高清振动，反之为false则不支持高清振动。  | 
+| boolean [isSupportPresetMapping](#issupportpresetmapping) | isSupportPresetMapping为true支持预定义振动，反之为false则不支持预定义振动。  | 
+| boolean [isSupportTimeDelay](#issupporttimedelay) | isSupportTimeDelay为true支持延时振动，反之为false则不支持延时振动。  | 
+| boolean [reserved0](#reserved0) | reserved0为true则支持预留参数，反正为false则不支持预留参数。  | 
 | int [reserved1](#reserved1) | 预留参数。 | 
 
 

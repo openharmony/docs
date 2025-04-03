@@ -132,7 +132,7 @@ bundle.json文件具有如下功能：
 
 - publishAs：定义Part的发布类型（source：源码，binary：二进制，distribution：发行版，code-segment：代码片段）。
 
-- segment: 仅针对code-segment类型的Part，定义Part的目标路径（即安装后，Part包中包含的文件复制到的目标路径）
+- segment: 仅针对code-segment类型的Part，定义Part的目标路径（即安装后，Part包中包含的文件复制到的目标路径）。
 
 - dirs：定义发布时打包的目录结构（如头文件）。
 
@@ -236,7 +236,7 @@ Part的依赖关系分为编译依赖和开发依赖。
 }
 ```
 
-Part的依赖关系（包括间接依赖）可以通过hpm list命令显示（也可以通过hpm ui命令在可视化的页面中显示）
+Part的依赖关系（包括间接依赖）可以通过hpm list命令显示（也可以通过hpm ui命令在可视化的页面中显示）。
 
   
 ```
@@ -305,7 +305,7 @@ Part在链接二进制文件的时候，需要知道二进制文件在依赖中�
 
 1. 名称需要为全小写的英文字母或数字，中间可以使用下划线分隔。如 "bundle"、 "my_bundle"、"json2"。
 
-2. 发布到[DevEco Marketplace](https://repo.harmonyos.com)的Part的名称，需要以\@开头，通过组织名用/隔离， 如\@my_org/part_name
+2. 发布到[DevEco Marketplace](https://repo.harmonyos.com)的Part的名称，需要以\@开头，通过组织名用/隔离， 如\@my_org/part_name。
 
 3. 组织名+Part名称，需要是唯一的，且不容易和其他作者的Part名称混淆。
 
