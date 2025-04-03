@@ -19,7 +19,7 @@ import { cloudSync } from '@kit.CoreFileKit';
 >
 > 以下同步状态发生变更时，如果应用注册了同步过程事件监听，则通过回调通知应用。
 
-**系统能力**： SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 | 名称 |  值|  说明 |
 | ----- |  ---- |  ---- |
@@ -39,7 +39,7 @@ import { cloudSync } from '@kit.CoreFileKit';
 - 触发同步时，非充电场景下，若电量低于10%，则不允许同步，start接口返回对应错误。
 - 上行时，若云端空间不足，则文件上行失败，云端无该文件记录。
 
-**系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 | 名称 |  值|  说明 |
 | ----- |  ---- |  ---- |
@@ -58,7 +58,7 @@ import { cloudSync } from '@kit.CoreFileKit';
 
 ### 属性
 
-**系统能力**： SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 | 名称     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
@@ -89,8 +89,8 @@ import { cloudSync } from '@kit.CoreFileKit';
 | 名称     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | state | [State](#state11) | 是   | 枚举值，云文件下载状态。|
-| processed | number | 是   | 已下载数据大小，取值范围[0，9223372036854775807]。|
-| size | number | 是   | 当前云文件大小，取值范围[0，9223372036854775807]。|
+| processed | number | 是   | 已下载数据大小，取值范围[0，9223372036854775807]（单位：Byte）。|
+| size | number | 是   | 当前云文件大小，取值范围[0，9223372036854775807]（单位：Byte）。|
 | uri | string | 是   | 当前云文件uri。|
 | error | [DownloadErrorType](#downloaderrortype11) | 是   | 下载的错误类型。|
 
@@ -583,6 +583,18 @@ start(uri: string): Promise&lt;void&gt;
 | --------------------- | ---------------- |
 | Promise&lt;void&gt; | 使用Promise形式返回启动云文件下载的结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 13600001  | IPC error. |
+| 13900002 | No such file or directory. |
+| 13900025 | No space left on device. |
+| 14000002 | Invalid uri. |
+
 **示例：**
 
   ```ts
@@ -607,18 +619,6 @@ start(uri: string): Promise&lt;void&gt;
     console.error("start download failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
-
-**错误码：**
-
-以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
-
-| 错误码ID                     | 错误信息        |
-| ---------------------------- | ---------- |
-| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 13600001  | IPC error. |
-| 13900002 | No such file or directory. |
-| 13900025 | No space left on device. |
-| 14000002 | Invalid uri. |
 
 ### start<sup>11+</sup>
 
@@ -872,7 +872,7 @@ unregisterChange(uri: string): void
 
 数据变更通知类型。
 
-**系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 | 名称 |  值|  说明 |
 | ----- |  ---- |  ---- |
@@ -885,7 +885,7 @@ unregisterChange(uri: string): void
 
 定义变更数据。
 
-**系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 | 名称     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
