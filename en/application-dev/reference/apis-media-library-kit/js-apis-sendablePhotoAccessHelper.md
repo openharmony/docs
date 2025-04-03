@@ -1,6 +1,6 @@
 # @ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object)
 
-The **sendablePhotoAccessHelper** module provides APIs for album management, including creating an album and accessing and modifying media data in an album, based on a sendable object.
+The sendablePhotoAccessHelper module provides APIs for album management, including creating an album and accessing and modifying media data in an album, based on a Sendable object.
 
 > **NOTE**
 >
@@ -16,7 +16,7 @@ import { sendablePhotoAccessHelper } from '@kit.MediaLibraryKit';
 
 getPhotoAccessHelper(context: Context): PhotoAccessHelper
 
-Obtains a **PhotoAccessHelper** instance, which can be used for accessing and modifying the media files in an album.
+Obtains a **PhotoAccessHelper** instance, which can be used for accessing and modifying media files in an album.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -70,13 +70,13 @@ If the caller does not have the ohos.permission.READ_IMAGEVIDEO permission, use 
 
 | Name | Type                                                     | Mandatory| Description                |
 | ------- | --------------------------------------------------------- | ---- | -------------------- |
-| options | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | Yes  | Options for fetching the media assets. |
+| options | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | Yes  | Options for fetching the media assets.|
 
 **Return value**
 
-| Type                                                         | Description                                       |
-| ------------------------------------------------------------ | ------------------------------------------------- |
-| Promise&lt;[FetchResult](#fetchresult)&lt;[PhotoAsset](#photoasset)&gt;&gt; | Promise used to return the media assets obtained. |
+| Type                                                        | Description                                   |
+| ------------------------------------------------------------ | --------------------------------------- |
+| Promise&lt;[FetchResult](#fetchresult)&lt;[PhotoAsset](#photoasset)&gt;&gt; | Promise used to return the media assets obtained.|
 
 **Error codes**
 
@@ -95,6 +95,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
   console.info('getAssets');
@@ -132,14 +133,14 @@ Obtains burst assets. This API uses a promise to return the result.
 
 | Name  | Type                                                     | Mandatory| Description                                                        |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| burstKey | string                                                    | Yes  | Universally Unique Identifier (UUID) of a group of burst photos, that is, **BURST_KEY** of [PhotoKeys](js-apis-photoAccessHelper.md#photokeys).|
+| burstKey | string                                                    | Yes  | Universally Unique Identifier (UUID) of a group of burst photos, that is, **BURST_KEY** of [PhotoKeys](js-apis-photoAccessHelper.md#photokeys). |
 | options  | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | Yes  | Options for fetching the burst photos.                                          |
 
 **Return value**
 
-| Type                                                         | Description                                       |
-| ------------------------------------------------------------ | ------------------------------------------------- |
-| Promise&lt;[FetchResult](#fetchresult)&lt;[PhotoAsset](#photoasset)&gt;&gt; | Promise used to return the burst photos obtained. |
+| Type                                                        | Description                                 |
+| ------------------------------------------------------------ | ------------------------------------- |
+| Promise&lt;[FetchResult](#fetchresult)&lt;[PhotoAsset](#photoasset)&gt;&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -154,7 +155,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { photoAccessHelper } form '@kit.MediaLibraryKit';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
@@ -169,22 +170,22 @@ async function example() {
   let photoAsset: sendablePhotoAccessHelper.PhotoAsset;
   // burstKey is a 36-bit UUID, which can be obtained from photoAccessHelper.PhotoKeys.
   for(photoAsset of photoAssetList){
-      let burstKey: string = photoAccessHelper.PhotoKeys.BURST_KEY.toString();
-      let photoAccessBurstKey: photoAccessHelper.MemberType = photoAsset.get(burstKey).toString();
-      try {
-         let fetchResult: sendablePhotoAccessHelper.FetchResult<sendablePhotoAccessHelper.PhotoAsset> = await 
+    let burstKey: string = photoAccessHelper.PhotoKeys.BURST_KEY.toString();
+    let photoAccessBurstKey: photoAccessHelper.MemberType = photoAsset.get(burstKey).toString();
+    try {
+      let fetchResult: sendablePhotoAccessHelper.FetchResult<sendablePhotoAccessHelper.PhotoAsset> = await
       phAccessHelper.getBurstAssets(photoAccessBurstKey, fetchOption);
-         if (fetchResult !== undefined) {
-           console.info('fetchResult success');
-           let photoAsset: sendablePhotoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-           if (photoAsset !== undefined) {
-              console.info('photoAsset.displayName :' + photoAsset.displayName);
+      if (fetchResult !== undefined) {
+        console.info('fetchResult success');
+        let photoAsset: sendablePhotoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+        if (photoAsset !== undefined) {
+          console.info('photoAsset.displayName :' + photoAsset.displayName);
+        }
       }
+    } catch (err) {
+      console.error(`getBurstAssets failed, error: ${err.code}, ${err.message}`);
     }
-  } catch (err) {
-    console.error(`getBurstAssets failed, error: ${err.code}, ${err.message}`);
   }
-}
 }
 ```
 
@@ -207,14 +208,14 @@ If the caller does not have the ohos.permission.WRITE_IMAGEVIDEO permission, you
 | Name   | Type                                                       | Mandatory| Description                                |
 | --------- | ----------------------------------------------------------- | ---- | ------------------------------------ |
 | photoType | [PhotoType](#phototype)                                     | Yes  | Type of the file to create, which can be **IMAGE** or **VIDEO**.|
-| extension | string                                                      | Yes  | File name extension, for example, **'jpg'**.       |
-| options   | [CreateOptions](js-apis-photoAccessHelper.md#createoptions) | No  | Options for creating the asset, for example, **{title: 'testPhoto'}**. |
+| extension | string                                                      | Yes  | File name extension, for example, **'jpg'**.        |
+| options   | [CreateOptions](js-apis-photoAccessHelper.md#createoptions) | No  | Options for creating the media asset, for example, **{title: 'testPhoto'}**.|
 
 **Return value**
 
 | Type                 | Description                                    |
 | --------------------- | ---------------------------------------- |
-| Promise&lt;string&gt; | Promise used to return the URI of the created asset. |
+| Promise&lt;string&gt; | Promise used to return the URI of the created media asset.|
 
 **Error codes**
 
@@ -230,6 +231,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+
 async function example() {
   console.info('createAssetDemo');
   try {
@@ -269,9 +272,9 @@ Before the operation, ensure that the albums to obtain exist.
 
 **Return value**
 
-| Type                                                         | Description                                 |
-| ------------------------------------------------------------ | ------------------------------------------- |
-| Promise&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Promise used to return the albums obtained. |
+| Type                                                        | Description                               |
+| ------------------------------------------------------------ | ----------------------------------- |
+| Promise&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -289,6 +292,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
   // Obtain the album named newAlbumName.
@@ -329,13 +333,13 @@ Before the operation, ensure that the albums to obtain exist.
 
 | Name | Type                                                     | Mandatory| Description    |
 | ------- | --------------------------------------------------------- | ---- | -------- |
-| options | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | Yes  | Options for obtaining the albums.|
+| options | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | Yes  | Options for fetching the albums.|
 
 **Return value**
 
-| Type                                                         | Description                                 |
-| ------------------------------------------------------------ | ------------------------------------------- |
-| Promise&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Promise used to return the albums obtained. |
+| Type                                                        | Description                               |
+| ------------------------------------------------------------ | ----------------------------------- |
+| Promise&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -353,6 +357,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
   // Obtain the album named newAlbumName.
@@ -382,8 +387,7 @@ async function example() {
 release(): Promise&lt;void&gt;
 
 Releases this **PhotoAccessHelper** instance. This API uses a promise to return the result.
-
-Call this API when the **PhotoAccessHelper** instance is no longer required.
+Call this API when the APIs of the **PhotoAccessHelper** instance are no longer used.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -434,14 +438,14 @@ Provides APIs for encapsulating file asset attributes.
 | Name       | Type                   | Read-Only| Optional| Description                                                        |
 | ----------- | ----------------------- | ---- | ---- | ------------------------------------------------------------ |
 | uri         | string                  | Yes  | No  | Media asset URI, for example, **file://media/Photo/1/IMG_datetime_0001/displayName.jpg**. For details, see [Media File URI](../../file-management/user-file-uri-intro.md#media-file-uri).|
-| photoType   | [PhotoType](#phototype) | Yes  | No  | Type of the file.                                                |
-| displayName | string                  | Yes  | No  | File name, including the file name extension, to display.                                    |
+| photoType   | [PhotoType](#phototype) | Yes  | No  | Type of the file.                                              |
+| displayName | string                  | Yes  | No  | File name, including the file name extension, to display.                                     |
 
 ### convertToPhotoAsset
 
 convertToPhotoAsset():  photoAccessHelper.PhotoAsset
 
-Converts a sendable **PhotoAsset** object to a non-sendable **PhotoAsset** object.
+Converts a Sendable **PhotoAsset** object to a non-Sendable **PhotoAsset** object.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -449,7 +453,7 @@ Converts a sendable **PhotoAsset** object to a non-sendable **PhotoAsset** objec
 
 | Type                        | Description                                                        |
 | ---------------------------- | ------------------------------------------------------------ |
-| photoAccessHelper.PhotoAsset | [PhotoAsset](js-apis-photoAccessHelper.md#photoasset) object of the non-sendable type.|
+| photoAccessHelper.PhotoAsset | [PhotoAsset](js-apis-photoAccessHelper.md#photoasset) object of the non-Sendable type.|
 
 **Error codes**
 
@@ -497,7 +501,7 @@ Obtains a **PhotoAsset** member parameter.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| member | string | Yes  | Name of the member parameter to obtain. <br/>Except **'uri'**, **'media_type'**, **'subtype'**, and **'display_name'**, you must pass in [PhotoKeys](js-apis-photoAccessHelper.md#photokeys) in **fetchColumns**. For example, to obtain the title, pass in **fetchColumns: ['title']**. |
+| member | string | Yes  | Name of the member parameter to obtain. <br>Except **'uri'**, **'media_type'**, **'subtype'**, and **'display_name'**, you must pass in [PhotoKeys](js-apis-photoAccessHelper.md#photokeys) in **fetchColumns**. For example, to obtain the title, pass in **fetchColumns: ['title']**.|
 
 **Return value**
 
@@ -519,6 +523,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
   console.info('photoAssetGetDemo');
@@ -551,8 +556,8 @@ Sets a **PhotoAsset** member parameter.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| member | string | Yes  | Name of the parameter to set, for example, [PhotoKeys](js-apis-photoAccessHelper.md#photokeys).TITLE.|
-| value  | string | Yes  | Value to set. Only the value of [PhotoKeys](js-apis-photoAccessHelper.md#photokeys).TITLE can be changed.|
+| member | string | Yes  | Name of the parameter to set, for example, [PhotoKeys](js-apis-photoAccessHelper.md#photokeys).TITLE. |
+| value  | string | Yes  | Value to set. Only the value of [PhotoKeys](js-apis-photoAccessHelper.md#photokeys).TITLE can be changed. |
 
 **Error codes**
 
@@ -568,6 +573,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
   console.info('photoAssetSetDemo');
@@ -684,6 +690,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
   console.info('getThumbnailDemo');
@@ -720,7 +727,7 @@ Obtains the total number of files in the result set.
 
 | Type  | Description              |
 | ------ | ------------------ |
-| number | Total number of files obtained. |
+| number | Total number of files obtained.|
 
 **Error codes**
 
@@ -736,6 +743,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
   console.info('getCountDemo');
@@ -778,6 +786,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -801,7 +810,7 @@ async function example() {
 
 close(): void
 
-Closes this **FetchFileResult** instance to invalidate it. After the instance is closed, the APIs in this instance cannot be invoked.
+Closes this **FetchFileResult** instance to invalidate it. After this instance is closed, the APIs in this instance cannot be invoked.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -819,6 +828,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
   console.info('fetchResultCloseDemo');
@@ -865,6 +875,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
   console.info('getFirstObjectDemo');
@@ -908,6 +919,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
   console.info('getNextObjectDemo');
@@ -918,8 +930,8 @@ async function example() {
   };
   let fetchResult: sendablePhotoAccessHelper.FetchResult<sendablePhotoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   await fetchResult.getFirstObject();
-    let photoAsset: sendablePhotoAccessHelper.PhotoAsset = await fetchResult.getNextObject();
-    console.info('photoAsset displayName: ', photoAsset.displayName);
+  let photoAsset: sendablePhotoAccessHelper.PhotoAsset = await fetchResult.getNextObject();
+  console.info('photoAsset displayName: ', photoAsset.displayName);
 }
 ```
 
@@ -951,6 +963,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
   console.info('getLastObjectDemo');
@@ -977,13 +990,13 @@ Obtains the asset with the given index in the result set. This API uses a promis
 
 | Name| Type  | Mandatory| Description                         |
 | ------ | ------ | ---- | ----------------------------- |
-| index  | number | Yes  | Index of the asset to obtain, which starts from **0**. |
+| index  | number | Yes  | Index of the asset to obtain. The value starts from **0**.|
 
 **Return value**
 
 | Type            | Description                                         |
 | ---------------- | --------------------------------------------- |
-| Promise&lt;T&gt; | Promise used to return the asset obtained. |
+| Promise&lt;T&gt; | Promise used to return the asset obtained.|
 
 **Error codes**
 
@@ -999,6 +1012,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
   console.info('getObjectByPositionDemo');
@@ -1017,7 +1031,7 @@ async function example() {
 
 getAllObjects(): Promise&lt;Array&lt;T&gt;&gt;
 
-Obtains all the assets in the result set. This API uses a promise to return the result.
+Obtains all the file assets in the result set. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -1025,7 +1039,7 @@ Obtains all the assets in the result set. This API uses a promise to return the 
 
 | Type                         | Description                                       |
 | ----------------------------- | ------------------------------------------- |
-| Promise&lt;Array&lt;T&gt;&gt; | Promise used to return all the assets in the result set. |
+| Promise&lt;Array&lt;T&gt;&gt; | Promise used to return all the assets in the result set.|
 
 **Error codes**
 
@@ -1041,6 +1055,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
   console.info('getAllObjectDemo');
@@ -1078,17 +1093,15 @@ Provides APIs to manage albums.
 
 convertToPhotoAlbum(): photoAccessHelper.Album
 
-Converts this sendable album to a non-sendable album.
+Converts this Sendable album to a non-Sendable album.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**Return value**
-
 | Type                   | Description                                                     |
 | ----------------------- | --------------------------------------------------------- |
-| photoAccessHelper.Album | Non-sendable [album](js-apis-photoAccessHelper.md#album). |
+| photoAccessHelper.Album | [Album](js-apis-photoAccessHelper.md#album) of the non-Sendable type.|
 
 **Error codes**
 
@@ -1134,7 +1147,7 @@ async function example() {
 
 getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
-Obtains image and video assets. This API uses a promise to return the result.
+Obtains media assets. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
@@ -1150,7 +1163,7 @@ Obtains image and video assets. This API uses a promise to return the result.
 
 | Type                                                        | Description                                   |
 | ------------------------------------------------------------ | --------------------------------------- |
-| Promise&lt;[FetchResult](#fetchresult)&lt;[PhotoAsset](#photoasset)&gt;&gt; | Promise used to return the image and video assets obtained.|
+| Promise&lt;[FetchResult](#fetchresult)&lt;[PhotoAsset](#photoasset)&gt;&gt; | Promise used to return the media assets obtained.|
 
 **Error codes**
 
@@ -1168,6 +1181,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
   console.info('albumGetAssetsDemoPromise');
@@ -1222,6 +1236,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
   console.info('albumCommitModifyDemo');

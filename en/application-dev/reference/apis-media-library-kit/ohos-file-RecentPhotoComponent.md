@@ -1,6 +1,6 @@
 # @ohos.file.RecentPhotoComponent (RecentPhotoComponent)
 
-The **RecentPhotoComponent** component embedded in the UI of an application allows the application to access the latest image or video in the user directory without the required permission. This component grants the application only the read permission.
+The RecentPhotoComponent embedded in the UI of an application allows the application to access the latest image or video in the user directory without the required permission. This component grants the application only the read permission.
 
 > **NOTE**
 >
@@ -37,11 +37,11 @@ Allows the application  to access the latest image or video in the user director
 
 **Parameters**
 
-| Name         | Type           | Mandatory | Decorator Description     | Description                |
-|---------------|-----------------|-------|-----------------|--------------------------|
-| recentPhotoOptions         | [RecentPhotoOptions](#recentphotooptions)                             | No  | - | Configuration of the latest image or video. |
-| onRecentPhotoCheckResult   | [RecentPhotoCheckResultCallback](#recentphotocheckresultcallback)     | No  | - | Callback used to return the query result of the latest image or video. |
-| onRecentPhotoClick         | [RecentPhotoClickCallback](#recentphotoclickcallback)                 | Yes  | - | Callback to be called when the latest image or video is selected.     |
+| Name                      | Type                                                               | Mandatory| Description                      |
+|--------------------------|-------------------------------------------------------------------|------|----------------------------|
+| recentPhotoOptions       | [RecentPhotoOptions](#recentphotooptions)                         | No | Configuration of the latest image or video.               |
+| onRecentPhotoCheckResult | [RecentPhotoCheckResultCallback](#recentphotocheckresultcallback) | No | Callback used to return the query result of the latest image or video.             |
+| onRecentPhotoClick       | [RecentPhotoClickCallback](#recentphotoclickcallback)             | Yes | Callback to be invoked when the latest image or video is selected.               |
 
 ## RecentPhotoOptions
 
@@ -51,11 +51,11 @@ Represents the configuration of the latest image or video.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| Name                   | Type                                   | Mandatory | Description  |
-|-------------------------|-----------------------------------------|-------|--------|
-| period                  | number                                  | No   | Time period for the latest image or video, in seconds. The maximum value is **86400** seconds (one day), which is also the default value. If there is no image or video in the specified period, the component is not displayed. |
-| MIMEType                | [PhotoViewMIMETypes](js-apis-photoAccessHelper.md#photoviewmimetypes)   | No   | Types of the file displayed. The default value is **PhotoViewMIMETypes.IMAGE_VIDEO_TYPE**.                        |
-| photoSource             | [PhotoSource](#photosource)                                 | No   | Source of the latest image or video, for example, photo or video taken by the camera or screenshot. By default, the source is not restricted.                              |
+| Name                   | Type                                                                                     | Mandatory | Description  |
+|-------------------------|-----------------------------------------------------------------------------------------|-------|--------|
+| period                  | number                                                                                  | No   | Time period for the latest image or video, in seconds. The maximum value is **86400** seconds (one day), which is also the default value.<br>If there is no image or video in the specified period, the component is not displayed.|
+| MIMEType                | [photoAccessHelper.PhotoViewMIMETypes](js-apis-photoAccessHelper.md#photoviewmimetypes) | No   | Types of the file displayed. The default value is **PhotoViewMIMETypes.IMAGE_VIDEO_TYPE**.                        |
+| photoSource             | [PhotoSource](#photosource)                                                             | No   | Source of the latest image or video, for example, photo or video taken by the camera or screenshot. By default, the source is not restricted.                              |
 
 ## RecentPhotoCheckResultCallback
 

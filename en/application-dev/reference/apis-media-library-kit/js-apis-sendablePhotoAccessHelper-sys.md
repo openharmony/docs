@@ -1,6 +1,6 @@
 # @ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object) (System API)
 
-The **sendablePhotoAccessHelper** module provides APIs for album management, including creating an album and accessing and modifying media data in an album, based on a sendable object.
+The sendablePhotoAccessHelper module provides APIs for album management, including creating an album and accessing and modifying media data in an album, based on a Sendable object.
 
 > **NOTE**
 >
@@ -24,7 +24,7 @@ Creates an asset with the specified file name. This API uses a promise to return
 The file name must comply with the following specifications:
 - The file name consists of a valid file name and an image or video file name extension.
 - The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- The file name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -36,13 +36,13 @@ The file name must comply with the following specifications:
 
 | Name     | Type  | Mandatory| Description                      |
 | ----------- | ------ | ---- | -------------------------- |
-| displayName | string | Yes  | File name of the asset to create. |
+| displayName | string | Yes  | File name of the asset to create.|
 
 **Return value**
 
-| Type                                     | Description                               |
-| ---------------------------------------- | ----------------------------------------- |
-| Promise&lt;[PhotoAsset](#photoasset)&gt; | Promise used to return the created asset. |
+| Type                                    | Description                                   |
+| ---------------------------------------- | --------------------------------------- |
+| Promise&lt;[PhotoAsset](#photoasset)&gt; | Promise used to return the created asset.|
 
 **Error codes**
 
@@ -82,7 +82,7 @@ Creates an asset with the specified file name and options. This API uses a promi
 The file name must comply with the following specifications:
 - The file name consists of a valid file name and an image or video file name extension.
 - The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- The file name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -94,14 +94,14 @@ The file name must comply with the following specifications:
 
 | Name     | Type                                                        | Mandatory| Description                      |
 | ----------- | ------------------------------------------------------------ | ---- | -------------------------- |
-| displayName | string                                                       | Yes  | File name of the asset to create. |
-| options     | [PhotoCreateOptions](js-apis-photoAccessHelper-sys.md#photocreateoptions) | Yes  | Options for creating the asset.  |
+| displayName | string                                                       | Yes  | File name of the asset to create.|
+| options     | [PhotoCreateOptions](js-apis-photoAccessHelper-sys.md#photocreateoptions) | Yes  | Options for creating the asset.    |
 
 **Return value**
 
-| Type                                     | Description                               |
-| ---------------------------------------- | ----------------------------------------- |
-| Promise&lt;[PhotoAsset](#photoasset)&gt; | Promise used to return the created asset. |
+| Type                                    | Description                                   |
+| ---------------------------------------- | --------------------------------------- |
+| Promise&lt;[PhotoAsset](#photoasset)&gt; | Promise used to return the created asset.|
 
 **Error codes**
 
@@ -169,7 +169,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken. |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **Example**
 
@@ -245,7 +245,7 @@ Opens the source file to obtain the file descriptor (FD). This API uses a promis
 
 | Type                 | Description                       |
 | --------------------- | --------------------------- |
-| Promise&lt;number&gt; | Promise used to return the FD obtained. |
+| Promise&lt;number&gt; | Promise used to return the FD obtained.|
 
 **Error codes**
 
