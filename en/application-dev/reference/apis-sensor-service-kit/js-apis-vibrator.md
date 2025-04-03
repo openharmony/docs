@@ -29,7 +29,7 @@ Starts vibration with the specified effect and attribute. This API uses an async
 
 | Name   | Type                                  | Mandatory| Description                                                        |
 | --------- | -------------------------------------- | ---- | :----------------------------------------------------------- |
-| effect    | [VibrateEffect](#vibrateeffect9)       | Yes  | Vibration effect. The following options are supported:<br>- [VibrateTime](#vibratetime9): vibration with the specified duration.<br>- [VibratePreset](#vibratepreset9): vibration with a preset effect.<br>- [VibrateFromFile](#vibratefromfile10): vibration according to a custom vibration configuration file.<br>- [VibrateFromPattern<sup>16+</sup>](#vibratefrompattern16): vibration according to a custom vibration pattern.|
+| effect    | [VibrateEffect](#vibrateeffect9)       | Yes  | Vibration effect. The following options are supported:<br>- [VibrateTime](#vibratetime9): vibration with the specified duration.<br>- [VibratePreset](#vibratepreset9): vibration with a preset effect.<br>- [VibrateFromFile](#vibratefromfile10): vibration according to a custom vibration configuration file.<br>- [VibrateFromPattern<sup>18+</sup>](#vibratefrompattern18): vibration according to a custom vibration pattern.|
 | attribute | [VibrateAttribute](#vibrateattribute9) | Yes  | Vibration attribute.                                              |
 | callback  | AsyncCallback&lt;void&gt;              | Yes  | Callback used to return the result. If the vibration starts, **err** is **undefined**; otherwise, **err** is an error object.  |
 
@@ -148,7 +148,7 @@ Starts vibration with the specified effect and attribute. This API uses a promis
 
 | Name   | Type                                  | Mandatory| Description                                                        |
 | --------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| effect    | [VibrateEffect](#vibrateeffect9)       | Yes  | Vibration effect. The following options are supported:<br>- [VibrateTime](#vibratetime9): vibration with the specified duration.<br>- [VibratePreset](#vibratepreset9): vibration with a preset effect.<br>- [VibrateFromFile](#vibratefromfile10): vibration according to a custom vibration configuration file.<br>- [VibrateFromPattern<sup>16+</sup>](#vibratefrompattern16): vibration according to a custom vibration pattern.|
+| effect    | [VibrateEffect](#vibrateeffect9)       | Yes  | Vibration effect. The following options are supported:<br>- [VibrateTime](#vibratetime9): vibration with the specified duration.<br>- [VibratePreset](#vibratepreset9): vibration with a preset effect.<br>- [VibrateFromFile](#vibratefromfile10): vibration according to a custom vibration configuration file.<br>- [VibrateFromPattern<sup>18+</sup>](#vibratefrompattern18): vibration according to a custom vibration pattern.|
 | attribute | [VibrateAttribute](#vibrateattribute9) | Yes  | Vibration attribute.                                              |
 
 **Return value**
@@ -785,9 +785,9 @@ Checks whether HD vibration is supported.
 
 **Return value**
 
-| Type   | Description      |
-| ------- | ---------- |
-| boolean | Returned object.|
+| Type   | Description                                              |
+| ------- | -------------------------------------------------- |
+| boolean | Boolean value indicating whether HD vibration is supported. The value **true** indicates that HD vibration is supported, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -813,13 +813,13 @@ try {
 }
 ```
 
-## vibrator.VibratorPatternBuilder<sup>16+</sup>
+## VibratorPatternBuilder<sup>18+</sup>
+
+### vibrator('addContinuousEvent')<sup>18+</sup>
 
 addContinuousEvent(time: number, duration: number, options?: ContinuousParam): VibratorPatternBuilder;
 
 Adds a long vibration event as a **VibratorPattern** object.
-
-**Required permissions**: ohos.permission.VIBRATE
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
@@ -829,7 +829,7 @@ Adds a long vibration event as a **VibratorPattern** object.
 | -------- | ------------------------------------- | ---- | ------------------------ |
 | time     | number                                | Yes  | Start time of the long vibration.    |
 | duration | number                                | Yes  | Duration of the long vibration.    |
-| options  | [ContinuousParam](#continuousparam16) | No  | Optional parameters.|
+| options  | [ContinuousParam](#continuousparam18) | No  | Optional parameters.|
 
 **Error codes**
 
@@ -874,13 +874,11 @@ try {
 }
 ```
 
-## vibrator.addTransientEvent<sup>16+</sup>
+### vibrator('addTransientEvent')<sup>18+</sup>
 
 addTransientEvent(time: number, options?: TransientParam): VibratorPatternBuilder;
 
 Adds a short vibration event as a **VibratorPattern** object.
-
-**Required permissions**: ohos.permission.VIBRATE
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
@@ -889,7 +887,7 @@ Adds a short vibration event as a **VibratorPattern** object.
 | Name | Type                               | Mandatory| Description                    |
 | ------- | ----------------------------------- | ---- | ------------------------ |
 | time    | number                              | Yes  | Start time of long vibration.    |
-| options | [TransientParam](#transientparam16) | No  | Optional parameters.|
+| options | [TransientParam](#transientparam18) | No  | Optional parameters.|
 
 **Error codes**
 
@@ -920,13 +918,11 @@ try {
 }
 ```
 
-## vibrator.build<sup>16+</sup>
+### vibrator('build')<sup>18+</sup>
 
 build(): VibratorPattern;
 
 Constructor used to create a **VibratorPattern** object, which determines the vibration sequence of short or long events.
-
-**Required permissions**: ohos.permission.VIBRATE
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
@@ -934,7 +930,7 @@ Constructor used to create a **VibratorPattern** object, which determines the vi
 
 | Type                                 | Description                              |
 | ------------------------------------- | ---------------------------------- |
-| [VibratorPattern](#vibratorpattern16) | **VibratorPattern** object.|
+| [VibratorPattern](#vibratorpattern18) | **VibratorPattern** object.|
 
 **Example**
 
@@ -996,9 +992,9 @@ Defines the vibration effect.
 | EFFECT_SOFT                         | 'haptic.effect.soft'    | Soft vibration, low frequency.|
 | EFFECT_HARD                         | 'haptic.effect.hard'    | Hard vibration, medium frequency.|
 | EFFECT_SHARP                        | 'haptic.effect.sharp'   | Sharp vibration, high frequency.|
-| EFFECT_NOTICE_SUCCESS<sup>16+</sup> | 'haptic.notice.success' | Vibration for a successful notification.    |
-| EFFECT_NOTICE_FAILURE<sup>16+</sup> | 'haptic.notice.fail'    | Vibration for a notification failure.    |
-| EFFECT_NOTICE_WARNING<sup>16+</sup> | 'haptic.notice.warning' | Vibration for an alert.    |
+| EFFECT_NOTICE_SUCCESS<sup>18+</sup> | 'haptic.notice.success' | Vibration for a successful notification.    |
+| EFFECT_NOTICE_FAILURE<sup>18+</sup> | 'haptic.notice.fail'    | Vibration for a notification failure.    |
+| EFFECT_NOTICE_WARNING<sup>18+</sup> | 'haptic.notice.warning' | Vibration for an alert.    |
 
 ## VibratorStopMode
 
@@ -1022,7 +1018,7 @@ Describes the vibration effect.
 | [VibrateTime](#vibratetime9) | Vibration with the specified duration.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | [VibratePreset](#vibratepreset9) | Vibration with a preset effect.|
 | [VibrateFromFile](#vibratefromfile10) | Vibration according to a custom vibration configuration file.|
-| VibrateFromPattern<sup>16+</sup> | Triggers vibration with the custom effect. This API uses an asynchronous callback to return the result.|
+| VibrateFromPattern<sup>18+</sup> | Triggers vibration with the custom effect. This API uses an asynchronous callback to return the result.|
 
 ## VibrateTime<sup>9+</sup>
 
@@ -1073,7 +1069,7 @@ Describes the FD of a custom vibration configuration file. Ensure that the file 
 | offset   | number   |  No   | Offset from the start position of the file, in bytes. The default value is the start position of the file, and the value cannot exceed the valid range of the file.|
 | length   | number   |  No   | Resource length, in bytes. The default value is the length from the offset position to the end of the file, and the value cannot exceed the valid range of the file.|
 
-## VibratorEventType<sup>16+</sup>
+## VibratorEventType<sup>18+</sup>
 
 Vibration event type.
 
@@ -1084,7 +1080,7 @@ Vibration event type.
 | CONTINUOUS | number | Yes  | The value **0** indicates long vibration.|
 | TRANSIENT  | number | Yes  | The value **1** indicates short vibration.|
 
-## VibratorCurvePoint<sup>16+</sup>
+## VibratorCurvePoint<sup>18+</sup>
 
 Defines the gain relative to the vibration intensity.
 
@@ -1096,7 +1092,7 @@ Defines the gain relative to the vibration intensity.
 | intensity | number | No  | Gain relative to the vibration intensity. This parameter is optional. The value range is [0, 1]. If this parameter is left empty, the default value is **1**.|
 | frequency | number | No  | Change relative to the vibration frequency. This parameter is optional. The value range is [-100, 100]. If this parameter is left empty, the default value is 0.|
 
-## VibratorEvent<sup>16+</sup>
+## VibratorEvent<sup>18+</sup>
 
 Vibration event.
 
@@ -1112,7 +1108,7 @@ Vibration event.
 | index     | number                          | No  | Channel number. This parameter is optional. If this parameter is left empty, the default value is **0**.                   |
 | points    | Array&lt;VibratorCurvePoint&gt; | No  | Adjustment points of the vibration curve.                            |
 
-## VibratorPattern<sup>16+</sup>
+## VibratorPattern<sup>18+</sup>
 
 Defines the vibration sequence.
 
@@ -1120,10 +1116,10 @@ Defines the vibration sequence.
 
 | Name  | Type                      | Mandatory| Description                                                |
 | ------ | -------------------------- | ---- | ---------------------------------------------------- |
-| time   | time                       | Yes  | Absolute vibration start time.                                  |
+| time   | number                     | Yes  | Absolute vibration start time.                                  |
 | events | Array&lt;VibratorEvent&gt; | Yes  | Vibration event array, which is the **VibratorPattern** object returned by **build() **.|
 
-## ContinuousParam<sup>16+</sup>
+## ContinuousParam<sup>18+</sup>
 
 Defines the parameters for continuous vibration.
 
@@ -1136,7 +1132,7 @@ Defines the parameters for continuous vibration.
 | points    | VibratorCurvePoint[] | No  | Adjustment points of the vibration curve.                            |
 | index     | number               | No  | Channel number. This parameter is optional. If this parameter is left empty, the default value is **0**.                   |
 
-## TransientParam<sup>16+</sup>
+## TransientParam<sup>18+</sup>
 
 Defines the parameters for transient vibration.
 
@@ -1148,7 +1144,7 @@ Defines the parameters for transient vibration.
 | frequency | number | No  | Vibration frequency. This parameter is optional. If this parameter is left empty, the default value is **50**. |
 | index     | number | No  | Channel number. This parameter is optional. If this parameter is left empty, the default value is **0**.  |
 
-## VibrateFromPattern<sup>16+</sup>
+## VibrateFromPattern<sup>18+</sup>
 
 Defines the custom vibration effect.
 

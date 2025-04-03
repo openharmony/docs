@@ -7,9 +7,11 @@
 >
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> 建议使用API version 18的跟踪打点接口，后续跟踪打点接口[startTrace](#hitracemeterstarttrace)、[finishTrace](#hitracemeterfinishtrace)、[traceByValue](#hitracemetertracebyvalue)将逐步废弃。
+> 建议使用API version 18的性能打点接口，后续性能打点接口[startTrace](#hitracemeterstarttrace)、[finishTrace](#hitracemeterfinishtrace)、[traceByValue](#hitracemetertracebyvalue)将逐步废弃。
 >
-> 打点接口[startTrace](#hitracemeterstarttrace)、[finishTrace](#hitracemeterfinishtrace)、[traceByValue](#hitracemetertracebyvalue)无法指定跟踪输出级别，默认均为COMMERCIAL级别跟踪打点。
+> 性能打点接口[startTrace](#hitracemeterstarttrace)、[finishTrace](#hitracemeterfinishtrace)、[traceByValue](#hitracemetertracebyvalue)无法指定跟踪输出级别，默认均为COMMERCIAL级别性能打点。
+>
+> [用户态tarce格式](../../dfx/hitracemeter-view.md#用户态trace格式说明)使用竖线 `|` 作为分隔符，所以通过性能打点接口传递的字符串类型参数应避免包含该字符，防止trace解析异常。
 
 ## 导入模块
 
@@ -29,7 +31,7 @@ startTrace(name: string, taskId: number): void
 
 从API version 18开始，建议使用[startAsyncTrace](#hitracemeterstartasynctrace18)接口（需与[finishAsyncTrace](#hitracemeterfinishasynctrace18)接口配套使用），以便分级控制跟踪输出与跟踪聚类。
 
-**系统能力：** SystemCapability.HiviewDFX.HiTrace
+**系统能力**：SystemCapability.HiviewDFX.HiTrace
 
 **参数：**
 
@@ -54,7 +56,7 @@ finishTrace的name和taskId必须与流程开始的[startTrace](#hitracemetersta
 
 从API version 18开始，建议使用[finishAsyncTrace](#hitracemeterfinishasynctrace18)接口（需与[startAsyncTrace](#hitracemeterstartasynctrace18)接口配套使用）。
 
-**系统能力：** SystemCapability.HiviewDFX.HiTrace
+**系统能力**：SystemCapability.HiviewDFX.HiTrace
 
 **参数：**
 
@@ -99,7 +101,7 @@ traceByValue(name: string, count: number): void
 
 从API version 18开始，建议使用[traceByValue<sup>18+</sup>](#hitracemetertracebyvalue18)接口，以便分级控制跟踪输出。
 
-**系统能力：** SystemCapability.HiviewDFX.HiTrace
+**系统能力**：SystemCapability.HiviewDFX.HiTrace
 
 **参数：**
 
@@ -124,9 +126,9 @@ hiTraceMeter.traceByValue("myTestCount", traceCount);
 
 低于系统跟踪输出级别阈值的打点将不会生效。log版本阈值为INFO；nolog版本阈值为COMMERCIAL。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.HiviewDFX.HiTrace
+**系统能力**：SystemCapability.HiviewDFX.HiTrace
 
 | 名称       | 值   | 说明                                    |
 | ---------- | ---- | --------------------------------------- |
@@ -146,9 +148,9 @@ startAsyncTrace(level: HiTraceOutputLevel, name: string, taskId: number, customC
 
 如果具有相同name的任务是串行执行的，则taskId可以相同。具体示例可参考[finishAsyncTrace](#hitracemeterfinishasynctrace18)中的示例。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.HiviewDFX.HiTrace
+**系统能力**：SystemCapability.HiviewDFX.HiTrace
 
 **参数：**
 
@@ -181,9 +183,9 @@ finishAsyncTrace(level: HiTraceOutputLevel, name: string, taskId: number): void
 
 finishAsyncTrace的level、name和taskId必须与流程开始的[startAsyncTrace](#hitracemeterstartasynctrace18)对应参数值一致。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.HiviewDFX.HiTrace
+**系统能力**：SystemCapability.HiviewDFX.HiTrace
 
 **参数：**
 
@@ -238,9 +240,9 @@ startSyncTrace(level: HiTraceOutputLevel, name: string, customArgs?: string): vo
 
 标记一个同步跟踪耗时任务的开始，分级控制跟踪输出。具体示例可参考[finishSyncTrace](#hitracemeterfinishsynctrace18)中的示例。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.HiviewDFX.HiTrace
+**系统能力**：SystemCapability.HiviewDFX.HiTrace
 
 **参数：**
 
@@ -270,9 +272,9 @@ finishSyncTrace(level: HiTraceOutputLevel): void
 
 finishSyncTrace的level必须与流程开始的[startSyncTrace](#hitracemeterstartsynctrace18)对应参数值一致。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.HiviewDFX.HiTrace
+**系统能力**：SystemCapability.HiviewDFX.HiTrace
 
 **参数：**
 
@@ -309,9 +311,9 @@ traceByValue(level: HiTraceOutputLevel, name: string, count: number): void
 
 整数跟踪事件，分级控制跟踪输出。用来标记一个预跟踪的整数变量名及整数值。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.HiviewDFX.HiTrace
+**系统能力**：SystemCapability.HiviewDFX.HiTrace
 
 **参数：**
 
@@ -340,9 +342,9 @@ isTraceEnabled(): boolean
 
 开发者可使用[hitrace](../../dfx/hitrace.md)命令行工具开启或关闭应用trace捕获。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.HiviewDFX.HiTrace
+**系统能力**：SystemCapability.HiviewDFX.HiTrace
 
 **返回值：**
 

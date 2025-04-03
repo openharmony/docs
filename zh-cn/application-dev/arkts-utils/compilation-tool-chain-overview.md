@@ -4,7 +4,7 @@
 
 在编译过程中，首先是语法转换阶段，包含了语法检查、UI转换。同时为了源码安全，使用[ArkGuard源码混淆工具](source-obfuscation.md)对源码进行混淆操作，并且在落盘字节码之前判断是否需要进行[字节码自定义修改](customize-bytecode-during-compilation.md)，如果需要则加载自定义修改代码并执行，在生成字节码文件后，使用[Disassembler反汇编工具](tool-disassembler.md)可以查看字节码文件中包含的内容，字节码的具体内容可以参考[方舟字节码](arkts-bytecode-overview.md)章节。
 
-ArkTS编译工具链当前主要包括如下功能。
+ArkTS编译工具链当前主要包括如下功能：
 
 1. 语法检查：检查ArkTS/TS语法正确性。
 

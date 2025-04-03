@@ -344,9 +344,9 @@ struct FocusEventExample {
 - 按下Tab键，触发走焦，“Second Button”获焦，onFocus回调响应，背景色变成绿色；“First Button”失焦，onBlur回调响应，背景色变回灰色。
 - 按下Tab键，触发走焦，“Third Button”获焦，onFocus回调响应，背景色变成绿色；“Second Button”失焦，onBlur回调响应，背景色变回灰色。
 
-父子节点同时存在获焦和失焦事件时，获焦/失焦事件响应顺序为:
+父子节点同时存在获焦和失焦事件时，获焦/失焦事件响应顺序为：
 
-父节点Row1失焦 —> 子节点Button1失焦 —> 子节点Button2获焦 —> 父节点Row2获焦
+父节点Row1失焦 —> 子节点Button1失焦 —> 子节点Button2获焦 —> 父节点Row2获焦。
 
 ```ts
 @Entry

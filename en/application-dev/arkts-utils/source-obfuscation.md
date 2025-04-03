@@ -531,6 +531,10 @@ Marks trustlists in .ts or .ets source code using the following two comment anno
 
 // @KeepAsConsumer: This annotation is used to mark names that should be retained. It is usually placed on the line above the relevant code to ensure that the name is not obfuscated when the code is compiled. In HAR/HSP modules, names marked with @KeepAsConsumer are also listed in the **obfuscation.txt** file. In HAP modules, @KeepAsConsumer works exactly like @KeepSymbol.
 
+> **NOTE**
+>
+> Both types of markings are comments and the slashes (//) should not be removed.
+
  
 
 The examples below use // @KeepSymbol, but // @KeepAsConsumer can be used in the same way for the same purposes.

@@ -11,6 +11,8 @@
 
 **相关模块：**[OH_Camera](_o_h___camera.md)
 
+**所在头文件：**[camera_input.h](camera__input_8h.md)
+
 
 ## 汇总
 

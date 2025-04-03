@@ -35,7 +35,7 @@ Obtains the localized display of the text for the specified country.
 | ------------ | ------- | ---- | ---------------- |
 | country      | string  | Yes   | Valid country code.           |
 | locale       | string  | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.    |
-| sentenceCase | boolean | No   | Whether the first letter of the text is capitalized. The default value is **true**.|
+| sentenceCase | boolean | No   | Whether to use sentence case to display the text. The value **true** means to display the text in title case format, and the value **false** means to display the text in the default case format of the locale. The default value is **true**.|
 
 **Return value**
 
@@ -84,7 +84,7 @@ Obtains the localized display of the text for the specified language. For exampl
 | ------------ | ------- | ---- | ---------------- |
 | language     | string  | Yes   | Valid language ID.           |
 | locale       | string  | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.    |
-| sentenceCase | boolean | No   | Whether the first letter of the text is capitalized. The default value is **true**.|
+| sentenceCase | boolean | No   | Whether to use sentence case to display the text. The value **true** means to display the text in title case format, and the value **false** means to display the text in the default case format of the locale. The default value is **true**.|
 
 **Return value**
 
@@ -204,7 +204,7 @@ Checks whether the system language matches the specified region.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | The value **true** indicates that the language matches the specified country or region,<br>and the value **false** indicates the opposite.|
+| boolean | **true** if the current language matches the locale, and **false** otherwise.|
 
 **Error codes**
 
@@ -313,7 +313,7 @@ Checks whether the 24-hour clock is used.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | The value **true** indicates that the 24-hour clock is used, and the value **false** indicates the opposite.|
+| boolean | **true** if the 24-hour clock is used, and **false** otherwise.|
 
 **Example**
   ```ts
@@ -487,13 +487,13 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   }
   ```
 
-### getTemperatureType<sup>16+</sup>
+### getTemperatureType<sup>18+</sup>
 
 static getTemperatureType(): TemperatureType
 
 Obtains the preferred temperature unit for the current user.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -501,20 +501,20 @@ Obtains the preferred temperature unit for the current user.
 
 | Type    | Description           |
 | ------ | ------------- |
-| [TemperatureType](#temperaturetype16) | Temperature unit.|
+| [TemperatureType](#temperaturetype18) | Temperature unit.|
 
 **Example**
   ```ts
   let type: i18n.TemperatureType = i18n.System.getTemperatureType();
   ```
 
-### getTemperatureName<sup>16+</sup>
+### getTemperatureName<sup>18+</sup>
 
 static getTemperatureName(type: TemperatureType): string
 
 Obtains the name of a temperature unit.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -522,7 +522,7 @@ Obtains the name of a temperature unit.
 
 | Name     | Type    | Mandatory  | Description           |
 | -------- | ------ | ---- | ------------- |
-| type| [TemperatureType](#temperaturetype16) | Yes   | Temperature unit.|
+| type| [TemperatureType](#temperaturetype18) | Yes   | Temperature unit.|
 
 **Return value**
 
@@ -556,13 +556,13 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   }
   ```
 
-### getFirstDayOfWeek<sup>16+</sup>
+### getFirstDayOfWeek<sup>18+</sup>
 
 static getFirstDayOfWeek(): WeekDay
 
 Obtains the preferred start day of a week for the current user.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -570,18 +570,18 @@ Obtains the preferred start day of a week for the current user.
 
 | Type    | Description           |
 | ------ | ------------- |
-| [WeekDay](#weekday16) | Start day of a week.|
+| [WeekDay](#weekday18) | Start day of a week.|
 
 **Example**
   ```ts
   let type: i18n.WeekDay = i18n.System.getFirstDayOfWeek();
   ```
 
-## TemperatureType<sup>16+</sup>
+## TemperatureType<sup>18+</sup>
 
 Enumerates temperature units.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -591,11 +591,11 @@ Enumerates temperature units.
 | FAHRENHEIT | 2 | Fahrenheit.|
 | KELVIN | 3 | Kelvin.|
 
-## WeekDay<sup>16+</sup>
+## WeekDay<sup>18+</sup>
 
 Enumerates the start day of a week. The value is a day from Monday to Sunday.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1241,7 +1241,7 @@ Checks whether the format of the specified phone number is valid.
 
 | Type     | Description                                   |
 | ------- | ------------------------------------- |
-| boolean | The value **true** indicates that the phone number format is valid, and the value **false** indicates the opposite.|
+| boolean | **true** if the phone number format is valid, and **false** otherwise.|
 
 **Example**
   ```ts
@@ -1350,9 +1350,9 @@ Defines the measurement unit information.
 | measureSystem | string | Yes   | Yes   | Measurement system. The value can be **SI**, **US**, or **UK**.|
 
 
-## getInstance<sup>8+</sup>
+## i18n.getInstance<sup>8+</sup>
 
-getInstance(locale?:string): IndexUtil
+getInstance(locale?: string): IndexUtil
 
 Creates an **IndexUtil** object.
 
@@ -1718,7 +1718,7 @@ Checks whether the specified position is a break point.
 
 | Type     | Description                             |
 | ------- | ------------------------------- |
-| boolean | Offset to the specified position of the text. The value **true** is returned if the position specified by **offset** is a break point, and the value **false** is returned otherwise.<br>If **true** is returned, the **BreakIterator** object is moved to the position specified by **offset**. Otherwise, **following** is called.|
+| boolean | **true** if the text position specified by offset is a split point, and **false** otherwise.<br>If **true** is returned, the **BreakIterator** object is moved to the position specified by **offset**. Otherwise, **following** is called.|
 
 **Example**
   ```ts
@@ -1796,7 +1796,7 @@ Obtains the localized representation of a **TimeZone** object.
 | Name   | Type     | Mandatory  | Description                  |
 | ------ | ------- | ---- | -------------------- |
 | locale | string  | No   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region. The default value is the system locale.               |
-| isDST  | boolean | No   | Whether DST is considered in the localized representation of the **TimeZone** object. The default value is **false**.|
+| isDST  | boolean | No   | **true** if DST is considered in the localized representation of the **TimeZone** object, and **false** otherwise. The default value is **false**.|
 
 **Return value**
 
@@ -2130,7 +2130,7 @@ Checks whether the input string is composed of digits.
 
 | Type     | Description                                  |
 | ------- | ------------------------------------ |
-| boolean | The value **true** indicates that the input character is a digit, and the value **false** indicates the opposite.|
+| boolean | **true** if the input character is a digit, and **false** otherwise.|
 
 **Example**
   ```ts
@@ -2158,7 +2158,7 @@ Checks whether the input character is a space.
 
 | Type     | Description                                    |
 | ------- | -------------------------------------- |
-| boolean | The value **true** indicates that the input character is a space, and the value **false** indicates the opposite.|
+| boolean | **true** if the input character is a space, and **false** otherwise.|
 
 **Example**
   ```ts
@@ -2186,7 +2186,7 @@ Checks whether the input character is a white space.
 
 | Type     | Description                                    |
 | ------- | -------------------------------------- |
-| boolean | The value **true** indicates that the input character is a white space, and the value **false** indicates the opposite.|
+| boolean | **true** if the input character is a white space, and **false** otherwise.|
 
 **Example**
   ```ts
@@ -2214,7 +2214,7 @@ Checks whether the input character is of the right to left (RTL) language.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | The value **true** indicates that the input character is of the RTL language, and the value **false** indicates the opposite.|
+| boolean | **true** if the input character is of the RTL language, and **false** otherwise.|
 
 **Example**
   ```ts
@@ -2242,7 +2242,7 @@ Checks whether the input character is an ideographic character.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | The value **true** indicates that the input character is an ideographic character, and the value **false** indicates the opposite.|
+| boolean | **true** if the input character an ideographic character, and **false** otherwise.|
 
 **Example**
   ```ts
@@ -2270,7 +2270,7 @@ Checks whether the input character is a letter.
 
 | Type     | Description                                  |
 | ------- | ------------------------------------ |
-| boolean | The value **true** indicates that the input character is a letter, and the value **false** indicates the opposite.|
+| boolean | **true** if the input character a letter, and **false** otherwise.|
 
 **Example**
   ```ts
@@ -2298,7 +2298,7 @@ Checks whether the input character is a lowercase letter.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | The value **true** indicates that the input character is a lowercase letter, and the value **false** indicates the opposite.|
+| boolean | **true** if the input character a lowercase letter, and **false** otherwise.|
 
 **Example**
   ```ts
@@ -2326,7 +2326,7 @@ Checks whether the input character is an uppercase letter.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | The value **true** indicates that the input character is an uppercase letter, and the value **false** indicates the opposite.|
+| boolean | **true** if the input character an uppercase letter, and **false** otherwise.|
 
 **Example**
   ```ts
@@ -2624,13 +2624,13 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   }
   ```
 
-### getUnicodeWrappedFilePath<sup>16+</sup>
+### getUnicodeWrappedFilePath<sup>18+</sup>
 
 static getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: intl.Locale): string
 
 Performs file path mirroring.<br>For example, **/data/out/tmp** is changed to **tmp/out/data/** after mirroring.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2812,7 +2812,7 @@ Determines whether the specified date is a holiday.
 
 |       Type       |         Description         |
 | ----------------- | ----------------------|
-| boolean           | The value **true** indicates that the specified date is a holiday, and the value **false** indicates the opposite.|
+| boolean           | **true** if the specified date is a holiday, and **false** otherwise.|
 
 **Error codes**
 
@@ -2916,13 +2916,13 @@ Defines the local names of a holiday.
 | name            | string           |   Yes   | Local name of a holiday. For example, the Turkish name of Sacrifice Feast is Kurban Bayrami.     |
 
 
-## i18n.getSimpleDateTimeFormatByPattern<sup>16+</sup>
+## i18n.getSimpleDateTimeFormatByPattern<sup>18+</sup>
 
 getSimpleDateTimeFormatByPattern(pattern: string, locale?: intl.Locale): SimpleDateTimeFormat
 
-Obtains a **SimpleDateTimeFormat** object based on the specified pattern string. For details about the display differences between the objects obtained by this API and **getSimpleDateTimeFormatBySkeleton**, see [SimpleDateTimeFormat] (#simpledatetimeformat16).
+Obtains a **SimpleDateTimeFormat** object based on the specified pattern string. For details about the display differences between the objects obtained by this API and **getSimpleDateTimeFormatBySkeleton**, see [SimpleDateTimeFormat] (#simpledatetimeformat18).
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2937,7 +2937,7 @@ Obtains a **SimpleDateTimeFormat** object based on the specified pattern string.
 
 | Type                    | Description   |
 | ---------------------- | ----- |
-| [SimpleDateTimeFormat](#simpledatetimeformat16) | **SimpleDateTimeFormat** object.|
+| [SimpleDateTimeFormat](#simpledatetimeformat18) | **SimpleDateTimeFormat** object.|
 
 **Error codes**
 
@@ -2956,13 +2956,13 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   let formatter : i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatByPattern("'month('M')'", locale);
   ```
 
-## i18n.getSimpleDateTimeFormatBySkeleton<sup>16+</sup>
+## i18n.getSimpleDateTimeFormatBySkeleton<sup>18+</sup>
 
 getSimpleDateTimeFormatBySkeleton(skeleton: string, locale?: intl.Locale): SimpleDateTimeFormat
 
-Obtains a **SimpleDateTimeFormat** object based on the specified skeleton. For details about the display differences between the objects obtained by this API and **getSimpleDateTimeFormatByPattern**, see [SimpleDateTimeFormat] (#simpledatetimeformat16).
+Obtains a **SimpleDateTimeFormat** object based on the specified skeleton. For details about the display differences between the objects obtained by this API and **getSimpleDateTimeFormatByPattern**, see [SimpleDateTimeFormat] (#simpledatetimeformat18).
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2977,7 +2977,7 @@ Obtains a **SimpleDateTimeFormat** object based on the specified skeleton. For d
 
 | Type                    | Description   |
 | ---------------------- | ----- |
-| [SimpleDateTimeFormat](#simpledatetimeformat16) | **SimpleDateTimeFormat** object.|
+| [SimpleDateTimeFormat](#simpledatetimeformat18) | **SimpleDateTimeFormat** object.|
 
 **Error codes**
 
@@ -2996,15 +2996,15 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   let formatter : i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatBySkeleton("yMd", locale);
   ```
 
-## SimpleDateTimeFormat<sup>16+</sup>
+## SimpleDateTimeFormat<sup>18+</sup>
 
-### format<sup>16+</sup>
+### format<sup>18+</sup>
 
 format(date: Date): string
 
 Formats the date and time.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -3046,13 +3046,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   ```
 
 
-## i18n.getSimpleNumberFormatBySkeleton<sup>16+</sup>
+## i18n.getSimpleNumberFormatBySkeleton<sup>18+</sup>
 
 getSimpleNumberFormatBySkeleton(skeleton: string, locale?: intl.Locale): SimpleNumberFormat
 
 Obtains a **SimpleNumberFormat** object based on the specified skeleton.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -3067,7 +3067,7 @@ Obtains a **SimpleNumberFormat** object based on the specified skeleton.
 
 | Type                    | Description   |
 | ---------------------- | ----- |
-| [SimpleNumberFormat](#simplenumberformat16) | **SimpleNumberFormat** object.|
+| [SimpleNumberFormat](#simplenumberformat18) | **SimpleNumberFormat** object.|
 
 **Error codes**
 
@@ -3086,15 +3086,15 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   let formatter : i18n.SimpleNumberFormat = i18n.getSimpleNumberFormatBySkeleton("%", locale);
   ```
 
-## SimpleNumberFormat<sup>16+</sup>
+## SimpleNumberFormat<sup>18+</sup>
 
-### format<sup>16+</sup>
+### format<sup>18+</sup>
 
 format(value: number): string
 
 Formats a number.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -3127,15 +3127,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   let result : string = formatter.format(10); // result = 10%
   ```
 
-## StyledNumberFormat<sup>16+</sup>
+## StyledNumberFormat<sup>18+</sup>
 
-### constructor<sup>16+</sup>
+### constructor<sup>18+</sup>
 
 constructor(numberFormat: intl.NumberFormat | SimpleNumberFormat, options?: StyledNumberFormatOptions)
 
 Creates a **NumberFormat** object for rich text display.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -3143,16 +3143,8 @@ Creates a **NumberFormat** object for rich text display.
 
 |   Name |      Type     | Mandatory|     Description     |
 | --------- | ------------- | ---- | ------------- |
-| numberFormat | [intl.NumberFormat](js-apis-intl.md#numberformat) \| [SimpleNumberFormat](#simplenumberformat16) | Yes  | **NumberFormat** object. |
-| options | [StyledNumberFormatOptions](#stylednumberformatoptions16) | No| Configuration options of the **NumberFormat** object. The default value is the default text style. |
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID | Error Message                  |
-| ------ | ---------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| numberFormat | [intl.NumberFormat](js-apis-intl.md#numberformat) \| [SimpleNumberFormat](#simplenumberformat18) | Yes  | **NumberFormat** object. |
+| options | [StyledNumberFormatOptions](#stylednumberformatoptions18) | No| Configuration options of the **NumberFormat** object. The default value is the default text style. |
 
 **Example**
   ```ts
@@ -3181,13 +3173,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
     unit: unit_textStyle });
   ```
 
-### format<sup>16+</sup>
+### format<sup>18+</sup>
 
 format(value: number): StyledString
 
 Formats a number to a rich text object.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -3195,7 +3187,7 @@ Formats a number to a rich text object.
 
 |   Name |      Type     | Mandatory|     Description     |
 | --------- | ------------- | ---- | ------------- |
-| value | Number | Yes| Number to be formatted. |
+| value | number | Yes| Number to be formatted. |
 
 **Return value**
 
@@ -3241,11 +3233,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   let result_2 = styledNumFmt_2.format(1234.5678); // result_2.getString() is 1,234.5678%. In result_2, 1,234 is in red, . in brown, 5678 in blue, and % in green.
   ```
 
-## StyledNumberFormatOptions<sup>16+</sup>
+## StyledNumberFormatOptions<sup>18+</sup>
 
 Defines the options for creating a **NumberFormat** object for rich text display.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -3272,7 +3264,7 @@ This API is deprecated since API version 9. You are advised to use [System.getDi
 | ------------ | ------- | ---- | ---------------- |
 | country      | string  | Yes   | Specified country.           |
 | locale       | string  | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.     |
-| sentenceCase | boolean | No   | Whether to use sentence case for the localized script. The default value is **true**.|
+| sentenceCase | boolean | No   | Whether to use sentence case to display the text. The value **true** means to display the text in title case format, and the value **false** means to display the text in the default case format of the locale. The default value is **true**.|
 
 **Return value**
 
@@ -3302,7 +3294,7 @@ This API is deprecated since API version 9. You are advised to use [System.getDi
 | ------------ | ------- | ---- | ---------------- |
 | country      | string  | Yes   | Specified country.           |
 | locale       | string  | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.     |
-| sentenceCase | boolean | No   | Whether to use sentence case for the localized script. The default value is **true**.|
+| sentenceCase | boolean | No   | Whether to use sentence case to display the text. The value **true** means to display the text in title case format, and the value **false** means to display the text in the default case format of the locale. The default value is **true**.|
 
 **Return value**
 
@@ -3333,7 +3325,7 @@ This API is deprecated since API version 9. You are advised to use [System.getDi
 | ------------ | ------- | ---- | ---------------- |
 | language     | string  | Yes   | Specified language.           |
 | locale       | string  | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.     |
-| sentenceCase | boolean | No   | Whether to use sentence case for the localized script. The default value is **true**.|
+| sentenceCase | boolean | No   | Whether to use sentence case to display the text. The value **true** means to display the text in title case format, and the value **false** means to display the text in the default case format of the locale. The default value is **true**.|
 
 **Return value**
 
@@ -3428,7 +3420,7 @@ This API is deprecated since API version 9. You are advised to use [System.is24H
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | The value **true** indicates that the 24-hour clock is used, and the value **false** indicates the opposite.|
+| boolean | **true** if the 24-hour clock is used, and **false** otherwise.|
 
 **Example**
   ```ts
@@ -3458,7 +3450,7 @@ This API is deprecated since API version 9. The substitute API is available only
 
 | Type     | Description                           |
 | ------- | ----------------------------- |
-| boolean | The value **true** indicates that the 24-hour clock is enabled, and the value **false** indicates the opposite.|
+| boolean | **true** if the setting is successful, and **false** otherwise.|
 
 **Example**
   ```ts
@@ -3490,7 +3482,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                           |
 | ------- | ----------------------------- |
-| boolean | The value **true** indicates that the preferred language is successfully added, and the value **false** indicates the opposite.|
+| boolean | **true** if the operation is successful, and **false** otherwise.|
 
 **Example**
   ```ts
@@ -3523,7 +3515,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                           |
 | ------- | ----------------------------- |
-| boolean | The value **true** indicates that the preferred language is deleted, and the value **false** indicates the opposite.|
+| boolean | **true** if the operation is successful, and **false** otherwise.|
 
 **Example**
   ```ts
@@ -3630,7 +3622,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                                  |
 | ------- | ------------------------------------ |
-| boolean | The value **true** indicates that the input character is a digit, and the value **false** indicates the opposite.|
+| boolean | **true** if the input character is a digit, and **false** otherwise.|
 
 
 ### isSpaceChar<sup>(deprecated)</sup>
@@ -3653,7 +3645,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                                    |
 | ------- | -------------------------------------- |
-| boolean | The value **true** indicates that the input character is a space, and the value **false** indicates the opposite.|
+| boolean | **true** if the input character is a space, and **false** otherwise.|
 
 
 ### isWhitespace<sup>(deprecated)</sup>
@@ -3676,7 +3668,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                                    |
 | ------- | -------------------------------------- |
-| boolean | The value **true** indicates that the input character is a white space, and the value **false** indicates the opposite.|
+| boolean | **true** if the input character is a white space, and **false** otherwise.|
 
 
 ### isRTL<sup>(deprecated)</sup>
@@ -3699,7 +3691,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | The value **true** indicates that the input character is of the RTL language, and the value **false** indicates the opposite.|
+| boolean | **true** if the input character is of the RTL language, and **false** otherwise.|
 
 
 ### isIdeograph<sup>(deprecated)</sup>
@@ -3722,7 +3714,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | The value **true** indicates that the input character is an ideographic character, and the value **false** indicates the opposite.|
+| boolean | **true** if the input character an ideographic character, and **false** otherwise.|
 
 
 ### isLetter<sup>(deprecated)</sup>
@@ -3745,7 +3737,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                                  |
 | ------- | ------------------------------------ |
-| boolean | The value **true** indicates that the input character is a letter, and the value **false** indicates the opposite.|
+| boolean | **true** if the input character a letter, and **false** otherwise.|
 
 
 ### isLowerCase<sup>(deprecated)</sup>
@@ -3768,7 +3760,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | The value **true** indicates that the input character is a lowercase letter, and the value **false** indicates the opposite.|
+| boolean | **true** if the input character a lowercase letter, and **false** otherwise.|
 
 
 ### isUpperCase<sup>(deprecated)</sup>
@@ -3791,7 +3783,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | The value **true** indicates that the input character is an uppercase letter, and the value **false** indicates the opposite.|
+| boolean | **true** if the input character an uppercase letter, and **false** otherwise.|
 
 
 ### getType<sup>(deprecated)</sup>

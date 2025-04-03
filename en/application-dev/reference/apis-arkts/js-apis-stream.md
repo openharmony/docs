@@ -29,8 +29,8 @@ Stream to which data can be written. A writable stream allows data to be written
 | writableObjectMode  | boolean   | Yes  | No| Whether the writable stream works in object mode. The value **true** means that the stream is configured in object mode, and **false** means the opposite. Currently, only raw data (string and Uint8Array) is supported, and the return value is **false**.|
 | writableHighWatermark | number | Yes| No | High watermark for the data volume in the buffer. This value is not customizable currently. When you call [write()](#write), if the data volume in the buffer reaches this watermark, [write()](#write) will return **false**. The default value is 16 x 1024, in bytes.|
 | writable | boolean | Yes| No | Whether the writable stream is currently writable. The value **true** means that the stream is currently writable, and **false** means that the stream does not accept write operations.|
-| writableLength | number | Yes| No | Number of bytes to be written in the buffer of the readable stream.|
-| writableCorked | number | Yes | No| Number of times the **uncork()** API needs to be called in order to fully uncork the writable stream.|
+| writableLength | number | Yes| No | Number of bytes to be written in the buffer of the writable stream.|
+| writableCorked | number | Yes | No| Count of cork states of the writable stream. If the value is greater than 0, the writable stream buffers all writes. If the value is **0**, buffering stops. You can call [cork()](#cork) to increment the count by one, call [uncork()](#uncork) to decrement the count by one, and call [end()](#end) to clear the count.|
 | writableEnded | boolean | Yes | No| Whether [end()](#end) has been called for the writable stream. This property does not specify whether the data has been flushed. The value **true** means that [end()](#end) has been called, and **false** means the opposite.|
 | writableFinished | boolean | Yes | No| Whether data in the writable stream has been flushed. The value **true** means that data in the stream has been flushed, and **false** means the opposite.|
 
@@ -108,6 +108,8 @@ writableStream.write('test', 'utf8');
 end(chunk?: string | Uint8Array, encoding?: string, callback?: Function): Writable
 
 Ends the writing process in a writable stream. This API uses an asynchronous callback to return the result.
+
+If the value of **writableCorked** is greater than 0, the value is set to **0** and the remaining data in the buffer is output.
 
 If the **chunk** parameter is passed, it is treated as the final data chunk and written using either the **write** or **doWrite** API, based on the current execution context.
 
@@ -221,6 +223,8 @@ cork(): boolean
 
 Forces all written data to be buffered in memory. This API is called to optimize the performance of continuous write operations.
 
+After this API is called, the value of **writableCorked** is incremented by one. It is recommended that this API be used in pair with [uncork()](#uncork).
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
@@ -254,6 +258,8 @@ console.info("Writable cork result", result); // Writable cork result true
 uncork(): boolean
 
 Flushes all data buffered, and writes the data to the target.
+
+After this API is called, the value of **writableCorked** is decremented by one. If the value reaches **0**, the stream is no longer in the cork state. Otherwise, the stream is still in the cork state. It is recommended that this API be used in pair with [cork()](#cork).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1171,7 +1177,7 @@ The **Duplex** class inherits from [Readable](#readable) and supports all the AP
 | writableHighWatermark | number | Yes| No | High watermark for the data volume in the buffer of the duplex stream in write mode. This value is not customizable currently. When you call [write()](#write-1), if the data volume in the buffer reaches this watermark, [write()](#write-1) will return **false**. The default value is 16 x 1024, in bytes.|
 | writable | boolean | Yes| No | Whether the duplex stream is currently writable. The value **true** means that the stream is currently writable, and **false** means that the stream does not accept write operations.|
 | writableLength | number | Yes| No | Number of bytes to be written in the buffer of the duplex stream.|
-| writableCorked | number | Yes | No| Number of times the **uncork()** API needs to be called in order to fully uncork the duplex stream.|
+| writableCorked | number | Yes | No| Count of cork states of the duplex stream. If the value is greater than 0, the duplex stream buffers all writes. If the value is **0**, buffering stops. You can call [cork()](#cork-1) to increment the count by one, call [uncork()](#uncork-1) to decrement the count by one, and call [end()](#end-1) to clear the count.|
 | writableEnded | boolean | Yes | No| Whether [end()](#end-1) has been called for the duplex stream. This property does not specify whether the data has been flushed. The value **true** means that [end()](#end-1) has been called, and **false** means the opposite.|
 | writableFinished | boolean | Yes | No| Whether data in the duplex stream has been flushed. The value **true** means that data in the stream has been flushed, and **false** means the opposite.|
 
@@ -1254,9 +1260,11 @@ end(chunk?: string | Uint8Array, encoding?: string, callback?: Function): Writab
 
 Ends the writing process in a duplex stream. This API uses an asynchronous callback to return the result.
 
+If the value of **writableCorked** is greater than 0, the value is set to **0** and the remaining data in the buffer is output.
+
 If the **chunk** parameter is passed, it is treated as the final data chunk and written using either the **write** or **doWrite** API, based on the current execution context.
 
-If **doWrite** is used for writing, the validity check of the **encoding** parameter depends on **doWrite**. 
+If **doWrite** is used for writing, the validity check of the **encoding** parameter depends on **doWrite**.
 
 If **end** is used alone (without **write**) and the **chunk** parameter is passed, the data is written through **doWrite**.
 
@@ -1367,6 +1375,8 @@ cork(): boolean
 
 Forces all written data to be buffered in memory. This API is called to optimize the performance of continuous write operations.
 
+After this API is called, the value of **writableCorked** is incremented by one. It is recommended that this API be used in pair with [uncork()](#uncork-1).
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
@@ -1390,6 +1400,8 @@ console.info("duplexStream cork result", result); // duplexStream cork result tr
 uncork(): boolean
 
 Flushes all data buffered, and writes the data to the target.
+
+After this API is called, the value of **writableCorked** is decremented by one. If the value reaches **0**, the stream is no longer in the cork state. Otherwise, the stream is still in the cork state. It is recommended that this API be used in pair with [cork()](#cork-1).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

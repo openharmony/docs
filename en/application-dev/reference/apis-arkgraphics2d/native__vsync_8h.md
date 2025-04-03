@@ -5,13 +5,9 @@
 
 The **native_vsync.h** file declares the functions for obtaining and using native virtual synchronization (VSync).
 
-**Since**
+**Since**: 9
 
-9
-
-**Related Modules**
-
-[NativeVsync](_native_vsync.md)
+**Related module**: [NativeVsync](_native_vsync.md)
 
 
 ## Summary

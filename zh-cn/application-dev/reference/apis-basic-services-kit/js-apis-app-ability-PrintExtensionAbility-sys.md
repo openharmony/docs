@@ -37,8 +37,8 @@ onStartPrintJob(jobInfo: print.PrintJob): void
 **示例：**
 
 ```ts
-import PrintExtensionAbility from '@ohos.app.ability.PrintExtensionAbility';
-import print from '@ohos.print';
+import { PrintExtensionAbility } from '@kit.BasicServicesKit';
+import { print } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onStartPrintJob(jobInfo: print.PrintJob): void {
@@ -72,8 +72,8 @@ onCancelPrintJob(jobInfo: print.PrintJob): void
 **示例：**
 
 ```ts
-import PrintExtensionAbility from '@ohos.app.ability.PrintExtensionAbility';
-import print from '@ohos.print';
+import { PrintExtensionAbility } from '@kit.BasicServicesKit';
+import { print } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onCancelPrintJob(jobInfo: print.PrintJob): void {
@@ -112,8 +112,8 @@ onRequestPrinterCapability(printerId: number): print.PrinterCapability
 **示例：**
 
 ```ts
-import PrintExtensionAbility from '@ohos.app.ability.PrintExtensionAbility';
-import print from '@ohos.print';
+import { PrintExtensionAbility } from '@kit.BasicServicesKit';
+import { print } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onRequestPrinterCapability(printerId: number): print.PrinterCapability {
@@ -158,8 +158,8 @@ onRequestPreview(jobInfo: print.PrintJob): string
 **示例：**
 
 ```ts
-import PrintExtensionAbility from '@ohos.app.ability.PrintExtensionAbility';
-import print from '@ohos.print';
+import { PrintExtensionAbility } from '@kit.BasicServicesKit';
+import { print } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onRequestPreview(jobInfo: print.PrintJob): string {

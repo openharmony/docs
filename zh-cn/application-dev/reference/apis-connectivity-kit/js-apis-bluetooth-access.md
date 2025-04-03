@@ -125,7 +125,7 @@ try {
 
 on(type: 'stateChange', callback: Callback&lt;BluetoothState&gt;): void
 
-订阅蓝牙设备开关状态事件。使用Callback异步回调。从API16开始不再校验ohos.permission.ACCESS_BLUETOOTH权限。
+订阅蓝牙设备开关状态事件。使用Callback异步回调。从API18开始不再校验ohos.permission.ACCESS_BLUETOOTH权限。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -167,9 +167,7 @@ try {
 
 off(type: 'stateChange', callback?: Callback&lt;BluetoothState&gt;): void
 
-取消订阅蓝牙设备开关状态事件。
-
-**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+取消订阅蓝牙设备开关状态事件。从API18开始不再校验ohos.permission.ACCESS_BLUETOOTH权限。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -188,7 +186,6 @@ off(type: 'stateChange', callback?: Callback&lt;BluetoothState&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
-|201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900099 | Operation failed.                        |

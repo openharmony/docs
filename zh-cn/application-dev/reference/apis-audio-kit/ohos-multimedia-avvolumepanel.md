@@ -48,7 +48,7 @@ AVVolumePanel({volumeLevel?: number, volumeParameter?: AVVolumePanelParameter})
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
-| 名称 | 类型 | 必填 | 说明
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 |position | [Position](../apis-arkui/arkui-ts/ts-types.md#position) | 否 | 设置音量面板的位置。 |
 

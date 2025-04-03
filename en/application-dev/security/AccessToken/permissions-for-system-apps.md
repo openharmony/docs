@@ -3596,6 +3596,18 @@ Allows a system application or system ability to receive fusion service messages
 
 **Valid since**: 12
 
+## ohos.permission.RECEIVE_BMS_BROKER_MESSAGES
+
+Allows a system application or system ability to receive bms broker service messages.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
+
 ## ohos.permission.ACCESS_FUSION_MANAGER
 
 Allows a system ability or system application to access the fusion service.
@@ -4552,3 +4564,65 @@ This permission prevents authorized access to custom EDM configuration files, su
 **Enable via ACL**：true
 
 **Valid since**：18
+
+## ohos.permission.READ_DHA
+
+Allows an application to read device health attestation information.
+
+**Permission level**：system_core
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：18
+
+## ohos.permission.WRITE_DHA
+
+Allows an application to write device health attestation information.
+
+**Permission level**：system_core
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：18
+
+## ohos.permission.NOTIFY_DHA
+
+Allows an application to notify the device health attestation event.
+
+**Permission level**：system_core
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：18
+
+## ohos.permission.CHANGE_DEFAULT_APPLICATION
+
+Allows an application to listen for the changes of a default application.
+
+Users can set default applications for the system, for example, specifying an application to open files of a certain type by default. Any change in the default application will trigger an event indicating the change.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：17
+
+## ohos.permission.SEND_NOTIFICATION_CROSS_USER
+
+Allows an application to send notifications to specified users in the system.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18

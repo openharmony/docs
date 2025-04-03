@@ -2076,7 +2076,7 @@ getDensity():number
 
 | 类型   | 说明            |
 | ------ | --------------- |
-| number | 图像像素的密度。|
+| number | 图像像素的密度，单位为ppi。|
 
 **示例：**
 
@@ -2100,7 +2100,7 @@ opacity(rate: number, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                 | 必填 | 说明                           |
 | -------- | -------------------- | ---- | ------------------------------ |
-| rate     | number               | 是   | 透明比率的值。   |
+| rate     | number               | 是   | 透明比率的值，取值范围是(0,1]。  |
 | callback | AsyncCallback\<void> | 是   | 回调函数。当设置透明比率成功，err为undefined，否则为错误对象。 |
 
 **示例：**
@@ -2139,7 +2139,7 @@ opacity(rate: number): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                        |
 | ------ | ------ | ---- | --------------------------- |
-| rate   | number | 是   | 透明比率的值。|
+| rate   | number | 是   | 透明比率的值，取值范围是(0,1]。|
 
 **返回值：**
 
@@ -2178,7 +2178,7 @@ opacitySync(rate: number): void
 
 | 参数名   | 类型                 | 必填 | 说明                           |
 | -------- | -------------------- | ---- | ------------------------------ |
-| rate     | number               | 是   | 透明比率的值。   |
+| rate     | number               | 是   | 透明比率的值，取值范围是(0,1]。   |
 
 **错误码：**
 
@@ -3007,8 +3007,8 @@ flip(horizontal: boolean, vertical: boolean, callback: AsyncCallback\<void>): vo
 
 | 参数名     | 类型                 | 必填 | 说明                          |
 | ---------- | -------------------- | ---- | ----------------------------- |
-| horizontal | boolean              | 是   | 水平翻转。                    |
-| vertical   | boolean              | 是   | 垂直翻转。                    |
+| horizontal | boolean              | 是   | true表示进行水平翻转，false表示不进行水平翻转。            |
+| vertical   | boolean              | 是   | true表示进行垂直翻转，false表示不进行垂直翻转。            |
 | callback   | AsyncCallback\<void> | 是   | 回调函数，当对图片翻转成功，err为undefined，否则为错误对象。|
 
 **示例：**
@@ -3048,8 +3048,8 @@ flip(horizontal: boolean, vertical: boolean): Promise\<void>
 
 | 参数名     | 类型    | 必填 | 说明      |
 | ---------- | ------- | ---- | --------- |
-| horizontal | boolean | 是   | true表示进行水平翻转。|
-| vertical   | boolean | 是   | true表示进行垂直翻转。|
+| horizontal | boolean              | 是   | true表示进行水平翻转，false表示不进行水平翻转。            |
+| vertical   | boolean              | 是   | true表示进行垂直翻转，false表示不进行垂直翻转。            |
 
 **返回值：**
 
@@ -3089,8 +3089,8 @@ flipSync(horizontal: boolean, vertical: boolean): void
 
 | 参数名     | 类型                 | 必填 | 说明                          |
 | ---------- | -------------------- | ---- | ----------------------------- |
-| horizontal | boolean              | 是   | 水平翻转。                    |
-| vertical   | boolean              | 是   | 垂直翻转。                    |
+| horizontal | boolean              | 是   | true表示进行水平翻转，false表示不进行水平翻转。            |
+| vertical   | boolean              | 是   | true表示进行垂直翻转，false表示不进行垂直翻转。            |
 
 **错误码：**
 
@@ -3582,7 +3582,7 @@ pixelmap在跨线程传输时，断开原线程的引用。适用于需立即释
 
 | 参数名   | 类型               | 必填 | 说明                          |
 | ------- | ------------------ | ---- | ----------------------------- |
-| detached | boolean   | 是   | 是否断开原线程引用。                  |
+| detached | boolean   | 是   | true表示断开原线程引用，false表示不断开原线程引用。 |
 
 **错误码：**
 
@@ -4342,7 +4342,7 @@ getImageInfo(index: number, callback: AsyncCallback\<ImageInfo>): void
 
 | 参数名   | 类型                                   | 必填 | 说明                                     |
 | -------- | -------------------------------------- | ---- | ---------------------------------------- |
-| index    | number                                 | 是   | 创建图片源时的序号。                     |
+| index    | number                                 | 是   | 创建图片源时的序号。默认值为0，表示第一张图片。当取值为N时，表示第N-1张图片。单帧图片场景中取值只能为0，动图等多帧图片场景中取值范围为：0~（帧数-1）。                   |
 | callback | AsyncCallback<[ImageInfo](#imageinfo)> | 是   | 回调函数。当获取图片信息成功，err为undefined，data为获取到的图片信息；否则为错误对象。 |
 
 **示例：**
@@ -4407,7 +4407,7 @@ getImageInfo(index?: number): Promise\<ImageInfo>
 
 | 参数名| 类型   | 必填 | 说明                                  |
 | ----- | ------ | ---- | ------------------------------------- |
-| index | number | 否   | 创建图片源时的序号，不选择时默认为0。 |
+| index | number | 否   | 创建图片源时的序号。默认值为0，表示第一张图片。当取值为N时，表示第N-1张图片。单帧图片场景中取值只能为0，动图等多帧图片场景中取值范围为：0~（帧数-1）。 |
 
 **返回值：**
 
@@ -4440,7 +4440,7 @@ getImageInfoSync(index?: number): ImageInfo
 
 | 参数名| 类型   | 必填 | 说明                                  |
 | ----- | ------ | ---- | ------------------------------------- |
-| index | number | 否   | 创建图片源时的序号，不选择时默认为0。 |
+| index | number | 否   | 创建图片源时的序号。默认值为0，表示第一张图片。当取值为N时，表示第N-1张图片。单帧图片场景中取值只能为0，动图等多帧图片场景中取值范围为：0~（帧数-1）。 |
 
 **返回值：**
 
@@ -4877,9 +4877,10 @@ updateData(buf: ArrayBuffer, isFinished: boolean, offset: number, length: number
 
 | 参数名     | 类型        | 必填 | 说明         |
 | ---------- | ----------- | ---- | ------------ |
-| buf        | ArrayBuffer | 是   | 增量数据。   |
-| isFinished | boolean     | 是   | 是否更新完。 |
-| offset      | number      | 是   | 偏移量。     |
+| buf        | ArrayBuffer         | 是   | 存放增量数据的buffer。           |
+| isFinished | boolean             | 是   | true表示数据更新完成，当前buffer内存放最后一段数据；false表示数据还未更新完成，需要继续更新。|
+| offset      | number              | 是   | 即当前buffer中的数据首地址，相对于整个图片文件首地址的偏移量。单位：字节。             |
+| length     | number              | 是   | 当前buffer的长度。单位：字节。            |
 | length     | number      | 是   | 数组长。     |
 
 **返回值：**
@@ -4914,10 +4915,10 @@ updateData(buf: ArrayBuffer, isFinished: boolean, offset: number, length: number
 
 | 参数名     | 类型                | 必填 | 说明                 |
 | ---------- | ------------------- | ---- | -------------------- |
-| buf        | ArrayBuffer         | 是   | 增量数据。           |
-| isFinished | boolean             | 是   | 是否更新完。         |
-| offset      | number              | 是   | 偏移量。             |
-| length     | number              | 是   | 数组长度。             |
+| buf        | ArrayBuffer         | 是   | 存放增量数据的buffer。           |
+| isFinished | boolean             | 是   | true表示数据更新完成，当前buffer内存放最后一段数据；false表示数据还未更新完成，需要继续更新。|
+| offset      | number              | 是   | 即当前buffer中的数据首地址，相对于整个图片文件首地址的偏移量。单位：字节。             |
+| length     | number              | 是   | 当前buffer的长度。单位：字节。            |
 | callback   | AsyncCallback\<void> | 是   |  回调函数，当更新增量数据成功，err为undefined，否则为错误对象。 |
 
 **示例：**
@@ -6626,8 +6627,8 @@ createAuxiliaryPicture(buffer: ArrayBuffer, size: Size, type: AuxiliaryPictureTy
 
 | 参数名 | 类型                                            | 必填 | 说明                         |
 | ------ | ----------------------------------------------- | ---- | ---------------------------- |
-| buffer | ArrayBuffer                                     | 是   | 以buffer形式存放的图像数据。 |
-| size   | [Size](#size)                                   | 是   | 辅助图的尺寸。               |
+| buffer | ArrayBuffer                                     | 是   | 以buffer形式存放的图像数据。  |
+| size   | [Size](#size)                                   | 是   | 辅助图的尺寸。单位：像素。    |
 | type   | [AuxiliaryPictureType](#auxiliarypicturetype13) | 是   | 辅助图类型。                 |
 
 **返回值：**
@@ -7319,8 +7320,8 @@ createImageReceiver(width: number, height: number, format: number, capacity: num
 
 | 参数名   | 类型   | 必填 | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
-| width    | number | 是   | 图像的默认宽度。       |
-| height   | number | 是   | 图像的默认高度。       |
+| width    | number | 是   | 图像的默认宽度。单位：像素。       |
+| height   | number | 是   | 图像的默认高度。单位：像素。       |
 | format   | number | 是   | 图像格式，取值为[ImageFormat](#imageformat9)常量（目前仅支持 ImageFormat:JPEG，实际返回格式由生产者决定，如相机）。  |
 | capacity | number | 是   | 同时访问的最大图像数。 |
 
@@ -7685,8 +7686,8 @@ createImageCreator(width: number, height: number, format: number, capacity: numb
 
 | 参数名   | 类型   | 必填 | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
-| width    | number | 是   | 图像的默认宽度。       |
-| height   | number | 是   | 图像的默认高度。       |
+| width    | number | 是   | 图像的默认宽度。单位：像素。       |
+| height   | number | 是   | 图像的默认高度。单位：像素。       |
 | format   | number | 是   | 图像格式，如YCBCR_422_SP，JPEG。             |
 | capacity | number | 是   | 同时访问的最大图像数。 |
 
@@ -8119,7 +8120,7 @@ img.release().then(() => {
 | 名称   | 类型               | 只读|  可选| 说明                                                         |
 | ------ | ------------------ | ---| -----|------------------------------------------------------- |
 | pixels | ArrayBuffer        | 否 |   否  | 像素。仅支持BGRA_8888格式的图像像素数据。 |
-| offset | number             | 否 |   否  |  偏移量。                                                     |
+| offset | number             | 否 |   否  |  偏移量。单位：字节。                                                     |
 | stride | number             | 否 |   否  | 跨距，内存中每行像素所占的空间。stride >= region.size.width*4。                   |
 | region | [Region](#region8) | 否 |   否  |区域，按照区域读写。写入的区域宽度加X坐标不能大于原图的宽度，写入的区域高度加Y坐标不能大于原图的高度。 |
 
@@ -8137,7 +8138,7 @@ img.release().then(() => {
 | pixelFormat<sup>12+</sup> | [PixelMapFormat](#pixelmapformat7) | 否  |  否 | 像素格式。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
 | alphaType<sup>12+</sup> | [AlphaType](#alphatype9)  | 否  |  否  |透明度。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
 | mimeType<sup>12+</sup> | string  |  否  |   否  |图片真实格式（MIME type）。  |
-| isHdr<sup>12+</sup> | boolean  |  否  | 否  | 图片是否为高动态范围（HDR）。对于[ImageSource](#imagesource)，代表源图片是否为HDR；对于[PixelMap](#pixelmap7)，代表解码后的pixelmap是否为HDR。 |
+| isHdr<sup>12+</sup> | boolean  |  否  | 否  | true表示图片为高动态范围（HDR），false表示图片非高动态范围（SDR）。对于[ImageSource](#imagesource)，代表源图片是否为HDR；对于[PixelMap](#pixelmap7)，代表解码后的pixelmap是否为HDR。 |
 
 ## Size
 
@@ -8260,7 +8261,7 @@ ImageSource的初始化选项。
 
 | 名称              | 类型                               | 只读 | 可选 | 说明               |
 | ----------------- | ---------------------------------- | ---- | ---- | ------------------ |
-| sourceDensity     | number                             | 否   | 否   | 图片资源像素密度，单位DPI。<br>在解码参数[DecodingOptions](#decodingoptions7)未设置desiredSize的前提下，当前参数SourceOptions.sourceDensity与DecodingOptions.fitDensity非零时将对解码输出的pixelmap进行缩放。<br>缩放后宽计算公式如下(高同理)：(width * fitDensity + (sourceDensity >> 1)) / sourceDensity。|
+| sourceDensity     | number                             | 否   | 否   | 图片资源像素密度，单位为ppi。<br>在解码参数[DecodingOptions](#decodingoptions7)未设置desiredSize的前提下，当前参数SourceOptions.sourceDensity与DecodingOptions.fitDensity非零时将对解码输出的pixelmap进行缩放。<br>缩放后宽计算公式如下(高同理)：(width * fitDensity + (sourceDensity >> 1)) / sourceDensity。|
 | sourcePixelFormat | [PixelMapFormat](#pixelmapformat7) | 否   | 是   | 图片像素格式，默认值为UNKNOWN。     |
 | sourceSize        | [Size](#size)                      | 否   | 是   | 图像像素大小，默认值为空。     |
 
@@ -8274,7 +8275,7 @@ PixelMap的初始化选项。
 | 名称                     | 类型                               | 只读 |可选 |  说明           |
 | ------------------------ | ---------------------------------- | ----| -----|  -------------- |
 | alphaType<sup>9+</sup>   | [AlphaType](#alphatype9)           | 否   | 是| 透明度。默认值为IMAGE_ALPHA_TYPE_PREMUL。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。      |
-| editable                 | boolean                            | 否   | 是| 是否可编辑。默认值为false。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。|
+| editable                 | boolean                            | 否   | 是| true表示可编辑，false表示不可编辑。默认值为false。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。|
 | srcPixelFormat<sup>12+</sup>  | [PixelMapFormat](#pixelmapformat7) | 否 | 是 | 传入的buffer数据的像素格式。默认值为BGRA_8888。|
 | pixelFormat              | [PixelMapFormat](#pixelmapformat7) | 否 | 是| 生成的pixelMap的像素格式。默认值为RGBA_8888。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。     |
 | scaleMode<sup>9+</sup>   | [ScaleMode](#scalemode9)           | 否  | 是 | 缩略值。默认值为0。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
@@ -8290,11 +8291,11 @@ PixelMap的初始化选项。
 | ------------------ | ---------------------------------- | ---- | ---- | ---------------- |
 | sampleSize         | number                             | 否   | 是   | 缩略图采样大小，默认值为1。当前只能取1。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
 | rotate             | number                             | 否   | 是   | 旋转角度。默认值为0。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
-| editable           | boolean                            | 否   | 是   | 是否可编辑。默认值为false。当取值为false时，图片不可二次编辑，如writepixels操作将失败。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。  |
+| editable           | boolean                            | 否   | 是   | true表示可编辑，false表示不可编辑。默认值为false。当取值为false时，图片不可二次编辑，如writepixels操作将失败。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。  |
 | desiredSize        | [Size](#size)                      | 否   | 是   | 期望输出大小，必须为正整数，若与原尺寸比例不一致，则会进行拉伸/缩放到指定尺寸，默认为原始尺寸。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
 | desiredRegion      | [Region](#region8)                 | 否   | 是   | 解码图像中由Region指定的矩形区域，当原始图像很大而只需要解码图像的一部分时，可以设置该参数，有助于提升性能，默认为原始大小。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
 | desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 否   | 是   | 解码的像素格式。默认值为RGBA_8888。仅支持设置：RGBA_8888、BGRA_8888和RGB_565。有透明通道图片格式不支持设置RGB_565，如PNG、GIF、ICO和WEBP。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
-| index              | number                             | 否   | 是   | 解码图片序号。默认值为0。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
+| index              | number                             | 否   | 是   | 解码图片序号。默认值为0，表示第一张图片。当取值为N时，表示第N-1张图片。单帧图片场景中取值只能为0，动图等多帧图片场景中取值范围为：0~（帧数-1）。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
 | fitDensity<sup>9+</sup> | number                        | 否   | 是   | 图像像素密度，单位为ppi。默认值为0。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
 | desiredColorSpace<sup>11+</sup> | [colorSpaceManager.ColorSpaceManager](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspacemanager) | 否   | 是   | 目标色彩空间。默认值为UNKNOWN。 |
 | desiredDynamicRange<sup>12+</sup> | [DecodingDynamicRange](#decodingdynamicrange12) | 否   | 是   | 目标动态范围，默认值为SDR。<br>通过[CreateIncrementalSource](#imagecreateincrementalsource9)创建的imagesource不支持设置此属性，默认解码为SDR内容。<br>如果平台不支持HDR，设置无效，默认解码为SDR内容。 |
@@ -8322,8 +8323,8 @@ PixelMap的初始化选项。
 | 名称 | 类型          | 只读 | 可选| 说明         |
 | ---- | ------------- | ---- | ---- | ------------ |
 | size<sup>7+</sup> | [Size](#size) | 否   | 否   | 区域大小。   |
-| x<sup>7+</sup>    | number        | 否   | 否  | 区域左上角横坐标。 |
-| y<sup>7+</sup>    | number        | 否  | 否  | 区域左上角纵坐标。 |
+| x<sup>7+</sup>    | number        | 否   | 否  | 区域左上角横坐标。单位：像素。 |
+| y<sup>7+</sup>    | number        | 否  | 否  | 区域左上角纵坐标。单位：像素。 |
 
 ## PackingOption
 
@@ -8337,7 +8338,7 @@ PixelMap的初始化选项。
 | quality | number | 否   | 否   | JPEG编码中设定输出图片质量的参数，取值范围为0-100。0质量最低，100质量最高，质量越高生成图片所占空间越大。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | bufferSize<sup>9+</sup> | number | 否   | 是   | 接收编码数据的缓冲区大小，单位为Byte。如果不设置大小，默认为25M。如果编码图片超过25M，需要指定大小。bufferSize需大于编码后图片大小。使用[packToFile](#packtofile11)不受此参数限制。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | desiredDynamicRange<sup>12+</sup> | [PackingDynamicRange](#packingdynamicrange12) | 否   | 是   | 目标动态范围。默认值为SDR。 |
-| needsPackProperties<sup>12+</sup> | boolean | 否   | 是   | 是否需要编码图片属性信息，例如EXIF。默认值为false。 |
+| needsPackProperties<sup>12+</sup> | boolean | 否   | 是   | 是否需要编码图片属性信息，例如EXIF。true表示需要，false表示不需要。默认值为false。 |
 
 ## PackingOptionsForSequence<sup>18+</sup>
 
@@ -8708,7 +8709,7 @@ Gainmap使用的元数据值，[HdrMetadataKey](#hdrmetadatakey12)中HDR_GAINMAP
 | writerVersion     | number   | 否 | 否 | 元数据编写器使用的版本。  |
 | miniVersion     | number   | 否 | 否 | 元数据解析需要理解的最小版本。  |
 | gainmapChannelCount  | number    | 否 | 否 | Gainmap的颜色通道数，值为3时RGB通道的元数据值不同，值为1时各通道元数据值相同，参考ISO 21496-1。  |
-| useBaseColorFlag  | boolean     | 否 | 否 | 是否使用基础图的色彩空间，参考ISO 21496-1。   |
+| useBaseColorFlag  | boolean     | 否 | 否 | 是否使用基础图的色彩空间，参考ISO 21496-1。true表示是，false表示否。   |
 | baseHeadroom  | number    | 否 | 否 |  基础图提亮比，参考ISO 21496-1。   |
 | alternateHeadroom  | number     | 否 | 否 |  提取的可选择图像提亮比，参考ISO 21496-1。  |
 | channels  | Array<[GainmapChannel](#gainmapchannel12)> | 否 | 否 | 各通道的数据，长度为3，参考ISO 21496-1。 |

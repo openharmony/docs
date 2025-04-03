@@ -187,7 +187,7 @@ API Version 14之前的版本，若设置barHeight为固定值后，TabBar无法
 
 animationDuration(value: number)
 
-设置点击TabBar页签和调用TabsController的changeIndex接口切换TabContent的动画时长。该参数不支持百分比设置。
+设置点击TabBar页签和调用TabsController的changeIndex接口切换TabContent的动画时长。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -332,7 +332,7 @@ barBackgroundBlurStyle(style: BlurStyle, options: BackgroundBlurStyleOptions)
 
 barGridAlign(value: BarGridColumnOptions)
 
-以栅格化方式设置TabBar的可见区域。具体参见BarGridColumnOptions对象。仅水平模式下有效，[不适用于XS、XL和XXL设备](../../../ui/arkts-layout-development-grid-layout.md#栅格系统断点)。
+以栅格化方式设置TabBar的可见区域。具体参见BarGridColumnOptions对象。仅水平模式下有效，[不适用于XS、XL和XXL设备](../../../ui/arkts-layout-development-grid-layout.md#栅格容器断点)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -406,7 +406,7 @@ cachedMaxCount(count: number, mode: TabsCacheMode)
 
 | 参数名 | 类型                                                        | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| count  | number                                                      | 是   | 子组件的最大缓存个数。默认所有子组件加载后都不再释放。         |
+| count  | number                                                      | 是   | 子组件的最大缓存个数。默认所有子组件加载后都不再释放。<br/>取值范围：[0, +∞)。|
 | mode   | [TabsCacheMode](#tabscachemode18枚举说明)                   | 是   | 子组件的缓存模式。<br/>默认值：TabsCacheMode.CACHE_BOTH_SIDE   |
 
 ## DividerStyle<sup>10+</sup>对象说明
@@ -869,8 +869,8 @@ Tabs自定义切换动画执行过程中，返回给开发者的proxy对象。�
 
 | 名称  | 类型     | 只读 | 可选 | 说明                         |
 | ----- | ------- | ---- | ---- | --------------------------- |
-| from | number | 否 | 否 | 自定义动画起始页面对应的index值。|
-| to | number | 否 | 否 | 自定义动画目标页面对应的index值。|
+| from | number | 否 | 否 | 自定义动画起始页面对应的index值，索引从0开始。|
+| to | number | 否 | 否 | 自定义动画目标页面对应的index值，索引从0开始。|
 
 ### finishTransition
 
@@ -1613,7 +1613,7 @@ struct TabsCustomAnimationExample {
         this.scaleList[to] = 0.5
         this.opacityList[from] = 1.0
         this.opacityList[to] = 0.5
-        animateTo({
+        this.getUIContext()?.animateTo({
           duration: this.durationList[from],
           onFinish: () => {
             proxy.finishTransition()
@@ -1898,7 +1898,7 @@ struct TabsExample {
 
   private startAnimateTo(duration: number, leftMargin: number, width: number) {
     this.isStartAnimateTo = true
-    animateTo({
+    this.getUIContext()?.animateTo({
       duration: duration, // 动画时长
       curve: Curve.Linear, // 动画曲线
       iterations: 1, // 播放次数

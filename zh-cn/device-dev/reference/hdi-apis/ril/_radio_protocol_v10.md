@@ -17,12 +17,12 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| int [slotId](#slotid) | 卡槽ID  | 
-| int [sessionId](#sessionid) | 会话ID  | 
-| enum [RadioProtocolPhase](_ril_v10.md#radioprotocolphase)[phase](#phase) | Radio协议参数，具体查看[RadioProtocolPhase](_ril_v10.md#radioprotocolphase) | 
+| int [slotId](#slotid) | 卡槽ID。  | 
+| int [sessionId](#sessionid) | 会话ID。  | 
+| enum [RadioProtocolPhase](_ril_v10.md#radioprotocolphase)[phase](#phase) | Radio协议参数，具体查看[RadioProtocolPhase](_ril_v10.md#radioprotocolphase)。 | 
 | int [technology](#technology) | Radio协议技术信息。 | 
-| int [modemId](#modemid) | modem ID，底层与slotId的对应字段  | 
-| enum [RadioProtocolStatus](_ril_v10.md#radioprotocolstatus)[status](#status) | Radio协议状态，具体查看[RadioProtocolStatus](_ril_v10.md#radioprotocolstatus) | 
+| int [modemId](#modemid) | modem ID，底层与slotId的对应字段。  | 
+| enum [RadioProtocolStatus](_ril_v10.md#radioprotocolstatus)[status](#status) | Radio协议状态，具体查看[RadioProtocolStatus](_ril_v10.md#radioprotocolstatus)。 | 
 
 
 ## 类成员变量说明

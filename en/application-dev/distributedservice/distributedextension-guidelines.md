@@ -74,7 +74,7 @@ Cross-device connection management enables real-time processing of application b
 
 ### Available APIs
 
-For details about how to use the **DistributedExtensionAbility** APIs, see [DistributedExtensionAbility API Reference](../reference/apis-distributedservice-kit/js-apis-distributedExtensionAbility-sys.md).
+For details about how to use the **DistributedExtensionAbility** APIs, see [DistributedExtensionAbility API Reference](../reference/apis-distributedservice-kit/js-apis-distributedExtensionAbility.md).
 
 | API                                                              | Description                      |
 | -------------------------------------------------------------------- | -------------------------- |

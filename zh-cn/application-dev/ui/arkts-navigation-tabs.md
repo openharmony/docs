@@ -393,7 +393,7 @@ Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.cu
 ```ts
 import { abilityManager, Configuration } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { promptAction, uiAppearance } from '@kit.ArkUI';
+import { uiAppearance } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -414,7 +414,7 @@ struct Demo {
     abilityManager.updateConfiguration(configInit, (err: BusinessError) => {
       if (err) {
         console.error(`updateConfiguration fail, err: ${JSON.stringify(err)}`);
-        promptAction.showToast({ message: `scale:${scale}, err:${JSON.stringify(err)}` })
+        this.getUIContext().getPromptAction().showToast({ message: `scale:${scale}, err:${JSON.stringify(err)}` })
       } else {
         this.currentFontSizeScale = String(scale);
         if (scale > 1) {
@@ -423,7 +423,7 @@ struct Demo {
           this.fontSize = 15;
         }
         console.log('updateConfiguration success.');
-        promptAction.showToast({ message: `scale:${scale}, updateConfiguration success.` })
+        this.getUIContext().getPromptAction().showToast({ message: `scale:${scale}, updateConfiguration success.` })
       }
     });
   }

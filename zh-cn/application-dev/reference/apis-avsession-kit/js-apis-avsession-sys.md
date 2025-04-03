@@ -653,7 +653,7 @@ on(type: 'sessionCreate', callback: (session: AVSessionDescriptor) => void): voi
 
 | 参数名    | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                 | 是   | 事件回调类型，支持的事件是'sessionCreate'`：会话创建事件，检测到会话创建时触发。|
+| type     | string                 | 是   | 事件回调类型，支持的事件是'sessionCreate'：会话创建事件，检测到会话创建时触发。|
 | callback | (session: [AVSessionDescriptor](#avsessiondescriptor)) => void | 是   | 回调函数。参数为会话相关描述。 |
 
 **错误码：**
@@ -1426,7 +1426,7 @@ setDiscoverable(enable: boolean, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                                  | 必填 | 说明                                  |
 | -------- | ------------------------------------- | ---- | ------------------------------------- |
-| enable | boolean | 是 | 是否允许本设备被发现。true: 允许被发现，false：不允许被发现。 |
+| enable | boolean | 是 | 是否允许本设备被发现。true：允许被发现，false：不允许被发现。 |
 | callback | AsyncCallback\<void>                  | 是   | 回调函数。当设置成功，err为undefined，否则返回错误对象。 |
 
 **错误码：**
@@ -1465,7 +1465,7 @@ setDiscoverable(enable: boolean): Promise\<void>
 
 | 参数名   | 类型                                  | 必填 | 说明                                  |
 | -------- | ------------------------------------- | ---- | ------------------------------------- |
-| enable | boolean | 是 | 是否允许本设备被发现。true: 允许被发现，false：不允许被发现。 |
+| enable | boolean | 是 | 是否允许本设备被发现。true：允许被发现，false：不允许被发现。 |
 
 **错误码：**
 

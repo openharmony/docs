@@ -468,7 +468,7 @@ Obtains the keycodes supported by the input device. This API uses a promise to r
 
 | Parameters                               | Description                           |
 | ----------------------------------- | ------------------------------- |
-| Promise&lt;Array&lt;boolean&gt;&gt; | Promise used to return the result.|
+| Promise&lt;Array&lt;boolean&gt;&gt; | Promise used to return the result. The value **true** indicates that the keycodes are supported, and the value **false** indicates the opposite.|
 
 **Error codes**
 

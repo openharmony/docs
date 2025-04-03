@@ -147,6 +147,8 @@ module.json5配置文件包含以下标签。
 | appStartup | 标识当前Module启动框架配置路径，在Entry类型的HAP、HSP、HAR中生效。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | [hnpPackages](#hnppackages标签) | 标识当前应用包含的Native软件包信息。只允许entry类型模块配置。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | [systemTheme](#systemtheme标签) | 标识当前使用的系统主题配置项。只允许entry类型模块配置。取值为不超过255字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
+| abilitySrcEntryDelegator | 标识当前Module需要Hook的UIAbility的名称，与abilityStageSrcEntryDelegator字段组合使用，共同指定Hook的目标对象。不允许HAR模块配置。 | 字符串 | 该标签可缺省，缺省值为空。 |
+| abilityStageSrcEntryDelegator | 标识当前Module需要Hook的AbilityStage，其值配置为对应Module的名称，与abilitySrcEntryDelegator字段组合使用，共同指定Hook的目标对象。不允许HAR模块配置。 | 字符串 | 该标签可缺省，缺省值为空。 |
 
 ## deviceTypes标签
 

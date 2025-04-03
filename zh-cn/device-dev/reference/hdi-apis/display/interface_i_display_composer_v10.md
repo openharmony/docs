@@ -161,7 +161,7 @@ IDisplayComposer::DestroyLayer ([in] unsigned int devId, [in] unsigned int layer
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| devId：显示设备的ID。取值范围为 | 0 到 4，其中 0 表示第一个显示设备，4 表示最后一个显示设备。 | 
+| devId| 显示设备的ID。<br/>取值范围为  0 到 4，其中 0 表示第一个显示设备，4 表示最后一个显示设备。 | 
 | layerId | 指示指向唯一标识层的层 ID 的指针。返回图层 ID到图层成功打开后添加到 GUI。 | 
 
 **返回：**
@@ -465,8 +465,6 @@ IDisplayComposer::RegDisplayVBlankCallback ([in] unsigned int devId, [in] IVBlan
 **描述**
 
 
-注册VBlank事件回调。
-
 注册VBlank事件回调，当有VBlank事件发生时接口实现层需要回调注册的接口。
 
 **起始版本：** 3.2
@@ -493,8 +491,6 @@ IDisplayComposer::RegHotPlugCallback ([in] IHotPlugCallback cb)
 
 **描述**
 
-
-注册热插拔事件回调。
 
 注册热插拔事件回调，当有热插拔事件发生时接口实现层需要回调注册的接口，通过该实例通知图形服务。
 
