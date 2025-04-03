@@ -9,6 +9,7 @@ The state changes during the camera application's transition between foreground 
 
 Before referring to the sample code, you are advised to read [Camera Device Management](camera-device-management.md), [Device Input Management](camera-device-input.md), [Camera Session Management](camera-session-management.md), and other related topics in [Camera Development (ArkTS)](camera-preparation.md).
 
+
 ## Development Process
 
 The figure below shows the process of transitioning a camera application from the background to the foreground.
@@ -82,7 +83,7 @@ During the transition of the camera application from the background to the foreg
         console.error(`Camera input error code: ${error.code}`);
       });
 
-      // Open a camera.
+      // Open the camera.
       await cameraInput.open();
 
       // Obtain the supported modes.
@@ -92,7 +93,7 @@ During the transition of the camera application from the background to the foreg
         console.error('photo mode not support');
         return;
       }
-      // Obtain the output streams supported by the camera device.
+      // Obtain the output stream capability supported by the camera.
       let cameraOutputCap: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraArray[0], camera.SceneMode.NORMAL_PHOTO);
       if (!cameraOutputCap) {
         console.error("cameraManager.getSupportedOutputCapability error");
