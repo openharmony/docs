@@ -812,13 +812,12 @@ on(type: 'discardTypingText', callback: Callback\<void>): void
 | 参数名   | 类型                                          | 必填 | 说明                                       |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------ |
 | type     | string                                        | 是   | 设置监听类型，固定取值为'discardTypingText'。 |
-| callback |  Callback\<void> | 是   | 回调函数，当命令发送成功，err为undefined，否则err为错误对象。 |
+| callback |  Callback\<void> | 是   | 回调函数。当命令发送成功，err为undefined，否则err为错误对象。 |
 
 **示例：**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { inputMethodEngine } from '@kit.IMEKit';
 
 try {
   console.log(`discard the typing text`);
@@ -850,7 +849,6 @@ off(type: 'discardTypingText', callback?: Callback\<void>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { inputMethodEngine } from '@kit.IMEKit';
 
 try {
   console.log(`discard the typing text`);
