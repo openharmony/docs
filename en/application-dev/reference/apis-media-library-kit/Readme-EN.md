@@ -1,6 +1,6 @@
 # Media Library Kit (Media File Management Service) 
 
-- ArkTS API<!--media-library-arkts-->
+- ArkTS APIs<!--media-library-arkts-->
   - [@ohos.file.photoAccessHelper (Album Management)](js-apis-photoAccessHelper.md)
   - [@ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object)](js-apis-sendablePhotoAccessHelper.md)
   <!--Del-->
@@ -12,7 +12,7 @@
   - [@ohos.file.PhotoPickerComponent (PhotoPickerComponent)](ohos-file-PhotoPickerComponent.md)
   - [@ohos.file.RecentPhotoComponent (RecentPhotoComponent)](ohos-file-RecentPhotoComponent.md)
   - [@ohos.multimedia.movingphotoview (MovingPhotoView Component)](ohos-multimedia-movingphotoview.md)
-- C API<!--media-library-c-->
+- C APIs<!--media-library-c-->
   - Modules<!--media-library-module-->
     - [MediaAssetManager](_media_asset_manager.md)
   - Header Files<!--media-library-headerfile-->
