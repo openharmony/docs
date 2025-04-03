@@ -3065,7 +3065,7 @@ setVideoWindowSize(width: number, height: number) : Promise\<void>
 avPlayer.setVideoWindowSize(1920, 1080)
 ```
 
-### on('superResolutionChanged')<sup>18+</sup>
+### on('superResolutionChanged') <sup>18+</sup>
 
 on(type:'superResolutionChanged', callback: OnSuperResolutionChanged): void
 
