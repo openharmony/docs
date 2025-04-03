@@ -9,6 +9,7 @@
 
 **相关模块：**[WindowManager_NativeModule](_window_manager___native_module.md)
 
+**所在头文件：** [oh_window_comm.h](oh__window__comm_8h.md)
 
 ## 汇总
 
