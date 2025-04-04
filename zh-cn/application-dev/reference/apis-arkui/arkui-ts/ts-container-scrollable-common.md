@@ -567,3 +567,97 @@ update(index: number, childSize: number): void
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+
+## UIScrollableCommonEvent<sup>18+</sup>
+用于设置滚动事件回调。
+### setOnReachStart<sup>18+</sup>
+
+setOnReachStart(callback: Callback\<void> | undefined): void
+
+设置[onReachStart](./ts-container-scrollable-common.md#onreachstart11)事件的回调。
+
+方法入参为undefined的时候，重置对应的事件回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| callback  | [Callback](./ts-types.md#callback12)\<void> &nbsp;\|&nbsp;undefined | 是   | onReachStart事件的回调函数。 |
+
+### setOnReachEnd<sup>18+</sup>
+
+setOnReachEnd(callback: Callback\<void> | undefined): void
+
+设置[onReachEnd](./ts-container-scrollable-common.md#onreachend11)事件的回调。
+
+方法入参为undefined时，会重置事件回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| callback  | [Callback](./ts-types.md#callback12)\<void> &nbsp;\|&nbsp;undefined | 是   | onReachEnd事件的回调函数。 |
+
+
+### setOnScrollStart<sup>18+</sup>
+
+setOnScrollStart(callback: Callback\<void> | undefined): void
+
+设置[onScrollStart](./ts-container-scrollable-common.md#onscrollstart11)事件的回调。
+
+方法入参为undefined时，会重置事件回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| callback  | [Callback](./ts-types.md#callback12)\<void> &nbsp;\|&nbsp; undefined | 是   | onScrollStart事件的回调函数。|
+
+
+### setOnScrollStop<sup>18+</sup>
+
+setOnScrollStop(callback: Callback\<void> | undefined): void
+
+设置[onScrollStop](./ts-container-scrollable-common.md#onscrollstop11)事件的回调。
+
+方法入参为undefined时，会重置事件回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| callback  | [Callback](./ts-types.md#callback12)\<void> &nbsp;\|&nbsp;undefined | 是   | onScrollStop事件的回调函数。 |
+
+### setOnScrollFrameBegin<sup>18+</sup>
+
+setOnScrollFrameBegin(callback: OnScrollFrameBeginCallback | undefined): void
+
+设置[onScrollFrameBegin](./ts-container-scroll.md#onscrollframebegin9)事件的回调。
+
+方法入参为undefined时，会重置事件回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| callback  | [OnScrollFrameBeginCallback](./ts-container-scroll.md#onscrollframebegincallback18)&nbsp;\|&nbsp;undefined | 是   | onScrollFrameBegin事件的回调函数。 |

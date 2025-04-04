@@ -499,6 +499,79 @@ onScrollIndex(event: (first: number, last: number) => void)
 | first  | number | 是   | 当前显示的瀑布流起始位置的索引值。<br/>取值范围：[0, 子节点总数-1] |
 | last   | number | 是   | 当前显示的瀑布流终止位置的索引值。<br/>取值范围：[0, 子节点总数-1] |
 
+## UIWaterFlowEvent<sup>18+</sup>
+frameNode中[getEvent('WaterFlow')](../js-apis-arkui-frameNode.md#geteventwaterflow18)方法的返回值，可用于给WaterFlow节点设置滚动事件。
+
+UIWaterFlowEvent继承于[UIScrollableCommonEvent](./ts-container-scrollable-common.md#uiscrollablecommonevent18)。
+
+### setOnWillScroll<sup>18+</sup>
+
+setOnWillScroll(callback:  OnWillScrollCallback | undefined): void
+
+设置[onWillScroll](./ts-container-scrollable-common.md#onwillscroll12)事件的回调。
+
+方法入参为undefined时，会重置事件回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| callback  | [OnWillScrollCallback](./ts-container-scrollable-common.md#onwillscrollcallback12)&nbsp;\|&nbsp;undefined | 是   | onWillScroll事件的回调函数。 |
+
+### setOnDidScroll<sup>18+</sup>
+
+setOnDidScroll(callback: OnScrollCallback | undefined): void
+
+设置[onDidScroll](./ts-container-scrollable-common.md#ondidscroll12)事件的回调。
+
+方法入参为undefined时，会重置事件回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| callback  | [OnScrollCallback](./ts-container-scrollable-common.md#onscrollcallback12)&nbsp;\|&nbsp;undefined | 是   | onDidScroll事件的回调函数。 |
+
+### setOnScrollIndex<sup>18+</sup>
+
+setOnScrollIndex(callback: OnWaterFlowScrollIndexCallback | undefined): void
+
+设置[onScrollIndex](#onscrollindex11)事件的回调。
+
+方法入参为undefined时，会重置事件回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| callback  | [OnWaterFlowScrollIndexCallback](#onwaterflowscrollindexcallback18)&nbsp;\|&nbsp;undefined | 是   | onScrollIndex事件的回调函数。 |
+
+## OnWaterFlowScrollIndexCallback<sup>18+</sup>
+type OnWaterFlowScrollIndexCallback = (fist: number, last: number) => void
+
+WaterFlow组件可见区域item变化事件的回调类型。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型   | 必填 | 说明                                  |
+| ------ | ------ | ---- | ------------------------------------- |
+| first  | number | 是   | 当前显示的瀑布流起始位置的索引值。 |
+| last   | number | 是   | 当前显示的瀑布流终止位置的索引值。 |
+
 ## 示例
 
 ### 示例1（使用基本瀑布流）

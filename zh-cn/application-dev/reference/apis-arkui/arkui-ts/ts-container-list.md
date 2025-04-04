@@ -1052,6 +1052,98 @@ type OnScrollVisibleContentChangeCallback = (start: VisibleListContentInfo, end:
 | IN_HEADER_AREA |  2  | 当前页面可视边处于header位置。 |
 | IN_FOOTER_AREA |  3  | 当前页面可视边处于footer位置。 |
 
+## UIListEvent<sup>18+</sup>
+frameNode中[getEvent('List')](../js-apis-arkui-frameNode.md#geteventlist18)方法的返回值，可用于给List节点设置滚动事件。
+
+UIListEvent继承于[UIScrollableCommonEvent](./ts-container-scrollable-common.md#uiscrollablecommonevent18)。
+
+### setOnWillScroll<sup>18+</sup>
+
+setOnWillScroll(callback:  OnWillScrollCallback | undefined): void
+
+设置[onWillScroll](./ts-container-scrollable-common.md#onwillscroll12)事件的回调。
+
+方法入参为undefined时，会重置事件回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| callback  | [OnWillScrollCallback](./ts-container-scrollable-common.md#onwillscrollcallback12)&nbsp;\|&nbsp;undefined | 是   | onWillScroll事件的回调函数。 |
+
+### setOnDidScroll<sup>18+</sup>
+
+setOnDidScroll(callback: OnScrollCallback | undefined): void
+
+设置[onDidScroll](./ts-container-scrollable-common.md#ondidscroll12)事件的回调。
+
+方法入参为undefined时，会重置事件回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| callback  | [OnScrollCallback](./ts-container-scrollable-common.md#onscrollcallback12)&nbsp;\|&nbsp;undefined | 是   | onDidScroll事件的回调函数。 |
+
+### setOnScrollIndex<sup>18+</sup>
+
+setOnScrollIndex(callback: OnListScrollIndexCallback | undefined): void
+
+设置[onScrollIndex](#onscrollindex)事件的回调。
+
+方法入参为undefined时，会重置事件回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| callback  | [OnListScrollIndexCallback](#onlistscrollindexcallback18)&nbsp;\|&nbsp;undefined | 是   | onScrollIndex事件的回调函数。 |
+
+### setOnScrollVisibleContentChange<sup>18+</sup>
+
+setOnScrollVisibleContentChange(callback: OnScrollVisibleContentChangeCallback | undefined): void
+
+设置[onScrollVisibleContentChange](#onscrollvisiblecontentchange12)事件的回调。
+
+方法入参为undefined时，会重置事件回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| callback  |  [OnScrollVisibleContentChangeCallback](./ts-container-list.md#onscrollvisiblecontentchangecallback12)&nbsp;\|&nbsp;undefined | 是   | onScrollVisibleContentChange事件的回调函数。 |
+
+## OnListScrollIndexCallback<sup>18+</sup>
+type OnListScrollIndexCallback = (start: number, end: number, center: number) => void
+
+List组件可见区域item变化事件的回调类型。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名               | 类型   | 必填 | 说明                                   |
+| -------------------- | ------ | ---- | -------------------------------------- |
+| start   | number | 是   | List显示区域内第一个子组件的索引值。     |
+| end     | number | 是   | List显示区域内最后一个子组件的索引值。 |
+| center  | number | 是   | List显示区域内中间位置子组件的索引值。 |
+
 ## 示例
 
 ### 示例1（添加滚动事件）
