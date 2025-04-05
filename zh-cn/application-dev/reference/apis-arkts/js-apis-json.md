@@ -98,7 +98,7 @@ parse(text: string, reviver?: Transformer, options?: ParseOptions): Object | nul
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
-
+<!--code_no_check-->
 ```ts
 // /entry/src/main/ets/pages/test.ts
 export function reviverFunc(key, value) {
@@ -169,6 +169,7 @@ stringify(value: Object, replacer?: (number | string)[] | null, space?: string |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
+<!--code_no_check-->
 ```ts
 // /entry/src/main/ets/pages/test.ts
 export let exportObj = {1: "John", 2: 30, 3: "New York"};
