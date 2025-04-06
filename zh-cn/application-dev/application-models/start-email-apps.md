@@ -18,7 +18,7 @@ startAbilityByType接口中type字段为mail，对应的wantParam参数：
 | body                                  | string                                                       | 否   | 邮件内容                                                     |
 | ability.params.stream                 | string[ ]                                                    | 否   | 邮件附件（附件的uri地址列表）                                |
 | ability.want.params.uriPermissionFlag | [wantConstant.Flags](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#flags) | 否   | 给邮件附件赋予至少读权限。邮件附件参数存在时，该参数也必须要传 |
-| sceneType                             | number                                                       | 否   | 意图场景，表明本次请求对应的操作意图。1：发邮件。默认为1。                              |
+| sceneType                             | number                                                       | 否   | 意图场景，表明本次请求对应的操作意图。1：发邮件。默认为1                              |
 
 > **说明：**
 >
