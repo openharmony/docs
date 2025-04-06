@@ -23,7 +23,7 @@ startAbilityByType接口中type字段为navigation，支持路线规划、导航
     | destinationLatitude  | number                 | 是   | 终点纬度                                             |
     | destinationLongitude | number                 | 是   | 终点经度                                             |
     | destinationPoiIds    | Record<number, string> | 否   | 终点POI ID列表，当前仅支持传入花瓣地图和高德地图的POI ID|
-    | vehicleType          | number                 | 否   | 交通出行工具，取值：0-驾车，1-步行，2-骑行，3-公交； |
+    | vehicleType          | number                 | 否   | 交通出行工具，取值：0-驾车，1-步行，2-骑行，3-公交 |
 
 - 导航场景
 
@@ -161,7 +161,7 @@ startAbilityByType接口中type字段为navigation，支持路线规划、导航
         | destinationLatitude  | number | 是   | 终点纬度                                             |
         | destinationLongitude | number | 是   | 终点经度                                             |
         | destinationPoiId     | string | 否   | 终点POI ID，当前仅支持花瓣地图和高德地图获取此参数      |
-        | vehicleType          | number | 否   | 交通出行工具，取值：0-驾车，1-步行，2-骑行，3-公交； |
+        | vehicleType          | number | 否   | 交通出行工具，取值：0-驾车，1-步行，2-骑行，3-公交 |
     
     - 导航场景
     
