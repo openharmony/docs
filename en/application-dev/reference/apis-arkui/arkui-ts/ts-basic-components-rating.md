@@ -52,7 +52,7 @@ Sets the total number of ratings (stars). If the value set is less than or equal
 
 stars(starCount: Optional\<number>)
 
-Sets the total number of ratings (stars). If the value set is less than or equal to 0, the default value is used. Compared to [stars](#stars), the **starCount** parameter supports the **undefined** type.
+Sets the total number of ratings (stars). If the value set is less than or equal to 0, the default value is used. Compared to [stars](#stars), this API supports the **undefined** type for the **starCount** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -88,7 +88,7 @@ Sets the step for rating. A value less than 0.1 evaluates to the default value.
 
 stepSize(size: Optional\<number>)
 
-Sets the step for rating. A value less than 0.1 evaluates to the default value. Compared to [stepSize](#stepsize), the **size** parameter supports the **undefined** type.
+Sets the step for rating. A value less than 0.1 evaluates to the default value. Compared to [stepSize](#stepsize), this API supports the **undefined** type for the **size** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -134,7 +134,7 @@ Local and online images are supported, but not **PixelMap** and **Resource** obj
 
 By default, the image is loaded in asynchronous mode. Synchronous loading is not supported.
 
-Compared to [starStyle](#starstyle), the **options** parameter supports the **undefined** type.
+Compared to [starStyle](#starstyle), this API supports the **undefined** type for the **options** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -174,7 +174,7 @@ Creates a content modifier.
 
 contentModifier(modifier: Optional<ContentModifier\<RatingConfiguration>>)
 
-Creates a content modifier. Compared to [contentModifier](#contentmodifier12), the **modifier** parameter supports the **undefined** type.
+Creates a content modifier. Compared to [contentModifier](#contentmodifier12), this API supports the **undefined** type for the **modifier** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -210,7 +210,7 @@ Triggered when the rating value changes.
 
 onChange(callback:Optional\<OnRatingChangeCallback>)
 
-Triggered when the rating value changes. Compared to [onChange](#onchange), the **callback** parameter supports the **undefined** type.
+Triggered when the rating value changes. Compared to [onChange](#onchange), this API supports the **undefined** type for the **callback** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 

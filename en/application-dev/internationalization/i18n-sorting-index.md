@@ -15,12 +15,17 @@ For details about how to use related APIs, see [IndexUtil](../reference/apis-loc
 
 2. Create an **IndexUtil** object.
    ```ts
-   let indexUtil = i18n.getInstance(locale?:string);  // The default value of locale is the current system locale.
+   let indexUtil: i18n.IndexUtil = i18n.getInstance(locale?: string); // The default value of locale is the current system locale.
    ```
 
 3. Obtain the index list.
    ```ts
-   let indexList = indexUtil.getIndexList();
+   let indexList: Array<string> = indexUtil.getIndexList();
+   ```
+
+4. Obtain the index list.
+   ```ts
+   let index: string = indexUtil.getIndex(text: string);
    ```
 
 **Development Example**
@@ -28,11 +33,17 @@ For details about how to use related APIs, see [IndexUtil](../reference/apis-loc
 ```ts
 // Import the i18n module.
 import { i18n } from '@kit.LocalizationKit';
+
 // Create indexes in a single language.
-let indexUtil = i18n.getInstance("zh-CN");
-let indexList = indexUtil.getIndexList(); // ["...", "A", "B", "C", "D", "E" ... "X", "Y", "Z", "..."]
+let indexUtil: i18n.IndexUtil = i18n.getInstance('zh-CN');
+let indexList: Array<string> = indexUtil.getIndexList(); // indexList = ['…', 'A', 'B', 'C', ... 'X', 'Y', 'Z', '…']
+
 // Create indexes in multiple languages.
-indexUtil.addLocale("ru-RU");
-indexList = indexUtil.getIndexList(); // …,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,…,А,Б,В,Г,Д,Е,Ж,З,И,Й,К,Л,М,Н,О,П,Р,С,Т,У,Ф,Х,Ц,Ч,Ш,Щ,Ы,Э,Ю,Я,...
-indexUtil.getIndex ("Hello"); // Index H
+indexUtil.addLocale('ru-RU');
+// indexList = ['…', 'A', 'B', 'C', ... 'X', 'Y', 'Z', '…', 'А', 'Б', 'В', ... 'Э', 'Ю', 'Я', '…']
+indexList = indexUtil.getIndexList(); 
+
+// Obtain the index of the string.
+let index: string = indexUtil.getIndex('Nihao'); // index = 'N'
 ```
+<!--no_check-->

@@ -176,7 +176,7 @@ Checks the visible status of the mouse pointer. This API uses a promise to retur
 
 | Name                    | Description                 |
 | ---------------------- | ------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the mouse pointer is visible, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -521,8 +521,8 @@ Type of the primary mouse button.
 
 | Name                              | Value   | Description    |
 | -------------------------------- | ---- | ------ |
-| LEFT                          | 0    | Left mouse button.    |
-| RIGHT                             | 1    | Right mouse button.  |
+| LEFT                          | 0    | Left button.    |
+| RIGHT                             | 1    | Right button.  |
 
 ## RightClickType<sup>10+</sup>
 

@@ -4222,7 +4222,7 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
 
    @Entry
    @Component
-   export struct WebComponent {
+   struct WebComponent {
      controller: webview.WebviewController = new webview.WebviewController()
 
      async selectFile(result: FileSelectorResult): Promise<void> {

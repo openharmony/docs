@@ -4575,6 +4575,42 @@
 
 **起始版本**：18
 
+## ohos.permission.READ_DHA
+
+允许应用读取设备健康证明信息。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
+## ohos.permission.WRITE_DHA
+
+允许应用写入设备健康证明信息。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
+## ohos.permission.NOTIFY_DHA
+
+允许应用通知设备健康证明事件。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
 ## ohos.permission.CHANGE_DEFAULT_APPLICATION
 
 允许应用监听“默认应用”变化事件。

@@ -175,8 +175,8 @@ Provides C APIs for the multimodal input module.
 | [Input_Result](#input_result) [OH_Input_RemoveTouchEventMonitor](#oh_input_removetoucheventmonitor) ([Input_TouchEventCallback](#input_toucheventcallback) callback) | Removes the listener for touch events. | 
 | [Input_Result](#input_result) [OH_Input_RemoveAxisEventMonitorForAll](#oh_input_removeaxiseventmonitorforall) ([Input_AxisEventCallback](#input_axiseventcallback) callback) | Removes the listener for all types of axis events. | 
 | [Input_Result](#input_result) [OH_Input_RemoveAxisEventMonitor](#oh_input_removeaxiseventmonitor) ([InputEvent_AxisEventType](#inputevent_axiseventtype) axisEventType, [Input_AxisEventCallback](#input_axiseventcallback) callback) | Removes the listener for the specified type of axis events, which are defined in [InputEvent_AxisEventType](#inputevent_axiseventtype). | 
-| [Input_Result](#input_result) [OH_Input_AddKeyEventInterceptor](#oh_input_addkeyeventinterceptor) ([Input_KeyEventCallback](#input_keyeventcallback) callback, [Input_InterceptorOptions](#input_interceptoroptions) \*option) | Adds an interceptor for key events. If multiple interceptors are added, only the first one takes effect. | 
-| [Input_Result](#input_result) [OH_Input_AddInputEventInterceptor](#oh_input_addinputeventinterceptor) ([Input_InterceptorEventCallback](_input___interceptor_event_callback.md) \*callback [Input_InterceptorOptions](#input_interceptoroptions) \*option) | Adds an interceptor for input events, including mouse, touch, and axis events. If multiple interceptors are added, only the first one takes effect. | 
+| [Input_Result](#input_result) [OH_Input_AddKeyEventInterceptor](#oh_input_addkeyeventinterceptor) ([Input_KeyEventCallback](#input_keyeventcallback) callback, [Input_InterceptorOptions](#input_interceptoroptions) \*option) | Adds an interceptor for key events. If multiple interceptors are added, only the first one takes effect. An interception event is reported only when the application gains focus. | 
+| [Input_Result](#input_result) [OH_Input_AddInputEventInterceptor](#oh_input_addinputeventinterceptor) ([Input_InterceptorEventCallback](_input___interceptor_event_callback.md) \*callback, [Input_InterceptorOptions](#input_interceptoroptions) \*option) | Adds an interceptor for input events, including mouse, touch, and axis events. If multiple interceptors are added, only the first one takes effect. An interception event is reported only when the application gains focus. | 
 | [Input_Result](#input_result) [OH_Input_RemoveKeyEventInterceptor](#oh_input_removekeyeventinterceptor) (void) | Removes the interceptor for key events. | 
 | [Input_Result](#input_result) [OH_Input_RemoveInputEventInterceptor](#oh_input_removeinputeventinterceptor) (void) | Removes the interceptor for input events, including mouse, touch, and axis events. | 
 | [Input_Result](#input_result) [OH_Input_GetIntervalSinceLastInput](#oh_input_getintervalsincelastinput) (int64_t \*timeInterval) | Obtains the interval since the last system input event. | 
@@ -1078,11 +1078,11 @@ INPUT_OCCUPIED_BY_OTHER if the shortcut key has been occupied by another applica
 ### OH_Input_AddInputEventInterceptor()
 
 ```
-Input_Result OH_Input_AddInputEventInterceptor (Input_InterceptorEventCallback *callback Input_InterceptorOptions * option)
+Input_Result OH_Input_AddInputEventInterceptor (Input_InterceptorEventCallback *callback, Input_InterceptorOptions * option)
 ```
 **Description**
 
-Adds an interceptor for input events, including mouse, touch, and axis events. If multiple interceptors are added, only the first one takes effect.
+Adds an interceptor for input events, including mouse, touch, and axis events. If multiple interceptors are added, only the first one takes effect. An interception event is reported only when the application gains focus.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
@@ -1119,7 +1119,7 @@ Input_Result OH_Input_AddKeyEventInterceptor (Input_KeyEventCallback callback, I
 ```
 **Description**
 
-Adds an interceptor for key events. If multiple interceptors are added, only the first one takes effect.
+Adds an interceptor for key events. If multiple interceptors are added, only the first one takes effect. An interception event is reported only when the application gains focus.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
@@ -2187,7 +2187,7 @@ int32_t OH_Input_GetKeyEventAction (const struct Input_KeyEvent * keyEvent)
 ```
 **Description**
 
-Obtains the key event type.
+Obtains the key event action.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
@@ -2201,7 +2201,7 @@ Obtains the key event type.
 
 **Returns**
 
-Key event type.
+Key event action.
 
 
 ### OH_Input_GetKeyEventActionTime()

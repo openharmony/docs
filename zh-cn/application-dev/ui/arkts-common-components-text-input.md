@@ -16,7 +16,7 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 TextArea(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: TextAreaController})
 ```
 
-- 单行输入框
+- 单行输入框。
 
   ```ts
   TextInput()
@@ -25,7 +25,7 @@ TextArea(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Tex
   ![zh-cn_image_0000001511580844](figures/zh-cn_image_0000001511580844.png)
 
 
-- 多行输入框
+- 多行输入框。
 
   ```ts
   TextArea()
@@ -33,7 +33,7 @@ TextArea(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Tex
 
   ![zh-cn_image_0000001562940481](figures/zh-cn_image_0000001562940481.png)
 
-  多行输入框文字超出一行时会自动折行。
+- 多行输入框文字超出一行时会自动折行。
 
 
   ```ts
@@ -48,7 +48,7 @@ TextArea(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Tex
 TextInput有以下类型可选择：Normal基本输入模式、Password密码输入模式、Email邮箱地址输入模式、Number纯数字输入模式、PhoneNumber电话号码输入模式、USER_NAME用户名输入模式、NEW_PASSWORD新密码输入模式、NUMBER_PASSWORD纯数字密码输入模式、<!--Del-->SCREEN_LOCK_PASSWORD锁屏应用密码输入模式、<!--DelEnd-->NUMBER_DECIMAL带小数点的数字输入模式、带URL的输入模式。通过type属性进行设置：
 
 
-- 基本输入模式（默认类型）
+- 基本输入模式（默认类型）。
 
   ```ts
   TextInput()
@@ -57,7 +57,7 @@ TextInput有以下类型可选择：Normal基本输入模式、Password密码输
 
   ![zh-cn_image_0000001562820765](figures/zh-cn_image_0000001562820765.png)
 
-- 密码输入模式
+- 密码输入模式。
 
   ```ts
   TextInput()
@@ -66,7 +66,7 @@ TextInput有以下类型可选择：Normal基本输入模式、Password密码输
 
   ![zh-cn_image_0000001511580840](figures/zh-cn_image_0000001511580840.png)
 
-- 邮箱地址输入模式
+- 邮箱地址输入模式。
 
   ```ts
   TextInput()
@@ -75,7 +75,7 @@ TextInput有以下类型可选择：Normal基本输入模式、Password密码输
 
   ![text_input_type_email](figures/text_input_type_email.PNG)
 
-- 纯数字输入模式
+- 纯数字输入模式。
 
   ```ts
   TextInput()
@@ -84,7 +84,7 @@ TextInput有以下类型可选择：Normal基本输入模式、Password密码输
 
   ![text_input_type_number](figures/text_input_type_number.PNG)
 
-- 电话号码输入模式
+- 电话号码输入模式。
 
   ```ts
   TextInput()
@@ -93,7 +93,7 @@ TextInput有以下类型可选择：Normal基本输入模式、Password密码输
 
   ![text_input_type_phone_number](figures/text_input_type_phone_number.PNG)
 
-- 带小数点的数字输入模式
+- 带小数点的数字输入模式。
 
   ```ts
   TextInput()
@@ -102,7 +102,7 @@ TextInput有以下类型可选择：Normal基本输入模式、Password密码输
 
   ![text_input_type_number_decimal](figures/text_input_type_number_decimal.PNG)
 
-- 带URL的输入模式
+- 带URL的输入模式。
 
   ```ts
   TextInput()

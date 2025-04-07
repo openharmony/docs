@@ -2,10 +2,9 @@
 
 Bundle Manager（包管理工具，简称bm）是实现应用安装、卸载、更新、查询等功能的工具，bm为开发者提供基本的应用安装包的调试能力。
 
-## 环境要求
+## 环境要求（hdc工具）
 
-在使用本工具前，开发者需要先获取<!--Del-->[<!--DelEnd-->hdc工具<!--Del-->](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd-->，执行hdc shell。
-
+在使用本工具前，开发者需要先获取[hdc工具](../dfx/hdc.md#环境准备)，执行hdc shell。
 
 ## bm工具命令列表
 
@@ -26,6 +25,8 @@ Bundle Manager（包管理工具，简称bm）是实现应用安装、卸载、�
 | dump-shared | 查询应用间HSP应用信息。 |
 | dump-overlay | 打印overlay应用的overlayModuleInfo。 |
 | dump-target-overlay | 打印目标应用的所有关联overlay应用的overlayModuleInfo。 |
+| install-plugin | 安装插件命令，用于安装插件。|
+| uninstall-plugin | 卸载插件命令，用于卸载插件。|
 
 
 ## 帮助命令（help）
@@ -430,14 +431,112 @@ bm dump-target-overlay-b com.ohos.app
 bm dump-target-overlay -b com.ohos.app -m entry
 ```
 
+## 安装插件命令（install-plugin）
+
+```bash
+bm install-plugin [-h] [-n hostBundleName] [-p filePath]
+```
+
+**install-plugin命令参数列表**
+| 参数 | 参数说明 |
+| -------- | -------- |
+| -h | 帮助信息。 |
+| -n | 必选参数，指定待安装插件的应用包名。|
+| -p | 必选参数，指定插件文件路径。|
+
+示例：
+
+```bash
+# 安装一个插件
+bm install-plugin -n com.ohos.app -p /data/plugin.hsp
+```
+
+
+## 卸载插件命令（uninstall-plugin）
+
+```bash
+bm uninstall-plugin [-h] [-n hostBundleName] [-p pluginBundleName]
+```
+
+**uninstall-plugin命令参数列表**
+| 参数 | 参数说明 |
+| -------- | -------- |
+| -h | 帮助信息。 |
+| -n | 必选参数，指定应用包名。|
+| -p | 必选参数，指定插件的包名。|
+
+示例：
+
+```bash
+# 卸载一个插件
+bm uninstall-plugin -n com.ohos.app -p com.ohos.plugin
+```
+
+
 ## bm工具错误码
+
+### 301 系统账号不存在
+**错误信息**
+
+error: user not exist.
+
+**错误描述**
+
+系统账号不存在。
+
+**可能原因**
+
+安装应用时，系统账号ID不存在。
+
+**处理步骤**
+
+1. 重启手机后再次尝试安装应用。
+
+2. 重复上述步骤3到5次后依旧安装失败，请导出日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
+
+```
+hdc file recv /data/log/hilog/
+```
+
+### 304 当前系统账号没有安装HAP包
+**错误信息**
+
+error: user does not install the hap.
+
+**错误描述**
+
+卸载操作时，当前系统账号没有安装HAP包。
+
+**可能原因**
+
+当前系统账号下未安装任何HAP包。
+
+**处理步骤**
+
+当前系统账号下未安装任何HAP包，请不要执行卸载应用操作。
+
+### 9568319 签名文件异常
+**错误信息**
+
+error: cannot open signature file.
+
+**错误描述**
+
+安装应用过程中，出现签名文件打开异常，导致安装失败。
+
+**可能原因**
+
+HAP包签名文件存在异常。
+
+**处理步骤**
+
+1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。在连接设备后，重新为应用进行签名。
+2. 使用手动签名，请参考[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section297715173233)。
 
 ### 9568320 签名文件不存在
 **错误信息**
 
-Failed to install bundle, no signature file.
-
-![示例图](figures/zh-cn_image_0000001389116960.png)
+error: no signature file.
 
 **错误描述**
 
@@ -449,9 +548,158 @@ HAP包没有签名。
 
 **处理步骤**
 
-1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-signing-V13#section18815157237)。在连接设备后，重新为应用进行签名。
-2. 使用手动签名，请参考[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-signing-V13#section297715173233)。
-<br></br>
+1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。在连接设备后，重新为应用进行签名。
+2. 使用手动签名，请参考[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section297715173233)。
+
+### 9568321 签名文件解析失败
+**错误信息**
+
+error: fail to parse signature file.
+
+**错误描述**
+
+用户安装时签名文件解析失败。
+
+**可能原因**
+
+HAP包签名文件存在异常。
+
+**处理步骤**
+
+1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。在连接设备后，重新为应用进行签名。
+2. 使用手动签名，请参考[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section297715173233)。
+
+### 9568323 签名摘要验证未通过
+**错误信息**
+
+error: signature verification failed due to not bad digest.
+
+**错误描述**
+
+用户安装时签名验证失败。
+
+**可能原因**
+
+HAP包签名不正确。
+
+**处理步骤**
+
+1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。在连接设备后，重新为应用进行签名。
+2. 使用手动签名，请参考[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section297715173233)。
+
+### 9568324 签名完整性校验未通过
+**错误信息**
+
+error: signature verification failed due to out of integrity.
+
+**错误描述**
+
+用户安装时签名验证失败。
+
+**可能原因**
+
+HAP包签名不正确。
+
+**处理步骤**
+
+1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。在连接设备后，重新为应用进行签名。
+2. 使用手动签名，请参考[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section297715173233)。
+
+### 9568326 签名公钥存在异常
+**错误信息**
+
+error: signature verification failed due to bad public key.
+
+**错误描述**
+
+用户安装时签名验证失败，签名公钥存在异常。
+
+**可能原因**
+
+HAP包签名不正确。
+
+**处理步骤**
+
+1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。在连接设备后，重新为应用进行签名。
+2. 使用手动签名，请参考[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section297715173233)。
+
+### 9568327 签名获取异常
+**错误信息**
+
+error: signature verification failed due to bad bundle signature.
+
+**错误描述**
+
+用户安装时签名验证失败，签名获取异常。
+
+**可能原因**
+
+HAP包签名不正确。
+
+**处理步骤**
+
+1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。在连接设备后，重新为应用进行签名。
+2. 使用手动签名，请参考[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section297715173233)。
+
+### 9568328 未找到配置文件区块
+**错误信息**
+
+error: signature verification failed due to no profile block.
+
+**错误描述**
+
+用户安装时签名验证失败，未找到配置文件区块。
+
+**可能原因**
+
+HAP包签名不正确。
+
+**处理步骤**
+
+1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。在连接设备后，重新为应用进行签名。
+2. 使用手动签名，请参考[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section297715173233)。
+
+### 9568330 初始化签名源失败
+**错误信息**
+
+error: signature verification failed due to init source failed.
+
+**错误描述**
+
+用户安装时签名验证失败，初始化签名源失败。
+
+**可能原因**
+
+HAP包签名不正确。
+
+**处理步骤**
+
+1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。在连接设备后，重新为应用进行签名。
+2. 使用手动签名，请参考[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section297715173233)。
+
+### 9568257 签名文件Pkcs7校验失败
+
+**错误信息**
+
+error: fail to verify pkcs7 file.
+
+**错误描述**
+
+用户安装应用时签名Pkcs7校验失败。
+
+**可能原因**
+
+1. 证书链不完整或不受信任。
+2. 签名算法不匹配。
+3. 数据被篡改或签名文件损坏。
+4. 签名格式不匹配。
+5. 私钥不匹配。
+
+**处理步骤**
+
+1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。在连接设备后，重新为应用进行签名。
+2. 使用手动签名，请参考[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section297715173233)。
+
 
 ### 9568347 解析本地so文件失败
 **错误信息**
@@ -475,16 +723,12 @@ error: install parse native so failed.
 **处理步骤**
 
 1. 将设备与DevEco Studio进行连接。
-2. 打开命令行工具，并进入SDK安装目录下的toolchains目录下。
-    ```
-    若不清楚OpenHarmony SDK安装目录，可单击File > Settings > SDK界面查看安装路径。
-    ```
-3. 执行如下命令，查询设备支持的Abi列表，返回结果为default/armeabi-v7a/armeabi/arm64-v8a/x86/x86_64中的一个或多个Abi类型。
+2. 执行如下命令，查询设备支持的Abi列表，返回结果为default/armeabi-v7a/armeabi/arm64-v8a/x86/x86_64中的一个或多个Abi类型。
     ```
     hdc shell
     param get const.product.cpu.abilist
     ```
-4. 根据查询返回结果，检查[模块级build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-hvigor-compilation-options-customizing-sample-V13#section4322212200)文件中的“abiFilters”参数中的配置，规则如下：
+3. 根据查询返回结果，检查[模块级build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-hvigor-compilation-options-customizing-sample-V13#section4322212200)文件中的[“abiFilters”参数](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ohos-abi#%E5%9C%A8%E7%BC%96%E8%AF%91%E6%9E%B6%E6%9E%84%E4%B8%AD%E6%8C%87%E5%AE%9Aabi)中的配置，规则如下：
     * 若返回结果为default，请执行如下命令，查询是否存在lib64文件夹。
       ```
       cd /system/
@@ -494,7 +738,6 @@ error: install parse native so failed.
       * 存在lib64文件夹：则“abiFilters”参数中需要包含arm64-v8a类型。
       * 不存在lib64文件夹：则“abiFilters”参数中需要至少包含armeabi/armeabi-v7a中的一个类型。
     * 若返回结果为armeabi-v7a/armeabi/arm64-v8a/x86/x86_64中的一个或多个，需要在“abiFilters”参数中至少包含返回结果中的一个Abi类型。
-<br></br>
 
 
 ### 9568344 解析配置文件失败
@@ -669,7 +912,7 @@ error: signature verification failed due to not trusted app source.
 **处理步骤**
 
 * 场景一：
-	1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-signing-V13#section18815157237)。在连接设备后，重新为应用进行签名。
+	1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。在连接设备后，重新为应用进行签名。
 	2. 如果使用的是手动签名，对于OpenHarmony应用，请参考<!--RP2-->[OpenHarmony应用手动签名](../security/hapsigntool-guidelines.md)<!--RP2End-->，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**。
 
         1. 获取当前设备的UDID。
@@ -1105,6 +1348,36 @@ error: verify code signature failed.
 
 <!--RP3--><!--RP3End-->
 
+### 9568399 拷贝文件失败
+
+**错误信息**
+
+error: copy file failed.
+
+**错误描述**
+
+安装应用过程中，拷贝文件失败。
+
+**可能原因**
+
+1. 拷贝源文件路径或目标路径为无效路径。
+2. 源文件打开失败。
+3. 获取源文件状态失败。
+4. 源文件的大小无效。
+6. 源文件拷贝失败。
+7. 源文件没有访问权限。
+8. 更改文件权限失败。
+
+**处理步骤**
+
+1. 重启手机后再次尝试安装应用。
+
+2. 重复上述步骤3到5次后依旧安装失败，请导出日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
+
+```
+hdc file recv /data/log/hilog/
+```
+
 ### 9568401 调试包仅支持运行在开发者模式设备
 **错误信息**
 
@@ -1123,6 +1396,61 @@ error: debug bundle can only be installed in developer mode.
 1. 终端系统查看“设置 > 系统”中是否有“开发者选项”，如果不存在，可在“设置 > 关于本机”连续七次单击“版本号”，直到提示“开启开发者模式”，点击“确认开启”后输入PIN码（如果已设置），设备将自动重启。
 2. USB数据线连接终端和PC，在“设置 > 系统 > 开发者选项”中，打开“USB调试”开关，弹出的“允许USB调试”的弹框，点击“允许”。
 3. 启动调试或运行应用。
+
+### 9568404 传递签名配置文件失败
+
+**错误信息**
+
+error: delivery sign profile failed.
+
+**错误描述**
+
+安装过程中，传递代码签名配置文件出现异常，导致安装失败。
+
+**可能原因**
+
+1. 文件路径不存在。
+2. 创建文件路径失败。
+3. 更改文件目录模式失败。
+4. 写配置文件数据失败。
+5. 更改配置文件模式失败。
+6. 添加配置文件数据失败。
+
+**处理步骤**
+
+1. 重启手机后再次尝试安装应用。
+
+2. 重复上述步骤3到5次后依旧安装失败，请导出日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
+
+```
+hdc file recv /data/log/hilog/
+```
+
+### 9568405 删除签名配置文件失败
+
+**错误信息**
+
+error: remove sign profile failed.
+
+**错误描述**
+
+应用卸载过程中，删除签名配置文件出现异常，导致卸载应用失败。
+
+**可能原因**
+
+1. 文件路径不存在。
+2. 加载配置文件数据失败。
+3. 文件权限不是可写的。
+
+**处理步骤**
+
+1. 重启手机后再次尝试卸载应用。
+
+2. 重复上述步骤3到5次后依旧卸载失败，请导出日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
+
+```
+hdc file recv /data/log/hilog/
+```
 
 ### 9568386 卸载的应用不存在
 **错误信息**
@@ -1522,6 +1850,24 @@ error: Failed to install the HAP because the device has been controlled.
 1. 确认设备是否是非法渠道获取的。
 2. 走正常设备激活流程。
 
+### 9568413 应用设备类型不支持当前设备
+
+**错误信息**
+
+error: check syscap filed and device type is not supported.
+
+**错误描述**
+
+应用配置的[设备类型](../quick-start/module-configuration-file.md#devicetypes标签)不支持安装。
+
+**可能原因**
+
+应用配置的[设备类型](../quick-start/module-configuration-file.md#devicetypes标签)和安装设备不一致。
+
+**处理步骤**
+
+调整正确的[设备类型](../quick-start/module-configuration-file.md#devicetypes标签)。
+
 ### 9568415 禁止安装签名证书为debug或者配置文件debug为true的加密应用
 **错误信息**
 
@@ -1555,7 +1901,7 @@ error: Encrypted bundle can not be installed.
 
 **处理步骤**
 
-1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-signing-V13#section18815157237)或者[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-signing-V13#section297715173233)重新签名后安装调试。
+1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)或者[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section297715173233)重新签名后安装调试。
 
 ### 9568417 签名校验失败
 **错误信息**
@@ -1667,3 +2013,146 @@ error: uninstall missing installed module.
 **处理步骤**
 
 使用[bm dump -n](#查询应用信息命令dump)命令查看应用配置，确认要卸载的模块已经安装。
+### 9568432 插件与应用之间的 pluginDistributionIDs 校验失败，导致安装失败
+**错误信息**
+
+error: Check pluginDistributionID between plugin and host application failed.
+
+**错误描述**
+
+应用与插件的 pluginDistributionIDs 之间校验失败。
+
+**可能原因**
+
+应用与插件的 pluginDistributionIDs 没有共同值，导致校验失败。
+
+**处理步骤**
+
+重新配置应用或者插件[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中的 pluginDistributionIDs。
+
+### 9568433 应用缺少ohos.permission.SUPPORT_PLUGIN权限
+**错误信息**
+
+error: Failed to install the plugin because host application check permission failed.
+
+**错误描述**
+
+应用安装插件时，应用的权限校验失败。
+
+**可能原因**
+
+应用缺少ohos.permission.SUPPORT_PLUGIN权限。
+
+**处理步骤**
+
+1. 参考[权限申请指导](../security/AccessToken/declare-permissions.md)申请[ohos.permission.kernel.SUPPORT_PLUGIN权限](../security/AccessToken/restricted-permissions.md#ohospermissionkernelsupport_plugin)。
+2. 该权限等级为system_basic，若[应用APL等级](../security/AccessToken/app-permission-mgmt-overview.md#权限机制)低于system_basic，请[申请受限权限](../security/AccessToken/declare-permissions-in-acl.md)。
+
+### 9568434 应用包名不存在
+**错误信息**
+
+error: Host application is not found.
+
+**错误描述**
+
+传入的应用包名不存在。
+
+**可能原因**
+
+应用没有安装。
+
+**处理步骤**
+
+检查传入的应用是否存在。
+
+### 9568435 设备不具备插件能力
+**错误信息**
+
+error: Failed to install the plugin because current device does not support plugin.
+
+**错误描述**
+
+当前设备不具备插件能力，导致安装插件失败。
+
+**可能原因**
+
+设备不具备插件能力。
+
+**处理步骤**
+
+使用[param工具](./param-tool.md)设置const.bms.support_plugin的值为true，即执行hdc shell param set const.bms.support_plugin true。
+
+### 9568436 多个HSP包信息不一致
+**错误信息**
+
+error: Failed to install the plugin because they have different configuration information.
+
+**错误描述**
+
+多HSP之间的包信息不一致，导致安装失败。
+
+**可能原因**
+
+安装的插件为多HSP时，多个HSP文件的包信息不一致。
+
+**处理步骤**
+
+检查多HSP之间的包信息是否一致，包括[app.json5配置文件](../quick-start/app-configuration-file.md#配置文件标签)中bundleName、bundleType、versionCode、apiReleaseType字段。
+
+### 9568437 插件的 pluginDistributionIDs 解析失败
+**错误信息**
+
+error: Failed to install the plugin because the plugin id failed to be parsed.
+
+**错误描述**
+
+插件的 pluginDistributionIDs 解析失败，导致安装失败。
+
+**可能原因**
+
+插件签名信息中的 pluginDistributionIDs 配置不符合规范，导致解析失败。
+
+**处理步骤**
+
+参考如下格式，重新配置插件profile签名文件中的"app-services-capabilities"字段。
+```
+"app-services-capabilities":{
+    "ohos.permission.kernel.SUPPORT_PLUGIN":{
+        "pluginDistributionIDs":"value-1|value-2|···"
+    }
+}
+```
+
+### 9568438 插件包名不存在
+**错误信息**
+
+error: The plugin is not found.
+
+**错误描述**
+
+插件不存在。
+
+**可能原因**
+
+当前应用没有安装该插件。
+
+**处理步骤**
+
+使用[bm dump -n 命令](#查询应用信息命令dump)查询应用的信息，检查传入的插件是否安装。
+
+### 9568439 插件与应用包名一致
+**错误信息**
+
+error: The plugin name is same as host bundle name.
+
+**错误描述**
+
+插件的包名与应用包名相同。
+
+**可能原因**
+
+插件包名与应用包名一致，导致插件安装失败。
+
+**处理步骤**
+
+重新配置插件的包名。

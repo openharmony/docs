@@ -146,6 +146,9 @@ module.json5配置文件包含以下标签。
 | [appEnvironments](#appenvironments标签) | 标识当前模块配置的应用环境变量，只允许entry和feature模块配置。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | appStartup | 标识当前Module启动框架配置路径，在Entry类型的HAP、HSP、HAR中生效。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | [hnpPackages](#hnppackages标签) | 标识当前应用包含的Native软件包信息。只允许entry类型模块配置。 | 对象数组 | 该标签可缺省，缺省值为空。 |
+| [systemTheme](#systemtheme标签) | 标识当前使用的系统主题配置项。只允许entry类型模块配置。取值为不超过255字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
+| abilitySrcEntryDelegator | 标识当前Module需要Hook的UIAbility的名称，与abilityStageSrcEntryDelegator字段组合使用，共同指定Hook的目标对象。不允许HAR模块配置。 | 字符串 | 该标签可缺省，缺省值为空。 |
+| abilityStageSrcEntryDelegator | 标识当前Module需要Hook的AbilityStage，其值配置为对应Module的名称，与abilitySrcEntryDelegator字段组合使用，共同指定Hook的目标对象。不允许HAR模块配置。 | 字符串 | 该标签可缺省，缺省值为空。 |
 
 ## deviceTypes标签
 
@@ -1212,5 +1215,38 @@ resources/base/profile路径下的start_window.json资源文件示例如下：
   "startWindowBackgroundColor": "$color:start_window_back_ground_color",
   "startWindowBackgroundImage": "$media:start_window_back_ground_image",
   "startWindowBackgroundImageFit": "Cover"
+}
+```
+
+
+
+## systemTheme标签
+
+该标签指向一个profile文件资源，用于指定当前应用使用的系统主题配置文件。
+
+systemTheme标签示例：
+
+```json
+{
+  "module": {
+    // ...
+    "systemTheme": "$profile:theme_config", // 通过profile下的资源文件配置
+  }
+}
+```
+
+在开发视图的resources/base/profile下面定义配置文件theme_config.json，其中文件名“theme_config.json”可自定义为“theme_config”开头文件名，例如"theme_config"、"theme_config_1"。需要和systemTheme标签指定的信息对应。配置文件中标识当前应用使用的系统主题。
+
+  **表30** theme_config.json配置说明
+
+
+| 属性名称 | 含义 | 数据类型 | 是否可缺省 |
+| -------- | -------- | -------- | -------- |
+| systemTheme | 标识当前应用使用的系统主题，取值为引用系统主题名称的枚举。枚举支持的取值如下：<br/>-&nbsp;$ohos:theme:ohos_theme 系统默认的主题| 字符串 | 该标签不可缺省。 |
+
+resources/base/profile路径下的theme_config.json资源文件示例如下：
+```json
+{
+  "systemTheme": "$ohos:theme:ohos_theme"
 }
 ```

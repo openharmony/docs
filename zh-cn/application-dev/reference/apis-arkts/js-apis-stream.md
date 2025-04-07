@@ -544,9 +544,9 @@ Readable构造函数的选项信息。
 | readableObjectMode  | boolean   | 是   | 否 | 用于指定可读流是否以对象模式工作。true表示流被配置为对象模式，false表示流处于非对象模式。当前版本只支持原始数据（字符串和Uint8Array），返回值为false。|
 | readable | boolean | 是 | 否  | 表示可读流是否处于可读状态。true表示流处于可读状态，false表示流中没有更多数据可供读取。 |
 | readableHighWatermark | number | 是 | 否  | 定义缓冲区可以存放的最大数据量。默认值为16 * 1024，单位为字节。|
-| readableFlowing | boolean \| null | 是 | 否  | 表示当前可读流的状态。true表示流处于流动模式，false表示流处于非流动模式。|
+| readableFlowing | boolean \| null | 是 | 否  | 表示当前可读流的状态。可读流在任何时间点都处于两种状态之一。true表示流处于流动模式，false表示流处于非流动模式。默认值是true。|
 | readableLength | number | 是 | 否  | 表示缓冲区的当前字节数。|
-| readableEncoding | string \| null | 是 | 否  | 被解码成字符串时所使用的字符编码。当前版本支持'utf8'、'gb18030'、'gbk'以及'gb2312'。|
+| readableEncoding | string \| null | 是 | 否  | 被解码成字符串时所使用的字符编码。默认值是'utf8'，当前版本支持'utf8'、'gb18030'、'gbk'以及'gb2312'。|
 | readableEnded | boolean | 是  | 否 | 表示当前可读流是否已经结束。true表示流已经没有更多数据可读，并且已经结束，false表示流尚未结束，依然有数据可读或等待读取。 |
 
 ### constructor
@@ -719,6 +719,7 @@ console.info("Readable test pause", readableStream.isPaused()); // Readable test
 setEncoding(encoding?: string): boolean
 
 设置可读流的字符编码。
+当缓冲区有数据时，不允许设置字符编码，返回值为false。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

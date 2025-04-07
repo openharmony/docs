@@ -24,7 +24,7 @@ Creates an asset with the specified file name. This API uses a promise to return
 The file name must comply with the following specifications:
 - The file name consists of a valid file name and an image or video file name extension.
 - The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+- The file name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -82,7 +82,7 @@ Creates an asset with the specified file name and options. This API uses a promi
 The file name must comply with the following specifications:
 - The file name consists of a valid file name and an image or video file name extension.
 - The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+- The file name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -303,7 +303,7 @@ Obtains analysis data. This API uses a promise to return the result.
 
 | Type               | Description                               |
 | :------------------ | :---------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the analysis result obtained.|
+| Promise&lt;string&gt; | Promise used to return the analysis result obtained.|
 
 **Error codes**
 

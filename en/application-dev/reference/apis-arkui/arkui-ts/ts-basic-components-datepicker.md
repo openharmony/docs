@@ -107,7 +107,7 @@ Specifies whether to display the lunar calendar.
 
 lunar(isLunar: Optional\<boolean>)
 
-Specifies whether to display the lunar calendar. Compared to [lunar](#lunar), the **isLunar** parameter supports the **undefined** type.
+Specifies whether to display the lunar calendar. Compared to [lunar](#lunar), this API supports the **undefined** type for the **isLunar** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -139,7 +139,7 @@ Sets the text style for the top and bottom items.
 
 disappearTextStyle(style: Optional\<PickerTextStyle>)
 
-Sets the text style for the top and bottom items. Compared to [disappearTextStyle](#disappeartextstyle10)<sup>10+</sup>, the **style** parameter supports the **undefined** type.
+Sets the text style for the top and bottom items. Compared to [disappearTextStyle](#disappeartextstyle10)<sup>10+</sup>, this API supports the **undefined** type for the **style** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -171,7 +171,7 @@ Sets the text style for all items except the top, bottom, and selected items.
 
 textStyle(style: Optional\<PickerTextStyle>)
 
-Sets the text style for all items except the top, bottom, and selected items. Compared to [textStyle](#textstyle10)<sup>10+</sup>, the **style** parameter supports the **undefined** type.
+Sets the text style for all items except the top, bottom, and selected items. Compared to [textStyle](#textstyle10)<sup>10+</sup>, this API supports the **undefined** type for the **style** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -203,7 +203,7 @@ Sets the text style for the selected item.
 
 selectedTextStyle(style: Optional\<PickerTextStyle>)
 
-Sets the text style for the selected item. Compared to [selectedTextStyle](#selectedtextstyle10)<sup>10+</sup>, the **style** parameter supports the **undefined** type.
+Sets the text style for the selected item. Compared to [selectedTextStyle](#selectedtextstyle10)<sup>10+</sup>, this API supports the **undefined** type for the **style** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -306,7 +306,7 @@ Triggered when a date is selected.
 
 onDateChange(callback: Optional\<Callback\<Date>>)
 
-Triggered when a date is selected. Compared to [onDateChange](#ondatechange10)<sup>10+</sup>, the **callback** parameter supports the **undefined** type.
+Triggered when a date is selected. Compared to [onDateChange](#ondatechange10)<sup>10+</sup>, this API supports the **undefined** type for the **callback** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 

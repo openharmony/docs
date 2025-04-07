@@ -21,6 +21,8 @@
 
 ListItemGroup(options?: ListItemGroupOptions)
 
+创建ListItemGroup组件。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -32,6 +34,8 @@ ListItemGroup(options?: ListItemGroupOptions)
 | options |  [ListItemGroupOptions](#listitemgroupoptions对象说明)| 否 | 列表item分组组件参数。 |
 
 ## ListItemGroupOptions对象说明
+
+ListItemGroup组件参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -87,6 +91,8 @@ childrenMainSize(value: ChildrenMainSize)
 | value | [ChildrenMainSize](ts-container-scrollable-common.md#childrenmainsize12对象说明) | 是   | 该对象用来维护子组件在主轴方向的大小信息。|
 
 ## ListItemGroupStyle<sup>10+</sup>枚举说明
+
+List组件卡片样式枚举。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

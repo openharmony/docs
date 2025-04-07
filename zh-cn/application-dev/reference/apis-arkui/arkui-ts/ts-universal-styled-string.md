@@ -80,7 +80,7 @@ equals(other: StyledString): boolean
 
 | 类型              |       说明       |
 | ------- | --------------------------------- | 
-| boolean | 两个属性字符串是否相等。<br/>**说明：** <br/>当属性字符串的文本及样式均一致，视为相等。<br/>不比较GestureStyle，当属性字符串配置了不同事件，文本和其他样式相同时，亦视为相等。<br/>当比较CustomSpan时，比较的是地址，地址相等，视为相等。 |
+| boolean | 两个属性字符串是否相等。<br/>true表示相等，false表示不相等。<br/>**说明：** <br/>当属性字符串的文本及样式均一致，视为相等。<br/>不比较GestureStyle，当属性字符串配置了不同事件，文本和其他样式相同时，亦视为相等。<br/>当比较CustomSpan时，比较的是地址，地址相等，视为相等。 |
 
 ### subStyledString
 
@@ -505,6 +505,8 @@ TextShadowStyle | GestureStyle | ImageAttachment | ParagraphStyle | LineHeightSt
 | [ImageAttachment](#imageattachment) | 图片样式。 |
 | [CustomSpan](#customspan) | 自定义绘制Span样式。 |
 | [UserDataSpan](#userdataspan) | UserDataSpan样式。 |
+| [UrlStyle](#urlstyle14) | 超链接样式。 |
+| [BackgroundColorStyle](#backgroundcolorstyle14) | 文本背景颜色样式。 |
 
 ## StyleOptions对象说明
 
@@ -2180,7 +2182,7 @@ struct styled_string {
 
 ### 示例10 (给图片设置colorFilter)
 
-该示例通过给imageAttachment设置colorFilter实现了给图像设置颜色滤镜效果
+该示例通过给imageAttachment设置colorFilter实现了给图像设置颜色滤镜效果。
 
 ``` ts
 // xxx.ets

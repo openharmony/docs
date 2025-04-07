@@ -180,7 +180,7 @@ tip的绘制区域为Slider自身节点的overlay。
 
 | 参数名                | 类型                                   | 必填 | 说明                                       |
 | --------------------- | -------------------------------------- | ---- | ------------------------------------------ |
-| value                 | boolean                                | 是   | 滑动时是否显示气泡提示。<br/>默认值：false |
+| value                 | boolean                                | 是   | 滑动时是否显示气泡提示。值为true时，显示气泡。值为false时，不显示气泡。<br/>默认值：false |
 | content<sup>10+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否   | 气泡提示的文本内容，默认显示当前百分比。   |
 
 ### trackThickness<sup>8+</sup>

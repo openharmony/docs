@@ -91,6 +91,7 @@ mediatool recv <resource-uri> <dest-path>
 
 将`<resource-uri>`指定为`all`则能够将所有媒体库资源的源文件导出。当`<resource-uri>`为`all`时，`<dest-path>`必须为文件夹路径。
 
+该命令无法导出隐藏相册内的媒体资产。
 <!--RP1--><!--RP1End-->
 
 **使用示例：**
@@ -129,6 +130,8 @@ mediatool query <display-name> [-p] [-u]
 ```
 
 该命令能够查询出所有名字为`<display-name>`的媒体库资源，返回资源源文件真实路径或媒体资源uri。默认返回源文件真实路径。
+
+该命令无法查询出隐藏相册内的媒体资产。
 
   | 选项               | 说明             |
 | ---- |--------------- |

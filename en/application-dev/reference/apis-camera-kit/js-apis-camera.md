@@ -401,7 +401,7 @@ Checks whether the camera device is muted.
 
 | Type       | Description                                        |
 | ---------- | -------------------------------------------- |
-| boolean    | **true**: The camera device is muted.<br>**false**: The camera device is not muted.|
+| boolean    | Check result. The value **true** means that the camera device is muted, and **false** means the opposite.|
 
 **Example**
 
@@ -1077,7 +1077,7 @@ Checks whether the camera device supports the flashlight.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | **true**: The camera device supports the flashlight.<br>**false**: The camera device does not support the flashlight.|
+| boolean    | Check result. The value **true** means that the camera device supports the flashlight, and **false** means the opposite.|
 
 **Example**
 
@@ -1106,7 +1106,7 @@ Checks whether a flashlight mode is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | **true**: The flashlight mode is supported.<br>**false**: The flashlight mode is not supported.|
+| boolean    | Check result. The value **true** means that the flashlight mode is supported, and **false** means the opposite.|
 
 **Example**
 
@@ -1410,7 +1410,7 @@ Opens this camera device and obtains the handle to the camera in secure mode.
 
 | Name    | Type                 | Mandatory| Description                                                                     |
 | -------- | -------------------- | ---- |-------------------------------------------------------------------------|
-| isSecureEnabled | boolean | Yes  | Whether the camera can be enabled in secure mode. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| isSecureEnabled | boolean | Yes  | Whether to open the camera device in secure mode. The value **true** means to open the camera device in secure mode, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Return value**
 
@@ -2036,8 +2036,8 @@ Sets a frame rate range for preview streams. The range must be within the suppor
 
 | Name    | Type        | Mandatory| Description                      |
 | -------- | --------------| ---- | ------------------------ |
-| minFps   | number        | Yes  | Minimum frame rate.|
-| maxFps   | number        | Yes  | Maximum frame rate. When the minimum value is greater than the maximum value, the API does not take effect.|
+| minFps   | number        | Yes  | Minimum frame rate, in fps.|
+| maxFps   | number        | Yes  | Maximum frame rate, in fps. When the minimum value is greater than the maximum value, the API does not take effect.|
 
 **Error codes**
 
@@ -2623,7 +2623,7 @@ Checks whether taking moving photos is supported.
 
 | Type           | Description                    |
 | -------------- | ----------------------- |
-| boolean | **true**: Taking moving photos is supported.<br>**false**: Taking moving photos is not supported.|
+| boolean | Check result. The value **true** means that taking moving photos is supported, and **false** means the opposite.|
 
 **Error codes**
 
@@ -2767,7 +2767,7 @@ Checks whether mirror photography is supported.
 
 | Type           | Description                    |
 | -------------- | ----------------------- |
-| boolean | **true**: Mirror photography is supported.<br>**false**: Mirror photography is not supported.|
+| boolean | Check result. The value **true** means that mirror photography is supported, and **false** means the opposite.|
 
 **Example**
 
@@ -2782,7 +2782,9 @@ function isMirrorSupported(photoOutput: camera.PhotoOutput): boolean {
 
 enableMirror(enabled: boolean): void
 
-Enables mirror photography.
+Enables dynamic photo capture.
+
+Before calling this API, check whether dynamic photo capture is supported by calling [isMovingPhotoSupported](#ismovingphotosupported12) and whether mirroring is supported by calling [isMirrorSupported](#ismirrorsupported).
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2790,7 +2792,7 @@ Enables mirror photography.
 
 | Name     | Type                   | Mandatory| Description                       |
 |----------| ---------------------- | ---- |---------------------------|
-| enabled | boolean                | Yes  | Whether to enable mirror photography. The value **true** means to enable it, and **false** means to diable it.|
+| enabled | boolean                | Yes  | Whether to enable or disable dynamic photo capture. The value **true** means to enable dynamic photo capture, and **false** means to disable it.|
 
 **Error codes**
 
@@ -3889,7 +3891,7 @@ Checks whether mirror recording is supported.
 
 | Type           | Description                             |
 | -------------- |---------------------------------|
-| boolean | **true**: Mirror recording is supported.<br>**false**: Mirror recording is not supported.|
+| boolean | Check result. The value **true** means that mirror recording is supported, and **false** means the opposite.|
 
 **Example**
 
@@ -3960,7 +3962,7 @@ Obtains the video rotation degree.
 
 | Name    | Type        | Mandatory| Description                      |
 | -------- | --------------| ---- | ------------------------ |
-| deviceDegree | number | Yes  | Rotation angle.|
+| deviceDegree | number | Yes  | Rotation angle, in degrees.|
 
 **Return value**
 
@@ -4507,7 +4509,7 @@ Determines whether a **CameraInput** instance can be added to this session. This
 
 | Type           | Description                    |
 | -------------- | ------------------------ |
-| boolean | **true**: The **CameraInput** instance can be added.<br>**false**: The **CameraInput** instance cannot be added.|
+| boolean | Check result. The value **true** means that the **CameraInput** instance can be added, and **false** means the opposite.|
 
 **Example**
 
@@ -4620,7 +4622,7 @@ Determines whether a **CameraOutput** instance can be added to this session. Thi
 
 | Type           | Description                    |
 | -------------- | ------------------------ |
-| boolean | **true**: The **CameraOutput** instance can be added.<br>**false**: The **CameraOutput** instance cannot be added.|
+| boolean | Check result. The value **true** means that the **CameraOutput** instance can be added, and **false** means the opposite.|
 
 **Example**
 
@@ -5046,7 +5048,7 @@ Checks whether the camera device has flash. This API uses an asynchronous callba
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | **true**: The camera device has flash.<br>**false**: The camera device does not have flash. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| boolean    | Check result. The value **true** means that the camera device has flash, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -5092,7 +5094,7 @@ Checks whether a flash mode is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | **true**: The flash mode is supported.<br>**false**: The flash mode is not supported. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| boolean    | Check result. The value **true** means that the flash mode is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -5434,7 +5436,7 @@ Checks whether an exposure mode is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | **true**: The exposure mode is supported.<br>**false**: The exposure mode is not supported. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| boolean    | Check result. The value **true** means that the exposure mode is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -5732,7 +5734,7 @@ Checks whether a focus mode is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | **true**: The focus mode is supported.<br>**false**: The focus mode is not supported. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| boolean    | Check result. The value **true** means that the focus mode is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -6064,7 +6066,7 @@ Checks whether a video stabilization mode is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | **true**: The video stabilization mode is supported.<br>**false**: The video stabilization mode is not supported. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| boolean    | Check result. The value **true** means that the video stabilization mode is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -6657,7 +6659,7 @@ Checks whether the camera device has flash.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | **true**: The camera device has flash.<br>**false**: The camera device does not have flash. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| boolean    | Check result. The value **true** means that the camera device has flash, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -6707,7 +6709,7 @@ Checks whether a flash mode is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | **true**: The flash mode is supported.<br>**false**: The flash mode is not supported. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| boolean    | Check result. The value **true** means that the flash mode is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -6848,7 +6850,7 @@ Checks whether an exposure mode is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | **true**: The exposure mode is supported.<br>**false**: The exposure mode is not supported. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| boolean    | Check result. The value **true** means that the exposure mode is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -7211,7 +7213,7 @@ Checks whether a focus mode is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | **true**: The focus mode is supported.<br>**false**: The focus mode is not supported. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| boolean    | Check result. The value **true** means that the focus mode is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -7618,7 +7620,7 @@ Checks whether a video stabilization mode is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | **true**: The video stabilization mode is supported.<br>**false**: The video stabilization mode is not supported. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| boolean    | Check result. The value **true** means that the video stabilization mode is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -7930,9 +7932,9 @@ For details about how to enable the HDR effect and set the color space in differ
 
 **Photo Mode**
 
-| SDR/HRD Capture       | ColorSpace |
+| SDR/HRD Photo Capture       | ColorSpace |
 |--------------------|------------|
-| SDR (Default)       | SRGB       |
+| SDR(Default)       | SRGB       |
 | HDR                | DISPLAY_P3 |
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
@@ -8029,7 +8031,7 @@ Checks whether the device supports automatic camera switch.
 
 | Type                                            | Description         |
 | ----------------------------------------------- |-------------|
-| boolean               | Whether the device supports automatic camera switch.|
+| boolean               | Check result. The value **true** means that the device supports automatic camera switch, and **false** means the opposite.|
 
 **Error codes**
 
