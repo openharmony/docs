@@ -11,9 +11,7 @@
 
 ## 导入模块
 ```ts
-import image from '@ohos.multimedia.image';
 import { metadataBinding  }'@ohos.multimodalAwareness';
-import { BusinessError } from '@kit.BasicServicesKit';
 ```
 
 ## encodeImage(image.PixelMap, string)
@@ -44,6 +42,10 @@ encodeImage(srcImage: image.PixelMap, metadata: string): Promise<image.PixelMap>
 **示例**：
 
 ```ts
+import image from '@ohos.multimedia.image';
+import { metadataBinding  }'@ohos.multimodalAwareness';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let captureImage: image.PixelMap | undefined;
 metadataBinding.encodeImage(metadata, srcImage).then((pixelMap : image.PixelMap) =>{
 	captureImage = pixelMap;
@@ -79,6 +81,10 @@ function decodeImage(encodedImage: image.PixelMap): Promise\<string\>
 
 **示例：**  
 ```ts
+import image from '@ohos.multimedia.image';
+import { metadataBinding  }'@ohos.multimodalAwareness';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let encodeImage: image.PixelMap | undefined;
 metadataBinding.decodeImage(srcImage).then((metadata : string) =>{
 }).catch((error:BusinessError)=>{
@@ -110,6 +116,9 @@ notifyMetadataBindingEvent(metadata: string): void；
 **示例**：
 
 ```ts
+import { metadataBinding  }'@ohos.multimodalAwareness';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let bundleName:string = '';
 metadataBinding.notifyMetadataBindingEvent(metadata).then((metadata : string) =>{
 }).catch((error:BusinessError)=>{

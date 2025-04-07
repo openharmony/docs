@@ -10,7 +10,6 @@
 ## 导入模块
 ```ts
 import { metadataBinding  }'@ohos.multimodalAwareness';
-import { BusinessError } from '@kit.BasicServicesKit';
 ```
 
 ## submitMetadata(string)
@@ -36,6 +35,9 @@ function submitMetadata(metadata: string): void;
 **示例**：
 
 ```ts
+import { metadataBinding  }'@ohos.multimodalAwareness';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let metadata:string = "";
 metadataBinding.submitMetadata(metadata).catch((error:BusinessError)=>{
   console.error("submit metadata error" + error);
@@ -67,12 +69,15 @@ metadataBinding.on(type: 'operationSubmitMetadata', bundleName: string, callback
 
 **示例：**  
 ```ts
+import { metadataBinding  }'@ohos.multimodalAwareness';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let bundleName:string = '';
 metadataBinding.on('operationSubmitMetadata', bundleName, (evnet:number)=>{
 	if (event == 1) {
 		console.info("The screenshot request is intercepted and the app link is obtained");
 	}
-}).catch((error:Error)=>{
+}).catch((error:BusinessError)=>{
 	console.error("subscript screenshot event" + error);
 });
 ```
@@ -103,8 +108,11 @@ metadataBinding.off(type: 'operationSubmitMetadata', bundleName: string, callbac
 **示例**：
 
 ```ts
+import { metadataBinding  }'@ohos.multimodalAwareness';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let bundleName:string = '';
-metadataBinding.off('operationSubmitMetadata', bundleName, (evnet:number)=>{}).catch((error:Error)=>{
+metadataBinding.off('operationSubmitMetadata', bundleName, (evnet:number)=>{}).catch((error:BusinessError)=>{
 	console.error("unsubscript screenshot event" + error);
 });
 ```
