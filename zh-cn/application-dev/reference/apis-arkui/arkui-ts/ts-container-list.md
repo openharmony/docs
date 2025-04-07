@@ -32,6 +32,8 @@
 
 List(options?: [ListOptions](#listoptions18对象说明))
 
+创建List列表容器。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -489,6 +491,8 @@ stackFromEnd(enabled: boolean)
 
 ## ListItemAlign<sup>9+</sup>枚举说明
 
+交叉轴方向的布局方式枚举。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -502,6 +506,8 @@ stackFromEnd(enabled: boolean)
 | End    | 2 | ListItem在List中，交叉轴方向尾部对齐。 |
 
 ## StickyStyle<sup>9+</sup>枚举说明
+
+ListItemGroup吸顶或吸底效果枚举。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -848,6 +854,8 @@ List的边缘效果为弹簧效果时，在List划动到边缘继续划动和松
 
 ## ScrollState枚举说明
 
+滑动状态枚举。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -1029,6 +1037,8 @@ type OnScrollVisibleContentChangeCallback = (start: VisibleListContentInfo, end:
 
 ## VisibleListContentInfo<sup>12+</sup>对象说明
 
+ListItem或ListItemGroup的详细信息。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1040,6 +1050,8 @@ type OnScrollVisibleContentChangeCallback = (start: VisibleListContentInfo, end:
 | itemIndexInGroup | number | 否 | 如果当前可视页面的上边或下边在某个Group之中，将会显示Start或End的ListItem在Group中的索引。 |
 
 ## ListItemGroupArea<sup>12+</sup>枚举说明
+
+当前页面可视边位置枚举。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
