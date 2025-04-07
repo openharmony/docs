@@ -110,7 +110,7 @@ struct IndexComponent {
 
 onNewParam?(param: ESObject): void
 
-该回调仅生效于由\@Entry装饰的、作为[router路由](../js-apis-router.md)页面存在的自定义组件。当之前存在于路由栈中的页面，通过[单实例模式](../js-apis-router.md#routermode9)移动到栈顶时触发该回调。
+该回调仅生效于由[\@Entry](../../../../application-dev/quick-start/arkts-create-custom-components.md#entry)装饰的、作为[router路由](../js-apis-router.md)页面存在的自定义组件。当之前存在于路由栈中的页面，通过[单实例模式](../js-apis-router.md#routermode9)移动到栈顶时触发该回调。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
