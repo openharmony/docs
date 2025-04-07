@@ -96,7 +96,7 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 ## OperateIcon
 
-列表右侧显示的元素为图标的参数
+列表右侧显示的元素为图标的参数。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
