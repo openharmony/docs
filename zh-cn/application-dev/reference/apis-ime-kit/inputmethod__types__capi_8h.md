@@ -28,6 +28,7 @@
 | [InputMethod_TextInputType](_input_method.md#inputmethod_textinputtype) | 文本输入类型。 | 
 | [InputMethod_CommandValueType](_input_method.md#inputmethod_commandvaluetype) | 私有数据类型。 | 
 | [InputMethod_ErrorCode](_input_method.md#inputmethod_errorcode) | 输入法错误码。 | 
+| [InputMethod_RequestKeyboardReason](_input_method.md#inputmethod_requestkeyboardreason) | 请求键盘拉起原因。 | 
 
 
 ### 枚举
@@ -41,3 +42,5 @@
 | [InputMethod_TextInputType](_input_method.md#inputmethod_textinputtype) {<br/>[IME_TEXT_INPUT_TYPE_NONE](_input_method.md) = -1,<br/>[IME_TEXT_INPUT_TYPE_TEXT](_input_method.md) = 0,<br/>[IME_TEXT_INPUT_TYPE_MULTILINE](_input_method.md) = 1,<br/>[IME_TEXT_INPUT_TYPE_NUMBER](_input_method.md) = 2,<br/>[IME_TEXT_INPUT_TYPE_PHONE](_input_method.md) = 3,<br/>[IME_TEXT_INPUT_TYPE_DATETIME](_input_method.md) = 4,<br/>[IME_TEXT_INPUT_TYPE_EMAIL_ADDRESS](_input_method.md) = 5,<br/>[IME_TEXT_INPUT_TYPE_URL](_input_method.md) = 6,<br/>[IME_TEXT_INPUT_TYPE_VISIBLE_PASSWORD](_input_method.md) = 7,<br/>[IME_TEXT_INPUT_TYPE_NUMBER_PASSWORD](_input_method.md) = 8,<br/>[IME_TEXT_INPUT_TYPE_SCREEN_LOCK_PASSWORD](_input_method.md) = 9,<br/>[IME_TEXT_INPUT_TYPE_USER_NAME](_input_method.md) = 10,<br/>[IME_TEXT_INPUT_TYPE_NEW_PASSWORD](_input_method.md) = 11,<br/>[IME_TEXT_INPUT_TYPE_NUMBER_DECIMAL](_input_method.md) = 12<br/>} | 文本输入类型。 | 
 | [InputMethod_CommandValueType](_input_method.md#inputmethod_commandvaluetype) {<br/>[IME_COMMAND_VALUE_TYPE_NONE](_input_method.md) = 0,<br/>[IME_COMMAND_VALUE_TYPE_STRING](_input_method.md) = 1,<br/>[IME_COMMAND_VALUE_TYPE_BOOL](_input_method.md) = 2,<br/>[IME_COMMAND_VALUE_TYPE_INT32](_input_method.md) = 3<br/>} | 私有数据类型。 | 
 | [InputMethod_ErrorCode](_input_method.md#inputmethod_errorcode) {<br/>[IME_ERR_OK](_input_method.md) = 0,<br/>[IME_ERR_UNDEFINED](_input_method.md) = 1,<br/>[IME_ERR_PARAMCHECK](_input_method.md) = 401,<br/>[IME_ERR_PACKAGEMANAGER](_input_method.md) = 12800001,<br/>[IME_ERR_IMENGINE](_input_method.md) = 12800002,<br/>[IME_ERR_IMCLIENT](_input_method.md) = 12800003,<br/>[IME_ERR_CONFIG_PERSIST](_input_method.md) = 12800005,<br/>[IME_ERR_CONTROLLER](_input_method.md) = 12800006,<br/>[IME_ERR_SETTINGS](_input_method.md) = 12800007, [IME_ERR_IMMS](_input_method.md) = 12800008,<br/>[IME_ERR_DETACHED](_input_method.md) = 12800009,<br/>[IME_ERR_NULL_POINTER](_input_method.md) = 12802000,<br/>[IME_ERR_QUERY_FAILED](_input_method.md) = 12802001<br/>} | 输入法错误码。 | 
+| [InputMethod_RequestKeyboardReason](_input_method.md#inputmethod_requestkeyboardreason) {<br/>IME_REQUEST_REASON_NONE = 0,<br/>IME_REQUEST_REASON_MOUSE = 1,<br/>IME_REQUEST_REASON_TOUCH = 2,<br/>IME_REQUEST_REASON_OTHER = 20<br/>} | 请求键盘输入原因。 | 
+
