@@ -32,6 +32,8 @@
 
 List(value?:{initialIndex?: number, space?: number&nbsp;|&nbsp;string, scroller?: Scroller})
 
+创建List列表容器。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -469,6 +471,8 @@ maintainVisibleContentPosition(enabled: boolean)
 
 ## StickyStyle<sup>9+</sup>枚举说明
 
+ListItemGroup吸顶或吸底效果枚举。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -794,6 +798,8 @@ List的边缘效果为弹簧效果时，在List划动到边缘继续划动和松
 | handler | [OnScrollVisibleContentChangeCallback](#onscrollvisiblecontentchangecallback12) | 是 | 当前显示内容发生改变的时候触发回调。 |
 
 ## ScrollState枚举说明
+
+滑动状态枚举。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
