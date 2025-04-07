@@ -306,12 +306,12 @@ windowClass.on('avoidAreaChange', async (data) => {
 });
 ```
 
-## 窗口[Orientation](../reference/apis-arkui/js-apis-window.md#orientation9)枚举值8~10（AUTO_ROTATION_XXX_RESTRICTED）和枚举值13~16（USER_ROTATION_XXX）的区别
+## 窗口Orientation枚举值8~10或12和枚举值13~16的区别
 
-1. 窗口设置AUTO_ROTATION_XXX_RESTRICTED，会跟随传感器自动旋转，且受控制中心的旋转开关控制。
-2. 窗口设置USER_ROTATION_XXX，会临时旋转到指定方向（如：USER_ROTATION_PORTRAIT会临时旋转到竖屏），之后跟随传感器自动旋转，受控制中心的旋转开关控制，且可旋转方向受系统判定（同UNSPECIFIED）。
+1. 窗口设置8~10或12，会跟随传感器自动旋转，且受控制中心的旋转开关控制。
+2. 窗口设置13~16，会临时旋转到指定方向（如：13会临时旋转到竖屏），之后跟随传感器自动旋转，受控制中心的旋转开关控制，且可旋转方向受系统判定。
 
-两者的区别是，调用USER_ROTATION_XXX时会临时旋转到指定方向，且应用前后台切换时临时方向也会保持，而调用AUTO_ROTATION_XXX_RESTRICTED则不会保持。
+两者的区别是，调用13~16时会临时旋转到指定方向，且应用前后台切换时临时方向也会保持，而调用8~10或12时应用前后台切换时则不会保持切换前的方向。
 
 **场景举例：**
 1. 手机竖屏，关闭旋转锁定开关 -> 应用设置方向为AUTO_ROTATION_RESTRICTED -> 将手机旋转为横屏（**应用方向为横屏**） -> 应用退出后台进入桌面（方向为竖屏） -> 应用切换至前台（**应用方向为竖屏**） 
@@ -322,6 +322,7 @@ windowClass.on('avoidAreaChange', async (data) => {
 | AUTO_ROTATION_RESTRICTED         | 8  | 横屏、竖屏、反向竖屏、反向横屏 | 是           | 是         |
 | AUTO_ROTATION_PORTRAIT_RESTRICTED         | 9  | 竖屏、反向竖屏 | 是           | 是         |
 | AUTO_ROTATION_LANDSCAPE_RESTRICTED         | 10 | 横屏、反向横屏 | 是           | 是         |
+| AUTO_ROTATION_UNSPECIFIED         | 12  | 受系统判定 | 是           | 是         |
 | USER_ROTATION_PORTRAIT           | 13 | 受系统判定           | 是           | 是         |
 | USER_ROTATION_LANDSCAPE          | 14 | 受系统判定           | 是           | 是         |
 | USER_ROTATION_PORTRAIT_INVERTED  | 15 | 受系统判定           | 是           | 是         |
