@@ -440,7 +440,7 @@ cachedCount(count: number, show: boolean)
 
 onReachStart(event: () => void)
 
-瀑布流组件到达起始位置时触发。
+瀑布流内容到达起始位置时触发。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -450,7 +450,7 @@ onReachStart(event: () => void)
 
 onReachEnd(event: () => void)
 
-瀑布流组件到达末尾位置时触发。
+瀑布流内容到达末尾位置时触发。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
