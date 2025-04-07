@@ -281,7 +281,7 @@ onFrame: (progress: number) => void
 
 | 参数名      | 类型     | 必填   | 说明       |
 | -------- | ------ | ---- | -------- |
-| progress | number | 是    | 动画的当前值。 |
+| progress | number | 是    | 动画的当前值。<br/>取值范围为[AnimatorOptions](#animatoroptions)定义的[begin, end]，默认取值范围为[0, 1]。 |
 
 **示例：**
 
