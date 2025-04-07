@@ -49,6 +49,12 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| typedef void(\* [OH_AudioCapturer_OnReadDataCallback](#oh_audiocapturer_onreaddatacallback)) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, void \*userData, void \*audioData, int32_t audioDataSize) | 读取音频数据的回调函数。 | 
+| typedef void(\* [OH_AudioCapturer_OnDeviceChangeCallback](#oh_audiocapturer_ondevicechangecallback)) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, void \*userData, OH_AudioDeviceDescriptorArray \*deviceArray) | 音频录制流的设备变化事件回调函数。 | 
+| typedef void(\* [OH_AudioCapturer_OnInterruptCallback](#oh_audiocapturer_oninterruptcallback)) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, void \*userData, [OH_AudioInterrupt_ForceType](#oh_audiointerrupt_forcetype) type, [OH_AudioInterrupt_Hint](#oh_audiointerrupt_hint) hint) | 音频录制流的中断事件回调函数。 | 
+| typedef void(\* [OH_AudioCapturer_OnErrorCallback](#oh_audiocapturer_onerrorcallback)) ([OH_AudioCapturer](#oh_audiocapturer) \*renderer, void \*userData, [OH_AudioStream_Result](#oh_audiostream_result) error) | 音频录制流的错误事件回调函数。 | 
+| typedef void(\* [OH_AudioRenderer_OnInterruptCallback](#oh_audiorenderer_oninterruptcallback)) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, void \*userData, [OH_AudioInterrupt_ForceType](#oh_audiointerrupt_forcetype) type, [OH_AudioInterrupt_Hint](#oh_audiointerrupt_hint) hint) | 音频流中断事件回调函数。 | 
+| typedef void(\* [OH_AudioRenderer_OnErrorCallback](#oh_audiorenderer_onerrorcallback)) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, void \*userData, [OH_AudioStream_Result](#oh_audiostream_result) error) | 音频流错误事件回调函数。 | 
 | typedef struct [OH_AudioDeviceDescriptor](#oh_audiodevicedescriptor) [OH_AudioDeviceDescriptor](#oh_audiodevicedescriptor) | 声明音频设备描述符。 该实例用于获取更多音频设备详细信息属性。  | 
 | typedef struct [OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md) [OH_AudioDeviceDescriptorArray](#oh_audiodevicedescriptorarray) | 声明音频设备描述符数组。  | 
 | typedef struct [OH_AudioManager](#oh_audiomanager) [OH_AudioManager](#oh_audiomanager) | 声明音频管理器。  | 
@@ -166,8 +172,7 @@
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetEncodingType](#oh_audiorenderer_getencodingtype)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, [OH_AudioStream_EncodingType](#oh_audiostream_encodingtype) \*encodingType) | 查询当前输出音频流编码类型。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetFramesWritten](#oh_audiorenderer_getframeswritten)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, int64_t \*frames) | 查询自创建流以来已写入的帧数。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetTimestamp](#oh_audiorenderer_gettimestamp)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, clockid_t clockId, int64_t \*framePosition, int64_t \*timestamp) | 获取输出音频流时间戳和位置信息。  | 
-| [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetAudioTimestampInfo](#oh_audiorenderer_getaudiotimestampinfo) ([OH_AudioRenderer](#oh_audiorenderer)
- \*renderer, int64_t \*framePosition, int64_t \*timestamp) | 获取输出音频流时间戳和位置信息，适配倍速接口。 | 
+| [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetAudioTimestampInfo](#oh_audiorenderer_getaudiotimestampinfo) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, int64_t \*framePosition, int64_t \*timestamp) | 获取输出音频流时间戳和位置信息，适配倍速接口。 | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetFrameSizeInCallback](#oh_audiorenderer_getframesizeincallback)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, int32_t \*frameSize) | 在回调中查询帧大小。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetSpeed](#oh_audiorenderer_getspeed)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, float \*speed) | 获取音频渲染速率。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_SetSpeed](#oh_audiorenderer_setspeed)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, float speed) | 设置音频渲染速率。  | 
@@ -205,6 +210,12 @@
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetFrameSizeInCallback](#oh_audiostreambuilder_setframesizeincallback)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, int32_t frameSize) | 用于播放时设置每次回调的帧长，帧长至少为音频硬件一次处理的数据大小，并且小于内部缓冲容量的一半。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetRendererInterruptMode](#oh_audiostreambuilder_setrendererinterruptmode)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioInterrupt_Mode](#oh_audiointerrupt_mode) mode) | 设置流客户端的中断模式。 | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetRendererWriteDataCallback](#oh_audiostreambuilder_setrendererwritedatacallback)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioRenderer_OnWriteDataCallback](#oh_audiorenderer_onwritedatacallback) callback, void \*userData) | 设置写入音频数据的回调。  | 
+| [OH_AudioStream_Result](#oh_audiostream_result)[OH_AudioStreamBuilder_SetRendererInterruptCallback](#oh_audiostreambuilder_setrendererinterruptcallback) ([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioRenderer_OnInterruptCallback](#oh_audiorenderer_oninterruptcallback) callback, void \*userData) | 设置输出音频流中断事件的回调函数。 | 
+| [OH_AudioStream_Result](#oh_audiostream_result)[OH_AudioStreamBuilder_SetRendererErrorCallback](#oh_audiostreambuilder_setrenderererrorcallback) ([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioRenderer_OnErrorCallback](#oh_audiorenderer_onerrorcallback) callback, void \*userData) | 设置输出音频流错误事件的回调函数。 | 
+| [OH_AudioStream_Result](#oh_audiostream_result)[OH_AudioStreamBuilder_SetCapturerReadDataCallback](#oh_audiostreambuilder_setcapturerreaddatacallback) ([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioCapturer_OnReadDataCallback](#oh_audiocapturer_onreaddatacallback) callback, void \*userData) | 设置输入音频流读取数据的回调函数。 | 
+| [OH_AudioStream_Result](#oh_audiostream_result)[OH_AudioStreamBuilder_SetCapturerDeviceChangeCallback](#oh_audiostreambuilder_setcapturerdevicechangecallback) ([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioCapturer_OnDeviceChangeCallback](#oh_audiocapturer_ondevicechangecallback) callback, void \*userData) | 设置输入音频流设备变更的回调函数。 | 
+| [OH_AudioStream_Result](#oh_audiostream_result)[OH_AudioStreamBuilder_SetCapturerInterruptCallback](#oh_audiostreambuilder_setcapturerinterruptcallback) ([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioCapturer_OnInterruptCallback](#oh_audiocapturer_oninterruptcallback) callback, void \*userData) | 设置输入音频流中断事件的回调函数。 | 
+| [OH_AudioStream_Result](#oh_audiostream_result)[OH_AudioStreamBuilder_SetCapturerErrorCallback](#oh_audiostreambuilder_setcapturererrorcallback) ([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioCapturer_OnErrorCallback](#oh_audiocapturer_onerrorcallback) callback, void \*userData) | 设置输入音频流错误事件的回调函数。 | 
 
 
 ## 类型定义说明
@@ -236,6 +247,100 @@ typedef struct OH_AudioCapturer_Callbacks_Struct OH_AudioCapturer_Callbacks
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
 **起始版本：** 10
+
+**废弃版本：** 18
+
+**替代接口：** 请分别使用以下回调类型替代： [OH_AudioCapturer_OnReadDataCallback](#oh_audiocapturer_onreaddatacallback)、 [OH_AudioCapturer_OnDeviceChangeCallback](#oh_audiocapturer_ondevicechangecallback)、 [OH_AudioCapturer_OnInterruptCallback](#oh_audiocapturer_oninterruptcallback) 以及 [OH_AudioCapturer_OnErrorCallback](#oh_audiocapturer_onerrorcallback)。
+
+
+### OH_AudioCapturer_OnDeviceChangeCallback
+
+```
+typedef void (*OH_AudioCapturer_OnDeviceChangeCallback)(OH_AudioCapturer* capturer, void* userData, OH_AudioDeviceDescriptorArray* deviceArray)
+```
+
+**描述**
+
+音频录制流的设备变化事件回调函数。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| capturer | 指向[OH_AudioStreamBuilder_GenerateCapturer](#oh_audiostreambuilder_generatecapturer)创建的音频流实例。 | 
+| userData | 指向应用自定义的数据存储区域。 | 
+| deviceArray | 音频设备描述符数组。 | 
+
+
+### OH_AudioCapturer_OnErrorCallback
+
+```
+typedef void (*OH_AudioCapturer_OnErrorCallback)(OH_AudioCapturer* renderer, void* userData, OH_AudioStream_Result error)
+```
+
+**描述**
+
+音频录制流的错误事件回调函数。
+
+该函数与OH_AudioCapturer_Callbacks_Struct.OH_AudioCapturer_OnError类似。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| renderer | 指向[OH_AudioStreamBuilder_GenerateCapturer](#oh_audiostreambuilder_generatecapturer)创建的音频流实例。 | 
+| 指向应用自定义的数据存储区域。 |  | 
+| error | 音频流录制错误结果。 | 
+
+
+### OH_AudioCapturer_OnInterruptCallback
+
+```
+typedef void (*OH_AudioCapturer_OnInterruptCallback)(OH_AudioCapturer* capturer, void* userData, OH_AudioInterrupt_ForceType type, OH_AudioInterrupt_Hint hint)
+```
+
+**描述**
+
+音频录制流的中断事件回调函数。
+
+该函数与OH_AudioCapturer_Callbacks_Struct.OH_AudioCapturer_OnInterruptEvent类似。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| capturer | 指向[OH_AudioStreamBuilder_GenerateCapturer](#oh_audiostreambuilder_generatecapturer)创建的音频流实例。 | 
+| userData | 指向应用自定义的数据存储区域。 | 
+| type | 音频流中断类型。 | 
+| hint | 音频流中断提示类型。 | 
+
+
+### OH_AudioCapturer_OnReadDataCallback
+
+```
+typedef void (*OH_AudioCapturer_OnReadDataCallback)(OH_AudioCapturer* capturer, void* userData, void* audioData, int32_t audioDataSize)
+```
+
+**描述**
+
+读取音频数据的回调函数。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| capturer | 指向[OH_AudioStreamBuilder_GenerateCapturer](#oh_audiostreambuilder_generatecapturer)创建的音频流实例。 | 
+| userData | 指向应用自定义的数据存储区域。 | 
+| audioData | 指向录制数据存储区域，用于应用填充录制数据。 | 
+| audioDataSize | 录制数据的长度。 | 
 
 
 ### OH_AudioDeviceDescriptor
@@ -301,6 +406,57 @@ typedef struct OH_AudioRenderer_Callbacks_Struct OH_AudioRenderer_Callbacks
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
 **起始版本：** 10
+
+**废弃版本：** 18
+
+**替代接口：** 请分别使用以下回调类型替代： [OH_AudioRenderer_OnWriteDataCallback](#oh_audiorenderer_onwritedatacallback)、 [OH_AudioRenderer_OutputDeviceChangeCallback](#oh_audiorenderer_outputdevicechangecallback)、 [OH_AudioRenderer_OnInterruptCallback](#oh_audiorenderer_oninterruptcallback) 以及 [OH_AudioRenderer_OnErrorCallback](#oh_audiorenderer_onerrorcallback)。
+
+
+### OH_AudioRenderer_OnErrorCallback
+
+```
+typedef void (*OH_AudioRenderer_OnErrorCallback)(OH_AudioRenderer* renderer, void* userData, OH_AudioStream_Result error)
+```
+
+**描述**
+
+音频流错误事件回调函数。
+
+该函数与OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnError类似。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer)创建的音频流实例。 | 
+| userData | 指向应用自定义的数据存储区域。 | 
+| error | 音频流播放错误结果。 | 
+
+
+### OH_AudioRenderer_OnInterruptCallback
+
+```
+typedef void (*OH_AudioRenderer_OnInterruptCallback)(OH_AudioRenderer* renderer, void* userData, OH_AudioInterrupt_ForceType type, OH_AudioInterrupt_Hint hint)
+```
+
+**描述**
+
+音频流中断事件回调函数。
+
+该函数与OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnInterruptEvent类似。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer)创建的音频流实例。 | 
+| userData | 指向应用自定义的数据存储区域。 | 
+| type | 音频流中断类型。 | 
+| hint | 音频流中断提示类型。 | 
 
 
 ### OH_AudioRenderer_OnMarkReachedCallback
@@ -871,6 +1027,10 @@ enum OH_AudioStream_Event
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
 **起始版本：** 10
+
+**废弃版本：** 18
+
+**替代接口：**[OH_AudioRenderer_OutputDeviceChangeCallback](#oh_audiorenderer_outputdevicechangecallback)
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -3354,6 +3514,10 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerCallback(OH_AudioStreamBu
 
 **起始版本：** 10
 
+**废弃版本：** 18
+
+**替代接口：** 请分别使用以下接口设置回调函数：[OH_AudioStreamBuilder_SetCapturerReadDataCallback](#oh_audiostreambuilder_setcapturerreaddatacallback)、 [OH_AudioStreamBuilder_SetCapturerDeviceChangeCallback](#oh_audiostreambuilder_setcapturerdevicechangecallback)、[OH_AudioStreamBuilder_SetCapturerInterruptCallback](#oh_audiostreambuilder_setcapturerinterruptcallback)以及[OH_AudioStreamBuilder_SetCapturerErrorCallback](#oh_audiostreambuilder_setcapturererrorcallback)。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
 **参数:**
@@ -3374,6 +3538,68 @@ AUDIOSTREAM_ERROR_INVALID_PARAM：
 
   1. 参数builder为nullptr；
   2. StreamType无效。
+
+
+### OH_AudioStreamBuilder_SetCapturerDeviceChangeCallback()
+
+```
+OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerDeviceChangeCallback(OH_AudioStreamBuilder* builder, OH_AudioCapturer_OnDeviceChangeCallback callback, void* userData)
+```
+
+**描述**
+
+设置输入音频流设备变更的回调函数。
+
+此函数与 [OH_AudioStreamBuilder_SetCapturerCallback](#oh_audiostreambuilder_setcapturercallback) 类似。如果同时使用OH_AudioStreamBuilder_SetCapturerCallback 或者本函数，那么只有最后一次设置的回调才生效，其它回调不会生效。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| builder | 指向OH_AudioStreamBuilder_Create()创建的构造器实例。 | 
+| callback | 用于接收设备变更事件的回调函数。 | 
+| userData | 向应用程序数据结构的指针，该结构将传递给回调函数。 | 
+
+**返回：**
+
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
+
+AUDIOSTREAM_SUCCESS：函数执行成功。
+
+AUDIOSTREAM_ERROR_INVALID_PARAM：参数无效，比如，builder为空指针。
+
+
+### OH_AudioStreamBuilder_SetCapturerErrorCallback()
+
+```
+OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerErrorCallback(OH_AudioStreamBuilder* builder, OH_AudioCapturer_OnErrorCallback callback, void* userData)
+```
+
+**描述**
+
+设置输入音频流错误事件的回调函数。
+
+此函数与 [OH_AudioStreamBuilder_SetCapturerCallback](#oh_audiostreambuilder_setcapturercallback) 类似。如果同时使用OH_AudioStreamBuilder_SetCapturerCallback 或者本函数，那么只有最后一次设置的回调才生效，其它回调不会生效。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| builder | 指向OH_AudioStreamBuilder_Create()创建的构造器实例。 | 
+| callback | 用于接收错误事件的回调函数。 | 
+| userData | 向应用程序数据结构的指针，该结构将传递给回调函数。 | 
+
+**返回：**
+
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
+
+AUDIOSTREAM_SUCCESS：函数执行成功。 
+
+AUDIOSTREAM_ERROR_INVALID_PARAM：参数无效，比如，builder为空指针。
 
 
 ### OH_AudioStreamBuilder_SetCapturerInfo()
@@ -3405,6 +3631,68 @@ AUDIOSTREAM_ERROR_INVALID_PARAM：
 
   1. 参数builder为nullptr；
   2. 参数sourceType无效。
+
+
+### OH_AudioStreamBuilder_SetCapturerInterruptCallback()
+
+```
+OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerInterruptCallback(OH_AudioStreamBuilder* builder, OH_AudioCapturer_OnInterruptCallback callback, void* userData)
+```
+
+**描述**
+
+设置输入音频流中断事件的回调函数。
+
+此函数与 [OH_AudioStreamBuilder_SetCapturerCallback](#oh_audiostreambuilder_setcapturercallback) 类似。如果同时使用OH_AudioStreamBuilder_SetCapturerCallback 或者本函数，那么只有最后一次设置的回调才生效，其它回调不会生效。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| builder | 指向OH_AudioStreamBuilder_Create()创建的构造器实例。 | 
+| callback | 用于接收中断事件的回调函数。 | 
+| userData | 向应用程序数据结构的指针，该结构将传递给回调函数。 | 
+
+**返回：**
+
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
+
+AUDIOSTREAM_SUCCESS：函数执行成功。
+
+ AUDIOSTREAM_ERROR_INVALID_PARAM：参数无效，比如，builder为空指针。
+
+
+### OH_AudioStreamBuilder_SetCapturerReadDataCallback()
+
+```
+OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerReadDataCallback(OH_AudioStreamBuilder* builder, OH_AudioCapturer_OnReadDataCallback callback, void* userData)
+```
+
+**描述**
+
+设置输入音频流读取数据的回调函数。
+
+此函数与 [OH_AudioStreamBuilder_SetCapturerCallback](#oh_audiostreambuilder_setcapturercallback) 类似。如果同时使用OH_AudioStreamBuilder_SetCapturerCallback 或者本函数，那么只有最后一次设置的回调才生效，其它回调不会生效。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| builder | 指向OH_AudioStreamBuilder_Create()创建的构造器实例。 | 
+| callback | 用于接收读取数据事件的回调函数。 | 
+| userData | 向应用程序数据结构的指针，该结构将传递给回调函数。 | 
+
+**返回：**
+
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
+
+AUDIOSTREAM_SUCCESS：函数执行成功。 
+
+AUDIOSTREAM_ERROR_INVALID_PARAM：参数无效，比如，builder为空指针。
 
 
 ### OH_AudioStreamBuilder_SetChannelCount()
@@ -3562,6 +3850,10 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererCallback(OH_AudioStreamBu
 
 **起始版本：** 10
 
+**废弃版本：** 18
+
+**替代接口：** 请分别使用以下接口设置回调函数：[OH_AudioStreamBuilder_SetRendererWriteDataCallback](#oh_audiostreambuilder_setrendererwritedatacallback)、 [OH_AudioStreamBuilder_SetRendererInterruptCallback](#oh_audiostreambuilder_setrendererinterruptcallback)、[OH_AudioStreamBuilder_SetRendererOutputDeviceChangeCallback](#oh_audiostreambuilder_setrendereroutputdevicechangecallback)以及[OH_AudioStreamBuilder_SetRendererErrorCallback](#oh_audiostreambuilder_setrenderererrorcallback)。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
 **参数:**
@@ -3582,6 +3874,37 @@ AUDIOSTREAM_ERROR_INVALID_PARAM：
 
   1. 参数builder为nullptr；
   2. StreamType无效。
+
+
+### OH_AudioStreamBuilder_SetRendererErrorCallback()
+
+```
+OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererErrorCallback(OH_AudioStreamBuilder* builder, OH_AudioRenderer_OnErrorCallback callback, void* userData)
+```
+
+**描述**
+
+设置输出音频流错误事件的回调函数。
+
+此函数与 [OH_AudioStreamBuilder_SetRendererCallback](#oh_audiostreambuilder_setrenderercallback) 类似。如果同时使用OH_AudioStreamBuilder_SetRendererCallback 或者本函数，那么只有最后一次设置的回调才生效，其它回调不会生效。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| builder | 指向OH_AudioStreamBuilder_Create()创建的构造器实例。 | 
+| callback | 用于接收错误事件的回调函数。 | 
+| userData | 指向应用程序数据结构的指针，该结构将传递给回调函数。 | 
+
+**返回：**
+
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
+
+AUDIOSTREAM_SUCCESS：函数执行成功。 
+
+AUDIOSTREAM_ERROR_INVALID_PARAM：参数无效，比如，builder为空指针。
 
 
 ### OH_AudioStreamBuilder_SetRendererInfo()
@@ -3645,6 +3968,37 @@ AUDIOSTREAM_ERROR_INVALID_PARAM：
   1. 参数builder为nullptr；
   2. 参数mode无效；
   3. StreamType无效。
+
+
+### OH_AudioStreamBuilder_SetRendererInterruptCallback()
+
+```
+OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererInterruptCallback(OH_AudioStreamBuilder* builder, OH_AudioRenderer_OnInterruptCallback callback, void* userData)
+```
+
+**描述**
+
+设置输出音频流中断事件的回调函数。
+
+此函数与 [OH_AudioStreamBuilder_SetRendererCallback](#oh_audiostreambuilder_setrenderercallback) 类似。如果同时使用OH_AudioStreamBuilder_SetRendererCallback 或者本函数，只有最后一次设置的回调才生效，其它回调不会生效。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| builder | 指向OH_AudioStreamBuilder_Create()创建的构造器实例。 | 
+| callback | 用于接收中断事件的回调函数。 | 
+| userData | 指向应用程序数据结构的指针，该结构将传递给回调函数。 | 
+
+**返回：**
+
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
+
+AUDIOSTREAM_SUCCESS：函数执行成功。 
+
+AUDIOSTREAM_ERROR_INVALID_PARAM：参数无效，比如，builder为空指针。
 
 
 ### OH_AudioStreamBuilder_SetRendererOutputDeviceChangeCallback()

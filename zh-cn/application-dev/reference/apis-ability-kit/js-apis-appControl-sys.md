@@ -370,7 +370,7 @@ deleteDisposedStatus(appId: string): Promise\<void>
 
 | 类型                        | 说明                 |
 | ------------------------- | ------------------ |
-| Promise\<void> | Promise对象，无返回结果的Promise对象 |
+| Promise\<void> | Promise对象，无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -475,7 +475,7 @@ deleteDisposedStatusSync(appId: string, appIndex:? number) : void
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
 | appId  | string | 是    | 要查询的应用的appId。<br> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid)。  |
-| appIndex<sup>12+</sup>   | number  | 否   | 表示分身应用的索引。<br> appIndex为0时，表示删除指定应用的处置状态。              |
+| appIndex<sup>12+</sup>   | number  | 否   | 表示分身应用的索引，默认值为0。<br> appIndex为0时，表示删除主应用的处置状态。appIndex大于0时，表示删除指定分身应用的处置状态。  |
 
 **错误码：**
 
@@ -550,7 +550,7 @@ getDisposedRule(appId: string, appIndex:? number): DisposedRule
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
 | appId  | string | 是    | 要获取拦截规则的应用的appId。<br> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid)。  |
-| appIndex<sup>12+</sup>   | number  | 否   | 表示分身应用的索引。<br> appIndex为0时，表示获取指定应用的拦截规则。              |
+| appIndex<sup>12+</sup>   | number  | 否   | 表示分身应用的索引，默认值为0。<br> appIndex为0时，表示获取主应用的拦截规则。appIndex大于0时，表示获取指定分身应用的拦截规则。    |
 
 **返回值：**
 
@@ -607,7 +607,7 @@ setDisposedRule(appId: string, rule: DisposedRule, appIndex:? number): void
 | ----------- | ------ | ---- | --------------------------------------- |
 | appId  | string | 是    | 要设置拦截规则的应用的appId。<br> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid)。  |
 | rule | [DisposedRule](#disposedrule11) | 是 | 指示对应用的拦截规则。 |
-| appIndex<sup>12+</sup>   | number  | 否   | 表示分身应用的索引。<br> appIndex为0时，表示设置指定应用的拦截规则。            |
+| appIndex<sup>12+</sup>   | number  | 否   | 表示分身应用的索引，默认值为0。<br> appIndex为0时，表示设置主应用的拦截规则。appIndex大于0时，表示设置指定分身应用的拦截规则。            |
 
 **错误码：**
 
@@ -678,7 +678,7 @@ setUninstallDisposedRule(appIdentifier: string, rule: UninstallDisposedRule, app
 | ----------- | ------ | ---- | --------------------------------------- |
 | appIdentifier  | string | 是    | 要设置卸载处置规则的应用的appIdentifier。<br> 如果应用没有appIdentifier可使用appId代替。appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid)。  |
 | rule | [UninstallDisposedRule](#uninstalldisposedrule15) | 是 | 表示要设置的卸载处置规则。 |
-| appIndex   | number  | 否   | 表示分身应用的索引。<br> appIndex为0时，为主应用设置卸载处置规则。            |
+| appIndex   | number  | 否   | 表示分身应用的索引，默认值为0。<br> appIndex为0时，表示设置主应用的卸载处置规则。appIndex大于0时，表示设置指定分身应用的卸载处置规则。        |
 
 **错误码：**
 
@@ -738,7 +738,7 @@ getUninstallDisposedRule(appIdentifier: string, appIndex:? number): UninstallDis
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
 | appIdentifier  | string | 是    | 要获取卸载处置规则的应用的appIdentifier。<br> 如果应用没有appIdentifier可使用appId代替。appId是应用的唯一标识，由应用Bundle名称和签名信息决定，设置方法参见[获取应用的appId](#获取应用的appid)。  |
-| appIndex   | number  | 否   | 表示分身应用的索引。<br> appIndex为0时，表示获取主应用的卸载处置规则。              |
+| appIndex   | number  | 否   | 表示分身应用的索引，默认值为0。<br> appIndex为0时，表示获取主应用的卸载处置规则。appIndex大于0时，表示获取指定分身应用的卸载处置规则。              |
 
 **返回值：**
 
@@ -793,7 +793,7 @@ deleteUninstallDisposedRule(appIdentifier: string, appIndex:? number): void
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
 | appIdentifier  | string | 是    | 要删除卸载处置规则的应用的appIdentifier。<br> 如果应用没有appIdentifier可使用appId代替。appId是应用的唯一标识，由应用Bundle名称和签名信息决定，删除方法参见[获取应用的appId](#获取应用的appid)。  |
-| appIndex   | number  | 否   | 表示分身应用的索引。<br> appIndex为0时，表示删除主应用的卸载处置规则。            |
+| appIndex   | number  | 否   | 表示分身应用的索引，默认值为0。<br> appIndex为0时，表示删除主应用的卸载处置规则。appIndex大于0时，表示删除指定分身应用的卸载处置规则。            |
 
 **错误码：**
 

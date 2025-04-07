@@ -7,6 +7,8 @@
 
 **库：** libpicture.so 
 
+**引用文件**：&lt;multimedia/image_framework/image/picture_native.h&gt;
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **起始版本：** 13

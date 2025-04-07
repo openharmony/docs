@@ -54,7 +54,7 @@ Replies to the user's UI operation. This API can be used only by the PIN HAP of 
   | Name      | Type           | Mandatory | Description               |
   | ------------- | --------------- | ---- | ------------------- |
   | action        | number          | Yes   | User operation.<br>- 0: Grant authorization.<br>- 1. Cancel authorization.<br>- 2: Wait until the authorization dialog times out.<br>- 3: Cancel the display of the PIN box.<br>- 4: Cancel the display of the PIN input box.<br>- 5: Confirm the input in the PIN input box.    |
-  | actionResult        | string          | Yes   | User operation result. The value contains a maximum of 256 characters.|
+  | actionResult        | string          | Yes   | User operation result. The value is a string of 1 to 255 characters.|
 
 **Error codes**
 

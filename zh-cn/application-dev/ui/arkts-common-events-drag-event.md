@@ -415,6 +415,7 @@ struct Index {
 }
 
 ```
+![commonDrag](figures/commonDrag.gif)
 
 ### 多选拖拽适配
 
@@ -431,7 +432,7 @@ struct Index {
       ForEach(this.numbers, (idx: number) => {
         GridItem() {
           Column()
-            .backgroundColor(this.colors[idx % 9])
+            .backgroundColor(Color.Blue)
             .width(50)
             .height(50)
             .opacity(1.0)
@@ -539,7 +540,6 @@ struct GridEts {
   @State numbers: number[] = []
   @State isSelectedGrid: boolean[] = []
   @State previewData: DragItemInfo[] = []
-  @State colors: Color[] = [Color.Red, Color.Blue, Color.Brown, Color.Gray, Color.Green, Color.Grey, Color.Orange,Color.Pink ,Color.Yellow]
   @State numberBadge: number = 0;
 
   @Styles
@@ -564,7 +564,7 @@ struct GridEts {
   @Builder
   RandomBuilder(idx: number) {
     Column()
-      .backgroundColor(this.colors[idx % 9])
+      .backgroundColor(Color.Blue)
       .width(50)
       .height(50)
       .opacity(1.0)
@@ -576,7 +576,7 @@ struct GridEts {
         ForEach(this.numbers, (idx: number) => {
           GridItem() {
             Column()
-              .backgroundColor(this.colors[idx % 9])
+              .backgroundColor(Color.Blue)
               .width(50)
               .height(50)
               .opacity(1.0)
@@ -620,10 +620,11 @@ struct GridEts {
   }
 }
 ```
+![multiDrag](figures/multiDrag.gif)
 
 ### 适配自定义落位动效
 
-当开发者需要实现自定义落位动效时，可以禁用系统的默认动效。从API version 16开始，ArkUI提供了[executeDropAnimation](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#executedropanimation18)接口，用于自定义落位动效。以下以Image组件为例，详细介绍使用[executeDropAnimation](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#executedropanimation18)接口的基本步骤，以及开发过程中需要注意的事项。
+当开发者需要实现自定义落位动效时，可以禁用系统的默认动效。从API version 18开始，ArkUI提供了[executeDropAnimation](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#executedropanimation18)接口，用于自定义落位动效。以下以Image组件为例，详细介绍使用[executeDropAnimation](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#executedropanimation18)接口的基本步骤，以及开发过程中需要注意的事项。
 
 1. 组件拖拽设置。
    设置draggable为true，并配置onDragStart，onDragEnd等回调函数。
@@ -754,6 +755,7 @@ struct DropAnimationExample {
   }
 }
 ```
+![executeDropAnimation](figures/executeDropAnimation.gif)
 
 ### 处理大批量数据
 
@@ -768,7 +770,7 @@ struct DropAnimationExample {
       ForEach(this.numbers, (idx: number) => {
         GridItem() {
           Column()
-            .backgroundColor(this.colors[idx % 9])
+            .backgroundColor(Color.Blue)
             .width(50)
             .height(50)
             .opacity(1.0)
@@ -882,7 +884,6 @@ struct GridEts {
   @State numbers: number[] = []
   @State isSelectedGrid: boolean[] = []
   @State previewData: DragItemInfo[] = []
-  @State colors: Color[] = [Color.Red, Color.Blue, Color.Brown, Color.Gray, Color.Green, Color.Grey, Color.Orange,Color.Pink ,Color.Yellow]
   @State numberBadge: number = 0;
   unifiedData: UnifiedData|undefined = undefined;
   timeout: number = 1
@@ -922,7 +923,7 @@ struct GridEts {
   @Builder
   RandomBuilder(idx: number) {
     Column()
-      .backgroundColor(this.colors[idx % 9])
+      .backgroundColor(Color.Blue)
       .width(50)
       .height(50)
       .opacity(1.0)
@@ -957,7 +958,7 @@ struct GridEts {
         ForEach(this.numbers, (idx: number) => {
           GridItem() {
             Column()
-              .backgroundColor(this.colors[idx % 9])
+              .backgroundColor(Color.Blue)
               .width(50)
               .height(50)
               .opacity(1.0)
@@ -1037,4 +1038,5 @@ struct GridEts {
   }
 }
 ```
+![patchDataProcess](figures/patchDataProcess.gif)
 <!--RP1--><!--RP1End-->

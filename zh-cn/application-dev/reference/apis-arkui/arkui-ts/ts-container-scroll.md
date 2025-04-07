@@ -28,7 +28,7 @@ Scroll(scroller?: Scroller)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| scroller | [Scroller](#scroller) | 否 | 可滚动组件的控制器。用于与可滚动组件进行绑定。 |
+| scroller | [Scroller](#scroller) | 否 | 可滚动组件的控制器。用于与可滚动组件进行绑定。<br/>**说明：** <br/>不允许和其他滚动类组件，如：[ArcList](ts-container-arclist.md)、[List](ts-container-list.md)、[Grid](ts-container-grid.md)、[Scroll](ts-container-scroll.md)和[WaterFlow](ts-container-waterflow.md)绑定同一个滚动控制对象。 |
 
 ## 属性
 
@@ -509,6 +509,8 @@ Scroll每帧滚动前触发的回调。
 
 ## OnScrollFrameBeginHandlerResult<sup>18+</sup>对象说明
 
+[OnScrollFrameBeginCallback](#onscrollframebegincallback18)返回的实际滚动偏移量。
+
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -621,7 +623,7 @@ scrollPage(value:   ScrollPageOptions)
 
 ### scrollPage<sup>(deprecated)</sup>
 
-scrollPage(value: { next: boolean; direction?: Axis; })
+scrollPage(value: { next: boolean, direction?: Axis })
 
 滚动到下一页或者上一页。从API version 9开始, 该接口不再维护，推荐使用[scrollPage<sup>9+</sup>](#scrollpage9)。
 

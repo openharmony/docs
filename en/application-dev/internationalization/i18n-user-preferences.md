@@ -23,28 +23,28 @@ For details about how to use the APIs, see [setUsingLocalDigit](../reference/api
 
 3. Enable display of local digits on the application page.
    ```ts
-   try {  
+   try {
      i18n.System.setUsingLocalDigit(true); // Enable the local digit switch.
-   } catch(error) {
+   } catch (error) {
      let err: BusinessError = error as BusinessError;
      console.error(`call System.setUsingLocalDigit failed, error code: ${err.code}, message: ${err.message}.`);
    }
-   let date = new Date(2023, 9, 25); // The date is 2023.10.25.
-   let appPreferredLanguage = "ar";
-   let dateTimeFmt = new intl.DateTimeFormat(appPreferredLanguage);
-   let result = dateTimeFmt.format(date); // result = "٢٠٢٣/١٠/٢٥" (local Arabic digits)
+   let date: Date = new Date(2023, 9, 25); // The date is 2023-10-25.
+   let appPreferredLanguage: string = 'ar';
+   let dateTimeFmt: intl.DateTimeFormat = new intl.DateTimeFormat(appPreferredLanguage);
+   let formattedTime: string = dateTimeFmt.format(date); // formattedTime = '٢٠٢٣/١٠/٢٥' (represented by Arabic numerals)
    ```
 
 4. Set the 24-hour clock format.
    ```ts
-   try {  
+   try {
      i18n.System.set24HourClock(true); // true means to enable the 24-hour clock, and false means to enable the 12-hour clock.
-   } catch(error) {
+   } catch (error) {
      let err: BusinessError = error as BusinessError;
      console.error(`call System.set24HourClock failed, error code: ${err.code}, message: ${err.message}.`);
    }
-   let date = new Date(2023, 9, 25, 16, 48, 0); // The date and time is 2023.10.25 16:48:00.
-   let appPreferredLanguage = "zh";
-   let dateTimeFmt = new intl.DateTimeFormat(appPreferredLanguage, { timeStyle: "medium" });
-   let result = dateTimeFmt.format(date); // result = "16:48:00"
+   let date: Date = new Date(2023, 9, 25, 16, 48, 0); // The date and time is 2023-10-25 16:48:00.
+   let appPreferredLanguage: string = 'zh';
+   let dateTimeFmt: intl.DateTimeFormat = new intl.DateTimeFormat(appPreferredLanguage, { timeStyle: 'medium' });
+   let formattedTime: string = dateTimeFmt.format(date); // formattedTime = '16:48:00'
    ```

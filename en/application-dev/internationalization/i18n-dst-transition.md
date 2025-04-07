@@ -19,23 +19,23 @@ The DST transition rules are as follows:
    ```ts
    import { i18n } from '@kit.LocalizationKit';
 
-   let calendar = i18n.getCalendar("zh-Hans");
-   calendar.setTimeZone("Europe/London");
-   calendar.set(2021, 2, 27, 16, 0, 0); //The day before daylight saving time start
-   let time1 = calendar.getTimeInMillis();
-   calendar.set(2021, 2, 28, 16, 0, 0); //The day daylight saving time start
-   let time2 = calendar.getTimeInMillis();
-   let hours = (time2 - time1)/(3600*1000) //The hours between the same wall clock time before and after DST. Should be 23
+   let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans');
+   calendar.setTimeZone('Europe/London');
+   calendar.set (2021, 2, 27, 16, 0, 0); // Time before the DST starts
+   let startTime: number = calendar.getTimeInMillis();
+   calendar.set (2021, 2, 28, 16, 0, 0); // Time in the DST period
+   let finishTime: number = calendar.getTimeInMillis();
+   let hours: number = (finishTime - startTime) / (3600 * 1000); // hours = 23
    ```
 
 2. Store and display time data.
    Store and display time data according to the local DST timing rules. The time gap and repetition caused by DST transition need to be processed.
 
-   When DST starts, one hour is missing, for example, 1:59:59→3:00:00. When DST ends, one hour is repeated, for example, 3:59:59→3:00:00.
+   The transition into DST will cause a one-hour gap, for example, 1:59:59 → 3:00:00. The transition out of DST will cause a one-hour overlap, for example, 3:59:59 → 3:00:00.
 
    It is recommended that the DST flag be added to the local time when DST is active.
 
-   ![DST flag](figures/dst-transition.png)
+   ![DST flag](figures/dst-flag.png)
 
 3. Store and transmit time data.
    You are advised to use the standard time (UTC or GMT) of time zone 0 for time data storage and transmission. This helps prevent data loss or errors caused by DST transition.

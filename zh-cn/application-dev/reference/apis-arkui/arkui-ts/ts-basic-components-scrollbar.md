@@ -16,6 +16,8 @@
 
 ScrollBar(value: ScrollBarOptions)
 
+创建滚动条组件。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -56,6 +58,8 @@ enableNestedScroll(enabled: Optional\<boolean>)
 
 ## ScrollBarOptions对象说明
 
+滚动条组件参数。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -75,6 +79,8 @@ enableNestedScroll(enabled: Optional\<boolean>)
 > 从API version 12开始，ScrollBar组件没有子节点时，支持显示默认样式的滚动条。
 
 ## ScrollBarDirection枚举说明
+
+滚动条方向枚举。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

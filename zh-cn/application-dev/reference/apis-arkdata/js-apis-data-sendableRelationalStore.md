@@ -59,7 +59,7 @@ const asset2: sendableRelationalStore.NonSendableAsset = {
   createTime: 'createTime1',
   modifyTime: 'modifyTime1',
   size: 'size1',
-}
+};
 const u8 = new Uint8Array([1, 2, 3]);
 const valuesBucket: sendableRelationalStore.NonSendableBucket = {
   age: 18,
@@ -122,7 +122,7 @@ const asset2: sendableRelationalStore.NonSendableAsset = {
   createTime: 'createTime1',
   modifyTime: 'modifyTime1',
   size: 'size1',
-}
+};
 const u8 = new Uint8Array([1, 2, 3]);
 
 const sendableValuesBucket = sendableRelationalStore.toSendableValuesBucket({

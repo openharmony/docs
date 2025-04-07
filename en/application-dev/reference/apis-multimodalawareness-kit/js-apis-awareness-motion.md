@@ -43,7 +43,7 @@ Subscribes to operating hand change events.
 | Name  | Type                            | Mandatory| Description                                                        |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                           | Yes  | Event type. Event type. This parameter has a fixed value of **operatingHandChanged**.|
-| callback | Callback&lt;[OperatingHandStatus](#operatinghandstatus)&gt; | Yes  | Callback used to return the operating hand status.                                  |
+| callback | Callback&lt;[OperatingHandStatus](#operatinghandstatus)&gt; | Yes  | Callback used to return the result.                                  |
 
 **Error codes**
 
@@ -60,9 +60,19 @@ For details about the error codes, see [Motion Sensing Error Codes](errorcode-mo
 **Example**
 
 ```ts
-motion.on('operatingHandChanged', (data:motion.OperatingHandStatus) => {
-    console.info('on success' + data);
+import { BusinessError } from '@kit.BasicServicesKit';
+
+callback(data:motion.OperatingHandStatus) {
+    console.info('callback success' + data);
 })
+
+try {
+    motion.on('operatingHandChanged', this.callback);  
+    console.info("on succeeded");
+} catch (err) {
+    let error = err as BusinessError;
+    console.error("Failed on and err code is " + error.code);
+}
 ```
 
 
@@ -82,7 +92,7 @@ Unsubscribes from operating hand change events.
 | Name  | Type                            | Mandatory| Description                                                        |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                           | Yes  | Event type. Event type. This parameter has a fixed value of **operatingHandChanged**.|
-| callback | Callback&lt;[OperatingHandStatus](#operatinghandstatus)&gt; | No  | Callback used to return the operating hand status.                                  |
+| callback | Callback&lt;[OperatingHandStatus](#operatinghandstatus)&gt; | No  | Callback used to return the result.                                  |
 
 **Error codes**
 
@@ -99,9 +109,15 @@ For details about the error codes, see [Motion Sensing Error Codes](errorcode-mo
 **Example**
 
 ```ts
-motion.off('operatingHandChanged', (data:motion.OperatingHandStatus) => {
-    console.info('off success' + data);
-})
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    motion.off('operatingHandChanged');
+    console.info("off succeeded");
+} catch (err) {
+    let error = err as BusinessError;
+    console.error("Failed off and err code is " + error.code);
+}
 ```
 
 
@@ -135,6 +151,13 @@ For details about the error codes, see [Motion Sensing Error Codes](errorcode-mo
 **Example**
 
 ```ts
-let data:motion.OperatingHandStatus = motion.getRecentOperatingHandStatus();
-console.info('get success' + data);
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    let data:motion.OperatingHandStatus = motion.getRecentOperatingHandStatus();
+    console.info('get success' + data);
+} catch (err) {
+    let error = err as BusinessError;
+    console.error("Failed get and err code is " + error.code);
+}
 ```

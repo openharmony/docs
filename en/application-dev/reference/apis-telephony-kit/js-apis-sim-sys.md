@@ -3435,8 +3435,8 @@ Defines the carrier configuration.
 
 | Name | Type  | Mandatory| Description|
 | ----- | ------ | ---- | ---- |
-| field | string |  Yes | Field name.|
-| value | string |  Yes | Field value.  |
+| field | string |  Yes | Field.|
+| value | string |  Yes | Value.  |
 
 ## DiallingNumbersInfo<sup>8+</sup>
 

@@ -22,13 +22,15 @@ Adds a color stop for the **CanvasGradient** object based on the specified offse
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | ------ | ------ | ---- | ---------------------------------------- |
-| offset | number | Yes | Relative position of the gradient stop along the gradient vector. The value ranges from 0 to 1.            |
-| color  | string | Yes | Gradient color to set. For details about the color notation, see the description of the string type in [ResourceColor](ts-types.md#resourcecolor). |
+| offset | number | Yes | Relative position of the gradient stop along the gradient vector, represented by the ratio of the distance between the gradient stop and the start point to the total length. The value ranges from 0 to 1.<br>If the value of **offset** is less than 0 or greater than 1, there is no gradient effect.            |
+| color  | string | Yes | Gradient color to set. For details about the color notation, see the description of the string type in [ResourceColor](ts-types.md#resourcecolor).<br>Invalid values result in no gradient effect being displayed.|
 
 
-**Example**
+## Example
+
+This example shows how to add a color stop using **addColorStop**.
 
   ```ts
   // xxx.ets

@@ -212,6 +212,8 @@ off(eventId: number): void
 
 取消针对该事件ID的订阅。
 
+使用该接口取消某个事件订阅后，已通过[emit](../../reference/apis-basic-services-kit/js-apis-emitter.md#emitteremit)接口发布但尚未被执行的事件将被取消。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: `SystemCapability.Notification.Emitter`
@@ -235,6 +237,8 @@ off(eventId: string): void
 
 取消订阅指定事件。
 
+使用该接口取消某个事件订阅后，已通过[emit](../../reference/apis-basic-services-kit/js-apis-emitter.md#emitteremit)接口发布但尚未被执行的事件将被取消。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: `SystemCapability.Notification.Emitter`
@@ -257,6 +261,8 @@ emitter.off("eventId");
 off(eventId: number, callback: Callback\<EventData\>): void
 
 取消针对该事件ID的订阅，传入可选参数Callback\<EventData\>，并且该Callback\<EventData\>已经通过on或者once接口订阅，则取消该订阅；否则，不做任何处理。
+
+使用该接口取消某个事件订阅后，已通过[emit](../../reference/apis-basic-services-kit/js-apis-emitter.md#emitteremit)接口发布但尚未被执行的事件将被取消。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -285,6 +291,8 @@ off(eventId: string, callback: Callback\<EventData\>): void
 
 取消针对该事件ID的订阅，传入可选参数Callback\<EventData\>，并且该Callback\<EventData\>已经通过on或者once接口订阅，则取消该订阅；否则，不做任何处理。
 
+使用该接口取消某个事件订阅后，已通过[emit](../../reference/apis-basic-services-kit/js-apis-emitter.md#emitteremit)接口发布但尚未被执行的事件将被取消。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: `SystemCapability.Notification.Emitter`
@@ -311,6 +319,8 @@ emitter.off("eventId", () => {
 off<T\>(eventId: string, callback: Callback\<GenericEventData<T\>\>): void
 
 取消针对该事件ID的订阅，传入可选参数Callback\<GenericEventData<T\>\>，如果该Callback\<GenericEventData<T\>\>已经通过on或者once接口订阅，则取消该订阅；否则，不做任何处理。
+
+使用该接口取消某个事件订阅后，已通过[emit](../../reference/apis-basic-services-kit/js-apis-emitter.md#emitteremit)接口发布但尚未被执行的事件将被取消。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
