@@ -3,23 +3,24 @@
 字体管理模块，提供给系统应用安装和卸载三方字体文件的能力。
 
 >  **说明：**
->  - 本模块首批接口从API version 18开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>  
+>  - 本模块首批接口从API version 19开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 >  - 当前页面仅包含本模块的系统接口。
 
 ## 导入模块
 
 ```js
-import fontManager from '@ohos.fontManager';
+import { fontManager } from '@kit.LocalizationKit';
 ```
 
-### installFont<sup>18+</sup>
+### installFont<sup>19+</sup>
 
 installFont(path: string): Promise&lt;number&gt;
 
 安装指定路径字体，并使用promise异步回调返回安装信息。
 
-**说明**：需要权限: ohos.permission.UPDATE_FONT
+**需要权限:** ohos.permission.UPDATE_FONT
 
 **系统能力**：SystemCapability.Global.FontManager
 
@@ -37,7 +38,7 @@ installFont(path: string): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[资源管理错误码](errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -52,7 +53,7 @@ installFont(path: string): Promise&lt;number&gt;
 
 **示例：**
   ```ts
-  import fontManager from '@kit.LocalizationKit'
+  import { fontManager } from '@kit.LocalizationKit';
 
   async installFont() {
     try {
@@ -65,13 +66,13 @@ installFont(path: string): Promise&lt;number&gt;
   }
   ```
 
-### uninstallFont<sup>18+</sup>
+### uninstallFont<sup>19+</sup>
 
 uninstallFont(fullName: string): Promise&lt;number&gt;
 
 卸载指定名称字体，并使用promise异步回调返回卸载信息。
 
-**说明**：需要权限: ohos.permission.UPDATE_FONT
+**需要权限:** ohos.permission.UPDATE_FONT
 
 **系统能力**：SystemCapability.Global.FontManager
 
@@ -89,7 +90,7 @@ uninstallFont(fullName: string): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[资源管理错误码](errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -101,7 +102,7 @@ uninstallFont(fullName: string): Promise&lt;number&gt;
 
 **示例：**
   ```ts
-  import fontManager from '@kit.LocalizationKit'
+  import { fontManager } from '@kit.LocalizationKit';
 
   async uninstallFont() {
     try {

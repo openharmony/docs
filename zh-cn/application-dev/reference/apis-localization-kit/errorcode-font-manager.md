@@ -70,7 +70,7 @@ The font file is installed.
 
 **可能原因**
 
-传入的字体文件已经安装过。
+传入的字体已经安装过，字体名称重复。
  
 **处理步骤**
 
@@ -84,7 +84,7 @@ The maximum number of installed font files is exceeded.
 
 **错误描述**
 
-当安装的字体文件数量超过最大数量时，系统会产生此错误码。
+当安装的字体文件数量超过最大数量（200）时，系统会产生此错误码。
 
 **可能原因**
 
@@ -110,7 +110,7 @@ Installation failed, other errors.
  
 **处理步骤**
 
-请重试安装操作，观察是否可以安装成功。
+请重启系统，重试安装操作，观察是否可以安装成功。
 
 ## 31100107 卸载的字体文件不存在
 
@@ -134,7 +134,7 @@ The font file to be uninstalled does not exist.
 
 **错误信息**
 
-Font cannot be deleted
+Font cannot be deleted.
 
 **错误描述**
 
