@@ -485,7 +485,6 @@
     - [ARKUI_TextPickerCascadeRangeContent](_a_r_k_u_i___text_picker_cascade_range_content.md)
     - [ARKUI_TextPickerRangeContent](_a_r_k_u_i___text_picker_range_content.md)
     - [ArkUI_TranslationOptions](_ark_u_i___translation_options.md)
-    - [OH_ComponentSnapshot](_ark_u_i___node_component_snapshot.md)
     - [OH_NativeXComponent_Callback](_o_h___native_x_component___callback.md)
     - [OH_NativeXComponent_ExpectedRateRange](_o_h___native_x_component___expected_rate_range.md)
     - [OH_NativeXComponent_MouseEvent](_o_h___native_x_component___mouse_event.md)
