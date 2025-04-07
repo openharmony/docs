@@ -80,11 +80,11 @@ export default class EntryAbility extends UIAbility {
     windowStage.getMainWindow((err: BusinessError, data) => {
       let errCode: number = err.code;
       if (errCode) {
-        console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        console.error(`Failed to obtain the main window. Code:${err.code}, message:${err.message}`);
         return;
       }
       windowClass = data;
-      console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+      console.info(`Succeeded in obtaining the main window. Result:${data}`);
       // 2.设置主窗口属性。以设置"是否可触"属性为例。
       let isTouchable: boolean = true;
       windowClass.setWindowTouchable(isTouchable, (err: BusinessError) => {
