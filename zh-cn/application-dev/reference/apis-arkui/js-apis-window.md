@@ -2547,7 +2547,7 @@ try{
 
 ### getWindowCornerRadius<sup>17+</sup>
 
-getWindowCornerRadius(): number;
+getWindowCornerRadius(): number
 
 获取子窗或悬浮窗的圆角半径值，在未调用[setWindowCornerRadius()](#setwindowcornerradius17)接口设置窗口圆角半径值时，调用此接口可获取窗口默认圆角半径值。
 
