@@ -97,7 +97,7 @@ type(value: ButtonType)
 
 | 参数名 | 类型                              | 必填 | 说明                                        |
 | ------ | --------------------------------- | ---- | ------------------------------------------- |
-| value  | [ButtonType](#buttontype枚举说明) | 是   | Button样式。<br/>默认值：ButtonType.ROUNDED_RECTANGLE |
+| value  | [ButtonType](#buttontype枚举说明) | 是   | Button样式。<br/>从API version 18及之后，ButtonType的默认值修改为ButtonType.ROUNDED_RECTANGLE。API version 18之前的版本，ButtonType的默认值为ButtonType.Capsule。 |
 
 ### fontSize
 
