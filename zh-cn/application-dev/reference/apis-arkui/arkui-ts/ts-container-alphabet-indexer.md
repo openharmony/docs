@@ -16,6 +16,8 @@
 
 AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 
+创建索引条组件。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -409,6 +411,8 @@ enableHapticFeedback(value: boolean)
 | value | boolean | 是  | 是否支持触控反馈。<br/>默认值：true，支持触控反馈。 |
 
 ## IndexerAlign枚举说明
+
+索引条提示弹窗的对齐样式枚举。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
