@@ -759,7 +759,7 @@ MPEG2级别。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**起始版本：** 18
+**起始版本：** 17
 
 
 ### OH_MPEG2Profile
@@ -774,7 +774,7 @@ MPEG2档次。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**起始版本：** 18
+**起始版本：** 17
 
 
 ### OH_MPEG4Level
@@ -789,7 +789,7 @@ MPEG4级别。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**起始版本：** 18
+**起始版本：** 17
 
 
 ### OH_MPEG4Profile
@@ -804,7 +804,7 @@ MPEG4档次。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**起始版本：** 18
+**起始版本：** 17
 
 
 ### OH_ScalingMode
@@ -872,7 +872,7 @@ H.263级别。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**起始版本：** 18
+**起始版本：** 17
 
 
 ### OH_H263Profile
@@ -885,7 +885,7 @@ H.263档次。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**起始版本：** 18
+**起始版本：** 17
 
 
 ### OH_TransferCharacteristic
@@ -1340,7 +1340,7 @@ MPEG2级别。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**起始版本：** 18
+**起始版本：** 17
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -1362,7 +1362,7 @@ MPEG2档次。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**起始版本：** 18
+**起始版本：** 17
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -1386,7 +1386,7 @@ MPEG4级别。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**起始版本：** 18
+**起始版本：** 17
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -1414,7 +1414,7 @@ MPEG4档次。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**起始版本：** 18
+**起始版本：** 17
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -1550,7 +1550,7 @@ H.263级别。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**起始版本：** 18
+**起始版本：** 17
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -1574,7 +1574,7 @@ H.263档次。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**起始版本：** 18
+**起始版本：** 17
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -1893,7 +1893,7 @@ H.263视频编解码器的MIME类型。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**起始版本：** 18
+**起始版本：** 17
 
 
 ### OH_AVCODEC_MIMETYPE_VIDEO_MPEG2
@@ -1908,7 +1908,7 @@ const char* OH_AVCODEC_MIMETYPE_VIDEO_MPEG2
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**起始版本：** 18
+**起始版本：** 17
 
 
 ### OH_AVCODEC_MIMETYPE_VIDEO_MPEG4
@@ -1938,7 +1938,7 @@ const char* OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**起始版本：** 18
+**起始版本：** 17
 
 
 ### OH_ED_KEY_EOS
