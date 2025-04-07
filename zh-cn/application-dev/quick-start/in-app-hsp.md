@@ -52,7 +52,7 @@ MyApplication
 
 ### 导出ArkUI组件
 ArkUI组件可以通过`export`导出，例如：
-```ts
+```ets
 // library/src/main/ets/components/MyTitleBar.ets
 @Component
 export struct MyTitleBar {
@@ -70,15 +70,15 @@ export struct MyTitleBar {
 }
 ```
 对外暴露的接口，需要在入口文件`index.ets`中声明：
-```ts
+```ets
 // library/index.ets
 export { MyTitleBar } from './src/main/ets/components/MyTitleBar';
 ```
 
 
-### 导出ts类和方法
-通过`export`导出ts类和方法，例如：
-```ts
+### 导出类和方法
+通过`export`导出类和方法，例如：
+```ets
 // library/src/main/ets/utils/test.ets
 export class Log {
   static info(msg: string): void {
@@ -95,13 +95,13 @@ export function minus(a: number, b: number): number {
 }
 ```
 对外暴露的接口，需要在入口文件`index.ets`中声明：
-```ts
+```ets
 // library/index.ets
 export { Log, add, minus } from './src/main/ets/utils/test';
 ```
 ### 导出native方法
 在HSP中也可以包含C++编写的`so`。对于`so`中的`native`方法，HSP通过间接的方式导出，以导出`liblibrary.so`的乘法接口`multi`为例：
-```ts
+```ets
 // library/src/main/ets/utils/nativeTest.ets
 import native from 'liblibrary.so';
 
@@ -112,7 +112,7 @@ export function nativeMulti(a: number, b: number): number {
 ```
 
 对外暴露的接口，需要在入口文件`index.ets`中声明：
-```ts
+```ets
 // library/index.ets
 export { nativeMulti } from './src/main/ets/utils/nativeTest';
 ```
@@ -125,7 +125,7 @@ export { nativeMulti } from './src/main/ets/utils/nativeTest';
 不推荐使用相对路径的方式，容易引用错误路径。例如：
 当要引用上述同一图片资源时，在HSP模块中使用`Image("../../resources/base/media/example.png")`，实际上该`Image`组件访问的是HSP调用方（如`entry`）下的资源`entry/src/main/resources/base/media/example.png`。
 
-```ts
+```ets
 // library/src/main/ets/pages/Index.ets
 // 正确用例
 Image($r('app.media.example'))
@@ -145,7 +145,7 @@ Image("../../resources/base/media/example.png")
 其具体实现如下：
 
 将需要对外提供的资源封装为一个资源管理类：   
-```ts
+```ets
 // library/src/main/ets/ResManager.ets
 export class ResManager{
   static getPic(): Resource{
@@ -158,7 +158,7 @@ export class ResManager{
 ```
 
 对外暴露的接口，需要在入口文件`index.ets`中声明：
-```ts
+```ets
 // library/index.ets
 export { ResManager } from './src/main/ets/ResManager';
 ```
@@ -173,7 +173,7 @@ export { ResManager } from './src/main/ets/ResManager';
 要使用HSP中的接口，首先需要在使用方的oh-package.json5中配置对它的依赖，详见[引用动态共享包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-har-import-V13)。
 依赖配置成功后，就可以像使用HAR一样调用HSP的对外接口了。例如，上面的library已经导出了下面这些接口：
 
-```ts
+```ets
 // library/index.ets
 export { Log, add, minus } from './src/main/ets/utils/test';
 export { MyTitleBar } from './src/main/ets/components/MyTitleBar';
@@ -181,10 +181,10 @@ export { ResManager } from './src/main/ets/ResManager';
 export { nativeMulti } from './src/main/ets/utils/nativeTest';
 ```
 在使用方的代码中，可以这样使用：
-```ts
+```ets
 // entry/src/main/ets/pages/index.ets
 import { Log, add, MyTitleBar, ResManager, nativeMulti } from 'library';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from "@kit.BasicServicesKit";
 import router from '@ohos.router';
 
 const TAG = 'Index';
@@ -302,149 +302,129 @@ struct Index {
 }
 ```
 
-### 页面路由跳转
+### 页面跳转和返回
 
-若开发者想在entry模块中，添加一个按钮跳转至library模块中的menu页面（路径为：`library/src/main/ets/pages/menu.ets`），那么可以在使用方的代码（entry模块下的Index.ets，路径为：`entry/src/main/ets/pages/Index.ets`）里这样使用：
-```ts
-import { Log, add, MyTitleBar, ResManager, nativeMulti } from 'library';
-import { BusinessError } from '@ohos.base';
-import router from '@ohos.router';
-
-const TAG = 'Index';
+开发者想在entry模块中，添加一个按钮跳转至library模块中的menu页面（路径为：`library/src/main/ets/pages/library_menu.ets`），那么可以在使用方的代码（entry模块下的Index.ets，路径为：`entry/src/main/ets/pages/Index.ets`）里这样使用：
+```ets
+// entry/src/main/ets/pages/Index.ets
 
 @Entry
 @Component
 struct Index {
   @State message: string = '';
+  pathStack: NavPathStack = new NavPathStack();
 
   build() {
-    Column() {
-      List() {
-        ListItem() {
-          Text($r('app.string.click_to_menu'))
-            .fontSize(18)
-            .textAlign(TextAlign.Start)
-            .width('100%')
-            .fontWeight(500)
-            .height('100%')
-        }
-        .id('clickToMenu')
-        .borderRadius(24)
-        .width('685px')
-        .height('84px')
-        .backgroundColor($r('sys.color.ohos_id_color_foreground_contrary'))
-        .margin({ top: 10, bottom: 10 })
-        .padding({ left: 12, right: 12, top: 4, bottom: 4 })
-        .onClick(() => {
-          router.pushUrl({
-            url: '@bundle:com.samples.hspsample/library/ets/pages/Menu'
-          }).then(() => {
-            console.log('push page success');
-          }).catch((err: BusinessError) => {
-            console.error('pushUrl failed, code is' + err.code + ', message is' + err.message);
+    Navigation(this.pathStack) {
+      Column() {
+        List() {
+          ListItem() {
+            Text($r('app.string.click_to_menu'))
+              .fontSize(18)
+              .textAlign(TextAlign.Start)
+              .width('100%')
+              .fontWeight(500)
+              .height('100%')
+          }
+          .id('clickToMenu')
+          .borderRadius(24)
+          .width('685px')
+          .height('84px')
+          .backgroundColor($r('sys.color.ohos_id_color_foreground_contrary'))
+          .margin({ top: 10, bottom: 10 })
+          .padding({
+            left: 12,
+            right: 12,
+            top: 4,
+            bottom: 4
           })
-        })
+          .onClick(() => {
+            this.pathStack.pushPathByName('library_menu', null)
+          })
+        }
+        .alignListItem(ListItemAlign.Center)
       }
-      .alignListItem(ListItemAlign.Center)
-    }
-    .width('100%')
-    .backgroundColor($r('app.color.page_background'))
-    .height('100%')
+      .width('100%')
+      .backgroundColor($r('app.color.page_background'))
+      .height('100%')
+    }.title("Navigation_index")
+    .mode(NavigationMode.Stack)
   }
 }
 ```
-其中`router.pushUrl`方法的入参中`url`的内容为：
-```ets
-'@bundle:com.samples.hspsample/library/ets/pages/Menu'
+
+在library下新增page文件（library/src/main/ets/pages/library_menu.ets），其中'back_to_index'的按钮返回上一页。
 ```
-`url`内容的模板为：
-```ets
-'@bundle:包名（bundleName）/模块名（moduleName）/路径/页面所在的文件名(不加.ets后缀)'
-```
-### 页面路由返回
-如果当前处于HSP中的页面，需要返回之前的页面时，可以使用`router.back`方法，但是返回的页面必须是当前页面跳转路径上的页面。
-```ts
-import router from '@ohos.router';
+// library/src/main/ets/pages/library_menu.ets
+@Builder
+export function PageOneBuilder() {
+  Library_Menu()
+}
 
 @Entry
 @Component
-struct Index3 { // 路径为：`library/src/main/ets/pages/Back.ets
-  @State message: string = 'HSP back page';
+export struct Library_Menu {
+  @State message: string = 'Hello World';
+  pathStack: NavPathStack = new NavPathStack();
 
   build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontFamily('HarmonyHeiTi')
-          .fontWeight(FontWeight.Bold)
-          .fontSize(32)
-          .fontColor($r('app.color.text_color'))
-          .margin({ top: '32px' })
-          .width('624px')
-
-        Button($r('app.string.back_to_HAP'))
-          .id('backToHAP')
-          .fontFamily('HarmonyHeiTi')
-          .height(48)
-          .width('624px')
-          .margin({ top: 550 })
-          .type(ButtonType.Capsule)
-          .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
-          .backgroundColor($r('app.color.button_background'))
-          .fontColor($r('sys.color.ohos_id_color_foreground_contrary'))
-          .fontSize($r('sys.float.ohos_id_text_size_button1'))
-            // 绑定点击事件
-          .onClick(() => {
-            router.back({ //  返回HAP的页面
-              url: 'pages/Index' // 路径为：`entry/src/main/ets/pages/Index.ets`
+    NavDestination() {
+      Row() {
+        Column() {
+          Text(this.message)
+            .fontSize($r('app.float.page_text_font_size'))
+            .fontWeight(FontWeight.Bold)
+            .onClick(() => {
+              this.message = 'Welcome';
             })
+          Button("back_to_index").fontSize(50).onClick(() => {
+            this.pathStack.pop();
           })
-
-        Button($r('app.string.back_to_HSP'))
-          .id('backToHSP')
-          .fontFamily('HarmonyHeiTi')
-          .height(48)
-          .width('624px')
-          .margin({ top: '4%' , bottom: '6%' })
-          .type(ButtonType.Capsule)
-          .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
-          .backgroundColor($r('app.color.button_background'))
-          .fontColor($r('sys.color.ohos_id_color_foreground_contrary'))
-          .fontSize($r('sys.float.ohos_id_text_size_button1'))
-            // 绑定点击事件
-          .onClick(() => {
-            router.back({ //  返回HSP的页面
-              url: '@bundle:com.samples.hspsample/library/ets/pages/Menu' //路径为：`library/src/main/ets/pages/Menu.ets
-            })
-          })
+        }
+        .width('100%')
       }
-      .width('100%')
-    }
-    .backgroundColor($r('app.color.page_background'))
-    .height('100%')
+      .height('100%')
+    }.title('Library_Menu')
+    .onReady((context: NavDestinationContext) => {
+      this.pathStack = context.pathStack
+    })
   }
 }
 ```
 
-页面返回`router.back`方法的入参中`url`说明：
+需要在library模块下新增route_map.json文件（library/src/main/resources/base/profile/route_map.json）。
+```
+{
+  "routerMap": [
+    {
+      "name": "library_menu",
+      "pageSourceFile": "src/main/ets/pages/library_menu.ets",
+      "buildFunction": "PageOneBuilder",
+      "data": {
+        "description": "this is library_menu"
+      }
+    }
+  ]
+}
+```
 
-* 如果从HSP页面返回HAP页面，url的内容为：
+在library模块下的配置文件（library/src/main/module.json5）中配置json文件。
+```
+{
+  "module": {
+    "name": "library",
+    "type": "shared",
+    "description": "$string:shared_desc",
+    "deviceTypes": [
+      "phone",
+      "tablet",
+      "2in1"
+    ],
+    "deliveryWithInstall": true,
+    "pages": "$profile:main_pages",
+    "routerMap": "$profile:route_map" //新增
+  }
+}
+```
 
-    ```ets
-    'pages/Index'
-    ```
-    `url`内容的模板为：
-    ```ets
-    '页面所在的文件名(不加.ets后缀)'
-    ```
-
-* 如果从HSP1的页面跳到HSP2的页面后，需要返回到HSP1的页面，url的内容为：
-
-    ```ets
-    '@bundle:com.samples.hspsample/library/ets/pages/Menu'
-    ```
-    `url`内容的模板为：
-    ```ets
-    '@bundle:包名（bundleName）/模块名（moduleName）/路径/页面所在的文件名(不加.ets后缀)'
-    ```
-
+页面跳转和页面返回都使用了Navigation的特性，详情参考[Navigation跳转](../ui/arkts-navigation-navigation.md#路由操作)。
