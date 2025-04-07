@@ -142,7 +142,7 @@ digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 
 | 参数名 | 类型                                                        | 必填 | 说明                                                |
 | ------ | ----------------------------------------------------------- | ---- | --------------------------------------------------- |
-| sensitivity  | Optional\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity18)> | 是   | 旋转表冠的灵敏度。<br/>默认值：CrownSensitivity.LOW |
+| sensitivity  | Optional\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity18)> | 是   | 旋转表冠的灵敏度。<br/>默认值：CrownSensitivity.MEDIUM |
 
 ### effectMode
 
