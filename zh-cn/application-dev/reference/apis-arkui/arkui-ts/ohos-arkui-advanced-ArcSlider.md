@@ -245,7 +245,7 @@ type ArcSliderEnlargeHandler = (isEnlarged: boolean) => void
 
 | 参数名     | 类型    | 必填 | 说明                                                         |
 | ---------- | ------- | ---- | ------------------------------------------------------------ |
-| isEnlarged | boolean | 是   | Slider当前是否放大。<br/>isEnlarged为false时，arcSlider组件处于缩小状态。<br/>isEnlarged为true时，arcSlider组件处于放大状态。 |
+| isEnlarged | boolean | 是   | ArcSlider当前是否放大。<br/>isEnlarged为false时，ArcSlider组件处于缩小状态。<br/>isEnlarged为true时，ArcSlider组件处于放大状态。 |
 
 ## ArcSliderOptionsConstructorOptions
 
