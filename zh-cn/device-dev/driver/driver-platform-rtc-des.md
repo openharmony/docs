@@ -183,7 +183,7 @@ if (ret != HDF_SUCCESS) {
 
 - 设置RTC时间
 
-    设置RTC时间，则可以通过以下函数完成:
+    设置RTC时间，则可以通过以下函数完成：
 
     ```c
     int32_t RtcWriteTime(DevHandle handle, struct RtcTime *time);
