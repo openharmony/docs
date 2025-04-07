@@ -4179,7 +4179,7 @@ isGeneratorFunction(value: Object): boolean
 | boolean | 判断的结果，如果是内置包含的generator函数类型为true，反之为false。 |
 
 **示例：**
-
+<!--code_no_check-->
   ```ts
   // /entry/src/main/ets/pages/test.ts
   export function* foo() {}
@@ -4219,7 +4219,7 @@ isGeneratorObject(value: Object): boolean
 | boolean | 判断的结果，如果是内置包含的generator对象类型为true，反之为false。 |
 
 **示例：**
-
+<!--code_no_check-->
   ```ts
   // /entry/src/main/ets/pages/test.ts
   function* foo() {}
@@ -4696,7 +4696,7 @@ isSymbolObject(value: Object): boolean
 | boolean | 判断的结果，如果是内置包含的Symbol对象类型为true，反之为false。 |
 
 **示例：**
-
+<!--code_no_check-->
   ```ts
   // /entry/src/main/ets/pages/test.ts
   export const symbols = Symbol('foo');
