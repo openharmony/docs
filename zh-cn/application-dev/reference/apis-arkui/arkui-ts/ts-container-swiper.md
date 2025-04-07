@@ -75,7 +75,7 @@ autoPlay(value: boolean)
 
 设置子组件是否自动播放。
 
-loop为false时，自动轮播到最后一页时停止轮播。手势切换后不是最后一页时继续播放。当Swiper不可见时会停止轮播。
+[loop](#loop)为false时，自动轮播到最后一页时停止轮播。手势切换后不是最后一页时继续播放。当Swiper不可见时会停止轮播。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -384,7 +384,7 @@ displayCount(value: number | string | SwiperAutoFill, swipeByGroup?: boolean)
 
 effectMode(value: EdgeEffect)
 
-设置边缘滑动效果，loop = false时生效。 目前支持的滑动效果参见EdgeEffect的枚举说明。控制器接口调用时不生效回弹。
+设置边缘滑动效果，[loop](#loop) = false时生效。调用SwiperController.changeIndex()、SwiperController.showNext()和SwiperController.showPrevious()接口跳转至首尾页时不生效回弹。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -560,19 +560,13 @@ Swiper组件和父组件的嵌套滚动模式枚举。
 
 ## SwiperController
 
-Swiper容器组件的控制器，可以将此对象绑定至Swiper组件，可以通过它控制翻页。
+Swiper容器组件的控制器，可以将此对象绑定至Swiper组件，实现控制Swiper翻页等功能。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-### 导入对象
-
-```ts
-let controller: SwiperController = new SwiperController()
-```
 
 ### constructor
 
@@ -590,7 +584,7 @@ SwiperController的构造函数。
 
 showNext()
 
-翻至下一页。翻页带动效切换过程，时长通过duration指定。
+翻至下一页。翻页带动效切换过程，时长通过Swiper的[duration](#duration)属性设置。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -602,7 +596,7 @@ showNext()
 
 showPrevious()
 
-翻至上一页。翻页带动效切换过程，时长通过duration指定。
+翻至上一页。翻页带动效切换过程，时长通过Swiper的[duration](#duration)属性设置。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -870,6 +864,12 @@ static dot(): DotIndicator
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**返回值：**
+
+| 类型                            | 说明         |
+| ------------------------------- | ------------ |
+| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+
 ### digit
 
 static digit(): DigitIndicator
@@ -881,6 +881,12 @@ static digit(): DigitIndicator
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                | 说明         |
+| ----------------------------------- | ------------ |
+| [DigitIndicator](#digitindicator10) | 数字指示器。 |
 
 ## DotIndicator<sup>10+</sup>
 
