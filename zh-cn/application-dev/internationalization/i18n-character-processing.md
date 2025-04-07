@@ -11,7 +11,7 @@
 
 字符属性用于判断字符类别，如判断字符是否为数字、字母、空格，是否为从右到左语言的字符，是否为表意文字(主要是中文日文韩文)等。
 
-该功能通过Unicode类的[isDigit](../reference/apis-localization-kit/js-apis-i18n.md#isdigit9)等接口实现，具体开发步骤如下。
+使用Unicode类的[isDigit](../reference/apis-localization-kit/js-apis-i18n.md#isdigit9)等接口可以实现该功能，具体开发步骤如下。
 
 1. 导入模块。
 
@@ -25,7 +25,7 @@
    let isDigit: boolean = i18n.Unicode.isDigit(char: string);
    ```
 
-3. 以一般类别值为例，判断字符类类型，具体请参考getType接口文档。
+3. 以一般类别值为例，获取字符类型。
 
    ```ts
    let unicodeType: string = i18n.Unicode.getType(char: string);
@@ -52,17 +52,17 @@ let unicodeType: string = i18n.Unicode.getType('a'); // unicodeType = 'U_LOWERCA
 
 ### 音译
 
-音译是指以当地语言发音相近的内容替换原本的内容。通过Transliterator类的[transform](../reference/apis-localization-kit/js-apis-i18n.md#transform9)接口实现，具体开发步骤如下。
+音译是指以当地语言发音相近的内容替换原本的内容。使用Transliterator类的[transform](../reference/apis-localization-kit/js-apis-i18n.md#transform9)接口可以实现音译功能，具体开发步骤如下。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块支持中文汉字转为拼音，但对于多音字无法根据上下文语义有效处理。
+> 本模块支持中文汉字转拼音，但无法正确处理多音字。
 
 1. 导入模块。
    ```ts
    import { i18n } from '@kit.LocalizationKit';
    ```
 
-2. 创建Transliterator对象，获取音译列表。
+2. 创建Transliterator对象并获取音译列表。
    ```ts
    let ids: string[] = i18n.Transliterator.getAvailableIDs(); // 获取音译支持的ID列表
    let transliterator: i18n.Transliterator = i18n.Transliterator.getInstance(id: string); // 传入音译支持的ID，创建Transliterator对象
@@ -98,16 +98,16 @@ let ids: string[] = i18n.Transliterator.getAvailableIDs(); // ids = ['ASCII-Lati
 ```
 
 
-### 字符标准化
+### 文本标准化
 
-字符标准化是指按指定的范式标准化字符。通过Normalizer类的[normalize](../reference/apis-localization-kit/js-apis-i18n.md#normalize10)接口实现，具体开发步骤如下。
+文本标准化是指按指定的范式标准化文本。使用Normalizer类的[normalize](../reference/apis-localization-kit/js-apis-i18n.md#normalize10)接口可以实现文本标准化，具体开发步骤如下。
 
 1. 导入模块。
    ```ts
    import { i18n } from '@kit.LocalizationKit';
    ```
 
-2. 创建标准化对象。传入文本标准化的范式，创建标准化对象，文本标准化的范式包括NFC、NFD、NFKC和NFKD，范式的详细介绍请参考[国际标准](https://www.unicode.org/reports/tr15/#Norm_Forms)。
+2. 传入文本标准化的范式，创建标准化对象。文本标准化的范式包括NFC、NFD、NFKC和NFKD，范式的详细介绍请参考[国际标准](https://www.unicode.org/reports/tr15/#Norm_Forms)。
    ```ts
    let normalizer: i18n.Normalizer = i18n.Normalizer.getInstance(mode: NormalizerMode);
    ```
@@ -122,7 +122,7 @@ let ids: string[] = i18n.Transliterator.getAvailableIDs(); // ids = ['ASCII-Lati
 // 导入模块
 import { i18n } from '@kit.LocalizationKit';
 
-// 以NFC范式标准化字符
+// 以NFC范式标准化文本
 let normalizer: i18n.Normalizer = i18n.Normalizer.getInstance(i18n.NormalizerMode.NFC);
 let normalizedText: string = normalizer.normalize('\u1E9B\u0323'); // normalizedText = 'ẛ̣'
 ```
@@ -130,15 +130,14 @@ let normalizedText: string = normalizer.normalize('\u1E9B\u0323'); // normalized
 
 ### 断词换行
 
-断词换行是指根据设定的区域参数获取文本中的分割点，通过[BreakIterator](../reference/apis-localization-kit/js-apis-i18n.md#breakiterator8)类的接口实现，具体开发步骤如下。
+断词换行是指根据设定的区域参数获取文本中的分割点，使用[BreakIterator](../reference/apis-localization-kit/js-apis-i18n.md#breakiterator8)类的接口可以实现断词换行，具体开发步骤如下。
 
 1. 导入模块。
    ```ts
    import { i18n } from '@kit.LocalizationKit';
    ```
 
-2. 创建用于断句的对象。
-   传入合法的locale参数，生成BreakIterator类型的对象，该对象将按照locale所指定的区域的规则进行断句。
+2. 创建用于断句的对象。传入合法的locale参数，创建BreakIterator类型的对象，该对象将按照locale所指定的区域的规则进行断句。
 
    ```ts
    let iterator: i18n.BreakIterator = i18n.getLineInstance(locale: string);
@@ -185,14 +184,14 @@ let breakText: string = iterator.getLineBreakText(); // breakText = 'Apple is my
 
 ### 文件路径镜像处理
 
-文件路径镜像处理是指对输入路径进行本地化处理。通过I18NUtil类的[getUnicodeWrappedFilePath](../reference/apis-localization-kit/js-apis-i18n.md#getunicodewrappedfilepath18)接口实现，具体开发步骤如下。
+文件路径镜像处理是指对文件路径方向进行本地化处理。传入镜像语言时，路径将被镜像处理。使用I18NUtil类的[getUnicodeWrappedFilePath](../reference/apis-localization-kit/js-apis-i18n.md#getunicodewrappedfilepath18)接口可以实现文件路径镜像处理，具体开发步骤如下。
 
 1. 导入模块。
    ```ts
    import { i18n, intl } from '@kit.LocalizationKit';
    ```
 
-2. 调用文件路径镜像处理接口。
+2. 文件路径镜像处理。
    ```ts
    let mirrorPath: string = i18n.I18NUtil.getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: intl.Locale);
    ```
