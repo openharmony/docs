@@ -8850,7 +8850,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setWindowShadowRadius<sup>18+</sup>
+### setWindowShadowRadius<sup>17+</sup>
 
 setWindowShadowRadius(radius: number): void
 
@@ -8858,7 +8858,7 @@ setWindowShadowRadius(radius: number): void
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -8887,7 +8887,7 @@ try {
 }
 ```
 
-### setWindowCornerRadius<sup>18+</sup>
+### setWindowCornerRadius<sup>17+</sup>
 
 setWindowCornerRadius(cornerRadius: number): Promise&lt;void&gt;
 
@@ -8897,11 +8897,11 @@ setWindowCornerRadius(cornerRadius: number): Promise&lt;void&gt;
 
 圆角半径值过大将会导致三键（最大化、最小化、关闭按钮）位置被裁切，且会导致热区不易识别，请根据窗口大小设置合适的圆角半径值。
 
-在调用此接口之前调用[getWindowCornerRadius()](#getwindowcornerradius18)接口可以获得窗口默认圆角半径值。
+在调用此接口之前调用[getWindowCornerRadius()](#getwindowcornerradius17)接口可以获得窗口默认圆角半径值。
 
 **系统能力**：SystemCapability.Window.SessionManager
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -8945,17 +8945,17 @@ try{
 
 ```
 
-### getWindowCornerRadius<sup>18+</sup>
+### getWindowCornerRadius<sup>17+</sup>
 
 getWindowCornerRadius(): number
 
-获取子窗或悬浮窗的圆角半径值，在未调用[setWindowCornerRadius()](#setwindowcornerradius18)接口设置窗口圆角半径值时，调用此接口可获取窗口默认圆角半径值。
+获取子窗或悬浮窗的圆角半径值，在未调用[setWindowCornerRadius()](#setwindowcornerradius17)接口设置窗口圆角半径值时，调用此接口可获取窗口默认圆角半径值。
 
 <!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
 **系统能力**：SystemCapability.Window.SessionManager
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -12903,7 +12903,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setWindowRectAutoSave<sup>18+</sup>
+### setWindowRectAutoSave<sup>17+</sup>
 
 setWindowRectAutoSave(enabled: boolean, isSaveBySpecifiedFlag: boolean): Promise&lt;void&gt;
 
@@ -12924,7 +12924,7 @@ setWindowRectAutoSave(enabled: boolean, isSaveBySpecifiedFlag: boolean): Promise
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
