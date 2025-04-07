@@ -1416,7 +1416,7 @@ Swiper自定义切换动画执行过程中，返回给开发者的proxy对象。
 | selectedIndex | number | 否 | 否 | 当前选中页面的索引。 |
 | index | number | 否 | 否 | 视窗内页面的索引。 |
 | position | number | 否 | 否 | index页面相对于Swiper主轴起始位置（selectedIndex对应页面的起始位置）的移动比例。 |
-| mainAxisLength | number | 否 | 否 | index对应页面在主轴方向上的长度。 |
+| mainAxisLength | number | 否 | 否 | index对应页面在主轴方向上的长度，单位vp。 |
 
 >**说明：** 
 >
@@ -1450,7 +1450,7 @@ Swiper滑动时触发的回调，参数可参考[SwiperContentTransitionProxy](#
 | selectedIndex | number | 是 | 当前选中页面的索引。 |
 | index | number | 是 | 视窗内页面的索引。 |
 | position | number | 是 | index页面相对于Swiper主轴起始位置（selectedIndex对应页面的起始位置）的移动比例。 |
-| mainAxisLength | number | 是 | index对应页面在主轴方向上的长度。 |
+| mainAxisLength | number | 是 | index对应页面在主轴方向上的长度，单位vp。 |
 
 ## 示例
 
