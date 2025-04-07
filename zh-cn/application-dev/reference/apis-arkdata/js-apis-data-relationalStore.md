@@ -1116,6 +1116,24 @@ type ModifyTime = Map<PRIKeyType, UTCTime>
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
 | transactionType          | [TransactionType](#transactiontype14)        | 否   | 事务类型。默认为DEFERRED。  |
 
+## ColumnType<sup>18+</sup>
+
+描述数据库列存储类型的枚举。请使用枚举名称而非枚举值。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| 名称          | 值   | 说明                                                         |
+| ------------- | ---- | ------------------------------------------------------------ |
+| NULL          | 0    | 表示列数据类型为NULL。                                       |
+| INTEGER       | 1    | 表示列数据类型为64位整数。可用于保存8位（包括布尔值）、16位、32位、64位整数。如果64位整数大于2^53或于-2^53，需使用[getString](#getstring)将64位整数转换为字符串。 |
+| REAL          | 2    | 表示列类型为浮点数。                                         |
+| TEXT          | 3    | 表示列类型为字符串。                                         |
+| BLOB          | 4    | 表示列类型为Uint8Array。                                     |
+| ASSET         | 5    | 表示列类型为[Asset](#asset10)。                              |
+| ASSETS        | 6    | 表示列类型为[Assets](#assets10)。                            |
+| FLOAT_VECTOR  | 7    | 表示列类型为Float32Array。                                   |
+| UNLIMITED_INT | 8    | 表示列类型为bigint。                                         |
+
 ## RdbPredicates
 
 表示关系型数据库（RDB）的谓词。该类确定RDB中条件表达式的值是true还是false。谓词间支持多语句拼接，拼接时默认使用and()连接。不支持Sendable跨线程传递。
@@ -2318,8 +2336,10 @@ class EntryAbility extends UIAbility {
       securityLevel: relationalStore.SecurityLevel.S3,
     };
 
+    const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB, IDENTITY UNLIMITED INT, ASSETDATA ASSET, ASSETSDATA ASSETS, FLOATARRAY floatvector(128))';
     relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
       store = rdbStore;
+      await (store as relationalStore.RdbStore).executeSql(SQL_CREATE_TABLE);
       console.info('Get RdbStore successfully.');
     }).catch((err: BusinessError) => {
       console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
@@ -7643,21 +7663,38 @@ class EntryAbility extends UIAbility {
 
     relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
       store = rdbStore;
-      console.info('Get RdbStore successfully.');
-    }).catch((err: BusinessError) => {
-      console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
-    });
-
-    let resultSet: relationalStore.ResultSet | undefined = undefined;
-    let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-    predicates.equalTo("AGE", 18);
-    if (store != undefined) {
-      (store as relationalStore.RdbStore).query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((result: relationalStore.ResultSet) => {
+      const asset: relationalStore.Asset = {
+        name: "name",
+        uri: "uri",
+        createTime: "createTime",
+        modifyTime: "modifyTime",
+        size: "size",
+        path: "path",
+      };
+      const assets: relationalStore.Assets = [asset];
+      const valueBucket: relationalStore.ValuesBucket = {
+        "NAME": "hello world",
+        "AGE": 3,
+        "SALARY": 0.5,
+        "CODES": new Uint8Array([1, 2, 3]),
+        "IDENTITY":100n,
+        "ASSETDATA":asset,
+        "ASSETSDATA":assets,
+        "FLOATARRAY":new Float32Array([1.5, 2.5]),
+      };
+      (store as relationalStore.RdbStore).insertSync("EMPLOYEE", valueBucket);
+      let resultSet: relationalStore.ResultSet | undefined = undefined;
+      let predicates: relationalStore.RdbPredicates = new relationalStore.RdbPredicates("EMPLOYEE");
+      let columns: Array<string> = ["ID", "NAME", "AGE", "SALARY", "CODES", "IDENTITY", "ASSETDATA", "ASSETSDATA", "FLOATARRAY"];
+      await (store as relationalStore.RdbStore).query(predicates, columns).then(async (result: relationalStore.ResultSet) => {
         resultSet = result;
         console.info(`resultSet columnNames: ${resultSet.columnNames}`);
         console.info(`resultSet columnCount: ${resultSet.columnCount}`);
       });
-    }
+      console.info('Get RdbStore successfully.');
+    }).catch((err: BusinessError) => {
+      console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+    })
   }
 }
 ```
@@ -7790,6 +7827,134 @@ if (resultSet != undefined) {
   const id = (resultSet as relationalStore.ResultSet).getColumnName(0);
   const name = (resultSet as relationalStore.ResultSet).getColumnName(1);
   const age = (resultSet as relationalStore.ResultSet).getColumnName(2);
+}
+```
+
+### getColumnType<sup>18+</sup>
+
+getColumnType(columnIdentifier: number | string): Promise\<ColumnType>
+
+根据指定的列索引或列名称获取列数据类型，使用Promise异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名           | 类型             | 必填 | 说明                                                         |
+| ---------------- | ---------------- | ---- | ------------------------------------------------------------ |
+| columnIdentifier | number \| string | 是   | 表示结果集中指定列的索引或名称。索引必须是非负整数，最大不能超过属性columnNames的长度。列名必须是属性columnNames内的名称。 |
+
+**返回值：**
+
+| 类型                                 | 说明                                |
+| ------------------------------------ | ----------------------------------- |
+| Promise<[ColumnType](#columntype18)> | Promise对象。返回指定列的数据类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。其中，14800011错误码处理可参考[数据库备份与恢复](../../database/data-backup-and-restore.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 14800000     | Inner error.                                                 |
+| 14800011     | Database corrupted.                                          |
+| 14800012     | Row out of bounds.                                           |
+| 14800013     | Column out of bounds.                                        |
+| 14800014     | Already closed.                                              |
+| 14800019     | The SQL must be a query statement.                           |
+| 14800021     | SQLite: Generic error.                                       |
+| 14800022     | SQLite: Callback routine requested an abort.                 |
+| 14800023     | SQLite: Access permission denied.                            |
+| 14800024     | SQLite: The database file is locked.                         |
+| 14800025     | SQLite: A table in the database is locked.                   |
+| 14800026     | SQLite: The database is out of memory.                       |
+| 14800027     | SQLite: Attempt to write a readonly database.                |
+| 14800028     | SQLite: Some kind of disk I/O error occurred.                |
+| 14800029     | SQLite: The database is full.                                |
+| 14800030     | SQLite: Unable to open the database file.                    |
+| 14800031     | SQLite: TEXT or BLOB exceeds size limit.                     |
+| 14800032     | SQLite: Abort due to constraint violation.                   |
+| 14800033     | SQLite: Data type mismatch.                                  |
+| 14800034     | SQLite: Library used incorrectly.                            |
+
+**示例：**
+
+```ts
+if(resultSet != undefined) {
+  let idType = await (resultSet as relationalStore.ResultSet).getColumnType("ID") as relationalStore.ColumnType;
+  let nameType = await (resultSet as relationalStore.ResultSet).getColumnType("NAME") as relationalStore.ColumnType;
+  let ageType = await (resultSet as relationalStore.ResultSet).getColumnType("AGE") as relationalStore.ColumnType;
+  let salaryType = await (resultSet as relationalStore.ResultSet).getColumnType("SALARY") as relationalStore.ColumnType;
+  let codesType = await (resultSet as relationalStore.ResultSet).getColumnType("CODES") as relationalStore.ColumnType;
+  let identityType = await (resultSet as relationalStore.ResultSet).getColumnType(5) as relationalStore.ColumnType;
+  let assetDataType = await (resultSet as relationalStore.ResultSet).getColumnType(6) as relationalStore.ColumnType;
+  let assetsDataType = await (resultSet as relationalStore.ResultSet).getColumnType(7) as relationalStore.ColumnType;
+  let floatArrayType = await (resultSet as relationalStore.ResultSet).getColumnType(8) as relationalStore.ColumnType;
+}
+```
+
+### getColumnTypeSync<sup>18+</sup>
+
+getColumnTypeSync(columnIdentifier: number | string): ColumnType
+
+根据指定的列索引或列名称获取列数据类型。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core 
+
+**参数：**
+
+| 参数名           | 类型             | 必填 | 说明                                                         |
+| ---------------- | ---------------- | ---- | ------------------------------------------------------------ |
+| columnIdentifier | number \| string | 是   | 表示结果集中指定列的索引或名称。索引必须是非负整数，最大不能超过属性columnNames的长度。列名必须是属性columnNames内的名称。 |
+
+**返回值：**
+
+| 类型                        | 说明                   |
+| --------------------------- | ---------------------- |
+| [ColumnType](#columntype18) | 返回指定列的数据类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。其中，14800011错误码处理可参考[数据库备份与恢复](../../database/data-backup-and-restore.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 14800000     | Inner error.                                                 |
+| 14800011     | Database corrupted.                                          |
+| 14800012     | Row out of bounds.                                           |
+| 14800013     | Column out of bounds.                                        |
+| 14800014     | Already closed.                                              |
+| 14800019     | The SQL must be a query statement.                           |
+| 14800021     | SQLite: Generic error.                                       |
+| 14800022     | SQLite: Callback routine requested an abort.                 |
+| 14800023     | SQLite: Access permission denied.                            |
+| 14800024     | SQLite: The database file is locked.                         |
+| 14800025     | SQLite: A table in the database is locked.                   |
+| 14800026     | SQLite: The database is out of memory.                       |
+| 14800027     | SQLite: Attempt to write a readonly database.                |
+| 14800028     | SQLite: Some kind of disk I/O error occurred.                |
+| 14800029     | SQLite: The database is full.                                |
+| 14800030     | SQLite: Unable to open the database file.                    |
+| 14800031     | SQLite: TEXT or BLOB exceeds size limit.                     |
+| 14800032     | SQLite: Abort due to constraint violation.                   |
+| 14800033     | SQLite: Data type mismatch.                                  |
+| 14800034     | SQLite: Library used incorrectly.                            |
+
+**示例：**
+
+```ts
+if(resultSet != undefined) {
+  let idType = (resultSet as relationalStore.ResultSet).getColumnTypeSync("ID") as relationalStore.ColumnType;
+  let nameType = (resultSet as relationalStore.ResultSet).getColumnTypeSync("NAME") as relationalStore.ColumnType;
+  let ageType = (resultSet as relationalStore.ResultSet).getColumnTypeSync("AGE") as relationalStore.ColumnType;
+  let salaryType = (resultSet as relationalStore.ResultSet).getColumnTypeSync("SALARY") as relationalStore.ColumnType;
+  let codesType = (resultSet as relationalStore.ResultSet).getColumnTypeSync("CODES") as relationalStore.ColumnType;
+  let identityType = (resultSet as relationalStore.ResultSet).getColumnTypeSync(5) as relationalStore.ColumnType;
+  let assetDataType = (resultSet as relationalStore.ResultSet).getColumnTypeSync(6) as relationalStore.ColumnType;
+  let assetsDataType = (resultSet as relationalStore.ResultSet).getColumnTypeSync(7) as relationalStore.ColumnType;
+  let floatArrayType = (resultSet as relationalStore.ResultSet).getColumnTypeSync(8) as relationalStore.ColumnType;
 }
 ```
 
