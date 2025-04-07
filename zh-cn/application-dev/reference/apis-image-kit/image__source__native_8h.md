@@ -7,6 +7,8 @@
 
 **库：** libimage_source.so
 
+**引用文件**：&lt;multimedia/image_framework/image/image_source_native.h&gt;
+
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **起始版本：** 12
@@ -22,7 +24,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | typedef struct [OH_ImageSourceNative](_image___native_module.md#oh_imagesourcenative) [OH_ImageSourceNative](_image___native_module.md#oh_imagesourcenative) | ImageSource结构体类型，用于执行ImageSource相关操作。 | 
-| typedef struct [OH_ImageSource_Info](_image___native_module.md#oh_imagesource_info) [OH_ImageSource_Info](_image___native_module.md#oh_imagesource_info) | 图片源信息结构体 [OH_ImageSourceInfo_Create](_image___native_module.md#oh_imagesourceinfo_create)。 | 
+| typedef struct [OH_ImageSource_Info](_image___native_module.md#oh_imagesource_info) [OH_ImageSource_Info](_image___native_module.md#oh_imagesource_info) | ImageSource信息结构体 [OH_ImageSourceInfo_Create](_image___native_module.md#oh_imagesourceinfo_create)，用于获取ImageSource信息。 | 
 | typedef struct [OH_DecodingOptions](_image___native_module.md#oh_decodingoptions) [OH_DecodingOptions](_image___native_module.md#oh_decodingoptions) | 解码选项参数结构体，被用于[OH_ImageSourceNative_CreatePixelmap](_image___native_module.md#oh_imagesourcenative_createpixelmap)。 | 
 
 
