@@ -5136,6 +5136,7 @@ PhotoAsset的成员类型。
 | DETAIL_TIME<sup>13+</sup>  | 'detail_time'  | 大图浏览时间，值为拍摄时对应时区的时间的字符串，不会跟随时区变化。|
 | DATE_TAKEN_MS<sup>13+</sup>  | 'date_taken_ms'  | 拍摄时的Unix时间戳（单位：毫秒）。 |
 | POSITION<sup>16+</sup>  | 'position'            | 文件位置类型。                               |
+| MEDIA_SUFFIX<sup>18+</sup>  | 'media_suffix'            | 文件的后缀名。                               |
 
 ## AlbumKeys
 
