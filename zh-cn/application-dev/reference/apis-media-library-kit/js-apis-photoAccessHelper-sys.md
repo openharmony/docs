@@ -1893,6 +1893,131 @@ async function example() {
   });
 }
 ```
+
+
+### getAlbumsByIds<sup>18+</sup>
+
+getAlbumsByIds(albumIds: Array&lt;number&gt;): Promise&lt;Map&lt;number, Album&gt;&gt;
+
+通过相册id查询相册信息。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限：** ohos.permission.READ_IMAGEVIDEO
+
+**参数：**
+
+| 参数名    | 类型                | 必填 | 说明                                                         |
+| --------- | ------------------- | ---- | ------------------------------------------------------------ |
+| albumIds  | Array&lt;number&gt;              | 是   | 相册id列表。                                     |
+
+**返回值：**
+
+| 类型                  | 说明                        |
+| --------------------- | --------------------------- |
+| Promise&lt;Map&lt;number, Album&gt;&gt; | Promise对象。返回相册信息map对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 202      | Called by non-system application.                            |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+| 14000011       | Internal system error.         |
+
+**示例：**
+
+```ts
+async function example() {
+  console.info('startGetAlbumsByIdsDemo');
+
+  try {
+    // 获取需要保存到媒体库的位于应用沙箱的图片/视频uri。
+    let albumIds: Array<number> = [
+      12 // 实际场景请使用albumId
+    ];
+    let map: Map<number, photoAccessHelper.Album> = await phAccessHelper.getAlbumsByIds(albumIds);
+    console.info('getAlbumsByIds success, size is ' + map.size);
+  } catch (err) {
+    console.error('getAlbumsByIds failed, errCode is ' + err.code + ', errMsg is ' + err.message);
+  }
+}
+```
+
+### createAssetsForAppWithAlbum<sup>18+</sup>
+
+createAssetsForAppWithAlbum(source: PhotoCreationSource, albumUri: string, isAuthorized: boolean, photoCreationConfigs: Array&lt;PhotoCreationConfig&gt;): Promise&lt;Array&lt;string&gt;&gt;
+
+为应用自己或者其他应用创建资产到指定来源或者用户相册。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限：** ohos.permission.WRITE_IMAGEVIDEO
+
+**参数：**
+
+| 参数名    | 类型                | 必填 | 说明                                                         |
+| --------- | ------------------- | ---- | ------------------------------------------------------------ |
+| source  | [PhotoCreationSource](#photocreationsource18)         | 是   | 代替应用创建资产传入的应用信息。                                     |
+| albumUri  | string             | 是   | 相册uri。                                     |
+| isAuthorized  |  boolean              | 是   | 是否授权其他应用。true表示授权，false表示不授权。                                     |
+| PhotoCreationConfigs| Array\<[PhotoCreationConfig](js-apis-photoAccessHelper.md#photocreationconfig12)> | 是 | 保存图片/视频到媒体库的配置。|
+
+**返回值：**
+
+| 类型                  | 说明                        |
+| --------------------- | --------------------------- |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回接口调用方的媒体库文件uri列表。<br>uri已对appId对应的应用授权，支持应用写入数据。如果生成uri异常，则返回批量创建错误码。<br>返回-3006表示不允许出现非法字符；返回-2004表示图片类型和后缀不符；返回-203表示文件操作异常。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 202      | Called by non-system application.                            |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+| 14000011       | Internal system error.         |
+
+**示例：**
+
+```ts
+async function example() {
+  console.info('createAssetsForAppWithAlbumDemo.');
+
+  try {
+    let source: photoAccessHelper.PhotoCreationSource = {
+      bundleName: 'testBundleName',
+      appName: 'testAppName',
+      appId: 'testAppId',
+      tokenId: 537197950,
+    }
+    let albumUri: string = 'file://media/PhotoAlbum/10';
+    let isAuthorized: boolean = true;
+    let photoCreationConfigs: Array<photoAccessHelper.PhotoCreationConfig> = [
+      {
+        title: 'test',
+        fileNameExtension: 'jpg',
+        photoType: photoAccessHelper.PhotoType.IMAGE,
+        subtype: photoAccessHelper.PhotoSubtype.DEFAULT,
+      }
+    ];
+    let desFileUris: Array<string> = await phAccessHelper.createAssetsForAppWithAlbum(source, albumUri, isAuthorized, photoCreationConfigs);
+    console.info('createAssetsForAppWithAlbum success, data is ' + desFileUris);
+  } catch (err) {
+    console.error(`createAssetsForAppWithAlbum failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
 ## PhotoAsset
 
 提供封装文件属性的方法。
@@ -3613,6 +3738,8 @@ async function example() {
 | 名称           | 类型    | 只读   | 可选  | 说明   |
 | ------------ | ------ | ---- | ---- | ------- |
 | lpath<sup>18+</sup>    | string | 是    | 是   | 相册虚拟路径。<br>**系统接口**：此接口为系统接口。|
+| dateAdded<sup>18+</sup>    | number | 是    | 是   | 相册添加时间。<br>**系统接口**：此接口为系统接口。|
+| dateModified<sup>18+</sup>    | number | 是    | 是   | 相册修改时间。<br>**系统接口**：此接口为系统接口。|
 
 ### recoverAssets<sup>(deprecated)</sup>
 
@@ -4921,6 +5048,57 @@ async function example() {
     console.info('apply setUserComment successfully');
   }).catch((err: BusinessError) => {
     console.error(`apply setUserComment failed with error: ${err.code}, ${err.message}`);
+  });
+}
+```
+
+### setIsRecentShow<sup>18+</sup>
+
+setIsRecentShow(isRencentShow: boolean): void
+
+设置当前资产是否在“最近”列表中显示。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| isRencentShow | boolean | 是   | 表示当前资产是否在“最近”列表中显示。true表示显示，false表示不显示。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function example() {
+  console.info('setIsRecentShowDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let photoAssetList: Array<photoAccessHelper.PhotoAsset> = await fetchResult.getAllObjects();
+  let assetsChangeRequest: photoAccessHelper.MediaAssetsChangeRequest = new photoAccessHelper.MediaAssetsChangeRequest(photoAssetList);
+  assetsChangeRequest.setIsRecentShow(true);
+  phAccessHelper.applyChanges(assetsChangeRequest).then(() => {
+    console.info('apply setIsRecentShow successfully');
+  }).catch((err: BusinessError) => {
+    console.error(`apply setIsRecentShow failed with error: ${err.code}, ${err.message}`);
   });
 }
 ```
@@ -7167,6 +7345,8 @@ async function example() {
 | CE_AVAILABLE<sup>13+</sup>  | 'ce_available' | 云增强任务标识。**系统接口**：此接口为系统接口。 |
 | SUPPORTED_WATERMARK_TYPE<sup>14+</sup>  | 'supported_watermark_type' | 水印可编辑标识。**系统接口**：此接口为系统接口。 |
 | IS_CE_AUTO<sup>18+</sup>  | 'is_auto' | 是否支持自动云增强。**系统接口**：此接口为系统接口。 |
+| OWNER_ALBUM_ID<sup>18+</sup>  | 'owner_album_id' | 照片所属的相册id。**系统接口**：此接口为系统接口。 |
+| IS_RECENT_SHOW<sup>18+</sup>  | 'is_recent_show' | 是否设置为最近显示。**系统接口**：此接口为系统接口。 |
 
 ## AlbumKeys
 
@@ -7178,6 +7358,7 @@ async function example() {
 | --------------------------------- | -------------------- | ----------------------------------------------------- |
 | ALBUM_LPATH<sup>18+</sup>          | 'lpath'                 | 相册的虚拟路径。<br>**系统接口**：此接口为系统接口。            |
 | BUNDLE_NAME<sup>18+</sup>          | 'bundle_name'                 | 相册的包名。<br>**系统接口**：此接口为系统接口。            |
+| DATE_MODIFIED<sup>18+</sup>        | 'date_modified'         | 相册修改的时间戳（单位：毫秒）。<br>**系统接口**：此接口为系统接口。            |
 
 ## HiddenPhotosDisplayMode<sup>11+</sup>
 
@@ -7217,6 +7398,21 @@ async function example() {
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
 | size           | [image.Size](../apis-image-kit/js-apis-image.md#size) | 否  | 获取缩略图的尺寸。  |
 | requestPhotoType    | [RequestPhotoType](#requestphototype11) | 否  | 获取的操作类型。  |
+
+## PhotoCreationSource<sup>18+</sup>
+
+代替应用创建资产传入的应用信息。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                   | 类型                | 只读 | 可选 | 说明                                              |
+| ---------------------- | ------------------- | ---- | ---- | ------------------------------------------------ |
+| bundleName           | string | 是  | 是  |需保存图片/视频文件的应用bundle name。  |
+| appName    | string | 是  | 是  |需保存图片/视频文件的app name。  |
+| appId    | string | 是  | 是  |需保存图片/视频文件的app id。  |
+| tokenId    | number | 是  | 是  |应用标识，将访问权限授予tokenId标识的应用。  |
 
 ## RequestOptions<sup>11+</sup>
 
