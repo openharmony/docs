@@ -31,7 +31,7 @@ setProcessPriority(pid: number, priority: ProcessPriority): Promise&lt;void&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[backgroundProcessManager错误码](errorcode-backgroundProcessManager.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID    | 错误信息             |
 |----------|------------------|
