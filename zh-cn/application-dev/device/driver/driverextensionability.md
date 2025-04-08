@@ -168,7 +168,12 @@
 
 ## 扩展设备能力
 
-扩展外设管理提供了HID DDK和USB DDK两种能力，用于驱动开发。
+扩展外设管理提供了HID DDK和USB DDK两种能力，用于驱动开发；
+
+具体使用方法，请参考：
+
+* [HID DDK开发指导](../../napi/hid-ddk-guidelines.md)
+* [USB DDK开发指导](../../napi/usb-ddk-guidelines.md)
 
 ## 应用签名
 
