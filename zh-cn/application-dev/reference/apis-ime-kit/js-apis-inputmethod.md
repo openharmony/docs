@@ -1114,11 +1114,11 @@ try {
 
 discardTypingText(): Promise&lt;void&gt;
 
-编辑框应用发送清空正在输入的文字命令到输入法。使用promise异步回调。
+编辑框应用发送“清空正在输入的文字”命令到输入法。使用promise异步回调。
 
 > **说明：**
 >
-> 编辑框与输入法绑定成功后，编辑框应用可调用该接口发送清空正在输入的文字命令到输入法。
+> 编辑框与输入法绑定成功后，编辑框应用可调用该接口发送“清空正在输入的文字”命令到输入法。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
