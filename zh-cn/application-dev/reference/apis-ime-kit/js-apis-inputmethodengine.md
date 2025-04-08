@@ -811,7 +811,7 @@ on(type: 'discardTypingText', callback: Callback\<void>): void
 
 | 参数名   | 类型                                          | 必填 | 说明                                       |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------ |
-| type     | string                                        | 是   | 设置监听类型，固定取值为'discardTypingText'。 |
+| type     | string                                        | 是   | 设置监听类型，固定取值为'discardTypingText'，<br/> 表示订阅编辑框应用发送“清空候选词”命令到输入法 |
 | callback |  Callback\<void> | 是   | 回调函数。当命令发送成功，err为undefined，否则为错误对象。 |
 
 **示例：**
@@ -842,7 +842,7 @@ off(type: 'discardTypingText', callback?: Callback\<void>): void
 
 | 参数名   | 类型                                        | 必填 | 说明                                                         |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                      | 是   | 设置监听类型，固定取值为'discardTypingText'。                   |
+| type     | string                                      | 是   | 设置监听类型，固定取值为'discardTypingText'，<br/> 表示订阅编辑框应用发送“清空候选词”命令到输入法。                   |
 | callback | Callback\<void>  | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
