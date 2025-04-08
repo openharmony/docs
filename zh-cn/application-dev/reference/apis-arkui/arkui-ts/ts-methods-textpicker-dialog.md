@@ -12,11 +12,13 @@
 
 ## TextPickerDialog
 
-### show
+### show<sup>(deprecated)</sup>
 
 static show(options?: TextPickerDialogOptions)
 
 定义文本滑动选择器弹窗并弹出。
+
+从API version 8开始支持，从API version 18开始废弃，建议使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showTextPickerDialog](../js-apis-arkui-UIContext.md#showtextpickerdialog)替代。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -27,10 +29,6 @@ static show(options?: TextPickerDialogOptions)
 | 参数名  | 类型                                                        | 必填 | 说明                       |
 | ------- | ----------------------------------------------------------- | ---- | -------------------------- |
 | options | [TextPickerDialogOptions](#textpickerdialogoptions对象说明) | 否   | 配置文本选择器弹窗的参数。 |
-
->  **说明：**
->
-> 建议使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showTextPickerDialog](../js-apis-arkui-UIContext.md#showtextpickerdialog)接口。
 
 ## TextPickerDialogOptions对象说明
 

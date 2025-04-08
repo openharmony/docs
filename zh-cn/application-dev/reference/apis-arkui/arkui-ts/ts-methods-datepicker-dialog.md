@@ -12,11 +12,13 @@
 
 ## DatePickerDialog
 
-### show
+### show<sup>(deprecated)</sup>
 
 static show(options?: DatePickerDialogOptions)
 
 定义日期滑动选择器弹窗并弹出。
+
+从API version 8开始支持，从API version 18开始废弃，建议使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showDatePickerDialog](../js-apis-arkui-UIContext.md#showdatepickerdialog)替代。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -27,10 +29,6 @@ static show(options?: DatePickerDialogOptions)
 | 参数名  | 类型                                                        | 必填 | 说明                       |
 | ------- | ----------------------------------------------------------- | ---- | -------------------------- |
 | options | [DatePickerDialogOptions](#datepickerdialogoptions对象说明) | 否   | 配置日期选择器弹窗的参数。 |
-
->  **说明：**
->
-> 建议使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showDatePickerDialog](../js-apis-arkui-UIContext.md#showdatepickerdialog)接口。
 
 ## DatePickerDialogOptions对象说明
 
