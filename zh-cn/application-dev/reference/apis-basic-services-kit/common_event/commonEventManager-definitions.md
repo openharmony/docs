@@ -2032,7 +2032,7 @@ Store Kit面向应用发布如下系统公共事件。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅者所需权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS该权限仅系统应用可申请）
+**订阅者所需权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS（该权限仅系统应用可申请）
 
 **取值：** "usual.event.data.ACCOUNT_DELETED"
 

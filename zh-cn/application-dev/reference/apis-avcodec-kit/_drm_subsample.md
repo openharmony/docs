@@ -9,6 +9,8 @@ Subsample结构类型定义。
 
 **相关模块：**[Multimedia_Drm](_multimedia___drm.md)
 
+**所在头文件：**[native_cencinfo.h](native__cencinfo_8h.md)
+
 
 ## 汇总
 

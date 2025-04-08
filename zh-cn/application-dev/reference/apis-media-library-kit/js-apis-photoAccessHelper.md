@@ -4487,8 +4487,8 @@ static loadMovingPhoto(context: Context, imageFileUri: string, videoFileUri: str
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md)   | 是   | 传入AbilityContext或者UIExtensionContext的实例。 |
-| imageFileUri | string     | 是   | 应用沙箱动态照片的图片uri。 |
-| videoFileUri | string     | 是   | 应用沙箱动态照片的视频uri。 |
+| imageFileUri | string     | 是   | 应用沙箱动态照片的图片uri。<br>示例：'file://com.example.temptest/data/storage/el2/base/haps/ImageFile.jpg' |
+| videoFileUri | string     | 是   | 应用沙箱动态照片的视频uri。<br>示例：'file://com.example.temptest/data/storage/el2/base/haps/VideoFile.mp4' |
 
 **返回值：**
 
@@ -5136,6 +5136,7 @@ PhotoAsset的成员类型。
 | DETAIL_TIME<sup>13+</sup>  | 'detail_time'  | 大图浏览时间，值为拍摄时对应时区的时间的字符串，不会跟随时区变化。|
 | DATE_TAKEN_MS<sup>13+</sup>  | 'date_taken_ms'  | 拍摄时的Unix时间戳（单位：毫秒）。 |
 | POSITION<sup>16+</sup>  | 'position'            | 文件位置类型。                               |
+| MEDIA_SUFFIX<sup>18+</sup>  | 'media_suffix'            | 文件的后缀名。                               |
 
 ## AlbumKeys
 

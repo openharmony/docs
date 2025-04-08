@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  从API Version 18开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API Version 17开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## onAxisEvent
 
@@ -12,9 +12,9 @@ onAxisEvent(event: (event: AxisEvent) => void): T
 
 鼠标滚轮滚动或触控板双指移动触发该回调。
 
-**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 17开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -34,7 +34,7 @@ onAxisEvent(event: (event: AxisEvent) => void): T
 
 轴事件的对象说明，继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明)。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -42,7 +42,7 @@ onAxisEvent(event: (event: AxisEvent) => void): T
 
 | 名称            | 类型  | 只读|可选                              | 说明                                                    |
 | ------------------- | -----------------------|------|----- | -------------------------------------------------------- |
-| action              | [AxisAction](ts-appendix-enums.md#axisaction18)           | 是   | 否   | 轴事件的动作类型                   |
+| action              | [AxisAction](ts-appendix-enums.md#axisaction17)           | 是   | 否   | 轴事件的动作类型                   |
 | x                   | number                 | 是   | 否   | 鼠标光标相对于被点击元素左边缘的X坐标。<br/>单位：vp  |
 | y                   | number                 | 是   | 否   | 鼠标光标相对于被点击元素上边缘的Y坐标。<br/>单位：vp  |
 | windowX             | number                 | 是   | 否   | 鼠标光标相对于当前窗口左上角的X坐标。<br/>单位：vp |
@@ -58,7 +58,7 @@ getHorizontalAxisValue(): number
 
 获取此次轴事件的水平轴值。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -74,7 +74,7 @@ getVerticalAxisValue(): number
 
 获取此次轴事件的垂直轴值。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

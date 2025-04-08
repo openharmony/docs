@@ -29,7 +29,7 @@ ImageSpan(value: ResourceStr | PixelMap)
 
 ## 属性
 
-属性继承自[BaseSpan](ts-basic-components-span.md#basespan)，通用属性方法支持[尺寸设置](ts-universal-attributes-size.md#尺寸设置)、[背景设置](ts-universal-attributes-background.md#背景设置)、[边框设置](ts-universal-attributes-border.md#边框设置)
+属性继承自[BaseSpan](ts-basic-components-span.md#basespan)，通用属性方法支持[尺寸设置](ts-universal-attributes-size.md#尺寸设置)、[背景设置](ts-universal-attributes-background.md#背景设置)、[边框设置](ts-universal-attributes-border.md#边框设置)。
 
 ### verticalAlign
 
@@ -135,7 +135,7 @@ onError(callback: ImageErrorCallback)
 
 type ImageCompleteCallback = (result: ImageLoadResult) => void
 
-图片加载异常时触发的回调。
+图片加载成功和解码成功时触发的回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

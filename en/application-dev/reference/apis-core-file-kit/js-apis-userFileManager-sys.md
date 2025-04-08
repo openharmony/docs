@@ -4404,7 +4404,7 @@ Defines the key information about an audio file.
 | DATE_ADDED    | date_added          | Date when the file was added. The value is the number of seconds elapsed since the Epoch time (00:00:00 UTC on January 1, 1970).            |
 | DATE_MODIFIED | date_modified       | Date when the file content (not the file name) was last modified. The value is the number of seconds elapsed since the Epoch time.|
 | TITLE         | title               | Title in the file.                                                  |
-| ARTIST        | artist              | Artist of the file.                                                  |
+| ARTIST        | artist              | Author of the file.                                                  |
 | AUDIOALBUM    | audio_album         | Audio album.                                                  |
 | DURATION      | duration            | Duration, in ms.                                   |
 | FAVORITE      | favorite            | Whether the file is added to favorites.                                                  |

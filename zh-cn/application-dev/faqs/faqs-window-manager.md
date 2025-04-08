@@ -306,4 +306,25 @@ windowClass.on('avoidAreaChange', async (data) => {
 });
 ```
 
+## 在display.on('foldDisplayModeChange')监听回调中，使用display.getDefaultDisplaySync获取当前屏幕宽高错误(API10)
+
+**解决措施**
+
+对于强制横屏应用，在设备发生折叠开合动作时，会触发foldDisplayModeChange，此时Display里对应旋转属性还未更新，导致通过getDefaultDisplaySync获取到的宽高为设备竖屏的宽高。应用可以通过display.on('change')接口监听显示设备变化，在回调函数中通过Display实例获取屏幕的宽高等信息。
+
+**代码示例**
+
+```ts
+display.on('change', (data) => {
+  console.info('Succeeded in enabling the listener for display changes. Data: ' +
+  JSON.stringify(data));
+  let newDisplay: display.Display = display.getDefaultDisplaySync();
+  console.info('width: ' + newDisplay.width + ', height: ' + newDisplay.height);
+});
+```
+
+**参考链接**
+
+[display.on('change')](../reference/apis-arkui/js-apis-display.md#displayonaddremovechange)
+
 <!--no_check-->

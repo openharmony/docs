@@ -419,3 +419,4 @@ Currently, this permission is available only to 2-in-1 device applications.
 **Authorization mode**: system_grant
 
 **Valid since**: 15
+

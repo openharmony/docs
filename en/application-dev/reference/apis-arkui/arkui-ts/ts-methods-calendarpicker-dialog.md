@@ -48,7 +48,6 @@ Inherits from [CalendarOptions](ts-basic-components-calendarpicker.md#calendarop
 | shadow<sup>12+</sup>              | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) \| [ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10) | No  | Shadow of the dialog box.<br> Default value on 2-in-1 devices: **ShadowStyle.OUTER_FLOATING_MD** when the dialog box is focused and **ShadowStyle.OUTER_FLOATING_SM** otherwise<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | enableHoverMode<sup>14+</sup>     | boolean | No  | Whether to enable the hover mode.<br>Default value: **false**, meaning not to enable the hover mode.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | hoverModeArea<sup>14+</sup>       | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype14) | No  | Display area of the dialog box in hover mode.<br>Default value: **HoverModeAreaType.BOTTOM_SCREEN**<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
-| markToday<sup>16+</sup>       | boolean | No  | Whether to highlight the current system date.<br>Default value: **false** The value **true** means to highlight the current system date, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
 
 > **NOTE**
 >
@@ -278,37 +277,4 @@ struct CalendarPickerDialogExample {
   }
 }  
 ```
-
-
-
-### Example 6: Highlighting the Current System Date and Disabling a Specific Date Range
-
-This example shows how to highlight the current system date using **markToday** and disable a specific date range using **disabledDateRange**.
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct CalendarPickerExample {
-  private disabledDateRange: DateRange[] = [
-    { start: new Date('2025-01-01'), end: new Date('2025-01-02') },
-    { start: new Date('2025-01-09'), end: new Date('2025-01-10') },
-    { start: new Date('2025-01-15'), end: new Date('2025-01-16') },
-    { start: new Date('2025-01-19'), end: new Date('2025-01-19') },
-    { start: new Date('2025-01-22'), end: new Date('2025-01-25') }
-  ]
-
-  build() {
-    Column() {
-      Button("Show CalendarPicker Dialog")
-        .margin(20)
-        .onClick(() => {
-          console.info("CalendarDialog.show")
-          CalendarPickerDialog.show({ markToday: true, disabledDateRange: this.disabledDateRange })
-        })
-    }.width('100%').margin({ top: 350 })
-  }
-}
-```
-
 

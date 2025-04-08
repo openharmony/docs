@@ -27,7 +27,7 @@ OpenHarmony当前定义了三种基础系统类型，设备开发者通过选择
 
 | 方式 | 工具 | 特点 | 适用人群 |
 | -------- | -------- | -------- | -------- |
-| [基于IDE入门](quickstart-ide-env-win.md) | IDE（DevEco&nbsp;Device&nbsp;Tool） | 完全采用IDE进行一站式开发，编译依赖工具的安装及编译、烧录、运行都通过IDE进行操作。<br/>DevEco&nbsp;Device&nbsp;Tool采用Windows+Ubuntu混合开发环境：<br/>-&nbsp;在Windows上主要进行代码开发、代码调试、烧录等操作。<br/>-&nbsp;在Ubuntu环境实现源码编译。<br/>DevEco&nbsp;Device&nbsp;Tool提供界面化的操作接口，可以为您提供更快捷的开发体验。 | -&nbsp;不熟悉命令行操作的开发者<br/>-&nbsp;习惯界面化操作的开发者 |
+| [基于IDE入门](quickstart-ide-env-win.md) | IDE（DevEco&nbsp;Device&nbsp;Tool） | 完全采用IDE进行一站式开发，编译依赖工具的安装及编译、烧录、运行都通过IDE进行操作。<br/>DevEco&nbsp;Device&nbsp;Tool采用Windows+Ubuntu混合开发环境：<br/>-&nbsp;在Windows上主要进行代码开发、代码调试、烧录等操作。<br/>-&nbsp;在Ubuntu环境实现源码编译。<br/>DevEco&nbsp;Device&nbsp;Tool提供界面化的操作接口，可以为您提供更快捷的开发体验。 | &nbsp;不熟悉命令行操作的开发者<br/>&nbsp;习惯界面化操作的开发者 |
 | [基于命令行入门](quickstart-pkg-prepare.md) | 命令行工具包 | 通过命令行方式下载安装编译依赖工具，在Linux系统中进行编译时，相关操作通过命令实现；在Windows系统中使用开发板厂商提供的工具进行代码烧录。<br/>命令行方式提供了简便统一的工具链安装方式。 | 习惯使用命令行操作的开发者 |
 
 

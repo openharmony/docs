@@ -130,7 +130,6 @@ Enumerates the tile modes of the shader effect.
 | MIRROR | Repeats the shader effect in both horizontal and vertical directions, alternating mirror images.| 
 | DECAL | Renders the shader effect only within the original boundary.| 
 
-
 ## Function Description
 
 

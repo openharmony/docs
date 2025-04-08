@@ -962,9 +962,9 @@ Implements a task. Before calling any APIs in **Task**, you must use [constructo
 | arguments            | Object[]  | Yes  | Yes  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | name<sup>11+</sup>   | string    | Yes  | No  | Name of the task specified when the task is created.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | taskId<sup>18+</sup>   | number    | Yes  | No  | Task ID.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
-| totalDuration<sup>11+</sup>  | number    | Yes  | No  | Total execution time of the task.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| ioDuration<sup>11+</sup>     | number    | Yes  | No  | Asynchronous I/O time of the task.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| cpuDuration<sup>11+</sup>    | number    | Yes  | No  | CPU time of the task.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| totalDuration<sup>11+</sup>  | number    | Yes  | No  | Total execution time of the task. in ms.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| ioDuration<sup>11+</sup>     | number    | Yes  | No  | Asynchronous I/O time of the task. in ms.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| cpuDuration<sup>11+</sup>    | number    | Yes  | No  | CPU time of the task. in ms.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
 ### constructor
 

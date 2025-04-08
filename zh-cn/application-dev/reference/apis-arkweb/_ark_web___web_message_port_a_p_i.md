@@ -9,6 +9,7 @@ Post Message相关的Native API结构体。 在调用接口前建议通过ARKWEB
 
 **相关模块：**[Web](_web.md)
 
+**所在头文件：** [arkweb_type.h](arkweb__type_8h.md)
 
 ## 汇总
 

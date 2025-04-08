@@ -38,7 +38,7 @@ Swiper(controller?: SwiperController)
 
 | 参数名        | 类型                                  | 必填   | 说明                 |
 | ---------- | ------------------------------------- | ---- | -------------------- |
-| controller | [SwiperController](#swipercontroller) | 否    | 给组件绑定一个控制器，用来控制组件翻页。 |
+| controller | [SwiperController](#swipercontroller) | 否    | 给组件绑定一个控制器，用来控制组件翻页或者预加载指定子节点。 |
 
 
 ## 属性
@@ -75,7 +75,7 @@ autoPlay(value: boolean)
 
 设置子组件是否自动播放。
 
-loop为false时，自动轮播到最后一页时停止轮播。手势切换后不是最后一页时继续播放。当Swiper不可见时会停止轮播。
+[loop](#loop)为false时，自动轮播到最后一页时停止轮播。手势切换后不是最后一页时继续播放。当Swiper不可见时会停止轮播。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -93,7 +93,7 @@ loop为false时，自动轮播到最后一页时停止轮播。手势切换后�
 
 autoPlay(autoPlay: boolean, options: AutoPlayOptions)
 
-手指或者鼠标等按下屏幕时，设置子组件是否自动播放。
+设置子组件是否自动播放。options入参控制手指或者鼠标等按下屏幕时子组件是否停止自动播放。
 
 当[loop](#loop)设置为false时，自动轮播将在到达最后一页时停止。在通过手势切换且未处于最后一页的情况下，轮播将继续进行。Swiper在不可见时，轮播也将停止。
 
@@ -126,7 +126,7 @@ interval(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                                       |
 | ------ | ------ | ---- | ---------------------------------------------------------- |
-| value  | number | 是   | 自动播放时播放的时间间隔。<br/>默认值：3000<br/>单位：毫秒<br/>取值范围：[0, +∞)，设置小于0的值时，按照默认值处理。 |
+| value  | number | 是   | 自动播放时播放的时间间隔。当小于[duration](#duration)属性值时，翻页完成后会立即开始下一次轮播。<br/>默认值：3000<br/>单位：毫秒<br/>取值范围：[0, +∞)，设置小于0的值时，按照默认值处理。 |
 
 ### indicator
 
@@ -239,7 +239,7 @@ itemSpace(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明                                   |
 | ------ | -------------------------- | ---- | -------------------------------------- |
-| value  | number&nbsp;\|&nbsp;string | 是   | 子组件与子组件之间间隙。<br/>默认值：0<br/>取值范围：[0, +∞)，设置小于0的值时，按照默认值处理。 |
+| value  | number&nbsp;\|&nbsp;string | 是   | 子组件与子组件之间间隙。<br/>默认值：0<br/>取值范围：[0, +∞)，当设置数值小于0或超出Swiper组件宽度范围时，按照默认值处理。 |
 
 ### displayMode
 
@@ -330,7 +330,7 @@ curve(value: Curve | string | ICurve)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------- |
-| value  | [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[ICurve](../js-apis-curve.md#icurve9)<sup>10+</sup> | 是   | Swiper的动画曲线。<br/>默认值：interpolatingSpring(-1, 1, 328, 34) |
+| value  | [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;string<sup>(deprecated)</sup>&nbsp;\|&nbsp;[ICurve](../js-apis-curve.md#icurve9)<sup>10+</sup> | 是   | Swiper的动画曲线。<br/>string类型来源[curves.init](../js-apis-curve.md#curvesinitdeprecated)，[curves.steps](../js-apis-curve.md#curvesstepsdeprecated)，[curves.cubicBezier](../js-apis-curve.md#curvescubicbezierdeprecated)，[curves.spring](../js-apis-curve.md#curvesspringdeprecated)函数从API 9开始废弃，推荐使用Curve和ICurve类型。<br/>默认值：[interpolatingSpring](../js-apis-curve.md#curvesinterpolatingspring10)(-1, 1, 328, 34) |
 
 ### indicatorStyle<sup>(deprecated)</sup>
 
@@ -384,7 +384,7 @@ displayCount(value: number | string | SwiperAutoFill, swipeByGroup?: boolean)
 
 effectMode(value: EdgeEffect)
 
-设置边缘滑动效果，loop = false时生效。 目前支持的滑动效果参见EdgeEffect的枚举说明。控制器接口调用时不生效回弹。
+设置边缘滑动效果，[loop](#loop) = false时生效。调用SwiperController.changeIndex()、SwiperController.showNext()和SwiperController.showPrevious()接口跳转至首尾页时不生效回弹。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -413,7 +413,7 @@ displayArrow(value: ArrowStyle | boolean, isHoverShow?: boolean)
 | 参数名                     | 类型                                             | 必填 | 说明                                                         |
 | -------------------------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value                      | [ArrowStyle](#arrowstyle10对象说明)&nbsp;\|&nbsp;boolean | 是   | 支持设置箭头和底板样式，异常场景使用ArrowStyle对象中的默认值。设置为false不显示箭头和底板，true显示默认的箭头和底板样式。<br/>默认值：false |
-| isHoverShow                | boolean                                          | 否   | 设置鼠标悬停时是否显示箭头。<br/>默认值：false<br/>**说明：**<br/>isHoverShow为false时，常驻显示箭头，支持点击翻页。<br/>isHoverShow为true时，只有在鼠标悬停时才会显示箭头，并支持点击翻页。 |
+| isHoverShow                | boolean                                          | 否   | 设置鼠标悬停时是否显示箭头。<br/>默认值：false<br/>**说明：**<br/>1、isHoverShow为false时，常驻显示箭头。<br/>2、isHoverShow为true时，有导航点时鼠标悬停在导航点和箭头范围内显示箭头，无导航点时鼠标悬停在Swiper显示范围内显示箭头。<br/>3、箭头显示时，支持点击翻页。 |
 
 > **说明：**
 >
@@ -560,19 +560,13 @@ Swiper组件和父组件的嵌套滚动模式枚举。
 
 ## SwiperController
 
-Swiper容器组件的控制器，可以将此对象绑定至Swiper组件，可以通过它控制翻页。
+Swiper容器组件的控制器，可以将此对象绑定至Swiper组件，实现控制Swiper翻页等功能。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-### 导入对象
-
-```ts
-let controller: SwiperController = new SwiperController()
-```
 
 ### constructor
 
@@ -590,7 +584,7 @@ SwiperController的构造函数。
 
 showNext()
 
-翻至下一页。翻页带动效切换过程，时长通过duration指定。
+翻至下一页。翻页带动效切换过程，时长通过Swiper的[duration](#duration)属性设置。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -602,7 +596,7 @@ showNext()
 
 showPrevious()
 
-翻至上一页。翻页带动效切换过程，时长通过duration指定。
+翻至上一页。翻页带动效切换过程，时长通过Swiper的[duration](#duration)属性设置。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -849,6 +843,12 @@ static dot(): DotIndicator
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**返回值：**
+
+| 类型                            | 说明         |
+| ------------------------------- | ------------ |
+| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+
 ### digit
 
 static digit(): DigitIndicator
@@ -860,6 +860,12 @@ static digit(): DigitIndicator
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                | 说明         |
+| ----------------------------------- | ------------ |
+| [DigitIndicator](#digitindicator10) | 数字指示器。 |
 
 ## DotIndicator<sup>10+</sup>
 
@@ -1513,7 +1519,7 @@ Swiper滑动时触发的回调，参数可参考[SwiperContentTransitionProxy](#
 | selectedIndex | number | 是 | 当前选中页面的索引。 |
 | index | number | 是 | 视窗内页面的索引。 |
 | position | number | 是 | index页面相对于Swiper主轴起始位置（selectedIndex对应页面的起始位置）的移动比例。 |
-| mainAxisLength | number | 是 | index对应页面在主轴方向上的长度。 |
+| mainAxisLength | number | 是 | index对应页面在主轴方向上的长度，单位vp。 |
 
 ## ContentWillScrollCallback<sup>15+</sup>
 
@@ -1597,7 +1603,7 @@ Swiper自定义切换动画执行过程中，返回给开发者的proxy对象。
 | selectedIndex | number | 否 | 否 | 当前选中页面的索引。 |
 | index | number | 否 | 否 | 视窗内页面的索引。 |
 | position | number | 否 | 否 | index页面相对于Swiper主轴起始位置（selectedIndex对应页面的起始位置）的移动比例。 |
-| mainAxisLength | number | 否 | 否 | index对应页面在主轴方向上的长度。 |
+| mainAxisLength | number | 否 | 否 | index对应页面在主轴方向上的长度，单位vp。 |
 
 >**说明：** 
 >
