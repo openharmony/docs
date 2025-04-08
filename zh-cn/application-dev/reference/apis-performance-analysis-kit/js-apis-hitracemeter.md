@@ -11,7 +11,9 @@
 >
 > 性能打点接口[startTrace](#hitracemeterstarttrace)、[finishTrace](#hitracemeterfinishtrace)、[traceByValue](#hitracemetertracebyvalue)无法指定跟踪输出级别，默认均为COMMERCIAL级别性能打点。
 >
-> [用户态tarce格式](../../dfx/hitracemeter-view.md#用户态trace格式说明)使用竖线 `|` 作为分隔符，所以通过性能打点接口传递的字符串类型参数应避免包含该字符，防止trace解析异常。
+> [用户态trace格式](../../dfx/hitracemeter-view.md#用户态trace格式说明)使用竖线 `|` 作为分隔符，所以通过性能打点接口传递的字符串类型参数应避免包含该字符，防止trace解析异常。
+>
+> [用户态trace](../../dfx/hitracemeter-view.md#用户态trace格式说明)总长度限制512字符，超过的部分将会被截断。
 
 ## 导入模块
 
@@ -157,10 +159,10 @@ startAsyncTrace(level: HiTraceOutputLevel, name: string, taskId: number, customC
 | 参数名         | 类型                                        | 必填 | 说明                                                         |
 | -------------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | level          | [HiTraceOutputLevel](#hitraceoutputlevel18) | 是   | 跟踪输出级别。                                               |
-| name           | string                                      | 是   | 要跟踪的任务名称。该字段长度限制320字符，超过的部分将会被截断。 |
+| name           | string                                      | 是   | 要跟踪的任务名称。                                           |
 | taskId         | number                                      | 是   | 任务id。                                                     |
-| customCategory | string                                      | 是   | 自定义聚类名称，用于聚合同一类异步跟踪打点。该字段长度限制64字符，超过的部分将会被截断。 |
-| customArgs     | string                                      | 否   | 自定义键值对，格式key=value，多个键值对用逗号分隔。<br>不传入该参数等同于传入空字符串。<br>跟踪输出总长度限制512字符，若name和customCategory参数占用过多字符，可能导致customArgs被截断。 |
+| customCategory | string                                      | 是   | 自定义聚类名称，用于聚合同一类异步跟踪打点。                 |
+| customArgs     | string                                      | 否   | 自定义键值对，格式key=value，多个键值对用逗号分隔。<br>不传入该参数等同于传入空字符串。 |
 
 **示例：**
 
@@ -189,11 +191,11 @@ finishAsyncTrace的level、name和taskId必须与流程开始的[startAsyncTrace
 
 **参数：**
 
-| 参数名 | 类型                                        | 必填 | 说明                                                         |
-| ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| level  | [HiTraceOutputLevel](#hitraceoutputlevel18) | 是   | 跟踪输出级别。                                               |
-| name   | string                                      | 是   | 要跟踪的任务名称。该字段长度限制320字符，超过的部分将会被截断。 |
-| taskId | number                                      | 是   | 任务id。                                                     |
+| 参数名 | 类型                                        | 必填 | 说明               |
+| ------ | ------------------------------------------- | ---- | ------------------ |
+| level  | [HiTraceOutputLevel](#hitraceoutputlevel18) | 是   | 跟踪输出级别。     |
+| name   | string                                      | 是   | 要跟踪的任务名称。 |
+| taskId | number                                      | 是   | 任务id。           |
 
 **示例：**
 
@@ -249,8 +251,8 @@ startSyncTrace(level: HiTraceOutputLevel, name: string, customArgs?: string): vo
 | 参数名     | 类型                                        | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | level      | [HiTraceOutputLevel](#hitraceoutputlevel18) | 是   | 跟踪输出级别。                                               |
-| name       | string                                      | 是   | 要跟踪的任务名称。该字段长度限制320字符，超过的部分将会被截断。 |
-| customArgs | string                                      | 否   | 键值对，格式key=value，多个键值对用逗号分隔。<br>不传入该参数等同于传入空字符串。<br/>跟踪输出总长度限制512字符，若name参数占用过多字符，可能导致customArgs被截断。 |
+| name       | string                                      | 是   | 要跟踪的任务名称。                                           |
+| customArgs | string                                      | 否   | 键值对，格式key=value，多个键值对用逗号分隔。<br>不传入该参数等同于传入空字符串。 |
 
 **示例：**
 
@@ -317,11 +319,11 @@ traceByValue(level: HiTraceOutputLevel, name: string, count: number): void
 
 **参数：**
 
-| 参数名 | 类型                                        | 必填 | 说明                                                         |
-| ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| level  | [HiTraceOutputLevel](#hitraceoutputlevel18) | 是   | 跟踪输出级别。                                               |
-| name   | string                                      | 是   | 要跟踪的整数变量名称。该字段长度限制320字符，超过的部分将会被截断。 |
-| count  | number                                      | 是   | 整数变量的值。                                               |
+| 参数名 | 类型                                        | 必填 | 说明                   |
+| ------ | ------------------------------------------- | ---- | ---------------------- |
+| level  | [HiTraceOutputLevel](#hitraceoutputlevel18) | 是   | 跟踪输出级别。         |
+| name   | string                                      | 是   | 要跟踪的整数变量名称。 |
+| count  | number                                      | 是   | 整数变量的值。         |
 
 **示例：**
 

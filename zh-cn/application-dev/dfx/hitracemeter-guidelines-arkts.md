@@ -28,7 +28,7 @@ HiTraceMeter提供系统性能打点接口。开发者通过在关键代码位�
 
 > **注意：**
 >
-> [用户态tarce格式](./hitracemeter-view.md#用户态trace格式说明)使用竖线 `|` 作为分隔符，所以通过HiTraceMeter接口传递的字符串类型参数应避免包含该字符，防止trace解析异常。
+> [用户态trace格式](./hitracemeter-view.md#用户态trace格式说明)使用竖线 `|` 作为分隔符，所以通过HiTraceMeter接口传递的字符串类型参数应避免包含该字符，防止trace解析异常。
 
 HiTraceMeter打点接口按功能/行为分类，主要分三类：同步时间片跟踪接口、异步时间片跟踪接口和整数跟踪接口。无论同步时间片跟踪接口还是异步时间片跟踪接口，接口本身都是同步接口，不是异步接口。HiTraceMeter打点接口可与[HiTraceChain](./hitracechain-guidelines-arkts.md)一起使用，进行跨设备/跨进程/跨线程打点与分析。
 
@@ -41,11 +41,15 @@ HiTraceMeter打点接口按功能/行为分类，主要分三类：同步时间�
 | 参数名         | 类型   | 必填 | 说明                                                         |
 | -------------- | ------ | ---- | ------------------------------------------------------------ |
 | level          | enum   | 是   | 跟踪输出级别，低于系统阈值的跟踪将不会被输出。<br>log版本阈值为INFO，nolog版本阈值为COMMERCIAL。 |
-| name           | string | 是   | 要跟踪的任务名称或整数变量名称。该字段长度限制320字符，超过的部分将会被截断。 |
+| name           | string | 是   | 要跟踪的任务名称或整数变量名称。                             |
 | taskId         | number | 是   | 用来表示关联的ID，如果有多个name相同的任务是并行执行的，则开发者每次调用startAsyncTrace时传入的taskId需不同。 |
 | count          | number | 是   | 整数变量的值。                                               |
-| customCategory | string | 是   | 自定义聚类名称，用于聚合同一类异步跟踪打点。该字段长度限制64字符，超过的部分将会被截断。<br>若不需要聚类，可传入一个空字符串。 |
-| customArgs     | string | 否   | 自定义键值对，若有多组键值对，使用逗号进行分隔，例"key1=value1,key2=value2"。<br>跟踪输出总长度限制512字符，若name和customCategory参数占用过多字符，可能导致customArgs被截断。<br/>若不需要该参数，可不传入该参数或传入一个空字符串。 |
+| customCategory | string | 是   | 自定义聚类名称，用于聚合同一类异步跟踪打点。<br>若不需要聚类，可传入一个空字符串。 |
+| customArgs     | string | 否   | 自定义键值对，若有多组键值对，使用逗号进行分隔，例"key1=value1,key2=value2"。<br>若不需要该参数，可不传入该参数或传入一个空字符串。 |
+
+> **说明：**
+>
+> [用户态trace](./hitracemeter-view.md#用户态trace格式说明)总长度限制512字符，超过的部分将会被截断，因此建议name、customCategory和customArgs三个字段的总长度不超过420字符，避免输出的用户态trace被截断。
 
 ## 开发示例
 
