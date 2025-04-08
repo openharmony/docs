@@ -993,6 +993,23 @@ hdc file recv /data/log/faultlog/faultlogger/
 hdc file recv /data/log/hilog/
 ```
 
+<!--Del-->
+## 17700077 安装应用失败，但安装对应的预置应用成功
+
+**错误信息**<br/>
+Failed to install the HAP and restore to preinstalled bundle.
+
+**错误描述**<br/>
+安装指定应用前，若对应的预置应用已卸载，会优先安装预置应用，预置应用安装成功后安装指定应用失败。
+
+**可能原因**<br/>
+1. 待安装应用的版本号小于等于预置版本号。
+
+**处理步骤**<br/>
+1. 检查并确保指定应用版本号大于对应的预置应用版本号。
+2. 重新安装指定应用。
+<!--DelEnd-->
+
 ## 17700201 abc文件校验失败
 **错误信息**<br/>
 Failed to verify the abc file.
