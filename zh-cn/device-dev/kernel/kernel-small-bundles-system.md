@@ -11,12 +11,13 @@ OpenHarmony LiteOS-A实现了用户态与内核态的区分隔离，用户态程
   **图1** 系统调用示意图
 
   ![zh-cn_image_0000001132856572](figures/zh-cn_image_0000001132856572.png)
+  
 Syscall Handler的具体实现在kernel/liteos_a/syscall/los_syscall.c中OsArmA32SyscallHandle函数，在进入系统软中断异常时会调用此函数，并且按照kernel/liteos_a/syscall/syscall_lookup.h中的清单进行系统调用的入参解析，执行各系统调用最终对应的内核处理函数。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 系统调用提供基础的用户态程序与内核的交互功能，不建议开发者直接使用系统调用接口，推荐使用内核提供的对外POSIX接口，若需要新增系统调用接口，详见开发指导。
 > 
-> - 内核向用户态提供的系统调用接口清单[详见](https://gitee.com/openharmony/kernel_liteos_a/blob/master/syscall/syscall_lookup.h)，内核相应的系统调用对接函数清单详见[详见](https://gitee.com/openharmony/kernel_liteos_a/blob/master/syscall/los_syscall.h)。
+> - 内核向用户态提供的系统调用接口清单[详见](https://gitee.com/openharmony/kernel_liteos_a/blob/master/syscall/syscall_lookup.h)，内核相应的系统调用对接函数清单[详见](https://gitee.com/openharmony/kernel_liteos_a/blob/master/syscall/los_syscall.h)。
 
 ## 开发指导
 

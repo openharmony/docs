@@ -1,13 +1,21 @@
-# AI
+# AI Subsystem<a name="ZH-CN_TOPIC_0000001083278044"></a>
 
-## Introduction
+-   [Introduction](#section187321516154516)
+-   [Directory Structure](#section571610913453)
+-   [Constraints](#section5748426453)
+-   [Usage](#section7981135212144)
+-   [Repositories Involved](#section10492183517430)
+-   [AI Engine Development](#section6808423133718)
+
+## Introduction<a name="section187321516154516"></a>
 
 The AI subsystem is the part of OpenHarmony that provides native distributed AI capabilities. At the heart of the subsystem is a unified AI engine framework, which implements quick integration of AI algorithm plug-ins. The framework consists of the plug-in management, module management, and communication management modules, fulfilling lifecycle management and on-demand deployment of AI algorithms. Under this framework, AI algorithm APIs will be standardized to facilitate distributed calling of AI capabilities. In addition, unified inference APIs will be provided to adapt to different inference framework hierarchies.
 
-**Figure  1**  AI engine framework<a name="fig17296164711526"></a>  
-![](figures/ai-engine-framework.png "ai-engine-framework")
+**Figure 1** AI engine framework<a name="fig17296164711526"></a>
 
-## Directory Structure
+![](figures/ai-engine-framework.png)
+
+## Directory Structure<a name="section571610913453"></a>
 
 ```
 /foundation/ai/engine                        # Home directory of the AI subsystem
@@ -32,52 +40,52 @@ The AI subsystem is the part of OpenHarmony that provides native distributed AI 
 │  │  └── server_executor                    # Executor of the server module
 ```
 
-## Constraints
+## Constraints<a name="section5748426453"></a>
 
 * **Programming language**: C/C++
 
 * **Operating system**: OpenHarmony mini- and small-system
 
-* **Others**: The System Ability Manager \(Samgr\) has been started and is running properly.
+* **Others**: The System Ability Manager (Samgr) has been started and is running properly.
 
-## Usage
+## Usage<a name="section7981135212144"></a>
 
 1.  Compile the AI subsystem.
 
-    The source code for lightweight AI framework is available at  **//foundation/ai/engine/services**.
+    The source code for lightweight AI framework is available at **//foundation/ai/engine/services**.
 
     The compilation procedure is as follows:
 
-    1. Set the compilation path.
+    1. Set the build path.
 
     ```
-    hb set -root dir (root dir is the root directory of the project code.)
+    hb set -root dir (**root dir** is the root directory of the project code.)
     ```
 
-    2. Specify the product for compilation. \(After the product list is displayed using the following command, move to the desired product with arrow keys and press  **Enter**.\)
+    2. Specify the build product. \(After the product list is displayed using the following command, move to the desired product with arrow keys and press  **Enter**.\)
 
     ```
     hb set -p
     ```
 
-    3. Start compilation.
+    3. Start build.
 
     ```
     hb build -f (Use this command if you want to compile the entire repository.)
     hb build ai_engine (Use this command if you want to compile only the ai_engine module.)
     ```
 
-    >**Note**: For details about the hb configuration, see the readme of the build\_lite subsystem.
+   >**NOTE**<br>For details about the hb configuration, see the readme of the build_lite subsystem.
 
 2.  Develop the plug-in, with keyword spotting as an example.
 
     Directory: //foundation/ai/engine/services/server/plugin/asr/keyword\_spotting
 
-    >**Note**: The plug-in must implement the  **IPlugin**  and  **IPluginCallback**  APIs provided by the server.
+    >**NOTE**<br>The plug-in must implement the **IPlugin** and **IPluginCallback** APIs provided by the server.
 
     ```
     #include "plugin/i_plugin.h
-    class KWSPlugin : public IPlugin {       // Inherits the public base class of the IPlugin API for Keywords Spotting Plugin (KWSPlugin).
+    class KWSPlugin : public IPlugin {       // Inherit the public base class of the IPlugin API for Keywords Spotting Plugin (KWSPlugin).
         KWSPlugin();
         ~KWSPlugin();
     
@@ -97,7 +105,7 @@ The AI subsystem is the part of OpenHarmony that provides native distributed AI 
     };
     ```
 
-    >**Note**: Depending on the algorithm in use, you only need to implement the  **SyncProcess**  or  **AsyncProcess**  API. Use an empty function as a placeholder for the other API. In this example, the KWS plug-in uses the synchronous algorithm. Therefore, you need to implement  **SyncProcess**  API and use an empty function as a placeholder for the  **SyncProcess**  API.
+    >**NOTE**<br>Depending on the algorithm in use, you only need to implement the **SyncProcess** or **AsyncProcess** API. Use an empty function as a placeholder for the other API. In this example, the KWS plug-in uses the synchronous algorithm. Therefore, you need to implement **SyncProcess** API and use an empty function as a placeholder for the **SyncProcess** API.
 
     ```
     #include "aie_log.h"
@@ -186,9 +194,10 @@ The AI subsystem is the part of OpenHarmony that provides native distributed AI 
     }
     ```
 
-    >**Note**: The sequence for the SDK to call client APIs of the AI engine is as follows: AieClientInit -\> AieClientPrepare -\> AieClientSyncProcess/AieClientAsyncProcess -\> AieClientRelease -\> AieClientDestroy. An exception will be thrown if the call sequence is violated. In addition, all these APIs must be called. Otherwise, a memory leakage may occur.
+   >**NOTE**<br>The sequence for the SDK to call client APIs of the AI engine is as follows: AieClientInit -\> AieClientPrepare -\> AieClientSyncProcess/AieClientAsyncProcess -\> AieClientRelease -\> AieClientDestroy. An exception will be thrown if the call sequence is violated. In addition, all these APIs must be called. Otherwise, a memory leakage may occur.
 
-    ```
+    
+ ```
     int32_t KWSSdk::KWSSdkImpl::Create()
     {
         if (kwsHandle_ != INVALID_KWS_HANDLE) {
@@ -313,11 +322,11 @@ The AI subsystem is the part of OpenHarmony that provides native distributed AI 
         kwsHandle_ = INVALID_KWS_HANDLE;
         return KWS_RETCODE_SUCCESS;
     }
-    ```
+ ```
 
 4.  Develop a sample application.
 
-    Call the  **Create**  API.
+    Call the **Create** API.
 
     ```
     bool KwsManager::PreparedInference()
@@ -349,7 +358,7 @@ The AI subsystem is the part of OpenHarmony that provides native distributed AI 
     }
     ```
 
-    Call the  **SyncExecute**  API.
+    Call the **SyncExecute** API.
 
     ```
     void KwsManager::ConsumeSamples()
@@ -388,7 +397,7 @@ The AI subsystem is the part of OpenHarmony that provides native distributed AI 
     }
     ```
 
-    Call the  **Destroy**  API.
+    Call the **Destroy** API.
 
     ```
     void KwsManager::StopInference()
@@ -405,7 +414,7 @@ The AI subsystem is the part of OpenHarmony that provides native distributed AI 
     ```
 
 
-## Repositories Involved
+## Repositories Involved<a name="section10492183517430"></a>
 
 [AI subsystem](https://gitee.com/openharmony/docs/blob/master/en/readme/ai.md)
 
@@ -417,10 +426,10 @@ The AI subsystem is the part of OpenHarmony that provides native distributed AI 
 
 [systemabilitymgr\_samgr\_lite](https://gitee.com/openharmony/systemabilitymgr_samgr_lite/blob/master/README.md)
 
-[startup\_init\_lite](https://gitee.com/openharmony/startup_init_lite/blob/master/README.md)
+[startup\_init\_lite](https://gitee.com/openharmony/startup_init/blob/master/README.md)
 
-## Reference
+## Reference<a name="section6808423133718"></a>
 
-[AI Framework Development Guide](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-ai-aiframework-devguide.md)
+[AI Framework Development](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-ai-aiframework-devguide.md) 
 
-
+<!--no_check-->

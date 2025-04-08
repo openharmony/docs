@@ -289,7 +289,7 @@ console.info(buf.toString('hex'));
 
 ## buffer.from
 
-from(array: number[]): Buffer;
+from(array: number[]): Buffer
 
 根据指定数组创建新的Buffer对象。
 
@@ -1076,7 +1076,7 @@ readBigInt64BE(offset?: number): bigint
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 8 |
+| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 8。|
 
 **返回值：**
 

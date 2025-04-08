@@ -338,7 +338,7 @@ Checks whether screen hopping is enabled. This API uses a promise to return the 
 
 | Parameters                       | Description                    |
 | -------------------        | ------------------------------- |
-| Promise<{ state: boolean }>| Promise used to return the result.       |
+| Promise<{ state: boolean }>| Promise used to return the result. The value **true** indicates that screen hopping is enabled, and the **false** indicates the opposite.      |
 
 **Error codes**
 

@@ -179,7 +179,7 @@ struct TodoList {
 
 As the number of task list items increases after the function of adding or deleting tasks is added, a method for efficiently rendering multiple child components with the same structure is required to improve the performance of the UI. Therefore, the **Repeat** method is introduced to optimize the rendering process of the task list. **Repeat** supports two modes: virtualScroll is applicable to scenarios with a large amount of data. It loads components as required in scrolling containers, greatly saving memory and improving rendering efficiency; non-virtualScroll is applicable to scenarios with a small amount of data. All components are rendered at a time, and only the changed data is updated, avoiding overall re-rendering.
 
-In this example, the non-virtualScroll mode is selected because of few task items. Create an array **tasks**, use the **Repeat** method to iterate each item in the array, and dynamically generate and reuse the **TaskItem** component. When a task is added or deleted, this method can efficiently reuse existing components to avoid rendering repeated components, improving the UI response speed and performance.
+In this example, the non-virtualScroll mode is selected because of few task items. Create an array **tasks**, use the **Repeat** method to iterate each item in the array, and dynamically generate and reuse the **TaskItem** component. In this way, you can efficiently reuse existing components when adding or deleting a task to avoid repeated component renderings, improving code reusability and rendering efficiency.
 
 ```ts
 // src/main/ets/pages/5-Repeat.ets
@@ -1204,7 +1204,7 @@ struct TodoList {
 }
 ```
 
-- **SettingPage**: settings page, which is used to set whether to show finished tasks. It uses \@AppStorageV2 to store the global settings. The user can switch the status of **showCompletedTask** by using the toggle switch.
+- **SettingPage**: settings page, which is used to set whether to show finished tasks. It uses **AppStorageV2** to store the global settings. The user can switch the status of **showCompletedTask** by using the toggle switch.
 
 ```ts
 // src/main/ets/pages/SettingPage.ets
@@ -1250,4 +1250,3 @@ This guide uses a simple to-do list application as an example to introduce decor
 
 ## Sample Code
 [Complete Source Code](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/StateMgmtV2MVVM/entry)
-

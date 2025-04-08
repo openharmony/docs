@@ -13,7 +13,7 @@ For large-scale applications, V1 and V2 may be used together during the migratio
 
 ## Verification Rules
 In versions earlier than API version 18, the mixed use rules of state managements V1 and V2 can be summarized as follows:
-1. Decorators of V1 cannot be used together with @ObserveV2.
+1. Decorators of V1 cannot be used together with @ObservedV2.
 2. Decorators of V2 cannot be used together with @Observed.
 3. Only simple types can be transferred from V1 to V2. Complex types (built-in types), including Array, Map, Set, and Date, are not allowed.
 4. Simple types or a common class can be transferred from V2 to V1, but built-in types such as Array, Map, Set, or Date are not allowed.
@@ -22,8 +22,8 @@ Since API version 18, only the first rule is still enabled, and the rest rules a
 
 | Scenario | Earlier than API Version 18| API Version 18 and Later |
 |------|----|------|
-| Decorators of V2 and \@Observed are used together.| An error is reported.| No error is reported.|
 | Decorators of V1 and \@ObservedV2 are used together.  | An error is reported.| An error is reported.|
+| Decorators of V2 and \@Observed are used together.| An error is reported.| No error is reported.|
 | A common class is transferred from V1 to V2. | An error is reported.| No error is reported.|
 | Built-in types such as Array, Map, Set, Date are transferred from V1 to V2. | An error is reported.| No error is reported.|
 | A \@Observed decorated class is transferred from V1 to V2. | An error is reported.| No error is reported.|
@@ -31,7 +31,7 @@ Since API version 18, only the first rule is still enabled, and the rest rules a
 | Built-in types such as Array, Map, Set, Date are transferred from V2 to V1. | An error is reported.| No error is reported.|
 | \@ObjectLink is initialized by a class that is not decorated by \@Observed. | An error is reported.| No error is reported.|
 
-@ObserveV2 or @Trace has its own independent observation capability, which can be used in both \@ComponentV2 and \@Component. However, the state management framework does not allow the mixed use of observation capability of V1 and V2. Therefore, the first rule is still enabled.
+@ObservedV2 or @Trace has its own independent observation capability, which can be used in both \@ComponentV2 and \@Component. However, the state management framework does not allow the mixed use of observation capability of V1 and V2. Therefore, the first rule is still enabled.
 
 ## Available APIs
 ### makeV1Observed
@@ -76,7 +76,7 @@ static enableV2Compatibility\<T extends object\>(source: T): T
 - Non-object types are not supported.
 - **undefined** and **null** are not supported.
 - Non-V1 state variable data is not supported.
-- The return values of \@ObservedV2 and [makeObserved](../reference/apis-arkui/js-apis-StateManagement.md#makeobserved), and variables of built-in types (such as Array, Map, Set, and Date) decorated by the decorator of V2 are not supported.
+- The return values of \@ObservedV2 and [makeObserved](../reference/apis-arkui/js-apis-StateManagement.md#makeobserved), and variables of built-in types (such as Array, Map, Set, and Date) decorated by the decorators of V2 are not supported.
 
 ## Mixed Use Paradigm
 
@@ -160,9 +160,9 @@ The following table lists the specific scenarios.
 |------|----|
 | \@Observed decorated nested class| In \@ComponentV2, you can observe the changes of nested properties.|
 | Normal class | Observable. Call **makeV1Observed** to execute **enableV2Compatibility** properly.|
-| Array\<number\> or other simple arrays | Observable. **makeV1Observed** needs to be called.<br>Example: **@Local local : Array\<number> = UIUtils.enableV2Compatibility(UIUtils.makeV1Observed([1, 2, 3]))** |
-| Array\<ObservedClass\> (The array item is a class decorated by \@Observed.) | Observable. **makeV1Observed** needs to be called.<br>Example: **@Local local : Array\<ObservedClass> = UIUtils.enableV2Compatibility(UIUtils.makeV1Observed([new ObservedClass()]))** |
-|  Array\<Array\<number\>\>: two-dimensional array, array item, or other simple types| Observable. **makeV1Observed** needs to be called.<br>Example: **@Local local : Array<Array\<number>>> = UIUtils.enableV2Compatibility(UIUtils.makeV1Observed([UIUtils.makeV1Observed([1, 2, 3])]))** |
+| Array\<number\> or other simple arrays | Observable. **makeV1Observed** needs to be called.<br>Example: **@Local local : Array\<number> = UIUtils.enableV2Compatibility(UIUtils.makeV1Observed([1, 2, 3]))**|
+| Array\<ObservedClass\> (The array item is a class decorated by \@Observed.) | Observable. **makeV1Observed** needs to be called.<br>Example: **@Local local : Array\<ObservedClass> = UIUtils.enableV2Compatibility(UIUtils.makeV1Observed([new ObservedClass()]))**|
+|  Array\<Array\<number\>\>: two-dimensional array, array item, or other simple types| Observable. **makeV1Observed** needs to be called.<br>Example: **@Local local : Array<Array\<number>>> = UIUtils.enableV2Compatibility(UIUtils.makeV1Observed([UIUtils.makeV1Observed([1, 2, 3])]))**|
 
 
 ## Mixed Use Rules
@@ -185,7 +185,7 @@ SubComponentV2({param: this.state})
 // Recommended.
 @Local unObservedClass: UnObservedClass = UIUtils.enableV2Compatibility(UIUtils.makeV1Observed(new UnObservedClass()));
 
-// Recommended. Class decorated is a class decorated by @Observed.
+// Recommended. ObservedClass is a class decorated by @Observed.
 @Local observedClass: ObservedClass = UIUtils.enableV2Compatibility(new ObservedClass());
 ```
 - **UIUtils.enableV2Compatibility(UIUtils.makeV1Observed())** does not change the observation capabilities of V1 and V2.
@@ -198,7 +198,7 @@ let arr: Array<ArrayItem> = UIUtils.enableV2Compatibility(UIUtils.makeV1Observed
 arr.push(new ArrayItem()); // The new data is not a state variable of V1. Therefore, the observation capability of V2 is unavailable.
 arr.push(UIUtils.makeV1Observed(new ArrayItem())); // The new data is the state variable of V1, which can be observed in V2 by default.
 ```
-- For built-in types, such as Array, Map, Set, and Date, both V1 and V2 can observe the changes caused by their own value assignment and API calls. Although data refresh can be implemented in some simple scenarios without calling **UIUtils.enableV2Compatibility**, dual proxies may cause poor performance. Therefore, **UIUtils.enableV2Compatibility(UIUtils.makeV1Observed())** is recommended. For details, see [Common Scenarios](#built-in-type).
+- For built-in types, such as Array, Map, Set, and Date, both V1 and V2 can observe the changes caused by their own value assignment and API calls. Although data refreshes can be implemented in some simple scenarios without calling **UIUtils.enableV2Compatibility**, dual proxies may cause poor performance. Therefore, **UIUtils.enableV2Compatibility(UIUtils.makeV1Observed())** is recommended. For details, see [Common Scenarios](#built-in-type).
 - For classes with \@Track decorated properties, the system does not crash when non-\@Track decorated properties are used in \@ComponentV2 but still crashes when they are used in \@Component. For details, see [Common Scenarios](#observed-decorated-class).
 
 When calling the two APIs to use V1 and V2 together, you can comply with the logic shown in the following figure.
@@ -395,7 +395,7 @@ In the following example:
     - In V1, if a non-@Track decorated property is used on the UI, an error is reported during runtime.
     - In V2, no error is reported during runtime when non-@Track decorated properties are used on the UI, but the refresh is not responded.
 
-```
+```ts
 import { UIUtils } from '@kit.ArkUI';
 
 @Observed
@@ -641,6 +641,134 @@ struct ArrayCompV1 {
   }
 }
 ```
+### Two-Dimensional Array
+#### V1->V2
+
+In the following example:
+- **makeV1Observed** is used to change the inner array of the two-dimensional array to the state variables of V1.
+- When the state variables of V1 are passed to the child component of V2, **enableV2Compatibility** is called to make them observable in V2 and avoid the dual proxy of V1 and V2.
+
+```ts
+import { UIUtils } from '@kit.ArkUI';
+
+@ComponentV2
+struct Item {
+  @Require @Param itemArr: Array<string>;
+
+  build() {
+    Row() {
+      ForEach(this.itemArr, (item: string, index: number) => {
+        Text(`${index}: ${item}`)
+      }, (item: string) => item + Math.random())
+
+      Button('@Param push')
+        .onClick(() => {
+          this.itemArr.push('Param');
+        })
+    }
+  }
+}
+
+@Entry
+@Component
+struct IndexPage {
+  @State arr: Array<Array<string>> =
+    [UIUtils.makeV1Observed(['apple']), UIUtils.makeV1Observed(['banana']), UIUtils.makeV1Observed(['orange'])];
+
+  build() {
+    Column() {
+      ForEach(this.arr, (itemArr: Array<string>) => {
+        Item({ itemArr: UIUtils.enableV2Compatibility(itemArr) })
+      }, (itemArr: Array<string>) => JSON.stringify(itemArr) + Math.random())
+      Divider()
+      Button('@State push two-dimensional array item')
+        .onClick(() => {
+          this.arr[0].push('strawberry');
+        })
+
+      Button('@State push array item')
+        .onClick(() => {
+          this.arr.push(UIUtils.makeV1Observed(['pear']));
+        })
+
+      Button('@State change two-dimensional array first item')
+        .onClick(() => {
+          this.arr[0][0] = 'APPLE';
+        })
+
+      Button('@State change array first item')
+        .onClick(() => {
+          this.arr[0] = UIUtils.makeV1Observed(['watermelon']);
+        })
+    }
+  }
+}
+```
+
+#### V2->V1
+
+In the following example:
+- **makeV1Observed** is used to change the inner array of the two-dimensional array to the state variables of V1. **enableV2Compatibility** is called to make them observable in V2 and avoid the dual proxy of V1 and V2.
+- In V1, \@ObjectLink is used to receive the inner array of the two-dimensional array. Because the inner array is the return value of **makeV1Observed**, the refresh response is normal when **Button('@ObjectLink push')** is clicked.
+
+```ts
+import { UIUtils } from '@kit.ArkUI';
+
+@Component
+struct Item {
+  @ObjectLink itemArr: Array<string>;
+
+  build() {
+    Row() {
+      ForEach(this.itemArr, (item: string, index: number) => {
+        Text(`${index}: ${item}`)
+      }, (item: string) => item + Math.random())
+
+      Button('@ObjectLink push')
+        .onClick(() => {
+          this.itemArr.push('ObjectLink');
+        })
+    }
+  }
+}
+
+@Entry
+@ComponentV2
+struct IndexPage {
+  @Local arr: Array<Array<string>> =
+    UIUtils.enableV2Compatibility(UIUtils.makeV1Observed([UIUtils.makeV1Observed(['apple']),
+      UIUtils.makeV1Observed(['banana']), UIUtils.makeV1Observed(['orange'])]));
+
+  build() {
+    Column() {
+      ForEach(this.arr, (itemArr: Array<string>) => {
+        Item({ itemArr: itemArr })
+      }, (itemArr: Array<string>) => JSON.stringify(itemArr) + Math.random())
+      Divider()
+      Button('@Local push two-dimensional array item')
+        .onClick(() => {
+          this.arr[0].push('strawberry');
+        })
+
+      Button('@Local push array item')
+        .onClick(() => {
+          this.arr.push(UIUtils.makeV1Observed(['pear']));
+        })
+
+      Button('@Local change two-dimensional array first item')
+        .onClick(() => {
+          this.arr[0][0] = 'APPLE';
+        })
+
+      Button('@Local change array first item')
+        .onClick(() => {
+          this.arr[0] = UIUtils.makeV1Observed(['watermelon']);
+        })
+    }
+  }
+}
+```
+
 ### Nested Type
 #### V1->V2
 The following shows an example of the nested scenario,

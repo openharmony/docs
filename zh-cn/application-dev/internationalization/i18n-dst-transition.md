@@ -19,13 +19,13 @@
    ```ts
    import { i18n } from '@kit.LocalizationKit';
 
-   let calendar = i18n.getCalendar("zh-Hans");
-   calendar.setTimeZone("Europe/London");
-   calendar.set(2021, 2, 27, 16, 0, 0); //The day before daylight saving time start
-   let time1 = calendar.getTimeInMillis();
-   calendar.set(2021, 2, 28, 16, 0, 0); //The day daylight saving time start
-   let time2 = calendar.getTimeInMillis();
-   let hours = (time2 - time1)/(3600*1000) //The hours between the same wall clock time before and after DST. Should be 23
+   let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans');
+   calendar.setTimeZone('Europe/London');
+   calendar.set(2021, 2, 27, 16, 0, 0); // 夏令时开始前的时间
+   let startTime: number = calendar.getTimeInMillis();
+   calendar.set(2021, 2, 28, 16, 0, 0); // 处于夏令时期间的时间
+   let finishTime: number = calendar.getTimeInMillis();
+   let hours: number = (finishTime - startTime) / (3600 * 1000); // hours = 23
    ```
 
 2. 存储和显示数据。

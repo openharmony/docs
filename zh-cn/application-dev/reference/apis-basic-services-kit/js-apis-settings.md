@@ -568,7 +568,7 @@ setValueSync(context: Context, name: string, value: string, domainName: string):
 
 **错误码**：
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
@@ -601,7 +601,7 @@ registerKeyObserver(context: Context, name: string, domainName: string, observer
 | context  | Context                | 是   | 应用上下文(仅支持UIAbilityContext和ExtensionContext)。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | name     | string                 | 是   | 数据项的名称。数据项名称分为以下两种。<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 |domainName| string                 | 是   | 指定要设置的域名。 <br>- domainName为domainName.DEVICE_SHARED,<br>&nbsp;&nbsp;&nbsp;设备属性共享域。<br>- domainName为domainName.USER_PROPERTY,<br>&nbsp;&nbsp;&nbsp;表示为用户属性域。 <br>- domainName为domainName.USER_SECURITY,<br>&nbsp;&nbsp;&nbsp;表示为用户安全属性域(仅对系统应用开放)。|
-|observer  |  AsyncCallback\<void>  | 是   | 使用collback方式获取数据项的值。                   |
+|observer  |  AsyncCallback\<void>  | 是   | 使用callback方式获取数据项的值。                   |
 
 **返回值**：
 
@@ -655,6 +655,49 @@ import settings from '@ohos.settings';
 
 const context: Context =  getContext(this);
 let ret = settings.unregisterKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS,  settings.domainName.DEVICE_SHARED);
+```
+
+## settings.openNetworkManagerSettings<sup>18+</sup>
+
+openNetworkManagerSettings(context: Context): Promise\<boolean>
+
+打开网络管理器设置页面。使用Promise异步回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Applications.Settings.Core
+
+**参数**：
+
+| 参数名   | 类型                   | 必填 | 说明                                                                                                                                                                                                                                                                  |
+| -------- | ---------------------- | ---- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| context  | Context                | 是   | 应用上下文(仅支持UIAbilityContext和ExtensionContext)。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。                                                                                                                                                                |
+
+**返回值**：
+
+| 类型             | 说明                                |
+| ---------------- | ----------------------------------- |
+| Promise\<string> | Promise对象。返回true表示操作成功，否则返回false。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[设置数据项错误码](./errorcode-settings.md)。
+
+| 错误码ID    | 错误信息                    |
+|----------|-------------------------|
+| 14800000 | Parameter error.        |
+| 14800010 | Original service error. |
+
+**示例**：
+
+```js
+import settings from '@ohos.settings';
+
+// 跳转网络管理器设置页面。
+const context: Context =  getContext(this);
+settings.openNetworkManagerSettings(context).then((status) => {
+  console.log(`callback:return whether setings is open.`)
+});
 ```
 
 ## settings.enableAirplaneMode

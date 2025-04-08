@@ -127,6 +127,7 @@ Defines a continuous location request.
 | -------- | -------- | -------- | -------- | -------- |
 | interval | number | No| No| Time interval at which location information is reported, in seconds. The specified value must be greater than or equal to **0**. The default value is **1**. If this parameter is set to **0**, there is no limitation on the location reporting interval.|
 | locationScenario | [UserActivityScenario](#useractivityscenario12) &#124; [PowerConsumptionScenario](#powerconsumptionscenario12) | No| No| Location scenario. For details, see [UserActivityScenario](#useractivityscenario12) and [PowerConsumptionScenario](#powerconsumptionscenario12).|
+| sportsType<sup>18+</sup> | [SportsType](#sportstype18) | No| Yes| Sports type.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 
 ## SingleLocationRequest<sup>12+</sup>
@@ -227,7 +228,7 @@ Location information.
 | speed | number | No| No|Speed, in m/s.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | timeStamp | number | No| No| Location timestamp in the UTC format.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | direction | number | No| No| Direction information. The value ranges from **0** to **360**, in degrees.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| timeSinceBoot | number | No| No| Location timestamp since boot.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| timeSinceBoot | number | No| No| Timestamp when the location is successfully obtained. The value is the duration from the time when the device is booted to the time when the location is obtained, in nanoseconds.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | additions | Array&lt;string&gt;| No| Yes| Additional description.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | additionSize | number| No| Yes| Number of additional descriptions. The specified value must be greater than or equal to **0**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | additionsMap<sup>12+</sup> | Map&lt;string, string&gt;| No| Yes| Additional description. The content and sequence are the same as those of **additions**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -468,6 +469,36 @@ Defines the source of the location result.
 | RTK     | 4 | Outdoor high-precision positioning technology.|
 
 
+## BluetoothScanResult<sup>16+</sup>
+
+Defines the Bluetooth scan result.
+
+**System capability**: SystemCapability.Location.Location.Core
+
+| Name| Type| Read Only| Optional| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| deviceId | string | Yes| No| Address of the device discovered, for example, XX:XX:XX:XX:XX:XX.|
+| rssi | number | Yes| No| RSSI of the device.|
+| data | ArrayBuffer | Yes| Yes| Advertising packets sent by the device.|
+| deviceName | string | Yes| No| Name of the device detected.|
+| connectable | boolean | Yes| No| Whether the discovered device is connectable. The value **true** means the discovered device is connectable, and the value **false** means the opposite.|
+
+
+## SportsType<sup>18+</sup>
+
+Enumerates sports types.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Location.Location.Core
+
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| RUNNING   | 1 |  Running.|
+| WALKING    | 2 | Walking.|
+| CYCLING     | 3 | Cycling.|
+
+
 ## geoLocationManager.on('locationChange')
 
 on(type: 'locationChange', request: LocationRequest | ContinuousLocationRequest, callback: Callback&lt;Location&gt;): void
@@ -499,7 +530,6 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 |801 | Capability not supported. Failed to call ${geoLocationManager.on('locationChange')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
-|3301200 | Failed to obtain the geographical location.                                       |
 
 **Example**
 
@@ -559,8 +589,6 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 |401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
 |801 | Capability not supported. Failed to call ${geoLocationManager.off('locationChange')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                           |
-|3301100 | The location switch is off.                                                 |
-|3301200 | Failed to obtain the geographical location.                                       |
 
 **Example**
 
@@ -796,7 +824,6 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 |801 | Capability not supported. Failed to call ${geoLocationManager.on('cachedGnssLocationsChange')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
-|3301200 | Failed to obtain the geographical location.                                       |
 
 **Example**
 
@@ -843,7 +870,6 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 |801 | Capability not supported. Failed to call ${geoLocationManager.off('cachedGnssLocationsChange')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
-|3301200 | Failed to obtain the geographical location.                                       |
 
 **Example**
 
@@ -899,6 +925,35 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
   let gnssStatusCb = (satelliteStatusInfo:geoLocationManager.SatelliteStatusInfo):void => {
       console.info('satelliteStatusChange: ' + JSON.stringify(satelliteStatusInfo));
+      // Number of satellites.
+      let totalNumber: number = satelliteStatusInfo.satellitesNumber;
+      let satelliteIds: Array<number> = satelliteStatusInfo.satelliteIds;
+      let carrierToNoiseDensitys: Array<number> = satelliteStatusInfo.carrierToNoiseDensitys;
+      let altitudes: Array<number> = satelliteStatusInfo.altitudes;
+      let azimuths: Array<number> = satelliteStatusInfo.azimuths;
+      let carrierFrequencies: Array<number> = satelliteStatusInfo.carrierFrequencies;
+      let satelliteConstellations: Array<geoLocationManager.SatelliteConstellationCategory> | undefined = satelliteStatusInfo.satelliteConstellation;
+      let satelliteAdditionalInfos: Array<number> | undefined = satelliteStatusInfo.satelliteAdditionalInfo;
+      for (let i = 0;i < totalNumber;i++) {
+        // Satellite ID.
+        let satelliteId: Number = satelliteIds[i];
+        // Carrier-to-noise density ratio of the satellite whose ID is ${satelliteId}.
+        let carrierToNoiseDensity: Number = carrierToNoiseDensitys[i];
+        // Altitude angle information of the satellite whose ID is ${satelliteId}.
+        let altitude: Number = altitudes[i];
+        // Azimuth of the satellite whose ID is ${satelliteId}.
+        let azimuth: Number = azimuths[i];
+        // Carrier frequency of the satellite whose ID is ${satelliteId}.
+        let carrierFrequencie: Number = carrierFrequencies[i];
+        if (satelliteConstellations != undefined) {
+          // Constellation of the satellite whose ID is ${satelliteId}.
+          let satelliteConstellation: geoLocationManager.SatelliteConstellationCategory = satelliteConstellations[i];
+        }
+        if (satelliteAdditionalInfos != undefined) {
+          // Additional information about the satellite whose ID is ${satelliteId}, for example, use of the satellite in the latest location resolution and the availability of ephemeris data, almanac data, and carrier frequency information.
+          let satelliteAdditionalInfo: Number = satelliteAdditionalInfos[i];
+        }
+      }
   }
 
   try {
@@ -2367,5 +2422,101 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
     console.info("get wifi bssid:" + bssid);
   } catch(error) {
     console.error("getCurrentWifiBssidForLocating: errCode" + error.code + ", errMessage" + error.message);
+  }
+  ```
+
+
+## geoLocationManager.on('bluetoothScanResultChange')<sup>16+</sup>
+
+on(type: 'bluetoothScanResultChange', callback: Callback&lt;BluetoothScanResult&gt;): void
+
+Enables listening for Bluetooth scan information reporting events. This API uses an asynchronous callback to return the result.
+
+This API starts a Bluetooth scan. To avoid high power consumption, you need to call [geoLocationManager.off('bluetoothScanResultChange')](#geolocationmanageroffbluetoothscanresultchange16) to stop Bluetooth scan at a proper time.
+
+Currently, only BLE device scanning is supported.
+
+**Required permissions**: ohos.permission.APPROXIMATELY_LOCATION and ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Core
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type. The value **bluetoothScanResultChange** indicates the Bluetooth scan information reporting event.|
+  | callback | Callback&lt;[BluetoothScanResult](#bluetoothscanresult16)&gt; | Yes| Callback used to return the Bluetooth scan information.|
+
+**Error codes**
+
+For details about the error codes, see [Location Error Codes]](errorcode-geoLocationManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.on('bluetoothScanResultChange')} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                           |
+|3301100 | The location switch is off.                                                 |
+
+**Example**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+
+
+  let callback = (result: geoLocationManager.BluetoothScanResult):void => {
+      console.info('bluetoothScanResultChange: ' + JSON.stringify(result));
+  };
+  try {
+      geoLocationManager.on('bluetoothScanResultChange', callback);
+  } catch (err) {
+      console.error("errCode:" + err.code + ", message:"  + err.message);
+  }
+
+  ```
+
+
+## geoLocationManager.off('bluetoothScanResultChange')<sup>16+</sup>
+
+off(type: 'bluetoothScanResultChange', callback?: Callback&lt;BluetoothScanResult&gt;): void
+
+Disables listening for Bluetooth scan information reporting events.
+
+**Required permissions**: ohos.permission.APPROXIMATELY_LOCATION and ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Core
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type. The value **bluetoothScanResultChange** indicates the Bluetooth scan information reporting event.|
+  | callback | Callback&lt;[BluetoothScanResult](#bluetoothscanresult16)&gt; | No| Callback to unregister. The callback must be the same as that passed by the **on** API. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
+
+**Error codes**
+
+For details about the error codes, see [Location Error Codes]](errorcode-geoLocationManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.off('bluetoothScanResultChange')} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                           |
+
+**Example**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+
+  let callback = (result: geoLocationManager.BluetoothScanResult):void => {
+      console.info('bluetoothScanResultChange: ' + JSON.stringify(result));
+  };
+  try {
+      geoLocationManager.on('bluetoothScanResultChange', callback);
+      geoLocationManager.off('bluetoothScanResultChange', callback);
+  } catch (err) {
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```

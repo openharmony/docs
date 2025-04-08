@@ -4,7 +4,7 @@
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-The APIs of the **rpc** module return exceptions since API version 9.
+The APIs of the **rpc** module return exceptions since API version 9. The following describes the error codes.
 
 ## 1900001 Failed to Call mmap
 
@@ -63,7 +63,7 @@ Failed to write data to the shared memory.
 
 **Solution**
 
-1. Check whether the data to be written to the shared memory exceeds the total size of the shared memory mapped.
+1. Check whether the data to be read exceeds the total size of the shared memory mapped.
 2. Check that PROT_WRITE is enabled for the shared memory.
 
 ## 1900004 Failed to Read Data from the Shared Memory
@@ -83,7 +83,7 @@ Failed to read data from the shared memory.
 
 **Solution**
 
-1. Check whether the data to be written to the shared memory exceeds the total size of the shared memory mapped.
+1. Check whether the data to be read exceeds the total size of the shared memory mapped.
 2. Check that PROT_READ is enabled for the shared memory.
 
 ## 1900005 Operation Allowed Only for the Proxy Object
@@ -251,5 +251,5 @@ Failed to call dup.
 
 **Solution**
 
-1. Check whether the input parameter** fd** is valid.
+1. Check whether the input parameter **fd** is valid.
 2. Check whether there are file handle resources of the process.

@@ -10,18 +10,15 @@
 - 查询可信设备列表。
 - 查询本地设备信息，包括设备名称，设备类型和设备标识等。
 
-
 > **说明：**
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
 
 ## 导入模块
 
 ```ts
 import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 ```
-
 
 ## distributedDeviceManager.createDeviceManager
 
@@ -35,7 +32,7 @@ createDeviceManager(bundleName: string): DeviceManager;
 
 | 参数名     | 类型                                                 | 必填 | 说明                                                        |
 | ---------- | ---------------------------------------------------- | ---- | ----------------------------------------------------------- |
-| bundleName | string                                               | 是   | 指示应用程序的Bundle名称。                                  |
+| bundleName | string                                               | 是   | 指示应用程序的Bundle名称。长度范围1~255字符。  |
 
 **返回值：**
 
@@ -111,7 +108,7 @@ releaseDeviceManager(deviceManager: DeviceManager): void;
 
 | 名称                     | 类型                        | 必填   | 说明       |
 | ---------------------- | ------------------------- | ---- | -------- |
-| deviceId               | string                    | 是    | 设备标识符。 实际值为udid-hash与appid和盐值基于sha256方式进行混淆后的值。|
+| deviceId               | string                    | 是    | 设备标识符。实际值为udid-hash与appid和盐值基于sha256方式进行混淆后的值。|
 | deviceName             | string                    | 是    | 设备名称。    |
 | deviceType             | string                    | 是    | [设备类型](#getdevicetype)。    |
 | networkId              | string                    | 否    | 设备网络标识。  |
@@ -125,9 +122,8 @@ releaseDeviceManager(deviceManager: DeviceManager): void;
 | 名称         | 值  | 说明              |
 | ----------- | ---- | --------------- |
 | UNKNOWN     | 0    | 设备物理上线，此时状态未知，在状态更改为可用之前，分布式业务无法使用。           |
-| AVAILABLE   | 1    | 设备可用状态，表示设备间信息已在分布式数据中同步完成, 可以运行分布式业务。 |
+| AVAILABLE   | 1    | 设备可用状态，表示设备间信息已在分布式数据中同步完成，可以运行分布式业务。 |
 | UNAVAILABLE | 2    | 设备物理下线，此时状态未知。           |
-
 
 ## DeviceManager
 
@@ -161,6 +157,7 @@ getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;;
 **示例：**
 
 示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
+
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -201,6 +198,7 @@ getAvailableDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceBasicInfo&gt;&gt
 **示例：**
 
 示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
+
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -247,6 +245,7 @@ getAvailableDeviceList(): Promise&lt;Array&lt;DeviceBasicInfo&gt;&gt;;
 **示例：**
 
 示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
+
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -286,6 +285,7 @@ getLocalDeviceNetworkId(): string;
 **示例：**
 
 示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -326,6 +326,7 @@ getLocalDeviceName(): string;
 **示例：**
 
 示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -366,6 +367,7 @@ getLocalDeviceType(): number;
 **示例：**
 
 示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -406,6 +408,7 @@ getLocalDeviceId(): string;
 **示例：**
 
 示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -432,7 +435,7 @@ getDeviceName(networkId: string): string;
 
   | 参数名       | 类型                                     | 必填   | 说明        |
   | -------- | ---------------------------------------- | ---- | --------- |
-  | networkId| string                                   | 是   | 设备的网络标识。 |
+  | networkId| string                                   | 是   | 设备的网络标识。长度范围1~255字符。 |
 
 **返回值：**
 
@@ -453,6 +456,7 @@ getDeviceName(networkId: string): string;
 **示例：**
 
 示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -481,7 +485,7 @@ getDeviceType(networkId: string): number;
 
   | 参数名       | 类型                                     | 必填   | 说明        |
   | -------- | ---------------------------------------- | ---- | --------- |
-  | networkId| string                                   | 是   | 设备的网络标识。 |
+  | networkId| string                                   | 是   | 设备的网络标识。长度范围1~255字符。 |
 
 **返回值：**
 
@@ -502,6 +506,7 @@ getDeviceType(networkId: string): number;
 **示例：**
 
 示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -547,6 +552,7 @@ startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object;} , filterOptio
 **示例：**
 
 示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -598,6 +604,7 @@ stopDiscovering(): void;
 **示例：**
 
 示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -623,7 +630,7 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object;} , cal
 
   | 参数名     | 类型                                                | 必填  | 说明         |
   | ---------- | --------------------------------------------------- | ----- | ------------ |
-  | deviceId   | string                                              | 是    | 设备标识。   |
+  | deviceId   | string                                              | 是    | 设备标识。长度范围1~255字符。   |
   | bindParam  | {[key:&nbsp;string]:&nbsp;Object;}                             | 是    | 认证参数。由开发者自行决定传入的键值对。默认会携带以下key值：<br>bindType 此值是绑定的类型，必填。<br />-1：PIN码。<br>targetPkgName 绑定目标的包名。<br>appName 尝试绑定目标的应用程序名称。<br>appOperation 应用程序要绑定目标的原因。<br>customDescription 操作的详细说明。   |
   | callback   | AsyncCallback&lt;{deviceId:&nbsp;string;&nbsp;}&gt; | 是    | 认证结果回调。 |
 
@@ -641,6 +648,7 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object;} , cal
 **示例：**
 
 示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -686,7 +694,7 @@ unbindTarget(deviceId: string): void;
 
   | 参数名   | 类型                      | 必填 | 说明       |
   | -------- | ------------------------- | ---- | ---------- |
-  | deviceId | string                    | 是   | 设备标识。 |
+  | deviceId | string                    | 是   | 设备标识。长度范围1~255字符。 |
 
 **错误码：**
 
@@ -701,6 +709,7 @@ unbindTarget(deviceId: string): void;
 **示例：**
 
 示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -742,6 +751,7 @@ on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange;
 **示例：**
 
 示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
+
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -795,6 +805,7 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
 **示例：**
 
 示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
+
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -848,6 +859,7 @@ on(type: 'discoverSuccess', callback: Callback&lt;{ device: DeviceBasicInfo; }&g
 **示例：**
 
 示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
+
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -951,6 +963,7 @@ on(type: 'deviceNameChange', callback: Callback&lt;{ deviceName: string; }&gt;):
 **示例：**
 
 示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -997,6 +1010,7 @@ off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string; }&gt;
 **示例：**
 
 示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1043,6 +1057,7 @@ on(type: 'discoverFailure', callback: Callback&lt;{ reason: number; }&gt;): void
 **示例：**
 
 示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1089,6 +1104,7 @@ off(type: 'discoverFailure', callback?: Callback&lt;{ reason: number; }&gt;): vo
 **示例：**
 
 示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1135,6 +1151,7 @@ on(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
 **示例：**
 
 示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1177,6 +1194,7 @@ off(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
 **示例：**
 
 示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 

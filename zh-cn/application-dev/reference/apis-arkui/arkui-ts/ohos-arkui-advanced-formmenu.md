@@ -40,7 +40,7 @@ AddFormMenuItem(
 ): void
 
 
-**装饰器类型：**@Component
+**装饰器类型：**@Builder
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -48,7 +48,7 @@ AddFormMenuItem(
 
 **参数：**
 
-| 名称           | 参数类型                        | 必填 | 说明                                                             |
+| 参数名           | 类型                        | 必填 | 说明                                                             |
 | -------------- | ------------------------------- | ---- | ---------------------------------------------------------------- |
 | want           | [Want](../../apis-ability-kit/js-apis-app-ability-want.md#want)                            | 是   | 待发布功能组件的want信息。                                         |
 | componentId    | string                          | 是   | 应用内功能组件ID，组件ID对应的界面与待添加的服务卡片界面相似。 |
@@ -61,7 +61,7 @@ AddFormMenuItem(
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
-| 名称             | 参数类型                | 必填 | 说明                                                      |
+| 名称             | 类型                | 必填 | 说明                                                      |
 | --------------- | ---- | ---- | ---------------------------------------------------------------- |
 | formBindingData | [formBindingData.FormBindingData](../../apis-form-kit/js-apis-app-form-formBindingData.md#formbindingdata) | 否 | 卡片数据。 |
 | callback        | AsyncCallback\<string>                                                                                                | 否 | 返回结果的回调。  |
@@ -75,7 +75,7 @@ AddFormMenuItem(
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
-| 名称            | 参数类型           | 必填 | 说明 |
+| 名称            | 类型           | 必填 | 说明 |
 | --------------- | ----------------- | ---- | ---- |
 | options | [MenuItemOptions](ts-basic-components-menuitem.md#menuitemoptions对象说明) | 否   | 包含设置MenuItem的各项信息。|
 
@@ -110,9 +110,9 @@ struct Index {
           bundleName: 'com.example.myapplication', // 包名
           abilityName: 'EntryFormAbility', // 模块ability名称
           parameters: {
-            'ohos.extra.param.key.form_dimension': 2,
-            'ohos.extra.param.key.form_name': 'widget',
-            'ohos.extra.param.key.module_name': 'entry'
+            'ohos.extra.param.key.form_dimension': 2, // 卡片尺寸，1代表1*2卡片，2代表2*2卡片，3代表2*4卡片，4代表4*4卡片，7代表6*4卡片，6代表1*1卡片
+            'ohos.extra.param.key.form_name': 'widget', // 卡片名称
+            'ohos.extra.param.key.module_name': 'entry' // 卡片所属的模块名称
           },
         },
         this.compId,

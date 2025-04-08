@@ -35,8 +35,8 @@ Defines the parameter used to execute an InsightIntent call.
 | insightIntentParam | string | Yes| InsightIntent call parameter.|
 | executeMode | [insightIntent.ExecuteMode](js-apis-app-ability-insightIntent.md#executemode) | Yes| InsightIntent call execution mode.|
 | displayId<sup>12+</sup> | number | No| Physical screen ID specified during InsightIntent call. The value must be an integer. This parameter is valid only when **executeMode** is set to **UI_ABILITY_FOREGROUND**.|
-| uris<sup>16+</sup> | Array&lt;string&gt; | No| List of URIs authorized by the InsightIntent caller to the InsightIntent executor during the call.|
-| flags<sup>16+</sup> | number | No| [Flags](js-apis-app-ability-wantConstant.md#flags) of the URIs authorized by the InsightIntent caller to the InsightIntent executor during the call.<br>**NOTE**<br>This parameter supports only **FLAG_AUTH_READ_URI_PERMISSION**, **FLAG_AUTH_WRITE_URI_PERMISSION**, and **FLAG_AUTH_READ_URI_PERMISSION\|FLAG_AUTH_WRITE_URI_PERMISSION**.|
+| uris<sup>18+</sup> | Array&lt;string&gt; | No| List of URIs authorized by the InsightIntent caller to the InsightIntent executor during the call.|
+| flags<sup>18+</sup> | number | No| [Flags](js-apis-app-ability-wantConstant.md#flags) of the URIs authorized by the InsightIntent caller to the InsightIntent executor during the call.<br>**NOTE**<br>This parameter supports only **FLAG_AUTH_READ_URI_PERMISSION**, **FLAG_AUTH_WRITE_URI_PERMISSION**, and FLAG_AUTH_READ_URI_PERMISSION\||FLAG_AUTH_WRITE_URI_PERMISSION.|
 
 ## insightIntentDriver.execute
 
@@ -58,10 +58,10 @@ When [ExecuteMode](js-apis-app-ability-insightIntent.md#executemode) of the Insi
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| param | [ExecuteParam](#executeparam) | Yes| Parameter used to execute the InsightIntent call.|
-| callback | AsyncCallback<[insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult)> | Yes| Callback used to return the InsightIntent call execution result.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | param | [ExecuteParam](#executeparam) | Yes| Parameter used to execute the InsightIntent call.|
+  | callback | AsyncCallback<[insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult)> | Yes| Callback used to return the InsightIntent call execution result.|
 
 **Error codes**
 
@@ -141,9 +141,9 @@ When [ExecuteMode](js-apis-app-ability-insightIntent.md#executemode) of the Insi
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| param | [ExecuteParam](#executeparam) | Yes| Parameter used to execute the InsightIntent call.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | param | [ExecuteParam](#executeparam) | Yes| Parameter used to execute the InsightIntent call.|
 
 **Return value**
 

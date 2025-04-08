@@ -6,7 +6,7 @@
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-## 导入模块set
+## 导入模块
 
 ```ts
 import { camera } from '@kit.CameraKit';
@@ -1074,7 +1074,7 @@ isTorchSupported(): boolean
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean    | 返回true表示设备支持手电筒。 |
+| boolean    | 返回true表示设备支持手电筒，返回false表示设备不支持手电。 |
 
 **示例：**
 
@@ -1103,7 +1103,7 @@ isTorchModeSupported(mode: TorchMode): boolean
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean    | 返回true表示设备支持设置的手电筒模式。 |
+| boolean    | 返回true表示设备支持设置的手电筒模式，返回false表示设备不支持的手电筒模式。 |
 
 **示例：**
 
@@ -1407,7 +1407,7 @@ open(isSecureEnabled: boolean): Promise\<bigint\>
 
 | 参数名     | 类型                  | 必填 | 说明                                                                      |
 | -------- | -------------------- | ---- |-------------------------------------------------------------------------|
-| isSecureEnabled | boolean | 是   | 是否使能以安全的方式打开相机。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| isSecureEnabled | boolean | 是   | 返回true为使能以安全的方式打开相机，返回false则反之。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
 
 **返回值：**
 
@@ -2029,8 +2029,8 @@ setFrameRate(minFps: number, maxFps: number): void
 
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
-| minFps   | number        | 是   | 最小帧率。 |
-| maxFps   | number        | 是   | 最大帧率，当传入的最小值大于最大值时，传参异常，接口不生效。|
+| minFps   | number        | 是   | 最小帧率（单位：fps）。 |
+| maxFps   | number        | 是   | 最大帧率（单位：fps），当传入的最小值大于最大值时，传参异常，接口不生效。|
 
 **错误码：**
 
@@ -2775,7 +2775,9 @@ function isMirrorSupported(photoOutput: camera.PhotoOutput): boolean {
 
 enableMirror(enabled: boolean): void
 
-是否启用镜像拍照。
+是否启用动态照片镜像拍照。
+
+调用该接口前，需要通过[isMovingPhotoSupported](#ismovingphotosupported12)查询是否支持动态照片拍摄功能以及通过[isMirrorSupported](#ismirrorsupported)查询是否支持镜像拍照功能。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2783,7 +2785,7 @@ enableMirror(enabled: boolean): void
 
 | 参数名      | 类型                    | 必填 | 说明                        |
 |----------| ---------------------- | ---- |---------------------------|
-| enabled | boolean                | 是   | true为开启镜像拍照，false为关闭镜像拍照。 |
+| enabled | boolean                | 是   | true为开启动态照片镜像拍照，false为关闭动态照片镜像拍照。 |
 
 **错误码：**
 
@@ -2855,7 +2857,7 @@ setMovingPhotoVideoCodecType(codecType: VideoCodecType): void
 
 | 参数名        | 类型                                  | 必填 |  说明                |
 | ------------- |-------------------------------------|-------| ------------        |
-| codecType     | [VideoCodecType](#videocodectype13) |  是    |获取动态照片短视频编码类型  |
+| codecType     | [VideoCodecType](#videocodectype13) |  是    |获取动态照片短视频编码类型。  |
 
 **错误码：**
 
@@ -3953,7 +3955,7 @@ getVideoRotation(deviceDegree: number): ImageRotation
 
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
-| deviceDegree | number | 是   | 设备旋转角度 |
+| deviceDegree | number | 是   | 设备旋转角度（单位：度）。 |
 
 **返回值：**
 
@@ -4613,7 +4615,7 @@ canAddOutput(cameraOutput: CameraOutput): boolean
 
 | 类型            | 说明                     |
 | -------------- | ------------------------ |
-| boolean | 是否可以添加当前cameraOutput到session中。 |
+| boolean | 是否可以添加当前cameraOutput到session中，true为可添加，false为不可添加。 |
 
 **示例：**
 
@@ -5423,7 +5425,7 @@ isExposureModeSupported(aeMode: ExposureMode): boolean
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean    | 获取是否支持曝光模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| boolean    | 获取是否支持曝光模式，true为支持，false为不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -7972,7 +7974,7 @@ isAutoDeviceSwitchSupported(): boolean
 
 | 类型                                             | 说明          |
 | ----------------------------------------------- |-------------|
-| boolean               | 是否支持自动切换镜头。 |
+| boolean               | 是否支持自动切换镜头，true为支持，false为不支持。 |
 
 **错误码：**
 

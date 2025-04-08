@@ -23,13 +23,13 @@ Applies a foreground blur style to the component.
 | value   | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | Yes  | Settings of the foreground blur style.          |
 | options | [ForegroundBlurStyleOptions](#foregroundblurstyleoptions) | No  | Foreground blur options.|
 
-## foregroundBlurStyle<sup>16+</sup>
+## foregroundBlurStyle<sup>18+</sup>
 
-foregroundBlurStyle(style: Optional\<BlurStyle>, options?: ForegroundBlurStyleOptions)
+foregroundBlurStyle(style: Optional\<BlurStyle>, options?: ForegroundBlurStyleOptions, sysOptions?: [SystemAdaptiveOptions](ts-universal-attributes-background.md#systemadaptiveoptions18))
 
-Applies a foreground blur style to the component. Compared to [foregroundBlurStyle](#foregroundblurstyle), the **style** parameter supports the **undefined** type.
+Applies a foreground blur style to the component. Compared to [foregroundBlurStyle](#foregroundblurstyle), this API supports the **undefined** type for the **style** parameter.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -39,6 +39,7 @@ Applies a foreground blur style to the component. Compared to [foregroundBlurSty
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | style   | Optional\<[BlurStyle](ts-universal-attributes-background.md#blurstyle9)> | Yes  | Settings of the foreground blur style,<br>If **style** is set to **undefined**, no blur is applied.|
 | options | [ForegroundBlurStyleOptions](#foregroundblurstyleoptions) | No  | Foreground blur options.                                    |
+| sysOptions<sup>18+</sup>   |  [SystemAdaptiveOptions](ts-universal-attributes-background.md#systemadaptiveoptions18)    |   No  |  System adaptive adjustment options.<br>Default value: **{ disableSystemAdaptation: false }**   |
 
 ## ForegroundBlurStyleOptions
 Inherited from [BlurStyleOptions](#blurstyleoptions).
@@ -46,6 +47,8 @@ Inherited from [BlurStyleOptions](#blurstyleoptions).
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 ## BlurStyleOptions
+
+Defines the background blur options.
 
 | Name                       | Type                                               | Mandatory| Description                                                        |
 | --------------------------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -55,6 +58,8 @@ Inherited from [BlurStyleOptions](#blurstyleoptions).
 | scale<sup>12+</sup> | number   | No  | Foreground blur scale.<br>Default value: **1.0**<br>Value range: [0.0, 1.0]<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## AdaptiveColor<sup>10+</sup>
+
+Enumerates the adaptive color modes used for the background blur effect.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -92,7 +97,8 @@ struct ForegroundBlurStyleDemo {
       Image($r('app.media.bg'))
         .width(300)
         .height(350)
-        .foregroundBlurStyle(BlurStyle.Thin, { colorMode: ThemeColorMode.LIGHT, adaptiveColor: AdaptiveColor.DEFAULT, scale: 1.0 })
+        .foregroundBlurStyle(BlurStyle.Thin,
+          { colorMode: ThemeColorMode.LIGHT, adaptiveColor: AdaptiveColor.DEFAULT, scale: 1.0 })
     }
     .height('100%')
     .width('100%')

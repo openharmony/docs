@@ -13,6 +13,8 @@
 
 提供ArkWeb在Native侧的能力，如网页刷新、执行JavaScript、注册回调等。
 
+更多详细介绍请参考[应用侧与前端页面的相互调用(C/C++)](../../web/arkweb-ndk-jsbridge.md)、[建立应用侧与前端页面数据通道(C/C++)](../../web/arkweb-ndk-page-data-channel.md)和[拦截Web组件发起的网络请求](../../web/web-scheme-handler.md)。
+
 **起始版本：** 12
 
 
@@ -698,8 +700,8 @@ enum ArkWeb_ErrorCode
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKWEB_SUCCESS  | 成功.   | 
-| ARKWEB_INIT_ERROR  | 初始化失败.   | 
+| ARKWEB_SUCCESS  | 成功。   | 
+| ARKWEB_INIT_ERROR  | 初始化失败。   | 
 | ARKWEB_ERROR_UNKNOWN  | 未知错误。   | 
 | ARKWEB_INVALID_PARAM  | 参数无效。   | 
 | ARKWEB_SCHEME_REGISTER_FAILED  | 注册scheme的配置失败，应该在创建ArkWeb之前注册。   | 

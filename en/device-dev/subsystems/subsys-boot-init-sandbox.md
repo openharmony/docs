@@ -1,10 +1,13 @@
 # Sandbox Management
 
 ## Overview
+
 ### Function Introduction
+
 OpenHarmony supports two types of sandbox, namely, system sandbox and chipset sandbox.
 
 ### Basic Concepts
+
 The system sandbox and chipset sandbox are created in the init module. Native services choose to enter the system sandbox or chipset sandbox based on their functions. Sandbox components can be isolated through the **mount** attribute if **mount-bind-paths** or **mount-bind-files** is set for them in configuration files such as **system-sandbox.json** and **chipset-sandbox.json**. In addition, a sandbox debugging tool is provided to facilitate sandbox debugging, verification, and optimization. For details about commands, see [Description of begetctl Commands](subsys-boot-init-plugin.md#parameters).
 
 ### Constraints
@@ -12,7 +15,9 @@ The system sandbox and chipset sandbox are created in the init module. Native se
 The sandbox management module is available only for the standard system.
 
 ## How to Develop
+
 ### Parameter Description
+
   **Table 1** Parameters in the sandbox configuration file
 
   | JSON Prefix| Description|
@@ -36,6 +41,7 @@ The sandbox management module is available only for the standard system.
   | system-sandbox.json  | System sandbox configuration file for the 32-bit system|
 
 ### Available APIs
+
 Logical storage structure of the sandbox:
 
 ```c++
@@ -54,9 +60,10 @@ typedef struct {
 } sandbox_t;
 ```
 ### Procedure
+
 1. Create a sandbox.
       - Create a system or chipset sandbox and configure the corresponding **system-sandbox.json** or **chipset-sandbox.json** file. For details about how to configure the JSON file, see [Sandbox JSON File Configuration](#sandbox).
-      - By default, the sandbox function of a service is enabled. If you do not want to move the service to the sandbox, set **sandbox** to **0** in the **.cfg** file. Otherwsie, set **sandbox** to **1**.
+      - By default, the sandbox function of a service is enabled. To disable the sandbox function for a specific service, set **sandbox** to **0** in the **.cfg** file of the service. To enable the sandbox function for a specific service, set **sandbox** to **1**.
         ```
         "sandbox" : 1
         ```
@@ -67,7 +74,8 @@ typedef struct {
     - Modify the sandbox configuration files in the **base/startup/init/interfaces/innerkits/sandbox** directory. After that, restart the system.
 
 ### Development Example
-JSON file configuration of the sandbox:
+
+JSON file configuration of the sandbox<a name = "sandbox"></a>
 
 ```json
 {
@@ -90,6 +98,7 @@ JSON file configuration of the sandbox:
 ```
 
 ## FAQs
+
 - **Cause Analysis**
      Related services cannot access required resource files such as **.so** file.
 - **Solution**
@@ -145,7 +154,7 @@ JSON file configuration of the sandbox:
           -  For the **.so** files installed in the chip directory, use **passthrough** and **passthrough_indirect** for access by system components.
         -  You can add **innerapi_tags** to specify the installation path of **.so** files. For example, if **chipsetsdk** is set, **.so** files are installed in the **/lib/chipset-sdk/** directory. The source code is available at **build/templates/cxx/cxx.gni**.
         ```gni
-        # auto set auto_relative_install_dir by innerapi_tags
+        #auto set auto_relative_install_dir by innerapi_tags
         if (defined(invoker.innerapi_tags)) {
       	    is_chipsetsdk = false
             is_platformsdk = false

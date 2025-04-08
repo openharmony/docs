@@ -14,9 +14,11 @@ import { abilityConnectionManager } from '@kit.DistributedServiceKit';
 
 ## abilityConnectionManager.createAbilityConnectionSession
 
-createAbilityConnectionSession(serviceName:&nbsp;string,&nbsp;context:&nbsp;Context,&nbsp;peerInfo:&nbsp;PeerInfo ,&nbsp;connectOptions:&nbsp;ConnectOptions):&nbsp;number;
+createAbilityConnectionSession(serviceName:&nbsp;string,&nbsp;context:&nbsp;Context,&nbsp;peerInfo:&nbsp;PeerInfo ,&nbsp;connectOptions:&nbsp;ConnectOptions):&nbsp;number
 
 创建应用间的协同会话。
+
+**需要权限**：ohos.permission.INTERNET、ohos.permission.GET_NETWORK_INFO、ohos.permission.SET_NETWORK_INFO和ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
@@ -24,8 +26,8 @@ createAbilityConnectionSession(serviceName:&nbsp;string,&nbsp;context:&nbsp;Cont
 
 | 参数名       | 类型                                      | 必填   | 说明        |
 | --------- | --------------------------------------- | ---- | --------- |
-| serviceName  | string | 是    | 应用设置的服务名称（两端必须一致）。 |
-| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是 | 表示应用上下文。 | 
+| serviceName  | string | 是    | 应用设置的服务名称（两端必须一致），最大长度为256字符。 |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是 | 表示应用上下文。 |
 | peerInfo  | [PeerInfo](#peerinfo)               | 是    | 对端的协同信息。 |
 | connectOptions  | [ConnectOptions](#connectoptions)               | 是    | 应用设置的连接选项。 |
 
@@ -41,8 +43,8 @@ createAbilityConnectionSession(serviceName:&nbsp;string,&nbsp;context:&nbsp;Cont
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201      | Permission verification failed. The application does not have the permission required to call the API.|
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -113,7 +115,7 @@ createAbilityConnectionSession(serviceName:&nbsp;string,&nbsp;context:&nbsp;Cont
      hilog.error(0x0000, 'testTag', error);
    }
    ```
-   
+
 2. 在设备B上，对于createAbilityConnectionSession接口的调用，可在应用被拉起后触发协同生命周期函数onCollaborate时，在onCollaborate内进行。
 
    ```ts
@@ -162,7 +164,7 @@ createAbilityConnectionSession(serviceName:&nbsp;string,&nbsp;context:&nbsp;Cont
 
 ## abilityConnectionManager.destroyAbilityConnectionSession
 
-destroyAbilityConnectionSession(sessionId:&nbsp;number):&nbsp;void;
+destroyAbilityConnectionSession(sessionId:&nbsp;number):&nbsp;void
 
 销毁应用间的协同会话。
 
@@ -172,16 +174,7 @@ destroyAbilityConnectionSession(sessionId:&nbsp;number):&nbsp;void;
 
 | 参数名       | 类型                                       | 必填   | 说明       |
 | --------- | ---------------------------------------- | ---- | -------- |
-| sessionId | string  | 是    | 待销毁的协同应用会话ID。   |
-
-**错误码：**
-
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| 201      | Permission verification failed. The application does not have the permission required to call the API.|
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| sessionId | number  | 是    | 待销毁的协同会话ID。   |
 
 **示例：**
 
@@ -195,7 +188,7 @@ destroyAbilityConnectionSession(sessionId:&nbsp;number):&nbsp;void;
 
 ## abilityConnectionManager.getPeerInfoById
 
-getPeerInfoById(sessionId:&nbsp;number):&nbsp;PeerInfo&nbsp;|&nbsp;undefined;
+getPeerInfoById(sessionId:&nbsp;number):&nbsp;PeerInfo&nbsp;|&nbsp;undefined
 
 获取指定会话中对端应用信息。
 
@@ -205,7 +198,7 @@ getPeerInfoById(sessionId:&nbsp;number):&nbsp;PeerInfo&nbsp;|&nbsp;undefined;
 
 | 参数名       | 类型                                       | 必填   | 说明       |
 | --------- | ---------------------------------------- | ---- | -------- |
-| sessionId | string  | 是    | 协同应用会话ID。   |
+| sessionId | number  | 是    | 协同会话ID。   |
 
 **返回值：**
 
@@ -234,7 +227,7 @@ getPeerInfoById(sessionId:&nbsp;number):&nbsp;PeerInfo&nbsp;|&nbsp;undefined;
 
 ## abilityConnectionManager.connect
 
-connect(sessionId:&nbsp;number):&nbsp;Promise&lt;ConnectResult&gt;;
+connect(sessionId:&nbsp;number):&nbsp;Promise&lt;ConnectResult&gt;
 
 创建协同会话成功并获得会话ID后，设备A上可进行UIAbility的连接。
 
@@ -258,8 +251,7 @@ connect(sessionId:&nbsp;number):&nbsp;Promise&lt;ConnectResult&gt;;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201      | Permission verification failed. The application does not have the permission required to call the API.|
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -281,7 +273,7 @@ connect(sessionId:&nbsp;number):&nbsp;Promise&lt;ConnectResult&gt;;
 
 ## abilityConnectionManager.acceptConnect
 
-acceptConnect(sessionId:&nbsp;number,&nbsp;token:&nbsp;string):&nbsp;Promise&lt;void&gt;;
+acceptConnect(sessionId:&nbsp;number,&nbsp;token:&nbsp;string):&nbsp;Promise&lt;void&gt;
 
 设备B上的应用，在创建协同会话成功并获得会话ID后，调用acceptConnect()方法接受连接。
 
@@ -306,8 +298,7 @@ acceptConnect(sessionId:&nbsp;number,&nbsp;token:&nbsp;string):&nbsp;Promise&lt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201      | Permission verification failed. The application does not have the permission required to call the API.|
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -369,7 +360,7 @@ acceptConnect(sessionId:&nbsp;number,&nbsp;token:&nbsp;string):&nbsp;Promise&lt;
 
 ## abilityConnectionManager.disconnect
 
-disconnect(sessionId:&nbsp;number):&nbsp;void;
+disconnect(sessionId:&nbsp;number):&nbsp;void
 
 当协同业务执行完毕后，协同双端的任意一台设备，应断开UIAbility的连接，结束协同状态。
 
@@ -380,15 +371,6 @@ disconnect(sessionId:&nbsp;number):&nbsp;void;
 | 参数名       | 类型                                    | 必填   | 说明        |
 | --------- | ------------------------------------- | ---- | --------- |
 | sessionId | number | 是    | 协同会话ID     |
-
-**错误码：**
-
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| 201      | Permission verification failed. The application does not have the permission required to call the API.|
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -425,7 +407,7 @@ reject(token:&nbsp;string,&nbsp;reason:&nbsp;string):&nbsp;void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -439,11 +421,11 @@ reject(token:&nbsp;string,&nbsp;reason:&nbsp;string):&nbsp;void;
   abilityConnectionManager.reject(collabToken, reason);
   ```
 
-## abilityConnectionManager.on
+## abilityConnectionManager.on('connect')
 
-on(type:&nbsp;'connect'&nbsp;|&nbsp;'disconnect'&nbsp;|&nbsp;'receiveMessage'|&nbsp;'receiveData',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
+on(type:&nbsp;'connect',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
 
-注册connect、disconnect、receiveMessage、receiveData事件的回调监听。
+注册connect事件的回调监听。
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
@@ -451,7 +433,7 @@ on(type:&nbsp;'connect'&nbsp;|&nbsp;'disconnect'&nbsp;|&nbsp;'receiveMessage'|&n
 
 | 参数名       | 类型                                    | 必填   | 说明    |
 | --------- | ------------------------------------- | ---- | ----- |
-| type | string  | 是    |   事件回调类型，支持的事件包括：<br/>\- `'connect'`：完成`connect()`调用，触发该事件。<br/>\- `'disconnect'`：完成`disconnect()`调用，触发该事件。<br/>\- `'receiveMessage'`：完成`sendMessage()`调用，触发该事件。<br/>\- `'receiveData'`：完成`sendData()`调用，触发该事件。   |
+| type | string  | 是    |   事件回调类型，支持的事件为'connect'，完成[abilityConnectionManager.connect()](#abilityconnectionmanagerconnect)调用，触发该事件。   |
 | sessionId | number  | 是    | 创建的协同会话ID。    |
 | callback | Callback&lt;[EventCallbackInfo](#eventcallbackinfo)&gt; | 是    | 注册的回调函数。    |
 
@@ -461,8 +443,7 @@ on(type:&nbsp;'connect'&nbsp;|&nbsp;'disconnect'&nbsp;|&nbsp;'receiveMessage'|&n
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201      | Permission verification failed. The application does not have the permission required to call the API.|
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -474,25 +455,13 @@ on(type:&nbsp;'connect'&nbsp;|&nbsp;'disconnect'&nbsp;|&nbsp;'receiveMessage'|&n
     hilog.info(0x0000, 'testTag', 'session connect, sessionId is', callbackInfo.sessionId);
   });
 
-  abilityConnectionManager.on("disconnect", this.sessionId,(callbackInfo) => {
-    hilog.info(0x0000, 'testTag', 'session disconnect, sessionId is', callbackInfo.sessionId);
-  });
-
-  abilityConnectionManager.on("receiveMessage", this.sessionId,(callbackInfo) => {
-    hilog.info(0x0000, 'testTag', 'session receiveMessage, sessionId is', callbackInfo.sessionId);
-  });
-
-  abilityConnectionManager.on("receiveData", this.sessionId,(callbackInfo) => {
-    hilog.info(0x0000, 'testTag', 'session receiveData, sessionId is', callbackInfo.sessionId);
-  });
-
   ```
 
-## abilityConnectionManager.off
+## abilityConnectionManager.off('connect')
 
-off(type:&nbsp;'connect'&nbsp;|&nbsp;'disconnect'&nbsp;|&nbsp;'receiveMessage'|&nbsp;'receiveData',&nbsp;sessionId:&nbsp;number,&nbsp;callback?:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
+off(type:&nbsp;'connect',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
 
-取消connect、disconnect、receiveMessage、receiveData事件的回调监听。
+取消connect事件的回调监听。
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
@@ -500,7 +469,7 @@ off(type:&nbsp;'connect'&nbsp;|&nbsp;'disconnect'&nbsp;|&nbsp;'receiveMessage'|&
 
 | 参数名       | 类型                                    | 必填   | 说明    |
 | --------- | ------------------------------------- | ---- | ----- |
-| type | string  | 是    |   事件回调类型，支持的事件包括：<br/>\- `'connect'`：完成`connect()`调用，触发该事件。<br/>\- `'disconnect'`：完成`disconnect()`调用，触发该事件。<br/>\- `'receiveMessage'`：完成`sendMessage()`调用，触发该事件。<br/>\- `'receiveData'`：完成`sendData()`调用，触发该事件。    |
+| type | string  | 是    |   事件回调类型，支持的事件为'connect'。    |
 | sessionId | number  | 是    | 创建的协同会话ID。    |
 | callback | Callback&lt;[EventCallbackInfo](#eventcallbackinfo)&gt; | 否    | 注册的回调函数。    |
 
@@ -510,8 +479,7 @@ off(type:&nbsp;'connect'&nbsp;|&nbsp;'disconnect'&nbsp;|&nbsp;'receiveMessage'|&
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201      | Permission verification failed. The application does not have the permission required to call the API.|
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -520,15 +488,222 @@ off(type:&nbsp;'connect'&nbsp;|&nbsp;'disconnect'&nbsp;|&nbsp;'receiveMessage'|&
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   abilityConnectionManager.off("connect", this.sessionId);
+
+  ```
+
+## abilityConnectionManager.on('disconnect')
+
+on(type:&nbsp;'disconnect',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
+
+注册disconnect事件的回调监听。
+
+**系统能力**：SystemCapability.DistributedSched.AppCollaboration
+
+**参数：**
+
+| 参数名       | 类型                                    | 必填   | 说明    |
+| --------- | ------------------------------------- | ---- | ----- |
+| type | string  | 是    |   事件回调类型，支持的事件为'disconnect'，完成[abilityConnectionManager.disconnect()](#abilityconnectionmanagerdisconnect)调用，触发该事件。   |
+| sessionId | number  | 是    | 创建的协同会话ID。    |
+| callback | Callback&lt;[EventCallbackInfo](#eventcallbackinfo)&gt; | 是    | 注册的回调函数。    |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**示例：**
+
+  ```ts
+  import { abilityConnectionManager } from '@kit.DistributedServiceKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+
+  abilityConnectionManager.on("disconnect", this.sessionId,(callbackInfo) => {
+    hilog.info(0x0000, 'testTag', 'session disconnect, sessionId is', callbackInfo.sessionId);
+  });
+
+  ```
+
+## abilityConnectionManager.off('disconnect')
+
+off(type:&nbsp;'disconnect',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
+
+取消disconnect事件的回调监听。
+
+**系统能力**：SystemCapability.DistributedSched.AppCollaboration
+
+**参数：**
+
+| 参数名       | 类型                                    | 必填   | 说明    |
+| --------- | ------------------------------------- | ---- | ----- |
+| type | string  | 是    |   事件回调类型，支持的事件为'disconnect'。    |
+| sessionId | number  | 是    | 创建的协同会话ID。    |
+| callback | Callback&lt;[EventCallbackInfo](#eventcallbackinfo)&gt; | 否    | 注册的回调函数。    |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**示例：**
+
+  ```ts
+  import { abilityConnectionManager } from '@kit.DistributedServiceKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+
   abilityConnectionManager.off("disconnect", this.sessionId);
+
+  ```
+
+## abilityConnectionManager.on('receiveMessage')
+
+on(type:&nbsp;'receiveMessage',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
+
+注册receiveMessage事件的回调监听。
+
+**系统能力**：SystemCapability.DistributedSched.AppCollaboration
+
+**参数：**
+
+| 参数名       | 类型                                    | 必填   | 说明    |
+| --------- | ------------------------------------- | ---- | ----- |
+| type | string  | 是    |   事件回调类型，支持的事件为'receiveMessage'，完成[abilityConnectionManager.sendMessage()](#abilityconnectionmanagersendmessage)调用，触发该事件。   |
+| sessionId | number  | 是    | 创建的协同会话ID。    |
+| callback | Callback&lt;[EventCallbackInfo](#eventcallbackinfo)&gt; | 是    | 注册的回调函数。    |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**示例：**
+
+  ```ts
+  import { abilityConnectionManager } from '@kit.DistributedServiceKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+
+  abilityConnectionManager.on("receiveMessage", this.sessionId,(callbackInfo) => {
+    hilog.info(0x0000, 'testTag', 'receiveMessage, sessionId is', callbackInfo.sessionId);
+  });
+
+  ```
+
+## abilityConnectionManager.off('receiveMessage')
+
+off(type:&nbsp;'receiveMessage',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
+
+取消receiveMessage事件的回调监听。
+
+**系统能力**：SystemCapability.DistributedSched.AppCollaboration
+
+**参数：**
+
+| 参数名       | 类型                                    | 必填   | 说明    |
+| --------- | ------------------------------------- | ---- | ----- |
+| type | string  | 是    |   事件回调类型，支持的事件为'receiveMessage'。    |
+| sessionId | number  | 是    | 创建的协同会话ID。    |
+| callback | Callback&lt;[EventCallbackInfo](#eventcallbackinfo)&gt; | 否    | 注册的回调函数。    |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**示例：**
+
+  ```ts
+  import { abilityConnectionManager } from '@kit.DistributedServiceKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+
   abilityConnectionManager.off("receiveMessage", this.sessionId);
+
+  ```
+
+## abilityConnectionManager.on('receiveData')
+
+on(type:&nbsp;'receiveData',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
+
+注册receiveData事件的回调监听。
+
+**系统能力**：SystemCapability.DistributedSched.AppCollaboration
+
+**参数：**
+
+| 参数名       | 类型                                    | 必填   | 说明    |
+| --------- | ------------------------------------- | ---- | ----- |
+| type | string  | 是    |   事件回调类型，支持的事件为'receiveData'，完成[abilityConnectionManager.sendData()](#abilityconnectionmanagersenddata)调用，触发该事件。   |
+| sessionId | number  | 是    | 创建的协同会话ID。    |
+| callback | Callback&lt;[EventCallbackInfo](#eventcallbackinfo)&gt; | 是    | 注册的回调函数。    |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**示例：**
+
+  ```ts
+  import { abilityConnectionManager } from '@kit.DistributedServiceKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+
+  abilityConnectionManager.on("receiveData", this.sessionId,(callbackInfo) => {
+    hilog.info(0x0000, 'testTag', 'receiveData, sessionId is', callbackInfo.sessionId);
+  });
+
+  ```
+
+## abilityConnectionManager.off('receiveData')
+
+off(type:&nbsp;'receiveData',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
+
+取消receiveData事件的回调监听。
+
+**系统能力**：SystemCapability.DistributedSched.AppCollaboration
+
+**参数：**
+
+| 参数名       | 类型                                    | 必填   | 说明    |
+| --------- | ------------------------------------- | ---- | ----- |
+| type | string  | 是    |   事件回调类型，支持的事件为'receiveData'，完成。    |
+| sessionId | number  | 是    | 创建的协同会话ID。    |
+| callback | Callback&lt;[EventCallbackInfo](#eventcallbackinfo)&gt; | 否    | 注册的回调函数。    |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**示例：**
+
+  ```ts
+  import { abilityConnectionManager } from '@kit.DistributedServiceKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+
   abilityConnectionManager.off("receiveData", this.sessionId);
 
   ```
 
 ## abilityConnectionManager.sendMessage
 
-sendMessage(sessionId:&nbsp;number,&nbsp;msg:&nbsp;string):&nbsp;Promise&lt;void&gt;;
+sendMessage(sessionId:&nbsp;number,&nbsp;msg:&nbsp;string):&nbsp;Promise&lt;void&gt;
 
 应用连接成功后，设备A或设备B可向对端设备发送文本信息。
 
@@ -553,9 +728,7 @@ sendMessage(sessionId:&nbsp;number,&nbsp;msg:&nbsp;string):&nbsp;Promise&lt;void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201      | Permission verification failed. The application does not have the permission required to call the API.|
-| 202      | Permission verification failed. A non-system application calls a system API.|
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -572,7 +745,7 @@ sendMessage(sessionId:&nbsp;number,&nbsp;msg:&nbsp;string):&nbsp;Promise&lt;void
 
 ## abilityConnectionManager.sendData
 
-sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;void&gt;;
+sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;void&gt;
 
 应用连接成功后，设备A或设备B可向对端设备发送[ArrayBuffer](../../arkts-utils/arraybuffer-object.md)字节流。
 
@@ -597,9 +770,7 @@ sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;v
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201      | Permission verification failed. The application does not have the permission required to call the API.|
-| 202      | Permission verification failed. A non-system application calls a system API.|
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -623,13 +794,13 @@ sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;v
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
-| 名称                    | 类型       | 可读   | 可写   | 必填   | 说明                 |
-| --------------------- | -------- | ---- | ---- | ---- | ------------------ |
-| deviceId | string | 是    | 否    | 是    | 对端设备ID。     |
-| bundleName        | string | 是    | 否   |  是    | 对端应用的包名。 |
-| moduleName        | string | 是    | 否   |  是    | 对端应用的模块名。 |
-| abilityName        | string | 是    | 否  |  是     | 对端应用的组件名。 |
-| serviceName        | string | 是    | 否  |  否     | 应用设置的服务名称。 |
+| 名称                    | 类型       |只读   | 可选   | 说明                 |
+| ----------------- | ------ | ----  | ---- | ------------------ |
+| deviceId          | string | 是    |是    | 对端设备ID。     |
+| bundleName        | string | 是    |是    | 对端应用的包名。 |
+| moduleName        | string | 是    |是    | 对端应用的模块名。 |
+| abilityName       | string | 是    |是     | 对端应用的组件名。 |
+| serviceName       | string | 是    |否     | 应用设置的服务名称。 |
 
 ## ConnectOptions
 
@@ -637,13 +808,13 @@ sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;v
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
-| 名称          | 类型    | 可读   | 可写   | 必填   | 说明          |
-| ----------- | ------- | ---- | ---- | ---- | ----------- |
-| needSendData    | boolean  | 是    | 是    | 否    | true代表需要传输数据，false代表不需要传输数据。     |
-| needSendStream    | boolean  | 是    | 是    | 否    | true代表需要发送流，false代表不需要发送流。    |
-| needReceiveStream    | boolean  | 是    | 是    | 否    | true代表需要接收流，false代表不需要接收流。     |
-| startOptions | [StartOptionParams](#startoptionparams) | 是    | 是    | 否    | 配置应用启动选项。 |
-| parameters | Record&lt;string, string&gt;  | 是    | 是    | 否    | 配置连接所需的额外信息。    |
+| 名称          | 类型    | 只读   | 可选   | 说明          |
+| ----------- | ------- | ---- | ---- | ----------- |
+| needSendData    | boolean  | 否    | 否    | true代表需要传输数据，false代表不需要传输数据。     |
+| needSendStream    | boolean  | 否    | 否    | true代表需要发送流，false代表不需要发送流。    |
+| needReceiveStream    | boolean  | 否    | 否    | true代表需要接收流，false代表不需要接收流。     |
+| startOptions | [StartOptionParams](#startoptionparams) | 否    | 否    | 配置应用启动选项。 |
+| parameters | Record&lt;string, string&gt;  | 否    | 否    | 配置连接所需的额外信息。    |
 
 ## ConnectResult
 
@@ -651,11 +822,11 @@ sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;v
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
-| 名称       | 类型   | 可读   | 可写   | 必填   | 说明      |
-| -------- | ------ | ---- | ---- | ---- | ------- |
-| isConnected | boolean | 是    | 否    | 是    | true表示连接成功，false表示连接失败。 |
-| errorCode | [ConnectErrorCode](#connecterrorcode) | 是    | 否    | 否    | 表示连接错误码。 |
-| reason | string | 是    | 否    | 否    | 表示拒绝连接的原因。 |
+| 名称       | 类型   | 只读   | 可选   | 说明      |
+| -------- | ------ | ---- | ---- | ------- |
+| isConnected | boolean | 是    | 是    | true表示连接成功，false表示连接失败。 |
+| errorCode | [ConnectErrorCode](#connecterrorcode) | 是    | 否    | 表示连接错误码。 |
+| reason | string | 是    | 否    | 表示拒绝连接的原因。 |
 
 ## EventCallbackInfo
 
@@ -677,10 +848,10 @@ sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;v
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
-| 名称       | 类型   | 可读   | 可写   | 必填   | 说明      |
-| -------- | ------ | ---- | ---- | ---- | ------- |
-| eventType | [CollaborateEventType](#collaborateeventtype) | 是    | 否    | 是    | 协同事件的类型。 |
-| eventMsg | string | 是    | 否    | 否    | 协同事件的消息内容。 |
+| 名称       | 类型   | 只读   | 可选   | 说明      |
+| -------- | ------ | ---- | ---- | ------- |
+| eventType | [CollaborateEventType](#collaborateeventtype) | 是    | 是    | 协同事件的类型。 |
+| eventMsg | string | 是    | 否    | 协同事件的消息内容。 |
 
 ## ConnectErrorCode
 
@@ -688,13 +859,13 @@ sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;v
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
-| 枚举值 | 描述 |
-| -------- | -------- |
-| CONNECTED_SESSION_EXISTS | 表示应用之间存在已连接的会话。 |
-| PEER_APP_REJECTED | 表示对端应用拒绝了协作请求。 |
-| LOCAL_WIFI_NOT_OPEN  | 表示本端WiFi未开启。 |
-| PEER_WIFI_NOT_OPEN  | 表示对端WiFi未开启。 |
-| PEER_ABILITY_NO_ONCOLLABORATE | 表示未实现onCollaborate方法。 |
+| 名称|  值 | 说明 |
+|-------|-------|-------|
+| CONNECTED_SESSION_EXISTS | 0 |表示应用之间存在已连接的会话。|
+| PEER_APP_REJECTED | 1 |表示对端应用拒绝了协作请求。|
+| LOCAL_WIFI_NOT_OPEN | 2 |表示本端WiFi未开启。|
+| PEER_WIFI_NOT_OPEN | 3 |表示对端WiFi未开启。|
+| PEER_ABILITY_NO_ONCOLLABORATE | 4 |表示未实现onCollaborate方法。|
 
 ## StartOptionParams
 
@@ -702,10 +873,10 @@ sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;v
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
-| 枚举值 | 描述 |
-| -------- | -------- |
-| START_IN_FOREGROUND | 表示将对端应用启动至前台。 |
-| START_IN_BACKGROUND | 表示将对端应用启动至后台。 |
+| 名称|  值 | 说明 |
+|-------|-------|-------|
+| START_IN_FOREGROUND | 0 |表示将对端应用启动至前台。|
+| START_IN_BACKGROUND | 1 |表示将对端应用启动至后台。|
 
 ## CollaborateEventType
 
@@ -713,10 +884,10 @@ sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;v
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
-| 枚举值 | 描述 |
-| -------- | -------- |
-| SEND_FAILURE | 表示任务发送失败。 |
-| COLOR_SPACE_CONVERSION_FAILURE | 表示色彩空间转换失败。 |
+| 名称|  值 | 说明 |
+|-------|-------|-------|
+| SEND_FAILURE | 0 |表示任务发送失败。|
+| COLOR_SPACE_CONVERSION_FAILURE | 1 |表示色彩空间转换失败。|
 
 ## DisconnectReason
 
@@ -724,11 +895,11 @@ sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;v
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
-| 枚举值 | 描述 |
-| -------- | -------- |
-| PEER_APP_CLOSE_COLLABORATION | 表示对端应用主动关闭了协作。 |
-| PEER_APP_EXIT | 表示对端应用退出。 |
-| NETWORK_DISCONNECTED | 表示网络断开原因。 |
+| 名称|  值 | 说明 |
+|-------|-------|-------|
+| PEER_APP_CLOSE_COLLABORATION | 0 |表示对端应用主动关闭了协作。|
+| PEER_APP_EXIT | 1 |表示对端应用退出。|
+| NETWORK_DISCONNECTED | 2 |表示网络断开。|
 
 ## CollaborationKeys
 

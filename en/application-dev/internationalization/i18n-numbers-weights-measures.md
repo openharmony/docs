@@ -105,49 +105,57 @@ The following uses **123000.123** as an example to show the parameter values and
 import { intl } from '@kit.LocalizationKit';
 
 // Display numbers in scientific notation.
-let numberFormat1 = new intl.NumberFormat('zh-CN', {notation: 'scientific', maximumSignificantDigits: 3});
-let formattedNumber1 = numberFormat1.format(123400); // formattedNumber1: 1.23E5
+let scientificFormat: intl.NumberFormat = new intl.NumberFormat('zh-CN',
+  {
+    notation: 'scientific',
+    maximumSignificantDigits: 3
+  });
+let formattedNumber: string = scientificFormat.format(123400); // formattedNumber = '1.23E5'
 
 // Display numbers in the compact format.
-let numberFormat2 = new intl.NumberFormat('zh-CN', {notation: 'compact', compactDisplay: 'short'});
-let formattedNumber2 = numberFormat2.format(123400); // formattedNumber2: 120 thousand
+let compactFormat: intl.NumberFormat = new intl.NumberFormat('zh-CN',
+  {
+    notation: 'compact',
+    compactDisplay: 'short'
+  });
+formattedNumber = compactFormat.format(123400); // formattedNumber = '12万)'
 
 // Display the signs in numbers.
-let numberFormat3 = new intl.NumberFormat('zh-CN', {signDisplay: 'always'});
-let formattedNumber3 = numberFormat3.format(123400); // formattedNumber3: +123,400
+let signFormat: intl.NumberFormat = new intl.NumberFormat('zh-CN', { signDisplay: 'always' });
+formattedNumber = signFormat.format(123400); // formattedNumber = '+123,400'
 
 // Display numbers in the percentage format.
-let numberFormat4 = new intl.NumberFormat('zh-CN', {style: 'percent'});
-let formattedNumber4 = numberFormat4.format(0.25); // formattedNumber4: 25%
+let percentFormat: intl.NumberFormat = new intl.NumberFormat('zh-CN', { style: 'percent' });
+formattedNumber = percentFormat.format(0.25); // formattedNumber = '25%'
 
 // Rounding mode
-let numberFormat5 : intl.NumberFormat = new intl.NumberFormat('en',
-    {
-        roundingMode: 'trunc',
-        maximumSignificantDigits: 2
-    });
-console.log(numberFormat5.format(2.28)); // 2.2
-console.log(numberFormat5.format(-2.25)); // -2.2
+let truncFormat: intl.NumberFormat = new intl.NumberFormat('en',
+  {
+    roundingMode: 'trunc',
+    maximumSignificantDigits: 2
+  });
+formattedNumber = truncFormat.format(2.28); // formattedNumber = '2.2'
+formattedNumber = truncFormat.format(-2.25); // formattedNumber = '-2.2'
 
 // Rounding priority
-let options : intl.NumberOptions = {
-    roundingPriority: 'lessPrecision',
-    maximumFractionDigits: 3,
-    maximumSignificantDigits: 2
+let lessPrecisionOptions: intl.NumberOptions = {
+  roundingPriority: 'lessPrecision',
+  maximumFractionDigits: 3,
+  maximumSignificantDigits: 2
 };
-let numberFormat6 : intl.NumberFormat = new intl.NumberFormat('en', options);
-console.log(numberFormat6.format(1.23456)); // 1.2
+let lessPrecisionFormat: intl.NumberFormat = new intl.NumberFormat('en', lessPrecisionOptions);
+formattedNumber = lessPrecisionFormat.format(1.23456); // formattedNumber = '1.2'
 
 // Rounding increment
-let numOptions : intl.NumberOptions = {
-    style: "currency",
-    currency: "USD",
-    roundingIncrement: 5,
-    maximumFractionDigits: 2,
-    roundingMode: "halfCeil"
+let halfCeilNumOptions: intl.NumberOptions = {
+  style: 'currency',
+  currency: 'USD',
+  roundingIncrement: 5,
+  maximumFractionDigits: 2,
+  roundingMode: 'halfCeil'
 };
-let numberFormat7 : intl.NumberFormat = new intl.NumberFormat('en-US', numOptions);
-console.log(numberFormat7.format(11.21)); // $11.20
+let halfCeilFormat: intl.NumberFormat = new intl.NumberFormat('en-US', halfCeilNumOptions);
+formattedNumber = halfCeilFormat.format(11.21); // formattedNumber = '$11.20'
 ```
 
 ### Number Range Formatting
@@ -179,14 +187,14 @@ Number range formatting is implemented through the [formatRange](../reference/ap
 import { intl } from '@kit.LocalizationKit';
 
 // Number range formatting
-let options : intl.NumberOptions = {
-    style: "currency",
-    currency: "EUR",
-    maximumFractionDigits: 0
+let options: intl.NumberOptions = {
+  style: 'currency',
+  currency: 'EUR',
+  maximumFractionDigits: 0
 };
-let numberRangeFormat : intl.NumberFormat = new intl.NumberFormat('es-ES', options);
-console.log(numberRangeFormat.formatRange(2, 8)); // 2-8 €
-console.log(numberRangeFormat.formatRange(2.9, 3.1)); // ~3 €
+let numberRangeFormat: intl.NumberFormat = new intl.NumberFormat('es-ES', options);
+let formattedRange: string = numberRangeFormat.formatRange(2, 8); // formattedRange = '2-8 €'
+formattedRange = numberRangeFormat.formatRange(2.9, 3.1); // formattedRange = '~3 €'
 ```
 
 
@@ -241,20 +249,30 @@ Assume that the unit name is hectare and the value is **-12300**.
 import { intl } from '@kit.LocalizationKit';
 
 // Format the currency.
-let numberFormat5 = new intl.NumberFormat('zh-CN', {style: 'currency', currency: 'USD'});
-let formattedNumber5 = numberFormat5.format(123400); // formattedNumber5: US$123,400.00
+let currencyFormat: intl.NumberFormat = new intl.NumberFormat('zh-CN', { style: 'currency', currency: 'USD' });
+let formattedNumber: string = currencyFormat.format(123400); // formattedNumber = 'US$123,400.00'
 
 // Display the currency using its name.
-let numberFormat6 = new intl.NumberFormat('zh-CN', {style: 'currency', currency: 'USD', currencyDisplay: 'name'});
-US$ let formattedNumber6 = numberFormat6.format(123400); // formattedNumber6: US$123,400.00
+let currencyNameFormat: intl.NumberFormat = new intl.NumberFormat('zh-CN',
+  {
+    style: 'currency',
+    currency: 'USD',
+    currencyDisplay: 'name'
+  });
+formattedNumber = currencyNameFormat.format(123400); // formattedNumber = '123,400.00美元'
 
 // Format units of measurement.
-let numberFormat7 = new intl.NumberFormat('en-GB', {style: 'unit', unit: 'hectare'});
-let formattedNumber7 = numberFormat7.format(123400); // formattedNumber7: 123,400 ha
+let unitFormat: intl.NumberFormat = new intl.NumberFormat('en-GB', { style: 'unit', unit: 'hectare' });
+formattedNumber = unitFormat.format(123400); // formattedNumber = '123,400 ha'
 
 // Format the units of measurement in the specified scenario, for example, area-land-agricult.
-let numberFormat8 = new intl.NumberFormat('en-GB', {style: 'unit', unit: 'hectare', unitUsage: 'area-land-agricult'});
-let formattedNumber8 = numberFormat8.format(123400); // formattedNumber8: 304,928.041 ac
+let unitUsageFormat: intl.NumberFormat = new intl.NumberFormat('en-GB',
+  {
+    style: 'unit',
+    unit: 'hectare',
+    unitUsage: 'area-land-agricult'
+  });
+formattedNumber = unitUsageFormat.format(123400); // formattedNumber = '304,928.041 ac'
 ```
 
 
@@ -297,8 +315,9 @@ let fromUnit: i18n.UnitInfo = {unit: 'cup', measureSystem: 'US'};
 let toUnit: i18n.UnitInfo = {unit: 'liter', measureSystem: 'SI'};
 
 // Convert the unit based on the locale en-US.
-let convertedUnit1 = i18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, 'en-US'); // convertedUnit1: 236.588 L
+let convertedUnit: string = i18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, 'en-US'); // convertedUnit = '236.588 L'
 
 // Display the complete unit.
-let convertedUnit2 = i18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, 'en-US', 'long'); // convertedUnit2: 236.588 liters
+convertedUnit = i18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, 'en-US', 'long'); // convertedUnit = '236.588 liters'
 ```
+<!--no_check-->

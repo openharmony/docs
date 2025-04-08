@@ -47,9 +47,11 @@ Inherited from [TimePickerOptions](ts-basic-components-timepicker.md#timepickero
 | maskRect<sup>10+</sup>| [Rectangle](ts-methods-alert-dialog-box.md#rectangle8) | No    | Mask area of the dialog box. Events outside the mask area are transparently transmitted, and events within the mask area are not.<br>Default value: **{ x: 0, y: 0, width: '100%', height: '100%' }**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | onAccept | (value: [TimePickerResult](ts-basic-components-timepicker.md#TimePickerResult)) => void | No| Callback invoked when the OK button in the dialog box is clicked.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | onCancel | () => void | No| Callback invoked when the Cancel button in the dialog box is clicked.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| onChange | (value: [TimePickerResult](ts-basic-components-timepicker.md#TimePickerResult)) => void | No| Callback invoked when the selected time changes.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| onChange | (value: [TimePickerResult](ts-basic-components-timepicker.md#TimePickerResult)) => void | No| Callback invoked when the text picker in the dialog box snaps to the selected item.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | backgroundColor<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | No| Backplane color of the dialog box.<br>Default value: **Color.Transparent**<br>**NOTE**<br>When **backgroundColor** is set to a non-transparent color, **backgroundBlurStyle** must be set to **BlurStyle.NONE**; otherwise, the color display may not meet the expected effect.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | No| Background blur style of the dialog box.<br>Default value: **BlurStyle.COMPONENT_ULTRA_THICK**<br>**NOTE**<br>Setting this parameter to **BlurStyle.NONE** disables the background blur. When **backgroundBlurStyle** is set to a value other than **NONE**, do not set **backgroundColor**. If you do, the color display may not produce the expected visual effect.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| backgroundBlurStyleOptions<sup>18+</sup> | [BackgroundBlurStyleOptions](ts-universal-attributes-background.md#backgroundblurstyleoptions10) | No| Options for customizing the background blur style.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| backgroundEffect<sup>18+</sup> | [BackgroundEffectOptions](ts-universal-attributes-background.md#backgroundeffectoptions11) | No| Options for customizing the background effect.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 | onDidAppear<sup>12+</sup> | () => void | No| Event callback when the dialog box appears.<br>**NOTE**<br>1. The normal timing sequence is as follows: onWillAppear > onDidAppear > (onAccept/onCancel/onChange) > onWillDisappear > onDidDisappear.<br>2. You can set the callback event for changing the dialog box display effect in **onDidAppear**. The settings take effect next time the dialog box appears.<br>3. If the user closes the dialog box immediately after it appears, **onWillDisappear** is invoked before **onDidAppear**.<br>4. If the dialog box is closed before its entrance animation is finished, this callback is not invoked.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | onDidDisappear<sup>12+</sup> | () => void | No| Event callback when the dialog box disappears.<br>**NOTE**<br>1. The normal timing sequence is as follows: onWillAppear > onDidAppear > (onAccept/onCancel/onChange) > onWillDisappear > onDidDisappear.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | onWillAppear<sup>12+</sup> | () => void | No| Event callback when the dialog box is about to appear.<br>**NOTE**<br>1. The normal timing sequence is as follows: onWillAppear > onDidAppear > (onAccept/onCancel/onChange) > onWillDisappear > onDidDisappear.<br>2. You can set the callback event for changing the dialog box display effect in **onWillAppear**. The settings take effect next time the dialog box appears.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -58,6 +60,20 @@ Inherited from [TimePickerOptions](ts-basic-components-timepicker.md#timepickero
 | dateTimeOptions<sup>12+</sup> | [DateTimeOptions](../../apis-localization-kit/js-apis-intl.md#datetimeoptions) | No| Whether to display a leading zero for the hours and minutes. Currently only the configuration of the **hour** and **minute** parameters is supported.<br>Default value:<br>**hour**: In the 24-hour format, it defaults to **2-digit**, which means a leading zero is used; In the 12-hour format, it defaults to **numeric**, which means no leading zero is used.<br>**minute**: defaults to **2-digit**, which means a leading zero is used.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | enableHoverMode<sup>14+</sup>     | boolean | No  | Whether to enable the hover mode.<br>Default value: **false**, meaning not to enable the hover mode.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | hoverModeArea<sup>14+</sup>       | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype14) | No  | Display area of the dialog box in hover mode.<br>Default value: **HoverModeAreaType.BOTTOM_SCREEN**<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| onEnterSelectedArea<sup>16+</sup>   |  Callback\<[TimePickerResult](ts-basic-components-timepicker.md#TimePickerResult)> | No  |  Represents the callback triggered during the scrolling of the text picker when an item enters the divider area. Compared to the **onChange** event, this event is triggered earlier, specifically when the scroll distance of the current column exceeds half the height of the selected item, which indicates that the item has entered the divider area.<br>**NOTE**<br>When **enableCascade** is set to **true**, using this callback is not recommended due to the interdependent relationship between the AM/PM and hour columns. This callback indicates the moment an option enters the divider area during scrolling, and only the value of the currently scrolled column will change. The values of other non-scrolled columns will remain unchanged.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
+| enableCascade<sup>16+</sup>              | boolean | No  | Whether the AM/PM indicator automatically switches based on the hour in 12-hour format.<br>Default value: **false**. The value **true** means that the AM/PM indicator automatically switches based on the hour in 12-hour format, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
+| enableHapticFeedback<sup>16+</sup> | boolean | No  | Whether to enable haptic feedback.<br>The value **true** means to enable haptic feedback, and **false** means the opposite. The default value is **true**.<br>**Atomic service API**: This API can be used in atomic services since API version 16.<br>**Note**:<br>To enable haptic feedback, you must declare the ohos.permission.VIBRATE permission under **requestPermissions** in the **module.json5** file of the project.<br>"requestPermissions": [{"name": "ohos.permission.VIBRATE"}]|
+
+**Handling in the case of exceptions**
+
+| Exception  | Result |
+| -------- |  ------------------------------------------------------------ |
+| The start time is later than the end time.   | Both start time and end time are set to their default values. |
+| The selected time is earlier than the start time.   | The selected time is set to the start time. |
+| The selected time is later than the end time.   | The selected time is set to the end time. |
+| The start time is later than the current system time, and the selected time is not set.   | The selected time is set to the start time.|
+| The end time is earlier than the current system time, and the selected time is not set.   | The selected time is set to the end time. |
+| The time format is invalid, such as **'01:61:61'**.  | The default value is used. |
 
 ## Example
 
@@ -65,7 +81,7 @@ Inherited from [TimePickerOptions](ts-basic-components-timepicker.md#timepickero
 >
 > For clarity in UI execution context, you are advised to use the [showTimePickerDialog](../js-apis-arkui-UIContext.md#showtimepickerdialog) API in [UIContext](../js-apis-arkui-UIContext.md#uicontext).
 
-### Example 1: Setting the Display Time Format
+### Example 1: Setting the Display Time
 
 This example demonstrates how to set the display time using **useMilitaryTime**, **dateTimeOptions**, and **format**.
 
@@ -248,7 +264,7 @@ struct TimePickerDialogExample {
 }
 ```
 
-![TimetPickerDialog](figures/TimePickerDialog_HoverMode.gif)
+
 
 ### Example 4: Setting the Dialog Box Position
 
@@ -353,4 +369,111 @@ struct TimePickerDialogExample {
 }
 ```
 ![TimetPickerDialog](figures/TimePickerDialogDemo6.png)
-<!--no_check-->
+
+### Example 7: Setting the Start Time
+
+This example demonstrates how to set the start time for the time picker dialog box.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TimePickerDialogExample {
+  private selectTime: Date = new Date('2022-07-22T08:50:00')
+
+  build() {
+    Column() {
+      Button("TimePickerDialog")
+        .margin(20)
+        .onClick(() => {
+          TimePickerDialog.show({
+            useMilitaryTime: false,
+            selected: this.selectTime,
+            format: TimePickerFormat.HOUR_MINUTE_SECOND,
+            start: new Date('2022-07-22T08:30:00'),
+            onAccept: (value: TimePickerResult) => {
+              // Set selectTime to the time when the OK button is clicked. In this way, when the dialog box is displayed again, the selected time is the time when the operation was confirmed last time.
+              if (value.hour != undefined && value.minute != undefined) {
+                this.selectTime.setHours(value.hour, value.minute)
+                console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
+              }
+            }
+          })
+        })
+    }.width('100%')
+  }
+}
+```
+![TimetPickerDialog](figures/TimePickerDialogDemo7.png)
+
+### Example 8: Setting the End Time
+
+This example demonstrates how to set the end time for the time picker dialog box.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TimePickerDialogExample {
+  private selectTime: Date = new Date('2022-07-22T08:50:00')
+
+  build() {
+    Column() {
+      Button("TimePickerDialog")
+        .margin(20)
+        .onClick(() => {
+          TimePickerDialog.show({
+            useMilitaryTime: false,
+            selected: this.selectTime,
+            format: TimePickerFormat.HOUR_MINUTE_SECOND,
+            end: new Date('2022-07-22T15:20:00'),
+            onAccept: (value: TimePickerResult) => {
+              // Set selectTime to the time when the OK button is clicked. In this way, when the dialog box is displayed again, the selected time is the time when the operation was confirmed last time.
+              if (value.hour != undefined && value.minute != undefined) {
+                this.selectTime.setHours(value.hour, value.minute)
+                console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
+              }
+            }
+          })
+        })
+    }.width('100%')
+  }
+}
+```
+![TimetPickerDialog](figures/TimePickerDialogDemo8.png)
+
+### Example 9: Enabling the AM/PM Indicator to Automatically Switch Based on the Hour in 12-hour Format
+
+This example demonstrates how to enable AM/PM indicator to automatically switch based on the hour in 12-hour format using **enableCascade**.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TimePickerDialogExample {
+  private selectTime: Date = new Date('2022-07-22T08:00:00')
+
+  build() {
+    Column() {
+      Button("TimePickerDialog")
+        .margin(20)
+        .onClick(() => {
+          TimePickerDialog.show({
+            useMilitaryTime: false,
+            selected: this.selectTime,
+            enableCascade:true,
+            onAccept: (value: TimePickerResult) => {
+              // Set selectTime to the time when the OK button is clicked. In this way, when the dialog box is displayed again, the selected time is the time when the operation was confirmed last time.
+              if (value.hour != undefined && value.minute != undefined) {
+                this.selectTime.setHours(value.hour, value.minute)
+                console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
+              }
+            }
+          })
+        })
+    }.width('100%')
+  }
+}
+```
+
+

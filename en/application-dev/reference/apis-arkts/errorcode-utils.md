@@ -740,7 +740,7 @@ A task within the waiting list of the asynchronous queue is discarded.
 
 **Possible Causes**
 
-When the number of tasks executed by calling [asyncRunner.execute](../apis-arkts/js-apis-taskpool.md#execute16) exceeds the capacity of the waiting list, the earliest task in the list is discarded.
+When the number of tasks executed by calling [asyncRunner.execute](../apis-arkts/js-apis-taskpool.md#execute18) exceeds the capacity of the waiting list, the earliest task in the list is discarded.
 
 **Solution**
 
@@ -791,17 +791,17 @@ The task cannot be executed by two APIs.
 
 **Description**
 
-Asynchronous queue tasks can be executed only by [asyncRunner.execute](../apis-arkts/js-apis-taskpool.md#execute16), whereas non-asynchronous tasks cannot be executed by [asyncRunner.execute](../apis-arkts/js-apis-taskpool.md#execute16).
+Asynchronous queue tasks can be executed only by [asyncRunner.execute](../apis-arkts/js-apis-taskpool.md#execute18), whereas non-asynchronous tasks cannot be executed by [asyncRunner.execute](../apis-arkts/js-apis-taskpool.md#execute18).
 
 **Possible Causes**
 
-1. [sequenceRunner.execute](../apis-arkts/js-apis-taskpool.md#execute11), [executeDelayed](../apis-arkts/js-apis-taskpool.md#taskpoolexecutedelayed11), [addTask](../apis-arkts/js-apis-taskpool.md#addtask10-1), [taskpool.execute](../apis-arkts/js-apis-taskpool.md#taskpoolexecute-1), [asyncRunner.execute](../apis-arkts/js-apis-taskpool.md#execute16), [executePeriodically](../apis-arkts/js-apis-taskpool.md#taskpoolexecuteperiodically12), or [addDependency](js-apis-taskpool.md#adddependency11) is called to execute an asynchronous queue task.
-2. [execute](../apis-arkts/js-apis-taskpool.md#execute16) of the asynchronous queue is called again to execute a task that has been executed.
+1. [sequenceRunner.execute](../apis-arkts/js-apis-taskpool.md#execute11), [executeDelayed](../apis-arkts/js-apis-taskpool.md#taskpoolexecutedelayed11), [addTask](../apis-arkts/js-apis-taskpool.md#addtask10-1), [taskpool.execute](../apis-arkts/js-apis-taskpool.md#taskpoolexecute-1), [asyncRunner.execute](../apis-arkts/js-apis-taskpool.md#execute18), [executePeriodically](../apis-arkts/js-apis-taskpool.md#taskpoolexecuteperiodically12), or [addDependency](js-apis-taskpool.md#adddependency11) is called to execute an asynchronous queue task.
+2. [execute](../apis-arkts/js-apis-taskpool.md#execute18) of the asynchronous queue is called again to execute a task that has been executed.
 
 **Solution**
 
 1. When calling these APIs, ensure that the asynchronous queue task will not be executed. If you are not sure, capture exceptions.
-2. When calling [execute](../apis-arkts/js-apis-taskpool.md#execute16) of the asynchronous queue, ensure that the task has not been executed. If you are not sure, capture exceptions.
+2. When calling [execute](../apis-arkts/js-apis-taskpool.md#execute18) of the asynchronous queue, ensure that the task has not been executed. If you are not sure, capture exceptions.
 
 ## 10200060 Precision Limit Is Exceeded
 

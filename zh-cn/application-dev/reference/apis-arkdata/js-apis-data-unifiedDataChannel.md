@@ -1134,7 +1134,7 @@ UDMF已经支持的数据通路枚举类型。其主要用途是标识各种UDMF
 
 type Options = { intention?: Intention; key?: string; }
 
-UDMF提供的数据操作接口可选项，包含intention和key两个可选参数。无默认值，当对应接口不需要此参数时可不填，具体要求参照方法接口的参数说明。
+UDMF提供的数据操作接口可选项，包含intention和key两个可选参数。当对应接口不需要此参数时可不填，具体要求参照方法接口的参数说明。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1232,7 +1232,7 @@ type DataProgressListener = (progressInfo: ProgressInfo, data: UnifiedData | nul
 
 **参数：**
 
-| 参数名                   | 类型                                              | 必填 | 说明                                                                                                                                                 |
+| 名称                   | 类型                                              | 必填 | 说明                                                                                                                                                 |
 |----------------------|-------------------------------------------------| ---- |----------------------------------------------------------------------------------------------------------------------------------------------------|
 | progressIndicator    | [ProgressIndicator](#progressindicator15)       | 是 | 定义进度条指示选项，可选择是否采用系统默认进度显示。                                                                                                                         |
 | dataProgressListener | [DataProgressListener](#dataprogresslistener15) | 是 | 表示获取统一数据时的进度和数据监听器。                                                                                                                                |
@@ -1253,7 +1253,7 @@ insertData(options: Options, data: UnifiedData, callback: AsyncCallback&lt;strin
 
 | 参数名      | 类型                         | 必填 | 说明                           |
 |----------|----------------------------|----|------------------------------|
-| options  | [Options](#options)        | 是  | 配置项参数，仅需要intention的值。        |
+| options  | [Options](#options)        | 是  | 配置项参数，参数中intention字段必填，不填时会返回401错误码；其他字段是否填写均不影响接口的使用。        |
 | data     | [UnifiedData](#unifieddata) | 是  | 目标数据。                        |
 | callback | AsyncCallback&lt;string&gt; | 是  | 回调函数，返回写入UDMF的数据的唯一标识符key的值。 |
 
@@ -1307,7 +1307,7 @@ insertData(options: Options, data: UnifiedData): Promise&lt;string&gt;
 
 | 参数名     | 类型                          | 必填 | 说明                    |
 |---------|-----------------------------|----|-----------------------|
-| options | [Options](#options)         | 是  | 配置项参数，仅需要intention的值。 |
+| options | [Options](#options)         | 是  | 配置项参数，参数中intention字段必填，不填时会返回401错误码；其他字段是否填写均不影响接口的使用。 |
 | data    | [UnifiedData](#unifieddata) | 是  | 目标数据。                 |
 
 **返回值：**
@@ -1363,7 +1363,7 @@ updateData(options: Options, data: UnifiedData, callback: AsyncCallback&lt;void&
 
 | 参数名      | 类型                          | 必填 | 说明                                  |
 |----------|-----------------------------|----|-------------------------------------|
-| options  | [Options](#options)         | 是  | 配置项参数，仅需要key的值。                     |
+| options  | [Options](#options)         | 是  | 配置项参数，参数中key字段必填，不填时会返回401错误码；其他字段是否填写均不影响接口的使用。                     |
 | data     | [UnifiedData](#unifieddata) | 是  | 目标数据。                               |
 | callback | AsyncCallback&lt;void&gt;   | 是  | 回调函数。当更新数据成功，err为undefined，否则为错误对象。 |
 
@@ -1417,7 +1417,7 @@ updateData(options: Options, data: UnifiedData): Promise&lt;void&gt;
 
 | 参数名     | 类型                          | 必填 | 说明              |
 |---------|-----------------------------|----|-----------------|
-| options | [Options](#options)         | 是  | 配置项参数，仅需要key的值。 |
+| options | [Options](#options)         | 是  | 配置项参数，参数中key字段必填，不填时会返回401错误码；其他字段是否填写均不影响接口的使用。 |
 | data    | [UnifiedData](#unifieddata) | 是  | 目标数据。           |
 
 **返回值：**
@@ -1781,5 +1781,82 @@ try {
 }catch (e){
   let error: BusinessError = e as BusinessError;
   console.error(`[UDMF]removeAppShareOptions throws an exception. code is ${error.code},message is ${error.message} `);
+}
+```
+
+## unifiedDataChannel.convertRecordsToEntries<sup>17+</sup>
+
+convertRecordsToEntries(data: UnifiedData): void
+
+本接口用于将传入的data转换成多样式数据结构。若原data使用多个record去承载同一份数据的不同样式，则可以使用此接口将原data转换为多样式数据结构。
+
+当满足以下规则时进行转换，传入的data经转换后变为多样式数据结构：
+1. data中的record数量大于1;
+2. data中的properties中的tag值为"records_to_entries_data_format"。
+
+否则不会产生任何行为。
+
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**参数：**
+
+| 参数名    | 类型                    | 必填 | 说明                                                         |
+| --------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| data    | [UnifiedData](#unifieddata) | 是  | 目标数据。           |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { unifiedDataChannel } from '@kit.ArkData';
+import { uniformDataStruct } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let details : Record<string, string> = {
+  'attr1': 'value1',
+  'attr2': 'value2',
+}
+let plainTextObj : uniformDataStruct.PlainText = {
+  uniformDataType: 'general.plain-text',
+  textContent : 'The weather is very good today',
+  abstract : 'The weather is very good today',
+  details : details,
+}
+let htmlObj : uniformDataStruct.HTML = {
+  uniformDataType :'general.html',
+  htmlContent : '<div><p>The weather is very good today</p></div>',
+  plainContent : 'The weather is very good today',
+  details : details,
+}
+let plainText = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainTextObj);
+let html = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.HTML, htmlObj);
+let unifiedData = new unifiedDataChannel.UnifiedData(plainText);
+unifiedData.addRecord(html);
+unifiedData.properties.tag = 'records_to_entries_data_format';
+
+try {
+  unifiedDataChannel.convertRecordsToEntries(unifiedData);
+  let records: Array<unifiedDataChannel.UnifiedRecord> = unifiedData.getRecords();
+  console.info(`Records size is ${records.length}`); // After conversion, its length must be less than 1
+  if (records.length == 1) {
+    let plainTextObjRead: uniformDataStruct.PlainText = records[0].getEntry(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) as uniformDataStruct.PlainText;
+    console.info(`TextContent is ${plainTextObjRead.textContent}`);
+    let htmlObjRead: uniformDataStruct.HTML = records[0].getEntry(uniformTypeDescriptor.UniformDataType.HTML) as uniformDataStruct.HTML;
+    console.info(`HtmlContent is ${htmlObjRead.htmlContent}`);
+  }
+} catch (e) {
+  let error: BusinessError = e as BusinessError;
+  console.error(`Convert data throws an exception. code is ${error.code}, message is ${error.message} `);
 }
 ```
