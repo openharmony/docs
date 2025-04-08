@@ -570,7 +570,7 @@ struct Index {
           this.currentValue += 1
         }
       }).width('30%')
-      Button('addProgress--').onClick(() => {
+      Button('Progress--').onClick(() => {
         if (this.currentValue > 0) {
           this.currentValue -= 1
         }
@@ -591,21 +591,26 @@ struct Index {
 @Component
 struct ProgressExample {
   build() {
-    Scroll() {
+    Row() {
       Column({ space: 15 }) {
-        Row() {
-          Progress({ value: 50, total: 100, type: ProgressType.Capsule }).width(100).height(50)
-            .style({
-              borderColor: Color.Blue,
-              borderWidth: 1,
-              content: 'Installing...',
-              font: { size: 13, style: FontStyle.Normal },
-              fontColor: Color.Gray,
-              enableScanEffect: false,
-              showDefaultPercentage: true
-            })
-            .privacySensitive(true)
-        }
+        Progress({ value: 33, total: 100, type: ProgressType.Capsule }).width(300).height(50)
+          .color(Color.Blue)
+          .style({
+            borderWidth: 5,
+            font: { size: 13, style: FontStyle.Normal },
+            enableScanEffect: false,
+            showDefaultPercentage: true
+          })
+          .privacySensitive(true)
+        Progress({ value: 33, total: 100, type: ProgressType.Capsule }).width(300).height(50)
+          .color(Color.Blue)
+          .style({
+            borderWidth: 5,
+            content: 'Installing...',
+            font: { size: 13, style: FontStyle.Normal },
+            enableScanEffect: false,
+          })
+          .privacySensitive(true)
       }
     }
   }

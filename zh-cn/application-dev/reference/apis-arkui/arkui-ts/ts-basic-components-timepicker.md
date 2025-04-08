@@ -106,7 +106,7 @@ useMilitaryTime(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | ------------------------------------------ |
-| value  | boolean | 是   | 展示时间是否为24小时制。<br/>默认值：false |
+| value  | boolean | 是   | 展示时间是否为24小时制。<br/>默认值：false，false表示展示时间为12小时制，true表示展示时间为24小时制。 |
 
 ### useMilitaryTime<sup>18+</sup>
 
@@ -122,7 +122,7 @@ useMilitaryTime(isMilitaryTime: Optional\<boolean>)
 
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | ------------------------------------------ |
-| isMilitaryTime | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 展示时间是否为24小时制。<br/>当isMilitaryTime的值为undefined时，默认值：false |
+| isMilitaryTime | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 展示时间是否为24小时制。<br/>当isMilitaryTime的值为undefined时，默认值：false，false表示展示时间为12小时制，true表示展示时间为24小时制。 |
 
 ### disappearTextStyle<sup>10+</sup>
 

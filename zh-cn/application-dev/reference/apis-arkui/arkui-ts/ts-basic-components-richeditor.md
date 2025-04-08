@@ -185,7 +185,7 @@ enablePreviewText(enable: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                              |
 | ------ | ------- | ---- | --------------------------------- |
-| enable  | boolean | 是   | 使能预上屏功能。<br/>默认值： true |
+| enable  | boolean | 是   | 使能预上屏功能。<br/>true表示开启，false表示不开启。<br/>默认值： true |
 
 >  **说明：**
 >
@@ -3033,7 +3033,6 @@ struct Index {
             }
           })
         })
-
         Divider()
         Button("getParagraphs").onClick(() => {
           this.spanParagraphs = this.controller.getParagraphs({ start: -1, end: -1 })

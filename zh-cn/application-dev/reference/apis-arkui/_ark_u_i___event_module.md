@@ -1693,7 +1693,7 @@ float OH_ArkUI_UIInputEvent_GetEventTargetWidth(const ArkUI_UIInputEvent* event)
 
 获取事件命中的组件的宽度。
 
-**起始版本：** 18
+**起始版本：** 17
 
 **参数:**
 
@@ -1715,7 +1715,7 @@ float OH_ArkUI_UIInputEvent_GetEventTargetHeight(const ArkUI_UIInputEvent* event
 
 获取事件命中的组件的高度。
 
-**起始版本：** 18
+**起始版本：** 17
 
 **参数:**
 
@@ -1737,7 +1737,7 @@ float OH_ArkUI_UIInputEvent_GetEventTargetPositionX(const ArkUI_UIInputEvent* ev
 
 获取事件命中的组件的X坐标。
 
-**起始版本：** 18
+**起始版本：** 17
 
 **参数:**
 
@@ -1759,7 +1759,7 @@ float OH_ArkUI_UIInputEvent_GetEventTargetPositionY(const ArkUI_UIInputEvent* ev
 
 获取事件命中的组件的Y坐标。
 
-**起始版本：** 18
+**起始版本：** 17
 
 **参数:**
 
@@ -1781,7 +1781,7 @@ float OH_ArkUI_UIInputEvent_GetEventTargetGlobalPositionX(const ArkUI_UIInputEve
 
 获取事件命中的组件的全局X坐标。
 
-**起始版本：** 18
+**起始版本：** 17
 
 **参数:**
 
@@ -1803,7 +1803,7 @@ float OH_ArkUI_UIInputEvent_GetEventTargetGlobalPositionY(const ArkUI_UIInputEve
 
 获取事件命中的组件的全局Y坐标。
 
-**起始版本：** 18
+**起始版本：** 17
 
 **参数:**
 
@@ -1825,7 +1825,7 @@ int32_t OH_ArkUI_UIInputEvent_GetModifierKeyStates(const ArkUI_UIInputEvent* eve
 
 获取UI输入事件的功能键按压状态。
 
-**起始版本：** 18
+**起始版本：** 17
 
 **参数:**
 
@@ -1848,7 +1848,7 @@ bool OH_ArkUI_HoverEvent_IsHovered(const ArkUI_UIInputEvent* event)
 
 获取鼠标是否悬浮在当前组件上。
 
-**起始版本：** 18
+**起始版本：** 17
 
 **参数:**
 
@@ -2068,7 +2068,7 @@ int32_t OH_ArkUI_AxisEvent_SetPropagation (const ArkUI_UIInputEvent * event, boo
 
 设置是否激活轴事件冒泡。
 
-**起始版本：** 18
+**起始版本：** 17
 
 **参数:**
 
@@ -2091,7 +2091,7 @@ int32_t OH_ArkUI_AxisEvent_GetScrollStep (const ArkUI_UIInputEvent * event)
 
 获取鼠标滚轮轴滚动步长配置。
 
-**起始版本：** 18
+**起始版本：** 17
 
 **参数:**
 

@@ -34,7 +34,7 @@ A supplementary type alias that represents the callback in all the overloads of 
 
 ### AsyncLock
 
-A class that implements an asynchronous lock and allows asynchronous operations to be performed under a lock.
+A class that implements an asynchronous lock and allows asynchronous operations to be performed under a lock. This class is decorated by [@Sendable](../../arkts-utils/arkts-sendable.md).
 
 #### Attributes
 
@@ -165,10 +165,11 @@ Queries information about an asynchronous lock.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message     |
 | -------- | ------------- |
+| 401      | The input parameters are invalid. |
 | 10200030 | The lock does not exist. |
 
 **Example**
@@ -233,10 +234,11 @@ Performs an operation exclusively under a lock. This API acquires the lock, exec
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message     |
 | -------- | ------------- |
+| 401      | The input parameters are invalid. |
 | 10200030 | The lock does not exist. |
 
 **Example**
@@ -273,10 +275,11 @@ Performs an operation under a lock. This API acquires the lock, executes the cal
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message     |
 | -------- | ------------- |
+| 401      | The input parameters are invalid. |
 | 10200030 | The lock does not exist. |
 
 **Example**
@@ -314,10 +317,11 @@ Performs an operation under a lock. This API acquires the lock, executes the cal
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message         |
 | -------- | ----------------- |
+| 401      | The input parameters are invalid. |
 | 10200030 | The lock does not exist.     |
 | 10200031 | Timeout exceeded. |
 
@@ -355,27 +359,27 @@ Enumerates the modes of an asynchronous lock.
 let lock = new ArkTSUtils.locks.AsyncLock();
 // shared0 can acquire the lock and start execution.
 lock.lockAsync(async () => {
-    console.log('shared0');
+    console.info('shared0');
     await new Promise<void>((resolve) => setTimeout(resolve, 1000));
 }, ArkTSUtils.locks.AsyncLockMode.SHARED);
 // shared1 can acquire the lock and start execution without waiting for shared0.
 lock.lockAsync(async () => {
-    console.log('shared1');
+    console.info('shared1');
     await new Promise<void>((resolve) => setTimeout(resolve, 1000));
 }, ArkTSUtils.locks.AsyncLockMode.SHARED);
 // exclusive0 can acquire the lock and start execution after shared0 and shared1 are executed.
 lock.lockAsync(async () => {
-    console.log('exclusive0');
+    console.info('exclusive0');
     await new Promise<void>((resolve) => setTimeout(resolve, 1000));
 }, ArkTSUtils.locks.AsyncLockMode.EXCLUSIVE);
 // shared2 can acquire the lock and start execution after exclusive0 is executed.
 lock.lockAsync(async () => {
-    console.log('shared2');
+    console.info('shared2');
     await new Promise<void>((resolve) => setTimeout(resolve, 1000));
 }, ArkTSUtils.locks.AsyncLockMode.SHARED);
 // shared3 can acquire the lock and start execution after exclusive0 is executed, but not after shared2 is executed.
 lock.lockAsync(async () => {
-    console.log('shared3');
+    console.info('shared3');
     await new Promise<void>((resolve) => setTimeout(resolve, 1000));
 }, ArkTSUtils.locks.AsyncLockMode.SHARED);
 ```
@@ -420,7 +424,7 @@ options.signal = s;
 | Name       | Type                                 | Readable| Writable| Description                                                                                                                     |
 | ----------- | ------------------------------------- | ---- | ---- | ------------------------------------------------------------------------------------------------------------------------- |
 | isAvailable | boolean                               | Yes  | Yes  | Whether the lock is available. If the value is **true**, a lock is granted only when it is not held. If the value is **false**, a lock is granted once it is released. The default value is **false**.|
-| signal      | [AbortSignal\<T>](#abortsignal)\|null | Yes  | Yes  | Signal used to abort an asynchronous operation. If **signal.aborted** is **true**, the lock request is discarded. If **signal.aborted** is **null**, the request is queued normally. The default value is **null**.              |
+| signal      | [AbortSignal\<T>](#abortsignal)\|null | Yes  | Yes  | Signal used to abort an asynchronous operation. If **signal.aborted** is **true**, the lock request is discarded. If **signal.aborted** is **false**, the request keeps waiting. If **signal.aborted** is **null**, the request is queued normally. The default value is **null**.              |
 | timeout     | number                                | Yes  | Yes  | Timeout interval of the lock request, in milliseconds. If the value is greater than zero and a lock is not acquired before time, [lockAsync](#lockasync) returns a rejected Promise. The default value is **0**.     |
 
 ### AsyncLockState
@@ -466,7 +470,7 @@ A class that implements a signal used to abort an asynchronous operation. An ins
 
 | Name   | Type   | Readable| Writable| Description                                                            |
 | ------- | ------- | ---- | ---- | ---------------------------------------------------------------- |
-| aborted | boolean | Yes  | Yes  | Whether to abort the operation. The value **true** means to abort the operation, and **false** means the opposite.                                          |
+| aborted | boolean | Yes  | Yes  | Whether to abort the asynchronous operation. The value **true** means to abort the asynchronous operation, and **false** means the opposite.    |
 | reason  | \<T>    | Yes  | Yes  | Reason for abort. This value will be used in the rejected Promise returned by [lockAsync](#lockasync).|
 
 ### ConditionVariable<sup>18+</sup>

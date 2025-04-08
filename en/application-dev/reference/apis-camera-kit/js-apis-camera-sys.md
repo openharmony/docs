@@ -54,7 +54,7 @@ Describes the LCD flash information.
 
 | Name     | Type                         | Read-only| Optional | Description        |
 | -------- | ----------------------------- |---- |-----| ------------- |
-| isLcdFlashNeeded   | boolean | Yes | No  | Whether the LCD flash is required.     |
+| isLcdFlashNeeded   | boolean | Yes | No  | Whether the LCD flash is required. The value **true** means that the LCD flash is required, and **false** means the opposite.     |
 | lcdCompensation     | number                 | Yes | No  | LCD flash compensation.      |
 
 ## Photo<sup>11+</sup>
@@ -176,7 +176,7 @@ Checks whether the camera device can be muted.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | **true**: The camera device can be muted.<br>**false**: The camera device cannot be muted.|
+| boolean    | Check result. The value **true** means that the camera device can be muted, and **false** means the opposite.|
 
 **Example**
 
@@ -257,7 +257,7 @@ Subscribes to camera mute status events. This API uses an asynchronous callback 
 | Name    | Type            | Mandatory| Description      |
 | -------- | --------------- | ---- | --------- |
 | type     | string          | Yes  | Event type. The value is fixed at **'cameraMute'**, indicating the camera mute status. The event can be listened for when a **CameraManager** instance is obtained. This event is triggered and the status is returned when the camera device is muted or unmuted.|
-| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the mute status. The value **true** means that the camera is enabled, and **false** means that the camera is disabled.              |
+| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the camera mute status. The value **true** means that the camera mute status is enabled, and **false** means that it is disabled.              |
 
 **Example**
 
@@ -293,7 +293,7 @@ Unsubscribes from camera mute status events.
 | Name    | Type            | Mandatory| Description                                                     |
 | -------- | --------------- | ---- |---------------------------------------------------------|
 | type     | string          | Yes  | Event type. The value is fixed at **'cameraMute'**, indicating the camera mute status. The event can be listened for when a **CameraManager** instance is obtained.|
-| callback | AsyncCallback\<boolean> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('cameraMute')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)                 |
+| callback | AsyncCallback\<boolean> | No  | Callback used to return the camera mute status. The value **true** means that the camera mute status is enabled, and **false** means that it is disabled. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('cameraMute')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)                 |
 
 **Example**
 
@@ -329,7 +329,7 @@ Checks whether a camera device supports prelaunch.
 
 | Type| Description|
 | -------- | --------------- |
-| boolean | **true**: The camera device supports prelaunch.<br>**false**: The camera device does not support prelaunch.|
+| boolean | Check result. The value **true** means that the camera device supports prelaunch, and **false** means the opposite.|
 
 **Error codes**
 
@@ -534,7 +534,7 @@ Describes the status indicating whether the camera is occluded.
 
 | Name                          | Type                                               | Read-only| Optional| Description               |
 | ----------------------------- | --------------------------------------------------- | ---- | ---- |-------------------|
-| isCameraOccluded                 | boolean              |  Yes | No|Whether the camera is occluded.       |
+| isCameraOccluded                 | boolean              |  Yes | No|Whether the camera is occluded. The value **true** means that the camera is occluded, and **false** means the opposite.       |
 
 ## CameraOutputCapability<sup>13+</sup>
 
@@ -1020,7 +1020,7 @@ Checks whether Picture-in-Picture (PiP) preview is supported.
 
 | Type           | Description                    |
 | -------------- | ----------------------- |
-| boolean | **true**: PiP preview is supported.<br>**false**: PiP preview is not supported.|
+| boolean | Check result. The value **true** means that the PiP preview is supported, and **false** means the opposite.|
 
 **Error codes**
 
@@ -1094,7 +1094,7 @@ Enables or disables PiP preview.
 
 | Name    | Type     | Mandatory| Description                      |
 |---------|---------| ---- | ------------------------ |
-| enabled | boolean | Yes| Whether to enable PiP preview. The value **true** means to enable PiP preview, and **false** means to disable it.|
+| enabled | boolean | Yes| Whether to enable or disable PiP view. The value **true** means to enable PiP view, and **false** means to disable it.|
 
 **Error codes**
 
@@ -1456,7 +1456,7 @@ Checks whether deferred delivery of a certain type is supported.
 
 | Type           | Description                   |
 | -------------- | ----------------------- |
-| boolean | **true**: Deferred delivery is supported.<br>**false**: Deferred delivery is not supported.|
+| boolean | Check result. The value **true** means that deferred delivery is supported, and **false** means the opposite.|
 
 **Error codes**
 
@@ -1571,7 +1571,7 @@ Checks whether automatic high quality is supported for photos.
 
 | Type           | Description                    |
 | -------------- | ----------------------- |
-| boolean | Whether automatic high quality is supported.|
+| boolean | Check result. The value **true** means that automatic high quality is supported, and **false** means the opposite.|
 
 **Error codes**
 
@@ -1597,7 +1597,7 @@ function isAutoHighQualityPhotoSupported(photoOutput: camera.PhotoOutput): boole
 
 enableAutoHighQualityPhoto(enabled: boolean): void
 
-Enables automatic high quality for photos. 
+Enables automatic high quality for photos.
 
 Before using this API, call [isAutoHighQualityPhotoSupported](#isautohighqualityphotosupported13) to check whether automatic high quality is supported.
 
@@ -1609,7 +1609,7 @@ Before using this API, call [isAutoHighQualityPhotoSupported](#isautohighquality
 
 | Name     | Type              | Mandatory| Description                |
 | -------- | -------------------- | ---- | ------------------- |
-|   enabled   |  boolean  |   Yes  |   Whether to enable automatic high quality for photos.   |
+|   enabled   |  boolean  |   Yes  |   Whether to enable or disable automatic high quality for photos. The value **true** means to enable automatic high-quality, and **false** means to disable it.   |
 
 **Error codes**
 
@@ -1736,7 +1736,7 @@ This API must be called after [addOutput](js-apis-camera.md#addoutput11) or [add
 
 | Type| Description|
 | --------- | ------ |
-| boolean | **true**: The quick thumbnail feature is supported.<br>**false**: The quick thumbnail feature is not supported.|
+| boolean | Check result. The value **true** means that the quick thumbnail feature is supported, and **false** means the opposite.|
 
 **Error codes**
 
@@ -2374,7 +2374,7 @@ Checks whether macro photography is supported in the current state. This API mus
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-|   boolean  | **true**: Macro photography is supported.<br>**false**: Macro photography is not supported.|
+|   boolean  | Check result. The value **true** means that macro photography is supported, and **false** means the opposite.|
 
 **Error codes**
 
@@ -2471,7 +2471,7 @@ Describes the scene feature detection result.
 | Name    | Type       |   Read-only  |   Mandatory  | Description      |
 | -------- | ---------- | -------- | -------- | ---------- |
 | featureType |   [SceneFeatureType](#scenefeaturetype12)   |   Yes    |    Yes   | Scene feature type. |
-| detected |   boolean   |   Yes    |    Yes   | Detection result. The value **true** means that the specified scene feature is detected.|
+| detected |   boolean   |   Yes    |    Yes   | Detection result. The value **true** means that the specified scene feature is detected, and **false** means the opposite.|
 
 ## TripodDetectionResult<sup>13+</sup>
 
@@ -2509,7 +2509,7 @@ Checks whether a scene feature is supported.
 
 | Type       | Description          |
 |-----------|--------------|
-| boolean   | **true**: The scene feature is supported.<br>**false**: The scene feature is not supported. |
+| boolean   | Check result. The value **true** means that the scene feature is supported, and **false** means the opposite. |
 
 **Error codes**
 
@@ -3518,7 +3518,7 @@ Subscribes to macro state change events. This API uses an asynchronous callback 
 | Name    | Type                                     | Mandatory| Description                      |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string      | Yes  | Event type. The value is fixed at **'macroStatusChanged'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<boolean\>     | Yes  | Callback used to return the macro state change. |
+| callback | AsyncCallback\<boolean\>     | Yes  | Callback used to return the macro state. The value **true** means that the macro state is enabled, and **false** means that it is disabled. |
 
 **Error codes**
 
@@ -3561,7 +3561,7 @@ Unsubscribes from macro state change events.
 | Name    | Type                   | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | ------------------------ |
 | type     | string                   | Yes  | Event type. The value is fixed at **'macroStatusChanged'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<boolean\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('macroStatusChanged')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)|
+| callback | AsyncCallback\<boolean\> | No  | Callback used to return the macro state. The value **true** means that the macro state is enabled, and **false** means that it is disabled. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('macroStatusChanged')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)|
 
 **Error codes**
 
@@ -3787,7 +3787,7 @@ Subscribes to macro state change events. This API uses an asynchronous callback 
 | Name    | Type                                     | Mandatory| Description                      |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string      | Yes  | Event type. The value is fixed at **'macroStatusChanged'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<boolean\>     | Yes  | Callback used to return the macro state change. |
+| callback | AsyncCallback\<boolean\>     | Yes  | Callback used to return the macro state. The value **true** means that the macro state is enabled, and **false** means that it is disabled. |
 
 **Error codes**
 
@@ -3830,7 +3830,7 @@ Unsubscribes from macro state change events.
 | Name   | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | ------------------------ |
 | type     | string                   | Yes  | Event type. The value is fixed at **'macroStatusChanged'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<boolean\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('macroStatusChanged')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)|
+| callback | AsyncCallback\<boolean\> | No  | Callback used to return the macro state. The value **true** means that the macro state is enabled, and **false** means that it is disabled. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('macroStatusChanged')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)|
 
 **Error codes**
 
@@ -5008,7 +5008,7 @@ Checks whether the device supports slow-motion detection.
 
 | Type       | Description                                                                                    |
 | ---------- |----------------------------------------------------------------------------------------|
-| boolean    | **true**: The device supports slow-motion detection.<br>**false**: The device does not support slow-motion detection.<br>If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
+| boolean    | Check result. The value **true** means that the device supports slow-motion detection, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -5308,7 +5308,7 @@ Checks whether an exposure metering mode is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | **true**: The exposure metering mode is supported.<br>**false**: The exposure metering mode is not supported. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
+| boolean    | Check result. The value **true** means that the exposure metering mode is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -5472,7 +5472,7 @@ Checks whether the focus assist is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | **true**: The focus assist is supported.<br>**false**: The focus assist is not supported. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
+| boolean    | Check result. The value **true** means that the focus assist is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -5623,7 +5623,7 @@ Before the setting, call [isFocusAssistSupported](#isfocusassistsupported12) to 
 
 | Name     | Type                    | Mandatory| Description                |
 | -------- | ----------------------- | ---- | ------------------- |
-| enabled | boolean | Yes  | **true**: Enables the focus assist.<br>**false**: Disables the focus assist.|
+| enabled | boolean | Yes  | Whether to enable or disable focus assist. The value **true** means to enable focus assist, and **false** means to disable it.|
 
 **Error codes**
 
@@ -5666,7 +5666,7 @@ Checks whether the focus assist is enabled.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | **true**: The focus assist is enabled.<br>**false**: The focus assist is disabled.|
+| boolean    | Check result. The value **true** means that the focus assist is enabled, and **false** means the opposite.|
 
 **Error codes**
 
@@ -5977,7 +5977,7 @@ Checks whether manual ISO setting is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | **true**: Manual ISO setting is supported.<br>**false**: Manual ISO setting is not supported. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
+| boolean    | The value **true** means that manual ISO setting is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -6182,7 +6182,7 @@ Checks whether a white balance mode is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | **true**: The white balance mode is supported.<br>**false**: The white balance mode is not supported. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
+| boolean    | The value **true** means that the white balance mode is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -7949,7 +7949,7 @@ Checks whether the LCD flash is supported.
 
 | Type           | Description                    |
 | -------------- | ----------------------- |
-| boolean | **true**: The LCD flash is supported.<br>**false**: The LCD flash is not supported.|
+| boolean | Check result. The value **true** means that the LCD flash is supported, and **false** means the opposite.|
 
 **Error codes**
 
@@ -7988,7 +7988,7 @@ Before the setting, call [isLcdFlashSupported](#islcdflashsupported12) to check 
 
 | Name      | Type                    | Mandatory| Description                                              |
 | --------- | ----------------------- | ---- |--------------------------------------------------|
-| enabled | boolean | Yes  | Whether to enable or disable the LCD flash. If null or undefined is passed, it is treated as 0 and the LCD flash is disabled.|
+| enabled | boolean | Yes  | Whether to enable or disable the LCD flash. The value **true** means to enable the LCD flash, and **false** means to disable it. If null or undefined is passed, it is treated as 0 and the LCD flash is disabled.|
 
 **Error codes**
 
@@ -8511,7 +8511,7 @@ Checks whether Try AE is required.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean   | Result indicating whether Try AE is required. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
+| boolean   | Check result. The value **true** means that Try AE is required, and **false** means the opposite. The error code type is defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode).|
 
 **Error codes**
 

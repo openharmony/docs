@@ -85,7 +85,7 @@ class EntryAbility extends UIAbility {
       console.info("Succeeded in getting preferences.");
     }).catch((err: BusinessError) => {
       console.error(`Failed to get preferences. code: ${err.code}, message: ${err.message}`);
-    })
+    });
   }
 }
 ```
@@ -194,7 +194,7 @@ class EntryAbility extends UIAbility {
       console.info("Succeeded in deleting preferences.");
     }).catch((err: BusinessError) => {
       console.error(`Failed to delete preferences. code: ${err.code}, message: ${err.message}`);
-    })
+    });
   }
 }
 ```
@@ -251,7 +251,7 @@ class EntryAbility extends UIAbility {
       console.info("Succeeded in removing preferences.");
     }).catch((err: BusinessError) => {
       console.error(`Failed to remove preferences. code: ${err.code}, message: ${err.message}`);
-    })
+    });
   }
 }
 ```
@@ -365,7 +365,7 @@ promise.then((data: lang.ISendable) => {
   console.info(`Succeeded in getting value of 'startup'. Data: ${dataStr}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to get value of 'startup'. code: ${err.code}, message: ${err.message}`);
-})
+});
 ```
 
 ### getSync
@@ -444,7 +444,7 @@ promise.then((keyValues: lang.ISendable) => {
   }
 }).catch((err: BusinessError) => {
   console.error(`Failed to get all key-values. code: ${err.code}, message: ${err.message}`);
-})
+});
 ```
 
 ### getAllSync
@@ -530,7 +530,7 @@ promise.then(() => {
   console.info("Succeeded in putting value of 'startup'.");
 }).catch((err: BusinessError) => {
   console.error(`Failed to put value of 'startup'. code: ${err.code}, message: ${err.message}`);
-})
+});
 ```
 
 ### putSync
@@ -616,7 +616,7 @@ promise.then((val: boolean) => {
   }
 }).catch((err: BusinessError) => {
   console.error(`Failed to check the key 'startup'. code: ${err.code}, message: ${err.message}`);
-})
+});
 ```
 
 ### hasSync
@@ -702,7 +702,7 @@ promise.then(() => {
   console.info("Succeeded in deleting the key 'startup'.");
 }).catch((err: BusinessError) => {
   console.error(`Failed to delete the key 'startup'. code: ${err.code}, message: ${err.message}`);
-})
+});
 ```
 
 ### deleteSync
@@ -774,7 +774,7 @@ promise.then(() => {
   console.info("Succeeded in flushing.");
 }).catch((err: BusinessError) => {
   console.error(`Failed to flush. code: ${err.code}, message: ${err.message}`);
-})
+});
 ```
 
 ### flushSync<sup>14+</sup>
@@ -839,7 +839,7 @@ promise.then(() => {
   console.info("Succeeded in clearing.");
 }).catch((err: BusinessError) => {
   console.error(`Failed to clear. code: ${err.code}, message: ${err.message}`);
-})
+});
 ```
 
 ### clearSync
@@ -903,14 +903,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer = (key: string) => {
   console.info("The key " + key + " changed.");
-}
+};
 preferences.on('change', observer);
 preferences.putSync('startup', 'manual');
 preferences.flush().then(() => {
   console.info("Succeeded in flushing.");
 }).catch((err: BusinessError) => {
   console.error(`Failed to flush. code: ${err.code}, message: ${err.message}`);
-})
+});
 ```
 
 ### on('multiProcessChange')
@@ -955,14 +955,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer = (key: string) => {
   console.info("The key " + key + " changed.");
-}
+};
 preferences.on('multiProcessChange', observer);
 preferences.putSync('startup', 'manual');
 preferences.flush().then(() => {
   console.info("Succeeded in flushing.");
 }).catch((err: BusinessError) => {
   console.error(`Failed to flush. code: ${err.code}, message: ${err.message}`);
-})
+});
 ```
 
 ### on('dataChange')
@@ -1003,8 +1003,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { lang } from '@kit.ArkTS';
 
 let observer = (data: lang.ISendable) => {
-  console.info(`observer : ${data}`)
-}
+  console.info(`observer : ${data}`);
+};
 let keys = ['name', 'age'];
 preferences.on('dataChange', keys, observer);
 preferences.putSync('name', 'xiaohong');
@@ -1049,7 +1049,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer = (key: string) => {
   console.info("The key " + key + " changed.");
-}
+};
 preferences.on('change', observer);
 preferences.putSync('startup', 'auto');
 preferences.flush().then(() => {
@@ -1095,7 +1095,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer = (key: string) => {
   console.info("The key " + key + " changed.");
-}
+};
 preferences.on('multiProcessChange', observer);
 preferences.putSync('startup', 'auto');
 preferences.flush().then(() => {
@@ -1139,8 +1139,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { lang } from '@kit.ArkTS';
 
 let observer = (data: lang.ISendable) => {
-  console.info(`observer : ${data}`)
-}
+  console.info(`observer : ${data}`);
+};
 let keys = ['name', 'age'];
 preferences.on('dataChange', keys, observer);
 preferences.putSync('name', 'xiaohong');

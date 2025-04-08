@@ -9,6 +9,8 @@
 
 **相关模块：**[OHAudio](_o_h_audio.md)
 
+**所在头文件：**[native_audio_session_manager.h](native__audio__session__manager_8h.md)
+
 
 ## 汇总
 

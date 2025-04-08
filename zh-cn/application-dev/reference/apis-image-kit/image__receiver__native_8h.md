@@ -7,6 +7,8 @@
 
 **库：** libimage_receiver.so
 
+**引用文件**：&lt;multimedia/image_framework/image/image_receiver_native.h&gt;
+
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
 **起始版本：** 12

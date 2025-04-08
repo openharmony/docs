@@ -28,6 +28,7 @@ OpenHarmony LiteOS-M的内存管理分为静态内存管理和动态内存管理
 静态内存池由一个控制块LOS_MEMBOX_INFO和若干相同大小的内存块LOS_MEMBOX_NODE构成。控制块位于内存池头部，用于内存块管理，包含内存块大小uwBlkSize，内存块数量uwBlkNum，已分配使用的内存块数量uwBlkCnt和空闲内存块链表stFreeList。内存块的申请和释放以块大小为粒度，每个内存块包含指向下一个内存块的指针pstNext。
 
   **图1** 静态内存示意图
+
   ![zh-cn_image_0000001199352039](figures/zh-cn_image_0000001199352039.png)
 
 
@@ -171,6 +172,7 @@ Mem free success!
 OpenHarmony LiteOS-M动态内存在TLSF算法的基础上，对区间的划分进行了优化，获得更优的性能，降低了碎片率。动态内存核心算法框图如下：
 
   **图1** 轻量系统动态内存核心算法
+
   ![zh-cn_image_0000001199352445](figures/zh-cn_image_0000001199352445.png)
 
 根据空闲内存块的大小，使用多个空闲链表来管理。根据内存空闲块大小分为两个部分：[4, 127]和[2<sup>7</sup>, 2<sup>31</sup>]，如上图size class所示：
@@ -184,6 +186,7 @@ OpenHarmony LiteOS-M动态内存在TLSF算法的基础上，对区间的划分�
 内存管理结构如下图所示：
 
   **图2** 轻量系统动态内存管理结构图
+  
   ![zh-cn_image_0000001153313284](figures/zh-cn_image_0000001153313284.png)
 
 - 内存池池头部分

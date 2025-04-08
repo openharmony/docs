@@ -290,7 +290,7 @@ aa force-stop <bundleName>
   | 错误码ID | 错误信息 |
   | ------- | -------- |
   | 10105001 | Failed to connect to the ability service. |
-  | 10104002 | Failed to obtain specified bundle information. |
+  | 10104002 | Failed to retrieve specified package information. |
   | 10106401 | Failed to terminate the process. |
   | 10106402 | Persistent processes cannot be terminated. |
 
@@ -338,7 +338,7 @@ aa test -b <bundleName> [-m <module-name>] [-p <package-name>] [-s class <test-c
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
-  | 10104002 | Failed to obtain specified bundle information. |
+  | 10104002 | Failed to retrieve specified package information. |
   | 10105001 | Failed to connect to the ability service. |
   | 10106002 | The target application does not support debug mode. |
   | 10108501 | An internal error occurs during the execution of the aa test command. |
@@ -738,7 +738,7 @@ aa start命令的参数中携带的AppCloneIndex是一个无效值，则返回�
 
 **错误信息**
 
-Another ability is being started. Wait until it finishes starting.
+The current ability will be placed in the queue to wait for the previous ability to finish launching.
 
 **错误描述**
 
