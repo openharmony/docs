@@ -34,7 +34,7 @@ Index.ets文件是HAR导出声明文件的入口，HAR需要导出的接口，�
 ```
 ### 导出ArkUI组件
 通过`export`导出ArkUI组件，示例如下：
-```ets
+```ts
 // library/src/main/ets/components/mainpage/MainPage.ets
 @Component
 export struct MainPage {
@@ -68,13 +68,13 @@ export struct MainPage {
 }
 ```
 HAR对外暴露的接口，在Index.ets导出文件中声明如下所示：
-```ets
+```ts
 // library/Index.ets
 export { MainPage } from './src/main/ets/components/mainpage/MainPage';
 ```
 ### 导出类和方法
 通过`export`导出类和方法，支持导出多个类和方法，示例如下所示：
-```ets
+```ts
 // library/src/main/ets/test.ets
 export class Log {
     static info(msg: string) {
@@ -91,7 +91,7 @@ export function func2() {
 }
 ```
 HAR对外暴露的接口，在Index.ets导出文件中声明如下所示：
-```ets
+```ts
 // library/Index.ets
 export { Log } from './src/main/ets/test';
 export { func } from './src/main/ets/test';
@@ -100,7 +100,7 @@ export { func2 } from './src/main/ets/test';
 
 ### 导出native方法
 在HAR中也可以包含C++编写的so。对于so中的native方法，HAR通过以下方式导出，以导出liblibrary.so的加法接口add为例：
-```ets
+```ts
 // library/src/main/ets/utils/nativeTest.ets
 import native from 'liblibrary.so';
 
@@ -110,7 +110,7 @@ export function nativeAdd(a: number, b: number): number {
 }
 ```
 HAR对外暴露的接口，在Index.ets导出文件中声明如下所示：
-```ets
+```ts
 // library/Index.ets
 export { nativeAdd } from './src/main/ets/utils/nativeTest';
 ```
@@ -142,7 +142,7 @@ export { nativeAdd } from './src/main/ets/utils/nativeTest';
 ### 引用HAR的ArkUI组件
 
 HAR的依赖配置成功后，可以引用HAR的ArkUI组件。通过`import`引入HAR导出的ArkUI组件，示例如下所示：
-```ets
+```ts
 // entry/src/main/ets/pages/IndexSec.ets
 import { MainPage } from 'library';
 
@@ -160,7 +160,7 @@ struct IndexSec {
 ```
 ### 引用HAR的类和方法
 通过`import`引用HAR导出的类和方法，示例如下所示：
-```ets
+```ts
 // entry/src/main/ets/pages/Index.ets
 import { Log } from 'library';
 import { func } from 'library';
@@ -209,7 +209,7 @@ struct Index {
 
 ### 引用HAR的native方法
 通过`import`引用HAR导出的native方法，示例如下所示：
-```ets
+```ts
 // entry/src/main/ets/pages/Index.ets
 import { nativeAdd } from 'library';
 
@@ -255,7 +255,7 @@ struct Index {
 
 ### 引用HAR的资源
 通过`$r`引用HAR中的资源，例如在HAR模块的`src/main/resources`里添加字符串资源（在string.json中定义，name：hello_har）和图片资源（icon_har.png），然后在Entry模块中引用该字符串和图片资源的示例如下所示：
-```ets
+```ts
 // entry/src/main/ets/pages/Index.ets
 @Entry
 @Component
