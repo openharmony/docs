@@ -19,6 +19,14 @@
 ## 汇总
 
 
+### 类型定义
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| typedef void(\* [OH_AudioRenderer_OnInterruptCallback](_o_h_audio.md#oh_audiorenderer_oninterruptcallback)) ([OH_AudioRenderer](_o_h_audio.md#oh_audiorenderer) \*renderer, void \*userData, [OH_AudioInterrupt_ForceType](_o_h_audio.md#oh_audiointerrupt_forcetype) type, [OH_AudioInterrupt_Hint](_o_h_audio.md#oh_audiointerrupt_hint) hint) | 音频流中断事件回调函数。 | 
+| typedef void(\* [OH_AudioRenderer_OnErrorCallback](_o_h_audio.md#oh_audiorenderer_onerrorcallback)) ([OH_AudioRenderer](_o_h_audio.md#oh_audiorenderer) \*renderer, void \*userData, [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) error) | 音频流错误事件回调函数。 | 
+
+
 ### 函数
 
 | 名称 | 描述 | 

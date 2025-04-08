@@ -68,7 +68,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ## contact.addContact<sup>(deprecated)7+</sup>
 
-addContact(contact:Contact, callback:AsyncCallback&lt;number&gt;): void
+addContact(contact: Contact, callback: AsyncCallback&lt;number&gt;): void
 
 Adds a contact. This API uses an asynchronous callback to return the result.
 
@@ -3842,7 +3842,7 @@ Opens the **Add contact** page to add a contact. This API uses a promise to retu
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Contacts Error Codes](../apis-contacts-kit/errorcode-contacts.md).
 
-| Type                 | Description                                      |
+| ID                | Error Message                                      |
 | --------------------- | ------------------------------------------ |
 | 401       | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 | 801       | The specified SystemCapability name was not found. |
@@ -3886,7 +3886,7 @@ Opens the **Save to existing** page to save a contact to an existing one. This A
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Contacts Error Codes](../apis-contacts-kit/errorcode-contacts.md).
 
-| Type                 | Description                                      |
+| ID                | Error Message                                      |
 | --------------------- | ------------------------------------------ |
 | 401       | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 | 801       | The specified SystemCapability name was not found. |
@@ -3914,10 +3914,10 @@ Defines the contact selection options.
 
 |                Name              |                  Type                | Read-Only | Optional |        Description     |
 | --------------------------------- | ------------------------------------- | ---- | ---- | ---------------- |
-| isMultiSelect<sup>10+</sup>         | boolean | No  | Yes  | Whether multiple contacts can be selected. The default value is **false**.    |
-| maxSelectable<sup>15+</sup>         | number | No  | Yes  | Maximum number of contacts that can be selected. The default value is **10000**.    | 
-| isDisplayedByName<sup>15+</sup>         | boolean | No  | Yes  | Whether to display contacts by name. The default value is **false**.    |
-| filter<sup>15+</sup>         | [ContactSelectionFilter](#contactselectionfilter15) | No  | Yes  | Contact selection filter.    |
+| isMultiSelect<sup>10+</sup>         | boolean | No  | Yes  | Whether multiple contacts can be selected. The default value is **false**. **Atomic service API**: This API can be used in atomic services since API version 11.    |
+| maxSelectable<sup>15+</sup>         | number | No  | Yes  | Maximum number of contacts that can be selected. The default value is **10000**. **Atomic service API**: This API can be used in atomic services since API version 15.    | 
+| isDisplayedByName<sup>15+</sup>         | boolean | No  | Yes  | Whether to display contacts by name. The default value is **false**. **Atomic service API**: This API can be used in atomic services since API version 15.    |
+| filter<sup>15+</sup>         | [ContactSelectionFilter](#contactselectionfilter15) | No  | Yes  | Contact selection filter. **Atomic service API**: This API can be used in atomic services since API version 15.    |
 
 ## ContactSelectionFilter<sup>15+</sup>
 
@@ -3938,7 +3938,7 @@ Enumerates contact filter types.
 
 **Atomic service API**: This API can be used in atomic services since API version 15.
 
-**System capability**: SystemCapability.Applications.ContactsData
+**System capability**: SystemCapability.Applications.Contacts
 
 | Name                 | Value| Description                              |
 | --------------------- | ---- | ---------------------------------- |
@@ -3956,10 +3956,10 @@ Defines the contact filter criteria.
 
 |                Name              |                  Type                | Mandatory |        Description     |
 | --------------------------------- | ------------------------------------- | ---- | ---------------- |
-| id         | [FilterOptions](#filteroptions15)[] | No  | Contact ID.    |
-| name         | [FilterOptions](#filteroptions15)[]  | No  | Contact name.    |
+| id         | Array<[FilterOptions](#filteroptions15)> | No  | Contact ID.    |
+| name         | Array<[FilterOptions](#filteroptions15)>  | No  | Contact name.    |
 | dataItem         | [DataFilter](#datafilter15) | No  | Contact data filter item.    |
-| focusModeList        | [FilterOptions](#filteroptions15)[]  | No  | Focus mode list.    |
+| focusModeList        | Array<[FilterOptions](#filteroptions15)>  | No  | Focus mode list.    |
 
 ## FilterOptions<sup>15+</sup>
 
@@ -3972,7 +3972,7 @@ Defines contact filter options.
 |                Name              |                  Type                | Mandatory |        Description     |
 | --------------------------------- | ------------------------------------- | ---- | ---------------- |
 | filterCondition         | [FilterCondition](#filtercondition15) | Yes  | Filter criteria.    |
-| value        | string or ValueType[]| No  | Filter value. The default value is **undefined**.    |
+| value        | string \| ValueType[] | No  | Filter value. The default value is **undefined**.    |
 
 ## FilterCondition<sup>15+</sup>
 
@@ -3980,7 +3980,7 @@ Enumerates filter criteria.
 
 **Atomic service API**: This API can be used in atomic services since API version 15.
 
-**System capability**: SystemCapability.Applications.ContactsData
+**System capability**: SystemCapability.Applications.Contacts
 
 | Name                 | Value| Description                              |
 | --------------------- | ---- | ---------------------------------- |
@@ -4002,7 +4002,7 @@ Defines the contact data filter item.
 |                Name              |                  Type                | Mandatory |        Description     |
 | --------------------------------- | ------------------------------------- | ---- | ---------------- |
 | field         | [DataField](#datafield15) | Yes  | Contact data field.    |
-| options         | [FilterOptions](#filteroptions15)[] | Yes  | Filter options.    |
+| options         | Array<[FilterOptions](#filteroptions15)> | Yes  | Filter options.    |
 
 ## DataField<sup>15+</sup>
 
@@ -4010,7 +4010,7 @@ Enumerates contact data fields.
 
 **Atomic service API**: This API can be used in atomic services since API version 15.
 
-**System capability**: SystemCapability.Applications.ContactsData
+**System capability**: SystemCapability.Applications.Contacts
 
 | Name                 | Value| Description                              |
 | --------------------- | --- | ---------------------------------- |

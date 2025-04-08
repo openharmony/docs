@@ -26,7 +26,7 @@ isSimActive\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 | 参数名   | 类型                        | 必填 | 说明                                   |
 | -------- | --------------------------- | ---- | -------------------------------------- |
 | slotId   | number                      | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。返回指定卡槽是否激活，如果激活返回true。                             |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。返回指定卡槽是否激活。<br/>- true:激活。<br/>- false：未激活。                               |
 
 **示例：**
 
@@ -58,7 +58,7 @@ isSimActive\(slotId: number\): Promise\<boolean\>
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise&lt;boolean&gt; | 以Promise形式返回指定卡槽是否激活，如果激活返回true。 |
+| Promise&lt;boolean&gt; | 以Promise形式返回指定卡槽是否激活。<br/>- true:激活。<br/>- false：未激活。 |
 
 **示例：**
 
@@ -91,7 +91,7 @@ isSimActiveSync\(slotId: number\): boolean
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| boolean | 返回指定卡槽是否激活，如果激活返回true。 |
+| boolean | 返回指定卡槽是否激活。<br/>- true:激活。<br/>- false：未激活。 |
 
 **示例：**
 
@@ -833,7 +833,7 @@ hasSimCard\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 | 参数名   | 类型                        | 必填 | 说明                                   |
 | -------- | --------------------------- | ---- | -------------------------------------- |
 | slotId   | number                      | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
-| callback | AsyncCallback&lt;boolean&gt; | 是  | 回调返回指定卡槽是否插卡，如果插卡返回true。                           |
+| callback | AsyncCallback&lt;boolean&gt; | 是  | 回调返回指定卡槽是否插卡。<br/>- true:插卡。<br/>- false：未插卡。                           |
 
 **错误码：**
 
@@ -877,7 +877,7 @@ hasSimCard\(slotId: number\): Promise\<boolean\>
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise&lt;boolean&gt; | 以Promise形式返回指定卡槽是否插卡，如果插卡返回true。 |
+| Promise&lt;boolean&gt; | 以Promise形式返回指定卡槽是否插卡。<br/>- true:插卡。<br/>- false：未插卡。 |
 
 **错误码：**
 
@@ -922,7 +922,7 @@ hasSimCardSync\(slotId: number\): boolean
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| boolean | 返回指定卡槽是否插卡，如果插卡返回true。 |
+| boolean | 返回指定卡槽是否插卡。<br/>- true:插卡。<br/>- false：未插卡。 |
 
 **示例：**
 

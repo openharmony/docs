@@ -1,12 +1,18 @@
-# CommonEventSubscriber
-
-描述公共事件的订阅者。
+# commonEventSubscriber
 
 > **说明：**
 >
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-## 使用说明
+## CommonEventSubscriber
+
+描述公共事件的订阅者。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+### 使用说明
 
 在使用CommonEventSubscriber的功能前，需要通过commonEventManager.createSubscriber获取subscriber对象。
 
@@ -33,7 +39,7 @@ function createCB(err: BusinessError, commonEventSubscriber: commonEventManager.
 commonEventManager.createSubscriber(subscribeInfo, createCB);
 ```
 
-## getCode
+### getCode
 
 getCode(callback: AsyncCallback\<number>): void
 
@@ -71,7 +77,7 @@ function getCodeCallback(err: BusinessError, code: number) {
 subscriber.getCode(getCodeCallback);
 ```
 
-## getCode
+### getCode
 
 getCode(): Promise\<number>
 
@@ -97,7 +103,7 @@ subscriber.getCode().then((code: number) => {
 });
 ```
 
-## getCodeSync<sup>10+</sup>
+### getCodeSync<sup>10+</sup>
 
 getCodeSync(): number
 
@@ -120,7 +126,7 @@ let code = subscriber.getCodeSync();
 console.info(`Succeeded in getting code, code is ` + JSON.stringify(code));
 ```
 
-## setCode
+### setCode
 
 setCode(code: number, callback: AsyncCallback\<void>): void
 
@@ -159,7 +165,7 @@ function setCodeCallback(err: BusinessError) {
 subscriber.setCode(1, setCodeCallback);
 ```
 
-## setCode
+### setCode
 
 setCode(code: number): Promise\<void>
 
@@ -199,7 +205,7 @@ subscriber.setCode(1).then(() => {
 });
 ```
 
-## setCodeSync<sup>10+</sup>
+### setCodeSync<sup>10+</sup>
 
 setCodeSync(code: number): void
 
@@ -234,7 +240,7 @@ try {
 }
 ```
 
-## getData
+### getData
 
 getData(callback: AsyncCallback\<string>): void
 
@@ -272,7 +278,7 @@ function getDataCallback(err: BusinessError, data: string) {
 subscriber.getData(getDataCallback);
 ```
 
-## getData
+### getData
 
 getData(): Promise\<string>
 
@@ -298,7 +304,7 @@ subscriber.getData().then((data: string) => {
 });
 ```
 
-## getDataSync<sup>10+</sup>
+### getDataSync<sup>10+</sup>
 
 getDataSync(): string
 
@@ -321,7 +327,7 @@ let data = subscriber.getDataSync();
 console.info(`Succeeded in getting data, data is ${data}`);
 ```
 
-## setData
+### setData
 
 setData(data: string, callback: AsyncCallback\<void>): void
 
@@ -360,7 +366,7 @@ function setDataCallback(err: BusinessError) {
 subscriber.setData("publish_data_changed", setDataCallback);
 ```
 
-## setData
+### setData
 
 setData(data: string): Promise\<void>
 
@@ -400,7 +406,7 @@ subscriber.setData("publish_data_changed").then(() => {
 });
 ```
 
-## setDataSync<sup>10+</sup>
+### setDataSync<sup>10+</sup>
 
 setDataSync(data: string): void
 
@@ -435,7 +441,7 @@ try {
 }
 ```
 
-## setCodeAndData
+### setCodeAndData
 
 setCodeAndData(code: number, data: string, callback:AsyncCallback\<void>): void
 
@@ -475,7 +481,7 @@ function setCodeAndDataCallback(err: BusinessError) {
 subscriber.setCodeAndData(1, "publish_data_changed", setCodeAndDataCallback);
 ```
 
-## setCodeAndData
+### setCodeAndData
 
 setCodeAndData(code: number, data: string): Promise\<void>
 
@@ -516,7 +522,7 @@ subscriber.setCodeAndData(1, "publish_data_changed").then(() => {
 });
 ```
 
-## setCodeAndDataSync<sup>10+</sup>
+### setCodeAndDataSync<sup>10+</sup>
 
 setCodeAndDataSync(code: number, data: string): void
 
@@ -553,7 +559,7 @@ try {
 
 ```
 
-## isOrderedCommonEvent
+### isOrderedCommonEvent
 
 isOrderedCommonEvent(callback: AsyncCallback\<boolean>): void
 
@@ -589,7 +595,7 @@ function isOrderedCommonEventCallback(err: BusinessError, isOrdered:boolean) {
 subscriber.isOrderedCommonEvent(isOrderedCommonEventCallback);
 ```
 
-## isOrderedCommonEvent
+### isOrderedCommonEvent
 
 isOrderedCommonEvent(): Promise\<boolean>
 
@@ -613,7 +619,7 @@ subscriber.isOrderedCommonEvent().then((isOrdered:boolean) => {
 });
 ```
 
-## isOrderedCommonEventSync<sup>10+</sup>
+### isOrderedCommonEventSync<sup>10+</sup>
 
 isOrderedCommonEventSync(): boolean
 
@@ -634,7 +640,7 @@ let isOrdered  = subscriber.isOrderedCommonEventSync();
 console.info("isOrderedCommonEventSync " + JSON.stringify(isOrdered));
 ```
 
-## isStickyCommonEvent
+### isStickyCommonEvent
 
 isStickyCommonEvent(callback: AsyncCallback\<boolean>): void
 
@@ -670,7 +676,7 @@ function isStickyCommonEventCallback(err: BusinessError, isSticky:boolean) {
 subscriber.isStickyCommonEvent(isStickyCommonEventCallback);
 ```
 
-## isStickyCommonEvent
+### isStickyCommonEvent
 
 isStickyCommonEvent(): Promise\<boolean>
 
@@ -694,7 +700,7 @@ subscriber.isStickyCommonEvent().then((isSticky:boolean) => {
 });
 ```
 
-## isStickyCommonEventSync<sup>10+</sup>
+### isStickyCommonEventSync<sup>10+</sup>
 
 isStickyCommonEventSync(): boolean
 
@@ -715,7 +721,7 @@ let isSticky  = subscriber.isStickyCommonEventSync();
 console.info("isStickyCommonEventSync " + JSON.stringify(isSticky));
 ```
 
-## abortCommonEvent
+### abortCommonEvent
 
 abortCommonEvent(callback: AsyncCallback\<void>): void
 
@@ -759,7 +765,7 @@ subscriber.abortCommonEvent(abortCommonEventCallback);
 subscriber.finishCommonEvent(finishCommonEventCallback);
 ```
 
-## abortCommonEvent
+### abortCommonEvent
 
 abortCommonEvent(): Promise\<void>
 
@@ -788,7 +794,7 @@ subscriber.finishCommonEvent().then(() => {
 });
 ```
 
-## abortCommonEventSync<sup>10+</sup>
+### abortCommonEventSync<sup>10+</sup>
 
 abortCommonEventSync(): void
 
@@ -807,7 +813,7 @@ subscriber.finishCommonEvent().then(() => {
 });
 ```
 
-## clearAbortCommonEvent
+### clearAbortCommonEvent
 
 clearAbortCommonEvent(callback: AsyncCallback\<void>): void
 
@@ -851,7 +857,7 @@ subscriber.clearAbortCommonEvent(clearAbortCommonEventCallback);
 subscriber.finishCommonEvent(finishCommonEventCallback);
 ```
 
-## clearAbortCommonEvent
+### clearAbortCommonEvent
 
 clearAbortCommonEvent(): Promise\<void>
 
@@ -880,7 +886,7 @@ subscriber.finishCommonEvent().then(() => {
 });
 ```
 
-## clearAbortCommonEventSync<sup>10+</sup>
+### clearAbortCommonEventSync<sup>10+</sup>
 
 clearAbortCommonEventSync(): void
 
@@ -899,7 +905,7 @@ subscriber.finishCommonEvent().then(() => {
 });
 ```
 
-## getAbortCommonEvent
+### getAbortCommonEvent
 
 getAbortCommonEvent(callback: AsyncCallback\<boolean>): void
 
@@ -935,7 +941,7 @@ function getAbortCommonEventCallback(err: BusinessError, abortEvent: boolean) {
 subscriber.getAbortCommonEvent(getAbortCommonEventCallback);
 ```
 
-## getAbortCommonEvent
+### getAbortCommonEvent
 
 getAbortCommonEvent(): Promise\<boolean>
 
@@ -959,7 +965,7 @@ subscriber.getAbortCommonEvent().then((abortEvent: boolean) => {
 });
 ```
 
-## getAbortCommonEventSync<sup>10+</sup>
+### getAbortCommonEventSync<sup>10+</sup>
 
 getAbortCommonEventSync(): boolean
 
@@ -980,7 +986,7 @@ let abortEvent = subscriber.getAbortCommonEventSync();
 console.info(`Succeeded in getting abort common event, abortEvent is ` + JSON.stringify(abortEvent));
 ```
 
-## getSubscribeInfo
+### getSubscribeInfo
 
 getSubscribeInfo(callback: AsyncCallback\<CommonEventSubscribeInfo>): void
 
@@ -1018,7 +1024,7 @@ function getSubscribeInfoCallback(err: BusinessError, subscribeInfo: commonEvent
 subscriber.getSubscribeInfo(getSubscribeInfoCallback);
 ```
 
-## getSubscribeInfo
+### getSubscribeInfo
 
 getSubscribeInfo(): Promise\<CommonEventSubscribeInfo>
 
@@ -1044,7 +1050,7 @@ subscriber.getSubscribeInfo().then((subscribeInfo: commonEventManager.CommonEven
 });
 ```
 
-## getSubscribeInfoSync<sup>10+</sup>
+### getSubscribeInfoSync<sup>10+</sup>
 
 getSubscribeInfoSync(): CommonEventSubscribeInfo
 
@@ -1067,7 +1073,7 @@ let subscribeInfo = subscriber.getSubscribeInfoSync();
 console.info(`Succeeded in getting subscribe info, subscribe info is ` + JSON.stringify(subscribeInfo));
 ```
 
-## finishCommonEvent<sup>9+</sup>
+### finishCommonEvent<sup>9+</sup>
 
 finishCommonEvent(callback: AsyncCallback\<void>): void
 
@@ -1103,7 +1109,7 @@ function finishCommonEventCallback(err: BusinessError) {
 subscriber.finishCommonEvent(finishCommonEventCallback);
 ```
 
-## finishCommonEvent<sup>9+</sup>
+### finishCommonEvent<sup>9+</sup>
 
 finishCommonEvent(): Promise\<void>
 

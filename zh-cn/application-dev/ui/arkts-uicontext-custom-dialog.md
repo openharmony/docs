@@ -103,8 +103,7 @@ PromptActionClass.ctx.getPromptAction().updateCustomDialog(PromptActionClass.con
 ```ts
 // PromptActionClass.ets
 import { BusinessError } from '@kit.BasicServicesKit';
-import { ComponentContent, promptAction } from '@kit.ArkUI';
-import { UIContext } from '@ohos.arkui.UIContext';
+import { ComponentContent, promptAction, UIContext } from '@kit.ArkUI';
 
 export class PromptActionClass {
   static ctx: UIContext;

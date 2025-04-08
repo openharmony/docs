@@ -50,7 +50,7 @@ publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<v
 | 1600005  | Notification slot disabled.                    |
 | 1600007  | The notification does not exist.                       |
 | 1600008  | The user does not exist.                               |
-| 1600009  | Over max number notifications per second.            |
+| 1600009  | The notification sending frequency reaches the upper limit.            |
 | 1600012  | No memory space.                                     |
 | 1600014  | No permission.                                   |
 | 1600015  | The current notification status does not support duplicate configurations. |
@@ -129,7 +129,7 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 | 1600005  | Notification slot disabled.                    |
 | 1600007  | The notification does not exist.                       |
 | 1600008  | The user does not exist.                               |
-| 1600009  | Over max number notifications per second.            |
+| 1600009  | The notification sending frequency reaches the upper limit.            |
 | 1600012  | No memory space.                                     |
 | 1600014  | No permission.                                   |
 | 1600015  | The current notification status does not support duplicate configurations. |
@@ -1510,7 +1510,6 @@ getAllActiveNotifications(): Promise\<Array\<NotificationRequest\>\>
 | -------- | ----------------------------------- |
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -2077,7 +2076,6 @@ getDoNotDisturbDate(): Promise\<DoNotDisturbDate\>
 | -------- | ----------------------------------- |
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
@@ -2284,7 +2282,6 @@ isSupportDoNotDisturbMode(): Promise\<boolean\>
 | -------- | ----------------------------------- |
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -2715,7 +2712,6 @@ getDeviceRemindType(): Promise\<DeviceRemindType\>
 | -------- | ----------------------------------- |
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
@@ -2771,7 +2767,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 | 1600005  | Notification slot disabled.         |
 | 1600007  | The notification does not exist.      |
 | 1600008  | The user does not exist.                    |
-| 1600009  | Over max number notifications per second. |
+| 1600009  | The notification sending frequency reaches the upper limit. |
 | 1600012  | No memory space.                          |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
@@ -2852,7 +2848,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 | 1600005  | Notification slot disabled.         |
 | 1600007  | The notification does not exist.      |
 | 1600008  | The user does not exist.                    |
-| 1600009  | Over max number notifications per second. |
+| 1600009  | The notification sending frequency reaches the upper limit. |
 | 1600012  | No memory space.                          |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
@@ -2928,7 +2924,7 @@ publishAsBundle(representativeBundle: BundleOption, request: NotificationRequest
 | 1600005  | Notification slot disabled.         |
 | 1600007  | The notification does not exist.      |
 | 1600008  | The user does not exist.                    |
-| 1600009  | Over max number notifications per second. |
+| 1600009  | The notification sending frequency reaches the upper limit. |
 | 1600012  | No memory space.                          |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
@@ -4864,7 +4860,7 @@ notificationManager.isDistributedEnabledBySlot(slot, deviceType).then((data: boo
 
 | 名称    | 类型                                  | 必填 | 说明                   |
 | ------- | ------------------------------------ | ---- | ---------------------- |
-| code    | number                               | 是   | 0-display, 1-no display。 |
+| code    | number                               | 是   | 0-display，1-no display。 |
 | message | string                               | 是   | 结果信息。    |
 
 
@@ -4933,3 +4929,18 @@ notificationManager.isDistributedEnabledBySlot(slot, deviceType).then((data: boo
 | id | number | 是 | 勿扰模式编号。 |
 | name | string  | 是 | 勿扰模式名称。 |
 | trustlist | Array\<[BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)> | 否 | 勿扰模式的信任列表。 |
+
+## NotificationLiveViewContent<sup>11+</sup>
+
+type NotificationLiveViewContent = _NotificationLiveViewContent
+
+描述普通实况通知。
+
+**系统能力：** SystemCapability.Notification.Notification
+
+**系统接口**：此接口为系统接口。
+
+| 类型 | 说明 |
+| --- | --- |
+| [_NotificationLiveViewContent](js-apis-inner-notification-notificationContent-sys.md#notificationliveviewcontent11) | 描述普通实况通知。 |
+

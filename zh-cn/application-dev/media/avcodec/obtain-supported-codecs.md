@@ -32,7 +32,7 @@
 
    支持两种获取音视频编解码能力实例的方式：
    
-   方式一：通过`OH_AVCodec_GetCapability`获取框架推荐的音视频编解码器能力实例。与`OH_XXX_CreateByMime`系列接口框架推荐策略一致。
+   方式一：通过`OH_AVCodec_GetCapability`获取系统推荐的音视频编解码器能力实例。与`OH_XXX_CreateByMime`系列接口系统推荐策略一致。
    ```c++
    // 获取系统推荐的音频AAC解码器能力实例。
    OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_AUDIO_AAC, false);
@@ -43,7 +43,7 @@
    // 获取指定硬件的视频AVC编码器能力实例。
    OH_AVCapability *capability = OH_AVCodec_GetCapabilityByCategory(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true, HARDWARE);
    ```
-   若获取能力实例成功，则可继续向下执行。开发者无需关注该实例的回收问题，框架会自行回收。
+   若获取能力实例成功，则可继续向下执行。开发者无需关注该实例的回收问题，系统会自行回收。
 
 4. 按需调用相应查询接口，详细的API说明请参考[API文档](../../reference/apis-avcodec-kit/_a_v_capability.md)。
 

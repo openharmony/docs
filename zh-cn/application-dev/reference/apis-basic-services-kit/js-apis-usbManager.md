@@ -1173,7 +1173,7 @@ try {
 
 openAccessory(accessory: USBAccessory): USBAccessoryHandle
 
-获取配件句柄并打开配件文件描述符。
+获取配件句柄并打开配件文件描述符。之后可以通过CoreFileKit提供的read/write接口和配件进行通信。
 
 需要调用[usbManager.getAccessoryList](#usbmanagergetaccessorylist14)获取配件列表，得到[USBAccessory](#usbaccessory14)作为参数。
 
@@ -1209,11 +1209,15 @@ openAccessory(accessory: USBAccessory): USBAccessoryHandle
 
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
   let flag = usbManager.requestAccessoryRight(accList[0])
   let handle = usbManager.openAccessory(accList[0])
   hilog.info(0, 'testTag ui', `openAccessory success`)
+  let arrayBuffer = new ArrayBuffer(4096);
+  let readLength = fs.readSync(handle.accessoryFd, arrayBuffer, {offset: 0, length: 4096});
+  hilog.info(0, 'testTag ui', 'readSync ret: ' + readLength.toString(10));
 } catch (error) {
   hilog.info(0, 'testTag ui', `openAccessory error ${error.code}, message is ${error.message}`)
 }
@@ -1494,7 +1498,7 @@ Usb异步传输回调。
 
 ## UsbTransferStatus<sup>18+</sup>
 
-libusb实际处理完成后通过回调返回的状态码。
+数据处理完成后通过回调返回的状态码。
 
 **系统能力：** SystemCapability.USB.USBManager
 

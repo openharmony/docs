@@ -16,11 +16,12 @@ The **drawing_surface.h** file declares the functions related to the surface in 
 
 ## Summary
 
-
 ### Functions
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_Drawing_Surface](_drawing.md#oh_drawing_surface) \* [OH_Drawing_SurfaceCreateFromGpuContext](_drawing.md#oh_drawing_surfacecreatefromgpucontext) ([OH_Drawing_GpuContext](_drawing.md#oh_drawing_gpucontext) \*, bool budgeted, [OH_Drawing_Image_Info](_o_h___drawing___image___info.md)) | Creates an **OH_Drawing_Surface** object using the GPU context to manage the content drawn on the canvas.| 
-| [OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \* [OH_Drawing_SurfaceGetCanvas](_drawing.md#oh_drawing_surfacegetcanvas) ([OH_Drawing_Surface](_drawing.md#oh_drawing_surface) \*) | Obtains a canvas from an **OH_Drawing_Surface** object.| 
-| void [OH_Drawing_SurfaceDestroy](_drawing.md#oh_drawing_surfacedestroy) ([OH_Drawing_Surface](_drawing.md#oh_drawing_surface) \*) | Destroys an **OH_Drawing_Surface** object and reclaims the memory occupied.| 
+| [OH_Drawing_Surface](_drawing.md#oh_drawing_surface) \* [OH_Drawing_SurfaceCreateFromGpuContext](_drawing.md#oh_drawing_surfacecreatefromgpucontext) ([OH_Drawing_GpuContext](_drawing.md#oh_drawing_gpucontext) \*, bool budgeted, [OH_Drawing_Image_Info](_o_h___drawing___image___info.md)) | Creates an **OH_Drawing_Surface** object using the GPU context to manage the content drawn on the canvas. | 
+| [OH_Drawing_Surface](_drawing.md#oh_drawing_surface) \* [OH_Drawing_SurfaceCreateOnScreen](_drawing.md#oh_drawing_surfacecreateonscreen) ([OH_Drawing_GpuContext](_drawing.md#oh_drawing_gpucontext) \*gpuContext, [OH_Drawing_Image_Info](_o_h___drawing___image___info.md) imageInfo, void \*window) | Creates an **OH_Drawing_Surface** object bound to the window using the GPU context to manage the content drawn on the canvas. | 
+| [OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \* [OH_Drawing_SurfaceGetCanvas](_drawing.md#oh_drawing_surfacegetcanvas) ([OH_Drawing_Surface](_drawing.md#oh_drawing_surface) \*) | Obtains a canvas from an **OH_Drawing_Surface** object. | 
+| [OH_Drawing_ErrorCode](_drawing.md#oh_drawing_errorcode) [OH_Drawing_SurfaceFlush](_drawing.md#oh_drawing_surfaceflush) ([OH_Drawing_Surface](_drawing.md#oh_drawing_surface) \*surface) | Pushes the drawing content from an **OH_Drawing_Surface** object to the GPU for rendering. | 
+| void [OH_Drawing_SurfaceDestroy](_drawing.md#oh_drawing_surfacedestroy) ([OH_Drawing_Surface](_drawing.md#oh_drawing_surface) \*) | Destroys an **OH_Drawing_Surface** object and reclaims the memory occupied. | 

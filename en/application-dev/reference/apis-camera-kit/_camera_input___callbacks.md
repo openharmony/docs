@@ -11,6 +11,8 @@ For details, see [OH_CameraInput_RegisterCallback](_o_h___camera.md#oh_camerainp
 
 **Related module**: [OH_Camera](_o_h___camera.md)
 
+**Header file**: [camera_input.h](camera__input_8h.md)
+
 
 ## Summary
 

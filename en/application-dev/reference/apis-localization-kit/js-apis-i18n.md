@@ -35,7 +35,7 @@ Obtains the localized display of the text for the specified country.
 | ------------ | ------- | ---- | ---------------- |
 | country      | string  | Yes   | Valid country code.           |
 | locale       | string  | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.    |
-| sentenceCase | boolean | No   | Whether the first letter of the text is capitalized. The default value is **true**.|
+| sentenceCase | boolean | No   | Whether to use sentence case to display the text. The value **true** means to display the text in title case format, and the value **false** means to display the text in the default case format of the locale. The default value is **true**.|
 
 **Return value**
 
@@ -84,7 +84,7 @@ Obtains the localized display of the text for the specified language. For exampl
 | ------------ | ------- | ---- | ---------------- |
 | language     | string  | Yes   | Valid language ID.           |
 | locale       | string  | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.    |
-| sentenceCase | boolean | No   | Whether the first letter of the text is capitalized. The default value is **true**.|
+| sentenceCase | boolean | No   | Whether to use sentence case to display the text. The value **true** means to display the text in title case format, and the value **false** means to display the text in the default case format of the locale. The default value is **true**.|
 
 **Return value**
 
@@ -204,7 +204,7 @@ Checks whether the system language matches the specified region.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | The value **true** indicates that the language matches the specified country or region,<br>and the value **false** indicates the opposite.|
+| boolean | **true** if the current language matches the locale, and **false** otherwise.|
 
 **Error codes**
 
@@ -313,7 +313,7 @@ Checks whether the 24-hour clock is used.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | The value **true** indicates that the 24-hour clock is used, and the value **false** indicates the opposite.|
+| boolean | **true** if the 24-hour clock is used, and **false** otherwise.|
 
 **Example**
   ```ts
@@ -1241,7 +1241,7 @@ Checks whether the format of the specified phone number is valid.
 
 | Type     | Description                                   |
 | ------- | ------------------------------------- |
-| boolean | The value **true** indicates that the phone number format is valid, and the value **false** indicates the opposite.|
+| boolean | **true** if the phone number format is valid, and **false** otherwise.|
 
 **Example**
   ```ts
@@ -1352,7 +1352,7 @@ Defines the measurement unit information.
 
 ## i18n.getInstance<sup>8+</sup>
 
-getInstance(locale?:string): IndexUtil
+getInstance(locale?: string): IndexUtil
 
 Creates an **IndexUtil** object.
 
@@ -1718,7 +1718,7 @@ Checks whether the specified position is a break point.
 
 | Type     | Description                             |
 | ------- | ------------------------------- |
-| boolean | Offset to the specified position of the text. The value **true** is returned if the position specified by **offset** is a break point, and the value **false** is returned otherwise.<br>If **true** is returned, the **BreakIterator** object is moved to the position specified by **offset**. Otherwise, **following** is called.|
+| boolean | **true** if the text position specified by offset is a split point, and **false** otherwise.<br>If **true** is returned, the **BreakIterator** object is moved to the position specified by **offset**. Otherwise, **following** is called.|
 
 **Example**
   ```ts
@@ -1796,7 +1796,7 @@ Obtains the localized representation of a **TimeZone** object.
 | Name   | Type     | Mandatory  | Description                  |
 | ------ | ------- | ---- | -------------------- |
 | locale | string  | No   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region. The default value is the system locale.               |
-| isDST  | boolean | No   | Whether DST is considered in the localized representation of the **TimeZone** object. The default value is **false**.|
+| isDST  | boolean | No   | **true** if DST is considered in the localized representation of the **TimeZone** object, and **false** otherwise. The default value is **false**.|
 
 **Return value**
 
@@ -2130,7 +2130,7 @@ Checks whether the input string is composed of digits.
 
 | Type     | Description                                  |
 | ------- | ------------------------------------ |
-| boolean | The value **true** indicates that the input character is a digit, and the value **false** indicates the opposite.|
+| boolean | **true** if the input character is a digit, and **false** otherwise.|
 
 **Example**
   ```ts
@@ -2158,7 +2158,7 @@ Checks whether the input character is a space.
 
 | Type     | Description                                    |
 | ------- | -------------------------------------- |
-| boolean | The value **true** indicates that the input character is a space, and the value **false** indicates the opposite.|
+| boolean | **true** if the input character is a space, and **false** otherwise.|
 
 **Example**
   ```ts
@@ -2186,7 +2186,7 @@ Checks whether the input character is a white space.
 
 | Type     | Description                                    |
 | ------- | -------------------------------------- |
-| boolean | The value **true** indicates that the input character is a white space, and the value **false** indicates the opposite.|
+| boolean | **true** if the input character is a white space, and **false** otherwise.|
 
 **Example**
   ```ts
@@ -2214,7 +2214,7 @@ Checks whether the input character is of the right to left (RTL) language.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | The value **true** indicates that the input character is of the RTL language, and the value **false** indicates the opposite.|
+| boolean | **true** if the input character is of the RTL language, and **false** otherwise.|
 
 **Example**
   ```ts
@@ -2242,7 +2242,7 @@ Checks whether the input character is an ideographic character.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | The value **true** indicates that the input character is an ideographic character, and the value **false** indicates the opposite.|
+| boolean | **true** if the input character an ideographic character, and **false** otherwise.|
 
 **Example**
   ```ts
@@ -2270,7 +2270,7 @@ Checks whether the input character is a letter.
 
 | Type     | Description                                  |
 | ------- | ------------------------------------ |
-| boolean | The value **true** indicates that the input character is a letter, and the value **false** indicates the opposite.|
+| boolean | **true** if the input character a letter, and **false** otherwise.|
 
 **Example**
   ```ts
@@ -2298,7 +2298,7 @@ Checks whether the input character is a lowercase letter.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | The value **true** indicates that the input character is a lowercase letter, and the value **false** indicates the opposite.|
+| boolean | **true** if the input character a lowercase letter, and **false** otherwise.|
 
 **Example**
   ```ts
@@ -2326,7 +2326,7 @@ Checks whether the input character is an uppercase letter.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | The value **true** indicates that the input character is an uppercase letter, and the value **false** indicates the opposite.|
+| boolean | **true** if the input character an uppercase letter, and **false** otherwise.|
 
 **Example**
   ```ts
@@ -2812,7 +2812,7 @@ Determines whether the specified date is a holiday.
 
 |       Type       |         Description         |
 | ----------------- | ----------------------|
-| boolean           | The value **true** indicates that the specified date is a holiday, and the value **false** indicates the opposite.|
+| boolean           | **true** if the specified date is a holiday, and **false** otherwise.|
 
 **Error codes**
 
@@ -3146,14 +3146,6 @@ Creates a **NumberFormat** object for rich text display.
 | numberFormat | [intl.NumberFormat](js-apis-intl.md#numberformat) \| [SimpleNumberFormat](#simplenumberformat18) | Yes  | **NumberFormat** object. |
 | options | [StyledNumberFormatOptions](#stylednumberformatoptions18) | No| Configuration options of the **NumberFormat** object. The default value is the default text style. |
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID | Error Message                  |
-| ------ | ---------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-
 **Example**
   ```ts
   import { intl } from '@kit.LocalizationKit';
@@ -3195,7 +3187,7 @@ Formats a number to a rich text object.
 
 |   Name |      Type     | Mandatory|     Description     |
 | --------- | ------------- | ---- | ------------- |
-| value | Number | Yes| Number to be formatted. |
+| value | number | Yes| Number to be formatted. |
 
 **Return value**
 
@@ -3272,7 +3264,7 @@ This API is deprecated since API version 9. You are advised to use [System.getDi
 | ------------ | ------- | ---- | ---------------- |
 | country      | string  | Yes   | Specified country.           |
 | locale       | string  | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.     |
-| sentenceCase | boolean | No   | Whether to use sentence case for the localized script. The default value is **true**.|
+| sentenceCase | boolean | No   | Whether to use sentence case to display the text. The value **true** means to display the text in title case format, and the value **false** means to display the text in the default case format of the locale. The default value is **true**.|
 
 **Return value**
 
@@ -3302,7 +3294,7 @@ This API is deprecated since API version 9. You are advised to use [System.getDi
 | ------------ | ------- | ---- | ---------------- |
 | country      | string  | Yes   | Specified country.           |
 | locale       | string  | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.     |
-| sentenceCase | boolean | No   | Whether to use sentence case for the localized script. The default value is **true**.|
+| sentenceCase | boolean | No   | Whether to use sentence case to display the text. The value **true** means to display the text in title case format, and the value **false** means to display the text in the default case format of the locale. The default value is **true**.|
 
 **Return value**
 
@@ -3333,7 +3325,7 @@ This API is deprecated since API version 9. You are advised to use [System.getDi
 | ------------ | ------- | ---- | ---------------- |
 | language     | string  | Yes   | Specified language.           |
 | locale       | string  | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.     |
-| sentenceCase | boolean | No   | Whether to use sentence case for the localized script. The default value is **true**.|
+| sentenceCase | boolean | No   | Whether to use sentence case to display the text. The value **true** means to display the text in title case format, and the value **false** means to display the text in the default case format of the locale. The default value is **true**.|
 
 **Return value**
 
@@ -3428,7 +3420,7 @@ This API is deprecated since API version 9. You are advised to use [System.is24H
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | The value **true** indicates that the 24-hour clock is used, and the value **false** indicates the opposite.|
+| boolean | **true** if the 24-hour clock is used, and **false** otherwise.|
 
 **Example**
   ```ts
@@ -3458,7 +3450,7 @@ This API is deprecated since API version 9. The substitute API is available only
 
 | Type     | Description                           |
 | ------- | ----------------------------- |
-| boolean | The value **true** indicates that the 24-hour clock is enabled, and the value **false** indicates the opposite.|
+| boolean | **true** if the setting is successful, and **false** otherwise.|
 
 **Example**
   ```ts
@@ -3490,7 +3482,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                           |
 | ------- | ----------------------------- |
-| boolean | The value **true** indicates that the preferred language is successfully added, and the value **false** indicates the opposite.|
+| boolean | **true** if the operation is successful, and **false** otherwise.|
 
 **Example**
   ```ts
@@ -3523,7 +3515,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                           |
 | ------- | ----------------------------- |
-| boolean | The value **true** indicates that the preferred language is deleted, and the value **false** indicates the opposite.|
+| boolean | **true** if the operation is successful, and **false** otherwise.|
 
 **Example**
   ```ts
@@ -3630,7 +3622,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                                  |
 | ------- | ------------------------------------ |
-| boolean | The value **true** indicates that the input character is a digit, and the value **false** indicates the opposite.|
+| boolean | **true** if the input character is a digit, and **false** otherwise.|
 
 
 ### isSpaceChar<sup>(deprecated)</sup>
@@ -3653,7 +3645,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                                    |
 | ------- | -------------------------------------- |
-| boolean | The value **true** indicates that the input character is a space, and the value **false** indicates the opposite.|
+| boolean | **true** if the input character is a space, and **false** otherwise.|
 
 
 ### isWhitespace<sup>(deprecated)</sup>
@@ -3676,7 +3668,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                                    |
 | ------- | -------------------------------------- |
-| boolean | The value **true** indicates that the input character is a white space, and the value **false** indicates the opposite.|
+| boolean | **true** if the input character is a white space, and **false** otherwise.|
 
 
 ### isRTL<sup>(deprecated)</sup>
@@ -3699,7 +3691,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | The value **true** indicates that the input character is of the RTL language, and the value **false** indicates the opposite.|
+| boolean | **true** if the input character is of the RTL language, and **false** otherwise.|
 
 
 ### isIdeograph<sup>(deprecated)</sup>
@@ -3722,7 +3714,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | The value **true** indicates that the input character is an ideographic character, and the value **false** indicates the opposite.|
+| boolean | **true** if the input character an ideographic character, and **false** otherwise.|
 
 
 ### isLetter<sup>(deprecated)</sup>
@@ -3745,7 +3737,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                                  |
 | ------- | ------------------------------------ |
-| boolean | The value **true** indicates that the input character is a letter, and the value **false** indicates the opposite.|
+| boolean | **true** if the input character a letter, and **false** otherwise.|
 
 
 ### isLowerCase<sup>(deprecated)</sup>
@@ -3768,7 +3760,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | The value **true** indicates that the input character is a lowercase letter, and the value **false** indicates the opposite.|
+| boolean | **true** if the input character a lowercase letter, and **false** otherwise.|
 
 
 ### isUpperCase<sup>(deprecated)</sup>
@@ -3791,7 +3783,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | The value **true** indicates that the input character is an uppercase letter, and the value **false** indicates the opposite.|
+| boolean | **true** if the input character an uppercase letter, and **false** otherwise.|
 
 
 ### getType<sup>(deprecated)</sup>

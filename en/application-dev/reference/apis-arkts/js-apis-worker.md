@@ -824,7 +824,7 @@ Dispatches the event defined for the Worker thread.
 
 | Type   | Description                           |
 | ------- | ------------------------------- |
-| boolean | Dispatch result. The value **true** means a successful distribution, and **false** means the opposite.|
+| boolean | Dispatch result. The value **true** means a successful dispatch, and **false** means the opposite.|
 
 **Error codes**
 
