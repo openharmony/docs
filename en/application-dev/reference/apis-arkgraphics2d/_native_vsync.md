@@ -3,7 +3,7 @@
 
 ## Overview
 
-The NativeVsync module provides the capabilities for obtaining the system virtual synchronization (VSync) callback, allowing you to sync your application's drawing frame rate with the system's frame rate.
+The NativeVsync module provides the capabilities for obtaining the system virtual synchronization (VSync) callback, allowing you to synchronize your application's drawing frame rate with the system's frame rate.
 
 \@syscap SystemCapability.Graphic.Graphic2D.NativeVsync
 
@@ -276,7 +276,7 @@ void OH_NativeVSync_Destroy (OH_NativeVSync * nativeVsync)
 
 Destroys an **OH_NativeVSync** instance.
 
-Once the **OH_NativeVSync** pointer is destroyed, it should not be used, as this can result in dangling pointer problems. Pay special attention to the management of the **OH_NativeVSync** pointer in concurrent multithreaded scenarios. 
+Once the **OH_NativeVSync** pointer is destroyed, it should not be used, as this can result in dangling pointer problems. Pay special attention to the management of the **OH_NativeVSync** pointer in multithreaded scenarios.
 
 \@syscap SystemCapability.Graphic.Graphic2D.NativeVsync
 

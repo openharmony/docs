@@ -22,8 +22,8 @@ HiAppEvent提供接口用于订阅系统卡死事件。
 | exception | object | 异常信息，详见exception属性。 |
 | hilog | string[] | 日志信息。|
 | event_handler | string[] | 主线程未处理消息。 |
-| event_handler_size_3s | string | THREAD_BLOCK事件3s时任务栈中任务数。 |
-| event_handler_size_6s | string | THREAD_BLOCK事件6s时任务栈中任务数。 |
+| event_handler_size_3s | string | [THREAD_BLOCK_6S事件](appfreeze-guidelines.md#thread_block_6s-应用主线程卡死超时)（仅在该事件生效）中3s时任务栈中任务数。 |
+| event_handler_size_6s | string | THREAD_BLOCK_6S事件（仅在该事件生效）中6s时任务栈中任务数。 |
 | peer_binder | string[] | binder调用信息。 |
 | threads | object[] | 全量线程调用栈，详见thread属性。 |
 | memory | object | 内存信息，详见memory属性。 |

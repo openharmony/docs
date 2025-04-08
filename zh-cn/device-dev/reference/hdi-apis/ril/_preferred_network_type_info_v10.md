@@ -109,4 +109,4 @@ int PreferredNetworkTypeInfo::preferredNetworkType
 
 - 40：NR、LTE、TDSCDMA、WCDMA、GSM。
 
-- 41：NR、LTE、TDSCDMA、WCDMA、GSM、EVDO、CDMA 
+- 41：NR、LTE、TDSCDMA、WCDMA、GSM、EVDO、CDMA。 

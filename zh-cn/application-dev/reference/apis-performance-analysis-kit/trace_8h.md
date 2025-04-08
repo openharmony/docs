@@ -5,11 +5,13 @@
 
 HiTraceMeter模块打点接口定义，通过这些接口实现性能打点相关功能。
 
+用户态tarce格式使用竖线 `|` 作为分隔符，所以通过HiTraceMeter接口传递的字符串类型参数应避免包含该字符，防止trace解析异常。
+
 使用示例：
 
 同步时间片跟踪事件：
 
-  
+
 ```
 OH_HiTrace_StartTrace("hitraceTest");
 OH_HiTrace_FinishTrace();
@@ -17,7 +19,7 @@ OH_HiTrace_FinishTrace();
 
 结果输出：
 
-  
+
 ```
 <...>-1668 (----—) [003] .... 135.059377: tracing_mark_write: B|1668|H:hitraceTest
 <...>-1668 (----—) [003] .... 135.059415: tracing_mark_write: E|1668|
@@ -25,7 +27,7 @@ OH_HiTrace_FinishTrace();
 
 异步时间片跟踪事件：
 
-  
+
 ```
 OH_HiTrace_StartAsyncTrace("hitraceTest", 123);
 OH_HiTrace_FinishAsyncTrace("hitraceTest", 123);
@@ -33,7 +35,7 @@ OH_HiTrace_FinishAsyncTrace("hitraceTest", 123);
 
 结果输出：
 
-  
+
 ```
 <...>-2477 (----—) [001] .... 396.427165: tracing_mark_write: S|2477|H:hitraceTest 123
 <...>-2477 (----—) [001] .... 396.427196: tracing_mark_write: F|2477|H:hitraceTest 123
@@ -41,14 +43,14 @@ OH_HiTrace_FinishAsyncTrace("hitraceTest", 123);
 
 整数值跟踪事件：
 
-  
+
 ```
 OH_HiTrace_CountTrace("hitraceTest", 500);
 ```
 
 结果输出：
 
-  
+
 ```
 <...>-2638 (----—) [002] .... 458.904382: tracing_mark_write: C|2638|H:hitraceTest 500
 ```

@@ -100,7 +100,7 @@ getFullDirectoryUri(): string
 
 Obtains the URI of the path. If the URI points to a file, the URI of the path is returned. If the URI points to a directory, the original string is returned without processing. If the file specified by the URI does not exist or the attribute fails to be obtained, an empty string is returned.
 
-For a file, this API returns the URI of the directory where the file is located. For example, **xxx** will be returned for the **xxx/example.txt** file.
+For a file, this API returns the URI of the directory where the file is located. For example, `xxx` will be returned for the `xxx/example.txt` file.
 
 If the current FileUri points to a directory, the URI of the current path is returned.
 
@@ -152,7 +152,7 @@ Checks whether this URI is a remote URI.
 
 | Type| Description|
 | -------- |---------|
-| boolean | - Returns **true** if the URI points to a remote file or folder, for example, **xxx/example.txt? networkid=xxx**.<br>- Returns **false** if the URI points to a local file or folder.|
+| boolean | - Returns **true** if the URI points to a remote file or folder, for example, `xxx/example.txt?networkid=xxx`.<br>- Returns **false** if the URI points to a local file or folder.|
 
 **Error codes**
 
@@ -180,7 +180,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 getUriFromPath(path: string): string
 
-The URI of the application is generated based on the input path. (The URI of the media type cannot be obtained.) When a path is converted to a URI, Chinese characters and non-digit characters in the path are compiled into the corresponding ASCII code and combined into the URI.
+The URI of the application is generated based on the input path. When a path is converted to a URI, Chinese characters and non-digit characters in the path are compiled into the corresponding ASCII code and combined into the URI.
 
 **Atomic service API**: This API can be used in atomic services since API version 15.
 
@@ -196,7 +196,7 @@ The URI of the application is generated based on the input path. (The URI of the
 
   | Type| Description|
   | ------- |------|
-  | string | The URI of the application is generated based on the input path (the media type URI cannot be obtained). When the path is converted into a URI, Chinese characters and special characters that are not digits or letters in the path are compiled into the corresponding ASCII code and combined into the URI.|
+  | string | The URI of the application is generated based on the input path. When a path is converted to a URI, Chinese characters and non-digit characters in the path are compiled into the corresponding ASCII code and combined into the URI.|
 
 **Error codes** 
 

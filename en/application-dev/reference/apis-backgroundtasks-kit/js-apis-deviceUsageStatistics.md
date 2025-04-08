@@ -19,7 +19,7 @@ import bundleState from '@ohos.bundleState'
 
 isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether the application specified by **bundleName** is in the idle state.  This API uses an asynchronous callback to return the result. A third-party application can only check the idle state of itself. A system application can check the idle state of other applications only when it is granted with the ohos.permission.BUNDLE_ACTIVE_INFO permission.
+Checks whether the application specified by **bundleName** is in the idle state. A third-party application can only check the idle state of itself. A system application can check the idle state of other applications only when it is granted with the ohos.permission.BUNDLE_ACTIVE_INFO permission. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
@@ -48,7 +48,7 @@ bundleState.isIdleState("com.ohos.camera", (err: BusinessError, res: boolean) =>
 
 isIdleState(bundleName: string): Promise&lt;boolean&gt;
 
-Checks whether the application specified by **bundleName** is in the idle state.  This API uses a promise to return the result. A third-party application can only check the idle state of itself. A system application can check the idle state of other applications only when it is granted with the ohos.permission.BUNDLE_ACTIVE_INFO permission. 
+Checks whether the application specified by **bundleName** is in the idle state. A third-party application can only check the idle state of itself. A system application can check the idle state of other applications only when it is granted with the ohos.permission.BUNDLE_ACTIVE_INFO permission. This API uses a promise to return the result. 
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 

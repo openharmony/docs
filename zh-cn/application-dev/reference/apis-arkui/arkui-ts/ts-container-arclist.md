@@ -30,8 +30,6 @@ import { ArcList, ArcListAttribute } from '@kit.ArkUI';
 > - [if/else](../../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../../quick-start/arkts-rendering-control-foreach.md)和[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)发生变化以后，会更新子节点索引值。  
 >
 > - ArcList子组件[visibility](ts-universal-attributes-visibility.md#visibility)属性设置为Hidden或None依然会计算索引值。  
->
-> - ArcList子组件的[visibility](ts-universal-attributes-visibility.md#visibility)属性设置为None时不显示，但该子组件上下的space还会生效。  
 
 
 ## 接口
@@ -84,7 +82,7 @@ space(space: Optional\<LengthMetrics>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                               |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------- |
-| space  | [Optional&lt;LengthMetrics&gt;](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 列表子项之间的间距。<br/>默认值：0 |
+| space  | [Optional&lt;LengthMetrics&gt;](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 列表子项之间的间距。<br/>默认值：0<br/>ArcList子组件的[visibility](ts-universal-attributes-visibility.md#visibility)属性设置为None时不显示，但该子组件上下的space还会生效。 |
 
 ### scrollBar
 
@@ -106,9 +104,9 @@ scrollBar(status: Optional\<BarState>)
 
 cachedCount(count: Optional\<number>)
 
-设置列表中ArcListItem的预加载数量，只在[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)中生效。
+设置列表中ArcListItem的预加载数量，懒加载场景只会预加载ArcList显示区域外cachedCount的内容，非懒加载场景会全部加载。懒加载、非懒加载都只布局ArcList显示区域+ArcList显示区域外cachedCount的内容。
 
-在ArcList显示的ArcListItem前后各缓存cachedCount个ArcListItem。
+ArcList设置cachedCount后，显示区域外上下各会预加载并布局cachedCount行ArcListItem。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -118,7 +116,7 @@ cachedCount(count: Optional\<number>)
 
 | 参数名 | 类型              | 必填 | 说明                                       |
 | ------ | ----------------- | ---- | ------------------------------------------ |
-| count  | Optional\<number> | 是   | ArcListItem的预加载数量。<br/>默认值：1 |
+| count  | Optional\<number> | 是   | ArcListItem的预加载数量。<br/>默认值：根据屏幕内显示的节点个数设置，最大值为16。<br/>取值范围：[0, +∞) |
 
 ### chainAnimation
 
@@ -186,7 +184,7 @@ friction(friction: Optional\<number>)
 
 | 参数名   | 类型              | 必填 | 说明                         |
 | -------- | ----------------- | ---- | ---------------------------- |
-| friction | Optional\<number> | 是   | 摩擦系数。<br/>默认值：0.8 |
+| friction | Optional\<number> | 是   | 摩擦系数。<br/>默认值：0.8<br/>取值范围：(0, +∞) |
 
 ### scrollBarWidth
 
@@ -234,7 +232,7 @@ flingSpeedLimit(speed: Optional\<number>)
 
 | 参数名 | 类型              | 必填 | 说明                            |
 | ------ | ----------------- | ---- | ------------------------------- |
-| speed  | Optional\<number> | 是   | 惯性滚动动效开始时的最大初始速度。<br/>默认值：9000<br/>单位：vp/s |
+| speed  | Optional\<number> | 是   | 惯性滚动动效开始时的最大初始速度。<br/>默认值：9000<br/>单位：vp/s<br />取值范围：(0, +∞) |
 
 ### childrenMainSize
 
@@ -378,7 +376,7 @@ onDidScroll(handler: Optional\<OnScrollCallback>)
 | 名称       | 类型                                    | 必填 | 说明                                                     |
 | ------------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | initialIndex | number                                      | 否   | 设置当前ArcList初次加载时视口起始位置显示的item的索引值。<br/>默认值：0<br/>**说明：** <br/>设置为负数或超过了当前ArcList最后一个item的索引值时视为无效取值，无效取值按默认值显示。 |
-| scroller     | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器。用于与可滚动组件进行绑定。<br/>**说明：** <br/>不允许和其他滚动类组件绑定同一个滚动控制对象。 |
+| scroller     | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器。用于与可滚动组件进行绑定。<br/>**说明：** <br/>不允许和其他滚动类组件，如：[ArcList](ts-container-arclist.md)、[List](ts-container-list.md)、[Grid](ts-container-grid.md)、[Scroll](ts-container-scroll.md)和[WaterFlow](ts-container-waterflow.md)绑定同一个滚动控制对象。 |
 | header       | [ComponentContent](../js-apis-arkui-ComponentContent.md)                            | 否   | 支持标题设置。                                               |
 
 ## ArcScrollIndexHandler

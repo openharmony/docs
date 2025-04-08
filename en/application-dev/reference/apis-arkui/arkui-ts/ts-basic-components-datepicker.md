@@ -401,7 +401,7 @@ struct DatePickerExample {
 }
 ```
 
-
+![datePicker](figures/DatePickerDemo2.png)
 
 ### Example 3: Displaying Year and Month, or Month and Day Columns
 
@@ -451,4 +451,4 @@ struct DatePickerExample {
   }
 }
 ```
-
+![datePicker](figures/DatePickerDemo3.gif)

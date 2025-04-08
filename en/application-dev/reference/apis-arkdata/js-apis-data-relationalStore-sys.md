@@ -278,7 +278,7 @@ Deletes data from the RDB store based on the specified **DataSharePredicates** o
 
 | Name    | Type                                                        | Mandatory| Description                                         |
 | ---------- | ------------------------------------------------------------ | ---- | --------------------------------------------- |
-| table      | string                                                       | Yes  | Name of the target table.                             |
+| table      | string                                                       | Yes  | Name of the target table, which cannot be an empty string.             |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Conditions specified by the **DataSharePredicates** object for deleting data.|
 | callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback used to return the number of rows deleted.     |
 
@@ -594,7 +594,7 @@ Manually performs device-cloud sync based on specified conditions. This API uses
 >
 > Since API version 18, you can specify assets in predicates when performing manual device-cloud sync. In this case, the sync mode must be **relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST**.
 >
-> When specifying the predicates, you can use the primary key (mandatory) and asset (optional) as sync conditions. If assets are specified, the predicate supports only [equalTo](js-apis-data-relationalStore.md#equalto), with a limit 50 assets. If more assets are involved, you are advised to use only the primary key as the sync condition.
+> When specifying the predicates, you can use the primary key (mandatory) and asset (optional) as sync conditions. If assets are specified, the predicate supports only [equalTo](js-apis-data-relationalStore.md#equalto), with a limit of 50 assets. If more assets are involved, you are advised to use only the primary key as the sync condition.
 
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -651,7 +651,7 @@ let asset : relationalStore.Asset = {
   modifyTime: new Date().getTime().toString(),
   size: "1024"
 }
-// Specify the primary key and asset (asset column in the database ) in the predicates.
+// Specify the primary key and asset (asset column in the database) in the predicates.
 predicates.beginWrap().equalTo("id", "id1").and().equalTo("asset", asset).endWrap();
 
 if(store != undefined) {
@@ -677,7 +677,7 @@ Manually performs device-cloud sync based on specified conditions. This API uses
 >
 > Since API version 18, you can specify assets in predicates when performing manual device-cloud sync. In this case, the sync mode must be **relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST**.
 >
-> When specifying the predicates, you can use the primary key (mandatory) and asset (optional) as sync conditions. If assets are specified, the predicate supports only [equalTo](js-apis-data-relationalStore.md#equalto), with a limit 50 assets. If more assets are involved, you are advised to use only the primary key as the sync condition.
+> When specifying the predicates, you can use the primary key (mandatory) and asset (optional) as sync conditions. If assets are specified, the predicate supports only [equalTo](js-apis-data-relationalStore.md#equalto), with a limit of 50 assets. If more assets are involved, you are advised to use only the primary key as the sync condition.
 
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -739,7 +739,7 @@ let asset : relationalStore.Asset = {
   modifyTime: new Date().getTime().toString(),
   size: "1024"
 }
-// Specify the primary key and asset (asset column in the database ) in the predicates.
+// Specify the primary key and asset (asset column in the database) in the predicates.
 predicates.beginWrap().equalTo("id", "id1").and().equalTo("asset", asset).endWrap();
 
 if(store != undefined) {

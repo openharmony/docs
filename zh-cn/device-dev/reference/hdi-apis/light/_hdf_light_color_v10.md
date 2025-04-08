@@ -16,7 +16,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| union [ColorValue](union_color_value_v10.md) [colorValue](#colorvalue) | 设置灯的模式, 详见[ColorValue](union_color_value_v10.md)。  | 
+| union [ColorValue](union_color_value_v10.md) [colorValue](#colorvalue) | 设置灯的模式，详见[ColorValue](union_color_value_v10.md)。  | 
 
 ## 类成员变量说明
 
@@ -27,4 +27,4 @@ union ColorValue HdfLightColor::colorValue
 ```
 **描述**
 
-设置灯的模式, 详见[ColorValue](union_color_value_v10.md)。
+设置灯的模式，详见[ColorValue](union_color_value_v10.md)。

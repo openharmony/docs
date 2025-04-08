@@ -20,9 +20,9 @@ Some system applications need to run for an extended period of time to provide b
 
 ## Available APIs
 
-The table below lists the main APIs used for efficient resources. For details about more APIs and their usage, see [Background Task Management](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager-sys.md).
-
 **Table 1** Main APIs for efficiency resources
+
+The table below lists the main APIs used for efficient resources. For details about more APIs and their usage, see [Background Task Management](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager-sys.md).
 
 | API| Description|
 | -------- | -------- |

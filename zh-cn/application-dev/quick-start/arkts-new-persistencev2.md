@@ -193,6 +193,8 @@ static notifyOnError(callback: PersistenceErrorCallback | undefined): void;
 
 9、connect和globalConnect不建议混用，如果混用，key不能一样，否则应用crash。
 
+10、不支持存储基本类型，如string、number、boolean等。
+
 ## 使用场景
 
 ### 在两个页面之间存储数据
