@@ -31,14 +31,15 @@ SPP是Serial Port Profile（串口协议）的缩写，是一种蓝牙协议，�
 ### 服务端向客户端写入数据
 1. import需要的socket模块。
 2. 需要SystemCapability.Communication.Bluetooth.Core系统能力。
-3. 开启设备蓝牙。
-4. 创建服务端socket，返回serverId。
-5. 服务端等待客户端连接，返回clientId。
-6. 服务端向客户端写入数据。
-7. （可选）服务端订阅客户端写入的数据。
-8. 注销服务端socket。
-9. 注销客户端socket。
-10. 示例代码：
+3. 需要申请权限ohos.permission.ACCESS_BLUETOOTH。
+4. 开启设备蓝牙。
+5. 创建服务端socket，返回serverId。
+6. 服务端等待客户端连接，返回clientId。
+7. 服务端向客户端写入数据。
+8. （可选）服务端订阅客户端写入的数据。
+9. 注销服务端socket。
+10. 注销客户端socket。
+11. 示例代码：
 
     ```ts
     import { socket } from '@kit.ConnectivityKit';
