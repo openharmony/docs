@@ -67,6 +67,8 @@ Button()
 
 ## ButtonOptions对象说明
 
+按钮的样式。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                      | 类型                                          | 必填 | 说明                                                       |
@@ -299,6 +301,8 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 
 ## ButtonType枚举说明
 
+按钮的类型。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称      | 说明               |
@@ -317,6 +321,8 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 
 ## LabelStyle<sup>10+</sup>对象说明
 
+按钮中文本的显示样式。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -332,6 +338,8 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 
 ## ButtonStyleMode<sup>11+</sup>枚举说明
 
+按钮的重要程度。
+
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -346,6 +354,8 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 
 ## ControlSize<sup>11+</sup>枚举说明
 
+按钮的尺寸。
+
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -358,6 +368,8 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 | NORMAL  | "normal" |正常尺寸按钮。|         |
 
 ## ButtonRole<sup>12+</sup>枚举说明
+
+按钮的角色。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
