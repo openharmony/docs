@@ -28,7 +28,7 @@ import { ComposeListItem } from "@kit.ArkUI"
 
 ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
-列表组件，可自定义左侧，中间元素以及右侧显示内容。
+列表组件，可自定义列表左侧、中间元素以及右侧显示内容。
 
 **装饰器类型：**\@Component
 
