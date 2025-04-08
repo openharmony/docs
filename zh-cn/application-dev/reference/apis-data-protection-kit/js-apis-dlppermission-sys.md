@@ -1820,8 +1820,8 @@ generateDLPFileForEnterprise(plaintextFd: number, dlpFd: number, property: DLPPr
 | -------- | -------- | -------- | -------- |
 | plaintextFd | number | 是 | 明文文件的fd。 |
 | dlpFd | number | 是 | 加密文件的fd。 |
-| property | DLPProperty | 是 | DLP文件通用策略。 |
-| customProperty | CustomProperty | 是 | 企业定制策略。 |
+| property | [DLPProperty](#DLPProperty) | 是 | DLP文件通用策略。 |
+| customProperty | [CustomProperty](#CustomProperty20) | 是 | 企业定制策略。 |
 
 **返回值：**
 
@@ -2062,7 +2062,7 @@ DLP沙箱身份。
 | CLOUD_ACCOUNT | 1 | 表示云账号。 |
 | DOMAIN_ACCOUNT | 2 | 表示域账号。 |
 
-## ActionType
+## ActionType<sup>20+</sup>
 
 表示文件设定的权限时间到期后执行的动作，默认为NOTOPEN。
 
@@ -2090,7 +2090,7 @@ DLP沙箱身份。
 | dlpFileAccess | [DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess) | 否 | 是 | 表示被授予的权限。 |
 | permExpiryTime | number | 否 | 是 | 表示授权到期时间。 |
 
-## CustomProperty
+## CustomProperty<sup>20+</sup>
 
 表示自定义策略。
 
@@ -2120,7 +2120,7 @@ DLP沙箱身份。
 | offlineAccess | boolean | 否 | 是 | 表示是否是离线打开。true表示允许离线打开，false表示不可离线打开。 |
 | everyoneAccessList | Array&lt;[DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess)&gt; | 否 | 否 | 表示授予所有人的权限，默认为空。 |
 | expireTime<sup>11+</sup> | number | 否 | 否 | 表示文件权限到期时间戳，默认为空。 |
-| actionUpomExpiry<sup>20+</sup> | ActionType | 否 | 否 | 表示到期后文件权限。 |
+| actionUpomExpiry<sup>20+</sup> | [ActionType](#ActionType20) | 否 | 否 | 表示到期后文件权限，仅在expireTime不为空时生效。 |
 
 ## GatheringPolicyType
 
