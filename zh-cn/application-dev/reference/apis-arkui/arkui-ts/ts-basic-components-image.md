@@ -978,7 +978,7 @@ struct ImageExample4 {
 
 ![zh-cn_image_0000001607845173](figures/zh-cn_image_view4.gif)
 <!--RP2End-->
-### 示例5（拉伸图片）
+### 示例5（通过slice拉伸图片）
 
 调整不同方向对图片进行拉伸。
 
@@ -1044,7 +1044,51 @@ struct Index {
 
 ![imageResizable](figures/imageResizable.gif)
 
-### 示例6（播放PixelMap数组动画）
+### 示例6（通过lattice拉伸图片）
+
+使用矩形网格对象对图片进行拉伸。
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D'
+
+@Entry
+@Component
+struct drawingLatticeTest {
+  private xDivs: Array<number> = [1, 2, 200]
+  private yDivs: Array<number> = [1, 2, 200]
+  private fXCount: number = 3
+  private fYCount: number = 3
+  private DrawingLatticeFirst: DrawingLattice =
+    drawing.Lattice.createImageLattice(this.xDivs, this.yDivs, this.fXCount, this.fYCount)
+
+  build() {
+    Scroll() {
+      Column({ space: 10 }) {
+        Text('Original Image').fontSize(20).fontWeight(700)
+        Column({ space: 10 }) {
+          Image($r('app.media.mountain'))
+            .width(260).height(260)
+        }.width('100%')
+
+        Text('Resize by lattice').fontSize(20).fontWeight(700)
+        Column({ space: 10 }) {
+          Image($r('app.media.mountain'))
+            .objectRepeat(ImageRepeat.X)
+            .width(260)
+            .height(260)
+            .resizable({
+              lattice: this.DrawingLatticeFirst
+            })
+        }.width('100%')
+      }.width('100%')
+    }
+  }
+}
+```
+
+![imageResizableLattice](figures/imageResizableLattice.png)
+
+### 示例7（播放PixelMap数组动画）
 
 该示例通过[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)播放PixelMap数组动画。
 
@@ -1124,7 +1168,7 @@ struct ImageExample {
 
 ![zh-cn_image_0000001607845173](figures/zh-cn_image_view6.gif)
 
-### 示例7（为图像设置颜色滤镜效果）
+### 示例8（为图像设置颜色滤镜效果）
 
 该示例通过[colorFilter](#colorfilter9)实现了给图像设置颜色滤镜效果。
 
@@ -1175,7 +1219,7 @@ struct ImageExample3 {
 ```
 ![imageSetColorFilter](figures/imageSetColorFilter.gif)
 
-### 示例8（为图像设置填充效果）
+### 示例9（为图像设置填充效果）
 
 该示例通过[objectFit](#objectfit)为图像设置填充效果。
 
@@ -1222,7 +1266,7 @@ struct ImageExample{
 
 ![imageResizable](figures/imageSetFit.gif)
 
-### 示例9（切换显示不同类型图片）
+### 示例10（切换显示不同类型图片）
 
 该示例展示了ResourceStr类型与ImageContent类型作为数据源的显示图片效果。
 
@@ -1251,7 +1295,7 @@ struct ImageContentExample {
 
 ![imageContent](figures/zh-cn_image_view9.gif)
 
-### 示例10（配置隐私隐藏）
+### 示例11（配置隐私隐藏）
 
 该示例通过[privacySensitive](#privacysensitive12)展示了如何配置隐私隐藏，效果展示需要卡片框架支持。
 
@@ -1275,7 +1319,7 @@ struct ImageExample {
 
 ![imageContent](figures/zh-cn_image_view10.gif)
 
-### 示例11（为图片设置扫光效果）
+### 示例12（为图片设置扫光效果）
 
 该示例通过[linearGradient](./ts-basic-components-datapanel.md#lineargradient10)接口和[animateTo()](./ts-explicit-animation.md)实现了给图片设置扫光效果。
 
@@ -1363,7 +1407,7 @@ struct ImageExample11 {
 
 ![imageContent](figures/imageScanEffect.gif)
 
-### 示例12（通过sourceSize设置图片解码尺寸）
+### 示例13（通过sourceSize设置图片解码尺寸）
 
 该示例通过[sourceSize](ts-basic-components-image.md#sourcesize)接口自定义图片的解码尺寸。
 
@@ -1395,7 +1439,7 @@ struct Index {
 
 ![sourceSizeExample](figures/sourceSizeExample.png)
 
-### 示例13（通过renderMode设置图片的渲染模式）
+### 示例14（通过renderMode设置图片的渲染模式）
 
 该示例通过[renderMode](ts-basic-components-image.md#rendermode)接口设置图片渲染模式为黑白模式。
 
@@ -1421,7 +1465,7 @@ struct Index {
 
 ![renderModeExample](figures/renderModeExample.png)
 
-### 示例14（通过objectRepeat设置图片的重复样式）
+### 示例15（通过objectRepeat设置图片的重复样式）
 
 该示例通过[objectRepeat](ts-basic-components-image.md#objectrepeat)接口在竖直轴上重复绘制图片。
 
@@ -1447,7 +1491,7 @@ struct Index {
 
 ![objectRepeatExample](figures/objectRepeatExample.png)
 
-### 示例15（设置SVG图片的填充颜色）
+### 示例16（设置SVG图片的填充颜色）
 
 该示例通过[fillColor](#fillcolor15)为SVG图片设置不同颜色的填充效果。
 
@@ -1493,7 +1537,7 @@ struct Index {
 
 ![fillColorExample](figures/fillColorExample.png)
 
-### 示例16（为图片添加变换效果）
+### 示例17（为图片添加变换效果）
 
 该示例通过[imageMatrix](#imagematrix15)和[objectFit](#objectfit)属性，为图片添加旋转和平移的效果。
 
