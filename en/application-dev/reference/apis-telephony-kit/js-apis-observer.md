@@ -2,9 +2,9 @@
 
 The **observer** module provides event subscription management functions. You can register or unregister an observer that listens for the following events: network status change, signal status change, call status change, cellular data connection status, uplink and downlink data flow status of cellular data services, and SIM status change.
 
->**NOTE**
+> **NOTE**
 >
->The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
@@ -36,19 +36,6 @@ Defines the signal strength.
 |       Type      |            Description            |
 | ---------------- | --------------------------- |
 | [radio.SignalInformation](js-apis-radio.md#signalinformation) | Signal strength.|
-
-
-## CellInformation
-
-type CellInformation = radio.CellInformation
-
-Defines the cell information.
-
-**System capability**: SystemCapability.Telephony.StateRegistry
-
-|       Type      |            Description            |
-| ---------------- | --------------------------- |
-| [radio.CellInformation](js-apis-radio.md#cellinformation8) | Cell information.|
 
 
 ## DataConnectState
@@ -148,7 +135,7 @@ Registers an observer for network status change events. This API uses an asynchr
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -188,7 +175,7 @@ Registers an observer for network status change events of the SIM card in the sp
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -217,9 +204,9 @@ off\(type: \'networkStateChange\', callback?: Callback\<NetworkState\>\): void
 
 Unregisters the observer for network status change events. This API uses an asynchronous callback to return the execution result.
 
->**NOTE**
+> **NOTE**
 >
->You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Telephony.StateRegistry
 
@@ -232,7 +219,7 @@ Unregisters the observer for network status change events. This API uses an asyn
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -271,7 +258,7 @@ Registers an observer for signal status change events. This API uses an asynchro
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                    |
 | -------- | -------------------------------------------- |
@@ -310,7 +297,7 @@ Registers an observer for signal status change events of the SIM card in the spe
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -340,9 +327,9 @@ off\(type: \'signalInfoChange\', callback?: Callback\<Array\<SignalInformation\>
 
 Unregisters the observer for signal status change events. This API uses an asynchronous callback to return the execution result.
 
->**NOTE**
+> **NOTE**
 >
->You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Telephony.StateRegistry
 
@@ -355,7 +342,7 @@ Unregisters the observer for signal status change events. This API uses an async
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -386,9 +373,9 @@ on(type: 'callStateChange', callback: Callback\<CallStateInfo\>): void
 
 Registers an observer for call status change events. This API uses an asynchronous callback to return the execution result.
 
->**NOTE**
+> **NOTE**
 >
->Before using this API, you must declare the **ohos.permission.READ_CALL_LOG** permission (a system permission).
+> Before using this API, you must declare the **ohos.permission.READ_CALL_LOG** permission (a system permission).
 
 **System capability**: SystemCapability.Telephony.StateRegistry
 
@@ -401,7 +388,7 @@ Registers an observer for call status change events. This API uses an asynchrono
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -426,9 +413,9 @@ on(type: 'callStateChange', options: ObserverOptions, callback: Callback\<CallSt
 
 Registers an observer for call status change events. This API uses an asynchronous callback to return the execution result.
 
->**NOTE**
+> **NOTE**
 >
->Before using this API, you must declare the **ohos.permission.READ_CALL_LOG** permission (a system permission).
+> Before using this API, you must declare the **ohos.permission.READ_CALL_LOG** permission (a system permission).
 
 **System capability**: SystemCapability.Telephony.StateRegistry
 
@@ -442,7 +429,7 @@ Registers an observer for call status change events. This API uses an asynchrono
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -470,9 +457,9 @@ off(type: 'callStateChange', callback?: Callback\<CallStateInfo\>): void
 
 Unregisters the observer for call status change events. This API uses an asynchronous callback to return the execution result.
 
->**NOTE**
+> **NOTE**
 >
->You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Telephony.StateRegistry
 
@@ -485,7 +472,7 @@ Unregisters the observer for call status change events. This API uses an asynchr
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -525,7 +512,7 @@ Registers an observer for connection status change events of the cellular data l
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -562,7 +549,7 @@ Registers an observer for connection status change events of the cellular data l
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -590,9 +577,9 @@ off\(type: 'cellularDataConnectionStateChange',  callback?: Callback\<DataConnec
 
 Unregisters the observer for connection status change events of the cellular data link. This API uses an asynchronous callback to return the result.
 
->**NOTE**
+> **NOTE**
 >
->You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Telephony.StateRegistry
 
@@ -605,7 +592,7 @@ Unregisters the observer for connection status change events of the cellular dat
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -645,7 +632,7 @@ Registers an observer for the uplink and downlink data flow status change events
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -684,7 +671,7 @@ Registers an observer for the uplink and downlink data flow status change events
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -714,9 +701,9 @@ off\(type: 'cellularDataFlowChange', callback?: Callback\<DataFlowType\>\): void
 
 Unregisters the observer for the uplink and downlink data flow status change events of the cellular data service. This API uses an asynchronous callback to return the result.
 
->**NOTE**
+> **NOTE**
 >
->You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Telephony.StateRegistry
 
@@ -729,7 +716,7 @@ Unregisters the observer for the uplink and downlink data flow status change eve
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -771,7 +758,7 @@ Registers an observer for SIM card status change events. This API uses an asynch
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -808,7 +795,7 @@ Registers an observer for status change events of the SIM card in the specified 
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -836,9 +823,9 @@ off\(type: 'simStateChange', callback?: Callback\<SimStateData\>\): void
 
 Unregisters the observer for SIM card status change events. This API uses an asynchronous callback to return the result.
 
->**NOTE**
+> **NOTE**
 >
->You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Telephony.StateRegistry
 
@@ -851,7 +838,7 @@ Unregisters the observer for SIM card status change events. This API uses an asy
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -890,7 +877,7 @@ Registers an observer for account information change events of the SIM card. Thi
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -915,9 +902,9 @@ off\(type: 'iccAccountInfoChange', callback?: Callback\<void\>\): void
 
 Unregisters the observer for account information change events of the SIM card. This API uses an asynchronous callback to return the result.
 
->**NOTE**
+> **NOTE**
 >
->You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Telephony.StateRegistry
 
@@ -930,7 +917,7 @@ Unregisters the observer for account information change events of the SIM card. 
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -1021,4 +1008,4 @@ Defines event subscription parameters.
 
 |     Name           |         Type     | Mandatory | Description                                   |
 | ------------------- | ------------------| ---- | --------------------------------------- |
-| slotId              | number            | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2   |
+| slotId              | number            | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2.   |

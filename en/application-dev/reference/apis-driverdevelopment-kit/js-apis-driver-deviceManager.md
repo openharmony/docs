@@ -39,8 +39,7 @@ Queries the list of peripheral devices. If the device has no peripheral device c
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
 | 201      | The permission check failed.             |
-| 401      | The parameter check failed.              |
-| 22900001 | ExternalDeviceManager service exception. |
+| 22900001 | ExternalDeviceManager service exception or busType parameter error. |
 
 **Example**
 

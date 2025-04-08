@@ -38,13 +38,13 @@ Slider(options?: SliderOptions)
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | number | No| Current progress.<br>Default value: same as the value of **min**<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
+| value | number | No| Current progress.<br>Default value: same as the value of **min**<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).<br>This parameter supports two-way binding through [!!](../../../quick-start/arkts-new-binding.md).<br>Value range: [min, max]<br>Values less than the value of **min** are adjusted to the value of **min**, and values greater than the value of **max** are capped at the value of **max**.|
 | min | number | No| Minimum value.<br>Default value: **0**|
 | max | number | No| Maximum value.<br>Default value: **100**<br>**NOTE**<br>If the value of **min** is greater than or equal to the value of **max**, the **min** value defaults to **0**, and the **max** value defaults to **100**.<br>If the value is not within the [min, max] range, the value of **min** or **max** is used, whichever is closer.|
 | step | number | No| Step of the slider.<br>Default value: **1**<br>Value range: [0.01, max - min]<br>**NOTE**<br>If this parameter is set to a value less than 0 or greater than the value of **max**, the default value is used.|
 | style | [SliderStyle](#sliderstyle) | No| Style of the slider thumb and track.<br>Default value: **SliderStyle.OutSet**|
 | direction<sup>8+</sup> | [Axis](ts-appendix-enums.md#axis) | No| Whether the slider moves horizontally or vertically.<br>Default value: **Axis.Horizontal**|
-| reverse<sup>8+</sup> | boolean | No| Whether the slider values are reversed. By default, the values increase from left to right for a horizontal slider and from top to bottom for a vertical slider.<br>Default value: **false**|
+| reverse<sup>8+</sup> | boolean | No| Whether the slider values are reversed.<br>Default value: **false**<br>**true**: Horizontal sliders slide from right to left, while vertical sliders slide from bottom to top. **false**: Horizontal sliders slide from left to right, while vertical sliders slide from top to bottom.|
 
 ## SliderStyle
 
@@ -58,7 +58,7 @@ Slider(options?: SliderOptions)
 
 ## Attributes
 
-All the [universal attributes](ts-universal-attributes-size.md) except **responseRegion** are supported 
+All the [universal attributes](ts-component-general-attributes.md) except **responseRegion** are supported.
 
 ### blockColor
 
@@ -106,11 +106,9 @@ Since API version 12, **LinearGradient** can be used to create a gradient effect
 
 ### selectedColor
 
-selectedColor(value: ResourceColor | LinearGradient)
+selectedColor(value: ResourceColor)
 
 Sets the color of the portion of the track between the minimum value and the thumb, representing the selected portion.
-
-Since API version 16, **LinearGradient** can be used to create a gradient effect for the selected portion.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -120,9 +118,29 @@ Since API version 16, **LinearGradient** can be used to create a gradient effect
 
 **Parameters**
 
-| Name| Type                                                        | Mandatory| Description                                                        |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient<sup>16+</sup>](ts-basic-components-datapanel.md#lineargradient10) | Yes  | Color of the portion of the track between the minimum value and the thumb.<br>**NOTE**<br>With gradient color settings, if the color stop values are invalid or if the color stops are empty, the gradient effect will not be applied.<br>Default value: **$r('sys.color.ohos_id_color_emphasize')**|
+| Name| Type                                      | Mandatory| Description                                                        |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Color of the portion of the track between the minimum value and the thumb.<br>**NOTE**<br>With gradient color settings, if the color stop values are invalid or if the color stops are empty, the gradient effect will not be applied.<br>Default value: **$r('sys.color.ohos_id_color_emphasize')**|
+
+### selectedColor<sup>18+</sup>
+
+selectedColor(selectedColor: ResourceColor | LinearGradient)
+
+Sets the color of the portion of the track between the minimum value and the thumb, representing the selected portion. Compared to [selectedColor](#selectedcolor), this API supports the **LinearGradient** type.
+
+Since API version 16, **LinearGradient** can be used to create a gradient effect for the selected portion.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 18.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name       | Type                                                        | Mandatory| Description                                                        |
+| ------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| selectedColor | [ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient<sup>18+</sup>](ts-basic-components-datapanel.md#lineargradient10) | Yes  | Color of the portion of the track between the minimum value and the thumb.<br>**NOTE**<br>With gradient color settings, if the color stop values are invalid or if the color stops are empty, the gradient effect will not be applied.<br>Default value: **$r('sys.color.ohos_id_color_emphasize')**|
 
 ### showSteps
 
@@ -140,7 +158,7 @@ Sets whether to display the current step.
 
 | Name| Type   | Mandatory| Description                                      |
 | ------ | ------- | ---- | ------------------------------------------ |
-| value  | boolean | Yes  | Whether to display the current step.<br>Default value: **false**|
+| value  | boolean | Yes  | Whether to display the current step. <br>**true**: Display the current step.<br>**false**: Do not display the current step.<br>Default value: **false**|
 
 ### showTips
 
@@ -231,7 +249,7 @@ When **SliderBlockType.SHAPE** is used, **blockBorderWidth** sets the border wid
 
 | Name| Type                        | Mandatory| Description          |
 | ------ | ---------------------------- | ---- | -------------- |
-| value  | [Length](ts-types.md#length) | Yes  | Border width of the slider in the block direction.|
+| value  | [Length](ts-types.md#length) | Yes  | Border width of the slider in the block direction.<br>**NOTE**<br>For the string type, percentage values are not supported.|
 
 ### stepColor<sup>10+</sup>
 
@@ -263,7 +281,7 @@ Sets the radius of the rounded corner of the track.
 
 | Name| Type                        | Mandatory| Description                            |
 | ------ | ---------------------------- | ---- | -------------------------------- |
-| value  | [Length](ts-types.md#length) | Yes  | Radius of the rounded corner of the track.<br>Default value:<br>**'2vp'** when **style** is **SliderStyle.OutSet**<br>**'10vp'** when **style** is **SliderStyle.InSet**|
+| value  | [Length](ts-types.md#length) | Yes  | Radius of the rounded corner of the track.<br>Default value:<br>**'2vp'** when **style** is **SliderStyle.OutSet**<br>**'10vp'** when **style** is **SliderStyle.InSet**<br>**NOTE**<br>For the string type, percentage values are not supported. If the value is less than 0, the default value is used.|
 
 ### selectedBorderRadius<sup>12+</sup>
 
@@ -279,7 +297,7 @@ Set the corner radius of the selected (highlighted) part of the slider.
 
 | Name| Type                        | Mandatory| Description                            |
 | ------ | ---------------------------- | ---- | -------------------------------- |
-| value  | [Dimension](ts-types.md#dimension10)| Yes  | Corner radius of the selected part of the slider.<br>Default value:<br>- For **SliderStyle.InSet** or **SliderStyle.OutSet**: same as the corner radius of the background<br>- **SliderStyle.NONE**: **0**|
+| value  | [Dimension](ts-types.md#dimension10)| Yes  | Corner radius of the selected part of the slider.<br>Default value:<br>- For **SliderStyle.InSet** or **SliderStyle.OutSet**: same as the corner radius of the background<br>- **SliderStyle.NONE**: **0**<br>**NOTE**<br>Percentage values are not supported. If the value is less than 0, the default value is used.|
 
 ### blockSize<sup>10+</sup>
 
@@ -301,7 +319,7 @@ When the slider type is set to **SliderBlockType.SHAPE**, this API sets the size
 
 | Name| Type                                  | Mandatory| Description                                                        |
 | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [SizeOptions](ts-types.md#sizeoptions) | Yes  | Size of the slider in the block direction.<br>Default value:<br>For [SliderStyle](#sliderstyle).OutSet: **{width: 16, height: 16}**<br/>- For [SliderStyle](#sliderstyle).InSet: **{width: 12, height: 12}**<br/>- For [SliderStyle](#sliderstyle).NONE: This parameter is not effective.<br>If the set **blockSize** has different width and height values, the smaller value is taken. If one or both of the width and height values are less than or equal to 0, the default value is used instead.|
+| value  | [SizeOptions](ts-types.md#sizeoptions) | Yes  | Size of the slider in the block direction.<br>Default value:<br>For [SliderStyle](#sliderstyle).OutSet: **{width: 18, height: 18}**<br/>- For [SliderStyle](#sliderstyle).InSet: **{width: 12, height: 12}**<br/>- For [SliderStyle](#sliderstyle).NONE: This parameter is not effective.<br>If the set **blockSize** has different width and height values, the smaller value is taken. If one or both of the width and height values are less than or equal to 0, the default value is used instead.|
 
 ### blockStyle<sup>10+</sup>
 
@@ -333,7 +351,7 @@ Sets the step size (diameter). If the value is 0, the step size is not displayed
 
 | Name| Type                        | Mandatory| Description                                 |
 | ------ | ---------------------------- | ---- | ------------------------------------- |
-| value  | [Length](ts-types.md#length) | Yes  | Step size (diameter).<br>Default value: **'4vp'**<br>Value range: [0, trackThickness)|
+| value  | [Length](ts-types.md#length) | Yes  | Step size (diameter).<br>Default value: **'4vp'**<br>Value range: [0, [trackThickness](#trackthickness8))|
 
 ### minLabel<sup>(deprecated)</sup>
 
@@ -403,7 +421,7 @@ Sets the minimum distance required for the slider to respond.
 
 | Name| Type   | Mandatory| Description                                      |
 | ------ | ------- | ---- | ------------------------------------------ |
-| value  | number | Yes  | Minimum distance required for the slider to respond. The slider will only respond and move when the sliding distance exceeds this threshold.<br>**NOTE**<br>The unit is the same as that of **min** and **max**.<br>If the value is less than 0, greater than the result of (max - min), or invalid, the default value is used.<br>Default value: **0**|
+| value  | number | Yes  | Minimum distance required for the slider to respond. The slider will only respond and move when the sliding distance exceeds this threshold.<br>**NOTE**<br>The unit is the same as that of [min](#slideroptions) and [max](#slideroptions).<br>If the value is less than 0, greater than the result of (max - min), or invalid, the default value is used.<br>Default value: **0** |
 
 ### contentModifier<sup>12+</sup>
 
@@ -442,7 +460,7 @@ Sets the slide range.
 | ------ | ----------------------------------- | ---- | ---------------- |
 | value  | [SlideRange](#sliderange12) | Yes  | Slide range.|
 
-### enableHapticFeedback<sup>16+</sup>
+### enableHapticFeedback<sup>18+</sup>
 
 enableHapticFeedback(enabled: boolean)
 
@@ -458,7 +476,7 @@ To enable haptic feedback, you must declare the ohos.permission.VIBRATE permissi
  ]
 ```
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -466,13 +484,13 @@ To enable haptic feedback, you must declare the ohos.permission.VIBRATE permissi
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
 | enabled  | boolean | Yes  | Whether to enable haptic feedback.<br>**true** (default): Haptic feedback is enabled.<br>**false**: Haptic feedback is disabled.|
 
-### digitalCrownSensitivity<sup>16+</sup>
+### digitalCrownSensitivity<sup>18+</sup>
 
 digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 
 Sets the sensitivity to the digital crown rotation.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -480,7 +498,7 @@ Sets the sensitivity to the digital crown rotation.
 
 | Name     | Type                                                        | Mandatory| Description                                                   |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------- |
-| sensitivity | [Optional\<CrownSensitivity>](ts-appendix-enums.md#crownsensitivity16) | Yes  | Sensitivity to the digital crown rotation.<br>Default value: **CrownSensitivity.MEDIUM**|
+| sensitivity | [Optional\<CrownSensitivity>](ts-appendix-enums.md#crownsensitivity18) | Yes  | Sensitivity to the digital crown rotation.<br>Default value: **CrownSensitivity.MEDIUM**|
 
 ## SliderBlockStyle<sup>10+</sup>
 
@@ -547,7 +565,7 @@ Defines the callback type used in **SlideRange**.
 
 ## Events
 
-In addition to the [universal events](ts-universal-events-click.md), the following attributes are supported.
+In addition to the [universal events](ts-component-general-events.md), the following events are supported.
 
 ### onChange
 
@@ -617,7 +635,7 @@ Defines the callback type used in **SliderConfiguration**.
 
 | Name| Type   | Mandatory| Description             |
 | ------ | ------ | ---------------- | ---------------- |
-| value | number | Yes| Current progress.|
+| value | number | Yes| Current progress.<br>Value range: [[min](#slideroptions), [max](#slideroptions)]|
 | mode | [SliderChangeMode](#sliderchangemode)| Yes| State triggered by the event.|
 
 ## Example
@@ -914,7 +932,7 @@ This example demonstrates how to customize the **Slider** component using a styl
         .fontSize(10)
       Text('Max: ' + config.max)
         .fontSize(10)
-      Text ('Step: ' + config.step)
+      Text('Step: ' + config.step)
         .fontSize(10)
     }
     .width('80%')

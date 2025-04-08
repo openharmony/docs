@@ -194,11 +194,10 @@ Create a built-in component tree using the **build** API of a **BuilderNode** ob
 
 Custom component updates follow the update mechanisms of [state management](../quick-start/arkts-state-management-overview.md). For custom components used directly in a **WrappedBuilder** object, their parent component is the **BuilderNode** object. Therefore, to update child components defined in the **WrappedBuilder** objects, you need to define the relevant state variables with the [\@Prop](../quick-start/arkts-prop.md) or [\@ObjectLink](../quick-start/arkts-observed-and-objectlink.md) decorator, in accordance with the specifications of state management and the needs of your application development.
 
-To update nodes within a BuilderNode:
 
-- Use the **update** API to update individual nodes within the BuilderNode.
+To update nodes within a BuilderNode:<br>Use the **update** API to update individual nodes within the BuilderNode.
 
-- Use the [updateConfiguration](../reference/apis-arkui/js-apis-arkui-builderNode.md#updateconfiguration12) API to trigger a full update of all nodes within the BuilderNode.
+Use the [updateConfiguration](../reference/apis-arkui/js-apis-arkui-builderNode.md#updateconfiguration12) API to trigger a full update of all nodes within the BuilderNode.
 
  
 
@@ -301,6 +300,8 @@ A **BuilderNode** object is mapped to a backend entity node, and its memory rele
 > **NOTE**
 >
 > Calling **dispose** on a **BuilderNode** object breaks its reference to the backend entity node, and also simultaneously severs the references of its contained FrameNode and RenderNode to their respective entity nodes.
+>
+> If the frontend object BuilderNode cannot be released, memory leaks may occur. To avoid this, be sure to call **dispose** on the BuilderNode when you no longer need it. This reduces the complexity of reference relationships and lowers the risk of memory leaks.
 
 ## Injecting a Touch Event
 
@@ -382,10 +383,16 @@ struct MyComponent {
 
 ## Reusing a BuilderNode
 
-To reuse a BuilderNode, pass the [reuse](../reference/apis-arkui/js-apis-arkui-builderNode.md#reuse12) and [recycle](../reference/apis-arkui/js-apis-arkui-builderNode.md#recycle12) events to the custom components within the BuilderNode.
+To implement component reuse within a BuilderNode, you need to call the [reuse](../reference/apis-arkui/js-apis-arkui-builderNode.md#reuse12) and [recycle](../reference/apis-arkui/js-apis-arkui-builderNode.md#recycle12) APIs. These APIs pass reuse and recycle events to custom components inside the BuilderNode.
+
+For example, in the following demo, the custom component **ReusableChildComponent** can pass reuse and recycle events to its nested custom component **ReusableChildComponent3**. However, these events cannot automatically reach another custom component, **ReusableChildComponent2**, if it is separated by a BuilderNode. To enable reuse for **ReusableChildComponent2**, you must explicitly call the **reuse** and **recycle** APIs on the BuilderNode to forward these events to **ReusableChildComponent2**.
+![en-us_image_reuse-recycle](figures/reuse-recycle.png)
+
 
 ```ts
-import { FrameNode,NodeController,BuilderNode,UIContext } from "@kit.ArkUI";
+import { FrameNode, NodeController, BuilderNode, UIContext } from "@kit.ArkUI";
+
+const TEST_TAG: string = "Reuse+Recycle";
 
 class MyDataSource {
   private dataArray: string[] = [];
@@ -426,7 +433,10 @@ class Params {
 
 @Builder
 function buildNode(param: Params = new Params("hello")) {
-  ReusableChildComponent2({ item: param.item });
+  Row() {
+    Text(`C${param.item} -- `)
+    ReusableChildComponent2({ item: param.item }) // This custom component cannot be correctly reused in the BuilderNode.
+  }
 }
 
 class MyNodeController extends NodeController {
@@ -442,10 +452,12 @@ class MyNodeController extends NodeController {
   }
 }
 
+// The custom component that is reused and recycled will have its state variables updated, and the state variables of the nested custom component ReusableChildComponent3 will also be updated. However, the BuilderNode will block this propagation process.
 @Reusable
 @Component
 struct ReusableChildComponent {
-  @State item: string = '';
+  @Prop item: string = '';
+  @Prop switch: string = '';
   private controller: MyNodeController = new MyNodeController();
 
   aboutToAppear() {
@@ -453,17 +465,29 @@ struct ReusableChildComponent {
   }
 
   aboutToRecycle(): void {
-    console.log("ReusableChildComponent aboutToRecycle " + this.item);
-    this.controller?.builderNode?.recycle();
+    console.log(`${TEST_TAG} ReusableChildComponent aboutToRecycle ${this.item}`);
+
+    // When the switch is open, pass the recycle event to the nested custom component, such as ReusableChildComponent2, through the BuilderNode's recycle API to complete recycling.
+    if (this.switch === 'open') {
+      this.controller?.builderNode?.recycle();
+    }
   }
 
   aboutToReuse(params: object): void {
-    console.log("ReusableChildComponent aboutToReuse " + JSON.stringify(params));
-    this.controller?.builderNode?.reuse(params);
+    console.log(`${TEST_TAG} ReusableChildComponent aboutToReuse ${JSON.stringify(params)}`);
+
+    // When the switch is open, pass the reuse event to the nested custom component, such as ReusableChildComponent2, through the BuilderNode's reuse API to complete reuse.
+    if (this.switch === 'open') {
+      this.controller?.builderNode?.reuse(params);
+    }
   }
 
   build() {
-    NodeContainer(this.controller);
+    Row() {
+      Text(`A${this.item}--`)
+      ReusableChildComponent3({ item: this.item })
+      NodeContainer(this.controller);
+    }
   }
 }
 
@@ -472,16 +496,38 @@ struct ReusableChildComponent2 {
   @Prop item: string = "false";
 
   aboutToReuse(params: Record<string, object>) {
-    console.log("ReusableChildComponent2 Reusable 2 " + JSON.stringify(params));
+    console.log(`${TEST_TAG} ReusableChildComponent2 aboutToReuse ${JSON.stringify(params)}`);
   }
 
   aboutToRecycle(): void {
-    console.log("ReusableChildComponent2 aboutToRecycle 2 " + this.item);
+    console.log(`${TEST_TAG} ReusableChildComponent2 aboutToRecycle ${this.item}`);
   }
 
   build() {
     Row() {
-      Text(this.item)
+      Text(`D${this.item}`)
+        .fontSize(20)
+        .backgroundColor(Color.Yellow)
+        .margin({ left: 10 })
+    }.margin({ left: 10, right: 10 })
+  }
+}
+
+@Component
+struct ReusableChildComponent3 {
+  @Prop item: string = "false";
+
+  aboutToReuse(params: Record<string, object>) {
+    console.log(`${TEST_TAG} ReusableChildComponent3 aboutToReuse ${JSON.stringify(params)}`);
+  }
+
+  aboutToRecycle(): void {
+    console.log(`${TEST_TAG} ReusableChildComponent3 aboutToRecycle ${this.item}`);
+  }
+
+  build() {
+    Row() {
+      Text(`B${this.item}`)
         .fontSize(20)
         .backgroundColor(Color.Yellow)
         .margin({ left: 10 })
@@ -496,7 +542,7 @@ struct Index {
   @State data: MyDataSource = new MyDataSource();
 
   aboutToAppear() {
-    for (let i = 0;i < 100; i++) {
+    for (let i = 0; i < 100; i++) {
       this.data.pushData(i.toString());
     }
   }
@@ -506,7 +552,10 @@ struct Index {
       List({ space: 3 }) {
         LazyForEach(this.data, (item: string) => {
           ListItem() {
-            ReusableChildComponent({ item: item })
+            ReusableChildComponent({
+              item: item,
+              switch: 'open' // Changing open to close can be used to observe the behavior of custom components inside the BuilderNode when reuse and recycle events are not passed through the BuilderNode's reuse and recycle APIs.
+            })
           }
         }, (item: string) => item)
       }
@@ -516,6 +565,7 @@ struct Index {
   }
 }
 ```
+
 
 ## Updating Nodes Based on System Environment Changes
 
@@ -866,6 +916,87 @@ struct Index {
       .padding(16)
     }
     .height('100%')
+  }
+}
+```
+
+
+## Using the LocalStorage in the BuilderNode
+
+Since API version 12, custom components can receive [LocalStorage](../quick-start/arkts-localstorage.md) instances. You can use LocalStorage related decorators such as [@LocalStorageProp](../quick-start/arkts-localstorage.md#localstorageprop) and [@LocalStorageLink](../quick-start/arkts-localstorage.md#localstoragelink) by [passing LocalStorage instances](../quick-start/arkts-localstorage.md#example-of-providing-a-custom-component-with-access-to-a-localstorage-instance).
+
+```ts
+import { BuilderNode, NodeController, UIContext } from '@kit.ArkUI';
+
+let localStorage1: LocalStorage = new LocalStorage();
+localStorage1.setOrCreate('PropA', 'PropA');
+
+let localStorage2: LocalStorage = new LocalStorage();
+localStorage2.setOrCreate('PropB', 'PropB');
+
+@Entry(localStorage1)
+@Component
+struct Index {
+  // PropA is in two-way synchronization with PropA in localStorage1.
+  @LocalStorageLink('PropA') PropA: string = 'Hello World';
+  @State count: number = 0;
+  private controller: NodeController = new MyNodeController(this.count, localStorage2);
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.PropA)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        // Use the LocalStorage instance localStorage2.
+        Child({ count: this.count }, localStorage2)
+        NodeContainer(this.controller)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
+interface Params {
+  count: number;
+  localStorage: LocalStorage;
+}
+
+@Builder
+function CreateChild(params: Params) {
+  // Pass localStorage during construction.
+  Child({ count: params.count }, params.localStorage)
+}
+
+class MyNodeController extends NodeController {
+  private count?: number;
+  private localStorage ?: LocalStorage;
+
+  constructor(count: number, localStorage: LocalStorage) {
+    super();
+    this.count = count;
+    this.localStorage = localStorage;
+  }
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let builderNode = new BuilderNode<[Params]>(uiContext);
+    // Pass localStorage during construction.
+    builderNode.build(wrapBuilder(CreateChild), { count: this.count, localStorage: this.localStorage });
+    return builderNode.getFrameNode();
+  }
+}
+
+@Component
+struct Child {
+  @Prop count: number;
+  // 'Hello World' is in two-way synchronization with PropB in localStorage2. If there is no PropB in localStorage2, the default value 'Hello World' is used.
+  @LocalStorageLink('PropB') PropB: string = 'Hello World';
+
+  build() {
+    Text(this.PropB)
+      .fontSize(50)
+      .fontWeight(FontWeight.Bold)
   }
 }
 ```

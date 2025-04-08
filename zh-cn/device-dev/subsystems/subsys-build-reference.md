@@ -239,12 +239,12 @@ out/rk3568/.ninja_log文件记录了每个模块编译的开始和结束时间(m
    }
    ```
 
-3.编译命令
-```shell
-./build.sh --product-name {product_name} --build-target chip_prod_image
-```
+3. 编译命令：
+  ```shell
+  ./build.sh --product-name {product_name} --build-target chip_prod_image
+  ```
 
-4. 打包结果:<br>
+4. 打包结果：<br>
    如果定义了子产品productA和productB，即`chip_product_list = ["productA", "productB"],`并且有模块安装到了该产品下，则打包后镜像输出路径如下：
    ```
    images/productA/chip_prod.img

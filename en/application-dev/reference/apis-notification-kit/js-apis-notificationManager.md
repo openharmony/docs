@@ -35,7 +35,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                             |
 | -------- | ---------------------------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.    | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.    |
 | 1600001  | Internal error.                                      |
 | 1600002  | Marshalling or unmarshalling error.                  |
 | 1600003  | Failed to connect to the service.                    |
@@ -95,9 +95,9 @@ If the ID and label of the new notification are the same as that of the previous
 
 **Return value**
 
-| Type    | Description| 
+| Type    | Description|
 | ------- |--|
-| Promise\<void\> | Promise that returns no value.| 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
@@ -105,7 +105,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                             |
 | -------- | ---------------------------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.    | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.    |
 | 1600001  | Internal error.                                      |
 | 1600002  | Marshalling or unmarshalling error.                  |
 | 1600003  | Failed to connect to the service.                    |
@@ -166,7 +166,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -205,9 +205,9 @@ Cancels a notification with the specified ID and optional label. This API uses a
 
 **Return value**
 
-| Type    | Description       | 
+| Type    | Description       |
 | ------- |-----------|
-| Promise\<void\> | Promise that returns no value.| 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
@@ -215,7 +215,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -254,7 +254,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -296,7 +296,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -327,9 +327,9 @@ Cancels all notifications of this application. This API uses a promise to return
 
 **Return value**
 
-| Type    | Description       | 
+| Type    | Description       |
 | ------- |-----------|
-| Promise\<void\> | Promise that returns no value.| 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
@@ -337,7 +337,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -375,7 +374,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -413,9 +412,9 @@ Adds a notification slot of a specified type. This API uses a promise to return 
 
 **Return value**
 
-| Type    | Description       | 
+| Type    | Description       |
 | ------- |-----------|
-| Promise\<void\> | Promise that returns no value.| 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
@@ -423,7 +422,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -462,7 +461,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -510,7 +509,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -549,7 +548,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -590,7 +589,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -628,7 +626,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -666,9 +664,9 @@ Removes a notification slot of a specified type for this application. This API u
 
 **Return value**
 
-| Type     | Description       | 
+| Type     | Description       |
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value.| 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
@@ -676,7 +674,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -714,7 +712,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -744,9 +742,9 @@ Removes all notification slots for this application. This API uses a promise to 
 
 **Return value**
 
-| Type     | Description       | 
+| Type     | Description       |
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value.| 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
@@ -754,7 +752,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -834,7 +831,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -904,9 +900,9 @@ This API is not supported on TVs and wearables.
 
 **Return value**
 
-| Type     | Description       | 
+| Type     | Description       |
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value.| 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
@@ -914,7 +910,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
@@ -959,7 +955,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
@@ -1002,7 +998,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1043,7 +1039,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1080,7 +1075,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1120,7 +1115,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1158,7 +1152,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1195,9 +1189,9 @@ Cancels notifications under a notification group of this application. This API u
 
 **Return value**
 
-| Type     | Description       | 
+| Type     | Description       |
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value.| 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
@@ -1205,7 +1199,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1244,7 +1238,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1291,7 +1285,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1333,7 +1327,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1369,9 +1363,9 @@ Requests notification to be enabled for this application. This API uses a promis
 
 **Return value**
 
-| Type     | Description       | 
+| Type     | Description       |
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value.| 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
@@ -1379,7 +1373,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1480,9 +1473,9 @@ This API can be called only after the application UI is loaded (that is, [loadCo
 
 **Return value**
 
-| Type     | Description       | 
+| Type     | Description       |
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value.| 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
@@ -1490,7 +1483,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1544,7 +1537,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1585,7 +1578,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1623,9 +1615,9 @@ This API is not supported on wearables.
 
 **Return value**
 
-| Type     | Description       | 
+| Type     | Description       |
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value.| 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
@@ -1715,3 +1707,207 @@ Enumerates the notification slot types.
 | LIVE_VIEW<sup>11+</sup>            | 4 | Live view. A third-party application cannot directly create a notification of this slot type. After the system proxy creates a system live view, the third-party application releases a notification with the same ID to update the specified content. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_DEFAULT**.|
 | CUSTOMER_SERVICE<sup>11+</sup>     | 5 | Customer service message. This type is used for messages between users and customer service providers. The messages must be initiated by users. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_DEFAULT**. |
 | OTHER_TYPES          | 0xFFFF | Notification slot for other purposes. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_MIN**.|
+
+## BundleOption
+
+type BundleOption = _BundleOption
+
+Describes the **BundleOption** information, that is, the bundle information of a specified application.
+
+**System capability**: SystemCapability.Notification.Notification
+
+| Type| Description|
+| --- | --- |
+| [_BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Bundle information of a specified application.|
+
+## NotificationActionButton
+
+type NotificationActionButton = _NotificationActionButton
+
+Describes the button displayed in the notification.
+
+**System capability**: SystemCapability.Notification.Notification
+
+| Type| Description|
+| --- | --- |
+| [_NotificationActionButton](js-apis-inner-notification-notificationActionButton.md) | Button displayed in the notification.|
+
+## NotificationBasicContent
+
+type NotificationBasicContent = _NotificationBasicContent
+
+Describes the normal text notification.
+
+**System capability**: SystemCapability.Notification.Notification
+
+| Type| Description|
+| --- | --- |
+| [_NotificationBasicContent](js-apis-inner-notification-notificationContent.md#notificationbasiccontent) | Common text notification.|
+
+## NotificationContent
+
+type NotificationContent = _NotificationContent
+
+Describes the notification content.
+
+**System capability**: SystemCapability.Notification.Notification
+
+| Type| Description|
+| --- | --- |
+| [_NotificationContent](js-apis-inner-notification-notificationContent.md#notificationcontent) | Notification content.|
+
+## NotificationLongTextContent
+
+type NotificationLongTextContent = _NotificationLongTextContent
+
+Describes the long text notification.
+
+**System capability**: SystemCapability.Notification.Notification
+
+| Type| Description|
+| --- | --- |
+| [_NotificationLongTextContent](js-apis-inner-notification-notificationContent.md#notificationlongtextcontent) | Long text notification.|
+
+## NotificationMultiLineContent
+
+type NotificationMultiLineContent = _NotificationMultiLineContent
+
+Describes the multi-line text notification.
+
+**System capability**: SystemCapability.Notification.Notification
+
+| Type| Description|
+| --- | --- |
+| [_NotificationMultiLineContent](js-apis-inner-notification-notificationContent.md#notificationmultilinecontent) | Multi-line text notification.|
+
+## NotificationPictureContent
+
+type NotificationPictureContent = _NotificationPictureContent
+
+Describes the picture-attached notification.
+
+**System capability**: SystemCapability.Notification.Notification
+
+| Type| Description|
+| --- | --- |
+| [_NotificationPictureContent](js-apis-inner-notification-notificationContent.md#notificationpicturecontent) | Picture-attached notification.|
+
+## NotificationSystemLiveViewContent<sup>11+</sup>
+
+type NotificationSystemLiveViewContent = _NotificationSystemLiveViewContent
+
+Describes the system live view notification.
+
+**System capability**: SystemCapability.Notification.Notification
+
+| Type| Description|
+| --- | --- |
+| [_NotificationSystemLiveViewContent](js-apis-inner-notification-notificationContent.md#notificationsystemliveviewcontent) | Content of the system live view notification.|
+
+## NotificationRequest
+
+type NotificationRequest = _NotificationRequest
+
+Describes the notification request.
+
+**System capability**: SystemCapability.Notification.Notification
+
+| Type| Description|
+| --- | --- |
+| [_NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | Notification request.|
+
+## DistributedOptions
+
+type DistributedOptions = _DistributedOptions
+
+Describes distributed notification options.
+
+**System capability**: SystemCapability.Notification.Notification
+
+| Type| Description|
+| --- | --- |
+| [_DistributedOptions](js-apis-inner-notification-notificationRequest.md#distributedoptions8) | Distributed notification options.|
+
+## NotificationSlot
+
+type NotificationSlot = _NotificationSlot
+
+Describes the notification slot.
+
+**System capability**: SystemCapability.Notification.Notification
+
+| Type| Description|
+| --- | --- |
+| [_NotificationSlot](js-apis-inner-notification-notificationSlot.md) | Notification slot.|
+
+## NotificationTemplate
+
+type NotificationTemplate = _NotificationTemplate
+
+Describes the notification template.
+
+**System capability**: SystemCapability.Notification.Notification
+
+| Type| Description|
+| --- | --- |
+| [_NotificationTemplate](js-apis-inner-notification-notificationTemplate.md) | Notification template.|
+
+## NotificationUserInput
+
+type NotificationUserInput = _NotificationUserInput
+
+Describes the user input.
+
+**System capability**: SystemCapability.Notification.Notification
+
+| Type| Description|
+| --- | --- |
+| [_NotificationUserInput](js-apis-inner-notification-notificationUserInput.md) | User input.|
+
+## NotificationCapsule<sup>11+</sup>
+
+type NotificationCapsule = _NotificationCapsule
+
+Describes the notification capsule.
+
+**System capability**: SystemCapability.Notification.Notification
+
+| Type| Description|
+| --- | --- |
+| [_NotificationCapsule](js-apis-inner-notification-notificationContent.md#notificationcapsule11) | Notification capsule.|
+
+## NotificationButton<sup>11+</sup>
+
+type NotificationButton = _NotificationButton
+
+Describes the notification button.
+
+**System capability**: SystemCapability.Notification.Notification
+
+| Type| Description|
+| --- | --- |
+| [_NotificationButton](js-apis-inner-notification-notificationContent.md#notificationbutton11) | Notification button.|
+
+## NotificationTime<sup>11+</sup>
+
+type NotificationTime = _NotificationTime
+
+Describes the notification timing information.
+
+**System capability**: SystemCapability.Notification.Notification
+
+| Type| Description|
+| --- | --- |
+| [_NotificationTime](js-apis-inner-notification-notificationContent.md#notificationtime11) | Notification timing information.|
+
+## NotificationProgress<sup>11+</sup>
+
+type NotificationProgress = _NotificationProgress
+
+Describes the notification progress.
+
+**System capability**: SystemCapability.Notification.Notification
+
+| Type| Description|
+| --- | --- |
+| [_NotificationProgress](js-apis-inner-notification-notificationContent.md#notificationprogress11) | Notification progress.|

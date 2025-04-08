@@ -2238,7 +2238,7 @@ let priKeyPkcs1EncodingStr : string =
 
 async function TestConvertPemKeyByPromise() {
   let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
-  let keyGenPromise = asyKeyGenerator.convertPemKey(null, priKeyPkcs1Str1024, "123456");
+  let keyGenPromise = asyKeyGenerator.convertPemKey(null, priKeyPkcs1EncodingStr, "123456");
   keyGenPromise.then(keyPair => {
     console.info('convertPemKey success.');
   }).catch((error: BusinessError) => {

@@ -1902,7 +1902,8 @@ export default class EntryAbility extends UIAbility {
     };
     let options: StartOptions = {
       displayId: 0,
-      processMode: contextConstant.ProcessMode.NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM
+      processMode: contextConstant.ProcessMode.NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM,
+      startupVisibility: contextConstant.StartupVisibility.STARTUP_SHOW
     };
 
     try {
@@ -1999,7 +2000,8 @@ export default class EntryAbility extends UIAbility {
     };
     let options: StartOptions = {
       displayId: 0,
-      processMode: contextConstant.ProcessMode.NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM
+      processMode: contextConstant.ProcessMode.NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM,
+      startupVisibility: contextConstant.StartupVisibility.STARTUP_HIDE
     };
 
     try {
@@ -2836,7 +2838,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.setColorMode<sup>16+</sup>
+## UIAbilityContext.setColorMode<sup>18+</sup>
 
 setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 
@@ -2846,7 +2848,7 @@ Sets the color mode for this UIAbility. Before calling this API, ensure that the
 > - After this API is called, a new resource manager object is created. If a resource manager was previously cached, it should be updated accordingly.
 > - The priority of the color mode is as follows: UIAbility color mode > Application color mode (set via [ApplicationContext.setColorMode](js-apis-inner-application-applicationContext.md)) > System color mode.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

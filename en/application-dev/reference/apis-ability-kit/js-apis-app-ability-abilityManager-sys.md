@@ -868,7 +868,7 @@ export default class UiExtAbility extends UIExtensionAbility {
 }
 ```
 
-## abilityManager.isEmbeddedOpenAllowed<sup>12</sup>
+## abilityManager.isEmbeddedOpenAllowed<sup>12+</sup>
 
 isEmbeddedOpenAllowed(context: Context, appId: string): Promise\<boolean>
 
@@ -980,7 +980,7 @@ try {
 }
 ```
 
-## AtomicServiceStartupRule<sup>16+</sup>
+## AtomicServiceStartupRule<sup>18+</sup>
 
 Describes the rule for launching an embedded atomic service.
 
@@ -993,7 +993,7 @@ Describes the rule for launching an embedded atomic service.
 | isOpenAllowed | boolean   | Yes  | No  | Whether launching the atomic service is allowed.|
 | isEmbeddedAllowed | boolean   | Yes  | No | Whether launching the embedded atomic service is allowed.         |
 
-## abilityManager.queryAtomicServiceStartupRule<sup>16+</sup>
+## abilityManager.queryAtomicServiceStartupRule<sup>18+</sup>
 
 queryAtomicServiceStartupRule(context: Context, appId: string): Promise\<AtomicServiceStartupRule>
 
@@ -1014,7 +1014,7 @@ Obtains the rule for launching an [EmbeddableUIAbility](js-apis-app-ability-embe
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<[AtomicServiceStartupRule](#atomicservicestartuprule16)> | Promise used to return the rule for launching the embedded atomic service.|
+| Promise\<[AtomicServiceStartupRule](#atomicservicestartuprule18)> | Promise used to return the rule for launching the embedded atomic service.|
 
 **Error codes**
 

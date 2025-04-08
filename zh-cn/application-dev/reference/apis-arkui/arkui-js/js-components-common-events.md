@@ -49,7 +49,6 @@
 | timestamp             | number                 | 该事件触发时的时间戳。                   |
 | deviceId<sup>8+</sup> | number                 | 触发该事件的设备ID信息。                 |
 | target<sup>12+</sup>   | [Target](#target对象6) | 触发该事件的目标对象。                   |
-| targetDisplayId<sup>15+</sup>  | number                 | 事件发生的屏幕ID。                         |
 
 **表2** TouchEvent对象属性列表(继承BaseEvent)
 

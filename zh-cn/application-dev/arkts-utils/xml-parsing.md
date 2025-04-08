@@ -11,10 +11,10 @@ XML模块提供XmlPullParser类对XML文件解析，输入为含有XML文本的A
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| supportDoctype | boolean | 否 | 是否忽略文档类型。默认为false，表示不解析文档类型。 |
-| ignoreNameSpace | boolean | 否 | 是否忽略命名空间。默认为false，表示对命名空间进行解析。 |
+| supportDoctype | boolean | 否 | 是否解析文档类型，false表示不解析文档类型，true表示解析文档类型，默认false。 |
+| ignoreNameSpace | boolean | 否 | 是否忽略命名空间，忽略命名空间后，将不会对其进行解析。true表示忽略命名空间，false表示不忽略命名空间，默认false。|
 | tagValueCallbackFunction | (name: string, value: string) =&gt; boolean | 否 | 获取tagValue回调函数，打印标签及标签值。默认为null，表示不进行XML标签和标签值的解析。 |
-| attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | 否 | 获取attributeValue回调函数， 打印属性及属性值。默认为null，表示不进行XML属性和属性值的解析。 |
+| attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | 否 | 获取attributeValue回调函数，打印属性及属性值。默认为null，表示不进行XML属性和属性值的解析。 |
 | tokenValueCallbackFunction | (eventType: EventType, value: ParseInfo) =&gt; boolean | 否 | 获取tokenValue回调函数，打印标签事件类型及parseInfo对应属性。默认为null，表示不进行XML事件类型解析。 |
 
 
@@ -35,7 +35,7 @@ XML模块提供XmlPullParser类对XML文件解析，输入为含有XML文本的A
 
 2. 对XML文件编码后调用XmlPullParser。
 
-   可以基于ArrayBuffer构造XmlPullParser对象， 也可以基于DataView构造XmlPullParser对象（两种构造方式返回结果无区别可任选一种）。
+   可以基于ArrayBuffer构造XmlPullParser对象，也可以基于DataView构造XmlPullParser对象（两种构造方式返回结果无区别可任选一种）。
 
     ```ts
     let strXml: string =

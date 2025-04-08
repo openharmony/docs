@@ -44,6 +44,7 @@ When data is added, deleted, or modified, a notification is sent to the subscrib
 
 - Each RDB store supports a maximum of eight callbacks for subscription of data change notifications.
 
+- A table containing composite keys cannot be set as a distributed table.
 
 ## Available APIs
 

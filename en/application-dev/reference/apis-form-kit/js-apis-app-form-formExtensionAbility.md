@@ -19,7 +19,15 @@ The **FormExtensionAbility** module provides lifecycle callbacks invoked when a 
 import { FormExtensionAbility } from '@kit.FormKit';
 ```
 
-## Attributes
+## FormExtensionAbility
+
+Widget extension class. It provides APIs to notify the widget provider that a widget is being created or the widget visibility status is being changed.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Ability.Form
+
+### Attributes
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -29,7 +37,7 @@ import { FormExtensionAbility } from '@kit.FormKit';
 | ------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | context | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md) | Yes  | No  | Context of the FormExtensionAbility. This context is inherited from [ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
-## onAddForm
+### FormExtensionAbility.onAddForm
 
 onAddForm(want: Want): formBindingData.FormBindingData
 
@@ -73,7 +81,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 }
 ```
 
-## onCastToNormalForm
+### FormExtensionAbility.onCastToNormalForm
 
 onCastToNormalForm(formId: string): void
 
@@ -103,7 +111,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 };
 ```
 
-## onUpdateForm
+### FormExtensionAbility.onUpdateForm
 
 onUpdateForm(formId: string, wantParams?: Record<string, Object>): void
 
@@ -146,7 +154,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 };
 ```
 
-## onChangeFormVisibility
+### FormExtensionAbility.onChangeFormVisibility
 
 onChangeFormVisibility(newStatus: Record\<string, number>): void
 
@@ -199,7 +207,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 };
 ```
 
-## onFormEvent
+### FormExtensionAbility.onFormEvent
 
 onFormEvent(formId: string, message: string): void
 
@@ -230,7 +238,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 };
 ```
 
-## onRemoveForm
+### FormExtensionAbility.onRemoveForm
 
 onRemoveForm(formId: string): void
 
@@ -260,7 +268,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 };
 ```
 
-## onConfigurationUpdate
+### FormExtensionAbility.onConfigurationUpdate
 
 onConfigurationUpdate(newConfig: Configuration): void
 
@@ -294,7 +302,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 };
 ```
 
-## onAcquireFormState
+### FormExtensionAbility.onAcquireFormState
 
 onAcquireFormState?(want: Want): formInfo.FormState
 
@@ -326,7 +334,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 };
 ```
 
-## onStop<sup>12+</sup>
+### FormExtensionAbility.onStop<sup>12+</sup>
 
 onStop?(): void
 

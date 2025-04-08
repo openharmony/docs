@@ -1121,6 +1121,8 @@ type Nullable\<T> = T | undefined;
 
 表示宽高动画过程中组件内容的填充方式。
 
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
@@ -1178,11 +1180,11 @@ type Nullable\<T> = T | undefined;
 | MEDIUM         | 1   | 中灵敏度。                                 |
 | HIGH 	         | 2   | 高灵敏度。                                 |
 
-## AxisAction<sup>18+</sup>
+## AxisAction<sup>17+</sup>
 
 定义轴事件的轴动作类型。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 

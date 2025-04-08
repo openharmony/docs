@@ -375,7 +375,7 @@ Sets the keyboard appearance.
 
 | Name| Type| Mandatory| Description|
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------ |
-| appearance | [KeyboardAppearance](ts-text-common.md#keyboardappearance16) | Yes  | Keyboard appearance.<br>Default value: **KeyboardAppearance.NONE_IMMERSIVE**|
+| appearance | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[KeyboardAppearance](ts-text-common.md#keyboardappearance15)\> | Yes  | Keyboard appearance.<br>Default value: **KeyboardAppearance.NONE_IMMERSIVE**|
 
 ## Events
 
@@ -1869,7 +1869,7 @@ Represents the callback invoked on mouse hover.
 | Name    | Type                                            | Mandatory| Description                                                    |
 | -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
 | status  | boolean                            | Yes  | Whether the mouse pointer is hovering over the component. The value **true** means that the mouse pointer enters the component, and **false** means that the mouse pointer leaves the component.|
-| event   | [HoverEvent](ts-universal-events-hover.md#hoverevent11) | Yes  | Event bubbling.|
+| event   | [HoverEvent](ts-universal-events-hover.md#hoverevent10) | Yes  | Event bubbling.|
 
 ## RichEditorTextSpan
 

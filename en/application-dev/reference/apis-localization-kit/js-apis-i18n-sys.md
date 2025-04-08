@@ -335,7 +335,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   ```
 
 
-### setTemperatureType<sup>16+</sup>
+### setTemperatureType<sup>18+</sup>
 
 static setTemperatureType(type: TemperatureType): void
 
@@ -351,7 +351,7 @@ Sets the preferred temperature unit for users.
 
 | Name | Type     | Mandatory  | Description                             |
 | ---- | ------- | ---- | ------------------------------- |
-| type | [TemperatureType](./js-apis-i18n.md#temperaturetype16) | Yes| Temperature unit.|
+| type | [TemperatureType](./js-apis-i18n.md#temperaturetype18) | Yes| Temperature unit.|
 
 **Error codes**
 
@@ -380,7 +380,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   }
   ```
 
-### setFirstDayOfWeek<sup>16+</sup>
+### setFirstDayOfWeek<sup>18+</sup>
 
 static setFirstDayOfWeek(type: WeekDay): void
 
@@ -396,7 +396,7 @@ Sets the preferred start day of a week for users.
 
 | Name | Type     | Mandatory  | Description                             |
 | ---- | ------- | ---- | ------------------------------- |
-| type | [WeekDay](./js-apis-i18n.md#weekday16) | Yes| Start day of a week.|
+| type | [WeekDay](./js-apis-i18n.md#weekday18) | Yes| Start day of a week.|
 
 **Error codes**
 

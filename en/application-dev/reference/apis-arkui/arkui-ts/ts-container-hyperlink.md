@@ -32,7 +32,7 @@ Hyperlink(address: string | Resource, content?: string | Resource)
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### color
 
@@ -51,6 +51,8 @@ Sets the color of the hyperlink text.
 | value  | [Color](ts-appendix-enums.md#color) \| number \| string \| [Resource](ts-types.md#resource) | Yes  | Color of the hyperlink text<br>Default value: **'#ff0a59f7'**|
 
 ## Example
+
+This example shows how to create hyperlinks with both images and text that can be clicked to navigate to a specified URL.
 
 ```ts
 @Entry

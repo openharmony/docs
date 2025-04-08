@@ -28,7 +28,7 @@ The **drawing_text_line.h** file declares the capabilities for obtaining the cha
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_Drawing_Array](_drawing.md#oh_drawing_array) \* [OH_Drawing_TypographyGetTextLines](_drawing.md#oh_drawing_typographygettextlines) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*typography) | Obtains the array of text lines in a typography object. This array contains one or more text line objects. | 
+| [OH_Drawing_Array](_drawing.md#oh_drawing_array) \* [OH_Drawing_TypographyGetTextLines](_drawing.md#oh_drawing_typographygettextlines) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*typography) | Obtains the array of text lines in a typography object. This array contains one or more text line objects. When [OH_Drawing_Array](_drawing.md#oh_drawing_array) is no longer required, call [OH_Drawing_DestroyTextLines](_drawing.md#oh_drawing_destroytextlines) to release the pointer to the object. | 
 | void [OH_Drawing_DestroyTextLines](_drawing.md#oh_drawing_destroytextlines) ([OH_Drawing_Array](_drawing.md#oh_drawing_array) \*lines) | Releases the memory occupied by a text line array. | 
 | void [OH_Drawing_DestroyTextLine](_drawing.md#oh_drawing_destroytextline) (OH_Drawing_TextLine \*line) | Releases the memory occupied by a text line object. This is applicable only to text line objects that have requested memory on their own and not to a particular text line object within a text line array. | 
 | OH_Drawing_TextLine \* [OH_Drawing_GetTextLineByIndex](_drawing.md#oh_drawing_gettextlinebyindex) ([OH_Drawing_Array](_drawing.md#oh_drawing_array) \*lines, size_t index) | Obtains the text line object with the specified index in a text line array. | 

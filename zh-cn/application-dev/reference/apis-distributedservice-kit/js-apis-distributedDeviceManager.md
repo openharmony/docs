@@ -32,7 +32,7 @@ createDeviceManager(bundleName: string): DeviceManager;
 
 | 参数名     | 类型                                                 | 必填 | 说明                                                        |
 | ---------- | ---------------------------------------------------- | ---- | ----------------------------------------------------------- |
-| bundleName | string                                               | 是   | 指示应用程序的Bundle名称。                                  |
+| bundleName | string                                               | 是   | 指示应用程序的Bundle名称。长度范围1~255字符。  |
 
 **返回值：**
 
@@ -435,7 +435,7 @@ getDeviceName(networkId: string): string;
 
   | 参数名       | 类型                                     | 必填   | 说明        |
   | -------- | ---------------------------------------- | ---- | --------- |
-  | networkId| string                                   | 是   | 设备的网络标识。 |
+  | networkId| string                                   | 是   | 设备的网络标识。长度范围1~255字符。 |
 
 **返回值：**
 
@@ -485,7 +485,7 @@ getDeviceType(networkId: string): number;
 
   | 参数名       | 类型                                     | 必填   | 说明        |
   | -------- | ---------------------------------------- | ---- | --------- |
-  | networkId| string                                   | 是   | 设备的网络标识。 |
+  | networkId| string                                   | 是   | 设备的网络标识。长度范围1~255字符。 |
 
 **返回值：**
 
@@ -630,7 +630,7 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object;} , cal
 
   | 参数名     | 类型                                                | 必填  | 说明         |
   | ---------- | --------------------------------------------------- | ----- | ------------ |
-  | deviceId   | string                                              | 是    | 设备标识。   |
+  | deviceId   | string                                              | 是    | 设备标识。长度范围1~255字符。   |
   | bindParam  | {[key:&nbsp;string]:&nbsp;Object;}                             | 是    | 认证参数。由开发者自行决定传入的键值对。默认会携带以下key值：<br>bindType 此值是绑定的类型，必填。<br />-1：PIN码。<br>targetPkgName 绑定目标的包名。<br>appName 尝试绑定目标的应用程序名称。<br>appOperation 应用程序要绑定目标的原因。<br>customDescription 操作的详细说明。   |
   | callback   | AsyncCallback&lt;{deviceId:&nbsp;string;&nbsp;}&gt; | 是    | 认证结果回调。 |
 
@@ -694,7 +694,7 @@ unbindTarget(deviceId: string): void;
 
   | 参数名   | 类型                      | 必填 | 说明       |
   | -------- | ------------------------- | ---- | ---------- |
-  | deviceId | string                    | 是   | 设备标识。 |
+  | deviceId | string                    | 是   | 设备标识。长度范围1~255字符。 |
 
 **错误码：**
 

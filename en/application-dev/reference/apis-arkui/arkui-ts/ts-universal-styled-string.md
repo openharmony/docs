@@ -801,7 +801,7 @@ Describes the image attachment.
 | ------------ |---------------------| ---- | ---- | ------ |
 | value  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) |  Yes |  No | Image data source of the styled string. **Atomic service API**: This API can be used in atomic services since API version 12.|
 | size  | [SizeOptions](ts-types.md#sizeoptions) |  Yes |  Yes | Image size of the styled string. **Atomic service API**: This API can be used in atomic services since API version 12.|
-| verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) |  Yes |  Yes | Image alignment mode of the styled string. **Atomic service API**: This API can be used in atomic services since API version 12.|
+| verticalAlign  | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) |  Yes |  Yes | Image alignment mode of the styled string. **Atomic service API**: This API can be used in atomic services since API version 12.|
 | objectFit  | [ImageFit](ts-appendix-enums.md#imagefit) |  Yes |  Yes | Image scale type of the styled string. **Atomic service API**: This API can be used in atomic services since API version 12.|
 | layoutStyle  | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle) |  Yes |  Yes | Image layout of the styled string. **Atomic service API**: This API can be used in atomic services since API version 12.|
 | colorFilter<sup>16+</sup>  | [ColorFilter](ts-types.md#colorfilter9) |  Yes |  Yes | Image color filter of the styled string. **Atomic service API**: This API can be used in atomic services since API version 16.|
@@ -861,7 +861,7 @@ Defines the image attachment type, which is used to set images of PixelMap or [R
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | value | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) |  Yes | Image data source. **Atomic service API**: This API can be used in atomic services since API version 12.|
 | size | [SizeOptions](ts-types.md#sizeoptions) | No  | Image size. **Atomic service API**: This API can be used in atomic services since API version 12.|
-| verticalAlign | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | No  | Alignment mode of the image with the text. **Atomic service API**: This API can be used in atomic services since API version 12.|
+| verticalAlign | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) | No  | Alignment mode of the image with the text. **Atomic service API**: This API can be used in atomic services since API version 12.|
 | objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | No  | Image scale type. **Atomic service API**: This API can be used in atomic services since API version 12.|
 | layoutStyle | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle) | No  | Image layout. **Atomic service API**: This API can be used in atomic services since API version 12.|
 | colorFilter<sup>16+</sup>  | [ColorFilter](ts-types.md#colorfilter9) |  No | Image color filter of the styled string. **Atomic service API**: This API can be used in atomic services since API version 16.|
@@ -890,7 +890,7 @@ Defines the settings for images of the ResourceStr type.
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | resourceValue | Optional<[ResourceStr](ts-types.md#resourcestr)> |  Yes | Image data source.|
 | size | [SizeOptions](ts-types.md#sizeoptions) | No  | Image size.|
-| verticalAlign | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | No  | Alignment mode of the image with the text.<br>Default value: **ImageSpanAlignment.BOTTOM**|
+| verticalAlign | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) | No  | Alignment mode of the image with the text.<br>Default value: **ImageSpanAlignment.BOTTOM**|
 | objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | No  | Image scale type.<br>Default value: **ImageFit.Cover**|
 | layoutStyle | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle) | No  | Image layout.|
 | colorFilter  | [ColorFilter](ts-types.md#colorfilter9) |  No | Image color filter of the styled string.|
@@ -2000,7 +2000,7 @@ struct styled_string_demo6 {
 }
 ```
 
-![](figures/styledstring_6.gif)
+
 
 ### Example 7: Storing Custom Extension Information
 
@@ -2127,7 +2127,7 @@ struct styled_string_demo8 {
 }
 ```
 
-![](figures/styledString_8.gif)
+
 
 
 ### Example 9: Setting a Hyperlink
@@ -2160,7 +2160,7 @@ struct styled_string {
 }
 ```
 
-![](figures/styledString_9.gif)
+
 
 
 ### Example 10: Setting a Color Filter for an Image
@@ -2223,7 +2223,7 @@ struct styled_string_demo4 {
 }
 ```
 
-![](figures/styledString_10.gif)
+
 
 ### Example 11: Inserting, Deleting, and Replacing Styled Strings
 
@@ -2299,4 +2299,4 @@ struct styled_string_demo4 {
 }
 ```
 
-![](figures/styledString_11.gif)
+

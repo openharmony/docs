@@ -34,6 +34,7 @@
 | typedef enum [Preference_ValueType](#preference_valuetype) [Preference_ValueType](#preference_valuetype) | 定义PreferencesValue的数据类型。 | 
 | typedef struct [OH_PreferencesPair](#oh_preferencespair) [OH_PreferencesPair](#oh_preferencespair) | 定义Preferences使用的KV数据对象类型。 | 
 | typedef struct [OH_PreferencesValue](#oh_preferencesvalue) [OH_PreferencesValue](#oh_preferencesvalue) | 定义PreferencesValue对象类型。 | 
+| typedef enum [Preferences_StorageType](#preferences_storagetype) [Preferences_StorageType](#preferences_storagetype) | 首选项配置选项的存储模式枚举。 | 
 
 
 ### 枚举
@@ -42,12 +43,14 @@
 | -------- | -------- |
 | [OH_Preferences_ErrCode](#oh_preferences_errcode-1) {<br/>PREFERENCES_OK = 0, PREFERENCES_ERROR_INVALID_PARAM = 401, PREFERENCES_ERROR_NOT_SUPPORTED = 801, PREFERENCES_ERROR_BASE = 15500000,<br/>PREFERENCES_ERROR_DELETE_FILE = 15500010, PREFERENCES_ERROR_STORAGE = 15500011, PREFERENCES_ERROR_MALLOC = 15500012, PREFERENCES_ERROR_KEY_NOT_FOUND = 15500013,<br/>PREFERENCES_ERROR_GET_DATAOBSMGRCLIENT = 15500019<br/>} | 错误码信息。 | 
 | [Preference_ValueType](#preference_valuetype-1) {<br/>PREFERENCE_TYPE_NULL = 0, PREFERENCE_TYPE_INT, PREFERENCE_TYPE_BOOL, PREFERENCE_TYPE_STRING,<br/>PREFERENCE_TYPE_BUTT<br/>} | 定义PreferencesValue的数据类型。 | 
-
+| [Preferences_StorageType](#preferences_storagetype-1) { PREFERENCES_STORAGE_XML = 0, PREFERENCES_STORAGE_GSKV } | 首选项配置选项的存储模式枚举。 | 
 
 ### 函数
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| int [OH_PreferencesOption_SetStorageType](#oh_preferencesoption_setstoragetype) ([OH_PreferencesOption](#oh_preferencesoption) \*option, [Preferences_StorageType](#preferences_storagetype) type) | 设置Preferences实例对象的存储模式。 | 
+| int [OH_Preferences_IsStorageTypeSupported](#oh_preferences_isstoragetypesupported) ([Preferences_StorageType](#preferences_storagetype) type, bool \*isSupported) | 校验当前平台是否支持对应存储模式。 | 
 | [OH_Preferences](#oh_preferences) \* [OH_Preferences_Open](#oh_preferences_open) ([OH_PreferencesOption](#oh_preferencesoption) \*option, int \*errCode) | 打开一个Preferences实例对象并创建指向它的指针。 当不再需要使用指针时，请使用[OH_Preferences_Close](#oh_preferences_close)关闭实例对象。 | 
 | int [OH_Preferences_Close](#oh_preferences_close) ([OH_Preferences](#oh_preferences) \*preference) | 关闭一个Preferences实例对象。 | 
 | int [OH_Preferences_GetInt](#oh_preferences_getint) ([OH_Preferences](#oh_preferences) \*preference, const char \*key, int \*value) | 获取Preferences实例对象中Key对应的整型值。 | 
@@ -75,6 +78,17 @@
 
 ## 类型定义说明
 
+### Preferences_StorageType
+
+```
+typedef enum Preferences_StorageType Preferences_StorageType
+```
+
+**描述**
+
+首选项配置选项的存储模式枚举。
+
+**起始版本：** 18
 
 ### OH_Preferences
 
@@ -181,6 +195,22 @@ typedef enum Preference_ValueType Preference_ValueType
 
 ## 枚举类型说明
 
+### Preferences_StorageType
+
+```
+enum Preferences_StorageType
+```
+
+**描述**
+
+首选项配置选项的存储模式枚举。
+
+**起始版本：** 18
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| PREFERENCES_STORAGE_XML | XML存储模式，对数据的操作发生在内存中，调用[OH_Preferences_Close](#oh_preferences_close)时落盘，不支持多进程。 | 
+| PREFERENCES_STORAGE_GSKV | GSKV存储模式，对数据的操作实时落盘，可支持多进程 | 
 
 ### OH_Preferences_ErrCode
 
@@ -229,6 +259,66 @@ enum Preference_ValueType
 
 
 ## 函数说明
+
+
+### OH_Preferences_IsStorageTypeSupported()
+
+```
+int OH_Preferences_IsStorageTypeSupported (Preferences_StorageType type, bool *isSupported )
+```
+
+**描述**
+
+校验当前平台是否支持对应存储模式。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| type | 要校验是否支持的存储模式。 | 
+| isSupported | 校验结果的指针，作为出参使用。true表示当前平台支持当前校验的存储模式，false表示当前平台不支持当前校验的存储模式。 | 
+
+**返回：**
+
+返回接口操作执行的状态码。
+
+PREFERENCES_OK，表示操作成功。
+
+PREFERENCES_ERROR_INVALID_PARAM，表示参数不合法。
+
+
+### OH_PreferencesOption_SetStorageType()
+
+```
+int OH_PreferencesOption_SetStorageType (OH_PreferencesOption *option, Preferences_StorageType type )
+```
+
+**描述**
+
+设置Preferences实例对象的存储模式。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| option | 指向要设置存储模式的配置项的指针。 | 
+| type | 需要设置的存储模式。 | 
+
+**返回：**
+
+返回执行的错误码。
+
+若错误码为PREFERENCES_OK，表示操作成功。
+
+若错误码为PREFERENCES_ERROR_INVALID_PARAM，表示参数不合法。
+
+**参见：**
+
+[OH_PreferencesOption](#oh_preferencesoption).
 
 
 ### OH_Preferences_Close()

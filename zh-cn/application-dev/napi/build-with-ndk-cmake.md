@@ -176,7 +176,7 @@ int sum(int a, int b)
 #### linux 和 mac 系统环境下
 在工程目录下，创建build目录，用来放置CMake构建时产生的中间文件。注意: ohos-sdk是下载下来的SDK的根目录，开发者需要自行替换成实际的下载目录。
 
-1. 采用OHOS_STL=c++_shared动态链接c++库方式构建工程，如不指定，默认采用c++_shared；DOHOS_ARCH参数可根据系统架构来决定具体值。
+1. 采用OHOS_STL=c++_shared动态链接c++库方式构建工程，如不指定，默认采用c++_shared；DOHOS_ARCH参数可根据系统架构来决定具体值，例如当DOHOS_ARCH=armeabi-v7a会编译32位动态库，而当DOHOS_ARCH=arm64-v8a会编译64位动态库。
 
    ```
     >mkdir build && cd build
@@ -184,7 +184,7 @@ int sum(int a, int b)
     >cmake --build .
    ```
 
-2. 采用OHOS_STL=c++_static静态链接c++库方式构建工程。
+2. 采用OHOS_STL=c++_static静态链接c++库方式构建工程，当DOHOS_ARCH=armeabi-v7a会编译32位静态库，而当DOHOS_ARCH=arm64-v8a会编译64位静态库。
 
    ```
     >mkdir build && cd build

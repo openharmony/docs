@@ -51,7 +51,7 @@ Enumerates communication modes.
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
-| DEFAULT  | 0 | Default communication mode.   |
+| DEFAULT  | 0 | Default communication.   |
 | THREAD   | 1 | Inter-thread communication. |
 | PROCESS  | 2 | Inter-process communication. |
 | DEVICE   | 3 | Inter-device communication. |

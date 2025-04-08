@@ -82,6 +82,5 @@ The performance tracing APIs are provided by the **HiTraceMeter** module. For de
 5. Click the newly installed HAP several times on the device, and then run **hitrace --trace_dump | grep hitraceTest** in the **shell** window to view the trace result.
     
     ```shell
-    <...>-2477    (-------) [001] ....   396.427165: tracing_mark_write: S|2477|H:hitraceTest 123
-    <...>-2477    (-------) [001] ....   396.427196: tracing_mark_write: F|2477|H:hitraceTest 123
-    ```
+    <...>-2477    (-------) [001] ....   396.427165: tracing_mark_write: S|2477|H:hitraceTest|123
+    <...>-2477    (-------) [001] ....   396.427196: tracing_mark_write: F|2477|H:hitraceTest|123

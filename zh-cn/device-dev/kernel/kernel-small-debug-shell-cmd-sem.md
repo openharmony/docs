@@ -28,7 +28,7 @@ sem [_ID__ / fulldata_]
 - sem后加ID，显示对应ID信号量的使用数。
 
 - 参数fulldata依赖于LOSCFG_DEBUG_SEMAPHORE，使用时通过menuconfig在配置项中开启"Enable Semaphore Debugging"：
-  Debug  ---&gt; Enable a Debug Version ---&gt; Enable Debug LiteOS Kernel Resource ---&gt; Enable Semaphore Debugging
+  Debug  ---&gt; Enable a Debug Version ---&gt; Enable Debug LiteOS Kernel Resource ---&gt; Enable Semaphore Debugging。
 
 
 ## 使用实例

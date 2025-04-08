@@ -957,7 +957,7 @@ struct WebComponent {
 }
 ```
 
-3.通过沙箱路径加载本地文件，可以参考[web](ts-basic-components-web.md#web)加载沙箱路径的示例代码。
+3.通过沙箱路径加载本地文件，可以参考[web](../../web/web-page-loading-with-web-components.md#加载本地页面)加载沙箱路径的示例代码。
 
 加载的html文件。
 ```html
@@ -3083,7 +3083,7 @@ struct WebComponent {
 
 zoomOut(): void
 
-调用此接口将当前网页进行缩小，比例为20%。
+调用此接口将当前网页进行缩小，比例为25%。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3886,7 +3886,7 @@ scrollByWithResult(deltaX: number, deltaY: number): boolean
 
 | 类型    | 说明                                     |
 | ------- | --------------------------------------- |
-| boolean | 当前网页是否可以滑动，默认为false。|
+| boolean | true表示当前网页可以滑动，false表示当前网页不可以滑动。默认为false。|
 
 **错误码：**
 
@@ -4219,7 +4219,7 @@ hasImage(callback: AsyncCallback\<boolean>): void
 
 | 参数名   | 类型                    | 必填 | 说明                       |
 | -------- | ----------------------- | ---- | -------------------------- |
-| callback | AsyncCallback\<boolean> | 是   | 返回查找页面是否存在图像。 |
+| callback | AsyncCallback\<boolean> | 是   | 返回查找页面是否存在图像。<br> true:存在图像；false:不存在图像。 |
 
 **错误码：**
 
@@ -4276,7 +4276,7 @@ hasImage(): Promise\<boolean>
 
 | 类型              | 说明                                    |
 | ----------------- | --------------------------------------- |
-| Promise\<boolean> | Promise实例，返回查找页面是否存在图像。 |
+| Promise\<boolean> | Promise实例，返回查找页面是否存在图像。<br>true:存在图像；false:不存在图像。 |
 
 **错误码：**
 
@@ -5815,12 +5815,17 @@ enableIntelligentTrackingPrevention(enable: boolean): void
 
 **错误码：**
 
+> **说明：**
+>
+> 从API Version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
+
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 |  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|  801 | Capability not supported. |
 
 **示例：**
 
@@ -5867,11 +5872,16 @@ isIntelligentTrackingPreventionEnabled(): boolean
 
 **错误码：**
 
+> **说明：**
+>
+> 从API Version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
+
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+|  801 | Capability not supported. |
 
 **示例：**
 
@@ -5918,11 +5928,16 @@ static addIntelligentTrackingPreventionBypassingList(hostList: Array\<string>): 
 
 **错误码：**
 
+> **说明：**
+>
+> 从API Version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
+
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID  | 错误信息                  |
 | -------- | ------------------------ |
 |  401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|  801     | Capability not supported. |
 
 **示例：**
 
@@ -5969,11 +5984,16 @@ static removeIntelligentTrackingPreventionBypassingList(hostList: Array\<string>
 
 **错误码：**
 
+> **说明：**
+>
+> 从API Version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
+
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID  | 错误信息                  |
 | -------- | ------------------------ |
 |  401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|  801     | Capability not supported. |
 
 **示例：**
 
@@ -6011,6 +6031,18 @@ static clearIntelligentTrackingPreventionBypassingList(): void
 删除通过addIntelligentTrackingPreventionBypassingList接口添加的所有域名。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**错误码：**
+
+> **说明：**
+>
+> 从API Version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID  | 错误信息                  |
+| -------- | ------------------------ |
+|  801     | Capability not supported. |
 
 **示例：**
 
@@ -6080,12 +6112,17 @@ enableAdsBlock(enable: boolean): void
 
 **错误码：**
 
+> **说明：**
+>
+> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 |  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Parameter string is too long. 3.Parameter verification failed. |
+|  801 | Capability not supported. |
 
 **示例：**
 
@@ -6130,6 +6167,18 @@ isAdsBlockEnabled() : boolean
 | ------------------------------------------------------------ | ---------------------- |
 | boolean | 返回true代表广告过滤功能已开启，返回false代表广告过滤功能关闭。 |
 
+**错误码：**
+
+> **说明：**
+>
+> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+|  801 | Capability not supported. |
+
 **示例：**
 
 ```ts
@@ -6173,6 +6222,18 @@ isAdsBlockEnabledForCurPage() : boolean
 | 类型                                                         | 说明                   |
 | ------------------------------------------------------------ | ---------------------- |
 | boolean | 返回true代表此网页已开启广告过滤，返回false代表当前网页已关闭广告过滤。 |
+
+**错误码：**
+
+> **说明：**
+>
+> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+|  801 | Capability not supported. |
 
 **示例：**
 
@@ -6729,7 +6790,7 @@ getPrintBackground(): boolean
 
 | 类型                 | 说明                      |
 | -------------------- | ------------------------- |
-| boolean              | 返回Webview是否打印网页背景。 |
+| boolean              | 返回Webview是否打印网页背景。<br>true:打印网页背景；false:不打印网页背景。 |
 
 **错误码：**
 
@@ -10904,8 +10965,8 @@ static getOriginQuota(origin: string, callback: AsyncCallback\<number>): void
 
 | 参数名   | 类型                  | 必填 | 说明               |
 | -------- | --------------------- | ---- | ------------------ |
-| origin   | string                | 是   | 指定源的字符串索引 |
-| callback | AsyncCallback\<number> | 是   | 指定源的存储配额   |
+| origin   | string                | 是   | 指定源的字符串索引。 |
+| callback | AsyncCallback\<number> | 是   | 指定源的存储配额。<br>number是long型整数，范围为(-2,147,483,648)~(2,147,483,647)。   |
 
 **错误码：**
 
@@ -16679,11 +16740,16 @@ static setAdsBlockRules(rulesFile: string, replace: boolean): void
 
 **错误码：**
 
+> **说明：**
+>
+> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
 |  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|  801 | Capability not supported. |
 
 **示例：**
 
@@ -16747,11 +16813,16 @@ static addAdsBlockDisallowedList(domainSuffixes: Array\<string\>): void
 
 **错误码：**
 
+> **说明：**
+>
+> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
 |  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|  801 | Capability not supported. |
 
 **示例：**
 
@@ -16824,11 +16895,16 @@ static removeAdsBlockDisallowedList(domainSuffixes: Array\<string\>): void
 
 **错误码：**
 
+> **说明：**
+>
+> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
 |  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|  801 | Capability not supported. |
 
 **示例：**
 
@@ -16888,6 +16964,18 @@ static clearAdsBlockDisallowedList(): void
 清空AdsBlockManager的DisallowedList。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**错误码：**
+
+> **说明：**
+>
+> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+|  801 | Capability not supported. |
 
 **示例：**
 
@@ -16958,11 +17046,16 @@ static addAdsBlockAllowedList(domainSuffixes: Array\<string\>): void
 
 **错误码：**
 
+> **说明：**
+>
+> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
 |  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|  801 | Capability not supported. |
 
 **示例：**
 
@@ -17038,11 +17131,16 @@ static removeAdsBlockAllowedList(domainSuffixes: Array\<string\>): void
 
 **错误码：**
 
+> **说明：**
+>
+> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
 |  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|  801 | Capability not supported. |
 
 **示例：**
 
@@ -17102,6 +17200,18 @@ static clearAdsBlockAllowedList(): void
 清空AdsBlockManager的AllowedList。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**错误码：**
+
+> **说明：**
+>
+> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+|  801 | Capability not supported. |
 
 **示例：**
 
@@ -17220,7 +17330,7 @@ createPdf函数输入参数。
 | marginBottom          | number  | 是   | 下边距。取值范围：[0.0, 页面高度的一半)。如果不在取值范围内，则设置为0.0。单位：英寸。 |
 | marginRight           | number  | 是   | 右边距。取值范围：[0.0, 页面宽度的一半)。如果不在取值范围内，则设置为0.0。单位：英寸。 |
 | marginLeft            | number  | 是   | 左边距。取值范围：[0.0, 页面宽度的一半)。如果不在取值范围内，则设置为0.0。单位：英寸。 |
-| shouldPrintBackground | boolean | 否   | 是否打印背景颜色。默认值：false。                            |
+| shouldPrintBackground | boolean | 否   | true表示打印背景颜色，false表示不打印背景颜色。默认值：false。                            |
 
 ## PdfData<sup>14+</sup>
 

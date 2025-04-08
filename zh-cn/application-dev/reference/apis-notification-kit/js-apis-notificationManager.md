@@ -886,7 +886,7 @@ setBadgeNumber(badgeNumber: number): Promise\<void\>
 
 设定角标个数，在应用的桌面图标上呈现。使用Promise异步回调。
 
-当角标设定个数取值0时，表示清除角标。取值大于99时，通知角标将显示99+。
+当角标设定个数取值小于或等于0时，表示清除角标。取值大于99时，通知角标将显示99+。
 
 该接口不支持tv和wearable设备。
 
@@ -936,7 +936,7 @@ setBadgeNumber(badgeNumber: number, callback: AsyncCallback\<void\>): void
 
 设定角标个数，在应用的桌面图标上呈现。使用callback异步回调。
 
-当角标设定个数取值0时，表示清除角标。取值大于99时，通知角标将显示99+。
+当角标设定个数取值小于或等于0时，表示清除角标。取值大于99时，通知角标将显示99+。
 
 该接口不支持tv和wearable设备。
 
@@ -1738,8 +1738,6 @@ type NotificationBasicContent = _NotificationBasicContent
 
 描述普通文本通知。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Notification.Notification
 
 | 类型 | 说明 |
@@ -1751,8 +1749,6 @@ type NotificationBasicContent = _NotificationBasicContent
 type NotificationContent = _NotificationContent
 
 描述通知内容。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Notification.Notification
 
@@ -1766,8 +1762,6 @@ type NotificationLongTextContent = _NotificationLongTextContent
 
 描述长文本通知。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Notification.Notification
 
 | 类型 | 说明 |
@@ -1779,8 +1773,6 @@ type NotificationLongTextContent = _NotificationLongTextContent
 type NotificationMultiLineContent = _NotificationMultiLineContent
 
 描述多行文本通知。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Notification.Notification
 
@@ -1800,7 +1792,7 @@ type NotificationPictureContent = _NotificationPictureContent
 | --- | --- |
 | [_NotificationPictureContent](js-apis-inner-notification-notificationContent.md#notificationpicturecontent) | 描述附有图片的通知。 |
 
-## NotificationSystemLiveViewContent
+## NotificationSystemLiveViewContent<sup>11+</sup>
 
 type NotificationSystemLiveViewContent = _NotificationSystemLiveViewContent
 
@@ -1824,7 +1816,7 @@ type NotificationRequest = _NotificationRequest
 | --- | --- |
 | [_NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 描述通知的请求。 |
 
-## DistributedOptions<sup>8+</sup>
+## DistributedOptions
 
 type DistributedOptions = _DistributedOptions
 
