@@ -93,8 +93,10 @@ Related instructions in the bytecode:
 *tryldglobalbyname 0x0, a*: loads a global variable named **a** to the acc. If this variable does not exist, an exception is thrown.<br>
 *trystglobalbyname 0x2, a*: stores the value of the acc to a global variable named **a**. If this variable does not exist, an exception is thrown.<br>
 *trystglobalbyname 0x3, b*: stores the value of the acc to a global variable named **b**. If this variable does not exist, an exception is thrown.<br>
-**NOTE**<br>
-**0x0**, **0x2**, and **0x3** in the preceding instructions are reserved for internal use in the Ark Runtime.
+
+> **NOTE**
+> 
+> **0x0**, **0x2**, and **0x3** in the preceding instructions are reserved for internal use in the Ark Runtime.
 
 #### Module Namespaces and Variables
 All [module namespaces](https://262.ecma-international.org/12.0/#module-namespace-exotic-object) used in the source file are compiled into arrays, referenced by instructions using indexes. For example, *getmodulenamespace 0x1* references the module namespace at index *0x1*.<br>
@@ -105,8 +107,9 @@ Scenarios for generating module instructions include [import](https://262.ecma-i
 * **import { }**: module variable
 * **export**: local export
 
-**NOTE**<br>
-Module-related logic is an internal implementation detail of the compiler. As the ArkCompiler evolves, new scenarios involving module instructions may emerge, and existing ones may change due to evolving requirements or code refactoring.<br>
+> **NOTE**
+> 
+> Module-related logic is an internal implementation detail of the compiler. As the ArkCompiler evolves, new scenarios involving module instructions may emerge, and existing ones may change due to evolving requirements or code refactoring.<br>
 
 Example:
 ```ts

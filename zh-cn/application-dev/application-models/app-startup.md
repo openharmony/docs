@@ -63,6 +63,7 @@ AppStartup提供了一种简单高效的应用启动方式，可以支持任务�
               "name": "StartupTask_002",
               "srcEntry": "./ets/startup/StartupTask_002.ets",
               "dependencies": [
+                "StartupTask_003",
                 "StartupTask_004"
               ],
               "runOnThread": "taskPool",

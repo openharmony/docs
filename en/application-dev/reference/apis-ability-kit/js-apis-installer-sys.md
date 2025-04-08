@@ -470,6 +470,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
 | 17700045 | Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management. |
 | 17700060 | The specified application cannot be uninstalled. |
+| 17700062 | Failed to uninstall the app because the app is locked. |
 | 17700067 | Failed to uninstall the HAP because uninstalling the native package failed. |
 
 **Example**
@@ -603,6 +604,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
 | 17700045 | Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management. |
 | 17700060 | The specified application cannot be uninstalled. |
+| 17700062 | Failed to uninstall the app because the app is locked. |
 | 17700067 | Failed to uninstall the HAP because uninstalling the native package failed. |
 
 **Example**
@@ -1512,6 +1514,80 @@ try {
 }
 ```
 
+## BundleInstaller.destroyAppClone<sup>15+</sup>
+
+destroyAppClone(bundleName: string, appIndex: number, destroyAppCloneParam?: DestroyAppCloneParam): Promise\<void\>;
+
+Destroys an application clone. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.UNINSTALL_CLONE_BUNDLE
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name       | Type                         | Mandatory| Description                                                         |
+| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
+| bundleName   | string                        | Yes  | Bundle name of the application for which a clone is to be destroyed.                                        |
+| appIndex     | number                        | Yes  | Index of the clone to destroy.                                        |
+| destroyAppCloneParam       | [DestroyAppCloneParam](#destroyappcloneparam15)   | No  | Other parameters required for destroying the clone. For details about the default values of these parameters, see [DestroyAppCloneParam](#destroyappcloneparam15).  |
+
+**Return value**
+
+| Type           | Description                                  |
+| --------------- | -------------------------------------- |
+| Promise\<void\> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 201 | Calling interface without permission 'ohos.permission.UNINSTALL_CLONE_BUNDLE'. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 17700001 | The specified bundleName cannot be found or the bundle is not installed by the specified user. |
+| 17700004 | The userId is invalid. |
+| 17700061 | The appIndex is invalid. |
+| 17700062 | Failed to uninstall the app because the app is locked. |
+
+**Example**
+```ts
+import installer from '@ohos.bundle.installer';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let bundleName = 'com.ohos.camera';
+let index = 1;
+let userId = 100;
+let key = 'ohos.bms.param.verifyUninstallRule';
+let value = 'false';
+let item: installer.Parameters = {key, value};
+let destroyAppCloneOpt: installer.DestroyAppCloneParam = {
+    userId: userId,
+    parameters: [item]
+};
+
+
+try {
+    installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.destroyAppClone(bundleName, index, destroyAppCloneOpt)
+            .then(() => {
+                console.info('destroyAppClone successfully.');
+        }).catch((error: BusinessError) => {
+            console.error('destroyAppClone failed:' + error.message);
+        });
+    }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
+}
+```
+
 ## BundleInstaller.installPreexistingApp<sup>12+</sup>
 
 installPreexistingApp(bundleName: string, userId?: number): Promise\<void\>;
@@ -1605,11 +1681,11 @@ Defines the parameters that need to be specified for bundle installation, uninst
 | hashParams        | Array<[HashParam](#hashparam)> | No| Hash parameters. By default, no value is passed.        |
 | crowdtestDeadline| number                         | No                       | End date of crowdtesting. The default value is **-1**, indicating that no end date is specified for crowdtesting.|
 | sharedBundleDirPaths<sup>10+</sup> | Array\<String> | No|Paths of the shared bundle files. By default, no value is passed.|
-| specifiedDistributionType<sup>10+</sup> | string | No|Distribution type specified during application installation. By default, no value is passed. The maximum length is 128 bytes. This field is usually specified by the application market of the operating system operator.|
+| specifiedDistributionType<sup>10+</sup> | string | No|[Distribution type](../../security/app-provision-structure.md) specified during application installation. By default, no value is passed. The maximum length is 128 bytes. This field is usually specified by the application market of the operating system operator.|
 | additionalInfo<sup>10+</sup> | string | No|Additional information during application installation (usually an enterprise application). By default, no value is passed. The maximum length is 3,000 bytes. This field is usually specified by the application market of the operating system operator.|
 | verifyCodeParams<sup>deprecated<sup> | Array<[VerifyCodeParam](#verifycodeparamdeprecated)> | No| Information about the code signature file. The default value is null.        |
 | pgoParams<sup>11+</sup> | Array<[PGOParam](#pgoparam11)> | No| Parameters of the Profile-guided Optimization (PGO) configuration file. The default value is null.        |
-
+| parameters<sup>15+</sup> | Array<[Parameters](#parameters15)> | No| Extended parameters, represented as an array of the Parameters type. The default value is empty. The options of **Parameters.key** are as follows:<br> - **ohos.bms.param.renameInstall**: If the value is **true**, the installation package is moved from the application sandbox to the installation directory using a shared directory. Otherwise, it is copied from the application sandbox to the installation directory using a regular directory.<br> - **ohos.bms.param.verifyUninstallRule**: If the value is **true**, an uninstallation handling rule is set to block application uninstallation.|
 ## UninstallParam<sup>10+</sup>
 
 Defines the parameters required for the uninstall of a shared bundle.
@@ -1651,6 +1727,19 @@ Defines the parameters of the PGO configuration file.
 | moduleName | string | Yes| Module name of the bundle.|
 | pgoFilePath  | string | Yes| Path of the PGO configuration file.          |
 
+## Parameters<sup>15+</sup>
+
+Describes the extended parameter information.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+ **System API**: This is a system API.
+
+| Name    | Type  | Mandatory| Description            |
+| ---------- | ------ | ---------------- | ---------------- |
+| key | string | Yes| Key of an extended parameter.|
+| value  | string | Yes| Value of the extended parameter. |
+
 ## CreateAppCloneParam<sup>12+</sup>
 
 Describes the parameters used for creating an application clone.
@@ -1663,3 +1752,16 @@ Describes the parameters used for creating an application clone.
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | userId      | number | No  | ID of the user for whom the clone is created. The default value is the user ID of the caller.            |
 | appIndex    | number | No  | Index of the clone. The default value is the currently available minimum index.          |
+
+## DestroyAppCloneParam<sup>15+</sup>
+
+Describes the parameters used for destroying an application clone.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+ **System API**: This is a system API.
+
+| Name       | Type  | Mandatory| Description                                                         |
+| ----------- | ------ | ---- | ------------------------------------------------------------ |
+| userId      | number | No  | ID of the user for whom the clone is destroyed. The default value is the user ID of the caller. The value must be greater than or equal to 0.            |
+| parameters  | Array<[Parameters](#parameters15)> | No  | Extended parameters for destroying the clone. The default value is null.           |

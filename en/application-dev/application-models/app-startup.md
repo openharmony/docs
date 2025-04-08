@@ -119,7 +119,7 @@ AppStartup supports startup tasks in automatic or manual mode. By default, autom
 
         | Field| Description| Data Type| Optional|
         | -------- | -------- | -------- | -------- |
-        | name | Class name of the startup task.| String| Mandatory|
+        | name | Name of the startup task, which can be customized. It is recommended that the name be the same as the class name.| String| Mandatory|
         | srcEntry | Path of the file corresponding to the startup task.| String| Mandatory|
         | dependencies | Array holding the class names of other startup tasks on which this task depends.| Object array| Optional, defaults to an empty array|
         | excludeFromAutoStart | Whether to exclude automatic mode. For details, see [Changing the Startup Mode](#optional-changing-the-startup-mode).<br>- **true**: manual mode.<br>- **false**: automatic mode.| Boolean| Optional, defaults to **false**|

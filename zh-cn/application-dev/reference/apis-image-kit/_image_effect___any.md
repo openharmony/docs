@@ -11,6 +11,8 @@
 
 **相关模块：**[ImageEffect](_image_effect.md)
 
+**所在头文件：**[image_effect_filter.h](image__effect__filter_8h.md)
+
 
 ## 汇总
 

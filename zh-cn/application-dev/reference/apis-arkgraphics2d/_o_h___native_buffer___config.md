@@ -7,14 +7,11 @@ OH_NativeBuffer的属性配置，用于申请新的OH_NativeBuffer实例或查�
 
 \@syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
 
-**起始版本:**
+**起始版本：** 9
 
-9
+**相关模块：**[OH_NativeBuffer](_o_h___native_buffer.md)
 
-**相关模块:**
-
-[OH_NativeBuffer](_o_h___native_buffer.md)
-
+**所在头文件：**[native_buffer.h](native__buffer_8h.md)
 
 ## 汇总
 
@@ -41,7 +38,7 @@ int32_t OH_NativeBuffer_Config::format
 
 **描述:**
 
-像素格式
+像素格式。
 
 
 ### height

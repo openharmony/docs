@@ -625,8 +625,8 @@ enum ArkWeb_ErrorCode
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKWEB_SUCCESS  | 成功.  | 
-| ARKWEB_INIT_ERROR  | 初始化失败.  | 
+| ARKWEB_SUCCESS  | 成功。  | 
+| ARKWEB_INIT_ERROR  | 初始化失败。  | 
 | ARKWEB_ERROR_UNKNOWN  | 未知错误。  | 
 | ARKWEB_INVALID_PARAM  | 参数无效。  | 
 | ARKWEB_SCHEME_REGISTER_FAILED  | 注册scheme的配置失败，应该在创建ArkWeb之前注册。  | 

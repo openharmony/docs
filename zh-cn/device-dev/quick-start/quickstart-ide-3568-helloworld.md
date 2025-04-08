@@ -106,7 +106,7 @@ vendor/hihope
    }
    ```
 
-3. 新建部件配置规则文件
+3. 新建部件配置规则文件。
 
    新建sample/hello/bundle.json文件，添加sample部件描述，创建方法可参考：[部件配置规则](../subsystems/subsys-build-component.md)。                                                                                                                                                            
                                                                                                                                                        

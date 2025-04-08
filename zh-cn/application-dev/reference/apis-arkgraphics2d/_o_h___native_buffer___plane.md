@@ -11,6 +11,7 @@
 
 **相关模块：**[OH_NativeBuffer](_o_h___native_buffer.md)
 
+**所在头文件：**[native_buffer.h](native__buffer_8h.md)
 
 ## 汇总
 

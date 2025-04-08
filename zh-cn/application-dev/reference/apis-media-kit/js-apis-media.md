@@ -1398,7 +1398,7 @@ getTrackDescription(callback: AsyncCallback\<Array\<MediaDescription>>): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                         |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------- |
-| callback | AsyncCallback<Array<[MediaDescription](#mediadescription8)>> | 是   | 回调函数，当获取音频轨道信息成功，err为undefined，data为获取到的MediaDescription数组；否则为错误对象。|
+| callback | AsyncCallback<Array<[MediaDescription](#mediadescription8)>> | 是   | 回调函数，当获取音视频轨道信息成功，err为undefined，data为获取到的MediaDescription数组；否则为错误对象。|
 
 **错误码：**
 
@@ -1472,7 +1472,7 @@ getSelectedTracks(): Promise\<Array\<number>>
 
 | 类型                                                   | 说明                                              |
 | ------------------------------------------------------ | ------------------------------------------------- |
-| Promise<Array<[number]>> | Promise对象，返回已选择音视频轨道索引数组。 |
+| Promise\<Array\<number>> | Promise对象，返回已选择音视频轨道索引数组。 |
 
 **错误码：**
 
@@ -2865,8 +2865,8 @@ type OnVideoSizeChangeHandler = (width: number, height: number) => void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ------ | ------------------------------------------------------------ |
-| width  | number | 是 | 视频宽度。     |
-| height | number | 是 | 视频高度。 |
+| width  | number | 是 | 视频宽度，单位为像素（px）。|
+| height | number | 是 | 视频高度，单位为像素（px）。|
 
 ## AVFileDescriptor<sup>9+</sup>
 
@@ -4843,7 +4843,7 @@ on(type: 'progressUpdate', callback: Callback\<number>): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 进度更新事件回调类型，支持的事件：'progressUpdate'，在转码过程中系统会自动触发此事件。 |
-| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback) | 是   | 进度更新事件回调方法，progress: number，表示当前转码进度 |
+| callback | [Callback\<number>](../apis-basic-services-kit/js-apis-base.md#callback) | 是   | 进度更新事件回调方法，progress: number，表示当前转码进度。 |
 
 **示例：**
 
@@ -4866,7 +4866,7 @@ off(type:'progressUpdate', callback?: Callback\<number>): void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 进度更新事件回调类型，支持的事件：'progressUpdate'，用户操作和系统都会触发此事件。 |
-| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback) | 否   | 已注册的进度更新事件回调。由于当前回调注册时，仅会保留最后一次注册的回调，建议此参数缺省。 |
+| callback | [Callback\<number>](../apis-basic-services-kit/js-apis-base.md#callback) | 否   | 已注册的进度更新事件回调。由于当前回调注册时，仅会保留最后一次注册的回调，建议此参数缺省。 |
 
 **示例：**
 
@@ -4943,7 +4943,7 @@ on(type: 'complete', callback: Callback\<void>): void
 
 注册转码完成事件，并通过注册的回调方法通知用户。用户只能注册一个进度更新事件的回调方法，当用户重复注册时，以最后一次注册的回调接口为准。
 
-当AVTranscoder上报complete事件时，当前转码操作已完成，用户可通过[release()](#release12)退出转码操作。
+当AVTranscoder上报complete事件时，当前转码操作已完成，用户需要通过[release()](#release12)退出转码操作。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
 
@@ -4952,13 +4952,17 @@ on(type: 'complete', callback: Callback\<void>): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 完成事件回调类型，支持的事件：'complete'，在转码过程中系统会自动触发此事件。 |
-| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback) | 是   | 完成事件回调方法。 |
+| callback | [Callback\<void>](../apis-basic-services-kit/js-apis-base.md#callback) | 是   | 完成事件回调方法。 |
 
 **示例：**
 
 ```ts
-avTranscoder.on('complete', () => {
+avTranscoder.on('complete', async () => {
   console.info('avTranscoder complete');
+  // 用户须在此监听转码完成事件
+  // 须等待avTranscoder.release()完成之后，再对转码后的文件进行转发、上传、转存等处理
+  await avTranscoder.release();
+  avTranscoder = undefined;
 });
 ```
 
@@ -4975,7 +4979,7 @@ off(type:'complete', callback?: Callback\<void>): void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 转码完成事件回调类型，支持的事件：'complete'，用户操作和系统都会触发此事件。 |
-| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback) | 否   | 完成事件回调方法。 |
+| callback | [Callback\<void>](../apis-basic-services-kit/js-apis-base.md#callback) | 否   | 完成事件回调方法。 |
 
 **示例：**
 
@@ -4991,13 +4995,13 @@ avTranscoder.off('complete');
 
 | 名称            | 类型                                    | 只读 | 可选 | 说明                                                         |
 | --------------- | ---------------------------------------- |---- | ---- | ------------------------------------------------------------ |
-| audioBitrate | number     | 否 | 是 | 输出音频的码率，单位为比特率（bps）。默认设置为48Kbps。|
+| audioBitrate | number     | 否 | 是 | 输出音频的码率，单位为比特率（bps），支持范围[1-500000]。默认设置为48Kbps。|
 | audioCodec | [CodecMimeType](#codecmimetype8)     | 否 | 是  | 输出音频的编码格式，当前仅支持AAC。默认设置为AAC。                   |
 | fileFormat         | [ContainerFormatType](#containerformattype8) | 否 | 否   | 输出视频文件的封装格式，当前视频文件仅支持MP4。|
 | videoBitrate         | number | 否 |  是  | 输出视频的码率，单位为比特率（bps）。默认码率按输出视频的分辨率设置，[240p，480P]默认码率值为1Mbps，(480P,720P]默认码率值为2Mbps，(720P,1080P]默认码率值为4Mbps，1080P及以上默认值为8Mbps。|
 | videoCodec        | [CodecMimeType](#codecmimetype8) | 否 | 是   | 输出视频的编码格式，当前仅支持AVC和HEVC。若源视频编码格式为HEVC，则默认设置为HEVC，否则默认设置为AVC。|
-| videoFrameWidth        | number | 否 |  是   | 输出视频帧的宽，单位为像素（px）。默认设置为源视频帧的宽。|
-| videoFrameHeight        | number | 否 |  是   | 输出视频帧的高，单位为像素（px）。默认设置为源视频帧的高。|
+| videoFrameWidth        | number | 否 |  是   | 输出视频帧的宽，单位为像素（px），支持范围[240-3840]。默认设置为源视频帧的宽。|
+| videoFrameHeight        | number | 否 |  是   | 输出视频帧的高，单位为像素（px），支持范围[240-2160]。默认设置为源视频帧的高。|
 
 
 
@@ -7641,8 +7645,8 @@ setMimeType(mimeType: AVMimeTypes): void
 
 | 名称  | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| preferredWidth| number | 否   | 播放策略首选宽度，int类型，如1080。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| preferredHeight | number | 否   | 播放策略首选高度，int类型，如1920。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| preferredWidth| number | 否   | 播放策略首选宽度，设置范围为大于0的整数，如1080，单位为像素（px）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| preferredHeight | number | 否   | 播放策略首选高度，设置范围为大于0的整数，如1920，单位为像素（px）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | preferredBufferDuration | number | 否  | 播放策略首选缓冲持续时间，单位s，取值范围1-20。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | preferredHdr | boolean | 否   | 播放策略true是hdr，false非hdr，默认非hdr。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | mutedMediaType | [MediaType](#mediatype8) | 否 | 静音播放的媒体类型，仅支持设置 MediaType.MEDIA_TYPE_AUD。 |

@@ -976,13 +976,13 @@ let zip = zlib.createZipSync();
 
 ## Zip<sup>12+</sup>
 
-压缩解压缩对象实例。
+压缩解压缩对象实例，支持以zlib、deflate、gzip格式对数据进行压缩与解压。
 
 ### getZStream<sup>12+</sup>
 
 getZStream(): Promise&lt;ZStream&gt;
 
-输出流，使用Promise异步返回。成功时返回zlib流。
+输出流，使用Promise异步返回。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -992,7 +992,7 @@ getZStream(): Promise&lt;ZStream&gt;
 
 | 类型                                 | 说明                      |
 | ------------------------------------ | ------------------------- |
-| Promise&lt;[ZStream](#zstream12)&gt; | Promise对象。返回zlib流。 |
+| Promise&lt;[ZStream](#zstream12)&gt; | Promise对象。返回ZStream流。 |
 
 **示例：**
 
@@ -1733,7 +1733,7 @@ inflateReset2(strm: ZStream, windowBits: number): Promise&lt;ReturnStatus&gt;
 | 参数名     | 类型    | 必填 | 说明                            |
 | ---------- | ------- | ---- | ------------------------------- |
 | strm       | ZStream | 是   | 参考[ZStream定义](#zstream12)。 |
-| windowBits | number  | 是   | 最大窗口大小的以2为底的对数。   |
+| windowBits | number  | 是   | 控制内存窗口的大小，并指定数据的格式（zlib、gzip、raw deflate）。取值如下：<br />zlib格式：[1, 15]。<br />gzip格式：大于15。<br />raw deflate格式：[-15, -1]。   |
 
 **返回值：**
 
@@ -1971,7 +1971,7 @@ inflateInit2(strm: ZStream, windowBits: number): Promise&lt;ReturnStatus&gt;
 | 参数名     | 类型    | 必填 | 说明                            |
 | ---------- | ------- | ---- | ------------------------------- |
 | strm       | ZStream | 是   | 参考[ZStream定义](#zstream12)。 |
-| windowBits | number  | 是   | 最大窗口大小的以2为底的对数。   |
+| windowBits | number  | 是   | 控制内存窗口的大小，并指定数据的格式（zlib、gzip、raw deflate）。取值如下：<br />zlib格式：[1, 15]。<br />gzip格式：大于15。<br />raw deflate格式：[-15, -1]。   |
 
 **返回值：**
 
@@ -2382,7 +2382,7 @@ inflateBackInit(strm: ZStream, windowBits: number, window: ArrayBuffer): Promise
 | 参数名     | 类型        | 必填 | 说明                                          |
 | ---------- | ----------- | ---- | --------------------------------------------- |
 | strm       | ZStream     | 是   | 参考[ZStream定义](#zstream12)。               |
-| windowBits | number      | 是   | 最大窗口大小的以2为底的对数，取值范围在8~15。 |
+| windowBits | number      | 是   | 控制内存窗口的大小，并指定数据的格式（zlib、gzip、raw deflate）。取值如下：<br />zlib格式：[1, 15]。<br />gzip格式：大于15。<br />raw deflate格式：[-15, -1]。 |
 | window     | ArrayBuffer | 是   | 预设的窗口缓冲区。                            |
 
 **返回值：**
@@ -2821,7 +2821,7 @@ deflateInit2(strm: ZStream, level: CompressLevel, method: CompressMethod, window
 | strm       | ZStream          | 是   | 参考[ZStream定义](#zstream12)。                     |
 | level      | CompressLevel    | 是   | 参考[CompressLevel枚举定义](#compresslevel)。       |
 | method     | CompressMethod   | 是   | 参考[CompressMethod枚举定义](#compressmethod12)。   |
-| windowBits | number           | 是   | 最大窗口大小的以2为底的对数。                       |
+| windowBits | number           | 是   | 控制内存窗口的大小，并指定数据的格式（zlib、gzip、raw deflate）。取值如下：<br />zlib格式：[1, 15]。<br />gzip格式：大于15。<br />raw deflate格式：[-15, -1]。                       |
 | memLevel   | MemLevel         | 是   | 参考[MemLevel枚举定义](#memlevel)。                 |
 | strategy   | CompressStrategy | 是   | 参考[CompressStrategy枚举定义](#compressstrategy)。 |
 
@@ -4291,7 +4291,7 @@ struct Index {
 
 gzclose(): Promise&lt;ReturnStatus&gt;
 
-清除文件的所有挂起输出，如有必要，关闭文件和释放(解)压缩状态。
+清除文件的所有挂起输出，如有必要，关闭文件和释放（解）压缩状态。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4845,7 +4845,7 @@ struct Index {
 
 gzcloser(): Promise&lt;ReturnStatus&gt;
 
-与gzclose（）功能相同，仅适用于读取时。
+与gzclose()功能相同，仅适用于读取时。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
