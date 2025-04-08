@@ -58,12 +58,14 @@
 
 ### 连接server端读取和写入信息
 1. import需要的ble模块。
-2. 创建gattClient实例对象。
-3. 连接gattServer。
-4. 读取gattServer的特征值和描述符。
-5. 向gattServer写入特征值和描述符。
-6. 断开连接，销毁gattClient实例。
-7. 示例代码:
+2. 开启蓝牙。
+3. 需要申请权限ohos.permission.ACCESS_BLUETOOTH。
+4. 创建gattClient实例对象。
+5. 连接gattServer。
+6. 读取gattServer的特征值和描述符。
+7. 向gattServer写入特征值和描述符。
+8. 断开连接，销毁gattClient实例。
+9. 示例代码:
 
     ```ts
     import { ble } from '@kit.ConnectivityKit';
@@ -356,12 +358,14 @@
 
 ### server端操作services和通知客户端信息
 1. import需要的ble模块。
-2. 创建gattServer实例对象。
-3. 添加services信息。
-4. 当向gattServer写入特征值通知gattClient。
-5. 移除services信息。
-6. 注销gattServer实例。
-7. 示例代码:
+2. 开启蓝牙。
+3. 需要申请权限ohos.permission.ACCESS_BLUETOOTH。
+4. 创建gattServer实例对象。
+5. 添加services信息。
+6. 当向gattServer写入特征值通知gattClient。
+7. 移除services信息。
+8. 注销gattServer实例。
+9. 示例代码:
 
     ```ts
     import { ble } from '@kit.ConnectivityKit';
