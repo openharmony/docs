@@ -1829,14 +1829,14 @@ let details : Record<string, string> = {
 }
 let plainTextObj : uniformDataStruct.PlainText = {
   uniformDataType: 'general.plain-text',
-  textContent : 'This is plainText textContent example',
-  abstract : 'this is abstract',
+  textContent : 'The weather is very good today',
+  abstract : 'The weather is very good today',
   details : details,
 }
 let htmlObj : uniformDataStruct.HTML = {
   uniformDataType :'general.html',
-  htmlContent : '<div><p>标题</p></div>',
-  plainContent : 'this is plainContent',
+  htmlContent : '<div><p>The weather is very good today</p></div>',
+  plainContent : 'The weather is very good today',
   details : details,
 }
 let plainText = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainTextObj);
