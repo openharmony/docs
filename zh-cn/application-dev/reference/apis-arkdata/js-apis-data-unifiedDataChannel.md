@@ -1788,7 +1788,7 @@ try {
 
 convertRecordsToEntries(data: UnifiedData): void
 
-本接口用于将传入的data转换成多样式数据结构。
+本接口用于将传入的data转换成多样式数据结构。若原data使用多个record去承载同一份数据的不同样式，则可以使用此接口将原data转换为多样式数据结构。
 
 当满足以下规则时进行转换，传入的data经转换后变为多样式数据结构：
 1. data中的record数量大于1;
