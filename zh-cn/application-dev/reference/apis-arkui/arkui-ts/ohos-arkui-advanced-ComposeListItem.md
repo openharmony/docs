@@ -79,22 +79,20 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 列表右侧显示的元素类型以及文字内容。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| arrow | [OperateIcon](#operateicon) | 否 | 右侧元素为箭头，大小为12\*24vp。 |
-| icon | [OperateIcon](#operateicon) | 否 | 右侧元素的第一个图标，大小为24\*24vp。 |
-| subIcon | [OperateIcon](#operateicon) | 否 | 右侧元素的第二个图标，大小为24\*24vp。 |
-| button | [OperateButton](#operatebutton) | 否 | 右侧元素为按钮。 |
-| switch | [OperateCheck](#operatecheck) | 否 | 右侧元素为开关。 |
-| checkbox | [OperateCheck](#operatecheck) | 否 | 右侧元素为多选框，大小为24\*24vp。 |
-| radio | [OperateCheck](#operatecheck) | 否 | 右侧元素为单选，大小为24\*24vp。 |
-| image | [ResourceStr](ts-types.md#resourcestr) | 否 | 右侧元素为图片，大小为48\*48vp。 |
+| arrow | [OperateIcon](#operateicon) | 否 | 右侧元素为箭头，大小为12\*24vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| icon | [OperateIcon](#operateicon) | 否 | 右侧元素的第一个图标，大小为24\*24vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| subIcon | [OperateIcon](#operateicon) | 否 | 右侧元素的第二个图标，大小为24\*24vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| button | [OperateButton](#operatebutton) | 否 | 右侧元素为按钮。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| switch | [OperateCheck](#operatecheck) | 否 | 右侧元素为开关。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| checkbox | [OperateCheck](#operatecheck) | 否 | 右侧元素为多选框，大小为24\*24vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| radio | [OperateCheck](#operatecheck) | 否 | 右侧元素为单选，大小为24\*24vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| image | [ResourceStr](ts-types.md#resourcestr) | 否 | 右侧元素为图片，大小为48\*48vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | symbolStyle<sup>18+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | 右侧元素为Symbol，大小为48\*48vp。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
-| text | [ResourceStr](ts-types.md#resourcestr) | 否 | 右侧元素为文字。 |
+| text | [ResourceStr](ts-types.md#resourcestr) | 否 | 右侧元素为文字。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## OperateIcon
 
