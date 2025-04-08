@@ -10,7 +10,7 @@
 
 ## 接口
 
-## XComponentOptions<sup>12+</sup>
+### XComponentOptions<sup>12+</sup>
 
 定义XComponent的具体配置参数。
 
