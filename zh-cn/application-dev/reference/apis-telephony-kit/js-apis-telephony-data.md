@@ -523,7 +523,7 @@ queryAllApns(): Promise\<Array\<ApnInfo\>\>
 ```ts
 import { data } from '@kit.TelephonyKit';
 
-cellular.queryAllApns().then((data: Array<cellular.ApnInfo>) => {
+data.queryAllApns().then((data: Array<data.ApnInfo>) => {
     console.info(`queryAllApns success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`queryAllApns failed, promise: err->${JSON.stringify(err)}`);
@@ -608,7 +608,7 @@ setPreferredApn(apnId: number): Promise\<boolean\>
 import { data } from '@kit.TelephonyKit';
 
 let apnId: number = 0; // apnId为通过queryApnIds返回的有效值，setPreferredApn传入无效的apnId会切回运营商默认配置的优选APN。
-cellular.setPreferredApn(apnId).then((data: boolean) => {
+data.setPreferredApn(apnId).then((data: boolean) => {
     console.info(`setPreferredApn success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`setPreferredApn failed, promise: err->${JSON.stringify(err)}`);
