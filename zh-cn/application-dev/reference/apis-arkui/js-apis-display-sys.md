@@ -227,6 +227,123 @@ try {
 }
 ```
 
+## display.addVirtualScreenBlockList<sup>18+</sup>
+addVirtualScreenBlockList(windowIds: Array\<number>): Promise\<void>
+
+向在投屏虚拟屏不显示的黑名单中添加窗口，被添加的窗口将不在投屏虚拟屏上显示。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                                                    |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| windowIds     | Array\<number>    | 是   | 添加进黑名单的窗口列表，被添加的窗口将不在投屏虚拟屏上显示。仅主窗windowId生效。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------- | ------------------------ |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.|
+| 801     | Capability not supported on this device. |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { display, window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // ...
+    let windowId = windowStage.getMainWindowSync().getWindowProperties().id;
+    let windowIds = [windowId];
+
+    let promise = display.addVirtualScreenBlockList(windowIds);
+    promise.then(() => {
+      console.info('Succeeded in adding virtual screen block list.');
+    }).catch((err: BusinessError) => {
+      console.error('Failed to add virtual screen block list. Code: ' + JSON.stringify(err));
+    })
+  }
+}
+```
+
+## display.removeVirtualScreenBlockList<sup>18+</sup>
+removeVirtualScreenBlockList(windowIds: Array\<number>): Promise\<void>
+
+向在投屏虚拟屏不显示的黑名单中添加窗口，被移除的窗口将重新在投屏虚拟屏上显示。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                                                    |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| windowIds     | Array\<number>    | 是   | 从黑名单中移除的窗口列表，被移除的窗口将重新在投屏虚拟屏上显示。仅主窗windowId生效。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------- | ------------------------ |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.|
+| 801     | Capability not supported on this device. |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { display, window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // ...
+    let windowId = windowStage.getMainWindowSync().getWindowProperties().id;
+    let windowIds = [windowId];
+
+    let promise = display.addVirtualScreenBlockList(windowIds);
+    promise.then(() => {
+      console.info('Succeeded in adding virtual screen block list.');
+    }).catch((err: BusinessError) => {
+      console.error('Failed to add virtual screen block list. Code: ' + JSON.stringify(err));
+    })
+
+    promise = display.removeVirtualScreenBlackList(windowIds);
+    promise.then(() => {
+      console.info('Succeeded in removing virtual screen block list.');
+    }).catch((err: BusinessError) => {
+      console.error('Failed to remove virtual screen block list. Code: ' + JSON.stringify(err));
+    })
+  }
+}
+```
+
 ## Display
 屏幕实例。描述display对象的属性和方法。
 
