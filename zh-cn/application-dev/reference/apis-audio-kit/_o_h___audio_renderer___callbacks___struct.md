@@ -50,7 +50,6 @@ int32_t (*OH_AudioRenderer_Callbacks_Struct::OH_AudioRenderer_OnError)(OH_AudioR
 | renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](_o_h_audio.md#oh_audiostreambuilder_generaterenderer)创建的音频流实例。 |
 | userData | 指向应用自定义的数据存储区域。 |
 | error | 音频播放错误结果[OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result)，AUDIOSTREAM_ERROR_INVALID_PARAM、AUDIOSTREAM_ERROR_ILLEGAL_STATE或者AUDIOSTREAM_ERROR_SYSTEM。 |
-| length | buffer的长度。 |
 
 
 ### OH_AudioRenderer_OnInterruptEvent
