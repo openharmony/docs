@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```
+```ts
 import {
   ArcButton,
   ArcButtonOptions,
@@ -175,7 +175,6 @@ bottomOptions定义了底部弧形按钮，按钮文本为ButtonBottom，字体�
 ```ts
 // xxx.ets
 import {
-  ColorMetrics,
   LengthMetrics,
   LengthUnit,
   ArcButton,
@@ -188,8 +187,8 @@ import {
 @Entry
 @ComponentV2
 struct Index {
-  @Local topOptions: ArcButtonOptions = new ArcButtonOptions({})
-  @Local bottomOptions: ArcButtonOptions = new ArcButtonOptions({})
+  @Local topOptions: ArcButtonOptions = new ArcButtonOptions({});
+  @Local bottomOptions: ArcButtonOptions = new ArcButtonOptions({});
 
   aboutToAppear() {
     this.topOptions = new ArcButtonOptions({
@@ -207,7 +206,7 @@ struct Index {
       fontSize: new LengthMetrics(15, LengthUnit.FP),
       shadowEnabled: true,
       onClick: () => {
-        console.info('click from ArcButton.')
+        console.info('click from ArcButton.');
       }
     })
   }
