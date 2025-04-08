@@ -227,8 +227,8 @@ try {
 }
 ```
 
-## display.addVirtualScreenBlockList<sup>18+</sup>
-addVirtualScreenBlockList(windowIds: Array\<number>): Promise\<void>
+## display.addVirtualScreenBlocklist<sup>18+</sup>
+addVirtualScreenBlocklist(windowIds: Array\<number>): Promise\<void>
 
 向在投屏虚拟屏不显示的黑名单中添加窗口，被添加的窗口将不在投屏虚拟屏上显示。使用Promise异步回调。
 
@@ -272,18 +272,18 @@ export default class EntryAbility extends UIAbility {
     let windowId = windowStage.getMainWindowSync().getWindowProperties().id;
     let windowIds = [windowId];
 
-    let promise = display.addVirtualScreenBlockList(windowIds);
+    let promise = display.addVirtualScreenBlocklist(windowIds);
     promise.then(() => {
-      console.info('Succeeded in adding virtual screen block list.');
+      console.info('Succeeded in adding virtual screen blocklist.');
     }).catch((err: BusinessError) => {
-      console.error('Failed to add virtual screen block list. Code: ' + JSON.stringify(err));
+      console.error('Failed to add virtual screen blocklist. Code: ' + JSON.stringify(err));
     })
   }
 }
 ```
 
-## display.removeVirtualScreenBlockList<sup>18+</sup>
-removeVirtualScreenBlockList(windowIds: Array\<number>): Promise\<void>
+## display.removeVirtualScreenBlocklist<sup>18+</sup>
+removeVirtualScreenBlocklist(windowIds: Array\<number>): Promise\<void>
 
 向在投屏虚拟屏不显示的黑名单中添加窗口，被移除的窗口将重新在投屏虚拟屏上显示。使用Promise异步回调。
 
@@ -327,18 +327,18 @@ export default class EntryAbility extends UIAbility {
     let windowId = windowStage.getMainWindowSync().getWindowProperties().id;
     let windowIds = [windowId];
 
-    let promise = display.addVirtualScreenBlockList(windowIds);
+    let promise = display.addVirtualScreenBlocklist(windowIds);
     promise.then(() => {
-      console.info('Succeeded in adding virtual screen block list.');
+      console.info('Succeeded in adding virtual screen blocklist.');
     }).catch((err: BusinessError) => {
-      console.error('Failed to add virtual screen block list. Code: ' + JSON.stringify(err));
+      console.error('Failed to add virtual screen blocklist. Code: ' + JSON.stringify(err));
     })
 
-    promise = display.removeVirtualScreenBlackList(windowIds);
+    promise = display.removeVirtualScreenBlocklist(windowIds);
     promise.then(() => {
-      console.info('Succeeded in removing virtual screen block list.');
+      console.info('Succeeded in removing virtual screen blocklist.');
     }).catch((err: BusinessError) => {
-      console.error('Failed to remove virtual screen block list. Code: ' + JSON.stringify(err));
+      console.error('Failed to remove virtual screen blocklist. Code: ' + JSON.stringify(err));
     })
   }
 }
