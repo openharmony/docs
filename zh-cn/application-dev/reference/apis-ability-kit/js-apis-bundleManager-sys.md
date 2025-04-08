@@ -5005,6 +5005,82 @@ try {
 }
 ```
 
+## bundleManager.getAllPluginInfo<sup>18+</sup>
+
+function getAllPluginInfo(hostBundleName: string, userId?: number): Promise<Array\<PluginBundleInfo>>
+
+根据给定的hostBundleName和userId获取所有的PluginBundleInfo，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| hostBundleName | string | 是   | 表示安装插件的应用包名。 |
+| userId         | number   | 否   | 表示用户ID，默认值：调用方所在用户ID。取值范围：大于等于0。 |
+
+**返回值：**
+
+| 类型                                                         | 说明                                   |
+| ------------------------------------------------------------ | -------------------------------------- |
+| Promise<Array\<[PluginBundleInfo](js-apis-bundleManager-pluginBundleInfo-sys.md)>> | Promise对象，返回Array\<PluginBundleInfo>。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700001 | The specified bundleName is not found.  |
+| 17700004 | The specified user ID is not found.      |
+
+**示例：**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+let hostBundleName = 'com.ohos.demo';
+let userId = 100;
+
+try {
+    bundleManager.getAllPluginInfo(hostBundleName, userId).then((data) => {
+        hilog.info(0x0000, 'testTag', 'getAllPluginInfo successfully. Data: %{public}s', JSON.stringify(data));
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'getAllPluginInfo failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getAllPluginInfo failed. Cause: %{public}s', message);
+}
+```
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+let hostBundleName = 'com.ohos.demo';
+
+try {
+    bundleManager.getAllPluginInfo(hostBundleName).then((data) => {
+        hilog.info(0x0000, 'testTag', 'getAllPluginInfo successfully. Data: %{public}s', JSON.stringify(data));
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'getAllPluginInfo failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getAllPluginInfo failed. Cause: %{public}s', message);
+}
+```
+
 ## bundleManager.getExtResource<sup>12+</sup>
 
 getExtResource(bundleName: string): Promise\<Array\<string>>;
@@ -5644,3 +5720,27 @@ try {
   hilog.error(0x0000, 'testTag', 'deleteAbc failed. Cause: %{public}s', message);
 }
 ```
+
+## PluginBundleInfo<sup>18+</sup>
+
+type PluginBundleInfo = _PluginBundleInfo
+
+插件信息。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_PluginBundleInfo](js-apis-bundleManager-pluginBundleInfo-sys.md#pluginbundleinfo) |插件信息。 |
+
+## PluginModuleInfo<sup>18+</sup>
+
+type PluginModuleInfo = _PluginModuleInfo
+
+插件的模块信息。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_PluginModuleInfo](js-apis-bundleManager-pluginBundleInfo-sys.md#pluginmoduleinfo) |插件的模块信息。 |

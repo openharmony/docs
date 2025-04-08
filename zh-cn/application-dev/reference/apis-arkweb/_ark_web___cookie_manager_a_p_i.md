@@ -9,6 +9,7 @@
 
 **相关模块：**[Web](_web.md)
 
+**所在头文件：** [arkweb_type.h](arkweb__type_8h.md)
 
 ## 汇总
 
@@ -64,7 +65,7 @@ ArkWeb_ErrorCode(* ArkWeb_CookieManagerAPI::configCookieSync) (const char *url, 
 
 **返回：**
 
-返回值错误码。 [ARKWEB_SUCCESS](_web.md) 设置cookie成功。 [ARKWEB_INVALID_URL](_web.md) 设置的URL无效。 [ARKWEB_INVALID_COOKIE_VALUE](_web.md) cookieValue参数无效。
+返回值错误码。 [ARKWEB_SUCCESS](_web.md#arkweb_errorcode-1) 设置cookie成功。 [ARKWEB_INVALID_URL](_web.md#arkweb_errorcode-1) 设置的URL无效。 [ARKWEB_INVALID_COOKIE_VALUE](_web.md#arkweb_errorcode-1) cookieValue参数无效。
 
 
 ### existCookies
@@ -107,7 +108,7 @@ ArkWeb_ErrorCode(* ArkWeb_CookieManagerAPI::fetchCookieSync) (const char *url, b
 
 **返回：**
 
-返回值错误码。 [ARKWEB_SUCCESS](_web.md) 获取cookie成功。 [ARKWEB_INVALID_URL](_web.md) 设置的URL无效。 [ARKWEB_INVALID_PARAM](_web.md) cookieValue参数无效。
+返回值错误码。 [ARKWEB_SUCCESS](_web.md#arkweb_errorcode-1) 获取cookie成功。 [ARKWEB_INVALID_URL](_web.md#arkweb_errorcode-1) 设置的URL无效。 [ARKWEB_INVALID_PARAM](_web.md#arkweb_errorcode-1) cookieValue参数无效。
 
 
 ### size

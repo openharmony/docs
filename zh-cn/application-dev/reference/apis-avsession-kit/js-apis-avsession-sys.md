@@ -1426,7 +1426,7 @@ setDiscoverable(enable: boolean, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                                  | 必填 | 说明                                  |
 | -------- | ------------------------------------- | ---- | ------------------------------------- |
-| enable | boolean | 是 | 是否允许本设备被发现。true: 允许被发现，false：不允许被发现。 |
+| enable | boolean | 是 | 是否允许本设备被发现。true：允许被发现，false：不允许被发现。 |
 | callback | AsyncCallback\<void>                  | 是   | 回调函数。当设置成功，err为undefined，否则返回错误对象。 |
 
 **错误码：**
@@ -1465,7 +1465,7 @@ setDiscoverable(enable: boolean): Promise\<void>
 
 | 参数名   | 类型                                  | 必填 | 说明                                  |
 | -------- | ------------------------------------- | ---- | ------------------------------------- |
-| enable | boolean | 是 | 是否允许本设备被发现。true: 允许被发现，false：不允许被发现。 |
+| enable | boolean | 是 | 是否允许本设备被发现。true：允许被发现，false：不允许被发现。 |
 
 **错误码：**
 

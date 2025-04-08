@@ -35,6 +35,8 @@ To use related APIs to obtain network information, you need to create a Native C
 
 This document describes how to obtain the default active data network as an example.
 
+For details about other APIs, see the [Complete Sample Code](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/NetConnection_Exploitation_case).
+
 ### Adding Dependencies
 
 **Adding the Dynamic Link Library**

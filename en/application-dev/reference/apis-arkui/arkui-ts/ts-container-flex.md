@@ -39,20 +39,20 @@ Creates a **Flex** component.
 
 Describes the layout and alignment of child components within the **Flex** component.
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name           | Type       | Mandatory  | Description                                    |
 | -------------- | ---------------------------------------- | ---- |  ---------------------------------------- |
-| direction      | [FlexDirection](ts-appendix-enums.md#flexdirection) | No    | Direction in which child components are arranged in the **Flex** component, that is, the direction of the main axis.<br>Default value: **FlexDirection.Row**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.              |
-| wrap           | [FlexWrap](ts-appendix-enums.md#flexwrap) | No    | Whether the **Flex** component has a single line or multiple lines.<br>Default value: **FlexWrap.NoWrap**<br>**NOTE**<br>When wrapped onto multiple lines, the child elements on the new line are stacked in the direction based on the cross axis direction.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.|
-| justifyContent | [FlexAlign](ts-appendix-enums.md#flexalign) | No    | Alignment mode of the child components in the **Flex** component along the main axis.<br>Default value: **FlexAlign.Start**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.                   |
-| alignItems     | [ItemAlign](ts-appendix-enums.md#itemalign) | No    | Alignment mode of the child components in the **Flex** component along the cross axis.<br>Default value: **ItemAlign.Start**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.                |
-| alignContent   | [FlexAlign](ts-appendix-enums.md#flexalign) | No    | Alignment mode of the child components in a multi-row **Flex** component along the cross axis. This parameter is valid only when **wrap** is set to **Wrap** or **WrapReverse**.<br>Default value: **FlexAlign.Start**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9. |
+| direction      | [FlexDirection](ts-appendix-enums.md#flexdirection) | No    | Direction in which child components are arranged in the **Flex** component, that is, the direction of the main axis.<br>Default value: **FlexDirection.Row**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.           |
+| wrap           | [FlexWrap](ts-appendix-enums.md#flexwrap) | No    | Whether the **Flex** component has a single line or multiple lines.<br>Default value: **FlexWrap.NoWrap**<br>**NOTE**<br>When wrapped onto multiple lines, the child elements on the new line are stacked in the direction based on the cross axis direction.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| justifyContent | [FlexAlign](ts-appendix-enums.md#flexalign) | No    | Alignment mode of the child components in the **Flex** component along the main axis.<br>Default value: **FlexAlign.Start**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                 |
+| alignItems     | [ItemAlign](ts-appendix-enums.md#itemalign) | No    | Alignment mode of the child components in the **Flex** component along the cross axis.<br>Default value: **ItemAlign.Start**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.              |
+| alignContent   | [FlexAlign](ts-appendix-enums.md#flexalign) | No    | Alignment mode of the child components in a multi-row **Flex** component along the cross axis. This parameter is valid only when **wrap** is set to **Wrap** or **WrapReverse**.<br>Default value: **FlexAlign.Start**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 | space<sup>12+</sup>          | [FlexSpaceOptions<sup>12+</sup>](ts-container-flex.md#flexspaceoptions12) | No  | Spacing between child components along the main axis or cross axis of the **Flex** component.<br>Default value: **{main:LengthMetrics.px(0), cross:LengthMetrics.px(0)}**<br>This parameter does not take effect if the value specified is a negative number or percentage, or if **justifyContent** is set to **FlexAlign.SpaceBetween**, **FlexAlign.SpaceAround**, or **FlexAlign.SpaceEvenly**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## FlexSpaceOptions<sup>12+</sup>
+
+Defines the spacing between child components along the main axis or cross axis of the **Flex** component.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

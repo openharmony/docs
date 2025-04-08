@@ -26,7 +26,7 @@ Sets how the final state of the component's content is rendered during its width
 
 renderFit(fitMode: Optional\<RenderFit>)
 
-Sets how the final state of the component's content is rendered during its width and height animation process. Compared to [renderFit](#renderfit), the **fitMode** parameter supports the **undefined** type.
+Sets how the final state of the component's content is rendered during its width and height animation process. Compared to [renderFit](#renderfit), this API supports the **undefined** type for the **fitMode** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 

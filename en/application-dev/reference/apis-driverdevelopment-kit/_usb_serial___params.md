@@ -9,6 +9,8 @@ Defines the USB serial port parameters for the USB Serial DDK.
 
 **Related module**: [USB Serial DDK](_serial_ddk.md)
 
+Header file: [usb_serial_ddk_types.h](usb__serial__ddk__types_8h.md)
+
 
 ## Summary
 

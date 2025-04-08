@@ -48,6 +48,7 @@ Tracing GC identifies live objects by traversing the object graph starting from 
 Given the limitations of reference counting, especially the critical issue of circular references, ArkTS Runtime uses tracing GC.
 
 ### Types of Tracing GC
+
 Tracing GC algorithms identify garbage by traversing the object graph. Based on the collection method, tracing GC can be categorized into three basic types: mark-sweep, mark-copy, and mark-compact. In the diagrams below, blue indicates live objects, whereas yellow indicates garbage.
 
 #### Mark-Sweep Collection
@@ -69,7 +70,7 @@ This approach eliminates memory fragmentation and completes the GC process in a 
 ![image](./figures/mark-shuffle.png)
 
 After the traversal, live objects (blue) are copied to the beginning of the current space (or a designated area), and the copied objects are reclaimed and placed in the free list.
-This approach addresses memory fragmentation without wasting half of the memory space, though it incurs slightly higher performance overhead when compared with mark-copy collection.
+This approach addresses memory fragmentation without wasting half of the memory space, though it incurs higher performance overhead when compared with mark-copy collection.
 
 ### HPP GC
 
@@ -94,9 +95,7 @@ Based on the characteristics of old generation objects, a heuristic collection s
 
 The collection policies are as follows:
 
-- Identifies regions with live object sizes below a threshold, places them in the initial CSet, and sorts them by liveness
-
-(survival rate = live object size/region size).
+- Identifies regions with live object sizes below a threshold, places them in the initial CSet, and sorts them by liveness (survival rate = live object size/region size).
 
 - Selects a final CSet based on a predefined number of regions for compaction.
 
@@ -107,8 +106,6 @@ This heuristic approach combines the benefits of mark-compact and mark-sweep alg
 #### Process Optimization
 
 HPP GC introduces extensive concurrency and parallelism optimizations to minimize the impact on application performance. The GC process includes concurrent and parallel marking, sweeping, evacuation, updating, and clearing tasks.
-
-
 
 ## Heap Structure and Parameters
 
@@ -137,8 +134,8 @@ You can use related APIs to query memory information by referring to [HiDebug AP
 
 #### Heap Size Parameters
 
-| Parameter| Value or Value Range| Description|
-| --- | --- | :--- |
+| Name| Value or Value Range| Description|
+| --- | --- | --- |
 | HeapSize | 448 MB| Default total heap size for the main thread. The value is adjusted for low-memory devices based on the actual memory pool size.|
 | SemiSpaceSize | 2–4 MB/2–8 MB/2–16 MB| Size of Semi Space.|
 | NonmovableSpaceSize | 2 MB/6 MB/64 MB | Size of Non-Movable Space.|
@@ -147,32 +144,30 @@ You can use related APIs to query memory information by referring to [HiDebug AP
 
 #### Worker Thread Heap Limit
 
-| Parameter| Value| Description|
+| Name| Value| Description|
 | --- | --- | --- |
 | HeapSize  | 768 MB | Heap size for worker threads.|
 
 #### Parameters of Semi Space
-
 The heap contains two Semi Spaces for copying.
 
-| Parameter| Value or Value Range| Description|
-| --- | --- | :--- |
+| Name| Value or Value Range| Description|
+| --- | --- | --- |
 | semiSpaceSize | 2–4 MB/2–8 MB/2–16 MB| Size of Semi Space. The value varies according to the total heap size.|
 | semiSpaceTriggerConcurrentMark | 1 M/1.5 M/1.5 M| Threshold for independently triggering concurrent marking in Semi Space for the first time.|
 | semiSpaceStepOvershootSize| 2 MB | Maximum overshoot size of Semi Space.|
 
 #### Parameters of Old Space and Huge Object Space
-
 Both spaces are initialized to the remaining unallocated heap size. By default, the upper limit of OldSpaceSize of the main thread on mobile phones approaches 350 MB.
 
-| Parameter| Value| Description|
-| --- | --- | :--- |
+| Name| Value or Value Range| Description|
+| --- | --- | --- |
 | oldSpaceOvershootSize | 4 MB/8 MB/8 MB | Maximum overshoot size of Old Space.|
 
 #### Parameters of Other Spaces
 
-| Parameter| Value| Description|
-| --- | --- | :--- |
+| Name| Value or Value Range| Description|
+| --- | --- | --- |
 | defaultReadOnlySpaceSize | 256 KB | Default size of Read Only Space.|
 | defaultNonMovableSpaceSize | 2 MB/6 MB/64 MB | Default size of Non-Movable Space.|
 | defaultSnapshotSpaceSize | 512 KB/512 KB/ 4 MB | Default size of Snapshot Space.|
@@ -180,14 +175,14 @@ Both spaces are initialized to the remaining unallocated heap size. By default, 
 
 #### Interpreter Stack Size
 
-| Parameter| Value| Description|
+| Name| Value or Value Range| Description|
 | --- | --- | --- |
-| maxStackSize | 128 KB| Maximum frame size of the interpreter stack.|
+| maxStackSize | 128 KB| Maximum size of the interpreter stack.|
 
 #### Concurrency Parameters
 
-| Parameter| Value| Description|
-| --- | ---: | --- |
+| Name| Value| Description|
+| --- | --- | --- |
 | gcThreadNum | 7 | Number of GC threads. The default value is 7. You can set this parameter using **gc-thread-num**.|
 | MIN_TASKPOOL_THREAD_NUM | 3 | Minimum number of threads in the thread pool.|
 | MAX_TASKPOOL_THREAD_NUM | 7 | Maximum number of threads in the thread pool.|
@@ -196,7 +191,7 @@ Note: The thread pool is used to execute concurrent tasks in the GC process. Dur
 
 #### Other Parameters
 
-| Parameter| Value| Description|
+| Name| Value| Description|
 | --- | --- | --- |
 | minAllocLimitGrowingStep | 2 M/4 M/8 M| Minimum growth step of **oldSpace**, **heapObject**, and **globalNative** when the heap size is recalculated.|
 | minGrowingStep | 4 M/8 M/16 M| Minimum growth step of **oldSpace**.|
@@ -205,7 +200,6 @@ Note: The thread pool is used to execute concurrent tasks in the GC process. Dur
 ### Additional: The native total memory limit for ArrayBuffer within a single VM is set to 4 GB.
 
 ## GC Process
-
 
 ![image](./figures/gc-process.png)
 
@@ -274,21 +268,22 @@ Subsequent Smart GC or IDLE GC selections are made from the above three types of
 
 - Function: **AdjustOldSpaceLimit**
 - Description: adjusts the Old Space threshold based on the minimum growth step and average survival rate.
-- Log keywords: **"AdjustOldSpaceLimit oldSpaceAllocLimit_: "<< oldSpaceAllocLimit <<" globalSpaceAllocLimit_: " << globalSpaceAllocLimit_;**
+- Log keyword: **AdjustOldSpaceLimit**
 
 #### Adjusting Old Space/Global Space Thresholds and Growth Factors After Subsequent Old GCs
 
 - Function: **RecomputeLimits**
 - Description: recalculates and adjusts **newOldSpaceLimit**, **newGlobalSpaceLimit**, **globalSpaceNativeLimit**, and growth factors based on current GC statistics.
-- Log keywords: **"RecomputeLimits oldSpaceAllocLimit_: "<< newOldSpaceLimit_ <<" globalSpaceAllocLimit_: "<< globalSpaceAllocLimit_ <<" globalSpaceNativeLimit_: "<< globalSpaceNativeLimit_;**
+- Log keyword: **RecomputeLimits**
 
 #### CSet Selection Strategies for Partial GC
 
 - Function: **OldSpace::SelectCSet()**
 - Description: selects regions with fewer live objects and lower collection costs for partial GC.
-- Log keywords: **Select CSet failure: number is too few**,
-  **"Max evacuation size is 6_MB. The CSet region number: " << selectedRegionNumber;**,
-  and **"Select CSet success: number is " << collectRegionSet_.size();**
+- Typical Logs
+    - Select CSet failure: number is too few
+    - Max evacuation size is 6_MB. The CSet region number
+    - Select CSet success: number is
 
 ## SharedHeap
 
@@ -309,7 +304,7 @@ Note: The shared heap is designed for objects shared across threads to improve e
 
 #### Description
 
-In performance-sensitive scenarios, the GC trigger threshold of the JS thread is temporarily adjusted to the maximum JS heap size (448 MB by default), minimizing GC-triggered frame drops. (Smart GC does not take effect for the Worker thread and TaskPool thread.) However, if a performance-sensitive scenario persists too long and object allocation reaches the maximum heap size, GC is triggered, potentially resulting in longer GC times due to accumulated objects.
+In performance-sensitive scenarios, the GC trigger threshold of the thread is temporarily adjusted to the maximum heap size (448 MB for the main thread by default), minimizing GC-triggered frame drops. (Smart GC does not take effect for the Worker thread and TaskPool thread.) However, if a performance-sensitive scenario persists too long and object allocation reaches the maximum heap size, GC is triggered, potentially resulting in longer GC times due to accumulated objects.
 
 #### Performance-Sensitive Scenarios
 
@@ -351,7 +346,7 @@ The following logs represent a complete GC execution, with variations based on t
 // Pre-GC object size (region size) -> Post-GC object size (region size), total duration (+concurrentMark duration), GC trigger reason.
 C03F00/ArkCompiler: [gc]  [ CompressGC ] 26.1164 (35) -> 7.10049 (10.5) MB, 160.626(+0)ms, Switch to background
 // Various states during GC execution and application name.
-C03F00/ArkCompiler: [gc] IsInBackground: 1; SensitiveStatus: 0; OnStartupEvent: 0; BundleName: com.huawei.hmos.filemanager;
+C03F00/ArkCompiler: [gc] IsInBackground: 1; SensitiveStatus: 0; OnStartupEvent: 0; BundleName: com.example.demo;
 // Duration statistics for each GC phase.
 C03F00/ArkCompiler: [gc] /***************** GC Duration statistic: ****************/
 C03F00/ArkCompiler: [gc] TotalGC:                 160.626 ms
@@ -406,7 +401,7 @@ C03F00/ArkCompiler: Heap average alive rate: 0.635325
 ## GC Developer Debugging Interfaces
 
 > **NOTE**
->
+> 
 > The following interfaces are for debugging purposes only and are not official SDK interfaces. They should not be used in production applications.
 
 ### ArkTools.hintGC()
@@ -420,7 +415,7 @@ C03F00/ArkCompiler: Heap average alive rate: 0.635325
 
 Usage example:
 
-```
+```ts
 // Declare the interface first.
 declare class ArkTools {
      static hintGC(): void;

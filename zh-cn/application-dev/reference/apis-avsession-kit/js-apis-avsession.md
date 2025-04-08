@@ -5243,8 +5243,6 @@ type ExtraInfo = { [key: string]: Object; }
 
 媒体提供方设置的自定义媒体数据包对象。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 | 类型                                | 说明                          |
@@ -5339,7 +5337,7 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 | composer        | string                  | 否   | 是   | 作曲者。                                                                |
 | duration        | number                  | 否   | 是   | 媒体时长，单位毫秒（ms）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                  |
 | mediaImage      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 是   | 图片的像素数据或者图片路径地址(本地路径或网络路径)。应用通过setAVMetadata设置图片数据。<br>- 设置的数据类型为PixelMap时，通过getAVMetadata获取的将为PixelMap。<br>- 设置为url图片路径，获取的为url图片路径。  <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                             |
-| bundleIcon<sup>18+</sup>      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 是   | 应用图标图片的像素数据。只读类型，不从应用侧设置。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+| bundleIcon<sup>18+</sup>      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 是   | 应用图标图片的像素数据。只读类型，不从应用侧设置。|
 | publishDate     | Date                    | 否   | 是   | 发行日期。                                                             |
 | subtitle        | string                  | 否   | 是   | 子标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                |
 | description     | string                  | 否   | 是   | 媒体描述。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                               |
@@ -6904,8 +6902,6 @@ if (avSessionController !== undefined) {
 getExtrasWithEvent(extraEvent: string): Promise\<ExtraInfo>
 
 根据远端分布式事件类型，获取远端分布式媒体提供方设置的自定义媒体数据包。结果通过Promise异步回调方式返回。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 

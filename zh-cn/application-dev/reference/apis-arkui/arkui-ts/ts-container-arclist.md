@@ -376,7 +376,7 @@ onDidScroll(handler: Optional\<OnScrollCallback>)
 | 名称       | 类型                                    | 必填 | 说明                                                     |
 | ------------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | initialIndex | number                                      | 否   | 设置当前ArcList初次加载时视口起始位置显示的item的索引值。<br/>默认值：0<br/>**说明：** <br/>设置为负数或超过了当前ArcList最后一个item的索引值时视为无效取值，无效取值按默认值显示。 |
-| scroller     | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器。用于与可滚动组件进行绑定。<br/>**说明：** <br/>不允许和其他滚动类组件绑定同一个滚动控制对象。 |
+| scroller     | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器。用于与可滚动组件进行绑定。<br/>**说明：** <br/>不允许和其他滚动类组件，如：[ArcList](ts-container-arclist.md)、[List](ts-container-list.md)、[Grid](ts-container-grid.md)、[Scroll](ts-container-scroll.md)和[WaterFlow](ts-container-waterflow.md)绑定同一个滚动控制对象。 |
 | header       | [ComponentContent](../js-apis-arkui-ComponentContent.md)                            | 否   | 支持标题设置。                                               |
 
 ## ArcScrollIndexHandler

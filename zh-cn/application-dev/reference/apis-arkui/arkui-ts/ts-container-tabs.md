@@ -187,7 +187,7 @@ API Version 14之前的版本，若设置barHeight为固定值后，TabBar无法
 
 animationDuration(value: number)
 
-设置点击TabBar页签和调用TabsController的changeIndex接口切换TabContent的动画时长。该参数不支持百分比设置。
+设置点击TabBar页签和调用TabsController的changeIndex接口切换TabContent的动画时长。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -332,7 +332,7 @@ barBackgroundBlurStyle(style: BlurStyle, options: BackgroundBlurStyleOptions)
 
 barGridAlign(value: BarGridColumnOptions)
 
-以栅格化方式设置TabBar的可见区域。具体参见BarGridColumnOptions对象。仅水平模式下有效，[不适用于XS、XL和XXL设备](../../../ui/arkts-layout-development-grid-layout.md#栅格系统断点)。
+以栅格化方式设置TabBar的可见区域。具体参见BarGridColumnOptions对象。仅水平模式下有效，[不适用于XS、XL和XXL设备](../../../ui/arkts-layout-development-grid-layout.md#栅格容器断点)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -406,7 +406,7 @@ cachedMaxCount(count: number, mode: TabsCacheMode)
 
 | 参数名 | 类型                                                        | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| count  | number                                                      | 是   | 子组件的最大缓存个数。默认所有子组件加载后都不再释放。         |
+| count  | number                                                      | 是   | 子组件的最大缓存个数。默认所有子组件加载后都不再释放。<br/>取值范围：[0, +∞)。|
 | mode   | [TabsCacheMode](#tabscachemode18枚举说明)                   | 是   | 子组件的缓存模式。<br/>默认值：TabsCacheMode.CACHE_BOTH_SIDE   |
 
 ## DividerStyle<sup>10+</sup>对象说明
@@ -531,15 +531,15 @@ onChange(event: Callback\<number>)
 
 Tab页签切换后触发的事件。
 
-触发该事件的条件：
+满足以下任一条件，即可触发该事件：
 
 1、滑动页面进行页面切换时，组件滑动动画结束后触发。
 
-2、通过[控制器](#tabscontroller)API接口调用。
+2、通过[控制器](#tabscontroller)调用[changeIndex](#changeindex)接口，Tab页签切换后触发。
 
-3、通过[状态变量](../../../quick-start/arkts-state.md)构造的属性值进行修改。
+3、动态修改[状态变量](../../../quick-start/arkts-state.md)构造的index属性值，Tab页签切换后触发。
 
-4、通过页签处点击触发。
+4、点击TabBar页签，Tab页签切换后触发。
 
 >  **说明：**
 >
@@ -575,7 +575,7 @@ Tab页签点击后触发的事件。
 
 onAnimationStart(handler: OnTabsAnimationStartCallback)
 
-切换动画开始时触发该回调。当animationDuration为0时动画关闭，不触发该回调。
+切换动画开始时触发该回调。当[animationDuration](#animationduration)为0时动画关闭，不触发该回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -591,7 +591,7 @@ onAnimationStart(handler: OnTabsAnimationStartCallback)
 
 onAnimationEnd(handler: OnTabsAnimationEndCallback)
 
-切换动画结束时触发该回调。当Tabs切换动效结束时触发，包括动画过程中手势中断。当animationDuration为0时动画关闭，不触发该回调。
+切换动画结束时触发该回调，包括动画过程中手势中断。当animationDuration为0时动画关闭，不触发该回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -646,9 +646,9 @@ onContentWillChange(handler: OnTabsContentWillChangeCallback)
 
 自定义Tabs页面切换拦截事件能力，新页面即将显示时触发该回调。
 
-触发该回调的条件：
+满足以下任一条件，即可触发该事件：
 
-1、TabContent支持滑动时，滑动组件切换新页面时触发。
+1、滑动TabContent切换新页面时触发。
 
 2、通过TabsController.changeIndex接口切换新页面时触发。
 
@@ -678,9 +678,9 @@ onSelected(event: Callback\<number>)
 
 1. 滑动离手时满足翻页阈值，开始切换动画时触发。
 
-2. 通过[TabsController控制器](#tabscontroller)调用。
+2. 通过[TabsController控制器](#tabscontroller)调用[changeIndex](#changeindex)接口，开始切换动画时触发。
 
-3. 通过[状态变量](../../../quick-start/arkts-state.md)构造的属性值进行修改。
+3. 动态修改[状态变量](../../../quick-start/arkts-state.md)构造的index属性值后触发。
 
 4. 通过页签处点击触发。
 
@@ -708,9 +708,9 @@ onUnselected(event: Callback\<number>)
 
 1. 滑动离手时满足翻页阈值，开始切换动画时触发。
 
-2. 通过[TabsController控制器](#tabscontroller)调用。
+2. 通过[TabsController控制器](#tabscontroller)调用[changeIndex](#changeindex)接口，开始切换动画时触发。
 
-3. 通过[状态变量](../../../quick-start/arkts-state.md)构造的属性值进行修改。
+3. 动态修改[状态变量](../../../quick-start/arkts-state.md)构造的index属性值后触发。
 
 4. 通过页签处点击触发。
 
@@ -869,8 +869,8 @@ Tabs自定义切换动画执行过程中，返回给开发者的proxy对象。�
 
 | 名称  | 类型     | 只读 | 可选 | 说明                         |
 | ----- | ------- | ---- | ---- | --------------------------- |
-| from | number | 否 | 否 | 自定义动画起始页面对应的index值。|
-| to | number | 否 | 否 | 自定义动画目标页面对应的index值。|
+| from | number | 否 | 否 | 自定义动画起始页面对应的index值，索引从0开始。|
+| to | number | 否 | 否 | 自定义动画目标页面对应的index值，索引从0开始。|
 
 ### finishTransition
 
@@ -891,12 +891,6 @@ Tabs组件的控制器，用于控制Tabs组件进行页签切换。不支持一
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-### 导入对象
-
-```ts
-let controller: TabsController = new TabsController()
-```
 
 ### constructor
 
@@ -962,7 +956,7 @@ setTabBarTranslate(translate: TranslateOptions): void
 
 > **说明：**
 >
-> 当使用bindTabsToScrollable或bindTabsToNestedScrollable等接口绑定了Tabs组件和可滚动容器组件后，在滑动可滚动容器组件时，会触发所有与其绑定的Tabs组件的TabBar的显示和隐藏动效，调用setTabBarTranslate接口设置的TabBar平移距离会失效。因此不建议同时使用bindTabsToScrollable、bindTabsToNestedScrollable和setTabBarTranslate接口。
+> 当使用[bindTabsToScrollable](../js-apis-arkui-UIContext.md#bindtabstoscrollable13)或[bindTabsToNestedScrollable](../js-apis-arkui-UIContext.md#bindtabstonestedscrollable13)等接口绑定了Tabs组件和可滚动容器组件后，在滑动可滚动容器组件时，会触发所有与其绑定的Tabs组件的TabBar的显示和隐藏动效，调用setTabBarTranslate接口设置的TabBar平移距离会失效。因此不建议同时使用bindTabsToScrollable、bindTabsToNestedScrollable和setTabBarTranslate接口。
 >
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
@@ -983,7 +977,7 @@ setTabBarOpacity(opacity: number): void
 
 > **说明：**
 >
-> 当使用bindTabsToScrollable或bindTabsToNestedScrollable等接口绑定了Tabs组件和可滚动容器组件后，在滑动可滚动容器组件时，会触发所有与其绑定的Tabs组件的TabBar的显示和隐藏动效，调用setTabBarOpacity接口设置的TabBar不透明度会失效。因此不建议同时使用bindTabsToScrollable、bindTabsToNestedScrollable和setTabBarOpacity接口。
+> 当使用[bindTabsToScrollable](../js-apis-arkui-UIContext.md#bindtabstoscrollable13)或[bindTabsToNestedScrollable](../js-apis-arkui-UIContext.md#bindtabstonestedscrollable13)等接口绑定了Tabs组件和可滚动容器组件后，在滑动可滚动容器组件时，会触发所有与其绑定的Tabs组件的TabBar的显示和隐藏动效，调用setTabBarOpacity接口设置的TabBar不透明度会失效。因此不建议同时使用bindTabsToScrollable、bindTabsToNestedScrollable和setTabBarOpacity接口。
 >
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
@@ -1613,7 +1607,7 @@ struct TabsCustomAnimationExample {
         this.scaleList[to] = 0.5
         this.opacityList[from] = 1.0
         this.opacityList[to] = 0.5
-        animateTo({
+        this.getUIContext()?.animateTo({
           duration: this.durationList[from],
           onFinish: () => {
             proxy.finishTransition()
@@ -1898,7 +1892,7 @@ struct TabsExample {
 
   private startAnimateTo(duration: number, leftMargin: number, width: number) {
     this.isStartAnimateTo = true
-    animateTo({
+    this.getUIContext()?.animateTo({
       duration: duration, // 动画时长
       curve: Curve.Linear, // 动画曲线
       iterations: 1, // 播放次数

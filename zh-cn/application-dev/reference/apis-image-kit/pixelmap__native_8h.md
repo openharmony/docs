@@ -7,6 +7,8 @@
 
 **库：** libpixelmap.so
 
+**引用文件**：&lt;multimedia/image_framework/image/pixelmap_native.h&gt;
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **起始版本：** 12
@@ -47,7 +49,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [PIXELMAP_ALPHA_TYPE](_image___native_module.md#pixelmap_alpha_type) {<br/>PIXELMAP_ALPHA_TYPE_UNKNOWN = 0,<br/>PIXELMAP_ALPHA_TYPE_OPAQUE = 1,<br/>PIXELMAP_ALPHA_TYPE_PREMULTIPLIED = 2, <br/>PIXELMAP_ALPHA_TYPE_UNPREMULTIPLIED = 3 } | Pixelmap透明度类型。 | 
-| [PIXEL_FORMAT](_image___native_module.md#pixel_format) {<br/>PIXEL_FORMAT_UNKNOWN = 0, PIXEL_FORMAT_RGB_565 = 2,<br/>PIXEL_FORMAT_RGBA_8888 = 3, PIXEL_FORMAT_BGRA_8888 = 4,<br/>PIXEL_FORMAT_RGB_888 = 5, PIXEL_FORMAT_ALPHA_8 = 6,<br/>PIXEL_FORMAT_RGBA_F16 = 7, PIXEL_FORMAT_NV21 = 8,<br/>PIXEL_FORMAT_NV12 = 9<br/>} | 图片像素格式。 | 
+| [PIXEL_FORMAT](_image___native_module.md#pixel_format) {<br/>PIXEL_FORMAT_UNKNOWN = 0, PIXEL_FORMAT_ARGB_8888 = 1, <br/>PIXEL_FORMAT_RGB_565 = 2, PIXEL_FORMAT_RGBA_8888 = 3, <br/>PIXEL_FORMAT_BGRA_8888 = 4, PIXEL_FORMAT_RGB_888 = 5, <br/>PIXEL_FORMAT_ALPHA_8 = 6, PIXEL_FORMAT_RGBA_F16 = 7, <br/>PIXEL_FORMAT_NV21 = 8, PIXEL_FORMAT_NV12 = 9,  <br/>PIXEL_FORMAT_RGBA_1010102 = 10, PIXEL_FORMAT_YCBCR_P010 = 11, <br/>PIXEL_FORMAT_YCRCB_P010 = 12<br/>} | 图片像素格式。 | 
 | [OH_PixelmapNative_AntiAliasingLevel](_image___native_module.md#oh_pixelmapnative_antialiasinglevel) { <br/>OH_PixelmapNative_AntiAliasing_NONE = 0, <br/>OH_PixelmapNative_AntiAliasing_LOW = 1, <br/>OH_PixelmapNative_AntiAliasing_MEDIUM = 2, <br/>OH_PixelmapNative_AntiAliasing_HIGH = 3 <br/>} | Pixelmap缩放时采用的缩放算法。  | 
 | [OH_Pixelmap_HdrMetadataKey](_image___native_module.md#oh_pixelmap_hdrmetadatakey) { <br/>HDR_METADATA_TYPE = 0, <br/>HDR_STATIC_METADATA = 1, <br/>HDR_DYNAMIC_METADATA = 2, <br/>HDR_GAINMAP_METADATA = 3 <br/>} | Pixelmap使用的HDR相关元数据信息的关键字，用于[OH_PixelmapNative_SetMetadata](_image___native_module.md#oh_pixelmapnative_setmetadata)及[OH_PixelmapNative_GetMetadata](_image___native_module.md#oh_pixelmapnative_getmetadata)。  | 
 | [OH_Pixelmap_HdrMetadataType](_image___native_module.md#oh_pixelmap_hdrmetadatatype) { <br/>HDR_METADATA_TYPE_NONE = 0, <br/>HDR_METADATA_TYPE_BASE = 1, <br/>HDR_METADATA_TYPE_GAINMAP = 2, <br/>HDR_METADATA_TYPE_ALTERNATE = 3 <br/>} | HDR_METADATA_TYPE关键字对应的值。  | 
@@ -100,7 +102,7 @@
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PixelmapNative_Crop](_image___native_module.md#oh_pixelmapnative_crop) ([OH_PixelmapNative](_image___native_module.md#oh_pixelmapnative) \*pixelmap, [Image_Region](_image___region.md) \*region) | 根据输入的尺寸对图片进行裁剪。 | 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PixelmapNative_Release](_image___native_module.md#oh_pixelmapnative_release) ([OH_PixelmapNative](_image___native_module.md#oh_pixelmapnative) \*pixelmap) | 释放OH_PixelmapNative指针，推荐使用 [OH_PixelmapNative_Destroy](_image___native_module.md#oh_pixelmapnative_destroy)。 | 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PixelmapNative_Destroy](_image___native_module.md#oh_pixelmapnative_destroy) ([OH_PixelmapNative](_image___native_module.md#oh_pixelmapnative) \*\*pixelmap) | 释放OH_PixelmapNative指针。 | 
-| [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PixelmapNative_ConvertAlphaFormat](_image___native_module.md#oh_pixelmapnative_convertalphaformat) ([OH_PixelmapNative](_image___native_module.md#oh_pixelmapnative) \*srcpixelmap, [OH_PixelmapNative](_image___native_module.md#oh_pixelmapnative) \*dstpixelmap, const bool isPremul) | 将pixlemap的像素数据做预乘和非预乘之间的转换。| 
+| [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PixelmapNative_ConvertAlphaFormat](_image___native_module.md#oh_pixelmapnative_convertalphaformat) ([OH_PixelmapNative](_image___native_module.md#oh_pixelmapnative) \*srcpixelmap, [OH_PixelmapNative](_image___native_module.md#oh_pixelmapnative) \*dstpixelmap, const bool isPremul) | 将pixelmap的像素数据做预乘和非预乘之间的转换。| 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PixelmapNative_CreateEmptyPixelmap](_image___native_module.md#oh_pixelmapnative_createemptypixelmap) ([OH_Pixelmap_InitializationOptions](_image___native_module.md#oh_pixelmap_initializationoptions) \*options, [OH_PixelmapNative](_image___native_module.md#oh_pixelmapnative) \*\*pixelmap) | 利用OH_Pixelmap_InitializationOptions创建空的pixelmap对象，内存数据为0。| 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PixelmapNative_GetNativeBuffer](_image___native_module.md#oh_pixelmapnative_getnativebuffer) ([OH_PixelmapNative](_image___native_module.md#oh_pixelmapnative) \*pixelmap, OH_NativeBuffer \*\*nativeBuffer) | 从DMA内存的PixelMap中，获取NativeBuffer对象。  | 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PixelmapNative_GetMetadata](_image___native_module.md#oh_pixelmapnative_getmetadata) ([OH_PixelmapNative](_image___native_module.md#oh_pixelmapnative) \*pixelmap, [OH_Pixelmap_HdrMetadataKey](_image___native_module.md#oh_pixelmap_hdrmetadatakey) key, [OH_Pixelmap_HdrMetadataValue](_o_h___pixelmap___hdr_metadata_value.md) \*\*value) | 获取元数据。  | 

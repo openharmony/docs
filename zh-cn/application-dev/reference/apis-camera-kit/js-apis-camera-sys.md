@@ -5256,7 +5256,7 @@ ISO参数信息。
 | 名称                     | 值        | 说明         |
 | ----------------------- | --------- | ------------ |
 | CAMERA_FORMAT_DNG<sup>12+</sup>  | 4         | DNG格式的RAW图片。**系统接口：** 此接口为系统接口。         |
-
+| CAMERA_FORMAT_DNG_XDRAW<sup>18+</sup>  | 5         | DNG格式的增强RAW图片，JPG和RAW图片封装在同一个文件中，最高支持16bit的RAW数据。**系统接口：** 此接口为系统接口。         |
 ## ExposureMeteringMode<sup>12+</sup>
 
 枚举，测光模式。

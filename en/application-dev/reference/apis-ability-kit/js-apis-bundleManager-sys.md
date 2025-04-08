@@ -54,9 +54,9 @@ Enumerates the bundle flags, which indicate the type of bundle information to ob
 
 Enumerates the application flags, which indicate the type of application information to obtain.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
- **System API**: This is a system API.
+**System API**: This is a system API.
 
 | Name                                | Value        | Description                                                        |
 | ------------------------------------ | ---------- | ------------------------------------------------------------ |
@@ -69,9 +69,9 @@ Enumerates the application flags, which indicate the type of application informa
 
 Enumerates the ability flags, which indicate the type of ability information to obtain.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
- **System API**: This is a system API.
+**System API**: This is a system API.
 
 | Name                             | Value        | Description                                                        |
 | --------------------------------- | ---------- | ------------------------------------------------------------ |
@@ -88,9 +88,9 @@ Enumerates the ability flags, which indicate the type of ability information to 
 
 Enumerates the ExtensionAbility flags, which indicate the type of ExtensionAbility information to obtain.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
- **System API**: This is a system API.
+**System API**: This is a system API.
 
 | Name                                       | Value        | Description                                                        |
 | ------------------------------------------- | ---------- | ------------------------------------------------------------ |
@@ -104,9 +104,9 @@ Enumerates the ExtensionAbility flags, which indicate the type of ExtensionAbili
 
 Enumerates the types of profiles (also called application files).
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
- **System API**: This is a system API.
+**System API**: This is a system API.
 
 | Name          | Value  | Description           |
 | -------------- | ---- | --------------- |
@@ -116,9 +116,9 @@ Enumerates the types of profiles (also called application files).
 
 Enumerates the application [distribution types](../../security/app-provision-structure.md).
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
- **System API**: This is a system API.
+**System API**: This is a system API.
 
 | Name             | Value  | Description           |
 | ----------------- | ---- | --------------- |
@@ -2489,7 +2489,7 @@ Enables or disables an ability of an application or an application clone. This A
 | -------- | ----------- | ---- | ------------------------------------- |
 | info     | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | Yes  | Information about the target ability.                  |
 | appIndex   | number    | Yes  | Index of the application clone.<br>The value **0** means to enable or disable the ability of the main application. A value greater than 0 means to enable or disable the ability of the application clone.           |
-| isEnabled| boolean     | Yes  | Whether to enable the application or application clone. The value **true** means to enable it, and **false** means to disable it.|
+| isEnabled| boolean     | Yes  | Whether to enable the ability. The value **true** means to enable it, and **false** means to disable it.|
 
 **Return value**
 

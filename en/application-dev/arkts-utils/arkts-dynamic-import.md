@@ -86,11 +86,11 @@ The following table lists the specifications of dynamic import.
 | API            | @arkui-x.*         | -                                                        |
 | Native library module  | libNativeLibrary.so| -                                                        |
 
-Notes:
-
-1. Module names used in all imports are the aliases defined under **dependencies** in the **oh-package.json5** file.
-2. It is recommended that the alias configured under **dependencies** be the same as the values of **moduleName** and **packageName**, both of which indicate the name of the module to import. **moduleName** is set in the **module.json5** file of the module, and **packageName** is set in the **oh-package.json5** file.
-3. Importing a module by name is importing the module's entry file, generally **index.ets/ts**.
+>**NOTE**
+> 
+> 1. Module names used in all imports are the aliases defined under **dependencies** in the **oh-package.json5** file.
+> 2. It is recommended that the alias configured under **dependencies** be the same as the values of **moduleName** and **packageName**, both of which indicate the name of the module to import. **moduleName** is set in the **module.json5** file of the module, and **packageName** is set in the **oh-package.json5** file.
+> 3. Importing a module by name is importing the module's entry file, generally **index.ets/ts**.
 
 ## Key Points in Dynamic Import Implementation
 
@@ -289,8 +289,7 @@ During compilation, static imports and dynamic imports with constant expressions
 
 **Schema configuration format of the runtimeOnly field**
 
-If you are using dynamic imports with variable expressions to import modules or files, but not APIs, you need to add the **runtimeOnly** field under **buildOption** in the **build-profile.json5** file of the HAP/HSP/HAR module.
-The following are some examples.
+If you are using dynamic imports with variable expressions to import modules or files, but not APIs, you need to add the **runtimeOnly** field under **buildOption** in the **build-profile.json5** file of the HAP/HSP/HAR module. The following are some examples.
 
 ```typescript
 // Dynamically import a module based on the module name myHar.
