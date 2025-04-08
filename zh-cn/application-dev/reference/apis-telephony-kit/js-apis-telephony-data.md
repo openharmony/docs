@@ -559,7 +559,7 @@ queryApnIds(apnInfo: ApnInfo): Promise\<Array\<number\>\>
 ```ts
 import { data } from '@kit.TelephonyKit';
 
-let apnInfo: cellular.ApnInfo;
+let apnInfo: data.ApnInfo;
 apnInfo = {
   apnName: "CMNET",
   apn: "cmnet",
@@ -567,7 +567,7 @@ apnInfo = {
   mnc: "07",
 };
 
-cellular.queryApnIds(apnInfo).then((data: Array<number>) => {
+data.queryApnIds(apnInfo).then((data: Array<number>) => {
     console.info(`queryApnIds success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`queryApnIds failed, promise: err->${JSON.stringify(err)}`);
