@@ -28,6 +28,10 @@ static show(options?: TimePickerDialogOptions)
 | ------- | ----------------------------------------------------------- | ---- | -------------------------- |
 | options | [TimePickerDialogOptions](#timepickerdialogoptions对象说明) | 否   | 配置时间选择器弹窗的参数。 |
 
+>  **说明：**
+>
+> 建议使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showTimePickerDialog](../js-apis-arkui-UIContext.md#showtimepickerdialog)接口。
+
 ## TimePickerDialogOptions对象说明
 
 继承自[TimePickerOptions](ts-basic-components-timepicker.md#timepickeroptions对象说明)。
@@ -167,7 +171,7 @@ struct TimePickerDialogExample {
       Button("TimePickerDialog 24小时制")
         .margin(20)
         .onClick(() => {
-          TimePickerDialog.show({
+          this.getUIContext().showTimePickerDialog({
             disappearTextStyle: { color: '#297bec', font: { size: 15, weight: FontWeight.Lighter } },
             textStyle: { color: Color.Black, font: { size: 20, weight: FontWeight.Normal } },
             selectedTextStyle: { color: Color.Blue, font: { size: 30, weight: FontWeight.Bolder } },
@@ -225,7 +229,7 @@ struct TimePickerDialogExample {
       Button("TimePickerDialog 12小时制")
         .margin(20)
         .onClick(() => {
-          TimePickerDialog.show({ // 建议使用 this.getUIContext().showTimePickerDialog()接口
+          this.getUIContext().showTimePickerDialog({
             selected: this.selectTime,
             disappearTextStyle: { color: Color.Red, font: { size: 15, weight: FontWeight.Lighter } },
             textStyle: { color: Color.Black, font: { size: 20, weight: FontWeight.Normal } },
@@ -282,7 +286,7 @@ struct TimePickerDialogExample {
       Button("TimePickerDialog")
         .margin(20)
         .onClick(() => {
-          TimePickerDialog.show({
+          this.getUIContext().showTimePickerDialog({
             alignment: DialogAlignment.Center,
             offset: { dx: 20 , dy: 0 },
             onAccept: (value: TimePickerResult) => {
@@ -317,7 +321,7 @@ struct TimePickerDialogExample {
       Button("TimePickerDialog")
         .margin(20)
         .onClick(() => {
-          TimePickerDialog.show({
+          this.getUIContext().showTimePickerDialog({
             maskRect: { x: 30, y: 60, width: '100%', height: '60%' },
             onAccept: (value: TimePickerResult) => {
               // 设置selectTime为按下确定按钮时的时间，这样当弹窗再次弹出时显示选中的为上一次确定的时间
@@ -351,7 +355,7 @@ struct TimePickerDialogExample {
       Button("TimePickerDialog")
         .margin(20)
         .onClick(() => {
-          TimePickerDialog.show({
+          this.getUIContext().showTimePickerDialog({
             backgroundColor: 'rgb(204, 226, 251)',
             backgroundBlurStyle: BlurStyle.NONE,
             shadow: ShadowStyle.OUTER_FLOATING_SM,
@@ -386,7 +390,7 @@ struct TimePickerDialogExample {
       Button("TimePickerDialog")
         .margin(20)
         .onClick(() => {
-          TimePickerDialog.show({
+          this.getUIContext().showTimePickerDialog({
             useMilitaryTime: false,
             selected: this.selectTime,
             format: TimePickerFormat.HOUR_MINUTE_SECOND,
@@ -422,7 +426,7 @@ struct TimePickerDialogExample {
       Button("TimePickerDialog")
         .margin(20)
         .onClick(() => {
-          TimePickerDialog.show({
+          this.getUIContext().showTimePickerDialog({
             useMilitaryTime: false,
             selected: this.selectTime,
             format: TimePickerFormat.HOUR_MINUTE_SECOND,
@@ -458,7 +462,7 @@ struct TimePickerDialogExample {
       Button("TimePickerDialog")
         .margin(20)
         .onClick(() => {
-          TimePickerDialog.show({
+          this.getUIContext().showTimePickerDialog({
             useMilitaryTime: false,
             selected: this.selectTime,
             enableCascade:true,
