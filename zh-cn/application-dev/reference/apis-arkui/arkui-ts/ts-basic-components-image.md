@@ -1070,7 +1070,7 @@ import { image } from '@kit.ImageKit'
 @Component
 struct ImageExample {
   pixelmaps: Array<PixelMap>  = [];
-  options: AnimationOptions = {duration:2000, iterations:1};
+  options: AnimationOptions = { iterations: 1 };
   @State animated: AnimatedDrawableDescriptor | undefined = undefined;
 
   async aboutToAppear() {
@@ -1089,11 +1089,11 @@ struct ImageExample {
       }.height('50%')
       Row() {
         Button('once').width(100).padding(5).onClick(() => {
-          this.options = {duration:2000, iterations:1};
+          this.options = { iterations: 1 };
           this.animated = new AnimatedDrawableDescriptor(this.pixelmaps, this.options);
         }).margin(5)
         Button('infinite').width(100).padding(5).onClick(() => {
-          this.options = {duration:2000, iterations:-1};
+          this.options = { iterations: -1 };
           this.animated = new AnimatedDrawableDescriptor(this.pixelmaps, this.options);
         }).margin(5)
       }
@@ -1129,8 +1129,10 @@ struct ImageExample {
   }
 
   private async getPixelMaps() {
-    let Mypixelmaps:Array<PixelMap> = await this.getPixmapListFromMedia($r('app.media.view'))//gif图, 生成多张PixelMap
-    Mypixelmaps.push(await this.getPixmapFromMedia($r('app.media.icon'))) //添加一张图片
+    let Mypixelmaps:Array<PixelMap> = await this.getPixmapListFromMedia($r('app.media.mountain'))//添加图片
+    Mypixelmaps.push(await this.getPixmapFromMedia($r('app.media.sky')))
+    Mypixelmaps.push(await this.getPixmapFromMedia($r('app.media.clouds')))
+    Mypixelmaps.push(await this.getPixmapFromMedia($r('app.media.landscape')))
     return Mypixelmaps;
   }
 }
