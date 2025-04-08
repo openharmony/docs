@@ -7324,7 +7324,7 @@ promise.then(() => {
 ### maximize<sup>12+</sup>
 maximize(presentation?: MaximizePresentation): Promise&lt;void&gt;
 
-主窗口调用，实现最大化功能；子窗口设置maximizeSupported[MaximizeSupported](#maximizesupported17)为true后，调用可实现最大化功能，使用Promise异步回调。
+主窗口调用，实现最大化功能；子窗口设置maximizeSupported为true后，调用可实现最大化功能，使用Promise异步回调。
 
 <!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
