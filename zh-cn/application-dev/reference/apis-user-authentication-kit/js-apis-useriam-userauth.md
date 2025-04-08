@@ -473,7 +473,9 @@ start(): void
 > **说明：**
 > 每个UserAuthInstance只能进行一次认证，若需要再次进行认证则需重新获取UserAuthInstance。
 
-**需要权限**：ohos.permission.ACCESS_BIOMETRIC
+**需要权限**：ohos.permission.ACCESS_BIOMETRIC 或 ohos.permission.USER_AUTH_FROM_BACKGROUND（仅向系统应用开放）
+
+从API 20开始，仅系统应用可以通过申请ohos.permission.USER_AUTH_FROM_BACKGROUND，从后台发起认证。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
