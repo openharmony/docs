@@ -27,7 +27,7 @@ import { UIAbility } from '@kit.AbilityKit';
 | -------- | -------- | -------- | -------- | -------- |
 | context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | No| No| Context of the UIAbility.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | launchWant | [Want](js-apis-app-ability-want.md) | No| No| Parameters for starting the UIAbility.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| lastRequestWant | [Want](js-apis-app-ability-want.md) | No| No| Parameters carried in the last request.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| lastRequestWant | [Want](js-apis-app-ability-want.md) | No| No| Latest Want received through [onCreate](#uiabilityoncreate) or [onNewWant](#uiabilityonnewwant) when the UIAbility is started for multiple times.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | callee | [Callee](#callee) | No| No| Object that invokes the stub service.|
 
 ## UIAbility.onCreate
@@ -981,7 +981,7 @@ export default class MainUIAbility extends UIAbility {
 
 off(type: 'release', callback: OnReleaseCallback): void
 
-Deregisters a callback that is invoked when the stub on the target UIAbility is disconnected. This capability is reserved. This API uses an asynchronous callback to return the result.
+Unregisters a callback that is invoked when the stub on the target UIAbility is disconnected. This capability is reserved. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -1037,7 +1037,7 @@ export default class MainUIAbility extends UIAbility {
 
 off(type: 'release'): void
 
-Deregisters a callback that is invoked when the stub on the target UIAbility is disconnected. This capability is reserved.
+Unregisters a callback that is invoked when the stub on the target UIAbility is disconnected. This capability is reserved.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -1168,7 +1168,7 @@ export default class MainUIAbility extends UIAbility {
 
 off(method: string): void
 
-Deregisters a caller notification callback, which is invoked when the target UIAbility registers a function.
+Unregisters a caller notification callback, which is invoked when the target UIAbility registers a function.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -1222,7 +1222,7 @@ Defines the callback that is invoked when the stub on the target UIAbility is di
 | Name| Type| Mandatory| Description|
 | --- | ----- | --- | -------- |
 | msg | string | Yes| Message used for disconnection.| 
- 
+
 ## OnRemoteStateChangeCallback<sup>10+</sup>
 
 ### (msg: string)
@@ -1238,7 +1238,7 @@ Defines the callback that is invoked when the remote UIAbility state changes in 
 | Name| Type| Mandatory| Description|
 | --- | ----- | --- | -------- |
 | msg | string | Yes| Message used for disconnection.| 
- 
+
 ## CalleeCallback
 
 ### (indata: rpc.MessageSequence)

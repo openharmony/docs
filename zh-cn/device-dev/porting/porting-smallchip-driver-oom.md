@@ -12,7 +12,7 @@
 
 1. 创建Panel驱动。
 
-   创建HDF驱动，在驱动初始化中调用RegisterPanel接口注册模型实例。如:
+   创建HDF驱动，在驱动初始化中调用RegisterPanel接口注册模型实例。如：
 
    
    ```

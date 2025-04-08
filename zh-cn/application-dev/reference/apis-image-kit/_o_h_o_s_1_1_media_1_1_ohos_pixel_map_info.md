@@ -13,6 +13,8 @@
 
 **相关模块：** [Image](image.md)
 
+**所在头文件：**[image_pixel_map_napi.h](image__pixel__map__napi_8h.md)
+
 
 ## 汇总
 

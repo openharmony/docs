@@ -23,7 +23,7 @@ import { common } from '@kit.AbilityKit';
 | applicationInfo     | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | No   | No   | Application information.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | cacheDir            | string | No   | No   | Cache directory.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | tempDir             | string | No   | No   | Temporary directory.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| resourceDir<sup>11+<sup>         | string | No   | No   | Resource directory.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| resourceDir<sup>11+<sup>         | string | No   | No   | Resource directory.<br>**NOTE**: You are required to manually create the **resfile** directory in **\<module-name>\resource**. The **resfile** directory can be accessed only in read-only mode.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | filesDir            | string | No   | No   | File directory.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | databaseDir         | string | No   | No   | Database directory.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | preferencesDir      | string | No   | No   | Preferences directory.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|

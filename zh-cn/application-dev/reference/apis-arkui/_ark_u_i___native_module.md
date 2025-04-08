@@ -62,6 +62,7 @@
 | struct&nbsp;&nbsp;[ArkUI_TranslationOptions](_ark_u_i___translation_options.md) | 定义组件转场时的平移效果对象。  | 
 | struct&nbsp;&nbsp;[ArkUI_ScaleOptions](_ark_u_i___scale_options.md) | 定义组件转场时的缩放效果对象。  | 
 | struct&nbsp;&nbsp;[ArkUI_RotationOptions](_ark_u_i___rotation_options.md) | 定义组件转场时的旋转效果对象。  | 
+| struct&nbsp;&nbsp;[ArkUI_TextChangeEvent](_ark_u_i___text_change_event.md) | 定义输入框内容改变（包含预上屏内容）回调事件的返回值类型。  | 
 
 
 ### 宏定义
@@ -781,6 +782,10 @@
 | void OH_ArkUI_[CancelDataLoading](#oh_arkui_canceldataloading)([ArkUI_Context](_ark_u_i___native_module.md#arkui_context) uiContext, const char\* key); | 取消异步获取拖拽数据。 | 
 | void OH_ArkUI_[DisableDropDataPrefetchOnNode](#oh_arkui_disabledropdataprefetchonnode)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, bool disable); | 设置拖拽是否提前获取数据。true为不提前获取数据，默认值为false。 | 
 | int32_t [OH_ArkUI_NodeUtils_GetPositionToParent](#oh_arkui_nodeutils_getpositiontoparent) ([ArkUI_NodeHandle](#arkui_nodehandle) node, [ArkUI_IntOffset](_ark_u_i___int_offset.md)\* globalOffset) | 获取目标节点相对于父节点的偏移值。  | 
+| int32_t [OH_ArkUI_GetNodeSnapshot](#oh_arkui_getnodesnapshot)(ArkUI_NodeHandle node, ArkUI_SnapshotOptions* snapshotOptions, OH_PixelmapNative** pixelMap);| 获取指定组件节点的截图，执行过程为同步，调用时应确保对应节点已被渲染(避免在把节点挂树时就立即执行截图，因为图形的渲染一般需要一帧时间生效)。|
+| ArkUI_SnapshotOptions* [OH_ArkUI_CreateSnapshotOptions](#oh_arkui_createsnapshotoptions)();| 创建一个截图选项，当返回值不再使用时必须通过`OH_ArkUI_SnapshotOptions_Dispose`释放。|
+| void [OH_ArkUI_DestroySnapshotOptions](#oh_arkui_destroysnapshotoptions)(ArkUI_SnapshotOptions* snapshotOptions);| 销毁截图选项指针。|
+| int32_t [OH_ArkUI_SnapshotOptions_SetScale](#oh_arkui_snapshotoptions_setscale)(ArkUI_SnapshotOptions* snapshotOptions, float scale);| 配置截图选项中的缩放属性。|
 
 
 ## 宏定义说明
@@ -15817,8 +15822,7 @@ ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
 ### OH_ArkUI_GetNodeSnapshot()
 
 ```
-int32_t OH_ArkUI_GetNodeSnapshot(ArkUI_NodeHandle node, ArkUI_SnapshotOptions* snapshotOptions,
-    OH_PixelmapNative** pixelMap)
+int32_t OH_ArkUI_GetNodeSnapshot(ArkUI_NodeHandle node, ArkUI_SnapshotOptions* snapshotOptions, OH_PixelmapNative** pixelMap)
 ```
 
 **描述**
@@ -15833,7 +15837,7 @@ int32_t OH_ArkUI_GetNodeSnapshot(ArkUI_NodeHandle node, ArkUI_SnapshotOptions* s
 
 **参数:**
 
-| 名称          |  参数                                                     |
+| 名称          |  描述                                                     |
 | --------------- | ------------------------------------------------------------ |
 | node            | 截图的目标节点。                                             |
 | snapshotOptions | 给定的截图配置，为空时表示默认配置。              |
@@ -15841,12 +15845,10 @@ int32_t OH_ArkUI_GetNodeSnapshot(ArkUI_NodeHandle node, ArkUI_SnapshotOptions* s
 
 **返回：**
 
-| 返回值                                        | 描述           |
-| --------------------------------------------- | -------------- |
-| `ARKUI_ERROR_CODE_NO_ERROR`                   | 成功。     |
-| `ARKUI_ERROR_CODE_PARAM_INVALID`              | 函数参数异常。<br>异常原因：传入参数验证失败，参数不能为空。    |
-| `ARKUI_ERROR_CODE_INTERNAL_ERROR`             | 截图失败，将返回空指针。     |
-| `ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_TIMEOUT` | 截图超时。 |
+ARKUI_ERROR_CODE_NO_ERROR 成功。
+ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+ARKUI_ERROR_CODE_INTERNAL_ERROR 截图失败，将返回空指针。
+ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_TIMEOUT 截图超时。
 
 
 ### OH_ArkUI_CreateSnapshotOptions()
@@ -15863,9 +15865,7 @@ ArkUI_SnapshotOptions* OH_ArkUI_CreateSnapshotOptions()
 
 **返回：**
 
-| 返回值                   | 描述                                                         |
-| ------------------------ | ------------------------------------------------------------ |
-| `ArkUI_SnapshotOptions*` | 返回指向创建的截图选项对象的指针。如果对象返回空指针，则表示创建失败，失败的原因可能是地址空间已满。 |
+返回指向创建的截图选项对象的指针。
 
 
 ### OH_ArkUI_DestroySnapshotOptions()
@@ -15907,7 +15907,5 @@ int32_t OH_ArkUI_SnapshotOptions_SetScale(ArkUI_SnapshotOptions* snapshotOptions
 
 **返回：**
 
-| 返回值                           | 描述       |
-| -------------------------------- | ---------- |
-| `ARKUI_ERROR_CODE_NO_ERROR`      | 成功。 |
-| `ARKUI_ERROR_CODE_PARAM_INVALID` | 函数参数异常。<br> 异常原因：传入参数验证失败，参数不能为空。 |
+ARKUI_ERROR_CODE_NO_ERROR 成功。
+ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。

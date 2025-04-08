@@ -20,7 +20,7 @@ The **AppProvisionInfo** module provides information in the [HarmonyAppProvision
 | versionName              | string | Yes  | No  | Version name of the configuration file. |
 | uuid                     | string | Yes  | No  | UUID in the configuration file.|
 | type                     | string | Yes  | No  | Type of the configuration file, which can be **debug** or **release**.|
-| appDistributionType      | string | Yes  | No  | Distribution type in the configuration file, which can be **app_gallery**, **enterprise**, **os_integration**, or **crowdtesting**.|
+| appDistributionType      | string | Yes  | No  | [Distribution type](../../security/app-provision-structure.md) in the configuration file.|
 | validity                 | [Validity](#validity) | Yes  | No  | Validity period in the configuration file.|
 | developerId              | string | Yes  | No  | Developer ID in the configuration file.|
 | certificate              | string | Yes  | No  | Certificate public key in the configuration file.|

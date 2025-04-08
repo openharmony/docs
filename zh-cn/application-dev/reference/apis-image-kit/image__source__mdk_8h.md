@@ -3,7 +3,7 @@
 
 ## 概述
 
-声明将图片源解码成像素位图的方法。
+声明将ImageSource解码成像素位图的方法。
 
 **库**：libimage_source_ndk.z.so
 

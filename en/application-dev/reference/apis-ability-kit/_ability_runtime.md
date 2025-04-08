@@ -19,13 +19,13 @@ The AbilityRuntime module provides capabilities related to the ability framework
 | -------- | -------- |
 | [ability_runtime_common.h](ability__runtime__common_8h.md) | Declares the error codes of the ability framework.<br>**File to include**: <AbilityKit/ability_runtime/ability_runtime_common.h><br>**Library**: libability_runtime.so|
 | [application_context.h](application__context_8h.md) | Declares the context capability at the application level.<br>**File to include**: <AbilityKit/ability_runtime/application_context.h><br>**Library**: libability_runtime.so|
-| [context_constant.h](context__constant_8h.md) | Declares context-related enums.<br>**File to include**: <AbilityKit/ability_runtime/context_constant.h><br>**Library**: libability_runtime.so|
+| [context_constant.h](context__constant_8h.md) | Declares the context-related enums.<br>**File to include**: <AbilityKit/ability_runtime/context_constant.h><br>**Library**: libability_runtime.so|
 
 ### Enums
 
 | Name                                                        | Description                  |
 | ------------------------------------------------------------ | ---------------------- |
-| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) {<br>    ABILITY_RUNTIME_ERROR_CODE_NO_ERROR = 0,<br>    ABILITY_RUNTIME_ERROR_CODE_PERMISSION_DENIED = 201,<br>    ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID = 401,<br>    ABILITY_RUNTIME_ERROR_CODE_NOT_SUPPORTED = 801,<br>    ABILITY_RUNTIME_ERROR_CODE_NO_SUCH_ABILITY = 16000001,<br>    ABILITY_RUNTIME_ERROR_CODE_INCORRECT_ABILITY_TYPE = 16000002,<br>    ABILITY_RUNTIME_ERROR_CODE_CROWDTEST_EXPIRED = 16000008,<br>    ABILITY_RUNTIME_ERROR_CODE_WUKONG_MODE = 16000009,<br>    ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST = 16000011,<br>    ABILITY_RUNTIME_ERROR_CODE_CONTROLLED = 16000012,<br>    ABILITY_RUNTIME_ERROR_CODE_EDM_CONTROLLED = 16000013,<br>    ABILITY_RUNTIME_ERROR_CODE_CROSS_APP = 16000018,<br>    ABILITY_RUNTIME_ERROR_CODE_INTERNAL = 16000050,<br>    ABILITY_RUNTIME_ERROR_CODE_NOT_TOP_ABILITY = 16000053,<br>} | Enumerates the error codes used by the ability framework.|
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) {<br>    ABILITY_RUNTIME_ERROR_CODE_NO_ERROR = 0,<br>    ABILITY_RUNTIME_ERROR_CODE_PERMISSION_DENIED = 201,<br>    ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID = 401,<br>    ABILITY_RUNTIME_ERROR_CODE_NOT_SUPPORTED = 801,<br>    ABILITY_RUNTIME_ERROR_CODE_NO_SUCH_ABILITY = 16000001,<br>    ABILITY_RUNTIME_ERROR_CODE_INCORRECT_ABILITY_TYPE = 16000002,<br>    ABILITY_RUNTIME_ERROR_CODE_CROWDTEST_EXPIRED = 16000008,<br>    ABILITY_RUNTIME_ERROR_CODE_WUKONG_MODE = 16000009,<br>    ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST = 16000011,<br>    ABILITY_RUNTIME_ERROR_CODE_CONTROLLED = 16000012,<br>    ABILITY_RUNTIME_ERROR_CODE_EDM_CONTROLLED = 16000013,<br>    ABILITY_RUNTIME_ERROR_CODE_CROSS_APP = 16000018,<br>    ABILITY_RUNTIME_ERROR_CODE_INTERNAL = 16000050,<br>    ABILITY_RUNTIME_ERROR_CODE_NOT_TOP_ABILITY = 16000053,<br/>} | Enumerates the error codes used by the ability framework. |
 | [AbilityRuntime_AreaMode](#abilityruntime_areamode) {<br>    ABILITY_RUNTIME_AREA_MODE_EL1 = 0,<br>    ABILITY_RUNTIME_AREA_MODE_EL2 = 1,<br>    ABILITY_RUNTIME_AREA_MODE_EL3 = 2,<br>    ABILITY_RUNTIME_AREA_MODE_EL4 = 3,<br>    ABILITY_RUNTIME_AREA_MODE_EL5 = 4<br>} | Enumerates the data encryption levels.    |
 
 ### Functions
@@ -35,7 +35,14 @@ The AbilityRuntime module provides capabilities related to the ability framework
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetCacheDir](#oh_abilityruntime_applicationcontextgetcachedir)(char* buffer, int32_t bufferSize, int32_t* writeLength) | Obtains the application-level cache directory.|
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetAreaMode](#oh_abilityruntime_applicationcontextgetareamode)([AbilityRuntime_AreaMode](#abilityruntime_areamode)* areaMode) | Obtains the application-level data encryption level.|
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetBundleName](#oh_abilityruntime_applicationcontextgetbundlename)(char* buffer, int32_t bufferSize, int32_t* writeLength) | Obtains the bundle name of the application.|
-| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_StartSelfUIAbility](#oh_abilityruntime_startselfuiability)([AbilityBase_Want](_ability_base.md#abilitybase_want) *want) | Starts the UIAbility of the current application.|
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_StartSelfUIAbility](#oh_abilityruntime_startselfuiability)([AbilityBase_Want](_ability_base.md#abilitybase_want) *want) | Starts the UIAbility of the current application. |
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetTempDir](#oh_abilityruntime_applicationcontextgettempdir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | Obtains the application-level temporary file directory.|
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetFilesDir](#oh_abilityruntime_applicationcontextgetfilesdir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | Obtains the application-level common file directory.|
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetDatabaseDir](#oh_abilityruntime_applicationcontextgetdatabasedir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | Obtains the application-level database file directory.|
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetPreferencesDir](#oh_abilityruntime_applicationcontextgetpreferencesdir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | Obtains the application-level preferences file directory.|
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetBundleCodeDir](#oh_abilityruntime_applicationcontextgetbundlecodedir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | Obtains the application-level installation file directory.|
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetDistributedFilesDir](#oh_abilityruntime_applicationcontextgetdistributedfilesdir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | Obtains the application-level distributed file directory.|
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetCloudFileDir](#oh_abilityruntime_applicationcontextgetcloudfiledir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | Obtains the application-level cloud file directory.|
 
 ## Enum Description
 
@@ -198,7 +205,7 @@ Starts the UIAbility of the current application.
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the operation is successful.
+Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the API call is successful.
 
 Returns **ABILITY_RUNTIME_ERROR_CODE_PERMISSION_DENIED** if permission verification failed.
 
@@ -246,3 +253,200 @@ void startSelfUIAbilityTest()
     OH_AbilityBase_DestroyWant(want);
 }
 ```
+
+### OH_AbilityRuntime_ApplicationContextGetTempDir
+
+```
+AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetTempDir(char* buffer, const int32_t bufferSize, int32_t* writeLength)
+```
+
+**Description**
+
+Obtains the application-level temporary file directory.
+
+**Since**: 16
+
+**Parameters**
+
+| Name       | Description                                                        |
+| ----------- | ------------------------------------------------------------ |
+| buffer      | Pointer to the buffer. The cache directory string is written to this area.                          |
+| bufferSize  | Buffer size.                                                |
+| writeLength | Pointer to the length of the string written to the buffer when **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** is returned.|
+
+**Returns**
+
+Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the operation is successful.
+
+Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if the passed-in value of **buffer** or **writeLength** is null or the buffer size is less than the size of the string to be written.
+
+Returns **ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST** if the context of the current environment does not exist. For example, the application-level context does not exist in the [child process](c-apis-ability-childprocess.md) created by the application.
+
+### OH_AbilityRuntime_ApplicationContextGetFilesDir
+
+```
+AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetFilesDir(char* buffer, const int32_t bufferSize, int32_t* writeLength)
+```
+
+**Description**
+
+Obtains the application-level common file directory.
+
+**Since**: 16
+
+**Parameters**
+
+| Name       | Description                                                        |
+| ----------- | ------------------------------------------------------------ |
+| buffer      | Pointer to the buffer. The cache directory string is written to this area.                          |
+| bufferSize  | Buffer size.                                                |
+| writeLength | Pointer to the length of the string written to the buffer when **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** is returned.|
+
+**Returns**
+
+Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the operation is successful.
+
+Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if the passed-in value of **buffer** or **writeLength** is null or the buffer size is less than the size of the string to be written.
+
+Returns **ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST** if the context of the current environment does not exist. For example, the application-level context does not exist in the [child process](c-apis-ability-childprocess.md) created by the application.
+
+### OH_AbilityRuntime_ApplicationContextGetDatabaseDir
+
+```
+AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetDatabaseDir(char* buffer, const int32_t bufferSize, int32_t* writeLength);
+```
+
+**Description**
+
+Obtains the application-level database file directory.
+
+**Since**: 16
+
+**Parameters**
+
+| Name       | Description                                                        |
+| ----------- | ------------------------------------------------------------ |
+| buffer      | Pointer to the buffer. The cache directory string is written to this area.                          |
+| bufferSize  | Buffer size.                                                |
+| writeLength | Pointer to the length of the string written to the buffer when **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** is returned.|
+
+**Returns**
+
+Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the operation is successful.
+
+Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if the passed-in value of **buffer** or **writeLength** is null or the buffer size is less than the size of the string to be written.
+
+Returns **ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST** if the context of the current environment does not exist. For example, the application-level context does not exist in the [child process](c-apis-ability-childprocess.md) created by the application.
+
+### OH_AbilityRuntime_ApplicationContextGetPreferencesDir
+
+```
+AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetPreferencesDir(char* buffer, const int32_t bufferSize, int32_t* writeLength)
+```
+
+**Description**
+
+Obtains the application-level preferences file directory.
+
+**Since**: 16
+
+**Parameters**
+
+| Name       | Description                                                        |
+| ----------- | ------------------------------------------------------------ |
+| buffer      | Pointer to the buffer. The cache directory string is written to this area.                          |
+| bufferSize  | Buffer size.                                                |
+| writeLength | Pointer to the length of the string written to the buffer when **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** is returned.|
+
+**Returns**
+
+Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the operation is successful.
+
+Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if the passed-in value of **buffer** or **writeLength** is null or the buffer size is less than the size of the string to be written.
+
+Returns **ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST** if the context of the current environment does not exist. For example, the application-level context does not exist in the [child process](c-apis-ability-childprocess.md) created by the application.
+
+### OH_AbilityRuntime_ApplicationContextGetBundleCodeDir
+
+```
+AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetBundleCodeDir(char* buffer, const int32_t bufferSize, int32_t* writeLength)
+```
+
+**Description**
+
+Obtains the application-level installation file directory.
+
+**Since**: 16
+
+**Parameters**
+
+| Name       | Description                                                        |
+| ----------- | ------------------------------------------------------------ |
+| buffer      | Pointer to the buffer. The cache directory string is written to this area.                          |
+| bufferSize  | Buffer size.                                                |
+| writeLength | Pointer to the length of the string written to the buffer when **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** is returned.|
+
+**Returns**
+
+Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the operation is successful.
+
+Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if the passed-in value of **buffer** or **writeLength** is null or the buffer size is less than the size of the string to be written.
+
+Returns **ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST** if the context of the current environment does not exist. For example, the application-level context does not exist in the [child process](c-apis-ability-childprocess.md) created by the application.
+
+### OH_AbilityRuntime_ApplicationContextGetDistributedFilesDir
+
+```
+AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetDistributedFilesDir(char* buffer, const int32_t bufferSize, int32_t* writeLength)
+```
+
+**Description**
+
+Obtains the application-level distributed file directory.
+
+**Since**: 16
+
+**Parameters**
+
+| Name       | Description                                                        |
+| ----------- | ------------------------------------------------------------ |
+| buffer      | Pointer to the buffer. The cache directory string is written to this area.                          |
+| bufferSize  | Buffer size.                                                |
+| writeLength | Pointer to the length of the string written to the buffer when **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** is returned.|
+
+**Returns**
+
+Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the operation is successful.
+
+Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if the passed-in value of **buffer** or **writeLength** is null or the buffer size is less than the size of the string to be written.
+
+Returns **ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST** if the context of the current environment does not exist. For example, the application-level context does not exist in the [child process](c-apis-ability-childprocess.md) created by the application.
+
+### OH_AbilityRuntime_ApplicationContextGetCloudFileDir
+
+```
+AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetCloudFileDir(char* buffer, const int32_t bufferSize, int32_t* writeLength)
+```
+
+**Description**
+
+Obtains the application-level cloud file directory.
+
+**Since**: 16
+
+**Parameters**
+
+| Name       | Description                                                        |
+| ----------- | ------------------------------------------------------------ |
+| buffer      | Pointer to the buffer. The cache directory string is written to this area.                          |
+| bufferSize  | Buffer size.                                                |
+| writeLength | Pointer to the length of the string written to the buffer when **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** is returned.|
+
+**Returns**
+
+Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the operation is successful.
+
+Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if the passed-in value of **buffer** or **writeLength** is null or the buffer size is less than the size of the string to be written.
+
+Returns **ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST** if the context of the current environment does not exist. For example, the application-level context does not exist in the [child process](c-apis-ability-childprocess.md) created by the application.
+
