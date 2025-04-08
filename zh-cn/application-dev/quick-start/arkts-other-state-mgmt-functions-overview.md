@@ -6,7 +6,7 @@
 
 - [\@Watch](arkts-watch.md)：用于监听状态变量的变化。
 
-- [$$运算符](arkts-two-way-sync.md)：给内置组件提供TS变量的引用，使得TS变量和内置组件的内部状态保持同步。
+- [$$运算符](arkts-two-way-sync.md)：给系统组件提供TS变量的引用，使得TS变量和系统组件的内部状态保持同步。
 
 - [\@Track](arkts-track.md)：应用于class对象的属性级更新。\@Track装饰的属性变化时，只会触发该属性关联的UI更新。
 
