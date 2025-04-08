@@ -28,6 +28,10 @@ static show(options?: TimePickerDialogOptions)
 | ------- | ----------------------------------------------------------- | ---- | -------------------------- |
 | options | [TimePickerDialogOptions](#timepickerdialogoptions对象说明) | 否   | 配置时间选择器弹窗的参数。 |
 
+>  **说明：**
+>
+> 建议使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showTimePickerDialog](../js-apis-arkui-UIContext.md#showtimepickerdialog)接口。
+
 ## TimePickerDialogOptions对象说明
 
 继承自[TimePickerOptions](ts-basic-components-timepicker.md#timepickeroptions对象说明)。
@@ -50,8 +54,6 @@ static show(options?: TimePickerDialogOptions)
 | onChange | (value: [TimePickerResult](ts-basic-components-timepicker.md#TimePickerResult对象说明)) => void | 否 | 滑动弹窗中的选择器后，选项归位至选中项位置时，触发该回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | backgroundColor<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | 否 | 弹窗背板颜色。<br/>默认值：Color.Transparent<br/>**说明：** <br/>当设置了backgroundColor为非透明色时，backgroundBlurStyle需要设置为BlurStyle.NONE，否则颜色显示将不符合预期效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 否 | 弹窗背板模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK<br/>**说明：** <br/>设置为BlurStyle.NONE即可关闭背景虚化。当设置了backgroundBlurStyle为非NONE值时，则不要设置backgroundColor，否则颜色显示将不符合预期效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| backgroundBlurStyleOptions<sup>18+</sup> | [BackgroundBlurStyleOptions](ts-universal-attributes-background.md#backgroundblurstyleoptions10对象说明) | 否 | 背景模糊效果。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
-| backgroundEffect<sup>18+</sup> | [BackgroundEffectOptions](ts-universal-attributes-background.md#backgroundeffectoptions11) | 否 | 背景效果参数。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | onDidAppear<sup>12+</sup> | () => void | 否 | 弹窗弹出时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onAccept/onCancel/onChange)>>onWillDisappear>>onDidDisappear。<br />2.在onDidAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。<br />3.快速点击弹出，消失弹窗时，存在onWillDisappear在onDidAppear前生效。<br />4. 当弹窗入场动效未完成时关闭弹窗，该回调不会触发。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | onDidDisappear<sup>12+</sup> | () => void | 否 | 弹窗消失时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onAccept/onCancel/onChange)>>onWillDisappear>>onDidDisappear。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | onWillAppear<sup>12+</sup> | () => void | 否 | 弹窗显示动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onAccept/onCancel/onChange)>>onWillDisappear>>onDidDisappear。<br />2.在onWillAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
@@ -167,7 +169,7 @@ struct TimePickerDialogExample {
       Button("TimePickerDialog 24小时制")
         .margin(20)
         .onClick(() => {
-          TimePickerDialog.show({
+          this.getUIContext().showTimePickerDialog({
             disappearTextStyle: { color: '#297bec', font: { size: 15, weight: FontWeight.Lighter } },
             textStyle: { color: Color.Black, font: { size: 20, weight: FontWeight.Normal } },
             selectedTextStyle: { color: Color.Blue, font: { size: 30, weight: FontWeight.Bolder } },
@@ -225,7 +227,7 @@ struct TimePickerDialogExample {
       Button("TimePickerDialog 12小时制")
         .margin(20)
         .onClick(() => {
-          TimePickerDialog.show({ // 建议使用 this.getUIContext().showTimePickerDialog()接口
+          this.getUIContext().showTimePickerDialog({
             selected: this.selectTime,
             disappearTextStyle: { color: Color.Red, font: { size: 15, weight: FontWeight.Lighter } },
             textStyle: { color: Color.Black, font: { size: 20, weight: FontWeight.Normal } },
@@ -282,7 +284,7 @@ struct TimePickerDialogExample {
       Button("TimePickerDialog")
         .margin(20)
         .onClick(() => {
-          TimePickerDialog.show({
+          this.getUIContext().showTimePickerDialog({
             alignment: DialogAlignment.Center,
             offset: { dx: 20 , dy: 0 },
             onAccept: (value: TimePickerResult) => {
@@ -317,7 +319,7 @@ struct TimePickerDialogExample {
       Button("TimePickerDialog")
         .margin(20)
         .onClick(() => {
-          TimePickerDialog.show({
+          this.getUIContext().showTimePickerDialog({
             maskRect: { x: 30, y: 60, width: '100%', height: '60%' },
             onAccept: (value: TimePickerResult) => {
               // 设置selectTime为按下确定按钮时的时间，这样当弹窗再次弹出时显示选中的为上一次确定的时间
@@ -351,7 +353,7 @@ struct TimePickerDialogExample {
       Button("TimePickerDialog")
         .margin(20)
         .onClick(() => {
-          TimePickerDialog.show({
+          this.getUIContext().showTimePickerDialog({
             backgroundColor: 'rgb(204, 226, 251)',
             backgroundBlurStyle: BlurStyle.NONE,
             shadow: ShadowStyle.OUTER_FLOATING_SM,
@@ -386,7 +388,7 @@ struct TimePickerDialogExample {
       Button("TimePickerDialog")
         .margin(20)
         .onClick(() => {
-          TimePickerDialog.show({
+          this.getUIContext().showTimePickerDialog({
             useMilitaryTime: false,
             selected: this.selectTime,
             format: TimePickerFormat.HOUR_MINUTE_SECOND,
@@ -422,7 +424,7 @@ struct TimePickerDialogExample {
       Button("TimePickerDialog")
         .margin(20)
         .onClick(() => {
-          TimePickerDialog.show({
+          this.getUIContext().showTimePickerDialog({
             useMilitaryTime: false,
             selected: this.selectTime,
             format: TimePickerFormat.HOUR_MINUTE_SECOND,
@@ -458,7 +460,7 @@ struct TimePickerDialogExample {
       Button("TimePickerDialog")
         .margin(20)
         .onClick(() => {
-          TimePickerDialog.show({
+          this.getUIContext().showTimePickerDialog({
             useMilitaryTime: false,
             selected: this.selectTime,
             enableCascade:true,

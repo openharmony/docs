@@ -1178,7 +1178,7 @@ isStorageTypeSupported(type: StorageType): boolean
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
-| 401      | Parameter error: Incorrect parameter types.  |
+| 401      | Parameter error. Possible causes: Incorrect parameter types. |
 
 
 **示例：**
@@ -1338,7 +1338,7 @@ let value: preferences.ValueType = dataPreferences.getSync('startup', 'default')
 
 ### getAll
 
-getAll(callback: AsyncCallback&lt;Object&gt;): void;
+getAll(callback: AsyncCallback&lt;Object&gt;): void
 
 从缓存的Preferences实例中获取所有键值数据。
 

@@ -21,7 +21,7 @@ Codec buffer信息的定义。
 | unsigned int [size](#size) | 结构体大小。  | 
 | union [OMX_VERSIONTYPE](union_o_m_x___v_e_r_s_i_o_n_t_y_p_e_v20.md)[version](#version) | 组件版本信息。  | 
 | unsigned int [bufferType](#buffertype) | buffer类型,详见[CodecBufferType](_codec_v20.md#codecbuffertype)。  | 
-| BufferHandleParcelable [bufferhandle](#bufferhandle) | 编码或者解码使用的bufferhandle，详见**BufferHandleParcelable**。  | 
+| NativeBuffer  [bufferhandle](#bufferhandle) | 编码或者解码使用的bufferhandle，详见**[NativeBuffer](../../../../application-dev/reference/apis-image-kit/_image___native_module.md#oh_nativebuffer)**。  | 
 | FileDescriptor [fd](#fd) | 匿名共享内存文件描述符。  | 
 | unsigned int [allocLen](#alloclen) | 申请的buffer大小。  | 
 | unsigned int [filledLen](#filledlen) | 填充的buffer大小。  | 

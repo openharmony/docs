@@ -32,22 +32,22 @@
     import { Want } from '@kit.AbilityKit';
     import { rpc } from '@kit.IPCKit';
 
-    const REQUEST_CODE = 99; // 与扩展外设客户端约定请求码。
+    const REQUEST_CODE = 99; // 与扩展外设客户端约定请求码
     ```
 
 5. 打开DriverExtAbility.ets文件，导入[RPC通信模块](../../reference/apis-ipc-kit/js-apis-rpc.md)，重载onRemoteMessageRequest()方法，接收应用传递过来的消息，并将处理的结果返回给应用。REQUEST_VALUE用于校验应用发送的服务请求码。
 
     ```ts
     class StubTest extends rpc.RemoteObject {
-      // 接收应用传递过来的消息处理，以及将处理的结果返回给客户端。
+      // 接收应用传递过来的消息处理，以及将处理的结果返回给客户端
       onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence,
         option: rpc.MessageOption) {
         if (code === REQUEST_CODE) {
-          // 接收应用传递过来的数据。
-          // 应用使用多次调用data.writeString()写入多个数据时，驱动可以通过多次调用data.readString()方法接收对应的数据。
+          // 接收应用传递过来的数据
+          // 应用使用多次调用data.writeString()写入多个数据时，驱动可以通过多次调用data.readString()方法接收对应的数据
           let optFir: string = data.readString();
-          // 驱动将数据的处理结果返回给应用。
-          // 示例中为接收了"Hello"，并将"Hello World"返回给应用。
+          // 驱动将数据的处理结果返回给应用
+          // 示例中为接收了"Hello"，并将"Hello World"返回给应用
           reply.writeString(optFir + ` World`);
         }
         return true;
@@ -98,10 +98,10 @@
         ],
         "requestPermissions": [
           {
-            "name": "ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER" // 此处为扩展外设相关权限，必须配置。
+            "name": "ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER" // 此处为扩展外设相关权限，必须配置
           },
           {
-            "name": "ohos.permission.ACCESS_DDK_DRIVERS" // 此处为允许该扩展外设应用访问扩展外设驱动的权限，API verison 18及以上版本，必须配置。
+            "name": "ohos.permission.ACCESS_DDK_DRIVERS" // 此处为允许该扩展外设应用访问扩展外设驱动的权限，必须配置
           }
         ],
         "deliveryWithInstall": true,
@@ -139,31 +139,31 @@
             "srcEntry": "./ets/driverextability/DriverExtAbility.ets",
             "metadata": [
               {
-                "name": "bus", // 必填项，所属总线。
+                "name": "bus", // 必填项，所属总线
                 "value": "USB"
               },
               {
-                "name": "desc", // 选填项，必要的驱动描述。
+                "name": "desc", // 选填项，必要的驱动描述
                 "value": "the sample of driverExtensionAbility"
               },
               {
-                "name": "vendor", // 选填项，驱动厂商名称。
+                "name": "vendor", // 选填项，驱动厂商名称
                 "value": "string"
               },
               {
-                "name": "vid", // 支持 USB vendor id 列表，填写16进制，此处为4817的16进制。
+                "name": "vid", // 支持 USB vendor id 列表，填写16进制，此处为4817的16进制
                 "value": "0x12D1"
               },
               {
-                "name": "pid", // 支持的 USB product id 列表，填写16进制，此处为4258的16进制。
+                "name": "pid", // 支持的 USB product id 列表，填写16进制，此处为4258的16进制
                 "value": "0x10A2"
               },
               {
-                "name": "launchOnBind", // 选填项，延迟拉起驱动。此处“true”表示延迟拉起，“false”表示即时拉起，配置错误或不配置，默认为“false”。
+                "name": "launchOnBind", // 选填项，延迟拉起驱动。此处“true”表示延迟拉起，“false”表示即时拉起，配置错误或不配置，默认为“false”
                 "value": "true"
               },
               {
-                "name": "ohos.permission.ACCESS_DDK_ALLOWED", // 选填项，允许应用访问。此处“true”表示允许访问，“false”表示不允许访问，配置错误或不配置，默认为“false”。
+                "name": "ohos.permission.ACCESS_DDK_ALLOWED", // 选填项，允许应用访问。此处“true”表示允许访问，“false”表示不允许访问，配置错误或不配置，默认为“false”
                 "value": "true"
               }
             ]
@@ -184,17 +184,18 @@
 * [开发适用串口协议的设备驱动](usb-serial-ddk-guidelines.md)
 * [开发使用SCSI协议的设备驱动](scsi-peripheral-ddk-guidelines.md)
 
+<!--DelEnd-->
 <!--RP1-->
 ## 应用签名
 
 **注意：** 先配置权限，再自动签名。
 
 应用需要配置签名文件才能在设备上运行，并且扩展外设管理客户端开发，需要配置扩展外设的权限：ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER及ohos.permission.ACCESS_DDK_DRIVERS。
-- ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER（API version 10及以上版本，需要申请此权限。）
+- ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
   在module.json5配置文件的requestPermissions标签中[声明权限](../../security/AccessToken/declare-permissions.md)后，即可获得授权。
 
-- ohos.permission.ACCESS_DDK_DRIVERS（API version 18及以上版本，需要申请此权限。）
+- ohos.permission.ACCESS_DDK_DRIVERS
 
   1. 在module.json5配置文件的requestPermissions标签中[声明权限](../../security/AccessToken/declare-permissions.md)。
   2. HarmonyAppProvision配置文件中，修改acls字段，跨级别申请权限，可参考[申请使用受限权限](../../security/AccessToken/declare-permissions-in-acl.md)。

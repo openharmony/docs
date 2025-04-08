@@ -3,7 +3,7 @@
 
 ## 概述
 
-声明ConnectedNfcTag模块提供的API，这些API包含初始化或者去初始化ConnectedNfcTag驱动，往nfc卡中读写Ndef内容。
+声明ConnectedNfcTag模块提供的API，这些API包含初始化或者去初始化ConnectedNfcTag驱动，往NFC卡中读写Ndef内容。
 
 **起始版本：** 3.2
 
@@ -103,4 +103,4 @@ IConnectedNfcTag::WriteNdefTag ([in] String ndefData)
 
 **返回：**
 
-写入成功返回0,否则返回写失败原因。
+写入成功返回0，否则返回写失败原因。

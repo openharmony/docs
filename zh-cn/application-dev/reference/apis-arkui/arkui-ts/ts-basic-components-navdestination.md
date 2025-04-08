@@ -26,6 +26,8 @@
 
 NavDestination()
 
+创建[Navigation](ts-basic-components-navigation.md)子页面的根容器。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -138,7 +140,7 @@ mode(value: NavDestinationMode)
 
 | 参数名 | 类型                                                 | 必填 | 说明                                                         |
 | ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [NavDestinationMode](#navdestinationmode枚举说明-11) | 是   | NavDestination类型。<br/>默认值: NavDestinationMode.STANDARD |
+| value  | [NavDestinationMode](#navdestinationmode枚举说明11) | 是   | NavDestination类型。<br/>默认值: NavDestinationMode.STANDARD |
 
 ### backButtonIcon<sup>11+</sup>
 
@@ -163,7 +165,7 @@ backButtonIcon(value: ResourceStr | PixelMap | SymbolGlyphModifier)
 
 ### menus<sup>12+</sup>
 
-menus(items: Array&lt;NavigationMenuItem&gt; | CustomBuilder, options?: NavigationMenuOptions)
+menus(value: Array&lt;NavigationMenuItem&gt; | CustomBuilder)
 
 > **说明：**
 >
@@ -180,8 +182,7 @@ menus(items: Array&lt;NavigationMenuItem&gt; | CustomBuilder, options?: Navigati
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| items  | Array<[NavigationMenuItem](ts-basic-components-navigation.md#navigationmenuitem)&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 页面右上角菜单。 |
-| options<sup>18+</sup> | [NavigationMenuOptions](ts-basic-components-navigation.md#navigationmenuoptions18) | 否   | 页面右上角菜单选项。 |
+| value  | Array<[NavigationMenuItem](ts-basic-components-navigation.md#navigationmenuitem)&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 页面右上角菜单。 |
 
 ### ignoreLayoutSafeArea<sup>12+</sup>
 
@@ -264,7 +265,7 @@ recoverable(recoverable: Optional&lt;boolean&gt;)
 ### bindToScrollable<sup>14+</sup>
 bindToScrollable(scrollers: Array&lt;Scroller&gt;)
 
-绑定NavDestination组件和可滚动容器组件（支持[List](./ts-container-list.md)、[Scroll](./ts-container-scroll.md)、[Grid](./ts-container-grid.md)、[WaterFlow](./ts-container-waterflow.md)），当滑动可滚动容器组件时，会触发所有与其绑定的NavDestination组件的标题栏和工具栏的显示和隐藏动效，上滑隐藏，下滑显示。一个NavDestination可与多个可滚动容器组件绑定，一个可滚动容器组件也可与多个NavDestination绑定。使用示例参见[示例1](#示例1)。
+绑定NavDestination组件和可滚动容器组件（支持[List](./ts-container-list.md)、[Scroll](./ts-container-scroll.md)、[Grid](./ts-container-grid.md)、[WaterFlow](./ts-container-waterflow.md)），当滑动可滚动容器组件时，会触发所有与其绑定的NavDestination组件的标题栏和工具栏的显示和隐藏动效，上滑隐藏，下滑显示。一个NavDestination可与多个可滚动容器组件绑定，一个可滚动容器组件也可与多个NavDestination绑定。使用示例参见[示例1](#示例1标题栏工具栏与可滚动类组件联动)。
 
 > **说明：**
 >
@@ -284,7 +285,7 @@ bindToScrollable(scrollers: Array&lt;Scroller&gt;)
 ### bindToNestedScrollable<sup>14+</sup>
 bindToNestedScrollable(scrollInfos: Array&lt;NestedScrollInfo&gt;)
 
-绑定NavDestination组件和嵌套的可滚动容器组件（支持[List](./ts-container-list.md)、[Scroll](./ts-container-scroll.md)、[Grid](./ts-container-grid.md)、[WaterFlow](./ts-container-waterflow.md)），当滑动父组件或子组件时，会触发所有与其绑定的NavDestination组件的标题栏和工具栏的显示和隐藏动效，上滑隐藏，下滑显示。一个NavDestination可与多个嵌套的可滚动容器组件绑定，嵌套的可滚动容器组件也可与多个NavDestination绑定。使用示例参见[示例1](#示例1)。
+绑定NavDestination组件和嵌套的可滚动容器组件（支持[List](./ts-container-list.md)、[Scroll](./ts-container-scroll.md)、[Grid](./ts-container-grid.md)、[WaterFlow](./ts-container-waterflow.md)），当滑动父组件或子组件时，会触发所有与其绑定的NavDestination组件的标题栏和工具栏的显示和隐藏动效，上滑隐藏，下滑显示。一个NavDestination可与多个嵌套的可滚动容器组件绑定，嵌套的可滚动容器组件也可与多个NavDestination绑定。使用示例参见[示例1](#示例1标题栏工具栏与可滚动类组件联动)。
 
 > **说明：**
 >
@@ -337,7 +338,9 @@ customTransition(delegate: NavDestinationTransitionDelegate)
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | delegate  | [NavDestinationTransitionDelegate](#navdestinationtransitiondelegate15) | 是   | NavDestination自定义动画的代理函数。 |
 
-## NavDestinationMode枚举说明 <sup>11+</sup>
+## NavDestinationMode枚举说明<sup>11+</sup>
+
+NavDestination类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -349,6 +352,8 @@ customTransition(delegate: NavDestinationTransitionDelegate)
 | DIALOG | 1 | 默认透明，进出页面栈不影响下层NavDestination的生命周期。<br />API version 13之前，默认无系统转场动画。从API version 13开始，支持系统转场动画。  |
 
 ## NavigationSystemTransitionType<sup>14+</sup>枚举说明
+
+系统转场动画类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -474,56 +479,39 @@ NavDestination返回时触发该回调。
 | ------ | ------ | ---- | ---------------- |
 |callback | [Optional](./ts-universal-attributes-custom-property.md)\<[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<ESObject\>\>| 是 | 页面返回回调，入参为pop接口传入的result参数。如果不传该参数，入参为undefined。|
 
-### onActive<sup>18+</sup>
+### onActive<sup>17+</sup>
 
 onActive(callback:&nbsp;Optional\<Callback\<NavDestinationActiveReason\>\>)
 
 NavDestination处于激活态（处于栈顶可操作，且上层无特殊组件遮挡）时，触发该回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ---- | ---------------- |
-|callback | [Optional](./ts-universal-attributes-custom-property.md#optional12)\<[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[NavDestinationActiveReason](#navdestinationactivereason18)\>\>| 是 | NavDestination由非激活态变为激活态的原因。|
+|callback | [Optional](./ts-universal-attributes-custom-property.md#optional12)\<[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[NavDestinationActiveReason](#navdestinationactivereason17)\>\>| 是 | NavDestination由非激活态变为激活态的原因。|
 
-### onInactive<sup>18+</sup>
+### onInactive<sup>17+</sup>
 
 onInactive(callback: &nbsp;Optional\<Callback\<NavDestinationActiveReason\>\>)
 
 NavDestination处于非激活态（处于非栈顶不可操作，或处于栈顶时上层有特殊组件遮挡）时，触发该回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ---- | ---------------- |
-|callback | [Optional](./ts-universal-attributes-custom-property.md#optional12)\<[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[NavDestinationActiveReason](#navdestinationactivereason18)\>\>| 是 | NavDestination由激活态变为非激活态的原因。|
-
-### onNewParam<sup>18+</sup>
-
-onNewParam(callback: &nbsp;Optional\<Callback\<ESObject\>\>)
-
-当之前存在于栈中的NavDestination页面通过[launchMode.MOVE_TO_TOP_SINGLETON](./ts-basic-components-navigation.md#launchmode12枚举说明)或[launchMode.POP_TO_SINGLETON](./ts-basic-components-navigation.md#launchmode12枚举说明)移动到栈顶时，触发该回调。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-| 参数名 | 类型 | 必填 | 说明 |
-| ------ | ------ | ---- | ---------------- |
-|callback | [Optional](./ts-universal-attributes-custom-property.md#optional12)\<[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<ESObject\>\>| 是 | onNewParam触发时的回调函数，入参为路由跳转时传递到目标页面的数据。|
-
-> **说明：**
->
-> [replacePath](./ts-basic-components-navigation.md#replacepath11)、[replaceDestination](./ts-basic-components-navigation.md#replacedestination18)不会触发该回调。
+|callback | [Optional](./ts-universal-attributes-custom-property.md#optional12)\<[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[NavDestinationActiveReason](#navdestinationactivereason17)\>\>| 是 | NavDestination由激活态变为非激活态的原因。|
 
 ## NavDestinationCommonTitle
+
+NavDestination通用标题。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -536,6 +524,8 @@ onNewParam(callback: &nbsp;Optional\<Callback\<ESObject\>\>)
 
 ## NavDestinationCustomTitle
 
+NavDestination自定义标题。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -543,9 +533,11 @@ onNewParam(callback: &nbsp;Optional\<Callback\<ESObject\>\>)
 | 名称      | 类型                                       | 必填   | 说明       |
 | ------- | ---------------------------------------- | ---- | -------- |
 | builder | [CustomBuilder](ts-types.md#custombuilder8) | 是    | 设置标题栏内容。 |
-| height  | [TitleHeight](ts-appendix-enums.md#titleheight9) \| [Length](ts-types.md#length) | 是    | 设置标题栏高度。 |
+| height  | [TitleHeight](ts-appendix-enums.md#titleheight9) \| [Length](ts-types.md#length) | 是    | 设置标题栏高度。<br/>取值范围：[0, +∞)。 |
 
 ## NavDestinationContext<sup>11+</sup>
+
+NavDestination上下文信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -559,6 +551,8 @@ onNewParam(callback: &nbsp;Optional\<Callback\<ESObject\>\>)
 
 getConfigInRouteMap(): RouteMapConfig |undefined
 
+获取当前NavDestination的路由配置信息。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -571,6 +565,8 @@ getConfigInRouteMap(): RouteMapConfig |undefined
 | undefined | 当该页面不是通过路由表配置时返回undefined。 |
 
 ## RouteMapConfig<sup>12+</sup>
+
+路由配置信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -595,22 +591,22 @@ getConfigInRouteMap(): RouteMapConfig |undefined
 | parent | [Scroller](./ts-container-scroll.md#scroller) | 是 | 可滚动容器组件的控制器。 |
 | child | [Scroller](./ts-container-scroll.md#scroller) | 是 | 可滚动容器组件的控制器，child对应的组件需要是parent对应组件的子组件，且组件间存在嵌套滚动关系。|
 
-### NavDestinationActiveReason<sup>18+</sup>
+### NavDestinationActiveReason<sup>17+</sup>
 
 NavDestination激活态或者非激活态变化的原因。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 说明                                     |
-| ---- | ---------------------------------------- |
-| TRANSITION | 通过页面跳转的方式使NavDestination激活态发生变化。                       |
-| CONTENT_COVER | 通过全模态的开启和关闭使NavDestination激活态发生变化。  |
-| SHEET | 通过半模态的开启或关闭使NavDestination激活态发生变化。 |
-| DIALOG | 通过自定义Dialog开启或关闭使NavDestination激活态发生变化。 |
-| OVERLAY | 通过OverlayManager开启或者关闭Overlay使NavDestination激活态发生变化。|
-| APP_STATE | 通过前后台切换使NavDestination激活态发生变化。 |
+| 名称   | 值 | 说明                                     |
+| ---- | -- | ---------------------------------------- |
+| TRANSITION | 0   | 通过页面跳转的方式使NavDestination激活态发生变化。                       |
+| CONTENT_COVER | 1   | 通过全模态的开启和关闭使NavDestination激活态发生变化。  |
+| SHEET | 2   | 通过半模态的开启或关闭使NavDestination激活态发生变化。 |
+| DIALOG | 3   | 通过自定义Dialog开启或关闭使NavDestination激活态发生变化。 |
+| OVERLAY | 4   | 通过OverlayManager开启或者关闭Overlay使NavDestination激活态发生变化。|
+| APP_STATE | 5   | 通过前后台切换使NavDestination激活态发生变化。 |
 
 ## NavDestinationTransition<sup>15+</sup>
 
@@ -625,7 +621,7 @@ NavDestination自定义动画接口。
 | onTransitionEnd | Callback\<void> | 否 | 转场动画结束时的回调函数。 |
 | duration | number | 否 | 转场动画的持续时间，默认值为1000（毫秒）。 |
 | curve | [Curve](ts-appendix-enums.md#curve) | 否 | 动画的曲线类型，默认值为[Curve.EaseInOut](ts-appendix-enums.md#curve)。 |
-| delay | number | 否 | 转场动画的延迟。默认值为0。 |
+| delay | number | 否 | 转场动画的延迟。默认值为0（毫秒）。 |
 | event | Callback\<void> | 是 | 指定转场动效的闭包函数，系统会根据闭包中对组件UI状态的修改，生成对应的过渡动画。参见[animateTo](../js-apis-arkui-UIContext.md#animateto)中的event。 |
 
 ## NavDestinationTransitionDelegate<sup>15+</sup>
@@ -643,7 +639,7 @@ NavDestination自定义转场动画的代理函数。
 | 参数名  | 类型     | 必填 | 说明                    |
 |------|--------|----|-----------------------|
 | operation | [NavigationOperation](ts-basic-components-navigation.md#navigationoperation11枚举说明) | 是  | 当前页面转场的操作类型。 |
-| isEnter | boolean | 是  | 当前页面是否为入场页面。 |
+| isEnter | boolean | 是  | 当前页面是否为入场页面。<br/>true:&nbsp;当前页面是入场页面。<br/>false:&nbsp;当前页面不是入场页面。 |
 
 **返回值：**
 
@@ -1179,4 +1175,4 @@ struct HomeBody {
 ![navdestination_slide_bottom](figures/navdestination_slide_bottom_transition.gif)
 ![navdestination_slide_right](figures/navdestination_slide_right_transition.gif)
 
-NavDestination其他用法可参考[Navigation示例](ts-basic-components-navigation.md#示例1)。
+NavDestination其他用法可参考[Navigation示例](ts-basic-components-navigation.md#示例)。

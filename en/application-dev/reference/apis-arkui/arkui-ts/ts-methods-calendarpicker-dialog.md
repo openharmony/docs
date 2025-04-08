@@ -28,7 +28,7 @@ Shows a calendar picker dialog box.
 
 ## CalendarDialogOptions
 
-Inherits [CalendarOptions](ts-basic-components-calendarpicker.md#calendaroptions).
+Inherits from [CalendarOptions](ts-basic-components-calendarpicker.md#calendaroptions).
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -46,14 +46,18 @@ Inherits [CalendarOptions](ts-basic-components-calendarpicker.md#calendaroptions
 | onWillAppear<sup>12+</sup> | [VoidCallback](ts-types.md#voidcallback12) | No| Event callback when the dialog box is about to appear.<br>**NOTE**<br>1. The normal timing sequence is as follows: onWillAppear > onDidAppear > (onAccept/onCancel/onChange) > onWillDisappear > onDidDisappear.<br>2. You can set the callback event for changing the dialog box display effect in **onWillAppear**. The settings take effect next time the dialog box appears.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | onWillDisappear<sup>12+</sup> | [VoidCallback](ts-types.md#voidcallback12) | No| Event callback when the dialog box is about to disappear.<br>**NOTE**<br>1. The normal timing sequence is as follows: onWillAppear > onDidAppear > (onAccept/onCancel/onChange) > onWillDisappear > onDidDisappear.<br>2. If the user closes the dialog box immediately after it appears, **onWillDisappear** is invoked before **onDidAppear**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | shadow<sup>12+</sup>              | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) \| [ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10) | No  | Shadow of the dialog box.<br> Default value on 2-in-1 devices: **ShadowStyle.OUTER_FLOATING_MD** when the dialog box is focused and **ShadowStyle.OUTER_FLOATING_SM** otherwise<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| enableHoverMode<sup>13+</sup>              | boolean | No  | Whether to enable the hover mode.<br>Default value: **false**, meaning not to enable the hover mode.|
-| hoverModeArea<sup>13+</sup>              | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype13) | No  | Display area of the dialog box in hover mode.<br>Default value: **HoverModeAreaType.BOTTOM_SCREEN**|
+| enableHoverMode<sup>14+</sup>     | boolean | No  | Whether to enable the hover mode.<br>Default value: **false**, meaning not to enable the hover mode.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| hoverModeArea<sup>14+</sup>       | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype14) | No  | Display area of the dialog box in hover mode.<br>Default value: **HoverModeAreaType.BOTTOM_SCREEN**<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+
+> **NOTE**
+>
+> When the application window is resized, the width of the dialog box is continuously compressed. If the window width is reduced below a certain threshold, the content of the dialog box may not be fully visible. To ensure that the content of the **CalendarPickerDialog** component is fully displayed, the minimum window width required is 386 vp.
 
 ## Example
 
-### Example 1
+### Example 1: Setting the Background
 
-This example shows the basic usage of **CalendarPickerDialog**.
+This example demonstrates how to set the dialog box background using **backgroundColor**, **backgroundBlurStyle**, and **shadow**.
 
 ```ts
 // xxx.ets
@@ -70,7 +74,11 @@ struct CalendarPickerDialogExample {
           console.info("CalendarDialog.show")
           CalendarPickerDialog.show({
             selected: this.selectedDate,
+            backgroundColor: Color.White,
+            backgroundBlurStyle: BlurStyle.NONE,
+            shadow: ShadowStyle.OUTER_FLOATING_SM,
             onAccept: (value) => {
+              this.selectedDate = value
               console.info("calendar onAccept:" + JSON.stringify(value))
             },
             onCancel: () => {
@@ -100,9 +108,9 @@ struct CalendarPickerDialogExample {
 
 ![CalendarPickerDialog](figures/CalendarPickerDialog.gif)
 
-### Example 2
+### Example 2: Customizing the Button Style
 
-This example shows how to customize the button style.
+This example demonstrates how to customize the button style using **acceptButtonStyle** and **cancelButtonStyle**.
 
 ```ts
 // xxx.ets
@@ -110,6 +118,7 @@ This example shows how to customize the button style.
 @Component
 struct CalendarPickerDialogExample {
   private selectedDate: Date = new Date()
+
   build() {
     Column() {
       Button("Show CalendarPicker Dialog")
@@ -118,32 +127,33 @@ struct CalendarPickerDialogExample {
           console.info("CalendarDialog.show")
           CalendarPickerDialog.show({
             selected: this.selectedDate,
-            acceptButtonStyle: { type: ButtonType.Normal, style: ButtonStyleMode.NORMAL, role: ButtonRole.NORMAL, fontColor: Color.Red,
-              fontSize: '26fp', fontWeight: FontWeight.Bolder, fontStyle: FontStyle.Normal, fontFamily: 'sans-serif', backgroundColor:'#80834511',
-              borderRadius: 20 },
-            cancelButtonStyle: { type: ButtonType.Normal, style: ButtonStyleMode.NORMAL, role: ButtonRole.NORMAL, fontColor: Color.Blue,
-              fontSize: '16fp', fontWeight: FontWeight.Normal, fontStyle: FontStyle.Italic, fontFamily: 'sans-serif', backgroundColor:'#50182431',
-              borderRadius: 10 },
+            acceptButtonStyle: {
+              type: ButtonType.Normal,
+              style: ButtonStyleMode.NORMAL,
+              role: ButtonRole.NORMAL,
+              fontColor: 'rgb(81, 81, 216)',
+              fontSize: '26fp',
+              fontWeight: FontWeight.Bolder,
+              fontStyle: FontStyle.Normal,
+              fontFamily: 'sans-serif',
+              backgroundColor: '#A6ACAF',
+              borderRadius: 20
+            },
+            cancelButtonStyle: {
+              type: ButtonType.Normal,
+              style: ButtonStyleMode.NORMAL,
+              role: ButtonRole.NORMAL,
+              fontColor: Color.Blue,
+              fontSize: '16fp',
+              fontWeight: FontWeight.Normal,
+              fontStyle: FontStyle.Italic,
+              fontFamily: 'sans-serif',
+              backgroundColor: '#50182431',
+              borderRadius: 10
+            },
             onAccept: (value) => {
+              this.selectedDate = value
               console.info("calendar onAccept:" + JSON.stringify(value))
-            },
-            onCancel: () => {
-              console.info("calendar onCancel")
-            },
-            onChange: (value) => {
-              console.info("calendar onChange:" + JSON.stringify(value))
-            },
-            onDidAppear: () => {
-              console.info("calendar onDidAppear")
-            },
-            onDidDisappear: () => {
-              console.info("calendar onDidDisappear")
-            },
-            onWillAppear: () => {
-              console.info("calendar onWillAppear")
-            },
-            onWillDisappear: () => {
-              console.info("calendar onWillDisappear")
             }
           })
         })
@@ -154,7 +164,7 @@ struct CalendarPickerDialogExample {
 
 ![CalendarPickerDialog](figures/CalendarPickerDialog_CustomButton.png)
 
-### Example 3
+### Example 3: Configuring a Dialog Box in the Hover State
 
 This example demonstrates how to set the layout area of a dialog box in hover mode on a foldable device.
 
@@ -202,4 +212,69 @@ struct CalendarPickerDialogExample {
 }
 ```
 
-![CalendarPickerDialog](figures/CalendarPickerDialog_HoverMode.gif)
+
+
+### Example 4: Setting the Background Style for the Selected Date
+
+This example demonstrates how to customize the background style of the selected date using **hintRadius**.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct CalendarPickerDialogExample {
+  private selectedDate: Date = new Date('2024-04-23')
+
+  build() {
+    Column() {
+      Button("Show CalendarPicker Dialog")
+        .margin(20)
+        .onClick(() => {
+          console.info("CalendarDialog.show")
+          CalendarPickerDialog.show({
+            selected: this.selectedDate,
+            hintRadius: 1,
+            onAccept: (value) => {
+              this.selectedDate = value
+              console.info("calendar onAccept:" + JSON.stringify(value))
+            }
+          })
+        })
+    }.width('100%')
+  }
+}
+```
+
+
+
+### Example 5: Setting Start and End Dates
+
+This example demonstrates how to set the start and end dates for the calendar picker dialog box using **start** and **end**.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct CalendarPickerDialogExample {
+  private selectedDate: Date = new Date('2025-01-01')
+  private startDate: Date = new Date('2024-01-10')
+  private endDate: Date = new Date('2025-1-10')
+
+  build() {
+    Column() {
+      Text('Calendar date picker').fontSize(30)
+      Button("Show CalendarPicker Dialog")
+        .margin(20)
+        .onClick(() => {
+          console.info("CalendarDialog.show")
+          CalendarPickerDialog.show({
+            start: this.startDate,
+            end: this.endDate,
+            selected: this.selectedDate,
+          })
+        })
+    }.width('100%').margin({ top: 350 })
+  }
+}  
+```
+

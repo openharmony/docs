@@ -15,7 +15,7 @@ The following provides examples of CMAC operations with different data passing m
 
 ### Generating a CMAC by Passing In Full Data
 
-1. Call [cryptoFramework.createMac](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemac16) with the MAC algorithm set to **CMAC** and symmetric key algorithm set to **AES256** to create a **MAc** instance.
+1. Call [cryptoFramework.createMac](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemac18) with the MAC algorithm set to **CMAC** and symmetric key algorithm set to **AES256** to create a **MAc** instance.
 
 2. Call [cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator) and [SymKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-1) to generate a symmetric key (**SymKey**) using AES256.
    For details, see [Converting Binary Data into a Symmetric Key](crypto-convert-binary-data-to-sym-key.md).
@@ -96,7 +96,7 @@ The following provides examples of CMAC operations with different data passing m
 
 ### Generating a CMAC by Passing In Data by Segment
 
-1. Call [cryptoFramework.createMac](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemac16) with the MAC algorithm set to **CMAC** and symmetric key algorithm set to **AES256** to create a **MAc** instance.
+1. Call [cryptoFramework.createMac](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemac18) with the MAC algorithm set to **CMAC** and symmetric key algorithm set to **AES256** to create a **MAc** instance.
 
 2. Call [cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator) and [SymKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-1) to generate a symmetric key (**SymKey**) using AES256.
    For details, see [Converting Binary Data into a Symmetric Key](crypto-convert-binary-data-to-sym-key.md).

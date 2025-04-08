@@ -48,10 +48,14 @@
        - [固定样式弹出框](arkts-fixes-style-dialog.md)
        - [页面级弹出框](arkts-embedded-dialog.md)
        - [弹出框层级管理](arkts-dialog-levelorder.md)
-     - [菜单控制 (Menu)](arkts-popup-and-menu-components-menu.md)
-     - [不依赖UI组件的全局菜单控制 (openMenu)](arkts-popup-and-menu-components-uicontext-menu.md)
-     - [气泡提示 (Popup)](arkts-popup-and-menu-components-popup.md)
-     - [不依赖UI组件的全局气泡提示 (openPopup)](arkts-popup-and-menu-components-uicontext-popup.md)
+     - 菜单<!--arkts-use-menu-->
+       - [菜单概述](arkts-menu-overview.md)
+       - [菜单控制 (Menu)](arkts-popup-and-menu-components-menu.md)
+       - [不依赖UI组件的全局菜单 (openMenu)](arkts-popup-and-menu-components-uicontext-menu.md)
+     - 气泡提示<!--arkts-use-popup-->
+       - [气泡提示概述](arkts-popup-overview.md)
+       - [气泡提示 (Popup)](arkts-popup-and-menu-components-popup.md)
+       - [不依赖UI组件的全局气泡提示 (openPopup)](arkts-popup-and-menu-components-uicontext-popup.md)
      - 绑定模态页面<!--arkts-bind-modal-->
         - [绑定模态页面概述](arkts-modal-overview.md)
         - [绑定半模态页面 (bindSheet)](arkts-sheet-page.md)
@@ -105,7 +109,7 @@
     - [自定义能力概述](arkts-user-defined.md)
     - 自定义节点<!--arkts-nodes-->
       - [自定义节点概述](arkts-user-defined-node.md)
-      - [自定义占位节点](arkts-user-defined-place-hoder.md)
+      - [自定义占位节点](arkts-user-defined-place-holder.md)
       - [自定义组件节点 (FrameNode)](arkts-user-defined-arktsNode-frameNode.md)
       - [自定义渲染节点 (RenderNode)](arkts-user-defined-arktsNode-renderNode.md)
       - [自定义声明式节点 (BuilderNode)](arkts-user-defined-arktsNode-builderNode.md)

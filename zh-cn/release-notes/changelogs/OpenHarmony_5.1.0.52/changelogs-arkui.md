@@ -152,93 +152,7 @@ UIContext的bindTabsToScrollable、bindTabsToNestedScrollable接口
 
 默认行为变更，无需适配。
 
-## cl.arkui.5 MenuItem高度设置百分比情况下文本垂直对齐方式由顶部对齐变更为居中对齐
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-UX规范变更。
-
-**变更影响**
-
-此变更不涉及应用适配。
-
-- 变更前：MenuItem高度设置百分比，菜单项文本垂直方向顶部对齐。
-  
-- 变更后：MenuItem高度设置百分比，菜单项文本垂直方向居中对齐。
-
-| 变更前 | 变更后 |
-|---------|---------|
-|  ![变更前](figures/MenuItemHeightPercent_before.png)       |  ![变更后](figures/MenuItemHeightPercent_after.png)       |
-
-**起始API Level**
-
-7
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.1.0.52开始。
-
-**变更的接口/组件**
-
-MenuItem组件
-
-**适配指导**
-
-默认效果变更，无需适配。
-
-## cl.arkui.6 Toast避让行为变更
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-优化Toast的避让行为，增强用户体验。
-
-**变更影响**
-
-此变更不涉及应用适配。
-
-变更点1：default模式弹出键盘时的避让行为变更。
-
-| 变更前 | 变更后 |
-|---------|---------|
-|无论Toast是否会被键盘遮挡，Toast总是上移一定的高度。<br>  ![变更前](figures/toast/toast-avoid-before.png)       |如果Toast的位置高于键盘，其位置保持不变。否则，将其上移至键盘上方80vp的位置。<br>![变更后](figures/toast/toast-avoid-after.png)  |
-
-变更点2：保持Toast在屏幕内显示。
-
-| 变更前 | 变更后 |
-|---------|---------|
-| 部分场景下Toast可能超出屏幕显示。<br> ![变更前](figures/toast/toast-avoid-before2.png)       | 当屏幕可用空间不够时，缩小Toast底部避让的距离。<br> ![变更后](figures/toast/toast-avoid-after2.png)       |
-
-变更点3：Toast与软键盘保持最小8vp间距。
-
-| 变更前 | 变更后 |
-|---------|---------|
-|Toast与软键盘无最小间距。<br> ![变更前](figures/toast/toast-avoid-before3.png)       |Toast与软键盘保持至少8vp间距。<br> ![变更后](figures/toast/toast-avoid-after3.png)  |
-
-**起始API Level**
-
-API 9
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.1.0.52开始。
-
-**变更的接口/组件**
-
-promptAction.showToast, promptAction.openToast
-
-**适配指导**
-
-默认行为变更，无需适配。
-
-## cl.arkui.7 修复fromHtml接口解析颜色rgb顺序错误的问题
+## cl.arkui.5 修复fromHtml接口解析颜色rgb顺序错误的问题
 
 **访问级别**
 
@@ -272,7 +186,7 @@ promptAction.showToast, promptAction.openToast
 
 此变更不涉及应用适配。
 
-## cl.arkui.8 C API轴事件接口OH_ArkUI_UIInputEvent_GetSourceType和OH_ArkUI_UIInputEvent_GetToolType接口返回值变更
+## cl.arkui.6 C API轴事件接口OH_ArkUI_UIInputEvent_GetSourceType和OH_ArkUI_UIInputEvent_GetToolType接口返回值变更
 
 **访问级别**
 
@@ -330,7 +244,7 @@ if (toolType != UI_INPUT_EVENT_TOOL_TYPE_MOUSE) { // 是鼠标滚轮尝试的轴
 }
 ```
 
-## cl.arkui.9 CanvasRenderingContext2D使用putImageData方法绘制透明度小于1的ImageData效果变更
+## cl.arkui.7 CanvasRenderingContext2D使用putImageData方法绘制透明度小于1的ImageData效果变更
 
 **访问级别**
 
@@ -393,7 +307,7 @@ struct Demo {
 }
 ```
 
-## cl.arkui.10 预览器OffscreenCanvasRenderingContext2D使用drawImage方法绘制透明度小于1的ImageBitmap效果变更
+## cl.arkui.8 预览器OffscreenCanvasRenderingContext2D使用drawImage方法绘制透明度小于1的ImageBitmap效果变更
 
 **访问级别**
 
@@ -451,7 +365,7 @@ struct Demo {
 }
 ```
 
-## cl.arkui.11 TextInput/TextArea使用attributeModifier修改borderWidth的行为变更
+## cl.arkui.9 TextInput/TextArea使用attributeModifier修改borderWidth的行为变更
 
 **访问级别**
 

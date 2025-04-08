@@ -3,7 +3,7 @@
 
 ## 概述
 
-声明将图片源解码成像素位图的方法。
+声明将ImageSource解码成像素位图的方法。
 
 **库**：libimage_source_ndk.z.so
 
@@ -50,9 +50,9 @@
 | int32_t [OH_ImageSource_CreateFromUri](image.md#oh_imagesource_createfromuri) (napi_env env, char \*uri, size_t size, struct [OhosImageSourceOps](_ohos_image_source_ops.md) \*ops, napi_value \*res) | 通过给定的标识符URI和[OhosImageSourceOps](_ohos_image_source_ops.md)结构体，获取JavaScript native层**ImageSource**对象。  | 
 | int32_t [OH_ImageSource_CreateFromFd](image.md#oh_imagesource_createfromfd) (napi_env env, int32_t fd, struct [OhosImageSourceOps](_ohos_image_source_ops.md) \*ops, napi_value \*res) | 通过给定的文件描述符fd和[OhosImageSourceOps](_ohos_image_source_ops.md)结构体，获取JavaScript native层**ImageSource**对象。  | 
 | int32_t [OH_ImageSource_CreateFromData](image.md#oh_imagesource_createfromdata) (napi_env env, uint8_t \*data, size_t dataSize, struct [OhosImageSourceOps](_ohos_image_source_ops.md) \*ops, napi_value \*res) | 通过给定的图像源缓冲区资源data和[OhosImageSourceOps](_ohos_image_source_ops.md)结构体，获取JavaScript native层API**ImageSource**对象。  | 
-| int32_t [OH_ImageSource_CreateFromRawFile](image.md#oh_imagesource_createfromrawfile) (napi_env env, RawFileDescriptor rawFile, struct [OhosImageSourceOps](_ohos_image_source_ops.md) \*ops, napi_value \*res) | 通过给定的资源描述符 **RawFileDescriptor**和[OhosImageSourceOps](_ohos_image_source_ops.md)结构体， 获取JavaScript native层**ImageSource**对象。  | 
+| int32_t [OH_ImageSource_CreateFromRawFile](image.md#oh_imagesource_createfromrawfile) (napi_env env, RawFileDescriptor rawFile, struct [OhosImageSourceOps](_ohos_image_source_ops.md) \*ops, napi_value \*res) | 通过给定的资源描述符 **RawFileDescriptor**和[OhosImageSourceOps](_ohos_image_source_ops.md)结构体，获取JavaScript native层**ImageSource**对象。  | 
 | int32_t [OH_ImageSource_CreateIncremental](image.md#oh_imagesource_createincremental) (napi_env env, struct [OhosImageSource](_ohos_image_source.md) \*source, struct [OhosImageSourceOps](_ohos_image_source_ops.md) \*ops, napi_value \*res) | 通过给定的infomations[OhosImageSource](_ohos_image_source.md)和[OhosImageSourceOps](_ohos_image_source_ops.md)结构，获取增量类型的avaScript native层**ImageSource**对象。 | 
-| int32_t [OH_ImageSource_CreateIncrementalFromData](image.md#oh_imagesource_createincrementalfromdata) (napi_env env, uint8_t \*data, size_t dataSize, struct [OhosImageSourceOps](_ohos_image_source_ops.md) \*ops, napi_value \*res) | 通过给定的图像源缓冲区资源data和 [OhosImageSourceOps](_ohos_image_source_ops.md)结构体， 获取增量类型的JavaScript Native API ImageSource对象，图像数据应通过OH_ImageSource_UpdateData更新。  | 
+| int32_t [OH_ImageSource_CreateIncrementalFromData](image.md#oh_imagesource_createincrementalfromdata) (napi_env env, uint8_t \*data, size_t dataSize, struct [OhosImageSourceOps](_ohos_image_source_ops.md) \*ops, napi_value \*res) | 通过给定的图像源缓冲区资源data和 [OhosImageSourceOps](_ohos_image_source_ops.md)结构体，获取增量类型的JavaScript Native API ImageSource对象，图像数据应通过OH_ImageSource_UpdateData更新。  | 
 | int32_t [OH_ImageSource_GetSupportedFormats](image.md#oh_imagesource_getsupportedformats) (struct [OhosImageSourceSupportedFormatList](_ohos_image_source_supported_format_list.md) \*res) | 获取所有支持的解码格式元标记。  | 
 | [ImageSourceNative](image.md#imagesourcenative) \* [OH_ImageSource_InitNative](image.md#oh_imagesource_initnative) (napi_env env, napi_value source) | 从输入JavaScript native层API **ImageSource** 对象中，转换成[ImageSourceNative](image.md#imagesourcenative)值。  | 
 | int32_t [OH_ImageSource_CreatePixelMap](image.md#oh_imagesource_createpixelmap) (const [ImageSourceNative](image.md#imagesourcenative) \*native, struct [OhosImageDecodingOps](_ohos_image_decoding_ops.md) \*ops, napi_value \*res) | 通过一个给定的选项[OhosImageDecodingOps](_ohos_image_decoding_ops.md)结构体，从**ImageSource**中解码JavaScript native层**PixelMap**对象。  | 

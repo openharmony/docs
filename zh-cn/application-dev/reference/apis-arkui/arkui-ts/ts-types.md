@@ -339,7 +339,7 @@
 | width  | [Length](#length)  \| [EdgeWidths](#edgewidths9)<sup>9+</sup> \| [LocalizedEdgeWidths](#localizededgewidths12)<sup>12+</sup> | 否    | 边框宽度。   |
 | color  | [ResourceColor](#resourcecolor) \| [EdgeColors](#edgecolors9)<sup>9+</sup> | 否    | 边框颜色。   |
 | radius | [Length](#length) \| [BorderRadiuses](#borderradiuses9)<sup>9+</sup> | 否    | 边框圆角半径。 |
-| style  | [BorderStyle](ts-appendix-enums.md#borderstyle)  \| [EdgeStyles](#EdgeStyles9)<sup>9+</sup>| 否    | 边框样式。   |
+| style  | [BorderStyle](ts-appendix-enums.md#borderstyle)  \| [EdgeStyles](#edgestyles9)<sup>9+</sup>| 否    | 边框样式。   |
 
 ## ColorFilter<sup>9+</sup>
 
@@ -609,7 +609,6 @@ type VisibleAreaChangeCallback = (isExpanding: boolean, currentRatio: number) =>
 | color  | [ResourceColor](#resourcecolor) | 否  | 分割线的颜色。         |
 | startMargin | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否  | 分割线与菜单侧边起始端的距离。 |
 | endMargin  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup>| 否  | 分割线与菜单侧边结束端的距离。 |
-| mode  | [DividerMode](#dividermode18枚举说明)<sup>18+</sup>| 否  | 设置分割线模式。 |
 
 ## TextContentControllerBase<sup>10+</sup>
 
@@ -732,13 +731,13 @@ getSelection(): TextRange
 | ----------------------- | ---------------- |
 | [TextRange](ts-text-common.md#textrange12) | 文本当前的选择范围，未选中返回光标位置。 |
 
-### clearPreviewText<sup>18+</sup>
+### clearPreviewText<sup>17+</sup>
 
 clearPreviewText(): void
 
 清除当前的预上屏文本内容。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -884,16 +883,3 @@ setTextSelection选中文字时的配置。
 | 名称      | 类型   | 只读 | 可选 | 说明       |
 | --------- | ------ | ---- | ---- | ---------- |
 | offset | number | 是   | 是   | 插入文本的位置。 |
-
-## DividerMode<sup>18+</sup>枚举说明
-
-分割线模式
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称            | 值 | 说明                                       |
-| ------------------ | - | ---------------------------------------- |
-| FLOATING_ABOVE_MENU| 0 | 悬浮在Menu之上，默认值，不占用高度。      |
-| EMBEDDED_IN_MENU   | 1 | 在Menu中展开，参与布局计算，占用高度。    |

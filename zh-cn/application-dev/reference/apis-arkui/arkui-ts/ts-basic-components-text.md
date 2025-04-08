@@ -104,7 +104,7 @@ maxLines(value: number)
 
 lineHeight(value: number | string | Resource)
 
-设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，number类型时单位为fp。
+设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，number类型时单位为fp。string类型支持number类型取值的字符串形式，可以附带单位，例如"10"、"10fp"。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -160,7 +160,7 @@ baselineOffset(value: number | string)
 
 letterSpacing(value: number | string)
 
-设置文本字符间距。设置该值为百分比时，按默认值显示。设置该值为0时，按默认值显示。
+设置文本字符间距。设置该值为百分比时，按默认值显示。设置该值为0时，按默认值显示。string类型支持number类型取值的字符串形式，可以附带单位，例如"10"、"10fp"。
 
 当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示。
 
@@ -174,13 +174,13 @@ letterSpacing(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明           |
 | ------ | -------------------------- | ---- | -------------- |
-| value  | number&nbsp;\|&nbsp;string | 是   | 文本字符间距。 |
+| value  | number&nbsp;\|&nbsp;string | 是   | 文本字符间距。<br/>单位：fp |
 
 ### minFontSize
 
 minFontSize(value: number | string | Resource)
 
-设置文本最小显示字号。
+设置文本最小显示字号。string类型支持number类型取值的字符串形式，可以附带单位，例如"10"、"10fp"。
 
 需配合[maxFontSize](#maxfontsize)以及[maxLines](#maxlines)或布局大小限制使用，单独设置不生效。
 
@@ -188,7 +188,7 @@ minFontSize(value: number | string | Resource)
 
 minFontSize小于或等于0时，自适应字号不生效，此时按照[fontSize](#fontsize)属性的值生效，未设置时按照其默认值生效。
 
-从API Version 16开始支持在子组件和属性字符串上生效，未设置字号的部分自适应字号。
+从API Version 18开始支持在子组件和属性字符串上生效，未设置字号的部分自适应字号。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -200,13 +200,13 @@ minFontSize小于或等于0时，自适应字号不生效，此时按照[fontSiz
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最小显示字号。 |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最小显示字号。<br/>单位：fp |
 
 ### maxFontSize
 
 maxFontSize(value: number | string | Resource)
 
-设置文本最大显示字号。
+设置文本最大显示字号。string类型支持number类型取值的字符串形式，可以附带单位，例如"10"、"10fp"。
 
 需配合[minFontSize](#minfontsize)以及[maxLines](#maxlines)或布局大小限制使用，单独设置不生效。
 
@@ -214,7 +214,7 @@ maxFontSize(value: number | string | Resource)
 
 maxFontSize小于或等于0时，自适应字号不生效，此时按照[fontSize](#fontsize)属性的值生效，未设置时按照其默认值生效。
 
-从API Version 16开始支持在子组件和属性字符串上生效，未设置字号的部分自适应字号。
+从API Version 18开始支持在子组件和属性字符串上生效，未设置字号的部分自适应字号。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -226,7 +226,7 @@ maxFontSize小于或等于0时，自适应字号不生效，此时按照[fontSiz
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。 |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。<br/>单位：fp |
 
 ### textCase
 
@@ -340,7 +340,7 @@ fontFamily(value: string | Resource)
 
 copyOption(value: CopyOptions)
 
-设置组件是否支持文本可复制粘贴。设置copyOptions为CopyOptions.InApp或者CopyOptions.LocalDevice，长按文本，会弹出文本选择菜单，可选中文本并进行复制、全选操作。
+设置组件是否支持文本可复制粘贴。设置copyOptions为CopyOptions.InApp或者CopyOptions.LocalDevice，长按文本，会弹出文本选择菜单，可选中文本并进行复制、全选操作，此时Text会监听onClick事件，手势事件为非冒泡事件，若需要点击Text组件区域响应父组件的点击手势事件，建议在父组件上使用[parallelGesture](ts-gesture-settings.md#绑定手势识别)绑定手势识别，也可参考[示例7设置文本识别](#示例7设置文本识别)。
 
 由于卡片没有长按事件，此场景下长按文本，不会弹出文本选择菜单。
 
@@ -456,7 +456,7 @@ textIndent(value: Length)
 
 wordBreak(value: WordBreak)
 
-设置断行规则。WordBreak.BREAK_ALL与{overflow:&nbsp;TextOverflow.Ellipsis}，maxLines组合使用可实现英文单词按字母截断，超出部分以省略号显示
+设置断行规则。WordBreak.BREAK_ALL与{overflow:&nbsp;TextOverflow.Ellipsis}，maxLines组合使用可实现英文单词按字母截断，超出部分以省略号显示。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -805,7 +805,7 @@ fontWeight(weight: number | FontWeight | string, options?: FontSettingOptions)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| weight | number&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;string | 是  | 设置文本字重。 |
+| weight | number&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;string | 是  | 设置文本字重。number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。 |
 | options | [FontSettingOptions](ts-text-common.md#fontsettingoptions12对象说明) | 否  | 设置字体配置项。 |
 
 ### enableHapticFeedback<sup>13+</sup>
@@ -822,7 +822,7 @@ enableHapticFeedback(isEnabled: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| isEnabled | boolean | 是   | 是否开启触控反馈。<br/>默认值：true |
+| isEnabled | boolean | 是   | 是否开启触控反馈。<br/>true表示开启，false表示不开启。<br/>默认值：true |
 
 >  **说明：**
 >
@@ -937,9 +937,9 @@ marqueeOptions(options: Optional\<TextMarqueeOptions>)
 
 **参数：** 
 
-| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| 名称 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| overflow  | [TextOverflow](ts-appendix-enums.md#textoverflow) | 是   | 文本超长时的显示方式。<br/>默认值：TextOverflow.Clip |
+| overflow<sup>7+</sup>  | [TextOverflow](ts-appendix-enums.md#textoverflow) | 是   | 文本超长时的显示方式。<br/>默认值：TextOverflow.Clip <br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## 事件
 
@@ -992,7 +992,7 @@ onMarqueeStateChange(callback: Callback\<MarqueeState\>)
 
 | 参数名    | 类型                                             | 必填  | 说明                       |
 |--------|---------------------------------------------------|-----|--------------------------|
-| state  | Callback\<[MarqueeState](#marqueestate18枚举说明)\> | 是   | 通过state参数指定触发回调的状态，状态由MarqueeState枚举定义，例如开始滚动、滚动一次、滚动完成。 |
+| callback  | Callback\<[MarqueeState](#marqueestate18枚举说明)\> | 是   | 通过callback参数指定触发回调的状态，状态由MarqueeState枚举定义，例如开始滚动、滚动一次、滚动完成。 |
 
 ## TextOptions<sup>11+</sup>
 
@@ -1072,13 +1072,13 @@ Marquee初始化参数。
 
 **参数：**
 
-| 参数名                | 类型                                              | 必填 | 说明                                                                                  |
+| 名称                | 类型                                              | 必填 | 说明                                                                                  |
 |--------------------|-------------------------------------------------|----|-------------------------------------------------------------------------------------|
-| start              | boolean                                         | 是  | 控制跑马灯进入播放状态。                                                                        |
+| start              | boolean                                         | 是  | 控制跑马灯进入播放状态。<br/>true表示播放，false表示不播放。                           |
 | step               | number                                          | 否  | 滚动动画文本滚动步长。<br/>默认值：4.0vp                                                           |
 | loop               | number                                          | 否  | 设置重复滚动的次数，小于等于零时无限循环。<br/>默认值：-1                                                    |
-| fromStart          | boolean                                         | 否  | 设置文本从头开始滚动或反向滚动。<br/>默认值：true                                                       |
-| delay              | number                                          | 否  | 设置每次滚动的时间间隔。<br/>默认值：0                                                              |
+| fromStart          | boolean                                         | 否  | 设置文本从头开始滚动或反向滚动。<br/>true表示从头开始滚动，false表示反向滚动。<br/>默认值：true                                                  |
+| delay              | number                                          | 否  | 设置每次滚动的时间间隔。<br/>默认值：0 <br/>单位：毫秒                                                             |
 | fadeout            | boolean                                         | 否  | 设置文字超长时的渐隐效果。当Text内容超出显示范围时，未完全展现的文字边缘将应用渐隐效果。若两端均有文字未完全显示，则两端同时应用渐隐效果。在渐隐效果开启状态下，clip属性将自动锁定为true，不允许设置为false。<br/>默认值：false  |
 | marqueeStartPolicy | [MarqueeStartPolicy](#marqueestartpolicy18枚举说明) | 否  | 设置跑马灯启动策略。<br/>默认值：MarqueeStartPolicy.DEFAULT                                       |
 
@@ -1617,6 +1617,11 @@ struct TextExample7 {
           .width('100%')
       }
       .width('100%')
+      // 使用parallelGesture中的TapGesture替代onClick属性，达到非冒泡事件类似冒泡
+      // 的效果，点击Text组件区域Column上的点击事件正常响应
+      .parallelGesture(TapGesture().onAction((event: GestureEvent) => {
+        console.log('test column onClick timestamp:' + event.timestamp);
+      }), GestureMask.Normal)
     }
     .height('100%')
   }

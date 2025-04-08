@@ -11,6 +11,7 @@ HDR元数据结构体定义。
 
 **相关模块：** [NativeWindow](_native_window.md)
 
+**所在头文件：**[external_window.h](external__window_8h.md)
 
 ## 汇总
 
@@ -19,8 +20,8 @@ HDR元数据结构体定义。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OHHDRMetadataKey](_native_window.md#ohhdrmetadatakey)  [key](#key) | HDR元数据关键字 | 
-| float [value](#value) | 关键字对应的值 | 
+| [OHHDRMetadataKey](_native_window.md#ohhdrmetadatakey)  [key](#key) | HDR元数据关键字。 | 
+| float [value](#value) | 关键字对应的值。 | 
 
 
 ## 结构体成员变量说明
@@ -32,7 +33,7 @@ HDR元数据结构体定义。
 OHHDRMetadataKey OHHDRMetaData::key
 ```
 
-**描述**
+**描述：**
 
 HDR元数据关键字。
 
@@ -43,6 +44,6 @@ HDR元数据关键字。
 float OHHDRMetaData::value
 ```
 
-**描述**
+**描述：**
 
 关键字对应的值。

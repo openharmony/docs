@@ -78,7 +78,7 @@ restool dump config entry.hap
 
 ## 使用实例
 
-例如：entry目录结构如下
+例如，entry目录结构如下：
 ```
 entry/src/main
 |    |----resource

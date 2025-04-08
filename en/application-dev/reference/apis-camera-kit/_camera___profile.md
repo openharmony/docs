@@ -9,6 +9,8 @@ The Camera_Profile struct describes the profile of a camera stream.
 
 **Related module**: [OH_Camera](_o_h___camera.md)
 
+**Header file**: [camera.h](camera_8h.md)
+
 
 ## Summary
 

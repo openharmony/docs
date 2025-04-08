@@ -101,6 +101,150 @@ This error code is reported if a system internal error occurs.
 
 2. Check whether the system is normal. If not, try again later or restart the device.
 
+## 2301206 Failed to Connect to the Proxy Server via SOCKS5
+
+**Error Message**
+
+Socks5 failed to connect to the proxy server.
+
+**Description**
+
+This error code is reported if a SOCKS5 client fails to connect to the proxy server.
+
+**Cause**
+
+The proxy server address is incorrect.
+
+**Procedure**
+
+Check whether the proxy server address is correct.
+
+## 2301207 Invalid User Name or Password for SOCKS5 Authentication
+
+**Error Message**
+
+Socks5 username or password is invalid.
+
+**Description**
+
+This error code is reported if the user name or password is invalid when the SOCKS5 client uses the password authentication mode.
+
+**Cause**
+
+The user name or password is incorrect.
+
+**Procedure**
+
+Check whether the user name and password are correct.
+
+## 2301208 Failed to Connect to the Remote Server via SOCKS5
+
+**Error Message**
+
+Socks5 failed to connect to the remote server.
+
+**Description**
+
+This error code is reported if a SOCKS5 proxy fails to connect to the remote server.
+
+**Cause**
+
+The network of the remote server is faulty.
+
+**Procedure**
+
+Check the network status of the remote server.
+
+## 2301209 Authentication Mode Negotiation Failed for SOCKS5
+
+**Error Message**
+
+Socks5 failed to negotiate the authentication method.
+
+**Description**
+
+This error code is reported if a SOCKS5 client fails to negotiate the authentication mode with the proxy server.
+
+**Cause**
+
+The proxy server does not support the authentication mode provided by the SOCKS5 client.
+
+**Procedure**
+
+Check whether the proxy server supports the authentication mode provided by the SOCKS5 client.
+
+## 2301210 Failed to Send Messages via SOCKS5
+
+**Error Message**
+
+Socks5 failed to send the message.
+
+**Description**
+
+This error code is reported if a SOCKS5 client fails to send messages due to a system call error.
+
+**Cause**
+
+This problem is usually caused by memory overflows and invalid parameters. Check the log for Linux kernel errors.
+
+**Procedure**
+
+Create a socket and initiate a connection again.
+
+## 2301211 Failed to Receive Messages via SOCKS5
+
+**Error Message**
+
+Socks5 failed to receive the message.
+
+**Description**
+
+This error code is reported if a SOCKS5 client fails to receive messages due to a system call error.
+
+**Cause**
+
+Errors such as memory overflow and invalid parameter have occurred. Check the log for Linux kernel errors.
+
+**Procedure**
+
+Create a socket and initiate a connection again.
+
+## 2301212 Failed to Serialize Messages for SOCKS5
+
+**Error Message**
+
+Socks5 serialization error.
+
+**Description**
+
+This error code is reported if message fails to be serialized for a SOCKS5 client.
+
+**Cause**
+
+The user name or password is too long, or the address and protocol type of the proxy server and the remote server do not match.
+
+**Procedure**
+
+Check whether the user name and password exceed the length limit and whether the addresses and protocol types of the proxy server and remote server match.
+
+## 2301213 Failed to Deserialize Messages for SOCKS5
+
+**Error Message**
+
+Socks5 deserialization error.
+
+**Description**
+
+This error code is reported if message fails to be deserialized for a SOCKS5 client.
+
+**Cause**
+
+The length of the response packets sent by the server does not comply with the protocol.
+
+**Procedure**
+
+Check the response data packets of the server.
+
 ## 2303104 System Call Interrupted
 
 **Error Message**

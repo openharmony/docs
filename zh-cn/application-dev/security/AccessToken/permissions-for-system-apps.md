@@ -128,7 +128,7 @@
 
 **ACL使能**：true
 
-**起始版本**：18
+**起始版本**：17
 
 ## ohos.permission.READ_PROTECTION_ADVICE_POLICY
 
@@ -140,7 +140,7 @@
 
 **ACL使能**：true
 
-**起始版本**：18
+**起始版本**：17
 
 ## ohos.permission.PROXY_MESSAGE_AUTH
 
@@ -3608,6 +3608,18 @@
 
 **起始版本**：12
 
+## ohos.permission.RECEIVE_BMS_BROKER_MESSAGES
+
+允许系统服务或系统应用接收包管理代理服务消息。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
 ## ohos.permission.ACCESS_FUSION_MANAGER
 
 允许系统服务或系统应用访问融合服务。
@@ -4568,6 +4580,18 @@
 用于保护行业定制配置文件的可见性，例如开机动画、开机logo、桌面布局、壁纸等。
 
 **权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
+## ohos.permission.SEND_NOTIFICATION_CROSS_USER
+
+允许应用发送通知给系统中指定用户。
+
+**权限级别**：system_core
 
 **授权方式**：系统授权（system_grant）
 

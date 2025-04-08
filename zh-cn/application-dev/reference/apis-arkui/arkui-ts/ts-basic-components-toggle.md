@@ -35,10 +35,10 @@ Toggle(options: ToggleOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型                              | 必填 | 说明                                                         |
-| ---- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| type | [ToggleType](#toggletype枚举说明) | 是   | 开关的样式。<br/>默认值：ToggleType.Switch                   |
-| isOn | boolean                           | 否   | 开关是否打开，true：打开，false：关闭。<br/>默认值：false<br />该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| 名称              | 类型                              | 必填 | 说明                                                         |
+| ----------------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| type<sup>8+</sup> | [ToggleType](#toggletype枚举说明) | 是   | 开关的样式。<br/>默认值：ToggleType.Switch<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| isOn<sup>8+</sup> | boolean                           | 否   | 开关是否打开，true：打开，false：关闭。<br/>默认值：false<br />该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br />该属性支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## ToggleType枚举说明
 
@@ -171,9 +171,9 @@ onChange(callback:&nbsp;(isOn:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)
 
 | 名称  | 类型    |    只读    |    可选    |  说明              |
 | ------ | ------ | ------ |-------------------------------- |-------------------------------- |
-| isOn   | boolean| 否  | 否 | 开关是否打开。<br/>默认值：false |
-| enabled | boolean | 否 | 否 | 是否可以切换状态。值为true时，表示可以切换，值为false时，表示不可切换。<br/>默认值：false |
-| triggerChange |Callback\<boolean>| 否 | 否 |触发switch选中状态变化。 |
+| isOn   | boolean| 否  | 否 | 开关是否打开。<br/>默认值：false<br/>值为true时，开关打开。值为false时，开关关闭。 |
+| enabled | boolean | 否 | 否 | 是否可以切换状态。<br/>默认值：true<br/>值为true时，可以切换状态。值为false时，不可以切换状态。 |
+| triggerChange |Callback\<boolean>| 否 | 否 |触发switch选中状态变化。<br/>为true时，代表状态从关切换为开。false时，代表状态从开切换为关。 |
 
 
 ## 示例

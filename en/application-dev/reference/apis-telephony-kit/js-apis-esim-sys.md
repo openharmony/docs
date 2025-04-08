@@ -2,9 +2,9 @@
 
 The **esim** module provides APIs for eSIM management and eSIM services.
 
->**NOTE**
+> **NOTE**
 >
->The initial APIs of this module are supported since API version 14. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 18. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.telephony.esim (eSIM Management)](js-apis-esim.md).
 
 ## Modules to Import
@@ -13,9 +13,9 @@ The **esim** module provides APIs for eSIM management and eSIM services.
 import { eSIM } from '@kit.TelephonyKit';
 ```
 
-## eSIM.getEid<sup>14+</sup>
+## eSIM.getEid<sup>18+</sup>
 
-getEid\(slotId: number\): string
+getEid\(slotId: number\): Promise\<string\>
 
 Obtains the EID of the embedded universal integrated circuit card (eUICC) in the specified slot.
 
@@ -29,14 +29,17 @@ Obtains the EID of the embedded universal integrated circuit card (eUICC) in the
 
 | Name| Type  | Mandatory| Description                                    |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2  |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2  |
 
 **Returns**
 
 | Type                 | Description                               |
 | --------------------- | ---------------------------------- |
 | string | EID of the eUICC in the specified slot.|
+
 **Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID                | Error Message                        |
 | --------------------- | ---------------------------------- |
@@ -46,6 +49,7 @@ Obtains the EID of the embedded universal integrated circuit card (eUICC) in the
 | 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
+
 **Example**
 
 ```ts
@@ -55,7 +59,7 @@ let eid: string = eSIM.getEid(0);
 console.log(`the EID is:` + eid);
 ```
 
-## eSIM.getOsuStatus<sup>14+</sup>
+## eSIM.getOsuStatus<sup>18+</sup>
 
 getOsuStatus\(slotId: number\): Promise\<OsuStatus\>
 
@@ -71,15 +75,17 @@ Obtains the OS upgrade status for the eSIM in the specified slot. This API uses 
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 
 **Returns**
 
 | Type                 | Description                              |
 | --------------------- | ---------------------------------- |
-| Promise\<[OsuStatus](#osustatus14)\> |  Promise used to return the OS upgrade status.<br> 1. Upgrading.<br>   2. Upgrade failed.<br>  3. Upgrade succeeded.<br>  4. Already the latest version.<br> 5. Upgrade service unavailable.|
+| Promise\<[OsuStatus](#osustatus18)\> |  Promise used to return the OS upgrade status.<br> 1. Updating.<br>   2. Update failed.<br>  3. Update succeeded.<br>  4. Already the latest version.<br> 5. Update service unavailable.|
 
 **Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID                | Error Message                              |
 | --------------------- | ---------------------------------- |
@@ -103,7 +109,7 @@ eSIM.getOsuStatus(0).then(() => {
 });
 ```
 
-## eSIM.startOsu<sup>14+</sup>
+## eSIM.startOsu<sup>18+</sup>
 
 startOsu\(slotId: number\): Promise\<OsuStatus\>
 
@@ -119,15 +125,18 @@ Upgrades the OS if the OS version of the eSIM in the specified slot is not the l
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 
 **Returns**
 
 | Type                 | Description                              |
 | --------------------- | ---------------------------------- |
-| Promise\<[OsuStatus](#osustatus14)\> |  Promise used to return the OS upgrade status.<br> 1. Upgrading.<br>   2. Upgrade failed.<br>  3. Upgrade succeeded.<br>  4. Already the latest version.<br> 5. Upgrade service unavailable.|
+| Promise\<[OsuStatus](#osustatus18)\> |  Promise used to return the OS upgrade status.<br> 1. Updating.<br>   2. Update failed.<br>  3. Update succeeded.<br>  4. Already the latest version.<br> 5. Update service unavailable.|
 
 **Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID                | Error Message                              |
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
@@ -136,7 +145,6 @@ Upgrades the OS if the OS version of the eSIM in the specified slot is not the l
 | 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
-
 
 **Example**
 
@@ -151,7 +159,7 @@ eSIM.startOsu(0).then(() => {
 });
 ```
 
-## eSIM.getDownloadableProfileMetadata<sup>14+</sup>
+## eSIM.getDownloadableProfileMetadata<sup>18+</sup>
 
 getDownloadableProfileMetadata\(slotId: number, portIndex: number,
     profile: DownloadableProfile, forceDisableProfile: boolean\): Promise\<GetDownloadableProfileMetadataResult\>
@@ -168,18 +176,20 @@ Obtains the metadata of the downloadable profile. This API uses a promise to ret
 
 | Name| Type| Mandatory| Description|
 | ------ | ------ | ----- | ----- |
-| slotId              | number                                        | Yes| Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId              | number                                        | Yes| Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 | portIndex           | number                                        | Yes| Port index of the slot.    |
-| profile             | [DownloadableProfile](#downloadableprofile14) | Yes| Downloadable profile.|
+| profile             | [DownloadableProfile](#downloadableprofile18) | Yes| Downloadable profile.|
 | forceDisableProfile | boolean | Yes| Whether to forcibly diable the active SIM. If the value is **true**, the operation can be performed only after the active SIM card is disabled. If the value is **false**, the system displays a message asking the user to agree to the operation.|
 
 **Returns**
 
 | Type                 | Description                              |
 | --------------------- | ---------------------------------- |
-| Promise\<[GetDownloadableProfileMetadataResult](#getdownloadableprofilemetadataresult14)\> | Promise used to return the metadata of the downloadable profile.|
+| Promise\<[GetDownloadableProfileMetadataResult](#getdownloadableprofilemetadataresult18)\> | Promise used to return the metadata of the downloadable profile.|
 
 **Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID                | Error Message                              |
 | --------------------- | ---------------------------------- |
@@ -214,7 +224,7 @@ eSIM.getDownloadableProfileMetadata(0, 0, profile, true).then((data: eSIM.GetDow
 });
 ```
 
-## eSIM.getDownloadableProfiles<sup>14+</sup>
+## eSIM.getDownloadableProfiles<sup>18+</sup>
 
 getDownloadableProfiles\(slotId: number, portIndex: number,
     forceDisableProfile: boolean\): Promise\<GetDownloadableProfilesResult\>
@@ -231,17 +241,19 @@ Obtains the list of downloadable profiles. This API uses a promise to return the
 
 | Name| Type| Mandatory| Description|
 | ------ | ------ | ----- | ----- |
-| slotId              | number  | Yes| Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId              | number  | Yes| Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 | portIndex           | number  | Yes| Port index of the slot.|
-| forceDisableProfile | boolean | Yes| Whether to forcibly diable the active SIM. The value **true** indicates that the operation can be performed only after the active SIM card is disabled. If the value is **false**, the system displays a message asking the user to agree to the operation.|
+| forceDisableProfile | boolean | Yes| Whether to forcibly diable the active SIM. If the value is **true**, the operation can be performed only after the active SIM card is disabled. If the value is **false**, the system displays a message asking the user to agree to the operation.|
 
 **Returns**
 
 | Type                 | Description                              |
 | --------------------- | ---------------------------------- |
-| Promise\<[GetDownloadableProfilesResult](#getdownloadableprofilesresult14)\> | Promise used to return the list of downloadable profiles.|
+| Promise\<[GetDownloadableProfilesResult](#getdownloadableprofilesresult18)\> | Promise used to return the list of downloadable profiles.|
 
 **Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID                | Error Message                              |
 | --------------------- | ---------------------------------- |
@@ -265,10 +277,10 @@ eSIM.getDownloadableProfiles(0, 0, true).then((data: eSIM.GetDownloadableProfile
 });
 ```
 
-## eSIM.downloadProfile<sup>14+</sup>
+## eSIM.downloadProfile<sup>18+</sup>
 
 downloadProfile\(slotId: number, portIndex: number, profile: DownloadableProfile,
-      configuration: DownloadConfiguration\): Promise\<DownloadProfileResult\>;
+      configuration: DownloadConfiguration\): Promise\<DownloadProfileResult\>
 
 Downloads a profile. This API uses a promise to return the result.
 
@@ -282,18 +294,20 @@ Downloads a profile. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | ------ | ------ | ----- | ----- |
-| slotId        | number                                            | Yes| Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId        | number                                            | Yes| Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 | portIndex     | number                                            | Yes| Port index of the slot.|
-| profile       | [DownloadableProfile](#downloadableprofile14)     | Yes| Downloadable profile.|
-| configuration | [DownloadConfiguration](#downloadconfiguration14) | Yes| Download configuration.|
+| profile       | [DownloadableProfile](#downloadableprofile18)     | Yes| Downloadable profile.|
+| configuration | [DownloadConfiguration](#downloadconfiguration18) | Yes| Download configuration.|
 
 **Returns**
 
 | Type                 | Description                              |
 | --------------------- | ---------------------------------- |
-| Promise\<[DownloadProfileResult](#downloadprofileresult14)\> | Promise used to return the profile download result.|
+| Promise\<[DownloadProfileResult](#downloadprofileresult18)\> | Promise used to return the profile download result.|
 
 **Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID                | Error Message                              |
 | --------------------- | ---------------------------------- |
@@ -334,7 +348,7 @@ eSIM.downloadProfile(0, 0, profile, configuration).then((data: eSIM.DownloadProf
 });
 ```
 
-## eSIM.getEuiccProfileInfoList<sup>14+</sup>
+## eSIM.getEuiccProfileInfoList<sup>18+</sup>
 
 getEuiccProfileInfoList\(slotId: number\): Promise\<GetEuiccProfileInfoListResult\>
 
@@ -350,15 +364,17 @@ Obtains the profile information list. This API uses a promise to return the resu
 
 | Name| Type| Mandatory| Description|
 | ------ | ------ | ----- | ----- |
-| slotId | number | Yes| Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId | number | Yes| Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 
 **Returns**
 
 | Type                 | Description                              |
 | --------------------- | ---------------------------------- |
-| Promise\<[GetEuiccProfileInfoListResult](#geteuiccprofileinfolistresult14)\> | Promise used to return the profile information list.|
+| Promise\<[GetEuiccProfileInfoListResult](#geteuiccprofileinfolistresult18)\> | Promise used to return the profile information list.|
 
 **Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID                | Error Message                              |
 | --------------------- | ---------------------------------- |
@@ -382,9 +398,9 @@ eSIM.getEuiccProfileInfoList(0).then((data: eSIM.GetEuiccProfileInfoListResult) 
 });
 ```
 
-## eSIM.getEuiccInfo<sup>14+</sup>
+## eSIM.getEuiccInfo<sup>18+</sup>
 
-getEuiccInfo\(slotId: number\): Promise\<EuiccInfo\>;
+getEuiccInfo\(slotId: number\): Promise\<EuiccInfo\>
 
 Obtains eUICC information. This API uses a promise to return the result.
 
@@ -398,15 +414,17 @@ Obtains eUICC information. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | ------ | ------ | ----- | ----- |
-| slotId | number | Yes| Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId | number | Yes| Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 
 **Returns**
 
 | Type                 | Description                              |
 | --------------------- | ---------------------------------- |
-| Promise\<[EuiccInfo](#euiccinfo14)\> | Promise used to return the eUICC information.|
+| Promise\<[EuiccInfo](#euiccinfo18)\> | Promise used to return the eUICC information.|
 
 **Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID                | Error Message                              |
 | --------------------- | ---------------------------------- |
@@ -430,9 +448,9 @@ eSIM.getEuiccInfo(0).then((data: eSIM.EuiccInfo) => {
 });
 ```
 
-## eSIM.deleteProfile<sup>14+</sup>
+## eSIM.deleteProfile<sup>18+</sup>
 
-deleteProfile\(slotId: number, iccid: string\): Promise\<ResultCode\>;
+deleteProfile\(slotId: number, iccid: string\): Promise\<ResultCode\>
 
 Deletes a profile. This API uses a promise to return the result.
 
@@ -446,16 +464,18 @@ Deletes a profile. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | ------ | ------ | ----- | ----- |
-| slotId | number | Yes| Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId | number | Yes| Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 | iccid  | string | Yes| Profile ID.|
 
 **Returns**
 
 | Type                 | Description                              |
 | --------------------- | ---------------------------------- |
-| Promise\<[ResultCode](#resultcode14)\> | Promise used to return the operation result.|
+| Promise\<[ResultCode](#resultcode18)\> | Promise used to return the operation result.|
 
 **Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID                | Error Message                              |
 | --------------------- | ---------------------------------- |
@@ -479,10 +499,10 @@ eSIM.deleteProfile(0, testId).then(() => {
 });
 ```
 
-## eSIM.switchToProfile<sup>14+</sup>
+## eSIM.switchToProfile<sup>18+</sup>
 
 switchToProfile\(slotId: number, portIndex: number, iccid: string,
-    forceDisableProfile: boolean\): Promise\<ResultCode\>;
+    forceDisableProfile: boolean\): Promise\<ResultCode\>
 
 Switches to the specified profile. This API uses a promise to return the result.
 
@@ -496,18 +516,20 @@ Switches to the specified profile. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | ------ | ------ | ----- | ----- |
-| slotId              | number  | Yes| Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId              | number  | Yes| Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 | portIndex           | number  | Yes| Port index of the slot.|
 | iccid               | string  | Yes| Profile ID.  |
-| forceDisableProfile | boolean | Yes| Whether to forcibly diable the active SIM. The value **true** indicates that the operation can be performed only after the active SIM card is disabled. If the value is **false**, the system displays a message asking the user to agree to the operation.|
+| forceDisableProfile | boolean | Yes| Whether to forcibly diable the active SIM. If the value is **true**, the operation can be performed only after the active SIM card is disabled. If the value is **false**, the system displays a message asking the user to agree to the operation.|
 
 **Returns**
 
 | Type                 | Description                              |
 | --------------------- | ---------------------------------- |
-| Promise\<[ResultCode](#resultcode14)\> | Promise used to return the operation result.|
+| Promise\<[ResultCode](#resultcode18)\> | Promise used to return the operation result.|
 
 **Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID                | Error Message                              |
 | --------------------- | ---------------------------------- |
@@ -531,9 +553,9 @@ eSIM.switchToProfile(0, 0, testId, true).then(() => {
 });
 ```
 
-## eSIM.setProfileNickname<sup>14+</sup>
+## eSIM.setProfileNickname<sup>18+</sup>
 
-setProfileNickname\(slotId: number, iccid: string, nickname: string\): Promise\<ResultCode\>;
+setProfileNickname\(slotId: number, iccid: string, nickname: string\): Promise\<ResultCode\>
 
 Sets a nickname for the specified profile. This API uses a promise to return the result.
 
@@ -547,7 +569,7 @@ Sets a nickname for the specified profile. This API uses a promise to return the
 
 | Name| Type| Mandatory| Description|
 | ------ | ------ | ----- | ----- |
-| slotId   | number | Yes| Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId   | number | Yes| Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 | iccid    | string | Yes| Profile ID.|
 | nickname | string | Yes| Profile nickname.|
 
@@ -555,9 +577,11 @@ Sets a nickname for the specified profile. This API uses a promise to return the
 
 | Type                 | Description                              |
 | --------------------- | ---------------------------------- |
-| Promise\<[ResultCode](#resultcode14)\> | Promise used to return the operation result.|
+| Promise\<[ResultCode](#resultcode18)\> | Promise used to return the operation result.|
 
 **Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID                | Error Message                              |
 | --------------------- | ---------------------------------- |
@@ -581,9 +605,9 @@ eSIM.setProfileNickname(0, testId, testName).then(() => {
 });
 ```
 
-## eSIM.resetMemory<sup>14+</sup>
+## eSIM.resetMemory<sup>18+</sup>
 
-resetMemory\(slotId: number, options?: ResetOption\): Promise\<ResultCode\>;
+resetMemory\(slotId: number, options?: ResetOption\): Promise\<ResultCode\>
 
 Clears all specific profiles and resets the eUICC. This API uses a promise to return the result.
 
@@ -597,16 +621,18 @@ Clears all specific profiles and resets the eUICC. This API uses a promise to re
 
 | Name| Type| Mandatory| Description|
 | ------ | ------ | ----- | ----- |
-| slotId  | number                        | Yes| Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| options | [ResetOption](#resetoption14) | No| Reset options.|
+| slotId  | number                        | Yes| Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
+| options | [ResetOption](#resetoption18) | No| Reset options.|
 
 **Returns**
 
 | Type                 | Description                              |
 | --------------------- | ---------------------------------- |
-| Promise\<[ResultCode](#resultcode14)\> | Promise used to return the operation result.|
+| Promise\<[ResultCode](#resultcode18)\> | Promise used to return the operation result.|
 
 **Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID                | Error Message                              |
 | --------------------- | ---------------------------------- |
@@ -630,9 +656,9 @@ eSIM.resetMemory(0).then(() => {
 });
 ```
 
-## eSIM.reserveProfilesForFactoryRestore<sup>14+</sup>
+## eSIM.reserveProfilesForFactoryRestore<sup>18+</sup>
 
-reserveProfilesForFactoryRestore\(slotId: number\): Promise\<ResultCode\>;
+reserveProfilesForFactoryRestore\(slotId: number\): Promise\<ResultCode\>
 
 Restores factory settings and retains profiles. This API uses a promise to return the result.
 
@@ -646,15 +672,17 @@ Restores factory settings and retains profiles. This API uses a promise to retur
 
 | Name| Type| Mandatory| Description|
 | ------ | ------ | ----- | ----- |
-| slotId | number | Yes| Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId | number | Yes| Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 
 **Returns**
 
 | Type                 | Description                              |
 | --------------------- | ---------------------------------- |
-| Promise\<[ResultCode](#resultcode14)\> | Promise used to return the operation result.|
+| Promise\<[ResultCode](#resultcode18)\> | Promise used to return the operation result.|
 
 **Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID                | Error Message                              |
 | --------------------- | ---------------------------------- |
@@ -678,9 +706,9 @@ eSIM.reserveProfilesForFactoryRestore(0).then(() => {
 });
 ```
 
-## eSIM.setDefaultSmdpAddress<sup>14+</sup>
+## eSIM.setDefaultSmdpAddress<sup>18+</sup>
 
-setDefaultSmdpAddress\(slotId: number, address: string\): Promise\<ResultCode\>;
+setDefaultSmdpAddress\(slotId: number, address: string\): Promise\<ResultCode\>
 
 Sets or updates the default SM-DP+ address stored in the eUICC. This API uses a promise to return the result.
 
@@ -694,16 +722,18 @@ Sets or updates the default SM-DP+ address stored in the eUICC. This API uses a 
 
 | Name| Type| Mandatory| Description|
 | ------ | ------ | ----- | ----- |
-| slotId  | number | Yes| Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId  | number | Yes| Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 | address | string | Yes| Default SM-DP+ address.|
 
 **Returns**
 
 | Type                 | Description                              |
 | --------------------- | ---------------------------------- |
-| Promise\<[ResultCode](#resultcode14)\> | Promise used to return the operation result.|
+| Promise\<[ResultCode](#resultcode18)\> | Promise used to return the operation result.|
 
 **Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID                | Error Message                              |
 | --------------------- | ---------------------------------- |
@@ -727,9 +757,9 @@ eSIM.setDefaultSmdpAddress(0, testAddress).then(() => {
 });
 ```
 
-## eSIM.getDefaultSmdpAddress<sup>14+</sup>
+## eSIM.getDefaultSmdpAddress<sup>18+</sup>
 
-getDefaultSmdpAddress\(slotId: number\): Promise\<string\>;
+getDefaultSmdpAddress\(slotId: number\): Promise\<string\>
 
 Obtains the default SM-DP+ address stored in the eUICC. This API uses a promise to return the result.
 
@@ -743,7 +773,7 @@ Obtains the default SM-DP+ address stored in the eUICC. This API uses a promise 
 
 | Name| Type| Mandatory| Description|
 | ------ | ------ | ----- | ----- |
-| slotId | number | Yes| Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId | number | Yes| Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 
 **Returns**
 
@@ -752,6 +782,8 @@ Obtains the default SM-DP+ address stored in the eUICC. This API uses a promise 
 | Promise\<string\> | Promise used to return the SM-DP+ address.|
 
 **Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID                | Error Message                              |
 | --------------------- | ---------------------------------- |
@@ -775,9 +807,9 @@ eSIM.getDefaultSmdpAddress(0).then((data: string) => {
 });
 ```
 
-## eSIM.cancelSession<sup>14+</sup>
+## eSIM.cancelSession<sup>18+</sup>
 
-cancelSession\(slotId: number, transactionId: string, cancelReason: CancelReason\): Promise\<ResultCode\>;  
+cancelSession\(slotId: number, transactionId: string, cancelReason: CancelReason\): Promise\<ResultCode\>
 
 Cancels a session. This API uses a promise to return the result.
 
@@ -791,17 +823,19 @@ Cancels a session. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | ------ | ------ | ----- | ----- |
-| slotId        | number                          | Yes| Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId        | number                          | Yes| Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 | transactionId | string                          | Yes| Service ID.|
-| cancelReason  | [CancelReason](#cancelreason14) | Yes| Reason for canceling the session.|
+| cancelReason  | [CancelReason](#cancelreason18) | Yes| Reason for canceling the session.|
 
 **Returns**
 
 | Type                 | Description                              |
 | --------------------- | ---------------------------------- |
-| Promise\<[ResultCode](#resultcode14)\> | Promise used to return the operation result.|
+| Promise\<[ResultCode](#resultcode18)\> | Promise used to return the operation result.|
 
 **Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID                | Error Message                              |
 | --------------------- | ---------------------------------- |
@@ -825,7 +859,7 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 });
 ```
 
-## AccessRule<sup>14+</sup>
+## AccessRule<sup>18+</sup>
 
 Defines access rules.
 
@@ -839,7 +873,7 @@ Defines access rules.
 | packageName           | string  |  Yes | Package name.|
 | accessType            | number  |  Yes | Rule type.|
 
-## DownloadableProfile<sup>14+</sup>
+## DownloadableProfile<sup>18+</sup>
 
 Defines a downloadable profile.
 
@@ -854,7 +888,7 @@ Defines a downloadable profile.
 | carrierName      | string             |  No | Carrier name.   |
 | accessRules      | Array\<AccessRule> |  No | Access rule array.|
 
-## GetDownloadableProfileMetadataResult<sup>14+</sup>
+## GetDownloadableProfileMetadataResult<sup>18+</sup>
 
 Obtains the metadata of the downloadable profile.
 
@@ -874,7 +908,7 @@ Obtains the metadata of the downloadable profile.
 | solvableErrors      | SolvableErrors       |  Yes | Solvable errors.|
 | responseResult      | ResultCode           |  Yes | Operation result code.  |
 
-## GetDownloadableProfilesResult<sup>14+</sup>
+## GetDownloadableProfilesResult<sup>18+</sup>
 
 Obtains the list of default downloadable profiles.
 
@@ -887,7 +921,7 @@ Obtains the list of default downloadable profiles.
 | responseResult       | ResultCode                   |  Yes | Promise used to return the operation result.    |
 | downloadableProfiles | Array\<DownloadableProfile>  |  Yes | Downloadable file array.|
 
-## DownloadProfileResult<sup>14+</sup>
+## DownloadProfileResult<sup>18+</sup>
 
 Defines the profile download result.
 
@@ -901,7 +935,7 @@ Defines the profile download result.
 | solvableErrors | SolvableErrors |  Yes | Solvable errors.|
 | cardId         | number         |  Yes | Card ID.  |
 
-## GetEuiccProfileInfoListResult<sup>14+</sup>
+## GetEuiccProfileInfoListResult<sup>18+</sup>
 
 Obtains the profile information list.
 
@@ -915,7 +949,7 @@ Obtains the profile information list.
 | profiles        | Array\<EuiccProfile> |  Yes | Profile array.     |
 | isRemovable     | boolean              |  Yes | Checks whether the eUICC is removable.|
 
-## OperatorId<sup>14+</sup>
+## OperatorId<sup>18+</sup>
 
 Obtains information about the eUICC chip or device.
 
@@ -930,7 +964,7 @@ Obtains information about the eUICC chip or device.
 | gid1 | string |  Yes | Group ID level 1.  |
 | gid2 | string |  Yes | Group ID level 2.  |
 
-## EuiccProfile<sup>14+</sup>
+## EuiccProfile<sup>18+</sup>
 
 Profile information.
 
@@ -950,7 +984,7 @@ Profile information.
 | policyRules         | PolicyRules        |  Yes | Profile policy rules.  |
 | accessRules         | Array\<AccessRule> |  Yes | Profile access rules.  |
 
-## EuiccInfo<sup>14+</sup>
+## EuiccInfo<sup>18+</sup>
 
 Defines the eUICC information.
 
@@ -962,7 +996,7 @@ Defines the eUICC information.
 | ----- | ----- | ----- | -----|
 | osVersion | string |  Yes | OS version.|
 
-## ResetOption<sup>14+</sup>
+## ResetOption<sup>18+</sup>
 
 Defines the reset options.
 
@@ -976,7 +1010,7 @@ Defines the reset options.
 |DELETE_FIELD_LOADED_TEST_PROFILES | 1 << 1 | Deletion of the downloaded test profiles.|
 |RESET_DEFAULT_SMDP_ADDRESS        | 1 << 2 | Resetting of the default SM-DP+ address.|
 
-## OsuStatus<sup>14+</sup>
+## OsuStatus<sup>18+</sup>
 
 Defines the OS upgrade status.
 
@@ -990,9 +1024,9 @@ Defines the OS upgrade status.
 |EUICC_UPGRADE_FAILED              | 2 | Upgrade failed.|
 |EUICC_UPGRADE_SUCCESSFUL          | 3 | Update succeeded.|
 |EUICC_UPGRADE_ALREADY_LATEST      | 4 | Already the latest version.|
-|EUICC_UPGRADE_SERVICE_UNAVAILABLE | 5 | Upgrade service unavailable.|
+|EUICC_UPGRADE_SERVICE_UNAVAILABLE | 5 | Update service unavailable.|
 
-## ResultCode<sup>14+</sup>
+## ResultCode<sup>18+</sup>
 
 Enumerates the result codes.
 
@@ -1033,12 +1067,14 @@ Enumerates the result codes.
 | RESULT_CERTIFICATE_INVALID                               | 251 | Invalid certificate.|
 | RESULT_OUT_OF_MEMORY                                     | 263 | Failed to install the profile due to insufficient memory.|
 | RESULT_PPR_FORBIDDEN                                     | 268 | Operation not allowed by the PPR rule.|
+| RESULT_NOTHING_TO_DELETE                                 | 270 | No configuration file for deletion.|
 | RESULT_PPR_NOT_MATCH                                     | 276 | PPR rule mismatch.  |
+| RESULT_CAT_BUSY                                          | 283 | Session in progress.  |
 | RESULT_PROFILE_EID_INVALID                               | 284 | eSIM profile in use or invalid.|
 | RESULT_DOWNLOAD_TIMEOUT                                  | 287 | Download timeout.                  |
 | RESULT_SGP_22_OTHER                                      | 400 | Other errors defined in SGP.22.     |
 
-## CancelReason<sup>14+</sup>
+## CancelReason<sup>18+</sup>
 
 Reason for canceling the session.
 
@@ -1053,7 +1089,7 @@ Reason for canceling the session.
 |CANCEL_REASON_TIMEOUT            | 2 | The download has timed out. You can restart it later.|
 |CANCEL_REASON_PPR_NOT_ALLOWED    | 3 | The installation cannot be performed because the authorization table or other installed profile on the eUICC does not allow its policy rules.|
 
-## ProfileState<sup>14+</sup>
+## ProfileState<sup>18+</sup>
 
 Enumerates the profile states.
 
@@ -1067,7 +1103,7 @@ Enumerates the profile states.
 |PROFILE_STATE_DISABLED    | 0  | Profile disabled.  |
 |PROFILE_STATE_ENABLED     | 1  | Profile enabled.|
 
-## ProfileClass<sup>14+</sup>
+## ProfileClass<sup>18+</sup>
 
 Enumerates the profile classes.
 
@@ -1082,7 +1118,7 @@ Enumerates the profile classes.
 |PROFILE_CLASS_PROVISIONING | 1  | Profile preloaded to the eUICC.  |
 |PROFILE_CLASS_OPERATIONAL  | 2  | Profile that can be preloaded or downloaded.|
 
-## PolicyRules<sup>14+</sup>
+## PolicyRules<sup>18+</sup>
 
 Enumerates the profile policy rules.
 
@@ -1096,7 +1132,7 @@ Enumerates the profile policy rules.
 |POLICY_RULE_DELETE_NOT_ALLOWED  | 1 << 1 | The profile cannot be deleted.         |
 |POLICY_RULE_DISABLE_AND_DELETE  | 1 << 2 | A profile must be deleted immediately after being enabled.     |
 
-## SolvableErrors<sup>14+</sup>
+## SolvableErrors<sup>18+</sup>
 
 Enumerates the solvable errors.
 
@@ -1109,7 +1145,7 @@ Enumerates the solvable errors.
 |SOLVABLE_ERROR_NEED_CONFIRMATION_CODE | 1 << 0 | The user needs to enter the confirmation code during the download.               |
 |SOLVABLE_ERROR_NEED_POLICY_RULE       | 1 << 1 | The download process requires user consent to allow the profile policy rules.|
 
-## DownloadConfiguration<sup>14+</sup>
+## DownloadConfiguration<sup>18+</sup>
 
 Defines the download configuration.
 

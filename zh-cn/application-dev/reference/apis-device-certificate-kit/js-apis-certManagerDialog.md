@@ -68,6 +68,7 @@ import certificateManagerDialog from '@ohos.security.certManagerDialog';
 | ERROR_OPERATION_CANCELED<sup>14+</sup>  | 29700002      | 表示调用接口时用户取消操作。 |
 | ERROR_OPERATION_FAILED<sup>14+</sup>  | 29700003      | 表示调用接口时安装证书失败。 |
 | ERROR_DEVICE_NOT_SUPPORTED<sup>14+</sup>  | 29700004      | 表示调用接口时设备类型不支持。 |
+| ERROR_NOT_COMPLY_SECURITY_POLICY<sup>18+</sup>  | 29700005      | 表示调用接口时不符合设备安全策略。 |
 
 ## CertificateDialogProperty<sup>18+</sup>
 
@@ -79,7 +80,7 @@ import certificateManagerDialog from '@ohos.security.certManagerDialog';
 
 | 名称              | 类型    | 只读 | 可选 | 说明                         |
 | ----------------- | ------- | ---- | ---- | ---------------------------- |
-| showInstallButton | boolean | 否   | 否   | 表示是否显示安装证书的按钮。 |
+| showInstallButton | boolean | 否   | 否   | 表示是否显示安装证书的按钮，true为显示，false为不显示。 |
 
 ## certificateManagerDialog.openCertificateManagerDialog
 
@@ -163,7 +164,7 @@ openInstallCertificateDialog(context: common.Context, certType: CertificateType,
 
 | 类型                                        | 说明                 |
 | ------------------------------------------- | -------------------- |
-| Promise\<string> | Promise对象。表示返回证书uri的结果。 |
+| Promise\<string> | Promise对象。表示返回证书uri的结果，最大长度为256字节。 |
 
 **错误码：**
 
@@ -226,7 +227,7 @@ openUninstallCertificateDialog(context: common.Context, certType: CertificateTyp
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
 | context | [common.Context](../apis-ability-kit/js-apis-app-ability-common.md)                   | 是   | 表示应用的上下文信息。 |
 | certType | [CertificateType](#certificatetype14)                   | 是   | 表示删除证书类型。 |
-| certUri | string                  | 是   | 表示待删除证书的唯一标识符。 |
+| certUri | string                  | 是   | 表示待删除证书的唯一标识符，最大长度为256字节。 |
 
 **返回值**：
 

@@ -1,11 +1,11 @@
 # @ohos.bluetooth.baseProfile (Bluetooth baseProfile Module) (System API)
 
-The **baseProfile** module provides APIs for using basic Bluetooth profiles.
+The **baseProfile** module provides APIs for managing basic Bluetooth profiles.
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.bluetooth.baseProfile (Bluetooth baseProfile Module)](js-apis-bluetooth-baseProfile.md).
+> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.bluetooth.baseProfile (Bluetooth baseProfile Module)](js-apis-bluetooth-baseProfile.md).
 
 
 ## Modules to Import
@@ -47,13 +47,13 @@ Sets the profile connection strategy for this device. This API uses an asynchron
 
 | Name     | Type    | Mandatory  | Description                                 |
 | -------- | ------ | ---- | ----------------------------------- |
-| deviceId | string | Yes   | Address of the device to pair, for example, XX:XX:XX:XX:XX:XX. |
+| deviceId | string | Yes   | Address of the device to pair, for example, XX:XX:XX:XX:XX:XX.|
 | strategy | [ConnectionStrategy](#connectionstrategy)   | Yes   |Profile connection strategy to set.|
 | callback | AsyncCallback&lt;void&gt;  | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -97,7 +97,7 @@ Sets the profile connection strategy for this device. This API uses a promise to
 
 | Name     | Type    | Mandatory  | Description                                 |
 | -------- | ------ | ---- | ----------------------------------- |
-| deviceId | string | Yes   | Address of the device to pair, for example, XX:XX:XX:XX:XX:XX. |
+| deviceId | string | Yes   | Address of the device to pair, for example, XX:XX:XX:XX:XX:XX.|
 | strategy | [ConnectionStrategy](#connectionstrategy)   | Yes   |Profile connection strategy to set.|
 
 **Return value**
@@ -108,7 +108,7 @@ Sets the profile connection strategy for this device. This API uses a promise to
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -159,7 +159,7 @@ Obtains the profile connection strategy. This API uses an asynchronous callback 
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -209,11 +209,11 @@ Obtains the profile connection strategy. This API uses a promise to return the r
 
 | Type                 | Description           |
 | ------------------- | ------------- |
-|   Promise&lt;[ConnectionStrategy](js-apis-bluetooth-baseProfile-sys.md#connectionstrategy)&gt; | Promise used to return the profile connection strategy obtained.|
+|   Promise&lt;[ConnectionStrategy](js-apis-bluetooth-baseProfile-sys.md#connectionstrategy)&gt; | Promise used to return the result.|
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |

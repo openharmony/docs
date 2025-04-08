@@ -9,7 +9,6 @@
 > **说明：**
 >
 > 状态管理V2从API version 12开始支持。
-> 该文档介绍的混用规则仅适用于API version 17及以前。从API version 18开始，为支持应用更便捷地从V1向V2迁移，状态管理提供了新的接口[enableV2Compatibility](../reference/apis-arkui/js-apis-StateManagement.md#enablev2compatibility18)和[makeV1Observed](../reference/apis-arkui/js-apis-StateManagement.md#makev1observed18)来帮助开发者解决在V1向V2迁移过程中遇到的混用问题，详见[状态管理V1V2混用文档](./arkts-v1-v2-mixusage.md)。
 
 ## 概述
 
@@ -483,7 +482,7 @@ class Info {
 struct Child {  
   // V2对数据输入有严格的管理，从父组件接受数据时，必须@Param装饰器进行数据接收
   @Param @Once message: string = "hello";	              // 可以观测到变化，同步回父组件依赖@Event，使用了@Once可以修改@Param装饰的变量
-  @Param @Once undefineVal: string | undefined = undefined;  // 使用了@Once可以修改@Param装饰的变量
+  @Param @Once undefinedVal: string | undefined = undefined;  // 使用了@Once可以修改@Param装饰的变量
   @Param info: Info = new Info();		                 // 观测不到类属性变化
   @Require @Param set: Set<number>;
   
@@ -498,11 +497,11 @@ struct Child {
 
       Divider()
         .color(Color.Blue)
-      Text(`undefineVal:${this.undefineVal}`) // 显示 undefineVal
+      Text(`undefinedVal:${this.undefinedVal}`) // 显示 undefinedVal
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
-          this.undefineVal = "change to define";
+          this.undefinedVal = "change to define";
         })
       Divider()
         .color(Color.Blue)
@@ -527,7 +526,7 @@ struct Child {
 @Component
 struct Index {
   message: string = 'Hello World';       // 简单数据
-  undefineVal: undefined = undefined;    // 简单类型，undefined
+  undefinedVal: undefined = undefined;    // 简单类型，undefined
   info: Info = new Info();               // Class类型
   set: Set<number> = new Set([10, 20]);  // 内置 类型
 
@@ -543,7 +542,7 @@ struct Index {
         .color(Color.Blue)
       Child({
         message: this.message,
-        undefineVal: this.undefineVal,
+        undefinedVal: this.undefinedVal,
         info: this.info,
         set: this.set
       })
@@ -576,7 +575,7 @@ class Info {
 struct Child {  
   // V2对数据输入有严格的管理，从父组件接受数据时，必须@Param装饰器进行数据接收
   @Param @Once message: string = "hello";
-  @Param @Once undefineVal: string | undefined = undefined;  // 使用了@Once可以修改@Param装饰的变量
+  @Param @Once undefinedVal: string | undefined = undefined;  // 使用了@Once可以修改@Param装饰的变量
   @Param info: Info = new Info();
   @Require @Param set: Set<number>;
   build() {
@@ -589,11 +588,11 @@ struct Child {
         })
       Divider()
         .color(Color.Blue)
-      Text(`undefineVal:${this.undefineVal}`) // 显示undefineVal
+      Text(`undefinedVal:${this.undefinedVal}`) // 显示undefinedVal
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
-          this.undefineVal = "change to define";
+          this.undefinedVal = "change to define";
         })
       Divider()
         .color(Color.Blue)
@@ -618,7 +617,7 @@ struct Child {
 @Component
 struct Index {
   @State message: string = 'Hello World';       // 简单类型数据，支持
-  @State undefineVal: undefined = undefined;    // 简单类型数据，undefined，支持
+  @State undefinedVal: undefined = undefined;    // 简单类型数据，undefined，支持
   @State info: Info = new Info();               // Class类型，不支持传递，编译器报错；消除编译错误请去掉@State
   @State set: Set<number> = new Set([10, 20]);  // 内置类型，不支持传递，编译器报错；消除编译错误请去掉@State
 
@@ -634,7 +633,7 @@ struct Index {
         .color(Color.Blue)
       Child({
         message: this.message,
-        undefineVal: this.undefineVal,
+        undefinedVal: this.undefinedVal,
         info: this.info,
         set: this.set
       })
@@ -669,7 +668,7 @@ struct Child {
   // V1从V2接收的状态变量，若使用装饰器，仅可使用@State、@Prop、@Provide接收
   @State  message: string = "hello";	         // 可以观测到变化
   @State info: Info = new Info();		      	// 可以观测一层类属性变化
-  @Prop undefineVal: undefined | string = undefined;   
+  @Prop undefinedVal: undefined | string = undefined;   
   @Provide setMap: Set<number> = new Set();
   build() {
     Column() {
@@ -681,11 +680,11 @@ struct Child {
         })
       Divider()
         .color(Color.Blue)
-      Text(`undefineVal:${this.undefineVal}`) 	// 显示undefineVal
+      Text(`undefinedVal:${this.undefinedVal}`) 	// 显示undefinedVal
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
-          this.undefineVal = "change to define";
+          this.undefinedVal = "change to define";
         })
       Divider()
         .color(Color.Blue)
@@ -710,7 +709,7 @@ struct Child {
 @ComponentV2
 struct Index {
   message: string = 'Hello World';       // 简单数据类型
-  undefineVal: undefined = undefined;    // 简单数据类型，undefined
+  undefinedVal: undefined = undefined;    // 简单数据类型，undefined
   info: Info = new Info();               // Class类型
   set: Set<number> = new Set([10, 20]);  // 内置 类型
 
@@ -726,7 +725,7 @@ struct Index {
         .color(Color.Blue)
       Child({
         message: this.message,
-        undefineVal: this.undefineVal,
+        undefinedVal: this.undefinedVal,
         info: this.info,
         setMap: this.set
       })
@@ -761,7 +760,7 @@ struct Child {
   // V1从V2接收的状态变量，仅可使用@State、@Prop、@Provide接收
   @State  message: string = "hello";	        // 可以观测到变化
   @State info: Info = new Info();		        // 可以观测一层类属性变化
-  @Prop undefineVal: undefined | string = undefined;
+  @Prop undefinedVal: undefined | string = undefined;
   @Provide set: Set<number> = new Set();
   build() {
     Column() {
@@ -773,11 +772,11 @@ struct Child {
         })
       Divider()
         .color(Color.Blue)
-      Text(`undefineVal:${this.undefineVal}`) 	// 显示 undefineVal
+      Text(`undefinedVal:${this.undefinedVal}`) 	// 显示 undefinedVal
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
-          this.undefineVal = "change to define";
+          this.undefinedVal = "change to define";
         })
       Divider()
         .color(Color.Blue)
@@ -803,7 +802,7 @@ struct Child {
 @ComponentV2
 struct Index {
   @Local message: string = 'Hello World';       	// 简单数据类型，支持传递
-  @Provider() undefineVal: undefined = undefined;   // 简单数据类型，undefined，支持传递
+  @Provider() undefinedVal: undefined = undefined;   // 简单数据类型，undefined，支持传递
   @Consumer() info: Info = new Info();          	// Class类型，支持传递
   @Param set: Set<number> = new Set([10, 20]);  	// 内置类型，不支持传递；消除编译错误请去掉@Param
 
@@ -820,7 +819,7 @@ struct Index {
         .color(Color.Blue)
       Child({
         message: this.message,
-        undefineVal: this.undefineVal,
+        undefinedVal: this.undefinedVal,
         info: this.info,
         set: this.set
       })

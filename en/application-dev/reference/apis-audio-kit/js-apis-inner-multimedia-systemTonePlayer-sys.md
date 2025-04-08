@@ -437,3 +437,168 @@ try {
   console.error(`Failed to get haptics feature. ${err}`);
 }
 ```
+
+### on('playFinished')<sup>18+</sup>
+
+on(type: 'playFinished', streamId: number, callback: Callback\<number>): void
+
+Subscribes to the event indicating that the playback of an audio stream specified by **streamId** is complete. If **streamId** is set to **0**, this API subscribes to the playback complete event of all audio streams of the player.
+
+**System capability**: SystemCapability.Multimedia.SystemSound.Core
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description                                                        |
+| -------- | ----------------------- | ---- | --------------------------------------------------------------- |
+| type     | string                  | Yes  | Event type. The event **'playFinished'** is triggered when the playback of the audio stream specified by **streamId** is complete.|
+| streamId | number                  | Yes  | ID of the audio stream. **streamId** is obtained through [start](#start). If **streamId** is set to **0**, the playback complete event of all audio streams of the player is subscribed to.|
+| callback | Callback\<number>  | Yes  | Callback used to return the stream ID of the audio stream that finishes playing.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ring Error Codes](./errorcode-ringtone.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 202      | Not system App.  |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 20700002 | Parameter check error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// Subscribe to the playback complete events of all audio streams.
+systemTonePlayer.on('playFinished', 0, (streamId: number) => {
+  console.info(`Receive the callback of playFinished, streamId: ${streamId}.`);
+});
+
+// Subscribe to the playback complete event of a specified audio stream.
+systemTonePlayer.start().then((value: number) => {
+  systemTonePlayer.on('playFinished', value, (streamId: number) => {
+    console.info(`Receive the callback of playFinished, streamId: ${streamId}.`);
+  });
+}).catch((err: BusinessError) => {
+  console.error(`Failed to start system tone player. ${err}`);
+});
+```
+
+### off('playFinished')<sup>18+</sup>
+
+off(type: 'playFinished', callback?: Callback\<number>): void
+
+Unsubscribes from the event indicating that the audio stream playback is complete.
+
+**System capability**: SystemCapability.Multimedia.SystemSound.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                             |
+| ----- | ----- | ---- | ------------------------------------------------ |
+| type   | string | Yes  | Event type. The event **'playFinished'** is triggered when the playback is complete.|
+| callback | Callback\<number>    | No  | Callback used to return the ID of the audio stream. If this parameter is not specified, all the subscriptions to the specified event are canceled.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ring Error Codes](./errorcode-ringtone.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 202      | Not system App.  |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 20700002 | Parameter check error. |
+
+**Example**
+
+```ts
+// Cancel all subscriptions to the event.
+systemTonePlayer.off('playFinished');
+
+// For the same event, if the callback parameter passed to the off API is the same as that passed to the on API, the off API cancels the subscription registered with the specified callback parameter.
+let playFinishedCallback = (streamId: number) => {
+  console.info(`Receive the callback of playFinished, streamId: ${streamId}.`);
+};
+
+systemTonePlayer.on('playFinished', 0, playFinishedCallback);
+
+systemTonePlayer.off('playFinished', playFinishedCallback);
+```
+
+### on('error')<sup>18+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+Subscribes to error events that occur during ringtone playback.
+
+**System capability**: SystemCapability.Multimedia.SystemSound.Core
+
+**Parameters**
+
+| Name  | Type         | Mandatory| Description                                |
+| -------- | ------------- | ---- | ------------------------------------ |
+| type     | string        | Yes  | Event type, which is **error** in this case.|
+| callback | ErrorCallback | Yes  | Callback used to return the error code and error information. For details about the error codes, see [on('error')](../apis-media-kit/js-apis-media.md#onerror9) of the AVPlayer.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ring Error Codes](./errorcode-ringtone.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 202      | Not system App.  |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 20700002 | Parameter check error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+systemTonePlayer.on('error', (err: BusinessError) => {
+  console.log("on error, err:" + JSON.stringify(err));
+});
+```
+
+### off('error')<sup>18+</sup>
+
+off(type: 'error', callback?: ErrorCallback): void
+
+Unsubscribes from the error events that occur during ringtone playback.
+
+**System capability**: SystemCapability.Multimedia.SystemSound.Core
+
+**Parameters**
+
+| Name  | Type         | Mandatory| Description                                |
+| -------- | ------------- | ---- | ------------------------------------ |
+| type     | string        | Yes  | Event type, which is **error** in this case.|
+| callback | ErrorCallback | No  | Callback used to return the error code and error information. If this parameter is not specified, all the subscriptions to the specified event are canceled.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ring Error Codes](./errorcode-ringtone.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 202      | Not system App.  |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 20700002 | Parameter check error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// Cancel all subscriptions to the event.
+systemTonePlayer.off('error');
+
+// For the same event, if the callback parameter passed to the off API is the same as that passed to the on API, the off API cancels the subscription registered with the specified callback parameter.
+let callback = (err: BusinessError) => {
+  console.log("on error, err:" + JSON.stringify(err));
+};
+
+systemTonePlayer.on('error', callback);
+
+systemTonePlayer.off('error', callback);
+```

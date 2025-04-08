@@ -38,13 +38,13 @@ Slider(options?: SliderOptions)
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 否 | 当前进度值。<br/>默认值：与参数min的取值一致。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br/>取值范围： [min, max]<br/>小于min时取min，大于max时取max。 |
+| value | number | 否 | 当前进度值。<br/>默认值：与参数min的取值一致。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br />该参数支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。<br/>取值范围： [min, max]<br/>小于min时取min，大于max时取max。 |
 | min | number | 否 | 设置最小值。<br/>默认值：0 |
 | max | number | 否 | 设置最大值。<br/>默认值：100<br/>**说明：** <br/>min >= max异常情况，min取默认值0，max取默认值100。<br/>value不在[min, max]范围之内，取min或者max，靠近min取min，靠近max取max。 |
 | step | number | 否 | 设置Slider滑动步长。<br/>默认值：1<br/>取值范围：[0.01, max - min]<br/>**说明：** <br/>若设置的step值小于0或大于max值时，则按默认值显示。 |
 | style | [SliderStyle](#sliderstyle枚举说明) | 否 | 设置Slider的滑块与滑轨显示样式。<br/>默认值：SliderStyle.OutSet |
 | direction<sup>8+</sup> | [Axis](ts-appendix-enums.md#axis) | 否 | 设置滑动条滑动方向为水平或竖直方向。<br/>默认值：Axis.Horizontal |
-| reverse<sup>8+</sup> | boolean | 否 | 设置滑动条取值范围是否反向，横向Slider默认为从左往右滑动，竖向Slider默认为从上往下滑动。值为true时，表示取值范围反向，值为false时，表示取值范围正向。<br/>默认值：false |
+| reverse<sup>8+</sup> | boolean | 否 | 设置滑动条取值范围是否反向。<br/>默认值：false<br/>值为true时，横向Slider从右往左滑动，竖向Slider从下往上滑动。值为false时，横向Slider从左往右滑动，竖向Slider从上往下滑动。 |
 
 ## SliderStyle枚举说明
 
@@ -106,11 +106,9 @@ trackColor(value: ResourceColor | LinearGradient)
 
 ### selectedColor
 
-selectedColor(value: ResourceColor | LinearGradient)
+selectedColor(value: ResourceColor)
 
 设置滑轨的已滑动部分颜色。
-
-从API version 18开始支持利用LinearGradient设置滑轨的已滑动部分的渐变色。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -120,9 +118,29 @@ selectedColor(value: ResourceColor | LinearGradient)
 
 **参数：** 
 
-| 参数名 | 类型                                                         | 必填 | 说明                                                         |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>18+</sup>](ts-basic-components-datapanel.md#lineargradient10) | 是   | 滑轨的已滑动部分颜色。 <br/>**说明：** 设置渐变色时，若颜色断点颜色值为非法值或者渐变色断点为空时，渐变色不起效果。 <br/>默认值：`$r('sys.color.ohos_id_color_emphasize')` |
+| 参数名 | 类型                                       | 必填 | 说明                                                         |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 滑轨的已滑动部分颜色。 <br/>**说明：** 设置渐变色时，若颜色断点颜色值为非法值或者渐变色断点为空时，渐变色不起效果。 <br/>默认值：`$r('sys.color.ohos_id_color_emphasize')` |
+
+### selectedColor<sup>18+</sup>
+
+selectedColor(selectedColor: ResourceColor | LinearGradient)
+
+设置滑轨的已滑动部分颜色。与[selectedColor](#selectedcolor)相比，新增了LinearGradient类型的支持。
+
+从API version 18开始支持利用LinearGradient设置滑轨的已滑动部分的渐变色。
+
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名        | 类型                                                         | 必填 | 说明                                                         |
+| ------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| selectedColor | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>18+</sup>](ts-basic-components-datapanel.md#lineargradient10) | 是   | 滑轨的已滑动部分颜色。 <br/>**说明：** 设置渐变色时，若颜色断点颜色值为非法值或者渐变色断点为空时，渐变色不起效果。 <br/>默认值：`$r('sys.color.ohos_id_color_emphasize')` |
 
 ### showSteps
 
@@ -162,7 +180,7 @@ tip的绘制区域为Slider自身节点的overlay。
 
 | 参数名                | 类型                                   | 必填 | 说明                                       |
 | --------------------- | -------------------------------------- | ---- | ------------------------------------------ |
-| value                 | boolean                                | 是   | 滑动时是否显示气泡提示。<br/>默认值：false |
+| value                 | boolean                                | 是   | 滑动时是否显示气泡提示。值为true时，显示气泡。值为false时，不显示气泡。<br/>默认值：false |
 | content<sup>10+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否   | 气泡提示的文本内容，默认显示当前百分比。   |
 
 ### trackThickness<sup>8+</sup>

@@ -131,20 +131,6 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 | TYPE_CAST_PLUS_STREAM<sup>11+</sup>      | 2    | Cast+的Stream模式。表示媒体正在其他设备上展示。 |
 | TYPE_DLNA<sup>12+</sup>      | 4    | DLNA协议。表示媒体正在其他设备上展示。 |
 
-## DistributedSessionType<sup>18+</sup>
-
-远端分布式设备支持的会话类型。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
-| 名称                                     | 值 | 说明                        |
-|----------------------------------------|---|---------------------------|
-| TYPE_SESSION_REMOTE      | 0 | 远端设备会话。       |
-| TYPE_SESSION_MIGRATE_IN  | 1 | 迁移至本端的设备会话。 |
-| TYPE_SESSION_MIGRATE_OUT | 2 | 迁移至远端的设备会话。 |
-
 ## AVSessionType<sup>10+<sup>
 
 type AVSessionType = 'audio' | 'video' | 'voice_call' | 'video_call'
@@ -745,7 +731,7 @@ wantAgent.getWantAgent(wantAgentInfo).then((agent) => {
 
 dispatchSessionEvent(event: string, args: {[key: string]: Object}): Promise\<void>
 
-媒体提供方设置一个会话内自定义事件，包括事件名和键值对形式的事件内容, 结果通过Promise异步回调方式返回。
+媒体提供方设置一个会话内自定义事件，包括事件名和键值对形式的事件内容，结果通过Promise异步回调方式返回。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -807,7 +793,7 @@ if (currentAVSession !== undefined) {
 
 dispatchSessionEvent(event: string, args: {[key: string]: Object}, callback: AsyncCallback\<void>): void
 
-媒体提供方设置一个会话内自定义事件，包括事件名和键值对形式的事件内容, 结果通过callback异步回调方式返回。
+媒体提供方设置一个会话内自定义事件，包括事件名和键值对形式的事件内容，结果通过callback异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -1095,7 +1081,7 @@ currentAVSession.setAVQueueTitle(queueTitle, (err: BusinessError) => {
 
 setExtras(extras: {[key: string]: Object}): Promise\<void>
 
-媒体提供方设置键值对形式的自定义媒体数据包, 结果通过Promise异步回调方式返回。
+媒体提供方设置键值对形式的自定义媒体数据包，结果通过Promise异步回调方式返回。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1156,7 +1142,7 @@ if (currentAVSession !== undefined) {
 
 setExtras(extras: {[key: string]: Object}, callback: AsyncCallback\<void>): void
 
-媒体提供方设置键值对形式的自定义媒体数据包, 结果通过callback异步回调方式返回。
+媒体提供方设置键值对形式的自定义媒体数据包，结果通过callback异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -2090,6 +2076,41 @@ currentAVSession.on('setLoopMode', (mode: avSession.LoopMode) => {
 });
 ```
 
+### on('setTargetLoopMode')<sup>18+</sup>
+
+on(type: 'setTargetLoopMode', callback: Callback\<LoopMode>): void
+
+设置目标循环模式的监听事件。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**参数：**
+
+| 参数名    | 类型                                   | 必填 | 说明  |
+| -------- | ------------------------------------- | ---- | ---- |
+| type     | string                                | 是   | 事件回调类型，支持事件`'setTargetLoopMode'`。<br>- `'setTargetLoopMode'`：当设置目标循环模式的命令被发送到会话时，触发该事件。 |
+| callback | Callback<[LoopMode](#loopmode10)> | 是   | 回调函数。参数表示目标循环模式。                               |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**示例：**
+
+```ts
+currentAVSession.on('setTargetLoopMode', (mode: avSession.LoopMode) => {
+  console.info(`on setTargetLoopMode mode : ${mode}`);
+});
+```
+
 ### on('toggleFavorite')<sup>10+</sup>
 
 on(type: 'toggleFavorite', callback: (assetId: string) => void): void
@@ -2607,7 +2628,7 @@ off(type: 'setLoopMode', callback?: (mode: LoopMode) => void): void
 | 参数名   | 类型                                  | 必填 | 说明     |
 | -------- | ------------------------------------- | ---- | ----- |
 | type     | string | 是   | 关闭对应的监听事件，支持关闭事件`'setLoopMode'`。|
-| callback | (mode: [LoopMode](#loopmode10)) => void | 否   | 回调函数，参数mode是循环模式。<br>当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
+| callback | (mode: [LoopMode](#loopmode10)) => void | 否   | 回调函数，参数mode是循环模式。<br>- 当监听事件取消成功，err为undefined，否则返回错误对象。<br>- 该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
 
 **错误码：**
 
@@ -2623,6 +2644,39 @@ off(type: 'setLoopMode', callback?: (mode: LoopMode) => void): void
 
 ```ts
 currentAVSession.off('setLoopMode');
+```
+
+### off('setTargetLoopMode')<sup>18+</sup>
+
+off(type: 'setTargetLoopMode', callback?: Callback\<LoopMode>): void
+
+取消监听目标循环模式变化事件。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填 | 说明     |
+| -------- | ------------------------------------- | ---- | ----- |
+| type     | string | 是   | 关闭对应的监听事件，支持关闭事件`'setTargetLoopMode'`。|
+| callback | Callback<[LoopMode](#loopmode10)> | 否   | 回调函数，参数表示目标循环模式。<br>- 当监听事件取消成功，err为undefined，否则返回错误对象。<br>- 该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**示例：**
+
+```ts
+currentAVSession.off('setTargetLoopMode');
 ```
 
 ### off('toggleFavorite')<sup>10+</sup>
@@ -2793,7 +2847,7 @@ currentAVSession.off('commonCommand');
 
 ### on('answer')<sup>11+</sup>
 
-on(type: 'answer', callback: Callback\<void>): void;
+on(type: 'answer', callback: Callback\<void>): void
 
 设置通话接听的监听事件。
 
@@ -2828,7 +2882,7 @@ currentAVSession.on('answer', () => {
 
 ### off('answer')<sup>11+</sup>
 
-off(type: 'answer', callback?: Callback\<void>): void;
+off(type: 'answer', callback?: Callback\<void>): void
 
 取消通话接听事件的监听。
 
@@ -2861,7 +2915,7 @@ currentAVSession.off('answer');
 
 ### on('hangUp')<sup>11+</sup>
 
-on(type: 'hangUp', callback: Callback\<void>): void;
+on(type: 'hangUp', callback: Callback\<void>): void
 
 设置通话挂断的监听事件。
 
@@ -2896,7 +2950,7 @@ currentAVSession.on('hangUp', () => {
 
 ### off('hangUp')<sup>11+</sup>
 
-off(type: 'hangUp', callback?: Callback\<void>): void;
+off(type: 'hangUp', callback?: Callback\<void>): void
 
 取消通话挂断事件的监听。
 
@@ -2929,7 +2983,7 @@ currentAVSession.off('hangUp');
 
 ### on('toggleCallMute')<sup>11+</sup>
 
-on(type: 'toggleCallMute', callback: Callback\<void>): void;
+on(type: 'toggleCallMute', callback: Callback\<void>): void
 
 设置通话静音的监听事件。
 
@@ -2964,7 +3018,7 @@ currentAVSession.on('toggleCallMute', () => {
 
 ### off('toggleCallMute')<sup>11+</sup>
 
-off(type: 'toggleCallMute', callback?: Callback\<void>): void;
+off(type: 'toggleCallMute', callback?: Callback\<void>): void
 
 取消通话静音事件的监听。
 
@@ -3330,162 +3384,6 @@ aVCastController.getAVPlaybackState().then((state: avSession.AVPlaybackState) =>
   console.info('getAVPlaybackState : SUCCESS');
 }).catch((err: BusinessError) => {
   console.error(`getAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
-});
-```
-
-### getSupportedDecoders<sup>18+</sup>
-
-getSupportedDecoders(): Promise\<Array\<DecoderType>>
-
-获取当前远端设备的编码方式。使用Promise异步回调。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
-**返回值：**
-
-| 类型                                                        | 说明                                                         |
-| --------- | ------------------------------------------------------------ |
-| Promise\<Array\<[DecoderType](#decodertype18)\>\> | Promise对象。返回远端设备所支持的编码能力列表。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-aVCastController.getSupportedDecoders().then((decoderTypes: avSession.DecoderType[]) => {
-  console.info(`getSupportedDecoders : SUCCESS : decoderTypes.length : ${decoderTypes.length}`);
-  if (descriptors.length > 0 ) {
-    console.info(`getSupportedDecoders : SUCCESS : decoderTypes[0] : ${decoderTypes[0]}`);
-  }
-}).catch((err: BusinessError) => {
-  console.error(`getSupportedDecoders BusinessError: code: ${err.code}, message: ${err.message}`);
-});
-```
-
-### getRecommendedResolutionLevel<sup>18+</sup>
-
-getRecommendedResolutionLevel(decoderType: DecoderType): Promise\<ResolutionLevel>
-
-通过传递编码方式，获取推荐的分辨率。使用Promise异步回调。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
-**返回值：**
-
-| 类型                                                        | 说明                                                         |
-| --------- | ------------------------------------------------------------ |
-| Promise\<[ResolutionLevel](#resolutionlevel18)\> | Promise对象。返回远端设备推荐的分辨率。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let decoderType = avSession.DecoderType.OH_AVCODEC_MIMETYPE_VIDEO_AVC;
-let resolutionLeve = avSession.ResolutionLevel;
-aVCastController.getRecommendedResolutionLevel(decoderType).then((resolutionLeve) => {
-  console.info('getRecommendedResolutionLevel successfully');
-}).catch((err: BusinessError) => {
-  console.error(`getRecommendedResolutionLevel BusinessError: code: ${err.code}, message: ${err.message}`);
-});
-```
-
-### getSupportedHdrCapabilities<sup>18+</sup>
-
-getSupportedHdrCapabilities(): Promise\<Array\<hdrCapability.HDRFormat>>
-
-获取当前的远端设备所支持的HDR能力。使用Promise异步回调。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
-**返回值：**
-
-| 类型                                                        | 说明                                                         |
-| --------- | ------------------------------------------------------------ |
-| Promise\<Array\<[hdrCapability.HDRFormat](../apis-arkgraphics2d/js-apis-hdrCapability.md#hdrformat)\>\> | Promise对象。返回远端设备所支持的HDR能力。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import type hdrCapability from './@ohos.graphics.hdrCapability';
-
-aVCastController.getSupportedHdrCapabilities().then((hdrFormats: hdrCapability.HDRFormat[]) => {
-  console.info(`getSupportedHdrCapabilities : SUCCESS : hdrFormats.length : ${hdrFormats.length}`);
-  if (hdrFormats.length > 0 ) {
-    console.info(`getSupportedHdrCapabilities : SUCCESS : descriptors[0] : ${hdrFormats[0]}`);
-  }
-}).catch((err: BusinessError) => {
-  console.error(`getSupportedHdrCapabilities BusinessError: code: ${err.code}, message: ${err.message}`);
-});
-```
-
-### getSupportedPlaySpeeds<sup>18+</sup>
-
-getSupportedPlaySpeeds(): Promise\<Array\<number>>
-
-获取当前的远端设备所支持倍速播放列表。使用Promise异步回调。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
-**返回值：**
-
-| 类型                                                        | 说明                                                         |
-| --------- | ------------------------------------------------------------ |
-| Promise\<Array\<number\>\> | Promise对象。返回远端设备所支持的倍速播放列表。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-aVCastController.getSupportedPlaySpeeds().then((nums: number[]) => {
-  console.info(`getSupportedPlaySpeeds : SUCCESS : hdrFormats.length : ${nums.length}`);
-  if (nums.length > 0 ) {
-    console.info(`getSupportedPlaySpeeds : SUCCESS : descriptors[0] : ${nums[0]}`);
-  }
-}).catch((err: BusinessError) => {
-  console.error(`getSupportedPlaySpeeds BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -5169,8 +5067,6 @@ type ExtraInfo = { [key: string]: Object; }
 
 媒体提供方设置的自定义媒体数据包对象。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 | 类型                                | 说明                          |
@@ -5265,12 +5161,11 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 | composer        | string                  | 否   | 是   | 作曲者。                                                                |
 | duration        | number                  | 否   | 是   | 媒体时长，单位毫秒（ms）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                  |
 | mediaImage      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 是   | 图片的像素数据或者图片路径地址(本地路径或网络路径)。应用通过setAVMetadata设置图片数据。<br>- 设置的数据类型为PixelMap时，通过getAVMetadata获取的将为PixelMap。<br>- 设置为url图片路径，获取的为url图片路径。  <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                             |
-| bundleIcon<sup>18+</sup>      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 是   | 应用图标图片的像素数据。只读类型，不从应用侧设置。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+| bundleIcon<sup>18+</sup>      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 是   | 应用图标图片的像素数据。只读类型，不从应用侧设置。|
 | publishDate     | Date                    | 否   | 是   | 发行日期。                                                             |
 | subtitle        | string                  | 否   | 是   | 子标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                |
 | description     | string                  | 否   | 是   | 媒体描述。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                               |
 | lyric           | string                  | 否   | 是   | 媒体歌词内容。应用需将歌词内容拼接为一个字符串传入。<br>字符串长度需<=40960字节。<br>**说明：** 系统支持简单版的LRC格式（Simple LRC format）的歌词文本内容。当传入的歌词内容不规范（例如：出现重复的时间戳等），将导致解析失败，并在系统中显示异常。 |
-| singleLyricText<sup>18+</sup> | string    | 否   | 是   | 单条媒体歌词内容。应用需将歌词内容拼接为一个字符串传入（不包含时间戳）。<br>字符串长度<=40960字节。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 | previousAssetId | string                  | 否   | 是   | 上一首媒体ID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                            |
 | nextAssetId     | string                  | 否   | 是   | 下一首媒体ID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                            |
 | filter<sup>11+</sup>        | number         | 否   | 是   | 当前session支持的协议，默认为TYPE_CAST_PLUS_STREAM。具体取值参考[ProtocolType](#protocoltype11)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
@@ -5335,7 +5230,7 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 | position     | [PlaybackPosition](#playbackposition10) | 否   | 播放位置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | bufferedTime | number                                | 否   | 缓冲时间。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | loopMode     | [LoopMode](#loopmode10)                 | 否   | 循环模式。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| isFavorite   | boolean                               | 否   | 是否收藏。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| isFavorite   | boolean                               | 否   | 是否收藏，true表示收藏。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | activeItemId<sup>10+</sup> | number                  | 否   | 正在播放的媒体Id。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | volume<sup>10+</sup> | number                  | 否   | 正在播放的媒体音量。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | maxVolume<sup>11+</sup> | number                    | 否   | 最大音量。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -5412,33 +5307,6 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 | 名称                        | 值   | 说明           |
 | --------------------------  | ---- | ------------ |
 | TAG_AUDIO_VIVID             | 1    | AUDIO VIVID  |
-
-## DecoderType<sup>18+</sup>
-
-枚举，设备所支持的编码格式。
-
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
-| 名称                        | 值   | 说明           |
-| --------------------------  | ---- | ------------ |
-| OH_AVCODEC_MIMETYPE_VIDEO_AVC      | "video/avc"  | VIDEO AVC  |
-| OH_AVCODEC_MIMETYPE_VIDEO_HEVC     | "video/hevc" | VIDEO HEVC  |
-| OH_AVCODEC_MIMETYPE_AUDIO_VIVID    | "audio/av3a" | AUDIO AV3A  |
-
-
-## ResolutionLevel<sup>18+</sup>
-
-枚举，设备所支持的分辨率。
-
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
-| 名称                        | 值   | 说明           |
-| --------------------------  | ---- | ------------ |
-| RESOLUTION_480P             | 0    | 分辨率为480P(640*480 dpi)。     |
-| RESOLUTION_720P             | 1    | 分辨率为720P(1280*720 dpi)。    |
-| RESOLUTION_1080P            | 2    | 分辨率为1080P(1920*1080 dpi)。   |
-| RESOLUTION_2K               | 3    | 分辨率为2k(2560*1440 dpi)。   |
-| RESOLUTION_4K               | 4    | 分辨率为4k(4096*3840 dpi)。   |
 
 ## AVCastCategory<sup>10+</sup>
 
@@ -6831,8 +6699,6 @@ getExtrasWithEvent(extraEvent: string): Promise\<ExtraInfo>
 
 根据远端分布式事件类型，获取远端分布式媒体提供方设置的自定义媒体数据包。结果通过Promise异步回调方式返回。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
@@ -7068,7 +6934,7 @@ avsessionController.off('playbackStateChange');
 
 ### on('callMetadataChange')<sup>11+</sup>
 
-on(type: 'callMetadataChange', filter: Array\<keyof CallMetadata> | 'all', callback: Callback\<CallMetadata>): void;
+on(type: 'callMetadataChange', filter: Array\<keyof CallMetadata> | 'all', callback: Callback\<CallMetadata>): void
 
 设置通话元数据变化的监听事件。
 
@@ -7108,7 +6974,7 @@ avsessionController.on('callMetadataChange', ['name'], (callmetadata: avSession.
 
 ### off('callMetadataChange')<sup>11+</sup>
 
-off(type: 'callMetadataChange', callback?: Callback\<CallMetadata>): void;
+off(type: 'callMetadataChange', callback?: Callback\<CallMetadata>): void
 
 取消设置通话元数据变化的监听事件。
 
@@ -7141,7 +7007,7 @@ avsessionController.off('callMetadataChange');
 
 ### on('callStateChange')<sup>11+</sup>
 
-on(type: 'callStateChange', filter: Array\<keyof AVCallState> | 'all', callback: Callback\<AVCallState>): void;
+on(type: 'callStateChange', filter: Array\<keyof AVCallState> | 'all', callback: Callback\<AVCallState>): void
 
 设置通话状态变化的监听事件。
 
@@ -7181,7 +7047,7 @@ avsessionController.on('callStateChange', ['state'], (callstate: avSession.AVCal
 
 ### off('callStateChange')<sup>11+</sup>
 
-off(type: 'callStateChange', callback?: Callback\<AVCallState>): void;
+off(type: 'callStateChange', callback?: Callback\<AVCallState>): void
 
 取消设置通话状态变化的监听事件。
 
@@ -8227,7 +8093,7 @@ try {
 ## AVControlCommandType<sup>10+</sup>
 
 type AVControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevious' | 'fastForward' | 'rewind' |
-  'seek' | 'setSpeed' | 'setLoopMode' | 'toggleFavorite' | 'playFromAssetId' | 'answer' | 'hangUp' | 'toggleCallMute'
+  'seek' | 'setSpeed' | 'setLoopMode' | 'toggleFavorite' | 'playFromAssetId' | 'answer' | 'hangUp' | 'toggleCallMute' | 'setTargetLoopMode'
 
 会话可传递的命令。
 
@@ -8254,6 +8120,7 @@ type AVControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevio
 |'answer'          | 接听。        |
 | 'hangUp'         | 挂断。        |
 |'toggleCallMute'  | 设置通话静音状态。 |
+| 'setTargetLoopMode' <sup>18+</sup>   | 设置目标循环模式。 |
 
 ## AVControlCommand<sup>10+</sup>
 
@@ -8304,6 +8171,15 @@ constructor(context: Context)
 | 参数名    | 类型                                                        | 必填 | 说明                                                         |
 | --------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context | 是   | 应用上下文（仅支持[UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)）。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6600101  | Session service exception. |
 
 **示例：**
 
@@ -8405,6 +8281,7 @@ on(type: 'pickerStateChange', callback: Callback<AVCastPickerState\>) : void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6600101  | Session service exception. |
 
 **示例：**
 
@@ -8444,6 +8321,7 @@ off(type: 'pickerStateChange', callback?: Callback<AVCastPickerState\>) : void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6600101  | Session service exception. |
 
 **示例：**
 

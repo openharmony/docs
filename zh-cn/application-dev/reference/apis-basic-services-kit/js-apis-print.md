@@ -15,7 +15,7 @@ import { print } from '@kit.BasicServicesKit';
 
 打印任务完成后的事件监听回调接口类。
 
-### on
+### PrintTask.on
 
 on(type: 'block', callback: Callback&lt;void&gt;): void
 
@@ -45,9 +45,10 @@ on(type: 'block', callback: Callback&lt;void&gt;): void
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-print.print(file).then((printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask) => {
     printTask.on('block', () => {
         console.log('print state is block');
     })
@@ -57,7 +58,7 @@ print.print(file).then((printTask: print.PrintTask) => {
 })
 ```
 
-### on
+### PrintTask.on
 
 on(type: 'succeed', callback: Callback&lt;void&gt;): void
 
@@ -87,9 +88,10 @@ on(type: 'succeed', callback: Callback&lt;void&gt;): void
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-print.print(file).then((printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask) => {
     printTask.on('succeed', () => {
         console.log('print state is succeed');
     })
@@ -99,7 +101,7 @@ print.print(file).then((printTask: print.PrintTask) => {
 })
 ```
 
-### on
+### PrintTask.on
 
 on(type: 'fail', callback: Callback&lt;void&gt;): void
 
@@ -129,9 +131,10 @@ on(type: 'fail', callback: Callback&lt;void&gt;): void
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-print.print(file).then((printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask) => {
     printTask.on('fail', () => {
         console.log('print state is fail');
     })
@@ -141,7 +144,7 @@ print.print(file).then((printTask: print.PrintTask) => {
 })
 ```
 
-### on
+### PrintTask.on
 
 on(type: 'cancel', callback: Callback&lt;void&gt;): void
 
@@ -171,9 +174,10 @@ on(type: 'cancel', callback: Callback&lt;void&gt;): void
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-print.print(file).then((printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask) => {
     printTask.on('cancel', () => {
         console.log('print state is cancel');
     })
@@ -183,7 +187,7 @@ print.print(file).then((printTask: print.PrintTask) => {
 })
 ```
 
-### off
+### PrintTask.off
 
 off(type: 'block', callback?: Callback&lt;void&gt;): void
 
@@ -213,9 +217,10 @@ off(type: 'block', callback?: Callback&lt;void&gt;): void
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-print.print(file).then((printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask) => {
     printTask.off('block', () => {
         console.log('unregister state block');
     })
@@ -225,7 +230,7 @@ print.print(file).then((printTask: print.PrintTask) => {
 })
 ```
 
-### off
+### PrintTask.off
 
 off(type: 'succeed', callback?: Callback&lt;void&gt;): void
 
@@ -255,9 +260,10 @@ off(type: 'succeed', callback?: Callback&lt;void&gt;): void
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-print.print(file).then((printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask) => {
     printTask.off('succeed', () => {
         console.log('unregister state succeed');
     })
@@ -267,7 +273,7 @@ print.print(file).then((printTask: print.PrintTask) => {
 })
 ```
 
-### off
+### PrintTask.off
 
 off(type: 'fail', callback?: Callback&lt;void&gt;): void
 
@@ -297,9 +303,10 @@ off(type: 'fail', callback?: Callback&lt;void&gt;): void
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-print.print(file).then((printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask) => {
     printTask.off('fail', () => {
         console.log('unregister state fail');
     })
@@ -309,7 +316,7 @@ print.print(file).then((printTask: print.PrintTask) => {
 })
 ```
 
-### off
+### PrintTask.off
 
 off(type: 'cancel', callback?: Callback&lt;void&gt;): void
 
@@ -339,9 +346,10 @@ off(type: 'cancel', callback?: Callback&lt;void&gt;): void
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-print.print(file).then((printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask) => {
     printTask.off('cancel', () => {
         console.log('unregister state cancel');
     })
@@ -369,10 +377,10 @@ onStartLayoutWrite(jobId: string, oldAttrs: PrintAttributes, newAttrs: PrintAttr
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | jobId | string | 是 | 表示打印任务ID。 |
-| oldAttrs | PrintAttributes | 是 | 表示旧打印参数。 |
-| newAttrs | PrintAttributes | 是 | 表示新打印参数。 |
+| oldAttrs | [PrintAttributes](#printattributes11) | 是 | 表示旧打印参数。 |
+| newAttrs | [PrintAttributes](#printattributes11) | 是 | 表示新打印参数。 |
 | fd | number | 是 | 表示打印文件传给接口调用方的pdf文件的文件描述符。 |
-| writeResultCallback | (jobId: string, writeResult: PrintFileCreationState) | 是 | 表示三方应用使用新的打印参数更新待打印文件完成后的回调。 |
+| writeResultCallback | (jobId: string, writeResult: [PrintFileCreationState](#printfilecreationstate11)) | 是 | 表示三方应用使用新的打印参数更新待打印文件完成后的回调。 |
 
 **错误码：**
 
@@ -424,7 +432,7 @@ onJobStateChanged(jobId: string, state: PrintDocumentAdapterState): void
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | jobId | string | 是 | 表示打印任务ID。 |
-| state | PrintDocumentAdapterState | 是 | 表示打印任务更改为该状态。 |
+| state | [PrintDocumentAdapterState](#printdocumentadapterstate11) | 是 | 表示打印任务更改为该状态。 |
 
 **错误码：**
 
@@ -462,7 +470,7 @@ class MyPrintDocumentAdapter implements print.PrintDocumentAdapter {
 }
 ```
 
-## print
+## print.print
 
 print(files: Array&lt;string&gt;, callback: AsyncCallback&lt;PrintTask&gt;): void
 
@@ -475,8 +483,8 @@ print(files: Array&lt;string&gt;, callback: AsyncCallback&lt;PrintTask&gt;): voi
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。系统应用传入uri时，需先调用uriPermissionManager.grantUriPermission()接口给打印应用授权，此接口为系统接口。三方应用建议使用[print](#print11-2)。 |
-| callback | AsyncCallback&lt;PrintTask&gt; | 是 | 异步获取打印完成之后的回调。 |
+| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。文件需先保存到应用沙箱，通过fileUri.getUriFromPath获取到沙箱uri，再作为参数传入到本接口。 |
+| callback | AsyncCallback&lt;[PrintTask](#printtask)&gt; | 是 | 异步获取打印完成之后的回调。 |
 
 **错误码：**
 
@@ -492,12 +500,11 @@ print(files: Array&lt;string&gt;, callback: AsyncCallback&lt;PrintTask&gt;): voi
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
 //传入文件的uri
-let files = ['file://data/print/a.png', 'file://data/print/b.png'];
-//或者传入fd
-//let files = ['fd://1', 'fd://2'];
-print.print(files, (err: BusinessError, printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)], (err: BusinessError, printTask: print.PrintTask) => {
     if (err) {
         console.log('print err ' + JSON.stringify(err));
     } else {
@@ -509,7 +516,7 @@ print.print(files, (err: BusinessError, printTask: print.PrintTask) => {
 })
 ```
 
-## print
+## print.print
 
 print(files: Array&lt;string&gt;): Promise&lt;PrintTask&gt;
 
@@ -522,12 +529,12 @@ print(files: Array&lt;string&gt;): Promise&lt;PrintTask&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。系统应用传入uri时，需先调用uriPermissionManager.grantUriPermission()接口给打印应用授权，此接口为系统接口。三方应用建议使用[print](#print11-2)。 |
+| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。文件需先保存到应用沙箱，通过fileUri.getUriFromPath获取到沙箱uri，再作为参数传入到本接口。 |
 
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;PrintTask&gt; | 打印完成结果。 |
+| Promise&lt;[PrintTask](#printtask)&gt; | 打印完成结果。 |
 
 **错误码：**
 
@@ -543,12 +550,11 @@ print(files: Array&lt;string&gt;): Promise&lt;PrintTask&gt;
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
 //传入文件的uri
-let files = ['file://data/print/a.png', 'file://data/print/b.png'];
-//或者传入fd
-//let files = ['fd://1', 'fd://2'];
-print.print(files).then((printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask) => {
     printTask.on('succeed', () => {
         console.log('print state is succeed');
     })
@@ -558,7 +564,7 @@ print.print(files).then((printTask: print.PrintTask) => {
 })
 ```
 
-## print<sup>11+</sup>
+## print.print<sup>11+</sup>
 
 print(files: Array&lt;string&gt;, context: Context, callback: AsyncCallback&lt;PrintTask&gt;): void
 
@@ -571,9 +577,9 @@ print(files: Array&lt;string&gt;, context: Context, callback: AsyncCallback&lt;P
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。系统应用传入uri时，需先调用uriPermissionManager.grantUriPermission()接口给打印应用授权，此接口为系统接口。三方应用建议使用[print](#print11-2)。 |
+| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。文件需先保存到应用沙箱，通过fileUri.getUriFromPath获取到沙箱uri，再作为参数传入到本接口。 |
 | context | Context | 是 | 用于拉起系统打印界面的UIAbilityContext。 |
-| callback | AsyncCallback&lt;PrintTask&gt; | 是 | 异步获取打印完成之后的回调。 |
+| callback | AsyncCallback&lt;[PrintTask](#printtask)&gt; | 是 | 异步获取打印完成之后的回调。 |
 
 **错误码：**
 
@@ -589,13 +595,12 @@ print(files: Array&lt;string&gt;, context: Context, callback: AsyncCallback&lt;P
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
 //传入文件的uri
-let files = ['file://data/print/a.png', 'file://data/print/b.png'];
-//或者传入fd
-//let files = ['fd://1', 'fd://2'];
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
 let context = getContext(this);
-print.print(files, context, (err: BusinessError, printTask: print.PrintTask) => {
+print.print([fileUri.getUriFromPath(filePath)], context, (err: BusinessError, printTask: print.PrintTask) => {
     if (err) {
         console.log('print err ' + JSON.stringify(err));
     } else {
@@ -607,7 +612,7 @@ print.print(files, context, (err: BusinessError, printTask: print.PrintTask) => 
 })
 ```
 
-## print<sup>11+</sup>
+## print.print<sup>11+</sup>
 
 print(files: Array&lt;string&gt;, context: Context): Promise&lt;PrintTask&gt;
 
@@ -620,13 +625,13 @@ print(files: Array&lt;string&gt;, context: Context): Promise&lt;PrintTask&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。系统应用传入uri时，需先调用uriPermissionManager.grantUriPermission()接口给打印应用授权，此接口为系统接口。三方应用建议使用[print](#print11-2)。 |
+| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp）和pdf。文件需先保存到应用沙箱，通过fileUri.getUriFromPath获取到沙箱uri，再作为参数传入到本接口。 |
 | context | Context | 是 | 用于拉起系统打印界面的UIAbilityContext。 |
 
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;PrintTask&gt; | 打印完成结果。 |
+| Promise&lt;[PrintTask](#printtask)&gt; | 打印完成结果。 |
 
 **错误码：**
 
@@ -642,13 +647,12 @@ print(files: Array&lt;string&gt;, context: Context): Promise&lt;PrintTask&gt;
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
 //传入文件的uri
-let files = ['file://data/print/a.png', 'file://data/print/b.png'];
-//或者传入fd
-//let files = ['fd://1', 'fd://2'];
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
 let context = getContext(this);
-print.print(files, context).then((printTask: print.PrintTask) => {
+print.print([fileUri.getUriFromPath(filePath)], context).then((printTask: print.PrintTask) => {
     printTask.on('succeed', () => {
         console.log('print state is succeed');
     })
@@ -658,7 +662,7 @@ print.print(files, context).then((printTask: print.PrintTask) => {
 })
 ```
 
-## print<sup>11+</sup>
+## print.print<sup>11+</sup>
 
 print(jobName: string, printAdapter: PrintDocumentAdapter, printAttributes: PrintAttributes, context: Context): Promise&lt;PrintTask&gt;
 
@@ -672,14 +676,14 @@ print(jobName: string, printAdapter: PrintDocumentAdapter, printAttributes: Prin
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | jobName | string | 是 | 表示待打印文件名称，例如：test.pdf。打印侧会通过[onStartLayoutWrite](#onstartlayoutwrite)接口将空的pdf文件的fd传给接口调用方，由调用方使用新的打印参数更新待打印文件。 |
-| printAdapter | PrintDocumentAdapter | 是 | 表示三方应用实现的[PrintDocumentAdapter](#printdocumentadapter11)接口实例。 |
-| printAttributes | PrintAttributes | 是 | 表示打印参数。 |
+| printAdapter | [PrintDocumentAdapter](#printdocumentadapter11) | 是 | 表示三方应用实现的[PrintDocumentAdapter](#printdocumentadapter11)接口实例。 |
+| printAttributes | [PrintAttributes](#printattributes11) | 是 | 表示打印参数。 |
 | context | Context | 是 | 用于拉起系统打印界面的UIAbilityContext。 |
 
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;PrintTask&gt; | 打印完成结果。 |
+| Promise&lt;[PrintTask](#printtask)&gt; | 打印完成结果。 |
 
 **错误码：**
 
@@ -732,11 +736,11 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 | **名称** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | copyNumber | number | 否 | 表示文件打印份数。 |
-| pageRange | PrintPageRange | 否 | 表示待打印文件的页面范围。 |
-| pageSize | PrintPageSize \| PrintPageType | 否 | 表示代打印文件的纸张类型。 |
-| directionMode | PrintDirectionMode | 否 | 表示待打印文件的方向。 |
-| colorMode | PrintColorMode | 否 | 表示待打印文件的色彩模式。 |
-| duplexMode | PrintDuplexMode | 否 | 表示待打印文件的单双面模式。 |
+| pageRange | [PrintPageRange](#printpagerange11) | 否 | 表示待打印文件的页面范围。 |
+| pageSize | [PrintPageSize](#printpagesize11) \| [PrintPageType](#printpagetype11) | 否 | 表示代打印文件的纸张类型。 |
+| directionMode | [PrintDirectionMode](#printdirectionmode11) | 否 | 表示待打印文件的方向。 |
+| colorMode | [PrintColorMode](#printcolormode11) | 否 | 表示待打印文件的色彩模式。 |
+| duplexMode | [PrintDuplexMode](#printduplexmode11) | 否 | 表示待打印文件的单双面模式。 |
 
 ## PrintPageRange<sup>11+</sup>
 
@@ -944,10 +948,10 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 | **名称** | **值** | **说明** |
 | -------- | -------- | -------- |
 | APPLICATION_CREATED | 0 | 表示打印应用被拉起的事件。 |
-| APPLICATION_CLOSED_FOR_STARTED | 1 | 表示由于点击打印而关于打印应用的事件。 |
+| APPLICATION_CLOSED_FOR_STARTED | 1 | 表示由于点击打印而关闭打印应用的事件。 |
 | APPLICATION_CLOSED_FOR_CANCELED | 2 | 表示由于点击取消而关闭打印应用的事件。 |
 
-## addPrinterToDiscovery<sup>14+</sup>
+## print.addPrinterToDiscovery<sup>14+</sup>
 
 addPrinterToDiscovery(printerInformation: PrinterInformation): Promise&lt;void&gt;
 
@@ -960,7 +964,7 @@ addPrinterToDiscovery(printerInformation: PrinterInformation): Promise&lt;void&g
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| printerInformation | PrinterInformation | 是 | 表示新发现的打印机。 |
+| printerInformation | [PrinterInformation](#printerinformation14) | 是 | 表示新发现的打印机。 |
 
 **返回值：**
 | **类型** | **说明** |
@@ -998,7 +1002,7 @@ print.addPrinterToDiscovery(printerInformation).then((data : void) => {
 })
 ```
 
-## updatePrinterInDiscovery<sup>14+</sup>
+## print.updatePrinterInDiscovery<sup>14+</sup>
 
 updatePrinterInDiscovery(printerInformation: PrinterInformation): Promise&lt;void&gt;
 
@@ -1011,7 +1015,7 @@ updatePrinterInDiscovery(printerInformation: PrinterInformation): Promise&lt;voi
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| printerInformation | PrinterInformation | 是 | 表示待更新能力的打印机。 |
+| printerInformation | [PrinterInformation](#printerinformation14) | 是 | 表示待更新能力的打印机。 |
 
 **返回值：**
 | **类型** | **说明** |
@@ -1067,7 +1071,7 @@ print.updatePrinterInDiscovery(printerInformation).then((data : void) => {
 })
 ```
 
-## removePrinterFromDiscovery<sup>14+</sup>
+## print.removePrinterFromDiscovery<sup>14+</sup>
 
 removePrinterFromDiscovery(printerId: string): Promise&lt;void&gt;
 
@@ -1110,7 +1114,7 @@ print.removePrinterFromDiscovery(printerId).then((data : void) => {
 })
 ```
 
-## getPrinterInformationById<sup>14+</sup>
+## print.getPrinterInformationById<sup>14+</sup>
 
 getPrinterInformationById(printerId: string): Promise&lt;PrinterInformation&gt;
 
@@ -1128,7 +1132,7 @@ getPrinterInformationById(printerId: string): Promise&lt;PrinterInformation&gt;
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;PrinterInformation&gt; | 根据打印机id获取的对应打印机信息。 |
+| Promise&lt;[PrinterInformation](#printerinformation14)&gt; | 根据打印机id获取的对应打印机信息。 |
 
 **错误码：**
 
@@ -1164,9 +1168,9 @@ print.getPrinterInformationById(printerId).then((printerInformation : print.Prin
 | -------- | -------- | -------- | -------- |
 | printerId | string | 是 | 表示打印机ID。 |
 | printerName | string | 是 | 表示打印机名称。 |
-| printerStatus | PrinterStatus | 是 | 表示当前打印机状态。 |
+| printerStatus | [PrinterStatus](#printerstatus14) | 是 | 表示当前打印机状态。 |
 | description | string | 否 | 表示打印机说明。 |
-| capability | PrinterCapabilities | 否 | 表示打印机能力。 |
+| capability | [PrinterCapabilities](#printercapabilities14) | 否 | 表示打印机能力。 |
 | uri | string | 否 | 表示打印机uri。 |
 | printerMake | string | 否 | 表示打印机型号。 |
 | options | string | 否 | 表示打印机详细信息。 |
@@ -1180,12 +1184,12 @@ print.getPrinterInformationById(printerId).then((printerInformation : print.Prin
 **属性：**
 | **名称** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| supportedPageSizes | Array&lt;PrintPageSize&gt; | 是 | 表示打印机支持的纸张尺寸列表。 |
-| supportedColorModes | Array&lt;PrintColorMode&gt; | 是 | 表示打印机支持的色彩模式列表。 |
-| supportedDuplexModes | Array&lt;PrintDuplexMode&gt; | 是 | 表示打印机支持的单双面模式列表。 |
+| supportedPageSizes | Array&lt;[PrintPageSize](#printpagesize11)&gt; | 是 | 表示打印机支持的纸张尺寸列表。 |
+| supportedColorModes | Array&lt;[PrintColorMode](#printcolormode11)&gt; | 是 | 表示打印机支持的色彩模式列表。 |
+| supportedDuplexModes | Array&lt;[PrintDuplexMode](#printduplexmode11)&gt; | 是 | 表示打印机支持的单双面模式列表。 |
 | supportedMediaTypes | Array&lt;string&gt; | 否 | 表示打印机支持的纸张类型列表。 |
-| supportedQualities | Array&lt;PrintQuality&gt; | 否 | 表示打印机支持的打印质量列表。 |
-| supportedOrientations | Array&lt;PrintOrientationMode&gt; | 否 | 表示打印机支持的打印方向列表。 |
+| supportedQualities | Array&lt;[PrintQuality](#printquality14)&gt; | 否 | 表示打印机支持的打印质量列表。 |
+| supportedOrientations | Array&lt;[PrintOrientationMode](#printorientationmode14)&gt; | 否 | 表示打印机支持的打印方向列表。 |
 | options | string | 否 | 表示打印机能力详细信息。 |
 
 ## PrintQuality<sup>14+</sup>
@@ -1208,10 +1212,10 @@ print.getPrinterInformationById(printerId).then((printerInformation : print.Prin
 
 | **名称** | **值** | **说明** |
 | -------- | -------- | -------- |
-| ORIENTATION_MODE_PORTRAIT | 0 | 表示横向打印。 |
-| ORIENTATION_MODE_LANDSCAPE | 1 | 表示纵向打印。 |
-| ORIENTATION_MODE_REVERSE_LANDSCAPE | 2 | 表示纵向翻转打印。 |
-| ORIENTATION_MODE_REVERSE_PORTRAIT | 3 | 表示横向翻转打印。 |
+| ORIENTATION_MODE_PORTRAIT | 0 | 表示纵向打印。 |
+| ORIENTATION_MODE_LANDSCAPE | 1 | 表示横向打印。 |
+| ORIENTATION_MODE_REVERSE_LANDSCAPE | 2 | 表示横向翻转打印。 |
+| ORIENTATION_MODE_REVERSE_PORTRAIT | 3 | 表示纵向翻转打印。 |
 | ORIENTATION_MODE_NONE | 4 | 表示自适应方向打印。 |
 
 ## PrinterStatus<sup>14+</sup>

@@ -398,7 +398,7 @@ struct ContactsArcList {
      }
      .backgroundColor(Color.Black)
      .onClick(() => {
-       animateTo({
+       this.getUIContext()?.animateTo({
          duration: 1000,
          curve: Curve.Smooth,
          iterations: 1,

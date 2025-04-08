@@ -1,16 +1,16 @@
 # @ohos.enterprise.browser (Browser Management) (System API)
 
-The **browser** module provides browser management, including setting, deleting, and obtaining browser policies.
+The **browser** module provides browser management, including setting, canceling, and obtaining browser policies.
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> - The APIs of this module can be used only in the stage model.
+> The APIs of this module can be used only in the stage model.
 >
-> - The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-guide.md#introduction) that is [enabled](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin).
+> The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-guide.md#introduction) that is [enabled](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin).
 > 
-> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.enterprise.browser](js-apis-enterprise-browser.md).
+> This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.enterprise.browser](js-apis-enterprise-browser.md).
 
 ## Modules to Import
 
@@ -22,7 +22,7 @@ import { browser } from '@kit.MDMKit';
 
 setPolicies(admin: Want, appId: string, policies: string, callback: AsyncCallback&lt;void&gt;): void
 
-Sets policies for a browser through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Sets the browsing policy for a specified browser. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BROWSER_POLICY
 
@@ -33,10 +33,10 @@ Sets policies for a browser through the specified device administrator applicati
 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | EnterpriseAdminExtensionAbility.           |
 | appId    | string              | Yes   | Application ID, which is used to specify the browser.                 |
-| policies    | string              | Yes   | Policies to set. If this parameter is set to an empty string, the policies of the specified browser will be deleted. |
-| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| policies    | string              | Yes   | Policies to set. If this parameter is set to an empty string, the policies of the specified browser are canceled.                 |
+| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -58,7 +58,8 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appId: string = 'com.example.myapplication';
+// Replace the value of appId with the specified application ID of the browser.
+let appId: string = 'com.example.******_******/******5t5CoBM=';
 let policies: string = '{"InsecurePrivateNetworkRequestsAllowed":{"level":"mandatory","scope":"machine","source":"platform","value":true},"LegacySameSiteCookieBehaviorEnabledForDomainList":{"level":"mandatory","scope":"machine","source":"platform","value":["[*.]"]}}';
 browser.setPolicies(wantTemp, appId, policies, (err) => {
   if (err) {
@@ -73,7 +74,7 @@ browser.setPolicies(wantTemp, appId, policies, (err) => {
 
 setPolicies(admin: Want, appId: string, policies: string): Promise&lt;void&gt;
 
-Sets policies for a browser through the specified device administrator application. This API uses a promise to return the result.
+Sets the browsing policy for a specified browser. This API uses an asynchronous promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BROWSER_POLICY
 
@@ -84,15 +85,15 @@ Sets policies for a browser through the specified device administrator applicati
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | EnterpriseAdminExtensionAbility.           |
 | appId    | string              | Yes   | Application ID, which is used to specify the browser.                 |
-| policies    | string                | Yes   | Policies to set. If this parameter is set to an empty string, the policies of the specified browser will be deleted.  |
+| policies    | string                | Yes   | Policies to set. If this parameter is set to an empty string, the policies of the specified browser are canceled.                 |
 
 **Return value**
 
 | Type                  | Description                     |
 | --------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. If the operation fails, an error object will be thrown. |
+| Promise&lt;void&gt; | Promise that returns no value. An error object is thrown when the browser policy fails to be set. |
 
 **Error codes**
 
@@ -115,7 +116,8 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appId: string = 'com.example.myapplication';
+// Replace the value of appId with the specified application ID of the browser.
+let appId: string = 'com.example.******_******/******5t5CoBM=';
 let policies: string = '{"InsecurePrivateNetworkRequestsAllowed":{"level":"mandatory","scope":"machine","source":"platform","value":true},"LegacySameSiteCookieBehaviorEnabledForDomainList":{"level":"mandatory","scope":"machine","source":"platform","value":["[*.]"]}}';
 browser.setPolicies(wantTemp, appId, policies).then(() => {
   console.info('Succeeded in setting browser policies.');
@@ -128,7 +130,7 @@ browser.setPolicies(wantTemp, appId, policies).then(() => {
 
 getPolicies(admin: Want, appId: string, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the policies of a browser through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Obtains the policy of the specified browser. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -137,9 +139,9 @@ Obtains the policies of a browser through the specified device administrator app
 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | EnterpriseAdminExtensionAbility.           |
 | appId    | string              | Yes   | Application ID, which is used to specify the browser.                 |
-| callback | AsyncCallback&lt;string&gt;       | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
+| callback | AsyncCallback&lt;string&gt;       | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
 
 **Error codes**
 
@@ -159,7 +161,8 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appId: string = 'com.example.myapplication';
+// Replace the value of appId with the specified application ID of the browser.
+let appId: string = 'com.example.******_******/******5t5CoBM=';
 browser.getPolicies(wantTemp, appId, (err, result) => {
   if (err) {
     console.error(`Failed to get browser policies. Code is ${err.code}, message is ${err.message}`);
@@ -173,7 +176,7 @@ browser.getPolicies(wantTemp, appId, (err, result) => {
 
 getPolicies(admin: Want, appId: string): Promise&lt;string&gt;
 
-Obtains the policies of a browser through the specified device administrator application. This API uses a promise to return the result.
+Obtains the policy of the specified browser. This API uses an asynchronous promise to return the result.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -182,7 +185,7 @@ Obtains the policies of a browser through the specified device administrator app
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
 | appId    | string              | Yes   | Application ID, which is used to specify the browser.                 |
 
 **Return value**
@@ -210,7 +213,8 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appId: string = 'com.example.myapplication';
+// Replace the value of appId with the specified application ID of the browser.
+let appId: string = 'com.example.******_******/******5t5CoBM=';
 browser.getPolicies(wantTemp, appId).then((result) => {
   console.info(`Succeeded in getting browser policies, result : ${JSON.stringify(result)}`);
 }).catch((err: BusinessError) => {
