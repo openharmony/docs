@@ -4,7 +4,7 @@
 
 > **说明：**
 > 
-> canOpenlink接口不支持用于判断App Linking的应用是否安装。
+> canOpenLink接口不支持判断以App Linking方式跳转的目标应用是否安装。
 
 ## 约束限制
 在entry模块的module.json5文件中的[querySchemes](../quick-start/module-configuration-file.md)字段中，最多允许配置50个URL scheme。
