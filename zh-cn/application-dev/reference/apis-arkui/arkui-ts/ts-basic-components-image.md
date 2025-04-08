@@ -1434,8 +1434,8 @@ struct Index {
     Column() {
       Image($r("app.media.sky"))
         .objectRepeat(ImageRepeat.Y)
-        .height(300)
-        .width(300)
+        .height('90%')
+        .width('90%')
         .objectFit(ImageFit.Contain)
         .borderWidth(1)
     }
