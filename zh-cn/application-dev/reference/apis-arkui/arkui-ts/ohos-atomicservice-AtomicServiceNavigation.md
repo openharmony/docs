@@ -51,8 +51,8 @@ AtomicServiceNavigation({
 | --------------- | ------ | ---- | ----|----------|
 | navPathStack | [NavPathStack](ts-basic-components-navigation.md#navpathstack10) | 否 | @State | 路由栈信息。 |
 | navigationContent | Callback\<void\> | 否 | @BuilderParam | Navigation容器内容。 |
-| title | [ResourceStr](ts-types.md#resourcestr) | 否 |@Prop | 设置页面标题。默认值为空字符串。当titleOptions的titleBarType字段设置为[TitleBarType](#titlebartype18).ROUND_ICON或者[TitleBarType](#titlebartype18).SQUARED_ICON时，title标题内容将不会显示。 |
-| titleOptions | [TitleOptions](#titleoptions) | 否 | @Prop | 标题栏选项。当titleBarType字段设置为[TitleBarType](#titlebartype18).ROUND_ICON或者[TitleBarType](#titlebartype18).SQUARED_ICON时，title标题内容将不会显示。 |
+| title | [ResourceStr](ts-types.md#resourcestr) | 否 |@Prop | 设置页面标题。默认值为空字符串。当titleOptions的titleBarType字段设置为[TitleBarType](#titlebartype18).ROUND_ICON或者[TitleBarType](#titlebartype18).SQUARED_ICON，且设置了titleIcon时，title标题内容将不会显示。 |
+| titleOptions | [TitleOptions](#titleoptions) | 否 | @Prop | 标题栏选项。当titleBarType字段设置为[TitleBarType](#titlebartype18).ROUND_ICON或者[TitleBarType](#titlebartype18).SQUARED_ICON，且设置了titleIcon时，title标题内容将不会显示。 |
 | gradientBackground<sup>18+</sup> | [GradientBackground](#gradientbackground18) | 否 | @Prop | 背景色选项。|
 | hideTitleBar | boolean | 否 | @Prop | 设置是否隐藏标题栏。默认为false。<br>false表示显示标题栏，true表示隐藏标题栏。|
 | navBarWidth | [Length](ts-types.md#length)| 否 | @Prop | 设置导航栏宽度。默认值为240vp。<br>仅在Navigation组件分栏时生效。|
