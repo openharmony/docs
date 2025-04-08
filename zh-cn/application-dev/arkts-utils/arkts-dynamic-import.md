@@ -74,11 +74,11 @@ import('harlibrary').then((ns:ESObject) => {
 
 | 动态import场景 | 动态import详细分类             | 说明                                                     |
 | :------------- | :----------------------------- | :------------------------------------------------------- |
-| 本地工程模块   | 动态import模块内文件路径       | 要求路径以./或../开头                                    |
+| 本地工程模块   | 动态import模块内文件路径       | 要求路径以./或../开头。                                    |
 | 本地工程模块   | 动态import HSP模块名           | -                                                        |
-| 本地工程模块   | 动态import HSP模块文件路径     | 暂仅支持动态import常量表达式，不支持动态import变量表达式 |
+| 本地工程模块   | 动态import HSP模块文件路径     | 暂仅支持动态import常量表达式，不支持动态import变量表达式。 |
 | 本地工程模块   | 动态import HAR模块名           | -                                                        |
-| 本地工程模块   | 动态import HAR模块文件路径     | 暂仅支持动态import常量表达式，不支持动态import变量表达式 |
+| 本地工程模块   | 动态import HAR模块文件路径     | 暂仅支持动态import常量表达式，不支持动态import变量表达式。 |
 | 远程包         | 动态import远程HAR模块名        | -                                                        |
 | 远程包         | 动态import ohpm包名            | -                                                        |
 | API            | 动态import @system.*           | -                                                        |
@@ -86,11 +86,11 @@ import('harlibrary').then((ns:ESObject) => {
 | API            | 动态import @arkui-x.*          | -                                                        |
 | 模块Native库   | 动态import libNativeLibrary.so | -                                                        |
 
-注：
-
-1. 当前所有import中使用的模块名是依赖方oh-package.json5的dependencies中的别名；
-2. 本地模块在依赖方的dependencies中配置的别名建议与moduleName以及packageName三者一致。moduleName指的是被依赖的HSP/HAR的module.json5中配置的名字，packageName指的是被依赖的HSP/HAR的oh-package.json5中配置的名字。
-3. import一个模块名，实际的行为是import该模块的入口文件，一般为index.ets/ts。
+>**说明：**
+> 
+> 1.当前所有import中使用的模块名是依赖方oh-package.json5的dependencies中的别名。
+> 2.本地模块在依赖方的dependencies中配置的别名建议与moduleName以及packageName三者一致。moduleName指的是被依赖的HSP/HAR的module.json5中配置的名字，packageName指的是被依赖的HSP/HAR的oh-package.json5中配置的名字。
+> 3.import一个模块名，实际的行为是import该模块的入口文件，一般为index.ets/ts。
 
 ## 动态import实现中的关键点
 
@@ -289,8 +289,7 @@ DevEco Studio中模块间的依赖关系通过oh-package.json5中的dependencies
 
 **1. runtimeOnly字段schema配置格式**
 
-在HAP/HSP/HAR的build-profile.json5中的buildOption中增加runtimeOnly配置项，仅在通过变量动态import时配置，静态import和常量动态import无需配置；并且，通过变量动态import加载API时也无需配置runtimeOnly。
-如下实例说明如何配置通过变量动态import其他模块，以及变量动态import本模块自己的单文件：
+在HAP/HSP/HAR的build-profile.json5中的buildOption中增加runtimeOnly配置项，仅在通过变量动态import时配置，静态import和常量动态import无需配置；并且，通过变量动态import加载API时也无需配置runtimeOnly。如下实例说明如何配置通过变量动态import其他模块，以及变量动态import本模块自己的单文件：
 
 ```typescript
 // 变量动态import其他模块myHar

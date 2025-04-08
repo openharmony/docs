@@ -51,7 +51,7 @@ geometryTransition(id: string, options?: GeometryTransitionOptions)
 
 | 参数名 | 参数类型 | 必填 | 参数描述                                                     |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| follow | boolean  | 否   | 仅用于if范式下标记始终在组件树上的组件是否跟随做共享动画。<br/>默认值：false |
+| follow | boolean  | 否   | 仅用于if范式下标记始终在组件树上的组件是否跟随做共享动画。true代表跟随做共享动画，false代表不跟随做共享动画。<br/>默认值：false |
 
 ## 示例
 

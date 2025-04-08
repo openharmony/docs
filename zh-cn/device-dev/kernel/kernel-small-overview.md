@@ -60,17 +60,17 @@ OpenHarmony 轻量级内核是基于IoT领域轻量级物联网操作系统Huawe
 
 主要特性有：
 
-- 完整的POSIX接口支持
+- 完整的POSIX接口支持。
 
-- 文件级缓存(pagecache）
+- 文件级缓存(pagecache）。
 
-- 磁盘级缓存（bcache）
+- 磁盘级缓存（bcache）。
 
-- 目录缓存(pathcache)
+- 目录缓存(pathcache)。
 
-- DAC能力
+- DAC能力。
 
-- 支持嵌套挂载及文件系统堆叠等
+- 支持嵌套挂载及文件系统堆叠等。
 
 - 支持特性的裁剪和资源占用的灵活配置。
 

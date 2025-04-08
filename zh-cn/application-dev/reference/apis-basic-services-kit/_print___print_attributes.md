@@ -9,6 +9,7 @@
 
 **相关模块：**[OH_Print](_o_h___print.md)
 
+**所在头文件：**[ohprint.h](ohprint_8h.md)
 
 ## 汇总
 
@@ -38,6 +39,7 @@
 uint32_t Print_PrintAttributes::colorMode
 ```
 **描述**
+
 彩色。
 
 
@@ -47,6 +49,7 @@ uint32_t Print_PrintAttributes::colorMode
 uint32_t Print_PrintAttributes::copyNumber
 ```
 **描述**
+
 打印份数。
 
 
@@ -56,6 +59,7 @@ uint32_t Print_PrintAttributes::copyNumber
 uint32_t Print_PrintAttributes::duplexMode
 ```
 **描述**
+
 单双面。
 
 
@@ -65,6 +69,7 @@ uint32_t Print_PrintAttributes::duplexMode
 bool Print_PrintAttributes::hasOption
 ```
 **描述**
+
 打印选项标识位。
 
 
@@ -74,6 +79,7 @@ bool Print_PrintAttributes::hasOption
 bool Print_PrintAttributes::isLandscape
 ```
 **描述**
+
 横纵向。
 
 
@@ -83,6 +89,7 @@ bool Print_PrintAttributes::isLandscape
 bool Print_PrintAttributes::isSequential
 ```
 **描述**
+
 顺序打印。
 
 
@@ -92,6 +99,7 @@ bool Print_PrintAttributes::isSequential
 char Print_PrintAttributes::options[256]
 ```
 **描述**
+
 打印选项。
 
 
@@ -101,6 +109,7 @@ char Print_PrintAttributes::options[256]
 Print_Margin Print_PrintAttributes::pageMargin
 ```
 **描述**
+
 打印边距。
 
 
@@ -110,6 +119,7 @@ Print_Margin Print_PrintAttributes::pageMargin
 Print_Range Print_PrintAttributes::pageRange
 ```
 **描述**
+
 打印范围。
 
 
@@ -119,4 +129,5 @@ Print_Range Print_PrintAttributes::pageRange
 Print_PageSize Print_PrintAttributes::pageSize
 ```
 **描述**
+
 打印尺寸。

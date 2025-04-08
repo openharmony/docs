@@ -336,7 +336,7 @@ fontFamily(value: string | Resource)
 
 copyOption(value: CopyOptions)
 
-设置组件是否支持文本可复制粘贴。设置copyOptions为CopyOptions.InApp或者CopyOptions.LocalDevice，长按文本，会弹出文本选择菜单，可选中文本并进行复制、全选操作。
+设置组件是否支持文本可复制粘贴。设置copyOptions为CopyOptions.InApp或者CopyOptions.LocalDevice，长按文本，会弹出文本选择菜单，可选中文本并进行复制、全选操作，此时Text会监听onClick事件，手势事件为非冒泡事件，若需要点击Text组件区域响应父组件的点击手势事件，建议在父组件上使用[parallelGesture](ts-gesture-settings.md#绑定手势识别)绑定手势识别，也可参考[示例7设置文本识别](#示例7设置文本识别)。
 
 由于卡片没有长按事件，此场景下长按文本，不会弹出文本选择菜单。
 
@@ -452,7 +452,7 @@ textIndent(value: Length)
 
 wordBreak(value: WordBreak)
 
-设置断行规则。WordBreak.BREAK_ALL与{overflow:&nbsp;TextOverflow.Ellipsis}，maxLines组合使用可实现英文单词按字母截断，超出部分以省略号显示
+设置断行规则。WordBreak.BREAK_ALL与{overflow:&nbsp;TextOverflow.Ellipsis}，maxLines组合使用可实现英文单词按字母截断，超出部分以省略号显示。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -818,7 +818,7 @@ enableHapticFeedback(isEnabled: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| isEnabled | boolean | 是   | 是否开启触控反馈。<br/>默认值：true |
+| isEnabled | boolean | 是   | 是否开启触控反馈。<br/>true表示开启，false表示不开启。<br/>默认值：true |
 
 >  **说明：**
 >
@@ -1498,6 +1498,11 @@ struct TextExample7 {
           .width('100%')
       }
       .width('100%')
+      // 使用parallelGesture中的TapGesture替代onClick属性，达到非冒泡事件类似冒泡
+      // 的效果，点击Text组件区域Column上的点击事件正常响应
+      .parallelGesture(TapGesture().onAction((event: GestureEvent) => {
+        console.log('test column onClick timestamp:' + event.timestamp);
+      }), GestureMask.Normal)
     }
     .height('100%')
   }

@@ -1,19 +1,23 @@
 # 构建第一个ArkTS应用（Stage模型）
 
 
+## 创建ArkTS工程（4.1Beta1版本及之前）
+
 > **说明：**
 >
-> 为确保运行效果，本文以使用**DevEco Studio 4.1 Beta1**版本为例<!--Del-->，点击[此处](../../release-notes/OpenHarmony-v4.1-beta1.md#配套关系)获取下载链接<!--DelEnd-->。
-
-## 创建ArkTS工程
+> - 为确保运行效果，此处以使用**DevEco Studio 4.1 Beta1**版本为例<!--Del-->，点击[此处](../../release-notes/OpenHarmony-v4.1-beta1.md#配套关系)获取下载链接<!--DelEnd-->。
+>
+> - 此版本可直接创建OpenHarmony ArkTS工程。
 
 1. 若首次打开**DevEco Studio**，请点击**Create Project**创建工程。如果已经打开了一个工程，请在菜单栏选择**File** &gt; **New** &gt; **Create Project**来创建一个新工程。
 
-2. 选择**Application**应用开发（本文以应用开发为例，Atomic Service对应为原子化服务开发），选择模板“**[OpenHarmony]Empty Ability**”，点击**Next**进行下一步配置。
+2. 选择**Application**应用开发（本文以应用开发为例，**Atomic Service**对应为原子化服务开发），选择模板“**[OpenHarmony]Empty Ability**”，点击**Next**进行下一步配置。
+
+   若开发者需要进行Native相关工程的开发，可选择Native C++模板。
 
    ![createProject](figures/createProject.png)
 
-3. 进入配置工程界面，**Compile SDK**选择“**11**”，其他参数保持默认设置即可。
+3. 进入配置工程界面，**Compile SDK**选择**11**，其他参数保持默认设置即可。
 
    其中**Node**用来配置当前工程运行的Node.js版本，可选择使用已有的Node.js或下载新的Node.js版本。
 
@@ -21,6 +25,51 @@
 
 4. 点击**Finish**，工具会自动生成示例代码和相关资源，等待工程创建完成。
 
+## 创建ArkTS工程（4.1Beta1版本之后）
+
+> **说明：**
+>
+> - 4.1Beta1版本及之后，DevEco Studio默认创建的工程为HarmonyOS工程，不再支持直接创建OpenHarmony工程。需要基于创建完成的HarmonyOS工程进行一些字段修改，才能得到OpenHarmony工程。
+>
+> - 为确保运行效果，此处以使用[最新DevEco Studio版本](https://developer.huawei.com/consumer/cn/download/)为例。
+
+1. 若首次打开**DevEco Studio**，请点击**Create Project**创建工程。如果已经打开了一个工程，请在菜单栏选择**File > New > Create Project**来创建一个新工程。
+
+2. 选择**Application**应用开发（本文以应用开发为例，**Atomic Service**对应为元服务开发），选择模板**Empty Ability**，点击**Next**进行下一步配置。
+   
+   若开发者需要进行Native相关工程的开发，请选择Native C++模板，更多模板的使用和说明请见[工程模板介绍](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-template)。
+
+   ![createProject](figures/zh-cn_image_00250403.png)
+
+3. 进入配置工程界面，**Compatible SDK**表示兼容的最低API Version，此处以选择5.0.0(12)为例，其他参数保持默认设置即可。
+
+   ![chooseStageModel](figures/zh-cn_image_compatible_version.png)
+
+4. 点击**Finish**，工具会自动生成示例代码和相关资源，等待工程创建完成，此时创建的工程为HarmonyOS工程。
+
+5. 在完成创建HarmonyOS工程后，根据如下操作修改工程级build-profile.json5文件（即与entry同级）中相关字段：
+   
+   1. 在工程级build-profile.json5文件添加compileSdkVersion字段。
+
+   2. 将compatibleSdkVersion和compileSdkVersion字段赋值为整数类型，如10，11或12。
+
+   3. 将runtimeOS从"HarmonyOS"修改为"OpenHarmony"。
+
+   ```json
+   "products": [
+     {
+       "name": "default",
+       "signingConfig": "default", 
+       "compileSdkVersion": 12,    // 指定OpenHarmony应用/原子化服务编译时的版本
+       "compatibleSdkVersion": 12, // 指定OpenHarmony应用/原子化服务兼容的最低版本
+       "runtimeOS": "OpenHarmony",
+     }
+   ],
+   ```
+
+6. 单击**Sync Now**进行同步。
+
+   在Sync Check弹窗中点击Yes，同意将module.json5/config.json文件中的phone切换为OpenHarmony支持的default类型，并删除在OpenHarmony不适用的其他设备类型，同步成功无其他报错则OpenHarmony工程创建完成。
 
 ## ArkTS工程目录结构（Stage模型）
 
@@ -28,7 +77,7 @@
 
 - **AppScope &gt; app.json5**：应用的全局配置信息，详见[app.json5配置文件](app-configuration-file.md)。
 
-- **entry**：OpenHarmony工程模块，编译构建生成一个HAP包。
+- **entry**：应用/原子化服务模块，编译构建生成一个HAP包。
   - **src &gt; main &gt; ets**：用于存放ArkTS源码。
   
   - **src &gt; main &gt; ets &gt; entryability**：应用/服务的入口。
@@ -46,7 +95,7 @@
   
 - **oh_modules**：用于存放三方库依赖信息。
 
-- **build-profile.json5**：应用级配置信息，包括签名signingConfigs、产品配置products等。
+- **build-profile.json5**：工程级配置信息，包括签名signingConfigs、产品配置products等。
 
 - **hvigorfile.ts**：应用级编译构建任务脚本。
 
@@ -55,7 +104,7 @@
 
 1. 使用文本组件。
 
-   工程同步完成后，在“**Project**”窗口，点击“**entry &gt; src &gt; main &gt; ets &gt; pages**”，打开“**Index.ets**”文件，可以看到页面由Text组件组成。“**Index.ets**”文件的示例如下：
+   工程同步完成后，在Project窗口，点击entry &gt; src &gt; main &gt; ets &gt; pages，打开Index.ets文件，可以看到页面由Text组件组成。**Index.ets**文件的示例如下：
    
    ```ts
    // Index.ets
@@ -80,7 +129,7 @@
 
 2. 添加按钮。
 
-   在默认页面基础上，我们添加一个Button组件，作为按钮响应用户点击，从而实现跳转到另一个页面。“**Index.ets**”文件的示例如下：
+   在默认页面基础上，我们添加一个Button组件，作为按钮响应用户点击，从而实现跳转到另一个页面。**Index.ets**文件的示例如下：
    
    ```ts
    // Index.ets

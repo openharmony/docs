@@ -324,7 +324,7 @@ rust三方库的BUILD.gn文件可通过cargo2gn工具自动生成。参见：[Ca
 
 #### Rust源码依赖调用C/C++库
 OpenHarmony上C/C++模块动态库默认用.z.so后缀，但是Rust的编译命令通过-l链接时，默认只会链接.so后缀的动态库。因此如果要依赖一个C/C++动态库编译模块，需要在该动态库的GN构建文件中添加output_extension = "so"的声明，这样编译得到的动态库将会以".so"作为后缀，而不是".z.so"。
-在Rust源码中如果直接链接动态库，后缀也需要使用".so"，这时使用动态库的中间名，不需要添加lib前缀。例如Rust源码中链接libhilog.so:
+在Rust源码中如果直接链接动态库，后缀也需要使用".so"，这时使用动态库的中间名，不需要添加lib前缀。例如Rust源码中链接libhilog.so：
 
 ```rust
 #[link(name = "hilog")]

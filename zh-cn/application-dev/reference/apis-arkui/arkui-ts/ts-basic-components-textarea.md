@@ -310,7 +310,7 @@ enableKeyboardOnFocus(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                        |
 | ------ | ------- | ---- | ----------------------------------------------------------- |
-| value  | boolean | 是   | 通过点击以外的方式获焦时，是否主动拉起软键盘。<br/>默认值：true |
+| value  | boolean | 是   | 通过点击以外的方式获焦时，是否主动拉起软键盘。<br/>true表示主动拉起，false表示不主动拉起。<br/>默认值：true |
 
 ### selectionMenuHidden<sup>10+</sup>
 
@@ -754,7 +754,7 @@ enablePreviewText(enable: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| enable | boolean | 是   | 是否开启输入预上屏。<br/>默认值：true |
+| enable | boolean | 是   | 是否开启输入预上屏。<br/>true表示开启，false表示不开启。<br/>默认值：true |
 
 ### enableHapticFeedback<sup>13+</sup>
 
@@ -770,7 +770,7 @@ enableHapticFeedback(isEnabled: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| isEnabled | boolean | 是   | 是否开启触控反馈。<br/>默认值：true |
+| isEnabled | boolean | 是   | 是否开启触控反馈。<br/>true表示开启，false表示不开启。<br/>默认值：true |
 
 >  **说明：**
 >

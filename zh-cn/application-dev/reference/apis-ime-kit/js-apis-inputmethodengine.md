@@ -1289,7 +1289,7 @@ on(type: 'editorAttributeChanged', callback: (attr: EditorAttribute) => void): v
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 文本变化事件，固定取值为'editorAttributeChanged'。 |
-| callback | (attr: EditorAttribute) => void | 是   | 回调函数，返回变化的编辑框属性。|
+| callback | (attr: [EditorAttribute](#editorattribute)) => void | 是   | 回调函数，返回变化的编辑框属性。|
 
 **示例：**
 
@@ -1316,7 +1316,7 @@ off(type: 'editorAttributeChanged', callback?: (attr: EditorAttribute) => void):
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 文本变化事件，固定取值为'editorAttributeChanged'。 |
-| callback | (attr: EditorAttribute) => void | 否   | 所要取消订阅的回调处理函数。参数不填写时，取消订阅type对应的所有回调事件。 |
+| callback | (attr: [EditorAttribute](#editorattribute)) => void | 否   | 所要取消订阅的回调处理函数。参数不填写时，默认取消订阅type对应的所有回调事件。 |
 
 **示例：**
 

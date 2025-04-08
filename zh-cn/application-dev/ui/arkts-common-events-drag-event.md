@@ -413,6 +413,7 @@ struct Index {
 }
 
 ```
+![commonDrag](figures/commonDrag.gif)
 
 ## 多选拖拽适配
 
@@ -429,7 +430,7 @@ struct Index {
       ForEach(this.numbers, (idx: number) => {
         GridItem() {
           Column()
-            .backgroundColor(this.colors[idx % 9])
+            .backgroundColor(Color.Blue)
             .width(50)
             .height(50)
             .opacity(1.0)
@@ -537,7 +538,6 @@ struct GridEts {
   @State numbers: number[] = []
   @State isSelectedGrid: boolean[] = []
   @State previewData: DragItemInfo[] = []
-  @State colors: Color[] = [Color.Red, Color.Blue, Color.Brown, Color.Gray, Color.Green, Color.Grey, Color.Orange,Color.Pink ,Color.Yellow]
   @State numberBadge: number = 0;
 
   @Styles
@@ -562,7 +562,7 @@ struct GridEts {
   @Builder
   RandomBuilder(idx: number) {
     Column()
-      .backgroundColor(this.colors[idx % 9])
+      .backgroundColor(Color.Blue)
       .width(50)
       .height(50)
       .opacity(1.0)
@@ -574,7 +574,7 @@ struct GridEts {
         ForEach(this.numbers, (idx: number) => {
           GridItem() {
             Column()
-              .backgroundColor(this.colors[idx % 9])
+              .backgroundColor(Color.Blue)
               .width(50)
               .height(50)
               .opacity(1.0)
@@ -618,4 +618,5 @@ struct GridEts {
   }
 }
 ```
+![multiDrag](figures/multiDrag.gif)
 <!--RP1--><!--RP1End-->

@@ -838,7 +838,7 @@ Replaces an element at the specified position in this container with a given ele
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
-Obtains an iterator. Each item of the iterator is a JavaScript object.
+Obtains an iterator, each item of which is a JavaScript object.
 
 **System capability**: SystemCapability.Utils.Lang
 

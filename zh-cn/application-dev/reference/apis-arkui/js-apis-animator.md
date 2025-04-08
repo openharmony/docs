@@ -281,7 +281,7 @@ onFrame: (progress: number) => void
 
 | 参数名      | 类型     | 必填   | 说明       |
 | -------- | ------ | ---- | -------- |
-| progress | number | 是    | 动画的当前值。 |
+| progress | number | 是    | 动画的当前值。<br/>取值范围为[AnimatorOptions](#animatoroptions)定义的[begin, end]，默认取值范围为[0, 1]。 |
 
 **示例：**
 
@@ -508,7 +508,7 @@ update(options: AnimatorOptions): void
 
 更新当前动画器。
 
-从API version9开始不再维护，建议使用[reset<sup>9+</sup>](#reset9)
+从API version9开始不再维护，建议使用[reset<sup>9+</sup>](#reset9)。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 

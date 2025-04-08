@@ -74,7 +74,7 @@ IUsbfnMtpInterface::Read ([out] unsigned char[] data)
 
 **返回：**
 
-如果操作失败，则返回读取的字节数、-1或其他负值。
+如果操作成功返回读出的字节数，操作失败则返回-1或其他负值。
 
 
 ### ReceiveFile()
@@ -230,4 +230,4 @@ IUsbfnMtpInterface::Write ([in] unsigned char[] data)
 
 **返回：**
 
-如果操作失败，则返回写入的字节数、-1或其他负值。
+如果操作成功返回写入的字节数，操作失败则返回-1或其他负值。
