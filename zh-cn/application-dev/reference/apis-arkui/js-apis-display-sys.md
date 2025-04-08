@@ -230,7 +230,7 @@ try {
 ## display.addVirtualScreenBlocklist<sup>18+</sup>
 addVirtualScreenBlocklist(windowIds: Array\<number>): Promise\<void>
 
-向在投屏虚拟屏不显示的黑名单中添加窗口，被添加的窗口将不在投屏虚拟屏上显示。使用Promise异步回调。
+添加窗口至投屏虚拟盘不显示的黑名单中，被添加的窗口将不在投屏虚拟盘上显示。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -256,7 +256,7 @@ addVirtualScreenBlocklist(windowIds: Array\<number>): Promise\<void>
 | ------- | ----------------------- |
 | 202     | Permission verification failed. A non-system application calls a system API.|
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.|
-| 801     | Capability not supported on this device. |
+| 801     | Capability not supported.Function addVirtualScreenBlocklist can not work correctly due to limited device capabilities. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -285,7 +285,7 @@ export default class EntryAbility extends UIAbility {
 ## display.removeVirtualScreenBlocklist<sup>18+</sup>
 removeVirtualScreenBlocklist(windowIds: Array\<number>): Promise\<void>
 
-向在投屏虚拟屏不显示的黑名单中添加窗口，被移除的窗口将重新在投屏虚拟屏上显示。使用Promise异步回调。
+从投屏虚拟盘不显示的黑名单中移除窗口，被移除的窗口将重新在投屏虚拟屏上显示。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -311,7 +311,7 @@ removeVirtualScreenBlocklist(windowIds: Array\<number>): Promise\<void>
 | ------- | ----------------------- |
 | 202     | Permission verification failed. A non-system application calls a system API.|
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.|
-| 801     | Capability not supported on this device. |
+| 801     | Capability not supported.Function removeVirtualScreenBlocklist can not work correctly due to limited device capabilities. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
