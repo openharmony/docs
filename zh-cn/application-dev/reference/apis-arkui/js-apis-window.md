@@ -437,7 +437,6 @@ createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation. |
 | 1300006 | This window context is abnormal. |
-| 1300008 | The display device is abnormal. |
 | 1300009 | The parent window is invalid. |
 
 **示例：**
@@ -510,7 +509,6 @@ createWindow(config: Configuration): Promise&lt;Window&gt;
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation. |
 | 1300006 | This window context is abnormal. |
-| 1300008 | The display device is abnormal. |
 | 1300009 | The parent window is invalid. |
 
 **示例：**
