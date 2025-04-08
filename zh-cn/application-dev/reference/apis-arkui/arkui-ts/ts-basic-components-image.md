@@ -658,7 +658,7 @@ type DrawingLattice = Lattice
 | ------ | ---------- |
 | [Lattice](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#lattice12) | 返回一个矩阵网格对象。 |
 
-## ImageMatrix<sup>15+<sup>对象说明
+## ImageMatrix<sup>15+</sup>对象说明
 
 type ImageMatrix = Matrix4Transit
 
