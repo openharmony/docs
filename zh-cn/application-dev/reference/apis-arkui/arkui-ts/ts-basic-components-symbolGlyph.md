@@ -149,7 +149,7 @@ symbolEffect(symbolEffect: SymbolEffect, isActive?: boolean)
 | 参数名 | 类型 | 必填 | 说明  |
 | ------ | ---- | ---- | ----- |
 | symbolEffect  | [SymbolEffect](#symboleffect12对象说明) | 是   | SymbolGlyph组件动效策略。<br/>默认值：[SymbolEffect](#symboleffect12对象说明) |
-| isActive  | boolean | 否   | SymbolGlyph组件动效播放状态。<br/>默认值：false |
+| isActive  | boolean | 否   | SymbolGlyph组件动效播放状态。<br/>true表示播放，false表示不播放。<br/>默认值：false |
 
 ### symbolEffect<sup>12+</sup>
 

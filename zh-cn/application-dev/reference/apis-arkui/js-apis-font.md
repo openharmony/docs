@@ -132,7 +132,7 @@ getSystemFontList(): Array\<string>
 
 >  **说明：**
 >
->  该接口仅在2in1和移动设备上生效。
+>  该接口仅在2in1和移动设备上生效。<br/>为获取系统最新支持字体列表数据，推荐使用[getSystemFontFullNamesByType](../apis-arkgraphics2d/js-apis-graphics-text.md#textgetsystemfontfullnamesbytype14)接口。
 
 **示例：**
 

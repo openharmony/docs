@@ -2,7 +2,7 @@
 
 > **说明：**
 >
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
 
 ## 导入模块
 
@@ -14,7 +14,7 @@ import { FaultLogger } from '@kit.PerformanceAnalysisKit';
 
 故障类型枚举。
 
-**系统能力：** SystemCapability.HiviewDFX.Hiview.FaultLogger
+**系统能力**：SystemCapability.HiviewDFX.Hiview.FaultLogger
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
@@ -27,7 +27,7 @@ import { FaultLogger } from '@kit.PerformanceAnalysisKit';
 
 故障信息数据结构，获取到的故障信息的数据结构。
 
-**系统能力：** SystemCapability.HiviewDFX.Hiview.FaultLogger
+**系统能力**：SystemCapability.HiviewDFX.Hiview.FaultLogger
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -46,14 +46,14 @@ query(faultType: FaultType, callback: AsyncCallback&lt;Array&lt;FaultLogInfo&gt;
 
 获取当前进程故障信息，该方法通过回调方式获取故障信息数组，故障信息数组内最多上报10份故障信息。
 
-**系统能力：** SystemCapability.HiviewDFX.Hiview.FaultLogger
+**系统能力**：SystemCapability.HiviewDFX.Hiview.FaultLogger
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | faultType | [FaultType](#faulttype) | 是 | 输入要查询的故障类型。 |
-| callback | AsyncCallback&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | 是 | 回调函数，在回调函数中获取故障信息数组。<br/>-&nbsp;value拿到故障信息数组；value为undefined表示获取过程中出现异常，error返回错误提示字符串。
+| callback | AsyncCallback&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | 是 | 回调函数，在回调函数中获取故障信息数组。<br/>-&nbsp;value拿到故障信息数组；value为undefined表示获取过程中出现异常，error返回错误提示字符串。|
 
 **错误码：**
 
@@ -103,7 +103,7 @@ query(faultType: FaultType) : Promise&lt;Array&lt;FaultLogInfo&gt;&gt;
 
 获取当前进程故障信息，该方法通过Promise方式返回故障信息数组，故障信息数组内最多上报10份故障信息。
 
-**系统能力：** SystemCapability.HiviewDFX.Hiview.FaultLogger
+**系统能力**：SystemCapability.HiviewDFX.Hiview.FaultLogger
 
 **参数：**
 
@@ -167,14 +167,14 @@ querySelfFaultLog(faultType: FaultType, callback: AsyncCallback&lt;Array&lt;Faul
 
 获取当前进程故障信息，该方法通过回调方式获取故障信息数组，故障信息数组内最多上报10份故障信息。
 
-**系统能力：** SystemCapability.HiviewDFX.Hiview.FaultLogger
+**系统能力**：SystemCapability.HiviewDFX.Hiview.FaultLogger
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | faultType | [FaultType](#faulttype) | 是 | 输入要查询的故障类型。 |
-| callback | AsyncCallback&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | 是 | 回调函数，在回调函数中获取故障信息数组。<br/>-&nbsp;value拿到故障信息数组；value为undefined表示获取过程中出现异常，error返回错误提示字符串。
+| callback | AsyncCallback&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | 是 | 回调函数，在回调函数中获取故障信息数组。<br/>-&nbsp;value拿到故障信息数组；value为undefined表示获取过程中出现异常，error返回错误提示字符串。|
 
 **示例：**
 
@@ -214,7 +214,7 @@ querySelfFaultLog(faultType: FaultType) : Promise&lt;Array&lt;FaultLogInfo&gt;&g
 
 获取当前进程故障信息，该方法通过Promise方式返回故障信息数组，故障信息数组内最多上报10份故障信息。
 
-**系统能力：** SystemCapability.HiviewDFX.Hiview.FaultLogger
+**系统能力**：SystemCapability.HiviewDFX.Hiview.FaultLogger
 
 **参数：**
 

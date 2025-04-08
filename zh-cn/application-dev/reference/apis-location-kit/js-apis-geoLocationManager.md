@@ -797,7 +797,7 @@ on(type: 'cachedGnssLocationsChange', request: CachedGnssLocationsRequest, callb
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“cachedGnssLocationsChange”，表示GNSS缓存定位结果上报。 |
-  | request |  [CachedGnssLocationsRequest](#cachedgnsslocationsrequest) | 是 | GNSS缓存功能配置参数 |
+  | request |  [CachedGnssLocationsRequest](#cachedgnsslocationsrequest) | 是 | GNSS缓存功能配置参数。 |
   | callback | Callback&lt;Array&lt;[Location](#location)&gt;&gt; | 是 | 回调函数，返回GNSS缓存位置。 |
 
 **错误码**：
@@ -1559,7 +1559,7 @@ isLocationEnabled(): boolean
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | boolean | true：位置信息开关已开启<br/>false：位置信息开关已关闭 |
+  | boolean | true：位置信息开关已开启。<br/>false：位置信息开关已关闭。 |
 
 **错误码**：
 
@@ -1785,7 +1785,7 @@ isGeocoderAvailable(): boolean
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | boolean | true:地理编码与逆地理编码服务可用<br/>false：地理编码与逆地理编码服务不可用。 |
+  | boolean | true:地理编码与逆地理编码服务可用。<br/>false：地理编码与逆地理编码服务不可用。 |
 
 **错误码**：
 

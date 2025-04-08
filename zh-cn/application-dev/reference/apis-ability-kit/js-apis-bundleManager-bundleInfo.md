@@ -73,7 +73,7 @@
 | --------- | -------------- | ---- | ---- | --------------------------- |
 | appId     | string         | 是   | 否   | 应用的appId。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                 |
 |fingerprint| string         | 是   | 否   | 应用包的指纹信息。使用的签名证书发生变化，该字段会发生变化。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。            |
-|appIdentifier<sup>11+</sup>| string         | 是   | 否   | 应用的唯一标识，是AppGallery Connect创建应用时分配的APP ID，为云端统一分配的随机字符串。该ID在应用全生命周期中不会发生变化，包括版本升级、证书变更、开发者公私钥变更、应用转移等。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。            |
+|appIdentifier<sup>11+</sup>| string         | 是   | 否   | 应用的唯一标识，是AppGallery Connect创建应用时分配的[APP ID](https://developer.huawei.com/consumer/cn/doc/app/agc-help-createharmonyapp-0000001945392297)，为云端统一分配的随机字符串。该ID在应用全生命周期中不会发生变化，包括版本升级、证书变更、开发者公私钥变更、应用转移等。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。            |
 |certificate<sup>14+</sup>| string         | 是   | 是   | 应用的证书公钥。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。            |
 
 ## AppCloneIdentity<sup>14+<sup>

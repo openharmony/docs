@@ -9,6 +9,7 @@
 
 **相关模块：**[HuksTypeApi](_huks_type_api.md)
 
+**所在头文件：**[native_huks_type.h](native__huks__type_8h.md)
 
 ## 汇总
 

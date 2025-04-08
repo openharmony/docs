@@ -117,7 +117,7 @@ bool UpdateThermalState(const std::string& tag, const std::string& val, bool isI
     hidumper -s 3303 -a -s
     ```
 
-    查看定制后的热场景结果如下: 
+    查看定制后的热场景结果如下：
     ```shell
     -------------------------------[ability]-------------------------------
 

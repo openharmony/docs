@@ -36,10 +36,10 @@ ArkUI提供了系统组件[NodeContainer](../../application-dev/reference/apis-a
 
 ```ts
 // common.ets
-import { BuilderNode, UIContext } from '@kit.ArkUI'
+import { BuilderNode, UIContext } from '@kit.ArkUI';
 
 class Params {
-  text: string = "this is a text"
+  text: string = "this is a text";
 }
 
 let buttonNode: BuilderNode<[Params]> | null = null;
@@ -71,8 +71,8 @@ export function getOrCreateNode(uiContext: UIContext): BuilderNode<[Params]> | n
 ```
 ```ts
 // Index.ets
-import { FrameNode, NodeController, Size, UIContext } from '@kit.ArkUI'
-import { getOrCreateNode } from "./common"
+import { FrameNode, NodeController, Size, UIContext } from '@kit.ArkUI';
+import { getOrCreateNode } from "./common";
 
 const TEST_TAG: string = "NodeContainer";
 
@@ -93,11 +93,11 @@ class MyNodeController extends NodeController {
   }
 
   aboutToResize(size: Size) {
-    console.log(TEST_TAG + " aboutToResize width : " + size.width + " height : " + size.height)
+    console.log(TEST_TAG + " aboutToResize width : " + size.width + " height : " + size.height);
   }
 
   aboutToAppear() {
-    console.log(TEST_TAG + " aboutToAppear")
+    console.log(TEST_TAG + " aboutToAppear");
   }
 
   aboutToDisappear() {
@@ -165,30 +165,30 @@ class NodeContentCtrl {
   width: number
 
   constructor(uiContext: UIContext) {
-    this.content = new NodeContent()
-    this.uiContext = uiContext
-    this.width = Infinity
+    this.content = new NodeContent();
+    this.uiContext = uiContext;
+    this.width = Infinity;
   }
 
   AddNode() {
-    let node = typeNode.createNode(this.uiContext, "Text")
-    node.initialize("ContentText:" + this.textNode.length).fontSize(20)
-    this.textNode.push(node)
-    this.content.addFrameNode(node)
+    let node = typeNode.createNode(this.uiContext, "Text");
+    node.initialize("ContentText:" + this.textNode.length).fontSize(20);
+    this.textNode.push(node);
+    this.content.addFrameNode(node);
   }
 
   RemoveNode() {
-    let node = this.textNode.pop()
-    this.content.removeFrameNode(node)
+    let node = this.textNode.pop();
+    this.content.removeFrameNode(node);
   }
 
   RemoveFront() {
-    let node = this.textNode.shift()
-    this.content.removeFrameNode(node)
+    let node = this.textNode.shift();
+    this.content.removeFrameNode(node);
   }
 
   GetContent(): NodeContent {
-    return this.content
+    return this.content;
   }
 }
 
@@ -202,20 +202,20 @@ class MyNodeController extends NodeController {
   }
 
   AddNode(frameNode: FrameNode | null, uiContext: UIContext) {
-    let node = typeNode.createNode(uiContext, "Text")
-    node.initialize("ControllerText:" + this.textNode.length).fontSize(20)
-    this.textNode.push(node)
-    frameNode?.appendChild(node)
+    let node = typeNode.createNode(uiContext, "Text");
+    node.initialize("ControllerText:" + this.textNode.length).fontSize(20);
+    this.textNode.push(node);
+    frameNode?.appendChild(node);
   }
 
   RemoveNode(frameNode: FrameNode | null) {
-    let node = this.textNode.pop()
-    frameNode?.removeChild(node)
+    let node = this.textNode.pop();
+    frameNode?.removeChild(node);
   }
 
   RemoveFront(frameNode: FrameNode | null) {
-    let node = this.textNode.shift()
-    frameNode?.removeChild(node)
+    let node = this.textNode.shift();
+    frameNode?.removeChild(node);
   }
 }
 
@@ -232,17 +232,17 @@ struct Index {
         ContentSlot(this.controller.GetContent())
         Button("AddToSlot")
           .onClick(() => {
-            this.controller.AddNode()
+            this.controller.AddNode();
           })
           .margin(10)
         Button("RemoveBack")
           .onClick(() => {
-            this.controller.RemoveNode()
+            this.controller.RemoveNode();
           })
           .margin(10)
         Button("RemoveFront")
           .onClick(() => {
-            this.controller.RemoveFront()
+            this.controller.RemoveFront();
           })
           .margin(10)
       }
@@ -252,17 +252,17 @@ struct Index {
         NodeContainer(this.myNodeController)
         Button("AddToNodeContainer")
           .onClick(() => {
-            this.myNodeController.AddNode(this.myNodeController.rootNode, this.getUIContext())
+            this.myNodeController.AddNode(this.myNodeController.rootNode, this.getUIContext());
           })
           .margin(10)
         Button("RemoveBack")
           .onClick(() => {
-            this.myNodeController.RemoveNode(this.myNodeController.rootNode)
+            this.myNodeController.RemoveNode(this.myNodeController.rootNode);
           })
           .margin(10)
         Button("RemoveFront")
           .onClick(() => {
-            this.myNodeController.RemoveFront(this.myNodeController.rootNode)
+            this.myNodeController.RemoveFront(this.myNodeController.rootNode);
           })
           .margin(10)
       }

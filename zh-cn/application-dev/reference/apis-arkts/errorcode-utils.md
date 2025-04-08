@@ -747,7 +747,7 @@ Decimal函数使用错误。
 
 使用[Decimal.set](js-apis-arkts-decimal.md#set)函数来设置有效精度。
 
-如：Decimal.set({ precision: 10 }), 设置有效精度。
+如：Decimal.set({ precision: 10 })，设置有效精度。
 
 ## 10200061 加密方法不可用
 
