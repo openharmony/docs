@@ -2,31 +2,31 @@
 
 ## E
 
-### ExtensionAbility
+### ExtensionAbility 
 
 Stage模型中的组件类型名，即ExtensionAbility组件，提供特定场景（如卡片、输入法）的扩展能力，满足更多的使用场景。
 
 ## F
 
-### FA
+### FA 
 
 Feature Ability，在FA模型中代表有界面的Ability，用于与用户进行交互。
 
-### FA模型
+### FA模型 
 
 API version 8及更早版本支持的应用模型，已经不再主推。建议使用新的Stage模型进行开发。
 
 ## H
 
-### HAP
+### HAP 
 
 Harmony Ability Package，一个HAP文件包含应用的所有内容，由代码、资源、三方库及应用配置文件组成，其文件后缀名为.hap。
 
-### HAR
+### HAR 
 
 Harmony Archive，静态共享包，编译态复用。可以包含代码、C++库、资源和配置文件，其文件后缀名为.har，用于实现代码和资源的共享。
 
-### HSP
+### HSP 
 
 Harmony Shared Package，动态共享包，运行时复用。可以包含代码、C++库、资源和配置文件，其文件后缀名为.hsp，用于实现代码和资源的共享。
 
