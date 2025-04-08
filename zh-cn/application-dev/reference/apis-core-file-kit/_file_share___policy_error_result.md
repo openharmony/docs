@@ -9,6 +9,8 @@
 
 **相关模块：**[FileShare](file_share.md)
 
+**所在头文件：** [oh_file_share.h](oh__file__share_8h.md)
+
 
 ## 汇总
 

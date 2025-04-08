@@ -3253,8 +3253,8 @@ import('module2').then(() => {}).catch(() => {})  // 动态import
 **错误码：10605151**
 
 为了防止动态对象（来自.ts/.js文件）在静态代码（.ets文件）中的滥用，`ESObject`类型在ArkTS中的使用是受限的。
-在API version 16以前，唯一允许使用`ESObject`类型的场景是将其用在局部变量的声明中。`ESObject`类型变量的赋值也是受限的，只能被来自跨语言调用的对象赋值，例如：`ESObject`、`any`、`unknown`、匿名类型等类型的变量。禁止使用静态类型的值（在.ets文件中定义的）初始化`ESObject`类型变量。`ESObject`类型变量只能用在跨语言调用的函数里或者赋值给另一个`ESObject`类型变量。
-从API version 16开始，`ESObject`类型不能赋值对象字面量类型。同时`ESObject`类型支持动态import场景下作为类型标注、属性访问（点操作符和[]访问）、call表达式和new表达式。
+在API version 18以前，唯一允许使用`ESObject`类型的场景是将其用在局部变量的声明中。`ESObject`类型变量的赋值也是受限的，只能被来自跨语言调用的对象赋值，例如：`ESObject`、`any`、`unknown`、匿名类型等类型的变量。禁止使用静态类型的值（在.ets文件中定义的）初始化`ESObject`类型变量。`ESObject`类型变量只能用在跨语言调用的函数里或者赋值给另一个`ESObject`类型变量。
+从API version 18开始，`ESObject`类型不能赋值对象字面量类型。同时`ESObject`类型支持动态import场景下作为类型标注、属性访问（点操作符和[]访问）、call表达式和new表达式。
 
 **ArkTS**
 
@@ -3264,17 +3264,17 @@ declare function foo(): any;
 declare function bar(a: any): number;
 
 // main.ets
-let e0: ESObject = foo(); // API16以前，编译时错误：ESObject类型只能用于局部变量；API16以后，OK，显式标注ESObject类型
+let e0: ESObject = foo(); // API18以前，编译时错误：ESObject类型只能用于局部变量；API18以后，OK，显式标注ESObject类型
 
 function f() {
   let e1 = foo();        // 编译时错误：e1的类型是any
-  let e2: ESObject = 1;  // API16以前，编译时错误：不能用非动态值初始化ESObject类型变量；API16以后，OK，支持赋值数字类型
-  let e3: ESObject = {}; // API16以前，编译时错误：不能用非动态值初始化ESObject类型变量；API16以后，编译时错误：ESObject不支持赋值对象字面量类型
-  let e4: ESObject = []; // API16以前，编译时错误：不能用非动态值初始化ESObject类型变量；API16以后，OK，支持赋值数组类型
-  let e5: ESObject = ''; // API16以前，编译时错误：不能用非动态值初始化ESObject类型变量；API16以后，OK，支持赋值字符串类型
-  e5['prop'];            // API16以前，编译时错误：不能访问ESObject类型变量的属性；API16以后，OK，支持[]访问
-  e5[1];                 // API16以前，编译时错误：不能访问ESObject类型变量的属性；API16以后，OK，支持[]访问
-  e5.prop;               // API16以前，编译时错误：不能访问ESObject类型变量的属性；API16以后，OK，支持点操作符访问
+  let e2: ESObject = 1;  // API18以前，编译时错误：不能用非动态值初始化ESObject类型变量；API18以后，OK，支持赋值数字类型
+  let e3: ESObject = {}; // API18以前，编译时错误：不能用非动态值初始化ESObject类型变量；API18以后，编译时错误：ESObject不支持赋值对象字面量类型
+  let e4: ESObject = []; // API18以前，编译时错误：不能用非动态值初始化ESObject类型变量；API18以后，OK，支持赋值数组类型
+  let e5: ESObject = ''; // API18以前，编译时错误：不能用非动态值初始化ESObject类型变量；API18以后，OK，支持赋值字符串类型
+  e5['prop'];            // API18以前，编译时错误：不能访问ESObject类型变量的属性；API18以后，OK，支持[]访问
+  e5[1];                 // API18以前，编译时错误：不能访问ESObject类型变量的属性；API18以后，OK，支持[]访问
+  e5.prop;               // API18以前，编译时错误：不能访问ESObject类型变量的属性；API18以后，OK，支持点操作符访问
 
   let e6: ESObject = foo(); // OK，显式标注ESObject类型
   let e7 = e6;              // OK，使用ESObject类型赋值

@@ -262,7 +262,7 @@ Mount /dev/block/platform/fe310000.sdhci/by-name/system_b to /usr failed 2
 
 **解决办法**
 
-1. 冷启动不使能， 通过param get startup.appspawn.cold.boot命令查看状态，如果冷启动状态是0, 通过param set startup.appspawn.cold.boot 1 命令打开冷启动状态。
+1. 冷启动不使能， 通过param get startup.appspawn.cold.boot命令查看状态，如果冷启动状态是0， 通过param set startup.appspawn.cold.boot 1 命令打开冷启动状态。
 2. 冷启动命令参数不正确， 查看并确认冷启动参数。
 3. 设置超时时间>3秒，执行 param set persist.appspawn.client.timeout 5 命令。
 4. 关闭selinux, 执行 setenforce 0 命令。

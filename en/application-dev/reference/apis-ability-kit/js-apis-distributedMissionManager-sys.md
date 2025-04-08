@@ -698,7 +698,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   }
   ```
 
-## distributedMissionManager.on('continueStateChange')<sup>10+</sup>
+## distributedMissionManager.on('continueStateChange')<sup>11+</sup>
 
 on(type: 'continueStateChange',  callback: Callback&lt;ContinueCallbackInfo&gt;): void
 
@@ -738,7 +738,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   }
   ```
 
-## distributedMissionManager.off('continueStateChange')<sup>10+</sup>
+## distributedMissionManager.off('continueStateChange')<sup>11+</sup>
 
 off(type: 'continueStateChange',  callback?: Callback&lt;ContinueCallbackInfo&gt;): void
 

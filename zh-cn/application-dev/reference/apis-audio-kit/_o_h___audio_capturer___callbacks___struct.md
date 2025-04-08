@@ -11,7 +11,13 @@
 
 **起始版本：** 10
 
+**废弃版本：** 18
+
+**替代接口：** 请分别使用以下回调类型替代： [OH_AudioCapturer_OnReadDataCallback](_o_h_audio.md#oh_audiocapturer_onreaddatacallback)、 [OH_AudioCapturer_OnDeviceChangeCallback](_o_h_audio.md#oh_audiocapturer_ondevicechangecallback)、 [OH_AudioCapturer_OnInterruptCallback](_o_h_audio.md#oh_audiocapturer_oninterruptcallback) 以及 [OH_AudioCapturer_OnErrorCallback](_o_h_audio.md#oh_audiocapturer_onerrorcallback)。
+
 **相关模块：**[OHAudio](_o_h_audio.md)
+
+**所在头文件：**[native_audiostream_base.h](native__audiostream__base_8h.md)
 
 
 ## 汇总
@@ -41,6 +47,12 @@ int32_t (*OH_AudioCapturer_Callbacks_Struct::OH_AudioCapturer_OnError)(OH_AudioC
 **描述**
 该函数指针将指向用于处理音频录制错误结果的回调函数。
 
+**起始版本：** 10
+
+**废弃版本：** 18
+
+**替代接口：** [OH_AudioCapturer_OnErrorCallback](_o_h_audio.md#oh_audiocapturer_onerrorcallback)
+
 **参数:**
 
 | 名称 | 描述 | 
@@ -57,6 +69,12 @@ int32_t (*OH_AudioCapturer_Callbacks_Struct::OH_AudioCapturer_OnInterruptEvent)(
 ```
 **描述**
 该函数指针将指向用于处理音频录制中断事件的回调函数。
+
+**起始版本：** 10
+
+**废弃版本：** 18
+
+**替代接口：** [OH_AudioCapturer_OnInterruptCallback](_o_h_audio.md#oh_audiocapturer_oninterruptcallback)
 
 **参数:**
 
@@ -78,6 +96,12 @@ int32_t (*OH_AudioCapturer_Callbacks_Struct::OH_AudioCapturer_OnReadData)(OH_Aud
 
 回调函数仅用来读取音频数据，请勿在回调函数中调用AudioCapturer相关接口。
 
+**起始版本：** 10
+
+**废弃版本：** 18
+
+**替代接口：** [OH_AudioCapturer_OnReadDataCallback](_o_h_audio.md#oh_audiocapturer_onreaddatacallback)
+
 **参数:**
 
 | 名称 | 描述 | 
@@ -95,6 +119,12 @@ int32_t (*OH_AudioCapturer_Callbacks_Struct::OH_AudioCapturer_OnStreamEvent)(OH_
 ```
 **描述**
 该函数指针将指向用于处理音频录制流事件的回调函数。
+
+**起始版本：** 10
+
+**废弃版本：** 18
+
+**替代接口：** [OH_AudioCapturer_OnDeviceChangeCallback](_o_h_audio.md#oh_audiocapturer_ondevicechangecallback)
 
 **参数:**
 

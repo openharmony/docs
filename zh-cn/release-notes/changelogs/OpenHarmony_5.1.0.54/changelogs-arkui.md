@@ -1,100 +1,6 @@
 # ArkUI子系统Changelog
 
-## cl.arkui.1 使用RichEditorStyledStringController构造方式的富文本组件支持预上屏功能
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-使用RichEditorStyledStringController构造方式的富文本（属性字符串富文本）组件需要支持预上屏功能。
-
-**变更影响**
-
-此变更涉及应用适配。
-
-变更前：组件的enablePreviewText接口无法对使用RichEditorStyledStringController构造方式的富文本（属性字符串富文本）生效，属性字符串富文本不支持预上屏。在输入法插入拼音时，组件内不显示拼音内容，onWillChange回调中previewText字段为空。
-
-变更后：组件的enablePreviewText接口可以对使用RichEditorStyledStringController构造方式的富文本（属性字符串富文本）生效，属性字符串富文本支持预上屏。在输入法插入拼音时，组件内显示拼音内容，onWillChange回调中previewText字段为实际显示在组件中的拼音内容。
-
-| 变更前 | 变更后 |
-| -------------------- | -------------------- |
-| ![](figures/unSupportPreviewText.gif)| ![](figures/supportPreviewText.gif)  |
-
-**起始API Level**x
-
-API 12
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.1.0.54开始。
-
-**变更的接口/组件**
-
-富文本组件RichEditor
-
-**适配指导**
-
-开发者需要根据onWillChange回调中previewText字段是否为空判断此次输入是预上屏输入或正式内容输入，原先在onWillChange回调中做的逻辑变更后需要在判断后再执行。
-```ts
-@Entry
-@Component
-struct Index {
-  controller: RichEditorStyledStringController = new RichEditorStyledStringController()
-  build() {
-    Column() {
-      RichEditor({ controller: this.controller })
-        .onReady(() => {
-          this.controller.onContentChanged({
-            onWillChange: (value: StyledStringChangeValue) => {
-              if (typeof value.previewText != 'undefined' && value.previewText.getString() != "") {
-                // todo 逻辑A
-              } else {
-                // todo 逻辑B
-              }
-              return true
-            }
-          });
-        })
-    }
-  }
-}
-```
-
-## cl.arkui.2 RichEditor（富文本）组件鼠标右击文本触发onSelectionChange回调变更
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-富文本组件右击文本时会触发一次短暂的选中然后清除选中区，过程中触发两次onSelectionChange，与实际效果不符。
-
-**变更影响**
-
-此变更不涉及应用适配。
-
-变更前：富文本组件右击文本时会触发一次短暂的选中然后清除选中区，触发选中时回调onSelectionChange范围时选中的内容范围，清除选中时回调onSelectionChange为光标索引。
-
-变更后：富文本组件右击文本时不会触发短暂的选中，onSelectionChange只回调一次右击位置的光标索引。
-
-**起始API Level**
-
-API 12
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.1.0.54开始。
-
-**变更的接口/组件**
-
-富文本组件RichEditor
-
-**适配指导**
-
-不涉及应用适配。
-
-## cl.arkui.3  半模态底部样式最大高度默认避让状态栏安全区
+## cl.arkui.1  半模态底部样式最大高度默认避让状态栏安全区
 
 **访问级别**
 
@@ -146,7 +52,7 @@ bindSheet的LARGE属性
 
 若按变更前的最大高度规格限制的builder内容，需要变更为新规格计算。
 
-## cl.arkui.4 sharedTransition在id入参为undefined或空字符串时的行为变更
+## cl.arkui.2 sharedTransition在id入参为undefined或空字符串时的行为变更
 
 **访问级别**
 
@@ -181,7 +87,7 @@ common.d.ts文件的sharedTransition接口
 开发者如果希望同一组件的sharedTransition的id维持有效值不变，且开发者已经主动设置id为空字符串或undefined时，需要适配。适配方式为不更改sharedTransition的id，维持之前的有效值不变。其余情况无需适配。
 
 
-## cl.arkui.5 bindSheet在2in1设备中默认避让窗口安全区
+## cl.arkui.3 bindSheet在2in1设备中默认避让窗口安全区
 
 **访问级别**
 
@@ -235,7 +141,7 @@ bindSheet的preferType属性
 
 若按变更前的最大高度规格限制的builder内容，需要变更为新规格计算。
 
-## cl.arkui.6 XComponent设置为Texture模式使用blendMode接口的行为由不生效变更为正常生效
+## cl.arkui.4 XComponent设置为Texture模式使用blendMode接口的行为由不生效变更为正常生效
 **访问级别**
 
 公开接口
@@ -327,7 +233,7 @@ struct Index {
 
 应用若需保持变更前行为，XComponent组件上的blendMode接口使用BlendMode.None入参即可。
 
-## cl.arkui.7 半模态跟手样式弹窗显示位置避让规则变更
+## cl.arkui.5 半模态跟手样式弹窗显示位置避让规则变更
 **访问级别**
 
 公开接口

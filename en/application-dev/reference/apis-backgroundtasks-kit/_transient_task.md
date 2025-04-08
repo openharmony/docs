@@ -102,7 +102,7 @@ Enumerates the error codes available for a transient task.
 | Value| Description| 
 | -------- | -------- |
 | ERR_TRANSIENT_TASK_OK  | \@error The operation is successful.&nbsp;&nbsp; | 
-| ERR_TRANSIENT_TASK_INVALID_PARAM  | \@error The input parameter is incorrect. For example, the parameter is a null pointer.&nbsp;&nbsp; | 
+| ERR_TRANSIENT_TASK_INVALID_PARAM  | \@error Parameter check fails. Possible causes: 1. Mandatory parameters are not passed. 2. The parameter type is incorrect.&nbsp;&nbsp; | 
 | ERR_TRANSIENT_TASK_PARCEL_FAILED  | \@error Parcel read/write operation failed. &nbsp;&nbsp; | 
 | ERR_TRANSIENT_TASK_TRANSACTION_FAILED  | \@error IPC failed.&nbsp;&nbsp; | 
 | ERR_TRANSIENT_TASK_SYS_NOT_READY  | \@error The system service fails.&nbsp;&nbsp; | 

@@ -356,6 +356,18 @@ Text('点我')
    })
 ```
 
+## 选中菜单
+
+Text被选中时会弹出包含复制、翻译、分享的菜单。
+
+Text组件需要设置[copyOption](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#copyoption9)属性才可以被选中。
+```ts
+Text("这是一段文本,用来测试选中菜单")
+  .fontSize(30)
+  .copyOption(CopyOptions.InApp)
+```
+![Text_select_menu](figures/Text_select_menu.jpg)
+
 ## 场景示例
 
 该示例通过maxLines、textOverflow、textAlign、constraintSize属性展示了热搜榜的效果。

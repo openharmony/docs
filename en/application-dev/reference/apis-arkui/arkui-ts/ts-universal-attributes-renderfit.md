@@ -22,13 +22,13 @@ Sets how the final state of the component's content is rendered during its width
 | ------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | fitMode | [RenderFit](#renderfit) | Yes  | How the final state of the component's content is rendered during its width and height animation process.<br>If **renderFit** is not set, the default value **RenderFit.TOP_LEFT** is used.|
 
-## renderFit<sup>16+</sup>
+## renderFit<sup>18+</sup>
 
 renderFit(fitMode: Optional\<RenderFit>)
 
-Sets how the final state of the component's content is rendered during its width and height animation process. Compared to [renderFit](#renderfit), the **fitMode** parameter supports the **undefined** type.
+Sets how the final state of the component's content is rendered during its width and height animation process. Compared to [renderFit](#renderfit), this API supports the **undefined** type for the **fitMode** parameter.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -86,6 +86,7 @@ struct RenderFitExample {
   @State width1: number = 100;
   @State height1: number = 30;
   flag: boolean = true;
+
   build() {
     Column() {
       Text("Hello")
@@ -93,7 +94,7 @@ struct RenderFitExample {
         .height(this.height1)
         .borderWidth(1)
         .textAlign(TextAlign.Start)
-        .renderFit(RenderFit.LEFT) // The component's content stays at the final size and always aligned with the left of the component.
+        .renderFit(RenderFit.LEFT)// The component's content stays at the final size and always aligned with the left of the component.
         .margin(20)
 
       Text("Hello")
@@ -101,7 +102,7 @@ struct RenderFitExample {
         .height(this.height1)
         .textAlign(TextAlign.Center)
         .borderWidth(1)
-        .renderFit(RenderFit.CENTER) // The component's content stays at the final size and always aligned with the center of the component.
+        .renderFit(RenderFit.CENTER)// The component's content stays at the final size and always aligned with the center of the component.
         .margin(20)
 
       Button("animate")

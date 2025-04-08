@@ -44,7 +44,7 @@ Specifies whether to apply the effect defined by <!--Del-->the parent [EffectCom
 
 useEffect(useEffect: Optional\<boolean>, effectType?: EffectType)
 
-Specifies whether to apply the effect defined by <!--Del-->the parent [EffectComponent](ts-container-effectcomponent-sys.md) or <!--DelEnd-->the window. Compared to [useEffect<sup>14+</sup>](#useeffect), the **useEffect** parameter supports the **undefined** type.
+Specifies whether to apply the effect defined by <!--Del-->the parent [EffectComponent](ts-container-effectcomponent-sys.md) or <!--DelEnd-->the window. Compared to [useEffect<sup>14+</sup>](#useeffect), this API supports the **undefined** type for the **useEffect** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 

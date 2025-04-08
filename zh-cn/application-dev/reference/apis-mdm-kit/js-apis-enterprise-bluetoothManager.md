@@ -170,7 +170,7 @@ try {
 
 ## bluetoothManager.getAllowedBluetoothDevices
 
-getAllowedBluetoothDevices(admin: Want): Array\<string>;
+getAllowedBluetoothDevices(admin: Want): Array\<string>
 
 获取蓝牙设备可用白名单。
 
@@ -228,7 +228,7 @@ try {
 
 
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 | 名称            | 类型                                                         | 必填 | 说明                     |
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------ |

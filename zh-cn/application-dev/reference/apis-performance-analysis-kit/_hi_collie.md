@@ -73,7 +73,7 @@
 ### HiCollie_DetectionParam
 
 ```
-typedef struct HiCollie_DetectionParamHiCollie_DetectionParam
+typedef struct HiCollie_DetectionParam HiCollie_DetectionParam
 ```
 **描述**
 用于检测业务线程卡顿的参数。请注意，这些参数对API 12无效，仅用于扩展。
@@ -106,7 +106,7 @@ typedef enum HiCollie_Flag HiCollie_Flag
 ### HiCollie_SetTimerParam
 
 ```
-typedef struct HiCollie_SetTimerParamHiCollie_SetTimerParam
+typedef struct HiCollie_SetTimerParam HiCollie_SetTimerParam
 ```
 **描述**
 定义OH_HiCollie_SetTimer函数的输入参数。
@@ -219,27 +219,6 @@ enum HiCollie_Flag
 
 
 ## 函数说明
-
-
-### OH_HiCollie_CancelTimer()
-
-```
-void OH_HiCollie_CancelTimer (int id)
-```
-**描述**
-取消函数执行时长检测定时器。
-
-结合OH_HiCollie_SetTimer接口配套使用，执行函数或代码后，OH_HiCollie_CancelTimer通过timer id将该任务取消，应在调用耗时的函数之后使用；
-
-若取消不及时，即超时发生可执行回调函数，特定行为信号下生成超时故障日志，调用耗时函数后立即取消计时器。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| id | 执行[OH_HiCollie_SetTimer](#oh_hicollie_settimer)函数后更新的计时器id。  | 
 
 
 ### OH_HiCollie_Init_JankDetection()
@@ -363,7 +342,7 @@ HiCollie_ErrorCode OH_HiCollie_SetTimer (HiCollie_SetTimerParam param, int * id 
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| param | 定义输入参数。  | 
+| param | 定义输入参数，参考[HiCollie_SetTimerParam](#hicollie_settimerparam)  | 
 | id | 用于保存返回的计时器id的指针，它不应为NULL。  | 
 
 **返回：**
@@ -377,3 +356,24 @@ HICOLLIE_INVALID_TIMEOUT_VALUE 29800004 - 无效的超时值。
 HICOLLIE_WRONG_PROCESS_CONTEXT 29800005 - 无效的接入检测进程上下文，appspawn与nativespawn进程中不可调用。
 
 HICOLLIE_WRONG_TIMER_ID_OUTPUT_PARAM 29800006 - 用于保存返回的计时器id的指针，不应该为NULL。
+
+
+### OH_HiCollie_CancelTimer()
+
+```
+void OH_HiCollie_CancelTimer (int id)
+```
+**描述**
+取消函数执行时长检测定时器。
+
+结合OH_HiCollie_SetTimer接口配套使用，执行函数或代码后，OH_HiCollie_CancelTimer通过timer id将该任务取消，应在调用耗时的函数之后使用；
+
+若取消不及时，即超时发生可执行回调函数，特定行为信号下生成超时故障日志，调用耗时函数后立即取消计时器。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| id | 执行[OH_HiCollie_SetTimer](#oh_hicollie_settimer)函数后更新的计时器id。  | 

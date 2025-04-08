@@ -52,7 +52,7 @@ How the picker is aligned with the entry component.
 
 edgeAlign(alignType: Optional\<CalendarAlign>, offset?: Offset)
 
-How the picker is aligned with the entry component. Compared to [edgeAlign](#edgealign), the **alignType** parameter supports the **undefined** type.
+How the picker is aligned with the entry component. Compared to [edgeAlign](#edgealign), this API supports the **undefined** type for the **alignType** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 16.
 
@@ -85,7 +85,7 @@ Sets the font color, font size, and font weight in the entry area.
 
 textStyle(style: Optional\<PickerTextStyle>)
 
-Sets the font color, font size, and font weight in the entry area. Compared to [textStyle](#textstyle), the **style** parameter supports the **undefined** type.
+Sets the font color, font size, and font weight in the entry area. Compared to [textStyle](#textstyle), this API supports the **undefined** type for the **style** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 16.
 
@@ -137,7 +137,7 @@ Triggered when a date is selected.
 
 onChange(callback: Optional\<Callback\<Date>>)
 
-Triggered when a date is selected. Compared to [onChange](#onchange), the **callback** parameter supports the **undefined** type.
+Triggered when a date is selected. Compared to [onChange](#onchange), this API supports the **undefined** type for the **callback** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 16.
 

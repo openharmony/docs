@@ -56,7 +56,7 @@
       ```
    - **安装包方式：**
       1. 下载.whl文件（例如：kconfiglib-13.2.0-py2.py3-none-any.whl）。
-          下载路径：“[https://pypi.org/project/kconfiglib#files](https://pypi.org/project/kconfiglib#files)”
+          下载路径：“[https://pypi.org/project/kconfiglib#files](https://pypi.org/project/kconfiglib#files)”。
       2. 运行如下命令，安装.whl文件。
          
           ```
@@ -89,7 +89,7 @@
       ```
    - **安装包方式：**
       1. 下载.whl文件（例如：six-1.12.0-py2.py3-none-any.whl）。
-          下载路径：“[https://pypi.org/project/six/#files](https://pypi.org/project/six/#files)”
+          下载路径：“[https://pypi.org/project/six/#files](https://pypi.org/project/six/#files)”。
       2. 运行如下命令，安装.whl文件。
          
           ```
@@ -104,7 +104,7 @@
       ```
    - **安装包方式：**
       1. 下载.whl文件（例如：ecdsa-0.14.1-py2.py3-none-any.whl）。
-          下载路径：“[https://pypi.org/project/ecdsa/#files](https://pypi.org/project/ecdsa/#files)”
+          下载路径：“[https://pypi.org/project/ecdsa/#files](https://pypi.org/project/ecdsa/#files)”。
       2. 运行如下命令，安装.whl文件。
          
           ```

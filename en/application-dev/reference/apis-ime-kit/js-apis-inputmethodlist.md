@@ -110,5 +110,5 @@ export struct settingsItem {
   }
 }
 ```
-
- <!--no_check--> 
+Effect
+![Effect](./figures/effect.png)

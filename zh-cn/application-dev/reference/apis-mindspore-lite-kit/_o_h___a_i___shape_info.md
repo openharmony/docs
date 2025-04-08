@@ -5,14 +5,11 @@
 
 维度信息，最大的维度为OH_AI_MAX_SHAPE_NUM。
 
-**起始版本：**
+**起始版本：** 9
 
-9
+**相关模块：**[MindSpore](_mind_spore.md)
 
-**相关模块：**
-
-[MindSpore](_mind_spore.md)
-
+**所在头文件：**[model.h](model_8h.md)
 
 ## 汇总
 

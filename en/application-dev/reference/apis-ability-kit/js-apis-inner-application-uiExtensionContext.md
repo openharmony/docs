@@ -1503,7 +1503,7 @@ struct Page_UIServiceExtensionAbility {
 }
 ```
 
-## UIExtensionContext.setColorMode<sup>16+</sup>
+## UIExtensionContext.setColorMode<sup>18+</sup>
 
 setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 

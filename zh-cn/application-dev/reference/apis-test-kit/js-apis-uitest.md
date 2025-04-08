@@ -810,7 +810,7 @@ let on:On = ON.text('java').within(ON.type('Scroll'));  // 查找Scroller里面�
 
 ### inWindow<sup>10+</sup>
 
-inWindow(bundleName: string): On;
+inWindow(bundleName: string): On
 
 指定目标控件位于给出的应用窗口内，返回On对象自身。
 
@@ -2517,9 +2517,9 @@ Driver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的�
 
 **返回值：**
 
-| 类型              | 说明                                   |
-| ----------------- | -------------------------------------- |
-| Promise\<boolean> | 以Promise形式返回截图操作是否成功完成。成功完成为true。 |
+| 类型              | 说明                                        |
+| ----------------- |-------------------------------------------|
+| Promise\<boolean> | 以Promise形式返回截图操作是否成功完成，true：完成，false：未完成。 |
 
 **错误码：**
 
@@ -2801,8 +2801,8 @@ waitForIdle(idleTime: number, timeout: number): Promise\<boolean>
 **返回值：**
 
 | 类型              | 说明                                                |
-| ----------------- | --------------------------------------------------- |
-| Promise\<boolean> | 以Promise的形式返回当前界面的所有控件是否已经空闲。 |
+| ----------------- |---------------------------------------------------|
+| Promise\<boolean> | 以Promise的形式返回当前界面的所有控件是否已经空闲，true：已经空闲，false：不空闲。 |
 
 **错误码：**
 
@@ -2882,7 +2882,7 @@ injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<bool
 
 | 类型              | 说明                                  |
 | ----------------- | ------------------------------------- |
-| Promise\<boolean> | 以Promise的形式返回操作是否成功完成。 |
+| Promise\<boolean> | 以Promise的形式返回操作是否成功完成，true：完成，false：未完成。 |
 
 **错误码：**
 
@@ -2969,9 +2969,9 @@ screenCapture(savePath: string, rect?: Rect): Promise\<boolean>;
 
 **返回值：**
 
-| 类型              | 说明                                   |
-| ----------------- | -------------------------------------- |
-| Promise\<boolean> | 以Promise形式返回截图操作是否成功完成。成功完成为true。 |
+| 类型              | 说明                                          |
+| ----------------- |---------------------------------------------|
+| Promise\<boolean> | 以Promise形式返回截图操作是否成功完成，true：成功完成，false：未成功完成。 |
 
 **错误码：**
 
@@ -5401,9 +5401,9 @@ UiDriver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的
 
 **返回值：**
 
-| 类型              | 说明                                   |
-| ----------------- | -------------------------------------- |
-| Promise\<boolean> | 以Promise形式返回截图操作是否成功完成。成功完成为true。 |
+| 类型              | 说明                                            |
+| ----------------- |-----------------------------------------------|
+| Promise\<boolean> | 以Promise形式返回截图操作是否成功完成，true：成功完成，false：未成功完成。 |
 
 **示例：**
 

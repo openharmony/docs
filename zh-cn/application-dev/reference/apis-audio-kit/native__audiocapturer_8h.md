@@ -1,6 +1,5 @@
 # native_audiocapturer.h
 
-
 ## 概述
 
 声明输入类型的音频流相关接口。
@@ -15,8 +14,17 @@
 
 **相关模块：**[OHAudio](_o_h_audio.md)
 
-
 ## 汇总
+
+
+### 类型定义
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| typedef void(\* [OH_AudioCapturer_OnReadDataCallback](_o_h_audio.md#oh_audiocapturer_onreaddatacallback)) ([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer, void \*userData, void \*audioData, int32_t audioDataSize) | 读取音频数据的回调函数。 | 
+| typedef void(\* [OH_AudioCapturer_OnDeviceChangeCallback](_o_h_audio.md#oh_audiocapturer_ondevicechangecallback)) ([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer, void \*userData, OH_AudioDeviceDescriptorArray \*deviceArray) | 音频录制流的设备变化事件回调函数。 | 
+| typedef void(\* [OH_AudioCapturer_OnInterruptCallback](_o_h_audio.md#oh_audiocapturer_oninterruptcallback)) ([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer, void \*userData, [OH_AudioInterrupt_ForceType](_o_h_audio.md#oh_audiointerrupt_forcetype) type, [OH_AudioInterrupt_Hint](_o_h_audio.md#oh_audiointerrupt_hint) hint) | 音频录制流的中断事件回调函数。 | 
+| typedef void(\* [OH_AudioCapturer_OnErrorCallback](_o_h_audio.md#oh_audiocapturer_onerrorcallback)) ([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*renderer, void \*userData, [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) error) | 音频录制流的错误事件回调函数。 | 
 
 
 ### 函数
