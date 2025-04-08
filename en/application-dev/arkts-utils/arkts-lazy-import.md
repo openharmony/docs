@@ -102,16 +102,17 @@ You can use <!--Del-->[<!--DelEnd-->Trace<!--Del-->](../performance/common-trace
 
 ## Syntax Specifications and Supported Versions
 
-The lazy import feature supports the following syntax:
+- The lazy import feature supports the following syntax:
 
 | Syntax                                           | ModuleRequest  | ImportName | LocalName   | Supported API Version|
 |:----------------------------------------------|:---------------|:-----------|:------------|:-----------|
-| import lazy { x } from "mod";                 | "mod"          | "x"        | "x"         | API 12     |
-| import lazy { x as v } from "mod";            | "mod"          | "x"        | "v"         | API 12     |
+| import lazy { x } from "mod";                 | "mod"          | "x"        | "x"         | API 12      |
+| import lazy { x as v } from "mod";            | "mod"          | "x"        | "v"         | API 12      |
 | import lazy x from "mod";                     | "mod"          | "default"  | "x"         | API 18      |
 | import lazy { KitClass } from "@kit.SomeKit"; | "@kit.SomeKit" | "KitClass" | "KitClass"  | API 18      |
 
-Lazy importing of shared modules or modules within a dependency path that includes shared modules: Lazy import remains effective for shared modules. For details about the constraints, see [Shared Module](../arkts-utils/arkts-sendable-module.md).
+- Lazy importing of shared modules or modules within a dependency path that includes shared modules
+    Lazy import remains effective for shared modules. For details about the constraints, see [Shared Module](../arkts-utils/arkts-sendable-module.md).
 
 ### Incorrect Example
 
@@ -170,7 +171,7 @@ If the **type** keyword is added to the syntax, an error is reported.
         let c = "c";
         export { c }
     ```
-    The execution result is as follows:
+    Result:
     ```typescript
         ReferenceError: c is not initaliized
              at func_main_0 (A.ets:2:13)
@@ -189,7 +190,7 @@ If the **type** keyword is added to the syntax, an error is reported.
         let c = "c";
         export { c }
     ```
-    The execution result is as follows:
+    Result:
     ```typescript
     ReferenceError: module environment is undefined
         at func_main_0 (A_ns.js:2:13)

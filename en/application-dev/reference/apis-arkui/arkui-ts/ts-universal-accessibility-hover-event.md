@@ -38,12 +38,12 @@ Represents the accessibility hover event callback, which is effective when acces
 
 | Name             | Type                               | Mandatory| Description                                                        |
 | ------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| isHover             | boolean                             | Yes  | Whether a finger is hovering over the component in accessibility mode. The value **true** means that the finger enters the component, and **false** means that the finger leaves the component.|
+| isHover             | boolean                             | Yes  | Whether a finger is hovering over the component in accessibility mode. The accessibility hover event is converted from a touch event, with the value **true** when the finger enters the component and **false** when it exits.|
 | event | [AccessibilityHoverEvent](#accessibilityhoverevent) | Yes  | **AccessibilityHoverEvent** object.                                  |
 
 ## AccessibilityHoverEvent
 
-Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent).
+Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent8).
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -69,6 +69,8 @@ Enumerates the accessibility hover types.
 | HOVER_CANCEL | 3    | The current event is canceled.|
 
 ## Example
+
+This example demonstrates how to use the **onAccessibilityHover** event to customize a button in accessibility mode.
 
 ```ts
 // xxx.ets

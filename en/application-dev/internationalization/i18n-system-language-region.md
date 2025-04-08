@@ -21,37 +21,37 @@ For details about how to use related APIs, see [System](../reference/apis-locali
 2. Obtain the system language, region, and locale.
    ```ts
    // Obtain the system language.
-   let systemLanguage = i18n.System.getSystemLanguage();  // systemLanguage indicates the current system language.
+   let systemLanguage: string = i18n.System.getSystemLanguage();  // systemLanguage indicates the current system language.
  
    // Obtain the system region.
-   let systemRegion = i18n.System.getSystemRegion();  // systemRegion indicates the current system region.
+   let systemRegion: string = i18n.System.getSystemRegion();  // systemRegion indicates the current system region.
    
    // Obtain the system locale.
-   let systemLocale = i18n.System.getSystemLocale();  // systemLocale is the current system locale.
+   let systemLocale: string = i18n.System.getSystemLocale();  // systemLocale is the current system locale.
    ```
 <!--Del-->
 3. Set the system language, region, and locale.
    ```ts
-   // Set the current system language to zh.
+   // Set the current system language to zh-Hans.
    try {
-     i18n.System.setSystemLanguage('zh'); 
-   } catch(error) {
+     i18n.System.setSystemLanguage('zh-Hans');
+   } catch (error) {
      let err: BusinessError = error as BusinessError;
      console.error(`call System.setSystemLanguage failed, error code: ${err.code}, message: ${err.message}.`);
    }
-   
+
    // Set the current system region to CN.
    try {
-     i18n.System.setSystemRegion('CN'); 
-   } catch(error) {
+     i18n.System.setSystemRegion('CN');
+   } catch (error) {
      let err: BusinessError = error as BusinessError;
      console.error(`call System.setSystemRegion failed, error code: ${err.code}, message: ${err.message}.`);
    }
-   
+
    // Set the current system locale to zh-Hans-CN.
    try {
-     i18n.System.setSystemLocale('zh-Hans-CN'); 
-   } catch(error) {
+     i18n.System.setSystemLocale('zh-Hans-CN');
+   } catch (error) {
      let err: BusinessError = error as BusinessError;
      console.error(`call System.setSystemLocale failed, error code: ${err.code}, message: ${err.message}.`);
    }

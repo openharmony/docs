@@ -652,15 +652,16 @@ try {
   console.error(`[appManager] error: ${code}, ${message}`);
 }
 
+function offCallback(err: BusinessError) {
+  if (err) {
+    console.error(`appmanager.off failed, code: ${err.code}, msg: ${err.message}`);
+  } else {
+    console.info(`appmanager.off success.`);
+  }
+}
+
 // 2.注销应用状态监听器
 try {
-  function offCallback((err: BusinessError)  => {
-    if (err) {
-      console.error(`appmanager.off failed, code: ${err.code}, msg: ${err.message}`);
-    } else {
-      console.info(`appmanager.off success.`);
-    }
-  })
   appManager.off('applicationState', observerId, offCallback);
 } catch (paramError) {
   let code = (paramError as BusinessError).code;

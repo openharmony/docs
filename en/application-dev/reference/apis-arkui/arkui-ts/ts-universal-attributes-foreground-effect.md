@@ -31,11 +31,11 @@ Describes the foreground effect.
 
 | Name       |   Type        |   Mandatory|  Description                       |
 | ----         |  ----         |   ---- | --------------------------  |
-| radius       | number        |   Yes  |   Blur radius.<br>Value range: [0, +∞)<br>Default value: **0**<br> This parameter takes effect only within the component scope. When it is used with other APIs, the effect beyond the component scope does not apply.    |
+| radius       | number        |   Yes  |   Blur radius.<br>Value range: [0, +∞).<br>Default value: **0**.<br> This parameter takes effect only within the component scope. When it is used with other APIs, the effect beyond the component scope does not apply.    |
 
 ## Example
 
-This example shows the usage of **foregroundEffect**.
+This example demonstrates how to set the foreground effect using **foregroundEffect**.
 
 ```ts
 // xxx.ets
@@ -57,6 +57,6 @@ struct Index {
 ```
 
 Below is how the component looks with the foreground effect applied.
-**radius** indicates the blur radius. A larger value creates a more blurred effect.
+A larger radius results in a more pronounced blur.
 
 ![foregroundColor_circle](figures/foregroundEffect.jpg)

@@ -7,11 +7,12 @@
 
 开发者可根据实际的开发需求，参考对应的开发指南及样例：
 
-- [使用Image完成图片解码](../../media/image/image-decoding-native.md)
-- [使用Image完成图片接收器](../../media/image/image-receiver-native.md)
-- [使用Image完成图像变换](../../media/image/image-transformation-native.md)
-- [使用Image处理PixelMap数据](../../media/image/image-pixelmap-operation-native.md)
-- [使用Image完成图片编码](../../media/image/image-encoding-native.md)
+- [图片解码](../../media/image/image-decoding-native.md)
+- [图片编码](../../media/image/image-encoding-native.md)
+- [图像变换](../../media/image/image-transformation-native.md)
+- [位图操作](../../media/image/image-pixelmap-operation-native.md)
+- [图片接收](../../media/image/image-receiver-native.md)
+
 
 **系统能力：** SystemCapability.Multimedia.Image
 
@@ -25,13 +26,13 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [image_mdk.h](image__mdk_8h.md) | 声明访问图像剪辑矩形、大小、格式和组件数据的方法。 | 
+| [image_mdk.h](image__mdk_8h.md) | 声明访问图像矩形、大小、格式和组件数据的方法。 | 
 | [image_mdk_common.h](image__mdk__common_8h.md) | 声明图像常用的枚举值和结构体。 |
 | [image_packer_mdk.h](image__packer__mdk_8h.md) | 声明用于将图像编码到缓冲区或文件的方法。 | 
 | [image_pixel_map_mdk.h](image__pixel__map__mdk_8h.md) | 声明可以锁定并访问PixelMap数据的方法，声明解锁的方法。 | 
 | [image_pixel_map_napi.h](image__pixel__map__napi_8h.md) | （已废弃）声明可以锁定并访问PixelMap数据的方法，声明解锁的方法。 | 
 | [image_receiver_mdk.h](image__receiver__mdk_8h.md) | 声明从native层获取图片数据的方法。 | 
-| [image_source_mdk.h](image__source__mdk_8h.md) | 声明将图片源解码成像素位图的方法。 |
+| [image_source_mdk.h](image__source__mdk_8h.md) | 声明将ImageSource解码成像素位图的方法。 |
 
 
 ### 结构体
@@ -592,7 +593,7 @@ int32_t OHOS::Media::OH_AccessPixels (napi_env env, napi_value value, void ** ad
 
 **起始版本：** 8
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -625,7 +626,7 @@ int32_t OH_GetImageInfo (napi_env env, napi_value value, OhosPixelMapInfo * info
 
 **起始版本：** 8
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -656,7 +657,7 @@ int32_t OH_Image_ClipRect (const ImageNative * native, struct OhosImageRect * re
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -692,7 +693,7 @@ int32_t OH_Image_Format (const ImageNative * native, int32_t * format )
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -729,7 +730,7 @@ int32_t OH_Image_GetComponent (const ImageNative * native, int32_t componentType
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -766,7 +767,7 @@ ImageNative* OH_Image_InitImageNative (napi_env env, napi_value source )
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -792,7 +793,7 @@ int32_t OH_Image_Receiver_CreateImageReceiver (napi_env env, struct OhosImageRec
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -842,7 +843,7 @@ int32_t OH_Image_Receiver_GetCapacity (const ImageReceiverNative * native, int32
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -879,7 +880,7 @@ int32_t OH_Image_Receiver_GetFormat (const ImageReceiverNative * native, int32_t
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -916,7 +917,7 @@ int32_t OH_Image_Receiver_GetReceivingSurfaceId (const ImageReceiverNative * nat
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -960,7 +961,7 @@ int32_t OH_Image_Receiver_GetSize (const ImageReceiverNative * native, struct Oh
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -996,7 +997,7 @@ ImageReceiverNative* OH_Image_Receiver_InitImageReceiverNative (napi_env env, na
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1022,7 +1023,7 @@ int32_t OH_Image_Receiver_On (const ImageReceiverNative * native, OH_Image_Recei
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1067,7 +1068,7 @@ int32_t OH_Image_Receiver_ReadLatestImage (const ImageReceiverNative * native, n
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1118,7 +1119,7 @@ int32_t OH_Image_Receiver_ReadNextImage (const ImageReceiverNative * native, nap
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1166,7 +1167,7 @@ int32_t OH_Image_Receiver_Release (ImageReceiverNative * native)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1200,7 +1201,7 @@ int32_t OH_Image_Release (ImageNative * native)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1233,7 +1234,7 @@ int32_t OH_Image_Size (const ImageNative * native, struct OhosImageSize * size )
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1269,7 +1270,7 @@ int32_t OH_ImagePacker_Create (napi_env env, napi_value * res )
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1295,7 +1296,7 @@ ImagePacker_Native* OH_ImagePacker_InitNative (napi_env env, napi_value packer )
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1321,7 +1322,7 @@ int32_t OH_ImagePacker_PackToData (ImagePacker_Native * native, napi_value sourc
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1364,7 +1365,7 @@ int32_t OH_ImagePacker_PackToFile (ImagePacker_Native * native, napi_value sourc
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1410,7 +1411,7 @@ int32_t OH_ImagePacker_Release (ImagePacker_Native * native)
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1441,7 +1442,7 @@ int32_t OH_ImageSource_Create (napi_env env, struct OhosImageSource * src, struc
 
 **替代接口：** [OH_ImageSource_CreateFromUri](#oh_imagesource_createfromuri)，[OH_ImageSource_CreateFromFd](#oh_imagesource_createfromfd)，[OH_ImageSource_CreateFromData](#oh_imagesource_createfromdata)。
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1505,7 +1506,7 @@ int32_t OH_ImageSource_CreateFromData (napi_env env, uint8_t * data, size_t data
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1542,7 +1543,7 @@ int32_t OH_ImageSource_CreateFromFd (napi_env env, int32_t fd, struct OhosImageS
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1578,7 +1579,7 @@ int32_t OH_ImageSource_CreateFromRawFile (napi_env env, RawFileDescriptor rawFil
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1614,7 +1615,7 @@ int32_t OH_ImageSource_CreateFromUri (napi_env env, char * uri, size_t size, str
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1655,7 +1656,7 @@ int32_t OH_ImageSource_CreateIncremental (napi_env env, struct OhosImageSource *
 
 **替代接口：** [OH_ImageSource_CreateIncrementalFromData](#oh_imagesource_createincrementalfromdata)
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1719,7 +1720,7 @@ int32_t OH_ImageSource_CreateIncrementalFromData (napi_env env, uint8_t * data, 
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1756,7 +1757,7 @@ int32_t OH_ImageSource_CreatePixelMap (const ImageSourceNative * native, struct 
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1842,7 +1843,7 @@ int32_t OH_ImageSource_CreatePixelMapList (const ImageSourceNative * native, str
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1931,7 +1932,7 @@ int32_t OH_ImageSource_GetDelayTime (const ImageSourceNative * native, struct Oh
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1993,7 +1994,7 @@ int32_t OH_ImageSource_GetFrameCount (const ImageSourceNative * native, uint32_t
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2055,7 +2056,7 @@ int32_t OH_ImageSource_GetImageInfo (const ImageSourceNative * native, int32_t i
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2119,7 +2120,7 @@ int32_t OH_ImageSource_GetImageProperty (const ImageSourceNative * native, struc
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2182,7 +2183,7 @@ int32_t OH_ImageSource_GetSupportedFormats (struct OhosImageSourceSupportedForma
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2219,7 +2220,7 @@ ImageSourceNative* OH_ImageSource_InitNative (napi_env env, napi_value source )
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2245,7 +2246,7 @@ int32_t OH_ImageSource_ModifyImageProperty (const ImageSourceNative * native, st
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2308,7 +2309,7 @@ int32_t OH_ImageSource_Release (ImageSourceNative * native)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2345,7 +2346,7 @@ int32_t OH_ImageSource_UpdateData (const ImageSourceNative * native, struct Ohos
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2429,7 +2430,7 @@ int32_t OH_PixelMap_AccessPixels (const NativePixelMap * native, void ** addr )
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2492,7 +2493,7 @@ int32_t OH_PixelMap_CreateAlphaPixelMap (napi_env env, napi_value source, napi_v
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2573,7 +2574,7 @@ int32_t OH_PixelMap_CreatePixelMap (napi_env env, OhosPixelMapCreateOps info, vo
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2657,7 +2658,7 @@ int32_t OH_PixelMap_CreatePixelMapWithStride (napi_env env, OhosPixelMapCreateOp
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2705,7 +2706,7 @@ int32_t OH_PixelMap_Crop (const NativePixelMap * native, int32_t x, int32_t y, i
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2774,7 +2775,7 @@ int32_t OH_PixelMap_Flip (const NativePixelMap * native, int32_t x, int32_t y )
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2838,7 +2839,7 @@ int32_t OH_PixelMap_GetBytesNumberPerRow (const NativePixelMap * native, int32_t
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2873,7 +2874,7 @@ int32_t OH_PixelMap_GetDensity (const NativePixelMap * native, int32_t * density
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2910,7 +2911,7 @@ int32_t OH_PixelMap_GetImageInfo (const NativePixelMap * native, OhosPixelMapInf
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2976,7 +2977,7 @@ int32_t OH_PixelMap_GetIsEditable (const NativePixelMap * native, int32_t * edit
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3011,7 +3012,7 @@ NativePixelMap* OH_PixelMap_InitNativePixelMap (napi_env env, napi_value source 
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3033,7 +3034,7 @@ int32_t OH_PixelMap_IsSupportAlpha (const NativePixelMap * native, int32_t * alp
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3071,7 +3072,7 @@ int32_t OH_PixelMap_Rotate (const NativePixelMap * native, float angle )
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3137,7 +3138,7 @@ int32_t OH_PixelMap_Scale (const NativePixelMap * native, float x, float y )
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3206,7 +3207,7 @@ int32_t OH_PixelMap_ScaleWithAntiAliasing (const NativePixelMap * native, float 
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3249,7 +3250,7 @@ int32_t OH_PixelMap_SetAlphaAble (const NativePixelMap * native, int32_t alpha )
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3284,7 +3285,7 @@ int32_t OH_PixelMap_SetDensity (const NativePixelMap * native, int32_t density )
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3319,7 +3320,7 @@ int32_t OH_PixelMap_SetOpacity (const NativePixelMap * native, float opacity )
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3356,7 +3357,7 @@ int32_t OH_PixelMap_Translate (const NativePixelMap * native, float x, float y )
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3420,7 +3421,7 @@ int32_t OH_PixelMap_UnAccessPixels (const NativePixelMap * native)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3485,7 +3486,7 @@ int32_t OH_UnAccessPixels (napi_env env, napi_value value )
 
 **起始版本：** 8
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3507,7 +3508,7 @@ int32_t OH_UnAccessPixels (napi_env env, napi_value value )
 int32_t OhosImageSourceInfo::alphaType
 ```
 **描述**
-图像源透明度类型
+图像源透明度类型。
 
 
 ### buffer [1/2]
@@ -3516,7 +3517,7 @@ int32_t OhosImageSourceInfo::alphaType
 uint8_t* OhosImageSource::buffer = nullptr
 ```
 **描述**
-图像源缓冲区资源，接受格式化包缓冲区或者base64缓冲区
+图像源缓冲区资源，接受格式化包缓冲区或者base64缓冲区。
 
 **起始版本：** 10
 
@@ -3526,7 +3527,7 @@ uint8_t* OhosImageSource::buffer = nullptr
 uint8_t* OhosImageSourceUpdateData::buffer = nullptr
 ```
 **描述**
-图像源更新数据缓冲区
+图像源更新数据缓冲区。
 
 **起始版本：** 10
 
@@ -3537,7 +3538,7 @@ uint8_t* OhosImageSourceUpdateData::buffer = nullptr
 size_t OhosImageSource::bufferSize = 0
 ```
 **描述**
-图像源缓冲区资源大小
+图像源缓冲区资源大小。
 
 
 ### bufferSize [2/2]
@@ -3546,7 +3547,7 @@ size_t OhosImageSource::bufferSize = 0
 size_t OhosImageSourceUpdateData::bufferSize = 0
 ```
 **描述**
-图像源更新数据缓冲区大小
+图像源更新数据缓冲区大小。
 
 **起始版本：** 10
 
@@ -3557,7 +3558,7 @@ size_t OhosImageSourceUpdateData::bufferSize = 0
 int32_t OhosImageSourceInfo::colorSpace
 ```
 **描述**
-图像源色彩空间
+图像源色彩空间。
 
 **起始版本：** 10
 
@@ -3568,7 +3569,7 @@ int32_t OhosImageSourceInfo::colorSpace
 int32_t* OhosImageSourceDelayTimeList::delayTimeList
 ```
 **描述**
-图像源延迟时间列表头地址
+图像源延迟时间列表头地址。
 
 **起始版本：** 10
 
@@ -3579,7 +3580,7 @@ int32_t* OhosImageSourceDelayTimeList::delayTimeList
 int32_t OhosImageSourceOps::density
 ```
 **描述**
-图像源像素密度
+图像源像素密度。
 
 **起始版本：** 10
 
@@ -3590,7 +3591,7 @@ int32_t OhosImageSourceOps::density
 int32_t OhosImageSourceInfo::density
 ```
 **描述**
-图像源密度, 由 [OH_ImageSource_Create](#oh_imagesource_create) 设置
+图像源密度, 由 [OH_ImageSource_Create](#oh_imagesource_create) 设置。
 
 **起始版本：** 10
 
@@ -3601,7 +3602,7 @@ int32_t OhosImageSourceInfo::density
 int8_t OhosImageDecodingOps::editable
 ```
 **描述**
-定义输出的像素位图是否可编辑
+定义输出的像素位图是否可编辑。
 
 **起始版本：** 10
 
@@ -3612,7 +3613,7 @@ int8_t OhosImageDecodingOps::editable
 int32_t OhosImageSource::fd = -1
 ```
 **描述**
-图像源文件资源描述符
+图像源文件资源描述符。
 
 **起始版本：** 10
 
@@ -3623,7 +3624,7 @@ int32_t OhosImageSource::fd = -1
 int32_t OhosImageDecodingOps::fitDensity
 ```
 **描述**
-定义解码目标的像素密度
+定义解码目标的像素密度。
 
 **起始版本：** 10
 
@@ -3634,7 +3635,7 @@ int32_t OhosImageDecodingOps::fitDensity
 char* OhosImageSourceSupportedFormat::format = nullptr
 ```
 **描述**
-图像源支持的格式字符串头地址
+图像源支持的格式字符串头地址。
 
 **起始版本：** 10
 
@@ -3645,7 +3646,7 @@ char* OhosImageSourceSupportedFormat::format = nullptr
 int32_t OhosImageRegion::height
 ```
 **描述**
-高度范围，用pixels表示
+高度范围，用pixels表示。
 
 **起始版本：** 10
 
@@ -3655,7 +3656,7 @@ int32_t OhosImageRegion::height
 uint32_t OhosImageDecodingOps::index
 ```
 **描述**
-定义图像源解码指数
+定义图像源解码序号。默认值为0，表示第一帧图像。单帧图像的index值只能取0。对于GIF等含有多帧图像的动图，取值范围是(0 ~ N-1)，取值为N时表示第N-1帧图像。 
 
 **起始版本：** 10
 
@@ -3666,7 +3667,7 @@ uint32_t OhosImageDecodingOps::index
 int8_t OhosImageSourceUpdateData::isCompleted = 0
 ```
 **描述**
-图像源更新数据在此节中完成
+图像源更新数据在此节中完成。
 
 **起始版本：** 10
 
@@ -3677,7 +3678,7 @@ int8_t OhosImageSourceUpdateData::isCompleted = 0
 uint32_t OhosImageSourceUpdateData::offset = 0
 ```
 **描述**
-图像源更新数据缓冲区的开端
+图像源更新数据缓冲区的开端。
 
 **起始版本：** 10
 
@@ -3843,7 +3844,7 @@ const char* OHOS_IMAGE_PROPERTY_SCENE_TYPE = "SceneType"
 int32_t OhosImageSourceOps::pixelFormat
 ```
 **描述**
-图像源像素格式，通常用于描述YUV缓冲区
+图像源像素格式，通常用于描述YUV缓冲区。
 
 **起始版本：** 10
 
@@ -3854,7 +3855,7 @@ int32_t OhosImageSourceOps::pixelFormat
 int32_t OhosImageDecodingOps::pixelFormat
 ```
 **描述**
-定义输出的像素格式
+定义输出的像素格式。
 
 **起始版本：** 10
 
@@ -3865,7 +3866,7 @@ int32_t OhosImageDecodingOps::pixelFormat
 int32_t OhosImageSourceInfo::pixelFormat
 ```
 **描述**
-图像源像素格式, 由 [OH_ImageSource_Create](#oh_imagesource_create) 设置
+图像源像素格式, 由 [OH_ImageSource_Create](#oh_imagesource_create) 设置。
 
 **起始版本：** 10
 
@@ -3876,7 +3877,7 @@ int32_t OhosImageSourceInfo::pixelFormat
 struct OhosImageRegion OhosImageDecodingOps::region
 ```
 **描述**
-定义图像源解码的像素范围
+定义图像源解码的像素范围。
 
 **起始版本：** 10
 
@@ -3887,7 +3888,7 @@ struct OhosImageRegion OhosImageDecodingOps::region
 uint32_t OhosImageDecodingOps::rotate
 ```
 **描述**
-定义解码旋转选项
+定义解码旋转选项。
 
 **起始版本：** 10
 
@@ -3898,7 +3899,7 @@ uint32_t OhosImageDecodingOps::rotate
 uint32_t OhosImageDecodingOps::sampleSize
 ```
 **描述**
-定义解码样本大小选项
+定义解码样本大小选项。
 
 **起始版本：** 10
 
@@ -3909,7 +3910,7 @@ uint32_t OhosImageDecodingOps::sampleSize
 struct OhosImageSize OhosImageSourceOps::size
 ```
 **描述**
-图像源像素宽高的大小
+图像源像素宽高的大小。
 
 **起始版本：** 10
 
@@ -3920,7 +3921,7 @@ struct OhosImageSize OhosImageSourceOps::size
 struct OhosImageSize OhosImageDecodingOps::size
 ```
 **描述**
-定义解码目标像素宽高的大小
+定义解码目标像素宽高的大小。
 
 **起始版本：** 10
 
@@ -3931,7 +3932,7 @@ struct OhosImageSize OhosImageDecodingOps::size
 struct OhosImageSize OhosImageSourceInfo::size
 ```
 **描述**
-图像源像素宽高的大小
+图像源像素宽高的大小。
 
 **起始版本：** 10
 
@@ -3942,7 +3943,7 @@ struct OhosImageSize OhosImageSourceInfo::size
 size_t OhosImageSourceDelayTimeList::size = 0
 ```
 **描述**
-图像源延迟时间列表大小
+图像源延迟时间列表大小。
 
 **起始版本：** 10
 
@@ -3953,7 +3954,7 @@ size_t OhosImageSourceDelayTimeList::size = 0
 size_t OhosImageSourceSupportedFormat::size = 0
 ```
 **描述**
-图像源支持的格式字符串大小
+图像源支持的格式字符串大小。
 
 **起始版本：** 10
 
@@ -3964,7 +3965,7 @@ size_t OhosImageSourceSupportedFormat::size = 0
 size_t OhosImageSourceSupportedFormatList::size = 0
 ```
 **描述**
-图像源支持的格式字符串列表大小
+图像源支持的格式字符串列表大小。
 
 **起始版本：** 10
 
@@ -3975,7 +3976,7 @@ size_t OhosImageSourceSupportedFormatList::size = 0
 size_t OhosImageSourceProperty::size = 0
 ```
 **描述**
-定义图像源属性键值字符串大小
+定义图像源属性键值字符串大小。
 
 **起始版本：** 10
 
@@ -3986,7 +3987,7 @@ size_t OhosImageSourceProperty::size = 0
 struct OhosImageSourceSupportedFormat** OhosImageSourceSupportedFormatList::supportedFormatList = nullptr
 ```
 **描述**
-图像源支持的格式字符串列表头地址
+图像源支持的格式字符串列表头地址。
 
 **起始版本：** 10
 
@@ -3997,7 +3998,7 @@ struct OhosImageSourceSupportedFormat** OhosImageSourceSupportedFormatList::supp
 uint32_t OhosImageSourceUpdateData::updateLength = 0
 ```
 **描述**
-图像源更新数据缓冲区的更新数据长度
+图像源更新数据缓冲区的更新数据长度。
 
 **起始版本：** 10
 
@@ -4008,7 +4009,7 @@ uint32_t OhosImageSourceUpdateData::updateLength = 0
 char* OhosImageSource::uri = nullptr
 ```
 **描述**
-图像源资源标识符，接受文件资源或者base64资源
+图像源资源标识符，接受文件资源或者base64资源。
 
 **起始版本：** 10
 
@@ -4019,7 +4020,7 @@ char* OhosImageSource::uri = nullptr
 size_t OhosImageSource::uriSize = 0
 ```
 **描述**
-图像源资源长度
+图像源资源长度。
 
 **起始版本：** 10
 
@@ -4030,7 +4031,7 @@ size_t OhosImageSource::uriSize = 0
 char* OhosImageSourceProperty::value = nullptr
 ```
 **描述**
-定义图像源属性键值字符串头地址
+定义图像源属性键值字符串头地址。
 
 **起始版本：** 10
 
@@ -4041,7 +4042,7 @@ char* OhosImageSourceProperty::value = nullptr
 int32_t OhosImageRegion::width
 ```
 **描述**
-宽度范围，用pixels表示
+宽度范围，用pixels表示。
 
 **起始版本：** 10
 
@@ -4052,7 +4053,7 @@ int32_t OhosImageRegion::width
 int32_t OhosImageRegion::x
 ```
 **描述**
-起始x坐标，用pixels表示
+起始x坐标，用pixels表示。
 
 **起始版本：** 10
 
@@ -4063,7 +4064,7 @@ int32_t OhosImageRegion::x
 int32_t OhosImageRegion::y
 ```
 **描述**
-起始y坐标，用pixels表示
+起始y坐标，用pixels表示。
 
 **起始版本：** 10
 

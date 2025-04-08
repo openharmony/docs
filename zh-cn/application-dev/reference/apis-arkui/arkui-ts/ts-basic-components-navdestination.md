@@ -26,6 +26,8 @@
 
 NavDestination()
 
+创建[Navigation](ts-basic-components-navigation.md)子页面的根容器。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -138,7 +140,7 @@ mode(value: NavDestinationMode)
 
 | 参数名 | 类型                                                 | 必填 | 说明                                                         |
 | ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [NavDestinationMode](#navdestinationmode枚举说明-11) | 是   | NavDestination类型。<br/>默认值: NavDestinationMode.STANDARD |
+| value  | [NavDestinationMode](#navdestinationmode枚举说明11) | 是   | NavDestination类型。<br/>默认值: NavDestinationMode.STANDARD |
 
 ### backButtonIcon<sup>11+</sup>
 
@@ -370,7 +372,7 @@ preferredOrientation(orientation: Optional&lt;Orientation&gt;)
 > 该属性满足如下全部条件时才有效：
 > 1. NavDestination属于应用主窗口页面，并且主窗口为全屏窗口；
 > 2. NavDestination所属的Navigation的大小占满整个应用页面；
-> 3. NavDestination类型为[STANDARD](#navdestinationmode枚举说明-11)。
+> 3. NavDestination类型为[STANDARD](#navdestinationmode枚举说明11)。
 >
 > 设置显示方向的实际效果依赖于具体的设备支持情况，具体参考窗口的[setPreferredOrientation](../js-apis-window.md#setpreferredorientation9-1)接口。
 
@@ -396,7 +398,7 @@ enableStatusBar(enabled: Optional&lt;boolean&gt;, animated?: boolean)
 > 1. NavDestination属于应用主窗口页面，并且主窗口为全屏窗口；
 > 2. NavDestination所属的Navigation的大小占满整个页面；
 > 3. NavDestination的大小占满整个Navigation组件；
-> 4. NavDestination类型为[STANDARD](#navdestinationmode枚举说明-11)。
+> 4. NavDestination类型为[STANDARD](#navdestinationmode枚举说明11)。
 >
 > 设置系统状态栏的实际效果依赖于具体的设备支持情况，具体参考窗口的[setSpecificSystemBarEnabled](../js-apis-window.md#setspecificsystembarenabled11)接口。
 
@@ -423,7 +425,7 @@ enableNavigationIndicator(enabled: Optional&lt;boolean&gt;)
 > 1. NavDestination属于应用主窗口页面，并且主窗口为全屏窗口；
 > 2. NavDestination所属的Navigation的大小占满整个页面；
 > 3. NavDestination的大小占满整个Navigation组件；
-> 4. NavDestination类型为[STANDARD](#navdestinationmode枚举说明-11)。
+> 4. NavDestination类型为[STANDARD](#navdestinationmode枚举说明11)。
 >
 > 设置系统导航条的实际效果依赖于具体的设备支持情况，具体参考窗口的[setSpecificSystemBarEnabled](../js-apis-window.md#setspecificsystembarenabled11)接口。
 
@@ -437,7 +439,9 @@ enableNavigationIndicator(enabled: Optional&lt;boolean&gt;)
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | enabled  | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;boolean&gt; | 是   | 进入该NavDestination后，系统导航条的显示/隐藏状态。 |
 
-## NavDestinationMode枚举说明 <sup>11+</sup>
+## NavDestinationMode枚举说明<sup>11+</sup>
+
+NavDestination类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -449,6 +453,8 @@ enableNavigationIndicator(enabled: Optional&lt;boolean&gt;)
 | DIALOG | 1 | 默认透明，进出页面栈不影响下层NavDestination的生命周期。<br />API version 13之前，默认无系统转场动画。从API version 13开始，支持系统转场动画。  |
 
 ## NavigationSystemTransitionType<sup>14+</sup>枚举说明
+
+系统转场动画类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -574,35 +580,35 @@ NavDestination返回时触发该回调。
 | ------ | ------ | ---- | ---------------- |
 |callback | [Optional](./ts-universal-attributes-custom-property.md)\<[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<ESObject\>\>| 是 | 页面返回回调，入参为pop接口传入的result参数。如果不传该参数，入参为undefined。|
 
-### onActive<sup>18+</sup>
+### onActive<sup>17+</sup>
 
 onActive(callback:&nbsp;Optional\<Callback\<NavDestinationActiveReason\>\>)
 
 NavDestination处于激活态（处于栈顶可操作，且上层无特殊组件遮挡）时，触发该回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ---- | ---------------- |
-|callback | [Optional](./ts-universal-attributes-custom-property.md#optional12)\<[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[NavDestinationActiveReason](#navdestinationactivereason18)\>\>| 是 | NavDestination由非激活态变为激活态的原因。|
+|callback | [Optional](./ts-universal-attributes-custom-property.md#optional12)\<[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[NavDestinationActiveReason](#navdestinationactivereason17)\>\>| 是 | NavDestination由非激活态变为激活态的原因。|
 
-### onInactive<sup>18+</sup>
+### onInactive<sup>17+</sup>
 
 onInactive(callback: &nbsp;Optional\<Callback\<NavDestinationActiveReason\>\>)
 
 NavDestination处于非激活态（处于非栈顶不可操作，或处于栈顶时上层有特殊组件遮挡）时，触发该回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ---- | ---------------- |
-|callback | [Optional](./ts-universal-attributes-custom-property.md#optional12)\<[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[NavDestinationActiveReason](#navdestinationactivereason18)\>\>| 是 | NavDestination由激活态变为非激活态的原因。|
+|callback | [Optional](./ts-universal-attributes-custom-property.md#optional12)\<[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[NavDestinationActiveReason](#navdestinationactivereason17)\>\>| 是 | NavDestination由激活态变为非激活态的原因。|
 
 ### onNewParam<sup>18+</sup>
 
@@ -625,6 +631,8 @@ onNewParam(callback: &nbsp;Optional\<Callback\<ESObject\>\>)
 
 ## NavDestinationCommonTitle
 
+NavDestination通用标题。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -636,6 +644,8 @@ onNewParam(callback: &nbsp;Optional\<Callback\<ESObject\>\>)
 
 ## NavDestinationCustomTitle
 
+NavDestination自定义标题。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -646,6 +656,8 @@ onNewParam(callback: &nbsp;Optional\<Callback\<ESObject\>\>)
 | height  | [TitleHeight](ts-appendix-enums.md#titleheight9) \| [Length](ts-types.md#length) | 是    | 设置标题栏高度。<br/>取值范围：[0, +∞)。 |
 
 ## NavDestinationContext<sup>11+</sup>
+
+NavDestination上下文信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -659,6 +671,8 @@ onNewParam(callback: &nbsp;Optional\<Callback\<ESObject\>\>)
 
 getConfigInRouteMap(): RouteMapConfig |undefined
 
+获取当前NavDestination的路由配置信息。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -671,6 +685,8 @@ getConfigInRouteMap(): RouteMapConfig |undefined
 | undefined | 当该页面不是通过路由表配置时返回undefined。 |
 
 ## RouteMapConfig<sup>12+</sup>
+
+路由配置信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -695,11 +711,11 @@ getConfigInRouteMap(): RouteMapConfig |undefined
 | parent | [Scroller](./ts-container-scroll.md#scroller) | 是 | 可滚动容器组件的控制器。 |
 | child | [Scroller](./ts-container-scroll.md#scroller) | 是 | 可滚动容器组件的控制器，child对应的组件需要是parent对应组件的子组件，且组件间存在嵌套滚动关系。|
 
-### NavDestinationActiveReason<sup>18+</sup>
+### NavDestinationActiveReason<sup>17+</sup>
 
 NavDestination激活态或者非激活态变化的原因。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

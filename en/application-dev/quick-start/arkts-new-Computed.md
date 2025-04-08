@@ -117,7 +117,7 @@ get varName(): T {
   ```
 
 ## Use Scenarios
-### When the computed property changes, the **getter** accessor decorated by \@Computed is solved only once.
+### \@Computed Decorated getter Accessor Is Solved Only Once Upon Property Change
 1. Using computed property in a custom component.
 
 - Click the first button to change the value of **lastName**, triggering **\@Computed fullName** recomputation.
@@ -248,7 +248,7 @@ struct MyView {
 }
 ```
 ### \@Computed Decorated Properties Initialize \@Param
-The following example shows how \@Computed Initialize \@Param.
+The following example uses \@Computed to initialize \@Param.
 - Click **Button('-')** and **Button('+')** to change the offering quantity. The **quantity** is decorated by \@Trace and can be observed when it is changed.
 - The change of **quantity** triggers the recomputation of **total** and **qualifiesForDiscount**. In this way, you can get a result of the total price of the offering and the available discounts.
 - The change of **total** and **qualifiesForDiscount** triggers the update of the **Text** component corresponding to the **Child** component.

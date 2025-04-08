@@ -24,5 +24,5 @@ The **camera.h** file declares the basic concepts of the camera device.
 | Name| Description| 
 | -------- | -------- |
 | [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CameraDevice_GetCameraOrientation](_o_h___camera.md#oh_cameradevice_getcameraorientation) ([Camera_Device](_camera___device.md) \*camera, uint32_t \*orientation) | Obtains the sensor direction of a camera device. | 
-| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CameraDevice_GetHostDeviceName](_o_h___camera.md#oh_cameradevice_gethostdevicename) ([Camera_Device](_camera___device.md) \*camera, char \*\*hostDeviceName) | Obtains the name of a remote device.| 
-| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CameraDevice_GetHostDeviceType](_o_h___camera.md#oh_cameradevice_gethostdevicetype) ([Camera_Device](_camera___device.md) \*camera, [Camera_HostDeviceType](_o_h___camera.md#camera_hostdevicetype) \*hostDeviceType) | Obtains the type of a remote device.| 
+| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode)  [OH_CameraDevice_GetHostDeviceName](_o_h___camera.md#oh_cameradevice_gethostdevicename) ([Camera_Device](_camera___device.md) \*camera, char \*\*hostDeviceName) | Obtains the name of a remote device.| 
+| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode)  [OH_CameraDevice_GetHostDeviceType](_o_h___camera.md#oh_cameradevice_gethostdevicetype) ([Camera_Device](_camera___device.md) \*camera, [Camera_HostDeviceType](_o_h___camera.md#camera_hostdevicetype) \*hostDeviceType) | Obtains the type of a remote device.| 

@@ -27,7 +27,7 @@ The **BundleInfo** module defines the bundle information. A third-party applicat
 | updateTime                        | number                                                       | Yes  | No  | Time when the bundle was updated.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | routerMap<sup>12+</sup>           | Array\<[RouterItem](js-apis-bundleManager-hapModuleInfo.md#routeritem12)>           | Yes  | No  | Router table of the application. The table is obtained by deduplicating and combining the **routerMap** information under **hapModulesInfo** based on the **name** field in **RouterItem**. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_HAP_MODULE** and **GET_BUNDLE_INFO_WITH_ROUTER_MAP** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | appIndex<sup>12+</sup>    | number    | Yes  | No  | Index of an application clone. It takes effect only for cloned applications.|
-| firstInstallTime<sup>16+</sup>                        | number                                                       | Yes  | Yes  | Time when the application is installed on the current device for the first time.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
+| firstInstallTime<sup>18+</sup>                        | number                                                       | Yes  | Yes  | Time when the application is installed on the current device for the first time.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 
 ## ReqPermissionDetail

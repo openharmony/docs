@@ -9,6 +9,7 @@
 
 **相关模块：**[OH_Print](_o_h___print.md)
 
+**所在头文件：**[ohprint.h](ohprint_8h.md)
 
 ## 汇总
 
@@ -32,6 +33,7 @@
 uint32_t Print_Margin::bottomMargin
 ```
 **描述**
+
 下边距。
 
 
@@ -41,6 +43,7 @@ uint32_t Print_Margin::bottomMargin
 uint32_t Print_Margin::leftMargin
 ```
 **描述**
+
 左边距。
 
 
@@ -50,6 +53,7 @@ uint32_t Print_Margin::leftMargin
 uint32_t Print_Margin::rightMargin
 ```
 **描述**
+
 右边距。
 
 
@@ -59,4 +63,5 @@ uint32_t Print_Margin::rightMargin
 uint32_t Print_Margin::topMargin
 ```
 **描述**
+
 上边距。

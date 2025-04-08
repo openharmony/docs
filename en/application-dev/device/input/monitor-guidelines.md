@@ -23,9 +23,9 @@ The following table lists the APIs for event listening. For details, see [Input]
 
 ## How to Develop
 
-### Linking a Dynamic Library
+### Linking Dynamic Libraries
 
-Before calling interception-related APIs, you need to link the related dynamic library. You can do this by editing the **CMakeList.txt** file as follows:
+Before calling interception-related APIs, you need to link the related dynamic libraries. To link dynamic libraries, add the following configuration to the **CMakeList.txt** file:
 
 ```txt
 target_link_libraries(entry PUBLIC libohinput.so)
