@@ -1,4 +1,4 @@
-# @ohos.mulitmodalAwareness.deviceStatus（设备状态感知）
+# @ohos.multimodalAwareness.deviceStatus（设备状态感知）
 本模块，提供对设备状态的感知能力
 
 > **说明：**
