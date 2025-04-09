@@ -44,7 +44,7 @@
 | [AGnssUserPlaneProtocol](#agnssuserplaneprotocol) { AGNSS_TYPE_SUPL = 1 , AGNSS_TYPE_C2K = 2 , AGNSS_TYPE_SUPL_IMS = 3 , AGNSS_TYPE_SUPL_EIMS = 4 } | 定义AGNSS用户面的协议类型。 | 
 | [DataLinkSetUpType](#datalinksetuptype) { ESTABLISH_DATA_CONNECTION = 1 , RELEASE_DATA_CONNECTION = 2 } | 定义数据链路的操作类型。 | 
 | [CellIdType](#cellidtype) { CELLID_TYPE_GSM = 1 , CELLID_TYPE_UMTS = 2 , CELLID_TYPE_LTE = 3 , CELLID_TYPE_NR = 4 } | 定义Cellid类型。 | 
-| [SubscriberSetIdType](#subscribersetidtype) { SETID_TYPE_NONE = 0 , SETID_TYPE_IMSI = 1 , SETID_TYPE_MSISDM = 2 } | 定义Setid类型。 | 
+| [SubscriberSetIdType](#subscribersetidtype) { SETID_TYPE_NONE = 0 , SETID_TYPE_IMSI = 1 , SETID_TYPE_MSISDM = 2 } | 定义SetId类型。 | 
 
 
 ## 枚举类型说明
