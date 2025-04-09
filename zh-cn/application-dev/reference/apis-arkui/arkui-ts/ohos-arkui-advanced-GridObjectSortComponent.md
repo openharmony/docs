@@ -25,6 +25,8 @@ import { GridObjectSortComponent, GridObjectSortComponentItem, GridObjectSortCom
 
 ## GridObjectSortComponent
 
+网格对象排序组件。
+
 GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Array\<GridObjectSortComponentItem>, onSave: (select: Array\<GridObjectSortComponentItem>, unselect: Array\<GridObjectSortComponentItem>) => void, onCancel: () => void })
 
 **装饰器类型：**\@Component
@@ -43,6 +45,8 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 ##  GridObjectSortComponentOptions
 
+网格对象排序组件的组件配置信息。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -58,6 +62,8 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 ## GridObjectSortComponentType
 
+配置网格对象排序组件节点的类型，配置名称 IMAGE_TEXT 为图片文字类型，TEXT 为文字类型。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -68,6 +74,8 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 | TEXT     | 'text'       | 文字类型。     |
 
 ## GridObjectSortComponentItem
+
+网格对象排序组件的组件数据配置信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
