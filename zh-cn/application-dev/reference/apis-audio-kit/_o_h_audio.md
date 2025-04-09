@@ -948,7 +948,7 @@ enum OH_AudioStream_SampleFormat
 | AUDIOSTREAM_SAMPLE_S16LE  | Short 16位小端。   | 
 | AUDIOSTREAM_SAMPLE_S24LE  | Short 24位小端。   | 
 | AUDIOSTREAM_SAMPLE_S32LE  | Short 32位小端。   | 
-| AUDIOSTREAM_SAMPLE_F32LE  | Float 32位小端。<br>**起始版本：** 18   | 
+| AUDIOSTREAM_SAMPLE_F32LE  | Float 32位小端。<br>**起始版本：** 17   | 
 
 
 ### OH_AudioStream_SourceType
