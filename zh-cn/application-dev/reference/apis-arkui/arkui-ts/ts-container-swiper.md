@@ -330,11 +330,7 @@ curve(value: Curve | string | ICurve)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------- |
-<<<<<<< HEAD
 | value  | [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;string<sup>(deprecated)</sup>&nbsp;\|&nbsp;[ICurve](../js-apis-curve.md#icurve9)<sup>10+</sup> | 是   | Swiper的动画曲线。<br/>string类型来源[curves.init](../js-apis-curve.md#curvesinitdeprecated)，[curves.steps](../js-apis-curve.md#curvesstepsdeprecated)，[curves.cubicBezier](../js-apis-curve.md#curvescubicbezierdeprecated)，[curves.spring](../js-apis-curve.md#curvesspringdeprecated)函数从API 9开始废弃，推荐使用Curve和ICurve类型。<br/>默认值：[interpolatingSpring](../js-apis-curve.md#curvesinterpolatingspring10)(-1, 1, 328, 34) |
-=======
-| value  | [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[ICurve](../js-apis-curve.md#icurve9)<sup>10+</sup> | 是   | Swiper的动画曲线。<br/>使用string类型时，仅支持Curve中相应的枚举值。例如"linear"，"extreme-deceleration"，"fast-out-slow-in"。<br/>默认值：interpolatingSpring(-1, 1, 328, 34) |
->>>>>>> 42e50b7bfab (添加文档取值范围说明)
 
 ### indicatorStyle<sup>(deprecated)</sup>
 
