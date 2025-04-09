@@ -1060,7 +1060,7 @@ int32_t OH_ArkUI_PointerEvent_GetRollAngle (const ArkUI_UIInputEvent * event, do
 
 从带有指向性的输入事件（如触摸事件）中获取手写笔与设备平面的夹角。
 
-**起始版本：** 18
+**起始版本：** 17
 
 **参数:**
 
