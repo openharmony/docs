@@ -1045,7 +1045,7 @@ multicast.addMembership(addr, (err: Object) => {
 
 addMembership(multicastAddress: NetAddress): Promise\<void\>;
 
-加入多播组。使用Promise方法作为异步方法。。
+加入多播组。使用Promise方法作为异步方法。
 
 > **说明：**
 > 多播使用的IP地址属于特定的范围（例如224.0.0.0到239.255.255.255）。
@@ -1146,7 +1146,7 @@ multicast.dropMembership(addr, (err: Object) => {
 
 dropMembership(multicastAddress: NetAddress): Promise\<void\>;
 
-退出多播组。使用Promise方法作为异步方法。。
+退出多播组。使用Promise方法作为异步方法。
 
 > **说明：**
 > 多播使用的IP地址属于特定的范围（例如224.0.0.0到239.255.255.255）。
