@@ -230,7 +230,7 @@ try {
 ## display.addVirtualScreenBlocklist<sup>18+</sup>
 addVirtualScreenBlocklist(windowIds: Array\<number>): Promise\<void>
 
-添加窗口至投屏虚拟屏不显示的黑名单中，被添加的窗口将不在投屏虚拟屏上显示。使用Promise异步回调。
+添加窗口至投屏虚拟屏不显示的黑名单中，被添加的窗口将不在投屏虚拟屏上显示。仅主窗windowId生效。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -240,7 +240,7 @@ addVirtualScreenBlocklist(windowIds: Array\<number>): Promise\<void>
 
 | 参数名   | 类型                                       | 必填 | 说明                                                    |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
-| windowIds     | Array\<number>    | 是   | 添加进黑名单的窗口列表，被添加的窗口将不在投屏虚拟屏上显示。仅主窗windowId生效。 |
+| windowIds     | Array\<number>    | 是   | 添加进黑名单的窗口列表,被添加的窗口将不在投屏虚拟屏上显示。窗口id为大于0的整数。推荐使用[getWindowProperties()](js-apis-window.md#getwindowproperties9)方法获取窗口id属性。|
 
 **返回值：**
 
@@ -285,7 +285,7 @@ export default class EntryAbility extends UIAbility {
 ## display.removeVirtualScreenBlocklist<sup>18+</sup>
 removeVirtualScreenBlocklist(windowIds: Array\<number>): Promise\<void>
 
-从投屏虚拟屏不显示的黑名单中移除窗口，被移除的窗口将重新在投屏虚拟屏上显示。使用Promise异步回调。
+从投屏虚拟屏不显示的黑名单中移除窗口，被移除的窗口将重新在投屏虚拟屏上显示。仅主窗windowId生效。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -295,7 +295,7 @@ removeVirtualScreenBlocklist(windowIds: Array\<number>): Promise\<void>
 
 | 参数名   | 类型                                       | 必填 | 说明                                                    |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
-| windowIds     | Array\<number>    | 是   | 从黑名单中移除的窗口列表，被移除的窗口将重新在投屏虚拟屏上显示。仅主窗windowId生效。 |
+| windowIds     | Array\<number>    | 是   | 从黑名单中移除的窗口列表,被移除的窗口将重新在投屏虚拟屏上显示。窗口id为大于0的整数。推荐使用[getWindowProperties()](js-apis-window.md#getwindowproperties9)方法获取窗口id属性。|
 
 **返回值：**
 
