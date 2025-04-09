@@ -933,6 +933,44 @@ The UIAbility is being started.
 
 确保该UIAbility启动完成，再执行新的启动任务。
 
+## 16000084 只允许HookAbility单次调用
+
+**错误信息**
+
+The context does not belong to HookAbility; multiple calls are invoked.
+
+**错误描述**
+
+系统只允许HookAbility调用该接口。系统不允许HookAbility重复调用该接口。
+
+**可能原因**
+
+1. 调用方不是HookAbility。
+2. 调用方是HookAbility，但是重复调用接口。
+
+**处理步骤**
+
+1. 检查调用方是否HookAbility。
+2. 检查是否重复调用。
+
+## 16000085 元能力与窗口的交互流程发生错误
+
+**错误信息**
+
+Failed to cancel the hook of the window module.
+
+**错误描述**
+
+元能力与窗口的交互流程发生错误。
+
+**可能原因**
+
+窗口业务流程出现异常。
+
+**处理步骤**
+
+系统错误，尝试重新调用。
+
 ## 16000100 监听Ability生命周期变化的AbilityMonitor方法执行失败
 
 **错误信息**
