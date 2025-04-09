@@ -28,9 +28,11 @@ Checkbox(options?: CheckboxOptions)
 
 | 参数名  | 类型                                        | 必填 | 说明               |
 | ------- | ------------------------------------------- | ---- | ------------------ |
-| options | [CheckboxOptions](#checkboxoptions对象说明) | 否   | 配置复选框的参数。 |
+| options | [CheckboxOptions](#checkboxoptions对象说明) | 否   | 配置多选框的参数。 |
 
 ## CheckboxOptions对象说明
+
+多选框的信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
