@@ -22,6 +22,10 @@
     - [VkNativeBufferPropertiesOHOS](_vk_native_buffer_properties_o_h_o_s.md)
     - [VkNativeBufferUsageOHOS](_vk_native_buffer_usage_o_h_o_s.md)
     - [VkSurfaceCreateInfoOHOS](_vk_surface_create_info_o_h_o_s.md)
+- EAWorker
+  - [EAWorker 独占线程任务执行器（ArkTS）](eaworker_managed.md)
+  - [EAWorker 独占线程任务执行器（C/C++）](eaworker_native.md)
+- [Job](job.md)
 - 附录
   - [libc中没有导出的符号列表](musl-peculiar-symbol.md)
   - [NDK musl-libc接口受权限影响的说明](guidance-on-ndk-libc-interfaces-affected-by-permissions.md)
