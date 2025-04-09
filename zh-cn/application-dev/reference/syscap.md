@@ -158,7 +158,7 @@ try {
   userAuthInstance.start();
     console.log('设备认证成功');
 } catch (error) {
-    console.log('current location: ' + JSON.stringify(location));
+    console.error('auth catch error: ' + JSON.stringify(error));
 }
 ```
 
