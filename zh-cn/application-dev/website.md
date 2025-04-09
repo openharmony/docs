@@ -1918,6 +1918,7 @@
           - [@ohos.app.ability.PhotoEditorExtensionAbility (图片编辑能力)](reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)
           - [@ohos.app.ability.OpenLinkOptions (OpenLinkOptions)](reference/apis-ability-kit/js-apis-app-ability-openLinkOptions.md)
           - [@ohos.app.ability.ShareExtensionAbility (分享模板服务扩展能力)](reference/apis-ability-kit/js-apis-app-ability-shareExtensionAbility.md)
+          - [@ohos.app.ability.CompletionHandler (拉端结果操作类)](reference/apis-ability-kit/js-apis-app-ability-completionHandler.md)
           - [@ohos.app.ability.StartOptions (StartOptions)](reference/apis-ability-kit/js-apis-app-ability-startOptions.md)
           - [@ohos.app.ability.UIAbility (UIAbility)](reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)
           - [@ohos.app.ability.UIExtensionAbility (带界面扩展能力基类)](reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)
