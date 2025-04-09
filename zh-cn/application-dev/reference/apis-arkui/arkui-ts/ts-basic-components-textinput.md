@@ -1887,7 +1887,7 @@ struct TextInputExample {
 
 ### 示例7（设置文本断行规则）
 
-该示例通过wordBreak属性实现了TextArea不同断行规则下的效果。
+该示例通过wordBreak属性实现了TextInput不同断行规则下的效果。
 
 ```ts
 // xxx.ets
@@ -2148,7 +2148,7 @@ struct TextInputExample {
 
 ### 示例12（设置折行规则）
 
-该示例通过lineBreakStrategy属性实现了TextArea不同折行规则下的效果。
+该示例通过lineBreakStrategy属性实现了TextInput不同折行规则下的效果。
 
 ```ts
 // xxx.ets
