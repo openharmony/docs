@@ -348,7 +348,7 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
 
 protect(socketFd: number): Promise\<void\>
 
-保护套接字不受 VPN 连接影响，通过该套接字发送的数据将直接基于物理网络收发，因此其流量不会通过 VPN 转发, 使用 Promise 方式作为异步方法。
+保护套接字不受 VPN 连接影响，通过该套接字发送的数据将直接基于物理网络收发，因此其流量不会通过 VPN 转发，使用 Promise 方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetManager.Vpn
 
@@ -356,7 +356,7 @@ protect(socketFd: number): Promise\<void\>
 
 | 参数名   | 类型   | 必填 | 说明                                                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------------------------------------- |
-| socketFd | number | 是   | 指定保护的 socketfd, 该文件描述符通过[getSocketFd](js-apis-socket.md#getsocketfd10-1)获取。 |
+| socketFd | number | 是   | 指定保护的 socketfd，该文件描述符通过[getSocketFd](js-apis-socket.md#getsocketfd10-1)获取。 |
 
 **返回值：**
 
