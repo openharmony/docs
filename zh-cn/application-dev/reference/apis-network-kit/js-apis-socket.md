@@ -923,7 +923,7 @@ UDPSocket连接的其他属性。继承自[ExtraOptionsBase](#extraoptionsbase7)
 
 | 名称            | 类型    | 必填 | 说明                             |
 | ----------------- | ------- | ---- | -------------------------------- |
-| broadcast         | boolean | 否   | 是否可以发送广播。默认为false。  |
+| broadcast         | boolean | 否   | 是否可以发送广播。默认为false。true：可发送广播；false：不可发送广播。  |
 
 ## SocketMessageInfo<sup>11+</sup>
 
@@ -944,9 +944,9 @@ Socket的状态信息。
 
 | 名称      | 类型    | 必填 | 说明       |
 | ----------- | ------- | ---- | ---------- |
-| isBound     | boolean | 是   | 是否绑定。 |
-| isClose     | boolean | 是   | 是否关闭。 |
-| isConnected | boolean | 是   | 是否连接。 |
+| isBound     | boolean | 是   | 是否绑定。true：绑定；false：不绑定。 |
+| isClose     | boolean | 是   | 是否关闭。true：关闭；false：打开。 |
+| isConnected | boolean | 是   | 是否连接。true：连接；false：断开。 |
 
 ## SocketRemoteInfo
 
@@ -2754,9 +2754,9 @@ TCPSocket连接的其他属性。继承自[ExtraOptionsBase](#extraoptionsbase7)
 
 | 名称            | 类型    | 必填 | 说明                                                         |
 | ----------------- | ------- | ---- | ------------------------------------------------------------ |
-| keepAlive         | boolean | 否   | 是否保持连接。默认为false。                                  |
-| OOBInline         | boolean | 否   | 是否为OOB内联。默认为false。                                 |
-| TCPNoDelay        | boolean | 否   | TCPSocket连接是否无时延。默认为false。                       |
+| keepAlive         | boolean | 否   | 是否保持连接。默认为false。true：保持连接；false：断开连接。                                  |
+| OOBInline         | boolean | 否   | 是否为OOB内联。默认为false。true：是OOB内联；false：不是OOB内联。                                 |
+| TCPNoDelay        | boolean | 否   | TCPSocket连接是否无时延。默认为false。true：无时延；false：有时延。                       |
 | socketLinger      | \{on:boolean, linger:number\}  | 否   | socket是否继续逗留。<br />- on：是否逗留（true：逗留；false：不逗留）。<br />- linger：逗留时长，单位毫秒（ms），取值范围为0~65535。<br />当入参on设置为true时，才需要设置。 |
 
 ## socket.constructTCPSocketServerInstance<sup>10+</sup>
@@ -4780,7 +4780,7 @@ Socket套接字的基础属性。
 | ----------------- | ------- | ---- | ----------------------------- |
 | receiveBufferSize | number  | 否   | 接收缓冲区大小（单位：Byte）。     |
 | sendBufferSize    | number  | 否   | 发送缓冲区大小（单位：Byte）。     |
-| reuseAddress      | boolean | 否   | 是否重用地址。                   |
+| reuseAddress      | boolean | 否   | 是否重用地址。true：重用地址；false：不重用地址。                   |
 | socketTimeout     | number  | 否   | 套接字超时时间，单位毫秒（ms）。    |
 
 ## socket.constructLocalSocketServerInstance<sup>11+</sup>
@@ -7291,7 +7291,7 @@ TLS连接的操作。
 | address        | [NetAddress](#netaddress)             | 是  |  网关地址。       |
 | secureOptions  | [TLSSecureOptions](#tlssecureoptions9) | 是 | TLS安全相关操作。|
 | ALPNProtocols  | Array\<string\>                         | 否 | ALPN协议，支持["spdy/1", "http/1.1"]，默认为[]。      |
-| skipRemoteValidation<sup>12+</sup>  | boolean                         | 否 | 是否跳过对服务端进行证书认证，默认为false。      |
+| skipRemoteValidation<sup>12+</sup>  | boolean                         | 否 | 是否跳过对服务端进行证书认证，默认为false。true：跳过对服务端进行证书认证；false：不跳过对服务端进行证书认证。      |
 | proxy<sup>18+</sup>   | [ProxyOptions](#proxyoptions18) | 否   | 使用的代理信息，默认不使用代理。 |
 
 ## TLSSecureOptions<sup>9+</sup>
@@ -7307,10 +7307,10 @@ TLS安全相关操作。当本地证书cert和私钥key不为空时，开启双�
 | key                   | string                                                  | 否 | 本地数字证书的私钥。                   |
 | password                | string                                                  | 否 | 读取私钥的密码。                      |
 | protocols             | [Protocol](#protocol9) \|Array\<[Protocol](#protocol9)\> | 否 | TLS的协议版本，默认为"TLSv1.2"。                  |
-| useRemoteCipherPrefer | boolean                                                 | 否 | 优先使用对等方的密码套件。        |
+| useRemoteCipherPrefer | boolean                                                 | 否 | 优先使用对等方的密码套件。true：优先使用对等方的密码套件；false：不优先使用对等方的密码套件。        |
 | signatureAlgorithms   | string                                                 | 否 | 通信过程中的签名算法，默认为"" 。              |
 | cipherSuite           | string                                                 | 否 | 通信过程中的加密套件，默认为"" 。              |
-| isBidirectionalAuthentication<sup>12+</sup>           | boolean                                                 | 否 | 用于设置双向认证，默认为false。              |
+| isBidirectionalAuthentication<sup>12+</sup>           | boolean                                                 | 否 | 用于设置双向认证，默认为false。true：设置双向认证；false：不设置双向认证。              |
 
 ## Protocol<sup>9+</sup>
 
