@@ -27,6 +27,8 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 
 ## PopupOptions类型说明
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称                                  | 类型                                                         | 必填 | 说明                                                      |
 | ------------------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | message                               | string                                                       | 是   | 弹窗信息内容。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                               |
@@ -128,7 +130,7 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                           | 类型                                       | 必填   | 描述                                       |
+| 名称                           | 类型                                       | 必填   | 说明                                       |
 | ---------------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | placement                    | [Placement](ts-appendix-enums.md#placement8) | 否    | 气泡组件优先显示的位置，当前位置显示不下时，会自动调整位置。<br/>默认值：Placement.Bottom |
 | popupColor                   | number&nbsp;\|&nbsp;[Color](ts-types.md#color)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 提示气泡的颜色。如需去除模糊背景填充效果，需将backgroundBlurStyle设置为BlurStyle.NONE。默认值：透明色[TRANSPARENT](ts-appendix-enums.md#color)加模糊背景填充效果[COMPONENT_ULTRA_THICK](ts-universal-attributes-background.md#blurstyle9) |
@@ -160,7 +162,7 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 类型                                       | 必填 | 描述                                                         |
+| 名称      | 类型                                       | 必填 | 说明                                                         |
 | --------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
 | isVisible | boolean | 是   | 弹窗当前的显示状态。                                       |
 
@@ -176,7 +178,7 @@ type PopupStateChangeCallback = (event: PopupStateChangeParam) => void;
 
 **参数：**
 
-| 名称      | 类型                                       | 必填 | 描述                                                         |
+| 名称      | 类型                                       | 必填 | 说明                                                         |
 | --------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
 | event  | [PopupStateChangeParam](#popupstatechangeparam18类型说明) | 是   | 弹窗当前的显示状态。                                       |
 
@@ -194,7 +196,7 @@ type PopupStateChangeCallback = (event: PopupStateChangeParam) => void;
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 类型                                       | 必填 | 描述                                                         |
+| 名称      | 类型                                       | 必填 | 说明                                                         |
 | --------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
 | color | [ResourceColor](ts-types.md#resourcecolor) | 是   | 设置遮罩层颜色。                                       |
 
