@@ -1993,7 +1993,9 @@ const char* OH_MD_KEY_HEIGHT
 **描述**
 视频高度键，值类型为int32_t。
 
-使用指导请参见：[视频编码](../../media/avcodec/video-encoding.md)中的“Surface模式的步骤-5或Buffer模式步骤-4”。
+在视频编解码流程中调用Configure接口时，使用此接口来设置视频帧的显示高。
+
+使用指导请参见：[视频编码](../../media/avcodec/video-encoding.md)中的中的Surface模式的“步骤-5”或Buffer模式“步骤-4”。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2576,9 +2578,11 @@ const char* OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE
 
 支持的值为OH_COLORSPACE_BT709_LIMIT，请参见[OH_NativeBuffer_ColorSpace](../../reference/apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_colorspace-1)。
 
-在视频解码调用[OH_VideoDecoder_Configure](_video_decoder.md#oh_videodecoder_configure)接口时使用。
+在视频解码调用[OH_VideoDecoder_Configure](_video_decoder.md#oh_videodecoder_configure)接口时使用此接口。
 
-如果支持色彩空间转换功能并配置了此键，则视频解码器会自动将HDR Vivid视频转码为色彩空间BT709的SDR视频。
+在启动OH_VideoDecoder_Start接口前，必须要先调用OH_VideoDecoder_Prepare接口。
+
+如果支持色彩空间转换功能并配置了此键，则视频解码器会自动将HDR Vivid视频转码为指定的色彩空间。
 
 如果不支持色彩空间转换功能，则接口[OH_VideoDecoder_Configure](_video_decoder.md#oh_videodecoder_configure)返回错误码[AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION](_core.md#oh_averrcode-1)。
 
@@ -2635,6 +2639,10 @@ const char* OH_MD_KEY_VIDEO_PIC_HEIGHT
 
 当解码输出码流<!--RP2--><!--RP2End-->变化时，也可从[OH_AVCodecOnStreamChanged](#oh_avcodeconstreamchanged)返回的OH_AVForamt实例中解析出高度值。
 
+从OH_AVForamt实例中解析出来的是对齐后的宽、高与调用Configure接口设置的OH_MD_KEY_WIDTH、OH_MD_KEY_HEIGHT不一样。
+
+width、height、wStride、hStride图像排布与使用示例请参考：[视频编码Buffer模式](../../media/avcodec/video-encoding.md#buffer模式)的“步骤-8”或[视频解码Buffer模式](../../media/avcodec/video-decoding.md#buffer模式)“步骤-10”。
+
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
 **起始版本：** 12
@@ -2651,6 +2659,10 @@ const char* OH_MD_KEY_VIDEO_PIC_WIDTH
 视频解码时调用[OH_VideoDecoder_GetOutputDescription](_video_decoder.md#oh_videodecoder_getoutputdescription)接口，可以从其返回的OH_AVFormat中解析出宽度值。
 
 当解码输出码流<!--RP2--><!--RP2End-->变化时，也可从[OH_AVCodecOnStreamChanged](#oh_avcodeconstreamchanged)返回的OH_AVForamt实例中解析出宽度值。
+
+从OH_AVForamt实例中解析出来的是对齐后的宽、高与调用Configure接口设置的OH_MD_KEY_WIDTH、OH_MD_KEY_HEIGHT不一样。
+
+width、height、wStride、hStride图像排布与使用示例请参考：[视频编码Buffer模式](../../media/avcodec/video-encoding.md#buffer模式)的“步骤-8”或[视频解码Buffer模式](../../media/avcodec/video-decoding.md#buffer模式)“步骤-10”。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2669,7 +2681,9 @@ const char* OH_MD_KEY_VIDEO_SLICE_HEIGHT
 
 U/V平面的高度可以根据颜色格式计算，尽管它通常是未定义的，并且取决于设备和版本。
 
-使用指导请参见：[视频编码](../../media/avcodec/video-encoding.md#)中的“Buffer模式步骤-3”。
+使用指导请参见：[视频编码Buffer模式](../../media/avcodec/video-encoding.md#buffer模式)的“步骤-3”。
+
+width、height、wStride、hStride图像排布与使用示例请参考：[视频编码Buffer模式](../../media/avcodec/video-encoding.md#buffer模式)的“步骤-8”或[视频解码Buffer模式](../../media/avcodec/video-decoding.md#buffer模式)“步骤-10”。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2688,7 +2702,9 @@ const char* OH_MD_KEY_VIDEO_STRIDE
 
 对于YUV420格式，宽跨距对应于Y平面，U和V平面的跨距可以根据颜色格式计算，但通常未定义，并且取决于设备和版本。
 
-使用指导请参见：[视频编码](../../media/avcodec/video-encoding.md#)中的“Buffer模式步骤-3”。
+使用指导请参见：[视频编码Buffer模式](../../media/avcodec/video-encoding.md#buffer模式)的“步骤-3”。
+
+width、height、wStride、hStride图像排布与使用示例请参考：[视频编码Buffer模式](../../media/avcodec/video-encoding.md#buffer模式)的“步骤-8”或[视频解码Buffer模式](../../media/avcodec/video-decoding.md#buffer模式)“步骤-10”。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2703,7 +2719,9 @@ const char* OH_MD_KEY_WIDTH
 **描述**
 视频宽度的键，值类型为int32_t。
 
-使用指导请参见：[视频编码](../../media/avcodec/video-encoding.md)中的“Surface模式的步骤-5或Buffer模式步骤-4”。
+在视频编解码流程中调用Configure接口时，使用此接口来设置视频帧的显示宽度。
+
+使用指导请参见：[视频编码](../../media/avcodec/video-encoding.md)中的Surface模式的“步骤-5”或Buffer模式“步骤-4”。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 

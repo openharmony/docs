@@ -840,12 +840,12 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     以NV12图像为例，width、height、wStride、hStride图像排布参考下图：
 
-    - OH_MD_KEY_VIDEO_PIC_WIDTH表示width；
-    - OH_MD_KEY_VIDEO_PIC_HEIGHT表示height；
+    - OH_MD_KEY_WIDTH表示width；
+    - OH_MD_KEY_HEIGHT表示height；
     - OH_MD_KEY_VIDEO_STRIDE表示wStride；
     - OH_MD_KEY_VIDEO_SLICE_HEIGHT表示hStride。
 
-    ![copy by line](figures/copy-by-line.png)
+    ![copy by line](figures/copy-by-line-encoder.png)
 
     添加头文件。
 
