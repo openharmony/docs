@@ -993,7 +993,7 @@ MulticastSocket连接。在调用MulticastSocket的方法前，需要先通过[s
 
 ### addMembership<sup>11+</sup>
 
-addMembership(multicastAddress: NetAddress, callback: AsyncCallback\<void\>): void;
+addMembership(multicastAddress: NetAddress, callback: AsyncCallback\<void\>): void
 
 加入多播组。使用callback方法作为异步方法。
 
@@ -1043,7 +1043,7 @@ multicast.addMembership(addr, (err: Object) => {
 
 ### addMembership<sup>11+</sup>
 
-addMembership(multicastAddress: NetAddress): Promise\<void\>;
+addMembership(multicastAddress: NetAddress): Promise\<void\>
 
 加入多播组。使用Promise方法作为异步方法。
 
@@ -1095,7 +1095,7 @@ multicast.addMembership(addr).then(() => {
 
 ### dropMembership<sup>11+</sup>
 
-dropMembership(multicastAddress: NetAddress, callback: AsyncCallback\<void\>): void;
+dropMembership(multicastAddress: NetAddress, callback: AsyncCallback\<void\>): void
 
 退出多播组。使用callback方法作为异步方法。
 
@@ -1144,7 +1144,7 @@ multicast.dropMembership(addr, (err: Object) => {
 
 ### dropMembership<sup>11+</sup>
 
-dropMembership(multicastAddress: NetAddress): Promise\<void\>;
+dropMembership(multicastAddress: NetAddress): Promise\<void\>
 
 退出多播组。使用Promise方法作为异步方法。
 
@@ -1196,7 +1196,7 @@ multicast.dropMembership(addr).then(() => {
 
 ### setMulticastTTL<sup>11+</sup>
 
-setMulticastTTL(ttl: number, callback: AsyncCallback\<void\>): void;
+setMulticastTTL(ttl: number, callback: AsyncCallback\<void\>): void
 
 设置多播通信时数据包在网络传输过程中路由器最大跳数。使用callback方法作为异步方法。
 
@@ -1241,9 +1241,9 @@ multicast.setMulticastTTL(ttl, (err: Object) => {
 
 ### setMulticastTTL<sup>11+</sup>
 
-setMulticastTTL(ttl: number): Promise\<void\>;
+setMulticastTTL(ttl: number): Promise\<void\>
 
-设置多播通信时数据包在网络传输过程中路由器最大跳数。使用Promise方法作为异步方法。。
+设置多播通信时数据包在网络传输过程中路由器最大跳数。使用Promise方法作为异步方法。
 
 > **说明：**
 > 用于限制数据包在网络中传输时能够经过的最大路由器跳数的字段，TTL (Time to live)。
@@ -1288,7 +1288,7 @@ multicast.setMulticastTTL(8).then(() => {
 
 ### getMulticastTTL<sup>11+</sup>
 
-getMulticastTTL(callback: AsyncCallback\<number\>): void;
+getMulticastTTL(callback: AsyncCallback\<number\>): void
 
 获取数据包在网络传输过程中路由器最大跳数(TTL)的值。使用callback方法作为异步方法。
 
@@ -1330,7 +1330,7 @@ multicast.getMulticastTTL((err: Object, value: Number) => {
 
 ### getMulticastTTL<sup>11+</sup>
 
-getMulticastTTL(): Promise\<number\>;
+getMulticastTTL(): Promise\<number\>
 
 获取数据包在网络传输过程中路由器最大跳数(TTL)的值。使用Promise方法作为异步方法。
 
@@ -1370,7 +1370,7 @@ multicast.getMulticastTTL().then((value: Number) => {
 
 ### setLoopbackMode<sup>11+</sup>
 
-setLoopbackMode(flag: boolean, callback: AsyncCallback\<void\>): void;
+setLoopbackMode(flag: boolean, callback: AsyncCallback\<void\>): void
 
 设置多播通信中的环回模式标志位。使用callback方法作为异步方法。
 
@@ -1412,7 +1412,7 @@ multicast.setLoopbackMode(false, (err: Object) => {
 
 ### setLoopbackMode<sup>11+</sup>
 
-setLoopbackMode(flag: boolean): Promise\<void\>;
+setLoopbackMode(flag: boolean): Promise\<void\>
 
 设置多播通信中的环回模式标志位。使用callback方法作为异步方法。
 
@@ -1457,7 +1457,7 @@ multicast.setLoopbackMode(false).then(() => {
 
 ### getLoopbackMode<sup>11+</sup>
 
-getLoopbackMode(callback: AsyncCallback\<boolean\>): void;
+getLoopbackMode(callback: AsyncCallback\<boolean\>): void
 
 获取多播通信中的环回模式状态。使用Promise方法作为异步方法。
 
@@ -1498,7 +1498,7 @@ multicast.getLoopbackMode((err: Object, value: Boolean) => {
 
 ### getLoopbackMode<sup>11+</sup>
 
-getLoopbackMode(): Promise\<boolean\>;
+getLoopbackMode(): Promise\<boolean\>
 
 获取多播通信中的环回模式状态。使用Promise方法作为异步方法。
 
