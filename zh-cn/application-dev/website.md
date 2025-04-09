@@ -414,6 +414,7 @@
             - [媒体查询 (@ohos.mediaquery)](ui/arkts-layout-development-media-query.md)
             - [创建列表 (List)](ui/arkts-layout-development-create-list.md)
             - [创建网格 (Grid/GridItem)](ui/arkts-layout-development-create-grid.md)
+            - [创建瀑布流 (WaterFlow)](ui/arkts-layout-development-create-waterflow.md)
             - [创建轮播 (Swiper)](ui/arkts-layout-development-create-looping.md)
             - [选项卡 (Tabs)](ui/arkts-navigation-tabs.md)
         - 添加组件<!--arkts-add-component-->
