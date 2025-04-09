@@ -381,6 +381,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 6. 设置surface。
 
     本例中的nativeWindow，有两种方式获取：
+
     6.1 如果解码后直接显示，则从XComponent组件获取。
 
     添加头文件。
