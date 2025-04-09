@@ -112,7 +112,7 @@ bool UpdateThermalState(const std::string& tag, const std::string& val, bool isI
     hdc shell
     ```
 
-2. 获取当前热场景信息。
+2. 获取当前热场景信息：
     ```shell
     hidumper -s 3303 -a -s
     ```
