@@ -108,4 +108,4 @@ import { Action,ToolType,SourceType,Touch,TouchEvent } from '@kit.InputKit';
 | touch      | [Touch](#touch)      | 是    | 否    | 当前触摸点信息。   |
 | touches    | [Touch](#touch)[]    | 是    | 否    | 所有触摸点。     |
 | sourceType | [SourceType](#sourcetype) | 是    | 否    | 触摸来源的设备类型。 |
-| <!--DelRow-->fixedMode<sup>18+</sup>  | [FixedMode](#fixedmode18)   | 是    | 是    | 修正坐标的模式。<br> **说明**：该接口仅在手机设备上生效。 |
+| <!--DelRow-->fixedMode<sup>18+</sup>  | [FixedMode](#fixedmode18)   | 是    | 是    | 修正坐标的模式。<br> **说明**：该接口仅在手机设备上生效。|
