@@ -461,10 +461,10 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
 | dnsAddresses        | Array\<string\>                                                | 否   | DNS 服务器地址信息。                |
 | searchDomains       | Array\<string\>                                                | 否   | DNS 的搜索域列表。                  |
 | mtu                 | number                                                         | 否   | 最大传输单元 MTU 值(单位:字节)。     |
-| isIPv4Accepted      | boolean                                                        | 否   | 是否支持 IPV4, 默认值为 true。      |
-| isIPv6Accepted      | boolean                                                        | 否   | 是否支持 IPV6, 默认值为 false。     |
-| isInternal          | boolean                                                        | 否   | 是否支持内置 VPN, 默认值为 false。   |
-| isBlocking          | boolean                                                        | 否   | 是否阻塞模式, 默认值为 false。       |
+| isIPv4Accepted      | boolean                                                        | 否   | 是否支持 IPV4, 默认值为 true。true：支持 IPV4；false：不支持 IPV4。    |
+| isIPv6Accepted      | boolean                                                        | 否   | 是否支持 IPV6, 默认值为 false。true：支持 IPV6；false：不支持 IPV6。     |
+| isInternal          | boolean                                                        | 否   | 是否支持内置 VPN, 默认值为 false。true：支持内置 VPN；false：不支持内置 VPN。   |
+| isBlocking          | boolean                                                        | 否   | 是否阻塞模式, 默认值为 false。true：阻塞模式；false：非阻塞模式。       |
 | trustedApplications | Array\<string\>                                                | 否   | 白名单信息, string 类型表示的包名。  |
 | blockedApplications | Array\<string\>                                                | 否   | 黑名单信息, string 类型表示的包名。  |
 
