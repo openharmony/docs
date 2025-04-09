@@ -2185,6 +2185,7 @@
           - [context_constant.h](reference/apis-ability-kit/context__constant_8h.md)
           - [native_interface_bundle.h](reference/apis-ability-kit/native__interface__bundle.md)
           - [native_child_process.h](reference/apis-ability-kit/native__child__process_8h.md)
+          - [start_options.h](reference/apis-ability-kit/start__options_8h.md)
           - [want.h](reference/apis-ability-kit/want__8h.md)
         - 结构体<!--ability-struct-->
           - [AbilityBase_Element](reference/apis-ability-kit/_ability_base_element.md)
