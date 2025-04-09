@@ -1732,6 +1732,19 @@ RichEditor span信息。
 | menuType<sup>13+</sup> | [MenuType](ts-text-common.md#menutype13枚举说明) | 否 | 自定义选择菜单类型。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br/>默认值：MenuType.SELECTION_MENU。 |
 | onMenuShow<sup>15+</sup> | [MenuCallback](#menucallback15) | 否 |  自定义选择菜单显示时回调。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 | onMenuHide<sup>15+</sup> | [MenuCallback](#menucallback15) | 否 |  自定义选择菜单隐藏时回调。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
+| previewMenuOptions<sup>18+</sup> | [PreviewMenuOptions](#previewmenuoptions18) | 否 |  预览菜单的选项。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+
+## PreviewMenuOptions<sup>18+</sup>
+
+预览菜单的选项。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 类型         | 必填   | 说明            |
+| ----------- | ---------- | ---- | ------------- |
+| hapticFeedbackMode | [HapticFeedbackMode](ts-universal-attributes-menu.md#hapticfeedbackmode18)| 否 | 菜单弹出时振动效果。<br/>默认值：HapticFeedbackMode.DISABLED，菜单弹出时不振动。|
 
 ## PasteEvent<sup>11+</sup>
 
