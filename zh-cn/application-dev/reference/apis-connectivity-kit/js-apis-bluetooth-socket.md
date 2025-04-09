@@ -176,6 +176,57 @@ try {
 ```
 
 
+## socket.getDeviceId<sup>17+</sup>
+
+getDeviceId(clientSocket: number): string
+
+通过clientSocket获取对端设备地址。服务端、客户端均可调用，传入非法clientSocket无法获取。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+**参数：**
+
+| 参数名      | 类型                          | 必填   | 说明                             |
+| -------- | ------------------------------- | ---- | ------------------------------ |
+| clientSocket | number                      | 是    | 客户端Socket的id。 |
+
+**返回值：**
+
+| 类型                                       | 说明                         |
+| ---------------------------------------- | -------------------------- |
+| string | 返回对端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+
+**示例：**
+
+```js
+import { socket } from '@kit.ConnectivityKit';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+// 服务端获取客户端设备地址。
+let clientSocket = -1; // clientSocket是sppAccept回调中得到的，调getDeviceId接口前需更新clientSocket。
+try {
+    let deviceAddr: string = socket.getDeviceId(clientSocket);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+
+// 客户端获取服务端设备地址。
+// clientSocket是sppConnect回调中得到的，调getDeviceId接口前需更新clientSocket。
+try {
+    let deviceAddr: string = socket.getDeviceId(clientSocket);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
 ## socket.sppCloseServerSocket
 
 sppCloseServerSocket(socket: number): void
