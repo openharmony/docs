@@ -799,6 +799,68 @@ try {
 }
 ```
 
+### on('discardTypingText')<sup>20+</sup>
+
+on(type: 'discardTypingText', callback: Callback\<void>): void
+
+订阅编辑框应用发送“清空候选词”命令到输入法。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                                          | 必填 | 说明                                       |
+| -------- | --------------------------------------------- | ---- | ------------------------------------------ |
+| type     | string                                        | 是   | 设置监听类型，固定取值为'discardTypingText'。<br/> - 'discardTypingText'：表示订阅编辑框应用发送“清空候选词”命令到输入法。 |
+| callback |  Callback\<void> | 是   | 回调函数。当命令发送成功，err为undefined，否则为错误对象。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  console.log(`discard the typing text`);
+  inputMethodEngine.getInputMethodAbility().on('discardTypingText', ( ) => {
+    console.log('InputMethodAbility discard the typing text.');
+  });
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`discard the typing text error: ${error.code} ${error.message}`);
+}
+```
+
+### off('discardTypingText')<sup>20+</sup>
+
+off(type: 'discardTypingText', callback?: Callback\<void>): void
+
+取消订阅编辑框应用发送“清空候选词”命令到输入法。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                                        | 必填 | 说明                                                         |
+| -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                      | 是   | 设置监听类型，固定取值为'discardTypingText'。<br/> - 'discardTypingText'：表示取消订阅编辑框应用发送“清空候选词”命令到输入法。 |
+| callback | Callback\<void>  | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  console.log(`discard the typing text`);
+  inputMethodEngine.getInputMethodAbility().off('discardTypingText', ( ) => {
+    console.log('InputMethodAbility discard the typing text.');
+  });
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`discard the typing text error: ${error.code} ${error.message}`);
+}
+```
+
 ### getSecurityMode<sup>11+</sup>
 
 getSecurityMode(): SecurityMode
@@ -4611,6 +4673,7 @@ try {
 | immersiveMode<sup>15+</sup> | number | 是   | 是   | 输入法沉浸模式。 |
 | windowId<sup>18+</sup> | number | 是 | 是 | 编辑框设置所属窗口ID。 |
 | displayId<sup>18+</sup> | number | 是   | 是   | 编辑框设置窗口对应的屏幕ID。如果没有设置windowId，取当前焦点窗口屏幕ID。|
+| newEditBox<sup>20+</sup> | boolean | 是 | 是 | 表示是否为新编辑框。true表示新编辑框，false表示非新编辑框。 |
 
 ## KeyEvent
 
