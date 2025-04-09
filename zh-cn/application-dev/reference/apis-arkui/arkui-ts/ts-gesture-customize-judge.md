@@ -73,6 +73,7 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 | pressure<sup>9+</sup> | number | 按压的压力大小。<br/>默认值：0<br/>取值范围：[0,1]，典型值0.913168，压感大小与数值正相关。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | tiltX<sup>9+</sup> | number | 手写笔在设备平面上的投影与设备平面X轴的夹角。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | tiltY<sup>9+</sup> | number | 手写笔在设备平面上的投影与设备平面Y轴的夹角。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| rollAngle<sup>17+</sup> | number | 手写笔与设备平面的夹角。<br/>**卡片能力：** 从API version 17开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。 |
 | sourceTool<sup>9+</sup> | [SourceTool](ts-gesture-settings.md#sourcetool枚举说明9) | 事件输入源。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | axisHorizontal<sup>12+</sup> | number | 水平轴值。<br/>**说明：**<br/>当前仅在由鼠标滚轮或者触控板双指滑动场景下触发的Pan手势中可以获取。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | axisVertical<sup>12+</sup> | number | 垂直轴值。<br/>**说明：**<br/>当前仅在由鼠标滚轮或者触控板双指滑动场景下触发的Pan手势中可以获取。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -283,7 +284,7 @@ struct Index {
             }
             console.log("gestureInfo Type " + gestureInfo.type.toString() + " isSystemGesture " + gestureInfo.isSystemGesture);
             console.log("pressure " + event.pressure + " fingerList.length " + event.fingerList.length
-            + " timeStamp " + event.timestamp + " sourceType " + event.source.toString() + " titleX " + event.tiltX + " titleY " + event.tiltY + " sourcePool " + event.sourceTool.toString());
+            + " timeStamp " + event.timestamp + " sourceType " + event.source.toString() + " titleX " + event.tiltX + " titleY " + event.tiltY + " rollAngle " + event.rollAngle + " sourcePool " + event.sourceTool.toString());
             // 如果是长按类型手势，判断点击的位置是否在上半区
             if (gestureInfo.type == GestureControl.GestureType.LONG_PRESS_GESTURE) {
               if (event.fingerList.length > 0 && event.fingerList[0].localY < 100) {
