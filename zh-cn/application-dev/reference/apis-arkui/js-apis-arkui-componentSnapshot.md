@@ -27,9 +27,11 @@ get(id: string, callback: AsyncCallback<image.PixelMap>, options?: SnapshotOptio
 
 > **说明：** 
 >
-> 截图会获取最近一帧的绘制内容。如果在组件触发更新的同时调用截图，更新的渲染内容不会被截取到，截图会返回上一帧的绘制内容。
+> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取[ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12)实例，再通过此实例调用替代方法[get](js-apis-arkui-UIContext.md#get12)。
+>
+> 从API version 12开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)方法获取当前UI上下文关联的[ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12)对象。
 > 
-> 从API version 18开始废弃，推荐使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取[ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12)实例，再通过此实例调用替代方法[get](js-apis-arkui-UIContext.md#get12)。
+> 截图会获取最近一帧的绘制内容。如果在组件触发更新的同时调用截图，更新的渲染内容不会被截取到，截图会返回上一帧的绘制内容。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -102,9 +104,11 @@ get(id: string, options?: SnapshotOptions): Promise<image.PixelMap>
 
 > **说明：**
 >
-> 截图会获取最近一帧的绘制内容。如果在组件触发更新的同时调用截图，更新的渲染内容不会被截取到，截图会返回上一帧的绘制内容。
+> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取[ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12)实例，再通过此实例调用替代方法[get](js-apis-arkui-UIContext.md#get12-1)。
+>
+> 从API version 12开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)方法获取当前UI上下文关联的[ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12)对象。
 > 
-> 从API version 18开始废弃，推荐使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取[ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12)实例，再通过此实例调用替代方法[get](js-apis-arkui-UIContext.md#get12-1)。
+> 截图会获取最近一帧的绘制内容。如果在组件触发更新的同时调用截图，更新的渲染内容不会被截取到，截图会返回上一帧的绘制内容。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -181,13 +185,15 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 
 > **说明：** 
 >
+> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取[ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12)实例，再通过此实例调用替代方法[createFromBuilder](js-apis-arkui-UIContext.md#createfrombuilder12)。
+>
+> 从API version 12开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)方法获取当前UI上下文关联的[ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12)对象。
+>
 > 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟。
 >
 > builder中的组件不支持设置动画相关的属性，如[transition](arkui-ts/ts-transition-animation-component.md)。
 >
 > 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](arkui-ts/ts-basic-components-image.md)组件、[Web](../apis-arkweb/ts-basic-components-web.md)组件。
->
-> 从API version 18开始废弃，推荐使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取[ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12)实例，再通过此实例调用替代方法[createFromBuilder](js-apis-arkui-UIContext.md#createfrombuilder12)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -286,13 +292,15 @@ createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boo
 
 > **说明：** 
 >
+> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取[ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12)实例，再通过此实例调用替代方法[createFromBuilder](js-apis-arkui-UIContext.md#createfrombuilder12-1)。
+>
+> 从API version 12开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)方法获取当前UI上下文关联的[ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12)对象。
+> 
 > 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟。
 >
 > builder中的组件不支持设置动画相关的属性，如[transition](arkui-ts/ts-transition-animation-component.md)。
 >
 > 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](arkui-ts/ts-basic-components-image.md)组件、[Web](../apis-arkweb/ts-basic-components-web.md)组件。
->
-> 从API version 18开始废弃，推荐使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取[ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12)实例，再通过此实例调用替代方法[createFromBuilder](js-apis-arkui-UIContext.md#createfrombuilder12-1)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
