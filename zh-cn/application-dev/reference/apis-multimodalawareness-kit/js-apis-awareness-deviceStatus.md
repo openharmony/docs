@@ -13,7 +13,8 @@ import { deviceStatus } from '@kit.MultimodalAwarenessKit';
 
 ## SteadyStandingStatus
 
-设备静止姿态感知状态（支架态）信息
+设备静止姿态感知状态（支架态）
+
 设备进入支架态指设备静止，且屏幕与水平面角度处于45度-135度。折叠屏手机需处于折叠状态或者完全展开状态
 
 **系统能力**：SystemCapability.MultimodalAwareness.DeviceStatus
