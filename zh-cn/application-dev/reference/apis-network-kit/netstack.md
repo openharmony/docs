@@ -109,7 +109,7 @@
 typedef void(* WebSocket_OnCloseCallback) (struct WebSocket *client, WebSocket_CloseResult closeResult)
 ```
 **描述**
-websocket客户端接收close消息的回调函数定义
+websocket客户端接收close消息的回调函数定义。
 
 **起始版本：** 11
 
@@ -117,8 +117,8 @@ websocket客户端接收close消息的回调函数定义
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| client | websocket客户端  | 
-| closeResult | websocket客户端接收关闭消息的内容  | 
+| client | websocket客户端。  | 
+| closeResult | websocket客户端接收关闭消息的内容。  | 
 
 
 ### WebSocket_OnErrorCallback
@@ -127,7 +127,7 @@ websocket客户端接收close消息的回调函数定义
 typedef void(* WebSocket_OnErrorCallback) (struct WebSocket *client, WebSocket_ErrorResult errorResult)
 ```
 **描述**
-websocket客户端接收error错误消息的回调函数定义
+websocket客户端接收error错误消息的回调函数定义。
 
 **起始版本：** 11
 
@@ -135,8 +135,8 @@ websocket客户端接收error错误消息的回调函数定义
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| client | websocket客户端  | 
-| errorResult | websocket客户端接收连接错误消息的内容  | 
+| client | websocket客户端。  | 
+| errorResult | websocket客户端接收连接错误消息的内容。  | 
 
 
 ### WebSocket_OnMessageCallback
@@ -145,7 +145,7 @@ websocket客户端接收error错误消息的回调函数定义
 typedef void(* WebSocket_OnMessageCallback) (struct WebSocket *client, char *data, uint32_t length)
 ```
 **描述**
-websocket客户端接收数据的回调函数定义
+websocket客户端接收数据的回调函数定义。
 
 **起始版本：** 11
 
@@ -153,9 +153,9 @@ websocket客户端接收数据的回调函数定义
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| client | websocket客户端  | 
-| data | websocket客户端接收的数据  | 
-| length | websocket客户端接收的数据长度  | 
+| client | websocket客户端。  | 
+| data | websocket客户端接收的数据。  | 
+| length | websocket客户端接收的数据长度。  | 
 
 
 ### WebSocket_OnOpenCallback
@@ -164,7 +164,7 @@ websocket客户端接收数据的回调函数定义
 typedef void(* WebSocket_OnOpenCallback) (struct WebSocket *client, WebSocket_OpenResult openResult)
 ```
 **描述**
-websocket客户端接收open消息的回调函数定义
+websocket客户端接收open消息的回调函数定义。
 
 **起始版本：** 11
 
@@ -172,8 +172,8 @@ websocket客户端接收open消息的回调函数定义
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| client | websocket客户端  | 
-| openResult | websocket客户端接收建立连接消息的内容  | 
+| client | websocket客户端。  | 
+| openResult | websocket客户端接收建立连接消息的内容。  | 
 
 
 
