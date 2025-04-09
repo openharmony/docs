@@ -106,7 +106,7 @@ AtomicServiceSearch中“搜索区”的可选属性。
 | maxLength                | number | 否 | 设置文本的最大输入字符数。默认不设置最大输入字符数限制。到达文本最大字符限制，将无法继续输入字符。默认值：`-1`;   |
 | enterKeyType             | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype枚举说明) | 否 | 输入法回车键类型。默认值：`EnterKeyType.Search`。   |
 | decoration               | [TextDecorationOptions](ts-types.md#textdecorationoptions12对象说明) | 否 |  文本装饰线对象。默认值：`{type: TextDecorationType.None, color: Color.Black, style: TextDecorationStyle.SOLID}`。   |
-| letterSpacing            | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否 | 设置文本字符间距。设置该值为百分比时，按默认值显示。设置该值为0时，按默认值显示。当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示。默认值：`0`;  |
+| letterSpacing            | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否 | 设置文本字符间距。设置该值为百分比时，按默认值显示。设置该值为0时，按默认值显示。当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示。默认值：``;  |
 | fontFeature              | [ResourceStr](ts-types.md#resourcestr) | 否 | 设置文字特性效果，比如数字等宽的特性。<br />格式为：normal \| \<feature-tag-value\><br />\<feature-tag-value\>的格式为：\<string\> \[ \<integer\> \| on \| off ]<br />\<feature-tag-value\>的个数可以有多个，中间用','隔开。<br />例如，使用等宽数字的输入格式为："ss01" on。默认值为`undefined`。   |
 | selectedBackgroundColor  | [ResourceColor](ts-types.md#resourcecolor) | 否 | 文本选中底板颜色。默认为20%不透明度。 |
 | inputFilter              | [InputFilterParams](#inputfilterparams) | 否 | 通过正则表达式设置输入过滤器。匹配表达式的输入允许显示，不匹配的输入将被过滤。仅支持单个字符匹配，不支持字符串匹配。默认值为`undefined`。<br /> -value: 正则表达式。 <br /> -error: 正则匹配失败时，返回被过滤的内容。 |
@@ -252,8 +252,8 @@ type OnContentScrollCallback = (totalOffsetX: number, totalOffsetY: number) => v
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
-| totalOffsetX | number | 是 | 文本在内容区的横坐标偏移量。 |
-| totalOffsetY | number | 是 | 文本在内容区的纵坐标偏移量。 |
+| totalOffsetX | number | 是 | 文本左上角横坐标相较于整个内容输入区左上角横坐标的偏移量。 |
+| totalOffsetY | number | 是 | 文本左上角纵坐标相较于整个内容输入区左上角纵坐标的偏移量。 |
 
 
 ## 示例
