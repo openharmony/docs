@@ -230,7 +230,7 @@ try {
 ## display.addVirtualScreenBlocklist<sup>18+</sup>
 addVirtualScreenBlocklist(windowIds: Array\<number>): Promise\<void>
 
-添加窗口至投屏虚拟盘不显示的黑名单中，被添加的窗口将不在投屏虚拟盘上显示。使用Promise异步回调。
+添加窗口至投屏虚拟屏不显示的黑名单中，被添加的窗口将不在投屏虚拟屏上显示。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -285,7 +285,7 @@ export default class EntryAbility extends UIAbility {
 ## display.removeVirtualScreenBlocklist<sup>18+</sup>
 removeVirtualScreenBlocklist(windowIds: Array\<number>): Promise\<void>
 
-从投屏虚拟盘不显示的黑名单中移除窗口，被移除的窗口将重新在投屏虚拟屏上显示。使用Promise异步回调。
+从投屏虚拟屏不显示的黑名单中移除窗口，被移除的窗口将重新在投屏虚拟屏上显示。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
