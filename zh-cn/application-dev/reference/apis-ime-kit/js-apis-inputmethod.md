@@ -641,6 +641,11 @@ let inputMethodSetting = inputMethod.getInputMethodSetting();
 | URL  | 6 |链接类型。 |
 | VISIBLE_PASSWORD  | 7 |密码类型。 |
 | NUMBER_PASSWORD<sup>11+</sup> | 8 |数字密码类型。 |
+| SCREEN_LOCK_PASSWORD<sup>20+</sup> | 9 |锁屏密码类型。 |
+| USER_NAME<sup>20+</sup> | 10 |用户名类型。 |
+| NEW_PASSWORD<sup>20+</sup> | 11 |新密码类型。 |
+| NUMBER_DECIMAL<sup>20+</sup> | 12 |带小数点的数字类型。 |
+| ONE_TIME_CODE<sup>20+</sup> | 13 |验证码类型。 |
 
 ## EnterKeyType<sup>10+</sup>
 
