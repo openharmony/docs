@@ -114,7 +114,7 @@ DevEco Studio会根据创建的工程所支持的设置自动配置联想能力�
 
 	try {
 	geolocationManager.getCurrentLocation((location) => {
-		console.error('auth catch error: ' + JSON.stringify(location));
+		console.log('current location: ' + JSON.stringify(location));
 	});
 	} catch(err) {
 	    console.log('该设备不支持位置信息' + err);
