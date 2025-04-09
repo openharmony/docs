@@ -3693,11 +3693,14 @@ try {
 }
 ```
 
-### showOptionalInputMethods<sup>9+</sup>
+### showOptionalInputMethods<sup>(deprecated)</sup>
 
 showOptionalInputMethods(callback: AsyncCallback&lt;boolean&gt;): void
 
 显示输入法选择对话框。使用callback异步回调。
+> **说明：**
+>
+> 从API version 9开始支持，从API version 16开始废弃。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -3733,11 +3736,15 @@ try {
 }
 ```
 
-### showOptionalInputMethods<sup>9+</sup>
+### showOptionalInputMethods<sup>(deprecated)</sup>
 
 showOptionalInputMethods(): Promise&lt;boolean&gt;
 
 显示输入法选择对话框。使用promise异步回调。
+
+> **说明：**
+>
+> 从API version 9开始支持，从API version 16开始废弃。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -3837,7 +3844,7 @@ displayOptionalInputMethod(callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[showOptionalInputMethods()](#showoptionalinputmethods9)替代。
+> 从API version 8开始支持，从API version 9开始废弃。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -3869,7 +3876,7 @@ displayOptionalInputMethod(): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[showOptionalInputMethods()](#showoptionalinputmethods9-1)替代。
+> 从API version 8开始支持，从API version 9开始废弃。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
