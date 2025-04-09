@@ -518,6 +518,9 @@
 | void [OH_ArkUI_KeyEvent_StopPropagation](#oh_arkui_keyevent_stoppropagation) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, bool stopPropagation) | 阻塞事件冒泡传递。  | 
 | void [OH_ArkUI_KeyEvent_Dispatch](#oh_arkui_keyevent_dispatch) ([ArkUI_NodeHandle](#arkui_nodehandle) \*node, const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event) | 将按键事件分发到特定组件节点。  | 
 | [ArkUI_KeyIntension](#arkui_keyintension) [OH_ArkUI_KeyEvent_GetKeyIntensionCode](#oh_arkui_keyevent_getkeyintensioncode) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event) | 获取按键对应的意图。  | 
+| [ArkUI_ErrorCode](_ark_u_i___native_module.md#arkui_errorcode) [OH_ArkUI_KeyEvent_IsNumLockOn](_ark_u_i___native_module.md#oh_arkui_keyevent_isnumlockon) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, bool \*state) | 获取按键事件发生时NumLock的状态。  | 
+| [ArkUI_ErrorCode](_ark_u_i___native_module.md#arkui_errorcode) [OH_ArkUI_KeyEvent_IsCapsLockOn](_ark_u_i___native_module.md#oh_arkui_keyevent_iscapslockon) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, bool \*state) | 获取按键事件发生时CapsLock的状态。  | 
+| [ArkUI_ErrorCode](_ark_u_i___native_module.md#arkui_errorcodee) [OH_ArkUI_KeyEvent_IsScrollLockOn](_ark_u_i___native_module.md#oh_arkui_keyevent_isscrolllockon) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, bool \*state) | 获取按键事件发生时ScrollLock的状态。  | 
 | uint32_t [OH_ArkUI_KeyEvent_GetUnicode](#oh_arkui_keyevent_getunicode) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event) | 获取按键的unicode码值。支持范围为非空格的基本拉丁字符：0x0021-0x007E，不支持字符为0。组合键场景下，返回当前keyEvent对应按键的unicode码值。  | 
 | void [OH_ArkUI_KeyEvent_SetConsumed](#oh_arkui_keyevent_setconsumed) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, bool isConsumed) | 在按键事件回调中，设置事件是否被该回调消费  | 
 | [ArkUI_NodeEventType](#arkui_nodeeventtype) [OH_ArkUI_NodeEvent_GetEventType](#oh_arkui_nodeevent_geteventtype) ([ArkUI_NodeEvent](#arkui_nodeevent-12) \*event) | 获取组件事件类型。  | 
@@ -12039,6 +12042,72 @@ void OH_ArkUI_KeyEvent_Dispatch(ArkUI_NodeHandle node, const ArkUI_UIInputEvent*
 | -------- | -------- |
 | node | 需要注册事件的节点对象。  | 
 | event | ArkUI_UIInputEvent事件指针。  | 
+
+### OH_ArkUI_KeyEvent_IsNumLockOn()
+
+```
+ArkUI_ErrorCode OH_ArkUI_KeyEvent_IsNumLockOn(const ArkUI_UIInputEvent* event, bool* state)
+```
+**描述：**
+
+获取按键事件发生时NumLock的状态。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | ArkUI_UIInputEvent事件指针。  | 
+| state | 输出参数，返回NumLock的状态。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+### OH_ArkUI_KeyEvent_IsCapsLockOn()
+
+```
+ArkUI_ErrorCode OH_ArkUI_KeyEvent_IsCapsLockOn(const ArkUI_UIInputEvent* event, bool* state)
+```
+**描述：**
+
+获取按键事件发生时CapsLock的状态。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | ArkUI_UIInputEvent事件指针。  | 
+| state | 输出参数，返回CapsLock的状态。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+### OH_ArkUI_KeyEvent_IsScrollLockOn()
+
+```
+ArkUI_ErrorCode OH_ArkUI_KeyEvent_IsScrollLockOn(const ArkUI_UIInputEvent* event, bool* state)
+```
+**描述：**
+
+获取按键事件发生时ScrollLock的状态。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | ArkUI_UIInputEvent事件指针。  | 
+| state | 输出参数，返回ScrollLock的状态。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
 
 ### OH_ArkUI_KeyframeAnimateOption_Create()
 
