@@ -1425,6 +1425,8 @@ getVisibleWindowInfo(): Promise&lt;Array&lt;WindowInfo&gt;&gt;
 
 **系统能力：** SystemCapability.Window.SessionManager
 
+**需要权限：** ohos.permission.VISIBLE_WINDOW_INFO
+
 **返回值：**
 
 | 类型 | 说明 |
