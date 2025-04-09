@@ -4623,7 +4623,7 @@
 
 **ACL使能**：true
 
-**起始版本**：17
+**起始版本**：19
 
 ## ohos.permission.SEND_NOTIFICATION_CROSS_USER
 
