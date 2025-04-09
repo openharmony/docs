@@ -46,8 +46,8 @@ import { deviceStatus } from '@kit.MultimodalAwarenessKit';
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Parameter verification failed. |
-| 801      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 801      | Capability not supported. Function can not work correctly due to limited device capabilities. |
 | 32500001 | Service exception. |
 | 32500002 | Subscribe Failed. |
 
@@ -84,8 +84,8 @@ off(type: 'steadyStandingDetect', callback?: Callback&lt;SteadyStandingStatus&gt
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Parameter verification failed. |
-| 801      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 801      | Capability not supported. Function can not work correctly due to limited device capabilities. |
 | 32500001 | Service exception. |
 | 32500003 | Unsubscribe Failed. |
 

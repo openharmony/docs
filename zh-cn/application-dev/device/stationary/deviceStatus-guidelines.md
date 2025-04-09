@@ -1,6 +1,6 @@
 # 设备状态感知开发指导
 
-DeviceStatus(设备状态感知)模块提供设备状态感知能力，可以获取到设备的状态感知信息，例如：获取设备静止姿态感知状态（支架态）。
+DeviceStatus（设备状态感知）模块提供设备状态感知能力，可以获取到设备的状态感知信息，例如：获取设备静止姿态感知状态（支架态）。
 
 详细的接口介绍请参考[deviceStatus接口](../../reference/apis-multimodalawareness-kit/js-apis-awareness-deviceStatus.md)。
 
