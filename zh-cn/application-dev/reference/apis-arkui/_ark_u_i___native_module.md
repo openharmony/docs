@@ -16385,7 +16385,7 @@ int32_t OH_ArkUI_PostFrameCallback(ArkUI_ContextHandle uiContext, void* userData
 
 注册一个回调函数，以便在下一帧渲染时执行。不允许在非UI线程调用，检查到非UI线程调用程序会主动abort。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
