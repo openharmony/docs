@@ -687,6 +687,8 @@ addText(text: string, textOperationOptions?: TextContentControllerOptions): numb
 在已编辑文本的指定位置插入文本，默认插入至文本末尾。
 拖拽文本的状态下不生效。
 
+`addText`仅影响应用内部的UI表现，不影响输入法应用的内部逻辑，不推荐在预上屏状态下调用。
+
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -704,6 +706,8 @@ deleteText(range?: TextRange): void
 
 删除已编辑文本的指定区域的内容。
 拖拽文本的状态下不生效。
+
+`deleteText`仅影响应用内部的UI表现，不影响输入法应用的内部逻辑，不推荐在预上屏状态下调用。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
