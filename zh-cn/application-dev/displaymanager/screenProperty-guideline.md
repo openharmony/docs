@@ -25,7 +25,7 @@
 | off(type: 'captureStatusChange', callback?: Callback\<boolean>): void | 关闭屏幕截屏、投屏、录屏状态变化的监听。                     |
 | on(type: 'availableAreaChange', callback: Callback\<Rect>): void | 开启当前设备屏幕的可用区域监听。当前设备屏幕有可用区域变化时，触发回调函数，返回可用区域。 |
 | off(type: 'availableAreaChange', callback?: Callback\<Rect>): void | 关闭当前设备屏幕可用区域变化的监听。                         |
-| isFoldable(): boolean                                        | 检查设备是否可折叠。                                         |
+| isFoldable(): boolean                                        | 检查设备是否可折叠，true表示设备可折叠，false表示设备不可折叠。                          |
 | on(type: 'foldStatusChange', callback: Callback\<FoldStatus>): void | 开启折叠设备折叠状态变化的监听。                             |
 | off(type: 'foldStatusChange', callback?: Callback\<FoldStatus>): void | 关闭折叠设备折叠状态变化的监听。                             |
 
