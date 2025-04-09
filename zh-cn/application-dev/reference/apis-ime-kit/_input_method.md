@@ -2226,6 +2226,69 @@ IME_ERR_NULL_POINTER - 非预期的空指针。
 
 具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
 
+### OH_TextConfig_SetPlaceholder()
+
+```
+InputMethod_ErrorCode OH_TextConfig_SetPlaceholder (InputMethod_TextConfig * config, const char16_t *placeholder, size_t length )
+```
+
+**描述**
+
+设置[InputMethod_TextConfig](#inputmethod_textconfig)实例的占位文本。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| config | 指向即将被设置值的[InputMethod_TextConfig](#inputmethod_textconfig)实例的指针。 | 
+| placeholder | 绑定输入法调用时占位文本指针,文本编码格式为UTF-16 | 
+| length |占位文本实际占用chart_t（双字节）长度,内部判断文本长度不超过256个UTF-16字符|
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_PARAMCHECK - 参数检查失败。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+### OH_TextConfig_SetAbilityName()
+
+```
+InputMethod_ErrorCode OH_TextConfig_SetAbilityName (InputMethod_TextConfig *config, const char16_t *abilityName, size_t length)
+```
+
+**描述**
+
+设置[InputMethod_TextConfig](#inputmethod_textconfig)能力名称。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| config | 指向即将被设置值的[InputMethod_TextConfig](#inputmethod_textconfig)实例的指针。 | 
+| abilityName | 绑定输入法调用时能力名称指针 | 
+| length |能力名称实际占用chart_t（双字节）长度,内部判断文本长度不超过256个UTF-16字符|
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_PARAMCHECK - 参数检查失败。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
 
 ### OH_TextEditorProxy_Create()
 
@@ -3157,6 +3220,68 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetSetPreviewTextFunc (InputMethod_Text
 返回一个特定的错误码。
 
 IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+### OH_TextConfig_GetPlaceholder()
+
+```
+InputMethod_ErrorCode OH_TextConfig_GetPlaceholder(InputMethod_TextConfig *config, char16_t **placeholder, size_t* const length)
+```
+
+**描述**
+
+获取配置文件中设置的占位文本信息。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| config |指向[InputMethod_TextConfig](#inputmethod_textconfig)对象的指针 | 
+| placeholder | 返回占位符信息的指针，需要外部调用free函数以释放内部请求的内存。 | 
+| length |返回占位符的长度，计数单位：char16_t长度（双字节）|
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_PARAMCHECK - 参数检查失败。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+### OH_TextConfig_GetAbilityName()
+
+```
+InputMethod_ErrorCode OH_TextConfig_GetAbilityName(InputMethod_TextConfig *config, char16_t **abilityName, size_t* const length)
+```
+
+**描述**
+
+获取配置中设置的能力名称信息。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| config |指向[InputMethod_TextConfig](#inputmethod_textconfig)对象的指针 | 
+| placeholder | 返回占能力名称的指针，需要外部调用free函数以释放内部请求的内存。 | 
+| length |返回占能力名称的长度，计数单位：char16_t长度（双字节）|
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_PARAMCHECK - 参数检查失败。
 
 IME_ERR_NULL_POINTER - 非预期的空指针。
 
