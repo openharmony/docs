@@ -1,6 +1,6 @@
 # RotationGesture
 
-**RotationGesture** is used to trigger a rotation gesture, which requires two to five fingers with a minimum 1-degree rotation angle.
+**RotationGesture** is used to trigger a rotation gesture, which requires two to five fingers with a minimum 1-degree rotation angle. This gesture cannot be triggered using a two-finger rotation operation on a trackpad.
 
 >  **NOTE**
 >
@@ -19,6 +19,7 @@ RotationGesture(value?: { fingers?: number, angle?: number })
 | -------- | -------- | -------- | -------- |
 | fingers | number | No| Minimum number of fingers to trigger a rotation. The value ranges from 2 to 5.<br>Default value: **2**<br>While more fingers than the minimum number can be pressed to trigger the gesture, only the first two fingers participate in gesture calculation.|
 | angle | number | No| Minimum degree that can trigger the rotation gesture.<br>Default value: **1**<br>**NOTE**<br>If the value is less than or equal to 0 or greater than 360, it will be converted to the default value.|
+| isFingerCountLimited<sup>15+</sup> | boolean | No| Whether to enforce the exact number of fingers touching the screen. With the value **true**, the gesture recognition fails if the number of fingers touching the screen does not match the configured value of **fingers**. The gesture can only be successfully recognized if the number of fingers equals the configured minimum and the swipe distance meets the threshold. Note that only the first two fingers that touch the screen are considered for the gesture. If one of these fingers is lifted, the gesture recognition fails.<br>For gestures that have already been successfully recognized, changing the number of fingers touching the screen will not trigger the[onActionUpdate](ts-basic-gestures-rotationgesture.md#events) event, but the [onActionEnd](ts-basic-gestures-rotationgesture.md#events) event can still be triggered.<br>Default value: **false**|
 
 
 ## Events

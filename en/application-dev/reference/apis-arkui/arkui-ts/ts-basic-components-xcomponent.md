@@ -150,7 +150,7 @@ The following events are effective only when **type** is set to **SURFACE** or *
 
 ### onLoad
 
-onLoad(callback: (event?: object) => void )
+onLoad(callback: (event?: object) => void)
 
 Triggered when the plug-in is loaded.
 
@@ -166,19 +166,13 @@ Triggered when the plug-in is loaded.
 
 ### onDestroy
 
-onDestroy(event: VoidCallback )
+onDestroy(event: () => void)
 
 Triggered when the plug-in is destroyed.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name  | Type  | Mandatory  | Description                                      |
-| ----- | ------ | ---- | ---------------------------------------- |
-| event | [VoidCallback](ts-types.md#voidcallback12) | Yes   | Callback after the **XComponent** is destroyed.|
 
 ## XComponentController
 
@@ -601,7 +595,7 @@ This example shows how to use **setXComponentSurfaceRotation** to lock the surfa
 // xxx.ets
 @Entry
 @Component
-struct Index{
+struct Index {
   @State isLock: boolean = true;
   @State xc_width: number = 500;
   @State xc_height: number = 700;

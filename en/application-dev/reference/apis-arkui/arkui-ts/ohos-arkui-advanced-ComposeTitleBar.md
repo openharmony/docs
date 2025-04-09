@@ -1,7 +1,7 @@
 # ComposeTitleBar
 
 
-A one- or two-row title bar with profile picture is a common title bar that contains a title, subtitle (optional), and profile picture (optional). It can come with a Back button for switching between pages of different levels.
+**ComposeTitleBar** represents a common title bar that contains a title, subtitle (optional), and profile picture (optional). It can come with a Back button for switching between pages of different levels.
 
 
 > **NOTE**
@@ -21,7 +21,7 @@ import { ComposeTitleBar } from '@kit.ArkUI'
 Not supported
 
 ## Attributes
-The [universal attributes](ts-universal-attributes-size.md) are not supported.
+The [universal attributes](ts-component-general-attributes.md) are not supported.
 
 ## ComposeTitleBar
 
@@ -56,7 +56,7 @@ ComposeTitleBar({item?: ComposeTitleBarMenuItem, title: ResourceStr, subtitle?: 
 | action | () =&gt; void | No| Action to perform. This parameter is not available for the item attribute.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
 ## Events
-The [universal events](ts-universal-events-click.md) are not supported.
+The [universal events](ts-component-general-events.md) are not supported.
 
 ## Example
 
@@ -71,24 +71,24 @@ struct Index {
   private menuItems: Array<ComposeTitleBarMenuItem> = [
     {
       // Resource for the menu icon
-      value: $r('app.media.ic_public_save'),
+      value: $r('sys.media.ohos_save_button_filled'),
       // Enable the icon.
       isEnabled: true,
       // Action triggered when the menu item is clicked.
       action: () => promptAction.showToast({ message: "show toast index 1" })
     },
     {
-      value: $r('app.media.ic_public_reduce'),
+      value: $r('sys.media.ohos_ic_public_copy'),
       isEnabled: true,
       action: () => promptAction.showToast({ message: "show toast index 1" })
     },
     {
-      value: $r('app.media.ic_public_edit'),
+      value: $r('sys.media.ohos_ic_public_edit'),
       isEnabled: true,
       action: () => promptAction.showToast({ message: "show toast index 1" })
     },
     {
-      value: $r('app.media.ic_public_remove'),
+      value: $r('sys.media.ohos_ic_public_remove'),
       isEnabled: true,
       action: () => promptAction.showToast({ message: "show toast index 1" })
     },
@@ -119,12 +119,12 @@ struct Index {
         Divider().height(2).color(0xCCCCCC)
         // Define the title bar with a profile picture.
         ComposeTitleBar({
-          menuItems: [{ isEnabled: true, value: $r('app.media.ic_public_save'),
+          menuItems: [{ isEnabled: true, value: $r('sys.media.ohos_save_button_filled'),
             action: () => promptAction.showToast({ message: "show toast index 1" })
           }],
           title: "Title",
           subtitle: "Subtitle",
-          item: { isEnabled: true, value: $r('app.media.app_icon') }
+          item: { isEnabled: true, value: $r('sys.media.ohos_app_icon') }
         })
         Divider().height(2).color(0xCCCCCC)
       }
@@ -133,4 +133,4 @@ struct Index {
 }
 ```
 
-![en-us_image_0000001616913438](figures/en-us_image_0000001616913438.jpg)
+![en-us_image_composetitlebar_example01](figures/en-us_image_composetitlebar_example01.png)

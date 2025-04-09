@@ -277,7 +277,7 @@ function itemHead(params: HeadBuilderParams) {
 
 @Builder
 function itemFoot(params: FootBuilderParams) {
-  Text('Total lessons:' + params.num)
+  Text('Total lessons: ' + params.num)
     .fontSize(20)
     .height('48vp')
     .width("100%")

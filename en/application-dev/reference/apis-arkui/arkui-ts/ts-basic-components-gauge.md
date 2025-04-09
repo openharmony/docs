@@ -41,7 +41,7 @@ Creates a gauge.
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### value
 
@@ -141,7 +141,7 @@ Sets the stroke width of the gauge.
 
 | Name| Type                        | Mandatory| Description                                                        |
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
-| length | [Length](ts-types.md#length) | Yes  | Stroke width of the gauge.<br>Default value: **4**<br>Unit: vp<br>**NOTE**<br>A value less than 0 evaluates to the default value.<br>The value cannot be in percentage.|
+| length | [Length](ts-types.md#length) | Yes  | Stroke width of the gauge.<br>Default value: **4**<br>Unit: vp<br>**NOTE**<br>If a value less than 0 is set, the default value is used.<br>If the value exceeds the maximum value, the radius of the gauge, the maximum value is used.<br>The value cannot be in percentage.|
 
 ### description<sup>11+</sup>
 
@@ -327,7 +327,7 @@ struct Gauge1 {
 ```
 ![gauge](figures/gauge-image1.png)
 
-### Example 1: Implementing a Single-color Gauge
+### Example 2: Implementing a Single-Color Gauge
 
 This example demonstrates how to implement a single-color gauge using the **colors** attribute.
 
@@ -740,3 +740,35 @@ struct GaugeExample {
 }
 ```
 ![gauge](figures/gauge-privacysensitive.gif)
+
+### Example 10: Implementing a Custom Indicator
+
+This example demonstrates how to implement a custom indicator using **indicator**. You can import an SVG image to replace the default indicator.
+
+```ts
+@Entry
+@Component
+struct Gauge2 {
+  build() {
+    Column() {
+      Gauge({ value: 50, min: 1, max: 100 })
+        .indicator({ space: 10, icon: $r('app.media.indicator') })
+        .startAngle(210)
+        .endAngle(150)
+        .colors('#cca5d61d')
+        .width('80%')
+        .height('80%')
+        .strokeWidth(18)
+        .padding(18)
+    }.margin({ top: 40 }).width('100%').height('100%')
+  }
+}
+```
+```xml
+<svg width="200px" height="200px">
+    <path d="M 10,30 A 20,20 0,0,1 50,30 A 20,20 0,0,1 90,30 Q 90,60 50,90 Q 10,60 10,30 z"
+          stroke="black" stroke-width="3" fill="white">
+    </path>
+</svg>
+```
+![gauge](figures/gauge-image8.png)

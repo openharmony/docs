@@ -18,7 +18,7 @@ Not supported
 
 ### NodeContainer
 
-NodeContainer(controller: import('../api/@ohos.arkui.node').NodeController)
+NodeContainer(controller: NodeController)
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -31,11 +31,11 @@ NodeContainer(controller: import('../api/@ohos.arkui.node').NodeController)
 | controller | [NodeController](../js-apis-arkui-nodeController.md) | Yes  | **NodeController** instance used to control the upper and lower tree nodes in the **NodeContainer**. It represents the lifecycle of the **NodeContainer**.|
 ## Attributes
 
-The [universal attributes](ts-universal-attributes-size.md) are supported.
+The [universal attributes](ts-component-general-attributes.md) are supported.
 
 ## Events
 
-The [universal events](ts-universal-events-click.md) are supported.
+The [universal events](ts-component-general-events.md) are supported.
 
 ## Example
 

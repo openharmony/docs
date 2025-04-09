@@ -35,7 +35,7 @@ The default value of the [padding](ts-universal-attributes-size.md#padding) attr
 
 The [maxFontScale](ts-basic-components-text.md#maxfontscale12) and [minFontScale](ts-basic-components-text.md#minfontscale12) attributes are both set to a constant value of 1, which means that they do not change with the system font size.
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### color
 
@@ -131,7 +131,7 @@ Sets whether to display the pop-up window.
 
 | Name| Type   | Mandatory| Description                                  |
 | ------ | ------- | ---- | -------------------------------------- |
-| value  | boolean | Yes  | Whether to display the pop-up window.<br>Default value: **false**|
+| value  | boolean | Yes  | Whether to display the pop-up window.<br>Default value: **false** (no the pop-up window is displayed).|
 
 ### selectedFont
 
@@ -147,7 +147,7 @@ Sets the text style for the selected item.
 
 | Name| Type                    | Mandatory| Description                                                        |
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Font](ts-types.md#font) | Yes  | Text style of the selected item.<br>Default value:<br>API version 11 and earlier:<br>{<br>size:'12.0fp',<br> style:FontStyle.Normal,<br> weight:FontWeight.Normal,<br> family:'HarmonyOS Sans'<br>}<br>API version 12 and later:<br>{<br>size:'10.0vp',<br> style:FontStyle.Normal,<br> weight:FontWeight.Medium,<br> family:'HarmonyOS Sans'<br>} |
+| value  | [Font](ts-types.md#font) | Yes  | Text style of the selected item.<br>Default value:<br>API version 11 and earlier:<br>{<br>size:'12.0fp',<br> style:FontStyle.Normal,<br> weight:FontWeight.Regular,<br> family:'HarmonyOS Sans'<br>}<br>API version 12 and later:<br>{<br>size:'10.0vp',<br> style:FontStyle.Normal,<br> weight:FontWeight.Medium,<br> family:'HarmonyOS Sans'<br>} |
 
 ### popupFont
 
@@ -163,7 +163,7 @@ Sets the text style for the primary index item in the pop-up window.
 
 | Name| Type                    | Mandatory| Description                                                        |
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Font](ts-types.md#font) | Yes  | Text style of the primary index item in the pop-up window.<br>Default value:<br>{<br>size:'24.0vp',<br> style:FontStyle.Normal,<br> weight:FontWeight.Normal,<br> family:'HarmonyOS Sans'<br>} |
+| value  | [Font](ts-types.md#font) | Yes  | Text style of the primary index item in the pop-up window.<br>Default value:<br>{<br>size:'24.0vp',<br> style:FontStyle.Normal,<br> weight:FontWeight.Medium,<br> family:'HarmonyOS Sans'<br>} |
 
 ### font
 
@@ -179,7 +179,7 @@ Sets the text style for unselected items.
 
 | Name| Type                    | Mandatory| Description                                                        |
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Font](ts-types.md#font) | Yes  | Text style of unselected items.<br>Default value:<br>API version 11 and earlier:<br>{<br>size:'12.0fp',<br> style:FontStyle.Normal,<br> weight:FontWeight.Normal,<br> family:'HarmonyOS Sans'<br>}<br>API version 12 and later:<br>{<br>size:'10.0vp',<br> style:FontStyle.Normal,<br> weight:FontWeight.Medium,<br> family:'HarmonyOS Sans'<br>} |
+| value  | [Font](ts-types.md#font) | Yes  | Text style of unselected items.<br>Default value:<br>API version 11 and earlier:<br>{<br>size:'12.0fp',<br> style:FontStyle.Normal,<br> weight:FontWeight.Regular,<br> family:'HarmonyOS Sans'<br>}<br>API version 12 and later:<br>{<br>size:'10.0vp',<br> style:FontStyle.Normal,<br> weight:FontWeight.Medium,<br> family:'HarmonyOS Sans'<br>} |
 
 ### itemSize
 
@@ -278,7 +278,7 @@ Sets the text color for the unselected secondary index items in the pop-up windo
 
 | Name| Type                                      | Mandatory| Description                                                   |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Text color of the unselected secondary index items in the pop-up window.<br>Default value: **#FF182431**|
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Text color of the selected secondary index item in the pop-up window.<br>Default value: **#FF182431**|
 
 ### popupItemFont<sup>10+</sup>
 
@@ -414,7 +414,7 @@ enableHapticFeedback(value: boolean)
 
 | Name        | Type                                                 | Mandatory| Description                        |
 |-------------|-----------------------------------------------------|----|----------------------------|
-| value | boolean | Yes | Whether haptic feedback is enabled.<br>Default value: **true**<br>|
+| value | boolean | Yes | Whether to enable haptic feedback.<br>Default value: **true** (haptic feedback is enabled).|
 
 ## IndexerAlign
 
@@ -429,7 +429,7 @@ enableHapticFeedback(value: boolean)
 
 ## Events
 
-In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
+In addition to the [universal events](ts-component-general-events.md), the following events are supported.
 
 ### onSelected<sup>(deprecated)</sup>
 
@@ -499,7 +499,7 @@ Triggered when a secondary index item in the pop-up window is selected. The call
 
 | Name| Type  | Mandatory| Description            |
 | ------ | ------ | ---- | ---------------- |
-| index  | number | Yes  | Index of the selected item..|
+| index  | number | Yes  | Index of the selected item.|
 
 
 ## Example
@@ -572,7 +572,7 @@ struct AlphabetIndexerSample {
         AlphabetIndexer({ arrayValue: this.value, selected: 0 })
           .autoCollapse (false) // Disable the auto-collapse mode.
           .enableHapticFeedback(false) // Disable haptic feedback.
-          .selectedColor(0xFFFFFF) // Font color of the selected text.
+          .selectedColor(0xFFFFFF) // Text color of the selected item.
           .popupColor(0xFFFAF0) // Text color of the primary index item in the pop-up window.
           .selectedBackgroundColor(0xCCCCCC) // Background color of the selected item.
           .popupBackground (0xD2B48C) // Background color of the pop-up window.
@@ -629,7 +629,7 @@ This example demonstrates how to enable adaptive collapse mode using the [autoCo
 @Entry
 @Component
 struct AlphabetIndexerSample {
-  private arrayA:string[] = ['Ann']
+  private arrayA: string[] = ['Ann']
   private arrayB: string[] = ['Ben', 'Bob']
   private arrayC: string[] = ['Calvin', 'Cameron', 'Charlie', 'Charlotte']
   private arrayJ: string[] = ['Jack', 'James']
@@ -693,7 +693,7 @@ struct AlphabetIndexerSample {
               .autoCollapse (this.isNeedAutoCollapse) // Enable or disable adaptive collapse mode.
               .height (this.indexerHeight) // Indexer height.
               .enableHapticFeedback(false) // Disable haptic feedback.
-              .selectedColor(0xFFFFFF) // Font color of the selected text.
+              .selectedColor(0xFFFFFF) // Text color of the selected item.
               .popupColor(0xFFFAF0) // Text color of the primary index item in the pop-up window.
               .selectedBackgroundColor(0xCCCCCC) // Background color of the selected item.
               .popupBackground (0xD2B48C) // Background color of the pop-up window.
@@ -771,7 +771,7 @@ This example demonstrates how to apply a background blur effect to the pop-up wi
 @Entry
 @Component
 struct AlphabetIndexerSample {
-  private arrayA:string[] = ['Ann']
+  private arrayA: string[] = ['Ann']
   private arrayB: string[] = ['Ben', 'Bob']
   private arrayC: string[] = ['Calvin', 'Cameron', 'Charlie', 'Charlotte']
   private arrayL: string[] = ['Daisy', 'Daniel', 'Darla', 'David', 'Derek', 'Dorothy', 'Duke']

@@ -24,11 +24,11 @@ When this API is used with components that come with a pre-loading mechanism, su
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                                 | Mandatory | Description                |
+| Name | Type                                                 | Mandatory| Description                |
 | ------- | ----------------------------------------------------- | ---- | -------------------- |
-| options | [CheckboxGroupOptions](#checkboxgroupoptions)  | No  | Check box group parameters. |
+| options | [CheckboxGroupOptions](#checkboxgroupoptions) | No  | Check box group parameters.|
 
 ## CheckboxGroupOptions
 
@@ -36,13 +36,15 @@ When this API is used with components that come with a pre-loading mechanism, su
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name | Type | Mandatory | Description |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| group | string | No | Group name.<br>**NOTE**<br>If there are multiple check box groups with the same group name, only the first check box group takes effect. |
+| group | string | No| Group name.<br>**NOTE**<br>If there are multiple check box groups with the same group name, only the first check box group takes effect.|
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### selectAll
 
@@ -58,17 +60,17 @@ Since API version 10, this attribute supports two-way binding through [$$](../..
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type   | Mandatory | Description                        |
-| ------ | ------- | ---- | ---------------------------- |
-| value  | boolean | Yes  | Whether to select all.<br>Default value: **false** |
+| Name| Type   | Mandatory| Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | Yes  | Whether to select all.<br>Default value: **false**<br>**true**: Select all check boxes in the group. **false**: Do not select any check box in the group.|
 
 ### selectedColor
 
 selectedColor(value: ResourceColor)
 
-Sets the color of the selected check box.
+Sets the color of the selected check box.	
 
 **Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
 
@@ -76,11 +78,11 @@ Sets the color of the selected check box.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                      | Mandatory | Description                                                        |
+| Name| Type                                      | Mandatory| Description                                                        |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Color of the selected check box.<br>Default value: **$r('sys.color.ohos_id_color_text_primary_activated')**<br>An invalid value is handled as the default value. |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Color of the selected check box.<br>Default value: **$r('sys.color.ohos_id_color_text_primary_activated')**<br>An invalid value is handled as the default value.|
 
 ### unselectedColor<sup>10+</sup>
 
@@ -88,25 +90,21 @@ unselectedColor(value: ResourceColor)
 
 Sets the border color of the check box when it is not selected.
 
-**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
-
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                      | Mandatory | Description                |
-| ------ | ------------------------------------------ | ---- | -------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Border color of the check box when it is not selected.<br>Default value: **'#33ffffff'** |
+| Name| Type                                      | Mandatory| Description                                                        |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Border color of the check box when it is not selected.<br>Default value: **$r('sys.color.ohos_id_color_switch_outline_off')**|
 
 ### mark<sup>10+</sup>
 
 mark(value: MarkStyle)
 
-Sets the mark style of the check box.
-
-**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+Sets the check mark style of the check box.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -114,15 +112,15 @@ Sets the mark style of the check box.
 
 **Parameters** 
 
-| Name | Type                             | Mandatory | Description                |
-| ------ | --------------------------------- | ---- | -------------------- |
-| value  | [MarkStyle](ts-types.md#markstyle10) | Yes  | Mark style of the check box. |
+| Name| Type                                        | Mandatory| Description                |
+| ------ | -------------------------------------------- | ---- | -------------------- |
+| value  | [MarkStyle](ts-types.md#markstyle10) | Yes  | Check mark style of the check box.|
 
-### checkboxShape<sup>12</sup>
+### checkboxShape<sup>12+</sup>
 
 checkboxShape(value: CheckBoxShape)
 
-Sets the shape of the check box group.
+Sets the check box shape of the check box group.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -132,19 +130,19 @@ Sets the shape of the check box group.
 
 **Parameters** 
 
-| Name | Type                                               | Mandatory | Description              |
-| ------ | --------------------------------------------------- | ---- | ------------------ |
-| value  | [CheckBoxShape](ts-basic-components-checkbox.md#checkboxshape11) | Yes  | Shape of the check box group.<br>Default value: **CheckBoxShape.CIRCLE**<br>**NOTE**<br>The shape of the check box group component follows the settings configured.<br>All check boxes within the check box group that do not have an individual shape set will conform to the shape of the check box group.<br>If a check box within the check box group has an individual shape set, that shape takes precedence over the check box group's shape.
+| Name| Type                                                 | Mandatory| Description                                                        |
+| ------ | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [CheckBoxShape](ts-appendix-enums.md#checkboxshape11) | Yes  | Check box shape of the check box group.<br>Default value: **CheckBoxShape.CIRCLE**<br>**NOTE**<br>The shape of the check box group component follows the settings configured.<br>All check boxes within the check box group that do not have an individual shape set will conform to the shape of the check box group.<br>If a check box within the check box group has an individual shape set, that shape takes precedence over the check box group's shape.|
 
 ## Events
 
-In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
+In addition to the [universal events](ts-component-general-events.md), the following events are supported.
 
 ### onChange
 
 onChange(callback: (event: CheckboxGroupResult) => void )
 
-Invoked when the selected status of the check box group or any check box wherein changes.
+Triggered when the selected status of the check box group or any check box wherein changes.
 
 **Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
 
@@ -156,7 +154,7 @@ Invoked when the selected status of the check box group or any check box wherein
 
 | Name | Type                                               | Mandatory | Description              |
 | ------ | --------------------------------------------------- | ---- | ------------------ |
-| event  | [CheckboxGroupResult](#checkboxgroupresult) | Yes  | Information about the check box group. |
+| event  | [CheckboxGroupResult](#checkboxgroupresult)| Yes  | Information about the check box group.|
 
 ## CheckboxGroupResult
 
@@ -164,10 +162,12 @@ Invoked when the selected status of the check box group or any check box wherein
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name    | Type  | Description     |
-| ------ | ------ | ------- |
-| name   | Array&lt;string&gt; | Names of all the selected check boxes in the group. |
-| status | [SelectStatus](#selectstatus)  | Selected status. |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name   | Type  | Read Only| Optional| Description     |
+| ------ | ------ | ------- | ------- | ------- |
+| name   | Array&lt;string&gt; | No| No| Names of all the selected check boxes in the group.|
+| status | [SelectStatus](#selectstatus) | No| No| Selected status.|
 
 ## SelectStatus
 
@@ -175,15 +175,19 @@ Invoked when the selected status of the check box group or any check box wherein
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name | Description |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name | Description|
 | ----- | -------------------- |
-| All   | All check boxes in the group are selected. |
-| Part  | Some check boxes in the group are selected. |
-| None  | None of the check boxes in the group are selected. |
+| All   | All check boxes in the group are selected.|
+| Part  | Some check boxes in the group are selected.|
+| None  | None of the check boxes in the group are selected.|
 
 ## Example
 
-### Example 1
+### Example 1: Setting a Check Box Group
+
+This example demonstrates how to control the state of a group of check boxes to achieve a "select all" or "deselect all" effect.
 
 ```ts
 // xxx.ets
@@ -243,7 +247,9 @@ struct CheckboxExample {
 ```
 ![checkboxGroup](figures/checkboxGroup.gif)
 
-### Example 2
+### Example 2: Customizing Check Mark Style
+
+This example shows how to customize the check mark style for a check box group by configuring the **mark** attribute.
 
 ```ts
 // xxx.ets

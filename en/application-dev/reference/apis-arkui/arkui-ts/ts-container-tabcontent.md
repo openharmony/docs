@@ -320,10 +320,10 @@ Represents an indicator style object.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------------------------------- |
 | color | [ResourceColor](ts-types.md#resourcecolor) | No| Color of the indicator and board.<br>Default value: **#FF007DFF**|
-| height | [Length](ts-types.md#length) | No| Height of the indicator. It cannot be set in percentage.<br>Default value: **2.0**<br>Unit: vp|
-| width | [Length](ts-types.md#length) | No| Width of the indicator. It cannot be set in percentage.<br>Default value: **0.0**<br>Unit: vp<br>**NOTE**<br>If this parameter is set to **0**, the tab text width will be used instead.|
-| borderRadius | [Length](ts-types.md#length) | No| Rounded corner radius of the indicator. It cannot be set in percentage.<br>Default value: **0.0**<br>Unit: vp|
-| marginTop | [Length](ts-types.md#length) | No| Spacing between the indicator and text. It cannot be set in percentage.<br>Default value: **8.0**<br>Unit: vp|
+| height | [Length](ts-types.md#length) | No| Height of the indicator. It cannot be set in percentage.<br>Default value: **2.0**<br>Unit: vp<br>Value range: (0, +∞)|
+| width | [Length](ts-types.md#length) | No| Width of the indicator. It cannot be set in percentage.<br>Default value: **0.0**<br>Unit: vp<br>Value range: (0, +∞)<br>**NOTE**<br>If this parameter is set to **0**, the tab text width will be used instead.|
+| borderRadius | [Length](ts-types.md#length) | No| Rounded corner radius of the indicator. It cannot be set in percentage.<br>Default value: **0.0**<br>Unit: vp<br>Value range: [0, +∞)|
+| marginTop | [Length](ts-types.md#length) | No| Spacing between the indicator and text. It cannot be set in percentage.<br>Default value: **8.0**<br>Unit: vp<br>Value range: [0, +∞)|
 
 ## SelectedMode<sup>10+</sup>
 
@@ -348,7 +348,7 @@ Represents a board style object.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | ------------------------------------ |
-| borderRadius | [Length](ts-types.md#length) | No| Rounded corner radius of the board. It cannot be set in percentage.<br>Default value: **8.0**<br>Unit: vp|
+| borderRadius | [Length](ts-types.md#length) | No| Rounded corner radius of the board. It cannot be set in percentage.<br>Default value: **8.0**<br>Unit: vp<br>Value range: [0, +∞)|
 
 ## LabelStyle<sup>10+</sup>
 
@@ -359,9 +359,9 @@ Represents a style object for the label text and font.
 | Name                | Type                                                    | Mandatory| Description                                                        |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | overflow             | [TextOverflow](ts-appendix-enums.md#textoverflow)            | No  | Display mode when the label text is too long. By default, an ellipsis (...) is used to represent text overflow.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| maxLines             | number                                                       | No  | Maximum number of lines in the label text. If this attribute is specified, the text will not exceed the specified number of lines. You can use **textOverflow** to specify how to represent text overflow. Default value: **1**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| minFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | No  | Minimum font size of the label text. It cannot be set in percentage. For the setting to take effect, this attribute must be used together with **maxFontSize**, **maxLines**, or layout constraint settings. When the adaptive text size is set, **font.size** does not take effect. Default value: **0.0fp**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| maxFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | No  | Maximum font size of the label text. It cannot be set in percentage. For the setting to take effect, this attribute must be used together with **minFontSize**, **maxLines**, or layout constraint settings. When the adaptive text size is set, **font.size** does not take effect. Default value: **0.0fp**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| maxLines             | number                                                       | No  | Maximum number of lines in the label text. If this attribute is specified, the text will not exceed the specified number of lines. You can use **textOverflow** to specify how to represent text overflow. Default value: **1**<br>Value range: [1, +∞)<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| minFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | No  | Minimum font size of the label text. It cannot be set in percentage. For the setting to take effect, this attribute must be used together with **maxFontSize**, **maxLines**, or layout constraint settings. When the adaptive text size is set, **font.size** does not take effect. The default value is **0.0fp**, indicating that the adaptive text size has no effect.<br>Value range: (0, +∞)<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| maxFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | No  | Maximum font size of the label text. It cannot be set in percentage. For the setting to take effect, this attribute must be used together with **minFontSize**, **maxLines**, or layout constraint settings. When the adaptive text size is set, **font.size** does not take effect. The default value is **0.0fp**, indicating that the adaptive text size has no effect.<br>Value range: [minFontSize, +∞)<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | heightAdaptivePolicy | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | No  | How the adaptive height is determined for the label text. By default, the **maxLines** settings are prioritized.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | font                 | [Font](ts-types.md#font)                                     | No  | Font of the label text.<br>When the tab is a subtab, the default font is in 16.0 fp size, 'HarmonyOS Sans' family, normal font style, medium weight when selected, and normal weight when not selected.<br>When the tab is a bottom tab, the default font is in 10.0 fp size, 'HarmonyOS Sans' family, normal font style, and medium weight.<br>The default font size of the bottom tab page is 12.0 fp since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | unselectedColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor) | No| Font color of the label text when it is not selected.<br>Default value: **#99182431**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -491,7 +491,7 @@ Sets whether the images and text on the bottom tab can be symmetrically extended
 
 | Name | Type                                  | Mandatory| Description          |
 | ------- | ------------------------------------- | ---- | ------------- |
-| value | boolean | Yes  | Whether the images and text on the bottom tab can be symmetrically extended by the minimum value of the available space on the left and right bottom tabs.<br>Default value: **false**|
+| value | boolean | Yes  | Whether the images and text on the bottom tab can be symmetrically extended by the minimum value of the available space on the left and right bottom tabs.<br>Default value: **false**, indicating that the images and text on the bottom tab cannot be symmetrically extended by the minimum value of the available space on the left and right bottom tabs|
 
 **Return value**
 
@@ -586,11 +586,11 @@ Enumerates the layout modes of the images and texts on the bottom tabs.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name        | Description                                    |
-| ----------  | ---------------------------------------- |
-| AUTO        | When the tab width is greater than 104 vp, the tab content is arranged from left to right. Otherwise,the tab content is arranged from top to bottom. This parameter is valid only when the tab bar is in vertical mode or fixed horizontal mode.|
-| VERTICAL    | The tab content is arranged from top to bottom.|
-| HORIZONTAL | The tab content is arranged from left to right.|
+| Name        | Value| Description                                    |
+| ----------  | - | ---------------------------------------- |
+| AUTO        | 0 | When the tab width is greater than 104 vp, the tab content is arranged from left to right. Otherwise,the tab content is arranged from top to bottom. This parameter is valid only when the tab bar is in vertical mode or fixed horizontal mode.|
+| VERTICAL    | 1 | The tab content is arranged from top to bottom.|
+| HORIZONTAL  | 2 | The tab content is arranged from left to right.|
 
 ## TabBarIconStyle<sup>12+</sup>
 

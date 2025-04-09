@@ -155,7 +155,7 @@ Sets the slide-in and slide-out effects for page transitions.
 
 ### translate
 
-translate(value: TranslateOptions): T
+translate(value: {x? : number \| string; y? : number \| string; z? : number \| string}): T
 
 Sets the translation effect for page transitions.
 
@@ -167,11 +167,11 @@ Sets the translation effect for page transitions.
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [TranslateOptions](ts-universal-attributes-transformation.md#translateoptions) | Yes  | Translation effect for page transitions, specifying the start value for entrance and the end value for exit. When this parameter is set together with **slide**, the latter takes effect by default.<br>- **x**: translation distance along the x-axis.<br>- **y**: translation distance along the y-axis.<br>- **z**: translation distance along the y-axis.|
+| value  | {<br/>x? : number \| string;<br/>y? : number \| string;<br/>z? : number \| string<br/>} | Yes  | Translation effect for page transitions, specifying the start value for entrance and the end value for exit. When this parameter is set together with **slide**, the latter takes effect by default.<br>- **x**: translation distance along the x-axis.<br>- **y**: translation distance along the y-axis.<br>- **z**: translation distance along the y-axis.|
 
 ### scale
 
-scale(value: ScaleOptions): T
+scale(value: { x? : number; y? : number; z? : number; centerX? : number \| string; centerY? : number \| string}): T
 
 Sets the scaling effect for page transitions.
 
@@ -183,7 +183,7 @@ Sets the scaling effect for page transitions.
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ScaleOptions](ts-universal-attributes-transformation.md#scaleoptions) | Yes  | Scaling effect for page transitions, specifying the start value for entrance and the end value for exit.<br>- **x**: scale factor along the x-axis.<br>- **y**: scale factor along the y-axis.<br>- **z**: scale factor along the z-axis.<br>- **centerX** and **centerY**: scaling center. The default values are both **"50%"**, meaning the center of the page is used as the scaling center by default.<br>- If the center point is (0, 0), it refers to the upper left corner of the component.|
+| value  | {<br/>x? : number;<br/>y? : number;<br/>z? : number;<br/>centerX? : number \| string;<br/>centerY? : number \| string<br/>} | Yes  | Scaling effect for page transitions, specifying the start value for entrance and the end value for exit.<br>- **x**: scale factor along the x-axis.<br>- **y**: scale factor along the y-axis.<br>- **z**: scale factor along the z-axis.<br>- **centerX** and **centerY**: scaling center. The default values are both **"50%"**, meaning the center of the page is used as the scaling center by default.<br>- If the center point is (0, 0), it refers to the upper left corner of the component.|
 
 ### opacity
 
