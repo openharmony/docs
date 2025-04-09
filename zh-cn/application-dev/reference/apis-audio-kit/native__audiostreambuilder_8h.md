@@ -1,6 +1,5 @@
 # native_audiostreambuilder.h
 
-
 ## 概述
 
 声明音频流构造器相关接口。
@@ -17,9 +16,7 @@
 
 **相关模块：**[OHAudio](_o_h_audio.md)
 
-
 ## 汇总
-
 
 ### 函数
 
@@ -32,7 +29,7 @@
 | [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioStreamBuilder_SetSampleFormat](_o_h_audio.md#oh_audiostreambuilder_setsampleformat)([OH_AudioStreamBuilder](_o_h_audio.md#oh_audiostreambuilder) \*builder, [OH_AudioStream_SampleFormat](_o_h_audio.md#oh_audiostream_sampleformat) format) | 设置音频流的采样格式属性。  | 
 | [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioStreamBuilder_SetEncodingType](_o_h_audio.md#oh_audiostreambuilder_setencodingtype)([OH_AudioStreamBuilder](_o_h_audio.md#oh_audiostreambuilder) \*builder, [OH_AudioStream_EncodingType](_o_h_audio.md#oh_audiostream_encodingtype) encodingType) | 设置音频流的编码类型属性。  | 
 | [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioStreamBuilder_SetLatencyMode](_o_h_audio.md#oh_audiostreambuilder_setlatencymode)([OH_AudioStreamBuilder](_o_h_audio.md#oh_audiostreambuilder) \*builder, [OH_AudioStream_LatencyMode](_o_h_audio.md#oh_audiostream_latencymode) latencyMode) | 设置音频流的时延模式。  | 
-| [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioStreamBuilder_SetChannelLayout](_o_h_audio.md#oh_audiostreambuilder_setchannellayout)([OH_AudioStreamBuilder](_o_h_audio.md#oh_audiostreambuilder) \*builder, OH_AudioChannelLayout channelLayout) | 设置音频流的声道布局。  | 
+| [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioStreamBuilder_SetChannelLayout](_o_h_audio.md#oh_audiostreambuilder_setchannellayout)([OH_AudioStreamBuilder](_o_h_audio.md#oh_audiostreambuilder) \*builder, [OH_AudioChannelLayout](../apis-avcodec-kit/_core.md#oh_audiochannellayout-1) channelLayout) | 设置音频流的声道布局。  | 
 | [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioStreamBuilder_SetRendererInfo](_o_h_audio.md#oh_audiostreambuilder_setrendererinfo)([OH_AudioStreamBuilder](_o_h_audio.md#oh_audiostreambuilder) \*builder, [OH_AudioStream_Usage](_o_h_audio.md#oh_audiostream_usage) usage) | 设置输出音频流的工作场景。  | 
 | [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioStreamBuilder_SetCapturerInfo](_o_h_audio.md#oh_audiostreambuilder_setcapturerinfo)([OH_AudioStreamBuilder](_o_h_audio.md#oh_audiostreambuilder) \*builder, [OH_AudioStream_SourceType](_o_h_audio.md#oh_audiostream_sourcetype) sourceType) | 设置输入音频流的工作场景。  | 
 | [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioStreamBuilder_SetRendererCallback](_o_h_audio.md#oh_audiostreambuilder_setrenderercallback)([OH_AudioStreamBuilder](_o_h_audio.md#oh_audiostreambuilder) \*builder, [OH_AudioRenderer_Callbacks](_o_h_audio.md#oh_audiorenderer_callbacks) callbacks, void \*userData) | 设置输出音频流的回调。  | 
