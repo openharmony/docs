@@ -5,6 +5,7 @@
   - [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](js-apis-resourceschedule-backgroundTaskManager.md) 
   - [@ohos.resourceschedule.workScheduler (延迟任务调度)](js-apis-resourceschedule-workScheduler.md)
   - [@ohos.WorkSchedulerExtensionAbility (延迟任务调度回调)](js-apis-WorkSchedulerExtensionAbility.md)
+  - [@ohos.resourceschedule.backgroundProcessManager (后台子进程管控)](js-apis-backgroundProcessManager.md)
   <!--Del-->
   - [@ohos.reminderAgentManager (后台代理提醒)(系统接口)](js-apis-reminderAgentManager-sys.md)
   - [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)(系统接口)](js-apis-resourceschedule-backgroundTaskManager-sys.md)
