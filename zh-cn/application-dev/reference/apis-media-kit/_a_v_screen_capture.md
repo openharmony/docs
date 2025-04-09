@@ -366,15 +366,11 @@ typedef struct OH_AVScreenCaptureCallback OH_AVScreenCaptureCallback
 **描述**
 OH_AVScreenCapture中所有异步回调函数指针的集合。将该结构体的实例注册到OH_AVScreenCapture实例中， 并处理回调上报的信息，以保证OH_AVScreenCapture的正常运行。
 
+从API 12开始，推荐使用接口[OH_AVScreenCapture_OnError](#oh_avscreencapture_onerror) [OH_AVScreenCapture_OnBufferAvailable](#oh_avscreencapture_onbufferavailable)替代。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
 **起始版本：** 10
-
-**废弃版本：** 12
-
-**替代接口：**
-
-[OH_AVScreenCapture_OnError](#oh_avscreencapture_onerror) [OH_AVScreenCapture_OnBufferAvailable](#oh_avscreencapture_onbufferavailable)
 
 **参数:**
 
@@ -419,13 +415,11 @@ typedef void(* OH_AVScreenCaptureOnAudioBufferAvailable) (OH_AVScreenCapture *ca
 **描述**
 当OH_AVScreenCapture操作期间音频缓冲区可用时，将调用函数指针。
 
+从API 12开始，推荐使用接口[OH_AVScreenCapture_OnBufferAvailable](#oh_avscreencapture_onbufferavailable)替代。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
 **起始版本：** 10
-
-**废弃版本：** 12
-
-**替代接口：**[OH_AVScreenCapture_OnBufferAvailable](#oh_avscreencapture_onbufferavailable)
 
 **参数:**
 
@@ -444,13 +438,11 @@ typedef void(* OH_AVScreenCaptureOnError) (OH_AVScreenCapture *capture, int32_t 
 **描述**
 当OH_AVScreenCapture实例运行出错时，将调用函数指针。
 
+从API 12开始，推荐使用接口[OH_AVScreenCapture_OnError](#oh_avscreencapture_onerror)替代。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
 **起始版本：** 10
-
-**废弃版本：** 12
-
-**替代接口：**[OH_AVScreenCapture_OnError](#oh_avscreencapture_onerror)
 
 **参数:**
 
@@ -468,13 +460,11 @@ typedef void(* OH_AVScreenCaptureOnVideoBufferAvailable) (OH_AVScreenCapture *ca
 **描述**
 当OH_AVScreenCapture操作期间视频缓冲区可用时，将调用函数指针。
 
+从API 12开始，推荐使用接口[OH_AVScreenCapture_OnBufferAvailable](#oh_avscreencapture_onbufferavailable)替代。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
 **起始版本：** 10
-
-**废弃版本：** 12
-
-**替代接口：**[OH_AVScreenCapture_OnBufferAvailable](#oh_avscreencapture_onbufferavailable)
 
 **参数:**
 
@@ -891,13 +881,11 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_AcquireAudioBuffer (struct OH_AVS
 **描述**
 获取音频buffer，应用在调用时，需要对audiobuffer分配对应结构体大小的内存，否则会影响音频buffer的获取。
 
+从API 12开始，推荐使用接口[OH_AVScreenCapture_OnBufferAvailable](#oh_avscreencapture_onbufferavailable)替代。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
 **起始版本：** 10
-
-**废弃版本：** 12
-
-**替代接口：**[OH_AVScreenCapture_OnBufferAvailable](#oh_avscreencapture_onbufferavailable)
 
 **参数:**
 
@@ -929,13 +917,11 @@ OH_NativeBuffer* OH_AVScreenCapture_AcquireVideoBuffer (struct OH_AVScreenCaptur
 **描述**
 获取视频buffer，应用在调用时，通过此接口来获取到视频的buffer以及时间戳等信息。 buffer使用完成后，调用[OH_AVScreenCapture_ReleaseVideoBuffer](#oh_avscreencapture_releasevideobuffer)接口进行视频buffer的释放。
 
+从API 12开始，推荐使用接口[OH_AVScreenCapture_OnBufferAvailable](#oh_avscreencapture_onbufferavailable)替代。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
 **起始版本：** 10
-
-**废弃版本：** 12
-
-**替代接口：**[OH_AVScreenCapture_OnBufferAvailable](#oh_avscreencapture_onbufferavailable)
 
 **参数:**
 
@@ -1147,13 +1133,11 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ReleaseAudioBuffer (struct OH_AVS
 **描述**
 根据音频类型释放buffer。当某一帧音频buffer使用完成后，调用此接口进行释放对应的音频buffer。
 
+从API 12开始，推荐使用接口[OH_AVScreenCapture_OnBufferAvailable](#oh_avscreencapture_onbufferavailable)替代。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
 **起始版本：** 10
-
-**废弃版本：** 12
-
-**替代接口：**[OH_AVScreenCapture_OnBufferAvailable](#oh_avscreencapture_onbufferavailable)
 
 **参数:**
 
@@ -1208,13 +1192,11 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ReleaseVideoBuffer (struct OH_AVS
 **描述**
 根据视频类型释放buffer。当某一帧视频buffer使用完成后，调用此接口进行释放对应的视频buffer。
 
+从API 12开始，推荐使用接口[OH_AVScreenCapture_OnBufferAvailable](#oh_avscreencapture_onbufferavailable)替代。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
 **起始版本：** 10
-
-**废弃版本：** 12
-
-**替代接口：**[OH_AVScreenCapture_OnBufferAvailable](#oh_avscreencapture_onbufferavailable)
 
 **参数:**
 
@@ -1241,13 +1223,11 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetCallback (struct OH_AVScreenCa
 **描述**
 设置监听接口，通过设置监听，可以监听到调用过程中的错误信息，以及是否有可用的视频buffer和音频buffer。
 
+从API 12开始，推荐使用接口[OH_AVScreenCapture_SetErrorCallback](#oh_avscreencapture_seterrorcallback) [OH_AVScreenCapture_SetDataCallback](#oh_avscreencapture_setdatacallback)替代。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
 **起始版本：** 10
-
-**废弃版本：** 12
-
-**替代接口： **[OH_AVScreenCapture_SetErrorCallback](#oh_avscreencapture_seterrorcallback) [OH_AVScreenCapture_SetDataCallback](#oh_avscreencapture_setdatacallback)
 
 **参数:**
 
