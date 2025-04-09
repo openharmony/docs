@@ -64,7 +64,7 @@ import { Action,ToolType,SourceType,Touch,TouchEvent } from '@kit.InputKit';
 | 名称          | 值  | 说明   |
 | ------------ | ------ | ---- |
 | NONE       |  0 | 正常模式。 |
-| ONE_HAND     |  1 | 单手模式。 |
+| AUTO  |  1 | 单手模式。 |
 <!--DelEnd-->
 
 ## Touch
@@ -93,8 +93,8 @@ import { Action,ToolType,SourceType,Touch,TouchEvent } from '@kit.InputKit';
 | rawX        | number | 是    | 否    | 输入设备上的x坐标。                          |
 | rawY        | number | 是    | 否    | 输入设备上的y坐标。                           |
 | toolType    | [ToolType](#tooltype) | 是    | 否    | 工具类型。                                |
-| <!--DelRow-->fixedDisplayX<sup>18+</sup>| number| 是    | 否    | screenX的修正值。<br> **说明**： 该接口仅在手机设备上生效。            |
-| <!--DelRow-->fixedDisplayY<sup>18+</sup>| number| 是    | 否    | screenY的修正值。<br> **说明**： 该接口仅在手机设备上生效。            |
+| <!--DelRow-->fixedDisplayX<sup>18+</sup>| number| 是    | 否    | 适配单手模式screenX坐标修正值。<br> **说明**： 该接口仅在手机设备上生效。  |
+| <!--DelRow-->fixedDisplayY<sup>18+</sup>| number| 是    | 否    | 适配单手模式screenY坐标修正值。<br> **说明**： 该接口仅在手机设备上生效。    |
 
 ## TouchEvent
 
