@@ -4576,7 +4576,7 @@ disableNotificationFeature(disabled: boolean, bundleList: Array\<string\>): Prom
 
 将应用包名添加到通知发布权限管控名单，以阻止应用发布通知。支持启用或关闭该功能。
 
-该接口不支持tv和wearable设备。
+该接口不支持wearable设备。
 
 **系统能力**：SystemCapability.Notification.Notification
 
