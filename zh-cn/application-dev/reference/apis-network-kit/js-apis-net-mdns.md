@@ -801,7 +801,7 @@ mDNS服务信息。
 
 ## ServiceAttribute
 
-mDNS服务属性信息
+mDNS服务属性信息。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
