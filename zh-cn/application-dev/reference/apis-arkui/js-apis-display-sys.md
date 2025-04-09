@@ -231,6 +231,7 @@ try {
 addVirtualScreenBlocklist(windowIds: Array\<number>): Promise\<void>
 
 添加窗口至投屏虚拟屏不显示的禁止名单中，被添加的窗口将不在投屏虚拟屏上显示。仅主窗windowId生效。使用Promise异步回调。
+
 投屏虚拟屏是指使用无线投屏功能将本机画面投屏到的投屏对端。
 
 **系统接口：** 此接口为系统接口。
@@ -287,6 +288,7 @@ export default class EntryAbility extends UIAbility {
 removeVirtualScreenBlocklist(windowIds: Array\<number>): Promise\<void>
 
 从投屏虚拟屏不显示的禁止名单中移除窗口，被移除的窗口将重新在投屏虚拟屏上显示。仅主窗windowId生效。使用Promise异步回调。
+
 投屏虚拟屏是指使用无线投屏功能将本机画面投屏到的投屏对端。
 
 **系统接口：** 此接口为系统接口。
