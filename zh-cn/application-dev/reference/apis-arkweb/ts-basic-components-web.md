@@ -1073,7 +1073,7 @@ textZoomRatio(textZoomRatio: number)
 
 | 参数名           | 类型   | 必填   | 说明                             |
 | ------------- | ------ | ---- | -------------------------------- |
-| textZoomRatio | number | 是    | 要设置的页面的文本缩放百分比。取值为整数，范围为(0, 2147483647]。默认值：100。 |
+| textZoomRatio | number | 是    | 要设置的页面的文本缩放百分比。<br>取值为整数，范围为(0, 2147483647]。默认值：100。 |
 
 **示例：**
 
@@ -1831,7 +1831,7 @@ javaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 
 | 参数名     | 类型                                | 必填   | 说明               |
 | ------- | ----------------------------------- | ---- | ------------------ |
-| scripts | Array\<[ScriptItem](#scriptitem11)> | 是    | 需要注入的ScriptItem数组 |
+| scripts | Array\<[ScriptItem](#scriptitem11)> | 是    | 需要注入的ScriptItem数组。 |
 
 **ets示例：**
 
