@@ -412,9 +412,8 @@ getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&l
 | **错误码ID** | **错误信息**                                |
 | ------------ | ------------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
-| 15100002     | The options configuration changes when the API is called to obtain a KV store. |
+| 15100002     | Open existed database with changed options. |
 | 15100003     | Database corrupted.                         |
-| 15100006     | Unable to open the database file.           |
 
 **示例：**
 
@@ -482,9 +481,8 @@ getKVStore&lt;T&gt;(storeId: string, options: Options): Promise&lt;T&gt;
 | **错误码ID** | **错误信息**                                |
 | ------------ | ------------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.|
-| 15100002     | The options configuration changes when the API is called to obtain a KV store. |
+| 15100002     | Open existed database with changed options. |
 | 15100003     | Database corrupted.                         |
-| 15100006     | Unable to open the database file.           |
 
 **示例：**
 
@@ -664,7 +662,7 @@ deleteKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt
 | **错误码ID** | **错误信息** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.|
-| 15100004     | Data not found.   |
+| 15100004     | Not found.   |
 
 **示例：**
 
@@ -734,7 +732,7 @@ deleteKVStore(appId: string, storeId: string): Promise&lt;void&gt;
 | **错误码ID** | **错误信息** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.|
-| 15100004     | Data not found.   |
+| 15100004     | Not found.   |
 
 **示例：**
 
@@ -2233,7 +2231,7 @@ limit(total: number, offset: number): Query
 | 参数名 | 类型 | 必填 | 说明               |
 | ------ | -------- | ---- | ------------------ |
 | total  | number   | 是   | 表示指定的结果数。 |
-| offset | number   | 是   | 表示起始位置。     |
+| offset | number   | 是   | 指定查询结果的起始位置，默认初始位置为结果集的最前端。当offset为负数时，起始位置为结果集的最前端。当offset超出结果集最后位置时，查询结果为空。|
 
 **返回值：**
 
@@ -3221,7 +3219,7 @@ get(key: string, callback: AsyncCallback&lt;boolean | string | number | Uint8Arr
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
-| 15100004     | Data not found.                        |
+| 15100004     | Not found.                             |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -3283,7 +3281,7 @@ get(key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
-| 15100004     | Data not found.                        |
+| 15100004     | Not found.                             |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -3610,7 +3608,7 @@ getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;)
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3693,7 +3691,7 @@ getResultSet(keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3762,7 +3760,7 @@ getResultSet(query: Query, callback: AsyncCallback&lt;KVStoreResultSet&gt;): voi
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3836,7 +3834,7 @@ getResultSet(query: Query): Promise&lt;KVStoreResultSet&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -4138,7 +4136,6 @@ backup(file:string, callback: AsyncCallback&lt;void&gt;):void
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.  |
-| 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -4188,7 +4185,6 @@ backup(file:string): Promise&lt;void&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.  |
-| 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -4231,7 +4227,6 @@ restore(file:string, callback: AsyncCallback&lt;void&gt;):void
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.  |
-| 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -4281,7 +4276,6 @@ restore(file:string): Promise&lt;void&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.  |
-| 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -4985,7 +4979,7 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 | ------------ | ------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted. |
-| 15100004     | Data not found.     |
+| 15100004     | Not found.          |
 
 **示例：**
 
@@ -5072,7 +5066,7 @@ sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 | ------------ | ------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted. |
-| 15100004     | Data not found.     |
+| 15100004     | Not found.          |
 
 **示例：**
 
@@ -5155,7 +5149,7 @@ on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotific
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max  limits.                      |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -5447,7 +5441,7 @@ get(key: string, callback: AsyncCallback&lt;boolean | string | number | Uint8Arr
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
-| 15100004     | Data not found.                        |
+| 15100004     | Not found.                             |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -5508,7 +5502,7 @@ get(key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
-| 15100004     | Data not found.                        |
+| 15100004     | Not found.                             |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -5565,7 +5559,7 @@ get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean | string |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
-| 15100004     | Data not found.                        |
+| 15100004     | Not found.                             |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -5631,7 +5625,7 @@ get(deviceId: string, key: string): Promise&lt;boolean | string | number | Uint8
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
-| 15100004     | Data not found.                        |
+| 15100004     | Not found.                             |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -6262,7 +6256,7 @@ getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;)
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6344,7 +6338,7 @@ getResultSet(keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6418,7 +6412,7 @@ getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KVS
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6484,7 +6478,7 @@ getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KVStoreResultSet&g
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6542,7 +6536,7 @@ getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KVStoreR
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6631,7 +6625,7 @@ getResultSet(deviceId: string, query: Query): Promise&lt;KVStoreResultSet&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6713,7 +6707,7 @@ getResultSet(query: Query): Promise&lt;KVStoreResultSet&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6782,7 +6776,7 @@ getResultSet(query: Query, callback:AsyncCallback&lt;KVStoreResultSet&gt;): void
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 

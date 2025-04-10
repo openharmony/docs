@@ -394,7 +394,7 @@ class MyUIAbility extends UIAbility {
 
 onSaveState(reason: AbilityConstant.StateType, wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnSaveResult
 
-Called when the framework automatically saves the UIAbility state in the case of an application fault. This API is used together with [appRecovery](js-apis-app-ability-appRecovery.md). If automatic state saving is enabled, **onSaveState** is called to save the state of this UIAbility.
+Called when the framework automatically saves the UIAbility state in the case of an application fault. This API is used together with [appRecovery](js-apis-app-ability-appRecovery.md). When an application is faulty, the framework calls **onSaveState** to save the status of the UIAbility if auto-save is enabled.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -585,7 +585,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbility.onCollaborate<sup>16+</sup>
+## UIAbility.onCollaborate<sup>18+</sup>
 
 onCollaborate(wantParam: Record&lt;string, Object&gt;): AbilityConstant.CollaborateResult
 
@@ -609,7 +609,7 @@ Callback invoked to return the collaboration result in multi-device collaboratio
 
 | Name    | Value  | Description      |
 | -------- | ---- | ---------- |
-| [AbilityConstant.CollaborateResult](js-apis-app-ability-abilityConstant.md#collaborateresult16) | Collaborator result, that is, whether the target application accepts the collaboration request.|
+| [AbilityConstant.CollaborateResult](js-apis-app-ability-abilityConstant.md#collaborateresult18) | Collaborator result, that is, whether the target application accepts the collaboration request.|
 
 **Example**
 
@@ -1019,7 +1019,7 @@ export default class MainUIAbility extends UIAbility {
 
 off(type: 'release', callback: OnReleaseCallback): void
 
-Deregisters a callback that is invoked when the stub on the target UIAbility is disconnected. This capability is reserved. This API uses an asynchronous callback to return the result.
+Unregisters a callback that is invoked when the stub on the target UIAbility is disconnected. This capability is reserved. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -1075,7 +1075,7 @@ export default class MainUIAbility extends UIAbility {
 
 off(type: 'release'): void
 
-Deregisters a callback that is invoked when the stub on the target UIAbility is disconnected. This capability is reserved.
+Unregisters a callback that is invoked when the stub on the target UIAbility is disconnected. This capability is reserved.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -1206,7 +1206,7 @@ export default class MainUIAbility extends UIAbility {
 
 off(method: string): void
 
-Deregisters a caller notification callback, which is invoked when the target UIAbility registers a function.
+Unregisters a caller notification callback, which is invoked when the target UIAbility registers a function.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -1260,7 +1260,7 @@ Defines the callback that is invoked when the stub on the target UIAbility is di
 | Name| Type| Mandatory| Description|
 | --- | ----- | --- | -------- |
 | msg | string | Yes| Message used for disconnection.| 
- 
+
 ## OnRemoteStateChangeCallback<sup>10+</sup>
 
 ### (msg: string)
@@ -1276,7 +1276,7 @@ Defines the callback that is invoked when the remote UIAbility state changes in 
 | Name| Type| Mandatory| Description|
 | --- | ----- | --- | -------- |
 | msg | string | Yes| Message used for disconnection.| 
- 
+
 ## CalleeCallback
 
 ### (indata: rpc.MessageSequence)

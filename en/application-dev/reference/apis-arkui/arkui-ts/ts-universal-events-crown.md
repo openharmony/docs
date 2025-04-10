@@ -48,7 +48,7 @@ Defines a data structure for the crown event received by a component. It include
 | timestamp	        | number	 | Timestamp.                                 |
 | angularVelocity	| number	 | Angular velocity in degrees per second (°/s).                  |
 | degree	        | number 	 | Relative rotation angle.<br>Unit: degrees<br>Value range: [-360, 360]    |
-| action	        | [CrownAction](ts-appendix-enums.md#crownaction16)   | Crown action. |
+| action	        | [CrownAction](ts-appendix-enums.md#crownaction18)   | Crown action. |
 | stopPropagation	| () => void     | Stops event propagation.                        |
 
 ## Example

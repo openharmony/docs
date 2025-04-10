@@ -46,7 +46,7 @@ SideBarContainer( type?: SideBarContainerType )
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### showSideBar
 
@@ -293,7 +293,7 @@ until its width reaches the value defined by **minSideBarWidth**; if the compone
 | top | number | No| Spacing between the sidebar control button and the top of the container.<br>Default value: **48vp**<br>Unit: vp|
 | width | number | No| Width of the sidebar control button.<br>Default value:<br>API version 9 and earlier versions: **32vp**<br>API version 10 and later versions: **24vp**<br>Unit: vp|
 | height | number | No| Height of the sidebar control button.<br>Default value:<br>API version 9 and earlier versions: **32vp**<br>API version 10 and later versions: **24vp**<br>Unit: vp|
-| icons | [ButtonIconOptions](#buttoniconoptions14) | No| Icons of the sidebar control button.|
+| icons | [ButtonIconOptions<sup>14+</sup>](#buttoniconoptions14) | No| Icons of the sidebar control button.|
 
 ## ButtonIconOptions<sup>14+</sup>
 
@@ -350,7 +350,7 @@ Enumerates the positions of the sidebar.
 
 ## Events
 
-In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
+In addition to the [universal events](ts-component-general-events.md), the following events are supported.
 
 ### onChange
 

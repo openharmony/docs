@@ -2837,6 +2837,73 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+## UIAbilityContext.revokeDelegator<sup>17+</sup>
+
+revokeDelegator() : Promise&lt;void&gt;
+
+如果Module下首个UIAbility启动时期望重定向到另一个UIAbility，该重定向的UIAbility被称为“HookAbility”。HookAbility的设置详见当前接口示例的步骤1。
+
+当HookAbility完成特定操作时，可以使用该接口回到首个UIAbility。使用Promise异步回调。
+
+> **说明**：
+>
+> 当接口调用成功后，HookAbility中的[Window](../apis-arkui/js-apis-window.md)方法会失效。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值**：
+
+| 类型                | 说明                                   |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 801 | Capability not support. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000065 | The API can be called only when the ability is running in the foreground. |
+| 16000084 | The context does not belong to HookAbility; multiple calls are invoked. |
+| 16000085 | Failed to cancel the hook of the window module. |
+
+**示例**：
+
+1. 设置HookAbility。
+
+    在[module.json5](../../quick-start/module-configuration-file.md#modulejson5配置文件)配置文件标签中配置了abilitySrcEntryDelegator和abilityStageSrcEntryDelegator。当Module下首个UIAbility冷启动时，系统优先启动abilitySrcEntryDelegator指向的UIAbility。
+    ```json
+    {
+    "module": {
+      // ...
+    "abilityStageSrcEntryDelegator": "xxxModuleName",
+    "abilitySrcEntryDelegator": "xxxAbilityName",
+      }
+    }
+    ```
+    当UIAbility是通过[startAbilityByCall](#uiabilitycontextstartabilitybycall)启动时，系统会忽略在[module.json5](../../quick-start/module-configuration-file.md#modulejson5配置文件)配置文件标签中配置的abilitySrcEntryDelegator和abilityStageSrcEntryDelegator。
+
+2. 取消HookAbility。
+
+    ```ts
+    import { UIAbility } from '@kit.AbilityKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+
+    export default class HookAbility extends UIAbility {
+      onForeground() {
+        // HookAbility完成特定操作后，调用revokeDelegator回到首个UIAbility
+        this.context.revokeDelegator().then(() => {
+          console.info('revokeDelegator success');
+        }).catch((err: BusinessError) => {
+          console.error(`revokeDelegator failed, code is ${err.code}, message is ${err.message}`);
+        });
+      }
+    }
+    ```
+
 ## UIAbilityContext.setColorMode<sup>18+</sup>
 
 setColorMode(colorMode: ConfigurationConstant.ColorMode): void

@@ -14,6 +14,7 @@
       - [创建列表 (List)](arkts-layout-development-create-list.md)
       - [创建弧形列表 (ArcList)](arkts-layout-development-create-arclist.md)（圆形屏幕推荐使用）
       - [创建网格 (Grid/GridItem)](arkts-layout-development-create-grid.md)
+      - [创建瀑布流 (WaterFlow)](arkts-layout-development-create-waterflow.md)
       - [创建轮播 (Swiper)](arkts-layout-development-create-looping.md)
       - [创建弧形轮播 (ArcSwiper)](arkts-layout-development-arcswiper.md)（圆形屏幕推荐使用）
       - [选项卡 (Tabs)](arkts-navigation-tabs.md)
@@ -109,7 +110,7 @@
     - [自定义能力概述](arkts-user-defined.md)
     - 自定义节点<!--arkts-nodes-->
       - [自定义节点概述](arkts-user-defined-node.md)
-      - [自定义占位节点](arkts-user-defined-place-hoder.md)
+      - [自定义占位节点](arkts-user-defined-place-holder.md)
       - [自定义组件节点 (FrameNode)](arkts-user-defined-arktsNode-frameNode.md)
       - [自定义渲染节点 (RenderNode)](arkts-user-defined-arktsNode-renderNode.md)
       - [自定义声明式节点 (BuilderNode)](arkts-user-defined-arktsNode-builderNode.md)

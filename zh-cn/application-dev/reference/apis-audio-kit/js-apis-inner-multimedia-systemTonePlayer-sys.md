@@ -50,7 +50,7 @@ getTitle(): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -87,7 +87,7 @@ prepare(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -133,7 +133,7 @@ start(toneOptions?: SystemToneOptions): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息                                                                                                    |
 | -------- | ----------------------------------------------------------------------------------------------------------- |
@@ -184,7 +184,7 @@ stop(id: number): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息                                                                                                    |
 | -------- | ----------------------------------------------------------------------------------------------------------- |
@@ -223,7 +223,7 @@ release(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -259,7 +259,7 @@ setAudioVolumeScale(scale: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息                                                                                                    |
 | -------- | ----------------------------------------------------------------------------------------------------------- |
@@ -298,8 +298,7 @@ getAudioVolumeScale(): number;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
-
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -335,8 +334,7 @@ getSupportedHapticsFeatures(): Promise&lt;Array&lt;systemSoundManager.ToneHaptic
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
-
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -374,8 +372,7 @@ setHapticsFeature(hapticsFeature: systemSoundManager.ToneHapticsFeature): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
-
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息                                                                                                    |
 | -------- | ----------------------------------------------------------------------------------------------------------- |
@@ -419,8 +416,7 @@ getHapticsFeature(): systemSoundManager.ToneHapticsFeature
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
-
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |

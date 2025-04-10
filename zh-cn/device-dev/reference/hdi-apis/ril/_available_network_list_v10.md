@@ -32,7 +32,7 @@ List<struct AvailableNetworkInfo> AvailableNetworkList::availableNetworkInfo
 ```
 **描述**
 
-可用网络列表信息，
+可用网络列表信息
 
 
 ### flag

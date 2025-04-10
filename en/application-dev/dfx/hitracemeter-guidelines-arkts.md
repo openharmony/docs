@@ -103,10 +103,9 @@ In this example, distributed call chain tracing begins when the application star
    The following is an example of the captured trace data:
 
    ```text
-   <...>-3310    (-------) [005] .... 351382.921936: tracing_mark_write: S|3310|H:myTraceTest 1001
-   <...>-3310    (-------) [005] .... 351382.922233: tracing_mark_write: C|3310|H:myTestCount 1
-   <...>-3310    (-------) [005] .... 351382.922138: tracing_mark_write: S|3310|H:myTraceTest 1002
-   <...>-3310    (-------) [005] .... 351382.922233: tracing_mark_write: C|3310|H:myTestCount 2
-   <...>-3310    (-------) [005] .... 351382.922165: tracing_mark_write: F|3310|H:myTestCount 1001
-   <...>-3310    (-------) [005] .... 351382.922175: tracing_mark_write: F|3310|H:myTestCount 1002
-   ```
+   <...>-3310    (-------) [005] .... 351382.921936: tracing_mark_write: S|3310|H:myTraceTest|1001
+   <...>-3310    (-------) [005] .... 351382.922233: tracing_mark_write: C|3310|H:myTestCount|1
+   <...>-3310    (-------) [005] .... 351382.922138: tracing_mark_write: S|3310|H:myTraceTest|1002
+   <...>-3310    (-------) [005] .... 351382.922233: tracing_mark_write: C|3310|H:myTestCount|2
+   <...>-3310    (-------) [005] .... 351382.922165: tracing_mark_write: F|3310|H:myTestCount|1001
+   <...>-3310    (-------) [005] .... 351382.922175: tracing_mark_write: F|3310|H:myTestCount|1002

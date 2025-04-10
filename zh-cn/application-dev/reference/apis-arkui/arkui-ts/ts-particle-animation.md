@@ -252,7 +252,7 @@ interface ParticlePropertyOptions<TYPE, UPDATER extends ParticleUpdater> {
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| range | [ParticleTuple](#particletuple14)<[TYPE](#particleupdater), [TYPE](#particleupdater)> | 是 | 粒子初始属性值区间，粒子发射器生成粒子的属性值在range区间随机取值。<br/>**说明**<br/>各项属性的非法输入取默认值，当最大值小于最小值的时候取默认区间。TYPE为number。<br/>不同属性的默认值不同：<br>1、opacity属性：range:[1.0,1.0]，取值范围0到1，默认值为0.0。<br/>2、scale属性：range:[1.0,1.0]，取值范围大于等于0，默认值为1.0。<br/>3、acceleration加速度speed属性：range:[0.0,0.0]，取值范围大于等于0，默认值为0.0。<br/>4、acceleration加速度angle属性：range:[0.0,0.0]，取值范围为(-∞, +∞) ，默认值为0.0。<br/>5、spin属性：range:[0.0,0.0]，默认值为0.0。
+| range | [ParticleTuple](#particletuple14)<[TYPE](#particleupdater), [TYPE](#particleupdater)> | 是 | 粒子初始属性值区间，粒子发射器生成粒子的属性值在range区间随机取值。<br/>**说明**<br/>各项属性的非法输入取默认值，当最大值小于最小值的时候取默认区间。TYPE为number。<br/>不同属性的默认值不同：<br>1、opacity属性：range:[1.0,1.0]，取值范围为[0, 1]，默认值为1.0。<br/>2、scale属性：range:[1.0,1.0]，取值范围为[0, 10000]，默认值为1.0。<br/>3、acceleration加速度speed属性：range:[0.0,0.0]，取值范围为[0, 10000]，默认值为0.0。<br/>4、acceleration加速度angle属性：range:[0.0,0.0]，取值范围为[-10000, 10000]，默认值为0.0。<br/>5、spin属性：range:[0.0,0.0]，取值范围为[-10000, 10000]，默认值为0.0。
 | updater | [ParticleUpdaterOptions](#particleupdateroptions14)<[TYPE](#particleupdater), [UPDATER](#particleupdater)> | 否 | 属性变化配置。属性变化类型type有三类：<br/>1、当type为ParticleUpdater.NONE，表示无变化，则config类型为[ParticlePropertyUpdaterConfigs](#particlepropertyupdaterconfigs)[ParticleUpdater.NONE]。<br>2、当type为ParticleUpdater.RANDOM，表示变化类型为随机变化，则config类型为[ParticlePropertyUpdaterConfigs](#particlepropertyupdaterconfigs)[ParticleUpdater.RANDOM]。<br>3、当type为ParticleUpdater.CURVE，表示变化类型为曲线变化，则config类型为[ParticlePropertyUpdaterConfigs](#particlepropertyupdaterconfigs)[ParticleUpdater.CURVE] <br>默认值：type默认为ParticleUpdater.NONE。 |
 
 
@@ -294,8 +294,8 @@ interface ParticlePropertyAnimation<T> {
 | -------- | -------- | -------- | -------- |
 |from| T | 是 | 属性起始值。非法输入取对应属性的默认值。|
 | to | T | 是 | 属性目标值。非法输入取对应属性的默认值。|
-|startMillis|number | 是 | 动画开始时间。|
-|endMillis|number | 是 | 动画结束时间。|
+|startMillis|number | 是 | 动画开始时间。<br/>单位：毫秒。<br/>取值范围：[0, +∞)。|
+|endMillis|number | 是 | 动画结束时间。<br/>单位：毫秒。<br/>取值范围：[0, +∞)。|
 |curve|[Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;[ICurve](../js-apis-curve.md#icurve9)| 否 | 设置动画曲线。<br>默认值：Curve.Linear|
 
 
@@ -379,10 +379,10 @@ enum ParticleUpdater {
 
 | 名称 | 类型    | 必填 | 说明                         |
 | ------ | ------- | ---- | ---------------------------- |
-| strength  | number | 否   |场强，表示场从中心向外的排斥力的强度，默认值0。正数表示排斥力方向朝外，负数表示吸引力，方向朝内。 |
+| strength  | number | 否   |场强，表示场从中心向外的排斥力的强度，默认值0。正数表示排斥力方向朝外，负数表示吸引力，方向朝内。<br/>取值范围：(-∞, +∞)。 |
 | shape  |   [DisturbanceFieldShape](#disturbancefieldshape12) | 否   | 场的形状。<br/>默认为DisturbanceFieldShape.RECT。 |
-| size  | [SizeT](../js-apis-arkui-graphics.md#sizett12)&lt;number&gt;| 否  |场的大小。<br/>默认值 {width:0，height:0}。 |
-| position  | [PositionT](../js-apis-arkui-graphics.md#positiont12)&lt;number&gt; | 否   |场的位置。<br/>默认值{x:0，y:0}。 |
+| size  | [SizeT](../js-apis-arkui-graphics.md#sizett12)&lt;number&gt;| 否  |场的大小。<br/>默认值 {width:0，height:0}。<br/>width和height的取值范围：[0, +∞)。 |
+| position  | [PositionT](../js-apis-arkui-graphics.md#positiont12)&lt;number&gt; | 否   |场的位置。<br/>默认值{x:0，y:0}。<br/>x、y的取值范围：(-∞, +∞)。 |
 | feather  | number | 否   |羽化值，表示场从中心点到场边缘的衰减程度，取值范围0到100的整数，如果0则表示场是一个刚体，所有范围内的粒子都被排斥在外。羽化值越大场的缓和程度越大，场范围内出现越多靠近中心点的粒子。<br/>默认值为0。 |
 | noiseScale  | number | 否   |噪声尺度，用于控制噪声图案的整体大小，取值大于等于0。<br/>默认值1。 |
 | noiseFrequency  | number | 否   |噪声频率，频率越大噪声越细腻，取值大于等于0。<br/> 默认值1。 |
@@ -410,7 +410,7 @@ enum ParticleUpdater {
 | ------ | ------- | ---- | ---------------------------- |
 | index   | number | 是   |索引，取整，按初始化参数中发射器的数组索引指定对应的发射器。异常默认值为0。 |
 | emitRate  | number  | 否   | 发射器发射速率，即每秒发射粒子的数量。<br/>未传入时保持其当前的发射速率， 传入值小于0时取默认值5。emitRate值超过5000时会极大影响性能，建议设置参数小于5000。 |
-| position  | [PositionT](../js-apis-arkui-graphics.md#positiont12)&lt;number&gt; | 否   |发射器位置的数组，只支持number类型。<br/>未传入时保持其当前的发射器位置。需传入两个有效参数，若其中一个为异常值，则position不生效。 |
+| position  | [PositionT](../js-apis-arkui-graphics.md#positiont12)&lt;number&gt; | 否   |发射器位置的数组，只支持number类型。<br/>未传入时保持其当前的发射器位置。需传入两个有效参数，若其中一个为异常值，则position不生效。<br/>x、y的取值范围：(-∞, +∞)。 |
 | size  | [SizeT](../js-apis-arkui-graphics.md#sizett12)&lt;number&gt;| 否  |发射窗口的大小，只支持number类型。<br/>未传入时保持其当前发射窗口大小。需传入两个有效参数且都大于0，若其中一个为异常值，则size不生效。 |
 
 ## ParticleTuple<sup>14+</sup>

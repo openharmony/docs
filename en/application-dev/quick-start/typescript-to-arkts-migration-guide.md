@@ -3261,14 +3261,7 @@ class C {
 
 ArkTS does not allow using `ESObject` type in some cases. The most part of
 limitations are put in place in order to prevent spread of dynamic objects in
-the static codebase. The only scenario where it is permited to use `ESObject`
-as type specifier is in local variable declaration. Initialization of variables
-with `ESObject` type is also limited. Such variables can only be initialized
-with values that originate from interop: other `ESObject` typed variables,
-any, unknown, variables with anonymous type, etc. It is prohibited to
-initialize `ESObject` typed variable with statically typed value. Varaible
-of type `ESObject` can only be passed to interop calls and assigned to other
-variables of type `ESObject`.
+the static codebase. 
 
 **ArkTS**
 

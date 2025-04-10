@@ -86,7 +86,6 @@
     <!--DelEnd-->
     - [@ohos.bundle.bundleManager (bundleManager模块)](js-apis-bundleManager.md)
     - [@ohos.bundle.defaultAppManager (默认应用管理)](js-apis-defaultAppManager.md)
-    - [@ohos.bundle.launcherBundleManager (launcherBundleManager模块)](js-apis-launcherBundleManager.md)
     - [@ohos.bundle.overlay (overlay模块)](js-apis-overlay.md)
     <!--Del-->
     - [@ohos.bundle.appControl (appControl模块)(系统接口)](js-apis-appControl-sys.md)
@@ -133,7 +132,6 @@
       - [ErrorObserver](js-apis-inner-application-errorObserver.md)
       - [EventHub](js-apis-inner-application-eventHub.md)
       - [ExtensionContext](js-apis-inner-application-extensionContext.md)
-      - [GlobalObserver](js-apis-inner-application-GlobalObserver.md)
       - [LoopObserver](js-apis-inner-application-loopObserver.md)
       - [ProcessInformation](js-apis-inner-application-processInformation.md)
       - [ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)
@@ -189,7 +187,6 @@
       - [elementName](js-apis-bundleManager-elementName.md)
       - [extensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)
       - [hapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)
-      - [launcherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)
       - [metadata](js-apis-bundleManager-metadata.md)
       - [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)
       - [Skill](js-apis-bundleManager-skill.md)
@@ -200,6 +197,7 @@
       - [BundleResourceInfo (系统接口)](js-apis-bundleManager-BundleResourceInfo-sys.md)
       - [BusinessAbilityInfo (系统接口)](js-apis-bundleManager-businessAbilityInfo-sys.md)
       - [dispatchInfo (系统接口)](js-apis-bundleManager-dispatchInfo-sys.md)
+      - [launcherAbilityInfo (系统接口)](js-apis-bundleManager-launcherAbilityInfo-sys.md)
       - [LauncherAbilityResourceInfo (系统接口)](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)
       - [permissionDef (系统接口)](js-apis-bundleManager-permissionDef-sys.md)
       - [recoverableApplicationInfo (系统接口)](js-apis-bundleManager-recoverableApplicationInfo-sys.md)
@@ -273,6 +271,7 @@
     - [context_constant.h](context__constant_8h.md)
     - [native_interface_bundle.h](native__interface__bundle.md)
     - [native_child_process.h](native__child__process_8h.md)
+    - [start_options.h](start__options_8h.md)
     - [want.h](want__8h.md)
   - 结构体<!--ability-struct-->
     - [AbilityBase_Element](_ability_base_element.md)

@@ -601,7 +601,7 @@ For details, see [System Routing Table](arkts-navigation-navigation.md#system-ro
 
 ## Lifecycle Listening
 
-You can use the observer to register for lifecycle events with the **Router**. For details about the APIs, see [observer.on('routerPageUpdate')](../reference/apis-arkui/js-apis-arkui-observer.md#observeronrouterpageupdate11).
+You can use the observer to register for lifecycle events with the **Router**. For details about the APIs, see [observer.on('routerPageUpdate')](../reference/apis-arkui/js-apis-arkui-observer.md#uiobserveronrouterpageupdate11).
 
 
 ```ts

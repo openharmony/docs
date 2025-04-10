@@ -29,6 +29,7 @@ import { window } from '@kit.ArkUI';
 | TYPE_SYSTEM_ALERT                   | 1      | 表示系统告警窗口。<br>- **说明：** 从API version 11开始废弃。<br>- 从API version 7开始支持。                               |
 | TYPE_FLOAT<sup>9+</sup>             | 8      | 表示悬浮窗。<br>**模型约束：** 此接口仅可在Stage模型下使用。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | TYPE_DIALOG<sup>10+</sup>           | 16      | 表示模态窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。                                                 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| TYPE_MAIN<sup>18+</sup>             | 32      | 表示应用主窗口。<br>此窗口类型不支持在创建窗口时使用，仅可在getWindowProperties接口的返回值中用于读取。                               |
 
 ## Configuration<sup>9+</sup>
 
@@ -90,7 +91,7 @@ import { window } from '@kit.ArkUI';
 
 | 名称                                   | 类型 |  必填 | 说明 |
 | ------------------------------------- | -------- | ---- |------- |
-| contentColor     | string   |  是   | 状态栏文字颜色，固定为ARGB格式, 如：`#E5FFFFFF`。 <br> **系统能力：** SystemCapability.Window.SessionManager。|
+| contentColor     | string   |  是   | 状态栏文字颜色，固定为ARGB格式, 如：`#E5FFFFFF`。 <br> **系统能力：** SystemCapability.Window.SessionManager|
 
 ## SystemBarStyle<sup>12+</sup>
 
@@ -117,7 +118,7 @@ import { window } from '@kit.ArkUI';
 | LANDSCAPE_INVERTED                    | 4    | 表示反向横屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | AUTO_ROTATION                         | 5    | 跟随传感器自动旋转，可以旋转到竖屏、横屏、反向竖屏、反向横屏四个方向。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core<br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | AUTO_ROTATION_PORTRAIT                | 6    | 跟随传感器自动竖向旋转，可以旋转到竖屏、反向竖屏，无法旋转到横屏、反向横屏。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| AUTO_ROTATION_LANDSCAPE               | 7    | 跟随传感器自动横向旋转，可以旋转到横屏、反向横屏，无法旋转到竖屏、反向竖屏。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| AUTO_ROTATION_LANDSCAPE               | 7    | 跟随传感器自动横向旋转，可以旋转到横屏、反向横屏，无法旋转到竖屏、反向竖屏。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | AUTO_ROTATION_RESTRICTED              | 8    | 跟随传感器自动旋转，可以旋转到竖屏、横屏、反向竖屏、反向横屏四个方向，且受控制中心的旋转开关控制。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | AUTO_ROTATION_PORTRAIT_RESTRICTED     | 9    | 跟随传感器自动竖向旋转，可以旋转到竖屏、反向竖屏，无法旋转到横屏、反向横屏，且受控制中心的旋转开关控制。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
 | AUTO_ROTATION_LANDSCAPE_RESTRICTED    | 10   | 跟随传感器自动横向旋转，可以旋转到横屏、反向横屏，无法旋转到竖屏、反向竖屏，且受控制中心的旋转开关控制。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
@@ -389,18 +390,6 @@ import { window } from '@kit.ArkUI';
 | 名称   | 类型   | 必填 | 说明                                       |
 | ------ | ------ | ---- | ------------------------------------------ |
 | windowRect<sup>15+</sup> | [Rect](#rect7)  | 是 | 窗口尺寸，窗口在屏幕上的实际位置和大小。 |
-
-## KeyboardInfo<sup>18+</sup>
-
-软键盘窗口信息。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-| 名称   | 类型   | 必填 | 说明                                       |
-| ------ | ------ | ---- | ------------------------------------------ |
-| rect | [Rect](#rect7)  | 是 | 软键盘窗口的位置和大小。 |
 
 ## Callback<sup>15+</sup>
 
@@ -3940,182 +3929,6 @@ try {
 }
 ```
 
-### on('keyboardDidShow')<sup>18+</sup>
-
-on(type: 'keyboardDidShow', callback: Callback&lt;KeyboardInfo&gt;): void
-
-开启固定态软键盘显示动画完成的监听。此监听在固定态软键盘显示动画完成或软键盘由悬浮态切换至固定态时触发。
-
-改变软键盘为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**参数：**
-
-| 参数名   | 类型                | 必填 | 说明                                        |
-| -------- | ------------------- | ---- |-------------------------------------------|
-| type     | string              | 是   | 监听事件，固定为'keyboardDidShow'，即固定态软键盘显示动画完成事件。 |
-| callback | Callback&lt;[KeyboardInfo](#keyboardinfo18)&gt; | 是   | 回调函数。返回软键盘窗口信息。                    |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 801     | Capability not supported. Function keyboardDidShow can not work correctly due to limited device capabilities. |
-| 1300002 | This window state is abnormal.               |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-try {
-  windowClass.on('keyboardDidShow', (keyboardInfo) => {
-    console.info('keyboard show animation completion. keyboardInfo: ' + JSON.stringify(keyboardInfo));
-  });
-} catch (exception) {
-  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-```
-
-### off('keyboardDidShow')<sup>18+</sup>
-
-off(type: 'keyboardDidShow', callback?: Callback&lt;KeyboardInfo&gt;): void
-
-关闭固定态软键盘显示动画完成的监听。改变输入法窗口为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**参数：**
-
-| 参数名   | 类型                   | 必填 | 说明                                                         |
-| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                 | 是   | 监听事件，固定为'keyboardDidShow'，即固定态软键盘显示动画完成事件。 |
-| callback | Callback&lt;[KeyboardInfo](#keyboardinfo18)&gt; | 否   |  回调函数。返回软键盘窗口信息。若传入参数，则关闭该监听。如果未传入参数，则关闭所有固定态软键盘显示动画完成的监听。                               |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed. |
-| 801     | Capability not supported. Function keyboardDidShow can not work correctly due to limited device capabilities. |
-| 1300002 | This window state is abnormal.               |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-const callback = (keyboardInfo: window.KeyboardInfo) => {
-  // ...
-}
-try {
-  windowClass.on('keyboardDidShow', callback);
-  windowClass.off('keyboardDidShow', callback);
-  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
-  windowClass.off('keyboardDidShow');
-} catch (exception) {
-  console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-```
-
-### on('keyboardDidHide')<sup>18+</sup>
-
-on(type: 'keyboardDidHide', callback: Callback&lt;KeyboardInfo&gt;): void
-
-开启固定态软键盘隐藏动画完成的监听。此监听在固定态软键盘隐藏动画完成或软键盘由固定态切换至悬浮态时触发。
-
-改变软键盘为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**参数：**
-
-| 参数名   | 类型                | 必填 | 说明                                        |
-| -------- | ------------------- | ---- |-------------------------------------------|
-| type     | string              | 是   | 监听事件，固定为'keyboardDidHide'，即固定态软键盘隐藏动画完成事件。 |
-| callback | Callback&lt;[KeyboardInfo](#keyboardinfo18)&gt; | 是   | 回调函数。返回软键盘窗口信息。                    |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 801     | Capability not supported. Function keyboardDidHide can not work correctly due to limited device capabilities. |
-| 1300002 | This window state is abnormal.               |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-try {
-  windowClass.on('keyboardDidHide', (keyboardInfo) => {
-    console.info('keyboard hide animation completion. keyboardInfo: ' + JSON.stringify(keyboardInfo));
-  });
-} catch (exception) {
-  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-```
-
-### off('keyboardDidHide')<sup>18+</sup>
-
-off(type: 'keyboardDidHide', callback?: Callback&lt;KeyboardInfo&gt;): void
-
-关闭固定态软键盘隐藏动画完成的监听。改变输入法窗口为固定态切换至悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**参数：**
-
-| 参数名   | 类型                   | 必填 | 说明                                                         |
-| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                 | 是   | 监听事件，固定为'keyboardDidHide'，即固定态软键盘隐藏动画完成事件。 |
-| callback | Callback&lt;[KeyboardInfo](#keyboardinfo18)&gt; | 否   |  回调函数。返回软键盘窗口信息。若传入参数，则关闭该监听。如果未传入参数，则关闭所有固定态软键盘隐藏动画完成的监听。                               |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed. |
-| 801     | Capability not supported. Function keyboardDidHide can not work correctly due to limited device capabilities. |
-| 1300002 | This window state is abnormal.               |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-const callback = (keyboardInfo: window.KeyboardInfo) => {
-  // ...
-}
-try {
-  windowClass.on('keyboardDidHide', callback);
-  windowClass.off('keyboardDidHide', callback);
-  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
-  windowClass.off('keyboardDidHide');
-} catch (exception) {
-  console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-```
-
 ### on('touchOutside')<sup>11+</sup>
 
 on(type: 'touchOutside', callback: Callback&lt;void&gt;): void
@@ -5098,7 +4911,7 @@ on(type:  'subWindowClose', callback: Callback&lt;void&gt;): void
 | 参数名   | 类型                           | 必填 | 说明                                                     |
 | -------- | ------------------------------ | ---- | -------------------------------------------------------- |
 | type     | string                         | 是   | 监听事件，固定为'subWindowClose'，即子窗口关闭事件。 |
-| callback | Callback&lt;void&gt; | 是   | 回调函数。当点击子窗口右上角关闭按钮事件发生时的回调。该回调函数不返回任何参数。回调函数内部逻辑需要有boolean类型的返回值，该返回值决定当前子窗是否继续关闭，true表示不关闭子窗，false表示关闭子窗。   |
+| callback | Callback&lt;void&gt; | 是   | 回调函数。当点击子窗口右上角关闭按钮事件发生时的回调。该回调函数不返回任何参数。回调函数内部逻辑的返回值决定当前子窗是否继续关闭，如果返回boolean类型的true表示不关闭子窗，返回false或者其他非boolean类型表示关闭子窗。   |
 
 **错误码：**
 
@@ -5140,7 +4953,7 @@ off(type: 'subWindowClose', callback?: Callback&lt;void&gt;): void
 | 参数名   | 类型                           | 必填 | 说明                                                         |
 | -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                         | 是   | 监听事件，固定为'subWindowClose'，即子窗口关闭事件。     |
-| callback | Callback&lt;void&gt; | 否   | 回调函数。当点击子窗口右上角关闭按钮事件发生时的回调。该回调函数不返回任何参数。回调函数内部逻辑需要有boolean类型的返回值，该返回值决定当前子窗是否继续关闭，true表示不关闭子窗，false表示关闭子窗。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有子窗口关闭的监听。 |
+| callback | Callback&lt;void&gt; | 否   | 回调函数。当点击子窗口右上角关闭按钮事件发生时的回调。该回调函数不返回任何参数。回调函数内部逻辑的返回值决定当前子窗是否继续关闭，如果返回boolean类型的true表示不关闭子窗，返回false或者其他非boolean类型表示关闭子窗。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有子窗口关闭的监听。 |
 
 **错误码：**
 
@@ -6207,7 +6020,7 @@ windowClass.snapshot((err: BusinessError, pixelMap: image.PixelMap) => {
 
 snapshot(): Promise&lt;image.PixelMap&gt;
 
-获取窗口截图，使用Promise异步回调。
+获取当前窗口截图。若当前窗口设置为隐私模式（可通过[setWindowPrivacyMode](#setwindowprivacymode9)接口设置），截图结果为白屏。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -6234,6 +6047,46 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
 let promise = windowClass.snapshot();
+promise.then((pixelMap: image.PixelMap) => {
+  console.info('Succeeded in snapshotting window. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+  pixelMap.release(); // PixelMap使用完后及时释放内存
+}).catch((err: BusinessError) => {
+  console.error(`Failed to snapshot window. Cause code: ${err.code}, message: ${err.message}`);
+});
+```
+
+### snapshotIgnorePrivacy<sup>18+</sup>
+
+snapshotIgnorePrivacy(): Promise&lt;image.PixelMap&gt;
+
+获取当前窗口截图。即使当前窗口设置为隐私模式（可通过[setWindowPrivacyMode](#setwindowprivacymode9)接口设置），仍可调用本接口返回当前窗口截图。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise对象。返回当前窗口截图。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 801     | Capability not supported on this device. |
+| 1300002 | This window state is abnormal. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
+
+let promise = windowClass.snapshotIgnorePrivacy();
 promise.then((pixelMap: image.PixelMap) => {
   console.info('Succeeded in snapshotting window. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
   pixelMap.release(); // PixelMap使用完后及时释放内存
@@ -6830,39 +6683,26 @@ restore(): Promise&lt;void&gt;
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { window } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
-    // 加载主窗口对应的页面
-    windowStage.loadContent('pages/Index', (err) => {
-      let mainWindow: window.Window | undefined = undefined;
-      // 获取应用主窗口。
-      windowStage.getMainWindow().then(
-        data => {
-          mainWindow = data;
-          console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-          // 调用minimize, 使主窗缩小。
-          mainWindow.minimize();
-          //设置延时函数延时5秒钟后对主窗进行恢复。
-          setTimeout(()=>{
-              //调用restore()函数对主窗进行恢复。
-              let promise = mainWindow.restore();
-              promise.then(() => {
-                  console.info('Succeeded in restoring the window.');
-              }).catch((err: BusinessError) => {
-                  console.error(`Failed to restore the window. Cause code: ${err.code},
-                  message: ${err.message}`);
-              });
-          },5000);
-        }
-      ).catch((err: BusinessError) => {
-          if(err.code){
-            console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-          }
-      });
-    });
+    try {
+      let windowClass = windowStage.getMainWindowSync();
+      // 调用minimize, 使主窗最小化
+      windowClass.minimize();
+      //设置延时函数延时5秒钟后对主窗进行恢复。
+      setTimeout(()=>{
+        //调用restore()函数对主窗进行恢复。
+        let promise = windowClass.restore();
+        promise.then(() => {
+          console.info('Succeeded in restoring the window.');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to restore the window. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      }, 5000);
+    } catch (exception) {
+      console.error(`Failed to restore the window. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
   }
 }
 ```
@@ -7297,14 +7137,23 @@ setWindowTitleMoveEnabled(enabled: boolean): void
 **示例：**
 
 ```ts
-windowClass.setUIContent('pages/WindowPage').then(() => {
-  try {
-    let enabled = false;
-    windowClass.setWindowTitleMoveEnabled(enabled);
-  } catch (exception) {
-    console.error(`Failed to set the window title move enabled. Cause code: ${exception.code}, message: ${exception.message}`);
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    try {
+      windowStage.loadContent("pages/Index").then(() =>{
+        let windowClass = windowStage.getMainWindowSync();
+        let enabled = false;
+        windowClass.setWindowTitleMoveEnabled(enabled);
+        console.info(`Succeeded in setting the the window title move enabled: ${enabled}`);
+      });
+    } catch (exception) {
+      console.error(`Failed to set the window title move enabled. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
   }
-})
+}
 ```
 
 ### setSubWindowModal<sup>12+</sup>
@@ -7534,23 +7383,30 @@ setDecorButtonStyle(dectorStyle: DecorButtonStyle): void
 **示例：**
 
 ```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { ConfigurationConstant } from '@kit.AbilityKit';
 
-windowClass.setUIContent('pages/WindowPage').then(() => {
-  try {
-    let colorMode : ConfigurationConstant.ColorMode = ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT;
-    let style: window.DecorButtonStyle = {
-      colorMode: colorMode,
-      buttonBackgroundSize: 24,
-      spacingBetweenButtons: 12,
-      closeButtonRightMargin: 20
-    };
-    windowClass.setDecorButtonStyle(style);
-    console.info('Succeeded in setting the style of button. Data: ' + JSON.stringify(style));
-  } catch (exception) {
-    console.error(`Failed to set the style of button. Cause code: ${exception.code}, message: ${exception.message}`);
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    try {
+      windowStage.loadContent("pages/Index").then(() =>{
+        let windowClass = windowStage.getMainWindowSync();
+        let colorMode : ConfigurationConstant.ColorMode = ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT;
+        let style: window.DecorButtonStyle = {
+          colorMode: colorMode,
+          buttonBackgroundSize: 24,
+          spacingBetweenButtons: 12,
+          closeButtonRightMargin: 20
+        };
+        windowClass.setDecorButtonStyle(style);
+        console.info('Succeeded in setting the style of button. Data: ' + JSON.stringify(style));
+      });
+    } catch (exception) {
+      console.error(`Failed to set the style of button. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
   }
-})
+}
 ```
 
 ### getDecorButtonStyle<sup>14+</sup>
@@ -7816,109 +7672,6 @@ try {
   });
 } catch (exception) {
   console.error(`Failed to create the subwindow. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-```
-
-### setParentWindow<sup>18+</sup>
-
-setParentWindow(windowId: number): Promise&lt;void&gt;
-
-更改子窗口的父窗口，该父窗口仅支持主窗口、子窗口或悬浮窗，使用Promise异步回调。
-
-如果该子窗口处于获焦状态，且新的父窗口处于前台，则会抬升父窗口的层级。
-
-如果该子窗口处于获焦状态，且新的父窗口的子窗口存在层级更高的模态子窗口，则焦点会转移给该模态子窗口。
-
-此接口仅可在2in1设备下使用。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明           |
-| ------ | ------ | ---- | -------------- |
-| windowId  | number | 是   | 父窗口id，该参数应为整数。推荐使用[getWindowProperties()](#getwindowproperties9)方法获取父窗口id属性。|
-
-**返回值：**
-
-| 类型                | 说明                     |
-| ------------------- | ------------------------|
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | ------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal. |
-| 1300003 | This window manager service works abnormally. |
-| 1300004 | Unauthorized operation. |
-| 1300009 | The parent window is invaild. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-try {
-  let windowClass: window.Window = window.findWindow("subWindow");
-  let newParentWindow: window.Window = window.findWindow("newParentWindow");
-  let newParentWindowId: number = newParentWindow.getWindowProperties().id;
-  let promise = windowClass.setParentWindow(newParentWindowId);
-  promise.then(() => {
-    console.info('Succeeded in setting the new parent window.');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to set the new parent window. Cause code: ${err.code}, message: ${err.message}`);
-  });
-} catch (exception) {
-  console.error(`Failed to set the new parent window. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-```
-
-### getParentWindow<sup>18+</sup>
-
-getParentWindow(): Window
-
-获取子窗口的父窗口。
-
-此接口仅可在2in1设备下使用。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**返回值：**
-
-| 类型 | 说明 |
-| ----------------- | ------------------- |
-| [Window](#window) | 子窗口的父窗口对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | ------------------------------ |
-| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation. |
-| 1300009 | The parent window is invaild. |
-
-**示例：**
-
-```ts
-try {
-  let windowClass: window.Window = window.findWindow("subWindow");
-  let parentWindow: window.Window = windowClass.getParentWindow();
-  let properties = parentWindow.getWindowProperties();
-  console.info('Succeeded in obtaining parent window properties. Property: ' + JSON.stringify(properties));
-} catch (exception) {
-  console.error(`Failed to get the parent window. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -8481,6 +8234,7 @@ struct Index {
           .onTouch((event: TouchEvent) => {
             if (event.type === TouchType.Down) {
               try {
+                let windowClass: window.Window = window.findWindow("subWindow");
                 windowClass.startMoving().then(() => {
                   console.info('Succeeded in starting moving window.')
                 }).catch((err: BusinessError) => {
@@ -8556,6 +8310,7 @@ struct Index {
           .onTouch((event: TouchEvent) => {
             if (event.type === TouchType.Down) {
               try {
+                let windowClass: window.Window = window.findWindow("subWindow");
                 windowClass.startMoving(100, 50).then(() => {
                   console.info('Succeeded in starting moving window.')
                 }).catch((err: BusinessError) => {
@@ -8951,33 +8706,23 @@ try {
 }
 ```
 
-### setFollowParentMultiScreenPolicy<sup>16+<sup>
+### isWindowHighlighted<sup>18+<sup>
 
-setFollowParentMultiScreenPolicy(enabled: boolean): Promise&lt;void&gt;
+isWindowHighlighted(): boolean
 
-设置子窗口在其父窗口处于跨屏拖拽移动或跨屏拖拽缩放过程时，该子窗口是否支持跨多个屏幕同时显示。使用Promise异步回调。
+获取当前窗口是否为激活态。为准确获取激活态，需要在[WindowEventType](#windoweventtype10)生命周期处于WINDOW_ACTIVE之后调用。
 
-通过监听父窗口大小位置变化，对子窗口调用[moveWindowTo()](#movewindowto9)等接口实现子窗口跟随父窗口布局时，此时子窗口默认不支持跨多个屏幕同时显示。
-
-对子窗口调用此接口后可以使能子窗口在跟随父窗口布局过程中跨多个屏幕同时显示。
-
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+可使用[on('windowHighlightChange')](#onwindowhighlightchange15)监听对应状态变更，再执行对应具体业务。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| ----------- | ------- | -- | -------------------------------------------------------- |
-| enabled | boolean | 是 | 设置子窗口在其父窗口处于跨屏拖拽移动或跨屏拖拽缩放过程时，该子窗口是否支持跨多个屏幕同时显示。true表示支持；false表示不支持。  |
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
-| 类型 | 说明 |
-| ---------------------- | ------------------------------------------------------------------------------------ |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| 类型                | 说明                                           |
+| ------------------- | --------------------------------------------- |
+| boolean             | 当前窗口是否为激活态。true表示当前窗口为激活态，false表示当前窗口非激活态。 |
 
 **错误码：**
 
@@ -8985,11 +8730,8 @@ setFollowParentMultiScreenPolicy(enabled: boolean): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                                                                                     |
 | -------- | ------------------------------------------------------------------------------------------------------------ |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 801      | Capability not supported.Function setFollowParentMultiScreenPolicy can not work correctly due to limited device capabilities.|
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities.                         |
 | 1300002  | This window state is abnormal.                                                                               |
-| 1300003  | This window manager service works abnormally.                                                                |
-| 1300004  | Unauthorized operation.                                                                                |
 
 **示例：**
 
@@ -8997,16 +8739,10 @@ setFollowParentMultiScreenPolicy(enabled: boolean): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let windowClass: window.Window = window.findWindow("subWindow");
-  let enabled: boolean = true;
-  let promise = windowClass?.setFollowParentMultiScreenPolicy(enabled);
-  promise.then(() => {
-    console.info('Succeeded in setting the sub window supports multi-screen simultaneous display')
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to set the sub window supports multi-screen simultaneous display. Cause code: ${err.code}, message: ${err.message}`);
-  });
+  let isHighlighted = windowClass.isWindowHighlighted();
+  console.info(`Succeeded in getting the window highlight status: ${isHighlighted}`);
 } catch (exception) {
-  console.error(`Failed to set the sub window supports multi-screen simultaneous display. Cause code: ${exception.code}, message: ${exception.message}`);
+  console.error(`Failed to get the window highlight status.. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 

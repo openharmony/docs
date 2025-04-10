@@ -1954,7 +1954,7 @@ struct Fill {
 }
 ```
 
- ![en-us_image_000000127777774](figures/en-us_image_000000127777774.png)
+ ![en-us_image_000000127777774](figures/en-us_image_000000127777774.jpg)
 
 
 ### clip
@@ -2061,7 +2061,7 @@ Sets the current path to a clipping path.
   }
   ```
 
-  ![en-us_image_000000127777779](figures/en-us_image_000000127777779.png)
+  ![en-us_image_000000127777779](figures/en-us_image_000000127777779.jpg)
 
 
 ### reset<sup>12+</sup>

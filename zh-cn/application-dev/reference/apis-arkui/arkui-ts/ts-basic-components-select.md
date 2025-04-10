@@ -45,6 +45,7 @@ selected(value: number | Resource)
 设置下拉菜单初始选项的索引，第一项的索引为0。当不设置selected属性或设置异常值时，默认选择值为-1，菜单项不选中；当设置为undefined、null时，选中第一项。
 
 从API version 10开始，该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+从API version 18开始，该参数支持[!!](../../../quick-start/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -63,6 +64,7 @@ selected(numCount: Optional<number | Resource>)
 设置下拉菜单初始选项的索引，第一项的索引为0。当不设置selected属性或设置异常值时，默认选择值为-1，菜单项不选中；当设置为undefined、null时，选中第一项。
 
 该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+该属性支持[!!](../../../quick-start/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -81,6 +83,7 @@ value(value: ResourceStr)
 设置下拉按钮本身的文本内容。当菜单选中时默认会替换为菜单项文本内容。
 
 从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+从API version 18开始，该参数支持[!!](../../../quick-start/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -99,6 +102,7 @@ value(resStr: Optional\<ResourceStr>)
 设置下拉按钮本身的文本内容。当菜单选中时默认会替换为菜单项文本内容。与[value](#value)相比，resStr参数新增了对undefined类型的支持。
 
 该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+该参数支持[!!](../../../quick-start/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -162,7 +166,7 @@ controlSize、width、height接口作用优先级：
 
 menuItemContentModifier(modifier: ContentModifier\<MenuItemConfiguration>)
 
-定制Select下拉菜单项内容区的方法。
+定制Select下拉菜单项内容区的方法。在应用了menuItemContentModifier后，下拉菜单的内容将完全由开发者自定义，此时为Select组件设置的分割线、选项颜色及下拉菜单的字体颜色等属性将不再生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -178,7 +182,7 @@ menuItemContentModifier(modifier: ContentModifier\<MenuItemConfiguration>)
 
 menuItemContentModifier(modifier: Optional\<ContentModifier\<MenuItemConfiguration>>)
 
-定制Select下拉菜单项内容区的方法。与[menuItemContentModifier](#menuitemcontentmodifier12)<sup>12+</sup>相比，modifier参数新增了对undefined类型的支持。
+定制Select下拉菜单项内容区的方法。与[menuItemContentModifier](#menuitemcontentmodifier12)<sup>12+</sup>相比，modifier参数新增了对undefined类型的支持。在应用了menuItemContentModifier后，下拉菜单的内容将完全由开发者自定义，此时为Select组件设置的分割线、选项颜色及下拉菜单的字体颜色等属性将不再生效。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -315,7 +319,7 @@ selectedOptionFont(value: Font)
 
 | 参数名 | 类型                     | 必填 | 说明                                                         |
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Font](ts-types.md#font) | 是   | 下拉菜单选中项的文本样式。<br/>默认值：<br/>{<br/>size:&nbsp;$r('sys.color.ohos_id_text_size_body1'),<br/>weight:&nbsp;FontWeight.Regular<br/>} |
+| value  | [Font](ts-types.md#font) | 是   | 下拉菜单选中项的文本样式。<br/>默认值：<br/>{<br/>size:&nbsp;$r('sys.float.ohos_id_text_size_body1'),<br/>weight:&nbsp;FontWeight.Regular<br/>} |
 
 ### selectedOptionFont<sup>18+</sup>
 
@@ -331,7 +335,7 @@ selectedOptionFont(selectFont: Optional\<Font>)
 
 | 参数名     | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| selectFont | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Font](ts-types.md#font)> | 是   | 下拉菜单选中项的文本样式。<br/>当selectFont的值为undefined时，默认值：<br/>{<br/>size:&nbsp;$r('sys.color.ohos_id_text_size_body1'),<br/>weight:&nbsp;FontWeight.Regular<br/>} |
+| selectFont | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Font](ts-types.md#font)> | 是   | 下拉菜单选中项的文本样式。<br/>当selectFont的值为undefined时，默认值：<br/>{<br/>size:&nbsp;$r('sys.float.ohos_id_text_size_body1'),<br/>weight:&nbsp;FontWeight.Regular<br/>} |
 
 ### selectedOptionFontColor
 
@@ -701,24 +705,6 @@ menuBackgroundBlurStyle(style: Optional\<BlurStyle>)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[BlurStyle](ts-universal-attributes-background.md#blurstyle9)> | 是   | 下拉菜单的背景模糊材质。<br/>当style的值为undefined时，默认值：BlurStyle.COMPONENT_ULTRA_THICK |
 
-### avoidance<sup>18+</sup>
-
-avoidance(mode: AvoidanceMode)
-
-设置下拉菜单的避让模式。
-
-**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名    | 类型                                      | 必填 | 说明                                                         |
-| --------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| mode      | [AvoidanceMode](#avoidancemode18枚举说明)  | 是   | 设置下拉菜单的避让模式。<br/>默认值：AvoidanceMode.COVER_TARGET |
-
 ## ArrowPosition<sup>10+</sup>枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -741,21 +727,6 @@ avoidance(mode: AvoidanceMode)
 | START               | 0 |按照语言方向起始端对齐。 |
 | CENTER              | 1 |居中对齐。 |
 | END                 | 2 |按照语言方向末端对齐。 |
-
-## AvoidanceMode<sup>18+</sup>枚举说明
-
-下拉菜单避让模式的枚举选项。
-
-**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称                | 说明             |
-| ------------------- | ------------------ |
-| COVER_TARGET        | 当四周都无足够空间显示时，覆盖目标组件。 |
-| AVOID_AROUND_TARGET | 目标组件四周无足够空间时，在最大空间处压缩显示（可滚动）。 |
 
 ## MenuItemConfiguration<sup>12+</sup>对象说明
 
@@ -862,7 +833,6 @@ struct SelectExample {
             this.text = text;
           }
         })
-        .avoidance(AvoidanceMode.COVER_TARGET);
     }.width('100%')
   }
 }
@@ -917,7 +887,6 @@ struct SelectExample {
             this.text = text;
           }
         })
-        .avoidance(AvoidanceMode.COVER_TARGET);
     }.width('100%')
   }
 }
@@ -1038,7 +1007,6 @@ struct SelectExample {
             this.text = text;
           }
         })
-        .avoidance(AvoidanceMode.COVER_TARGET);
     }.width('100%')
   }
 }
@@ -1081,7 +1049,6 @@ struct SelectExample {
             this.text = text;
           }
         })
-        .avoidance(AvoidanceMode.COVER_TARGET);
     }.width('100%')
   }
 }

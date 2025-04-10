@@ -5,7 +5,7 @@ UIServiceExtensionAbility, inherited from [ExtensionAbility](js-apis-app-ability
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 13. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 14. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > The APIs of this module can be used only in the stage model.
 >
@@ -95,7 +95,7 @@ class UIServiceExt extends UIServiceExtensionAbility {
 
 onConnect(want: Want, proxy: UIServiceHostProxy): void
 
-Called when the connection to a [UIServiceExtensionAbility](js-apis-app-ability-uiServiceExtensionAbility-sys.md) is established. If the UIServiceExtensionAbility is started by calling [connectUIServiceExtensionAbility()](js-apis-inner-application-uiExtensionContext.md#uiextensioncontextconnectuiserviceextensionability13), this callback will be invoked after [onCreate()](#uiserviceextensionabilityoncreate). This callback receives a [UIServiceHostProxy](js-apis-inner-application-uiservicehostproxy-sys.md) object for communication between the client and server.
+Called when the connection to a [UIServiceExtensionAbility](js-apis-app-ability-uiServiceExtensionAbility-sys.md) is established. If the UIServiceExtensionAbility is started by calling [connectUIServiceExtensionAbility()](js-apis-inner-application-uiExtensionContext.md#uiextensioncontextconnectuiserviceextensionability14), this callback will be invoked after [onCreate()](#uiserviceextensionabilityoncreate). This callback receives a [UIServiceHostProxy](js-apis-inner-application-uiservicehostproxy-sys.md) object for communication between the client and server.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

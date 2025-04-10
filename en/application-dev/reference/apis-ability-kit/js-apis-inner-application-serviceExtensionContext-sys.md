@@ -2636,16 +2636,14 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
 }
 ```
 
-## ServiceExtensionContext.startUIServiceExtensionAbility<sup>13+<sup>
+## ServiceExtensionContext.startUIServiceExtensionAbility<sup>14+<sup>
 startUIServiceExtensionAbility(want: Want): Promise&lt;void&gt;
 
 Starts a new [UIServiceExtensionAbility](js-apis-app-ability-uiServiceExtensionAbility-sys.md). This API uses a promise to return the result.
 
-
 > **NOTE**
 >
 > For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
->
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -2706,7 +2704,7 @@ export default class MyServiceExtensionAbility extends ServiceExtensionAbility {
 }
 ```
 
-## ServiceExtensionContext.openAtomicService<sup>16+<sup>
+## ServiceExtensionContext.openAtomicService<sup>18+<sup>
 openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;void&gt;
 
 Starts an atomic service based on an application ID. This API uses a promise to return the result.

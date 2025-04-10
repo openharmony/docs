@@ -97,7 +97,7 @@
 | struct [Input_KeyEvent](#input_keyevent) \* [OH_Input_CreateKeyEvent](#oh_input_createkeyevent) () | 创建按键事件对象。  | 
 | void [OH_Input_DestroyKeyEvent](#oh_input_destroykeyevent) (struct [Input_KeyEvent](#input_keyevent) \*\*keyEvent) | 销毁按键事件对象。 | 
 | void [OH_Input_SetKeyEventAction](#oh_input_setkeyeventaction) (struct [Input_KeyEvent](#input_keyevent) \*keyEvent, int32_t action) | 设置按键事件类型。  | 
-| int32_t [OH_Input_GetKeyEventAction](#oh_input_getkeyeventaction) (const struct [Input_KeyEvent](#input_keyevent) \*keyEvent) | 获取按键事件类型  | 
+| int32_t [OH_Input_GetKeyEventAction](#oh_input_getkeyeventaction) (const struct [Input_KeyEvent](#input_keyevent) \*keyEvent) | 获取按键事件类型。  | 
 | void [OH_Input_SetKeyEventKeyCode](#oh_input_setkeyeventkeycode) (struct [Input_KeyEvent](#input_keyevent) \*keyEvent, int32_t keyCode) | 设置按键事件的键值。  | 
 | int32_t [OH_Input_GetKeyEventKeyCode](#oh_input_getkeyeventkeycode) (const struct [Input_KeyEvent](#input_keyevent) \*keyEvent) | 获取按键事件的键值。  | 
 | void [OH_Input_SetKeyEventActionTime](#oh_input_setkeyeventactiontime) (struct [Input_KeyEvent](#input_keyevent) \*keyEvent, int64_t actionTime) | 设置按键事件发生的时间。  | 
@@ -175,8 +175,8 @@
 | [Input_Result](#input_result) [OH_Input_RemoveTouchEventMonitor](#oh_input_removetoucheventmonitor) ([Input_TouchEventCallback](#input_toucheventcallback) callback) | 移除触摸事件监听。  | 
 | [Input_Result](#input_result) [OH_Input_RemoveAxisEventMonitorForAll](#oh_input_removeaxiseventmonitorforall) ([Input_AxisEventCallback](#input_axiseventcallback) callback) | 移除所有类型轴事件监听。  | 
 | [Input_Result](#input_result) [OH_Input_RemoveAxisEventMonitor](#oh_input_removeaxiseventmonitor) ([InputEvent_AxisEventType](#inputevent_axiseventtype) axisEventType, [Input_AxisEventCallback](#input_axiseventcallback) callback) | 移除指定类型轴事件监听，轴事件类型定义在[InputEvent_AxisEventType](#inputevent_axiseventtype)中。  | 
-| [Input_Result](#input_result) [OH_Input_AddKeyEventInterceptor](#oh_input_addkeyeventinterceptor) ([Input_KeyEventCallback](#input_keyeventcallback) callback, [Input_InterceptorOptions](#input_interceptoroptions) \*option) | 添加按键事件的拦截，重复添加只有第一次生效。  | 
-| [Input_Result](#input_result) [OH_Input_AddInputEventInterceptor](#oh_input_addinputeventinterceptor) ([Input_InterceptorEventCallback](_input___interceptor_event_callback.md) \*callback [Input_InterceptorOptions](#input_interceptoroptions) \*option) | 添加输入事件拦截，包括鼠标、触摸和轴事件，重复添加只有第一次生效。  | 
+| [Input_Result](#input_result) [OH_Input_AddKeyEventInterceptor](#oh_input_addkeyeventinterceptor) ([Input_KeyEventCallback](#input_keyeventcallback) callback, [Input_InterceptorOptions](#input_interceptoroptions) \*option) | 添加按键事件的拦截，重复添加只有第一次生效。仅在应用获焦时拦截按键事件。  | 
+| [Input_Result](#input_result) [OH_Input_AddInputEventInterceptor](#oh_input_addinputeventinterceptor) ([Input_InterceptorEventCallback](_input___interceptor_event_callback.md) \*callback, [Input_InterceptorOptions](#input_interceptoroptions) \*option) | 添加输入事件拦截，包括鼠标、触摸和轴事件，重复添加只有第一次生效。仅命中应用窗口时拦截输入事件。  | 
 | [Input_Result](#input_result) [OH_Input_RemoveKeyEventInterceptor](#oh_input_removekeyeventinterceptor) (void) | 移除按键事件拦截。  | 
 | [Input_Result](#input_result) [OH_Input_RemoveInputEventInterceptor](#oh_input_removeinputeventinterceptor) (void) | 移除输入事件拦截，包括鼠标、触摸和轴事件。  | 
 | [Input_Result](#input_result) [OH_Input_GetIntervalSinceLastInput](#oh_input_getintervalsincelastinput) (int64_t \*timeInterval) | 获取距离上次系统输入事件的时间间隔。  | 
@@ -1078,11 +1078,11 @@ INPUT_DEVICE_NOT_SUPPORTED 表示功能不受支持。
 ### OH_Input_AddInputEventInterceptor()
 
 ```
-Input_Result OH_Input_AddInputEventInterceptor (Input_InterceptorEventCallback *callback Input_InterceptorOptions * option)
+Input_Result OH_Input_AddInputEventInterceptor (Input_InterceptorEventCallback *callback, Input_InterceptorOptions * option)
 ```
 **描述**
 
-添加输入事件拦截，包括鼠标、触摸和轴事件，重复添加只有第一次生效。
+添加输入事件拦截，包括鼠标、触摸和轴事件，重复添加只有第一次生效。仅命中应用窗口时拦截输入事件。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1119,7 +1119,7 @@ Input_Result OH_Input_AddKeyEventInterceptor (Input_KeyEventCallback callback, I
 ```
 **描述**
 
-添加按键事件的拦截，重复添加只有第一次生效。
+添加按键事件的拦截，重复添加只有第一次生效。仅在应用获焦时拦截按键事件。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1344,7 +1344,7 @@ struct Input_KeyEvent* OH_Input_CreateKeyEvent ()
 ```
 **描述**
 
-创建按键事件对象
+创建按键事件对象。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1380,7 +1380,7 @@ struct Input_MouseEvent* OH_Input_CreateMouseEvent ()
 ```
 **描述**
 
-创建鼠标事件对象
+创建鼠标事件对象。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1398,7 +1398,7 @@ struct Input_TouchEvent* OH_Input_CreateTouchEvent ()
 ```
 **描述**
 
-创建触屏事件对象
+创建触屏事件对象。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1501,7 +1501,7 @@ void OH_Input_DestroyKeyEvent (struct Input_KeyEvent ** keyEvent)
 ```
 **描述**
 
-销毁按键事件对象
+销毁按键事件对象。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1561,7 +1561,7 @@ void OH_Input_DestroyTouchEvent (struct Input_TouchEvent ** touchEvent)
 ```
 **描述**
 
-销毁触屏事件对象
+销毁触屏事件对象。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -2187,7 +2187,7 @@ int32_t OH_Input_GetKeyEventAction (const struct Input_KeyEvent * keyEvent)
 ```
 **描述**
 
-获取按键事件类型
+获取按键事件类型。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -2211,7 +2211,7 @@ int64_t OH_Input_GetKeyEventActionTime (const struct Input_KeyEvent * keyEvent)
 ```
 **描述**
 
-获取按键事件发生的时间
+获取按键事件发生的时间。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -2273,7 +2273,7 @@ int32_t OH_Input_GetKeyEventKeyCode (const struct Input_KeyEvent * keyEvent)
 
 **返回：**
 
-Key code.
+Key code。
 
 
 ### OH_Input_GetKeyEventWindowId()
@@ -2379,7 +2379,7 @@ int32_t OH_Input_GetMouseEventAction (const struct Input_MouseEvent * mouseEvent
 ```
 **描述**
 
-获取鼠标事件的动作
+获取鼠标事件的动作。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -2451,7 +2451,7 @@ float OH_Input_GetMouseEventAxisValue (const struct Input_MouseEvent * mouseEven
 ```
 **描述**
 
-获取鼠标轴事件的值
+获取鼠标轴事件的值。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -2840,7 +2840,7 @@ int32_t OH_Input_InjectMouseEvent (const struct Input_MouseEvent * mouseEvent)
 ```
 **描述**
 
-注入鼠标事件
+注入鼠标事件。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -3391,7 +3391,7 @@ void OH_Input_SetKeyEventAction (struct Input_KeyEvent * keyEvent, int32_t actio
 ```
 **描述**
 
-设置按键事件类型
+设置按键事件类型。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 

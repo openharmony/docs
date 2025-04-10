@@ -342,3 +342,21 @@ The client request parameter is incorrect or exceeds the processing capability.
 
 1. Check whether the client request parameter is correct.
 2. Destroy this instance and re-create it. If the re-creation fails, stop related operations.
+
+## 5410002 Seek in SEEK_CONTINUOUS Mode Is Not Supported
+
+**Error Message**
+
+seek continuous is unsupported.
+
+**Description**
+
+The media source or device does not support the seek operation in SEEK_CONTINUOUS mode.
+
+**Possible Causes**
+
+The media source or device does not support the seek operation in SEEK_CONTINUOUS mode.
+
+**Solution**
+
+1. This error code informs the client about the behavior when seeking is not supported in SEEK_CONTINUOUS mode. The client does not need to handle this.

@@ -102,7 +102,8 @@ struct MyComponent {
   onBackPress() {
     console.info('Index onBackPress');
     this.btnColor = "#FFEE0606";
-    return true; // 返回true表示页面自己处理返回逻辑，不进行页面路由；返回false表示使用默认的路由返回逻辑，不设置返回值按照false处理
+    // 返回true表示页面自己处理返回逻辑，不进行页面路由；返回false表示使用默认的路由返回逻辑，不设置返回值按照false处理
+    return true;
   }
 
   // 组件生命周期
@@ -225,7 +226,7 @@ struct Page {
 
 - 点击“push to next page”，调用router.pushUrl接口，跳转到另外一个页面，当前Index页面隐藏，执行页面生命周期Index onPageHide。此处调用的是router.pushUrl接口，Index页面被隐藏，并没有销毁，所以只调用onPageHide。跳转到新页面后，执行初始化新页面的生命周期的流程。
 
-- 如果调用的是router.replaceUrl，则当前Index页面被销毁，上文已经提到，组件的销毁是从组件树上直接摘下子树,所以执行的生命周期流程将变为：新页面的初始化生命周期流程，然后执行Index onPageHide --&gt; MyComponent aboutToDisappear --&gt; Child aboutToDisappear。
+- 如果调用的是router.replaceUrl，则当前Index页面被销毁，上文已经提到，组件的销毁是从组件树上直接摘下子树，所以执行的生命周期流程将变为：新页面的初始化生命周期流程，然后执行Index onPageHide --&gt; MyComponent aboutToDisappear --&gt; Child aboutToDisappear。
 
 - 点击返回按钮，触发页面生命周期Index onBackPress，且触发返回一个页面后会导致当前Index页面被销毁。
 

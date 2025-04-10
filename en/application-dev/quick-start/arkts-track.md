@@ -113,9 +113,7 @@ In the preceding example:
 
 ## Constraints
 
-- If the \@Track decorator is used in a class, the non-\@Track decorated properties in the class cannot be used in the \@Component decorated UI. For example, these properties cannot be bound to components nor be used to initialize child components; otherwise, an error is reported during runtime. For details, see [Improperly Using Non-\@Track Decorated Properties Causes Errors](#improperly-using-non-track-decorated-properties-causes-errors). Non-\@Track decorated properties can be used in non-UI functions, such as event callback functions and lifecycle functions.
-
-- Since API version 18 and later, \@Track is used in the \@ComponentV2 decorated UI. In this case, an error is not reported during runtime, but the refresh is not responded. For details, see [Common Scenarios](./arkts-v1-v2-mixusage.md#observed-decorated-class).
+- If the \@Track decorator is used in a class, the non-\@Track decorated properties in the class cannot be used in the UI. For example, these properties cannot be bound to components nor be used to initialize child components; otherwise, an error is reported during runtime. For details, see [Improperly Using Non-\@Track Decorated Properties Causes Errors](#improperly-using-non-track-decorated-properties-causes-errors). Non-\@Track decorated properties can be used in non-UI functions, such as event callback functions and lifecycle functions.
 
 - Whenever possible, avoid any combination of class objects that contain \@Track and those that do not in, for example, union types and class inheritance.
 

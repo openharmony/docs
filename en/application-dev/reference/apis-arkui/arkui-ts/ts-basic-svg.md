@@ -15,7 +15,7 @@ The basic shape tags include the following: \<rect\>, \<circle\>, \<ellipse\>, \
 | :-------- | :-------- | :-------- |
 | \<rect\> | Rectangle| **x**: x-axis offset.<br>**y**: y-axis offset.<br>**width**: width.<br>**height**: height.<br>**rx**: corner radius on the x-axis.<br>**ry**: corner radius on the y-axis.|
 | \<circle\> | Circle| **cx**: X coordinate of the circle center.<br> **cy**: Y coordinate of the circle center.<br> **r**: radius of the circle.|  |
-| \<ellipse\> | Ellipse| **cx**: X coordinate.<br> **cy**: Y coordinate.<br> **rx**: x-axis radius.<br> **ry**: y-axis radius.<br>|  |
+| \<ellipse\> | Ellipse| **cx**: X coordinate.<br> **cy**: Y coordinate.<br> **rx**: x-axis radius.<br> **ry**: y-axis radius.|  |
 | \<line\> | Line| **x1**: X coordinate of the start point.<br> **y1**: Y coordinate of the start point.<br> **x2**: X coordinate of the end point.<br> **y2**: Y coordinate of the end point.|  |
 | \<polyline\> | Polyline| **points**: vertex coordinates.|  |
 | \<polygon\> | Polygon| **points**: vertex coordinates.|  |
@@ -29,20 +29,20 @@ The filter tags include the following: \<filter\>, \<feOffset\>, \<feGaussianBlu
 
 | Element| Description| Unique Attribute|
 | :-------- | :-------- | :-------- |
-| \<filter\> | Defines the filter area.| **x**: x-axis offset of the filter area.<br>**y**: y-axis offset of the filter area.<br>**width**: width of the filter area.<br>**height**: height of the filter area.|
+| \<filter\> | Defines the filter area.| **x**: x-axis offset of the filter area, with the default value of **0**.<br>**y**: y-axis offset of the filter area, with the default value of **0**.<br>**width**: width of the filter area.<br>**height**: height of the filter area.|
 | \<feOffset\> | Defines the offset distance along x-axis and y-axis.| **in**: filter input, which can be SourceGraphic, SourceAlpha, or result from other filter effects.<br> **result**: output after filter processing, which can be used as input for the next filter. The value can include dx and dy.|
 | \<feGaussianBlur\> | Defines the Gaussian blur effect.| **in**: filter input, which can be SourceGraphic, SourceAlpha, or result from other filter effects.<br> **result**: output after filter processing, which can be used as input for the next filter. The value can include edgemode and stddeviation.|
 | \<feBlend\> | Defines the blending mode for two input images.| **in**: filter input, which can be SourceGraphic, SourceAlpha, or result from other filter effects.<br> **result**: output after filter processing, which can be used as input for the next filter.<br>**in2**: second image source, which can be SourceGraphic, SourceAlpha, or result from other filter effects; mode|
-| \<feComposite\> | Defines composition of two input images.<br>Algorithm: result = k1 * in * in2 + k2 * in + k3 * in2 + k4| **in**: filter input, which can be SourceGraphic, SourceAlpha, or result from other filter effects.<br>**in2**: second image source, which can be SourceGraphic, SourceAlpha, or result from other filter effects; operator( over \| in \| out \| atop \| xor \| lighter \| arithmetic ), k1, k2, k3, k4|  |
-| \<feColorMatrix\> | Transforms colors based on a transformation matrix.| **in**: filter input, which can be SourceGraphic, SourceAlpha, or result from other filter effects.<br> **result**: output after filter processing, which can be used as input for the next filter.<br>type ( matrix \| saturate \| hueRotate), values|
-| \<feFlood\> | Defines the fill color and opacity.| **in**: filter input, which can be SourceGraphic, SourceAlpha, or result from other filter effects.<br> **result**: output after filter processing, which can be used as input for the next filter; flood-color and flood-opacity|
+| \<feComposite\> | Defines composition of two input images.<br>Algorithm: result = k1 * in * in2 + k2 * in + k3 * in2 + k4| **in**: filter input, which can be SourceGraphic, SourceAlpha, or result from other filter effects.<br>**in2**: second image source, which can be SourceGraphic, SourceAlpha, or result from other filter effects; operator( over \| in \| out \| atop \| xor \| lighter \| arithmetic ), k1, k2, k3, k4.|
+| \<feColorMatrix\> | Transforms colors based on a transformation matrix.| **in**: filter input, which can be SourceGraphic, SourceAlpha, or result from other filter effects.<br> **result**: output after filter processing, which can be used as input for the next filter.<br>type ( matrix \| saturate \| hueRotate ), values.|
+| \<feFlood\> | Defines the fill color and opacity.| **in**: filter input, which can be SourceGraphic, SourceAlpha, or result from other filter effects.<br> **result**: output after filter processing, which can be used as input for the next filter; flood-color and flood-opacity.|
 
 ### Masks
 
 The mask tags include the following: \<mask\>
 | Element| Description| Unique Attribute|
 | :-------- | :-------- | :-------- |
-| \<mask\> | Defines the mask area.| **x**: x-axis offset of the mask area.<br>**y**: y-axis offset of the mask area.<br>**width**: width of the mask area<br>**height**: height of the mask area|
+| \<mask\> | Defines the mask area.| **x**: x-axis offset of the mask area.<br>**y**: y-axis offset of the mask area.<br>**width**: width of the mask area<br>**height**: height of the mask area.|
 
 ### Clipping
 
@@ -60,7 +60,7 @@ The pattern tags include the following: \<pattern\>
 
 ### Gradients
 
-The gradient tags include the following: \<linearGradient\>, \<racialGradient\>, \<stop\>
+The gradient tags include the following: \<linearGradient\>, \<racialGradient\>, \<stop\>.
 
 | Element| Description| Unique Attribute|
 | :-------- | :-------- | :-------- |
@@ -80,8 +80,8 @@ The image tags include the following: \<image\>
 The animation tags include the following: \<animate\>, \<animateTransform\>
 | Element| Description| Unique Attribute|
 | :-------- | :-------- | :-------- |
-| \<animate\> | Definies an element attribute animation.| **attributeName**: animatable attribute; values: (cx\| cy \| r \| fill \| stroke \| fill-opacity \| stroke-opacity \| stroke-miterlimit)<br>**begin**: animation start time.<br> **dur**: animation duration.<br>**from**: start value.<br>**to**: end value.<br>**fill**: end state of the animation.<br> **calcMode**: interpolation.<br> keyTimes, values, keySplines |
-| \<animateTransform\> | Defines an element transformation animation.| **attributeName**: animatable attribute; value: transform<br>**type**: transformation type; values: (translate \| scale \| rotate \| skewX \| skewY);<br>**begin**: animation start time.<br> **dur**: animation duration.<br>**from**: start value.<br>**to**: end value.<br>**fill**: end state of the animation.<br> **calcMode**: interpolation.<br> keyTimes, values, keySplines|
+| \<animate\> | Defines a property animation.| **attributeName**: animatable attribute; values: (cx\| cy \| r \| fill \| stroke \| fill-opacity \| stroke-opacity \| stroke-miterlimit)<br>**begin**: animation start time.<br> **dur**: animation duration.<br>**from**: start value.<br>**to**: end value.<br>**fill**: end state of the animation.<br> **calcMode**: interpolation.<br> keyTimes, values, keySplines |
+| \<animateTransform\> | Defines a transformation animation.| **attributeName**: animatable attribute; value: transform<br>**type**: transformation type; values: (translate \| scale \| rotate \| skewX \| skewY);<br>**begin**: animation start time.<br> **dur**: animation duration.<br>**from**: start value.<br>**to**: end value.<br>**fill**: end state of the animation.<br> **calcMode**: interpolation.<br> keyTimes, values, keySplines|
 
 > **NOTE**
 >

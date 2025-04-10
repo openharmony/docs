@@ -51,7 +51,7 @@ AVCastPicker({
 | colorMode<sup>12+</sup> | [AVCastPickerColorMode](js-apis-avCastPickerParam.md#avcastpickercolormode12) | 否 |  @Prop | 显示模式。默认值为AUTO。<br>- 当colorMode设置为AUTO时，跟随系统的深浅色模式的默认色值；<br>- 当colorMode设置为DARK、LIGHT时，使用对应模式的系统预定色值。 |
 | sessionType<sup>12+</sup> | string | 否| @Prop | 会话类型，可参考[AVSessionType](js-apis-avsession.md#avsessiontype10)。默认值为当前应用创建的AVSessionType。 |
 | customPicker<sup>12+</sup> | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8) | 否 | @Prop | 自定义样式。建议应用自定义组件样式，可有效提升组件显示速度。 |
-| onStateChange<sup>11+</sup> | (state: [AVCastPickerState](js-apis-avCastPickerParam.md)) => void | 否 | @Prop | 投播状态更改回调。 |
+| onStateChange<sup>11+</sup> | (state: [AVCastPickerState](js-apis-avCastPickerParam.md)) => void | 否 | - | 投播状态更改回调。 |
 
 ## 事件
 

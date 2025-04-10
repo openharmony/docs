@@ -12,11 +12,13 @@
 
 ## DatePickerDialog
 
-### show
+### show<sup>(deprecated)</sup>
 
 static show(options?: DatePickerDialogOptions)
 
 定义日期滑动选择器弹窗并弹出。
+
+从API version 8开始支持，从API version 18开始废弃，建议使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showDatePickerDialog](../js-apis-arkui-UIContext.md#showdatepickerdialog)替代。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -143,7 +145,6 @@ struct DatePickerDialogExample {
         .margin(20)
         .onClick(() => {
           DatePickerDialog.show({
-            // 建议使用 this.getUIContext().showDatePickerDialog()接口
             start: new Date("2000-1-1"),
             end: new Date("2100-12-31"),
             selected: this.selectedDate,
@@ -198,7 +199,7 @@ struct DatePickerDialogExample {
       Button("DatePickerDialog")
         .margin(20)
         .onClick(() => {
-          DatePickerDialog.show({
+          this.getUIContext().showDatePickerDialog({
             start: new Date("2000-1-1"),
             end: new Date("2100-12-31"),
             selected: this.selectedDate,
@@ -280,7 +281,7 @@ struct DatePickerDialogExample {
       Button("DatePickerDialog")
         .margin(20)
         .onClick(() => {
-          DatePickerDialog.show({ // 建议使用 this.getUIContext().showDatePickerDialog()接口
+          this.getUIContext().showDatePickerDialog({
             start: new Date("2000-1-1"),
             end: new Date("2100-12-31"),
             selected: this.selectedDate,
@@ -339,8 +340,7 @@ struct DatePickerDialogExample {
       Button("DatePickerDialog")
         .margin(20)
         .onClick(() => {
-          DatePickerDialog.show({
-            // 建议使用 this.getUIContext().showDatePickerDialog()接口
+          this.getUIContext().showDatePickerDialog({
             start: new Date("2000-1-1"),
             end: new Date("2100-12-31"),
             selected: this.selectedDate,
@@ -376,7 +376,7 @@ struct DatePickerDialogExample {
       Button("DatePickerDialog")
         .margin(20)
         .onClick(() => {
-          DatePickerDialog.show({
+          this.getUIContext().showDatePickerDialog({
             start: new Date("2000-1-1"),
             end: new Date("2100-12-31"),
             selected: this.selectedDate,
@@ -416,7 +416,7 @@ struct DatePickerDialogExample {
       Button("DatePickerDialog")
         .margin(20)
         .onClick(() => {
-          DatePickerDialog.show({
+          this.getUIContext().showDatePickerDialog({
             start: new Date("2000-1-1"),
             end: new Date("2100-12-31"),
             selected: this.selectedDate,
@@ -453,7 +453,7 @@ struct DatePickerDialogExample {
       Button("DatePickerDialog")
         .margin(20)
         .onClick(() => {
-          DatePickerDialog.show({
+          this.getUIContext().showDatePickerDialog({
             start: new Date("2000-1-1"),
             end: new Date("2100-12-31"),
             selected: this.selectedDate,
@@ -504,7 +504,7 @@ struct DatePickerDialogExample {
       Button("DatePickerDialog")
         .margin(20)
         .onClick(() => {
-          DatePickerDialog.show({
+          this.getUIContext().showDatePickerDialog({
             start: new Date("2000-1-1"),
             end: new Date("2100-12-31"),
             selected: this.selectedDate,

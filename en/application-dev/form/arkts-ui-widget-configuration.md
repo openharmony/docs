@@ -64,7 +64,7 @@ Widget-related configuration includes **FormExtensionAbility** configuration and
    |enableBlurBackground|Whether a blur background is enabled for the widget.<br>- **true**: A blur background is enabled.<br>- **false**: A blur background is disabled.|Boolean|Yes (initial value: **false**)|
    |renderingMode|Rendering mode of the widget.<br>- **autoColor**: automatic mode, where the widget is visible in both the lock screen widget center and the home screen widget center/widget management.<br>- **fullColor**: full-color mode, where the widget is visible in the home screen widget center/widget management.<br>- **singleColor**: monochrome mode, where the widget is visible in the lock screen widget center.	|String|Yes (initial value: **fullColor**)|
    |multiScheduledUpdateTime|Times for updating the widget. As an additional parameter for single-point update, it follows the 24-hour format, precise to the minute. It allows up to 24 distinct times, with every two times separated by a comma (,).<br>**NOTE**<br>It must be used together with **scheduledUpdateTime**.|String|Yes (initial value: The widget is not updated at the scheduled times.)|
-   |conditionUpdate|Conditional update capabilities supported by the widget (valid only for ArkTS widgets of system applications).  <br>- **network**: Network update is supported.|String|Yes (initial value: an empty string)|
+   |conditionUpdate|Conditional update capabilities supported by the widget (valid only for ArkTS widgets of system applications). The value can be:<br>- **network**: Network update is supported.|String|Yes (initial value: an empty string)|
 
 ## isDynamic Field
 

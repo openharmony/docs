@@ -21,7 +21,7 @@ This topic compares TaskPool and Worker based on their implementation characteri
 | Lifecycle management| TaskPool manages its own lifecycle, without considering task load.| Developers are required to manage the number and lifecycle of Worker threads.|
 | Maximum number of tasks| The number is automatically managed, rather than being manually configured.| A maximum of 64 Worker threads can run simultaneously in the same process. The actual number is determined by the process memory.|
 | Maximum task duration| 3 minutes (excluding time spent on Promise and async/await calls, such as network downloads and file read/write operations). There is no upper limit on the duration of continuous tasks.| There is no limit.|
-| Task priority setting| Setting the task priority is supported.| Since API version 16, the Worker thread priority can be configured.|
+| Task priority setting| Setting the task priority is supported.| Since API version 18, the Worker thread priority can be configured.|
 | Task cancellation| Supported.| Not supported.|
 | Thread reuse| Supported.| Not supported.|
 | Delayed task execution| Supported.| Not supported.|
@@ -42,7 +42,7 @@ Common use cases are as follows:
 
 - Associated synchronous tasks: In scenarios where a series of synchronous tasks is required, such as when creating and using handles that must be permanently stored, Worker is recommended to ensure proper management of these handles. For details, see [Using Worker for Interdependent Synchronous Tasks](./sync-task-development.md#using-worker-for-interdependent-synchronous-tasks).
 
-- Tasks requiring priority setting: In versions earlier than API version 16, Worker does not support setting scheduling priorities, so TaskPool is necessary. Since API version 16, Worker supports priority settings, allowing you to choose between TaskPool and Worker based on your use case and task characteristics. For example, in a Gallery histogram rendering scenario, background calculations for histogram data that affect user experience should be prioritized, making TaskPool the recommended choice.
+- Tasks requiring priority setting: In versions earlier than API version 18, Worker does not support setting scheduling priorities, so TaskPool is necessary. Since API version 18, Worker supports priority settings, allowing you to choose between TaskPool and Worker based on your use case and task characteristics. For example, in a Gallery histogram rendering scenario, background calculations for histogram data that affect user experience should be prioritized, making TaskPool the recommended choice.
 
 - Frequently canceled tasks: For tasks that need to be canceled often, such as in a Gallery viewing scenario where images on either side of the current image are cached, TaskPool is recommended to efficiently manage the cancellation of a cache task when swiping to the next image.
 

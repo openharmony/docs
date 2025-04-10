@@ -136,7 +136,7 @@ ArkUI提供了使用C和C++开发拖拽功能的能力，开发者可调用C API
       returnValue = OH_UdmfRecord_AddFileUri(record, imageValue);
       OH_UdmfData *data = OH_UdmfData_Create();
       returnValue = OH_UdmfData_AddRecord(data, record);
-      returnVaule = OH_ArkUI_DragEvent_SetData(dragEvent, data);
+      returnValue = OH_ArkUI_DragEvent_SetData(dragEvent, data);
       break;
     }
     ```
