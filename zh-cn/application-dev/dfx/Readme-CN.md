@@ -48,7 +48,7 @@
   - [使用HiDebug获取调试信息（C/C++）](hidebug-guidelines-ndk.md)
 - HiCollie使用指导<!--hicollie-->
   - [使用HiCollie检测业务线程卡死卡顿问题（C/C++）](hicollie-guidelines-ndk.md)
-  - 错误管理<!--error-manager-->
+- 错误管理<!--error-manager-->
   - [错误管理开发指导](errormanager-guidelines.md)
   - [应用恢复开发指导](apprecovery-guidelines.md)
 - 故障分析<!--fault-analysis-->

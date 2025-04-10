@@ -29,7 +29,7 @@
     - [通过DataShareExtensionAbility实现数据共享](share-data-by-datashareextensionability.md)
     - [通过数据管理服务实现数据共享静默访问](share-data-by-silent-access.md)
   <!--DelEnd-->
-  - 多对多跨应用数据共享 <!--many-to-many-data-share-->
+  - 多对多跨应用数据共享<!--many-to-many-data-share-->
     - [通过标准化数据通路实现数据共享](unified-data-channels.md)
 - 智慧化数据构建与检索<!--intelligence-data-->
   - [智慧化数据构建与检索概述](aip-data-intelligence-overview.md)
