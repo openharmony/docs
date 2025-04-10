@@ -322,6 +322,7 @@ JSVM deref_item
 - JSVM_DEFINE_CLASS_WITH_PROPERTY_HANDLER: 为所创建的Class设置监听拦截属性以及设置作为函数调用时回调函数。
 #### cpp代码
 ```c++
+#include <string>
 static JSVM_PropertyHandlerConfigurationStruct propertyCfg{
   nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr
 };
@@ -373,10 +374,10 @@ JSVM_Value Run(JSVM_Env env, const char *s)
     JSVM_CALL(OH_JSVM_CreateStringUtf8(env, s, JSVM_AUTO_LENGTH, &str));
     // 2. 将JS_String转换成JS_Script。
     JSVM_Script script;
-    OH_JSVM_CompileScript(jsvm_env, str, nullptr, JSVM_AUTO_LENGTH,   false, nullptr, &script);
+    OH_JSVM_CompileScript(env, str, nullptr, JSVM_AUTO_LENGTH,   false, nullptr, &script);
     // 3. 执行JS_Script。
     JSVM_Value result;
-    OH_JSVM_RunScript(jsvm_env, script, &result);
+    OH_JSVM_RunScript(env, script, &result);
     return result;
 }
 
@@ -395,7 +396,8 @@ static JSVM_Value TestDefineClassWithOptions(JSVM_Env env, JSVM_CallbackInfo inf
         OH_JSVM_GetCbInfo(env, info, nullptr, nullptr, &thisVar, nullptr);
         return thisVar;
     };
-    JSVM_Value fooVal = Str(env, "bar");
+    JSVM_Value fooVal;
+    OH_JSVM_CreateStringUtf8(env, "bar", JSVM_AUTO_LENGTH, &fooVal);
     JSVM_PropertyDescriptor des[2];
     des[0] = {
         .utf8name = "foo",
