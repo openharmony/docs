@@ -500,7 +500,7 @@ static from\<T>(arrayLike: ArrayLike\<T> | Iterable\<T>, mapFn: ArrayFromMapFn\<
 
 ```ts
 let array : Array<number> = [1, 2, 3]; // 原生Array<T>，T是Sendable数据类型。
-let newarray = collections.Array.from<number, number>(array, (value, index) => value + index); // 返回新的 Array<T>
+let newarray = collections.Array.from<number>(array, (value, index) => value + index); // 返回新的 Array<T>
 console.info(newarray.toString());
 // 预期输出： 1, 3, 5
 ```
@@ -548,7 +548,7 @@ console.info(newarray.toString());
 
 ### isArray<sup>18+</sup>
 
-static isArray\<T>(value: Object | undefined | null): boolean
+static isArray(value: Object | undefined | null): boolean
 
 检查传入的参数是否是一个ArkTS Array。
 
@@ -726,7 +726,7 @@ some(predicate: ArrayPredicateFn\<T, Array\<T>>): boolean
 
 | 参数名  | 类型   | 必填 | 说明                                                  |
 | ------- | ------ | ---- | ---------------------------------------------------- |
-| predicate | ArrayPredicateFn\<T, Array> | 是 | 用于测试的断言函数。|
+| predicate | ArrayPredicateFn\<T, Array\<T>> | 是 | 用于测试的断言函数。|
 
 **返回值：**
 
