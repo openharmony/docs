@@ -1814,7 +1814,7 @@ getSignatureAlgOid() : string
 
 | 类型   | 说明                              |
 | ------ | --------------------------------- |
-| string | 表示X509证书签名算法对象标志符OID。 |
+| string | 表示X509证书签名算法对象标志符OID。若OID长度超过128字节，则会被截断。 |
 
 **错误码：**
 
@@ -3608,7 +3608,7 @@ createX509CRL(inStream : EncodingBlob, callback : AsyncCallback\<X509CRL>) : voi
 
 | 参数名   | 类型                                  | 必填 | 说明                           |
 | -------- | ------------------------------------- | ---- | ------------------------------ |
-| inStream | [EncodingBlob](#encodingblob)         | 是   | 表示证书吊销列表序列化数据。     |
+| inStream | [EncodingBlob](#encodingblob)         | 是   | 表示证书吊销列表序列化数据。当前支持的数据长度不超过8192字节。     |
 | callback | AsyncCallback\<[X509CRL](#x509crl11)> | 是   | 回调函数，表示证书吊销列表对象。 |
 
 **错误码：**
@@ -3674,7 +3674,7 @@ createX509CRL(inStream : EncodingBlob) : Promise\<X509CRL>
 
 | 参数名   | 类型                          | 必填 | 说明                       |
 | -------- | ----------------------------- | ---- | -------------------------- |
-| inStream | [EncodingBlob](#encodingblob) | 是   | 表示证书吊销列表序列化数据。 |
+| inStream | [EncodingBlob](#encodingblob) | 是   | 表示证书吊销列表序列化数据。当前支持的数据长度不超过8192字节。 |
 
 **返回值**：
 
@@ -7452,8 +7452,6 @@ try {
 证书链校验器对象。
 
 
-### 属性
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
@@ -8431,7 +8429,7 @@ cert.createX509CRL(encodingBlob, (err, x509CRL) => {
 
 getRevocationDate() : string
 
-表示获取证书被吊销的日期，日期为ASN.1时间格式。
+表示获取证书被吊销的日期。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -8441,7 +8439,7 @@ getRevocationDate() : string
 
 | 类型   | 说明                 |
 | ------ | -------------------- |
-| string | 表示证书被吊销的日期，日期为ASN.1时间格式。 |
+| string | 表示证书被吊销的日期。 |
 
 **错误码：**
 
