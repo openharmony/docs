@@ -27,7 +27,7 @@
     <!--DelEnd-->
 - C API<!--background-tasks-c-->
   - 模块<!--background-tasks-module-->
-    - [TransientTask]
+    - [TransientTask](_transient_task.md)
     - [BackgroundProcessManager](_background_process_manager.md)
   - 头文件<!--background-tasks-headerfile-->
     - [transient_task_api.h](transient__task__api_8h.md)
