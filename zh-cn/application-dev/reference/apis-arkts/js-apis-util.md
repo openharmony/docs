@@ -399,6 +399,8 @@ printf(format: string,  ...args: Object[]): string
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -433,6 +435,8 @@ getErrorString(errno: number): string
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -465,6 +469,8 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 > 此接口不可用，建议使用[util.promisify<sup>9+</sup>](#utilpromisify9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -557,6 +563,8 @@ console.info('result2 is ' + result2);
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -856,13 +864,17 @@ static create(encoding?: string, options?: TextDecoderOptions): TextDecoder
 | encoding | string | 否   | 编码格式，默认值是'utf-8'。                      |
 | options  | [TextDecoderOptions](#textdecoderoptions11) | 否   | 解码相关选项参数，存在两个属性fatal和ignoreBOM。|
 
-**错误码：**
+**ArkTS1.1版本错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
+
+**ArkTS1.2版本错误码：**
+
+此接口在ArkTS1.2无错误码。
 
 **示例：**
 
@@ -939,6 +951,8 @@ decodeWithStream(input: Uint8Array, options?: DecodeWithStreamOptions): string
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -996,6 +1010,8 @@ TextDecoder的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -1027,6 +1043,8 @@ decode(input: Uint8Array, options?: { stream?: false }): string
 > 从API version 7开始支持，从API version 9开始废弃，建议使用[decodeToString<sup>12+</sup>](#decodetostring12)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -1074,8 +1092,8 @@ console.info("retStr = " + retStr);
 
 | 名称      | 类型 | 可读  |可写  | 说明               |
 | --------- | -------- | -------- |-------- |------------------ |
-| read     | number  | 是 | 否 |表示已读取的字符数。 |
-| written | number   | 是 |否 |表示已写入的字节数。  |
+| read     | ArkTS1.1: number <br>ArkTS1.2: int | 是 | 否 |表示已读取的字符数。 |
+| written | ArkTS1.1: number <br>ArkTS1.2: int | 是 |否 |表示已写入的字节数。  |
 
 
 ## TextEncoder
@@ -1192,13 +1210,17 @@ encodeInto(input?: string): Uint8Array
 | ---------- | ------------------ |
 | Uint8Array | 返回编码后的Uint8Array对象。 |
 
-**错误码：**
+**ArkTS1.1版本错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
+
+**ArkTS1.2版本错误码：**
+
+此接口在ArkTS1.2无错误码。
 
 **示例：**
 
@@ -1232,13 +1254,17 @@ encodeIntoUint8Array(input: string, dest: Uint8Array): EncodeIntoUint8ArrayInfo
 | ---------- | ------------------ |
 | [EncodeIntoUint8ArrayInfo](#encodeintouint8arrayinfo11) | 返回一个对象，read表示已编码的字符数，write表示编码字符所占用的字节数。 |
 
-**错误码：**
+**ArkTS1.1版本错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**ArkTS1.2版本错误码：**
+
+此接口在ArkTS1.2无错误码。
 
 **示例：**
 
@@ -1266,6 +1292,8 @@ encodeInto(input: string, dest: Uint8Array): { read: number; written: number }
 > 从API version 7开始支持，从API version 9开始废弃，建议使用[encodeIntoUint8Array<sup>9+</sup>](#encodeintouint8array9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -1302,6 +1330,8 @@ encode(input?: string): Uint8Array
 > 从API version 7开始支持，从API version 9开始废弃，建议使用[encodeInto<sup>9+</sup>](#encodeinto9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -1778,6 +1808,8 @@ RationalNumber的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -1802,6 +1834,8 @@ compareTo(another: RationalNumber): number​
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[compare<sup>9+</sup>](#compare9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -1836,6 +1870,8 @@ static getCommonDivisor(number1: number,number2: number): number
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[getCommonFactor<sup>9+</sup>](#getcommonfactor9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -3897,6 +3933,8 @@ isBooleanObject(value: Object): boolean
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -3932,6 +3970,8 @@ isBoxedPrimitive(value: Object): boolean
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -4445,6 +4485,8 @@ isNumberObject(value: Object): boolean
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -4647,6 +4689,8 @@ isStringObject(value: Object): boolean
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -4682,6 +4726,8 @@ isSymbolObject(value: Object): boolean
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -5087,6 +5133,8 @@ isSharedArrayBuffer(value: Object): boolean
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | 当前缓冲区中值的总数。 |
@@ -5114,6 +5162,8 @@ constructor(capacity?: number)
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -5137,6 +5187,8 @@ updateCapacity(newCapacity: number): void
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[LRUCache.updateCapacity<sup>9+</sup>](#updatecapacity9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -5162,6 +5214,8 @@ toString(): string
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[LRUCache.toString<sup>9+</sup>](#tostring9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **返回值：**
 
@@ -5193,6 +5247,8 @@ getCapacity(): number
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -5220,6 +5276,8 @@ clear(): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **示例：**
 
   ```ts
@@ -5240,6 +5298,8 @@ getCreateCount(): number
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[LRUCache.getCreateCount<sup>9+</sup>](#getcreatecount9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **返回值：**
 
@@ -5269,6 +5329,8 @@ getMissCount(): number
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -5297,6 +5359,8 @@ getRemovalCount(): number
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[LRUCache.getRemovalCount<sup>9+</sup>](#getremovalcount9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **返回值：**
 
@@ -5328,6 +5392,8 @@ getMatchCount(): number
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -5357,6 +5423,8 @@ getPutCount(): number
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -5385,6 +5453,8 @@ isEmpty(): boolean
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -5412,6 +5482,8 @@ get(key: K): V | undefined
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[LRUCache.get<sup>9+</sup>](#get9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -5447,6 +5519,8 @@ put(key: K,value: V): V
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -5481,6 +5555,8 @@ values(): V[]
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -5511,6 +5587,8 @@ keys(): K[]
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -5538,6 +5616,8 @@ remove(key: K): V | undefined
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[LRUCache.remove<sup>9+</sup>](#remove9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -5572,6 +5652,8 @@ afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[LRUCache.afterRemoval<sup>9+</sup>](#afterremoval9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -5620,6 +5702,8 @@ contains(key: K): boolean
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -5654,6 +5738,8 @@ createDefault(key: K): V
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -5685,6 +5771,8 @@ entries(): IterableIterator&lt;[K,V]&gt;
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -5710,6 +5798,8 @@ entries(): IterableIterator&lt;[K,V]&gt;
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[LRUCache.Symbol.iterator<sup>9+</sup>](#symboliterator9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **返回值：**
 
@@ -5743,6 +5833,8 @@ constructor(lowerObj: ScopeType, upperObj: ScopeType)
 
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -5786,6 +5878,8 @@ toString(): string
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[ScopeHelper.toString<sup>9+</sup>](#tostring9-1)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **返回值：**
 
@@ -5831,6 +5925,8 @@ intersect(range: Scope): Scope
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[ScopeHelper.intersect<sup>9+</sup>](#intersect9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -5886,6 +5982,8 @@ intersect(lowerObj:ScopeType,upperObj:ScopeType):Scope
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -5940,6 +6038,8 @@ getUpper(): ScopeType
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -5985,6 +6085,8 @@ getLower(): ScopeType
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -6029,6 +6131,8 @@ expand(lowerObj: ScopeType,upperObj: ScopeType): Scope
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[ScopeHelper.expand<sup>9+</sup>](#expand9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -6084,6 +6188,8 @@ expand(range: Scope): Scope
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -6138,6 +6244,8 @@ expand(value: ScopeType): Scope
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -6190,6 +6298,8 @@ contains(value: ScopeType): boolean
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -6241,6 +6351,8 @@ contains(range: Scope): boolean
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[ScopeHelper.contains<sup>9+</sup>](#contains9-2)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -6296,6 +6408,8 @@ clamp(value: ScopeType): ScopeType
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[ScopeHelper.clamp<sup>9+</sup>](#clamp9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -6356,6 +6470,8 @@ Base64的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **示例：**
 
   ```ts
@@ -6373,6 +6489,8 @@ encodeSync(src: Uint8Array): Uint8Array
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[Base64Helper.encodeSync<sup>9+</sup>](#encodesync9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -6408,6 +6526,8 @@ encodeToStringSync(src: Uint8Array): string
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -6442,6 +6562,8 @@ decodeSync(src: Uint8Array | string): Uint8Array
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -6475,6 +6597,8 @@ encode(src: Uint8Array): Promise&lt;Uint8Array&gt;
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[Base64Helper.encode<sup>9+</sup>](#encode9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -6511,6 +6635,8 @@ encodeToString(src: Uint8Array): Promise&lt;string&gt;
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -6546,6 +6672,8 @@ decode(src: Uint8Array | string): Promise&lt;Uint8Array&gt;
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[Base64Helper.decode<sup>9+</sup>](#decode9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
