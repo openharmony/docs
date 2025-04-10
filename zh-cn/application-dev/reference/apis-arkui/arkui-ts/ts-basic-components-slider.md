@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -497,11 +497,11 @@ Slider组件滑块形状枚举。
 
 >  **说明：**
 >
->  - 当前仅当MIN<=from<=to<=MAX时该接口生效(MIN和MAX不依赖于其设置的值, 而取决于其实际生效的值)。
->  - 可只设置from或者to, 也可以同时设置from和to。
->  - 当接口生效, 设置的from处于紧邻的step整数倍的值之间, 则from实际取左区间step整数倍的那个值或者MIN作为修正后的值。
->  - 当接口生效, 设置的to处于紧邻的step整数倍的值之间, 则to实际取右区间step整数倍的那个值或者MAX作为修正后的值。
->  - 在from和to取修正值后, 当value是undefined或null时, 其取值与from一致; 当value是数值型, 且value <= from, 则取from; value > to, 则取to。
+>  - 当前仅当MIN<=from<=to<=MAX时该接口生效(MIN和MAX不依赖于其设置的值，而取决于其实际生效的值)。
+>  - 可只设置from或者to，也可以同时设置from和to。
+>  - 当接口生效，设置的from处于紧邻的step整数倍的值之间，则from实际取左区间step整数倍的那个值或者MIN作为修正后的值。
+>  - 当接口生效，设置的to处于紧邻的step整数倍的值之间，则to实际取右区间step整数倍的那个值或者MAX作为修正后的值。
+>  - 在from和to取修正值后， 当value是undefined或null时，其取值与from一致; 当value是数值型，且value <= from，则取from; value > to，则取to。
 
 ## 事件
 
