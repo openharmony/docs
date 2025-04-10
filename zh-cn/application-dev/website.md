@@ -1112,7 +1112,7 @@
         - USB服务<!--usb-->
           - [USB服务开发概述](basic-services/usb/usb-overview.md)
           - [USB服务开发指导](basic-services/usb/usb-guidelines.md)
-          - [常见问题](basic-services/usb/../faqs/faqs-usb.md)
+          - [常见问题](basic-services/usb/faqs-usb.md)
         <!--Del-->
         - 升级服务<!--update-->
           - [示例服务器开发概述](basic-services/update/sample-server-overview.md)
@@ -1662,6 +1662,9 @@
         - [QOS开发指导](napi/qos-guidelines.md)
       - 内存管理<!--memory-management-->
         - [Purgeable memory开发指导](napi/purgeable-memory-guidelines.md)
+      - 设备管理<!--device-management-->
+        - [USB DDK开发指导](napi/usb-ddk-guidelines.md)
+        - [HID DDK开发指导](napi/hid-ddk-guidelines.md)
       - 包管理<!--bundle-management-->
         - [NativeBundle开发指导](napi/native-bundle-guidelines.md)
     - 调试和性能分析<!--debugging-profiling-->
