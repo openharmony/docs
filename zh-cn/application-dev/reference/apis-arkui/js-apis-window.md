@@ -443,7 +443,7 @@ import { window } from '@kit.ArkUI';
 
 ## RectType<sup>18+</sup>
 
-窗口Rect类型。
+窗口矩形区域类型。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -451,8 +451,8 @@ import { window } from '@kit.ArkUI';
 
 | 名称   | 值 | 类型  | 说明                    |
 | ------ | --- | --- | ------------------------ |
-| RELATIVE_TO_SCREEN | 0 | number | 相对于屏幕的窗口[Rect](#rect7)。 |
-| RELATIVE_TO_PARENT_WINDOW | 1 | number | 相对于父窗口的窗口[Rect](#rect7)。 |
+| RELATIVE_TO_SCREEN | 0 | number | 窗口矩形区域相对于屏幕坐标系。 |
+| RELATIVE_TO_PARENT_WINDOW | 1 | number | 窗口矩形区域相对于父窗口坐标系。 |
 
 ## RotationChangeInfo<sup>18+</sup>
 
@@ -462,25 +462,31 @@ import { window } from '@kit.ArkUI';
 
 **系统能力：**  SystemCapability.Window.SessionManager
 
-| 名称   | 类型 | 可读  | 可写 | 说明                    |
+| 名称   | 类型 | 只读  | 可写 | 说明                    |
 | ------ | ---- | ----- | ---- | ----------------------- |
-| type | [RotationChangeType](#rotationchangetype18) | 是 | 否 | 窗口旋转通知类型。<br>- 0表示开始。<br>- 1表示结束。 |
+| type | [RotationChangeType](#rotationchangetype18) | 是 | 否 | 窗口旋转类型。 |
 | orientation | number | 是 | 否 | 窗口旋转方向。<br>- 0表示竖屏。<br>- 1表示横屏。<br>- 2表示反向竖屏。<br>- 3表示反向竖屏。 |
 | displayId | number | 是 | 否 | 窗口所在屏幕Id。 |
-| displayRect | [Rect](#rect7) | 是 | 否 | 窗口所在屏幕旋转后的[Rect](#rect7)。 |
+| displayRect | [Rect](#rect7) | 是 | 否 | 窗口所在屏幕旋转后的矩形区域大小。 |
 
 ## RotationChangeResult<sup>18+</sup>
 
-应用在窗口旋转时返回给系统的信息。改变当前窗口大小，效果与[resize()](#resize9-1)类似。
+应用在窗口旋转变化时返回给系统的信息，用于改变当前窗口矩形区域大小。
+
+返回矩形区域对主窗口不生效，大小存在限制，宽度范围：(0, 1920]，高度范围：(0, 1920]，单位为vp。
+
+矩形区域的宽度与高度受到此约束限制，规则：
+若所设置的窗口宽/高尺寸小于窗口最小宽/高限值，则窗口最小宽/高限值生效；
+若所设置的窗口宽/高尺寸大于窗口最大宽/高限值，则窗口最大宽/高限值生效。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.Window.SessionManager
 
-| 名称   | 类型 | 可读  | 可写 | 说明                    |
+| 名称   | 类型 | 只读  | 可写 | 说明                    |
 | ------ | ---- | ----- | ---- | ----------------------- |
-| rectType | [RectType](#recttype18) | 否 | 是 | 窗口[Rect](#rect7)类型。0表示相对于屏幕坐标系，1表示相对于父窗坐标系。 |
-| windowRect | [Rect](#rect7) | 否 | 是 | 当类型为旋转前通知时，返回旋转后窗口相对于屏幕或父窗坐标系的[Rect](#rect7)信息。当类型为旋转后通知时，可为空。 |
+| rectType | [RectType](#recttype18) | 否 | 是 | 窗口矩形区域类型。 |
+| windowRect | [Rect](#rect7) | 否 | 是 | 相对于屏幕或父窗坐标系的窗口矩形区域信息。|
 
 ## window.createWindow<sup>9+</sup>
 
@@ -5476,15 +5482,11 @@ try {
 
 on(type: 'rotationChange', callback: RotationChangeCallback&lt;info: RotationChangeInfo, RotationChangeResult | void&gt;): void
 
-开启窗口旋转变化的监听。旋转前回调必须返回[RotationChangeResult](#rotationchangeresult18)，旋转后回调返回空，返回[RotationChangeResult](#rotationchangeresult18)不生效。主窗口返回值不生效。同一个窗口多次注册同类型回调函数，只生效最新注册的同类型回调函数返回值。系统提供了超时保护机制，若20ms内窗口未返回[RotationChangeResult](#rotationchangeresult18)，系统不处理该返回值。
+开启窗口旋转变化的监听。[RotationChangeInfo](#rotationchangeinfo18)中窗口旋转类型为窗口即将旋转时，必须返回[RotationChangeResult](#rotationchangeresult18)。窗口旋转类型为窗口旋转结束时返回空，返回[RotationChangeResult](#rotationchangeresult18)不生效。
+
+同一个窗口多次注册同类型回调函数，只生效最新注册的同类型回调函数返回值。系统提供了超时保护机制，若20ms内窗口未返回[RotationChangeResult](#rotationchangeresult18)，系统不处理该返回值。
 
 <!--RP9-->2in1设备上调用不生效。<!--RP9End-->
-
-系统窗口存在大小限制，宽度范围：(0, 1920]，高度范围：(0, 1920]，单位为vp。
-
-设置的宽度与高度受到此约束限制，规则：
-若所设置的窗口宽/高尺寸小于窗口最小宽/高限值，则窗口最小宽/高限值生效；
-若所设置的窗口宽/高尺寸大于窗口最大宽/高限值，则窗口最大宽/高限值生效。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -5494,8 +5496,8 @@ on(type: 'rotationChange', callback: RotationChangeCallback&lt;info: RotationCha
 
 | 参数名   | 类型                           | 必填 | 说明                                                     |
 | -------- | ------------------------------ | ---- | -------------------------------------------------------- |
-| type     | string                         | 是   | 监听事件，固定为'rotationChange'，即窗口旋转变换事件。 |
-| callback | RotationChangeCallback&lt;[RotationChangeInfo](#rotationchangeinfo18), [RotationChangeResult](#rotationchangeresult18) \| void&gt; | 是 | 回调函数。返回窗口旋转信息，需要应用返回窗口变化结果。   |
+| type     | string                         | 是   | 监听事件，固定为'rotationChange'，即窗口旋转变化事件。 |
+| callback | RotationChangeCallback&lt;[RotationChangeInfo](#rotationchangeinfo18), [RotationChangeResult](#rotationchangeresult18) \| void&gt; | 是 | 回调函数。返回窗口旋转信息[RotationChangeInfo](#rotationchangeinfo18)，应用返回当前窗口变化结果[RotationChangeResult](#rotationchangeresult18)。   |
 
 **错误码：**
 
@@ -5557,8 +5559,8 @@ off(type: 'rotationChange', callback?: RotationChangeCallback&lt;info: RotationC
 
 | 参数名   | 类型                           | 必填 | 说明                                                         |
 | -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                         | 是   | 监听事件，固定为'rotationChange'，即窗口旋转变换事件。     |
-| callback | RotationChangeCallback&lt;info: [RotationChangeInfo](#rotationchangeinfo18), [RotationChangeResult](#rotationchangeresult18) \| void&gt; | 否   | 回调函数。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有子窗口关闭的监听。 |
+| type     | string                         | 是   | 监听事件，固定为'rotationChange'，即窗口旋转变化事件。     |
+| callback | RotationChangeCallback&lt;info: [RotationChangeInfo](#rotationchangeinfo18), [RotationChangeResult](#rotationchangeresult18) \| void&gt; | 否   | 回调函数。如果传入参数，则关闭该监听。如果未传入参数，则关闭该窗口的所有监听。 |
 
 **错误码：**
 
@@ -5583,7 +5585,7 @@ try {
   // 如果通过on开启多个callback进行监听，同时关闭所有监听。
   windowClass.off('rotationChange');
 } catch (exception) {
-  console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+  console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
