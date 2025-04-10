@@ -549,7 +549,7 @@ struct Index {
       .accessibilityGroup(true)
       .accessibilityLevel("yes")
       .accessibilityText("Group") // If a component has both text content and accessibility text, only the accessibility text is announced.
-      .accessibilityDescription("The <Column> component is selectable , and the text to be read out is "Group".)
+      .accessibilityDescription("The Column component is selectable , and the text to be read out is "Group".)
       .accessibilityVirtualNode(this.customAccessibilityNode)
       .accessibilityChecked(true)
       .accessibilitySelected(undefined)

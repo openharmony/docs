@@ -141,7 +141,7 @@ Provides the media query result.
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 
-### Attributes
+### Properties
 
 | Name   | Type   | Readable| Writable| Description                |
 | ------- | ------- | ---- | ---- | -------------------- |

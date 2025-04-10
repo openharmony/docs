@@ -48,13 +48,13 @@ How the picker is aligned with the entry component.
 | alignType | [CalendarAlign](#calendaralign) | Yes  | Alignment type.<br>Default value: **CalendarAlign.END**                |
 | offset    | [Offset](ts-types.md#offset)            | No  | Offset of the picker relative to the entry component after alignment based on the specified alignment type.<br>Default value: **{dx: 0, dy: 0}**|
 
-### edgeAlign<sup>16+</sup>
+### edgeAlign<sup>18+</sup>
 
 edgeAlign(alignType: Optional\<CalendarAlign>, offset?: Offset)
 
 How the picker is aligned with the entry component. Compared to [edgeAlign](#edgealign), this API supports the **undefined** type for the **alignType** parameter.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -97,13 +97,13 @@ Sets the font color, font size, and font weight in the entry area. Compared to [
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](./ts-basic-components-datepicker.md#pickertextstyle10)> | Yes  | Font color, font size, and font weight in the entry area.<br>If **style** is set to **undefined**, the default value is used:<br>{<br>color: '#ff182431',<br>font: {<br>size: '16fp', <br>weight: FontWeight.Regular<br>}<br>} |
 
-### markToday<sup>16+</sup>
+### markToday<sup>18+</sup>
 
 markToday(enabled: boolean)
 
 Sets whether to highlight the current system date.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
