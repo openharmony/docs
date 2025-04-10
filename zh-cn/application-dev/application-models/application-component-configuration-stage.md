@@ -12,7 +12,7 @@
 ### 生成机制
 * HAP中包含UIAbility
 
-  * 如果在module.json5配置文件的abilities标签中配置了icon和label，且该对应的ability中skills标签下面的entities中包含"entity.system.home"、actions中包含"ohos.want.action.home"或者"action.system.home"，则系统将优先返回module.json5中的icon与label。如果存在多个满足条件的ability，优先返回module.json5中mainElement对应的ability配置的icon和label。
+  * 如果在module.json5配置文件的abilities标签中配置了icon和label，且该对应的ability中skills标签下面的entities中包含"entity.system.home"、actions中包含"action.system.home"，则系统将优先返回module.json5中的icon与label。如果存在多个满足条件的ability，优先返回module.json5中mainElement对应的ability配置的icon和label。
 
   * 如果在module.json5配置文件的abilities标签中未设置icon和label，系统将返回app.json5中的icon和label。
 
@@ -48,7 +48,7 @@
 
 - **方式二：配置module.json5**
 
-  如果需要在桌面显示UIAbility图标，除了需要配置icon与label字段，还需要在skills标签下面的entities中添加"entity.system.home"、actions中添加"ohos.want.action.home"。
+  如果需要在桌面显示UIAbility图标，除了需要配置icon与label字段，还需要在skills标签下面的entities中添加"entity.system.home"、actions中添加"action.system.home"。
 
   ```json
   {
@@ -64,7 +64,7 @@
                 "entity.system.home"
               ],
               "actions": [
-                "ohos.want.action.home"
+                "action.system.home"
               ]
             }
           ],
