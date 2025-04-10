@@ -20,7 +20,7 @@ DeviceStatus（设备状态感知）模块提供设备状态感知能力，可�
 
 ### 约束与限制
 
-设备需要支持加速度计，并且设备型号需为Mate 60及之后的Mate系列、Pura 70及之后的Pura系列、Nova 12 Ultra与Pocket 2中的型号。
+<!--RP1-->设备需要支持加速度计，并且设备型号需为Mate 60及之后的Mate系列、Pura 70及之后的Pura系列、Nova 12 Ultra、Nova 12星曜版与Pocket 2中的型号。<!--RP1End-->
 
 ### 接口说明
 
