@@ -544,7 +544,6 @@ struct ListRefreshLoad {
   @State refreshing: boolean = false;
   @State refreshOffset: number = 0;
   @State refreshState: RefreshStatus = RefreshStatus.Inactive;
-  @State canLoad: boolean = false;
   @State isLoading: boolean = false;
 
   @Builder
@@ -596,8 +595,7 @@ struct ListRefreshLoad {
       }
       .onScrollIndex((start: number, end: number) => {
         // Trigger new data loading when the end of the list is reached.
-        if (this.canLoad && end >= this.arr.length - 1) {
-          this.canLoad = false;
+        if (end >= this.arr.length - 1) {
           this.isLoading = true;
           // Simulate new data loading.
           setTimeout(() => {
@@ -607,13 +605,6 @@ struct ListRefreshLoad {
             }
           }, 700)
         }
-      })
-      .onScrollFrameBegin((offset: number, state: ScrollState) => {
-        // Trigger new data loading only when the list scrolls up.
-        if (offset > 5 && !this.isLoading) {
-          this.canLoad = true;
-        }
-        return { offsetRemain: offset };
       })
       .scrollBar(BarState.Off)
       // Enable the effect used when the scroll boundary is reached.
