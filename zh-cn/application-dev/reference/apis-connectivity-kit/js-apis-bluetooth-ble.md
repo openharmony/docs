@@ -199,7 +199,7 @@ try {
 ```
 
 
-## ble.stopBLEScan<a name="stopBLEScan"></a>
+## ble.stopBLEScan
 
 stopBLEScan(): void
 
