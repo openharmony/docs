@@ -908,11 +908,17 @@ let storage: LocalStorage = new LocalStorage(para);
 ```
 
 
-### getShared<sup>10+</sup>
+### getShared<sup>(deprecated)</sup>
 
 static getShared(): LocalStorage
 
 获取当前stage共享的[LocalStorage](../../../quick-start/arkts-localstorage.md)实例。
+
+> **说明：**
+> 
+> 从API version 10开始支持，从API version 18开始废弃，建议使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[getSharedLocalStorage](../js-apis-arkui-UIContext.md#getsharedlocalstorage12)替代。
+>
+> 从API version 12开始，可以通过使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[getSharedLocalStorage](../js-apis-arkui-UIContext.md#getsharedlocalstorage12)来明确UI的执行上下文。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -1432,7 +1438,7 @@ static GetShared(): LocalStorage
 
 > **说明：** 
 > 
-> 从API version 10开始废弃，推荐使用[getShared10+](#getshared10)。
+> 从API version 10开始废弃，建议使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[getSharedLocalStorage](../js-apis-arkui-UIContext.md#getsharedlocalstorage12)替代。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
