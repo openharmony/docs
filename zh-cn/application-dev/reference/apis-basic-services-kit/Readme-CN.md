@@ -94,7 +94,6 @@
   - 模块<!--basic-services-module-->
     - [CommonEvent](capi-common-event.md)
     - [DeviceInfo](_device_info.md)
-    - [InitSync](_init_sync.md)
     - [OsAccount](_os_account.md)
     - [OH_BatteryInfo](oh__batteryinfo.md)
     - [OH_Scan](c-apis-scan.md)
