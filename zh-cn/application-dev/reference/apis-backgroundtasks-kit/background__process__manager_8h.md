@@ -3,13 +3,13 @@
 
 ## 概述
 
-本模块提供了后台子进程管控接口。开发者可以通过本模块接口对子进程进行压制、解压制，避免子进程过多占用系统资源，导致系统使用卡顿。 本模块接口仅对通过[OH_Ability_StartNativeChildProcess](../apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_startnativechildprocess)接口创建的子进程生效。
+本模块提供了后台子进程管控接口。开发者可以通过本模块接口对子进程进行压制、解压制，避免子进程过多占用系统资源，导致系统使用卡顿。 本模块接口仅对通过OH_Ability_StartNativeChildProcess接口创建的子进程生效。
 
-**库：** libbackground_process_manager.z.so
+**库：** libbackground_process_manager.z.so \@kit BackgroundTasksKit
 
 **系统能力：** SystemCapability.Resourceschedule.BackgroundProcessManager
 
-**起始版本：** 15
+**起始版本：** 17
 
 **相关模块：**[BackgroundProcessManager](_background_process_manager.md)
 
@@ -21,8 +21,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef enum [BackgroundProcessManager_ProcessPriority](_background_process_manager.md#backgroundprocessmanager_processpriority) [BackgroundProcessManager_ProcessPriority](_background_process_manager.md#backgroundprocessmanager_processpriority) | 子进程压制档位。  | 
-| typedef enum [BackgroundProcessManager_ErrorCode](_background_process_manager.md#backgroundprocessmanager_errorcode) [BackgroundProcessManager_ErrorCode](_background_process_manager.md#backgroundprocessmanager_errorcode) | 定义后台子进程管控错误码。  | 
+| typedef enum [BackgroundProcessManager_ProcessPriority](_background_process_manager.md#backgroundprocessmanager_processpriority)[BackgroundProcessManager_ProcessPriority](_background_process_manager.md#backgroundprocessmanager_processpriority) | 子进程压制档位。  | 
+| typedef enum [BackgroundProcessManager_ErrorCode](_background_process_manager.md#backgroundprocessmanager_errorcode)[BackgroundProcessManager_ErrorCode](_background_process_manager.md#backgroundprocessmanager_errorcode) | 定义后台子进程管控错误码。  | 
 
 
 ### 枚举
