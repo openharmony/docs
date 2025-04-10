@@ -40,10 +40,10 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID| Error Message|
 | ------ | ------- |
-| 201 | Permission verification failed |
-| 202 | The caller is not a system application |
-| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types |
-| 143000001 | IPC error |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 143000001 | IPC error. |
 
 **Example**
 
@@ -99,10 +99,10 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID| Error Message|
 | ------- | ---------- |
-| 201 | Permission verification failed |
-| 202 | The caller is not a system application |
-| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types |
-| 143000001 | IPC error |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 143000001 | IPC error. |
 
 **Example**
 

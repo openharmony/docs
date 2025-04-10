@@ -202,7 +202,7 @@ ArkTS Array归约函数类型，被Array类的'some'和'every'接口使用，用
 
 | 类型   | 说明                          |
 | ------ | --------------------------- |
-| boolean | 归约函数的结果，该结果作为判断当前元素是否通过测试条件。 |
+| boolean | 归约函数的结果，该结果作为判断当前元素是否通过测试条件。为true时表示当前或之前的某个元素已满足条件，为false时表示尚未找到符合条件的元素。 |
 
 ## ArrayReduceCallback</a><sup>18+</sup>
 type ArrayReduceCallback<AccType, ElementType, ArrayType> =
@@ -1288,7 +1288,7 @@ filter(predicate: (value: T, index: number, array: Array\<T>) => boolean): Array
 
 | 参数名    | 类型                                                   | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| predicate | (value: T, index: number, array: Array\<T>) => boolean | 是   | 一个接受三个参数的函数，用于测试每个元素是否应该包含在新Array中。 |
+| predicate | (value: T, index: number, array: Array\<T>) => boolean | 是   | 一个接受三个参数的函数，用于测试每个元素是否应该包含在新Array中。当返回值为true时表示当前元素通过测试，需被保留在新数组中。为false时表示当前元素未通过测试，需被排除在新数组外。 |
 
 **返回值：**
 
@@ -1546,7 +1546,7 @@ find(predicate: (value: T, index: number, obj: Array\<T>) => boolean): T | undef
 
 | 参数名    | 类型                                                 | 必填 | 说明                                                   |
 | --------- | ---------------------------------------------------- | ---- | ------------------------------------------------------ |
-| predicate | (value: T, index: number, obj: Array\<T>) => boolean | 是   | 一个接受三个参数的函数，用于测试每个元素是否满足条件。 |
+| predicate | (value: T, index: number, obj: Array\<T>) => boolean | 是   | 一个接受三个参数的函数，用于测试每个元素是否满足条件。当返回值为true时表示元素满足条件，会立即停止遍历，并将该元素作为结果返回。为false时表示元素不满足条件，会继续检查下一个元素，直到找到符合条件的元素或遍历完整个数组。 |
 
 **返回值：**
 
@@ -1623,7 +1623,7 @@ findIndex(predicate: (value: T, index: number, obj: Array\<T>) => boolean): numb
 
 | 参数名    | 类型                                                 | 必填 | 说明                                                   |
 | --------- | ---------------------------------------------------- | ---- | ------------------------------------------------------ |
-| predicate | (value: T, index: number, obj: Array\<T>) => boolean | 是   | 一个接受三个参数的函数，用于测试每个元素是否满足条件。 |
+| predicate | (value: T, index: number, obj: Array\<T>) => boolean | 是   | 一个接受三个参数的函数，用于测试每个元素是否满足条件。当返回值为true时表示当前元素满足条件，会立即停止遍历，并返回该元素的索引。为false时表示当前元素不满足条件，会继续检查下一个元素，直到找到符合条件的元素或遍历完整个数组。 |
 
 **返回值：**
 

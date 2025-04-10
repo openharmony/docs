@@ -142,7 +142,7 @@ void AdcClose(DevHandle handle);
 | 参数 | 参数描述 |
 | ------ | ----------- |
 | handle | DevHandle类型，ADC设备句柄 |
-| 返回值 | 返回值描述  |
+| **返回值**  | **返回值描述**  |
 | 无 | 无 |
 
 关闭ADC设备示例：

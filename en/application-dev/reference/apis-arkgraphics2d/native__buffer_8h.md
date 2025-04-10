@@ -1,6 +1,5 @@
 # native_buffer.h
 
-
 ## Overview
 
 The **native_buffer.h** file declares the functions for obtaining and using **NativeBuffer**.
@@ -23,7 +22,7 @@ The **native_buffer.h** file declares the functions for obtaining and using **Na
 
 | Name| Description|
 | -------- | -------- |
-| struct  [OH_NativeBuffer_Config](_o_h___native_buffer___config.md) | Defines the **OH_NativeBuffer** property configuration, which is used when you apply for a new **OH_NativeBuffer** instance or query the properties of an existing instance. |
+| struct  [OH_NativeBuffer_Config](_o_h___native_buffer___config.md) | Describes the **OH_NativeBuffer** property configuration, which is used when you apply for a new **OH_NativeBuffer** instance or query the properties of an existing instance. |
 | struct  [OH_NativeBuffer_Plane](_o_h___native_buffer___plane.md) | Describes the plane information of an image. |
 | struct  [OH_NativeBuffer_Planes](_o_h___native_buffer___planes.md) | Describes the plane information of images in an **OH_NativeBuffer** instance. |
 

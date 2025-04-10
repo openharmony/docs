@@ -858,7 +858,7 @@ Describes the information about the cancellation of a continuous task.
 
 ## ContinuousTaskCancelReason<sup>15+</sup>
 
-Enumerates the reasons for canceling a continuous task.
+Describes the reason for canceling a continuous task.
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 

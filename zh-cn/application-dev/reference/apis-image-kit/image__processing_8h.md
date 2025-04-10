@@ -9,6 +9,8 @@
 
 **库：** libimage_processing.so
 
+**引用文件**：&lt;multimedia/video_processing_engine/image_processing.h&gt;
+
 **系统能力：** SystemCapability.Multimedia.VideoProcessingEngine
 
 **起始版本：** 13

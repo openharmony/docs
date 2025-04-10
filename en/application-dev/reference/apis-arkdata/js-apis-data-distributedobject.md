@@ -126,7 +126,7 @@ Represents the information returned by the callback of [save](#save9).
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | sessionId | string | Yes| Unique ID for multi-device collaboration.|
-| version | number | Yes| Version of the distributed data object saved.|
+| version | number | Yes| Version of the saved object, which is a non-negative integer.|
 | deviceId | string | Yes| ID of the device where the distributed data object is stored. The value **local** indicates the local device.|
 
 ## RevokeSaveSuccessResponse<sup>9+</sup>
@@ -516,11 +516,11 @@ The saved data will be released in the following cases:
 
 ```ts
 g_object.setSessionId("123456");
-g_object.save("local").then((result: distributedDataObject.SaveSuccessResponse) => {
+g_object.save("local").then((callbackInfo: distributedDataObject.SaveSuccessResponse) => {
     console.info("save callback");
-    console.info("save sessionId " + result.sessionId);
-    console.info("save version " + result.version);
-    console.info("save deviceId " + result.deviceId);
+    console.info("save sessionId " + callbackInfo.sessionId);
+    console.info("save version " + callbackInfo.version);
+    console.info("save deviceId " + callbackInfo.deviceId);
 }).catch((err: BusinessError) => {
     console.info("save failed, error code = " + err.code);
     console.info("save failed, error message: " + err.message);

@@ -151,6 +151,7 @@
             - [Common action and entities Values (Not Recommended)](application-models/actions-entities.md)
           - [Component Startup Rules (Stage Model)](application-models/component-startup-rules.md)
           - [AppStartup](application-models/app-startup.md)
+          - [Obtaining Reasons for Abnormal Application Exits](application-models/ability-exit-info-record.md)
           <!--Del-->
           - Inter-Device Application Component Interaction (Hopping)<!--hop-->
             - [Hopping Overview](application-models/inter-device-interaction-hop-overview.md)
@@ -1380,7 +1381,6 @@
         - [Using AudioHaptic for Audio-Haptic Playback](media/audio/using-audiohaptic-for-playback.md)
         - [Volume Management](media/audio/volume-management.md)
         - [Audio Effect Management](media/audio/audio-effect-management.md)
-        - [Spatial Audio Management](media/audio/public-audio-spatialization-management.md)
         <!--Del-->
         - [Spatial Audio Management (for System Applications Only)](media/audio/audio-spatialization-management.md)
         <!--DelEnd-->
@@ -1828,6 +1828,7 @@
           - [@ohos.app.ability.AbilityConstant (AbilityConstant) (System API)](reference/apis-ability-kit/js-apis-app-ability-abilityConstant-sys.md)
           - [@ohos.app.ability.application (Application) (System API)](reference/apis-ability-kit/js-apis-app-ability-application-sys.md)
           - [@ohos.app.ability.AutoFillExtensionAbility (AutoFillExtensionAbility) (System API)](reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md)
+          - [@ohos.app.ability.autoFillManager (autoFillManager) (System API)](reference/apis-ability-kit/js-apis-app-ability-autoFillManager-sys.md)
           - [@ohos.app.ability.autoStartupManager (autoStartupManager) (System API)](reference/apis-ability-kit/js-apis-app-ability-autoStartupManager-sys.md)
           - [@ohos.app.ability.common (Context) (System API)](reference/apis-ability-kit/js-apis-app-ability-common-sys.md)
           - [@ohos.app.ability.dialogSession (dialogSession) (System API)](reference/apis-ability-kit/js-apis-app-ability-dialogSession-sys.md)
@@ -2105,7 +2106,6 @@
         <!--Del-->
         - [@ohos.data.cloudData (Device-Cloud Service) (System API)](reference/apis-arkdata/js-apis-data-cloudData-sys.md)
         - [@ohos.data.cloudExtension (Device-Cloud Sharing Extension) (System API)](reference/apis-arkdata/js-apis-data-cloudExtension-sys.md)
-        - [@ohos.data.collaborationEditObject (Collaboration Edit Object) (System API)](reference/apis-arkdata/js-apis-data-collaborationEditObject-sys.md)
         - [@ohos.data.dataShare (Data Sharing) (System API)](reference/apis-arkdata/js-apis-data-dataShare-sys.md)
         - [@ohos.data.dataSharePredicates (Data Share Predicates) (System API)](reference/apis-arkdata/js-apis-data-dataSharePredicates-sys.md)
         - [@ohos.data.dataShareResultSet (Data Share Result Set) (System API)](reference/apis-arkdata/js-apis-data-DataShareResultSet-sys.md)
@@ -2176,7 +2176,6 @@
         - [User Preference Error Codes](reference/apis-arkdata/errorcode-preferences.md)
         - [UDMF Error Codes](reference/apis-arkdata/errorcode-udmf.md)
         - [AIP Error Codes](reference/apis-arkdata/errorcode-intelligence.md)
-        - [Collaboration Edit Object Error Codes](reference/apis-arkdata/errorcode-collaboration-edit-object.md)
     - ArkTS<!--arkts-api-->
       - ArkTS APIs<!--arkts-arkts--> 
         - [@arkts.collections (ArkTS Collections)](reference/apis-arkts/js-apis-arkts-collections.md)

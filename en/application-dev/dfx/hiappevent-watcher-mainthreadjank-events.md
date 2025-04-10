@@ -59,7 +59,7 @@ When the main thread experiences a timeout between 150 ms and 450 ms, it trigger
 
 The system provides the basic check function for the main thread jank event. However, if your application has special requirements for the check interval and collection times, you can customize parameters for stack sampling.
 
-For details about how to use the APIs, see [hiAppEvent.setEventConfig in Application Event Logging](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md#hiappeventseteventconfig16).
+For details about how to use the APIs, see [hiAppEvent.setEventConfig in Application Event Logging](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md#hiappeventseteventconfig15).
 
 ### Available APIs
 
@@ -212,3 +212,5 @@ You can customize the specifications of the **MAIN_THREAD_JANK** event by settin
 | log_over_limit| boolean | Whether the size of generated log files and existing log files exceeds the upper limit (10 MB). The value **true** indicates that the upper limit is exceeded and logs fail to be written. The value **false** indicates that the upper limit is not exceeded.|
 | app_start_jiffies_time| number | Start time of the task when the main thread jank event occurs. The information is printed in the sampling stack.|
 | heaviest_stack| string | Call stack that is generated multiple times in the log file. The information is printed in the sampling stack.|
+
+<!--no_check-->

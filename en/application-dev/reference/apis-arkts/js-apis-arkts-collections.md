@@ -202,7 +202,7 @@ Defines the ArkTS Array reduction function, which is used by the **some** and **
 
 | Type  | Description                         |
 | ------ | --------------------------- |
-| boolean | Result of the reduction function, indicating whether the current element meets the test condition.|
+| boolean | Result of the reduction function, indicating whether the current element meets the test condition. The value **true** means that the current element or a previous element meets the condition, and **false** means that no element meets the condition.|
 
 ## ArrayReduceCallback</a><sup>18+</sup>
 type ArrayReduceCallback<AccType, ElementType, ArrayType> =
@@ -1288,7 +1288,7 @@ Returns a new array containing all elements that pass a test provided by a callb
 
 | Name   | Type                                                  | Mandatory| Description                                                        |
 | --------- | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| predicate | (value: T, index: number, array: Array\<T>) => boolean | Yes  | Function that takes three arguments. It is used to filter elements.|
+| predicate | (value: T, index: number, array: Array\<T>) => boolean | Yes  | Function that takes three arguments. It is used to filter elements. The value **true** means that the current element passes the test and should be retained in the new array. The value **false** means that the current element fails the test and should be excluded from the new array.|
 
 **Return value**
 
@@ -1546,7 +1546,7 @@ Returns the value of the first element that passes a test provided by a callback
 
 | Name   | Type                                                | Mandatory| Description                                                  |
 | --------- | ---------------------------------------------------- | ---- | ------------------------------------------------------ |
-| predicate | (value: T, index: number, obj: Array\<T>) => boolean | Yes  | Function that takes three arguments. It is used to filter elements.|
+| predicate | (value: T, index: number, obj: Array\<T>) => boolean | Yes  | Function that takes three arguments. It is used to filter elements. The value **true** means that the current element meets the conditions, the traversal stops, and that element is returned. The value **false** means that the current element does not meet the condition, and the traversal continues until the element that meets the condition is found or the entire array is traversed.|
 
 **Return value**
 
@@ -1623,7 +1623,7 @@ Returns the index of the first element that passes a test provided by a callback
 
 | Name   | Type                                                | Mandatory| Description                                                  |
 | --------- | ---------------------------------------------------- | ---- | ------------------------------------------------------ |
-| predicate | (value: T, index: number, obj: Array\<T>) => boolean | Yes  | Function that takes three arguments. It is used to filter elements.|
+| predicate | (value: T, index: number, obj: Array\<T>) => boolean | Yes  | Function that takes three arguments. It is used to filter elements. The value **true** means that the current element meets the conditions, the traversal stops, and the index of that element is returned. The value **false** means that the current element does not meet the condition, and the traversal continues until the element that meets the condition is found or the entire array is traversed.|
 
 **Return value**
 

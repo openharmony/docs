@@ -133,4 +133,3 @@ To close the menu, call the [closeMenu](../reference/apis-arkui/js-apis-arkui-UI
 You can encapsulate a menu using the [HAR](../quick-start/har-package.md) package to provide display, update, and close capabilities.
 
 For details about how to invoke these capabilities, see [Using the Global Popup in HAR Packages](./arkts-popup-and-menu-components-uicontext-popup.md#using-the-global-popup-in-har-packages).
-<!--no_check-->

@@ -795,7 +795,6 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     - buffer：回调函数OnNeedInputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr)接口得到共享内存地址的指针；
     - index：回调函数OnNeedInputBuffer传入的参数，与buffer唯一对应的标识；
-    - flags：缓冲区标记的类别，请参考[OH_AVCodecBufferFlags](../../reference/apis-avcodec-kit/_core.md#oh_avcodecbufferflags)；
     - widthStride: 获取到的buffer数据的跨距。
 
     ```c++
@@ -817,7 +816,6 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     info.size = frameSize;
     info.offset = 0;
     info.pts = 0;
-    info.flags = flags;
     int32_t ret = OH_AVBuffer_SetBufferAttr(bufferInfo->buffer, &info);
     if (ret != AV_ERR_OK) {
         // 异常处理。
