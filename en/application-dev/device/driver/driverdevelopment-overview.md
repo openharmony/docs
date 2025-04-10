@@ -10,7 +10,7 @@ Empowered by the C-API solution, Driver Development Kit provides easy-to-use, se
 
 You can use Driver Development Kit to:
 
-1. Develop drivers of special
+1. Develop drivers of dedicated
 
    peripherals for bank counters, enterprise office, and medical detection, such as high-speed document scanners, ID card scanners, fingerprint scanners, and blood oxygen and blood glucose meters.
 
@@ -35,9 +35,9 @@ The driver extension system ability (SA), the core service of user-mode peripher
 - Driver extension SA: performs lifecycle management of peripheral devices and driver packages.
 - AMS: starts and disables **DriverExtensionAbility**.
 
-### **Process Description**
+### Process Description
 
-Figure 2 shows the process of matching a peripheral with a driver when a peripheral is connected.
+Figure 2 shows the process for matching a peripheral driver client with a peripheral driver when a peripheral is connected.
 
 **Figure 2** Process for matching a peripheral with a driver
 

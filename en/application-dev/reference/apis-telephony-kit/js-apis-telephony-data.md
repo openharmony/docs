@@ -24,7 +24,7 @@ Obtains the default slot of the SIM card used for mobile data. This API uses an 
 
 | Name  | Type                   | Mandatory| Description                                      |
 | -------- | ----------------------- | ---- | ------------------------------------------ |
-| callback | AsyncCallback\<number\> | Yes  | Callback used to return the result.<br>**0**: card slot 1.<br>**1**: card slot 2.|
+| callback | AsyncCallback\<number\> | Yes  | Callback used to return the result.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 
 **Example**
 
@@ -53,7 +53,7 @@ Obtains the default slot of the SIM card used for mobile data. This API uses a p
 
 | Type             | Description                                                        |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<number\> | Promise used to return the result.<br>**0**: card slot 1.<br>**1**: card slot 2.|
+| Promise\<number\> | Promise used to return the result.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 
 **Example**
 
@@ -72,7 +72,7 @@ data.getDefaultCellularDataSlotId().then((contextData: number) => {
 
 getDefaultCellularDataSlotIdSync(): number
 
-Obtains the default SIM card used for mobile data synchronously.
+Card slot ID.
 
 **System capability**: SystemCapability.Telephony.CellularData
 
@@ -80,7 +80,7 @@ Obtains the default SIM card used for mobile data synchronously.
 
 | Type             | Description                                                        |
 | ------ | -------------------------------------------------- |
-| number | Card slot ID.<br>**0**: card slot 1.<br>**1**: card slot 2.|
+| number | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 
 **Example**
 

@@ -1,4 +1,4 @@
-# Vibrator Development (C/C++) 
+# Vibrator Development (C/C++)
 
 
 ## When to Use

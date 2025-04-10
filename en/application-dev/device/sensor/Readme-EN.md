@@ -1,4 +1,4 @@
-# Sensor Service Kit
+# Sensor Service Kit<!--sensor-service-kit-->
 
 - [Introduction to Sensor Service Kit](sensorservice-kit-intro.md)
 - Sensor

@@ -1,4 +1,4 @@
-# @ohos.multimodalInput.gestureEvent (Gesture Input Event)
+# @ohos.multimodalInput.gestureEvent (Gesture Event)
 
 The **gestureEvent** module provides APIs for gesture events reported by devices.
 
@@ -32,7 +32,7 @@ Defines a rotate event.
 | Name            | Type       | Readable  | Writable  | Description                                      |
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
 | type | [ActionType](#actiontype)   | Yes   | No   | Rotate event type.                                  |
-| angle | number      | Yes   | No   | Angle of rotation.                            |
+| angle | number      | Yes   | No   | Rotation angle.                            |
 
 ## ThreeFingersSwipe
 

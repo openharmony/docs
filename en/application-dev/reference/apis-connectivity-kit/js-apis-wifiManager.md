@@ -615,7 +615,7 @@ Adds the configuration of a candidate network. This API uses an asynchronous cal
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| WLAN configuration to add. The default **bssidType** is random device address.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **0** and **data** is the network configuration ID. If **data** is **-1**, the operation has failed. If **err** is not **0**, an error has occurred.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If **err** is **0**, the operation is successful. **data** indicates the ID of the network configuration to add. If **data** is **-1**, the network configuration fails to be added.<br> If the value of **err** is not **0**, an error has occurred during the operation.|
 
 **Error codes**
 
@@ -829,7 +829,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
-		let networkId = 0; // Candidate network ID, which is generated when a candidate network is added. The value is obtained from WifiDeviceConfig.netId.
+		let networkId = 0; // Candidate network ID, which is generated when a candidate network is added.
 		wifiManager.connectToCandidateConfig(networkId);
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
@@ -985,8 +985,8 @@ Represents the WLAN connection information.
 | maxSupportedTxLinkSpeed<sup>10+</sup> | number | Yes| No| Maximum uplink speed supported, in Mbps/s.|
 | maxSupportedRxLinkSpeed<sup>10+</sup> | number | Yes| No| Maximum downlink speed supported, in Mbps/s.|
 | frequency | number | Yes| No| Frequency of the WLAN AP.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| isHidden | boolean | Yes| No| Whether to hide the WLAN AP.|
-| isRestricted | boolean | Yes| No| Whether to restrict data volume at the WLAN AP.|
+| isHidden | boolean | Yes| No| Whether the WLAN AP is a hidden network. The value **true** indicates that the WLAN AP is a hidden network, and the value **false** indicates the opposite.|
+| isRestricted | boolean | Yes| No| Whether data volume is restricted at the WLAN AP. The value **true** indicates that data volume is restricted, and the value **false** indicates the opposite.|
 | macType | number | Yes| No| MAC address type. <br>The value **0** indicates random MAC address, and **1** indicates device MAC address.|
 | macAddress | string | Yes| No| MAC address of the device. It can be obtained from the Wi-Fi connection information and device status information.|
 | ipAddress | number | Yes| No| IP address of the device that sets up the WLAN connection.|
@@ -1442,7 +1442,7 @@ Represents the P2P link information.
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | connectState | [P2pConnectState](#p2pconnectstate9) | Yes| No| P2P connection state.|
-| isGroupOwner | boolean | Yes| No| Group owner or not.|
+| isGroupOwner | boolean | Yes| No| Whether the device is the group owner. The value **true** indicates that the device is the group owner, and the value **false** indicates the opposite.|
 | groupOwnerAddr | string | Yes| No| IP address of the group.|
 
 
@@ -1590,7 +1590,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 ```ts
 	import { wifiManager } from '@kit.ConnectivityKit';
 	// The peer device list can be obtained only after the P2P discovery is complete.
-	wifiManager.getP2pPeerDevices((err, data:wifiManager.WifiP2pDevice) => {
+	wifiManager.getP2pPeerDevices((err, data:wifiManager.WifiP2pDevice[]) => {
     if (err) {
         console.error("get P2P peer devices error");
         return;
@@ -1863,7 +1863,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
   
   let recvP2pPeerDeviceChangeFunc = (result:wifiManager.WifiP2pDevice[]) => {
       console.info("p2p peer device change receive event: " + JSON.stringify(result));
-      wifiManager.getP2pPeerDevices((err, data:wifiManager.WifiP2pDevice) => {
+      wifiManager.getP2pPeerDevices((err, data:wifiManager.WifiP2pDevice[]) => {
           if (err) {
               console.error('failed to get peer devices: ' + JSON.stringify(err));
               return;

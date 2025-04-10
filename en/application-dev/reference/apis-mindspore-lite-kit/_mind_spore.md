@@ -53,7 +53,7 @@ Provides APIs related to MindSpore Lite model inference. The APIs in this module
 | [OH_AI_ShapeInfo](_o_h___a_i___shape_info.md) | Defines dimension information. The maximum dimension is set by **OH_AI_MAX_SHAPE_NUM**.|
 | [OH_AI_CallBackParam](#oh_ai_callbackparam) | Defines the operator information passed in a callback.|
 | [OH_AI_KernelCallBack](#oh_ai_kernelcallback)) (const [OH_AI_TensorHandleArray](_o_h___a_i___tensor_handle_array.md) inputs, const [OH_AI_TensorHandleArray](_o_h___a_i___tensor_handle_array.md) outputs, const [OH_AI_CallBackParam](_o_h___a_i___call_back_param.md) kernel_Info) | Defines the pointer to a callback.|
-| [OH_AI_Status](#oh_ai_status) | MindSpore status codes.|
+| [OH_AI_Status](#oh_ai_status) | Defines MindSpore status codes.|
 | [OH_AI_TensorHandle](#oh_ai_tensorhandle) | Defines the handle of a tensor object.|
 | [OH_AI_ModelType](#oh_ai_modeltype) | Defines model file types.|
 | [OH_AI_DeviceType](#oh_ai_devicetype) | Defines the supported device types.|
@@ -63,7 +63,7 @@ Provides APIs related to MindSpore Lite model inference. The APIs in this module
 | [OH_AI_OptimizationLevel](#oh_ai_optimizationlevel) | Defines training optimization levels.|
 | [OH_AI_QuantizationType](#oh_ai_quantizationtype) | Defines quantization types.|
 | [NNRTDeviceDesc](#nnrtdevicedesc) | Defines NNRt device information, including the device ID and device name.|
-| [OH_AI_AllocatorHandle](#oh_ai_allocatorhandle) | Handle of the memory allocator.|
+| [OH_AI_AllocatorHandle](#oh_ai_allocatorhandle) | Defines the handle of the memory allocator.|
 
 
 ### Enums
@@ -72,8 +72,8 @@ Provides APIs related to MindSpore Lite model inference. The APIs in this module
 | -------- | -------- |
 | [OH_AI_DataType](#oh_ai_datatype) {<br>OH_AI_DATATYPE_UNKNOWN = 0, OH_AI_DATATYPE_OBJECTTYPE_STRING = 12, OH_AI_DATATYPE_OBJECTTYPE_LIST = 13, OH_AI_DATATYPE_OBJECTTYPE_TUPLE = 14,<br>OH_AI_DATATYPE_OBJECTTYPE_TENSOR = 17, OH_AI_DATATYPE_NUMBERTYPE_BEGIN = 29, OH_AI_DATATYPE_NUMBERTYPE_BOOL = 30, OH_AI_DATATYPE_NUMBERTYPE_INT8 = 32,<br>OH_AI_DATATYPE_NUMBERTYPE_INT16 = 33, OH_AI_DATATYPE_NUMBERTYPE_INT32 = 34, OH_AI_DATATYPE_NUMBERTYPE_INT64 = 35, OH_AI_DATATYPE_NUMBERTYPE_UINT8 = 37,<br>OH_AI_DATATYPE_NUMBERTYPE_UINT16 = 38, OH_AI_DATATYPE_NUMBERTYPE_UINT32 = 39, OH_AI_DATATYPE_NUMBERTYPE_UINT64 = 40, OH_AI_DATATYPE_NUMBERTYPE_FLOAT16 = 42,<br>OH_AI_DATATYPE_NUMBERTYPE_FLOAT32 = 43, OH_AI_DATATYPE_NUMBERTYPE_FLOAT64 = 44, OH_AI_DATATYPE_NUMBERTYPE_END = 46, OH_AI_DataTypeInvalid = INT32_MAX<br>} | Declares data types supported by MSTensor.|
 | [OH_AI_Format](#oh_ai_format) {<br>OH_AI_FORMAT_NCHW = 0, OH_AI_FORMAT_NHWC = 1, OH_AI_FORMAT_NHWC4 = 2, OH_AI_FORMAT_HWKC = 3,<br>OH_AI_FORMAT_HWCK = 4, OH_AI_FORMAT_KCHW = 5, OH_AI_FORMAT_CKHW = 6, OH_AI_FORMAT_KHWC = 7,<br>OH_AI_FORMAT_CHWK = 8, OH_AI_FORMAT_HW = 9, OH_AI_FORMAT_HW4 = 10, OH_AI_FORMAT_NC = 11,<br>OH_AI_FORMAT_NC4 = 12, OH_AI_FORMAT_NC4HW4 = 13, OH_AI_FORMAT_NCDHW = 15, OH_AI_FORMAT_NWC = 16,<br>OH_AI_FORMAT_NCW = 17<br>} | Declares data formats supported by MSTensor.|
-| [OH_AI_CompCode](#oh_ai_compcode) { <br>OH_AI_COMPCODE_CORE = 0x00000000u, <br>OH_AI_COMPCODE_MD = 0x10000000u, <br>OH_AI_COMPCODE_ME = 0x20000000u, <br>OH_AI_COMPCODE_MC = 0x30000000u, <br>OH_AI_COMPCODE_LITE = 0xF0000000u<br> } | Defines MindSpore component codes. 
-| [OH_AI_Status](#oh_ai_status) {<br>OH_AI_STATUS_SUCCESS = 0, OH_AI_STATUS_CORE_FAILED = OH_AI_COMPCODE_CORE \| 0x1, OH_AI_STATUS_LITE_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -1), OH_AI_STATUS_LITE_NULLPTR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -2),<br>OH_AI_STATUS_LITE_PARAM_INVALID = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -3), OH_AI_STATUS_LITE_NO_CHANGE = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -4), OH_AI_STATUS_LITE_SUCCESS_EXIT = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -5), OH_AI_STATUS_LITE_MEMORY_FAILED = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -6),<br>OH_AI_STATUS_LITE_NOT_SUPPORT = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -7), OH_AI_STATUS_LITE_THREADPOOL_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -8), OH_AI_STATUS_LITE_UNINITIALIZED_OBJ = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -9), OH_AI_STATUS_LITE_OUT_OF_TENSOR_RANGE = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -100),<br>OH_AI_STATUS_LITE_INPUT_TENSOR_ERROR, OH_AI_STATUS_LITE_REENTRANT_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -102), OH_AI_STATUS_LITE_GRAPH_FILE_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -200), OH_AI_STATUS_LITE_NOT_FIND_OP = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -300),<br>OH_AI_STATUS_LITE_INVALID_OP_NAME = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -301), OH_AI_STATUS_LITE_INVALID_OP_ATTR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -302), OH_AI_STATUS_LITE_OP_EXECUTE_FAILURE, OH_AI_STATUS_LITE_FORMAT_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -400),<br>OH_AI_STATUS_LITE_INFER_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -500), OH_AI_STATUS_LITE_INFER_INVALID, OH_AI_STATUS_LITE_INPUT_PARAM_INVALID<br>} | MindSpore status codes.|
+| [OH_AI_CompCode](#oh_ai_compcode) { <br>OH_AI_COMPCODE_CORE = 0x00000000u, <br>OH_AI_COMPCODE_MD = 0x10000000u, <br>OH_AI_COMPCODE_ME = 0x20000000u, <br>OH_AI_COMPCODE_MC = 0x30000000u, <br>OH_AI_COMPCODE_LITE = 0xF0000000u<br> } | Defines MindSpore component codes. |
+| [OH_AI_Status](#oh_ai_status) {<br>OH_AI_STATUS_SUCCESS = 0, OH_AI_STATUS_CORE_FAILED = OH_AI_COMPCODE_CORE \| 0x1, OH_AI_STATUS_LITE_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -1), OH_AI_STATUS_LITE_NULLPTR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -2),<br>OH_AI_STATUS_LITE_PARAM_INVALID = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -3), OH_AI_STATUS_LITE_NO_CHANGE = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -4), OH_AI_STATUS_LITE_SUCCESS_EXIT = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -5), OH_AI_STATUS_LITE_MEMORY_FAILED = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -6),<br>OH_AI_STATUS_LITE_NOT_SUPPORT = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -7), OH_AI_STATUS_LITE_THREADPOOL_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -8), OH_AI_STATUS_LITE_UNINITIALIZED_OBJ = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -9), OH_AI_STATUS_LITE_OUT_OF_TENSOR_RANGE = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -100),<br>OH_AI_STATUS_LITE_INPUT_TENSOR_ERROR, OH_AI_STATUS_LITE_REENTRANT_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -102), OH_AI_STATUS_LITE_GRAPH_FILE_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -200), OH_AI_STATUS_LITE_NOT_FIND_OP = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -300),<br>OH_AI_STATUS_LITE_INVALID_OP_NAME = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -301), OH_AI_STATUS_LITE_INVALID_OP_ATTR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -302), OH_AI_STATUS_LITE_OP_EXECUTE_FAILURE, OH_AI_STATUS_LITE_FORMAT_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -400),<br>OH_AI_STATUS_LITE_INFER_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -500), OH_AI_STATUS_LITE_INFER_INVALID, OH_AI_STATUS_LITE_INPUT_PARAM_INVALID<br>} | Defines MindSpore status codes.|
 | [OH_AI_ModelType](#oh_ai_modeltype) { OH_AI_MODELTYPE_MINDIR = 0, OH_AI_MODELTYPE_INVALID = 0xFFFFFFFF } | Defines model file types.|
 | [OH_AI_DeviceType](#oh_ai_devicetype) {<br>OH_AI_DEVICETYPE_CPU = 0, OH_AI_DEVICETYPE_GPU, OH_AI_DEVICETYPE_KIRIN_NPU, OH_AI_DEVICETYPE_NNRT = 60,<br>OH_AI_DEVICETYPE_INVALID = 100<br>} | Defines the supported device types.|
 | [OH_AI_NNRTDeviceType](#oh_ai_nnrtdevicetype) { OH_AI_NNRTDEVICE_OTHERS = 0, OH_AI_NNRTDEVICE_CPU = 1, OH_AI_NNRTDEVICE_GPU = 2, OH_AI_NNRTDEVICE_ACCELERATOR = 3 } | Defines NNRt device types.|
@@ -169,9 +169,9 @@ Provides APIs related to MindSpore Lite model inference. The APIs in this module
 | [OH_AI_TensorGetMutableData](#oh_ai_tensorgetmutabledata) (const [OH_AI_TensorHandle](#oh_ai_tensorhandle) tensor) | Obtains the pointer to variable tensor data. If the data is empty, memory will be allocated.|
 | [OH_AI_TensorGetElementNum](#oh_ai_tensorgetelementnum) (const [OH_AI_TensorHandle](#oh_ai_tensorhandle) tensor) | Obtains the number of tensor elements.|
 | [OH_AI_TensorGetDataSize](#oh_ai_tensorgetdatasize) (const [OH_AI_TensorHandle](#oh_ai_tensorhandle) tensor) | Obtains the number of bytes of the tensor data.|
-| [OH_AI_TensorSetUserData](#oh_ai_tensorsetuserdata) ([OH_AI_TensorHandle](#oh_ai_tensorhandle) tensor, void \*data, size_t data_size) | Sets the tensor as the user data. This function allows you to reuse user data as the model input, which helps to reduce data copy by one time. > **NOTE**<br>The user data is type of external data for the tensor and is not automatically released when the tensor is destroyed. The caller needs to release the data separately. In addition, the caller must ensure that the user data is valid during use of the tensor.|
+| [OH_AI_TensorSetUserData](#oh_ai_tensorsetuserdata) ([OH_AI_TensorHandle](#oh_ai_tensorhandle) tensor, void \*data, size_t data_size) | Sets the tensor as the user data. This function allows you to reuse user data as the model input, which helps to reduce data copy by one time.<br>> **NOTE**<br>The user data is type of external data for the tensor and is not automatically released when the tensor is destroyed. The caller needs to release the data separately. In addition, the caller must ensure that the user data is valid during use of the tensor.|
 | [OH_AI_TensorGetAllocator](#oh_ai_tensorgetallocator)([OH_AI_TensorHandle](#oh_ai_tensorhandle) tensor) | Obtains a memory allocator. The allocator is responsible for allocating memory for tensors.|
-| [OH_AI_TensorSetAllocator](#oh_ai_tensorsetallocator)([OH_AI_TensorHandle](#oh_ai_tensorhandle) tensor, [OH_AI_AllocatorHandle](#oh_ai_allocatorhandle) allocator) | Sets the memory allocator. Sets the memory allocator. The allocator is responsible for allocating memory for tensors.|
+| [OH_AI_TensorSetAllocator](#oh_ai_tensorsetallocator)([OH_AI_TensorHandle](#oh_ai_tensorhandle) tensor, [OH_AI_AllocatorHandle](#oh_ai_allocatorhandle) allocator) | Sets the memory allocator. The allocator is responsible for allocating memory for tensors.|
 
 
 ## Macro Description
@@ -185,7 +185,7 @@ Provides APIs related to MindSpore Lite model inference. The APIs in this module
 
 **Description**
 
-Defines dimension information. The maximum dimension is set by **OH_AI_MAX_SHAPE_NUM**.
+Maximum number of shapes. The maximum value reserved is **32**, and the maximum number currently supported is **8**.
 
 **Since**: 9
 
@@ -344,7 +344,7 @@ typedef enum OH_AI_NNRTDeviceType OH_AI_NNRTDeviceType
 
 **Description**
 
-Defines the NNRt device types.
+Defines NNRt device types.
 
 **Since**: 10
 
@@ -396,7 +396,7 @@ typedef void* OH_AI_TensorHandle
 
 **Description**
 
-Defines the handle of a tensor object.
+Handle of a tensor object.
 
 **Since**: 9
 
@@ -501,9 +501,9 @@ Defines the supported device types.
 
 | Value| Description|
 | -------- | -------- |
-| OH_AI_DEVICETYPE_CPU | CPU.|
-| OH_AI_DEVICETYPE_GPU | GPU.<br>This configuration is open for upstream open source projects and is not supported by OpenHarmony.|
-| OH_AI_DEVICETYPE_KIRIN_NPU | Kirin NPU.<br>This configuration is open for upstream open source projects and is not supported by OpenHarmony.<br>To use KIRIN_NPU, set **OH_AI_DEVICETYPE_NNRT**.|
+| OH_AI_DEVICETYPE_CPU | Device type: CPU|
+| OH_AI_DEVICETYPE_GPU | Device type: GPU<br>This configuration is open for upstream open source projects and is not supported by OpenHarmony.|
+| OH_AI_DEVICETYPE_KIRIN_NPU | Device type: Kirin NPU<br>This configuration is open for upstream open source projects and is not supported by OpenHarmony.<br>To use KIRIN_NPU, set **OH_AI_DEVICETYPE_NNRT**.|
 | OH_AI_DEVICETYPE_NNRT | NNRt, a cross-chip inference and computing runtime oriented to the AI field.<br>OHOS device range: [60, 80)|
 | OH_AI_DEVICETYPE_INVALID | Invalid device type.|
 
@@ -567,7 +567,7 @@ enum OH_AI_NNRTDeviceType
 
 **Description**
 
-Defines the NNRt device types.
+Defines NNRt device types.
 
 **Since**: 10
 
@@ -1424,7 +1424,7 @@ Exports a training model. This API is used only for on-device training.
 
 **Returns**
 
-Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_Status::OH_AI_STATUS_SUCCESS** indicates that the operation is successful.
+Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_STATUS_SUCCESS** indicates that the operation is successful. If the operation fails, an error code is returned.
 
 ### OH_AI_ExportModelBuffer()
 
@@ -1451,7 +1451,7 @@ Exports the memory cache of the training model. This API is used only for on-dev
 
 **Returns**
 
-Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_Status::OH_AI_STATUS_SUCCESS** indicates that the operation is successful.
+Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_STATUS_SUCCESS** indicates that the operation is successful. If the operation fails, an error code is returned.
 
 
 ### OH_AI_ExportWeightsCollaborateWithMicro()
@@ -1480,7 +1480,7 @@ Exports the weight file of the training model for micro inference. This API is u
 
 **Returns**
 
-Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_Status::OH_AI_STATUS_SUCCESS** indicates that the operation is successful.
+Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_STATUS_SUCCESS** indicates that the operation is successful. If the operation fails, an error code is returned.
 
 
 ### OH_AI_GetAllNNRTDeviceDescs()
@@ -1625,7 +1625,7 @@ Note that the same {\@Link OH_AI_ContextHandle} object can only be passed to {\@
 
 **Returns**
 
-Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_Status::OH_AI_STATUS_SUCCESS** indicates that the operation is successful.
+Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_STATUS_SUCCESS** indicates that the operation is successful. If the operation fails, an error code is returned.
 
 
 ### OH_AI_ModelBuildFromFile()
@@ -1653,7 +1653,7 @@ Note that the same {\@Link OH_AI_ContextHandle} object can only be passed to {\@
 
 **Returns**
 
-Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_Status::OH_AI_STATUS_SUCCESS** indicates that the operation is successful.
+Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_STATUS_SUCCESS** indicates that the operation is successful. If the operation fails, an error code is returned.
 
 
 ### OH_AI_ModelCreate()
@@ -1879,7 +1879,7 @@ Performs model inference.
 
 **Returns**
 
-Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_Status::OH_AI_STATUS_SUCCESS** indicates that the operation is successful.
+Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_STATUS_SUCCESS** indicates that the operation is successful. If the operation fails, an error code is returned.
 
 
 ### OH_AI_ModelResize()
@@ -1905,7 +1905,7 @@ Adjusts the input tensor shapes of a built model.
 
 **Returns**
 
-Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_Status::OH_AI_STATUS_SUCCESS** indicates that the operation is successful.
+Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_STATUS_SUCCESS** indicates that the operation is successful. If the operation fails, an error code is returned.
 
 
 ### OH_AI_ModelSetLearningRate()
@@ -1924,11 +1924,12 @@ Sets the learning rate for model training. This API is used only for on-device t
 
 | Name| Description|
 | -------- | -------- |
+| model | Pointer to the model object.|
 | learning_rate | Learning rate.|
 
 **Returns**
 
-Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_Status::OH_AI_STATUS_SUCCESS** indicates that the operation is successful.
+Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_STATUS_SUCCESS** indicates that the operation is successful. If the operation fails, an error code is returned.
 
 
 ### OH_AI_ModelSetTrainMode()
@@ -1952,7 +1953,7 @@ Sets the training mode. This API is used only for on-device training.
 
 **Returns**
 
-Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_Status::OH_AI_STATUS_SUCCESS** indicates that the operation is successful.
+Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_STATUS_SUCCESS** indicates that the operation is successful. If the operation fails, an error code is returned.
 
 
 ### OH_AI_ModelSetupVirtualBatch()
@@ -1978,7 +1979,7 @@ Sets the virtual batch for training. This API is used only for on-device trainin
 
 **Returns**
 
-Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_Status::OH_AI_STATUS_SUCCESS** indicates that the operation is successful.
+Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_STATUS_SUCCESS** indicates that the operation is successful. If the operation fails, an error code is returned.
 
 
 ### OH_AI_ModelUpdateWeights()
@@ -1997,11 +1998,12 @@ Updates the weight tensors of a model. This API is used only for on-device train
 
 | Name| Description|
 | -------- | -------- |
+| model | Pointer to the model object.|
 | new_weights | Weight tensors to be updated.|
 
 **Returns**
 
-Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_Status::OH_AI_STATUS_SUCCESS** indicates that the operation is successful.
+Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_STATUS_SUCCESS** indicates that the operation is successful. If the operation fails, an error code is returned.
 
 
 ### OH_AI_RunStep()
@@ -2026,7 +2028,7 @@ Defines a single-step training model. This API is used only for on-device traini
 
 **Returns**
 
-Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_Status::OH_AI_STATUS_SUCCESS** indicates that the operation is successful.
+Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_STATUS_SUCCESS** indicates that the operation is successful. If the operation fails, an error code is returned.
 
 
 ### OH_AI_TensorClone()
@@ -2604,7 +2606,7 @@ Loads a training model from the memory buffer and compiles the model to a state 
 
 **Returns**
 
-Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_Status::OH_AI_STATUS_SUCCESS** indicates that the operation is successful.
+Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_STATUS_SUCCESS** indicates that the operation is successful. If the operation fails, an error code is returned.
 
 
 ### OH_AI_TrainModelBuildFromFile()
@@ -2631,4 +2633,4 @@ Loads the training model from the specified path and compiles the model to a sta
 
 **Returns**
 
-Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_Status::OH_AI_STATUS_SUCCESS** indicates that the operation is successful.
+Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_STATUS_SUCCESS** indicates that the operation is successful. If the operation fails, an error code is returned.
