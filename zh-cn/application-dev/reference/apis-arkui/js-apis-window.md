@@ -403,6 +403,21 @@ import { window } from '@kit.ArkUI';
 | ------ | ------ | ---- | ------------------------------------------ |
 | rect | [Rect](#rect7)  | 是 | 软键盘窗口的位置和大小。 |
 
+## WindowInfo<sup>18+</sup>
+
+当前窗口的详细信息。
+
+**系统能力：**  SystemCapability.Window.SessionManager
+
+| 名称   | 类型   | 只读 | 可选 | 说明                                       |
+| ------ | ------ | ---- | ---- | ------------------------------------------ |
+| rect  | [Rect](js-apis-window.md#rect7)   | 是   | 否   | 窗口内可绘制区域尺寸，其中左边界上边界是相对窗口计算。 |
+| bundleName  | string   | 是   | 否   | 应用Bundle的名称。          |
+| abilityName | string   | 是   | 否   | Ability的名称。               |
+| windowId | number | 是   | 否   | 窗口ID。   |
+| windowStatusType | [WindowStatusType](js-apis-window.md#windowstatustype11) | 是   | 否   | 窗口模式枚举。   |
+| isFocused | boolean | 是   | 是   | 窗口是否获焦。true表示窗口获焦；false表示窗口未获焦。   |
+
 ## Callback<sup>15+</sup>
 
 ### (data: T)<sup>15+</sup>
