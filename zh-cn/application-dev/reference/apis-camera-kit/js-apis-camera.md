@@ -1399,7 +1399,7 @@ function getCameraConcurrentinfos(cameraManager: camera.CameraManager, cameraDev
 | AVC  | 0    | 视频编码类型AVC。  |
 | HEVC | 1 | 视频编码类型HEVC。 |
 
-## CameraConcurrentType<sup>18</sup>
+## CameraConcurrentType<sup>18+</sup>
 
 枚举，镜头并发类型。
 
@@ -1408,7 +1408,7 @@ function getCameraConcurrentinfos(cameraManager: camera.CameraManager, cameraDev
 | CAMERA_LIMITED_CAPABILITY  | 0 | 镜头受限能力并发。  |
 | CAMERA_FULL_CAPABILITY     | 1 | 镜头全量能力并发。 |
 
-## CameraConcurrentInfo<sup>18</sup>
+## CameraConcurrentInfo<sup>18+</sup>
 
 相机的输出并发能力信息。
 
@@ -1548,7 +1548,7 @@ function openCameraInput(cameraInput: camera.CameraInput): void {
 }
 ```
 
-### open<sup>18</sup>
+### open<sup>18+</sup>
 
 open(type: CameraConcurrentType): Promise\<void\>
 
