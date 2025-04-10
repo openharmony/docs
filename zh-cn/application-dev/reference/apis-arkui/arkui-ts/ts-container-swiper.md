@@ -158,7 +158,7 @@ loop(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                            |
 | ------ | ------- | ---- | ------------------------------- |
-| value  | boolean | 是   | 是否开启循环。<br/>默认值：true |
+| value  | boolean | 是   | 是否开启循环。true为开启循环，false为不开启循环。<br/>默认值：true |
 
 ### duration
 
@@ -472,7 +472,7 @@ indicatorInteractive(value: boolean)
 
 | 参数名 | 类型                                                        | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 导航点是否可交互。<br/>默认值：true |
+| value  | boolean | 是   | 导航点是否可交互。true为导航点可交互，false为导航点不可交互。<br/>默认值：true |
 
 ### pageFlipMode<sup>15+</sup>
 
@@ -505,7 +505,7 @@ pageFlipMode(mode: Optional\<PageFlipMode>)
 | right         | [Length](ts-types.md#length)               | 否   | 设置导航点右侧相对于Swiper的位置。<br/>未设置left和right时，进行自适应大小布局，按照指示器本身大小和Swiper的大小在主轴方向上进行居中对齐<br/>设置为0时：按照0位置布局计算<br/>优先级：低于left属性<br/>取值范围：[0,Swiper宽度-导航点区域宽度]，超出该范围时，取最近的边界值。                 |
 | bottom        | [Length](ts-types.md#length)               | 否   | 设置导航点底部相对于Swiper的位置。<br/>未设置top和bottom时，进行自适应大小布局，按照指示器本身大小和Swiper的大小，在交叉轴方向上，位于底部，效果与设置bottom=0一致<br/>设置为0时：按照0位置布局计算<br/>优先级：低于top属性<br/>取值范围：[0,Swiper高度-导航点区域高度]，超出该范围时，取最近的边界值。                 |
 | size          | [Length](ts-types.md#length)               | 否   | 设置导航点的直径，不支持设置百分比。<br/>默认值：6vp |
-| mask          | boolean                                    | 否   | 设置是否显示导航点蒙层样式。                         |
+| mask          | boolean                                    | 否   | 设置是否显示导航点蒙层样式。<br/>设置为true时显示导航点蒙层样式，为false时不显示。                         |
 | color         | [ResourceColor](ts-types.md#resourcecolor) | 否   | 设置导航点的颜色。                                   |
 | selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 设置选中的导航点的颜色。                             |
 
@@ -1159,8 +1159,8 @@ DigitIndicator的构造函数。
 
 | 名称              | 类型                                     | 必填  | 说明                                     |
 | ---------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| showBackground   | boolean                                  | 否    | 设置箭头底板是否显示。<br/>默认值：false                |
-| isSidebarMiddle  | boolean                                  | 否    | 设置箭头显示位置。<br/>默认值：false <br/>默认显示在导航点指示器两侧。 |
+| showBackground   | boolean                                  | 否    | 设置箭头底板是否显示。为true时箭头底板显示，为false时箭头底板不显示。<br/>默认值：false                |
+| isSidebarMiddle  | boolean                                  | 否    | 设置箭头显示位置。为true时箭头居中显示在swiper组件两侧，为false时显示在导航点指示器两侧。<br/>默认值：false <br/>默认显示在导航点指示器两侧。 |
 | backgroundSize   | [Length](ts-types.md#length)             | 否    | 设置底板大小。<br/>在导航点两侧显示：<br/>默认值：24vp<br/>在组件两侧显示：<br/>默认值：32vp<br/>不支持设置百分比。 |
 | backgroundColor  | [ResourceColor](ts-types.md#resourcecolor) | 否    | 设置底板颜色。<br/>在导航点两侧显示：<br/>默认值：'\#00000000'<br/>在组件两侧显示：<br/>默认值：'\#19182431' |
 | arrowSize        | [Length](ts-types.md#length)             | 否    | 设置箭头大小。<br/>在导航点两侧显示时：<br/>默认值：18vp<br/>在组件两侧显示时：<br/>默认值：24vp<br/>**说明：**<br/>showBackground为true时，arrowSize为backgroundSize的3/4。<br/>不支持设置百分比。 |
