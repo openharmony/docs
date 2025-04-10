@@ -1,6 +1,5 @@
 # native_audiocapturer.h
 
-
 ## 概述
 
 声明输入类型的音频流相关接口。
@@ -14,7 +13,6 @@
 **起始版本：** 10
 
 **相关模块：**[OHAudio](_o_h_audio.md)
-
 
 ## 汇总
 

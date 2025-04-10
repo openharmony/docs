@@ -604,7 +604,9 @@
 
 ## 格式转换
 
-可以通过toHtml、fromHtml接口实现属性字符串与HTML格式字符串的相关转换。
+可以通过[toHtml](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#tohtml14)、[fromHtml](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#fromhtml)接口实现属性字符串与HTML格式字符串的相关转换，当前支持转换的HTML标签范围：\<p>、\<span>、\<img>。
+
+以下示例展示了如何将属性字符串转换成HTML格式，并展示了如何从HTML格式转换回属性字符串。
 ```ts
 // xxx.ets
 import { image } from '@kit.ImageKit';

@@ -101,23 +101,24 @@ onKeyEventDispatch(event: Callback\<KeyEvent, boolean>): T
 
 ## KeyEvent对象说明
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                                    | 类型                                       | 描述                         |
 | ------------------------------------- | ---------------------------------------- | -------------------------- |
-| type                                  | [KeyType](ts-appendix-enums.md#keytype)  | 按键的类型。                     |
-| [keyCode](../../apis-input-kit/js-apis-keycode.md#keycode) | number                                   | 按键的键码。                     |
-| keyText                               | string                                   | 按键的键值。                     |
-| keySource                             | [KeySource](ts-appendix-enums.md#keysource) | 触发当前按键的输入设备类型。             |
-| deviceId                              | number                                   | 触发当前按键的输入设备ID。             |
-| metaKey                               | number                                   | 按键发生时元键（即键盘左下角紧挨Ctrl键，或Fn标记了窗口logo的按键）的状态，1表示按压态，0表示未按压态。 |
-| timestamp                             | number                                   | 事件时间戳。触发事件时距离系统启动的时间间隔，单位：ns。 |
-| stopPropagation                       | () => void                               | 阻塞事件冒泡传递。                  |
-| intentionCode<sup>10+</sup>           | [IntentionCode](../../apis-input-kit/js-apis-intentioncode.md) | 按键对应的意图。       |
+| type                                  | [KeyType](ts-appendix-enums.md#keytype)  | 按键的类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                     |
+| [keyCode](../../apis-input-kit/js-apis-keycode.md#keycode) | number                                   | 按键的键码。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                     |
+| keyText                               | string                                   | 按键的键值。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                     |
+| keySource                             | [KeySource](ts-appendix-enums.md#keysource) | 触发当前按键的输入设备类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。             |
+| deviceId                              | number                                   | 触发当前按键的输入设备ID。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。             |
+| metaKey                               | number                                   | 按键发生时元键（即键盘左下角紧挨Ctrl键，或Fn标记了窗口logo的按键）的状态，1表示按压态，0表示未按压态。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| timestamp                             | number                                   | 事件时间戳。触发事件时距离系统启动的时间间隔，单位：ns。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| stopPropagation                       | () => void                               | 阻塞事件冒泡传递。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                  |
+| intentionCode<sup>10+</sup>           | [IntentionCode](../../apis-input-kit/js-apis-intentioncode.md) | 按键对应的意图。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
 | getModifierKeyState<sup>12+</sup> | (Array&lt;string&gt;) => bool | 获取功能键按压状态。报错信息请参考以下错误码。支持功能键 'Ctrl'\|'Alt'\|'Shift'\|'Fn'，设备外接带Fn键的键盘不支持Fn键查询。 <br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。|
 | unicode<sup>14+</sup>                              | number                                   | 按键的unicode码值。支持范围为非空格的基本拉丁字符：0x0021-0x007E，不支持字符为0。组合键场景下，返回当前keyEvent对应按键的unicode码值。 <br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| isNumLockOn<sup>18+</sup>                               | boolean                                   | NumLock是否锁定（true: 锁定；false: 解锁）。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                     |
+| isCapsLockOn<sup>18+</sup>                               | boolean                                   | CapsLock是否锁定（true: 锁定；false: 解锁）。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                     |
+| isScrollLockOn<sup>18+</sup>                               | boolean                                   | ScrollLock是否锁定（true: 锁定；false: 解锁）。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                     |
 
 **错误码**：
 
@@ -131,7 +132,7 @@ onKeyEventDispatch(event: Callback\<KeyEvent, boolean>): T
 
 ### 示例1（触发onKeyEvent回调）
 
-该示例通过按钮设置了按键事件，按钮获焦时可触发onKeyEvent回调。
+该示例通过按钮设置了按键事件，按钮获焦时按下按键可触发onKeyEvent回调，按键事件触发的流程和具体时机参考[按键事件数据流](../../../ui/arkts-common-events-device-input-event.md#按键事件数据流)。
 
 ```ts
 // xxx.ets

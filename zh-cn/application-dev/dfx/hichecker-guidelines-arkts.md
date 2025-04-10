@@ -48,7 +48,7 @@ HiChecker可以作为应用开发阶段使用的检测工具，用于检测代�
        const imageSourceApi: image.ImageSource = image.createImageSource(filePath);
        const imagePackerApi = image.createImagePacker();
        let packOpts: image.PackingOption = { format:"image/jpeg", quality:98 };
-       imagePackerApi.packing(imageSourceApi, packOpts);
+       imagePackerApi.packToData(imageSourceApi, packOpts);
        // 以上5行通过image子系统触发检测规则
        hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreateend');
      }

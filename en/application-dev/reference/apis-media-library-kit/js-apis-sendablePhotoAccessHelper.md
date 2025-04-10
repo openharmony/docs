@@ -1,4 +1,4 @@
-# @ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable object)
+# @ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object)
 
 The sendablePhotoAccessHelper module provides APIs for album management, including creating an album and accessing and modifying media data in an album, based on a [Sendable](../../arkts-utils/arkts-sendable.md) object.
 
@@ -132,7 +132,7 @@ Obtains burst assets. This API uses a promise to return the result.
 
 | Name  | Type                                                     | Mandatory| Description                                                        |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| burstKey | string                                                    | Yes  | Universally Unique Identifier (UUID) of a group of burst photos, that is, **BURST_KEY** of [PhotoKeys](js-apis-photoAccessHelper.md#photokeys).|
+| burstKey | string                                                    | Yes  | Universally Unique Identifier (UUID) of a group of burst photos, that is, **BURST_KEY** of [PhotoKeys](js-apis-photoAccessHelper.md#photokeys). The value is a string of 36 characters.|
 | options  | [photoAccessHelper.FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | Yes  | Options for fetching the burst photos.                                          |
 
 **Return value**
@@ -207,7 +207,7 @@ If the caller does not have the ohos.permission.WRITE_IMAGEVIDEO permission, you
 | Name   | Type                                                       | Mandatory| Description                                |
 | --------- | ----------------------------------------------------------- | ---- | ------------------------------------ |
 | photoType | [PhotoType](#phototype)                                     | Yes  | Type of the file to create, which can be **IMAGE** or **VIDEO**.|
-| extension | string                                                      | Yes  | File name extension, for example, **'jpg'**.       |
+| extension | string                                                      | Yes  | File name extension, for example, **'jpg'**. The value contains 1 to 255 characters.       |
 | options   | [photoAccessHelper.CreateOptions](js-apis-photoAccessHelper.md#createoptions) | No  | Options for creating the media asset, for example, **{title: 'testPhoto'}**.|
 
 **Return value**
@@ -330,7 +330,7 @@ Before the operation, ensure that the albums to obtain exist.
 
 | Name | Type                                                     | Mandatory| Description    |
 | ------- | --------------------------------------------------------- | ---- | -------- |
-| options | [photoAccessHelper.FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | Yes  | Options for obtaining the albums.|
+| options | [photoAccessHelper.FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | Yes  | Options for fetching the albums.|
 
 **Return value**
 
@@ -433,7 +433,7 @@ Provides APIs for encapsulating file asset attributes.
 | ----------- | ----------------------- | ---- | ---- | ------------------------------------------------------------ |
 | uri<sup>12+</sup>         | string                  | Yes  | No  | Media asset URI, for example, **file://media/Photo/1/IMG_datetime_0001/displayName.jpg**. For details, see [Media File URI](../../file-management/user-file-uri-intro.md#media-file-uri).|
 | photoType<sup>12+</sup>   | [PhotoType](#phototype) | Yes  | No  | Type of the file.                                              |
-| displayName<sup>12+</sup> | string                  | Yes  | No  | File name, including the file name extension, to display.                                    |
+| displayName<sup>12+</sup> | string                  | Yes  | No  | File name, including the file name extension, to display. The value contains 1 to 255 characters.                                    |
 
 ### convertToPhotoAsset
 
@@ -547,8 +547,8 @@ Sets a **PhotoAsset** member parameter.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| member | string | Yes  | Name of the parameter to set, for example, [PhotoKeys](js-apis-photoAccessHelper.md#photokeys).TITLE.|
-| value  | string | Yes  | Value to set. Only the value of [PhotoKeys](js-apis-photoAccessHelper.md#photokeys).TITLE can be changed.|
+| member | string | Yes  | Name of the parameter to set, for example, [PhotoKeys](js-apis-photoAccessHelper.md#photokeys).TITLE. The value contains 1 to 255 characters.|
+| value  | string | Yes  | Value to set. Only the value of [PhotoKeys](js-apis-photoAccessHelper.md#photokeys).TITLE can be changed. The title must meet the following requirements:<br>- It does not contain a file name extension.<br>- The file name, which is in the format of title+file name extension, does not exceed 255 characters.<br>- The title does not contain any of the following characters:\ / : * ? " ' ` < > \| { } [ ]  |
 
 **Error codes**
 
@@ -1073,7 +1073,7 @@ Converts this Sendable album to a non-Sendable album.
 
 | Type                   | Description                                                     |
 | ----------------------- | --------------------------------------------------------- |
-| photoAccessHelper.Album | Non-Sendable [Album](js-apis-photoAccessHelper.md#album).|
+| [photoAccessHelper.Album](js-apis-photoAccessHelper.md#album) | Album of the non-Sendable type.|
 
 **Error codes**
 
@@ -1127,7 +1127,7 @@ Obtains media assets. This API uses a promise to return the result.
 
 | Name | Type                                                     | Mandatory| Description      |
 | ------- | --------------------------------------------------------- | ---- | ---------- |
-| options | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | Yes  | Options for obtaining the albums.|
+| options | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | Yes  | Options for fetching the albums.|
 
 **Return value**
 
@@ -1253,7 +1253,7 @@ Enumerates the [PhotoAsset](#photoasset) types.
 
 ## DynamicRangeType<sup>14+</sup>
 
-Enumerates the formats for displaying media assets.
+Enumerates the dynamic range types of media assets.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 

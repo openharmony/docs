@@ -77,7 +77,7 @@ struct CalendarPickerDialogExample {
           console.info("CalendarDialog.show")
           CalendarPickerDialog.show({
             selected: this.selectedDate,
-            backgroundColor: Color.White,
+            backgroundColor: Color.Gray,
             backgroundBlurStyle: BlurStyle.NONE,
             shadow: ShadowStyle.OUTER_FLOATING_SM,
             onAccept: (value) => {

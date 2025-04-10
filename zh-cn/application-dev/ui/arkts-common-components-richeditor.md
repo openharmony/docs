@@ -253,7 +253,7 @@ RichEditor(this.options)
 
 ```ts
 RichEditor(this.options)
-  .placeholder('这是一段用来测试选中菜单的文字')
+  .placeholder('这是一段用来展示选中菜单的文字')
   .onReady(() => {})
 ```
 
