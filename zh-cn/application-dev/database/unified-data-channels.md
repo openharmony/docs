@@ -49,126 +49,140 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
 
 1. 导入unifiedDataChannel和uniformTypeDescriptor模块。
 
-   ```ts
-   import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
-   ```
+  ```ts
+  import { unifiedDataChannel, uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  ```
 2. 创建一个统一数据对象并插入到UDMF的公共数据通路中。
 
-   ```ts
-   import { BusinessError } from '@kit.BasicServicesKit';
-   let plainText = new unifiedDataChannel.PlainText();
-   plainText.textContent = 'hello world!';
-   let unifiedData = new unifiedDataChannel.UnifiedData(plainText);
-   
-   // 指定要插入数据的数据通路枚举类型
-   let options: unifiedDataChannel.Options = {
-     intention: unifiedDataChannel.Intention.DATA_HUB
-   }
-   try {
-     unifiedDataChannel.insertData(options, unifiedData, (err, key) => {
-       if (err === undefined) {
-         console.info(`Succeeded in inserting data. key = ${key}`);
-       } else {
-         console.error(`Failed to insert data. code is ${err.code},message is ${err.message} `);
-       }
-     });
-   } catch (e) {
-     let error: BusinessError = e as BusinessError;
-     console.error(`Insert data throws an exception. code is ${error.code},message is ${error.message} `);
-   }
-   ```
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let plainTextDetails : Record<string, string> = {
+    'attr1': 'value1',
+    'attr2': 'value2',
+  }
+  let plainText : uniformDataStruct.PlainText = {
+    uniformDataType: 'general.plain-text',
+    textContent : 'hello world',
+    abstract : 'this is abstract',
+    details : plainTextDetails,
+  }
+  let text = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
+  let unifiedData = new unifiedDataChannel.UnifiedData(text);
+
+  // 指定要插入数据的数据通路枚举类型
+  let options: unifiedDataChannel.Options = {
+    intention: unifiedDataChannel.Intention.DATA_HUB
+  }
+  try {
+    unifiedDataChannel.insertData(options, unifiedData, (err, key) => {
+      if (err === undefined) {
+        console.info(`Succeeded in inserting data. key = ${key}`);
+      } else {
+        console.error(`Failed to insert data. code is ${err.code},message is ${err.message} `);
+      }
+    });
+  } catch (e) {
+    let error: BusinessError = e as BusinessError;
+    console.error(`Insert data throws an exception. code is ${error.code},message is ${error.message} `);
+  }
+  ```
 3. 更新上一步骤插入的统一数据对象。
 
-   ```ts
-   let plainTextUpdate = new unifiedDataChannel.PlainText();
-   plainTextUpdate.textContent = 'How are you!';
-   let unifiedDataUpdate = new unifiedDataChannel.UnifiedData(plainTextUpdate);
-   
-   // 指定要更新的统一数据对象的URI
-   let optionsUpdate: unifiedDataChannel.Options = {
-     // 此处的key值仅为示例，不可直接使用，其值与insertData接口回调函数中key保持一致
-     key: 'udmf://DataHub/com.ohos.test/0123456789'
-   };
-   
-   try {
-     unifiedDataChannel.updateData(optionsUpdate, unifiedDataUpdate, (err) => {
-       if (err === undefined) {
-         console.info('Succeeded in updating data.');
-       } else {
-         console.error(`Failed to update data. code is ${err.code},message is ${err.message} `);
-       }
-     });
-   } catch (e) {
-     let error: BusinessError = e as BusinessError;
-     console.error(`Update data throws an exception. code is ${error.code},message is ${error.message} `);
-   }
-   ```
+  ```ts
+  let plainText : uniformDataStruct.PlainText = {
+    uniformDataType: 'general.plain-text',
+    textContent : 'how are you',
+    abstract : 'this is abstract',
+  }
+  let text = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
+  let unifiedDataUpdate = new unifiedDataChannel.UnifiedData(text);
+
+  // 指定要更新的统一数据对象的URI
+  let optionsUpdate: unifiedDataChannel.Options = {
+    // 此处的key值仅为示例，不可直接使用，其值与insertData接口回调函数中key保持一致
+    key: 'udmf://DataHub/com.ohos.test/0123456789'
+  };
+
+  try {
+    unifiedDataChannel.updateData(optionsUpdate, unifiedDataUpdate, (err) => {
+      if (err === undefined) {
+        console.info('Succeeded in updating data.');
+      } else {
+        console.error(`Failed to update data. code is ${err.code},message is ${err.message} `);
+      }
+    });
+  } catch (e) {
+    let error: BusinessError = e as BusinessError;
+    console.error(`Update data throws an exception. code is ${error.code},message is ${error.message} `);
+  }
+  ```
 4. 删除存储在UDMF公共数据通路中的统一数据对象。
 
-   ```ts
-   // 指定要删除数据的数据通路枚举类型
-   let optionsDelete: unifiedDataChannel.Options = {
-     intention: unifiedDataChannel.Intention.DATA_HUB
-   };
+  ```ts
+  // 指定要删除数据的数据通路枚举类型
+  let optionsDelete: unifiedDataChannel.Options = {
+    intention: unifiedDataChannel.Intention.DATA_HUB
+  };
 
-   try {
-     unifiedDataChannel.deleteData(optionsDelete, (err, data) => {
-       if (err === undefined) {
-         console.info(`Succeeded in deleting data. size = ${data.length}`);
-         for (let i = 0; i < data.length; i++) {
-           let records = data[i].getRecords();
-           for (let j = 0; j < records.length; j++) {
-             if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
-               let text = records[j] as unifiedDataChannel.PlainText;
-               console.info(`${i + 1}.${text.textContent}`);
-             }
-           }
-         }
-       } else {
-         console.error(`Failed to delete data. code is ${err.code},message is ${err.message} `);
-       }
-     });
-   } catch (e) {
-     let error: BusinessError = e as BusinessError;
-     console.error(`Delete data throws an exception. code is ${error.code},message is ${error.message} `);
-   }
-   ```
+  try {
+    unifiedDataChannel.deleteData(optionsDelete, (err, data) => {
+      if (err === undefined) {
+        console.info(`Succeeded in deleting data. size = ${data.length}`);
+        for (let i = 0; i < data.length; i++) {
+          let records = data[i].getRecords();
+          for (let j = 0; j < records.length; j++) {
+            if (records[j].getTypes().includes(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT)) {
+              let text = records[j].getEntry(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) as uniformDataStruct.PlainText;
+              console.info(`${i + 1}.${text.textContent}`);
+            }
+          }
+        }
+      } else {
+        console.error(`Failed to delete data. code is ${err.code},message is ${err.message} `);
+      }
+    });
+  } catch (e) {
+    let error: BusinessError = e as BusinessError;
+    console.error(`Delete data throws an exception. code is ${error.code},message is ${error.message} `);
+  }
+  ```
    
 ### 数据访问方
 
 1. 导入unifiedDataChannel和uniformTypeDescriptor模块。
 
-   ```ts
-   import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
-   ```
+  ```ts
+  import { unifiedDataChannel, uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
+  ```
 2. 查询存储在UDMF公共数据通路中的全量统一数据对象。
 
-   ```ts
-   import { BusinessError } from '@kit.BasicServicesKit';
-   // 指定要查询数据的数据通路枚举类型
-   let options: unifiedDataChannel.Options = {
-     intention: unifiedDataChannel.Intention.DATA_HUB
-   };
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  // 指定要查询数据的数据通路枚举类型
+  let options: unifiedDataChannel.Options = {
+    intention: unifiedDataChannel.Intention.DATA_HUB
+  };
 
-   try {
-     unifiedDataChannel.queryData(options, (err, data) => {
-       if (err === undefined) {
-         console.info(`Succeeded in querying data. size = ${data.length}`);
-         for (let i = 0; i < data.length; i++) {
-           let records = data[i].getRecords();
-           for (let j = 0; j < records.length; j++) {
-             if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
-               let text = records[j] as unifiedDataChannel.PlainText;
-               console.info(`${i + 1}.${text.textContent}`);
-             }
-           }
-         }
-       } else {
-         console.error(`Failed to query data. code is ${err.code},message is ${err.message} `);
-       }
-     });
-   } catch(e) {
-     let error: BusinessError = e as BusinessError;
-     console.error(`Query data throws an exception. code is ${error.code},message is ${error.message} `);
-   }
-   ```
+  try {
+    unifiedDataChannel.queryData(options, (err, data) => {
+      if (err === undefined) {
+        console.info(`Succeeded in querying data. size = ${data.length}`);
+        for (let i = 0; i < data.length; i++) {
+          let records = data[i].getRecords();
+          for (let j = 0; j < records.length; j++) {
+            if (records[j].getTypes().includes(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT)) {
+              let text = records[j].getEntry(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) as uniformDataStruct.PlainText;
+              console.info(`${i + 1}.${text.textContent}`);
+            }
+          }
+        }
+      } else {
+        console.error(`Failed to query data. code is ${err.code},message is ${err.message} `);
+      }
+    });
+  } catch(e) {
+    let error: BusinessError = e as BusinessError;
+    console.error(`Query data throws an exception. code is ${error.code},message is ${error.message} `);
+  }
+  ```
