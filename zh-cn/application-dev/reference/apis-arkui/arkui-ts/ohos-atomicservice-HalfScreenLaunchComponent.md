@@ -57,7 +57,7 @@ import { HalfScreenLaunchComponent } from '@kit.ArkUI';
 @Entry
 @Component
 struct Index {
-  appId: string = "5765880207853275489"; //手机充值
+  appId: string = "5765880207853275489"; //原子化服务appId
 
   build() {
     Column() {
@@ -65,7 +65,7 @@ struct Index {
         appId: this.appId,
         options: {},
         onTerminated:  (info:TerminationInfo)=> {
-          console.log('onTerminated info = '+ info.want);
+          console.info('onTerminated info = '+ info.want);
         },
         onError: (err) => {
           console.error(" onError code: " + err.code + ", message: ", err.message);
