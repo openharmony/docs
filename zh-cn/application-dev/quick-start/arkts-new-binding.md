@@ -89,6 +89,8 @@ struct Star {
   | [Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md#searchoptions18对象说明) | value | 18   |
   | [BindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md) | isShow | 18   |
   | [BindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md) | isShow | 18   |
+  | [SideBarContainer](../reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md#sidebarwidth) | sideBarWidth | 18   |
+  | [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navbarwidth9) | navBarWidth | 18   |
   | [Toggle](../reference/apis-arkui/arkui-ts/ts-basic-components-toggle.md#toggleoptions18对象说明) | isOn | 18   |
   | [Checkbox](../reference/apis-arkui/arkui-ts/ts-basic-components-checkbox.md#select) | select | 18   |
   | [CheckboxGroup](../reference/apis-arkui/arkui-ts/ts-basic-components-checkboxgroup.md#selectall) | selectAll | 18   |  
