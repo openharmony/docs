@@ -8,9 +8,9 @@
 
 ## 导入模块
 
-```ts
-import { deviceStatus } from '@kit.MultimodalAwarenessKit';
-```
+  ```ts
+  import { deviceStatus } from '@kit.MultimodalAwarenessKit';
+  ```
 
 ## SteadyStandingStatus
 

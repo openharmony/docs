@@ -20,7 +20,7 @@ DeviceStatus（设备状态感知）模块提供设备状态感知能力，可�
 
 ### 约束与限制
 
-<!--RP1-->设备需要支持加速度计，并支持特定芯片<!--RP1End-->
+<!--RP1-->设备需要支持加速度计，并支持特定芯片。<!--RP1End-->
 
 ### 接口说明
 
@@ -33,9 +33,9 @@ DeviceStatus（设备状态感知）模块提供设备状态感知能力，可�
 
 1. 导入模块。
 
-```ts
-import { deviceStatus } from '@kit.MultimodalAwarenessKit';
-```
+  ```ts
+  import { deviceStatus } from '@kit.MultimodalAwarenessKit';
+  ```
 
 2. 订阅设备静止姿态（支架态）感知事件。
 
