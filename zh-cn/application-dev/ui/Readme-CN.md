@@ -38,21 +38,21 @@
     - [图标小符号 (SymbolGlyph/SymbolSpan)](arkts-common-components-symbol.md)
     - [属性字符串 (StyledString/MutableStyledString)](arkts-styled-string.md)
   - 使用弹窗<!--arkts-use-dialog-->
-     - [弹窗概述](arkts-dialog-overview.md)
-     - 使用弹出框 (Dialog)<!--arkts-use-dialogs-->
-       - [弹出框概述](arkts-base-dialog-overview.md)
-       - [不依赖UI组件的全局自定义弹出框 (openCustomDialog) (推荐)](arkts-uicontext-custom-dialog.md)
-       - [基础自定义弹出框 (CustomDialog) (不推荐)](arkts-common-components-custom-dialog.md)
-       - [固定样式弹出框](arkts-fixes-style-dialog.md)
-       - [页面级弹出框](arkts-embedded-dialog.md)
-     - [菜单控制 (Menu)](arkts-popup-and-menu-components-menu.md)
-     - [气泡提示 (Popup)](arkts-popup-and-menu-components-popup.md)
-     - 绑定模态页面<!--arkts-bind-modal-->
-        - [绑定模态页面概述](arkts-modal-overview.md)
-        - [绑定半模态页面 (bindSheet)](arkts-sheet-page.md)
-        - [绑定全模态页面 (bindContentCover)](arkts-contentcover-page.md)
-     - [即时反馈 (Toast)](arkts-create-toast.md)
-     - [设置浮层 (OverlayManager)](arkts-create-overlaymanager.md)
+    - [弹窗概述](arkts-dialog-overview.md)
+    - 使用弹出框 (Dialog)<!--arkts-use-dialogs-->
+      - [弹出框概述](arkts-base-dialog-overview.md)
+      - [不依赖UI组件的全局自定义弹出框 (openCustomDialog) (推荐)](arkts-uicontext-custom-dialog.md)
+      - [基础自定义弹出框 (CustomDialog) (不推荐)](arkts-common-components-custom-dialog.md)
+      - [固定样式弹出框](arkts-fixes-style-dialog.md)
+      - [页面级弹出框](arkts-embedded-dialog.md)
+    - [菜单控制 (Menu)](arkts-popup-and-menu-components-menu.md)
+    - [气泡提示 (Popup)](arkts-popup-and-menu-components-popup.md)
+    - 绑定模态页面<!--arkts-bind-modal-->
+      - [绑定模态页面概述](arkts-modal-overview.md)
+      - [绑定半模态页面 (bindSheet)](arkts-sheet-page.md)
+      - [绑定全模态页面 (bindContentCover)](arkts-contentcover-page.md)
+    - [即时反馈 (Toast)](arkts-create-toast.md)
+    - [设置浮层 (OverlayManager)](arkts-create-overlaymanager.md)
   - 显示图形<!--arkts-draw-graphics-->
     - [绘制几何图形 (Shape)](arkts-geometric-shape-drawing.md)
     - [使用画布绘制自定义图形 (Canvas)](arkts-drawing-customization-on-canvas.md)
@@ -202,6 +202,6 @@
         - [动画动效](ui-js-animate-dynamic-effects.md)
         - [动画帧](ui-js-animate-frame.md)
   - [自定义组件](ui-js-custom-components.md)
-  - [WebGL](../webgl/Readme-CN.md)
-- [窗口管理](../windowmanager/Readme-CN.md)
-- [屏幕管理](../displaymanager/Readme-CN.md)
+  - [WebGL](../webgl/Readme-CN.md)<!--ui-js-webgl-->
+- [窗口管理](../windowmanager/Readme-CN.md)<!--window-manager-->
+- [屏幕管理](../displaymanager/Readme-CN.md)<!--display-manager-->
