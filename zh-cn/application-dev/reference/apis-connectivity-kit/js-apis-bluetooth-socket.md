@@ -427,6 +427,117 @@ try {
 ```
 
 
+## socket.sppWriteAsync<sup>18+</sup>
+
+sppWriteAsync(clientSocket: number, data: ArrayBuffer): Promise&lt;void&gt;
+
+通过socket向远端发送数据的异步接口，该接口支持断开连接时SPP操作异常错误返回。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+**参数：**
+
+| 参数名          | 类型                          | 必填   | 说明                                       |
+| ------------ | --------------------------- | ---- | ---------------------------------------- |
+| clientSocket | number                      | 是    | 客户端Socket的id。                            |
+| data         | ArrayBuffer                 | 是    | 写入的数据。 |
+
+**返回值：**
+
+| 类型                            | 说明         |
+| ----------------------------- | ---------- |
+| Promise&lt;void&gt; | 以Promise的形式返回结果。如果成功，err为undefined，否则为错误对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.              |
+|801 | Capability not supported.          |
+|2901054 | IO error. |
+|2900099 | Operation failed. |
+
+**示例：**
+
+```js
+import { socket } from '@kit.ConnectivityKit'
+import { AsyncCallback,BusinessError } from '@kit.BasicServicesKit';
+let clientNumber = -1; // 入参clientNumber由sppAccept或sppConnect接口获取。
+let arrayBuffer = new ArrayBuffer(8);
+let data = new Uint8Array(arrayBuffer);
+try {
+    await socket.sppWriteAsync(clientNumber, arrayBuffer);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## socket.sppReadAsync<sup>18+</sup>
+
+sppReadAsync(clientSocket: number): Promise&lt;ArrayBuffer&gt;
+
+通过socket读取对端所发送数据的异步接口，该接口支持断开连接时SPP操作异常错误返回。
+
+> **注意**：
+>
+> - 该接口不可与[socket.on('sppRead')](#socketonsppread)接口混用，同一路socket只能使用[socket.on('sppRead')](#socketonsppread)或者socket.sppReadAsync其中一个接口。
+>
+> - 该接口与[socket.on('sppRead')](#socketonsppread)使用方式不同，需要业务循环使用读取数据。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+**参数：**
+
+| 参数名          | 类型                          | 必填   | 说明                                       |
+| ------------ | --------------------------- | ---- | ---------------------------------------- |
+| clientSocket | number                      | 是    | 客户端Socket的id。                            |
+
+**返回值：**
+
+| 类型                            | 说明         |
+| ----------------------------- | ---------- |
+| Promise&lt;ArrayBuffer&gt; | 以Promise的形式返回读取数据结果。如果成功，值在ArrayBuffer中返回，如果失败，返回对应错误码。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.              |
+|801 | Capability not supported.          |
+|2901054 | IO error. |
+|2900099 | Operation failed. |
+
+**示例：**
+
+```js
+import { socket } from '@kit.ConnectivityKit'
+import { AsyncCallback,BusinessError } from '@kit.BasicServicesKit';
+let clientNumber = -1; // 入参clientNumber由sppAccept或sppConnect接口获取。
+let buffer = new ArrayBuffer(1024);
+let data = new Uint8Array(arrayBuffer);
+let flag = 1;
+while (flag) {
+  try {
+    buffer = await socket.sppReadAsync(this.clientNumber);
+    if (buffer != null) {
+      console.info('sppRead success, data = ' + JSON.stringify(buffer));
+      printArrayBuffer(buffer);
+    } else {
+      console.error('sppRead error, data is null');
+    }
+  } catch (err) {
+    flag = 0;
+    console.error('startSppRead errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+  }
+}
+```
+
+
 ## SppOptions
 
 描述spp的配置参数。
