@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> - 该组件从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > - Menu组件需和[bindMenu](ts-universal-attributes-menu.md#bindmenu)或[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8)方法配合使用，不支持作为普通组件单独使用。
 
@@ -105,7 +105,7 @@ radius(value: Dimension | BorderRadiuses)
 
 menuItemDivider(options: DividerStyleOptions | undefined)
 
-设置menuItem分割线样式, 不设置该属性则不展示分割线。
+设置menuItem分割线样式，不设置该属性则不展示分割线。
 
 startMargin + endMargin 超过组件宽度后startMargin和endMargin会被置0。
 
@@ -123,7 +123,7 @@ startMargin + endMargin 超过组件宽度后startMargin和endMargin会被置0�
 
 menuItemGroupDivider(options: DividerStyleOptions | undefined)
 
-设置menuItemGroup上下分割线的样式, 不设置该属性则默认展示分割线。
+设置menuItemGroup上下分割线的样式，不设置该属性则默认展示分割线。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -133,7 +133,7 @@ menuItemGroupDivider(options: DividerStyleOptions | undefined)
 
 | 参数名     | 类型                                                     | 必填         | 说明           |
 |---------|--------------------------------------------------------|------------| -------------- |
-| options | [DividerStyleOptions](ts-types.md#dividerstyleoptions12)&nbsp;\| &nbsp;undefined | 是   | 设置menuItemGroup顶部和底部分割线样式。<br />-strokeWidth:分割线的线宽, 默认值是1px。<br />-color：分割线的颜色, 默认值是 #33000000。<br />-startMargin：分割线与menuItemGroup侧边起端的距离, 默认值是16。<br />-endMargin：分割线与menuItemGroup侧边结束端的距离, 默认值是16。<br />-mode:分割线的模式，默认值为：FLOATING_ABOVE_MENU。|
+| options | [DividerStyleOptions](ts-types.md#dividerstyleoptions12)&nbsp;\| &nbsp;undefined | 是   | 设置menuItemGroup顶部和底部分割线样式。<br />-strokeWidth:分割线的线宽，默认值是1px。<br />-color：分割线的颜色，默认值是 #33000000。<br />-startMargin：分割线与menuItemGroup侧边起端的距离，默认值是16。<br />-endMargin：分割线与menuItemGroup侧边结束端的距离, 默认值是16。<br />-mode:分割线的模式，默认值为：FLOATING_ABOVE_MENU。|
 
 ### subMenuExpandingMode<sup>12+</sup>
 
