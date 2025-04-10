@@ -4622,7 +4622,7 @@ try {
   }).catch((err: BusinessError) => {
     hilog.error(0x0000, 'testTag', '%{public}s', `disableNotificationFeature failed, code is ${err.code}, message is ${err.message}`);
   });
-} catch (err: BusinessError) {
+} catch (err) {
   hilog.error(0x0000, 'testTag', '%{public}s', `testTag failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
