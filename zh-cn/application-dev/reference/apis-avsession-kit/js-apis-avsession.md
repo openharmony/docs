@@ -3411,7 +3411,7 @@ aVCastController.getAVPlaybackState().then((state: avSession.AVPlaybackState) =>
 
 getSupportedDecoders(): Promise\<Array\<DecoderType>>
 
-获取当前远端设备的编码方式。使用Promise异步回调。
+获取当前远端设备的解码方式。使用Promise异步回调。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -3421,7 +3421,7 @@ getSupportedDecoders(): Promise\<Array\<DecoderType>>
 
 | 类型                                                        | 说明                                                         |
 | --------- | ------------------------------------------------------------ |
-| Promise\<Array\<[DecoderType](#decodertype18)\>\> | Promise对象。返回远端设备所支持的编码能力列表。 |
+| Promise\<Array\<[DecoderType](#decodertype18)\>\> | Promise对象。返回远端设备所支持的解码能力列表。 |
 
 **错误码：**
 
@@ -3450,7 +3450,7 @@ aVCastController.getSupportedDecoders().then((decoderTypes: avSession.DecoderTyp
 
 getRecommendedResolutionLevel(decoderType: DecoderType): Promise\<ResolutionLevel>
 
-通过传递编码方式，获取推荐的分辨率。使用Promise异步回调。
+通过传递解码方式，获取推荐的分辨率。使用Promise异步回调。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -5487,7 +5487,7 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 
 ## DecoderType<sup>18+</sup>
 
-枚举，设备所支持的编码格式。
+枚举，设备所支持的解码格式。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
