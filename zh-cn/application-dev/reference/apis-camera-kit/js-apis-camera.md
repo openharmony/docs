@@ -1238,6 +1238,95 @@ function unregisterTorchStatusChange(cameraManager: camera.CameraManager): void 
 }
 ```
 
+### getCameraDevice<sup>18+</sup>
+
+getCameraDevice(position:CameraPosition, type: CameraType): CameraDevice
+
+根据相机位置和相机类型查询对应相机。
+
+**参数：**
+
+| 参数名     | 类型             | 必填 | 说明       |
+| -------- | --------------- | ---- | --------- |
+| position | [CameraPosition](#cameraposition)   | 是   | 需要得到的CameraDevice对象对应的CameraPosition条件。 |
+| type     | [CameraType](#cameratype)   | 是   | 需要得到的CameraDevice对象对应的CameraType条件。 |
+
+**返回值：**
+
+| 类型             | 说明                     |
+| -----------------| ------------------------ |
+|  [CameraDevice](#cameradevice)     | 根据相机位置和相机类型查询的对应相机。      |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 401     | Parameter error.  |
+| 7400201 | Camera service fatal error. |
+
+**示例：**
+
+```ts
+import { camera } from '@kit.CameraKit';
+
+function getCameraDevice(cameraManager: camera.CameraManager, position: camera.CameraPosition, type: camera.CameraType): void {
+  try {
+    let curCameraDev: camera.CameraDevice | undefined = undefined;
+    curCameraDev = cameraManager.getCameraDevice(position, type);
+  } catch (error) {
+    // 失败返回错误码并处理。
+    let err = error as BusinessError;
+    console.error(`The getCameraDevice call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### getCameraConcurrentinfos<sup>18+</sup>
+
+getCameraConcurrentInfos(cameras: Array\<CameraDevice\>): Array\<CameraConcurrentInfo\>
+
+获取指定相机设备的并发信息。返回空表示不支持并发。
+
+**参数：**
+
+| 参数名     | 类型             | 必填 | 说明       |
+| -------- | --------------- | ---- | --------- |
+| cameras | Array\<[CameraDevice](#cameradevice)\>  | 是   | 一组CameraDevice对象，并得到与这一组CamraDevice对应的并发信息。 |
+
+**返回值：**
+
+| 类型             | 说明                     |
+| -----------------| ------------------------ |
+|  Array\<[CameraConcurrentInfo](#cameraconcurrentinfo18)\>    |  一组CameraDevice对象对应的并发信息，与CameraDevice一一对应。      |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 401     | Parameter error.  |
+| 7400201 | Camera service fatal error. |
+
+**示例：**
+
+```ts
+import { camera } from '@kit.CameraKit';
+
+function getCameraConcurrentinfos(cameraManager: camera.CameraManager, cameraDeviceArray: Array<camera.CameraDevice>): void {
+  try {
+    let cameraconcurrentinfos: Array<camera.CameraConcurrentInfo> = [];
+    cameraconcurrentinfos = cameraManager.getCameraConcurrentinfos(cameraDeviceArray);
+  } catch (error) {
+    // 失败返回错误码并处理。
+    let err = error as BusinessError;
+    console.error(`The getCameraConcurrentinfos call failed. error code: ${err.code}`);
+  }
+}
+```
+
 ## TorchMode<sup>11+</sup>
 
 枚举，手电筒模式。
@@ -1309,6 +1398,26 @@ function unregisterTorchStatusChange(cameraManager: camera.CameraManager): void 
 |------|------|-------------|
 | AVC  | 0    | 视频编码类型AVC。  |
 | HEVC | 1 | 视频编码类型HEVC。 |
+
+## CameraConcurrentType<sup>18+</sup>
+
+枚举，镜头并发类型。
+
+| 名称   | 值    | 说明          |
+|------|------|-------------|
+| CAMERA_LIMITED_CAPABILITY  | 0 | 镜头受限能力并发。  |
+| CAMERA_FULL_CAPABILITY     | 1 | 镜头全量能力并发。 |
+
+## CameraConcurrentInfo<sup>18+</sup>
+
+相机的输出并发能力信息。
+
+| 名称   | 类型    | 只读 | 可选  | 说明         |
+| ------ | ------ | ---- |-----| ------------ |
+| device              | [CameraDevice](#cameradevice)   | 否   | 否   | 相机并发设备。 |
+| type                | [CameraConcurrentType](#cameraconcurrenttype18)  | 否   | 否   | 镜头并发类型。 |
+| modes               | Array\<[SceneMode](#scenemode11) \>              | 否   | 否   | 相机支持的模式。 |
+| outputCapabilities  | Array\<[CameraOutputCapability](#cameraoutputcapability) \> | 否   | 否   | 相机对应模式的输出能力集。 |
 
 ## CameraInput
 
@@ -1432,6 +1541,49 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 function openCameraInput(cameraInput: camera.CameraInput): void {
   cameraInput.open(true).then(() => {
+    console.info('Promise returned with camera opened.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to open the camera, error code: ${error.code}.`);
+  });
+}
+```
+
+### open<sup>18+</sup>
+
+open(type: CameraConcurrentType): Promise\<void\>
+
+以指定的并发类型打开相机。
+
+**参数：**
+
+| 参数名     | 类型                  | 必填 | 说明                                                                      |
+| -------- | -------------------- | ---- |-------------------------------------------------------------------------|
+| type | [CameraConcurrentType](#cameraconcurrenttype18) | 是   | 以指定的并发类型打开相机。接口调用失败会返回相应错误码。|
+
+**返回值：**
+
+| 类型           | 说明                      |
+| -------------- | ----------------------- |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息                                      |
+|---------|-------------------------------------------|
+| 7400102 | Operation not allowed.                    |
+| 7400107 | Can not use camera cause of conflict.     |
+| 7400108 | Camera disabled cause of security reason. |
+| 7400201 | Camera service fatal error.               |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function openCameraInput(cameraInput: camera.CameraInput): void {
+  cameraInput.open(0).then(() => {
     console.info('Promise returned with camera opened.');
   }).catch((error: BusinessError) => {
     console.error(`Failed to open the camera, error code: ${error.code}.`);
