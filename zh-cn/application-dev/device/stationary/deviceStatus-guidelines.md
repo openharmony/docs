@@ -33,9 +33,9 @@ DeviceStatus（设备状态感知）模块提供设备状态感知能力，可�
 
 1. 导入模块。
 
-```ts
-import { deviceStatus } from '@kit.MultimodalAwarenessKit';
-```
+  ```ts
+  import { deviceStatus } from '@kit.MultimodalAwarenessKit';
+  ```
 
 2. 订阅设备静止姿态（支架态）感知事件。
 
