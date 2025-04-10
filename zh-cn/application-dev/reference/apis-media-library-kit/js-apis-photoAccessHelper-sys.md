@@ -127,27 +127,6 @@ async function example() {
 }
 ```
 
-## PhotoSelectOptions
-
-图库选择选项子类，继承于BaseSelectOptions。用于拉起对应userId空间的picker。
-
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| userId<sup>18+</sup> | number  | 否   | 指定访问空间的Id。默认值为-1。<br>当需要作为[PhotoViewPicker.select](js-apis-photoAccessHelper.md#select)的选择参数时，请申请ohos.permission.INTERACTA_CROSS_LOCAL_ACCOUNTS。<br>**系统接口**：此接口为系统接口。 |
-
-**示例：**
-
-```ts
-  private photoPicker() {
-    let picker = new photoAccessHelper.PhotoViewPicker();
-    let option = new photoAccessHelper.PhotoSelectOptions();
-    option.userId = 101;
-    picker.select(option);
-  }
-```
-
 ### createAsset
 
 createAsset(displayName: string, options: PhotoCreateOptions, callback: AsyncCallback&lt;PhotoAsset&gt;): void
@@ -7264,6 +7243,27 @@ async function example() {
     console.error(`getCloudMediaAssetStatusDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
+```
+
+## PhotoSelectOptions
+
+图库选择选项子类，继承于BaseSelectOptions。用于拉起对应userId空间的picker。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| userId<sup>18+</sup> | number  | 否   | 指定访问空间的Id。默认值为-1。<br>当需要作为[PhotoViewPicker.select](js-apis-photoAccessHelper.md#select)的选择参数时，请申请ohos.permission.INTERACTA_CROSS_LOCAL_ACCOUNTS。<br>**系统接口**：此接口为系统接口。 |
+
+**示例：**
+
+```ts
+  private photoPicker() {
+    let picker = new photoAccessHelper.PhotoViewPicker();
+    let option = new photoAccessHelper.PhotoSelectOptions();
+    option.userId = 101;
+    picker.select(option);
+  }
 ```
 
 ## PhotoSubtype
