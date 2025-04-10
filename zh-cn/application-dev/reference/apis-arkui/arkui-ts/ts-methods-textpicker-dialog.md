@@ -12,11 +12,13 @@
 
 ## TextPickerDialog
 
-### show
+### show<sup>(deprecated)</sup>
 
 static show(options?: TextPickerDialogOptions)
 
 定义文本滑动选择器弹窗并弹出。
+
+从API version 8开始支持，从API version 18开始废弃，建议使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showTextPickerDialog](../js-apis-arkui-UIContext.md#showtextpickerdialog)替代。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -101,7 +103,6 @@ struct TextPickerDialogExample {
           .margin(20)
           .onClick(() => {
             TextPickerDialog.show({
-              // 建议使用 this.getUIContext().showTextPickerDialog()接口
               range: this.fruits,
               selected: this.select,
               value: this.v,
@@ -165,8 +166,7 @@ struct TextPickerDialogExample {
         Button("TextPickerDialog:" + this.v)
           .margin(20)
           .onClick(() => {
-            TextPickerDialog.show({
-              // 建议使用 this.getUIContext().showTextPickerDialog()接口
+            this.getUIContext().showTextPickerDialog({
               range: this.fruits,
               selected: this.select,
               disappearTextStyle: { color: '#297bec', font: { size: 15, weight: FontWeight.Lighter } },
@@ -253,7 +253,7 @@ struct TextPickerDialogExample {
         Button("TextPickerDialog:" + this.v)
           .margin(20)
           .onClick(() => {
-            TextPickerDialog.show({ // 建议使用 this.getUIContext().showTextPickerDialog()接口
+            this.getUIContext().showTextPickerDialog({
               range: this.fruits,
               selected: this.select,
               disappearTextStyle: { color: Color.Red, font: { size: 15, weight: FontWeight.Lighter }},
@@ -319,7 +319,7 @@ struct TextPickerDialogExample {
         Button("TextPickerDialog:" + this.v)
           .margin(20)
           .onClick(() => {
-            TextPickerDialog.show({
+            this.getUIContext().showTextPickerDialog({
               range: this.fruits,
               selected: this.select,
               alignment: DialogAlignment.Center,
@@ -361,7 +361,7 @@ struct TextPickerDialogExample {
         Button("TextPickerDialog:" + this.v)
           .margin(20)
           .onClick(() => {
-            TextPickerDialog.show({
+            this.getUIContext().showTextPickerDialog({
               range: this.fruits,
               selected: this.select,
               maskRect: {
@@ -407,7 +407,7 @@ struct TextPickerDialogExample {
         Button("TextPickerDialog:" + this.v)
           .margin(20)
           .onClick(() => {
-            TextPickerDialog.show({
+            this.getUIContext().showTextPickerDialog({
               range: this.fruits,
               selected: this.select,
               backgroundColor: 'rgb(204, 226, 251)',
@@ -451,7 +451,7 @@ struct TextPickerDialogExample {
         Button("TextPickerDialog:" + this.v)
           .margin(20)
           .onClick(() => {
-            TextPickerDialog.show({
+            this.getUIContext().showTextPickerDialog({
               range: this.fruits,
               selected: this.select,
               value: this.v,

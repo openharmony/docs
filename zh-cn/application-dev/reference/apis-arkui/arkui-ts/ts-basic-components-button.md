@@ -67,6 +67,8 @@ Button()
 
 ## ButtonOptions对象说明
 
+按钮的样式。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                      | 类型                                          | 必填 | 说明                                                       |
@@ -97,7 +99,7 @@ type(value: ButtonType)
 
 | 参数名 | 类型                              | 必填 | 说明                                        |
 | ------ | --------------------------------- | ---- | ------------------------------------------- |
-| value  | [ButtonType](#buttontype枚举说明) | 是   | Button样式。<br/>默认值：ButtonType.ROUNDED_RECTANGLE |
+| value  | [ButtonType](#buttontype枚举说明) | 是   | Button样式。<br/>默认值：从API version 18及之后，ButtonType的默认值修改为ButtonType.ROUNDED_RECTANGLE。API version 18之前的版本，ButtonType的默认值为ButtonType.Capsule。 |
 
 ### fontSize
 
@@ -331,6 +333,8 @@ maxFontScale(scale: number | Resource)
 
 ## ButtonType枚举说明
 
+按钮的类型。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称      | 说明               |
@@ -350,6 +354,8 @@ maxFontScale(scale: number | Resource)
 
 ## LabelStyle<sup>10+</sup>对象说明
 
+按钮中文本的显示样式。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -357,13 +363,15 @@ maxFontScale(scale: number | Resource)
 | 名称                 | 类型                                                         | 必填 | 说明                                                         |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | overflow             | [TextOverflow](ts-appendix-enums.md#textoverflow)            | 否   | 设置label文本超长时的显示方式。文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可在字母间添加零宽空格。<br>默认值：TextOverflow.Ellipsis |
-| maxLines             | number                                                       | 否   | 设置label文本的最大行数。默认情况下，文本是自动折行的，如果指定此参数，则文本最多不会超过指定的行。如果有多余的文本，可以通过overflow来指定截断方式。<br>默认值：1 |
+| maxLines             | number                                                       | 否   | 设置label文本的最大行数。如果指定此参数，则文本最多不会超过指定的行。如果有多余的文本，可以通过overflow来指定截断方式。<br>默认值：1 |
 | minFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | 否   | 设置label文本最小显示字号。需配合maxFontSize以及maxLines或布局大小限制使用。<br/>**说明：**  <br/>minFontSize小于或等于0时，自适应字号不生效。 |
 | maxFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | 否   | 设置label文本最大显示字号。需配合minFontSize以及maxLines或布局大小限制使用。 |
 | heightAdaptivePolicy | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 否   | 设置label文本自适应高度的方式。<br>默认值：TextHeightAdaptivePolicy.MAX_LINES_FIRST。 |
 | font                 | [Font](ts-types.md#font)                                     | 否   | 设置label文本字体样式。<br>默认值：默认值参考[Font](ts-types.md#font)。 |
 
 ## ButtonStyleMode<sup>11+</sup>枚举说明
+
+按钮的重要程度。
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
@@ -379,6 +387,8 @@ maxFontScale(scale: number | Resource)
 
 ## ControlSize<sup>11+</sup>枚举说明
 
+按钮的尺寸。
+
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -391,6 +401,8 @@ maxFontScale(scale: number | Resource)
 | NORMAL  | "normal" |正常尺寸按钮。              |
 
 ## ButtonRole<sup>12+</sup>枚举说明
+
+按钮的角色。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 

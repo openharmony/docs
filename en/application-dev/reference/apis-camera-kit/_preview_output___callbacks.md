@@ -11,6 +11,8 @@ For details, see [OH_PreviewOutput_RegisterCallback](_o_h___camera.md#oh_preview
 
 **Related module**: [OH_Camera](_o_h___camera.md)
 
+**Header file**: [preview_output.h](preview__output_8h.md)
+
 
 ## Summary
 

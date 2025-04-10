@@ -79,7 +79,7 @@
       - 其他状态管理<!--arkts-other-state-mgmt-functions-->
         - [其他状态管理概述](arkts-other-state-mgmt-functions-overview.md)
         - [\@Watch装饰器：状态变量更改通知](arkts-watch.md)
-        - [$$语法：内置组件双向同步](arkts-two-way-sync.md)
+        - [$$语法：系统组件双向同步](arkts-two-way-sync.md)
         - [\@Track装饰器：class对象属性级更新](arkts-track.md)
         - [自定义组件冻结功能](arkts-custom-components-freeze.md)
       - [MVVM模式](arkts-mvvm.md)

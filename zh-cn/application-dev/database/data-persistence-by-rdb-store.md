@@ -80,7 +80,7 @@
        if (!tokenTypeSupported) {
          console.error(`ICU_TOKENIZER is not supported on this platform.`);
        }
-       const STORE_CONFIG :relationalStore.StoreConfig= {
+       const STORE_CONFIG: relationalStore.StoreConfig = {
          name: 'RdbTest.db', // 数据库文件名
          securityLevel: relationalStore.SecurityLevel.S3, // 数据库安全级别
          encrypt: false, // 可选参数，指定数据库是否加密，默认不加密
@@ -102,24 +102,37 @@
 
          // 当数据库创建时，数据库默认版本为0
          if (store.version === 0) {
-           store.executeSql(SQL_CREATE_TABLE); // 创建数据表，以便后续调用insert接口插入数据
-           // 设置数据库的版本，入参为大于0的整数
-           store.version = 3;
+           store.executeSql(SQL_CREATE_TABLE) // 创建数据表，以便后续调用insert接口插入数据
+             .then(() => {
+               // 设置数据库的版本，入参为大于0的整数
+               store.version = 3;
+             })
+             .catch((err: BusinessError) => {
+               console.error(`Failed to executeSql. Code:${err.code}, message:${err.message}`);
+             });
          }
 
          // 如果数据库版本不为0且和当前数据库版本不匹配，需要进行升降级操作
          // 当数据库存在并假定版本为1时，例应用从某一版本升级到当前版本，数据库需要从1版本升级到2版本
          if (store.version === 1) {
            // version = 1：表结构：EMPLOYEE (NAME, SALARY, CODES, ADDRESS) => version = 2：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS)
-           (store as relationalStore.RdbStore).executeSql('ALTER TABLE EMPLOYEE ADD COLUMN AGE INTEGER');
-           store.version = 2;
+           store.executeSql('ALTER TABLE EMPLOYEE ADD COLUMN AGE INTEGER')
+             .then(() => {
+               store.version = 2;
+             }).catch((err: BusinessError) => {
+               console.error(`Failed to executeSql. Code:${err.code}, message:${err.message}`);
+             });
          }
 
          // 当数据库存在并假定版本为2时，例应用从某一版本升级到当前版本，数据库需要从2版本升级到3版本
          if (store.version === 2) {
            // version = 2：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS) => version = 3：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES)
-           (store as relationalStore.RdbStore).executeSql('ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS TEXT');
-           store.version = 3;
+           store.executeSql('ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS')
+             .then(() => {
+               store.version = 3;
+             }).catch((err: BusinessError) => {
+               console.error(`Failed to executeSql. Code:${err.code}, message:${err.message}`);
+             });
          }
          // 请确保获取到RdbStore实例，完成数据表创建后，再进行数据库的增、删、改、查等操作
        });
@@ -136,7 +149,7 @@
    
    let context = featureAbility.getContext();
 
-   const STORE_CONFIG :relationalStore.StoreConfig = {
+   const STORE_CONFIG: relationalStore.StoreConfig = {
      name: 'RdbTest.db', // 数据库文件名
      securityLevel: relationalStore.SecurityLevel.S3 // 数据库安全级别
    };
@@ -153,24 +166,37 @@
 
      // 当数据库创建时，数据库默认版本为0
      if (store.version === 0) {
-       store.executeSql(SQL_CREATE_TABLE); // 创建数据表，以便后续调用insert接口插入数据
-       // 设置数据库的版本，入参为大于0的整数
-       store.version = 3;
+       store.executeSql(SQL_CREATE_TABLE) // 创建数据表，以便后续调用insert接口插入数据
+         .then(() => {
+           // 设置数据库的版本，入参为大于0的整数
+           store.version = 3;
+         })
+         .catch((err: BusinessError) => {
+           console.error(`Failed to executeSql. Code:${err.code}, message:${err.message}`);
+         });
      }
 
      // 如果数据库版本不为0且和当前数据库版本不匹配，需要进行升降级操作
      // 当数据库存在并假定版本为1时，例应用从某一版本升级到当前版本，数据库需要从1版本升级到2版本
      if (store.version === 1) {
        // version = 1：表结构：EMPLOYEE (NAME, SALARY, CODES, ADDRESS) => version = 2：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS)
-       store.executeSql('ALTER TABLE EMPLOYEE ADD COLUMN AGE INTEGER');
-       store.version = 2;
+       store.executeSql('ALTER TABLE EMPLOYEE ADD COLUMN AGE INTEGER')
+         .then(() => {
+           store.version = 2;
+         }).catch((err: BusinessError) => {
+           console.error(`Failed to executeSql. Code:${err.code}, message:${err.message}`);
+         });
      }
 
      // 当数据库存在并假定版本为2时，例应用从某一版本升级到当前版本，数据库需要从2版本升级到3版本
      if (store.version === 2) {
        // version = 2：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS) => version = 3：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES)
-       store.executeSql('ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS TEXT');
-       store.version = 3;
+       store.executeSql('ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS')
+         .then(() => {
+           store.version = 3;
+         }).catch((err: BusinessError) => {
+           console.error(`Failed to executeSql. Code:${err.code}, message:${err.message}`);
+         });
      }
      // 请确保获取到RdbStore实例，完成数据表创建后，再进行数据库的增、删、改、查等操作
    });

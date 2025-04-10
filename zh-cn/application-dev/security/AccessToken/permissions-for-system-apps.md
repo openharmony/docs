@@ -2692,18 +2692,6 @@
 
 **起始版本**：11
 
-## ohos.permission.CONNECT_UI_EXTENSION_ABILITY
-
-允许系统服务连接UIExtensionAbility。
-
-**权限级别**：system_core
-
-**授权方式**：系统授权（system_grant）
-
-**ACL使能**：true
-
-**起始版本**：11
-
 ## ohos.permission.SET_SANDBOX_POLICY
 
 允许系统应用设置动态沙箱策略。
@@ -3607,6 +3595,18 @@
 **ACL使能**：true
 
 **起始版本**：12
+
+## ohos.permission.RECEIVE_BMS_BROKER_MESSAGES
+
+允许系统服务或系统应用接收包管理代理服务消息。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
 
 ## ohos.permission.ACCESS_FUSION_MANAGER
 

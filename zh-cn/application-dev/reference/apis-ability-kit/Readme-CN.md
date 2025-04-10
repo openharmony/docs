@@ -271,6 +271,7 @@
     - [context_constant.h](context__constant_8h.md)
     - [native_interface_bundle.h](native__interface__bundle.md)
     - [native_child_process.h](native__child__process_8h.md)
+    - [start_options.h](start__options_8h.md)
     - [want.h](want__8h.md)
   - 结构体<!--ability-struct-->
     - [AbilityBase_Element](_ability_base_element.md)

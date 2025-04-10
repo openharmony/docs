@@ -30,8 +30,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| boolean [hasBias](#hasbias) | 是否使用bias。 | 
-| boolean [useAxis](#useaxis) | 是否使用轴。 | 
+| boolean [hasBias](#hasbias) | hasBias为true使用bias，反之不使用。 | 
+| boolean [useAxis](#useaxis) | useAxis为true使用轴，反之不使用。 | 
 | long [axis](#axis) | 指定输入张量做全连接的轴，从指定轴axis开始，将axis和axis之后的轴展开成1维张量之后再做全连接。 | 
 | enum [ActivationType](_n_n_rt_v20.md#activationtype)[activationType](#activationtype) | 激活函数类型，详情请参考：[ActivationType](_n_n_rt_v20.md#activationtype)。 | 
 
@@ -65,7 +65,7 @@ boolean FullConnection::hasBias
 
 **描述**
 
-是否使用bias。
+hasBias为true使用bias，反之不使用。
 
 ### useAxis
 
@@ -75,4 +75,4 @@ boolean FullConnection::useAxis
 
 **描述**
 
-是否使用轴。
+useAxis为true使用轴，反之不使用。

@@ -27,6 +27,8 @@ Navigation组件是路由导航的根视图容器，一般作为Page页面的根
 
 Navigation()
 
+创建路由导航的根视图容器。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -588,6 +590,8 @@ Navigation路由栈，允许被继承<sup>12+</sup>。开发者可以在派生�
 ### constructor
 
 constructor()
+
+创建NavPathStack对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1295,6 +1299,8 @@ setInterception(interception: NavigationInterception): void
 
 constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>, isEntry?: boolean)
 
+创建NavPathInfo对象。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1307,6 +1313,8 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>, isEntry?: 
 | isEntry<sup>12+</sup> | boolean | 否 | 标记NavDestination是否为入口页面。<br/>默认值：false。<br/>true:NavDestination是入口页面。<br/>false:NavDestination不是入口页面。 <br/>标记清理时机：1、在当前navDestination页面触发一次全局back事件。2、应用退至后台。<br/>**说明**：<br/>入口NavDestination不响应应用内的全局back事件，直接触发应用间的全局back事件。 |
 
 ### 属性
+
+NavPathInfo参数信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1368,6 +1376,8 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>, isEntry?: 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### 属性
+
+NavigationTransitionProxy参数信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1476,6 +1486,8 @@ Navigation首页名字。
 
 ## NavigationMenuItem
 
+导航菜单项，包括菜单图标和菜单信息。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 类型            | 必填   | 说明              |
@@ -1487,6 +1499,8 @@ Navigation首页名字。
 | symbolIcon<sup>12+</sup> |  [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)  | 否    |菜单栏单个选项的symbol资源（优先级高于icon）。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## ToolbarItem<sup>10+</sup>
+
+工具栏可配置参数。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1504,6 +1518,8 @@ Navigation首页名字。
 
 ## ToolbarItemStatus<sup>10+</sup>枚举说明
 
+工具栏单个选项的状态。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1515,6 +1531,8 @@ Navigation首页名字。
 | ACTIVE   | 2 | 设置工具栏单个选项为ACTIVE态， 该选项通过点击事件可以将icon图标更新为activeIcon对应的图片资源。 |
 
 ## NavigationTitleMode枚举说明
+
+标题栏显示模式。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1528,6 +1546,8 @@ Navigation首页名字。
 
 ## NavigationCommonTitle<sup>9+</sup>
 
+Navigation通用标题。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1538,6 +1558,8 @@ Navigation首页名字。
 | sub  | string \| [Resource<sup>14+<sup>](ts-types.md#resource) | 是    | 设置副标题。 |
 
 ## NavigationCustomTitle<sup>9+</sup>
+
+Navigation自定义标题。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1550,6 +1572,8 @@ Navigation首页名字。
 
 ## NavBarPosition<sup>9+</sup>枚举说明
 
+导航栏位置。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1560,6 +1584,8 @@ Navigation首页名字。
 | End   | 双栏显示时，主列在主轴方向尾部。 |
 
 ## NavigationMode<sup>9+</sup>枚举说明
+
+导航栏显示模式。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1572,6 +1598,8 @@ Navigation首页名字。
 | Auto  | API version 9之前：窗口宽度>=520vp时，采用Split模式显示；窗口宽度<520vp时，采用Stack模式显示。<br/>API version 10及以上：窗口宽度>=600vp时，采用Split模式显示；窗口宽度<600vp时，采用Stack模式显示，600vp等于minNavBarWidth(240vp) + minContentWidth (360vp)。 |
 
 ## NavigationOperation<sup>11+</sup>枚举说明
+
+页面跳转类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1597,6 +1625,8 @@ Navigation首页名字。
 
 ## NavigationTitleOptions<sup>11+</sup>
 
+标题栏选项。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 类型            | 必填   | 说明              |
@@ -1612,6 +1642,8 @@ Navigation首页名字。
 
 ## NavigationToolbarOptions<sup>11+</sup>
 
+工具栏选项。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 类型            | 必填   | 说明              |
@@ -1621,6 +1653,8 @@ Navigation首页名字。
 | barStyle<sup>14+</sup>   | [BarStyle](#barstyle12枚举说明)        | 否    | 设置工具栏布局方式。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 
 ## LaunchMode<sup>12+</sup>枚举说明
+
+页面栈操作模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1634,6 +1668,8 @@ Navigation首页名字。
 | NEW_INSTANCE | 3 | 创建新的NavDestination实例。与STANDARD模式相比，该方法不会复用栈中同名实例。 |
 
 ## NavigationOptions<sup>12+</sup>
+
+页面栈操作选项。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

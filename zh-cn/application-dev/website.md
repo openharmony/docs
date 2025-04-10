@@ -426,6 +426,7 @@
             - [创建列表 (List)](ui/arkts-layout-development-create-list.md)
             - [创建弧形列表 (ArcList)](ui/arkts-layout-development-create-arclist.md)（圆形屏幕推荐使用）
             - [创建网格 (Grid/GridItem)](ui/arkts-layout-development-create-grid.md)
+            - [创建瀑布流 (WaterFlow)](ui/arkts-layout-development-create-waterflow.md)
             - [创建轮播 (Swiper)](ui/arkts-layout-development-create-looping.md)
             - [创建弧形轮播 (ArcSwiper)](ui/arkts-layout-development-arcswiper.md)（圆形屏幕推荐使用）
             - [选项卡 (Tabs)](ui/arkts-navigation-tabs.md)
@@ -521,7 +522,7 @@
           - [自定义能力概述](ui/arkts-user-defined.md)
           - 自定义节点<!--arkts-nodes-->
             - [自定义节点概述](ui/arkts-user-defined-node.md)
-            - [自定义占位节点](ui/arkts-user-defined-place-hoder.md)
+            - [自定义占位节点](ui/arkts-user-defined-place-holder.md)
             - [自定义组件节点 (FrameNode)](ui/arkts-user-defined-arktsNode-frameNode.md)
             - [自定义渲染节点 (RenderNode)](ui/arkts-user-defined-arktsNode-renderNode.md)
             - [自定义声明式节点 (BuilderNode)](ui/arkts-user-defined-arktsNode-builderNode.md)
@@ -684,7 +685,7 @@
         - [设置Web组件前进后退缓存](web/web-set-back-forward-cache.md)
         - [Web组件在不同窗口间迁移](web/web-component-migrate.md)
       - 管理网页文件上传与下载<!--web-manage-upload-download-->
-        - [上传文件](web/web-file-upload.md)
+        - [使用Web组件上传文件](web/web-file-upload.md)
         - [使用Web组件的下载能力](web/web-download.md)
       - 使用网页多媒体<!--web-use-multimedia-->
         - [使用WebRTC进行Web视频会议](web/web-rtc.md)
@@ -804,9 +805,9 @@
       - [输入法应用沉浸模式](inputmethod/inputmethod-immersive-mode-guide.md)
     - IPC Kit（进程间通信服务）<!--ipc-kit-->
       - [IPC Kit简介](ipc/ipc-rpc-overview.md)
-      - [IPC与RPC通信开发指导](ipc/ipc-rpc-development-guideline.md)
+      - [IPC与RPC通信开发指导(ArkTS)](ipc/ipc-rpc-development-guideline.md)
+      - [IPC与RPC通信开发指导(C/C++)](ipc/ipc-capi-development-guideline.md)
       - [远端状态订阅开发实例](ipc/subscribe-remote-state.md)
-      - [IPC通信开发指导（C/C++）](ipc/ipc-capi-development-guideline.md)
     - Localization Kit（本地化开发服务）<!--localization-kit-->
       - [Localization Kit简介](internationalization/i18n-l10n.md)
       - 应用国际化<!--i18n-->
@@ -1300,7 +1301,7 @@
                 - [订阅主线程超时事件（C/C++）](dfx/hiappevent-watcher-mainthreadjank-events-ndk.md)
               - 任务执行超时事件<!--app-hicollie-events-->
                 - [任务执行超时事件介绍](dfx/hiappevent-watcher-apphicollie-events.md)
-                - [任务执行超时事件（C/C++）](dfx/hiappevent-watcher-apphicollie-events-ndk.md)
+                - [订阅任务执行超时事件（C/C++）](dfx/hiappevent-watcher-apphicollie-events-ndk.md)
         <!--Del-->
           - [事件上报](dfx/hiappevent-event-reporting.md)
         <!--DelEnd-->
@@ -1499,31 +1500,41 @@
     - Image Kit（图片处理服务）<!--image-kit-->
       - [Image Kit简介](media/image/image-overview.md)
       - 图片开发指导(ArkTS)<!--image-arkts-dev-->
-        - [使用ImageSource完成图片解码](media/image/image-decoding.md)
-        - [使用ImageSource完成多图对象解码](media/image/image-picture-decoding.md)
-        - [使用PixelMap完成图像变换](media/image/image-transformation.md)
-        - [使用PixelMap完成位图操作](media/image/image-pixelmap-operation.md)
-        - [使用ImagePacker完成图片编码](media/image/image-encoding.md)
-        - [使用ImagePacker完成多图对象编码](media/image/image-picture-encoding.md)
-        - [编辑图片EXIF信息](media/image/image-tool.md)
-        - [申请图片解码内存](media/image/image-allocator-type.md)
+        - 图片解码<!--image-decoding-arts-->
+          - [使用ImageSource完成图片解码](media/image/image-decoding.md)
+          - [使用ImageSource完成多图对象解码](media/image/image-picture-decoding.md)
+          - [申请图片解码内存](media/image/image-allocator-type.md)
+        - 图片编码<!--image-encoding-arts-->
+          - [使用ImagePacker完成图片编码](media/image/image-encoding.md)
+          - [使用ImagePacker完成多图对象编码](media/image/image-picture-encoding.md)
+        - 图片编辑和处理<!--image-editing-arkts-->
+          - [使用PixelMap完成图像变换](media/image/image-transformation.md)
+          - [使用PixelMap完成位图操作](media/image/image-pixelmap-operation.md)
+          - [编辑图片EXIF信息](media/image/image-tool.md)
+        - 图片接收<!--image-receiving-arkts-->
+          - [使用ImageReceiver完成图片接收](media/image/image-receiver.md)
       - 图片开发指导(C/C++)<!--image-native-->
-        - [介绍Image_NativeModule结构体信息](media/image/image-structure-c.md)
-        - [使用Image_NativeModule完成图片解码](media/image/image-source-c.md)
-        - [使用Image_NativeModule完成多图对象解码](media/image/image-source-picture-c.md)
-        - [使用Image_NativeModule完成图片接收器](media/image/image-receiver-c.md)
-        - [使用Image_NativeModule完成位图操作](media/image/pixelmap-c.md)
-        - [使用Image_NativeModule处理图像信息](media/image/image-info-c.md)
-        - [使用Image_NativeModule完成图片编码](media/image/image-packer-c.md)
-        - [使用Image_NativeModule完成多图对象编码](media/image/image-packer-picture-c.md)
-        - [使用ImageEffect编辑图片](media/image/image-effect-guidelines.md)
-        - [申请图片解码内存](media/image/image-allocator-type-c.md)
-      - 图片开发指导(依赖JS对象)(C/C++)<!--image-native-js-objects-->
-        - [使用Image完成图片解码](media/image/image-decoding-native.md)
-        - [使用Image完成图片接收器](media/image/image-receiver-native.md)
-        - [使用Image完成图像变换](media/image/image-transformation-native.md)
-        - [使用Image处理PixelMap数据](media/image/image-pixelmap-operation-native.md)
-        - [使用Image完成图片编码](media/image/image-encoding-native.md)
+        - 图片解码<!--image-decoding-c-->
+          - [使用Image_NativeModule完成图片解码](media/image/image-source-c.md)
+          - [使用Image_NativeModule完成多图对象解码](media/image/image-source-picture-c.md)
+          - [申请图片解码内存](media/image/image-allocator-type-c.md)
+        - 图片编码<!--image-encoding-c-->
+          - [使用Image_NativeModule完成图片编码](media/image/image-packer-c.md)
+          - [使用Image_NativeModule完成多图对象编码](media/image/image-packer-picture-c.md)
+        - 图片编辑和处理<!--image-editing-c-->
+          - [使用Image_NativeModule完成位图操作](media/image/pixelmap-c.md)
+          - [使用ImageEffect编辑图片](media/image/image-effect-guidelines.md)
+          - [编辑图片EXIF信息](media/image/image-tool-c.md)
+        - 图片接收<!--image-receiving-c-->
+          - [使用Image_NativeModule完成图片接收](media/image/image-receiver-c.md)
+          - [使用Image_NativeModule处理图像信息](media/image/image-info-c.md)
+      - 不再推荐使用<!--imagekit-not-recommended-->
+        - 图片开发指导(依赖JS对象)(C/C++)<!--image-native-js-objects-->
+          - [图片解码](media/image/image-decoding-native.md)
+          - [图片编码](media/image/image-encoding-native.md)
+          - [图像变换](media/image/image-transformation-native.md)
+          - [位图操作](media/image/image-pixelmap-operation-native.md)
+          - [图片接收](media/image/image-receiver-native.md)
     - Media Kit（媒体服务）<!--media-kit-->
       - [Media Kit简介](media/media/media-kit-intro.md)
       - [Media Kit开发速览](media/media/media-kit-quick-overview.md)
@@ -1663,6 +1674,7 @@
         - [发布实况窗类型通知（仅对系统应用开放）](notification/live-view-notification.md)
         <!--DelEnd-->
         - [为通知添加行为意图](notification/notification-with-wantagent.md)
+        - [为跨设备协同通知添加快捷回复](notification/notification-quickreply.md)
       - [更新通知](notification/notification-update.md)
       - [取消通知](notification/notification-cancel.md)
       <!--Del-->
@@ -2174,6 +2186,7 @@
           - [context_constant.h](reference/apis-ability-kit/context__constant_8h.md)
           - [native_interface_bundle.h](reference/apis-ability-kit/native__interface__bundle.md)
           - [native_child_process.h](reference/apis-ability-kit/native__child__process_8h.md)
+          - [start_options.h](reference/apis-ability-kit/start__options_8h.md)
           - [want.h](reference/apis-ability-kit/want__8h.md)
         - 结构体<!--ability-struct-->
           - [AbilityBase_Element](reference/apis-ability-kit/_ability_base_element.md)
@@ -2590,6 +2603,7 @@
           <!--Del-->
           - [TextInput (系统接口)](reference/apis-arkui/arkui-ts/ts-basic-components-textinput-sys.md)
           - [属性字符串 (系统接口)](reference/apis-arkui/arkui-ts/ts-universal-styled-string-sys.md)
+          - [RichEditor(系统接口)](reference/apis-arkui/arkui-ts/ts-basic-components-richeditor-sys.md)
           <!--DelEnd-->
         - 图片与视频<!--images-and-videos-->
           - [Image](reference/apis-arkui/arkui-ts/ts-basic-components-image.md)
@@ -2994,7 +3008,6 @@
           - [ARKUI_TextPickerCascadeRangeContent](reference/apis-arkui/_a_r_k_u_i___text_picker_cascade_range_content.md)
           - [ARKUI_TextPickerRangeContent](reference/apis-arkui/_a_r_k_u_i___text_picker_range_content.md)
           - [ArkUI_TranslationOptions](reference/apis-arkui/_ark_u_i___translation_options.md)
-          - [OH_ComponentSnapshot](reference/apis-arkui/_ark_u_i___node_component_snapshot.md)
           - [OH_NativeXComponent_Callback](reference/apis-arkui/_o_h___native_x_component___callback.md)
           - [OH_NativeXComponent_ExpectedRateRange](reference/apis-arkui/_o_h___native_x_component___expected_rate_range.md)
           - [OH_NativeXComponent_MouseEvent](reference/apis-arkui/_o_h___native_x_component___mouse_event.md)
@@ -3024,6 +3037,7 @@
           - [半模态错误码](reference/apis-arkui/errorcode-bindSheet.md)
           - [滚动类组件错误码](reference/apis-arkui/errorcode-scroll.md)
           - [截图错误码](reference/apis-arkui/errorcode-snapshot.md)
+          - [UI上下文错误码](reference/apis-arkui/errorcode-uicontext.md)
         - 图形图像<!--arkui-graphics-images-arkts-errcode-->
           - [屏幕错误码](reference/apis-arkui/errorcode-display.md)
           - [窗口错误码](reference/apis-arkui/errorcode-window.md)
@@ -3100,7 +3114,6 @@
         - [DeviceUsageStatistics错误码](reference/apis-backgroundtasks-kit/errorcode-DeviceUsageStatistics.md)
         - [reminderAgentManager错误码](reference/apis-backgroundtasks-kit/errorcode-reminderAgentManager.md)
         - [workScheduler错误码](reference/apis-backgroundtasks-kit/errorcode-workScheduler.md)
-        - [backgroundProcessManager错误码](reference/apis-backgroundtasks-kit/errorcode-backgroundProcessManager.md)
     - Core File Kit（文件基础服务）<!--core-file-api-->
       - ArkTS API<!--core-file-arkts-->
         - [@ohos.application.BackupExtensionAbility (备份恢复扩展能力)](reference/apis-core-file-kit/js-apis-application-backupExtensionAbility.md)
@@ -3123,6 +3136,7 @@
         - [@ohos.file.environment (目录环境能力)(系统接口)](reference/apis-core-file-kit/js-apis-file-environment-sys.md)
         - [@ohos.file.fileAccess (公共文件访问与管理)(系统接口)](reference/apis-core-file-kit/js-apis-fileAccess-sys.md)
         - [@ohos.file.fileExtensionInfo (公共文件访问与管理属性信息)(系统接口)](reference/apis-core-file-kit/js-apis-fileExtensionInfo-sys.md)
+        - [@ohos.file.picker (选择器)(系统接口)](reference/apis-core-file-kit/js-apis-file-picker-sys.md)
         - [@ohos.file.keyManager (用户秘钥管理)(系统接口)](reference/apis-core-file-kit/js-apis-file-keymanager-sys.md)
         - [@ohos.file.recent(最近访问列表)(系统接口)](reference/apis-core-file-kit/js-apis-file-recent-sys.md)
         - [@ohos.file.storageStatistics (应用空间统计)(系统接口)](reference/apis-core-file-kit/js-apis-file-storage-statistics-sys.md)
@@ -3194,6 +3208,7 @@
         - [@ohos.InputMethodSubtype (输入法子类型)](reference/apis-ime-kit/js-apis-inputmethod-subtype.md)
         <!--Del-->
         - [@ohos.inputMethod (输入法框架)(系统接口)](reference/apis-ime-kit/js-apis-inputmethod-sys.md)
+        - [@ohos.inputMethodEngine (输入法服务)(系统接口)](reference/apis-ime-kit/js-apis-inputmethodengine-sys.md)
         <!--DelEnd-->
         - [@ohos.inputMethod (输入法框架)](reference/apis-ime-kit/js-apis-inputmethod.md)
         - [@ohos.inputMethodEngine (输入法服务)](reference/apis-ime-kit/js-apis-inputmethodengine.md)
@@ -3408,6 +3423,7 @@
           - [@ohos.bluetooth.constant(蓝牙constant模块)(推荐)(系统接口)](reference/apis-connectivity-kit/js-apis-bluetooth-constant-sys.md)
           - [@ohos.bluetooth.hfp(蓝牙hfp模块)(推荐)(系统接口)](reference/apis-connectivity-kit/js-apis-bluetooth-hfp-sys.md)
           - [@ohos.bluetooth.hid(蓝牙hid模块)(推荐)(系统接口)](reference/apis-connectivity-kit/js-apis-bluetooth-hid-sys.md)
+          - [@ohos.bluetooth.opp(蓝牙opp模块)(推荐)(系统接口)](reference/apis-connectivity-kit/js-apis-bluetooth-opp-sys.md)
           - [@ohos.bluetooth.pan(蓝牙pan模块)(推荐)(系统接口)](reference/apis-connectivity-kit/js-apis-bluetooth-pan-sys.md)
           - [@ohos.bluetooth.pbap(蓝牙pbap模块)(推荐)(系统接口)](reference/apis-connectivity-kit/js-apis-bluetooth-pbap-sys.md)
           - [@ohos.bluetooth.map(蓝牙map模块)(推荐)(系统接口)](reference/apis-connectivity-kit/js-apis-bluetooth-map-sys.md)
@@ -3883,8 +3899,13 @@
         - ArkTS API<!--multimodal-awareness-arkts-->
           - [@ohos.stationary (设备状态感知框架)](reference/apis-multimodalawareness-kit/js-apis-stationary.md)
           - [@ohos.multimodalAwareness.motion (动作感知能力)](reference/apis-multimodalawareness-kit/js-apis-awareness-motion.md)
+          - [@js-apis-awareness-metadataBinding (回旋镖)](reference/apis-multimodalawareness-kit/js-apis-awareness-metadataBinding.md)
+          <!--Del-->
+          - [@js-apis-awareness-metadataBinding (回旋镖)(系统接口)](reference/apis-multimodalawareness-kit/js-apis-awareness-metadataBinding-sys.md)
+          <!--DelEnd-->
         - 错误码<!--ultimodal-awareness-arkts-errcode-->
           - [行为动作感知错误码](reference/apis-multimodalawareness-kit/errorcode-motion.md)
+          - [回旋镖错误码](reference/apis-multimodalawareness-kit/errorcode-metadataBinding.md)
       - Sensor Service Kit（传感器服务）<!--sensor-service-api-->
         - ArkTS API<!--sensor-service-arkts-->
           - [@ohos.sensor(传感器)](reference/apis-sensor-service-kit/js-apis-sensor.md)
@@ -4405,7 +4426,6 @@
           - [OH_Drawing_RunBuffer](reference/apis-arkgraphics2d/_o_h___drawing___run_buffer.md)
           - [OH_Drawing_String](reference/apis-arkgraphics2d/_o_h___drawing___string.md)
           - [OH_Drawing_StrutStyle](reference/apis-arkgraphics2d/_o_h___drawing___strut_style.md)
-          - [OH_Filter](reference/apis-arkgraphics2d/_o_h___filter.md)
           - [OH_Filter_ColorMatrix](reference/apis-arkgraphics2d/_o_h___filter___color_matrix.md)
           - [OH_NativeBuffer_ColorXY](reference/apis-arkgraphics2d/_o_h___native_buffer___color_x_y.md)
           - [OH_NativeBuffer_Config](reference/apis-arkgraphics2d/_o_h___native_buffer___config.md)

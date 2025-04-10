@@ -334,8 +334,8 @@ sendableImage下的PixelMap支持sendable属性，支持worker线程共享。sen
 
 | 名称              | 类型    | 可读 | 可写 | 说明                       |
 | -----------------| ------- | ---- | ---- | -------------------------- |
-| isEditable        | boolean | 是   | 否   | true表示图像像素可被编辑。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| isStrideAlignment | boolean | 是   | 否   | true表示图像内存为DMA内存，DMA内存的PixelMap会做256字节内存对齐，行末会存在padding区域。 |
+| isEditable        | boolean | 是   | 否   | true表示图像像素可被编辑，false表示不可被编辑。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| isStrideAlignment | boolean | 是   | 否   | true表示图像内存为DMA内存，false表示非DMA内存。DMA内存的PixelMap会做256字节内存对齐，行末会存在padding区域。 |
 
 ### readPixelsToBuffer
 
@@ -1726,7 +1726,7 @@ async function Demo() {
 
 createImageSource(uri: string): ImageSource
 
-通过传入的uri创建图片源实例。
+通过传入的uri创建ImageSource实例。
 
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -1757,7 +1757,7 @@ const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createIm
 
 createImageSource(fd: number): ImageSource
 
-通过传入文件描述符来创建图片源实例。
+通过传入文件描述符来创建ImageSource实例。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1790,7 +1790,7 @@ const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createIm
 
 createImageSource(buf: ArrayBuffer): ImageSource
 
-通过缓冲区创建图片源实例。
+通过缓冲区创建ImageSource实例。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -1862,7 +1862,7 @@ let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(si
 
 ## ImageSource
 
-图片源类，用于获取图片相关信息。在调用ImageSource的方法前，需要先通过[createImageSource](#sendableimagecreateimagesource)构建一个ImageSource实例。
+ImageSource类，用于获取图片相关信息。在调用ImageSource的方法前，需要先通过[createImageSource](#sendableimagecreateimagesource)构建一个ImageSource实例。
 
 
 ### createPixelMap
@@ -1908,7 +1908,7 @@ sendableImageSourceApi.createPixelMap().then((pixelMap: sendableImage.PixelMap) 
 
 release(): Promise\<void>
 
-释放图片源实例，使用Promise形式返回结果。release是线程不安全的。
+释放ImageSource实例，使用Promise形式返回结果。release是线程不安全的。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
