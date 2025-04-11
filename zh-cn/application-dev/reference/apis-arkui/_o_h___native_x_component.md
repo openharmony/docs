@@ -637,7 +637,7 @@ enum OH_NativeXComponent_MouseEventAction
 | OH_NATIVEXCOMPONENT_MOUSE_PRESS   | 鼠标按键按下时触发鼠标事件。   |
 | OH_NATIVEXCOMPONENT_MOUSE_RELEASE | 鼠标按键松开时触发鼠标事件。   |
 | OH_NATIVEXCOMPONENT_MOUSE_MOVE    | 鼠标在屏幕上移动时触发鼠标事件。 |
-| OH_NATIVEXCOMPONENT_MOUSE_CANCEL    | 鼠标按键被取消时触发鼠标事件。 |
+| OH_NATIVEXCOMPONENT_MOUSE_CANCEL    | 鼠标按键被取消时触发鼠标事件。<br/>**起始版本：** 18 |
 
 **起始版本：**
 
