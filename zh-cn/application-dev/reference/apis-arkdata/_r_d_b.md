@@ -515,7 +515,7 @@ typedef enum Rdb_Tokenizer Rdb_Tokenizer
 
 描述数据库的分词器类型。
 
-**起始版本：** 18
+**起始版本：** 17
 
 ### OH_Rdb_ConfigV2
 
@@ -1093,13 +1093,13 @@ enum Rdb_Tokenizer
 
 描述数据库的分词器类型。
 
-**起始版本：** 18
+**起始版本：** 17
 
 | 枚举值 | 描述 |
 | -------- | -------- |
 | RDB_NONE_TOKENIZER | 表示不使用分词器。 |
 | RDB_ICU_TOKENIZER | 表示使用原生ICU分词器。 |
-| RDB_CUSTOM_TOKENIZER | 表示使用CUSTOM分词器。 |
+| RDB_CUSTOM_TOKENIZER<sup>18+</sup> | 表示使用CUSTOM分词器。 |
 
 ### Rdb_DBType
 
@@ -1700,7 +1700,7 @@ int OH_Rdb_SetTokenizer (OH_Rdb_ConfigV2 *config, Rdb_Tokenizer tokenizer )
 
 给指定的数据库文件配置设置分词器类型。
 
-**起始版本：** 18
+**起始版本：** 17
 
 **参数：**
 
