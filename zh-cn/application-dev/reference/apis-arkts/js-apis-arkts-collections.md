@@ -350,6 +350,50 @@ let array : Array<Array<string>> = [['str1', 'str2', 'str3'], ['str4', 'str5', '
 let sendableArray = collections.Array.from<Array<string>>(array); // 打印异常信息：Parameter error.Only accept sendable value
 ```
 
+### from
+
+static from\<T>(iterable: Iterable\<T>): Array\<T>
+
+从一个实现了Iterable接口的对象创建一个新的ArkTS Array。
+
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名    | 类型          | 必填 | 说明                            |
+| --------- | ------------- | ---- | ------------------------------- |
+| iterable | Iterable\<T> | 是   | 用于构造ArkTS Array的对象。 |
+
+**返回值：**
+
+| 类型      | 说明                    |
+| --------- | ----------------------- |
+| Array\<T> | 新创建的ArkTS Array实例。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 401 | Parameter error: Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 10200011 | The from method cannot be bound. |
+
+**示例：**
+
+```ts
+// 正例
+const mapper = new Map([
+  ['1', 'a'],
+  ['2', 'b'],
+]);
+let newArray: collections.Array<string> = collections.Array.from(mapper.values());
+console.info(newArray.toString());
+// 预期输出： a,b
+```
+
 ### pop
 
 pop(): T | undefined
