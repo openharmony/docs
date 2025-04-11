@@ -3228,7 +3228,7 @@ IME_ERR_NULL_POINTER - 非预期的空指针。
 ### OH_TextConfig_GetPlaceholder()
 
 ```
-InputMethod_ErrorCode OH_TextConfig_GetPlaceholder(InputMethod_TextConfig *config, char16_t **placeholder, size_t* const length)
+InputMethod_ErrorCode OH_TextConfig_GetPlaceholder(InputMethod_TextConfig *config, char16_t *placeholder, size_t *length)
 ```
 
 **描述**
@@ -3241,9 +3241,9 @@ InputMethod_ErrorCode OH_TextConfig_GetPlaceholder(InputMethod_TextConfig *confi
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| config |指向[InputMethod_TextConfig](#inputmethod_textconfig)对象的指针 | 
-| placeholder | 返回占位符信息的指针，需要外部调用free函数以释放内部请求的内存。 | 
-| length |返回占位符的长度，计数单位：char16_t长度（双字节）|
+| config |指向[InputMethod_TextConfig](#inputmethod_textconfig)对象的指针,必填。 |
+| placeholder | 占位符的指针，需要外部调用方申请维护，该字段的最大长度为256个utf-16字符，建议申请申请512个char_16的内存大小；或者先根据实际大小来申请内存大小。 |
+| length |输入输出参数，必填。输入用户申请内存的大小，返回placeholder真实的大小，计数单位：char16_t长度（双字节）。可以通过填0的方式先获取需要分配内存的实际大小|
 **返回：**
 
 返回一个特定的错误码。
@@ -3259,7 +3259,7 @@ IME_ERR_NULL_POINTER - 非预期的空指针。
 ### OH_TextConfig_GetAbilityName()
 
 ```
-InputMethod_ErrorCode OH_TextConfig_GetAbilityName(InputMethod_TextConfig *config, char16_t **abilityName, size_t* const length)
+InputMethod_ErrorCode OH_TextConfig_GetAbilityName(InputMethod_TextConfig *config, char16_t *abilityName, size_t *length)
 ```
 
 **描述**
@@ -3272,9 +3272,9 @@ InputMethod_ErrorCode OH_TextConfig_GetAbilityName(InputMethod_TextConfig *confi
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| config |指向[InputMethod_TextConfig](#inputmethod_textconfig)对象的指针 | 
-| placeholder | 返回占能力名称的指针，需要外部调用free函数以释放内部请求的内存。 | 
-| length |返回占能力名称的长度，计数单位：char16_t长度（双字节）|
+| config |指向[InputMethod_TextConfig](#inputmethod_textconfig)对象的指针，必填。 |
+| abilityName | 返回能力名称的指针，需要外部调用方申请维护，该字段的最大长度为32个utf-16字符，建议申请申请64个char_16的内存大小；或者先根据实际大小来申请内存大小。 |
+| length |输入输出参数，必填。输入用户申请内存的大小，返回abilityName真实的大小，计数单位：char16_t长度（双字节）。可以通过填0的方式先获取需要分配内存的实际大小。|
 **返回：**
 
 返回一个特定的错误码。
