@@ -806,7 +806,6 @@ usbSubmitTransfer(transfer: UsbDataTransferParams): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 801 | Capability not supported. |
 | 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first. |
 | 14400007 | Resource busy. |
@@ -889,7 +888,6 @@ usbCancelTransfer(transfer: UsbDataTransferParams): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 801 | Capability not supported. |
 | 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first. |
 | 14400008 | No such device (it may have been disconnected). |
