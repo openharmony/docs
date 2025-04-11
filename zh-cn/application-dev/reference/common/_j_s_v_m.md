@@ -5849,7 +5849,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_AddHandlerForGC(JSVM_VM vm, JSVM_CBTriggerTimeFo
 
 **描述**
 
-调用JSVM-API的环境。
+在VM中添加GC的回调函数。
 
 **起始版本：** 18
 
@@ -5878,7 +5878,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_RemoveHandlerForGC(JSVM_VM vm, JSVM_CBTriggerTim
 
 **描述**
 
-调用JSVM-API的环境。
+在VM中移除GC的回调函数。
 
 **起始版本：** 18
 
