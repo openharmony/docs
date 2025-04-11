@@ -1,7 +1,7 @@
 # \@Require装饰器：校验构造传参
 
 
-\@Require是校验\@Prop、\@State、\@Provide、\@BuilderParam和普通变量(无状态装饰器修饰的变量)是否需要构造传参的一个装饰器。
+\@Require是校验\@Prop、\@State、\@Provide、\@BuilderParam 、\@Param和普通变量(无状态装饰器修饰的变量)是否需要构造传参的一个装饰器。
 
 
 > **说明：**
@@ -10,22 +10,22 @@
 >
 > 从API version 11开始，该装饰器支持在原子化服务中使用。
 >
-> 从API version 12开始对\@State/\@Provide/普通变量(无状态装饰器修饰的变量)进行校验。
+> 从API version 12开始对\@State/\@Provide/\@Param/和普通变量(无状态装饰器修饰的变量)进行校验。
 
 
 ## 概述
 
-当\@Require装饰器和\@Prop、\@State、\@Provide、\@BuilderParam、普通变量(无状态装饰器修饰的变量)结合使用时，在构造该自定义组件时，\@Prop、\@State、\@Provide、\@BuilderParam和普通变量(无状态装饰器修饰的变量)必须在构造时传参。
+当\@Require装饰器和\@Prop、\@State、\@Provide、\@BuilderParam、\@Param和普通变量(无状态装饰器修饰的变量)结合使用时，在构造该自定义组件时，\@Prop、\@State、\@Provide、\@BuilderParam、\@Param和普通变量(无状态装饰器修饰的变量)必须在构造时传参。
 
 ## 限制条件
 
-\@Require装饰器仅用于装饰struct内的\@Prop、\@State、\@Provide、\@BuilderParam和普通变量(无状态装饰器修饰的变量)。
+\@Require装饰器仅用于装饰struct内的\@Prop、\@State、\@Provide、\@BuilderParam、\@Param和普通变量(无状态装饰器修饰的变量)。
 
 预览器限制场景请参考[PreviewChecker检测规则](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-previewer-previewchecker-V5)。
 
 ## 使用场景
 
-当Child组件内使用\@Require装饰器和\@Prop、\@State、\@Provide、\@BuilderParam和普通变量(无状态装饰器修饰的变量)结合使用时，父组件Index在构造Child时必须传参，否则编译不通过。
+当Child组件内使用\@Require装饰器和\@Prop、\@State、\@Provide、\@BuilderParam、\@Param和普通变量(无状态装饰器修饰的变量)结合使用时，父组件Index在构造Child时必须传参，否则编译不通过。
 
 ```ts
 @Entry
