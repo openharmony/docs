@@ -1,6 +1,6 @@
 # 元能力子系统Changelog
 
-## cl.formkit.1 卡片定时刷新最小间隔行为变更
+## cl.formkit.1 卡片可加载module
 
 **访问级别**
 
