@@ -5692,7 +5692,7 @@ void OH_ArkUI_AlignmentRuleOption_SetTop (ArkUI_AlignmentRuleOption * option, co
 | -------- | -------- |
 | option | 相对容器中子组件的对齐规则信息。  | 
 | id | 锚点的组件的id值。  | 
-| value | 相对于锚点组件的对齐方式  | 
+| value | 相对于锚点组件的对齐方式。  | 
 
 
 ### OH_ArkUI_AllowNodeAllDropDataTypes()
