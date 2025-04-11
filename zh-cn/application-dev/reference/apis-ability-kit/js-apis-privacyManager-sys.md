@@ -894,7 +894,7 @@ privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
 | 名称       | 类型             | 必填   | 说明                                       |
 | -------- | -------------- | ---- | ---------------------------------------- |
 | tokenId  | number         | 否    | 目标应用的身份标识。<br/> 默认查询所有应用。         |
-| isRemote | boolean         | 否    | 是否查询远端设备。<br/> 默认值false，默认查询本端设备。 |
+| isRemote | boolean         | 否    | 指定是否查询远端设备。<br/> 默认值false，默认查询本端设备。 |
 | deviceId  | string         | 否    | 目标应用所在设备的ID。<br/> 默认设备ID为本端设备ID。   |
 | bundleName | string         | 否    | 目标应用的包名。<br/> 默认查询所有应用。 |
 | permissionNames  | Array&lt;Permissions&gt;         | 否    | 需要查询的权限集合。<br/> 默认查询所有权限的使用记录。               |
