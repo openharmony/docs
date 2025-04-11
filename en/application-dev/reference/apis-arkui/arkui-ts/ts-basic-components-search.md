@@ -29,7 +29,7 @@ Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, con
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### searchButton
 
@@ -205,7 +205,7 @@ enableKeyboardOnFocus(value: boolean)
 
 Sets whether to enable the input method when the **Search** component obtains focus in a way other than clicking.
 
- 
+Since API version 10, the **Search** component brings up the keyboard by default when it obtains focus.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -270,7 +270,7 @@ type(value: SearchType)
 
 Sets the text box type.
 
-<br>**Atomic service API**: This API can be used in atomic services since API version 12.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -348,7 +348,7 @@ Sets the color, type, and style of the text decorative line.
 
 letterSpacing(value: number | string | Resource)
 
-Sets the letter spacing for a text style. If the value specified is a percentage or 0, the default value is used.
+Sets the letter spacing for a text style. If the value specified is a percentage or 0, the default value is used. For the string type, numeric string values with optional units, for example, **"10"** or **"10fp"**, are supported.
 
 If the value specified is a negative value, the text is compressed. A negative value too small may result in the text being compressed to 0 and no content being displayed.
 
@@ -360,7 +360,7 @@ If the value specified is a negative value, the text is compressed. A negative v
 
 | Name| Type                      | Mandatory| Description          |
 | ------ | -------------------------- | ---- | -------------- |
-| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Letter spacing.|
+| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Letter spacing.<br>Unit: fp|
 
 ### fontFeature<sup>12+</sup>
 
@@ -445,7 +445,7 @@ Sets the indent of the first line text.
 
 minFontSize(value: number | string | Resource)
 
-Sets the minimum font size.
+Sets the minimum font size. For the string type, numeric string values with optional units, for example, **"10"** or **"10fp"**, are supported.
 
 For the setting to take effect, this attribute must be used together with [maxFontSize](#maxfontsize12) or layout constraint settings.
 
@@ -459,13 +459,13 @@ When the adaptive font size is used, the **fontSize** settings do not take effec
 
 | Name| Type                                                        | Mandatory| Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Minimum font size.|
+| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Minimum font size.<br>Unit: fp|
 
 ### maxFontSize<sup>12+</sup>
 
 maxFontSize(value: number | string | Resource)
 
-Sets the maximum font size.
+Sets the maximum font size. For the string type, numeric string values with optional units, for example, **"10"** or **"10fp"**, are supported.
 
 For the setting to take effect, this attribute must be used together with [minFontSize](#minfontsize12) or layout constraint settings.
 
@@ -479,7 +479,7 @@ When the adaptive font size is used, the **fontSize** settings do not take effec
 
 | Name| Type                                                        | Mandatory| Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Maximum font size.|
+| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Maximum font size.<br>Unit: fp|
 
 ### editMenuOptions<sup>12+</sup>
 
@@ -515,18 +515,6 @@ Preview text is in a temporary state and does not support text interception. As 
 | ------ | ------- | ---- | ---------------------------------- |
 | enable | boolean | Yes  | Whether to enable preview text.<br>Default value: **true**|
 
->  **NOTE**
->
->  This API is disabled by default in C API scenarios. To enable preview text in such scenarios, set [metadata](../../../../application-dev/quick-start/module-structure.md#internal-structure-of-the-metadata-attribute) in the **module.json5** file of the project as follows:
-> ```json
-> "metadata": [
->  {
->     "name": "can_preview_text",
->     "value": "true",
->  }
-> ]
-> ```
-
 ### enableHapticFeedback<sup>13+</sup>
 
 enableHapticFeedback(isEnabled: boolean)
@@ -553,6 +541,38 @@ Specifies whether to enable haptic feedback.
 >  }
 > ]
 > ```
+
+### keyboardAppearance<sup>15+</sup>
+
+keyboardAppearance(appearance: Optional\<KeyboardAppearance>)
+
+Sets the appearance of the keyboard when the text box is focused.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| ------ | ----------------------------------------- | ---- | ------------------------------------------------------ |
+| appearance | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[KeyboardAppearance](ts-text-common.md#keyboardappearance15)> | Yes  | Appearance of the keyboard.<br>Default value: **KeyboardAppearance.NONE_IMMERSIVE**|
+
+### stopBackPress<sup>15+</sup>
+
+stopBackPress(isStopped: Optional\<boolean>)
+
+Sets whether to prevent the back button press from being propagated to other components or applications.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                              |
+| ------ | ------- | ---- | ---------------------------------- |
+| isStopped | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | Yes  | Whether to consume the back button press.<br>Default value: **true**|
 
 ## IconOptions<sup>10+</sup>
 
@@ -628,7 +648,7 @@ Specifies whether to enable haptic feedback.
 
 ## Events
 
-In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
+In addition to the [universal events](ts-component-general-events.md), the following events are supported.
 
 ### onSubmit
 
@@ -843,6 +863,24 @@ Called when text is deleted.
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | callback  | Callback\<[DeleteValue](ts-text-common.md#deletevalue12)> | Yes  | Callback invoked when text is deleted.<br>It is available only for system input methods.|
 
+### onWillChange<sup>15+</sup>
+
+onWillChange(callback: Callback\<EditableTextChangeValue, boolean>)
+
+Called when the text content is about to change.
+
+This callback is triggered after **onWillInsert** and **onWillDelete**, but before **onDidInsert** and **onDidDelete**.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description              |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| callback  | Callback\<[EditableTextChangeValue](ts-text-common.md#editabletextchangevalue15), boolean> | Yes  | Callback triggered when the text content is about to change.<br>Returning **true** allows the change to proceed, while returning **false** cancels the change.|
+
 ## SearchController
 
 Inherits from [TextContentControllerBase](ts-types.md#textcontentcontrollerbase10).
@@ -1000,12 +1038,12 @@ struct SearchExample {
       Search({ value: this.changeValue, placeholder: 'Type to search...' })
         .searchButton('SEARCH')
         .searchIcon({
-          src: $r('app.media.search')
+          src: $r('sys.media.ohos_ic_public_search_filled')
         })
         .cancelButton({
           style: CancelButtonStyle.CONSTANT,
           icon: {
-            src: $r('app.media.cancel')
+            src: $r('sys.media.ohos_ic_public_cancel_filled')
           }
         })
         .width('90%')
@@ -1441,3 +1479,256 @@ struct SearchExample {
 ```
 
 ![searchSymbolGlyphModifierIcon](figures/searchSymbolGlyphModifierIcon.png)
+
+### Example 12: Setting Whether Text is Copyable
+
+This example demonstrates how to set whether text is copyable using **copyOption**.
+
+```ts
+// xxx.ets
+
+@Entry
+@Component
+struct SearchExample {
+  controller: SearchController = new SearchController()
+  @State copyValue: string = ''
+  @State cutValue: string = ''
+
+  build() {
+    Column({ space: 3 }) {
+      Text("copy: " + this.copyValue)
+      Text("cut:" + this.cutValue)
+      Search({ value: 'Search CopyOption:None', controller: this.controller })
+        .width('95%')
+        .height(40)
+        .copyOption(CopyOptions.None)
+        .onCopy((value: string) => {
+          this.copyValue = value;
+        })
+        .onCut((value: string) => {
+          this.cutValue = value;
+        })
+      Search({ value: 'Search CopyOption:InApp', controller: this.controller })
+        .width('95%')
+        .height(40)
+        .copyOption(CopyOptions.InApp)
+        .onCopy((value: string) => {
+          this.copyValue = value;
+        })
+        .onCut((value: string) => {
+          this.cutValue = value;
+        })
+      Search({ value: 'Search CopyOption:LocalDevice', controller: this.controller })
+        .width('95%')
+        .height(40)
+        .copyOption(CopyOptions.LocalDevice)
+        .onCopy((value: string) => {
+          this.copyValue = value;
+        })
+        .onCut((value: string) => {
+          this.cutValue = value;
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![searchCopyOption](figures/searchCopyOption.gif)
+
+### Example 13: Setting the Horizontal Alignment, Caret Style, and Background Color of the Selected Text
+
+This example shows how to set the horizontal alignment, caret style, and background color of the selected text using **textAlign**, **caretStyle**, and **selectedBackgroundColor**.
+
+```ts
+// xxx.ets
+
+@Entry
+@Component
+struct SearchExample {
+  controller: SearchController = new SearchController()
+
+  build() {
+    Column({ space: 3 }) {
+      Search({ value: 'Search textAlign sample', controller: this.controller })
+        .width('95%')
+        .height(40)
+        .textAlign(TextAlign.Center)
+        .caretStyle({ width: 3, color: Color.Green })
+        .selectedBackgroundColor(Color.Gray)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![searchTextAlign](figures/searchTextAlign.gif)
+
+### Example 14: Configuring the Text Box to Receive Default Focus and Bring Up the Soft Keyboard
+
+This example illustrates how to configure the text box to receive default focus and bring up the soft keyboard using **defaultFocus** and **enableKeyboardOnFocus**.
+
+```ts
+// xxx.ets
+
+@Entry
+@Component
+struct SearchExample {
+  controller: SearchController = new SearchController()
+  @State value: string = 'false'
+
+  build() {
+    Column({ space: 3 }) {
+      Text('editing: ' + this.value)
+      Search({ placeholder: 'please enter...', controller: this.controller })
+        .width('95%')
+        .height(40)
+        .defaultFocus(true)
+        .enableKeyboardOnFocus(true)
+        .enablePreviewText(true)
+        .enableHapticFeedback(true)
+        .onEditChange((data: boolean) => {
+          this.value = data ? 'true' : 'false'
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![searchEnableKeyboardOnFocus](figures/searchEnableKeyboardOnFocus.gif)
+
+### Example 15: Disabling the System Context Menu on Selection
+
+This example shows how to disable the system context menu on selection using **defaultFocus** and **enableKeyboardOnFocus**.
+
+```ts
+// xxx.ets
+
+@Entry
+@Component
+struct SearchExample {
+  controller: SearchController = new SearchController()
+
+  build() {
+    Column({ space: 3 }) {
+      Search({ value: '123456', controller: this.controller })
+        .width('95%')
+        .height(40)
+        .type(SearchType.NUMBER)
+        .selectionMenuHidden(true)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![searchSelectionMenuHidden](figures/searchSelectionMenuHidden.gif)
+
+### Example 16: Setting Input Filtering
+
+This example shows how to set input filtering using **inputFilter**.
+
+```ts
+// xxx.ets
+
+@Entry
+@Component
+struct SearchExample {
+  controller: SearchController = new SearchController()
+  @State filterValue: string = ''
+
+  build() {
+    Column({ space: 3 }) {
+      Text('Filter:' + this.filterValue)
+      Search({ placeholder: 'please enter...', controller: this.controller })
+        .width('95%')
+        .height(40)
+        .textIndent(5)
+        .inputFilter('[a-z]', (filterValue: string) => {
+          this.filterValue = filterValue
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![searchInputFilter](figures/searchInputFilter.gif)
+
+### Example 17: Selecting a Specific Text Range
+
+This example illustrates how to select a specific range of text content using **setTextSelection**.
+
+```ts
+// xxx.ets
+
+@Entry
+@Component
+struct SearchExample {
+  controller: SearchController = new SearchController()
+  @State startIndex: number = 0
+  @State endIndex: number = 0
+
+  build() {
+    Column({ space: 3 }) {
+      Text('Selection start:' + this.startIndex + ' end:' + this.endIndex)
+      Search({ value: 'Hello World', controller: this.controller })
+        .width('95%')
+        .height(40)
+        .defaultFocus(true)
+        .onTextSelectionChange((selectionStart: number, selectionEnd: number) => {
+          this.startIndex = selectionStart
+          this.endIndex = selectionEnd
+        })
+
+      Button('Selection [0,3]')
+        .onClick(() => {
+          this.controller.setTextSelection(0, 3)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![searchSetTextSelection](figures/searchSetTextSelection.gif)
+
+### Example 18: Handling Text Scrolling Events
+
+This example demonstrates how to set a callback for text scrolling events using **onContentScroll**.
+
+```ts
+// xxx.ets
+
+@Entry
+@Component
+struct SearchExample {
+  controller: SearchController = new SearchController()
+  @State offsetX: number = 0
+  @State offsetY: number = 0
+
+  build() {
+    Column({ space: 3 }) {
+      Text('offset x:' + this.offsetX + ' y:' + this.offsetY)
+      Search({ value: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', controller: this.controller })
+        .width(200)
+        .height(40)
+        .onContentScroll((totalOffsetX: number, totalOffsetY: number) => {
+          this.offsetX = totalOffsetX
+          this.offsetY = totalOffsetY
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![searchOnContentScroll](figures/searchOnContentScroll.gif)

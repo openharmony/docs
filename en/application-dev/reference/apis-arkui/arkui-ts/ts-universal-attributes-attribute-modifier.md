@@ -356,4 +356,4 @@ Attributes not listed in the table below are supported by default.
 | visualEffect             | Not supported  | is not callable           | -                                         |
 | accessibilityDescription | Partially supported | -                       |  Attributes that accept a **Resource** object are not supported.        |
 | accessibilityText        | Partially supported | -                       |  Attributes that accept a **Resource** object are not supported.        |
-| dragPreview              | Partially supported | Builder is not supported. | Attributes that accept a CustomBuilder are not supported.             |
+| dragPreview              | Partially supported | Method not implemented. | Only attributes that accept solely strings are supported.             |

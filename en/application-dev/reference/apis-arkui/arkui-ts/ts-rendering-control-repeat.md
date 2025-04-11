@@ -4,8 +4,8 @@
 > 
 > The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-**Repeat** enables rendering of repeated content based on array type data.<br>
-It must be used in a container component. This document provides API parameter descriptions. For details about the development, see [Repeat: Reusing Child Components](../../../quick-start/arkts-new-rendering-control-repeat.md).
+**Repeat** is used to perform repeated rendering based on array data. Generally, it is used together with container components.
+This document provides API parameter descriptions. For details about the development, see [Repeat: Reusing Child Components](../../../quick-start/arkts-new-rendering-control-repeat.md).
 
 ## APIs
 
@@ -45,7 +45,7 @@ Repeat<string>(this.arr)
 
 each(itemGenerator: (repeatItem: RepeatItem\<T\>) => void): RepeatAttribute\<T\>
 
-Component generator function. This function is used as the default generator when data items do not match any specified template or template ID.
+Generates components. This function is used as the default generator when data items do not match any specified template or template ID.
 
 > **NOTE**
 >

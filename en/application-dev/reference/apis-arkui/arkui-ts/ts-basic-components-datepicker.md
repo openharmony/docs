@@ -183,9 +183,9 @@ Triggered when a date is selected.
 
 | Name | Type  | Read Only| Optional| Description                                      |
 | ----- | ------ | ---- | ---- | ------------------------------------------ |
-| year  | number | No  | No  | Year of the selected date.                            |
-| month | number | No  | No  | Month of the selected date. The value ranges from 0 to 11. The value **0** indicates January, and **11** indicates December.|
-| day   | number | No  | No  | Day of the selected date.                            |
+| year  | number | No  | No  | Year of the selected date.<br>Value range: depends on **start** and **end**. If **start** and **end** are not set, the default range is [1970, 2100].                            |
+| month | number | No  | No  | Month index of the selected date. The index is zero-based.<br>**0** indicates January, and **11** indicates December.<br>Value range: depends on **start** and **end**. If **start** and **end** are not set, the default range is [0, 11].|
+| day   | number | No  | No  | Day of the selected date.<br>Value range: depends on **start** and **end**. If **start** and **end** are not set, the default range is [1, 31].                            |
 
 ## Example
 

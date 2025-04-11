@@ -634,8 +634,8 @@ Sets the parameters of the chain in which the component is the head. This parame
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
-| HORIZONTAL | 0 | The icon and text on the security component are horizontally arranged.|
-| VERTICAL | 1 | The icon and text on the security component are vertically arranged.|
+| HORIZONTAL | 0 | The icons and text in the security component are horizontally arranged.|
+| VERTICAL | 1 | The icons and text on the security component are vertically arranged.|
 
 
 ## Example
@@ -653,7 +653,7 @@ This example shows how to create a **SaveButton** component and set its security
 struct Index {
   build() {
     Row() {
-      Column({space:5}) {
+      Column({ space: 5 }) {
         // Create a SaveButton component and set its security component attributes.
         SaveButton()
           .fontSize(35)
@@ -666,17 +666,27 @@ struct Index {
           .borderRadius(20)
           .fontWeight(100)
           .iconColor(Color.White)
-          .padding({left:50, top:50, bottom:50, right:50})
+          .padding({
+            left: 50,
+            top: 50,
+            bottom: 50,
+            right: 50
+          })
           .textIconSpace(20)
           .backgroundColor(0x3282f6)
-        SaveButton().size({width:200, height:100})
+        SaveButton().size({ width: 200, height: 100 })
         SaveButton()
-          .size({width:200, height:100})
+          .size({ width: 200, height: 100 })
           .align(Alignment.Start)
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
-          .size({width:150, height:80})
-          .borderRadius({ topLeft: 20, topRight: 25, bottomRight: 30, bottomLeft: 35})
-        SaveButton().constraintSize({maxWidth:60})
+          .size({ width: 150, height: 80 })
+          .borderRadius({
+            topLeft: 20,
+            topRight: 25,
+            bottomRight: 30,
+            bottomLeft: 35
+          })
+        SaveButton().constraintSize({ maxWidth: 60 })
       }.width('100%')
     }.height('100%')
   }
@@ -696,57 +706,59 @@ struct Index {
   build() {
     Row() {
       RelativeContainer() {
-        SaveButton({icon:SaveIconStyle.FULL_FILLED, text:0, buttonType:ButtonType.Normal})
-          .width(100).height(100)
+        SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: 0, buttonType: ButtonType.Normal })
+          .width(100)
+          .height(100)
           .backgroundColor("#A3CF62")
           .alignRules({
-            top: {anchor: "__container__", align: VerticalAlign.Top},
-            left: {anchor: "__container__", align: HorizontalAlign.Start}
+            top: { anchor: "__container__", align: VerticalAlign.Top },
+            left: { anchor: "__container__", align: HorizontalAlign.Start }
           })
           .id("row1")
 
-        SaveButton({icon:SaveIconStyle.FULL_FILLED, text:0, buttonType:ButtonType.Normal})
-          .width(100).height(100)
+        SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: 0, buttonType: ButtonType.Normal })
+          .width(100)
+          .height(100)
           .backgroundColor("#00AE9D")
           .alignRules({
-            top: {anchor: "__container__", align: VerticalAlign.Top},
-            right: {anchor: "__container__", align: HorizontalAlign.End}
+            top: { anchor: "__container__", align: VerticalAlign.Top },
+            right: { anchor: "__container__", align: HorizontalAlign.End }
           })
           .id("row2")
 
-        SaveButton({icon:SaveIconStyle.FULL_FILLED, text:0, buttonType:ButtonType.Normal})
+        SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: 0, buttonType: ButtonType.Normal })
           .height(100)
           .backgroundColor("#0A59F7")
           .alignRules({
-            top: {anchor: "row1", align: VerticalAlign.Bottom},
-            left: {anchor: "row1", align: HorizontalAlign.End},
-            right: {anchor: "row2", align: HorizontalAlign.Start}
+            top: { anchor: "row1", align: VerticalAlign.Bottom },
+            left: { anchor: "row1", align: HorizontalAlign.End },
+            right: { anchor: "row2", align: HorizontalAlign.Start }
           })
           .id("row3")
 
-        SaveButton({icon:SaveIconStyle.FULL_FILLED, text:0, buttonType:ButtonType.Normal})
+        SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: 0, buttonType: ButtonType.Normal })
           .backgroundColor("#2CA9E0")
           .alignRules({
-            top: {anchor: "row3", align: VerticalAlign.Bottom},
-            bottom: {anchor: "__container__", align: VerticalAlign.Bottom},
-            left: {anchor: "__container__", align: HorizontalAlign.Start},
-            right: {anchor: "row1", align: HorizontalAlign.End}
+            top: { anchor: "row3", align: VerticalAlign.Bottom },
+            bottom: { anchor: "__container__", align: VerticalAlign.Bottom },
+            left: { anchor: "__container__", align: HorizontalAlign.Start },
+            right: { anchor: "row1", align: HorizontalAlign.End }
           })
           .id("row4")
 
-        SaveButton({icon:SaveIconStyle.FULL_FILLED, text:0, buttonType:ButtonType.Normal})
+        SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: 0, buttonType: ButtonType.Normal })
           .backgroundColor("#30C9F7")
           .alignRules({
-            top: {anchor: "row3", align: VerticalAlign.Bottom},
-            bottom: {anchor: "__container__", align: VerticalAlign.Bottom},
-            left: {anchor: "row2", align: HorizontalAlign.Start},
-            right: {anchor: "__container__", align: HorizontalAlign.End}
+            top: { anchor: "row3", align: VerticalAlign.Bottom },
+            bottom: { anchor: "__container__", align: VerticalAlign.Bottom },
+            left: { anchor: "row2", align: HorizontalAlign.Start },
+            right: { anchor: "__container__", align: HorizontalAlign.End }
           })
           .id("row5")
       }
       .width(300).height(300)
-      .margin({left: 50})
-      .border({width:2, color: "#6699FF"})
+      .margin({ left: 50 })
+      .border({ width: 2, color: "#6699FF" })
     }
     .height('100%')
   }

@@ -37,7 +37,7 @@ Creates a text picker based on the selection range specified by **range**.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | range | string[] \| string[] []<sup>10+</sup> \| [Resource](ts-types.md#resource) \|<br>[TextPickerRangeContent](#textpickerrangecontent10)[]<sup>10+</sup> \| [TextCascadePickerRangeContent](#textcascadepickerrangecontent10)[]<sup>10+</sup> | Yes| Data selection range of the picker. This parameter cannot be set to an empty array. If set to an empty array, it will not be displayed. If it is dynamically changed to an empty array, the current value remains displayed.<br>**NOTE**<br>For a single-column picker, use a value of the string[], Resource, or TextPickerRangeContent[] type.<br>For a multi-column picker, use a value of the string[] type.<br>For a multi-column linked picker, use a value of the TextCascadePickerRangeContent[] type.<br>The Resource type supports only [strarray.json](../../../quick-start/resource-categories-and-access.md#resource-group-directories).<br>The type and number of columns in the range cannot be dynamically modified.|
-| selected | number \| number[]<sup>10+</sup> | No| Index of the default item in the range.<br>Default value: **0**<br>**NOTE**<br>For a single-column picker, use a value of the number type.<br>For a multi-column (linked) picker, use a value of the number[] type.<br>Since API version 10, this attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
+| selected | number \| number[]<sup>10+</sup> | No| Index of the default selected item in the array. The index is zero-based.<br>Default value: **0**<br>**NOTE**<br>For a single-column picker, use a value of the number type.<br>For a multi-column (linked) picker, use a value of the number[] type.<br>Since API version 10, this attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
 | value | string \| string[]<sup>10+</sup> | No| Value of the default item in the range. The priority of this parameter is lower than that of **selected**.<br>Default value: value of the first item<br>**NOTE**<br>This parameter works only when the picker contains text only.  <br>For a single-column picker, use a value of the string type.<br>For a multi-column (linked) picker, use a value of the string[] type.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
 
 ## TextPickerRangeContent<sup>10+</sup>
@@ -46,10 +46,10 @@ Creates a text picker based on the selection range specified by **range**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Type                                                | Mandatory| Description  |
-| ------ | -------------------------------------------------------- | ---- | ---------- |
-| icon   | string \| [Resource](ts-types.md#resource) | Yes  | Image resource.|
-| text   | string \| [Resource](ts-types.md#resource) | No  | Text information.|
+| Name| Type                                                | Mandatory| Description      |
+| ---- | ---------------------------------------------------- | ---- | ---------- |
+| icon | string \| [Resource](ts-types.md#resource) | Yes  | Image resource. If the value is a string, such as **"/common/hello.png"**, it represents the path to the image.|
+| text | string \| [Resource](ts-types.md#resource) | No  | Text information.<br>An empty character string is used by default.<br>**NOTE**<br>If the text length exceeds the column width, the text will be truncated.|
 
 ## TextCascadePickerRangeContent<sup>10+</sup>
 
@@ -59,7 +59,7 @@ Creates a text picker based on the selection range specified by **range**.
 
 | Name| Type                                                | Mandatory| Description  |
 | ------ | -------------------------------------------------------- | ---- | ---------- |
-| text   | string \| [Resource](ts-types.md#resource) | Yes  | Text information.|
+| text   | string \| [Resource](ts-types.md#resource) | Yes  | Text information.<br>**NOTE**<br>If the text length exceeds the column width, the text will be truncated.|
 | children   | [TextCascadePickerRangeContent](#textcascadepickerrangecontent10)[] | No  | Linkage data.|
 ## DividerOptions<sup>12+</sup>
 
@@ -67,12 +67,12 @@ Creates a text picker based on the selection range specified by **range**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name     | Type     | Mandatory| Description                                                      |
-| ----------- | ------------- | ---- | -------------------------------------------------------------- |
-| strokeWidth | [Dimension](ts-types.md#dimension10)     | No  | Stroke width of the divider. The unit is vp by default. You can also specify it as px. The percentage type is not supported.|
-| startMargin | [Dimension](ts-types.md#dimension10)      | No  | Distance between the divider and the start edge of the picker. The unit is vp by default. You can also specify it as px. The percentage type is not supported.|
-| endMargin   | [Dimension](ts-types.md#dimension10)     | No  | Distance between the divider and the end edge of the picker. The unit is vp by default. You can also specify it as px. The percentage type is not supported.|
-| color       | [ResourceColor](ts-types.md#resourcecolor)  | No  | Color of the divider.
+| Name       | Type                                | Mandatory| Description                                                        |
+| ----------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| strokeWidth | [Dimension](ts-types.md#dimension10) | No  | Stroke width of the divider. The unit is vp by default. You can also specify it as px. The percentage type is not supported.<br>If the value is less than 0, the default value is used. The maximum value allowed is half the height of the column.<br>Default value: **2.0px**|
+| startMargin | [Dimension](ts-types.md#dimension10) | No  | Distance between the divider and the start edge of the picker. The unit is vp by default. You can also specify it as px. The percentage type is not supported.<br>Values less than 0 are invalid. The maximum value allowed is the width of the column.<br>Default value: **0**|
+| endMargin   | [Dimension](ts-types.md#dimension10) | No  | Distance between the divider and the end edge of the picker. The unit is vp by default. You can also specify it as px. The percentage type is not supported.<br>Values less than 0 are invalid. The maximum value allowed is the width of the column.<br>Default value: **0**|
+| color       | [ResourceColor](ts-types.md#resourcecolor)  | No  | Color of the divider.<br>Default value: **'#33000000'**
 
 ## Attributes
 
@@ -92,7 +92,7 @@ Sets the height of each item in the picker.
 
 | Name| Type                      | Mandatory| Description                  |
 | ------ | -------------------------- | ---- | ---------------------- |
-| value  | number \| string | Yes  | Height of each item in the picker.|
+| value  | number \| string | Yes  | Height of each item in the picker. For the number type, the value range is [0, +∞]. For the string type, only numeric string values, for example, **"56"**, are supported.<br>Default value: 56 vp (selected) and 36 vp (unselected).<br>**NOTE**<br>The set value applies to both selected and unselected items.|
 
 ### disappearTextStyle<sup>10+</sup>
 
@@ -156,7 +156,7 @@ Sets the index of the default selected item in the array. Its priority is higher
 
 | Name| Type                        | Mandatory| Description                        |
 | ------ | ---------------------------- | ---- | ---------------------------- |
-| value  | number \| number[] | Yes  | Index of the default selected item in the array.<br>Default value: **0**<br>|
+| value  | number \| number[] | Yes  | Index of the default selected item in the array. The index is zero-based.<br>Default value: **0**<br>|
 
 ### canLoop<sup>10+</sup>
 
@@ -205,7 +205,7 @@ Sets the height for the fade effect. If this attribute is not set, the default f
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | [Dimension](ts-types.md#dimension10) | Yes  | Height of the gradient effect at the top and bottom edges of the content area. It can be set in percentage, with 100% (the maximum value) being half the height of the picker. Setting it to **0** will result in no gradient effect, while negative numbers or other invalid values will display the default gradient effect. Default value: **36vp**|
+| value  | [Dimension](ts-types.md#dimension10) | Yes  | Height of the fade effect at the top and bottom edges of the content area. It can be set in percentage, with 100% (the maximum value) being half the height of the picker. Setting it to **0** results in no fade effect, while negative numbers or other invalid values display the default fade effect. Default value: **36vp**|
 
 ### disableTextStyleAnimation<sup>15+</sup>
 
@@ -544,7 +544,7 @@ struct TextPickerExample {
 ```
 
 ![textpicker](figures/textpicker4.gif)
-### Example 5: Disabling the Text Style Animation and Setting the Corresponding Text Style
+### Example 6: Disabling the Text Style Animation and Setting the Corresponding Text Style
 
 This example demonstrates how to disable the text style animation and set the corresponding text style using **disableTextStyleAnimation** and **defaultTextStyle**.
 

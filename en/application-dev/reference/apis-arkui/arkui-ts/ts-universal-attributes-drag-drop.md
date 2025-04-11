@@ -1,3 +1,4 @@
+
 # Drag and Drop Control
 
 The drag and drop control attributes set whether a component can respond to drag events.
@@ -48,7 +49,7 @@ Sets whether the component is draggable.
 
 | Name| Type   | Mandatory| Description                                          |
 | ------ | ------- | ---- | ---------------------------------------------- |
-| value  | boolean | Yes  | Whether the component is draggable.<br>Default value: **false**|
+| value  | boolean | Yes  | Whether the component is draggable. <br>**true**: The component is draggable.<br>**false**: The component is not draggable.<br>Default value: **false**|
 
 ## dragPreview<sup>11+</sup>
 
@@ -127,9 +128,9 @@ Sets the processing mode of the drag preview and the display of the number badge
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| isMultiSelectionEnabled | boolean | No| Whether to enable multiselect for the drag preview. This parameter takes effect only for the [grid items](ts-container-griditem.md) and [list items](ts-container-listitem.md) in the [Grid](ts-container-grid.md) and [List](ts-container-list.md) containers.<br>When multiselect is enabled for an item, the child components of the item cannot be dragged. The precendence levels of drag previews for multiselect, from high to low, are as follows: preview specified through a string value in [dragPreview](#dragpreview11), preview specified through **PixelMap** in **dragPreview**, and component snapshot. The Builder format in **dragPreview** is not supported.<br>The context menu bound to the component through [bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu12) cannot contain the **isShown** parameter.<br>Default value: **false**<br>|
-| defaultAnimationBeforeLifting | boolean | No| Whether to enable the default pressed state animation (compressing in size) of the component before a lift animation starts.<br>Default value: **false**<br>|
-| isLiftingDisabled<sup>15+</sup> | boolean | No| Whether to disable the lifting effect during dragging.<br>With the value **true**, only the custom menu preview (set using [bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8)), also known as the long-press preview, is displayed if both the long-press preview and drag preview are configured.<br>Default value: **false**|
+| isMultiSelectionEnabled | boolean | No| Whether to enable multiselect for the drag preview. <br>**true**: Enable multiselect for the drag preview.<br>**false**: Disable multiselect for the drag preview.<br> This parameter takes effect only for the [grid items](ts-container-griditem.md) and [list items](ts-container-listitem.md) in the [Grid](ts-container-grid.md) and [List](ts-container-list.md) containers.<br>When multiselect is enabled for an item, the child components of the item cannot be dragged. The precendence levels of drag previews for multiselect, from high to low, are as follows: preview specified through a string value in [dragPreview](#dragpreview11), preview specified through **PixelMap** in **dragPreview**, and component snapshot. The Builder format in **dragPreview** is not supported.<br>The context menu bound to the component through [bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu12) cannot contain the **isShown** parameter.<br>Default value: **false**<br>|
+| defaultAnimationBeforeLifting | boolean | No| Whether to enable the default pressed state animation (compressing in size) of the component before a lift animation starts. <br>**true**: Enable the default pressed state animation.<br>**false**: Disable the default pressed state animation.<br>Default value: **false**<br>|
+| isLiftingDisabled<sup>15+</sup> | boolean | No| Whether to disable the lifting effect during dragging. <br>**true**: Disable the lifting effect during dragging.<br>**false**: Enable the lifting effect during dragging.<br>With the value **true**, only the custom menu preview (set using [bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8)), also known as the long-press preview, is displayed if both the long-press preview and drag preview are configured.<br>Default value: **false**|
 
 ## Example
 ### Example 1: Allowing Drag and Drop

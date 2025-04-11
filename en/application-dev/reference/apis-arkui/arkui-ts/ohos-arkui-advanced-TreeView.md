@@ -1,7 +1,7 @@
 # TreeView
 
 
-The tree view component is used to display a hierarchical list of items. Each item can contain subitems, which may be expanded or collapsed.
+The **TreeView** component represents a tree view used to display a hierarchical list of items. Each item can contain subitems, which may be expanded or collapsed.
 
 
 This component is applicable in productivity applications, such as side navigation bars in notepad, email, and Gallery applications.
@@ -24,7 +24,7 @@ import { TreeView } from "@kit.ArkUI"
 Not supported
 
 ## Attributes
-The [universal attributes](ts-universal-attributes-size.md) are not supported.
+The [universal attributes](ts-component-general-attributes.md) are not supported.
 
 ## TreeView
 
@@ -35,9 +35,6 @@ TreeView({ treeController: TreeController })
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-
-**Parameters**
 
 
 | Name| Type| Mandatory| Description|
@@ -51,24 +48,30 @@ Implements a **TreeController** object, which can be bound to a tree view compon
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 
 ### addNode
 
 
-addNode(nodeParam?: NodeParam): void
+addNode(nodeParam?: NodeParam): TreeController
 
 Adds a child node to the selected node.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-
-**Parameters**
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | nodeParam | [NodeParam](#nodeparam) | No| Node information.|
 
+**Return value**
+
+| Type                             | Description                |
+| --------------------------------- | -------------------- |
+| [TreeController](#treecontroller) | Controller of the **TreeView** component.|
 
 ### removeNode
 
@@ -77,6 +80,8 @@ removeNode(): void
 Removes the selected node.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 
 ### modifyNode
@@ -88,6 +93,8 @@ Modifies the selected node.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 
 ### buildDone
 
@@ -96,6 +103,8 @@ buildDone(): void
 Builds a tree view. After a node is added, this API must be called to save the tree information.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 
 ### refreshNode
@@ -106,7 +115,7 @@ Refreshes the tree view. You can call this API to update the information about t
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-**Parameters**
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -116,19 +125,19 @@ Refreshes the tree view. You can call this API to update the information about t
 
 ## NodeParam
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| parentNodeId | number | No| Parent node.|
-| currentNodeId | number | No| Current child node.|
-| isFolder | boolean | No| Whether the node is a directory.<br> Default value: **false**.<br> **true**: The node is a directory.<br>**false**: The node is not a directory.|
-| icon | [ResourceStr](ts-types.md#resourcestr) | No| Icon.|
-| selectedIcon | [ResourceStr](ts-types.md#resourcestr) | No| Icon of the selected node.|
-| editIcon | [ResourceStr](ts-types.md#resourcestr) | No| Edit icon.|
-| primaryTitle | [ResourceStr](ts-types.md#resourcestr) | No| Primary title.|
-| secondaryTitle | [ResourceStr](ts-types.md#resourcestr) | No| Secondary title.|
-| container | () =&gt; void | No| Right-click child component bound to the node. The child component is decorated with @Builder.|
+| Name| Type| Mandatory| Description                                                                                                                                              |
+| -------- | -------- | -------- |--------------------------------------------------------------------------------------------------------------------------------------------------|
+| parentNodeId | number | No| Parent node.<br>The value must be greater than or equal to -1.<br>Default value: -1. The root node ID is -1. If the value is less than -1, the setting does not take effect.                              |
+| currentNodeId | number | No| Current child node.<br>The value must be greater than or equal to -1.<br>The value cannot be the root node ID, cannot be null, and cannot be duplicated.<br>Default value: **-1**.|
+| isFolder | boolean | No| Whether the node is a directory.<br> Default value: **false**.<br> **true**: The node is a directory.<br>**false**: The node is not a directory.           |
+| icon | [ResourceStr](ts-types.md#resourcestr) | No| Icon.<br>The default value is an empty string.                                  |
+| selectedIcon | [ResourceStr](ts-types.md#resourcestr) | No| Icon of the selected node.<br>The default value is an empty string.          |
+| editIcon | [ResourceStr](ts-types.md#resourcestr) | No| Edit icon.<br>The default value is an empty string.                      |
+| primaryTitle | [ResourceStr](ts-types.md#resourcestr) | No| Primary title.<br>The default value is an empty string.                 |
+| secondaryTitle | [ResourceStr](ts-types.md#resourcestr) | No| Secondary title.<br>The default value is an empty string.<            |
+| container | () =&gt; void | No| Right-click child component bound to the node. The child component is decorated with @Builder.<br>Default value: **() => void**.                               |
 
 
 ## TreeListenerManager
@@ -143,6 +152,8 @@ static getInstance(): TreeListenerManager
 Obtains a **TreeListenerManager** singleton object.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
 
@@ -159,6 +170,8 @@ Obtains a listener.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Return value**
 
 | Type          | Description        |
@@ -168,7 +181,7 @@ Obtains a listener.
 
 ## TreeListener
 
-Listener of the tree view component. You can bind it to the tree view component and use it to listen for changes of tree nodes. A listener can be bound to only one tree view component.
+Listener of the tree view component. You can bind it to the **TreeView** component and use it to listen for changes of tree nodes. A listener can be bound to only one **TreeView** component.
 
 
 ### on
@@ -179,7 +192,7 @@ Register a listener.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-**Parameters**
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -195,8 +208,7 @@ Registers a one-off listener.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-
-**Parameters**
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -213,7 +225,7 @@ Unregisters a listener.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-**Parameters**
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 
 | Name| Type| Mandatory| Description|
@@ -225,28 +237,34 @@ Unregisters a listener.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name| Description|
-| -------- | -------- |
-| NODE_CLICK | Listens for click events of nodes.|
-| NODE_ADD | Listens for add events of nodes.|
-| NODE_DELETE | Listens for delete events of nodes.|
-| NODE_MODIFY | Listens for modify events of nodes.|
-| NODE_MOVE | Listens for move events of nodes.|
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| NODE_CLICK | "NodeClick" | Listens for click events of nodes.|
+| NODE_ADD | "NodeAdd" | Listens for add events of nodes.|
+| NODE_DELETE | "NodeDelete" | Listens for delete events of nodes.|
+| NODE_MODIFY | "NodeModify" | Listens for modify events of nodes.|
+| NODE_MOVE | "NodeMove" | Listens for move events of nodes.|
 
 ## CallbackParam
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| currentNodeId | number | Yes| Current child node.|
-| parentNodeId | number | No| Parent node.|
-| childIndex | number | No| Child index.|
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type| Mandatory| Description                                      |
+| -------- | -------- | -------- |------------------------------------------|
+| currentNodeId | number | Yes| ID of the current child node.<br>The value must be greater than or equal to 0.             |
+| parentNodeId | number | No| ID of the current parent node.<br>The value must be greater than or equal to -1.<br>Default value: **-1**|
+| childIndex | number | No| Child index.<br>The value must be greater than or equal to -1.<br>Default value: **-1**  |
 
 ## Events
-The [universal events](ts-universal-events-click.md) are not supported.
+The [universal events](ts-component-general-events.md) are not supported.
 
 ## Example
+
+This example showcases how to use **TreeController** to perform operations on tree nodes, such as adding, deleting, and renaming. It also demonstrates the effects of adding nodes with different parameters.
 
 ```ts
 import { TreeController, TreeListener, TreeListenerManager, TreeListenType, NodeParam, TreeView, CallbackParam } from '@kit.ArkUI'
@@ -256,7 +274,7 @@ import { TreeController, TreeListener, TreeListenerManager, TreeListenType, Node
 struct TreeViewDemo {
   private treeController: TreeController = new TreeController();
   private treeListener: TreeListener = TreeListenerManager.getInstance().getTreeListener();
-  @State clickNodeId: number = 0;
+  @State clickId: number = 0;
 
   aboutToDisappear(): void {
     this.treeListener.off(TreeListenType.NODE_CLICK, undefined);
@@ -286,23 +304,23 @@ struct TreeViewDemo {
 
   aboutToAppear(): void {
     this.treeListener.on(TreeListenType.NODE_CLICK, (callbackParam: CallbackParam) => {
-      this.clickNodeId = callbackParam.currentNodeId;
+      this.clickId = callbackParam.currentNodeId;
     })
     this.treeListener.on(TreeListenType.NODE_ADD, (callbackParam: CallbackParam) => {
-      this.clickNodeId = callbackParam.currentNodeId;
+      this.clickId = callbackParam.currentNodeId;
     })
     this.treeListener.on(TreeListenType.NODE_DELETE, (callbackParam: CallbackParam) => {
-      this.clickNodeId = callbackParam.currentNodeId;
+      this.clickId = callbackParam.currentNodeId;
     })
     this.treeListener.once(TreeListenType.NODE_MOVE, (callbackParam: CallbackParam) => {
-      this.clickNodeId = callbackParam.currentNodeId;
+      this.clickId = callbackParam.currentNodeId;
     })
 
-    let normalResource: Resource = $r('app.media.ic_public_collect_normal');
-    let selectedResource: Resource = $r('app.media.ic_public_collect_selected');
-    let editResource: Resource = $r('app.media.ic_public_collect_edit');
+    let normalResource: Resource = $r('sys.media.ohos_ic_normal_white_grid_folder');
+    let selectedResource: Resource = $r('sys.media.ohos_ic_public_select_all');
+    let editResource: Resource = $r('sys.media.ohos_ic_public_edit');
     let nodeParam: NodeParam = { parentNodeId:-1, currentNodeId: 1, isFolder: true, icon: normalResource, selectedIcon: selectedResource,
-      editIcon: editResource, primaryTitle: "Directory 1: Verify the effect of the floating box",
+      editIcon: editResource, primaryTitle: "Directory 1 to verify the adaptive effect",
       secondaryTitle: "6" };
     this.treeController
       .addNode(nodeParam)
@@ -333,7 +351,7 @@ struct TreeViewDemo {
         Row() {
           Divider().vertical(true).strokeWidth(2).color(0x000000).lineCap(LineCapStyle.Round)
           Column({ space: 30 }) {
-            Text('ClickNodeId=' + this.clickNodeId).fontSize('16fp')
+            Text('ClickId=' + this.clickId).fontSize('16fp')
             Button('Add', { type: ButtonType.Normal, stateEffect: true })
               .borderRadius(8).backgroundColor(0x317aff).width(90)
               .onClick((event: ClickEvent) => {

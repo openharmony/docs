@@ -40,7 +40,7 @@ TextInput(value?: TextInputOptions)
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 >  **NOTE**
 >
@@ -445,7 +445,7 @@ enableKeyboardOnFocus(value: boolean)
 
 Sets whether to enable the input method when the **TextInput** component obtains focus in a way other than clicking.
 
- 
+Since API version 10, the **TextInput** component brings up the keyboard by default when it obtains focus.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -637,7 +637,7 @@ Sets the content type for autofill.
 
 | Name| Type                                 | Mandatory| Description          |
 | ------ | ------------------------------------- | ---- | -------------- |
-| value  | [ContentType](#contenttype12) | Yes  | Content type for autofill.|
+| value  | [ContentType](#contenttype12-1) | Yes  | Content type for autofill.|
 
 ### underlineColor<sup>12+</sup>
 
@@ -657,7 +657,7 @@ Sets the color of the underline when it is shown.
 
 lineHeight(value: number | string | Resource)
 
-Sets the text line height. If the value is less than or equal to **0**, the line height is not limited and the font size is adaptive. If the value is of the number type, the unit fp is used.
+Sets the text line height. If the value is less than or equal to **0**, the line height is not limited and the font size is adaptive. If the value is of the number type, the unit fp is used. For the string type, numeric string values with optional units, for example, **"10"** or **"10fp"**, are supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -689,7 +689,7 @@ Sets the color, type, and style of the text decorative line. This attribute does
 
 letterSpacing(value: number | string | Resource)
 
-Sets the letter spacing for a text style. If the value specified is a percentage or 0, the default value is used.
+Sets the letter spacing for a text style. If the value specified is a percentage or 0, the default value is used. For the string type, numeric string values with optional units, for example, **"10"** or **"10fp"**, are supported.
 
 If the value specified is a negative value, the text is compressed. A negative value too small may result in the text being compressed to 0 and no content being displayed.
 
@@ -701,7 +701,7 @@ If the value specified is a negative value, the text is compressed. A negative v
 
 | Name| Type                      | Mandatory| Description          |
 | ------ | -------------------------- | ---- | -------------- |
-| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Letter spacing.|
+| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Letter spacing.<br>Unit: fp|
 
 ### fontFeature<sup>12+</sup>
 
@@ -799,7 +799,7 @@ Sets the indent of the first line text.
 
 minFontSize(value: number | string | Resource)
 
-Sets the minimum font size.
+Sets the minimum font size. For the string type, numeric string values with optional units, for example, **"10"** or **"10fp"**, are supported.
 
 For the setting to take effect, this attribute must be used together with [maxFontSize](#maxfontsize12) and [maxLines](#maxlines10) (when the component is in editing state in the inline input style), or layout constraint settings.
 
@@ -813,13 +813,13 @@ When the adaptive font size is used, the **fontSize** settings do not take effec
 
 | Name| Type                                                        | Mandatory| Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Minimum font size.|
+| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Minimum font size.<br>Unit: fp|
 
 ### maxFontSize<sup>12+</sup>
 
 maxFontSize(value: number | string | Resource)
 
-Sets the maximum font size.
+Sets the maximum font size. For the string type, numeric string values with optional units, for example, **"10"** or **"10fp"**, are supported.
 
 For the setting to take effect, this attribute must be used together with [minFontSize](#minfontsize12) and [maxLines](#maxlines10) (when the component is in editing state in the inline input style), or layout constraint settings.
 
@@ -833,7 +833,7 @@ When the adaptive font size is used, the **fontSize** settings do not take effec
 
 | Name| Type                                                        | Mandatory| Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Maximum font size.|
+| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Maximum font size.<br>Unit: fp|
 
 ### heightAdaptivePolicy<sup>12+</sup>
 
@@ -869,9 +869,9 @@ showPassword(visible: boolean)
 
 Sets whether to show the password.
 
-This attribute takes effect only in password input mode.
+This API has effect only when the [input type](#inputtype) is set to **Password**, **NEWPASSWORD**, or **NUMBERPASSWORD** mode. It does not work in other modes.
 
-In password input mode, the icon at the end of the text box serves as a toggle for password visibility. As such, you are advised to implement status synchronization with [onSecurityStateChange](#onsecuritystatechange12) to ensure that the password visibility status is accurately reflected.
+When in password mode, there may be inconsistency between the backend state of the text box and the frontend application's state management variables. This can cause issues with the icon at the end of the password text box. To avoid such issues, use the [onSecurityStateChange](#onsecuritystatechange12) callback to sync the states. For details, see [Example 1](#example-1-setting-and-obtaining-the-cursor-position).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -933,18 +933,6 @@ Preview text is in a temporary state and does not support text interception. As 
 | ------ | ------- | ---- | ---------------------------------- |
 | enable | boolean | Yes  | Whether to enable preview text.<br>Default value: **true**|
 
->  **NOTE**
->
->  This API is disabled by default in C API scenarios. To enable preview text in such scenarios, set [metadata](../../../../application-dev/quick-start/module-structure.md#internal-structure-of-the-metadata-attribute) in the **module.json5** file of the project as follows:
-> ```json
-> "metadata": [
->  {
->     "name": "can_preview_text",
->     "value": "true",
->  }
-> ]
-> ```
-
 ### enableHapticFeedback<sup>13+</sup>
 
 enableHapticFeedback(isEnabled: boolean)
@@ -972,6 +960,37 @@ Specifies whether to enable haptic feedback.
 > ]
 > ```
 
+### keyboardAppearance<sup>15+</sup>
+
+keyboardAppearance(appearance: Optional\<KeyboardAppearance>)
+
+Sets the appearance of the keyboard when the text box is focused.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| ------ | ----------------------------------------- | ---- | ------------------------------------------------------ |
+| appearance | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[KeyboardAppearance](ts-text-common.md#keyboardappearance15)> | Yes  | Appearance of the keyboard.<br>Default value: **KeyboardAppearance.NONE_IMMERSIVE**|
+
+### stopBackPress<sup>15+<sup>
+
+stopBackPress(isStopped: Optional\<boolean>)
+
+Sets whether to prevent the back button press from being propagated to other components or applications.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                               | Mandatory| Description                                     |
+| ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
+| isStopped  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | Yes  | Whether to consume the back button press.<br>Default value: **true**|
 ## InputType
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -1062,7 +1081,7 @@ Enumerates the Enter key types.
 
 ## Events
 
-In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
+In addition to the [universal events](ts-component-general-events.md), the following events are supported.
 
 ### onChange
 
@@ -1293,6 +1312,24 @@ Triggered when text is deleted.
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | callback  | Callback\<[DeleteValue](ts-text-common.md#deletevalue12)> | Yes  | Callback triggered when text is deleted.<br>It is available only for system input methods.|
 
+### onWillChange<sup>15+</sup>
+
+onWillChange(callback: Callback\<EditableTextChangeValue, boolean>)
+
+Called when the text content is about to change.
+
+This callback is triggered after **onWillInsert** and **onWillDelete**, but before **onDidInsert** and **onDidDelete**.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description              |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| callback  | Callback\<[EditableTextChangeValue](ts-text-common.md#editabletextchangevalue15), boolean> | Yes  | Callback triggered when the text content is about to change.<br>Returning **true** allows the change to proceed, while returning **false** cancels the change.|
+
 ## TextInputController<sup>8+</sup>
 
 Inherits from [TextContentControllerBase](ts-types.md#textcontentcontrollerbase10).
@@ -1320,7 +1357,7 @@ A constructor used to create a **TextInputController** object.
 
 caretPosition(value: number): void
 
-Sets the position of the caret.
+Sets the position of the caret. If the value is less than 0, the value **0** is used. If the value exceeds the text length, the caret is placed at the end of the text.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1493,16 +1530,18 @@ struct TextInputExample {
 This example showcases the effects of underlines in different scenarios using the **showUnderline**, **showError**, **showUnit**, and **passwordIcon** attributes.
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct TextInputExample {
-  @State passWordSrc1: Resource = $r('app.media.ImageOne')
-  @State passWordSrc2: Resource = $r('app.media.ImageTwo')
-  @State textError: string = ''
-  @State text: string = ''
-  @State nameText: string = 'test'
+  @State passWordSrc1: Resource = $r('app.media.ImageOne');
+  @State passWordSrc2: Resource = $r('app.media.ImageTwo');
+  @State textError: string = '';
+  @State text: string = '';
+  @State nameText: string = 'test';
 
-  @Builder itemEnd() {
+  @Builder
+  itemEnd() {
     Select([{ value: 'KB' },
       { value: 'MB' },
       { value: 'GB' },
@@ -1517,9 +1556,14 @@ struct TextInputExample {
       .selectedOptionFont({ size: 20, weight: 400 })
       .optionFont({ size: 20, weight: 400 })
       .backgroundColor(Color.Transparent)
-      .responseRegion({ height: "40vp", width: "80%", x: '10%', y: '6vp' })
+      .responseRegion({
+        height: "40vp",
+        width: "80%",
+        x: '10%',
+        y: '6vp'
+      })
       .onSelect((index: number) => {
-        console.info('Select:' + index)
+        console.info('Select:' + index);
       })
   }
 

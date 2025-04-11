@@ -21,7 +21,7 @@ import { ComposeListItem } from "@kit.ArkUI"
 Not supported
 
 ## Attributes
-The [universal attributes](ts-universal-attributes-size.md) are supported.
+The [universal attributes](ts-component-general-attributes.md) are not supported.
 
 
 ## ComposeListItem
@@ -119,7 +119,7 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 | onChange | (value: boolean)=&gt;void | No| Callback invoked when the selected state of the switch, check box, or radio button on the right is changed.<br> **true**: from not selected to selected<br> **false**: from selected to not selected                                                                                                                                                                                        |
 
 ## Events
-The [universal events](ts-universal-events-click.md) are supported.
+The [universal events](ts-component-general-events.md) are not supported.
 
 ## Example
 This example demonstrates how to create a simple list item that includes a primary text, a secondary text, a description, and a button with accompanying text on the right.

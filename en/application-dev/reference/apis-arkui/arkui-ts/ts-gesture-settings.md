@@ -116,9 +116,9 @@ Defines whether an event is triggered by a left-hand or right-hand tap.
 
 | Name| Description|
 | -------- | -------- |
-| NONE | Unknown.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
-| LEFT | Left hand.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
-| RIGHT | Right hand.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+| NONE | Unknown.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
+| LEFT | Left hand.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
+| RIGHT | Right hand.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
 
 
 ## Example

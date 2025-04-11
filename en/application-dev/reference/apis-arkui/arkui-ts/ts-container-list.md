@@ -317,11 +317,7 @@ Sets whether to pin the header to the top or the footer to the bottom in the [li
 
 scrollSnapAlign(value: ScrollSnapAlign)
 
-Sets the scroll snap alignment effect for list items. This effect aligns list items to the nearest snap point when scrolling ends.
-
-This attribute is effective only when all list items have the same height.
-
-It does not take effect when scrolling ends using a touchpad or mouse device.
+Sets the scroll snap alignment effect for list items. 
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

@@ -12,8 +12,8 @@
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Color                    | Value          | Illustration                                    |
-| ------------------------ | ------------- | ---------------------------------------- |
+| Color                    | Value           | Illustration                                                        |
+| ------------------------ | ------------- | ------------------------------------------------------------ |
 | Black                    | 0x000000      | ![en-us_image_0000001219864153](figures/en-us_image_0000001219864153.png) |
 | Blue                     | 0x0000ff      | ![en-us_image_0000001174104404](figures/en-us_image_0000001174104404.png) |
 | Brown                    | 0xa52a2a      | ![en-us_image_0000001219744201](figures/en-us_image_0000001219744201.png) |
@@ -25,30 +25,30 @@
 | Red                      | 0xff0000      | ![en-us_image_0000001219662665](figures/en-us_image_0000001219662665.png) |
 | White                    | 0xffffff      | ![en-us_image_0000001174582866](figures/en-us_image_0000001174582866.png) |
 | Yellow                   | 0xffff00      | ![en-us_image_0000001174582864](figures/en-us_image_0000001174582864.png) |
-| Transparent<sup>9+</sup> | rgba(0,0,0,0) | Transparent                                     |
+| Transparent<sup>9+</sup> | rgba(0,0,0,0) | Transparent                                                      |
 
 ## ImageFit
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name       | Description                             |
-| --------- | ------------------------------- |
-| Contain   | The image is scaled with its aspect ratio retained for the content to be completely displayed within the display boundaries.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| Cover     | The image is scaled with its aspect ratio retained for both sides to be greater than or equal to the display boundaries.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| Auto      | The image is scaled automatically based on its own size and the size of the component to fit the display area.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| Fill      | The image is scaled to fill the display area, and its aspect ratio is not retained.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| ScaleDown | The image is displayed with its aspect ratio retained, in a size smaller than or equal to the original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| None      | The image is displayed in its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| TOP_START<sup>12+</sup> | The image is displayed at the top start corner of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| TOP<sup>12+</sup>       | The image is displayed horizontally centered at the top of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| TOP_END<sup>12+</sup>   | The image is displayed at the top end corner of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| START<sup>12+</sup>     | The image is displayed vertically centered at the start of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| CENTER<sup>12+</sup>    | The image is displayed at the center of the **Image** component both horizontally and vertically, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| END<sup>12+</sup>       | The image is displayed vertically centered at the end of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| BOTTOM_START<sup>12+</sup> | The image is displayed at the bottom start corner of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| BOTTOM<sup>12+</sup>    | The image is displayed horizontally centered at the bottom of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| BOTTOM_END<sup>12+</sup>| The image is displayed at the bottom end corner of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-
+| Name       | Value   | Description                             |
+| --------- | ----- | ------------------------------- |
+| Contain   | 0  | The image is scaled with its aspect ratio retained for the content to be completely displayed within the display boundaries.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>![ImageFit-Examples01](figures/image_fit_contain.png) |
+| Cover     | 1  | The image is scaled with its aspect ratio retained for both sides to be greater than or equal to the display boundaries.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>![ImageFit-Examples02](figures/image_fit_cover.png) |
+| Auto      | 2  | The image is scaled automatically based on its own size and the size of the component to fit the display area.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>![ImageFit-Examples03](figures/image_fit_auto.png) |
+| Fill      | 3  | The image is scaled to fill the display area, and its aspect ratio is not retained.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>![ImageFit-Examples04](figures/image_fit_fill.png) |
+| ScaleDown | 4  | The image is displayed with its aspect ratio retained, in a size smaller than or equal to the original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>![ImageFit-Examples05](figures/image_fit_scaleDown.png) |
+| None      | 5  | The image is displayed in its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>![ImageFit-Examples06](figures/image_fit_none.png) |
+| TOP_START<sup>12+</sup> | 7  | The image is displayed at the top start corner of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>![ImageFit-Examples07](figures/image_fit_top_start.png) |
+| TOP<sup>12+</sup>       | 8  | The image is displayed horizontally centered at the top of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>![ImageFit-Examples08](figures/image_fit_top.png)  |
+| TOP_END<sup>12+</sup>   | 9  | The image is displayed at the top end corner of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>![ImageFit-Examples09](figures/image_fit_top_end.png) |
+| START<sup>12+</sup>     | 10  | The image is displayed vertically centered at the start of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>![ImageFit-Examples10](figures/image_fit_start.png) |
+| CENTER<sup>12+</sup>    | 11  | The image is displayed at the center of the **Image** component both horizontally and vertically, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>![ImageFit-Examples11](figures/image_fit_center.png) |
+| END<sup>12+</sup>       | 12  | The image is displayed vertically centered at the end of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>![ImageFit-Examples12](figures/image_fit_end.png) |
+| BOTTOM_START<sup>12+</sup> | 13  | The image is displayed at the bottom start corner of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>![ImageFit-Examples13](figures/image_fit_bottom_start.png) |
+| BOTTOM<sup>12+</sup>    | 14  | The image is displayed horizontally centered at the bottom of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>![ImageFit-Examples14](figures/image_fit_bottom.png) |
+| BOTTOM_END<sup>12+</sup>| 15  | The image is displayed at the bottom end corner of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>![ImageFit-Examples15](figures/image_fit_bottom_end.png) |
+| MATRIX<sup>15+</sup>| 16  | The image, with the use of [imageMatrix](ts-basic-components-image.md#imagematrix15), is displayed in the specified position of the **Image component**, keeping its original size. SVG images are not supported.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 
 ## BorderStyle
 
@@ -162,7 +162,7 @@ Enumerates the input method function keys.
 
 ## Curve
 
-Enumerates the interpolation curves.
+Enumerates the interpolation curves. For details about the animation, see <!--RP1-->Bezier Curve<!--RP1End-->.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -533,12 +533,12 @@ Enumerates the interpolation curves.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name   | Description                                 |
-| ------- | ----------------------------------- |
-| Cover   | The image is scaled with its aspect ratio retained for both sides to be greater than or equal to the display boundaries.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| Contain | The image is scaled with its aspect ratio retained for the content to be completely displayed within the display boundaries.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br> **Atomic service API**: This API can be used in atomic services since API version 11.     |
-| Auto    | The original image aspect ratio remains unchanged. Default value.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br> **Atomic service API**: This API can be used in atomic services since API version 11.                        |
-| FILL<sup>12+</sup> | The image is scaled to fill the display area, and its aspect ratio is not retained.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| Name   | Value   | Description                                 |
+| ------- | -------------------------- | ----------------------------------- |
+| Cover   | 1  | The image is scaled with its aspect ratio retained for both sides to be greater than or equal to the display boundaries.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| Contain | 2  | The image is scaled with its aspect ratio retained for the content to be completely displayed within the display boundaries.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br> **Atomic service API**: This API can be used in atomic services since API version 11.     |
+| Auto    | 0  | The original image aspect ratio remains unchanged. Default value.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br> **Atomic service API**: This API can be used in atomic services since API version 11.                        |
+| FILL<sup>12+</sup> | 3  | The image is scaled to fill the display area, and its aspect ratio is not retained.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## GradientDirection
 
@@ -705,12 +705,12 @@ Enumerates the interpolation curves.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name         | Description      |
-| ----------- | -------- |
-| None        | Copy is not allowed.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| InApp       | Intra-application copy is allowed.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| LocalDevice | Intra-device copy is allowed.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| CROSS_DEVICE<sup>(deprecated)</sup> | Cross-device copy is allowed.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 11.<br>**NOTE**<br>This API is supported since API version 11 and deprecated since API version 12.|
+| Name         | Value| Description      |
+| ----------- | --- | -------- |
+| None        | 0 | Copy is not allowed.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| InApp       | 1 | Intra-application copy is allowed.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| LocalDevice | 2 | Intra-device copy is allowed.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| CROSS_DEVICE<sup>(deprecated)</sup> | 3 | Cross-device copy is allowed.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 11.<br>**NOTE**<br>This API is supported since API version 11 and deprecated since API version 12.|
 
 ## HitTestMode<sup>9+</sup>
 
@@ -733,10 +733,10 @@ Enumerates the interpolation curves.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name     | Description                             |
-| --------- | --------------------------------- |
-| DEFAULT   | Blue text on white background (black background under the dark theme).|
-| HIGHLIGHT | White text on blue background.                       |
+| Name     | Value  | Description                             |
+| --------- | ---- | --------------------------------- |
+| DEFAULT   | 0    | Blue text on white background (black background under the dark theme).|
+| HIGHLIGHT | 1    | White text on blue background.                       |
 
 ## TextHeightAdaptivePolicy<sup>10+</sup>
 
@@ -769,9 +769,9 @@ Enumerates the interpolation curves.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name       | Description                    |
-| ----------- | ------------------------ |
-| PLACEHOLDER | The content is replaced by a placeholder.|
+| Name       | Value| Description                    |
+| ----------- | -- | ------------------------ |
+| PLACEHOLDER | 0 |The content is replaced by a placeholder.|
 
 ## ColoringStrategy<sup>10+</sup>
 
@@ -779,11 +779,11 @@ Enumerates the coloring strategies.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name    | Description             |
-| ------ | --------------- |
-| INVERT | The foreground colors are the inverse of the component background colors. This strategy is only applicable when set within the [foregroundColor](ts-universal-attributes-foreground-color.md#foregroundcolor) attribute.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| AVERAGE<sup>11+</sup> | The shadow colors of the component are the average color obtained from the component background shadow area. This strategy is only applicable when set within the [shadow](ts-universal-attributes-image-effect.md#shadow) attribute whose input parameter type is ShadowOptions.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| PRIMARY<sup>11+</sup> | The shadow colors of the component are the primary color obtained from the component background shadow area. This strategy is only applicable when set within the [shadow](ts-universal-attributes-image-effect.md#shadow) attribute whose input parameter type is ShadowOptions.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| Name    | Value| Description             |
+| ------ | --- | --------------- |
+| INVERT | invert | The foreground colors are the inverse of the component background colors. This strategy is only applicable when set within the [foregroundColor](ts-universal-attributes-foreground-color.md#foregroundcolor) attribute.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| AVERAGE<sup>11+</sup> | average | The shadow colors of the component are the average color obtained from the component background shadow area. This strategy is only applicable when set within the [shadow](ts-universal-attributes-image-effect.md#shadow) attribute whose input parameter type is ShadowOptions.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| PRIMARY<sup>11+</sup> | primary | The shadow colors of the component are the primary color obtained from the component background shadow area. This strategy is only applicable when set within the [shadow](ts-universal-attributes-image-effect.md#shadow) attribute whose input parameter type is ShadowOptions.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## ClickEffectLevel<sup>10+</sup>
 
@@ -816,12 +816,12 @@ Enumerates the coloring strategies.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name                     | Description        |
-| ----------------------  | ---------- |
-| FOLD_STATUS_UNKNOWN     | The folding status of the device is unknown.|
-| FOLD_STATUS_EXPANDED    | The device is fully open.  |
-| FOLD_STATUS_FOLDED      | The device is folded (completely closed).  |
-| FOLD_STATUS_HALF_FOLDED | The device is half-folded, somewhere between fully open and completely closed.|
+| Name                     |Value| Description        |
+| ----------------------  |----| ---------- |
+| FOLD_STATUS_UNKNOWN     |0| The folding status of the device is unknown.|
+| FOLD_STATUS_EXPANDED    |1| The device is fully open.  |
+| FOLD_STATUS_FOLDED      |2| The device is folded (completely closed).  |
+| FOLD_STATUS_HALF_FOLDED |3| The device is half-folded, somewhere between fully open and completely closed.|
 
 ## TextContentStyle<sup>10+</sup>
 
@@ -835,13 +835,9 @@ Enumerates the coloring strategies.
 | INLINE  | Inline input style. The background height of the selected text is the same as the height of the text box.<br>This style is used in scenarios where editing and non-editing states are obvious, for example, renaming in the file list view.<br>The **showError** attribute is not supported for this style.<br>This style does not allow for text dragging and dropping.|
 
 
-## Nullable<sup>11+</sup>
+## Nullable\<T><sup>11+</sup>
 
-Nullable\<T> {
-
-(data: T);
-
-}
+type Nullable\<T> = T | undefined;
 
 The object of this type can be of a custom type or **undefined**.
 
@@ -849,9 +845,9 @@ The object of this type can be of a custom type or **undefined**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Type| Mandatory| Description                      |
-| ---- | ---- | ---- | -------------------------- |
-| data | T    | Yes  | The object of this type can be of a custom type or **undefined**.|
+| Type| Description                      |
+| ---- | -------------------------- |
+| T \| undefined | The object of this type can be of a custom type or **undefined**.|
 
 ## WordBreak<sup>11+</sup>
 
@@ -859,11 +855,11 @@ The object of this type can be of a custom type or **undefined**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name | Description                                  |
-| ----- | -------------------------------------- |
-| NORMAL  | Word breaks can occur between any two characters for Chinese, Japanese, and Korean (CJK) text, but can occur only at a space character for non-CJK text (such as English).|
-| BREAK_ALL | Line breaks can occur between any two characters for non-CJK text. CJK text behavior is the same as for **NORMAL**.|
-| BREAK_WORD | This option has the same effect as **BREAK_ALL** for non-CJK text, except that if it preferentially wraps lines at appropriate characters (for example, spaces) whenever possible. CJK text behavior is the same as for **NORMAL**.|
+| Name | Value| Description                                  |
+| ----- | --- | -------------------------------------- |
+| NORMAL  | 0 | Word breaks can occur between any two characters for Chinese, Japanese, and Korean (CJK) text, but can occur only at a space character for non-CJK text (such as English).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| BREAK_ALL | 1 | Line breaks can occur between any two characters for non-CJK text. CJK text behavior is the same as for **NORMAL**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| BREAK_WORD | 2 | This option has the same effect as **BREAK_ALL** for non-CJK text, except that it preferentially wraps lines at appropriate characters (for example, spaces) whenever possible. CJK text behavior is the same as for **NORMAL**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
 ## LineBreakStrategy<sup>12+</sup>
 
@@ -871,11 +867,11 @@ The object of this type can be of a custom type or **undefined**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name        | Description                                                        |
-| ------------ | ------------------------------------------------------------ |
-| GREEDY       | Places as many words on a line as possible and moves to the next line only if no more words can fit into the same line.|
-| HIGH_QUALITY | Fills in lines as much as possible on the basis of **BALANCED**, which may results in a large blank area on the last line.|
-| BALANCED     | Balances the line length when possible without word splitting.  |
+| Name        | Value| Description                                                        |
+| ------------ | --- | ------------------------------------------------------------ |
+| GREEDY       | 0 | Places as many words on a line as possible and moves to the next line only if no more words can fit into the same line.|
+| HIGH_QUALITY | 1 | Fills in lines as much as possible on the basis of **BALANCED**, which may results in a large blank area on the last line.|
+| BALANCED     | 2 | Balances the line length when possible without word splitting.  |
 
 ## TextSelectableMode<sup>12+</sup>
 
@@ -883,11 +879,11 @@ The object of this type can be of a custom type or **undefined**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name        | Description                                                        |
-| ------------ | ------------------------------------------------------------ |
-| SELECTABLE_UNFOCUSABLE  | The text is selectable, but not focusable. Setting the **selection**, **bindSelectionMenu**, or **copyOption** attribute does not affect the behavior.|
-| SELECTABLE_FOCUSABLE | The text is selectable and focusable. It obtains focus when touched.|
-| UNSELECTABLE     | The text is not selectable nor focusable. The **selection**, **bindSelectionMenu**, and **copyOption** attributes do not work in this case. |
+| Name        | Value| Description                                                        |
+| ------------ | --- | ------------------------------------------------------------ |
+| SELECTABLE_UNFOCUSABLE  | 0 | The text is selectable, but not focusable. Setting the **selection**, **bindSelectionMenu**, or **copyOption** attribute does not affect the behavior.|
+| SELECTABLE_FOCUSABLE | 1 | The text is selectable and focusable. It obtains focus when touched.|
+| UNSELECTABLE     | 2 | The text is not selectable nor focusable. The **selection**, **bindSelectionMenu**, and **copyOption** attributes do not work in this case. |
 
 ## AccessibilityHoverType<sup>12+</sup>
 
@@ -908,11 +904,11 @@ The object of this type can be of a custom type or **undefined**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name | Description                                  |
-| ----- | -------------------------------------- |
-| START  | An ellipsis is used at the start of the line of text.|
-| CENTER | An ellipsis is used at the center of the line of text.|
-| END | An ellipsis is used at the end of the line of text.|
+| Name | Value| Description                                  |
+| ----- | --- | -------------------------------------- |
+| START  | 0 | An ellipsis is used at the start of the line of text.|
+| CENTER | 1 | An ellipsis is used at the center of the line of text.|
+| END | 2 | An ellipsis is used at the end of the line of text.|
 
 ## ArrowPointPosition<sup>11+</sup>
 
@@ -920,11 +916,11 @@ The object of this type can be of a custom type or **undefined**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name           | Description                                    |
-| ------------- | -------------------------------------- |
-| START | On the leftmost side of the parent component in the horizontal layout; on the top of the parent component in the vertical layout.|
-| CENTER | In the center of the parent component.|
-| END | On the rightmost side of the parent component in the horizontal layout; at the bottom of the parent component in the vertical layout.|
+| Name           | Value          | Description                                    |
+| ------------- | -------------------------------------- | -------------------------------------- |
+| START | 'Start' | On the leftmost side of the parent component in the horizontal layout; on the top of the parent component in the vertical layout.|
+| CENTER | 'Center' | In the center of the parent component.|
+| END | 'End' | On the rightmost side of the parent component in the horizontal layout; at the bottom of the parent component in the vertical layout.|
 
 ## OptionWidthMode<sup>11+</sup>
 
@@ -932,10 +928,10 @@ The object of this type can be of a custom type or **undefined**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name       | Description                          |
-| ----------- | ------------------------------ |
-| FIT_CONTENT | Uses the default width, that is, width of two columns.           |
-| FIT_TRIGGER | Inherits the width of the drop-down list button.|
+| Name       | Value      | Description                          |
+| ----------- | ------------------------------ | ------------------------------ |
+| FIT_CONTENT | 'fit_content' | Uses the default width, that is, width of two columns.           |
+| FIT_TRIGGER | 'fit_trigger' | Inherits the width of the drop-down list button.|
 
 ## PixelRoundCalcPolicy<sup>11+</sup>
 
@@ -947,11 +943,11 @@ Enumerates the pixel rounding policies for component boundaries.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name    | Description                           |
-| ------ | ----------------------------- |
-| NO_FORCE_ROUND | The value is not rounded off.|
-| FORCE_CEIL | The value is rounded up to the nearest integer.|
-| FORCE_FLOOR | The value is rounded down to the nearest integer.|
+| Name    |Value| Description                           |
+| ------ | ----|----------------------------- |
+| NO_FORCE_ROUND |0| The value is not rounded off.|
+| FORCE_CEIL |1| The value is rounded up to the nearest integer.|
+| FORCE_FLOOR |2| The value is rounded down to the nearest integer.|
 
 ## TextDecorationStyle<sup>12+</sup>
 
@@ -959,13 +955,13 @@ Enumerates the pixel rounding policies for component boundaries.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name         | Description       |
-| ----------- | --------- |
-| SOLID   | Single solid line (default value). |
-| DOUBLE | Double solid line.|
-| DOTTED    | Dotted line. |
-| DASHED        | Dashed line.|
-| WAVY        | Wavy line.|
+| Name         | Value| Description       |
+| ----------- | --- | --------- |
+| SOLID   | 0 | Single solid line (default value). |
+| DOUBLE | 1 | Double solid line.|
+| DOTTED    | 2 | Dotted line. |
+| DASHED        | 3 | Dashed line.|
+| WAVY        | 4 | Wavy line.|
 
 ## EmbeddedType<sup>12+</sup>
 Enumerates the types of the providers that can be started by the **EmbeddedComponent**.
@@ -995,12 +991,12 @@ Enumerates the types of the providers that can be started by the **EmbeddedCompo
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name    | Description                           |
-| ------ | ----------------------------- |
-| ROTATION_0 | 0 degrees.|
-| ROTATION_90 |90 degrees.|
-| ROTATION_180 | 180 degrees.|
-| ROTATION_270 | 270 degrees.|
+| Name    |Value| Description                           |
+| ------ |-----| ----------------------------- |
+| ROTATION_0 |0| 0 degrees.|
+| ROTATION_90 |1|90 degrees.|
+| ROTATION_180 |2| 180 degrees.|
+| ROTATION_270 |3| 270 degrees.|
 
 ## ScrollSource<sup>12+</sup>
 
@@ -1054,10 +1050,10 @@ Enumerates the types of display areas for the hover mode.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name    | Description                           |
-| ------ | ----------------------------- |
-| TOP_SCREEN | Upper half screen.|
-| BOTTOM_SCREEN | Lower half screen.|
+| Name    | Value   | Description                           |
+| ------ | ----------------------------- | ----------------------------- |
+| TOP_SCREEN | 0 | Upper half screen.|
+| BOTTOM_SCREEN | 1 | Lower half screen.|
 
 ## WidthBreakpoint<sup>13+</sup>
 

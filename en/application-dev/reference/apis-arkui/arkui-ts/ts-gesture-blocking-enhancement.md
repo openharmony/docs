@@ -100,7 +100,7 @@ Obtains whether this gesture recognizer is a built-in gesture.
 
 | Type    | Description       |
 | ------ | --------- |
-| boolean | Whether this gesture recognizer is a built-in gesture.|
+| boolean | Whether the current gesture recognizer is a built-in gesture. The value **true** means that the gesture recognizer is a built-in gesture, and **false** means the opposite.|
 
 ### setEnabled
 
@@ -237,7 +237,7 @@ Checks whether this scrollable container component is scrolled to the top. If it
 
 | Type    | Description       |
 | ------ | --------- |
-| boolean | Whether the current scrollable container component is scrolled to the top.|
+| boolean | Whether the current scrollable container component is scrolled to the top. The value **true** means that the component is scrolled to the top, and **false** means the opposite.|
 
 ### isEnd
 
@@ -559,24 +559,14 @@ struct Index {
               let target = current.getEventTargetInfo();
               if (target && current.isBuiltIn() && current.getType() == GestureControl.GestureType.PAN_GESTURE) {
                 console.info('ets onGestureRecognizerJudgeBegin child PAN_GESTURE')
-                let swiperTaget = target as ScrollableTargetInfo
-                if (swiperTaget instanceof ScrollableTargetInfo) {
-                  console.info('ets onGestureRecognizerJudgeBegin child PAN_GESTURE isEnd: ' + swiperTaget.isEnd() + ' isBegin: ' + swiperTaget.isBegin())
+                let panEvent = event as PanGestureEvent;
+                if (panEvent && panEvent.velocityX < 0 && this.innerSelectedIndex === 1) { // The inner Tabs component has reached the end.
+                  console.info('ets onGestureRecognizerJudgeBegin child reject end')
+                  return GestureJudgeResult.REJECT;
                 }
-                if (swiperTaget instanceof ScrollableTargetInfo && 
-                  ((swiperTaget.isEnd() || this.innerSelectedIndex === 1) || // This condition checks whether the inner Tabs container has scrolled to the end.
-                    (swiperTaget.isBegin() || this.innerSelectedIndex === 0))) { // This condition checks whether the inner Tabs container has scrolled to the beginning.
-                  let panEvent = event as PanGestureEvent;
-                  console.log('pan direction:' + panEvent.offsetX + ' begin:' + swiperTaget.isBegin() + ' end:' +
-                  swiperTaget.isEnd() + ' index:' + this.innerSelectedIndex)
-                  if (panEvent && panEvent.offsetX < 0 && (swiperTaget.isEnd() || this.innerSelectedIndex === 1)) {
-                    console.info('ets onGestureRecognizerJudgeBegin child reject end')
-                    return GestureJudgeResult.REJECT;
-                  }
-                  if (panEvent && panEvent.offsetX > 0 && (swiperTaget.isBegin() || this.innerSelectedIndex === 0)) {
-                    console.info('ets onGestureRecognizerJudgeBegin child reject begin')
-                    return GestureJudgeResult.REJECT;
-                  }
+                if (panEvent && panEvent.velocityX > 0 && this.innerSelectedIndex === 0) { // The inner Tabs component has reached the beginning.
+                  console.info('ets onGestureRecognizerJudgeBegin child reject begin')
+                  return GestureJudgeResult.REJECT;
                 }
               }
             }

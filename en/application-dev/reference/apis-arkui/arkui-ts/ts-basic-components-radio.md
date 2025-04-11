@@ -51,15 +51,15 @@ Creates a radio button.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name           | Description                          |
-| --------------- | -------------------------------- |
-| TICK            | Default tick icon. |
-| DOT             | Default dot icon.  |
-| CUSTOM          | Custom component.|
+| Name           | Value          | Description                          |
+| --------------- | -------------------------------- | -------------------------------- |
+| TICK            | 0           | Default tick icon. |
+| DOT             | 1            | Default dot icon.  |
+| CUSTOM          | 2         | Custom component.|
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### checked
 
@@ -77,9 +77,9 @@ Since API version 10, this attribute supports two-way binding through [$$](../..
 
 **Parameters**
 
-| Name| Type   | Mandatory| Description                                |
-| ------ | ------- | ---- | ------------------------------------ |
-| value  | boolean | Yes  | Whether the radio button is selected.<br>Default value: **false**|
+| Name| Type   | Mandatory| Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | Yes  | Whether the radio button is selected.<br>Default value: **false**<br>**true**: The radio button is selected. **false**: The radio button is not selected.|
 
 ### radioStyle<sup>10+</sup>
 
@@ -99,7 +99,7 @@ Since API version 10, this API is supported in ArkTS widgets.
 | ------ | ----------------------------------- | ---- | ---------------------------------- |
 | value  | [RadioStyle](#radiostyle10) | No  | Style of the radio button in selected or deselected state.|
 
-## contentModifier<sup>12+</sup>
+### contentModifier<sup>12+</sup>
 
 contentModifier(modifier: ContentModifier\<RadioConfiguration>)
 
@@ -117,7 +117,7 @@ Creates a content modifier.
 
 ## Events
 
-In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
+In addition to the [universal events](ts-component-general-events.md), the following events are supported.
 
 ### onChange
 
@@ -145,9 +145,9 @@ Triggered when the selected state of the radio button changes.
 
 | Name                  | Type                                      | Mandatory| Description                                                        |
 | ---------------------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| checkedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor) | No  | Color of the background when the radio button is selected.<br>Default value: **#007DFF**                      |
-| uncheckedBorderColor   | [ResourceColor](ts-types.md#resourcecolor) | No  | Color of the border when the radio button is deselected.<br>Default value: **#182431**                      |
-| indicatorColor         | [ResourceColor](ts-types.md#resourcecolor) | No  | Color of the indicator when the radio button is selected. Since API version 12, this parameter takes effect only when **indicatorType** is set to **RadioIndicatorType.TICK** or **RadioIndicatorType.DOT**.  <br>Default value: **#FFFFFF**|
+| checkedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor) | No  | Color of the background when the radio button is selected.<br>Default value: **$r('sys.color.ohos_id_color_text_primary_activated')**                     |
+| uncheckedBorderColor   | [ResourceColor](ts-types.md#resourcecolor) | No  | Color of the border when the radio button is deselected.<br>Default value: **$r('sys.color.ohos_id_color_switch_outline_off')**                      |
+| indicatorColor         | [ResourceColor](ts-types.md#resourcecolor) | No  | Color of the indicator when the radio button is selected. Since API version 12, this parameter takes effect only when **indicatorType** is set to **RadioIndicatorType.TICK** or **RadioIndicatorType.DOT**.  <br>Default value: **$r('sys.color.ohos_id_color_foreground_contrary')**|
 
 ## RadioConfiguration<sup>12+</sup>
 
@@ -160,13 +160,13 @@ You need a custom class to implement the **ContentModifier** API.
 | Name | Type   | Read Only| Optional |  Description             |
 | ------ | ------ |-------------------------------- |-------------------------------- |-------------------------------- |
 | value | string | No| No|Current value of the radio button.|
-| checked | boolean| No| No| Whether the radio button is selected.<br>Default value: **false**|
-| triggerChange |Callback\<boolean>|No|No|Changes the selected state of the radio button.|
+| checked | boolean| No| No| Whether the radio button is selected.<br>Default value: **false**<br>**true**: The radio button is selected. **false**: The radio button is not selected.|
+| triggerChange |Callback\<boolean>|No|No|Changes the selected state of the radio button.<br>The value **true** means that the radio button changes from unselected to selected, and **false** means that the radio button changes from selected to unselected.|
 
 
 ## Example
-### Example 1
-This example shows how to set the color of the background when the radio button is selected.
+### Example 1: Setting the Background Color
+This example demonstrates how to set **checkedBackgroundColor** to customize the background color of a radio button.
 ```ts
 // xxx.ets
 @Entry
@@ -215,8 +215,8 @@ struct RadioExample {
 }
 ```
 ![radio](figures/radio.gif)
-### Example 2
-This example shows how to set the indicator of the radio button to an image.
+### Example 2: Setting the Indicator Type
+This example shows how to customize the appearance of a radio button when it is selected by configuring **indicatorType** and **indicatorBuilder**.
 ```ts
 // xxx.ets
 @Entry
@@ -267,8 +267,8 @@ struct RadioExample {
 }
 ```
 ![radio](figures/radio_2.gif)
-### Example 3
-This example shows how to set the style of the radio button in selected or deselected state.
+### Example 3: Implementing a Custom Radio Button
+This example illustrates how to implement a custom radio button using the **contentModifier** API.
 ```ts
 class MyRadioStyle implements ContentModifier<RadioConfiguration> {
   type: number = 0

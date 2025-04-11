@@ -21,7 +21,7 @@ Not supported
 
 ## Attributes
 
-The [universal attributes](ts-universal-attributes-size.md) are supported.
+The [universal attributes](ts-component-general-attributes.md) are not supported.
 
 ## GridObjectSortComponent
 
@@ -50,10 +50,10 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 | Name          | Type                     | Mandatory| Description                                                  |
 | -------------- | ------------------------- | ---- | ------------------------------------------------------ |
 | type           | [GridObjectSortComponentType](#gridobjectsortcomponenttype) | No  | Component display form: text only or\|text and imagery.<br>Default value: **GridObjectSortComponentType.text**|
-| imageSize      | number \| [Resource](ts-types.md#resource) | No  | Image size.<br>Default value: **56**                         |
+| imageSize      | number \| [Resource](ts-types.md#resource) | No  | Image size, in vp.<br>The value must be greater than or equal to 0.<br>Default value: **56vp**                |
 | normalTitle | [ResourceStr](ts-types.md#resourcestr)     | No  | Title displayed in the non-editing state.<br>Default value: **Channel**           |
 | showAreaTitle | [ResourceStr](ts-types.md#resourcestr)     | No  | First subtitle of the display area.<br>Default value: **Drag to sort**|
-| addAreaTitle | [ResourceStr](ts-types.md#resourcestr)     | No  | Second subtitle of the display area.<br>Default value: **Touch to add**           |
+| addAreaTitle | [ResourceStr](ts-types.md#resourcestr)     | No  | Second subtitle of the display area.<br>Default value: **Tap to add**                               |
 | editTitle      | [ResourceStr](ts-types.md#resourcestr)     | No  | Title displayed in the editing state.<br>Default value: **Edit**            |
 
 ## GridObjectSortComponentType
@@ -75,15 +75,15 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 | Name    | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| id       | number \| string             | Yes  | Data ID, which must be unique.                                      |
+| id       | number \| string             | Yes  | Data ID, which must be unique.<br>The default value is an empty string.                                      |
 | text     | [ResourceStr](ts-types.md#resourcestr) | Yes  | Text information.                                              |
 | selected | boolean                                | Yes  | Whether the grid object has been added. The value **true** means that grid object has been added, and **false** means the opposite.                 |
-| url      | [ResourceStr](ts-types.md#resourcestr) | No  | URL of the image. This parameter is required when **GridObjectSortComponentType** is set to **IMAGE_TEXT**.|
-| order    | number                                 | Yes  | Sequence number.                                                  |
+| url      | [ResourceStr](ts-types.md#resourcestr) | No  | URL of the image. Required when **GridObjectSortComponentType** is set to **IMAGE_TEXT**.|
+| order    | number                                 | Yes  |   Sequence number.<br>The value must be greater than or equal to 0.<br>Default value: **0**                                                  |
 
 ##  Events
 
-The [universal events](ts-universal-events-click.md) are not supported.
+The [universal events](ts-component-general-events.md) are not supported.
 
 ## Example
 This example illustrates the basic usage of the **GridObjectSortComponent** component, involving component configuration initialization, data initialization, and the use of the save and cancel APIs.
@@ -98,67 +98,25 @@ struct Index {
   @State dataList: GridObjectSortComponentItem[] = [
     {
       id: 0,
-      url: $r('app.media.ic_controlcenter_location_filled'),
-      text: 'Location',
+      url: $r('sys.media.ohos_save_button_filled'),
+      text: 'Download',
       selected: true,
       order: 3
     },
     {
       id: 1,
-      url: $r('app.media.ic_controlcenter_mobiledata_filled'),
-      text: 'Mobile data',
+      url: $r('sys.media.ohos_ic_public_web'),
+      text: 'Network',
       selected: true,
       order: 9
     },
     {
       id: 2,
-      url: $r('app.media.ic_controlcenter_nfc_filled'),
-      text: 'NFC',
+      url: $r('sys.media.ohos_ic_public_video'),
+      text: 'Video',
       selected: false,
       order: 1
-    },
-    {
-      id: 3,
-      url: $r('app.media.ic_controlcenter_ring_off_filled'),
-      text: 'Silent',
-      selected: true,
-      order: 4
-    },
-    {
-      id: 4,
-      url: $r('app.media.ic_controlcenter_ring_on_filled'),
-      text: 'Ring',
-      selected: false,
-      order: 5
-    },
-    {
-      id: 5,
-      url: $r('app.media.ic_controlcenter_ultra_power_saver_filled'),
-      text: 'Low power',
-      selected: true,
-      order: 6
-    },
-    {
-      id: 6,
-      url: $r('app.media.ic_controlcenter_screenshot_filled'),
-      text: 'Screenshot',
-      selected: true,
-      order: 7
-    },
-    {
-      id: 7,
-      url: $r('app.media.ic_controlcenter_screen_recording_filled'),
-      text: 'Screen recording',
-      selected: true,
-      order: 8
-    },
-    {
-      id: 8,
-      url: $r('app.media.ic_controlcenter_super_power_saver_filled'),
-      text: 'Ultra power saving',
-      selected: false,
-      order: 9
-    },
+    }
   ]
 
   // Initialize the component configuration information.

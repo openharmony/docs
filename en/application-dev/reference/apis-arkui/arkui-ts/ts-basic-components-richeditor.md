@@ -37,7 +37,7 @@ RichEditor(options: RichEditorStyledStringOptions)<sup>12+</sup>
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 >  **NOTE**
 >
@@ -100,7 +100,7 @@ Specifies whether copy and paste is allowed for text content.
 
 If **copyOptions** is not set to **CopyOptions.None**, long-pressing the text content displays the context menu. If a custom context menu is defined through **bindSelectionMenu** or other approaches, it will be displayed.
 
-If **copyOptions** is set to **CopyOptions.None**, the copy, cut, and AI-powered writing features are not available.
+If **copyOptions** is set to **CopyOptions.None**, the copy, cut, translate, and AI-powered writer features are not available.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -329,9 +329,26 @@ Sets whether haptic feedback is enabled.
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
 | isEnabled  | boolean | Yes  | Whether haptic feedback is enabled.<br>**true** (default): Haptic feedback is enabled.<br>**false**: Haptic feedback is disabled.<br>Whether this parameter takes effect after being set to true depends on hardware support.|
 
+### keyboardAppearance<sup>15+</sup>
+
+keyboardAppearance(appearance: Optional\<KeyboardAppearance\>)
+
+Sets the keyboard appearance.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| ------ | ----------------------------------------- | ---- | ------------------------------------------------------ |
+| appearance | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[KeyboardAppearance](ts-text-common.md#keyboardappearance15)\> | Yes  | Keyboard appearance.<br>Default value: **KeyboardAppearance.NONE_IMMERSIVE**|
+
+
 ## Events
 
-In addition to the [universal events](ts-universal-events-click.md), [OnDidChangeCallback](ts-text-common.md#ondidchangecallback12), [StyledStringChangedListener](ts-text-common.md#styledstringchangedlistener12), [StyledStringChangeValue](ts-text-common.md#styledstringchangevalue12), and the following events are supported.
+In addition to the [universal events](ts-component-general-events.md), [OnDidChangeCallback](ts-text-common.md#ondidchangecallback12), [StyledStringChangedListener](ts-text-common.md#styledstringchangedlistener12), [StyledStringChangeValue](ts-text-common.md#styledstringchangevalue12), and the following events are supported.
 
 ### onReady
 
@@ -678,6 +695,7 @@ Provides the span type information.
 | IMAGE | 1 | Image span.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
 | MIXED | 2 | Mixed span, which contains both text and imagery.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 | BUILDER<sup>12+</sup> | 3 | Builder span.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
+| DEFAULT<sup>15+</sup> | 4 | Default type, used when no specific span type is specified.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 
 ## RichEditorResponseType<sup>11+</sup>
 
@@ -687,11 +705,12 @@ Provides the response type of the menu.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name        | Description         |
-| ---------- | ------------- |
-| LONG_PRESS  | The menu is displayed when the component is long-pressed.  |
-| RIGHT_CLICK | The menu is displayed when the component is right-clicked.|
-| SELECT | The menu is displayed when the component is selected.|
+| Name   | Value    | Description        |
+| ----- | ---- | ------------ |
+| RIGHT_CLICK  | 0 | The menu is displayed when the component is right-clicked.  |
+| LONG_PRESS | 1 | The menu is displayed when the component is long-pressed. |
+| SELECT | 2 | The menu is displayed when the component is selected. |
+| DEFAULT<sup>15+</sup> | 3 | Default type, used when no specific response type is specified. |
 
 ## RichEditorTextStyleResult
 
@@ -779,7 +798,7 @@ Provides the image span style information returned by the backend.
 | Name           | Type                                      | Mandatory  | Description       |
 | ------------- | ---------------------------------------- | ---- | --------- |
 | size          | [number, number]                         | Yes   | Width and height of the image, in px. Default value: varies by the value of **objectFit**. If the value of **objectFit** is **Cover**, the image height is the component height minus the top and bottom paddings, and the image width is the component width minus the left and right paddings.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| verticalAlign | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | Yes   | Vertical alignment mode of the image.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| verticalAlign | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) | Yes   | Vertical alignment mode of the image.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | objectFit     | [ImageFit](ts-appendix-enums.md#imagefit) | Yes   | Scale mode of the image.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | layoutStyle<sup>12+</sup> | [RichEditorLayoutStyle](#richeditorlayoutstyle11)     | No  | Image layout style.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
@@ -1364,7 +1383,7 @@ Obtains the styled string displayed in the **RichEditor** component.
 
 onContentChanged(listener: StyledStringChangedListener): void
 
-Register a callback for text content changes, which will be invoked when the text content is changed by the backend program.
+Triggered when text content changes. This callback is invoked when the text content is changed by the backend program.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1394,8 +1413,6 @@ Provides information about the selected content.
 Defines the range of the **RichEditor**.
 
 Inherits [RichEditorRange](#richeditorrange).
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1582,7 +1599,7 @@ Provides the image span style information.
 | Name                       | Type                                      | Mandatory  | Description                                      |
 | ------------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | size                      | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | No   | Width and height of the image. Default value: varies by the value of **objectFit**. If the value of **objectFit** is **Cover**, the image height is the component height minus the top and bottom paddings, and the image width is the component width minus the left and right paddings. Values using percentage notation are not supported.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                              |
-| verticalAlign             | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | No   | Vertical alignment mode of the image.<br>Default value: **ImageSpanAlignment.BOTTOM**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| verticalAlign             | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10)| No   | Vertical alignment mode of the image.<br>Default value: **ImageSpanAlignment.BOTTOM**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | objectFit                 | [ImageFit](ts-appendix-enums.md#imagefit) | No   | Scale mode of the image.<br> Default value: **ImageFit.Cover**<br>**Atomic service API**: This API can be used in atomic services since API version 11.      |
 | layoutStyle<sup>11+</sup> | [RichEditorLayoutStyle](#richeditorlayoutstyle11) | No   | Image layout style. Default value: **{"borderRadius":"","margin":""}**<br><br>**Atomic service API**: This API can be used in atomic services since API version 12.                         |
 
@@ -1653,6 +1670,8 @@ Provides the options of the custom context menu on selection.
 | onAppear    | [MenuOnAppearCallback](#menuonappearcallback12) | No   | Callback invoked when the custom context menu on selection appears.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | onDisappear | Callback\<void\>  | No   | Callback invoked when the custom context menu on selection disappears.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | menuType<sup>13+</sup> | [MenuType](ts-text-common.md#menutype13) | No| Type of the custom context menu on selection.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>Default value: **MenuType.SELECTION_MENU**|
+| onMenuShow<sup>15+</sup> | [MenuCallback](#menucallback15) | No|  Callback invoked when the custom context menu on selection is shown.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+| onMenuHide<sup>15+</sup> | [MenuCallback](#menucallback15) | No|  Callback invoked when the custom context menu on selection is hidden.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 
 ## PasteEvent<sup>11+</sup>
 
@@ -1749,6 +1768,23 @@ Represents the callback invoked when the custom context menu on selection appear
 | start | number | Yes  | Start position of the selected content.|
 | end    | number         | Yes  | End position of the selected content.        |
 
+## MenuCallback<sup>15+</sup>
+
+type MenuCallback = (start: number, end: number) => void
+
+Represents the callback invoked when the custom context menu on selection is shown or hidden.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                                            | Mandatory| Description                                                    |
+| -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
+| start | number | Yes  | Start position of the selected content.|
+| end    | number         | Yes  | End position of the selected content.        |
+
 ## PasteEventCallback<sup>12+</sup>
 
 type PasteEventCallback = (event?: PasteEvent) => void
@@ -1794,7 +1830,7 @@ Provides the text span information.
 | ----------------------------- | ---------------------------------------- | ---- | ---------------------- |
 | spanPosition                  | [RichEditorSpanPosition](#richeditorspanposition) | Yes   | Span position.|
 | value                         | string                                   | Yes   | Text span content.|
-| textStyle                     | [RichEditorTextStyle](#richeditortextstyle) | Yes   | Text span style.|
+| textStyle                     | [RichEditorTextStyle](#richeditortextstyle) | No   | Text span style.|
 
 ## RichEditorImageSpan
 
@@ -1807,7 +1843,7 @@ Image span information.
 | Name              | Type                                                               | Mandatory | Description              |
 |------------------|-------------------------------------------------------------------|-----|------------------|
 | spanPosition     | [RichEditorSpanPosition](#richeditorspanposition)                 | Yes  | Span position.|
-| valuePixelMap    | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)\|[ResourceStr](ts-types.md#resourcestr)  | Yes  | Image content.|
+| value            | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)\|[ResourceStr](ts-types.md#resourcestr)  | Yes  | Image content.|
 | imageStyle       | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | No| Image style.|
 
 ## Example
@@ -4386,6 +4422,9 @@ struct Index {
             let richEditorSelection = this.controller.getSelection();
             let start = richEditorSelection.start ? richEditorSelection.start : 0;
             let end = richEditorSelection.end ? richEditorSelection.end : 0;
+            if (start < 0 || end <= start) {
+              return;
+            }
             // Obtain the styled string displayed in the component.
             this.richEditorStyledString = this.controller.getStyledString();
             this.richEditorStyledString.removeString(start, end - start);
@@ -4413,6 +4452,9 @@ struct Index {
             let richEditorSelection = this.controller.getSelection();
             let start = richEditorSelection.start ? richEditorSelection.start : 0;
             let end = richEditorSelection.end ? richEditorSelection.end : 0;
+            if (start < 0 || end <= start) {
+              return;
+            }
             // Obtain the styled string displayed in the component.
             this.richEditorStyledString = this.controller.getStyledString();
             this.richEditorStyledString.setStyle({
@@ -4577,7 +4619,12 @@ struct RichEditorExample {
 ![RichEditorSelectionMenuOptions](figures/richEditorSelectionMenuOptions.png)
 
 ### Example 23: Setting Common Component Attributes
-This example shows how to set common attributes for the component, including:<br>Setting the scrollbar display mode during editing using [barState](#barstate13)<br> Configuring whether the soft keyboard is automatically displayed when the component gains focus through means other than clicking, using [enableKeyboardOnFocus](#enablekeyboardonfocus12)<br> Enabling or disabling haptic feedback for the component using [enableHapticFeedback](#enablehapticfeedback13)<br> ObtainIng preview text information using [getPreviewText](#getpreviewtext12)
+This example shows how to set common attributes for the component, including:
+
+- Setting the scrollbar display mode during editing using [barState](#barstate13)
+- Configuring whether the soft keyboard is automatically displayed when the component gains focus through means other than clicking, using [enableKeyboardOnFocus](#enablekeyboardonfocus12)
+- Enabling or disabling haptic feedback for the component using [enableHapticFeedback](#enablehapticfeedback13)
+- Obtaining preview text information using [getPreviewText](#getpreviewtext12)
 
 ```ts
 // xxx.ets

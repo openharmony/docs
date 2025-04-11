@@ -39,12 +39,12 @@ Defines a custom dialog box.
 | alignment                     | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment) | No   | Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Default**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | offset                        | [Offset](ts-types.md#offset)             | No   | Offset of the dialog box relative to the alignment position.<br>Default value: **{dx: 0, dy: 0}**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | customStyle                   | boolean                                  | No   | Whether to use a custom style for the dialog box.<br>When this parameter is set to **false** (default value):<br>1. The rounded corner radius is 32 vp.<br>2. If the width and height of the dialog box are not set, the dialog box automatically adapts its width to the grid system and its height to the child components.<br>3. The set width of the dialog box cannot exceed the maximum width in the default style (100% width for a custom node), and the set height cannot exceed the maximum height (100% height for a custom node).<br>When this parameter is set to **true**:<br>1. The corner radius is 0, and the background color is transparent.<br>2. The width, height, border width, border style, border color, and shadow width cannot be set for the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| gridCount<sup>8+</sup>        | number                                   | No   | Number of [grid columns](../../../ui/arkts-layout-development-grid-layout.md) occupied by the dialog box.<br>The default value is subject to the window size, and the maximum value is the maximum number of columns supported by the system. If this parameter is set to an invalid value, the default value is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| gridCount<sup>8+</sup>        | number                                   | No   | Number of [grid columns](../../../ui/arkts-layout-development-grid-layout.md) occupied by the dialog box.<br>The default value is subject to the window size, and the maximum value is the maximum number of columns supported by the system. If this parameter is set to an invalid value, the default value is used.<br>Value range: an integer no less than 0<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | maskColor<sup>10+</sup>       | [ResourceColor](ts-types.md#resourcecolor) | No   | Custom mask color.<br>Default value: **0x33000000**<br>**Atomic service API**: This API can be used in atomic services since API version 11.             |
 | maskRect<sup>10+</sup>        | [Rectangle](ts-methods-alert-dialog-box.md#rectangle8) | No    | Mask area of the dialog box. Events outside the mask area are transparently transmitted, and events within the mask area are not.<br>Default value: **{ x: 0, y: 0, width: '100%', height: '100%' }**<br>**NOTE**<br>**maskRect** does not take effect when **showInSubWindow** is set to **true**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | openAnimation<sup>10+</sup>   | [AnimateParam](ts-explicit-animation.md#animateparam) | No   | Parameters for defining the open animation of the dialog box.<br>**NOTE**<br>**tempo**: The default value is **1**; a value less than or equal to 0 is handled as the default value.<br>**iterations**: The default value is **1**, indicating that the animation is played once; any other value is handled as the default value.<br>**playMode**: The default value is **PlayMode.Normal**; any other value is handled as the default value.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | closeAnimation<sup>10+</sup>  | [AnimateParam](ts-explicit-animation.md#animateparam) | No   | Parameters for defining the close animation of the dialog box.<br>**NOTE**<br>**tempo**: The default value is **1**; a value less than or equal to 0 is handled as the default value.<br>**iterations**: The default value is **1**, indicating that the animation is played once; any other value is handled as the default value.<br>**playMode**: The default value is **PlayMode.Normal**; any other value is handled as the default value.<br>For page transition, you are advised to use the default close animation.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| showInSubWindow<sup>10+</sup> | boolean                                  | No   | Whether to show the dialog box in a sub-window when the dialog box needs to be displayed outside the main window.<br>Default value: **false**<br>**NOTE**<br>A dialog box whose **showInSubWindow** attribute is **true** cannot trigger the display of another dialog box whose **showInSubWindow** attribute is also **true**. Avoid using the **CalendarPicker**, **CalendarPickerDialog**, **DatePickerDialog**, **TextPickerDialog**, and **TimePickerDialog** components in the dialog box where **showInSubWindow** is set to **true**, as the dialog box may affect the behavior of these components.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| showInSubWindow<sup>10+</sup> | boolean                                  | No   | Whether to show the dialog box in a subwindow when the dialog box needs to be displayed outside the main window.<br>Default value: **false**<br>**NOTE**<br>A dialog box whose **showInSubWindow** attribute is **true** cannot trigger the display of another dialog box whose **showInSubWindow** attribute is also **true**. Avoid using the **CalendarPicker**, **CalendarPickerDialog**, **DatePickerDialog**, **TextPickerDialog**, and **TimePickerDialog** components in the dialog box where **showInSubWindow** is set to **true**, as the dialog box may affect the behavior of these components.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | backgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor)      | No  | Background color of the dialog box.<br>Default value: **Color.Transparent**<br>**NOTE**<br>If the content builder also has the background color set, the background color set here will be overridden by the background color of the content builder.<br>When **backgroundColor** is set to a non-transparent color, **backgroundBlurStyle** must be set to **BlurStyle.NONE**; otherwise, the color display may not meet the expected effect.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | cornerRadius<sup>10+</sup>    | [Dimension](ts-types.md#dimension10) \| [BorderRadiuses](ts-types.md#borderradiuses9) | No  | Radius of the rounded corners of the background.<br>You can set separate radiuses for the four rounded corners.<br>Default value: **{ topLeft: '32vp', topRight: '32vp', bottomLeft: '32vp', bottomRight: '32vp' }**<br>**NOTE**<br>This attribute must be used together with the [borderRadius](ts-universal-attributes-border.md#borderradius) attribute.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | isModal<sup>11+</sup> | boolean | No| Whether the dialog box is a modal. A modal dialog box has a mask applied, while a non-modal dialog box does not.<br>Default value: **true**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -59,7 +59,7 @@ Defines a custom dialog box.
 | keyboardAvoidMode<sup>12+</sup> | [KeyboardAvoidMode](ts-types.md#keyboardavoidmode12) | No| How the dialog box avoids the soft keyboard when it is brought up.<br>Default value: **KeyboardAvoidMode.DEFAULT**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | enableHoverMode<sup>14+</sup>     | boolean | No  | Whether to enable the hover state.<br>Default value: **false**, meaning not to enable the hover state.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | hoverModeArea<sup>14+</sup>       | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype14) | No  | Display area of the dialog box in the hover state.<br>Default value: **HoverModeAreaType.BOTTOM_SCREEN**<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
-| keyboardAvoidDistance<sup>15+</sup>       | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No  | Minimum distance between the dialog box and the keyboard after keyboard avoidance is applied.<br>**NOTE**<br>- Default value: **16vp**<br>- Default unit: vp<br>- This parameter takes effect only when **keyboardAvoidMode** is set to **DEFAULT**.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+| keyboardAvoidDistance<sup>15+</sup>       | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No  | Distance between the dialog box and the keyboard after keyboard avoidance is applied.<br>**NOTE**<br>- Default value: **16vp**<br>- Default unit: vp<br>- This parameter takes effect only when **keyboardAvoidMode** is set to **DEFAULT**.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 | levelMode<sup>15+</sup>       | [LevelMode](../js-apis-promptAction.md#levelmode15) | No  | Display level of the dialog box.<br>**NOTE**<br>- Default value: **LevelMode.OVERLAY.**<br>- This parameter takes effect only when **showInSubWindow** is set to **false**.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 | levelUniqueId<sup>15+</sup>       | number | No  | [Unique ID](../js-apis-arkui-frameNode.md#getuniqueid12) of the node under the display level for the page-level dialog box.<br>**NOTE**<br>- This parameter takes effect only when **levelMode** is set to **LevelMode.EMBEDDED**.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 | immersiveMode<sup>15+</sup>       | [ImmersiveMode](../js-apis-promptAction.md#immersivemode15) | No  | Overlay effect for the page-level dialog box.<br>**NOTE**<br>- Default value: **ImmersiveMode.DEFAULT**<br>- This parameter takes effect only when **levelMode** is set to **LevelMode.EMBEDDED**.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
@@ -149,7 +149,7 @@ This example demonstrates how to open one or more custom dialog boxes within ano
 // xxx.ets
 @CustomDialog
 struct CustomDialogExampleTwo {
-  controllerTwo?: CustomDialogController
+  controllerTwo?: CustomDialogController;
   build() {
     Column() {
       Text('I'm the second dialog box')
@@ -158,7 +158,7 @@ struct CustomDialogExampleTwo {
       Button('Close Second Dialog Box')
         .onClick(() => {
           if (this.controllerTwo != undefined) {
-            this.controllerTwo.close()
+            this.controllerTwo.close();
           }
         })
         .margin(20)
@@ -168,23 +168,23 @@ struct CustomDialogExampleTwo {
 @CustomDialog
 @Component
 struct CustomDialogExample {
-  @Link textValue: string
-  @Link inputValue: string
+  @Link textValue: string;
+  @Link inputValue: string;
   dialogControllerTwo: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExampleTwo(),
     alignment: DialogAlignment.Bottom,
     onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
-      console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
-      console.log("dialog onWillDismiss")
+      console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
+      console.log("dialog onWillDismiss");
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-        dismissDialogAction.dismiss()
+        dismissDialogAction.dismiss();
       }
       if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-        dismissDialogAction.dismiss()
+        dismissDialogAction.dismiss();
       }
     },
     offset: { dx: 0, dy: -25 } })
-  controller?: CustomDialogController
+  controller?: CustomDialogController;
   // You can pass in multiple other controllers in the CustomDialog to open one or more other CustomDialogs in the CustomDialog. In this case, you must place the controller pointing to the self behind all controllers.
   cancel: () => void = () => {
   }
@@ -196,23 +196,23 @@ struct CustomDialogExample {
       Text('Change text').fontSize(20).margin({ top: 10, bottom: 10 })
       TextInput({ placeholder: '', text: this.textValue }).height(60).width('90%')
         .onChange((value: string) => {
-          this.textValue = value
+          this.textValue = value;
         })
       Text('Are you sure you want to change the text?').fontSize(16).margin({ bottom: 10 })
       Flex({ justifyContent: FlexAlign.SpaceAround }) {
         Button('No')
           .onClick(() => {
             if (this.controller != undefined) {
-              this.controller.close()
-              this.cancel()
+              this.controller.close();
+              this.cancel();
             }
           }).backgroundColor(0xffffff).fontColor(Color.Black)
         Button('OK')
           .onClick(() => {
             if (this.controller != undefined) {
-              this.inputValue = this.textValue
-              this.controller.close()
-              this.confirm()
+              this.inputValue = this.textValue;
+              this.controller.close();
+              this.confirm();
             }
           }).backgroundColor(0xffffff).fontColor(Color.Red)
       }.margin({ bottom: 10 })
@@ -220,7 +220,7 @@ struct CustomDialogExample {
       Button('Open Second Dialog Box')
         .onClick(() => {
           if (this.dialogControllerTwo != null) {
-            this.dialogControllerTwo.open()
+            this.dialogControllerTwo.open();
           }
         })
         .margin(20)
@@ -235,21 +235,21 @@ struct CustomDialogUser {
   @State inputValue: string = 'click me'
   dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample({
-      cancel: ()=> { this.onCancel() },
-      confirm: ()=> { this.onAccept() },
-      textValue: $textValue,
-      inputValue: $inputValue
+      cancel: ()=> { this.onCancel(); },
+      confirm: ()=> { this.onAccept(); },
+      textValue: this.textValue,
+      inputValue: this.inputValue
     }),
     cancel: this.exitApp,
     autoCancel: true,
     onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
-      console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
-      console.log("dialog onWillDismiss")
+      console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
+      console.log("dialog onWillDismiss");
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-        dismissDialogAction.dismiss()
+        dismissDialogAction.dismiss();
       }
       if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-        dismissDialogAction.dismiss()
+        dismissDialogAction.dismiss();
       }
     },
     alignment: DialogAlignment.Bottom,
@@ -265,22 +265,22 @@ struct CustomDialogUser {
   }
 
   onCancel() {
-    console.info('Callback when the first button is clicked')
+    console.info('Callback when the first button is clicked');
   }
 
   onAccept() {
-    console.info('Callback when the second button is clicked')
+    console.info('Callback when the second button is clicked');
   }
 
   exitApp() {
-    console.info('Click the callback in the blank area')
+    console.info('Click the callback in the blank area');
   }
   build() {
     Column() {
       Button(this.inputValue)
         .onClick(() => {
           if (this.dialogController != null) {
-            this.dialogController.open()
+            this.dialogController.open();
           }
         }).backgroundColor(0x317aff)
     }.width('100%').margin({ top: 5 })
@@ -292,13 +292,13 @@ struct CustomDialogUser {
 
 ### Example 2: Opening a Dialog Box Outside the Main Window
 
-This example demonstrates how to configure a dialog box to display outside the main window by setting **showInSubWindow** to **true**.
+This example demonstrates how to configure a dialog box to display outside the main window on a 2-in-1 device by setting **showInSubWindow** to **true**.
 
 ```ts
 // xxx.ets
 @CustomDialog
 struct CustomDialogExample {
-  controller?: CustomDialogController
+  controller?: CustomDialogController;
   cancel: () => void = () => {
   }
   confirm: () => void = () => {
@@ -311,7 +311,7 @@ struct CustomDialogExample {
       Button('Close')
         .onClick(() => {
           if (this.controller != undefined) {
-            this.controller.close()
+            this.controller.close();
           }
         })
         .margin(20)
@@ -323,19 +323,19 @@ struct CustomDialogExample {
 struct CustomDialogUser {
   dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample({
-      cancel: ()=> { this.onCancel() },
-      confirm: ()=> { this.onAccept() }
+      cancel: ()=> { this.onCancel(); },
+      confirm: ()=> { this.onAccept(); }
     }),
     cancel: this.existApp,
     autoCancel: true,
     onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
-      console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
-      console.log("dialog onWillDismiss")
+      console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
+      console.log("dialog onWillDismiss");
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-        dismissDialogAction.dismiss()
+        dismissDialogAction.dismiss();
       }
       if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-        dismissDialogAction.dismiss()
+        dismissDialogAction.dismiss();
       }
     },
     alignment: DialogAlignment.Center,
@@ -348,19 +348,19 @@ struct CustomDialogUser {
   })
   // Set dialogController to null when the custom component is about to be destroyed.
   aboutToDisappear() {
-    this.dialogController = null // Set dialogController to null.
+    this.dialogController = null; // Set dialogController to null.
   }
 
   onCancel() {
-    console.info('Callback when the first button is clicked')
+    console.info('Callback when the first button is clicked');
   }
 
   onAccept() {
-    console.info('Callback when the second button is clicked')
+    console.info('Callback when the second button is clicked');
   }
 
   existApp() {
-    console.info('Click the callback in the blank area')
+    console.info('Click the callback in the blank area');
   }
 
   build() {
@@ -368,7 +368,7 @@ struct CustomDialogUser {
       Button('Click Me')
         .onClick(() => {
           if (this.dialogController != null) {
-            this.dialogController.open()
+            this.dialogController.open();
           }
         }).backgroundColor(0x317aff)
     }.width('100%').margin({ top: 5 })
@@ -384,7 +384,7 @@ This example demonstrates how to set styles of a custom dialog box, including th
 // xxx.ets
 @CustomDialog
 struct CustomDialogExample {
-  controller?: CustomDialogController
+  controller?: CustomDialogController;
   cancel: () => void = () => {
   }
   confirm: () => void = () => {
@@ -397,7 +397,7 @@ struct CustomDialogExample {
       Button('Close')
         .onClick(() => {
           if (this.controller != undefined) {
-            this.controller.close()
+            this.controller.close();
           }
         })
         .margin(20)
@@ -409,8 +409,8 @@ struct CustomDialogExample {
 struct CustomDialogUser {
   dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample({
-      cancel: ()=> { this.onCancel() },
-      confirm: ()=> { this.onAccept() }
+      cancel: ()=> { this.onCancel(); },
+      confirm: ()=> { this.onAccept(); }
     }),
     cancel: this.existApp,
     autoCancel: true,
@@ -418,10 +418,10 @@ struct CustomDialogUser {
       console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
       console.log("dialog onWillDismiss")
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-        dismissDialogAction.dismiss()
+        dismissDialogAction.dismiss();
       }
       if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-        dismissDialogAction.dismiss()
+        dismissDialogAction.dismiss();
       }
     },
     alignment: DialogAlignment.Center,
@@ -438,19 +438,19 @@ struct CustomDialogUser {
   })
   // Set dialogController to null when the custom component is about to be destroyed.
   aboutToDisappear() {
-    this.dialogController = null // Set dialogController to null.
+    this.dialogController = null; // Set dialogController to null.
   }
 
   onCancel() {
-    console.info('Callback when the first button is clicked')
+    console.info('Callback when the first button is clicked');
   }
 
   onAccept() {
-    console.info('Callback when the second button is clicked')
+    console.info('Callback when the second button is clicked');
   }
 
   existApp() {
-    console.info('Click the callback in the blank area')
+    console.info('Click the callback in the blank area');
   }
 
   build() {
@@ -458,7 +458,7 @@ struct CustomDialogUser {
       Button('Click Me')
         .onClick(() => {
           if (this.dialogController != null) {
-            this.dialogController.open()
+            this.dialogController.open();
           }
         }).backgroundColor(0x317aff)
     }.width('100%').margin({ top: 5 })
@@ -517,8 +517,8 @@ struct CustomDialogUser {
   @State inputValue: string = 'click me';
   dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample({
-      textValue: $textValue,
-      inputValue: $inputValue
+      textValue: this.textValue,
+      inputValue: this.inputValue
     }),
     cancel: this.exitApp,
     autoCancel: true,
