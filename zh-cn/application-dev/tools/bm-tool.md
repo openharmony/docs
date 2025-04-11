@@ -1658,3 +1658,110 @@ error: uninstall missing installed module.
 **处理步骤**
 
 使用[bm dump -n](#查询应用信息命令dump)命令查看应用配置，确认要卸载的模块已经安装。
+
+### 9568333 模块名称为空
+**错误信息**
+
+error: Install failed due to hap moduleName is empty.
+
+**错误描述**
+
+模块名称为空，导致安装失败。
+
+**可能原因**
+
+模块名称为空。
+
+**处理步骤**
+
+检查[module.json5](../quick-start/module-configuration-file.md)的name字段是否为空。
+
+### 9568331 签名信息不一致 
+**错误信息**
+
+error: Install incompatible signature info.
+
+**错误描述**
+
+签名信息不一致，导致安装失败。
+
+**可能原因**
+
+安装多HAP包的应用时，HAP包的签名信息不一致。
+
+**处理步骤**
+
+重新签名，使多个HAP包签名信息一致。参考[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-signing-V13)。
+
+### 9568334 模块名称重复
+**错误信息**
+
+error: Install failed due to hap moduleName duplicate.
+
+**错误描述**
+
+模块名称重复，导致安装失败。
+
+**可能原因**
+
+一个应用同时安装多个模块时，模块名称存在重复。
+
+**处理步骤**
+
+同一个应用多个模块的名称要保证唯一性。
+
+### 9568340 配置文件缺失
+**错误信息**
+
+error: Install parse no profile.
+
+**错误描述**
+
+HAP包没有配置文件，导致安装失败。
+
+**可能原因**
+
+[module.json、pack.info](../quick-start/application-package-structure-stage.md)等配置文件缺失。
+
+**处理步骤**
+
+使用DevEco Studio重新构建、打包、安装。
+
+### 9568341 安装时解析配置文件失败
+**错误信息**
+
+error: Install parse bad profile.
+
+**错误描述**
+
+安装时解析配置文件失败。
+
+**可能原因**
+
+[module.json、pack.info](../quick-start/application-package-structure-stage.md)等配置文件格式异常。
+
+**处理步骤**
+使用DevEco Studio重新构建、打包、安装。
+
+### 9568350 安装时获取install proxy对象失败
+**错误信息**
+
+error: Installd get proxy error.
+
+**错误描述**
+
+安装时获取install proxy对象失败。
+
+**可能原因**
+
+服务异常导致获取install proxy对象失败。
+
+**处理步骤**
+1. 重启手机后再次尝试安装应用。
+
+2. 重复上述步骤3到5次后依旧安装失败，请导出日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
+
+```
+// 导出日志文件
+hdc file recv /data/log/hilog/
+```
