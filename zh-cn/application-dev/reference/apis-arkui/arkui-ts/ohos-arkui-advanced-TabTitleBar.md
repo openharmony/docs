@@ -78,7 +78,7 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 ### 示例1（简单的页签型标题栏）
 该示例实现了带有左侧页签和右侧菜单列表的页签型标题栏。
 ```ts
-import { TabTitleBar, promptAction, TabTitleBarTabItem, TabTitleBarMenuItem } from '@kit.ArkUI'
+import { TabTitleBar, Prompt, TabTitleBarTabItem, TabTitleBarMenuItem } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -137,17 +137,17 @@ struct Index {
     {
       value: $r('sys.media.ohos_save_button_filled'),
       isEnabled: true,
-      action: () => promptAction.showToast({ message: "on item click! index 0" })
+      action: () => Prompt.showToast({ message: "on item click! index 0" })
     },
     {
       value: $r('sys.media.ohos_ic_public_copy'),
       isEnabled: true,
-      action: () => promptAction.showToast({ message: "on item click! index 1" })
+      action: () => Prompt.showToast({ message: "on item click! index 1" })
     },
     {
       value: $r('sys.media.ohos_ic_public_edit'),
       isEnabled: true,
-      action: () => promptAction.showToast({ message: "on item click! index 2" })
+      action: () => Prompt.showToast({ message: "on item click! index 2" })
     },
   ]
 
@@ -171,7 +171,7 @@ struct Index {
 ### 示例2（右侧自定义按钮播报）
 该示例通过设置标题栏右侧自定义按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
 ```ts
-import { TabTitleBar, promptAction, TabTitleBarTabItem, TabTitleBarMenuItem } from '@kit.ArkUI'
+import { TabTitleBar, Prompt, TabTitleBarTabItem, TabTitleBarMenuItem } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -230,7 +230,7 @@ struct Index {
     {
       value: $r('sys.media.ohos_save_button_filled'),
       isEnabled: true,
-      action: () => promptAction.showToast({ message: "on item click! index 0" }),
+      action: () => Prompt.showToast({ message: "on item click! index 0" }),
       accessibilityText: '保存',
       //此处为no，屏幕朗读不聚焦
       accessibilityLevel: 'no',
@@ -239,7 +239,7 @@ struct Index {
     {
       value: $r('sys.media.ohos_ic_public_copy'),
       isEnabled: true,
-      action: () => promptAction.showToast({ message: "on item click! index 1" }),
+      action: () => Prompt.showToast({ message: "on item click! index 1" }),
       accessibilityText: '复制',
       accessibilityLevel: 'yes',
       accessibilityDescription: '点击操作复制图标'
@@ -247,7 +247,7 @@ struct Index {
     {
       value: $r('sys.media.ohos_ic_public_edit'),
       isEnabled: true,
-      action: () => promptAction.showToast({ message: "on item click! index 2" }),
+      action: () => Prompt.showToast({ message: "on item click! index 2" }),
       //屏幕朗读播报文本，优先级比label高
       accessibilityText: '编辑',
       //屏幕朗读是否可以聚焦到
@@ -276,7 +276,7 @@ struct Index {
 ### 示例3（设置Symbol类型图标）
 该示例通过设置TabTitleBarTabItem、TabTitleBarMenuItem的属性symbolStyle，展示了自定义Symbol类型图标。
 ```ts
-import { TabTitleBar, promptAction, TabTitleBarTabItem, TabTitleBarMenuItem, SymbolGlyphModifier } from '@kit.ArkUI'
+import { TabTitleBar, Prompt, TabTitleBarTabItem, TabTitleBarMenuItem, SymbolGlyphModifier } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -340,7 +340,7 @@ struct Index {
       value: $r('sys.media.ohos_save_button_filled'),
       symbolStyle: new SymbolGlyphModifier($r('sys.symbol.save')),
       isEnabled: true,
-      action: () => promptAction.showToast({ message: "on item click! index 0" }),
+      action: () => Prompt.showToast({ message: "on item click! index 0" }),
       accessibilityText: '保存',
       //此处为no，屏幕朗读不聚焦
       accessibilityLevel: 'no',
@@ -350,7 +350,7 @@ struct Index {
       value: $r('sys.media.ohos_ic_public_copy'),
       symbolStyle: new SymbolGlyphModifier($r('sys.symbol.car')),
       isEnabled: true,
-      action: () => promptAction.showToast({ message: "on item click! index 1" }),
+      action: () => Prompt.showToast({ message: "on item click! index 1" }),
       accessibilityText: '复制',
       accessibilityLevel: 'yes',
       accessibilityDescription: '点击操作复制图标'
@@ -359,7 +359,7 @@ struct Index {
       value: $r('sys.media.ohos_ic_public_edit'),
       symbolStyle: new SymbolGlyphModifier($r('sys.symbol.ai_edit')),
       isEnabled: true,
-      action: () => promptAction.showToast({ message: "on item click! index 2" }),
+      action: () => Prompt.showToast({ message: "on item click! index 2" }),
       //屏幕朗读播报文本，优先级比label高
       accessibilityText: '编辑',
       //屏幕朗读是否可以聚焦到
