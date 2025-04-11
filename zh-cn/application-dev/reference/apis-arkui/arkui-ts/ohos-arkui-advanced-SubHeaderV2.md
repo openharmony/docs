@@ -304,7 +304,7 @@ import {
   SubHeaderV2,
   SubHeaderV2Title,
   SubHeaderV2OperationItem,
-  promptAction,
+  Prompt,
   TextModifier
 } from '@kit.ArkUI'
 
@@ -332,7 +332,7 @@ struct SubHeaderExample {
     this.operationItems = [new SubHeaderV2OperationItem({
       content: '操作',
       action: () => {
-        promptAction.showToast({ message: 'demo2' })
+        Prompt.showToast({ message: 'demo2' })
       }
     })]
   }
@@ -363,7 +363,7 @@ import {
   SubHeaderV2,
   SubHeaderV2Title,
   SubHeaderV2OperationItem,
-  promptAction,
+  Prompt,
   TextModifier
 } from '@kit.ArkUI'
 
@@ -384,7 +384,7 @@ struct SubHeaderExample {
     this.operationItems = [new SubHeaderV2OperationItem({
       content: '更多',
       action: () => {
-        promptAction.showToast({ message: 'demo2' })
+        Prompt.showToast({ message: 'demo2' })
       }
     })]
   }
@@ -415,7 +415,7 @@ import {
   SubHeaderV2OperationItem,
   SubHeaderV2Title,
   SubHeaderV2Select,
-  promptAction
+  Prompt
 } from '@kit.ArkUI'
 
 @Entry
@@ -441,7 +441,7 @@ struct SubHeaderExample {
       selectedContent: this.selectedValue,
       selectedIndex: this.selectedIndex,
       onSelect: (index: number, value?: string) => {
-        promptAction.showToast({ message: 'selectdemo' })
+        Prompt.showToast({ message: 'selectdemo' })
       }
     })
 
@@ -449,19 +449,19 @@ struct SubHeaderExample {
       new SubHeaderV2OperationItem({
         content: $r('sys.media.ohos_ic_public_email'),
         action: () => {
-          promptAction.showToast({ message: 'demo' })
+          Prompt.showToast({ message: 'demo' })
         }
       }),
       new SubHeaderV2OperationItem({
         content: $r('sys.media.ohos_ic_public_email'),
         action: () => {
-          promptAction.showToast({ message: 'demo' })
+          Prompt.showToast({ message: 'demo' })
         }
       }),
       new SubHeaderV2OperationItem({
         content: $r('sys.media.ohos_ic_public_email'),
         action: () => {
-          promptAction.showToast({ message: 'demo' })
+          Prompt.showToast({ message: 'demo' })
         }
       })]
   }
@@ -491,7 +491,7 @@ import {
   SubHeaderV2OperationType,
   SubHeaderV2OperationItem,
   SubHeaderV2Title,
-  promptAction,
+  Prompt,
   SymbolGlyphModifier
 } from '@kit.ArkUI'
 
@@ -514,7 +514,7 @@ struct SubHeaderExample {
         operationItems: [new SubHeaderV2OperationItem({
           content: '操作',
           action: () => {
-            promptAction.showToast({ message: 'demo' })
+            Prompt.showToast({ message: 'demo' })
           }
         })]
       })
@@ -535,7 +535,7 @@ import {
   SubHeaderV2OperationItem,
   SubHeaderV2Title,
   SubHeaderV2Select,
-  promptAction,
+  Prompt,
   SymbolGlyphModifier
 } from '@kit.ArkUI'
 
@@ -565,7 +565,7 @@ struct SubHeaderExample {
       selectedContent: this.selectedValue,
       selectedIndex: this.selectedIndex,
       onSelect: (index: number, value?: string) => {
-        promptAction.showToast({ message: 'demo' })
+        Prompt.showToast({ message: 'demo' })
       }
     })
 
@@ -573,7 +573,7 @@ struct SubHeaderExample {
       new SubHeaderV2OperationItem({
         content: new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')).fontWeight(FontWeight.Lighter),
         action: () => {
-          promptAction.showToast({ message: 'demo1' })
+          Prompt.showToast({ message: 'demo1' })
         }
       }),
       new SubHeaderV2OperationItem({
@@ -582,7 +582,7 @@ struct SubHeaderExample {
           .fontColor([Color.Blue, Color.Grey, Color.Green])
       ,
         action: () => {
-          promptAction.showToast({ message: 'demo2' })
+          Prompt.showToast({ message: 'demo2' })
         }
       }),
       new SubHeaderV2OperationItem({
@@ -591,7 +591,7 @@ struct SubHeaderExample {
           .fontColor([Color.Blue, Color.Grey, Color.Green])
       ,
         action: () => {
-          promptAction.showToast({ message: 'demo3' })
+          Prompt.showToast({ message: 'demo3' })
         }
       })]
   }
@@ -619,7 +619,7 @@ import {
   SubHeaderV2OperationType,
   SubHeaderV2OperationItem,
   SubHeaderV2Title,
-  promptAction
+  Prompt
 } from '@kit.ArkUI'
 
 @Entry
@@ -636,7 +636,7 @@ struct SubHeaderExample {
     this.operationItem = [new SubHeaderV2OperationItem({
       content: '更多信息',
       action: () => {
-        promptAction.showToast({ message: 'demo' })
+        Prompt.showToast({ message: 'demo' })
       }
     })]
   }
@@ -676,7 +676,7 @@ import {
   SubHeaderV2OperationType,
   SubHeaderV2OperationItem,
   SubHeaderV2Title,
-  promptAction,
+  Prompt,
   TextModifier
 } from '@kit.ArkUI'
 
@@ -698,7 +698,7 @@ struct SubHeaderExample {
     this.operationItems4 = [new SubHeaderV2OperationItem({
       content: '更多信息',
       action: () => {
-        promptAction.showToast({ message: 'demo' })
+        Prompt.showToast({ message: 'demo' })
       }
     })]
   }
@@ -728,7 +728,7 @@ import {
   SubHeaderV2OperationItem,
   SubHeaderV2IconType,
   SubHeaderV2Select,
-  promptAction
+  Prompt
 } from '@kit.ArkUI'
 
 @Entry
@@ -758,7 +758,7 @@ struct SubHeaderExample {
     this.operationItems = [new SubHeaderV2OperationItem({
       content: '操作',
       action: () => {
-        promptAction.showToast({ message: 'demo2' })
+        Prompt.showToast({ message: 'demo2' })
       }
     })]
   }
@@ -789,7 +789,7 @@ struct SubHeaderExample {
             onSelect: (index: number, value?: string) => {
               this.selectedIndex = index;
               this.selectedValue = value;
-              promptAction.showToast({ message: this.selectedValue })
+              Prompt.showToast({ message: this.selectedValue })
             }
           }),
           operationType: this.subHeaderOperationType3,
@@ -823,7 +823,7 @@ import {
   SubHeaderV2,
   SubHeaderV2Title,
   SubHeaderV2OperationItem,
-  promptAction,
+  Prompt,
   TextModifier
 } from '@kit.ArkUI'
 
@@ -851,7 +851,7 @@ struct SubHeaderExample {
       content: '操作',
       defaultFocus: true,
       action: () => {
-        promptAction.showToast({ message: 'demo2' })
+        Prompt.showToast({ message: 'demo2' })
       }
     })]
   }

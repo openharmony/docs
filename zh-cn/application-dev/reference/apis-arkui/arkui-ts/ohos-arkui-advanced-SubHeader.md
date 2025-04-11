@@ -115,7 +115,7 @@ TextModifier, titleBuilder?: () => void, contentMargin?: LocalizedMargin, conten
 该示例主要演示子标题左侧为icon、secondaryTitle，右侧operationType为按钮类型。
 
 ```ts
-import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';
+import { Prompt, OperationType, SubHeader } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -129,7 +129,7 @@ struct SubHeaderExample {
         operationItem: [{
           value: '操作',
           action: () => {
-            promptAction.showToast({ message: 'demo' });
+            Prompt.showToast({ message: 'demo' });
           }
         }]
       })
@@ -144,7 +144,7 @@ struct SubHeaderExample {
 该示例主要演示子标题左侧为primaryTitle、secondaryTitle，右侧operationType类型为TEXT_ARROW。
 
 ```ts
-import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';
+import { Prompt, OperationType, SubHeader } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -158,7 +158,7 @@ struct SubHeaderExample {
         operationItem: [{
           value: '更多',
           action: () => {
-            promptAction.showToast({ message: 'demo' });
+            Prompt.showToast({ message: 'demo' });
           }
         }]
       })
@@ -173,7 +173,7 @@ struct SubHeaderExample {
 该示例主要演示子标题左侧为select，右侧operationType类型为ICON_GROUP。
 
 ```ts
-import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';
+import { Prompt, OperationType, SubHeader } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -187,7 +187,7 @@ struct SubHeaderExample {
           value: 'selectDemo',
           selected: 2,
           onSelect: () => {
-            promptAction.showToast({ message: 'demo' });
+            Prompt.showToast({ message: 'demo' });
           }
         },
         operationType: OperationType.ICON_GROUP,
@@ -195,17 +195,17 @@ struct SubHeaderExample {
         operationItem: [{
           value: $r('sys.media.ohos_ic_public_email'),
           action: () => {
-            promptAction.showToast({ message: 'demo' })
+            Prompt.showToast({ message: 'demo' })
           }
         }, {
           value: $r('sys.media.ohos_ic_public_email'),
           action: () => {
-            promptAction.showToast({ message: 'demo' });
+            Prompt.showToast({ message: 'demo' });
           }
         }, {
           value: $r('sys.media.ohos_ic_public_email'),
           action: () => {
-            promptAction.showToast({ message: 'demo' });
+            Prompt.showToast({ message: 'demo' });
           }
         }]
       })
@@ -221,7 +221,7 @@ struct SubHeaderExample {
 
 ```ts
 
-import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';
+import { Prompt, OperationType, SubHeader } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -239,7 +239,7 @@ struct SubHeaderExample {
         operationItem: [{
           value: '操作',
           action: () => {
-            promptAction.showToast({ message: 'demo' });
+            Prompt.showToast({ message: 'demo' });
           }
         }]
       })
@@ -254,7 +254,7 @@ struct SubHeaderExample {
 该示例主要演示子标题operationType设置为OperationType.ICON_GROUP，operationItem的value设置为symbol图标。
 
 ```ts
-import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';
+import { Prompt, OperationType, SubHeader } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -268,7 +268,7 @@ struct SubHeaderExample {
           value: 'selectDemo',
           selected: 2,
           onSelect: () => {
-            promptAction.showToast({ message: 'demo' });
+            Prompt.showToast({ message: 'demo' });
           }
         },
         operationType: OperationType.ICON_GROUP,
@@ -276,17 +276,17 @@ struct SubHeaderExample {
         operationItem: [{
           value: $r('sys.symbol.ohos_lungs'),
           action: () => {
-            promptAction.showToast({ message: 'icon1' });
+            Prompt.showToast({ message: 'icon1' });
           }
         }, {
           value: $r('sys.symbol.ohos_lungs'),
           action: () => {
-            promptAction.showToast({ message: 'icon2' });
+            Prompt.showToast({ message: 'icon2' });
           }
         }, {
           value: $r('sys.symbol.ohos_lungs'),
           action: () => {
-            promptAction.showToast({ message: 'icon3' });
+            Prompt.showToast({ message: 'icon3' });
           }
         }],
         // 设置右侧icon图标symbol样式
@@ -311,7 +311,7 @@ struct SubHeaderExample {
  该示例主要演示SubHeader设置titleBuilder自定义标题内容的效果。
 
 ```ts
-import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';
+import { Prompt, OperationType, SubHeader } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -339,7 +339,7 @@ struct SubHeaderExample {
         operationItem: [{
           value: '更多信息',
           action: () => {
-            promptAction.showToast({ message: 'demo' });
+            Prompt.showToast({ message: 'demo' });
           }
         }]
       })
@@ -353,7 +353,7 @@ struct SubHeaderExample {
 该示例主要演示SubHeader设置标题和副标题字体样式以及标题内外边距的效果。
 
 ```ts
-import { promptAction, OperationType, SubHeader, LengthMetrics, TextModifier } from '@kit.ArkUI';
+import { Prompt, OperationType, SubHeader, LengthMetrics, TextModifier } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -373,7 +373,7 @@ struct SubHeaderExample {
         operationItem: [{
           value: '更多信息',
           action: () => {
-            promptAction.showToast({ message: 'demo' });
+            Prompt.showToast({ message: 'demo' });
           }
         }],
         // 标题内外间距
@@ -391,7 +391,7 @@ struct SubHeaderExample {
 ### 示例8（右侧按钮自定义播报）
 该示例通过设置subheader的右侧按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
 ```ts
-import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';
+import { Prompt, OperationType, SubHeader } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -407,7 +407,7 @@ struct SubHeaderExample {
         operationItem: [{
           value: '操作',
           action: () => {
-            promptAction.showToast({ message: 'demo' })
+            Prompt.showToast({ message: 'demo' })
           }
         }]
       })
@@ -420,7 +420,7 @@ struct SubHeaderExample {
         operationItem: [{
           value: '更多',
           action: () => {
-            promptAction.showToast({ message: 'demo' })
+            Prompt.showToast({ message: 'demo' })
           }
         }]
       })
@@ -460,7 +460,7 @@ struct SubHeaderExample {
 ### 示例9（右侧按钮设置默认获焦）
 该示例通过设置subheader的右侧按钮属性defaultFocus使其默认获焦。
 ```ts
-import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';
+import { Prompt, OperationType, SubHeader } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -476,7 +476,7 @@ struct SubHeaderExample {
           value: '操作',
           defaultFocus: true,
           action: () => {
-            promptAction.showToast({ message: 'demo' })
+            Prompt.showToast({ message: 'demo' })
           }
         }]
       })
