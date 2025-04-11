@@ -332,7 +332,7 @@ for (let i = 0; i < records.length; i++) {
 
 hasType(type: string): boolean
 
-检查当前统一数据对象中是否有指定的数据类型。
+检查当前统一数据对象中是否有指定的数据类型，检查范围包括使用[addEntry](#addEntry15)函数添加的数据类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -454,7 +454,7 @@ let types = unifiedData.getTypes();
 
 ## UnifiedRecord
 
-对UDMF支持的数据内容的抽象定义，称为数据记录。一个统一数据对象内包含一条或多条数据记录，例如一条文本记录、一条图片记录、一条HTML记录等。
+对UDMF支持的数据内容的抽象定义，称为数据记录。一个统一数据对象内包含一条或多条数据记录，例如一条文本记录、一条图片记录、一条HTML记录等。从API version 15开始，支持往数据记录中增加同一内容的不同表现样式，数据使用方根据业务需要获取对应的样式。
 
 ### constructor<sup>12+</sup>
 
@@ -623,7 +623,7 @@ let hyperlinkValue = hyperlinkRecord.getValue();
 
 addEntry(type: string, value: ValueType): void
 
-在当前数据记录中添加一条指定数据类型和内容的数据。
+在当前数据记录中添加一条指定数据类型和内容的数据，通过该方法增加的数据类型和内容为同一内容的不同表现样式.
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -659,22 +659,14 @@ let fileUri : uniformDataStruct.FileUri = {
   fileType : 'general.image',
   details : fileUriDetails,
 }
-let formDetails : Record<string, string> = {
-  'attr1': 'value1',
-  'attr2': 'value2',
-}
-let form : uniformDataStruct.Form = {
-  uniformDataType : 'openharmony.form',
-  formId : 1,
-  formName : 'form',
-  bundleName : 'com.xx.app',
-  abilityName : 'ability',
-  module : 'module',
-  details : formDetails,
+let hyperlink : uniformDataStruct.Hyperlink = {
+  uniformDataType:'general.hyperlink',
+  url : 'file://data/image/1.png',
+  description : 'This is the description of this hyperlink',
 }
 
 let unifiedData = new unifiedDataChannel.UnifiedData();
-let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.OPENHARMONY_FORM, form);
+let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.HYPERLINK, hyperlink);
 record.addEntry(uniformTypeDescriptor.UniformDataType.FILE_URI, fileUri);
 unifiedData.addRecord(record);
 ```
@@ -826,7 +818,7 @@ for (let i = 0; i < records.length; i++) {
 
 getTypes(): Array\<string\>
 
-获取当前数据记录中数据的所有类型集合。可通过UnifiedRecord数据记录对象调用本接口，能查询出此记录中数据的所有类型集合。
+获取当前数据记录中数据的所有类型集合。可通过UnifiedRecord数据记录对象调用本接口，能查询出此记录中数据的所有类型集合，包括使用[addEntry](#addEntry15)函数添加的数据类型。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 

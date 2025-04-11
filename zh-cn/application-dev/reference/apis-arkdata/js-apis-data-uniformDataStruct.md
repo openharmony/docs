@@ -45,6 +45,7 @@ if(plainText.details != undefined){
     console.info('plainText.details.attr: ' + kv[0] + ', value:' + kv[1]);
   }
 }
+let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
 ```
 
 ## Hyperlink
@@ -74,6 +75,7 @@ let hyperlink : uniformDataStruct.Hyperlink = {
   details : hyperlinkDetails,
 }
 console.info('hyperlink.uniformDataType: ' + hyperlink.uniformDataType);
+let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.HYPERLINK, hyperlink);
 ```
 
 ## HTML
@@ -103,6 +105,7 @@ let htmlObj : uniformDataStruct.HTML = {
   details : htmlObjDetails,
 }
 console.info('htmlObj.uniformDataType: ' + htmlObj.uniformDataType);
+let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.HTML, htmlObj);
 ```
 
 ## OpenHarmonyAppItem
@@ -143,6 +146,7 @@ let appItem : uniformDataStruct.OpenHarmonyAppItem = {
   details : appItemDetails,
 }
 console.info('appItem.uniformDataType: ' + appItem.uniformDataType);
+let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.OPENHARMONY_APP_ITEM, appItem);
 ```
 
 ## ContentForm<sup>14+</sup>
@@ -168,15 +172,16 @@ console.info('appItem.uniformDataType: ' + appItem.uniformDataType);
 let thumbDataU8Array = new Uint8Array([1, 2, 3, 4, 5]);
 let appIconU8Array = new Uint8Array([6, 7, 8, 9, 10]);
 let contentForm : uniformDataStruct.ContentForm = {
-    uniformDataType : 'general.content-form',
-    title : 'MyTitle',
-    thumbData : thumbDataU8Array,
-    description : 'MyDescription',
-    appName : 'MyAppName',
-    linkUri : 'MyLinkUri',
-    appIcon : appIconU8Array
+  uniformDataType : 'general.content-form',
+  title : 'MyTitle',
+  thumbData : thumbDataU8Array,
+  description : 'MyDescription',
+  appName : 'MyAppName',
+  linkUri : 'MyLinkUri',
+  appIcon : appIconU8Array
 }
 console.info('contentForm.uniformDataType: ' + contentForm.uniformDataType);
+let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.CONTENT_FORM, contentForm);
 ```
 
 ## Form<sup>15+</sup>
@@ -215,6 +220,7 @@ let form : uniformDataStruct.Form = {
   details : formDetails
 }
 console.info('form.uniformDataType: ' + form.uniformDataType);
+let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.OPENHARMONY_FORM, form);
 ```
 
 ## FileUri<sup>15+</sup>
@@ -247,6 +253,8 @@ let fileUri : uniformDataStruct.FileUri = {
   details : fileUriDetails
 }
 console.info('fileUri.uniformDataType: ' + fileUri.uniformDataType);
+// 当使用FileUri类型的标准化数据结构构造record时，推荐入参中的type值设为uniformTypeDescriptor.UniformDataType.FILE_URI
+let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.FILE_URI, fileUri);
 ```
 
 ## PixelMap<sup>15+</sup>
@@ -265,8 +273,6 @@ console.info('fileUri.uniformDataType: ' + fileUri.uniformDataType);
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image';
-
 let u8Array = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 let arrayBuffer = new ArrayBuffer(4*200*200);
 let opt : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 200, width: 200 }, alphaType: 3 };
@@ -281,4 +287,5 @@ let pixelMap : uniformDataStruct.PixelMap = {
   details : pixelMapDetails
 }
 console.info('pixelMap.uniformDataType: ' + pixelMap.uniformDataType);
+let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.OPENHARMONY_PIXEL_MAP, pixelMap);
 ```

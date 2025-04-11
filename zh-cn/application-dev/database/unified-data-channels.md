@@ -56,7 +56,6 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
 2. 创建一个统一数据对象并插入到UDMF的公共数据通路中。
 
   ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
   let plainTextDetails : Record<string, string> = {
     'attr1': 'value1',
     'attr2': 'value2',
@@ -67,8 +66,20 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
     abstract : 'this is abstract',
     details : plainTextDetails,
   }
-  let text = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
-  let unifiedData = new unifiedDataChannel.UnifiedData(text);
+  let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
+  let htmlObjDetails : Record<string, string> = {
+    'attr1': 'value1',
+    'attr2': 'value2',
+  }
+  let htmlObj : uniformDataStruct.HTML = {
+    uniformDataType :'general.html',
+    htmlContent : '<div><p>hello world</p></div>',
+    plainContent : 'hello world',
+    details : htmlObjDetails,
+  }
+  // 为该记录增加一种样式，两种样式存储的数据内容是一致的，系不同表达形式
+  record.addEntry(uniformTypeDescriptor.UniformDataType.HTML, htmlObj);
+  let unifiedData = new unifiedDataChannel.UnifiedData(record);
 
   // 指定要插入数据的数据通路枚举类型
   let options: unifiedDataChannel.Options = {
@@ -95,8 +106,19 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
     textContent : 'how are you',
     abstract : 'this is abstract',
   }
-  let text = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
-  let unifiedDataUpdate = new unifiedDataChannel.UnifiedData(text);
+  let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
+  let htmlObjDetails : Record<string, string> = {
+    'attr1': 'value1',
+    'attr2': 'value2',
+  }
+  let htmlObj : uniformDataStruct.HTML = {
+    uniformDataType :'general.html',
+    htmlContent : '<div><p>how are you</p></div>',
+    plainContent : 'how are you',
+    details : htmlObjDetails,
+  }
+  record.addEntry(uniformTypeDescriptor.UniformDataType.HTML, htmlObj);
+  let unifiedDataUpdate = new unifiedDataChannel.UnifiedData(record);
 
   // 指定要更新的统一数据对象的URI
   let optionsUpdate: unifiedDataChannel.Options = {
@@ -132,9 +154,15 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
         for (let i = 0; i < data.length; i++) {
           let records = data[i].getRecords();
           for (let j = 0; j < records.length; j++) {
-            if (records[j].getTypes().includes(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT)) {
+            let types = records[j].getTypes();
+            if (types.includes(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT)) {
+              // 根据业务需要从记录中获取样式数据
               let text = records[j].getEntry(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) as uniformDataStruct.PlainText;
               console.info(`${i + 1}.${text.textContent}`);
+            } else if (types.includes(uniformTypeDescriptor.UniformDataType.HTML)) {
+              // 根据业务需要从记录中获取样式数据
+              let html = records[j].getEntry(uniformTypeDescriptor.UniformDataType.HTML) as uniformDataStruct.HTML;
+              console.info(`${i + 1}.${html.htmlContent}`);
             }
           }
         }
@@ -171,9 +199,15 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
         for (let i = 0; i < data.length; i++) {
           let records = data[i].getRecords();
           for (let j = 0; j < records.length; j++) {
-            if (records[j].getTypes().includes(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT)) {
+            let types = records[j].getTypes();
+            if (types.includes(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT)) {
+              // 根据业务需要从记录中获取样式数据
               let text = records[j].getEntry(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) as uniformDataStruct.PlainText;
               console.info(`${i + 1}.${text.textContent}`);
+            } else if (types.includes(uniformTypeDescriptor.UniformDataType.HTML)) {
+              // 根据业务需要从记录中获取样式数据
+              let html = records[j].getEntry(uniformTypeDescriptor.UniformDataType.HTML) as uniformDataStruct.HTML;
+              console.info(`${i + 1}.${html.htmlContent}`);
             }
           }
         }
