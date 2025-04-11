@@ -244,7 +244,6 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     示例如下所示：
 
-    <!--RP5-->
     ```c++
     // 设置OH_AVCodecOnError 回调函数，编码异常。
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
@@ -255,8 +254,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         (void)userData;
     }
     ```
-    <!--RP5End-->
-
+    
     <!--RP12-->
     ```c++
     // 设置OH_AVCodecOnStreamChanged 回调函数，编码数据流变化。
