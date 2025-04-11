@@ -1365,6 +1365,12 @@ static parseRationalNumber(numerator: number,denominator: number): RationalNumbe
 | numerator   | number | 是   | 分子，整数类型。取值范围：-Number.MAX_VALUE <= numerator <= Number.MAX_VALUE。|
 | denominator | number | 是   | 分母，整数类型。取值范围：-Number.MAX_VALUE <= denominator <= Number.MAX_VALUE。|
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [RationalNumber](#rationalnumber8) | RationalNumber对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
@@ -1403,7 +1409,7 @@ static createRationalFromString(rationalString: string): RationalNumber​
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Object | 返回RationalNumber对象。 |
+| [RationalNumber](#rationalnumber8) | RationalNumber对象。 |
 
 **错误码：**
 
@@ -2496,7 +2502,7 @@ console.info('result = ' + result);
 
 ### entries<sup>9+</sup>
 
-entries(): IterableIterator&lt;[K,V]&gt;
+entries(): IterableIterator&lt;[K,&nbsp;V]&gt;
 
 允许迭代包含在这个对象中的所有键值对。
 
@@ -2508,7 +2514,7 @@ entries(): IterableIterator&lt;[K,V]&gt;
 
 | 类型        | 说明                 |
 | ----------- | -------------------- |
-| [K,&nbsp;V] | 返回一个可迭代数组。 |
+| IterableIterator&lt;[K,&nbsp;V]&gt; | 返回一个可迭代数组。 |
 
 **示例：**
 
@@ -2528,7 +2534,7 @@ for (let value of arrayValue) {
 
 ### [Symbol.iterator]<sup>9+</sup>
 
-[Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
+[Symbol.iterator]\(): IterableIterator&lt;[K,&nbsp;V]&gt;
 
 返回一个键值对形式的二维数组。
 
@@ -2540,7 +2546,7 @@ for (let value of arrayValue) {
 
 | 类型        | 说明                           |
 | ----------- | ------------------------------ |
-| [K,&nbsp;V] | 返回一个键值对形式的二维数组。 |
+| IterableIterator&lt;[K,&nbsp;V]&gt;| 返回一个键值对形式的二维数组。 |
 
 **示例：**
 
@@ -5675,7 +5681,7 @@ createDefault(key: K): V
 
 ### entries<sup>(deprecated)</sup>
 
-entries(): IterableIterator&lt;[K,V]&gt;
+entries(): IterableIterator&lt;[K,&nbsp;V]&gt;
 
 允许迭代包含在这个对象中的所有键值对。
 
@@ -5689,7 +5695,7 @@ entries(): IterableIterator&lt;[K,V]&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [K,&nbsp;V] | 返回一个可迭代数组。 |
+| IterableIterator&lt;[K,&nbsp;V]&gt; | 返回一个可迭代数组。 |
 
 **示例：**
 
@@ -5701,7 +5707,7 @@ entries(): IterableIterator&lt;[K,V]&gt;
 
 ### [Symbol.iterator]<sup>(deprecated)</sup>
 
-[Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
+[Symbol.iterator]\(): IterableIterator&lt;[K,&nbsp;V]&gt;
 
 返回一个键值对形式的二维数组。
 
@@ -5715,7 +5721,7 @@ entries(): IterableIterator&lt;[K,V]&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [K,&nbsp;V] | 返回一个键值对形式的二维数组。 |
+| IterableIterator&lt;[K,&nbsp;V]&gt; | 返回一个键值对形式的二维数组。 |
 
 **示例：**
 
