@@ -507,7 +507,7 @@ netFirewall.addNetFirewallRule(dnsRule).then((result: number) => {
 | direction   | [NetFirewallRuleDirection](#netfirewallruledirection)       | 是 | 规则方向，入站或出站。                                         |
 | action      | [FirewallRuleAction](#firewallruleaction)                   | 是 | 行为。                                                         |
 | type        | [NetFirewallRuleType](#netfirewallruletype)                 | 是 | 规则类型。                                                     |
-| isEnabled   | boolean                                                     | 是 | 是否启用。                                                     |
+| isEnabled   | boolean                                                     | 是 | 是否启用。true:启用；false：不启用。                                                     |
 | id          | number                                                      | 否 | 规则ID。                                                       |
 | description | string                                                      | 否 | 规则描述，可选，最多256个字符。                                |
 | appUid      | number                                                      | 否 | 应用程序或服务UID。                                            |
@@ -554,7 +554,7 @@ netFirewall.addNetFirewallRule(dnsRule).then((result: number) => {
 
 | 名称       | 类型                                       | 必填 | 说明          |
 | -----------| -------------------------------------------|------|-------------- |
-| isOpen     | boolean                                    | 是   | 防火墙开/关。 |
+| isOpen     | boolean                                    | 是   | 防火墙开/关。true:防火墙开启；false：防火墙关闭。 |
 | inAction   | [FirewallRuleAction](#firewallruleaction)  | 是   | 入站行动。    |
 | outAction  | [FirewallRuleAction](#firewallruleaction)  | 是   | 出站行动。    |
 
@@ -649,7 +649,7 @@ netFirewall.addNetFirewallRule(dnsRule).then((result: number) => {
 
 | 名称         | 类型    | 必填 | 说明                                      |
 | ------------ | --------|------|------------------------------------------ |
-| isWildcard   | boolean | 是   | 是否包含通配符。                          |
+| isWildcard   | boolean | 是   | 是否包含通配符。true:包含通配符；false：不包含通配符。                         |
 | domain       | string  | 是   | 当isWildcard为false时，需要确定的完整域。 |
 
 ## NetFirewallDnsParams
