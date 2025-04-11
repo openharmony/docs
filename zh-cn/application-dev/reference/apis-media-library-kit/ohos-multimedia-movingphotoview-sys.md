@@ -4,20 +4,18 @@
 
 > **说明：**
 >
-> - 本模块首批接口从API version 14开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.multimedia.movingphotoview (动态照片)](ohos-multimedia-movingphotoview.md)。
-
-**参数：**
 
 ## MovingPhotoViewOptions
 
 
 | 参数名      | 参数类型                                                                                         | 必填 | 参数描述                                                                                                                                        |
 | ----------- | ------------------------------------------------------------------------------------------------ | ---- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| movingPhotoFormat  | [PixelMapFormat](#pixelmapformat)    | 否   | 设置动态照片组件封面图片的解码格式。                  |
-| dynamicRangeMode  | [DynamicRangeMode](#dynamicrangemode) | 否   | 设置动态照片组件封面图片的RangeMode样式。 |
+| movingPhotoFormat<sup>14+</sup>  | [PixelMapFormat](#pixelmapformat)    | 否   | 设置动态照片组件封面图片的解码格式。                  |
+| dynamicRangeMode<sup>14+</sup>  | [DynamicRangeMode](#dynamicrangemode) | 否   | 设置动态照片组件封面图片的RangeMode样式。 |
 
-## PixelMapFormat
+## PixelMapFormat<sup>14+</sup>
 
 动态照片组件封面图片的解码格式。
 
@@ -27,14 +25,14 @@
 
 | 名称                   |   值   | 说明              |
 | ---------------------- | ------ | ----------------- |
-| UNKNOWN                | 0      | 未知格式。|
-| RGBA_8888              | 1      | 格式为RGBA_8888。|
-| NV21                   | 2      | 格式为NV21。 |
-| RGBA_1010102           | 3      | 格式为RGBA_1010102。|
-| YCBCR_P010             | 4      | 格式为YCBCR_P010。|
-| YCRCB_P010             | 5      | 格式为YCRCB_P010。 |
+| UNKNOWN<sup>14+</sup>                | 0      | 未知格式。|
+| RGBA_8888<sup>14+</sup>              | 1      | 格式为RGBA_8888。|
+| NV21<sup>14+</sup>                   | 2      | 格式为NV21。 |
+| RGBA_1010102<sup>14+</sup>           | 3      | 格式为RGBA_1010102。|
+| YCBCR_P010<sup>14+</sup>             | 4      | 格式为YCBCR_P010。|
+| YCRCB_P010<sup>14+</sup>             | 5      | 格式为YCRCB_P010。 |
 
-## DynamicRangeMode
+## DynamicRangeMode<sup>14+</sup>
 
 动态照片组件封面图片的RangeMode样式。
 
@@ -44,9 +42,9 @@
 
 | 名称                   |   值   | 说明              |
 | ---------------------- | ------ | ----------------- |
-| HIGH                | 0      | 允许图像内容使用不受限制的扩展范围，显示HDR效果，建议使用的解码格式YCBCR_P010。|
-| CONSTRAINT          | 1      | 允许图像内容使用一些扩展范围。|
-| STANDARD            | 2      | 允许图像内容动态单位限制再标准范围内，显示SDR效果，需要使用的解码格式UNKNOWN或者RGBA_8888。|
+| HIGH<sup>14+</sup>                | 0      | 允许图像内容使用不受限制的扩展范围，显示HDR效果，建议使用的解码格式YCBCR_P010。|
+| CONSTRAINT<sup>14+</sup>         | 1      | 允许图像内容使用一些扩展范围。|
+| STANDARD<sup>14+</sup>            | 2      | 允许图像内容动态单位限制再标准范围内，显示SDR效果，需要使用的解码格式UNKNOWN或者RGBA_8888。|
 
 ## 示例1：系统应用设置动态照片解码格式和rangemode格式
 
