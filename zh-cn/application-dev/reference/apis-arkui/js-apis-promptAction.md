@@ -9,8 +9,6 @@
 > 该模块不支持在[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)的文件声明处使用，即不能在UIAbility的生命周期中调用，需要在创建组件实例后使用。
 >
 > 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](js-apis-arkui-UIContext.md#uicontext)说明。建议在<!--Del-->除[ServiceExtension](../../application-models/serviceextensionability.md)等<!--DelEnd-->无UI界面的场景外，均使用UIContext中的弹窗方法。
->
-> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](js-apis-arkui-UIContext.md#promptaction)对象。
 
 ## 导入模块
 
@@ -18,11 +16,17 @@
 import { promptAction } from '@kit.ArkUI';
 ```
 
-## promptAction.showToast
+## promptAction.showToast<sup>(deprecated)</sup>
 
 showToast(options: ShowToastOptions): void
 
 创建并显示文本提示框。
+
+> **说明：**
+>
+> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[showToast](js-apis-arkui-UIContext.md#showtoast)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](js-apis-arkui-UIContext.md#promptaction)对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -186,11 +190,17 @@ closeToast(toastId: number): void
 
 示例请看[promptAction.openToaset18](#promptactionopentoast18)的示例。
 
-## promptAction.showDialog
+## promptAction.showDialog<sup>(deprecated)</sup>
 
 showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
 
 创建并显示对话框，对话框响应后异步返回结果。
+
+> **说明：**
+>
+> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[showDialog](js-apis-arkui-UIContext.md#showdialog-1)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](js-apis-arkui-UIContext.md#promptaction)对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -246,11 +256,17 @@ promptAction.showDialog({
 
 ![zh-cn_image_0002](figures/zh-cn_image_0002.gif)
 
-## promptAction.showDialog
+## promptAction.showDialog<sup>(deprecated)</sup>
 
 showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSuccessResponse&gt;):void
 
 创建并显示对话框，对话框响应结果异步返回。
+
+> **说明：**
+>
+> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[showDialog](js-apis-arkui-UIContext.md#showdialog)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](js-apis-arkui-UIContext.md#promptaction)对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -348,11 +364,17 @@ try {
 
 
 
-## promptAction.showActionMenu
+## promptAction.showActionMenu<sup>(deprecated)</sup>
 
 showActionMenu(options: ActionMenuOptions, callback: AsyncCallback&lt;ActionMenuSuccessResponse&gt;):void
 
 创建并显示操作菜单，菜单响应结果异步返回。
+
+> **说明：**
+>
+> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[showActionMenu](js-apis-arkui-UIContext.md#showactionmenu11)。
+>
+> 从API version 11开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](js-apis-arkui-UIContext.md#promptaction)对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -409,11 +431,17 @@ try {
 
 ![zh-cn_image_0005](figures/zh-cn_image_0005.gif)
 
-## promptAction.showActionMenu
+## promptAction.showActionMenu<sup>(deprecated)</sup>
 
 showActionMenu(options: ActionMenuOptions): Promise&lt;ActionMenuSuccessResponse&gt;
 
 创建并显示操作菜单，菜单响应后异步返回结果。
+
+> **说明：**
+>
+> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[showActionMenu](js-apis-arkui-UIContext.md#showactionmenu)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](js-apis-arkui-UIContext.md#promptaction)对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -468,7 +496,7 @@ promptAction.showActionMenu({
 
 ![zh-cn_image_0006](figures/zh-cn_image_0006.gif)
 
-## promptAction.openCustomDialog<sup>11+</sup>
+## promptAction.openCustomDialog<sup>(deprecated)</sup>
 
 openCustomDialog(options: CustomDialogOptions): Promise&lt;number&gt;
 
@@ -479,6 +507,12 @@ openCustomDialog(options: CustomDialogOptions): Promise&lt;number&gt;
 暂不支持isModal = true与showInSubWindow = true同时使用。
 
 弹窗宽度在设备竖屏时默认为 所在窗口宽度 - 左右margin（16vp，设备为2in1时为40vp），最大默认宽度为400vp。
+
+> **说明：**
+>
+> 从API version 11开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[openCustomDialog](js-apis-arkui-UIContext.md#opencustomdialog12-1)。
+>
+> 从API version 12开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](js-apis-arkui-UIContext.md#promptaction)对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -740,11 +774,17 @@ struct Next {
 ```
 ![embedded_dialog](figures/embedded_dialog.gif)
 
-## promptAction.closeCustomDialog<sup>11+</sup>
+## promptAction.closeCustomDialog<sup>(deprecated)</sup>
 
 closeCustomDialog(dialogId: number): void
 
 关闭自定义弹窗。
+
+> **说明：**
+>
+> 从API version 11开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[closeCustomDialog](js-apis-arkui-UIContext.md#closecustomdialog12-1)。
+>
+> 从API version 12开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](js-apis-arkui-UIContext.md#promptaction)对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
