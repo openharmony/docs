@@ -31,11 +31,13 @@ import { relationalStore } from '@kit.ArkData';
 
 getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;RdbStore&gt;): void
 
-获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，使用callback异步回调。
+创建或打开已有的关系型数据库，开发者可以根据自己的需求配置config参数，然后通过RdbStore调用相关接口执行数据操作。使用callback异步回调。
 
-加密参数[encrypt](#storeconfig)只在首次创建数据库时生效，因此在创建数据库时，选择正确的加密参数非常重要，并且在之后无法更改加密参数。
+对应沙箱路径下无数据库文件时，将创建数据库文件，文件创建位置详见[StoreConfig](#storeconfig)。对应路径下已有数据库文件时，将打开已有数据库文件。
 
-| 当前开库的加密类型  | 首次创建数据库的加密类型           | 结果 |
+开发者在创建数据库时，应谨慎配置是否进行数据库加密的参数[encrypt](#storeconfig)，数据库创建后，禁止对该参数进行修改。
+
+| 当前开库的加密类型  | 本设备上创建该数据库时的加密类型           | 结果 |
 | ------- | -------------------------------- | ---- |
 | 非加密 | 加密                          | 将数据库以加密方式打开。   |
 | 加密 | 非加密                          | 将数据库以非加密方式打开。   |
@@ -135,11 +137,13 @@ class EntryAbility extends UIAbility {
 
 getRdbStore(context: Context, config: StoreConfig): Promise&lt;RdbStore&gt;
 
-获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，使用Promise异步回调。
+创建或打开已有的关系型数据库，开发者可以根据自己的需求配置config参数，然后通过RdbStore调用相关接口执行数据操作。使用Promise异步回调。
 
-加密参数[encrypt](#storeconfig)只在首次创建数据库时生效，因此在创建数据库时，选择正确的加密参数非常重要，并且在之后无法更改加密参数。
+对应沙箱路径下无数据库文件时，将创建数据库文件，文件创建位置详见[StoreConfig](#storeconfig)。对应路径下已有数据库文件时，将打开已有数据库文件。
 
-| 当前开库的加密类型  | 首次创建数据库的加密类型           | 结果 |
+开发者在创建数据库时，应谨慎配置是否进行数据库加密的参数[encrypt](#storeconfig)，数据库创建后，禁止对该参数进行修改。
+
+| 当前开库的加密类型  | 本设备上创建该数据库时的加密类型           | 结果 |
 | ------- | -------------------------------- | ---- |
 | 非加密 | 加密                          | 将数据库以加密方式打开。   |
 | 加密 | 非加密                          | 将数据库以非加密方式打开。   |
@@ -5498,7 +5502,7 @@ if (store != undefined) {
 
 | 参数名 | 类型                     | 必填 | 说明                     |
 | ------ | ------------------------ | ---- | ------------------------ |
-| tables | ArrayArray&lt;string&gt; | 是   | 要设置的分布式数据库表表名。 |
+| tables | Array&lt;string&gt; | 是   | 要设置的分布式数据库表表名。 |
 
 **返回值**：
 
