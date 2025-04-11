@@ -737,7 +737,7 @@ XComponent图像AI分析状态码。
 
 **起始版本：**
 
-16
+18
 
 ## 函数说明
 
@@ -1736,7 +1736,7 @@ ARKUI_ERROR_CODE_PARAM_INVALID - 参数异常。
 
 **起始版本：**
 
-16
+18
 
 ### OH_ArkUI_XComponent_StopImageAnalyzer()
 
@@ -1762,7 +1762,7 @@ ARKUI_ERROR_CODE_PARAM_INVALID - 参数异常。
 
 **起始版本：**
 
-16
+18
 
 
 <!--  -->

@@ -19,7 +19,7 @@
 import { componentSnapshot } from '@kit.ArkUI';
 ```
 
-## componentSnapshot.get
+## componentSnapshot.get<sup>(deprecated)</sup>
 
 get(id: string, callback: AsyncCallback<image.PixelMap>, options?: SnapshotOptions): void
 
@@ -27,6 +27,10 @@ get(id: string, callback: AsyncCallback<image.PixelMap>, options?: SnapshotOptio
 
 > **说明：** 
 >
+> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取[ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12)实例，再通过此实例调用替代方法[get](js-apis-arkui-UIContext.md#get12)。
+>
+> 从API version 12开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)方法获取当前UI上下文关联的[ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12)对象。
+> 
 > 截图会获取最近一帧的绘制内容。如果在组件触发更新的同时调用截图，更新的渲染内容不会被截取到，截图会返回上一帧的绘制内容。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -92,7 +96,7 @@ struct SnapshotExample {
 
 ![componentget](figures/componentget.gif) 
 
-## componentSnapshot.get
+## componentSnapshot.get<sup>(deprecated)</sup>
 
 get(id: string, options?: SnapshotOptions): Promise<image.PixelMap>
 
@@ -100,6 +104,10 @@ get(id: string, options?: SnapshotOptions): Promise<image.PixelMap>
 
 > **说明：**
 >
+> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取[ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12)实例，再通过此实例调用替代方法[get](js-apis-arkui-UIContext.md#get12-1)。
+>
+> 从API version 12开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)方法获取当前UI上下文关联的[ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12)对象。
+> 
 > 截图会获取最近一帧的绘制内容。如果在组件触发更新的同时调用截图，更新的渲染内容不会被截取到，截图会返回上一帧的绘制内容。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -169,13 +177,17 @@ struct SnapshotExample {
 
 ![componentget](figures/componentget.gif) 
 
-## componentSnapshot.createFromBuilder
+## componentSnapshot.createFromBuilder<sup>(deprecated)</sup>
 
 createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap>, delay?: number, checkImageStatus?: boolean, options?: SnapshotOptions): void
 
 在应用后台渲染CustomBuilder自定义组件，并输出其截图。通过回调返回结果并支持在回调中获取离屏组件绘制区域坐标和大小。
 
 > **说明：** 
+>
+> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取[ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12)实例，再通过此实例调用替代方法[createFromBuilder](js-apis-arkui-UIContext.md#createfrombuilder12)。
+>
+> 从API version 12开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)方法获取当前UI上下文关联的[ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12)对象。
 >
 > 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟。
 >
@@ -272,7 +284,7 @@ struct OffscreenSnapshotExample {
 
 ![componentcreate](figures/componentcreate.gif) 
 
-## componentSnapshot.createFromBuilder
+## componentSnapshot.createFromBuilder<sup>(deprecated)</sup>
 
 createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boolean, options?: SnapshotOptions): Promise<image.PixelMap>
 
@@ -280,6 +292,10 @@ createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boo
 
 > **说明：** 
 >
+> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取[ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12)实例，再通过此实例调用替代方法[createFromBuilder](js-apis-arkui-UIContext.md#createfrombuilder12-1)。
+>
+> 从API version 12开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)方法获取当前UI上下文关联的[ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12)对象。
+> 
 > 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟。
 >
 > builder中的组件不支持设置动画相关的属性，如[transition](arkui-ts/ts-transition-animation-component.md)。

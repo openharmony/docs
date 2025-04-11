@@ -10,16 +10,17 @@
 >
 >**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 >
->  从API version 10开始，可以通过使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[animateTo](../js-apis-arkui-UIContext.md#animateto)来明确UI的执行上下文。
->
 >  从API version 11开始，该接口支持在原子化服务中使用。
 
-## 接口
+## animateTo<sup>(deprecated)</sup>
+
 animateTo(value: AnimateParam, event: () => void): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 > **说明：**
+> - 从API version 18开始废弃，建议使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[animateTo](../js-apis-arkui-UIContext.md#animateto)替代。
+> - 从API version 10开始，可以通过使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[animateTo](../js-apis-arkui-UIContext.md#animateto)来明确UI的执行上下文。
 > - 不推荐在aboutToAppear、aboutToDisappear中调用动画。
 > - 如果在[aboutToAppear](./ts-custom-component-lifecycle.md#abouttoappear)中调用动画，自定义组件内的build还未执行，内部组件还未创建，动画时机过早，动画属性没有初值无法对组件产生动画。
 > - 执行[aboutToDisappear](./ts-custom-component-lifecycle.md#abouttodisappear)时，组件即将销毁，不能在aboutToDisappear里面做动画。
