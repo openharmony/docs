@@ -12,7 +12,7 @@
 2. 基于已有的X509证书数据，调用[cert.createX509Cert](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatex509cert)创建证书对象。
 
 3. 解析证书的字段信息。
-   此处以获取证书版本、证书序列号为例，更多字段信息获取接口请查看[API参考文档](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509cert)。
+   此处以获取证书版本、证书序列号、证书颁发者名称、证书主体名称、证书对象的字符串类型数据为例，更多字段信息获取接口请查看[API参考文档](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509cert)。
 
 4. 调用[X509Cert.getPublicKey](../../reference/apis-device-certificate-kit/js-apis-cert.md#getpublickey)获取证书中的公钥，并调用[X509Cert.verify](../../reference/apis-device-certificate-kit/js-apis-cert.md#verify)校验签名。示例为自验签场景，因此获取的是本证书中的公钥。应用须结合自身场景获取用于验签的公钥。
 
@@ -56,8 +56,23 @@ function certSample(): void {
 
     // 获取证书版本。
     let version = x509Cert.getVersion();
+    // 获取证书序列号。
     let serial = x509Cert.getCertSerialNumber();
     console.log(`X509 version: ${version} , X509 serial:${serial}`);
+
+    // 获取证书颁发者名称。
+    let issuerName = x509Cert.getIssuerName(cert.EncodingType.ENCODING_UTF8);
+    console.log(`X509 issuerName: ${issuerName}`);
+
+    // 获取证书主体名称。
+    let subjectNameBin = x509Cert.getSubjectName(cert.EncodingType.ENCODING_UTF8);
+    let encoder = util.TextDecoder.create();
+    let subjectName = encoder.decodeWithStream(subjectNameBin.data);
+    console.log(`X509 subjectName: ${subjectName}`);
+
+    // 获取证书对象的字符串类型数据。
+    let certString = x509Cert.toString(cert.EncodingType.ENCODING_UTF8);
+    console.log(`X509 certString: ${certString}`);
 
     // 使用上级证书对象的getPublicKey()方法或本（自签名）证书对象获取公钥对象。
     try {
