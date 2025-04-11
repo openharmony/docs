@@ -1182,7 +1182,7 @@ indexOf(searchElement: T, fromIndex?: number): number
 | 参数名        | 类型   | 必填 | 说明                        |
 | ------------- | ------ | ---- | --------------------------- |
 | searchElement | T      | 是   | 要搜索的值。                |
-| fromIndex     | number | 否   | 开始搜索的索引。默认值为0。 |
+| fromIndex     | number | 否   | 开始搜索的索引，从0开始，默认值为0。 |
 
 **返回值：**
 
@@ -3010,7 +3010,7 @@ for (let item of val) {
 ```
 
 ## collections.ArrayBuffer
-ArkTS TypedArray的底层数据结构。
+ArkTS TypedArray的底层数据结构。该类使用[@Sendable装饰器](../../arkts-utils/arkts-sendable.md)装饰。
 
 ### 属性
 
@@ -3375,7 +3375,7 @@ constructor(buffer: ArrayBuffer, byteOffset?: number, length?: number)
 | 参数名  | 类型   | 必填 | 说明                                         |
 | ------- | ------ | ---- | ------------------------------------------ |
 | buffer | ArrayBuffer | 是 | 用于构造ArkTS TypedArray的ArrayBuffer对象。buffer所占的字节数须是4的整数倍。|
-| byteOffset | number | 否 | 指定buffer的字节偏移，默认为0。 |
+| byteOffset | number | 否 | 指定buffer的字节偏移，从0开始，默认为0。 |
 | length | number | 否 | 指定ArkTS TypedArray的长度，默认为0。 |
 
 **错误码：**
