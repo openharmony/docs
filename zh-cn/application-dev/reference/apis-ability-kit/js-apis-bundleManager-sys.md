@@ -5038,7 +5038,6 @@ function getAllPluginInfo(hostBundleName: string, userId?: number): Promise<Arra
 | -------- | -------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found.  |
 | 17700004 | The specified user ID is not found.      |
 
@@ -5574,7 +5573,6 @@ migrateData(sourcePaths: Array&lt;string&gt;, destinationPath: string): Promise&
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 17700080 | The source paths are invalid. |
 | 17700081 | The destination path is invalid. |
 | 17700082 | User authentication failed. |
