@@ -221,7 +221,7 @@ selectedIndex(value: number | number[])
 
 | 参数名 | 类型                         | 必填 | 说明                         |
 | ------ | ---------------------------- | ---- | ---------------------------- |
-| value  | number&nbsp;\|&nbsp;number[] | 是   | 默认选中项在数组中的索引值，索引从0开始。<br/>默认值：0 <br/> |
+| value  | number&nbsp;\|&nbsp;number[] | 是   | 默认选中项在数组中的索引值，索引从0开始。<br/>默认值：0 <br/>当value的值为undefined时，默认值与[options](#textpickeroptions对象说明)中的selected值保持一致，如果[options](#textpickeroptions对象说明)中的selected值为undefined，则默认值为0。<br/> |
 
 ### selectedIndex<sup>18+</sup>
 
@@ -237,7 +237,7 @@ selectedIndex(index: Optional\<number | number[]>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| index  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number&nbsp;\|&nbsp;number[]> | 是   | 默认选中项在数组中的索引值，索引从0开始。<br/>当index的值为undefined时，默认值：0 <br/> |
+| index  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number&nbsp;\|&nbsp;number[]> | 是   | 默认选中项在数组中的索引值，索引从0开始。<br/>默认值：0 <br/>当index的值为undefined时，默认值与[options](#textpickeroptions对象说明)中的selected值保持一致，如果[options](#textpickeroptions对象说明)中的selected值为undefined，则默认值为0。<br/> |
 
 ### canLoop<sup>10+</sup>
 
