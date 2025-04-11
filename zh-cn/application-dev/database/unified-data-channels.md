@@ -56,28 +56,18 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
 2. 创建一个统一数据对象并插入到UDMF的公共数据通路中。
 
   ```ts
-  let plainTextDetails : Record<string, string> = {
-    'attr1': 'value1',
-    'attr2': 'value2',
-  }
   let plainText : uniformDataStruct.PlainText = {
     uniformDataType: 'general.plain-text',
     textContent : 'hello world',
     abstract : 'this is abstract',
-    details : plainTextDetails,
   }
   let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
-  let htmlObjDetails : Record<string, string> = {
-    'attr1': 'value1',
-    'attr2': 'value2',
-  }
   let htmlObj : uniformDataStruct.HTML = {
     uniformDataType :'general.html',
     htmlContent : '<div><p>hello world</p></div>',
     plainContent : 'hello world',
-    details : htmlObjDetails,
   }
-  // 为该记录增加一种样式，两种样式存储的数据内容是一致的，系不同表达形式
+  // 为该记录增加一种样式，两种样式存储的是同一个数据，系不同表达形式
   record.addEntry(uniformTypeDescriptor.UniformDataType.HTML, htmlObj);
   let unifiedData = new unifiedDataChannel.UnifiedData(record);
 
@@ -107,15 +97,10 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
     abstract : 'this is abstract',
   }
   let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
-  let htmlObjDetails : Record<string, string> = {
-    'attr1': 'value1',
-    'attr2': 'value2',
-  }
   let htmlObj : uniformDataStruct.HTML = {
     uniformDataType :'general.html',
     htmlContent : '<div><p>how are you</p></div>',
     plainContent : 'how are you',
-    details : htmlObjDetails,
   }
   record.addEntry(uniformTypeDescriptor.UniformDataType.HTML, htmlObj);
   let unifiedDataUpdate = new unifiedDataChannel.UnifiedData(record);
@@ -155,12 +140,11 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
           let records = data[i].getRecords();
           for (let j = 0; j < records.length; j++) {
             let types = records[j].getTypes();
+            // 根据业务需要从记录中获取样式数据
             if (types.includes(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT)) {
-              // 根据业务需要从记录中获取样式数据
               let text = records[j].getEntry(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) as uniformDataStruct.PlainText;
               console.info(`${i + 1}.${text.textContent}`);
             } else if (types.includes(uniformTypeDescriptor.UniformDataType.HTML)) {
-              // 根据业务需要从记录中获取样式数据
               let html = records[j].getEntry(uniformTypeDescriptor.UniformDataType.HTML) as uniformDataStruct.HTML;
               console.info(`${i + 1}.${html.htmlContent}`);
             }
@@ -200,12 +184,11 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
           let records = data[i].getRecords();
           for (let j = 0; j < records.length; j++) {
             let types = records[j].getTypes();
+            // 根据业务需要从记录中获取样式数据
             if (types.includes(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT)) {
-              // 根据业务需要从记录中获取样式数据
               let text = records[j].getEntry(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) as uniformDataStruct.PlainText;
               console.info(`${i + 1}.${text.textContent}`);
             } else if (types.includes(uniformTypeDescriptor.UniformDataType.HTML)) {
-              // 根据业务需要从记录中获取样式数据
               let html = records[j].getEntry(uniformTypeDescriptor.UniformDataType.HTML) as uniformDataStruct.HTML;
               console.info(`${i + 1}.${html.htmlContent}`);
             }

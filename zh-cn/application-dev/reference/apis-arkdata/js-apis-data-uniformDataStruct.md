@@ -273,6 +273,8 @@ let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformD
 **示例：**
 
 ```ts
+import image from '@ohos.multimedia.image';
+
 let u8Array = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 let arrayBuffer = new ArrayBuffer(4*200*200);
 let opt : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 200, width: 200 }, alphaType: 3 };

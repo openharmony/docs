@@ -199,15 +199,10 @@ constructor(record: UnifiedRecord)
 **示例：**
 
 ```ts
-let plainTextDetails : Record<string, string> = {
-  'attr1': 'value1',
-  'attr2': 'value2',
-}
 let plainText : uniformDataStruct.PlainText = {
   uniformDataType: 'general.plain-text',
   textContent : 'This is plainText textContent example',
   abstract : 'this is abstract',
-  details : plainTextDetails,
 }
 let text = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
 let unifiedData = new unifiedDataChannel.UnifiedData(text);
@@ -240,15 +235,10 @@ addRecord(record: UnifiedRecord): void
 **示例：**
 
 ```ts
-let plainTextDetails : Record<string, string> = {
-  'attr1': 'value1',
-  'attr2': 'value2',
-}
 let plainText : uniformDataStruct.PlainText = {
   uniformDataType: 'general.plain-text',
   textContent : 'This is plainText textContent example',
   abstract : 'this is abstract',
-  details : plainTextDetails,
 }
 let text = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
 let unifiedData = new unifiedDataChannel.UnifiedData(text);
@@ -288,28 +278,18 @@ getRecords(): Array\<UnifiedRecord\>
 ```ts
 import { unifiedDataChannel, uniformTypeDescriptor, uniformDataStruct } from '@kit.ArkData';
 
-let plainTextDetails : Record<string, string> = {
-  'attr1': 'value1',
-  'attr2': 'value2',
-}
 let plainText : uniformDataStruct.PlainText = {
   uniformDataType: 'general.plain-text',
   textContent : 'This is plainText textContent example',
   abstract : 'this is abstract',
-  details : plainTextDetails,
 }
 let text = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
 let unifiedData = new unifiedDataChannel.UnifiedData(text);
 
-let hyperlinkDetails : Record<string, string> = {
-  'attr1': 'value1',
-  'attr2': 'value2',
-}
 let hyperlink : uniformDataStruct.Hyperlink = {
   uniformDataType:'general.hyperlink',
   url : 'www.XXX.com',
   description : 'This is the description of this hyperlink',
-  details : hyperlinkDetails,
 }
 let link = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.HYPERLINK, hyperlink);
 unifiedData.addRecord(link);
@@ -361,28 +341,18 @@ hasType(type: string): boolean
 ```ts
 import { unifiedDataChannel, uniformTypeDescriptor, uniformDataStruct } from '@kit.ArkData';
 
-let plainTextDetails : Record<string, string> = {
-  'attr1': 'value1',
-  'attr2': 'value2',
-}
 let plainText : uniformDataStruct.PlainText = {
   uniformDataType: 'general.plain-text',
   textContent : 'This is plainText textContent example',
   abstract : 'this is abstract',
-  details : plainTextDetails,
 }
 let text = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
 let unifiedData = new unifiedDataChannel.UnifiedData(text);
 
-let hyperlinkDetails : Record<string, string> = {
-  'attr1': 'value1',
-  'attr2': 'value2',
-}
 let hyperlink : uniformDataStruct.Hyperlink = {
   uniformDataType:'general.hyperlink',
   url : 'www.XXX.com',
   description : 'This is the description of this hyperlink',
-  details : hyperlinkDetails,
 }
 let link = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.HYPERLINK, hyperlink);
 unifiedData.addRecord(link);
@@ -410,28 +380,18 @@ getTypes(): Array\<string\>
 **示例：**
 
 ```ts
-let plainTextDetails : Record<string, string> = {
-  'attr1': 'value1',
-  'attr2': 'value2',
-}
 let plainText : uniformDataStruct.PlainText = {
   uniformDataType: 'general.plain-text',
   textContent : 'This is plainText textContent example',
   abstract : 'this is abstract',
-  details : plainTextDetails,
 }
 let text = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
 let unifiedData = new unifiedDataChannel.UnifiedData(text);
 
-let hyperlinkDetails : Record<string, string> = {
-  'attr1': 'value1',
-  'attr2': 'value2',
-}
 let hyperlink : uniformDataStruct.Hyperlink = {
   uniformDataType:'general.hyperlink',
   url : 'www.XXX.com',
   description : 'This is the description of this hyperlink',
-  details : hyperlinkDetails,
 }
 let link = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.HYPERLINK, hyperlink);
 unifiedData.addRecord(link);
@@ -561,15 +521,10 @@ getType(): string
 ```ts
 import { unifiedDataChannel, uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
 
-let plainTextDetails : Record<string, string> = {
-  'attr1': 'value1',
-  'attr2': 'value2',
-}
 let plainText : uniformDataStruct.PlainText = {
   uniformDataType: 'general.plain-text',
   textContent : 'This is plainText textContent example',
   abstract : 'this is abstract',
-  details : plainTextDetails,
 }
 let text = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
 let unifiedData = new unifiedDataChannel.UnifiedData(text);
@@ -1384,15 +1339,10 @@ insertData(options: Options, data: UnifiedData, callback: AsyncCallback&lt;strin
 import { unifiedDataChannel, uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let plainTextDetails : Record<string, string> = {
-  'attr1': 'value1',
-  'attr2': 'value2',
-}
 let plainText : uniformDataStruct.PlainText = {
   uniformDataType: 'general.plain-text',
   textContent : 'This is plainText textContent example',
   abstract : 'this is abstract',
-  details : plainTextDetails,
 }
 let text = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
 let unifiedData = new unifiedDataChannel.UnifiedData(text);
@@ -1451,15 +1401,10 @@ insertData(options: Options, data: UnifiedData): Promise&lt;string&gt;
 import { unifiedDataChannel, uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let plainTextDetails : Record<string, string> = {
-  'attr1': 'value1',
-  'attr2': 'value2',
-}
 let plainText : uniformDataStruct.PlainText = {
   uniformDataType: 'general.plain-text',
   textContent : 'This is plainText textContent example',
   abstract : 'this is abstract',
-  details : plainTextDetails,
 }
 let text = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
 let unifiedData = new unifiedDataChannel.UnifiedData(text);
@@ -1511,15 +1456,10 @@ updateData(options: Options, data: UnifiedData, callback: AsyncCallback&lt;void&
 import { unifiedDataChannel, uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let plainTextDetails : Record<string, string> = {
-  'attr1': 'value1',
-  'attr2': 'value2',
-}
 let plainText : uniformDataStruct.PlainText = {
   uniformDataType: 'general.plain-text',
   textContent : 'This is plainText textContent example',
   abstract : 'this is abstract',
-  details : plainTextDetails,
 }
 let text = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
 let unifiedData = new unifiedDataChannel.UnifiedData(text);
@@ -1598,15 +1538,10 @@ updateData(options: Options, data: UnifiedData): Promise&lt;void&gt;
 import { unifiedDataChannel, uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let plainTextDetails : Record<string, string> = {
-  'attr1': 'value1',
-  'attr2': 'value2',
-}
 let plainText : uniformDataStruct.PlainText = {
   uniformDataType: 'general.plain-text',
   textContent : 'This is plainText textContent example',
   abstract : 'this is abstract',
-  details : plainTextDetails,
 }
 let text = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
 let unifiedData = new unifiedDataChannel.UnifiedData(text);
