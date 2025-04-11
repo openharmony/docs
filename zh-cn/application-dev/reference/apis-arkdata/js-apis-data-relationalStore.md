@@ -4357,7 +4357,7 @@ const querySql = "select id, repr <-> '[1.5,5.6]' as distance from test ORDER BY
 let resultSet = await store.querySql(querySql);
 
 // 聚合查询，其中group by支持多列
-const querySql1 = "select id, repr from test group by id, repr having max(repr<=>[1.5,5.6]);";
+const querySql1 = "select id, repr from test group by id, repr having max(repr<=>'[1.5,5.6]');";
 let resultSet1 = await store.querySql(querySql1);
 
 // 子查询，最大支持嵌套32层
@@ -4840,7 +4840,7 @@ if(store != undefined) {
 
 ```ts
 // FLOATVECTOR(2)是维度为2的向量属性，后续操作repr需依照该维度进行。
-let createSql = "CREATE TABLE test (ID text PRIMARY KEY,REPR FLOATVECTOR(2));";
+let createSql = "CREATE TABLE test (ID INTEGER PRIMARY KEY,REPR FLOATVECTOR(2));";
 // 建表
 await store!.execute(createSql);
 // 使用参数绑定插入数据
