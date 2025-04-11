@@ -923,7 +923,7 @@ privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
 | 名称       | 类型             | 可读 | 可写 | 说明                                       |
 | -------- | -------------- | ---- | ---- | ---------------------------------------- |
 | tokenId  | number         | 是    | 否    | 目标应用的身份标识。                                 |
-| isRemote | boolean         | 是    | 否    | 默认值false，是否是分布式设备。 |
+| isRemote | boolean         | 是    | 否    | 是否是分布式设备。默认值为false，表示不是分布式设备。 |
 | deviceId  | string         | 是    | 否    | 目标应用所在设备的ID。                                 |
 | bundleName | string         | 是    | 否    | 目标应用的包名。 |
 | permissionRecords  | Array&lt;[PermissionUsedRecord](#permissionusedrecord)&gt;         | 是    | 否    | 每个应用的权限使用记录集合。                                 |
