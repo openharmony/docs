@@ -224,6 +224,9 @@ let metadata: avSession.AVMetadata = {
   // LRC中有两类元素：一种是时间标签+歌词，一种是ID标签。
   // 例如：[00:25.44]xxx\r\n[00:26.44]xxx\r\n
   lyric: "lrc格式歌词内容",
+  // singleLyricText字段存储单条歌词文本，不包含时间戳。
+  // 例如："单条歌词内容"。
+  singleLyricText: "单条歌词内容",
   previousAssetId: "121277",
   nextAssetId: "121279"
 };
@@ -279,6 +282,9 @@ let metadata: avSession.AVMetadata = {
   // LRC中有两类元素：一种是时间标签+歌词，一种是ID标签。
   // 例如：[00:25.44]xxx\r\n[00:26.44]xxx\r\n
   lyric: "lrc格式歌词内容",
+  // singleLyricText字段存储单条歌词文本，不包含时间戳。
+  // 例如："单条歌词内容"。
+  singleLyricText: "单条歌词内容",
   previousAssetId: "121277",
   nextAssetId: "121279"
 };
@@ -5086,6 +5092,7 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 | subtitle        | string                  | 否   | 子标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                |
 | description     | string                  | 否   | 媒体描述。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                               |
 | lyric           | string                  | 否   | 媒体歌词内容。应用需将歌词内容拼接为一个字符串传入。<br>字符串长度需小于等于40960字节。<br>**说明：** 系统支持简单版的LRC格式（Simple LRC format）的歌词文本内容。当传入的歌词内容不规范（如出现重复的时间戳等），将导致解析失败以及在系统中显示异常。 |
+| singleLyricText<sup>17+</sup> | string    | 否   | 单条媒体歌词内容。应用需将歌词内容拼接为一个字符串传入（不包含时间戳）。<br>字符串长度<=40960字节。<br>**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。|
 | previousAssetId | string                  | 否   | 上一首媒体ID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                            |
 | nextAssetId     | string                  | 否   | 下一首媒体ID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                            |
 | filter<sup>11+</sup>        | number         | 否   | 当前session支持的协议，默认为TYPE_CAST_PLUS_STREAM。具体取值参考[ProtocolType](#protocoltype11)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
