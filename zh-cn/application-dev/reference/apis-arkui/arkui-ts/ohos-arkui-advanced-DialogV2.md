@@ -130,9 +130,9 @@ LoadingDialogV2({content?: ResourceStr})
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 类型                                     | 必填 | 装饰器类型  | 说明                                         |
-| ------- | -------------------------------------- | -- | :----- |--------------------------------------------|
-| content | [ResourceStr](ts-types.md#resourcestr) | 否  | @Param | 加载弹出框内容。<br />默认为空。<br/> **说明：** 标题超过十行会显示“...”。 |
+| 名称      | 类型                                     | 必填 | 装饰器类型  | 说明                                               |
+| ------- | -------------------------------------- | -- | :----- |--------------------------------------------------|
+| content | [ResourceStr](ts-types.md#resourcestr) | 否  | @Param | 加载弹出框内容。<br />默认为空。<br/> **说明：** 内容超过十行会显示“...”。 |
 
 ## CustomContentDialogV2
 
