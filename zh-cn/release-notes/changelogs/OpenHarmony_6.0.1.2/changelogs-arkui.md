@@ -197,4 +197,165 @@ struct Index {
 }
 ```
 
+## cl.arkui.3 drawModifier接口通过取消多余重绘达实现性能优化
 
+**访问级别**
+
+公开
+
+**变更原因**
+
+当前实现中，若组件设置了drawModifier属性，则默认会在生命周期的布局阶段之后触发重绘。对于绘制内容和尺寸均未发生变化的场景，这将导致多余的重绘，造成性能损耗。因此，调整设置drawModifier的节点的重绘规则，默认仅执行过测量过程的节点才进行重绘。
+
+**变更影响**
+
+此变更涉及应用适配
+
+- 变更前：任何组件，只要设置了drawModifier属性，即使跳过测量，也会触发重绘
+  
+- 变更后：若容器组件设置了drawModifier属性，则当其跳过测量时，不执行重绘。其他组件的重绘触发机制与是否使用drawModifier属性无关。
+
+**起始API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 6.0.1.2开始。
+
+**变更的接口/组件**
+
+ drawModifier
+
+**适配指导**
+
+若开发者的自定义绘制内容变化逻辑受到本次变更影响，在受影响属性变化的代码后加入invalidate以主动触发重绘，即可完成适配。具体适配方案可参考下文示例。
+
+```ts
+// index.ets
+import { drawing } from '@kit.ArkGraphics2D';
+
+class MyFontDrawModifier extends DrawModifier {
+  public scaleX: number = 1;
+  public scaleY: number = 1;
+
+  drawFront(context: DrawContext): void {
+    const brush = new drawing.Brush();
+    brush.setColor({
+      alpha: 255,
+      red: 0,
+      green: 0,
+      blue: 255
+    });
+    context.canvas.attachBrush(brush);
+    const halfWidth = context.size.width / 2;
+    const halfHeight = context.size.width / 2;
+    const radiusScale = (this.scaleX + this.scaleY) / 2;
+    context.canvas.drawCircle(vp2px(halfWidth), vp2px(halfHeight), vp2px(20 * radiusScale));
+  }
+}
+
+@Entry
+@Component
+struct DrawModifierExample {
+  private fontModifier: MyFontDrawModifier = new MyFontDrawModifier();
+  @State testWidth: number = 100;
+
+  build() {
+    Column() {
+      Button('changeModifier')
+        .onClick(() => {
+          this.testWidth++;
+          this.fontModifier.scaleX += 0.1;
+          this.fontModifier.scaleY += 0.1;
+          // 适配手动调用invalidate方法
+          this.fontModifier.invalidate();
+        })
+      Column() {
+        Row()
+          .width(50)
+          .height(50)
+          .drawModifier(this.fontModifier)
+        Row() {
+          Text("hello word")
+            .width(this.testWidth)
+            .height(100)
+        }
+      }
+      .width(100)
+      .height(100)
+    }
+  }
+}
+```
+
+## cl.arkui.4 WithTheme组件设置colorMode后效果异常问题修复
+
+**访问级别**
+
+公开
+
+**变更原因**
+
+WithTheme组件指定局部主题的能力对某些组件不生效。例如：通过WithTheme设置主题深浅色为DARK或LIGHT后，Button子组件使用的资源仍会依循系统深浅色变化。
+
+**变更影响**
+
+此变更涉及应用适配
+
+- 变更前：WithTheme组件设置了主题后，其子组件的主题仍旧跟随系统切换。
+  
+- 变更后：WithTheme组件设置了主题后，其中的子组件使用指定的主题，不跟随系统切换。
+
+ **变更涉及组件范围**
+ 
+  变更前部分组件未适配WithTheme，因此其作为WithTheme子组件不受指定的主题影响，因此变更后这部分组件的行为会受到影响。变更前后会受到影响的具体组件类型列表如下：
+
+  TextArea、Search、Button、DatePicker、TextPicker、TimePicker、AlphabetIndexer、Swiper、Scroll、Tabs、TabContent、RichEditor、Menu、MenuItem、Counter、Progress、TextClock、LoadingProgress。
+
+**起始API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 6.0.1.2开始。
+
+**变更的接口/组件**
+
+ WithTheme
+
+**适配指导**
+
+变更后，WithTheme组件指定的主题对子组件生效。若需适配，应针对发生变化的组件增加WithTheme，并指定其主题跟随系统，例如设置colorMode属性为SYSTEM。
+
+```ts
+// index.ets
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      // 设置组件为深色模式
+      WithTheme({ colorMode: ThemeColorMode.DARK }) {
+      // 适配:设置colorMode为ThemeColorMode.SYSTEM
+        Column() {
+          Text('WithTheme')
+            .fontSize(40)
+            .fontWeight(FontWeight.Bold)
+          Text('DARK')
+            .fontSize(40)
+            .fontWeight(FontWeight.Bold)
+        }
+        .justifyContent(FlexAlign.Center)
+        .width('100%')
+        .height('33%')
+        .backgroundColor($r('sys.color.background_primary'))
+      }
+    }
+    .height('100%')
+    .expandSafeArea([SafeAreaType.SYSTEM],
+      [SafeAreaEdge.TOP, SafeAreaEdge.END, SafeAreaEdge.BOTTOM, SafeAreaEdge.START])
+  }
+}
+```
