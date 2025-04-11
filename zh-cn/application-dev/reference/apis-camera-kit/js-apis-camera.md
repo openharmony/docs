@@ -1158,7 +1158,6 @@ setTorchMode(mode: TorchMode): void
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 7400101 | Parameter missing or parameter type incorrect. |
 | 7400102 | Operation not allowed. |
 | 7400201 | Camera service fatal error. |
 
@@ -4689,7 +4688,6 @@ addInput(cameraInput: CameraInput): void
 | --------------- | --------------- |
 | 7400101                |  Parameter missing or parameter type incorrect.        |
 | 7400102                |  Operation not allowed.                                  |
-| 7400103                |  Session not config.                                   |
 | 7400201                |  Camera service fatal error.                                   |
 
 **示例：**
@@ -4730,7 +4728,6 @@ removeInput(cameraInput: CameraInput): void
 | --------------- | --------------- |
 | 7400101                |  Parameter missing or parameter type incorrect.        |
 | 7400102                |  Operation not allowed.                                  |
-| 7400103                |  Session not config.                                   |
 | 7400201                |  Camera service fatal error.                                   |
 
 **示例：**
@@ -4802,7 +4799,6 @@ addOutput(cameraOutput: CameraOutput): void
 | --------------- | --------------- |
 | 7400101                |  Parameter missing or parameter type incorrect.        |
 | 7400102                |  Operation not allowed.                                  |
-| 7400103                |  Session not config.                                   |
 | 7400201                |  Camera service fatal error.                                   |
 
 **示例：**
@@ -4843,7 +4839,6 @@ removeOutput(cameraOutput: CameraOutput): void
 | --------------- | --------------- |
 | 7400101                |  Parameter missing or parameter type incorrect.        |
 | 7400102                |  Operation not allowed.                                  |
-| 7400103                |  Session not config.                                   |
 | 7400201                |  Camera service fatal error.                                   |
 
 **示例：**
@@ -6026,27 +6021,13 @@ setSmoothZoom(targetRatio: number, mode?: SmoothZoomMode): void
 | targetRatio  | number         | 是   | 目标值。      |
 | mode         | [SmoothZoomMode](#smoothzoommode11) | 否   | 模式。      |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
-
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 7400103                |  Session not config.                                   |
-
 **示例：**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function setSmoothZoom(sessionExtendsZoom: camera.Zoom, targetZoomRatio: number, mode: camera.SmoothZoomMode): void {
-  try {
-    sessionExtendsZoom.setSmoothZoom(targetZoomRatio, mode);
-  } catch (error) {
-    // 失败返回错误码error.code并处理。
-    let err = error as BusinessError;
-    console.error(`The setSmoothZoom call failed. error code: ${err.code}`);
-  }
+  sessionExtendsZoom.setSmoothZoom(targetZoomRatio, mode);
 }
 ```
 
@@ -7974,14 +7955,6 @@ getSupportedColorSpaces(): Array\<colorSpaceManager.ColorSpace\>
 | ----------------------------------------------- | ---------------------------- |
 | Array<[colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace)>| 支持的色彩空间列表。     |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
-
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 7400103         |  Session not config, only throw in session usage.                       |
-
 **示例：**
 
 ```ts
@@ -7990,12 +7963,7 @@ import { colorSpaceManager } from '@kit.ArkGraphics2D';
 
 function getSupportedColorSpaces(session: camera.PhotoSession): Array<colorSpaceManager.ColorSpace> {
   let colorSpaces: Array<colorSpaceManager.ColorSpace> = [];
-  try {
-    colorSpaces = session.getSupportedColorSpaces();
-  } catch (error) {
-    let err = error as BusinessError;
-    console.error(`The getSupportedColorSpaces call failed. error code: ${err.code}`);
-  }
+  colorSpaces = session.getSupportedColorSpaces();
   return colorSpaces;
 }
 ```
@@ -8128,14 +8096,6 @@ isAutoDeviceSwitchSupported(): boolean
 | ----------------------------------------------- |-------------|
 | boolean               | 是否支持自动切换镜头，true为支持，false为不支持。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
-
-| 错误码ID         | 错误信息                                              |
-| --------------- |---------------------------------------------------|
-| 7400103         | Session not config, only throw in session usage.  |
-
 **示例：**
 
 ```ts
@@ -8143,12 +8103,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 function isAutoDeviceSwitchSupported(session: camera.PhotoSession): boolean {
   let isSupported = false;
-  try {
-    isSupported = session.isAutoDeviceSwitchSupported();
-  } catch (error) {
-    let err = error as BusinessError;
-    console.error(`The isAutoDeviceSwitchSupported call failed, error code: ${err.code}`);
-  }
+  isSupported = session.isAutoDeviceSwitchSupported();
   return isSupported;
 }
 ```
@@ -8974,7 +8929,6 @@ addSecureOutput(previewOutput: PreviewOutput): void
 | --------------- | --------------- |
 | 7400101                |  Parameter missing or parameter type incorrect.        |
 | 7400102                |  Operation not allowed.                                  |
-| 7400103                |  Session not config.                                   |
 
 **示例：**
 
