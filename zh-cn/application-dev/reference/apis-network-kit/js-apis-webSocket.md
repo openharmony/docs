@@ -132,7 +132,7 @@ connect(url: string, callback: AsyncCallback\<boolean\>): void
 | 参数名   | 类型                     | 必填 | 说明                         |
 | -------- | ------------------------ | ---- | ---------------------------- |
 | url      | string                   | 是   | 建立WebSocket连接的URL地址。 |
-| callback | AsyncCallback\<boolean\> | 是   | 回调函数。                   |
+| callback | AsyncCallback\<boolean\> | 是   | 回调函数。true:连接请求创建成功；false:连接请求创建失败。                   |
 
 **错误码：**
 
@@ -189,7 +189,7 @@ connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<
 | -------- | ------------------------ | ---- | ------------------------------------------------------- |
 | url      | string                   | 是   | 建立WebSocket连接的URL地址。                            |
 | options  | WebSocketRequestOptions  | 是   | 参考[WebSocketRequestOptions](#websocketrequestoptions)。 |
-| callback | AsyncCallback\<boolean\> | 是   | 回调函数。                                              |
+| callback | AsyncCallback\<boolean\> | 是   | 回调函数。true:连接请求创建成功；false:连接请求创建失败。                                              |
 
 **错误码：**
 
@@ -260,7 +260,7 @@ connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 
 | 类型               | 说明                              |
 | :----------------- | :-------------------------------- |
-| Promise\<boolean\> | 以Promise形式返回建立连接的结果。 |
+| Promise\<boolean\> | 以Promise形式返回建立连接的结果。true:连接请求创建成功；false:连接请求创建失败。 |
 
 **错误码：**
 
@@ -309,7 +309,7 @@ send(data: string | ArrayBuffer, callback: AsyncCallback\<boolean\>): void
 | 参数名   | 类型                     | 必填 | 说明         |
 | -------- | ------------------------ | ---- | ------------ |
 | data     | string \| ArrayBuffer | 是   | 发送的数据。<br>API 6及更早版本仅支持string类型。API 8起同时支持string和ArrayBuffer类型。 |
-| callback | AsyncCallback\<boolean\> | 是   | 回调函数。   |
+| callback | AsyncCallback\<boolean\> | 是   | 回调函数。true:发送请求创建成功；false:发送请求创建失败。   |
 
 **错误码：**
 
@@ -375,7 +375,7 @@ send(data: string | ArrayBuffer): Promise\<boolean\>
 
 | 类型               | 说明                              |
 | :----------------- | :-------------------------------- |
-| Promise\<boolean\> | 以Promise形式返回发送数据的结果。 |
+| Promise\<boolean\> | 以Promise形式返回发送数据的结果。true:发送请求创建成功；false:发送请求创建失败。 |
 
 **错误码：**
 
@@ -435,7 +435,7 @@ close(callback: AsyncCallback\<boolean\>): void
 
 | 参数名   | 类型                     | 必填 | 说明       |
 | -------- | ------------------------ | ---- | ---------- |
-| callback | AsyncCallback\<boolean\> | 是   | 回调函数。 |
+| callback | AsyncCallback\<boolean\> | 是   | 回调函数。true:关闭请求创建成功；false:关闭请求创建失败。 |
 
 **错误码：**
 
@@ -477,7 +477,7 @@ close(options: WebSocketCloseOptions, callback: AsyncCallback\<boolean\>): void
 | 参数名   | 类型                     | 必填 | 说明                                                  |
 | -------- | ------------------------ | ---- | ----------------------------------------------------- |
 | options  | WebSocketCloseOptions    | 是   | 参考[WebSocketCloseOptions](#websocketcloseoptions)。 |
-| callback | AsyncCallback\<boolean\> | 是   | 回调函数。                                            |
+| callback | AsyncCallback\<boolean\> | 是   | 回调函数。true:关闭请求创建成功；false:关闭请求创建失败。                                            |
 
 **错误码：**
 
@@ -530,7 +530,7 @@ close(options?: WebSocketCloseOptions): Promise\<boolean\>
 
 | 类型               | 说明                              |
 | :----------------- | :-------------------------------- |
-| Promise\<boolean\> | 以Promise形式返回关闭连接的结果。 |
+| Promise\<boolean\> | 以Promise形式返回关闭连接的结果。true:关闭请求创建成功；false:关闭请求创建失败。 |
 
 **错误码：**
 
