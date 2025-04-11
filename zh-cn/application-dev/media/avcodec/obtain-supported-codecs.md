@@ -517,7 +517,7 @@ bool isSupported = frameRate >= frameRateRange.minVal && frameRate <= frameRateR
 ```c++
 constexpr int32_t width = 1920;
 constexpr int32_t height = 1080;
-int32_t frameRate = 120;
+double frameRate = 120;
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
 // 1. 确认待配置尺寸是否能达到理想帧率。
 bool isSupported = OH_AVCapability_AreVideoSizeAndFrameRateSupported(capability, width, height, frameRate);
@@ -534,7 +534,7 @@ if (!isSupported) {
 // 3. 配置尺寸和帧率参数。
 OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
 OH_AVFormat *format = OH_AVFormat_CreateVideoFormat(OH_AVCODEC_MIMETYPE_VIDEO_AVC, width, height);
-if (!OH_AVFormat_SetIntValue(format, OH_MD_KEY_FRAME_RATE, frameRate)) {
+if (!OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, frameRate)) {
    // 异常处理。
 }
 if (OH_VideoEncoder_Configure(videoEnc, format) != AV_ERR_OK) {
