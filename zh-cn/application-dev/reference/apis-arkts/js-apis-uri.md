@@ -720,7 +720,7 @@ createFromParts(scheme: string, ssp: string, fragment: string): URI
 
 | 参数名   | 类型   | 必填 | 说明                            |
 | -------- | ------ | ---- | ------------------------------- |
-| scheme   | string | 是   | 此URI协议部分。               |
+| scheme   | string | 是   | 此URI协议部分。该参数需符合URI协议标准。|
 | ssp      | string | 是   | 此URI的方案特定部分。 |
 | fragment | string | 是   | 此URI的片段部分。片段部分是URI中的一个特定部分，即“#”符号后面的部分。             |
 
