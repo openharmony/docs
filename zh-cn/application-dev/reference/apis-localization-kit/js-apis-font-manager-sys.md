@@ -1,6 +1,6 @@
 # @ohos.fontManager (字体管理)
 
-字体管理模块，提供给系统应用安装和卸载三方字体文件的能力。
+字体管理模块，提供给系统应用安装和卸载三方字体的能力。
 
 >  **说明：**
 >  
@@ -18,7 +18,7 @@ import { fontManager } from '@kit.LocalizationKit';
 
 installFont(path: string): Promise&lt;number&gt;
 
-安装指定路径字体，并使用promise异步回调返回安装信息。
+安装指定路径下的字体，使用promise异步回调。
 
 **需要权限:** ohos.permission.UPDATE_FONT
 
@@ -34,7 +34,7 @@ installFont(path: string): Promise&lt;number&gt;
 
 | 类型                    | 说明                     |
 | --------------------- | ---------------------- |
-| Promise&lt;number&gt; | 返回安装信息：0 表示安装成功。 |
+| Promise&lt;number&gt; | 返回安装结果。返回为0表示安装成功，否则安装失败。 |
 
 **错误码：**
 
@@ -44,12 +44,12 @@ installFont(path: string): Promise&lt;number&gt;
 | -------- | ---------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.            |
 | 202 | Permission verification failed. A non-system application calls a system API.          |
-| 31100101 | The font file does not exist.            |
-| 31100102 | The font file is not supported.          |
-| 31100103 | Failed to copy the font file.            |
-| 31100104 | The font file is installed.              |
-| 31100105 | The maximum number of installed font files is exceeded.      |
-| 31100106 | Installation failed, other errors.       |
+| 31100101 | Font does not exist.          |
+| 31100102 | Font is not supported.        |
+| 31100103 | Font file copy failed.        |
+| 31100104 | Font file installed.          |
+| 31100105 | Exceeded maximum number of installed files.     |
+| 31100106 | Other error.     |
 
 **示例：**
   ```ts
@@ -70,7 +70,7 @@ installFont(path: string): Promise&lt;number&gt;
 
 uninstallFont(fullName: string): Promise&lt;number&gt;
 
-卸载指定名称字体，并使用promise异步回调返回卸载信息。
+卸载指定名称的字体，使用promise异步回调。
 
 **需要权限:** ohos.permission.UPDATE_FONT
 
@@ -80,13 +80,13 @@ uninstallFont(fullName: string): Promise&lt;number&gt;
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| fullName | string | 是    | 需要卸载的字体名称。 |
+| fullName | string | 是    | 需要卸载的字体名称，字体名称可通过打开.ttf或.ttc字体文件获取。 |
 
 **返回值：**
 
 | 类型                    | 说明                     |
 | --------------------- | ---------------------- |
-| Promise&lt;number&gt; | 返回卸载信息：0 表示卸载成功。 |
+| Promise&lt;number&gt; | 返回卸载结果。返回为0表示卸载成功，否则卸载失败。 |
 
 **错误码：**
 
@@ -96,9 +96,9 @@ uninstallFont(fullName: string): Promise&lt;number&gt;
 | -------- | ---------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.            |
 | 202 | Permission verification failed. A non-system application calls a system API.          |
-| 31100107 | The font file to be uninstalled does not exist.     |
-| 31100108 | Font cannot be deleted                   |
-| 31100109 | Uninstall failed, other errors.          |
+| 31100107 | Font file does not exist.    |
+| 31100108 | Font file delete error.      |
+| 31100109 | Other error.                 |
 
 **示例：**
   ```ts

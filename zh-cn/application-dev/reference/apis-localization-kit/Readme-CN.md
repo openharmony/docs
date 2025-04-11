@@ -6,7 +6,7 @@
   - [@ohos.resourceManager (资源管理)](js-apis-resource-manager.md)
   - [@ohos.sendableResourceManager (资源管理)](js-apis-sendable-resource-manager.md)
   <!--Del-->
-  - [@ohos.fontManager (字体管理)](js-apis-font-manager-sys.md)
+  - [@ohos.fontManager (字体管理)(系统接口)](js-apis-font-manager-sys.md)
   - [@ohos.i18n (国际化-I18n)(系统接口)](js-apis-i18n-sys.md)
   <!--DelEnd-->
   - global
