@@ -1,4 +1,4 @@
-# Motion Sensing Development
+# Motion Awareness Development
 
 ## When to Use
 
