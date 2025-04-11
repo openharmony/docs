@@ -681,6 +681,23 @@ struct TestNewInterface {
           console.info("target offset: " + extraInfo.targetOffset)
           console.info("velocity: " + extraInfo.velocity)
         })
+        .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer,
+          others: Array<GestureRecognizer>): GestureJudgeResult => { // 在识别器即将要成功时，根据当前组件状态，设置识别器使能状态
+          if (current) {
+            let target = current.getEventTargetInfo();
+            if (target && current.isBuiltIn() && current.getType() == GestureControl.GestureType.PAN_GESTURE) {
+              let swiperTaget = target as ScrollableTargetInfo
+              if (swiperTaget instanceof ScrollableTargetInfo &&
+                (swiperTaget.isBegin() || this.innerSelectedIndex === 0)) { // 此处判断swiperTaget.isBegin()或innerSelectedIndex === 0，表明ArcSwiper滑动到开头
+                let panEvent = event as PanGestureEvent;
+                if (panEvent && panEvent.offsetX > 0 && (swiperTaget.isBegin() || this.innerSelectedIndex === 0)) {
+                  return GestureJudgeResult.REJECT;
+                }
+              }
+            }
+          }
+          return GestureJudgeResult.CONTINUE;
+        })
         .onAnimationEnd((index: number, extraInfo: SwiperAnimationEvent) => {
           console.info("index: " + index)
           console.info("current offset: " + extraInfo.currentOffset)
