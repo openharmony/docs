@@ -48,7 +48,7 @@ TextClock(options?: TextClockOptions)
 
 ### format
 
-format(value: string)
+format(value: ResourceStr)
 
 设置显示时间格式，如“yyyy/MM/dd”、“yyyy-MM-dd”。
 
@@ -74,7 +74,7 @@ y：年（yyyy表示完整年份，yy表示年份后两位）<br />M：月（若
 
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
-| value  | string | 是   | 显示时间格式。 |
+| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 显示时间格式。  <br>从API version 20开始，支持Resource类型。|
 
 以下是format输入的格式样式及对应的显示效果：
 

@@ -239,7 +239,7 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 | ------------- | ------- | ---- | -------- |
 | borderColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 内描边颜色。<br/>默认值：<br/>API version 10：'\#33006cde'<br/>API version 11及以上：'\#33007dff' |
 | borderWidth | [Length](ts-types.md#length) | 否 | 内描边宽度（不支持百分比设置）。<br/>默认值：1vp |
-| content | string | 否 | 文本内容，应用可自定义。 |
+| content | [ResourceStr](ts-types.md#resourcestr) | 否 | 文本内容，应用可自定义。<br>从API version 20开始，支持Resource类型。 |
 | font | [Font](ts-types.md#font) | 否 | 文本样式。<br/>默认值：<br/>- 文本大小（不支持百分比设置）：12fp <br/>其他文本参数跟随text组件的主题值。|
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 文本颜色。<br/>默认值：'\#ff182431' |
 | showDefaultPercentage | boolean | 否 | 显示百分比文本的开关，开启后会在进度条上显示当前进度的百分比。设置了content属性时该属性不生效。<br/>默认值：false，false表示不显示百分比文本，true表示显示百分比文本。 |

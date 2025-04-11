@@ -16,7 +16,7 @@
 
 ## 接口
 
-QRCode(value: string)
+QRCode(value: ResourceStr)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -28,7 +28,7 @@ QRCode(value: string)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | string | 是 | 二维码内容字符串。最大支持512个字符，若超出，则截取前512个字符。<br/>**说明：** <br/>该字符串内容确保有效，不支持null、undefined以及空内容，当传入上述内容时，将生成无效二维码。 |
+| value | [ResourceStr](ts-types.md#resourcestr) | 是 | 二维码内容字符串。最大支持512个字符，若超出，则截取前512个字符。 <br>从API version 20开始，支持Resource类型。 <br/>**说明：** <br/>该字符串内容确保有效，不支持null、undefined以及空内容，当传入上述内容时，将生成无效二维码。 |
 
 ## 属性
 
