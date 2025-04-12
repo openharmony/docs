@@ -7628,6 +7628,7 @@ export default class EntryAbility extends UIAbility {
           closeButtonRightMargin: 20,
           buttonIconSize: 20,
           buttonBackgroundCornerRadius: 4
+
         };
         windowClass.setDecorButtonStyle(style);
         console.info('Succeeded in setting the style of button. Data: ' + JSON.stringify(style));
