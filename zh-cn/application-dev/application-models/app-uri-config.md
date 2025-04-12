@@ -101,3 +101,7 @@
     ]
 }
 ```
+效果图如下：
+<!--RP2-->
+![app-uri-config](figures/app-uri-config.png)
+<!--RP2End-->
