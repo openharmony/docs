@@ -7623,7 +7623,7 @@ export default class EntryAbility extends UIAbility {
         let colorMode : ConfigurationConstant.ColorMode = ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT;
         let style: window.DecorButtonStyle = {
           colorMode: colorMode,
-          buttonBackgroundSize: 24,
+          buttonBackgroundSize: 28,
           spacingBetweenButtons: 12,
           closeButtonRightMargin: 20,
           buttonIconSize: 20,
