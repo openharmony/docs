@@ -636,6 +636,7 @@ struct TestNewInterface {
   private arcDotIndicator: ArcDotIndicator = new ArcDotIndicator()
   private data: MyDataSource = new MyDataSource([])
   @State backgroundColors: Color[] = [Color.Green, Color.Blue, Color.Yellow, Color.Pink, Color.White, Color.Gray, Color.Orange, Color.Transparent]
+  innerSelectedIndex: number = 0
 
   aboutToAppear(): void {
     let list: Color[] = []
@@ -675,6 +676,7 @@ struct TestNewInterface {
           console.info("onChange:" + index.toString())
         })
         .onAnimationStart((index: number, targetIndex: number, extraInfo: SwiperAnimationEvent) => {
+          this.innerSelectedIndex = targetIndex
           console.info("index: " + index)
           console.info("targetIndex: " + targetIndex)
           console.info("current offset: " + extraInfo.currentOffset)
