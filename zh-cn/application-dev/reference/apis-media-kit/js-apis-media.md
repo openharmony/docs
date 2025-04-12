@@ -1005,6 +1005,8 @@ prepare(): Promise\<void>
 
 准备播放音频/视频，需在[stateChange](#onstatechange9)事件成功触发至initialized状态后，才能调用。通过Promise获取返回值。
 
+如果在应用中短视频快速切换时出现时延过长的问题，需要在冷启动过程中创建一个AVPlayer并进行数据初始化到prepared阶段，详细请参见[在线短视频流畅切换](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-smooth-switching)。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
