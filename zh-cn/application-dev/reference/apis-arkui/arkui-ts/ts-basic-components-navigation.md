@@ -149,7 +149,7 @@ hideToolBar(value: boolean)
 
 hideToolBar(hide: boolean, animated: boolean)
 
-设置是否带动画效果的工具栏显示和隐藏。
+设置是否隐藏工具栏。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -182,7 +182,7 @@ hideTitleBar(value: boolean)
 
 hideTitleBar(hide: boolean, animated: boolean)
 
-设置是否带动画效果的标题栏显示和隐藏。
+设置是否隐藏标题栏。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
