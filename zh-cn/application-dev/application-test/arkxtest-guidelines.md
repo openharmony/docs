@@ -219,7 +219,7 @@ export default function abilityTest() {
 | timeout      | 测试用例执行的超时时间。                                        | 正整数（单位ms），如不设置默认为 5000                        | -s timeout 15000                          |
 | breakOnError | 遇错即停模式，当执行用例断言失败或者发生错误时，退出测试执行流程。 | true/false（默认值）                                          | -s breakOnError true                      |
 | random | 测试用例随机顺序执行。                  | true/false（默认值）                                           | -s random true                      |
-| testType     | 指定要执行用例的用例类型。                     | function，performance，power，reliability， security，global，compatibility，user，standard，safety，resilience | -s testType function                      |
+| testType     | 指定要执行用例的用例类型。                     | function，performance，power，reliability，security，global，compatibility，user，standard，safety，resilience | -s testType function                      |
 | level        | 指定要执行用例的用例级别。                     | 0, 1, 2, 3, 4                                              | -s level 0                                |
 | size         | 指定要执行用例的用例规模。                     | small，medium，large                                        | -s size small        
 | stress       | 指定要执行用例的执行次数。                     |  正整数                                         | -s stress 1000                            |
@@ -623,7 +623,7 @@ hdc shell uitest start-daemon
 介绍模拟鼠标左击、右击、滑轮事件，具体代码请参考[鼠标操作事件示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/MouseEvent.test.ets)。
 
 #### 模拟文本输入能力实例
-介绍仅支持可输入文本的组件进行操作，例如文本框等，具体代码请参考[文本输入能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/InputEvent.test.ets)。
+介绍模拟输入中文、英文文本内容，使用前提是仅支持可输入文本的组件进行操作，例如文本框等，具体代码请参考[文本输入能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/InputEvent.test.ets)。
 
 #### 截图能力实例
 介绍屏幕截图功能，包括指定区域截图能力，具体代码请参考[截图能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/ScreenCapEvent.test.ets)。
