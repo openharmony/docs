@@ -78,3 +78,26 @@
     }
 ]
 ```
+以应用沙盒清理页面接入场景举例说明：
+
+```json
+{
+    "name": "ClearAbility",
+    "srcEntry": "./ets/clearability/ClearAbility.ets",
+    "description": "$string:ClearAbility_desc",
+    "icon": "$media:layered_image",
+    "label": "$string:ClearAbility_label",
+    "skills": [
+        {
+            "uris": [
+                {
+                    "scheme": "storage",
+                    "host": "developer.huawei.com",
+                    "path": "clearcache",
+                    "linkFeature": "AppStorageMgmt"
+                }
+            ]
+        }
+    ]
+}
+```
