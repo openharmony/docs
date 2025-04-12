@@ -204,7 +204,7 @@ checkboxShape(value: CheckBoxShape)
 
 | 参数名 | 类型                                                  | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [CheckBoxShape](ts-appendix-enums.md#checkboxshape11) | 是   | 设置CheckboxGroup组件形状， 包括圆形和圆角方形。<br/>默认值:CheckBoxShape.CIRCLE。 <br />**说明**：<br/>CheckboxGroup组件形状按照设置显示。<br/>CheckboxGroup内所有没有单独设置shape类型的Checkbox形状和CheckboxGroup的保持一致。<br/>CheckboxGroup内有单独设置shape类型的Checkbox形状则优先于CheckboxGroup，按照设置形状显示。 |
+| value  | [CheckBoxShape](ts-appendix-enums.md#checkboxshape11) | 是   | 设置CheckboxGroup组件形状， 包括圆形和圆角方形。<br/>默认值：CheckBoxShape.CIRCLE <br />**说明**：<br/>CheckboxGroup组件形状按照设置显示。<br/>CheckboxGroup内所有没有单独设置shape类型的Checkbox形状和CheckboxGroup的保持一致。<br/>CheckboxGroup内有单独设置shape类型的Checkbox形状则优先于CheckboxGroup，按照设置形状显示。 |
 
 ### checkboxShape<sup>18+</sup>
 
@@ -222,7 +222,7 @@ checkboxShape(shape: Optional\<CheckBoxShape>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| shape  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CheckBoxShape](ts-appendix-enums.md#checkboxshape11)> | 是   | 设置CheckboxGroup组件形状， 包括圆形和圆角方形。<br/>当shape的值为undefined时，默认值:CheckBoxShape.CIRCLE。 <br />**说明**：<br/>CheckboxGroup组件形状按照设置显示。<br/>CheckboxGroup内所有没有单独设置shape类型的Checkbox形状和CheckboxGroup的保持一致。<br/>CheckboxGroup内有单独设置shape类型的Checkbox形状则优先于CheckboxGroup，按照设置形状显示。 |
+| shape  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CheckBoxShape](ts-appendix-enums.md#checkboxshape11)> | 是   | 设置CheckboxGroup组件形状， 包括圆形和圆角方形。<br/>当shape的值为undefined时，默认值为CheckBoxShape.CIRCLE。 <br />**说明**：<br/>CheckboxGroup组件形状按照设置显示。<br/>CheckboxGroup内所有没有单独设置shape类型的Checkbox形状和CheckboxGroup的保持一致。<br/>CheckboxGroup内有单独设置shape类型的Checkbox形状则优先于CheckboxGroup，按照设置形状显示。 |
 
 ## 事件
 
