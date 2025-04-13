@@ -214,7 +214,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
         
         SetConfig(*config);
     
-        // 1. 设置URL（选择APP_CREATE时设置）。
+        // 1. 设置URL（fileGenerationMode选择APP_CREATE时设置）。
         const std::string AVREORDER_ROOT = "/data/storage/el2/base/files/";
         int32_t outputFd = open((AVREORDER_ROOT + "avrecorder01.mp4").c_str(), O_RDWR | O_CREAT, 0777); // 设置文件名。
         std::string fileUrl = "fd://" + std::to_string(outputFd);
@@ -427,7 +427,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
 
       SetConfig(*config);
 
-      // 1.1 设置URL（选择APP_CREATE时设置）。
+      // 1.1 设置URL（fileGenerationMode选择APP_CREATE时设置）。
       const std::string AVREORDER_ROOT = "/data/storage/el2/base/files/";
       int32_t outputFd = open((AVREORDER_ROOT + "avrecorder01.mp4").c_str(), O_RDWR | O_CREAT, 0777); // 设置文件名。
       std::string fileUrl = "fd://" + std::to_string(outputFd);
