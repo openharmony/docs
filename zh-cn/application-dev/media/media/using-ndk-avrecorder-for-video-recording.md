@@ -34,7 +34,34 @@ AVRecorder支持开发音视频录制，集成了音频捕获，音频编码，�
 > 文件的创建与存储，请参考[应用文件访问与管理](../../file-management/app-file-access.md)，默认存储在应用的沙箱路径之下，如需存储至图库，请使用[安全控件保存媒体资源](../medialibrary/photoAccessHelper-savebutton.md)对沙箱内文件进行存储。
 
 
+开发者通过引入[avrecorder.h](../../reference/apis-media-kit/avrecorder_8h.md)、[avrecorder_base.h](../../reference/apis-media-kit/avrecorder__base_8h.md)和[native_averrors.h](../../reference/apis-avcodec-kit/native__averrors_8h.md)头文件，使用视频播放相关API。
+
 AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis-media-kit/_a_v_recorder.md)。
+
+在 CMake 脚本中链接动态库。
+```
+target_link_libraries(entry PUBLIC libavrecorder.so)
+```
+
+使用[OH_AVFormat](../../reference/apis-avcodec-kit/_core.md#oh_avformat)相关接口时，需引入如下头文件。
+```
+#include <multimedia/player_framework/native_avformat.h>
+```
+
+并在 CMake 脚本中链接如下动态库。
+```
+target_link_libraries(entry PUBLIC libnative_media_core.so)
+```
+
+开发者使用系统日志能力时，需引入如下头文件。
+```
+#include <hilog/log.h>
+```
+
+并需要在 CMake 脚本中链接如下动态库。
+```
+target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+```
 
 1. 创建AVRecorder实例，实例创建完成进入idle状态。
 
