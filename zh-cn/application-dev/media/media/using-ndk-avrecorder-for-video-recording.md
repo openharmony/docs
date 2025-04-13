@@ -128,7 +128,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
            errorCode, errorMsg);
    }
 
-   // 设置生成媒体文件回调（选择AUTO_CREATE时设置）。
+   // 设置生成媒体文件回调（fileGenerationMode选择AUTO_CREATE时设置）。
    void OnUri(OH_AVRecorder *recorder, OH_MediaAsset *asset, void *userData) {
        (void)recorder;
        (void)userData;
@@ -228,7 +228,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
         // 错误回调。
         OH_AVRecorder_SetErrorCallback(g_avRecorder, OnError, nullptr);
 
-        // 生成媒体文件回调（选择AUTO_CREATE时设置）。
+        // 生成媒体文件回调（fileGenerationMode选择AUTO_CREATE时设置）。
         OH_AVErrCode ret = OH_AVRecorder_SetUriCallback(g_avRecorder, OnUri, nullptr);
         if (ret == AV_ERR_OK) {
             OH_LOG_INFO(LOG_APP, "==NDKDemo==  OH_AVRecorder_SetUriCallback succeed!");
@@ -354,7 +354,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
                   errorCode, errorMsg);
    }
 
-   // 设置生成媒体文件回调（选择AUTO_CREATE时设置）。
+   // 设置生成媒体文件回调（fileGenerationMode选择AUTO_CREATE时设置）。
    void OnUri(OH_AVRecorder *recorder, OH_MediaAsset *asset, void *userData)
    {
       (void)recorder;
@@ -440,7 +440,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
       // 错误回调。
       OH_AVRecorder_SetErrorCallback(g_avRecorder, OnError, nullptr);
 
-      // 生成媒体文件回调（选择AUTO_CREATE时设置）。
+      // 生成媒体文件回调（fileGenerationMode选择AUTO_CREATE时设置）。
       OH_AVErrCode ret = OH_AVRecorder_SetUriCallback(g_avRecorder, OnUri, nullptr);
       if (ret == AV_ERR_OK) {
          OH_LOG_INFO(LOG_APP, "==NDKDemo==  OH_AVRecorder_SetUriCallback succeed!");
