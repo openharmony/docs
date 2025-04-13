@@ -258,7 +258,7 @@ typedef void (*OH_AVRecorder_OnError)(OH_AVRecorder *recorder, int32_t errorCode
 
 **描述**
 
-当录制过程中发生错误时调用。错误码的详细说明请参见[AVErrorCode](js-apis-media.md##averrorcode9)
+当录制过程中发生错误时调用。错误码的详细说明请参见[AVErrorCode](js-apis-media.md#averrorcode9)。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
