@@ -59,11 +59,18 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
    import { image } from '@kit.ImageKit';
    let plainTextObj : uniformDataStruct.PlainText = {
      uniformDataType: 'general.plain-text',
-     textContent : 'The weather is very good today',
-     abstract : 'The weather is very good today',
+     textContent : 'hello world',
+     abstract : 'this is abstract',
    }
-   let plainText = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainTextObj);
-   let unifiedData = new unifiedDataChannel.UnifiedData(plainText); 
+   let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainTextObj);
+   let htmlObj : uniformDataStruct.HTML = {
+     uniformDataType :'general.html',
+     htmlContent : '<div><p>hello world</p></div>',
+     plainContent : 'hello world',
+   }
+   // 为该记录增加一种样式，两种样式存储的是同一个数据，系不同表达形式
+   record.addEntry(uniformTypeDescriptor.UniformDataType.HTML, htmlObj);
+   let unifiedData = new unifiedDataChannel.UnifiedData(record); 
    
    let arrayBuffer = new ArrayBuffer(4*3*3);
    let opt : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 3, width: 3 }, alphaType: 3 };
@@ -92,12 +99,19 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
 3. 更新上一步骤插入的统一数据对象。
 
    ```ts
-   let plainTextObjUpdate : uniformDataStruct.PlainText = {
+   let plainTextUpdate : uniformDataStruct.PlainText = {
      uniformDataType: 'general.plain-text',
-     textContent : 'How are you?',
+     textContent : 'how are you',
+     abstract : 'this is abstract',
    }
-   let plainTextUpdate = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainTextObjUpdate);
-   let unifiedDataUpdate = new unifiedDataChannel.UnifiedData(plainTextUpdate);
+   let recordUpdate = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainTextUpdate);
+   let htmlUpdate : uniformDataStruct.HTML = {
+     uniformDataType :'general.html',
+     htmlContent : '<div><p>how are you</p></div>',
+     plainContent : 'how are you',
+   }
+   recordUpdate.addEntry(uniformTypeDescriptor.UniformDataType.HTML, htmlUpdate);
+   let unifiedDataUpdate = new unifiedDataChannel.UnifiedData(recordUpdate);
    
    // 指定要更新的统一数据对象的URI
    let optionsUpdate: unifiedDataChannel.Options = {
@@ -133,18 +147,15 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
          for (let i = 0; i < data.length; i++) {
            let records = data[i].getRecords();
            for (let j = 0; j < records.length; j++) {
-             let types : Array<string> = records[j].getTypes();
-             if (types.includes(uniformTypeDescriptor.UniformDataType.OPENHARMONY_PIXEL_MAP)) {
-               let pixelMap = records[j].getEntry(uniformTypeDescriptor.UniformDataType.OPENHARMONY_PIXEL_MAP) as uniformDataStruct.PixelMap;
-               if (pixelMap != undefined) {
-                 console.info(`PixelMap type: ${pixelMap.uniformDataType}`);
-               }
-             }
+             let types = records[j].getTypes();
+             // 根据业务需要从记录中获取样式数据
              if (types.includes(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT)) {
                let text = records[j].getEntry(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) as uniformDataStruct.PlainText;
-               if (text != undefined) {
-                 console.info(`PlainText type: ${text.uniformDataType}`);
-               }
+               console.info(`${i + 1}.${text.textContent}`);
+             }
+             if (types.includes(uniformTypeDescriptor.UniformDataType.HTML)) {
+               let html = records[j].getEntry(uniformTypeDescriptor.UniformDataType.HTML) as uniformDataStruct.HTML;
+               console.info(`${i + 1}.${html.htmlContent}`);
              }
            }
          }
@@ -181,18 +192,15 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
          for (let i = 0; i < data.length; i++) {
            let records = data[i].getRecords();
            for (let j = 0; j < records.length; j++) {
-             let types : Array<string> = records[j].getTypes();
-             if (types.includes(uniformTypeDescriptor.UniformDataType.OPENHARMONY_PIXEL_MAP)) {
-               let pixelMap = records[j].getEntry(uniformTypeDescriptor.UniformDataType.OPENHARMONY_PIXEL_MAP) as uniformDataStruct.PixelMap;
-               if (pixelMap != undefined) {
-                 console.info(`PixelMap type: ${pixelMap.uniformDataType}`);
-               }
-             }
+             let types = records[j].getTypes();
+             // 根据业务需要从记录中获取样式数据
              if (types.includes(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT)) {
                let text = records[j].getEntry(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) as uniformDataStruct.PlainText;
-               if (text != undefined) {
-                 console.info(`PlainText type: ${text.uniformDataType}`);
-               }
+               console.info(`${i + 1}.${text.textContent}`);
+             }
+             if (types.includes(uniformTypeDescriptor.UniformDataType.HTML)) {
+               let html = records[j].getEntry(uniformTypeDescriptor.UniformDataType.HTML) as uniformDataStruct.HTML;
+               console.info(`${i + 1}.${html.htmlContent}`);
              }
            }
          }
