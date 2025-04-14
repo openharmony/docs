@@ -1267,6 +1267,20 @@ avSession.startCastDeviceDiscovery((err: BusinessError) => {
 });
 ```
 
+## DistributedSessionType<sup>18+</sup>
+
+远端分布式设备支持的会话类型。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+| 名称                                     | 值 | 说明                        |
+|----------------------------------------|---|---------------------------|
+| TYPE_SESSION_REMOTE      | 0 | 远端设备会话。       |
+| TYPE_SESSION_MIGRATE_IN  | 1 | 迁移至本端的设备会话。 |
+| TYPE_SESSION_MIGRATE_OUT | 2 | 迁移至远端的设备会话。 |
+
 ## avSession.startCastDeviceDiscovery<sup>10+</sup>
 
 startCastDeviceDiscovery(filter: number, callback: AsyncCallback\<void>): void
