@@ -918,9 +918,9 @@ type RecallCondition = InvertedIndexRecallCondition | VectorRecallCondition
 | 名称     | 类型              | 必填 | 说明                                                         |
 | ---------- | --------------------- | ---- | ------------------------------------------------------------ |
 | ftsTableName    | string         | 是   | 倒排检索所用的fts(Full-Text Search)数据表的名称，用于执行bm25函数输入。必须为存在的表名且不能为空字符串。 |
-| fromClause   | string         | 是   | 查询目标索引名。不能为空字符串。<br>注：fromClause指定的表中包含filters中涉及的所有字段，接受2种输入：1. 和ftsTableName填一样的值，则倒排检索将仅局限在倒排表内进行检索；2. 提供完整select...join语句的方式，来连接fts表之外的元素表，作为倒排这一路的被检索表（注意，使用此模式时，该select语句中必须有rowid字段且必须定义为fts表的rowid，例如当ftsTableName为“files”时，存在一个元素表metadata需要参与filters过滤，则应如下定义fromClause："SELECT files.rowid as rowid, * FROM metadata JOIN files ON metadata.fileid = files.fileid"。）。 |
+| fromClause   | string         | 是   | 查询目标索引名。不能为空字符串。<br>注：fromClause指定的表中包含filters中涉及的所有字段，接受两种输入：1. 和ftsTableName填一样的值，则倒排检索将仅局限在倒排表内进行检索；2. 提供完整select...join语句的方式，来连接fts表之外的元素表，作为倒排这一路的被检索表（注意，使用此模式时，该select语句中必须有rowid字段且必须定义为fts表的rowid，例如当ftsTableName为“files”时，存在一个元素表metadata需要参与filters过滤，则应如下定义fromClause："SELECT files.rowid as rowid, * FROM metadata JOIN files ON metadata.fileid = files.fileid"。）。 |
 | primaryKey    | Array&lt;[ColumnName](#columnname18)&gt;         | 是   | 召回结果主键字段，会作为召回字段之一，作为多路召回文档聚合依据。一次查询中所有召回操作的主键字段数量必须相等且不能为空。 |
-| responseColumns    | Array&lt;[ColumnName](#columnname18)&gt;         | 是   | 需要额外召回的字段集合。 |
+| responseColumns    | Array&lt;[ColumnName](#columnname18)&gt;         | 是   | 需要额外召回的字段集合。ColumnName不得为空 |
 | invertedIndexStrategies    | Array&lt;[InvertedIndexStrategy](#invertedindexstrategy18)&gt;         | 否   | 召回策略列表，决定了倒排表应当如何打分。如果为空，则默认执行全表匹配。 |
 | recallName    | [RecallName](#recallname18)         | 否   | 当前检索回路的名称，作为重排阶段识别依据。默认值为随机字符串，不能为空字符串。 |
 | filters    | Array&lt;[FilterInfo](#filterinfo18)&gt;         | 否   | 附加的过滤条件。 |
@@ -1073,9 +1073,9 @@ type InvertedIndexStrategy = Bm25Strategy | ExactMatchingStrategy | ProximityStr
 | 名称     | 类型              | 必填 | 说明                                                         |
 | ---------- | --------------------- | ---- | ------------------------------------------------------------ |
 | query    | [VectorQuery](#vectorquery18)         | 是   | 用于向量检索的查询词向量。 |
-| fromClause    | string         | 是   |  查询目标索引名。不能为空字符串。<br>注：fromClause指定的表中包含filters中涉及的所有字段，接受2种输入：1. 和ftsTableName填一样的值，则倒排检索将仅局限在倒排表内进行检索；2. 提供完整select...join语句的方式，来连接fts表之外的元素表，作为倒排这一路的被检索表（注意，使用此模式时，该select语句中必须有rowid字段且必须定义为fts表的rowid，例如当ftsTableName为“files”时，存在一个元素表metadata需要参与filters过滤，则应如下定义fromClause："SELECT files.rowid as rowid, * FROM metadata JOIN files ON metadata.fileid = files.fileid"。）。 |
+| fromClause    | string         | 是   |  查询目标索引名。不能为空字符串。<br>注：fromClause指定的表中包含filters中涉及的所有字段，接受两种输入：1. 和ftsTableName填一样的值，则倒排检索将仅局限在倒排表内进行检索；2. 提供完整select...join语句的方式，来连接fts表之外的元素表，作为倒排这一路的被检索表（注意，使用此模式时，该select语句中必须有rowid字段且必须定义为fts表的rowid，例如当ftsTableName为“files”时，存在一个元素表metadata需要参与filters过滤，则应如下定义fromClause："SELECT files.rowid as rowid, * FROM metadata JOIN files ON metadata.fileid = files.fileid"。）。 |
 | primaryKey    | Array&lt;[ColumnName](#columnname18)&gt;         | 是   | 召回结果主键字段，会作为召回字段之一，作为多路召回文档聚合依据。一次查询中所有RecallCondition的主键字段数量必须相等且不能为空。 |
-| responseColumns    | Array&lt;[ColumnName](#columnname18)&gt;      | 是   | 需要额外召回的字段集合。默认为空数组，ColumnName不得为空。 |
+| responseColumns    | Array&lt;[ColumnName](#columnname18)&gt;      | 是   | 需要额外召回的字段集合。ColumnName不得为空。 |
 | recallName    | [RecallName](#recallname18)         | 否   | 当前检索回路的名称，作为重排阶段识别依据。默认值为随机字符串，不能为空字符串。 |
 | filters    | Array&lt;[FilterInfo](#filterinfo18)&gt;        | 否   | 额外的过滤条件。 |
 | deepSize    | number       | 否   | 当前召回过程给重排阶段返回的最大结果数。默认值500，必须为正整数。 |
