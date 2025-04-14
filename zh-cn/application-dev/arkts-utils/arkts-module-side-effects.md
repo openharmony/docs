@@ -176,7 +176,7 @@ test200
 
 模块加载时直接改变AppStorage中SomeAppStorageVar的值，**影响其他使用该变量的模块或代码**。
 
-ArkUI组件的状态变量信息可以通过一些应用级接口修改，详见[ArkUI状态管理接口文档](../quick-start/arkts-state-management-overview.md)。
+ArkUI组件的状态变量信息可以通过一些应用级接口修改，详见[ArkUI状态管理接口文档](../ui/state-management/arkts-state-management-overview.md)。
 
 **优化方式**
 
