@@ -317,7 +317,7 @@ type Resource = _Resource
 
 | Type   | Description  |
 | ------  | ---- | 
-|[_Resource](resource.md#resource-1)|Resource information of an application.|
+|[_Resource](js-apis-resource.md#resource-1)|Resource information of an application.|
 
 ## ResourceManager
 
@@ -4699,7 +4699,7 @@ Obtains the descriptor of the HAP where the raw file is located in the **resourc
 
 | Type                       | Description         |
 | ------------------------- | ----------- |
-| [RawFileDescriptor](#rawfiledescriptor8) | Descriptor of the HAP where the raw file is located.|
+| [RawFileDescriptor](#rawfiledescriptor9) | Descriptor of the HAP where the raw file is located.|
 
 **Error codes**
 
@@ -4738,7 +4738,7 @@ Obtains the descriptor of the HAP where the raw file is located in the **resourc
 | Name     | Type                                      | Mandatory  | Description                              |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | path     | string                                   | Yes   | Path of the raw file.                     |
-| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Yes   | Callback used to return the result, which is the descriptor of the HAP where the raw file is located.|
+| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | Yes   | Callback used to return the result, which is the descriptor of the HAP where the raw file is located.|
 
 **Error codes**
 
