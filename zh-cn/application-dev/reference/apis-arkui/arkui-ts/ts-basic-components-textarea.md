@@ -706,6 +706,23 @@ lineSpacing(value: LengthMetrics)
 | ------ | ------------------------------------------------------------ | ---- | ---------------- |
 | value  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 文本的行间距。默认值：0 |
 
+### lineSpacing<sup>20+</sup>
+
+lineSpacing(value: LengthMetrics, options?: LineSpacingOptions)
+
+设置文本的行间距。当不配置LineSpacingOptions时，首行上方默认会有行间距。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明             |
+| ------ | ------------------------------------------------------------ | ---- | ---------------- |
+| value  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 文本的行间距。设置值不大于0时，取默认值0。 |
+| options  | [LineSpacingOptions](ts-basic-components-text.md#linespacingoptions20对象说明) | 否   | 设置行间距配置项。<br/>默认值：{&nbsp;onlyBetweenLines:&nbsp;false&nbsp;} |
+
 ### lineBreakStrategy<sup>12+</sup>
 
 lineBreakStrategy(strategy: LineBreakStrategy)
@@ -1666,6 +1683,9 @@ struct TextAreaExample {
       TextArea({ text: 'This is the TextArea with lineSpacing set to 100%.' })
         .fontSize(12)
         .lineSpacing(LengthMetrics.percent(1))
+      TextArea({ text: 'The line spacing of this TextArea is set to 20_px, and the spacing is effective only between the lines.' })
+        .fontSize(12)
+        .lineSpacing(LengthMetrics.px(20), { onlyBetweenLines: true })
     }.height(600).width(350).padding({ left: 35, right: 35, top: 35 })
   }
 }
