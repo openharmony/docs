@@ -35,7 +35,6 @@ encodeImage(srcImage: image.PixelMap, metadata: string): Promise<image.PixelMap>
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 |   202    | Permission check failed. A non-system application uses the system API.|
-|   401    | Parameter error. Parameter verification failed.|
 |32100001  | Internal handling failed. File creation failed.|
 |32100002  | Encode process fail.|
 
@@ -75,7 +74,6 @@ function decodeImage(encodedImage: image.PixelMap): Promise\<string\>
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 |   202    | Permission check failed. A non-system application uses the system API.|
-|   401    | Parameter error. Parameter verification failed.|
 |32100001  | Internal handling failed. File read failed.|
 |32100003  | Decode process fail.|
 
@@ -110,7 +108,6 @@ notifyMetadataBindingEvent(metadata: string): void；
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-|   401    | Parameter error. Parameter verification failed.|
 |32100001|Internal handling failed. Obtain metadata failed.|
 
 **示例**：
