@@ -4888,6 +4888,88 @@ try {
 }
 ```
 
+### on('windowStatusDidChange')<sup>20+</sup>
+
+on(type:  'windowStatusDidChange', callback: Callback&lt;WindowStatusType&gt;): void
+
+开启窗口模式变化的监听，当窗口windowStatus发生变化后进行通知（此时窗口[Rect](#rect7)属性已经完成更新）。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                           | 必填 | 说明                                                     |
+| -------- | ------------------------------ | ---- | -------------------------------------------------------- |
+| type     | string                         | 是   | 监听事件，固定为'windowStatusDidChange'，即窗口模式变化完成事件。 |
+| callback | Callback&lt;[WindowStatusType](#windowstatustype11)&gt; | 是   | 回调函数。返回当前的窗口模式。                           |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300016 | Parameter error. Possible cause: 1. Invalid parameter range; 2. Invalid parameter length; 3. Incorrect parameter format. |
+
+**示例：**
+
+```ts
+try {
+    windowClass.on('windowStatusDidChange', (WindowStatusType) => {
+        console.info(`Succeeded in enabling the listener for window status changes. Data: ${JSON.stringify(WindowStatusType)}`);
+    });
+} catch (exception) {
+    console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### off('windowStatusDidChange')<sup>20+</sup>
+
+off(type: 'windowStatusDidChange', callback?: Callback&lt;WindowStatusType&gt;): void
+
+关闭窗口模式变化的监听。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                          | 必填 | 说明                                                     |
+| -------- | ----------------------------- | ---- | -------------------------------------------------------- |
+| type     | string                        | 是   | 监听事件，固定为'windowStatusDidChange'，即窗口模式变化完成事件。 |
+| callback | Callback&lt;[WindowStatusType](#windowstatustype11)&gt; | 否   | 回调函数。返回当前的窗口模式。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有窗口模式变化的监听。                           |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300016 | Parameter error. Possible cause: 1. Invalid parameter range; 2. Invalid parameter length; 3. Incorrect parameter format. |
+
+**示例：**
+
+```ts
+const callback = (windowStatusType: window.WindowStatusType) => {
+    // ...
+}
+try {
+    windowClass.on('windowStatusDidChange', callback);
+    windowClass.off('windowStatusDidChange', callback);
+    // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+    windowClass.off('windowStatusDidChange');
+} catch (exception) {
+    console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
 ### setWindowGrayScale<sup>12+</sup>
 
 setWindowGrayScale(grayScale: number): Promise&lt;void&gt;
