@@ -70,7 +70,7 @@ httpRequest.request(// 填写HTTP请求的URL地址，可以带参数也可以�
         filePath: `${getContext(this).filesDir}/fileName.txt`, // 可选，传入文件路径，自API 11开始支持该属性。
         remoteFileName: 'fileName.txt' // 可选，自API 11开始支持该属性。
       }
-    ]
+    ],
     addressFamily: http.AddressFamily.DEFAULT // 可选，系统默认选择目标域名的IPv4地址或IPv6地址，自API 15开始支持该属性。
   },
   (err: BusinessError, data: http.HttpResponse) => {
