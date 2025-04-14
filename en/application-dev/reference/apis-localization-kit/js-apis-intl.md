@@ -32,24 +32,16 @@ import { intl } from '@kit.LocalizationKit';
 
 | Name             | Type     | Mandatory  | Description                                      |
 | --------------- | ------- | -------- | ---------------------------------------- |
-| language        | string  | Yes   | Language associated with the locale, for example, **zh**.                   |
-| script          | string  | Yes   | Script type of the language, for example, **Hans**.                         |
-| region          | string  | Yes   | Country or region associated with the locale, for example, **CN**.                        |
+| language        | string  | Yes   | Language associated with the locale, for example, **zh**. The value complies with the ISO 639 standard.|
+| script          | string  | Yes   | Script type of the language, for example, **Hans**. The value complies with the Unicode ISO 15924 standard.|
+| region          | string  | Yes   | Country or region associated with the locale, for example, **CN**. The value complies with the ISO 3166 standard.|
 | baseName        | string  | Yes   | Basic information about the locale, which consists of the language, script, and region, for example, **zh-Hans-CN**. |
-| caseFirst       | string  | Yes   | Whether case is taken into account for the locale's collation rules.<br>The value can be **upper**, **lower**, or **false**.|
-| calendar        | string  | Yes   | Calendar for the locale.<br>The value can be any of the following: **buddhist**, **chinese**, **coptic**, **dangi**, **ethioaa**, **ethiopic**, **gregory**, **hebrew**, **indian**, **islamic**, **islamic-umalqura**, **islamic-tbla**, **islamic-civil**, **islamic-rgsa**, **iso8601**, **japanese**, **persian**, **roc**, or **islamicc**.|
-| collation       | string  | Yes   | Collation rules for the locale.<br>The value can be any of the following: The value can be any of the following: **big5han**, **compat**, **dict**, **direct**, **ducet**, **eor**, **gb2312**, **phonebk**, **phonetic**, **pinyin**, **reformed**, **searchjl**, **stroke**, **trad**, **unihan**, **zhuyin**.|
-| hourCycle       | string  | Yes   | Time system for the locale.<br>The value can be **h12**, **h23**, **h11**, **h24**.|
-| numberingSystem | string  | Yes   | Numbering system for the locale.<br>The value can be any of the following: **adlm**, **ahom**, **arab**, **arabext**, **bali**, **beng**, **bhks**, **brah**, **cakm**, **cham**, **deva**, **diak**, **fullwide**, **gong**, **gonm**, **gujr**, **guru**, **hanidec**, **hmng**, **hmnp**, **java**, **kali**, **khmr**, **knda**, **lana**, **lanatham**, **laoo**, **latn**, **lepc**, **limb**, **mathbold**, **mathdbl**, **mathmono**, **mathsanb**, **mathsans**, **mlym**, **modi**, **mong**, **mroo**, **mtei**, **mymr**, **mymrshan**, **mymrtlng**, **newa**, **nkoo**, **olck**, **orya**, **osma**, **rohg**, **saur**, **segment**, **shrd**, **sind**, **sinh**, **sora**, **sund**, **takr**, **talu**, **tamldec**, **telu**, **thai**, **tibt**, **tirh**, **vaii**, **wara**, **wcho**.|
+| caseFirst       | string  | Yes   | Whether case is taken into account for the locale's collation rules. The value can be:<br>"upper",&nbsp;"lower", or &nbsp;"false".<br>For details about their meanings, see Table 1 in [Sorting by Local Habits ](../../internationalization/i18n-sorting-local.md).|
+| calendar        | string  | Yes   | Calendar for the locale. The value can be:<br>The value can be any of the following: **buddhist**, **chinese**, **coptic**, **dangi**, **ethioaa**, **ethiopic**, **gregory**, **hebrew**, **indian**, **islamic**, **islamic-umalqura**, **islamic-tbla**, **islamic-civil**, **islamic-rgsa**, **iso8601**, **japanese**, **persian**, **roc**, or **islamicc**.<br>For details about their meanings, see Table 1 in [Calendar Setting](../../internationalization/i18n-calendar.md).|
+| collation       | string  | Yes   | Collation rules for the locale. The value can be:<br>The value can be any of the following: **big5han**, **compat**, **dict**, **direct**, **ducet**, **eor**, **gb2312**, **phonebk**, **phonetic**, **pinyin**, **reformed**, **searchjl**, **stroke**, **trad**, **unihan**, or **zhuyin**.<br>For details about their meanings, see Table 1 in [Sorting by Local Habits ](../../internationalization/i18n-sorting-local.md).|
+| hourCycle       | string  | Yes   | Time system for the locale. The value can be:<br>"h11", "h12", "h23", or "h24".<br>For details about their display effects, see Table 5 in [Date and Time Formatting](../../internationalization/i18n-time-date.md).|
+| numberingSystem | string  | Yes   | Numbering system for the locale. The value can be:<br>**adlm**, **ahom**, **arab**, **arabext**, **bali**, **beng**, **bhks**, **brah**, **cakm**, **cham**, **deva**, **diak**, **fullwide**, **gong**, **gonm**, **gujr**, **guru**, **hanidec**, **hmng**, **hmnp**, **java**, **kali**, **khmr**, **knda**, **lana**, **lanatham**, **laoo**, **latn**, **lepc**, **limb**, **mathbold**, **mathdbl**, **mathmono**, **mathsanb**, **mathsans**, **mlym**, **modi**, **mong**, **mroo**, **mtei**, **mymr**, **mymrshan**, **mymrtlng**, **newa**, **nkoo**, **olck**, **orya**, **osma**, **rohg**, **saur**, **segment**, **shrd**, **sind**, **sinh**, **sora**, **sund**, **takr**, **talu**, **tamldec**, **telu**, **thai**, **tibt**, **tirh**, **vaii**, **wara**, or **wcho**.|
 | numeric         | boolean | Yes   | Whether to apply special collation rules for numeric characters.<br>The default value is **false**.                     |
-
->  **NOTE**
->
->  - For details about **caseFirst** and **collation**, see Table 1 in [Sorting by Local Habits ](../../internationalization/i18n-sorting-local.md).
->
->  - For details about **calendar**, see Table 1 in [Calendar Setting](../../internationalization/i18n-calendar.md).
->
->  - For details about **hourCycle**, see Table 5 in [Date and Time Formatting](../../internationalization/i18n-time-date.md).
 
 ### constructor<sup>8+</sup>
 
@@ -202,12 +194,12 @@ Options for initializing the **Locale** object. Since API version 9, the **Local
 
 | Name             | Type     | Mandatory  |  Description                                      |
 | --------------- | ------- | ---- |---------------------------------------- |
-| calendar        | string  | No  |Calendar parameter.<br>The value can be any of the following: **buddhist**, **chinese**, **coptic**, **dangi**, **ethioaa**, **ethiopic**, **gregory**, **hebrew**, **indian**, **islamic**, **islamic-umalqura**, **islamic-tbla**, **islamic-civil**, **islamic-rgsa**, **iso8601**, **japanese**, **persian**, **roc**, or **islamicc**.|
-| collation       | string  | No    |Collation parameter.<br>The value can be any of the followings: **big5han**, **compat**, **dict**, **direct**, **ducet**, **emoji**, **eor**, **gb2312**, **phonebk**, **phonetic**, **pinyin**, or **reformed**". **search**, **searchjl**, **standard**, **stroke**, **trad**, **unihan**, **zhuyin**.|
-| hourCycle       | string  | No    |Hour cycle.<br>The value can be **h11**, **h12**, **h23**, or **h24**.|
-| numberingSystem | string  | No    |Numbering system.<br>The value can be any of the following: **adlm**, **ahom**, **arab**, **arabext**, **bali**, **beng**, **bhks**, **brah**, **cakm**, **cham**, **deva**, **diak**, **fullwide**, **gong**, **gonm**, **gujr**, **guru**, **hanidec**, **hmng**, **hmnp**, **java**, **kali**, **khmr**, **knda**, **lana**, **lanatham**, **laoo**, **latn**, **lepc**, **limb**, **mathbold**, **mathdbl**, **mathmono**, **mathsanb**, **mathsans**, **mlym**, **modi**, **mong**, **mroo**, **mtei**, **mymr**, **mymrshan**, **mymrtlng**, **newa**, **nkoo**, **olck**, **orya**, **osma**, **rohg**, **saur**, **segment**, **shrd**, **sind**, **sinh**, **sora**, **sund**, **takr**, **talu**, **tamldec**, **telu**, **thai**, **tibt**, **tirh**, **vaii**, **wara**, **wcho**.|
-| numeric         | boolean | No    | Whether to use the 12-hour clock. The default value is **false**.                              |
-| caseFirst       | string  | No    | Whether upper case or lower case is sorted first.<br>The value can be **upper**, **lower**, or **false**.|
+| calendar        | string  | No  |Calendar parameter. The value can be:<br>"buddhist", "chinese", "coptic", "dangi", "ethioaa", "ethiopic", "gregory", "hebrew", "indian", "islamic", "islamic-umalqura", "islamic-tbla", "islamic-civil", "islamic-rgsa", "iso8601", "japanese", "persian", "roc", or "islamicc".|
+| collation       | string  | No    |Collation parameter. The value can be:<br>"big5han", "compat", "dict", "direct", "ducet", "emoji", "eor", "gb2312", "phonebk", "phonetic", "pinyin", "reformed	**search**, **searchjl**, **standard**, **stroke**, **trad**, **unihan**, **zhuyin**.|
+| hourCycle       | string  | No    |Hour cycle. The value can be:<br>"h11",&nbsp;"h12",&nbsp;"h23", or &nbsp;"h24".|
+| numberingSystem | string  | No    |Numbering system. The value can be:<br>**adlm**, **ahom**, **arab**, **arabext**, **bali**, **beng**, **bhks**, **brah**, **cakm**, **cham**, **deva**, **diak**, **fullwide**, **gong**, **gonm**, **gujr**, **guru**, **hanidec**, **hmng**, **hmnp**, **java**, **kali**, **khmr**, **knda**, **lana**, **lanatham**, **laoo**, **latn**, **lepc**, **limb**, **mathbold**, **mathdbl**, **mathmono**, **mathsanb**, **mathsans**, **mlym**, **modi**, **mong**, **mroo**, **mtei**, **mymr**, **mymrshan**, **mymrtlng**, **newa**, **nkoo**, **olck**, **orya**, **osma**, **rohg**, **saur**, **segment**, **shrd**, **sind**, **sinh**, **sora**, **sund**, **takr**, **talu**, **tamldec**, **telu**, **thai**, **tibt**, **tirh**, **vaii**, **wara**, or **wcho**.|
+| numeric         | boolean | No    | Whether to apply special collation rules for numeric characters. The default value is **false**.                              |
+| caseFirst       | string  | No    | Whether upper case or lower case is sorted first. The value can be:<br>"upper",&nbsp;"lower", or &nbsp;"false".|
 
 >  **NOTE**
 >
@@ -281,7 +273,7 @@ Formats the date and time.
 
 | Name | Type  | Mandatory  | Description     |
 | ---- | ---- | ---- | ------- |
-| date | Date | Yes   | Date and time to be formatted.|
+| date | Date | Yes   | Date and time. Note: The month starts from **0**. For example, **0** indicates January.|
 
 **Return value**
 
@@ -291,7 +283,7 @@ Formats the date and time.
 
 **Example**
   ```ts
-  let date = new Date(2021, 11, 17, 3, 24, 0);
+  let date = new Date (2021, 11, 17, 3, 24, 0); // The date and time is 2021.12.17 03:24:00.
   // Use locale en-GB to create a DateTimeFormat object.
   let datefmt = new intl.DateTimeFormat("en-GB");
   let formattedDate = datefmt.format(date); // formattedDate "17/12/2021"
@@ -317,8 +309,8 @@ Formats date and time ranges.
 
 | Name      | Type  | Mandatory  | Description      |
 | --------- | ---- | ---- | -------- |
-| startDate | Date | Yes   | Start date and time.|
-| endDate   | Date | Yes   | End date and time.|
+| startDate | Date | Yes   | Start date and time. Note: The month starts from **0**. For example, **0** indicates January.|
+| endDate   | Date | Yes   | End date and time. Note: The month starts from **0**. For example, **0** indicates January.|
 
 **Return value**
 
@@ -328,7 +320,7 @@ Formats date and time ranges.
 
 **Example**
   ```ts
-  let startDate = new Date(2021, 11, 17, 3, 24, 0);
+  let startDate = new Date(2021, 11, 17, 3, 24, 0); // The date and time is 2021.12.17 03:24:00.
   let endDate = new Date(2021, 11, 18, 3, 24, 0);
   // Use locale en-GB to create a DateTimeFormat object.
   let datefmt = new intl.DateTimeFormat("en-GB");
@@ -339,7 +331,7 @@ Formats date and time ranges.
 
 resolvedOptions(): DateTimeOptions
 
-Obtains the options for creating a **DateTimeOptions** object. 
+Obtains the options for creating a **DateTimeOptions** object.
 
 **Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
 
@@ -375,31 +367,25 @@ Defines the options for a **DateTimeOptions** object. Since API version 9, the *
 
 | Name             | Type     | Mandatory  | Description                                      |
 | --------------- | ------- | ---- |  ---------------------------------------- |
-| locale          | string  | No   |Locale, for example, **zh-Hans-CN**.                |
-| dateStyle       | string  | No    |Date format.<br>The value can be **long**, **short**, **medium**, **full**, or **auto**.|
-| timeStyle       | string  | No    |Time format.<br>The value can be **long**, **short**, **medium**, **full**, or **auto**.|
-| hourCycle       | string  | No    |Hour cycle.<br>The value can be **h11**, **h12**, **h23**, or **h24**.|
-| timeZone        | string  | No    |Time zone represented by a valid IANA time zone ID.                     |
-| numberingSystem | string  | No    |Numbering system.<br>The value can be any of the following: **adlm**, **ahom**, **arab**, **arabext**, **bali**, **beng**, **bhks**, **brah**, **cakm**, **cham**, **deva**, **diak**, **fullwide**, **gong**, **gonm**, **gujr**, **guru**, **hanidec**, **hmng**, **hmnp**, **java**, **kali**, **khmr**, **knda**, **lana**, **lanatham**, **laoo**, **latn**, **lepc**, **limb**, **mathbold**, **mathdbl**, **mathmono**, **mathsanb**, **mathsans**, **mlym**, **modi**, **mong**, **mroo**, **mtei**, **mymr**, **mymrshan**, **mymrtlng**, **newa**, **nkoo**, **olck**, **orya**, **osma**, **rohg**, **saur**, **segment**, **shrd**, **sind**, **sinh**, **sora**, **sund**, **takr**, **talu**, **tamldec**, **telu**, **thai**, **tibt**, **tirh**, **vaii**, **wara**, **wcho**.|
-| hour12          | boolean | No    | Whether to use the 12-hour clock.<br>If **hour12** and **hourCycle** are not set and the 24-hour clock is turned on, the default value of **hour12** is **false**.        |
-| weekday         | string  | No    | Workday display format.<br>The value can be **long**, **short**, **narrow**, or **auto**.|
-| era             | string  | No    | Era display format.<br>The value can be **long**, **short**, **narrow**, or **auto**.|
-| year            | string  | No    | Year display format.<br>The value can be **numeric** or **2-digit**. |
-| month           | string  | No   | Month display format.<br>The value can be **numeric**, **2-digit**, **long**, **short**, or **narrow**.|
-| day             | string  | No    | Date display format.<br>The value can be **numeric** or **2-digit**. |
-| hour            | string  | No    | Hour display format.<br>The value can be **numeric** or **2-digit**. |
-| minute          | string  | No    | Minute display format.<br>The value can be **numeric** or **2-digit**. |
-| second          | string  | No    | Second display format.<br>The value can be **numeric** or **2-digit**. |
-| timeZoneName    | string  | No    | Localized representation of a time zone name.<br>The value can be **long**, **short**, or **auto**.  |
-| dayPeriod       | string  | No    | Time period display format.<br>The value can be **long**, **short**, **narrow**, or **auto**.3|
-| localeMatcher   | string  | No    | Locale matching algorithm.<br>The value can be **lookup** or **best fit**.|
-| formatMatcher   | string  | No    | Format matching algorithm.<br>The value can be **basic** or **best fit**.|
-
->  **NOTE**
->
->  - For details about the display effects of **dateStyle**, **timeStyle**, **weekday**, and **year**, see Table 1 in [Date and Time Formatting] (../../internationalization/i18n-time-date.md).
->
->  - For details about the parameter values in different scenarios, see [Date and Time Formatting](../../internationalization/i18n-time-date.md).
+| locale          | string  | No   |Locale, for example, **zh-Hans-CN**.          |
+| dateStyle       | string  | No    |Date display format. The value can be:<br>"long",&nbsp;"short",&nbsp;"medium",&nbsp;"full", or &nbsp;"auto".<br>For details about their display effects, see Table 1 in [Date and Time Formatting](../../internationalization/i18n-time-date.md).|
+| timeStyle       | string  | No    |Time display format. The value can be:<br>"long",&nbsp;"short",&nbsp;"medium",&nbsp;"full", or &nbsp;"auto".<br>For details about their display effects, see Table 2 in [Date and Time Formatting](../../internationalization/i18n-time-date.md).|
+| hourCycle       | string  | No    |Hour cycle. The value can be:<br>"h11",&nbsp;"h12",&nbsp;"h23", or &nbsp;"h24".<br>For details about the display effect when **dateStyle** or **timeStyle** is not set, see Table 5 in [Date and Time Formatting](../../internationalization/i18n-time-date.md).<br>For details about the display effect when **dateStyle** or **timeStyle** is set, see Table 6 in [Date and Time Formatting](../../internationalization/i18n-time-date.md).|
+| timeZone        | string  | No    |Time zone in use. The value is a valid IANA time zone ID.                     |
+| numberingSystem | string  | No    |Numbering system. The value can be:<br>**adlm**, **ahom**, **arab**, **arabext**, **bali**, **beng**, **bhks**, **brah**, **cakm**, **cham**, **deva**, **diak**, **fullwide**, **gong**, **gonm**, **gujr**, **guru**, **hanidec**, **hmng**, **hmnp**, **java**, **kali**, **khmr**, **knda**, **lana**, **lanatham**, **laoo**, **latn**, **lepc**, **limb**, **mathbold**, **mathdbl**, **mathmono**, **mathsanb**, **mathsans**, **mlym**, **modi**, **mong**, **mroo**, **mtei**, **mymr**, **mymrshan**, **mymrtlng**, **newa**, **nkoo**, **olck**, **orya**, **osma**, **rohg**, **saur**, **segment**, **shrd**, **sind**, **sinh**, **sora**, **sund**, **takr**, **talu**, **tamldec**, **telu**, **thai**, **tibt**, **tirh**, **vaii**, **wara**, or **wcho**.|
+| hour12          | boolean | No    | Whether to use the 12-hour clock.<br>If both **hour12** and **hourCycle** are set, **hourCycle** does not take effect.<br>If **hour12** and **hourCycle** are not set and the 24-hour clock is turned on, the default value of **hour12** is **false**.|
+| weekday         | string  | No    | Week display format. The value can be:<br>"long",&nbsp;"short",&nbsp;"narrow", or &nbsp;"auto".<br>For details about their display effects, see Table 4 in [Date and Time Formatting](../../internationalization/i18n-time-date.md).|
+| era             | string  | No    | Epoch display format. The value can be:<br>"long",&nbsp;"short",&nbsp;"narrow", or &nbsp;"auto".<br>For details about their display effects, see Table 9 in [Date and Time Formatting](../../internationalization/i18n-time-date.md).|
+| year            | string  | No    | Year display format. The value can be:<br>"numeric" or &nbsp;"2-digit".<br>For details about their display effects, see Table 3 in [Date and Time Formatting](../../internationalization/i18n-time-date.md). |
+| month           | string  | No   | Month display format. The value can be:<br>"numeric",&nbsp;"2-digit",&nbsp;"long",&nbsp;"short",&nbsp;"narrow", or &nbsp;"auto".<br>For details about their display effects, see Table 6 in [Date and Time Formatting](../../internationalization/i18n-time-date.md).|
+| day             | string  | No    | Day display format. The value can be:<br>"numeric" or &nbsp;"2-digit". |
+| hour            | string  | No    | Hour display format. The value can be:<br>"numeric" or &nbsp;"2-digit". |
+| minute          | string  | No    | Minute display format. The value can be:<br>"numeric" or &nbsp;"2-digit". |
+| second          | string  | No    | Second display format. The value can be:<br>"numeric" or &nbsp;"2-digit". |
+| timeZoneName    | string  | No    | Localized representation of a time zone name. The value can be:<br>"long",&nbsp;"short", or &nbsp;"auto".<br>For details about their display effects, see Table 8 in [Date and Time Formatting](../../internationalization/i18n-time-date.md).  |
+| dayPeriod       | string  | No    | Time period display format. The value can be:<br>"long",&nbsp;"short",&nbsp;"narrow", or &nbsp;"auto".<br>For details about their display effects, see Table 10 in [Date and Time Formatting](../../internationalization/i18n-time-date.md).|
+| localeMatcher   | string  | No    | Locale matching algorithm. The value can be:<br>- "lookup": exact match.<br>- "best fit": best match.|
+| formatMatcher   | string  | No    | Format matching algorithm. The value can be:<br>- "basic": exact match.<br>- "best fit": best match.|
 
 ## NumberFormat
 
@@ -517,12 +503,12 @@ Options for creating the **NumberFormat** object. Since API version 9, the **Num
 | unit                     | string  | No   | Unit name, for example, **meter**, **inch**, or **hectare**.       |
 | unitDisplay              | string  | No   | Display format of units. The value can be **long**, **short**, or **narrow**.<br>The default value is **short**.|
 | unitUsage<sup>8+</sup>   | string  | No   | Application scenario of units. The value can be any of the following: "default**, **area-land-agricult**, **area-land-commercl**, **area-land-residntl**, **length-person**, **length-person-small**, **length-rainfall**, **length-road**, **length-road-small**, **length-snowfall**, **length-vehicle**, **length-visiblty**, **length-visiblty-small**, **length-person-informal**, **length-person-small-informal**, **length-road-informal**, **speed-road-travel**, **speed-wind**, **temperature-person**, **temperature-weather**, **volume-vehicle-fuel**, **elapsed-time-second**, **size-file-byte**, or **size-shortfile-byte**.<br>The default value is **default**.|
-| signDisplay              | string  | No   | Number sign display format. The value can be **auto**, **never**, **always**, or **expectZero**.<br>The default value is **auto**.|
+| signDisplay              | string  | No   | Number sign display format. The value can be:<br>- "auto": automatically determines whether to display the plus or minus sign.<br>- "never": do not display the plus or minus sign.<br>- "always": always displays the plus or minus sign.<br>- "exceptZero": displays the plus or minus sign for all values except 0.<br>The default value is **auto**.|
 | compactDisplay           | string  | No   | Compact display format. The value can be **long** or **short**.<br>The default value is **short**.     |
 | notation                 | string  | No   | Number formatting specification. The value can be **standard**, **scientific**, **engineering**, or **compact**.<br>The default value is **standard**.|
 | localeMatcher            | string  | No   | Locale matching algorithm. The value can be **lookup** or **best fit**.<br>The default value is **best fit**.|
 | style                    | string  | No   | Number display format. The value can be **decimal**, **currency**, **percent**, or **unit**.<br>The default value is **decimal**.|
-| numberingSystem          | string  | No   | Numbering system for the locale. The value can be any of the following: **adlm**, **ahom**, **arab**, **arabext**, **bali**, **beng**, **bhks**, **brah**, **cakm**, **cham**, **deva**, **diak**, **fullwide**, **gong**, **gonm**, **gujr**, **guru**, **hanidec**, **hmng**, **hmnp**, **java**, **kali**, **khmr**, **knda**, **lana**, **lanatham**, **laoo**, **latn**, **lepc**, **limb**, **mathbold**, **mathdbl**, **mathmono**, **mathsanb**, **mathsans**, **mlym**, **modi**, **mong**, **mroo**, **mtei**, **mymr**, **mymrshan**, **mymrtlng**, **newa**, **nkoo**, **olck**, **orya**, **osma**, **rohg**, **saur**, **segment**, **shrd**, **sind**, **sinh**, **sora**, **sund**, **takr**, **talu**, **tamldec**, **telu**, **thai**, **tibt**, **tirh**, **vaii**, **wara**, **wcho**. The default value is the default numbering system of the specified locale.|
+| numberingSystem          | string  | No   | Numbering system. The value can be:<br>The value can be any of the following: **adlm**, **ahom**, **arab**, **arabext**, **bali**, **beng**, **bhks**, **brah**, **cakm**, **cham**, **deva**, **diak**, **fullwide**, **gong**, **gonm**, **gujr**, **guru**, **hanidec**, **hmng**, **hmnp**, **java**, **kali**, **khmr**, **knda**, **lana**, **lanatham**, **laoo**, **latn**, **lepc**, **limb**, **mathbold**, **mathdbl**, **mathmono**, **mathsanb**, **mathsans**, **mlym**, **modi**, **mong**, **mroo**, **mtei**, **mymr**, **mymrshan**, **mymrtlng**, **newa**, **nkoo**, **olck**, **orya**, **osma**, **rohg**, **saur**, **segment**, **shrd**, **sind**, **sinh**, **sora**, **sund**, **takr**, **talu**, **tamldec**, **telu**, **thai**, **tibt**, **tirh**, **vaii**, **wara**, or **wcho**. The default value is the default numbering system of the specified locale.|
 | useGrouping              | boolean | No   | Whether to use grouping for display. The default value is **auto**.                                 |
 | minimumIntegerDigits     | number  | No   | Minimum number of digits allowed in the integer part of a number. The value ranges from **1** to **21**.<br>The default value of is **1**.                 |
 | minimumFractionDigits    | number  | No   | Minimum number of digits in the fraction part of a number. The value ranges from **0** to **20**.<br>The default value is **0**.                 |
@@ -637,7 +623,7 @@ Obtains the options for creating a **Collator** object.
 
 ## CollatorOptions<sup>8+</sup>
 
-Defines the options for creating a **Collator** object. 
+Defines the options for creating a **Collator** object.
 
 Since API version 9, the attributes in **CollatorOptions** are optional.
 
@@ -658,7 +644,7 @@ Since API version 9, the attributes in **CollatorOptions** are optional.
 
 >  **NOTE**
 >
->  - For details about the meanings of **usage**, **sensitivity**, **collation**, and **caseFirst**, see [Sorting by Local Habits](../../internationalization/i18n-sorting-local.md).
+>  - For details about the meanings of different field values, see [Sorting by Local Habits](../../internationalization/i18n-sorting-local.md).
 
 
 ## PluralRules<sup>8+</sup>
@@ -923,4 +909,8 @@ Represents the properties of a **RelativeTimeFormat** object.
 | locale          | string | Yes   | A string containing locale information, including the language, optional script, and region.            |
 | numeric         | string | Yes   | Format of the output message. The value can be **always** or **auto**.     |
 | style           | string | Yes   | Length of an internationalized message. The value can be **long**, **short**, or **narrow**.|
-| numberingSystem | string | Yes   | Numbering system.                                |
+| numberingSystem | string | Yes   | Numbering system. The value can be:<br>**adlm**, **ahom**, **arab**, **arabext**, **bali**, **beng**, **bhks**, **brah**, **cakm**, **cham**, **deva**, **diak**, **fullwide**, **gong**, **gonm**, **gujr**, **guru**, **hanidec**, **hmng**, **hmnp**, **java**, **kali**, **khmr**, **knda**, **lana**, **lanatham**, **laoo**, **latn**, **lepc**, **limb**, **mathbold**, **mathdbl**, **mathmono**, **mathsanb**, **mathsans**, **mlym**, **modi**, **mong**, **mroo**, **mtei**, **mymr**, **mymrshan**, **mymrtlng**, **newa**, **nkoo**, **olck**, **orya**, **osma**, **rohg**, **saur**, **segment**, **shrd**, **sind**, **sinh**, **sora**, **sund**, **takr**, **talu**, **tamldec**, **telu**, **thai**, **tibt**, **tirh**, **vaii**, **wara**, or **wcho**.|
+
+> **NOTE**
+>
+> For details about the display effects of **numeric** and **style**, see [Date and Time Formatting](../../internationalization/i18n-time-date.md#relative-time-formatting).

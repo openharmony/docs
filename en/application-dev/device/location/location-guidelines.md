@@ -12,8 +12,6 @@ The following table lists the APIs used to obtain the device location informatio
 
 This module supports only the WGS-84 coordinate system.
 
-**Table 2** APIs for obtaining device location information
-
 | API| Description| 
 | -------- | -------- |
 | [on(type: 'locationChange', request: LocationRequest &#124; ContinuousLocationRequest, callback: Callback&lt;Location&gt;): void](../../reference/apis-location-kit/js-apis-geoLocationManager.md#geolocationmanageronlocationchange) | Registers a listener for location changes with a location request initiated.| 
@@ -68,7 +66,7 @@ This module supports only the WGS-84 coordinate system.
          If fast location is expected, you are advised to set **LocatingPriority** to **PRIORITY_LOCATING_SPEED**. The first obtained location result will be provided for the application.<br>
          Both the GNSS positioning and the network positioning technologies are used in the two location policies. This can lead to significant hardware resource consumption and power consumption.<br>
       - Set the location timeout interval by using **locatingTimeoutMs**.<br>
-         Due to the impact of the ambient environment, device status, and system power consumption control policy, the location response delay may fluctuates greatly. You are advised to set the timeout interval for a single location to 10 seconds.<br>
+         Due to the impact of the ambient environment, device status, and system power consumption control policy, the location response delay may fluctuate greatly. You are advised to set the timeout interval for a single location to 10 seconds.<br>
          
       The following code snippet uses **PRIORITY_LOCATING_SPEED** as an example.<br>
 
@@ -81,7 +79,7 @@ This module supports only the WGS-84 coordinate system.
       }
       try {
          geoLocationManager.getCurrentLocation(request).then((result) => { // Call getCurrentLocation to obtain the current device location by using a promise.
-            console.log('current location: ' + JSON.stringify(result));
+            console.info('current location: ' + JSON.stringify(result));
          })
          .catch((error:BusinessError) => { // Receive the reported error code.
             console.error('promise, getCurrentLocation: error=' + JSON.stringify(error));
@@ -91,7 +89,7 @@ This module supports only the WGS-84 coordinate system.
        }
       ```
    The coordinates obtained by this module are in the WGS-84 coordinate system. If you need to use coordinates in other coordinate systems, perform a coordinate system conversion.
-   
+
    <!--RP1-->   You can use the SDK capabilities provided by a third-party map to implement coordinate system conversion.<!--RP1End-->
    
 5. Obtain the device location continuously. It is mainly used in scenarios such as navigation, movement track, and travel.<br>
@@ -110,7 +108,7 @@ This module supports only the WGS-84 coordinate system.
       'locationScenario': geoLocationManager.UserActivityScenario.NAVIGATION
    }
    let locationCallback = (location:geoLocationManager.Location):void => {
-      console.log('locationCallback: data: ' + JSON.stringify(location));
+      console.info('locationCallback: data: ' + JSON.stringify(location));
    };
    try {
       geoLocationManager.on('locationChange', request, locationCallback);
@@ -120,5 +118,6 @@ This module supports only the WGS-84 coordinate system.
    ```
    If your application no longer needs the device location, stop obtaining the device location to avoid high power consumption.
    ```ts
+   // The callback must be the same as that passed by the **on** API.
    geoLocationManager.off('locationChange', locationCallback);
    ```

@@ -2,9 +2,8 @@
 The **WLAN** module provides basic wireless local area network (WLAN) functions, peer-to-peer (P2P) functions, and WLAN message notification services. It allows applications to communicate with devices over WLAN.
 
 > **NOTE**
->
-> - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.wifiManager (WLAN)](js-apis-wifiManager.md).
+> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.wifiManager (WLAN)](js-apis-wifiManager.md).
 
 ## Modules to Import
 
@@ -212,7 +211,7 @@ Obtains whether scan is always allowed.
 
 | **Type**| **Description**|
 | -------- | -------- |
-| boolean| Whether scan is always allowed. The value **true** means scan is allowed; the value **false** means the opposite.|
+| boolean| Whether scan is always allowed. The value **true** means scan is allowed, and the value **false** means the opposite.|
 
 **Error codes**
 
@@ -305,9 +304,9 @@ Represents the WLAN configuration.
 | **Name**| **Type**| **Readable**| **Writable**| **Description**|
 | -------- | -------- | -------- | -------- | -------- |
 | creatorUid | number | Yes| No| ID of the creator.<br> **System API**: This is a system API.|
-| disableReason | number | Yes| No| Reason for disabling WLAN.<br> **System API**: This is a system API.|
+| disableReason | number | Yes| No| Reason for disabling Wi-Fi.<br> **-1**: unknown reason<br>**0**: not disabled<br>**1**: association refused<br>**2**: authentication failed<br> **3**: DHCP failure<br>**4**: no Internet connection<br> **5**: no authentication credentials<br>**6**: no Internet connection permanently<br> **7**: disabled by Wi-Fi manager<br>**8**: disabled due to incorrect password<br> **9**: authentication without subscription<br>**10**: private EAP authentication error<br> **11**: network not found<br>**12**: consecutive failures<br> **13**: disabled by the system<br>**14**: EAP-AKA authentication failed<br> **15**: association removed<br>**16**: maximum number of forbidden network selections<br> **System API**: This is a system API.|
 | netId | number | Yes| No| Network ID.<br> **System API**: This is a system API.|
-| randomMacType | number | Yes| No| MAC address type. <br>The value **0** indicates random MAC address, and **1** indicates device MAC address.<br> **System API**: This is a system API.|
+| randomMacType | number | Yes| No| MAC address type. <br>The value **0** indicates a random MAC address, and the value **1** indicates a device MAC address.<br> **System API**: This is a system API.|
 | randomMacAddr | string | Yes| No| MAC address.<br> **System API**: This is a system API.|
 | ipType | [IpType](#iptype9) | Yes| No| IP address type.<br> **System API**: This is a system API.|
 | staticIp | [IpConfig](#ipconfig9) | Yes| No| Static IP address information.<br> **System API**: This is a system API.|
@@ -393,7 +392,7 @@ Adds network configuration. This API uses an asynchronous callback to return the
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| WLAN configuration to add. The default **bssidType** is random device address.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **0** and **data** is the network configuration ID. If **data** is **-1**, the operation has failed. If the operation fails, **error** is not **0**.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If **err** is **0**, the operation is successful. **data** indicates the ID of the network configuration to add. If **data** is **-1**, the network configuration fails to be added.<br> If the value of **err** is not **0**, an error has occurred during the operation.|
 
 **Error codes**
 
@@ -488,7 +487,7 @@ Connects to the specified network. If the device is already connected to a hotsp
 
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| Configuration of the WLAN to connect. The default **bssidType** is random device address.|
+| config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| WLAN configuration to add. The default **bssidType** is random device address.|
 
 **Error codes**
 
@@ -712,7 +711,7 @@ Obtains the Wi-Fi state.
 
   | **Type**| **Description**|
   | -------- | -------- |
-  | WifiDetailState | Wi-Fi state obtained.|
+  | [WifiDetailState](#wifidetailstate12) | Wi-Fi state obtained.|
 
 **Error codes**
 
@@ -1017,7 +1016,7 @@ Removes the specified network configuration.
 
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
-| id | number | Yes| ID of the network configuration to remove.|
+  | id | number | Yes| ID of the network configuration to disable.|
 
 **Error codes**
 
@@ -1188,7 +1187,7 @@ Enables or disables HiLink.
 
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| isHiLinkEnable | boolean | Yes| Whether to enable hiLink. The value **true** means to enable HiLink; the value **false** means the opposite.|
+| isHiLinkEnable | boolean | Yes| Whether to enable hiLink. The value **true** means to enable HiLink, and the value **false** means the opposite.|
 | bssid | string | Yes| MAC address of the hotspot, for example, **00:11:22:33:44:55**.|
 | config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| WLAN configuration information. The value of **config.bssid** must be the same as that of the second parameter **bssid**. The default **bssidType** is random device address.|
 
@@ -1434,7 +1433,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 202 | System API is not allowed called by Non-system application. |
-| 401 | Invalid parameters. Possible causes: 1. Incorrect parameter types.<br>2. Parameter verification failed. |
+| 401 | Invalid parameters. Possible causes: 1. Incorrect parameter types..<br>2. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2601000  | Operation failed. |
 
@@ -1602,7 +1601,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 202 | System API is not allowed called by Non-system application. |
-| 401 | Invalid parameters. Possible causes: 1. Incorrect parameter types.<br>2. Parameter verification failed. |
+| 401 | Invalid parameters. Possible causes: 1. Incorrect parameter types..<br>2. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2601000  | Operation failed. |
 
@@ -1628,7 +1627,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 delHotspotBlockList(stationInfo: StationInfo)
 
-Delets a device from the list of blocked devices of the hotspot.
+Deletes a device from the list of blocked devices of the hotspot.
 
 **System API**: This is a system API.
 
@@ -1650,7 +1649,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 202 | System API is not allowed called by Non-system application. |
-| 401 | Invalid parameters. Possible causes: 1. Incorrect parameter types.<br>2. Parameter verification failed. |
+| 401 | Invalid parameters. Possible causes: 1. Incorrect parameter types..<br>2. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2601000  | Operation failed. |
 
@@ -1741,7 +1740,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 202 | System API is not allowed called by Non-system application. |
-| 401 | Invalid parameters. Possible causes: 1.Incorrect parameter types. |
+| 401 | Invalid parameters. Possible causes: 1. Incorrect parameter types. |
 | 801 | Capability not supported.          |
 | 2801000  | Operation failed. |
 

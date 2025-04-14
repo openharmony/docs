@@ -12,7 +12,7 @@ Peripheral management applies to all devices that can be ported to the OpenHarmo
 
 DevEco Studio, as the driver development tool, allows you to develop, debug, and package drivers.
 
-[Download and install](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-software-install-V5) DevEco Studio and verify basic operations to ensure that it can function properly. For details, see [Creating and Running a Project](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-create-new-project-V5) in [DevEco Studio User Guide](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-tools-overview-V5).
+[Download and install](https://developer.huawei.com/consumer/en/download/) DevEco Studio and verify basic operations to ensure that it can function properly. For details, see [Creating and Running a Project](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-create-new-project-V5) in [DevEco Studio User Guide](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-tools-overview-V5).
 
 ### SDK Version Configuration
 
@@ -20,7 +20,7 @@ The ArkTs APIs for peripheral management can be used only when the SDK is of API
 
 ### HDC Configuration
 
-HarmonyOS Device Connector (HDC) is a command-line tool for debugging. It can be used to interact with real devices or emulators on Windows, Linux, and Mac. For details, see [HDC Configuration](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/hdc-V5).
+HarmonyOS Device Connector (hdc) is a command-line tool for debugging. It can be used to interact with real devices or the Emulators on Windows, Linux, and macOS. For details about the configuration, see [hdc](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/hdc-V5).
 
 **NOTE**<br>Configuration of the environment variable **hdc_server_port** and global environment variables is mandatory.
 
@@ -200,7 +200,7 @@ The following sample code is a demo that illustrates how to develop both the cli
 <!--Del-->
 System applications can query detailed information about peripherals and drivers to implement management. The development procedure is as follows:
 
-1. Import the related kit.
+1. Import the related kits.
 
     ```ts
      import { deviceManager } from '@kit.DriverDevelopmentKit';

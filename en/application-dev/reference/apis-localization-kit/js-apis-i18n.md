@@ -34,7 +34,7 @@ Obtains the localized display of the text for the specified country.
 | Name         | Type     | Mandatory  | Description              |
 | ------------ | ------- | ---- | ---------------- |
 | country      | string  | Yes   | Valid country code.           |
-| locale       | string  | Yes   | Valid locale ID for the specified country.    |
+| locale       | string  | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.    |
 | sentenceCase | boolean | No   | Whether the first letter of the text is capitalized. The default value is **true**.|
 
 **Return value**
@@ -83,7 +83,7 @@ Obtains the localized display of the text for the specified language. For exampl
 | Name         | Type     | Mandatory  | Description              |
 | ------------ | ------- | ---- | ---------------- |
 | language     | string  | Yes   | Valid language ID.           |
-| locale       | string  | Yes   | Valid locale ID for the specified language.    |
+| locale       | string  | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.    |
 | sentenceCase | boolean | No   | Whether the first letter of the text is capitalized. The default value is **true**.|
 
 **Return value**
@@ -290,7 +290,7 @@ Obtains the system locale.
 
 | Type    | Description     |
 | ------ | ------- |
-| string | System locale ID.|
+| string | Locale information.|
 
 **Example**
   ```ts
@@ -367,7 +367,7 @@ Obtains the first language in the preferred language list.
 
 static setAppPreferredLanguage(language: string): void
 
-Sets the preferred language of the application.
+Sets the preferred language of the application. If the preferred language is set to **default**, the application's language will be the same as the system language, and the setting will take effect upon cold starting of the application.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -377,7 +377,7 @@ Sets the preferred language of the application.
 
 | Name     | Type    | Mandatory  | Description   |
 | -------- | ------ | ---- | ----- |
-| language | string | Yes   | Valid language ID.|
+| language | string | Yes   | Valid language ID or **default**.|
 
 **Error codes**
 
@@ -458,7 +458,7 @@ Checks whether a locale uses a right-to-left (RTL) language.
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| locale | string | Yes   | Locale ID.|
+| locale | string | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region. |
 
 **Return value**
 
@@ -486,7 +486,7 @@ Obtains a **Calendar** object.
 
 | Name   | Type    | Mandatory  | Description                                      |
 | ------ | ------ | ---- | ---------------------------------------- |
-| locale | string | Yes   | Valid locale ID, for example, **zh-Hans-CN**.                |
+| locale | string | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region, for example, **zh-Hans-CN**.                |
 | type   | string | No   | Valid calendar type. The value can be **buddhist**, **chinese**, **coptic**, **ethiopic**, **hebrew**, **gregory**, **indian**, **islamic_civil**, **islamic_tbla**, **islamic_umalqura**, **japanese**, or **persian**.<br>The default value is the default calendar type of the locale. For details, see [Calendar Setting](../../internationalization/i18n-calendar.md).|
 
 **Return value**
@@ -516,7 +516,7 @@ Creates an **entityRecognizer** object.
 
 | Name | Type  | Mandatory  | Description               |
 | ---- | ---- | ---- | ----------------- |
-| locale | string | No   | Valid locale ID, for example, **zh-Hans-CN**.|
+| locale | string | No   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region, for example, **zh-Hans-CN**.<br>The default value is the current system locale.|
 
 **Error codes**
 
@@ -581,7 +581,7 @@ Defines a list of entities.
 
 | Name | Type  | Readable  | Writable  | Description               |
 | ---- | ---- | ---- | ---- | ----------------- |
-| type | string | Yes   | Yes   | Entity type. Only phone number and date are supported.|
+| type | string | Yes   | Yes   | Entity type. The value can be **phone_number** or **date**.|
 | begin | number | Yes   | Yes   | Start position of an entity.|
 | end | number | Yes   | Yes   | End position of an entity.|
 
@@ -601,12 +601,13 @@ Sets the date and time for a **Calendar** object.
 
 | Name | Type  | Mandatory  | Description               |
 | ---- | ---- | ---- | ----------------- |
-| date | Date | Yes   | Date and time.|
+| date | Date | Yes   | Date and time. Note: The month starts from **0**. For example, **0** indicates January.|
 
 **Example**
   ```ts
   let calendar: i18n.Calendar = i18n.getCalendar("en-US", "gregory");
-  let date: Date = new Date(2021, 10, 7, 8, 0, 0, 0);
+  // The date and time is 2021.11.07 08:00:00.
+  let date: Date = new Date(2021, 10, 7, 8, 0, 0);
   calendar.setTime(date);
   ```
 
@@ -648,7 +649,7 @@ Sets the year, month, day, hour, minute, and second for this **Calendar** object
 | Name   | Type    | Mandatory  | Description    |
 | ------ | ------ | ---- | ------ |
 | year   | number | Yes   | Year to set. |
-| month  | number | Yes   | Month to set. |
+| month  | number | Yes   | Month to set. Note: The month starts from **0**. For example, **0** indicates January. |
 | date   | number | Yes   | Day to set. |
 | hour   | number | No   | Hour to set. The default value is the system hour.|
 | minute | number | No   | Minute to set. The default value is the system minute.|
@@ -657,7 +658,7 @@ Sets the year, month, day, hour, minute, and second for this **Calendar** object
 **Example**
   ```ts
   let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
-  calendar.set(2021, 10, 1, 8, 0, 0); // set time to 2021.11.1 08:00:00
+  calendar.set(2021, 10, 1, 8, 0, 0); // Set the date and time to 2021.11.1 08:00:00.
   ```
 
 ### setTimeZone<sup>8+</sup>
@@ -821,7 +822,7 @@ Obtains the value of the associated field in a **Calendar** object.
 | ----- | ---------------------------------------- |
 | era | Era, for example, AD or BC.|
 | year | Year.|
-| month | Month.|
+| month | Month. Note: The month starts from **0**. For example, **0** indicates January.|
 | date | Date.|
 | hour | Wall-clock hour.|
 | hour_of_day | Hour of day.|
@@ -851,7 +852,7 @@ Obtains the value of the associated field in a **Calendar** object.
 **Example**
   ```ts
   let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
-  calendar.set(2021, 10, 1, 8, 0, 0); // set time to 2021.11.1 08:00:00
+  calendar.set(2021, 10, 1, 8, 0, 0); // Set the date and time to 2021.11.1 08:00:00.
   let hourOfDay: number = calendar.get("hour_of_day"); // hourOfDay = 8
   ```
 
@@ -870,13 +871,13 @@ Obtains the displayed name of the **Calendar** object for the specified locale.
 
 | Name   | Type    | Mandatory  | Description                                      |
 | ------ | ------ | ---- | ---------------------------------------- |
-| locale | string | Yes   | Locale ID.|
+| locale | string | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.|
 
 **Return value**
 
 | Type    | Description                 |
 | ------ | ------------------- |
-| string | Displayed name of the **Calendar** object for the specified locale. For example, **buddhist** is displayed as **Buddhist Calendar** if the locale is **en-US**.|
+| string | Name of the **Calendar** object displayed for the specified locale. For example, **buddhist** is displayed as **Buddhist Calendar** if the locale is **en-US**.|
 
 **Example**
   ```ts
@@ -899,7 +900,7 @@ Checks whether a given date is a weekend in the calendar.
 
 | Name | Type  | Mandatory  | Description                                      |
 | ---- | ---- | ---- | ---------------------------------------- |
-| date | Date | No   | Specified date.<br>The default value is the system date. If this parameter is left empty, the system checks whether the current date is a weekend.|
+| date | Date | No   | Date and time. Note: The month starts from **0**. For example, **0** indicates January.<br>The default value is the system date. If this parameter is left empty, the system checks whether the current date is a weekend.|
 
 **Return value**
 
@@ -910,9 +911,9 @@ Checks whether a given date is a weekend in the calendar.
 **Example**
   ```ts
   let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
-  calendar.set(2021, 11, 11, 8, 0, 0); // set time to 2021.12.11 08:00:00
+  calendar.set(2021, 11, 11, 8, 0, 0); // Set the time to 2021.12.11 08:00:00.
   calendar.isWeekend(); // true
-  let date: Date = new Date(2011, 11, 6, 9, 0, 0);
+  let date: Date = new Date(2011, 11, 6, 9, 0, 0); // The date and time is 2011-12-06 09:00:00.
   calendar.isWeekend(date); // false
   ```
 
@@ -949,7 +950,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
   try {
     let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
-    calendar.set(2021, 11, 11, 8, 0, 0); // set time to 2021.12.11 08:00:00
+    calendar.set(2021, 11, 11, 8, 0, 0); // Set the date and time to 2021.12.11 08:00:00.
     calendar.add("year", 8); // 2021 + 8
     let year: number = calendar.get("year"); // year = 2029
   } catch(error) {
@@ -997,7 +998,7 @@ Compares the **Calendar** object and the specified date for the difference in th
 
 | Name | Type  | Mandatory  | Description                                      |
 | ---- | ---- | ---- | ---------------------------------------- |
-| date | Date | Yes   | Specified date.|
+| date | Date | Yes   | Date and time. Note: The month starts from **0**. For example, **0** indicates January.|
 
 **Return value**
 
@@ -1046,7 +1047,7 @@ Creates a **PhoneNumberFormat** object.
 | Name    | Type                                      | Mandatory  | Description              |
 | ------- | ---------------------------------------- | ---- | ---------------- |
 | country | string                                   | Yes   | Country or region to which the phone number to be formatted belongs.|
-| options | [PhoneNumberFormatOptions](#phonenumberformatoptions8) | No   | Options for initializing the **PhoneNumberFormat** object. The default value is **NATIONAL**. |
+| options | [PhoneNumberFormatOptions](#phonenumberformatoptions8) | No   | Options for **PhoneNumberFormat** object initialization. The default value is **NATIONAL**. |
 
 **Example**
   ```ts
@@ -1125,7 +1126,6 @@ Formats a phone number.
   console.log(formatResult); // formatResult: 130 493
   ```
 
-
 ### getLocationName<sup>9+</sup>
 
 getLocationName(number: string, locale: string): string
@@ -1141,7 +1141,7 @@ Obtains the home location of a phone number.
 | Name   | Type    | Mandatory  | Description  |
 | ------ | ------ | ---- | ---- |
 | number | string | Yes   | Phone number. To obtain the home location of a number in other countries/regions, you need to prefix the number with **00** and the country code.|
-| locale | string | Yes   | Valid locale ID.|
+| locale | string | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.|
 
 **Return value**
 
@@ -1159,7 +1159,7 @@ Obtains the home location of a phone number.
 
 ## PhoneNumberFormatOptions<sup>8+</sup>
 
-Options for initializing the **PhoneNumberFormat** object.
+Options for **PhoneNumberFormat** object initialization.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1184,7 +1184,7 @@ Defines the measurement unit information.
 | measureSystem | string | Yes   | Yes   | Measurement system. The value can be **SI**, **US**, or **UK**.|
 
 
-## getInstance<sup>8+</sup>
+## i18n.getInstance<sup>8+</sup>
 
 getInstance(locale?:string): IndexUtil
 
@@ -1198,7 +1198,7 @@ Creates an **IndexUtil** object.
 
 | Name   | Type    | Mandatory  | Description                          |
 | ------ | ------ | ---- | ---------------------------- |
-| locale | string | No   | A string containing locale information, including the language, script, and country/region.<br>The default value is the system locale.|
+| locale | string | No   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.<br>The default value is the system locale.|
 
 **Return value**
 
@@ -1255,7 +1255,7 @@ Adds the index list of a new locale to the index list of the current locale to f
 
 | Name   | Type    | Mandatory  | Description                          |
 | ------ | ------ | ---- | ---------------------------- |
-| locale | string | Yes   | A string containing locale information, including the language, script, and country/region.|
+| locale | string | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.|
 
 **Example**
   ```ts
@@ -1306,7 +1306,7 @@ Obtains a [BreakIterator](#breakiterator8) object for text segmentation.
 
 | Name   | Type    | Mandatory  | Description                                      |
 | ------ | ------ | ---- | ---------------------------------------- |
-| locale | string | Yes   | A string containing locale information, including the language, script, and country/region.<br>The [BreakIterator](#breakiterator8) object segments text according to the rules of the specified locale.|
+| locale | string | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.<br>The [BreakIterator](#breakiterator8) object segments text according to the rules of the specified locale.|
 
 **Return value**
 
@@ -1629,7 +1629,7 @@ Obtains the localized representation of a **TimeZone** object.
 
 | Name   | Type     | Mandatory  | Description                  |
 | ------ | ------- | ---- | -------------------- |
-| locale | string  | No   | A string containing locale information, including the language, script, and country/region. The default value is the system locale.               |
+| locale | string  | No   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region. The default value is the system locale.               |
 | isDST  | boolean | No   | Whether DST is considered in the localized representation of the **TimeZone** object. The default value is **false**.|
 
 **Return value**
@@ -1757,7 +1757,7 @@ Obtains the localized representation of a time zone city in the specified locale
 | Name   | Type    | Mandatory  | Description    |
 | ------ | ------ | ---- | ------ |
 | cityID | string | Yes   | Time zone city ID.|
-| locale | string | Yes   | A string containing locale information, including the language, script, and country/region. |
+| locale | string | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region. |
 
 **Return value**
 
@@ -1931,11 +1931,11 @@ Converts the input string from the source format to the target format.
 
   // Chinese transliteration and tone removal
   let transliter = i18n.Transliterator.getInstance('Any-Latn;Latin-Ascii');
-  let result = transliter.transform('中国'); // result: zhong guo
+  let result = transliter.transform ('中国'); // result: zhong guo
 
   // Chinese surname pronunciation
   let nameTransliter = i18n.Transliterator.getInstance('Han-Latin/Names');
-  let result = nameTransliter.transform('单老师'); // result: shàn lǎo shī
+  let result1 = nameTransliter.transform('单老师'); // result1: shàn lǎo shī
   let result2 = nameTransliter.transform('长孙无忌'); // result2: zhǎng sūn wú jì
   ```
 
@@ -2251,7 +2251,7 @@ Converts one measurement unit into another and formats the unit based on the spe
 | fromUnit | [UnitInfo](#unitinfo8) | Yes   | Measurement unit to be converted.                                |
 | toUnit   | [UnitInfo](#unitinfo8) | Yes   | Measurement unit to be converted to.                                |
 | value    | number                 | Yes   | Value of the measurement unit to be converted.                            |
-| locale   | string                 | Yes   | A string containing locale information, including the language, script, and country/region, for example, **zh-Hans-CN**.               |
+| locale   | string                 | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region, for example, **zh-Hans-CN**.               |
 | style    | string                 | No   | Style used for formatting. The value can be **long**, **short**, or **narrow**. The default value is **short**.<br>For details about the meaning or display effect of different values, see [Number and Unit of Measurement Formatting](../../internationalization/i18n-numbers-weights-measures.md).|
 
 **Return value**
@@ -2281,7 +2281,7 @@ Obtains the sequence of the year, month, and day in the specified locale.
 
 | Name   | Type    | Mandatory  | Description                       |
 | ------ | ------ | ---- | ------------------------- |
-| locale | string | Yes   | A string containing locale information, including the language, script, and country/region, for example, **zh-Hans-CN**.|
+| locale | string | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region, for example, **zh-Hans-CN**.|
 
 **Return value**
 
@@ -2310,7 +2310,7 @@ Obtains the localized expression for the specified time of the specified locale.
 | Name   | Type    | Mandatory  | Description                       |
 | ------ | ------ | ---- | ------------------------- |
 | hour | number | Yes   | Specified time, for example, **16**.|
-| locale | string | No   | A string containing locale information, including the language, script, and country/region, for example, **zh-Hans-CN**.<br>The default value is the current locale.|
+| locale | string | No   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region. for example, **zh-Hans-CN**.<br>The default value is the current locale.|
 
 **Return value**
 
@@ -2353,8 +2353,8 @@ Obtains the locale that best matches a region from the specified locale list.
 
 | Name   | Type    | Mandatory  | Description                       |
 | ------ | ------ | ---- | ------------------------- |
-| locale | string | Yes   | Locale ID, for example, **zh-Hans-CN**.|
-| localeList | string[] | Yes  | Locale ID list.|
+| locale | string | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), for example, **zh-Hans-CN**.|
+| localeList | string[] | Yes  | Locale list.|
 
 **Return value**
 
@@ -2596,7 +2596,7 @@ Determines whether the specified date is a holiday.
 
 |   Name |      Type     | Mandatory|     Description     |
 | --------- | ---------------| ---- | ------------- |
-| date      | Date           | No  | **Date** object.<br>If no date is specified, the current date is used by default.|
+| date      | Date           | No  | Date and time. Note: The month starts from **0**. For example, **0** indicates January.<br>If no date is specified, the current date is used by default.|
 
 **Return value**
 
@@ -2617,10 +2617,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let holidayManager= new i18n.HolidayManager("/system/lib/US.ics");
+    let holidayManager= new i18n.HolidayManager("/system/lib/US.ics"); // Replace /system/lib/US.ics with the actual path of the ics file.
     let isHoliday = holidayManager.isHoliday();
     console.log(isHoliday.toString());
-    let isHoliday2 = holidayManager.isHoliday(new Date(2023,5,25));
+    let isHoliday2 = holidayManager.isHoliday(new Date(2023,5,25)); // Set the date to 2023.06.25.
     console.log(isHoliday2.toString());
   } catch(error) {
     let err: BusinessError = error as BusinessError;
@@ -2665,7 +2665,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let holidayManager= new i18n.HolidayManager("/system/lib/US.ics");
+    let holidayManager= new i18n.HolidayManager("/system/lib/US.ics"); // Replace /system/lib/US.ics with the actual path of the ics file.
     let holidayInfoItemArray = holidayManager.getHolidayInfoItemArray(2023);
     for (let i =0; i < holidayInfoItemArray.length; i++) {
         console.log(JSON.stringify(holidayInfoItemArray[i]));
@@ -2721,7 +2721,7 @@ This API is deprecated since API version 9. You are advised to use [System.getDi
 | Name         | Type     | Mandatory  | Description              |
 | ------------ | ------- | ---- | ---------------- |
 | country      | string  | Yes   | Specified country.           |
-| locale       | string  | Yes   | Locale ID.    |
+| locale       | string  | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.     |
 | sentenceCase | boolean | No   | Whether to use sentence case for the localized script. The default value is **true**.|
 
 **Return value**
@@ -2751,7 +2751,7 @@ This API is deprecated since API version 9. You are advised to use [System.getDi
 | Name         | Type     | Mandatory  | Description              |
 | ------------ | ------- | ---- | ---------------- |
 | country      | string  | Yes   | Specified country.           |
-| locale       | string  | Yes   | Locale ID.    |
+| locale       | string  | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.     |
 | sentenceCase | boolean | No   | Whether to use sentence case for the localized script. The default value is **true**.|
 
 **Return value**
@@ -2782,7 +2782,7 @@ This API is deprecated since API version 9. You are advised to use [System.getDi
 | Name         | Type     | Mandatory  | Description              |
 | ------------ | ------- | ---- | ---------------- |
 | language     | string  | Yes   | Specified language.           |
-| locale       | string  | Yes   | Locale ID.    |
+| locale       | string  | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.     |
 | sentenceCase | boolean | No   | Whether to use sentence case for the localized script. The default value is **true**.|
 
 **Return value**

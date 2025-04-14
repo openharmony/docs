@@ -17,7 +17,7 @@ A locale consists of four parts: language, script, country/region, and extended 
 | Part| Description| 
 | -------- | -------- |
 | Language| Language used by the user. The value consists of two or three lowercase letters. For example, **zh** indicates Chinese.<br>For more language codes, see the ISO-639 standard.| 
-| Script| Character set used by the user. The value consists of four letters with the first letter being capitalized. For example, **Hans** indicates simplified Chinese.<br>For more script codes, see the ISO-5924 standard.| 
+| Script| Character set used by the user. The value consists of four letters with the first letter being capitalized. For example, **Hans** indicates simplified Chinese.<br>For more script codes, see the ISO-15924 standard.| 
 | Country/region| Country/region where the user is located. The value consists of two uppercase letters. For example, **CN** indicates China.<br>For more country/region codes, see the ISO-3166 standard.| 
 | Extensions| Extended parameters that indicate other features of the user, including the calendar, string collation, numeral system, and hour cycle. The value starts with a lowercase letter **u**. Each extended parameter consists of a key and a value, which are separated using a hyphen (-). For example, **u-ca-chinese-co-pinyin** means collation by lunar calendar and pinyin.<br>For supported extended parameters, see Table 2. For more extended parameters, see BCP 47 Extensions.| 
 
@@ -49,7 +49,7 @@ A locale consists of four parts: language, script, country/region, and extended 
 
 ## How to Develop
 
-The following uses date and time formatting as an example. For details about APIs, see [getPluralStringValueSync](../reference/apis-localization-kit/js-apis-resource-manager.md#getpluralstringvaluesync10).
+The following uses date and time formatting as an example. For details about APIs, see [DateTimeFormat](../reference/apis-localization-kit/js-apis-intl.md#datetimeformat).
 
 1. Import the **intl** module.
    ```ts
@@ -62,31 +62,30 @@ The following uses date and time formatting as an example. For details about API
    - Use the default **Locale** constructor to create a **Locale** object. This object will be used to represent the current system locale.
 
    ```ts
-   let date = new Date(2023, 9, 23);
-   
-   // Method 1: Create a Locale object using the locale string.
-   let zhLocale = new intl.Locale("zh-Hans-CN-u-nu-latn");
-   
+   let zhLocale: intl.Locale = new intl.Locale('zh-Hans-CN-u-nu-latn');
+
    // Method 2: Create a Locale object using the locale string and LocaleOptions.
-   let enLocale = new intl.Locale("en", {numberingSystem: "latn"});
-   
+   let enLocale: intl.Locale = new intl.Locale('en', { numberingSystem: 'latn' });
+
    // Method 3: Create a Locale object using the default Locale constructor.
-   let systemLocale = new intl.Locale();
+   let systemLocale: intl.Locale = new intl.Locale();
    ```
 
 3. Format the date and time.
    Pass the **Locale** object to the **DateTimeFormat** constructor to create a **DateTimeFormat** class to implement date and time formatting for the locale. Similarly, three methods are provided.
 
    ```ts
+   let date: Date = new Date(2023, 9, 15);
+
    // Method 1
-   let zhDateTimeFmt = new intl.DateTimeFormat(zhLocale.toString());
-   let result = zhDateTimeFmt.format(date); // result = "2023/10/23"
-   
+   let zhDateTimeFmt: intl.DateTimeFormat = new intl.DateTimeFormat(zhLocale.toString());
+   let formattedResult: string = zhDateTimeFmt.format(date); // formattedResult = '2023/10/15'
+
    // Method 2
-   let enDateTimeFmt = new intl.DateTimeFormat(enLocale.toString());
-   result = enDateTimeFmt.format(date); // result = "10/23/2023"
-   
+   let enDateTimeFmt: intl.DateTimeFormat = new intl.DateTimeFormat(enLocale.toString());
+   formattedResult = enDateTimeFmt.format(date); // formattedResult = '10/15/23'
+
    // Method 3
-   let systemDateTimeFmt = new intl.DateTimeFormat(systemLocale.toString());
-   result = systemDateTimeFmt.format(date); // result = "2023/10/23" (The display effect depends on the current system environment.)
+   let systemDateTimeFmt: intl.DateTimeFormat = new intl.DateTimeFormat(systemLocale.toString());
+   formattedResult = systemDateTimeFmt.format(date); // formattedResult = "2023/10/15" (The display effect is subject to the system environment.)
    ```

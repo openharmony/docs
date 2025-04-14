@@ -95,7 +95,7 @@ Defines a location request.
 | priority | [LocationRequestPriority](#locationrequestpriority) | No| Yes| Priority of the location request. This parameter is effective only when **scenario** is set to **UNSET**. If this parameter and **scenario** are set to **UNSET**, the attempt to initiate a location request will fail. For details about the value range, see [LocationRequestPriority](#locationrequestpriority).|
 | scenario | [LocationRequestScenario](#locationrequestscenario) | No| Yes| Scenario of the location request. The **priority** parameter is effective only when this parameter is set to **UNSET**. If this parameter and **priority** are set to **UNSET**, the attempt to initiate a location request will fail. For details about the value range, see [LocationRequestScenario](#locationrequestscenario).|
 | timeInterval | number | No| Yes|  Time interval at which location information is reported, in seconds.<br>The value is greater than or equal to 0.<br>The default value is the minimum interval allowed in the corresponding positioning mode.<br>The default value is 1s for GNSS positioning and 20s for network positioning.<br>If the value is less than the minimum interval, the minimum interval takes effect.<br>If the value is set to **0**, location information is directly reported without checking of the time interval.|
-| distanceInterval | number | No| Yes| Distance interval at which location information is reported, in meters. The specified value must be greater than or equal to **0**. The default value is **0**. If this parameter is set to **0**, there is no restriction on the location reporting distance.|
+| distanceInterval | number | No| Yes| Distance interval at which location information is reported, in meters. The specified value must be greater than or equal to **0**. The default value is **0**. If this parameter is set to **0**, there is no limitation on the location reporting distance.|
 | maxAccuracy | number | No| Yes|  Location accuracy requested by the application, in meters. This parameter is valid only when the precise location function is enabled (both the **ohos.permission.APPROXIMATELY\_LOCATION** and **ohos.permission.LOCATION** permissions are granted). It is invalid when the approximate location function is enabled (only the **ohos.permission.APPROXIMATELY\_LOCATION** permission is enabled).<br>When this parameter is effective, the system compares the [location](#location) information reported by the GNSS or network location service with the location information requested by the application. If the accuracy in the reported [location](#location) information is less than or equal to **maxAccuracy**, the system sends the reported location information to the application. Otherwise, the system discards the location information.<br>The value must be greater than or equal to **0**. The default value is **0**, indicating no limitation on the location accuracy.<br>If **scenario** is set to **NAVIGATION**, **TRAJECTORY_TRACKING**, or **CAR_HAILING** or **priority** is set to **ACCURACY**, you are advised to set **maxAccuracy** to a value greater than **10**.<br>If scenario is set to **DAILY_LIFE_SERVICE** or **NO_POWER** or **priority** is set to **LOW_POWER** or **FIRST_FIX**, you are advised to set **maxAccuracy** to a value greater than **100**.<br>|
 
 
@@ -125,7 +125,7 @@ Defines a continuous location request.
 
 | Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| interval | number | No| No| Time interval at which location information is reported, in seconds. The specified value must be greater than or equal to **0**. The default value is **1**. If this parameter is set to **0**, there is no restriction on the location reporting interval.|
+| interval | number | No| No| Time interval at which location information is reported, in seconds. The specified value must be greater than or equal to **0**. The default value is **1**. If this parameter is set to **0**, there is no limitation on the location reporting interval.|
 | locationScenario | [UserActivityScenario](#useractivityscenario12) &#124; [PowerConsumptionScenario](#powerconsumptionscenario12) | No| No| Location scenario. For details, see [UserActivityScenario](#useractivityscenario12) and [PowerConsumptionScenario](#powerconsumptionscenario12).|
 
 
@@ -227,7 +227,7 @@ Location information.
 | speed | number | No| No|Speed, in m/s.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | timeStamp | number | No| No| Location timestamp in the UTC format.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | direction | number | No| No| Direction information. The value ranges from **0** to **360**, in degrees.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| timeSinceBoot | number | No| No| Location timestamp since boot.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| timeSinceBoot | number | No| No| Timestamp when the location is successfully obtained. The value is the duration from the time when the device is booted to the time when the location is obtained, in nanoseconds.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | additions | Array&lt;string&gt;| No| Yes| Additional description.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | additionSize | number| No| Yes| Number of additional descriptions. The specified value must be greater than or equal to **0**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | additionsMap<sup>12+</sup> | Map&lt;string, string&gt;| No| Yes| Additional description. The content and sequence are the same as those of **additions**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -899,6 +899,35 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
   let gnssStatusCb = (satelliteStatusInfo:geoLocationManager.SatelliteStatusInfo):void => {
       console.info('satelliteStatusChange: ' + JSON.stringify(satelliteStatusInfo));
+      // Number of satellites.
+      let totalNumber: number = satelliteStatusInfo.satellitesNumber;
+      let satelliteIds: Array<number> = satelliteStatusInfo.satelliteIds;
+      let carrierToNoiseDensitys: Array<number> = satelliteStatusInfo.carrierToNoiseDensitys;
+      let altitudes: Array<number> = satelliteStatusInfo.altitudes;
+      let azimuths: Array<number> = satelliteStatusInfo.azimuths;
+      let carrierFrequencies: Array<number> = satelliteStatusInfo.carrierFrequencies;
+      let satelliteConstellations: Array<geoLocationManager.SatelliteConstellationCategory> | undefined = satelliteStatusInfo.satelliteConstellation;
+      let satelliteAdditionalInfos: Array<number> | undefined = satelliteStatusInfo.satelliteAdditionalInfo;
+      for (let i = 0;i < totalNumber;i++) {
+        // Satellite ID.
+        let satelliteId: Number = satelliteIds[i];
+        // Carrier-to-noise density ratio of the satellite whose ID is ${satelliteId}.
+        let carrierToNoiseDensity: Number = carrierToNoiseDensitys[i];
+        // Altitude angle information of the satellite whose ID is ${satelliteId}.
+        let altitude: Number = altitudes[i];
+        // Azimuth of the satellite whose ID is ${satelliteId}.
+        let azimuth: Number = azimuths[i];
+        // Carrier frequency of the satellite whose ID is ${satelliteId}.
+        let carrierFrequencie: Number = carrierFrequencies[i];
+        if (satelliteConstellations != undefined) {
+          // Constellation of the satellite whose ID is ${satelliteId}.
+          let satelliteConstellation: geoLocationManager.SatelliteConstellationCategory = satelliteConstellations[i];
+        }
+        if (satelliteAdditionalInfos != undefined) {
+          // Additional information about the satellite whose ID is ${satelliteId}, for example, use of the satellite in the latest location resolution and the availability of ephemeris data, almanac data, and carrier frequency information.
+          let satelliteAdditionalInfo: Number = satelliteAdditionalInfos[i];
+        }
+      }
   }
 
   try {

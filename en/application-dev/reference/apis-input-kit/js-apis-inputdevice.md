@@ -468,7 +468,7 @@ Obtains the key codes supported by the input device. This API uses a promise to 
 
 | Parameters                               | Description                           |
 | ----------------------------------- | ------------------------------- |
-| Promise&lt;Array&lt;boolean&gt;&gt; | Promise used to return the result.|
+| Promise&lt;Array&lt;boolean&gt;&gt; | Promise used to return the result. The value **true** indicates that the keycodes are supported, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -693,14 +693,14 @@ Defines the axis type of an input device.
 
 | Type     | Description     |
 | --------- |  ------- |
-| 'touchmajor'  | **touchmajor** axis.|
-| 'touchminor'  | **touchminor** axis.|
-| 'toolminor'   | **toolminor** axis.|
-| 'toolmajor'   | **toolmajor** axis.|
+| 'touchmajor'  | Major axis of the elliptical touching area.|
+| 'touchminor'  | Minor axis of the elliptical touching area.|
+| 'toolminor'   | Minor axis of the tool area.|
+| 'toolmajor'   | Major axis of the tool area.|
 | 'orientation' | Orientation axis.|
-|'pressure'    | Pressure axis. |
-| 'x'          | X axis.        |
-| 'y'           | Y axis.        |
+|'pressure'    | Pressure axis.|
+| 'x'          | Horizontal axis.    |
+| 'y'           | Vertical axis.    |
 |'null'        | None.            |
 
 ## AxisRange
