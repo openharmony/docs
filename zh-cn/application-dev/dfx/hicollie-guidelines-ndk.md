@@ -210,7 +210,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
     （1）等待10s，再点击"testHiCollieJankNdk"按钮（线程启动10s内，不进行卡顿检测）。
       此时窗口将显示通过OH_HiCollie_Init_JankDetection接口获取的应用业务线程采样栈的超时信息。
-      生成栈文件目录地址：/data/app/el2/100/log/应用bundle name/watchdog/BUSSINESS_THREAD_JANK_XXX.txt。
+      生成栈文件目录地址：/data/storage/el2/log/watchdog/MAIN_THREAD_JANK_yyyyMMDDHHmmss_xxxx.txt。xxxx：代表进程pid。
 
     （2）点击"testHiCollieStuckNdk"按钮。
       此时窗口将显示通过OH_HiCollie_Init_StuckDetection接口，初始化卡死检测回调函数。可以根据实际业务场景，自行定义卡死检测函数。
