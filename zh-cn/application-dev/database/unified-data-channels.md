@@ -57,7 +57,7 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
    import { image } from '@kit.ImageKit';
-
+   
    let plainTextObj : uniformDataStruct.PlainText = {
      uniformDataType: 'general.plain-text',
      textContent : 'The weather is very good today',
@@ -99,7 +99,7 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
    }
    let plainTextUpdate = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainTextObjUpdate);
    let unifiedDataUpdate = new unifiedDataChannel.UnifiedData(plainTextUpdate);
-
+   
    // 指定要更新的统一数据对象的URI
    let optionsUpdate: unifiedDataChannel.Options = {
      // 此处的key值仅为示例，不可直接使用，其值与insertData接口回调函数中key保持一致
@@ -126,7 +126,7 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
    let optionsDelete: unifiedDataChannel.Options = {
      intention: unifiedDataChannel.Intention.DATA_HUB
    };
-
+   
    try {
      unifiedDataChannel.deleteData(optionsDelete, (err, data) => {
        if (err === undefined) {
