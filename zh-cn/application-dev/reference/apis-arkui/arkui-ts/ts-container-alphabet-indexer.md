@@ -16,6 +16,8 @@
 
 AlphabetIndexer(options: AlphabetIndexerOptions)
 
+创建索引条组件。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -342,7 +344,7 @@ autoCollapse(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | ------------------------------------------ |
-| value  | boolean | 是   | 是否使用自适应折叠模式。<br/>默认值：<br />API version 12之前：false。<br />API version 12及之后：true。 |
+| value  | boolean | 是   | 是否使用自适应折叠模式。<br/>默认值：<br />API version 12之前：false，不使用自适应折叠模式。<br />API version 12及之后：true，使用自适应折叠模式。 |
 
 ### popupItemBorderRadius<sup>12+</sup>   
 
@@ -421,6 +423,8 @@ enableHapticFeedback(value: boolean)
 | value | boolean | 是  | 是否支持触控反馈。<br/>默认值：true，支持触控反馈。 |
 
 ## IndexerAlign枚举说明
+
+索引条提示弹窗的对齐样式枚举。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

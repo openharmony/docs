@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 18开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 18开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 导入模块
 
@@ -245,7 +245,7 @@ type ArcSliderEnlargeHandler = (isEnlarged: boolean) => void
 
 | 参数名     | 类型    | 必填 | 说明                                                         |
 | ---------- | ------- | ---- | ------------------------------------------------------------ |
-| isEnlarged | boolean | 是   | Slider当前是否放大。<br/>isEnlarged为false时，arcSlider组件处于缩小状态。<br/>isEnlarged为true时，arcSlider组件处于放大状态。 |
+| isEnlarged | boolean | 是   | ArcSlider当前是否放大。<br/>isEnlarged为false时，ArcSlider组件处于缩小状态。<br/>isEnlarged为true时，ArcSlider组件处于放大状态。 |
 
 ## ArcSliderOptionsConstructorOptions
 

@@ -806,7 +806,6 @@ usbSubmitTransfer(transfer: UsbDataTransferParams): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 801 | Capability not supported. |
 | 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first. |
 | 14400007 | Resource busy. |
@@ -889,7 +888,6 @@ usbCancelTransfer(transfer: UsbDataTransferParams): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 801 | Capability not supported. |
 | 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first. |
 | 14400008 | No such device (it may have been disconnected). |
@@ -1173,7 +1171,7 @@ try {
 
 openAccessory(accessory: USBAccessory): USBAccessoryHandle
 
-获取配件句柄并打开配件文件描述符。
+获取配件句柄并打开配件文件描述符。之后可以通过CoreFileKit提供的read/write接口和配件进行通信。
 
 需要调用[usbManager.getAccessoryList](#usbmanagergetaccessorylist14)获取配件列表，得到[USBAccessory](#usbaccessory14)作为参数。
 
@@ -1209,11 +1207,15 @@ openAccessory(accessory: USBAccessory): USBAccessoryHandle
 
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
   let flag = usbManager.requestAccessoryRight(accList[0])
   let handle = usbManager.openAccessory(accList[0])
   hilog.info(0, 'testTag ui', `openAccessory success`)
+  let arrayBuffer = new ArrayBuffer(4096);
+  let readLength = fs.readSync(handle.accessoryFd, arrayBuffer, {offset: 0, length: 4096});
+  hilog.info(0, 'testTag ui', 'readSync ret: ' + readLength.toString(10));
 } catch (error) {
   hilog.info(0, 'testTag ui', `openAccessory error ${error.code}, message is ${error.message}`)
 }

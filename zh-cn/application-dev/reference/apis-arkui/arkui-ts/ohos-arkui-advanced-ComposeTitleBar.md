@@ -67,7 +67,7 @@ ComposeTitleBar({item?: ComposeTitleBarMenuItem, title: ResourceStr, subtitle?: 
 ### 示例1（简单的标题栏）
 该示例实现了简单的标题栏，带有返回箭头的标题栏和带有右侧菜单项目列表的标题栏。
 ```ts
-import { ComposeTitleBar, promptAction, ComposeTitleBarMenuItem } from '@kit.ArkUI'
+import { ComposeTitleBar, Prompt, ComposeTitleBarMenuItem } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -80,22 +80,22 @@ struct Index {
       //启用图标
       isEnabled: true,
       //点击菜单时触发事件
-      action: () => promptAction.showToast({ message: "show toast index 1" })
+      action: () => Prompt.showToast({ message: "show toast index 1" })
     },
     {
       value: $r('sys.media.ohos_ic_public_copy'),
       isEnabled: true,
-      action: () => promptAction.showToast({ message: "show toast index 1" })
+      action: () => Prompt.showToast({ message: "show toast index 1" })
     },
     {
       value: $r('sys.media.ohos_ic_public_edit'),
       isEnabled: true,
-      action: () => promptAction.showToast({ message: "show toast index 1" })
+      action: () => Prompt.showToast({ message: "show toast index 1" })
     },
     {
       value: $r('sys.media.ohos_ic_public_remove'),
       isEnabled: true,
-      action: () => promptAction.showToast({ message: "show toast index 1" })
+      action: () => Prompt.showToast({ message: "show toast index 1" })
     },
   ]
 
@@ -125,7 +125,7 @@ struct Index {
         //定义带头像的标题栏
         ComposeTitleBar({
           menuItems: [{ isEnabled: true, value: $r('sys.media.ohos_save_button_filled'),
-            action: () => promptAction.showToast({ message: "show toast index 1" })
+            action: () => Prompt.showToast({ message: "show toast index 1" })
           }],
           title: "标题",
           subtitle: "副标题",
@@ -143,7 +143,7 @@ struct Index {
 ### 示例2（右侧自定义按钮播报）
 该示例通过设置标题栏右侧自定义按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
 ```ts
-import { ComposeTitleBar, promptAction, ComposeTitleBarMenuItem } from '@kit.ArkUI'
+import { ComposeTitleBar, Prompt, ComposeTitleBarMenuItem } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -156,7 +156,7 @@ struct Index {
       //启用图标
       isEnabled: true,
       //点击菜单时触发事件
-      action: () => promptAction.showToast({ message: "show toast index 1" }),
+      action: () => Prompt.showToast({ message: "show toast index 1" }),
       //屏幕朗读播报文本，优先级比label高
       accessibilityText: '保存',
       //屏幕朗读是否可以聚焦到
@@ -167,7 +167,7 @@ struct Index {
     {
       value: $r('sys.media.ohos_ic_public_copy'),
       isEnabled: true,
-      action: () => promptAction.showToast({ message: "show toast index 1" }),
+      action: () => Prompt.showToast({ message: "show toast index 1" }),
       accessibilityText: '复制',
       //此处为no，屏幕朗读不聚焦
       accessibilityLevel: 'no',
@@ -176,7 +176,7 @@ struct Index {
     {
       value: $r('sys.media.ohos_ic_public_edit'),
       isEnabled: true,
-      action: () => promptAction.showToast({ message: "show toast index 1" }),
+      action: () => Prompt.showToast({ message: "show toast index 1" }),
       accessibilityText: '编辑',
       accessibilityLevel: 'yes',
       accessibilityDescription: '点击操作编辑图标'
@@ -184,7 +184,7 @@ struct Index {
     {
       value: $r('sys.media.ohos_ic_public_remove'),
       isEnabled: true,
-      action: () => promptAction.showToast({ message: "show toast index 1" }),
+      action: () => Prompt.showToast({ message: "show toast index 1" }),
       accessibilityText: '移除',
       accessibilityLevel: 'yes',
       accessibilityDescription: '点击操作移除图标'
@@ -217,7 +217,7 @@ struct Index {
         //定义带头像的标题栏
         ComposeTitleBar({
           menuItems: [{ isEnabled: true, value: $r('sys.media.ohos_save_button_filled'),
-            action: () => promptAction.showToast({ message: "show toast index 1" })
+            action: () => Prompt.showToast({ message: "show toast index 1" })
           }],
           title: "标题",
           subtitle: "副标题",
@@ -237,7 +237,7 @@ struct Index {
 该示例通过设置ComposeTitleBarMenuItem的属性symbolStyle，展示了自定义Symbol类型图标。
 
 ```ts
-import { ComposeTitleBar, promptAction, ComposeTitleBarMenuItem, SymbolGlyphModifier } from '@kit.ArkUI'
+import { ComposeTitleBar, Prompt, ComposeTitleBarMenuItem, SymbolGlyphModifier } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -252,23 +252,23 @@ struct Index {
       //启用图标
       isEnabled: true,
       //点击菜单时触发事件
-      action: () => promptAction.showToast({ message: "show toast index 1" })
+      action: () => Prompt.showToast({ message: "show toast index 1" })
     },
     {
       value: $r('sys.symbol.house'),
       isEnabled: true,
-      action: () => promptAction.showToast({ message: "show toast index 1" })
+      action: () => Prompt.showToast({ message: "show toast index 1" })
     },
     {
       value: $r('sys.symbol.car'),
       symbolStyle: new SymbolGlyphModifier($r('sys.symbol.heart')).fontColor([Color.Pink]),
       isEnabled: true,
-      action: () => promptAction.showToast({ message: "show toast index 1" })
+      action: () => Prompt.showToast({ message: "show toast index 1" })
     },
     {
       value: $r('sys.symbol.car'),
       isEnabled: true,
-      action: () => promptAction.showToast({ message: "show toast index 1" })
+      action: () => Prompt.showToast({ message: "show toast index 1" })
     },
   ]
 
@@ -298,7 +298,7 @@ struct Index {
         //定义带头像的标题栏
         ComposeTitleBar({
           menuItems: [{ isEnabled: true, value: $r('sys.symbol.heart'),
-            action: () => promptAction.showToast({ message: "show toast index 1" })
+            action: () => Prompt.showToast({ message: "show toast index 1" })
           }],
           title: "标题",
           subtitle: "副标题",

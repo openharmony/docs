@@ -11,8 +11,6 @@
 > 该模块不支持在[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)的文件声明处使用，即不能在UIAbility的生命周期中调用，需要在创建组件实例后使用。
 >
 > 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](js-apis-arkui-UIContext.md#uicontext)说明。
->
-> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[createAnimator](js-apis-arkui-UIContext.md#createanimator)来明确UI的执行上下文。
 
 ## 导入模块
 
@@ -28,11 +26,17 @@ import { Animator as animator, AnimatorOptions, AnimatorResult, SimpleAnimatorOp
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
-### create<sup>9+</sup>
+### create<sup>(deprecated)</sup>
 
 create(options: AnimatorOptions): AnimatorResult
 
 创建animator动画结果对象（AnimatorResult）。
+
+> **说明：**
+> 
+> 从API version 9开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[createAnimator](js-apis-arkui-UIContext.md#createanimator)替代。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[createAnimator](js-apis-arkui-UIContext.md#createanimator)来明确UI的执行上下文。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -84,7 +88,7 @@ animator.create(options); // 建议使用 UIContext.creatAnimator()接口
 
 create(options: AnimatorOptions \| [SimpleAnimatorOptions](#simpleanimatoroptions18)): AnimatorResult
 
-创建animator动画结果对象（AnimatorResult）。与[create](#create9)相比，新增对[SimpleAnimatorOptions](#simpleanimatoroptions18)类型入参的支持。
+创建animator动画结果对象（AnimatorResult）。与[create](#createdeprecated)相比，新增对[SimpleAnimatorOptions](#simpleanimatoroptions18)类型入参的支持。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -128,7 +132,7 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 
 创建动画
 
-从API version9开始不再维护，建议使用[create<sup>9+</sup>](#create9)
+从API version9开始不再维护，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[createAnimator](js-apis-arkui-UIContext.md#createanimator)
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 

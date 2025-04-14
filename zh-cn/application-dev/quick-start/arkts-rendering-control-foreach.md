@@ -469,21 +469,31 @@ struct ForEachSort {
   @State arr: Array<string> = [];
 
   build() {
-    Row() {
+    Column() {
+      // 点击此按钮会触发ForEach重新渲染
+      Button('Add one item')
+        .onClick(() => {
+          this.arr.push('10');
+        })
+        .width(300)
+        .margin(10)
+
       List() {
         ForEach(this.arr, (item: string) => {
           ListItem() {
             Text(item.toString())
               .fontSize(16)
               .textAlign(TextAlign.Center)
-              .size({height: 100, width: "100%"})
+              .size({ height: 100, width: "100%" })
           }.margin(10)
           .borderRadius(10)
           .backgroundColor("#FFFFFFFF")
         }, (item: string) => item)
-          .onMove((from:number, to:number) => {
+          .onMove((from: number, to: number) => {
+            // 以下两行代码是为了确保拖拽后屏幕上组件的顺序与数组arr中每一项的顺序保持一致。
+            // 若注释以下两行，第一步拖拽排序，第二步在arr末尾插入一项，触发ForEach渲染，此时屏上组件的顺序会跟数组arr中每一项的顺序一致，而不是维持第一步拖拽后的顺序，意味着拖拽排序在ForEach渲染后失效了。
             let tmp = this.arr.splice(from, 1);
-            this.arr.splice(to, 0, tmp[0])
+            this.arr.splice(to, 0, tmp[0]);
           })
       }
       .width('100%')
@@ -491,16 +501,23 @@ struct ForEachSort {
       .backgroundColor("#FFDCDCDC")
     }
   }
+
   aboutToAppear(): void {
-    for (let i = 0; i < 100; i++) {
-      this.arr.push(i.toString())
+    for (let i = 0; i < 10; i++) {
+      this.arr.push(i.toString());
     }
   }
 }
 ```
 
 **图8** ForEach拖拽排序效果图  
-![ForEach-Drag-Sort](figures/ForEach-Drag-Sort.gif)
+![ForEach-Drag-Sort](figures/ForEach-Drag-Sort.gif)  
+
+注释掉onMove事件调用中的两行代码，点击`Add one item`触发渲染后的效果如下图所示。  
+
+**图9** ForEach拖拽排序效果在重新渲染后没有保留  
+![ForEach-Drag-Sort](figures/ForEach-Drag-Sort2.PNG)
+
 ## 使用建议
 
 - 为满足键值的唯一性，对于对象数据类型，建议使用对象数据中的唯一`id`作为键值。
@@ -557,7 +574,7 @@ struct ChildItem {
 
 上述代码的初始渲染效果和点击“在第1项后插入新项”文本组件后的渲染效果如下图所示。
 
-**图9**  渲染结果非预期运行效果图  
+**图10**  渲染结果非预期运行效果图  
 ![ForEach-UnexpectedRenderingResult](figures/ForEach-UnexpectedRenderingResult.gif)
 
 `ForEach`在首次渲染时，创建的键值依次为"0"、"1"、"2"。
@@ -616,12 +633,12 @@ struct ChildItem {
 
 以上代码的初始渲染效果和点击"在第1项后插入新项"文本组件后的渲染效果如下图所示。
 
-**图10**  渲染性能降低案例运行效果图  
+**图11**  渲染性能降低案例运行效果图  
 ![ForEach-RenderPerformanceDecrease](figures/ForEach-RenderPerformanceDecrease.gif)
 
 点击“在第1项后插入新项”文本组件后，DevEco Studio的日志打印结果如下所示。
 
-**图11**  渲染性能降低案例日志打印图  
+**图12**  渲染性能降低案例日志打印图  
 ![ForEach-RenderPerformanceDecreaseLogs](figures/ForEach-RenderPerformanceDecreaseLogs.png)
 
 插入新项后，`ForEach`为`new item`、 `two`、 `three`三个数组项创建了对应的组件`ChildItem`，并执行了组件的[`aboutToAppear()`](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear)生命周期函数。这是因为：
@@ -757,5 +774,5 @@ struct ArticleCard {
   }
 }
 ```
-**图12** 数据变化不渲染  
+**图13** 数据变化不渲染  
 ![ForEach-StateVarNoRender](figures/ForEach-StateVarNoRender.PNG)

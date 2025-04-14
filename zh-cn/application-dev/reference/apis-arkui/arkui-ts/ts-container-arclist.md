@@ -142,7 +142,7 @@ chainAnimation(enable: Optional\<boolean>)
 
 enableScrollInteraction(enable: Optional\<boolean>)
 
-设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器[Scroller](ts-container-scroll.md#scroller)的滚动接口。
+设置是否支持滚动手势。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -152,7 +152,7 @@ enableScrollInteraction(enable: Optional\<boolean>)
 
 | 参数名 | 类型               | 必填 | 说明                                |
 | ------ | ------------------ | ---- | ----------------------------------- |
-| enable | Optional\<boolean> | 是   | 是否支持滚动手势。<br/>默认值：true |
+| enable | Optional\<boolean> | 是   | 是否支持滚动手势。设置为true时可以通过手指或者鼠标滚动，设置为false时无法通过手指或者鼠标滚动，但不影响控制器[Scroller](ts-container-scroll.md#scroller)的滚动接口。<br/>默认值：true |
 
 ### fadingEdge
 
@@ -168,13 +168,13 @@ fadingEdge(enable: Optional&lt;boolean&gt;)
 
 | 参数名  | 类型                                              | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| enable | Optional&lt;boolean&gt;                           | 是   | fadingEdge生效时，会覆盖原组件的.overlay()属性。<br/>fadingEdge生效时，建议不在该组件上设置background相关属性，会影响渐隐的显示效果。<br/>fadingEdge生效时，组件会裁剪到边界，设置组件的clip属性为false不生效。<br/>默认值：false，不开启边缘渐隐效果。 |
+| enable | Optional&lt;boolean&gt;                           | 是   | fadingEdge生效时，会覆盖原组件的.overlay()属性。<br/>fadingEdge生效时，建议不在该组件上设置background相关属性，会影响渐隐的显示效果。<br/>fadingEdge生效时，组件会裁剪到边界，设置组件的clip属性为false不生效。<br/>设置为true时开启边缘渐隐效果，设置为false时不开启边缘渐隐效果。<br/>默认值：false |
 
 ### friction
 
 friction(friction: Optional\<number>)
 
-设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。设置为小于等于0的值时，按默认值处理。
+设置摩擦系数，手动划动滚动区域时生效，仅影响惯性滚动过程，对惯性滚动过程中的链式效果有间接影响。设置为小于等于0的值时，按默认值处理。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 

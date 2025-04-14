@@ -273,7 +273,7 @@ cachedCount(count: number, show: boolean)
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
 | count  | number | 是   | 预加载的GridItem的数量。<br/>默认值：垂直滚动时为一个屏幕内可显示的行数，水平滚动时为一个屏幕内可显示的列数，最大值为16。<br/>取值范围：[0, +∞)，设置为小于0的值时，按1处理。 |
-| show  | boolean | 是   | 被预加载的GridItem是否需要显示。 <br/> 默认值：false，不显示预加载的GridItem。 |
+| show  | boolean | 是   | 被预加载的GridItem是否需要显示。设置为true时显示预加载的GridItem，设置为false时不显示预加载的GridItem。 <br/> 默认值：false |
 
 ### editMode<sup>8+</sup>
 
@@ -289,7 +289,7 @@ editMode(value: boolean)
 
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | ---------------------------------------- |
-| value  | boolean | 是   | Grid是否进入编辑模式。<br/>默认值：false，当前Grid组件不处于可编辑模式。 |
+| value  | boolean | 是   | Grid是否进入编辑模式。设置为true时当前Grid组件处于可编辑模式，设置为false时当前Grid组件处于不可编辑模式。<br/>默认值：false |
 
 ### layoutDirection<sup>8+</sup>
 
@@ -401,7 +401,7 @@ supportAnimation(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                             |
 | ------ | ------- | ---- | -------------------------------- |
-| value  | boolean | 是   | 是否支持动画。<br/>默认值：false，不支持动画。 |
+| value  | boolean | 是   | 是否支持动画。设置为true时支持GridItem拖拽动画，设置为false时不支持GridItem拖拽动画。<br/>默认值：false |
 
 ### edgeEffect<sup>10+</sup>
 
@@ -424,7 +424,7 @@ edgeEffect(value: EdgeEffect, options?: EdgeEffectOptions)
 
 enableScrollInteraction(value: boolean)
 
-设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。
+设置是否支持滚动手势。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -434,13 +434,13 @@ enableScrollInteraction(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                |
 | ------ | ------- | ---- | ----------------------------------- |
-| value  | boolean | 是   | 是否支持滚动手势。<br/>默认值：true |
+| value  | boolean | 是   | 是否支持滚动手势。设置为true时可以通过手指或者鼠标滚动，设置为false时无法通过手指或者鼠标滚动，但不影响控制器[Scroller](ts-container-scroll.md#scroller)的滚动接口。<br/>默认值：true |
 
 ### nestedScroll<sup>10+</sup>
 
 nestedScroll(value: NestedScrollOptions)
 
-设置嵌套滚动选项。设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。
+设置嵌套滚动选项。设置前后两个方向的嵌套滚动模式，实现与父组件的滚动联动。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -456,7 +456,7 @@ nestedScroll(value: NestedScrollOptions)
 
 friction(value: number | Resource)
 
-设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。
+设置摩擦系数，手动划动滚动区域时生效，仅影响惯性滚动过程，对惯性滚动过程中的链式效果有间接影响。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -762,6 +762,79 @@ onScroll(event: (scrollOffset: number, scrollState: [ScrollState](ts-container-l
 | ----------- | ------------ | ---- | ---- | ---------- |
 | totalOffset | number | 否 | 否 |  Grid内容相对显示区域的总偏移，单位px。    |
 | totalLength   | number | 否 | 否 |  Grid内容总长度，单位px。    |
+
+## UIGridEvent<sup>18+</sup>
+frameNode中[getEvent('Grid')](../js-apis-arkui-frameNode.md#geteventgrid18)方法的返回值，可用于给Grid节点设置滚动事件。
+
+UIGridEvent继承于[UIScrollableCommonEvent](./ts-container-scrollable-common.md#uiscrollablecommonevent18)。
+
+### setOnWillScroll<sup>18+</sup>
+
+setOnWillScroll(callback:  OnWillScrollCallback | undefined): void
+
+设置[onWillScroll](./ts-container-scrollable-common.md#onwillscroll12)事件的回调。
+
+方法入参为undefined时，会重置事件回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| callback  | [OnWillScrollCallback](./ts-container-scrollable-common.md#onwillscrollcallback12)&nbsp;\|&nbsp;undefined | 是   | onWillScroll事件的回调函数。 |
+
+### setOnDidScroll<sup>18+</sup>
+
+setOnDidScroll(callback: OnScrollCallback | undefined): void
+
+设置[onDidScroll](./ts-container-scrollable-common.md#ondidscroll12)事件的回调。
+
+方法入参为undefined时，会重置事件回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| callback  | [OnScrollCallback](./ts-container-scrollable-common.md#onscrollcallback12)&nbsp;\|&nbsp;undefined | 是   | onDidScroll事件的回调函数。 |
+
+### setOnScrollIndex<sup>18+</sup>
+
+setOnScrollIndex(callback: OnGridScrollIndexCallback | undefined): void
+
+设置[onScrollIndex](#onscrollindex)事件的回调。
+
+方法入参为undefined时，会重置事件回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| callback  | [OnGridScrollIndexCallback](#ongridscrollindexcallback18)&nbsp;\|&nbsp;undefined | 是   | onScrollIndex事件的回调函数。 |
+
+## OnGridScrollIndexCallback<sup>18+</sup>
+type OnGridScrollIndexCallback = (first: number, last: number) => void
+
+Grid组件可见区域item变化事件的回调类型。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| first | number | 是 | 当前显示的Grid起始位置的索引值。 |
+| last | number | 是 | 当前显示的Grid终止位置的索引值。 |
 
 ## 示例
 

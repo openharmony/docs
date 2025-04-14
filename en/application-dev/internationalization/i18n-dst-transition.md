@@ -8,7 +8,7 @@ DST is a local time system that sees manual adjustment to the time with the aim 
 
 ## How It Works
 
-When the local time reaches the DST transition point, DST transition is automatically implemented based on the DST transition rules configured in the system. If an application uses a common TS API, for example, **Date()**, to obtain and display the time, it also displays the DST time when the DST transition time is reached.
+When the local time reaches the DST transition point, DST transition is automatically implemented based on the DST transition rules configured in the system. If an application uses a standard TS API, for example, `Date()`, to obtain and display the time, it also displays the DST time when the DST transition time is reached.
 
 The DST transition rules are as follows:
 
@@ -31,7 +31,7 @@ The DST transition rules are as follows:
 2. Store and display time data.
    Store and display time data according to the local DST timing rules. The time gap and repetition caused by DST transition need to be processed.
 
-   The transition into DST will cause a one-hour gap, for example, 1:59:59 → 3:00:00. The transition out of DST will cause a one-hour overlap, for example, 3:59:59 → 3:00:00.
+   The transition into DST will cause a one-hour gap, for example, shifting from 1:59:59 to 3:00:00. The transition out of DST will cause a one-hour overlap, for example, rollback from 3:59:59 to 3:00:00.
 
    It is recommended that the DST flag be added to the local time when DST is active.
 

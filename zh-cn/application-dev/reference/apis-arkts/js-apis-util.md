@@ -1365,6 +1365,12 @@ static parseRationalNumber(numerator: number,denominator: number): RationalNumbe
 | numerator   | number | 是   | 分子，整数类型。取值范围：-Number.MAX_VALUE <= numerator <= Number.MAX_VALUE。|
 | denominator | number | 是   | 分母，整数类型。取值范围：-Number.MAX_VALUE <= denominator <= Number.MAX_VALUE。|
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [RationalNumber](#rationalnumber8) | RationalNumber对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
@@ -1403,7 +1409,7 @@ static createRationalFromString(rationalString: string): RationalNumber​
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Object | 返回RationalNumber对象。 |
+| [RationalNumber](#rationalnumber8) | RationalNumber对象。 |
 
 **错误码：**
 
@@ -2496,7 +2502,7 @@ console.info('result = ' + result);
 
 ### entries<sup>9+</sup>
 
-entries(): IterableIterator&lt;[K,V]&gt;
+entries(): IterableIterator&lt;[K,&nbsp;V]&gt;
 
 允许迭代包含在这个对象中的所有键值对。
 
@@ -2508,7 +2514,7 @@ entries(): IterableIterator&lt;[K,V]&gt;
 
 | 类型        | 说明                 |
 | ----------- | -------------------- |
-| [K,&nbsp;V] | 返回一个可迭代数组。 |
+| IterableIterator&lt;[K,&nbsp;V]&gt; | 返回一个可迭代数组。 |
 
 **示例：**
 
@@ -2528,7 +2534,7 @@ for (let value of arrayValue) {
 
 ### [Symbol.iterator]<sup>9+</sup>
 
-[Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
+[Symbol.iterator]\(): IterableIterator&lt;[K,&nbsp;V]&gt;
 
 返回一个键值对形式的二维数组。
 
@@ -2540,7 +2546,7 @@ for (let value of arrayValue) {
 
 | 类型        | 说明                           |
 | ----------- | ------------------------------ |
-| [K,&nbsp;V] | 返回一个键值对形式的二维数组。 |
+| IterableIterator&lt;[K,&nbsp;V]&gt;| 返回一个键值对形式的二维数组。 |
 
 **示例：**
 
@@ -3355,7 +3361,7 @@ encodeToStringSync(src: Uint8Array, options?: Type): string
 | 参数名 | 类型       | 必填 | 说明                |
 | ------ | ---------- | ---- | ------------------- |
 | src    | Uint8Array | 是   | 待编码Uint8Array对象。 |
-| options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC，util.Type.MIME，util.Type.BASIC_URL_SAFE 和util.Type.MIME_URL_SAFE，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC，表示Base64编码，返回值没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME，表示Base64编码，返回值每一行不超过76个字符，而且每行以'\r\n'符结束。<br/>- 当参数取值为util.Type.BASIC_URL_SAFE，表示Base64URL编码，返回值没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME_URL_SAFE，表示Base64URL编码，返回值每一行不超过76个字符，而且每行以'\r\n'符结束。 |
+| options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC，util.Type.MIME，util.Type.BASIC_URL_SAFE 和util.Type.MIME_URL_SAFE，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC，表示Base64编码，返回值没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME，表示使用Base64编码。如果返回值超过76个字符，则会在每76个字符处进行换行，并以'\r\n'结束每行。如果返回值少于76个字符，则会抛出异常。<br/>- 当参数取值为util.Type.BASIC_URL_SAFE，表示Base64URL编码，返回值没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME_URL_SAFE，表示Base64URL编码，返回值每一行不超过76个字符，而且每行以'\r\n'符结束。 |
 
 **返回值：**
 
@@ -4179,7 +4185,7 @@ isGeneratorFunction(value: Object): boolean
 | boolean | 判断的结果，如果是内置包含的generator函数类型为true，反之为false。 |
 
 **示例：**
-
+<!--code_no_check-->
   ```ts
   // /entry/src/main/ets/pages/test.ts
   export function* foo() {}
@@ -4219,7 +4225,7 @@ isGeneratorObject(value: Object): boolean
 | boolean | 判断的结果，如果是内置包含的generator对象类型为true，反之为false。 |
 
 **示例：**
-
+<!--code_no_check-->
   ```ts
   // /entry/src/main/ets/pages/test.ts
   function* foo() {}
@@ -4696,7 +4702,7 @@ isSymbolObject(value: Object): boolean
 | boolean | 判断的结果，如果是内置包含的Symbol对象类型为true，反之为false。 |
 
 **示例：**
-
+<!--code_no_check-->
   ```ts
   // /entry/src/main/ets/pages/test.ts
   export const symbols = Symbol('foo');
@@ -5675,7 +5681,7 @@ createDefault(key: K): V
 
 ### entries<sup>(deprecated)</sup>
 
-entries(): IterableIterator&lt;[K,V]&gt;
+entries(): IterableIterator&lt;[K,&nbsp;V]&gt;
 
 允许迭代包含在这个对象中的所有键值对。
 
@@ -5689,7 +5695,7 @@ entries(): IterableIterator&lt;[K,V]&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [K,&nbsp;V] | 返回一个可迭代数组。 |
+| IterableIterator&lt;[K,&nbsp;V]&gt; | 返回一个可迭代数组。 |
 
 **示例：**
 
@@ -5701,7 +5707,7 @@ entries(): IterableIterator&lt;[K,V]&gt;
 
 ### [Symbol.iterator]<sup>(deprecated)</sup>
 
-[Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
+[Symbol.iterator]\(): IterableIterator&lt;[K,&nbsp;V]&gt;
 
 返回一个键值对形式的二维数组。
 
@@ -5715,7 +5721,7 @@ entries(): IterableIterator&lt;[K,V]&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [K,&nbsp;V] | 返回一个键值对形式的二维数组。 |
+| IterableIterator&lt;[K,&nbsp;V]&gt; | 返回一个键值对形式的二维数组。 |
 
 **示例：**
 

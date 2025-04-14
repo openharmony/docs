@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 子组件
 
@@ -45,7 +45,7 @@ selected(value: number | Resource)
 设置下拉菜单初始选项的索引，第一项的索引为0。当不设置selected属性或设置异常值时，默认选择值为-1，菜单项不选中；当设置为undefined、null时，选中第一项。
 
 从API version 10开始，该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
-从API version 18开始，该参数支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。
+从API version 18开始，该参数支持[!!](../../../quick-start/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -64,7 +64,7 @@ selected(numCount: Optional<number | Resource>)
 设置下拉菜单初始选项的索引，第一项的索引为0。当不设置selected属性或设置异常值时，默认选择值为-1，菜单项不选中；当设置为undefined、null时，选中第一项。
 
 该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
-该属性支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。
+该属性支持[!!](../../../quick-start/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -83,7 +83,7 @@ value(value: ResourceStr)
 设置下拉按钮本身的文本内容。当菜单选中时默认会替换为菜单项文本内容。
 
 从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
-从API version 18开始，该参数支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。
+从API version 18开始，该参数支持[!!](../../../quick-start/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -102,7 +102,7 @@ value(resStr: Optional\<ResourceStr>)
 设置下拉按钮本身的文本内容。当菜单选中时默认会替换为菜单项文本内容。与[value](#value)相比，resStr参数新增了对undefined类型的支持。
 
 该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
-该参数支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。
+该参数支持[!!](../../../quick-start/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -166,7 +166,7 @@ controlSize、width、height接口作用优先级：
 
 menuItemContentModifier(modifier: ContentModifier\<MenuItemConfiguration>)
 
-定制Select下拉菜单项内容区的方法。
+定制Select下拉菜单项内容区的方法。在应用了menuItemContentModifier后，下拉菜单的内容将完全由开发者自定义，此时为Select组件设置的分割线、选项颜色及下拉菜单的字体颜色等属性将不再生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -182,7 +182,7 @@ menuItemContentModifier(modifier: ContentModifier\<MenuItemConfiguration>)
 
 menuItemContentModifier(modifier: Optional\<ContentModifier\<MenuItemConfiguration>>)
 
-定制Select下拉菜单项内容区的方法。与[menuItemContentModifier](#menuitemcontentmodifier12)<sup>12+</sup>相比，modifier参数新增了对undefined类型的支持。
+定制Select下拉菜单项内容区的方法。与[menuItemContentModifier](#menuitemcontentmodifier12)<sup>12+</sup>相比，modifier参数新增了对undefined类型的支持。在应用了menuItemContentModifier后，下拉菜单的内容将完全由开发者自定义，此时为Select组件设置的分割线、选项颜色及下拉菜单的字体颜色等属性将不再生效。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -333,7 +333,7 @@ selectedOptionFont(value: Font)
 
 | 参数名 | 类型                     | 必填 | 说明                                                         |
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Font](ts-types.md#font) | 是   | 下拉菜单选中项的文本样式。<br/>默认值：<br/>{<br/>size:&nbsp;$r('sys.color.ohos_id_text_size_body1'),<br/>weight:&nbsp;FontWeight.Regular<br/>} |
+| value  | [Font](ts-types.md#font) | 是   | 下拉菜单选中项的文本样式。<br/>默认值：<br/>{<br/>size:&nbsp;$r('sys.float.ohos_id_text_size_body1'),<br/>weight:&nbsp;FontWeight.Regular<br/>} |
 
 ### selectedOptionFont<sup>18+</sup>
 
@@ -349,7 +349,7 @@ selectedOptionFont(selectFont: Optional\<Font>)
 
 | 参数名     | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| selectFont | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Font](ts-types.md#font)> | 是   | 下拉菜单选中项的文本样式。<br/>当selectFont的值为undefined时，默认值：<br/>{<br/>size:&nbsp;$r('sys.color.ohos_id_text_size_body1'),<br/>weight:&nbsp;FontWeight.Regular<br/>} |
+| selectFont | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Font](ts-types.md#font)> | 是   | 下拉菜单选中项的文本样式。<br/>当selectFont的值为undefined时，默认值：<br/>{<br/>size:&nbsp;$r('sys.float.ohos_id_text_size_body1'),<br/>weight:&nbsp;FontWeight.Regular<br/>} |
 
 ### selectedOptionFontColor
 

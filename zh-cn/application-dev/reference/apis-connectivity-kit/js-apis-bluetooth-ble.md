@@ -3,8 +3,8 @@
 ble模块提供了对蓝牙操作和管理的方法。
 
 > **说明：**
->
-> 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 接口中涉及的UUID服务，可以通过工具函数[util.generateRandomUUID](../apis-arkts/js-apis-util.md#utilgeneraterandomuuid9)生成。
 
 
 
@@ -30,7 +30,7 @@ type ProfileConnectionState = constant.ProfileConnectionState
 | [constant.ProfileConnectionState](js-apis-bluetooth-constant.md#profileconnectionstate) | 蓝牙设备的profile连接状态。 |
 
 
-## ble.createGattServer<a name="createGattServer"></a>
+## ble.createGattServer
 
 createGattServer(): GattServer
 
@@ -54,7 +54,7 @@ console.info('gatt success');
 ```
 
 
-## ble.createGattClientDevice<a name="createGattClientDevice"></a>
+## ble.createGattClientDevice
 
 createGattClientDevice(deviceId: string): GattClientDevice
 
@@ -97,7 +97,7 @@ try {
 ```
 
 
-## ble.getConnectedBLEDevices<a name="getConnectedBLEDevices"></a>
+## ble.getConnectedBLEDevices
 
 getConnectedBLEDevices(): Array&lt;string&gt;
 
@@ -137,11 +137,15 @@ try {
 ```
 
 
-## ble.startBLEScan<a name="startBLEScan"></a>
+## ble.startBLEScan
 
 startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 
 发起BLE扫描流程。
+> **说明：**
+> - 该接口只能扫描BLE设备。
+> - 该接口只支持单路扫描，即应用同时只能调用一次，下一次调用前，需要先调用[ble.stopBLEScan](#blestopblescan)。
+> - 若需要使用多路扫描，可使用[BleScanner](#blescanner15)。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -195,7 +199,7 @@ try {
 ```
 
 
-## ble.stopBLEScan<a name="stopBLEScan"></a>
+## ble.stopBLEScan
 
 stopBLEScan(): void
 
@@ -231,7 +235,7 @@ try {
 ```
 
 
-## ble.startAdvertising<a name="startAdvertising"></a>
+## ble.startAdvertising
 
 startAdvertising(setting: AdvertiseSetting, advData: AdvertiseData, advResponse?: AdvertiseData): void
 
@@ -312,7 +316,7 @@ try {
 ```
 
 
-## ble.stopAdvertising<a name="stopAdvertising"></a>
+## ble.stopAdvertising
 
 stopAdvertising(): void
 
@@ -348,7 +352,7 @@ try {
 ```
 
 
-## ble.startAdvertising<sup>11+</sup><a name="startAdvertising"></a>
+## ble.startAdvertising<sup>11+</sup>
 
 startAdvertising(advertisingParams: AdvertisingParams, callback: AsyncCallback&lt;number&gt;): void
 
@@ -440,7 +444,7 @@ try {
 ```
 
 
-## ble.startAdvertising<sup>11+</sup><a name="startAdvertising"></a>
+## ble.startAdvertising<sup>11+</sup>
 
 startAdvertising(advertisingParams: AdvertisingParams): Promise&lt;number&gt;
 
@@ -533,7 +537,7 @@ try {
 ```
 
 
-## ble.enableAdvertising<sup>11+</sup><a name="enableAdvertising"></a>
+## ble.enableAdvertising<sup>11+</sup>
 
 enableAdvertising(advertisingEnableParams: AdvertisingEnableParams, callback: AsyncCallback&lt;void&gt;): void
 
@@ -637,7 +641,7 @@ try {
 ```
 
 
-## ble.enableAdvertising<sup>11+</sup><a name="enableAdvertising"></a>
+## ble.enableAdvertising<sup>11+</sup>
 
 enableAdvertising(advertisingEnableParams: AdvertisingEnableParams): Promise&lt;void&gt;
 
@@ -745,7 +749,7 @@ try {
 ```
 
 
-## ble.disableAdvertising<sup>11+</sup><a name="disableAdvertising"></a>
+## ble.disableAdvertising<sup>11+</sup>
 
 disableAdvertising(advertisingDisableParams: AdvertisingDisableParams, callback: AsyncCallback&lt;void&gt;): void
 
@@ -846,7 +850,7 @@ try {
 ```
 
 
-## ble.disableAdvertising<sup>11+</sup><a name="disableAdvertising"></a>
+## ble.disableAdvertising<sup>11+</sup>
 
 disableAdvertising(advertisingDisableParams: AdvertisingDisableParams): Promise&lt;void&gt;
 
@@ -950,7 +954,7 @@ try {
 }
 ```
 
-## ble.stopAdvertising<sup>11+</sup><a name="stopAdvertising"></a>
+## ble.stopAdvertising<sup>11+</sup>
 
 stopAdvertising(advertisingId: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1048,7 +1052,7 @@ try {
 ```
 
 
-## ble.stopAdvertising<sup>11+</sup><a name="stopAdvertising"></a>
+## ble.stopAdvertising<sup>11+</sup>
 
 stopAdvertising(advertisingId: number): Promise&lt;void&gt;
 
@@ -3146,6 +3150,8 @@ try {
 setBLEMtuSize(mtu: number): void
 
 client协商远端蓝牙低功耗设备的最大传输单元(Maximum Transmission Unit, MTU)，调用[connect](#connect)接口连接成功后才能使用。
+> **说明：**
+> - 该接口通过[on('BLEMtuChange')](#onblemtuchange-1)，订阅client端MTU状态变化事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -4253,7 +4259,7 @@ try {
 | reportMode<sup>15+</sup> | [ScanReportMode](#scanreportmode15) | 是    | 是    | 表示扫描结果数据上报模式。 |
 
 
-## GattProperties<a name="GattProperties"></a>
+## GattProperties
 
 描述gatt characteristic的属性。
 
@@ -4270,7 +4276,7 @@ try {
 | indicate | boolean   | 否    | true表示该特征可通知对端设备，需要对端设备的回复。 |
 
 
-## GattWriteType<a name="GattWriteType"></a>
+## GattWriteType
 
 枚举，表示gatt写入类型。
 

@@ -21,7 +21,7 @@ hdc分为三部分：
 
 ## 环境准备
 
-下载并安装[DevEco Studio](https://developer.huawei.com/consumer/cn/deveco-studio/)，hdc应用程序可以在DevEco Studio安装位置下：DevEco Studio\sdk\default\openharmony\toolchains目录中查看。
+下载并安装[DevEco Studio](https://developer.huawei.com/consumer/cn/deveco-studio/)，hdc应用程序可以在DevEco Studio安装位置下：DevEco Studio/sdk/default/openharmony/toolchains目录中查看。
 
 ### （可选）命令行直接执行hdc程序
 
@@ -498,7 +498,7 @@ hdc client（客户端）在PC1中运行，hdc server（服务端）在PC2中运
 
    > **说明：**
    >
-   > 使用参数[-b _bundlename_]指定包名，应满足条件：指定包名的已安装应用为“以debug模式构建的可调试应用”， 以debug模式构建应用可参考：[以debug模式构建HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section197792874110)。
+   > 使用参数[-b _bundlename_]指定包名，应满足条件：指定包名的已安装应用为“使用调试证书签名的应用”， 如何申请调试证书及签名可参考：[申请调试证书](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-debugcert-0000001914263178)。
 
 ## 应用管理
 
@@ -601,7 +601,7 @@ hdc client（客户端）在PC1中运行，hdc server（服务端）在PC2中运
    >
    > 使用方法中，`hdc file send -b com.example.myapplication a.txt data/storage/el2/base/b.txt`指定了-b参数，将传输本地当前目录下的文件a.txt到包名为com.example.myapplication应用数据目录，传输到相对路径data/storage/el2/base/下，并重命名为b.txt。
    >
-   > 使用参数[-b _bundlename_]指定包名，应满足条件：指定包名的已安装应用为“以debug模式构建的可调试应用”， 以debug模式构建应用可参考：[以debug模式构建HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section197792874110)。
+   > 使用参数[-b _bundlename_]指定包名，应满足条件：指定包名的已安装应用为“使用调试证书签名的应用”， 如何申请调试证书及签名可参考：[申请调试证书](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-debugcert-0000001914263178)。
 
 2. 从远端设备发送文件至本地，命令格式如下：
 
@@ -636,7 +636,7 @@ hdc client（客户端）在PC1中运行，hdc server（服务端）在PC2中运
    >
    > 使用方法中，`hdc file recv -b com.example.myapplication data/storage/el2/base/b.txt   a.txt`指定了-b参数，将传输名为com.example.myapplication可调试应用进程的应用数据相对路径data/storage/el2/base/下的文件b.txt到本地当前目录下，并重命名为a.txt。
    >
-   > 使用参数[-b _bundlename_]指定包名，应满足条件：指定包名的已安装应用为“以debug模式构建的可调试应用”， 以debug模式构建应用可参考：[以debug模式构建HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section197792874110)。
+   > 使用参数[-b _bundlename_]指定包名，应满足条件：指定包名的已安装应用为“使用调试证书签名的应用”， 如何申请调试证书及签名可参考：[申请调试证书](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-debugcert-0000001914263178)。
 
 ## 端口转发
 
@@ -749,11 +749,7 @@ PC端支持的端口转发类型：tcp。
    **返回值：**
    | 返回值 | 说明 |
    | -------- | -------- |
-   | hdc start server, listening: _::ffff:127.0.0.1:8710_ | 启动服务进程并显示服务进程网络监听参数。 |
-   | Start server finish | 服务进程启动成功。 |
-   | hdc server process already exists | 服务进程已存在。 |
-   | Kill server finish | 重启服务进程，原服务进程终止成功。 |
-   | [Fail]具体失败信息 | 服务进程启动失败。 |
+   | 无返回值 | 服务进程启动成功。 |
 
    **使用方法：**
 
@@ -1354,7 +1350,7 @@ Invalid bundle name: _bundlename_
 
 * 场景一：指定的应用未安装到设备上。
 
-* 场景二：指定包名的应用，不是以debug模式构建的应用。
+* 场景二：指定包名的应用，不是可调试应用。
 
 * 场景三：指定包名的应用没有启动。
 
@@ -1380,22 +1376,21 @@ Invalid bundle name: _bundlename_
 
    c.如应用不是可调试应用，而是release类型的应用，将不支持指定 _bundlename_ 执行命令相关功能。
 
-* 场景二：确认命令指定的应用是以debug模式构建的可调试应用，可执行`hdc shell "bm dump -n bundlename | grep debug"`查询，预期返回信息为`"appProvisionType": "debug", "debug": true`。
+* 场景二：确认命令指定的应用是否为可调试应用，可执行`hdc shell "bm dump -n bundlename | grep appProvisionType"`查询，预期返回信息为`"appProvisionType": "debug"`。
 
    以包名`com.example.myapplication`为例，可执行如下命令查询：
 
    ```shell
-   hdc shell "bm dump -n com.example.myapplication | grep debug"
+   hdc shell "bm dump -n com.example.myapplication | grep appProvisionType"
    ```
 
-   如包名对应的应用是以debug模式构建的可调试应用，预期返回信息：
+   如包名对应的应用是可调试应用，预期返回信息：
 
    ```shell
    "appProvisionType": "debug",
-   "debug": true,
    ```
 
-   如何以debug模式构建应用请参考：[以debug模式构建HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section197792874110)
+   构建可调试应用需要使用调试证书进行签名，申请调试证书及签名可参考：[申请调试证书](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-debugcert-0000001914263178)。
 
 * 场景三：确定命令指定的应用已启动。
 

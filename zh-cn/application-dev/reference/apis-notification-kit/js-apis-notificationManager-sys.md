@@ -4576,9 +4576,11 @@ disableNotificationFeature(disabled: boolean, bundleList: Array\<string\>): Prom
 
 将应用包名添加到通知发布权限管控名单，以阻止应用发布通知。支持启用或关闭该功能。
 
+该接口不支持wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 或 ohos.permission.MANAGE_EDM_POLICY
 
 **系统接口**：此接口为系统接口。
 
@@ -4604,6 +4606,7 @@ disableNotificationFeature(disabled: boolean, bundleList: Array\<string\>): Prom
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 202      | Permission verification failed. A non-system application calls a system API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801 | Capability not supported. | 
 | 1600001      | Internal error.                     |
 | 1600002      | Marshalling or unmarshalling error. |
 
@@ -4929,3 +4932,18 @@ notificationManager.isDistributedEnabledBySlot(slot, deviceType).then((data: boo
 | id | number | 是 | 勿扰模式编号。 |
 | name | string  | 是 | 勿扰模式名称。 |
 | trustlist | Array\<[BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)> | 否 | 勿扰模式的信任列表。 |
+
+## NotificationLiveViewContent<sup>11+</sup>
+
+type NotificationLiveViewContent = _NotificationLiveViewContent
+
+描述普通实况通知。
+
+**系统能力：** SystemCapability.Notification.Notification
+
+**系统接口**：此接口为系统接口。
+
+| 类型 | 说明 |
+| --- | --- |
+| [_NotificationLiveViewContent](js-apis-inner-notification-notificationContent-sys.md#notificationliveviewcontent11) | 描述普通实况通知。 |
+

@@ -6,7 +6,7 @@
 >
 >  API version 11开始，Checkbox默认样式由圆角方形变为圆形。
 >
->  该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 子组件
 
@@ -28,9 +28,11 @@ Checkbox(options?: CheckboxOptions)
 
 | 参数名  | 类型                                        | 必填 | 说明               |
 | ------- | ------------------------------------------- | ---- | ------------------ |
-| options | [CheckboxOptions](#checkboxoptions对象说明) | 否   | 配置复选框的参数。 |
+| options | [CheckboxOptions](#checkboxoptions对象说明) | 否   | 配置多选框的参数。 |
 
 ## CheckboxOptions对象说明
+
+多选框的信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -51,7 +53,7 @@ select(value: boolean)
 设置多选框是否选中。
 
 从API version 10开始，该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
-从API version 18开始，该属性支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。
+从API version 18开始，该属性支持[!!](../../../quick-start/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -71,7 +73,7 @@ select(isSelected: Optional\<boolean>)
 
 设置多选框是否选中。与[select](#select)相比，isSelected参数新增了对undefined类型的支持。
 
-该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。该属性支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。
+该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。该属性支持[!!](../../../quick-start/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 

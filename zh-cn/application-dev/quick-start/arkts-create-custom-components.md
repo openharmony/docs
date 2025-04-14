@@ -105,7 +105,7 @@ struct ParentComponent {
 
   | 名称   | 类型   | 必填 | 说明                                                         |
   | ------ | ------ | ---- | ------------------------------------------------------------ |
-  | freezeWhenInactive | bool | 否 | 是否开启组件冻结。 |
+  | freezeWhenInactive | boolean | 否 | 是否开启组件冻结，默认值false。 |
 
   ```ts
   @Component({ freezeWhenInactive: true })

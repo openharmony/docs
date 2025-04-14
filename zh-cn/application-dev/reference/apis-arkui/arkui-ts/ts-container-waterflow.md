@@ -90,7 +90,7 @@ splice(start: number, deleteCount?: number, sections?: Array\<SectionOptions\>):
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| boolean | 分组是否修改成功，要加入的分组中有任意分组的itemsCount不是正整数时返回false。 |
+| boolean | 分组修改成功返回true；修改失败（要加入的分组中有任意分组的itemsCount不是正整数）返回false。 |
 
 
 ### push<sup>12+</sup>
@@ -113,7 +113,7 @@ push(section: SectionOptions): boolean
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| boolean | 分组是否添加成功，新分组的itemsCount不是正整数时返回false。 |
+| boolean | 分组添加成功返回true，添加失败（新分组的itemsCount不是正整数）返回false。 |
 
 ### update<sup>12+</sup>
 
@@ -350,7 +350,7 @@ layoutDirection优先级高于rowsTemplate和columnsTemplate。根据layoutDirec
 
 enableScrollInteraction(value: boolean)
 
-设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。
+设置是否支持滚动手势。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -360,13 +360,13 @@ enableScrollInteraction(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                |
 | ------ | ------- | ---- | ----------------------------------- |
-| value  | boolean | 是   | 是否支持滚动手势。<br/>默认值：true |
+| value  | boolean | 是   | 是否支持滚动手势。设置为true时可以通过手指或者鼠标滚动，设置为false时无法通过手指或者鼠标滚动，但不影响控制器[Scroller](ts-container-scroll.md#scroller)的滚动接口。<br/>默认值：true |
 
 ### nestedScroll<sup>10+</sup>
 
 nestedScroll(value: NestedScrollOptions)
 
-设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。
+设置前后两个方向的嵌套滚动模式，实现与父组件的滚动联动。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -382,7 +382,7 @@ nestedScroll(value: NestedScrollOptions)
 
 friction(value: number | Resource)
 
-设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。
+设置摩擦系数，手动划动滚动区域时生效，仅影响惯性滚动过程，对惯性滚动过程中的链式效果有间接影响。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -429,7 +429,7 @@ cachedCount(count: number, show: boolean)
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | ---------------------------------------- |
 | count | number | 是   | 预加载的FlowItem的数量。 <br/>默认值：根据屏幕内显示的节点个数设置，最大值为16。<br/>取值范围：[0, +∞)，设置为小于0的值时，按1处理。 |
-| show  | boolean | 是   | 被预加载的FlowItem是否需要显示。 <br/> 默认值：false，不显示预加载的FlowItem。 |
+| show  | boolean | 是   | 被预加载的FlowItem是否需要显示。设置为true时显示预加载的FlowItem，设置为false时不显示预加载的FlowItem。 <br/> 默认值：false |
 
 ## 事件
 
@@ -439,7 +439,7 @@ cachedCount(count: number, show: boolean)
 
 onReachStart(event: () => void)
 
-瀑布流组件到达起始位置时触发。
+瀑布流内容到达起始位置时触发。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -449,7 +449,7 @@ onReachStart(event: () => void)
 
 onReachEnd(event: () => void)
 
-瀑布流组件到达末尾位置时触发。
+瀑布流内容到达末尾位置时触发。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -498,6 +498,79 @@ onScrollIndex(event: (first: number, last: number) => void)
 | ------ | ------ | ---- | ------------------------------------- |
 | first  | number | 是   | 当前显示的瀑布流起始位置的索引值。<br/>取值范围：[0, 子节点总数-1] |
 | last   | number | 是   | 当前显示的瀑布流终止位置的索引值。<br/>取值范围：[0, 子节点总数-1] |
+
+## UIWaterFlowEvent<sup>18+</sup>
+frameNode中[getEvent('WaterFlow')](../js-apis-arkui-frameNode.md#geteventwaterflow18)方法的返回值，可用于给WaterFlow节点设置滚动事件。
+
+UIWaterFlowEvent继承于[UIScrollableCommonEvent](./ts-container-scrollable-common.md#uiscrollablecommonevent18)。
+
+### setOnWillScroll<sup>18+</sup>
+
+setOnWillScroll(callback:  OnWillScrollCallback | undefined): void
+
+设置[onWillScroll](./ts-container-scrollable-common.md#onwillscroll12)事件的回调。
+
+方法入参为undefined时，会重置事件回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| callback  | [OnWillScrollCallback](./ts-container-scrollable-common.md#onwillscrollcallback12)&nbsp;\|&nbsp;undefined | 是   | onWillScroll事件的回调函数。 |
+
+### setOnDidScroll<sup>18+</sup>
+
+setOnDidScroll(callback: OnScrollCallback | undefined): void
+
+设置[onDidScroll](./ts-container-scrollable-common.md#ondidscroll12)事件的回调。
+
+方法入参为undefined时，会重置事件回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| callback  | [OnScrollCallback](./ts-container-scrollable-common.md#onscrollcallback12)&nbsp;\|&nbsp;undefined | 是   | onDidScroll事件的回调函数。 |
+
+### setOnScrollIndex<sup>18+</sup>
+
+setOnScrollIndex(callback: OnWaterFlowScrollIndexCallback | undefined): void
+
+设置[onScrollIndex](#onscrollindex11)事件的回调。
+
+方法入参为undefined时，会重置事件回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| callback  | [OnWaterFlowScrollIndexCallback](#onwaterflowscrollindexcallback18)&nbsp;\|&nbsp;undefined | 是   | onScrollIndex事件的回调函数。 |
+
+## OnWaterFlowScrollIndexCallback<sup>18+</sup>
+type OnWaterFlowScrollIndexCallback = (fist: number, last: number) => void
+
+WaterFlow组件可见区域item变化事件的回调类型。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型   | 必填 | 说明                                  |
+| ------ | ------ | ---- | ------------------------------------- |
+| first  | number | 是   | 当前显示的瀑布流起始位置的索引值。 |
+| last   | number | 是   | 当前显示的瀑布流终止位置的索引值。 |
 
 ## 示例
 

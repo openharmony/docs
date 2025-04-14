@@ -6,7 +6,7 @@
 >
 >  API version 12开始，Radio选中默认样式由RadioIndicatorType.DOT变为RadioIndicatorType.TICK。
 >
->  该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -68,7 +68,7 @@ checked(value: boolean)
 设置单选框的选中状态。
 
 从API version 10开始，该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
-从API version 18开始，该属性支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。
+从API version 18开始，该属性支持[!!](../../../quick-start/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -89,7 +89,7 @@ checked(isChecked: Optional\<boolean>)
 设置单选框的选中状态。与[checked](#checked)相比，isChecked参数新增了对undefined类型的支持。
 
 该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
-从API version 18开始，该属性支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。
+从API version 18开始，该属性支持[!!](../../../quick-start/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 

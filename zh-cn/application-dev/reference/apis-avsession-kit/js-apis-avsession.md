@@ -3411,7 +3411,7 @@ aVCastController.getAVPlaybackState().then((state: avSession.AVPlaybackState) =>
 
 getSupportedDecoders(): Promise\<Array\<DecoderType>>
 
-获取当前远端设备的编码方式。使用Promise异步回调。
+获取当前远端设备的解码方式。使用Promise异步回调。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -3421,7 +3421,7 @@ getSupportedDecoders(): Promise\<Array\<DecoderType>>
 
 | 类型                                                        | 说明                                                         |
 | --------- | ------------------------------------------------------------ |
-| Promise\<Array\<[DecoderType](#decodertype18)\>\> | Promise对象。返回远端设备所支持的编码能力列表。 |
+| Promise\<Array\<[DecoderType](#decodertype18)\>\> | Promise对象。返回远端设备所支持的解码能力列表。 |
 
 **错误码：**
 
@@ -3450,7 +3450,7 @@ aVCastController.getSupportedDecoders().then((decoderTypes: avSession.DecoderTyp
 
 getRecommendedResolutionLevel(decoderType: DecoderType): Promise\<ResolutionLevel>
 
-通过传递编码方式，获取推荐的分辨率。使用Promise异步回调。
+通过传递解码方式，获取推荐的分辨率。使用Promise异步回调。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -5342,7 +5342,7 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 | subtitle        | string                  | 否   | 是   | 子标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                |
 | description     | string                  | 否   | 是   | 媒体描述。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                               |
 | lyric           | string                  | 否   | 是   | 媒体歌词内容。应用需将歌词内容拼接为一个字符串传入。<br>字符串长度需<=40960字节。<br>**说明：** 系统支持简单版的LRC格式（Simple LRC format）的歌词文本内容。当传入的歌词内容不规范（例如：出现重复的时间戳等），将导致解析失败，并在系统中显示异常。 |
-| singleLyricText<sup>18+</sup> | string    | 否   | 是   | 单条媒体歌词内容。应用需将歌词内容拼接为一个字符串传入（不包含时间戳）。<br>字符串长度<=40960字节。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+| singleLyricText<sup>17+</sup> | string    | 否   | 是   | 单条媒体歌词内容。应用需将歌词内容拼接为一个字符串传入（不包含时间戳）。<br>字符串长度<=40960字节。<br>**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。|
 | previousAssetId | string                  | 否   | 是   | 上一首媒体ID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                            |
 | nextAssetId     | string                  | 否   | 是   | 下一首媒体ID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                            |
 | filter<sup>11+</sup>        | number         | 否   | 是   | 当前session支持的协议，默认为TYPE_CAST_PLUS_STREAM。具体取值参考[ProtocolType](#protocoltype11)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
@@ -5487,7 +5487,7 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 
 ## DecoderType<sup>18+</sup>
 
-枚举，设备所支持的编码格式。
+枚举，设备所支持的解码格式。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 

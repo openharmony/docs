@@ -2,7 +2,7 @@
 
 ## 基本概念
 
-LMS（Lite Memory Sanitizer）是一种实时检测内存操作合法性的调测工具。LMS能够实时检测缓冲区溢出（buffer overflow），释放后使用（use after free) 和重复释放（double free), 在异常发生的第一时间通知操作系统，结合backtrace等定位手段，能准确定位到产生内存问题的代码行，极大提升内存问题定位效率。
+LMS（Lite Memory Sanitizer）是一种实时检测内存操作合法性的调测工具。LMS能够实时检测缓冲区溢出（buffer overflow），释放后使用（use after free) 和重复释放（double free)，在异常发生的第一时间通知操作系统，结合backtrace等定位手段，能准确定位到产生内存问题的代码行，极大提升内存问题定位效率。
 
 OpenHarmony LiteOS-M内核的LMS模块提供下面几种功能：
 

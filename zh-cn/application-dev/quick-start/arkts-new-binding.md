@@ -1,5 +1,5 @@
 # !!语法：双向绑定
-在状态管理V1中使用[$$](./arkts-two-way-sync.md)用于内置组件双向绑定。
+在状态管理V1中使用[$$](./arkts-two-way-sync.md)用于系统组件双向绑定。
 在状态管理V2中，提供了归一处理，提供`!!`语法糖作为统一处理双向绑定语法。
 
 
@@ -69,9 +69,9 @@ struct Star {
 - 当使用大于等于3个感叹号（!!!、!!!!、!!!!!等）时，不支持双向绑定功能。
 
 
-### 内置组件参数双向绑定
+### 系统组件参数双向绑定
 
-!!运算符为系统内置组件提供TS变量的引用，使得TS变量和系统内置组件的内部状态保持同步。添加方式是在变量名后添加，例如isShow!!。
+!!运算符为系统组件提供TS变量的引用，使得TS变量和系统组件的内部状态保持同步。添加方式是在变量名后添加，例如isShow!!。
 
 内部状态具体指什么取决于组件。例如，[bindMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md)组件的isShow参数。
 
@@ -89,6 +89,8 @@ struct Star {
   | [Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md#searchoptions18对象说明) | value | 18   |
   | [BindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md) | isShow | 18   |
   | [BindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md) | isShow | 18   |
+  | [SideBarContainer](../reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md#sidebarwidth) | sideBarWidth | 18   |
+  | [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navbarwidth9) | navBarWidth | 18   |
   | [Toggle](../reference/apis-arkui/arkui-ts/ts-basic-components-toggle.md#toggleoptions18对象说明) | isOn | 18   |
   | [Checkbox](../reference/apis-arkui/arkui-ts/ts-basic-components-checkbox.md#select) | select | 18   |
   | [CheckboxGroup](../reference/apis-arkui/arkui-ts/ts-basic-components-checkboxgroup.md#selectall) | selectAll | 18   |  

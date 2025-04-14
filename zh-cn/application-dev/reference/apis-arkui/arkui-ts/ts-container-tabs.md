@@ -261,7 +261,7 @@ fadingEdge(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                               |
 | ------ | ------- | ---- | -------------------------------------------------- |
-| value  | boolean | 是   | 页签超过容器宽度时是否渐隐消失。<br />默认值：true，页签超过容器宽度时会渐隐消失。 |
+| value  | boolean | 是   | 页签超过容器宽度时是否渐隐消失。<br />默认值：true，页签超过容器宽度时会渐隐消失。设置为false时，页签超过容器宽度直接截断显示，不产生任何渐变效果‌。 |
 
 ### barOverlap<sup>10+</sup>
 
@@ -277,7 +277,7 @@ barOverlap(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | TabBar是否背后变模糊并叠加在TabContent之上。当barOverlap设置为true时，TabBar默认模糊材质的BlurStyle值修改为'BlurStyle.COMPONENT_THICK'。<br />默认值：false |
+| value  | boolean | 是   | TabBar是否背后变模糊并叠加在TabContent之上。当barOverlap设置为true时，TabBar背后变模糊并叠加在TabContent之上，并且TabBar默认模糊材质的BlurStyle值修改为'BlurStyle.COMPONENT_THICK'。当barOverlap设置为false时，无模糊和叠加效果。<br />默认值：false |
 
 ### barBackgroundColor<sup>10+</sup>
 
@@ -531,15 +531,15 @@ onChange(event: Callback\<number>)
 
 Tab页签切换后触发的事件。
 
-触发该事件的条件：
+满足以下任一条件，即可触发该事件：
 
 1、滑动页面进行页面切换时，组件滑动动画结束后触发。
 
-2、通过[控制器](#tabscontroller)API接口调用。
+2、通过[控制器](#tabscontroller)调用[changeIndex](#changeindex)接口，Tab页签切换后触发。
 
-3、通过[状态变量](../../../quick-start/arkts-state.md)构造的属性值进行修改。
+3、动态修改[状态变量](../../../quick-start/arkts-state.md)构造的index属性值，Tab页签切换后触发。
 
-4、通过页签处点击触发。
+4、点击TabBar页签，Tab页签切换后触发。
 
 >  **说明：**
 >
@@ -575,7 +575,7 @@ Tab页签点击后触发的事件。
 
 onAnimationStart(handler: OnTabsAnimationStartCallback)
 
-切换动画开始时触发该回调。当animationDuration为0时动画关闭，不触发该回调。
+切换动画开始时触发该回调。当[animationDuration](#animationduration)为0时动画关闭，不触发该回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -591,7 +591,7 @@ onAnimationStart(handler: OnTabsAnimationStartCallback)
 
 onAnimationEnd(handler: OnTabsAnimationEndCallback)
 
-切换动画结束时触发该回调。当Tabs切换动效结束时触发，包括动画过程中手势中断。当animationDuration为0时动画关闭，不触发该回调。
+切换动画结束时触发该回调，包括动画过程中手势中断。当animationDuration为0时动画关闭，不触发该回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -646,9 +646,9 @@ onContentWillChange(handler: OnTabsContentWillChangeCallback)
 
 自定义Tabs页面切换拦截事件能力，新页面即将显示时触发该回调。
 
-触发该回调的条件：
+满足以下任一条件，即可触发该事件：
 
-1、TabContent支持滑动时，滑动组件切换新页面时触发。
+1、滑动TabContent切换新页面时触发。
 
 2、通过TabsController.changeIndex接口切换新页面时触发。
 
@@ -678,9 +678,9 @@ onSelected(event: Callback\<number>)
 
 1. 滑动离手时满足翻页阈值，开始切换动画时触发。
 
-2. 通过[TabsController控制器](#tabscontroller)调用。
+2. 通过[TabsController控制器](#tabscontroller)调用[changeIndex](#changeindex)接口，开始切换动画时触发。
 
-3. 通过[状态变量](../../../quick-start/arkts-state.md)构造的属性值进行修改。
+3. 动态修改[状态变量](../../../quick-start/arkts-state.md)构造的index属性值后触发。
 
 4. 通过页签处点击触发。
 
@@ -708,9 +708,9 @@ onUnselected(event: Callback\<number>)
 
 1. 滑动离手时满足翻页阈值，开始切换动画时触发。
 
-2. 通过[TabsController控制器](#tabscontroller)调用。
+2. 通过[TabsController控制器](#tabscontroller)调用[changeIndex](#changeindex)接口，开始切换动画时触发。
 
-3. 通过[状态变量](../../../quick-start/arkts-state.md)构造的属性值进行修改。
+3. 动态修改[状态变量](../../../quick-start/arkts-state.md)构造的index属性值后触发。
 
 4. 通过页签处点击触发。
 
@@ -892,12 +892,6 @@ Tabs组件的控制器，用于控制Tabs组件进行页签切换。不支持一
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-### 导入对象
-
-```ts
-let controller: TabsController = new TabsController()
-```
-
 ### constructor
 
 constructor()
@@ -962,7 +956,7 @@ setTabBarTranslate(translate: TranslateOptions): void
 
 > **说明：**
 >
-> 当使用bindTabsToScrollable或bindTabsToNestedScrollable等接口绑定了Tabs组件和可滚动容器组件后，在滑动可滚动容器组件时，会触发所有与其绑定的Tabs组件的TabBar的显示和隐藏动效，调用setTabBarTranslate接口设置的TabBar平移距离会失效。因此不建议同时使用bindTabsToScrollable、bindTabsToNestedScrollable和setTabBarTranslate接口。
+> 当使用[bindTabsToScrollable](../js-apis-arkui-UIContext.md#bindtabstoscrollable13)或[bindTabsToNestedScrollable](../js-apis-arkui-UIContext.md#bindtabstonestedscrollable13)等接口绑定了Tabs组件和可滚动容器组件后，在滑动可滚动容器组件时，会触发所有与其绑定的Tabs组件的TabBar的显示和隐藏动效，调用setTabBarTranslate接口设置的TabBar平移距离会失效。因此不建议同时使用bindTabsToScrollable、bindTabsToNestedScrollable和setTabBarTranslate接口。
 >
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
@@ -983,7 +977,7 @@ setTabBarOpacity(opacity: number): void
 
 > **说明：**
 >
-> 当使用bindTabsToScrollable或bindTabsToNestedScrollable等接口绑定了Tabs组件和可滚动容器组件后，在滑动可滚动容器组件时，会触发所有与其绑定的Tabs组件的TabBar的显示和隐藏动效，调用setTabBarOpacity接口设置的TabBar不透明度会失效。因此不建议同时使用bindTabsToScrollable、bindTabsToNestedScrollable和setTabBarOpacity接口。
+> 当使用[bindTabsToScrollable](../js-apis-arkui-UIContext.md#bindtabstoscrollable13)或[bindTabsToNestedScrollable](../js-apis-arkui-UIContext.md#bindtabstonestedscrollable13)等接口绑定了Tabs组件和可滚动容器组件后，在滑动可滚动容器组件时，会触发所有与其绑定的Tabs组件的TabBar的显示和隐藏动效，调用setTabBarOpacity接口设置的TabBar不透明度会失效。因此不建议同时使用bindTabsToScrollable、bindTabsToNestedScrollable和setTabBarOpacity接口。
 >
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
@@ -1677,6 +1671,11 @@ struct TabsExample {
   private controller: TabsController = new TabsController()
   @Builder tabBuilder(title: string,targetIndex: number) {
     Column(){
+      Image(this.selectedIndex === targetIndex ? $r('app.media.star_fill') : $r('app.media.star'))
+        .width(24)
+        .height(24)
+        .margin({ bottom: 4 })
+        .objectFit(ImageFit.Contain)
       Text(title).fontColor(this.selectedIndex === targetIndex ? '#1698CE' : '#6B6B6B')
     }.width('100%')
     .height(50)

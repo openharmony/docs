@@ -198,12 +198,14 @@ xComponent.initialize({
 });
 let contentWidth: number = 800; // 假设当前内容宽度800px。
 let contentHeight: number = 600; // 假设当前内容高度600px。
+let defaultWindowSizeType: number = 1; // 指定画中画第一次拉起窗口为小窗口
 let config: PiPWindow.PiPConfiguration = {
   context: getContext(this),
   componentController: xComponentController,
   templateType: PiPWindow.PiPTemplateType.VIDEO_PLAY,
   contentWidth: contentWidth,
-  contentHeight: contentHeight
+  contentHeight: contentHeight,
+  defaultWindowSizeType: defaultWindowSizeType,
 };
 
 let promise : Promise<PiPWindow.PiPController> = PiPWindow.create(config, xComponent);
@@ -232,6 +234,7 @@ promise.then((data : PiPWindow.PiPController) => {
 | controlGroups<sup>12+</sup>       | Array<[PiPControlGroup](#pipcontrolgroup12)>                               | 否   | 画中画控制面板的可选控件组列表，应用可以对此进行配置以决定是否显示。如果应用没有配置，面板将显示基础控件（如视频播放控件组的播放/暂停控件）；如果应用选择配置，则最多可以选择三个控件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                 |
 | customUIController<sup>12+</sup>      | [NodeController](js-apis-arkui-nodeController.md)           | 否   | 用于实现在画中画界面内容上方展示自定义UI功能。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                           |
 | localStorage<sup>17+</sup>      | [LocalStorage](../../quick-start/arkts-localstorage.md)           | 否   | 页面级别的UI状态存储单元，多实例下可用来跟踪主窗实例。<br/>**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                           |
+| defaultWindowSizeType<sup>18+</sup>| number                                                                     | 否   |  画中画第一次拉起窗口大小。<br/>0：代表不设置大小。按照上次画中画关闭前的大小启动；<br/>1：代表小窗；<br/>2：代表大窗；<br/>不传值则为默认值0。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                                 |
 
 ## PiPWindowSize<sup>15+</sup>
 

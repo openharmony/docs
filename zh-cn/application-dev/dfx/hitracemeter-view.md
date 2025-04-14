@@ -63,6 +63,10 @@
 | 结束异步trace打点 | F\|PID\|H:[ChainId,SpanId,ParentSpanId]#name taskId | F\|PID\|H:name taskId    |
 | 整数trace打点     | C\|PID\|H:[ChainId,SpanId,ParentSpanId]#name count  | C\|PID\|H:name count     |
 
+> **说明：**
+>
+> 用户态trace总长度限制512字符，超过的部分将会被截断。
+
 #### 格式中的参数说明
 
 - **B/E/S/F/C**
@@ -115,6 +119,10 @@
 | 结束异步trace打点 | F\|PID\|H:[ChainId,SpanId,ParentSpanId]#name\|taskId\|%level%tag | F\|PID\|H:name\|taskId\|%level%tag                           |
 | 整数trace打点     | C\|PID\|H:[ChainId,SpanId,ParentSpanId]#name\|count\|%level%tag | C\|PID\|H:name\|count\|%level%tag                            |
 
+> **说明：**
+>
+> 用户态trace总长度限制512字符，超过的部分将会被截断，因此建议name、customCategory和customArgs三个字段的总长度不超过420字符，避免输出的用户态trace被截断。
+
 #### 格式中的参数说明
 
 - **B/E/S/F/C**
@@ -142,8 +150,6 @@
 - **name**
 
   通过打点接口传入的name参数，表示打点名称或整数变量名。
-
-  **该字段限制320字符，超出部分字符会被截断。**
 
 - **taskId**
 
@@ -179,15 +185,11 @@
 
   在trace可视化工具中，同一进程中相同聚类名称的异步打点放在同一泳道上进行展示。
 
-  **该字段限制64字符，超出部分字符会被截断。**
-
 - **customArgs**
 
   通过打点接口传入的customCategory参数，表示自定义键值对，格式为”key=value“，可以传递多个键值对，使用逗号分隔，例如”key1=value1,key2=value2“。
 
   在trace可视化工具中，对满足格式要求的customArgs以键值对形式展示解析结果。
-
-  **因内核对trace输出的限制，用户态trace总长度不能超过512字符，超过的部分将会被截断，而customArgs字段在打点的最后，若name、customCategory字段占用过多字符，可能造成customArgs参数被截断。**
 
 #### 特殊情况说明
 

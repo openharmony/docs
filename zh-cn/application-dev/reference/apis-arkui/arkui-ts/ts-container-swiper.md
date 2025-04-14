@@ -75,7 +75,7 @@ autoPlay(value: boolean)
 
 设置子组件是否自动播放。
 
-loop为false时，自动轮播到最后一页时停止轮播。手势切换后不是最后一页时继续播放。当Swiper不可见时会停止轮播。
+[loop](#loop)为false时，自动轮播到最后一页时停止轮播。手势切换后不是最后一页时继续播放。当Swiper不可见时会停止轮播。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -181,7 +181,7 @@ loop(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                            |
 | ------ | ------- | ---- | ------------------------------- |
-| value  | boolean | 是   | 是否开启循环。<br/>默认值：true |
+| value  | boolean | 是   | 是否开启循环。true为开启循环，false为不开启循环。<br/>默认值：true |
 
 ### duration
 
@@ -384,7 +384,7 @@ displayCount(value: number | string | SwiperAutoFill, swipeByGroup?: boolean)
 
 effectMode(value: EdgeEffect)
 
-设置边缘滑动效果，loop = false时生效。 目前支持的滑动效果参见EdgeEffect的枚举说明。控制器接口调用时不生效回弹。
+设置边缘滑动效果，[loop](#loop) = false时生效。调用SwiperController.changeIndex()、SwiperController.showNext()和SwiperController.showPrevious()接口跳转至首尾页时不生效回弹。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -413,7 +413,7 @@ displayArrow(value: ArrowStyle | boolean, isHoverShow?: boolean)
 | 参数名                     | 类型                                             | 必填 | 说明                                                         |
 | -------------------------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value                      | [ArrowStyle](#arrowstyle10对象说明)&nbsp;\|&nbsp;boolean | 是   | 支持设置箭头和底板样式，异常场景使用ArrowStyle对象中的默认值。设置为false不显示箭头和底板，true显示默认的箭头和底板样式。<br/>默认值：false |
-| isHoverShow                | boolean                                          | 否   | 设置鼠标悬停时是否显示箭头。<br/>默认值：false<br/>**说明：**<br/>isHoverShow为false时，常驻显示箭头，支持点击翻页。<br/>isHoverShow为true时，只有在鼠标悬停时才会显示箭头，并支持点击翻页。 |
+| isHoverShow                | boolean                                          | 否   | 设置鼠标悬停时是否显示箭头。<br/>默认值：false<br/>**说明：**<br/>1、isHoverShow为false时，常驻显示箭头。<br/>2、isHoverShow为true时，有导航点时鼠标悬停在导航点和箭头范围内显示箭头，无导航点时鼠标悬停在Swiper显示范围内显示箭头。<br/>3、箭头显示时，支持点击翻页。 |
 
 > **说明：**
 >
@@ -495,7 +495,7 @@ indicatorInteractive(value: boolean)
 
 | 参数名 | 类型                                                        | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 导航点是否可交互。<br/>默认值：true |
+| value  | boolean | 是   | 导航点是否可交互。true为导航点可交互，false为导航点不可交互。<br/>默认值：true |
 
 ### pageFlipMode<sup>15+</sup>
 
@@ -528,7 +528,7 @@ pageFlipMode(mode: Optional\<PageFlipMode>)
 | right         | [Length](ts-types.md#length)               | 否   | 设置导航点右侧相对于Swiper的位置。<br/>未设置left和right时，进行自适应大小布局，按照指示器本身大小和Swiper的大小在主轴方向上进行居中对齐<br/>设置为0时：按照0位置布局计算<br/>优先级：低于left属性<br/>取值范围：[0,Swiper宽度-导航点区域宽度]，超出该范围时，取最近的边界值。                 |
 | bottom        | [Length](ts-types.md#length)               | 否   | 设置导航点底部相对于Swiper的位置。<br/>未设置top和bottom时，进行自适应大小布局，按照指示器本身大小和Swiper的大小，在交叉轴方向上，位于底部，效果与设置bottom=0一致<br/>设置为0时：按照0位置布局计算<br/>优先级：低于top属性<br/>取值范围：[0,Swiper高度-导航点区域高度]，超出该范围时，取最近的边界值。                 |
 | size          | [Length](ts-types.md#length)               | 否   | 设置导航点的直径，不支持设置百分比。<br/>默认值：6vp |
-| mask          | boolean                                    | 否   | 设置是否显示导航点蒙层样式。                         |
+| mask          | boolean                                    | 否   | 设置是否显示导航点蒙层样式。<br/>设置为true时显示导航点蒙层样式，为false时不显示。                         |
 | color         | [ResourceColor](ts-types.md#resourcecolor) | 否   | 设置导航点的颜色。                                   |
 | selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 设置选中的导航点的颜色。                             |
 
@@ -560,19 +560,13 @@ Swiper组件和父组件的嵌套滚动模式枚举。
 
 ## SwiperController
 
-Swiper容器组件的控制器，可以将此对象绑定至Swiper组件，可以通过它控制翻页。
+Swiper容器组件的控制器，可以将此对象绑定至Swiper组件，实现控制Swiper翻页等功能。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-### 导入对象
-
-```ts
-let controller: SwiperController = new SwiperController()
-```
 
 ### constructor
 
@@ -590,7 +584,7 @@ SwiperController的构造函数。
 
 showNext()
 
-翻至下一页。翻页带动效切换过程，时长通过duration指定。
+翻至下一页。翻页带动效切换过程，时长通过Swiper的[duration](#duration)属性设置。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -602,7 +596,7 @@ showNext()
 
 showPrevious()
 
-翻至上一页。翻页带动效切换过程，时长通过duration指定。
+翻至上一页。翻页带动效切换过程，时长通过Swiper的[duration](#duration)属性设置。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -870,6 +864,12 @@ static dot(): DotIndicator
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**返回值：**
+
+| 类型                            | 说明         |
+| ------------------------------- | ------------ |
+| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+
 ### digit
 
 static digit(): DigitIndicator
@@ -881,6 +881,12 @@ static digit(): DigitIndicator
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                | 说明         |
+| ----------------------------------- | ------------ |
+| [DigitIndicator](#digitindicator10) | 数字指示器。 |
 
 ## DotIndicator<sup>10+</sup>
 
@@ -1258,8 +1264,8 @@ DigitIndicator的构造函数。
 
 | 名称              | 类型                                     | 必填  | 说明                                     |
 | ---------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| showBackground   | boolean                                  | 否    | 设置箭头底板是否显示。<br/>默认值：false                |
-| isSidebarMiddle  | boolean                                  | 否    | 设置箭头显示位置。<br/>默认值：false <br/>默认显示在导航点指示器两侧。 |
+| showBackground   | boolean                                  | 否    | 设置箭头底板是否显示。为true时箭头底板显示，为false时箭头底板不显示。<br/>默认值：false                |
+| isSidebarMiddle  | boolean                                  | 否    | 设置箭头显示位置。为true时箭头居中显示在swiper组件两侧，为false时显示在导航点指示器两侧。<br/>默认值：false <br/>默认显示在导航点指示器两侧。 |
 | backgroundSize   | [Length](ts-types.md#length)             | 否    | 设置底板大小。<br/>在导航点两侧显示：<br/>默认值：24vp<br/>在组件两侧显示：<br/>默认值：32vp<br/>不支持设置百分比。 |
 | backgroundColor  | [ResourceColor](ts-types.md#resourcecolor) | 否    | 设置底板颜色。<br/>在导航点两侧显示：<br/>默认值：'\#00000000'<br/>在组件两侧显示：<br/>默认值：'\#19182431' |
 | arrowSize        | [Length](ts-types.md#length)             | 否    | 设置箭头大小。<br/>在导航点两侧显示时：<br/>默认值：18vp<br/>在组件两侧显示时：<br/>默认值：24vp<br/>**说明：**<br/>showBackground为true时，arrowSize为backgroundSize的3/4。<br/>不支持设置百分比。 |
@@ -1291,7 +1297,7 @@ DigitIndicator的构造函数。
 
 | 名称              | 类型                                     | 必填  | 说明                                     |
 | ---------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| stopWhenTouched   | boolean                                  | 是    | 在按下事件中配置子组件是否立即停止播放。<br/>默认值：true |
+| stopWhenTouched   | boolean                                  | 是    | 在按下事件中配置子组件是否立即停止播放。<br/>设置为true时，停止播放。设置为false时，自动播放不中断。<br/>默认值：true |
 
 ## 事件
 
@@ -1558,7 +1564,7 @@ Swiper滑动时触发的回调，参数可参考[SwiperContentTransitionProxy](#
 | selectedIndex | number | 是 | 当前选中页面的索引。 |
 | index | number | 是 | 视窗内页面的索引。 |
 | position | number | 是 | index页面相对于Swiper主轴起始位置（selectedIndex对应页面的起始位置）的移动比例。 |
-| mainAxisLength | number | 是 | index对应页面在主轴方向上的长度。 |
+| mainAxisLength | number | 是 | index对应页面在主轴方向上的长度，单位vp。 |
 
 ## ContentWillScrollCallback<sup>15+</sup>
 
@@ -1642,7 +1648,7 @@ Swiper自定义切换动画执行过程中，返回给开发者的proxy对象。
 | selectedIndex | number | 否 | 否 | 当前选中页面的索引。 |
 | index | number | 否 | 否 | 视窗内页面的索引。 |
 | position | number | 否 | 否 | index页面相对于Swiper主轴起始位置（selectedIndex对应页面的起始位置）的移动比例。 |
-| mainAxisLength | number | 否 | 否 | index对应页面在主轴方向上的长度。 |
+| mainAxisLength | number | 否 | 否 | index对应页面在主轴方向上的长度，单位vp。 |
 
 >**说明：** 
 >

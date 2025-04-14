@@ -462,7 +462,6 @@ createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation. |
 | 1300006 | This window context is abnormal. |
-| 1300008 | The display device is abnormal. |
 | 1300009 | The parent window is invalid. |
 
 **示例：**
@@ -535,7 +534,6 @@ createWindow(config: Configuration): Promise&lt;Window&gt;
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation. |
 | 1300006 | This window context is abnormal. |
-| 1300008 | The display device is abnormal. |
 | 1300009 | The parent window is invalid. |
 
 **示例：**
@@ -8165,7 +8163,7 @@ struct Index {
 
 raiseToAppTop(): Promise&lt;void&gt;
 
-应用子窗口调用，提升应用子窗口到顶层，只在当前应用同一个父窗口下的相同类型子窗范围内生效。使用Promise异步回调。
+应用子窗口调用，提升应用子窗口到顶层，只在当前应用同一个父窗口下的相同类型子窗范围内生效，对于自定义了zLevel属性的子窗口，只在当前应用同一个父窗口下相同zLevel值的子窗范围内生效。使用Promise异步回调。
 
 使用该接口需要先创建子窗口，并确保该子窗口调用[showWindow()](#showwindow9)并执行完毕。
 
@@ -8850,7 +8848,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setWindowShadowRadius<sup>18+</sup>
+### setWindowShadowRadius<sup>17+</sup>
 
 setWindowShadowRadius(radius: number): void
 
@@ -8858,7 +8856,7 @@ setWindowShadowRadius(radius: number): void
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -8887,7 +8885,7 @@ try {
 }
 ```
 
-### setWindowCornerRadius<sup>18+</sup>
+### setWindowCornerRadius<sup>17+</sup>
 
 setWindowCornerRadius(cornerRadius: number): Promise&lt;void&gt;
 
@@ -8897,11 +8895,11 @@ setWindowCornerRadius(cornerRadius: number): Promise&lt;void&gt;
 
 圆角半径值过大将会导致三键（最大化、最小化、关闭按钮）位置被裁切，且会导致热区不易识别，请根据窗口大小设置合适的圆角半径值。
 
-在调用此接口之前调用[getWindowCornerRadius()](#getwindowcornerradius18)接口可以获得窗口默认圆角半径值。
+在调用此接口之前调用[getWindowCornerRadius()](#getwindowcornerradius17)接口可以获得窗口默认圆角半径值。
 
 **系统能力**：SystemCapability.Window.SessionManager
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -8945,17 +8943,17 @@ try{
 
 ```
 
-### getWindowCornerRadius<sup>18+</sup>
+### getWindowCornerRadius<sup>17+</sup>
 
 getWindowCornerRadius(): number
 
-获取子窗或悬浮窗的圆角半径值，在未调用[setWindowCornerRadius()](#setwindowcornerradius18)接口设置窗口圆角半径值时，调用此接口可获取窗口默认圆角半径值。
+获取子窗或悬浮窗的圆角半径值，在未调用[setWindowCornerRadius()](#setwindowcornerradius17)接口设置窗口圆角半径值时，调用此接口可获取窗口默认圆角半径值。
 
 <!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
 **系统能力**：SystemCapability.Window.SessionManager
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -9286,6 +9284,136 @@ export default class EntryAbility extends UIAbility {
         console.error(`Failed to set the system bar properties. Cause code: ${exception.code}, message: ${exception.message}`);
       }
     });
+  }
+}
+```
+
+### setSubWindowZLevel<sup>18+</sup>
+
+setSubWindowZLevel(zLevel: number): Promise&lt;void&gt;
+
+设置当前子窗口层级级别，设置了模态属性的子窗不支持。
+
+通过该接口改变子窗口的显示层级时，不会发生焦点切换。推荐使用[shiftAppWindowFocus()](#windowshiftappwindowfocus11)进行焦点切换。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名       | 类型                          | 必填 | 说明                           |
+| :----------- | :---------------------------- | :--- | :----------------------------- |
+| zLevel | number | 是   | 子窗口层级级别。默认值为0，取值范围为[-10000, 10000]，该参数仅支持整数输入，浮点数输入将向下取整。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                                      |
+| ------- | --------------------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed.|
+| 801     | Capability not supported. Function setSubWindowZLevel can not work correctly due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                       |
+| 1300009 | The parent window is invalid.                 |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { window } from '@kit.ArkUI';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    // 创建子窗
+    try {
+      let subWindowPromise = windowStage.createSubWindow('testSubWindow');
+      subWindowPromise.then((subWindow) => {
+        if (subWindow == null) {
+          console.error('Failed to create the sub window. Cause: The sub window is null');
+          return;
+        }
+        let zLevelPromise = subWindow.setSubWindowZLevel(1);
+        zLevelPromise.then(() => {
+          console.info('Succeeded in setting sub window zLevel.');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to set sub window zLevel. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      });
+    } catch (err) {
+      console.error(`Failed to create the sub window. Cause code: ${err.code}, message: ${err.message}`);
+    }
+  }
+}
+```
+
+### getSubWindowZLevel<sup>18+</sup>
+
+getSubWindowZLevel(): number
+
+获取当前子窗口层级级别。不支持主窗、系统窗调用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**返回值：**
+
+| 类型                | 说明                                           |
+| ------------------- | --------------------------------------------- |
+| number             | 当前子窗口层级级别。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                                                                                                     |
+| -------- | ------------------------------------------------------------------------------------------------------------ |
+| 801      | Capability not supported. Function getSubWindowZLevel can not work correctly due to limited device capabilities. |
+| 1300002  | This window state is abnormal.                                                                               |
+| 1300004  | Unauthorized operation.                                                                                |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { window } from '@kit.ArkUI';
+import { UIAbility } from '@kit.AbilityKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    // 创建子窗
+    try {
+      let subWindowPromise = windowStage.createSubWindow('testSubWindow');
+      subWindowPromise.then((subWindow) => {
+        if (subWindow == null) {
+          console.error('Failed to create the sub window. Cause: The sub window is null');
+          return;
+        }
+        try {
+          let subWindowZLevel = subWindow.getSubWindowZLevel();
+          console.info(`Succeeded in getting sub window zLevel: ${subWindowZLevel}`);
+        } catch (err) {
+          console.error(`Failed to get sub window zLevel. Cause code: ${err.code}, message: ${err.message}`);
+        }
+      });
+    } catch (err) {
+      console.error(`Failed to create the sub window. Cause code: ${err.code}, message: ${err.message}`);
+    }
   }
 }
 ```
@@ -11365,6 +11493,7 @@ WindowStage生命周期。
 | isModal<sup>12+</sup>    | boolean | 否 | 是 | 子窗口是否启用模态属性。true表示子窗口启用模态属性，false表示子窗口禁用模态属性。不设置，则默认为false。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
 | modalityType<sup>14+</sup>    | [ModalityType](#modalitytype14) | 否 | 是 | 子窗口模态类型，仅当子窗口启用模态属性时生效。WINDOW_MODALITY表示子窗口模态类型为模窗口子窗，APPLICATION_MODALITY表示子窗口模态类型为模应用子窗。不设置，则默认为WINDOW_MODALITY。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。       |
 | windowRect<sup>18+</sup>    | [Rect](#rect7) | 否 | 是 | 子窗口矩形区域，其中子窗存在大小限制，具体参考[resize()](#resize9)方法。不设置，此窗口在显示时默认为全屏大小。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+| zLevel<sup>18+</sup>    | number | 否 | 是 | 子窗口层级级别，仅当子窗口未启用模态属性，即未设置isModal时生效。该参数是整数，取值范围为[-10000, 10000]，浮点数输入将向下取整。不设置，则默认为0。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
 ## WindowStage<sup>9+</sup>
 
@@ -12772,7 +12901,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setWindowRectAutoSave<sup>18+</sup>
+### setWindowRectAutoSave<sup>17+</sup>
 
 setWindowRectAutoSave(enabled: boolean, isSaveBySpecifiedFlag: boolean): Promise&lt;void&gt;
 
@@ -12793,7 +12922,7 @@ setWindowRectAutoSave(enabled: boolean, isSaveBySpecifiedFlag: boolean): Promise
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 

@@ -31,7 +31,7 @@
 
 2. 编写业务代码。
 
-   新建./applications/sample/wifi-iot/app/my_first_app下的hello_world.c文件，在hello_world.c中新建业务入口函数HelloWorld，并实现业务逻辑。并在代码最下方，使用OpenHarmony启动恢复模块接口SYS_RUN()启动业务。（SYS_RUN定义在ohos_init.h文件中）
+   新建./applications/sample/wifi-iot/app/my_first_app下的hello_world.c文件，在hello_world.c中新建业务入口函数HelloWorld，并实现业务逻辑。并在代码最下方，使用OpenHarmony启动恢复模块接口SYS_RUN()启动业务，SYS_RUN定义在ohos_init.h文件中。
      
    ```
    #include <stdio.h>
@@ -69,7 +69,7 @@
 
 4. 添加新组件。
    
-   修改文件build/lite/components/applications.json，添加组件hello_world_app的配置，如下所示为applications.json文件片段，"\#\#start\#\#"和"\#\#end\#\#"之间为新增配置（"\#\#start\#\#"和"\#\#end\#\#"仅用来标识位置，添加完配置后删除这两行）：
+   修改文件build/lite/components/applications.json，添加组件hello_world_app的配置。如下所示为applications.json文件片段，"\#\#start\#\#"和"\#\#end\#\#"之间为新增配置（"\#\#start\#\#"和"\#\#end\#\#"仅用来标识位置，添加完配置后删除这两行）：
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
    > 本章节操作是以OpenHarmony-v3.1-Release版本为例进行操作的，该版本中，组件配置文件为build/lite/components/applications.json；若源码版本大于等于OpenHarmony 3.2 Beta2时，组件配置文件为build/lite/components/communication.json。
@@ -135,7 +135,7 @@
 
 5. 修改单板配置文件。
    
-   修改文件vendor/hisilicon/hispark_pegasus/config.json，新增hello_world_app组件的条目，如下所示代码片段为applications子系统配置，"\#\#start\#\#"和"\#\#end\#\#"之间为新增条目（"\#\#start\#\#"和"\#\#end\#\#"仅用来标识位置，添加完配置后删除这两行）：
+   修改文件vendor/hisilicon/hispark_pegasus/config.json，新增hello_world_app组件的条目。如下所示代码片段为applications子系统配置，"\#\#start\#\#"和"\#\#end\#\#"之间为新增条目（"\#\#start\#\#"和"\#\#end\#\#"仅用来标识位置，添加完配置后删除这两行）：
 
    
    ```

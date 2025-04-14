@@ -10,7 +10,7 @@
 
 ## 接口
 
-## XComponentOptions<sup>12+</sup>
+### XComponentOptions<sup>12+</sup>
 
 定义XComponent的具体配置参数。
 
@@ -22,6 +22,11 @@
 | -------- | ------- | ---- | ---------------------- |
 | screenId<sup>17+</sup> | number | 否 | 给组件设置关联屏幕ID，通过此项可在组件上显示关联屏幕画面。 **系统接口：** 此接口为系统接口。|
 
+  > **说明：**
+  >
+  > 仅type为SURFACE时有效。
+  >
+  > 不支持[ArkUI NDK接口](../../../ui/ndk-build-ui-overview.md)创建的XComponent组件。
 
 ## 属性
 

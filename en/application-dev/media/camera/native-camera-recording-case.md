@@ -14,7 +14,7 @@ After obtaining the output stream capabilities supported by the camera, create a
 
 1. Link the dynamic library in the CMake script.
     ```txt
-        target_link_libraries(entry PUBLIC libohcamera.so libhilog_ndk.z.so)
+    target_link_libraries(entry PUBLIC libohcamera.so libhilog_ndk.z.so)
     ```
 
 2. Create the header file **ndk_camera.h**.
