@@ -848,6 +848,80 @@ error: install releaseType target not same.
 * 场景二：使用相同版本的SDK对HAP重新打包，保证多HAP的releaseType值一致。
 
 
+### 9568260 安装内部错误
+**错误信息**
+
+error: install internal error.
+
+**错误描述**
+
+安装内部错误。
+
+**可能原因**
+
+安装过程中，内部服务异常。
+
+**处理步骤**
+
+请尝试重启设备后重新安装。
+
+
+### 9568267 entry模块已存在
+**错误信息**
+
+error: install entry already exist.
+
+**错误描述**
+
+待安装应用的entry模块已存在。
+
+**可能原因**
+
+多模块应用安装要求entry模块唯一。由于待安装的模块包和已安装的模块包名称不同，但均为entry类型，违反了entry唯一性，导致安装失败。
+
+**处理步骤**
+
+1. 请先卸载设备上已安装的HAP，再安装新的HAP。
+2. 检查并确保待安装包的entry模块名称与已安装的entry模块名相同，或把待安装模块的类型改为feature后重试。
+
+
+### 9568268 安装状态错误
+**错误信息**
+
+error: install state error.
+
+**错误描述**
+
+应用安装状态更新失败。
+
+**可能原因**
+
+由于上一个应用安装包过大耗时长，应用安装时上一个应用安装任务未结束，导致安装状态更新失败。
+
+**处理步骤**
+
+请等待上一个应用安装完成后再重试。
+
+
+### 9568269 文件路径无效
+**错误信息**
+
+error: install file path invalid.
+
+**错误描述**
+
+安装时传入的安装包路径无效。
+
+**可能原因**
+
+1. 安装包路径不存在，如拼写有误等。
+2. 安装包路径长度超过256字节。
+
+**处理步骤**
+
+1. 检查安装包的路径是否存在且有访问权限。
+2. 检查安装包路径长度不超过256字节。
+
 ### 9568322 由于应用来源不可信，签名验证失败
 **错误信息**
 
@@ -910,6 +984,31 @@ error: install provision type not same.
 1. 确保设备上已安装应用签名证书profile文件中的类型与待安装应用的类型一致，使用相同类型的profile文件签名，再安装新的HAP。
 2. 卸载设备上已安装的应用，再安装新的HAP。
 
+
+### 9568288 磁盘空间不足导致安装失败
+**错误信息**
+
+error: install failed due to insufficient disk memory.
+
+**错误描述**
+
+应用安装时会新建文件或目录，由于设备存储空间不足，创建文件或目录失败，导致应用安装失败。
+
+**可能原因**
+
+设备存储空间不足，创建文件或目录失败，导致应用安装失败。
+
+**处理步骤**
+
+查看设备存储空间并清理，保证满足安装所需空间，再重试安装应用。
+
+```bash
+// 查看磁盘空间使用情况
+hdc shell df -h /system
+hdc shell df -h /data
+```
+
+
 ### 9568289 权限请求失败导致安装失败
 **错误信息**
 
@@ -937,6 +1036,51 @@ IDE安装路径\sdk\版本号或者default\openharmony\toolchains\lib\
 2. 在UnsgnedDebugProfileTemplate.json文件中修改APL等级，修改APL等级为system_core等级，重新签名打包即可。
 
 
+### 9568290 更新HAP token失败导致安装失败
+**错误信息**
+
+error: install failed due to update hap token failed.
+
+**错误描述**
+
+应用安装过程中，更新HAP时，应用token授权失败。
+
+**可能原因**
+
+应用安装或更新时，调用元能力的更新token接口，接口返回失败。
+
+**处理步骤**
+
+1. 重启手机后再次尝试安装应用。
+
+2. 重复上述步骤3到5次后依旧安装失败，请导出日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
+
+```
+hdc file recv /data/log/hilog/
+```
+
+
+<!--Del-->
+### 9568291 singleton不一致导致安装失败
+**错误信息**
+
+error: install failed due to singleton not same.
+
+**错误描述**
+
+应用更新时，应用已安装的hap包和更新包app.json5配置文件中singleton配置（从API verison 9开始废弃）不一致。
+
+**可能原因**
+
+应用已安装的hap包和更新包app.json5配置文件中singleton配置（从API verison 9开始废弃）不一致。
+
+**处理步骤**
+
+方案1：卸载已安装的应用包，再安装新的应用包。
+
+方案2：更新包调整singleton配置，与已安装包配置一致，重新打包，再更新应用包。<!--DelEnd-->
+
+
 ### 9568297 由于设备sdk版本较低导致安装失败
 **错误信息**
 
@@ -961,6 +1105,26 @@ error: install failed due to older sdk version in the device.
   如果镜像提供的api版本为10，且应用编译所使用的SDK版本也为10，仍出现该报错，可能是由于镜像版本较低，未兼容新版本SDK校验规则，请将镜像版本更新为最新版本。
 
 * 场景二：对于需要运行在OpenHarmony设备上的应用，请确认runtimeOS已改为OpenHarmony。
+
+
+### 9568300 应用模块名不唯一导致安装失败
+**错误信息**
+
+error: moduleName is not unique.
+
+**错误描述**
+
+多模块应用安装过程中，由于模块命名冲突，模块唯一性校验失败，导致安装失败。
+
+**可能原因**
+
+多模块应用安装过程中，存在模块名称冲突。
+
+**处理步骤**
+
+查看当前应用所有模块名，与各个模块的module.json5中的name进行比较，保证不一致后，重新打包，进行应用安装。
+
+
 
 ### 9568332 签名不一致导致安装失败
 **错误信息**
@@ -1169,6 +1333,61 @@ error: install version downgrade.
 1. 卸载已安装的应用，重新安装新应用。
 
 
+### 9568301 模块类型不一致
+**错误信息**
+
+error: moduleName is inconsistent.
+
+**错误描述**
+
+正在安装的模块名称在系统中已经存在，但模块名称不一致，导致安装失败。
+
+**可能原因**
+
+待安装应用模块名称在系统中已存在，但模块类型不一致，导致安装失败。
+
+**处理步骤**
+
+检查系统中已安装应用的模块名是否与待安装的模块名重复，若模块名称一致但类型不一致，修改对应模块module.json5中type属性。
+
+
+<!--Del-->
+### 9568302 应用多个模块singleton不一致导致安装失败
+**错误信息**
+
+error: install failed due to singleton not same.
+
+**错误描述**
+
+应用多个模块singleton配置（API 9被标记废弃）不一致，导致安装失败。
+
+**可能原因**
+
+应用多模块安装时，singleton的配置不相同，singleton一致性校验不通过，导致安装失败。
+
+**处理步骤**
+
+调整所有模块的singleton配置，保持一致后再安装。<!--DelEnd-->
+
+
+### 9568303 企业设备管理禁止安装
+**错误信息**
+
+error: Failed to install the HAP because the installation is forbidden by enterprise device management.
+
+**错误描述**
+
+存在应用管控策略，安装失败。
+
+**可能原因**
+
+存在应用管控策略。
+
+**处理步骤**
+
+由于企业管控，暂无解决方案。请提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
+
+
 ### 9568304 应用不支持当前设备类型
 **错误信息**
 
@@ -1185,6 +1404,82 @@ error: device type is not supported.
 **处理步骤**
 
 1. 如需要适配当前设备，请在应用设备类型配置中增加当前设备类型。应用deviceTypes配置包含phone（手机）、tablet（平板）、2in1（2合1设备）、tv（智慧屏）、wearable（智能手表）和car（车机）。
+
+
+### 9568308 应用包类型不一致
+**错误信息**
+
+error: install bundleType not same.
+
+**错误描述**
+
+应用包类型不一致，导致安装失败。
+
+**可能原因**
+
+安装多HAP应用时，存在两个模块的bundleType属性不一致。
+
+**处理步骤**
+
+检查并确保多HAP应用中各模块app.json5的bundleType属性一致。
+
+
+<!--Del-->
+### 9568309 不允许安装应用间HSP
+**错误信息**
+
+error: Failed to install the HSP due to the lack of required permission.
+
+**错误描述**
+
+安装应用间HSP时缺少特权，导致安装失败。
+
+**可能原因**
+
+安装应用间HSP时缺少特权。
+
+**处理步骤**
+
+检查设备中install_list_capability.json中该应用是否拥有AllowAppShareLibrary权限，该权限配置可参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)。
+
+
+### 9568311 卸载的应用间HSP不存在
+**错误信息**
+
+error: shared bundle is not exist.
+
+**错误描述**
+
+卸载应用间HSP时，指定的包不存在，导致卸载失败。
+
+**可能原因**
+
+卸载应用间HSP时，指定的包不存在。
+
+**处理步骤**
+
+检查需要卸载的应用间HSP是否存在。
+```
+hdc shell bm dump-shared -n com.xxx.xxx.demo
+```
+
+
+### 9568312 卸载的应用间HSP被依赖
+**错误信息**
+
+error: The version of the shared bundle is dependent on other applications.
+
+**错误描述**
+
+卸载应用间HSP时，指定的包被其他应用依赖，导致卸载失败。
+
+**可能原因**
+
+卸载应用间HSP时，指定的包被其他应用依赖。
+
+**处理步骤**
+
+检查需要卸载的应用间HSP是否被其他应用依赖，若存在依赖，请先卸载依赖该HSP的应用。<!--DelEnd-->
 
 
 ### 9568317 应用的多进程配置与系统配置不匹配
