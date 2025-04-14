@@ -3393,13 +3393,13 @@ aVCastController.getAVPlaybackState().then((state: avSession.AVPlaybackState) =>
 });
 ```
 
-### getSupportedDecoders<sup>18+</sup>
+### getSupportedDecoders<sup>19+</sup>
 
 getSupportedDecoders(): Promise\<Array\<DecoderType>>
 
 获取当前远端设备的解码方式。使用Promise异步回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -3470,13 +3470,13 @@ aVCastController.getRecommendedResolutionLevel(decoderType).then((resolutionLeve
 });
 ```
 
-### getSupportedHdrCapabilities<sup>18+</sup>
+### getSupportedHdrCapabilities<sup>19+</sup>
 
 getSupportedHdrCapabilities(): Promise\<Array\<hdrCapability.HDRFormat>>
 
 获取当前的远端设备所支持的HDR能力。使用Promise异步回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -3510,13 +3510,13 @@ aVCastController.getSupportedHdrCapabilities().then((hdrFormats: hdrCapability.H
 });
 ```
 
-### getSupportedPlaySpeeds<sup>18+</sup>
+### getSupportedPlaySpeeds<sup>19+</sup>
 
 getSupportedPlaySpeeds(): Promise\<Array\<number>>
 
 获取当前的远端设备所支持倍速播放列表。使用Promise异步回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -5471,7 +5471,7 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 | --------------------------  | ---- | ------------ |
 | TAG_AUDIO_VIVID             | 1    | AUDIO VIVID  |
 
-## DecoderType<sup>18+</sup>
+## DecoderType<sup>19+</sup>
 
 枚举，设备所支持的解码格式。
 
@@ -5484,7 +5484,7 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 | OH_AVCODEC_MIMETYPE_AUDIO_VIVID    | "audio/av3a" | AUDIO AV3A  |
 
 
-## ResolutionLevel<sup>18+</sup>
+## ResolutionLevel<sup>19+</sup>
 
 枚举，设备所支持的分辨率。
 
