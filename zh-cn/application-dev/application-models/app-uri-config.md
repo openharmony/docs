@@ -109,4 +109,4 @@
 
 2. 在设置-存储-该应用详情页，显示“前往“xxx”清理数据”的选项，点击即可跳转至对应的Ability，进行数据清理操作。效果图如下：
 
-![app-uri-config_storage](figures/app_uri_config_storage.png)
+    ![app-uri-config_storage](figures/app_uri_config_storage.png)
