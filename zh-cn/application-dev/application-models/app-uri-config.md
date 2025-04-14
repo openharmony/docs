@@ -79,11 +79,11 @@
 ]
 ```
 
-### 应用沙盒清理页面接入场景
+### 应用缓存清理页面接入场景
 
 通过对指定Ability配置值为AppStorageMgmt的linkFeature即可实现应用沙盒清理页面的接入：
 
-1. 在工程的Module.json5中，对实现了数据清理功能的Ability添加下述uri配置；
+1. 在[module.json5配置文件](../quick-start/module-configuration-file.md)中，对实现了数据清理功能的Ability添加如下skills配置。
 
     ```json
     {
@@ -107,6 +107,11 @@
     }
     ```
 
-2. 在设置-存储-该应用详情页，显示“前往“xxx”清理数据”的选项，点击即可跳转至对应的Ability，进行数据清理操作。效果图如下：
+2. 功能验证。
 
-    ![app-uri-config_storage](figures/app_uri_config_storage.png)
+   1. 在手机的“设置 > 存储”页面，选择当前应用，进入应用详情页。
+   2. 点击“前往xx清理数据”的选项，即可跳转至对应的缓存数据清理页面。
+
+效果图如下：
+
+![app-uri-config_storage](figures/app_uri_config_storage.png)
