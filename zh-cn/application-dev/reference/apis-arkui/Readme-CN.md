@@ -130,6 +130,7 @@
       - [自定义绘制](arkui-ts/ts-universal-attributes-draw-modifier.md)
       - [自定义内容](arkui-ts/ts-universal-attributes-content-modifier.md)
       - [自定义属性设置](arkui-ts/ts-universal-attributes-custom-property.md)
+      - [自定义窗口工具栏](arkui-ts/ts-universal-attributes-toolbar.md)
       - 触摸交互控制<!--touch-interactions-->
         - [触摸热区设置](arkui-ts/ts-universal-attributes-touch-target.md)
         - [触摸测试控制](arkui-ts/ts-universal-attributes-hit-test-behavior.md)
@@ -326,6 +327,7 @@
     - [ToolBarV2](arkui-ts/ohos-arkui-advanced-ToolBarV2.md)
     - [SubHeader](arkui-ts/ohos-arkui-advanced-SubHeader.md)
     - [SubHeaderV2](arkui-ts/ohos-arkui-advanced-SubHeaderV2.md)
+    - [ToolBarItem](arkui-ts/ts-basic-components-toolbaritem.md)
   - 菜单<!--menus-->
     - [Menu](arkui-ts/ts-basic-components-menu.md)
     - [MenuItem](arkui-ts/ts-basic-components-menuitem.md)
