@@ -12,8 +12,8 @@
 
 | 参数名      | 参数类型                                                                                         | 必填 | 参数描述                                                                                                                                        |
 | ----------- | ------------------------------------------------------------------------------------------------ | ---- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| movingPhotoFormat<sup>14+</sup>  | [PixelMapFormat](#pixelmapformat)    | 否   | 设置动态照片组件封面图片的解码格式。                  |
-| dynamicRangeMode<sup>14+</sup>  | [DynamicRangeMode](#dynamicrangemode) | 否   | 设置动态照片组件封面图片的RangeMode样式。 |
+| movingPhotoFormat<sup>14+</sup>  | [PixelMapFormat](#pixelmapformat14)    | 否   | 设置动态照片组件封面图片的解码格式。                  |
+| dynamicRangeMode<sup>14+</sup>  | [DynamicRangeMode](#dynamicrangemode14) | 否   | 设置动态照片组件封面图片的RangeMode样式。 |
 
 ## PixelMapFormat<sup>14+</sup>
 
