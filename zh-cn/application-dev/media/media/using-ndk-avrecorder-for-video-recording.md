@@ -476,7 +476,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
       uint64_t surfaceId = 0;
       OH_NativeWindow_GetSurfaceId(window, &surfaceId);
 
-      // 将surfaceId传入数据采集模块，常用的为相机模块。相机详细步骤请参考[相机-录像方案](../camera/native-camera-recording.md)。
+      // 将surfaceId传入数据采集模块，具体请参考相机模块。
 
       int result = 0;
       napi_value res;
