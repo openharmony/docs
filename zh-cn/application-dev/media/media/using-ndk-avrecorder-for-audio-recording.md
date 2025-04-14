@@ -95,7 +95,7 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
                   errorCode, errorMsg);
    }
 
-   // 设置生成媒体文件回调（选择AUTO_CREATE时设置）。
+   // 设置生成媒体文件回调（fileGenerationMode选择AUTO_CREATE时设置）。
    void OnUri(OH_AVRecorder *recorder, OH_MediaAsset *asset, void *userData)
    {
       (void)recorder;
@@ -167,7 +167,7 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
 
         SetConfig(*config);
 
-        // 1. 设置URL（选择APP_CREATE时设置）。
+        // 1. 设置URL（fileGenerationMode选择APP_CREATE时设置）。
         const std::string AVREORDER_ROOT = "/data/storage/el2/base/files/";
         int32_t outputFd = open((AVREORDER_ROOT + "avrecorder01.mp3").c_str(), O_RDWR | O_CREAT, 0777); // 设置文件名。
         std::string fileUrl = "fd://" + std::to_string(outputFd);
@@ -181,7 +181,7 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
         // 错误回调。
         OH_AVRecorder_SetErrorCallback(g_avRecorder, OnError, nullptr);
 
-        // 生成媒体文件回调（选择AUTO_CREATE时设置）。
+        // 生成媒体文件回调（fileGenerationMode选择AUTO_CREATE时设置）。
         OH_LOG_INFO(LOG_APP, "==NDKDemo== OH_AVRecorder_SetUriCallback in!");
         OH_AVErrCode ret = OH_AVRecorder_SetUriCallback(g_avRecorder, OnUri, nullptr);
         OH_LOG_INFO(LOG_APP, "==NDKDemo== OH_AVRecorder_SetUriCallback out!");
@@ -303,7 +303,7 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
                   errorCode, errorMsg);
    }
 
-   // 设置生成媒体文件回调（选择AUTO_CREATE时设置）。
+   // 设置生成媒体文件回调（fileGenerationMode选择AUTO_CREATE时设置）。
    void OnUri(OH_AVRecorder *recorder, OH_MediaAsset *asset, void *userData)
    {
       (void)recorder;
@@ -361,7 +361,7 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
 
       SetConfig(*config);
 
-      // 1.1 设置URL（选择APP_CREATE时设置）。
+      // 1.1 设置URL（fileGenerationMode选择APP_CREATE时设置）。
       const std::string AVREORDER_ROOT = "/data/storage/el2/base/files/";
       int32_t outputFd = open((AVREORDER_ROOT + "avrecorder01.mp3").c_str(), O_RDWR | O_CREAT, 0777); // 设置文件名。
       std::string fileUrl = "fd://" + std::to_string(outputFd);
@@ -375,7 +375,7 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
       // 错误回调。
       OH_AVRecorder_SetErrorCallback(g_avRecorder, OnError, nullptr);
 
-      // 生成媒体文件回调（选择AUTO_CREATE时设置）。
+      // 生成媒体文件回调（fileGenerationMode选择AUTO_CREATE时设置）。
       OH_AVErrCode ret = OH_AVRecorder_SetUriCallback(g_avRecorder, OnUri, nullptr);
       if (ret == AV_ERR_OK) {
          OH_LOG_INFO(LOG_APP, "==NDKDemo==  OH_AVRecorder_SetUriCallback succeed!");
