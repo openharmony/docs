@@ -266,7 +266,7 @@ constructor(items: SegmentButtonV2ItemOptions[])
 
 构造函数。
 
-**原子化服务 API**： 从 API version 18 开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从 API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力**： SystemCapability.ArkUI.ArkUI.Full
 
@@ -282,7 +282,7 @@ get hasHybrid():boolean
 
 是否有图文混合选项。
 
-**原子化服务 API**： 从 API version 18 开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从 API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力**： SystemCapability.ArkUI.ArkUI.Full
 
@@ -296,7 +296,7 @@ get hasHybrid():boolean
 
 **装饰器类型**： @ObservedV2
 
-**原子化服务 API**： 从 API version 18 开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从 API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力**： SystemCapability.ArkUI.ArkUI.Full
 
@@ -306,18 +306,18 @@ get hasHybrid():boolean
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                     | 类型                                                                 | 装饰器类型 | 必填 | 说明                                            |
+| 名称                     | 类型                                                                 | 必填 | 装饰器类型 | 说明                                            |
 | ------------------------ | -------------------------------------------------------------------- | ------ | ---- | ----------------------------------------------- |
-| text                     | [ResourceStr](ts-types.md#resourcestr)                               | @Trace | 否   | 分段按钮选项文本。<br>默认值：undefined                              |
-| icon                     | [ResourceStr](ts-types.md#resourcestr)                               | @Trace | 否   | 分段按钮选项图片类型图标。<br>默认值：undefined                      |
-| symbol                   | [Resource](ts-types.md#resource)                                     | @Trace | 否   | 分段按钮选项 HM Symbol 类型图标。<br>默认值：undefined               |
-| enabled                  | boolean                                                              | @Trace | 否   | 分段按钮选项是否可用。<br>默认值：true。<br>true：分段按钮选项可用；false：分段按钮选项不可用。                          |
-| textModifier             | [TextModifier](ts-universal-attributes-attribute-modifier.md)        | @Trace | 否   | 分段按钮选项文本属性样式修改器。<br>默认值：undefined                |
-| iconModifier             | [ImageModifier](ts-universal-attributes-attribute-modifier.md)       | @Trace | 否   | 分段按钮选项图片类型图标属性样式修改器。<br>默认值：undefined        |
-| symbolModifier           | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | @Trace | 否   | 分段按钮选项 HM Symbol 类型图标属性样式修改器。<br>默认值：undefined |
-| accessibilityText        | [ResourceStr](ts-types.md#resourcestr)                               | @Trace | 否   | 分段按钮选项无障碍文本。<br>默认值：""                        |
-| accessibilityDescription | [ResourceStr](ts-types.md#resourcestr)                               | @Trace | 否   | 分段按钮选项无障碍说明。<br>默认值：""                        |
-| accessibilityLevel       | string                                                               | @Trace | 否   | 分段按钮选项[无障碍重要性](ts-universal-attributes-accessibility.md#accessibilitylevel)。<br/>默认值："auto"                      |
+| text                     | [ResourceStr](ts-types.md#resourcestr)                               | 否 | @Trace   | 分段按钮选项文本。<br>默认值：undefined                              |
+| icon                     | [ResourceStr](ts-types.md#resourcestr)                               | 否 | @Trace   | 分段按钮选项图片类型图标。<br>默认值：undefined                      |
+| symbol                   | [Resource](ts-types.md#resource)                                     | 否 | @Trace   | 分段按钮选项 HM Symbol 类型图标。<br>默认值：undefined               |
+| enabled                  | boolean                                                              | 否 | @Trace   | 分段按钮选项是否可用。<br>默认值：true。<br>true：分段按钮选项可用；false：分段按钮选项不可用。                          |
+| textModifier             | [TextModifier](ts-universal-attributes-attribute-modifier.md)        | 否 | @Trace   | 分段按钮选项文本属性样式修改器。<br>默认值：undefined                |
+| iconModifier             | [ImageModifier](ts-universal-attributes-attribute-modifier.md)       | 否 | @Trace   | 分段按钮选项图片类型图标属性样式修改器。<br>默认值：undefined        |
+| symbolModifier           | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | @Trace   | 分段按钮选项 HM Symbol 类型图标属性样式修改器。<br>默认值：undefined |
+| accessibilityText        | [ResourceStr](ts-types.md#resourcestr)                               | 否 | @Trace   | 分段按钮选项无障碍文本。<br>默认值：""                        |
+| accessibilityDescription | [ResourceStr](ts-types.md#resourcestr)                               | 否 | @Trace   | 分段按钮选项无障碍说明。<br>默认值：""                        |
+| accessibilityLevel       | string                                                               | 否 | @Trace   | 分段按钮选项[无障碍重要性](ts-universal-attributes-accessibility.md#accessibilitylevel)。<br/>默认值："auto"                      |
 
 > **说明** 
 >
@@ -330,13 +330,13 @@ constructor(options: SegmentButtonV2ItemOptions)
 
 构造函数。
 
-**原子化服务 API**： 从 API version 18 开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从 API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力**： SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
-| 名称    | 类型                                                      | 必填 | 说明                   |
+| 参数名    | 类型                                                      | 必填 | 说明                   |
 | ------- | --------------------------------------------------------- | ---- | ---------------------- |
 | options | [SegmentButtonV2ItemOptions](#segmentbuttonv2itemoptions) | 是   | 分段按钮选项配置参数。 |
 
@@ -346,7 +346,7 @@ get isHybrid():boolean
 
 分段按钮选项是否同时配置了文本和图标。
 
-**原子化服务 API**： 从 API version 18 开始，该接口支持在原子化服务中使用。
+**原子化服务API**： 从 API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力**： SystemCapability.ArkUI.ArkUI.Full
 
