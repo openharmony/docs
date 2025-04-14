@@ -13,6 +13,8 @@
 
 提供ArkWeb在Native侧的能力，如网页刷新、执行JavaScript、注册回调等。
 
+更多详细介绍请参考[应用侧与前端页面的相互调用(C/C++)](../../web/arkweb-ndk-jsbridge.md)、[建立应用侧与前端页面数据通道(C/C++)](../../web/arkweb-ndk-page-data-channel.md)和[拦截Web组件发起的网络请求](../../web/web-scheme-handler.md)。
+
 **起始版本：** 12
 
 
