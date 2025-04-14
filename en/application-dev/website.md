@@ -501,6 +501,7 @@
         - Theme Settings<!--arkts-theme-->
           - [Configuring In-Application Theme Skinning](ui/theme_skinning.md)
         - [Using the UI Context API for UI Operations (UIContext)](ui/arkts-global-interface.md)
+        - [Using the UI Context API for UI Operations (UIContext)](ui/arkts-global-interface.md)
         - Launching Pages Across Processes<!--arkts-ui-cross-process-->
           - [Atomic Service Full Screen Launch Component (FullScreenLaunchComponent)](ui/arkts-FullScreenComponent.md)
         <!--Del-->
@@ -931,8 +932,10 @@
         - MD Operations<!--crypto-generate-message-->
           - [MD Overview and Algorithm Specifications](security/CryptoArchitectureKit/crypto-generate-message-digest-overview.md)
           - MD Generation Development<!--crypto-generate-message-digest-dev-->
-            - [MD Operations (ArkTS)](security/CryptoArchitectureKit/crypto-generate-message-digest.md)
-            - [MD Operations (C/C++)](security/CryptoArchitectureKit/crypto-generate-message-digest-ndk.md)
+            - [Generating an MD Using SHA-256 (ArkTS)](security/CryptoArchitectureKit/crypto-generate-message-digest.md)
+            - [Generating an MD Using SHA-256 (C/C++)](security/CryptoArchitectureKit/crypto-generate-message-digest-ndk.md)
+            - [Generating an MD Using MD5 (ArkTS)](security/CryptoArchitectureKit/crypto-generate-message-digest-md5.md)
+            - [Generating an MD Using MD5 (C/C++)](security/CryptoArchitectureKit/crypto-generate-message-digest-md5-ndk.md) 
         - [MAC Operation](security/CryptoArchitectureKit/crypto-compute-mac.md)
         - [Random Number Generation](security/CryptoArchitectureKit/crypto-generate-random-number.md)
         - Key Derivation<!--crypto-key-derivation-->
@@ -1070,12 +1073,14 @@
         - Data Transmission Capabilities of Network Kit<!--network-kit-data-transmission-->
             - [HTTP Data Request](network/http-request.md)
             - [WebSocket Connection](network/websocket-connection.md)
+            - [WebSocket Connection (C/C++)](network/native-websocket-guidelines.md)
             - [Socket Connection](network/socket-connection.md)
             - [MDNS](network/net-mdns.md)
         - Network Management Capabilities of Network Kit<!--network-kit-network-management-->
             - [Network Connection Management](network/net-connection-manager.md)
             - [NetConnection Development (C/C++)](network/native-netmanager-guidelines.md)
             - [Traffic Management](network/net-statistics.md)
+            - [VPN Extension Ability Development](network/net-vpnExtension.md)
           <!--Del-->
             - [Network Firewall (For System Applications Only)](network/net-netfirewall.md)
             - [Network Sharing (for System Applications Only)](network/net-sharing.md)
@@ -1134,9 +1139,21 @@
           - [Using the Delayed Copy and Paste Function of the Pasteboard](basic-services/pasteboard/pasteboard-time-lapse-copy-and-paste.md)
         - Upload and Download<!--upload-download-->
           - [Uploading and Downloading Application Files](basic-services/request/app-file-upload-download.md)
+        - Compression and Decompression<!--compress-->
+          - [Compressing and Decompressing Files](basic-services/compress/deflate-and-inflate.md)
       - Function Flow Runtime Kit<!--ffrt-kit-->
         - [Introduction to Function Flow Runtime Kit](ffrt/ffrt-overview.md)
-        - [Function Flow Runtime Development](ffrt/ffrt-development-guideline.md)
+        - [Function Flow Runtime Paradigms](ffrt/ffrt-concurrency-paradigm.md)
+        - Function Flow Runtime Development Samples (C)<!--ffrt-example-c-->
+          - [Serial Queue (C)](ffrt/ffrt-concurrency-serial-queue-c.md)
+          - [Concurrent Queue (C)](ffrt/ffrt-concurrency-concurrent-queue-c.md)
+          - [Task Graph (C)](ffrt/ffrt-concurrency-graph-c.md)
+        - Function Flow Runtime Development Samples (C++)<!--ffrt-example-cpp-->
+          - [Serial Queue (C++)](ffrt/ffrt-concurrency-serial-queue-cpp.md)
+          - [Concurrent Queue (C++)](ffrt/ffrt-concurrency-concurrent-queue-cpp.md)
+          - [Task Graph (C++)](ffrt/ffrt-concurrency-graph-cpp.md)
+        - [Function Flow Runtime Development]](ffrt/ffrt-development-guideline.md)
+        - [Function Flow Runtime C APIs](ffrt/ffrt-api-guideline-c.md)
       - Input Kit<!--input-kit-->
         - [Introduction to Input Kit](device/input/input-overview.md)
         - [Input Device Development](device/input/inputdevice-guidelines.md)
@@ -1318,7 +1335,9 @@
         - [Audio Decoding](media/avcodec/audio-decoding.md)
         - [Video Encoding](media/avcodec/video-encoding.md)
         - [Temporal Layered Video Encoding](media/avcodec/video-encoding-temporal-scalability.md)
+        - [Video Encoding Configurations for Typical Scenarios](media/avcodec/video-encoding-configuration-typical-scenarios.md)
         - [Video Decoding](media/avcodec/video-decoding.md)
+        - [Concurrently Creating a Video Decoder and Initializing NativeWindow](media/avcodec/parallel-decoding-nativeWindow.md)
       - Media Data Muxing and Demuxing<!--file-muxing-demuxing-->
         - [Media Data Muxing](media/avcodec/audio-video-muxer.md)
         - [Media Data Demuxing](media/avcodec/audio-video-demuxer.md)
@@ -1502,6 +1521,7 @@
       - [Obtaining Device Location Information](device/location/location-guidelines.md)
       - [Geocoding and Reverse Geocoding](device/location/geocode-guidelines.md)
       - [Geofencing](device/location/geofence-guidelines.md)
+      - [FenceExtensionAbility](device/location/fenceExtensionAbility.md)
       - [Samples](device/location/app-samples.md)
     - Notification Kit<!--notification-kit-->
       - [Introduction to Notification Kit](notification/notification-overview.md)
@@ -1580,6 +1600,7 @@
           - [Running or Stopping an Event Loop in an Asynchronous Thread Using Node-API Extensions](napi/use-napi-event-loop.md)
           - [Loading a Module Using Node-API](napi/use-napi-load-module-with-info.md)
           - [Passing a Task with the Specified Priority to an ArkTS Thread from an Asynchronous Thread Using Node-API](napi/use-call-threadsafe-function-with-priority.md)
+          - [Calling an ArkTS Method with Return Value of a promise Using Node-API](napi/use-napi-method-promise.md)
         - [Node-API FAQs](napi/use-napi-faqs.md)
       - Using JSVM-API<!--jsvm-->
         - [JSVM-API Overview](napi/jsvm-introduction.md)
@@ -1626,9 +1647,6 @@
         - [QoS Development](napi/qos-guidelines.md)
       - Memory Management<!--memory-management-->
         - [Purgeable Memory Development](napi/purgeable-memory-guidelines.md)
-      - Device Management<!--device-management-->
-        - [USB DDK Development](napi/usb-ddk-guidelines.md)
-        - [HID DDK Development](napi/hid-ddk-guidelines.md)
       - Bundle Management<!--bundle-management-->
         - [Native Bundle Development](napi/native-bundle-guidelines.md)
     - Debugging and Profiling<!--debugging-profiling-->
@@ -1689,6 +1707,7 @@
           - [@ohos.app.ability.AbilityConstant (AbilityConstant) (System API)](reference/apis-ability-kit/js-apis-app-ability-abilityConstant-sys.md)
           - [@ohos.app.ability.application (Application) (System API)](reference/apis-ability-kit/js-apis-app-ability-application-sys.md)
           - [@ohos.app.ability.AutoFillExtensionAbility (AutoFillExtensionAbility) (System API)](reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md)
+          - [@ohos.app.ability.autoFillManager (autoFillManager) (System API)](reference/apis-ability-kit/js-apis-app-ability-autoFillManager-sys.md)
           - [@ohos.app.ability.autoStartupManager (autoStartupManager) (System API)](reference/apis-ability-kit/js-apis-app-ability-autoStartupManager-sys.md)
           - [@ohos.app.ability.common (Context) (System API)](reference/apis-ability-kit/js-apis-app-ability-common-sys.md)
           - [@ohos.app.ability.dialogSession (dialogSession) (System API)](reference/apis-ability-kit/js-apis-app-ability-dialogSession-sys.md)
@@ -2415,6 +2434,9 @@
           - [ForEach](reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md)
           - [LazyForEach](reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md)
           - [Repeat](reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md)
+          <!--Del-->
+          - [State Management with Application-level Variables (System API)](reference/apis-arkui/arkui-ts/ts-state-management-sys.md)
+          <!--DelEnd-->
         - Common Definitions<!--common-definitions-->
           - [Basic Types](reference/apis-arkui/arkui-ts/ts-types.md)
           - [Pixel Units](reference/apis-arkui/arkui-ts/ts-pixel-units.md)
@@ -2696,6 +2718,7 @@
           - [Focus Error Codes](reference/apis-arkui/errorcode-focus.md)
           - [System Resource Error Codes](reference/apis-arkui/errorcode-system-resource.md)
           - [Sheet Error Codes](reference/apis-arkui/errorcode-bindSheet.md)
+          - [Scrollable Component Error Codes](reference/apis-arkui/errorcode-scroll.md)
         - Graphics<!--arkui-graphics-images-arkts-errcode-->
           - [Display Error Codes](reference/apis-arkui/errorcode-display.md)
           - [Window Error Codes](reference/apis-arkui/errorcode-window.md)
@@ -2922,6 +2945,7 @@
         - Structs<!--localization-struct-->
           - [RawFileDescriptor](reference/apis-localization-kit/_raw_file_descriptor.md)
           - [RawFileDescriptor64](reference/apis-localization-kit/_raw_file_descriptor64.md)
+          - [ResourceManager_Configuration](reference/apis-localization-kit/_resource_manager___configuration.md)
       - Error Codes<!--localization-arkts-errcode-->
         - [I18n Error Codes](reference/apis-localization-kit/errorcode-i18n.md)
         - [Resource Manager Error Codes](reference/apis-localization-kit/errorcode-resource-manager.md)
@@ -3194,7 +3218,6 @@
       - Telephony Kit<!--telephony-api-->
         - ArkTS APIs<!--telephony-arkts-->
           - [@ohos.telephony.call (Call)](reference/apis-telephony-kit/js-apis-call.md)
-          - [@ohos.telephony.esim (eSIM Management)](reference/apis-telephony-kit/js-apis-esim.md)
           - [@ohos.telephony.data (Cellular Data)](reference/apis-telephony-kit/js-apis-telephony-data.md)
           - [@ohos.telephony.observer (Observer)](reference/apis-telephony-kit/js-apis-observer.md)
           - [@ohos.telephony.radio (Radio)](reference/apis-telephony-kit/js-apis-radio.md)
@@ -3203,7 +3226,6 @@
           <!--Del-->
           - [@ohos.telephony.call (Call) (System API)](reference/apis-telephony-kit/js-apis-call-sys.md)
           - [@ohos.telephony.data (Cellular Data) (System API)](reference/apis-telephony-kit/js-apis-telephony-data-sys.md)
-          - [@ohos.telephony.esim (eSIM Management) (System API)](reference/apis-telephony-kit/js-apis-esim-sys.md)
           - [@ohos.telephony.observer (Observer) (System API)](reference/apis-telephony-kit/js-apis-observer-sys.md)
           - [@ohos.telephony.radio (Radio) (System API)](reference/apis-telephony-kit/js-apis-radio-sys.md)
           - [@ohos.telephony.sim (SIM Management) (System API)](reference/apis-telephony-kit/js-apis-sim-sys.md)
@@ -4070,6 +4092,7 @@
         - [@ohos.geoLocationManager (Geolocation Manager) (System API)](reference/apis-location-kit/js-apis-geoLocationManager-sys.md)
         <!--DelEnd-->
         - [@ohos.app.ability.FenceExtensionAbility (FenceExtensionAbility)](reference/apis-location-kit/js-apis-app-ability-FenceExtensionAbility.md)
+        - [@ohos.app.ability.FenceExtensionContext (FenceExtensionContext)](reference/apis-location-kit/js-apis-app-ability-FenceExtensionContext.md)
         <!--Del-->
         - [@ohos.app.ability.FenceExtensionContext (FenceExtensionContext) (System API)](reference/apis-location-kit/js-apis-app-ability-FenceExtensionContext-sys.md)
         <!--DelEnd-->
