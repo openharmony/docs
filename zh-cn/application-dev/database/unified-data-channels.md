@@ -47,19 +47,32 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
 
 ### 数据提供方
 
-1. 导入unifiedDataChannel和uniformTypeDescriptor模块。
+1. 导入unifiedDataChannel、uniformTypeDescriptor和uniformDataStruct模块。
 
    ```ts
-   import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
+   import { unifiedDataChannel, uniformTypeDescriptor, uniformDataStruct } from '@kit.ArkData';
    ```
 2. 创建一个统一数据对象并插入到UDMF的公共数据通路中。
 
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
-   let plainText = new unifiedDataChannel.PlainText();
-   plainText.textContent = 'hello world!';
-   let unifiedData = new unifiedDataChannel.UnifiedData(plainText);
+   import { image } from '@kit.ImageKit';
+
+   let plainTextObj : uniformDataStruct.PlainText = {
+     uniformDataType: 'general.plain-text',
+     textContent : 'The weather is very good today',
+     abstract : 'The weather is very good today',
+   }
+   let plainText = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainTextObj);
+   let unifiedData = new unifiedDataChannel.UnifiedData(plainText); 
    
+   let arrayBuffer = new ArrayBuffer(4*3*3);
+   let opt : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 3, width: 3 }, alphaType: 3 };
+   let pixelMap : uniformDataStruct.PixelMap = {
+     uniformDataType : 'openharmony.pixel-map',
+     pixelMap : image.createPixelMapSync(arrayBuffer, opt),
+   }
+   unifiedData.addRecord(new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.OPENHARMONY_PIXEL_MAP, pixelMap));   
    // 指定要插入数据的数据通路枚举类型
    let options: unifiedDataChannel.Options = {
      intention: unifiedDataChannel.Intention.DATA_HUB
@@ -80,10 +93,13 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
 3. 更新上一步骤插入的统一数据对象。
 
    ```ts
-   let plainTextUpdate = new unifiedDataChannel.PlainText();
-   plainTextUpdate.textContent = 'How are you!';
+   let plainTextObjUpdate : uniformDataStruct.PlainText = {
+     uniformDataType: 'general.plain-text',
+     textContent : 'How are you?',
+   }
+   let plainTextUpdate = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainTextObjUpdate);
    let unifiedDataUpdate = new unifiedDataChannel.UnifiedData(plainTextUpdate);
-   
+
    // 指定要更新的统一数据对象的URI
    let optionsUpdate: unifiedDataChannel.Options = {
      // 此处的key值仅为示例，不可直接使用，其值与insertData接口回调函数中key保持一致
@@ -118,9 +134,18 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
          for (let i = 0; i < data.length; i++) {
            let records = data[i].getRecords();
            for (let j = 0; j < records.length; j++) {
-             if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
-               let text = records[j] as unifiedDataChannel.PlainText;
-               console.info(`${i + 1}.${text.textContent}`);
+             let types : Array<string> = records[j].getTypes();
+             if (types.includes(uniformTypeDescriptor.UniformDataType.OPENHARMONY_PIXEL_MAP)) {
+               let pixelMap = records[j].getEntry(uniformTypeDescriptor.UniformDataType.OPENHARMONY_PIXEL_MAP) as uniformDataStruct.PixelMap;
+               if (pixelMap != undefined) {
+                 console.info(`PixelMap type: ${pixelMap.uniformDataType}`);
+               }
+             }
+             if (types.includes(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT)) {
+               let text = records[j].getEntry(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) as uniformDataStruct.PlainText;
+               if (text != undefined) {
+                 console.info(`PlainText type: ${text.uniformDataType}`);
+               }
              }
            }
          }
@@ -136,10 +161,10 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
    
 ### 数据访问方
 
-1. 导入unifiedDataChannel和uniformTypeDescriptor模块。
+1. 导入unifiedDataChannel、uniformTypeDescriptor和uniformDataStruct模块。
 
    ```ts
-   import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
+   import { unifiedDataChannel, uniformTypeDescriptor, uniformDataStruct } from '@kit.ArkData';
    ```
 2. 查询存储在UDMF公共数据通路中的全量统一数据对象。
 
@@ -148,8 +173,7 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
    // 指定要查询数据的数据通路枚举类型
    let options: unifiedDataChannel.Options = {
      intention: unifiedDataChannel.Intention.DATA_HUB
-   };
-
+   };   
    try {
      unifiedDataChannel.queryData(options, (err, data) => {
        if (err === undefined) {
@@ -157,9 +181,18 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
          for (let i = 0; i < data.length; i++) {
            let records = data[i].getRecords();
            for (let j = 0; j < records.length; j++) {
-             if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
-               let text = records[j] as unifiedDataChannel.PlainText;
-               console.info(`${i + 1}.${text.textContent}`);
+             let types : Array<string> = records[j].getTypes();
+             if (types.includes(uniformTypeDescriptor.UniformDataType.OPENHARMONY_PIXEL_MAP)) {
+               let pixelMap = records[j].getEntry(uniformTypeDescriptor.UniformDataType.OPENHARMONY_PIXEL_MAP) as uniformDataStruct.PixelMap;
+               if (pixelMap != undefined) {
+                 console.info(`PixelMap type: ${pixelMap.uniformDataType}`);
+               }
+             }
+             if (types.includes(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT)) {
+               let text = records[j].getEntry(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) as uniformDataStruct.PlainText;
+               if (text != undefined) {
+                 console.info(`PlainText type: ${text.uniformDataType}`);
+               }
              }
            }
          }
