@@ -66,7 +66,7 @@
 ## 配置示例
 
 
-下面以授权登录场景举例说明：
+### 授权登录场景
 
 ```json
 "uris": [
@@ -78,30 +78,37 @@
     }
 ]
 ```
-以应用沙盒清理页面接入场景举例说明：
+
+### 应用沙盒清理页面接入场景
+
+通过对指定Ability配置值为AppStorageMgmt的linkFeature即可实现应用沙盒清理页面的接入：
+
+1. 在工程的Module.json5中，对实现了数据清理功能的Ability添加下述uri配置；
 
 ```json
 {
-    "name": "ClearAbility",
-    "srcEntry": "./ets/clearability/ClearAbility.ets",
-    "description": "$string:ClearAbility_desc",
-    "icon": "$media:layered_image",
-    "label": "$string:ClearAbility_label",
-    "skills": [
+  "name": "ClearAbility",
+  "srcEntry": "./ets/clearability/ClearAbility.ets",
+  "description": "$string:ClearAbility_desc",
+  "icon": "$media:layered_image",
+  "label": "$string:ClearAbility_label",
+  "skills": [
+    {
+      "uris": [
         {
-            "uris": [
-                {
-                    "scheme": "storage",
-                    "host": "developer.huawei.com",
-                    "path": "clearcache",
-                    "linkFeature": "AppStorageMgmt"
-                }
-            ]
+          "scheme": "storage",
+          "host": "developer.huawei.com",
+          "path": "clearcache",
+          "linkFeature": "AppStorageMgmt"
         }
-    ]
+      ]
+    }
+  ]
 }
 ```
+
+2. 在设置-存储-该应用详情页，显示“前往“xxx”清理数据”的选项，点击即可跳转至对应的Ability，进行数据清理操作。
+
 效果图如下：
-<!--RP2-->
-![app-uri-config](figures/app-uri-config.png)
-<!--RP2End-->
+
+![app-uri-config_storage](figures/app_uri_config_storage.png)
