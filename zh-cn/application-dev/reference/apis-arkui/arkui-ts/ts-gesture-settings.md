@@ -57,7 +57,7 @@
 
 ## GestureEvent对象说明
 
-继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明)。
+继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明8)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
