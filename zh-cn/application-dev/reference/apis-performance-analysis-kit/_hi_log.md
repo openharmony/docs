@@ -339,6 +339,7 @@ int OH_LOG_Print (LogType type, LogLevel level, unsigned int domain, const char 
 **返回：**
 
 大于等于0表示成功；小于0表示失败。
+失败原因：LogLevel传入的级别低于当前允许打印的级别、domain超出范围、tag为空指针、以及CPU高负载、低内存、整机日志量过大等场景下日志写入socket失败。
 
 
 ### OH_LOG_SetCallback()
