@@ -2907,7 +2907,6 @@
         - Structs<!--localization-struct-->
           - [RawFileDescriptor](reference/apis-localization-kit/_raw_file_descriptor.md)
           - [RawFileDescriptor64](reference/apis-localization-kit/_raw_file_descriptor64.md)
-          - [ResourceManager_Configuration](reference/apis-localization-kit/_resource_manager___configuration.md)
       - Error Codes<!--localization-arkts-errcode-->
         - [I18n Error Codes](reference/apis-localization-kit/errorcode-i18n.md)
         - [Resource Manager Error Codes](reference/apis-localization-kit/errorcode-resource-manager.md)
