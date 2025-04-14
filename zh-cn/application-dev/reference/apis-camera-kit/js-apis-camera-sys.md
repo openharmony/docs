@@ -2455,7 +2455,7 @@ function enableMacro(photoSession: camera.PhotoSessionForSys): void {
 |-------------------------------|-----|---------------------------|
 | MOON_CAPTURE_BOOST            | 0   | 月亮场景。**系统接口：** 此接口为系统接口。  |
 | TRIPOD_DETECTION<sup>13+</sup> | 1   | 使用脚架拍摄的场景。**系统接口：** 此接口为系统接口。  |
-| LOW_LIGHT_BOOST<sup>13+</sup> | 1   | 长曝光场景。**系统接口：** 此接口为系统接口。 |
+| LOW_LIGHT_BOOST<sup>13+</sup> | 2   | 长曝光场景。**系统接口：** 此接口为系统接口。 |
 
 ## SceneFeatureDetectionResult<sup>12+</sup>
 
