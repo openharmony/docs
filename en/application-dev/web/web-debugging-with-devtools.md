@@ -313,7 +313,7 @@ Copy the following information to create an .sh file. Note that you need to run 
   * Ensure that the step of [Enabling Web Debugging for Application Code](#enabling-web-debugging-for-application-code) is performed.
   * Ensure that the application uses the **Web** component to load the web page.
 
-### What should I do if port forwarding fails?
+### What should I do if port forwarding fails
 **Symptom**
 
    The configured forwarding task is not displayed after the following command is executed.
