@@ -183,7 +183,7 @@ AppStorage中的属性可以被双向同步，数据可以是存在于本地或�
 
 4. 状态装饰器装饰的变量，改变会引起UI的渲染更新，如果改变的变量不是用于UI更新，只是用于消息传递，推荐使用emitter方式。例子可见<!--Del-->[<!--DelEnd-->不建议借助@StorageLink的双向同步机制实现事件通知<!--Del-->](#不建议借助storagelink的双向同步机制实现事件通知)<!--DelEnd-->。
 
-5. AppStorage同一进程内共享，UIAbility和[UIExtensionAbility](../application-models/uiextensionability.md)是两个进程，所以在[UIExtensionAbility](../application-models/uiextensionability.md)中不共享主进程的AppStorage。
+5. AppStorage同一进程内共享，UIAbility和<!--Del-->[<!--DelEnd-->UIExtensionAbility<!--Del-->](../application-models/uiextensionability.md)<!--DelEnd-->是两个进程，所以在<!--Del-->[<!--DelEnd-->UIExtensionAbility<!--Del-->](../application-models/uiextensionability.md)<!--DelEnd-->中不共享主进程的AppStorage。
 
 
 ## 使用场景
