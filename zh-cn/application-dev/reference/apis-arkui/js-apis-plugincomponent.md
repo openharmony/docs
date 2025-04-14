@@ -39,15 +39,9 @@ type KVObject = { [key: string]: number | string | boolean | [] | KVObject }
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-
-| 类型              | 说明                                     |
-| --------------------- | ---------------------------------------- |
-| [key: string]         | 关键字，数据类型为字符串，可取空字符串。 |
-| number                | 键值，表示值类型为数字。                 |
-| string                | 键值，表示值类型为字符串，可取空字符串。 |
-| boolean               | 键值，表示值类型为布尔值。               |
-| []                    | 键值，可取值为[]。                       |
-| [KVObject](#kvobject) | 键值，表示值类型为KVObject。             |
+| 名称    | 类型   | 必填 | 说明                        |
+| ------- | ------ | ---- | --------------------------- |
+|  [key: string]  | number \| string \| boolean \| [] \| [KVObject](#kvobject)  | 是   | 键值对形式存储。<br/>number：键值，表示值类型为数字。<br/> string：键值，表示值类型为字符串，可取空字符串。<br/> boolean：键值，表示值类型为布尔值。<br/> []：键值，可取值为[]。<br/>[KVObject](#kvobject)：键值，表示值类型为KVObject。            |
 
 
 ### PushParameters
