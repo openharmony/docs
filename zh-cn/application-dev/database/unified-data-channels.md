@@ -57,7 +57,6 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
    import { image } from '@kit.ImageKit';
-   
    let plainTextObj : uniformDataStruct.PlainText = {
      uniformDataType: 'general.plain-text',
      textContent : 'The weather is very good today',
@@ -173,7 +172,8 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
    // 指定要查询数据的数据通路枚举类型
    let options: unifiedDataChannel.Options = {
      intention: unifiedDataChannel.Intention.DATA_HUB
-   };   
+   };
+   
    try {
      unifiedDataChannel.queryData(options, (err, data) => {
        if (err === undefined) {
