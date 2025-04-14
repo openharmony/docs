@@ -1143,7 +1143,7 @@ back(options?: RouterOptions ): void
 **示例：**
 
 ```ts
-router.back({ url: 'pages/detail' });
+this.getUIContext().getRouter().back({ url: 'pages/detail' });
 ```
 
 ## router.back<sup>(deprecated)</sup>
@@ -1172,10 +1172,10 @@ back(index: number, params?: Object): void;
 **示例：**
 
 ```ts
-router.back(1);
+this.getUIContext().getRouter().back(1);
 ```
 ```ts
-router.back(1, { info: '来自Home页' }); //携带参数返回
+this.getUIContext().getRouter().back(1, { info: '来自Home页' }); //携带参数返回
 ```
 
 ## router.clear<sup>(deprecated)</sup>
@@ -1197,7 +1197,7 @@ clear(): void
 **示例：**
 
 ```ts
-router.clear();
+this.getUIContext().getRouter().clear();
 ```
 
 ## router.getLength<sup>(deprecated)</sup>
@@ -1225,7 +1225,7 @@ getLength(): string
 **示例：**
 
 ```ts
-let size = router.getLength();
+let size = this.getUIContext().getRouter().getLength();
 console.log('pages stack size = ' + size);
 ```
 
@@ -1254,7 +1254,7 @@ getState(): RouterState
 **示例：** 
 
 ```ts
-let page = router.getState();
+let page = this.getUIContext().getRouter().getState();
 console.log('current index = ' + page.index);
 console.log('current name = ' + page.name);
 console.log('current path = ' + page.path);
@@ -1389,7 +1389,7 @@ showAlertBeforeBackPage(options: EnableAlertOptions): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  router.showAlertBeforeBackPage({
+  this.getUIContext().getRouter().showAlertBeforeBackPage({
     message: 'Message Info'
   });
 } catch (err) {
@@ -1427,7 +1427,7 @@ hideAlertBeforeBackPage(): void
 **示例：**
 
 ```ts
-router.hideAlertBeforeBackPage();
+this.getUIContext().getRouter().hideAlertBeforeBackPage();
 ```
 
 ##  router.getParams<sup>(deprecated)</sup>
@@ -1455,7 +1455,7 @@ getParams(): Object
 **示例：**
 
 ```ts
-router.getParams();
+this.getUIContext().getRouter().getParams();
 ```
 
 ## RouterOptions
@@ -1523,7 +1523,7 @@ export default {
 // 在detail页面中
 export default {
   onInit() {
-    console.info('showData1:' + router.getParams()['data1']);
+    console.info('showData1:' + this.getUIContext().getRouter().getParams()['data1']);
   }
 }
 ```
@@ -1625,8 +1625,8 @@ class routerParams {
 struct Second {
   private content: string = "这是第二页"
   // 建议使用this.getUIContext().getRouter().getParams()
-  @State text: string = (router.getParams() as routerParams).text
-  @State data: object = (router.getParams() as routerParams).data
+  @State text: string = (this.getUIContext().getRouter().getParams() as routerParams).text
+  @State data: object = (this.getUIContext().getRouter().getParams() as routerParams).data
   @State secondData: string = ''
 
   build() {
