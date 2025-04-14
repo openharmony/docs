@@ -25,7 +25,7 @@ NDK提供了NodeAdapten对象替代ArkTS侧的LazyForEach功能，用于按需�
 
 ## 实现懒加载适配器
 
-使用ArkUListltemAdapter类来管理懒加载适配器，在类的构造中创建NodeAdapter对象，并给NodeAdapter对象设置事件监听器，在类的析构函数中，销毁NodeAdapter对象。
+使用ArkUListItemAdapter类来管理懒加载适配器，在类的构造中创建NodeAdapter对象，并给NodeAdapter对象设置事件监听器，在类的析构函数中，销毁NodeAdapter对象。
 
    ```
    // ArkUIListItemAdapter
@@ -450,7 +450,7 @@ NDK提供了NodeAdapten对象替代ArkTS侧的LazyForEach功能，用于按需�
             if(!cachedItems_.empty()){ 
                 //使用并更新回收复用的缓存。 
                 auto recycledItem = cachedItems_.top(); 
-                auto textItem = std::dynamic_pointer_cast<ArkUINode>(recycledItem->GetChildren().back()); 
+                auto textItem = std::dynamic_pointer_cast<ArkUITextNode>(recycledItem->GetChildren().back()); 
                 textItem->SetTextContent(data_[index]); 
                 handle = recycledItem->GetHandle(); 
                 auto swipeContent = recycledItem->GetSwipeContent(); 
@@ -610,7 +610,7 @@ NDK提供了NodeAdapten对象替代ArkTS侧的LazyForEach功能，用于按需�
             header->SetTextAlign(ARKUI_TEXT_ALIGNMENT_CENTER);
             auto listItemGroup= std::make_shared<ArkUIListItemGroupNode>(); 
             listItemGroup->SetHeader(header); 
-            auto adapter = std::make_shared<ArkUIListItemGroupNode>(4); 
+            auto adapter = std::make_shared<ArkUIListItemAdapter>(4); 
             listItemGroup->SetLazyAdapter(adapter); 
             list->AddChild(listItemGroup); 
         }
