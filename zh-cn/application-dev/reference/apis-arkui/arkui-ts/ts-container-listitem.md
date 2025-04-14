@@ -102,7 +102,7 @@ selectable(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                              |
 | ------ | ------- | ---- | ------------------------------------------------- |
-| value  | boolean | 是   | ListItem元素是否可以被鼠标框选。<br/>默认值：true |
+| value  | boolean | 是   | ListItem元素是否可以被鼠标框选。设置为true时可以被鼠标框选，设置为false时无法被鼠标框选。<br/>默认值：true |
 
 ### selected<sup>10+</sup>
 
@@ -120,7 +120,7 @@ selected(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                     |
 | ------ | ------- | ---- | ---------------------------------------- |
-| value  | boolean | 是   | 当前ListItem选中状态。<br/>默认值：false |
+| value  | boolean | 是   | 当前ListItem选中状态。设置为true时为选中状态，设置为false时为默认状态。<br/>默认值：false |
 
 ### swipeAction<sup>9+</sup>
 
