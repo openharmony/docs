@@ -394,7 +394,7 @@ Whatever declared in **build()** are called UI descriptions. UI descriptions mus
   }
   ```
 
-- Directly changing a state variable is not allowed. The following example should be avoided: For details, see State Variables Modification in build() Is Forbidden.
+-  Directly changing a state variable is not allowed. The following example should be avoided: For details, see <!--Del-->[<!--DelEnd-->State Variables Modification in build() Is Forbidden<!--Del-->](./arkts-state.md#state-variables-modification-in-build()-is-forbidden)<!--DelEnd-->.
 
   ```ts
   @Component
