@@ -11,7 +11,7 @@
 
 ## 子组件
 
-不支持自定义组件作为子组件， 仅可包含子组件[TabContent](ts-container-tabcontent.md)， 以及渲染控制类型[if/else](../../../quick-start/arkts-rendering-control-ifelse.md)和[ForEach](../../../quick-start/arkts-rendering-control-foreach.md), 并且if/else和ForEach下也仅支持TabContent, 不支持自定义组件。
+不支持自定义组件作为子组件，仅可包含子组件[TabContent](ts-container-tabcontent.md)，以及渲染控制类型[if/else](../../../quick-start/arkts-rendering-control-ifelse.md)和[ForEach](../../../quick-start/arkts-rendering-control-foreach.md)，并且if/else和ForEach下也仅支持TabContent，不支持自定义组件。
 
 >  **说明：**
 >
@@ -245,7 +245,7 @@ divider(value: DividerStyle | null)
 
 | 参数名 | 类型                                                      | 必填 | 说明                                                         |
 | ------ | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [DividerStyle](#dividerstyle10对象说明)&nbsp;\|&nbsp;null | 是   | 分割线样式，默认不显示分割线。<br/>DividerStyle: 分割线的样式；<br/>null: 不显示分割线。 |
+| value  | [DividerStyle](#dividerstyle10对象说明)&nbsp;\|&nbsp;null | 是   | 分割线样式，默认不显示分割线。<br/>DividerStyle：分割线的样式；<br/>null：不显示分割线。 |
 
 ### fadingEdge<sup>10+</sup>
 
@@ -2158,37 +2158,20 @@ struct TabsBarModifierExample {
 
 ```ts
 // xxx.ets
-class TabsMyDataSource implements IDataSource {
-  private list: number[] = []
-  constructor(list: number[]) {
-    this.list = list
-  }
-  totalCount(): number {
-    return this.list.length
-  }
-  getData(index: number): number {
-    return this.list[index]
-  }
-  registerDataChangeListener(listener: DataChangeListener): void {
-  }
-  unregisterDataChangeListener() {
-  }
-}
 @Entry
 @Component
 struct TabsExample {
   @State currentIndex: number = 0
   @State currentAnimationMode: AnimationMode = AnimationMode.CONTENT_FIRST
   private controller: TabsController = new TabsController()
-  private data: TabsMyDataSource = new TabsMyDataSource([])
-  private sum : number = 10
+  private data: number[] = []
+
   aboutToAppear(): void {
-    let list: number[] = []
-    for (let i = 0; i < this.sum; i++) {
-      list.push(i);
+    for (let i = 0; i < 10; i++) {
+      this.data.push(i);
     }
-    this.data = new TabsMyDataSource(list)
   }
+
   @Builder
   tabBuilder(title: string,targetIndex: number) {
     Column(){
@@ -2197,10 +2180,11 @@ struct TabsExample {
     .height(50)
     .justifyContent(FlexAlign.Center)
   }
+
   build() {
     Column() {
       Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.currentIndex }) {
-        LazyForEach(this.data, (item: string) => {
+        ForEach(this.data, (item: string) => {
           TabContent() {
             Column(){
               Text('' + item)
@@ -2208,8 +2192,6 @@ struct TabsExample {
           }.tabBar(this.tabBuilder('P' + item, parseInt(item)))
         }, (item: string) => item)
       }
-      .vertical(false)
-      .barMode(BarMode.Fixed)
       .barWidth(360)
       .barHeight(60)
       .animationMode(this.currentAnimationMode)
@@ -2220,8 +2202,9 @@ struct TabsExample {
       .width(360)
       .height(120)
       .backgroundColor('#F1F3F5')
-      .scrollable(true)
+
       Text('AnimationMode:' + AnimationMode[this.currentAnimationMode])
+
       Button('AnimationMode').width('50%').margin({ top: 1 }).height(25)
         .onClick(()=>{
           if (this.currentAnimationMode === AnimationMode.CONTENT_FIRST) {
@@ -2242,3 +2225,60 @@ struct TabsExample {
 ```
 
 ![tabs15](figures/tabs15.gif)
+
+### 示例16（设置边缘滑动效果）
+
+本示例通过edgeEffect实现了不同的边缘滑动效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TabsExample {
+  @State edgeEffect: EdgeEffect = EdgeEffect.Spring
+
+  build() {
+    Column() {
+      Tabs() {
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#00CB87')
+        }.tabBar('green')
+
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#007DFF')
+        }.tabBar('blue')
+
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#FFBF00')
+        }.tabBar('yellow')
+
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#E67C92')
+        }.tabBar('pink')
+      }
+      .width(360)
+      .height(296)
+      .margin({ top: 52 })
+      .backgroundColor('#F1F3F5')
+      .edgeEffect(this.edgeEffect)
+
+      Button('EdgeEffect.Spring').width('50%').margin({ top: 20 })
+        .onClick(() => {
+          this.edgeEffect = EdgeEffect.Spring
+        })
+
+      Button('EdgeEffect.Fade').width('50%').margin({ top: 20 })
+        .onClick(() => {
+          this.edgeEffect = EdgeEffect.Fade
+        })
+
+      Button('EdgeEffect.None').width('50%').margin({ top: 20 })
+        .onClick(() => {
+          this.edgeEffect = EdgeEffect.None
+        })
+    }.width('100%')
+  }
+}
+```
+
+![tabs16](figures/tabs_edges_slide.gif)
