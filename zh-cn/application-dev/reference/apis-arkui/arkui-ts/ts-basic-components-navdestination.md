@@ -75,7 +75,7 @@ hideTitleBar(value: boolean)
 
 hideTitleBar(hide: boolean, animated: boolean)
 
-设置是否隐藏标题栏。
+设置是否隐藏标题栏。与[hideTitleBar](#hidetitlebar)相比，新增标题栏显隐时是否使用动画。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -113,7 +113,7 @@ toolbarConfiguration(toolbarParam: Array&lt;ToolbarItem&gt; | CustomBuilder, opt
 
 hideToolBar(hide: boolean, animated?: boolean)
 
-设置是否隐藏工具栏。
+设置是否隐藏工具栏。与[hideToolBar](ts-basic-components-navigation.md#hidetoolbar)相比，新增工具栏显隐时是否使用动画。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
