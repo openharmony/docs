@@ -43,7 +43,7 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
 
 ## 开发步骤
 
-以一次多对多数据共享的过程为例说明开发步骤，数据提供方可以通过UMDF提供的insertData接口将数据写入公共数据通路，获取到的返回值（生成的数据的唯一标识符），可用于对其插入的数据进行更新和删除操作。数据访问方则可以通过UDMF提供的查询接口获取当前公共数据通路的全量数据。
+以PlainText、HTML、PixelMap三种数据进行多对多数据共享的过程为例说明开发步骤，数据提供方可以通过UMDF提供的insertData接口将数据写入公共数据通路，获取到的返回值（生成的数据的唯一标识符），可用于对其插入的数据进行更新和删除操作。数据访问方则可以通过UDMF提供的查询接口获取当前公共数据通路的全量数据。
 
 ### 数据提供方
 
@@ -57,28 +57,31 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
    import { image } from '@kit.ImageKit';
+   // 准备PlainText文本数据内容
    let plainTextObj : uniformDataStruct.PlainText = {
      uniformDataType: 'general.plain-text',
-     textContent : 'hello world',
-     abstract : 'this is abstract',
+     textContent : 'Hello world',
+     abstract : 'This is abstract',
    }
    let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainTextObj);
+   // 准备HTML数据内容
    let htmlObj : uniformDataStruct.HTML = {
      uniformDataType :'general.html',
-     htmlContent : '<div><p>hello world</p></div>',
-     plainContent : 'hello world',
+     htmlContent : '<div><p>Hello world</p></div>',
+     plainContent : 'Hello world',
    }
-   // 为该记录增加一种样式，两种样式存储的是同一个数据，系不同表达形式
+   // 为该记录增加一种样式，两种样式存储的是同一个数据，为不同表达形式
    record.addEntry(uniformTypeDescriptor.UniformDataType.HTML, htmlObj);
-   let unifiedData = new unifiedDataChannel.UnifiedData(record); 
-   
+   let unifiedData = new unifiedDataChannel.UnifiedData(record);
+
+   // 准备pixelMap数据内容
    let arrayBuffer = new ArrayBuffer(4*3*3);
    let opt : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 3, width: 3 }, alphaType: 3 };
    let pixelMap : uniformDataStruct.PixelMap = {
      uniformDataType : 'openharmony.pixel-map',
      pixelMap : image.createPixelMapSync(arrayBuffer, opt),
    }
-   unifiedData.addRecord(new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.OPENHARMONY_PIXEL_MAP, pixelMap));   
+   unifiedData.addRecord(new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.OPENHARMONY_PIXEL_MAP, pixelMap));
    // 指定要插入数据的数据通路枚举类型
    let options: unifiedDataChannel.Options = {
      intention: unifiedDataChannel.Intention.DATA_HUB
@@ -101,14 +104,14 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
    ```ts
    let plainTextUpdate : uniformDataStruct.PlainText = {
      uniformDataType: 'general.plain-text',
-     textContent : 'how are you',
-     abstract : 'this is abstract',
+     textContent : 'How are you',
+     abstract : 'This is abstract',
    }
    let recordUpdate = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainTextUpdate);
    let htmlUpdate : uniformDataStruct.HTML = {
      uniformDataType :'general.html',
-     htmlContent : '<div><p>how are you</p></div>',
-     plainContent : 'how are you',
+     htmlContent : '<div><p>How are you</p></div>',
+     plainContent : 'How are you',
    }
    recordUpdate.addEntry(uniformTypeDescriptor.UniformDataType.HTML, htmlUpdate);
    let unifiedDataUpdate = new unifiedDataChannel.UnifiedData(recordUpdate);
@@ -139,7 +142,7 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
    let optionsDelete: unifiedDataChannel.Options = {
      intention: unifiedDataChannel.Intention.DATA_HUB
    };
-   
+
    try {
      unifiedDataChannel.deleteData(optionsDelete, (err, data) => {
        if (err === undefined) {
@@ -184,7 +187,7 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
    let options: unifiedDataChannel.Options = {
      intention: unifiedDataChannel.Intention.DATA_HUB
    };
-   
+
    try {
      unifiedDataChannel.queryData(options, (err, data) => {
        if (err === undefined) {
