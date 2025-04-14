@@ -14,6 +14,8 @@ UDMF标准化数据定义包括[标准化数据类型](uniform-data-type-descrip
 
 ![multi-entry-structure](image.png)
 
+在上图中，不同的UnifiedRecord表示不同的记录，不同记录之间承载的内容是不一致的；在同一个UnifiedRecord中，同一内容以不同的样式存储，丰富了数据的表现形式。
+
 ## 相关实例
 
 针对标准化数据定义的开发，有以下相关实例可供参考：
