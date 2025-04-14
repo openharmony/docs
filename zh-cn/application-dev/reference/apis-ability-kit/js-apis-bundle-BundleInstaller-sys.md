@@ -6,11 +6,13 @@
 >
 > 本模块首批接口从API version 7 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
+> 从API Version 9开始，该模块不再维护，建议使用[@ohos.bundle.installer.install](js-apis-installer-sys.md)替代。
+>
 > 本模块为系统接口。
 
 ## BundleInstaller.install<sup>(deprecated)<sup>
 
-> 从API version 9开始不再维护，建议使用[@ohos.bundle.installer.install](js-apis-installer-sys.md)替代。
+> 从API version 9开始不再维护，建议使用[@ohos.bundle.installer.install](js-apis-installer-sys.md#bundleinstallerinstall)替代。
 
 install(bundleFilePaths: Array&lt;string&gt;, param: InstallParam, callback: AsyncCallback&lt;InstallStatus&gt;): void;
 
@@ -63,7 +65,7 @@ bundleInstall.getBundleInstaller().then(installer => {
 
 ## BundleInstaller.uninstall<sup>(deprecated)<sup>
 
-> 从API version 9开始不再维护，建议使用[uninstall](js-apis-installer-sys.md)替代。
+> 从API version 9开始不再维护，建议使用[uninstall](js-apis-installer-sys.md#bundleinstalleruninstall)替代。
 
 uninstall(bundleName: string, param: InstallParam, callback: AsyncCallback&lt;InstallStatus&gt;): void;
 
@@ -115,7 +117,7 @@ bundleInstall.getBundleInstaller().then(installer => {
 ```
 ## BundleInstaller.recover<sup>(deprecated)<sup>
 
-> 从API version 9开始不再维护，建议使用[recover](js-apis-installer-sys.md)替代。
+> 从API version 9开始不再维护，建议使用[recover](js-apis-installer-sys.md#bundleinstallerrecover)替代。
 
 recover(bundleName: string, param: InstallParam, callback: AsyncCallback&lt;InstallStatus&gt;): void;
 
@@ -167,6 +169,8 @@ bundleInstall.getBundleInstaller().then(installer => {
 ```
 
 ## InstallParam<sup>(deprecated)<sup>
+
+> 从API version 9开始不再维护，建议使用[InstallParam](js-apis-installer-sys.md#installparam)替代。
 
 安装、恢复或卸载时需要指定的参数。
 
