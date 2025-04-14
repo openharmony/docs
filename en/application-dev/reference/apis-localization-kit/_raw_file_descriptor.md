@@ -11,6 +11,7 @@ Defines the file descriptor of a rawfile.
 
 **Related module**: [Rawfile] (rawfile.md)
 
+**Header file**: [raw_file.h](raw__file_8h.md)
 
 ## Summary
 

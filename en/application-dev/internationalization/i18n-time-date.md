@@ -8,7 +8,7 @@ Time and date formatting includes date and time formatting, relative time format
 
 ## Constraints
 
-1. The date format and time format must be set at the same time. If the date format, but not the time format, is set, only the date format is displayed. If the time format, but not the date format, is set, only the time format is displayed.
+1. The date format and time format must be set at the same time. If the time format, but not the date format, is set, only the time is displayed; if the date format, but not the time format, is set, only the date is displayed.
 
 2. If the date or time format is specified, setting of the year, month, day, hour, minute, second, and weekday formats is not supported. If the date or time format is not set, the year, month, day, hour, minute, second, and weekday formats can be set independently.
 
@@ -61,7 +61,7 @@ The following uses 13:04:00 and 00:25:00 on September 17, 2021 and locales **zh-
 
 **Table 2** Time display format (timeStyle)
 
-| Value  | Description| 2021-09-17 13:04:00 for Locale zh-CN|2021-09-17 13:04:00 for Locale en|
+| Value  | Description| 2021-09-17 13:04:00 for Locale zh-CN| 2021-09-17 13:04:00 for Locale en|
 | ------ | ------------- | -------- | -------- |
 | full   | Complete time display, including the time zone and time accurate to seconds.| 中国标准时间 13:04:00 | 13:04:00 China Standard Time |
 | long   | Long time display, including the time zone expressed in the format of GMT + time zone offset and time accurate to seconds.| GMT+8 13:04:00 | 13:04:00 GMT+8 |
@@ -72,8 +72,8 @@ The following uses 13:04:00 and 00:25:00 on September 17, 2021 and locales **zh-
 
 | Value| Description| 2021-09-17 13:04:00 for Locale zh-CN| 2021-09-17 13:04:00 for Locale en|
 | -------- | --------- | -------- | -------- |
-| numeric | Complete year| 2021| 2021 |
-| 2-digit | 2-digit year display| 21| 21 |
+| numeric | Complete year| 2021年| 2021 |
+| 2-digit | 2-digit year display| 21年| 21 |
 
 **Table 4** Weekday display format (weekday)
 
