@@ -5508,29 +5508,35 @@ on(type: 'rotationChange', callback: RotationChangeCallback&lt;info: RotationCha
 **示例：**
 
 ```ts
-function calculateRect(info: window.RotationChangeInfo) : window.Rect => {
+function calculateRect(info: window.RotationChangeInfo): window.Rect {
     // calculate result with info
+    let rect : window.Rect = {
+      left: 0,
+      top: 0,
+      width: 500,
+      height: 600,
+    }
     return rect;
 }
 
-const callback = (info: window.RotationChangeInfo) => window.RotationChangeResult | void {
-    if (info.type === window.RotationChangeType.WINDOW_WILL_ROTATE) {
-        let result: window.RotationChangeResult = {
-          rectType: window.RectType.RELATIVE_TO_SCREEN;
-          windowRect: {
-            left: 0,
-            top: 0,
-            width: 0,
-            height: 0,
-          }
-        };
-        result.rectType = window.RectType.RELATIVE_TO_SCREEN;
-        result.windowRect = calculateRect(info);
-        return result;
-    } else {
-        // do something after rotate
-        return;
+const callback = (info: window.RotationChangeInfo): window.RotationChangeResult | void => {
+  let result: window.RotationChangeResult = {
+    rectType: window.RectType.RELATIVE_TO_SCREEN;
+    windowRect: {
+      left: 0,
+      top: 0,
+      width: 0,
+      height: 0,
     }
+  };
+  if (info.type === window.RotationChangeType.WINDOW_WILL_ROTATE) {
+      result.rectType = window.RectType.RELATIVE_TO_SCREEN;
+      result.windowRect = calculateRect(info);
+      return result;
+  } else {
+      // do something after rotate
+      return;
+  }
 }
 
 try {
@@ -5571,7 +5577,7 @@ off(type: 'rotationChange', callback?: RotationChangeCallback&lt;info: RotationC
 **示例：**
 
 ```ts
-const callback = (info: window.RotationChangeInfo) => window.RotationChangeResult | void {
+const callback = (info: window.RotationChangeInfo): window.RotationChangeResult | void => {
   // ...
   return;
 }
