@@ -8,7 +8,9 @@
   - [Audio Decoding](audio-decoding.md)
   - [Video Encoding](video-encoding.md)
   - [Temporally Scalable Video Encoding](video-encoding-temporal-scalability.md)
+  - [Video Encoding Configurations for Typical Scenarios](video-encoding-configuration-typical-scenarios.md)
   - [Video Decoding](video-decoding.md)
+  - [Concurrently Creating a Video Decoder and Initializing NativeWindow](parallel-decoding-nativeWindow.md)
 - Media Data Muxing and Demuxing<!--file-muxing-demuxing-->
   - [Media Data Muxing](audio-video-muxer.md)
   - [Media Data Demuxing](audio-video-demuxer.md)
