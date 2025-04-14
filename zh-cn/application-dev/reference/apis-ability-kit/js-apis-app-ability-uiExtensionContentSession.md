@@ -27,7 +27,7 @@ loadContent(path: string, storage?: LocalStorage): void
 | 参数名  | 类型                                            | 必填 | 说明                                                         |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path    | string                                          | 是   | 设置加载页面的路径。                                         |
-| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | 否   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。默认为空。 |
+| storage | [LocalStorage](../../ui/state-management/arkts-localstorage.md) | 否   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。默认为空。 |
 
 **错误码：**
 
@@ -60,7 +60,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 
 loadContentByName(name: string, storage?: LocalStorage): void
 
-为[UIExtensionAbility](./js-apis-app-ability-uiExtensionAbility.md)加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，支持通过[LocalStorage](../../quick-start/arkts-localstorage.md)传递状态属性给被加载的页面。该接口用于开发者在UIExtensionAbility的[onSessionCreate](./js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessioncreate)生命周期加载命名路由页面。
+为[UIExtensionAbility](./js-apis-app-ability-uiExtensionAbility.md)加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，支持通过[LocalStorage](../../ui/state-management/arkts-localstorage.md)传递状态属性给被加载的页面。该接口用于开发者在UIExtensionAbility的[onSessionCreate](./js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessioncreate)生命周期加载命名路由页面。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -69,7 +69,7 @@ loadContentByName(name: string, storage?: LocalStorage): void
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------ |
 | name | string | 是 | 命名路由页面的名称。 |
-| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | 否 | 页面级UI状态存储单元，用于为加载的的页面传递状态属性，默认值为空。 |
+| storage | [LocalStorage](../../ui/state-management/arkts-localstorage.md) | 否 | 页面级UI状态存储单元，用于为加载的的页面传递状态属性，默认值为空。 |
 
 **错误码：**
 
