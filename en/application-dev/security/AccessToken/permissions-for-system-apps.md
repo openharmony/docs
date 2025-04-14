@@ -4586,3 +4586,15 @@ Allows an application to send notifications to the specified users in the system
 **Enable via ACL**: true
 
 **Valid since**: 18
+
+## ohos.permission.ALLOW_ACCESS_TIPS
+
+Allows a system application to start the components provided by Tips.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
