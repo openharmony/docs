@@ -1538,7 +1538,9 @@
           - [图片接收](media/image/image-receiver-native.md)
     - Media Kit（媒体服务）<!--media-kit-->
       - [Media Kit简介](media/media/media-kit-intro.md)
+      <!--Del-->
       - [Media Kit开发速览](media/media/media-kit-quick-overview.md)
+      <!--DelEnd-->
       - 媒体开发指导(ArkTS)<!--media-kit-dev--arkts-->
         - 播放<!--media-playback-arkts-->
           - [使用AVPlayer播放音频(ArkTS)](media/media/using-avplayer-for-playback.md)
