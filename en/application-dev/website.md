@@ -1152,7 +1152,7 @@
           - [Serial Queue (C++)](ffrt/ffrt-concurrency-serial-queue-cpp.md)
           - [Concurrent Queue (C++)](ffrt/ffrt-concurrency-concurrent-queue-cpp.md)
           - [Task Graph (C++)](ffrt/ffrt-concurrency-graph-cpp.md)
-        - [Function Flow Runtime Development]](ffrt/ffrt-development-guideline.md)
+        - [Function Flow Runtime Development](ffrt/ffrt-development-guideline.md)
         - [Function Flow Runtime C APIs](ffrt/ffrt-api-guideline-c.md)
       - Input Kit<!--input-kit-->
         - [Introduction to Input Kit](device/input/input-overview.md)
@@ -2945,7 +2945,6 @@
         - Structs<!--localization-struct-->
           - [RawFileDescriptor](reference/apis-localization-kit/_raw_file_descriptor.md)
           - [RawFileDescriptor64](reference/apis-localization-kit/_raw_file_descriptor64.md)
-          - [ResourceManager_Configuration](reference/apis-localization-kit/_resource_manager___configuration.md)
       - Error Codes<!--localization-arkts-errcode-->
         - [I18n Error Codes](reference/apis-localization-kit/errorcode-i18n.md)
         - [Resource Manager Error Codes](reference/apis-localization-kit/errorcode-resource-manager.md)
