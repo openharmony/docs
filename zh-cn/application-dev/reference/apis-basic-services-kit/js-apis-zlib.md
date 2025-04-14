@@ -4064,7 +4064,7 @@ gzbuffer(size: number):Promise&lt;number&gt;
 
 ```ts
 import { fileIo as fs } from '@kit.CoreFileKit';
-import { zlib } from '@kit.BasicServicesKit'
+import { zlib } from '@kit.BasicServicesKit';
 
 async function gzbufferDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzbuffer");
