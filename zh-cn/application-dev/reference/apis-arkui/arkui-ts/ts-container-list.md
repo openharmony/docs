@@ -171,7 +171,7 @@ List设置cachedCount后，显示区域外上下各会预加载并布局cachedCo
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
 | count  | number | 是   | 预加载的ListItem的数量。<br/>默认值：根据屏幕内显示的节点个数设置，最大值为16。 <br/>取值范围：[0, +∞) |
-| show  | boolean | 是   | 被预加载的ListItem是否需要显示。 <br/> 默认值：false，不显示预加载的ListItem。 |
+| show  | boolean | 是   | 被预加载的ListItem是否需要显示。设置为true时显示预加载的ListItem，设置为false时不显示预加载的ListItem。 <br/> 默认值：false |
 
 ### editMode<sup>(deprecated)</sup>
 
@@ -344,7 +344,7 @@ scrollSnapAlign(value: ScrollSnapAlign)
 
 enableScrollInteraction(value: boolean)
 
-设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。
+设置是否支持滚动手势。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -354,7 +354,7 @@ enableScrollInteraction(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                |
 | ------ | ------- | ---- | ----------------------------------- |
-| value  | boolean | 是   | 是否支持滚动手势。<br/>默认值：true |
+| value  | boolean | 是   | 是否支持滚动手势。设置为true时可以通过手指或者鼠标滚动，设置为false时无法通过手指或者鼠标滚动，但不影响控制器[Scroller](ts-container-scroll.md#scroller)的滚动接口。<br/>默认值：true |
 
 ### nestedScroll<sup>10+</sup>
 
@@ -698,7 +698,7 @@ onItemMove(event: (from: number, to: number) => boolean)
 
 | 类型    | 说明           |
 | ------- | -------------- |
-| boolean | 是否已经移动。 |
+| boolean | 是否已经移动。返回值为true时列表元素发生移动，返回值为false时列表元素没有移动。 |
 
 ### onItemDragStart<sup>8+</sup>
 
