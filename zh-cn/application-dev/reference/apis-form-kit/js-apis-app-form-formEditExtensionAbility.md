@@ -20,4 +20,4 @@ import { FormEditExtensionAbility } from '@kit.FormKit';
 **系统能力：** SystemCapability.Ability.Form
   | 名称 | 类型    | 只读 | 可选  |说明|
   | ------ | ------ | ---- | ---- | ---- |
-  | context |  [FormEditExtensionContext](./js-apis-inner-application-formEditExtensionContext.md) | 否   | 否 |FormEditExtensionAbility的上下文环境，默认值是继承自UIExtensionContext的对象。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+  | context |  [FormEditExtensionContext](./js-apis-inner-application-formEditExtensionContext.md) | 否   | 否 |FormEditExtensionAbility的上下文环境，默认值是继承自UIExtensionContext的对象。|
