@@ -2243,8 +2243,8 @@ InputMethod_ErrorCode OH_TextConfig_SetPlaceholder (InputMethod_TextConfig * con
 | 名称 | 描述 | 
 | -------- | -------- |
 | config | 指向即将被设置值的[InputMethod_TextConfig](#inputmethod_textconfig)实例的指针。 | 
-| placeholder | 绑定输入法调用时占位文本指针,文本编码格式为UTF-16 | 
-| length |占位文本实际占用chart_t（双字节）长度,内部判断文本长度不超过256个UTF-16字符|
+| placeholder | 占位文本指针,文本编码格式为UTF-16,最大长度为513个（如果输入的最大长度513个char16_t，最后1个必须是UTF-16的结尾符）即支持最多256个UTF-16字符（统计时最后一个字符如果是结尾符不计数）。该指针内容由调用方申请维护，且需要申请内存大小和参数length一致。| 
+| length |占位文本指针内存长度（计数单位：char16_t）， 如果传0，设置占位文本信息为空字符串。|
 
 **返回：**
 
@@ -2275,8 +2275,8 @@ InputMethod_ErrorCode OH_TextConfig_SetAbilityName (InputMethod_TextConfig *conf
 | 名称 | 描述 | 
 | -------- | -------- |
 | config | 指向即将被设置值的[InputMethod_TextConfig](#inputmethod_textconfig)实例的指针。 | 
-| abilityName | 绑定输入法调用时能力名称指针 | 
-| length |能力名称实际占用chart_t（双字节）长度,内部判断文本长度不超过256个UTF-16字符|
+| abilityName | 占位文本指针,文本编码格式为UTF-16,最大长度为513个（如果输入的最大长度65个char16_t，最后1个必须是UTF-16的结尾符）即支持最多256个UTF-16字符（统计时最后一个字符如果是结尾符不计数）。该指针内容由调用方申请维护，且需要申请内存大小和参数length一致。 | 
+| length |能力名称内存长度（计数单位：char16_t）， 如果传0，设置占位文本信息为空字符串。|
 
 **返回：**
 
@@ -3239,10 +3239,10 @@ InputMethod_ErrorCode OH_TextConfig_GetPlaceholder(InputMethod_TextConfig *confi
 
 **参数:**
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
 | config |指向[InputMethod_TextConfig](#inputmethod_textconfig)对象的指针,必填。 |
-| placeholder | 占位符的指针，需要外部调用方申请维护，该字段的最大长度为256个utf-16字符，建议申请申请512个char_16的内存大小；或者先根据实际大小来申请内存大小。 |
+| placeholder | 占位符的指针，需要外部调用方申请维护，该字段的最大长度为256个utf-16字符，建议申请申请513个char16_t(包含最后一个是结尾符)内存大小；或者先根据实际大小来申请内存大小。 |
 | length |输入输出参数，必填。输入用户申请内存的大小，返回placeholder真实的大小，计数单位：char16_t长度（双字节）。可以通过填0的方式先获取需要分配内存的实际大小|
 **返回：**
 
@@ -3273,7 +3273,7 @@ InputMethod_ErrorCode OH_TextConfig_GetAbilityName(InputMethod_TextConfig *confi
 | 名称 | 描述 | 
 | -------- | -------- |
 | config |指向[InputMethod_TextConfig](#inputmethod_textconfig)对象的指针，必填。 |
-| abilityName | 返回能力名称的指针，需要外部调用方申请维护，该字段的最大长度为32个utf-16字符，建议申请申请64个char_16的内存大小；或者先根据实际大小来申请内存大小。 |
+| abilityName | 返回能力名称的指针，需要外部调用方申请维护，该字段的最大长度为32个utf-16字符，建议申请申请65个char16_t(包含最后一个是结尾符)的内存大小；或者先根据实际大小来申请内存大小。 |
 | length |输入输出参数，必填。输入用户申请内存的大小，返回abilityName真实的大小，计数单位：char16_t长度（双字节）。可以通过填0的方式先获取需要分配内存的实际大小。|
 **返回：**
 
