@@ -108,7 +108,7 @@ selectable(value: boolean)
 
 selected(value: boolean)
 
-设置当前ListItem选中状态。该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。该属性需要在设置[选中态样式](./ts-universal-attributes-polymorphic-style.md)前使用才能生效选中态样式。
+设置当前ListItem选中状态。该属性支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。该属性需要在设置[选中态样式](./ts-universal-attributes-polymorphic-style.md)前使用才能生效选中态样式。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 

@@ -6,7 +6,7 @@
 
 ![zh-cn_image_frame-node01](figures/frame-node01.png)
 
-上述转换过程需要依赖额外的数据驱动，绑定至[Builder](../quick-start/arkts-builder.md)中，较为复杂且性能欠佳。这类框架通常依赖于ArkUI的布局、事件处理、基础的节点操作和自定义能力。大部分组件通过自定义实现，但需结合使用部分系统组件以实现混合显示，如下图示例既使用了FrameNode的自定义方法进行绘制，又使用了系统组件Column及其子组件Text，通过BuilderNode的方式将其挂载到根节点的FrameNode上混合显示。
+上述转换过程需要依赖额外的数据驱动，绑定至[Builder](../ui/state-management/arkts-builder.md)中，较为复杂且性能欠佳。这类框架通常依赖于ArkUI的布局、事件处理、基础的节点操作和自定义能力。大部分组件通过自定义实现，但需结合使用部分系统组件以实现混合显示，如下图示例既使用了FrameNode的自定义方法进行绘制，又使用了系统组件Column及其子组件Text，通过BuilderNode的方式将其挂载到根节点的FrameNode上混合显示。
 
 ![zh-cn_image_frame-node02](figures/frame-node02.png)
 

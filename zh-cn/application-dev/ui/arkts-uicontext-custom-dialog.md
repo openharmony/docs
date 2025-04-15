@@ -75,7 +75,7 @@
 
 ## 更新自定义弹出框的内容
 
-ComponentContent与[BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md)有相同的使用限制，不支持自定义组件使用[@Reusable](../../application-dev/quick-start/arkts-create-custom-components.md#自定义组件的基本结构)、[@Link](../../application-dev/quick-start/arkts-link.md)、[@Provide](../../application-dev/quick-start/arkts-provide-and-consume.md)、[@Consume](../../application-dev/quick-start/arkts-provide-and-consume.md)等装饰器，来同步弹出框弹出的页面与ComponentContent中自定义组件的状态。因此，若需要更新弹出框中自定义组件的内容可以通过ComponentContent提供的update方法来实现。
+ComponentContent与[BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md)有相同的使用限制，不支持自定义组件使用[@Reusable](../../application-dev/ui/state-management/arkts-create-custom-components.md#自定义组件的基本结构)、[@Link](../../application-dev/ui/state-management/arkts-link.md)、[@Provide](../../application-dev/ui/state-management/arkts-provide-and-consume.md)、[@Consume](../../application-dev/ui/state-management/arkts-provide-and-consume.md)等装饰器，来同步弹出框弹出的页面与ComponentContent中自定义组件的状态。因此，若需要更新弹出框中自定义组件的内容可以通过ComponentContent提供的update方法来实现。
 
 ```ts
 this.contentNode.update(new Params('update'))
