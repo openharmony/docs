@@ -618,7 +618,7 @@ struct Page {
 ```
 #### LazyForEach、组件复用和组件冻结混用场景
 在数据很多的长列表滑动场景下，开发者会使用LazyForEach来按需创建组件，同时配合组件复用降低在滑动过程中因创建和销毁组件带来的开销。
-但是开发者如果根据其复用类型不同，设置了<!--RP2-->[reuseId](../performance/component-recycle.md#接口说明)<!--RP2End-->，或者为了保证滑动性能设置了较大的cacheCount，这就可能使复用池或者LazyForEach缓存较多的节点。
+但是开发者如果根据其复用类型不同，设置了<!--RP2-->[reuseId](../../performance/component-recycle.md#接口说明)<!--RP2End-->，或者为了保证滑动性能设置了较大的cacheCount，这就可能使复用池或者LazyForEach缓存较多的节点。
 在这种情况下，如果开发者触发List下所有子节点的刷新，就会带来节点刷新数量过大的问题，这个时候，可以考虑搭配组件冻结使用。
 
 如下面例子：
@@ -972,7 +972,7 @@ struct Page {
 ```
 
 ## 限制条件
-如下面的例子所示，FreezeBuildNode中使用了自定义节点[BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md)。BuilderNode可以通过命令式动态挂载组件，而组件冻结又是强依赖父子关系来通知是否开启组件冻结。如果父组件使用组件冻结，且组件树的中间层级上又启用了BuilderNode，则BuilderNode的子组件将无法被冻结。
+如下面的例子所示，FreezeBuildNode中使用了自定义节点[BuilderNode](../../reference/apis-arkui/js-apis-arkui-builderNode.md)。BuilderNode可以通过命令式动态挂载组件，而组件冻结又是强依赖父子关系来通知是否开启组件冻结。如果父组件使用组件冻结，且组件树的中间层级上又启用了BuilderNode，则BuilderNode的子组件将无法被冻结。
 
 ```
 import { BuilderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI';

@@ -1,6 +1,6 @@
 # makeObserved接口：将非观察数据变为可观察数据
 
-为了将普通不可观察数据变为可观察数据，开发者可以使用[makeObserved接口](../reference/apis-arkui/js-apis-StateManagement.md#makeobserved)。
+为了将普通不可观察数据变为可观察数据，开发者可以使用[makeObserved接口](../../reference/apis-arkui/js-apis-StateManagement.md#makeobserved)。
 
 
 makeObserved可以在\@Trace无法标记的情况下使用。在阅读本文档前，建议提前阅读：[\@Trace](./arkts-new-observedV2-and-trace.md)。
@@ -154,7 +154,7 @@ makeObserved可以在\@Trace无法标记的情况下使用。在阅读本文档�
 
 ### makeObserved和@Sendable装饰的class配合使用
 
-[@Sendable](../arkts-utils/arkts-sendable.md)主要是为了处理应用场景中的并发任务。将makeObserved和@Sendable配合使用是为了满足一般应用开发中，在子线程做大数据处理，在UI线程做ViewModel的显示和观察数据的需求。@Sendable具体内容可参考[并发任务文档](../arkts-utils/multi-thread-concurrency-overview.md)。
+[@Sendable](../../arkts-utils/arkts-sendable.md)主要是为了处理应用场景中的并发任务。将makeObserved和@Sendable配合使用是为了满足一般应用开发中，在子线程做大数据处理，在UI线程做ViewModel的显示和观察数据的需求。@Sendable具体内容可参考[并发任务文档](../../arkts-utils/multi-thread-concurrency-overview.md)。
 
 本章节将说明下面的场景：
 - makeObserved在传入@Sendable类型的数据后有观察能力，且其变化可以触发UI刷新。
@@ -221,7 +221,7 @@ struct ObservedSendableTest {
 需要注意：数据的构建和处理可以在子线程中完成，但有观察能力的数据不能传给子线程，只有在主线程里才可以操作可观察的数据。所以上述例子中只是将`this.send`的属性`name`传给子线程操作。
 
 ### makeObserved和collections.Array/Set/Map配合使用
-collections提供ArkTS容器集，可用于并发场景下的高性能数据传递。详情见[@arkts.collections文档](../reference/apis-arkts/js-apis-arkts-collections.md)。
+collections提供ArkTS容器集，可用于并发场景下的高性能数据传递。详情见[@arkts.collections文档](../../reference/apis-arkts/js-apis-arkts-collections.md)。
 makeObserved可以在ArkUI中导入可观察的colletions容器，但makeObserved不能和状态管理V1的状态变量装饰器如@State和@Prop等配合使用，否则会抛出运行时异常。
 
 #### collections.Array

@@ -6,7 +6,7 @@ PersistenceV2是应用程序中的可选单例对象。此对象的作用是持�
 
 PersistenceV2提供状态变量持久化能力，开发者可以通过connect绑定同一个key，在状态变量变换和应用冷启动时，实现持久化能力。
 
-在阅读本文档前，建议提前阅读：[\@ComponentV2](./arkts-new-componentV2.md)，[\@ObservedV2和\@Trace](./arkts-new-observedV2-and-trace.md)，配合阅读：[PersistentV2-API文档](../reference/apis-arkui/js-apis-StateManagement.md#persistencev2)。
+在阅读本文档前，建议提前阅读：[\@ComponentV2](./arkts-new-componentV2.md)，[\@ObservedV2和\@Trace](./arkts-new-observedV2-and-trace.md)，配合阅读：[PersistentV2-API文档](../../reference/apis-arkui/js-apis-StateManagement.md#persistencev2)。
 
 >**说明：**
 >
@@ -22,7 +22,7 @@ PersistenceV2是在应用UI启动时会被创建的单例。它的目的是为�
 
 PersistenceV2可以和UI组件同步，且可以在应用业务逻辑中被访问。
 
-PersistenceV2支持应用的[主线程](../application-models/thread-model-stage.md)内多个UIAbility实例间的状态共享。
+PersistenceV2支持应用的[主线程](../../application-models/thread-model-stage.md)内多个UIAbility实例间的状态共享。
 
 
 ## 使用说明

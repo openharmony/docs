@@ -1168,7 +1168,7 @@ LocalStorage的目的是为了实现页面间的状态变量共享。之所以�
 **基本场景**
 
 V1:
-通过windowStage.[loadContent](../reference/apis-arkui/js-apis-window.md#loadcontent9)和[getShared](../reference/apis-arkui/arkui-ts/ts-state-management.md#getshared10)接口实现页面间的状态变量共享。
+通过windowStage.[loadContent](../../reference/apis-arkui/js-apis-window.md#loadcontent9)和[getShared](../../reference/apis-arkui/arkui-ts/ts-state-management.md#getshared10)接口实现页面间的状态变量共享。
 ```
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
@@ -2124,7 +2124,7 @@ struct Index1 {
 
 ### Environment->调用Ability接口直接获取系统环境变量
 V1中，开发者可以通过Environment来获取环境变量，但Environment获取的结果无法直接使用，需要配合AppStorage才能得到对应环境变量的值。
-在切换V2的过程中，开发者无需再通过Environment来获取环境变量，可以直接通过[UIAbilityContext的config属性](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#属性)获取系统环境变量。
+在切换V2的过程中，开发者无需再通过Environment来获取环境变量，可以直接通过[UIAbilityContext的config属性](../../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#属性)获取系统环境变量。
 V1:
 以`languageCode`为例。
 ```ts
@@ -2374,7 +2374,7 @@ struct NewV2Component {
 
 #### List
 
-开发者可以通过[ChildrenMainSize](../reference/apis-arkui/arkui-ts/ts-container-list.md#childrenmainsize12)来设置List的子组件在主轴方向的大小信息。
+开发者可以通过[ChildrenMainSize](../../reference/apis-arkui/arkui-ts/ts-container-list.md#childrenmainsize12)来设置List的子组件在主轴方向的大小信息。
 
 V1：
 
@@ -2465,7 +2465,7 @@ struct ListExample {
 
 #### WaterFlow
 
-开发者可以通过[WaterFlowSections](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md#waterflowsections12)来设置WaterFlow瀑布流分组信息。
+开发者可以通过[WaterFlowSections](../../reference/apis-arkui/arkui-ts/ts-container-waterflow.md#waterflowsections12)来设置WaterFlow瀑布流分组信息。
 
 需要注意的是，数组arr的长度需要与WaterFlowSections的中所有SectionOptions的itemsCount的总和保持一致，否则WaterFlow无法处理，导致UI不刷新。
 
@@ -2640,7 +2640,7 @@ struct WaterFlowSample {
 
 #### attributeModifier
 
-开发者可以通过[attributeModifier](../reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置组件的属性方法。
+开发者可以通过[attributeModifier](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置组件的属性方法。
 
 V1：
 
@@ -2727,7 +2727,7 @@ struct AttributeDemo {
 
 #### CommonModifier
 
-动态设置组件的属性类。以[CommonModifier](../reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md#自定义modifier)为例。
+动态设置组件的属性类。以[CommonModifier](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md#自定义modifier)为例。
 
 V1：
 
@@ -2796,7 +2796,7 @@ struct Index {
 
 V2：
 
-但在状态管理V2中，[\@Local](./arkts-new-local.md)只能观察本身的变化，无法观察第一层的变化，又因为[CommonModifier](../reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md#自定义modifier)在框架内是通过其属性触发刷新，此时可以使用[makeObserved](./arkts-new-makeObserved.md)替代。
+但在状态管理V2中，[\@Local](./arkts-new-local.md)只能观察本身的变化，无法观察第一层的变化，又因为[CommonModifier](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md#自定义modifier)在框架内是通过其属性触发刷新，此时可以使用[makeObserved](./arkts-new-makeObserved.md)替代。
 
 具体示例如下：
 

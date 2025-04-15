@@ -4,14 +4,14 @@
 > 
 > Repeat从API version 12开始支持。
 > 
-> 本文档仅为开发者指南。API参数说明见：[Repeat API参数说明](../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md)。
+> 本文档仅为开发者指南。API参数说明见：[Repeat API参数说明](../../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md)。
 
 ## 概述
 
 Repeat基于数组类型数据来进行循环渲染，一般与容器组件配合使用。Repeat组件包含两种模式：**non-virtualScroll模式**和**virtualScroll模式**。
 
 - **non-virtualScroll模式**：Repeat在初始化页面时加载列表中的所有子组件，适合**短数据列表/组件全部加载**的场景。详细描述见[non-virtualScroll模式](#non-virtualscroll模式)。
-- **virtualScroll模式**（开启[virtualScroll](../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md#virtualscroll)开关）：Repeat根据容器组件的**有效加载范围（可视区域+预加载区域）** 加载子组件。当容器滑动/数组改变时，Repeat会根据父容器组件传递的参数重新计算有效加载范围，实时管理列表节点的创建与销毁。
+- **virtualScroll模式**（开启[virtualScroll](../../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md#virtualscroll)开关）：Repeat根据容器组件的**有效加载范围（可视区域+预加载区域）** 加载子组件。当容器滑动/数组改变时，Repeat会根据父容器组件传递的参数重新计算有效加载范围，实时管理列表节点的创建与销毁。
 <br/>该模式适合**需要懒加载的长数据列表/通过组件复用优化性能表现**的场景。详细描述见[virtualScroll模式](#virtualscroll模式)。
 
 > **说明：**
@@ -19,7 +19,7 @@ Repeat基于数组类型数据来进行循环渲染，一般与容器组件配�
 > Repeat与ForEach、LazyForEach的区别：
 > 
 > - 相较于[ForEach](arkts-rendering-control-foreach.md)组件，non-virtualScroll模式在以下两个维度实现了优化升级：首先，针对特定数组更新场景的渲染性能进行了优化；其次，将子组件的内容/索引管理职责转移至框架层面。
-> - 相较于[LazyForEach](arkts-rendering-control-lazyforeach.md)组件，virtualScroll模式直接监听状态变量的变化，而LazyForEach需要开发者实现[IDataSource](../reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md#idatasource10)接口，手动管理子组件内容/索引的修改。除此之外，Repeat还增强了节点复用能力，提高了长列表滑动和数据更新的渲染性能。Repeat增加了模板（template）的能力，在同一个数组中，根据开发者自定义的模板类型（template type）渲染不同的子组件。
+> - 相较于[LazyForEach](arkts-rendering-control-lazyforeach.md)组件，virtualScroll模式直接监听状态变量的变化，而LazyForEach需要开发者实现[IDataSource](../../reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md#idatasource10)接口，手动管理子组件内容/索引的修改。除此之外，Repeat还增强了节点复用能力，提高了长列表滑动和数据更新的渲染性能。Repeat增加了模板（template）的能力，在同一个数组中，根据开发者自定义的模板类型（template type）渲染不同的子组件。
 
 下面的示例代码使用Repeat组件的virtualScroll模式进行循环渲染。
 
@@ -75,12 +75,12 @@ struct RepeatExample {
 
 ## 使用限制
 
-- Repeat一般与容器组件配合使用，子组件应当是允许包含在容器组件中的子组件，例如，Repeat与[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)组件配合使用时，子组件必须为[ListItem](../reference/apis-arkui/arkui-ts/ts-container-listitem.md)组件。
+- Repeat一般与容器组件配合使用，子组件应当是允许包含在容器组件中的子组件，例如，Repeat与[List](../../reference/apis-arkui/arkui-ts/ts-container-list.md)组件配合使用时，子组件必须为[ListItem](../../reference/apis-arkui/arkui-ts/ts-container-listitem.md)组件。
 - 当Repeat与自定义组件或[@Builder函数](./arkts-builder.md)混用时，必须将RepeatItem类型整体进行传参，组件才能监听到数据变化，如果只传递`RepeatItem.item`或`RepeatItem.index`，将会出现UI渲染异常。详细见[Repeat与@Builder混用的限制](#repeat与builder混用的限制)。
 
 Repeat virtualScroll模式使用限制：
 
-- 必须在滚动类容器组件内使用，仅有[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md)以及[WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)组件支持Repeat virtualScroll模式。
+- 必须在滚动类容器组件内使用，仅有[List](../../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Grid](../../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Swiper](../../reference/apis-arkui/arkui-ts/ts-container-swiper.md)以及[WaterFlow](../../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)组件支持Repeat virtualScroll模式。
 - virtualScroll模式不支持V1装饰器，混用V1装饰器会导致渲染异常，不建议开发者同时使用。
 - 必须创建且只允许创建一个子组件，生成的子组件必须是允许包含在Repeat父容器组件中的子组件。
 - 滚动容器组件内只能包含一个Repeat。以List为例，同时包含ListItem、ForEach、LazyForEach的场景是不推荐的；同时包含多个Repeat也是不推荐的。
@@ -1060,7 +1060,7 @@ struct RepeatTemplateSingle {
 ![Repeat-case1-Error](./figures/Repeat-Case1-Error.gif)
 
 以下为修正后的示例：
-在一些场景中，我们不希望屏幕外的数据源变化影响屏幕中List列表Scroller停留的位置，可以通过List组件的[onScrollIndex](../ui/arkts-layout-development-create-list.md#响应滚动位置)事件对列表滚动动作进行监听，当列表发生滚动时，获取列表滚动位置。使用Scroller组件的[scrollToIndex](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scrolltoindex)特性，滑动到指定index位置，实现屏幕外的数据源增加/删除数据时，Scroller停留的位置不变的效果。
+在一些场景中，我们不希望屏幕外的数据源变化影响屏幕中List列表Scroller停留的位置，可以通过List组件的[onScrollIndex](../../ui/arkts-layout-development-create-list.md#响应滚动位置)事件对列表滚动动作进行监听，当列表发生滚动时，获取列表滚动位置。使用Scroller组件的[scrollToIndex](../../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scrolltoindex)特性，滑动到指定index位置，实现屏幕外的数据源增加/删除数据时，Scroller停留的位置不变的效果。
 
 示例代码仅对增加数据的情况进行展示。
 

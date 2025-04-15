@@ -17,7 +17,7 @@ Environment提供了读取系统某些环境变量的能力，具体见[Environm
 | ------------------ | ------------------ | ------------------ |
 | accessibilityEnabled              | boolean                  | 获取无障碍屏幕读取是否启用。                 |
 | colorMode              | ColorMode                  | 色彩模型类型：选项为ColorMode.LIGHT: 浅色，ColorMode.DARK: 深色。                 |
-| fontScale              | number                  | 字体大小比例。开发者需要配置[configuration](./app-configuration-file.md#configuration标签)使fontScale跟随系统变化。                |
+| fontScale              | number                  | 字体大小比例。开发者需要配置[configuration](../../quick-start/app-configuration-file.md#configuration标签)使fontScale跟随系统变化。                |
 | fontWeightScale              | number                  | 字体粗细程度。                |
 | layoutDirection              | LayoutDirection                  | 布局方向类型：包括LayoutDirection.LTR: 从左到右，LayoutDirection.RTL: 从右到左。                 |
 | languageCode              | string                  | 当前系统语言值，取值必须为小写字母，例如zh。                 |
@@ -89,7 +89,7 @@ if (lang.get() === 'zh') {
 ## 限制条件
 
 
-Environment和UIContext相关联，需要在[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)明确的时候才可以调用。可以通过在[runScopedTask](../reference/apis-arkui/js-apis-arkui-UIContext.md#runscopedtask)里明确上下文。如果没有在UIContext明确的地方调用，将导致无法查询到设备环境数据。
+Environment和UIContext相关联，需要在[UIContext](../../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)明确的时候才可以调用。可以通过在[runScopedTask](../../reference/apis-arkui/js-apis-arkui-UIContext.md#runscopedtask)里明确上下文。如果没有在UIContext明确的地方调用，将导致无法查询到设备环境数据。
 
 
 ```ts

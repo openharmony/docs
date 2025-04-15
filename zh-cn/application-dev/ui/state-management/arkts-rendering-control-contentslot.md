@@ -60,9 +60,9 @@ struct Parent {
 ```
 
 ### Native侧代码实现
-Napi的基础开发知识请查看以下文档：[开发导读](../napi/ndk-development-overview.md)。
+Napi的基础开发知识请查看以下文档：[开发导读](../../napi/ndk-development-overview.md)。
 
-本章节仅描述实现ContentSlot相关逻辑代码。创建C侧组件，具体请查看[使用NDK接口构建UI](../ui/ndk-build-ui-overview.md)。
+本章节仅描述实现ContentSlot相关逻辑代码。创建C侧组件，具体请查看[使用NDK接口构建UI](../ndk-build-ui-overview.md)。
 
 ```c++
 #include "napi/native_api.h"
