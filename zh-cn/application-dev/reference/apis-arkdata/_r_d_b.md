@@ -311,6 +311,18 @@
 ## 类型定义说明
 
 
+### Rdb_Tokenizer
+
+```
+typedef enum Rdb_Tokenizer Rdb_Tokenizer
+```
+
+**描述**
+
+描述数据库的分词器类型。
+
+**起始版本：** 17
+
 ### OH_Rdb_ConfigV2
 
 ```
@@ -743,6 +755,22 @@ typedef struct Rdb_TableDetails Rdb_TableDetails
 
 ## 枚举类型说明
 
+### Rdb_Tokenizer
+
+```
+enum Rdb_Tokenizer
+```
+
+**描述**
+
+描述数据库的分词器类型。
+
+**起始版本：** 17
+
+| 枚举值 | 描述 |
+| -------- | -------- |
+| RDB_NONE_TOKENIZER | 表示不使用分词器。 |
+| RDB_ICU_TOKENIZER | 表示使用原生ICU分词器。 |
 
 ### Rdb_DBType
 
@@ -1028,6 +1056,35 @@ enum Rdb_SyncMode
 
 ## 函数说明
 
+
+### OH_Rdb_SetTokenizer()
+
+```
+int OH_Rdb_SetTokenizer (OH_Rdb_ConfigV2 *config, Rdb_Tokenizer tokenizer )
+```
+
+**描述**
+
+给指定的数据库文件配置设置分词器类型。
+
+**起始版本：** 17
+
+**参数：**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| config | 表示指向此RDB存储相关的数据库配置的指针。 |
+| tokenizer | 表示数据库的分词器类型。 |
+
+**返回：**
+
+返回接口操作执行的状态码。
+
+RDB_OK 表示成功。
+
+RDB_E_INVALID_ARGS 表示无效参数。
+
+RDB_E_NOT_SUPPORTED 表示不支持当前操作。
 
 ### OH_Rdb_CreateOrOpen()
 
