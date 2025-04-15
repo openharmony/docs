@@ -216,13 +216,13 @@ export default function abilityTest() {
 | class        | 指定要执行的测试套或测试用例。                                   | {describeName}#{itName}，{describeName}                      | -s class attributeTest#testAttributeIt    |
 | notClass     | 指定不需要执行的测试套或测试用例。                               | {describeName}#{itName}，{describeName}                      | -s notClass attributeTest#testAttributeIt |
 | itName       | 指定要执行的测试用例。                                         | {itName}                                                     | -s itName testAttributeIt                 |
-| timeout      | 测试用例执行的超时时间。                                       | 正整数（单位ms），如不设置默认为 5000                        | -s timeout 15000                          |
-| breakOnError | 遇错即停模式，当执行用例断言失败或者发生错误时，退出测试执行流程。 | true/false(默认值)                                           | -s breakOnError true                      |
-| random | 测试用例随机顺序执行。 | true/false(默认值)                                           | -s random true                      |
-| testType     | 指定要执行用例的用例类型。                                      | function，performance，power，reliability， security，global，compatibility，user，standard，safety，resilience' | -s testType function                      |
-| level        | 指定要执行用例的用例级别。                                      | 0,1,2,3,4                                                    | -s level 0                                |
-| size         | 指定要执行用例的用例规模。                                    | small，medium，large                                         | -s size small        
-| stress       | 指定要执行用例的执行次数。                                    |  正整数                                         | -s stress 1000                            |
+| timeout      | 测试用例执行的超时时间。                                        | 正整数（单位ms），如不设置默认为 5000                        | -s timeout 15000                          |
+| breakOnError | 遇错即停模式，当执行用例断言失败或者发生错误时，退出测试执行流程。 | true，false（默认值）                                          | -s breakOnError true                      |
+| random | 测试用例随机顺序执行。                  | true，false（默认值）                                           | -s random true                      |
+| testType     | 指定要执行用例的用例类型。                     | function，performance，power，reliability，security，global，compatibility，user，standard，safety，resilience | -s testType function                      |
+| level        | 指定要执行用例的用例级别。                     | 0, 1, 2, 3, 4                                              | -s level 0                                |
+| size         | 指定要执行用例的用例规模。                     | small，medium，large                                        | -s size small        
+| stress       | 指定要执行用例的执行次数。                     |  正整数                                         | -s stress 1000                            |
 
 **在cmd窗口执行test命令**
 
@@ -368,7 +368,7 @@ export default function abilityTest() {
 |---------------|---------------------------------|---------------------------------|
 | help          | help|  显示uitest工具能够支持的命令信息。            |
 | screenCap       |[-p] | 截屏。非必填。<br>指定存储路径和文件名，只支持存放在/data/local/tmp/下。<br>默认存储路径：/data/local/tmp，文件名：时间戳 + .png。 |
-| dumpLayout      |[-p] \<-i \| -a>|支持在daemon运行时执行获取控件树。<br> **-p** ：指定存储路径和文件名，只支持存放在/data/local/tmp/下。默认存储路径：/data/local/tmp，文件名：时间戳 + .json。<br> **-i** ：不过滤不可见控件,也不做窗口合并。<br> **-a** ：保存 BackgroundColor、 Content、FontColor、FontSize、extraAttrs 属性数据。<br> **默认** ：不保存上述属性数据。<br> **-a和-i** 不可同时使用。 |
+| dumpLayout      |[-p] \<-i \| -a>|支持在daemon运行时执行获取控件树。<br> **-p** ：指定存储路径和文件名，只支持存放在/data/local/tmp/下。默认存储路径：/data/local/tmp，文件名：时间戳 + .json。<br> **-i** ：不过滤不可见控件，也不做窗口合并。<br> **-a** ：保存 BackgroundColor、 Content、FontColor、FontSize、extraAttrs 属性数据。<br> **默认** ：不保存上述属性数据。<br> **-a和-i** 不可同时使用。 |
 | uiRecord        | uiRecord \<record \| read>|录制Ui操作。  <br> **record** ：开始录制，将当前界面操作记录到/data/local/tmp/record.csv，结束录制操作使用Ctrl+C结束录制。  <br> **read** ：读取并且打印录制数据。<br>各参数代表的含义请参考[用户录制操作](#用户录制操作)。|
 | uiInput       | \<help \| click \| doubleClick \| longClick \| fling \| swipe \| drag \| dircFling \| inputText \| keyEvent>| 注入UI模拟操作。<br>各参数代表的含义请参考[注入ui模拟操作](#注入ui模拟操作)。                       |
 | --version | --version|获取当前工具版本信息。                     |
@@ -453,7 +453,7 @@ hdc shell uitest uiRecord read
 | swipe   | 是    | 模拟慢滑操作。     | 
 | drag   | 是    | 模拟拖拽操作。     | 
 | dircFling   | 是    | 模拟指定方向滑动操作。     |
-| inputText   | 是    | 模拟输入框输入文本操作。     |
+| inputText   | 是    | 指定坐标点，模拟输入框输入文本操作。                   |
 | keyEvent   | 是    | 模拟实体按键事件（如：键盘，电源键，返回上一级，返回桌面等），以及组合按键操作。     | 
 
 
@@ -591,7 +591,7 @@ hdc shell uitest start-daemon
 介绍单元测试框架中支持的断言能力如何使用，具体代码请查看[断言能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/jsunit/entry/src/ohosTest/ets/test/assertExampleTest/assertExample.test.ets)。
 
 #### 单元测试测试套定义使用实例
-介绍单元测试框架测试套嵌如何定义，包括嵌套定义能力，具体代码请参考[测试套嵌套示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/jsunit/entry/src/ohosTest/ets/test/coverExampleTest/coverExample.test.ets)。
+介绍单元测试框架测试套嵌套如何定义，包括嵌套定义能力，具体代码请参考[测试套嵌套示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/jsunit/entry/src/ohosTest/ets/test/coverExampleTest/coverExample.test.ets)。
 
 #### 单元测试测试应用自定义函数使用实例
 介绍针对应用内自定义函数如何使用框架能力进行测试，具体代码请参考[应用自定义函数测试示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/jsunit/entry/src/ohosTest/ets/test/customExampleTest/customExample.test.ets)。
@@ -608,10 +608,10 @@ hdc shell uitest start-daemon
 介绍模拟用户在应用界面上进行点击，长按，双击等事件,具体代码请参考[点击事件示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/clickEvent.test.ets)。
 
 #### 模拟鼠标操作能力实例
-介绍模拟鼠标左击、右击、滑轮事件,具体代码请参考[鼠标操作事件示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/MouseEvent.test.ets)。
+介绍模拟鼠标左击、右击、滑轮事件，具体代码请参考[鼠标操作事件示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/MouseEvent.test.ets)。
 
 #### 模拟文本输入能力实例
-介绍模拟输入中文、英文文本内容，使用前提是针对可以输入文本的组件类似文本框等组件进行操作，具体代码请参考[文本输入能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/InputEvent.test.ets)。
+介绍模拟输入中文、英文文本内容，仅支持可输入文本的组件进行操作，例如文本框等，具体代码请参考[文本输入能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/InputEvent.test.ets)。
 
 #### 截图能力实例
 介绍屏幕截图功能，包括指定区域截图能力，具体代码请参考[截图能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/ScreenCapEvent.test.ets)。
@@ -631,7 +631,7 @@ hdc shell uitest start-daemon
 ### UI测试脚本实例（窗口类）
 
 #### 查找指定窗口能力实例
-介绍通过应用报名查找应用窗口，具体代码请参考[查找指定窗口能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/findCommentExampleTest/window/findWindowExample.test.ets)。
+介绍通过应用包名查找应用窗口，具体代码请参考[查找指定窗口能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/findCommentExampleTest/window/findWindowExample.test.ets)。
 
 #### 模拟窗口移动能力实例
 介绍模拟移动窗口到指定位置能力，具体代码请参考[模拟窗口移动示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/window/MoveToEvent.test.ets)。
