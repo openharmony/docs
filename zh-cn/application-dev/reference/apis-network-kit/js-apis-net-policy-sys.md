@@ -1491,7 +1491,7 @@ policy
 
 ## policy.setNetworkAccessPolicy<sup>12+</sup>
 
-setNetworkAccessPolicy(uid: number, policy: NetworkAccessPolicy, isReconfirmed?: boolean): Promise<void>
+setNetworkAccessPolicy(uid: number, policy: NetworkAccessPolicy, isReconfirmed?: boolean): Promise\<void>
 
 设置指定 uid 应用能否能访问网络的策略，使用 Promise 方式作为异步方法。
 
@@ -1547,7 +1547,7 @@ policy
 
 ## policy.getNetworkAccessPolicy<sup>12+</sup>
 
-getNetworkAccessPolicy(uid: number): Promise<NetworkAccessPolicy>
+getNetworkAccessPolicy(uid: number): Promise\<NetworkAccessPolicy>
 
 获取指定 uid 能否访问网络策略，使用 Promise 方式作为异步方法。
 
@@ -1597,7 +1597,7 @@ policy
 
 ## policy.getNetworkAccessPolicy<sup>12+</sup>
 
-getNetworkAccessPolicy(): Promise<UidNetworkAccessPolicy>
+getNetworkAccessPolicy(): Promise\<UidNetworkAccessPolicy>
 
 获取当前用户下所有应用 app 能否访问网络策略信息，使用 Promise 方式作为异步方法。
 
