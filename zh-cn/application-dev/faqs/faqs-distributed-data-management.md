@@ -62,7 +62,7 @@ struct Index {
 
 **参考链接**
 
-[持久化数据管理\(OpenHarmony\)](../quick-start/arkts-persiststorage.md)
+[持久化数据管理\(OpenHarmony\)](../ui/state-management/arkts-persiststorage.md)
 
 
 ## 如何将PixelMap的数据存储到数据库中(API 9)
