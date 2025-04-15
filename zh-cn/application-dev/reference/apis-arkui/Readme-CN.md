@@ -373,7 +373,9 @@
     - [EditableTitleBar](arkui-ts/ohos-arkui-advanced-EditableTitleBar.md)
     - [ExceptionPrompt](arkui-ts/ohos-arkui-advanced-ExceptionPrompt.md)
     - [Filter](arkui-ts/ohos-arkui-advanced-Filter.md)
+    - [FolderStack](arkui-ts/ts-container-folderstack.md)
     - [FoldSplitContainer](arkui-ts/ohos-arkui-advanced-FoldSplitContainer.md)
+    - [FormMenu](arkui-ts/ohos-arkui-advanced-formmenu.md)
     - [FullScreenLaunchComponent](arkui-ts/ohos-arkui-advanced-FullScreenLaunchComponent.md)
     - [GridObjectSortComponent](arkui-ts/ohos-arkui-advanced-GridObjectSortComponent.md)
     - [Popup](arkui-ts/ohos-arkui-advanced-Popup.md)
@@ -390,8 +392,6 @@
     - [ToolBar](arkui-ts/ohos-arkui-advanced-ToolBar.md)
     - [ToolBarV2](arkui-ts/ohos-arkui-advanced-ToolBarV2.md)
     - [TreeView](arkui-ts/ohos-arkui-advanced-TreeView.md)
-    - [FormMenu](arkui-ts/ohos-arkui-advanced-formmenu.md)
-    - [FolderStack](arkui-ts/ts-container-folderstack.md)
   - 状态管理与渲染控制<!--state-management-and-rendering-control-->
     - [应用级变量的状态管理](arkui-ts/ts-state-management.md)
     - [ForEach](arkui-ts/ts-rendering-control-foreach.md)
