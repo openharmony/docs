@@ -9,7 +9,7 @@
 
 ## 子组件
 
-仅支持[GridItem](ts-container-griditem.md)子组件，支持渲染控制类型（[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)、[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)）。
+仅支持[GridItem](ts-container-griditem.md)子组件，支持通过渲染控制类型（[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)、[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)）动态生成子组件，更推荐使用LazyForEach或Repeat以优化性能。
 
 >  **说明：**
 >
@@ -926,31 +926,91 @@ struct GridExample {
 
 可滚动Grid，包括所有滚动属性和事件。
 
+<!--code_no_check-->
+```ts
+// GridDataSource.ets
+export class GridDataSource implements IDataSource {
+  private list: string[] = [];
+  private listeners: DataChangeListener[] = [];
+
+  constructor(list: string[]) {
+    this.list = list;
+  }
+
+  totalCount(): number {
+    return this.list.length;
+  }
+
+  getData(index: number): string {
+    return this.list[index];
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener);
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1);
+    }
+  }
+
+  // 通知控制器数据位置变化
+  notifyDataMove(from: number, to: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataMove(from, to);
+    })
+  }
+
+  // 交换元素位置
+  public swapItem(from: number, to: number): void {
+    let temp: string = this.list[from];
+    this.list[from] = this.list[to];
+    this.list[to] = temp;
+    this.notifyDataMove(from, to);
+  }
+}
+```
+
+<!--code_no_check-->
 ```ts
 // xxx.ets
+import { GridDataSource } from './GridDataSource';
+
 @Entry
 @Component
 struct GridExample {
-  @State numbers: String[] = ['0', '1', '2', '3', '4']
+  numbers: GridDataSource = new GridDataSource([]);
   scroller: Scroller = new Scroller()
   @State gridPosition: number = 0 //0代表滚动到grid顶部，1代表中间值，2代表滚动到grid底部。
+
+  aboutToAppear() {
+    let list: string[] = [];
+    for (let i = 0; i < 5; i++) {
+      for (let j = 0; j < 5; j++) {
+        list.push(j.toString());
+      }
+    }
+    this.numbers = new GridDataSource(list);
+  }
 
   build() {
     Column({ space: 5 }) {
       Text('scroll').fontColor(0xCCCCCC).fontSize(9).width('90%')
       Grid(this.scroller) {
-        ForEach(this.numbers, (day: string) => {
-          ForEach(this.numbers, (day: string) => {
-            GridItem() {
-              Text(day)
-                .fontSize(16)
-                .backgroundColor(0xF9CF93)
-                .width('100%')
-                .height(80)
-                .textAlign(TextAlign.Center)
-            }
-          }, (day: string) => day)
-        }, (day: string) => day)
+        LazyForEach(this.numbers, (day: string) => {
+          GridItem() {
+            Text(day)
+              .fontSize(16)
+              .backgroundColor(0xF9CF93)
+              .width('100%')
+              .height(80)
+              .textAlign(TextAlign.Center)
+          }
+        }, (index: number) => index.toString())
       }
       .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
       .columnsGap(10)
@@ -1008,12 +1068,15 @@ struct GridExample {
 
 GridLayoutOptions的使用：irregularIndexes与onGetIrregularSizeByIndex。
 
+<!--code_no_check-->
 ```ts
 // xxx.ets
+import { GridDataSource } from './GridDataSource';
+
 @Entry
 @Component
 struct GridExample {
-  @State numbers: String[] = ['0', '1', '2', '3', '4']
+  numbers: GridDataSource = new GridDataSource([]);
   scroller: Scroller = new Scroller()
   layoutOptions1: GridLayoutOptions = {
     regularSize: [1, 1],        // 只支持[1, 1]
@@ -1031,21 +1094,29 @@ struct GridExample {
     }
   }
 
+  aboutToAppear() {
+    let list: string[] = [];
+    for (let i = 0; i < 5; i++) {
+      for (let j = 0; j < 5; j++) {
+        list.push(j.toString());
+      }
+    }
+    this.numbers = new GridDataSource(list);
+  }
+
   build() {
     Column({ space: 5 }) {
       Grid(this.scroller, this.layoutOptions1) {
-        ForEach(this.numbers, (day: string) => {
-          ForEach(this.numbers, (day: string) => {
-            GridItem() {
-              Text(day)
-                .fontSize(16)
-                .backgroundColor(0xF9CF93)
-                .width('100%')
-                .height(80)
-                .textAlign(TextAlign.Center)
-            }.selectable(false)
-          }, (day: string) => day)
-        }, (day: string) => day)
+        LazyForEach(this.numbers, (day: string) => {
+          GridItem() {
+            Text(day)
+              .fontSize(16)
+              .backgroundColor(0xF9CF93)
+              .width('100%')
+              .height(80)
+              .textAlign(TextAlign.Center)
+          }.selectable(false)
+        }, (index: number) => index.toString())
       }
       .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
       .columnsGap(10)
@@ -1059,18 +1130,16 @@ struct GridExample {
       Text('scroll').fontColor(0xCCCCCC).fontSize(9).width('90%')
       // 不使用scroll，需要undefined占位
       Grid(undefined, this.layoutOptions2) {
-        ForEach(this.numbers, (day: string) => {
-          ForEach(this.numbers, (day: string) => {
-            GridItem() {
-              Text(day)
-                .fontSize(16)
-                .backgroundColor(0xF9CF93)
-                .width('100%')
-                .height(80)
-                .textAlign(TextAlign.Center)
-            }
-          }, (day: string) => day)
-        }, (day: string) => day)
+        LazyForEach(this.numbers, (day: string) => {
+          GridItem() {
+            Text(day)
+              .fontSize(16)
+              .backgroundColor(0xF9CF93)
+              .width('100%')
+              .height(80)
+              .textAlign(TextAlign.Center)
+          }
+        }, (index: number) => index.toString())
       }
       .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
       .columnsGap(10)
@@ -1090,12 +1159,15 @@ struct GridExample {
 
 nestedScroll和onScrollFrameBegin的使用。
 
+<!--code_no_check-->
 ```ts
+import { GridDataSource } from './GridDataSource';
+
 @Entry
 @Component
 struct GridExample {
   @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]
-  @State numbers: number[] = []
+  numbers: GridDataSource = new GridDataSource([]);
   @State translateY: number = 0
   private scroller: Scroller = new Scroller()
   private gridScroller: Scroller = new Scroller()
@@ -1104,9 +1176,11 @@ struct GridExample {
   private scrolling: boolean = false
 
   aboutToAppear() {
+    let list: string[] = [];
     for (let i = 0; i < 100; i++) {
-      this.numbers.push(i)
+      list.push(i.toString());
     }
+    this.numbers = new GridDataSource(list);
   }
 
   build() {
@@ -1166,7 +1240,7 @@ struct GridExample {
 
             ListItem() {
               Grid(this.gridScroller) {
-                ForEach(this.numbers, (item: number) => {
+                LazyForEach(this.numbers, (item: number) => {
                   GridItem() {
                     Text(item + '')
                       .fontSize(16)
@@ -1272,11 +1346,14 @@ struct GridExample {
 >
 > 预览器窗口不支持显示拖拽跟手。
 
+<!--code_no_check-->
 ```ts
+import { GridDataSource } from './GridDataSource';
+
 @Entry
 @Component
 struct GridExample {
-  @State numbers: string[] = []
+  numbers: GridDataSource = new GridDataSource([]);
   scroller: Scroller = new Scroller()
   @State text: string = 'drag'
 
@@ -1292,22 +1369,21 @@ struct GridExample {
   }
 
   aboutToAppear() {
-    for (let i = 1;i <= 15; i++) {
-      this.numbers.push(i + '')
+    let list: string[] = [];
+    for (let i = 1; i <= 15; i++) {
+      list.push(i + '');
     }
+    this.numbers = new GridDataSource(list);
   }
 
   changeIndex(index1: number, index2: number) { //交换数组位置
-    let temp: string;
-    temp = this.numbers[index1];
-    this.numbers[index1] = this.numbers[index2];
-    this.numbers[index2] = temp;
+    this.numbers.swapItem(index1, index2);
   }
 
   build() {
     Column({ space: 5 }) {
       Grid(this.scroller) {
-        ForEach(this.numbers, (day: string) => {
+        LazyForEach(this.numbers, (day: string) => {
           GridItem() {
             Text(day)
               .fontSize(16)
@@ -1316,7 +1392,7 @@ struct GridExample {
               .height(80)
               .textAlign(TextAlign.Center)
           }
-        })
+        }, (day: string) => day)
       }
       .columnsTemplate('1fr 1fr 1fr')
       .columnsGap(10)
@@ -1326,12 +1402,12 @@ struct GridExample {
       .height(300)
       .editMode(true) //设置Grid是否进入编辑模式，进入编辑模式可以拖拽Grid组件内部GridItem
       .onItemDragStart((event: ItemDragInfo, itemIndex: number) => { //第一次拖拽此事件绑定的组件时，触发回调。
-        this.text = this.numbers[itemIndex]
+        this.text = this.numbers.getData(itemIndex);
         return this.pixelMapBuilder() //设置拖拽过程中显示的图片。
       })
       .onItemDrop((event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => { //绑定此事件的组件可作为拖拽释放目标，当在本组件范围内停止拖拽行为时，触发回调。
         // isSuccess=false时，说明drop的位置在grid外部；insertIndex > length时，说明有新增元素的事件发生
-        if (!isSuccess || insertIndex >= this.numbers.length) {
+        if (!isSuccess || insertIndex >= this.numbers.totalCount()) {
           return
         }
         console.info('beixiang' + itemIndex + '', insertIndex + '') //itemIndex拖拽起始位置，insertIndex拖拽插入位置
@@ -1360,16 +1436,21 @@ struct GridExample {
 
 layoutDirection、maxcount、minCount、cellLength的使用。
 
+<!--code_no_check-->
 ```ts
+import { GridDataSource } from './GridDataSource';
+
 @Entry
 @Component
 struct GridExample {
-  @State numbers: string[] = []
+  numbers: GridDataSource = new GridDataSource([]);
 
   aboutToAppear() {
+    let list: string[] = [];
     for (let i = 1; i <= 30; i++) {
-      this.numbers.push(i + '')
+      list.push(i + '');
     }
+    this.numbers = new GridDataSource(list);
   }
 
   build() {
@@ -1379,7 +1460,7 @@ struct GridExample {
         Text('rowsTemplate、columnsTemplate都不设置layoutDirection、maxcount、minCount、cellLength才生效')
           .fontSize(15).fontColor(0xCCCCCC).width('90%')
         Grid() {
-          ForEach(this.numbers, (day: string) => {
+          LazyForEach(this.numbers, (day: string) => {
             GridItem() {
               Text(day).fontSize(16).backgroundColor(0xF9CF93)
             }.width(40).height(80).borderWidth(2).borderColor(Color.Red)
@@ -1407,12 +1488,15 @@ struct GridExample {
 
 双指缩放修改Grid列数。
 
+<!--code_no_check-->
 ```ts
 // xxx.ets
+import { GridDataSource } from './GridDataSource';
+
 @Entry
 @Component
 struct GridExample {
-  @State numbers: String[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19']
+  numbers: GridDataSource = new GridDataSource([]);
   @State columns: number = 2
 
   aboutToAppear() {
@@ -1420,6 +1504,14 @@ struct GridExample {
     if (typeof lastCount != 'undefined') {
       this.columns = lastCount
     }
+
+    let list: string[] = [];
+    for (let i = 0; i < 20; i++) {
+      for (let j = 0; j < 20; j++) {
+        list.push(j.toString());
+      }
+    }
+    this.numbers = new GridDataSource(list);
   }
 
   build() {
@@ -1431,18 +1523,16 @@ struct GridExample {
       }
 
       Grid() {
-        ForEach(this.numbers, (day: string) => {
-          ForEach(this.numbers, (day: string) => {
-            GridItem() {
-              Text(day)
-                .fontSize(16)
-                .backgroundColor(0xF9CF93)
-                .width('100%')
-                .height(80)
-                .textAlign(TextAlign.Center)
-            }
-          }, (day: string) => day)
-        }, (day: string) => day)
+        LazyForEach(this.numbers, (day: string) => {
+          GridItem() {
+            Text(day)
+              .fontSize(16)
+              .backgroundColor(0xF9CF93)
+              .width('100%')
+              .height(80)
+              .textAlign(TextAlign.Center)
+          }
+        }, (index: number) => index.toString())
       }
       .columnsTemplate('1fr '.repeat(this.columns))
       .columnsGap(10)
@@ -1553,18 +1643,23 @@ struct GridColumnsTemplate {
 
 在默认情况下，左右两个GridItem的高度可能是不同的；在设置了Grid的[alignItems](#alignitems12)属性为GridItemAlignment.STRETCH后，一行左右两个GridItem中原本高度较小的GridItem会以另一个高度较大的GridItem的高度作为自己的高度。
 
+<!--code_no_check-->
 ```ts
+import { GridDataSource } from './GridDataSource';
+
 @Entry
 @Component
 struct Index {
-  @State data: number[] = [];
+  data: GridDataSource = new GridDataSource([]);
   @State items: number[] = [];
 
   aboutToAppear(): void {
+    let list: string[] = [];
     for (let i = 0; i < 100; i++) {
-      this.data.push(i)
+      list.push(i.toString());
       this.items.push(this.getSize())
     }
+    this.data= new GridDataSource(list);
   }
 
   getSize() {
@@ -1577,7 +1672,7 @@ struct Index {
       Text('Grid alignItems示例代码')
 
       Grid() {
-        ForEach(this.data, (item: number) => {
+        LazyForEach(this.data, (item: number) => {
           // GridItem和Column不设置高度，默认会自适应子组件大小，设置STRETCH的场景下，会变成与当前行最高节点同高。
           // 若设置高度，则会保持已设置的高度，不会与当前行最高节点同高。
           GridItem() {
@@ -1613,39 +1708,49 @@ struct Index {
 ### 示例10（设置边缘渐隐）
 通过[fadingEdge](ts-container-scrollable-common.md#fadingedge14)属性来设置边缘渐隐效果。
 
+<!--code_no_check-->
 ```ts
 // xxx.ets
 //该示例实现了Grid组件开启边缘渐隐效果并设置边缘渐隐长度
 import { LengthMetrics } from '@kit.ArkUI'
+import { GridDataSource } from './GridDataSource';
+
 @Entry
 @Component
 struct GridExample {
-  @State numbers: String[] = ['0', '1', '2', '3', '4']
-  @State rowNumbers: String[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+  numbers: GridDataSource = new GridDataSource([]);
   scroller: Scroller = new Scroller()
+
+  aboutToAppear() {
+    let list: string[] = [];
+    for (let i = 0; i <= 10; i++) {
+      for (let j = 0; j < 5; j++) {
+        list.push(j.toString());
+      }
+    }
+    this.numbers = new GridDataSource(list);
+  }
 
   build() {
     Column({ space: 5 }) {
       Text('scroll').fontColor(0xCCCCCC).fontSize(9).width('90%')
       Grid(this.scroller) {
-        ForEach(this.rowNumbers, (day: string) => {
-          ForEach(this.numbers, (day: string) => {
-            GridItem() {
-              Text(day)
-                .fontSize(16)
-                .backgroundColor(0xF9CF93)
-                .width('100%')
-                .height(80)
-                .textAlign(TextAlign.Center)
-            }
-          }, (day: string) => day)
-        }, (day: string) => day)
+        LazyForEach(this.numbers, (day: string) => {
+          GridItem() {
+            Text(day)
+              .fontSize(16)
+              .backgroundColor(0xF9CF93)
+              .width('100%')
+              .height(80)
+              .textAlign(TextAlign.Center)
+          }
+        }, (index: number) => index.toString())
       }
       .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
       .columnsGap(10)
       .rowsGap(20)
       .height('90%')
-      .fadingEdge(true,{fadingEdgeLength:LengthMetrics.vp(80)})
+      .fadingEdge(true, { fadingEdgeLength: LengthMetrics.vp(80) })
 
     }.width('100%').margin({ top: 5 })
   }
@@ -1658,35 +1763,45 @@ struct GridExample {
 
 该示例通过edgeEffect接口，实现了Grid组件设置单边边缘效果。
 
+<!--code_no_check-->
 ```ts
 // xxx.ets
+import { GridDataSource } from './GridDataSource';
+
 @Entry
 @Component
 struct GridExample {
-  @State numbers: String[] = ['0', '1', '2', '3', '4']
-  @State rowNumbers: String[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+  numbers: GridDataSource = new GridDataSource([]);
   scroller: Scroller = new Scroller()
+
+  aboutToAppear() {
+    let list: string[] = [];
+    for (let i = 0; i <= 10; i++) {
+      for (let j = 0; j < 5; j++) {
+        list.push(j.toString());
+      }
+    }
+    this.numbers = new GridDataSource(list);
+  }
 
   build() {
     Column({ space: 5 }) {
       Grid(this.scroller) {
-        ForEach(this.rowNumbers, (day: string) => {
-          ForEach(this.numbers, (day: string) => {
-            GridItem() {
-              Text(day)
-                .fontSize(16)
-                .backgroundColor(0xF9CF93)
-                .width('100%')
-                .height(80)
-                .textAlign(TextAlign.Center)
-            }
-          }, (day: string) => day)
-        }, (day: string) => day)
+        LazyForEach(this.numbers, (day: string) => {
+          GridItem() {
+            Text(day)
+              .fontSize(16)
+              .backgroundColor(0xF9CF93)
+              .width('100%')
+              .height(80)
+              .textAlign(TextAlign.Center)
+          }
+        }, (index: number) => index.toString())
       }
       .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
       .columnsGap(10)
       .rowsGap(20)
-      .edgeEffect(EdgeEffect.Spring,{alwaysEnabled:true,effectEdge:EffectEdge.START})
+      .edgeEffect(EdgeEffect.Spring, { alwaysEnabled: true, effectEdge: EffectEdge.START })
       .width('90%')
       .backgroundColor(0xDCDCDC)
       .height('80%')

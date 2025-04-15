@@ -9,7 +9,7 @@
 
 ## 子组件
 
-仅支持[ListItem](ts-container-listitem.md)、[ListItemGroup](ts-container-listitemgroup.md)子组件，支持渲染控制类型（[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)、[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)）。
+仅支持[ListItem](ts-container-listitem.md)、[ListItemGroup](ts-container-listitemgroup.md)子组件，支持通过渲染控制类型（[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)、[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)）动态生成子组件，更推荐使用LazyForEach或Repeat以优化性能。
 
 > **说明：**
 >
@@ -1161,17 +1161,68 @@ List组件可见区域item变化事件的回调类型。
 
 ### 示例1（添加滚动事件）
 该示例实现了设置纵向列表，并在当前显示界面发生改变时回调索引。
+
+<!--code_no_check-->
+```ts
+// ListDataSource.ets
+export class ListDataSource implements IDataSource {
+  private list: number[] = [];
+  private listeners: DataChangeListener[] = [];
+
+  constructor(list: number[]) {
+    this.list = list;
+  }
+
+  totalCount(): number {
+    return this.list.length;
+  }
+
+  getData(index: number): number {
+    return this.list[index];
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener);
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1);
+    }
+  }
+
+  // 通知控制器数据删除
+  notifyDataDelete(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataDelete(index);
+    })
+  }
+
+  // 在指定索引位置删除一个元素
+  public deleteItem(index: number): void {
+    this.list.splice(index, 1);
+    this.notifyDataDelete(index);
+  }
+}
+```
+
+<!--code_no_check-->
 ```ts
 // xxx.ets
+import { ListDataSource } from './ListDataSource';
+
 @Entry
 @Component
 struct ListExample {
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  private arr: ListDataSource = new ListDataSource([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
 
   build() {
     Column() {
       List({ space: 20, initialIndex: 0 }) {
-        ForEach(this.arr, (item: number) => {
+        LazyForEach(this.arr, (item: number) => {
           ListItem() {
             Text('' + item)
               .width('100%').height(100).fontSize(16)
@@ -1216,18 +1267,21 @@ struct ListExample {
 ### 示例2（设置子元素对齐）
 该示例展示了不同ListItemAlign枚举值下，List组件交叉轴方向子元素对齐效果。
 
+<!--code_no_check-->
 ```ts
 // xxx.ets
+import { ListDataSource } from './ListDataSource';
+
 @Entry
 @Component
 struct ListLanesExample {
-  @State arr: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"]
+  arr: ListDataSource = new ListDataSource([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]);
   @State alignListItem: ListItemAlign = ListItemAlign.Start
 
   build() {
     Column() {
       List({ space: 20, initialIndex: 0 }) {
-        ForEach(this.arr, (item: string) => {
+        LazyForEach(this.arr, (item: string) => {
           ListItem() {
             Text('' + item)
               .width('100%')
@@ -1268,19 +1322,22 @@ struct ListLanesExample {
 ### 示例3（设置编辑模式）
 该示例展示了如何设置当前List组件是否处于可编辑模式。
 
+<!--code_no_check-->
 ```ts
 // xxx.ets
+import { ListDataSource } from './ListDataSource';
+
 @Entry
 @Component
 struct ListExample {
-  @State arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  arr: ListDataSource=new ListDataSource([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
   @State editFlag: boolean = false
 
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
       Column() {
         List({ space: 20, initialIndex: 0 }) {
-          ForEach(this.arr, (item: number, index?: number) => {
+          LazyForEach(this.arr, (item: number, index?: number) => {
             ListItem() {
               Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
                 Text('' + item)
@@ -1297,8 +1354,8 @@ struct ListExample {
                   }.width('30%').height(40)
                   .onClick(() => {
                     if (index != undefined) {
-                      console.info(this.arr[index] + 'Delete')
-                      this.arr.splice(index, 1)
+                      console.info(this.arr.getData(index) + 'Delete');
+                      this.arr.deleteItem(index);
                       console.info(JSON.stringify(this.arr))
                       this.editFlag = false
                     }
@@ -1326,24 +1383,29 @@ struct ListExample {
 ### 示例4（设置限位对齐）
 该示例展示了List组件设置居中限位的实现效果。
 
+<!--code_no_check-->
 ```ts
 // xxx.ets
+import { ListDataSource } from './ListDataSource';
+
 @Entry
 @Component
 struct ListExample {
-  private arr: number[] = []
+  private arr: ListDataSource=new ListDataSource([]);
   private scrollerForList: Scroller = new Scroller()
 
   aboutToAppear() {
+    let list: number[] = [];
     for (let i = 0; i < 20; i++) {
-      this.arr.push(i)
+      list.push(i);
     }
+    this.arr = new ListDataSource(list);
   }
   build() {
     Column() {
       Row() {
         List({ space: 20, initialIndex: 3, scroller: this.scrollerForList }) {
-          ForEach(this.arr, (item: number) => {
+          LazyForEach(this.arr, (item: number) => {
             ListItem() {
               Text('' + item)
                 .width('100%').height(100).fontSize(16)
@@ -1379,27 +1441,33 @@ struct ListExample {
 该示例通过设置childrenMainSize属性，实现了List在子组件高度不一致时调用scrollTo接口也可以跳转准确。
 
 如果配合状态管理V2使用，详情见：[List与makeObserved](../../../ui/state-management/arkts-v1-v2-migration.md#list)。
+
+<!--code_no_check-->
 ```ts
 // xxx.ets
+import { ListDataSource } from './ListDataSource';
+
 @Entry
 @Component
 struct ListExample {
-  private arr: number[] = []
+  private arr: ListDataSource = new ListDataSource([]);
   private scroller: ListScroller = new ListScroller()
   @State listSpace: number = 10
   @State listChildrenSize: ChildrenMainSize = new ChildrenMainSize(100)
   aboutToAppear(){
     // 初始化数据源。
+    let list: number[] = [];
     for (let i = 0; i < 10; i++) {
-      this.arr.push(i)
+      list.push(i);
     }
+    this.arr = new ListDataSource(list);
     // 前5个item的主轴大小不是默认大小100，因此需要通过ChildrenMainSize通知List。
     this.listChildrenSize.splice(0, 5, [300, 300, 300, 300, 300])
   }
   build() {
     Column() {
       List({ space: this.listSpace, initialIndex: 4, scroller: this.scroller }) {
-        ForEach(this.arr, (item: number) => {
+        LazyForEach(this.arr, (item: number) => {
           ListItem() {
             Text('item-' + item)
               .height( item < 5 ? 300 : this.listChildrenSize.childDefaultSize)
@@ -1444,27 +1512,71 @@ struct ListExample {
 该示例展示了含有group时，获得List组件的Item索引相关信息。
 ```ts
 // xxx.ets
+class TimeTableDataSource implements IDataSource {
+  private list: TimeTable[] = [];
+
+  constructor(list: TimeTable[]) {
+    this.list = list;
+  }
+
+  totalCount(): number {
+    return this.list.length;
+  }
+
+  getData(index: number): TimeTable {
+    return this.list[index];
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+  }
+}
+
+class ProjectsDataSource implements IDataSource {
+  private list: string[] = [];
+
+  constructor(list: string[]) {
+    this.list = list;
+  }
+
+  totalCount(): number {
+    return this.list.length;
+  }
+
+  getData(index: number): string {
+    return this.list[index];
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+  }
+}
+
 @Entry
 @Component
 struct ListItemGroupExample {
   private timeTable: TimeTable[] = [
-    {
-      title: '星期一',
-      projects: ['语文', '数学', '英语']
-    },
-    {
-      title: '星期二',
-      projects: ['物理', '化学', '生物']
-    },
-    {
-      title: '星期三',
-      projects: ['历史', '地理', '政治']
-    },
-    {
-      title: '星期四',
-      projects: ['美术', '音乐', '体育']
-    }
-  ]
+  {
+    title: '星期一',
+    projects: ['语文', '数学', '英语']
+  },
+  {
+    title: '星期二',
+    projects: ['物理', '化学', '生物']
+  },
+  {
+    title: '星期三',
+    projects: ['历史', '地理', '政治']
+  },
+  {
+    title: '星期四',
+    projects: ['美术', '音乐', '体育']
+  }
+]
   private scroller: ListScroller = new ListScroller()
   @State listIndexInfo: VisibleListContentInfo = {index: -1}
   @State mess:string = "null"
@@ -1490,9 +1602,9 @@ struct ListItemGroupExample {
   build() {
     Column() {
       List({ space: 20, scroller: this.scroller}) {
-        ForEach(this.timeTable, (item: TimeTable, index: number) => {
+        LazyForEach(new TimeTableDataSource(this.timeTable), (item: TimeTable, index: number) => {
           ListItemGroup({ header: this.itemHead(item.title), footer: this.itemFoot(item.projects.length) }) {
-            ForEach(item.projects, (project: string, subIndex: number) => {
+            LazyForEach(new ProjectsDataSource(item.projects), (project: string, subIndex: number) => {
               ListItem() {
                 Text(project)
                   .width("100%")
@@ -1552,18 +1664,20 @@ interface TimeTable {
 ### 示例7（设置边缘渐隐）
 该示例实现了List组件开启边缘渐隐效果并设置边缘渐隐长度。
 
+<!--code_no_check-->
 ```ts
 import { LengthMetrics } from '@kit.ArkUI'
+import { ListDataSource } from './ListDataSource';
 @Entry
 @Component
 struct ListExample {
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+  private arr: ListDataSource=new ListDataSource([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
   scrollerForList: Scroller = new Scroller()
   build() {
     Column() {
 
       List({ space: 20, initialIndex: 0, scroller: this.scrollerForList }) {
-        ForEach(this.arr, (item: number) => {
+        LazyForEach(this.arr, (item: number) => {
           ListItem() {
             Text('' + item)
               .width('100%').height(100).fontSize(16)
@@ -1587,17 +1701,20 @@ struct ListExample {
 
 该示例通过edgeEffect接口，实现了List组件设置单边边缘效果。
 
+<!--code_no_check-->
 ```ts
 // xxx.ets
+import { ListDataSource } from './ListDataSource';
+
 @Entry
 @Component
 struct ListExample {
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+  private arr: ListDataSource = new ListDataSource([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
   scrollerForList: Scroller = new Scroller()
   build() {
     Column() {
       List({ space: 20, initialIndex: 0, scroller: this.scrollerForList }) {
-        ForEach(this.arr, (item: number) => {
+        LazyForEach(this.arr, (item: number) => {
           ListItem() {
             Text('' + item)
               .width('100%').height(100).fontSize(16)
