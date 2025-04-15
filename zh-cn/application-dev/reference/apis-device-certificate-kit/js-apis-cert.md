@@ -575,6 +575,7 @@ createX509Cert(inStream : EncodingBlob, callback : AsyncCallback\<X509Cert>) : v
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
 | 19020001 | memory error. |
+| 19030001 | crypto operation error.      |
 
 **示例：**
 
@@ -647,6 +648,7 @@ createX509Cert(inStream : EncodingBlob) : Promise\<X509Cert>
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
 | 19020001 | memory error. |
+| 19030001 | crypto operation error.      |
 
 **示例：**
 
@@ -3012,6 +3014,7 @@ createCertExtension(inStream : EncodingBlob, callback : AsyncCallback\<CertExten
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
 | 19020001 | memory error. |
+| 19030001 | crypto operation error.      |
 
 **示例：**
 
@@ -3077,6 +3080,7 @@ createCertExtension(inStream : EncodingBlob) : Promise\<CertExtension>
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
 | 19020001 | memory error. |
+| 19030001 | crypto operation error.      |
 
 **示例：**
 
