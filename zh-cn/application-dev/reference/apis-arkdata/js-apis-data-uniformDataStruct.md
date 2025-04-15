@@ -28,6 +28,7 @@ import { uniformDataStruct } from '@kit.ArkData';
 **示例：**
 
 ```ts
+import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
 let plainTextDetails : Record<string, string> = {
   'attr1': 'value1',
   'attr2': 'value2',
@@ -64,6 +65,7 @@ let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformD
 **示例：**
 
 ```ts
+import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
 let hyperlinkDetails : Record<string, string> = {
   'attr1': 'value1',
   'attr2': 'value2',
@@ -94,6 +96,7 @@ HTML类型数据，用于描述超文本标记语言数据。
 **示例：**
 
 ```ts
+import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
 let htmlObjDetails : Record<string, string> = {
   'attr1': 'value1',
   'attr2': 'value2',
@@ -129,6 +132,7 @@ let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformD
 **示例：**
 
 ```ts
+import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
 let u8Array = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 let appItemDetails : Record<string, number | string | Uint8Array> = {
   'appItemKey1': 123,
@@ -169,6 +173,7 @@ let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformD
 **示例：**
 
 ```ts
+import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
 let thumbDataU8Array = new Uint8Array([1, 2, 3, 4, 5]);
 let appIconU8Array = new Uint8Array([6, 7, 8, 9, 10]);
 let contentForm : uniformDataStruct.ContentForm = {
@@ -204,6 +209,7 @@ let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformD
 **示例：**
 
 ```ts
+import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
 let u8Array = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 let formDetails : Record<string, number | string | Uint8Array> = {
   'formKey1': 123,
@@ -240,6 +246,7 @@ let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformD
 **示例：**
 
 ```ts
+import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
 let u8Array = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 let fileUriDetails : Record<string, number | string | Uint8Array> = {
   'fileUriKey1': 123,
@@ -273,7 +280,8 @@ let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformD
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image';
+import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
+import { image } from '@kit.ImageKit';
 
 let u8Array = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 let arrayBuffer = new ArrayBuffer(4*200*200);
