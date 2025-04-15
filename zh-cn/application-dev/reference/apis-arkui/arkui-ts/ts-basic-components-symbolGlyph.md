@@ -24,7 +24,7 @@ SymbolGlyph(value?: Resource)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | [Resource](ts-types.md#resource)| 否 | SymbolGlyph组件的资源名,如 $r('sys.symbol.ohos_wifi')。 |
+| value | [Resource](ts-types.md#resource)| 否 | SymbolGlyph组件的资源名，如 $r('sys.symbol.ohos_wifi')。 |
 
 >  **说明：**
 >
