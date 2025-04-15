@@ -18,7 +18,7 @@ AppStorageV2是在应用UI启动时会被创建的单例。它的目的是为了
 
 AppStorageV2可以和UI组件同步，且可以在应用业务逻辑中被访问。
 
-AppStorageV2支持应用的[主线程](../application-models/thread-model-stage.md)内多个UIAbility实例间的状态共享。
+AppStorageV2支持应用的[主线程](../../application-models/thread-model-stage.md)内多个UIAbility实例间的状态共享。
 
 
 ## 使用说明
