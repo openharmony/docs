@@ -77,7 +77,7 @@ struct pageOne {
           .height(40)
           .margin(20)
           .onClick(() => {
-            router.back();
+            this.getUIContext().getRouter().back();
           })
       }
       .width('100%')
@@ -169,28 +169,26 @@ export struct PageOne {
 
 ## 路由操作
 
-Router通过`@ohos.router`模块提供的方法来操作页面，使用前需要先`import`。
+Router通过`@ohos.router`模块提供的方法来操作页面，使用前需要使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)获取[Router](js-apis-arkui-UIContext.md#router)实例。
 
 ```ts
-import { router } from '@kit.ArkUI';
-
 // push page
 router.pushUrl({ url:"pages/pageOne", params: null })
 
 // pop page
-router.back({ url: "pages/pageOne" })
+this.getUIContext().getRouter().back({ url: "pages/pageOne" })
 
 // replace page
 router.replaceUrl({ url: "pages/pageOne" })
 
 // clear all page
-router.clear()
+this.getUIContext().getRouter().clear()
 
 // 获取页面栈大小
-let size = router.getLength()
+let size = this.getUIContext().getRouter().getLength()
 
 // 获取页面状态
-let pageState = router.getState()
+let pageState = this.getUIContext().getRouter().getState()
 ```
 
 Navigation通过页面栈对象[NavPathStack](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10)提供的方法来操作页面，需要创建一个栈对象并传入Navigation中。
