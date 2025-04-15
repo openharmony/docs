@@ -4648,3 +4648,15 @@
 **ACL使能**：true
 
 **起始版本**：18
+
+## ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+
+允许应用通过无障碍服务接口查询和操作界面上的组件。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：20
