@@ -164,7 +164,7 @@ keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array<KeyframeState>):
 @Component
 struct KeyframeAnimateToDemo {
   // 第一步: 声明相关状态变量
-  @State rotateValue: number = 0; // 组件一逆时针旋转90度恢复至0度
+  @State rotateValue: number = 0; // 组件一旋转角度
   @State translateX: number = 0; // 组件二偏移量
   @State opacityValue: number = 1; // 组件二透明度
   // 第二步：将状态变量设置到相关可动画属性接口
@@ -180,6 +180,7 @@ struct KeyframeAnimateToDemo {
       .height(100)
       .borderRadius(30)
       .onClick(() => {
+        // 第三步：调用keyframeAnimateTo接口
         this.getUIContext()?.keyframeAnimateTo({
           iterations: 1,
           expectedFrameRateRange: {
