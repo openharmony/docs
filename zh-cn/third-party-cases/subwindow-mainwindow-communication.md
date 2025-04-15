@@ -412,4 +412,4 @@ struct SubWindow{
 ```
 ## 参考
 - [窗口开发](../application-dev/windowmanager/application-window-stage.md)
-- [AppStorage：应用全局的UI状态存储](../application-dev/quick-start/arkts-appstorage.md)
+- [AppStorage：应用全局的UI状态存储](../application-dev/ui/state-management/arkts-appstorage.md)

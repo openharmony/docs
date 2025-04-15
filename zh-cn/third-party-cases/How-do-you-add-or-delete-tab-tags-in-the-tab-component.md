@@ -273,9 +273,9 @@ struct Drag {
 
 [Tabs](../application-dev/ui/arkts-navigation-tabs.md)
 
-[@State装饰器：组件内状态](../application-dev/quick-start/arkts-state.md)
+[@State装饰器：组件内状态](../application-dev/ui/state-management/arkts-state.md)
 
-[ForEach：循环渲染](../application-dev/quick-start/arkts-rendering-control-foreach.md)
+[ForEach：循环渲染](../application-dev/ui/state-management/arkts-rendering-control-foreach.md)
 
 [层叠布局（Stack）](../application-dev/ui/arkts-layout-development-stack-layout.md)
 

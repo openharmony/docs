@@ -30,7 +30,7 @@ TaskPool支持开发者在宿主线程封装任务抛给任务队列，系统选
 
 - Promise不支持跨线程传递，如果TaskPool返回pending或rejected状态的Promise，会返回失败；对于fulfilled状态的Promise，TaskPool会解析返回的结果，如果结果可以跨线程传递，则返回成功。
 
-- 不支持在TaskPool工作线程中使用[AppStorage](../quick-start/arkts-appstorage.md)。
+- 不支持在TaskPool工作线程中使用[AppStorage](../ui/state-management/arkts-appstorage.md)。
 
 - TaskPool支持开发者在宿主线程封装任务抛给任务队列，理论上可以支持任意多的任务，但任务的执行受限于任务的优先级以及系统资源的影响，在工作线程扩容到最大后，可能会导致任务的执行效率下降。
 
