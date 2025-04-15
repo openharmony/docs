@@ -24,6 +24,7 @@ import { SceneResourceType, SceneResource, Shader, MaterialType, Material, Shade
 | ANIMATION | 5 | 动画类型。 |
 | SHADER | 6 | 着色器类型。 |
 | IMAGE | 7 | 图片类型。 |
+| MESH_RESOURCE<sup>18+</sup> | 8 | 网格资源类型。 |
 
 ## SceneResource
 用于表示场景中的资源。
