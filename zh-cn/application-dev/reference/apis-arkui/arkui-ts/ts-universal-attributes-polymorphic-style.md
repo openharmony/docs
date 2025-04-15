@@ -45,7 +45,7 @@ stateStyles(value: StateStyles)
 
 **selected选中状态说明**
 
-- 当前多态样式的选中状态样式依赖组件选中属性值，可以使用[onClick](ts-universal-events-click.md)修改属性值，或使用属性自带[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定功能。
+- 当前多态样式的选中状态样式依赖组件选中属性值，可以使用[onClick](ts-universal-events-click.md)修改属性值，或使用属性自带[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定功能。
 
 - 当前支持selected的组件及其参数/属性值：
 
