@@ -644,8 +644,8 @@ imageEmbedding.getEmbedding(image)
 
 | 名称     | 值    | 说明              |
 | ---------- | ----------| --------------------- |
-| VECTOR_DATABASE   | 0      |向量数据库。           |
-| INVERTED_INDEX_DATABASE    | 1      | 倒排数据库。           |
+| VECTOR_DATABASE   | 0      | 向量数据库。           |
+| INVERTED_INDEX_DATABASE    | 1      | 倒排数据库，基于RDB。         |
 
 ## DbConfig<sup>18+</sup>
 
@@ -671,7 +671,7 @@ type DbConfig = relationalStore.StoreConfig
 
 retrieveRdb(query: string, condition: RetrievalCondition): Promise&lt;RdbRecords&gt;
 
-给定检索条件（包含查询词分词、召回条件、重排策略），从一个关系型数据库检索召回满足条件的数据。使用Promise异步回调。
+给定检索条件（包含查询词分词、召回条件），从一个关系型数据库检索召回满足条件的数据。使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
@@ -794,6 +794,14 @@ struct Page {
 
         let invertedIndexStrategies:Array<intelligence.InvertedIndexStrategy> = [bm25Strategy, exactStrategy, outOfOrderStrategy]
 
+        let filters:Array<intelligence.FilterInfo> = [
+          {
+            columns:["filename"],
+            operator:intelligence.Operator.OP_NE,
+            filterValue."'大模型时代'"
+          }
+        ]
+
         let recallConditionInvIdx:intelligence.InvertedIndexRecallCondition ={
             ftsTableName:"invidx_table",
             primaryKey:["fileid"],
@@ -801,7 +809,8 @@ struct Page {
             responseColumns:["filename", "keywords"],
             deepSize:500,
             invertedIndexStrategies:invertedIndexStrategies,
-            recallName:"invIdxRecall"
+            recallName:"invIdxRecall",
+            filters:filters
         }
 
         // 这里 floatArray 时输入的 query 的表征向量，根据实际情况需要修改
@@ -891,7 +900,7 @@ struct Page {
 | 名称     | 类型              | 必填 | 说明                                                         |
 | ---------- | --------------------- | ---- | ------------------------------------------------------------ |
 | recallConditions    |   Array&lt;[RecallCondition](#recallcondition18)&gt;       | 是   | 召回的条件，数组中的每个元素对应一个召回操作。 |
-| rerankMethod    |  [RerankMethod](#rerankmethod18)         | 否   | 重排方法。其参数默认值遵循[RecallCondition](#recallcondition18)中相应检索回路的参数。 |
+| rerankMethod    |  [RerankMethod](#rerankmethod18)         | 否   | 重排方法。其参数rerankType默认值为RRF算法，参数parameters默认值遵循[RecallCondition](#recallcondition18)中相应检索回路的参数。 |
 | resultCount    | number         | 否   | 重排后允许返回结果的最大数量。默认值为500。必须为正整数。 |
 
 
@@ -944,7 +953,7 @@ type ColumnName = string
 
 type RecallName = string
 
-召回路径名称，类型为字符串。
+召回回路名称，类型为字符串，用于给倒排和向量两路召回取名。例如出现两路向量召回时，给两路向量取名做区分。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
@@ -1115,8 +1124,8 @@ type InvertedIndexStrategy = Bm25Strategy | ExactMatchingStrategy | ProximityStr
 
 | 类型     | 值    | 说明                                                         |
 | ---------- | ----------| ------------------------------------------------------------ |
-| RRF        | 0      | Reciprocal Rank Fusion(RRF)方法。 |
-| FUSION_SCORE        | 1      | 基于得分的召回融合方法。 |
+| RRF        | 0      | Reciprocal Rank Fusion(RRF)方法。根据各路召回位置信息进行分档排序。适用场景：对结果多样性要求较高的场景，希望每路结果平等输出。 |
+| FUSION_SCORE        | 1      | 基于得分的召回融合方法。根据各路相关性分数进行分档排序。适用场景：对相关性准确性要求高、召回分数可靠且注重结果的排序稳定性的场景。 |
 
 
 ## RerankParameter<sup>18+</sup>
