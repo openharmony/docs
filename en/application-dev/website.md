@@ -499,8 +499,8 @@
         - [Using the Mirroring Capability](ui/arkts-mirroring-display.md)
         - [Supporting Aging-Friendly Design](ui/arkui-support-for-aging-adaptation.md)
         - Theme Settings<!--arkts-theme-->
+          - [Dark and Light Mode Adaptation](ui/ui-dark-light-color-adaptation.md)
           - [Configuring In-Application Theme Skinning](ui/theme_skinning.md)
-        - [Using the UI Context API for UI Operations (UIContext)](ui/arkts-global-interface.md)
         - [Using the UI Context API for UI Operations (UIContext)](ui/arkts-global-interface.md)
         - Launching Pages Across Processes<!--arkts-ui-cross-process-->
           - [Atomic Service Full Screen Launch Component (FullScreenLaunchComponent)](ui/arkts-FullScreenComponent.md)
