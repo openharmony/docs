@@ -1491,7 +1491,7 @@ policy
 
 ## policy.setNetworkAccessPolicy<sup>12+</sup>
 
-setNetworkAccessPolicy(uid: number, policy: NetworkAccessPolicy, isReconfirmed?: boolean): Promise\<void>
+setNetworkAccessPolicy(uid: number, policy: NetworkAccessPolicy, isReconfirmed?: boolean): Promise\<void\>
 
 Specifies whether an application with the specified UID can access the network. This API uses a promise to return the result.
 
@@ -1547,7 +1547,7 @@ policy
 
 ## policy.getNetworkAccessPolicy<sup>12+</sup>
 
-getNetworkAccessPolicy(uid: number): Promise\<NetworkAccessPolicy>
+getNetworkAccessPolicy(uid: number): Promise\<NetworkAccessPolicy\>
 
 Checks whether an application with the specified UID can access the network. This API uses a promise to return the result.
 
@@ -1597,7 +1597,7 @@ policy
 
 ## policy.getNetworkAccessPolicy<sup>12+</sup>
 
-getNetworkAccessPolicy(): Promise\<UidNetworkAccessPolicy>
+getNetworkAccessPolicy(): Promise\<UidNetworkAccessPolicy\>
 
 Checks whether all applications of the current user can access the network. This API uses a promise to return the result.
 
