@@ -1952,7 +1952,7 @@ netCon.register((error: BusinessError) => {
 
 unregister(callback: AsyncCallback\<void>): void
 
-取消订阅默认网络状态变化的通知。
+取消订阅默认网络状态变化的通知。可在业务逻辑处理结束时取消订阅，但不应该放在事件回调函数中调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
