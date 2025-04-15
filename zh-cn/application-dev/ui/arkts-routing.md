@@ -14,9 +14,9 @@
   **图1** 页面跳转  
 ![router-jump-to-detail](figures/router-jump-to-detail.gif)
 
-Router模块提供了两种跳转模式，分别是[router.pushUrl](../reference/apis-arkui/js-apis-router.md#routerpushurl9)和[router.replaceUrl](../reference/apis-arkui/js-apis-router.md#routerreplaceurl9)。这两种模式决定了目标页面是否会替换当前页。
+Router模块提供了两种跳转模式，分别是[pushUrl](../reference/apis-arkui/js-apis-arkui-UIContext.md#pushurl)和[replaceUrl](../reference/apis-arkui/js-apis-arkui-UIContext.md#replaceurl)。这两种模式决定了目标页面是否会替换当前页。
 
-- router.pushUrl：目标页面不会替换当前页，而是压入页面栈。这样可以保留当前页的状态，并且可以通过返回键或者调用[router.back](../reference/apis-arkui/js-apis-router.md#routerback)方法返回到当前页。
+- router.pushUrl：目标页面不会替换当前页，而是压入页面栈。这样可以保留当前页的状态，并且可以通过返回键或者调用[back](../reference/apis-arkui/js-apis-arkui-UIContext.md#back)方法返回到当前页。
 
 - router.replaceUrl：目标页面会替换当前页，并销毁当前页。这样可以释放当前页的资源，并且无法返回到当前页。
 
@@ -25,7 +25,7 @@ Router模块提供了两种跳转模式，分别是[router.pushUrl](../reference
 >- 创建新页面时，请参考<!--RP1-->[构建第二个页面](../quick-start/start-with-ets-stage.md#构建第二个页面)<!--RP1End-->配置第二个页面的路由。
 >
 >
->- 页面栈的最大容量为32个页面。如果超过这个限制，可以调用[router.clear](../reference/apis-arkui/js-apis-router.md#routerclear)方法清空历史页面栈，释放内存空间。
+>- 页面栈的最大容量为32个页面。如果超过这个限制，可以调用[clear](../reference/apis-arkui/js-apis-arkui-UIContext.md#clear)方法清空历史页面栈，释放内存空间。
 
 同时，Router模块提供了两种实例模式，分别是Standard和Single。这两种模式决定了目标url是否会对应多个实例。
 
@@ -164,7 +164,7 @@ function onJumpClick(): void {
 }
 ```
 
-在目标页面中，可以通过调用Router模块的[getParams](../reference/apis-arkui/js-apis-router.md#routergetparams)方法来获取传递过来的参数。例如：
+在目标页面中，可以通过调用Router模块的[getParams](../reference/apis-arkui/js-apis-arkui-UIContext.md#getparams)方法来获取传递过来的参数。例如：
 
 
 ```ts
@@ -296,11 +296,11 @@ struct Home {
 
 ### 系统默认询问框
 
-为了实现这个功能，可以使用页面路由Router模块提供的两个方法：[router.showAlertBeforeBackPage](../reference/apis-arkui/js-apis-router.md#routershowalertbeforebackpage9)和[router.back](../reference/apis-arkui/js-apis-router.md#routerback)来实现这个功能。
+为了实现这个功能，可以使用页面路由Router模块提供的两个方法：[showAlertBeforeBackPage](../reference/apis-arkui/js-apis-arkui-UIContext.md#showalertbeforebackpage)和[back](../reference/apis-arkui/js-apis-arkui-UIContext.md#back)来实现这个功能。
 
 直接使用router可能导致实例不明确的问题，建议使用[getUIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getRouter](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
 
-如果想要在目标界面开启页面返回询问框，需要在调用[router.back](../reference/apis-arkui/js-apis-router.md#routerback)方法之前，通过调用[router.showAlertBeforeBackPage](../reference/apis-arkui/js-apis-router.md#routershowalertbeforebackpage9)方法设置返回询问框的信息。例如，在支付页面中定义一个返回按钮的点击事件处理函数：
+如果想要在目标界面开启页面返回询问框，需要在调用[back](../reference/apis-arkui/js-apis-arkui-UIContext.md#back)方法之前，通过调用[showAlertBeforeBackPage](../reference/apis-arkui/js-apis-arkui-UIContext.md#showalertbeforebackpage)方法设置返回询问框的信息。例如，在支付页面中定义一个返回按钮的点击事件处理函数：
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -332,10 +332,11 @@ message：string类型，表示询问框的内容。
 
 ### 自定义询问框
 
-自定义询问框的方式，可以使用弹窗[promptAction.showDialog](../reference/apis-arkui/js-apis-promptAction.md#promptactionshowdialog)或者自定义弹窗实现。这样可以让应用界面与系统默认询问框有所区别，提高应用的用户体验度。本文以弹窗为例，介绍如何实现自定义询问框。
+自定义询问框的方式，可以使用弹窗[showDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#showdialog-1)或者自定义弹窗实现。这样可以让应用界面与系统默认询问框有所区别，提高应用的用户体验度。本文以弹窗为例，介绍如何实现自定义询问框。
 
 直接使用router可能导致实例不明确的问题，建议使用[getUIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getRouter](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
-在事件回调中，调用弹窗的[promptAction.showDialog](../reference/apis-arkui/js-apis-promptAction.md#promptactionshowdialog)方法：
+
+在事件回调中，调用弹窗的[showDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#showdialog-1)方法：
 
 ```ts
 import { promptAction} from '@kit.ArkUI';
@@ -377,7 +378,7 @@ function onBackClick() {
 
 ## 命名路由
 
-在开发中为了跳转到共享包[HAR](../quick-start/har-package.md)或者[HSP](../quick-start/in-app-hsp.md)中的页面（即共享包中路由跳转），可以使用[router.pushNamedRoute](../reference/apis-arkui/js-apis-router.md#routerpushnamedroute10)来实现。
+在开发中为了跳转到共享包[HAR](../quick-start/har-package.md)或者[HSP](../quick-start/in-app-hsp.md)中的页面（即共享包中路由跳转），可以使用[pushNamedRoute](../reference/apis-arkui/js-apis-arkui-UIContext.md#pushnamedroute)来实现。
 
   **图4** 命名路由跳转  
 
