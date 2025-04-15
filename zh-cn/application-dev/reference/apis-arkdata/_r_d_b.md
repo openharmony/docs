@@ -60,6 +60,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
+| typedef enum [Rdb_Tokenizer](#rdb_tokenizer) [Rdb_Tokenizer](#rdb_tokenizer) | 描述数据库的分词器类型。 |
 | typedef struct [OH_Rdb_ConfigV2](#oh_rdb_configv2) [OH_Rdb_ConfigV2](#oh_rdb_configv2) | 管理关系数据库配置，与[OH_Rdb_Config](_o_h___rdb___config.md)的区别是该结构体成员变量不对外暴露，使用一系列方法配置该结构体的属性。 | 
 | typedef enum [Rdb_DBType](#rdb_dbtype) [Rdb_DBType](#rdb_dbtype) | 描述数据库的内核类型。 | 
 | [OH_ColumnType](#oh_columntype) | 数据库字段类型。 | 
@@ -96,6 +97,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
+| [Rdb_Tokenizer](#rdb_tokenizer-1) { RDB_NONE_TOKENIZER = 1, RDB_ICU_TOKENIZER = 2 } | 描述数据库的分词器类型。 |
 | [Rdb_DBType](#rdb_dbtype-1) { RDB_SQLITE = 1, RDB_CAYLEY = 2, DBTYPE_BUTT = 64 } | 描述数据库的内核类型。 | 
 | [OH_ColumnType](#oh_columntype-1) {<br/>TYPE_NULL = 0, TYPE_INT64, TYPE_REAL, TYPE_TEXT,<br/>TYPE_BLOB, TYPE_ASSET, TYPE_ASSETS<br/>} | 数据库字段类型。 |
 | [OH_OrderType](#oh_ordertype-1) { ASC = 0, DESC = 1 } | 排序方式。 |
@@ -114,6 +116,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
+| int [OH_Rdb_SetTokenizer](#oh_rdb_settokenizer) ([OH_Rdb_ConfigV2](#oh_rdb_configv2) \*config, [Rdb_Tokenizer](#rdb_tokenizer) tokenizer) | 给指定的数据库文件配置设置分词器类型。 |
 | [OH_Rdb_ConfigV2](#oh_rdb_configv2) \* [OH_Rdb_CreateConfig](#oh_rdb_createconfig) () | 创建一个[OH_Rdb_ConfigV2](#oh_rdb_configv2)实例，并返回指向该实例的指针。 | 
 | int [OH_Rdb_DestroyConfig](#oh_rdb_destroyconfig) ([OH_Rdb_ConfigV2](#oh_rdb_configv2) \*config) | 销毁由[OH_Rdb_CreateConfig](#oh_rdb_createconfig)创建的[OH_Rdb_ConfigV2](#oh_rdb_configv2)对象。 | 
 | int [OH_Rdb_SetDatabaseDir](#oh_rdb_setdatabasedir) ([OH_Rdb_ConfigV2](#oh_rdb_configv2) \*config, const char \*databaseDir) | 给指定的数据库文件配置[OH_Rdb_ConfigV2](#oh_rdb_configv2)，设置数据库文件路径。 | 
