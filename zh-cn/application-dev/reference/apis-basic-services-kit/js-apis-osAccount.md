@@ -2895,7 +2895,6 @@ updateAccountInfo(oldAccountInfo: DomainAccountInfo, newAccountInfo: DomainAccou
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.|
 | 12300001 | The system service works abnormally. |
 | 12300002 | The new account info is invalid. |
@@ -2999,7 +2998,6 @@ static addServerConfig(parameters: Record&lt;string, Object&gt;): Promise&lt;Dom
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
-| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.|
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid server config parameters. |
@@ -3049,7 +3047,6 @@ static removeServerConfig(configId: string): Promise&lt;void&gt;
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
-| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.|
 | 12300001 | The system service works abnormally. |
 | 12300212 | Server config not found. |
@@ -3100,7 +3097,6 @@ static updateServerConfig(configId: string, parameters: Record&lt;string, Object
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
-| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.|
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid server config parameters. |
@@ -3156,7 +3152,6 @@ static getServerConfig(configId: string): Promise&lt;DomainServerConfig&gt;
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
-| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.|
 | 12300001 | The system service works abnormally. |
 | 12300212 | Server config not found. |
@@ -3252,7 +3247,6 @@ static getAccountServerConfig(domainAccountInfo: DomainAccountInfo): Promise&lt;
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
-| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.|
 | 12300001 | The system service works abnormally. |
 | 12300003 | Domain account not found. |
