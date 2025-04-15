@@ -3327,7 +3327,7 @@ Creates an **ImageSource** instance based on the raw file descriptor of an image
 
 | Name| Type                            | Mandatory| Description                                |
 | ------ | -------------------------------- | ---- | ------------------------------------ |
-| rawfile | [resourceManager.RawFileDescriptor](../apis-localization-kit/js-apis-resource-manager.md#rawfiledescriptor8) | Yes| Raw file descriptor of the image resource file.|
+| rawfile | [resourceManager.RawFileDescriptor](../apis-localization-kit/js-apis-resource-manager.md#rawfiledescriptor9) | Yes| Raw file descriptor of the image resource file.|
 | options | [SourceOptions](#sourceoptions9) | No| Image properties, including the image pixel density, pixel format, and image size.|
 
 **Return value**
