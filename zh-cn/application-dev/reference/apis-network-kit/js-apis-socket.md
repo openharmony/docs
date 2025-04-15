@@ -1043,7 +1043,7 @@ multicast.addMembership(addr, (err: Object) => {
 
 ### addMembership<sup>11+</sup>
 
-addMembership(multicastAddress: NetAddress): Promise\<void\>;
+addMembership(multicastAddress: NetAddress): Promise\<void\>
 
 加入多播组。使用Promise方法作为异步方法。
 
