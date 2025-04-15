@@ -39,7 +39,7 @@ ArkUI提供了使用C和C++开发拖拽功能的能力，开发者可调用C API
    创建[pixelMap](../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_createpixelmap)，设置pixelMap的宽高等各项属性。设置Image节点的[dragPreviewOption](../reference/apis-arkui/drag__and__drop_8h.md#函数)，可用于设置跟手图的圆角、角标等。
 
     ```cpp
-      //创建pixelMap
+      // 创建pixelMap
       uint8_t data[960000];
       size_t dataSize = 960000;
       for (int i = 0; i < dataSize; i++) {
@@ -276,7 +276,7 @@ ArkUI提供了使用C和C++开发拖拽功能的能力，开发者可调用C API
         int returnValue;
         switch (targetId) {
           case buttonTouch: {
-            // CreateDragAction
+            // 创建DragAction
             auto action1 = OH_ArkUI_CreateDragActionWithNode(node);
             OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
                           "OH_ArkUI_CreateDragActionWithNode returnValue = %{public}p", action1);
@@ -295,14 +295,14 @@ ArkUI提供了使用C和C++开发拖拽功能的能力，开发者可调用C API
                           "OH_ArkUI_DragAction_SetDragPreviewOption returnValue = %{public}d",
                           returnValue);
             // 设置pointerId
-            returnValue = OH_ArkUI_DragAction_SetPointerId(action1, 0); //-1 0 10
+            returnValue = OH_ArkUI_DragAction_SetPointerId(action1, 0); // -1 0 10
             OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
                           "OH_ArkUI_DragAction_SetPointerId returnValue = %{public}d", returnValue);
             // 设置touchPoint
-            returnValue = OH_ArkUI_DragAction_SetTouchPointX(action1, 200); //-1 0 200
+            returnValue = OH_ArkUI_DragAction_SetTouchPointX(action1, 200); // -1 0 200
             OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
                           "OH_ArkUI_DragAction_SetTouchPointX returnValue = %{public}d", returnValue);
-            returnValue = OH_ArkUI_DragAction_SetTouchPointY(action1, 200); //-1 0 200
+            returnValue = OH_ArkUI_DragAction_SetTouchPointY(action1, 200); // -1 0 200
             OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
                           "OH_ArkUI_DragAction_SetTouchPointY returnValue = %{public}d", returnValue);
             // 设置unifiedData
