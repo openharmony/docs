@@ -401,7 +401,7 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 
 ## VideoController
 
-一个VideoController对象可以控制一个或多个video，可用视频播放实例请参考[@ohos.multimedia.media](../../apis-media-kit/js-apis-media.md)。
+一个VideoController对象可以控制一个或多个Video，可用视频播放实例请参考[@ohos.multimedia.media](../../apis-media-kit/js-apis-media.md)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -457,7 +457,7 @@ stop()
 
 reset(): void
 
-video组件重置AVPlayer。显示当前帧，再次播放时从头开始播放。
+Video组件重置AVPlayer。显示当前帧，再次播放时从头开始播放。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
