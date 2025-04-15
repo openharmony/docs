@@ -22,7 +22,7 @@ installFont(path: string): Promise&lt;number&gt;
 
 **需要权限:** ohos.permission.UPDATE_FONT
 
-**系统能力**：SystemCapability.Global.FontManager
+**系统能力:** SystemCapability.Global.FontManager
 
 **参数：** 
 
@@ -74,7 +74,7 @@ uninstallFont(fullName: string): Promise&lt;number&gt;
 
 **需要权限:** ohos.permission.UPDATE_FONT
 
-**系统能力**：SystemCapability.Global.FontManager
+**系统能力:** SystemCapability.Global.FontManager
 
 **参数：** 
 
