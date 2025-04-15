@@ -18,7 +18,7 @@ TaskPool支持开发者在宿主线程封装任务抛给任务队列，系统选
 
 - 任务函数在TaskPool工作线程的执行耗时不能超过3分钟（不包含Promise和async/await异步调用的耗时，例如网络下载、文件读写等I/O任务的耗时），否则会被强制退出。
 
-- 实现任务的函数入参需满足序列化支持的类型，详情请参见[线程间通信对象](interthread-communication-overview.md)。
+- 实现任务的函数入参需满足序列化支持的类型，详情请参见[线程间通信对象](interthread-communication-overview.md)。目前不支持使用[@State装饰器](../quick-start/arkts-state.md)、[@Prop装饰器](../quick-start/arkts-prop.md)、[@Link装饰器](../quick-start/arkts-link.md)等装饰器修饰的复杂类型。
 
 - ArrayBuffer参数在TaskPool中默认转移，需要设置转移列表的话可通过接口[setTransferList()](../reference/apis-arkts/js-apis-taskpool.md#settransferlist10)设置。
 
