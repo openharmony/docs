@@ -3,17 +3,17 @@
 
 ArkUI开发框架在NDK接口提供了列表组件，使用列表可以轻松高效地显示结构化、可滚动的信息。列表组件支持控制滚动位置、支持分组显示内容、持使用NodeAdapter实现懒加载以提升列表创建性能。
 
-# 创建列表
+## 创建列表
 
 参考[接入ArkTS页面章节](../ui/ndk-access-the-arkts-page.md)实现列表创建。 
 
-# 监听滚动事件 
+## 监听滚动事件 
 
 参考监听组件事件章节实现列表滚动事件监听。 
 
-# 使用懒加载 
+## 使用懒加载 
 
-## NodeAdapter介绍 
+### NodeAdapter介绍 
 
 NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeadapterhandle)对象替代ArkTS侧的LazyForEach功能，用于按需生成子组件, NodeAdapter支持在List/ListItemGroup、Gird、WaterFlow、Swiper组件中使用。
 
@@ -23,7 +23,7 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#ar
   ![zh-cn_image_0000001949769409](figures/zh-cn_image_0000001949769409.png)
 
 
-## 实现懒加载适配器
+### 实现懒加载适配器
 
 使用ArkUListItemAdapter类来管理懒加载适配器，在类的构造中创建NodeAdapter对象，并给NodeAdapter对象设置事件监听器，在类的析构函数中，销毁NodeAdapter对象。
 
@@ -203,7 +203,7 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#ar
    #endif // MYAPPLICATION_ARKUILISTITEMADAPTER_H
    ```
 
-# 在列表中应用懒加载适配器 
+### 在列表中应用懒加载适配器 
 
 1. 在ArkUIListNode中添加SetLazyAdapter函数，给列表节设置NODE_LIST_NODE_ADAPTER属性，并将NodeAdapter作为属性入参传入。
    ```
