@@ -82,9 +82,9 @@
 
 | 任务          | 简介                                  | 相关指导                                     |
 | ----------- | ----------------------------------- | ---------------------------------------- |
-| 学习ArkTS     | 介绍了ArkTS的基本语法、状态管理和渲染控制的场景。         | - [基本语法](../quick-start/arkts-basic-syntax-overview.md)<br>- [状态管理](../quick-start/arkts-state-management-overview.md)<br>- [渲染控制](../quick-start/arkts-rendering-control-ifelse.md) |
+| 学习ArkTS     | 介绍了ArkTS的基本语法、状态管理和渲染控制的场景。         | - [基本语法](../ui/state-management/arkts-basic-syntax-overview.md)<br>- [状态管理](../ui/state-management/arkts-state-management-overview.md)<br>- [渲染控制](../ui/state-management/arkts-rendering-control-ifelse.md) |
 | 开发布局        | 介绍了几种常用的布局方式。             | -&nbsp;[常用布局](arkts-layout-development-overview.md)<br/> |
-| 添加组件        | 介绍了几种常用的系统组件使用方法。 | -&nbsp;[常用组件](arkts-common-components-button.md)<br/>- [自定义组件](../quick-start/arkts-create-custom-components.md) |
+| 添加组件        | 介绍了几种常用的系统组件使用方法。 | -&nbsp;[常用组件](arkts-common-components-button.md)<br/>- [自定义组件](../ui/state-management/arkts-create-custom-components.md) |
 | 设置组件导航和页面路由 | 介绍了如何设置组件间的导航以及页面路由。                | -&nbsp;[组件导航（推荐）](arkts-navigation-navigation.md)<br/>-&nbsp;[页面路由](arkts-routing.md)|
 | 使用文本 | 介绍了输入框、富文本和属性字符串等文本组件的使用方法。                | -&nbsp;[文本显示](arkts-common-components-text-display.md) <br/>- [文本输入](arkts-common-components-text-input.md)<br/>- [富文本](arkts-common-components-richeditor.md)<br/>- [图标小符号](arkts-common-components-symbol.md)<br/>- [属性字符串](arkts-styled-string.md)|
 | 使用弹窗 | 介绍了弹窗的应用场景与使用方法。 | -&nbsp;[弹出框](arkts-base-dialog-overview.md)<br/>-&nbsp;[菜单控制](arkts-popup-and-menu-components-menu.md)<br/>-&nbsp;[气泡提示](arkts-popup-and-menu-components-popup.md)<br/>-&nbsp;[绑定模态页面](arkts-modal-overview.md)<br/>-&nbsp;[即时反馈](arkts-create-toast.md)<br/>-&nbsp;[设置浮层](arkts-create-overlaymanager.md) |
