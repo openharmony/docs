@@ -117,7 +117,7 @@ websocket客户端接收close消息的回调函数定义。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| client | websocket客户端  | 
+| client | websocket客户端。  | 
 | closeResult | websocket客户端接收关闭消息的内容。  | 
 
 
@@ -135,7 +135,7 @@ websocket客户端接收error错误消息的回调函数定义。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| client | websocket客户端  | 
+| client | websocket客户端。  | 
 | errorResult | websocket客户端接收连接错误消息的内容。  | 
 
 
@@ -172,7 +172,7 @@ websocket客户端接收open消息的回调函数定义。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| client | websocket客户端  | 
+| client | websocket客户端。 | 
 | openResult | websocket客户端接收建立连接消息的内容。  | 
 
 
