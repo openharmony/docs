@@ -90,7 +90,7 @@ splice(start: number, deleteCount?: number, sections?: Array\<SectionOptions\>):
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| boolean | 分组是否修改成功，要加入的分组中有任意分组的itemsCount不是正整数时返回false。 |
+| boolean | 分组修改成功返回true；修改失败（要加入的分组中有任意分组的itemsCount不是正整数）返回false。 |
 
 
 ### push<sup>12+</sup>
@@ -113,7 +113,7 @@ push(section: SectionOptions): boolean
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| boolean | 分组是否添加成功，新分组的itemsCount不是正整数时返回false。 |
+| boolean | 分组添加成功返回true，添加失败（新分组的itemsCount不是正整数）返回false。 |
 
 ### update<sup>12+</sup>
 
@@ -234,7 +234,7 @@ columnsTemplate(value: string)
 
 设置当前瀑布流组件布局列的数量，不设置时默认1列。
 
-例如, '1fr 1fr 2fr' 是将父组件分3列，将父组件允许的宽分为4等份，第一列占1份，第二列占1份，第三列占2份。
+例如，'1fr 1fr 2fr' 是将父组件分3列，将父组件允许的宽分为4等份，第一列占1份，第二列占1份，第三列占2份。
 
 可使用columnsTemplate('repeat(auto-fill,track-size)')根据给定的列宽track-size自动计算列数，其中repeat、auto-fill为关键字，track-size为可设置的宽度，支持的单位包括px、vp、%或有效数字，默认单位为vp，使用方法参见示例2。
 
@@ -254,7 +254,7 @@ rowsTemplate(value: string)
 
 设置当前瀑布流组件布局行的数量，不设置时默认1行。
 
-例如, '1fr 1fr 2fr'是将父组件分三行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。
+例如，'1fr 1fr 2fr'是将父组件分三行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。
 
 可使用rowsTemplate('repeat(auto-fill,track-size)')根据给定的行高track-size自动计算行数，其中repeat、auto-fill为关键字，track-size为可设置的高度，支持的单位包括px、vp、%或有效数字，默认单位为vp。
 
@@ -332,7 +332,7 @@ layoutDirection(value: FlexDirection)
 | ------ | --------------------------------------------------- | ---- | ------------------------------------------------- |
 | value  | [FlexDirection](ts-appendix-enums.md#flexdirection) | 是   | 布局的主轴方向。<br/>默认值：FlexDirection.Column |
 
-layoutDirection优先级高于rowsTemplate和columnsTemplate。根据layoutDirection设置情况，分为以下三种设置模式:
+layoutDirection优先级高于rowsTemplate和columnsTemplate。根据layoutDirection设置情况，分为以下三种设置模式：
 
 - layoutDirection设置纵向布局（FlexDirection.Column 或 FlexDirection.ColumnReverse）
 
@@ -350,7 +350,7 @@ layoutDirection优先级高于rowsTemplate和columnsTemplate。根据layoutDirec
 
 enableScrollInteraction(value: boolean)
 
-设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。
+设置是否支持滚动手势。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -360,7 +360,7 @@ enableScrollInteraction(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                |
 | ------ | ------- | ---- | ----------------------------------- |
-| value  | boolean | 是   | 是否支持滚动手势。<br/>默认值：true |
+| value  | boolean | 是   | 是否支持滚动手势。设置为true时可以通过手指或者鼠标滚动，设置为false时无法通过手指或者鼠标滚动，但不影响控制器[Scroller](ts-container-scroll.md#scroller)的滚动接口。<br/>默认值：true |
 
 ### nestedScroll<sup>10+</sup>
 
@@ -429,7 +429,7 @@ cachedCount(count: number, show: boolean)
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | ---------------------------------------- |
 | count | number | 是   | 预加载的FlowItem的数量。 <br/>默认值：根据屏幕内显示的节点个数设置，最大值为16。<br/>取值范围：[0, +∞)，设置为小于0的值时，按1处理。 |
-| show  | boolean | 是   | 被预加载的FlowItem是否需要显示。 <br/> 默认值：false，不显示预加载的FlowItem。 |
+| show  | boolean | 是   | 被预加载的FlowItem是否需要显示。设置为true时显示预加载的FlowItem，设置为false时不显示预加载的FlowItem。 <br/> 默认值：false |
 
 ## 事件
 

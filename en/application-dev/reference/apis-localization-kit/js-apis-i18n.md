@@ -61,10 +61,10 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-      let displayCountry: string = i18n.System.getDisplayCountry("zh-CN", "en-GB"); // displayCountry = "China"
+    let displayCountry: string = i18n.System.getDisplayCountry('CN', 'en-GB'); // displayCountry = 'China'
   } catch (error) {
-      let err: BusinessError = error as BusinessError;
-      console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -72,7 +72,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
 static getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): string
 
-Obtains the localized display of the text for the specified language. For example, if **getDisplayLanguage ("de," "zh-Hans-CN")** is called to display German in Chinese, the output is in German.
+Obtains the localized display of the text for the specified language. For example, if **getDisplayLanguage('de', 'zh-Hans-CN')** is called to display German in Chinese, the output is in German.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -106,8 +106,9 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let displayLanguage: string = i18n.System.getDisplayLanguage("zh", "en-GB"); // Display Chinese in English.
-  } catch(error) {
+    // displayLanguage = 'Chinese', that is, display Chinese in English.
+    let displayLanguage: string = i18n.System.getDisplayLanguage('zh', 'en-GB');
+  } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.getDisplayLanguage failed, error code: ${err.code}, message: ${err.message}.`);
   }
@@ -133,7 +134,8 @@ Since API version 11, this API is supported in ArkTS widgets.
 
 **Example**
   ```ts
-  let systemLanguages: Array<string> = i18n.System.getSystemLanguages(); // [ "ug", "bo", "zh-Hant", "en-Latn-US", "zh-Hans" ]
+  // systemLanguages = [ 'ug', 'bo', 'zh-Hant', 'en-Latn-US', 'zh-Hans' ]
+  let systemLanguages: Array<string> = i18n.System.getSystemLanguages();
   ```
 
 ### getSystemCountries<sup>9+</sup>
@@ -176,8 +178,9 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let systemCountries: Array<string> = i18n.System.getSystemCountries('zh'); // systemCountries = [ "ZW", "YT", "YE", ..., "ER", "CN", "DE" ]
-  } catch(error) {
+    // systemCountries = [ 'ZW', 'YT', 'YE', ..., 'ER', 'CN', 'DE' ]
+    let systemCountries: Array<string> = i18n.System.getSystemCountries('zh');
+  } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.getSystemCountries failed, error code: ${err.code}, message: ${err.message}.`);
   }
@@ -225,8 +228,8 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let res: boolean = i18n.System.isSuggested('zh', 'CN');  // res = true
-  } catch(error) {
+    let isSuggestedCountry: boolean = i18n.System.isSuggested('zh', 'CN'); // isSuggestedCountry = true
+  } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.isSuggested failed, error code: ${err.code}, message: ${err.message}.`);
   }
@@ -252,7 +255,7 @@ Obtains the system language.
 
 **Example**
   ```ts
-  let systemLanguage: string = i18n.System.getSystemLanguage();  // systemLanguage indicates the current system language.
+  let systemLanguage: string = i18n.System.getSystemLanguage();
   ```
 
 ### getSystemRegion<sup>9+</sup>
@@ -273,7 +276,7 @@ Obtains the system region.
 
 **Example**
   ```ts
-  let systemRegion: string = i18n.System.getSystemRegion(); // Obtain the current system region.
+  let systemRegion: string = i18n.System.getSystemRegion();
   ```
 
 ### getSystemLocale<sup>9+</sup>
@@ -294,7 +297,7 @@ Obtains the system locale.
 
 **Example**
   ```ts
-  let systemLocale: string = i18n.System.getSystemLocale();  // Obtain the current system locale.
+  let systemLocale: string = i18n.System.getSystemLocale();
   ```
 
 ### is24HourClock<sup>9+</sup>
@@ -317,7 +320,7 @@ Checks whether the 24-hour clock is used.
 
 **Example**
   ```ts
-  let is24HourClock: boolean = i18n.System.is24HourClock();  // Check whether the 24-hour clock is enabled.
+  let is24HourClock: boolean = i18n.System.is24HourClock();
   ```
 
 
@@ -339,7 +342,7 @@ Obtains the list of preferred languages.
 
 **Example**
   ```ts
-  let preferredLanguageList: Array<string> = i18n.System.getPreferredLanguageList(); // Obtain the current preferred language list.
+  let preferredLanguageList: Array<string> = i18n.System.getPreferredLanguageList();
   ```
 
 ### getFirstPreferredLanguage<sup>9+</sup>
@@ -360,7 +363,7 @@ Obtains the first language in the preferred language list.
 
 **Example**
   ```ts
-  let firstPreferredLanguage: string = i18n.System.getFirstPreferredLanguage();  // Obtain the first language in the preferred language list.
+  let firstPreferredLanguage: string = i18n.System.getFirstPreferredLanguage();
   ```
 
 ### setAppPreferredLanguage<sup>11+</sup>
@@ -393,8 +396,8 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    i18n.System.setAppPreferredLanguage('zh'); // Set the preferred language of the application to zh.
-  } catch(error) {
+    i18n.System.setAppPreferredLanguage('zh');
+  } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.setAppPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
   }
@@ -418,7 +421,7 @@ Obtains the preferred language of an application.
 
 **Example**
   ```ts
-  let appPreferredLanguage: string = i18n.System.getAppPreferredLanguage(); // Obtain the preferred language of the application.
+  let appPreferredLanguage: string = i18n.System.getAppPreferredLanguage();
   ```
 
 
@@ -440,7 +443,7 @@ Checks whether use of local digits is enabled.
 
 **Example**
   ```ts
-  let status: boolean = i18n.System.getUsingLocalDigit();  // Check whether the local digit switch is enabled.
+  let usingLocalDigit: boolean = i18n.System.getUsingLocalDigit();
   ```
 
 ### getSimplifiedLanguage<sup>15+</sup>
@@ -479,9 +482,11 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let simplifiedLanguage: string = i18n.System.getSimplifiedLanguage("zh-Hans-CN");  // simplifiedLanguage = zh
-    let simplifiedSystemLanguage: string = i18n.System.getSimplifiedLanguage();  // simplifiedSystemLanguage = zh-Hans if the current system language is zh-Hans-CN.
-  } catch(error) {
+    // simplifiedLanguage = 'zh'
+    let simplifiedLanguage: string = i18n.System.getSimplifiedLanguage('zh-Hans-CN');
+    // simplifiedSystemLanguage = 'zh-Hans' if the current system language is simplified Chinese.
+    let simplifiedSystemLanguage: string = i18n.System.getSimplifiedLanguage();
+  } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.getSimplifiedLanguage failed, error code: ${err.code}, message: ${err.message}.`);
   }
@@ -505,7 +510,7 @@ Obtains the preferred temperature unit for the current user.
 
 **Example**
   ```ts
-  let type: i18n.TemperatureType = i18n.System.getTemperatureType();
+  let temperatureType: i18n.TemperatureType = i18n.System.getTemperatureType();
   ```
 
 ### getTemperatureName<sup>18+</sup>
@@ -549,8 +554,9 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let res: string = i18n.System.getTemperatureName(i18n.TemperatureType.CELSIUS);  // res = celsius
-  } catch(error) {
+    // temperatureName = 'celsius'
+    let temperatureName: string = i18n.System.getTemperatureName(i18n.TemperatureType.CELSIUS);
+  } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.getTemperatureName failed, error code: ${err.code}, message: ${err.message}.`);
   }
@@ -574,7 +580,7 @@ Obtains the preferred start day of a week for the current user.
 
 **Example**
   ```ts
-  let type: i18n.WeekDay = i18n.System.getFirstDayOfWeek();
+  let firstDayOfWeek: i18n.WeekDay = i18n.System.getFirstDayOfWeek();
   ```
 
 ## TemperatureType<sup>18+</sup>
@@ -634,8 +640,8 @@ Checks whether a locale uses a right-to-left (RTL) language.
 
 **Example**
   ```ts
-  i18n.isRTL("zh-CN");// Since Chinese is not written from right to left, false is returned.
-  i18n.isRTL("ar-EG");// Since Arabic is written from right to left, true is returned.
+  let isZhRTL: boolean = i18n.isRTL('zh-CN'); // Since Chinese is not written from right to left, false is returned.
+  let isArRTL: boolean = i18n.isRTL('ar-EG'); // Since Arabic is written from right to left, true is returned.
   ```
 
 ## i18n.getCalendar<sup>8+</sup>
@@ -663,7 +669,7 @@ Obtains a **Calendar** object.
 
 **Example**
   ```ts
-  i18n.getCalendar("zh-Hans", "chinese"); // Obtain the Calendar object for the Chinese lunar calendar.
+  let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans', 'chinese'); // Obtain the Calendar object for the Chinese lunar calendar.
   ```
 
 ## EntityRecognizer<sup>11+</sup>
@@ -695,7 +701,14 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
 **Example**
   ```ts
-  let entityRecognizer: i18n.EntityRecognizer = new i18n.EntityRecognizer("zh-CN");
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    let entityRecognizer: i18n.EntityRecognizer = new i18n.EntityRecognizer('zh-CN');
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call new i18n.EntityRecognizer failed, error code: ${err.code}, message: ${err.message}.`);
+  }
   ```
 
 ### findEntityInfo<sup>11+</sup>
@@ -730,11 +743,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
   ```ts
-  let entityRecognizer: i18n.EntityRecognizer = new i18n.EntityRecognizer("zh-CN");
-  let text1: string = " If you have any questions, call us by phone 12345678";
-  let result1: Array<i18n.EntityInfoItem> = entityRecognizer.findEntityInfo(text1); // result1[0].type = "phone_number", result1[0].begin = 8, result1[0].end = 19
-  let text2: string = "Let's have dinner on December 1, 2023."
-  let result2: Array<i18n.EntityInfoItem> = entityRecognizer.findEntityInfo(text2); // result2[0].type = "date", result2[0].begin = 2, result2[0].end = 12
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    let entityRecognizer: i18n.EntityRecognizer = new i18n.EntityRecognizer('zh-CN');
+    let phoneNumberText: string = 'If you have any questions, call us by phone 12345678.';
+    // phoneNumberEntity[0].type = 'phone_number', phoneNumberEntity[0].begin = 8, phoneNumberEntity[0].end = 19
+    let phoneNumberEntity: Array<i18n.EntityInfoItem> = entityRecognizer.findEntityInfo(phoneNumberText);
+    let dateText: string = 'Let's have dinner on December 1, 2023.';
+    // dateEntity[0].type = 'date', dateEntity[0].begin = 2, dateEntity[0].end = 12
+    let dateEntity: Array<i18n.EntityInfoItem> = entityRecognizer.findEntityInfo(dateText);
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call EntityRecognizer.findEntityInfo failed, error code: ${err.code}, message: ${err.message}.`);
+  }
   ```
 
 ## EntityInfoItem<sup>11+</sup>
@@ -771,9 +793,8 @@ Sets the date and time for a **Calendar** object.
 
 **Example**
   ```ts
-  let calendar: i18n.Calendar = i18n.getCalendar("en-US", "gregory");
-  // The date and time is 2021.11.07 08:00:00.
-  let date: Date = new Date(2021, 10, 7, 8, 0, 0);
+  let calendar: i18n.Calendar = i18n.getCalendar('en-US', 'gregory');
+  let date: Date = new Date(2021, 10, 7, 8, 0, 0); // The date and time is 2021.11.07 08:00:00.
   calendar.setTime(date);
   ```
 
@@ -796,7 +817,7 @@ Sets the date and time for a **Calendar** object.
 
 **Example**
   ```ts
-  let calendar: i18n.Calendar = i18n.getCalendar("en-US", "gregory");
+  let calendar: i18n.Calendar = i18n.getCalendar('en-US', 'gregory');
   calendar.setTime(10540800000);
   ```
 
@@ -823,7 +844,7 @@ Sets the year, month, day, hour, minute, and second for this **Calendar** object
 
 **Example**
   ```ts
-  let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
+  let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans');
   calendar.set(2021, 10, 1, 8, 0, 0); // Set the date and time to 2021.11.1 08:00:00.
   ```
 
@@ -845,8 +866,8 @@ Sets the time zone of this **Calendar** object.
 
 **Example**
   ```ts
-  let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
-  calendar.setTimeZone("Asia/Shanghai");
+  let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans');
+  calendar.setTimeZone('Asia/Shanghai');
   ```
 
 
@@ -868,9 +889,9 @@ Obtains the time zone of this **Calendar** object.
 
 **Example**
   ```ts
-  let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
-  calendar.setTimeZone("Asia/Shanghai");
-  let timezone: string = calendar.getTimeZone(); // timezone = "Asia/Shanghai"
+  let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans');
+  calendar.setTimeZone('Asia/Shanghai');
+  let timezone: string = calendar.getTimeZone(); // timezone = 'Asia/Shanghai'
   ```
 
 
@@ -892,7 +913,7 @@ Obtains the start day of a week for a **Calendar** object.
 
 **Example**
   ```ts
-  let calendar: i18n.Calendar = i18n.getCalendar("en-US", "gregory");
+  let calendar: i18n.Calendar = i18n.getCalendar('en-US', 'gregory');
   let firstDayOfWeek: number = calendar.getFirstDayOfWeek(); // firstDayOfWeek = 1
   ```
 
@@ -915,7 +936,7 @@ Sets the start day of a week for a **Calendar** object.
 
 **Example**
   ```ts
-  let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
+  let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans');
   calendar.setFirstDayOfWeek(3);
   let firstDayOfWeek: number = calendar.getFirstDayOfWeek(); // firstDayOfWeek = 3
   ```
@@ -938,7 +959,7 @@ Obtains the minimum number of days in the first week of a year.
 
 **Example**
   ```ts
-  let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
+  let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans');
   let minimalDaysInFirstWeek: number = calendar.getMinimalDaysInFirstWeek(); // minimalDaysInFirstWeek = 1
   ```
 
@@ -961,7 +982,7 @@ Sets the minimum number of days in the first week of a year.
 
 **Example**
   ```ts
-  let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
+  let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans');
   calendar.setMinimalDaysInFirstWeek(3);
   let minimalDaysInFirstWeek: number = calendar.getMinimalDaysInFirstWeek(); // minimalDaysInFirstWeek = 3
   ```
@@ -1013,13 +1034,13 @@ Obtains the value of the associated field in a **Calendar** object.
 
 | Type    | Description                                      |
 | ------ | ---------------------------------------- |
-| number | Value of the specified field. For example, if the year in the internal date of this **Calendar** object is **1990**, the **get("year")** function will return **1990**.|
+| number | Value of the specified field. For example, if the year in the internal date of this **Calendar** object is **1990**, the **get('year')** function will return **1990**.|
 
 **Example**
   ```ts
-  let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
+  let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans');
   calendar.set(2021, 10, 1, 8, 0, 0); // Set the date and time to 2021.11.1 08:00:00.
-  let hourOfDay: number = calendar.get("hour_of_day"); // hourOfDay = 8
+  let hourOfDay: number = calendar.get('hour_of_day'); // hourOfDay = 8
   ```
 
 
@@ -1047,8 +1068,8 @@ Obtains the displayed name of the **Calendar** object for the specified locale.
 
 **Example**
   ```ts
-  let calendar: i18n.Calendar = i18n.getCalendar("en-US", "buddhist");
-  let calendarName: string = calendar.getDisplayName("zh"); // calendarName = "Buddhist Calendar"
+  let calendar: i18n.Calendar = i18n.getCalendar('en-US', 'buddhist');
+  let calendarName: string = calendar.getDisplayName('zh'); // calendarName = 'Buddhist'
   ```
 
 
@@ -1076,11 +1097,11 @@ Checks whether a given date is a weekend in the calendar.
 
 **Example**
   ```ts
-  let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
+  let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans');
   calendar.set(2021, 11, 11, 8, 0, 0); // Set the time to 2021.12.11 08:00:00.
-  calendar.isWeekend(); // true
+  let isWeekend: boolean = calendar.isWeekend(); // isWeekend = true
   let date: Date = new Date(2011, 11, 6, 9, 0, 0); // The date and time is 2011-12-06 09:00:00.
-  calendar.isWeekend(date); // false
+  isWeekend = calendar.isWeekend(date); // isWeekend = false
   ```
 
 
@@ -1115,11 +1136,11 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
+    let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans');
     calendar.set(2021, 11, 11, 8, 0, 0); // Set the date and time to 2021.12.11 08:00:00.
-    calendar.add("year", 8); // 2021 + 8
-    let year: number = calendar.get("year"); // year = 2029
-  } catch(error) {
+    calendar.add('year', 8); // 2021 + 8
+    let year: number = calendar.get('year'); // year = 2029
+  } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call Calendar.add failed, error code: ${err.code}, message: ${err.message}.`);
   }
@@ -1144,7 +1165,7 @@ Obtains number of milliseconds that have elapsed since the Unix epoch in the cur
 
 **Example**
   ```ts
-  let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
+  let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans');
   calendar.setTime(5000);
   let millisecond: number = calendar.getTimeInMillis(); // millisecond = 5000
   ```
@@ -1185,11 +1206,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
+    let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans');
     calendar.setTime(5000);
     let date: Date = new Date(6000);
     let diff: number = calendar.compareDays(date); // diff = 1
-  } catch(error) {
+  } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call Calendar.compareDays failed, error code: ${err.code}, message: ${err.message}.`);
   }
@@ -1217,8 +1238,8 @@ Creates a **PhoneNumberFormat** object.
 
 **Example**
   ```ts
-  let option: i18n.PhoneNumberFormatOptions = {type: "E164"};
-  let phoneNumberFormat: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat("CN", option);
+  let option: i18n.PhoneNumberFormatOptions = { type: 'E164' };
+  let phoneNumberFormat: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN', option);
   ```
 
 ### isValidNumber<sup>8+</sup>
@@ -1245,8 +1266,8 @@ Checks whether the format of the specified phone number is valid.
 
 **Example**
   ```ts
-  let phonenumberfmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat("CN");
-  let isValidNumber: boolean = phonenumberfmt.isValidNumber("158****2312"); // isValidNumber = true
+  let phonenumberfmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN');
+  let isValidNumber: boolean = phonenumberfmt.isValidNumber('158****2312'); // isValidNumber = true
   ```
 
 
@@ -1277,19 +1298,19 @@ Formats a phone number.
 
 **Example**
   ```ts
-  let phonenumberfmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat("CN");
-  let formattedPhoneNumber: string = phonenumberfmt.format("158****2312"); // formattedPhoneNumber = "158 **** 2312"
+  let phonenumberfmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN');
+  // formattedPhoneNumber = '158 **** 2312'
+  let formattedPhoneNumber: string = phonenumberfmt.format('158****2312');
 
   // Format the dialed phone number.
-  let option: i18n.PhoneNumberFormatOptions = {type: "TYPING"};
-  let phoneNumberFmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat("CN", option);
-  let phoneNumber : string = "130493";
-  let formatResult : string = "";
+  let option: i18n.PhoneNumberFormatOptions = { type: 'TYPING' };
+  let phoneNumberFmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN', option);
+  let phoneNumber: string = '130493';
+  let formatResult: string = '';
   for (let i = 0; i < phoneNumber.length; i++) {
     formatResult += phoneNumber.charAt(i);
-    formatResult = phoneNumberFmt.format(formatResult);
+    formatResult = phoneNumberFmt.format(formatResult); // formatResult = '130 493'
   }
-  console.log(formatResult); // formatResult: 130 493
   ```
 
 ### getLocationName<sup>9+</sup>
@@ -1317,9 +1338,9 @@ Obtains the home location of a phone number.
 
 **Example**
   ```ts
-  let phonenumberfmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat("CN");
-  let locationName: string = phonenumberfmt.getLocationName("158****2345", "zh-CN"); // locationName = "Zhanjiang, Guangdong Province"
-  let locName: string = phonenumberfmt.getLocationName("0039312****789", "zh-CN"); // locName = "Italy"
+  let phonenumberfmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN');
+  let locationName: string = phonenumberfmt.getLocationName('158****2345', 'zh-CN'); // locationName = 'Zhanjiang, Guangdong Province'
+  let locName: string = phonenumberfmt.getLocationName('0039312****789', 'zh-CN'); // locName = 'Italy'
   ```
 
 
@@ -1374,7 +1395,7 @@ Creates an **IndexUtil** object.
 
 **Example**
   ```ts
-  let indexUtil: i18n.IndexUtil = i18n.getInstance("zh-CN");
+  let indexUtil: i18n.IndexUtil = i18n.getInstance('zh-CN');
   ```
 
 
@@ -1400,9 +1421,9 @@ Obtains the index list of the current locale.
 
 **Example**
   ```ts
-  let indexUtil: i18n.IndexUtil = i18n.getInstance("zh-CN");
-  // indexList = [ "...", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
-  //              "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "..." ]
+  let indexUtil: i18n.IndexUtil = i18n.getInstance('zh-CN');
+  // indexList = [ '...', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
+  //              'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '...' ]
   let indexList: Array<string> = indexUtil.getIndexList();
   ```
 
@@ -1425,8 +1446,8 @@ Adds the index list of a new locale to the index list of the current locale to f
 
 **Example**
   ```ts
-  let indexUtil: i18n.IndexUtil = i18n.getInstance("zh-CN");
-  indexUtil.addLocale("en-US");
+  let indexUtil: i18n.IndexUtil = i18n.getInstance('zh-CN');
+  indexUtil.addLocale('en-US');
   ```
 
 ### getIndex<sup>8+</sup>
@@ -1453,8 +1474,8 @@ Obtains the index of a **text** object.
 
 **Example**
   ```ts
-  let indexUtil: i18n.IndexUtil = i18n.getInstance("zh-CN");
-  let index: string = indexUtil.getIndex("hi");  // index = "H"
+  let indexUtil: i18n.IndexUtil = i18n.getInstance('zh-CN');
+  let index: string = indexUtil.getIndex('hi'); // index = 'H'
   ```
 
 
@@ -1482,7 +1503,7 @@ Obtains a [BreakIterator](#breakiterator8) object for text segmentation.
 
 **Example**
   ```ts
-  let iterator: i18n.BreakIterator = i18n.getLineInstance("en");
+  let iterator: i18n.BreakIterator = i18n.getLineInstance('en');
   ```
 
 
@@ -1507,8 +1528,8 @@ Sets the text to be processed by the **BreakIterator** object.
 
 **Example**
   ```ts
-  let iterator: i18n.BreakIterator = i18n.getLineInstance("en");
-  iterator.setLineBreakText("Apple is my favorite fruit ."); // Set a short sentence as the text to be processed by the BreakIterator object.
+  let iterator: i18n.BreakIterator = i18n.getLineInstance('en');
+  iterator.setLineBreakText('Apple is my favorite fruit.'); // Set a short sentence as the text to be processed by the BreakIterator object.
   ```
 
 
@@ -1530,9 +1551,9 @@ Obtains the text being processed by the **BreakIterator** object.
 
 **Example**
   ```ts
-  let iterator: i18n.BreakIterator = i18n.getLineInstance("en");
-  iterator.setLineBreakText("Apple is my favorite fruit.");
-  let breakText: string = iterator.getLineBreakText(); // breakText = "Apple is my favorite fruit."
+  let iterator: i18n.BreakIterator = i18n.getLineInstance('en');
+  iterator.setLineBreakText('Apple is my favorite fruit.');
+  let breakText: string = iterator.getLineBreakText(); // breakText = 'Apple is my favorite fruit.'
   ```
 
 
@@ -1554,8 +1575,8 @@ Obtains the position of a **BreakIterator** object in the processed text.
 
 **Example**
   ```ts
-  let iterator: i18n.BreakIterator = i18n.getLineInstance("en");
-  iterator.setLineBreakText("Apple is my favorite fruit.");
+  let iterator: i18n.BreakIterator = i18n.getLineInstance('en');
+  iterator.setLineBreakText('Apple is my favorite fruit.');
   let currentPos: number = iterator.current(); // currentPos = 0
   ```
 
@@ -1578,8 +1599,8 @@ Moves a **BreakIterator** object to the first break point, which is always at th
 
 **Example**
   ```ts
-  let iterator: i18n.BreakIterator = i18n.getLineInstance("en");
-  iterator.setLineBreakText("Apple is my favorite fruit.");
+  let iterator: i18n.BreakIterator = i18n.getLineInstance('en');
+  iterator.setLineBreakText('Apple is my favorite fruit.');
   let firstPos: number = iterator.first(); // firstPos = 0
   ```
 
@@ -1602,8 +1623,8 @@ Moves a **BreakIterator** object to the last break point, which is always the ne
 
 **Example**
   ```ts
-  let iterator: i18n.BreakIterator = i18n.getLineInstance("en");
-  iterator.setLineBreakText("Apple is my favorite fruit.");
+  let iterator: i18n.BreakIterator = i18n.getLineInstance('en');
+  iterator.setLineBreakText('Apple is my favorite fruit.');
   let lastPos: number = iterator.last(); // lastPos = 27
   ```
 
@@ -1632,8 +1653,8 @@ Moves the **BreakIterator** object backward by the corresponding number of break
 
 **Example**
   ```ts
-  let iterator: i18n.BreakIterator = i18n.getLineInstance("en");
-  iterator.setLineBreakText("Apple is my favorite fruit.");
+  let iterator: i18n.BreakIterator = i18n.getLineInstance('en');
+  iterator.setLineBreakText('Apple is my favorite fruit.');
   let pos: number = iterator.first(); // pos = 0
   pos = iterator.next(); // pos = 6
   pos = iterator.next(10); // pos = -1
@@ -1658,8 +1679,8 @@ Moves the **BreakIterator** object forward by one break point.
 
 **Example**
   ```ts
-  let iterator: i18n.BreakIterator = i18n.getLineInstance("en");
-  iterator.setLineBreakText("Apple is my favorite fruit.");
+  let iterator: i18n.BreakIterator = i18n.getLineInstance('en');
+  iterator.setLineBreakText('Apple is my favorite fruit.');
   let pos: number = iterator.first(); // pos = 0
   pos = iterator.next(3); // pos = 12
   pos = iterator.previous(); // pos = 9
@@ -1690,8 +1711,8 @@ Moves a **BreakIterator** object to the break point following the specified posi
 
 **Example**
   ```ts
-  let iterator: i18n.BreakIterator = i18n.getLineInstance("en");
-  iterator.setLineBreakText("Apple is my favorite fruit.");
+  let iterator: i18n.BreakIterator = i18n.getLineInstance('en');
+  iterator.setLineBreakText('Apple is my favorite fruit.');
   let pos: number = iterator.following(0); // pos = 6
   pos = iterator.following(100); // pos = -1
   pos = iterator.current(); // pos = 27
@@ -1722,8 +1743,8 @@ Checks whether the specified position is a break point.
 
 **Example**
   ```ts
-  let iterator: i18n.BreakIterator = i18n.getLineInstance("en");
-  iterator.setLineBreakText("Apple is my favorite fruit.");
+  let iterator: i18n.BreakIterator = i18n.getLineInstance('en');
+  iterator.setLineBreakText('Apple is my favorite fruit.');
   let isBoundary: boolean = iterator.isBoundary(0); // isBoundary = true;
   isBoundary = iterator.isBoundary(5); // isBoundary = false;
   ```
@@ -1753,7 +1774,7 @@ Obtains the **TimeZone** object corresponding to the specified time zone ID.
 
 **Example**
   ```ts
-  let timezone: i18n.TimeZone = i18n.getTimeZone();
+  let timezone: i18n.TimeZone = i18n.getTimeZone('Asia/Shanghai');
   ```
 
 ## TimeZone
@@ -1776,8 +1797,8 @@ Obtains the ID of the specified **TimeZone** object.
 
 **Example**
   ```ts
-  let timezone: i18n.TimeZone = i18n.getTimeZone();
-  let timezoneID: string = timezone.getID(); // timezoneID = "Asia/Shanghai"
+  let timezone: i18n.TimeZone = i18n.getTimeZone('Asia/Shanghai');
+  let timezoneID: string = timezone.getID(); // timezoneID = 'Asia/Shanghai'
   ```
 
 
@@ -1806,8 +1827,8 @@ Obtains the localized representation of a **TimeZone** object.
 
 **Example**
   ```ts
-  let timezone: i18n.TimeZone = i18n.getTimeZone();
-  let timezoneName: string = timezone.getDisplayName("zh-CN", false); // timezoneName = "China Standard Time"
+  let timezone: i18n.TimeZone = i18n.getTimeZone('Asia/Shanghai');
+  let timezoneName: string = timezone.getDisplayName('zh-CN', false); // timezoneName = 'China Standard Time'
   ```
 
 
@@ -1829,7 +1850,7 @@ Obtains the offset between the time zone represented by a **TimeZone** object an
 
 **Example**
   ```ts
-  let timezone: i18n.TimeZone = i18n.getTimeZone();
+  let timezone: i18n.TimeZone = i18n.getTimeZone('Asia/Shanghai');
   let offset: number = timezone.getRawOffset(); // offset = 28800000
   ```
 
@@ -1858,7 +1879,7 @@ Obtains the offset between the time zone represented by a **TimeZone** object an
 
 **Example**
   ```ts
-  let timezone: i18n.TimeZone = i18n.getTimeZone();
+  let timezone: i18n.TimeZone = i18n.getTimeZone('Asia/Shanghai');
   let offset: number = timezone.getOffset(1234567890); // offset = 28800000
   ```
 
@@ -1881,7 +1902,7 @@ Obtains the list of time zone IDs supported by the system.
 
 **Example**
   ```ts
-  // ids = ["America/Adak", "America/Anchorage", "America/Bogota", "America/Denver", "America/Los_Angeles", "America/Montevideo", "America/Santiago", "America/Sao_Paulo", "Asia/Ashgabat", "Asia/Hovd", "Asia/Jerusalem", "Asia/Magadan", "Asia/Omsk", "Asia/Shanghai", "Asia/Tokyo", "Asia/Yerevan", "Atlantic/Cape_Verde", "Australia/Lord_Howe", "Europe/Dublin", "Europe/London", "Europe/Moscow", "Pacific/Auckland", "Pacific/Easter", "Pacific/Pago-Pago"]
+  // ids = ['America/Adak', 'America/Anchorage', 'America/Bogota', 'America/Denver', 'America/Los_Angeles', 'America/Montevideo', 'America/Santiago', 'America/Sao_Paulo', 'Asia/Ashgabat', 'Asia/Hovd', 'Asia/Jerusalem', 'Asia/Magadan', 'Asia/Omsk', 'Asia/Shanghai', 'Asia/Tokyo', 'Asia/Yerevan', 'Atlantic/Cape_Verde', 'Australia/Lord_Howe', 'Europe/Dublin', 'Europe/London', 'Europe/Moscow', 'Pacific/Auckland', 'Pacific/Easter', 'Pacific/Pago-Pago']
   let ids: Array<string> = i18n.TimeZone.getAvailableIDs();
   ```
 
@@ -1904,7 +1925,7 @@ Obtains the list of time zone city IDs supported by the system.
 
 **Example**
   ```ts
-  // cityIDs = ["Auckland", "Magadan", "Lord Howe Island", "Tokyo", "Shanghai", "Hovd", "Omsk", "Ashgabat", "Yerevan", "Moscow", "Tel Aviv", "Dublin", "London", "Praia", "Montevideo", "Brasília", "Santiago", "Bogotá", "Easter Island", "Salt Lake City", "Los Angeles", "Anchorage", "Adak", "Pago Pago"]
+  // cityIDs = ['Auckland', 'Magadan', 'Lord Howe Island', 'Tokyo', 'Shanghai', 'Hovd', 'Omsk', 'Ashgabat', 'Yerevan', 'Moscow', 'Tel Aviv', 'Dublin', 'London', 'Praia', 'Montevideo', 'Brasília', 'Santiago', 'Bogotá', 'Easter Island', 'Salt Lake City', 'Los Angeles', 'Anchorage', 'Adak', 'Pago Pago']
   let cityIDs: Array<string> = i18n.TimeZone.getAvailableZoneCityIDs();
   ```
 
@@ -1933,7 +1954,7 @@ Obtains the localized representation of a time zone city in the specified locale
 
 **Example**
   ```ts
-  let displayName: string = i18n.TimeZone.getCityDisplayName("Shanghai", "zh-CN"); // displayName = "Shanghai (China)"
+  let displayName: string = i18n.TimeZone.getCityDisplayName('Shanghai', 'zh-CN'); // displayName = 'Shanghai (China)'
   ```
 
 
@@ -1961,7 +1982,7 @@ Obtains the **TimeZone** object corresponding to the specified time zone city ID
 
 **Example**
   ```ts
-  let timezone: i18n.TimeZone = i18n.TimeZone.getTimezoneFromCity("Shanghai");
+  let timezone: i18n.TimeZone = i18n.TimeZone.getTimezoneFromCity('Shanghai');
   ```
 
 ### getTimezonesByLocation<sup>10+</sup>
@@ -2003,9 +2024,13 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
 **Example**
   ```ts
-  let timezoneArray: Array<i18n.TimeZone> = i18n.TimeZone.getTimezonesByLocation(-118.1, 34.0);
-  for (let i = 0; i < timezoneArray.length; i++) {
-      let tzId: string = timezoneArray[i].getID();
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    let timezoneArray: Array<i18n.TimeZone> = i18n.TimeZone.getTimezonesByLocation(-118.1, 34.0);
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call TimeZone.getTimezonesByLocation failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -2061,7 +2086,7 @@ Creates a **Transliterator** object.
 
 **Example**
   ```ts
-  let transliterator: i18n.Transliterator = i18n.Transliterator.getInstance("Any-Latn");
+  let transliterator: i18n.Transliterator = i18n.Transliterator.getInstance('Any-Latn');
   ```
 
 
@@ -2089,20 +2114,21 @@ Converts the input string from the source format to the target format.
 
 **Example**
   ```ts
-  let transliterator: i18n.Transliterator = i18n.Transliterator.getInstance("Any-Latn");
-  let wordArray = ["中国", "德国", "美国", "法国"]
+  let transliterator: i18n.Transliterator = i18n.Transliterator.getInstance('Any-Latn');
+  let wordArray = ['China', 'Germany', 'US', 'France"]
   for (let i = 0; i < wordArray.length; i++) {
-      let res = transliterator.transform(wordArray[i]); // res: zhōng guó, dé guó, měi guó, fǎ guó
+    let transliterLatn =
+      transliterator.transform(wordArray[i]); // transliterLatn: 'zhōng guó', 'dé guó', 'měi guó', 'fǎ guó'
   }
 
   // Chinese transliteration and tone removal
   let transliter = i18n.Transliterator.getInstance('Any-Latn;Latin-Ascii');
-  let result = transliter.transform ('中国'); // result: zhong guo
+  let transliterAscii = transliter.transform('中国'); // transliterAscii ='zhong guo'
 
   // Chinese surname pronunciation
   let nameTransliter = i18n.Transliterator.getInstance('Han-Latin/Names');
-  let result1 = nameTransliter.transform('单老师'); // result1: shàn lǎo shī
-  let result2 = nameTransliter.transform('长孙无忌'); // result2: zhǎng sūn wú jì
+  let transliterNames = nameTransliter.transform('单老师'); // transliterNames = 'shàn lǎo shī'
+  transliterNames = nameTransliter.transform('长孙无忌'); // transliterNames = 'zhǎng sūn wú jì'
   ```
 
 
@@ -2134,7 +2160,7 @@ Checks whether the input string is composed of digits.
 
 **Example**
   ```ts
-  let isdigit: boolean = i18n.Unicode.isDigit("1");  // isdigit = true
+  let isDigit: boolean = i18n.Unicode.isDigit('1'); // isDigit = true
   ```
 
 
@@ -2162,7 +2188,7 @@ Checks whether the input character is a space.
 
 **Example**
   ```ts
-  let isspacechar: boolean = i18n.Unicode.isSpaceChar("a");  // isspacechar = false
+  let isSpacechar: boolean = i18n.Unicode.isSpaceChar('a'); // isSpacechar = false
   ```
 
 
@@ -2190,7 +2216,7 @@ Checks whether the input character is a white space.
 
 **Example**
   ```ts
-  let iswhitespace: boolean = i18n.Unicode.isWhitespace("a");  // iswhitespace = false
+  let isWhitespace: boolean = i18n.Unicode.isWhitespace('a'); // isWhitespace = false
   ```
 
 
@@ -2218,7 +2244,7 @@ Checks whether the input character is of the right to left (RTL) language.
 
 **Example**
   ```ts
-  let isrtl: boolean = i18n.Unicode.isRTL("a");  // isrtl = false
+  let isRtl: boolean = i18n.Unicode.isRTL('a'); // isRtl = false
   ```
 
 
@@ -2246,7 +2272,7 @@ Checks whether the input character is an ideographic character.
 
 **Example**
   ```ts
-  let isideograph: boolean = i18n.Unicode.isIdeograph("a");  // isideograph = false
+  let isIdeograph: boolean = i18n.Unicode.isIdeograph('a'); // isIdeograph = false
   ```
 
 
@@ -2274,7 +2300,7 @@ Checks whether the input character is a letter.
 
 **Example**
   ```ts
-  let isletter: boolean = i18n.Unicode.isLetter("a");  // isletter = true
+  let isLetter: boolean = i18n.Unicode.isLetter('a'); // isLetter = true
   ```
 
 
@@ -2302,7 +2328,7 @@ Checks whether the input character is a lowercase letter.
 
 **Example**
   ```ts
-  let islowercase: boolean = i18n.Unicode.isLowerCase("a");  // islowercase = true
+  let isLowercase: boolean = i18n.Unicode.isLowerCase('a'); // isLowercase = true
   ```
 
 
@@ -2330,7 +2356,7 @@ Checks whether the input character is an uppercase letter.
 
 **Example**
   ```ts
-  let isuppercase: boolean = i18n.Unicode.isUpperCase("a");  // isuppercase = false
+  let isUppercase: boolean = i18n.Unicode.isUpperCase('a'); // isUppercase = false
   ```
 
 
@@ -2394,7 +2420,7 @@ The following table lists only the common types. For more details, see the Unico
 
 **Example**
   ```ts
-  let type: string = i18n.Unicode.getType("a"); // type = "U_LOWERCASE_LETTER"
+  let unicodeType: string = i18n.Unicode.getType('a'); // unicodeType = 'U_LOWERCASE_LETTER'
   ```
 
 ## I18NUtil<sup>9+</sup>
@@ -2428,9 +2454,10 @@ Converts one measurement unit into another and formats the unit based on the spe
 
 **Example**
   ```ts
-  let fromUnit: i18n.UnitInfo = {unit: "cup", measureSystem: "US"};
-  let toUnit: i18n.UnitInfo = {unit: "liter", measureSystem: "SI"};
-  let res: string = i18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, "en-US", "long"); // res = 236.588 liters
+  let fromUnit: i18n.UnitInfo = { unit: 'cup', measureSystem: 'US' };
+  let toUnit: i18n.UnitInfo = { unit: 'liter', measureSystem: 'SI' };
+  let convertResult: string =
+    i18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, 'en-US', 'long'); // convertResult = '236.588 liters'
   ```
 
 ### getDateOrder<sup>9+</sup>
@@ -2457,7 +2484,7 @@ Obtains the sequence of the year, month, and day in the specified locale.
 
 **Example**
   ```ts
-  let order: string = i18n.I18NUtil.getDateOrder("zh-CN");  // order = "y-L-d"
+  let order: string = i18n.I18NUtil.getDateOrder('zh-CN'); // order = 'y-L-d'
   ```
 
 
@@ -2498,8 +2525,8 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let name: string = i18n.I18NUtil.getTimePeriodName(2, "zh-CN");  // name = "a.m."
-  } catch(error) {
+    let name: string = i18n.I18NUtil.getTimePeriodName(2, 'zh-CN'); // name = 'a.m.'
+  } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call I18NUtil.getTimePeriodName failed, error code: ${err.code}, message: ${err.message}.`);
   }
@@ -2543,8 +2570,9 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let matchedLocaleId: string = i18n.I18NUtil.getBestMatchLocale("zh-Hans-CN", ["en-Latn-US", "en-GB", "zh-Hant-CN", "zh-Hans-MO"]);  // matchedLocaleId = "zh-Hans-MO"
-  } catch(error) {
+    let matchedLocaleId: string = i18n.I18NUtil.getBestMatchLocale('zh-Hans-CN',
+      ['en-Latn-US', 'en-GB', 'zh-Hant-CN', 'zh-Hans-MO']); // matchedLocaleId = 'zh-Hans-MO'
+  } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call I18NUtil.getBestMatchLocale failed, error code: ${err.code}, message: ${err.message}.`);
   }
@@ -2581,9 +2609,10 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let language : string = i18n.I18NUtil.getThreeLetterLanguage('zh')  // zho
-  } catch(error) {
-    console.error(`call I18NUtil.getThreeLetterLanguage failed, error code: ${error.code}, message: ${error.message}.`);
+    let language: string = i18n.I18NUtil.getThreeLetterLanguage('zh') // language = 'zho'
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call I18NUtil.getThreeLetterLanguage failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -2618,9 +2647,10 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let region : string = i18n.I18NUtil.getThreeLetterRegion('CN')  // CHN
-  } catch(error) {
-    console.error(`call I18NUtil.getThreeLetterRegion failed, error code: ${error.code}, message: ${error.message}.`);
+    let region: string = i18n.I18NUtil.getThreeLetterRegion('CN') // region = 'CHN'
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call I18NUtil.getThreeLetterRegion failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -2655,16 +2685,17 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
-  import intl from '@ohos.intl';
-  import i18n from '@ohos.i18n';
+  import { intl } from '@kit.LocalizationKit';
 
   try {
-    let path : string = "/data/out/tmp";
-    let delimiter : string = "/";
-    let locale : intl.Locale = new intl.Locale("ar");
-    let mirrorPath : string = i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, locale);  // mirrorPath:tmp/out/data/
-  } catch(error) {
-    console.error(`call I18NUtil.getUnicodeWrappedFilePath failed, error code: ${error.code}, message: ${error.message}.`);
+    let path: string = '/data/out/tmp';
+    let delimiter: string = '/';
+    let locale: intl.Locale = new intl.Locale('ar');
+    let mirrorPath: string =
+      i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, locale); // mirrorPath is displayed as tmp/out/data/.
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call I18NUtil.getUnicodeWrappedFilePath failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -2703,7 +2734,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
   ```ts
-  let normalizer: i18n.Normalizer = i18n.Normalizer.getInstance(i18n.NormalizerMode.NFC);
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    let normalizer: i18n.Normalizer = i18n.Normalizer.getInstance(i18n.NormalizerMode.NFC);
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call Normalizer.getInstance failed, error code: ${err.code}, message: ${err.message}.`);
+  }
   ```
 
 
@@ -2739,8 +2777,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
   ```ts
-  let normalizer: i18n.Normalizer = i18n.Normalizer.getInstance(i18n.NormalizerMode.NFC);
-  let normalizedText: string = normalizer.normalize('\u1E9B\u0323'); // normalizedText = ẛ̣
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    let normalizer: i18n.Normalizer = i18n.Normalizer.getInstance(i18n.NormalizerMode.NFC);
+    let normalizedText: string = normalizer.normalize('\u1E9B\u0323'); // normalizedText = 'ẛ̣'
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call Normalizer.getInstance failed, error code: ${err.code}, message: ${err.message}.`);
+  }
   ```
 
 ## NormalizerMode<sup>10+</sup>
@@ -2789,7 +2834,14 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
 **Example**
   ```ts
-  let holidayManager= new i18n.HolidayManager("/system/lib/US.ics");
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    let holidayManager = new i18n.HolidayManager('/system/lib/US.ics');
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call i18n.HolidayManager failed, error code: ${err.code}, message: ${err.message}.`);
+  }
   ```
 
 ### isHoliday<sup>11+</sup>
@@ -2827,12 +2879,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let holidayManager= new i18n.HolidayManager("/system/lib/US.ics"); // Replace /system/lib/US.ics with the actual path of the ics file.
-    let isHoliday = holidayManager.isHoliday();
-    console.log(isHoliday.toString());
-    let isHoliday2 = holidayManager.isHoliday(new Date(2023,5,25)); // Set the date to 2023.06.25.
-    console.log(isHoliday2.toString());
-  } catch(error) {
+    // Replace /system/lib/US.ics with the actual ICS file path.
+    let holidayManager: i18n.HolidayManager = new i18n.HolidayManager('/system/lib/US.ics');
+    let isHoliday: boolean = holidayManager.isHoliday();
+    isHoliday = holidayManager.isHoliday(new Date(2023, 5, 25)); // The date is 2023.06.25.
+  } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call holidayManager.isHoliday failed, error code: ${err.code}, message: ${err.message}.`);
   }
@@ -2875,12 +2926,10 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let holidayManager= new i18n.HolidayManager("/system/lib/US.ics"); // Replace /system/lib/US.ics with the actual path of the ics file.
-    let holidayInfoItemArray = holidayManager.getHolidayInfoItemArray(2023);
-    for (let i =0; i < holidayInfoItemArray.length; i++) {
-        console.log(JSON.stringify(holidayInfoItemArray[i]));
-    }
-  } catch(error) {
+    // Replace /system/lib/US.ics with the actual ICS file path.
+    let holidayManager: i18n.HolidayManager = new i18n.HolidayManager('/system/lib/US.ics');
+    let holidayInfoItemArray: Array<i18n.HolidayInfoItem> = holidayManager.getHolidayInfoItemArray(2023);
+  } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call holidayManager.getHolidayInfoItemArray failed, error code: ${err.code}, message: ${err.message}.`);
   }
@@ -2950,10 +2999,16 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
 **Example**
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
   import { intl } from '@kit.LocalizationKit';
 
-  let locale : intl.Locale = new intl.Locale("zh-Hans-CN");
-  let formatter : i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatByPattern("'month('M')'", locale);
+  try {
+    let locale: intl.Locale = new intl.Locale('zh-Hans-CN');
+    let formatter: i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatByPattern("'month('M')'", locale);
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call i18n.getSimpleDateTimeFormatByPattern failed, error code: ${err.code}, message: ${err.message}.`);
+  }
   ```
 
 ## i18n.getSimpleDateTimeFormatBySkeleton<sup>18+</sup>
@@ -2990,10 +3045,16 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
 **Example**
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
   import { intl } from '@kit.LocalizationKit';
 
-  let locale : intl.Locale = new intl.Locale("zh-Hans-CN");
-  let formatter : i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatBySkeleton("yMd", locale);
+  try {
+    let locale: intl.Locale = new intl.Locale('zh-Hans-CN');
+    let formatter: i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatBySkeleton('yMd', locale);
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call i18n.getSimpleDateTimeFormatBySkeleton failed, error code: ${err.code}, message: ${err.message}.`);
+  }
   ```
 
 ## SimpleDateTimeFormat<sup>18+</sup>
@@ -3030,19 +3091,26 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
   import { intl } from '@kit.LocalizationKit';
 
-  let locale : intl.Locale = new intl.Locale("zh-Hans-CN");
-  let date: Date = new Date(2024, 11, 13); // Set the date to 2024.12.13.
+  try {
+    let locale : intl.Locale = new intl.Locale("zh-Hans-CN");
+    let date: Date = new Date(2024, 11, 13); // Set the date to 2024.12.13.
 
-  let formatterWithText : i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatByPattern("'month('M')'", locale);
-  let result : string = formatterWithText.format(date); // result = month(12)
+    let formatterWithText: i18n.SimpleDateTimeFormat =
+      i18n.getSimpleDateTimeFormatByPattern("'month('M')'", locale);
+    let formattedDate: string = formatterWithText.format(date); // formattedDate = 'month(12)'
 
-  let patternFormatter : i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatByPattern("yMd", locale);
-  result = patternFormatter.format(date); // result = 20241213
+    let patternFormatter: i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatByPattern('yMd', locale);
+    formattedDate = patternFormatter.format(date); // formattedDate = '20241213'
 
-  let skeletonFormatter : i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatBySkeleton("yMd", locale);
-  result = skeletonFormatter.format(date); // result = 2024/12/13
+    let skeletonFormatter: i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatBySkeleton('yMd', locale);
+    formattedDate = skeletonFormatter.format(date); // formattedDate = '2024/12/13'
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call SimpleDateTimeFormat.format failed, error code: ${err.code}, message: ${err.message}.`);
+  }
   ```
 
 
@@ -3080,10 +3148,16 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
 **Example**
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
   import { intl } from '@kit.LocalizationKit';
 
-  let locale : intl.Locale = new intl.Locale("zh-Hans-CN");
-  let formatter : i18n.SimpleNumberFormat = i18n.getSimpleNumberFormatBySkeleton("%", locale);
+  try {
+    let locale: intl.Locale = new intl.Locale('zh-Hans-CN');
+    let formatter: i18n.SimpleNumberFormat = i18n.getSimpleNumberFormatBySkeleton('%', locale);
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call SimpleDateTimeFormat.getSimpleNumberFormatBySkeleton failed, error code: ${err.code}, message: ${err.message}.`);
+  }
   ```
 
 ## SimpleNumberFormat<sup>18+</sup>
@@ -3120,11 +3194,17 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
   import { intl } from '@kit.LocalizationKit';
 
-  let locale : intl.Locale = new intl.Locale("zh-Hans-CN");
-  let formatter : i18n.SimpleNumberFormat = i18n.getSimpleNumberFormatBySkeleton("%", locale);
-  let result : string = formatter.format(10); // result = 10%
+  try {
+    let locale: intl.Locale = new intl.Locale('zh-Hans-CN');
+    let formatter: i18n.SimpleNumberFormat = i18n.getSimpleNumberFormatBySkeleton('%', locale);
+    let formattedNumber: string = formatter.format(10); // formattedNumber = '10%'
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call SimpleNumberFormat.format failed, error code: ${err.code}, message: ${err.message}.`);
+  }
   ```
 
 ## StyledNumberFormat<sup>18+</sup>
@@ -3148,29 +3228,37 @@ Creates a **NumberFormat** object for rich text display.
 
 **Example**
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
   import { intl } from '@kit.LocalizationKit';
 
-  let integer_textStyle = new TextStyle({fontColor: Color.Red});
-  let decimal_textStyle = new TextStyle({fontColor: Color.Brown});
-  let fraction_textStyle = new TextStyle({fontColor: Color.Blue});
-  let unit_textStyle = new TextStyle({fontColor: Color.Green});
+  try {
+    let integerTextStyle: TextStyle = new TextStyle({ fontColor: Color.Red });
+    let decimalTextStyle: TextStyle = new TextStyle({ fontColor: Color.Brown });
+    let fractionTextStyle: TextStyle = new TextStyle({ fontColor: Color.Blue });
+    let unitTextStyle: TextStyle = new TextStyle({ fontColor: Color.Green });
 
-  // Create a StyledNumberFormat object through intl.NumberFormat.
-  let numFmt = new intl.NumberFormat("zh", {style: "unit", unit: "percent"});
-  let styledNumFmt_1 = new i18n.StyledNumberFormat(numFmt, {
-    integer: integer_textStyle,
-    decimal: decimal_textStyle,
-    fraction: fraction_textStyle,
-    unit: unit_textStyle });
+    // Create a StyledNumberFormat object through intl.NumberFormat.
+    let numFmt: intl.NumberFormat = new intl.NumberFormat('zh', { style: 'unit', unit: 'percent' });
+    let styledNumFmt: i18n.StyledNumberFormat = new i18n.StyledNumberFormat(numFmt, {
+      integer: integerTextStyle,
+      decimal: decimalTextStyle,
+      fraction: fractionTextStyle,
+      unit: unitTextStyle
+    });
 
-  // Create a StyledNumberFormat object through SimpleNumberFormat.
-  let locale = new intl.Locale("zh");
-  let simpleNumFmt = i18n.getSimpleNumberFormatBySkeleton("percent", locale);
-  let styledNumFmt_2 = new i18n.StyledNumberFormat(simpleNumFmt, {
-    integer: integer_textStyle,
-    decimal: decimal_textStyle,
-    fraction: fraction_textStyle,
-    unit: unit_textStyle });
+    // Create a StyledNumberFormat object through SimpleNumberFormat.
+    let locale: intl.Locale = new intl.Locale('zh');
+    let simpleNumFmt: i18n.SimpleNumberFormat = i18n.getSimpleNumberFormatBySkeleton('percent', locale);
+    let styledSimpleNumFmt: i18n.StyledNumberFormat = new i18n.StyledNumberFormat(simpleNumFmt, {
+      integer: integerTextStyle,
+      decimal: decimalTextStyle,
+      fraction: fractionTextStyle,
+      unit: unitTextStyle
+    });
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call i18n.StyledNumberFormat failed, error code: ${err.code}, message: ${err.message}.`);
+  }
   ```
 
 ### format<sup>18+</sup>
@@ -3206,31 +3294,41 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
   import { intl } from '@kit.LocalizationKit';
 
-  let integer_textStyle = new TextStyle({fontColor: Color.Red});
-  let decimal_textStyle = new TextStyle({fontColor: Color.Brown});
-  let fraction_textStyle = new TextStyle({fontColor: Color.Blue});
-  let unit_textStyle = new TextStyle({fontColor: Color.Green});
+  try {
+    let integerTextStyle: TextStyle = new TextStyle({ fontColor: Color.Red });
+    let decimalTextStyle: TextStyle = new TextStyle({ fontColor: Color.Brown });
+    let fractionTextStyle: TextStyle = new TextStyle({ fontColor: Color.Blue });
+    let unitTextStyle: TextStyle = new TextStyle({ fontColor: Color.Green });
 
-  // Create a StyledNumberFormat object through intl.NumberFormat.
-  let numFmt = new intl.NumberFormat("zh", {style: "unit", unit: "percent"});
-  let styledNumFmt_1 = new i18n.StyledNumberFormat(numFmt, {
-    integer: integer_textStyle,
-    decimal: decimal_textStyle,
-    fraction: fraction_textStyle,
-    unit: unit_textStyle });
-  let result_1 = styledNumFmt_1.format(1234.5678); // result_1.getString() is 1,234.568%. In result_1, 1,234 is in red, . in brown, 568 in blue, and % in green.
+    // Create a StyledNumberFormat object through intl.NumberFormat.
+    let numFmt: intl.NumberFormat = new intl.NumberFormat('zh', { style: 'unit', unit: 'percent' });
+    let styledNumFmt: i18n.StyledNumberFormat = new i18n.StyledNumberFormat(numFmt, {
+      integer: integerTextStyle,
+      decimal: decimalTextStyle,
+      fraction: fractionTextStyle,
+      unit: unitTextStyle
+    });
+    // formattedNumber.getString () is 1,234.568%. In the formatted number, 1,234 is in red, . in brown, 568 in blue, and % in green.
+    let formattedNumber: StyledString = styledNumFmt.format(1234.5678);
 
-  // Create a StyledNumberFormat object through SimpleNumberFormat.
-  let locale = new intl.Locale("zh");
-  let simpleNumFmt = i18n.getSimpleNumberFormatBySkeleton("percent", locale);
-  let styledNumFmt_2 = new i18n.StyledNumberFormat(simpleNumFmt, {
-    integer: integer_textStyle,
-    decimal: decimal_textStyle,
-    fraction: fraction_textStyle,
-    unit: unit_textStyle });
-  let result_2 = styledNumFmt_2.format(1234.5678); // result_2.getString() is 1,234.5678%. In result_2, 1,234 is in red, . in brown, 5678 in blue, and % in green.
+    // Create a StyledNumberFormat object through SimpleNumberFormat.
+    let locale: intl.Locale = new intl.Locale('zh');
+    let simpleNumFmt: i18n.SimpleNumberFormat = i18n.getSimpleNumberFormatBySkeleton('percent', locale);
+    let styledSimpleNumFmt: i18n.StyledNumberFormat = new i18n.StyledNumberFormat(simpleNumFmt, {
+      integer: integerTextStyle,
+      decimal: decimalTextStyle,
+      fraction: fractionTextStyle,
+      unit: unitTextStyle
+    });
+    // formattedSimpleNumber.getString () is 1,234.5678%. In the formatted number, '1,234' is in red, . in brown, 5678 in blue, and % in green.
+    let formattedSimpleNumber: StyledString = styledSimpleNumFmt.format(1234.5678);
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call StyledNumberFormat.format failed, error code: ${err.code}, message: ${err.message}.`);
+  }
   ```
 
 ## StyledNumberFormatOptions<sup>18+</sup>
@@ -3274,8 +3372,8 @@ This API is deprecated since API version 9. You are advised to use [System.getDi
 
 **Example**
   ```ts
-  let countryName: string = i18n.getDisplayCountry("zh-CN", "en-GB", true); // countryName = China
-  countryName = i18n.getDisplayCountry("zh-CN", "en-GB"); // countryName = China
+  let countryName: string = i18n.getDisplayCountry('zh-CN', 'en-GB', true); // countryName = 'China'
+  countryName = i18n.getDisplayCountry('zh-CN', 'en-GB'); // countryName = 'China'
   ```
 
 ## i18n.getDisplayCountry<sup>(deprecated)</sup>
@@ -3304,8 +3402,8 @@ This API is deprecated since API version 9. You are advised to use [System.getDi
 
 **Example**
   ```ts
-  let countryName: string = i18n.getDisplayCountry("zh-CN", "en-GB", true); // countryName = China
-  countryName = i18n.getDisplayCountry("zh-CN", "en-GB"); // countryName = China
+  let countryName: string = i18n.getDisplayCountry('zh-CN', 'en-GB', true); // countryName = 'China'
+  countryName = i18n.getDisplayCountry('zh-CN', 'en-GB'); // countryName = 'China'
   ```
 
 
@@ -3335,8 +3433,8 @@ This API is deprecated since API version 9. You are advised to use [System.getDi
 
 **Example**
   ```ts
-  let languageName: string = i18n.getDisplayLanguage("zh", "en-GB", true); // languageName = "Chinese"
-  languageName = i18n.getDisplayLanguage("zh", "en-GB"); // languageName = "Chinese"
+  let languageName: string = i18n.getDisplayLanguage('zh', 'en-GB', true); // languageName = 'Chinese'
+  languageName = i18n.getDisplayLanguage('zh', 'en-GB'); // languageName = 'Chinese'
   ```
 
 
@@ -3358,7 +3456,7 @@ This API is deprecated since API version 9. You are advised to use [System.getSy
 
 **Example**
   ```ts
-  let systemLanguage: string = i18n.getSystemLanguage(); // Obtain the current system language.
+  let systemLanguage: string = i18n.getSystemLanguage();
   ```
 
 
@@ -3380,7 +3478,7 @@ This API is deprecated since API version 9. You are advised to use [System.getSy
 
 **Example**
   ```ts
-  let region: string = i18n.getSystemRegion(); // Obtain the current system region.
+  let region: string = i18n.getSystemRegion();
   ```
 
 
@@ -3402,7 +3500,7 @@ This API is deprecated since API version 9. You are advised to use [System.getSy
 
 **Example**
   ```ts
-  let locale: string = i18n.getSystemLocale (); // Obtain the system locale.
+  let locale: string = i18n.getSystemLocale();
   ```
 
 
@@ -3543,7 +3641,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 **Example**
   ```ts
-  let preferredLanguageList: Array<string> = i18n.getPreferredLanguageList(); // Obtain the preferred language list.
+  let preferredLanguageList: Array<string> = i18n.getPreferredLanguageList();
   ```
 
 

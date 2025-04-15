@@ -113,17 +113,15 @@ dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 
 ## DragPreviewMode<sup>11+</sup>枚举说明
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 | 名称 | 枚举值 | 描述 |
 | -------- | ------- | -------- |
-| AUTO  | 1 | 系统根据拖拽场景自动改变跟手点位置，根据规则自动对拖拽背板图进行缩放变换等。 |
-| DISABLE_SCALE  | 2 | 禁用系统对拖拽背板图的缩放行为。 |
-| ENABLE_DEFAULT_SHADOW<sup>12+</sup> | 3 | 启用非文本类组件默认阴影效果。 |
-| ENABLE_DEFAULT_RADIUS<sup>12+</sup> | 4 | 启用非文本类组件统一圆角效果，默认值12vp。当应用自身设置的圆角值大于默认值或modifier设置的圆角时，则显示应用自定义圆角效果。 |
-| ENABLE_DRAG_ITEM_GRAY_EFFECT<sup>18+</sup> | 5 | 启用支持原拖拽对象灰显（透明度）效果，对文本内容拖拽不生效。用户拖起时原对象显示灰显效果，释放时原对象恢复原有效果。开启默认灰显效果后，不建议在拖拽开始后自行修改透明度，如果开发者在拖拽发起后自行修改应用透明度，则灰显效果将被覆盖，且在结束拖拽时无法正确恢复原始透明度效果。 |
-| ENABLE_MULTI_TILE_EFFECT<sup>18+</sup> | 6 | 启用支持多选对象鼠标拖拽不聚拢效果，当满足多选的情况下isMultiSelectionEnabled为true且生效时该参数才生效。不聚拢效果优先级高于[dragPreview](#dragpreview11)。不支持二次拖拽、圆角和缩放设置。 |
-| ENABLE_TOUCH_POINT_CALCULATION_BASED_ON_FINAL_PREVIEW<sup>18+</sup> | 7 | 启用支持以拖拽预览图初始尺寸计算跟手点位置，设置DragPreviewMode.ENABLE_MULTI_TILE_EFFECT时不生效。 |
+| AUTO  | 1 | 系统根据拖拽场景自动改变跟手点位置，根据规则自动对拖拽背板图进行缩放变换等。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
+| DISABLE_SCALE  | 2 | 禁用系统对拖拽背板图的缩放行为。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
+| ENABLE_DEFAULT_SHADOW<sup>12+</sup> | 3 | 启用非文本类组件默认阴影效果。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
+| ENABLE_DEFAULT_RADIUS<sup>12+</sup> | 4 | 启用非文本类组件统一圆角效果，默认值12vp。当应用自身设置的圆角值大于默认值或modifier设置的圆角时，则显示应用自定义圆角效果。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
+| ENABLE_DRAG_ITEM_GRAY_EFFECT<sup>18+</sup> | 5 | 启用支持原拖拽对象灰显（透明度）效果，对文本内容拖拽不生效。用户拖起时原对象显示灰显效果，释放时原对象恢复原有效果。开启默认灰显效果后，不建议在拖拽开始后自行修改透明度，如果开发者在拖拽发起后自行修改应用透明度，则灰显效果将被覆盖，且在结束拖拽时无法正确恢复原始透明度效果。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
+| ENABLE_MULTI_TILE_EFFECT<sup>18+</sup> | 6 | 启用支持多选对象鼠标拖拽不聚拢效果，当满足多选的情况下isMultiSelectionEnabled为true且生效时该参数才生效。不聚拢效果优先级高于[dragPreview](#dragpreview11)。不支持二次拖拽、圆角和缩放设置。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
+| ENABLE_TOUCH_POINT_CALCULATION_BASED_ON_FINAL_PREVIEW<sup>18+</sup> | 7 | 启用支持以拖拽预览图初始尺寸计算跟手点位置，设置DragPreviewMode.ENABLE_MULTI_TILE_EFFECT时不生效。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## DraggingSizeChangeEffect<sup>18+</sup>
 
@@ -142,15 +140,13 @@ dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 
 ## DragInteractionOptions<sup>12+</sup>
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 | 名称 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
-| isMultiSelectionEnabled | boolean | 否 | 表示拖拽过程中背板图是否支持多选聚拢效果。true表示支持多选聚拢效果，false表示不支持多选聚拢效果。该参数只在[Grid](ts-container-grid.md)和[List](ts-container-list.md)组件中的[GridItem](ts-container-griditem.md)组件和[ListItem](ts-container-listitem.md)组件生效。<br/>当一个item组件设置为多选拖拽时，该组件的子组件不可拖拽。聚拢组件预览图设置的优先级为[dragPreview](#dragpreview11)中的string，dragPreview中的PixelMap，组件自截图，不支持dragPreview中的Builder形式。<br/>不支持组件绑定[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu12)中参数存在isShown的模式。<br/>默认值：false<br/> |
-| defaultAnimationBeforeLifting | boolean | 否 | 表示是否启用长按浮起阶段组件自身的默认点按效果（缩小）。true表示启用默认点按效果，false表示不启用默认点按效果。<br/>默认值：false <br/> |
-| isLiftingDisabled<sup>15+</sup> | boolean | 否 | 表示长按拖拽时，是否禁用浮起效果。true表示禁用浮起效果，false表示不禁用浮起效果。<br/>如果设置为true，当组件支持拖拽并同时设置[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8)时，仅弹出配置的自定义菜单预览。 <br/>默认值：false |
-| enableEdgeAutoScroll<sup>18+</sup> | boolean | 否 | 设置在拖拽至可滚动组件边缘时是否触发自动滚屏。true表示触发自动滚屏，false表示不触发自动滚屏。<br />默认值：true |
-| enableHapticFeedback<sup>18+</sup> | boolean | 否 | 表示拖拽时是否启用震动。true表示启用震动，false表示不启用震动。仅在存在蒙层的预览（通过[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu12)）场景生效。<br/>默认值：false |
+| isMultiSelectionEnabled | boolean | 否 | 表示拖拽过程中背板图是否支持多选聚拢效果。true表示支持多选聚拢效果，false表示不支持多选聚拢效果。该参数只在[Grid](ts-container-grid.md)和[List](ts-container-list.md)组件中的[GridItem](ts-container-griditem.md)组件和[ListItem](ts-container-listitem.md)组件生效。<br/>当一个item组件设置为多选拖拽时，该组件的子组件不可拖拽。聚拢组件预览图设置的优先级为[dragPreview](#dragpreview11)中的string，dragPreview中的PixelMap，组件自截图，不支持dragPreview中的Builder形式。<br/>不支持组件绑定[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu12)中参数存在isShown的模式。<br/>默认值：false<br/>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
+| defaultAnimationBeforeLifting | boolean | 否 | 表示是否启用长按浮起阶段组件自身的默认点按效果（缩小）。true表示启用默认点按效果，false表示不启用默认点按效果。<br/>默认值：false <br/>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
+| isLiftingDisabled<sup>15+</sup> | boolean | 否 | 表示长按拖拽时，是否禁用浮起效果。true表示禁用浮起效果，false表示不禁用浮起效果。<br/>如果设置为true，当组件支持拖拽并同时设置[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8)时，仅弹出配置的自定义菜单预览。 <br/>默认值：false<br/>**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。 |
+| enableEdgeAutoScroll<sup>18+</sup> | boolean | 否 | 设置在拖拽至可滚动组件边缘时是否触发自动滚屏。true表示触发自动滚屏，false表示不触发自动滚屏。<br />默认值：true<br/>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
+| enableHapticFeedback<sup>18+</sup> | boolean | 否 | 表示拖拽时是否启用震动。true表示启用震动，false表示不启用震动。仅在存在蒙层的预览（通过[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu12)）场景生效。<br/>**注意：** 仅当应用具备 ohos.permission.VIBRATE 权限，且用户启用了触感反馈时才会生效。<br/>默认值：false<br/>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## 示例
 ### 示例1（允许拖拽和落入）

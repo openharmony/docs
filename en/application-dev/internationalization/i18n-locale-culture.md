@@ -56,7 +56,7 @@ The following uses date and time formatting as an example. For details about API
    import { intl } from '@kit.LocalizationKit';
    ```
 
-2. Create a **Locale** object. Three methods are provided:
+2. Create a **Locale** object using any of the following methods:
    - According to the format provided in [How It Works](#how-it-works), pass in the locale string to the **Locale** constructor to create a **Locale** object.
    - Configure locale features in **LocaleOptions**, and then use the locale string and **LocaleOptions** to create a **Locale** object. The attributes configured in **LocaleOptions** automatically overwrite the corresponding attributes in the locale string.
    - Use the default **Locale** constructor to create a **Locale** object. This object will be used to represent the current system locale.

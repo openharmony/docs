@@ -9,6 +9,7 @@ Defines a listener for device hot swap events.
 
 **Related module**: [Input](input.md)
 
+**Header file**: [oh_input_manager.h](oh__input__manager_8h.md)
 
 ## Summary
 
@@ -30,6 +31,7 @@ Defines a listener for device hot swap events.
 Input_DeviceAddedCallback Input_DeviceListener::deviceAddedCallback
 ```
 **Description**
+
 Defines a callback used to receive device insertion events.
 
 
@@ -39,4 +41,5 @@ Defines a callback used to receive device insertion events.
 Input_DeviceRemovedCallback Input_DeviceListener::deviceRemovedCallback
 ```
 **Description**
+
 Defines a callback used to receive device removal events.
