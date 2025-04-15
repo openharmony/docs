@@ -1129,7 +1129,7 @@ struct RepeatTemplateSingle {
 
 totalCount > array.length时，在父组件容器滚动过程中，应用需要保证列表即将滑动到数据源末尾时请求后续数据，开发者需要对数据请求的错误场景（如网络延迟）进行保护操作，直到数据源全部加载完成，否则列表滑动的过程中会出现滚动效果异常。
 
-上述规范可以通过实现父组件List/Grid的[onScrollIndex](../ui/arkts-layout-development-create-list.md#响应滚动位置)属性的回调函数完成。示例代码如下：
+上述规范可以通过实现父组件List/Grid的[onScrollIndex](../../ui/arkts-layout-development-create-list.md#响应滚动位置)属性的回调函数完成。示例代码如下：
 
 ```ts
 @ObservedV2

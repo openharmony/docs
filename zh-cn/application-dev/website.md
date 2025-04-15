@@ -381,9 +381,9 @@
               - [\@Param装饰器：组件外部输入](ui/state-management/arkts-new-param.md)
               - [\@Once装饰器：初始化同步一次](ui/state-management/arkts-new-once.md)
               - [\@Event装饰器：组件输出](ui/state-management/arkts-new-event.md)
-              - [\@Provider和\@Consumer装饰器：跨组件层级双向同步](ui/state-management/arkts-new-Provider-and-Consumer.md)
+              - [\@Provider和\@Consumer装饰器：跨组件层级双向同步](ui/state-management/arkts-new-provider-and-consumer.md)
               - [\@Monitor装饰器：状态变量修改监听](ui/state-management/arkts-new-monitor.md)
-              - [\@Computed装饰器：计算属性](ui/state-management/arkts-new-Computed.md)
+              - [\@Computed装饰器：计算属性](ui/state-management/arkts-new-computed.md)
               - [\@Type装饰器: 标记类属性的类型](ui/state-management/arkts-new-type.md)
             - 其他状态管理<!--arkts-new-other-state-mgmt-->
               - [AppStorageV2: 应用全局UI状态存储](ui/state-management/arkts-new-appstoragev2.md)
