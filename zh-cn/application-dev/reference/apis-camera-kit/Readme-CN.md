@@ -23,6 +23,7 @@
   - 结构体<!--camera-struct-->
     - [Camera_CaptureEndInfo](_camera___capture_end_info.md)
     - [Camera_CaptureStartInfo](_camera___capture_start_info.md)
+    - [Camera_ConcurrentInfo](_camera___concurrent_info.md)
     - [Camera_Device](_camera___device.md)
     - [Camera_FrameRateRange](_camera___frame_rate_range.md)
     - [Camera_FrameShutterEndInfo](_camera___frame_shutter_end_info.md)
