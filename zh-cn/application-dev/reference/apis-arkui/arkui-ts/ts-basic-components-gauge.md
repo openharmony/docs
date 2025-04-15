@@ -213,7 +213,7 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 contentModifier(modifier: ContentModifier\<GaugeConfiguration>)
 
-定制Slider内容区的方法。
+定制Gauge内容区的方法。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
