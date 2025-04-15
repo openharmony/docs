@@ -3675,6 +3675,7 @@ getThumbnailData(type: ThumbnailType): Promise&lt;ArrayBuffer&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 202      | Called by non-system application. |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -5969,7 +5970,7 @@ setSubTitle(title: string): void
 
 副标题参数规格为：
 
-- 副标题字符串长度为1~255。
+- 副标题字符串长度为0~255。
 - 不允许出现的非法英文字符，包括：<br> . \ / : * ? " ' ` < > | { } [ ]
 - 英文字符大小写不敏感。
 
@@ -6066,11 +6067,14 @@ static deleteHighlightAlbums(context: Context, albums: Array&lt;Album&gt;): Prom
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+
+const context = getContext(this);
 
 async function example() {
   try {
     console.info('deleteHighlightAlbums');
-    let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(getContext(this));
+    let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
     let albumFetchOption: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
       predicates: new dataSharePredicates.DataSharePredicates()
@@ -6083,7 +6087,7 @@ async function example() {
     }
     let highlightAlbum: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     albumFetchResult.close();
-    let result = await photoAccessHelper.HighlightAlbum.deleteHighlightAlbums(getContext(this), [highlightAlbum]);
+    let result = await photoAccessHelper.HighlightAlbum.deleteHighlightAlbums(context, [highlightAlbum]);
     console.info('deleteHighlightAlbums success');
   } catch (err) {
     console.error(`deleteHighlightAlbums with error: ${err}`);
