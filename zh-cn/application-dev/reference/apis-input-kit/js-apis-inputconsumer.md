@@ -56,7 +56,7 @@ inputConsumer.getAllSystemHotkeys().then((data: Array<inputConsumer.HotkeyOption
 });
 ```
 
-## inputConsumer.on('hotkeyOptions')<sup>14+</sup>
+## inputConsumer.on('hotkeyChange')<sup>14+</sup>
 
 on(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback: Callback&lt;HotkeyOptions&gt;): void
 
@@ -103,7 +103,7 @@ try {
 }
 ```
 
-## inputConsumer.off('hotkeyOptions')<sup>14+</sup>
+## inputConsumer.off('hotkeyChange')<sup>14+</sup>
 
 off(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback?: Callback&lt;HotkeyOptions&gt;): void
 
