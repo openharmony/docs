@@ -1243,6 +1243,8 @@ getCameraDevice(position:CameraPosition, type: CameraType): CameraDevice
 
 根据相机位置和相机类型查询对应相机。
 
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
 **参数：**
 
 | 参数名     | 类型             | 必填 | 说明       |
@@ -1262,7 +1264,7 @@ getCameraDevice(position:CameraPosition, type: CameraType): CameraDevice
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401     | Parameter error.  |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 | 7400201 | Camera service fatal error. |
 
 **示例：**
@@ -1288,6 +1290,8 @@ getCameraConcurrentInfos(cameras: Array\<CameraDevice\>): Array\<CameraConcurren
 
 获取指定相机设备的并发信息。返回空表示不支持并发。
 
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
 **参数：**
 
 | 参数名     | 类型             | 必填 | 说明       |
@@ -1306,7 +1310,7 @@ getCameraConcurrentInfos(cameras: Array\<CameraDevice\>): Array\<CameraConcurren
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401     | Parameter error.  |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 | 7400201 | Camera service fatal error. |
 
 **示例：**
@@ -1402,6 +1406,8 @@ function getCameraConcurrentinfos(cameraManager: camera.CameraManager, cameraDev
 
 枚举，镜头并发类型。
 
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
 | 名称   | 值    | 说明          |
 |------|------|-------------|
 | CAMERA_LIMITED_CAPABILITY  | 0 | 镜头受限能力并发。  |
@@ -1410,6 +1416,8 @@ function getCameraConcurrentinfos(cameraManager: camera.CameraManager, cameraDev
 ## CameraConcurrentInfo<sup>18+</sup>
 
 相机的输出并发能力信息。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称   | 类型    | 只读 | 可选  | 说明         |
 | ------ | ------ | ---- |-----| ------------ |
@@ -1552,6 +1560,8 @@ function openCameraInput(cameraInput: camera.CameraInput): void {
 open(type: CameraConcurrentType): Promise\<void\>
 
 以指定的并发类型打开相机。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
 
@@ -5445,7 +5455,7 @@ getExposureBiasRange(): Array\<number\>
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 7400103                |  Session not config, only throw in session usage.               |
+| 7400103                |  Session not config.   |
 
 **示例：**
 
