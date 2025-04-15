@@ -153,7 +153,7 @@ pageTransition() {
 
 ## 场景示例
 
-下面介绍了利用[router.pushUrl](../reference/apis-arkui/js-apis-router.md#routerpushurl9)跳转能力定义了所有的四种页面转场样式的页面转场动画示例。
+下面介绍了利用[router.pushUrl](../reference/apis-arkui/js-apis-router.md#routerpushurldeprecated)跳转能力定义了所有的四种页面转场样式的页面转场动画示例。
 
 ```ts
 // PageTransitionSrc1
