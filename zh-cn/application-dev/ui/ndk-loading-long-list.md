@@ -502,7 +502,7 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#ar
         } 
     }
     ```
-3. ArkUIListItemAdapter中新增RemoveItem,用于删除数据源并且调用OH_ArkUI_NodeAdapter_RemoveItem接口通知框架刷新UI.
+3. ArkUIListItemAdapter中新增RemoveItem,用于删除数据源并且调用OH_ArkUI_NodeAdapter_RemoveItem接口通知框架刷新UI。
     ```
     // ArkUIListItemAdapter.h 
     class ArkUIListItemAdapter { 
@@ -569,7 +569,7 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#ar
     }// namespace NativeModule 
     # endif//MYAPPLICATION_ARKUILISTITEMGROUPNODE_H
     ```
-2. List组件设置吸顶
+2. List组件设置吸顶。
     ```
     // ArkUIListNode.h 
     //列表封装对象。 
@@ -583,7 +583,7 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#ar
         }
     }
     ```
-3. List组件下使用ListItemGroup实现分组列表界面
+3. List组件下使用ListItemGroup实现分组列表界面。
     ```
     // LazyTextListExample.h 
     //懒加载列表示例代码。 
