@@ -28,6 +28,7 @@
 | ------------------------------------------------------------ | ---------------------- |
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) {<br>    ABILITY_RUNTIME_ERROR_CODE_NO_ERROR = 0,<br>    ABILITY_RUNTIME_ERROR_CODE_PERMISSION_DENIED = 201,<br>    ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID = 401,<br>    ABILITY_RUNTIME_ERROR_CODE_NOT_SUPPORTED = 801,<br>    ABILITY_RUNTIME_ERROR_CODE_NO_SUCH_ABILITY = 16000001,<br>    ABILITY_RUNTIME_ERROR_CODE_INCORRECT_ABILITY_TYPE = 16000002,<br>    ABILITY_RUNTIME_ERROR_CODE_CROWDTEST_EXPIRED = 16000008,<br>    ABILITY_RUNTIME_ERROR_CODE_WUKONG_MODE = 16000009,<br>    ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST = 16000011,<br>    ABILITY_RUNTIME_ERROR_CODE_CONTROLLED = 16000012,<br>    ABILITY_RUNTIME_ERROR_CODE_EDM_CONTROLLED = 16000013,<br>    ABILITY_RUNTIME_ERROR_CODE_CROSS_APP = 16000018,<br>    ABILITY_RUNTIME_ERROR_CODE_INTERNAL = 16000050,<br>    ABILITY_RUNTIME_ERROR_CODE_NOT_TOP_ABILITY = 16000053,<br>    ABILITY_RUNTIME_ERROR_VISIBILITY_SETTING_DISABLED = 16000067,<br>    ABILITY_RUNTIME_ERROR_CODE_MULTI_APP_NOT_SUPPORTED = 16000072,<br>    ABILITY_RUNTIME_ERROR_CODE_INVALID_APP_INSTANCE_KEY = 16000076,<br>    ABILITY_RUNTIME_ERROR_CODE_UPPER_LIMIT_REACHED = 16000077,<br>    ABILITY_RUNTIME_ERROR_MULTI_INSTANCE_NOT_SUPPORTED = 16000078,<br>    ABILITY_RUNTIME_ERROR_CODE_APP_INSTANCE_KEY_NOT_SUPPORTED = 16000079<br/>} | 定义元能力模块错误码。 |
 | [AbilityRuntime_AreaMode](#abilityruntime_areamode) {<br/>    ABILITY_RUNTIME_AREA_MODE_EL1 = 0,<br/>    ABILITY_RUNTIME_AREA_MODE_EL2 = 1,<br/>    ABILITY_RUNTIME_AREA_MODE_EL3 = 2,<br/>    ABILITY_RUNTIME_AREA_MODE_EL4 = 3,<br/>    ABILITY_RUNTIME_AREA_MODE_EL5 = 4<br/>} | 定义数据加密等级。     |
+| [AbilityRuntime_StartVisibility](#abilityruntime_startvisibility) {<br/>    ABILITY_RUNTIME_HIDE_UPON_START = 0,<br/>    ABILITY_RUNTIME_SHOW_UPON_START = 1<br/>} | 定义启动Ability时的窗口和dock栏图标显示模式。     |
 | [AbilityRuntime_WindowMode](#abilityruntime_supportedwindowmode) {<br/>    ABILITY_RUNTIME_WINDOW_MODE_UNDEFINED = 0,</br>    ABILITY_RUNTIME_WINDOW_MODE_FULL_SCREEN = 1<br/>} | 定义启动应用时支持的窗口模式。     |
 | [AbilityRuntime_SupportedWindowMode](#abilityruntime_supportedwindowmode) {<br/>    ABILITY_RUNTIME_SUPPORTED_WINDOW_MODE_FULL_SCREEN = 0,<br/>    ABILITY_RUNTIME_SUPPORTED_WINDOW_MODE_SPLIT = 1,<br/>    ABILITY_RUNTIME_SUPPORTED_WINDOW_MODE_FLOATING = 2<br/>} | 定义启动应用时支持的窗口模式。     |
 
@@ -62,6 +63,8 @@
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_GetStartOptionsWindowHeight](#oh_abilityruntime_getstartoptionswindowheight)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, int32_t &windowHeight) | 获取启动Ability时的窗口高度，单位为px。 |
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_SetStartOptionsWindowWidth](#oh_abilityruntime_setstartoptionswindowwidth)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, int32_t windowWidth) | 设置启动Ability时的窗口宽度，单位为px。 |
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_GetStartOptionsWindowWidth](#oh_abilityruntime_getstartoptionswindowwidth)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, int32_t &windowWidth) | 获取启动Ability时的窗口宽度，单位为px。 |
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_SetStartOptionsStartVisibility](#oh_abilityruntime_setstartoptionsstartvisibility)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, [AbilityRuntime_StartVisibility](#abilityruntime_startvisibility) startVisibility) | 设置启动Ability时窗口和dock栏图标的显示模式。 |
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_GetStartOptionsStartVisibility](#oh_abilityruntime_getstartoptionsstartvisibility)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, [AbilityRuntime_StartVisibility](#abilityruntime_startvisibility) &startVisibility) | 获取启动Ability时窗口和dock栏图标的显示模式。|
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_SetStartOptionsStartWindowIcon](#oh_abilityruntime_setstartoptionsstartwindowicon)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, [OH_PixelmapNative](../apis-image-kit/_image___native_module.md#oh_pixelmapnative) *startWindowIcon) | 设置启动Ability时的窗口启动图标。 |
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_GetStartOptionsStartWindowIcon](#oh_abilityruntime_getstartoptionsstartwindowicon)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, [OH_PixelmapNative](../apis-image-kit/_image___native_module.md#oh_pixelmapnative) **startWindowIcon) | 获取启动Ability时的窗口启动图标。 |
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_SetStartOptionsStartWindowBackgroundColor](#oh_abilityruntime_setstartoptionsstartwindowbackgroundcolor)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, const char *startWindowBackgroundColor) | 设置启动Ability时的窗口背景颜色。 |
@@ -148,6 +151,23 @@ enum AbilityRuntime_AreaMode
 | ABILITY_RUNTIME_AREA_MODE_EL3 | 对于应用中的记录步数、文件下载、音乐播放，需要在锁屏时读写和创建新文件，放在（EL3）的加密分区比较合适。 |
 | ABILITY_RUNTIME_AREA_MODE_EL4 | 对于用户安全信息相关的文件，锁屏时不需要读写文件、也不能创建文件，放在（EL4）的加密分区更合适。 |
 | ABILITY_RUNTIME_AREA_MODE_EL5 | 对于用户隐私敏感数据文件，锁屏后默认不可读写，如果锁屏后需要读写文件，则锁屏前可以调用[Access](js-apis-screenLockFileManager.md#screenlockfilemanageracquireaccess)接口申请继续读写文件，或者锁屏后也需要创建新文件且可读写，放在（EL5）的应用级加密分区更合适。 |
+
+### AbilityRuntime_StartVisibility
+
+```
+enum AbilityRuntime_StartVisibility
+```
+
+**描述**
+
+启动Ability时的窗口和dock栏图标的显示模式。
+
+**起始版本：** 17
+
+| 枚举值                        | 描述                                                         |
+| ----------------------------- | ------------------------------------------------------------ |
+| ABILITY_RUNTIME_HIDE_UPON_START | 隐藏窗口及dock栏图标。仅在2in1设备上生效。  |
+| ABILITY_RUNTIME_SHOW_UPON_START | 显示窗口及dock栏图标。仅在2in1设备上生效。 |
 
 ### AbilityRuntime_WindowMode
 
@@ -1349,6 +1369,100 @@ void demo()
     // 销毁startWindowIcon，防止内存泄漏
     OH_PixelmapNative_Release(startWindowIcon);
 
+    // 销毁options，防止内存泄漏
+    OH_AbilityRuntime_DestroyStartOptions(&options);
+}
+```
+
+### OH_AbilityRuntime_SetStartOptionsStartVisibility
+
+```
+AbilityRuntime_ErrorCode OH_AbilityRuntime_SetStartOptionsStartVisibility(AbilityRuntime_StartOptions *startOptions, AbilityRuntime_StartVisibility startVisibility);
+```
+
+**描述**
+
+设置启动Ability时窗口和dock栏图标的显示模式。
+
+**参数：**
+
+| 名称        | 描述                                                         |
+| ----------- | ------------------------------------------------------------ |
+| startOptions     | StartOptions结构体。                           |
+| startVisibility     | 需要设置的显示模式。                           |
+
+**起始版本：** 17
+
+**返回：**
+
+ABILITY_RUNTIME_ERROR_CODE_NO_ERROR - 设置成功。
+
+ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID - StartOptions为空，或startVisibility取值不在枚举类AbilityRuntime_StartVisibility中。
+
+**示例代码：**
+```cpp
+#include <AbilityKit/ability_runtime/start_options.h>
+
+void demo()
+{
+    AbilityRuntime_StartOptions* options = OH_AbilityRuntime_CreateStartOptions();
+    if (options == nullptr) {
+        // 记录错误日志以及其他业务处理
+        return;
+    }
+
+    AbilityRuntime_StartVisibility visibility = AbilityRuntime_StartVisibility::ABILITY_RUNTIME_SHOW_UPON_START;
+    AbilityRuntime_ErrorCode err = OH_AbilityRuntime_SetStartOptionsStartVisibility(options, visibility);
+    if (err != ABILITY_RUNTIME_ERROR_CODE_NO_ERROR) {
+        // 记录错误日志以及其他业务处理
+    }
+    // 销毁options，防止内存泄漏
+    OH_AbilityRuntime_DestroyStartOptions(&options);
+}
+```
+
+### OH_AbilityRuntime_GetStartOptionsStartVisibility
+
+```
+AbilityRuntime_ErrorCode OH_AbilityRuntime_GetStartOptionsStartVisibility(AbilityRuntime_StartOptions *startOptions, AbilityRuntime_StartVisibility &startVisibility);
+```
+
+**描述**
+
+获取启动Ability时窗口和dock栏图标的显示模式。
+
+**参数：**
+
+| 名称        | 描述                                                         |
+| ----------- | ------------------------------------------------------------ |
+| startOptions     | StartOptions结构体。                           |
+| startVisibility     | 获取到的显示模式。                           |
+
+**起始版本：** 17
+
+**返回：**
+
+ABILITY_RUNTIME_ERROR_CODE_NO_ERROR - 获取成功。
+
+ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID - StartOptions为空，或startVisibility未被设置。
+
+**示例代码：**
+```cpp
+#include <AbilityKit/ability_runtime/start_options.h>
+
+void demo()
+{
+    AbilityRuntime_StartOptions* options = OH_AbilityRuntime_CreateStartOptions();
+    if (options == nullptr) {
+        // 记录错误日志以及其他业务处理
+        return;
+    }
+
+    AbilityRuntime_StartVisibility visibility;
+    AbilityRuntime_ErrorCode err = OH_AbilityRuntime_GetStartOptionsStartVisibility(options, visibility);
+    if (err != ABILITY_RUNTIME_ERROR_CODE_NO_ERROR) {
+        // 记录错误日志以及其他业务处理
+    }
     // 销毁options，防止内存泄漏
     OH_AbilityRuntime_DestroyStartOptions(&options);
 }

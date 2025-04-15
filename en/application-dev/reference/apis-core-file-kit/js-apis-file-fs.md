@@ -140,7 +140,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 access(path: string, mode?: AccessModeType): Promise&lt;boolean&gt;
 
-Checks whether a file exists. This API uses a promise to return the result.
+Checks whether the file or directory exists or verifies the operation permission. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -157,7 +157,7 @@ Checks whether a file exists. This API uses a promise to return the result.
 
   | Type                 | Description                          |
   | ------------------- | ---------------------------- |
-  | Promise&lt;boolean&gt; | Promise used to return a Boolean value, which indicates whether the file exists.|
+  | Promise&lt;boolean&gt; | Promise used to return a Boolean value. Returns **true** if the file exists; returns **false** otherwise.|
 
 **Error codes**
 
@@ -188,7 +188,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 access(path: string, mode: AccessModeType, flag: AccessFlagType): Promise&lt;boolean&gt;
 
-Checks whether a file is stored locally or has the related permission. This API uses a promise to return the result. If the file is on the cloud or a distributed device, **false** is returned.
+Checks whether the file or directory is on the local host or verifies the operation permission. This API uses a promise to return the result. If the file is on the cloud or a distributed device, **false** is returned.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -235,7 +235,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 access(path: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether a file exists. This API uses an asynchronous callback to return the result.
+Checks whether a file or directory exists. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -279,7 +279,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 accessSync(path: string, mode?: AccessModeType): boolean
 
-Checks whether a file exists. This API returns the result synchronously.
+Synchronously checks whether a file or directory exists or verifies the operation permission.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -329,7 +329,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 accessSync(path: string, mode: AccessModeType, flag: AccessFlagType): boolean
 
-Checks whether a file is stored locally or has the related permission. This API returns the result synchronously. If the file is on the cloud or a distributed device, **false** is returned.
+Synchronously checks whether the file or directory is on the local host or verifies the operation permission. If the file is on the cloud or a distributed device, **false** is returned.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -2324,7 +2324,7 @@ Represents the information obtained by the **ReadIterator** object.
 
 | Name       | Type      | Description               |
 | ----------- | --------------- | ------------------ |
-| done | boolean     |  Whether the iteration is complete.         |
+| done | boolean     |  Whether the iteration is complete. The value **true** means the iteration is complete; the value **false** means the iteration is not complete.         |
 | value    | string     | File text content read line by line.|
 
 ## fs.readText
@@ -4195,7 +4195,7 @@ You can call **close()** to close the FD.
 
 **Error codes**
 
-For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes) and [Universal Error Codes](../errorcode-universal.md#universal-error-codes).
 
 **Example**
 
@@ -4236,7 +4236,7 @@ Creates a **ReadStream** instance.
 
 **Error codes**
 
-For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes) and [Universal Error Codes](../errorcode-universal.md#universal-error-codes).
 
 **Example**
 
@@ -4287,7 +4287,7 @@ Reads all content of a file.
 
 **Error codes**
 
-For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes) and [Universal Error Codes](../errorcode-universal.md#universal-error-codes).
 
 **Example**
 
@@ -4338,7 +4338,7 @@ Call **finishWrite()** if the write operation is successful; call **failWrite()*
 
 **Error codes**
 
-For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes) and [Universal Error Codes](../errorcode-universal.md#universal-error-codes).
 
 **Example**
 
@@ -4372,7 +4372,7 @@ Finishes writing file data when the write operation is complete.
 
 **Error codes**
 
-For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes) and [Universal Error Codes](../errorcode-universal.md#universal-error-codes).
 
 **Example**
 
@@ -4405,7 +4405,7 @@ Rolls back the file after the file fails to be written.
 
 **Error codes**
 
-For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes) and [Universal Error Codes](../errorcode-universal.md#universal-error-codes).
 
 **Example**
 
@@ -4441,7 +4441,7 @@ Deletes the **AtomicFile** class, including the original files and temporary fil
 
 **Error codes**
 
-For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes) and [Universal Error Codes](../errorcode-universal.md#universal-error-codes).
 
 **Example**
 
@@ -4690,10 +4690,10 @@ Represents detailed file information. Before calling any API of the **Stat()** c
 | uid    | number | Yes   | No   | ID of the file owner.|
 | gid    | number | Yes   | No   | ID of the user group of the file.|
 | size   | number | Yes   | No   | File size, in bytes. This parameter is valid only for regular files.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| atime  | number | Yes   | No   | Time when the file was last accessed. The value is the number of seconds elapsed since 00:00:00 on January 1, 1970.<br>**Atomic service API**: This API can be used in atomic services since API version 11.     |
+| atime  | number | Yes   | No   | Time when the file was last accessed. The value is the number of seconds elapsed since 00:00:00 on January 1, 1970.<br>Note: Currently, user data partitions are mounted in **noatime** mode by default, and **atime** update is disabled.<br>**Atomic service API**: This API can be used in atomic services since API version 11.     |
 | mtime  | number | Yes   | No   | Time when the file content was last modified. The value is the number of seconds elapsed since 00:00:00 on January 1, 1970.<br>**Atomic service API**: This API can be used in atomic services since API version 11.     |
 | ctime  | number | Yes   | No   | Time when the file metadata was last modified. The value is the number of seconds elapsed since 00:00:00 on January 1, 1970.     |
-| atimeNs<sup>15+</sup>  | bigint | Yes   | Yes   | Time of the last access to the file. The value is the number of nanoseconds elapsed since 00:00:00 on January 1, 1970.     |
+| atimeNs<sup>15+</sup>  | bigint | Yes   | Yes   | Time of the last access to the file. The value is the number of nanoseconds elapsed since 00:00:00 on January 1, 1970.<br>Note: Currently, user data partitions are mounted in **noatime** mode by default, and **atime** update is disabled.     |
 | mtimeNs<sup>15+</sup>  | bigint | Yes   | Yes   | Time of the last modification to the file. The value is the number of nanoseconds elapsed since 00:00:00 on January 1, 1970.     |
 | ctimeNs<sup>15+</sup>  | bigint | Yes   | Yes   | Time of the last status change of the file. The value is the number of nanoseconds elapsed since 00:00:00 on January 1, 1970.     |
 | location<sup>11+</sup> | [LocaltionType](#locationtype11)| Yes|No| File location, which indicates whether the file is stored in a local device or in the cloud.
@@ -4710,7 +4710,7 @@ Checks whether this file is a block special file. A block special file supports 
 
   | Type    | Description              |
   | ------- | ---------------- |
-  | boolean | Whether the file is a block special file.|
+  | boolean | Whether the file is a block special file. The value **true** means the file is a block special file; the value **false** means the file is not a block special file.|
 
 **Error codes**
 
@@ -4735,7 +4735,7 @@ Checks whether this file is a character special file. A character special file s
 
   | Type     | Description               |
   | ------- | ----------------- |
-  | boolean | Whether the file is a character special file.|
+  | boolean | Whether the file is a character special file. The value **true** means the file is a character special file; the value **false** means the file is not a character special file.|
 
 **Error codes**
 
@@ -4762,7 +4762,7 @@ Checks whether this file is a directory.
 
   | Type     | Description           |
   | ------- | ------------- |
-  | boolean | Whether the file is a directory.|
+  | boolean | Whether the file is a directory. The value **true** means the file is a directory; the value **false** means the file is not a directory.|
 
 **Error codes**
 
@@ -4787,7 +4787,7 @@ Checks whether this file is a named pipe (or FIFO). Named pipes are used for int
 
   | Type     | Description                   |
   | ------- | --------------------- |
-  | boolean | Whether the file is an FIFO.|
+  | boolean | Whether the file is an FIFO. The value **true** means the file is an FIFO; the value **false** means the file is not an FIFO.|
 
 **Error codes**
 
@@ -4814,7 +4814,7 @@ Checks whether this file is a regular file.
 
   | Type     | Description             |
   | ------- | --------------- |
-  | boolean | Whether the file is a regular file.|
+  | boolean | Whether the file is a regular file. The value **true** means that the file is a regular file; the value **false** means that the file is not a regular file.|
 
 **Error codes**
 
@@ -4839,7 +4839,7 @@ Checks whether this file is a socket.
 
   | Type     | Description            |
   | ------- | -------------- |
-  | boolean | Whether the file is a socket.|
+  | boolean | Whether the file is a socket. The value **true** means that the file is a socket; the value **false** means that the file is not a socket.|
 
 **Error codes**
 
@@ -4864,7 +4864,7 @@ Checks whether this file is a symbolic link.
 
   | Type     | Description             |
   | ------- | --------------- |
-  | boolean | Whether the file is a symbolic link.|
+  | boolean | Whether the file is a symbolic link. The value **true** means that the file is a symbolic link; the value **false** means that the file is not a symbolic link.|
 
 **Error codes**
 
@@ -5368,7 +5368,7 @@ Applies an exclusive lock or a shared lock on this file in blocking mode. This A
 
   | Name    | Type         | Mandatory  | Description                                      |
   | ------- | ----------- | ---- | ---------------------------------------- |
-  | exclusive  | boolean | No  | Lock to apply. The value **true** means an exclusive lock, and the value **false** (default) means a shared lock.      |
+  | exclusive  | boolean | No  | Lock to apply. The value **true** means an exclusive lock, and the value **false** (default) means a shared lock.     |
 
 **Return value**
 
@@ -5407,7 +5407,7 @@ Applies an exclusive lock or a shared lock on this file in blocking mode. This A
 
   | Name    | Type         | Mandatory  | Description                                      |
   | ------- | ----------- | ---- | ---------------------------------------- |
-  | exclusive  | boolean | No  | Lock to apply. The value **true** means an exclusive lock, and the value **false** (default) means a shared lock.      |
+  | exclusive  | boolean | No  | Lock to apply. The value **true** means an exclusive lock, and the value **false** (default) means a shared lock.       |
   | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.  |
 
 **Error codes**
@@ -5891,7 +5891,7 @@ Obtains a **WriteStream** instance of this **RandomAccessFile**.
 
 ## Watcher<sup>10+</sup>
 
-Provides APIs for observing the changes of files or folders. Before using the APIs of **Watcher** , call **createWatcher()** to create a **Watcher** object.
+Provides APIs for observing the changes of files or folders. Before using the APIs of **Watcher**, call **createWatcher()** to create a **Watcher** object.
 
 ### start<sup>10+</sup>
 
@@ -5969,7 +5969,7 @@ Defines the file filtering configuration used by **listFile()**.
 | mimeType    | Array&lt;string&gt; | No| Locate files that fully match the specified MIME types, which are of the OR relationship.      |
 | fileSizeOver    | number | No| Locate files that are greater than or equal to the specified size.      |
 | lastModifiedAfter    | number | No| Locate files whose last modification time is the same or later than the specified time.      |
-| excludeMedia    | boolean | No| Whether to exclude the files already in **Media**.      |
+| excludeMedia    | boolean | No| Whether to exclude the files already in **Media**. The value **true** means to exclude the files already in **Media**; the value **false** means not to exclude the files already in **Media**.   |
 
 ## ConflictFiles<sup>10+</sup>
 

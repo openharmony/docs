@@ -39,18 +39,19 @@ Creates a date picker in the given date range.
 | start    | Date | No  | Start date of the picker.<br>Default value: **Date('1970-1-1')**         |
 | end      | Date | No  | End date of the picker.<br>Default value: **Date('2100-12-31')**       |
 | selected | Date | No  | Date of the selected item.<br>Default value: current system date<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
-| mode<sup>16+</sup> | [DatePickerMode](#datepickermode16) | No  | Date columns to be displayed.<br>Default value: **DatePickerMode.DATE**, which means to display three columns: year, month, and day. Decimal values are rounded off.<br>In **DatePickerDialog**, with **showTime=true**, this parameter has no effect and the default three columns for year, month, and day are displayed.|
+| mode<sup>18+</sup> | [DatePickerMode](#datepickermode18) | No  | Date columns to be displayed.<br>Default value: **DatePickerMode.DATE**, which means to display three columns: year, month, and day. Decimal values are rounded off.<br>In **DatePickerDialog**, with **showTime=true**, this parameter has no effect and the default three columns for year, month, and day are displayed.|
 
 >  **NOTE**
 >
->  For details about how to use Date, see [TimePickerOptions](ts-basic-components-timepicker.md).
->
+>  For details about how to use **Date**, see [TimePickerOptions](ts-basic-components-timepicker.md). 
+>  Modifying the **DatePickerOptions** properties, such as **start**, **end**, or **selected**, during the scrolling process of the **DatePicker** component may not take effect.
 
-## DatePickerMode<sup>16+</sup>
+
+## DatePickerMode<sup>18+</sup>
 
 Sets the date columns to be displayed.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -102,13 +103,13 @@ Specifies whether to display the lunar calendar.
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | value  | boolean | Yes  | Whether to display the lunar calendar.<br>- **true**: Display the lunar calendar.<br>- **false**: Do not display the lunar calendar.<br>Default value: **false**|
 
-### lunar<sup>16+</sup>
+### lunar<sup>18+</sup>
 
 lunar(isLunar: Optional\<boolean>)
 
-Specifies whether to display the lunar calendar. Compared to [lunar](#lunar), the **isLunar** parameter supports the **undefined** type.
+Specifies whether to display the lunar calendar. Compared to [lunar](#lunar), this API supports the **undefined** type for the **isLunar** parameter.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -134,13 +135,13 @@ Sets the text style for the top and bottom items.
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [PickerTextStyle](#pickertextstyle10) | Yes  | Font color, font size, and font weight of the top and bottom items.<br>Default value:<br>{<br>color: '#ff182431',<br>font: {<br>size: '14fp', <br>weight: FontWeight.Regular<br>}<br>} |
 
-### disappearTextStyle<sup>16+</sup>
+### disappearTextStyle<sup>18+</sup>
 
 disappearTextStyle(style: Optional\<PickerTextStyle>)
 
-Sets the text style for the top and bottom items. Compared to [disappearTextStyle](#disappeartextstyle10)<sup>10+</sup>, the **style** parameter supports the **undefined** type.
+Sets the text style for the top and bottom items. Compared to [disappearTextStyle](#disappeartextstyle10)<sup>10+</sup>, this API supports the **undefined** type for the **style** parameter.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -166,13 +167,13 @@ Sets the text style for all items except the top, bottom, and selected items.
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [PickerTextStyle](#pickertextstyle10) | Yes  | Font color, font size, and font weight of all items except the top, bottom, and selected items.<br>Default value:<br>{<br>color: '#ff182431',<br>font: {<br>size: '16fp', <br>weight: FontWeight.Regular<br>}<br>} |
 
-### textStyle<sup>16+</sup>
+### textStyle<sup>18+</sup>
 
 textStyle(style: Optional\<PickerTextStyle>)
 
-Sets the text style for all items except the top, bottom, and selected items. Compared to [textStyle](#textstyle10)<sup>10+</sup>, the **style** parameter supports the **undefined** type.
+Sets the text style for all items except the top, bottom, and selected items. Compared to [textStyle](#textstyle10)<sup>10+</sup>, this API supports the **undefined** type for the **style** parameter.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -198,13 +199,13 @@ Sets the text style for the selected item.
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [PickerTextStyle](#pickertextstyle10) | Yes  | Font color, font size, and font weight of the selected item.<br>Default value:<br>{<br>color: '#ff007dff',<br>font: {<br>size: '20vp', <br>weight: FontWeight.Medium<br>}<br>} |
 
-### selectedTextStyle<sup>16+</sup>
+### selectedTextStyle<sup>18+</sup>
 
 selectedTextStyle(style: Optional\<PickerTextStyle>)
 
-Sets the text style for the selected item. Compared to [selectedTextStyle](#selectedtextstyle10)<sup>10+</sup>, the **style** parameter supports the **undefined** type.
+Sets the text style for the selected item. Compared to [selectedTextStyle](#selectedtextstyle10)<sup>10+</sup>, this API supports the **undefined** type for the **style** parameter.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -214,13 +215,13 @@ Sets the text style for the selected item. Compared to [selectedTextStyle](#sele
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](#pickertextstyle10)> | Yes  | Font color, font size, and font weight of the selected item.<br>If **style** is set to **undefined**, the default value is used:<br>{<br>color: '#ff007dff',<br>font: {<br>size: '20vp', <br>weight: FontWeight.Medium<br>}<br>} |
 
-### enableHapticFeedback<sup>16+</sup>
+### enableHapticFeedback<sup>18+</sup>
 
 enableHapticFeedback(enable: Optional\<boolean>)
 
 Sets whether to enable haptic feedback.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -239,22 +240,22 @@ Sets whether to enable haptic feedback.
 >  ]
 >  ```
 
-### digitalCrownSensitivity<sup>16+</sup>
+### digitalCrownSensitivity<sup>18+</sup>
 digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 
 Sets the sensitivity to the digital crown rotation.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name  | Type                                    | Mandatory  | Description                     |
 | ----- | ---------------------------------------- | ---- | ------------------------- |
-| sensitivity | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity16)> | Yes   | Sensitivity to the digital crown rotation.                    |
+| sensitivity | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity18)> | Yes   | Sensitivity to the digital crown rotation.<br>Default value: **CrownSensitivity.MEDIUM**                   |
 
 >  **NOTE**
 >
->  This API is only available to circular screens on wearable devices.
+>  This API is only available to circular screens on wearable devices. The component needs to obtain focus before responding to the [crown event](ts-universal-events-crown.md).
 
 ## PickerTextStyle<sup>10+</sup>
 
@@ -301,13 +302,13 @@ Triggered when a date is selected.
 | ------ | ---- | ---- | ------------------------------------------------------------ |
 | value  | Date | Yes  | Selected time, where the year, month, and day portions are subject to the selection, the hour and minute portions are subject to the current system time, and the second portion is always **00**.|
 
-### onDateChange<sup>16+</sup>
+### onDateChange<sup>18+</sup>
 
 onDateChange(callback: Optional\<Callback\<Date>>)
 
-Triggered when a date is selected. Compared to [onDateChange](#ondatechange10)<sup>10+</sup>, the **callback** parameter supports the **undefined** type.
+Triggered when a date is selected. Compared to [onDateChange](#ondatechange10)<sup>10+</sup>, this API supports the **undefined** type for the **callback** parameter.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -325,15 +326,15 @@ Triggered when a date is selected. Compared to [onDateChange](#ondatechange10)<s
 
 | Name | Type  | Read Only| Optional| Description                                      |
 | ----- | ------ | ---- | ---- | ------------------------------------------ |
-| year  | number | No  | No  | Year of the selected date.                            |
-| month | number | No  | No  | Month of the selected date. The value ranges from 0 to 11. The value **0** indicates January, and **11** indicates December.|
-| day   | number | No  | No  | Day of the selected date.                            |
+| year  | number | No  | No  | Year of the selected date.<br>Value range: depends on **start** and **end**. If **start** and **end** are not set, the default range is [1970, 2100].                            |
+| month | number | No  | No  | Month index of the selected date. The index is zero-based.<br>**0** indicates January, and **11** indicates December.<br>Value range: depends on **start** and **end**. If **start** and **end** are not set, the default range is [0, 11].|
+| day   | number | No  | No  | Day of the selected date.<br>Value range: depends on **start** and **end**. If **start** and **end** are not set, the default range is [1, 31].                            |
 
 ## Example
 
 ### Example 1: Switching Between Gregorian and Lunar Calendars
 
-This example implements a date picker that allows switching between the Gregorian and lunar calendars by clicking a button.
+This example implements a date picker that allows users to switch between the Gregorian (solar) calendar and the lunar calendar by clicking a button.
 
 
 ```ts
@@ -400,7 +401,7 @@ struct DatePickerExample {
 }
 ```
 
-
+![datePicker](figures/DatePickerDemo2.png)
 
 ### Example 3: Displaying Year and Month, or Month and Day Columns
 
@@ -450,4 +451,4 @@ struct DatePickerExample {
   }
 }
 ```
-
+![datePicker](figures/DatePickerDemo3.gif)

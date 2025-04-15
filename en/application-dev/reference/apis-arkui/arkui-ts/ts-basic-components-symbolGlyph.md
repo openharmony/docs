@@ -32,7 +32,7 @@ SymbolGlyph(value?: Resource)
 
 ## Attributes
 
-The [universal attributes](ts-universal-attributes-size.md) are supported. With regard to text attributes, only the following attributes are supported.
+The [universal attributes](ts-component-general-attributes.md) are supported. With regard to text attributes, only the following attributes are supported.
 
 ### fontColor
 
@@ -56,7 +56,7 @@ Sets the color of the **SymbolGlyph** component.
 
 fontSize(value: number | string | Resource)
 
-Sets the size of the **SymbolGlyph** component.
+Sets the size of the **SymbolGlyph** component. When using the string type, numeric string values with optional units, for example, **"10"** or **"10fp"**, are supported.
 
 The display size of the symbol glyph is controlled by the **fontSize** setting. Once **width** or **height** is specified, other universal attributes will only affect the size of the component's placeholder, not the symbol glyph itself.
 
@@ -70,7 +70,7 @@ The display size of the symbol glyph is controlled by the **fontSize** setting. 
 
 | Name| Type| Mandatory| Description |
 | ------ | ---- | ---- | ----- |
-| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Size of the **SymbolGlyph** component.<br>Default value: system default value|
+| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Size of the **SymbolGlyph** component.<br>Default value: **16fp**<br>Unit: fp<br>Percentage strings are not supported.|
 
 ### fontWeight
 
@@ -174,15 +174,37 @@ Sets the symbol effect and effect trigger for the **SymbolGlyph** component.
 >
 >  When configuring the symbol effect, use the **effectStrategy** attribute or a single **symbolEffect** attribute. Mixing multiple effect attributes is not allowed.
 
-## SymbolEffect<sup>12+</sup>
+### minFontScale<sup>18+</sup>
 
-Defines the **SymbolEffect** class.
+minFontScale(scale: Optional\<number | Resource>)
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+Sets the minimum font scale factor for the **SymbolGlyph** component.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type| Mandatory| Description |
+| ------ | ---- | ---- | ----- |
+| scale  |[Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| [Resource](ts-types.md#resource)>  | Yes  | Minimum font scale factor for the **SymbolGlyph** component.<br>Value range: [0, 1]<br>The value **0** results in the minimum scaling.<br>**NOTE**<br>A value less than 0 is handled as 0. A value greater than 1 is handled as 1. Abnormal values are ineffective by default.  |
+
+### maxFontScale<sup>18+</sup>
+
+maxFontScale(scale: Optional\<number | Resource>)
+
+Sets the maximum font scale factor for the **SymbolGlyph** component.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type| Mandatory| Description |
+| ------ | ---- | ---- | ----- |
+| scale  |[Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| [Resource](ts-types.md#resource)>  | Yes  | Maximum font scale factor for the **SymbolGlyph** component.<br>Value range: [1, +∞)<br>**NOTE**<br>A value less than 1 is handled as **1**. Abnormal values are ineffective by default.|
 
 ## ScaleSymbolEffect<sup>12+</sup>
 
@@ -194,7 +216,7 @@ Inherits from **SymbolEffect**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### Attributes
+### Properties
 
 | Name| Type| Mandatory| Description |
 | ---- | ---- | ---- | ---- |
@@ -230,7 +252,7 @@ Inherits from **SymbolEffect**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### Attributes
+### Properties
 
 | Name| Type| Mandatory| Description |
 | ---- | ---- | ---- | ---- |
@@ -264,7 +286,7 @@ Inherits from **SymbolEffect**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### Attributes
+### Properties
 
 | Name| Type| Mandatory| Description |
 | ---- | ---- | ---- | ---- |
@@ -298,7 +320,7 @@ Inherits from **SymbolEffect**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### Attributes
+### Properties
 
 | Name| Type| Mandatory| Description |
 | ---- | ---- | ---- | ---- |
@@ -332,7 +354,7 @@ Inherits from **SymbolEffect**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### Attributes
+### Properties
 
 | Name| Type| Mandatory| Description |
 | ---- | ---- | ---- | ---- |
@@ -368,7 +390,7 @@ Inherits from **SymbolEffect**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### Attributes
+### Properties
 
 | Name| Type| Mandatory| Description |
 | ---- | ---- | ---- | ---- |
@@ -391,6 +413,48 @@ A constructor used to create a **ReplaceSymbolEffect** instance, which comes wit
 | Name| Type| Mandatory| Description |
 | ---- | ---- | ---- | ---- |
 | scope  | [EffectScope](#effectscope12) | No  | Effect scope.<br>Default value: **EffectScope.LAYER**|
+
+## SymbolEffectStrategy<sup>11+</sup>
+
+Enumerates symbol effect types. Once applied, the symbol effect becomes active instantly, eliminating the need for triggering.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Value| Description                         |
+| ------ | --- | ----------------------------- |
+| NONE | 0 | No effect (default value).|
+| SCALE | 1 | Scale effect as a whole.                |
+|  HIERARCHICAL  | 2 | Hierarchical effect. |
+
+## SymbolRenderingStrategy<sup>11+</sup>
+
+Enumerates the rendering modes.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Value| Description                         |
+| ------ | --- | ----------------------------- |
+| SINGLE  | 0 | Single-color mode (default value).<br> The default color is black.<br> You can set one or multiple colors, but only the first color will be applied.|
+| MULTIPLE_COLOR  | 1 | Multi-color mode.<br> A maximum of three colors can be set. If only one color is set, it updates the color of the first layer, leaving other colors at their default values.<br> The sequence of color settings matches the layering order of the symbol; any colors beyond the number of symbol layers will not take effect.<br> Only color values are accepted. Opacity settings do not take effect.|
+|  MULTIPLE_OPACITY   | 2 | Layered mode.<br> The default color is black. You can set one or multiple colors, but only the first color will be applied.<br>Opacity is predefined for the layers: 100% for the first layer, 50% for the second layer, and 20% for the third layer. |
+
+## SymbolEffect<sup>12+</sup>
+
+Defines the **SymbolEffect** class.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 ## PulseSymbolEffect<sup>12+</sup>
 
@@ -441,45 +505,15 @@ A constructor used to create a **PulseSymbolEffect** instance, which comes with 
 | CUMULATIVE | 0    | Cumulative style.|
 | ITERATIVE  | 1    | Iterative style.|
 
-## SymbolEffectStrategy<sup>11+</sup>
-
-Enumerates symbol effect types. Once applied, the symbol effect becomes active instantly, eliminating the need for triggering.
-
-**Widget capability**: This API can be used in ArkTS widgets since API version 12.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-| Name    | Description                         |
-| ------ | ----------------------------- |
-| NONE | No effect (default value).|
-| SCALE | Scale effect as a whole.                |
-|  HIERARCHICAL  | Hierarchical effect. |
-
-## SymbolRenderingStrategy<sup>11+</sup>
-
-Enumerates the rendering modes.
-
-**Widget capability**: This API can be used in ArkTS widgets since API version 12.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-| Name    | Description                         |
-| ------ | ----------------------------- |
-| SINGLE  | Single-color mode (default).<br> The default color is black, and one color can be set.<br> If multiple colors are set, only the first color takes effect.|
-| MULTIPLE_COLOR  |  Multi-color mode.<br> A maximum of three colors can be set. If only one color is set, it updates the color of the first layer, leaving other colors at their default values.<br> The sequence of color settings matches the layering order of the symbol; any colors beyond the number of symbol layers will not take effect.<br> Only color values are accepted. Opacity settings do not take effect.|
-|  MULTIPLE_OPACITY   | Layered mode.<br> The default color is black, and one color can be set. If multiple colors are set, only the first color takes effect.<br> Opacity is related to the layer, with the first layer at 100%, the second layer at 50%, and the third layer at 20%. |
-
 ## Events
 
-The [universal events](ts-universal-events-click.md) are supported.
+The [universal events](ts-component-general-events.md) are supported.
 
 ## Example
 
-###  Example 1
+###  Example 1: Setting Rendering and Effect Strategies
+
+This example demonstrates different rendering and effect strategies using **renderingStrategy** and **effectStrategy**.
 
 ```ts
 // xxx.ets
@@ -529,7 +563,7 @@ struct Index {
         }
 
         Column() {
-          Text("Layered mode")
+          Text ("Layered mode")
           SymbolGlyph($r('sys.symbol.ohos_folder_badge_plus'))
             .fontSize(96)
             .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_OPACITY)
@@ -565,9 +599,9 @@ struct Index {
 ```
 ![symbol](figures/symbolGlyph.gif)
 
-###  Example 2
+###  Example 2: Setting Effects
 
-This example demonstrates the use of the s**ymbolEffec**t attribute in the **SymbolGlyph** component to achieve variable color and replace animation effects.
+This example demonstrates the effects of variable color animation and replacement animation using **symbolEffect**.
 
 ```ts
 // xxx.ets
@@ -582,29 +616,29 @@ struct Index {
     Column() {
       Row() {
         Column() {
-          Text("Variable Color Animation")
+          Text("Variable color animation")
           SymbolGlyph($r('sys.symbol.ohos_wifi'))
             .fontSize(96)
             .symbolEffect(new HierarchicalSymbolEffect(EffectFillStyle.ITERATIVE), this.isActive)
           Button(this.isActive ? 'Off' : 'Play').onClick(() => {
             this.isActive = !this.isActive;
           })
-        }.margin({right:20})
+        }.margin({ right: 20 })
 
         Column() {
-          Text("Replace Animation")
+          Text("Replacement animation")
           SymbolGlyph(this.replaceFlag ? $r('sys.symbol.checkmark_circle') : $r('sys.symbol.repeat_1'))
             .fontSize(96)
             .symbolEffect(new ReplaceSymbolEffect(EffectScope.WHOLE), this.triggerValueReplace)
-          Button('trigger').onClick(() => {
+          Button('Trigger').onClick(() => {
             this.replaceFlag = !this.replaceFlag;
             this.triggerValueReplace = this.triggerValueReplace + 1;
           })
         }
       }
     }.margin({
-      left:30,
-      top:50
+      left: 30,
+      top: 50
     })
   }
 }

@@ -54,7 +54,7 @@ lcd闪光灯信息项。
 
 | 名称      | 类型                          | 只读 | 可选  | 说明         |
 | -------- | ----------------------------- |---- |-----| ------------- |
-| isLcdFlashNeeded   | boolean | 是  | 否   | 是否需要lcd闪光灯。      |
+| isLcdFlashNeeded   | boolean | 是  | 否   | 是否需要lcd闪光灯，true为需要，false为不需要。      |
 | lcdCompensation     | number                 | 是  | 否   | lcd闪光灯补偿值。       |
 
 ## Photo<sup>11+</sup>
@@ -256,7 +256,7 @@ on(type: 'cameraMute', callback: AsyncCallback\<boolean\>): void
 | 参数名     | 类型             | 必填 | 说明       |
 | -------- | --------------- | ---- | --------- |
 | type     | string          | 是   | 监听事件，固定为'cameraMute'，系统相机摄像头开关，cameraManager对象获取成功后可监听。系统设置打开或禁用相机会触发该事件并返回状态。 |
-| callback | AsyncCallback\<boolean> | 是   | 回调函数，用于获取禁用状态变化信息，返回true是开启状态，返回false是禁用状态。               |
+| callback | AsyncCallback\<boolean> | 是   | 回调函数，用于获取禁用状态变化信息，返回true为开启状态，返回false为禁用状态。               |
 
 **示例：**
 
@@ -292,7 +292,7 @@ off(type: 'cameraMute', callback?: AsyncCallback\<boolean\>): void
 | 参数名     | 类型             | 必填 | 说明                                                      |
 | -------- | --------------- | ---- |---------------------------------------------------------|
 | type     | string          | 是   | 监听事件，固定为'cameraMute'，系统相机摄像头开关，cameraManager对象获取成功后可监听。 |
-| callback | AsyncCallback\<boolean> | 否   | 回调函数，可选参数，有就是匹配on('cameraMute') callback（callback对象不可是匿名函数）。                  |
+| callback | AsyncCallback\<boolean> | 否   | 回调函数，可选参数，返回true为开启状态，返回false为禁用状态，有就是匹配on('cameraMute') callback（callback对象不可是匿名函数）。                  |
 
 **示例：**
 
@@ -328,7 +328,7 @@ isPrelaunchSupported(camera: CameraDevice): boolean
 
 | 类型 | 说明 |
 | -------- | --------------- |
-| boolean | 返回指定cameraDevice是否支持预热启动。|
+| boolean | 返回指定cameraDevice是否支持预热启动，返回true为支持，返回false为不支持。|
 
 **错误码：**
 
@@ -533,7 +533,7 @@ function preSwitch(cameraDevice: camera.CameraDevice, context: common.BaseContex
 
 | 名称                           | 类型                                                | 只读 | 可选 | 说明                |
 | ----------------------------- | --------------------------------------------------- | ---- | ---- |-------------------|
-| isCameraOccluded                 | boolean              |  是  | 否 |遮挡状态。        |
+| isCameraOccluded                 | boolean              |  是  | 否 |遮挡状态，true为遮挡状态，false为不遮挡状态。        |
 
 ## CameraOutputCapability<sup>13+</sup>
 
@@ -1019,7 +1019,7 @@ isSketchSupported(): boolean
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| boolean | 返回是否支持画中画。 |
+| boolean | 返回是否支持画中画，返回true为支持，返回false为不支持。 |
 
 **错误码：**
 
@@ -1093,7 +1093,7 @@ enableSketch(enabled: boolean): void
 
 | 参数名     | 类型      | 必填 | 说明                       |
 |---------|---------| ---- | ------------------------ |
-| enabled | boolean | 是 | true表明开启画中画流进行预览。|
+| enabled | boolean | 是 | true表明开启画中画流进行预览，false表明不开启。|
 
 **错误码：**
 
@@ -1570,7 +1570,7 @@ isAutoHighQualityPhotoSupported(): boolean
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| boolean | 是否支持自动高画质。|
+| boolean | 是否支持自动高画质，返回true是支持，返回false是不支持。|
 
 **错误码：**
 
@@ -1606,7 +1606,7 @@ enableAutoHighQualityPhoto(enabled: boolean): void
 
 | 参数名      | 类型               | 必填 | 说明                 |
 | -------- | -------------------- | ---- | ------------------- |
-|   enabled   |  boolean  |   是   |   是否使能拍照自动高画质。    |
+|   enabled   |  boolean  |   是   |   是否使能拍照自动高画质，true为使能，false为不使能。    |
 
 **错误码：**
 
@@ -2369,7 +2369,7 @@ isMacroSupported(): boolean
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-|   boolean  | 返回是否支持微距能力。 |
+|   boolean  | 返回是否支持微距能力，返回true为支持，返回false为不支持。 |
 
 **错误码：**
 
@@ -2455,7 +2455,7 @@ function enableMacro(photoSession: camera.PhotoSessionForSys): void {
 |-------------------------------|-----|---------------------------|
 | MOON_CAPTURE_BOOST            | 0   | 月亮场景。**系统接口：** 此接口为系统接口。  |
 | TRIPOD_DETECTION<sup>13+</sup> | 1   | 使用脚架拍摄的场景。**系统接口：** 此接口为系统接口。  |
-| LOW_LIGHT_BOOST<sup>13+</sup> | 1   | 长曝光场景。**系统接口：** 此接口为系统接口。 |
+| LOW_LIGHT_BOOST<sup>13+</sup> | 2   | 长曝光场景。**系统接口：** 此接口为系统接口。 |
 
 ## SceneFeatureDetectionResult<sup>12+</sup>
 
@@ -2466,7 +2466,7 @@ function enableMacro(photoSession: camera.PhotoSessionForSys): void {
 | 名称     | 类型        |   只读   |   必填   | 说明       |
 | -------- | ---------- | -------- | -------- | ---------- |
 | featureType |   [SceneFeatureType](#scenefeaturetype12)   |   是     |    是    | 特性类型。 |
-| detected |   boolean   |   是     |    是    | 检测结果。true为检测到指定特性场景。 |
+| detected |   boolean   |   是     |    是    | 检测结果。true为检测到指定特性场景，false为未检测到指定特性场景。 |
 
 ## TripodDetectionResult<sup>13+</sup>
 
@@ -2504,7 +2504,7 @@ isSceneFeatureSupported(type: SceneFeatureType): boolean
 
 | 类型        | 说明           |
 |-----------|--------------|
-| boolean   | 返回是否支持指定特性。  |
+| boolean   | 返回是否支持指定特性，返回true为支持，返回false为不支持。  |
 
 **错误码：**
 
@@ -3508,7 +3508,7 @@ on(type: 'macroStatusChanged', callback: AsyncCallback\<boolean\>): void
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string      | 是   | 监听事件，固定为'macroStatusChanged'，session创建成功可监听。 |
-| callback | AsyncCallback\<boolean\>     | 是   | 回调函数，用于获取当前微距状态。  |
+| callback | AsyncCallback\<boolean\>     | 是   | 回调函数，用于获取当前微距状态，返回true为开启状态，返回false为禁用状态。  |
 
 **错误码：**
 
@@ -3551,7 +3551,7 @@ off(type: 'macroStatusChanged', callback?: AsyncCallback\<boolean\>): void
 | 参数名     | 类型                    | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | ------------------------ |
 | type     | string                   | 是   | 监听事件，固定为'macroStatusChanged'，session创建成功可监听。|
-| callback | AsyncCallback\<boolean\> | 否   | 回调函数，可选，有就是匹配on('macroStatusChanged') callback（callback对象不可是匿名函数）。 |
+| callback | AsyncCallback\<boolean\> | 否   | 回调函数，可选，有就是匹配on('macroStatusChanged') callback（callback对象不可是匿名函数），返回true为开启状态，返回false为禁用状态。 |
 
 **错误码：**
 
@@ -3777,7 +3777,7 @@ on(type: 'macroStatusChanged', callback: AsyncCallback\<boolean\>): void
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string      | 是   | 监听事件，固定为'macroStatusChanged'，session创建成功可监听。 |
-| callback | AsyncCallback\<boolean\>     | 是   | 回调函数，用于获取当前微距状态。  |
+| callback | AsyncCallback\<boolean\>     | 是   | 回调函数，用于获取当前微距状态，返回true是开启状态，返回false是禁用状态。  |
 
 **错误码：**
 
@@ -3820,7 +3820,7 @@ off(type: 'macroStatusChanged', callback?: AsyncCallback\<boolean\>): void
 | 参数名    | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | ------------------------ |
 | type     | string                   | 是   | 监听事件，固定为'macroStatusChanged'，session创建成功可监听。|
-| callback | AsyncCallback\<boolean\> | 否   | 回调函数，可选，有就是匹配on('macroStatusChanged') callback（callback对象不可是匿名函数）。 |
+| callback | AsyncCallback\<boolean\> | 否   | 回调函数，可选，有就是匹配on('macroStatusChanged') callback（callback对象不可是匿名函数），返回true是开启状态，返回false是禁用状态。 |
 
 **错误码：**
 
@@ -5256,7 +5256,7 @@ ISO参数信息。
 | 名称                     | 值        | 说明         |
 | ----------------------- | --------- | ------------ |
 | CAMERA_FORMAT_DNG<sup>12+</sup>  | 4         | DNG格式的RAW图片。**系统接口：** 此接口为系统接口。         |
-
+| CAMERA_FORMAT_DNG_XDRAW<sup>18+</sup>  | 5         | DNG格式的增强RAW图片，JPG和RAW图片封装在同一个文件中，最高支持16bit的RAW数据。**系统接口：** 此接口为系统接口。         |
 ## ExposureMeteringMode<sup>12+</sup>
 
 枚举，测光模式。
@@ -5295,7 +5295,7 @@ isExposureMeteringModeSupported(aeMeteringMode: ExposureMeteringMode): boolean
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean    | 获取是否支持传入的测光模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+| boolean    | 获取是否支持传入的测光模式，返回true为支持，返回false为不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -7927,7 +7927,7 @@ isLcdFlashSupported(): boolean
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| boolean | 查询是否支持lcd闪光灯。|
+| boolean | 查询是否支持lcd闪光灯，返回true为支持，返回false为不支持。|
 
 **错误码：**
 
@@ -7966,7 +7966,7 @@ enableLcdFlash(enabled: boolean): void
 
 | 参数名       | 类型                     | 必填 | 说明                                               |
 | --------- | ----------------------- | ---- |--------------------------------------------------|
-| enabled | boolean | 是   | 使能或去使能LCD闪光灯。传参为null或者undefined，作为0处理，去使能LCD闪光灯。 |
+| enabled | boolean | 是   | 使能或去使能LCD闪光灯，true为使能，false为去使能。传参为null或者undefined，作为0处理，去使能LCD闪光灯。 |
 
 **错误码：**
 
@@ -8489,7 +8489,7 @@ isTryAENeeded(): boolean
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean   | 是否需要执行TryAE，接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+| boolean   | 是否需要执行TryAE，返回true为是，返回false为否，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
 
 **错误码：**
 

@@ -22,6 +22,8 @@ Supported
 
 SideBarContainer( type?: SideBarContainerType )
 
+Creates a sidebar container.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -34,6 +36,8 @@ SideBarContainer( type?: SideBarContainerType )
 
 ## SideBarContainerType
 
+Enumerates the types of sidebars in a container.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -42,7 +46,7 @@ SideBarContainer( type?: SideBarContainerType )
 | -------- | -------- |
 | Embed | The sidebar is embedded in the component and displayed side by side with the content area.<br>When the component size is less than the sum of **minContentWidth** and **minSideBarWidth** and **showSideBar** is not set, the sidebar is automatically hidden.<br>If **minSideBarWidth** or **minContentWidth** is not set, the default value will be used for calculation.<br> The user can bring out the sidebar in Overlay mode by clicking the control button.|
 | Overlay | The sidebar is displayed overlaid on the content area.|
-| AUTO<sup>10+</sup> | The sidebar is displayed in Embed mode when the component size is greater than or equal to the sum of **minSideBarWidth** and **minContentWidth** and in Overlay mode otherwise.<br>If **minSideBarWidth** or **minContentWidth** is not set, the default value will be used for calculation. If the calculation result is less than 600 vp, 600 vp will be used as the breakpoint value for mode switching.|
+| AUTO<sup>10+</sup> | The sidebar is displayed in Embed mode when the component size is greater than or equal to the sum of **minSideBarWidth** and **minContentWidth**<br>and in Overlay mode otherwise.<br>If **minSideBarWidth** or **minContentWidth** is not set, the default value will be used for calculation. If the calculation result is less than 600 vp, 600 vp will be used as the breakpoint value for mode switching.|
 
 ## Attributes
 
@@ -102,7 +106,7 @@ Specifies whether to display the sidebar control button.
 
 sideBarWidth(value: number)
 
-Sets the width of the sidebar. A value less than 0 evaluates to the default value. The value must comply with the width constraints. If it is not within the valid range, the valid value closest to the set one is used.
+Sets the width of the sidebar. If a value less than 0 is set, the default value is used. The value must comply with the width constraints. If it is not within the valid range, the valid value closest to the set one is used.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -112,13 +116,13 @@ Sets the width of the sidebar. A value less than 0 evaluates to the default valu
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | number | Yes  | Width of the sidebar.<br>Default value: **240vp**<br>Unit: vp<br>**NOTE**<br>In API version 9 and earlier versions, the default value is **200vp**. In API version 10, the default value is **240vp**.|
+| value  | number | Yes  | Width of the sidebar.<br>Default value: **240vp**<br>Unit: vp<br>Value range: [0, +∞).<br>**NOTE**<br>In API version 9 and earlier versions, the default value is **200vp**. In API version 10, the default value is **240vp**.|
 
 ### sideBarWidth<sup>9+</sup>
 
 sideBarWidth(value: Length)
 
-Sets the width of the sidebar. A value less than 0 evaluates to the default value. The value must comply with the width constraints. If it is not within the valid range, the valid value closest to the set one is used.
+Sets the width of the sidebar. If a value less than 0 is set, the default value is used. The value must comply with the width constraints. If it is not within the valid range, the valid value closest to the set one is used. Compared to [sideBarWidth](#sidebarwidth), this API supports percentage strings and other [pixel units](ts-pixel-units.md) for the **value** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -128,13 +132,13 @@ Sets the width of the sidebar. A value less than 0 evaluates to the default valu
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Length](ts-types.md#length) | Yes  | Width of the sidebar.<br>Default value: **240vp**<br>Unit: vp<br>**NOTE**<br>The default value is **200vp** in API version 9 and **240vp** in API version 10.|
+| value  | [Length](ts-types.md#length) | Yes  | Width of the sidebar.<br>Default value: **240vp**.<br>Unit: vp.<br>Value range: [0, +∞).<br>**NOTE**<br>The default value is **200vp** in API version 9 and **240vp** in API version 10.|
 
 ### minSideBarWidth
 
 minSideBarWidth(value: number)
 
-Sets the minimum width of the sidebar. A value less than 0 evaluates to the default value. The value cannot exceed the width of the sidebar container itself. Otherwise, the width of the sidebar container itself is used.
+Sets the minimum width of the sidebar. If a value less than 0 is set, the default value is used. The value cannot exceed the width of the sidebar container itself. Otherwise, the width of the sidebar container itself is used.
 
 **minSideBarWidth**, whether it is specified or kept at the default value, takes precedence over **minWidth** of the sidebar child components.
 
@@ -146,13 +150,13 @@ Sets the minimum width of the sidebar. A value less than 0 evaluates to the defa
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | number | Yes  | Minimum width of the sidebar.<br>Default value: In API version 9 and earlier versions, the default value is **200vp**. In API version 10, the default value is **240vp**.|
+| value  | number | Yes  | Minimum width of the sidebar.<br>Default value: In API version 9 and earlier versions, the default value is **200vp**. In API version 10, the default value is **240vp**.<br>Value range: [0, +∞).|
 
 ### minSideBarWidth<sup>9+</sup>
 
 minSideBarWidth(value: Length)
 
-Sets the minimum width of the sidebar. A value less than 0 evaluates to the default value. The value cannot exceed the width of the sidebar container itself. Otherwise, the width of the sidebar container itself is used.
+Sets the minimum width of the sidebar. If a value less than 0 is set, the default value is used. The value cannot exceed the width of the sidebar container itself. Otherwise, the width of the sidebar container itself is used. Compared to [minSideBarWidth](#minsidebarwidth), this API supports percentage strings and other [pixel units](ts-pixel-units.md) for the **value** parameter.
 
 **minSideBarWidth**, whether it is specified or kept at the default value, takes precedence over **minWidth** of the sidebar child components.
 
@@ -164,13 +168,13 @@ Sets the minimum width of the sidebar. A value less than 0 evaluates to the defa
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Length](ts-types.md#length) | Yes  | Minimum width of the sidebar.<br>Default value: In API version 9 and earlier versions, the default value is **200vp**. In API version 10, the default value is **240vp**.|
+| value  | [Length](ts-types.md#length) | Yes  | Minimum width of the sidebar.<br>Default value: In API version 9 and earlier versions, the default value is **200vp**. In API version 10, the default value is **240vp**.<br>Value range: [0, +∞).|
 
 ### maxSideBarWidth
 
 maxSideBarWidth(value: number)
 
-Sets the maximum width of the sidebar. A value less than 0 evaluates to the default value. The value cannot exceed the width of the sidebar container itself. Otherwise, the width of the sidebar container itself is used.
+Sets the maximum width of the sidebar. If a value less than 0 is set, the default value is used. The value cannot exceed the width of the sidebar container itself. Otherwise, the width of the sidebar container itself is used.
 
 **maxSideBarWidth**, whether it is specified or kept at the default value, takes precedence over **maxWidth** of the sidebar child components.
 
@@ -182,13 +186,13 @@ Sets the maximum width of the sidebar. A value less than 0 evaluates to the defa
 
 | Name| Type                                                        | Mandatory| Description                                               |
 | ------ | ------------------------------------------------------------ | ---- | --------------------------------------------------- |
-| value  | number | Yes  | Maximum width of the sidebar.<br>Default value: **280vp**<br>Unit: vp|
+| value  | number | Yes  | Maximum width of the sidebar.<br>Default value: **280vp**<br>Unit: vp.<br>Value range: [0, +∞).|
 
 ### maxSideBarWidth<sup>9+</sup>
 
 maxSideBarWidth(value: Length)
 
-Sets the maximum width of the sidebar. A value less than 0 evaluates to the default value. The value cannot exceed the width of the sidebar container itself. Otherwise, the width of the sidebar container itself is used.
+Sets the maximum width of the sidebar. If a value less than 0 is set, the default value is used. The value cannot exceed the width of the sidebar container itself. Otherwise, the width of the sidebar container itself is used.
 
 **maxSideBarWidth**, whether it is specified or kept at the default value, takes precedence over **maxWidth** of the sidebar child components.
 
@@ -200,7 +204,7 @@ Sets the maximum width of the sidebar. A value less than 0 evaluates to the defa
 
 | Name| Type                                                        | Mandatory| Description                                               |
 | ------ | ------------------------------------------------------------ | ---- | --------------------------------------------------- |
-| value  | [Length](ts-types.md#length) | Yes  | Maximum width of the sidebar.<br>Default value: **280vp**<br>Unit: vp|
+| value  | [Length](ts-types.md#length) | Yes  | Maximum width of the sidebar.<br>Default value: **280vp**<br>Unit: vp.<br>Value range: [0, +∞).|
 
 ### autoHide<sup>9+</sup>
 
@@ -283,16 +287,18 @@ until its width reaches the value defined by **minSideBarWidth**; if the compone
 
 ## ButtonStyle
 
+Describes the style of the sidebar control button.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| left | number | No| Spacing between the sidebar control button and the left of the container.<br>Default value: **16vp**<br>Unit: vp|
-| top | number | No| Spacing between the sidebar control button and the top of the container.<br>Default value: **48vp**<br>Unit: vp|
-| width | number | No| Width of the sidebar control button.<br>Default value:<br>API version 9 and earlier versions: **32vp**<br>API version 10 and later versions: **24vp**<br>Unit: vp|
-| height | number | No| Height of the sidebar control button.<br>Default value:<br>API version 9 and earlier versions: **32vp**<br>API version 10 and later versions: **24vp**<br>Unit: vp|
+| left | number | No| Spacing between the sidebar control button and the left of the container.<br>Default value: **16vp**<br>Unit: vp.<br>Value range: [0, +∞).|
+| top | number | No| Spacing between the sidebar control button and the top of the container.<br>Default value: **48vp**<br>Unit: vp.<br>Value range: [0, +∞).|
+| width | number | No| Width of the sidebar control button.<br>Default value:<br>API version 9 and earlier versions: **32vp**<br>API version 10 and later versions: **24vp**<br>Unit: vp.<br>Value range: [0, +∞).|
+| height | number | No| Height of the sidebar control button.<br>Default value:<br>API version 9 and earlier versions: **32vp**<br>API version 10 and later versions: **24vp**<br>Unit: vp.<br>Value range: [0, +∞).|
 | icons | [ButtonIconOptions<sup>14+</sup>](#buttoniconoptions14) | No| Icons of the sidebar control button.|
 
 ## ButtonIconOptions<sup>14+</sup>
@@ -305,9 +311,9 @@ Describes the icons of the sidebar control button.
 
 | Name      | Type                          | Mandatory| Description                                       |
 | --------- | -------------------------------| ---- | ------------------------------------------ |
-| shown     | string \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | Yes  | Icon of the control button when the sidebar is displayed.             |
-| hidden    | string \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | Yes  | Icon of the control button when the sidebar is hidden.             |
-| switching | string \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | No  | Icon of the control button when the sidebar is switching between the shown and hidden states.|
+| shown<sup>8+</sup>     | string \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | Yes  | Icon of the control button when the sidebar is displayed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.             |
+| hidden<sup>8+</sup>    | string \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | Yes  | Icon of the control button when the sidebar is hidden.<br>**Atomic service API**: This API can be used in atomic services since API version 11.             |
+| switching<sup>8+</sup> | string \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | No  | Icon of the control button when the sidebar is switching between the shown and hidden states.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
 > **NOTE**
 >
@@ -327,6 +333,8 @@ Enumerates the positions of the sidebar.
 | End | The sidebar is on the right side of the container.|
 
 ## DividerStyle<sup>10+</sup>
+
+Sets the divider style.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

@@ -81,9 +81,9 @@ struct Index {
 
 > **说明：**
 >
-> 示例中从AppStorage中取得的UiContext为预先在EntryAbility（拉起此页面的Ability）中OnWindowStageCreate生命周期获得，并存储到AppStorage中，具体可参考[requestAutoSave](#requestautosave)。
+> 示例中从AppStorage中取得的UiContext为预先在EntryAbility（拉起此页面的Ability）中OnWindowStageCreate生命周期获得，并存储到AppStorage中，具体可参考[requestAutoSave](#autofillmanagerrequestautosave)。
 
-## requestAutoSave
+## autoFillManager.requestAutoSave
 
 requestAutoSave(context: UIContext, callback?: AutoSaveCallback): void
 

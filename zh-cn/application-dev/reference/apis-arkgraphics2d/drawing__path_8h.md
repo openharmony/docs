@@ -42,6 +42,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| [OH_Drawing_ErrorCode](_drawing.md#oh_drawing_errorcode) [OH_Drawing_PathGetSegment](_drawing.md#oh_drawing_pathgetsegment) ([OH_Drawing_Path](_drawing.md#oh_drawing_path) \*path, bool forceClosed, float start, float stop, bool startWithMoveTo, [OH_Drawing_Path](_drawing.md#oh_drawing_path) \*dst, bool \*result) | 截取路径的片段并追加到目标路径上。  | 
 | [OH_Drawing_Path](_drawing.md#oh_drawing_path) \* [OH_Drawing_PathCreate](_drawing.md#oh_drawing_pathcreate) (void) | 用于创建一个路径对象。 | 
 | [OH_Drawing_Path](_drawing.md#oh_drawing_path) \* [OH_Drawing_PathCopy](_drawing.md#oh_drawing_pathcopy) ([OH_Drawing_Path](_drawing.md#oh_drawing_path) \*) | 创建一个路径对象副本[OH_Drawing_Path](_drawing.md#oh_drawing_path)，用于拷贝一个已有路径对象。 | 
 | void [OH_Drawing_PathDestroy](_drawing.md#oh_drawing_pathdestroy) ([OH_Drawing_Path](_drawing.md#oh_drawing_path) \*) | 用于销毁路径对象并回收该对象占有的内存。 | 

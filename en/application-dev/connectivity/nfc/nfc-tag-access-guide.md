@@ -290,7 +290,7 @@ export default class EntryAbility extends UIAbility {
     }
 
     // Read and write the tag data.
-    // Access the NFC tag via IsoDep.
+    // Access the NFC tag using IsoDep.
     let isoDep : tag.IsoDepTag | null = null;
     for (let i = 0; i < tagInfo.technology.length; i++) {
       if (tagInfo.technology[i] == tag.ISO_DEP) {

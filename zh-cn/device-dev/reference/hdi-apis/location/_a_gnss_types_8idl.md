@@ -34,5 +34,5 @@
 | [AGnssRefInfoType](_hdi_a_gnss.md#agnssrefinfotype) { ANSS_REF_INFO_TYPE_CELLID = 1 , ANSS_REF_INFO_TYPE_MAC = 2 } | 定义AGNSS参考信息类型。 | 
 | [AGnssUserPlaneProtocol](_hdi_a_gnss.md#agnssuserplaneprotocol) { AGNSS_TYPE_SUPL = 1 , AGNSS_TYPE_C2K = 2 , AGNSS_TYPE_SUPL_IMS = 3 , AGNSS_TYPE_SUPL_EIMS = 4 } | 定义AGNSS用户面的协议类型。 | 
 | [DataLinkSetUpType](_hdi_a_gnss.md#datalinksetuptype) { ESTABLISH_DATA_CONNECTION = 1 , RELEASE_DATA_CONNECTION = 2 } | 定义数据链路的操作类型。 | 
-| [CellIdType](_hdi_a_gnss.md#cellidtype) { CELLID_TYPE_GSM = 1 , CELLID_TYPE_UMTS = 2 , CELLID_TYPE_LTE = 3 , CELLID_TYPE_NR = 4 } | 定义cell id类型。 | 
-| [SubscriberSetIdType](_hdi_a_gnss.md#subscribersetidtype) { SETID_TYPE_NONE = 0 , SETID_TYPE_IMSI = 1 , SETID_TYPE_MSISDM = 2 } | 定义setid类型。 | 
+| [CellIdType](_hdi_a_gnss.md#cellidtype) { CELLID_TYPE_GSM = 1 , CELLID_TYPE_UMTS = 2 , CELLID_TYPE_LTE = 3 , CELLID_TYPE_NR = 4 } | 定义CellId类型。 | 
+| [SubscriberSetIdType](_hdi_a_gnss.md#subscribersetidtype) { SETID_TYPE_NONE = 0 , SETID_TYPE_IMSI = 1 , SETID_TYPE_MSISDM = 2 } | 定义SetId类型。 | 

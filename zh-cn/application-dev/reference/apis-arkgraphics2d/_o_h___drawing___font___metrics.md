@@ -9,6 +9,7 @@
 
 **相关模块：**[Drawing](_drawing.md)
 
+**所在头文件：**[drawing_font.h](drawing__font_8h.md)
 
 ## 汇总
 
@@ -17,7 +18,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| uint32_t [fFlags](#fflags) | 指示哪些度量是有效的。 | 
+| uint32_t [flags](#flags) | 指示哪些度量是有效的。 | 
 | float [top](#top) | 字符最高点到基线的最大距离。 | 
 | float [ascent](#ascent) | 字符最高点到基线的推荐距离。 | 
 | float [descent](#descent) | 字符最低点到基线的推荐距离。 | 
@@ -93,10 +94,10 @@ float OH_Drawing_Font_Metrics::descent
 字符最低点到基线的推荐距离。
 
 
-### fFlags
+### flags
 
 ```
-uint32_t OH_Drawing_Font_Metrics::fFlags
+uint32_t OH_Drawing_Font_Metrics::flags
 ```
 
 **描述**

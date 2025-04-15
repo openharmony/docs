@@ -97,7 +97,7 @@ getUserAgent(): string
 
 | 类型     | 说明      |
 |--------|---------|
-| string | 默认用户代理。 |
+| string | 默认用户代理。默认User-Agent定义与使用场景请参考[User-Agent开发指导](../../../web/web-default-userAgent.md)。 |
 
 **错误码：**
 
@@ -121,7 +121,7 @@ getCustomUserAgent(): string
 
 | 类型     | 说明         |
 |--------|------------|
-| string | 用户自定义代理信息。 |
+| string | 用户自定义代理信息。默认User-Agent定义与使用场景请参考[User-Agent开发指导](../../../web/web-default-userAgent.md)。 |
 
 **错误码：**
 

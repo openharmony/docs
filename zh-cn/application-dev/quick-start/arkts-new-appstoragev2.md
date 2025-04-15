@@ -85,6 +85,8 @@ static keys(): Array<string>;
 
 3、不支持非buildin类型，如PixelMap、NativePointer、ArrayList等Native类型。
 
+4、不支持存储基本类型，如string、number、boolean等。
+
 ## 使用场景
 
 ### 在两个页面之间存储数据

@@ -546,7 +546,7 @@ Checks whether this system account has been verified. This API uses a promise to
 
 | Type                  | Description                                                                     |
 | ---------------------- | ------------------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the system account has been verified; the value **false** means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the system account has been verified; the value **false** means the opposite. |
 
 **Error codes**
 
@@ -589,7 +589,7 @@ Checks whether a system account has been verified. This API uses an asynchronous
 | Name  | Type                        | Mandatory| Description                                                           |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------- |
 | localId  | number                       | Yes  | ID of the target system account.                             |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means the system account has been verified; the value **false** means the opposite.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means the system account has been verified; the value **false** means the opposite. |
 
 **Error codes**
 
@@ -644,7 +644,7 @@ Checks whether a system account has been verified. This API uses a promise to re
 
 | Type                  | Description                                                              |
 | ---------------------- | ----------------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the system account has been verified; the value **false** means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the system account has been verified; the value **false** means the opposite. |
 
 **Error codes**
 
@@ -2834,7 +2834,7 @@ Obtains the domain account information associated with a specified system accoun
 
 | Type                  | Description                                                              |
 | ---------------------- | ----------------------------------------------------------------- |
-| Promise&lt;DomainAccountInfo&gt; | Promise used to return the result.|
+| Promise&lt;[DomainAccountInfo](#domainaccountinfo8)&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -2863,6 +2863,59 @@ Obtains the domain account information associated with a specified system accoun
   })
   ```
 
+### updateAccountInfo<sup>18+</sup>
+
+updateAccountInfo(oldAccountInfo: DomainAccountInfo, newAccountInfo: DomainAccountInfo): Promise&lt;void&gt;
+
+Updates information of a domain account. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.MANAGE_DOMAIN_ACCOUNTS
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name     | Type                                   | Mandatory| Description            |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| oldAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
+| newAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | New domain account information.|
+
+**Return value**
+
+| Type                     | Description                    |
+| :------------------------ | ----------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+| ID| Error Message                    |
+| -------- | --------------------------- |
+| 201 | Permission denied.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
+| 12300002 | The new account info is invalid. |
+| 12300003 | The old account not found. |
+| 12300004 | The new account already exists. |
+
+**Example**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let oldDomainInfo: osAccount.DomainAccountInfo =
+    {domain: 'testDomain', accountName: 'oldtestAccountName'};
+  let newDomainInfo: osAccount.DomainAccountInfo =
+    {domain: 'testDomain', accountName: 'newtestAccountName'};
+  try {
+    osAccount.DomainAccountManager.updateAccountInfo(oldDomainInfo, newDomainInfo).then(() => {
+      console.log('updateAccountInfo, success');
+    }).catch((err: BusinessError) => {
+      console.log('updateAccountInfo err: ' + err);
+    });
+  } catch (e) {
+    console.log('updateAccountInfo exception: ' + e);
+  }
+  ```
+
 ## OsAccountInfo
 
 Represents information about a system account.
@@ -2875,15 +2928,15 @@ Represents information about a system account.
 | localName                      | string                                                       | Yes  | Name of the system account.                   |
 | type                           | [OsAccountType](#osaccounttype)                              | Yes  | Type of the system account.                     |
 | constraints                    | Array&lt;string&gt;                                          | Yes  | [Constraints](#constraints) of the system account. By default, no value is passed in.|
-| isVerified<sup>(deprecated)</sup> | boolean                                                   | Yes  | Whether the account has been verified.<br>**NOTE**<br/>This parameter is supported since API version 7 and deprecated since API version 11.                    |
-| isUnlocked<sup>11+</sup>      | boolean                                                       | Yes  | Whether the account is unlocked (whether the **el2/** directory is decrypted).                     |
+| isVerified<sup>(deprecated)</sup> | boolean                                                   | Yes  | Whether the account has been verified. The value **true** means the specified account has been verified; the value **false** means the opposite.<br>**NOTE**<br/>This parameter is supported since API version 7 and deprecated since API version 11.          |
+| isUnlocked<sup>11+</sup>      | boolean                                                       | Yes  | Whether the account is unlocked (whether the **el2/** directory is decrypted). The value **true** means the specified account is unlocked; the value **false** means the opposite.                     |
 | photo<sup>8+</sup>             | string                                                       | Yes  | Avatar of the system account. By default, no value is passed in.                     |
 | createTime<sup>8+</sup>        | number                                                       | Yes  | Time when the system account was created.                 |
 | lastLoginTime<sup>8+</sup>     | number                                                       | Yes  | Last login time of the system account. By default, no value is passed in.         |
 | serialNumber<sup>8+</sup>      | number                                                       | Yes  | SN of the system account.                     |
-| isActived<sup>(deprecated)</sup>         | boolean                                            | Yes  | Whether the system account is activated.<br>**NOTE**<br/>This parameter is supported since API version 7 and deprecated since API version 11.                 |
-| isActivated<sup>11+</sup>         | boolean                                                   | Yes  | Whether the system account is activated.                 |
-| isCreateCompleted<sup>8+</sup> | boolean                                                      | Yes  | Whether the system account information is complete.             |
+| isActived<sup>(deprecated)</sup>         | boolean                                            | Yes  | Whether the system account is activated. The value **true** means that the specified account is activated; the value **false** means the opposite.<br>**NOTE**<br/>This parameter is supported since API version 7 and deprecated since API version 11.                 |
+| isActivated<sup>11+</sup>         | boolean                                                   | Yes  | Whether the system account is activated. The value **true** indicates that the specified account is activated; the value **false** means the opposite.                 |
+| isCreateCompleted<sup>8+</sup> | boolean                                                      | Yes  | Whether the system account information is complete. The value **true** means that the specified account is complete; the value **false** indicates the opposite.             |
 | distributedInfo                | [distributedAccount.DistributedInfo](js-apis-distributed-account.md#distributedinfo) | Yes  | Distributed account information. By default, no value is passed in.                   |
 | domainInfo<sup>8+</sup>        | [DomainAccountInfo](#domainaccountinfo8)                      | Yes  | Domain account information. By default, no value is passed in.                       |
 
@@ -2897,6 +2950,324 @@ Represents the domain account information.
 | ----------- | ------ | ---- | ---------- |
 | domain      | string | Yes  | Domain name.    |
 | accountName | string | Yes  | Domain account name.|
+| serverConfigId<sup>18+</sup> | string | No  | Domain account configuration ID.|
+
+## DomainServerConfig<sup>18+</sup>
+
+Represents the configuration of a domain server.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+| Name     | Type  | Mandatory| Description      |
+| ----------- | ------ | ---- | ---------- |
+| parameters | Record<string, Object> | Yes  | Server configuration parameters.|
+| id | string | Yes  | Server configuration ID.|
+| domain | string | Yes| Domain to which the server belongs.|
+
+## DomainServerConfigManager<sup>18+</sup>
+
+Provides APIs for domain server configuration and management.
+
+### addServerConfig<sup>18+</sup>
+
+static addServerConfig(parameters: Record&lt;string, Object&gt;): Promise&lt;DomainServerConfig&gt;
+
+Adds domain server configuration. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.MANAGE_DOMAIN_ACCOUNT_SERVER_CONFIGS
+
+**Parameters**
+
+| Name   | Type                    | Mandatory| Description                     |
+| ----------| ----------------------- | --- | -------------------------- |
+| parameters   | Record<string, Object>  | Yes | Configuration parameters of the domain server.|
+
+**Return value**
+
+| Type                     | Description                    |
+| :------------------------ | ----------------------- |
+| Promise&lt;[DomainServerConfig](#domainserverconfig18)&gt; | Promise used to return the configuration of the newly added domain server.|
+
+**Error codes**
+
+| ID| Error Message                    |
+| -------- | --------------------------- |
+| 201 | Permission denied.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
+| 12300002 | - Invalid server config parameters. |
+| 12300211 | - Server unreachable. |
+| 12300213 | - Server config already exists. |
+| 12300215 | - The number of server config reaches the upper limit. |
+
+**Example**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let configParams: Record<string, Object> = {
+    'uri': 'test.example.com',
+    'port': 100
+  };
+  osAccount.DomainServerConfigManager.addServerConfig(configParams).then((
+    serverConfig: osAccount.DomainServerConfig) => {
+    console.log('add server configuration successfully, the return config: ' + JSON.stringify(serverConfig));
+  }).catch((err: BusinessError) => {
+    console.log('add server configuration failed, error: ' + JSON.stringify(err));
+  });
+  ```
+
+### removeServerConfig<sup>18+</sup>
+
+static removeServerConfig(configId: string): Promise&lt;void&gt;
+
+Removes domain server configuration. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.MANAGE_DOMAIN_ACCOUNT_SERVER_CONFIGS
+
+**Parameters**
+
+| Name   | Type                    | Mandatory| Description                     |
+| ----------| ----------------------- | --- | -------------------------- |
+| configId   | string  | Yes | Server configuration ID.|
+
+**Return value**
+
+| Type                     | Description                    |
+| :------------------------ | ----------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+| ID| Error Message                    |
+| -------- | --------------------------- |
+| 201 | Permission denied.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
+| 12300212 | - Server config not found. |
+| 12300214 | - Server config has been associated with an account. |
+
+**Example**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let configParams: Record<string, Object> = {
+    'uri': 'test.example.com',
+    'port': 100
+  };
+  osAccount.DomainServerConfigManager.addServerConfig(configParams).then((
+    serverConfig: osAccount.DomainServerConfig) => {
+    console.log('add domain server configuration successfully, the added config: ' + JSON.stringify(serverConfig));
+    osAccount.DomainServerConfigManager.removeServerConfig(serverConfig.id);
+    console.log('remove domain server configuration successfully');
+  }).catch((err: BusinessError) => {
+    console.log('add server configuration failed, error: ' + JSON.stringify(err));
+  });
+  ```
+
+### updateServerConfig<sup>18+</sup>
+
+static updateServerConfig(configId: string, parameters: Record&lt;string, Object&gt;): Promise&lt;DomainServerConfig&gt;
+
+Updates the domain server configuration. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.MANAGE_DOMAIN_ACCOUNT_SERVER_CONFIGS
+
+**Parameters**
+
+| Name   | Type                    | Mandatory| Description                     |
+| ----------| ----------------------- | --- | -------------------------- |
+| configId   | string  | Yes | Server configuration ID.|
+| parameters   | Record&lt;string, Object&gt;  | Yes | Configuration parameters of the domain server.|
+
+**Return value**
+
+| Type                     | Description                    |
+| :------------------------ | ----------------------- |
+| Promise&lt;[DomainServerConfig](#domainserverconfig18)&gt; | Promise used to return the updated domain server configuration.|
+
+**Error codes**
+
+| ID| Error Message                    |
+| -------- | --------------------------- |
+| 201 | Permission denied.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
+| 12300002 | Invalid server config parameters. |
+| 12300211 | - Server unreachable. |
+| 12300212 | - Server config not found. |
+| 12300213 | - Server config already exists. |
+| 12300214 | - Server config has been associated with an account. |
+
+**Example**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let configParams: Record<string, Object> = {
+    'uri': 'test.example.com',
+    'port': 100
+  };
+  osAccount.DomainServerConfigManager.addServerConfig(configParams).then((
+    serverConfig: osAccount.DomainServerConfig) => {
+    console.log('add domain server configuration successfully, the added config: ' + JSON.stringify(serverConfig));
+    osAccount.DomainServerConfigManager.updateServerConfig(serverConfig.id, configParams).then((data) => {
+      console.log('update domain server configuration successfully, return config: ' + JSON.stringify(data));
+    }).catch((err: BusinessError) => {
+      console.log('update domain server configuration failed, error: ' + JSON.stringify(err));
+    });
+  }).catch((err: BusinessError) => {
+    console.log('add server configuration failed, error: ' + JSON.stringify(err));
+  });
+  ```
+
+### getServerConfig<sup>18+</sup>
+
+static getServerConfig(configId: string): Promise&lt;DomainServerConfig&gt;
+
+Obtains the domain server configuration. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.MANAGE_DOMAIN_ACCOUNT_SERVER_CONFIGS
+
+**Parameters**
+
+| Name   | Type                    | Mandatory| Description                     |
+| ----------| ----------------------- | --- | -------------------------- |
+| configId   | string  | Yes | Server configuration ID.|
+
+**Return value**
+
+| Type                     | Description                    |
+| :------------------------ | ----------------------- |
+| Promise&lt;[DomainServerConfig](#domainserverconfig18)&gt; | Promise used to return the domain server configuration obtained.|
+
+**Error codes**
+
+| ID| Error Message                    |
+| -------- | --------------------------- |
+| 201 | Permission denied.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
+| 12300212 | Server config not found. |
+
+**Example**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let configParams: Record<string, Object> = {
+    'uri': 'test.example.com',
+    'port': 100
+  };
+  osAccount.DomainServerConfigManager.addServerConfig(configParams).then((
+    serverConfig: osAccount.DomainServerConfig) => {
+    console.log('add domain server configuration successfully, the added config: ' + JSON.stringify(serverConfig));
+    osAccount.DomainServerConfigManager.getServerConfig(serverConfig.id).then((data: osaccount.DomainServerConfig) => {
+      console.log('get domain server configuration successfully, return config: ' + JSON.stringify(data));
+    }).catch((err: BusinessError) => {
+      console.log('get domain server configuration failed, error: ' + JSON.stringify(err));
+    });
+  }).catch((err: BusinessError) => {
+    console.log('add server configuration failed, error: ' + JSON.stringify(err));
+  });
+  ```
+
+### getAllServerConfigs<sup>18+</sup>
+
+static getAllServerConfigs(): Promise&lt;Array&lt;DomainServerConfig&gt;&gt;
+
+Obtains the configurations of all domain servers. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.MANAGE_DOMAIN_ACCOUNT_SERVER_CONFIGS
+
+**Return value**
+
+| Type                     | Description                    |
+| :------------------------ | ----------------------- |
+| Promise&lt;Array&lt;[DomainServerConfig](#domainserverconfig18)&gt;&gt; | Promise used to return the domain server configuration obtained.|
+
+**Error codes**
+
+| ID| Error Message                    |
+| -------- | --------------------------- |
+| 201 | Permission denied.|
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
+
+**Example**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let configParams: Record<string, Object> = {
+    'uri': 'test.example.com',
+    'port': 100
+  };
+  osAccount.DomainServerConfigManager.addServerConfig(configParams).then((
+    serverConfig: osAccount.DomainServerConfig) => {
+    console.log('add domain server configuration successfully, the added config: ' + JSON.stringify(serverConfig));
+    osAccount.DomainServerConfigManager.getAllServerConfigs().then((data: Array<osaccount.DomainServerConfig>) => {
+      console.log('get all domain server configuration successfully, return config: ' + JSON.stringfy(data));
+    }).catch((err: BusinessError) => {
+      console.log('get all domain server configuration failed, error: ' + JSON.stringfy(err));
+    });
+  }).catch((err: BusinessError) => {
+    console.log('add server configuration failed, error: ' + JSON.stringify(err));
+  });
+  ```
+
+### getAccountServerConfig<sup>18+</sup>
+
+static getAccountServerConfig(domainAccountInfo: DomainAccountInfo): Promise&lt;DomainServerConfig&gt;
+
+Obtains the server configuration of a domain account. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.MANAGE_DOMAIN_ACCOUNT_SERVER_CONFIGS
+
+**Parameters**
+
+| Name   | Type                    | Mandatory| Description                     |
+| ----------| ----------------------- | --- | -------------------------- |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes | Information of the domain account.|
+
+**Return value**
+
+| Type                     | Description                    |
+| :------------------------ | ----------------------- |
+| Promise&lt;[DomainServerConfig](#domainserverconfig18)&gt; | Promise used to return the domain server configuration of the account.|
+
+**Error codes**
+
+| ID| Error Message                    |
+| -------- | --------------------------- |
+| 201 | Permission denied.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
+| 12300003 | Domain account not found. |
+
+**Example**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountInfo: osAccount.DomainAccountInfo = {
+    'accountName': 'demoName',
+    'accountId': 'demoId',
+    'domain': 'demoDomain'
+  };
+  osAccount.DomainServerConfigManager.getAccountServerConfig(accountInfo).then((
+    serverConfig: osAccount.DomainServerConfig) => {
+    console.log('get account server configuration successfully, the return config: ' + JSON.stringify(serverConfig));
+  }).catch((err: BusinessError) => {
+    console.log('add server configuration failed, error: ' + JSON.stringify(err));
+  });
+  ```
 
 ## Constraints
 

@@ -49,42 +49,7 @@ Menu组件、Dialog组件、Popup组件、Toast组件。
 
 默认避让行为变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
 
-## cl.arkui.2 滚动类组件（List、Scroll、Grid、WaterFlow）和Refresh组件过界跟手系数变更
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-滚动类组件（List、Scroll、Grid、WaterFlow）和Refresh组件最大下拉过界距离太大，需要调整过界跟手系数，优化体验。
-
-**变更影响**
-
-此变更不涉及应用适配。
-
-| 变更前 | 变更后 |
-|---------|---------|
-| 滚动类组件和Refresh组件下拉过界时，相同手指滑动，下拉过界距离较大。<br> ![变更前](figures/list1.gif)       | 滚动类组件和Refresh组件下拉过界时，相同手指滑动，下拉过界距离较小。 <br> ![变更后](figures/list.gif)       |
-| <br> ![变更前](figures/list2.gif)       |  <br> ![变更后](figures/list3.gif)       |
-
-**起始API Level**
-
-API 7
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.1.0.52开始。
-
-**变更的接口/组件**
-
-ArkUI 滚动类组件（List、Scroll、Grid、WaterFlow）和Refresh组件。
-
-**适配指导**
-
-变更后下拉过界效果更优，无需适配。
-
-## cl.arkui.3 轴事件支持BEGIN、END及CANCEL类型回调触发
+## cl.arkui.2 轴事件支持BEGIN、END及CANCEL类型回调触发
 
 **访问级别**
 
@@ -118,7 +83,7 @@ OH_NativeXComponent_RegisterUIInputEventCallback接口。
 
 默认行为变更，无需适配。
 
-## cl.arkui.4  CanvasRenderingContext2D的drawImage接口联合阴影绘制由阴影无法正确绘制变更为阴影正确绘制
+## cl.arkui.3  CanvasRenderingContext2D的drawImage接口联合阴影绘制由阴影无法正确绘制变更为阴影正确绘制
 
 **访问级别**
 
@@ -183,7 +148,7 @@ struct Page1 {
 }
 ```
 
-## cl.arkui.5  CanvasRenderingContext2D的measureText接口测算文本的结果变更
+## cl.arkui.4  CanvasRenderingContext2D的measureText接口测算文本的结果变更
 
 **访问级别**
 
@@ -303,7 +268,7 @@ CanvasRenderingContext2D的measureText接口
 
 无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
 
-## cl.arkui.6 CanvasRenderingContext2D的miterLimit接口，当传入参数为0时，其异常值的处理方式发生变更
+## cl.arkui.5 CanvasRenderingContext2D的miterLimit接口，当传入参数为0时，其异常值的处理方式发生变更
 
 **访问级别**
 
@@ -368,7 +333,7 @@ struct MiterLimit {
 }
 ```
 
-## cl.arkui.7 弹出框标题换行优先策略及内容区默认对齐方式变更
+## cl.arkui.6 弹出框标题换行优先策略及内容区默认对齐方式变更
 
 **访问级别**
 

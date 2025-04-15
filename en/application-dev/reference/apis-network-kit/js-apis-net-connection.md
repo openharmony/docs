@@ -298,13 +298,36 @@ The following is an example configuration of the application-level certificate:
 
 ```
 
+The following is an example configuration for overall and host name–based HTTP access:
+```json
+{
+  "network-security-config": {
+    "base-config": {
+      "cleartextTrafficPermitted": true
+    },
+    "domain-config": [
+      {
+        "domains": [
+          {
+            "include-subdomains": true,
+            "name": "example.com"
+          }
+        ],
+        "cleartextTrafficPermitted": false
+      }
+    ]
+  }
+}
+
+```
+
 **Description of fields**
 
 **network-security-config (object: network security configuration)**
 
-This field can contain zero or one **base-config**.
+**base-config**: one or none
 
-This field must contain one **domain-config**.
+**domain-config**: one (mandatory)
 
 **trust-global-user-ca**: This field specifies whether to trust the CA certificate manually installed by the enterprise MDM system or device administrator. The default value is **true**.
 
@@ -312,45 +335,51 @@ This field must contain one **domain-config**.
 
 **base-config (object: application-wide security configuration)**
 
-This field must contain one **trust-anchors**.
+**trust-anchors**: one (mandatory)
+
+**cleartextTrafficPermitted** (boolean: overall plaintext HTTP access permitted or not): one or none
 
 **domain-config (array: security configuration of each domain)**
 
-This field can contain any number of items.
+**item**: any number
 
-An item must contain one **domain**.
+**domain** in an item: one (mandatory)
 
-An item can contain zero or one **trust-anchors**.
+**trust-anchors** in an item: one or none
 
-An item can contain zero or one **pin-set**.
+**pin-set** in an item: one or none
+
+**cleartextTrafficPermitted** (boolean: host name–based plaintext HTTP access permitted or not) in an item: one or none 
 
 **trust-anchors (array: trusted CA)**
 
-This field can contain any number of items.
+**item**: any number
 
-An item must contain one **certificates** (string: CA certificate path).
+**certificates** (string: CA certificate path) in an item: one (mandatory)
 
 **domain (array: domain)**
 
-This field can contain any number of items.
+**item**: any number
 
-An item must contain one **name** (string: domain name).
+**name** (string: domain name) in an item: one (mandatory)
 
-An item can contain zero or one **include-subdomains** (boolean: whether a rule is applicable to subdomains).
+**include-subdomains** in an item: one or none (boolean: whether a rule is applicable to subdomains)
 
 **pin-set (object: certificate PIN setting)**
 
-This field must contain one **pin**.
+**pin**: one (mandatory)
 
-This field can contain zero or one **expiration** (string: expiration time of the certificate PIN).
+**expiration** (string: expiration time of the certificate PIN): one or none
 
 **pin (array: certificate PIN)**
 
-This field can contain any number of items.
+**item**: any number
 
-An item must contain one **digest-algorithm** (string: digest algorithm used to generate the PIN).
+**digest-algorithm** (string: digest algorithm used to generate the PIN) in an item: one (mandatory) 
 
-An item must contain one **digest** (string: public key PIN).
+**digest** (string: public key PIN) in an item: one (mandatory) 
+
+**cleartextTrafficPermitted (boolean: plaintext HTTP access permitted or not)**<br>This field specifies whether plaintext HTTP access is allowed. The default value is **true**.
 
 ## connection.getDefaultHttpProxy<sup>10+</sup>
 

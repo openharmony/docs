@@ -131,21 +131,21 @@ WLAN配置信息。
 
 
 
-| 名称          | 类型                                  | 必填 | 说明                          |
-| ------------- | ------------------------------------- | ---- | ----------------------------- |
-| ssid          | string                                | 是   | 热点的SSID，编码格式为UTF-8。 |
-| bssid         | string                                | 否   | 热点的BSSID。                 |
-| preSharedKey  | string                                | 是   | 热点的密钥。                  |
-| isHiddenSsid  | boolean                               | 否   | 是否是隐藏网络。              |
-| securityType  | [WifiSecurityType](#wifisecuritytype) | 是   | 加密类型。                    |
-| creatorUid    | number                                | 否   | 创建用户的ID。                |
-| disableReason | number                                | 否   | 禁用原因。                    |
-| netId         | number                                | 否   | 分配的网络ID。                |
-| randomMacType | number                                | 否   | 随机MAC类型。                 |
-| randomMacAddr | string                                | 否   | 随机MAC地址。                 |
-| ipType        | [IpType](#iptype)                     | 否   | IP地址类型。                  |
-| staticIp      | [IpProfile](#ipprofile)               | 否   | 静态IP配置信息。              |
-| eapProfile    | [WifiEapProfile](#wifieapprofile)     | 否   | 可扩展身份验证协议配置。      |
+| 名称          | 类型                                  | 必填 | 说明                                                        |
+| ------------- | ------------------------------------- | ---- | ----------------------------------------------------------- |
+| ssid          | string                                | 是   | 热点的SSID，编码格式为UTF-8。                               |
+| bssid         | string                                | 否   | 热点的BSSID。                                               |
+| preSharedKey  | string                                | 是   | 热点的密钥。                                                |
+| isHiddenSsid  | boolean                               | 否   | 是否是隐藏网络。true表示是隐藏网络，false表示不是隐藏网络。 |
+| securityType  | [WifiSecurityType](#wifisecuritytype) | 是   | 加密类型。                                                  |
+| creatorUid    | number                                | 否   | 创建用户的ID。                                              |
+| disableReason | number                                | 否   | 禁用原因。                                                  |
+| netId         | number                                | 否   | 分配的网络ID。                                              |
+| randomMacType | number                                | 否   | 随机MAC类型。                                               |
+| randomMacAddr | string                                | 否   | 随机MAC地址。                                               |
+| ipType        | [IpType](#iptype)                     | 否   | IP地址类型。                                                |
+| staticIp      | [IpProfile](#ipprofile)               | 否   | 静态IP配置信息。                                            |
+| eapProfile    | [WifiEapProfile](#wifieapprofile)     | 否   | 可扩展身份验证协议配置。                                    |
 
 ## WifiSecurityType
 

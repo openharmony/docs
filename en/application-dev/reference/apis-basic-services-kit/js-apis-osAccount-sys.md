@@ -4431,9 +4431,7 @@ Provides APIs for user IDM.
 
 ### constructor<sup>8+</sup>
 
-constructor()
-
-A constructor used to create an instance for user IDM.
+A **constructor()** used to create an instance for user IDM.
 
 **System API**: This is a system API.
 

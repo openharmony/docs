@@ -779,7 +779,7 @@ static setWebDebuggingAccess(webDebuggingAccess: boolean): void
 
 | 参数名              | 类型    | 必填   |  说明 |
 | ------------------ | ------- | ---- | ------------- |
-| webDebuggingAccess | boolean | 是   | 设置是否启用网页调试功能。|
+| webDebuggingAccess | boolean | 是   | 设置是否启用网页调试功能。设置为true，表示启用网页调试功能。设置为false，表示不启用网页调试功能。 |
 
 **错误码：**
 
@@ -957,7 +957,7 @@ struct WebComponent {
 }
 ```
 
-3.通过沙箱路径加载本地文件，可以参考[web](ts-basic-components-web.md#web)加载沙箱路径的示例代码。
+3.通过沙箱路径加载本地文件，可以参考[web](../../web/web-page-loading-with-web-components.md#加载本地页面)加载沙箱路径的示例代码。
 
 加载的html文件。
 ```html
@@ -1455,7 +1455,7 @@ accessStep(step: number): boolean
 
 | 类型    | 说明               |
 | ------- | ------------------ |
-| boolean | 页面是否前进或后退 |
+| boolean | 页面是否前进或后退，返回true表示可以前进或者后退，返回false表示不可以前进或后退。 |
 
 **错误码：**
 
@@ -1609,6 +1609,7 @@ registerJavaScriptProxy提供了应用与Web组件加载的网页之间强大的
 > - 在注册registerJavaScriptProxy后，应用会将JavaScript对象暴露给所有的页面frames。
 > - 同一方法在同步与异步列表中重复注册，将默认异步调用。
 > - 同步函数列表和异步函数列表不可同时为空，否则此次调用接口注册失败。
+> - 异步的作用在于：H5线程将异步JavaScript任务提交给ETS主线程后，无需等待任务执行完成并返回结果，H5线程即可继续执行后续任务。这在执行耗时较长的JavaScript任务或ETS线程较为拥堵的情况下，可以有效减少H5线程因JavaScript任务而被阻塞的情况。然而，异步JavaScript任务无法返回值，且任务执行的顺序无法保证，因此需要根据具体情境判断是否使用同步或异步方式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1775,10 +1776,6 @@ struct Index {
 runJavaScript(script: string, callback : AsyncCallback\<string>): void
 
 异步执行JavaScript脚本，并通过回调方式返回脚本执行的结果。runJavaScript需要在loadUrl完成后，比如onPageEnd中调用。
-
-> **说明：**
->
-> 离屏组件不会触发runJavaScript接口。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2470,7 +2467,7 @@ zoom(factor: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| factor | number   | 是   | 基于当前网页所需调整的相对缩放比例，入参要求大于0，当入参为1时为默认加载网页的缩放比例，入参小于1为缩小，入参大于1为放大。 |
+| factor | number   | 是   | 基于当前网页所需调整的相对缩放比例，入参要求大于0，当入参为1时为默认加载网页的缩放比例，入参小于1为缩小，入参大于1为放大。<br>取值范围：(0，100]。 |
 
 **错误码：**
 
@@ -2639,7 +2636,7 @@ searchNext(forward: boolean): void
 
 | 参数名  | 类型 | 必填 | 说明               |
 | ------- | -------- | ---- | ---------------------- |
-| forward | boolean  | 是   | 从前向后或者逆向查找。 |
+| forward | boolean  | 是   | 从前向后或者逆向查找方式。true表示从前向后查找，false表示从后向前查找。 |
 
 **错误码：**
 
@@ -3037,7 +3034,7 @@ struct WebComponent {
 
 zoomIn(): void
 
-调用此接口将当前网页进行放大，比例为20%。
+调用此接口将当前网页进行放大，比例为25%。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3885,7 +3882,7 @@ scrollByWithResult(deltaX: number, deltaY: number): boolean
 
 | 类型    | 说明                                     |
 | ------- | --------------------------------------- |
-| boolean | 当前网页是否可以滑动，默认为false。|
+| boolean | true表示当前网页可以滑动，false表示当前网页不可以滑动。默认为false。|
 
 **错误码：**
 
@@ -4145,7 +4142,7 @@ setNetworkAvailable(enable: boolean): void
 
 | 参数名 | 类型    | 必填 | 说明                              |
 | ------ | ------- | ---- | --------------------------------- |
-| enable | boolean | 是   | 是否使能window.navigator.onLine。 |
+| enable | boolean | 是   | 是否使能window.navigator.onLine，默认为true，表示开启JavaScript中的window.navigator.onLine属性。 |
 
 **错误码：**
 
@@ -4218,7 +4215,7 @@ hasImage(callback: AsyncCallback\<boolean>): void
 
 | 参数名   | 类型                    | 必填 | 说明                       |
 | -------- | ----------------------- | ---- | -------------------------- |
-| callback | AsyncCallback\<boolean> | 是   | 返回查找页面是否存在图像。 |
+| callback | AsyncCallback\<boolean> | 是   | 返回查找页面是否存在图像。<br> true:存在图像；false:不存在图像。 |
 
 **错误码：**
 
@@ -4275,7 +4272,7 @@ hasImage(): Promise\<boolean>
 
 | 类型              | 说明                                    |
 | ----------------- | --------------------------------------- |
-| Promise\<boolean> | Promise实例，返回查找页面是否存在图像。 |
+| Promise\<boolean> | Promise实例，返回查找页面是否存在图像。 <br>true:存在图像；false:不存在图像。 |
 
 **错误码：**
 
@@ -5621,7 +5618,7 @@ static setConnectionTimeout(timeout: number): void
 
 | 参数名          | 类型    |  必填  | 说明                                            |
 | ---------------| ------- | ---- | ------------- |
-| timeout        | number  | 是   | socket连接超时时间，以秒为单位，socket必须为大于0的整数。 |
+| timeout        | number  | 是   | socket连接超时时间，以秒为单位，必须为大于0的整数。 |
 
 **错误码：**
 
@@ -5721,7 +5718,7 @@ enableSafeBrowsing(enable: boolean): void
 
 | 参数名   | 类型    |  必填  | 说明                       |
 | --------| ------- | ---- | ---------------------------|
-|  enable | boolean | 是   | 是否启用检查网站安全风险的功能。 |
+|  enable | boolean | 是   | 是否启用检查网站安全风险的功能。<br>true表示启用检查网站安全风险的功能，false表示不启用检查网站安全风险的功能。<br>默认值：false。 |
 
 **错误码：**
 
@@ -5772,7 +5769,7 @@ isSafeBrowsingEnabled(): boolean
 
 | 类型    | 说明                                     |
 | ------- | --------------------------------------- |
-| boolean | 当前网页是否启用了检查网站安全风险的功能，默认为false。|
+| boolean | 当前网页是否启用了检查网站安全风险的功能，默认为false，表示未启用。|
 
 **示例：**
 
@@ -5810,9 +5807,13 @@ enableIntelligentTrackingPrevention(enable: boolean): void
 
 | 参数名   | 类型    |  必填  | 说明                       |
 | --------| ------- | ---- | ---------------------------|
-|  enable | boolean | 是   | 是否启用智能防跟踪功能。 |
+|  enable | boolean | 是   | 是否启用智能防跟踪功能。<br>true表示启用启用智能防跟踪功能，false表示不启用启用智能防跟踪功能。<br>默认值：false。 |
 
 **错误码：**
+
+> **说明：**
+>
+> 从API Version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -5820,6 +5821,7 @@ enableIntelligentTrackingPrevention(enable: boolean): void
 | -------- | ----------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 |  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|  801 | Capability not supported. |
 
 **示例：**
 
@@ -5862,15 +5864,20 @@ isIntelligentTrackingPreventionEnabled(): boolean
 
 | 类型    | 说明                                     |
 | ------- | --------------------------------------- |
-| boolean | 当前Web是否启用了智能防跟踪功能，默认为false。|
+| boolean | 当前Web是否启用了智能防跟踪功能，默认为false，表示未启用。|
 
 **错误码：**
+
+> **说明：**
+>
+> 从API Version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+|  801 | Capability not supported. |
 
 **示例：**
 
@@ -5917,11 +5924,16 @@ static addIntelligentTrackingPreventionBypassingList(hostList: Array\<string>): 
 
 **错误码：**
 
+> **说明：**
+>
+> 从API Version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
+
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID  | 错误信息                  |
 | -------- | ------------------------ |
 |  401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|  801     | Capability not supported. |
 
 **示例：**
 
@@ -5968,11 +5980,16 @@ static removeIntelligentTrackingPreventionBypassingList(hostList: Array\<string>
 
 **错误码：**
 
+> **说明：**
+>
+> 从API Version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
+
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID  | 错误信息                  |
 | -------- | ------------------------ |
 |  401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|  801     | Capability not supported. |
 
 **示例：**
 
@@ -6010,6 +6027,18 @@ static clearIntelligentTrackingPreventionBypassingList(): void
 删除通过addIntelligentTrackingPreventionBypassingList接口添加的所有域名。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**错误码：**
+
+> **说明：**
+>
+> 从API Version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID  | 错误信息                  |
+| -------- | ------------------------ |
+|  801     | Capability not supported. |
 
 **示例：**
 
@@ -6075,9 +6104,13 @@ enableAdsBlock(enable: boolean): void
 
 | 参数名   | 类型    |  必填  | 说明                       |
 | --------| ------- | ---- | ---------------------------|
-|  enable | boolean | 是   | 是否启用广告过滤功能。 |
+|  enable | boolean | 是   | 是否启用广告过滤功能，默认为false，表示未启用。 |
 
 **错误码：**
+
+> **说明：**
+>
+> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -6085,6 +6118,7 @@ enableAdsBlock(enable: boolean): void
 | -------- | ----------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 |  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Parameter string is too long. 3.Parameter verification failed. |
+|  801 | Capability not supported. |
 
 **示例：**
 
@@ -6129,6 +6163,18 @@ isAdsBlockEnabled() : boolean
 | ------------------------------------------------------------ | ---------------------- |
 | boolean | 返回true代表广告过滤功能已开启，返回false代表广告过滤功能关闭。 |
 
+**错误码：**
+
+> **说明：**
+>
+> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+|  801 | Capability not supported. |
+
 **示例：**
 
 ```ts
@@ -6172,6 +6218,18 @@ isAdsBlockEnabledForCurPage() : boolean
 | 类型                                                         | 说明                   |
 | ------------------------------------------------------------ | ---------------------- |
 | boolean | 返回true代表此网页已开启广告过滤，返回false代表当前网页已关闭广告过滤。 |
+
+**错误码：**
+
+> **说明：**
+>
+> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+|  801 | Capability not supported. |
 
 **示例：**
 
@@ -6478,7 +6536,7 @@ isIncognitoMode(): boolean
 
 | 类型                 | 说明                      |
 | -------------------- | ------------------------- |
-| boolean              | 返回是否是隐私模式的Webview。 |
+| boolean              | 返回是否是隐私模式的Webview，默认为false，表示未开启隐私模式。 |
 
 **错误码：**
 
@@ -6728,7 +6786,7 @@ getPrintBackground(): boolean
 
 | 类型                 | 说明                      |
 | -------------------- | ------------------------- |
-| boolean              | 返回Webview是否打印网页背景。 |
+| boolean              | 返回Webview是否打印网页背景。<br>true:打印网页背景；false:不打印网页背景。 |
 
 **错误码：**
 
@@ -10089,7 +10147,7 @@ static putAcceptCookieEnabled(accept: boolean): void
 
 | 参数名 | 类型    | 必填 | 说明                                 |
 | ------ | ------- | ---- | :----------------------------------- |
-| accept | boolean | 是   | 设置是否拥有发送和接收cookie的权限，默认为true。 |
+| accept | boolean | 是   | 设置是否拥有发送和接收cookie的权限，默认为true，表示拥有发送和接收cookie的权限。 |
 
 **错误码：**
 
@@ -10139,7 +10197,7 @@ static isCookieAllowed(): boolean
 
 | 类型    | 说明                             |
 | ------- | -------------------------------- |
-| boolean | 是否拥有发送和接收cookie的权限，默认为true。 |
+| boolean | 是否拥有发送和接收cookie的权限，默认为true，表示拥有发送和接收cookie的权限。 |
 
 **示例：**
 
@@ -10177,7 +10235,7 @@ static putAcceptThirdPartyCookieEnabled(accept: boolean): void
 
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | :----------------------------------------- |
-| accept | boolean | 是   | 设置是否拥有发送和接收第三方cookie的权限，默认为false。 |
+| accept | boolean | 是   | 设置是否拥有发送和接收第三方cookie的权限。<br>true表示设置拥有发送和接收第三方cookie的权限，false表示设置无发送和接收第三方cookie的权限。<br>默认值：false。 |
 
 **错误码：**
 
@@ -10227,7 +10285,7 @@ static isThirdPartyCookieAllowed(): boolean
 
 | 类型    | 说明                                   |
 | ------- | -------------------------------------- |
-| boolean | 是否拥有发送和接收第三方cookie的权限，默认为false。 |
+| boolean | 是否拥有发送和接收第三方cookie的权限，默认为false，表示未拥有发送和接收第三方cookie的权限。 |
 
 **示例：**
 
@@ -10903,8 +10961,8 @@ static getOriginQuota(origin: string, callback: AsyncCallback\<number>): void
 
 | 参数名   | 类型                  | 必填 | 说明               |
 | -------- | --------------------- | ---- | ------------------ |
-| origin   | string                | 是   | 指定源的字符串索引 |
-| callback | AsyncCallback\<number> | 是   | 指定源的存储配额   |
+| origin   | string                | 是   | 指定源的字符串索引。 |
+| callback | AsyncCallback\<number> | 是   | 指定源的存储配额。<br>number是long型整数，范围为(-2,147,483,648)~(2,147,483,647)。   |
 
 **错误码：**
 
@@ -12471,14 +12529,14 @@ struct WebComponent {
 | 名称           | 类型       | 可读 | 可写 | 说明                         |
 | -------------- | --------- | ---- | ---- | ---------------------------- |
 | schemeName     | string    | 是   | 是   | 自定义协议名称。最大长度为32，其字符仅支持小写字母、数字、'.'、'+'、'-', 同时需要以字母开头。        |
-| isSupportCORS  | boolean   | 是   | 是   | 是否支持跨域请求。    |
-| isSupportFetch | boolean   | 是   | 是   | 是否支持fetch请求。           |
-| isStandard<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将作为标准scheme进行处理。标准scheme需要符合RFC 1738第3.1节中定义的URL规范化和解析规则。           |
-| isLocal<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将使用与应用于“FILE”的安全规则相同的安全规则来处理。           |
-| isDisplayIsolated<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme的内容是否只能从相同scheme的其他内容中显示或访问。           |
-| isSecure<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将使用与应用于“https”的安全规则相同的安全规则来处理。           |
-| isCspBypassing<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme可以绕过内容安全策略（CSP）检查。在大多数情况下，当设置isStandard为true时，不应设置此值。         |
-| isCodeCacheSupported<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme的js资源是否支持生成code cache。默认值：false。         |
+| isSupportCORS  | boolean   | 是   | 是   | 是否支持跨域请求。<br>true表示支持跨域请求，false表示不支持跨域请求。<br>默认值：true。    |
+| isSupportFetch | boolean   | 是   | 是   | 是否支持fetch请求。<br>true表示支持fetch请求，false表示不支持fetch请求。<br>默认值：true。           |
+| isStandard<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将作为标准scheme进行处理。标准scheme需要符合RFC 1738第3.1节中定义的URL规范化和解析规则。<br>true表示设置了该选项的scheme将作为标准scheme进行处理，false表示设置了该选项的scheme不作为标准scheme进行处理。<br>默认值：true。           |
+| isLocal<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将使用与“file”协议相同的安全规则来处理。<br>true表示设置了该选项的scheme将使用与“file”协议相同的安全规则来处理，false表示设置了该选项的scheme不使用与“file”协议相同的安全规则来处理。<br>默认值：true。           |
+| isDisplayIsolated<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme的内容是否只能从相同scheme的其他内容中显示或访问。<br>true表示设置了该选项的scheme的内容只能从相同scheme的其他内容中显示或访问，false表示设置了该选项的scheme的内容不是只能从相同scheme的其他内容中显示或访问。<br>默认值：true。           |
+| isSecure<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将使用与应用于“https”的安全规则相同的安全规则来处理。true表示设置了该选项的scheme将使用与应用于“https”的安全规则相同的安全规则来处理，false表示设置了该选项的scheme不使用与应用于“https”的安全规则相同的安全规则来处理。<br>默认值：true。           |
+| isCspBypassing<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme可以绕过内容安全策略（CSP）检查。<br>true表示设置了该选项的scheme可以绕过内容安全策略（CSP）检查，false表示设置了该选项的scheme不可以绕过内容安全策略（CSP）检查。<br>默认值：true。<br>在大多数情况下，当设置isStandard为true时，不应设置此值。         |
+| isCodeCacheSupported<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme的js资源是否支持生成code cache。<br>true表示设置了该选项的scheme的js资源支持生成code，false表示设置了该选项的scheme的js资源不支持生成code。<br>默认值：false。         |
 
 ## SecureDnsMode<sup>10+</sup>
 
@@ -13510,7 +13568,7 @@ start(downloadPath: string): void
 
 | 参数名 | 类型                   | 必填 | 说明                             |
 | ------ | ---------------------- | ---- | ------------------------------|
-| downloadPath   | string     | 是  | 下载文件的路径(包含文件名)。|
+| downloadPath   | string     | 是  | 下载文件的路径(包含文件名)，路径长度与文件管理中长度一致，最长255字符。 |
 
 **错误码：**
 
@@ -16033,7 +16091,7 @@ handleMutedChanged(muted: boolean): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| muted | boolean | 是 | 当前播放器是否静音。 |
+| muted | boolean | 是 | 当前播放器是否静音。<br>true表示当前播放器静音，false表示当前播放器未静音。 |
 
 **示例：**
 
@@ -16171,7 +16229,7 @@ handleFullscreenChanged(fullscreen: boolean): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| fullscreen | boolean | 是 | 是否全屏。 |
+| fullscreen | boolean | 是 | 是否全屏。<br>true表示全屏，false表示未全屏。 |
 
 **示例：**
 
@@ -16351,7 +16409,7 @@ setMuted(muted: boolean): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| muted | boolean | 是 | 是否静音。 |
+| muted | boolean | 是 | 是否静音。<br>true表示静音，false表示未静音。 |
 
 **示例：**
 
@@ -16512,9 +16570,9 @@ suspendPlayer?(type: SuspendType): void
 | mediaType | [MediaType](#mediatype12) | 是 | 媒体的类型。 |
 | mediaSrcList | [MediaSourceInfo](#mediasourceinfo12)[] | 是 | 媒体的源。可能有多个源，应用需要选择一个支持的源来播放。 |
 | surfaceInfo | [NativeMediaPlayerSurfaceInfo](#nativemediaplayersurfaceinfo12) | 是 | 用于同层渲染的 surface 信息。 |
-| controlsShown | boolean | 是 | `<video>` 或 `<audio>` 中是否有 `controls`属性。 |
+| controlsShown | boolean | 是 | `<video>` 或 `<audio>` 中是否有 `controls`属性。<br>true表示有，false表示没有。 |
 | controlList | string[] | 是 | `<video>` 或 `<audio>` 中的 `controlslist` 属性的值。 |
-| muted | boolean | 是 | 是否要求静音播放。 |
+| muted | boolean | 是 | 是否要求静音播放。<br>true表示静音播放，false表示未静音播放。 |
 | posterUrl | string | 是 | 海报的地址。 |
 | preload | [Preload](#preload12) | 是 | 是否需要预加载。 |
 | headers | Record\<string, string\> | 是 | 播放器请求媒体资源时，需要携带的 HTTP 头。 |
@@ -16623,8 +16681,8 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 
 | 名称 | 类型 | 必填 | 说明 |
 |------|------|------|------|
-| nativeEmbed | boolean | 是 | 是否允许使用同层渲染的页面进入前进后退缓存，默认不允许。如果设置为允许，需要维护为同层渲染元素创建的原生控件的生命周期，避免造成泄漏。 |
-| mediaTakeOver | boolean | 是 | 是否允许使用视频托管的页面进入前进后退缓存，默认不允许。如果设置为允许，需要维护为视频元素创建的原生控件的生命周期，避免造成泄漏。|
+| nativeEmbed | boolean | 是 | 是否允许使用同层渲染的页面进入前进后退缓存。<br>如果设置为允许，需要维护为同层渲染元素创建的系统控件的生命周期，避免造成泄漏。<br>true：允许，false：不允许。<br>默认值：false。 |
+| mediaTakeOver | boolean | 是 | 是否允许使用视频托管的页面进入前进后退缓存。<br>如果设置为允许，需要维护为视频元素创建的系统控件的生命周期，避免造成泄漏。<br>true：允许，false：不允许。<br>默认值：false。|
 
 ### constructor<sup>12+</sup>
 
@@ -16678,11 +16736,16 @@ static setAdsBlockRules(rulesFile: string, replace: boolean): void
 
 **错误码：**
 
+> **说明：**
+>
+> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
 |  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|  801 | Capability not supported. |
 
 **示例：**
 
@@ -16746,11 +16809,16 @@ static addAdsBlockDisallowedList(domainSuffixes: Array\<string\>): void
 
 **错误码：**
 
+> **说明：**
+>
+> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
 |  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|  801 | Capability not supported. |
 
 **示例：**
 
@@ -16823,11 +16891,16 @@ static removeAdsBlockDisallowedList(domainSuffixes: Array\<string\>): void
 
 **错误码：**
 
+> **说明：**
+>
+> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
 |  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|  801 | Capability not supported. |
 
 **示例：**
 
@@ -16887,6 +16960,18 @@ static clearAdsBlockDisallowedList(): void
 清空AdsBlockManager的DisallowedList。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**错误码：**
+
+> **说明：**
+>
+> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+|  801 | Capability not supported. |
 
 **示例：**
 
@@ -16957,11 +17042,16 @@ static addAdsBlockAllowedList(domainSuffixes: Array\<string\>): void
 
 **错误码：**
 
+> **说明：**
+>
+> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
 |  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|  801 | Capability not supported. |
 
 **示例：**
 
@@ -17037,11 +17127,16 @@ static removeAdsBlockAllowedList(domainSuffixes: Array\<string\>): void
 
 **错误码：**
 
+> **说明：**
+>
+> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
 |  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|  801 | Capability not supported. |
 
 **示例：**
 
@@ -17101,6 +17196,18 @@ static clearAdsBlockAllowedList(): void
 清空AdsBlockManager的AllowedList。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**错误码：**
+
+> **说明：**
+>
+> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+|  801 | Capability not supported. |
 
 **示例：**
 
@@ -17219,7 +17326,7 @@ createPdf函数输入参数。
 | marginBottom          | number  | 是   | 下边距。取值范围：[0.0, 页面高度的一半)。如果不在取值范围内，则设置为0.0。单位：英寸。 |
 | marginRight           | number  | 是   | 右边距。取值范围：[0.0, 页面宽度的一半)。如果不在取值范围内，则设置为0.0。单位：英寸。 |
 | marginLeft            | number  | 是   | 左边距。取值范围：[0.0, 页面宽度的一半)。如果不在取值范围内，则设置为0.0。单位：英寸。 |
-| shouldPrintBackground | boolean | 否   | 是否打印背景颜色。默认值：false。                            |
+| shouldPrintBackground | boolean | 否   | true表示打印背景颜色，false表示不打印背景颜色。默认值：false。                            |
 
 ## PdfData<sup>14+</sup>
 

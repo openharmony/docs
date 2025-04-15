@@ -7,9 +7,13 @@
 >
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> 建议使用API version 18的跟踪打点接口，后续跟踪打点接口[startTrace](#hitracemeterstarttrace)、[finishTrace](#hitracemeterfinishtrace)、[traceByValue](#hitracemetertracebyvalue)将逐步废弃。
+> 建议使用API version 18的性能打点接口，后续性能打点接口[startTrace](#hitracemeterstarttrace)、[finishTrace](#hitracemeterfinishtrace)、[traceByValue](#hitracemetertracebyvalue)将逐步废弃。
 >
-> 打点接口[startTrace](#hitracemeterstarttrace)、[finishTrace](#hitracemeterfinishtrace)、[traceByValue](#hitracemetertracebyvalue)无法指定跟踪输出级别，默认均为COMMERCIAL级别跟踪打点。
+> 性能打点接口[startTrace](#hitracemeterstarttrace)、[finishTrace](#hitracemeterfinishtrace)、[traceByValue](#hitracemetertracebyvalue)无法指定跟踪输出级别，默认均为COMMERCIAL级别性能打点。
+>
+> [用户态trace格式](../../dfx/hitracemeter-view.md#用户态trace格式说明)使用竖线 `|` 作为分隔符，所以通过性能打点接口传递的字符串类型参数应避免包含该字符，防止trace解析异常。
+>
+> [用户态trace](../../dfx/hitracemeter-view.md#用户态trace格式说明)总长度限制512字符，超过的部分将会被截断。
 
 ## 导入模块
 
@@ -29,7 +33,7 @@ startTrace(name: string, taskId: number): void
 
 从API version 18开始，建议使用[startAsyncTrace](#hitracemeterstartasynctrace18)接口（需与[finishAsyncTrace](#hitracemeterfinishasynctrace18)接口配套使用），以便分级控制跟踪输出与跟踪聚类。
 
-**系统能力：** SystemCapability.HiviewDFX.HiTrace
+**系统能力**：SystemCapability.HiviewDFX.HiTrace
 
 **参数：**
 
@@ -54,7 +58,7 @@ finishTrace的name和taskId必须与流程开始的[startTrace](#hitracemetersta
 
 从API version 18开始，建议使用[finishAsyncTrace](#hitracemeterfinishasynctrace18)接口（需与[startAsyncTrace](#hitracemeterstartasynctrace18)接口配套使用）。
 
-**系统能力：** SystemCapability.HiviewDFX.HiTrace
+**系统能力**：SystemCapability.HiviewDFX.HiTrace
 
 **参数：**
 
@@ -99,7 +103,7 @@ traceByValue(name: string, count: number): void
 
 从API version 18开始，建议使用[traceByValue<sup>18+</sup>](#hitracemetertracebyvalue18)接口，以便分级控制跟踪输出。
 
-**系统能力：** SystemCapability.HiviewDFX.HiTrace
+**系统能力**：SystemCapability.HiviewDFX.HiTrace
 
 **参数：**
 
@@ -124,9 +128,9 @@ hiTraceMeter.traceByValue("myTestCount", traceCount);
 
 低于系统跟踪输出级别阈值的打点将不会生效。log版本阈值为INFO；nolog版本阈值为COMMERCIAL。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.HiviewDFX.HiTrace
+**系统能力**：SystemCapability.HiviewDFX.HiTrace
 
 | 名称       | 值   | 说明                                    |
 | ---------- | ---- | --------------------------------------- |
@@ -146,19 +150,19 @@ startAsyncTrace(level: HiTraceOutputLevel, name: string, taskId: number, customC
 
 如果具有相同name的任务是串行执行的，则taskId可以相同。具体示例可参考[finishAsyncTrace](#hitracemeterfinishasynctrace18)中的示例。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.HiviewDFX.HiTrace
+**系统能力**：SystemCapability.HiviewDFX.HiTrace
 
 **参数：**
 
 | 参数名         | 类型                                        | 必填 | 说明                                                         |
 | -------------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | level          | [HiTraceOutputLevel](#hitraceoutputlevel18) | 是   | 跟踪输出级别。                                               |
-| name           | string                                      | 是   | 要跟踪的任务名称。该字段长度限制320字符，超过的部分将会被截断。 |
+| name           | string                                      | 是   | 要跟踪的任务名称。                                           |
 | taskId         | number                                      | 是   | 任务id。                                                     |
-| customCategory | string                                      | 是   | 自定义聚类名称，用于聚合同一类异步跟踪打点。该字段长度限制64字符，超过的部分将会被截断。 |
-| customArgs     | string                                      | 否   | 自定义键值对，格式key=value，多个键值对用逗号分隔。<br>不传入该参数等同于传入空字符串。<br>跟踪输出总长度限制512字符，若name和customCategory参数占用过多字符，可能导致customArgs被截断。 |
+| customCategory | string                                      | 是   | 自定义聚类名称，用于聚合同一类异步跟踪打点。                 |
+| customArgs     | string                                      | 否   | 自定义键值对，格式key=value，多个键值对用逗号分隔。<br>不传入该参数等同于传入空字符串。 |
 
 **示例：**
 
@@ -181,17 +185,17 @@ finishAsyncTrace(level: HiTraceOutputLevel, name: string, taskId: number): void
 
 finishAsyncTrace的level、name和taskId必须与流程开始的[startAsyncTrace](#hitracemeterstartasynctrace18)对应参数值一致。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.HiviewDFX.HiTrace
+**系统能力**：SystemCapability.HiviewDFX.HiTrace
 
 **参数：**
 
-| 参数名 | 类型                                        | 必填 | 说明                                                         |
-| ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| level  | [HiTraceOutputLevel](#hitraceoutputlevel18) | 是   | 跟踪输出级别。                                               |
-| name   | string                                      | 是   | 要跟踪的任务名称。该字段长度限制320字符，超过的部分将会被截断。 |
-| taskId | number                                      | 是   | 任务id。                                                     |
+| 参数名 | 类型                                        | 必填 | 说明               |
+| ------ | ------------------------------------------- | ---- | ------------------ |
+| level  | [HiTraceOutputLevel](#hitraceoutputlevel18) | 是   | 跟踪输出级别。     |
+| name   | string                                      | 是   | 要跟踪的任务名称。 |
+| taskId | number                                      | 是   | 任务id。           |
 
 **示例：**
 
@@ -238,17 +242,17 @@ startSyncTrace(level: HiTraceOutputLevel, name: string, customArgs?: string): vo
 
 标记一个同步跟踪耗时任务的开始，分级控制跟踪输出。具体示例可参考[finishSyncTrace](#hitracemeterfinishsynctrace18)中的示例。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.HiviewDFX.HiTrace
+**系统能力**：SystemCapability.HiviewDFX.HiTrace
 
 **参数：**
 
 | 参数名     | 类型                                        | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | level      | [HiTraceOutputLevel](#hitraceoutputlevel18) | 是   | 跟踪输出级别。                                               |
-| name       | string                                      | 是   | 要跟踪的任务名称。该字段长度限制320字符，超过的部分将会被截断。 |
-| customArgs | string                                      | 否   | 键值对，格式key=value，多个键值对用逗号分隔。<br>不传入该参数等同于传入空字符串。<br/>跟踪输出总长度限制512字符，若name参数占用过多字符，可能导致customArgs被截断。 |
+| name       | string                                      | 是   | 要跟踪的任务名称。                                           |
+| customArgs | string                                      | 否   | 键值对，格式key=value，多个键值对用逗号分隔。<br>不传入该参数等同于传入空字符串。 |
 
 **示例：**
 
@@ -270,9 +274,9 @@ finishSyncTrace(level: HiTraceOutputLevel): void
 
 finishSyncTrace的level必须与流程开始的[startSyncTrace](#hitracemeterstartsynctrace18)对应参数值一致。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.HiviewDFX.HiTrace
+**系统能力**：SystemCapability.HiviewDFX.HiTrace
 
 **参数：**
 
@@ -309,17 +313,17 @@ traceByValue(level: HiTraceOutputLevel, name: string, count: number): void
 
 整数跟踪事件，分级控制跟踪输出。用来标记一个预跟踪的整数变量名及整数值。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.HiviewDFX.HiTrace
+**系统能力**：SystemCapability.HiviewDFX.HiTrace
 
 **参数：**
 
-| 参数名 | 类型                                        | 必填 | 说明                                                         |
-| ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| level  | [HiTraceOutputLevel](#hitraceoutputlevel18) | 是   | 跟踪输出级别。                                               |
-| name   | string                                      | 是   | 要跟踪的整数变量名称。该字段长度限制320字符，超过的部分将会被截断。 |
-| count  | number                                      | 是   | 整数变量的值。                                               |
+| 参数名 | 类型                                        | 必填 | 说明                   |
+| ------ | ------------------------------------------- | ---- | ---------------------- |
+| level  | [HiTraceOutputLevel](#hitraceoutputlevel18) | 是   | 跟踪输出级别。         |
+| name   | string                                      | 是   | 要跟踪的整数变量名称。 |
+| count  | number                                      | 是   | 整数变量的值。         |
 
 **示例：**
 
@@ -340,9 +344,9 @@ isTraceEnabled(): boolean
 
 开发者可使用[hitrace](../../dfx/hitrace.md)命令行工具开启或关闭应用trace捕获。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.HiviewDFX.HiTrace
+**系统能力**：SystemCapability.HiviewDFX.HiTrace
 
 **返回值：**
 

@@ -334,25 +334,26 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 枚举，设备类型。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
 | 名称                 | 值     | 说明                                                      |
 | ---------------------| ------ | --------------------------------------------------------- |
-| INVALID              | 0      | 无效设备。                                                |
-| EARPIECE             | 1      | 听筒。                                                    |
-| SPEAKER              | 2      | 扬声器。                                                  |
-| WIRED_HEADSET        | 3      | 有线耳机，带麦克风。                                      |
-| WIRED_HEADPHONES     | 4      | 有线耳机，无麦克风。                                      |
-| BLUETOOTH_SCO        | 7      | 蓝牙设备SCO（Synchronous Connection Oriented）连接。      |
-| BLUETOOTH_A2DP       | 8      | 蓝牙设备A2DP（Advanced Audio Distribution Profile）连接。 |
-| MIC                  | 15     | 麦克风。                                                  |
-| USB_HEADSET          | 22     | USB耳机，带麦克风。                                       |
-| DISPLAY_PORT<sup>12+</sup>        | 23     | DisplayPort（显示接口，简称DP），用于外接扩展设备。           |
-| REMOTE_CAST<sup>12+</sup>        | 24     | 音频被系统应用投送到其他远程的设备。           |
+| INVALID              | 0      | 无效设备。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| EARPIECE             | 1      | 听筒。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| SPEAKER              | 2      | 扬声器。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| WIRED_HEADSET        | 3      | 有线耳机，带麦克风。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| WIRED_HEADPHONES     | 4      | 有线耳机，无麦克风。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| BLUETOOTH_SCO        | 7      | 蓝牙设备SCO（Synchronous Connection Oriented）连接。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| BLUETOOTH_A2DP       | 8      | 蓝牙设备A2DP（Advanced Audio Distribution Profile）连接。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| MIC                  | 15     | 麦克风。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| USB_HEADSET          | 22     | USB耳机，带麦克风。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| DISPLAY_PORT<sup>12+</sup>        | 23     | DisplayPort（显示接口，简称DP），用于外接扩展设备。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| REMOTE_CAST<sup>12+</sup>        | 24     | 音频被系统应用投送到其他远程的设备。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | USB_DEVICE<sup>18+</sup>        | 25 | USB设备（不包含USB耳机）。           |
-| DEFAULT<sup>9+</sup> | 1000   | 默认设备类型。                                            |
+| HDMI<sup>19+</sup>        | 27 | HDMI设备（例如HDMI、ARC、eARC等）。           |
+| LINE_DIGITAL<sup>19+</sup>        | 28 | 有线数字设备（例如S/PDIF等）。           |
+| REMOTE_DAUDIO<sup>18+</sup>        | 29 | 分布式设备。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| DEFAULT<sup>9+</sup> | 1000   | 默认设备类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## CommunicationDeviceType<sup>9+</sup>
 
@@ -1965,7 +1966,7 @@ setDeviceActive(deviceType: ActiveDeviceType, active: boolean, callback: AsyncCa
 | 参数名     | 类型                                  | 必填 | 说明          |
 | ---------- | ------------------------------------- | ---- |-------------|
 | deviceType | [ActiveDeviceType](#activedevicetypedeprecated) | 是   | 活跃音频设备类型。   |
-| active     | boolean                               | 是   | 设备激活状态。     |
+| active     | boolean                               | 是   | 表示设备是否为激活状态。true表示已激活，false表示未激活。 |
 | callback   | AsyncCallback&lt;void&gt;             | 是   | 回调函数。当设置设备激活状态成功，err为undefined，否则为错误对象。 |
 
 **示例：**
@@ -1998,7 +1999,7 @@ setDeviceActive(deviceType: ActiveDeviceType, active: boolean): Promise&lt;void&
 | 参数名     | 类型                                  | 必填 | 说明               |
 | ---------- | ------------------------------------- | ---- | ------------------ |
 | deviceType | [ActiveDeviceType](#activedevicetypedeprecated) | 是   | 活跃音频设备类型。 |
-| active     | boolean                               | 是   | 设备激活状态。     |
+| active     | boolean                               | 是   | 表示设备是否为激活状态。true表示已激活，false表示未激活。 |
 
 **返回值：**
 
@@ -5787,7 +5788,7 @@ type AudioDeviceDescriptors = Array&lt;Readonly&lt;AudioDeviceDescriptor&gt;&gt;
 | channelMasks<sup>9+</sup>     | Array&lt;number&gt;        | 是   | 否   | 支持的通道掩码。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device|
 | displayName<sup>10+</sup>     | string                     | 是   | 否   | 设备显示名。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device|
 | encodingTypes<sup>11+</sup>    | Array&lt;[AudioEncodingType](#audioencodingtype8)&gt;                     | 是   | 否   | 支持的编码类型。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Core|
-| spatializationSupported<sup>18+</sup>     | boolean                     | 是   | 否   | 空间音频支持能力。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Spatialization|
+| spatializationSupported<sup>18+</sup>     | boolean                     | 是   | 否   | 表示设备是否支持空间音频。true表示支持空间音频，false表示不支持空间音频。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Spatialization|
 
 **示例：**
 

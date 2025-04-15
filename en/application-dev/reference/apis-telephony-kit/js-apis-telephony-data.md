@@ -2,9 +2,9 @@
 
 The **data** module provides basic mobile data management functions. You can obtain the default slot of the SIM card used for mobile data, and obtain the uplink and downlink connection status of cellular data services and connection status of the packet switched (PS) domain. Besides, you can check whether cellular data services and data roaming are enabled.
 
->**NOTE**
+> **NOTE**
 >
->The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -24,7 +24,7 @@ Obtains the default slot of the SIM card used for mobile data. This API uses an 
 
 | Name  | Type                   | Mandatory| Description                                      |
 | -------- | ----------------------- | ---- | ------------------------------------------ |
-| callback | AsyncCallback\<number\> | Yes  | Callback used to return the result.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| callback | AsyncCallback\<number\> | Yes  | Callback used to return the result.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 
 **Example**
 
@@ -53,7 +53,7 @@ Obtains the default slot of the SIM card used for mobile data. This API uses a p
 
 | Type             | Description                                                        |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<number\> | Promise used to return the result.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| Promise\<number\> | Promise used to return the result.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 
 **Example**
 
@@ -80,7 +80,7 @@ Card slot ID.
 
 | Type             | Description                                                        |
 | ------ | -------------------------------------------------- |
-| number | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| number | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 
 **Example**
 
@@ -221,7 +221,7 @@ Checks whether the cellular data service is enabled. This API uses an asynchrono
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -265,7 +265,7 @@ Checks whether the cellular data service is enabled. This API uses a promise to 
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -305,7 +305,7 @@ Checks whether the cellular data service is enabled. This API returns the result
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -343,12 +343,12 @@ Checks whether roaming is enabled for the cellular data service. This API uses a
 
 | Name  | Type                    | Mandatory| Description                                                        |
 | -------- | ------------------------ | ---- | ------------------------------------------------------------ |
-| slotId   | number                   | Yes  | Card slot ID.<br>**0**: card slot 1.<br>**1**: card slot 2.                    |
+| slotId   | number                   | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2                    |
 | callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.<br>**true**: Roaming is enabled for the cellular data service.<br>**false**: Roaming is disabled for the cellular data service.|
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -388,7 +388,7 @@ Checks whether roaming is enabled for the cellular data service. This API uses a
 
 | Name| Type  | Mandatory| Description                                    |
 | ------ | ------ | ---- | ---------------------------------------- |
-| slotId | number | Yes  | Card slot ID.<br>**0**: card slot 1.<br>**1**: card slot 2.|
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 
 **Return value**
 
@@ -398,7 +398,7 @@ Checks whether roaming is enabled for the cellular data service. This API uses a
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -436,7 +436,7 @@ Checks whether roaming is enabled for the cellular data service. This API return
 
 | Name| Type  | Mandatory| Description                                    |
 | ------ | ------ | ---- | ---------------------------------------- |
-| slotId | number | Yes  | Card slot ID.<br>**0**: card slot 1.<br>**1**: card slot 2.|
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 
 **Return value**
 
@@ -446,12 +446,12 @@ Checks whether roaming is enabled for the cellular data service. This API return
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 8300001  | Invalid parameter value.                                     |
 | 8300002  | Operation failed. Cannot connect to service.                 |
 | 8300003  | System internal error.                                       |
@@ -494,6 +494,127 @@ import { data } from '@kit.TelephonyKit';
 console.log("Result: "+ data.getDefaultCellularDataSimId());
 ```
 
+## data.queryAllApns<sup>16+</sup>
+
+queryAllApns(): Promise\<Array\<ApnInfo\>\>
+
+Obtains the access point name (APN) of the default SIM card used for mobile data.
+
+**Required permissions**: ohos.permission.MANAGE_APN_SETTING
+
+**System capability**: SystemCapability.Telephony.CellularData
+
+**Return value**
+
+| Type             | Description                                        |
+| ------ |--------------------------------------------|
+| Promise\<Array\<ApnInfo\>\> | APN list of the default SIM card used for mobile data.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+
+**Example**
+
+```ts
+import { data } from '@kit.TelephonyKit';
+
+data.queryAllApns().then((data: Array<data.ApnInfo>) => {
+    console.info(`queryAllApns success, promise: data->${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+    console.error(`queryAllApns failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## data.queryApnIds<sup>16+</sup>
+
+queryApnIds(apnInfo: ApnInfo): Promise\<Array\<number\>\>
+
+Obtains the APN ID corresponding to the specified **ApnInfo**.
+
+**Required permissions**: ohos.permission.MANAGE_APN_SETTING
+
+**System capability**: SystemCapability.Telephony.CellularData
+
+**Return value**
+
+| Type             | Description                         |
+| ------ |-----------------------------|
+| Promise\<Array\<number\>\> | List of APN IDs corresponding to the specified **ApnInfo**.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+
+**Example**
+
+```ts
+import { data } from '@kit.TelephonyKit';
+
+let apnInfo: data.ApnInfo;
+apnInfo = {
+  apnName: "CMNET",
+  apn: "cmnet",
+  mcc: "460",
+  mnc: "07",
+};
+
+data.queryApnIds(apnInfo).then((data: Array<number>) => {
+    console.info(`queryApnIds success, promise: data->${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+    console.error(`queryApnIds failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## data.setPreferredApn<sup>16+</sup>
+
+setPreferredApn(apnId: number): Promise\<boolean\>
+
+Sets the APN indicated by the specified APN ID as the preferred APN.
+
+> **NOTE**
+>
+> If the input APN ID is invalid, the default preferred APN configured by the carrier is used.
+
+**Required permissions**: ohos.permission.MANAGE_APN_SETTING
+
+**System capability**: SystemCapability.Telephony.CellularData
+
+**Return value**
+
+| Type             | Description                    |
+| ------ |------------------------|
+| Promise\<boolean\> | Promise used to return the result, which is **false** if no SIM card is inserted.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+
+**Example**
+
+```ts
+import { data } from '@kit.TelephonyKit';
+
+let apnId: number = 0; // apnId is a valid value returned by queryApnIds. If an invalid APN ID is passed to setPreferredApn, the default preferred APN configured by the carrier is used.
+data.setPreferredApn(apnId).then((data: boolean) => {
+    console.info(`setPreferredApn success, promise: data->${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+    console.error(`setPreferredApn failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
 ## DataFlowType
 
 Defines the cellular data flow type.
@@ -521,3 +642,20 @@ Describes the connection status of a cellular data link.
 | DATA_STATE_CONNECTING   | 1    | The cellular data link is being connected.|
 | DATA_STATE_CONNECTED    | 2    | The cellular data link is connected.  |
 | DATA_STATE_SUSPENDED    | 3    | The cellular data link is suspended.  |
+
+## ApnInfo<sup>16+</sup>
+
+Defines the APN information.
+
+**System capability**: SystemCapability.Telephony.CellularData
+
+| Name      | Type     | Read-Only   |  Optional     | Description        |
+|------------|----------|---------|------------|-------------|
+| apnName   | string     | No     | No        | APN name.   |
+| apn       | string     | No     | No        | APN.       |
+| mcc       | string     | No     | No        | Mobile country code (MCC) of the SIM card.|
+| mnc       | string     | No     | No        | Mobile network code (MNC) of the SIM card.|
+| user      | string     | No     | Yes        | User name.    |
+| type      | string     | No     | Yes        | APN type.   |
+| proxy     | string     | No     | Yes        | Proxy address.  |
+| mmsproxy  | string     | No     | Yes        | Multimedia messaging service (MMS) proxy.  |

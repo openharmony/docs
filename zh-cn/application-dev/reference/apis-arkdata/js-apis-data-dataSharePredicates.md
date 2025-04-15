@@ -149,8 +149,8 @@ limit(total: number, offset: number): DataSharePredicates
 
 | 参数名   | 类型   | 必填 | 说明           |
 | -------- | ------ | ---- | -------------- |
-| total    | number | 是   | 指定结果数。   |
-| offset | number | 是   | 指示起始位置。 |
+| total    | number | 是   | 指定结果数，取值为正整数。传入值小于等于0时，不会限制记录数量。   |
+| offset | number | 是   | 指示起始位置，取值为正整数。传入值小于等于0时，查询结果将从第一个元素位置返回。 |
 
 **返回值：**
 

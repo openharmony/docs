@@ -18,6 +18,8 @@
 
 ListItem(value?: ListItemOptions)
 
+创建ListItem组件。
+
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -28,13 +30,15 @@ ListItem(value?: ListItemOptions)
 
 | 参数名 | 类型                                      | 必填 | 说明                                                     |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ListItemOptions](#listitemoptions10对象说明) | 否   | 为ListItem提供可选参数, 该对象内含有ListItemStyle枚举类型的style参数。 |
+| value  | [ListItemOptions](#listitemoptions10对象说明) | 否   | 为ListItem提供可选参数，该对象内含有ListItemStyle枚举类型的style参数。 |
 
 ### ListItem<sup>(deprecated)</sup>
 
 ListItem(value?: string)
 
-从API version 10开始, 该接口不再维护，推荐使用[ListItem<sup>10+</sup>](#listitem10)。
+创建ListItem组件。
+
+从API version 10开始，该接口不再维护，推荐使用[ListItem<sup>10+</sup>](#listitem10)。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -98,7 +102,7 @@ selectable(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                              |
 | ------ | ------- | ---- | ------------------------------------------------- |
-| value  | boolean | 是   | ListItem元素是否可以被鼠标框选。<br/>默认值：true |
+| value  | boolean | 是   | ListItem元素是否可以被鼠标框选。设置为true时可以被鼠标框选，设置为false时无法被鼠标框选。<br/>默认值：true |
 
 ### selected<sup>10+</sup>
 
@@ -116,7 +120,7 @@ selected(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                     |
 | ------ | ------- | ---- | ---------------------------------------- |
-| value  | boolean | 是   | 当前ListItem选中状态。<br/>默认值：false |
+| value  | boolean | 是   | 当前ListItem选中状态。设置为true时为选中状态，设置为false时为默认状态。<br/>默认值：false |
 
 ### swipeAction<sup>9+</sup>
 
@@ -135,6 +139,9 @@ swipeAction(value: SwipeActionOptions)
 | value  | [SwipeActionOptions](#swipeactionoptions9对象说明) | 是   | ListItem的划出组件。 |
 
 ## Sticky<sup>(deprecated)</sup>枚举说明
+
+ListItem吸顶效果枚举。
+
 从API version9开始废弃不再使用，推荐使用[List组件stickyStyle枚举](ts-container-list.md#stickystyle9枚举说明)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -146,6 +153,9 @@ swipeAction(value: SwipeActionOptions)
 | Opacity |  2  | 当前item吸顶显示透明度变化效果。 |
 
 ## EditMode<sup>(deprecated)</sup>枚举说明
+
+ListItem元素编辑模式枚举。
+
 从API version9开始废弃不再使用，无替代接口。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -157,6 +167,8 @@ swipeAction(value: SwipeActionOptions)
 | Movable |  2  | 可移动。 |
 
 ## SwipeEdgeEffect<sup>9+</sup>枚举说明
+
+滑动效果枚举。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -200,15 +212,19 @@ List垂直布局，ListItem向右滑动，item左边的长距离滑动删除选�
 | onStateChange<sup>11+</sup> | (state:[SwipeActionState](#swipeactionstate11枚举说明)) => void | 否 |当列表项滑动状态变化时候触发。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 ## ListItemOptions<sup>10+</sup>对象说明
 
+ListItem组件参数。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称  | 类型                                  | 必填 | 说明                                                         |
 | ----- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| style | [ListItemStyle](#listitemstyle10枚举说明) | 否   | 设置List组件卡片样式。<br/>默认值: ListItemStyle.NONE<br/>设置为ListItemStyle.NONE时无样式。<br/>设置为ListItemStyle.CARD时，建议配合[ListItemGroup](ts-container-listitemgroup.md)的ListItemGroupStyle.CARD同时使用，显示默认卡片样式。  <br/>卡片样式下，ListItem默认规格：高度48vp，宽度100%，左右内边距8vp。如果需要实现ListItem高度自适应，可以把height设置为undefined。<br/>卡片样式下, 为卡片内的列表选项提供了默认的focus、hover、press、selected和disable样式。<br/>**说明：**<br/>当前卡片模式下，使用默认Axis.Vertical排列方向，如果listDirection属性设置为Axis.Horizontal，会导致显示混乱；List属性alignListItem默认为ListItemAlign.Center，居中对齐显示。 |
+| style | [ListItemStyle](#listitemstyle10枚举说明) | 否   | 设置List组件卡片样式。<br/>默认值：ListItemStyle.NONE<br/>设置为ListItemStyle.NONE时无样式。<br/>设置为ListItemStyle.CARD时，建议配合[ListItemGroup](ts-container-listitemgroup.md)的ListItemGroupStyle.CARD同时使用，显示默认卡片样式。  <br/>卡片样式下，ListItem默认规格：高度48vp，宽度100%，左右内边距8vp。如果需要实现ListItem高度自适应，可以把height设置为undefined。<br/>卡片样式下，为卡片内的列表选项提供了默认的focus、hover、press、selected和disable样式。<br/>**说明：**<br/>当前卡片模式下，使用默认Axis.Vertical排列方向，如果listDirection属性设置为Axis.Horizontal，会导致显示混乱；List属性alignListItem默认为ListItemAlign.Center，居中对齐显示。 |
 
 ## ListItemStyle<sup>10+</sup>枚举说明
+
+List组件卡片样式枚举。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -221,6 +237,8 @@ List垂直布局，ListItem向右滑动，item左边的长距离滑动删除选�
 
 ## SwipeActionState<sup>11+</sup>枚举说明
 
+列表项滑动状态枚举。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -229,7 +247,7 @@ List垂直布局，ListItem向右滑动，item左边的长距离滑动删除选�
 | --------- | --------- | ------------------------------------------------------------ |
 | COLLAPSED | 0 | 收起状态，当ListItem向左或向右滑动（当列表方向为“垂直”时），<br/>向上或向下滑动（当列方向为“水平”时）时操作项处于隐藏状态。 |
 | EXPANDED  | 1 | 展开状态，当ListItem向左或向右滑动（当列表方向为“垂直”时），<br/>向上或向下滑动（当列方向为“水平”时）时操作项处于显示状态。<br/>**说明：**<br/>需要ListItem设置向左或向右滑动（当列表方向为“垂直”时），<br/>向上或向下滑动（当列方向为“水平”时）时显示的操作项。 |
-| ACTIONING | 2 | 长距离状态，当ListItem进入长距删除区后删除ListItem的状态。<br/>**说明**:<br/>滑动后松手的位置超过或等于设置的距离阈值，并且设置的距离阈值有效时才能进入该状态。 |
+| ACTIONING | 2 | 长距离状态，当ListItem进入长距删除区后删除ListItem的状态。<br/>**说明**：<br/>滑动后松手的位置超过或等于设置的距离阈值，并且设置的距离阈值有效时才能进入该状态。 |
 
 ## 事件
 
@@ -326,7 +344,7 @@ struct ListItemExample2 {
             end: {
               builder: () => { this.itemEnd() },
               onAction: () => {
-                animateTo({ duration: 1000 }, () => {
+                this.getUIContext()?.animateTo({ duration: 1000 }, () => {
                   let index = this.arr.indexOf(item)
                   this.arr.splice(index, 1)
                 })
@@ -458,7 +476,7 @@ struct MyListItem {
       end: {
         builderComponent: this.GetEndBuilder(),
         onAction: () => {
-          animateTo({ duration: 1000 }, () => {
+          this.getUIContext()?.animateTo({ duration: 1000 }, () => {
             let index = this.arr.indexOf(this.project)
             this.arr.splice(index, 1)
           })
@@ -468,7 +486,7 @@ struct MyListItem {
       start: {
         builderComponent: this.GetStartBuilder(),
         onAction: () => {
-          animateTo({ duration: 1000 }, () => {
+          this.getUIContext()?.animateTo({ duration: 1000 }, () => {
             let index = this.arr.indexOf(this.project)
             this.arr.splice(index, 1)
           })

@@ -5,8 +5,8 @@ ArkTS侧支持的基本数据类型：number、string、二进制类型数据、
 
 该模块提供以下关系型数据库相关的常用功能：
 
-- [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates)： 数据库中用来代表数据实体的性质、特征或者数据实体之间关系的词项，主要用来定义数据库的操作条件。
-- [RdbStore](#rdbstore)：提供管理关系数据库(RDB)方法的接口。
+- [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates)：数据库中用来代表数据实体的性质、特征或者数据实体之间关系的词项，主要用来定义数据库的操作条件。
+- [RdbStore](#rdbstore)：提供管理关系数据库（RDB）方法的接口。
 - [ResultSet](js-apis-data-relationalStore.md#resultset)：提供用户调用关系型数据库查询接口之后返回的结果集合。
 
 > **说明：**
@@ -154,14 +154,14 @@ const valueBucket3: ValuesBucket = {
 
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).update("EMPLOYEE", valueBucket1, predicates, (err, rows) => {
     if (err) {
       console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info(`Updated row count: ${rows}`);
-  })
+  });
 }
 ```
 
@@ -253,12 +253,12 @@ const valueBucket3: ValuesBucket = {
 
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).update("EMPLOYEE", valueBucket1, predicates).then(async (rows: Number) => {
     console.info(`Updated row count: ${rows}`);
   }).catch((err: BusinessError) => {
     console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -278,9 +278,9 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates, callb
 
 | 参数名     | 类型                                                         | 必填 | 说明                                          |
 | ---------- | ------------------------------------------------------------ | ---- | --------------------------------------------- |
-| table      | string                                                       | 是   | 指定的目标表名。                              |
+| table      | string                                                       | 是   | 指定的目标表名，不能为空字符串。              |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | DataSharePredicates的实例对象指定的删除条件。 |
-| callback   | AsyncCallback&lt;number&gt;                                  | 是   | 指定callback回调函数。返回受影响的行数。      |
+| callback   | AsyncCallback&lt;number&gt;                                  | 是   | 指定callback回调函数。返回受影响的行数量。 |
 
 **错误码：**
 
@@ -317,14 +317,14 @@ import { dataSharePredicates } from '@kit.ArkData';
 
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).delete("EMPLOYEE", predicates, (err, rows) => {
     if (err) {
       console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info(`Delete rows: ${rows}`);
-  })
+  });
 }
 ```
 
@@ -389,12 +389,12 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).delete("EMPLOYEE", predicates).then((rows: Number) => {
     console.info(`Delete rows: ${rows}`);
   }).catch((err: BusinessError) => {
     console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -437,7 +437,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Rose");
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).query("EMPLOYEE", predicates, (err, resultSet) => {
     if (err) {
       console.error(`Query failed, code is ${err.code},message is ${err.message}`);
@@ -454,7 +454,7 @@ if(store != undefined) {
     }
     // 释放数据集的内存
     resultSet.close();
-  })
+  });
 }
 ```
 
@@ -498,7 +498,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Rose");
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], (err, resultSet) => {
     if (err) {
       console.error(`Query failed, code is ${err.code},message is ${err.message}`);
@@ -515,7 +515,7 @@ if(store != undefined) {
     }
     // 释放数据集的内存
     resultSet.close();
-  })
+  });
 }
 ```
 
@@ -565,7 +565,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Rose");
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet: relationalStore.ResultSet) => {
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
@@ -580,7 +580,7 @@ if(store != undefined) {
     resultSet.close();
   }).catch((err: BusinessError) => {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -626,15 +626,15 @@ cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;Progr
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.in("id", ["id1", "id2"]);
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
     console.info(`progress: ${progressDetail}`);
-   }, (err) => {
-     if (err) {
-       console.error(`cloudSync failed, code is ${err.code},message is ${err.message}}`);
-       return;
-     }
-     console.info('Cloud sync succeeded');
+  }, (err) => {
+    if (err) {
+      console.error(`cloudSync failed, code is ${err.code},message is ${err.message}}`);
+      return;
+    }
+    console.info('Cloud sync succeeded');
   });
 };
 ```
@@ -643,26 +643,26 @@ if(store != undefined) {
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-let asset : relationalStore.Asset = {
+let asset: relationalStore.Asset = {
   name: "name",
   uri: "uri",
   path: "path",
   createTime: new Date().getTime().toString(),
   modifyTime: new Date().getTime().toString(),
   size: "1024"
-}
+};
 // 谓词条件中指定主键和资产，asset为数据库的资产列
 predicates.beginWrap().equalTo("id", "id1").and().equalTo("asset", asset).endWrap();
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
     console.info(`progress: ${progressDetail}`);
-   }, (err) => {
-     if (err) {
-       console.error(`cloud sync failed, code is ${err.code},message is ${err.message}}`);
-       return;
-     }
-     console.info('cloud sync succeeded');
+  }, (err) => {
+    if (err) {
+      console.error(`cloud sync failed, code is ${err.code},message is ${err.message}}`);
+      return;
+    }
+    console.info('cloud sync succeeded');
   });
 };
 ```
@@ -716,7 +716,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.in("id", ["id1", "id2"]);
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
     console.info(`progress: ${progressDetail}`);
   }).then(() => {
@@ -731,21 +731,21 @@ if(store != undefined) {
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-let asset : relationalStore.Asset = {
+let asset: relationalStore.Asset = {
   name: "name",
   uri: "uri",
   path: "path",
   createTime: new Date().getTime().toString(),
   modifyTime: new Date().getTime().toString(),
   size: "1024"
-}
+};
 // 谓词条件中指定主键和资产，asset为数据库的资产列
 predicates.beginWrap().equalTo("id", "id1").and().equalTo("asset", asset).endWrap();
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
     console.info(`progress: ${progressDetail}`);
-   }).then(() => {
+  }).then(() => {
     console.info('Cloud sync succeeded');
   }).catch((err: BusinessError) => {
     console.error(`cloudSync failed, code is ${err.code},message is ${err.message}}`);
@@ -757,7 +757,7 @@ if(store != undefined) {
 
 querySharingResource(predicates: RdbPredicates, columns?: Array&lt;string&gt;): Promise&lt;ResultSet&gt;
 
-根据谓词条件匹配的数据记录查找对应记录的共享资源标识，返回查找的结果集。 如果指定了列字段，则返回结果集中同时包含对应列的字段值，使用Promise异步回调。
+根据谓词条件匹配的数据记录查找对应记录的共享资源标识，返回查找的结果集。如果指定了列字段，则返回结果集中同时包含对应列的字段值，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -811,7 +811,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let sharingResource: string;
 let predicates = new relationalStore.RdbPredicates('test_table');
 predicates.equalTo('data', 'data_test');
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).querySharingResource(predicates, ['uuid', 'data']).then((resultSet) => {
     if (!resultSet.goToFirstRow()) {
       console.error(`resultSet error`);
@@ -822,9 +822,8 @@ if(store != undefined) {
     sharingResource = res;
   }).catch((err: BusinessError) => {
     console.error(`query sharing resource failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
-
 ```
 
 ### querySharingResource<sup>11+</sup>
@@ -878,8 +877,8 @@ querySharingResource(predicates: RdbPredicates, callback: AsyncCallback&lt;Resul
 let sharingResource: string;
 let predicates = new relationalStore.RdbPredicates('test_table');
 predicates.equalTo('data', 'data_test');
-if(store != undefined) {
-  (store as relationalStore.RdbStore).querySharingResource(predicates,(err, resultSet) => {
+if (store != undefined) {
+  (store as relationalStore.RdbStore).querySharingResource(predicates, (err, resultSet) => {
     if (err) {
       console.error(`sharing resource failed, code is ${err.code},message is ${err.message}`);
       return;
@@ -891,9 +890,8 @@ if(store != undefined) {
     const res = resultSet.getString(resultSet.getColumnIndex(relationalStore.Field.SHARING_RESOURCE_FIELD));
     console.info(`sharing resource: ${res}`);
     sharingResource = res;
-  })
+  });
 }
-
 ```
 
 ### querySharingResource<sup>11+</sup>
@@ -948,7 +946,7 @@ querySharingResource(predicates: RdbPredicates, columns: Array&lt;string&gt;, ca
 let sharingResource: string;
 let predicates = new relationalStore.RdbPredicates('test_table');
 predicates.equalTo('data', 'data_test');
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).querySharingResource(predicates, ['uuid', 'data'], (err, resultSet) => {
     if (err) {
       console.error(`sharing resource failed, code is ${err.code},message is ${err.message}`);
@@ -961,9 +959,8 @@ if(store != undefined) {
     const res = resultSet.getString(resultSet.getColumnIndex(relationalStore.Field.SHARING_RESOURCE_FIELD));
     console.info(`sharing resource: ${res}`);
     sharingResource = res;
-  })
+  });
 }
-
 ```
 
 
@@ -1000,12 +997,12 @@ lockCloudContainer(): Promise&lt;number&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).lockCloudContainer().then((time: Number) => {
     console.info('lockCloudContainer succeeded time:' + time);
   }).catch((err: BusinessError) => {
     console.error(`lockCloudContainer failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -1038,12 +1035,12 @@ unlockCloudContainer(): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).unlockCloudContainer().then(() => {
     console.info('unlockCloudContainer succeeded');
   }).catch((err: BusinessError) => {
     console.error(`unlockCloudContainer failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -1096,13 +1093,13 @@ restore(): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let store: relationalStore.RdbStore | undefined = undefined;
-if(store != undefined) {
+if (store != undefined) {
   let promiseRestore = (store as relationalStore.RdbStore).restore();
   promiseRestore.then(() => {
     console.info('Succeeded in restoring.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to restore, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -1160,7 +1157,7 @@ getFloat32Array(columnIndex: number): Float32Array
 
 ```ts
 let resultSet: relationalStore.ResultSet | undefined;
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   const id = (resultSet as relationalStore.ResultSet).getFloat32Array(0);
 }
 ```

@@ -7,6 +7,7 @@ A virtual private network (VPN) is a dedicated network established on a public n
 OpenHarmony provides the VPN Extension solution for enhanced VPN management. The following guides you through on how to develop your own VPN client.
 
 > **NOTE**
+>
 > To maximize the application running efficiency, all APIs are called asynchronously in callback or promise mode. The following code examples use the promise mode. For details about the APIs, see [API Reference](../reference/apis-network-kit/js-apis-net-vpnExtension.md).
 
 ## VPN Extension Ability UI
@@ -41,10 +42,14 @@ To enable your application to support the VPN functionality, you need to create 
 ]
 ```
 
+> **NOTE**
+>
+> If the DevEco Studio tool displays a message indicating unrecognizable **"type": "vpn"**, you need to manually add **vpn** to the **type** enums corresponding to **extensionAbilities** in the **toolchains\modulecheck\module.json** file of the SDK and clear the build cache.
+
 Next, you need to configure, start, and stop the VPN in the created **VpnExtensionAbility**.
 
-- Establish a VPN tunnel. The following uses the UDP tunnel as an example.
-- Use [VpnConnection.protect](../reference/apis-network-kit/js-apis-net-vpnExtension.md#protect) to enable protection for the UDP tunnel.
+- Create a VPN tunnel. The TCP tunnel is used as an example. For details, see **TcpConnect()** in [vpn_client](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Connectivity/VPN/entry/src/main/cpp/vpn_client.cpp) demo project.
+- Use [VpnConnection.protect](../reference/apis-network-kit/js-apis-net-vpnExtension.md#protect) to enable protection for the TCP tunnel.
 - Construct VPN Config parameters. For details, see [VPN Config Parameters](#description-of-vpn-config-parameters).
 - Use [VpnConnection.create](../reference/apis-network-kit/js-apis-net-vpnExtension.md#create) to establish a VPN connection.
 - Process data of the virtual network interface card (vNIC), such as reading or writing data.

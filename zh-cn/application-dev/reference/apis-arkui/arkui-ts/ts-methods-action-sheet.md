@@ -4,29 +4,9 @@
 
 >  **说明：**
 >
->  从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](../js-apis-arkui-UIContext.md#uicontext)说明。
->
-> 从API version 10开始，可以通过使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showActionSheet](../js-apis-arkui-UIContext.md#showactionsheet)来明确UI的执行上下文。
-
-## ActionSheet
-
-### show
-
-static show(value: ActionSheetOptions)
-
-定义列表弹窗并弹出。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型                                              | 必填 | 说明                     |
-| ------ | ------------------------------------------------- | ---- | ------------------------ |
-| value  | [ActionSheetOptions](#actionsheetoptions对象说明) | 是   | 配置列表选择弹窗的参数。 |
 
 ## ActionSheetOptions对象说明
 
@@ -39,7 +19,7 @@ static show(value: ActionSheetOptions)
 | message    | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是     | 弹窗内容。<br/>文本超长时会触发滚动条。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | autoCancel | boolean                           | 否     | 点击遮障层时，是否关闭弹窗。<br>默认值：true<br>值为true时，点击遮障层关闭弹窗，值为false时，点击遮障层不关闭弹窗。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | confirm    | [ActionSheetButtonOptions](#actionsheetbuttonoptions18对象说明) | 否  | 确认Button的使能状态、默认焦点、按钮风格、文本内容和点击回调。在弹窗获焦且未进行tab键走焦时，该按钮默认响应Enter键，且多重弹窗可自动获焦连续响应。默认响应Enter键能力在defaultFocus为true时不生效。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| cancel     | ()&nbsp;=&gt;&nbsp;void           | 否     | 点击遮障层关闭dialog时的回调。  <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| cancel     | [VoidCallback](ts-types.md#voidcallback12) | 否     | 点击遮障层关闭dialog时的回调。  <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | alignment  | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment枚举说明) | 否     |  弹窗在竖直方向上的对齐方式。<br>默认值：DialogAlignment.Bottom  <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**说明**：<br/>若在UIExtension中设置showInSubWindow为true, 弹窗将基于UIExtension的宿主窗口对齐。|
 | offset     | [ActionSheetOffset](#actionsheetoffset18对象说明) | 否      | 弹窗相对alignment所在位置的偏移量。<br/>默认值：<br/>1.alignment设置为Top、TopStart、TopEnd时默认值为{dx:&nbsp;0,dy:&nbsp;"40vp"} <br/>2.alignment设置为其他时默认值为{dx:&nbsp;0,dy:&nbsp;"-40vp"} <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | sheets     | Array&lt;[SheetInfo](#sheetinfo对象说明)&gt; | 是       | 设置选项内容，每个选择项支持设置图片、文本和选中的回调。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
@@ -61,10 +41,10 @@ static show(value: ActionSheetOptions)
 | transition<sup>12+</sup> | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10) | 否 | 设置弹窗显示和退出的过渡效果。<br/>**说明：**<br/>1.如果不设置，则使用默认的显示/退出动效。<br/>2.显示动效中按back键，打断显示动效，执行退出动效，动画效果为显示动效与退出动效的曲线叠加后的效果。<br/>3.退出动效中按back键，不会打断退出动效，退出动效继续执行，继续按back键退出应用。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | enableHoverMode<sup>14+</sup>     | boolean | 否   | 是否响应悬停态。<br />默认值：false，默认不响应。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 | hoverModeArea<sup>14+</sup>       | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype14) | 否   | 悬停态下弹窗默认展示区域。<br />默认值：HoverModeAreaType.BOTTOM_SCREEN。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
-| onWillAppear<sup>18+</sup> | [VoidCallback](ts-types.md#voidcallback12) | 否 | 弹窗显示动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br />2.在onWillAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
-| onDidAppear<sup>18+</sup> | [VoidCallback](ts-types.md#voidcallback12) | 否 | 弹窗弹出时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br />2.在onDidAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。<br />3.弹窗入场动效未完成时关闭弹窗，动效打断，onDidAppear不会触发。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
-| onWillDisappear<sup>18+</sup> | [VoidCallback](ts-types.md#voidcallback12) | 否 | 弹窗退出动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br /> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
-| onDidDisappear<sup>18+</sup> | [VoidCallback](ts-types.md#voidcallback12) | 否 | 弹窗消失时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| onWillAppear<sup>18+</sup> | Callback&lt;void&gt; | 否 | 弹窗显示动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br />2.在onWillAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+| onDidAppear<sup>18+</sup> | Callback&lt;void&gt; | 否 | 弹窗弹出时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br />2.在onDidAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。<br />3.快速点击弹出，关闭弹窗时，onWillDisappear在onDidAppear前生效。<br/>4.弹窗入场动效未完成时彻底关闭弹窗，动效打断，onDidAppear不会触发。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| onWillDisappear<sup>18+</sup> | Callback&lt;void&gt; | 否 | 弹窗退出动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br /> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+| onDidDisappear<sup>18+</sup> | Callback&lt;void&gt; | 否 | 弹窗消失时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | levelMode<sup>15+</sup>       | [LevelMode](#levelmode15) | 否   | 设置弹窗显示层级。<br />**说明：**<br />- 默认值：LevelMode.OVERLAY。<br />- 当且仅当showInSubWindow属性设置为false时生效。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 | levelUniqueId<sup>15+</sup>       | number | 否   | 设置页面级弹窗需要显示的层级下的[节点 uniqueId](../js-apis-arkui-frameNode.md#getuniqueid12)。<br />**说明：**<br />- 当且仅当levelMode属性设置为LevelMode.EMBEDDED时生效。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 | immersiveMode<sup>15+</sup>       | [ImmersiveMode](#immersivemode15) | 否   | 设置页面内弹窗蒙层效果。<br />**说明：**<br />- 默认值：ImmersiveMode.DEFAULT <br />- 当且仅当levelMode属性设置为LevelMode.EMBEDDED时生效。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
@@ -82,7 +62,7 @@ static show(value: ActionSheetOptions)
 | icon   | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否   | 选项的图标，默认无图标显示。<br>string格式可用于加载网络图片和本地图片，常用于加载网络图片。当使用相对路径引用本地图片时，例如Image("common/test.jpg")。|
 | action | [VoidCallback](ts-types.md#voidcallback12) | 是   | 选项选中的回调。 |
 
-## levelMode<sup>15+</sup>
+## LevelMode<sup>15+</sup>
 
 type LevelMode = LevelMode
 
@@ -133,11 +113,11 @@ Dialog关闭的信息。
 
 | 名称         | 类型    | 必填 | 说明 |
 | ------------ | ------- | ---- | ---- |
-| enabled      | boolean | 否   | 点击Button是否响应，true表示Button可以响应，false表示Button不可以响应。<br />默认值：true |
-| defaultFocus | boolean | 否   | 设置Button是否是默认焦点，true表示Button是默认焦点，false表示Button不是默认焦点。<br />默认值：false |
-| style        | [DialogButtonStyle](ts-appendix-enums.md#dialogbuttonstyle10) | 否  | 设置Button的风格样式。<br />默认值：DialogButtonStyle.DEFAULT |
-| value        |  string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) |    是  | Button文本内容。<br/>当文本内容过长无法显示时，用省略号代替未显示的部分。 |
-| action       | [VoidCallback](ts-types.md#voidcallback12)      |   是   | Button选中时的回调。 |
+| enabled<sup>10+</sup> | boolean | 否   | 点击Button是否响应，true表示Button可以响应，false表示Button不可以响应。<br/>默认值：true<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| defaultFocus<sup>10+</sup> | boolean | 否   | 设置Button是否是默认焦点，true表示Button是默认焦点，false表示Button不是默认焦点。<br/>默认值：false<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| style<sup>10+</sup> | [DialogButtonStyle](ts-appendix-enums.md#dialogbuttonstyle10) | 否  | 设置Button的风格样式。<br />默认值：DialogButtonStyle.DEFAULT<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| value<sup>8+</sup> |  string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) |    是  | Button文本内容。<br/>当文本内容过长无法显示时，用省略号代替未显示的部分。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| action<sup>8+</sup> | [VoidCallback](ts-types.md#voidcallback12)      |   是   | Button选中时的回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## ActionSheetOffset<sup>18+</sup>对象说明
 
@@ -150,17 +130,42 @@ Dialog关闭的信息。
 | dx   | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 弹出窗口相对于对齐位置dx的偏移量。<br/>需要显式指定像素单位，如'10px'，也可设置百分比字符串，如'100%'。<br/>**说明：** <br/>不指定像素单位时，默认单位vp，如'10'，等同于10。 |
 | dy   | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 弹出窗口相对于对齐位置dy的偏移量。<br/>需要显式指定像素单位，如'10px'，也可设置百分比字符串，如'100%'。<br/>**说明：** <br/>不指定像素单位时，默认单位vp，如'10'，等同于10。|
 
+## ActionSheet
+
+### show<sup>(deprecated)</sup>
+
+static show(value: ActionSheetOptions)
+
+定义列表弹窗并弹出。
+
+> **说明：**
+> 
+> 从API version 18开始废弃，建议使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showActionSheet](../js-apis-arkui-UIContext.md#showactionsheet)替代。
+>
+> 从API version 10开始，可以通过使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showActionSheet](../js-apis-arkui-UIContext.md#showactionsheet)来明确UI的执行上下文。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                              | 必填 | 说明                     |
+| ------ | ------------------------------------------------- | ---- | ------------------------ |
+| value  | [ActionSheetOptions](#actionsheetoptions对象说明) | 是   | 配置列表选择弹窗的参数。 |
+
 ## 示例
 
->  **说明：**
->
-> 推荐通过使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showActionSheet](../js-apis-arkui-UIContext.md#showactionsheet)来明确UI的执行上下文。
+> **说明：**
+> 
+> 直接使用ActionSheet可能导致实例不明确的问题，建议使用[getUIContext](../js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[showActionSheet](../js-apis-arkui-UIContext.md#showactionsheet)调用绑定实例的ActionSheet.show()。
 
 ### 示例1（弹出列表选择弹窗）
 
 该示例通过点击按钮弹窗列表选择弹窗。
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct ActionSheetExample {
@@ -168,7 +173,7 @@ struct ActionSheetExample {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Button('Click to Show ActionSheet')
         .onClick(() => {
-          ActionSheet.show({ // 建议使用 this.getUIContext().showActionSheet()接口
+          this.getUIContext().showActionSheet({
             title: 'ActionSheet title',
             subtitle: 'ActionSheet subtitle',
             message: 'message',
@@ -177,41 +182,41 @@ struct ActionSheetExample {
               defaultFocus: true,
               value: 'Confirm button',
               action: () => {
-                console.log('Get Alert Dialog handled')
+                console.log('Get Alert Dialog handled');
               }
             },
             cancel: () => {
-              console.log('actionSheet canceled')
+              console.log('actionSheet canceled');
             },
-              onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
-                console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
-                console.log("dialog onWillDismiss")
-                if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-                  dismissDialogAction.dismiss()
-                }
-                if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-                  dismissDialogAction.dismiss()
-                }
-              },
+            onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
+              console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
+              console.log("dialog onWillDismiss");
+              if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
+                dismissDialogAction.dismiss();
+              }
+              if (dismissDialogAction.reason === DismissReason.TOUCH_OUTSIDE) {
+                dismissDialogAction.dismiss();
+              }
+            },
             alignment: DialogAlignment.Bottom,
             offset: { dx: 0, dy: -10 },
             sheets: [
               {
                 title: 'apples',
                 action: () => {
-                  console.log('apples')
+                  console.log('apples');
                 }
               },
               {
                 title: 'bananas',
                 action: () => {
-                  console.log('bananas')
+                  console.log('bananas');
                 }
               },
               {
                 title: 'pears',
                 action: () => {
-                  console.log('pears')
+                  console.log('pears');
                 }
               }
             ]
@@ -230,6 +235,7 @@ struct ActionSheetExample {
 在2in1设备上设置showInSubWindow为true时，可以弹出在主窗外显示的弹窗。
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct ActionSheetExample {
@@ -237,7 +243,7 @@ struct ActionSheetExample {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Button('Click to Show ActionSheet')
         .onClick(() => {
-          ActionSheet.show({
+          this.getUIContext().showActionSheet({
             title: 'ActionSheet title',
             subtitle: 'ActionSheet subtitle',
             message: 'message',
@@ -248,41 +254,41 @@ struct ActionSheetExample {
               defaultFocus: true,
               value: 'Confirm button',
               action: () => {
-                console.log('Get Alert Dialog handled')
+                console.log('Get Alert Dialog handled');
               }
             },
             cancel: () => {
-              console.log('actionSheet canceled')
+              console.log('actionSheet canceled');
             },
-              onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
-                console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
-                console.log("dialog onWillDismiss")
-                if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-                  dismissDialogAction.dismiss()
-                }
-                if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-                  dismissDialogAction.dismiss()
-                }
-              },
+            onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
+              console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
+              console.log("dialog onWillDismiss");
+              if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
+                dismissDialogAction.dismiss();
+              }
+              if (dismissDialogAction.reason === DismissReason.TOUCH_OUTSIDE) {
+                dismissDialogAction.dismiss();
+              }
+            },
             alignment: DialogAlignment.Center,
             offset: { dx: 0, dy: -10 },
             sheets: [
               {
                 title: 'apples',
                 action: () => {
-                  console.log('apples')
+                  console.log('apples');
                 }
               },
               {
                 title: 'bananas',
                 action: () => {
-                  console.log('bananas')
+                  console.log('bananas');
                 }
               },
               {
                 title: 'pears',
                 action: () => {
-                  console.log('pears')
+                  console.log('pears');
                 }
               }
             ]
@@ -297,9 +303,11 @@ struct ActionSheetExample {
 ![zh-cn_image_action_showinsubwindow](figures/zh-cn_image_action_showinsubwindow.jpg)
 
 ### 示例3（设置弹窗的动画）
+
 该示例通过配置transition实现弹窗的显示和消失动画。
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct ActionSheetExample {
@@ -307,46 +315,47 @@ struct ActionSheetExample {
     Column({ space: 5 }) {
       Button('ActionSheet Set Duration')
         .onClick(() => {
-            ActionSheet.show({
-              title: 'ActionSheet 1',
-              message: 'Set Animation Duration open 3 second, close 100 ms',
-              autoCancel: true,
-              alignment: DialogAlignment.Top,
-              transition:TransitionEffect.asymmetric(TransitionEffect.OPACITY
-                .animation({ duration: 3000, curve: Curve.Sharp }).combine(TransitionEffect.scale({x: 1.5, y: 1.5}).animation({duration: 3000, curve: Curve.Sharp})),
-                TransitionEffect.OPACITY.animation({ duration: 100, curve: Curve.Smooth })
-                  .combine(TransitionEffect.scale({x: 0.5, y: 0.5}).animation({duration: 100, curve: Curve.Smooth}))),
-              offset: { dx: 0, dy: -20 },
-              confirm: {
-                value: 'button',
+          this.getUIContext().showActionSheet({
+            title: 'ActionSheet 1',
+            message: 'Set Animation Duration open 3 second, close 100 ms',
+            autoCancel: true,
+            alignment: DialogAlignment.Top,
+            transition: TransitionEffect.asymmetric(TransitionEffect.OPACITY
+              .animation({ duration: 3000, curve: Curve.Sharp })
+              .combine(TransitionEffect.scale({ x: 1.5, y: 1.5 }).animation({ duration: 3000, curve: Curve.Sharp })),
+              TransitionEffect.OPACITY.animation({ duration: 100, curve: Curve.Smooth })
+                .combine(TransitionEffect.scale({ x: 0.5, y: 0.5 }).animation({ duration: 100, curve: Curve.Smooth }))),
+            offset: { dx: 0, dy: -20 },
+            confirm: {
+              value: 'button',
+              action: () => {
+                console.info('Button-clicking callback');
+              }
+            },
+            cancel: () => {
+              console.info('Closed callbacks');
+            },
+            sheets: [
+              {
+                title: 'apples',
                 action: () => {
-                  console.info('Button-clicking callback')
+                  console.log('apples');
                 }
               },
-              cancel: () => {
-                console.info('Closed callbacks')
-              },
-              sheets: [
-                {
-                  title: 'apples',
-                  action: () => {
-                    console.log('apples')
-                  }
-                },
-                {
-                  title: 'bananas',
-                  action: () => {
-                    console.log('bananas')
-                  }
-                },
-                {
-                  title: 'pears',
-                  action: () => {
-                    console.log('pears')
-                  }
+              {
+                title: 'bananas',
+                action: () => {
+                  console.log('bananas');
                 }
-              ]
-            })
+              },
+              {
+                title: 'pears',
+                action: () => {
+                  console.log('pears');
+                }
+              }
+            ]
+          })
         }).backgroundColor(0x317aff).height("88px")
     }.width('100%').margin({ top: 5 })
   }
@@ -356,8 +365,11 @@ struct ActionSheetExample {
 ![zh-cn_image_action_animation](figures/zh-cn_image_action_animation.gif)
 
 ### 示例4（设置弹窗的样式）
+
 该示例定义了ActionSheet的样式，如宽度、高度、背景色、阴影等等。
+
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct ActionSheetExample {
@@ -365,7 +377,7 @@ struct ActionSheetExample {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
       Button('Click to Show ActionSheet')
         .onClick(() => {
-          ActionSheet.show({
+          this.getUIContext().showActionSheet({
             title: 'ActionSheet title',
             subtitle: 'ActionSheet subtitle',
             message: 'message',
@@ -374,28 +386,33 @@ struct ActionSheetExample {
             height: 350,
             cornerRadius: 20,
             borderWidth: 1,
-            borderStyle: BorderStyle.Solid,//使用borderStyle属性，需要和borderWidth属性一起使用
-            borderColor: Color.Blue,//使用borderColor属性，需要和borderWidth属性一起使用
+            borderStyle: BorderStyle.Solid, //使用borderStyle属性，需要和borderWidth属性一起使用
+            borderColor: Color.Blue, //使用borderColor属性，需要和borderWidth属性一起使用
             backgroundColor: Color.White,
-            shadow: ({ radius: 20, color: Color.Grey, offsetX: 50, offsetY: 0}),
+            shadow: ({
+              radius: 20,
+              color: Color.Grey,
+              offsetX: 50,
+              offsetY: 0
+            }),
             confirm: {
               defaultFocus: true,
               value: 'Confirm button',
               action: () => {
-                console.log('Get Alert Dialog handled')
+                console.log('Get Alert Dialog handled');
               }
             },
             cancel: () => {
-              console.log('actionSheet canceled')
+              console.log('actionSheet canceled');
             },
-            onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
-              console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
-              console.log("dialog onWillDismiss")
-              if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-                dismissDialogAction.dismiss()
+            onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
+              console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
+              console.log("dialog onWillDismiss");
+              if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
+                dismissDialogAction.dismiss();
               }
-              if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-                dismissDialogAction.dismiss()
+              if (dismissDialogAction.reason === DismissReason.TOUCH_OUTSIDE) {
+                dismissDialogAction.dismiss();
               }
             },
             alignment: DialogAlignment.Bottom,
@@ -404,19 +421,19 @@ struct ActionSheetExample {
               {
                 title: 'apples',
                 action: () => {
-                  console.log('apples')
+                  console.log('apples');
                 }
               },
               {
                 title: 'bananas',
                 action: () => {
-                  console.log('bananas')
+                  console.log('bananas');
                 }
               },
               {
                 title: 'pears',
                 action: () => {
-                  console.log('pears')
+                  console.log('pears');
                 }
               }
             ]
@@ -434,6 +451,7 @@ struct ActionSheetExample {
 该示例展示了在折叠屏悬停态下设置dialog布局区域的效果。
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct ActionSheetExample {
@@ -441,7 +459,7 @@ struct ActionSheetExample {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Button('Click to Show ActionSheet')
         .onClick(() => {
-          ActionSheet.show({ // 建议使用 this.getUIContext().showActionSheet()接口
+          this.getUIContext().showActionSheet({
             title: 'ActionSheet title',
             subtitle: 'ActionSheet subtitle',
             message: 'message',
@@ -450,20 +468,20 @@ struct ActionSheetExample {
               defaultFocus: true,
               value: 'Confirm button',
               action: () => {
-                console.log('Get Alert Dialog handled')
+                console.log('Get Alert Dialog handled');
               }
             },
             cancel: () => {
-              console.log('actionSheet canceled')
+              console.log('actionSheet canceled');
             },
-            onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
+            onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
               console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
               console.log("dialog onWillDismiss")
-              if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-                dismissDialogAction.dismiss()
+              if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
+                dismissDialogAction.dismiss();
               }
-              if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-                dismissDialogAction.dismiss()
+              if (dismissDialogAction.reason === DismissReason.TOUCH_OUTSIDE) {
+                dismissDialogAction.dismiss();
               }
             },
             alignment: DialogAlignment.Bottom,
@@ -474,19 +492,19 @@ struct ActionSheetExample {
               {
                 title: 'apples',
                 action: () => {
-                  console.log('apples')
+                  console.log('apples');
                 }
               },
               {
                 title: 'bananas',
                 action: () => {
-                  console.log('bananas')
+                  console.log('bananas');
                 }
               },
               {
                 title: 'pears',
                 action: () => {
-                  console.log('pears')
+                  console.log('pears');
                 }
               }
             ]

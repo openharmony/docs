@@ -2031,7 +2031,7 @@ if (dataShareHelper != undefined) {
 
 notifyChange(data: ChangeInfo): Promise&lt;void&gt;
 
-通知已注册的观察者指定URI对应的数据资源已发生变更类型及变更内容。使用Promise异步回调。仅支持非静默访问。
+通知已注册的观察者指定URI对应的数据资源已发生变更类型及变更内容。使用Promise异步回调。暂不支持静默访问。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 

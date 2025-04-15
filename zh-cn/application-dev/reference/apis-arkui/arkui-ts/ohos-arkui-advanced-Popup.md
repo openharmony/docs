@@ -4,8 +4,8 @@ Popup是用于显示特定样式气泡。
 
 >  **说明：**
 >
->  - 该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
->
+>  - 该组件从API version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>- 该组件不支持在Wearable设备上使用。
 >  - 建议开发者结合[Popup控制](ts-universal-attributes-popup.md)中提供的自定义气泡功能一起使用。
 
 ## 导入模块
@@ -38,20 +38,18 @@ Popup(options: PopupOptions): void
 
 PopupOptions定义Popup的具体式样参数。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称        | 类型       | 必填        | 说明                            |
 | ----------- | ---------- | ------| --------------------------------- |
-| icon      | [PopupIconOptions](#popupiconoptions)                        | 否   | 设置popup图标。<br />**说明：**<br />当size设置异常值或0时不显示。 |
-| title     | [PopupTextOptions](#popuptextoptions)                        | 否   | 设置popup标题文本。                  |
-| message   | [PopupTextOptions](#popuptextoptions)                        | 是   | 设置popup内容文本。<br />**说明：**<br />message不支持设置fontWeight。 |
-| showClose | boolean \| [Resource](ts-types.md#resource)                | 否   | 设置popup关闭按钮。<br />默认值：true |
-| onClose   | () => void                                                   | 否   | 设置popup关闭按钮回调函数。|
-| buttons   | [[PopupButtonOptions](#popupbuttonoptions)?,[PopupButtonOptions](#popupbuttonoptions)?] | 否   | 设置popup操作按钮,按钮最多设置两个。 |
-| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction)                                             | 否                                | 布局方向。<br/>默认值：Direction.Auto                                |
-| maxWidth<sup>18+</sup> | [Dimension](ts-types.md#dimension10)                                             | 否                                | 设置popup的最大宽度，通过此接口popup可以自定义宽度显示。<br/>默认值：400vp                                |
+| icon      | [PopupIconOptions](#popupiconoptions)                        | 否   | 设置popup图标。<br />**说明：**<br />当size设置异常值或0时不显示。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| title     | [PopupTextOptions](#popuptextoptions)                        | 否   | 设置popup标题文本。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| message   | [PopupTextOptions](#popuptextoptions)                        | 是   | 设置popup内容文本。<br />**说明：**<br />message不支持设置fontWeight。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| showClose | boolean \| [Resource](ts-types.md#resource)                | 否   | 设置popup关闭按钮。<br />默认值：true<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| onClose   | () => void                                                   | 否   | 设置popup关闭按钮回调函数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| buttons   | [[PopupButtonOptions](#popupbuttonoptions)?,[PopupButtonOptions](#popupbuttonoptions)?] | 否   | 设置popup操作按钮,按钮最多设置两个。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction)                                             | 否                                | 布局方向。<br/>默认值：Direction.Auto<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| maxWidth<sup>18+</sup> | [Dimension](ts-types.md#dimension10)                                             | 否                                | 设置popup的最大宽度，通过此接口popup可以自定义宽度显示。<br/>默认值：400vp<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## PopupTextOptions
 

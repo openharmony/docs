@@ -130,7 +130,7 @@ repeatPlay(isRepeatPlay: boolean)
 
 | 参数名  | 类型    | 必填 | 说明                         |
 | ------- | ------- | ---- | ---------------------------- |
-| isRepeatPlay| boolean| 是   | 是否循环播放。<br/>false：不循环播放。<br/>true：循环播放。<br/>默认值：false|
+| isRepeatPlay| boolean| 是   | 是否循环播放。<br/>false：不循环播放。<br/>true：循环播放。<br/>默认值：false。|
 
 ### enableAnalyzer<sup>18+</sup> 
 
@@ -147,7 +147,7 @@ enableAnalyzer(enabled: boolean)
 
 | 参数名  | 类型    | 必填 | 说明                         |
 | ------- | ------- | ---- | ---------------------------- |
-| enabled| boolean| 是   | 是否开启AI分析。<br/>。false：不开启AI分析。<br/>true：开启AI分析。<br/>默认值：true|
+| enabled| boolean| 是   | 是否开启AI分析。<br/>false：不开启AI分析。<br/>true：开启AI分析。<br/>默认值：true。|
 
 ## 事件
 

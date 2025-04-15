@@ -84,12 +84,20 @@ What the internal state is depends on the component. For example, the **isShow**
   | [bindMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu11) | isShow | 13          |
   | [bindContextMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu12) | isShown | 13          |
   | [bindPopup](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#bindpopup) | show | 13   |
-  | [TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md#textinputoptions)| text | 16   |
-  | [TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md#textareaoptions)| text | 16   |
-  | [Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md#searchoptions18)| value | 16   |
-  | [BindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md) | isShow | 16   |
-  | [BindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md) | isShow | 16   |
-
+  | [TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md#textinputoptions)| text | 18   |
+  | [TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md#textareaoptions)| text | 18   |
+  | [Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md#searchoptions18)| value | 18   |
+  | [BindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md) | isShow | 18   |
+  | [BindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md) | isShow | 18   |
+  | [Toggle](../reference/apis-arkui/arkui-ts/ts-basic-components-toggle.md#toggleoptions18)| isOn | 18   |
+  | [Checkbox](../reference/apis-arkui/arkui-ts/ts-basic-components-checkbox.md#select) | select | 18   |
+  | [CheckboxGroup](../reference/apis-arkui/arkui-ts/ts-basic-components-checkboxgroup.md#selectall) | selectAll | 18   |  
+  | [Radio](../reference/apis-arkui/arkui-ts/ts-basic-components-radio.md#checked) | checked | 18   |  
+  | [Rating](../reference/apis-arkui/arkui-ts/ts-basic-components-rating.md#ratingoptions18)| rating | 18   |  
+  | [Slider](../reference/apis-arkui/arkui-ts/ts-basic-components-slider.md#slideroptions)| value | 18   |  
+  | [Select](../reference/apis-arkui/arkui-ts/ts-basic-components-select.md#selected) | selected | 18   |  
+  | [Select](../reference/apis-arkui/arkui-ts/ts-basic-components-select.md#value) | value | 18   |
+  | [MenuItem](../reference/apis-arkui/arkui-ts/ts-basic-components-menuitem.md#selected) | selected | 18   |
 - When the [\@Local](arkts-new-local.md) decorated variable bound to **!!** changes, the UI is rendered synchronously.
 
 
@@ -139,5 +147,3 @@ struct BindMenuInterface {
 ```
 
 ![bindMenu](figures/bindmenu_doublebind.gif)
-
-<!--no_check-->

@@ -11,7 +11,7 @@ Defines APIs and enums related to multiple data values.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-**Since**: 16
+**Since**: 18
 
 **Related module**: [RDB](_r_d_b.md)
 

@@ -35,7 +35,7 @@ TextInput(value?: TextInputOptions)
 | 名称 | 类型  | 必填   | 说明 |
 | ---- | ----- | ---- | ---- |
 | placeholder             | [ResourceStr](ts-types.md#resourcestr)   | 否    | 设置无输入时的提示文本。                             |
-| text                    | [ResourceStr](ts-types.md#resourcestr)   | 否    | 设置输入框当前的文本内容。</br>建议通过onChange事件将状态变量与文本实时绑定，</br>避免组件刷新时TextInput中的文本内容异常。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br />从API version 18开始，该参数支持[!!](../../../quick-start/arkts-new-binding.md#内置组件参数双向绑定)双向绑定变量。 |
+| text                    | [ResourceStr](ts-types.md#resourcestr)   | 否    | 设置输入框当前的文本内容。</br>建议通过onChange事件将状态变量与文本实时绑定，</br>避免组件刷新时TextInput中的文本内容异常。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br />从API version 18开始，该参数支持[!!](../../../quick-start/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。 |
 | controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | 否    | 设置TextInput控制器。                          |
 
 ## 属性
@@ -289,7 +289,7 @@ showPasswordIcon(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                        |
 | ------ | ------- | ---- | ----------------------------------------------------------- |
-| value  | boolean | 是   | 密码输入模式时，输入框末尾的图标是否显示。<br/>默认值：true |
+| value  | boolean | 是   | 密码输入模式时，输入框末尾的图标是否显示。<br/>true表示显示，false表示不显示。<br/>默认值：true |
 
 ### style<sup>9+</sup>
 
@@ -425,7 +425,7 @@ showUnderline(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| value  | boolean | 是   | 是否开启下划线。<br/>默认值：false |
+| value  | boolean | 是   | 是否开启下划线。<br/>true表示开启，false表示不开启。<br/>默认值：false |
 
 ### passwordIcon<sup>10+</sup>
 
@@ -1030,7 +1030,7 @@ minFontScale(scale: Optional\<number | Resource>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| scale  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| [Resource](ts-types.md#resource)> | 是   | 文本最小的字体缩放倍数，支持undefined类型。<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置的值小于0时，按值为0处理。设置的值大于1，按值为1处理。异常值默认不生效。 |
+| scale  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| [Resource](ts-types.md#resource)> | 是   | 文本最小的字体缩放倍数，支持undefined类型。<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置的值小于0时，按值为0处理。设置的值大于1，按值为1处理。异常值默认不生效。<br/>使用前需在工程中配置configuration.json文件和app.json5文件，具体详见[示例18设置最小字体范围与最大字体范围](#示例18设置最小字体范围与最大字体范围)。 |
 
 ### maxFontScale<sup>18+</sup>
 
@@ -1046,11 +1046,11 @@ maxFontScale(scale: Optional\<number | Resource>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| scale  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| [Resource](ts-types.md#resource)> | 是   | 文本最大的字体缩放倍数，支持undefined类型。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按值为1处理。异常值默认不生效。 |
+| scale  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| [Resource](ts-types.md#resource)> | 是   | 文本最大的字体缩放倍数，支持undefined类型。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按值为1处理。异常值默认不生效。<br/>使用前需在工程中配置configuration.json文件和app.json5文件，具体详见[示例18设置最小字体范围与最大字体范围](#示例18设置最小字体范围与最大字体范围)。 |
 
 ### cancelButton<sup>18+</sup>
 
-cancelButton(value: CancelButtonSymbolOptions)
+cancelButton(symbolOptions: CancelButtonSymbolOptions)
 
 设置右侧清除按钮样式。不支持内联模式。
 
@@ -1062,7 +1062,7 @@ cancelButton(value: CancelButtonSymbolOptions)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [CancelButtonSymbolOptions](ts-basic-components-search.md#cancelbuttonsymboloptions12对象说明) | 是   | 右侧清除按钮样式。<br />默认值：<br />{<br />style: CancelButtonStyle.INPUT<br />} |
+| symbolOptions  | [CancelButtonSymbolOptions](ts-basic-components-search.md#cancelbuttonsymboloptions12对象说明) | 是   | 右侧清除按钮样式。<br />默认值：<br />{<br />style: CancelButtonStyle.INPUT<br />} |
 
 ### ellipsisMode<sup>18+</sup>
 
@@ -1090,7 +1090,7 @@ EllipsisMode.START和EllipsisMode.CENTER仅在内联模式下maxLines设置为1�
 | ----------------------------- | ------------------------------------------------------------ |
 | Normal                        | 基本输入模式，无特殊限制。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | Password                      | 密码输入模式。<br/>密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，从API version 12开始，特定设备上输入文字直接显示为圆点。密码输入模式不支持下划线样式。在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| Email                         | 邮箱地址输入模式。<br/>支持数字、字母、下划线、小数点、!、#、$、%、&、'、*、+、-、/、=、?、^、`、\{、\|、\}、~，以及@字符（只能存在一个@字符）。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Email                         | 邮箱地址输入模式。<br/>支持数字、字母、下划线、小数点、!、#、$、%、&、'、"、*、+、-、/、=、?、^、`、\{、\|、\}、~，以及@字符（只能存在一个@字符）。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | Number                        | 纯数字输入模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | PhoneNumber<sup>9+</sup>      | 电话号码输入模式。<br/>支持输入数字、空格、+ 、-、*、#、(、)，长度不限。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | USER_NAME<sup>11+</sup>       | 用户名输入模式。<br/>在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -1098,6 +1098,7 @@ EllipsisMode.START和EllipsisMode.CENTER仅在内联模式下maxLines设置为1�
 | NUMBER_PASSWORD<sup>11+</sup> | 纯数字密码输入模式。<br/>密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，从API version 12开始，特定设备上输入文字直接显示为圆点。密码输入模式不支持下划线样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | NUMBER_DECIMAL<sup>11+</sup>  | 带小数点的数字输入模式。<br/>支持数字，小数点（只能存在一个小数点）。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | URL<sup>12+</sup>  | 带URL的输入模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| ONE_TIME_CODE<sup>20+</sup>  | 验证码输入模式。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## ContentType<sup>12+</sup>枚举说明
 
@@ -2052,7 +2053,7 @@ struct TextInputExample {
 
 ### 示例7（设置文本断行规则）
 
-该示例通过wordBreak属性实现了TextArea不同断行规则下的效果。
+该示例通过wordBreak属性实现了TextInput不同断行规则下的效果。
 
 ```ts
 // xxx.ets
@@ -2313,7 +2314,7 @@ struct TextInputExample {
 
 ### 示例12（设置折行规则）
 
-该示例通过lineBreakStrategy属性实现了TextArea不同折行规则下的效果。
+该示例通过lineBreakStrategy属性实现了TextInput不同折行规则下的效果。
 
 ```ts
 // xxx.ets
@@ -2667,49 +2668,21 @@ struct TextInputExample {
 
 该示例通过minFontScale、maxFontScale设置字体显示最小与最大范围。
 
-```ts
-import { abilityManager, Configuration } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-// xxx.ets
-@Entry
-@Component
-export struct TextAreaExample11 {
-  @State minFontScale: number = 0.85;
-  @State maxFontScale: number = 2;
-  @State changeValue: string = 'abcde';
-
-  build() {
-    Column() {
-      Column({ space: 30 }) {
-        Text("系统字体变大变小，变大变小aaaaaaaAAAAAA")
-        TextArea({
-          placeholder: 'The text area can hold an unlimited amount of text. input your word...',
-        })
-        //设置最小字体缩放倍数，参数为undefined则跟随系统默认倍数缩放。
-          .minFontScale(0.85)
-          //设置最大字体缩放倍数，参数为undefined则跟随系统默认倍数缩放。
-          .maxFontScale(2)
-      }.width('100%')
-    }
+```json
+// 开启应用缩放跟随系统
+// AppScope/resources/base，新建文件夹profile。
+// AppScope/resources/base/profile，新建文件configuration.json。
+// AppScope/resources/base/profile/configuration.json，增加如下代码。
+{
+  "configuration": {
+    "fontSizeScale": "followSystem",
+    "fontSizeMaxScale": "3.2"
   }
 }
 ```
 
-```ts
-路径：AppScope/resources/base，新建文件夹profile。
-路径：AppScope/resources/base/profile，新建文件configuration.json。
-路径：AppScope/resources/base/profile/configuration.json，增加如下代码。
-{
-  "configuration":{
-    "fontSizeScale": "followSystem",
-    "fontSizeMaxScale": "3.2"
-}
-}
-```
-
-```ts
-路径：AppScope/app.json5，修改如下代码。
+```json
+// AppScope/app.json5，修改如下代码。
 {
   "app": {
     "bundleName": "com.example.myapplication",
@@ -2719,6 +2692,29 @@ export struct TextAreaExample11 {
     "icon": "$media:app_icon",
     "label": "$string:app_name",
     "configuration": "$profile:configuration"
+  }
+}
+```
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextInputExample {
+  @State minFontScale: number = 0.85;
+  @State maxFontScale: number = 2;
+
+  build() {
+    Column() {
+      Column({ space: 30 }) {
+        Text("系统字体变大变小，变大变小aaaaaaaAAAAAA")
+        TextInput({
+          placeholder: 'The text area can hold an unlimited amount of text. input your word...',
+        })
+          .minFontScale(this.minFontScale)// 设置最小字体缩放倍数，参数为undefined则跟随系统默认倍数缩放
+          .maxFontScale(this.maxFontScale)// 设置最大字体缩放倍数，参数为undefined则跟随系统默认倍数缩放
+      }.width('100%')
+    }
   }
 }
 ```

@@ -17,7 +17,10 @@
 
    ```ts
    function getDepthDataOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability): camera.DepthDataOutput | undefined {
-     let depthProfilesArray: Array<camera.Profile> = cameraOutputCapability.depthProfiles;
+     let depthProfilesArray: Array<camera.DepthProfile> = cameraOutputCapability.depthProfiles;
+     if (!depthProfilesArray) {
+       console.error("createOutput depthProfilesArray is null");
+     }
      let depthDataOutput: camera.DepthDataOutput | undefined = undefined;
      try {
        depthDataOutput = cameraManager.createDepthDataOutput(depthProfilesArray[0]);
@@ -29,7 +32,7 @@
    }
    ```
 
-3. 使能。通过depthDataOutput类的[start](../../reference/apis-camera-kit/js-apis-camera-sys.md#start12)方法输出深度流。接口调用失败会返回相应错误码，错误码类型参见[Camera错误码](../../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode)。
+3. 使能。通过depthDataOutput类的[start](../../reference/apis-camera-kit/js-apis-camera-sys.md#start13)方法输出深度流。接口调用失败会返回相应错误码，错误码类型参见[Camera错误码](../../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode)。
      
    ```ts
    async function startDepthDataOutput(depthDataOutput: camera.DepthDataOutput): Promise<void> {

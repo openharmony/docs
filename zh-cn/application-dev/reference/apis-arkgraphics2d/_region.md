@@ -9,6 +9,7 @@
 
 **相关模块：**[NativeWindow](_native_window.md)
 
+**所在头文件：**[external_window.h](external__window_8h.md)
 
 ## 汇总
 
@@ -37,7 +38,7 @@
 int32_t Region::rectNumber
 ```
 
-**描述**
+**描述：**
 
 如果rectNumber为0，默认Buffer大小为脏区。
 

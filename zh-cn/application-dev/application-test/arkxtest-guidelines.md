@@ -46,7 +46,7 @@ DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.
 
 本章节主要描述单元测试框架支持能力，以及能力的使用方法，具体请参考[单元测试框架功能特性](https://gitee.com/openharmony/testfwk_arkxtest/blob/master/README_zh.md#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6%E5%8A%9F%E8%83%BD%E7%89%B9%E6%80%A7)。
 
-在单元测试框架，测试脚本需要包含如下基本元素:
+在单元测试框架，测试脚本需要包含如下基本元素：
 
 1. 依赖导包，以便使用依赖的测试接口。
 
@@ -484,7 +484,7 @@ hdc shell uitest uiInput longClick 100 100
 | from_y   | 是                | 滑动起点y坐标。 | 
 | to_x   | 是                | 滑动终点x坐标。 |
 | to_y   | 是                | 滑动终点y坐标。 |
-| swipeVelocityPps_   | 否      | 滑动速度，单位：（px/s），取值范围：200-40000。<br> 默认值：600。 | 
+| swipeVelocityPps_   | 否      | 滑动速度，单位：px/s，取值范围：200-40000。<br> 默认值：600。 | 
 | stepLength_   | 否 | 滑动步长。默认值：滑动距离/50。<br>  **为实现更好的模拟效果，推荐参数缺省/使用默认值。**  | 
 
 
@@ -501,7 +501,7 @@ hdc shell uitest uiInput fling 10 10 200 200 500
 | from_y   | 是                | 滑动起点y坐标。 | 
 | to_x   | 是                | 滑动终点x坐标。 |
 | to_y   | 是                | 滑动终点y坐标。 |
-| swipeVelocityPps_   | 否      | 滑动速度，单位: (px/s)，取值范围：200-40000。<br> 默认值: 600。 | 
+| swipeVelocityPps_   | 否      | 滑动速度，单位：px/s，取值范围：200-40000。<br> 默认值: 600。 | 
 
 ```shell  
 # 执行慢滑操作。
@@ -516,7 +516,7 @@ hdc shell uitest uiInput drag 10 10 100 100 500
 | 配置参数             | 必填       | 描述 |
 |-------------------|-------------|----------|
 | direction         | 否 | 滑动方向，取值范围：[0,1,2,3]，默认值为0。<br> 0代表向左滑动，1代表向右滑动，2代表向上滑动，3代表向下滑动。    | 
-| swipeVelocityPps_ | 否| 滑动速度，单位: (px/s)，取值范围：200-40000。<br> 默认值: 600。    | 
+| swipeVelocityPps_ | 否| 滑动速度，单位：px/s，取值范围：200-40000。<br> 默认值: 600。    | 
 | stepLength        | 否        | 滑动步长。<br> 默认值: 滑动距离/50。为更好的模拟效果，推荐参数缺省/使用默认值。 |
 
 ```shell  
