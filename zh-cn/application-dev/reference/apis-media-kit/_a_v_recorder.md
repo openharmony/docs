@@ -493,7 +493,7 @@ enum OH_AVRecorder_FileGenerationMode
 | 枚举值 | 描述 | 
 | -------- | -------- |
 | AVRECORDER_APP_CREATE | 由应用自行在沙箱创建媒体文件。 | 
-| AVRECORDER_AUTO_CREATE_CAMERA_SCENE | 由系统创建媒体文件，当前仅在相机录制场景下生效，会忽略应用设置的url。 | 
+| AVRECORDER_AUTO_CREATE_CAMERA_SCENE | 由系统创建媒体文件，当前仅在相机录制场景下生效。 | 
 
 
 ### OH_AVRecorder_State
