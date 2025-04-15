@@ -51,7 +51,7 @@ try {
 
 onException?(errObject: Error): void
 
-应用产生异常上报js层时的回调。
+应用产生异常，上报js层时的回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 

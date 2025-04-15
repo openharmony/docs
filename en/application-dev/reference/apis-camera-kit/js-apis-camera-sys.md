@@ -2460,7 +2460,7 @@ Enumerates the scene features.
 |-------------------------------|-----|---------------------------|
 | MOON_CAPTURE_BOOST            | 0   | Moon scene. **System API**: This is a system API. |
 | TRIPOD_DETECTION<sup>13+</sup> | 1   | Scene where a tripod is used for photo capture. **System API**: This is a system API. |
-| LOW_LIGHT_BOOST<sup>13+</sup> | 1   | Scene for long exposure photography. **System API**: This is a system API.|
+| LOW_LIGHT_BOOST<sup>13+</sup> | 2   | Scene for long exposure photography. **System API**: This is a system API.|
 
 ## SceneFeatureDetectionResult<sup>12+</sup>
 

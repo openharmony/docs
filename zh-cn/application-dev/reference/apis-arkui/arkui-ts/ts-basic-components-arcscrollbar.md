@@ -59,38 +59,30 @@ struct ArcScrollBarExample {
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   build() {
-    Column() {
-      Stack({ alignContent: Alignment.Center }) {
-        Scroll(this.scroller) {
-          Flex({ direction: FlexDirection.Column }) {
-            ForEach(this.arr, (item: number) => {
-              Row() {
-                Text(item.toString())
-                  .width('80%')
-                  .height(60)
-                  .backgroundColor('#3366CC')
-                  .borderRadius(15)
-                  .fontSize(16)
-                  .textAlign(TextAlign.Center)
-                  .margin({ top: 5 })
-              }
-            }, (item: number) => item.toString())
-          }.margin({ right: 15 })
-        }
-        .width('90%')
-        .scrollBar(BarState.Off)
-        .scrollable(ScrollDirection.Vertical)
-        .edgeEffect(EdgeEffect.Spring)
-
-        ArcScrollBar({ scroller: this.scroller, state: BarState.Auto })
+    Stack({ alignContent: Alignment.Center }) {
+      Scroll(this.scroller) {
+        Flex({ direction: FlexDirection.Column }) {
+          ForEach(this.arr, (item: number) => {
+            Row() {
+              Text(item.toString())
+                .width('80%')
+                .height(60)
+                .backgroundColor('#3366CC')
+                .borderRadius(15)
+                .fontSize(16)
+                .textAlign(TextAlign.Center)
+                .margin({ top: 5 })
+            }
+          }, (item: number) => item.toString())
+        }.margin({ right: 15 })
       }
-      .width('100%')
-      .height('100%')
+      .width('90%')
+      .scrollBar(BarState.Off)
+
+      ArcScrollBar({ scroller: this.scroller, state: BarState.Auto })
     }
-    .justifyContent(FlexAlign.Center)
     .width('100%')
     .height('100%')
-    .clip(new Circle({ width: '100%', height: '100%' }))
   }
 }
 ```
