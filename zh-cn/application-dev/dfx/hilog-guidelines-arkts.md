@@ -14,7 +14,7 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
 | 接口名 | 功能描述 | 
 | -------- | -------- |
 | isLoggable(domain: number, tag: string, level: LogLevel) | 在打印日志前调用该接口，检查指定领域标识、日志标识和级别的日志是否可以打印。 |
-| debug(domain: number, tag: string, format: string, ...args: any[]) | 输出DEBUG级别日志。仅用于应用/服务调试。<br/>在DevEco Studio的terminal窗口或cmd里，通过命令“hdc shell hilogcat”设置可打印日志的等级为DEBUG。 |
+| debug(domain: number, tag: string, format: string, ...args: any[]) | 输出DEBUG级别日志。仅用于应用/服务调试。<br/>在DevEco Studio的terminal窗口或cmd里，通过命令“hdc shell hilog -b D”设置可打印日志的等级为DEBUG。 |
 | info(domain: number, tag: string, format: string, ...args: any[]) | 输出INFO级别日志。表示普通的信息。 |
 | warn(domain: number, tag: string, format: string, ...args: any[]) | 输出WARN级别日志。表示存在警告。 |
 | error(domain: number, tag: string, format: string, ...args: any[]) | 输出ERROR级别日志。表示存在错误。 |
