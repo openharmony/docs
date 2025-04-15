@@ -156,7 +156,7 @@ CustomContentDialog({controller: CustomDialogController, contentBuilder: () => v
 | controller          | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | -  | 弹出框控制器。<br/>**说明：** 未使用@Require装饰，构造时不强制校验参数。                                               |
 | contentBuilder      | () => void                                                   | 是   | @BuilderParam | 弹出框内容。                                                 |
 | primaryTitle        | [ResourceStr](ts-types.md#resourcestr)                       | 否   | -  | 弹出框标题。<br /> **说明：** 标题超过两行会显示“...”。                         |
-| secondaryTitle      | [ResourceStr](ts-types.md#resourcestr)                       | 否   | -  | 弹出框辅助文本。<br /> **说明：** 标题超过两行会显示“...”。            |
+| secondaryTitle      | [ResourceStr](ts-types.md#resourcestr)                       | 否   | -  | 弹出框辅助文本。<br /> **说明：** 辅助文本超过两行会显示“...”。            |
 | localizedContentAreaPadding | [LocalizedPadding](ts-types.md#LocalizedPadding)     | 否   | -  | 弹出框内容区内边距。                                         |
 | contentAreaPadding  | [Padding](ts-types.md#padding)                               | 否   | -  | 弹出框内容区内边距。设置了localizedContentAreaPadding属性时该属性不生效。|
 | buttons             | [ButtonOptions](#buttonoptions)[]                     | 否   | -  | 弹出框操作区按钮，最多支持4个按钮。                          |
