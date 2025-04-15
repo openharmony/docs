@@ -12,7 +12,7 @@
 >
 > - 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](./js-apis-arkui-UIContext.md#uicontext)说明。
 >
-> - 如果使用传入callback形式的[pushUrl](#routerpushurldeprecated-1)或[pushNamedRoute](#routerpushnamedroutedeprecated-1)接口，callback中通过[getLength](#routergetlengthdeprecated)等接口获取的栈信息为中间态的栈信息，可能与栈操作完全结束后，再通过[getLength](#routergetlengthdeprecated)等接口获取的栈信息不一致。
+> - 如果使用传入callback形式的[pushUrl](js-apis-arkui-UIContext.md#pushurl-1)或[pushNamedRoute](js-apis-arkui-UIContext.md#pushnamedroute-1)接口，callback中通过[getLength](js-apis-arkui-UIContext.md#getlength)等接口获取的栈信息为中间态的栈信息，可能与栈操作完全结束后，再通过[getLength](js-apis-arkui-UIContext.md#getlength)等接口获取的栈信息不一致。
 
 ## 导入模块
 
@@ -1143,7 +1143,7 @@ back(options?: RouterOptions ): void
 **示例：**
 
 ```ts
-router.back({ url: 'pages/detail' });
+this.getUIContext().getRouter().back({ url: 'pages/detail' });
 ```
 
 ## router.back<sup>(deprecated)</sup>
@@ -1172,10 +1172,10 @@ back(index: number, params?: Object): void;
 **示例：**
 
 ```ts
-router.back(1);
+this.getUIContext().getRouter().back(1);
 ```
 ```ts
-router.back(1, { info: '来自Home页' }); //携带参数返回
+this.getUIContext().getRouter().back(1, { info: '来自Home页' }); //携带参数返回
 ```
 
 ## router.clear<sup>(deprecated)</sup>
@@ -1197,7 +1197,7 @@ clear(): void
 **示例：**
 
 ```ts
-router.clear();
+this.getUIContext().getRouter().clear();
 ```
 
 ## router.getLength<sup>(deprecated)</sup>
@@ -1225,7 +1225,7 @@ getLength(): string
 **示例：**
 
 ```ts
-let size = router.getLength();
+let size = this.getUIContext().getRouter().getLength();
 console.log('pages stack size = ' + size);
 ```
 
@@ -1254,7 +1254,7 @@ getState(): RouterState
 **示例：** 
 
 ```ts
-let page = router.getState();
+let page = this.getUIContext().getRouter().getState();
 console.log('current index = ' + page.index);
 console.log('current name = ' + page.name);
 console.log('current path = ' + page.path);
@@ -1389,7 +1389,7 @@ showAlertBeforeBackPage(options: EnableAlertOptions): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  router.showAlertBeforeBackPage({
+  this.getUIContext().getRouter().showAlertBeforeBackPage({
     message: 'Message Info'
   });
 } catch (err) {
@@ -1427,7 +1427,7 @@ hideAlertBeforeBackPage(): void
 **示例：**
 
 ```ts
-router.hideAlertBeforeBackPage();
+this.getUIContext().getRouter().hideAlertBeforeBackPage();   
 ```
 
 ##  router.getParams<sup>(deprecated)</sup>
@@ -1455,7 +1455,7 @@ getParams(): Object
 **示例：**
 
 ```ts
-router.getParams();
+this.getUIContext().getRouter().getParams();
 ```
 
 ## RouterOptions
@@ -1523,7 +1523,7 @@ export default {
 // 在detail页面中
 export default {
   onInit() {
-    console.info('showData1:' + router.getParams()['data1']);
+    console.info('showData1:' + this.getUIContext().getRouter().getParams()['data1']);
   }
 }
 ```
@@ -1625,8 +1625,8 @@ class routerParams {
 struct Second {
   private content: string = "这是第二页"
   // 建议使用this.getUIContext().getRouter().getParams()
-  @State text: string = (router.getParams() as routerParams).text
-  @State data: object = (router.getParams() as routerParams).data
+  @State text: string = (this.getUIContext().getRouter().getParams() as routerParams).text
+  @State data: object = (this.getUIContext().getRouter().getParams() as routerParams).data
   @State secondData: string = ''
 
   build() {
@@ -1657,7 +1657,7 @@ push(options: RouterOptions): void
 
 跳转到应用内的指定页面。
 
-从API version9开始不再维护，建议使用[pushUrl<sup>9+</sup>](#routerpushurldeprecated)
+从API version9开始不再维护，建议使用[pushUrl](js-apis-arkui-UIContext.md#pushurl)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1701,7 +1701,7 @@ replace(options: RouterOptions): void
 
 用应用内的某个页面替换当前页面，并销毁被替换的页面。
 
-从API version9开始不再维护，建议使用[replaceUrl<sup>9+</sup>](#routerreplaceurldeprecated)
+从API version9开始不再维护，建议使用[replaceUrl](js-apis-arkui-UIContext.md#replaceurl)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Lite
 
@@ -1734,7 +1734,7 @@ enableAlertBeforeBackPage(options: EnableAlertOptions): void
 
 开启页面返回询问对话框。
 
-从API version9开始不再维护，建议使用[showAlertBeforeBackPage<sup>9+</sup>](#routershowalertbeforebackpagedeprecated)
+从API version9开始不再维护，建议使用[showAlertBeforeBackPage](js-apis-arkui-UIContext.md#showalertbeforebackpage)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1758,7 +1758,7 @@ disableAlertBeforeBackPage(): void
 
 禁用页面返回询问对话框。
 
-从API version9开始不再维护，建议使用[hideAlertBeforeBackPage<sup>9+</sup>](#routerhidealertbeforebackpagedeprecated)
+从API version9开始不再维护，建议使用[hideAlertBeforeBackPage](js-apis-arkui-UIContext.md#hidealertbeforebackpage)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
