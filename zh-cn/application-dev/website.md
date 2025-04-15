@@ -4124,6 +4124,7 @@
         - 结构体<!--camera-struct-->
           - [Camera_CaptureEndInfo](reference/apis-camera-kit/_camera___capture_end_info.md)
           - [Camera_CaptureStartInfo](reference/apis-camera-kit/_camera___capture_start_info.md)
+          - [Camera_ConcurrentInfo](reference/apis-camera-kit/_camera___concurrent_info.md)
           - [Camera_Device](reference/apis-camera-kit/_camera___device.md)
           - [Camera_FrameRateRange](reference/apis-camera-kit/_camera___frame_rate_range.md)
           - [Camera_FrameShutterEndInfo](reference/apis-camera-kit/_camera___frame_shutter_end_info.md)
