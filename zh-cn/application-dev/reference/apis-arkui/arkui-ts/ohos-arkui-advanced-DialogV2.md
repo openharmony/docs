@@ -40,7 +40,7 @@ TipsDialogV2({imageRes: ResourceStr, imageSize?: SizeOptions, imageBorderColor: 
 | content          | [ResourceStr](ts-types.md#resourcestr)                                                                | 否  | @Param               | 提示弹出框内容。<br />默认不显示。                                         |
 | checkTips        | [ResourceStr](ts-types.md#resourcestr)                                                                | 否  | @Param               | 选择框的提示内容。<br />默认不显示。                                        |
 | checked          | boolean                                                                                               | 否  | @Param               | checked为true时，表示选择框已选中。checked为false时，表示未选中。<br />默认值：false |
-| onCheckedChange  | [AdvancedDialogV2OnCheckedChange](#advanceddialogv2oncheckedchange)                                   | 否  | @Param               | 选择框选择框的选中状态改变事件。<br />默认无事件。                                 |
+| onCheckedChange  | [AdvancedDialogV2OnCheckedChange](#advanceddialogv2oncheckedchange)                                   | 否  | @Param               | 选择框的选中状态改变事件。<br />默认无事件。                                 |
 | primaryButton    | [AdvancedDialogV2Button](#advanceddialogv2button)                                                     | 否  | @Param               | 提示框左侧按钮。<br />默认不显示。                                         |
 | secondaryButton  | [AdvancedDialogV2Button](#advanceddialogv2button)                                                     | 否  | @Param               | 提示框右侧按钮。<br />默认不显示。                                         |
 
@@ -114,8 +114,8 @@ AlertDialogV2({primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, content
 
 | 名称              | 类型                                                | 必填 | 装饰器类型                | 说明                   |
 | --------------- | ------------------------------------------------- | -- | :------------------- | -------------------- |
-| primaryTitle    | [ResourceStr](ts-types.md#resourcestr)            | 否  | @Param               | 确认框一级标题。<br />默认不显示。  |
-| secondaryTitle  | [ResourceStr](ts-types.md#resourcestr)            | 否  | @Param               | 确认框二级标题。<br />默认不显示。       |
+| primaryTitle    | [ResourceStr](ts-types.md#resourcestr)            | 否  | @Param               | 确认框一级标题。<br />默认不显示。<br/> **说明：** 标题超过两行会显示“...”。  |
+| secondaryTitle  | [ResourceStr](ts-types.md#resourcestr)            | 否  | @Param               | 确认框二级标题。<br />默认不显示。 <br/> **说明：** 标题超过两行会显示“...”。      |
 | content         | [ResourceStr](ts-types.md#resourcestr)            | 是  | @Param<br />@Require | 确认弹出框内容。<br />       |
 | primaryButton   | [AdvancedDialogV2Button](#advanceddialogv2button) | 否  | @Param               | 确认框左侧按钮。<br />默认不显示。 |
 | secondaryButton | [AdvancedDialogV2Button](#advanceddialogv2button) | 否  | @Param               | 确认框右侧按钮。<br />默认不显示。 |
@@ -151,8 +151,8 @@ CustomContentDialogV2({contentBuilder: () => void, primaryTitle?: ResourceStr, s
 | 名称                 | 类型                                                   | 必填 | 装饰器类型         | 说明                       |
 | ------------------ | ---------------------------------------------------- | -- | ------------- | ------------------------ |
 | contentBuilder     | [CustomBuilder](ts-types.md#custombuilder8)          | 是  | @BuilderParam | 弹出框内容。                   |
-| primaryTitle       | [ResourceStr](ts-types.md#resourcestr)               | 否  | @Param        | 弹出框标题。<br />默认不显示。             |
-| secondaryTitle     | [ResourceStr](ts-types.md#resourcestr)               | 否  | @Param        | 弹出框辅助文本。<br />默认不显示。           |
+| primaryTitle       | [ResourceStr](ts-types.md#resourcestr)               | 否  | @Param        | 弹出框标题。<br />默认不显示。<br/> **说明：** 标题超过两行会显示“...”。             |
+| secondaryTitle     | [ResourceStr](ts-types.md#resourcestr)               | 否  | @Param        | 弹出框辅助文本。<br />默认不显示。<br/> **说明：** 辅助文本超过两行会显示“...”。           |
 | contentAreaPadding | [LocalizedPadding](ts-types.md#localizedpadding12)     | 否  | @Param        | 弹出框内容区内边距。<br />默认不显示。         |
 | buttons            | [AdvacnedDialogV2Button](#advanceddialogv2button)\[] | 否  | @Param        | 弹出框操作区按钮，最多支持4个按钮。<br />默认不显示。 |
 
@@ -184,7 +184,7 @@ PopoverDialogV2({visible: boolean, \$visible: PopoverDialogV2OnVisibleChange, po
 
 | 名称            | 类型                                                                | 必填 | 装饰器类型               | 说明                                                 |
 | ------------- |-------------------------------------------------------------------| -- |---------------------| -------------------------------------------------- |
-| visible       | boolean                                                           | 是  | @Param<br/>@Require | 跟手弹出框显示状态。                                         |
+| visible       | boolean                                                           | 是  | @Param<br/>@Require | 跟手弹出框显示状态。<br /> 值为true时跟手弹出框显示，为false时隐藏。                                         |
 | \$visible     | [PopoverDialogV2OnVisibleChange](#popoverdialogv2onvisiblechange) | 否  | @Event              | 修改跟手弹出框显示状态时触发的回调函数，建议在visible后使用!!语法设置双向同步。<br />默认无事件。 |
 | popover       | [PopoverDialogV2Options](#popoverdialogv2options)                 | 是  | @Param<br/>@Require | 配置跟手弹窗的参数。                                         |
 | targetBuilder | [CustomBuilder](ts-types.md#custombuilder8)                       | 是  | @BuilderParam       | 跟手弹出框基于的目标组件。                                      |
