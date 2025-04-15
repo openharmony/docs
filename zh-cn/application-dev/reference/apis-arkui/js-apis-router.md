@@ -12,7 +12,7 @@
 >
 > - 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](./js-apis-arkui-UIContext.md#uicontext)说明。
 >
-> - 如果使用传入callback形式的[pushUrl](#routerpushurl9-1)或[pushNamedRoute](#routerpushnamedroute10-1)接口，callback中通过[getLength](#routergetlength)等接口获取的栈信息为中间态的栈信息，可能与栈操作完全结束后，再通过[getLength](#routergetlength)等接口获取的栈信息不一致。
+> - 如果使用传入callback形式的[pushUrl](js-apis-arkui-UIContext.md#pushurl-1)或[pushNamedRoute](js-apis-arkui-UIContext.md#pushnamedroute-1)接口，callback中通过[getLength](js-apis-arkui-UIContext.md#getlength)等接口获取的栈信息为中间态的栈信息，可能与栈操作完全结束后，再通过[getLength](js-apis-arkui-UIContext.md#getlength)等接口获取的栈信息不一致。
 
 ## 导入模块
 
@@ -1657,7 +1657,7 @@ push(options: RouterOptions): void
 
 跳转到应用内的指定页面。
 
-从API version9开始不再维护，建议使用[pushUrl<sup>9+</sup>](#routerpushurl9)
+从API version9开始不再维护，建议使用[pushUrl](js-apis-arkui-UIContext.md#pushurl)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1701,7 +1701,7 @@ replace(options: RouterOptions): void
 
 用应用内的某个页面替换当前页面，并销毁被替换的页面。
 
-从API version9开始不再维护，建议使用[replaceUrl<sup>9+</sup>](#routerreplaceurl9)
+从API version9开始不再维护，建议使用[replaceUrl](js-apis-arkui-UIContext.md#replaceurl)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Lite
 
@@ -1734,7 +1734,7 @@ enableAlertBeforeBackPage(options: EnableAlertOptions): void
 
 开启页面返回询问对话框。
 
-从API version9开始不再维护，建议使用[showAlertBeforeBackPage<sup>9+</sup>](#routershowalertbeforebackpage9)
+从API version9开始不再维护，建议使用[showAlertBeforeBackPage](js-apis-arkui-UIContext.md#showalertbeforebackpage)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1758,7 +1758,7 @@ disableAlertBeforeBackPage(): void
 
 禁用页面返回询问对话框。
 
-从API version9开始不再维护，建议使用[hideAlertBeforeBackPage<sup>9+</sup>](#routerhidealertbeforebackpage9)
+从API version9开始不再维护，建议使用[hideAlertBeforeBackPage](js-apis-arkui-UIContext.md#hidealertbeforebackpage)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
