@@ -5,7 +5,7 @@ ArkUI开发框架在NDK接口提供了列表组件，使用列表可以轻松高
 
 # 创建列表
 
-参考接入ArkTS页面章节实现列表创建。 
+参考[接入ArkTS页面章节](../ui/ndk-access-the-arkts-page.md)实现列表创建。 
 
 # 监听滚动事件 
 
@@ -15,7 +15,7 @@ ArkUI开发框架在NDK接口提供了列表组件，使用列表可以轻松高
 
 ## NodeAdapter介绍 
 
-NDK提供了NodeAdapten对象替代ArkTS侧的LazyForEach功能，用于按需生成子组件, NodeAdapter支持在List/ListItemGroup、Gird、WaterFlow、Swiper组件中使用。
+NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeadapterhandle)对象替代ArkTS侧的LazyForEach功能，用于按需生成子组件, NodeAdapter支持在List/ListItemGroup、Gird、WaterFlow、Swiper组件中使用。
 
 - 设置了NodeAdapter属性的节点，不再支持addChild等直接添加子组件的接口。子组件完全由NodeAdapter管理，使用属性方法设置NodeAdapter时，会判断父组件是否已经存在子节点，如果父组件已经存在子节点，则设置NodeAdapter操作失败，返回错误码。
 
@@ -356,16 +356,17 @@ NDK提供了NodeAdapten对象替代ArkTS侧的LazyForEach功能，用于按需�
    
    } // namespace NativeModule
    ```
-## 控制外表滚动位置
+## 控制列表滚动位置
 
 1. 控制列表滚动到指定偏移量位置。
     ```
     //ArkUIListNode.h
     //列表封装对象。
-    class ArkUIListNode: public ArkUINode{
-        void ScrollTo(float offset){
-            ArkUI_NumberValue value[]={{.f32 =0},{.f32 = offset},{.f32 = 0}};
-            ArkUI_AttributeItem Item ={.value = value,.size = 3};
+    class ArkUIListNode: public ArkUINode {
+        //...
+        void ScrollTo(float offset) {
+            ArkUI_NumberValue value[] = {{.f32 =0},{.f32 = offset},{.f32 = 0}};
+            ArkUI_AttributeItem Item = {.value = value,.size = 3};
             nativeModule_->setAttribute(handle_, NODE_SCROLL_OFFSET, &Item);
         }
     }
@@ -374,9 +375,10 @@ NDK提供了NodeAdapten对象替代ArkTS侧的LazyForEach功能，用于按需�
     ```
     //ArkUIListNode.h
     //列表封装对象。
-    class ArkUIListNode: public ArkUINode{
-        void ScrollToIndex(int32_t index){
-            ArkUI_NumberValue value[]={{.i32 = index}};
+    class ArkUIListNode : public ArkUINode {
+        //...
+        void ScrollToIndex(int32_t index) {
+            ArkUI_NumberValue value[] = {{.i32 = index}};
             ArkUI_AttributeItem Item = {.value = value, .size = 1};
             nativeModule_->setAttribute(handle_, NODE_LIST_SCROLL_TO_INDEX, &Item);
         }
@@ -387,9 +389,9 @@ NDK提供了NodeAdapten对象替代ArkTS侧的LazyForEach功能，用于按需�
     ```
    //ArkUIListNode.h
     //列表封装对象。
-    class ArkUIListNode: public ArkUINode{
-        void ScrollToBy(float offset){
-            ArkUI_NumberValue value[]={{.i32 = index}};
+    class ArkUIListNode : public ArkUINode {
+        void ScrollBy(float offset) {
+            ArkUI_NumberValue value[] = {{.f32 =0},{.f32 = offset}};
             ArkUI_AttributeItem Item = {.value = value, .size = 2};
             nativeModule_->setAttribute(handle_, NODE_SCROLL_BY, &Item);
         }
@@ -405,19 +407,19 @@ NDK提供了NodeAdapten对象替代ArkTS侧的LazyForEach功能，用于按需�
     #define MYAPPLICATION ARKUISTACKNODE_H 
     #include "ArkUINode.h" 
     namespace NativeModule{ 
-    class ArkUIListItemNode : public ArkUINode{ 
+    class ArkUIListItemNode : public ArkUINode { 
     public: 
         ArkUIListItemNode() 
-            :ArkUINode((NativeModuleInstance::GetInstance()->GetNativeNodeAPI())->createNode(ARKUI_NODE_LIST_ITEM)){}
-        ~ArkUIListItemNode(){ 
-            if(swipeAction_){ 
-            OH_ArkUI_ListItemSwipeActionOption_Dispose(swipeAction_); 
+            : ArkUINode((NativeModuleInstance::GetInstance()->GetNativeNodeAPI())->createNode(ARKUI_NODE_LIST_ITEM)) {}
+        ~ArkUIListItemNode() { 
+            if(swipeAction_) { 
+                OH_ArkUI_ListItemSwipeActionOption_Dispose(swipeAction_); 
             }
-            if (swipeItem_){ 
-            OH_ArkUI_ListItemSwipeActionItem_Dispose(swipeItem_); 
+            if (swipeItem_) { 
+                OH_ArkUI_ListItemSwipeActionItem_Dispose(swipeItem_); 
             }
         } 
-        void SetSwiperAction(std::shared_ptr<ArkUINode> node){ 
+        void SetSwiperAction(std::shared_ptr<ArkUINode> node) { 
             swipeContent_ = node; 
             swipeItem_ = OH_ArkUI_ListItemSwipeActionItem_Create(); 
             OH_ArkUI_ListItemSwipeActionItem_SetContent(swipeItem_, node->GetHandle()); 
@@ -426,13 +428,13 @@ NDK提供了NodeAdapten对象替代ArkTS侧的LazyForEach功能，用于按需�
             ArkUI_AttributeItem Item = {.object= swipeAction_ }; 
             nativeModule ->setAttribute(handle ,NODE_LIST_ITEM_SWIPE_ACTION, &Item); 
         } 
-        std::shared_ptr<ArkUINode> GetSwipeContent() const{ 
+        std::shared_ptr<ArkUINode> GetSwipeContent() const { 
             return swipeContent_; 
         }
     private: 
         ArkUI_ListItemSwipeActionOption* swipeAction_ = nullptr; 
         ArkUI_ListItemSwipeActionItem* swipeItem_ = nullptr;
-        std:: shared_ptr<ArkUINode> swipeContent_ = nullptr; 
+        std::shared_ptr<ArkUINode> swipeContent_ = nullptr; 
     }; 
     }// namespace NativeModule 
     #endif// MYAPPLICATION_ARKUISTACKNODE_H
@@ -441,31 +443,31 @@ NDK提供了NodeAdapten对象替代ArkTS侧的LazyForEach功能，用于按需�
 2. 创建ListItem时，创建ListItem的划出组件，并绑定点击事件，在点击事件中执行删除数据源操作。ListItem复用时，更新划出组件的绑定事件。
     ```
     // ArkUIListItemAdapter.h 
-    class ArkUIListItemAdapter{ 
-        //… 
+    class ArkUIListItemAdapter { 
+        //...
         //需要新的Item显示在可见区域。 
-        void OnNewItemAttached(ArkUI NodeAdapterEvent *event){ 
-            auto index= OH_ArkUI_NodeAdapterEvent_GetItemIndex(event); 
+        void OnNewItemAttached(ArkUI_NodeAdapterEvent *event) { 
+            auto index = OH_ArkUI_NodeAdapterEvent_GetItemIndex(event); 
             ArkUI_NodeHandle handle = nullptr; 
-            if(!cachedItems_.empty()){ 
+            if (!cachedItems_.empty()) { 
                 //使用并更新回收复用的缓存。 
                 auto recycledItem = cachedItems_.top(); 
                 auto textItem = std::dynamic_pointer_cast<ArkUITextNode>(recycledItem->GetChildren().back()); 
                 textItem->SetTextContent(data_[index]); 
                 handle = recycledItem->GetHandle(); 
                 auto swipeContent = recycledItem->GetSwipeContent(); 
-                swipeContent->RegisterOnClick([this, data = data_[index]](){ 
+                swipeContent->RegisterOnClick([this, data = data_[index]]() { 
                     auto it = std::find(data_.begin(), data_.end(), data); 
-                    if(it != data_.end()){ 
-                        auto index= std::distance(data_.begin(), it); 
+                    if (it != data_.end()) { 
+                        auto index = std::distance(data_.begin(), it); 
                         RemoveItem(index); 
                     } 
                 }); 
                 //释放缓存池的引用。 
                 cachedItems_.pop(); 
-            } else{ 
+            } else { 
                 //创建新的元素。 
-                auto listItem= std::make_shared<ArkUIListItemNode>(); 
+                auto listItem = std::make_shared<ArkUIListItemNode>(); 
                 auto textNode = std::make_shared<ArkUITextNode>();
                 textNode->SetTextContent(data_[index]); 
                 textNode->SetFontSize(16); 
@@ -475,7 +477,7 @@ NDK提供了NodeAdapten对象替代ArkTS侧的LazyForEach功能，用于按需�
                 textNode->SetTextAlign(ARKUI_TEXT_ALIGNMENT_CENTER);
                 listItem->AddChild(textNode); 
                 //创建ListItem划出菜单。 
-                auto swipeNode= std::make_shared<ArkUITextNode>(); 
+                auto swipeNode = std::make_shared<ArkUITextNode>(); 
                 swipeNode->SetTextContent("del"); 
                 swipeNode->SetFontSize(16); 
                 swipeNode->SetFontColor(0xFFFFFFFF); 
@@ -483,9 +485,9 @@ NDK提供了NodeAdapten对象替代ArkTS侧的LazyForEach功能，用于按需�
                 swipeNode->SetHeight(100); 
                 swipeNode->SetBackgroundColor(0xFFFF0000); 
                 swipeNode->SetTextAlign(ARKUI_TEXT_ALIGNMENT_CENTER); 
-                swipeNode->RegisterOnClick([this, data = data_[index]](){ 
+                swipeNode->RegisterOnClick([this, data = data_[index]]() { 
                     auto it = std::find(data_.begin(), data_.end(), data); 
-                    if(it != data_.end()){ 
+                    if (it != data_.end()) { 
                         auto index = std::distance(data_.begin(), it); 
                         RemoveItem(index); 
                     } 
@@ -503,14 +505,14 @@ NDK提供了NodeAdapten对象替代ArkTS侧的LazyForEach功能，用于按需�
 3. ArkUIListItemAdapter中新增RemoveItem,用于删除数据源并且调用OH_ArkUI_NodeAdapter_RemoveItem接口通知框架刷新UI.
     ```
     // ArkUIListItemAdapter.h 
-    class ArkUIListItemAdapter{ 
-        //… 
+    class ArkUIListItemAdapter { 
+        //...
         void RemoveItem(size_t index) { 
             //删除第index个数据。 
             data_.erase(data_.begin() + index); 
             //如果index会导致可视区域元素发生可见性变化，则会回调NODE_ADAPTER_EVENT_ON_REMOVE_NODE_FROM_DAPTER事件删除元素， 
             //根据是否有新增元素回调NODE_ADAPTER_EVENT_ON_GET_NODE_ID和NODE_ADAPTER_EVENT_ON_ADD_NODE_TO_ADAPTER事件。 
-            OH_ArkUI_NodeAdapter_RemoveItem(handle_, index,1); 
+            OH_ArkUI_NodeAdapter_RemoveItem(handle_, index, 1); 
             //更新新的数量。 
             OH_ArkUI_NodeAdapter_SetTotalNodeCount(handle_, data_.size()); 
         } 
@@ -526,34 +528,34 @@ NDK提供了NodeAdapten对象替代ArkTS侧的LazyForEach功能，用于按需�
     #include "ArkUINode.h" 
     #include "ArkUIListItemAdapter.h" 
     namespace NativeModule{ 
-    class ArkUIListItemGroupNode: public ArkUINode{ 
+    class ArkUIListItemGroupNode : public ArkUINode { 
     public: 
         ArkUIListItemGroupNode() 
-            : ArkUINode((NativeModuleInstance::GetInstance()->GetNativeNodeAPI())->createNode(ARKUI_NODE_LIST_ITEM_GROUP)){} 
-        void SetHeader(std::shared_ptr<ArkUINode> node){ 
-            if (node){ 
-                ArkUI_AttributeItem Item = {.object= node->GetHandle()}; 
-                nativeModule_->setAttribute(handle ,NODE_LIST_ITEM_GROUP_SET_HEADER, &Item); 
-            } else{ 
-                nativeModule_->resetAttribute(handle_,NODE_LIST_ITEM_GROUP_SET_HEADER); 
+            : ArkUINode((NativeModuleInstance::GetInstance()->GetNativeNodeAPI())->createNode(ARKUI_NODE_LIST_ITEM_GROUP)) {} 
+        void SetHeader(std::shared_ptr<ArkUINode> node) { 
+            if (node) { 
+                ArkUI_AttributeItem Item = {.object = node->GetHandle()}; 
+                nativeModule_->setAttribute(handle_, NODE_LIST_ITEM_GROUP_SET_HEADER, &Item); 
+            } else { 
+                nativeModule_->resetAttribute(handle_, NODE_LIST_ITEM_GROUP_SET_HEADER); 
             } 
         } 
-        void SetFooter(std::shared_ptr<ArkUINode> node){ 
-            if(node){ 
+        void SetFooter(std::shared_ptr<ArkUINode> node) { 
+            if (node) { 
                 ArkUI_AttributeItem Item = {.object= node->GetHandle()}; 
-                nativeModule_->setAttribute(handle_,NODE_LIST_ITEM_GROUP_SET_FOOTER, &Item); 
-            } else{ 
-                nativeModule_->resetAttribute(handle_,NODE_LIST_ITEM_GROUP_SET_FOOTER); 
+                nativeModule_->setAttribute(handle_, NODE_LIST_ITEM_GROUP_SET_FOOTER, &Item); 
+            } else { 
+                nativeModule_->resetAttribute(handle_, NODE_LIST_ITEM_GROUP_SET_FOOTER); 
             } 
         } 
-        std::shared_ptr<ArkUINode> GetHeader() const{ 
+        std::shared_ptr<ArkUINode> GetHeader() const { 
             return header_; 
         }
-        std::shared_ptr<ArkUINode> GetFooter() const{ 
+        std::shared_ptr<ArkUINode> GetFooter() const { 
             return footer_; 
         }
         //引入懒加载模块。 
-        void SetLazyAdapter(const std:: shared_ptr<ArkUIListItemAdapter> &adapter){ 
+        void SetLazyAdapter(const std::shared_ptr<ArkUIListItemAdapter> &adapter) { 
             assert(handle_); 
             ArkUI_AttributeItem item{nullptr,0, nullptr, adapter->GetHandle()}; 
             nativeModule_->setAttribute(handle_, NODE_LIST_ITEM_GROUP_NODE_ADAPTER, &item); 
@@ -571,12 +573,12 @@ NDK提供了NodeAdapten对象替代ArkTS侧的LazyForEach功能，用于按需�
     ```
     // ArkUIListNode.h 
     //列表封装对象。 
-    class ArkUIListNode: public ArkUINode{ 
-        //… 
-        void SetSticky(ArkUI_StickyStyle style){ 
+    class ArkUIListNode : public ArkUINode{ 
+        //...
+        void SetSticky(ArkUI_StickyStyle style) { 
             assert(handle_); 
-            ArkUI_NumberValue value[] = {{.i32= style}}; 
-            ArkUI_AttributeItem item = {value,1}; 
+            ArkUI_NumberValue value[] = {{.i32 = style}}; 
+            ArkUI_AttributeItem item = {value, 1}; 
             nativeModule_->setAttribute(handle_, NODE_LIST_STICKY, &item); 
         }
     }
@@ -585,22 +587,22 @@ NDK提供了NodeAdapten对象替代ArkTS侧的LazyForEach功能，用于按需�
     ```
     // LazyTextListExample.h 
     //懒加载列表示例代码。 
-    # ifndef MYAPPLICATION_LAZYTEXTLISTEXAMPLE_H
-    # define MYAPPLICATION_LAZYTEXTLISTEXAMPLE_H 
-    # include "ArkUIBaseNode.h" 
-    # include "ArkUIListNode.h" 
-    # include "ArkUIListItemGroupNode.h" 
-    namespace NativeModule{ 
-    std:: shared_ptr<ArkUIBaseNode> CreateLazyTextListExample(){ 
+    #ifndef MYAPPLICATION_LAZYTEXTLISTEXAMPLE_H
+    #define MYAPPLICATION_LAZYTEXTLISTEXAMPLE_H 
+    #include "ArkUIBaseNode.h" 
+    #include "ArkUIListNode.h" 
+    #include "ArkUIListItemGroupNode.h" 
+    namespace NativeModule { 
+    std::shared_ptr<ArkUIBaseNode> CreateLazyTextListExample() { 
     //创建组件并挂载 
     //1: 创建List组件。 
-        auto list= std::make_shared<ArkUIListNode>(); 
+        auto list = std::make_shared<ArkUIListNode>(); 
         list->SetPercentWidth(1); 
         list->SetPercentHeight(1); 
         //设置吸顶 
         list->SetSticky(ARKUI_STICKY_STYLE_BOTH); 
         //2: 创建ListItemGroup并挂载到List上。 
-        for(int32_t i = 0;i < 3;i++){ 
+        for (int32_t i = 0; i < 3; i++) { 
             auto header = std::make_shared<ArkUITextNode>(); 
             header->SetTextContent("header"); 
             header->SetFontSize(16); 
@@ -608,7 +610,7 @@ NDK提供了NodeAdapten对象替代ArkTS侧的LazyForEach功能，用于按需�
             header->SetHeight(50); 
             header->SetBackgroundColor(0xFFDCDCDC); 
             header->SetTextAlign(ARKUI_TEXT_ALIGNMENT_CENTER);
-            auto listItemGroup= std::make_shared<ArkUIListItemGroupNode>(); 
+            auto listItemGroup = std::make_shared<ArkUIListItemGroupNode>(); 
             listItemGroup->SetHeader(header); 
             auto adapter = std::make_shared<ArkUIListItemAdapter>(4); 
             listItemGroup->SetLazyAdapter(adapter); 
