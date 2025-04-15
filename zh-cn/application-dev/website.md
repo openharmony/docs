@@ -1445,52 +1445,46 @@
         - [使用通话设备切换组件](media/avsession/using-switch-call-devices.md)
     - Camera Kit（相机服务）<!--camera-kit-->
       - [Camera Kit简介](media/camera/camera-overview.md)
-      - [开发准备](media/camera/camera-preparation.md)
-      - 相机开发指导(ArkTS)<!--camera-dev-arkts-->
+      - [申请相机开发的权限](media/camera/camera-preparation.md)
+      - 开发相机应用(ArkTS)<!--camera-dev-arkts-->
+        - [通过系统相机拍照和录像(CameraPicker)](media/camera/camera-picker.md)
         - [相机管理(ArkTS)](media/camera/camera-device-management.md)
         - [设备输入(ArkTS)](media/camera/camera-device-input.md)
         - [会话管理(ArkTS)](media/camera/camera-session-management.md)
         - [预览(ArkTS)](media/camera/camera-preview.md)
+        - [双路预览(ArkTS)](media/camera/camera-dual-channel-preview.md)
         - [拍照(ArkTS)](media/camera/camera-shooting.md)
+        - [拍照实践(ArkTS)](media/camera/camera-shooting-case.md)
         - [录像(ArkTS)](media/camera/camera-recording.md)
+        - [录像实践(ArkTS)](media/camera/camera-recording-case.md)
         - [元数据(ArkTS)](media/camera/camera-metadata.md)
         - [手电筒使用(ArkTS)](media/camera/camera-torch-use.md)
         - [适配不同折叠状态的摄像头变更(ArkTS)](media/camera/camera-foldable-display.md)
-        <!--Del-->
-        - [高性能拍照(仅对系统应用开放)(ArkTS)](media/camera/camera-deferred-photo.md)
-        <!--DelEnd-->
         - [分段式拍照(ArkTS)](media/camera/camera-deferred-capture.md)
-        - [动态照片(ArkTS)](media/camera/camera-moving-photo.md)
+        - [分段式拍照实践(ArkTS)](media/camera/camera-deferred-capture-case.md)
+        - [动态照片拍摄(ArkTS)](media/camera/camera-moving-photo.md)
         - [相机基础动效(ArkTS)](media/camera/camera-animation.md)
         - [在Worker线程中使用相机(ArkTS)](media/camera/camera-worker.md)
+        - [相机启动恢复实践(ArkTS)](media/camera/camera-background-recovery.md)
         <!--Del-->
+        - [高性能拍照(仅对系统应用开放)(ArkTS)](media/camera/camera-deferred-photo.md)
+        - [高性能拍照实践(仅对系统应用开放)(ArkTS)](media/camera/camera-deferred-photo-case.md)
         - [深度信息(仅对系统应用开放)(ArkTS)](media/camera/camera-depth-data.md)
+        - [性能提升实践(仅对系统应用开放)(ArkTS)](media/camera/camera-performance-improvement.md)
         <!--DelEnd-->
-      - 相机最佳实践(ArkTS)<!--camera-best-practices-arkts-->
-        - [通过系统相机拍照和录像(ArkTS)](media/camera/camera-picker.md)
-        - [拍照实现方案(ArkTS)](media/camera/camera-shooting-case.md)
-        - [录像实现方案(ArkTS)](media/camera/camera-recording-case.md)
-        - [双路预览(ArkTS)](media/camera/camera-dual-channel-preview.md)
-        - [分段式拍照实现方案(ArkTS)](media/camera/camera-deferred-capture-case.md)
-        - [相机启动恢复实现方案(ArkTS)](media/camera/camera-background-recovery.md)
-        <!--Del-->
-        - [性能提升方案(仅对系统应用开放)(ArkTS)](media/camera/camera-performance-improvement.md)
-        - [高性能拍照实现方案(仅对系统应用开放)(ArkTS)](media/camera/camera-deferred-photo-case.md)
-        <!--DelEnd-->
-      - 相机开发指导(C/C++)<!--camera-dev-native-->
+      - 开发相机应用(C/C++)<!--camera-dev-native-->
         - [相机管理(C/C++)](media/camera/native-camera-device-management.md)
         - [设备输入(C/C++)](media/camera/native-camera-device-input.md)
         - [会话管理(C/C++)](media/camera/native-camera-session-management.md)
         - [预览(C/C++)](media/camera/native-camera-preview.md)
         - [预览流二次处理(C/C++)](media/camera/native-camera-preview-imageReceiver.md)
         - [拍照(C/C++)](media/camera/native-camera-shooting.md)
+        - [拍照实践(C/C++)](media/camera/native-camera-shooting-case.md)
         - [分段式拍照(C/C++)](media/camera/native-camera-deferred-capture.md)
         - [录像(C/C++)](media/camera/native-camera-recording.md)
+        - [录像实践(C/C++)](media/camera/native-camera-recording-case.md)
         - [元数据(C/C++)](media/camera/native-camera-metadata.md)
         - [手电筒使用(C/C++)](media/camera/native-camera-torch-use.md)
-      - 相机最佳实践(C/C++)<!--camera-best-practices-native-->
-        - [拍照实现方案(C/C++)](media/camera/native-camera-shooting-case.md)
-        - [录像实现方案(C/C++)](media/camera/native-camera-recording-case.md)
     - DRM Kit（数字版权保护服务）<!--drm-kit-->
       - [DRM Kit 简介](media/drm/drm-overview.md)
       - [数字版权保护(ArkTS)](media/drm/drm-arkts-dev-guide.md)
@@ -1560,6 +1554,7 @@
           - [使用AVImageGenerator提取视频指定时间图像(ArkTS)](media/media/avimagegenerator.md)
         - 视频转码<!--media-transcoder-arkts-->
           - [使用AVTranscoder实现视频转码(ArkTS)](media/media/using-avtranscoder-for-transcodering.md)
+          - [创建异步线程执行AVTranscoder视频转码(ArkTS)](media/media/avtranscoder-practice.md)
       - 媒体开发指导(C/C++)<!--media-kit-dev--c-->
         - 播放<!--media-playback-c-->
           - [使用AVPlayer播放音频(C/C++)](media/media/using-ndk-avplayer-for-playback.md)

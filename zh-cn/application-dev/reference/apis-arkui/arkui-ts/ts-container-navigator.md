@@ -148,13 +148,11 @@ class TextObject {
 
 ```ts
 // Detail.ets
-import { router } from '@kit.ArkUI'
-
 @Entry
 @Component
 struct DetailExample {
   // 接收Navigator.ets的传参
-  params: Record<string, NameObject> = router.getParams() as Record<string, NameObject>
+  params: Record<string, NameObject> = this.getUIContext().getRouter().getParams() as Record<string, NameObject>
   @State name: NameObject = this.params.text
 
   build() {

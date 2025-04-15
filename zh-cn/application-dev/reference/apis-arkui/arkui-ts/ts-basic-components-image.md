@@ -528,6 +528,22 @@ orientation(orientation: ImageRotateOrientation)
 | ------ | --------------------------------------- | ---- | -------------------------------- |
 | orientation  | [ImageRotateOrientation](#imagerotateorientation14) | 是   | 图像内容的显示方向。<br/>默认值：ImageRotateOrientation.UP |
 
+### hdrBrightness<sup>20+</sup>
+
+hdrBrightness(brightness: number)
+
+设置组件在显示HDR图片时的亮度。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型    | 必填 | 说明                   |
+| -------- | ------- | ---- | ---------------------- |
+| brightness | number | 是   | 用于调整组件展示HDR图片的亮度，该接口仅对HDR图源生效。<br/>默认值：1.0<br/>取值范围：[0.0，1.0]，小于0和大于1.0时取1。0表示图片按照SDR亮度显示，1表示图片按照当前允许的最高HDR亮度显示。  |
+
 ## ImageContent<sup>12+</sup>
 
 指定图像内容。
@@ -1627,3 +1643,52 @@ struct Index {
 ```
 
 ![fillColorExample](figures/fillColorExample.png)
+
+### 示例18（设置HDR图源动态提亮）
+
+该示例通过[hdrBrightness](#hdrbrightness20)调整HDR图源的亮度，将hdrBrightness从0调整到1。
+
+```ts
+import { image } from '@kit.ImageKit';
+
+const TAG = 'AceImage';
+
+@Entry
+@Component
+struct Index {
+  @State imgUrl: string = 'img_1';
+  @State bright: number = 0; // 默认亮度为0
+  aboutToAppear(): void {
+    // 获取资源管理器中的媒体资源
+    let img = getContext().resourceManager.getMediaByNameSync(this.imgUrl);
+    // 创建图片源并获取图片信息
+    let imageSource = image.createImageSource(img.buffer.slice(0));
+    let imageInfo = imageSource.getImageInfoSync();
+    // 检查图片信息是否获取成功
+    if (imageInfo == undefined) {
+      console.error(TAG, 'Failed to obtain the image information.');
+    } else {
+      // 成功获取到图片信息，打印HDR状态
+      console.info(TAG, 'imageInfo.isHdr:' + imageInfo.isHdr);
+    }
+  }
+
+  build() {
+    Column() {
+      Image($r('app.media.img_1')).width('50%')
+        .height('auto')
+        .margin({top:160})
+        .hdrBrightness(this.bright) // 设置图片的HDR亮度，值由bright状态控制
+      Button("图片动态提亮 0->1")  
+        .onClick(() => {
+          // 动画过渡，切换亮度值
+          animateTo({}, () => {
+            this.bright = 1.0 - this.bright;
+          })
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
