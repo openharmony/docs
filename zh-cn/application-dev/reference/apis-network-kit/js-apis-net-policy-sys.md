@@ -2248,7 +2248,7 @@ try {
 | 名称                              | 值     | 说明                 |
 | --------------------------------- | ------ | -------------------- |
 | NET_RULE_NONE                     | 0      | 默认规则。             |
-| NET_RULE_ALLOW_METERED_FOREGROUND | 1 << 0 | 允许前台访问计量网络。。 |
+| NET_RULE_ALLOW_METERED_FOREGROUND | 1 << 0 | 允许前台访问计量网络。 |
 | NET_RULE_ALLOW_METERED            | 1 << 1 | 允许访问计量网络。     |
 | NET_RULE_REJECT_METERED           | 1 << 2 | 拒绝访问计量网络。     |
 | NET_RULE_ALLOW_ALL                | 1 << 5 | 允许访问所有网络。    |
