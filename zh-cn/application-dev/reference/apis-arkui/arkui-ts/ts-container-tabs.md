@@ -13,7 +13,6 @@
 
 不支持自定义组件作为子组件，仅可包含子组件[TabContent](ts-container-tabcontent.md)，以及渲染控制类型[if/else](../../../quick-start/arkts-rendering-control-ifelse.md)和[ForEach](../../../quick-start/arkts-rendering-control-foreach.md)，并且if/else和ForEach下也仅支持TabContent，不支持自定义组件。
 
-
 >  **说明：**
 >
 >  Tabs子组件的visibility属性设置为None，或者visibility属性设置为Hidden时，对应子组件不显示，但依然会在视窗内占位。
