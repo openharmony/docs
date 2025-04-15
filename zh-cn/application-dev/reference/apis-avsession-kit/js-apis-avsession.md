@@ -5489,6 +5489,8 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 
 枚举，设备所支持的解码格式。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 | 名称                        | 值   | 说明           |
@@ -5501,6 +5503,8 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 ## ResolutionLevel<sup>19+</sup>
 
 枚举，设备所支持的分辨率。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
