@@ -48,6 +48,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
+| typedef enum [Rdb_Tokenizer](_r_d_b.md#rdb_tokenizer) [Rdb_Tokenizer](_r_d_b.md#rdb_tokenizer) | 描述数据库的分词器类型。 |
 | [OH_Rdb_SecurityLevel](_r_d_b.md#oh_rdb_securitylevel) | 数据库的安全级别枚举。 |
 | [Rdb_SecurityArea](_r_d_b.md#rdb_securityarea) | 描述数据库的安全区域等级。 |
 | typedef struct [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) | 管理关系数据库配置，与[OH_Rdb_Config](_o_h___rdb___config.md)的区别是该结构体成员变量不对外暴露，使用一系列方法配置该结构体的属性，支持向量数据库。 |
@@ -77,6 +78,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
+| [Rdb_Tokenizer](_r_d_b.md#rdb_tokenizer-1) { RDB_NONE_TOKENIZER = 1, RDB_ICU_TOKENIZER = 2, RDB_CUSTOM_TOKENIZER = 3 } | 描述数据库的分词器类型。 |
 | [OH_Rdb_SecurityLevel](_r_d_b.md#oh_rdb_securitylevel-1) { S1 = 1, S2, S3, S4} | 数据库的安全级别枚举。 |
 | [Rdb_SecurityArea](_r_d_b.md#rdb_securityarea-1) { RDB_SECURITY_AREA_EL1 = 1, RDB_SECURITY_AREA_EL2, RDB_SECURITY_AREA_EL3, RDB_SECURITY_AREA_EL4, RDB_SECURITY_AREA_EL5 } | 描述数据库的安全区域等级。 |
 | [Rdb_DBType](_r_d_b.md#rdb_dbtype-1) { RDB_SQLITE = 1, RDB_CAYLEY = 2, DBTYPE_BUTT = 64 } | 描述数据库的内核类型。 |
