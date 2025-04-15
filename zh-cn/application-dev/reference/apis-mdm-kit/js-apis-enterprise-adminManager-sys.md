@@ -1274,7 +1274,6 @@ replaceSuperAdmin(oldAdmin: Want, newAdmin: Want, isKeepPolicy: boolean): void
 | 9200011 | Failed to replace the administrator application of the device. |
 | 201  | Permission verification failed. The application does not have the permission required to call the API. |
 | 202  | Permission verification failed. A non-system application calls a system API. |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
