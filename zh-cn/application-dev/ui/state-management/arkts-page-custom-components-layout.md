@@ -2,9 +2,9 @@
 
 如果需要通过测算的方式布局自定义组件内子组件的位置，建议使用以下接口：
 
-- [onMeasureSize](../reference/apis-arkui/arkui-ts/ts-custom-component-layout.md#onmeasuresize10)：组件每次布局时触发，计算子组件的尺寸，其执行时间先于onPlaceChildren。
+- [onMeasureSize](../../reference/apis-arkui/arkui-ts/ts-custom-component-layout.md#onmeasuresize10)：组件每次布局时触发，计算子组件的尺寸，其执行时间先于onPlaceChildren。
 
-- [onPlaceChildren](../reference/apis-arkui/arkui-ts/ts-custom-component-layout.md#onplacechildren10)：组件每次布局时触发，设置子组件的起始位置。
+- [onPlaceChildren](../../reference/apis-arkui/arkui-ts/ts-custom-component-layout.md#onplacechildren10)：组件每次布局时触发，设置子组件的起始位置。
 
 **示例：**
 

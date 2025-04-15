@@ -543,7 +543,7 @@ struct Index {
 
 ### 在状态管理V2中使用animateTo动画效果异常
 
-在下面的场景中，[animateTo](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md)暂不支持直接在状态管理V2中使用。
+在下面的场景中，[animateTo](../../reference/apis-arkui/arkui-ts/ts-explicit-animation.md)暂不支持直接在状态管理V2中使用。
 
 ```ts
 @Entry
@@ -627,7 +627,7 @@ struct Index {
 }
 ```
 
-原理为使用一个duration为0的[animateToImmediately](../reference/apis-arkui/arkui-ts/ts-explicit-animatetoimmediately.md)将额外的修改先刷新，再执行原来的动画达成预期的效果。
+原理为使用一个duration为0的[animateToImmediately](../../reference/apis-arkui/arkui-ts/ts-explicit-animatetoimmediately.md)将额外的修改先刷新，再执行原来的动画达成预期的效果。
 
 ![arkts-new-local-animateTo-2](figures/arkts-new-local-animateTo-2.gif)
 

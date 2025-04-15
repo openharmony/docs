@@ -120,7 +120,7 @@
 >
 > 只能在当前文件内使用，不支持export。
 >
-> 如果想实现export功能，推荐使用[AttributeModifier](../ui/arkts-user-defined-extension-attributeModifier.md)。
+> 如果想实现export功能，推荐使用[AttributeModifier](../../ui/arkts-user-defined-extension-attributeModifier.md)。
 
 【反例】
 

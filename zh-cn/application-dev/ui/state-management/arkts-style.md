@@ -14,7 +14,7 @@
 
 ## 装饰器使用说明
 
-- 当前\@Styles仅支持[通用属性](../reference/apis-arkui/arkui-ts/ts-component-general-attributes.md)和[通用事件](../reference/apis-arkui/arkui-ts/ts-component-general-events.md)。
+- 当前\@Styles仅支持[通用属性](../../reference/apis-arkui/arkui-ts/ts-component-general-attributes.md)和[通用事件](../../reference/apis-arkui/arkui-ts/ts-component-general-events.md)。
 
 - \@Styles可以定义在组件内或全局，在全局定义时需在方法名前面添加function关键字，组件内定义时则不需要添加function关键字。
 
@@ -22,7 +22,7 @@
 >
 > 只能在当前文件内使用，不支持export。
 >
-> 如果想实现export功能，推荐使用[AttributeModifier](../ui/arkts-user-defined-extension-attributeModifier.md)
+> 如果想实现export功能，推荐使用[AttributeModifier](../../ui/arkts-user-defined-extension-attributeModifier.md)
 
   ```ts
   // 全局
@@ -37,7 +37,7 @@
   }
   ```
 
-如果要实现跨文件操作的功能，可以参考使用[动态属性设置](../reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md)。
+如果要实现跨文件操作的功能，可以参考使用[动态属性设置](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md)。
 
   ```ts
   // index.ets

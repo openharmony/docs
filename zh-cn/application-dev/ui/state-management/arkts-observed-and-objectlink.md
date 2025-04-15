@@ -600,11 +600,11 @@ struct Parent {
 ![Observed_ObjectLink_object_array](figures/Observed_ObjectLink_object_array.gif)
 
 - this.arrA[Math.floor(this.arrA.length/2)] = new Info(..) ：该状态变量的改变触发2次更新：
-  1. ForEach：数组项的赋值导致ForEach的[itemGenerator](../reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md)被修改，因此数组项被识别为有更改，ForEach的item builder将执行，创建新的Child组件实例。
+  1. ForEach：数组项的赋值导致ForEach的[itemGenerator](../../reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md)被修改，因此数组项被识别为有更改，ForEach的item builder将执行，创建新的Child组件实例。
   2. Child({ label: `ViewChild this.arrA[last]`, info: this.arrA[this.arrA.length-1] })：上述更改改变了数组中第二个元素，所以绑定this.arrA[1]的Child将被更新。
 
 - this.arrA.push(new Info(0)) ： 将触发2次不同效果的更新：
-  1. ForEach：新添加的Info对象对于ForEach是未知的[itemGenerator](../reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md)，ForEach的item builder将执行，创建新的Child组件实例。
+  1. ForEach：新添加的Info对象对于ForEach是未知的[itemGenerator](../../reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md)，ForEach的item builder将执行，创建新的Child组件实例。
   2. Child({ label: `ViewChild this.arrA[last]`, info: this.arrA[this.arrA.length-1] })：数组的最后一项有更改，因此引起第二个Child的实例的更改。对于Child({ label: `ViewChild this.arrA[first]`, info: this.arrA[0] })，数组的更改并没有触发一个数组项更改的改变，所以第一个Child不会刷新。
 
 - this.arrA[Math.floor(this.arrA.length/2)].info：@State无法观察到第二层的变化，但是Info被\@Observed装饰，Info的属性的变化将被\@ObjectLink观察到。
