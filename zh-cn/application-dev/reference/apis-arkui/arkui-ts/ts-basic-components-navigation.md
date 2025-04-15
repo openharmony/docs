@@ -149,7 +149,7 @@ hideToolBar(value: boolean)
 
 hideToolBar(hide: boolean, animated: boolean)
 
-设置是否带动画效果的工具栏显示和隐藏。
+设置是否隐藏工具栏。与[hideToolBar](#hidetoolbar)相比，新增工具栏显隐时是否使用动画。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -182,7 +182,7 @@ hideTitleBar(value: boolean)
 
 hideTitleBar(hide: boolean, animated: boolean)
 
-设置是否带动画效果的标题栏显示和隐藏。
+设置是否隐藏标题栏。与[hideTitleBar](#hidetitlebar)相比，新增标题栏显隐时是否使用动画。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -216,6 +216,8 @@ hideBackButton(value: boolean)
 navBarWidth(value: Length)
 
 设置导航栏宽度。仅在Navigation组件分栏时生效。
+
+从API version 18开始，该参数支持[!!](../../../quick-start/arkts-new-binding.md#组件参数双向绑定)双向绑定变量。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

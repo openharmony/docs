@@ -109,8 +109,8 @@ struct Index {
   private uiContext: UIContext = this.getUIContext();
 
   @Builder
-  customDialogComponent(uiContext: UIContext) {
-    customDialogBuilder(uiContext);
+  customDialogComponent() {
+    customDialogBuilder(this.uiContext);
   }
 
   build() {
@@ -123,7 +123,7 @@ struct Index {
             const node: FrameNode | null = this.getUIContext().getFrameNodeById("test_text") || null;
             this.uiContext.getPromptAction().openCustomDialog({
               builder: () => {
-                this.customDialogComponent(this.uiContext);
+                this.customDialogComponent();
               },
               levelMode: LevelMode.EMBEDDED, // 启用页面级弹出框
               levelUniqueId: node?.getUniqueId(), // 设置页面级弹出框所在页面的任意节点ID
