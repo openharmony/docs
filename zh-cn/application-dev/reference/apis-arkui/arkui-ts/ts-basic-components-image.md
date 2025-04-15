@@ -241,7 +241,7 @@ sourceSize(value: ImageSourceSize)
 
 | 参数名 | 类型                                                    | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ImageSourceSize](#imagesourcesize14对象说明) | 是   | 图片解码尺寸参数，降低图片的分辨率，常用于需要让图片显示尺寸比组件尺寸更小的场景。和ImageFit.None配合使用时可在组件内显示小图。 |
+| value  | [ImageSourceSize](#imagesourcesize18对象说明) | 是   | 图片解码尺寸参数，降低图片的分辨率，常用于需要让图片显示尺寸比组件尺寸更小的场景。和ImageFit.None配合使用时可在组件内显示小图。 |
 
 ### matchTextDirection
 
@@ -628,11 +628,11 @@ orientation(orientation: ImageRotateOrientation)
 | DOWN | 3| 将当前图片旋转180度后显示。         |
 | LEFT | 4 | 将当前图片向左旋转90度后显示。         |
 
-## ImageSourceSize<sup>14+</sup>对象说明
+## ImageSourceSize<sup>18+</sup>对象说明
 
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
