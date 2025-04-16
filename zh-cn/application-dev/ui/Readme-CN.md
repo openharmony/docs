@@ -197,7 +197,7 @@
       - [监听组件事件](ndk-listen-to-component-events.md)
       - [绑定手势事件](ndk-bind-gesture-events.md)
     - [使用动画](ndk-use-animation.md)
-    - [使用懒加载开发长列表界面](ndk-loading-long-list.md)
+    - [使用列表](ndk-loading-long-list.md)
     - [构建弹窗](ndk-build-pop-up-window.md)
     - [构建自定义组件](ndk-build-custom-components.md)
     - [嵌入ArkTS组件](ndk-embed-arkts-components.md)
