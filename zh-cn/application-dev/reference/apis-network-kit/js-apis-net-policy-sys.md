@@ -1491,7 +1491,7 @@ policy
 
 ## policy.setNetworkAccessPolicy<sup>12+</sup>
 
-setNetworkAccessPolicy(uid: number, policy: NetworkAccessPolicy, isReconfirmed?: boolean): Promise<void>
+setNetworkAccessPolicy(uid: number, policy: NetworkAccessPolicy, isReconfirmed?: boolean): Promise\<void>
 
 设置指定 uid 应用能否能访问网络的策略，使用 Promise 方式作为异步方法。
 
@@ -1547,7 +1547,7 @@ policy
 
 ## policy.getNetworkAccessPolicy<sup>12+</sup>
 
-getNetworkAccessPolicy(uid: number): Promise<NetworkAccessPolicy>
+getNetworkAccessPolicy(uid: number): Promise\<NetworkAccessPolicy>
 
 获取指定 uid 能否访问网络策略，使用 Promise 方式作为异步方法。
 
@@ -1597,7 +1597,7 @@ policy
 
 ## policy.getNetworkAccessPolicy<sup>12+</sup>
 
-getNetworkAccessPolicy(): Promise<UidNetworkAccessPolicy>
+getNetworkAccessPolicy(): Promise\<UidNetworkAccessPolicy>
 
 获取当前用户下所有应用 app 能否访问网络策略信息，使用 Promise 方式作为异步方法。
 
@@ -2248,7 +2248,7 @@ try {
 | 名称                              | 值     | 说明                 |
 | --------------------------------- | ------ | -------------------- |
 | NET_RULE_NONE                     | 0      | 默认规则。             |
-| NET_RULE_ALLOW_METERED_FOREGROUND | 1 << 0 | 允许前台访问计量网络。。 |
+| NET_RULE_ALLOW_METERED_FOREGROUND | 1 << 0 | 允许前台访问计量网络。 |
 | NET_RULE_ALLOW_METERED            | 1 << 1 | 允许访问计量网络。     |
 | NET_RULE_REJECT_METERED           | 1 << 2 | 拒绝访问计量网络。     |
 | NET_RULE_ALLOW_ALL                | 1 << 5 | 允许访问所有网络。    |
