@@ -1,6 +1,6 @@
 # @ohos.application.uriPermissionManager (URI Permission Management) (System API)
 
-The **uriPermissionManager** module provides APIs for granting permissions on a file or revoking the granted permission from an application. The file is identified by a uniform resource identifier (URI).
+The **uriPermissionManager** module provides capabilities for granting the permission on a file to another application and revoking the granted permissions. The file is identified by a uniform resource identifier (URI).
 
 > **NOTE**
 > 
@@ -10,7 +10,7 @@ The **uriPermissionManager** module provides APIs for granting permissions on a 
 
 ## Modules to Import
 
-  
+
 ```ts
 import { uriPermissionManager } from '@kit.AbilityKit';
 ```
@@ -23,6 +23,7 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
 Grants the URI permission to an application. This API uses an asynchronous callback to return the result.
 
 An application can grant its own URIs to another application. If it has the ohos.permission.PROXY_AUTHORIZATION_URI permission, it can also grant the any accessible URI of another application.
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -31,12 +32,12 @@ An application can grant its own URIs to another application. If it has the ohos
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | uri | string | Yes| URI of the file, for example, **fileshare:///com.samples.filesharetest.FileShare/person/10**.| 
-  | flag | [wantConstant.Flags](js-apis-app-ability-wantConstant.md#flags) | Yes| Read or write permission on the file to grant.| 
-  | targetBundleName | string | Yes| Bundle name of the application, to which the permission is granted.| 
-  | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the operation is successful, **0** is returned; otherwise, **-1** is returned.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| uri | string | Yes| URI of the file, for example, **fileshare:///com.samples.filesharetest.FileShare/person/10**.|
+| flag | [wantConstant.Flags](js-apis-app-ability-wantConstant.md#flags) | Yes| Read or write permission on the file to grant.|
+| targetBundleName | string | Yes| Bundle name of the application, to which the permission is granted.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the operation is successful, **0** is returned; otherwise, **-1** is returned.|
 
 **Error codes**
 
@@ -82,6 +83,7 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
 Grants the URI permission to an application. This API uses a promise to return the result.
 
 An application can grant its own URIs to another application. If it has the ohos.permission.PROXY_AUTHORIZATION_URI permission, it can also grant the any accessible URI of another application.
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -90,31 +92,31 @@ An application can grant its own URIs to another application. If it has the ohos
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | uri | string | Yes| URI of the file, for example, **fileshare:///com.samples.filesharetest.FileShare/person/10**.| 
-  | flag | [wantConstant.Flags](js-apis-app-ability-wantConstant.md#flags) | Yes| Read or write permission on the file to grant.| 
-  | targetBundleName | string | Yes| Bundle name of the application, to which the permission is granted.|  
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| uri | string | Yes| URI of the file, for example, **fileshare:///com.samples.filesharetest.FileShare/person/10**.|
+| flag | [wantConstant.Flags](js-apis-app-ability-wantConstant.md#flags) | Yes| Read or write permission on the file to grant.|
+| targetBundleName | string | Yes| Bundle name of the application, to which the permission is granted.|
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, **0** is returned; otherwise, **-1** is returned.| 
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, **0** is returned; otherwise, **-1** is returned.|
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-  | ID| Error Message|
-  | ------- | -------------------------------- |
-  | 201 | Permission denied. |
-  | 202 | Not System App. Interface caller is not a system app. |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-  | 16000050 | Internal error. |
-  | 16000058 | Invalid URI flag. |
-  | 16000059 | Invalid URI type. |
-  | 16000060 | Sandbox application can not grant URI permission. |
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 16000050 | Internal error. |
+| 16000058 | Invalid URI flag. |
+| 16000059 | Invalid URI type. |
+| 16000060 | Sandbox application can not grant URI permission. |
 
 **Example**
     
@@ -149,28 +151,29 @@ revokeUriPermission(uri: string, targetBundleName: string, callback: AsyncCallba
 Revokes the URI permission from an application. This API uses an asynchronous callback to return the result.
 
 This API can be used to revoke the URI permission of another application obtained by this application or URI permission granted by this application.
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | uri | string | Yes| URI of the file, for example, **fileshare:///com.samples.filesharetest.FileShare/person/10**.| 
-  | targetBundleName | string | Yes| Bundle name of the application, from which the permission is revoked.| 
-  | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the operation is successful, **0** is returned; otherwise, **-1** is returned.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| uri | string | Yes| URI of the file, for example, **fileshare:///com.samples.filesharetest.FileShare/person/10**.|
+| targetBundleName | string | Yes| Bundle name of the application, from which the permission is revoked.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the operation is successful, **0** is returned; otherwise, **-1** is returned.|
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-  | ID| Error Message|
-  | ------- | -------------------------------- |
-  | 202 | Not System App. Interface caller is not a system app. |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-  | 16000050 | Internal error. |
-  | 16000059 | Invalid URI type. |
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 16000050 | Internal error. |
+| 16000059 | Invalid URI type. |
 
 **Example**
     
@@ -192,35 +195,35 @@ revokeUriPermission(uri: string, targetBundleName: string): Promise&lt;number&gt
 
 Revokes the URI permission from an application. This API uses a promise to return the result.
 
-
 This API can be used to revoke the URI permission of another application obtained by this application or URI permission granted by this application.
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | uri | string | Yes| URI of the file, for example, **fileshare:///com.samples.filesharetest.FileShare/person/10**.| 
-  | targetBundleName | string | Yes| Bundle name of the application, from which the permission is revoked.|  
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| uri | string | Yes| URI of the file, for example, **fileshare:///com.samples.filesharetest.FileShare/person/10**.|
+| targetBundleName | string | Yes| Bundle name of the application, from which the permission is revoked.|
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, **0** is returned; otherwise, **-1** is returned.| 
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, **0** is returned; otherwise, **-1** is returned.|
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-  | ID| Error Message|
-  | ------- | -------------------------------- |
-  | 202 | Not System App. Interface caller is not a system app. |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-  | 16000050 | Internal error. |
-  | 16000059 | Invalid URI type. |
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 16000050 | Internal error. |
+| 16000059 | Invalid URI type. |
 
 
 **Example**
