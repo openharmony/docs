@@ -15,7 +15,7 @@ import { abilityAccessCtrl } from '@kit.AbilityKit'
 
 createAtManager(): AtManager
 
-Creates an **AtManager** instance, which is used for application access control.
+Creates an **AtManager** instance for application access control.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -374,19 +374,6 @@ let data: abilityAccessCtrl.GrantStatus = atManager.checkAccessTokenSync(tokenID
 console.log(`data->${JSON.stringify(data)}`);
 ```
 
-### GrantStatus
-
-Enumerates the permission grant states.
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-**System capability**: SystemCapability.Security.AccessToken
-
-| Name              |    Value| Description       |
-| ------------------ | ----- | ----------- |
-| PERMISSION_DENIED  | -1    | The permission is not granted.|
-| PERMISSION_GRANTED | 0     | The permission is granted.|
-
 ### requestPermissionOnSetting<sup>12+</sup>
 
 requestPermissionOnSetting(context: Context, permissionList: Array&lt;Permissions&gt;): Promise&lt;Array&lt;GrantStatus&gt;&gt;
@@ -504,7 +491,20 @@ atManager.requestGlobalSwitch(context, abilityAccessCtrl.SwitchType.CAMERA).then
 });
 ```
 
-### SwitchType<sup>12+</sup>
+## GrantStatus
+
+Enumerates the permission grant states.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Security.AccessToken
+
+| Name              |    Value| Description       |
+| ------------------ | ----- | ----------- |
+| PERMISSION_DENIED  | -1    | The permission is not granted.|
+| PERMISSION_GRANTED | 0     | The permission is granted.|
+
+## SwitchType<sup>12+</sup>
 
 Enumerates the global switch types.
 
