@@ -3256,6 +3256,7 @@
         - [@ohos.resourceManager (资源管理)](reference/apis-localization-kit/js-apis-resource-manager.md)
         - [@ohos.sendableResourceManager (资源管理)](reference/apis-localization-kit/js-apis-sendable-resource-manager.md)
         <!--Del-->
+        - [@ohos.fontManager (字体管理)](reference/apis-localization-kit/js-apis-font-manager-sys.md)
         - [@ohos.i18n (国际化-I18n)(系统接口)](reference/apis-localization-kit/js-apis-i18n-sys.md)
         <!--DelEnd-->
         - global<!--localization-global-arkts-->
@@ -3279,6 +3280,9 @@
       - 错误码<!--localization-arkts-errcode-->
         - [I18n错误码](reference/apis-localization-kit/errorcode-i18n.md)
         - [资源管理错误码](reference/apis-localization-kit/errorcode-resource-manager.md)
+        <!--Del-->
+        - [字体管理错误码](reference/apis-localization-kit/errorcode-font-manager.md)
+        <!--DelEnd-->
   - 系统<!--system-api-->
     - 安全<!--system-security-api-->
       - Asset Store Kit（关键资产存储服务）<!--asset-store-api-->
