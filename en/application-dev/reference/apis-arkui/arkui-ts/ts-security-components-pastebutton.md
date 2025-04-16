@@ -128,35 +128,52 @@ Called when a click event occurs.
 
 ```ts
 // xxx.ets
+import { BusinessError } from '@kit.BasicServicesKit';
+
 @Entry
 @Component
 struct Index {
+  handlePasteButtonClick: PasteButtonCallback =
+    (event: ClickEvent, result: PasteButtonOnClickResult, error: BusinessError<void>) => {
+      if (result == PasteButtonOnClickResult.SUCCESS) {
+        console.info("success");
+      } else {
+        console.info("errCode: " + error.code);
+        console.info("errMessage: " + error.message);
+      }
+    };
+
   build() {
     Row() {
-      Column({space:10}) {
+      Column({ space: 10 }) {
         // Create a default button with an icon, text, and background.
-        PasteButton().onClick((event: ClickEvent, result: PasteButtonOnClickResult)=>{
+        PasteButton().onClick((event: ClickEvent, result: PasteButtonOnClickResult) => {
           console.info("result " + result)
         })
         // Whether an element is contained depends on whether the parameter corresponding to the element is specified. If buttonType is not passed in, the button uses the ButtonType.Capsule settings.
-        PasteButton({icon:PasteIconStyle.LINES})
+        PasteButton({ icon: PasteIconStyle.LINES })
         // Create a button with only an icon and background. If the alpha value of the most significant eight bits of the background color is less than 0x1A, the system forcibly adjusts the alpha value to 0xFF.
-        PasteButton({icon:PasteIconStyle.LINES, buttonType:ButtonType.Capsule})
+        PasteButton({ icon: PasteIconStyle.LINES, buttonType: ButtonType.Capsule })
           .backgroundColor(0x10007dff)
         // Create a button with an icon, text, and background. If the alpha value of the most significant eight bits of the background color is less than 0x1A, the system forcibly adjusts the alpha value to 0xFF.
-        PasteButton({icon:PasteIconStyle.LINES, text:PasteDescription.PASTE, buttonType:ButtonType.Capsule})
+        PasteButton({ icon: PasteIconStyle.LINES, text: PasteDescription.PASTE, buttonType: ButtonType.Capsule })
         // Create a button with an icon, text, and background. If the set width is less than the minimum allowed, the button's text will wrap to guarantee full text display.
-        PasteButton({icon:PasteIconStyle.LINES, text:PasteDescription.PASTE, buttonType:ButtonType.Capsule})
+        PasteButton({ icon: PasteIconStyle.LINES, text: PasteDescription.PASTE, buttonType: ButtonType.Capsule })
           .fontSize(16)
           .width(30)
         // Create a button with an icon, text, and background. If the set width is less than the minimum allowed, the button's text will wrap to guarantee full text display.
-        PasteButton({icon:PasteIconStyle.LINES, text:PasteDescription.PASTE, buttonType:ButtonType.Capsule})
+        PasteButton({ icon: PasteIconStyle.LINES, text: PasteDescription.PASTE, buttonType: ButtonType.Capsule })
           .fontSize(16)
-          .size({width: 30, height: 30})
+          .size({ width: 30, height: 30 })
         // Create a button with an icon, text, and background. If the set width is less than the minimum allowed, the button's text will wrap to guarantee full text display.
-        PasteButton({icon:PasteIconStyle.LINES, text:PasteDescription.PASTE, buttonType:ButtonType.Capsule})
+        PasteButton({ icon: PasteIconStyle.LINES, text: PasteDescription.PASTE, buttonType: ButtonType.Capsule })
           .fontSize(16)
-          .constraintSize({minWidth: 0, maxWidth: 30, minHeight: 0, maxHeight: 30})
+          .constraintSize({
+            minWidth: 0,
+            maxWidth: 30,
+            minHeight: 0,
+            maxHeight: 30
+          })
       }.width('100%')
     }.height('100%')
   }

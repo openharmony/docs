@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -66,6 +66,8 @@ Button()
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## ButtonOptions对象说明
+
+按钮的样式。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -243,7 +245,7 @@ buttonStyle(value: ButtonStyleMode)
 
 | 参数名 | 类型                                          | 必填 | 说明                                                         |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ButtonStyleMode](#buttonstylemode11枚举说明) | 是   | Button组件的样式和重要程度。<br/>默认值:ButtonStyleMode.EMPHASIZED |
+| value  | [ButtonStyleMode](#buttonstylemode11枚举说明) | 是   | Button组件的样式和重要程度。<br/>默认值：ButtonStyleMode.EMPHASIZED |
 
 ### controlSize<sup>11+</sup>
 
@@ -259,9 +261,9 @@ controlSize(value: ControlSize)
 
 **参数：** 
 
-| 参数名 | 类型                                  | 必填 | 说明                                             |
-| ------ | ------------------------------------- | ---- | ------------------------------------------------ |
-| value  | [ControlSize](#controlsize11枚举说明) | 是   | Button组件的尺寸。<br/>默认值:ControlSize.NORMAL |
+| 参数名 | 类型                                  | 必填 | 说明                                              |
+| ------ | ------------------------------------- | ---- | ------------------------------------------------- |
+| value  | [ControlSize](#controlsize11枚举说明) | 是   | Button组件的尺寸。<br/>默认值：ControlSize.NORMAL |
 
 ### role<sup>12+</sup>
 
@@ -277,9 +279,9 @@ role(value: ButtonRole)
 
 **参数：** 
 
-| 参数名 | 类型                                          | 必填 | 说明                                             |
-| ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
-| value  | [ButtonRole](#buttonrole12枚举说明) | 是   | 设置Button组件的角色。<br/>默认值:ButtonRole.NORMAL |
+| 参数名 | 类型                                | 必填 | 说明                                                 |
+| ------ | ----------------------------------- | ---- | ---------------------------------------------------- |
+| value  | [ButtonRole](#buttonrole12枚举说明) | 是   | 设置Button组件的角色。<br/>默认值：ButtonRole.NORMAL |
 
 ### contentModifier<sup>12+</sup>
 
@@ -295,9 +297,11 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                             |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
-| modifier  | [ContentModifier\<ButtonConfiguration>](#buttonconfiguration12对象说明) | 是   | 在Button组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
+| modifier  | [ContentModifier\<ButtonConfiguration>](#buttonconfiguration12对象说明) | 是   | 在Button组件上，定制内容区的方法。<br/>modifier：内容修改器，开发者需要自定义class实现ContentModifier接口。 |
 
 ## ButtonType枚举说明
+
+按钮的类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -317,6 +321,8 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 
 ## LabelStyle<sup>10+</sup>对象说明
 
+按钮中文本的显示样式。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -324,13 +330,15 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 | 名称                 | 类型                                                         | 必填 | 说明                                                         |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | overflow             | [TextOverflow](ts-appendix-enums.md#textoverflow)            | 否   | 设置label文本超长时的显示方式。文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可在字母间添加零宽空格。<br>默认值：TextOverflow.Ellipsis |
-| maxLines             | number                                                       | 否   | 设置label文本的最大行数。默认情况下，文本是自动折行的，如果指定此参数，则文本最多不会超过指定的行。如果有多余的文本，可以通过overflow来指定截断方式。<br>默认值：1 |
+| maxLines             | number                                                       | 否   | 设置label文本的最大行数。如果指定此参数，则文本最多不会超过指定的行。如果有多余的文本，可以通过overflow来指定截断方式。<br>默认值：1 |
 | minFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | 否   | 设置label文本最小显示字号。需配合maxFontSize以及maxLines或布局大小限制使用。<br/>**说明：**  <br/>minFontSize小于或等于0时，自适应字号不生效。 |
 | maxFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | 否   | 设置label文本最大显示字号。需配合minFontSize以及maxLines或布局大小限制使用。 |
 | heightAdaptivePolicy | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 否   | 设置label文本自适应高度的方式。<br>默认值：TextHeightAdaptivePolicy.MAX_LINES_FIRST。 |
 | font                 | [Font](ts-types.md#font)                                     | 否   | 设置label文本字体样式。<br>默认值：默认值参考[Font](ts-types.md#font)。 |
 
 ## ButtonStyleMode<sup>11+</sup>枚举说明
+
+按钮的重要程度。
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
@@ -346,6 +354,8 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 
 ## ControlSize<sup>11+</sup>枚举说明
 
+按钮的尺寸。
+
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -358,6 +368,8 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 | NORMAL  | "normal" |正常尺寸按钮。|         |
 
 ## ButtonRole<sup>12+</sup>枚举说明
+
+按钮的角色。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 

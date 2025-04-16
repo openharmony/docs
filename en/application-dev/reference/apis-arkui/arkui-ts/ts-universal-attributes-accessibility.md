@@ -10,7 +10,9 @@ You can set accessibility attributes and events for components.
 
 accessibilityGroup(value: boolean)
 
-Sets the accessibility group.
+Sets whether to enable accessibility grouping. When accessibility grouping is enabled, the component and all its children are treated as a single selectable unit, and the accessibility service will no longer focus on the individual child components.
+
+If accessibility grouping is enabled and the component does not contain a universal text attribute or an [accessibility text](#accessibilitytext) attribute, the system will concatenate the universal text attributes of its child components to form a merged text for the component. If a child component lacks a universal text attribute, it will be ignored in the concatenation process. The merged text will not use the accessibility text of the child components.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -22,13 +24,17 @@ Sets the accessibility group.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Accessibility group. If this attribute is set to **true**, the component and all its child components form an entire selectable component, and the accessibility service will no longer be available for the content of its child components.<br>Default value: **false**|
+| value  | boolean | Yes  | Whether to enable accessibility grouping. When accessibility grouping is enabled, the component and all its children are treated as a single selectable unit, and the accessibility service will no longer focus on the individual child components.<br>Default value: **false**|
 
 ## accessibilityGroup<sup>14+</sup>
 
 accessibilityGroup(isGroup: boolean, accessibilityOptions: AccessibilityOptions)
 
-Groups components for accessibility purposes, allowing the accessibility service to read out concatenated text.
+Sets whether to enable accessibility grouping, with support for prioritizing the concatenation of accessibility text for accessibility announcement. When accessibility grouping is enabled, the component and all its children are treated as a single selectable entity, and the accessibility service will no longer focus on the individual child components.
+
+If accessibility grouping is enabled and the component does not contain a universal text attribute or an [accessibility text](#accessibilitytext) attribute, the system will concatenate the universal text attributes of its child components to form a merged text for the component. If a child component lacks a universal text attribute, it will be ignored in the concatenation process.
+
+When **accessibilityPreferred** is set to **true**, the system will prioritize concatenating the accessibility text attributes of the child components to form the merged text. If a child component lacks an accessibility text attribute, the system will continue to concatenate its universal text attribute. If a child component lacks both, it will be ignored.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 14.
 
@@ -40,8 +46,8 @@ Groups components for accessibility purposes, allowing the accessibility service
 
 | Name              | Type                                                   | Mandatory| Description                                                        |
 | -------------------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| isGroup              | boolean                                                 | Yes  | Whether to group the current component and its children. If this parameter is set to **true**, the component and all its children are treated as a single selectable unit. The accessibility service will not focus on individual child components.<br>Default value: **false**|
-| accessibilityOptions | [AccessibilityOptions](#accessibilityoptions14) | No  | Options to customize accessibility behavior, such as prioritizing concatenated text for reading.            |
+| isGroup              | boolean                                                 | Yes  | Whether to enable accessibility grouping. When accessibility grouping is enabled, the component and all its children are treated as a single selectable unit, and the accessibility service will no longer focus on the individual child components.<br>Default value: **false**|
+| accessibilityOptions | [AccessibilityOptions](#accessibilityoptions14) | Yes  | Options for accessibility grouping. When **accessibilityPreferred** is set to **true**, the system will prioritize concatenating the accessibility text attributes of the child components to form the merged text.<br>Default value: **false**           |
 
 ## AccessibilityOptions<sup>14+</sup>
 
@@ -49,13 +55,13 @@ Groups components for accessibility purposes, allowing the accessibility service
 
 | Name                  | Type   | Mandatory| Description                                                        |
 | ---------------------- | ------- | ---- | ------------------------------------------------------------ |
-| accessibilityPreferred | boolean | No  | Whether to prioritize the accessibility text of child components during a deep traversal. The value **true** means to prioritize the accessibility text of child components.<br>If a child component's accessibility text is empty, the accessibility service uses the component's own text content. The concatenated text is then assigned to the parent node if both its accessibility text and text content are empty.|
+| accessibilityPreferred | boolean | No  | Whether to prioritize the accessibility text of child components during a deep traversal. The value **true** means to prioritize the accessibility text of child components.<br>If a child component's accessibility text is empty, the accessibility service uses the component's own text content. The concatenated text is then assigned to the parent node if both its accessibility text and text content are empty.<br>Default value: **false**|
 
 ## accessibilityText
 
 accessibilityText(value: string)
 
-Sets the accessibility text.
+Sets the accessibility text. When a component does not contain a text attribute, you can use this API to set an accessibility text attribute, so that accessibility services can announce the specified content for the component.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -73,7 +79,7 @@ Sets the accessibility text.
 
 accessibilityText(text: Resource)
 
-Sets the accessibility text, which supports referencing resource files through **Resource**.
+Sets the accessibility text, with support for resource references using **Resource**. When a component does not contain a text attribute, you can use this API to set an accessibility text attribute, so that accessibility services can announce the specified content for the component.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -92,7 +98,7 @@ Sets the accessibility text, which supports referencing resource files through *
 
 accessibilityDescription(value: string)
 
-Sets the accessibility description.
+Sets the accessibility description. This property provides additional context or explanation for the component, helping users understand the action or function it performs.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -110,7 +116,7 @@ Sets the accessibility description.
 
 accessibilityDescription(description: Resource)
 
-Sets the accessibility description, which supports referencing resource files through **Resource**.
+Sets the accessibility description, with support for resource references using **Resource**. This property provides additional context or explanation for the component, helping users understand the action or function it performs.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -128,7 +134,7 @@ Sets the accessibility description, which supports referencing resource files th
 
 accessibilityLevel(value: string)
 
-Sets the accessibility level.
+Sets the accessibility level. This property determines whether the component can be recognized by accessibility services.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -140,13 +146,13 @@ Sets the accessibility level.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | string | Yes  | Accessibility level, which is used to decide whether a component can be identified by the accessibility service.<br>The options are as follows:<br>**"auto"**: The value is converted to **"yes"** or **"no"** based on the component.<br>**"yes"**: The current component is selectable for the accessibility service.<br>**"no"**: The current component is not selectable for the accessibility service.<br>**"no-hide-descendants"**: The current component and all its child components are not selectable for the accessibility service.<br>**Default value**: **"auto"**<br>**NOTE**<br>When the **accessibilityLevel** attribute of the following components is set to **"auto"**, they are selectable for the accessibility service: Checkbox, CheckboxGroup, Gauge, Marquee, MenuItem, MenuItemGroup, Menu, Navigation, DatePicker, Progress, Radio, Rating, ScrollBar, Select, Slider, Stepper, Text, TextClock, TextPicker, TextTimer, TimePicker, Toggle, Web.|
+| value  | string | Yes  | Accessibility level, which is used to decide whether a component can be identified by the accessibility service.<br>The options are as follows:<br>**"auto"**: The component's recognizability is determined by the accessibility grouping service and ArkUI.<br>**"yes"**: The component can be recognized by accessibility services.<br>**"no"**: The component cannot be recognized by accessibility services.<br>**"no-hide-descendants"**: Neither the component nor its child components can be recognized by accessibility services.<br>Default value: **"auto"**<br>**NOTE**<br>When accessibilityLevel is set to **"auto"**, the component's recognizability depends on the following factors:<br>1. The accessibility service internally determines whether the component can be recognized.<br>2. If the parent component's **accessibilityGroup** property has **isGroup** set to **true**, the accessibility service will not focus on its child components, making them unrecognizable.<br>3. If the parent component's **accessibilityLevel** is set to **"no-hide-descendants"**, the component will not be recognized by accessibility services.|
 
 ## accessibilityVirtualNode<sup>11+</sup>
 
 accessibilityVirtualNode(builder: CustomBuilder)
 
-Sets the accessibility virtual node.
+Sets an accessibility virtual child node. For custom drawing components, a **CustomBuilder** is passed, which is used to provide accessibility information. The components within the **CustomBuilder** are only used for layout and not for display. When the accessibility service obtains node information, it returns the node information from the **CustomBuilder**.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -164,7 +170,7 @@ Sets the accessibility virtual node.
 
 accessibilityChecked(isCheck: boolean)
 
-Sets the checked (selected) state of the accessibility node. It can be used to support multi-select scenarios.
+Sets the checked state of the accessibility component. This property is used in multiselect scenarios.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 13.
 
@@ -182,7 +188,7 @@ Sets the checked (selected) state of the accessibility node. It can be used to s
 
 accessibilitySelected(isSelect: boolean)
 
-Sets the selected state of the accessibility node. It can be used to support single-select scenarios.
+Sets the selected state of the accessibility component. This property is used in single-select scenarios.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 13.
 
@@ -195,6 +201,24 @@ Sets the selected state of the accessibility node. It can be used to support sin
 | Name  | Type   | Mandatory| Description                                                        |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
 | isSelect | boolean | Yes  | Whether the current component is selected.<br>The options are as follows:<br>**true**: The component is selected.<br>**false**: The component is not selected.<br>**undefined**: The component determines its own selected state.<br>Default value: **undefined**<br>**NOTE**<br>1. When this parameter is set to **true** or **false**, to use it with **accessibilityChecked**, set the **accessibilityChecked** parameter to **undefined**.|
+
+## accessibilityTextHint<sup>12+</sup>
+
+accessibilityTextHint(value: string)
+
+Sets the text hint for the component, which can be queried by accessibility services.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name        |  Type   | Mandatory| Description                                                        |
+| -------------- | ------- | ---- | ------------------------------------------------------------ |
+| value  | string | Yes  | Text hint for the component, which can be queried by accessibility services.|
 
 
 ## Example 1: Setting Accessibility Text and Description
@@ -229,7 +253,7 @@ struct Index {
       .accessibilityGroup(true)
       .accessibilityLevel("yes")
       .accessibilityText("Group") // If a component has both text content and accessibility text, only the accessibility text is announced.
-      .accessibilityDescription("The <Column> component is selectable , and the text to be read out is "Group".)
+      .accessibilityDescription("The Column component is selectable , and the text to be read out is "Group".)
       .accessibilityVirtualNode(this.customAccessibilityNode)
       .accessibilityChecked(true)
       .accessibilitySelected(undefined)

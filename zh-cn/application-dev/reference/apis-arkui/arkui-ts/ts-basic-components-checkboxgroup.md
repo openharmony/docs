@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 子组件
 
@@ -52,7 +52,7 @@ selectAll(value: boolean)
 
 设置是否全选。若同组的[Checkbox](ts-basic-components-checkbox.md)显式设置了select属性，则Checkbox的优先级高。
 
-从API version 10开始，该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+从API version 10开始，该属性支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -132,7 +132,7 @@ checkboxShape(value: CheckBoxShape)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [CheckBoxShape](ts-appendix-enums.md#checkboxshape11) | 是   | 设置CheckboxGroup组件形状， 包括圆形和圆角方形。<br/>默认值:CheckBoxShape.CIRCLE。 <br />**说明**：<br/>CheckboxGroup组件形状按照设置显示。<br/>CheckboxGroup内所有没有单独设置shape类型的Checkbox形状和CheckboxGroup的保持一致。<br/>CheckboxGroup内有单独设置shape类型的Checkbox形状则优先于CheckboxGroup，按照设置形状显示。 |
+| value  | [CheckBoxShape](ts-appendix-enums.md#checkboxshape11) | 是   | 设置CheckboxGroup组件形状， 包括圆形和圆角方形。<br/>默认值：CheckBoxShape.CIRCLE<br />**说明**：<br/>CheckboxGroup组件形状按照设置显示。<br/>CheckboxGroup内所有没有单独设置shape类型的Checkbox形状和CheckboxGroup的保持一致。<br/>CheckboxGroup内有单独设置shape类型的Checkbox形状则优先于CheckboxGroup，按照设置形状显示。 |
 
 ## 事件
 

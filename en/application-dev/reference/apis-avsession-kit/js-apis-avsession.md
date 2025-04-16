@@ -1,6 +1,6 @@
 # @ohos.multimedia.avsession (AVSession Management)
 
-The **avSession** module provides APIs for media playback control so that applications can access the system's Media Controller.
+The avSession module provides APIs for media playback control so that applications can access the system's Media Controller.
 
 This module provides the following typical features related to media sessions:
 
@@ -154,7 +154,7 @@ You can use the strings listed in the following table.
 
 An **AVSession** object is created by calling [avSession.createAVSession](#avsessioncreateavsession10). The object enables you to obtain the session ID and set the metadata and playback state. 
 
-### Attributes
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3421,7 +3421,7 @@ Prepares for the playback of a media asset, that is, loads and buffers a media a
 | Name   | Type                                 | Mandatory| Description                          |
 | ------- | ------------------------------------- | ---- | ------------------------------ |
 | item | [AVQueueItem](#avqueueitem10) | Yes  | Attributes of an item in the playlist.|
-| callback | AsyncCallback\<void>                  | Yes  | Callback used to return the result. If the command is sent, **err** is **undefined**; otherwise, **err** is an error object.|   
+| callback | AsyncCallback\<void>                  | Yes  | Callback used to return the result. If the command is sent, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -3543,7 +3543,7 @@ Prepares for the playback of a media asset. This API uses an asynchronous callba
 | Name   | Type                                 | Mandatory| Description                          |
 | ------- | ------------------------------------- | ---- | ------------------------------ |
 | item | [AVQueueItem](#avqueueitem10) | Yes  | Attributes of an item in the playlist.|
-| callback | AsyncCallback\<void>                  | Yes  | Callback used to return the result. If the command is sent, **err** is **undefined**; otherwise, **err** is an error object.|   
+| callback | AsyncCallback\<void>                  | Yes  | Callback used to return the result. If the command is sent, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -4192,7 +4192,7 @@ Subscribes to playback request events.
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The event **'requestPlay'** is triggered when a playback request is received.|
-| callback | (state: [AVQueueItem](#avqueueitem10)) => void               | Yes  | Callback function, where the **AVQueueItem** parameter specifies the media asset that is being played. If the subscription is successful, **err** is **undefined**; otherwise, **err** is an error object. | 
+| callback | (state: [AVQueueItem](#avqueueitem10)) => void               | Yes  | Callback function, where the **AVQueueItem** parameter specifies the media asset that is being played. If the subscription is successful, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Error codes**
 
@@ -5045,8 +5045,8 @@ Describes the information about the cast display in the case of extended screens
 | id            | number                  | No   | No   | ID of the cast display. The value must be an integer. |
 | name     | string                  | No   | No   | Name of the cast display.          |
 | state          | [CastDisplayState](#castdisplaystate12)          | No   | No   |State of the cast display.           |
-| width          | number          | No   | No   | Screen width of the cast display, in px. The value must be an integer.         |  
-| height          | number          | No   | No   | Screen height of the cast display, in px. The value must be an integer.           |  
+| width          | number          | No   | No   | Screen width of the cast display, in px. The value must be an integer.         |
+| height          | number          | No   | No   | Screen height of the cast display, in px. The value must be an integer.           |
 
 ## ConnectionState<sup>10+</sup>
 
@@ -5068,30 +5068,30 @@ Describes the media metadata.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
-| Name           | Type                     | Mandatory| Description                                                                 |
+| Name           | Type                     | Mandatory | Description                                                                 |
 | --------------- |-------------------------| ---- |---------------------------------------------------------------------|
-| assetId         | string                  | Yes  | Media asset ID. It is the unique ID of a song and defined by the application.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                    |
-| title           | string                  | No  | Title.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                |
-| artist          | string                  | No  | Artist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                               |
-| author          | string                  | No  | Author.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                              |
-| avQueueName<sup>12+</sup>       | string                  | No  | Playlist name.                                                              |
-| avQueueId<sup>11+</sup>       | string                  | No  | Unique ID of the playlist.                                                              |
-| avQueueImage<sup>11+</sup>    | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | No  | Cover image of the playlist, which can be pixel data of an image or an image path (local path or Internet path).<br>When the data type configured by running **setAVMetadata** is **PixelMap**, the data obtained by calling **getAVMetadata** is a pixel map. When the configured data type is **string**, the data obtained is a URL. |                       
-| album           | string                  | No  | Album name.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                              |
-| writer          | string                  | No  | Writer.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                               |
-| composer        | string                  | No  | composer.                                                               |
-| duration        | number                  | No  | Media duration, in ms.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                 |
-| mediaImage      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | No  | Pixel map or image path (local path or network path) of the image.<br>When the data type configured by running **setAVMetadata** is **PixelMap**, the data obtained by calling **getAVMetadata** is a pixel map. When the configured data type is **string**, the data obtained is a URL.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                            |
-| publishDate     | Date                    | No  | Release date.                                                            |
-| subtitle        | string                  | No  | Subtitle.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                               |
-| description     | string                  | No  | Media description.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                              |
-| lyric           | string                  | No  | Lyrics. The application needs to combine the lyrics into a string with less than or equal to 40960 bytes.<br>**NOTE**: The system supports lyrics in the simple LRC format. If the lyrics are not standard (for example, having duplicate timestamps), the lyrics fail to be parsed and cannot be displayed properly in the system.|
-| previousAssetId | string                  | No  | ID of the previous media asset.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                           |
-| nextAssetId     | string                  | No  | ID of the next media asset.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                           |
-| filter<sup>11+</sup>        | number         | No  | Protocol supported by the media session. The default value is **TYPE_CAST_PLUS_STREAM**. For details, see [ProtocolType](#protocoltype11).<br>**Atomic service API**: This API can be used in atomic services since API version 12.                  |
-| drmSchemes<sup>12+</sup>        | Array\<string>         | No  | DRM scheme supported by the media session. The value is the UUID of the DRM scheme.|
-| skipIntervals<sup>11+</sup>  | [SkipIntervals](#skipintervals11)        | No  | Fast-forward or rewind interval supported by the media session. The default value is **SECONDS_15**, that is, 15 seconds.                           |
-|displayTags<sup>11+</sup>     | number                           | No  | Display tags of the media asset. For details, see [DisplayTag](#displaytag11).                                                         |
+| assetId         | string                  | Yes | Media asset ID. It is the unique ID of a song and defined by the application.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                    |
+| title           | string                  | No | Title.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                |
+| artist          | string                  | No | Artist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                               |
+| author          | string                  | No | Author.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                              |
+| avQueueName<sup>12+</sup>       | string                  | No | Playlist name.                                                              |
+| avQueueId<sup>11+</sup>       | string                  | No | Unique ID of the playlist.                                                              |
+| avQueueImage<sup>11+</sup>    | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | No | Cover image of the playlist, which can be pixel data of an image or an image path (local path or Internet path). <br>When the data type configured by running **setAVMetadata** is **PixelMap**, the data obtained by calling **getAVMetadata** is a pixel map. When the configured data type is **string**, the data obtained is a URL. |
+| album           | string                  | No | Album name.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                              |
+| writer          | string                  | No | Writer.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                               |
+| composer        | string                  | No | composer.                                                               |
+| duration        | number                  | No | Media duration, in ms.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                 |
+| mediaImage      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | No | Pixel map or image path (local path or network path) of the image.<br>When the data type configured by running **setAVMetadata** is **PixelMap**, the data obtained by calling **getAVMetadata** is a pixel map. When the configured data type is **string**, the data obtained is a URL.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                            |
+| publishDate     | Date                    | No | Release date.                                                            |
+| subtitle        | string                  | No | Subtitle.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                               |
+| description     | string                  | No | Media description.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                              |
+| lyric           | string                  | No | Lyrics. The application needs to combine the lyrics into a string with less than or equal to 40960 bytes.<br>**NOTE**: The system supports lyrics in the simple LRC format. If the lyrics are not standard (for example, having duplicate timestamps), the lyrics fail to be parsed and cannot be displayed properly in the system.|
+| previousAssetId | string                  | No | ID of the previous media asset.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                           |
+| nextAssetId     | string                  | No | ID of the next media asset.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                           |
+| filter<sup>11+</sup>        | number         | No | Protocol supported by the media session. The default value is **TYPE_CAST_PLUS_STREAM**. For details, see [ProtocolType](#protocoltype11).<br>**Atomic service API**: This API can be used in atomic services since API version 12.                  |
+| drmSchemes<sup>12+</sup>        | Array\<string>         | No | DRM scheme supported by the media session. The value is the UUID of the DRM scheme.|
+| skipIntervals<sup>11+</sup>  | [SkipIntervals](#skipintervals11)        | No | Fast-forward or rewind interval supported by the media session. The default value is **SECONDS_15**, that is, 15 seconds.                           |
+|displayTags<sup>11+</sup>     | number                           | No | Display tags of the media asset. For details, see [DisplayTag](#displaytag11).                                                         |
 
 ## AVMediaDescription<sup>10+</sup>
 
@@ -5183,9 +5183,9 @@ Defines the attributes related to call metadata.
 
 | Name           | Type                     | Mandatory| Description                                                                 |
 | --------------- |-------------------------| ---- |---------------------------------------------------------------------|
-| name            | string                  | No   | Name (alias) of the caller.   |                                                                                                                      
-| phoneNumber     | string                  | No   | Phone number of the caller.           |                                                   
-| avatar          | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)          | No   | Profile picture of the caller.           |                                                   
+| name            | string                  | No   | Name (alias) of the caller.   |
+| phoneNumber     | string                  | No   | Phone number of the caller.           |
+| avatar          | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)          | No   | Profile picture of the caller.           |
 
 ## AVCallState<sup>11+</sup>
 
@@ -5197,9 +5197,9 @@ Defines the attributes related to the call state.
 
 | Name           | Type                     | Mandatory| Description                                                                 |
 | --------------- |-------------------------  | ---- |---------------------------------------------------------------------|
-| state           | [CallState](#callstate11)                 | Yes   | Call state.     |                                                                                                                      
-| muted           | boolean                   | Yes   | Whether the microphone is muted.<br>**true**: The microphone is muted.<br>**false**: The microphone is not muted.|                                                                  
- 
+| state           | [CallState](#callstate11)                 | Yes   | Call state.     |
+| muted           | boolean                   | Yes   | Whether the microphone is muted.<br>**true**: The microphone is muted.<br>**false**: The microphone is not muted.|
+
 ## CallState<sup>11+</sup>
 
 Enumerates the call states.
@@ -8098,7 +8098,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 **Example**
 
@@ -8137,7 +8137,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 **Example**
 

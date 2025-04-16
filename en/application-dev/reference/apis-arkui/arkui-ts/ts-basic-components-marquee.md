@@ -32,7 +32,7 @@ Marquee(value: { start: boolean, step?: number, loop?: number, fromStart?: boole
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### fontColor
 
@@ -187,15 +187,16 @@ This example demonstrates the dynamic updating of a marquee's content by setting
 @Entry
 @Component
 struct MarqueeExample {
-  @State start: boolean = false
-  @State src: string = ''
-  @State marqueeText: string = 'Running Marquee'
-  private fromStart: boolean = true
-  private step: number = 10
-  private loop: number = Number.POSITIVE_INFINITY
-  controller: TextClockController = new TextClockController()
-  convert2time(value: number): string{
-    let date = new Date(Number(value+'000'));
+  @State start: boolean = false;
+  @State src: string = '';
+  @State marqueeText: string = 'Running Marquee';
+  private fromStart: boolean = true;
+  private step: number = 10;
+  private loop: number = Number.POSITIVE_INFINITY;
+  controller: TextClockController = new TextClockController();
+
+  convert2time(value: number): string {
+    let date = new Date(Number(value + '000'));
     let hours = date.getHours().toString().padStart(2, '0');
     let minutes = date.getMinutes().toString().padStart(2, '0');
     let seconds = date.getSeconds().toString().padStart(2, '0');
@@ -220,19 +221,19 @@ struct MarqueeExample {
         .backgroundColor('#182431')
         .margin({ bottom: '40vp' })
         .onStart(() => {
-          console.info('Succeeded in completing the onStart callback of marquee animation')
+          console.info('Succeeded in completing the onStart callback of marquee animation');
         })
         .onBounce(() => {
-          console.info('Succeeded in completing the onBounce callback of marquee animation')
+          console.info('Succeeded in completing the onBounce callback of marquee animation');
         })
         .onFinish(() => {
-          console.info('Succeeded in completing the onFinish callback of marquee animation')
+          console.info('Succeeded in completing the onFinish callback of marquee animation');
         })
       Button('Start')
         .onClick(() => {
           this.start = true
           // Start the text clock.
-          this.controller.start()
+          this.controller.start();
         })
         .width('120vp')
         .height('40vp')

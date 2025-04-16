@@ -44,7 +44,7 @@
               "entity.system.home"
             ],
             "actions": [
-              "ohos.want.action.home"
+              "action.system.home"
             ]
           }
         ],
@@ -318,7 +318,7 @@ abilities标签描述UIAbility组件的配置信息，标签值为数组类型�
 | [metadata](#metadata标签) | 标识当前UIAbility组件的元信息。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | exported | 标识当前UIAbility组件是否可以被其他应用调用。<br/>-&nbsp;true：表示可以被其他应用调用。<br/>-&nbsp;false：表示不可以被其他应用调用，包括无法被aa工具命令拉起应用。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | continuable | 标识当前UIAbility组件是否支持跨端迁移。<br/>-&nbsp;true：表示支持迁移。<br/>-&nbsp;false：表示不支持迁移。 | 布尔值 | 该标签可缺省，缺省值为false。 |
-| [skills](#skills标签) | 标识当前UIAbility组件或ExtensionAbility组件能够接收的[Want](../application-models/want-overview.md)特征集，为数组格式。<br/>配置规则：<br/>-&nbsp;对于Entry类型的HAP，应用可以配置多个具有入口能力的skills标签（即配置了ohos.want.action.home和entity.system.home）。<br/>-&nbsp;对于Feature类型的HAP，只有应用可以配置具有入口能力的skills标签，服务不允许配置。 | 对象数组 | 该标签可缺省，缺省值为空。 |
+| [skills](#skills标签) | 标识当前UIAbility组件或ExtensionAbility组件能够接收的[Want](../application-models/want-overview.md)特征集，为数组格式。<br/>配置规则：<br/>-&nbsp;对于Entry类型的HAP，应用可以配置多个具有入口能力的skills标签（即配置了action.system.home和entity.system.home）。<br/>-&nbsp;对于Feature类型的HAP，只有应用可以配置具有入口能力的skills标签，服务不允许配置。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | backgroundModes | 标识当前UIAbility组件的长时任务集合，指定用于满足特定类型的长时任务。<br/>长时任务类型有如下：<br/>-&nbsp;dataTransfer：通过网络/对端设备进行数据下载、备份、分享、传输等。<br/>-&nbsp;audioPlayback：音频播放。<br/>-&nbsp;audioRecording：录音。<br/>-&nbsp;location：定位、导航。<br/>-&nbsp;bluetoothInteraction：蓝牙扫描、连接、传输（穿戴）。<br/>-&nbsp;multiDeviceConnection：多设备互联。<br/>-&nbsp;taskKeeping：计算。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
 | startWindowIcon | 标识当前UIAbility组件启动页面图标资源文件的索引，取值为长度不超过255字节的字符串。 | 字符串 | 该标签不可缺省。 |
 | startWindowBackground | 标识当前UIAbility组件启动页面背景颜色资源文件的索引，取值为长度不超过255字节的字符串。<br/>取值示例：$color:red。| 字符串 | 该标签不可缺省。 |
@@ -359,7 +359,7 @@ abilities示例：
     "exported": true,
     "continuable": true,
     "skills": [{
-      "actions": ["ohos.want.action.home"],
+      "actions": ["action.system.home"],
       "entities": ["entity.system.home"],
       "uris": []
     }],
@@ -442,7 +442,7 @@ skills示例：
       "skills": [
         {
           "actions": [
-            "ohos.want.action.home"
+            "action.system.home"
           ],
           "entities": [
             "entity.system.home"
@@ -484,7 +484,7 @@ skills示例：
 | readPermission | 标识读取当前ExtensionAbility组件数据所需的权限，取值为长度不超过255字节的字符串。仅当ExtensionAbility组件的type为dataShare时支持配置该标签。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | writePermission | 标识向当前ExtensionAbility组件写数据所需的权限，取值为长度不超过255字节的字符串。仅当ExtensionAbility组件的type为dataShare时支持配置该标签。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | uri | 标识当前ExtensionAbility组件提供的数据URI，取值为长度不超过255字节的字符数组，用反向域名的格式表示。<br/>**说明：**<br/>该标签在type为dataShare类型的ExtensionAbility时，不可缺省。 | 字符串 | 该标签可缺省，缺省值为空。 |
-|skills | 标识当前ExtensionAbility组件能够接收的[Want](../application-models/want-overview.md)的特征集。<br/>配置规则：entry包可以配置多个具有入口能力的skills标签（配置了ohos.want.action.home和entity.system.home）的ExtensionAbility，其中第一个配置了skills标签的ExtensionAbility中的label和icon作为服务或应用的label和icon。<br/>**说明：**<br/>服务的Feature包不能配置具有入口能力的skills标签。<br/>应用的Feature包可以配置具有入口能力的skills标签。 | 数组 | 该标签可缺省，缺省值为空。 |
+|skills | 标识当前ExtensionAbility组件能够接收的[Want](../application-models/want-overview.md)的特征集。<br/>配置规则：entry包可以配置多个具有入口能力的skills标签（配置了action.system.home和entity.system.home）的ExtensionAbility，其中第一个配置了skills标签的ExtensionAbility中的label和icon作为服务或应用的label和icon。<br/>**说明：**<br/>服务的Feature包不能配置具有入口能力的skills标签。<br/>应用的Feature包可以配置具有入口能力的skills标签。 | 数组 | 该标签可缺省，缺省值为空。 |
 | [metadata](#metadata标签) | 标识当前ExtensionAbility组件的元信息。<br/>**说明：**<br/>该标签在type为form时，不可缺省，且必须存在一个name为ohos.extension.form的对象值，其对应的resource值不能缺省，为卡片的二级资源引用。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | exported | 标识当前ExtensionAbility组件是否可以被其他应用调用。<br/>-&nbsp;true：表示可以被其他应用调用。<br/>-&nbsp;false：表示不可以被其他应用调用，包括无法被aa工具命令拉起应用。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | extensionProcessMode | 标识当前ExtensionAbility组件的多进程实例模型,当前只对UIExtensionAbility以及从UIExtensionAbility扩展的ExtensionAbility生效。<br/>-&nbsp;instance：表示该ExtensionAbility每个实例一个进程。<br/>-&nbsp;type：表示该ExtensionAbility实例都运行在同一个进程里，与其他ExtensionAbility分离进程。<br/>-&nbsp;bundle：表示该ExtensionAbility实例都运行在应用统一进程里，与其他配置了bundle模型的ExtensionAbility共进程。<br>-&nbsp;runWithMainProcess：表示该ExtensionAbility和应用主进程共进程，只有一步直达的ExtensionAbility可以配置runWithMainProcess。 | 字符串 | 该标签可缺省，缺省值为空。 |
@@ -591,7 +591,7 @@ metadata中指定shortcut信息，其中：
                  "entity.system.home"
                ],
                "actions": [
-                 "ohos.want.action.home"
+                 "action.system.home"
                ]
              }
            ],
@@ -1125,7 +1125,7 @@ fileContextMenu标签示例
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | abilityName | 表示当前右键菜单对应的需要拉起的ability名称。 | 字符串 | 不可缺省 |
-| menuItem | 右键菜单显示的信息。 | 资源id | 不可缺省 |
+| menuItem | 右键菜单显示的信息。命名建议：<br/>原则一：[动作]+[应用名]，中文示例：用{App}打开、用{App} ({Plugin}插件) 打开；英文示例：Open with {App}、Open with {App} ({Plugin})。<br/>原则二：[动作]+[目的]，示例：压缩为{文件名}、压缩至{路径}、用{App}转换为{格式}。 | 资源id | 不可缺省 |
 | menuHandler | 一个ability可以创建多个右键菜单， 用该字段来区分用户拉起的不同右键菜单项。该字段在用户点击右键菜单执行时，会作为参数传递给右键菜单应用。 | 字符串 | 不可缺省 |
 | menuContext | 定义展示该菜单项需要的上下文，可以支持多种情况，类型为数组。 | 对象数组 | 不可缺省 |
 

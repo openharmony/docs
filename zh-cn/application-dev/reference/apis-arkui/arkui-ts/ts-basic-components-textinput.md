@@ -35,7 +35,7 @@ TextInput(value?: TextInputOptions)
 | 名称 | 类型  | 必填   | 说明 |
 | ---- | ----- | ---- | ---- |
 | placeholder             | [ResourceStr](ts-types.md#resourcestr)   | 否    | 设置无输入时的提示文本。                             |
-| text                    | [ResourceStr](ts-types.md#resourcestr)   | 否    | 设置输入框当前的文本内容。</br>建议通过onChange事件将状态变量与文本实时绑定，</br>避免组件刷新时TextInput中的文本内容异常。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| text                    | [ResourceStr](ts-types.md#resourcestr)   | 否    | 设置输入框当前的文本内容。</br>建议通过onChange事件将状态变量与文本实时绑定，</br>避免组件刷新时TextInput中的文本内容异常。<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。 |
 | controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | 否    | 设置TextInput控制器。                          |
 
 ## 属性
@@ -281,7 +281,7 @@ showPasswordIcon(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                        |
 | ------ | ------- | ---- | ----------------------------------------------------------- |
-| value  | boolean | 是   | 密码输入模式时，输入框末尾的图标是否显示。<br/>默认值：true |
+| value  | boolean | 是   | 密码输入模式时，输入框末尾的图标是否显示。<br/>true表示显示，false表示不显示。<br/>默认值：true |
 
 ### style<sup>9+</sup>
 
@@ -415,7 +415,7 @@ showUnderline(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| value  | boolean | 是   | 是否开启下划线。<br/>默认值：false |
+| value  | boolean | 是   | 是否开启下划线。<br/>true表示开启，false表示不开启。<br/>默认值：false |
 
 ### passwordIcon<sup>10+</sup>
 
@@ -1887,7 +1887,7 @@ struct TextInputExample {
 
 ### 示例7（设置文本断行规则）
 
-该示例通过wordBreak属性实现了TextArea不同断行规则下的效果。
+该示例通过wordBreak属性实现了TextInput不同断行规则下的效果。
 
 ```ts
 // xxx.ets
@@ -2148,7 +2148,7 @@ struct TextInputExample {
 
 ### 示例12（设置折行规则）
 
-该示例通过lineBreakStrategy属性实现了TextArea不同折行规则下的效果。
+该示例通过lineBreakStrategy属性实现了TextInput不同折行规则下的效果。
 
 ```ts
 // xxx.ets

@@ -8,7 +8,7 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-资源引用类型，用于设置组件属性的值。
+资源引用类型，用于设置组件属性的值。各类资源文件，需要放入特定子目录中存储管理，资源目录的示例请参考[资源分类](../../../quick-start/resource-categories-and-access.md#资源分类)。
 
 可以通过`$r`或者`$rawfile`创建Resource类型对象，不可以修改Resource中的各属性的值。
 
@@ -358,7 +358,7 @@
 
 | 名称            | 类型定义                   | 描述                                       |
 | ------------- | ---------------------- | ---------------------------------------- |
-| CustomBuilder | ()&nbsp;=&gt;&nbsp;any \| void | 生成用户自定义组件，在使用时结合@Builder使用。具体用法见[@Builder](../../../quick-start/arkts-builder.md#builder)。 |
+| CustomBuilder | ()&nbsp;=&gt;&nbsp;any \| void | 生成用户自定义组件，在使用时结合@Builder使用。具体用法见[@Builder](../../../ui/state-management/arkts-builder.md#builder)。 |
 
 ## MarkStyle<sup>10+</sup>对象说明
 
@@ -687,6 +687,8 @@ addText(text: string, textOperationOptions?: TextContentControllerOptions): numb
 在已编辑文本的指定位置插入文本，默认插入至文本末尾。
 拖拽文本的状态下不生效。
 
+`addText`仅影响应用内部的UI表现，不影响输入法应用的内部逻辑，不推荐在预上屏状态下调用。
+
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -704,6 +706,8 @@ deleteText(range?: TextRange): void
 
 删除已编辑文本的指定区域的内容。
 拖拽文本的状态下不生效。
+
+`deleteText`仅影响应用内部的UI表现，不影响输入法应用的内部逻辑，不推荐在预上屏状态下调用。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 

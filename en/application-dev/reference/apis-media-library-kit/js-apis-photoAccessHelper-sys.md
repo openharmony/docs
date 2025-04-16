@@ -5341,6 +5341,8 @@ Submits cloud enhancement tasks.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
 **Parameters**
 
 | Name  | Type                     | Mandatory| Description      |
@@ -5394,6 +5396,8 @@ Prioritizes a cloud enhancement task.
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
 **Parameters**
 
@@ -5450,6 +5454,8 @@ Cancels cloud enhancement tasks.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
 **Parameters**
 
 | Name  | Type                     | Mandatory| Description      |
@@ -5504,6 +5510,8 @@ Cancels all cloud enhancement tasks.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
@@ -5540,6 +5548,8 @@ Queries information about a cloud enhancement task.
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
 **Parameters**
 
@@ -5622,6 +5632,8 @@ Synchronizes the cloud enhancement task status.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
@@ -5658,6 +5670,8 @@ Obtains the photo after cloud enhancement.
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
 **Parameters**
 
@@ -6105,19 +6119,6 @@ Enumerates the [PhotoAsset](#photoasset) types.
 | ----- |  ---- |  ---- |
 | SCREENSHOT |  1 |  Screenshot and screen recording file.<br>**System API**: This is a system API.|
 
-## PositionType
-
-Enumerates the file locations.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-| Name |  Value|  Description|
-| ----- |  ---- |  ---- |
-| LOCAL |  1 << 0 |  Stored only on a local device.|
-| CLOUD |  1 << 1 |  Stored only on the cloud.|
-
 ## AlbumType
 
 Enumerates the album types.
@@ -6173,7 +6174,6 @@ Defines the key information about an image or video file.
 
 | Name         | Value             | Description                                                      |
 | ------------- | ------------------- | ---------------------------------------------------------- |
-| POSITION  | 'position'            | File location type. <br>**System API**: This is a system API.                              |
 | DATE_TRASHED  | 'date_trashed'  | Date when the file was deleted. The value is the number of seconds elapsed since the Epoch time. <br>**System API**: This is a system API.                |
 | HIDDEN  | 'hidden'            | Whether the file is hidden. <br>**System API**: This is a system API.                              |
 | CAMERA_SHOT_KEY  | 'camera_shot_key'  | Key for the Ultra Snapshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.) <br>**System API**: This is a system API.           |

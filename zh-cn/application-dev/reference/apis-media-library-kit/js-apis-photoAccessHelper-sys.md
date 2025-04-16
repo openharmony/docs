@@ -5341,6 +5341,8 @@ submitCloudEnhancementTasks(photoAssets: Array&lt;PhotoAsset&gt;, hasCloudWaterm
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
 **参数：**
 
 | 参数名   | 类型                      | 必填 | 说明       |
@@ -5394,6 +5396,8 @@ prioritizeCloudEnhancementTask(photoAsset: PhotoAsset): Promise&lt;void&gt;
 **系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
 
 **参数：**
 
@@ -5450,6 +5454,8 @@ cancelCloudEnhancementTasks(photoAssets: Array&lt;PhotoAsset&gt;): Promise&lt;vo
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
 **参数：**
 
 | 参数名   | 类型                      | 必填 | 说明       |
@@ -5504,6 +5510,8 @@ cancelAllCloudEnhancementTasks(): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
 **错误码：**
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
@@ -5540,6 +5548,8 @@ queryCloudEnhancementTaskState(photoAsset: PhotoAsset): Promise&lt;CloudEnhancem
 **系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
 
 **参数：**
 
@@ -5622,6 +5632,8 @@ syncCloudEnhancementTaskStatus(): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
 **错误码：**
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
@@ -5658,6 +5670,8 @@ getCloudEnhancementPair(asset: PhotoAsset): Promise&lt;PhotoAsset&gt;
 **系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
 
 **参数：**
 

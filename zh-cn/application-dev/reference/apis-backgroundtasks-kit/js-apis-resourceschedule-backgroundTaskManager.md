@@ -238,10 +238,10 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 | ---- | --------------------- |
 | 201 | Permission denied. |
 | 202 | Not System App. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Internal transaction failed. | 
+| 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
 | 9800005 | Continuous task verification failed. |
 | 9800006 | Notification verification failed for a continuous task. |
@@ -332,7 +332,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 | ---- | --------------------- |
 | 201 | Permission denied. |
 | 202 | Not System App. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
 | 9800003 | Internal transaction failed. |
@@ -875,3 +875,23 @@ export default class EntryAbility extends UIAbility {
 | SYSTEM_CANCEL_NOT_USE_BLUETOOTH            | 9    | 申请BLUETOOTH_INTERACTION类型长时任务，但是未使用蓝牙相关业务。预留接口，暂未启用。        |
 | SYSTEM_CANCEL_NOT_USE_MULTI_DEVICE            | 10    | 申请MULTI_DEVICE_CONNECTION类型长时任务，但是未使用多设备互联。预留接口，暂未启用。        |
 | SYSTEM_CANCEL_USE_ILLEGALLY            | 11    | 使用非法类型的长时任务，如申请AUDIO_PLAYBACK类型长时任务，但是使用音视频播放及定位导航业务。预留接口，暂未启用。        |
+
+## BackgroundSubMode<sup>16+</sup>
+
+长时任务子类型。
+
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+
+| 名称                     | 值  | 说明                    |
+| ----------------------- | ---- | --------------------- |
+| CAR_KEY           | 1    | 车钥匙。<br/>**说明：** 只有申请BLUETOOTH_INTERACTION类型的长时任务，车钥匙子类型才能生效。                  |
+
+## BackgroundModeType<sup>16+</sup>
+
+长时任务类型类别。
+
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+
+| 名称                     | 值  | 说明                    |
+| ----------------------- | ---- | --------------------- |
+| SUB_MODE           | 'subMode'    | 子类型。                  |

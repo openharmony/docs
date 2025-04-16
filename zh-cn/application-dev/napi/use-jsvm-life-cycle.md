@@ -36,7 +36,7 @@ JSVM-API提供了一组功能，使开发人员能够在JSVM-API模块中创建�
 | OH_JSVM_CreateReference      | 以指定的引用计数为JavaScript对象创建一个新的引用，该引用将指向传入的对象，引用允许在不同的上下文中使用和共享对象，并且可以有效地跟踪对象的生命周期。 |
 | OH_JSVM_DeleteReference      | 释放由OH_JSVM_CreateReference创建的引用，确保对象在不再被使用时能够被正确地释放和回收，避免内存泄漏。 |
 | OH_JSVM_ReferenceRef         | 增加由OH_JSVM_CreateReference创建的引用的引用计数，以确保对象在有引用时不会被提前释放。 |
-| OH_JSVM_ReferenceUnref       | 减少引用计数，用于管理引用计数。|
+| OH_JSVM_ReferenceUnref       | 减少引用计数，用于管理引用计数。注意：Unref到0后，该引用会被设置为虚引用，即使调用了DeleteReference接口，其所占的Natvie内存也需要等指向的JS对象GC时才会被释放，如果对内存管理有实时性要求，须避免将引用计数减到0。|
 | OH_JSVM_GetReferenceValue   | 减少由OH_JSVM_CreateReference创建的引用的引用计数，以确保没有任何引用指向该对象时能正确地释放和回收。 |
 | OH_JSVM_AddFinalizer          | 为对象添加JSVM_Finalize回调，以便在JavaScript对象被垃圾回收时调用来释放原生对象。|
 
@@ -252,7 +252,7 @@ JSVM UseReference success
 为 JavaScript 对象添加 JSVM_Finalize 回调，当 JavaScript 对象被垃圾回收时执行函数回调，该接口通常被用于释放与 JavaScript 对象相关的原生对象。如果传入的参数类型不是 JavaScript 对象，该接口调用失败并返回错误码。
 Finalizer 方法被注册后无法取消，如果在调用 OH_JSVM_DestroyEnv 前均未被执行，则在 OH_JVSM_DestroyEnv 时执行。
 
-cpp 部分代码
+以下仅对 cpp 部分代码进行展示，其余框架代码如 `TestJSVM` 函数参考 [使用JSVM-API接口进行任务队列相关开发](use-jsvm-execute_tasks.md) OH_JSVM_SetMicrotaskPolicy 段落中的实现。
 
 ```cpp
 static int AddFinalizer(JSVM_VM vm, JSVM_Env env) {

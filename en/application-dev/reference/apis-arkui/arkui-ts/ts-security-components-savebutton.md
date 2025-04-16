@@ -106,8 +106,8 @@ Describes the icon, text, and other specific elements for the **SaveButton** com
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
-| SUCCESS | 0 | The Save button is touched successfully.|
-| TEMPORARY_AUTHORIZATION_FAILED | 1 | Temporary authorization fails after the Save button is touched.|
+| SUCCESS | 0 | The **SaveButton** component is touched successfully.|
+| TEMPORARY_AUTHORIZATION_FAILED | 1 | Temporary authorization fails after the **SaveButton** component is touched.|
 
 ## Attributes
 
@@ -146,9 +146,9 @@ import { fileIo } from '@kit.CoreFileKit';
 struct Index {
   build() {
     Row() {
-      Column({space:10}) {
+      Column({ space: 10 }) {
         // Create a default Save button with an icon, text, and background.
-        SaveButton().onClick(async (event:ClickEvent, result:SaveButtonOnClickResult) => {
+        SaveButton().onClick(async (event: ClickEvent, result: SaveButtonOnClickResult) => {
           if (result == SaveButtonOnClickResult.SUCCESS) {
             try {
               const context = getContext(this);
@@ -162,29 +162,34 @@ struct Index {
               // Close the file.
               await fileIo.close(file.fd);
             } catch (error) {
-              console.error("error is "+ JSON.stringify(error));
+              console.error("error is " + JSON.stringify(error));
             }
           }
         })
         // Whether the button has an icon, text, and background depends on whether the corresponding parameter is passed in. If buttonType is not passed in, the button uses the ButtonType.Capsule settings.
-        SaveButton({icon:SaveIconStyle.FULL_FILLED})
+        SaveButton({ icon: SaveIconStyle.FULL_FILLED })
         // This button only has the icon and background. If the alpha value of the most significant eight bits of the background color is less than 0x1A, the system forcibly adjusts the alpha value to 0xFF.
-        SaveButton({icon:SaveIconStyle.FULL_FILLED, buttonType:ButtonType.Capsule})
+        SaveButton({ icon: SaveIconStyle.FULL_FILLED, buttonType: ButtonType.Capsule })
           .backgroundColor(0x10007dff)
         // The button has an icon, text, and background. If the alpha value of the most significant eight bits of the background color is less than 0x1A, the system forcibly adjusts the alpha value to 0xFF.
-        SaveButton({icon:SaveIconStyle.FULL_FILLED, text:SaveDescription.DOWNLOAD, buttonType:ButtonType.Capsule})
+        SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Capsule })
         // Create a button with an icon, text, and background. If the set width is less than the minimum allowed, the button's text will wrap to guarantee full text display.
-        SaveButton({icon:SaveIconStyle.FULL_FILLED, text:SaveDescription.DOWNLOAD, buttonType:ButtonType.Capsule})
+        SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Capsule })
           .fontSize(16)
           .width(30)
         // Create a button with an icon, text, and background. If the set width is less than the minimum allowed, the button's text will wrap to guarantee full text display.
-        SaveButton({icon:SaveIconStyle.FULL_FILLED, text:SaveDescription.DOWNLOAD, buttonType:ButtonType.Capsule})
+        SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Capsule })
           .fontSize(16)
-          .size({width: 30, height: 30})
+          .size({ width: 30, height: 30 })
         // Create a button with an icon, text, and background. If the set width is less than the minimum allowed, the button's text will wrap to guarantee full text display.
-        SaveButton({icon:SaveIconStyle.FULL_FILLED, text:SaveDescription.DOWNLOAD, buttonType:ButtonType.Capsule})
+        SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Capsule })
           .fontSize(16)
-          .constraintSize({minWidth: 0, maxWidth: 30, minHeight: 0, maxHeight: 30})
+          .constraintSize({
+            minWidth: 0,
+            maxWidth: 30,
+            minHeight: 0,
+            maxHeight: 30
+          })
       }.width('100%')
     }.height('100%')
   }

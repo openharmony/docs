@@ -12,7 +12,7 @@ Not supported
 
 ## APIs
 
-Select(options: Array\<[SelectOption](#selectoption)\>)
+Select(options: Array\<SelectOption>)
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -36,7 +36,7 @@ Select(options: Array\<[SelectOption](#selectoption)\>)
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### selected
 
@@ -72,7 +72,7 @@ Since API version 10, this attribute supports two-way binding through [$$](../..
 
 | Name| Type                                                | Mandatory| Description                    |
 | ------ | ---------------------------------------------------- | ---- | ------------------------ |
-| value  | [ResourceStr](ts-types.md#resourcestr)<sup>11+</sup> | Yes  | Text of the drop-down button.|
+| value  | [ResourceStr](ts-types.md#resourcestr)<sup>11+</sup> | Yes  | Text of the drop-down button.<br>**NOTE**<br>If the text is longer than the column width, it will be truncated.|
 
 ### controlSize<sup>12+</sup>
 
@@ -143,7 +143,7 @@ Sets the text font of the drop-down button. If **size** is set to **0**, the tex
 
 | Name| Type                    | Mandatory| Description                                                        |
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Font](ts-types.md#font) | Yes  | Text font of the drop-down button.<br>Default value:<br>API version 11 and earlier versions:<br>{<br>size: $r('sys.float.ohos_id_text_size_button1'),<br>weight: FontWeight.Medium<br>} <br>Since API version 12: The default value of **size** is **$r('sys.float.ohos_id_text_size_button2')** in the case of **controlSize.SMALL** and **$r('sys.float.ohos_id_text_size_button1')** in other cases.|
+| value  | [Font](ts-types.md#font) | Yes  | Text font of the drop-down button.<br>Default value:<br>API version 11 and earlier versions:<br>{<br>size: `$r('sys.float.ohos_id_text_size_button1')`,<br>weight: FontWeight.Medium<br>} <br>Since API version 12: The default value of **size** is **$r('sys.float.ohos_id_text_size_button2')** in the case of **controlSize.SMALL** and **$r('sys.float.ohos_id_text_size_button1')** in other cases.|
 
 ### fontColor
 
@@ -382,10 +382,10 @@ Sets the background blur style of the drop-down list box.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name               | Description            |
-| ------------------- | ------------------ |
-| END<sup>10+</sup>   | The text is in front of the arrow.|
-| START<sup>10+</sup> | The arrow is in front of the text.|
+| Name               | Value              | Description            |
+| ------------------- | ------------------ | ------------------ |
+| END | 0 | The text is in front of the arrow.|
+| START | 1 | The arrow is in front of the text.|
 
 ## MenuAlignType<sup>10+</sup>
 
@@ -393,11 +393,11 @@ Sets the background blur style of the drop-down list box.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name               | Description            |
-| ------------------- | ------------------ |
-| START               | Aligned with the start edge in the same direction as the language in use.|
-| CENTER              | Aligned with the center.|
-| END                 | Aligned with the end edge in the same direction as the language in use.|
+| Name               | Value| Description            |
+| ------------------- | --- | ------------------ |
+| START               | 0 |Aligned with the start edge in the same direction as the language in use.|
+| CENTER              | 1 |Aligned with the center.|
+| END                 | 2 |Aligned with the end edge in the same direction as the language in use.|
 
 ## MenuItemConfiguration<sup>12+</sup>
 
@@ -407,11 +407,11 @@ Sets the background blur style of the drop-down list box.
 
 | Name| Type                                        | Mandatory| Description                                                        |
 | ------ | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ResourceStr](ts-types.md#resourcestr) | Yes  | Text content of the option in the drop-down list box.|
-| icon  | [ResourceStr](ts-types.md#resourcestr) | No  | Icon of the option in the drop-down list box.|
+| value  | [ResourceStr](ts-types.md#resourcestr) | Yes  | Text content of the option in the drop-down list box.<br>**NOTE**<br>If the text is longer than the width of the menu text area, it is truncated.|
+| icon  | [ResourceStr](ts-types.md#resourcestr) | No  | Icon of the option in the drop-down list box.<br>**NOTE**<br>The string type can be used to load network images and local images.|
 | symbolIcon<sup>12+</sup>  | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | No  | Symbol icon of the option in the drop-down list box.|
 | selected  | boolean | Yes  | Whether the option in the drop-down list box is selected.<br>Default value: **false**|
-| index  | number | Yes  | Index of the option in the drop-down list box.|
+| index  | number | Yes  | Index of the option in the drop-down list box. The index is zero-based.|
 | triggerSelect  | (index: number, value: string) :void | Yes  | Invoked when an option in the drop-down list box is selected.<br>**index**: index of the selected option.<br>**value**: text of the selected option.<br>**NOTE**<br>The value of **index** will be assigned to the **index** parameter in the [onSelect](#onselect) callback; the value of **value** will be returned to the **Select** component for display and will also be assigned to the **value** parameter in the [onSelect](#onselect) callback.|
 
 ## Events
@@ -433,7 +433,9 @@ Invoked when an option in the drop-down list box is selected.
 | index  | number | Yes  | Index of the selected option.|
 | value  | string | Yes  | Value of the selected option.  |
 
-##  Example 1
+##  Example 1: Creating a Drop-down List Box
+
+This example demonstrates how to create a drop-down list box by configuring **SelectOptions**.
 
 ```ts
 // xxx.ets
@@ -444,6 +446,7 @@ struct SelectExample {
   @State index: number = 2
   @State space: number = 8
   @State arrowPosition: ArrowPosition = ArrowPosition.END
+
   build() {
     Column() {
       Select([{ value: 'aaa', icon: $r("app.media.selection") },
@@ -458,13 +461,13 @@ struct SelectExample {
         .optionFont({ size: 16, weight: 400 })
         .space(this.space)
         .arrowPosition(this.arrowPosition)
-        .menuAlign(MenuAlignType.START, {dx:0, dy:0})
+        .menuAlign(MenuAlignType.START, { dx: 0, dy: 0 })
         .optionWidth(200)
         .optionHeight(300)
-        .onSelect((index:number, text?: string | undefined)=>{
+        .onSelect((index: number, text?: string | undefined) => {
           console.info('Select:' + index)
           this.index = index;
-          if(text){
+          if (text) {
             this.text = text;
           }
         })
@@ -475,67 +478,9 @@ struct SelectExample {
 
 ![](figures/selectExample.png)
 
-##  Example 2
-This example implements a custom drop-down list box, each option of which consists of text + image + blank area + text + drawn triangle. After a menu option is clicked, the text content of the menu option is displayed.
 
-```ts
-import { MenuItemModifier } from '@kit.ArkUI'
 
-class MyMenuItemContentModifier implements ContentModifier<MenuItemConfiguration> {
-  modifierText: string = ""
-  constructor(text: string) {
-    this.modifierText = text;
-  }
-  applyContent(): WrappedBuilder<[MenuItemConfiguration]> {
-    return wrapBuilder(MenuItemBuilder)
-  }
-}
-
-@Builder
-function MenuItemBuilder(configuration: MenuItemConfiguration) {
-  Row() {
-    Text(configuration.value)
-    Blank()
-    Image(configuration.icon).size({ width: 40, height: 40 })
-    Blank(30)
-    Text((configuration.contentModifier as MyMenuItemContentModifier).modifierText)
-    Path()
-      .width('100px')
-      .height('150px')
-      .commands('M40 0 L80 100 L0 100 Z')
-      .fillOpacity(0)
-      .stroke(Color.Black)
-      .strokeWidth(3)
-  }
-  .onClick(() => {
-    configuration.triggerSelect(configuration.index, configuration.value.valueOf().toString())
-  })
-}
-
-@Entry
-@Component
-struct SelectExample {
-  @State text: string = "With modifier"
-  build() {
-    Column() {
-      Row() {
-        Select([{ value: 'item1', icon: $r("app.media.icon") },
-          { value: 'item2', icon: $r("app.media.icon") }])
-          .value(this.text)
-          .onSelect((index:number, text?: string)=>{
-            console.info('Select index:' + index)
-            console.info('Select text:' + text)
-          })
-          .menuItemContentModifier(new MyMenuItemContentModifier("I'm from Modifier"))
-
-      }.alignItems(VerticalAlign.Center).height("50%")
-    }
-  }
-}
-```
-![](figures/selectBuilderExample.png)
-
-##  Example 3
+##  Example 2: Setting the Symbol Icon
 This example implements a drop-down list box, each option of which uses a symbol as its image.
 
 ```ts
@@ -549,10 +494,15 @@ struct SelectExample {
   @State index: number = 2
   @State space: number = 8
   @State arrowPosition: ArrowPosition = ArrowPosition.END
-  @State symbolModifier1: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')).fontColor([Color.Green]);
-  @State symbolModifier2: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontColor([Color.Red]);
-  @State symbolModifier3: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_trash')).fontColor([Color.Gray]);
-  @State symbolModifier4: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.exposure')).fontColor([Color.Gray]);
+  @State symbolModifier1: SymbolGlyphModifier =
+    new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')).fontColor([Color.Green]);
+  @State symbolModifier2: SymbolGlyphModifier =
+    new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontColor([Color.Red]);
+  @State symbolModifier3: SymbolGlyphModifier =
+    new SymbolGlyphModifier($r('sys.symbol.ohos_trash')).fontColor([Color.Gray]);
+  @State symbolModifier4: SymbolGlyphModifier =
+    new SymbolGlyphModifier($r('sys.symbol.exposure')).fontColor([Color.Gray]);
+
   build() {
     Column() {
       Select([{ value: 'aaa', symbolIcon: this.symbolModifier1 },
@@ -567,11 +517,11 @@ struct SelectExample {
         .optionFont({ size: 16, weight: 400 })
         .space(this.space)
         .arrowPosition(this.arrowPosition)
-        .menuAlign(MenuAlignType.START, {dx:0, dy:0})
-        .onSelect((index:number, text?: string | undefined)=>{
+        .menuAlign(MenuAlignType.START, { dx: 0, dy: 0 })
+        .onSelect((index: number, text?: string | undefined) => {
           console.info('Select:' + index)
           this.index = index;
-          if(text){
+          if (text) {
             this.text = text;
           }
         })
@@ -582,17 +532,19 @@ struct SelectExample {
 
 ![](figures/SelectSymbol.png)
 
-##  Example 4
+##  Example 3: Implementing a Custom Drop-down List Box
 This example implements a custom drop-down list box, each option of which consists of text + symbol + blank area + text + drawn triangle. After a menu option is clicked, the text content of the menu option is displayed.
 
 ```ts
-import { MenuItemModifier, SymbolGlyphModifier } from '@kit.ArkUI'
+import { SymbolGlyphModifier } from '@kit.ArkUI'
 
 class MyMenuItemContentModifier implements ContentModifier<MenuItemConfiguration> {
   modifierText: string = ""
+
   constructor(text: string) {
     this.modifierText = text;
   }
+
   applyContent(): WrappedBuilder<[MenuItemConfiguration]> {
     return wrapBuilder(MenuItemBuilder)
   }
@@ -628,15 +580,18 @@ function MenuItemBuilder(configuration: MenuItemConfiguration) {
 @Component
 struct SelectExample {
   @State text: string = "Content Modifier Select"
-  @State symbolModifier1: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_trash')).fontColor([Color.Gray]);
-  @State symbolModifier2: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.exposure')).fontColor([Color.Gray]);
+  @State symbolModifier1: SymbolGlyphModifier =
+    new SymbolGlyphModifier($r('sys.symbol.ohos_trash')).fontColor([Color.Gray]);
+  @State symbolModifier2: SymbolGlyphModifier =
+    new SymbolGlyphModifier($r('sys.symbol.exposure')).fontColor([Color.Gray]);
+
   build() {
     Column() {
       Row() {
         Select([{ value: 'item1', icon: $r('app.media.icon'), symbolIcon: this.symbolModifier1 },
           { value: 'item1', icon: $r('app.media.icon'), symbolIcon: this.symbolModifier2 }])
           .value(this.text)
-          .onSelect((index:number, text?: string)=>{
+          .onSelect((index: number, text?: string) => {
             console.info('Select index:' + index)
             console.info('Select text:' + text)
           })
@@ -649,8 +604,8 @@ struct SelectExample {
 ```
 ![](figures/SelectBuilderSymbol.png)
 
-##  Example 5
-This example implements a drop-down list box with custom dividers.
+##  Example 4: Using the Divider Style
+This example demonstrates how to configure a drop-down list box with a custom divider style by setting **divider** with **DividerOptions**.
 
 ```ts
 // xxx.ets
@@ -660,6 +615,7 @@ struct SelectExample {
   @State text: string = "TTTTT"
   @State index: number = -1
   @State arrowPosition: ArrowPosition = ArrowPosition.END
+
   build() {
     Column() {
       Select([{ value: 'aaa', icon: $r("app.media.icon") },
@@ -673,14 +629,19 @@ struct SelectExample {
         .selectedOptionFont({ size: 16, weight: 400 })
         .optionFont({ size: 16, weight: 400 })
         .arrowPosition(this.arrowPosition)
-        .menuAlign(MenuAlignType.START, {dx:0, dy:0})
+        .menuAlign(MenuAlignType.START, { dx: 0, dy: 0 })
         .optionWidth(200)
         .optionHeight(300)
-        .divider( { strokeWidth: 5, color: Color.Blue, startMargin: 10, endMargin: 10 })
-        .onSelect((index:number, text?: string | undefined)=>{
+        .divider({
+          strokeWidth: 5,
+          color: Color.Blue,
+          startMargin: 10,
+          endMargin: 10
+        })
+        .onSelect((index: number, text?: string | undefined) => {
           console.info('Select:' + index)
           this.index = index;
-          if(text){
+          if (text) {
             this.text = text;
           }
         })
@@ -690,8 +651,8 @@ struct SelectExample {
 ```
 ![](figures/SelectCustomDivider.png)
 
-##  Example 6
-This example implements a drop-down list box where the dividers are hidden.
+##  Example 5: Using the No-Divider Style
+This example demonstrates how to create a drop-down list box with no divider by setting **divider** to **null**.
 
 ```ts
 // xxx.ets
@@ -701,6 +662,7 @@ struct SelectExample {
   @State text: string = "TTTTT"
   @State index: number = -1
   @State arrowPosition: ArrowPosition = ArrowPosition.END
+
   build() {
     Column() {
       Select([{ value: 'aaa', icon: $r("app.media.icon") },
@@ -714,14 +676,14 @@ struct SelectExample {
         .selectedOptionFont({ size: 16, weight: 400 })
         .optionFont({ size: 16, weight: 400 })
         .arrowPosition(this.arrowPosition)
-        .menuAlign(MenuAlignType.START, {dx:0, dy:0})
+        .menuAlign(MenuAlignType.START, { dx: 0, dy: 0 })
         .optionWidth(200)
         .optionHeight(300)
-        .divider( null )
-        .onSelect((index:number, text?: string | undefined)=>{
+        .divider(null)
+        .onSelect((index: number, text?: string | undefined) => {
           console.info('Select:' + index)
           this.index = index;
-          if(text){
+          if (text) {
             this.text = text;
           }
         })

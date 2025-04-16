@@ -190,7 +190,7 @@ Called when an error occurs during component loading.
 
 | Name | Type                                                        | Mandatory | Description                                           |
 | ------ | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
-| info   |  { errcode: number, msg: string } | Yes  | **errcode**: error code.<br>**msg**: error information. |
+| info   |  { errcode: number, msg: string } | Yes  | **errcode**: error code.<br>**msg**: error message. |
 
 ### onRouter
 

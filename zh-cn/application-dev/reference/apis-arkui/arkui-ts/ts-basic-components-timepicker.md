@@ -34,7 +34,7 @@ TimePicker(options?: TimePickerOptions)
 
 | 名称                 | 类型                                            | 必填 | 说明                                                         |
 | -------------------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| selected             | Date                                            | 否   | 设置选中项的时间。<br/>默认值：当前系统时间<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| selected             | Date                                            | 否   | 设置选中项的时间。<br/>默认值：当前系统时间<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | format<sup>11+</sup> | [TimePickerFormat](#timepickerformat11枚举说明) | 否   | 指定需要显示的TimePicker的格式。<br/>默认值：TimePickerFormat.HOUR_MINUTE <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## TimePickerFormat<sup>11+</sup>枚举说明
@@ -66,7 +66,7 @@ useMilitaryTime(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | ------------------------------------------ |
-| value  | boolean | 是   | 展示时间是否为24小时制。<br/>默认值：false |
+| value  | boolean | 是   | 展示时间是否为24小时制。<br/>默认值：false，false表示展示时间为12小时制，true表示展示时间为24小时制。 |
 
 ### disappearTextStyle<sup>10+</sup>
 

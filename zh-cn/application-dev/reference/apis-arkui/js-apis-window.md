@@ -377,7 +377,7 @@ import { window } from '@kit.ArkUI';
 
 | 名称   | 类型   | 必填 | 说明                                       |
 | ------ | ------ | ---- | ------------------------------------------ |
-| displayId | number | 否 | 目标屏幕ID，该参数应该为整数，非整数输入将向下取整。此参数不填或者传入目标屏幕ID不存在，将默认保持为当前屏幕。 |
+| displayId | number | 否 | 目标屏幕ID，该参数应为整数，输入非整数时将向下取整。填入该参数时，将移动到相对于目标屏幕左上角的指定位置。此参数不填或传入目标屏幕ID不存在时，将移动到相对于当前屏幕左上角的指定位置。 |
 
 ## Callback<sup>15+</sup>
 
@@ -1735,7 +1735,7 @@ try {
 
 moveWindowToAsync(x: number, y: number, moveConfiguration?: MoveConfiguration): Promise&lt;void&gt;
 
-移动窗口位置，当moveConfiguration中displayId设置为存在的屏幕ID时，将移动到此屏幕，使用Promise异步回调。调用生效后返回，回调中可使用getWindowProperties（见示例）立即获取最终生效结果。
+移动窗口位置，使用Promise异步回调。调用生效后返回，回调中可使用getWindowProperties（见示例）立即获取最终生效结果。
 
 仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING）下生效。
 在2in1设备上窗口相对于屏幕移动，其他设备上窗口相对于父窗口移动。
@@ -1853,7 +1853,7 @@ try {
 
 moveWindowToGlobal(x: number, y: number, moveConfiguration?: MoveConfiguration): Promise&lt;void&gt;
 
-基于屏幕坐标移动窗口位置，当moveConfiguration中displayId设置为存在的屏幕ID时，将移动到此屏幕，使用Promise异步回调。调用生效后返回。
+基于屏幕坐标移动窗口位置，使用Promise异步回调。调用生效后返回。
 
 全屏模式窗口不支持该操作。
 
@@ -3081,7 +3081,7 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 | 参数名   | 类型                                            | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                                          | 是   | 要加载到窗口中的页面内容的路径，该路径需添加到工程的main_pages.json文件中。 |
-| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | 是   | 页面级UI状态存储单元，这里用于为加载到窗口的页面内容传递状态属性。 |
+| storage  | [LocalStorage](../../ui/state-management/arkts-localstorage.md) | 是   | 页面级UI状态存储单元，这里用于为加载到窗口的页面内容传递状态属性。 |
 | callback | AsyncCallback&lt;void&gt;                       | 是   | 回调函数。                                                   |
 
 **错误码：**
@@ -3128,7 +3128,7 @@ loadContent(path: string, storage: LocalStorage): Promise&lt;void&gt;
 | 参数名  | 类型                                            | 必填 | 说明                                                         |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path    | string                                          | 是   | 要加载到窗口中的页面内容的路径，该路径需添加到工程的main_pages.json文件中。 |
-| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | 是   | 页面级UI状态存储单元，这里用于为加载到窗口的页面内容传递状态属性。 |
+| storage | [LocalStorage](../../ui/state-management/arkts-localstorage.md) | 是   | 页面级UI状态存储单元，这里用于为加载到窗口的页面内容传递状态属性。 |
 
 **返回值：**
 
@@ -3178,7 +3178,7 @@ loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&l
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | name     | string                                                  | 是   | 命名路由页面的名称。                                             |
-| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | 是   | 页面级UI状态存储单元，这里用于为加载到窗口的页面内容传递状态属性。 |
+| storage  | [LocalStorage](../../ui/state-management/arkts-localstorage.md) | 是   | 页面级UI状态存储单元，这里用于为加载到窗口的页面内容传递状态属性。 |
 | callback | AsyncCallback&lt;void&gt;                               | 是   | 回调函数。                                                   |
 
 **错误码：**
@@ -3322,7 +3322,7 @@ loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;
 | 参数名  | 类型                                                    | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | name    | string                                                  | 是   | 命名路由页面的名称。                                             |
-| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | 否   | 页面级UI状态存储单元，这里用于为加载到窗口的页面内容传递状态属性。 |
+| storage | [LocalStorage](../../ui/state-management/arkts-localstorage.md) | 否   | 页面级UI状态存储单元，这里用于为加载到窗口的页面内容传递状态属性。 |
 
 **返回值：**
 
@@ -4652,7 +4652,7 @@ on(type:  'subWindowClose', callback: Callback&lt;void&gt;): void
 | 参数名   | 类型                           | 必填 | 说明                                                     |
 | -------- | ------------------------------ | ---- | -------------------------------------------------------- |
 | type     | string                         | 是   | 监听事件，固定为'subWindowClose'，即子窗口关闭事件。 |
-| callback | Callback&lt;void&gt; | 是   | 回调函数。当点击子窗口右上角关闭按钮事件发生时的回调。该回调函数不返回任何参数。回调函数内部逻辑需要有boolean类型的返回值，该返回值决定当前子窗是否继续关闭，true表示不关闭子窗，false表示关闭子窗。   |
+| callback | Callback&lt;void&gt; | 是   | 回调函数。当点击子窗口右上角关闭按钮事件发生时的回调。该回调函数不返回任何参数。回调函数内部逻辑的返回值决定当前子窗是否继续关闭，如果返回boolean类型的true表示不关闭子窗，返回false或者其他非boolean类型表示关闭子窗。   |
 
 **错误码：**
 
@@ -4694,7 +4694,7 @@ off(type: 'subWindowClose', callback?: Callback&lt;void&gt;): void
 | 参数名   | 类型                           | 必填 | 说明                                                         |
 | -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                         | 是   | 监听事件，固定为'subWindowClose'，即子窗口关闭事件。     |
-| callback | Callback&lt;void&gt; | 否   | 回调函数。当点击子窗口右上角关闭按钮事件发生时的回调。该回调函数不返回任何参数。回调函数内部逻辑需要有boolean类型的返回值，该返回值决定当前子窗是否继续关闭，true表示不关闭子窗，false表示关闭子窗。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有子窗口关闭的监听。 |
+| callback | Callback&lt;void&gt; | 否   | 回调函数。当点击子窗口右上角关闭按钮事件发生时的回调。该回调函数不返回任何参数。回调函数内部逻辑的返回值决定当前子窗是否继续关闭，如果返回boolean类型的true表示不关闭子窗，返回false或者其他非boolean类型表示关闭子窗。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有子窗口关闭的监听。 |
 
 **错误码：**
 
@@ -6379,39 +6379,26 @@ restore(): Promise&lt;void&gt;
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { window } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
-    // 加载主窗口对应的页面
-    windowStage.loadContent('pages/Index', (err) => {
-      let mainWindow: window.Window | undefined = undefined;
-      // 获取应用主窗口。
-      windowStage.getMainWindow().then(
-        data => {
-          mainWindow = data;
-          console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-          // 调用minimize, 使主窗缩小。
-          mainWindow.minimize();
-          //设置延时函数延时5秒钟后对主窗进行恢复。
-          setTimeout(()=>{
-              //调用restore()函数对主窗进行恢复。
-              let promise = mainWindow.restore();
-              promise.then(() => {
-                  console.info('Succeeded in restoring the window.');
-              }).catch((err: BusinessError) => {
-                  console.error(`Failed to restore the window. Cause code: ${err.code},
-                  message: ${err.message}`);
-              });
-          },5000);
-        }
-      ).catch((err: BusinessError) => {
-          if(err.code){
-            console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-          }
-      });
-    });
+    try {
+      let windowClass = windowStage.getMainWindowSync();
+      // 调用minimize, 使主窗最小化
+      windowClass.minimize();
+      //设置延时函数延时5秒钟后对主窗进行恢复。
+      setTimeout(()=>{
+        //调用restore()函数对主窗进行恢复。
+        let promise = windowClass.restore();
+        promise.then(() => {
+          console.info('Succeeded in restoring the window.');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to restore the window. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      }, 5000);
+    } catch (exception) {
+      console.error(`Failed to restore the window. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
   }
 }
 ```
@@ -6806,14 +6793,23 @@ setWindowTitleMoveEnabled(enabled: boolean): void
 **示例：**
 
 ```ts
-windowClass.setUIContent('pages/WindowPage').then(() => {
-  try {
-    let enabled = false;
-    windowClass.setWindowTitleMoveEnabled(enabled);
-  } catch (exception) {
-    console.error(`Failed to set the window title move enabled. Cause code: ${exception.code}, message: ${exception.message}`);
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    try {
+      windowStage.loadContent("pages/Index").then(() =>{
+        let windowClass = windowStage.getMainWindowSync();
+        let enabled = false;
+        windowClass.setWindowTitleMoveEnabled(enabled);
+        console.info(`Succeeded in setting the the window title move enabled: ${enabled}`);
+      });
+    } catch (exception) {
+      console.error(`Failed to set the window title move enabled. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
   }
-})
+}
 ```
 
 ### setSubWindowModal<sup>12+</sup>
@@ -7043,23 +7039,30 @@ setDecorButtonStyle(dectorStyle: DecorButtonStyle): void
 **示例：**
 
 ```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { ConfigurationConstant } from '@kit.AbilityKit';
 
-windowClass.setUIContent('pages/WindowPage').then(() => {
-  try {
-    let colorMode : ConfigurationConstant.ColorMode = ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT;
-    let style: window.DecorButtonStyle = {
-      colorMode: colorMode,
-      buttonBackgroundSize: 24,
-      spacingBetweenButtons: 12,
-      closeButtonRightMargin: 20
-    };
-    windowClass.setDecorButtonStyle(style);
-    console.info('Succeeded in setting the style of button. Data: ' + JSON.stringify(style));
-  } catch (exception) {
-    console.error(`Failed to set the style of button. Cause code: ${exception.code}, message: ${exception.message}`);
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    try {
+      windowStage.loadContent("pages/Index").then(() =>{
+        let windowClass = windowStage.getMainWindowSync();
+        let colorMode : ConfigurationConstant.ColorMode = ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT;
+        let style: window.DecorButtonStyle = {
+          colorMode: colorMode,
+          buttonBackgroundSize: 24,
+          spacingBetweenButtons: 12,
+          closeButtonRightMargin: 20
+        };
+        windowClass.setDecorButtonStyle(style);
+        console.info('Succeeded in setting the style of button. Data: ' + JSON.stringify(style));
+      });
+    } catch (exception) {
+      console.error(`Failed to set the style of button. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
   }
-})
+}
 ```
 
 ### getDecorButtonStyle<sup>14+</sup>
@@ -7495,6 +7498,8 @@ raiseToAppTop(): Promise&lt;void&gt;
 
 应用子窗口调用，提升应用子窗口到顶层，只在当前应用同一个父窗口下的相同类型子窗范围内生效。使用Promise异步回调。
 
+使用该接口需要先创建子窗口，并确保该子窗口调用[showWindow()](#showwindow9)并执行完毕。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **返回值：**
@@ -7517,14 +7522,38 @@ raiseToAppTop(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+// EntryAbility.ets
+import { window } from '@kit.ArkUI';
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let promise = windowClass.raiseToAppTop();
-promise.then(() => {
-  console.info('Succeeded in raising the window to app top.');
-}).catch((err: BusinessError) => {
-  console.error(`Failed to raise the window to app top. Cause code: ${err.code}, message: ${err.message}`);
-});
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    // 创建子窗
+    try {
+      let subWindowPromise = windowStage.createSubWindow("testSubWindow");
+      subWindowPromise.then((data) => {
+        if (data == null) {
+          console.error("Failed to create the subWindow. Cause: The data is empty");
+          return;
+        }
+        let showWindowPromise = data.showWindow();
+        showWindowPromise.then(() => {
+          let raiseToTopPromise = data.raiseToAppTop();
+          raiseToTopPromise.then(() => {
+            console.info('Succeeded in raising window to app top.');
+          }).catch((err: BusinessError)=>{
+            console.error(`Failed to raise window to app top. Cause code: ${err.code}, message: ${err.message}`);
+          });
+        });
+      });
+    } catch (exception) {
+      console.error(`Failed to create the subWindow. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+}
 ```
 
 ### setRaiseByClickEnabled<sup>14+</sup>
@@ -7534,6 +7563,8 @@ setRaiseByClickEnabled(enable: boolean): Promise&lt;void&gt;
 禁止/使能子窗点击抬升功能。使用Promise异步回调。
 
 通常来说，点击一个子窗口，会将该子窗口显示抬升到应用内同一个父窗口下同类型子窗口的最上方，如果设置为false，那么点击子窗口的时候，不会将该子窗口进行抬升，而是保持不变。
+
+使用该接口需要先创建子窗口，并确保该子窗口调用[showWindow()](#showwindow9)并执行完毕。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -7566,6 +7597,7 @@ setRaiseByClickEnabled(enable: boolean): Promise&lt;void&gt;
 
 ```ts
 // EntryAbility.ets
+import { window } from '@kit.ArkUI';
 import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -7573,22 +7605,23 @@ export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
     // 创建子窗
     try {
-      let subWindow = windowStage.createSubWindow("testSubWindow");
-      subWindow.then((data) => {
+      let subWindowPromise = windowStage.createSubWindow("testSubWindow");
+      subWindowPromise.then((data) => {
         if (data == null) {
           console.error("Failed to create the subWindow. Cause: The data is empty");
           return;
         }
-        windowClass = data;
-        let enabled = false;
-        let promise = windowClass.setRaiseByClickEnabled(enabled);
-        promise.then(()=> {
-          console.info('Succeeded in disabling the raise-by-click function.');
-        }).catch((err: BusinessError)=>{
-          console.error(`Failed to disable the raise-by-click function. Cause code: ${err.code}, message: ${err.message}`);
+        let showWindowPromise = data.showWindow();
+        showWindowPromise.then(() => {
+          let enabled = false;
+          let setRaisePromise = data.setRaiseByClickEnabled(enabled);
+          setRaisePromise.then(() => {
+            console.info('Succeeded in disabling the raise-by-click function.');
+          }).catch((err: BusinessError)=>{
+            console.error(`Failed to disable the raise-by-click function. Cause code: ${err.code}, message: ${err.message}`);
+          });
         });
       });
     } catch (exception) {
@@ -7863,6 +7896,7 @@ struct Index {
           .onTouch((event: TouchEvent) => {
             if (event.type === TouchType.Down) {
               try {
+                let windowClass: window.Window = window.findWindow("subWindow");
                 windowClass.startMoving().then(() => {
                   console.info('Succeeded in starting moving window.')
                 }).catch((err: BusinessError) => {
@@ -7938,6 +7972,7 @@ struct Index {
           .onTouch((event: TouchEvent) => {
             if (event.type === TouchType.Down) {
               try {
+                let windowClass: window.Window = window.findWindow("subWindow");
                 windowClass.startMoving(100, 50).then(() => {
                   console.info('Succeeded in starting moving window.')
                 }).catch((err: BusinessError) => {
@@ -10823,7 +10858,7 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 | 参数名   | 类型                                            | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                                          | 是   | 要加载到窗口中的页面内容的路径，该路径需添加到工程的main_pages.json文件中。  |
-| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | 是   | 页面级UI状态存储单元，这里用于为加载到窗口的页面内容传递状态属性。 |
+| storage  | [LocalStorage](../../ui/state-management/arkts-localstorage.md) | 是   | 页面级UI状态存储单元，这里用于为加载到窗口的页面内容传递状态属性。 |
 | callback | AsyncCallback&lt;void&gt;                       | 是   | 回调函数。                                                   |
 
 **错误码：**
@@ -10884,7 +10919,7 @@ loadContent(path: string, storage?: LocalStorage): Promise&lt;void&gt;
 | 参数名  | 类型                                            | 必填 | 说明                                                         |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path    | string                                          | 是   | 要加载到窗口中的页面内容的路径，该路径需添加到工程的main_pages.json文件中。 |
-| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | 否   | 页面级UI状态存储单元，这里用于为加载到窗口的页面内容传递状态属性。 |
+| storage | [LocalStorage](../../ui/state-management/arkts-localstorage.md) | 否   | 页面级UI状态存储单元，这里用于为加载到窗口的页面内容传递状态属性。 |
 
 **返回值：**
 
@@ -11006,7 +11041,7 @@ loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&l
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | name     | string                                                  | 是   | 命名路由页面的名称。                                             |
-| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | 是   | 页面级UI状态存储单元，这里用于为加载到窗口的页面内容传递状态属性。 |
+| storage  | [LocalStorage](../../ui/state-management/arkts-localstorage.md) | 是   | 页面级UI状态存储单元，这里用于为加载到窗口的页面内容传递状态属性。 |
 | callback | AsyncCallback&lt;void&gt;                               | 是   | 回调函数。                                                   |
 
 **错误码：**

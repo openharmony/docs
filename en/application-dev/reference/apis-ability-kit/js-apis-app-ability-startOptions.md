@@ -22,7 +22,7 @@ import { StartOptions } from '@kit.AbilityKit';
 | -------- | -------- | -------- | -------- | -------- |
 | windowMode<sup>12+<sup> | number | No| Yes| Window mode when the ability is started. For details, see [WindowMode](./js-apis-app-ability-abilityConstant.md#windowmode12).|
 | displayId | number | No| Yes| Display ID mode. The default value is **0**, indicating the current display.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| withAnimation<sup>11+</sup> | boolean | No| Yes| Whether the ability has the animation effect.|
+| withAnimation<sup>11+</sup> | boolean | No| Yes| Whether animation effects are used when the ability is started. The value **true** means that animation effects are used, and **false** means the opposite.<br>**Constraints**:<br>1. This property takes effect only on 2-in-1 devices and tablets.<br>2. The caller and target must be the same application.|
 | windowLeft<sup>11+</sup> | number | No| Yes| Position of the left edge of the window.|
 | windowTop<sup>11+</sup> | number | No| Yes| Position of the top edge of the window.|
 | windowWidth<sup>11+</sup> | number | No| Yes| Window width.|

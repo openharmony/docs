@@ -1,7 +1,7 @@
 # TabTitleBar
 
 
-The tab title bar is used to switch between tabs pages. It is applicable only to level-1 pages.
+The **TabTitleBar** component is a tab title bar used to switch between tabs pages. It is applicable only to level-1 pages.
 
 
 > **NOTE**
@@ -21,7 +21,7 @@ import { TabTitleBar } from '@kit.ArkUI'
 Not supported
 
 ## Attributes
-The [universal attributes](ts-universal-attributes-size.md) are not supported.
+The [universal attributes](ts-component-general-attributes.md) are not supported.
 
 
 ## TabTitleBar
@@ -34,28 +34,32 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
-
 | Name| Type| Mandatory| Decorator| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | tabItems | Array&lt;[TabTitleBarTabItem](#tabtitlebartabitem)&gt; | Yes| - | List of tab items on the left of the title bar.|
 | menuItems | Array&lt;[TabTitleBarMenuItem](#tabtitlebarmenuitem)&gt; | No| - | List of menu items on the right of the title bar.|
 | swiperContent | () =&gt; void | Yes| \@BuilderParam | Constructor for page content pertaining to the tab list.|
 
+> **NOTE**
+> 
+> The input parameter cannot be **undefined**, that is, calling **TabTitleBar(undefined)** is not allowed.
+
 ## TabTitleBarMenuItem
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | [ResourceStr](ts-types.md#resourcestr) | Yes| Icon resource.|
-| label<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Icon label.|
-| isEnabled | boolean | No| Whether to enable the item.<br> Default value: **true**<br> The value **true** means to enable the item, and **false** means the opposite.|
+| value | [ResourceStr](ts-types.md#resourcestr) | Yes| Icon resource.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| label<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Icon label.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| isEnabled | boolean | No| Whether to enable the item.<br> Default value: **false**<br> The value **true** means to enable the item, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | action | () =&gt; void | No| Action to perform.|
 
 ## TabTitleBarTabItem
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -64,32 +68,19 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 
 
 ## Events
-The [universal events](ts-universal-events-click.md) are not supported.
+The [universal events](ts-component-general-events.md) are not supported.
 
 ## Example
 
+This example demonstrates a tab title bar with tabs on the left and a menu list on the right.
 ```ts
-import { TabTitleBar, promptAction } from '@kit.ArkUI'
-
-class tabItem {
-  title: ResourceStr;
-  icon?: ResourceStr;
-  constructor(title: ResourceStr,icon?: ResourceStr) {
-    this.title = title
-    this.icon = icon
-  }
-}
-
-interface menuItem {
-  value: ResourceStr;
-  isEnabled?: boolean;
-  action?: () => void
-}
+import { TabTitleBar, promptAction, TabTitleBarTabItem, TabTitleBarMenuItem } from '@kit.ArkUI'
 
 @Entry
 @Component
 struct Index {
   @Builder
+  // Define the pages associated with the tab list.
   componentBuilder() {
     Text("#1ABC9C\nTURQUOISE")
       .fontWeight(FontWeight.Bold)
@@ -128,25 +119,35 @@ struct Index {
       .backgroundColor("#3498DB")
   }
 
-  private readonly tabItems: Array<tabItem> = [new tabItem('Tab 1'),new tabItem('Tab 2'),new tabItem('Tab 3'),new tabItem("Happy",$r('app.media.emoji_happy')),new tabItem('Tab 4')]
-  private  readonly menuItems: Array<menuItem> = [
+  // Define several tab items on the left.
+  private readonly tabItems: Array<TabTitleBarTabItem> =
+    [
+      { title: 'Tab 1' },
+      { title: 'Tab 2' },
+      { title: 'Tab 3' },
+      { title: 'icon', icon: $r('sys.media.ohos_app_icon') },
+      { title: 'Tab 4' },
+    ]
+  // Define several menu items on the right.
+  private readonly menuItems: Array<TabTitleBarMenuItem> = [
     {
-      value: $r('app.media.ic_public_reduce'),
+      value: $r('sys.media.ohos_save_button_filled'),
       isEnabled: true,
       action: () => promptAction.showToast({ message: "on item click! index 0" })
     },
     {
-      value: $r('app.media.ic_public_edit'),
+      value: $r('sys.media.ohos_ic_public_copy'),
       isEnabled: true,
       action: () => promptAction.showToast({ message: "on item click! index 1" })
     },
     {
-      value: $r('app.media.ic_public_save'),
+      value: $r('sys.media.ohos_ic_public_edit'),
       isEnabled: true,
       action: () => promptAction.showToast({ message: "on item click! index 2" })
     },
   ]
 
+  // Display the tab title bar.
   build() {
     Row() {
       Column() {
@@ -161,4 +162,4 @@ struct Index {
 }
 ```
 
-![en-us_image_0000001616916278](figures/en-us_image_0000001616916278.png)
+

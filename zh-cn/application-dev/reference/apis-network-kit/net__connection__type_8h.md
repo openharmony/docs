@@ -28,6 +28,8 @@
 | [NetConn_HttpProxy](_net_conn___http_proxy.md) | 代理配置信息。 | 
 | [NetConn_ConnectionProperties](_net_conn___connection_properties.md) | 网络链接信息。 | 
 | [NetConn_NetHandleList](_net_conn___net_handle_list.md) | 网络列表。 | 
+| [NetConn_NetConnCallback](_net_conn___net_conn_callback.md) | 网络状态监听回调集合。  | 
+| [NetConn_NetSpecifier](_net_conn___net_specifier.md) | 网络的特征集，包含网络的能力集与网络的标识符。  | 
 
 
 ### 宏定义

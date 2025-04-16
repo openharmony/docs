@@ -292,7 +292,7 @@
          ```
          /sys/devices/platform/soc/10100000.himci.eMMC/mmc_host/mmc0/mmc0:0001/block/mmcblk0/mmcblk0p5
          ```
-         因此在处理内核上报的该设备uevent消息时，会与bootDevice中的路径`soc/10100000.himci.eMMC`相匹配，因此而创建相应的软链接，这一软连接的路径是：
+         因此在处理内核上报的该设备uevent消息时，会与bootDevice中的路径`soc/10100000.himci.eMMC`相匹配，因此而创建相应的软链接，这一软链接的路径是：
          ```
          /dev/block/by-name/system
          ```

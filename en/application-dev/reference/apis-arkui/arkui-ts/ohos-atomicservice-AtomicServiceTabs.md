@@ -18,7 +18,7 @@ Not supported
 
 ## Attributes
 
-The [universal attributes](ts-universal-attributes-size.md) are not supported.
+The [universal attributes](ts-component-general-attributes.md) are not supported.
 
 ## AtomicServiceTabs
 
@@ -62,7 +62,7 @@ AtomicServiceTabs ({
 | barBackgroundColor | [ResourceColor](ts-types.md#resourcecolor) | No| @Prop | Background color of the tab bar.|
 | index | number | No| @Prop | Index of the currently displayed tab.|
 | barOverlap | boolean| No| @Prop | Whether the tab bar is superimposed on the **TabContent** component after having its background blurred.|
-| controller|[TabsController](ts-container-tabs#tabscontroller) | No| - |Tab controller, which is used to control switching of tabs.|
+| controller|[TabsController](ts-container-tabs.md#tabscontroller) | No| - |Tab controller, which is used to control switching of tabs.|
 | onChange | Callback\<number\> | No| - | Callback invoked when a tab is switched.|
 | onTabBarClick | Callback\<number\> | No| - |Callback invoked when a tab is clicked.|
 | onContentWillChange | [OnContentWillChangeCallback](#oncontentwillchangecallback) | No| - | Callback invoked when a new page is about to be displayed.|
@@ -93,7 +93,7 @@ constructor(icon: ResourceStr | TabBarSymbol, text: ResourceStr, unselectedColor
 
 | Name| Type| Mandatory| Description|
 | --------------- | ------ |------ |------ |
-| icon | [ResourceStr](ts-types.md#resourcestr) \| [TabBarSymbol](#tabbarsymbol12) | Yes| Icon of the tab.|
+| icon | [ResourceStr](ts-types.md#resourcestr) \| [TabBarSymbol](ts-container-tabcontent.md#tabbarsymbol12) | Yes| Icon of the tab.|
 | text | [ResourceStr](ts-types.md#resourcestr) | Yes| Text of the tab.|
 | unselectedColor | [ResourceColor](ts-types.md#resourcecolor) | Yes| Color of the tab when it is not selected.|
 | selectedColor | [ResourceColor](ts-types.md#resourcecolor) | Yes| Color of the tab when it is selected.|

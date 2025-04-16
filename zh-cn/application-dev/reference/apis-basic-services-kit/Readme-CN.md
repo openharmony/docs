@@ -52,7 +52,7 @@
     - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)(系统接口)](js-apis-application-staticSubscriberExtensionAbility-sys.md)
     - [@ohos.application.StaticSubscriberExtensionContext (StaticSubscriberExtensionContext)(系统接口)](js-apis-application-StaticSubscriberExtensionContext-sys.md)
     <!--DelEnd-->
-    - commonEvent
+    - commonEvent<!--commonevent-->
       - [CommonEventData](js-apis-inner-commonEvent-commonEventData.md)
       - [CommonEventPublishData](js-apis-inner-commonEvent-commonEventPublishData.md)
       - [CommonEventSubscriber](js-apis-inner-commonEvent-commonEventSubscriber.md)
@@ -70,8 +70,10 @@
     - [@ohos.configPolicy (配置策略)(系统接口)](js-apis-configPolicy-sys.md)
     - [@ohos.settings (设置数据项名称)(系统接口)](js-apis-settings-sys.md)
     - [@ohos.systemDateTime (系统时间、时区)(系统接口)](js-apis-system-date-time-sys.md)
-    - [@ohos.systemDateTime (系统时间、时区)](js-apis-date-time.md)
-    - [@ohos.wallpaper (壁纸)(系统接口)](js-apis-wallpaper-sys.md)
+            <!--DelEnd-->
+    - [@ohos.systemDateTime (系统时间、时区)](reference/apis-basic-services-kit/js-apis-date-time.md)
+            <!--Del-->
+     - [@ohos.wallpaper (壁纸)(系统接口)](js-apis-wallpaper-sys.md)
     - [@ohos.WallpaperExtensionAbility (WallpaperExtensionAbility)(系统接口)](js-apis-WallpaperExtensionAbility-sys.md)
     - [@ohos.systemTimer (系统定时器)(系统接口)](js-apis-system-timer-sys.md)
     <!--DelEnd-->
@@ -94,7 +96,6 @@
   - 模块<!--basic-services-module-->
     - [CommonEvent](capi-common-event.md)
     - [DeviceInfo](_device_info.md)
-    - [InitSync](_init_sync.md)
     - [OsAccount](_os_account.md)
     - [OH_BatteryInfo](oh__batteryinfo.md)
     - [OH_Scan](c-apis-scan.md)
@@ -103,7 +104,6 @@
     - [TimeService](_time_service.md)
   - 头文件<!--basic-services-headerfile-->
     - [deviceinfo.h](deviceinfo_8h.md)
-    - [init_sync.h](init__sync_8h.md)
     - [ohbattery_info.h](ohbattery__info_8h.md)
     - [oh_commonevent.h](oh_commonevent_8h.md)
     - [oh_commonevnt_support.h](oh_commonevent_support_8h.md)
@@ -139,6 +139,7 @@
   - [系统电源管理错误码](errorcode-power.md)
   - [账号管理错误码](errorcode-account.md)
   - [升级错误码](errorcode-update.md)
+  - [打印服务错误码](errorcode-print.md)
   <!--Del-->
   - [锁屏服务错误码](errorcode-screenlock.md)
   - [设备证明错误码](errorcode-deviceAttest.md)

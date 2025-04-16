@@ -38,7 +38,7 @@ DatePicker(options?: DatePickerOptions)
 | -------- | ---- | ---- | ------------------------------------------------------------ |
 | start    | Date | 否   | 指定选择器的起始日期。<br/>默认值：Date('1970-1-1')          |
 | end      | Date | 否   | 指定选择器的结束日期。<br/>默认值：Date('2100-12-31')        |
-| selected | Date | 否   | 设置选中项的日期。<br/>默认值：当前系统日期<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| selected | Date | 否   | 设置选中项的日期。<br/>默认值：当前系统日期<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。 |
 
 **异常情形说明:**
 

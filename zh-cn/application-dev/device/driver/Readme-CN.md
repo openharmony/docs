@@ -1,4 +1,4 @@
-# Driver Development Kit（驱动开发服务）
+# Driver Development Kit（驱动开发服务）<!--driver-development-kit-->
 
 - [Driver Development Kit简介](driverdevelopment-overview.md)
 - [外设扩展驱动客户端开发指导](externaldevice-guidelines.md)

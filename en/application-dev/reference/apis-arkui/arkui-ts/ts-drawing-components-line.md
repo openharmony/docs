@@ -13,7 +13,7 @@ Not supported
 
 ## APIs
 
-Line(options?: LineOptions)
+Line(value?: {width?: string | number, height?: string | number})
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -25,25 +25,12 @@ Line(options?: LineOptions)
 
 | Name| Type| Mandatory| Description
 | -------- | -------- | -------- | -------- |
-| options | [LineOptions](ts-drawing-components-line.md#lineoptions14) | No| Options for drawing a line.|
+| value | {width?: string \| number, height?: string \| number} | No| **width**: width<br>If the value is invalid or the default value is used, the width required for the content is used.<br>**height**: height<br>If the value is invalid or the default value is used, the height required for the content is used.|
 
-## LineOptions<sup>14+</sup>
-Describes the options for drawing a line.
-
-**Widget capability**: This API can be used in ArkTS widgets since API version 14.
-
-**Atomic service API**: This API can be used in atomic services since API version 14.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| width | string \| number | No| Width.<br>If the value is invalid or the default value is used, the width required for the content is used.<br>Default unit: vp|
-| height | string \| number | No| Height.<br>If the value is invalid or the default value is used, the width required for the content is used.<br>Default unit: vp|
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### startPoint
 
@@ -139,7 +126,7 @@ Sets the stroke color. If this attribute is not set, the component does not have
 
 strokeDashArray(value: Array&lt;any&gt;)
 
-Sets stroke dashes. Line segments may overlap when they intersect. An invalid value is handled as the default value.
+Sets stroke dashes. Line segments may overlap when they intersect. The value must be greater than or equal to 0. Invalid values are treated as the default value.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -229,7 +216,7 @@ Sets the limit value when the sharp angle is drawn as a miter. This attribute ha
 
 strokeOpacity(value: number | string | Resource)
 
-Sets the stroke opacity. The value range is [0.0, 1.0]. A value less than 0.0 evaluates to the value **0.0**. A value greater than 1.0 evaluates to the value **1.0**. Any other value evaluates to the value **1.0**.
+Sets the stroke opacity. The value range is [0.0, 1.0]. A value less than 0.0 is treated as **0.0**. A value greater than 1.0 is treated as **1.0**. Any other value is treated as **1.0**.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -259,7 +246,7 @@ Sets the stroke width. If of the string type, this attribute cannot be set in pe
 
 | Name| Type                        | Mandatory| Description                    |
 | ------ | ---------------------------- | ---- | ------------------------ |
-| value  | [Length](ts-types.md#length) | Yes  | Stroke width.<br>Default value: **1**<br>Default unit: vp|
+| value  | [Length](ts-types.md#length) | Yes  | Stroke width. The value must be greater than or equal to 0.<br>Default value: **1**<br>Default unit: vp<br>An invalid value is handled as the default value.|
 
 ### antiAlias
 
@@ -277,7 +264,7 @@ Specifies whether anti-aliasing is enabled.
 
 | Name| Type   | Mandatory| Description                                 |
 | ------ | ------- | ---- | ------------------------------------- |
-| value  | boolean | Yes  | Whether anti-aliasing is enabled.<br>Default value: **true**|
+| value  | boolean | Yes  | Whether anti-aliasing is enabled.<br>**true**: Anti-aliasing is enabled.<br>**false**: Anti-aliasing is disabled.<br>Default value: **true**|
 
 ## Example
 
@@ -357,7 +344,8 @@ struct LineExample1 {
         .stroke(Color.Black)
         .strokeWidth(20)
         .strokeLineCap(LineCapStyle.Butt)
-        .backgroundColor('#F5F5F5').margin(10)
+        .backgroundColor('#F5F5F5')
+        .margin(10)
       // Set LineCapStyle to Round.
       Line()
         .width(100)
@@ -439,7 +427,6 @@ struct LineExample {
         .stroke(Color.Black)
         .strokeWidth(10)
         .strokeDashArray([50, 10, 20, 30])
-
     }
   }
 }

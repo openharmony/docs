@@ -30,7 +30,7 @@ Text(content?: string | Resource , value?: TextOptions)
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### textAlign
 
@@ -104,7 +104,7 @@ Sets the maximum number of lines in the text. By default, text is automatically 
 
 lineHeight(value: number | string | Resource)
 
-Sets the text line height. If the value is less than or equal to **0**, the line height is not limited and the font size is adaptive. If the value is of the number type, the unit fp is used.
+Sets the text line height. If the value is less than or equal to **0**, the line height is not limited and the font size is adaptive. If the value is of the number type, the unit fp is used. For the string type, numeric string values with optional units, for example, **"10"** or **"10fp"**, are supported.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -160,7 +160,7 @@ Positive values shift the content upwards, while negative values shift it downwa
 
 letterSpacing(value: number | string)
 
-Sets the letter spacing for a text style. If the value specified is a percentage or 0, the default value is used.
+Sets the letter spacing for a text style. If the value specified is a percentage or 0, the default value is used. For the string type, numeric string values with optional units, for example, **"10"** or **"10fp"**, are supported.
 
 If the value specified is a negative value, the text is compressed. A negative value too small may result in the text being compressed to 0 and no content being displayed.
 
@@ -174,15 +174,15 @@ If the value specified is a negative value, the text is compressed. A negative v
 
 | Name| Type                      | Mandatory| Description          |
 | ------ | -------------------------- | ---- | -------------- |
-| value  | number \| string | Yes  | Letter spacing.|
+| value  | number \| string | Yes  | Letter spacing.<br>Unit: fp|
 
 ### minFontSize
 
 minFontSize(value: number | string | Resource)
 
-Sets the minimum font size.
+Sets the minimum font size. For the string type, numeric string values with optional units, for example, **"10"** or **"10fp"**, are supported.
 
-For the setting to take effect, this attribute must be used together with [maxFontSize](#maxfontsize) and [maxLines](#maxlines), or layout constraint settings. In addition, it does not take effect for child components or styled strings.
+For the setting to take effect, this attribute must be used together with [maxFontSize](#maxfontsize) and [maxLines](#maxlines), or layout constraint settings.
 
 When the adaptive font size is used, the **fontSize** settings do not take effect.
 
@@ -204,11 +204,13 @@ If the value of **minFontSize** is less than or equal to 0, the adaptive font si
 
 maxFontSize(value: number | string | Resource)
 
-Sets the maximum font size.
+Sets the maximum font size. For the string type, numeric string values with optional units, for example, **"10"** or **"10fp"**, are supported.
 
 For the setting to take effect, this attribute must be used together with [minFontSize](#minfontsize) and [maxLines](#maxlines), or layout constraint settings. In addition, it does not take effect for child components or styled strings.
 
 When the adaptive font size is used, the **fontSize** settings do not take effect.
+
+If the value of **maxFontSize** is less than or equal to 0, font size adaptation does not take effect. In this case, the actual font size is determined by the value of [fontSize](#fontsize). If [fontSize](#fontsize) is not specified, the default value is used.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -220,7 +222,7 @@ When the adaptive font size is used, the **fontSize** settings do not take effec
 
 | Name| Type                                                        | Mandatory| Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Maximum font size.|
+| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Maximum font size.<br>Unit: fp|
 
 ### textCase
 
@@ -412,11 +414,11 @@ Since API version 11, this API supports input parameters in an array to implemen
 
 heightAdaptivePolicy(value: TextHeightAdaptivePolicy)
 
-Sets how the adaptive height is determined for the text.
+Sets how the font size of text adapts to layout constraints.
 
 When this attribute is set to **TextHeightAdaptivePolicy.MAX_LINES_FIRST**, the [maxLines](#maxlines) attribute takes precedence for adjusting the text height. If the **maxLines** setting results in a layout beyond the layout constraints, the text will shrink to a font size between [minFontSize](#minfontsize) and [maxFontSize](#maxfontsize) to allow for more content to be shown.
 
-If this attribute is set to **TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST**, the **minFontSize** attribute takes precedence for adjusting the text height. If the text can fit in one line with the **minFontSize** setting, the text will enlarge to the largest possible font size between **minFontSize** and **maxFontSize**.
+If this attribute is set to **TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST**, the **minFontSize** attribute takes precedence for adjusting the text height. If the text fits on one line at **minFontSize**, the system attempts to increase the font size within the range of **minFontSize** and **maxFontSize** to display the text as large as possible on one line. If the text cannot fit into a single line even at **minFontSize**, it sticks with **minFontSize**.
 
 If this attribute is set to **TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST**, the layout constraints take precedence for adjusting the text height. If the resultant layout is beyond the layout constraints, the text will shrink to a font size between **minFontSize** and **maxFontSize** to respect the layout constraints. If the text still extends beyond the layout constraints after shrinking to **minFontSize**, the lines that exceed the constraints are deleted.
 
@@ -724,7 +726,7 @@ Sets the minimum font scale factor for text.
 
 | Name| Type                                         | Mandatory| Description                                         |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| scale  | number \| [Resource](ts-types.md#resource) | Yes  | Minimum font scale factor for text.<br>Value range: [0, 1]<br>**NOTE**<br>A value less than 0 is handed as **0**. A value greater than 1 is handed as **1**. Abnormal values are ineffective by default.|
+| scale  | number \| [Resource](ts-types.md#resource) | Yes  | Minimum font scale factor for text.<br>Value range: [0, 1]<br>**NOTE**<br>A value less than 0 is handled as **0**. A value greater than 1 is handled as **1**. Abnormal values are ineffective by default.|
 
 ### maxFontScale<sup>12+</sup>
 
@@ -740,7 +742,7 @@ Sets the maximum font scale factor for text.
 
 | Name| Type                                         | Mandatory| Description                                         |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| scale  | number \| [Resource](ts-types.md#resource) | Yes  | Maximum font scale factor for text.<br>Value range: [1, +∞)<br>**NOTE**<br>A value less than 1 is handed as **1**. Abnormal values are ineffective by default.|
+| scale  | number \| [Resource](ts-types.md#resource) | Yes  | Maximum font scale factor for text.<br>Value range: [1, +∞)<br>**NOTE**<br>A value less than 1 is handled as **1**. Abnormal values are ineffective by default.|
 
 ### halfLeading<sup>12+</sup>
 
@@ -799,7 +801,7 @@ It is only effective for the **Text** component, not for its child components.
 
 | Name| Type                                         | Mandatory| Description                                         |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| weight | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string | Yes | Font weight.|
+| weight | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string | Yes | Font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. A larger value indicates a heavier font weight. The default value is **400**. For the string type, only strings that represent a number, for example, **"400"**, and the following enumerated values of **FontWeight** are supported: **"bold"**, **"bolder"**, **"lighter"**, **"regular"**, and **"medium"**.|
 | options | [FontSettingOptions](ts-text-common.md#fontsettingoptions12) | No | Font settings.|
 
 ### enableHapticFeedback<sup>13+</sup>
@@ -865,31 +867,45 @@ Sets the background color of the selected text. If the opacity is not set, a 20%
 
 Provides the [span](ts-basic-components-span.md) type information.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Description|
-| -------- | -------- |
-| TEXT | Text span.|
-| IMAGE | Image span.|
-| MIXED | Mixed span, which contains both text and imagery.|
+| Name| Value| Description|
+| -------- | ---- | -------- |
+| TEXT | 0 | Text span.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| IMAGE | 1 | Image span.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| MIXED | 2 | Mixed span, which contains both text and imagery.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| DEFAULT<sup>15+</sup> | 3 | When this type is registered but **TEXT**, **IMAGE**, or **MIXED** types are not registered, this type will be triggered and displayed for those registered types.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+
+>  **NOTE**
+>
+>  The order for menu type matching is as follows. When the user interacts with text, the system follows this order to decides which type of menu to display.
+>  1. Check whether a menu is registered for **TextSpanType.TEXT** and **TextResponseType.LONG_PRESS**.
+>  2. Check whether a menu is registered for **TextSpanType.TEXT** and **TextResponseType.DEFAULT**.
+>  3. Check whether a menu is registered for **TextSpanType.DEFAULT** and **TextResponseType.LONG_PRESS**.
+>  4. Check whether a menu is registered for **TextSpanType.DEFAULT** and **TextResponseType.DEFAULT**.
 
 ## TextResponseType<sup>11+</sup>
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name        | Description         |
-| ---------- | ------------- |
-| RIGHT_CLICK | The menu is displayed when the component is right-clicked.|
-| LONG_PRESS  | The menu is displayed when the component is long-pressed.  |
-| SELECT | The menu is displayed when the component is selected.|
+| Name        | Value|  Description         |
+| ---------- | --- | ------------- |
+| RIGHT_CLICK | 0 | The menu is displayed when the component is right-clicked.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| LONG_PRESS  | 1 | The menu is displayed when the component is long-pressed.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| SELECT | 2 | The menu is displayed when the component is selected.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| DEFAULT<sup>15+</sup> | 3 | When this type is registered but **RIGHT_CLICK**, **LONG_PRESS**, or **SELECT** types are not registered, this type will be triggered and displayed for right-click, long press, and mouse selection actions.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+
+>  **NOTE**
+>
+>  The order for menu type matching is as follows. When the user interacts with text, the system follows this order to decides which type of menu to display.
+>  1. Check whether a menu is registered for **TextSpanType.TEXT** and **TextResponseType.LONG_PRESS**.
+>  2. Check whether a menu is registered for **TextSpanType.TEXT** and **TextResponseType.DEFAULT**.
+>  3. Check whether a menu is registered for **TextSpanType.DEFAULT** and **TextResponseType.LONG_PRESS**.
+>  4. Check whether a menu is registered for **TextSpanType.DEFAULT** and **TextResponseType.DEFAULT**.
 
 ## Events
 
-In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
+In addition to the [universal events](ts-component-general-events.md), the following events are supported.
 
 ### onCopy<sup>11+</sup>
 
@@ -1011,16 +1027,16 @@ function style(TextAlign: TextAlign) {
 @Entry
 @Component
 struct TextExample1 {
-  @State changeTextAlignIndex: number = 0
-  @State changeDecorationIndex: number = 0
-  @State TextAlign: TextAlign[] = [TextAlign.Start, TextAlign.Center, TextAlign.End]
-  @State TextAlignStr: string[] = ['Start', 'Center', 'End']
+  @State changeTextAlignIndex: number = 0;
+  @State changeDecorationIndex: number = 0;
+  @State TextAlign: TextAlign[] = [TextAlign.Start, TextAlign.Center, TextAlign.End];
+  @State TextAlignStr: string[] = ['Start', 'Center', 'End'];
   @State TextDecorationType: TextDecorationType[] =
-    [TextDecorationType.LineThrough, TextDecorationType.Overline, TextDecorationType.Underline]
-  @State TextDecorationTypeStr: string[] = ['LineThrough', 'Overline', 'Underline']
+    [TextDecorationType.LineThrough, TextDecorationType.Overline, TextDecorationType.Underline];
+  @State TextDecorationTypeStr: string[] = ['LineThrough', 'Overline', 'Underline'];
   @State TextDecorationStyle: TextDecorationStyle[] =
-    [TextDecorationStyle.SOLID, TextDecorationStyle.DOTTED, TextDecorationStyle.WAVY]
-  @State TextDecorationStyleStr: string[] = ['SOLID', 'DOTTED', 'WAVY']
+    [TextDecorationStyle.SOLID, TextDecorationStyle.DOTTED, TextDecorationStyle.WAVY];
+  @State TextDecorationStyleStr: string[] = ['SOLID', 'DOTTED', 'WAVY'];
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
@@ -1037,9 +1053,9 @@ struct TextExample1 {
 
       Row() {
         Button('TextAlign Value: ' + this.TextAlignStr[this.changeTextAlignIndex]).onClick(() => {
-          this.changeTextAlignIndex++
+          this.changeTextAlignIndex++;
           if (this.changeTextAlignIndex > (this.TextAlignStr.length - 1)) {
-            this.changeTextAlignIndex = 0
+            this.changeTextAlignIndex = 0;
           }
         })
       }.justifyContent(FlexAlign.Center).width('100%')
@@ -1082,12 +1098,12 @@ struct TextExample1 {
 
 ### Example 2: Setting the Text Style
 
-This example showcases various text styles by using the **decoration**, **letterSpacing**, **textCase**, and **textShadow** attributes.
+This example shows how to set various text styles using **decoration**, **letterSpacing**, and **textCase**, **fontFamily**, **textShadow**, **fontStyle**, **textIndent**, and **fontWeight** attributes.
 
 ```ts
 @Extend(Text)
 function style() {
-  .fontSize(12)
+  .font({ size: 12 })
   .border({ width: 1 })
   .padding(10)
   .width('100%')
@@ -1097,13 +1113,13 @@ function style() {
 @Entry
 @Component
 struct TextExample2 {
-  @State changeDecorationIndex: number = 0
+  @State changeDecorationIndex: number = 0;
   @State TextDecorationType: TextDecorationType[] =
-    [TextDecorationType.LineThrough, TextDecorationType.Overline, TextDecorationType.Underline]
-  @State TextDecorationTypeStr: string[] = ['LineThrough', 'Overline', 'Underline']
+    [TextDecorationType.LineThrough, TextDecorationType.Overline, TextDecorationType.Underline];
+  @State TextDecorationTypeStr: string[] = ['LineThrough', 'Overline', 'Underline'];
   @State TextDecorationStyle: TextDecorationStyle[] =
-    [TextDecorationStyle.SOLID, TextDecorationStyle.DOTTED, TextDecorationStyle.WAVY]
-  @State TextDecorationStyleStr: string[] = ['SOLID', 'DOTTED', 'WAVY']
+    [TextDecorationStyle.SOLID, TextDecorationStyle.DOTTED, TextDecorationStyle.WAVY];
+  @State TextDecorationStyleStr: string[] = ['SOLID', 'DOTTED', 'WAVY'];
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
@@ -1120,9 +1136,9 @@ struct TextExample2 {
       Row() {
         Button('Decoration Type: ' + this.TextDecorationTypeStr[this.changeDecorationIndex] + ' & ' +
         this.TextDecorationStyleStr[this.changeDecorationIndex]).onClick(() => {
-          this.changeDecorationIndex++
+          this.changeDecorationIndex++;
           if (this.changeDecorationIndex > (this.TextDecorationTypeStr.length - 1)) {
-            this.changeDecorationIndex = 0
+            this.changeDecorationIndex = 0;
           }
         })
       }.justifyContent(FlexAlign.Center).width('100%')
@@ -1152,6 +1168,12 @@ struct TextExample2 {
         .textCase(TextCase.UpperCase)
         .style()
 
+      Text('fontFamily').fontSize(9).fontColor(0xCCCCCC)
+      // Set the font family.
+      Text('This is the text content with fontFamily')
+        .style()
+        .fontFamily('HarmonyOS Sans')
+
       Text('textShadow').fontSize(9).fontColor(0xCCCCCC)
       // Set the text shadow.
       Text('textShadow')
@@ -1165,7 +1187,28 @@ struct TextExample2 {
           offsetY: 0
         })
 
-    }.height(600).width('100%').padding({ left: 35, right: 35, top: 35 })
+      Text('fontStyle').fontSize(9).fontColor(0xCCCCCC)
+      // Set the font style.
+      Text('This is the text content with fontStyle set to Italic')
+        .style()
+        .fontStyle(FontStyle.Italic)
+      Text('This is the text content with fontStyle set to Normal')
+        .style()
+        .fontStyle(FontStyle.Normal)
+
+      Text('textIndent').fontSize(9).fontColor(0xCCCCCC)
+      // Set the text indentation.
+      Text('This is the text content with textIndent 30')
+        .style()
+        .textIndent(30)
+
+      Text('fontWeight').fontSize(9).fontColor(0xCCCCCC)
+      // Set the font weight.
+      Text('This is the text content with fontWeight 800')
+        .style()
+        .fontWeight('800', { enableVariableFontWeight: true })
+
+    }.width('100%').padding({ left: 35, right: 35 })
   }
 }
 ```
@@ -1190,10 +1233,10 @@ function style() {
 @Component
 struct TextExample3 {
   @State text: string =
-    'The text component is used to display a piece of textual information.Support universal attributes and universal text attributes.'
-  @State ellipsisModeIndex: number = 0
-  @State ellipsisMode: EllipsisMode[] = [EllipsisMode.START, EllipsisMode.CENTER, EllipsisMode.END]
-  @State ellipsisModeStr: string[] = ['START', 'CENTER', 'END']
+    'The text component is used to display a piece of textual information.Support universal attributes and universal text attributes.';
+  @State ellipsisModeIndex: number = 0;
+  @State ellipsisMode: EllipsisMode[] = [EllipsisMode.START, EllipsisMode.CENTER, EllipsisMode.END];
+  @State ellipsisModeStr: string[] = ['START', 'CENTER', 'END'];
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
@@ -1227,9 +1270,9 @@ struct TextExample3 {
 
       Row() {
         Button('Ellipsis Position: ' + this.ellipsisModeStr[this.ellipsisModeIndex]).onClick(() => {
-          this.ellipsisModeIndex++
+          this.ellipsisModeIndex++;
           if (this.ellipsisModeIndex > (this.ellipsisModeStr.length - 1)) {
-            this.ellipsisModeIndex = 0
+            this.ellipsisModeIndex = 0;
           }
         })
       }
@@ -1259,19 +1302,19 @@ function style() {
 @Component
 struct TextExample4 {
   @State text: string =
-    'The text component is used to display a piece of textual information.Support universal attributes and universal text attributes.'
+    'The text component is used to display a piece of textual information.Support universal attributes and universal text attributes.';
   @State text2: string =
     "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
       "The built-in components include buttons radio buttons progress indicators and text You can set the rendering effect of these components in method chaining mode," +
-      "page components are divided into independent UI units to implement independent creation development and reuse of different units on pages making pages more engineering-oriented."
-  @State textClip: boolean = false
-  @State wordBreakIndex: number = 0
-  @State wordBreak: WordBreak[] = [WordBreak.NORMAL, WordBreak.BREAK_ALL, WordBreak.BREAK_WORD]
-  @State wordBreakStr: string[] = ['NORMAL', 'BREAK_ALL', 'BREAK_WORD']
-  @State lineBreakStrategyIndex: number = 0
+      "page components are divided into independent UI units to implement independent creation development and reuse of different units on pages making pages more engineering-oriented.";
+  @State textClip: boolean = false;
+  @State wordBreakIndex: number = 0;
+  @State wordBreak: WordBreak[] = [WordBreak.NORMAL, WordBreak.BREAK_ALL, WordBreak.BREAK_WORD];
+  @State wordBreakStr: string[] = ['NORMAL', 'BREAK_ALL', 'BREAK_WORD'];
+  @State lineBreakStrategyIndex: number = 0;
   @State lineBreakStrategy: LineBreakStrategy[] =
-    [LineBreakStrategy.GREEDY, LineBreakStrategy.HIGH_QUALITY, LineBreakStrategy.BALANCED]
-  @State lineBreakStrategyStr: string[] = ['GREEDY', 'HIGH_QUALITY', 'BALANCED']
+    [LineBreakStrategy.GREEDY, LineBreakStrategy.HIGH_QUALITY, LineBreakStrategy.BALANCED];
+  @State lineBreakStrategyStr: string[] = ['GREEDY', 'HIGH_QUALITY', 'BALANCED'];
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
@@ -1285,9 +1328,9 @@ struct TextExample4 {
 
       Row() {
         Button('wordBreak Value: ' + this.wordBreakStr[this.wordBreakIndex]).onClick(() => {
-          this.wordBreakIndex++
+          this.wordBreakIndex++;
           if (this.wordBreakIndex > (this.wordBreakStr.length - 1)) {
-            this.wordBreakIndex = 0
+            this.wordBreakIndex = 0;
           }
         })
       }
@@ -1301,7 +1344,7 @@ struct TextExample4 {
         .style()
       Row() {
         Button('Clip Mode: ' + this.textClip).onClick(() => {
-          this.textClip = !this.textClip
+          this.textClip = !this.textClip;
         })
       }
 
@@ -1312,9 +1355,9 @@ struct TextExample4 {
         .style()
       Row() {
         Button('lineBreakStrategy Value: ' + this.lineBreakStrategyStr[this.lineBreakStrategyIndex]).onClick(() => {
-          this.lineBreakStrategyIndex++
+          this.lineBreakStrategyIndex++;
           if (this.lineBreakStrategyIndex > (this.lineBreakStrategyStr.length - 1)) {
-            this.lineBreakStrategyIndex = 0
+            this.lineBreakStrategyIndex = 0;
           }
         })
       }
@@ -1327,17 +1370,18 @@ struct TextExample4 {
 
 ### Example 5: Setting Text Selection and Copy
 
-This example demonstrates the effects of text selection and triggering a copy callback using the **selection** and **onCopy** APIs.
+This example demonstrates how to set text selection, trigger a copy callback, make text selection draggable, and modify the caret and selection background colors using **selection**, **onCopy**, **draggable**, **caretColor**, and **selectedBackgroundColor**.
 
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct TextExample5 {
-  @State onCopy: string = ''
-  @State text: string = 'This is set selection to Selection text content This is set selection to Selection text content.'
-  @State start: number = 0
-  @State end: number = 20
+  @State onCopy: string = '';
+  @State text: string =
+    'This is set selection to Selection text content This is set selection to Selection text content.';
+  @State start: number = 0;
+  @State end: number = 20;
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
@@ -1349,14 +1393,18 @@ struct TextExample5 {
         .copyOption(CopyOptions.InApp)
         .selection(this.start, this.end)
         .onCopy((value: string) => {
-          this.onCopy = value
+          this.onCopy = value;
         })
+        .draggable(true)
+        .caretColor(Color.Red)
+        .selectedBackgroundColor(Color.Grey)
+        .enableHapticFeedback(true)
       Button('Set text selection')
-        .margin({left:20})
+        .margin({ left: 20 })
         .onClick(() => {
           // Change the start point and end point of the text selection.
-          this.start = 10
-          this.end = 30
+          this.start = 10;
+          this.end = 30;
         })
       Text(this.onCopy).fontSize(12).margin(10).key('copy')
     }.height(600).width(335).padding({ left: 35, right: 35, top: 35 })
@@ -1365,9 +1413,9 @@ struct TextExample5 {
 ```
 ![](figures/textExample5.png)
 
-### Example 6: Setting Text Auto-Adaptation
+### Example 6: Setting Text Adaptation and Font Scale Factor Limits
 
-This example showcases the implementation of text auto-adaptation features using the **heightAdaptivePolicy** attribute.
+This example demonstrates how to implement text adaptation using **heightAdaptivePolicy** and to set font scale factor limits using **minFontScale** and **maxFontScale**.
 
 ```ts
 // xxx.ets
@@ -1397,6 +1445,12 @@ struct TextExample6 {
         .style(TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST)
       Text('This is the text with the height adaptive policy set.')
         .style(TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST)
+
+      Text('fontScale').fontSize(9).fontColor(0xCCCCCC)
+      Text('This is the text content with minFontScale set to 1 and maxFontScale set to 1.2')
+        .style(TextHeightAdaptivePolicy.MAX_LINES_FIRST)
+        .minFontScale(1)
+        .maxFontScale(1.2)
     }.height(600).width('100%').padding({ left: 35, right: 35, top: 35 })
   }
 }
@@ -1413,34 +1467,42 @@ This example demonstrates how to implement text recognition features using the *
 @Entry
 @Component
 struct TextExample7 {
-  @State phoneNumber: string = '(86) (755) ********'
-  @State url: string = 'www.********.com'
-  @State email: string = '***@example.com'
-  @State address: string = 'XX (province) XX (city) XX (county) XXXX'
-  @State datetime: string = 'XX-XX-XX XXXX'
-  @State enableDataDetector: boolean = true
-  @State types: TextDataDetectorType[] = []
+  @State phoneNumber: string = '(86) (755) ********';
+  @State url: string = 'www.********.com';
+  @State email: string = '***@example.com';
+  @State address: string = 'XX (province) XX (city) XX (county) XXXX';
+  @State datetime: string = 'XX-XX-XX XXXX';
+  @State enableDataDetector: boolean = true;
+  @State types: TextDataDetectorType[] = [];
 
   build() {
     Row() {
       Column() {
         Text(
           'Phone number:' + this.phoneNumber + '\n' +
-          'URL:' + this.url + '\n' +
-          'Email:' + this.email + '\n' +
-          'Address:' + this.address + '\n' +
-          'Time:' + this.datetime
+            'URL:' + this.url + '\n' +
+            'Email:' + this.email + '\n' +
+            'Address:' + this.address + '\n' +
+            'Time:' + this.datetime
         )
           .fontSize(16)
           .copyOption(CopyOptions.InApp)
           .enableDataDetector(this.enableDataDetector)
-          .dataDetectorConfig({types : this.types, onDetectResultUpdate: (result: string)=>{}})
+          .dataDetectorConfig({
+            types: this.types, onDetectResultUpdate: (result: string) => {
+            }
+          })
           .textAlign(TextAlign.Center)
           .borderWidth(1)
           .padding(10)
           .width('100%')
       }
       .width('100%')
+      // Use TapGesture in parallelGesture to mimic the effect of a bubbling event,
+      // allowing a click on the Text component area to trigger the Column's click event.
+      .parallelGesture(TapGesture().onAction((event: GestureEvent) => {
+        console.log('test column onClick timestamp:' + event.timestamp);
+      }), GestureMask.Normal)
     }
     .height('100%')
   }
@@ -1458,8 +1520,8 @@ This example showcases how to bind text to a custom menu using the **bindSelecti
 @Entry
 @Component
 struct TextExample8 {
-  controller: TextController = new TextController()
-  options: TextOptions = { controller: this.controller }
+  controller: TextController = new TextController();
+  options: TextOptions = { controller: this.controller };
 
   build() {
     Column() {
@@ -1506,7 +1568,7 @@ struct TextExample8 {
         MenuItemGroup() {
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Right Click Menu 1", labelInfo: "" })
             .onClick((event) => {
-              this.controller.closeSelectionMenu()
+              this.controller.closeSelectionMenu();
             })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Right Click Menu 2", labelInfo: "" })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Right Click Menu 3", labelInfo: "" })
@@ -1523,7 +1585,7 @@ struct TextExample8 {
         MenuItemGroup() {
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Long Press Image Menu 1", labelInfo: "" })
             .onClick((event) => {
-              this.controller.closeSelectionMenu()
+              this.controller.closeSelectionMenu();
             })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Long Press Image Menu 2", labelInfo: "" })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Long Press Image Menu 3", labelInfo: "" })
@@ -1540,7 +1602,7 @@ struct TextExample8 {
         MenuItemGroup() {
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Select Mixed Menu 1", labelInfo: "" })
             .onClick((event) => {
-              this.controller.closeSelectionMenu()
+              this.controller.closeSelectionMenu();
             })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Select Mixed Menu 2", labelInfo: "" })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Select Mixed Menu 3", labelInfo: "" })
@@ -1574,7 +1636,6 @@ function style() {
   .fontSize(12)
   .border({ width: 1 })
   .width('100%')
-  // .margin(5)
 }
 
 @Entry
@@ -1629,13 +1690,13 @@ import { text } from '@kit.ArkGraphics2D'
 @Entry
 @Component
 struct TextExample10 {
-  @State lineCount: string = ""
-  @State glyphPositionAtCoordinate: string = ""
-  @State lineMetrics: string = ""
-  @State rectsForRangeStr: string = ""
-  controller: TextController = new TextController()
+  @State lineCount: string = "";
+  @State glyphPositionAtCoordinate: string = "";
+  @State lineMetrics: string = "";
+  @State rectsForRangeStr: string = "";
+  controller: TextController = new TextController();
   @State textStr: string =
-    'Hello World!'
+    'Hello World!';
 
   build() {
     Scroll() {
@@ -1649,8 +1710,8 @@ struct TextExample10 {
           .fontSize(25)
           .borderWidth(1)
           .onAreaChange(() => {
-            let layoutManager: LayoutManager = this.controller.getLayoutManager()
-            this.lineCount = "LineCount: " + layoutManager.getLineCount()
+            let layoutManager: LayoutManager = this.controller.getLayoutManager();
+            this.lineCount = "LineCount: " + layoutManager.getLineCount();
           })
 
         Text('LineCount').fontSize(15).fontColor(0xCCCCCC).width('90%').padding(10)
@@ -1659,11 +1720,11 @@ struct TextExample10 {
         Text('GlyphPositionAtCoordinate').fontSize(15).fontColor(0xCCCCCC).width('90%').padding(10)
         Button("Relative Component Coordinates [150,50]")
           .onClick(() => {
-            let layoutManager: LayoutManager = this.controller.getLayoutManager()
-            let position: PositionWithAffinity = layoutManager.getGlyphPositionAtCoordinate(150, 50)
+            let layoutManager: LayoutManager = this.controller.getLayoutManager();
+            let position: PositionWithAffinity = layoutManager.getGlyphPositionAtCoordinate(150, 50);
             this.glyphPositionAtCoordinate =
-              "Relative coordinates [150,50] glyphPositionAtCoordinate position: " + position.position + " affinity: " +
-              position.affinity
+              "Relative component coordinates [150,50] glyphPositionAtCoordinate position: " + position.position + " affinity: " +
+              position.affinity;
           })
           .margin({ bottom: 20, top: 10 })
         Text(this.glyphPositionAtCoordinate)
@@ -1671,12 +1732,12 @@ struct TextExample10 {
         Text('LineMetrics').fontSize(15).fontColor(0xCCCCCC).width('90%').padding(10)
         Button("Line Metrics")
           .onClick(() => {
-            let layoutManager: LayoutManager = this.controller.getLayoutManager()
-            let lineMetrics: LineMetrics = layoutManager.getLineMetrics(0)
-            this.lineMetrics = "lineMetrics is " + JSON.stringify(lineMetrics) + "\n\n"
-            let runMetrics = lineMetrics.runMetrics
+            let layoutManager: LayoutManager = this.controller.getLayoutManager();
+            let lineMetrics: LineMetrics = layoutManager.getLineMetrics(0);
+            this.lineMetrics = "lineMetrics is " + JSON.stringify(lineMetrics) + "\n\n";
+            let runMetrics = lineMetrics.runMetrics;
             runMetrics.forEach((value, key) => {
-              this.lineMetrics += "runMetrics key is " + key + " " + JSON.stringify(value) + "\n\n"
+              this.lineMetrics += "runMetrics key is " + key + " " + JSON.stringify(value) + "\n\n";
             })
           })
           .margin({ bottom: 20, top: 10 })
@@ -1685,13 +1746,13 @@ struct TextExample10 {
         Text('getRectsForRange').fontSize(15).fontColor(0xCCCCCC).width('90%').padding(10)
         Button("Drawing Area Info for Characters/Placeholders within Specified Text Range")
           .onClick(() => {
-            let layoutManager: LayoutManager = this.controller.getLayoutManager()
-            let range: TextRange = { start: 0, end: 1 }
+            let layoutManager: LayoutManager = this.controller.getLayoutManager();
+            let range: TextRange = { start: 0, end: 1 };
             let rectsForRangeInfo: text.TextBox[] =
-              layoutManager.getRectsForRange(range, text.RectWidthStyle.TIGHT, text.RectHeightStyle.TIGHT)
-            this.rectsForRangeStr = "getRectsForRange result is " + "\n\n"
+              layoutManager.getRectsForRange(range, text.RectWidthStyle.TIGHT, text.RectHeightStyle.TIGHT);
+            this.rectsForRangeStr = "getRectsForRange result is " + "\n\n";
             rectsForRangeInfo.forEach((value, key) => {
-              this.rectsForRangeStr += "rectsForRange key is " + key + " " + JSON.stringify(value) + "\n\n"
+              this.rectsForRangeStr += "rectsForRange key is " + key + " " + JSON.stringify(value) + "\n\n";
             })
           })
           .margin({ bottom: 20, top: 10 })
@@ -1714,8 +1775,9 @@ This example demonstrates how to implement the feature to select text using the 
 @Entry
 @Component
 struct TextExample11 {
-  @State message: string = 'TextTextTextTextTextTextTextText' + 'TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText'
-  
+  @State message: string =
+    'TextTextTextTextTextTextTextText' + 'TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText';
+
   build() {
     Column() {
       Text(this.message)
@@ -1748,34 +1810,34 @@ struct TextExample12 {
       content: 'Custom 1',
       icon: $r('app.media.startIcon'),
       id: TextMenuItemId.of('custom1'),
-    }
+    };
     let item2: TextMenuItem = {
       content: 'Custom 2',
       id: TextMenuItemId.of('custom2'),
       icon: $r('app.media.startIcon'),
-    }
-    menuItems.push(item1)
-    menuItems.unshift(item2)
-    return menuItems
+    };
+    menuItems.push(item1);
+    menuItems.unshift(item2);
+    return menuItems;
   }
   onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
     if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
-      console.log("Intercept id: custom2 start:" + textRange.start + "; end:" + textRange.end)
-      return true
+      console.log("Intercept id: custom2 start:" + textRange.start + "; end:" + textRange.end);
+      return true;
     }
     if (menuItem.id.equals(TextMenuItemId.COPY)) {
-      console.log("Intercept COPY start:" + textRange.start + "; end:" + textRange.end)
-      return true
+      console.log("Intercept COPY start:" + textRange.start + "; end:" + textRange.end);
+      return true;
     }
     if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
-      console.log("Do not intercept SELECT_ALL start:" + textRange.start + "; end:" + textRange.end)
-      return false
+      console.log("Do not intercept SELECT_ALL start:" + textRange.start + "; end:" + textRange.end);
+      return false;
     }
-    return false
-  }
+    return false;
+  };
   @State editMenuOptions: EditMenuOptions = {
     onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick
-  }
+  };
 
   build() {
     Column() {
@@ -1806,7 +1868,7 @@ struct TextExample13 {
     Column({ space: 10 }) {
       Text("privacySensitive")
         .privacySensitive(true)
-        .margin({top :30})
+        .margin({ top: 30 })
     }
     .alignItems(HorizontalAlign.Center)
     .width("100%")

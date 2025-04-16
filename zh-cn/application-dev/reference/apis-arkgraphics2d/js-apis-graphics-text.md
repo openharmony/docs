@@ -1094,14 +1094,14 @@ getActualTextRange(lineNumber: number, includeSpaces: boolean): Range
 
 | 参数名 | 类型   | 必填 | 说明      |
 | ----- | ------ | ---- | --------- |
-| lineNumber  | number | 是   | 要获取文本范围的行号，行号从0开始。|
+| lineNumber  | number | 是   | 要获取文本范围的行号，行号从0开始。该接口只能获取已有行的边界，即输入行索引从0开始。最大行索引为文本行数量-1，文本行数量可通过[getLineCount](#getlinecount)接口获取。|
 | includeSpaces  | boolean | 是   | 指示是否应包含空白字符。true表示包含空白字符，false表示不包含空白字符。|
 
 **返回值：**
 
 | 类型             | 说明                                              |
 | ---------------- | ------------------------------------------------ |
-| [Range](#range)  | 表明了对应行数的实际文本范围。                               |
+| [Range](#range)  | 表明了对应行数的实际文本范围。如果输入的行索引是非法的行索引，则返回的实际文本范围的start和end都为0。 |
 
 **示例：**
 
@@ -1559,7 +1559,7 @@ addSymbol(symbolId: number): void
 
 | 参数名    | 类型    | 必填 | 说明                                                        |
 | -------- | ------- | ---- | ----------------------------------------------------------- |
-| symbolId | number  | 是   | 要设置的symbol码位，十六进制，当前支持的取值范围为：0xF0000-0xF0C97。可设置的symbol码位及其对应的symbol名称请参阅以下链接中 JSON 文件的 value 字段和 name 字段： [https://gitee.com/openharmony/global_system_resources/blob/master/systemres/main/resources/base/element/symbol.json](https://gitee.com/openharmony/global_system_resources/blob/master/systemres/main/resources/base/element/symbol.json)|
+| symbolId | number  | 是   | 要设置的symbol码位，十六进制，当前支持的取值范围为：0xF0000-0xF0C97。可设置的symbol码位（即列表视图下的unicode值）请见[主题图标库](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/)。|
 
 **示例：**
 

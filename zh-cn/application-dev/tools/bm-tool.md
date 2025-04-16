@@ -2,10 +2,9 @@
 
 Bundle Manager（包管理工具，简称bm）是实现应用安装、卸载、更新、查询等功能的工具，bm为开发者提供基本的应用安装包的调试能力。
 
-## 环境要求
+## 环境要求（hdc工具）
 
-在使用本工具前，开发者需要先获取<!--Del-->[<!--DelEnd-->hdc工具<!--Del-->](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd-->，执行hdc shell。
-
+在使用本工具前，开发者需要先获取[hdc工具](../dfx/hdc.md#环境准备)，执行hdc shell。
 
 ## bm工具命令列表
 
@@ -335,7 +334,7 @@ bm dump-dependencies -n com.ohos.app -m entry
 
 应用执行编译AOT命令。
 ```bash
-bm compile [-h] [-m mode] [-r bundleName]
+bm compile [-h] [-m mode] [-r bundleName] [-a]
 ```
   **compile命令参数列表**
 
@@ -431,12 +430,68 @@ bm dump-target-overlay -b com.ohos.app -m entry
 
 ## bm工具错误码
 
+### 301 系统账号不存在
+**错误信息**
+
+error: user not exist.
+
+**错误描述**
+
+系统账号不存在。
+
+**可能原因**
+
+安装应用时，系统账号ID不存在。
+
+**处理步骤**
+
+1. 重启手机后再次尝试安装应用。
+
+2. 重复上述步骤3到5次后依旧安装失败，请导出日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
+
+```
+hdc file recv /data/log/hilog/
+```
+
+### 304 当前系统账号没有安装HAP包
+**错误信息**
+
+error: user does not install the hap.
+
+**错误描述**
+
+卸载操作时，当前系统账号没有安装HAP包。
+
+**可能原因**
+
+当前系统账号下未安装任何HAP包。
+
+**处理步骤**
+
+当前系统账号下未安装任何HAP包，请不要执行卸载应用操作。
+
+### 9568319 签名文件异常
+**错误信息**
+
+error: cannot open signature file.
+
+**错误描述**
+
+安装应用过程中，出现签名文件打开异常，导致安装失败。
+
+**可能原因**
+
+HAP包签名文件存在异常。
+
+**处理步骤**
+
+1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。在连接设备后，重新为应用进行签名。
+2. 使用手动签名，请参考[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section297715173233)。
+
 ### 9568320 签名文件不存在
 **错误信息**
 
-Failed to install bundle, no signature file.
-
-![示例图](figures/zh-cn_image_0000001389116960.png)
+error: no signature file.
 
 **错误描述**
 
@@ -448,14 +503,163 @@ HAP包没有签名。
 
 **处理步骤**
 
-1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-signing-V13#section18815157237)。在连接设备后，重新为应用进行签名。
-2. 使用手动签名，请参考[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-signing-V13#section297715173233)。
-<br></br>
+1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。在连接设备后，重新为应用进行签名。
+2. 使用手动签名，请参考[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section297715173233)。
+
+### 9568321 签名文件解析失败
+**错误信息**
+
+error: fail to parse signature file.
+
+**错误描述**
+
+用户安装时签名文件解析失败。
+
+**可能原因**
+
+HAP包签名文件存在异常。
+
+**处理步骤**
+
+1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。在连接设备后，重新为应用进行签名。
+2. 使用手动签名，请参考[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section297715173233)。
+
+### 9568323 签名摘要验证未通过
+**错误信息**
+
+error: signature verification failed due to not bad digest.
+
+**错误描述**
+
+用户安装时签名验证失败。
+
+**可能原因**
+
+HAP包签名不正确。
+
+**处理步骤**
+
+1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。在连接设备后，重新为应用进行签名。
+2. 使用手动签名，请参考[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section297715173233)。
+
+### 9568324 签名完整性校验未通过
+**错误信息**
+
+error: signature verification failed due to out of integrity.
+
+**错误描述**
+
+用户安装时签名验证失败。
+
+**可能原因**
+
+HAP包签名不正确。
+
+**处理步骤**
+
+1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。在连接设备后，重新为应用进行签名。
+2. 使用手动签名，请参考[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section297715173233)。
+
+### 9568326 签名公钥存在异常
+**错误信息**
+
+error: signature verification failed due to bad public key.
+
+**错误描述**
+
+用户安装时签名验证失败，签名公钥存在异常。
+
+**可能原因**
+
+HAP包签名不正确。
+
+**处理步骤**
+
+1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。在连接设备后，重新为应用进行签名。
+2. 使用手动签名，请参考[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section297715173233)。
+
+### 9568327 签名获取异常
+**错误信息**
+
+error: signature verification failed due to bad bundle signature.
+
+**错误描述**
+
+用户安装时签名验证失败，签名获取异常。
+
+**可能原因**
+
+HAP包签名不正确。
+
+**处理步骤**
+
+1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。在连接设备后，重新为应用进行签名。
+2. 使用手动签名，请参考[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section297715173233)。
+
+### 9568328 未找到配置文件区块
+**错误信息**
+
+error: signature verification failed due to no profile block.
+
+**错误描述**
+
+用户安装时签名验证失败，未找到配置文件区块。
+
+**可能原因**
+
+HAP包签名不正确。
+
+**处理步骤**
+
+1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。在连接设备后，重新为应用进行签名。
+2. 使用手动签名，请参考[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section297715173233)。
+
+### 9568330 初始化签名源失败
+**错误信息**
+
+error: signature verification failed due to init source failed.
+
+**错误描述**
+
+用户安装时签名验证失败，初始化签名源失败。
+
+**可能原因**
+
+HAP包签名不正确。
+
+**处理步骤**
+
+1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。在连接设备后，重新为应用进行签名。
+2. 使用手动签名，请参考[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section297715173233)。
+
+### 9568257 签名文件Pkcs7校验失败
+
+**错误信息**
+
+error: fail to verify pkcs7 file.
+
+**错误描述**
+
+用户安装应用时签名Pkcs7校验失败。
+
+**可能原因**
+
+1. 证书链不完整或不受信任。
+2. 签名算法不匹配。
+3. 数据被篡改或签名文件损坏。
+4. 签名格式不匹配。
+5. 私钥不匹配。
+
+**处理步骤**
+
+1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。在连接设备后，重新为应用进行签名。
+2. 使用手动签名，请参考[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section297715173233)。
+
 
 ### 9568347 解析本地so文件失败
 **错误信息**
 
-Error: install parse native so failed.
+error: install parse native so failed.
 
 **错误描述**
 
@@ -474,16 +678,12 @@ Error: install parse native so failed.
 **处理步骤**
 
 1. 将设备与DevEco Studio进行连接。
-2. 打开命令行工具，并进入SDK安装目录下的toolchains目录下。
-    ```
-    若不清楚OpenHarmony SDK安装目录，可单击File > Settings > SDK界面查看安装路径。
-    ```
-3. 执行如下命令，查询设备支持的Abi列表，返回结果为default/armeabi-v7a/armeabi/arm64-v8a/x86/x86_64中的一个或多个Abi类型。
+2. 执行如下命令，查询设备支持的Abi列表，返回结果为default/armeabi-v7a/armeabi/arm64-v8a/x86/x86_64中的一个或多个Abi类型。
     ```
     hdc shell
     param get const.product.cpu.abilist
     ```
-4. 根据查询返回结果，检查[模块级build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-hvigor-compilation-options-customizing-sample-V13#section4322212200)文件中的“abiFilters”参数中的配置，规则如下：
+3. 根据查询返回结果，检查[模块级build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-profile)文件中的[“abiFilters”参数](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ohos-abi#%E5%9C%A8%E7%BC%96%E8%AF%91%E6%9E%B6%E6%9E%84%E4%B8%AD%E6%8C%87%E5%AE%9Aabi)中的配置，规则如下：
     * 若返回结果为default，请执行如下命令，查询是否存在lib64文件夹。
       ```
       cd /system/
@@ -493,13 +693,12 @@ Error: install parse native so failed.
       * 存在lib64文件夹：则“abiFilters”参数中需要包含arm64-v8a类型。
       * 不存在lib64文件夹：则“abiFilters”参数中需要至少包含armeabi/armeabi-v7a中的一个类型。
     * 若返回结果为armeabi-v7a/armeabi/arm64-v8a/x86/x86_64中的一个或多个，需要在“abiFilters”参数中至少包含返回结果中的一个Abi类型。
-<br></br>
 
 
 ### 9568344 解析配置文件失败
 **错误信息**
 
-Error: install parse profile prop check error.
+error: install parse profile prop check error.
 
 ![示例图](figures/zh-cn_image_0000001585361412.png)
 
@@ -575,7 +774,7 @@ Error: install parse profile prop check error.
 ### 9568305 依赖的模块不存在
 **错误信息**
 
-Error: dependent module does not exist.
+error: dependent module does not exist.
 
 ![示例图](figures/zh-cn_image_0000001560338986.png)
 
@@ -599,7 +798,7 @@ Error: dependent module does not exist.
 ### 9568259 安装解析配置文件缺少字段
 **错误信息**
 
-Error: install parse profile missing prop.
+error: install parse profile missing prop.
 
 ![示例图](figures/zh-cn_image_0000001559130596.png)
 
@@ -629,7 +828,7 @@ Error: install parse profile missing prop.
 ### 9568258 安装应用的releaseType与已安装应用的releaseType不相同
 **错误信息**
 
-Error: install releaseType target not same.
+error: install releaseType target not same.
 
 ![示例图](figures/zh-cn_image_0000001609976041.png)
 
@@ -648,10 +847,84 @@ Error: install releaseType target not same.
 * 场景二：使用相同版本的SDK对HAP重新打包，保证多HAP的releaseType值一致。
 
 
+### 9568260 安装内部错误
+**错误信息**
+
+error: install internal error.
+
+**错误描述**
+
+安装内部错误。
+
+**可能原因**
+
+安装过程中，内部服务异常。
+
+**处理步骤**
+
+请尝试重启设备后重新安装。
+
+
+### 9568267 entry模块已存在
+**错误信息**
+
+error: install entry already exist.
+
+**错误描述**
+
+待安装应用的entry模块已存在。
+
+**可能原因**
+
+多模块应用安装要求entry模块唯一。由于待安装的模块包和已安装的模块包名称不同，但均为entry类型，违反了entry唯一性，导致安装失败。
+
+**处理步骤**
+
+1. 请先卸载设备上已安装的HAP，再安装新的HAP。
+2. 检查并确保待安装包的entry模块名称与已安装的entry模块名相同，或把待安装模块的类型改为feature后重试。
+
+
+### 9568268 安装状态错误
+**错误信息**
+
+error: install state error.
+
+**错误描述**
+
+应用安装状态更新失败。
+
+**可能原因**
+
+由于上一个应用安装包过大耗时长，应用安装时上一个应用安装任务未结束，导致安装状态更新失败。
+
+**处理步骤**
+
+请等待上一个应用安装完成后再重试。
+
+
+### 9568269 文件路径无效
+**错误信息**
+
+error: install file path invalid.
+
+**错误描述**
+
+安装时传入的安装包路径无效。
+
+**可能原因**
+
+1. 安装包路径不存在，如拼写有误等。
+2. 安装包路径长度超过256字节。
+
+**处理步骤**
+
+1. 检查安装包的路径是否存在且有访问权限。
+2. 检查安装包路径长度不超过256字节。
+
 ### 9568322 由于应用来源不可信，签名验证失败
 **错误信息**
 
-Error: signature verification failed due to not trusted app source.
+error: signature verification failed due to not trusted app source.
 
 ![示例图](figures/zh-cn_image_0000001585042216.png)
 
@@ -668,7 +941,7 @@ Error: signature verification failed due to not trusted app source.
 **处理步骤**
 
 * 场景一：
-	1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-signing-V13#section18815157237)。在连接设备后，重新为应用进行签名。
+	1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。在连接设备后，重新为应用进行签名。
 	2. 如果使用的是手动签名，对于OpenHarmony应用，请参考<!--RP2-->[OpenHarmony应用手动签名](../security/hapsigntool-guidelines.md)<!--RP2End-->，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**。
 
         1. 获取当前设备的UDID。
@@ -691,11 +964,53 @@ Error: signature verification failed due to not trusted app source.
 
 * 场景二：使用[调试证书和调试profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-debug-app-0000001914423098)重新签名应用。
 
+### 9568286 安装应用的签名证书profile文件中的类型与已安装应用的不相同
+**错误信息**
+
+error: install provision type not same.
+
+**错误描述**
+
+在启动调试或运行应用/服务时，由于安装应用的[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中的类型与已安装应用的不相同，导致安装HAP出现错误。
+
+**可能原因**
+
+设备上已安装应用的签名证书profile文件中的类型与待安装应用不一致。
+
+**处理步骤**
+
+1. 确保设备上已安装应用签名证书profile文件中的类型与待安装应用的类型一致，使用相同类型的profile文件签名，再安装新的HAP。
+2. 卸载设备上已安装的应用，再安装新的HAP。
+
+
+### 9568288 磁盘空间不足导致安装失败
+**错误信息**
+
+error: install failed due to insufficient disk memory.
+
+**错误描述**
+
+应用安装时会新建文件或目录，由于设备存储空间不足，创建文件或目录失败，导致应用安装失败。
+
+**可能原因**
+
+设备存储空间不足，创建文件或目录失败，导致应用安装失败。
+
+**处理步骤**
+
+查看设备存储空间并清理，保证满足安装所需空间，再重试安装应用。
+
+```bash
+// 查看磁盘空间使用情况
+hdc shell df -h /system
+hdc shell df -h /data
+```
+
 
 ### 9568289 权限请求失败导致安装失败
 **错误信息**
 
-Error: install failed due to grant request permissions failed.
+error: install failed due to grant request permissions failed.
 
 ![示例图](figures/zh-cn_image_0000001585201996.png)
 
@@ -718,10 +1033,56 @@ IDE安装路径\sdk\版本号或者default\openharmony\toolchains\lib\
 ```
 2. 在UnsgnedDebugProfileTemplate.json文件中修改APL等级，修改APL等级为system_core等级，重新签名打包即可。
 
+
+### 9568290 更新HAP token失败导致安装失败
+**错误信息**
+
+error: install failed due to update hap token failed.
+
+**错误描述**
+
+应用安装过程中，更新HAP时，应用token授权失败。
+
+**可能原因**
+
+应用安装或更新时，调用元能力的更新token接口，接口返回失败。
+
+**处理步骤**
+
+1. 重启手机后再次尝试安装应用。
+
+2. 重复上述步骤3到5次后依旧安装失败，请导出日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
+
+```
+hdc file recv /data/log/hilog/
+```
+
+
+<!--Del-->
+### 9568291 singleton不一致导致安装失败
+**错误信息**
+
+error: install failed due to singleton not same.
+
+**错误描述**
+
+应用更新时，应用已安装的hap包和更新包app.json5配置文件中singleton配置（从API verison 9开始废弃）不一致。
+
+**可能原因**
+
+应用已安装的hap包和更新包app.json5配置文件中singleton配置（从API verison 9开始废弃）不一致。
+
+**处理步骤**
+
+方案1：卸载已安装的应用包，再安装新的应用包。
+
+方案2：更新包调整singleton配置，与已安装包配置一致，重新打包，再更新应用包。<!--DelEnd-->
+
+
 ### 9568297 由于设备sdk版本较低导致安装失败
 **错误信息**
 
-Error: install failed due to older sdk version in the device.
+error: install failed due to older sdk version in the device.
 
 ![示例图](figures/zh-cn_image_0000001635521909.png)
 
@@ -743,10 +1104,30 @@ Error: install failed due to older sdk version in the device.
 
 * 场景二：对于需要运行在OpenHarmony设备上的应用，请确认runtimeOS已改为OpenHarmony。
 
+
+### 9568300 应用模块名不唯一导致安装失败
+**错误信息**
+
+error: moduleName is not unique.
+
+**错误描述**
+
+多模块应用安装过程中，由于模块命名冲突，模块唯一性校验失败，导致安装失败。
+
+**可能原因**
+
+多模块应用安装过程中，存在模块名称冲突。
+
+**处理步骤**
+
+查看当前应用所有模块名，与各个模块的module.json5中的name进行比较，保证不一致后，重新打包，进行应用安装。
+
+
+
 ### 9568332 签名不一致导致安装失败
 **错误信息**
 
-Error: install sign info inconsistent.
+error: install sign info inconsistent.
 
 ![示例图](figures/zh-cn_image_0000001635761329.png)
 
@@ -769,7 +1150,7 @@ Error: install sign info inconsistent.
 ### 9568329 签名信息验证失败
 **错误信息**
 
-Error: verify signature failed.
+error: verify signature failed.
 
 ![示例图](figures/zh-cn_image_155401.png)
 
@@ -794,7 +1175,7 @@ Error: verify signature failed.
 ### 9568266 安装权限拒绝
 **错误信息**
 
-Error: install permission denied.
+error: install permission denied.
 
 ![示例图](figures/zh-cn_image_9568266.png)
 
@@ -814,7 +1195,7 @@ hdc install不能安装release签名的企业应用。
 ### 9568337 安装解析失败
 **错误信息**
 
-Error: install parse unexpected.
+error: install parse unexpected.
 
 **错误描述**
 
@@ -839,7 +1220,7 @@ Error: install parse unexpected.
 ### 9568316 数据代理中APL权限字段描述权限低
 **错误信息**
 
-Error: apl of required permission in proxy data is too low.
+error: apl of required permission in proxy data is too low.
 
 **错误描述**
 
@@ -857,7 +1238,7 @@ proxyData标签requiredReadPermission和requiredWritePermission属性验证失�
 ### 9568315 数据代理URI错误
 **错误信息**
 
-Error: uri in proxy data is wrong.
+error: uri in proxy data is wrong.
 
 **错误描述**
 
@@ -875,7 +1256,7 @@ proxyData标签uri属性验证失败。
 ### 9568336 应用调试类型与已安装应用不一致
 **错误信息**
 
-Error: install debug type not same.
+error: install debug type not same.
 
 **错误描述**
 
@@ -893,7 +1274,7 @@ Error: install debug type not same.
 ### 9568296 包类型错误
 **错误信息**
 
-Error: install failed due to error bundle type.
+error: install failed due to error bundle type.
 
 **错误描述**
 
@@ -913,7 +1294,7 @@ bundleType错误导致应用安装失败。
 ### 9568292 UserID为0的用户只能安装singleton应用
 **错误信息**
 
-Error: install failed due to zero user can only install singleton app.
+error: install failed due to zero user can only install singleton app.
 
 **错误描述**
 
@@ -935,7 +1316,7 @@ singleton权限应用安装未指定UserID 0。
 ### 9568263 无法降级安装
 **错误信息**
 
-Error: install version downgrade.
+error: install version downgrade.
 
 **错误描述**
 
@@ -950,10 +1331,65 @@ Error: install version downgrade.
 1. 卸载已安装的应用，重新安装新应用。
 
 
+### 9568301 模块类型不一致
+**错误信息**
+
+error: moduleName is inconsistent.
+
+**错误描述**
+
+正在安装的模块名称在系统中已经存在，但模块名称不一致，导致安装失败。
+
+**可能原因**
+
+待安装应用模块名称在系统中已存在，但模块类型不一致，导致安装失败。
+
+**处理步骤**
+
+检查系统中已安装应用的模块名是否与待安装的模块名重复，若模块名称一致但类型不一致，修改对应模块module.json5中type属性。
+
+
+<!--Del-->
+### 9568302 应用多个模块singleton不一致导致安装失败
+**错误信息**
+
+error: install failed due to singleton not same.
+
+**错误描述**
+
+应用多个模块singleton配置（API 9被标记废弃）不一致，导致安装失败。
+
+**可能原因**
+
+应用多模块安装时，singleton的配置不相同，singleton一致性校验不通过，导致安装失败。
+
+**处理步骤**
+
+调整所有模块的singleton配置，保持一致后再安装。<!--DelEnd-->
+
+
+### 9568303 企业设备管理禁止安装
+**错误信息**
+
+error: Failed to install the HAP because the installation is forbidden by enterprise device management.
+
+**错误描述**
+
+存在应用管控策略，安装失败。
+
+**可能原因**
+
+存在应用管控策略。
+
+**处理步骤**
+
+由于企业管控，暂无解决方案。请提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
+
+
 ### 9568304 应用不支持当前设备类型
 **错误信息**
 
-Error: device type is not supported.
+error: device type is not supported.
 
 **错误描述**
 
@@ -968,10 +1404,86 @@ Error: device type is not supported.
 1. 如需要适配当前设备，请在应用设备类型配置中增加当前设备类型。应用deviceTypes配置包含phone（手机）、tablet（平板）、2in1（2合1设备）、tv（智慧屏）、wearable（智能手表）和car（车机）。
 
 
+### 9568308 应用包类型不一致
+**错误信息**
+
+error: install bundleType not same.
+
+**错误描述**
+
+应用包类型不一致，导致安装失败。
+
+**可能原因**
+
+安装多HAP应用时，存在两个模块的bundleType属性不一致。
+
+**处理步骤**
+
+检查并确保多HAP应用中各模块app.json5的bundleType属性一致。
+
+
+<!--Del-->
+### 9568309 不允许安装应用间HSP
+**错误信息**
+
+error: Failed to install the HSP due to the lack of required permission.
+
+**错误描述**
+
+安装应用间HSP时缺少特权，导致安装失败。
+
+**可能原因**
+
+安装应用间HSP时缺少特权。
+
+**处理步骤**
+
+检查设备中install_list_capability.json中该应用是否拥有AllowAppShareLibrary权限，该权限配置可参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)。
+
+
+### 9568311 卸载的应用间HSP不存在
+**错误信息**
+
+error: shared bundle is not exist.
+
+**错误描述**
+
+卸载应用间HSP时，指定的包不存在，导致卸载失败。
+
+**可能原因**
+
+卸载应用间HSP时，指定的包不存在。
+
+**处理步骤**
+
+检查需要卸载的应用间HSP是否存在。
+```
+hdc shell bm dump-shared -n com.xxx.xxx.demo
+```
+
+
+### 9568312 卸载的应用间HSP被依赖
+**错误信息**
+
+error: The version of the shared bundle is dependent on other applications.
+
+**错误描述**
+
+卸载应用间HSP时，指定的包被其他应用依赖，导致卸载失败。
+
+**可能原因**
+
+卸载应用间HSP时，指定的包被其他应用依赖。
+
+**处理步骤**
+
+检查需要卸载的应用间HSP是否被其他应用依赖，若存在依赖，请先卸载依赖该HSP的应用。<!--DelEnd-->
+
+
 ### 9568317 应用的多进程配置与系统配置不匹配
 **错误信息**
 
-Error: isolationMode does not match the system.
+error: isolationMode does not match the system.
 
 **错误描述**
 
@@ -999,7 +1511,7 @@ Error: isolationMode does not match the system.
 ### 9568315 数据代理的uri属性错误
 **错误信息**
 
-Error: uri in proxy data is wrong.
+error: uri in proxy data is wrong.
 
 **错误描述**
 
@@ -1021,7 +1533,7 @@ uri不满足格式规范。
 ### 9568310 兼容策略不同
 **错误信息**
 
-Error: compatible policy not same.
+error: compatible policy not same.
 
 **错误描述**
 
@@ -1040,7 +1552,7 @@ Error: compatible policy not same.
 ### 9568391 包管理服务已停止
 **错误信息**
 
-Error: bundle manager service is died.
+error: bundle manager service is died.
 
 **错误描述**
 
@@ -1069,7 +1581,7 @@ hdc file recv /data/log/hilog/
 ### 9568393 验证代码签名失败
 **错误信息**
 
-Error: verify code signature failed.
+error: verify code signature failed.
 
 **错误描述**
 
@@ -1085,10 +1597,40 @@ Error: verify code signature failed.
 
 <!--RP3--><!--RP3End-->
 
+### 9568399 拷贝文件失败
+
+**错误信息**
+
+error: copy file failed.
+
+**错误描述**
+
+安装应用过程中，拷贝文件失败。
+
+**可能原因**
+
+1. 拷贝源文件路径或目标路径为无效路径。
+2. 源文件打开失败。
+3. 获取源文件状态失败。
+4. 源文件的大小无效。
+6. 源文件拷贝失败。
+7. 源文件没有访问权限。
+8. 更改文件权限失败。
+
+**处理步骤**
+
+1. 重启手机后再次尝试安装应用。
+
+2. 重复上述步骤3到5次后依旧安装失败，请导出日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
+
+```
+hdc file recv /data/log/hilog/
+```
+
 ### 9568401 调试包仅支持运行在开发者模式设备
 **错误信息**
 
-Error: debug bundle can only be installed in developer mode.
+error: debug bundle can only be installed in developer mode.
 
 **错误描述**
 
@@ -1104,10 +1646,65 @@ Error: debug bundle can only be installed in developer mode.
 2. USB数据线连接终端和PC，在“设置 > 系统 > 开发者选项”中，打开“USB调试”开关，弹出的“允许USB调试”的弹框，点击“允许”。
 3. 启动调试或运行应用。
 
+### 9568404 传递签名配置文件失败
+
+**错误信息**
+
+error: delivery sign profile failed.
+
+**错误描述**
+
+安装过程中，传递代码签名配置文件出现异常，导致安装失败。
+
+**可能原因**
+
+1. 文件路径不存在。
+2. 创建文件路径失败。
+3. 更改文件目录模式失败。
+4. 写配置文件数据失败。
+5. 更改配置文件模式失败。
+6. 添加配置文件数据失败。
+
+**处理步骤**
+
+1. 重启手机后再次尝试安装应用。
+
+2. 重复上述步骤3到5次后依旧安装失败，请导出日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
+
+```
+hdc file recv /data/log/hilog/
+```
+
+### 9568405 删除签名配置文件失败
+
+**错误信息**
+
+error: remove sign profile failed.
+
+**错误描述**
+
+应用卸载过程中，删除签名配置文件出现异常，导致卸载应用失败。
+
+**可能原因**
+
+1. 文件路径不存在。
+2. 加载配置文件数据失败。
+3. 文件权限不是可写的。
+
+**处理步骤**
+
+1. 重启手机后再次尝试卸载应用。
+
+2. 重复上述步骤3到5次后依旧卸载失败，请导出日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
+
+```
+hdc file recv /data/log/hilog/
+```
+
 ### 9568386 卸载的应用不存在
 **错误信息**
 
-Error: uninstall missing installed bundle.
+error: uninstall missing installed bundle.
 
 **错误描述**
 
@@ -1124,7 +1721,7 @@ Error: uninstall missing installed bundle.
 ### 9568388 企业设备管理不允许卸载该应用
 **错误信息**
 
-Error: Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management.
+error: Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management.
 
 **错误描述**
 
@@ -1141,7 +1738,7 @@ Error: Failed to uninstall the HAP because the uninstall is forbidden by enterpr
 ### 9568284 安装版本不匹配
 **错误信息**
 
-Error: install version not compatible.
+error: install version not compatible.
 
 **错误描述**
 
@@ -1163,7 +1760,7 @@ Error: install version not compatible.
 ### 9568287 安装包entry模块数量不合规
 **错误信息**
 
-Error: install invalid number of entry hap.
+error: install invalid number of entry hap.
 
 **错误描述**
 
@@ -1181,7 +1778,7 @@ Error: install invalid number of entry hap.
 ### 9568281 安装包vendor不一致
 **错误信息**
 
-Error: install vendor not same.
+error: install vendor not same.
 
 **错误描述**
 
@@ -1200,7 +1797,7 @@ app.json5文件中app的vendor字段配置不一致。
 ### 9568274 安装服务错误
 **错误信息**
 
-Error: install installd service error.
+error: install installd service error.
 
 **错误描述**
 
@@ -1218,7 +1815,7 @@ Error: install installd service error.
 ### 9568314 安装应用间共享库失败
 **错误信息**
 
-Error: Failed to install the HSP because installing a shared bundle specified by hapFilePaths is not allowed.
+error: Failed to install the HSP because installing a shared bundle specified by hapFilePaths is not allowed.
 
 **错误描述**
 
@@ -1236,7 +1833,7 @@ Error: Failed to install the HSP because installing a shared bundle specified by
 ### 9568359 安装设置selinux失败
 **错误信息**
 
-Error: installd set selinux label failed.
+error: installd set selinux label failed.
 
 **错误描述**
 
@@ -1260,7 +1857,7 @@ Error: installd set selinux label failed.
 ### 9568403 安装加密校验失败
 **错误信息**
 
-Error: check encryption failed.
+error: check encryption failed.
 
 **错误描述**
 
@@ -1275,10 +1872,28 @@ Error: check encryption failed.
 1. 安装新版本镜像。
 2. 删除HAP工程中lib目录内非so文件，重新签名打包。
 
+### 9568413 应用设备类型不支持当前设备
+
+**错误信息**
+
+error: check syscap filed and device type is not supported.
+
+**错误描述**
+
+应用配置的[设备类型](../quick-start/module-configuration-file.md#devicetypes标签)不支持安装。
+
+**可能原因**
+
+应用配置的[设备类型](../quick-start/module-configuration-file.md#devicetypes标签)和安装设备不一致。
+
+**处理步骤**
+
+调整正确的[设备类型](../quick-start/module-configuration-file.md#devicetypes标签)。
+
 ### 9568417 签名校验失败
 **错误信息**
 
-Error: bundle cannot be installed because the appId is not same with preinstalled bundle.
+error: bundle cannot be installed because the appId is not same with preinstalled bundle.
 
 **错误描述**
 
@@ -1304,3 +1919,144 @@ error: install version code not same.
 **处理步骤**
 1. 调整安装包的版本和设备中已存在的应用包的版本号（versionCode）一致，或者卸载设备中的应用，再去安装新的应用包。
 2. 调整安装的多个包的版本号（versionCode），所有的包都需要保持版本号（versionCode）一致。
+
+### 9568380 卸载系统应用失败
+**错误信息**
+
+error: uninstall system app error.
+
+**错误描述**
+
+卸载系统应用失败。
+
+**可能原因**
+
+部分系统应用设置为不可卸载，不支持卸载此类应用。
+
+**处理步骤**
+
+不能卸载不可卸载的应用。
+
+### 9568387 卸载未安装的模块，导致卸载失败
+**错误信息**
+
+error: uninstall missing installed module.
+
+**错误描述**
+
+卸载未安装的模块。
+
+**可能原因**
+
+卸载未安装的模块。
+
+**处理步骤**
+
+使用[bm dump -n](#查询应用信息命令dump)命令查看应用配置，确认要卸载的模块已经安装。
+
+### 9568333 模块名称为空
+**错误信息**
+
+error: Install failed due to hap moduleName is empty.
+
+**错误描述**
+
+模块名称为空，导致安装失败。
+
+**可能原因**
+
+模块名称为空。
+
+**处理步骤**
+
+检查[module.json5](../quick-start/module-configuration-file.md)的name字段是否为空。
+
+### 9568331 签名信息不一致 
+**错误信息**
+
+error: Install incompatible signature info.
+
+**错误描述**
+
+签名信息不一致，导致安装失败。
+
+**可能原因**
+
+安装多HAP包的应用时，HAP包的签名信息不一致。
+
+**处理步骤**
+
+重新签名，使多个HAP包签名信息一致。参考[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-signing-V13)。
+
+### 9568334 模块名称重复
+**错误信息**
+
+error: Install failed due to hap moduleName duplicate.
+
+**错误描述**
+
+模块名称重复，导致安装失败。
+
+**可能原因**
+
+一个应用同时安装多个模块时，模块名称存在重复。
+
+**处理步骤**
+
+同一个应用多个模块的名称要保证唯一性。
+
+### 9568340 配置文件缺失
+**错误信息**
+
+error: Install parse no profile.
+
+**错误描述**
+
+HAP包没有配置文件，导致安装失败。
+
+**可能原因**
+
+[module.json、pack.info](../quick-start/application-package-structure-stage.md)等配置文件缺失。
+
+**处理步骤**
+
+使用DevEco Studio重新构建、打包、安装。
+
+### 9568341 安装时解析配置文件失败
+**错误信息**
+
+error: Install parse bad profile.
+
+**错误描述**
+
+安装时解析配置文件失败。
+
+**可能原因**
+
+[module.json、pack.info](../quick-start/application-package-structure-stage.md)等配置文件格式异常。
+
+**处理步骤**
+使用DevEco Studio重新构建、打包、安装。
+
+### 9568350 安装时获取install proxy对象失败
+**错误信息**
+
+error: Installd get proxy error.
+
+**错误描述**
+
+安装时获取install proxy对象失败。
+
+**可能原因**
+
+服务异常导致获取install proxy对象失败。
+
+**处理步骤**
+1. 重启手机后再次尝试安装应用。
+
+2. 重复上述步骤3到5次后依旧安装失败，请导出日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
+
+```
+// 导出日志文件
+hdc file recv /data/log/hilog/
+```

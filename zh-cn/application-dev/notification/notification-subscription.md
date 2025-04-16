@@ -55,7 +55,7 @@
 2. 导入通知订阅模块。
    
    ```ts
-   import { notificationSubscribe } from '@kit.NotificationKit';
+   import { notificationSubscribe, notificationManager } from '@kit.NotificationKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    import { hilog } from '@kit.PerformanceAnalysisKit';
 

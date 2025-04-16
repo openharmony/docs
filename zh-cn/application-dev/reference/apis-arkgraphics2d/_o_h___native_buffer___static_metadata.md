@@ -11,6 +11,7 @@
 
 **相关模块：**[OH_NativeBuffer](_o_h___native_buffer.md)
 
+**所在头文件：**[buffer_common.h](buffer__common_8h.md)
 
 ## 汇总
 
@@ -32,7 +33,7 @@
 OH_NativeBuffer_Cta861 OH_NativeBuffer_StaticMetadata::cta861
 ```
 
-**描述**
+**描述：**
 
 CTA-861.3静态元数据。
 
@@ -43,6 +44,6 @@ CTA-861.3静态元数据。
 OH_NativeBuffer_Smpte2086 OH_NativeBuffer_StaticMetadata::smpte2086
 ```
 
-**描述**
+**描述：**
 
 smpte2086静态元数据。

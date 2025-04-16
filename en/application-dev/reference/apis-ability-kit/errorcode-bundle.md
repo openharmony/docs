@@ -1027,6 +1027,23 @@ When an API related to the app clone feature is called, the specified **appIndex
 2. Check whether the application has a clone of the specified index.
 3. Check whether **createAppClone** is called with an existing index.
 
+## 17700062 Failed to Uninstall an Application Configured with an Uninstallation Disposed Rule
+
+**Error Message**
+
+Failed to uninstall the app because the app has uninstall rule.
+
+**Description**
+
+The application cannot be directly uninstalled because it is configured with an uninstallation disposed rule.
+
+**Possible Causes**
+
+The application to uninstall is configured with an uninstallation disposed rule. <!--Del-->You can call [getUninstallDisposedRule](./js-apis-appControl-sys.md#appcontrolgetuninstalldisposedrule15) to check for uninstallation disposed rules.<!--DelEnd-->
+
+**Solution**
+
+For mobile devices, navigate to **Settings** > **Privacy & security** > **App Lock** to disable the app lock feature.<!--Del-->For other devices, run [deleteUninstallDisposedRule](./js-apis-appControl-sys.md#appcontroldeleteuninstalldisposedrule15) to disable the app lock feature.<!--DelEnd-->
 
 ## 17700065 Ability Specified by want in the ShortcutInfo Struct Cannot Be Started
 
@@ -1170,6 +1187,34 @@ The installation fails because an application with the same bundle name but diff
 
 
 
+## 17700101 Bundle Manager Service Abnormal
+**Error Message**
+
+Bundle manager service is excepted.
+
+**Description**
+
+The Bundle Manager service is abnormal.
+
+**Possible Causes**
+
+An unknown system exception occurs.
+
+**Solution**
+1. Restart the phone and try again.
+
+2. If the request still fails after the preceding steps are performed for three to five times, check whether a crash file containing **foundation** exists in the **/data/log/faultlog/faultlogger/** directory of the device.
+```
+hdc shell
+cd /data/log/faultlog/faultlogger/
+ls -ls
+```
+3. Export the crash file and log file and submit them to [online tickets](https://developer.huawei.com/consumer/en/support/feedback/#/) for help.
+```
+hdc file recv /data/log/faultlog/faultlogger/
+hdc file recv /data/log/hilog/
+```
+
 ## 17700201 .abc File Verification Failure
 
 **Error Message**
@@ -1307,3 +1352,39 @@ The HSP does not contain the correct icon resource.
 **Solution**
 
 Before querying the dynamic icon, ensure that the HSP corresponding to the bundle name contains the icon resource.
+## 17700074 Invalid appIdentifier
+
+**Error Message**
+
+The specified appIdentifier is invalid.
+
+**Description**
+
+When an API of the appControl module is called, the appIdentifier passed in is invalid.
+
+**Possible Causes**
+
+**appIdentifier** is an empty string.
+
+**Solution**
+
+Check whether **appIdentifier** is an empty string.
+
+## 17700075 Bundle Name Specified in want Is Inconsistent with That of the Caller
+
+**Error Message**
+
+The specified bundleName of want is not the same with caller.
+
+**Description**
+
+When setting an uninstallation disposed rule, the bundle name specified in **want** is different from that of the caller.
+
+**Possible Causes**
+
+When setting an uninstallation disposed rule, the bundle name specified in **want** is different from that of the caller.
+
+**Solution**
+
+Change the value of **bundleName** in **want** to be the same as that of the caller.
+

@@ -131,7 +131,7 @@ onKeyEventDispatch(event: Callback\<KeyEvent, boolean>): T
 
 ### 示例1（触发onKeyEvent回调）
 
-该示例通过按钮设置了按键事件，按钮获焦时可触发onKeyEvent回调。
+该示例通过按钮设置了按键事件，按钮获焦时按下按键可触发onKeyEvent回调，按键事件触发的流程和具体时机参考[按键事件数据流](../../../ui/arkts-common-events-device-input-event.md#按键事件数据流)。
 
 ```ts
 // xxx.ets

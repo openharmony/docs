@@ -46,8 +46,8 @@ To implement audio playback with the TonePlayer, perform the following steps:
    import { audio } from '@kit.AudioKit';
    
    let audioRendererInfo: audio.AudioRendererInfo = {
-     usage : audio.StreamUsage.STREAM_USAGE_DTMF,
-     rendererFlags : 0
+     usage: audio.StreamUsage.STREAM_USAGE_DTMF, // Audio stream usage type: DTMF. Set this parameter based on the service scenario.
+     rendererFlags: 0 // AudioRenderer flag.
    };
    
    async function createTonePlayer() {
@@ -106,8 +106,8 @@ async function testTonePlayerPromise(type: audio.ToneType) {
   if (timerPro) clearTimeout(timerPro);
   let tonePlayerPromise: audio.TonePlayer;
   let audioRendererInfo: audio.AudioRendererInfo = {
-    usage : audio.StreamUsage.STREAM_USAGE_DTMF,
-    rendererFlags : 0
+    usage: audio.StreamUsage.STREAM_USAGE_DTMF, // Audio stream usage type: DTMF. Set this parameter based on the service scenario.
+    rendererFlags: 0 // AudioRenderer flag.
   };
   timerPro = setTimeout(async () => {
     try {

@@ -1,6 +1,6 @@
 # @ohos.data.unifiedDataChannel (标准化数据通路)
 
-本模块为统一数据管理框架（Unified Data Management Framework，UDMF）的组成部分，针对多对多跨应用数据共享的不同业务场景提供了标准化的数据通路，提供了标准化的数据接入与读取接口。同时对文本、图片等数据类型提供了标准化定义，方便不同应用间进行数据交互，减少数据类型适配的工作量。
+本模块为统一数据管理框架（Unified Data Management Framework，UDMF）的组成部分，针对多对多跨应用数据共享的不同业务场景提供了标准化的数据通路，提供了标准化的数据接入与读取接口。同时对文本、图片等数据类型提供了标准化定义，方便不同应用间进行数据交互，减少数据类型适配的工作量。UDMF处理数据时，不会解析用户数据的内容，存储路径安全性较低，不建议传输个人敏感数据和隐私数据。
 
 > **说明：**
 >
@@ -382,7 +382,7 @@ let unifiedRecord = new unifiedDataChannel.UnifiedRecord();
 
 constructor(type: string, value: ValueType)
 
-用于创建指定类型和值的数据记录。<br/>当参数value为[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)类型时，参数type必须对应为[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)中OPENHARMONY_PIXEL_MAP的值;<br/>当参数value为[Want](../apis-ability-kit/js-apis-app-ability-want.md)类型时，参数type必须对应为[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)中OPENHARMONY_WANT的值。
+用于创建指定类型和值的数据记录。<br/>当参数value为[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)类型时，参数type必须对应为[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)中OPENHARMONY_PIXEL_MAP的值；<br/>当参数value为[Want](../apis-ability-kit/js-apis-app-ability-want.md)类型时，参数type必须对应为[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)中OPENHARMONY_WANT的值。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1227,6 +1227,8 @@ type DataProgressListener = (progressInfo: ProgressInfo, data: UnifiedData | nul
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**参数：**
 
 | 名称                   | 类型                                              | 必填 | 说明                                                                                                                                                 |
 |----------------------|-------------------------------------------------| ---- |----------------------------------------------------------------------------------------------------------------------------------------------------|

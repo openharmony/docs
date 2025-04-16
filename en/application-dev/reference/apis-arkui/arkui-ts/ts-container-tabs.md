@@ -24,7 +24,7 @@ Custom components cannot be used as child components. Only the [TabContent](ts-c
 
 Tabs(options?: TabsOptions)
 
-Creates a **Tabs** component.
+Create a **Tabs** container.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -39,8 +39,6 @@ Creates a **Tabs** component.
 ## TabsOptions<sup>15+</sup>
 
 Provides parameters for configuring the **Tabs** component, including tab positions, the current index of the displayed tab, the **Tabs** controller, and [universal attributes](ts-component-general-attributes.md) for the **TabBar**.
-
-**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -199,7 +197,7 @@ Sets the length of time required to complete the tab switching animation, which 
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | Yes  | Length of time required to complete the tab switching animation, which is initiated by clicking a specific tab or by calling the **changeIndex** API of **TabsController**.<br>The default value varies.<br>API version 10 and earlier versions: If this parameter is set to **null** or is not set, the default value **0** is used, which means that no tab switching animation is displayed when a specific tab is clicked or the **changeIndex** API of **TabsController** is called. If this parameter is set to **undefined** or a value less than 0, the default value **300** is used.<br>API version 11 and later versions: If this parameter is set to an invalid value or is not set, the default value is **0** when the tab bar is set to **BottomTabBarStyle** and **300** when the tab bar is set to any other style.<br>Unit: ms|
+| value  | number | Yes  | Length of time required to complete the tab switching animation, which is initiated by clicking a specific tab or by calling the **changeIndex** API of **TabsController**.<br>The default value varies.<br>API version 10 and earlier versions: If this parameter is set to **null** or is not set, the default value **0** is used, which means that no tab switching animation is displayed when a specific tab is clicked or the **changeIndex** API of **TabsController** is called. If this parameter is set to **undefined** or a value less than 0, the default value **300** is used.<br>API version 11 and later versions: If this parameter is set to an invalid value or is not set, the default value is **0** when the tab bar is set to **BottomTabBarStyle** and **300** when the tab bar is set to any other style.<br>Unit: ms<br>Value range: [0, +∞)|
 
 ### animationMode<sup>12+</sup>
 
@@ -263,7 +261,7 @@ Sets whether the tab fades out when it exceeds the container width. It is recomm
 
 | Name| Type   | Mandatory| Description                                              |
 | ------ | ------- | ---- | -------------------------------------------------- |
-| value  | boolean | Yes  | Whether the tab fades out when it exceeds the container width.<br>Default value: **true**|
+| value  | boolean | Yes  | Whether the tab fades out when it exceeds the container width.<br>Default value: **true**, indicating that the tab fades out when it exceeds the container width|
 
 ### barOverlap<sup>10+</sup>
 
@@ -2050,7 +2048,7 @@ struct TabsBarModifierExample {
 }
 ```
 
-
+![tabs13](figures/tabs13.gif)
 
 ### Example 14: Aligning Tabs
 
@@ -2153,7 +2151,7 @@ struct TabsBarModifierExample {
 }
 ```
 
-
+![tabs14](figures/tabs14.gif)
 
 ### Example 15: Setting the Tab Switching Animation
 

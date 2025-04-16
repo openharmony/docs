@@ -12,7 +12,7 @@
     - [@ohos.arkui.observer (无感监听)](js-apis-arkui-observer.md)
     - [@ohos.arkui.prefetcher (Prefetching)](js-apis-arkui-Prefetcher.md)
     - [@ohos.arkui.shape(形状)](js-apis-arkui-shape.md)
-    - [@ohos.arkui.Theme(主题换肤)](js-apis-arkui-theme.md)
+    - [@ohos.arkui.theme(主题换肤)](js-apis-arkui-theme.md)
     - [@ohos.arkui.UIContext (UIContext)](js-apis-arkui-UIContext.md)
     - [@ohos.arkui.uiExtension (uiExtension)](js-apis-arkui-uiExtension.md)
     - [@ohos.arkui.StateManagement (状态管理)](js-apis-StateManagement.md)
@@ -47,19 +47,22 @@
       - [AttributeUpdater](js-apis-arkui-AttributeUpdater.md)
       - [Content](js-apis-arkui-Content.md)
       - [NodeContent](js-apis-arkui-NodeContent.md)
-  - 图形图像<!--graphics-api-->
-    - [@ohos.display (屏幕属性)](js-apis-display.md)
+  - 窗口管理<!--window-manager-api-->
     - [@ohos.PiPWindow (画中画窗口)](js-apis-pipWindow.md)
     - [@ohos.window (窗口)](js-apis-window.md)
-    - [@ohos.screenshot (屏幕截图)](js-apis-screenshot.md)
     <!--Del-->
     - [@ohos.animation.windowAnimationManager (窗口动画管理)(系统接口)](js-apis-windowAnimationManager-sys.md)
     - [@ohos.application.WindowExtensionAbility (窗口扩展能力)(系统接口)](js-apis-application-windowExtensionAbility-sys.md)
+    - [@ohos.window (窗口)(系统接口)](js-apis-window-sys.md)
+    - [WindowExtensionContext (系统接口)](js-apis-inner-application-windowExtensionContext-sys.md)
+    <!--DelEnd-->
+  - 屏幕管理<!--display-manager-api-->
+    - [@ohos.display (屏幕属性)](js-apis-display.md)
+    - [@ohos.screenshot (屏幕截图)](js-apis-screenshot.md)
+    <!--Del-->
     - [@ohos.display (屏幕属性)(系统接口)](js-apis-display-sys.md)
     - [@ohos.screen (屏幕)(系统接口)](js-apis-screen-sys.md)
     - [@ohos.screenshot (屏幕截图)(系统接口)](js-apis-screenshot-sys.md)
-    - [@ohos.window (窗口)(系统接口)](js-apis-window-sys.md)
-    - [WindowExtensionContext (系统接口)](js-apis-inner-application-windowExtensionContext-sys.md)
     <!--DelEnd-->
   - 已停止维护的接口<!--arkui-arkts-dep-->
     - [@ohos.prompt (弹窗)](js-apis-prompt.md)
@@ -404,9 +407,9 @@
     - [点击控制](arkui-ts/ts-universal-attributes-click.md)
     - [栅格设置](arkui-ts/ts-universal-attributes-grid.md)
 - JS组件<!--arkui-js-comp--> 
-  - [兼容JS的类Web开发范式（ArkUI.Full）](arkui-js/Readme-CN.md)    
-  - [兼容JS的类Web开发范式（ArkUI.Lite）](arkui-js-lite/Readme-CN.md)
-  - [JS服务卡片UI组件](js-service-widget-ui/Readme-CN.md)
+  - [兼容JS的类Web开发范式（ArkUI.Full）](arkui-js/Readme-CN.md)<!--arkui-js-full-comp-->    
+  - [兼容JS的类Web开发范式（ArkUI.Lite）](arkui-js-lite/Readme-CN.md)<!--arkui-js-lite-comp-->
+  - [JS服务卡片UI组件](js-service-widget-ui/Readme-CN.md)<!--arkui-card-comp-->
 - C API<!--arkui-c-->
   - 模块<!--arkui-module-->
     - [ArkUI_NativeModule](_ark_u_i___native_module.md)
@@ -462,7 +465,6 @@
     - [ARKUI_TextPickerCascadeRangeContent](_a_r_k_u_i___text_picker_cascade_range_content.md)
     - [ARKUI_TextPickerRangeContent](_a_r_k_u_i___text_picker_range_content.md)
     - [ArkUI_TranslationOptions](_ark_u_i___translation_options.md)
-    - [OH_ComponentSnapshot](_ark_u_i___node_component_snapshot.md)
     - [OH_NativeXComponent_Callback](_o_h___native_x_component___callback.md)
     - [OH_NativeXComponent_ExpectedRateRange](_o_h___native_x_component___expected_rate_range.md)
     - [OH_NativeXComponent_MouseEvent](_o_h___native_x_component___mouse_event.md)

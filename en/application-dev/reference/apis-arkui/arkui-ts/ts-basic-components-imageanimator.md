@@ -25,7 +25,7 @@ ImageAnimator()
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### images
 
@@ -39,11 +39,11 @@ Sets the image frame information. Dynamic update is not supported.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                                  | Mandatory | Description                                                        |
+| Name| Type                                                  | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | Array&lt;[ImageFrameInfo](#imageframeinfo)&gt;  | Yes  | Image frame information. The information of each frame includes the image path, image size, image position, and image playback duration. For details, see **ImageFrameInfo**.<br>Default value: **[]** |
+| value  | Array&lt;[ImageFrameInfo](#imageframeinfo)&gt; | Yes  | Image frame information. The information of each frame includes the image path, image size, image position, and image playback duration. For details, see **ImageFrameInfo**.<br>Default value: **[]**<br> **NOTE**<br>If the input array is too large, memory usage may increase. Therefore, as the controller of memory usage, be sure to assess potential memory consumption before passing in the data to avoid issues such as insufficient memory.|
 
 ### state
 
@@ -57,11 +57,11 @@ Sets the playback state of the animation.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                                   | Mandatory | Description                                                        |
+| Name| Type                                                   | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [AnimationStatus](ts-appendix-enums.md#animationstatus) | Yes  | Playback state of the animation. The default state is **Initial**.<br>Default value: **AnimationStatus.Initial** |
+| value  | [AnimationStatus](ts-appendix-enums.md#animationstatus) | Yes  | Playback state of the animation. The default state is **Initial**.<br>Default value: **AnimationStatus.Initial**|
 
 ### duration
 
@@ -75,11 +75,11 @@ Sets the playback duration. This attribute does not take effect when a separate 
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type  | Mandatory | Description                                                        |
+| Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | Yes  | Playback duration.<br>If the value is **0**, no image is played.<br>The value change takes effect only at the start of the next cycle.<br>Unit: ms<br>Default value: **1000** |
+| value  | number | Yes  | Playback duration.<br>If the value is **0**, no image is played.<br>The value change takes effect only at the start of the next cycle.<br>Unit: ms<br>Default value: **1000**|
 
 ### reverse
 
@@ -93,11 +93,11 @@ Sets the playback direction.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type   | Mandatory | Description                                                        |
+| Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Playback direction.<br>The value **false** indicates that images are played from the first one to the last one, and **true** indicates that images are played from the last one to the first one.<br>Default value: **false** |
+| value  | boolean | Yes  | Playback direction.<br>The value **false** indicates that images are played from the first one to the last one, and **true** indicates that images are played from the last one to the first one.<br>Default value: **false**|
 
 ### fixedSize
 
@@ -111,11 +111,11 @@ Sets whether the image size is fixed at the component size.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type   | Mandatory | Description                                                        |
+| Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether the image size is fixed at the component size.<br> **true**: The image size is fixed at the component size. In this case, the width, height, top, and left attributes of the image are invalid.<br> **false**: The width, height, top, and left attributes of each image must be set separately.<br>Default value: **true** |
+| value  | boolean | Yes  | Whether the image size is fixed at the component size.<br> **true**: The image size is fixed at the component size. In this case, the width, height, top, and left attributes of the image are invalid.<br> **false**: The width, height, top, and left attributes of each image must be set separately.<br>Default value: **true**|
 
 ### preDecode<sup>(deprecated)</sup>
 
@@ -127,11 +127,11 @@ This API is deprecated since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type  | Mandatory | Description                                                        |
+| Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | Yes  | Number of images to be pre-decoded. For example, the value **2** indicates that two images following the currently playing one are pre-decoded.<br>Default value: **0** |
+| value  | number | Yes  | Number of images to be pre-decoded. For example, the value **2** indicates that two images following the currently playing one are pre-decoded.<br>Default value: **0**|
 
 ### fillMode
 
@@ -145,11 +145,11 @@ Sets the status before and after execution of the animation in the current playb
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                     | Mandatory | Description                                                        |
+| Name| Type                                     | Mandatory| Description                                                        |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [FillMode](ts-appendix-enums.md#fillmode) | Yes  | Status before and after execution of the animation in the current playback direction.<br>Default value: **FillMode.Forwards** |
+| value  | [FillMode](ts-appendix-enums.md#fillmode) | Yes  | Status before and after execution of the animation in the current playback direction.<br>Default value: **FillMode.Forwards**|
 
 ### iterations
 
@@ -161,11 +161,11 @@ Sets the number of times that the animation is played.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type  | Mandatory | Description                                                  |
+| Name| Type  | Mandatory| Description                                                  |
 | ------ | ------ | ---- | ------------------------------------------------------ |
-| value  | number | Yes  | Number of times that the animation is played. By default, the animation is played once. The value **-1** indicates that the animation is played for an unlimited number of times.<br>Default value: **1** |
+| value  | number | Yes  | Number of times that the animation is played. By default, the animation is played once. The value **-1** indicates that the animation is played for an unlimited number of times.<br>Default value: **1**|
 
 ## ImageFrameInfo
 
@@ -176,15 +176,15 @@ Sets the number of times that the animation is played.
 | Name  | Type  | Mandatory| Description|
 | -------- | -------------- | -------- | -------- |
 | src      | string \| [Resource](ts-types.md#resource)<sup>9+</sup> \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)<sup>12+</sup> | Yes   | Image path. The image format can be .jpg, .jpeg, .svg, .png, .bmp, .webp, .ico, or .heif. The [Resource](ts-types.md#resource) type is supported since API version 9, and the [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) type is supported since API version 12.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.|
-| width    | number \| string | No | Image width.<br>Default value: **0**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.      |
-| height   | number \| string | No | Image height.<br>Default value: **0**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.       |
-| top      | number \| string | No | Vertical coordinate of the image relative to the upper left corner of the widget<br>Default value: **0**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10. |
-| left     | number \| string | No | Horizontal coordinate of the image relative to the upper left corner of the widget<br>Default value: **0**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.  |
+| width    | number \| string | No | Image width. For the string type, numeric string values with optional units, for example, **"2"** or **"2px"**, are supported.<br>Default value: **0**<br>Unit: vp<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.      |
+| height   | number \| string | No | Image height. For the string type, numeric string values with optional units, for example, **"2"** or **"2px"**, are supported.<br>Default value: **0**<br>Unit: vp<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.       |
+| top      | number \| string | No | Vertical coordinate of the image relative to the upper left corner of the widget For the string type, numeric string values with optional units, for example, **"2"** or **"2px"**, are supported.<br>Default value: **0**<br>Unit: vp<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10. |
+| left     | number \| string | No | Horizontal coordinate of the image relative to the upper left corner of the widget For the string type, numeric string values with optional units, for example, **"2"** or **"2px"**, are supported.<br>Default value: **0**<br>Unit: vp<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.  |
 | duration | number          | No    | Playback duration of each image frame, in milliseconds.<br>Default value: **0**        |
 
 ## Events
 
-In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
+In addition to the [universal events](ts-component-general-events.md), the following events are supported.
 
 ### onStart
 

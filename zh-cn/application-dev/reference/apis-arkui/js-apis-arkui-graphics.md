@@ -22,8 +22,8 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 | 名称   | 类型   | 可读 | 可写 | 说明                   |
 | ------ | ------ | ---- | ---- | ---------------------- |
-| width  | number | 是   | 是   | 组件大小的宽度。<br/>单位：vp |
-| height | number | 是   | 是   | 组件大小的高度。<br/>单位：vp |
+| width  | number | 是   | 是   | 组件大小的宽度。<br/>单位：vp<br/>取值范围：[0, +∞) |
+| height | number | 是   | 是   | 组件大小的高度。<br/>单位：vp<br/>取值范围：[0, +∞) |
 
 ## Position
 
@@ -63,10 +63,10 @@ type PositionT\<T> = Vector2T\<T>
 
 | 名称   | 类型   | 只读 | 可选 | 说明                        |
 | ------ | ------ | ---- | ---- | --------------------------- |
-| x      | number | 是   | 是   | 水平方向位置。<br/>单位：vp |
-| y      | number | 是   | 是   | 垂直方向位置。<br/>单位：vp |
-| width  | number | 是   | 是   | 组件的宽度。<br/>单位：vp   |
-| height | number | 是   | 是   | 组件的高度。<br/>单位：vp   |
+| x      | number | 是   | 是   | 水平方向位置。<br/>单位：vp<br/>取值范围：(-∞, +∞) |
+| y      | number | 是   | 是   | 垂直方向位置。<br/>单位：vp<br/>取值范围：(-∞, +∞) |
+| width  | number | 是   | 是   | 组件的宽度。<br/>单位：vp<br/>取值范围：[0, +∞)   |
+| height | number | 是   | 是   | 组件的高度。<br/>单位：vp<br/>取值范围：[0, +∞)   |
 
 ## Pivot
 
@@ -150,7 +150,7 @@ type Matrix4 = [number,number,number,number,number,number,number,number,number,n
 
 | 类型                                                         | 说明                                 |
 | ------------------------------------------------------------ | ------------------------------------ |
-| [number,number,number,number,<br/>number,number,number,number,<br/>number,number,number,number,<br/>number,number,number,number] | 参数为长度为16（4\*4）的number数组。 |
+| [number,number,number,number,<br/>number,number,number,number,<br/>number,number,number,number,<br/>number,number,number,number] | 参数为长度为16（4\*4）的number数组。<br/>各number取值范围：(-∞, +∞) |
 
 用于设置组件的变换信息，该类型为一个 4x4 矩阵，使用一个长度为16的`number[]`进行表示，例如：
 ```ts
@@ -162,10 +162,6 @@ const transform: Matrix4 = [
 ]
 ```
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
 ## Vector2
 
 用于表示包含x和y两个值的向量。
@@ -176,8 +172,8 @@ const transform: Matrix4 = [
 
 | 名称 | 类型   | 只读 | 可选 | 说明              |
 | ---- | ------ | ---- | ---- | ----------------- |
-| x    | number | 否   | 否   | 向量x轴方向的值。 |
-| y    | number | 否   | 否   | 向量y轴方向的值。 |
+| x    | number | 否   | 否   | 向量x轴方向的值。<br/>取值范围：(-∞, +∞) |
+| y    | number | 否   | 否   | 向量y轴方向的值。<br/>取值范围：(-∞, +∞) |
 
 ## Vector3
 
@@ -189,9 +185,9 @@ const transform: Matrix4 = [
 
 | 名称 | 类型   | 只读 | 可选 | 说明                |
 | ---- | ------ | ---- | ---- | ------------------- |
-| x    | number | 否   | 否   | x轴方向的旋转角度。 |
-| y    | number | 否   | 否   | y轴方向的旋转角度。 |
-| z    | number | 否   | 否   | z轴方向的旋转角度。 |
+| x    | number | 否   | 否   | x轴方向的旋转角度。<br/>取值范围：(-∞, +∞) |
+| y    | number | 否   | 否   | y轴方向的旋转角度。<br/>取值范围：(-∞, +∞) |
+| z    | number | 否   | 否   | z轴方向的旋转角度。<br/>取值范围：(-∞, +∞) |
 
 ## Vector2T\<T><sup>12+</sup>
 
@@ -391,7 +387,7 @@ LengthMetrics的构造函数。若参数unit不传入值或传入undefined，返
 
 | 参数名 | 类型          | 必填 | 说明         |
 | ------ | ------------- | ---- | ------------ |
-| value   | number | 是   | 长度属性的值。 |
+| value   | number | 是   | 长度属性的值。<br/>取值范围：[0, +∞) |
 | unit   | [LengthUnit](#lengthunit12) | 否   | 长度属性的单位。 |
 
 ### px<sup>12+</sup>
@@ -408,7 +404,7 @@ static px(value: number): LengthMetrics
 
 | 参数名 | 类型          | 必填 | 说明         |
 | ------ | ------------- | ---- | ------------ |
-| value   | number | 是   | 长度属性的值。 |
+| value   | number | 是   | 长度属性的值。<br/>取值范围：(-∞, +∞) |
 
 **返回值：**
 
@@ -430,7 +426,7 @@ static vp(value: number): LengthMetrics
 
 | 参数名 | 类型          | 必填 | 说明         |
 | ------ | ------------- | ---- | ------------ |
-| value   | number | 是   | 长度属性的值。 |
+| value   | number | 是   | 长度属性的值。<br/>取值范围：(-∞, +∞) |
 
 **返回值：**
 
@@ -452,7 +448,7 @@ static fp(value: number): LengthMetrics
 
 | 参数名 | 类型          | 必填 | 说明         |
 | ------ | ------------- | ---- | ------------ |
-| value   | number | 是   | 长度属性的值。 |
+| value   | number | 是   | 长度属性的值。<br/>取值范围：(-∞, +∞) |
 
 **返回值：**
 
@@ -474,7 +470,7 @@ static percent(value: number): LengthMetrics
 
 | 参数名 | 类型          | 必填 | 说明         |
 | ------ | ------------- | ---- | ------------ |
-| value   | number | 是   | 长度属性的值。 |
+| value   | number | 是   | 长度属性的值。<br/>取值范围：[0, 100] |
 
 **返回值：**
 
@@ -496,7 +492,7 @@ static lpx(value: number): LengthMetrics
 
 | 参数名 | 类型          | 必填 | 说明         |
 | ------ | ------------- | ---- | ------------ |
-| value   | number | 是   | 长度属性的值。 |
+| value   | number | 是   | 长度属性的值。<br/>取值范围：(-∞, +∞) |
 
 **返回值：**
 
@@ -555,7 +551,7 @@ static numeric(value: number): ColorMetrics
 
 | 参数名 | 类型          | 必填 | 说明         |
 | ------ | ------------- | ---- | ------------ |
-| value   | number | 是   | HEX格式颜色，支持rgb或者argb。 |
+| value   | number | 是   | HEX格式颜色。<br/>取值范围：支持rgb或者argb |
 
 **返回值：**
 
@@ -847,7 +843,7 @@ type Rect = common2D.Rect
 | ------- | ------ | ---- | ---- | ------------------------- |
 | centerX | number | 是   | 是   | 圆心x轴的位置，单位为px。 |
 | centerY | number | 是   | 是   | 圆心y轴的位置，单位为px。 |
-| radius  | number | 是   | 是   | 圆形的半径，单位为px。    |
+| radius  | number | 是   | 是   | 圆形的半径，单位为px。 <br/> 取值范围：[0, +∞)   |
 
 ## CommandPath<sup>12+</sup>
 
@@ -1727,7 +1723,7 @@ edgeColors(all: number): Edges\<number>
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| all    | number | 是   | 边框颜色，ARGB格式。 |
+| all    | number | 是   | 边框颜色，ARGB格式，示例：0xffff00ff。<br/>取值范围：[0, 0xffffffff] |
 
 **返回值：**
 
@@ -1789,7 +1785,7 @@ edgeWidths(all: number): Edges\<number>
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| all    | number | 是   | 边框宽度，单位为vp。 |
+| all    | number | 是   | 边框宽度，单位为vp。<br/>取值范围：[0, +∞) |
 
 **返回值：**
 
@@ -1914,7 +1910,7 @@ borderRadiuses(all: number): BorderRadiuses
 
 | 参数名 | 类型   | 必填 | 说明       |
 | ------ | ------ | ---- | ---------- |
-| all    | number | 是   | 边框圆角。 |
+| all    | number | 是   | 边框圆角。<br/>单位：vp<br/>取值范围：[0, +∞)] |
 
 **返回值：**
 

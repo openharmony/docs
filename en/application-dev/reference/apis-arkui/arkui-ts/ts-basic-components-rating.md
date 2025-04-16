@@ -14,7 +14,7 @@ Not supported
 
 ## APIs
 
-Rating(options?: RatingOptions)
+Rating(options?: { rating: number, indicator?: boolean })
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -26,7 +26,8 @@ Rating(options?: RatingOptions)
 
 | Name| Type                                     | Mandatory| Description          |
 | ------ | ----------------------------------------- | ---- | -------------- |
-| rating | [RatingOptions](#ratingoptions13) | No  | Rating bar options.|
+| rating    | number  | No| Value to rate.<br>Default value: **0**<br>Value range: [0, stars]<br>Values less than 0 are treated as **0**, and values greater than the value of [stars](#stars) are treated as the value of **stars**.<br>This parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
+| indicator | boolean | No| Whether the rating bar is used as an indicator.<br>**true**: The rating bar is used as an indicator.<br>**false**: The rating bar is not used as an indicator.<br>Default value: **false**|
 
 ## Attributes
 
@@ -68,7 +69,7 @@ Sets the step for rating. A value less than 0.1 evaluates to the default value.
 
 ### starStyle
 
-starStyle(options: StarStyleOptions)
+starStyle(value: { backgroundUri: string, foregroundUri: string, secondaryUri?: string })
 
 Sets the star style. For details about the supported image types, see [Image](ts-basic-components-image.md).
 
@@ -86,7 +87,7 @@ By default, the image is loaded in asynchronous mode. Synchronous loading is not
 
 | Name | Type                                           | Mandatory| Description                                                        |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [StarStyleOptions](#starstyleoptions13) | Yes  | Star style.<br>**NOTE**<br>If the path specified for **backgroundUri**, **foregroundUri**, or **secondaryUri** is incorrect, no image is displayed.<br>If **backgroundUri** or **foregroundUri** is set to **undefined** or an empty string, the **Rating** component loads the default star image source.<br>If **secondaryUri** is set to **undefined** or an empty string or is not set, **backgroundUri** is prioritized, which is equivalent to where only **foregroundUri** and **backgroundUri** are set.|
+| value  | {<br>backgroundUri: string,<br>foregroundUri: string,<br>secondaryUri?: string<br>} | Yes  | Star style.<br>**backgroundUri**: image path for the unselected star. You can use the default system image or a custom image.<br>**foregroundUri**: image path for the selected star. You can use the default system image or a custom image.<br>**secondaryUri**: image path for the partially selected star. You can use the default system image or a custom image.<br>**NOTE**<br>If the path specified for **backgroundUri**, **foregroundUri**, or **secondaryUri** is incorrect, no image is displayed.<br>If **backgroundUri** or **foregroundUri** is set to **undefined** or an empty string, the **\<Rating>** component loads the default star image source.<br>If **secondaryUri** is set to **undefined** or an empty string or is not set, **backgroundUri** is prioritized, which is equivalent to where only **foregroundUri** and **backgroundUri** are set.|
 
 >  **NOTE**
 >
@@ -150,42 +151,17 @@ You need a custom class to implement the **ContentModifier** API.
 
 | Name | Type   |    Read Only   |    Optional     |  Description             |
 | ------ | ------ | ------ |-------------------------------- |-------------------------------- |
-| rating | number | No| No|Value to rate.<br>Default value: **0**|
-| indicator | boolean | No| No| Whether the component is used only as an indicator.<br>Default value: **false**|
+| rating    | number  | No| No| Value to rate.<br>Default value: **0**<br>Value range: [0, stars]<br>Values less than 0 are treated as **0**, and values greater than the value of [stars](#stars) are treated as the value of **stars**.<br>This parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
+| indicator | boolean | No| No| Whether the rating bar is used as an indicator.<br>**true**: The rating bar is used as an indicator.<br>**false**: The rating bar is not used as an indicator.<br>Default value: **false**|
 | stars | number | No| No|Total number of ratings.<br>Default value: **5**|
 | stepSize | number | No| No|Step of an operation.<br>Default value: **0.5**|
 | triggerChange | Callback\<number> | No| No|Callback triggered when the rating value changes.|
 
-## RatingOptions<sup>13+</sup>
-
-**Widget capability**: This API can be used in ArkTS widgets since API version 13.
-
-**Atomic service API**: This API can be used in atomic services since API version 13.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-| Name     | Type   | Mandatory| Description                                                        |
-| --------- | ------- | ---- | ------------------------------------------------------------ |
-| rating    | number  | Yes  | Value to rate.<br>Default value: **0**<br>Value range: [0, stars]<br>Values less than 0 are treated as **0**, and values greater than the value of **stars** are treated as the value of **stars**.<br>This parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
-| indicator | boolean | No  | Whether the component is used only as an indicator.<br>Default value: **false**<br>**NOTE**<br>When **indicator** is set to **true**, the default component height is 12.0 vp, and the component width is calculated as follows: Height x Value of **stars**.<br>When **indicator** is set to **false**, the default component height is 28.0 vp, and the component width is calculated as follows: Height x Value of **stars**.|
-
-## StarStyleOptions<sup>13+</sup>
-
-**Widget capability**: This API can be used in ArkTS widgets since API version 13.
-
-**Atomic service API**: This API can be used in atomic services since API version 13.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-| Name         | Type  | Mandatory| Description                                                        |
-| ------------- | ------ | ---- | ------------------------------------------------------------ |
-| backgroundUri | string | Yes  | Image path for the unselected star. You can use the default system image or a custom image.  |
-| foregroundUri | string | Yes  | Image path for the selected star. You can use the default system image or a custom image.    |
-| secondaryUri  | string | No  | Image path for the partially selected star. You can use the default system image or a custom image.|
-
 ## Example
 
-### Example 1
+### Example 1: Setting the Default Rating Style
+
+This example demonstrates how to set the default star rating style.
 
 ```ts
 // xxx.ets
@@ -241,7 +217,9 @@ struct RatingExample {
 
 ![rating](figures/rating.gif)
 
-### Example 2
+### Example 2: Customizing the Rating Style
+
+This example demonstrates how to configure **starStyle** to use custom image links for stars.
 
 ```ts
 // xxx.ets
@@ -275,7 +253,7 @@ struct RatingExample {
 
 ![rating1](figures/rating1.gif)
 
-### Example 3
+### Example 3: Implementing a Custom Rating Bar
 This example implements a custom rating bar, with each circle representing 0.5 point. If **ratingIndicator** is set to **true**, the rating bar is used only as an indicator, and the rating cannot be changed.
 if it is set to **false**, the rating can be changed. **ratingStars** sets the rating value. **ratingStepsize** sets the step for rating.
 

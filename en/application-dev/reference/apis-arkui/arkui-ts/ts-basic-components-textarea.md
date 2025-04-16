@@ -43,7 +43,7 @@ TextArea(value?: TextAreaOptions)
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 >  **NOTE**
 >
@@ -298,9 +298,9 @@ Sets the polymorphic style of the text box. The inline input style is only avail
 
 enableKeyboardOnFocus(value: boolean)
 
-Sets whether to enable the input method when the **TextArea** component obtains focus in a way other than clicking.
+Sets whether to bring up the keyboard when the **TextArea** component obtains focus in a way other than clicking.
 
- 
+Since API version 10, the **TextArea** component brings up the keyboard by default when it obtains focus.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -310,7 +310,7 @@ Sets whether to enable the input method when the **TextArea** component obtains 
 
 | Name| Type   | Mandatory| Description                                                       |
 | ------ | ------- | ---- | ----------------------------------------------------------- |
-| value  | boolean | Yes  | Whether to enable the input method when the **TextArea** component obtains focus in a way other than clicking.<br>Default value: **true**|
+| value  | boolean | Yes  | Whether to bring up the keyboard when the **TextArea** component obtains focus in a way other than clicking.<br>Default value: **true**|
 
 ### selectionMenuHidden<sup>10+</sup>
 
@@ -491,7 +491,7 @@ Sets the color, type, and style of the text decorative line.
 
 letterSpacing(value: number | string | Resource)
 
-Sets the letter spacing for a text style. If the value specified is a percentage or 0, the default value is used.
+Sets the letter spacing for a text style. If the value specified is a percentage or 0, the default value is used. For the string type, numeric string values with optional units, for example, **"10"** or **"10fp"**, are supported.
 
 If the value specified is a negative value, the text is compressed. A negative value too small may result in the text being compressed to 0 and no content being displayed.
 
@@ -503,7 +503,7 @@ If the value specified is a negative value, the text is compressed. A negative v
 
 | Name| Type                      | Mandatory| Description          |
 | ------ | -------------------------- | ---- | -------------- |
-| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Letter spacing.|
+| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Letter spacing.<br>Unit: fp|
 
 ### fontFeature<sup>12+</sup>
 
@@ -631,7 +631,7 @@ If **overflow** is set to **TextOverflow.None**, **TextOverflow.Clip**, or **Tex
 
 minFontSize(value: number | string | Resource)
 
-Sets the minimum font size.
+Sets the minimum font size. For the string type, numeric string values with optional units, for example, **"10"** or **"10fp"**, are supported.
 
 For the setting to take effect, this attribute must be used together with [maxFontSize](#maxfontsize12) and [maxLines](#maxlines10), or layout constraint settings.
 
@@ -645,13 +645,13 @@ When the adaptive font size is used, the **fontSize** settings do not take effec
 
 | Name| Type                                                        | Mandatory| Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Minimum font size.|
+| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Minimum font size.<br>Unit: fp|
 
 ### maxFontSize<sup>12+</sup>
 
 maxFontSize(value: number | string | Resource)
 
-Sets the maximum font size.
+Sets the maximum font size. For the string type, numeric string values with optional units, for example, **"10"** or **"10fp"**, are supported.
 
 For the setting to take effect, this attribute must be used together with [minFontSize](#minfontsize12) and [maxLines](#maxlines10), or layout constraint settings.
 
@@ -665,7 +665,7 @@ When the adaptive font size is used, the **fontSize** settings do not take effec
 
 | Name| Type                                                        | Mandatory| Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Maximum font size.|
+| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Maximum font size.<br>Unit: fp|
 
 ### heightAdaptivePolicy<sup>12+</sup>
 
@@ -756,18 +756,6 @@ Preview text is in a temporary state and does not support text interception. As 
 | ------ | ------- | ---- | ---------------------------------- |
 | enable | boolean | Yes  | Whether to enable preview text.<br>Default value: **true**|
 
->  **NOTE**
->
->  This API is disabled by default in C API scenarios. To enable preview text in such scenarios, set [metadata](../../../../application-dev/quick-start/module-structure.md#internal-structure-of-the-metadata-attribute) in the **module.json5** file of the project as follows:
-> ```json
-> "metadata": [
->  {
->     "name": "can_preview_text",
->     "value": "true",
->  }
-> ]
-> ```
-
 ### enableHapticFeedback<sup>13+</sup>
 
 enableHapticFeedback(isEnabled: boolean)
@@ -795,9 +783,40 @@ Specifies whether to enable haptic feedback.
 > ]
 > ```
 
+### keyboardAppearance<sup>15+</sup>
+
+keyboardAppearance(appearance: Optional\<KeyboardAppearance>)
+
+Sets the appearance of the keyboard when the text box is focused.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| ------ | ----------------------------------------- | ---- | ------------------------------------------------------ |
+| appearance | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[KeyboardAppearance](ts-text-common.md#keyboardappearance15)> | Yes  | Appearance of the keyboard.<br>Default value: **KeyboardAppearance.NONE_IMMERSIVE**|
+
+### stopBackPress<sup>15+</sup>
+
+stopBackPress(isStopped: Optional\<boolean>)
+
+Sets whether to prevent the back button press from being propagated to other components or applications.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                               | Mandatory| Description                                     |
+| ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
+| isStopped  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | Yes  | Whether to consume the back button press.<br>Default value: **true**|
 ## Events
 
-In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
+In addition to the [universal events](ts-component-general-events.md), the following events are supported.
 
 ### onChange
 
@@ -805,7 +824,7 @@ onChange(callback: EditableTextOnChangeCallback)
 
 Called when the input in the text box changes.
 
-In this callback, if cursor operations are performed, developers need to adjust the cursor logic based on the **previewText** parameter to ensure it works seamlessly within the preview display scenario.
+In this callback, if cursor operations are performed, you need to adjust the cursor logic based on the **previewText** parameter to make sure it works seamlessly under the preview display scenario.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -962,7 +981,7 @@ Triggered when text is about to be inserted.
 
 | Name| Type                                                        | Mandatory| Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| callback  | Callback\<[InsertValue](ts-text-common.md#insertvalue12), boolean> | Yes  | Callback triggered when text is about to be inserted.<br>It returns **true** if the text is inserted; returns **false** otherwise.<br>This callback is not called for text preview.<br>It is available only for system input methods.|
+| callback  | Callback\<[InsertValue](ts-text-common.md#insertvalue12), boolean> | Yes  | Callback triggered when text is about to be inserted.<br>It returns **true** if the text is inserted; returns **false** otherwise.<br>This callback is not triggered for pre-edit or candidate word operations.<br>It is available only for system input methods.|
 
 ### onDidInsert<sup>12+</sup>
 
@@ -1011,6 +1030,24 @@ Triggered when text is deleted.
 | Name| Type                                                        | Mandatory| Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | callback  | Callback\<[DeleteValue](ts-text-common.md#deletevalue12)> | Yes  | Callback triggered when text is deleted.<br>It is available only for system input methods.|
+
+### onWillChange<sup>15+</sup>
+
+onWillChange(callback: Callback\<EditableTextChangeValue, boolean>)
+
+Called when the text content is about to change.
+
+This callback is triggered after **onWillInsert** and **onWillDelete**, but before **onDidInsert** and **onDidDelete**.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description              |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| callback  | Callback\<[EditableTextChangeValue](ts-text-common.md#editabletextchangevalue15), boolean> | Yes  | Callback triggered when the text content is about to change.<br>Returning **true** allows the change to proceed, while returning **false** cancels the change.|
 
 ## TextAreaController<sup>8+</sup>
 
@@ -1147,7 +1184,7 @@ Represents the callback invoked when the Enter key on the soft keyboard is press
 
 | Name  | Type                                                        | Mandatory| Description                                                    |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
-| enterKeyType | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype)             | Yes  | Type of the Enter key.<br>If the type is **EnterKeyType.NEW_LINE**, **onSubmit** is not triggered.|
+| enterKeyType | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype)             | Yes  | Type of the Enter key.|
 | event    | [SubmitEvent](ts-basic-components-textinput.md#submitevent11) | No  | Submit event.        |
 
 ## Example

@@ -146,30 +146,51 @@ Called when a click event occurs.
 struct Index {
   build() {
     Row() {
-      Column({space:10}) {
-        // Create a default Location button with an icon, text, and background.
-        LocationButton().onClick((event: ClickEvent, result: LocationButtonOnClickResult)=>{
+      Column({ space: 10 }) {
+        // Create a default button with an icon, text, and background.
+        LocationButton().onClick((event: ClickEvent, result: LocationButtonOnClickResult) => {
           console.info("result " + result)
         })
         // Whether an element is contained depends on whether the parameter corresponding to the element is specified. If buttonType is not passed in, the button uses the ButtonType.Capsule settings.
-        LocationButton({icon:LocationIconStyle.LINES})
+        LocationButton({ icon: LocationIconStyle.LINES })
         // Create a button with only an icon and background. If the alpha value of the most significant eight bits of the background color is less than 0x1A, the system forcibly adjusts the alpha value to 0xFF.
-        LocationButton({icon:LocationIconStyle.LINES, buttonType:ButtonType.Capsule})
+        LocationButton({ icon: LocationIconStyle.LINES, buttonType: ButtonType.Capsule })
           .backgroundColor(0x10007dff)
         // Create a button with an icon, text, and background. If the alpha value of the most significant eight bits of the background color is less than 0x1A, the system forcibly adjusts the alpha value to 0xFF.
-        LocationButton({icon:LocationIconStyle.LINES, text:LocationDescription.CURRENT_LOCATION, buttonType:ButtonType.Capsule})
+        LocationButton({
+          icon: LocationIconStyle.LINES,
+          text: LocationDescription.CURRENT_LOCATION,
+          buttonType: ButtonType.Capsule
+        })
         // Create a button with an icon, text, and background. If the set width is less than the minimum allowed, the button's text will wrap to guarantee full text display.
-        LocationButton({icon:LocationIconStyle.LINES, text:LocationDescription.CURRENT_LOCATION, buttonType:ButtonType.Capsule})
+        LocationButton({
+          icon: LocationIconStyle.LINES,
+          text: LocationDescription.CURRENT_LOCATION,
+          buttonType: ButtonType.Capsule
+        })
           .fontSize(16)
           .width(30)
         // Create a button with an icon, text, and background. If the set width is less than the minimum allowed, the button's text will wrap to guarantee full text display.
-        LocationButton({icon:LocationIconStyle.LINES, text:LocationDescription.CURRENT_LOCATION, buttonType:ButtonType.Capsule})
+        LocationButton({
+          icon: LocationIconStyle.LINES,
+          text: LocationDescription.CURRENT_LOCATION,
+          buttonType: ButtonType.Capsule
+        })
           .fontSize(16)
-          .size({width: 30, height: 30})
+          .size({ width: 30, height: 30 })
         // Create a button with an icon, text, and background. If the set width is less than the minimum allowed, the button's text will wrap to guarantee full text display.
-        LocationButton({icon:LocationIconStyle.LINES, text:LocationDescription.CURRENT_LOCATION, buttonType:ButtonType.Capsule})
+        LocationButton({
+          icon: LocationIconStyle.LINES,
+          text: LocationDescription.CURRENT_LOCATION,
+          buttonType: ButtonType.Capsule
+        })
           .fontSize(16)
-          .constraintSize({minWidth: 0, maxWidth: 30, minHeight: 0, maxHeight: 30})
+          .constraintSize({
+            minWidth: 0,
+            maxWidth: 30,
+            minHeight: 0,
+            maxHeight: 30
+          })
       }.width('100%')
     }.height('100%')
   }

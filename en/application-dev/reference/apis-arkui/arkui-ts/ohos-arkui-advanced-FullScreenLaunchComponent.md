@@ -23,7 +23,7 @@ import { FullScreenLaunchComponent } from '@kit.ArkUI'
 Not supported
 
 ## Attributes
-The [universal attributes](ts-universal-attributes-size.md) are not supported.
+The [universal attributes](ts-component-general-attributes.md) are not supported.
 
 ## FullScreenLaunchComponent
 
@@ -46,7 +46,7 @@ FullScreenLaunchComponent({ content: Callback\<void>, appId: string, options?: A
 | options | [AtomicServiceOptions](../../apis-ability-kit/js-apis-app-ability-atomicServiceOptions.md) | No| - | Parameters for launching the atomic service.|
 
 ## Events
-The [universal events](ts-universal-events-click.md) are not supported.
+The [universal events](ts-component-general-events.md) are not supported.
 
 ## Example
 

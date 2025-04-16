@@ -4,7 +4,8 @@
 
 >  **说明：**
 >
->  该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  - 该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  - ScrollBar不设置宽高时，采用父组件[布局约束](../js-apis-arkui-frameNode.md#layoutconstraint12)中的maxSize作为宽高。
 
 
 ## 子组件
@@ -15,6 +16,8 @@
 ## 接口
 
 ScrollBar(value: ScrollBarOptions)
+
+创建滚动条组件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -56,6 +59,8 @@ enableNestedScroll(enabled: Optional\<boolean>)
 
 ## ScrollBarOptions对象说明
 
+滚动条组件参数。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -75,6 +80,8 @@ enableNestedScroll(enabled: Optional\<boolean>)
 > 从API version 12开始，ScrollBar组件没有子节点时，支持显示默认样式的滚动条。
 
 ## ScrollBarDirection枚举说明
+
+滚动条方向枚举。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

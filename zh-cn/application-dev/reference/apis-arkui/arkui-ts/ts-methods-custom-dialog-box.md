@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 接口
@@ -147,7 +147,7 @@ close()
 // xxx.ets
 @CustomDialog
 struct CustomDialogExampleTwo {
-  controllerTwo?: CustomDialogController
+  controllerTwo?: CustomDialogController;
   build() {
     Column() {
       Text('我是第二个弹窗')
@@ -156,7 +156,7 @@ struct CustomDialogExampleTwo {
       Button('点我关闭第二个弹窗')
         .onClick(() => {
           if (this.controllerTwo != undefined) {
-            this.controllerTwo.close()
+            this.controllerTwo.close();
           }
         })
         .margin(20)
@@ -166,23 +166,23 @@ struct CustomDialogExampleTwo {
 @CustomDialog
 @Component
 struct CustomDialogExample {
-  @Link textValue: string
-  @Link inputValue: string
+  @Link textValue: string;
+  @Link inputValue: string;
   dialogControllerTwo: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExampleTwo(),
     alignment: DialogAlignment.Bottom,
     onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
-      console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
-      console.log("dialog onWillDismiss")
+      console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
+      console.log("dialog onWillDismiss");
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-        dismissDialogAction.dismiss()
+        dismissDialogAction.dismiss();
       }
       if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-        dismissDialogAction.dismiss()
+        dismissDialogAction.dismiss();
       }
     },
     offset: { dx: 0, dy: -25 } })
-  controller?: CustomDialogController
+  controller?: CustomDialogController;
   // 若尝试在CustomDialog中传入多个其他的Controller，以实现在CustomDialog中打开另一个或另一些CustomDialog，那么此处需要将指向自己的controller放在所有controller的后面
   cancel: () => void = () => {
   }
@@ -194,23 +194,23 @@ struct CustomDialogExample {
       Text('Change text').fontSize(20).margin({ top: 10, bottom: 10 })
       TextInput({ placeholder: '', text: this.textValue }).height(60).width('90%')
         .onChange((value: string) => {
-          this.textValue = value
+          this.textValue = value;
         })
       Text('Whether to change a text?').fontSize(16).margin({ bottom: 10 })
       Flex({ justifyContent: FlexAlign.SpaceAround }) {
         Button('cancel')
           .onClick(() => {
             if (this.controller != undefined) {
-              this.controller.close()
-              this.cancel()
+              this.controller.close();
+              this.cancel();
             }
           }).backgroundColor(0xffffff).fontColor(Color.Black)
         Button('confirm')
           .onClick(() => {
             if (this.controller != undefined) {
-              this.inputValue = this.textValue
-              this.controller.close()
-              this.confirm()
+              this.inputValue = this.textValue;
+              this.controller.close();
+              this.confirm();
             }
           }).backgroundColor(0xffffff).fontColor(Color.Red)
       }.margin({ bottom: 10 })
@@ -218,7 +218,7 @@ struct CustomDialogExample {
       Button('点我打开第二个弹窗')
         .onClick(() => {
           if (this.dialogControllerTwo != null) {
-            this.dialogControllerTwo.open()
+            this.dialogControllerTwo.open();
           }
         })
         .margin(20)
@@ -233,21 +233,21 @@ struct CustomDialogUser {
   @State inputValue: string = 'click me'
   dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample({
-      cancel: ()=> { this.onCancel() },
-      confirm: ()=> { this.onAccept() },
-      textValue: $textValue,
-      inputValue: $inputValue
+      cancel: ()=> { this.onCancel(); },
+      confirm: ()=> { this.onAccept(); },
+      textValue: this.textValue,
+      inputValue: this.inputValue
     }),
     cancel: this.exitApp,
     autoCancel: true,
     onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
-      console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
-      console.log("dialog onWillDismiss")
+      console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
+      console.log("dialog onWillDismiss");
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-        dismissDialogAction.dismiss()
+        dismissDialogAction.dismiss();
       }
       if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-        dismissDialogAction.dismiss()
+        dismissDialogAction.dismiss();
       }
     },
     alignment: DialogAlignment.Bottom,
@@ -259,26 +259,26 @@ struct CustomDialogUser {
 
   // 在自定义组件即将析构销毁时将dialogController置空
   aboutToDisappear() {
-    this.dialogController = null // 将dialogController置空
+    this.dialogController = null; // 将dialogController置空
   }
 
   onCancel() {
-    console.info('Callback when the first button is clicked')
+    console.info('Callback when the first button is clicked');
   }
 
   onAccept() {
-    console.info('Callback when the second button is clicked')
+    console.info('Callback when the second button is clicked');
   }
 
   exitApp() {
-    console.info('Click the callback in the blank area')
+    console.info('Click the callback in the blank area');
   }
   build() {
     Column() {
       Button(this.inputValue)
         .onClick(() => {
           if (this.dialogController != null) {
-            this.dialogController.open()
+            this.dialogController.open();
           }
         }).backgroundColor(0x317aff)
     }.width('100%').margin({ top: 5 })
@@ -296,7 +296,7 @@ struct CustomDialogUser {
 // xxx.ets
 @CustomDialog
 struct CustomDialogExample {
-  controller?: CustomDialogController
+  controller?: CustomDialogController;
   cancel: () => void = () => {
   }
   confirm: () => void = () => {
@@ -309,7 +309,7 @@ struct CustomDialogExample {
       Button('点我关闭弹窗')
         .onClick(() => {
           if (this.controller != undefined) {
-            this.controller.close()
+            this.controller.close();
           }
         })
         .margin(20)
@@ -321,19 +321,19 @@ struct CustomDialogExample {
 struct CustomDialogUser {
   dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample({
-      cancel: ()=> { this.onCancel() },
-      confirm: ()=> { this.onAccept() }
+      cancel: ()=> { this.onCancel(); },
+      confirm: ()=> { this.onAccept(); }
     }),
     cancel: this.existApp,
     autoCancel: true,
     onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
-      console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
-      console.log("dialog onWillDismiss")
+      console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
+      console.log("dialog onWillDismiss");
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-        dismissDialogAction.dismiss()
+        dismissDialogAction.dismiss();
       }
       if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-        dismissDialogAction.dismiss()
+        dismissDialogAction.dismiss();
       }
     },
     alignment: DialogAlignment.Center,
@@ -346,19 +346,19 @@ struct CustomDialogUser {
   })
   // 在自定义组件即将析构销毁时将dialogController置空
   aboutToDisappear() {
-    this.dialogController = null // 将dialogController置空
+    this.dialogController = null; // 将dialogController置空
   }
 
   onCancel() {
-    console.info('Callback when the first button is clicked')
+    console.info('Callback when the first button is clicked');
   }
 
   onAccept() {
-    console.info('Callback when the second button is clicked')
+    console.info('Callback when the second button is clicked');
   }
 
   existApp() {
-    console.info('Click the callback in the blank area')
+    console.info('Click the callback in the blank area');
   }
 
   build() {
@@ -366,7 +366,7 @@ struct CustomDialogUser {
       Button('click me')
         .onClick(() => {
           if (this.dialogController != null) {
-            this.dialogController.open()
+            this.dialogController.open();
           }
         }).backgroundColor(0x317aff)
     }.width('100%').margin({ top: 5 })
@@ -382,7 +382,7 @@ struct CustomDialogUser {
 // xxx.ets
 @CustomDialog
 struct CustomDialogExample {
-  controller?: CustomDialogController
+  controller?: CustomDialogController;
   cancel: () => void = () => {
   }
   confirm: () => void = () => {
@@ -395,7 +395,7 @@ struct CustomDialogExample {
       Button('点我关闭弹窗')
         .onClick(() => {
           if (this.controller != undefined) {
-            this.controller.close()
+            this.controller.close();
           }
         })
         .margin(20)
@@ -407,8 +407,8 @@ struct CustomDialogExample {
 struct CustomDialogUser {
   dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample({
-      cancel: ()=> { this.onCancel() },
-      confirm: ()=> { this.onAccept() }
+      cancel: ()=> { this.onCancel(); },
+      confirm: ()=> { this.onAccept(); }
     }),
     cancel: this.existApp,
     autoCancel: true,
@@ -416,10 +416,10 @@ struct CustomDialogUser {
       console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
       console.log("dialog onWillDismiss")
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-        dismissDialogAction.dismiss()
+        dismissDialogAction.dismiss();
       }
       if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-        dismissDialogAction.dismiss()
+        dismissDialogAction.dismiss();
       }
     },
     alignment: DialogAlignment.Center,
@@ -436,19 +436,19 @@ struct CustomDialogUser {
   })
   // 在自定义组件即将析构销毁时将dialogController置空
   aboutToDisappear() {
-    this.dialogController = null // 将dialogController置空
+    this.dialogController = null; // 将dialogController置空
   }
 
   onCancel() {
-    console.info('Callback when the first button is clicked')
+    console.info('Callback when the first button is clicked');
   }
 
   onAccept() {
-    console.info('Callback when the second button is clicked')
+    console.info('Callback when the second button is clicked');
   }
 
   existApp() {
-    console.info('Click the callback in the blank area')
+    console.info('Click the callback in the blank area');
   }
 
   build() {
@@ -456,7 +456,7 @@ struct CustomDialogUser {
       Button('click me')
         .onClick(() => {
           if (this.dialogController != null) {
-            this.dialogController.open()
+            this.dialogController.open();
           }
         }).backgroundColor(0x317aff)
     }.width('100%').margin({ top: 5 })
@@ -515,8 +515,8 @@ struct CustomDialogUser {
   @State inputValue: string = 'click me';
   dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample({
-      textValue: $textValue,
-      inputValue: $inputValue
+      textValue: this.textValue,
+      inputValue: this.inputValue
     }),
     cancel: this.exitApp,
     autoCancel: true,

@@ -124,12 +124,12 @@
 | typedef void(\* [OH_CameraManager_StatusCallback](#oh_cameramanager_statuscallback)) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_StatusInfo](_camera___status_info.md) \*status) | 在[CameraManager_Callbacks](_camera_manager___callbacks.md)中被调用的相机管理器状态回调。 | 
 | typedef void(\* [OH_CameraManager_TorchStatusCallback](#oh_cameramanager_torchstatuscallback)) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_TorchStatusInfo](_camera___torch_status_info.md) \*status) | 手电筒状态变化回调。 | 
 | typedef struct [CameraManager_Callbacks](_camera_manager___callbacks.md) [CameraManager_Callbacks](#cameramanager_callbacks) | 相机设备状态的回调。 | 
-| typedef struct [Camera_CaptureSession](#camera_capturesession) [Camera_CaptureSession](#camera_capturesession) | 捕获会话对象 | 
+| typedef struct [Camera_CaptureSession](#camera_capturesession) [Camera_CaptureSession](#camera_capturesession) | 捕获会话对象。 | 
 | typedef void(\* [OH_CaptureSession_OnFocusStateChange](#oh_capturesession_onfocusstatechange)) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_FocusState](#camera_focusstate) focusState) | 在[CaptureSession_Callbacks](_capture_session___callbacks.md)中被调用的捕获会话焦点状态回调。 | 
 | typedef void(\* [OH_CaptureSession_OnError](#oh_capturesession_onerror)) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_ErrorCode](#camera_errorcode) errorCode) | 在[CaptureSession_Callbacks](_capture_session___callbacks.md)中被调用的捕获会话错误回调。 | 
 | typedef void(\* [OH_CaptureSession_OnSmoothZoomInfo](#oh_capturesession_onsmoothzoominfo)) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_SmoothZoomInfo](_camera___smooth_zoom_info.md) \*smoothZoomInfo) | 拍照会话平滑变焦信息回调，触发平滑变焦后该回调会返回。 | 
 | typedef struct [CaptureSession_Callbacks](_capture_session___callbacks.md) [CaptureSession_Callbacks](#capturesession_callbacks) | 捕获会话的回调。 | 
-| typedef struct [Camera_MetadataOutput](#camera_metadataoutput) [Camera_MetadataOutput](#camera_metadataoutput) | 元数据输出对象 | 
+| typedef struct [Camera_MetadataOutput](#camera_metadataoutput) [Camera_MetadataOutput](#camera_metadataoutput) | 元数据输出对象。 | 
 | typedef void(\* [OH_MetadataOutput_OnMetadataObjectAvailable](#oh_metadataoutput_onmetadataobjectavailable)) ([Camera_MetadataOutput](#camera_metadataoutput) \*metadataOutput, [Camera_MetadataObject](_camera___metadata_object.md) \*metadataObject, uint32_t size) | 在[MetadataOutput_Callbacks](_metadata_output___callbacks.md)中被调用的元数据输出元数据对象可用回调。 | 
 | typedef void(\* [OH_MetadataOutput_OnError](#oh_metadataoutput_onerror)) ([Camera_MetadataOutput](#camera_metadataoutput) \*metadataOutput, [Camera_ErrorCode](#camera_errorcode) errorCode) | 在[MetadataOutput_Callbacks](_metadata_output___callbacks.md)中被调用的元数据输出错误回调。 | 
 | typedef struct [MetadataOutput_Callbacks](_metadata_output___callbacks.md) [MetadataOutput_Callbacks](#metadataoutput_callbacks) | 元数据输出的回调。 | 
@@ -212,7 +212,7 @@
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_IsCameraMuted](#oh_cameramanager_iscameramuted) ([Camera_Manager](#camera_manager) \*cameraManager, bool \*isCameraMuted) | 确定相机是否静音。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_CreateCaptureSession](#oh_cameramanager_createcapturesession) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_CaptureSession](#camera_capturesession) \*\*captureSession) | 创建捕获会话实例。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_CreateCameraInput](#oh_cameramanager_createcamerainput) ([Camera_Manager](#camera_manager) \*cameraManager, const [Camera_Device](_camera___device.md) \*camera, [Camera_Input](#camera_input) \*\*cameraInput) | 创建相机输入实例。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_CreateCameraInput_WithPositionAndType](#oh_cameramanager_createcamerainput_withpositionandtype) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_Position](#camera_position) position, [Camera_Type](#camera_type) type, [Camera_Input](#camera_input) \*\*cameraInput) | 创建具有位置和类型的相机输入实例 | 
+| [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_CreateCameraInput_WithPositionAndType](#oh_cameramanager_createcamerainput_withpositionandtype) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_Position](#camera_position) position, [Camera_Type](#camera_type) type, [Camera_Input](#camera_input) \*\*cameraInput) | 创建具有位置和类型的相机输入实例。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_CreatePreviewOutput](#oh_cameramanager_createpreviewoutput) ([Camera_Manager](#camera_manager) \*cameraManager, const [Camera_Profile](_camera___profile.md) \*profile, const char \*surfaceId, [Camera_PreviewOutput](#camera_previewoutput) \*\*previewOutput) | 创建预览输出实例。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_CreatePreviewOutputUsedInPreconfig](#oh_cameramanager_createpreviewoutputusedinpreconfig) ([Camera_Manager](#camera_manager) \*cameraManager, const char \*surfaceId, [Camera_PreviewOutput](#camera_previewoutput) \*\*previewOutput) | 创建在预配置流中使用的预览输出实例。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_CreatePhotoOutput](#oh_cameramanager_createphotooutput) ([Camera_Manager](#camera_manager) \*cameraManager, const [Camera_Profile](_camera___profile.md) \*profile, const char \*surfaceId, [Camera_PhotoOutput](#camera_photooutput) \*\*photoOutput) | 创建一个拍照输出实例。 | 
@@ -312,11 +312,12 @@
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_Capture_WithCaptureSetting](#oh_photooutput_capture_withcapturesetting) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, [Camera_PhotoCaptureSetting](_camera___photo_capture_setting.md) setting) | 使用捕获设置捕获拍照。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_Release](#oh_photooutput_release) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput) | 释放拍照输出。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_IsMirrorSupported](#oh_photooutput_ismirrorsupported) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, bool \*isSupported) | 检查是否支持镜像拍照。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_EnableMirror](#oh_photooutput_enablemirror) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, bool enabled) | 是否启用镜像拍照。 | 
+| [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_EnableMirror](#oh_photooutput_enablemirror) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, bool enabled) | 是否启用动态照片镜像拍照。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_GetActiveProfile](#oh_photooutput_getactiveprofile) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, [Camera_Profile](_camera___profile.md) \*\*profile) | 获取当前照片输出配置文件。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_DeleteProfile](#oh_photooutput_deleteprofile) ([Camera_Profile](_camera___profile.md) \*profile) | 删除照片配置文件实例。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_IsMovingPhotoSupported](#oh_photooutput_ismovingphotosupported) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, bool \*isSupported) | 检查是否支持动态照片。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_EnableMovingPhoto](#oh_photooutput_enablemovingphoto) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, bool enabled) | 是否启用动态照片。 | 
+| [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_GetPhotoRotation](#oh_photooutput_getphotorotation) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, int devicedegree, [Camera_ImageRotation](#camera_imagerotation) \*imageRotation) | 获得相机照片旋转角度。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PreviewOutput_RegisterCallback](#oh_previewoutput_registercallback) ([Camera_PreviewOutput](#camera_previewoutput) \*previewOutput, [PreviewOutput_Callbacks](_preview_output___callbacks.md) \*callback) | 注册预览输出更改事件回调。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PreviewOutput_UnregisterCallback](#oh_previewoutput_unregistercallback) ([Camera_PreviewOutput](#camera_previewoutput) \*previewOutput, [PreviewOutput_Callbacks](_preview_output___callbacks.md) \*callback) | 注销预览输出更改事件回调。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PreviewOutput_Start](#oh_previewoutput_start) ([Camera_PreviewOutput](#camera_previewoutput) \*previewOutput) | 开始预览输出。 | 
@@ -328,6 +329,8 @@
 | [Camera_ErrorCode](#camera_errorcode) [OH_PreviewOutput_DeleteFrameRates](#oh_previewoutput_deleteframerates) ([Camera_PreviewOutput](#camera_previewoutput) \*previewOutput, [Camera_FrameRateRange](_camera___frame_rate_range.md) \*frameRateRange) | 删除帧率列表。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PreviewOutput_SetFrameRate](#oh_previewoutput_setframerate) ([Camera_PreviewOutput](#camera_previewoutput) \*previewOutput, int32_t minFps, int32_t maxFps) | 设置预览输出帧率。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PreviewOutput_GetActiveFrameRate](#oh_previewoutput_getactiveframerate) ([Camera_PreviewOutput](#camera_previewoutput) \*previewOutput, [Camera_FrameRateRange](_camera___frame_rate_range.md) \*frameRateRange) | 获取当前预览输出帧率。 | 
+| [Camera_ErrorCode](#camera_errorcode) [OH_PreviewOutput_GetPreviewRotation](#oh_previewoutput_getpreviewrotation) ([Camera_PreviewOutput](#camera_previewoutput) \*previewOutput, int displayRotation, [Camera_ImageRotation](#camera_imagerotation) \*imageRotation) | 获得相机预览旋转角度。 | 
+| [Camera_ErrorCode](#camera_errorcode) [OH_PreviewOutput_SetPreviewRotation](#oh_previewoutput_setpreviewrotation) ([Camera_PreviewOutput](#camera_previewoutput) \*previewOutput, [Camera_ImageRotation](#camera_imagerotation) \*previewRotation, bool isDisplayLocked) | 设置相机预览旋转角度。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_VideoOutput_RegisterCallback](#oh_videooutput_registercallback) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, [VideoOutput_Callbacks](_video_output___callbacks.md) \*callback) | 注册录像输出更改事件回调。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_VideoOutput_UnregisterCallback](#oh_videooutput_unregistercallback) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, [VideoOutput_Callbacks](_video_output___callbacks.md) \*callback) | 注销录像输出更改事件回调。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_VideoOutput_Start](#oh_videooutput_start) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput) | 开始录像输出。 | 
@@ -5256,6 +5259,37 @@ Camera_ErrorCode OH_PhotoOutput_GetActiveProfile(Camera_PhotoOutput* photoOutput
 - CAMERA_SERVICE_FATAL_ERROR：相机服务出现致命错误。
 
 
+### OH_PhotoOutput_GetPhotoRotation()
+
+```
+Camera_ErrorCode OH_PhotoOutput_GetPhotoRotation(Camera_PhotoOutput* photoOutput, int devicedegree, Camera_ImageRotation* imageRotation)
+```
+
+**描述**
+
+获得相机照片旋转角度。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| photoOutput | 用来获取相机照片旋转角度的[Camera_PhotoOutput](#camera_photooutput)实例。 | 
+| devicedegree | 当前设备旋转角度 | 
+| imageRotation | 预览旋转角度[Camera_ImageRotation](#camera_imagerotation-1)的结果。 | 
+
+**返回：**
+
+错误码[Camera_ErrorCode](#camera_errorcode-1)：
+
+- CAMERA_OK: 方法调用成功。
+
+- CAMERA_INVALID_ARGUMENT: 参数丢失或参数类型不正确。
+
+- CAMERA_SERVICE_FATAL_ERROR: 相机服务出现致命错误。
+
+
 ### OH_PhotoOutput_IsMirrorSupported()
 
 ```
@@ -5294,7 +5328,7 @@ Camera_ErrorCode OH_PhotoOutput_EnableMirror(Camera_PhotoOutput* photoOutput, bo
 
 **描述**
 
-是否启用镜像拍照。
+是否启用动态照片镜像拍照。
 
 **起始版本：** 13
 
@@ -5303,7 +5337,7 @@ Camera_ErrorCode OH_PhotoOutput_EnableMirror(Camera_PhotoOutput* photoOutput, bo
 | 名称          | 描述                                                      | 
 |-------------|---------------------------------------------------------|
 | photoOutput | [Camera_PhotoOutput](#camera_photooutput)实例，用于是否启用镜像拍照。 | 
-| enabled     | 是否启用镜像拍照的结果，true为开启镜像拍照，false为关闭镜像拍照。        | 
+| enabled     | 是否启用动态照片镜像拍照的结果，true为开启动态照片镜像拍照，false为关闭动态照片镜像拍照。        | 
 
 **返回：**
 
@@ -5943,6 +5977,37 @@ Camera_ErrorCode OH_PreviewOutput_GetActiveProfile(Camera_PreviewOutput* preview
 - CAMERA_SERVICE_FATAL_ERROR：相机服务出现致命错误。
 
 
+### OH_PreviewOutput_GetPreviewRotation()
+
+```
+Camera_ErrorCode OH_PreviewOutput_GetPreviewRotation(Camera_PreviewOutput *previewOutput, int displayRotation, Camera_ImageRotation* imageRotation)
+```
+
+**描述**
+
+获得相机预览旋转角度。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| previewOutput | 传递当前预览输出帧率的[Camera_PreviewOutput](#camera_previewoutput)实例。 | 
+| displayRotation | 当前显示预览角度。 | 
+| imageRotation | 预览旋转角度[Camera_ImageRotation](#camera_imagerotation-1)的结果。 | 
+
+**返回：**
+
+错误码[Camera_ErrorCode](#camera_errorcode-1)：
+
+- CAMERA_OK: 方法调用成功。
+
+- CAMERA_INVALID_ARGUMENT: 参数丢失或参数类型不正确。
+
+- CAMERA_SERVICE_FATAL_ERROR: 相机服务出现致命错误。
+
+
 ### OH_PreviewOutput_GetSupportedFrameRates()
 
 ```
@@ -6058,6 +6123,37 @@ Camera_ErrorCode OH_PreviewOutput_SetFrameRate(Camera_PreviewOutput* previewOutp
 - CAMERA_OK：方法调用成功。
 
 - CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。
+
+
+### OH_PreviewOutput_SetPreviewRotation()
+
+```
+Camera_ErrorCode OH_PreviewOutput_SetPreviewRotation(Camera_PreviewOutput* previewOutput, Camera_ImageRotation* previewRotation, bool isDisplayLocked)
+```
+
+**描述**
+
+设置相机预览旋转角度。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| previewOutput | 传递当前预览输出帧率的[Camera_PreviewOutput](#camera_previewoutput)实例。 | 
+| previewRotation | 预览旋转角度[Camera_ImageRotation](#camera_imagerotation-1)。 | 
+| isDisplayLocked | TRUE表示显示已锁定。 | 
+
+**返回：**
+
+错误码[Camera_ErrorCode](#camera_errorcode-1)：
+
+- CAMERA_OK: 方法调用成功。
+
+- CAMERA_INVALID_ARGUMENT: 参数丢失或参数类型不正确。
+
+- CAMERA_SERVICE_FATAL_ERROR: 相机服务出现致命错误。
 
 
 ### OH_PreviewOutput_Start()

@@ -94,8 +94,8 @@ Before this API is called, [autoPlay](#autoplay13) must be set to **true**. Othe
 
 | Name | Type   | Mandatory| Description                        |
 | ------- | ------- | ---- | ---------------------------- |
-| startTime| number| Yes  | Start playback time, in ms.<br>Value range: [0,3000]|
-| endTime| number| Yes  | End playback time, in ms.<br>Value range: [0,3000]|
+| startTime| number| Yes  | Start playback time, in ms.<br>The value must be greater than or equal to 0.|
+| endTime| number| Yes  | End playback time, in ms.<br>The value must be greater than **startTime**.|
 
 ### autoPlay<sup>13+</sup>
 
@@ -413,7 +413,7 @@ class MediaDataHandlerMovingPhoto implements photoAccessHelper.MediaAssetDataHan
 }
 ```
 
-## Example 2: Use moving photos in an atomic service.
+## Example 2: Enable the AI analyzer.
 
 ```ts
 // xxx.ets
@@ -500,5 +500,3 @@ struct Index {
   }
 }
 ```
-
- <!--no_check--> 

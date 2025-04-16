@@ -3,7 +3,7 @@
 
 ## 命令功能
 
-hwi命令查询当前中断信息
+hwi命令查询当前中断信息。
 
 
 ## 命令格式
@@ -13,7 +13,7 @@ hwi
 
 ## 参数说明
 
-无
+无。
 
 
 ## 使用指南
@@ -25,12 +25,12 @@ hwi
 
 ## 使用实例
 
-举例：输入hwi
+举例：输入hwi。
 
 
 ## 输出说明
 
-- 显示中断信息（LOSCFG_CPUP_INCLUDE_IRQ关闭）
+- 显示中断信息（LOSCFG_CPUP_INCLUDE_IRQ关闭）。
     
   ```
   OHOS # hwi
@@ -68,7 +68,7 @@ hwi
         102:         0:      SPI_HI35XX
   ```
 
-- 显示中断信息（LOSCFG_CPUP_INCLUDE_IRQ打开）
+- 显示中断信息（LOSCFG_CPUP_INCLUDE_IRQ打开）。
     
   ```
   OHOS # hwi

@@ -18,7 +18,8 @@ PinchGesture(value?: { fingers?: number, distance?: number })
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | fingers | number | No| Minimum number of fingers to trigger a pinch. The value ranges from 2 to 5.<br>Default value: **2**<br>While more fingers than the minimum number can be pressed to trigger the gesture, only the first fingers of the minimum number participate in gesture calculation.|
-| distance | number | No| Minimum recognition distance, in vp.<br>Default value: **5**<br>**NOTE**<br> If the value is less than or equal to 0, it will be converted to the default value.|
+| distance | number | No| Minimum recognition distance, in vp.<br>Default value: **5**<br>**NOTE**<br>Value range: [0, +∞). If the value is less than or equal to 0, the default value is used.|
+| isFingerCountLimited<sup>15+</sup> | boolean | No| Whether to enforce the exact number of fingers touching the screen. With the value **true**, the gesture recognition fails if the number of fingers touching the screen does not match the configured value of **fingers**. The gesture can only be successfully recognized if the number of fingers equals the configured minimum and the swipe distance meets the threshold. Note that only the first two fingers that touch the screen are considered for the gesture. If one of these fingers is lifted, the gesture recognition fails. For gestures that have already been successfully recognized, changing the number of fingers touching the screen will not trigger the [onActionUpdate](ts-basic-gestures-pinchgesture.md#events) event, but the [onActionEnd](ts-basic-gestures-pinchgesture.md#events) event can still be triggered.<br>Default value: **false**|
 
 
 ## Events

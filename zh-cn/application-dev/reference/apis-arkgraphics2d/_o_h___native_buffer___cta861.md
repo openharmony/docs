@@ -11,6 +11,7 @@
 
 **相关模块：**[OH_NativeBuffer](_o_h___native_buffer.md)
 
+**所在头文件：**[buffer_common.h](buffer__common_8h.md)
 
 ## 汇总
 
@@ -32,7 +33,7 @@
 float OH_NativeBuffer_Cta861::maxContentLightLevel
 ```
 
-**描述**
+**描述：**
 
 最大内容亮度水平。
 
@@ -43,6 +44,6 @@ float OH_NativeBuffer_Cta861::maxContentLightLevel
 float OH_NativeBuffer_Cta861::maxFrameAverageLightLevel
 ```
 
-**描述**
+**描述：**
 
 最大的帧平均亮度水平。
