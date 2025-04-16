@@ -1,6 +1,6 @@
 # @ohos.application.uriPermissionManager (URI Permission Management) (System API)
 
-The **uriPermissionManager** module provides APIs for granting permissions on a file or revoking the granted permission from an application. The file is identified by a uniform resource identifier (URI).
+The **uriPermissionManager** module provides capabilities for granting the permission on a file to another application and revoking the granted permissions. The file is identified by a uniform resource identifier (URI).
 
 > **NOTE**
 > 
@@ -10,7 +10,7 @@ The **uriPermissionManager** module provides APIs for granting permissions on a 
 
 ## Modules to Import
 
-  
+
 ```ts
 import { uriPermissionManager } from '@kit.AbilityKit';
 ```
@@ -24,7 +24,7 @@ Grants the URI permission to an application. If the call is successful, the appl
 
 > **NOTE**
 >
-> If an application has the ohos.permission.PROXY_AUTHORIZATION_URI permission, it can grant access to the URIs not belonging to it. If the application does not have this permission, it can only grant access to its own URIs.
+> If an application has the ohos.permission.PROXY_AUTHORIZATION_URI permission, it can grant the accessible URIs of another application. If the application does not have this permission, it can grant only its own URI permissions.
 
 **System API**: This is a system API.
 
@@ -34,12 +34,12 @@ Grants the URI permission to an application. If the call is successful, the appl
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | uri | string | Yes| URI of the file. The scheme has a fixed value of **file**. For details, see [FileUri](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10).| 
-  | flag | [wantConstant.Flags](js-apis-app-ability-wantConstant.md#flags) | Yes| Read or write permission on the file to grant.| 
-  | targetBundleName | string | Yes| Bundle name of the target application.| 
-  | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the operation is successful, **0** is returned; otherwise, **-1** is returned.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| uri | string | Yes| URI of the file. The scheme has a fixed value of **file**. For details, see [FileUri](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10).|
+| flag | [wantConstant.Flags](js-apis-app-ability-wantConstant.md#flags) | Yes| Read or write permission on the file to grant.|
+| targetBundleName | string | Yes| Bundle name of the target application.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the operation is successful, **0** is returned; otherwise, **-1** is returned.|
 
 **Error codes**
 
@@ -86,7 +86,7 @@ Grants the URI permission to an application. If the call is successful, the appl
 
 > **NOTE**
 >
-> If an application has the ohos.permission.PROXY_AUTHORIZATION_URI permission, it can grant access to the URIs not belonging to it. If the application does not have this permission, it can only grant access to its own URIs.
+> If an application has the ohos.permission.PROXY_AUTHORIZATION_URI permission, it can grant the accessible URIs of another application. If the application does not have this permission, it can grant only its own URI permissions.
 
 **System API**: This is a system API.
 
@@ -96,31 +96,31 @@ Grants the URI permission to an application. If the call is successful, the appl
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | uri | string | Yes| URI of the file. The scheme has a fixed value of **file**. For details, see [FileUri](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10).| 
-  | flag | [wantConstant.Flags](js-apis-app-ability-wantConstant.md#flags) | Yes| Read or write permission on the file to grant.| 
-  | targetBundleName | string | Yes| Bundle name of the target application.|  
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| uri | string | Yes| URI of the file. The scheme has a fixed value of **file**. For details, see [FileUri](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10).|
+| flag | [wantConstant.Flags](js-apis-app-ability-wantConstant.md#flags) | Yes| Read or write permission on the file to grant.|
+| targetBundleName | string | Yes| Bundle name of the target application.|
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, **0** is returned; otherwise, **-1** is returned.| 
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, **0** is returned; otherwise, **-1** is returned.|
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-  | ID| Error Message|
-  | ------- | -------------------------------- |
-  | 201 | Permission denied. |
-  | 202 | Not System App. Interface caller is not a system app. |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-  | 16000050 | Internal error. |
-  | 16000058 | Invalid URI flag. |
-  | 16000059 | Invalid URI type. |
-  | 16000060 | A sandbox application cannot grant URI permission. |
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 16000050 | Internal error. |
+| 16000058 | Invalid URI flag. |
+| 16000059 | Invalid URI type. |
+| 16000060 | A sandbox application cannot grant URI permission. |
 
 **Example**
     
@@ -156,7 +156,7 @@ Grants the URI permission to an application. If the call is successful, the appl
 
 > **NOTE**
 > 
->- If an application has the ohos.permission.PROXY_AUTHORIZATION_URI permission, it can grant access to the URIs not belonging to it. If the application does not have this permission, it can only grant access to its own URIs.
+>- If an application has the ohos.permission.PROXY_AUTHORIZATION_URI permission, it can grant the accessible URIs of another application. If the application does not have this permission, it can grant only its own URI permissions.
 >- This API can be used to grant URI access permission to a cloned application. You need to specify the application bundle name and index of the cloned application.
 
 **System API**: This is a system API.
@@ -167,33 +167,33 @@ Grants the URI permission to an application. If the call is successful, the appl
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | uri | string | Yes| URI of the file. The scheme has a fixed value of **file**. For details, see [FileUri](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10).| 
-  | flag | [wantConstant.Flags](js-apis-app-ability-wantConstant.md#flags) | Yes| Read or write permission on the file to grant.| 
-  | targetBundleName | string | Yes| Bundle name of the target application.|
-  | appCloneIndex | number | Yes| Index of the cloned application. The value range is [0, 1000]. The value **0** indicates the application itself.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| uri | string | Yes| URI of the file. The scheme has a fixed value of **file**. For details, see [FileUri](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10).|
+| flag | [wantConstant.Flags](js-apis-app-ability-wantConstant.md#flags) | Yes| Read or write permission on the file to grant.|
+| targetBundleName | string | Yes| Bundle name of the target application.|
+| appCloneIndex | number | Yes| Index of the cloned application. The value range is [0, 1000]. The value **0** indicates the application itself.|
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise that returns no value.  | 
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-  | ID| Error Message|
-  | ------- | -------------------------------- |
-  | 201 | Permission denied. |
-  | 202 | Not System App. Interface caller is not a system app. |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-  | 16000050 | Internal error. |
-  | 16000058 | Invalid URI flag. |
-  | 16000059 | Invalid URI type. |
-  | 16000060 | A sandbox application cannot grant URI permission. |
-  | 16000081 | Get target application info failed. |
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 16000050 | Internal error. |
+| 16000058 | Invalid URI flag. |
+| 16000059 | Invalid URI type. |
+| 16000060 | A sandbox application cannot grant URI permission. |
+| 16000081 | Get target application info failed. |
 
 **Example**
 
@@ -258,22 +258,22 @@ Revokes the URI permission from an application. This API uses an asynchronous ca
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | uri | string | Yes| URI of the file. The scheme has a fixed value of **file**. For details, see [FileUri](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10).| 
-  | targetBundleName | string | Yes| Bundle name of the application, from which the permission is revoked.| 
-  | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the operation is successful, **0** is returned; otherwise, **-1** is returned.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| uri | string | Yes| URI of the file. The scheme has a fixed value of **file**. For details, see [FileUri](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10).|
+| targetBundleName | string | Yes| Bundle name of the application, from which the permission is revoked.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the operation is successful, **0** is returned; otherwise, **-1** is returned.|
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-  | ID| Error Message|
-  | ------- | -------------------------------- |
-  | 202 | Not System App. Interface caller is not a system app. |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-  | 16000050 | Internal error. |
-  | 16000059 | Invalid URI type. |
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 16000050 | Internal error. |
+| 16000059 | Invalid URI type. |
 
 **Example**
     
@@ -305,27 +305,27 @@ Revokes the URI permission from an application. This API uses a promise to retur
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | uri | string | Yes| URI of the file. The scheme has a fixed value of **file**. For details, see [FileUri](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10).| 
-  | targetBundleName | string | Yes| Bundle name of the target application.|  
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| uri | string | Yes| URI of the file. The scheme has a fixed value of **file**. For details, see [FileUri](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10).|
+| targetBundleName | string | Yes| Bundle name of the target application.|
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, **0** is returned; otherwise, **-1** is returned.| 
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, **0** is returned; otherwise, **-1** is returned.|
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-  | ID| Error Message|
-  | ------- | -------------------------------- |
-  | 202 | Not System App. Interface caller is not a system app. |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-  | 16000050 | Internal error. |
-  | 16000059 | Invalid URI type. |
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 16000050 | Internal error. |
+| 16000059 | Invalid URI type. |
 
 
 **Example**
@@ -361,29 +361,29 @@ Revokes the URI permission from an application. This API uses a promise to retur
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | uri | string | Yes| URI of the file. The scheme has a fixed value of **file**. For details, see [FileUri](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10).| 
-  | targetBundleName | string | Yes| Bundle name of the target application.|
-  | appCloneIndex | number | Yes| Index of the cloned application. The value range is [0, 1000]. The value **0** indicates the application itself.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| uri | string | Yes| URI of the file. The scheme has a fixed value of **file**. For details, see [FileUri](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10).|
+| targetBundleName | string | Yes| Bundle name of the target application.|
+| appCloneIndex | number | Yes| Index of the cloned application. The value range is [0, 1000]. The value **0** indicates the application itself.|
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise that returns no value.| 
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-  | ID| Error Message|
-  | ------- | -------------------------------- |
-  | 202 | Not System App. Interface caller is not a system app. |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-  | 16000050 | Internal error. |
-  | 16000059 | Invalid URI type. |
-  | 16000081 | Get target application info failed. |
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 16000050 | Internal error. |
+| 16000059 | Invalid URI type. |
+| 16000081 | Get target application info failed. |
 
 **Example**
 
