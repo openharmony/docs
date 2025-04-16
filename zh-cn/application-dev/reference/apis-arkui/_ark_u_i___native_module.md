@@ -12,7 +12,7 @@
 提供ArkUI在Native侧动画回调的能力。
 
 提供ArkUI在Native侧的UI能力，如UI组件创建销毁、树节点操作，属性设置，事件监听等。
-
+若函数参数异常，返回0.0f。 异常返回原因：传入参数验证失败，参数不能为空。
 **起始版本：** 12
 
 
@@ -7949,10 +7949,6 @@ float OH_ArkUI_CustomSpanDrawInfo_GetBaseline (ArkUI_CustomSpanDrawInfo * info)
 **返回：**
 
 基线偏移量值。若函数参数异常，返回0.0f。 异常返回原因：传入参数验证失败，参数不能为空。
-
-**返回：**
-
-返回错误码。ARKUI_ERROR_CODE_NO_ERROR代表成功，ARKUI_ERROR_CODE_PARAM_INVALID代表函数参数异常。
 
 ### OH_ArkUI_NodeUtils_GetWindowInfo()
 
