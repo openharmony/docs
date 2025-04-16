@@ -7950,24 +7950,6 @@ float OH_ArkUI_CustomSpanDrawInfo_GetBaseline (ArkUI_CustomSpanDrawInfo * info)
 
 基线偏移量值。若函数参数异常，返回0.0f。 异常返回原因：传入参数验证失败，参数不能为空。
 
-### OH_ArkUI_NodeUtils_GetAttachedNodeHandleById()
-
-```
-int32_t OH_ArkUI_NodeUtils_GetAttachedNodeHandleById(const char* id, ArkUI_NodeHandle* node)
-```
-**描述：**
-
-根据用户id获取目标节点。
-
-**起始版本：** 15
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| id | 目标节点的ID。 |
-| node | 目标节点。 |
-
 **返回：**
 
 返回错误码。ARKUI_ERROR_CODE_NO_ERROR代表成功，ARKUI_ERROR_CODE_PARAM_INVALID代表函数参数异常。
