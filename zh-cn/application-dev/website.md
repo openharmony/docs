@@ -331,7 +331,7 @@
       - [ArkUI简介](ui/arkui-overview.md)
       - UI开发 (ArkTS声明式开发范式)<!--arkts-ui-development-->
         - [UI开发（ArkTS声明式开发范式）概述](ui/arkts-ui-development-overview.md)
-        - 学习ArkUI范式基本语法<!--arkts-ui-paradigm-basic-syntax-->
+        - 学习UI范式基本语法<!--arkts-ui-paradigm-basic-syntax-->
           - [基本语法概述](ui/state-management/arkts-basic-syntax-overview.md)
           - [声明式UI描述](ui/state-management/arkts-declarative-ui-description.md)
           - 自定义组件<!--arkts-custom-components-->
@@ -349,7 +349,7 @@
           - [@AnimatableExtend装饰器：定义可动画属性](ui/state-management/arkts-animatable-extend.md)
           - [@Require装饰器：校验构造传参](ui/state-management/arkts-require.md)
           - [@Reusable装饰器：组件复用](ui/state-management/arkts-reusable.md)
-        - 学习ArkUI范式状态管理<!--arkts-state-management-->
+        - 学习UI范式状态管理<!--arkts-state-management-->
           - [状态管理概述](ui/state-management/arkts-state-management-overview.md)
           - 状态管理（V1）<!--arkts-state-management-v1-->
             - 管理组件拥有的状态<!--arkts-component-state-management-->
@@ -397,7 +397,7 @@
           - V1V2混用和迁移指导<!--v1v2-migration-->
             - [自定义组件混用场景指导](ui/state-management/arkts-custom-component-mixed-scenarios.md)
             - [V1->V2迁移指导](ui/state-management/arkts-v1-v2-migration.md)
-        - 学习ArkUI范式渲染控制<!--arkts-rendering-control-->
+        - 学习UI范式渲染控制<!--arkts-rendering-control-->
           - [渲染控制概述](ui/state-management/arkts-rendering-control-overview.md)
           - [if/else：条件渲染](ui/state-management/arkts-rendering-control-ifelse.md)
           - [ForEach：循环渲染](ui/state-management/arkts-rendering-control-foreach.md)
