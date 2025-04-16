@@ -494,6 +494,7 @@
         - [Using the Mirroring Capability](ui/arkts-mirroring-display.md)
         - [Supporting Aging-Friendly Design](ui/arkui-support-for-aging-adaptation.md)
         - Theme Settings<!--arkts-theme-->
+          - [Dark and Light Mode Adaptation](ui/ui-dark-light-color-adaptation.md)
           - [Configuring In-Application Theme Skinning](ui/theme_skinning.md)
         - [Using the UI Context API for UI Operations (UIContext)](ui/arkts-global-interface.md)
         <!--Del-->
@@ -1059,12 +1060,14 @@
         - Data Transmission Capabilities of Network Kit<!--network-kit-data-transmission-->
             - [HTTP Data Request](network/http-request.md)
             - [WebSocket Connection](network/websocket-connection.md)
+            - [WebSocket Connection (C/C++)](network/native-websocket-guidelines.md)
             - [Socket Connection](network/socket-connection.md)
             - [MDNS](network/net-mdns.md)
         - Network Management Capabilities of Network Kit<!--network-kit-network-management-->
             - [Network Connection Management](network/net-connection-manager.md)
             - [NetConnection Development (C/C++)](network/native-netmanager-guidelines.md)
             - [Traffic Management](network/net-statistics.md)
+            - [VPN Extension Ability Development](network/net-vpnExtension.md)
           <!--Del-->
             - [Network Sharing (for System Applications Only)](network/net-sharing.md)
             - [Ethernet Connection Management (for System Applications Only)](network/net-ethernet.md)  
@@ -1122,6 +1125,8 @@
           - [Using the Delayed Copy and Paste Function of the Pasteboard](basic-services/pasteboard/pasteboard-time-lapse-copy-and-paste.md)
         - Upload and Download<!--upload-download-->
           - [Uploading and Downloading Application Files](basic-services/request/app-file-upload-download.md)
+        - Compression and Decompression<!--compress-->
+          - [Compressing and Decompressing Files](basic-services/compress/deflate-and-inflate.md)  
       - Function Flow Runtime Kit<!--ffrt-kit-->
         - [Introduction to Function Flow Runtime Kit](ffrt/ffrt-overview.md)
         - [Function Flow Runtime Development](ffrt/ffrt-development-guideline.md)
@@ -1305,7 +1310,9 @@
         - [Audio Decoding](media/avcodec/audio-decoding.md)
         - [Video Encoding](media/avcodec/video-encoding.md)
         - [Temporal Layered Video Encoding](media/avcodec/video-encoding-temporal-scalability.md)
+        - [Video Encoding Configurations for Typical Scenarios](media/avcodec/video-encoding-configuration-typical-scenarios.md)
         - [Video Decoding](media/avcodec/video-decoding.md)
+        - [Concurrently Creating a Video Decoder and Initializing NativeWindow](media/avcodec/parallel-decoding-nativeWindow.md)
       - Media Data Muxing and Demuxing<!--file-muxing-demuxing-->
         - [Media Data Muxing](media/avcodec/audio-video-muxer.md)
         - [Media Data Demuxing](media/avcodec/audio-video-demuxer.md)
@@ -1568,6 +1575,7 @@
           - [Running or Stopping an Event Loop in an Asynchronous Thread Using Node-API Extensions](napi/use-napi-event-loop.md)
           - [Loading a Module Using Node-API](napi/use-napi-load-module-with-info.md)
           - [Passing a Task with the Specified Priority to an ArkTS Thread from an Asynchronous Thread Using Node-API](napi/use-call-threadsafe-function-with-priority.md)
+          - [Calling an ArkTS Method with Return Value of a Promise Using Node-API](napi/use-napi-method-promise.md)
         - [Node-API FAQs](napi/use-napi-faqs.md)
       - Using JSVM-API<!--jsvm-->
         - [JSVM-API Overview](napi/jsvm-introduction.md)
@@ -1789,6 +1797,7 @@
             - [ContinueCallback (System API)](reference/apis-ability-kit/js-apis-inner-application-continueCallback-sys.md)
             - [ContinueDeviceInfo (System API)](reference/apis-ability-kit/js-apis-inner-application-continueDeviceInfo-sys.md)
             - [ContinueMissionInfo (System API)](reference/apis-ability-kit/js-apis-inner-application-continueMissionInfo-sys.md)
+            - [CustomData (System API)](reference/apis-ability-kit/js-apis-inner-application-customData-sys.md)
             - [ExtensionRunningInfo (System API)](reference/apis-ability-kit/js-apis-inner-application-extensionRunningInfo-sys.md)
             - [MissionCallbacks (System API)](reference/apis-ability-kit/js-apis-inner-application-missionCallbacks-sys.md)
             - [MissionDeviceInfo (System API)](reference/apis-ability-kit/js-apis-inner-application-missionDeviceInfo-sys.md)
@@ -2398,6 +2407,9 @@
           - [ForEach](reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md)
           - [LazyForEach](reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md)
           - [Repeat](reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md)
+          <!--Del-->
+          - [State Management with Application-level Variables (System API)](reference/apis-arkui/arkui-ts/ts-state-management-sys.md)
+          <!--DelEnd-->
         - Common Definitions<!--common-definitions-->
           - [Basic Types](reference/apis-arkui/arkui-ts/ts-types.md)
           - [Pixel Units](reference/apis-arkui/arkui-ts/ts-pixel-units.md)
@@ -2671,6 +2683,7 @@
           - [Focus Error Codes](reference/apis-arkui/errorcode-focus.md)
           - [System Resource Error Codes](reference/apis-arkui/errorcode-system-resource.md)   
           - [Sheet Error Codes](reference/apis-arkui/errorcode-bindSheet.md)
+          - [Scrollable Component Error Codes](reference/apis-arkui/errorcode-scroll.md)
         - Graphics<!--arkui-graphics-images-arkts-errcode-->
           - [Display Error Codes](reference/apis-arkui/errorcode-display.md)
           - [Window Error Codes](reference/apis-arkui/errorcode-window.md)
@@ -2717,6 +2730,9 @@
         <!--DelEnd-->
         - application<!--background-tasks-arkts-application-->
           - [WorkSchedulerExtensionContext](reference/apis-backgroundtasks-kit/js-apis-inner-application-WorkSchedulerExtensionContext.md)
+          <!--Del-->
+          - [WorkSchedulerExtensionContext (System API)](reference/apis-backgroundtasks-kit/js-apis-inner-application-WorkSchedulerExtensionContext-sys.md)
+          <!--DelEnd-->
         - APIs No Longer Maintained<!--background-tasks-arkts-dep-->
           - [@ohos.backgroundTaskManager (Background Task Management)](reference/apis-backgroundtasks-kit/js-apis-backgroundTaskManager.md)
           - [@ohos.bundleState (Device Usage Statistics)](reference/apis-backgroundtasks-kit/js-apis-deviceUsageStatistics.md)
