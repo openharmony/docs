@@ -304,7 +304,7 @@ struct Index {
   }
 }
 ```
-<!--@[quickstart1](https://gitcode.com/owner/repo/blob/<branch/tag/commit>/:path/to/your/code.example12) -->
+<!--@[quickstart1](https://gitcode.com/owner/repo/blob/<branch/tag/commit>/:path/to/your/code.example12)-->
 
 ```ts
 // Test.ets
