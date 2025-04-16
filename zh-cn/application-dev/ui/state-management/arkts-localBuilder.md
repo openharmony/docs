@@ -1,6 +1,6 @@
 # \@LocalBuilder装饰器： 维持组件关系
 
-开发者跨组件传递局部@Builder时，`this`指向可能发生偏移，导致访问到的组件关系错误。为了纠正组件的错误关系，会使用特定函数来修正执行上下文，组件间关系维护起来变得复杂。为了解决this指向问题，ArkUI引入了@LocalBuilder装饰器。@LocalBuilder拥有和@Builder相同的功能，且比@Builder能够更好的确定组件间的关系。
+当开发者使用局部@Builder进行引用数据传递时，需要考虑组件的父子关系。然而在使用.bind(this)的方式更改函数调用上下文后，会出现组件的父子关系与状态管理的父子关系不一致的问题。为了解决这一问题，引入@LocalBuilder装饰器。@LocalBuilder拥有和局部@Builder相同的功能，且比局部@Builder能够更好的确定组件的父子关系和状态管理的父子关系。
 
 在阅读本文档前，建议提前阅读：[@Builder](./arkts-builder.md)。
 
@@ -10,24 +10,24 @@
 
 ## 装饰器使用说明
 
-
 ### 自定义组件内自定义构建函数
 
 定义的语法：
 
 ```ts
-@LocalBuilder MyBuilderFunction() { ... }
+@LocalBuilder myBuilderFunction() { ... }
 ```
 
 使用方法：
 
 ```ts
-this.MyBuilderFunction()
+this.myBuilderFunction()
 ```
+- 允许在自定义组件内定义一个或多个@LocalBuilder函数，该函数被认为是该组件的私有、特殊类型的成员函数。
 
-- 允许在自定义组件内定义一个或多个@LocalBuilder方法，该方法被认为是该组件的私有、特殊类型的成员函数。
-- 自定义构建函数可以在所属组件的build方法和其他自定义构建函数中调用，但不允许在组件外调用。
-- 在自定义函数体中，`this`指代当前组件，可直接访问组件的状态变量。建议通过`this`访问状态变量，而非参数传递。
+- 自定义构建函数可以在所属组件的build函数和其他自定义构建函数中调用，但不允许在组件外调用。
+
+- 在自定义函数体中，this指代当前所属组件，组件的状态变量可以在自定义构建函数内访问。建议通过this访问自定义组件的状态变量而不是参数传递。
 
 ## 限制条件
 
@@ -35,11 +35,11 @@ this.MyBuilderFunction()
 
 - @LocalBuilder不能与内置装饰器或自定义装饰器一起使用。
 
-- 自定义组件内的静态方法不能和@LocalBuilder一起使用。
+- 在自定义组件中，@LocalBuilder不能用来装饰静态函数。
 
 ## @LocalBuilder和局部@Builder使用区别
 
-跨组件传递局部@Builder方法时，会使用一些函数来改变this的指向，例如：bind(this)。使用bind(this)之后，当前组件的和子组件关系会改变。但@LocalBuilder是否使用bind(this)，都不会改变组件间的关系。详情请参考[@LocalBuilder和@Builder区别说明](arkts-localBuilder.md#localbuilder和builder区别说明)。
+跨组件传递局部@Builder函数时，会使用.bind(this)更改函数上下文，但这可能会导致组件的父子关系与状态管理的父子关系不一致。而@LocalBuilder无论是否使用.bind(this)，都不会改变组件的父子关系，即@LocalBuilder中定义组件所属的父组件是确定的，无法被改变。详情请参考[@LocalBuilder和@Builder区别说明](arkts-localBuilder.md#localbuilder和builder区别说明)。
 
 ![zh-cn_image_compatible_localBuilder](figures/zh-cn_image_compatible_localBuilder.png)
 
@@ -59,18 +59,15 @@ this.MyBuilderFunction()
 
 - 传入一个对象字面量参数时按引用传递，其他方式按值传递。
 
-
 ### 按引用传递参数
 
-按引用传递参数时，传递的参数可为状态变量，且状态变量的改变会引起\@LocalBuilder方法内的UI刷新。
+按引用传递参数时，传递的参数可为状态变量，且状态变量的改变会引起\@LocalBuilder函数内的UI刷新。
 
->**说明：**
+> **说明：**
 >
-> 当\@LocalBuilder函数和$$参数一起使用，子组件调用父组件的\@LocalBuilder函数，传入的参数发生变化时，不会触发\@LocalBuilder方法内的UI刷新。
+> 若\@LocalBuilder函数和$$参数一起使用，子组件调用父组件的@LocalBuilder函数，子组件传入的参数发生变化，不会引起\@LocalBuilder函数内的UI刷新。
 
-使用场景：
-
-组件Parent内的@LocalBuilder方法在build函数内调用，按键值对写法进行传值，当点击Click me 时，@LocalBuilder内的Text文本内容会随着状态变量内容的改变而改变。
+组件Parent内的@LocalBuilder函数在build函数内调用，按键值对写法进行传值，当点击Click me 时，@LocalBuilder内的Text文本内容会随着状态变量内容的改变而改变。
 
 ```ts
 class ReferenceType {
@@ -100,11 +97,9 @@ struct Parent {
 }
 ```
 
-按引用传递参数时，如果在\@LocalBuilder方法内调用自定义组件，ArkUI提供[$$](arkts-two-way-sync.md)作为按引用传递参数的范式。
+按引用传递参数时，如果在\@LocalBuilder函数内调用自定义组件，ArkUI提供[$$](arkts-two-way-sync.md)作为按引用传递参数的范式。
 
-使用场景：
-
-组件Parent内的@LocalBuilder方法内调用自定义组件，且按照引用传递参数将值传递到自定义组件，当Parent组件内状态变量值发生变化时，@LocalBuilder方法内的自定义组件HelloComponent的message值也会发生变化。
+组件Parent内的@LocalBuilder函数内调用自定义组件，且按照引用传递参数将值传递到自定义组件，当Parent组件内状态变量值发生变化时，@LocalBuilder函数内的自定义组件HelloComponent的message值也会发生变化。
 
 ```ts
 class ReferenceType {
@@ -148,9 +143,7 @@ struct Parent {
 }
 ```
 
-子组件引用父组件的@LocalBuilder函数，传入的状态变量改变时不会触发UI刷新。因为@LocalBuilder装饰的函数绑定在父组件上，状态变量刷新机制仅刷新本组件及其子组件，不会影响父组件，因此无法触发刷新。若使用@Builder修饰，则可触发刷新，因为@Builder改变了函数的this指向，使其绑定到子组件上，从而能够触发UI刷新。
-
-使用场景：
+当子组件引用父组件的@LocalBuilder函数并传入状态变量时，状态变量的改变不会触发@LocalBuilder函数内的UI刷新。这是因为调用@LocalBuilder装饰的函数创建出来的组件绑定于父组件，而状态变量的刷新机制仅作用于当前组件及其子组件，对父组件无效。而使用@Builder修饰函数可触发UI刷新，原因在于@Builder改变了函数的this指向，使创建出来的组件绑定到子组件上，从而在子组件修改变量能够实现@Builder中的UI刷新。
 
 组件Child将状态变量传递到Parent的@Builder和@LocalBuilder函数内。在@Builder函数内，`this`指向Child，参数变化能触发UI刷新。在@LocalBuilder函数内，`this`指向Parent，参数变化不会触发UI刷新。若@LocalBuilder函数内引用Parent的状态变量发生变化，UI能正常刷新。
 
@@ -170,7 +163,6 @@ struct Parent {
     Text(`builder + $$`)
     Text(`${'this -> ' + this.label}`)
     Text(`${'size : ' + $$.size}`)
-    Text(`------------------------`)
   }
 
   @LocalBuilder
@@ -178,7 +170,6 @@ struct Parent {
     Text(`LocalBuilder + $$ data`)
     Text(`${'this -> ' + this.label}`)
     Text(`${'size : ' + $$.size}`)
-    Text(`------------------------`)
   }
 
   @LocalBuilder
@@ -186,7 +177,6 @@ struct Parent {
     Text(`LocalBuilder + local data`)
     Text(`${'this -> ' + this.label}`)
     Text(`${'size : ' + this.data.size}`)
-    Text(`------------------------`)
   }
 
   build() {
@@ -225,11 +215,9 @@ struct Child {
 
 ### 按值传递参数
 
-调用\@LocalBuilder装饰的函数默认按值传递。当传递的参数为状态变量时，状态变量的改变不会触发\@LocalBuilder方法内的UI刷新。因此，使用状态变量时，推荐使用[按引用传递](#按引用传递参数)。
+调用\@LocalBuilder装饰的函数默认按值传递。当传递的参数为状态变量时，状态变量的改变不会引起\@LocalBuilder函数内的UI刷新。所以当使用状态变量的时候，推荐使用[按引用传递](#按引用传递参数)。
 
-使用场景：
-
-组件Parent将@State修饰的label值以函数参数形式传递给@LocalBuilder函数。此时，@LocalBuilder函数获取到的值为普通变量值，因此修改@State修饰的label值时，@LocalBuilder函数内的值不会变化。
+组件Parent将@State修饰的label值按照函数传参方式传递到@LocalBuilder函数内，此时@LocalBuilder函数获取到的值为普通变量值，所以改变@State修饰的label值时，@LocalBuilder函数内的值不会发生改变。
 
 ```ts
 @Entry
