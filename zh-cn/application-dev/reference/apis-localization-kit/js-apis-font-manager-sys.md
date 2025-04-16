@@ -42,8 +42,8 @@ installFont(path: string): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API.            |
-| 202 | Permission verification failed. A non-system application calls a system API.          |
+| 201 | Permission denied.                 |
+| 202 | Non-system application.            |
 | 31100101 | Font does not exist.          |
 | 31100102 | Font is not supported.        |
 | 31100103 | Font file copy failed.        |
@@ -94,8 +94,8 @@ uninstallFont(fullName: string): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API.            |
-| 202 | Permission verification failed. A non-system application calls a system API.          |
+| 201 | Permission denied.                |
+| 202 | Non-system application.           |
 | 31100107 | Font file does not exist.    |
 | 31100108 | Font file delete error.      |
 | 31100109 | Other error.                 |
