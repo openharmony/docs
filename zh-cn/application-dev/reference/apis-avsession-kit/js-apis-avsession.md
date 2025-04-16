@@ -131,20 +131,6 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 | TYPE_CAST_PLUS_STREAM<sup>11+</sup>      | 2    | Cast+的Stream模式。表示媒体正在其他设备上展示。 |
 | TYPE_DLNA<sup>12+</sup>      | 4    | DLNA协议。表示媒体正在其他设备上展示。 |
 
-## DistributedSessionType<sup>18+</sup>
-
-远端分布式设备支持的会话类型。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
-| 名称                                     | 值 | 说明                        |
-|----------------------------------------|---|---------------------------|
-| TYPE_SESSION_REMOTE      | 0 | 远端设备会话。       |
-| TYPE_SESSION_MIGRATE_IN  | 1 | 迁移至本端的设备会话。 |
-| TYPE_SESSION_MIGRATE_OUT | 2 | 迁移至远端的设备会话。 |
-
 ## AVSessionType<sup>10+<sup>
 
 type AVSessionType = 'audio' | 'video' | 'voice_call' | 'video_call'
@@ -3405,13 +3391,13 @@ aVCastController.getAVPlaybackState().then((state: avSession.AVPlaybackState) =>
 });
 ```
 
-### getSupportedDecoders<sup>18+</sup>
+### getSupportedDecoders<sup>19+</sup>
 
 getSupportedDecoders(): Promise\<Array\<DecoderType>>
 
 获取当前远端设备的解码方式。使用Promise异步回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -3419,7 +3405,7 @@ getSupportedDecoders(): Promise\<Array\<DecoderType>>
 
 | 类型                                                        | 说明                                                         |
 | --------- | ------------------------------------------------------------ |
-| Promise\<Array\<[DecoderType](#decodertype18)\>\> | Promise对象。返回远端设备所支持的解码能力列表。 |
+| Promise\<Array\<[DecoderType](#decodertype19)\>\> | Promise对象。返回远端设备所支持的解码能力列表。 |
 
 **错误码：**
 
@@ -3458,7 +3444,7 @@ getRecommendedResolutionLevel(decoderType: DecoderType): Promise\<ResolutionLeve
 
 | 类型                                                        | 说明                                                         |
 | --------- | ------------------------------------------------------------ |
-| Promise\<[ResolutionLevel](#resolutionlevel18)\> | Promise对象。返回远端设备推荐的分辨率。 |
+| Promise\<[ResolutionLevel](#resolutionlevel19)\> | Promise对象。返回远端设备推荐的分辨率。 |
 
 **错误码：**
 
@@ -3482,13 +3468,13 @@ aVCastController.getRecommendedResolutionLevel(decoderType).then((resolutionLeve
 });
 ```
 
-### getSupportedHdrCapabilities<sup>18+</sup>
+### getSupportedHdrCapabilities<sup>19+</sup>
 
 getSupportedHdrCapabilities(): Promise\<Array\<hdrCapability.HDRFormat>>
 
 获取当前的远端设备所支持的HDR能力。使用Promise异步回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -3522,13 +3508,13 @@ aVCastController.getSupportedHdrCapabilities().then((hdrFormats: hdrCapability.H
 });
 ```
 
-### getSupportedPlaySpeeds<sup>18+</sup>
+### getSupportedPlaySpeeds<sup>19+</sup>
 
 getSupportedPlaySpeeds(): Promise\<Array\<number>>
 
 获取当前的远端设备所支持倍速播放列表。使用Promise异步回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -5483,7 +5469,7 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 | --------------------------  | ---- | ------------ |
 | TAG_AUDIO_VIVID             | 1    | AUDIO VIVID  |
 
-## DecoderType<sup>18+</sup>
+## DecoderType<sup>19+</sup>
 
 枚举，设备所支持的解码格式。
 
@@ -5496,7 +5482,7 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 | OH_AVCODEC_MIMETYPE_AUDIO_VIVID    | "audio/av3a" | AUDIO AV3A  |
 
 
-## ResolutionLevel<sup>18+</sup>
+## ResolutionLevel<sup>19+</sup>
 
 枚举，设备所支持的分辨率。
 
