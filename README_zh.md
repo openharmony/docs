@@ -1,6 +1,6 @@
 # OpenHarmony文档
 
-欢迎访问OpenHarmony文档仓库，参与OpenHarmony开发者文档开源项目，与我们一起完善开发者文档。。
+欢迎访问OpenHarmony文档仓库，参与OpenHarmony开发者文档开源项目，与我们一起完善开发者文档。
 
 此仓库存放OpenHarmony网站提供的设备开发、应用开发对应的开发者文档。
 
