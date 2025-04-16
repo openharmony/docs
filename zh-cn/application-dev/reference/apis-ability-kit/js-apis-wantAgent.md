@@ -16,7 +16,7 @@ import wantAgent from '@ohos.wantAgent';
 
 getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 
-创建WantAgent（callback形式）。 创建失败返回的WantAgent为空值。
+创建WantAgent。创建失败返回的WantAgent为空值。使用callback异步回调。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -76,7 +76,7 @@ wantAgent.getWantAgent({
 
 getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 
-创建WantAgent（Promise形式）。 创建失败返回的WantAgent为空值。
+创建WantAgent。创建失败返回的WantAgent为空值。使用Promise异步回调。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -133,7 +133,7 @@ wantAgent.getWantAgent({
 
 getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>): void
 
-获取WantAgent实例的Bundle名称（callback形式）。
+获取WantAgent实例的Bundle名称。使用callback异步回调。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -206,7 +206,7 @@ wantAgent.getWantAgent({
 
 getBundleName(agent: WantAgent): Promise\<string\>
 
-获取WantAgent实例的Bundle名称（Promise形式）。
+获取WantAgent实例的Bundle名称。使用Promise异步回调。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -274,7 +274,7 @@ wantAgent.getWantAgent({
 
 getUid(agent: WantAgent, callback: AsyncCallback\<number\>): void
 
-获取WantAgent实例的用户ID（callback形式）。
+获取WantAgent实例的用户ID。使用callback异步回调。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -347,7 +347,7 @@ wantAgent.getWantAgent({
 
 getUid(agent: WantAgent): Promise\<number\>
 
-获取WantAgent实例的用户ID（Promise形式）。
+获取WantAgent实例的用户ID。使用Promise异步回调。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -414,7 +414,7 @@ wantAgent.getWantAgent({
 
 cancel(agent: WantAgent, callback: AsyncCallback\<void\>): void
 
-取消WantAgent实例（callback形式）。
+取消WantAgent实例。使用callback异步回调。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -487,7 +487,7 @@ wantAgent.getWantAgent({
 
 cancel(agent: WantAgent): Promise\<void\>
 
-取消WantAgent实例（Promise形式）。
+取消WantAgent实例。使用Promise异步回调。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -556,7 +556,7 @@ wantAgent.getWantAgent({
 
 trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: Callback\<CompleteData\>): void
 
-主动激发WantAgent实例（callback形式）。
+主动激发WantAgent实例。使用callback异步回调。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -631,7 +631,7 @@ wantAgent.getWantAgent({
 
 equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\>): void
 
-判断两个WantAgent实例是否相等（callback形式）,以此来判断是否是来自同一应用的相同操作。
+判断两个WantAgent实例是否相等，以此来判断是否是来自同一应用的相同操作。使用callback异步回调。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -707,7 +707,7 @@ wantAgent.getWantAgent({
 
 equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 
-判断两个WantAgent实例是否相等（Promise形式）,以此来判断是否是来自同一应用的相同操作。
+判断两个WantAgent实例是否相等，以此来判断是否是来自同一应用的相同操作。使用Promise异步回调。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -785,11 +785,11 @@ wantAgent.getWantAgent({
 | CANCEL_PRESENT_FLAG | 2 | 在生成一个新的WantAgent对象前取消已存在的一个WantAgent对象。 |
 | UPDATE_PRESENT_FLAG | 3 | 使用新的WantAgent的额外数据替换已存在的WantAgent中的额外数据。 |
 | CONSTANT_FLAG       | 4 | WantAgent是不可变的。                                        |
-| REPLACE_ELEMENT     | 5 | 当前Want中的element属性可被WantAgent.trigger()中Want的element属性取代 |
-| REPLACE_ACTION      | 6 | 当前Want中的action属性可被WantAgent.trigger()中Want的action属性取代 |
-| REPLACE_URI         | 7 | 当前Want中的uri属性可被WantAgent.trigger()中Want的uri属性取代 |
-| REPLACE_ENTITIES    | 8 | 当前Want中的entities属性可被WantAgent.trigger()中Want的entities属性取代 |
-| REPLACE_BUNDLE      | 9 | 当前Want中的bundleName属性可被WantAgent.trigger()中Want的bundleName属性取代 |
+| REPLACE_ELEMENT     | 5 | 当前Want中的element属性可被WantAgent.trigger()中Want的element属性取代。 |
+| REPLACE_ACTION      | 6 | 当前Want中的action属性可被WantAgent.trigger()中Want的action属性取代。 |
+| REPLACE_URI         | 7 | 当前Want中的uri属性可被WantAgent.trigger()中Want的uri属性取代。 |
+| REPLACE_ENTITIES    | 8 | 当前Want中的entities属性可被WantAgent.trigger()中Want的entities属性取代。 |
+| REPLACE_BUNDLE      | 9 | 当前Want中的bundleName属性可被WantAgent.trigger()中Want的bundleName属性取代。 |
 
 ## OperationType
 
