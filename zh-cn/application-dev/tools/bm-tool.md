@@ -450,6 +450,9 @@ bm install-plugin [-h] [-n hostBundleName] [-p filePath]
 # 安装一个插件
 bm install-plugin -n com.ohos.app -p /data/plugin.hsp
 ```
+> **说明：**
+>
+> 在同一个应用中安装同一个插件，则视作插件版本更新，插件不支持降级安装；插件版本更新后，需要重启应用插件才能生效。
 
 
 ## 卸载插件命令（uninstall-plugin）
