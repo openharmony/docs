@@ -443,7 +443,7 @@ import { window } from '@kit.ArkUI';
 
 ## RectType<sup>18+</sup>
 
-窗口矩形区域类型。
+窗口矩形区域坐标系类型。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -480,7 +480,7 @@ import { window } from '@kit.ArkUI';
 
 | 名称   | 类型 | 只读  | 可写 | 说明                    |
 | ------ | ---- | ----- | ---- | ----------------------- |
-| rectType | [RectType](#recttype18) | 否 | 是 | 窗口矩形区域类型。 |
+| rectType | [RectType](#recttype18) | 否 | 是 | 窗口矩形区域坐标系类型。 |
 | windowRect | [Rect](#rect7) | 否 | 是 | 相对于屏幕或父窗坐标系的窗口矩形区域信息。|
 
 ## window.createWindow<sup>9+</sup>
