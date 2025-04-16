@@ -423,7 +423,7 @@ let array : Array<Array<string>> = [['str1', 'str2', 'str3'], ['str4', 'str5', '
 let sendableArray = collections.Array.from<Array<string>>(array); // 打印异常信息：Parameter error.Only accept sendable value
 ```
 
-### from<sup>12+</sup>
+### from
 
 static from\<T>(iterable: Iterable\<T>): Array\<T>
 

@@ -34,7 +34,7 @@ AVRecorder支持开发音视频录制，集成了音频捕获，音频编码，�
 > 文件的创建与存储，请参考[应用文件访问与管理](../../file-management/app-file-access.md)，默认存储在应用的沙箱路径之下，如需存储至图库，请使用[安全控件保存媒体资源](../medialibrary/photoAccessHelper-savebutton.md)对沙箱内文件进行存储。
 
 
-开发者通过引入[avrecorder.h](../../reference/apis-media-kit/avrecorder_8h.md)、[avrecorder_base.h](../../reference/apis-media-kit/avrecorder__base_8h.md)和[native_averrors.h](../../reference/apis-avcodec-kit/native__averrors_8h.md)头文件，使用视频播放相关API。
+开发者通过引入[avrecorder.h](../../reference/apis-media-kit/avrecorder_8h.md)、[avrecorder_base.h](../../reference/apis-media-kit/avrecorder__base_8h.md)和[native_averrors.h](../../reference/apis-avcodec-kit/native__averrors_8h.md)头文件，使用视频录制相关API。
 
 AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis-media-kit/_a_v_recorder.md)。
 
@@ -465,40 +465,23 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
       OH_LOG_INFO(LOG_APP, "==NDKDemo== AVRecorder PrepareCamera");
       (void)info;
 
-      // 2.1 相机初始化（init）。
+      OHNativeWindow *window = nullptr;
+      int resultCode = OH_AVRecorder_GetInputSurface(g_avRecorder, &window);
+      if (resultCode != AV_ERR_OK || window == nullptr) {
+          OH_LOG_INFO(LOG_APP, "==NDKDemo== AVRecorder OH_AVRecorder_GetInputSurface failed!");
+          napi_value errorResult;
+          napi_create_int32(env, -1, &errorResult); // -1 表示错误
+          return errorResult;
+      }
+      uint64_t surfaceId = 0;
+      OH_NativeWindow_GetSurfaceId(window, &surfaceId);
 
-      size_t argc = 6;
-      napi_value args[6] = {nullptr};
-      size_t typeLen = 0;
-      napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+      // 将surfaceId传入数据采集模块，具体请参考相机模块。
 
-      int32_t focusMode;
-      napi_get_value_int32(env, args[0], &focusMode);
-
-      uint32_t cameraDeviceIndex;
-      napi_get_value_uint32(env, args[1], &cameraDeviceIndex);
-
-      uint32_t sceneMode;
-      napi_get_value_uint32(env, args[2], &sceneMode);
-
-      char *previewId = nullptr;
-      napi_get_value_string_utf8(env, args[3], nullptr, 0, &typeLen);
-      previewId = new char[typeLen + 1];
-      napi_get_value_string_utf8(env, args[3], previewId, typeLen + 1, &typeLen);
-
-      char *photoId = nullptr;
-      napi_get_value_string_utf8(env, args[4], nullptr, 0, &typeLen);
-      photoId = new char[typeLen + 1];
-      napi_get_value_string_utf8(env, args[4], photoId, typeLen + 1, &typeLen);
-
-      uint32_t previewWidth;
-      napi_get_value_uint32(env, args[5], &previewWidth);
-
-      int ret = OH_AVRecorder_PrepareCamera(g_avRecorder, cameraDeviceIndex, sceneMode, focusMode, previewId, photoId);
-      OH_LOG_INFO(LOG_APP, "==NDKDemo== OH_AVRecorder_PrepareCamera result: %d", ret);
-      napi_value result;
-      napi_create_int32(env, ret, &result);
-      return result;
+      int result = 0;
+      napi_value res;
+      napi_create_int32(env, result, &res);
+      return res;
    }
 
    // 3. 开始录制。

@@ -18,6 +18,8 @@ NfcATag 提供 NFC-A(ISO 14443-3A)技术的属性和I/O操作的访问，继承�
 
 TagSession是所有NFC Tag技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
 
+NfcATag获取方式请参考[nfc-tag开发指南](../../connectivity/nfc/nfc-tag-access-guide.md)。
+
 以下是NfcATag的独有接口。
 
 ### NfcATag.getSak
@@ -77,6 +79,8 @@ console.info("nfcA atqa: " + atqa);
 NfcBTag 提供对NFC-B(ISO 14443-3B)技术的属性和I/O操作的访问，继承自TagSession。
 
 TagSession是所有NFC Tag技术类型的基类，提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
+
+NfcBTag获取方式请参考[nfc-tag开发指南](../../connectivity/nfc/nfc-tag-access-guide.md)。
 
 以下是NfcBTag的独有接口。
 
@@ -138,6 +142,8 @@ NfcFTag 提供对NFC-F(JIS 6319-4)技术的属性和I/O操作的访问，继承�
 
 TagSession是所有NFC Tag技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
 
+NfcFTag获取方式请参考[nfc-tag开发指南](../../connectivity/nfc/nfc-tag-access-guide.md)。
+
 以下是NfcFTag的独有接口。
 
 ### NfcFTag.getSystemCode
@@ -198,6 +204,8 @@ NfcVTag 提供对NFC-V(ISO 15693)技术的属性和I/O操作的访问，继承�
 
 TagSession是所有NFC Tag技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
 
+NfcVTag获取方式请参考[nfc-tag开发指南](../../connectivity/nfc/nfc-tag-access-guide.md)。
+
 以下是NfcVTag的独有接口。
 
 ### NfcvTag.getResponseFlags
@@ -257,6 +265,8 @@ console.info("nfcV dsfId: " + dsfId);
 IsoDepTag 提供对ISO-DEP(ISO 14443-4)技术的属性和I/O操作的访问，继承自TagSession。
 
 TagSession是所有NFC Tag技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
+
+IsoDepTag获取方式请参考[nfc-tag开发指南](../../connectivity/nfc/nfc-tag-access-guide.md)。
 
 以下是IsoDepTag的独有接口。
 
@@ -468,6 +478,8 @@ console.info("ndef ndefRecords number: " + ndefRecords.length);
 提供对已格式化为NDEF的NFC标签的数据和操作的访问，继承自TagSession。
 
 TagSession是所有NFC Tag技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
+
+NdefTag获取方式请参考[nfc-tag开发指南](../../connectivity/nfc/nfc-tag-access-guide.md)。
 
 以下是NdefTag的独有接口。
 
@@ -1015,6 +1027,8 @@ try {
 MifareClassicTag提供对MIFARE Classic属性和I/O操作的访问，继承自[TagSession](js-apis-tagSession.md)。
 
 TagSession是所有NFC Tag技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
+
+MifareClassicTag获取方式请参考[nfc-tag开发指南](../../connectivity/nfc/nfc-tag-access-guide.md)。
 
 以下是MifareClassicTag的独有接口。
 
@@ -2208,6 +2222,8 @@ MifareUltralightTag 提供对MIFARE Ultralight属性和I/O操作的访问，继�
 
 TagSession是所有NFC Tag技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
 
+MifareUltralightTag获取方式请参考[nfc-tag开发指南](../../connectivity/nfc/nfc-tag-access-guide.md)。
+
 以下是MifareUltralightTag的独有接口。
 
 ### MifareUltralightTag.readMultiplePages<sup>9+</sup>
@@ -2508,6 +2524,8 @@ NdefFormatableTag为NDEF Formattable的标签提供格式化操作，继承自Ta
 
 TagSession是所有NFC Tag 技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
 
+NdefFormatableTag获取方式请参考[nfc-tag开发指南](../../connectivity/nfc/nfc-tag-access-guide.md)。
+
 以下是NdefFormatableTag的独有接口。
 
 ### NdefFormatableTag.format<sup>9+</sup>
@@ -2800,6 +2818,8 @@ function nfcTechDemo() {
 BarcodeTag提供读取条形码标签的属性和访问I/O操作的能力，继承自TagSession。
 
 TagSession是所有NFC Tag 技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
+
+BarcodeTag获取方式请参考[nfc-tag开发指南](../../connectivity/nfc/nfc-tag-access-guide.md)。
 
 以下是BarcodeTag的独有接口。
 

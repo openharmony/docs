@@ -27,13 +27,13 @@ TextClock(options?: TextClockOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options |  [TextClockOptions](#textclockoptions14对象说明)| 否 | 通过文本显示当前系统时间的组件参数。 |
+| options |  [TextClockOptions](#textclockoptions18对象说明)| 否 | 通过文本显示当前系统时间的组件参数。 |
 
-## TextClockOptions<sup>14+</sup>对象说明
+## TextClockOptions<sup>18+</sup>对象说明
 
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

@@ -52,7 +52,7 @@ Failed to resolve the proxy name.
 
 **可能原因**
 
-服务器的URL不正确
+服务器的URL不正确。
 
 **处理步骤**
 
@@ -78,7 +78,7 @@ Failed to resolve the host name.
 
 1.请检查输入的服务器的URL是否合理。
 
-2.请检查网络连接情况
+2.请检查网络连接情况。
 
 ## 2300007 无法连接到服务器
 
@@ -164,7 +164,7 @@ Transferred a partial file.
 
 **可能原因**
 
-可能与服务器实现有关
+可能与服务器实现有关。
 
 **处理步骤**
 
@@ -219,7 +219,7 @@ Failed to open or read local data from the file or application.
 
 **可能原因**
 
-应用没有读文件权限
+应用没有读文件权限。
 
 **处理步骤**
 
@@ -273,7 +273,7 @@ The number of redirections reaches the maximum allowed.
 
 **可能原因**
 
-重定向次数过多
+重定向次数过多。
 
 **处理步骤**
 
@@ -327,7 +327,7 @@ Failed to receive data from the peer.
 
 **可能原因**
 
-网络问题
+网络问题。
 
 **处理步骤**
 
@@ -381,7 +381,7 @@ Invalid SSL peer certificate or SSH remote key.
 
 **可能原因**
 
-无法校验服务器身份，有可能是证书过期了
+无法校验服务器身份，有可能是证书过期了。
 
 **处理步骤**
 
@@ -435,7 +435,7 @@ Remote disk full.
 
 **可能原因**
 
-服务器磁盘已满
+服务器磁盘已满。
 
 **处理步骤**
 
@@ -489,7 +489,7 @@ URL请求的文件不存在。
 
 **可能原因**
 
-URL请求的文件不存在
+URL请求的文件不存在。
 
 **处理步骤**
 

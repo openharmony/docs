@@ -30,6 +30,6 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [NetStack_CertType](netstack.md#netstack_certtype) { <br>[NetStack_CERT_TYPE_PEM](netstack.md) = 0, <br>[NetStack_CERT_TYPE_DER](netstack.md) = 1,<br> [NetStack_CERT_TYPE_INVALID](netstack.md) <br>} | 证书类型枚举。 |
-| [NetStack_CertificatePinningKind](netstack.md#NetStack_CertificatePinningKind) {<br />[PUBLIC_KEY](netstack.md),<br />} | 证书锁定类型 |
-| [NetStack_HashAlgorithm](netstack.md#NetStack_HashAlgorithm) {<br />[SHA_256](netstack.md),<br />} | 哈希算法类型 |
+| [NetStack_CertType](netstack.md#netstack_certtype) { <br>NetStack_CERT_TYPE_PEM = 0, <br>NetStack_CERT_TYPE_DER = 1,<br> NetStack_CERT_TYPE_INVALID <br>} | 证书类型枚举。 |
+| [NetStack_CertificatePinningKind](netstack.md#netstack_certificatepinningkind) {<br />PUBLIC_KEY,<br />} | 证书锁定类型。 |
+| [NetStack_HashAlgorithm](netstack.md#netstack_hashalgorithm) {<br />SHA_256,<br />} | 哈希算法类型。 |

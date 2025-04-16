@@ -459,7 +459,7 @@ on(type:&nbsp;'connect',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callba
 
 ## abilityConnectionManager.off('connect')
 
-off(type:&nbsp;'connect',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
+off(type:&nbsp;'connect',&nbsp;sessionId:&nbsp;number,&nbsp;callback?:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
 
 取消connect事件的回调监听。
 
@@ -529,7 +529,7 @@ on(type:&nbsp;'disconnect',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Cal
 
 ## abilityConnectionManager.off('disconnect')
 
-off(type:&nbsp;'disconnect',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
+off(type:&nbsp;'disconnect',&nbsp;sessionId:&nbsp;number,&nbsp;callback?:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
 
 取消disconnect事件的回调监听。
 
@@ -599,7 +599,7 @@ on(type:&nbsp;'receiveMessage',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp
 
 ## abilityConnectionManager.off('receiveMessage')
 
-off(type:&nbsp;'receiveMessage',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
+off(type:&nbsp;'receiveMessage',&nbsp;sessionId:&nbsp;number,&nbsp;callback?:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
 
 取消receiveMessage事件的回调监听。
 
@@ -669,7 +669,7 @@ on(type:&nbsp;'receiveData',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Ca
 
 ## abilityConnectionManager.off('receiveData')
 
-off(type:&nbsp;'receiveData',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
+off(type:&nbsp;'receiveData',&nbsp;sessionId:&nbsp;number,&nbsp;callback?:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
 
 取消receiveData事件的回调监听。
 
@@ -811,8 +811,6 @@ sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;v
 | 名称          | 类型    | 只读   | 可选   | 说明          |
 | ----------- | ------- | ---- | ---- | ----------- |
 | needSendData    | boolean  | 否    | 否    | true代表需要传输数据，false代表不需要传输数据。     |
-| needSendStream    | boolean  | 否    | 否    | true代表需要发送流，false代表不需要发送流。    |
-| needReceiveStream    | boolean  | 否    | 否    | true代表需要接收流，false代表不需要接收流。     |
 | startOptions | [StartOptionParams](#startoptionparams) | 否    | 否    | 配置应用启动选项。 |
 | parameters | Record&lt;string, string&gt;  | 否    | 否    | 配置连接所需的额外信息。    |
 
@@ -839,8 +837,6 @@ sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;v
 | sessionId | number   | 是    | 是    |   表示当前事件对应的协同会话ID。 |
 | reason | [DisconnectReason](#disconnectreason)     | 是    | 否    |   表示断连原因。 |
 | msg | string   | 是    | 否    |   表示接收的消息。 |
-| data  | ArrayBuffer | 是    | 否    |   表示接收的字节流。 |
-| image  | image.PixelMap | 是    | 否    |   表示接收的图片。 |
 
 ## CollaborateEventInfo
 
@@ -876,7 +872,6 @@ sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;v
 | 名称|  值 | 说明 |
 |-------|-------|-------|
 | START_IN_FOREGROUND | 0 |表示将对端应用启动至前台。|
-| START_IN_BACKGROUND | 1 |表示将对端应用启动至后台。|
 
 ## CollaborateEventType
 

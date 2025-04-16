@@ -44,8 +44,8 @@ selected(value: number | Resource)
 
 设置下拉菜单初始选项的索引，第一项的索引为0。当不设置selected属性或设置异常值时，默认选择值为-1，菜单项不选中；当设置为undefined、null时，选中第一项。
 
-从API version 10开始，该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
-从API version 18开始，该参数支持[!!](../../../quick-start/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
+从API version 10开始，该属性支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。
+从API version 18开始，该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -63,8 +63,8 @@ selected(numCount: Optional<number | Resource>)
 
 设置下拉菜单初始选项的索引，第一项的索引为0。当不设置selected属性或设置异常值时，默认选择值为-1，菜单项不选中；当设置为undefined、null时，选中第一项。
 
-该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
-该属性支持[!!](../../../quick-start/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
+该属性支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。
+该属性支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -82,8 +82,8 @@ value(value: ResourceStr)
 
 设置下拉按钮本身的文本内容。当菜单选中时默认会替换为菜单项文本内容。
 
-从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
-从API version 18开始，该参数支持[!!](../../../quick-start/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
+从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。
+从API version 18开始，该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -101,8 +101,8 @@ value(resStr: Optional\<ResourceStr>)
 
 设置下拉按钮本身的文本内容。当菜单选中时默认会替换为菜单项文本内容。与[value](#value)相比，resStr参数新增了对undefined类型的支持。
 
-该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
-该参数支持[!!](../../../quick-start/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
+该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。
+该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -753,6 +753,74 @@ menuOutline(value: MenuOutlineOptions)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [MenuOutlineOptions](#menuoutlineoptions18对象说明) | 是   | 下拉菜单框的外描边样式。 |
 
+### textModifier<sup>20+</sup>
+
+textModifier(modifier: Optional\<[TextModifier](ts-universal-attributes-attribute-modifier.md)>)
+
+定制Select按钮文本的样式，允许在按钮样式上实现个性化设计。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| modifier  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[TextModifier](ts-universal-attributes-attribute-modifier.md)> | 是   | Select中text个性化设置。<br/>开发者可以根据需要管理和维护文本的样式进行设置。 |
+
+### arrowModifier<sup>20+</sup>
+
+arrowModifier(modifier: Optional\<[SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)>)
+
+定制Select图标的样式，允许在按钮图标样式上实现个性化设计。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| modifier  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)> | 是   | Select中图标个性化设置。<br/>开发者可以根据需要管理和维护图标的样式进行设置。 |
+
+### optionTextModifier<sup>20+</sup>
+
+optionTextModifier(modifier: Optional\<[TextModifier](ts-universal-attributes-attribute-modifier.md)>)
+
+定制下拉菜单项的文本样式，允许在下拉菜单项的文本样式实现个性化设计。
+
+如果同时设置了自定义属性与既有modifer的Font属性重合，优先使用optionFont设置选中项样式。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| modifier  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[TextModifier](ts-universal-attributes-attribute-modifier.md)> | 是   | 设置下拉菜单项的文本样式。<br/>开发者可以根据需要管理和维护文本的样式进行设置。 |
+
+### selectedOptionTextModifier<sup>20+</sup>
+
+selectedOptionTextModifier(modifier: Optional\<[TextModifier](ts-universal-attributes-attribute-modifier.md)>)
+
+定制下拉菜单项选中项的文本样式，允许在下拉菜单项选中项的文本样式实现个性化设计。
+
+如果同时设置了自定义属性与既有modifier的Font属性重合，优先使用selectedOptionFont进行选中项样式设置；若未设置选中项样式，则优先使用optionFont设置选中项样式。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| modifier  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[TextModifier](ts-universal-attributes-attribute-modifier.md)> | 是   | 设置下拉菜单项选中项的文本样式。<br/>开发者可以根据需要管理和维护文本的样式进行设置。 |
+
 ## ArrowPosition<sup>10+</sup>枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -1134,3 +1202,138 @@ struct SelectExample {
 }
 ```
 ![](figures/SelectHideDivider.png)
+
+##  示例6（设置Select中文本和箭头样式）
+该示例通过textModifier和arrowModifier设置文本以及箭头样式。
+
+```ts
+import { TextModifier, SymbolGlyphModifier } from "@kit.ArkUI";
+
+@Entry
+@Component
+struct SelectExample {
+  @State text: string = "TTTTTTTTTT".repeat(3)
+  @State index: number = 2
+  textModifier: TextModifier = new TextModifier()
+  symbolGlyphModifier: SymbolGlyphModifier = new SymbolGlyphModifier()
+
+  aboutToAppear(): void {
+    this.textModifier
+      .maxLines(2)
+      .fontSize(18)
+      .textAlign(TextAlign.Center)
+      .fontColor('#333333')
+      .fontWeight(FontWeight.Medium)
+      .textOverflow({overflow:TextOverflow.Clip})
+
+    this.symbolGlyphModifier
+      .fontSize(25)
+      .fontColor(['#999999'])
+  }
+
+  build() {
+    Column() {
+      Select([
+        { value: 'A very long option text that should be truncated nicely'.repeat(3), icon: $r("app.media.startIcon") },
+        { value: 'Option B', icon: $r("app.media.startIcon") },
+        { value: 'Option C', icon: $r("app.media.startIcon") },
+        { value: 'Option D', icon: $r("app.media.startIcon") }
+      ])
+        .selected(this.index)
+        .value(this.text)
+        .textModifier(this.textModifier)
+        .arrowModifier(this.symbolGlyphModifier)
+        .onSelect((index: number, text?: string) => {
+          console.info('Select:' + index)
+          this.index = index;
+          if (text) {
+            this.text = text;
+          }
+        })
+        .width('90%')
+        .margin({ top: 20,left:30 })
+        .borderRadius(12)
+        .width(200)
+        .padding(9)
+        .backgroundColor(Color.White)
+        .shadow({ radius: 10, color: '#888888', offsetX: 0, offsetY: 10 })
+    }
+    .alignItems(HorizontalAlign.Start)
+    .padding(10)
+    .backgroundColor('#F0F2F5')
+    .width('100%')
+    .height('100%')
+  }
+}
+
+```
+![](figures/SelectModifier.png)
+
+##  示例7（设置Select下拉菜单选中和非选中项文本样式）
+该示例通过optionTextModifier和selectedOptionTextModifier设置下拉菜单选中和非选中项文本样式。
+
+```ts
+import { TextModifier } from "@kit.ArkUI";
+
+@Entry
+@Component
+struct SelectExample {
+  @State text: string = "TTTTTTTTTT".repeat(3)
+  @State index: number = 2
+  optiontextModifier: TextModifier = new TextModifier()
+  selectedOptiontextModifier: TextModifier = new TextModifier()
+  aboutToAppear(): void {
+    this.optiontextModifier
+      .maxLines(1)
+      .fontSize(16)
+      .textAlign(TextAlign.Start)
+      .fontColor('#666666')
+      .fontWeight(FontWeight.Normal)
+      .width(200)
+
+    this.selectedOptiontextModifier
+      .maxLines(1)
+      .fontSize(18)
+      .textAlign(TextAlign.Start)
+      .fontColor('#007BFF')
+      .fontWeight(FontWeight.Bold)
+      .width(200)
+  }
+
+  build() {
+    Column() {
+      Select([
+        { value: 'A very long option text that should be truncated nicely'.repeat(3), icon: $r("app.media.startIcon") },
+        { value: 'Option B', icon: $r("app.media.startIcon") },
+        { value: 'Option C', icon: $r("app.media.startIcon") },
+        { value: 'Option D', icon: $r("app.media.startIcon") }
+      ])
+        .selected(this.index)
+        .value(this.text)
+        .onSelect((index: number, text?: string) => {
+          console.info('Select:' + index)
+          this.index = index;
+          if (text) {
+            this.text = text;
+          }
+        })
+        .optionTextModifier(this.optiontextModifier)
+        .selectedOptionTextModifier(this.selectedOptiontextModifier)
+        .width('90%')
+        .margin({ top: 20,left:30 })
+        .borderRadius(12)
+        .width(200)
+        .padding(9)
+        .backgroundColor(Color.White)
+        .shadow({ radius: 10, color: '#888888', offsetX: 0, offsetY: 10 })
+    }
+    .alignItems(HorizontalAlign.Start)
+    .padding(10)
+    .backgroundColor('#F0F2F5')
+    .width('100%')
+    .height('100%')
+  }
+}
+
+```
+![](figures/SelectOptionModifier.png)

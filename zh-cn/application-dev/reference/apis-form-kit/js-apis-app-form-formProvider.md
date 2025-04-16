@@ -394,8 +394,6 @@ openFormEditAbility(abilityName: string, formId: string, isMainPage?: boolean): 
 
 打开卡片编辑页。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Ability.Form
 
 **参数：**

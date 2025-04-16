@@ -27,7 +27,7 @@ createVpnConnection(context: AbilityContext): VpnConnection
 
 | 参数名  | 类型                                                                             | 必填 | 说明         |
 | ------- | -------------------------------------------------------------------------------- | ---- | ------------ |
-| context | [AbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontext) | 是   | 指定 context |
+| context | [AbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontext) | 是   | 指定 context。 |
 
 **返回值：**
 

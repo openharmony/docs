@@ -158,7 +158,7 @@ struct Index {
   }
 ```
 
-2、在需要适配的地方通过[AppStorage能力](../../../application-dev/quick-start/arkts-appstorage.md)进行适配。
+2、在需要适配的地方通过[AppStorage能力](../../../application-dev/ui/state-management/arkts-appstorage.md)进行适配。
 
 ```ts
 import { ConfigurationConstant } from '@kit.AbilityKit';
