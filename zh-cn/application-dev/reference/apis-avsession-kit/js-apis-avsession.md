@@ -3407,7 +3407,7 @@ getSupportedDecoders(): Promise\<Array\<DecoderType>>
 
 | 类型                                                        | 说明                                                         |
 | --------- | ------------------------------------------------------------ |
-| Promise\<Array\<[DecoderType](#decodertype18)\>\> | Promise对象。返回远端设备所支持的解码能力列表。 |
+| Promise\<Array\<[DecoderType](#decodertype19)\>\> | Promise对象。返回远端设备所支持的解码能力列表。 |
 
 **错误码：**
 
@@ -3446,7 +3446,7 @@ getRecommendedResolutionLevel(decoderType: DecoderType): Promise\<ResolutionLeve
 
 | 类型                                                        | 说明                                                         |
 | --------- | ------------------------------------------------------------ |
-| Promise\<[ResolutionLevel](#resolutionlevel18)\> | Promise对象。返回远端设备推荐的分辨率。 |
+| Promise\<[ResolutionLevel](#resolutionlevel19)\> | Promise对象。返回远端设备推荐的分辨率。 |
 
 **错误码：**
 
