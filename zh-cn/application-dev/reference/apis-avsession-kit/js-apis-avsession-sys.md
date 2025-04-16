@@ -588,7 +588,7 @@ getDistributedSessionController(distributedSessionType: DistributedSessionType):
 
 | 参数名    | 类型                                                                      | 必填 | 说明      |
 | --------- |-------------------------------------------------------------------------| ---- |---------|
-| distributedSessionType | [DistributedSessionType](js-apis-avsession.md#distributedsessiontype18) | 是   | 远端会话类型。 |
+| distributedSessionType | [DistributedSessionType](#distributedsessiontype18) | 是   | 远端会话类型。 |
 
 **返回值：**
 
@@ -946,7 +946,7 @@ on(type: 'distributedSessionChange', distributedSessionType: DistributedSessionT
 | 参数名   | 类型                                                                                  | 必填 | 说明                                                                       |
 | -------- |-------------------------------------------------------------------------------------| ---- |--------------------------------------------------------------------------|
 | type     | string                                                                              | 是   | 事件回调类型，支持的事件为 `'distributedSessionChange'`：最新远端分布式会话的变化事件，检测到最新的会话改变时触发。 |
-| distributedSessionType     | [DistributedSessionType](js-apis-avsession.md#distributedsessiontype18)             | 是   | 远端会话类型。                                                                  |
+| distributedSessionType     | [DistributedSessionType](#distributedsessiontype18)             | 是   | 远端会话类型。                                                                  |
 | callback | Callback<Array<[AVSessionController](js-apis-avsession.md#avsessioncontroller10)\>> | 是   | 回调函数。参数为对应类型的会话控制器实例列表，可查看会话ID，并完成对会话发送命令及事件，获取元数据、播放状态信息等操作。            |
 
 **错误码：**
@@ -985,7 +985,7 @@ off(type: 'distributedSessionChange', distributedSessionType: DistributedSession
 | 参数名   | 类型                                                                                  | 必填 | 说明                                                            |
 | -------- |-------------------------------------------------------------------------------------|----|---------------------------------------------------------------|
 | type     | string                                                                              | 是  | 事件回调类型，支持的事件为`'distributedSessionChange'`。                    |
-| distributedSessionType     | [DistributedSessionType](js-apis-avsession.md#distributedsessiontype18)             | 是  | 远端会话类型。                                                       |
+| distributedSessionType     | [DistributedSessionType](#distributedsessiontype18)             | 是  | 远端会话类型。                                                       |
 | callback | Callback<Array<[AVSessionController](js-apis-avsession.md#avsessioncontroller10)\>> | 否  | 回调函数。参数为对应类型的会话控制器实例列表，可查看会话ID，并完成对会话发送命令及事件，获取元数据、播放状态信息等操作。 |
 
 **错误码：**
