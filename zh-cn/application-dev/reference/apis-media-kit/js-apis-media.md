@@ -8215,10 +8215,10 @@ let sourceCloseCallback: media.SourceCloseCallback = (uuid: number) => {
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
-| 名称                                                | 类型                                                         | 只读 | 可选 | 说明                                                         |
+| 名称   | 类型    | 只读   | 可选   | 说明                |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>18+</sup>                                    | string                                                       | 否   | 否   | 资源url，需要应用程序打开的资源路径。 |
-| header<sup>18+</sup>                                    | Record<string, string>                                     | 否   | 是   | 网络请求标头，如果存在需要应用在下载数据是将头信息设置到http请求中。 |
+| url<sup>18+</sup>        | string                        | 否   | 否   | 资源url，需要应用程序打开的资源路径。 |
+| header<sup>18+</sup>     | Record<string, string>        | 否   | 是   | 网络请求标头，如果存在需要应用在下载数据是将头信息设置到http请求中。 |
 
 **参数：**
 
