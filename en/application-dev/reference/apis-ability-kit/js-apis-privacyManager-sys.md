@@ -19,7 +19,8 @@ import { privacyManager } from '@kit.AbilityKit';
 addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCount: number, failCount: number, options?: AddPermissionUsedRecordOptions): Promise&lt;void&gt;
 
 Adds a permission usage record when an application protected by the permission is called by another service or application. This API uses a promise to return the result.
-The permission usage record includes the application identity (token ID) of the invoker, name of the permission used, and number of successful and failed accesses to the target application.
+
+The permission usage record includes the application identifier (token ID) of the caller, name of the permission used, and number of successful and failed accesses to the target application.
 
 **Required permissions**: ohos.permission.PERMISSION_USED_STATS (available only to system applications)
 
@@ -29,7 +30,7 @@ The permission usage record includes the application identity (token ID) of the 
 
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
-| tokenID   |  number   | Yes  | Application token ID of the caller, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
+| tokenID   |  number   | Yes  | Token ID of the caller, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
 | permissionName | Permissions | Yes  | Name of the permission.|
 | successCount | number | Yes  | Number of successful accesses.|
 | failCount | number | Yes  | Number of failed accesses.|
@@ -84,7 +85,8 @@ privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1,
 addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCount: number, failCount: number, callback: AsyncCallback&lt;void&gt;): void
 
 Adds a permission usage record when an application protected by the permission is called by another service or application. This API uses an asynchronous callback to return the result.
-The permission usage record includes the application identity (token ID) of the invoker, name of the permission used, and number of successful and failed accesses to the target application.
+
+The permission usage record includes the application identifier (token ID) of the caller, name of the permission used, and number of successful and failed accesses to the target application.
 
 **Required permissions**: ohos.permission.PERMISSION_USED_STATS (available only to system applications)
 
@@ -94,11 +96,11 @@ The permission usage record includes the application identity (token ID) of the 
 
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
-| tokenID   |  number   | Yes  | Application token ID of the caller, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
+| tokenID   |  number   | Yes  | Token ID of the caller, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
 | permissionName | Permissions | Yes  | Permission name. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
 | successCount | number | Yes  | Number of successful accesses.|
 | failCount | number | Yes  | Number of failed accesses.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -207,7 +209,7 @@ Obtains historical permission usage records. This API uses an asynchronous callb
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | request | [PermissionUsedRequest](#permissionusedrequest) | Yes| Request for querying permission usage records.|
-| callback | AsyncCallback<[PermissionUsedResponse](#permissionusedresponse)> | Yes| Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the permission usage record obtained. Otherwise, **err** is an error object.|
+| callback | AsyncCallback<[PermissionUsedResponse](#permissionusedresponse)> | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the permission usage record obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -254,7 +256,9 @@ privacyManager.getPermissionUsedRecord(request, (err: BusinessError, data: priva
 
 startUsingPermission(tokenID: number, permissionName: Permissions): Promise&lt;void&gt;
 
-Starts to use a permission and flushes the permission usage record. This API is called by a system application, either running in the foreground or background, and uses a promise to return the result. This API uses a promise to return the result.
+Starts using a permission. This API is called by a system application to report the permission usage of an application in the foreground and background, allowing the privacy service to respond based on the application lifecycle. This API uses a promise to return the result.
+
+When an application starts to use a permission, the privacy service notifies the privacy indicator that the application is using the permission. Upon the application's exit, the privacy service notifies the privacy indicator that the application has stopped using the permission and clears the corresponding cache.
 
 **Required permissions**: ohos.permission.PERMISSION_USED_STATS (available only to system applications)
 
@@ -264,8 +268,8 @@ Starts to use a permission and flushes the permission usage record. This API is 
 
 | Name         | Type  | Mandatory| Description                                 |
 | -------------- | ------ | ---- | ------------------------------------ |
-| tokenID        | number | Yes  | Application token ID of the caller, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
-| permissionName | Permissions | Yes  | Permission to use. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
+| tokenID        | number | Yes  | Token ID of the caller, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
+| permissionName | Permissions | Yes  | Permission to use. For details, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
 
 **Return value**
 
@@ -317,9 +321,9 @@ Starts to use a permission and flushes the permission usage record. This API is 
 
 | Name         | Type                 | Mandatory| Description                                 |
 | -------------- | --------------------- | ---- | ------------------------------------ |
-| tokenID        | number                | Yes  | Application token ID of the caller, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
-| permissionName | Permissions                | Yes  | Permission to use. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
-| callback       | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| tokenID        | number                | Yes  | Token ID of the caller, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
+| permissionName | Permissions                | Yes  | Permission to use. For details, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
+| callback       | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -357,7 +361,7 @@ privacyManager.startUsingPermission(tokenID, 'ohos.permission.READ_AUDIO', (err:
 
 stopUsingPermission(tokenID: number, permissionName: Permissions): Promise&lt;void&gt;
 
-Stops using a permission. This API is called by a system application and uses a promise to return the result. **startUsingPermission** and **stopUsingPermission** are used in pairs. This API uses a promise to return the result.
+Stops using a permission. This API must be called by a system application, and used with **startUsingPermission** in pairs. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.PERMISSION_USED_STATS (available only to system applications)
 
@@ -367,8 +371,8 @@ Stops using a permission. This API is called by a system application and uses a 
 
 | Name         | Type  | Mandatory| Description                                 |
 | -------------- | ------ | ---- | ------------------------------------ |
-| tokenID        | number | Yes  | Application token ID of the caller, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
-| permissionName | Permissions | Yes  | Permission to use. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
+| tokenID        | number | Yes  | Token ID of the caller, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
+| permissionName | Permissions | Yes  | Permission to stop using. For details, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
 
 **Return value**
 
@@ -410,7 +414,7 @@ privacyManager.stopUsingPermission(tokenID, 'ohos.permission.READ_AUDIO').then((
 
 stopUsingPermission(tokenID: number, permissionName: Permissions, callback: AsyncCallback&lt;void&gt;): void
 
-Stops using a permission. This API is called by a system application and uses a promise to return the result. **startUsingPermission** and **stopUsingPermission** are used in pairs. This API uses an asynchronous callback to return the result.
+Stops using a permission. This API must be called by a system application, and used with **startUsingPermission** in pairs. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.PERMISSION_USED_STATS (available only to system applications)
 
@@ -420,9 +424,9 @@ Stops using a permission. This API is called by a system application and uses a 
 
 | Name         | Type                 | Mandatory| Description                                 |
 | -------------- | --------------------- | ---- | ------------------------------------ |
-| tokenID        | number                | Yes  | Application token ID of the caller, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
-| permissionName | Permissions                | Yes  | Permission to use. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
-| callback       | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| tokenID        | number                | Yes  | Token ID of the caller, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
+| permissionName | Permissions                | Yes  | Permission to stop using. For details, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
+| callback       | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -460,11 +464,11 @@ privacyManager.stopUsingPermission(tokenID, 'ohos.permission.READ_AUDIO', (err: 
 
 on(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callback: Callback&lt;ActiveChangeResponse&gt;): void
 
-Subscribes to the permission usage status changes of the specified permissions.
+Subscribes to changes in the permission usage status of the specified permissions.
 
 Multiple callbacks can be registered for the same **permissionList**.
 
-The same callback cannot be registered for the **permissionList**s with common values.
+The same callback cannot be registered for the **permissionList**s with overlapping values.
 
 **Required permissions**: ohos.permission.PERMISSION_USED_STATS (available only to system applications)
 
@@ -476,7 +480,7 @@ The same callback cannot be registered for the **permissionList**s with common v
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
 | type               | string                | Yes  | Event type. The value is **'activeStateChange'**, which indicates the permission usage change.  |
 | permissionList | Array&lt;Permissions&gt;   | Yes  | Permissions to be observed. If this parameter is left empty, this API subscribes to usage status changes of all permissions. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
-| callback | Callback&lt;[ActiveChangeResponse](#activechangeresponse)&gt; | Yes| Callback invoked to return a change in the permission usage.|
+| callback | Callback&lt;[ActiveChangeResponse](#activechangeresponse)&gt; | Yes| Callback used to return the permission usage change.|
 
 **Error codes**
 
@@ -513,9 +517,9 @@ try {
 
 off(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callback?: Callback&lt;ActiveChangeResponse&gt;): void
 
-Unsubscribes from the permission usage status changes of the specified permissions.
+Unsubscribes from changes in the permission usage of the specified permissions.
 
-If no callback is passed in **privacyManager.off**, all callbacks of **permissionList** will be unregistered.
+If **callback** is not specified, this API will unregister all callbacks for **permissionList**.
 
 **Required permissions**: ohos.permission.PERMISSION_USED_STATS (available only to system applications)
 
@@ -527,7 +531,7 @@ If no callback is passed in **privacyManager.off**, all callbacks of **permissio
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
 | type               | string                | Yes  | Event type. The value is **'activeStateChange'**, which indicates the permission usage change.  |
 | permissionList | Array&lt;Permissions&gt;   | Yes  | List of permissions. The value must be the same as that of **on()**. If this parameter is left empty, this API unsubscribes from usage status changes of all permissions. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
-| callback | Callback&lt;[ActiveChangeResponse](#activechangeresponse)&gt; | No| Callback for the permission usage change event.|
+| callback | Callback&lt;[ActiveChangeResponse](#activechangeresponse)&gt; | No| Callback to unregister.|
 
 **Error codes**
 
@@ -645,7 +649,7 @@ Represents the request for querying permission usage records.
 
 | Name      | Type            | Mandatory  | Description                                      |
 | -------- | -------------- | ---- | ---------------------------------------- |
-| tokenId  | number         | No   | Token ID of the application (invoker).<br> By default, all applications are queried.        |
+| tokenId  | number         | No   | Token ID of the application (caller).<br> By default, all applications are queried.        |
 | isRemote | boolean         | No   | Whether to query the permission usage records of the remote device.<br> The default value is **false**, which means the permission usage records of the local device are queried by default.|
 | deviceId  | string         | No   | ID of the device hosting the target application.<br> The default value is the local device ID.  |
 | bundleName | string         | No   | Bundle name of the target application.<br> By default, all applications are queried.|
@@ -674,7 +678,7 @@ Represents the permission access records of an application.
 
 | Name      | Type            | Readable| Writable| Description                                      |
 | -------- | -------------- | ---- | ---- | ---------------------------------------- |
-| tokenId  | number         | Yes   | No   | Token ID of the application (invoker).                                |
+| tokenId  | number         | Yes   | No   | Token ID of the application (caller).                                |
 | isRemote | boolean         | Yes   | No   | Whether the token ID belongs to the application on a remote device. The default value is **false**.|
 | deviceId  | string         | Yes   | No   | ID of the device hosting the target application.                                |
 | bundleName | string         | Yes   | No   | Bundle name of the target application.|
@@ -759,7 +763,7 @@ Represents detailed information about the use of a permission.
 | -------------- | ---------------------- | ---- | ---- | --------------------- |
 | tokenId        | number                 | Yes  | No  | ID of the application that uses the sensitive permission.|
 | permissionName | Permissions            | Yes  | No  | Name of the sensitive permission.|
-| usedType | [PermissionUsedType](#permissionusedtype12) | Yes| No   | Means for using the sensitive permission.|
+| usedType | [PermissionUsedType](#permissionusedtype12) | Yes| No   | Access mode of the sensitive permission.|
 
 ## AddPermissionUsedRecordOptions<sup>12+</sup>
 
@@ -769,4 +773,4 @@ Represents the options for adding a permission usage record.
 
 | Name          | Type                   | Readable| Writable| Description                  |
 | -------------- | ---------------------- | ---- | ---- | --------------------- |
-| usedType | [PermissionUsedType](#permissionusedtype12) | Yes| No   | Means for using the sensitive permission.|
+| usedType | [PermissionUsedType](#permissionusedtype12) | Yes| No   | Access mode of the sensitive permission.|
