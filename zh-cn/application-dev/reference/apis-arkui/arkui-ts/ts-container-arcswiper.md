@@ -598,12 +598,13 @@ finishTransition(): void
 ```ts
 // xxx.ets
 import {
+  CircleShape,
   ArcSwiper,
   ArcSwiperAttribute,
   ArcDotIndicator,
   ArcDirection,
   ArcSwiperController
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 class MyDataSource implements IDataSource {
   private list: Color[] = []
@@ -659,7 +660,7 @@ struct TestNewInterface {
               .fontSize(30)
           })
         }
-        .clip(new Circle({ width: 233, height: 233 }))
+        .clipShape(new CircleShape({ width: 233, height: 233 }))
         .effectMode(EdgeEffect.None)
         .backgroundColor(Color.Transparent)
         .index(0)

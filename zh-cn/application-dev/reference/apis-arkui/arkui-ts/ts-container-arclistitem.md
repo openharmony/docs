@@ -72,7 +72,7 @@ swipeAction(options: Optional\<SwipeActionOptions>)
 
 ```ts
 // xxx.ets
-import { LengthMetrics } from "@kit.ArkUI";
+import { LengthMetrics, CircleShape } from "@kit.ArkUI";
 import { ArcList, ArcListItem, ArcListAttribute, ArcListItemAttribute } from '@kit.ArkUI';
 
 @Entry
@@ -89,7 +89,7 @@ struct ArcListItemExample {
       }
       .width(this.watchSize)
       .height(this.watchSize)
-      .clip(new Circle({ width: '100%', height: '100%' }))
+      .clipShape(new CircleShape({ width: '100%', height: '100%' }))
       .backgroundColor(0x707070)
 
       ArcList({ initialIndex: 3}) {
