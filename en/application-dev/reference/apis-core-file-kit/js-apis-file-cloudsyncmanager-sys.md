@@ -194,7 +194,7 @@ Represents the cloud data change information.
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
 | eventId | string | Yes  | Change event ID.|
-| extraData | ExtraData | Yes  | Change of the cloud data.|
+| extraData | ExtraData | Yes  | Represents the cloud data change information.|
 
 ## cloudSyncManager.notifyDataChange<sup>11+</sup>
 
@@ -211,7 +211,7 @@ Notifies the cloud sync service of the application data change in the cloud. Thi
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
 | userId | number | Yes  | User ID.|
-| extraData | ExtraData | Yes  | Change of the cloud data.|
+| extraData | ExtraData | Yes  | Represents the cloud data change information.|
 
 **Return value**
 
@@ -258,7 +258,7 @@ Notifies the cloud sync service of the application data change in the cloud. Thi
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
 | userId | number | Yes  | User ID.|
-| extraData | ExtraData | Yes  | Change of the cloud data.|
+| extraData | ExtraData | Yes  | Represents the cloud data change information.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the application data change in the cloud.|
 
 **Error codes**

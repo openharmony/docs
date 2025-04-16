@@ -12,7 +12,7 @@ The **DefaultAppManager** module provides APIs to query whether the current appl
 import { defaultAppManager } from '@kit.AbilityKit';
 ```
 
-## defaultAppManager.ApplicationType
+## ApplicationType
 
 Enumerates the default application types.
 
@@ -42,7 +42,7 @@ Checks whether this application is the default application of a system-defined a
 
 | Name        | Type    | Mandatory  | Description                                     |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](#defaultappmanagerapplicationtype) or [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).                          |
+| type  | string | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](#applicationtype) or [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).                          |
 
 **Return value**
 
@@ -85,7 +85,7 @@ Checks whether this application is the default application of a system-defined a
 
 | Name        | Type                             | Mandatory  | Description                                     |
 | ----------- | ------------------------------- | ---- | --------------------------------------- |
-| type  | string                          | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](#defaultappmanagerapplicationtype) or [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).                           |
+| type  | string                          | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](#applicationtype) or [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).                           |
 | callback    | AsyncCallback\<boolean> | Yes   | Callback used to return the result. If the application is the default application, **true** is returned; otherwise, **false** is returned.|
 
 **Error codes**
@@ -124,7 +124,7 @@ Checks whether this application is the default application of a system-defined a
 
 | Name| Type  | Mandatory| Description                                    |
 | -------| ------ | ---- | --------------------------------------- |
-|  type  | string | Yes  | Type of the target application. It must be set to a value defined by [ApplicationType](#defaultappmanagerapplicationtype) or [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).  |
+|  type  | string | Yes  | Type of the target application. It must be set to a value defined by [ApplicationType](#applicationtype) or [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).  |
 
 **Return value**
 

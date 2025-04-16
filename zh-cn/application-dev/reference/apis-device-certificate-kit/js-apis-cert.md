@@ -34,7 +34,7 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 | ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY | 19030005 | 无法获取证书的颁发者。        |
 | ERR_KEYUSAGE_NO_CERTSIGN              | 19030006 | 证书的秘钥用途不含证书签名。   |
 | ERR_KEYUSAGE_NO_DIGITAL_SIGNATURE     | 19030007 |  证书的秘钥用途不含数字签名。  |
-| ERR_MAYBE_WRONG_PASSWORD<sup>18+</sup>              | 19030008 | 私钥密码错误。                |
+| ERR_MAYBE_WRONG_PASSWORD<sup>18+</sup>              | 19030008 | 私钥密码错误。 <br> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。        |
 
 ## DataBlob
 buffer数组。
@@ -1814,7 +1814,7 @@ getSignatureAlgOid() : string
 
 | 类型   | 说明                              |
 | ------ | --------------------------------- |
-| string | 表示X509证书签名算法对象标志符OID。 |
+| string | 表示X509证书签名算法对象标志符OID。若OID长度超过128字节，则会被截断。 |
 
 **错误码：**
 
@@ -3608,7 +3608,7 @@ createX509CRL(inStream : EncodingBlob, callback : AsyncCallback\<X509CRL>) : voi
 
 | 参数名   | 类型                                  | 必填 | 说明                           |
 | -------- | ------------------------------------- | ---- | ------------------------------ |
-| inStream | [EncodingBlob](#encodingblob)         | 是   | 表示证书吊销列表序列化数据。     |
+| inStream | [EncodingBlob](#encodingblob)         | 是   | 表示证书吊销列表序列化数据。当前支持的数据长度不超过8192字节。     |
 | callback | AsyncCallback\<[X509CRL](#x509crl11)> | 是   | 回调函数，表示证书吊销列表对象。 |
 
 **错误码：**
@@ -3674,7 +3674,7 @@ createX509CRL(inStream : EncodingBlob) : Promise\<X509CRL>
 
 | 参数名   | 类型                          | 必填 | 说明                       |
 | -------- | ----------------------------- | ---- | -------------------------- |
-| inStream | [EncodingBlob](#encodingblob) | 是   | 表示证书吊销列表序列化数据。 |
+| inStream | [EncodingBlob](#encodingblob) | 是   | 表示证书吊销列表序列化数据。当前支持的数据长度不超过8192字节。 |
 
 **返回值**：
 
@@ -7452,8 +7452,6 @@ try {
 证书链校验器对象。
 
 
-### 属性
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
@@ -8431,7 +8429,7 @@ cert.createX509CRL(encodingBlob, (err, x509CRL) => {
 
 getRevocationDate() : string
 
-表示获取证书被吊销的日期，日期为ASN.1时间格式。
+表示获取证书被吊销的日期。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -8441,7 +8439,7 @@ getRevocationDate() : string
 
 | 类型   | 说明                 |
 | ------ | -------------------- |
-| string | 表示证书被吊销的日期，日期为ASN.1时间格式。 |
+| string | 表示证书被吊销的日期。 |
 
 **错误码：**
 
@@ -11383,6 +11381,15 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'xG/kEOcwLtzeVHOQA+ZU5SVcc+qc0dfFiWjL2PSAG4bpqSTjujpuUk+g8ugixbG1\n' +
   'a26pkDJhNeB/E3eBIbeydSY0A/dIGb6vbGo6BSq2KvnWAA==\n' +
   '-----END CERTIFICATE-----\n';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
 
 function testcreateCmsGenerator() {
   let certEncodingBlob: cert.EncodingBlob = {

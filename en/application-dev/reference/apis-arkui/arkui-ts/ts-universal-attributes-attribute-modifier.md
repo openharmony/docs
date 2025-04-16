@@ -36,7 +36,7 @@ You need a custom class to implement the **AttributeModifier** API.
 
 >  **NOTE**
 >
->  In the following APIs, setting the same value or object for the same attribute of the **instance** object will not trigger an update. However, since API version 16, setting the same resource type object will take effect and trigger an update.
+>  In the following APIs, setting the same value or object for the same attribute of the **instance** object will not trigger an update.
 
 ### applyNormalAttribute
 applyNormalAttribute(instance: T) : void
@@ -337,12 +337,14 @@ Attributes not listed in the table below are supported by default.
 | bindContextMenu          | Not supported  | Method not implemented.   | Attributes that accept a CustomBuilder are not supported.              |
 | bindPopup                | Not supported  | Method not implemented.   | Attributes that accept a CustomBuilder are not supported.              |
 | bindSheet                | Not supported  | Method not implemented.   | Attributes that accept a CustomBuilder are not supported.              |
+| chainWeight              | Not supported  | is not callable           | -                                         |
 | compositingFilter        | Not supported  | is not callable           | -                                         |
 | drawModifier             | Not supported  | is not callable           | Modifier-related attributes are not supported.               |
 | foregroundFilter         | Not supported  | is not callable           | -                                         |
 | freeze                   | Not supported  | is not callable           | -                                         |
 | gesture                  | Not supported  | Method not implemented.   | Gesture-related attributes are not supported.                |
 | gestureModifier          | Not supported  | is not callable           | Modifier-related attributes are not supported.               |
+| onAccessibilityHover     | Not supported  | is not callable           | -                                         |
 | onChildTouchTest         | Not supported  | is not callable           | -                                         |
 | onDragStart              | Not supported  | Method not implemented.   | Attributes that return a CustomBuilder are not supported.            |
 | onPreDrag                | Not supported  | Method not implemented.   | -                                         |

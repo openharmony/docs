@@ -38,7 +38,7 @@ Sets the scrollbar color.
 
 | Name| Type                                                        | Mandatory| Description          |
 | ------ | ------------------------------------------------------------ | ---- | -------------- |
-| color  | string \| number \| [Color](ts-appendix-enums.md#color) | Yes  | Scrollbar color.<br>Default value: **'\#182431'** (40% opacity)|
+| color  | string \| number \| [Color](ts-appendix-enums.md#color) | Yes  | Scrollbar color.<br>Default value: **'\#182431'** (40% opacity)<br>A number value indicates a HEX color in RGB or ARGB format, for example, **0xffffff**. A string value indicates a color in RGB or ARGB format, for example, **'#ffffff'**.|
 
 ### scrollBarWidth<sup>11+</sup>
 
@@ -54,7 +54,7 @@ Sets the scrollbar width. This attribute cannot be set in percentage. After the 
 
 | Name| Type                      | Mandatory| Description                                     |
 | ------ | -------------------------- | ---- | ----------------------------------------- |
-| value  | string \| number | Yes  | Scrollbar width.<br>Default value: **4**<br>Unit: vp|
+| value  | string \| number | Yes  | Scrollbar width.<br>Default value: **4**<br>Unit: vp<br>If this parameter is set to a value less than or equal to 0, the default value is used. The value **0** means not to show the scrollbar.|
 
 ### edgeEffect<sup>11+</sup>
 
@@ -119,13 +119,13 @@ Sets the friction coefficient. It applies only to gestures in the scrolling area
 
 | Name| Type                                                | Mandatory| Description                                                     |
 | ------ | ---------------------------------------------------- | ---- | --------------------------------------------------------- |
-| value  | number \| [Resource](ts-types.md#resource) | Yes  | Friction coefficient.<br>Default value: **0.9** for wearable devices and **0.6** for non-wearable devices<br>Since API version 11, the default value for non-wearable devices is **0.7**.<br>Since API version 12, the default value for non-wearable devices is **0.75**.|
+| value  | number \| [Resource](ts-types.md#resource) | Yes  | Friction coefficient.<br>Default value: **0.9** for wearable devices and **0.6** for non-wearable devices<br>Since API version 11, the default value for non-wearable devices is **0.7**.<br>Since API version 12, the default value for non-wearable devices is **0.75**.<br>Value range: (0, +∞). If this parameter is set to a value less than or equal to 0, the default value is used.|
 
 ### flingSpeedLimit<sup>11+</sup>
 
 flingSpeedLimit(speedLimit: number): T
 
-Sets the maximum initial velocity at the start of the fling animation that occurs after gesture-driven scrolling ends. If this attribute is set to a value less than or equal to 0, the default value is used.
+Sets the maximum initial velocity at the start of the fling animation that occurs after gesture-driven scrolling ends.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -135,7 +135,7 @@ Sets the maximum initial velocity at the start of the fling animation that occur
 
 | Name    | Type  | Mandatory| Description                           |
 | ---------- | ------ | ---- | ------------------------------- |
-| speedLimit | number | Yes  | Maximum initial velocity at the start of the fling animation.<br>Default value: **12000**<br>Unit: vp/s|
+| speedLimit | number | Yes  | Maximum initial velocity at the start of the fling animation.<br>Default value: **9000**<br>Unit: vp/s<br>Value range: (0, +∞). If this parameter is set to a value less than or equal to 0, the default value is used.|
 
 ### fadingEdge<sup>14+</sup>
 
@@ -151,7 +151,7 @@ Sets whether to enable the edge fading effect and the length of the fading edge.
 
 | Name | Type                                             | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| enabled | Optional&lt;boolean&gt;                           | Yes  | Whether to enable the edge fading effect.<br>When **fadingEdge** is set to **true**, it overrides the **.overlay()** attribute of the component.<br>With **fadingEdge** set to **true**, avoid setting background-related attributes on the component, as this may affect the display of the fading effect.<br>With **fadingEdge** set to **true**, the component is clipped to the boundary, and setting the component's **clip** attribute to **false** will not take effect.<br>Default value: **false**|
+| enabled | Optional&lt;boolean&gt;                           | Yes  | Whether to enable the edge fading effect.<br>When **fadingEdge** is set to **true**, it overrides the **.overlay()** attribute of the component.<br>With **fadingEdge** set to **true**, avoid setting background-related attributes on the component, as this may affect the display of the fading effect.<br>With **fadingEdge** set to **true**, the component is clipped to the boundary, and setting the component's **clip** attribute to **false** will not take effect.<br>Default value: **false**, which means not to enable the edge fading effect|
 | options | [FadingEdgeOptions](#fadingedgeoptions14) | No  | Object defining edge fading effect properties, such as the fading edge length.|
 
 ### clipContent<sup>14+</sup>
@@ -169,6 +169,25 @@ Sets the content clipping area for this scrollable component.
 | Name | Type                                             | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | clip | [ContentClipMode](#contentclipmode14) \| [RectShape](../js-apis-arkui-shape.md#rectshape)   | Yes  | Clipping to apply, which is effective only for the content (that is, child components) of the scrollable component, not the background. When a custom rectangular area is passed through **RectShape**, only width, height, and [offset](../js-apis-arkui-shape.md#offset) relative to the component's upper left corner are supported, and rounded corners are not supported.<br></div>Default value: The default value for **Grid** and **Scroll** is **ContentClipMode.BOUNDARY**, and the default value for **List** and **WaterFlow** is **ContentClipMode.CONTENT_ONLY**.|
+
+### backToTop<sup>15+</sup>
+
+backToTop(backToTop: boolean)
+
+Sets whether to enable the back-to-top feature for a scrollable component when the status bar is touched.
+
+If this feature is enabled, the scrollable component on the current page scrolls to the top when the user touches the status bar. This behavior does not affect scrollable components in background applications, which will not scroll to the top. This attribute is independent of the [enableScrollInteraction](#enablescrollinteraction11) setting.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                          |
+| ------ | ------- | ---- | ---------------------------------------------- |
+| backToTop  | boolean | Yes  | Whether to enable the back-to-top feature for a scrollable component when the status bar is touched.<br>Default value: **false**|
+
 
 
 ## Events
@@ -293,6 +312,8 @@ This API is deprecated since API version 12. For the **Scroll** component, the *
 
 ## ItemDragInfo
 
+Provides information about the drag point.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -303,6 +324,8 @@ This API is deprecated since API version 12. For the **Scroll** component, the *
 | y | number |  Y coordinate of the dragged item, in vp.   |
 
 ## NestedScrollOptions<sup>10+</sup>
+
+Implements an object used to configure the [nestedScroll](#nestedscroll11) attribute.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -315,6 +338,8 @@ This API is deprecated since API version 12. For the **Scroll** component, the *
 
 ## EdgeEffectOptions<sup>11+</sup>
 
+Implements an object used to configure the [edgeEffect](#edgeeffect11) attribute.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -322,9 +347,11 @@ This API is deprecated since API version 12. For the **Scroll** component, the *
 | Name  | Type | Mandatory| Description             |
 | ----- | ------| ------- | ----------------- |
 | alwaysEnabled | boolean | Yes| Whether to enable the scroll effect when the component content is smaller than the component itself.|
-| effectEdge<sup>16+</sup> | number | No| Edge where the edge effect is applied. With **[EffectEdge](#effectedge16).START**, the edge effect is applied to the start edge only. With **[EffectEdge](#effectedge16).END**, the edge effect is applied to the end edge only. The default value is [EffectEdge](#effectedge16).START \| [EffectEdge](#effectedge16).END, which means that the edge effect is applied to both the start and end edges. If an invalid value is set, the edge effect is applied to both the start and end edges by default.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
+| effectEdge<sup>18+</sup> | number | No| Edge where the edge effect is applied.<br>With **[EffectEdge](#effectedge18).START**, the edge effect is applied to the start edge only. With **[EffectEdge](#effectedge18).END**, the edge effect is applied to the end edge only.<br>The default value is [EffectEdge](#effectedge18).START \| [EffectEdge](#effectedge18).END, which means that the edge effect is applied to both the start and end edges. If an invalid value is set, the edge effect is applied to both the start and end edges.<br>To disable the effect on both edges, set **edgeEffect** to **EdgeEffect.None**.|
 
 ## FadingEdgeOptions<sup>14+</sup>
+
+Implements an object used to configure the [fadingEdge](#fadingedge14) attribute.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -334,11 +361,11 @@ This API is deprecated since API version 12. For the **Scroll** component, the *
 | ---------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | fadingEdgeLength | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No  | Length of the fading edge. If the value is smaller than 0, the default length, 32 vp, is used.<br>If the value exceeds half the height of the container, it is adjusted to exactly half the height of the container.|
 
-## EffectEdge<sup>16+</sup>
+## EffectEdge<sup>18+</sup>
 
 Enumerates the edges where the edge effect is applied.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -387,7 +414,7 @@ Callback triggered when the scrollable component is about to scroll.
 
 | Type                         | Description                                 |
 | ----------------------------- | ------------------------------------ |
-| void \| [ScrollResult](#scrollresult12) |  Returns a **ScrollResult** object if the scrollable component scrolls by the offset specified by you; returns no **ScrollResult** object if the component scrolls by the offset specified by **scrollOffset** in the callback.|
+| void \| [ScrollResult](#scrollresult12) |  Returns a **ScrollResult** object if the scrollable component scrolls by the offset specified by you; returns no **ScrollResult** object if the component scrolls by the offset specified by **scrollOffset** in the callback.<br>Value range: (-∞, +∞)|
 
 ## OnScrollCallback<sup>12+</sup>
 
@@ -408,6 +435,8 @@ Callback triggered when the scrollable component scrolls.
 
 ## ScrollResult<sup>12+</sup>
 
+Implements a return value object of the [OnWillScrollCallback](#onwillscrollcallback12) callback.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -421,6 +450,8 @@ Callback triggered when the scrollable component scrolls.
 Provides the size information of the child components of the **List** or **ListItemGroup** component along the main axis. This object only supports one-to-one binding to the **List** or **ListItemGroup** component.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 ### constructor<sup>12+</sup>
 
@@ -475,7 +506,7 @@ Obtains the default size of the child component along the main axis.
 
 | Type                                                        | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| number | Default size of the child component along the main axis.<br>Unit: vp|
+| number | Default size of the child component along the main axis.<br>Unit: vp<br>Value range: [0, +∞)|
 
 ### splice<sup>12+</sup>
 
@@ -491,9 +522,9 @@ Performs batch operations to add, delete, or modify the size information of chil
 
 | Name  | Type                           | Mandatory  | Description                  |
 | ---- | ----------------------------- | ---- | -------------------- |
-| start | number | Yes   | Index starting from 0, which indicates the position at which to begin modifying the size information of child components along the main axis.<br>**NOTE**<br>1. The value must be a finite non-negative number; otherwise, an exception will be thrown.<br>2. Non-integer values are truncated to the nearest integer.<br>3. Values exceeding the maximum index do not take effect.|
-| deleteCount | number | No   | Number of size information entries to be deleted starting from the **start** position.<br>**NOTE**<br>1.  The value must be a finite non-negative number; otherwise, it will be treated as **0**.<br>2. Non-integer values are truncated to the nearest integer.<br>3. The result of (start + deleteCount - 1) can exceed the maximum index, which will delete all size information of child components starting from the **start** position.|
-| childrenSize | Array\<number > | No   | Size information of all child components to be inserted, starting from the **start** position.<br>Unit for each value in the array: vp<br>**NOTE**<br>1. If the values in the array are finite non-negative number, they are considered specified sizes and will not change with the default size.<br>2. 2. If the values in the array are not finite non-negative number, they will be treated as the default size and will change with the default size. |
+| start | number | Yes   | Index starting from 0, which indicates the position at which to begin modifying the size information of child components along the main axis.<br>**NOTE**<br>1. The value must be a finite non-negative number; otherwise, an exception will be thrown.<br>2. Non-integer values are truncated to the nearest integer.<br>3. Values exceeding the maximum index do not take effect.<br>Value range: [0, +∞)|
+| deleteCount | number | No   | Number of size information entries to be deleted starting from the **start** position.<br>**NOTE**<br>1.  The value must be a finite non-negative number; otherwise, it will be treated as **0**.<br>2. Non-integer values are truncated to the nearest integer.<br>3. The result of (start + deleteCount - 1) can exceed the maximum index, which will delete all size information of child components starting from the **start** position.<br>Default value: **+∞**<br>Value range: [0, +∞)|
+| childrenSize | Array\<number > | No   | Size information of all child components to be inserted, starting from the **start** position.<br>Unit for each value in the array: vp<br>**NOTE**<br>1. If the values in the array are finite non-negative number, they are considered specified sizes and will not change with the default size.<br>2. 2. If the values in the array are not finite non-negative number, they will be treated as the default size and will change with the default size.<br>The default value is an empty array.<br>Value range: [0, +∞)|
 
 
 **Error codes**
@@ -526,8 +557,8 @@ Updates the main axis size information of the child component corresponding to t
 
 | Name  | Type                           | Mandatory  | Description                  |
 | ---- | ----------------------------- | ---- | -------------------- |
-| index | number | Yes   | Index starting from 0, which indicates the position at which to begin modifying the size information of child components along the main axis.<br>**NOTE**<br>1. The value must be a finite non-negative number; otherwise, an exception will be thrown.<br>2. Non-integer values are truncated to the nearest integer.<br>3. Values exceeding the maximum index do not take effect.|
-| childSize | number | Yes   | Size to be updated to.<br>Unit: vp<br>**NOTE**<br>1. If the value is a finite non-negative number, it is considered a specified size and will not change with the default size.<br>2. 2. If the value is not a finite non-negative number, it will be processed as the default size and will change with the default size. |
+| index | number | Yes   | Index starting from 0, which indicates the position at which to begin modifying the size information of child components along the main axis.<br>**NOTE**<br>1. The value must be a finite non-negative number; otherwise, an exception will be thrown.<br>2. Non-integer values are truncated to the nearest integer.<br>3. Values exceeding the maximum index do not take effect.<br>Value range: [0, +∞)|
+| childSize | number | Yes   | Size to be updated to.<br>Unit: vp<br>**NOTE**<br>1. If the value is a finite non-negative number, it is considered a specified size and will not change with the default size.<br>2. 2. If the value is not a finite non-negative number, it will be processed as the default size and will change with the default size.<br>Value range: [0, +∞)|
 
 **Error codes**
 

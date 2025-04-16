@@ -36,7 +36,7 @@ attributeModifier(modifier:&nbsp;AttributeModifier\<T>)
 
 >  **说明：**
 >
->  在以下回调函数中，当对instance对象的同一个属性重复设置相同的值或对象时，不会触发该属性的更新。从API version 16开始，如果对instance对象的同一属性重复设置相同的资源类型对象，将会生效并触发更新。
+>  在以下回调函数中，当对instance对象的同一个属性重复设置相同的值或对象时，不会触发该属性的更新。
 
 ### applyNormalAttribute
 applyNormalAttribute(instance: T) : void
@@ -167,7 +167,7 @@ struct attributeDemo {
 
 ### 示例2（组件绑定Modifier实现按压态效果）
 
-该示例通过Button绑定Modifier实现了按压态的效果。如果配合状态管理V2使用，详情见：[Modifier与makeObserved](../../../quick-start/arkts-v1-v2-migration.md#modifier)。
+该示例通过Button绑定Modifier实现了按压态的效果。如果配合状态管理V2使用，详情见：[Modifier与makeObserved](../../../ui/state-management/arkts-v1-v2-migration.md#modifier)。
 
 ```ts
 // xxx.ets

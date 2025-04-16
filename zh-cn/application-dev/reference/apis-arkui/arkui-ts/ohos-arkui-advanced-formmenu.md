@@ -14,6 +14,8 @@
 > **说明：**
 >
 > 该组件从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> 该组件不支持在Wearable设备上使用。
 
 
 ## 导入模块
@@ -110,9 +112,9 @@ struct Index {
           bundleName: 'com.example.myapplication', // 包名
           abilityName: 'EntryFormAbility', // 模块ability名称
           parameters: {
-            'ohos.extra.param.key.form_dimension': 2,
-            'ohos.extra.param.key.form_name': 'widget',
-            'ohos.extra.param.key.module_name': 'entry'
+            'ohos.extra.param.key.form_dimension': 2, // 卡片尺寸，1代表1*2卡片，2代表2*2卡片，3代表2*4卡片，4代表4*4卡片，7代表6*4卡片，6代表1*1卡片
+            'ohos.extra.param.key.form_name': 'widget', // 卡片名称
+            'ohos.extra.param.key.module_name': 'entry' // 卡片所属的模块名称
           },
         },
         this.compId,

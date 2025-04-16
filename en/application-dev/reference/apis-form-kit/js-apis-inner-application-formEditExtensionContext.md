@@ -14,7 +14,7 @@ You can use **FormEditExtensionContext** to access specific **FormEditExtensionA
 ```ts
 import { FormEditExtensionAbility } from '@kit.FormKit';
 ```
-## startSecondPage
+## FormEditExtensionAbility.startSecondPage
 
 startSecondPage(want: Want): Promise<[AbilityResult](../apis-ability-kit/js-apis-inner-ability-abilityResult.md)>
 

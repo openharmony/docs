@@ -93,10 +93,10 @@
 | int32_t [OH_NativeXComponent_RegisterSurfaceHideCallback](#oh_nativexcomponent_registersurfacehidecallback)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void&nbsp;\*window)) | 为此OH_NativeXComponent实例注册surface隐藏回调，该回调在应用从前台来到后台后触发。 |
 | int32_t [OH_NativeXComponent_GetTouchEventSourceType](#oh_nativexcomponent_gettoucheventsourcetype) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, int32_t pointId, [OH_NativeXComponent_EventSourceType](#oh_nativexcomponent_eventsourcetype) \*sourceType) | 获取ArkUI XComponent触摸事件的输入设备类型。  |
 | [OH_NativeXComponent](#oh_nativexcomponent) \* [OH_NativeXComponent_GetNativeXComponent](#oh_nativexcomponent_getnativexcomponent) ([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node) | 基于Native接口创建的组件实例获取OH_NativeXComponent类型的指针。  |
-| int32_t OH_NativeXComponent_GetNativeAccessibilityProvider(OH_NativeXComponent* component, ArkUI_AccessibilityProvider** handle); |  |
+| int32_t [OH_NativeXComponent_GetNativeAccessibilityProvider](#oh_nativexcomponent_getnativeaccessibilityprovider)([OH_NativeXComponent](#oh_nativexcomponent)* component, [ArkUI_AccessibilityProvider](./arkui_native_interface_accessibility.md#arkui_accessibilityprovider)** handle); | 基于NativeXComponent实例获取的ArkUI_AccessibilityProvider类型的指针。 |
 | int32_t [OH_NativeXComponent_RegisterKeyEventCallbackWithResult](#oh_nativexcomponent_registerkeyeventcallbackwithresult) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, bool(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, void \*window)) | 为此OH_NativeXComponent实例注册有返回值的按键事件回调。  | 
 |int32_t [OH_ArkUI_XComponent_StartImageAnalyzer](#oh_arkui_xcomponent_startimageanalyzer) ([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, void \*userData,void (\*callback)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_XComponent_ImageAnalyzerState](#arkui_xcomponent_imageanalyzerstate) statusCode, void \*userData))|为此XComponent实例开始图像AI分析。|
-|int32_t [OH_ArkUI_XComponent_StopImageAnalyzer](#oh_arkui_xcomponent_stopimageanalyzer)([ArkUI_NodeHandle]() node)|为此XComponent实例停止图像AI分析。|
+|int32_t [OH_ArkUI_XComponent_StopImageAnalyzer](#oh_arkui_xcomponent_stopimageanalyzer)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node)|为此XComponent实例停止图像AI分析。|
 
 ### 变量
 
@@ -737,7 +737,7 @@ XComponent图像AI分析状态码。
 
 **起始版本：**
 
-16
+18
 
 ## 函数说明
 
@@ -1736,7 +1736,7 @@ ARKUI_ERROR_CODE_PARAM_INVALID - 参数异常。
 
 **起始版本：**
 
-16
+18
 
 ### OH_ArkUI_XComponent_StopImageAnalyzer()
 
@@ -1762,7 +1762,7 @@ ARKUI_ERROR_CODE_PARAM_INVALID - 参数异常。
 
 **起始版本：**
 
-16
+18
 
 
 <!--  -->

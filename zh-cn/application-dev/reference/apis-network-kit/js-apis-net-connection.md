@@ -5,6 +5,7 @@
 > **说明：**
 >
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
 > 无特殊说明，接口默认不支持并发。
 
 ## 导入模块
@@ -1590,6 +1591,8 @@ addCustomDnsRule(host: string, ip: Array\<string\>, callback: AsyncCallback\<voi
 
 **需要权限**：ohos.permission.INTERNET
 
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
@@ -1634,6 +1637,8 @@ addCustomDnsRule(host: string, ip: Array\<string\>): Promise\<void\>
 为当前应用程序添加自定义host和对应的IP地址的映射，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -1683,6 +1688,8 @@ removeCustomDnsRule(host: string, callback: AsyncCallback\<void\>): void
 
 **需要权限**：ohos.permission.INTERNET
 
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
@@ -1726,6 +1733,8 @@ removeCustomDnsRule(host: string): Promise\<void\>
 删除当前应用程序中对应host的自定义DNS规则，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -2454,6 +2463,8 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>\>\)
 
 **需要权限**：ohos.permission.INTERNET
 
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
@@ -2504,6 +2515,8 @@ getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 使用对应网络解析主机名以获取所有IP地址，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -2782,7 +2795,7 @@ netConnectionWlan.register((error: BusinessError) => {
 | 名称                 | 类型                                  | 必填 |            说明            |
 | -------------------- | ------------------------------------- | --- |--------------------------- |
 | netHandle            | [NetHandle](#nethandle)               | 是   |数据网络句柄(netHandle)。   |
-| blocked              | boolean                               | 是   |标识当前网络是否是堵塞状态。 |
+| blocked              | boolean                               | 是   |true：标识当前网络是堵塞状态；false：标识当前网络不是堵塞状态。 |
 
 ## ConnectionProperties
 
@@ -2810,8 +2823,8 @@ netConnectionWlan.register((error: BusinessError) => {
 | interface      | string                      | 是 |网卡名称。       |
 | destination    | [LinkAddress](#linkaddress) | 是 |目的地址。       |
 | gateway        | [NetAddress](#netaddress)   | 是 |网关地址。       |
-| hasGateway     | boolean                     | 是 |是否有网关。     |
-| isDefaultRoute | boolean                     | 是 |是否为默认路由。 |
+| hasGateway     | boolean                     | 是 |true：有网关；false：无网关。    |
+| isDefaultRoute | boolean                     | 是 |true：默认路由；false：非默认路由。 |
 
 ## LinkAddress
 

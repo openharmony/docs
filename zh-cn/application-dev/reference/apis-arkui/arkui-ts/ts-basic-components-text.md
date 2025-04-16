@@ -250,7 +250,7 @@ textCase(value: TextCase)
 
 fontColor(value: ResourceColor)
 
-设置字体颜色。wearable设备上默认值为：'#dbffffff'
+设置字体颜色。wearable设备上默认值为：'#c5ffffff'
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -262,7 +262,7 @@ fontColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明       |
 | ------ | ------------------------------------------ | ---- | ---------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 字体颜色。 |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 字体颜色。<br />默认值：'e6182431' |
 
 ### fontSize
 
@@ -340,7 +340,7 @@ fontFamily(value: string | Resource)
 
 copyOption(value: CopyOptions)
 
-设置组件是否支持文本可复制粘贴。设置copyOptions为CopyOptions.InApp或者CopyOptions.LocalDevice，长按文本，会弹出文本选择菜单，可选中文本并进行复制、全选操作。
+设置组件是否支持文本可复制粘贴。设置copyOptions为CopyOptions.InApp或者CopyOptions.LocalDevice，长按文本，会弹出文本选择菜单，可选中文本并进行复制、全选操作，此时Text会监听onClick事件，手势事件为非冒泡事件，若需要点击Text组件区域响应父组件的点击手势事件，建议在父组件上使用[parallelGesture](ts-gesture-settings.md#绑定手势识别)绑定手势识别，也可参考[示例7设置文本识别](#示例7设置文本识别)。
 
 由于卡片没有长按事件，此场景下长按文本，不会弹出文本选择菜单。
 
@@ -456,7 +456,7 @@ textIndent(value: Length)
 
 wordBreak(value: WordBreak)
 
-设置断行规则。WordBreak.BREAK_ALL与{overflow:&nbsp;TextOverflow.Ellipsis}，maxLines组合使用可实现英文单词按字母截断，超出部分以省略号显示
+设置断行规则。WordBreak.BREAK_ALL与{overflow:&nbsp;TextOverflow.Ellipsis}，maxLines组合使用可实现英文单词按字母截断，超出部分以省略号显示。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -822,7 +822,7 @@ enableHapticFeedback(isEnabled: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| isEnabled | boolean | 是   | 是否开启触控反馈。<br/>默认值：true |
+| isEnabled | boolean | 是   | 是否开启触控反馈。<br/>true表示开启，false表示不开启。<br/>默认值：true |
 
 >  **说明：**
 >
@@ -937,9 +937,9 @@ marqueeOptions(options: Optional\<TextMarqueeOptions>)
 
 **参数：** 
 
-| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| 名称 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| overflow  | [TextOverflow](ts-appendix-enums.md#textoverflow) | 是   | 文本超长时的显示方式。<br/>默认值：TextOverflow.Clip |
+| overflow<sup>7+</sup>  | [TextOverflow](ts-appendix-enums.md#textoverflow) | 是   | 文本超长时的显示方式。<br/>默认值：TextOverflow.Clip <br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## 事件
 
@@ -992,7 +992,7 @@ onMarqueeStateChange(callback: Callback\<MarqueeState\>)
 
 | 参数名    | 类型                                             | 必填  | 说明                       |
 |--------|---------------------------------------------------|-----|--------------------------|
-| state  | Callback\<[MarqueeState](#marqueestate18枚举说明)\> | 是   | 通过state参数指定触发回调的状态，状态由MarqueeState枚举定义，例如开始滚动、滚动一次、滚动完成。 |
+| callback  | Callback\<[MarqueeState](#marqueestate18枚举说明)\> | 是   | 通过callback参数指定触发回调的状态，状态由MarqueeState枚举定义，例如开始滚动、滚动一次、滚动完成。 |
 
 ## TextOptions<sup>11+</sup>
 
@@ -1072,14 +1072,14 @@ Marquee初始化参数。
 
 **参数：**
 
-| 参数名                | 类型                                              | 必填 | 说明                                                                                  |
+| 名称                | 类型                                              | 必填 | 说明                                                                                  |
 |--------------------|-------------------------------------------------|----|-------------------------------------------------------------------------------------|
-| start              | boolean                                         | 是  | 控制跑马灯进入播放状态。                                                                        |
+| start              | boolean                                         | 是  | 控制跑马灯进入播放状态。<br/>true表示播放，false表示不播放。                           |
 | step               | number                                          | 否  | 滚动动画文本滚动步长。<br/>默认值：4.0vp                                                           |
 | loop               | number                                          | 否  | 设置重复滚动的次数，小于等于零时无限循环。<br/>默认值：-1                                                    |
-| fromStart          | boolean                                         | 否  | 设置文本从头开始滚动或反向滚动。<br/>默认值：true                                                       |
-| delay              | number                                          | 否  | 设置每次滚动的时间间隔。<br/>默认值：0                                                              |
-| fadeout            | boolean                                         | 否  | 设置文字超长时的渐隐效果。当Text内容超出显示范围时，未完全展现的文字边缘将应用渐隐效果。若两端均有文字未完全显示，则两端同时应用渐隐效果。在渐隐效果开启状态下，clip属性将自动锁定为true，不允许设置为false。<br/>默认值：false  |
+| fromStart          | boolean                                         | 否  | 设置文本从头开始滚动或反向滚动。<br/>true表示从头开始滚动，false表示反向滚动。<br/>默认值：true                                                  |
+| delay              | number                                          | 否  | 设置每次滚动的时间间隔。<br/>默认值：0 <br/>单位：毫秒                                                             |
+| fadeout            | boolean                                         | 否  | 设置文字超长时的渐隐效果。<br/>true表示支持渐隐效果，false表示不支持渐隐效果。<br/>当Text内容超出显示范围时，未完全展现的文字边缘将应用渐隐效果。若两端均有文字未完全显示，则两端同时应用渐隐效果。在渐隐效果开启状态下，clip属性将自动锁定为true，不允许设置为false。<br/>默认值：false  |
 | marqueeStartPolicy | [MarqueeStartPolicy](#marqueestartpolicy18枚举说明) | 否  | 设置跑马灯启动策略。<br/>默认值：MarqueeStartPolicy.DEFAULT                                       |
 
 ## MarqueeStartPolicy<sup>18+</sup>枚举说明
@@ -1617,6 +1617,11 @@ struct TextExample7 {
           .width('100%')
       }
       .width('100%')
+      // 使用parallelGesture中的TapGesture替代onClick属性，达到非冒泡事件类似冒泡
+      // 的效果，点击Text组件区域Column上的点击事件正常响应
+      .parallelGesture(TapGesture().onAction((event: GestureEvent) => {
+        console.log('test column onClick timestamp:' + event.timestamp);
+      }), GestureMask.Normal)
     }
     .height('100%')
   }

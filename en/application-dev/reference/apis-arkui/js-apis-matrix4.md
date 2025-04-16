@@ -28,7 +28,7 @@ Matrix constructor, which is used to create a 4 x 4 matrix with the input parame
 
 | Name | Type                                                        | Mandatory | Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| options | [number,number,number,number,<br>number,number,number,number,<br>number,number,number,number,<br>number,number,number,number] | Yes  | A number array whose length is 16 (4 x 4). For details, see **4 x 4 matrix description**.<br>Default value:<br>[1, 0, 0, 0,<br>0, 1, 0, 0,<br>0, 0, 1, 0,<br>0, 0, 0, 1] |
+| options | [number,number,number,number,<br>number,number,number,number,<br>number,number,number,number,<br>number,number,number,number] | Yes  | A number array whose length is 16 (4 x 4). For details, see **4 x 4 matrix description**.<br>Value range of each number: (-∞, +∞)<br>Default value:<br>[1, 0, 0, 0,<br>0, 1, 0, 0,<br>0, 0, 1, 0,<br>0, 0, 0, 1] |
 
 **Return value**
 
@@ -670,8 +670,8 @@ struct Index {
 
 | Name | Type  | Mandatory | Description                                                       |
 | ---- | ------ | ---- | ----------------------------------------------------------- |
-| x    |  number | Yes  | X-coordinate. |
-| y    | number | Yes  | Y-coordinate. |
+| x    |  number | Yes  | X-coordinate.<br>Value range: (-∞, +∞)|
+| y    | number | Yes  | Y-coordinate.<br>Value range: (-∞, +∞)|
 
 ## matrix4.copy<sup>(deprecated)</sup>
 

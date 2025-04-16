@@ -38,4 +38,4 @@ ISecureElementCallback::OnSeStateChanged ([in] boolean connected)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| connected | 表示SE是否已连接。 | 
+| connected | 当connected为true时表示SE已连接，反之为false的时候表示SE断开连接。 | 

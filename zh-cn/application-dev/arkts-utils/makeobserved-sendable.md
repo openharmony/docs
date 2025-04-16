@@ -1,6 +1,6 @@
 # ArkUI数据更新场景
 
-当需要网络下载或者本地生成的数据需要发送到UI线程进行展示时，因为ArkUI的标注和[\@Sendable装饰器](../arkts-utils/arkts-sendable.md#sendable装饰器)不能同时修饰变量和对象，所以对于此类场景，需要使用[makeObserved](../quick-start/arkts-new-makeObserved.md)在ArkUI中导入可观察的Sendable共享数据。
+当需要网络下载或者本地生成的数据需要发送到UI线程进行展示时，因为ArkUI的标注和[\@Sendable装饰器](../arkts-utils/arkts-sendable.md#sendable装饰器)不能同时修饰变量和对象，所以对于此类场景，需要使用[makeObserved](../ui/state-management/arkts-new-makeObserved.md)在ArkUI中导入可观察的Sendable共享数据。
 
 本示例将说明下面的场景：
 - makeObserved在传入@Sendable类型的数据后有观察能力，且其变化可以触发UI刷新。

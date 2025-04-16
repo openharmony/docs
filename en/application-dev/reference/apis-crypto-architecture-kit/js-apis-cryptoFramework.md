@@ -705,11 +705,11 @@ Defines the child class of [KdfSpec](#kdfspec11). It is a parameter for HKDF key
 >
 > The default mode is **EXTRACT_AND_EXPAND**. The value **HKDF|SHA256|EXTRACT_AND_EXPAND** is equivalent to **HKDF|SHA256**.
 
-## ScryptSpec<sup>16+</sup>
+## ScryptSpec<sup>18+</sup>
 
 Defines the child class of [KdfSpec](#kdfspec11). It is a parameter for scrypt key derivation function (KDF).
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Security.CryptoFramework.Kdf
 
@@ -750,10 +750,10 @@ Represents the SM2 ciphertext parameters. You can use this object to generate SM
 > 
 > - During the generation of ciphertext in C1C3C2 format, if the length of x (**C1_X**) or y (**C1_Y**) is less than 32 bytes, zeros must be added to the high-order bits to extend them to 32 bytes.
 
-## KeyEncodingConfig<sup>16+</sup>
+## KeyEncodingConfig<sup>18+</sup>
 Represents the RSA private key encoding parameters. You can use it to generate an encoded private key string with the specified algorithm and password.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
@@ -768,12 +768,12 @@ Represents the RSA private key encoding parameters. You can use it to generate a
 >
 > - **cipherName** specifies the algorithm used for encoding. It is mandatory. Currently, only **AES-128-CBC**, **AES-192-CBC**, **AES-256-CBC**, and **DES-EDE3-CBC** are supported.
 
-## MacSpec<sup>16+</sup>
+## MacSpec<sup>18+</sup>
 Represents the message authentication code (MAC) parameters. You need to construct a child class object and use it as a parameter when generating a Hash-based Message Authentication Code (HMAC) or Cipher-based Message Authentication Code (‌CMAC).
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
-**System capability**: SystemCapability.Security.CryptoFramework.mac
+**System capability**: SystemCapability.Security.CryptoFramework.Mac
 
 | Name   | Type  | Read-Only| Optional| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -783,12 +783,12 @@ Represents the message authentication code (MAC) parameters. You need to constru
 >
 > **algName** specifies the algorithm used for generating a MAC. It is mandatory.
 
-## HmacSpec<sup>16+</sup>
-Represents the child class of [MacSpec](#macspec16). It is used as an input parameter for HMAC generation.
+## HmacSpec<sup>18+</sup>
+Represents the child class of [MacSpec](#macspec18). It is used as an input parameter for HMAC generation.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
-**System capability**: SystemCapability.Security.CryptoFramework.mac
+**System capability**: SystemCapability.Security.CryptoFramework.Mac
 
 | Name   | Type  | Read-Only| Optional| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -798,12 +798,12 @@ Represents the child class of [MacSpec](#macspec16). It is used as an input para
 >
 > **mdName** specifies the MD algorithm used by the HMAC. It is mandatory.
 
-## CmacSpec<sup>16+</sup>
-Represents the child class of [MacSpec](#macspec16). It is used as an input parameter for CMAC generation.
+## CmacSpec<sup>18+</sup>
+Represents the child class of [MacSpec](#macspec18). It is used as an input parameter for CMAC generation.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
-**System capability**: SystemCapability.Security.CryptoFramework.mac
+**System capability**: SystemCapability.Security.CryptoFramework.Mac
 
 | Name   | Type  | Read-Only| Optional| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -1227,13 +1227,13 @@ function TestPriKeyPkcs1ToPkcs8BySync1024() {
 }
 ```
 
-### getEncodedPem<sup>16+</sup>
+### getEncodedPem<sup>18+</sup>
 
-getEncodedPem(format: string, options: KeyEncodingConfig): string
+getEncodedPem(format: string, config: KeyEncodingConfig): string
 
 Obtains the key data. This API returns the result synchronously. The key can be an RSA public or private key. The private key must comply with PKCS #8 or PKCS #1 specifications and PEM encoding format.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
@@ -1242,13 +1242,13 @@ Obtains the key data. This API returns the result synchronously. The key can be 
 | Name| Type                 | Mandatory| Description                |
 | ---- | --------------------- | ---- | -------------------- |
 | format  | string | Yes  | Encoding format of the key data to obtain. The format of a private key can be **PKCS1** or **'PKCS8'**.|
-| options | [KeyEncodingConfig](#keyencodingconfig16) | Yes| Options (including the password and algorithm) for encoding the private key.|
+| config | [KeyEncodingConfig](#keyencodingconfig18) | Yes| Options (including the password and algorithm) for encoding the private key.|
 
 **Return value**
 
 | Type                       | Description                             |
 | --------------------------- | --------------------------------- |
-| string | Key data obtained. If **options** is specified, the key obtained is encoded.|
+| string | Key data obtained. If **config** is specified, the key obtained is encoded.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
@@ -2097,7 +2097,7 @@ async function TestConvertPemKeyByPromise() {
 }
 ```
 
-### convertPemKey<sup>16+</sup>
+### convertPemKey<sup>18+</sup>
 
 convertPemKey(pubKey: string | null, priKey: string | null, password: string): Promise\<KeyPair>
 
@@ -2109,7 +2109,7 @@ Converts data into an asymmetric key. This API uses a promise to return the resu
 > 3. When **convertPemKey** is used to convert an external string into an asymmetric key object defined by the Crypto framework, the system does not verify whether the specifications of the generated key object are the same as the key specifications specified for the asymmetric key generator.
 > 4. If **password** is passed in, it can be used to decrypt the encrypted private key.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
@@ -2172,7 +2172,7 @@ async function TestConvertPemKeyByPromise() {
 }
 ```
 
-### convertPemKey<sup>16+</sup>
+### convertPemKey<sup>18+</sup>
 
 convertPemKey(pubKey: string | null, priKey: string | null, password: string): Promise\<KeyPair>
 
@@ -2184,7 +2184,7 @@ Converts data into an asymmetric key. This API uses a promise to return the resu
 > 3. When **convertPemKey** is used to convert an external string into an asymmetric key object defined by the Crypto framework, the system does not verify whether the specifications of the generated key object are the same as the key specifications specified for the asymmetric key generator.
 > 4. If **password** is passed in, it can be used to decrypt the encrypted private key.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
@@ -2238,7 +2238,7 @@ let priKeyPkcs1EncodingStr : string =
 
 async function TestConvertPemKeyByPromise() {
   let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
-  let keyGenPromise = asyKeyGenerator.convertPemKey(null, priKeyPkcs1Str1024, "123456");
+  let keyGenPromise = asyKeyGenerator.convertPemKey(null, priKeyPkcs1EncodingStr, "123456");
   keyGenPromise.then(keyPair => {
     console.info('convertPemKey success.');
   }).catch((error: BusinessError) => {
@@ -2325,16 +2325,16 @@ function TestConvertPemKeyBySync() {
 }
 ```
 
-### convertPemKeySync<sup>16+</sup>
+### convertPemKeySync<sup>18+</sup>
 
 convertPemKeySync(pubKey: string | null, priKey: string | null, password: string): KeyPair
 
 Converts data into an asymmetric key pair. This API returns the result synchronously.
 
 > **NOTE**
-> The precautions for using **convertPemKeySync** are the same as those for **convertPemKey**. For details, see the description of [convertPemKey](#convertpemkey16).
+> The precautions for using **convertPemKeySync** are the same as those for **convertPemKey**. For details, see the description of [convertPemKey](#convertpemkey18).
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
 
@@ -2628,7 +2628,7 @@ generatePriKey(callback: AsyncCallback\<PriKey>): void
 
 Generates an asymmetric key pair. This API uses an asynchronous callback to return the result.
 
-If a key parameter of the [PRIVATE_KEY_SPEC](#asykeyspectype10) type is used to create the key generator, the specified private key can be obtained. If a key parameter of the [KEY_PAIR_SPEC](#asykeyspectype10) type is used to create the key generator, you can obtain the specified private key from the key pair generated.
+If a key parameter of the [PRIVATE_KEY_SPEC](#asykeyspectype10) type is used to create the key generator, a private key can be obtained. If a key parameter of the [KEY_PAIR_SPEC](#asykeyspectype10) type is used to create the key generator, you can obtain the private key from the key pair generated.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2672,7 +2672,7 @@ generatePriKey(): Promise\<PriKey>
 
 Generates an asymmetric key pair. This API uses a promise to return the result.
 
-If a key parameter of the [PRIVATE_KEY_SPEC](#asykeyspectype10) type is used to create the key generator, the specified private key can be obtained. If a key parameter of the [KEY_PAIR_SPEC](#asykeyspectype10) type is used to create the key generator, you can obtain the specified private key from the key pair generated.
+If a key parameter of the [PRIVATE_KEY_SPEC](#asykeyspectype10) type is used to create the key generator, a private key can be obtained. If a key parameter of the [KEY_PAIR_SPEC](#asykeyspectype10) type is used to create the key generator, you can obtain the private key from the key pair generated.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2781,7 +2781,7 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 
 | ID| Error Message              |
 | -------- | ---------------------- |
-| 401 | invalid parameters. Possible causes:<br>Incorrect parameter types;        |
+| 401 | invalid parameters. Possible causes:<br> Incorrect parameter types;        |
 | 17620001 | memory error.          |
 | 17630001 | crypto operation error. |
 
@@ -5682,15 +5682,15 @@ try {
 }
 ```
 
-## cryptoFramework.createMac<sup>16+</sup>
+## cryptoFramework.createMac<sup>18+</sup>
 
 createMac(macSpec: MacSpec): Mac
 
 Creates a **Mac** instance for MAC operations.
 
-For details about the supported specifications, see [MAC Overview and Algorithm Specifications](./../security/CryptoArchitectureKit/crypto-compute-mac-overview.md).
+For details about the supported specifications, see [MAC Overview and Algorithm Specifications](../../security/CryptoArchitectureKit/crypto-compute-mac-overview.md#mac-overview-and-algorithm-specifications).
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Security.CryptoFramework.Mac
 
@@ -5698,7 +5698,7 @@ For details about the supported specifications, see [MAC Overview and Algorithm 
 
 | Name | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| macSpec | [MacSpec](#macspec16) | Yes  | MAC specifications, which vary depending on the MAC to generate. For details about the supported algorithms, see [MAC Overview and Algorithm Specifications](./../security/CryptoArchitectureKit/crypto-compute-mac-overview.md).|
+| macSpec | [MacSpec](#macspec18) | Yes  | MAC specifications, which vary depending on the MAC to generate. For details about the supported algorithms, see [MAC Overview and Algorithm Specifications](../../security/CryptoArchitectureKit/crypto-compute-mac-overview.md#mac-overview-and-algorithm-specifications).|
 
 **Return value**
 
@@ -5713,6 +5713,8 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | -------- | ------------------ |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.       |
+| 17620002 | runtime error.       |
+| 17630001 | crypto operation error.       |
 
 **Example**
 

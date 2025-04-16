@@ -84,7 +84,7 @@ Obtains the type of this gesture recognizer.
 
 | Type    | Description       |
 | ------ | --------- |
-| [GestureControl.GestureType](ts-gesture-customize-judge.md#gesturetype11) | Type of the current gesture recognizer.|
+| [GestureControl.GestureType](ts-gesture-customize-judge.md#gesturetype12) | Type of the current gesture recognizer.|
 
 ### isBuiltIn
 
@@ -100,7 +100,7 @@ Obtains whether this gesture recognizer is a built-in gesture.
 
 | Type    | Description       |
 | ------ | --------- |
-| boolean | Whether this gesture recognizer is a built-in gesture.|
+| boolean | Whether the current gesture recognizer is a built-in gesture. The value **true** means that the gesture recognizer is a built-in gesture, and **false** means the opposite.|
 
 ### setEnabled
 
@@ -116,7 +116,7 @@ Sets the enabled state of this gesture recognizer.
 
 | Name    | Type                          | Mandatory  | Description |
 | ------- | ---------------------------------- | ---- | ----- |
-| isEnabled   | boolean         | Yes   | Enabled state to set.|
+| isEnabled   | boolean         | Yes   | Enabled state to set. The value **true** means that the gesture recognizer is enabled and will trigger events, and **false** means the opposite.|
 
 ### isEnabled
 
@@ -132,7 +132,7 @@ Obtains the enabled state of this gesture recognizer.
 
 | Type    | Description       |
 | ------ | --------- |
-| boolean | Enabled state of the gesture recognizer.|
+| boolean | Enabled state of the gesture recognizer. The value **true** means that the gesture recognizer is enabled and will trigger events, and **false** means the opposite.|
 
 ### getState
 
@@ -237,7 +237,7 @@ Checks whether this scrollable container component is scrolled to the top. If it
 
 | Type    | Description       |
 | ------ | --------- |
-| boolean | Whether the current scrollable container component is scrolled to the top.|
+| boolean | Whether the current scrollable container component is scrolled to the top. The value **true** means that the component is scrolled to the top, and **false** means the opposite.|
 
 ### isEnd
 
@@ -253,7 +253,39 @@ Checks whether this scrollable container component is scrolled to the bottom. If
 
 | Type    | Description       |
 | ------ | --------- |
-| boolean | Whether the current scrollable container component is scrolled to the bottom.|
+| boolean | Whether the current scrollable container component is scrolled to the bottom. The value **true** means that the component is scrolled to the bottom, and **false** means the opposite.|
+
+### getFingerCount<sup>18+</sup>
+
+getFingerCount(): number
+
+Obtains the number of fingers required to trigger the preset gesture.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type    | Description       |
+| ------ | --------- |
+| number | Number of fingers required to trigger the preset gesture.<br>Value range: an integer from 1 to 10.|
+
+### isFingerCountLimit<sup>18+</sup>
+
+isFingerCountLimit(): boolean
+
+Checks whether the preset gesture will detect the number of fingers on the screen.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type    | Description       |
+| ------ | --------- |
+| boolean | Whether the preset gesture will detect the number of fingers on the screen. Returns **true** if the gesture will detect the number of fingers on the touch screen; returns **false** otherwise.|
 
 ## PanRecognizer
 
@@ -274,6 +306,138 @@ Obtains the properties of this pan gesture recognizer.
 | Type    | Description       |
 | ------ | --------- |
 | [PanGestureOptions](./ts-basic-gestures-pangesture.md#pangestureoptions) | Properties of the current pan gesture recognizer.|
+
+## TapRecognizer<sup>18+</sup>
+
+Implements a tap gesture recognizer. It inherits from [GestureRecognizer](#gesturerecognizer).
+
+### getTapCount<sup>18+</sup>
+
+getTapCount(): number
+
+Obtains the number of consecutive taps required for the tap gesture to be recognized.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type    | Description       |
+| ------ | --------- |
+| number | Number of consecutive taps required for the tap gesture to be recognized.<br>Value range: [0, +∞).|
+
+## LongPressRecognizer<sup>18+</sup>
+
+Implements a long press gesture recognizer. It inherits from [GestureRecognizer](#gesturerecognizer).
+
+### isRepeat<sup>18+</sup>
+
+isRepeat(): boolean
+
+Checks whether the long press gesture recognizer is set to trigger repeated callbacks.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type    | Description       |
+| ------ | --------- |
+| boolean | Whether the long press gesture recognizer is set to trigger repeated callbacks. Returns **true** if the long press gesture recognizer is set to trigger repeated callbacks; returns **false** otherwise.|
+
+### getDuration<sup>18+</sup>
+
+getDuration(): number
+
+Obtains the minimum duration required for the long press gesture to be recognized.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type    | Description       |
+| ------ | --------- |
+| number | Minimum duration required for the long press gesture to be recognized, in ms.<br>Value range: [0, +∞).|
+
+## SwipeRecognizer<sup>18+</sup>
+
+Implements a swipe gesture recognizer. It inherits from [GestureRecognizer](#gesturerecognizer).
+
+### getVelocityThreshold<sup>18+</sup>
+
+getVelocityThreshold(): number
+
+Obtains the minimum velocity required for the swipe gesture to be recognized.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type    | Description       |
+| ------ | --------- |
+| number | Minimum velocity required for the swipe gesture to be recognized, in vp/s.<br>Value range: [0, +∞).|
+
+### getDirection<sup>18+</sup>
+
+getDirection(): SwipeDirection
+
+Obtains the direction for recognizing swipe gestures.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type    | Description       |
+| ------ | --------- |
+| [SwipeDirection](./ts-basic-gestures-swipegesture.md#swipedirection) | Direction for recognizing swipe gestures.|
+
+## PinchRecognizer<sup>18+</sup>
+
+Implements a pinch gesture recognizer. It inherits from [GestureRecognizer](#gesturerecognizer).
+
+### getDistance<sup>18+</sup>
+
+getDistance(): number
+
+Obtains the minimum distance required for the pinch gesture to be recognized.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type    | Description       |
+| ------ | --------- |
+| number | Minimum distance required for the pinch gesture to be recognized, in vp.<br>Value range: [0, +∞).|
+
+## RotationRecognizer<sup>18+</sup>
+
+Implements a rotation gesture recognizer. It inherits from [GestureRecognizer](#gesturerecognizer).
+
+### getAngle<sup>18+</sup>
+
+getAngle(): number
+
+Obtains the minimum angle change required for the rotation gesture to be recognized.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type    | Description       |
+| ------ | --------- |
+| number | Minimum angle change required for the rotation gesture to be recognized, in degrees (deg).<br>Value range: [0, +∞).<br>**NOTE**<br>If the provided angle is less than or equal to 0 or greater than 360, it is converted to the default value **1**.|
 
 ## onGestureRecognizerJudgeBegin<sup>13+</sup>
 
@@ -559,24 +723,14 @@ struct Index {
               let target = current.getEventTargetInfo();
               if (target && current.isBuiltIn() && current.getType() == GestureControl.GestureType.PAN_GESTURE) {
                 console.info('ets onGestureRecognizerJudgeBegin child PAN_GESTURE')
-                let swiperTaget = target as ScrollableTargetInfo
-                if (swiperTaget instanceof ScrollableTargetInfo) {
-                  console.info('ets onGestureRecognizerJudgeBegin child PAN_GESTURE isEnd: ' + swiperTaget.isEnd() + ' isBegin: ' + swiperTaget.isBegin())
+                let panEvent = event as PanGestureEvent;
+                if (panEvent && panEvent.velocityX < 0 && this.innerSelectedIndex === 1) { // The inner Tabs component has reached the end.
+                  console.info('ets onGestureRecognizerJudgeBegin child reject end')
+                  return GestureJudgeResult.REJECT;
                 }
-                if (swiperTaget instanceof ScrollableTargetInfo && 
-                  ((swiperTaget.isEnd() || this.innerSelectedIndex === 1) || // Check whether swiperTarget.isEnd() or innerSelectedIndex === total number of inner Tabs - 1, indicating the inner Tabs container has reached the end.
-                    (swiperTaget.isBegin() || this.innerSelectedIndex === 0))) { // Check whether swiperTarget.isBegin() or innerSelectedIndex === 0, indicating the inner Tabs container has reached the beginning.
-                  let panEvent = event as PanGestureEvent;
-                  console.log('pan direction:' + panEvent.offsetX + ' begin:' + swiperTaget.isBegin() + ' end:' +
-                  swiperTaget.isEnd() + ' index:' + this.innerSelectedIndex)
-                  if (panEvent && panEvent.offsetX < 0 && (swiperTaget.isEnd() || this.innerSelectedIndex === 1)) {
-                    console.info('ets onGestureRecognizerJudgeBegin child reject end')
-                    return GestureJudgeResult.REJECT;
-                  }
-                  if (panEvent && panEvent.offsetX > 0 && (swiperTaget.isBegin() || this.innerSelectedIndex === 0)) {
-                    console.info('ets onGestureRecognizerJudgeBegin child reject begin')
-                    return GestureJudgeResult.REJECT;
-                  }
+                if (panEvent && panEvent.velocityX > 0 && this.innerSelectedIndex === 0) { // The inner Tabs component has reached the beginning.
+                  console.info('ets onGestureRecognizerJudgeBegin child reject begin')
+                  return GestureJudgeResult.REJECT;
                 }
               }
             }
@@ -597,3 +751,84 @@ struct Index {
 ```
 
  ![example](figures/gesture_recognizer.gif)
+
+ 
+### Example 3: Blocking Gestures to Obtain Properties
+
+This example demonstrates how to use the **onGestureRecognizerJudgeBegin** API to determine the gesture recognizer type and obtain corresponding properties.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Gesture';
+
+  build() {
+    Column() {
+      Row({ space: 20 }) {
+        Text(this.message)
+          .width(400)
+          .height(80)
+          .fontSize(23)
+      }.margin(25)
+    }
+    .margin(50)
+    .width(400)
+    .height(200)
+    .borderWidth(2)
+    .gesture(TapGesture())
+    .gesture(LongPressGesture())
+    .gesture(PanGesture({ direction: PanDirection.Vertical }))
+    .gesture(PinchGesture())
+    .gesture(RotationGesture())
+    .gesture(SwipeGesture({ direction: SwipeDirection.Horizontal }))
+    // Bind a custom gesture recognizer judgment callback to the component.
+    .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer,
+      others: Array<GestureRecognizer>) => {
+      if (current) {
+        // Check whether the gesture is a pan gesture.
+        if (current.getType() == GestureControl.GestureType.PAN_GESTURE) {
+          let target = current as PanRecognizer;
+          this.message = 'PanGesture\ndistance:' + target.getPanGestureOptions().getDistance() + '\nfingers:' +
+          target.getFingerCount() + '\nisFingerCountLimited:' + target.isFingerCountLimit();
+        }
+        // Check whether the gesture is a long press gesture.
+        if (current.getType() == GestureControl.GestureType.LONG_PRESS_GESTURE) {
+          let target = current as LongPressRecognizer;
+          this.message = 'LongPressGesture\nfingers:' + target.getFingerCount() + '\nisFingerCountLimited:' +
+          target.isFingerCountLimit() + '\nrepeat:' + target.isRepeat() + '\nduration:' + target.getDuration();
+        }
+        // Check whether the gesture is a pinch gesture.
+        if (current.getType() == GestureControl.GestureType.PINCH_GESTURE) {
+          let target = current as PinchRecognizer;
+          this.message = 'PinchGesture\ndistance:' + target.getDistance() + '\nfingers:' +
+          target.getFingerCount() + '\nisFingerCountLimited:' + target.isFingerCountLimit();
+        }
+        // Check whether the gesture is a tap gesture.
+        if (current.getType() == GestureControl.GestureType.TAP_GESTURE) {
+          let target = current as TapRecognizer;
+          this.message = 'TapGesture\ncount:' + target.getTapCount() + '\nfingers:' +
+          target.getFingerCount() + '\nisFingerCountLimited:' + target.isFingerCountLimit();
+        }
+        // Check whether the gesture is a rotation gesture.
+        if (current.getType() == GestureControl.GestureType.ROTATION_GESTURE) {
+          let target = current as RotationRecognizer;
+          this.message = 'RotationGesture\nangle:' + target.getAngle() + '\nfingers:' +
+          target.getFingerCount() + '\nisFingerCountLimited:' + target.isFingerCountLimit();
+        }
+        // Check whether the gesture is a swipe gesture.
+        if (current.getType() == GestureControl.GestureType.SWIPE_GESTURE) {
+          let target = current as SwipeRecognizer;
+          this.message = 'SwipeGesture\ndirection:' + target.getDirection() + '\nfingers:' +
+          target.getFingerCount() + '\nisFingerCountLimited:' + target.isFingerCountLimit() + '\nspeed:' +
+          target.getVelocityThreshold();
+        }
+      }
+      return GestureJudgeResult.CONTINUE;
+    })
+  }
+}
+```
+
+ ![example](figures/gesture_recognizer_obtain_attributes.gif)

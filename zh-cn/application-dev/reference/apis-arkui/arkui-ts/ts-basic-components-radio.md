@@ -6,7 +6,7 @@
 >
 >  API version 12开始，Radio选中默认样式由RadioIndicatorType.DOT变为RadioIndicatorType.TICK。
 >
->  该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -67,7 +67,8 @@ checked(value: boolean)
 
 设置单选框的选中状态。
 
-从API version 10开始，该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+从API version 10开始，该属性支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。
+从API version 18开始，该属性支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -87,7 +88,8 @@ checked(isChecked: Optional\<boolean>)
 
 设置单选框的选中状态。与[checked](#checked)相比，isChecked参数新增了对undefined类型的支持。
 
-该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+该属性支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。
+从API version 18开始，该属性支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -133,9 +135,9 @@ contentModifier(modifier: ContentModifier\<RadioConfiguration>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                             |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
-| modifier  | [ContentModifier\<RadioConfiguration>](#radioconfiguration12对象说明) | 是   | 在Radio组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
+| modifier  | [ContentModifier\<RadioConfiguration>](#radioconfiguration12对象说明) | 是   | 在Radio组件上，定制内容区的方法。<br/>modifier：内容修改器，开发者需要自定义class实现ContentModifier接口。 |
 
-## contentModifier<sup>18+</sup>
+### contentModifier<sup>18+</sup>
 
 contentModifier(modifier: Optional<ContentModifier\<RadioConfiguration>>)
 
@@ -149,7 +151,7 @@ contentModifier(modifier: Optional<ContentModifier\<RadioConfiguration>>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| modifier | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ContentModifier\<RadioConfiguration>](#radioconfiguration12对象说明)> | 是   | 在Radio组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。<br/>当modifier的值为undefined时，不使用内容修改器。 |
+| modifier | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ContentModifier\<RadioConfiguration>](#radioconfiguration12对象说明)> | 是   | 在Radio组件上，定制内容区的方法。<br/>modifier：内容修改器，开发者需要自定义class实现ContentModifier接口。<br/>当modifier的值为undefined时，不使用内容修改器。 |
 
 ## 事件
 
@@ -157,7 +159,7 @@ contentModifier(modifier: Optional<ContentModifier\<RadioConfiguration>>)
 
 ### onChange
 
-onChange(callback: OnRadioChangeCallback)
+onChange(callback: (isChecked: boolean) => void)
 
 单选框选中状态改变时触发回调。
 
@@ -169,9 +171,9 @@ onChange(callback: OnRadioChangeCallback)
 
 **参数：** 
 
-| 参数名   | 类型                                              | 必填 | 说明                           |
-| -------- | ------------------------------------------------- | ---- | ------------------------------ |
-| callback | [OnRadioChangeCallback](#onradiochangecallback18) | 是   | 单选框选中状态改变时触发该回调 |
+| 参数名    | 类型    | 必填 | 说明                             |
+| --------- | ------- | ---- | -------------------------------- |
+| isChecked | boolean | 是   | 单选框选中状态改变时触发该回调。 |
 
 ### onChange<sup>18+</sup>
 
@@ -196,8 +198,6 @@ onChange(callback: Optional\<OnRadioChangeCallback>)
 type OnRadioChangeCallback = (isChecked: boolean) => void
 
 单选框选中状态改变时触发回调。
-
-**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 

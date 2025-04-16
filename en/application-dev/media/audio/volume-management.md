@@ -4,7 +4,7 @@ You can use different APIs to manage the system volume and audio stream volume. 
 
 ## System Volume
 
-**AudioVolumeManager** is provided for system volume management. Before using this API, you must call **getVolumeManager()** to obtain an **AudioVolumeManager** instance.
+**AudioVolumeManager** is provided for system volume management. Before using this API, you must call [getVolumeManager()](../../reference/apis-audio-kit/js-apis-audio.md#getvolumemanager9) to obtain an **AudioVolumeManager** instance.
 
 Currently, **AudioVolumeManager** can be used to obtain volume information and listen for volume changes. It cannot be used to adjust the system volume. If you want to adjust the system volume, follow the instructions provided in [Adjusting the System Volume Using the Volume Panel](#adjusting-the-system-volume-using-the-volume-panel).
 
@@ -41,7 +41,7 @@ An application cannot directly adjust the system volume. However, it can invoke 
 
 To achieve this, you can use the ArkTS component **AVVolumePanel** in your application. For details, see the [AVVolumePanel Reference](../../reference/apis-audio-kit/ohos-multimedia-avvolumepanel.md).
 
-## Audio Stream Volume
+## Application Volume
 
 The **setVolume()** API in both the **AVPlayer** and **AudioRenderer** classes can be used to set the audio stream volume. The code snippet below uses the API in the [AVPlayer](../../reference/apis-media-kit/js-apis-media.md#mediacreateavplayer9) class:
 

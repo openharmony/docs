@@ -15,10 +15,10 @@ The TransientTask_DelaySuspendInfo struct describes the returned information abo
 
 ### Member Variables
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| int32_t [requestId](#requestid) | Request ID of a transient task. |
-| int32_t [actualDelayTime](#actualdelaytime) | Remaining time, in ms. |
+| int32_t [requestId](#requestid) | Request ID of a transient task. | 
+| int32_t [actualDelayTime](#actualdelaytime) | Remaining time, in ms. | 
 
 
 ## Member Variable Description
@@ -30,7 +30,6 @@ The TransientTask_DelaySuspendInfo struct describes the returned information abo
 int32_t TransientTask_DelaySuspendInfo::actualDelayTime
 ```
 **Description**
-
 Remaining time, in ms.
 
 
@@ -40,5 +39,4 @@ Remaining time, in ms.
 int32_t TransientTask_DelaySuspendInfo::requestId
 ```
 **Description**
-
 Request ID of a transient task.

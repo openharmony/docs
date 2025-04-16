@@ -11,6 +11,7 @@
 
 **相关模块：**[OH_NativeBuffer](_o_h___native_buffer.md)
 
+**所在头文件：**[buffer_common.h](buffer__common_8h.md)
 
 ## 汇总
 
@@ -32,7 +33,7 @@
 float OH_NativeBuffer_ColorXY::x
 ```
 
-**描述**
+**描述：**
 
 基色X坐标。
 
@@ -43,6 +44,6 @@ float OH_NativeBuffer_ColorXY::x
 float OH_NativeBuffer_ColorXY::y
 ```
 
-**描述**
+**描述：**
 
 基色Y坐标。

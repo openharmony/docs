@@ -83,26 +83,26 @@
 
    ```ts
    onPageShow(): void {
-       //创建animatorResult对象
-       this.animatorOptions = this.getUIContext().createAnimator(options);
-       this.animatorOptions.onFrame = (progress: number) => {
+     //创建animatorResult对象
+     this.animatorOptions = this.getUIContext().createAnimator(options);
+     this.animatorOptions.onFrame = (progress: number) => {
        this.translateX = progress;
        if (progress > this.topWidth && this.translateY < this.bottomHeight) {
-          this.translateY = Math.pow(progress - this.topWidth, 2) * this.g;
+         this.translateY = Math.pow(progress - this.topWidth, 2) * this.g;
        }
-    }
-    //动画取消时执行方法
-    this.animatorOptions.onCancel = () => {
+     }
+     //动画取消时执行方法
+     this.animatorOptions.onCancel = () => {
        this.animatorStatus = '取消';
-    }
-    //动画完成时执行方法
-    this.animatorOptions.onFinish = () => {
+     }
+     //动画完成时执行方法
+     this.animatorOptions.onFinish = () => {
        this.animatorStatus = '完成';
-    }
-    //动画重复播放时执行方法
-    this.animatorOptions.onRepeat = () => {
+     }
+     //动画重复播放时执行方法
+     this.animatorOptions.onRepeat = () => {
        console.log("动画重复播放");
-    }
+     }
    }
    ```
 

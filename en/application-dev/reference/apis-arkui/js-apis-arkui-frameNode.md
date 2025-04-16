@@ -18,7 +18,7 @@ import { FrameNode, LayoutConstraint, ExpandMode, typeNode, NodeAdapter } from "
 
 ## CrossLanguageOptions<sup>15+</sup>
 
-Used to set or obtain the cross-language options of the FrameNode.
+Provides options for configuring or querying the cross-language access permissions for a FrameNode. For example, for nodes created using ArkTS, this API can control whether non-ArkTS languages are allowed to access or modify the properties of these nodes.
 
 **Atomic service API**: This API can be used in atomic services since API version 15.
 
@@ -26,7 +26,7 @@ Used to set or obtain the cross-language options of the FrameNode.
 
 | Name  | Type  | Read Only| Optional| Description                  |
 | ------ | ------ | ---- | ---- | ---------------------- |
-| attributeSetting  | boolean | No  | Yes  | Whether the FrameNode supports cross-language attribute settings. The default value is **false**.|
+| attributeSetting  | boolean | No  | Yes  | Whether the FrameNode supports cross-language settings. The default value is **false**.|
 
 ## ExpandMode<sup>15+</sup>
 
@@ -230,7 +230,7 @@ See [Example of Node Operations](#example-of-node-operations).
 
 ### getChild<sup>12+</sup> 
 
-getChild(index: number, expandMode?: ExpandMode): FrameNode | null
+getChild(index: number): FrameNode | null
 
 Obtains the child node in the specified position of this RenderNode.
 
@@ -243,7 +243,6 @@ Obtains the child node in the specified position of this RenderNode.
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
 | index  | number | Yes  | Index of the child node to obtain.|
-| expandMode<sup>15+</sup> | [ExpandMode](#expandmode15) | No| Expansion mode of the child node.<br>Default value: **ExpandMode.Expand**|
 
 **Return value**
 
@@ -253,7 +252,34 @@ Obtains the child node in the specified position of this RenderNode.
 
 **Example**
 
-See [Example of Node Operations](#example-of-node-operations) and [Example of Node Operations in the LazyForEach Scenario](#example-of-node-operations-in-the-lazyforeach-scenario).
+See [Example of Node Operations](#example-of-node-operations).
+
+### getChild<sup>15+</sup> 
+
+getChild(index: number, expandMode?: ExpandMode): FrameNode | null
+
+Obtains a child node at a specified index from this FrameNode, with optional support for specifying the expansion mode of the child node.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                      |
+| ------ | ------ | ---- | -------------------------- |
+| index  | number | Yes  | Index of the child node to obtain.|
+| expandMode | [ExpandMode](#expandmode15) | No| Expansion mode of the child node.<br>Default value: **ExpandMode.Expand**|
+
+**Return value**
+
+| Type                           | Description                                                         |
+| ------------------------------- | ------------------------------------------------------------- |
+| [FrameNode](#framenode) \| null | Child node obtained. If the FrameNode does not contain the specified child node, null is returned.|
+
+**Example**
+
+See [Example of Node Operations in the LazyForEach Scenario](#example-of-node-operations-in-the-lazyforeach-scenario).
 
 ### getFirstChildIndexWithoutExpand<sup>15+</sup> 
 
@@ -1465,11 +1491,11 @@ See [Example of Customizing a Node](#example-of-customizing-a-node).
 
 setCrossLanguageOptions(options: CrossLanguageOptions): void
 
-Sets the cross-language options for this FrameNode. If the FrameNode is not modifiable or does not support setting cross-language options, an exception is thrown.
+Sets the cross-language access options for this FrameNode. This API allows you to specify whether a FrameNode created in ArkTS can be accessed or modified by non-ArkTS languages. If the current FrameNode is not modifiable or does not support setting cross-language access options, an exception will be thrown.
 
 > **NOTE**
 >
-> Currently, only the following types of [TypedFrameNode](#typedframenode12) support setting cross-language options: [Scroll](#scroll12).
+> Currently, only [Scroll](#scroll12) type [TypedFrameNode](#typedframenode12) supports setting cross-language access options.
 
 **Atomic service API**: This API can be used in atomic services since API version 15.
 
@@ -1479,7 +1505,7 @@ Sets the cross-language options for this FrameNode. If the FrameNode is not modi
 
 | Name       | Type                   | Mandatory| Description                 |
 | ------------ | ----------------------- | ---- | --------------------- |
-| options | [CrossLanguageOptions](#crosslanguageoptions15) | Yes  | Cross-language options.|
+| options | [CrossLanguageOptions](#crosslanguageoptions15) | Yes  | Cross-language access options.|
 
 **Error codes**
 
@@ -1495,7 +1521,7 @@ See [Example of Node Operations](#example-of-node-operations).
 
 getCrossLanguageOptions(): CrossLanguageOptions
 
-Obtains the cross-language options of this FrameNode.
+Obtains the cross-language access options for this FrameNode. This API allows you to check whether a FrameNode created in ArkTS can be accessed or modified by non-ArkTS languages.
 
 **Atomic service API**: This API can be used in atomic services since API version 15.
 
@@ -1505,7 +1531,7 @@ Obtains the cross-language options of this FrameNode.
 
 | Type                   | Description                 |
 | ----------------------- | --------------------- |
-| [CrossLanguageOptions](#crosslanguageoptions15) | Cross-language options.|
+| [CrossLanguageOptions](#crosslanguageoptions15) | Cross-language access options.|
 
 **Example**
 
@@ -1521,7 +1547,7 @@ Inherits from [FrameNode](#framenode), used to declare a specific type of FrameN
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name      | Type| Read-Only| Optional| Description                                                        |
+| Name      | Type| Read Only| Optional| Description                                                        |
 | ---------- | ---- | ---- | ---- | ------------------------------------------------------------ |
 | initialize | C    | No  | No  | Creates construction parameters of a component to set or update the initial value of the component.|
 | attribute  | T    | No  | No  | Obtains the attribute setting object of a component to set or update the common and private attributes of the component.|
@@ -2639,7 +2665,7 @@ Creates a FrameNode of the **XComponent** type based on the settings specified i
 
 | Type                 | Description     |
 | ------------------ | ------------------ |
-| [XComponent](#xcomponent12) | FrameNode node of the XComponent type.|
+| [XComponent](#xcomponent12) | FrameNode node of the **XComponent** type.|
 
 **Example**
 
@@ -3327,7 +3353,7 @@ Creates a FrameNode of the **Toggle** type.
 | ------------------ | ------------------ | ------------------- | ------------------- |
 | context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'Toggle' | Yes| Node type, which is **Toggle** in this API.|
-| options | ToggleOptions | No| Options for creating the **Toggle** node.|
+| options | [ToggleOptions](./arkui-ts/ts-basic-components-toggle.md#toggleoptions18) | No| Options for configuring the node of the Toggle type, including setting the style through the **type** property.|
 
 **Return value**
 

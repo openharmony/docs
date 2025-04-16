@@ -97,9 +97,10 @@ distributedMissionManager.registerMissionListener(
 | Name| Template| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | deviceId |  string | Yes| Device ID in the callback that notifies disconnection.|
-| state |  number | Yes| Network status in the callback that notifies disconnection.|
+| state |  number | Yes| Network status in the callback that notifies disconnection. The fixed value **0** is returned, indicating network disconnection.|
 
 **Example**
+
 ```ts
 import { distributedMissionManager } from '@kit.AbilityKit';
 

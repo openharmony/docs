@@ -109,6 +109,9 @@ async function setListener() {
     // LRC中有两类元素：一种是时间标签+歌词，一种是ID标签。
     // 例如：[00:25.44]xxx\r\n[00:26.44]xxx\r\n。
     lyric: "lrc格式歌词内容",
+    // singleLyricText字段存储单条歌词文本，不包含时间戳。
+    // 例如："单条歌词内容"。
+    singleLyricText: "单条歌词内容",
   };
   session.setAVMetadata(metadata).then(() => {
     console.info(`SetAVMetadata successfully`);
@@ -265,7 +268,7 @@ async function setListener() {
 具体的接口参考[接口注册](../../reference/apis-avsession-kit/js-apis-avsession.md#onplay10)。
 > **说明：**
 >
-> 创建AVSession后，请先注册应用支持的控制命令，再激活 Session 
+> 创建AVSession后，请先注册应用支持的控制命令，再激活 Session。 
 
 媒体资源支持的控制命令列表：
 

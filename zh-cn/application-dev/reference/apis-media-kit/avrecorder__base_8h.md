@@ -1,3 +1,4 @@
+
 # avrecorder_base.h
 
 
@@ -61,9 +62,9 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [OH_AVRecorder_AudioSourceType](_a_v_recorder.md#oh_avrecorder_audiosourcetype-1) {<br/>AVRECORDER_DEFAULT = 0,<br/>AVRECORDER_MIC = 1,<br/>AVRECORDER_VOICE_RECOGNITION = 2,<br/>AVRECORDER_VOICE_COMMUNICATION = 7,<br/>AVRECORDER_VOICE_MESSAGE = 10,<br/>AVRECORDER_CAMCORDER = 13<br/>} | AVRecorder的音频源类型。 | 
-| [OH_AVRecorder_VideoSourceType](_a_v_recorder.md#oh_avrecorder_videosourcetype-1) {<br/>AVRECORDER_SURFACE_YUV = 0,<br/>AVRECORDER_SURFACE_ES = 1 } | AVRecorder的视频源类型。 | 
+| [OH_AVRecorder_VideoSourceType](_a_v_recorder.md#oh_avrecorder_videosourcetype-1) {<br/>AVRECORDER_SURFACE_YUV = 0,<br/>AVRECORDER_SURFACE_ES = 1<br/>} | AVRecorder的视频源类型。 | 
 | [OH_AVRecorder_CodecMimeType](_a_v_recorder.md#oh_avrecorder_codecmimetype-1) {<br/>AVRECORDER_VIDEO_AVC = 2,<br/>AVRECORDER_AUDIO_AAC = 3,<br/>AVRECORDER_AUDIO_MP3 = 4,<br/>AVRECORDER_AUDIO_G711MU = 5,<br/>AVRECORDER_VIDEO_MPEG4 = 6,<br/>AVRECORDER_VIDEO_HEVC = 8,<br/>AVRECORDER_AUDIO_AMR_NB = 9,<br/>AVRECORDER_AUDIO_AMR_WB = 10<br/>} | 枚举编码器 MIME 类型。 | 
 | [OH_AVRecorder_ContainerFormatType](_a_v_recorder.md#oh_avrecorder_containerformattype-1) {<br/>AVRECORDER_CFT_MPEG_4 = 2,<br/>AVRECORDER_CFT_MPEG_4A = 6,<br/>AVRECORDER_CFT_AMR = 8,<br/>AVRECORDER_CFT_MP3 = 9,<br/>AVRECORDER_CFT_WAV = 10<br/>} | 枚举容器格式类型（容器格式类型的缩写是 CFT）。 | 
-| [OH_AVRecorder_State](_a_v_recorder.md#oh_avrecorder_state-1) {<br/>AVRECORDER_IDLE = 0,<br/>AVRECORDER_PREPARED = 1,<br/>AVRECORDER_STARTED = 2,<br/>AVRECORDER_PAUSED = 3,<br/>AVRECORDER_STOPPED = 4,<br/>AVRECORDER_RELEASED = 5, [AVRECORDER_ERROR = 6<br/>} | AVRecorder状态。 | 
+| [OH_AVRecorder_State](_a_v_recorder.md#oh_avrecorder_state-1) {<br/>AVRECORDER_IDLE = 0,<br/>AVRECORDER_PREPARED = 1,<br/>AVRECORDER_STARTED = 2,<br/>AVRECORDER_PAUSED = 3,<br/>AVRECORDER_STOPPED = 4,<br/>AVRECORDER_RELEASED = 5,<br/>AVRECORDER_ERROR = 6<br/>} | AVRecorder状态。 | 
 | [OH_AVRecorder_StateChangeReason](_a_v_recorder.md#oh_avrecorder_statechangereason-1) {<br/>AVRECORDER_USER = 0,<br/>AVRECORDER_BACKGROUND = 1<br/>} | AVRecorder状态变化的原因。 | 
-| [OH_AVRecorder_FileGenerationMode](_a_v_recorder.md#oh_avrecorder_filegenerationmode-1) {<br/>AVRECORDER_APP_CREATE = 0, [AVRECORDER_AUTO_CREATE_CAMERA_SCENE = 1<br/>} | 创建录制文件的模式。 | 
+| [OH_AVRecorder_FileGenerationMode](_a_v_recorder.md#oh_avrecorder_filegenerationmode-1) {<br/>AVRECORDER_APP_CREATE = 0,<br/>AVRECORDER_AUTO_CREATE_CAMERA_SCENE = 1<br/>} | 创建录制文件的模式。 | 

@@ -185,7 +185,7 @@ enablePreviewText(enable: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                              |
 | ------ | ------- | ---- | --------------------------------- |
-| enable  | boolean | 是   | 使能预上屏功能。<br/>默认值： true |
+| enable  | boolean | 是   | 使能预上屏功能。<br/>true表示开启，false表示不开启。<br/>默认值： true |
 
 >  **说明：**
 >
@@ -317,7 +317,7 @@ barState(state: BarState)
 
 ### maxLength<sup>18+</sup>
 
-maxLength(value: Optional\<number\>)
+maxLength(maxLength: Optional\<number\>)
 
 设置文本的最大输入字符数。
 
@@ -329,11 +329,11 @@ maxLength(value: Optional\<number\>)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number> | 是   | 文本的最大输入字符数。<br/>默认值：Infinity，可以无限输入，支持undefined类型。<br/>**说明：** <br/>当不设置该属性或设置异常值时，取默认值，设置小数时，取整数部分。 |
+| maxLength  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number> | 是   | 文本的最大输入字符数。<br/>默认值：Infinity，可以无限输入，支持undefined类型。<br/>**说明：** <br/>当不设置该属性或设置异常值时，取默认值，设置小数时，取整数部分。 |
 
 ### maxLines<sup>18+</sup>
 
-maxLines(value: Optional\<number\>)
+maxLines(maxLines: Optional\<number\>)
 
 设置富文本可显示的最大行数。maxLines为可显示行数，当设置maxLines时，超出内容可滚动显示。同时设置组件高度和最大行数，组件高度优先生效。
 
@@ -345,7 +345,7 @@ maxLines(value: Optional\<number\>)
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number> | 是   | 设置富文本可显示的最大行数。maxLines为可显示行数，当设置maxLines时，超出内容可滚动显示。同时设置组件高度和最大行数，组件高度优先生效。<br/>默认值：Infinity，可以无限输入，支持undefined类型。 <br/>取值范围：(0, +∞) |
+| maxLines  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number> | 是   | 设置富文本可显示的最大行数。maxLines为可显示行数，当设置maxLines时，超出内容可滚动显示。同时设置组件高度和最大行数，组件高度优先生效。<br/>默认值：Infinity，可以无限输入，支持undefined类型。 <br/>取值范围：(0, +∞) |
 
 ### enableHapticFeedback<sup>13+</sup>
 
@@ -713,7 +713,6 @@ onCopy(callback: Callback\<CopyEvent\>)
 | symbolSpanStyle<sup>11+</sup> | [RichEditorSymbolSpanStyle](#richeditorsymbolspanstyle11) | 否    | 组件SymbolSpan样式信息。      <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | paragraphStyle<sup>12+</sup>  | [RichEditorParagraphStyle](#richeditorparagraphstyle11)  | 否   | 段落样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | previewText<sup>12+</sup>      | string                                   | 否    | 文本Span预上屏内容。              <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| urlStyle<sup>18+</sup>  | [RichEditorUrlStyle](#richeditorurlstyle18)   | 否   | url信息。<br/>默认值：undefined <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
 
 ## RichEditorSpanPosition
@@ -747,16 +746,14 @@ Span类型信息。
 
 菜单的响应类型。
 
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称    | 值     | 说明         |
 | ----- | ---- | ------------ |
-| RIGHT_CLICK  | 0 | 通过鼠标右键触发菜单弹出。  |
-| LONG_PRESS | 1 | 通过长按触发菜单弹出。   |
-| SELECT | 2 | 通过鼠标选中触发菜单弹出。  |
-| DEFAULT<sup>15+</sup> | 3 | 默认类型，不指定响应类型时生效。  |
+| RIGHT_CLICK  | 0 | 通过鼠标右键触发菜单弹出。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
+| LONG_PRESS | 1 | 通过长按触发菜单弹出。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
+| SELECT | 2 | 通过鼠标选中触发菜单弹出。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| DEFAULT<sup>15+</sup> | 3 | 默认类型，不指定响应类型时生效。 <br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
 ## RichEditorTextStyleResult
 
@@ -777,7 +774,7 @@ Span类型信息。
 | letterSpacing<sup>12+</sup>| number       | 否    | 文本字符间距，默认单位为fp。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | fontFeature<sup>12+</sup> | string | 否 | 文字特性效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | halfLeading<sup>18+</sup> | boolean | 否 | 文本是否将行间距平分至行的顶部与底部。<br/>true表示将行间距平分至行的顶部与底部，false则不平分。<br/>默认值：false。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
-| textBackgroundStyle<sup>18+</sup> | [TextBackgroundStyle](ts-basic-components-span.md#textbackgroundstyle11对象说明) | 否    | 文本背景样式。|
+| textBackgroundStyle<sup>18+</sup> | [TextBackgroundStyle](ts-basic-components-span.md#textbackgroundstyle11对象说明) | 否    | 文本背景样式。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
 >  **说明：**
 >
@@ -819,8 +816,8 @@ Span类型信息。
 | fontColor | Array\<[ResourceColor](ts-types.md#resourcecolor)\> | 是 | SymbolSpan组件颜色。<br/> 默认值：不同渲染策略下默认值不同。 |
 | fontSize | number \| string \| [Resource](ts-types.md#resource) | 是 | SymbolSpan组件大小，默认单位为fp。<br/>默认值：跟随主题。|
 | fontWeight | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string  | 是 | SymbolSpan组件粗细。<br/>number类型取值[100,900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>string类型仅支持number类型取值的字符串形式，例如“400”，以及“bold”、“bolder”、“lighter”、“regular” 、“medium”分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal。|
-| renderingStrategy | [SymbolRenderingStrategy](ts-basic-components-symbolGlyph.md#symbolrenderingstrategy11枚举说明)	| 是 | SymbolSpan组件渲染策略。<br/>默认值：SymbolRenderingStrategy.SINGLE。<br/>
-| effectStrategy | [SymbolEffectStrategy](ts-basic-components-symbolGlyph.md#symboleffectstrategy11枚举说明)	| 是 | SymbolSpan组件动效策略。<br/>默认值：SymbolEffectStrategy.NONE。<br/>
+| renderingStrategy | [SymbolRenderingStrategy](ts-basic-components-symbolGlyph.md#symbolrenderingstrategy11枚举说明)	| 是 | SymbolSpan组件渲染策略。<br/>默认值：SymbolRenderingStrategy.SINGLE。|
+| effectStrategy | [SymbolEffectStrategy](ts-basic-components-symbolGlyph.md#symboleffectstrategy11枚举说明)	| 是 | SymbolSpan组件动效策略。<br/>默认值：SymbolEffectStrategy.NONE。|
 
 ## RichEditorImageSpanResult
 
@@ -1508,7 +1505,6 @@ onContentChanged(listener: StyledStringChangedListener): void
 | 名称      | 类型                                        | 必填 | 说明       |
 | --------- | ------------------------------------------- | ---- | ---------- |
 | textStyle | [RichEditorTextStyle](#richeditortextstyle) | 是   | 文本样式。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| urlStyle<sup>18+</sup>  | [RichEditorUrlStyle](#richeditorurlstyle18)   | 否   | url信息。<br/>默认值：undefined <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
 ## RichEditorUpdateImageSpanStyleOptions
 
@@ -1569,7 +1565,6 @@ SymbolSpan样式选项。
 | leadingMargin | [Dimension](ts-types.md#dimension10) \| [LeadingMarginPlaceholder](#leadingmarginplaceholder11) | 否    | 设置文本段落缩进，当段落仅存在ImageSpan或BuilderSpan时，此属性值不生效。参数为Dimension类型时，不支持以Percentage形式设置。默认值：{"size":["0.00px","0.00px"]} <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | wordBreak<sup>12+</sup> |  [WordBreak](ts-appendix-enums.md#wordbreak11) | 否    | 设置断行规则。 <br />默认值：WordBreak.BREAK_WORD <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | lineBreakStrategy<sup>12+</sup> | [LineBreakStrategy](ts-appendix-enums.md#linebreakstrategy12) | 否 | 设置折行规则。 <br />默认值：LineBreakStrategy.GREEDY<br />在wordBreak不等于breakAll的时候生效，不支持连字符。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| paragraphSpacing<sup>18+</sup> | number | 否    | 设置段落间距大小。<br/>单位：fp<br/>段落间距默认大小为0。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
 ## LeadingMarginPlaceholder<sup>11+</sup>
 
@@ -1607,7 +1602,6 @@ SymbolSpan样式选项。
 | style                        | [RichEditorTextStyle](#richeditortextstyle) | 否    | 文本样式信息。省略时，使用系统默认文本信息。     <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | paragraphStyle<sup>11+</sup> | [RichEditorParagraphStyle](#richeditorparagraphstyle11) | 否    | 段落样式。                     <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | gesture<sup>11+</sup>        | [RichEditorGesture](#richeditorgesture11) | 否    | 行为触发回调。省略时，仅使用系统默认行为。      <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| urlStyle<sup>18+</sup>  | [RichEditorUrlStyle](#richeditorurlstyle18)   | 否   | url信息。<br/>默认值：undefined <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
 ## RichEditorTextStyle
 
@@ -1628,7 +1622,7 @@ SymbolSpan样式选项。
 | letterSpacing<sup>12+</sup> | number \| string             | 否     | 设置文本字符间距，当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示，number类型时单位为fp, 不支持设置百分比字符串。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | fontFeature<sup>12+</sup> | string | 否 | 设置文字特性效果，比如数字等宽的特性。如果未设置，默认为变宽数字。设置无效字符保持默认。<br/>格式为：normal \| \<feature-tag-value\><br/>\<feature-tag-value\>的格式为：\<string\> \[ \<integer\> \| on \| off ]<br/>\<feature-tag-value\>的个数可以有多个，中间用','隔开。<br/>例如，使用等宽时钟数字的输入格式为："ss01" on。<br/>Font Feature当前支持的属性见 [fontFeature属性列表](ts-basic-components-text.md#fontfeature12)。<br/>设置 Font Feature 属性，Font Feature 是 OpenType 字体的高级排版能力，如支持连字、数字等宽等特性，一般用在自定义字体中，其能力需要字体本身支持。<br/>更多 Font Feature 能力介绍可参考 https://www.w3.org/TR/css-fonts-3/#font-feature-settings-prop 和 https://sparanoid.com/lab/opentype-features/<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | halfLeading<sup>18+</sup> | boolean | 否    | 文本是否将行间距平分至行的顶部与底部。<br/>true表示将行间距平分至行的顶部与底部，false则不平分。<br/>默认值：false。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
-| textBackgroundStyle<sup>18+</sup> | [TextBackgroundStyle](ts-basic-components-span.md#textbackgroundstyle11对象说明) | 否    | 文本背景样式。<br />默认值：<br />{<br />  color: Color.Transparent,<br />  radius: 0<br />} |
+| textBackgroundStyle<sup>18+</sup> | [TextBackgroundStyle](ts-basic-components-span.md#textbackgroundstyle11对象说明) | 否    | 文本背景样式。<br />默认值：<br />{<br />  color: Color.Transparent,<br />  radius: 0<br />} <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
 ## PlaceholderStyle<sup>12+</sup>
 
@@ -1709,8 +1703,6 @@ SymbolSpan样式选项。
 | 名称     | 类型     | 必填   | 说明                                    |
 | ------ | ------ | ---- | ------------------------------------- |
 | offset | number | 否    | 添加builder的位置。省略或者为异常值时，添加到所有内容的最后。 |
-| dragBackgroundColor<sup>18+</sup> | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否    | 添加builder单独拖拽时的背板背景颜色。不配置或者异常值时，颜色按系统默认配置。 |
-| isDragShadowNeeded<sup>18+</sup> | boolean | 否    | 添加builder单独拖拽时是否需要投影。不配置或者异常值时，默认需要投影。 |
 
 ## RichEditorSpan<sup>12+</sup>
 
@@ -1752,7 +1744,7 @@ RichEditor span信息。
 
 | 名称          | 类型         | 必填   | 说明            |
 | ----------- | ---------- | ---- | ------------- |
-| hapticFeedbackMode | [HapticFeedbackMode](ts-universal-attributes-menu.md#hapticfeedbackmode18)| 否 | 菜单弹出时振动效果。<br/>默认值：HapticFeedbackMode.DISABLED，菜单弹出时不振动。|
+| hapticFeedbackMode | [HapticFeedbackMode](ts-universal-attributes-menu.md#hapticfeedbackmode18) | 否 | 菜单弹出时振动效果。<br/>默认值：HapticFeedbackMode.DISABLED，菜单弹出时不振动。|
 
 ## PasteEvent<sup>11+</sup>
 
@@ -1926,18 +1918,6 @@ type OnHoverCallback = (status: boolean, event: HoverEvent) => void
 | spanPosition     | [RichEditorSpanPosition](#richeditorspanposition)                 | 是   | Span位置。|
 | value            | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)\|[ResourceStr](ts-types.md#resourcestr)  | 是   | 图片内容。|
 | imageStyle       | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | 否 | 图片样式。|
-
-## RichEditorUrlStyle<sup>18+</sup>
-
-Url信息。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称    | 类型                                         | 必填 | 说明    |
-|---------|---------------------------------------------|------|---------|
-| url     | [ResourceStr](ts-types.md#resourcestr)      | 否   | url地址。<br/>默认值：undefined|
 
 ## 示例
 
@@ -3063,14 +3043,6 @@ struct Index {
           this.controller.updateParagraphStyle({ start: -1, end: -1,
             style: {
               textAlign: TextAlign.Center,
-            }
-          })
-        })
-
-        Button("段落间距设置50").onClick(() => {
-          this.controller.updateParagraphStyle({ start: -1, end: -1,
-            style: {
-              paragraphSpacing: 50,
             }
           })
         })
@@ -4960,108 +4932,3 @@ struct RichEditorExample {
 }
 ```
 ![StyledString](figures/maxLengthmaxLines.gif)
-
-### 示例26（设置自定义布局拖拽背板及拖拽投影配置）
-通过addBuilderSpan，可以在拖拽场景下，对自定义布局的拖拽背板及拖拽投影的参数进行设置。
-
-```ts
-// xxx.ets
-import { ColorMetrics } from '@kit.ArkUI';
-
-@Entry
-@Component
-struct richEditorNew03 {
-  controller: RichEditorController = new RichEditorController();
-  options: RichEditorOptions = { controller: this.controller }
-  build() {
-    Column({ space: 10 }) {
-      Column() {
-        RichEditor(this.options)
-          .onReady(() => {
-            this.controller.addBuilderSpan(() => {
-              this.placeholderBuilder()
-            }, {
-              offset: -1,
-              dragBackgroundColor: ColorMetrics.rgba(0xff, 0x80, 0, 0xff),
-              isDragShadowNeeded: false
-            })
-            this.controller.addBuilderSpan(() => {
-              this.placeholderBuilder()
-            }, {
-              offset: -1,
-              dragBackgroundColor: ColorMetrics.resourceColor("#ffff0000")
-                .blendColor(ColorMetrics.resourceColor("#ff00ff00")),
-              isDragShadowNeeded: true
-            })
-            this.controller.addBuilderSpan(() => {
-              this.placeholderBuilder()
-            }, { offset: -1 })
-          })
-          .borderWidth(1)
-          .width("100%")
-          .height("50%")
-          .margin(50)
-      }
-      .width('100%')
-      .margin({top:100})
-    }
-  }
-
-  @Builder
-  placeholderBuilder() {
-    Row() {
-      Text('是BuilderSpan，不是纯文本内容')
-        .fontSize(22)
-        .copyOption(CopyOptions.InApp)
-    }
-  }
-}
-```
-![StyledString](figures/builderspan_drag_config.gif)
-
-### 示例27（文本设置Url样式）
-通过在addTextSpan、UpdateSpanStyle接口中添加UrlStyle，可以实现文本点击跳转链接的功能。
-
-```ts
-// xxx.ets
-
-@Entry
-@Component
-struct RichEditorExample {
-  controller: RichEditorController = new RichEditorController();
-  options: RichEditorOptions = { controller: this.controller };
-  styledStringController: RichEditorStyledStringController = new RichEditorStyledStringController();
-  styledStringOptions: RichEditorStyledStringOptions = { controller: this.styledStringController };
-
-  build() {
-    Column() {
-      Row() {
-        Button("Add Example Url").onClick(() => {
-          this.controller.addTextSpan("示例网址", {
-            urlStyle: { url: "https://www.example.com" }
-          })
-        })
-        Button("Clear Url").onClick(() => {
-          this.controller.updateSpanStyle({
-            start: 0,
-            textStyle: {},
-            urlStyle: { url: "" }
-          })
-        })
-      }
-
-      Row() {
-        RichEditor(this.options)
-          .height('35%')
-          .border({ width: 1, color: Color.Blue })
-      }
-
-      Row() {
-        RichEditor(this.styledStringOptions)
-          .height('35%')
-          .border({ width: 1, color: Color.Red })
-      }
-    }
-  }
-}
-```

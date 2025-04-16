@@ -726,6 +726,79 @@ try {
 }
 ```
 
+### on('callingDisplayDidChange')<sup>18+</sup>
+
+on(type: 'callingDisplayDidChange', callback: Callback\<number>): void
+
+订阅编辑框对应窗口所在屏幕ID变化。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                                          | 必填 | 说明                                       |
+| -------- | --------------------------------------------- | ---- | ------------------------------------------ |
+| type     | string                                        | 是   | 设置监听类型，固定取值为'callingDisplayDidChange'。 |
+| callback |  Callback\<number> | 是   | 回调函数，返回编辑框设置对应窗口屏幕ID。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                       |
+| -------- | ---------------------------------------------- |
+| 801 | capability not supported. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { inputMethodEngine } from '@kit.IMEKit';
+
+let callingDisplayDidChangeCallback = (num: number) => {
+  console.log(`display id: ${num}`);
+}
+try {
+  console.log(`regist calling display changed`);
+  inputMethodEngine.getInputMethodAbility().on('callingDisplayDidChange', callingDisplayDidChangeCallback);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`regist calling display changed error: ${error.code} ${error.message}`);
+}
+```
+
+### off('callingDisplayDidChange')<sup>18+</sup>
+
+off(type: 'callingDisplayDidChange', callback?: Callback\<number>): void
+
+取消编辑框对应窗口所在屏幕ID变化。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                                        | 必填 | 说明                                                         |
+| -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                      | 是   | 设置监听类型，固定取值为'callingDisplayDidChange'。                   |
+| callback | Callback\<number>  | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { inputMethodEngine } from '@kit.IMEKit';
+
+try {
+  console.log(`unregist calling display changed `);
+  inputMethodEngine.getInputMethodAbility().off('callingDisplayDidChange', (num: number) => {
+    console.log('InputMethodAbility delete calling display  notification.');
+  });
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`unregist calling display changed error: ${error.code} ${error.message}`);
+}
+```
+
 ### getSecurityMode<sup>11+</sup>
 
 getSecurityMode(): SecurityMode
@@ -1289,7 +1362,7 @@ on(type: 'editorAttributeChanged', callback: (attr: EditorAttribute) => void): v
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 文本变化事件，固定取值为'editorAttributeChanged'。 |
-| callback | (attr: EditorAttribute) => void | 是   | 回调函数，返回变化的编辑框属性。|
+| callback | (attr: [EditorAttribute](#editorattribute)) => void | 是   | 回调函数，返回变化的编辑框属性。|
 
 **示例：**
 
@@ -1316,7 +1389,7 @@ off(type: 'editorAttributeChanged', callback?: (attr: EditorAttribute) => void):
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 文本变化事件，固定取值为'editorAttributeChanged'。 |
-| callback | (attr: EditorAttribute) => void | 否   | 所要取消订阅的回调处理函数。参数不填写时，取消订阅type对应的所有回调事件。 |
+| callback | (attr: [EditorAttribute](#editorattribute)) => void | 否   | 所要取消订阅的回调处理函数。参数不填写时，默认取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
@@ -1700,7 +1773,7 @@ startMoving(): void
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
-| 801 | Capability not supported. |
+| 801 | capability not supported. |
 | 12800002 | input method engine error. |
 | 12800013 | window manager service error. |
 | 12800017 | invalid panel type or panel flag. |
@@ -2597,20 +2670,13 @@ keyboardController.exitCurrentInputType().then(() => {
 
 > **说明**
 >
-> 开发者可通过注册此对象来接收已绑定当前输入法应用的编辑框应用所发送的自定义通信数据，接收到自定义通信数据时会触发此对象中[onMessage](#messagehandleronmessage15)回调函数。
+> 开发者可通过注册此对象来接收已绑定当前输入法应用的编辑框应用所发送的自定义通信数据，接收到自定义通信数据时会触发此对象中[onMessage](#onmessage15)回调函数。
 >
-> 此对象全局唯一，多次注册仅保留最后一次注册的对象及有效性，并触发上一个已注册对象的[onTerminated](#messagehandleronterminated15)回调函数。
+> 此对象全局唯一，多次注册仅保留最后一次注册的对象及有效性，并触发上一个已注册对象的[onTerminated](#onterminated15)回调函数。
 >
-> 若取消注册全局已注册的对象时，会触发被取消对象中[onTerminated](#messagehandleronterminated15)回调函数。
+> 若取消注册全局已注册的对象时，会触发被取消对象中[onTerminated](#onterminated15)回调函数。
 
-**系统能力：** SystemCapability.MiscServices.InputMethodFramework
-
-| 名称         | 类型     | 可选 | 说明                               |
-| ------------ | -------- | ---- | ---------------------------------- |
-| onTerminated | function | 否   | 对象终止接收的回调函数。           |
-| onMessage    | function | 否   | 对象接收自定义通信数据的回调函数。 |
-
-## MessageHandler.onMessage<sup>15+</sup>
+### onMessage<sup>15+</sup>
 
 onMessage(msgId: string, msgParam?: ArrayBuffer): void
 
@@ -2626,10 +2692,10 @@ onMessage(msgId: string, msgParam?: ArrayBuffer): void
 
 **参数：**
 
-| 参数名   | 类型        | 可选 | 说明                             |
+| 参数名   | 类型        | 必填 | 说明                             |
 | -------- | ----------- | ---- | -------------------------------- |
-| msgId    | string      | 否   | 接收到的自定义通信数据的标识符。 |
-| msgParam | ArrayBuffer | 是   | 接收到的自定义通信数据的消息体。 |
+| msgId    | string      | 是   | 接收到的自定义通信数据的标识符。 |
+| msgParam | ArrayBuffer | 否   | 接收到的自定义通信数据的消息体。 |
 
 **示例：**
 
@@ -2637,21 +2703,30 @@ onMessage(msgId: string, msgParam?: ArrayBuffer): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    let messageHandler: inputmethod.MessageHandler = {
-        onTerminated(): void {
+  inputMethodEngine.getInputMethodAbility()
+    .on('inputStart', (kbController: inputMethodEngine.KeyboardController, client: inputMethodEngine.InputClient) => {
+      let keyboardController = kbController;
+      let inputClient = client;
+      try {
+        let messageHandler: inputMethodEngine.MessageHandler = {
+          onTerminated(): void {
             console.log('OnTerminated.');
-        },
-        onMessage(msgId: string, msgParam?:ArrayBuffer): void {
+          },
+          onMessage(msgId: string, msgParam?:ArrayBuffer): void {
             console.log('recv message.');
+          }
         }
-    }
-    inputMethodController.recvMessage(messageHandler);
+        inputClient.recvMessage(messageHandler);
+      } catch(err) {
+        console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+      }
+  });
 } catch(err) {
-  console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+    console.error(`Failed to InputMethodAbility: ${JSON.stringify(err)}`);
 }
 ```
 
-## MessageHandler.onTerminated<sup>15+</sup>
+### onTerminated<sup>15+</sup>
 
 onTerminated(): void
 
@@ -2671,17 +2746,26 @@ onTerminated(): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    let messageHandler: inputmethod.MessageHandler = {
-        onTerminated(): void {
+  inputMethodEngine.getInputMethodAbility()
+    .on('inputStart', (kbController: inputMethodEngine.KeyboardController, client: inputMethodEngine.InputClient) => {
+      let keyboardController = kbController;
+      let inputClient = client;
+      try {
+        let messageHandler: inputMethodEngine.MessageHandler = {
+          onTerminated(): void {
             console.log('OnTerminated.');
-        },
-        onMessage(msgId: string, msgParam?:ArrayBuffer): void {
+          },
+          onMessage(msgId: string, msgParam?:ArrayBuffer): void {
             console.log('recv message.');
+          }
         }
-    }
-    inputMethodController.recvMessage(messageHandler);
+        inputClient.recvMessage(messageHandler);
+      } catch(err) {
+        console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+      }
+  });
 } catch(err) {
-  console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+    console.error(`Failed to InputMethodAbility: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -4411,10 +4495,10 @@ sendMessage(msgId: string, msgParam?: ArrayBuffer): Promise<void&gt;
 
 **参数：**
 
-| 参数名   | 类型        | 可选 | 说明                                                         |
+| 参数名   | 类型        | 必填 | 说明                                                         |
 | -------- | ----------- | ---- | ------------------------------------------------------------ |
-| msgId    | string      | 否   | 需要发送至已绑定当前输入法应用的编辑框应用的自定义数据的标识符。 |
-| msgParam | ArrayBuffer | 是   | 需要发送至已绑定当前输入法应用的编辑框应用的自定义数据的消息体。 |
+| msgId    | string      | 是   | 需要发送至已绑定当前输入法应用的编辑框应用的自定义数据的标识符。 |
+| msgParam | ArrayBuffer | 否   | 需要发送至已绑定当前输入法应用的编辑框应用的自定义数据的消息体。 |
 
 **返回值：**
 
@@ -4428,7 +4512,7 @@ sendMessage(msgId: string, msgParam?: ArrayBuffer): Promise<void&gt;
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 401      | parameter error.                            |
+| 401      | parameter error. Possible causes: 1. Incorrect parameter types. 2. Incorrect parameter length.                           |
 | 12800003 | input method client error.                  |
 | 12800009 | input method client detached.               |
 | 12800014 | the input method is in basic mode.          |
@@ -4457,9 +4541,9 @@ recvMessage(msgHandler?: MessageHandler): void;
 
 > **说明：**
 >
-> [MessageHandler](#messagehandler15)对象全局唯一，多次注册仅保留最后一次注册的对象及有效性，并触发上一个已注册对象的[onTerminated](#messagehandleronterminated15)回调函数。
+> [MessageHandler](#messagehandler15)对象全局唯一，多次注册仅保留最后一次注册的对象及有效性，并触发上一个已注册对象的[onTerminated](#onterminated15)回调函数。
 >
-> 未填写参数，则取消全局已注册的[MessageHandler](#messagehandler15)，并会触发被取消注册对象中[onTerminated](#messagehandleronterminated15)回调函数。
+> 未填写参数，则取消全局已注册的[MessageHandler](#messagehandler15)，并会触发被取消注册对象中[onTerminated](#onterminated15)回调函数。
 
 **系统能力：**  SystemCapability.MiscServices.InputMethodFramework
 
@@ -4467,7 +4551,7 @@ recvMessage(msgHandler?: MessageHandler): void;
 
 | 参数名     | 类型                                | 必填 | 说明                                                         |
 | ---------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| msgHandler | [MessageHandler](#messagehandler15) | 否   | 该对象将通过[onMessage](#messagehandleronmessage15)接收来自已绑定当前输入法应用的编辑框应用所发送的自定义通信数据，以及[onTerminated](#messagehandleronterminated15)接收终止此对象订阅的消息。若不填写此参数，则取消全局已注册的[MessageHandler](#messagehandler15)对象，并触发其[onTerminated](#messagehandleronterminated15)回调函数。 |
+| msgHandler | [MessageHandler](#messagehandler15) | 否   | 该对象将通过[onMessage](#onmessage15)接收来自已绑定当前输入法应用的编辑框应用所发送的自定义通信数据，以及[onTerminated](#onterminated15)接收终止此对象订阅的消息。若不填写此参数，则取消全局已注册的[MessageHandler](#messagehandler15)对象，并触发其[onTerminated](#onterminated15)回调函数。 |
 
 **返回值：**
 
@@ -4481,22 +4565,35 @@ recvMessage(msgHandler?: MessageHandler): void;
 
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
-| 401      | parameter error. |
+| 401      | parameter error. Possible causes: 1. Incorrect parameter types. |
 
 **示例：**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-let messageHandler: inputmethod.MessageHandler = {
-    onTerminated(): void {
-        console.log('OnTerminated.');
-    },
-    onMessage(msgId: string, msgParam?:ArrayBuffer): void {
-        console.log('recv message.');
-    }
+
+try {
+  inputMethodEngine.getInputMethodAbility()
+    .on('inputStart', (kbController: inputMethodEngine.KeyboardController, client: inputMethodEngine.InputClient) => {
+      let keyboardController = kbController;
+      let inputClient = client;
+      try {
+        let messageHandler: inputMethodEngine.MessageHandler = {
+          onTerminated(): void {
+            console.log('OnTerminated.');
+          },
+          onMessage(msgId: string, msgParam?:ArrayBuffer): void {
+            console.log('recv message.');
+          }
+        }
+        inputClient.recvMessage(messageHandler);
+      } catch(err) {
+        console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+      }
+  });
+} catch(err) {
+    console.error(`Failed to InputMethodAbility: ${JSON.stringify(err)}`);
 }
-inputMethodController.recvMessage(messageHandler);
-inputMethodController.recvMessage();
 ```
 
 ### EditorAttribute
@@ -4511,7 +4608,9 @@ inputMethodController.recvMessage();
 | inputPattern | number   | 是   | 否   | 编辑框的文本属性。 |
 | isTextPreviewSupported<sup>12+</sup> | boolean | 否 | 否 | 编辑框是否支持预上屏。 |
 | bundleName<sup>14+</sup> | string | 是 | 是 | 编辑框所属应用包名；该值可能为""，使用该属性时需要考虑为""的场景。 |
-| immersiveMode<sup>15+</sup> | number | 是   | 是   | 输入法沉浸模式。 |
+| immersiveMode<sup>15+</sup> | [ImmersiveMode](#immersivemode15) | 是   | 是   | 输入法沉浸模式。 |
+| windowId<sup>18+</sup> | number | 是 | 是 | 编辑框设置所属窗口ID。 |
+| displayId<sup>18+</sup> | number | 是   | 是   | 编辑框设置窗口对应的屏幕ID。如果没有设置windowId，取当前焦点窗口屏幕ID。|
 
 ## KeyEvent
 

@@ -1,6 +1,6 @@
 # @ohos.data.unifiedDataChannel (标准化数据通路)
 
-本模块为统一数据管理框架（Unified Data Management Framework，UDMF）的组成部分，针对多对多跨应用数据共享的不同业务场景提供了标准化的数据通路，提供了标准化的数据接入与读取接口。同时对文本、图片等数据类型提供了标准化定义，方便不同应用间进行数据交互，减少数据类型适配的工作量。
+本模块为统一数据管理框架（Unified Data Management Framework，UDMF）的组成部分，针对多对多跨应用数据共享的不同业务场景提供了标准化的数据通路，提供了标准化的数据接入与读取接口。同时对文本、图片等数据类型提供了标准化定义，方便不同应用间进行数据交互，减少数据类型适配的工作量。UDMF处理数据时，不会解析用户数据的内容，存储路径安全性较低，不建议传输个人敏感数据和隐私数据。
 
 > **说明：**
 >
@@ -382,7 +382,7 @@ let unifiedRecord = new unifiedDataChannel.UnifiedRecord();
 
 constructor(type: string, value: ValueType)
 
-用于创建指定类型和值的数据记录。<br/>当参数value为[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)类型时，参数type必须对应为[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)中OPENHARMONY_PIXEL_MAP的值;<br/>当参数value为[Want](../apis-ability-kit/js-apis-app-ability-want.md)类型时，参数type必须对应为[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)中OPENHARMONY_WANT的值。
+用于创建指定类型和值的数据记录。<br/>当参数value为[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)类型时，参数type必须对应为[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)中OPENHARMONY_PIXEL_MAP的值；<br/>当参数value为[Want](../apis-ability-kit/js-apis-app-ability-want.md)类型时，参数type必须对应为[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)中OPENHARMONY_WANT的值。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1232,7 +1232,7 @@ type DataProgressListener = (progressInfo: ProgressInfo, data: UnifiedData | nul
 
 **参数：**
 
-| 参数名                   | 类型                                              | 必填 | 说明                                                                                                                                                 |
+| 名称                   | 类型                                              | 必填 | 说明                                                                                                                                                 |
 |----------------------|-------------------------------------------------| ---- |----------------------------------------------------------------------------------------------------------------------------------------------------|
 | progressIndicator    | [ProgressIndicator](#progressindicator15)       | 是 | 定义进度条指示选项，可选择是否采用系统默认进度显示。                                                                                                                         |
 | dataProgressListener | [DataProgressListener](#dataprogresslistener15) | 是 | 表示获取统一数据时的进度和数据监听器。                                                                                                                                |
@@ -1781,5 +1781,82 @@ try {
 }catch (e){
   let error: BusinessError = e as BusinessError;
   console.error(`[UDMF]removeAppShareOptions throws an exception. code is ${error.code},message is ${error.message} `);
+}
+```
+
+## unifiedDataChannel.convertRecordsToEntries<sup>17+</sup>
+
+convertRecordsToEntries(data: UnifiedData): void
+
+本接口用于将传入的data转换成多样式数据结构。若原data使用多个record去承载同一份数据的不同样式，则可以使用此接口将原data转换为多样式数据结构。
+
+当满足以下规则时进行转换，传入的data经转换后变为多样式数据结构：
+1. data中的record数量大于1;
+2. data中的properties中的tag值为"records_to_entries_data_format"。
+
+否则不会产生任何行为。
+
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**参数：**
+
+| 参数名    | 类型                    | 必填 | 说明                                                         |
+| --------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| data    | [UnifiedData](#unifieddata) | 是  | 目标数据。           |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { unifiedDataChannel } from '@kit.ArkData';
+import { uniformDataStruct } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let details : Record<string, string> = {
+  'attr1': 'value1',
+  'attr2': 'value2',
+}
+let plainTextObj : uniformDataStruct.PlainText = {
+  uniformDataType: 'general.plain-text',
+  textContent : 'The weather is very good today',
+  abstract : 'The weather is very good today',
+  details : details,
+}
+let htmlObj : uniformDataStruct.HTML = {
+  uniformDataType :'general.html',
+  htmlContent : '<div><p>The weather is very good today</p></div>',
+  plainContent : 'The weather is very good today',
+  details : details,
+}
+let plainText = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainTextObj);
+let html = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.HTML, htmlObj);
+let unifiedData = new unifiedDataChannel.UnifiedData(plainText);
+unifiedData.addRecord(html);
+unifiedData.properties.tag = 'records_to_entries_data_format';
+
+try {
+  unifiedDataChannel.convertRecordsToEntries(unifiedData);
+  let records: Array<unifiedDataChannel.UnifiedRecord> = unifiedData.getRecords();
+  console.info(`Records size is ${records.length}`); // After conversion, its length must be less than 1
+  if (records.length == 1) {
+    let plainTextObjRead: uniformDataStruct.PlainText = records[0].getEntry(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) as uniformDataStruct.PlainText;
+    console.info(`TextContent is ${plainTextObjRead.textContent}`);
+    let htmlObjRead: uniformDataStruct.HTML = records[0].getEntry(uniformTypeDescriptor.UniformDataType.HTML) as uniformDataStruct.HTML;
+    console.info(`HtmlContent is ${htmlObjRead.htmlContent}`);
+  }
+} catch (e) {
+  let error: BusinessError = e as BusinessError;
+  console.error(`Convert data throws an exception. code is ${error.code}, message is ${error.message} `);
 }
 ```

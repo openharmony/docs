@@ -34,6 +34,7 @@ Provides the custom dialog box APIs for the native side.
 | int32_t(\* [registerOnWillDismiss](#registeronwilldismiss) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, [ArkUI_OnWillDismissEvent](_ark_u_i___native_module.md#arkui_onwilldismissevent) eventHandler) | Registers a callback for a custom dialog box so that the user can decide whether to close the dialog box after they touch the Back button or press the Esc key. | 
 | int32_t(\* [show](#show) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, bool showInSubWindow) | Shows a custom dialog box. | 
 | int32_t(\* [close](#close) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle) | Closes a custom dialog box. If the dialog box has been closed, this API does not take effect. | 
+| int32_t(\* [registerOnWillDismissWithUserData](#registeronwilldismisswithuserdata) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, void \*userData, void(\*callback)([ArkUI_DialogDismissEvent](_ark_u_i___native_module.md#arkui_dialogdismissevent) \*event)) | Registers a callback for the dismissal event of a custom dialog box. | 
 
 
 ## Member Variable Description
@@ -56,7 +57,7 @@ Closes a custom dialog box. If the dialog box has been closed, this API does not
 
 **Returns**
 
-Returns **0** if the operation is successful; returns **401** if a parameter error occurs.
+Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) if the operation is successful. Returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) if a parameter error occurs.
 
 
 ### create
@@ -115,7 +116,7 @@ This method must be called before the **show** method.
 
 **Returns**
 
-Returns **0** if the operation is successful; returns **401** if a parameter error occurs.
+Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) if the operation is successful. Returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) if a parameter error occurs.
 
 
 ### enableCustomStyle
@@ -140,7 +141,7 @@ This method must be called before the **show** method.
 
 **Returns**
 
-Returns **0** if the operation is successful; returns **401** if a parameter error occurs.
+Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) if the operation is successful. Returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) if a parameter error occurs.
 
 
 ### registerOnWillDismiss
@@ -165,7 +166,29 @@ This method must be called before the **show** method.
 
 **Returns**
 
-Returns **0** if the operation is successful; returns **401** if a parameter error occurs.
+Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) if the operation is successful. Returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) if a parameter error occurs.
+
+
+### registerOnWillDismissWithUserData
+
+```
+int32_t(* ArkUI_NativeDialogAPI_1::registerOnWillDismissWithUserData) (ArkUI_NativeDialogHandle handle, void *userData, void(*callback)(ArkUI_DialogDismissEvent *event))
+```
+**Description**
+
+Registers a callback for the dismissal event of a custom dialog box.
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| handle | Pointer to the custom dialog box controller. | 
+| userData | Pointer to user data. | 
+| callback | Callback for the dismissal event of the custom dialog box. | 
+
+**Returns**
+
+Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) if the operation is successful. Returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) if a parameter error occurs.
 
 
 ### removeContent
@@ -189,7 +212,7 @@ This method must be called before the **show** method.
 
 **Returns**
 
-Returns **0** if the operation is successful; returns **401** if a parameter error occurs.
+Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) if the operation is successful. Returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) if a parameter error occurs.
 
 
 ### resetContentAlignment
@@ -213,7 +236,7 @@ This method must be called before the **show** method.
 
 **Returns**
 
-Returns **0** if the operation is successful; returns **401** if a parameter error occurs.
+Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) if the operation is successful. Returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) if a parameter error occurs.
 
 
 ### setAutoCancel
@@ -238,7 +261,7 @@ This method must be called before the **show** method.
 
 **Returns**
 
-Returns **0** if the operation is successful; returns **401** if a parameter error occurs.
+Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) if the operation is successful. Returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) if a parameter error occurs.
 
 
 ### setBackgroundColor
@@ -263,7 +286,7 @@ This method must be called before the **show** method.
 
 **Returns**
 
-Returns **0** if the operation is successful; returns **401** if a parameter error occurs.
+Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) if the operation is successful. Returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) if a parameter error occurs.
 
 
 ### setContent
@@ -288,7 +311,7 @@ This method must be called before the **show** method.
 
 **Returns**
 
-Returns **0** if the operation is successful; returns **401** if a parameter error occurs.
+Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) if the operation is successful. Returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) if a parameter error occurs.
 
 
 ### setContentAlignment
@@ -315,7 +338,7 @@ This method must be called before the **show** method.
 
 **Returns**
 
-Returns **0** if the operation is successful; returns **401** if a parameter error occurs.
+Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) if the operation is successful. Returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) if a parameter error occurs.
 
 
 ### setCornerRadius
@@ -343,7 +366,7 @@ This method must be called before the **show** method.
 
 **Returns**
 
-Returns **0** if the operation is successful; returns **401** if a parameter error occurs.
+Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) if the operation is successful. Returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) if a parameter error occurs.
 
 
 ### setGridColumnCount
@@ -368,7 +391,7 @@ This method must be called before the **show** method.
 
 **Returns**
 
-Returns **0** if the operation is successful; returns **401** if a parameter error occurs.
+Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) if the operation is successful. Returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) if a parameter error occurs.
 
 
 ### setMask
@@ -394,7 +417,7 @@ This method must be called before the **show** method.
 
 **Returns**
 
-Returns **0** if the operation is successful; returns **401** if a parameter error occurs.
+Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) if the operation is successful. Returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) if a parameter error occurs.
 
 
 ### setModalMode
@@ -419,7 +442,7 @@ This method must be called before the **show** method.
 
 **Returns**
 
-Returns **0** if the operation is successful; returns **401** if a parameter error occurs.
+Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) if the operation is successful. Returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) if a parameter error occurs.
 
 
 ### show
@@ -440,5 +463,4 @@ Shows a custom dialog box.
 
 **Returns**
 
-Returns **0** if the operation is successful; returns **401** if a parameter error occurs.
-<!--no_check-->
+Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) if the operation is successful. Returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) if a parameter error occurs.

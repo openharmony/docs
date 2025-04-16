@@ -178,6 +178,6 @@ Web组件的状态主要包括：Controller绑定到Web组件、网页加载开�
 
 - [onFirstContentfulPaint](../reference/apis-arkweb/ts-basic-components-web.md#onfirstcontentfulpaint10)事件：网页首次内容绘制的回调函数。首次绘制文本、图像、非空白Canvas或者SVG的时间点。
 
-- [onFirstMeaningfulPaint](../reference/apis-arkweb/ts-basic-components-web.md#onfirstmeaningfulpaint12)事件：网页首次有效绘制的回调函数。首次绘制页面主要内容的时间点。
+- [onFirstMeaningfulPaint](../reference/apis-arkweb/ts-basic-components-web.md#onfirstmeaningfulpaint12)事件：网页绘制页面主要内容的回调函数。首次绘制页面主要内容的时间点。
 
 - [onLargestContentfulPaint](../reference/apis-arkweb/ts-basic-components-web.md#onlargestcontentfulpaint12)事件：网页绘制页面最大内容的回调函数。可视区域内容最大的可见元素开始出现在页面上的时间点。

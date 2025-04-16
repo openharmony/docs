@@ -7,7 +7,7 @@
    
    In addition to the example in this topic, [RSA](crypto-asym-key-generation-conversion-spec.md#rsa) and [Randomly Generating an Asymmetric Key Pair](crypto-generate-asym-key-pair-randomly.md) may help you better understand how to generate an RSA asymmetric key pair. Note that the input parameters in the reference documents may be different from those in the example below.
 
-2. Call [prikey.getEncodedPem](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencodedpem16) with the [KeyEncodingConfig](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#keyencodingconfig16) and **PKCS1/PCKS8** parameters to generate an encoded private key string.
+2. Call [prikey.getEncodedPem](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencodedpem18) with the [KeyEncodingConfig](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#keyencodingconfig18) and **PKCS1/PCKS8** parameters to generate an encoded private key string.
 
 
 **Decoding**
@@ -18,7 +18,7 @@
    **NOTE**
    The algorithm passed in for encoding must be the same as that used in encoding.
 
-2. Call [asyKeyGenerator.convertPemKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertpemkey16) or [asyKeyGenerator.convertPemKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertpemkeysync16) to pass in the encoded private key string and password. The private key string before encoding is returned.
+2. Call [asyKeyGenerator.convertPemKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertpemkey18) or [asyKeyGenerator.convertPemKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertpemkeysync18) to pass in the encoded private key string and password. The private key string before encoding is returned.
 
 - Encoding example:
   ```ts

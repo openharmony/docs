@@ -245,7 +245,6 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     示例如下所示：
 
-    <!--RP5-->
     ```c++
     // 设置OH_AVCodecOnError 回调函数，编码异常。
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
@@ -256,8 +255,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         (void)userData;
     }
     ```
-    <!--RP5End-->
-
+    
     <!--RP12-->
     ```c++
     // 设置OH_AVCodecOnStreamChanged 回调函数，编码数据流变化。
@@ -283,7 +281,6 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     }
     ```
 
-    <!--RP6-->
     ```c++
     // 设置 OH_AVCodecOnNewOutputBuffer 回调函数，编码完成帧送入输出队列。
     static void OnNewOutputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
@@ -294,7 +291,6 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         outQueue.Enqueue(std::make_shared<CodecBufferInfo>(index, buffer));
     }
     ```
-    <!--RP6End-->
 
     ```c++
     // 配置异步回调，调用 OH_VideoEncoder_RegisterCallback()接口。
@@ -495,6 +491,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     - index：回调函数OnNewOutputBuffer传入的参数，与buffer唯一对应的标识；
     - buffer：回调函数OnNewOutputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr)接口得到共享内存地址的指针。
 
+    <!--RP6-->
     ```c++
     std::shared_ptr<CodecBufferInfo> bufferInfo = outQueue.Dequeue();
     std::shared_lock<std::shared_mutex> lock(codecMutex);
@@ -515,6 +512,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         // 异常处理。
     }
     ```
+    <!--RP6End-->
 
 14. （可选）调用OH_VideoEncoder_Flush()刷新编码器。
 
@@ -795,7 +793,6 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     - buffer：回调函数OnNeedInputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr)接口得到共享内存地址的指针；
     - index：回调函数OnNeedInputBuffer传入的参数，与buffer唯一对应的标识；
-    - flags：缓冲区标记的类别，请参考[OH_AVCodecBufferFlags](../../reference/apis-avcodec-kit/_core.md#oh_avcodecbufferflags)；
     - widthStride: 获取到的buffer数据的跨距。
 
     ```c++
@@ -817,7 +814,6 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     info.size = frameSize;
     info.offset = 0;
     info.pts = 0;
-    info.flags = flags;
     int32_t ret = OH_AVBuffer_SetBufferAttr(bufferInfo->buffer, &info);
     if (ret != AV_ERR_OK) {
         // 异常处理。
@@ -843,12 +839,12 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     以NV12图像为例，width、height、wStride、hStride图像排布参考下图：
 
-    - OH_MD_KEY_VIDEO_PIC_WIDTH表示width；
-    - OH_MD_KEY_VIDEO_PIC_HEIGHT表示height；
+    - OH_MD_KEY_WIDTH表示width；
+    - OH_MD_KEY_HEIGHT表示height；
     - OH_MD_KEY_VIDEO_STRIDE表示wStride；
     - OH_MD_KEY_VIDEO_SLICE_HEIGHT表示hStride。
 
-    ![copy by line](figures/copy-by-line.png)
+    ![copy by line](figures/copy-by-line-encoder.png)
 
     添加头文件。
 

@@ -37,7 +37,7 @@ TextArea(value?: TextAreaOptions)
 | 名称 | 类型  | 必填   | 说明 |
 | ---- | ----- | ---- | ---- |
 | placeholder      | [ResourceStr](ts-types.md#resourcestr)  | 否    | 设置无输入时的提示文本。输入内容后，提示文本不显示。<br/>仅设置placeholder属性时，手柄依然跟随拖动，手柄松开后光标停留在文字开头位置。     |
-| text             | [ResourceStr](ts-types.md#resourcestr)  | 否    | 设置输入框当前的文本内容。</br>建议通过onChange事件将状态变量与文本实时绑定，</br>避免组件刷新时TextArea中的文本内容异常。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br />从API version 18开始，该参数支持[!!](../../../quick-start/arkts-new-binding.md#内置组件参数双向绑定)双向绑定变量。|
+| text             | [ResourceStr](ts-types.md#resourcestr)  | 否    | 设置输入框当前的文本内容。</br>建议通过onChange事件将状态变量与文本实时绑定，</br>避免组件刷新时TextArea中的文本内容异常。<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />从API version 18开始，该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。|
 | controller<sup>8+</sup> | [TextAreaController](#textareacontroller8) | 否    | 设置TextArea控制器。 |
 
 
@@ -310,7 +310,7 @@ enableKeyboardOnFocus(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                        |
 | ------ | ------- | ---- | ----------------------------------------------------------- |
-| value  | boolean | 是   | 通过点击以外的方式获焦时，是否主动拉起软键盘。<br/>默认值：true |
+| value  | boolean | 是   | 通过点击以外的方式获焦时，是否主动拉起软键盘。<br/>true表示主动拉起，false表示不主动拉起。<br/>默认值：true |
 
 ### selectionMenuHidden<sup>10+</sup>
 
@@ -754,7 +754,7 @@ enablePreviewText(enable: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| enable | boolean | 是   | 是否开启输入预上屏。<br/>默认值：true |
+| enable | boolean | 是   | 是否开启输入预上屏。<br/>true表示开启，false表示不开启。<br/>默认值：true |
 
 ### enableHapticFeedback<sup>13+</sup>
 
@@ -770,7 +770,7 @@ enableHapticFeedback(isEnabled: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| isEnabled | boolean | 是   | 是否开启触控反馈。<br/>默认值：true |
+| isEnabled | boolean | 是   | 是否开启触控反馈。<br/>true表示开启，false表示不开启。<br/>默认值：true |
 
 >  **说明：**
 >
@@ -817,7 +817,7 @@ stopBackPress(isStopped: Optional\<boolean>)
 
 ### halfLeading<sup>18+</sup>
 
-halfLeading(halfLeading: boolean)
+halfLeading(halfLeading: Optional\<boolean>)
 
 设置文本是否将行间距平分至行的顶部与底部。
 
@@ -829,7 +829,7 @@ halfLeading(halfLeading: boolean)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| halfLeading | boolean | 是  | 文本是否将行间距平分至行的顶部与底部。<br/>true表示将行间距平分至行的顶部与底部，false则不平分。<br/>默认值：false |
+| halfLeading | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是  | 文本是否将行间距平分至行的顶部与底部。<br/>true表示将行间距平分至行的顶部与底部，false则不平分。<br/>默认值：false |
 
 ### minFontScale<sup>18+</sup>
 
@@ -845,7 +845,7 @@ minFontScale(scale: Optional\<number | Resource>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| scale  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| [Resource](ts-types.md#resource)> | 是   | 文本最小的字体缩放倍数，支持undefined类型。<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置的值小于0时，按值为0处理。设置的值大于1，按值为1处理。异常值默认不生效。 |
+| scale  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| [Resource](ts-types.md#resource)> | 是   | 文本最小的字体缩放倍数，支持undefined类型。<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置的值小于0时，按值为0处理。设置的值大于1，按值为1处理。异常值默认不生效。<br/>使用前需在工程中配置configuration.json文件和app.json5文件，具体详见[示例17设置最小字体范围与最大字体范围](#示例17设置最小字体范围与最大字体范围)。 |
 
 ### maxFontScale<sup>18+</sup>
 
@@ -861,11 +861,11 @@ maxFontScale(scale: Optional\<number | Resource>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| scale  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| [Resource](ts-types.md#resource)> | 是   | 文本最大的字体缩放倍数，支持undefined类型。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按值为1处理。异常值默认不生效。 |
+| scale  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| [Resource](ts-types.md#resource)> | 是   | 文本最大的字体缩放倍数，支持undefined类型。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按值为1处理。异常值默认不生效。<br/>使用前需在工程中配置configuration.json文件和app.json5文件，具体详见[示例17设置最小字体范围与最大字体范围](#示例17设置最小字体范围与最大字体范围)。 |
 
 ### ellipsisMode<sup>18+</sup>
 
-ellipsisMode(value: EllipsisMode)
+ellipsisMode(mode: Optional\<EllipsisMode>)
 
 设置省略位置。ellipsisMode属性需要配合overflow设置为TextOverflow.Ellipsis以及maxLines使用，单独设置ellipsisMode属性不生效。
 
@@ -879,7 +879,7 @@ EllipsisMode.START和EllipsisMode.CENTER仅在maxLines设置为1生效。
 
 | 参数名 | 类型                                                | 必填 | 说明                                      |
 | ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
-| value  | [EllipsisMode](ts-appendix-enums.md#ellipsismode11) | 是   | 省略位置。 <br />默认值：EllipsisMode.END |
+| mode  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[EllipsisMode](ts-appendix-enums.md#ellipsismode11)> | 是   | 省略位置。 <br />默认值：EllipsisMode.END |
 
 ## 事件
 
@@ -2017,49 +2017,21 @@ struct TextAreaExample {
 
 该示例通过minFontScale、maxFontScale设置字体显示最小与最大范围。
 
-```ts
-import { abilityManager, Configuration } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-// xxx.ets
-@Entry
-@Component
-export struct TextAreaExample11 {
-  @State minFontScale: number = 0.85;
-  @State maxFontScale: number = 2;
-  @State changeValue: string = 'abcde';
-
-  build() {
-    Column() {
-      Column({ space: 30 }) {
-        Text("系统字体变大变小，变大变小aaaaaaaAAAAAA")
-        TextArea({
-          placeholder: 'The text area can hold an unlimited amount of text. input your word...',
-        })
-        //设置最小字体缩放倍数，参数为undefined则跟随系统默认倍数缩放。
-          .minFontScale(0.85)
-          //设置最大字体缩放倍数，参数为undefined则跟随系统默认倍数缩放。
-          .maxFontScale(2)
-      }.width('100%')
-    }
+```json
+// 开启应用缩放跟随系统
+// AppScope/resources/base，新建文件夹profile。
+// AppScope/resources/base/profile，新建文件configuration.json。
+// AppScope/resources/base/profile/configuration.json，增加如下代码。
+{
+  "configuration": {
+    "fontSizeScale": "followSystem",
+    "fontSizeMaxScale": "3.2"
   }
 }
 ```
 
-```ts
-路径：AppScope/resources/base，新建文件夹profile。
-路径：AppScope/resources/base/profile，新建文件configuration.json。
-路径：AppScope/resources/base/profile/configuration.json，增加如下代码。
-{
-  "configuration":{
-    "fontSizeScale": "followSystem",
-    "fontSizeMaxScale": "3.2"
-}
-}
-```
-
-```ts
-路径：AppScope/app.json5，修改如下代码。
+```json
+// AppScope/app.json5，修改如下代码。
 {
   "app": {
     "bundleName": "com.example.myapplication",
@@ -2069,6 +2041,29 @@ export struct TextAreaExample11 {
     "icon": "$media:app_icon",
     "label": "$string:app_name",
     "configuration": "$profile:configuration"
+  }
+}
+```
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextAreaExample {
+  @State minFontScale: number = 0.85;
+  @State maxFontScale: number = 2;
+
+  build() {
+    Column() {
+      Column({ space: 30 }) {
+        Text("系统字体变大变小，变大变小aaaaaaaAAAAAA")
+        TextArea({
+          placeholder: 'The text area can hold an unlimited amount of text. input your word...',
+        })
+          .minFontScale(this.minFontScale)// 设置最小字体缩放倍数，参数为undefined则跟随系统默认倍数缩放
+          .maxFontScale(this.maxFontScale)// 设置最大字体缩放倍数，参数为undefined则跟随系统默认倍数缩放
+      }.width('100%')
+    }
   }
 }
 ```

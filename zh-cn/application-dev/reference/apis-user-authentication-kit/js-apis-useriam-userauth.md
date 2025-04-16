@@ -384,7 +384,7 @@ try {
   };
   const widgetParam: userAuth.WidgetParam = {
     title: '请输入密码',
-    uiContext: this.getUIContext().getHostContext(),
+    uiContext: getContext(),
   };
   const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
   console.info('get userAuth instance success');

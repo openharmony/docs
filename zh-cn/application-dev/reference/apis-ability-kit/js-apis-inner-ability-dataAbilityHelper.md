@@ -1336,8 +1336,6 @@ dataAbilityHelper.executeBatch('dataability:///com.example.jsapidemo.UserDataAbi
 
 ## PacMap
 
-[key: string]: number | string | boolean | Array\<string | number | boolean> | null
-
 用于存储数据的PacMap类型。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel

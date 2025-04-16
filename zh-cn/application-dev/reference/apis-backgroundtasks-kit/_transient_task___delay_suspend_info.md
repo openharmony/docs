@@ -9,6 +9,7 @@
 
 **相关模块：**[TransientTask](_transient_task.md)
 
+**所在头文件：**[transient_task_type.h](transient__task__type_8h.md)
 
 ## 汇总
 
@@ -17,8 +18,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| int32_t [requestId](#requestid) | 短时任务请求ID  | 
-| int32_t [actualDelayTime](#actualdelaytime) | 剩余时间（单位：毫秒）  | 
+| int32_t [requestId](#requestid) | 短时任务请求ID。  | 
+| int32_t [actualDelayTime](#actualdelaytime) | 剩余时间（单位：毫秒）。  | 
 
 
 ## 结构体成员变量说明
@@ -30,7 +31,8 @@
 int32_t TransientTask_DelaySuspendInfo::actualDelayTime
 ```
 **描述**
-剩余时间（单位：毫秒）
+
+剩余时间（单位：毫秒）。
 
 
 ### requestId
@@ -39,4 +41,5 @@ int32_t TransientTask_DelaySuspendInfo::actualDelayTime
 int32_t TransientTask_DelaySuspendInfo::requestId
 ```
 **描述**
-短时任务请求ID
+
+短时任务请求ID。

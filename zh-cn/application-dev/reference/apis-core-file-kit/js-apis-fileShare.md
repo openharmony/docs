@@ -366,8 +366,6 @@ checkPersistentPermission(policies: Array&lt;PolicyInfo>): Promise&lt;Array&lt;b
 
 异步方法校验所选择的多个文件或目录URI持久化授权，以promise形式返回结果。
 
-**需要权限**：ohos.permission.FILE_ACCESS_PERSIST
-
 **系统能力**：SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 **参数：**
@@ -388,7 +386,6 @@ checkPersistentPermission(policies: Array&lt;PolicyInfo>): Promise&lt;Array&lt;b
 
 | 错误码ID    | 错误信息       |
 |----------| --------- |
-| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801      | Capability not supported. |
 | 13900042 | Unknown error.|

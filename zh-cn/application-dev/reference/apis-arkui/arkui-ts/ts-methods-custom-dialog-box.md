@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 接口
@@ -56,21 +56,14 @@ constructor(value: CustomDialogControllerOptions)
 | height<sup>12+</sup> | [Dimension](ts-types.md#dimension10)   | 否 | 设置弹窗背板的高度。<br />**说明：**<br />- 弹窗高度默认最大值：0.9 *（窗口高度 - 安全区域）。<br />- 百分比参数方式：弹窗参考高度为（窗口高度 - 安全区域），在此基础上调小或调大。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | shadow<sup>12+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)   | 否 | 设置弹窗背板的阴影。 <br /> 当设备为2in1时，默认场景下获焦阴影值为ShadowStyle.OUTER_FLOATING_MD，失焦为ShadowStyle.OUTER_FLOATING_SM<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | backgroundBlurStyle<sup>12+</sup> | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)                 | 否   | 弹窗背板模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK <br/>**说明：** <br/>设置为BlurStyle.NONE即可关闭背景虚化。当设置了backgroundBlurStyle为非NONE值时，则不要设置backgroundColor，否则颜色显示将不符合预期效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| backgroundBlurStyleOptions<sup>18+</sup> | [BackgroundBlurStyleOptions](ts-universal-attributes-background.md#backgroundblurstyleoptions10对象说明) | 否 | 背景模糊效果。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
-| backgroundEffect<sup>18+</sup> | [BackgroundEffectOptions](ts-universal-attributes-background.md#backgroundeffectoptions11) | 否 | 背景效果参数。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | keyboardAvoidMode<sup>12+</sup> | [KeyboardAvoidMode](ts-types.md#keyboardavoidmode12枚举说明) | 否 | 用于设置弹窗是否在拉起软键盘时进行自动避让。<br/>默认值：KeyboardAvoidMode.DEFAULT<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | enableHoverMode<sup>14+</sup>     | boolean | 否   | 是否响应悬停态。<br />默认值：false，默认不响应。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 | hoverModeArea<sup>14+</sup>       | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype14) | 否   | 悬停态下弹窗默认展示区域。<br />默认值：HoverModeAreaType.BOTTOM_SCREEN。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
-| onWillAppear<sup>18+</sup> | [VoidCallback](ts-types.md#voidcallback12) | 否 | 弹窗显示动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br />2.在onWillAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
-| onDidAppear<sup>18+</sup> | [VoidCallback](ts-types.md#voidcallback12) | 否 | 弹窗弹出时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br />2.在onDidAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。<br />3.弹窗入场动效未完成时关闭弹窗，动效打断，onDidAppear不会触发。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
-| onWillDisappear<sup>18+</sup> | [VoidCallback](ts-types.md#voidcallback12) | 否 | 弹窗退出动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br /> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
-| onDidDisappear<sup>18+</sup> | [VoidCallback](ts-types.md#voidcallback12) | 否 | 弹窗消失时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | keyboardAvoidDistance<sup>15+</sup>       | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 弹窗避让键盘后，和键盘之间的距离。<br />**说明：**<br />- 默认值：16vp。<br />- 默认单位：vp。<br />- 当且仅当keyboardAvoidMode属性设置为DEFAULT时生效。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 | levelMode<sup>15+</sup>       | [LevelMode](../js-apis-promptAction.md#levelmode15枚举说明) | 否   | 设置弹窗显示层级。<br />**说明：**<br />- 默认值：LevelMode.OVERLAY。<br />- 当且仅当showInSubWindow属性设置为false时生效。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 | levelUniqueId<sup>15+</sup>       | number | 否   | 设置页面级弹窗需要显示的层级下的[节点 uniqueId](../js-apis-arkui-frameNode.md#getuniqueid12)。<br />**说明：**<br />- 当且仅当levelMode属性设置为LevelMode.EMBEDDED时生效。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 | immersiveMode<sup>15+</sup>       | [ImmersiveMode](../js-apis-promptAction.md#immersivemode15枚举说明) | 否   | 设置页面内弹窗蒙层效果。<br />**说明：**<br />- 默认值：ImmersiveMode.DEFAULT <br />- 当且仅当levelMode属性设置为LevelMode.EMBEDDED时生效。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 | levelOrder<sup>18+</sup>       | [LevelOrder](../js-apis-promptAction.md#levelorder18) | 否   | 设置弹窗显示的顺序。<br />**说明：**<br />- 默认值：LevelOrder.clamp(0) <br />- 不支持动态刷新顺序。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
-| focusable<sup>18+</sup>       | boolean | 否   | 设置弹窗是否获取焦点。<br />默认值：true <br />**说明：**<br />只有弹出覆盖在当前窗口之上的弹窗才可以获取焦点。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
 > **说明：**
 >
@@ -155,7 +148,7 @@ close()
 // xxx.ets
 @CustomDialog
 struct CustomDialogExampleTwo {
-  controllerTwo?: CustomDialogController
+  controllerTwo?: CustomDialogController;
   build() {
     Column() {
       Text('我是第二个弹窗')
@@ -164,7 +157,7 @@ struct CustomDialogExampleTwo {
       Button('点我关闭第二个弹窗')
         .onClick(() => {
           if (this.controllerTwo != undefined) {
-            this.controllerTwo.close()
+            this.controllerTwo.close();
           }
         })
         .margin(20)
@@ -174,23 +167,23 @@ struct CustomDialogExampleTwo {
 @CustomDialog
 @Component
 struct CustomDialogExample {
-  @Link textValue: string
-  @Link inputValue: string
+  @Link textValue: string;
+  @Link inputValue: string;
   dialogControllerTwo: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExampleTwo(),
     alignment: DialogAlignment.Bottom,
     onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
-      console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
-      console.log("dialog onWillDismiss")
+      console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
+      console.log("dialog onWillDismiss");
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-        dismissDialogAction.dismiss()
+        dismissDialogAction.dismiss();
       }
       if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-        dismissDialogAction.dismiss()
+        dismissDialogAction.dismiss();
       }
     },
     offset: { dx: 0, dy: -25 } })
-  controller?: CustomDialogController
+  controller?: CustomDialogController;
   // 若尝试在CustomDialog中传入多个其他的Controller，以实现在CustomDialog中打开另一个或另一些CustomDialog，那么此处需要将指向自己的controller放在所有controller的后面
   cancel: () => void = () => {
   }
@@ -202,23 +195,23 @@ struct CustomDialogExample {
       Text('Change text').fontSize(20).margin({ top: 10, bottom: 10 })
       TextInput({ placeholder: '', text: this.textValue }).height(60).width('90%')
         .onChange((value: string) => {
-          this.textValue = value
+          this.textValue = value;
         })
       Text('Whether to change a text?').fontSize(16).margin({ bottom: 10 })
       Flex({ justifyContent: FlexAlign.SpaceAround }) {
         Button('cancel')
           .onClick(() => {
             if (this.controller != undefined) {
-              this.controller.close()
-              this.cancel()
+              this.controller.close();
+              this.cancel();
             }
           }).backgroundColor(0xffffff).fontColor(Color.Black)
         Button('confirm')
           .onClick(() => {
             if (this.controller != undefined) {
-              this.inputValue = this.textValue
-              this.controller.close()
-              this.confirm()
+              this.inputValue = this.textValue;
+              this.controller.close();
+              this.confirm();
             }
           }).backgroundColor(0xffffff).fontColor(Color.Red)
       }.margin({ bottom: 10 })
@@ -226,7 +219,7 @@ struct CustomDialogExample {
       Button('点我打开第二个弹窗')
         .onClick(() => {
           if (this.dialogControllerTwo != null) {
-            this.dialogControllerTwo.open()
+            this.dialogControllerTwo.open();
           }
         })
         .margin(20)
@@ -241,21 +234,21 @@ struct CustomDialogUser {
   @State inputValue: string = 'click me'
   dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample({
-      cancel: ()=> { this.onCancel() },
-      confirm: ()=> { this.onAccept() },
-      textValue: $textValue,
-      inputValue: $inputValue
+      cancel: ()=> { this.onCancel(); },
+      confirm: ()=> { this.onAccept(); },
+      textValue: this.textValue,
+      inputValue: this.inputValue
     }),
     cancel: this.exitApp,
     autoCancel: true,
     onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
-      console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
-      console.log("dialog onWillDismiss")
+      console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
+      console.log("dialog onWillDismiss");
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-        dismissDialogAction.dismiss()
+        dismissDialogAction.dismiss();
       }
       if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-        dismissDialogAction.dismiss()
+        dismissDialogAction.dismiss();
       }
     },
     alignment: DialogAlignment.Bottom,
@@ -267,26 +260,26 @@ struct CustomDialogUser {
 
   // 在自定义组件即将析构销毁时将dialogController置空
   aboutToDisappear() {
-    this.dialogController = null // 将dialogController置空
+    this.dialogController = null; // 将dialogController置空
   }
 
   onCancel() {
-    console.info('Callback when the first button is clicked')
+    console.info('Callback when the first button is clicked');
   }
 
   onAccept() {
-    console.info('Callback when the second button is clicked')
+    console.info('Callback when the second button is clicked');
   }
 
   exitApp() {
-    console.info('Click the callback in the blank area')
+    console.info('Click the callback in the blank area');
   }
   build() {
     Column() {
       Button(this.inputValue)
         .onClick(() => {
           if (this.dialogController != null) {
-            this.dialogController.open()
+            this.dialogController.open();
           }
         }).backgroundColor(0x317aff)
     }.width('100%').margin({ top: 5 })
@@ -304,7 +297,7 @@ struct CustomDialogUser {
 // xxx.ets
 @CustomDialog
 struct CustomDialogExample {
-  controller?: CustomDialogController
+  controller?: CustomDialogController;
   cancel: () => void = () => {
   }
   confirm: () => void = () => {
@@ -317,7 +310,7 @@ struct CustomDialogExample {
       Button('点我关闭弹窗')
         .onClick(() => {
           if (this.controller != undefined) {
-            this.controller.close()
+            this.controller.close();
           }
         })
         .margin(20)
@@ -329,19 +322,19 @@ struct CustomDialogExample {
 struct CustomDialogUser {
   dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample({
-      cancel: ()=> { this.onCancel() },
-      confirm: ()=> { this.onAccept() }
+      cancel: ()=> { this.onCancel(); },
+      confirm: ()=> { this.onAccept(); }
     }),
     cancel: this.existApp,
     autoCancel: true,
     onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
-      console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
-      console.log("dialog onWillDismiss")
+      console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
+      console.log("dialog onWillDismiss");
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-        dismissDialogAction.dismiss()
+        dismissDialogAction.dismiss();
       }
       if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-        dismissDialogAction.dismiss()
+        dismissDialogAction.dismiss();
       }
     },
     alignment: DialogAlignment.Center,
@@ -351,23 +344,22 @@ struct CustomDialogUser {
     isModal: true,
     customStyle: false,
     cornerRadius: 10,
-    focusable: true
   })
   // 在自定义组件即将析构销毁时将dialogController置空
   aboutToDisappear() {
-    this.dialogController = null // 将dialogController置空
+    this.dialogController = null; // 将dialogController置空
   }
 
   onCancel() {
-    console.info('Callback when the first button is clicked')
+    console.info('Callback when the first button is clicked');
   }
 
   onAccept() {
-    console.info('Callback when the second button is clicked')
+    console.info('Callback when the second button is clicked');
   }
 
   existApp() {
-    console.info('Click the callback in the blank area')
+    console.info('Click the callback in the blank area');
   }
 
   build() {
@@ -375,7 +367,7 @@ struct CustomDialogUser {
       Button('click me')
         .onClick(() => {
           if (this.dialogController != null) {
-            this.dialogController.open()
+            this.dialogController.open();
           }
         }).backgroundColor(0x317aff)
     }.width('100%').margin({ top: 5 })
@@ -391,7 +383,7 @@ struct CustomDialogUser {
 // xxx.ets
 @CustomDialog
 struct CustomDialogExample {
-  controller?: CustomDialogController
+  controller?: CustomDialogController;
   cancel: () => void = () => {
   }
   confirm: () => void = () => {
@@ -404,7 +396,7 @@ struct CustomDialogExample {
       Button('点我关闭弹窗')
         .onClick(() => {
           if (this.controller != undefined) {
-            this.controller.close()
+            this.controller.close();
           }
         })
         .margin(20)
@@ -416,8 +408,8 @@ struct CustomDialogExample {
 struct CustomDialogUser {
   dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample({
-      cancel: ()=> { this.onCancel() },
-      confirm: ()=> { this.onAccept() }
+      cancel: ()=> { this.onCancel(); },
+      confirm: ()=> { this.onAccept(); }
     }),
     cancel: this.existApp,
     autoCancel: true,
@@ -425,10 +417,10 @@ struct CustomDialogUser {
       console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
       console.log("dialog onWillDismiss")
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-        dismissDialogAction.dismiss()
+        dismissDialogAction.dismiss();
       }
       if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-        dismissDialogAction.dismiss()
+        dismissDialogAction.dismiss();
       }
     },
     alignment: DialogAlignment.Center,
@@ -445,19 +437,19 @@ struct CustomDialogUser {
   })
   // 在自定义组件即将析构销毁时将dialogController置空
   aboutToDisappear() {
-    this.dialogController = null // 将dialogController置空
+    this.dialogController = null; // 将dialogController置空
   }
 
   onCancel() {
-    console.info('Callback when the first button is clicked')
+    console.info('Callback when the first button is clicked');
   }
 
   onAccept() {
-    console.info('Callback when the second button is clicked')
+    console.info('Callback when the second button is clicked');
   }
 
   existApp() {
-    console.info('Click the callback in the blank area')
+    console.info('Click the callback in the blank area');
   }
 
   build() {
@@ -465,7 +457,7 @@ struct CustomDialogUser {
       Button('click me')
         .onClick(() => {
           if (this.dialogController != null) {
-            this.dialogController.open()
+            this.dialogController.open();
           }
         }).backgroundColor(0x317aff)
     }.width('100%').margin({ top: 5 })
@@ -524,8 +516,8 @@ struct CustomDialogUser {
   @State inputValue: string = 'click me';
   dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample({
-      textValue: $textValue,
-      inputValue: $inputValue
+      textValue: this.textValue,
+      inputValue: this.inputValue
     }),
     cancel: this.exitApp,
     autoCancel: true,

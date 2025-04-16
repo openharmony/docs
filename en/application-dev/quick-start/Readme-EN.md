@@ -108,7 +108,6 @@
       - [MVVM (V2)](arkts-mvvm-V2.md)
     - Mixed Use and Migration Guide for V1 and V2<!--v1v2-migration-->
       - [Mixing Use of Custom Components](arkts-custom-component-mixed-scenarios.md)
-      - [Mixing Use of State Management V1 and V2](arkts-v1-v2-mixusage.md)
       - [Migrating Applications from V1 to V2](arkts-v1-v2-migration.md)
   - Rendering Control<!--arkts-rendering-control-->
       - [Rendering Control Overview](arkts-rendering-control-overview.md)

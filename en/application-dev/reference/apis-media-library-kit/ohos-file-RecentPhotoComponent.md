@@ -38,10 +38,10 @@ Allows the application  to access the latest image or video in the user director
 
 | Name                      | Type                                                               | Mandatory| Description                      |
 |--------------------------|-------------------------------------------------------------------|------|----------------------------|
-| recentPhotoOptions       | [RecentPhotoOptions](#recentphotooptions)                         | No | Configuration of the latest image or video.<br>**Atomic service API**: This API can be used in atomic services since API version 12.               |
-| onRecentPhotoCheckResult | [RecentPhotoCheckResultCallback](#recentphotocheckresultcallback) | No | Callback used to return the query result of the latest image or video.<br>**Atomic service API**: This API can be used in atomic services since API version 12.             |
-| onRecentPhotoClick       | [RecentPhotoClickCallback](#recentphotoclickcallback)             | Yes | Callback to be invoked when the latest image or video is selected.<br>**Atomic service API**: This API can be used in atomic services since API version 12.               |
-| onRecentPhotoCheckInfo<sup>13+</sup>   | [RecentPhotoCheckInfoCallback](#recentphotocheckinfocallback13)   | No | Callback used to return information about the latest image or video obtained.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| recentPhotoOptions       | [RecentPhotoOptions](#recentphotooptions)                         | No | Configuration of the latest image or video.<br> **Atomic service API**: This API can be used in atomic services since API version 12.               |
+| onRecentPhotoCheckResult | [RecentPhotoCheckResultCallback](#recentphotocheckresultcallback) | No | Callback used to return the query result of the latest image or video.<br> **Atomic service API**: This API can be used in atomic services since API version 12.             |
+| onRecentPhotoClick       | [RecentPhotoClickCallback](#recentphotoclickcallback)             | Yes | Callback to be invoked when the latest image or video is selected.<br> **Atomic service API**: This API can be used in atomic services since API version 12.               |
+| onRecentPhotoCheckInfo<sup>13+</sup>   | [RecentPhotoCheckInfoCallback](#recentphotocheckinfocallback13)   | No | Callback used to return information about the latest image or video obtained.<br> **Atomic service API**: This API can be used in atomic services since API version 13.|
 
 ## RecentPhotoOptions
 
@@ -53,7 +53,7 @@ Represents the configuration of the latest image or video.
 
 | Name                   | Type                                                                                     | Mandatory | Description  |
 |-------------------------|-----------------------------------------------------------------------------------------|-------|--------|
-| period                  | number                                                                                  | No   | Time period for the latest image or video, in seconds. The maximum value is **86400** seconds (one day), which is also the default value.<br>If there is no image or video in the specified period, the component is not displayed.|
+| period                  | number                                                                                  | No   | Time period for the latest image or video, in seconds. The maximum value is **86400** seconds (one day), which is also the default value.<br> If there is no image or video in the specified period, the component is not displayed.|
 | MIMEType                | [photoAccessHelper.PhotoViewMIMETypes](js-apis-photoAccessHelper.md#photoviewmimetypes) | No   | Types of the file displayed. The default value is **PhotoViewMIMETypes.IMAGE_VIDEO_TYPE**.                        |
 | photoSource             | [PhotoSource](#photosource)                                                             | No   | Source of the latest image or video, for example, photo or video taken by the camera or screenshot. By default, the source is not restricted.                              |
 
@@ -84,7 +84,7 @@ Called to return the query result of the latest image or video.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| recentPhotoExists | boolean | Yes| Whether the latest image or video exists.|
+| recentPhotoExists | boolean | Yes| Whether the latest image or video exists. The value **true** means that the latest image or video exists, and **false** means the opposite. The default value is **true**.|
 
 ## RecentPhotoClickCallback
 
@@ -122,8 +122,8 @@ Called to return whether the latest image or video exists and the information ab
 
 | Name              | Type                                   | Mandatory| Description         |
 |-------------------|---------------------------------------| -------- |-------------|
-| recentPhotoExists | boolean                               | Yes| Whether the latest image or video exists.|
-| info              | [RecentPhotoInfo](#recentphotoinfo13) | Yes| Information about the latest image or video. |
+| recentPhotoExists | boolean                               | Yes| Whether the latest image or video exists. The value **true** means that the latest image or video exists, and **false** means the opposite. The default value is **true**.|
+| info              | [RecentPhotoInfo](#recentphotoinfo13) | Yes| Information about the latest image or video.  |
 
 ## PhotoSource
 
@@ -199,5 +199,3 @@ struct PickerDemo {
   }
 }
 ```
-
- <!--no_check--> 

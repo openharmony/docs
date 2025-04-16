@@ -487,13 +487,13 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   }
   ```
 
-### getTemperatureType<sup>16+</sup>
+### getTemperatureType<sup>18+</sup>
 
 static getTemperatureType(): TemperatureType
 
 Obtains the preferred temperature unit for the current user.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -501,20 +501,20 @@ Obtains the preferred temperature unit for the current user.
 
 | Type    | Description           |
 | ------ | ------------- |
-| [TemperatureType](#temperaturetype16) | Temperature unit.|
+| [TemperatureType](#temperaturetype18) | Temperature unit.|
 
 **Example**
   ```ts
   let type: i18n.TemperatureType = i18n.System.getTemperatureType();
   ```
 
-### getTemperatureName<sup>16+</sup>
+### getTemperatureName<sup>18+</sup>
 
 static getTemperatureName(type: TemperatureType): string
 
 Obtains the name of a temperature unit.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -522,7 +522,7 @@ Obtains the name of a temperature unit.
 
 | Name     | Type    | Mandatory  | Description           |
 | -------- | ------ | ---- | ------------- |
-| type| [TemperatureType](#temperaturetype16) | Yes   | Temperature unit.|
+| type| [TemperatureType](#temperaturetype18) | Yes   | Temperature unit.|
 
 **Return value**
 
@@ -556,13 +556,13 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   }
   ```
 
-### getFirstDayOfWeek<sup>16+</sup>
+### getFirstDayOfWeek<sup>18+</sup>
 
 static getFirstDayOfWeek(): WeekDay
 
 Obtains the preferred start day of a week for the current user.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -570,18 +570,18 @@ Obtains the preferred start day of a week for the current user.
 
 | Type    | Description           |
 | ------ | ------------- |
-| [WeekDay](#weekday16) | Start day of a week.|
+| [WeekDay](#weekday18) | Start day of a week.|
 
 **Example**
   ```ts
   let type: i18n.WeekDay = i18n.System.getFirstDayOfWeek();
   ```
 
-## TemperatureType<sup>16+</sup>
+## TemperatureType<sup>18+</sup>
 
 Enumerates temperature units.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -591,11 +591,11 @@ Enumerates temperature units.
 | FAHRENHEIT | 2 | Fahrenheit.|
 | KELVIN | 3 | Kelvin.|
 
-## WeekDay<sup>16+</sup>
+## WeekDay<sup>18+</sup>
 
 Enumerates the start day of a week. The value is a day from Monday to Sunday.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1350,7 +1350,7 @@ Defines the measurement unit information.
 | measureSystem | string | Yes   | Yes   | Measurement system. The value can be **SI**, **US**, or **UK**.|
 
 
-## getInstance<sup>8+</sup>
+## i18n.getInstance<sup>8+</sup>
 
 getInstance(locale?:string): IndexUtil
 
@@ -2624,13 +2624,13 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   }
   ```
 
-### getUnicodeWrappedFilePath<sup>16+</sup>
+### getUnicodeWrappedFilePath<sup>18+</sup>
 
 static getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: intl.Locale): string
 
 Performs file path mirroring.<br>For example, **/data/out/tmp** is changed to **tmp/out/data/** after mirroring.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2916,13 +2916,13 @@ Defines the local names of a holiday.
 | name            | string           |   Yes   | Local name of a holiday. For example, the Turkish name of Sacrifice Feast is Kurban Bayrami.     |
 
 
-## i18n.getSimpleDateTimeFormatByPattern<sup>16+</sup>
+## i18n.getSimpleDateTimeFormatByPattern<sup>18+</sup>
 
 getSimpleDateTimeFormatByPattern(pattern: string, locale?: intl.Locale): SimpleDateTimeFormat
 
-Obtains a **SimpleDateTimeFormat** object based on the specified pattern string. For details about the display differences between the objects obtained by this API and **getSimpleDateTimeFormatBySkeleton**, see [SimpleDateTimeFormat] (#simpledatetimeformat16).
+Obtains a **SimpleDateTimeFormat** object based on the specified pattern string. For details about the display differences between the objects obtained by this API and **getSimpleDateTimeFormatBySkeleton**, see [SimpleDateTimeFormat] (#simpledatetimeformat18).
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2937,7 +2937,7 @@ Obtains a **SimpleDateTimeFormat** object based on the specified pattern string.
 
 | Type                    | Description   |
 | ---------------------- | ----- |
-| [SimpleDateTimeFormat](#simpledatetimeformat16) | **SimpleDateTimeFormat** object.|
+| [SimpleDateTimeFormat](#simpledatetimeformat18) | **SimpleDateTimeFormat** object.|
 
 **Error codes**
 
@@ -2956,13 +2956,13 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   let formatter : i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatByPattern("'month('M')'", locale);
   ```
 
-## i18n.getSimpleDateTimeFormatBySkeleton<sup>16+</sup>
+## i18n.getSimpleDateTimeFormatBySkeleton<sup>18+</sup>
 
 getSimpleDateTimeFormatBySkeleton(skeleton: string, locale?: intl.Locale): SimpleDateTimeFormat
 
-Obtains a **SimpleDateTimeFormat** object based on the specified skeleton. For details about the display differences between the objects obtained by this API and **getSimpleDateTimeFormatByPattern**, see [SimpleDateTimeFormat] (#simpledatetimeformat16).
+Obtains a **SimpleDateTimeFormat** object based on the specified skeleton. For details about the display differences between the objects obtained by this API and **getSimpleDateTimeFormatByPattern**, see [SimpleDateTimeFormat] (#simpledatetimeformat18).
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2977,7 +2977,7 @@ Obtains a **SimpleDateTimeFormat** object based on the specified skeleton. For d
 
 | Type                    | Description   |
 | ---------------------- | ----- |
-| [SimpleDateTimeFormat](#simpledatetimeformat16) | **SimpleDateTimeFormat** object.|
+| [SimpleDateTimeFormat](#simpledatetimeformat18) | **SimpleDateTimeFormat** object.|
 
 **Error codes**
 
@@ -2996,15 +2996,15 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   let formatter : i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatBySkeleton("yMd", locale);
   ```
 
-## SimpleDateTimeFormat<sup>16+</sup>
+## SimpleDateTimeFormat<sup>18+</sup>
 
-### format<sup>16+</sup>
+### format<sup>18+</sup>
 
 format(date: Date): string
 
 Formats the date and time.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -3046,13 +3046,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   ```
 
 
-## i18n.getSimpleNumberFormatBySkeleton<sup>16+</sup>
+## i18n.getSimpleNumberFormatBySkeleton<sup>18+</sup>
 
 getSimpleNumberFormatBySkeleton(skeleton: string, locale?: intl.Locale): SimpleNumberFormat
 
 Obtains a **SimpleNumberFormat** object based on the specified skeleton.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -3067,7 +3067,7 @@ Obtains a **SimpleNumberFormat** object based on the specified skeleton.
 
 | Type                    | Description   |
 | ---------------------- | ----- |
-| [SimpleNumberFormat](#simplenumberformat16) | **SimpleNumberFormat** object.|
+| [SimpleNumberFormat](#simplenumberformat18) | **SimpleNumberFormat** object.|
 
 **Error codes**
 
@@ -3086,15 +3086,15 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   let formatter : i18n.SimpleNumberFormat = i18n.getSimpleNumberFormatBySkeleton("%", locale);
   ```
 
-## SimpleNumberFormat<sup>16+</sup>
+## SimpleNumberFormat<sup>18+</sup>
 
-### format<sup>16+</sup>
+### format<sup>18+</sup>
 
 format(value: number): string
 
 Formats a number.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -3127,15 +3127,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   let result : string = formatter.format(10); // result = 10%
   ```
 
-## StyledNumberFormat<sup>16+</sup>
+## StyledNumberFormat<sup>18+</sup>
 
-### constructor<sup>16+</sup>
+### constructor<sup>18+</sup>
 
 constructor(numberFormat: intl.NumberFormat | SimpleNumberFormat, options?: StyledNumberFormatOptions)
 
 Creates a **NumberFormat** object for rich text display.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -3143,8 +3143,8 @@ Creates a **NumberFormat** object for rich text display.
 
 |   Name |      Type     | Mandatory|     Description     |
 | --------- | ------------- | ---- | ------------- |
-| numberFormat | [intl.NumberFormat](js-apis-intl.md#numberformat) \| [SimpleNumberFormat](#simplenumberformat16) | Yes  | **NumberFormat** object. |
-| options | [StyledNumberFormatOptions](#stylednumberformatoptions16) | No| Configuration options of the **NumberFormat** object. The default value is the default text style. |
+| numberFormat | [intl.NumberFormat](js-apis-intl.md#numberformat) \| [SimpleNumberFormat](#simplenumberformat18) | Yes  | **NumberFormat** object. |
+| options | [StyledNumberFormatOptions](#stylednumberformatoptions18) | No| Configuration options of the **NumberFormat** object. The default value is the default text style. |
 
 **Error codes**
 
@@ -3181,13 +3181,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
     unit: unit_textStyle });
   ```
 
-### format<sup>16+</sup>
+### format<sup>18+</sup>
 
 format(value: number): StyledString
 
 Formats a number to a rich text object.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -3241,11 +3241,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   let result_2 = styledNumFmt_2.format(1234.5678); // result_2.getString() is 1,234.5678%. In result_2, 1,234 is in red, . in brown, 5678 in blue, and % in green.
   ```
 
-## StyledNumberFormatOptions<sup>16+</sup>
+## StyledNumberFormatOptions<sup>18+</sup>
 
 Defines the options for creating a **NumberFormat** object for rich text display.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.I18n
 
