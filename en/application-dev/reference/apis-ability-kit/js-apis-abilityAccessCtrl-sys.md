@@ -93,7 +93,7 @@ Grants a user_grant permission to an application. This API uses an asynchronous 
 | tokenID      | number              | Yes  | Application token ID, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
 | permissionName | Permissions              | Yes  | Permission to grant. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
 | permissionFlags  | number | Yes  | Permission flag.<br>- **1**: A dialog box for user authorization will be displayed the next time if the user denies authorization for the permission.<br>- **2**: No dialog box will be displayed the next time if the user denies authorization for the permission. The permission must be granted by the user in **Settings**.<br>- **64**: The permission is granted to the user only this time. The authorization is revoked after the application switches to the background or exits.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Grants a user_grant permission to an application. If the permission is granted, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the permission is granted, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -145,7 +145,7 @@ Revokes a user_grant permission from an application. This API uses a promise to 
 | Name   | Type               | Mandatory| Description                                                        |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
 | tokenID      | number              | Yes  | Application token ID, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
-| permissionName | Permissions              | Yes  | Permission to revoke. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
+| permissionName | Permissions              | Yes  | Permission to revoke. For details, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
 | permissionFlags  | number | Yes  | Permission flag.<br>- **1**: A dialog box for user authorization will be displayed the next time if the user denies authorization for the permission.<br>- **2**: No dialog box will be displayed the next time if the user denies authorization for the permission. The permission must be granted by the user in **Settings**.<br>- **64**: The permission is granted to the user only this time. The authorization is revoked after the application switches to the background or exits.|
 
 **Return value**
@@ -202,9 +202,9 @@ Revokes a user_grant permission from an application. This API uses an asynchrono
 | Name   | Type               | Mandatory| Description                         |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
 | tokenID      | number              | Yes  | Application token ID, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
-| permissionName | Permissions              | Yes  | Permission to revoke. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
+| permissionName | Permissions              | Yes  | Permission to revoke. For details, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
 | permissionFlags  | number | Yes  | Permission flag.<br>- **1**: A dialog box for user authorization will be displayed the next time if the user denies authorization for the permission.<br>- **2**: No dialog box will be displayed the next time if the user denies authorization for the permission. The permission must be granted by the user in **Settings**.<br>- **64**: The permission is granted to the user only this time. The authorization is revoked after the application switches to the background or exits.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the permission is revoked, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the permission is revoked, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -256,13 +256,13 @@ Obtains the flag of the specified permission of an application. This API uses a 
 | Name   | Type               | Mandatory| Description                         |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
 | tokenID      | number              | Yes  | Application token ID, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
-| permissionName | Permissions              | Yes  | Permission whose flag is to be obtained. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
+| permissionName | Permissions              | Yes  | Permission whose flag is to be obtained. For details, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
 
 **Return value**
 
 | Type         | Description                               |
 | :------------ | :---------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the result.|
+| Promise&lt;number&gt; | Promise used to return the flag obtained.|
 
 **Error codes**
 
@@ -310,7 +310,7 @@ Sets the toggle state of a permission. This API uses a promise to return the res
 
 | Name   | Type               | Mandatory| Description                         |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| permissionName | Permissions              | Yes  | Permission to be set with the toggle state. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
+| permissionName | Permissions              | Yes  | Permission to be set with the toggle state. For details, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
 | status | [PermissionRequestToggleStatus](#permissionrequesttogglestatus12)    | Yes  | Toggle state to set.            |
 
 **Return value**
@@ -364,7 +364,7 @@ Obtains the toggle state of a permission. This API uses a promise to return the 
 
 | Name   | Type               | Mandatory| Description                         |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| permissionName | Permissions              | Yes  | Permission whose toggle state is to be obtained. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
+| permissionName | Permissions              | Yes  | Permission whose toggle state is to be obtained. For details, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
 
 **Return value**
 
@@ -454,13 +454,13 @@ Obtains the status of the specified permissions. This API uses a promise to retu
 | Name   | Type               | Mandatory| Description                         |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
 | tokenID      | number              | Yes  | Application token ID, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
-| permissionList | Array&lt;Permissions&gt;   | Yes  | Permissions whose status is to be obtained. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
+| permissionList | Array&lt;Permissions&gt;   | Yes  | Permissions whose status is to be obtained. For details, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
 
 **Return value**
 
 | Type         | Description                               |
 | :------------ | :---------------------------------- |
-| Promise&lt;Array&lt;[PermissionStatus](#permissionstatus12)&gt;&gt; | Promise used to return the permission status obtained.|
+| Promise&lt;Array&lt;[PermissionStatus](#permissionstatus12)&gt;&gt; | Promise used to return the permission statuses obtained.|
 
 **Error codes**
 
@@ -552,9 +552,9 @@ try {
 
 off(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionList: Array&lt;Permissions&gt;, callback?: Callback&lt;PermissionStateChangeInfo&gt;): void
 
-Unsubscribes from permission grant state changes of the specified applications and permissions. This API uses a callback to return the result.
+Unsubscribes from changes in the state of specified permissions for the given applications. This API uses an asynchronous callback to return the result.
 
-If no callback is passed in **atManager.off**, all callbacks for **tokenIDList** and **permissionList** will be unregistered.
+If **callback** is not specified, this API will unregister all callbacks for **tokenIDList** and **permissionList**.
 
 **System API**: This is a system API.
 
@@ -567,9 +567,9 @@ If no callback is passed in **atManager.off**, all callbacks for **tokenIDList**
 | Name            | Type                  | Mandatory| Description                                                         |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
 | type               | string         | Yes  | Event type. The value is **'permissionStateChange'**, which indicates the permission grant state changes. |
-| tokenIDList        | Array&lt;number&gt;   | Yes  | List of application token IDs. The value must be the same as that passed in **on()**. If this parameter is left empty, this API unsubscribes from the permission grant state changes of all applications.|
-| permissionList | Array&lt;Permissions&gt;   | Yes  | List of permissions. The value must be the same as that of **on()**. If this parameter is left empty, this API unsubscribes from state changes of all permissions. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
-| callback | Callback&lt;[PermissionStateChangeInfo](#permissionstatechangeinfo9)&gt; | No| Callback for the permission grant state change.|
+| tokenIDList        | Array&lt;number&gt;   | Yes  | List of application token IDs. The value must be the same as that in **on()**. If this parameter is not specified, this API will unsubscribe from the permission state changes of all applications. |
+| permissionList | Array&lt;Permissions&gt;   | Yes  | List of target permissions. The value must be the same as that in **on()**. If this parameter is not specified, this API will unsubscribe from state changes for all permissions. For details about the permissions, see [Application Permissions](../../security/AccessToken/app-permissions.md).|
+| callback | Callback&lt;[PermissionStateChangeInfo](#permissionstatechangeinfo9)&gt; | No| Callback to unregister.|
 
 **Error codes**
 
