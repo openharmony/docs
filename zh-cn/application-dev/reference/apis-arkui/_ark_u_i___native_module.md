@@ -2923,8 +2923,8 @@ enum ArkUI_ImageSize
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_IMAGE_SIZE_AUTO  | 保持原图的比例不变。  | 
-| ARKUI_IMAGE_SIZE_COVER  | 默认值，保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。  | 
+| ARKUI_IMAGE_SIZE_AUTO  | 默认值，保持原图的比例不变。  | 
+| ARKUI_IMAGE_SIZE_COVER  | 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。  | 
 | ARKUI_IMAGE_SIZE_CONTAIN  | 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。  | 
 
 
