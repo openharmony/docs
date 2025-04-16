@@ -1393,7 +1393,8 @@ incrSubCounter和setSubCounter都是同一个SubCounter的函数。在第一个�
 CounterComp({ value: this.counter[0] }); // ParentComp组件传递 ParentCounter 给 CounterComp 组件
 @ObjectLink value：ParentCounter; // @ObjectLink 接收 ParentCounter
 
-CounterChild({ subValue: this.value.subCounter }); // CounterComp组件 传递 SubCounter 给 CounterChild 组件
+// CounterChild 是 CounterComp 的子组件，CounterComp 传递 this.value.subCounter 给 CounterChild 组件
+CounterChild({ subValue: this.value.subCounter });
 @ObjectLink subValue：SubCounter; // @ObjectLink 接收 SubCounter
 ```
 
