@@ -525,6 +525,8 @@ type PlayParameters = _PlayParameters
 | AVERR_IO_SSL_SERVER_CERT_UNTRUSTED<sup>14+</sup> | 5411010 | 表示客户端校验服务端证书失败。 <br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。        |
 | AVERR_IO_UNSUPPORTED_REQUEST<sup>14+</sup> | 5411011 | 表示网络协议的原因导致请求不受支持。 <br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。        |
 | AVERR_SEEK_CONTINUOUS_UNSUPPORTED<sup>18+</sup> | 5410002 | 表示不支持SEEK_CONTINUOUS模式的seek。 <br> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。        |
+| AVERR_SUPER_RESOLUTION_UNSUPPORTED<sup>18+</sup> | 5410003 | 表示不支持超分。 <br> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。        |
+| AVERR_SUPER_RESOLUTION_NOT_ENABLED<sup>18+</sup> | 5410004 | 表示未使能超分。 <br> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。        |
 
 ## MediaType<sup>8+</sup>
 
@@ -3015,7 +3017,7 @@ setSuperResolution(enabled: boolean) : Promise\<void>
 | -------- | ------------------------------------------ |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5410003  | Super-resolution not supported. Return by promise. |
-| 5410004  | Missing enable super-resolution feature in [PlaybackStrategy](#playbackstrategy12). |
+| 5410004  | Missing enable super-resolution feature in [PlaybackStrategy](#playbackstrategy12). Return by promise. |
 
 **示例：**
 
@@ -3054,10 +3056,10 @@ setVideoWindowSize(width: number, height: number) : Promise\<void>
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
-| 401      | The parameter check failed. Return by promise. |
+| 401      | Parameter error. Return by promise. |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5410003  | Super-resolution not supported. Return by promise. |
-| 5410004  | Missing enable super-resolution feature in [PlaybackStrategy](#playbackstrategy12). |
+| 5410004  | Missing enable super-resolution feature in [PlaybackStrategy](#playbackstrategy12). Return by promise. |
 
 **示例：**
 
