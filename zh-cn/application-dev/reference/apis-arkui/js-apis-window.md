@@ -5481,7 +5481,7 @@ on(type: 'rotationChange', callback: RotationChangeCallback&lt;info: RotationCha
 
 同一个窗口多次注册同类型回调函数，只生效最新注册的同类型回调函数返回值。系统提供了超时保护机制，若20ms内窗口未返回[RotationChangeResult](#rotationchangeresult18)，系统不处理该返回值。
 
-<!--RP9-->2in1设备上调用不生效。<!--RP9End-->
+<!--RP10-->此接口在2in1设备上调用不生效。<!--RP10End-->
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -5551,6 +5551,8 @@ try {
 off(type: 'rotationChange', callback?: RotationChangeCallback&lt;info: RotationChangeInfo, RotationChangeResult | void&gt;): void
 
 关闭窗口旋转变化的监听。
+
+<!--RP10-->此接口在2in1设备上调用不生效。<!--RP10End-->
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
