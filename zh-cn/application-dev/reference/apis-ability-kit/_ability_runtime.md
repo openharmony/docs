@@ -2143,8 +2143,6 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbilityWithStartOptions(Ab
 
 启动当前应用的UIAbility。
 
-在调用该接口时，若参数options中设置了[startVisibility](#abilityruntime_startvisibility)取值，应用需要保证已添加到状态栏；否则会返回ABILITY_RUNTIME_ERROR_VISIBILITY_SETTING_DISABLED错误码。
-
 > **说明：**
 >
 > 当前仅支持2in1设备。
@@ -2158,7 +2156,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbilityWithStartOptions(Ab
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
 | want      | 启动当前应用UIAbility时需要的Want信息。                           |
-| options      | 启动当前应用UIAbility时需要的StartOptions信息。                           |
+| options      | 启动当前应用UIAbility时需要的StartOptions信息。若设置了[startVisibility](#abilityruntime_startvisibility)取值，应用需要保证已添加到状态栏；否则会返回ABILITY_RUNTIME_ERROR_VISIBILITY_SETTING_DISABLED错误码。 |
 
 **返回：**
 
