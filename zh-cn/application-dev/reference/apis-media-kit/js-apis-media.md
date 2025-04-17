@@ -8176,7 +8176,7 @@ let sourceReadCallback: media.SourceReadCallback = (uuid: number, requestedOffse
 
 ## SourceCloseCallback<sup>18+</sup>
 
-type SourceCloseCallback(uuid: number): void
+type SourceCloseCallback = (uuid: number) => void
 
 由应用实现此回调函数，应用应释放相关资源。
 >
@@ -8214,8 +8214,6 @@ let sourceCloseCallback: media.SourceCloseCallback = (uuid: number) => {
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
-
-**参数：**
 
 | 名称   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
@@ -8266,6 +8264,8 @@ player.setMediaSource(mediaSource, playStrategy);
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
+
+### 属性
 
 | 名称   | 类型    | 只读   | 可选   | 说明                |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
