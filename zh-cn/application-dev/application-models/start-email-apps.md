@@ -106,12 +106,12 @@ startAbilityByType接口中type字段为mail，对应的wantParam参数：
 
     | 参数名  | 类型      | 必填 | 说明                                   |
     | ------- | --------- | ---- | -------------------------------------- |
-    | email   | string[ ] | 否   | 收件人邮箱地址（支持多个且以逗号分隔） |
-    | cc      | string[ ] | 否   | 抄收人邮箱地址（支持多个且以逗号分隔） |
-    | bcc     | string[ ] | 否   | 密送人邮箱地址（支持多个且以逗号分隔） |
-    | subject | string    | 否   | 邮件主题                               |
-    | body    | string    | 否   | 邮件内容                               |
-    | stream  | string[ ] | 否   | 邮件附件列表（附件的uri地址列表）      |
+    | email   | string[ ] | 否   | 收件人邮箱地址（支持多个且以逗号分隔）。 |
+    | cc      | string[ ] | 否   | 抄收人邮箱地址（支持多个且以逗号分隔）。 |
+    | bcc     | string[ ] | 否   | 密送人邮箱地址（支持多个且以逗号分隔）。 |
+    | subject | string    | 否   | 邮件主题。                               |
+    | body    | string    | 否   | 邮件内容。                               |
+    | stream  | string[ ] | 否   | 邮件附件列表（附件的uri地址列表）。      |
     
     > **说明：**
     > 
