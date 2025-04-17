@@ -39,7 +39,7 @@
 
 代码不一致（docs中只有结束的```）
 
-const promise: Promise<number> = new Promise((resolve: Function, reject: Function) => {
+const promise: Promise\<number\> = new Promise((resolve: Function, reject: Function) => {
   setTimeout(() => {
     const randomNumber: number = Math.random();
     if (randomNumber > 0.5) {
@@ -56,7 +56,7 @@ const promise: Promise<number> = new Promise((resolve: Function, reject: Functio
 代码不一致（docs中只有开始的```）
 
 ```
-const promise: Promise<number> = new Promise((resolve: Function, reject: Function) => {
+const promise: Promise\<number\> = new Promise((resolve: Function, reject: Function) => {
   setTimeout(() => {
     const randomNumber: number = Math.random();
     if (randomNumber > 0.5) {
