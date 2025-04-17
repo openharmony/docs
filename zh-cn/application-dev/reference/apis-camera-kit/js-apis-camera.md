@@ -1264,7 +1264,6 @@ getCameraDevice(position:CameraPosition, type: CameraType): CameraDevice
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 | 7400201 | Camera service fatal error. |
 
 **示例：**
@@ -1310,7 +1309,6 @@ getCameraConcurrentInfos(cameras: Array\<CameraDevice\>): Array\<CameraConcurren
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 | 7400201 | Camera service fatal error. |
 
 **示例：**
