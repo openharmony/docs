@@ -498,7 +498,7 @@ struct ListenKeyboardHeightChange {
 
   aboutToAppear(): void {
     try {
-      window.getLastWindow(getContext(this), (err: BusinessError, data) => {
+      window.getLastWindow(this.getUIContext().getHostContext(), (err: BusinessError, data) => {
         const errCode: number = err.code;
         if (errCode) {
           console.error(`Failed to obtain the top window, Cause code: ${err.code}, message: ${err.message}`);
