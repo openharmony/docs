@@ -135,7 +135,7 @@ module.json5配置文件包含以下标签。
 | targetModuleName | 标识当前包所指定的目标module，确保该名称在整个应用中唯一。取值为长度不超过31字节的字符串，不支持中文。配置该字段的Module具有overlay特性。仅在动态共享包（HSP）中适用。 |字符串|该标签可缺省，缺省值为空。|
 | targetPriority | 标识当前Module的优先级，取值范围为1~100。配置targetModuleName字段之后，才需要配置该字段。仅在动态共享包（HSP）中适用。 |整型数值|该标签可缺省，缺省值为1。|
 | [proxyData](#proxydata标签) | 标识当前Module提供的数据代理列表。| 对象数组 | 该标签可缺省，缺省值为空。|
-| isolationMode | 标识当前Module的多进程配置项。支持的取值如下：<br/>-&nbsp;nonisolationFirst：优先在非独立进程中运行。<br/>-&nbsp;isolationFirst：优先在独立进程中运行。<br/>-&nbsp;isolationOnly：只在独立进程中运行。<br/>-&nbsp;nonisolationOnly：只在非独立进程中运行。 |字符串|该标签可缺省，缺省值为nonisolationFirst。|
+| isolationMode | 标识当前Module的多进程配置项。支持的取值如下：<br/>-&nbsp;nonisolationFirst：优先在非独立进程中运行。<br/>-&nbsp;isolationFirst：优先在独立进程中运行。<br/>-&nbsp;isolationOnly：只在独立进程中运行。<br/>-&nbsp;nonisolationOnly：只在非独立进程中运行。<br/>**说明：**<br/>1.仅2in1和tablet设备支持将当前Module设置为独立进程。<br/>2.该字段仅对HAP生效。 |字符串|该标签可缺省，缺省值为nonisolationFirst。|
 | generateBuildHash |标识当前HAP/HSP是否由打包工具生成哈希值。当配置为true时，如果系统OTA升级时应用versionCode保持不变，可根据哈希值判断应用是否需要升级。<br/>该字段仅在[app.json5文件](./app-configuration-file.md)中的generateBuildHash字段为false时使能。<br/>**说明：**<br/>该字段仅对预置应用生效。|布尔值|该标签可缺省，缺省值为false。|
 | compressNativeLibs | 标识libs库是否以压缩存储的方式打包到HAP。<br/>-&nbsp;true：libs库以压缩方式存储。<br/>-&nbsp;false：libs库以不压缩方式存储。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | libIsolation | 用于区分同应用不同HAP下的.so文件，以防止.so冲突。<br/>-&nbsp;true：当前HAP的.so文件会储存在libs目录中以Module名命名的路径下。<br/>-&nbsp;false：当前HAP的.so文件会直接储存在libs目录中。 | 布尔值 | 该标签可缺省，缺省值为false。 |
@@ -335,7 +335,7 @@ abilities标签描述UIAbility组件的配置信息，标签值为数组类型�
 | <!--DelRow-->excludeFromMissions | 标识当前UIAbility组件是否在最近任务列表中显示。<br/>-&nbsp;true：表示不在任务列表中显示。<br/>-&nbsp;false：表示在任务列表中显示。<br/>**说明：**<br/>三方应用的配置不生效，当前配置仅在系统应用中有效，若要使系统应用配置生效，需申请应用特权AllowAbilityExcludeFromMissions，详见[应用特权配置指导](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)。| 布尔值 | 该标签可缺省，缺省值为false。 |
 | recoverable | 标识当前UIAbility组件是否支持在检测到应用故障后，恢复到应用原界面。<br/>-&nbsp;true：支持检测到出现故障后，恢复到原界面。<br/>-&nbsp;false：不支持检测到出现故障后，恢复到原界面。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | <!--DelRow-->unclearableMission | 标识当前UIAbility组件是否支持从最近任务列表中移除。<br/>-&nbsp;true：表示在任务列表中不可移除。<br/>-&nbsp;false：表示在任务列表中可以移除。<br/>**说明：**<br/>三方应用的配置不生效，当前配置仅在系统应用中有效，若要使系统应用配置生效，需申请应用特权AllowMissionNotCleared，详见[应用特权配置指导](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)。 | 布尔值 | 该标签可缺省，缺省值为false。 |
-| isolationProcess | 标识组件能否运行在独立的进程中。<br/>-&nbsp;true：表示能运行在独立的进程中。<br/>-&nbsp;false：表示不能运行在独立的进程中。 | 布尔值 | 该标签可缺省，缺省值为false。 |
+| isolationProcess | 标识组件能否运行在独立的进程中。<br/>-&nbsp;true：表示能运行在独立的进程中。<br/>-&nbsp;false：表示不能运行在独立的进程中。<br/>**说明：**<br/>仅2in1和tablet设备支持将UIAbility设置为独立进程。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | excludeFromDock | 标识当前UIAbility组件是否支持从dock区域隐藏图标。<br/>-&nbsp;true：表示在dock区域隐藏。<br/>-&nbsp;false：表示不能在dock区域隐藏。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | preferMultiWindowOrientation | 标识当前UIAbility组件多窗布局方向：<br/>-&nbsp;default：缺省值，参数不配置默认值，建议其他应用类配置。<br/>-&nbsp;portrait：多窗布局方向为竖向，建议竖向游戏类应用配置。<br/>-&nbsp;landscape：多窗布局方向为横向，配置后支持横屏悬浮窗和上下分屏，建议横向游戏类应用配置。<br/>-&nbsp;landscape_auto：多窗布局动态可变为横向，需要配合API enableLandScapeMultiWindow/disableLandScapeMultiWindow使用，建议视频类应用配置。 | 字符串 | 该标签可缺省，缺省值为default。 |
 | continueType | 标识当前UIAbility组件的跨端迁移类型。 | 字符串数组 | 该标签可缺省，缺省值为当前组件的名称。 |
