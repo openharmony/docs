@@ -11,7 +11,7 @@
 
 
 ```js
-import { inputConsumer } from '@kit.InputKit';
+import { inputConsumer, KeyEvent } from '@kit.InputKit';
 ```
 
 ## HotkeyOptions<sup>14+</sup>
