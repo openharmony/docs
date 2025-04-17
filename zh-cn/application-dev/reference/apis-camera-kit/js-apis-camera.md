@@ -1321,7 +1321,7 @@ import { camera } from '@kit.CameraKit';
 function getCameraConcurrentinfos(cameraManager: camera.CameraManager, cameraDeviceArray: Array<camera.CameraDevice>): void {
   try {
     let cameraconcurrentinfos: Array<camera.CameraConcurrentInfo> = [];
-    cameraconcurrentinfos = cameraManager.getCameraConcurrentinfos(cameraDeviceArray);
+    cameraconcurrentinfos = cameraManager.getCameraConcurrentInfos(cameraDeviceArray);
   } catch (error) {
     // 失败返回错误码并处理。
     let err = error as BusinessError;
