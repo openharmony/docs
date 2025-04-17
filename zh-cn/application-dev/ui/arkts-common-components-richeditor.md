@@ -253,8 +253,14 @@ RichEditor(this.options)
 
 ```ts
 RichEditor(this.options)
-  .placeholder('这是一段用来展示选中菜单的文字')
-  .onReady(() => {})
+  .onReady(() => {
+    this.controller.addTextSpan('这是一段文本,用来展示选中菜单', {
+      style: {
+        fontColor: Color.Black,
+        fontSize: 15
+      }
+    })
+  })
 ```
 
 ![RichEditor_select_menu](figures/RichEditor_select_menu.jpg)
