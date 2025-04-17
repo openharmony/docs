@@ -113,6 +113,7 @@
          "formConfigAbility": "ability://EntryAbility",
          "dataProxyEnabled": false,
          "isDynamic": true,
+         "transparencyEnabled": false,
          "metadata": []
        }
      ]
