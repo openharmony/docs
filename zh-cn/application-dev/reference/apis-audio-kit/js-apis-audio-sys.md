@@ -2230,7 +2230,7 @@ async function getPreferredInputDeviceByFilter(){
 }
 ```
 
-### excludeOutputDevices<sup>16+</sup>
+### excludeOutputDevices<sup>18+</sup>
 
 excludeOutputDevices(usage: DeviceUsage, devices: AudioDeviceDescriptors): Promise&lt;void&gt;
 
@@ -2291,7 +2291,7 @@ async function excludeOutputDevices(){
 }
 ```
 
-### unexcludeOutputDevices<sup>16+</sup>
+### unexcludeOutputDevices<sup>18+</sup>
 
 unexcludeOutputDevices(usage: DeviceUsage, devices: AudioDeviceDescriptors): Promise&lt;void&gt;
 
@@ -2348,7 +2348,7 @@ async function unexcludeOutputDevices(){
 }
 ```
 
-### unexcludeOutputDevices<sup>16+</sup>
+### unexcludeOutputDevices<sup>18+</sup>
 
 unexcludeOutputDevices(usage: DeviceUsage): Promise&lt;void&gt;
 
@@ -2389,7 +2389,7 @@ async function unexcludeOutputDevices(){
 }
 ```
 
-### getExcludedDevices<sup>16+</sup>
+### getExcludedDevices<sup>18+</sup>
 
 getExcludedDevices(usage: DeviceUsage): AudioDeviceDescriptors
 
