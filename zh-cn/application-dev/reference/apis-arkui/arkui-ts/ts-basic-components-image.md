@@ -534,6 +534,10 @@ hdrBrightness(brightness: number)
 
 设置组件在显示HDR图片时的亮度。
 
+svg类型图源不支持该属性。
+
+该属性与[dynamicRangeMode](#dynamicrangemode12)属性同时设置时，[dynamicRangeMode](#dynamicrangemode12)属性不生效。
+
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
