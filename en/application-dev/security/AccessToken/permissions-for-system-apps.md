@@ -4659,7 +4659,7 @@ Allows an application to install and uninstall fonts.
 
 **Enable via ACL**：true
 
-**Valid since**：18
+**Valid since**：19
 
 ## ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
 
