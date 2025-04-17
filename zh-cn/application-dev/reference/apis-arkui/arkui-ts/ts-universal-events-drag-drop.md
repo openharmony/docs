@@ -525,8 +525,6 @@ struct Index {
 通过自定义接口executeDropAnimation，实现落位动效。
 ```ts
 import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
-import { promptAction } from '@kit.ArkUI';
-
 
 @Entry
 @Component
@@ -564,9 +562,9 @@ struct DropAnimationExample {
           })
           .onDragEnd((event) => {
             if (event.getResult() === DragResult.DRAG_SUCCESSFUL) {
-              console.log('Drag Success');
+              console.info('Drag Success');
             } else if (event.getResult() === DragResult.DRAG_FAILED) {
-              console.log('Drag failed');
+              console.error('Drag failed');
             }
           })
       }.width('45%')
