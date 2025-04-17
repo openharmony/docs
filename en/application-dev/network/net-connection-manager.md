@@ -126,7 +126,7 @@ conn.unregister((err: BusinessError, data: void) => {
 ## Obtaining the List of All Registered Networks
 
 1. Declare the required permission: **ohos.permission.GET_NETWORK_INFO**.
-This permission is of the **normal** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Declare the permissions required by your application. For details, see [Declaring Permissions in the Configuration File](accesstoken-guidelines.md#declaring-permissions-in-the configuration-file).
+This permission is of the **normal** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Declare the permissions required by your application. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
 
 2. Import the **connection** namespace from **@kit.NetworkKit**.
 
@@ -172,7 +172,7 @@ connection.getAllNets().then((data: connection.NetHandle[]) => {
 ## Querying Network Capability Information and Connection Information of Specified Data Network
 
 1. Declare the required permission: **ohos.permission.GET_NETWORK_INFO**.
-This permission is of the **normal** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Declare the permissions required by your application. For details, see [Declaring Permissions in the Configuration File](accesstoken-guidelines.md#declaring-permissions-in-the configuration-file).
+This permission is of the **normal** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Declare the permissions required by your application. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
 
 2. Import the **connection** namespace from **@kit.NetworkKit**.
 
@@ -295,7 +295,7 @@ connection.getAllNets().then((data: connection.NetHandle[]) => {
 ## Resolving the domain name of a network to obtain all IP addresses
 
 1. Declare the required permission: **ohos.permission.INTERNET**.
-This permission is of the **normal** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Declare the permissions required by your application. For details, see [Declaring Permissions in the Configuration File](accesstoken-guidelines.md#declaring-permissions-in-the configuration-file).
+This permission is of the **normal** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Declare the permissions required by your application. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
 
 2. Import the **connection** namespace from **@kit.NetworkKit**.
 
