@@ -188,7 +188,9 @@ try {
 
 createParallelSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo): Promise\<SoundPool>
 
-创建音频池实例，且相同音频可以并行播放，通过Promise获取返回值。
+创建音频池实例，通过Promise获取返回值。
+
+使用[createSoundPool](js-apis-media.md#mediacreatesoundpool10)创建的音频池实例，在重复播放相同音频时，会停止之前的播放并重新开始；而使用createParallelSoundPool创建的实例，在重复播放相同音频时，不会停止之前的音频，而是与播放不同音频一样，并行播放。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
