@@ -1277,14 +1277,6 @@ getSegment(forceClosed: boolean, start: number, stop: number, startWithMoveTo: b
 | --------------------- | -------------- |
 | boolean |表示是否成功截取路径片段。true表示截取成功，false表示截取失败。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
-
 **示例：**
 
 ```ts
@@ -2241,14 +2233,6 @@ clear(color: common2D.Color | number): void
 | 参数名    | 类型                                                 | 必填 | 说明                             |
 | --------- | ---------------------------------------------------- | ---- | -------------------------------- |
 | color     | [common2D.Color](js-apis-graphics-common2D.md#color) \| number| 是   | 颜色，可以用16进制ARGB格式的无符号整数表示。  |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
 **示例：**
 
@@ -3527,14 +3511,6 @@ quickRejectPath(path: Path): boolean
 | --------------------- | -------------- |
 | boolean | 返回路径是否与画布区域不相交的结果。true表示路径与画布区域不相交，false表示路径与画布区域相交。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
-
 **示例：**
 
 ```ts
@@ -3577,14 +3553,6 @@ quickRejectRect(rect: common2D.Rect): boolean
 | --------------------- | -------------- |
 | boolean | 返回矩形是否与画布区域不相交的结果。true表示矩形与画布区域不相交，false表示矩形与画布区域相交。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
-
 **示例：**
 
 ```ts
@@ -3620,14 +3588,6 @@ drawArcWithCenter(arc: common2D.Rect, startAngle: number, sweepAngle: number, us
 | startAngle      | number | 是   | 弧的起始角度，单位为度，该参数为浮点数。0度时起始点位于椭圆的右端点，为正数时以顺时针方向放置起始点，为负数时以逆时针方向放置起始点。 |
 | sweepAngle      | number | 是   | 弧的扫描角度，单位为度，该参数为浮点数。为正数时顺时针扫描，为负数时逆时针扫描。扫描角度可以超过360度，将绘制一个完整的椭圆。 |
 | useCenter       | boolean | 是   | 绘制时弧形的起点和终点是否连接弧形的中心点。true表示连接，false表示不连接。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
 **示例**
 
@@ -4252,14 +4212,6 @@ static makeFromRawFile(rawfile: Resource): Typeface
 | 类型   | 说明                 |
 | ------ | -------------------- |
 | [Typeface](#typeface) | 返回Typeface对象（异常情况下会返回空指针）。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
 **示例：**
 
@@ -5204,14 +5156,6 @@ getBounds(glyphs: Array\<number>): Array\<common2D.Rect>
 | ------ | ---------------- |
 | Array\<[common2D.Rect](js-apis-graphics-common2D.md#rect)> | 返回得到的字形边界矩形数组。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
-
 **示例：**
 
 ```ts
@@ -5297,14 +5241,6 @@ createPathForGlyph(index: number): Path
 | 类型   | 说明             |
 | ------ | ---------------- |
 | [Path](#path) | 返回指定字形的路径轮廓。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
 **示例：**
 
@@ -6048,14 +5984,6 @@ static createSumPathEffect(firstPathEffect: PathEffect, secondPathEffect: PathEf
 | ------------------------- | --------------------- |
 | [PathEffect](#patheffect12) | 返回创建的路径效果对象。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
-
 **示例：**
 
 ```ts
@@ -6135,14 +6063,6 @@ static createDiscretePathEffect(segLength: number, dev: number, seedAssist?: num
 | ------------------------- | --------------------- |
 | [PathEffect](#patheffect12) | 返回创建的路径效果对象。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
-
 **示例：**
 
 ```ts
@@ -6176,14 +6096,6 @@ static createComposePathEffect(outer: PathEffect, inner: PathEffect): PathEffect
 | 类型                      | 说明                   |
 | ------------------------- | --------------------- |
 | [PathEffect](#patheffect12) | 返回创建的路径效果对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
 **示例：**
 
@@ -6535,14 +6447,6 @@ setColor(color: number) : void
 | 参数名 | 类型                                                 | 必填 | 说明             |
 | ------ | ---------------------------------------------------- | ---- | ---------------- |
 | color  | number | 是   | 16进制ARGB格式的颜色。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
 **示例：**
 
