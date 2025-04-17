@@ -2226,6 +2226,7 @@ IME_ERR_NULL_POINTER - 非预期的空指针。
 
 具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
 
+
 ### OH_TextEditorProxy_Create()
 
 ```
