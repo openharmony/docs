@@ -406,7 +406,7 @@ MSG:ability:EntryAbility background timeout
 
 - 方式一：通过DevEco Studio获取日志。
 
-    DevEco Studio会收集设备的故障日志并归档到FaultLog下。具体可参考<!--RP1-->[DevEco Studio使用指南-FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-fault-log-V5)<!--RP1End-->。
+    DevEco Studio会收集设备的故障日志并归档到FaultLog下。具体可参考[DevEco Studio使用指南-FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-fault-log)。
 
 - 方式二：通过hiAppEvent接口订阅。
 
