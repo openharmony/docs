@@ -106,7 +106,7 @@ struct AnimateToExample {
         .onClick(() => {
           if (this.flag) {
             // 建议使用this.getUIContext()?.animateTo()
-            animateTo({
+            this.getUIContext()?.animateTo({
               duration: 2000,
               curve: Curve.EaseOut,
               iterations: 3,
@@ -120,7 +120,7 @@ struct AnimateToExample {
             })
           } else {
             // 建议使用this.getUIContext()?.animateTo()
-            animateTo({}, () => {
+            this.getUIContext()?.animateTo({}, () => {
               this.widthSize = 250
               this.heightSize = 100
             })
@@ -133,7 +133,7 @@ struct AnimateToExample {
         .onAppear(() => {
           // 组件出现时开始做动画
           // 建议使用this.getUIContext()?.animateTo()
-          animateTo({
+          this.getUIContext()?.animateTo({
             duration: 1200,
             curve: Curve.Friction,
             delay: 500,
@@ -150,7 +150,7 @@ struct AnimateToExample {
         })
         .onClick(() => {
           // 建议使用this.getUIContext()?.animateTo()
-          animateTo({ duration: 0 }, () => {
+          this.getUIContext()?.animateTo({ duration: 0 }, () => {
             // this.rotateAngle之前为90，在duration为0的动画中修改属性，可以停止该属性之前的动画，按新设置的属性显示
             this.rotateAngle = 0
           })
@@ -185,7 +185,7 @@ struct AttrAnimationExample {
           .backgroundColor('blue')
           .onClick(() => {
             // 建议使用this.getUIContext()?.animateTo()
-            animateTo({
+            this.getUIContext()?.animateTo({
               duration: 2000,
               curve: Curve.EaseOut,
               iterations: 1,
