@@ -15,7 +15,7 @@
 
 | 类名  | 接口名| 描述 |     
 | --------- | ------------| -------- |
-| CameraKit | int32_t GetCameraIds(std::list<string> cameraList)  | 获取cameraId列表。 |
+| CameraKit | int32_t GetCameraIds(std::list\<string\> cameraList)  | 获取cameraId列表。 |
 | CameraKit | CameraAbility& GetCameraAbility(string cameraId)  | 获取指定camera的能力。 |
 | CameraKit | void RegisterCameraDeviceCallback(CameraDeviceCallback* callback, EventHandler* handler)  | 注册camera设备状态回调。 |
 | CameraKit | void UnregisterCameraDeviceCallback(CameraDeviceCallback* callback)  | 去注册camera设备状态回调。 |
@@ -30,8 +30,8 @@
 | Camera | int32_t TriggerSingleCapture(FrameConfig& frameConfig)  | 抓图。 |
 | CameraConfig | void SetFrameStateCallback(FrameStateCallback* callback, EventHandler* handler)  | 设置帧状态回调。 |
 | CameraConfig | static CameraConfig* CreateCameraConfig()  | 创建camera配置信息实例。 |
-| CameraAbility | std::list<Size> GetSupportedSizes(int format)  | 根据类型获取支持输出图像尺寸大小。 |
-| CameraAbility | std::list<T> GetParameterRange(uint32_t key)  | 获取支持的参数范围。 |
+| CameraAbility | std::list\<Size\> GetSupportedSizes(int format)  | 根据类型获取支持输出图像尺寸大小。 |
+| CameraAbility | std::list\<T\> GetParameterRange(uint32_t key)  | 获取支持的参数范围。 |
 | CameraDevice | CameraDeviceCallback()  | camera设备回调类构造函数。 |
 | CameraDevice | void OnCameraStatus​(std::string cameraId, int32_t status)  | camera设备状态变化时的回调。 |
 | CameraStateCallback | CameraStateCallback​()  | camera状态回调类构造函数。 |
