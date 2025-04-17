@@ -563,3 +563,15 @@ Allows an application to call the screen time guard APIs to restrict screen usag
 **Enable via ACL**: true
 
 **Valid since**: 20
+
+## ohos.permission.GET_ABILITY_INFO
+
+Allows applications to query Ability information based on URIs.
+
+Currently only browser applications on PC/2in1 can apply for this permission.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**起始版本**: 20

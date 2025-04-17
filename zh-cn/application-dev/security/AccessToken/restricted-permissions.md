@@ -562,3 +562,15 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 **ACL使能**：true
 
 **起始版本**：20
+
+## ohos.permission.GET_ABILITY_INFO
+
+允许应用根据URI查询Ability信息。
+
+当前仅PC/2in1上的浏览器类应用可申请此权限。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**起始版本**：20
