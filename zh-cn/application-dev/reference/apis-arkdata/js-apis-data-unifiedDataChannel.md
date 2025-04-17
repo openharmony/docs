@@ -1818,7 +1818,7 @@ convertRecordsToEntries(data: UnifiedData): void
 
 ```ts
 import { unifiedDataChannel } from '@kit.ArkData';
-import { uniformDataStruct } from '@kit.ArkData';
+import { uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let details : Record<string, string> = {
