@@ -4659,7 +4659,7 @@
 
 **ACL使能**：true
 
-**起始版本**：18
+**起始版本**：19
 
 ## ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
 
