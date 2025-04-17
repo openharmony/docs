@@ -2156,7 +2156,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbilityWithStartOptions(Ab
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
 | want      | 启动当前应用UIAbility时需要的Want信息。                           |
-| options      | 启动当前应用UIAbility时需要的StartOptions信息。若设置了[startVisibility](#abilityruntime_startvisibility)取值，应用需要保证已添加到状态栏；否则会返回ABILITY_RUNTIME_ERROR_VISIBILITY_SETTING_DISABLED错误码。 |
+| options      | 启动当前应用UIAbility时需要的StartOptions信息。<br>**说明：**<br>若设置了[startVisibility](#abilityruntime_startvisibility)取值，应用需要保证已添加到状态栏；否则会返回ABILITY_RUNTIME_ERROR_VISIBILITY_SETTING_DISABLED错误码。 |
 
 **返回：**
 
