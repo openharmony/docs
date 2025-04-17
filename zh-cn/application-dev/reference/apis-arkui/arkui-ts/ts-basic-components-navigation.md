@@ -72,7 +72,7 @@ title(value: ResourceStr | CustomBuilder | NavigationCommonTitle | NavigationCus
 
 ### menus
 
-menus(items: Array&lt;NavigationMenuItem&gt; | CustomBuilder, options?: NavigationMenuOptions)
+menus(value: Array&lt;NavigationMenuItem&gt; | CustomBuilder)
 
 > **说明：**
 >
@@ -89,8 +89,29 @@ menus(items: Array&lt;NavigationMenuItem&gt; | CustomBuilder, options?: Navigati
 
 | 参数名 | 类型                                                         | 必填 | 说明             |
 | ------ | ------------------------------------------------------------ | ---- | ---------------- |
+| value  | Array<[NavigationMenuItem](#navigationmenuitem)&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 页面右上角菜单。 |
+
+### menus<sup>18+</sup>
+
+menus(items: Array&lt;NavigationMenuItem&gt; | CustomBuilder, options?: NavigationMenuOptions)
+
+> **说明：**
+>
+> 不支持通过SymbolGlyphModifier对象的fontSize属性修改图标大小、effectStrategy属性修改动效、symbolEffect属性修改动效类型。
+
+
+设置页面右上角菜单。不设置时不显示菜单项。与[menus](#menus)相比，新增菜单选项。使用Array<[NavigationMenuItem](#navigationmenuitem)&gt; 写法时，竖屏最多支持显示3个图标，横屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明             |
+| ------ | ------------------------------------------------------------ | ---- | ---------------- |
 | items  | Array<[NavigationMenuItem](#navigationmenuitem)&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 页面右上角菜单。 |
-| options<sup>18+</sup> | [NavigationMenuOptions](#navigationmenuoptions18) | 否   | 页面右上角菜单选项。 |
+| options | [NavigationMenuOptions](#navigationmenuoptions18) | 否   | 页面右上角菜单选项。 |
 
 ### titleMode
 
