@@ -204,14 +204,14 @@ struct CheckboxExample {
         .selectedColor(0xed6f21)
         .shape(CheckBoxShape.CIRCLE)
         .onChange((value: boolean) => {
-          console.info('Checkbox1 change is' + value)
+          console.info('Checkbox1 change is' + value);
         })
       Checkbox({ name: 'checkbox2', group: 'checkboxGroup' })
         .select(false)
         .selectedColor(0x39a2db)
         .shape(CheckBoxShape.ROUNDED_SQUARE)
         .onChange((value: boolean) => {
-          console.info('Checkbox2 change is' + value)
+          console.info('Checkbox2 change is' + value);
         })
     }
   }
@@ -239,7 +239,7 @@ struct Index {
             .selectedColor(0x39a2db)
             .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
-              console.info('Checkbox1 change is'+ value)
+              console.info('Checkbox1 change is'+ value);
             })
             .mark({
               strokeColor:Color.Black,
@@ -256,7 +256,7 @@ struct Index {
             .selectedColor(0x39a2db)
             .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
-              console.info('Checkbox2 change is' + value)
+              console.info('Checkbox2 change is' + value);
             })
             .width(30)
             .height(30)
@@ -279,41 +279,58 @@ struct Index {
 ```ts
 // xxx.ets
 class MyCheckboxStyle implements ContentModifier<CheckBoxConfiguration> {
-  selectedColor: Color = Color.White
+  selectedColor: Color = Color.White;
+
   constructor(selectedColor: Color) {
     this.selectedColor = selectedColor;
   }
-  applyContent() : WrappedBuilder<[CheckBoxConfiguration]>
-  {
-    return wrapBuilder(buildCheckbox)
+
+  applyContent(): WrappedBuilder<[CheckBoxConfiguration]> {
+    return wrapBuilder(buildCheckbox);
   }
 }
 
-@Builder function buildCheckbox(config: CheckBoxConfiguration) {
-  Column({space:10}) {
-      Text(config.name  + (config.selected ? "（ 选中 ）" : "（ 非选中 ）")).margin({right : 70, top : 50})
-      Text(config.enabled ? "enabled true" : "enabled false").margin({right : 110})
-      Shape() {
-        Path().width(100).height(100).commands('M100 0 L0 100 L50 200 L150 200 L200 100 Z').fillOpacity(0).strokeWidth(3).onClick(()=>{
+@Builder
+function buildCheckbox(config: CheckBoxConfiguration) {
+  Column({ space: 10 }) {
+    Text(config.name + (config.selected ? "（ 选中 ）" : "（ 非选中 ）")).margin({ right: 70, top: 50 })
+    Text(config.enabled ? "enabled true" : "enabled false").margin({ right: 110 })
+    Shape() {
+      Path()
+        .width(100)
+        .height(100)
+        .commands('M100 0 L0 100 L50 200 L150 200 L200 100 Z')
+        .fillOpacity(0)
+        .strokeWidth(3)
+        .onClick(() => {
           if (config.selected) {
-            config.triggerChange(false)
+            config.triggerChange(false);
           } else {
-            config.triggerChange(true)
+            config.triggerChange(true);
           }
-        }).opacity(config.enabled ? 1 : 0.1)
-        Path().width(10).height(10).commands('M50 0 L100 100 L0 100 Z')
-          .visibility(config.selected ? Visibility.Visible : Visibility.Hidden)
-          .fill(config.selected ? (config.contentModifier as MyCheckboxStyle).selectedColor : Color.Black)
-          .stroke((config.contentModifier as MyCheckboxStyle).selectedColor)
-          .margin({left:10,top:10})
-          .opacity(config.enabled ? 1 : 0.1)
-      }
-      .width(300)
-      .height(200)
-      .viewPort({ x: 0, y: 0, width: 310, height: 310 })
-      .strokeLineJoin(LineJoinStyle.Miter)
-      .strokeMiterLimit(5)
-      .margin({left:50})
+        })
+        .opacity(config.enabled ? 1 : 0.1)
+      Path()
+        .width(10)
+        .height(10)
+        .commands('M50 0 L100 100 L0 100 Z')
+        .visibility(config.selected ? Visibility.Visible : Visibility.Hidden)
+        .fill(config.selected ? (config.contentModifier as MyCheckboxStyle).selectedColor : Color.Black)
+        .stroke((config.contentModifier as MyCheckboxStyle).selectedColor)
+        .margin({ left: 10, top: 10 })
+        .opacity(config.enabled ? 1 : 0.1)
+    }
+    .width(300)
+    .height(200)
+    .viewPort({
+      x: 0,
+      y: 0,
+      width: 310,
+      height: 310
+    })
+    .strokeLineJoin(LineJoinStyle.Miter)
+    .strokeMiterLimit(5)
+    .margin({ left: 50 })
   }
 }
 
@@ -321,24 +338,25 @@ class MyCheckboxStyle implements ContentModifier<CheckBoxConfiguration> {
 @Component
 struct Index {
   @State checkboxEnabled: boolean = true;
+
   build() {
     Column({ space: 100 }) {
-        Checkbox({ name: '复选框状态', group: 'checkboxGroup' })
+      Checkbox({ name: '复选框状态', group: 'checkboxGroup' })
         .contentModifier(new MyCheckboxStyle(Color.Red))
         .onChange((value: boolean) => {
-          console.info('Checkbox change is' + value)
+          console.info('Checkbox change is' + value);
         }).enabled(this.checkboxEnabled)
 
       Row() {
         Toggle({ type: ToggleType.Switch, isOn: true }).onChange((value: boolean) => {
           if (value) {
-            this.checkboxEnabled = true
+            this.checkboxEnabled = true;
           } else {
-            this.checkboxEnabled = false
+            this.checkboxEnabled = false;
           }
         })
       }.position({ x: 50, y: 130 })
-    }.margin({top : 30})
+    }.margin({ top: 30 })
   }
 }
 ```
@@ -370,7 +388,7 @@ struct CheckboxExample {
           Checkbox({ name: 'checkbox1', group: 'checkboxGroup', indicatorBuilder:()=>{this.indicatorBuilder(9)}})
             .shape(CheckBoxShape.CIRCLE)
             .onChange((value: boolean) => {
-              console.info('Checkbox1 change is'+ value)
+              console.info('Checkbox1 change is'+ value);
             })
             .mark({
               strokeColor:Color.Black,
@@ -385,7 +403,7 @@ struct CheckboxExample {
           Checkbox({ name: 'checkbox2', group: 'checkboxGroup', indicatorBuilder:()=>{this.indicatorBuilder(100)}})
             .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
-              console.info('Checkbox2 change is' + value)
+              console.info('Checkbox2 change is' + value);
             })
             .width(30)
             .height(30)

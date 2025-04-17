@@ -442,10 +442,10 @@ onSelect(callback: (index: number, value:&nbsp;string) => void)
 @Entry
 @Component
 struct SelectExample {
-  @State text: string = "TTTTT"
-  @State index: number = 2
-  @State space: number = 8
-  @State arrowPosition: ArrowPosition = ArrowPosition.END
+  @State text: string = "TTTTT";
+  @State index: number = 2;
+  @State space: number = 8;
+  @State arrowPosition: ArrowPosition = ArrowPosition.END;
 
   build() {
     Column() {
@@ -465,7 +465,7 @@ struct SelectExample {
         .optionWidth(200)
         .optionHeight(300)
         .onSelect((index: number, text?: string | undefined) => {
-          console.info('Select:' + index)
+          console.info('Select:' + index);
           this.index = index;
           if (text) {
             this.text = text;
@@ -490,10 +490,10 @@ import { SymbolGlyphModifier } from '@kit.ArkUI'
 @Entry
 @Component
 struct SelectExample {
-  @State text: string = "TTTTT"
-  @State index: number = 2
-  @State space: number = 8
-  @State arrowPosition: ArrowPosition = ArrowPosition.END
+  @State text: string = "TTTTT";
+  @State index: number = 2;
+  @State space: number = 8;
+  @State arrowPosition: ArrowPosition = ArrowPosition.END;
   @State symbolModifier1: SymbolGlyphModifier =
     new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')).fontColor([Color.Green]);
   @State symbolModifier2: SymbolGlyphModifier =
@@ -519,7 +519,7 @@ struct SelectExample {
         .arrowPosition(this.arrowPosition)
         .menuAlign(MenuAlignType.START, { dx: 0, dy: 0 })
         .onSelect((index: number, text?: string | undefined) => {
-          console.info('Select:' + index)
+          console.info('Select:' + index);
           this.index = index;
           if (text) {
             this.text = text;
@@ -536,17 +536,17 @@ struct SelectExample {
 该示例实现了一个自定义下拉菜选项的Select组件。自定义下拉菜单选项样式为“文本 + Symbol图片 + 空白间隔 + 文本 + 绘制三角形”，点击菜单选项后Select组件显示菜单选项的文本内容。
 
 ```ts
-import { SymbolGlyphModifier } from '@kit.ArkUI'
+import { SymbolGlyphModifier } from '@kit.ArkUI';
 
 class MyMenuItemContentModifier implements ContentModifier<MenuItemConfiguration> {
-  modifierText: string = ""
+  modifierText: string = "";
 
   constructor(text: string) {
     this.modifierText = text;
   }
 
   applyContent(): WrappedBuilder<[MenuItemConfiguration]> {
-    return wrapBuilder(MenuItemBuilder)
+    return wrapBuilder(MenuItemBuilder);
   }
 }
 
@@ -572,14 +572,14 @@ function MenuItemBuilder(configuration: MenuItemConfiguration) {
       .strokeWidth(3)
   }
   .onClick(() => {
-    configuration.triggerSelect(configuration.index, configuration.value.valueOf().toString())
+    configuration.triggerSelect(configuration.index, configuration.value.valueOf().toString());
   })
 }
 
 @Entry
 @Component
 struct SelectExample {
-  @State text: string = "Content Modifier Select"
+  @State text: string = "Content Modifier Select";
   @State symbolModifier1: SymbolGlyphModifier =
     new SymbolGlyphModifier($r('sys.symbol.ohos_trash')).fontColor([Color.Gray]);
   @State symbolModifier2: SymbolGlyphModifier =
@@ -592,8 +592,8 @@ struct SelectExample {
           { value: 'item1', icon: $r('app.media.icon'), symbolIcon: this.symbolModifier2 }])
           .value(this.text)
           .onSelect((index: number, text?: string) => {
-            console.info('Select index:' + index)
-            console.info('Select text:' + text)
+            console.info('Select index:' + index);
+            console.info('Select text:' + text);
           })
           .menuItemContentModifier(new MyMenuItemContentModifier("Content Modifier"))
 
@@ -612,9 +612,9 @@ struct SelectExample {
 @Entry
 @Component
 struct SelectExample {
-  @State text: string = "TTTTT"
-  @State index: number = -1
-  @State arrowPosition: ArrowPosition = ArrowPosition.END
+  @State text: string = "TTTTT";
+  @State index: number = -1;
+  @State arrowPosition: ArrowPosition = ArrowPosition.END;
 
   build() {
     Column() {
@@ -639,7 +639,7 @@ struct SelectExample {
           endMargin: 10
         })
         .onSelect((index: number, text?: string | undefined) => {
-          console.info('Select:' + index)
+          console.info('Select:' + index);
           this.index = index;
           if (text) {
             this.text = text;
@@ -659,9 +659,9 @@ struct SelectExample {
 @Entry
 @Component
 struct SelectExample {
-  @State text: string = "TTTTT"
-  @State index: number = -1
-  @State arrowPosition: ArrowPosition = ArrowPosition.END
+  @State text: string = "TTTTT";
+  @State index: number = -1;
+  @State arrowPosition: ArrowPosition = ArrowPosition.END;
 
   build() {
     Column() {
@@ -681,7 +681,7 @@ struct SelectExample {
         .optionHeight(300)
         .divider(null)
         .onSelect((index: number, text?: string | undefined) => {
-          console.info('Select:' + index)
+          console.info('Select:' + index);
           this.index = index;
           if (text) {
             this.text = text;
