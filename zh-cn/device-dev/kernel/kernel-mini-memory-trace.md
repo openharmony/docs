@@ -148,7 +148,7 @@ OpenHarmony LiteOS-M内核的Trace模块提供下面几种功能，接口详细�
 
 7. 调用LOS_TraceRecordDump输出缓冲区数据（函数的入参为布尔型，FALSE表示格式化输出，TRUE表示输出到windows客户端）。
 
-上述第3-7步中的接口，均封装有对应的shell命令，对应关系如下
+上述第3-7步中的接口，均封装有对应的shell命令，对应关系如下：
 
 - LOS_TraceReset —— trace_reset
 
