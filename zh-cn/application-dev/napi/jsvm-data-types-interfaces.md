@@ -871,7 +871,7 @@ JSVM-API WebAssembly 接口提供了 wasm 字节码编译、wasm 函数优化、
 
 #### 场景介绍
 
-获取、抛出、清理JS异常
+获取、抛出、清理JS异常。
 
 #### 接口说明
 | 接口 | 功能说明 |
@@ -1031,7 +1031,7 @@ OH_JSVM_CloseHandleScope(env, scope);
 
 #### 场景介绍
 
-创建JS对象类型和基本类型
+创建JS对象类型和基本类型。
 
 #### 接口说明
 | 接口 | 功能说明 |
@@ -1209,7 +1209,7 @@ size_t arrayBufferLength = 0;
 OH_JSVM_GetArraybufferInfo(env, retArrayBuffer, &tmpArrayBufferPtr, &arrayBufferLength);
 ```
 
-创建UTF-8类型的String，并获取C字符串。
+根据 UTF-8 编码的C字符串创建一个 JavaScript 字符串，以及获取给定 JavaScript 字符串的 UTF-8 编码C字符串。
 
 ```c++
 const char *testStringStr = "testString";
@@ -1376,7 +1376,7 @@ OH_JSVM_IsRegExp(env, result, &isRegExp);
 
 #### 场景介绍
 
-JS对象属性的增加、删除、获取及判断。
+JS对象属性的增加、删除、获取和判断。
 
 #### 接口说明
 | 接口 | 功能说明 |
