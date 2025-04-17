@@ -230,13 +230,13 @@ struct MenuExample {
           {
             value: 'Menu1',
             action: () => {
-              console.info('handle Menu1 select')
+              console.info('handle Menu1 select');
             }
           },
           {
             value: 'Menu2',
             action: () => {
-              console.info('handle Menu2 select')
+              console.info('handle Menu2 select');
             }
           },
         ])
@@ -257,7 +257,7 @@ struct MenuExample {
 @Entry
 @Component
 struct MenuExample {
-  @State listData: number[] = [0, 0, 0]
+  @State listData: number[] = [0, 0, 0];
 
   @Builder MenuBuilder() {
     Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
@@ -272,7 +272,7 @@ struct MenuExample {
           .justifyContent(FlexAlign.Center)
           .align(Alignment.Center)
           .onClick(() => {
-            console.info(`Menu${index as number + 1} Clicked!`)
+            console.info(`Menu${index as number + 1} Clicked!`);
           })
 
           if (index != this.listData.length - 1) {
@@ -389,7 +389,7 @@ struct DirectiveMenuExample {
 @Entry
 @Component
 struct Index {
-  private iconStr: ResourceStr = $r("app.media.icon")
+  private iconStr: ResourceStr = $r("app.media.icon");
 
   @Builder
   MyMenu() {
@@ -433,7 +433,7 @@ struct Index {
 @Entry
 @Component
 struct Index {
-  private iconStr: ResourceStr = $r("app.media.icon")
+  private iconStr: ResourceStr = $r("app.media.icon");
 
   @Builder
   MyMenu() {
@@ -485,8 +485,8 @@ struct Index {
 @Entry
 @Component
 struct Index {
-  private iconStr: ResourceStr = $r("app.media.icon")
-  @State isShown: boolean = false
+  private iconStr: ResourceStr = $r("app.media.icon");
+  @State isShown: boolean = false;
 
   @Builder
   MyMenu() {
@@ -519,14 +519,14 @@ struct Index {
             .bindContextMenu(this.isShown, this.MyMenu,
               {
                 preview: this.MyPreview,
-                onDisappear: ()=>{
-                    this.isShown = false;
+                aboutToDisappear: ()=>{
+                  this.isShown = false;
                 }
               })
           Button('click')
             .onClick(()=>{
-                this.isShown = true;
-             })
+              this.isShown = true;
+            })
         }
       }.width('100%')
     }
@@ -568,8 +568,8 @@ struct MenuExample {
         .height(50)
     }
   }
-  @State isShow:boolean = false
-  private iconStr: ResourceStr = $r("app.media.icon")
+  @State isShow:boolean = false;
+  private iconStr: ResourceStr = $r("app.media.icon");
 
   @Builder
   MyMenu() {
@@ -627,14 +627,14 @@ struct MenuExample {
         value: 'Menu1',
         symbolIcon:this.symbolIconModifier1,
         action: () => {
-          console.info('handle Menu1 select')
+          console.info('handle Menu1 select');
         }
       },
       {
         value: 'Menu2',
         symbolIcon:this.symbolIconModifier2,
         action: () => {
-          console.info('handle Menu2 select')
+          console.info('handle Menu2 select');
         }
       },
     ])
@@ -653,7 +653,7 @@ struct MenuExample {
 @Entry
 @Component
 struct Index {
-  private iconStr: ResourceStr = $r("app.media.app_icon")
+  private iconStr: ResourceStr = $r("app.media.app_icon");
 
   @Builder
   MyMenu() {
@@ -764,13 +764,13 @@ struct MenuExample {
             {
               value: 'Menu1',
               action: () => {
-                console.info('handle Menu1 select')
+                console.info('handle Menu1 select');
               }
             },
             {
               value: 'Menu2',
               action: () => {
-                console.info('handle Menu2 select')
+                console.info('handle Menu2 select');
               }
             },
           ],
