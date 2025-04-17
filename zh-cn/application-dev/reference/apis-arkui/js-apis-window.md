@@ -5477,7 +5477,7 @@ try {
 
 on(type: 'rotationChange', callback: RotationChangeCallback&lt;info: RotationChangeInfo, RotationChangeResult | void&gt;): void
 
-开启窗口旋转变化的监听。[RotationChangeInfo](#rotationchangeinfo18)中窗口旋转类型为窗口即将旋转时，必须返回[RotationChangeResult](#rotationchangeresult18)。窗口旋转类型为窗口旋转结束时返回空，返回[RotationChangeResult](#rotationchangeresult18)不生效。
+开启窗口旋转变化的监听。[RotationChangeInfo](#rotationchangeinfo18)中窗口旋转类型为窗口即将旋转时，必须返回[RotationChangeResult](#rotationchangeresult18)。窗口旋转类型为窗口旋转结束时返回[RotationChangeResult](#rotationchangeresult18)不生效。
 
 同一个窗口多次注册同类型回调函数，只生效最新注册的同类型回调函数返回值。系统提供了超时保护机制，若20ms内窗口未返回[RotationChangeResult](#rotationchangeresult18)，系统不处理该返回值。
 
