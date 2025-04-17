@@ -8215,14 +8215,9 @@ let sourceCloseCallback: media.SourceCloseCallback = (uuid: number) => {
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
-| 名称   | 类型    | 只读   | 可选   | 说明                |
-| --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>18+</sup>        | string                        | 否   | 否   | 资源url，需要应用程序打开的资源路径。 |
-| header<sup>18+</sup>     | Record<string, string>        | 否   | 是   | 网络请求标头，如果存在需要应用在下载数据是将头信息设置到http请求中。 |
-
 **参数：**
 
-| 参数名   | 类型     | 必填 | 说明                 |
+| 名称   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
 | open | [SourceOpenCallback](#sourceopencallback18) | 是  | 由应用程序实现的回调函数，用于处理资源打开请求。 |
 | read | [SourceReadCallback](#sourcereadcallback18) | 是  | 由应用程序实现的回调函数，用于处理资源读取请求。 |
@@ -8271,6 +8266,11 @@ player.setMediaSource(mediaSource, playStrategy);
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
+
+| 名称   | 类型    | 只读   | 可选   | 说明                |
+| --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
+| url<sup>18+</sup>        | string                        | 否   | 否   | 资源url，需要应用程序打开的资源路径。 |
+| header<sup>18+</sup>     | Record<string, string>        | 否   | 是   | 网络请求标头，如果存在需要应用在下载数据是将头信息设置到http请求中。 |
 
 ### respondData<sup>18+</sup>
 
