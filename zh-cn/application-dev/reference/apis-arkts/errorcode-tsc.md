@@ -4,7 +4,7 @@ TSC(Typescript Compiler)的错误码以'105'开头，是TSC编译流程中的报
 
 ## 10505001 TSC原生报错
 
-TSC原生报错：以'001'结尾，是Typescript Compiler检查中已有的原生报错规则。在TSC的编译流程中，常见的TSC原生报错原因包括：关键字或符号的缺失、赋值类型与接收类型不一致、类型或变量未定义等。这些问题通常是未按照[语言规范](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/introduction-to-arkts-V5)编写代码导致的，开发者可以根据报错描述修改代码。
+TSC原生报错：以'001'结尾，是Typescript Compiler检查中已有的原生报错规则。在TSC的编译流程中，常见的TSC原生报错原因包括：关键字或符号的缺失、赋值类型与接收类型不一致、类型或变量未定义等。这些问题通常是未按照[语言规范](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/introduction-to-arkts)编写代码导致的，开发者可以根据报错描述修改代码。
 
 ### 关键字或符号的缺失
 
