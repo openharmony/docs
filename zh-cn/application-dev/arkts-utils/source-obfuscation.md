@@ -80,7 +80,7 @@ test(a2);
 
 与其他代码混淆工具一样，混淆只能在一定程度上增加逆向过程的难度，并不能真正阻止逆向工程。
 
-并且，由于ArkGuard混淆工具仅支持基础混淆能力，开发者不应只依赖ArkGuard来保证应用的安全性，对于源码安全有高要求的开发者，应考虑使用[应用加密](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/code-protect-V5)、第三方安全加固等安全措施来保护代码。
+并且，由于ArkGuard混淆工具仅支持基础混淆能力，开发者不应只依赖ArkGuard来保证应用的安全性，对于源码安全有高要求的开发者，应考虑使用[应用加密](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/code-protect)、第三方安全加固等安全措施来保护代码。
 
 ## 混淆机制及流程
 
