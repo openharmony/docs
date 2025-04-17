@@ -110,4 +110,4 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     >
     > 请应用在收到该订阅事件后，首先从事件的external_log字段中获取堆快照文件存储路径，并将其尽快搬移或上传云，然后再删除原堆快照文件，否则可能会因应用沙箱路径目录剩余存储空间不足(最大2GB)导致下次堆快照文件无法生成。<br>
     > json5配置文件中的value字段内容格式支持键值对集合“key1:value1;key2:value2;...”。目前系统仅支持配置如上键值对的应用，在nolog版本使能oomdump功能。<br>
-    > 订阅后生成的.log日志文件需要将后缀名修改为.rawheap文件，再通过[translator工具](../tools/rawheap-translator.md)转换为.heapsnapshot文件，通过DevEco Studio或浏览器打开展示，详情见[Snapshot离线导入](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-snapshot-basic-operations-V5#section6760173514388)。
+    > 订阅后生成的.log日志文件需要将后缀名修改为.rawheap文件，再通过[translator工具](../tools/rawheap-translator.md)转换为.heapsnapshot文件，通过DevEco Studio或浏览器打开展示，详情见[Snapshot离线导入](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-snapshot-basic-operations#section6760173514388)。
