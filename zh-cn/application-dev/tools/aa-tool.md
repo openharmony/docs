@@ -451,7 +451,7 @@ aa appdebug -b <bundleName> [-p]
   | ------- | -------- |
   | 10105003 | Failed to connect to the app service. |
   | 10106001 | The current device is not in developer mode. |
-  | 10106701 | The target application is not a debug application. |
+  | 10106701 | Cannot debug applications using a release certificate. |
 
   **示例**：
 
@@ -1026,7 +1026,7 @@ aa attach/detach命令指定的包名不存在。
 
 **错误信息**
 
-The target application is not a debug application.
+Cannot debug applications using a release certificate.
 
 **错误描述**
 

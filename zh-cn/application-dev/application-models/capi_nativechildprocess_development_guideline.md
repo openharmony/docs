@@ -288,7 +288,7 @@ libchild_process.so
 
 ### 场景介绍
 
-从API version 16开始，支持子进程获取启动参数。
+从API version 17开始，支持子进程获取启动参数。
 
 ### 接口说明
 

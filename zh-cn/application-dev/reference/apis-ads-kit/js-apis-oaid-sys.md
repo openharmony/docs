@@ -27,11 +27,11 @@ resetOAID(): void
 
 以下错误码的详细介绍请参见[广告标识服务错误码参考](errorcode-oaid.md)。
 
-| 错误码ID    | 错误信息                                                                         | 
+| 错误码ID | 错误信息                                                                     |
 |----------|------------------------------------------------------------------------------|
 | 202      | Permission verification failed. A non-system application calls a system API. |
 | 17300001 | System internal error.                                                       |
-| 17300002 | Not in the trust list.                                                       | 
+| 17300002 | Not in the trust list.                                                       |
 
 **示例：**
 

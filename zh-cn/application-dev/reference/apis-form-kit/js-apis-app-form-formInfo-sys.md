@@ -133,3 +133,17 @@ import { formInfo } from '@kit.FormKit';
 | NO_SPACE       | 1    | 表示没有空间添加卡片。           |
 | PARAM_ERROR    | 2    | 表示参数检查失败。               |
 | INTERNAL_ERROR | 3    | 表示卡片处理过程中出现内部错误。 |
+
+## RenderingMode<sup>18+</sup>
+
+卡片支持的渲染模式枚举。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Ability.Form
+
+| 名称        | 值   | 说明         |
+| ----------- | ---- | ------------ |
+| AUTO_COLOR    | 0    | 表示自动模式。   |
+| FULL_COLOR     | 1   | 表示全色模式。   |
+| SINGLE_COLOR      | 2   | 表示单色模式。   |

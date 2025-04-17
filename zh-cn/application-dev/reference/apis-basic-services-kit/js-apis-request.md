@@ -2550,7 +2550,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | mimeType | string | 是 | 任务配置中的mimetype。 |
 | progress | [Progress](#progress10) | 是 | 任务的过程进度。 |
 | gauge | boolean | 是 | 后台任务的进度通知策略。<br/>-false：代表仅完成或失败的通知。<br/>-true，发出每个进度已完成或失败的通知。 |
-| ctime | number | 是 | 创建任务的Unix时间戳（毫秒），由当前设备的系统生成。<br/>说明：使用[request.agent.search<sup>10+</sup>](#requestagentsearch10-1)进行查询时，该值需处于[after,before]区间内才可正常查询到任务id，before和after信息详见[Filter](#filter10)。
+| ctime | number | 是 | 创建任务的Unix时间戳（毫秒），由当前设备的系统生成。<br/>说明：使用[request.agent.search<sup>10+</sup>](#requestagentsearch10-1)进行查询时，该值需处于[after,before]区间内才可正常查询到任务id，before和after信息详见[Filter](#filter10)。|
 | mtime | number | 是 | 任务状态改变时的Unix时间戳（毫秒），由当前设备的系统生成。|
 | retry | boolean | 是 | 任务的重试开关，仅应用于后台任务。<br/>-true：是 <br/>-false：否 |
 | tries | number | 是 | 任务的尝试次数。 |
@@ -4576,10 +4576,10 @@ remove(id: string, callback: AsyncCallback&lt;void&gt;): void
 
   request.agent.remove("123456", (err: BusinessError) => {
     if (err) {
-      console.error(`Failed to removing a download task, Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to remove a download task, Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info(`Succeeded in creating a download task.`);
+    console.info(`Succeeded in removing a download task.`);
   });
   ```
 

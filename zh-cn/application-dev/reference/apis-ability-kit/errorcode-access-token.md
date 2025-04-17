@@ -86,7 +86,7 @@ The number of listeners exceeds the limit.
 
 **可能原因**
 
-该错误码表示当前监听器数量超过限制200.
+该错误码表示当前监听器数量超过限制200。
 
 **处理步骤**
 

@@ -650,6 +650,23 @@ lineSpacing(value: LengthMetrics)
 | ------ | ------------------------------------------------------------ | ---- | ---------------- |
 | value  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 文本的行间距。默认值：0 |
 
+### lineSpacing<sup>20+</sup>
+
+lineSpacing(value: LengthMetrics, options?: LineSpacingOptions)
+
+设置文本的行间距。当不配置LineSpacingOptions时，首行上方默认会有行间距。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明             |
+| ------ | ------------------------------------------------------------ | ---- | ---------------- |
+| value  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 文本的行间距。设置值不大于0时，取默认值0。 |
+| options  | [LineSpacingOptions](#linespacingoptions20对象说明) | 否   | 设置行间距配置项。<br/>默认值：{&nbsp;onlyBetweenLines:&nbsp;false&nbsp;} |
+
 ### privacySensitive<sup>12+</sup>
 
 privacySensitive(supported: boolean)
@@ -940,6 +957,20 @@ marqueeOptions(options: Optional\<TextMarqueeOptions>)
 | 名称 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | overflow<sup>7+</sup>  | [TextOverflow](ts-appendix-enums.md#textoverflow) | 是   | 文本超长时的显示方式。<br/>默认值：TextOverflow.Clip <br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+
+## LineSpacingOptions<sup>20+</sup>对象说明
+
+设置文本的行间距，是否仅在行与行之间生效。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明             |
+| ------ | ------------------------------------------------------------ | ---- | ---------------- |
+| onlyBetweenLines  | boolean | 否   | 文本的行间距是否仅在行与行之间生效。<br/>当设置为true时，行间距仅适用于行与行之间，首行上方无额外的行间距。当设置为false时，首行上方也会存在行间距。<br/>默认值：false |
 
 ## 事件
 
@@ -1781,6 +1812,9 @@ struct TextExample9 {
         .style()
       Text('This is the context with lineSpacing set to 100%.')
         .lineSpacing(LengthMetrics.percent(1))
+        .style()
+      Text('The line spacing of this context is set to 20_px, and the spacing is effective only between the lines.')
+        .lineSpacing(LengthMetrics.px(20), { onlyBetweenLines: true })
         .style()
 
       Text('fontFeature').fontSize(9).fontColor(0xCCCCCC)

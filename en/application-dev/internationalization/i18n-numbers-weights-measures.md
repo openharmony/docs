@@ -2,7 +2,7 @@
 
 ## Use Cases
 
-In different countries and cultures, numbers, currencies, and units of measurement are expressed in different ways, including what symbols are used as decimal separators, how many digits are displayed after separators, and what currencies and units of measurement are used. Suppose you want to display the number 1000 on the application UI to indicate the price of a product. If the fixed format **1,000** is used, it may be considered as **1** in some European countries where a comma is used as a decimal point. Formatting is therefore needed to ensure that numbers, currencies, and units of measurement are displayed on the application UI in line with local user habits.
+In different countries and cultures, numbers, currencies, and units of measurement are expressed in different ways, including what symbols are used as decimal separators, how many digits are displayed after separators, and what currencies and units of measurement are used. Suppose you want to display the number 1000 on the application UI to indicate the price of a product. If the fixed format **1,000** is used, it may be considered as 1 in some European countries where a comma is used as a decimal point. Formatting is therefore needed to format numbers, currencies, and units of measurement so that they are displayed on the application UI in line with local user habits.
 
 ## How to Develop
 
@@ -35,7 +35,7 @@ Number formatting is implemented through the [format](../reference/apis-localiza
 
 **Number Formatting Options**
 
-You can use [NumberOptions](../reference/apis-localization-kit/js-apis-intl.md#numberoptions) to configure number formatting options, including minimum number of integer digits, minimum and maximum numbers of fraction digits, minimum and maximum numbers of significant digits, use of grouping for display, number notation, compact display, rounding mode, rounding priority, rounding increment, number display format, and numbering system. Supported number display formats include decimal, percent, currency, and unit.
+You can use [NumberOptions](../reference/apis-localization-kit/js-apis-intl.md#numberoptions) to configure number formatting options, including minimum number of integer digits, minimum and maximum numbers of fraction digits, minimum and maximum numbers of significant digits, use of grouping for display, number notation, compact display, rounding mode, rounding priority, rounding increment, number display format, and numeral system. Supported number display formats include decimal, percent, currency, and unit.
 
 The following uses **123000.123** as an example to show the parameter values and corresponding display effects.
 
@@ -200,7 +200,7 @@ formattedRange = numberRangeFormat.formatRange(2.9, 3.1); // formattedRange = '~
 
 ### Currency and Unit Formatting
 
-Currency and unit formatting is based on number formatting. When creating a **NumberFormat** object for currency and unit formatting, set the number formatting style to currency and unit, respectively. Similarly, this can be done through [NumberOptions](../reference/apis-localization-kit/js-apis-intl.md#numberoptions). The following tables show the parameter values and corresponding display effects.
+Currency and unit formatting is based on number formatting. When creating a **NumberFormat** object for currency and unit formatting, set the number formatting style to **currency** and **unit**, respectively. Similarly, this can be done through [NumberOptions](../reference/apis-localization-kit/js-apis-intl.md#numberoptions). The following tables show the parameter values and corresponding display effects.
 
 **Currency Formatting Options**
 
@@ -224,7 +224,7 @@ Assume that the currency unit is USD and the value is **-12300**.
 
 **Unit Formatting Options**
 
-Assume that the unit name is hectare and the value is **-12300**.
+Assume that the unit name is **hectare** and the value is **-12300**.
 
 **Table 11** Unit display (unitDisplay)
 
@@ -238,7 +238,7 @@ Assume that the unit name is hectare and the value is **-12300**.
 
 | Value| Display Effect| 
 | -------- | -------- |
-| Left unspecified| -12,300 ha | 
+| Unspecified| -12,300 ha | 
 | default | -47.491 sq mi | 
 | area-land-agricult | -30,393.962 ac | 
 
@@ -280,12 +280,12 @@ formattedNumber = unitUsageFormat.format(123400); // formattedNumber = '304,928.
 
 Units of measurement conversion and formatting are implemented by the [unitConvert](../reference/apis-localization-kit/js-apis-i18n.md#unitconvert9) API of the [I18NUtil](../reference/apis-localization-kit/js-apis-i18n.md#i18nutil9) class. The development procedure is as follows:
 
-1. Import the **i18n** module.
+1. Import the **intl** module.
    ```ts
    import { i18n } from '@kit.LocalizationKit';
    ```
 
-2. Convert the unit of measurement.
+2. Change the unit of measurement.
 
    Convert the unit of measurement from **fromUnit** to **toUnit**, and format the unit based on the specified locale and formatting style. The display effect varies according to the style. For details, see Table 13.
    ```ts

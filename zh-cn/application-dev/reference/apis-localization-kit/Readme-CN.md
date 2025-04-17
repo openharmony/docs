@@ -6,6 +6,7 @@
   - [@ohos.resourceManager (资源管理)](js-apis-resource-manager.md)
   - [@ohos.sendableResourceManager (资源管理)](js-apis-sendable-resource-manager.md)
   <!--Del-->
+  - [@ohos.fontManager (字体管理)(系统接口)](js-apis-font-manager-sys.md)
   - [@ohos.i18n (国际化-I18n)(系统接口)](js-apis-i18n-sys.md)
   <!--DelEnd-->
   - global<!--localization-global-arkts-->
@@ -29,3 +30,6 @@
 - 错误码<!--localization-arkts-errcode-->
   - [I18n错误码](errorcode-i18n.md)
   - [资源管理错误码](errorcode-resource-manager.md)
+  <!--Del-->
+  - [字体管理错误码](errorcode-font-manager.md)
+  <!--DelEnd-->

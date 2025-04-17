@@ -34,6 +34,7 @@
 | -------- | -------- |
 | [IMAGE_ALLOCATOR_TYPE](_image___native_module.md#image_allocator_type) {<br/>IMAGE_ALLOCATOR_TYPE_AUTO = 0,<br/>IMAGE_ALLOCATOR_TYPE_DMA = 1,<br/>IMAGE_ALLOCATOR_TYPE_SHARE_MEMORY = 2 } | 用于分配 PixelMap 内存的分配器类型。 | 
 | [IMAGE_DYNAMIC_RANGE](_image___native_module.md#image_dynamic_range) {<br/>IMAGE_DYNAMIC_RANGE_AUTO = 0,<br/>IMAGE_DYNAMIC_RANGE_SDR = 1,<br/>IMAGE_DYNAMIC_RANGE_HDR = 2<br/>} | 解码指定期望动态范围。 | 
+| [Image_CropAndScaleStrategy](_image___native_module.md#image_cropandscalestrategy) {<br/>IMAGE_CROP_AND_SCALE_STRATEGY_SCALE_FIRST = 1,<br/>IMAGE_CROP_AND_SCALE_STRATEGY_CROP_FIRST = 2 } | 在同时指定desiredSize和desiredRegion时执行裁剪和缩放的策略。 | 
 
 
 ### 函数
@@ -58,6 +59,8 @@
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_DecodingOptions_SetDesiredRegion](_image___native_module.md#oh_decodingoptions_setdesiredregion) ([OH_DecodingOptions](_image___native_module.md#oh_decodingoptions) \*options, [Image_Region](_image___region.md) \*desiredRegion) | 设置解码区域。 | 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_DecodingOptions_GetDesiredDynamicRange](_image___native_module.md#oh_decodingoptions_getdesireddynamicrange) ([OH_DecodingOptions](_image___native_module.md#oh_decodingoptions) \*options, int32_t \*desiredDynamicRange) | 获取解码时设置的期望动态范围。 | 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_DecodingOptions_SetDesiredDynamicRange](_image___native_module.md#oh_decodingoptions_setdesireddynamicrange) ([OH_DecodingOptions](_image___native_module.md#oh_decodingoptions) \*options, int32_t desiredDynamicRange) | 设置解码时的期望动态范围。 | 
+| [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_DecodingOptions_SetCropAndScaleStrategy](_image___native_module.md#oh_decodingoptions_setcropandscalestrategy) ([OH_DecodingOptions](_image___native_module.md#oh_decodingoptions) \*options, int32_t cropAndScaleStrategy) | 设置解码选项的裁剪和缩放策略。 | 
+| [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_DecodingOptions_GetCropAndScaleStrategy](_image___native_module.md#oh_decodingoptions_getcropandscalestrategy) ([OH_DecodingOptions](_image___native_module.md#oh_decodingoptions) \*options, int32_t \*cropAndScaleStrategy) | 获取解码选项的裁剪和缩放策略。 | 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_DecodingOptions_Release](_image___native_module.md#oh_decodingoptions_release) ([OH_DecodingOptions](_image___native_module.md#oh_decodingoptions) \*options) | 释放OH_DecodingOptions指针。 | 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_ImageSourceNative_CreateFromUri](_image___native_module.md#oh_imagesourcenative_createfromuri) (char \*uri, size_t uriSize, [OH_ImageSourceNative](_image___native_module.md#oh_imagesourcenative) \*\*res) | 通过uri创建OH_ImageSourceNative指针。 | 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_ImageSourceNative_CreateFromFd](_image___native_module.md#oh_imagesourcenative_createfromfd) (int32_t fd, [OH_ImageSourceNative](_image___native_module.md#oh_imagesourcenative) \*\*res) | 通过fd创建OH_ImageSourceNative指针。 | 

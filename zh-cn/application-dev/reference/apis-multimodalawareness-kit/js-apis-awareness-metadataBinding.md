@@ -29,7 +29,6 @@ function submitMetadata(metadata: string): void;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-|   401    | Parameter error. Parameter verification failed.|
 |32100001|Internal handling failed. Set Meta data to screenshot app fail.|
 
 **示例**：
@@ -63,7 +62,6 @@ metadataBinding.on(type: 'operationSubmitMetadata', bundleName: string, callback
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-|401|Parameter error. Parameter verification failed.|
 |32100001|Internal handling failed. Service exception.|
 |32100004|Subscribe Failed.|
 
@@ -101,7 +99,6 @@ metadataBinding.off(type: 'operationSubmitMetadata', bundleName: string, callbac
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-|401|Parameter error. Parameter verification failed.|
 |32100001|Internal handling failed. Service exception.|
 |32100005|Unsubscribe Failed.|
 

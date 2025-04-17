@@ -511,7 +511,7 @@ Pinch手势识别成功回调。
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [PinchGestureHandler](#pinchgesturehandler) | 返回当前拖动手势处理器对象。 |
+| [PinchGestureHandler](#pinchgesturehandler) | 返回当前捏合手势处理器对象。 |
 
 ### onActionUpdate
 
@@ -533,7 +533,7 @@ Pinch手势移动过程中回调。
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [PinchGestureHandler](#pinchgesturehandler) | 返回当前拖动手势处理器对象。 |
+| [PinchGestureHandler](#pinchgesturehandler) | 返回当前捏合手势处理器对象。 |
 
 ### onActionEnd
 
@@ -555,7 +555,7 @@ Pinch手势识别成功，手指抬起后触发回调。
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [PinchGestureHandler](#pinchgesturehandler) | 返回当前拖动手势处理器对象。 |
+| [PinchGestureHandler](#pinchgesturehandler) | 返回当前捏合手势处理器对象。 |
 
 ### onActionCancel
 
@@ -577,7 +577,7 @@ Pinch手势识别成功，接收到触摸取消事件触发回调。不返回手
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [PinchGestureHandler](#pinchgesturehandler) | 返回当前拖动手势处理器对象。 |
+| [PinchGestureHandler](#pinchgesturehandler) | 返回当前捏合手势处理器对象。 |
 
 ### onActionCancel<sup>18+</sup>
 
@@ -599,7 +599,7 @@ Pinch手势识别成功，接收到触摸取消事件触发回调。与[onAction
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [PinchGestureHandler](#pinchgesturehandler) | 返回当前拖动手势处理器对象。 |
+| [PinchGestureHandler](#pinchgesturehandler) | 返回当前捏合手势处理器对象。 |
 
 ## PinchGestureHandlerOptions
 
@@ -654,7 +654,7 @@ Rotation手势识别成功回调。
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [RotationGestureHandler](#rotationgesturehandler) | 返回当前拖动手势处理器对象。 |
+| [RotationGestureHandler](#rotationgesturehandler) | 返回当前旋转手势处理器对象。 |
 
 ### onActionUpdate
 
@@ -676,7 +676,7 @@ Rotation手势移动过程中回调。
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [RotationGestureHandler](#rotationgesturehandler) | 返回当前拖动手势处理器对象。 |
+| [RotationGestureHandler](#rotationgesturehandler) | 返回当前旋转手势处理器对象。 |
 
 ### onActionEnd
 
@@ -698,7 +698,7 @@ Rotation手势识别成功，手指抬起后触发回调。
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [RotationGestureHandler](#rotationgesturehandler) | 返回当前拖动手势处理器对象。 |
+| [RotationGestureHandler](#rotationgesturehandler) | 返回当前旋转手势处理器对象。 |
 
 ### onActionCancel
 
@@ -720,7 +720,7 @@ Rotation手势识别成功，接收到触摸取消事件触发回调。不返回
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [RotationGestureHandler](#rotationgesturehandler) | 返回当前拖动手势处理器对象。 |
+| [RotationGestureHandler](#rotationgesturehandler) | 返回当前旋转手势处理器对象。 |
 
 ### onActionCancel<sup>18+</sup>
 
@@ -742,7 +742,7 @@ Rotation手势识别成功，接收到触摸取消事件触发回调。与[onAct
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [RotationGestureHandler](#rotationgesturehandler) | 返回当前拖动手势处理器对象。 |
+| [RotationGestureHandler](#rotationgesturehandler) | 返回当前旋转手势处理器对象。 |
 
 ## RotationGestureHandlerOptions
 
