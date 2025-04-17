@@ -604,7 +604,6 @@ getDistributedSessionController(distributedSessionType: DistributedSessionType):
 |---------|-------------------------------------------------------------------------------------------------------|
 | 201     | permission denied.                                                                                    |
 | 202     | Not System App. Interface caller is not a system app.                                                                                       |
-| 401     | parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101 | Session service exception.                                                                            |
 | 6600109 | The remote connection is not established.                                                             |
 
@@ -956,7 +955,6 @@ on(type: 'distributedSessionChange', distributedSessionType: DistributedSessionT
 | 错误码ID   | 错误信息                                                                                              |
 |---------|---------------------------------------------------------------------------------------------------|
 | 202     | Not System App. Interface caller is not a system app.                                                                                   |
-| 401     | parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101 | Session service exception.                                                                        |
 
 **示例：**
@@ -995,7 +993,6 @@ off(type: 'distributedSessionChange', distributedSessionType: DistributedSession
 | 错误码ID   | 错误信息                                                                                              |
 |---------|---------------------------------------------------------------------------------------------------|
 | 202     | Not System App. Interface caller is not a system app.                                                                                   |
-| 401     | parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101 | Session service exception.                                                                        |
 
 **示例：**
