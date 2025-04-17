@@ -166,9 +166,9 @@ static JSVM_Value ResolveRejectDeferred(JSVM_Env env, JSVM_CallbackInfo info)
 ArkTS侧示例代码
 
 ```ts
-import hilog from "@ohos.hilog"
+import hilog from "@ohos.hilog";
 // 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
+import napitest from "libentry.so";
 let createPromiseScript: string = `createPromise();`;
 let createPromiseresult = napitest.runJsVm(createPromiseScript);
 hilog.info(0x0000, 'JSVM', 'CreatePromise: %{public}s', createPromiseresult);
