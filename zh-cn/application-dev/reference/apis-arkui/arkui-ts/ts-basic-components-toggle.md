@@ -195,14 +195,14 @@ struct ToggleExample {
           .selectedColor('#007DFF')
           .switchPointColor('#FFFFFF')
           .onChange((isOn: boolean) => {
-            console.info('Component status:' + isOn)
+            console.info('Component status:' + isOn);
           })
 
         Toggle({ type: ToggleType.Switch, isOn: true })
           .selectedColor('#007DFF')
           .switchPointColor('#FFFFFF')
           .onChange((isOn: boolean) => {
-            console.info('Component status:' + isOn)
+            console.info('Component status:' + isOn);
           })
       }
 
@@ -212,14 +212,14 @@ struct ToggleExample {
           .size({ width: 20, height: 20 })
           .selectedColor('#007DFF')
           .onChange((isOn: boolean) => {
-            console.info('Component status:' + isOn)
+            console.info('Component status:' + isOn);
           })
 
         Toggle({ type: ToggleType.Checkbox, isOn: true })
           .size({ width: 20, height: 20 })
           .selectedColor('#007DFF')
           .onChange((isOn: boolean) => {
-            console.info('Component status:' + isOn)
+            console.info('Component status:' + isOn);
           })
       }
 
@@ -230,7 +230,7 @@ struct ToggleExample {
         }.width(106)
         .selectedColor('rgba(0,125,255,0.20)')
         .onChange((isOn: boolean) => {
-          console.info('Component status:' + isOn)
+          console.info('Component status:' + isOn);
         })
 
         Toggle({ type: ToggleType.Button, isOn: true }) {
@@ -238,7 +238,7 @@ struct ToggleExample {
         }.width(106)
         .selectedColor('rgba(0,125,255,0.20)')
         .onChange((isOn: boolean) => {
-          console.info('Component status:' + isOn)
+          console.info('Component status:' + isOn);
         })
       }
     }.width('100%').padding(24)
@@ -269,7 +269,7 @@ struct ToggleExample {
             pointColor: '#D2B48C',
             unselectedColor: Color.Pink })
           .onChange((isOn: boolean) => {
-            console.info('Component status:' + isOn)
+            console.info('Component status:' + isOn);
           })
 
         Toggle({ type: ToggleType.Switch, isOn: true })
@@ -280,7 +280,7 @@ struct ToggleExample {
             pointColor: '#D2B48C',
             unselectedColor: Color.Pink })
           .onChange((isOn: boolean) => {
-            console.info('Component status:' + isOn)
+            console.info('Component status:' + isOn);
           })
       }
     }.width('100%').padding(24)
@@ -297,27 +297,30 @@ struct ToggleExample {
 ```ts
 // xxx.ets
 class MySwitchStyle implements ContentModifier<ToggleConfiguration> {
-  selectedColor: Color = Color.White
+  selectedColor: Color = Color.White;
   lamp: string = 'string';
+
   constructor(selectedColor: Color, lamp: string) {
-    this.selectedColor = selectedColor
+    this.selectedColor = selectedColor;
     this.lamp = lamp;
   }
-  applyContent() : WrappedBuilder<[ToggleConfiguration]>
-  {
-    return wrapBuilder(buildSwitch)
+
+  applyContent(): WrappedBuilder<[ToggleConfiguration]> {
+    return wrapBuilder(buildSwitch);
   }
 }
-@Builder function buildSwitch(config: ToggleConfiguration) {
+
+@Builder
+function buildSwitch(config: ToggleConfiguration) {
   Column({ space: 50 }) {
     Circle({ width: 150, height: 150 })
       .fill(config.isOn ? (config.contentModifier as MySwitchStyle).selectedColor : Color.Blue)
     Row() {
-      Button('蓝'+ JSON.stringify((config.contentModifier as MySwitchStyle).lamp))
+      Button('蓝' + JSON.stringify((config.contentModifier as MySwitchStyle).lamp))
         .onClick(() => {
           config.triggerChange(false);
         })
-      Button('黄'+ JSON.stringify((config.contentModifier as MySwitchStyle).lamp))
+      Button('黄' + JSON.stringify((config.contentModifier as MySwitchStyle).lamp))
         .onClick(() => {
           config.triggerChange(true);
         })
@@ -330,11 +333,11 @@ class MySwitchStyle implements ContentModifier<ToggleConfiguration> {
 struct Index {
   build() {
     Column({ space: 50 }) {
-      Toggle({ type: ToggleType.Switch})
+      Toggle({ type: ToggleType.Switch })
         .enabled(true)
         .contentModifier(new MySwitchStyle(Color.Yellow, '灯'))
         .onChange((isOn: boolean) => {
-          console.info('Switch Log:' + isOn)
+          console.info('Switch Log:' + isOn);
         })
     }.height('100%').width('100%')
   }
