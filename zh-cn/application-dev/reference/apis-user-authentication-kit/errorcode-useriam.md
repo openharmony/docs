@@ -195,11 +195,11 @@ Operation failed because of authToken has expired.
 重新发起认证，签发有效token。
 <!--DelEnd-->
 
-## 12700001 人脸录入过程中的操作失败
+## 12700001 人脸服务不可用
 
 **错误信息**
 
-Operation failed.
+The service is unavailable.
 
 **可能原因**
 
