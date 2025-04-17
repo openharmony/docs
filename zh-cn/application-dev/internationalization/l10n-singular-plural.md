@@ -1,6 +1,6 @@
 # 支持单复数
 
-翻译过程中，不同语言对于名词或单位表达式的单复数格式要求各不相同。有些语言不区分单复数，有些语言有两种形式，还有一些语言有多种形式。例如，在英语中，名词支持单复数两种形式；在中文，名词不分单复数，通过量词表达数量的不同。
+翻译过程中，不同语言对于名词或单位表达式的单复数格式要求各不相同。有些语言不区分单复数，有些语言有两种形式，还有一些语言有多种形式。例如，在英语中，名词支持两种单复数形式；在中文，名词不分单复数，通过量词表达数量的不同。
 
 国际上常通过如下类别区分单复数：
 
@@ -32,4 +32,4 @@
 
 ## 开发步骤
 
-接口具体使用方法请参考[getIntPluralStringValueSync](../reference/apis-localization-kit/js-apis-resource-manager.md#getintpluralstringvaluesync18)的API接口文档。
+接口具体使用方法请参考[getIntPluralStringValueSync](../reference/apis-localization-kit/js-apis-resource-manager.md#getintpluralstringvaluesync18)的API文档。
