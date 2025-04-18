@@ -48,7 +48,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let captureImage: image.PixelMap | undefined;
 let metadata: string = "";
 let srcImage: image.PixelMap | undefined = undefined;
-metadataBinding.encodeImage(metadata, srcImage).then((pixelMap : image.PixelMap) =>{
+metadataBinding.encodeImage(srcImage, metadata).then((pixelMap : image.PixelMap) =>{
 	captureImage = pixelMap;
 }).catch((error:BusinessError)=>{
 	console.error("encode image error" + error);
