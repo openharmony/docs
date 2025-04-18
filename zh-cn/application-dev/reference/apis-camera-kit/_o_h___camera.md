@@ -204,7 +204,7 @@
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_UnregisterCallback](#oh_cameramanager_unregistercallback) ([Camera_Manager](#camera_manager) \*cameraManager, [CameraManager_Callbacks](_camera_manager___callbacks.md) \*callback) | 注销相机状态更改事件回调。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_RegisterTorchStatusCallback](#oh_cameramanager_registertorchstatuscallback) ([Camera_Manager](#camera_manager) \*cameraManager, [OH_CameraManager_TorchStatusCallback](#oh_cameramanager_torchstatuscallback) torchStatusCallback) | 注册手电筒状态变更事件回调。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_UnregisterTorchStatusCallback](#oh_cameramanager_unregistertorchstatuscallback) ([Camera_Manager](#camera_manager) \*cameraManager, [OH_CameraManager_TorchStatusCallback](#oh_cameramanager_torchstatuscallback) torchStatusCallback) | 注销手电筒状态变更事件回调。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_GetSupportedCameras](#oh_cameramanager_getsupportedcameras) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_Device](_camera___device.md) \*\*cameras, uint32_t \*size) | 获取支持相机的描述。 | 
+| [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_GetSupportedCameras](#oh_cameramanager_getsupportedcameras) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_Device](_camera___device.md) \*\*cameras, uint32_t \*size) | 获取支持指定的相机设备对象。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_DeleteSupportedCameras](#oh_cameramanager_deletesupportedcameras) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_Device](_camera___device.md) \*cameras, uint32_t size) | 删除支持的相机。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_GetSupportedCameraOutputCapability](#oh_cameramanager_getsupportedcameraoutputcapability) ([Camera_Manager](#camera_manager) \*cameraManager, const [Camera_Device](_camera___device.md) \*camera, [Camera_OutputCapability](_camera___output_capability.md) \*\*cameraOutputCapability) | 查询指定相机在指定模式下支持的输出能力。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_GetSupportedCameraOutputCapabilityWithSceneMode](#oh_cameramanager_getsupportedcameraoutputcapabilitywithscenemode) ([Camera_Manager](#camera_manager) \*cameraManager, const [Camera_Device](_camera___device.md) \*camera, [Camera_SceneMode](#camera_scenemode) sceneMode, [Camera_OutputCapability](_camera___output_capability.md) \*\*cameraOutputCapability) | 查询指定相机在指定模式下支持的输出能力。 | 
@@ -2818,7 +2818,7 @@ Camera_ErrorCode OH_CameraManager_GetSupportedCameras(Camera_Manager* cameraMana
 
 **描述**
 
-获取支持相机的描述。
+获取支持指定的相机设备对象。
 
 **起始版本：** 11
 
