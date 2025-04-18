@@ -1534,6 +1534,7 @@ export default {
 > 
 > 直接使用router可能导致实例不明确的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getRouter](js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
 
+<!--deperecated_code_no_check-->
 ```ts
 // 通过router.pushUrl跳转至目标页携带params参数
 import { router } from '@kit.ArkUI';
