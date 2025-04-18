@@ -54,3 +54,17 @@ struct PromiseAsyncAwait {
 }
 ```
 <!--@[async_await_sync_operation](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets)-->
+
+
+
+## 嵌套的ID，docs中不含嵌套部分
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+promise.then((result: number) => {
+  console.info(`Random number is ${result}`);
+}).catch((error: BusinessError) => {
+  console.error(error.message);
+});
+```
+<!--@[promise_then_catch_handling](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets)-->
