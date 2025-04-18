@@ -3166,7 +3166,7 @@ static getServerConfig(configId: string): Promise&lt;DomainServerConfig&gt;
   osAccount.DomainServerConfigManager.addServerConfig(configParams).then((
     serverConfig: osAccount.DomainServerConfig) => {
     console.log('add domain server configuration successfully, the added config: ' + JSON.stringify(serverConfig));
-    osAccount.DomainServerConfigManager.getServerConfig(serverConfig.id).then((data: osaccount.DomainServerConfig) => {
+    osAccount.DomainServerConfigManager.getServerConfig(serverConfig.id).then((data: osAccount.DomainServerConfig) => {
       console.log('get domain server configuration successfully, return config: ' + JSON.stringify(data));
     }).catch((err: BusinessError) => {
       console.log('get domain server configuration failed, error: ' + JSON.stringify(err));
@@ -3210,7 +3210,7 @@ static getAllServerConfigs(): Promise&lt;Array&lt;DomainServerConfig&gt;&gt;
   osAccount.DomainServerConfigManager.addServerConfig(configParams).then((
     serverConfig: osAccount.DomainServerConfig) => {
     console.log('add domain server configuration successfully, the added config: ' + JSON.stringify(serverConfig));
-    osAccount.DomainServerConfigManager.getAllServerConfigs().then((data: Array<osaccount.DomainServerConfig>) => {
+    osAccount.DomainServerConfigManager.getAllServerConfigs().then((data: Array<osAccount.DomainServerConfig>) => {
       console.log('get all domain server configuration successfully, return config: ' + JSON.stringify(data));
     }).catch((err: BusinessError) => {
       console.log('get all domain server configuration failed, error: ' + JSON.stringify(err));
