@@ -111,29 +111,110 @@ List组件卡片样式枚举。
 
 该示例通过stick实现了Header吸顶和Footer吸底的效果。
 
+<!--code_no_check-->
+```ts
+// ListDataSource.ets
+export class TimeTableDataSource implements IDataSource {
+  private list: TimeTable[] = [];
+  private listeners: DataChangeListener[] = [];
+
+  constructor(list: TimeTable[]) {
+    this.list = list;
+  }
+
+  totalCount(): number {
+    return this.list.length;
+  }
+
+  getData(index: number): TimeTable {
+    return this.list[index];
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener);
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1);
+    }
+  }
+
+  // 通知控制器数据变化
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChange(index);
+    })
+  }
+
+  // 修改第一个元素
+  public change1stItem(temp: TimeTable): void {
+    this.list[0] = temp;
+    this.notifyDataChange(0);
+  }
+}
+
+export class ProjectsDataSource implements IDataSource {
+  private list: string[] = [];
+
+  constructor(list: string[]) {
+    this.list = list;
+  }
+
+  totalCount(): number {
+    return this.list.length;
+  }
+
+  getData(index: number): string {
+    return this.list[index];
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+  }
+}
+
+export interface TimeTable {
+  title: string;
+  projects: string[];
+}
+```
+
+<!--code_no_check-->
 ```ts
 // xxx.ets
+import { TimeTable, ProjectsDataSource, TimeTableDataSource } from './ListDataSource';
 @Entry
 @Component
 struct ListItemGroupExample {
-  private timeTable: TimeTable[] = [
-    {
-      title: '星期一',
-      projects: ['语文', '数学', '英语']
-    },
-    {
-      title: '星期二',
-      projects: ['物理', '化学', '生物']
-    },
-    {
-      title: '星期三',
-      projects: ['历史', '地理', '政治']
-    },
-    {
-      title: '星期四',
-      projects: ['美术', '音乐', '体育']
-    }
-  ]
+  itemGroupArray: TimeTableDataSource = new TimeTableDataSource([]);
+
+  aboutToAppear(): void {
+    let timeTable: TimeTable[] = [
+      {
+        title: '星期一',
+        projects: ['语文', '数学', '英语']
+      },
+      {
+        title: '星期二',
+        projects: ['物理', '化学', '生物']
+      },
+      {
+        title: '星期三',
+        projects: ['历史', '地理', '政治']
+      },
+      {
+        title: '星期四',
+        projects: ['美术', '音乐', '体育']
+      }
+    ]
+    this.itemGroupArray = new TimeTableDataSource(timeTable);
+  }
 
   @Builder
   itemHead(text: string) {
@@ -156,9 +237,9 @@ struct ListItemGroupExample {
   build() {
     Column() {
       List({ space: 20 }) {
-        ForEach(this.timeTable, (item: TimeTable) => {
+        LazyForEach(this.itemGroupArray, (item: TimeTable) => {
           ListItemGroup({ header: this.itemHead(item.title), footer: this.itemFoot(item.projects.length) }) {
-            ForEach(item.projects, (project: string) => {
+            LazyForEach(new ProjectsDataSource(item.projects), (project: string) => {
               ListItem() {
                 Text(project)
                   .width("100%")
@@ -177,11 +258,6 @@ struct ListItemGroupExample {
       .scrollBar(BarState.Off)
     }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 })
   }
-}
-
-interface TimeTable {
-  title: string;
-  projects: string[];
 }
 ```
 
@@ -252,14 +328,11 @@ interface ArrObject {
 
 该示例通过ComponentContent设置Header/Footer。
 
+<!--code_no_check-->
 ```ts
 // xxx.ets
 import { ComponentContent } from '@kit.ArkUI';
-
-interface TimeTable {
-  title: string;
-  projects: string[];
-}
+import { TimeTable, ProjectsDataSource, TimeTableDataSource } from './ListDataSource';
 
 class HeadBuilderParams {
   text: string | Resource;
@@ -302,10 +375,12 @@ struct MyItemGroup {
   footer?: ComponentContent<FootBuilderParams> = undefined
   headerParam = new HeadBuilderParams(this.item.title)
   footerParam = new FootBuilderParams(this.item.projects.length)
+  itemArr: ProjectsDataSource = new ProjectsDataSource([]);
 
   aboutToAppear(): void {
     this.header = new ComponentContent(this.getUIContext(), wrapBuilder(itemHead), this.headerParam)
     this.footer = new ComponentContent(this.getUIContext(), wrapBuilder(itemFoot), this.footerParam)
+    this.itemArr = new ProjectsDataSource(this.item.projects);
   }
   GetHeader() {
     this.header?.update(new HeadBuilderParams(this.item.title));
@@ -322,7 +397,7 @@ struct MyItemGroup {
       headerComponent: this.GetHeader(),
       footerComponent: this.GetFooter()
     }) {
-      ForEach(this.item.projects, (project: string) => {
+      LazyForEach(this.itemArr, (project: string) => {
         ListItem() {
           Text(project)
             .width("100%")
@@ -339,37 +414,41 @@ struct MyItemGroup {
 @Entry
 @Component
 struct ListItemGroupExample {
-  @State timeTable: TimeTable[] = [
-    {
-      title: '星期一',
-      projects: ['语文', '数学', '英语']
-    },
-    {
-      title: '星期二',
-      projects: ['物理', '化学', '生物']
-    },
-    {
-      title: '星期三',
-      projects: ['历史', '地理', '政治', '体育']
-    },
-    {
-      title: '星期四',
-      projects: ['美术', '音乐']
-    }
-  ]
+  itemGroupArray: TimeTableDataSource = new TimeTableDataSource([]);
+  aboutToAppear(): void {
+    let timeTable: TimeTable[] = [
+      {
+        title: '星期一',
+        projects: ['语文', '数学', '英语']
+      },
+      {
+        title: '星期二',
+        projects: ['物理', '化学', '生物']
+      },
+      {
+        title: '星期三',
+        projects: ['历史', '地理', '政治', '体育']
+      },
+      {
+        title: '星期四',
+        projects: ['美术', '音乐']
+      }
+    ]
+    this.itemGroupArray = new TimeTableDataSource(timeTable);
+  }
 
   build() {
     Column() {
       Button("update").width(100).height(50).onClick(() => {
-        this.timeTable[0] = {
+        this.itemGroupArray.change1stItem({
           title: '更新后的星期一',
           projects: ['语文', '物理', '历史', '美术']
-        }
+        });
       })
       List({ space: 20 }) {
-        ForEach(this.timeTable, (item: TimeTable) => {
+        LazyForEach(this.itemGroupArray, (item: TimeTable) => {
           MyItemGroup({ item: item })
-        })
+        }, (item: TimeTable) => item.title) // LazyForEach依赖键值判断是否刷新子组件
       }
       .layoutWeight(1)
       .sticky(StickyStyle.Header | StickyStyle.Footer)

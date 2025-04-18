@@ -453,11 +453,34 @@ class Contact {
     this.icon = icon;
   }
 }
-class ContactsGroup {
+export class ContactsGroup {
   title: string = ''
   contacts: Array<object> | null = null
   key: string = ""
 }
+
+export class ContactsGroupDataSource implements IDataSource {
+  private list: object[] = [];
+
+  constructor(list: object[]) {
+    this.list = list;
+  }
+
+  totalCount(): number {
+    return this.list.length;
+  }
+
+  getData(index: number): object {
+    return this.list[index];
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+  }
+}
+
 export let contactsGroups: object[] = [
   {
     title: 'A',
@@ -478,6 +501,8 @@ export let contactsGroups: object[] = [
   } as ContactsGroup,
   // ...
 ]
+export let contactsGroupsDataSource: ContactsGroupDataSource = new ContactsGroupDataSource(contactsGroups)
+
 @Entry
 @Component
 struct ContactsList {
@@ -493,11 +518,11 @@ struct ContactsList {
   build() {
     List() {
       // 循环渲染ListItemGroup，contactsGroups为多个分组联系人contacts和标题title的数据集合
-      ForEach(contactsGroups, (itemGroup: ContactsGroup) => {
+      LazyForEach(contactsGroupsDataSource, (itemGroup: ContactsGroup) => {
         ListItemGroup({ header: this.itemHead(itemGroup.title) }) {
           // 循环渲染ListItem
           if (itemGroup.contacts) {
-            ForEach(itemGroup.contacts, (item: Contact) => {
+            LazyForEach(new ContactsGroupDataSource(itemGroup.contacts), (item: Contact) => {
               ListItem() {
                 // ...
               }

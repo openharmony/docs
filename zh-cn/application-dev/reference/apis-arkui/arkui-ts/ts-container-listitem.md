@@ -276,15 +276,37 @@ ListItem元素被鼠标框选的状态改变时触发回调。
 
 ```ts
 // xxx.ets
+export class ListDataSource implements IDataSource {
+  private list: number[] = [];
+
+  constructor(list: number[]) {
+    this.list = list;
+  }
+
+  totalCount(): number {
+    return this.list.length;
+  }
+
+  getData(index: number): number {
+    return this.list[index];
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+  }
+}
+
 @Entry
 @Component
 struct ListItemExample {
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  private arr: ListDataSource = new ListDataSource([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
 
   build() {
     Column() {
       List({ space: 20, initialIndex: 0 }) {
-        ForEach(this.arr, (item: number) => {
+        LazyForEach(this.arr, (item: number) => {
           ListItem() {
             Text('' + item)
               .width('100%')
