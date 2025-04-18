@@ -64,7 +64,9 @@ ArkTS提供了Sendable数据相关的共享容器集，接口行为与原生API�
 
 > **说明：**
 >
-> ArkTS共享容器的类型与Ecmascript262规范定义的原生容器的类型不一致，因此采用原生容器Array的isArray()方法判断collections.Array实例对象会返回false。
+> ArkTS共享容器的类型与Ecmascript262规范定义的原生容器的类型不同，因此使用原生容器Array的isArray()方法判断collections.Array实例对象会返回false。
+>
+> ArkTS共享容器跨线程传递采用引用传递方式，与原生容器相比效率更高，如果开发者需要跨线程传输的数据量很大，建议使用ArkTS共享容器。
 
 ### Array
 
