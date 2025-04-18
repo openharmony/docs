@@ -42,6 +42,8 @@
     - Surface模式下，应用在解码器就绪前，必须调用OH_VideoDecoder_SetSurface接口设置OHNativeWindow，启动后，调用OH_VideoDecoder_RenderOutputBuffer接口将解码数据送显。
     - 输出回调传出的buffer，在Buffer模式下，可以获取共享内存的地址和数据信息；在Surface模式下，只能获取buffer的数据信息。
 
+4. Surface模式的数据流转性能优于Buffer模式。
+
 两种模式的开发步骤详细说明请参考：[Surface模式](#surface模式)和[Buffer模式](#buffer模式)。
 
 ## 状态机调用关系
@@ -422,6 +424,13 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     OH_NativeWindow_NativeWindowSetScalingModeV2(nativeWindow, OH_SCALING_MODE_SCALE_CROP_V2);
     ```
 
+    > **注意：**
+    > 若应用创建的1号和2号解码器Set的是同一片surface，在2号解码器处于Running状态时1号解码器调用Destroy接口，解码器内部会调用CleanCache，清理surface中原有的buffer。2号解码器这一轮向surface申请的buffer会被1号解码器的CleanCache逻辑清理掉，从而导致视频播放画面卡住。
+    >
+    > 可以采用以下方案进行更改：
+    > 1. 等1号解码器完全释放后，再调用OH_VideoDecoder_Start接口启动2号解码器；
+    > 2. 1号解码器用surface1，2号解码器先调用OH_ConsumerSurface_Create接口创建临时Surface，等1号解码器释放后，再调用OH_VideoDecoder_SetSurface接口将2号解码器绑定至surface1上，详情请参见：[创建视频解码器和NativeWindow初始化并行](../../media/avcodec/parallel-decoding-nativeWindow.md)。
+    
 7. （可选）OH_VideoDecoder_SetParameter()动态配置解码器surface参数。
     详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
 
