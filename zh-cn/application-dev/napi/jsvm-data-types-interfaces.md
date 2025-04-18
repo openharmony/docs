@@ -868,7 +868,7 @@ JSVM-API WebAssembly 接口提供了 wasm 字节码编译、wasm 函数优化、
 
 #### 场景介绍
 
-获取、抛出、清理JS异常
+获取、抛出、清理JS异常。
 
 #### 接口说明
 | 接口 | 功能说明 |
@@ -1028,7 +1028,7 @@ OH_JSVM_CloseHandleScope(env, scope);
 
 #### 场景介绍
 
-创建JS对象类型和基本类型
+创建JS对象类型和基本类型。
 
 #### 接口说明
 | 接口 | 功能说明 |
@@ -1128,11 +1128,11 @@ JSVM_Value value;
 OH_JSVM_CreateSet(env, &value);
 ```
 
-### 从JS类型获取C类型&获取JS类型信息
+### 从JS类型获取C类型&JS类型信息
 
 #### 场景介绍
 
-从JS类型获取C类型&获取JS类型信息。
+从JS类型获取C类型&JS类型信息。
 
 #### 接口说明
 | 接口 | 功能说明 |
@@ -1206,7 +1206,7 @@ size_t arrayBufferLength = 0;
 OH_JSVM_GetArraybufferInfo(env, retArrayBuffer, &tmpArrayBufferPtr, &arrayBufferLength);
 ```
 
-创建utf8类型的String，并获取C字符串。
+根据 UTF-8 编码的C字符串创建一个 JavaScript 字符串，以及获取给定 JavaScript 字符串的 UTF-8 编码C字符串。
 
 ```c++
 const char *testStringStr = "testString";
@@ -1373,7 +1373,7 @@ OH_JSVM_IsRegExp(env, result, &isRegExp);
 
 #### 场景介绍
 
-JS对象属性的增删获取和判断
+JS对象属性的增加、删除、获取和判断。
 
 #### 接口说明
 | 接口 | 功能说明 |
@@ -2068,7 +2068,7 @@ OH_JSVM_GetVersion(env, &versionId);
 
 #### 场景介绍
 
-内存管理
+内存管理。
 
 #### 接口说明
 | 接口                                          | 功能说明                                                                                                   |
@@ -2240,7 +2240,7 @@ OH_JSVM_JsonParse(env, jsonString, &result);
 
 #### 场景介绍
 
-创建和使用虚拟机的启动快照
+创建和使用虚拟机的启动快照。
 
 #### 接口说明
 | 接口 | 功能说明 |
@@ -2255,7 +2255,7 @@ OH_JSVM_JsonParse(env, jsonString, &result);
 
 #### 场景介绍
 
-检查传入的值是否可调用
+检查传入的值是否可调用。
 
 #### 接口说明
 | 接口 | 功能说明 |
@@ -2334,7 +2334,7 @@ static napi_value MyJSVMDemo([[maybe_unused]] napi_env _env, [[maybe_unused]] na
 
 #### 场景介绍
 
-Lock操作
+Lock操作。
 
 #### 接口说明
 | 接口 | 功能说明 |

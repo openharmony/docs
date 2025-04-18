@@ -1749,6 +1749,39 @@ app.json5文件中app的vendor字段配置不一致。
 1. 若只有一个HAP，要求与已安装应用vendor字段一致，卸载重装即可。
 2. 若包含集成态HSP，要求集成态HSP与使用方HAP的vendor字段保持一致。
 
+### 9568272 安装包体积大小无效
+**错误信息**
+
+error: install invalid hap size.
+
+**错误描述**
+
+安装包大小超出限制。
+
+**可能原因**
+
+安装包体积超过4GB大小。
+
+**处理步骤**
+
+拆分包，保证每个安装包体积不超过4GB。
+
+### 9568273 应用生成UID失败，导致安装失败
+**错误信息**
+
+error: install generate uid error.
+
+**错误描述**
+
+应用生成UID失败，导致安装失败。
+
+**可能原因**
+
+该设备上已安装的应用数量已超过65535，导致应用安装时分配UID失败。
+
+**处理步骤**
+
+卸载不必要的应用后重试。
 
 ### 9568274 安装服务错误
 **错误信息**
@@ -1767,6 +1800,97 @@ error: install installd service error.
 
 1. 清除缓存，重启设备。
 
+
+### 9568275 包管理服务错误
+
+**错误信息**
+
+error: install bundle mgr service error.
+
+**错误描述**
+
+包管理服务错误。
+
+**可能原因**
+
+包管理服务异常，如出现空指针导致异常等。
+
+**处理步骤**
+
+重启设备或稍后重试。
+
+### 9568277 包名不一致，导致安装失败
+
+**错误信息**
+
+error: install bundle name not same.
+
+**错误描述**
+
+包名不一致，导致安装失败。
+
+**可能原因**
+
+待安装的路径下的多个安装包包名不一致。
+
+**处理步骤**
+
+检查待安装路径下的安装包包名，确保所有安装包的app.json5配置文件中bundleName一致。
+
+
+### 9568279 版本不一致，导致安装失败
+
+**错误信息**
+
+error: install version name not same.
+
+**错误描述**
+
+版本（versionName字段）不一致，导致安装失败。
+
+**可能原因**
+
+待安装的路径下的多个安装包的versionName不一致。
+
+**处理步骤**
+
+检查待安装路径下的安装包版本，确保所有安装包的app.json5配置文件中versionName一致。
+
+### 9568280 minCompatibleVersionCode不一致，导致安装失败
+
+**错误信息**
+
+error: install min compatible version code not same.
+
+**错误描述**
+
+minCompatibleVersionCode字段不一致，导致安装失败。
+
+**可能原因**
+
+待安装的路径下的多个安装包的minCompatibleVersionCode不一致。
+
+**处理步骤**
+
+检查待安装路径下的安装包，确保所有安装包的app.json5配置文件中minCompatibleVersionCode一致。
+
+### 9568282 targetAPIVersion不一致，导致安装失败
+
+**错误信息**
+
+error: install releaseType target not same.
+
+**错误描述**
+
+targetAPIVersion字段不一致，导致安装失败。
+
+**可能原因**
+
+待安装的路径下的多个安装包的targetAPIVersion不一致。
+
+**处理步骤**
+
+检查待安装路径下的安装包，确保所有安装包的app.json5配置文件中targetAPIVersion一致。
 
 ### 9568314 安装应用间共享库失败
 **错误信息**
@@ -2346,6 +2470,7 @@ error: Install parse bad profile.
 [module.json、pack.info](../quick-start/application-package-structure-stage.md)等配置文件格式异常。
 
 **处理步骤**
+
 使用DevEco Studio重新构建、打包、安装。
 
 

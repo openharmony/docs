@@ -8061,16 +8061,18 @@ addComponentContent(content: ComponentContent, index?: number): void
 **示例：**
 
 ```ts
-import { ComponentContent, OverlayManager, router } from '@kit.ArkUI';
+import { ComponentContent, OverlayManager } from '@kit.ArkUI';
 
 class Params {
-  text: string = ""
-  offset: Position
+  text: string = "";
+  offset: Position;
+
   constructor(text: string, offset: Position) {
-    this.text = text
-    this.offset = offset
+    this.text = text;
+    this.offset = offset;
   }
 }
+
 @Builder
 function builderText(params: Params) {
   Column() {
@@ -8084,68 +8086,68 @@ function builderText(params: Params) {
 @Component
 struct OverlayExample {
   @State message: string = 'ComponentContent';
-  private uiContext: UIContext = this.getUIContext()
-  private overlayNode: OverlayManager = this.uiContext.getOverlayManager()
-  @StorageLink('contentArray') contentArray: ComponentContent<Params>[] = []
-  @StorageLink('componentContentIndex') componentContentIndex: number = 0
-  @StorageLink('arrayIndex') arrayIndex: number = 0
-  @StorageLink("componentOffset") componentOffset: Position = {x: 0, y: 80}
+  private uiContext: UIContext = this.getUIContext();
+  private overlayNode: OverlayManager = this.uiContext.getOverlayManager();
+  @StorageLink('contentArray') contentArray: ComponentContent<Params>[] = [];
+  @StorageLink('componentContentIndex') componentContentIndex: number = 0;
+  @StorageLink('arrayIndex') arrayIndex: number = 0;
+  @StorageLink("componentOffset") componentOffset: Position = { x: 0, y: 80 };
 
   build() {
     Column() {
-      Button("++componentContentIndex: " + this.componentContentIndex).onClick(()=>{
-        ++this.componentContentIndex
+      Button("++componentContentIndex: " + this.componentContentIndex).onClick(() => {
+        ++this.componentContentIndex;
       })
-      Button("--componentContentIndex: " + this.componentContentIndex).onClick(()=>{
-        --this.componentContentIndex
+      Button("--componentContentIndex: " + this.componentContentIndex).onClick(() => {
+        --this.componentContentIndex;
       })
-      Button("增加ComponentContent" + this.contentArray.length).onClick(()=>{
+      Button("增加ComponentContent" + this.contentArray.length).onClick(() => {
         let componentContent = new ComponentContent(
           this.uiContext, wrapBuilder<[Params]>(builderText),
           new Params(this.message + (this.contentArray.length), this.componentOffset)
-        )
-        this.contentArray.push(componentContent)
-        this.overlayNode.addComponentContent(componentContent, this.componentContentIndex)
+        );
+        this.contentArray.push(componentContent);
+        this.overlayNode.addComponentContent(componentContent, this.componentContentIndex);
       })
-      Button("++arrayIndex: " + this.arrayIndex).onClick(()=>{
-        ++this.arrayIndex
+      Button("++arrayIndex: " + this.arrayIndex).onClick(() => {
+        ++this.arrayIndex;
       })
-      Button("--arrayIndex: " + this.arrayIndex).onClick(()=>{
-        --this.arrayIndex
+      Button("--arrayIndex: " + this.arrayIndex).onClick(() => {
+        --this.arrayIndex;
       })
-      Button("删除ComponentContent" + this.arrayIndex).onClick(()=>{
+      Button("删除ComponentContent" + this.arrayIndex).onClick(() => {
         if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
-          let componentContent = this.contentArray.splice(this.arrayIndex, 1)
-          this.overlayNode.removeComponentContent(componentContent.pop())
+          let componentContent = this.contentArray.splice(this.arrayIndex, 1);
+          this.overlayNode.removeComponentContent(componentContent.pop());
         } else {
-          console.info("arrayIndex有误")
+          console.info("arrayIndex有误");
         }
       })
-      Button("显示ComponentContent" + this.arrayIndex).onClick(()=>{
+      Button("显示ComponentContent" + this.arrayIndex).onClick(() => {
         if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
-          let componentContent = this.contentArray[this.arrayIndex]
-          this.overlayNode.showComponentContent(componentContent)
+          let componentContent = this.contentArray[this.arrayIndex];
+          this.overlayNode.showComponentContent(componentContent);
         } else {
-          console.info("arrayIndex有误")
+          console.info("arrayIndex有误");
         }
       })
-      Button("隐藏ComponentContent" + this.arrayIndex).onClick(()=>{
+      Button("隐藏ComponentContent" + this.arrayIndex).onClick(() => {
         if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
-          let componentContent = this.contentArray[this.arrayIndex]
-          this.overlayNode.hideComponentContent(componentContent)
+          let componentContent = this.contentArray[this.arrayIndex];
+          this.overlayNode.hideComponentContent(componentContent);
         } else {
-          console.info("arrayIndex有误")
+          console.info("arrayIndex有误");
         }
       })
-      Button("显示所有ComponentContent").onClick(()=>{
-          this.overlayNode.showAllComponentContents()
+      Button("显示所有ComponentContent").onClick(() => {
+        this.overlayNode.showAllComponentContents();
       })
-      Button("隐藏所有ComponentContent").onClick(()=>{
-        this.overlayNode.hideAllComponentContents()
+      Button("隐藏所有ComponentContent").onClick(() => {
+        this.overlayNode.hideAllComponentContents();
       })
 
-      Button("跳转页面").onClick(()=>{
-        router.pushUrl({
+      Button("跳转页面").onClick(() => {
+        this.getUIContext().getRouter().pushUrl({
           url: 'pages/Second'
         })
       })

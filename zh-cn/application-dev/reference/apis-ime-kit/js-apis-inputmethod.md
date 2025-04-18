@@ -907,33 +907,6 @@ type SetPreviewTextCallback = (text: string, range: Range) => void
 | text    | string            | 是   | 预览文本内容。                 |
 | range   | [Range](#range10) | 是   | 文本的选中范围。 |
 
-**示例：**
-
-```ts
-let setPreviewTextCallback1: inputMethod.SetPreviewTextCallback = (text: string, range: inputMethod.Range) => {
-  console.info(`SetPreviewTextCallback1: Received text - ${text}, Received range - start: ${range.start}, end: ${range.end}`);
-};
-
-let setPreviewTextCallback2: inputMethod.SetPreviewTextCallback = (text: string, range: inputMethod.Range) => {
-  console.info(`setPreviewTextCallback2: Received text - ${text}, Received range - start: ${range.start}, end: ${range.end}`);
-};
-
-try {
-  inputMethodController.on('setPreviewText', setPreviewTextCallback1);
-  console.log(`SetPreviewTextCallback1 subscribed to setPreviewText`);
-  inputMethodController.on('setPreviewText', setPreviewTextCallback2);
-  console.log(`SetPreviewTextCallback2 subscribed to setPreviewText`);
-  // 仅取消setPreviewText的callback1的回调。
-  inputMethodController.off('setPreviewText', setPreviewTextCallback1);
-  console.log(`SetPreviewTextCallback1 unsubscribed from setPreviewText`);
-  // 取消setPreviewText的所有回调。
-  inputMethodController.off('setPreviewText');
-  console.log(`All callbacks unsubscribed from setPreviewText`);
-} catch(err) {
-  console.error(`Failed to operate on setPreviewText: ${JSON.stringify(err)}`);
-}
-```
-
 ## InputMethodController
 
 下列API示例中都需使用[getController](#inputmethodgetcontroller9)获取到InputMethodController实例，再通过实例调用对应方法。

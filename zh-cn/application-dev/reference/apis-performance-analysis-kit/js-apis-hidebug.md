@@ -1082,7 +1082,7 @@ dumpJsRawHeapData(needGC?: boolean): Promise&lt;string&gt;
 
 | 类型  | 说明                                                                                                   |
 | ------ |------------------------------------------------------------------------------------------------------|
-| Promise&lt;number&gt; | Promise对象，返回生成的快照文件路径（[应用沙箱内路径](../../file-management/app-sandbox-directory.md#应用沙箱路径和真实物理路径的对应关系)）。 |
+| Promise&lt;string&gt; | Promise对象，返回生成的快照文件路径（[应用沙箱内路径](../../file-management/app-sandbox-directory.md#应用沙箱路径和真实物理路径的对应关系)）。 |
 
 **错误码：**
 
@@ -1090,7 +1090,6 @@ dumpJsRawHeapData(needGC?: boolean): Promise&lt;string&gt;
 
 | 错误码ID    | 错误信息 |
 |----------| ----------------------------------------------------------------- |
-| 401      | Invalid parameter. |
 | 11400106 | Quota exceeded. |
 | 11400107 | Fork operation failed. |
 | 11400108 | Failed to wait for the child process to finish. |

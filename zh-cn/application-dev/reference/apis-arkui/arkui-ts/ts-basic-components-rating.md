@@ -303,7 +303,7 @@ type OnRatingChangeCallback = (rating: number) => void
 @Entry
 @Component
 struct RatingExample {
-  @State rating: number = 3.5
+  @State rating: number = 3.5;
 
   build() {
     Column() {
@@ -313,7 +313,7 @@ struct RatingExample {
           .stepSize(0.5)
           .margin({ top: 24 })
           .onChange((value: number) => {
-            this.rating = value
+            this.rating = value;
           })
         Text('current score is ' + this.rating)
           .fontSize(16)
@@ -361,7 +361,7 @@ struct RatingExample {
 @Entry
 @Component
 struct RatingExample {
-  @State rating: number = 3.5
+  @State rating: number = 3.5;
 
   build() {
     Column() {
@@ -375,7 +375,7 @@ struct RatingExample {
         })
         .margin({ top: 24 })
         .onChange((value: number) => {
-          this.rating = value
+          this.rating = value;
         })
       Text('current score is ' + this.rating)
         .fontSize(16)
@@ -395,18 +395,21 @@ struct RatingExample {
 ```ts
 // xxx.ets
 class MyRatingStyle implements ContentModifier<RatingConfiguration> {
-  name: string = ""
-  style: number = 0
+  name: string = "";
+  style: number = 0;
+
   constructor(value1: string, value2: number) {
-    this.name = value1
-    this.style = value2
+    this.name = value1;
+    this.style = value2;
   }
-  applyContent() : WrappedBuilder<[RatingConfiguration]> {
-    return wrapBuilder(buildRating)
+
+  applyContent(): WrappedBuilder<[RatingConfiguration]> {
+    return wrapBuilder(buildRating);
   }
 }
 
-@Builder function buildRating(config: RatingConfiguration) {
+@Builder
+function buildRating(config: RatingConfiguration) {
   Column() {
     Row() {
       Circle({ width: 25, height: 25 })
@@ -443,7 +446,7 @@ class MyRatingStyle implements ContentModifier<RatingConfiguration> {
               return
             }
           }
-        }).visibility(config.stars >= 2 ? Visibility.Visible : Visibility.Hidden).margin({left:10})
+        }).visibility(config.stars >= 2 ? Visibility.Visible : Visibility.Hidden).margin({ left: 10 })
       Circle({ width: 25, height: 25 })
         .fill(config.rating >= 1.9 ? Color.Black : Color.Red)
         .onClick((event: ClickEvent) => {
@@ -464,7 +467,7 @@ class MyRatingStyle implements ContentModifier<RatingConfiguration> {
               return
             }
           }
-        }).visibility(config.stars >= 3 ? Visibility.Visible : Visibility.Hidden).margin({left:10})
+        }).visibility(config.stars >= 3 ? Visibility.Visible : Visibility.Hidden).margin({ left: 10 })
       Circle({ width: 25, height: 25 })
         .fill(config.rating >= 2.9 ? Color.Black : Color.Red)
         .onClick((event: ClickEvent) => {
@@ -485,7 +488,7 @@ class MyRatingStyle implements ContentModifier<RatingConfiguration> {
               return
             }
           }
-        }).visibility(config.stars >= 4 ? Visibility.Visible : Visibility.Hidden).margin({left:10})
+        }).visibility(config.stars >= 4 ? Visibility.Visible : Visibility.Hidden).margin({ left: 10 })
       Circle({ width: 25, height: 25 })
         .fill(config.rating >= 3.9 ? Color.Black : Color.Red)
         .onClick((event: ClickEvent) => {
@@ -506,7 +509,7 @@ class MyRatingStyle implements ContentModifier<RatingConfiguration> {
               return
             }
           }
-        }).visibility(config.stars >= 5 ? Visibility.Visible : Visibility.Hidden).margin({left:10})
+        }).visibility(config.stars >= 5 ? Visibility.Visible : Visibility.Hidden).margin({ left: 10 })
       Circle({ width: 25, height: 25 })
         .fill(config.rating >= 4.9 ? Color.Black : Color.Red)
         .onClick((event: ClickEvent) => {
@@ -515,6 +518,7 @@ class MyRatingStyle implements ContentModifier<RatingConfiguration> {
           }
         }).visibility(config.stars >= 5 ? Visibility.Visible : Visibility.Hidden)
     }
+
     Text("分值：" + config.rating)
   }
 }
@@ -527,6 +531,7 @@ struct ratingExample {
   @State ratingStars: number = 0;
   @State ratingStepsize: number = 0.5;
   @State ratingEnabled: boolean = true;
+
   build() {
     Row() {
       Column() {
@@ -540,41 +545,42 @@ struct ratingExample {
           .width('100%')
           .height(50)
           .onChange((value: number) => {
-            console.info('Rating change is'+ value);
-            this.rating = value
+            console.info('Rating change is' + value);
+            this.rating = value;
           })
           .contentModifier(new MyRatingStyle("hello", 3))
         Button(this.ratingIndicator ? "ratingIndicator : true" : "ratingIndicator : false")
           .onClick((event) => {
             if (this.ratingIndicator) {
-              this.ratingIndicator = false
+              this.ratingIndicator = false;
             } else {
-              this.ratingIndicator = true
+              this.ratingIndicator = true;
             }
-          }).margin({top : 5})
+          }).margin({ top: 5 })
 
         Button(this.ratingStars < 5 ? "ratingStars + 1, ratingStars =" + this.ratingStars : "ratingStars最大值为5")
           .onClick((event) => {
             if (this.ratingStars < 5) {
-              this.ratingStars += 1
+              this.ratingStars += 1;
             }
-          }).margin({top : 5})
+          }).margin({ top: 5 })
 
-        Button(this.ratingStars > 0 ? "ratingStars - 1, ratingStars =" + this.ratingStars : "ratingStars小于等于0时默认等于5")
+        Button(this.ratingStars > 0 ? "ratingStars - 1, ratingStars =" + this.ratingStars :
+          "ratingStars小于等于0时默认等于5")
           .onClick((event) => {
             if (this.ratingStars > 0) {
-              this.ratingStars -= 1
+              this.ratingStars -= 1;
             }
-          }).margin({top : 5})
+          }).margin({ top: 5 })
 
         Button(this.ratingStepsize == 0.5 ? "ratingStepsize : 0.5" : "ratingStepsize : 1")
           .onClick((event) => {
             if (this.ratingStepsize == 0.5) {
-              this.ratingStepsize = 1
+              this.ratingStepsize = 1;
             } else {
-              this.ratingStepsize = 0.5
+              this.ratingStepsize = 0.5;
             }
-          }).margin({top : 5})
+          }).margin({ top: 5 })
       }
       .width('100%')
       .height('100%')
