@@ -65,7 +65,7 @@ let wantTemp: Want = {
 
 try {
     let result: bluetoothManager.BluetoothInfo = bluetoothManager.getBluetoothInfo(wantTemp);
-    console.info(`Succeeded in getting bluetooth info： ${JSON.stringify(result)}`);
+    console.info(`Succeeded in getting bluetooth info: ${JSON.stringify(result)}`);
 } catch(err) {
     console.error(`Failed to get bluetooth info. Code: ${err.code}, message: ${err.message}`);
 }
