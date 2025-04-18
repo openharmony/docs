@@ -7,7 +7,7 @@
 
 **起始版本：** 18
 
-**相关模块：**[HiCollie](_hi_collie.md)
+**相关模块：** [HiCollie](_hi_collie.md)
 
 **所在头文件：** [hicollie.h](hicollie_8h.md)
 
