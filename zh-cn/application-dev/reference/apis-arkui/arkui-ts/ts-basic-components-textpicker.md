@@ -401,7 +401,6 @@ enableHapticFeedback(enable: Optional\<boolean>)
 >   "name": "ohos.permission.VIBRATE",
 >  }
 >  ]
->  ``
 >  ```
 
 ### digitalCrownSensitivity<sup>18+</sup>
