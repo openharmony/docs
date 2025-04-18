@@ -16,6 +16,8 @@
 
 XComponent(options: XComponentOptions)
 
+创建XComponent组件，支持在ArkTS侧获取SurfaceId、注册XComponent持有的Surface的生命周期回调和触摸、鼠标、按键等组件事件回调，支持AI分析。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -29,6 +31,8 @@ XComponent(options: XComponentOptions)
 ### XComponent<sup>10+</sup>
 
 XComponent(value: {id: string, type: XComponentType, libraryname?: string, controller?: XComponentController})
+
+创建XComponent组件，支持Native侧触发XComponent生命周期回调。
 
 该接口从API version 12开始不再演进，推荐使用[XComponent(options: XComponentOptions)](#xcomponent12)。
 
@@ -144,8 +148,6 @@ enableSecure(isSecure: boolean)
 >
 > 当配置libraryname参数时，[点击事件](ts-universal-events-click.md)、[触摸事件](ts-universal-events-touch.md)、[挂载卸载事件](ts-universal-events-show-hide.md)、[按键事件](ts-universal-events-key.md)、[焦点事件](ts-universal-focus-event.md)、[鼠标事件](ts-universal-mouse-key.md)仅响应C-API侧事件接口。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 仅type为SURFACE或TEXTURE时以下事件有效：
 
 ### onLoad
@@ -163,6 +165,10 @@ onLoad(callback: OnNativeLoadCallback )
 | 参数名   | 类型   | 必填   | 说明                                       |
 | ----- | ------ | ---- | ---------------------------------------- |
 | callback | [OnNativeLoadCallback](#onnativeloadcallback18) | 是    | XComponent持有的Surface创建后回调事件。 |
+
+> **说明：**
+> 
+> 使用自定义组件节点创建XComponent组件时，因为onLoad回调触发时机早于[onSurfaceCreated](#onsurfacecreated12),所以在onLoad回调中调用[getXComponentSurfaceId](#getxcomponentsurfaceid9)获取surfaceId会失败，建议在[onSurfaceCreated](#onsurfacecreated12)回调中获取。
 
 ### onDestroy
 
@@ -204,12 +210,6 @@ XComponent组件的控制器，可以将此对象绑定至XComponent组件，然
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-### 创建对象
-
-```
-xcomponentController: XComponentController = new XComponentController()
-```
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ### constructor
@@ -217,6 +217,10 @@ xcomponentController: XComponentController = new XComponentController()
 constructor()
 
 XComponentController的构造函数。
+
+```ts
+xcomponentController: XComponentController = new XComponentController()
+```
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
