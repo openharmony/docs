@@ -7556,28 +7556,6 @@ const char* OH_ArkUI_CustomProperty_GetStringValue (ArkUI_CustomProperty * handl
 
 自定义属性value信息。
 
-### OH_ArkUI_NodeUtils_GetAttachedNodeHandleById()
-
-```
-int32_t OH_ArkUI_NodeUtils_GetAttachedNodeHandleById(const char* id, ArkUI_NodeHandle* node)
-```
-**描述：**
-
-根据用户id获取目标节点。
-
-**起始版本：** 15
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| id | 目标节点的ID。 |
-| node | 目标节点。 |
-
-**返回：**
-
-返回错误码。ARKUI_ERROR_CODE_NO_ERROR代表成功，ARKUI_ERROR_CODE_PARAM_INVALID代表函数参数异常。
-
 ### OH_ArkUI_NodeUtils_GetWindowInfo()
 
 ```

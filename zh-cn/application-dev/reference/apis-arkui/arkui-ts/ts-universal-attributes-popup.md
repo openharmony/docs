@@ -131,8 +131,8 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 @Entry
 @Component
 struct PopupExample {
-  @State handlePopup: boolean = false
-  @State customPopup: boolean = false
+  @State handlePopup: boolean = false;
+  @State customPopup: boolean = false;
 
   // popup构造器定义弹框内容
   @Builder popupBuilder() {
@@ -147,7 +147,7 @@ struct PopupExample {
       // PopupOptions 类型设置弹框内容
       Button('PopupOptions')
         .onClick(() => {
-          this.handlePopup = !this.handlePopup
+          this.handlePopup = !this.handlePopup;
         })
         .bindPopup(this.handlePopup, {
           message: 'This is a popup with PopupOptions',
@@ -156,22 +156,22 @@ struct PopupExample {
           primaryButton: {
             value: 'confirm',
             action: () => {
-              this.handlePopup = !this.handlePopup
-              console.info('confirm Button click')
+              this.handlePopup = !this.handlePopup;
+              console.info('confirm Button click');
             }
           },
           // 第二个按钮
           secondaryButton: {
             value: 'cancel',
             action: () => {
-              this.handlePopup = !this.handlePopup
-              console.info('cancel Button click')
+              this.handlePopup = !this.handlePopup;
+              console.info('cancel Button click');
             }
           },
           onStateChange: (e) => {
             console.info(JSON.stringify(e.isVisible))
             if (!e.isVisible) {
-              this.handlePopup = false
+              this.handlePopup = false;
             }
           }
         })
@@ -181,7 +181,7 @@ struct PopupExample {
       // CustomPopupOptions 类型设置弹框内容
       Button('CustomPopupOptions')
         .onClick(() => {
-          this.customPopup = !this.customPopup
+          this.customPopup = !this.customPopup;
         })
         .bindPopup(this.customPopup, {
           builder: this.popupBuilder,
@@ -192,7 +192,7 @@ struct PopupExample {
           showInSubWindow: false,
           onStateChange: (e) => {
             if (!e.isVisible) {
-              this.customPopup = false
+              this.customPopup = false;
             }
           }
         })
@@ -214,13 +214,13 @@ struct PopupExample {
 @Entry
 @Component
 struct PopupExample {
-  @State handlePopup: boolean = false
+  @State handlePopup: boolean = false;
 
   build() {
     Column({ space: 100 }) {
       Button('PopupOptions').margin(100)
         .onClick(() => {
-          this.handlePopup = !this.handlePopup
+          this.handlePopup = !this.handlePopup;
         })
         .bindPopup(this.handlePopup, {
           // PopupOptions类型气泡的内容
@@ -238,9 +238,9 @@ struct PopupExample {
           enableArrow: false, // 气泡弹出时不显示箭头
           targetSpace: '15vp',
           onStateChange: (e) => {
-            console.info(JSON.stringify(e.isVisible))
+            console.info(JSON.stringify(e.isVisible));
             if (!e.isVisible) {
-              this.handlePopup = false
+              this.handlePopup = false;
             }
           }
         })
@@ -261,15 +261,15 @@ struct PopupExample {
 @Entry
 @Component
 struct PopupExample {
-  @State customPopup: boolean = false
-  @State handlePopup: boolean = false
+  @State customPopup: boolean = false;
+  @State handlePopup: boolean = false;
 
   build() {
     Column({ space: 100 }) {
       Button("popup")
         .margin({ top: 50 })
         .onClick(() => {
-          this.customPopup = !this.customPopup
+          this.customPopup = !this.customPopup;
         })
         .bindPopup(this.customPopup, {
           message: "this is a popup",
@@ -281,7 +281,7 @@ struct PopupExample {
 
       Button('PopupOptions')
         .onClick(() => {
-          this.handlePopup = !this.handlePopup
+          this.handlePopup = !this.handlePopup;
         })
         .bindPopup(this.handlePopup, {
           width: 300,
@@ -308,8 +308,8 @@ struct PopupExample {
 @Entry
 @Component
 struct PopupExample {
-  @State handlePopup: boolean = false
-  @State customPopup: boolean = false
+  @State handlePopup: boolean = false;
+  @State customPopup: boolean = false;
 
   // popup构造器定义弹框内容
   @Builder popupBuilder() {
@@ -323,7 +323,7 @@ struct PopupExample {
       // PopupOptions 类型设置弹框内容
       Button('PopupOptions')
         .onClick(() => {
-          this.handlePopup = !this.handlePopup
+          this.handlePopup = !this.handlePopup;
         })
         .bindPopup(this.handlePopup, {
           message: 'This is a popup with transitionEffect',
@@ -332,7 +332,7 @@ struct PopupExample {
           onStateChange: (e) => {
             console.info(JSON.stringify(e.isVisible))
             if (!e.isVisible) {
-              this.handlePopup = false
+              this.handlePopup = false;
             }
           },
           // 设置弹窗显示动效为透明度动效与平移动效的组合效果，无退出动效
@@ -346,7 +346,7 @@ struct PopupExample {
       // CustomPopupOptions 类型设置弹框内容
       Button('CustomPopupOptions')
         .onClick(() => {
-          this.customPopup = !this.customPopup
+          this.customPopup = !this.customPopup;
         })
         .bindPopup(this.customPopup, {
           builder: this.popupBuilder,
@@ -354,7 +354,7 @@ struct PopupExample {
           showInSubWindow: false,
           onStateChange: (e) => {
             if (!e.isVisible) {
-              this.customPopup = false
+              this.customPopup = false;
             }
           },
           // 设置弹窗显示动效与退出动效为缩放动效
@@ -378,12 +378,12 @@ struct PopupExample {
 @Entry
 @Component
 struct PopupExample {
-  @State handlePopup: boolean = false
+  @State handlePopup: boolean = false;
   build() {
     Column() {
       Button('PopupOptions')
         .onClick(() => {
-          this.handlePopup = true
+          this.handlePopup = true;
         })
         .bindPopup(this.handlePopup, {
           message: 'This is a popup with PopupOptions',
@@ -400,14 +400,14 @@ struct PopupExample {
           targetSpace: '15vp',
           onStateChange: (e) => {
             if (!e.isVisible) {
-              this.handlePopup = false
+              this.handlePopup = false;
             }
           },
           onWillDismiss: (
             (dismissPopupAction: DismissPopupAction) => {
-              console.info("dismissReason:" + JSON.stringify(dismissPopupAction.reason))
-              if (dismissPopupAction.reason == DismissReason.PRESS_BACK) {
-                dismissPopupAction.dismiss()
+              console.info("dismissReason:" + JSON.stringify(dismissPopupAction.reason));
+              if (dismissPopupAction.reason === DismissReason.PRESS_BACK) {
+                dismissPopupAction.dismiss();
               }
             }
           )
@@ -429,12 +429,13 @@ struct PopupExample {
 @Entry
 @Component
 struct PopupExample {
-  @State handlePopup: boolean = false
+  @State handlePopup: boolean = false;
+
   build() {
     Column() {
       Button('PopupOptions')
         .onClick(() => {
-          this.handlePopup = true
+          this.handlePopup = true;
         })
         .bindPopup(this.handlePopup, {
           message: 'This is a popup with PopupOptions',
@@ -451,10 +452,12 @@ struct PopupExample {
           targetSpace: '15vp',
           followTransformOfTarget: true,
           onStateChange: (e) => {
-            let timer = setTimeout(()=>{this.handlePopup = false},6000)
+            let timer = setTimeout(() => {
+              this.handlePopup = false;
+            }, 6000);
             if (!e.isVisible) {
-              this.handlePopup = false
-              clearTimeout(timer)
+              this.handlePopup = false;
+              clearTimeout(timer);
             }
           },
           onWillDismiss: false

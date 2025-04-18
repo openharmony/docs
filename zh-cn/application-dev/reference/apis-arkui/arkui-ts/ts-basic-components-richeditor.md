@@ -428,6 +428,8 @@ onIMEInputComplete(callback:Callback\<[RichEditorTextSpanResult](#richeditortext
 
 输入法完成输入后，触发回调。
 
+该接口仅支持返回一个文本span的信息，当编辑操作涉及返回多个文本span信息时，建议使用[onDidIMEInput](#ondidimeinput12)接口。
+
 使用[RichEditorStyledStringOptions](#richeditorstyledstringoptions12)构建的RichEditor组件时不支持该回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
