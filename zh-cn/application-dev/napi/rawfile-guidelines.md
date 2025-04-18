@@ -340,8 +340,8 @@
                     hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
                     let rawfilelist = testNapi.getFileList(this.resmgr, ""); //传入资源对象，以及访问的rawfile文件夹名称
                     console.log("rawfilelist" + rawfilelist);
-                    let rawfileContet = testNapi.getRawFileContent(this.resmgr, "rawfile1.txt");
-                    console.log("rawfileContet" + rawfileContet);
+                    let rawfileContent = testNapi.getRawFileContent(this.resmgr, "rawfile1.txt");
+                    console.log("rawfileContent" + rawfileContent);
                     let rawfileDescriptor = testNapi.getRawFileDescriptor(this.resmgr, "rawfile1.txt");
                     console.log("getRawFileDescriptor" + rawfileDescriptor.fd, rawfileDescriptor.offset, rawfileDescriptor.length);
                     let ret = testNapi.isRawDir(this.resmgr, "rawfile1.txt");
