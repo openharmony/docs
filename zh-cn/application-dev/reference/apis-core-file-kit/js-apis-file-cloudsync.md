@@ -811,7 +811,7 @@ registerChange(uri: string, recursion: boolean, callback: Callback&lt;ChangeData
   import { fileUri } from '@kit.CoreFileKit';
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
-  let onCallback1 = (changeData: ChangeData) => {
+  let onCallback1 = (changeData: cloudSync.ChangeData) => {
     if (changeData.type == cloudSync.NotifyType.NOTIFY_ADDED) {
       //file had added, do something
     } else if (changeData.type== cloudSync.NotifyType.NOTIFY_DELETED) {
@@ -820,7 +820,7 @@ registerChange(uri: string, recursion: boolean, callback: Callback&lt;ChangeData
   }
   cloudSync.registerChange(uri, false, onCallback1);
   // 取消注册监听
-  cloudSync.unRegisterChange(uri);
+  cloudSync.unregisterChange(uri);
   ```
 
 ## cloudSync.unregisterChange<sup>12+</sup>
@@ -856,7 +856,7 @@ unregisterChange(uri: string): void
   import { fileUri } from '@kit.CoreFileKit';
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
-  let onCallback1 = (changeData: ChangeData) => {
+  let onCallback1 = (changeData: cloudSync.ChangeData) => {
     if (changeData.type == cloudSync.NotifyType.NOTIFY_ADDED) {
       //file had added, do something
     } else if (changeData.type== cloudSync.NotifyType.NOTIFY_DELETED) {
@@ -865,7 +865,7 @@ unregisterChange(uri: string): void
   }
   cloudSync.registerChange(uri, false, onCallback1);
   // 取消注册监听
-  cloudSync.unRegisterChange(uri);
+  cloudSync.unregisterChange(uri);
   ```
 
 ## NotifyType<sup>12+</sup>
