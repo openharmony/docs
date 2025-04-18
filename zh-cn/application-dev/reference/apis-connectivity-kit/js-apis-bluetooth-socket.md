@@ -454,7 +454,6 @@ sppWriteAsync(clientSocket: number, data: ArrayBuffer): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
-|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.              |
 |801 | Capability not supported.          |
 |2901054 | IO error. |
 |2900099 | Operation failed. |
@@ -507,7 +506,6 @@ sppReadAsync(clientSocket: number): Promise&lt;ArrayBuffer&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
-|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.              |
 |801 | Capability not supported.          |
 |2901054 | IO error. |
 |2900099 | Operation failed. |

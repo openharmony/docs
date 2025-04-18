@@ -649,15 +649,15 @@ type SliderTriggerChangeCallback = (value: number, mode: SliderChangeMode) => vo
 @Entry
 @Component
 struct SliderExample {
-  @State outSetValueOne: number = 40
-  @State inSetValueOne: number = 40
-  @State noneValueOne: number = 40
-  @State outSetValueTwo: number = 40
-  @State inSetValueTwo: number = 40
-  @State vOutSetValueOne: number = 40
-  @State vInSetValueOne: number = 40
-  @State vOutSetValueTwo: number = 40
-  @State vInSetValueTwo: number = 40
+  @State outSetValueOne: number = 40;
+  @State inSetValueOne: number = 40;
+  @State noneValueOne: number = 40;
+  @State outSetValueTwo: number = 40;
+  @State inSetValueTwo: number = 40;
+  @State vOutSetValueOne: number = 40;
+  @State vInSetValueOne: number = 40;
+  @State vOutSetValueTwo: number = 40;
+  @State vInSetValueTwo: number = 40;
 
   build() {
     Column({ space: 8 }) {
@@ -671,8 +671,8 @@ struct SliderExample {
         })
           .showTips(true)
           .onChange((value: number, mode: SliderChangeMode) => {
-            this.outSetValueOne = value
-            console.info('value:' + value + 'mode:' + mode.toString())
+            this.outSetValueOne = value;
+            console.info('value:' + value + 'mode:' + mode.toString());
           })
         // toFixed(0)将滑动条返回值处理为整数精度
         Text(this.outSetValueOne.toFixed(0)).fontSize(12)
@@ -686,8 +686,8 @@ struct SliderExample {
         })
           .showSteps(true)
           .onChange((value: number, mode: SliderChangeMode) => {
-            this.outSetValueTwo = value
-            console.info('value:' + value + 'mode:' + mode.toString())
+            this.outSetValueTwo = value;
+            console.info('value:' + value + 'mode:' + mode.toString());
           })
         Text(this.outSetValueTwo.toFixed(0)).fontSize(12)
       }
@@ -706,8 +706,8 @@ struct SliderExample {
           .selectedColor('#4169E1')
           .showTips(true)
           .onChange((value: number, mode: SliderChangeMode) => {
-            this.inSetValueOne = value
-            console.info('value:' + value + 'mode:' + mode.toString())
+            this.inSetValueOne = value;
+            console.info('value:' + value + 'mode:' + mode.toString());
           })
         Text(this.inSetValueOne.toFixed(0)).fontSize(12)
       }
@@ -723,8 +723,8 @@ struct SliderExample {
           .selectedColor('#4169E1')
           .showSteps(true)
           .onChange((value: number, mode: SliderChangeMode) => {
-            this.inSetValueTwo = value
-            console.info('value:' + value + 'mode:' + mode.toString())
+            this.inSetValueTwo = value;
+            console.info('value:' + value + 'mode:' + mode.toString());
           })
         Text(this.inSetValueTwo.toFixed(0)).fontSize(12)
       }
@@ -743,8 +743,8 @@ struct SliderExample {
           .selectedColor('#4169E1')
           .showTips(true)
           .onChange((value: number, mode: SliderChangeMode) => {
-            this.noneValueOne = value
-            console.info('value:' + value + 'mode:' + mode.toString())
+            this.noneValueOne = value;
+            console.info('value:' + value + 'mode:' + mode.toString());
           })
         Text(this.noneValueOne.toFixed(0)).fontSize(12)
       }
@@ -765,8 +765,8 @@ struct SliderExample {
               .selectedColor('#4169E1')
               .showTips(true)
               .onChange((value: number, mode: SliderChangeMode) => {
-                this.vOutSetValueOne = value
-                console.info('value:' + value + 'mode:' + mode.toString())
+                this.vOutSetValueOne = value;
+                console.info('value:' + value + 'mode:' + mode.toString());
               })
             Slider({
               value: this.vOutSetValueTwo,
@@ -779,8 +779,8 @@ struct SliderExample {
               .selectedColor('#4169E1')
               .showSteps(true)
               .onChange((value: number, mode: SliderChangeMode) => {
-                this.vOutSetValueTwo = value
-                console.info('value:' + value + 'mode:' + mode.toString())
+                this.vOutSetValueTwo = value;
+                console.info('value:' + value + 'mode:' + mode.toString());
               })
           }
         }.width('50%').height(300)
@@ -796,8 +796,8 @@ struct SliderExample {
             })
               .showTips(true)
               .onChange((value: number, mode: SliderChangeMode) => {
-                this.vInSetValueOne = value
-                console.info('value:' + value + 'mode:' + mode.toString())
+                this.vInSetValueOne = value;
+                console.info('value:' + value + 'mode:' + mode.toString());
               })
             Slider({
               value: this.vInSetValueTwo,
@@ -808,8 +808,8 @@ struct SliderExample {
             })
               .showSteps(true)
               .onChange((value: number, mode: SliderChangeMode) => {
-                this.vInSetValueTwo = value
-                console.info('value:' + value + 'mode:' + mode.toString())
+                this.vInSetValueTwo = value;
+                console.info('value:' + value + 'mode:' + mode.toString());
               })
           }
         }.width('50%').height(300)
@@ -829,7 +829,7 @@ struct SliderExample {
 @Entry
 @Component
 struct SliderExample {
-  @State tipsValue: number = 40
+  @State tipsValue: number = 40;
 
   build() {
     Column({ space: 8 }) {
@@ -867,7 +867,7 @@ struct SliderExample {
       Slider({ style: SliderStyle.InSet, value: this.tipsValue })
         .showTips(true, this.tipsValue.toFixed())
         .onChange(value => {
-          this.tipsValue = value
+          this.tipsValue = value;
         })
     }
   }
@@ -885,54 +885,57 @@ struct SliderExample {
 ```ts
 // xxx.ets
 
-@Builder function buildSlider(config: SliderConfiguration) {
+@Builder
+function buildSlider(config: SliderConfiguration) {
   Row() {
-    Column({space: 30}) {
-      Progress({value: config.value, total: config.max, type:ProgressType.Ring})
-        .margin({ top:20 })
+    Column({ space: 30 }) {
+      Progress({ value: config.value, total: config.max, type: ProgressType.Ring })
+        .margin({ top: 20 })
 
-      Button('增加').onClick(() => {
-        config.value = config.value + config.step
-        config.triggerChange(config.value, SliderChangeMode.Click)
-      })
+      Button('增加')
+        .onClick(() => {
+          config.value = config.value + config.step;
+          config.triggerChange(config.value, SliderChangeMode.Click);
+        })
         .width(100)
         .height(25)
         .fontSize(10)
-        .enabled(config.value<config.max)
+        .enabled(config.value < config.max)
 
-      Button('减少').onClick(() => {
-        config.value=config.value-config.step
-        config.triggerChange(config.value, SliderChangeMode.Click)
-      })
+      Button('减少')
+        .onClick(() => {
+          config.value = config.value - config.step;
+          config.triggerChange(config.value, SliderChangeMode.Click);
+        })
         .width(100)
         .height(25)
         .fontSize(10)
-        .enabled(config.value>config.min)
+        .enabled(config.value > config.min)
 
       Slider({
         value: config.value,
         min: config.min,
         max: config.max,
-        step:config.step,
+        step: config.step,
       })
         .width(config.max)
-        .visibility((config.contentModifier as MySliderStyle).showSlider?Visibility.Visible:Visibility.Hidden)
+        .visibility((config.contentModifier as MySliderStyle).showSlider ? Visibility.Visible : Visibility.Hidden)
         .showSteps(true)
         .onChange((value: number, mode: SliderChangeMode) => {
-          config.triggerChange(value, mode)
+          config.triggerChange(value, mode);
         })
-      Text('当前状态：'+ ((config.contentModifier as MySliderStyle).sliderChangeMode==0?"Begin"
-        :((config.contentModifier as MySliderStyle).sliderChangeMode==1?"Moving"
-          :((config.contentModifier as MySliderStyle).sliderChangeMode==2?"End"
-            :((config.contentModifier as MySliderStyle).sliderChangeMode==3?"Click":"无")))))
+      Text('当前状态：' + ((config.contentModifier as MySliderStyle).sliderChangeMode == 0 ? "Begin"
+        : ((config.contentModifier as MySliderStyle).sliderChangeMode == 1 ? "Moving"
+          : ((config.contentModifier as MySliderStyle).sliderChangeMode == 2 ? "End"
+            : ((config.contentModifier as MySliderStyle).sliderChangeMode == 3 ? "Click" : "无")))))
         .fontSize(10)
-      Text('进度值：'+ config.value)
+      Text('进度值：' + config.value)
         .fontSize(10)
-      Text('最小值：'+ config.min)
+      Text('最小值：' + config.min)
         .fontSize(10)
-      Text('最大值：'+ config.max)
+      Text('最大值：' + config.max)
         .fontSize(10)
-      Text('步长：'+ config.step)
+      Text('步长：' + config.step)
         .fontSize(10)
     }
     .width('80%')
@@ -942,14 +945,16 @@ struct SliderExample {
 }
 
 class MySliderStyle implements ContentModifier<SliderConfiguration> {
-  showSlider:boolean=true
-  sliderChangeMode:number=0
-  constructor(showSlider: boolean,sliderChangeMode:number) {
-    this.showSlider = showSlider
-    this.sliderChangeMode = sliderChangeMode
+  showSlider: boolean = true;
+  sliderChangeMode: number = 0;
+
+  constructor(showSlider: boolean, sliderChangeMode: number) {
+    this.showSlider = showSlider;
+    this.sliderChangeMode = sliderChangeMode;
   }
-  applyContent() : WrappedBuilder<[SliderConfiguration]> {
-    return wrapBuilder(buildSlider)
+
+  applyContent(): WrappedBuilder<[SliderConfiguration]> {
+    return wrapBuilder(buildSlider);
   }
 }
 
@@ -957,12 +962,12 @@ class MySliderStyle implements ContentModifier<SliderConfiguration> {
 @Entry
 @Component
 struct SliderExample {
-  @State showSlider:boolean=true
-  @State sliderValue: number = 0
-  @State sliderMin: number = 10
-  @State sliderMax: number = 100
-  @State sliderStep: number = 20
-  @State sliderChangeMode: number = 0
+  @State showSlider: boolean = true;
+  @State sliderValue: number = 0;
+  @State sliderMin: number = 10;
+  @State sliderMax: number = 100;
+  @State sliderStep: number = 20;
+  @State sliderChangeMode: number = 0;
 
   build() {
     Column({ space: 8 }) {
@@ -972,15 +977,15 @@ struct SliderExample {
           value: this.sliderValue,
           min: this.sliderMin,
           max: this.sliderMax,
-          step:this.sliderStep,
+          step: this.sliderStep,
         })
           .showSteps(true)
           .onChange((value: number, mode: SliderChangeMode) => {
-            this.sliderValue = value
-            this.sliderChangeMode=mode
-            console.info('【SliderLog】value:' + value + 'mode:' + mode.toString())
+            this.sliderValue = value;
+            this.sliderChangeMode = mode;
+            console.info('【SliderLog】value:' + value + 'mode:' + mode.toString());
           })
-          .contentModifier(new MySliderStyle(this.showSlider,this.sliderChangeMode))
+          .contentModifier(new MySliderStyle(this.showSlider, this.sliderChangeMode))
 
       }
       .width('100%')

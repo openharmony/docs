@@ -1574,6 +1574,8 @@ typedef struct OH_Drawing_GpuContextOptions OH_Drawing_GpuContextOptions
 
 **起始版本：** 12
 
+**废弃：** 从API version 18开始废弃。
+
 
 ### OH_Drawing_Image
 
@@ -11118,6 +11120,8 @@ OH_Drawing_GpuContext* OH_Drawing_GpuContextCreateFromGL (OH_Drawing_GpuContextO
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
+
+**废弃：** 从API version 18开始废弃，请使用[OH_Drawing_GpuContextCreate](#oh_drawing_gpucontextcreate)替代。
 
 **参数:**
 

@@ -1338,7 +1338,7 @@ let value: preferences.ValueType = dataPreferences.getSync('startup', 'default')
 
 ### getAll
 
-getAll(callback: AsyncCallback&lt;Object&gt;): void;
+getAll(callback: AsyncCallback&lt;Object&gt;): void
 
 从缓存的Preferences实例中获取所有键值数据。
 

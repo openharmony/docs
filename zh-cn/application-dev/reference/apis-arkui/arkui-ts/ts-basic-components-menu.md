@@ -175,9 +175,9 @@ Menu子菜单展开样式枚举。
 @Entry
 @Component
 struct Index {
-  @State select: boolean = true
-  private iconStr: ResourceStr = $r("app.media.view_list_filled")
-  private iconStr2: ResourceStr = $r("app.media.arrow_right_filled")
+  @State select: boolean = true;
+  private iconStr: ResourceStr = $r("app.media.view_list_filled");
+  private iconStr2: ResourceStr = $r("app.media.arrow_right_filled");
 
   @Builder
   SubMenu() {

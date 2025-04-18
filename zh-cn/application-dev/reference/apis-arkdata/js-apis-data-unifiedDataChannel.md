@@ -913,17 +913,29 @@ File类型数据，是[UnifiedRecord](#unifiedrecord)的子类，也是文件类
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | details | Record<string, string> | 否 | 是 | 是一个字典类型对象，key和value都是string类型，用于描述文件相关信息。例如，可生成一个details内容为<br/>{<br/>"name":"文件名",<br/>"type":"文件类型"<br/>}<br/>的数据对象，用于描述一个文件。非必填字段，默认值为空字典对象。 |
-| uri     | string                    | 否 | 否 | 文件数据uri。                                                                                                                                             |
+| uri     | string                    | 否 | 否 | 本地文件数据uri或网络文件uri，本地文件数据uri可通过[getUriFromPath](../apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath)函数获取。                                                                                                                                            |
 
 **示例：**
 
 ```ts
-let file = new unifiedDataChannel.File();
-file.details = {
-    name: 'test',
-    type: 'txt',
-};
-file.uri = 'schema://com.samples.test/files/test.txt';
+import { unifiedDataChannel } from '@kit.ArkData';
+import { fileUri } from '@kit.CoreFileKit'
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    let context = this.context;
+    let pathDir = context.filesDir;
+    let file = new unifiedDataChannel.File();
+    file.details = {
+        name: 'test',
+        type: 'txt',
+    };
+    let filePath = pathDir + '/test.txt';
+    file.uri = fileUri.getUriFromPath(filePath);
+  }
+}
 ```
 
 ## Image
@@ -936,13 +948,25 @@ file.uri = 'schema://com.samples.test/files/test.txt';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| imageUri | string | 否 | 否 | 图片数据uri。 |
+| imageUri | string | 否 | 否 | 本地图片数据uri或网络图片uri，本地图片数据uri可通过[getUriFromPath](../apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath)函数获取。 |
 
 **示例：**
 
 ```ts
-let image = new unifiedDataChannel.Image();
-image.imageUri = 'schema://com.samples.test/files/test.jpg';
+import { unifiedDataChannel } from '@kit.ArkData';
+import { fileUri } from '@kit.CoreFileKit'
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    let context = this.context;
+    let pathDir = context.filesDir;
+    let image = new unifiedDataChannel.Image();
+    let filePath = pathDir + '/test.jpg';
+    image.imageUri = fileUri.getUriFromPath(filePath);
+  }
+}
 ```
 
 ## Video
@@ -955,13 +979,25 @@ image.imageUri = 'schema://com.samples.test/files/test.jpg';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| videoUri | string | 否 | 否 | 视频数据uri。 |
+| videoUri | string | 否 | 否 | 本地视频数据uri或网络视频uri，本地视频数据uri可通过[getUriFromPath](../apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath)函数获取。 |
 
 **示例：**
 
 ```ts
-let video = new unifiedDataChannel.Video();
-video.videoUri = 'schema://com.samples.test/files/test.mp4';
+import { unifiedDataChannel } from '@kit.ArkData';
+import { fileUri } from '@kit.CoreFileKit'
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    let context = this.context;
+    let pathDir = context.filesDir;
+    let video = new unifiedDataChannel.Video();
+    let filePath = pathDir + '/test.mp4';
+    video.videoUri =fileUri.getUriFromPath(filePath);
+  }
+}
 ```
 
 ## Audio
@@ -974,13 +1010,25 @@ video.videoUri = 'schema://com.samples.test/files/test.mp4';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| audioUri | string | 否 | 否 | 音频数据uri。 |
+| audioUri | string | 否 | 否 | 本地音频数据uri或网络音频uri，本地音频数据uri可通过[getUriFromPath](../apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath)函数获取。 |
 
 **示例：**
 
 ```ts
-let audio = new unifiedDataChannel.Audio();
-audio.audioUri = 'schema://com.samples.test/files/test.mp3';
+import { unifiedDataChannel } from '@kit.ArkData';
+import { fileUri } from '@kit.CoreFileKit'
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    let context = this.context;
+    let pathDir = context.filesDir;
+    let audio = new unifiedDataChannel.Audio();
+    let filePath = pathDir + '/test.mp3';
+    audio.audioUri = fileUri.getUriFromPath(filePath);
+  }
+}
 ```
 
 ## Folder
@@ -993,13 +1041,25 @@ audio.audioUri = 'schema://com.samples.test/files/test.mp3';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| folderUri | string | 否 | 否 | 文件夹uri。 |
+| folderUri | string | 否 | 否 | 本地文件夹数据uri或网络文件夹uri，本地文件夹数据uri可通过[getUriFromPath](../apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath)函数获取。 |
 
 **示例：**
 
 ```ts
-let folder = new unifiedDataChannel.Folder();
-folder.folderUri = 'schema://com.samples.test/files/folder/';
+import { unifiedDataChannel } from '@kit.ArkData';
+import { fileUri } from '@kit.CoreFileKit'
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    let context = this.context;
+    let pathDir = context.filesDir;
+    let folder = new unifiedDataChannel.Folder();
+    let filePath = pathDir + '/folder';
+    folder.folderUri = fileUri.getUriFromPath(filePath);
+  }
+}
 ```
 
 ## SystemDefinedRecord
@@ -1924,7 +1984,7 @@ convertRecordsToEntries(data: UnifiedData): void
 
 ```ts
 import { unifiedDataChannel } from '@kit.ArkData';
-import { uniformDataStruct } from '@kit.ArkData';
+import { uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let details : Record<string, string> = {

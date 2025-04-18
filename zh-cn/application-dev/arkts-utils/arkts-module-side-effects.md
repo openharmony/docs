@@ -268,7 +268,7 @@ Stacktrace:
 
 **优化方式**
 
-尽量避免模块间的循环依赖，确保模块的加载顺序是明确和可控的，以避免产生意外的副作用。[@security/no-cycle循环依赖检查工具](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide_no-cycle-V5) 可以辅助检查循环依赖。
+尽量避免模块间的循环依赖，确保模块的加载顺序是明确和可控的，以避免产生意外的副作用。[@security/no-cycle循环依赖检查工具](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide_no-cycle) 可以辅助检查循环依赖。
 ### 延迟加载（lazy import）改变模块执行顺序，可能导致预期的全局变量未定义
 **副作用产生场景**
 
