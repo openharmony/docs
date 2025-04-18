@@ -199,6 +199,8 @@ AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 AV_ERR_INVALID_STATE：本接口必须在OH_VideoEncoder_Prepare接口前调用，如果在其他状态时调用，则返回此错误码。
 
+AV_ERR_UNSUPPORT：未支持的功能。
+
 
 ### OH_VideoEncoder_CreateByMime()
 
