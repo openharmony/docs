@@ -1054,9 +1054,9 @@ cancelButton(symbolOptions: CancelButtonSymbolOptions)
 
 ellipsisMode(mode: Optional\<EllipsisMode>)
 
-设置省略位置。ellipsisMode属性需要配合overflow设置为TextOverflow.Ellipsis使用，单独设置ellipsisMode属性不生效。
+设置省略位置。ellipsisMode属性仅在内联模式下生效，需要配合overflow设置为TextOverflow.Ellipsis使用，单独设置ellipsisMode属性不生效。
 
-EllipsisMode.START和EllipsisMode.CENTER仅在内联模式下maxLines设置为1时生效。
+非编辑态时正常生效，编辑态时EllipsisMode.START和EllipsisMode.CENTER仅在maxline设置为1时生效，EllipsisMode.END正常生效。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
