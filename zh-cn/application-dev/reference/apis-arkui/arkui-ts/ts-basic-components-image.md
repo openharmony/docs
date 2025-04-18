@@ -890,6 +890,7 @@ struct ImageExample2 {
           console.error('image createPixelMap success');
           this.pixelMapImg = pixelMap;
         })
+        imgSource.release()
       }
     })
   }
