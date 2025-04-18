@@ -59,11 +59,11 @@ unsigned char [] OmxCodecBuffer::alongParam
 ### bufferhandle
 
 ```
-BufferHandleParcelable OmxCodecBuffer::bufferhandle
+NativeBuffer OmxCodecBuffer::bufferhandle
 ```
 **描述**
 
-编码或者解码使用的bufferhandle，详见**BufferHandleParcelable**。
+编码或者解码使用的bufferhandle，详见[NativeBuffer](https://gitee.com/openharmony-sig/interface_native_header/blob/master/zh-cn/native_sdk/multimedia/media_foundation/native_avbuffer.h)。
 
 
 ### bufferId
