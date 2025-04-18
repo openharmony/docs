@@ -10,7 +10,7 @@ AppStorageV2是提供状态变量在应用级全局共享的能力，开发者�
 >
 >AppStorageV2从API version 12开始支持。
 >
-
+>预览器上暂不支持使用AppStorageV2及其API功能。
 
 ## 概述
 

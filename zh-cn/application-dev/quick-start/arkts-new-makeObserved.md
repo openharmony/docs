@@ -8,6 +8,8 @@ makeObserved可以在\@Trace无法标记的情况下使用。在阅读本文档�
 >**说明：**
 >
 >从API version 12开始，开发者可以使用UIUtils中的makeObserved接口将普通不可观察数据变为可观察数据。
+>
+>预览器上暂不支持使用UIUtils.makeObserved接口。
 
 ## 概述
 
