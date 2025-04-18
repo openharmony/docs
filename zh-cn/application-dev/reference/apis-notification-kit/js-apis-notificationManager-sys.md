@@ -2216,6 +2216,8 @@ notificationManager.getDoNotDisturbDate(userId).then((data: notificationManager.
 
 查询是否支持免打扰功能。使用callback异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
@@ -2237,6 +2239,7 @@ notificationManager.getDoNotDisturbDate(userId).then((data: notificationManager.
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
