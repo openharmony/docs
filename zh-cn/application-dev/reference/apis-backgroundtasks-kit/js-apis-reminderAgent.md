@@ -62,9 +62,9 @@ publishReminder(reminderReq: ReminderRequest): Promise\<number>
 > **说明：**
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[reminderAgentManager.publishReminder](js-apis-reminderAgentManager.md#reminderagentmanagerpublishreminder-1)替代。
 
-**需要权限**： ohos.permission.PUBLISH_AGENT_REMINDER
+**需要权限**：ohos.permission.PUBLISH_AGENT_REMINDER
 
-**系统能力**： SystemCapability.Notification.ReminderAgent
+**系统能力**：SystemCapability.Notification.ReminderAgent
 
 **参数**：
   | 参数名 | 类型 | 必填 | 说明 |
