@@ -60,7 +60,7 @@ GSKV是从API version 18起提供的一种存储模式，该模式的优点是�
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | getPreferencesSync(context: Context, options: Options): Preferences | 获取Preferences实例。该接口存在异步接口。                    |
 | putSync(key: string, value: ValueType): void                 | 将数据写入Preferences实例，可通过flush将Preferences实例持久化。该接口存在异步接口。 |
-| hasSync(key: string): boolean                                | 检查Preferences实例是否包含名为给定Key的存储键值对，true表示存在，false表示不存在。给定的Key值不能为空。该接口存在异步接口。 |
+| hasSync(key: string): boolean                                | 检查Preferences实例是否包含名为给定Key的存储键值对，true表示包含，false表示不包含。给定的Key值不能为空。该接口存在异步接口。 |
 | getSync(key: string, defValue: ValueType): ValueType         | 获取键对应的值，如果值为null或者非默认值类型，返回默认数据defValue。该接口存在异步接口。 |
 | deleteSync(key: string): void                                | 从Preferences实例中删除名为给定Key的存储键值对。该接口存在异步接口。 |
 | flush(callback: AsyncCallback&lt;void&gt;): void             | 将当前Preferences实例的数据异步存储到用户首选项持久化文件中。 |
