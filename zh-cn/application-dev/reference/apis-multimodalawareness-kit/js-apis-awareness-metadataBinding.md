@@ -43,7 +43,7 @@ metadataBinding.submitMetadata(metadata).catch((error:BusinessError)=>{
 });
 ```
 
-## metadataBinding.on('operationSubmitMetadata', string)
+## metadataBinding.on('operationSubmitMetadata', string,  Callback\<number\>)
 metadataBinding.on(type: 'operationSubmitMetadata', bundleName: string, callback: Callback\<number\>): void;  
 
 订阅系统事件以获取编码内容，应用注册回调，事件发生时回传编码内容。  
@@ -81,7 +81,7 @@ metadataBinding.on('operationSubmitMetadata', bundleName, (event:number)=>{
 ```
 
 
-## metadataBinding.off('operationSubmitMetadata', string)
+## metadataBinding.off('operationSubmitMetadata', string,  Callback\<number\>)
 metadataBinding.off(type: 'operationSubmitMetadata', bundleName: string, callback?: Callback\<number>): void;  
 取消订阅系统获取编码内容的事件。取消注册回调接口。  
 **系统能力**：SystemCapability.MultimodalAwarness.metadataBinding  
