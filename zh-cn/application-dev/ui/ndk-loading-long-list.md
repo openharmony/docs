@@ -369,7 +369,7 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#ar
             ArkUI_AttributeItem Item = {.value = value,.size = 3};
             nativeModule_->setAttribute(handle_, NODE_SCROLL_OFFSET, &Item);
         }
-    }
+    };
     ```
 2. 控制列表滚动到指定元素。 
     ```c++
@@ -382,7 +382,7 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#ar
             ArkUI_AttributeItem Item = {.value = value, .size = 1};
             nativeModule_->setAttribute(handle_, NODE_LIST_SCROLL_TO_INDEX, &Item);
         }
-    }
+    };
     ```
 
 3. 控制列表滚动指定偏移量。
@@ -395,7 +395,7 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#ar
             ArkUI_AttributeItem Item = {.value = value, .size = 2};
             nativeModule_->setAttribute(handle_, NODE_SCROLL_BY, &Item);
         }
-    }
+    };
     ```
 ## ListItem横划删除 
 
@@ -426,7 +426,7 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#ar
             swipeAction_ = OH_ArkUI_ListItemSwipeActionOption_Create(); 
             OH_ArkUI_ListItemSwipeActionOption_SetEnd(swipeAction_, swipeItem_); 
             ArkUI_AttributeItem Item = {.object= swipeAction_ }; 
-            nativeModule ->setAttribute(handle ,NODE_LIST_ITEM_SWIPE_ACTION, &Item); 
+            nativeModule_->setAttribute(handle_,NODE_LIST_ITEM_SWIPE_ACTION, &Item); 
         } 
         std::shared_ptr<ArkUINode> GetSwipeContent() const { 
             return swipeContent_; 
@@ -516,7 +516,7 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#ar
             //更新新的数量。 
             OH_ArkUI_NodeAdapter_SetTotalNodeCount(handle_, data_.size()); 
         } 
-    }
+    };
     ```
 ## 使用分组列表 
 1. 分组列表使用ListItemGroup组件实现，ListItemGroup支持添加header、footer设置函数，支持使用懒加载。
@@ -581,7 +581,7 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#ar
             ArkUI_AttributeItem item = {value, 1}; 
             nativeModule_->setAttribute(handle_, NODE_LIST_STICKY, &item); 
         }
-    }
+    };
     ```
 3. List组件下使用ListItemGroup实现分组列表界面。
     ```c++
