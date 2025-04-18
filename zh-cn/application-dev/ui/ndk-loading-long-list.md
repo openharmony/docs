@@ -15,7 +15,7 @@ ArkUI开发框架在NDK接口提供了列表组件，使用列表可以轻松高
 
 ### NodeAdapter介绍 
 
-NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeadapterhandle)对象替代ArkTS侧的LazyForEach功能，用于按需生成子组件, NodeAdapter支持在List/ListItemGroup、Gird、WaterFlow、Swiper组件中使用。
+NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeadapterhandle)对象替代ArkTS侧的LazyForEach功能，用于按需生成子组件，NodeAdapter支持在List/ListItemGroup、Gird、WaterFlow、Swiper组件中使用。
 
 - 设置了NodeAdapter属性的节点，不再支持addChild等直接添加子组件的接口。子组件完全由NodeAdapter管理，使用属性方法设置NodeAdapter时，会判断父组件是否已经存在子节点，如果父组件已经存在子节点，则设置NodeAdapter操作失败，返回错误码。
 
@@ -27,7 +27,7 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#ar
 
 使用ArkUListItemAdapter类来管理懒加载适配器，在类的构造中创建NodeAdapter对象，并给NodeAdapter对象设置事件监听器，在类的析构函数中，销毁NodeAdapter对象。
 
-   ```
+   ```c++
    // ArkUIListItemAdapter
    // 用于文本列表懒加载功能代码。
    
@@ -206,7 +206,7 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#ar
 ### 在列表中应用懒加载适配器 
 
 1. 在ArkUIListNode中添加SetLazyAdapter函数，给列表节设置NODE_LIST_NODE_ADAPTER属性，并将NodeAdapter作为属性入参传入。
-   ```
+   ```c++
    // ArkUIListNode.h
    // 列表封装对象。
    
@@ -280,7 +280,7 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#ar
    ```
 
 2. 创建List使用懒加载的示例代码，调用List节点的SetLazyAdapter接口设置懒加载适配器。
-   ```
+   ```c++
    // LazyTextListExample
    // 懒加载列表示例代码。
    
@@ -310,7 +310,7 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#ar
    ```
 
 3. 在NativeEntry.cpp中调用List使用懒加载的示例代码。
-   ```
+   ```c++
    // NDK接口入口挂载文件。
    
    #include "NativeEntry.h"
@@ -359,7 +359,7 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#ar
 ## 控制列表滚动位置
 
 1. 控制列表滚动到指定偏移量位置。
-    ```
+    ```c++
     //ArkUIListNode.h
     //列表封装对象。
     class ArkUIListNode: public ArkUINode {
@@ -369,10 +369,10 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#ar
             ArkUI_AttributeItem Item = {.value = value,.size = 3};
             nativeModule_->setAttribute(handle_, NODE_SCROLL_OFFSET, &Item);
         }
-    }
+    };
     ```
 2. 控制列表滚动到指定元素。 
-    ```
+    ```c++
     //ArkUIListNode.h
     //列表封装对象。
     class ArkUIListNode : public ArkUINode {
@@ -382,11 +382,11 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#ar
             ArkUI_AttributeItem Item = {.value = value, .size = 1};
             nativeModule_->setAttribute(handle_, NODE_LIST_SCROLL_TO_INDEX, &Item);
         }
-    }
+    };
     ```
 
 3. 控制列表滚动指定偏移量。
-    ```
+    ```c++
    //ArkUIListNode.h
     //列表封装对象。
     class ArkUIListNode : public ArkUINode {
@@ -395,12 +395,12 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#ar
             ArkUI_AttributeItem Item = {.value = value, .size = 2};
             nativeModule_->setAttribute(handle_, NODE_SCROLL_BY, &Item);
         }
-    }
+    };
     ```
 ## ListItem横划删除 
 
 1. ListItem设置NODE_LIST_ITEM_SWIPE_ACTION属性，将ArkUI_ListItemSwipeActionOption对象作为属性参数传入。
-    ```
+    ```c++
     // ArkUIListItemNode.h 
     //提供列表项的封装类。 
     #ifndef MYAPPLICATION ARKUISTACKNODE_H 
@@ -426,7 +426,7 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#ar
             swipeAction_ = OH_ArkUI_ListItemSwipeActionOption_Create(); 
             OH_ArkUI_ListItemSwipeActionOption_SetEnd(swipeAction_, swipeItem_); 
             ArkUI_AttributeItem Item = {.object= swipeAction_ }; 
-            nativeModule ->setAttribute(handle ,NODE_LIST_ITEM_SWIPE_ACTION, &Item); 
+            nativeModule_->setAttribute(handle_,NODE_LIST_ITEM_SWIPE_ACTION, &Item); 
         } 
         std::shared_ptr<ArkUINode> GetSwipeContent() const { 
             return swipeContent_; 
@@ -441,7 +441,7 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#ar
     ```
 
 2. 创建ListItem时，创建ListItem的划出组件，并绑定点击事件，在点击事件中执行删除数据源操作。ListItem复用时，更新划出组件的绑定事件。
-    ```
+    ```c++
     // ArkUIListItemAdapter.h 
     class ArkUIListItemAdapter { 
         //...
@@ -502,8 +502,8 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#ar
         } 
     }
     ```
-3. ArkUIListItemAdapter中新增RemoveItem,用于删除数据源并且调用OH_ArkUI_NodeAdapter_RemoveItem接口通知框架刷新UI。
-    ```
+3. ArkUIListItemAdapter中新增RemoveItem，用于删除数据源并且调用OH_ArkUI_NodeAdapter_RemoveItem接口通知框架刷新UI。
+    ```c++
     // ArkUIListItemAdapter.h 
     class ArkUIListItemAdapter { 
         //...
@@ -516,11 +516,11 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#ar
             //更新新的数量。 
             OH_ArkUI_NodeAdapter_SetTotalNodeCount(handle_, data_.size()); 
         } 
-    }
+    };
     ```
 ## 使用分组列表 
-1. 分组列表使用ListItemGroup组件实现, ListItemGroup支持添加header、footer设置函数，支持使用懒加载。
-    ```
+1. 分组列表使用ListItemGroup组件实现，ListItemGroup支持添加header、footer设置函数，支持使用懒加载。
+    ```c++
     // ArkUIListItemGroupNode.h 
 
     #ifndef MYAPPLICATION_ARKUILISTITEMGROUPNODE_H 
@@ -567,10 +567,10 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#ar
         std::shared_ptr<ArkUIListItemAdapter> adapter_; 
     }; 
     }// namespace NativeModule 
-    # endif//MYAPPLICATION_ARKUILISTITEMGROUPNODE_H
+    #endif//MYAPPLICATION_ARKUILISTITEMGROUPNODE_H
     ```
 2. List组件设置吸顶。
-    ```
+    ```c++
     // ArkUIListNode.h 
     //列表封装对象。 
     class ArkUIListNode : public ArkUINode{ 
@@ -581,10 +581,10 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#ar
             ArkUI_AttributeItem item = {value, 1}; 
             nativeModule_->setAttribute(handle_, NODE_LIST_STICKY, &item); 
         }
-    }
+    };
     ```
 3. List组件下使用ListItemGroup实现分组列表界面。
-    ```
+    ```c++
     // LazyTextListExample.h 
     //懒加载列表示例代码。 
     #ifndef MYAPPLICATION_LAZYTEXTLISTEXAMPLE_H
@@ -619,7 +619,7 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#ar
         return list; 
     }
     }// namespace NativeModule 
-    # endif// MYAPPLICATION_LAZYTEXTLISTEXAMPLE_H
+    #endif// MYAPPLICATION_LAZYTEXTLISTEXAMPLE_H
     ```
 
 
