@@ -46,10 +46,10 @@ generateKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000013 | queried credential does not exist. |
 | 12000014 | memory is insufficient. |
-| 12000015 | call service failed. |
+| 12000015 | Failed to obtain the security information via UserIAM. |
 
 **示例：**
 
@@ -136,7 +136,7 @@ deleteKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) 
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
@@ -244,10 +244,10 @@ importKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) 
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000013 | queried credential does not exist. |
 | 12000014 | memory is insufficient. |
-| 12000015 | call service failed. |
+| 12000015 | Failed to obtain the security information via UserIAM. |
 
 **示例：**
 
@@ -347,7 +347,7 @@ attestKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) 
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
@@ -501,7 +501,7 @@ anonAttestKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptio
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
@@ -649,10 +649,10 @@ importWrappedKeyItemAsUser(userId: number, keyAlias: string, wrappingKeyAlias: s
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000013 | queried credential does not exist. |
 | 12000014 | memory is insufficient. |
-| 12000015 | call service failed. |
+| 12000015 | Failed to obtain the security information via UserIAM. |
 
 **示例：**
 
@@ -1310,7 +1310,7 @@ exportKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) 
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
@@ -1428,7 +1428,7 @@ getKeyItemPropertiesAsUser(userId: number, keyAlias: string, huksOptions: HuksOp
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
@@ -1541,7 +1541,7 @@ hasKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : P
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
@@ -1656,7 +1656,7 @@ initSessionAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : 
 | 12000006 | error occurred in crypto engine. |
 | 12000010 | the number of sessions has reached limit. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
