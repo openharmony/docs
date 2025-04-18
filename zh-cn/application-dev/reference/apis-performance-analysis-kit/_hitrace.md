@@ -7,7 +7,9 @@ hiTraceMeter为开发者提供系统性能打点接口。
 
 开发者通过在自己的业务逻辑中的关键代码位置调用HiTraceMeter系统跟踪提供的API接口，能够有效进行关键执行流程耗时度量和问题定位。
 
-hitraceChain为开发者提供跨线程、跨进程的分布式跟踪能力。 HiTraceChain支持在业务执行流程中，生成和传递唯一跟踪标识，在业务流程中输出的各类调试信息中（包括应用事件、系统事件、日志等）携带该跟踪标识。 在调试、问题定位过程中，开发人员可以通过该唯一跟踪标识将本次业务流程端到端的各类信息快速关联起来。
+hitraceChain为开发者提供跨线程、跨进程的分布式跟踪能力。
+
+HiTraceChain支持在业务执行流程中，生成和传递唯一跟踪标识，在业务流程中输出的各类调试信息中（包括应用事件、系统事件、日志等）携带该跟踪标识。 在调试、问题定位过程中，开发人员可以通过该唯一跟踪标识将本次业务流程端到端的各类信息快速关联起来。
 
 **系统能力：** SystemCapability.HiviewDFX.HiTrace
 
@@ -117,7 +119,7 @@ HiTrace通信模式枚举。
 ### HiTrace_Flag
 
 ```
-typedef enum HiTrace_Flag HiTrace_Flag
+typedef enum HiTrace_FlagHiTrace_Flag
 ```
 **描述**
 HiTrace标志位。
@@ -183,10 +185,10 @@ HiTrace通信模式枚举。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| HITRACE_CM_DEFAULT  | 未指明。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace<br/>自从<br/>12 | 
-| HITRACE_CM_THREAD  | 线程间通信。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace<br/>自从<br/>12 | 
-| HITRACE_CM_PROCESS  | 进程间通信。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace<br/>自从<br/>12 | 
-| HITRACE_CM_DEVICE  | 设备间通信。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace<br/>自从<br/>12 | 
+| HITRACE_CM_DEFAULT | 未指明。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
+| HITRACE_CM_THREAD | 线程间通信。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
+| HITRACE_CM_PROCESS | 进程间通信。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
+| HITRACE_CM_DEVICE | 设备间通信。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
 
 
 ### HiTrace_Flag
@@ -248,7 +250,7 @@ HiTrace版本号。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| HITRACE_VER_1 | 版本1<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
+| HITRACE_VER_1  | 版本1。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
 
 
 ### HiTraceId_Valid
@@ -265,8 +267,8 @@ HiTraceId是否有效标志。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| HITRACE_ID_INVALID | 无效HiTraceId<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
-| HITRACE_ID_VALID | 有效HiTraceId<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
+| HITRACE_ID_INVALID | 无效HiTraceId。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
+| HITRACE_ID_VALID | 有效HiTraceId。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
 
 
 ## 函数说明
@@ -286,7 +288,7 @@ HiTraceId OH_HiTrace_BeginChain (const char * name, int flags )
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -325,7 +327,7 @@ void OH_HiTrace_CountTrace (const char * name, int64_t count )
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -366,7 +368,7 @@ void OH_HiTrace_EnableFlag (const HiTraceId * id, HiTrace_Flag flag )
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -403,7 +405,7 @@ void OH_HiTrace_FinishAsyncTrace (const char * name, int32_t taskId )
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -436,7 +438,7 @@ uint64_t OH_HiTrace_GetChainId (const HiTraceId * id)
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -459,7 +461,7 @@ int OH_HiTrace_GetFlags (const HiTraceId * id)
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -501,7 +503,7 @@ uint64_t OH_HiTrace_GetParentSpanId (const HiTraceId * id)
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -524,7 +526,7 @@ uint64_t OH_HiTrace_GetSpanId (const HiTraceId * id)
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -547,7 +549,7 @@ void OH_HiTrace_IdFromBytes (HiTraceId * id, const uint8_t * pIdArray, int len )
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -568,7 +570,7 @@ int OH_HiTrace_IdToBytes (const HiTraceId * id, uint8_t * pIdArray, int len )
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -593,7 +595,7 @@ void OH_HiTrace_InitId (HiTraceId * id)
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -614,7 +616,7 @@ HiTraceId结构体的某标志是否置位。
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -640,7 +642,7 @@ HiTraceId结构体是否有效。
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -663,7 +665,7 @@ void OH_HiTrace_SetChainId (HiTraceId * id, uint64_t chainId )
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -683,7 +685,7 @@ void OH_HiTrace_SetFlags (HiTraceId * id, int flags )
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -705,7 +707,7 @@ void OH_HiTrace_SetId (const HiTraceId * id)
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -724,7 +726,7 @@ void OH_HiTrace_SetParentSpanId (HiTraceId * id, uint64_t parentSpanId )
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -744,7 +746,7 @@ void OH_HiTrace_SetSpanId (HiTraceId * id, uint64_t spanId )
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -760,17 +762,17 @@ void OH_HiTrace_StartAsyncTrace (const char * name, int32_t taskId )
 **描述**
 标记一个异步跟踪耗时任务的开始。
 
-用于在异步操作前调用进行开始打点，异步跟踪开始和结束数据由于不是顺序发生的，所以解析时需要通过一个唯一的taskId进行识别，这个taskId作为异步接口的参数传入。
+用于在异步操作前调用进行开始打点，异步跟踪开始和结束数据由于不是顺序发生的，所以解析时需要通过一个唯一的taskId进行识别。
 
-和OH_HiTrace_FinishAsyncTrace配对使用，参数name和taskId相同的这两个接口调用匹配成一个异步跟踪耗时任务。
+必须和OH_HiTrace_FinishAsyncTrace配对使用，参数name和taskId相同的开始与结束打点相匹配，构成一个异步跟踪耗时任务。
 
-如果有多个相同name的任务需要跟踪或者对同一个任务跟踪多次，并且任务同时被执行，则每次调用startTrace的taskId不相同。
+如果有多个相同name的任务需要跟踪或者对同一个任务跟踪多次，并且任务同时被执行，则每次调用的taskId不相同。
 
 如果具有相同name的任务是串行执行的，则taskId可以相同。
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -786,11 +788,13 @@ void OH_HiTrace_StartTrace (const char * name)
 **描述**
 标记一个同步跟踪耗时任务的开始。
 
-同步跟踪打点接口OH_HiTrace_StartTrace和OH_HiTrace_FinishTrace必须配对使用。 OH_HiTrace_StartTrace和OH_HiTrace_FinishTrace函数对可以以嵌套模式使用，跟踪数据解析时使用栈式数据结构进行匹配。
+同步跟踪打点接口OH_HiTrace_StartTrace和OH_HiTrace_FinishTrace必须配对使用。
+
+OH_HiTrace_StartTrace和OH_HiTrace_FinishTrace函数对可以嵌套使用，跟踪解析时使用栈式数据结构进行匹配。
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -811,7 +815,7 @@ void OH_HiTrace_Tracepoint (HiTrace_Communication_Mode mode, HiTrace_Tracepoint_
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
