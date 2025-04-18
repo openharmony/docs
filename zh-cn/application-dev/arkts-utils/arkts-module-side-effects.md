@@ -176,7 +176,7 @@ test200
 
 模块加载时直接改变AppStorage中SomeAppStorageVar的值，**影响其他使用该变量的模块或代码**。
 
-ArkUI组件的状态变量信息可以通过一些应用级接口修改，详见[ArkUI状态管理接口文档](../quick-start/arkts-state-management-overview.md)。
+ArkUI组件的状态变量信息可以通过一些应用级接口修改，详见[ArkUI状态管理接口文档](../ui/state-management/arkts-state-management-overview.md)。
 
 **优化方式**
 
@@ -268,7 +268,7 @@ Stacktrace:
 
 **优化方式**
 
-尽量避免模块间的循环依赖，确保模块的加载顺序是明确和可控的，以避免产生意外的副作用。[@security/no-cycle循环依赖检查工具](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide_no-cycle-V5) 可以辅助检查循环依赖。
+尽量避免模块间的循环依赖，确保模块的加载顺序是明确和可控的，以避免产生意外的副作用。[@security/no-cycle循环依赖检查工具](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide_no-cycle) 可以辅助检查循环依赖。
 ### 延迟加载（lazy import）改变模块执行顺序，可能导致预期的全局变量未定义
 **副作用产生场景**
 

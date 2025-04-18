@@ -127,27 +127,6 @@ async function example() {
 }
 ```
 
-## PhotoSelectOptions
-
-图库选择选项子类，继承于BaseSelectOptions。用于拉起对应userId空间的picker。
-
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| userId<sup>18+</sup> | number  | 否   | 指定访问空间的Id。默认值为-1。<br>当需要作为[PhotoViewPicker.select](js-apis-photoAccessHelper.md#select)的选择参数时，请申请ohos.permission.INTERACTA_CROSS_LOCAL_ACCOUNTS。<br>**系统接口**：此接口为系统接口。 |
-
-**示例：**
-
-```ts
-  private photoPicker() {
-    let picker = new photoAccessHelper.PhotoViewPicker();
-    let option = new photoAccessHelper.PhotoSelectOptions();
-    option.userId = 101;
-    picker.select(option);
-  }
-```
-
 ### createAsset
 
 createAsset(displayName: string, options: PhotoCreateOptions, callback: AsyncCallback&lt;PhotoAsset&gt;): void
@@ -3696,6 +3675,7 @@ getThumbnailData(type: ThumbnailType): Promise&lt;ArrayBuffer&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 202      | Called by non-system application. |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -5990,7 +5970,7 @@ setSubTitle(title: string): void
 
 副标题参数规格为：
 
-- 副标题字符串长度为1~255。
+- 副标题字符串长度为0~255。
 - 不允许出现的非法英文字符，包括：<br> . \ / : * ? " ' ` < > | { } [ ]
 - 英文字符大小写不敏感。
 
@@ -6087,11 +6067,14 @@ static deleteHighlightAlbums(context: Context, albums: Array&lt;Album&gt;): Prom
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+
+const context = getContext(this);
 
 async function example() {
   try {
     console.info('deleteHighlightAlbums');
-    let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(getContext(this));
+    let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
     let albumFetchOption: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
       predicates: new dataSharePredicates.DataSharePredicates()
@@ -6104,7 +6087,7 @@ async function example() {
     }
     let highlightAlbum: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     albumFetchResult.close();
-    let result = await photoAccessHelper.HighlightAlbum.deleteHighlightAlbums(getContext(this), [highlightAlbum]);
+    let result = await photoAccessHelper.HighlightAlbum.deleteHighlightAlbums(context, [highlightAlbum]);
     console.info('deleteHighlightAlbums success');
   } catch (err) {
     console.error(`deleteHighlightAlbums with error: ${err}`);
@@ -7264,6 +7247,27 @@ async function example() {
     console.error(`getCloudMediaAssetStatusDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
+```
+
+## PhotoSelectOptions
+
+图库选择选项子类，继承于BaseSelectOptions。用于拉起对应userId空间的picker。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| userId<sup>18+</sup> | number  | 否   | 指定访问空间的Id。默认值为-1。<br>当需要作为[PhotoViewPicker.select](js-apis-photoAccessHelper.md#select)的选择参数时，请申请ohos.permission.INTERACTA_CROSS_LOCAL_ACCOUNTS。<br>**系统接口**：此接口为系统接口。 |
+
+**示例：**
+
+```ts
+  private photoPicker() {
+    let picker = new photoAccessHelper.PhotoViewPicker();
+    let option = new photoAccessHelper.PhotoSelectOptions();
+    option.userId = 101;
+    picker.select(option);
+  }
 ```
 
 ## PhotoSubtype

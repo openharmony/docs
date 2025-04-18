@@ -5,6 +5,7 @@
 > **说明：**
 >
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
 > 无特殊说明，接口默认不支持并发。
 
 ## 导入模块
@@ -1981,7 +1982,7 @@ netCon.register((error: BusinessError) => {
 
 unregister(callback: AsyncCallback\<void>): void
 
-取消订阅默认网络状态变化的通知。
+取消订阅默认网络状态变化的通知。可在业务逻辑处理结束时取消订阅，但不应该放在事件回调函数中调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2794,7 +2795,7 @@ netConnectionWlan.register((error: BusinessError) => {
 | 名称                 | 类型                                  | 必填 |            说明            |
 | -------------------- | ------------------------------------- | --- |--------------------------- |
 | netHandle            | [NetHandle](#nethandle)               | 是   |数据网络句柄(netHandle)。   |
-| blocked              | boolean                               | 是   |标识当前网络是否是堵塞状态。 |
+| blocked              | boolean                               | 是   |true：标识当前网络是堵塞状态；false：标识当前网络不是堵塞状态。 |
 
 ## ConnectionProperties
 
@@ -2822,8 +2823,8 @@ netConnectionWlan.register((error: BusinessError) => {
 | interface      | string                      | 是 |网卡名称。       |
 | destination    | [LinkAddress](#linkaddress) | 是 |目的地址。       |
 | gateway        | [NetAddress](#netaddress)   | 是 |网关地址。       |
-| hasGateway     | boolean                     | 是 |是否有网关。     |
-| isDefaultRoute | boolean                     | 是 |是否为默认路由。 |
+| hasGateway     | boolean                     | 是 |true：有网关；false：无网关。    |
+| isDefaultRoute | boolean                     | 是 |true：默认路由；false：非默认路由。 |
 
 ## LinkAddress
 

@@ -4575,11 +4575,59 @@ This permission prevents unauthorized access to custom EDM configuration files, 
 
 **Valid since**: 18
 
+## ohos.permission.READ_DHA
+
+Allows an application to read device health attestation information.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
+
+## ohos.permission.WRITE_DHA
+
+Allows an application to write device health attestation information.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
+
+## ohos.permission.NOTIFY_DHA
+
+Allows an application to notify the device health attestation event.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
+
 ## ohos.permission.SEND_NOTIFICATION_CROSS_USER
 
 Allows an application to send notifications to the specified users in the system.
 
 **Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
+
+## ohos.permission.ALLOW_ACCESS_TIPS
+
+Allows a system application to start the components provided by Tips.
+
+**Permission level**: system_basic
 
 **Authorization mode**: system_grant
 

@@ -4575,11 +4575,60 @@
 
 **起始版本**：18
 
+## ohos.permission.READ_DHA
+
+允许应用读取设备健康证明信息。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
+## ohos.permission.WRITE_DHA
+
+允许应用写入设备健康证明信息。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
+## ohos.permission.NOTIFY_DHA
+
+允许应用通知设备健康证明事件。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
 ## ohos.permission.SEND_NOTIFICATION_CROSS_USER
 
 允许应用发送通知给系统中指定用户。
 
 **权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
+
+## ohos.permission.ALLOW_ACCESS_TIPS
+
+允许系统应用拉起Tips提供的组件。
+
+**权限级别**：system_basic
 
 **授权方式**：系统授权（system_grant）
 

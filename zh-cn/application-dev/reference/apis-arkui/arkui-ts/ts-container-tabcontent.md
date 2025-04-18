@@ -13,7 +13,7 @@
 
 >  **说明：**
 >
->  可内置系统组件和自定义组件，支持渲染控制类型（[if/else](../../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../../quick-start/arkts-rendering-control-foreach.md)和[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)）。
+>  可内置系统组件和自定义组件，支持渲染控制类型（[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)和[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)）。
 
 
 ## 接口
@@ -36,7 +36,7 @@ tabBar(options: string | Resource | CustomBuilder | TabBarOptions)
 
 设置TabBar上显示内容。
 
-如果icon采用svg格式图源，则要求svg图源删除其自有宽高属性值。如采用带有自有宽高属性的svg图源，icon大小则是svg本身内置的宽高属性值大小。
+如果icon采用svg格式图源，需删除svg图源内置的宽高属性值。否则，icon大小将使用svg图源内置的宽高属性值。
 
 设置的内容超出tabbar页签时进行裁切。
 
@@ -72,7 +72,7 @@ tabBar(content: ComponentContent | SubTabBarStyle | BottomTabBarStyle | string |
 
 设置TabBar上显示内容。
 
-使用BottomTabBarStyle或TabBarOptions类型作为入参并设置icon，icon异常时显示灰色图块。如果icon采用svg格式图源，则要求svg图源删除其自有宽高属性值。例如，采用带有宽高属性的svg图源时，icon大小是svg本身内置的宽高属性值。
+使用BottomTabBarStyle或TabBarOptions类型作为入参并设置icon，icon异常时显示灰色图块。如果icon采用svg格式图源，需删除svg图源内置的宽高属性值。否则，icon大小将使用svg图源内置的宽高属性值。
 
 设置的内容超出TabBar页签时进行裁切。
 
@@ -90,10 +90,10 @@ tabBar(content: ComponentContent | SubTabBarStyle | BottomTabBarStyle | string |
 >
 >  - TabContent组件不支持设置通用宽度属性，其宽度默认撑满Tabs父组件。
 >  - TabContent组件不支持设置通用高度属性，其高度由Tabs父组件高度与TabBar组件高度决定。
->  - vertical属性为false值，交换上述2个限制。
+>  - vertical属性为false时，上述2个限制交换。
 >  - TabContent组件不支持内容过长时页面的滑动，如需页面滑动，可嵌套List使用。
 >  - 建议对Tabs组件的所有TabContent子组件的tabBar属性，采用统一的参数类型。
->  - 若TabContent内部有可获焦组件，Tabs组件内TabContent组件和TabBar组件之间的走焦，仅支持使用键盘上下左右控制。
+>  - 若TabContent内部有可获焦组件，Tabs组件内TabContent组件和TabBar组件之间的走焦，仅支持通过键盘的方向键控制。
 
 ## TabBarOptions<sup>18+</sup>对象说明
 
@@ -107,8 +107,8 @@ tabBar(content: ComponentContent | SubTabBarStyle | BottomTabBarStyle | string |
 
 | 名称 | 类型         | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| icon<sup>7+</sup> | string \| [ResourceStr](ts-types.md#resourcestr) | 否 | 页签内的图片内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| text<sup>7+</sup> | string \| [ResourceStr](ts-types.md#resourcestr) | 否 | 页签内的文字内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| icon<sup>7+</sup> | string \| [Resource](ts-types.md#resource) | 否 | 页签内的图片内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| text<sup>7+</sup> | string \| [Resource](ts-types.md#resource) | 否 | 页签内的文字内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## SubTabBarStyle<sup>9+</sup>
 
@@ -398,7 +398,7 @@ label文本和字体的样式对象。
 | minFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | 否   | 设置Label文本最小显示字号（不支持百分比设置）。需配合maxFontSize以及maxLines或布局大小限制使用。自适应文本大小生效后，font.size不生效。默认值是0.0fp，即默认自适应文本大小不生效。<br/>取值范围：(0, +∞)。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | maxFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | 否   | 设置Label文本最大显示字号（不支持百分比设置）。需配合minFontSize以及maxLines或布局大小限制使用。自适应文本大小生效后，font.size不生效。默认值是0.0fp，即默认自适应文本大小不生效。<br/>取值范围：[minFontSize, +∞)。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | heightAdaptivePolicy | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 否   | 设置Label文本自适应高度的方式。默认值是最大行数优先。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| font                 | [Font](ts-types.md#font)                                     | 否   | 设置Label文本字体样式。<br/>当页签为子页签时，默认值是字体大小16.0fp、字体类型'HarmonyOS Sans'，字体风格正常，选中时字重中等，未选中时字重正常。<br/>当页签为底部页签时，默认值是字体大小10.0fp、字体类型'HarmonyOS Sans'，字体风格正常，字重中等。<br/>从API version 12开始，底部页签页签内容左右排布时默认字体大小为12.0fp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| font                 | [Font](ts-types.md#font)                                     | 否   | 设置Label文本字体样式。<br/>当页签为子页签时，默认值是字体大小16.0fp、字体类型'HarmonyOS Sans'，字体风格正常，选中时字重中等，未选中时字重正常。<br/>当页签为底部页签时，默认值是字体大小10.0fp、字体类型'HarmonyOS Sans'，字体风格正常，字重中等。<br/>从API version 12开始，底部页签内容左右排布时默认字体大小为12.0fp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | unselectedColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置Label文本字体未选中时的颜色。<br/>默认值：#99182431 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | selectedColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置Label文本字体选中时的颜色。<br/>默认值：#FF007DFF <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
@@ -516,7 +516,7 @@ layoutMode(value: LayoutMode): BottomTabBarStyle
 
 symmetricExtensible(value: boolean): BottomTabBarStyle
 
-设置底部页签的图片、文字是否可以对称借左右底部页签的空余位置中的最小值，仅fixed水平模式下在底部页签之间有效。
+设置底部页签的图片、文字是否可以对称借用左右底部页签的空余位置中的最小值，仅fixed水平模式下在底部页签之间有效。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -526,7 +526,7 @@ symmetricExtensible(value: boolean): BottomTabBarStyle
 
 | 参数名  | 类型                                   | 必填 | 说明           |
 | ------- | ------------------------------------- | ---- | ------------- |
-| value | boolean | 是   | 底部页签的图片、文字是否可以对称借左右底部页签的空余位置中的最小值。<br/>默认值：false，底部页签的图片、文字不可以对称借左右底部页签的空余位置中的最小值。 |
+| value | boolean | 是   | 底部页签的图片、文字是否可以对称借用左右底部页签的空余位置中的最小值。<br/>默认值：false，底部页签的图片、文字不可以对称借用左右底部页签的空余位置中的最小值。 |
 
 **返回值：**
 

@@ -65,13 +65,13 @@ import process from '@ohos.process';
 let registerId = -1;
 let callback: errorManager.ErrorObserver = {
     onUnhandledException: (errMsg) => {
-        console.log(errMsg);
+        console.info(errMsg);
     },
     onException: (errorObj) => {
-        console.log('onException, name: ', errorObj.name);
-        console.log('onException, message: ', errorObj.message);
+        console.info('onException, name: ', errorObj.name);
+        console.info('onException, message: ', errorObj.message);
         if (typeof(errorObj.stack) === 'string') {
-            console.log('onException, stack: ', errorObj.stack);
+            console.info('onException, stack: ', errorObj.stack);
         }
         //回调函数执行完，采用同步退出方式，避免多次触发异常
         let pro = new process.ProcessManager();
@@ -83,21 +83,21 @@ let abilityWant: Want;
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        console.log("[Demo] EntryAbility onCreate");
+        console.info("[Demo] EntryAbility onCreate");
         registerId = errorManager.on("error", callback);
         abilityWant = want;
     }
 
     onDestroy() {
-        console.log("[Demo] EntryAbility onDestroy");
+        console.info("[Demo] EntryAbility onDestroy");
         errorManager.off("error", registerId, (result) => {
-            console.log("[Demo] result " + result.code + ";" + result.message);
+            console.info("[Demo] result " + result.code + ";" + result.message);
         });
     }
 
     onWindowStageCreate(windowStage: window.WindowStage) {
         // Main window is created, set main page for this ability
-        console.log("[Demo] EntryAbility onWindowStageCreate");
+        console.info("[Demo] EntryAbility onWindowStageCreate");
 
         windowStage.loadContent("pages/index", (err, data) => {
             if (err.code) {
@@ -110,17 +110,17 @@ export default class EntryAbility extends UIAbility {
 
     onWindowStageDestroy() {
         // Main window is destroyed, release UI related resources
-        console.log("[Demo] EntryAbility onWindowStageDestroy");
+        console.info("[Demo] EntryAbility onWindowStageDestroy");
     }
 
     onForeground() {
         // Ability has brought to foreground
-        console.log("[Demo] EntryAbility onForeground");
+        console.info("[Demo] EntryAbility onForeground");
     }
 
     onBackground() {
         // Ability has back to background
-        console.log("[Demo] EntryAbility onBackground");
+        console.info("[Demo] EntryAbility onBackground");
     }
 };
 ```
@@ -133,11 +133,11 @@ import { window } from '@kit.ArkUI';
 import process from '@ohos.process';
 
 function errorFunc(observer: errorManager.GlobalError) {
-    console.log("[Demo] result name :" + observer.name);
-    console.log("[Demo] result message :" + observer.message);
-    console.log("[Demo] result stack :" + observer.stack);
-    console.log("[Demo] result instanceName :" + observer.instanceName);
-    console.log("[Demo] result instaceType :" + observer.instanceType);
+    console.info("[Demo] result name :" + observer.name);
+    console.info("[Demo] result message :" + observer.message);
+    console.info("[Demo] result stack :" + observer.stack);
+    console.info("[Demo] result instanceName :" + observer.instanceName);
+    console.info("[Demo] result instaceType :" + observer.instanceType);
     //回调函数执行完，采用同步退出方式，避免多次触发异常
     let pro = new process.ProcessManager();
     pro.exit(0);
@@ -147,19 +147,19 @@ let abilityWant: Want;
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        console.log("[Demo] EntryAbility onCreate");
+        console.info("[Demo] EntryAbility onCreate");
         errorManager.on("globalErrorOccurred", errorFunc);
         abilityWant = want;
     }
 
     onDestroy() {
-        console.log("[Demo] EntryAbility onDestroy");
+        console.info("[Demo] EntryAbility onDestroy");
         errorManager.off("globalErrorOccurred", errorFunc);
     }
 
     onWindowStageCreate(windowStage: window.WindowStage) {
         // Main window is created, set main page for this ability
-        console.log("[Demo] EntryAbility onWindowStageCreate");
+        console.info("[Demo] EntryAbility onWindowStageCreate");
 
         windowStage.loadContent("pages/index", (err, data) => {
             if (err.code) {
@@ -172,17 +172,17 @@ export default class EntryAbility extends UIAbility {
 
     onWindowStageDestroy() {
         // Main window is destroyed, release UI related resources
-        console.log("[Demo] EntryAbility onWindowStageDestroy");
+        console.info("[Demo] EntryAbility onWindowStageDestroy");
     }
 
     onForeground() {
         // Ability has brought to foreground
-        console.log("[Demo] EntryAbility onForeground");
+        console.info("[Demo] EntryAbility onForeground");
     }
 
     onBackground() {
         // Ability has back to background
-        console.log("[Demo] EntryAbility onBackground");
+        console.info("[Demo] EntryAbility onBackground");
     }
 };
 ```
@@ -195,11 +195,11 @@ import { window } from '@kit.ArkUI';
 import process from '@ohos.process';
 
 function promiseFunc(observer: errorManager.GlobalError) {
-    console.log("[Demo] result name :" + observer.name);
-    console.log("[Demo] result message :" + observer.message);
-    console.log("[Demo] result stack :" + observer.stack);
-    console.log("[Demo] result instanceName :" + observer.instanceName);
-    console.log("[Demo] result instaceType :" + observer.instanceType);
+    console.info("[Demo] result name :" + observer.name);
+    console.info("[Demo] result message :" + observer.message);
+    console.info("[Demo] result stack :" + observer.stack);
+    console.info("[Demo] result instanceName :" + observer.instanceName);
+    console.info("[Demo] result instaceType :" + observer.instanceType);
     //回调函数执行完，采用同步退出方式，避免多次触发异常
     let pro = new process.ProcessManager();
     pro.exit(0);
@@ -210,19 +210,19 @@ let abilityWant: Want;
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        console.log("[Demo] EntryAbility onCreate");
+        console.info("[Demo] EntryAbility onCreate");
         errorManager.on("globalUnhandledRejectionDetected", promiseFunc);
         abilityWant = want;
     }
 
     onDestroy() {
-        console.log("[Demo] EntryAbility onDestroy");
+        console.info("[Demo] EntryAbility onDestroy");
         errorManager.off("globalUnhandledRejectionDetected", promiseFunc);
     }
 
     onWindowStageCreate(windowStage: window.WindowStage) {
         // Main window is created, set main page for this ability
-        console.log("[Demo] EntryAbility onWindowStageCreate");
+        console.info("[Demo] EntryAbility onWindowStageCreate");
 
         windowStage.loadContent("pages/index", (err, data) => {
             if (err.code) {
@@ -235,17 +235,17 @@ export default class EntryAbility extends UIAbility {
 
     onWindowStageDestroy() {
         // Main window is destroyed, release UI related resources
-        console.log("[Demo] EntryAbility onWindowStageDestroy");
+        console.info("[Demo] EntryAbility onWindowStageDestroy");
     }
 
     onForeground() {
         // Ability has brought to foreground
-        console.log("[Demo] EntryAbility onForeground");
+        console.info("[Demo] EntryAbility onForeground");
     }
 
     onBackground() {
         // Ability has back to background
-        console.log("[Demo] EntryAbility onBackground");
+        console.info("[Demo] EntryAbility onBackground");
     }
 };
 ```
@@ -259,7 +259,7 @@ import process from '@ohos.process';
 
 // Define freezeCallback
 function freezeCallback() {
-    console.log("freezecallback");
+    console.info("freezecallback");
 }
 
 
@@ -267,19 +267,19 @@ let abilityWant: Want;
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        console.log("[Demo] EntryAbility onCreate");
+        console.info("[Demo] EntryAbility onCreate");
         errorManager.on("freeze", freezeCallback);
         abilityWant = want;
     }
 
     onDestroy() {
-        console.log("[Demo] EntryAbility onDestroy");
+        console.info("[Demo] EntryAbility onDestroy");
         errorManager.off("freeze", freezeCallback);
     }
 
     onWindowStageCreate(windowStage: window.WindowStage) {
         // Main window is created, set main page for this ability
-        console.log("[Demo] EntryAbility onWindowStageCreate");
+        console.info("[Demo] EntryAbility onWindowStageCreate");
 
         windowStage.loadContent("pages/index", (err, data) => {
             if (err.code) {
@@ -292,17 +292,17 @@ export default class EntryAbility extends UIAbility {
 
     onWindowStageDestroy() {
         // Main window is destroyed, release UI related resources
-        console.log("[Demo] EntryAbility onWindowStageDestroy");
+        console.info("[Demo] EntryAbility onWindowStageDestroy");
     }
 
     onForeground() {
         // Ability has brought to foreground
-        console.log("[Demo] EntryAbility onForeground");
+        console.info("[Demo] EntryAbility onForeground");
     }
 
     onBackground() {
         // Ability has back to background
-        console.log("[Demo] EntryAbility onBackground");
+        console.info("[Demo] EntryAbility onBackground");
     }
 };
 ```

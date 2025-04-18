@@ -1,7 +1,7 @@
 # 属性修改器 (AttributeModifier)
 
 ## 概述
-声明式语法引入了[@Styles](../quick-start/arkts-style.md)和[@Extend](../quick-start/arkts-extend.md)两个装饰器，可以解决复用相同自定义样式的问题，但是存在以下受限场景：
+声明式语法引入了[@Styles](../ui/state-management/arkts-style.md)和[@Extend](../ui/state-management/arkts-extend.md)两个装饰器，可以解决复用相同自定义样式的问题，但是存在以下受限场景：
 - @Styles和@Extend均是编译期处理，不支持跨文件的导出复用。
 - @Styles仅能支持通用属性、事件，不支持组件特有的属性。
 - @Styles虽然支持在多态样式下使用，但不支持传参，无法对外开放一些属性。

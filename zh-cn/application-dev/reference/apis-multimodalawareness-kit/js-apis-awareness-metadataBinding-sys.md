@@ -11,7 +11,7 @@
 
 ## 导入模块
 ```ts
-import { metadataBinding  }'@ohos.multimodalAwareness';
+import { metadataBinding } from '@ohos.multimodalAwareness';
 ```
 
 ## encodeImage(image.PixelMap, string)
@@ -35,7 +35,6 @@ encodeImage(srcImage: image.PixelMap, metadata: string): Promise<image.PixelMap>
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 |   202    | Permission check failed. A non-system application uses the system API.|
-|   401    | Parameter error. Parameter verification failed.|
 |32100001  | Internal handling failed. File creation failed.|
 |32100002  | Encode process fail.|
 
@@ -43,7 +42,7 @@ encodeImage(srcImage: image.PixelMap, metadata: string): Promise<image.PixelMap>
 
 ```ts
 import image from '@ohos.multimedia.image';
-import { metadataBinding  }'@ohos.multimodalAwareness';
+import { metadataBinding } from '@ohos.multimodalAwareness';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let captureImage: image.PixelMap | undefined;
@@ -75,14 +74,13 @@ function decodeImage(encodedImage: image.PixelMap): Promise\<string\>
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 |   202    | Permission check failed. A non-system application uses the system API.|
-|   401    | Parameter error. Parameter verification failed.|
 |32100001  | Internal handling failed. File read failed.|
 |32100003  | Decode process fail.|
 
 **示例：**  
 ```ts
 import image from '@ohos.multimedia.image';
-import { metadataBinding  }'@ohos.multimodalAwareness';
+import { metadataBinding } from '@ohos.multimodalAwareness';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let encodeImage: image.PixelMap | undefined;
@@ -110,13 +108,12 @@ notifyMetadataBindingEvent(metadata: string): void；
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-|   401    | Parameter error. Parameter verification failed.|
 |32100001|Internal handling failed. Obtain metadata failed.|
 
 **示例**：
 
 ```ts
-import { metadataBinding  }'@ohos.multimodalAwareness';
+import { metadataBinding } from '@ohos.multimodalAwareness';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleName:string = '';

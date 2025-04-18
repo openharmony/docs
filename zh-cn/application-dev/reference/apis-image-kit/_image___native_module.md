@@ -91,6 +91,7 @@
 | [IMAGE_PACKER_DYNAMIC_RANGE](#image_packer_dynamic_range) {<br/>IMAGE_PACKER_DYNAMIC_RANGE_AUTO = 0,<br/>IMAGE_PACKER_DYNAMIC_RANGE_SDR = 1 } | 编码指定动态范围。 | 
 | [IMAGE_DYNAMIC_RANGE](#image_dynamic_range) {<br/>IMAGE_DYNAMIC_RANGE_AUTO = 0,<br/>IMAGE_DYNAMIC_RANGE_SDR = 1,<br/>IMAGE_DYNAMIC_RANGE_HDR = 2 } | 解码指定期望动态范围。 | 
 | [IMAGE_ALLOCATOR_TYPE](#image_allocator_type) {<br/>IMAGE_ALLOCATOR_TYPE_AUTO = 0,<br/>IMAGE_ALLOCATOR_TYPE_DMA = 1,<br/>IMAGE_ALLOCATOR_TYPE_SHARE_MEMORY = 2 } | 用于分配 PixelMap 内存的分配器类型。 | 
+| [Image_CropAndScaleStrategy](#image_cropandscalestrategy) {<br/>IMAGE_CROP_AND_SCALE_STRATEGY_SCALE_FIRST = 1,<br/>IMAGE_CROP_AND_SCALE_STRATEGY_CROP_FIRST = 2 } | 在同时指定desiredSize和desiredRegion时执行裁剪和缩放的策略。 | 
 | [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) {<br/>AUXILIARY_PICTURE_TYPE_GAINMAP = 1, AUXILIARY_PICTURE_TYPE_DEPTH_MAP = 2, AUXILIARY_PICTURE_TYPE_UNREFOCUS_MAP = 3, AUXILIARY_PICTURE_TYPE_LINEAR_MAP = 4,<br/>AUXILIARY_PICTURE_TYPE_FRAGMENT_MAP = 5<br/>} | 辅助图类型。  | 
 | [PIXELMAP_ALPHA_TYPE](#pixelmap_alpha_type) {<br/>PIXELMAP_ALPHA_TYPE_UNKNOWN = 0,<br/>PIXELMAP_ALPHA_TYPE_OPAQUE = 1,<br/>PIXELMAP_ALPHA_TYPE_PREMULTIPLIED = 2, <br/>PIXELMAP_ALPHA_TYPE_UNPREMULTIPLIED = 3 } | Pixelmap透明度类型。 | 
 | [PIXEL_FORMAT](#pixel_format) {<br/>PIXEL_FORMAT_UNKNOWN = 0, PIXEL_FORMAT_RGB_565 = 2,<br/>PIXEL_FORMAT_RGBA_8888 = 3, PIXEL_FORMAT_BGRA_8888 = 4,<br/>PIXEL_FORMAT_RGB_888 = 5, PIXEL_FORMAT_ALPHA_8 = 6,<br/>PIXEL_FORMAT_RGBA_F16 = 7, PIXEL_FORMAT_NV21 = 8,<br/>PIXEL_FORMAT_NV12 = 9, <br/>PIXEL_FORMAT_RGBA_1010102 = 10, <br/>PIXEL_FORMAT_YCBCR_P010 = 11, <br/>PIXEL_FORMAT_YCRCB_P010 = 12<br/>} | 图片像素格式。 | 
@@ -177,6 +178,8 @@
 | [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_SetDesiredRegion](#oh_decodingoptions_setdesiredregion) ([OH_DecodingOptions](#oh_decodingoptions) \*options, [Image_Region](_image___region.md) \*desiredRegion) | 设置解码区域。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_GetDesiredDynamicRange](#oh_decodingoptions_getdesireddynamicrange) ([OH_DecodingOptions](#oh_decodingoptions) \*options, int32_t \*desiredDynamicRange) | 获取解码时设置的期望动态范围。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_SetDesiredDynamicRange](#oh_decodingoptions_setdesireddynamicrange) ([OH_DecodingOptions](#oh_decodingoptions) \*options, int32_t desiredDynamicRange) | 设置解码时的期望动态范围。  | 
+| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_SetCropAndScaleStrategy](#oh_decodingoptions_setcropandscalestrategy) ([OH_DecodingOptions](#oh_decodingoptions) \*options, int32_t cropAndScaleStrategy) | 设置解码选项的裁剪和缩放策略。 | 
+| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_GetCropAndScaleStrategy](#oh_decodingoptions_getcropandscalestrategy) ([OH_DecodingOptions](#oh_decodingoptions) \*options, int32_t \*cropAndScaleStrategy) | 获取解码选项的裁剪和缩放策略。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_Release](#oh_decodingoptions_release) ([OH_DecodingOptions](#oh_decodingoptions) \*options) | 释放OH_DecodingOptions指针。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreateFromUri](#oh_imagesourcenative_createfromuri) (char \*uri, size_t uriSize, [OH_ImageSourceNative](#oh_imagesourcenative) \*\*res) | 通过uri创建OH_ImageSourceNative指针。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreateFromFd](#oh_imagesourcenative_createfromfd) (int32_t fd, [OH_ImageSourceNative](#oh_imagesourcenative) \*\*res) | 通过fd创建OH_ImageSourceNative指针。  | 
@@ -946,6 +949,24 @@ enum Image_AuxiliaryPictureType
 | AUXILIARY_PICTURE_TYPE_FRAGMENT_MAP  | 水印裁剪图，表示在原图中被水印覆盖的区域，该图像用于修复或移除水印影响，恢复图像的完整性和可视性。   | 
 
 
+### Image_CropAndScaleStrategy
+
+```
+enum Image_CropAndScaleStrategy
+```
+
+**描述**
+
+在同时指定desiredSize和desiredRegion时执行裁剪和缩放的策略。
+
+**起始版本：** 18
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| IMAGE_CROP_AND_SCALE_STRATEGY_SCALE_FIRST | 先裁剪，后缩放。 | 
+| IMAGE_CROP_AND_SCALE_STRATEGY_CROP_FIRST | 先缩放，后裁剪。 | 
+
+
 ### IMAGE_DYNAMIC_RANGE
 
 ```
@@ -1579,6 +1600,30 @@ Image_ErrorCode OH_DecodingOptions_Create(OH_DecodingOptions **options)
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
 
 
+### OH_DecodingOptions_GetCropAndScaleStrategy()
+
+```
+Image_ErrorCode OH_DecodingOptions_GetCropAndScaleStrategy(OH_DecodingOptions *options, int32_t *cropAndScaleStrategy)
+```
+
+**描述**
+
+获取解码选项的裁剪和缩放策略。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被操作的OH_DecodingOptions指针。 | 
+| cropAndScaleStrategy | 指向在同时指定desiredSize和desiredRegion时执行裁剪和缩放策略的指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果options或者cropAndScaleStrategy为空指针返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
 ### OH_DecodingOptions_GetDesiredDynamicRange()
 
 ```
@@ -1730,6 +1775,30 @@ Image_ErrorCode OH_DecodingOptions_Release(OH_DecodingOptions *options)
 **返回：**
 
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_DecodingOptions_SetCropAndScaleStrategy()
+
+```
+Image_ErrorCode OH_DecodingOptions_SetCropAndScaleStrategy(OH_DecodingOptions *options, int32_t cropAndScaleStrategy)
+```
+
+**描述**
+
+设置解码选项的裁剪和缩放策略。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被操作的OH_DecodingOptions指针。 | 
+| cropAndScaleStrategy | 在同时指定desiredSize和desiredRegion时执行裁剪和缩放的策略。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果options空指针或者cropAndScaleStrategy取值不在Image_CropAndScaleStrategy枚举值定义之中返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
 
 
 ### OH_DecodingOptions_SetDesiredDynamicRange()

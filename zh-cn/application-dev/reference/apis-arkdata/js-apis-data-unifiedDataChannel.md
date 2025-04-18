@@ -1,6 +1,6 @@
 # @ohos.data.unifiedDataChannel (标准化数据通路)
 
-本模块为统一数据管理框架（Unified Data Management Framework，UDMF）的组成部分，针对多对多跨应用数据共享的不同业务场景提供了标准化的数据通路，提供了标准化的数据接入与读取接口。同时对文本、图片等数据类型提供了标准化定义，方便不同应用间进行数据交互，减少数据类型适配的工作量。
+本模块为统一数据管理框架（Unified Data Management Framework，UDMF）的组成部分，针对多对多跨应用数据共享的不同业务场景提供了标准化的数据通路，提供了标准化的数据接入与读取接口。同时对文本、图片等数据类型提供了标准化定义，方便不同应用间进行数据交互，减少数据类型适配的工作量。UDMF处理数据时，不会解析用户数据的内容，存储路径安全性较低，不建议传输个人敏感数据和隐私数据。
 
 > **说明：**
 >
@@ -858,17 +858,29 @@ File类型数据，是[UnifiedRecord](#unifiedrecord)的子类，也是文件类
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | details | Record<string, string> | 否 | 是 | 是一个字典类型对象，key和value都是string类型，用于描述文件相关信息。例如，可生成一个details内容为<br/>{<br/>"name":"文件名",<br/>"type":"文件类型"<br/>}<br/>的数据对象，用于描述一个文件。非必填字段，默认值为空字典对象。 |
-| uri     | string                    | 否 | 否 | 文件数据uri。                                                                                                                                             |
+| uri     | string                    | 否 | 否 | 本地文件数据uri或网络文件uri，本地文件数据uri可通过[getUriFromPath](../apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath)函数获取。                                                                                                                                            |
 
 **示例：**
 
 ```ts
-let file = new unifiedDataChannel.File();
-file.details = {
-    name: 'test',
-    type: 'txt',
-};
-file.uri = 'schema://com.samples.test/files/test.txt';
+import { unifiedDataChannel } from '@kit.ArkData';
+import { fileUri } from '@kit.CoreFileKit'
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    let context = this.context;
+    let pathDir = context.filesDir;
+    let file = new unifiedDataChannel.File();
+    file.details = {
+        name: 'test',
+        type: 'txt',
+    };
+    let filePath = pathDir + '/test.txt';
+    file.uri = fileUri.getUriFromPath(filePath);
+  }
+}
 ```
 
 ## Image
@@ -881,13 +893,25 @@ file.uri = 'schema://com.samples.test/files/test.txt';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| imageUri | string | 否 | 否 | 图片数据uri。 |
+| imageUri | string | 否 | 否 | 本地图片数据uri或网络图片uri，本地图片数据uri可通过[getUriFromPath](../apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath)函数获取。 |
 
 **示例：**
 
 ```ts
-let image = new unifiedDataChannel.Image();
-image.imageUri = 'schema://com.samples.test/files/test.jpg';
+import { unifiedDataChannel } from '@kit.ArkData';
+import { fileUri } from '@kit.CoreFileKit'
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    let context = this.context;
+    let pathDir = context.filesDir;
+    let image = new unifiedDataChannel.Image();
+    let filePath = pathDir + '/test.jpg';
+    image.imageUri = fileUri.getUriFromPath(filePath);
+  }
+}
 ```
 
 ## Video
@@ -900,13 +924,25 @@ image.imageUri = 'schema://com.samples.test/files/test.jpg';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| videoUri | string | 否 | 否 | 视频数据uri。 |
+| videoUri | string | 否 | 否 | 本地视频数据uri或网络视频uri，本地视频数据uri可通过[getUriFromPath](../apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath)函数获取。 |
 
 **示例：**
 
 ```ts
-let video = new unifiedDataChannel.Video();
-video.videoUri = 'schema://com.samples.test/files/test.mp4';
+import { unifiedDataChannel } from '@kit.ArkData';
+import { fileUri } from '@kit.CoreFileKit'
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    let context = this.context;
+    let pathDir = context.filesDir;
+    let video = new unifiedDataChannel.Video();
+    let filePath = pathDir + '/test.mp4';
+    video.videoUri =fileUri.getUriFromPath(filePath);
+  }
+}
 ```
 
 ## Audio
@@ -919,13 +955,25 @@ video.videoUri = 'schema://com.samples.test/files/test.mp4';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| audioUri | string | 否 | 否 | 音频数据uri。 |
+| audioUri | string | 否 | 否 | 本地音频数据uri或网络音频uri，本地音频数据uri可通过[getUriFromPath](../apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath)函数获取。 |
 
 **示例：**
 
 ```ts
-let audio = new unifiedDataChannel.Audio();
-audio.audioUri = 'schema://com.samples.test/files/test.mp3';
+import { unifiedDataChannel } from '@kit.ArkData';
+import { fileUri } from '@kit.CoreFileKit'
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    let context = this.context;
+    let pathDir = context.filesDir;
+    let audio = new unifiedDataChannel.Audio();
+    let filePath = pathDir + '/test.mp3';
+    audio.audioUri = fileUri.getUriFromPath(filePath);
+  }
+}
 ```
 
 ## Folder
@@ -938,13 +986,25 @@ audio.audioUri = 'schema://com.samples.test/files/test.mp3';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| folderUri | string | 否 | 否 | 文件夹uri。 |
+| folderUri | string | 否 | 否 | 本地文件夹数据uri或网络文件夹uri，本地文件夹数据uri可通过[getUriFromPath](../apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath)函数获取。 |
 
 **示例：**
 
 ```ts
-let folder = new unifiedDataChannel.Folder();
-folder.folderUri = 'schema://com.samples.test/files/folder/';
+import { unifiedDataChannel } from '@kit.ArkData';
+import { fileUri } from '@kit.CoreFileKit'
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    let context = this.context;
+    let pathDir = context.filesDir;
+    let folder = new unifiedDataChannel.Folder();
+    let filePath = pathDir + '/folder';
+    folder.folderUri = fileUri.getUriFromPath(filePath);
+  }
+}
 ```
 
 ## SystemDefinedRecord
@@ -1781,5 +1841,82 @@ try {
 }catch (e){
   let error: BusinessError = e as BusinessError;
   console.error(`[UDMF]removeAppShareOptions throws an exception. code is ${error.code},message is ${error.message} `);
+}
+```
+
+## unifiedDataChannel.convertRecordsToEntries<sup>17+</sup>
+
+convertRecordsToEntries(data: UnifiedData): void
+
+本接口用于将传入的data转换成多样式数据结构。若原data使用多个record去承载同一份数据的不同样式，则可以使用此接口将原data转换为多样式数据结构。
+
+当满足以下规则时进行转换，传入的data经转换后变为多样式数据结构：
+1. data中的record数量大于1;
+2. data中的properties中的tag值为"records_to_entries_data_format"。
+
+否则不会产生任何行为。
+
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**参数：**
+
+| 参数名    | 类型                    | 必填 | 说明                                                         |
+| --------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| data    | [UnifiedData](#unifieddata) | 是  | 目标数据。           |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { unifiedDataChannel } from '@kit.ArkData';
+import { uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let details : Record<string, string> = {
+  'attr1': 'value1',
+  'attr2': 'value2',
+}
+let plainTextObj : uniformDataStruct.PlainText = {
+  uniformDataType: 'general.plain-text',
+  textContent : 'The weather is very good today',
+  abstract : 'The weather is very good today',
+  details : details,
+}
+let htmlObj : uniformDataStruct.HTML = {
+  uniformDataType :'general.html',
+  htmlContent : '<div><p>The weather is very good today</p></div>',
+  plainContent : 'The weather is very good today',
+  details : details,
+}
+let plainText = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainTextObj);
+let html = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.HTML, htmlObj);
+let unifiedData = new unifiedDataChannel.UnifiedData(plainText);
+unifiedData.addRecord(html);
+unifiedData.properties.tag = 'records_to_entries_data_format';
+
+try {
+  unifiedDataChannel.convertRecordsToEntries(unifiedData);
+  let records: Array<unifiedDataChannel.UnifiedRecord> = unifiedData.getRecords();
+  console.info(`Records size is ${records.length}`); // After conversion, its length must be less than 1
+  if (records.length == 1) {
+    let plainTextObjRead: uniformDataStruct.PlainText = records[0].getEntry(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) as uniformDataStruct.PlainText;
+    console.info(`TextContent is ${plainTextObjRead.textContent}`);
+    let htmlObjRead: uniformDataStruct.HTML = records[0].getEntry(uniformTypeDescriptor.UniformDataType.HTML) as uniformDataStruct.HTML;
+    console.info(`HtmlContent is ${htmlObjRead.htmlContent}`);
+  }
+} catch (e) {
+  let error: BusinessError = e as BusinessError;
+  console.error(`Convert data throws an exception. code is ${error.code}, message is ${error.message} `);
 }
 ```

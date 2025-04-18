@@ -9,7 +9,7 @@
 
 ## 导入模块
 ```ts
-import { metadataBinding  }'@ohos.multimodalAwareness';
+import { metadataBinding } from '@ohos.multimodalAwareness';
 ```
 
 ## submitMetadata(string)
@@ -29,13 +29,12 @@ function submitMetadata(metadata: string): void;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-|   401    | Parameter error. Parameter verification failed.|
 |32100001|Internal handling failed. Set Meta data to screenshot app fail.|
 
 **示例**：
 
 ```ts
-import { metadataBinding  }'@ohos.multimodalAwareness';
+import { metadataBinding } from '@ohos.multimodalAwareness';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let metadata:string = "";
@@ -63,17 +62,16 @@ metadataBinding.on(type: 'operationSubmitMetadata', bundleName: string, callback
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-|401|Parameter error. Parameter verification failed.|
 |32100001|Internal handling failed. Service exception.|
 |32100004|Subscribe Failed.|
 
 **示例：**  
 ```ts
-import { metadataBinding  }'@ohos.multimodalAwareness';
+import { metadataBinding } from '@ohos.multimodalAwareness';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleName:string = '';
-metadataBinding.on('operationSubmitMetadata', bundleName, (evnet:number)=>{
+metadataBinding.on('operationSubmitMetadata', bundleName, (event:number)=>{
 	if (event == 1) {
 		console.info("The screenshot request is intercepted and the app link is obtained");
 	}
@@ -101,14 +99,13 @@ metadataBinding.off(type: 'operationSubmitMetadata', bundleName: string, callbac
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-|401|Parameter error. Parameter verification failed.|
 |32100001|Internal handling failed. Service exception.|
 |32100005|Unsubscribe Failed.|
 
 **示例**：
 
 ```ts
-import { metadataBinding  }'@ohos.multimodalAwareness';
+import { metadataBinding } from '@ohos.multimodalAwareness';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleName:string = '';

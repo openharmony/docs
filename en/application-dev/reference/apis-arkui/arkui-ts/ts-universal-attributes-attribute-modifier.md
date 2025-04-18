@@ -36,7 +36,7 @@ You need a custom class to implement the **AttributeModifier** API.
 
 >  **NOTE**
 >
->  In the following APIs, setting the same value or object for the same attribute of the **instance** object will not trigger an update. However, since API version 16, setting the same resource type object will take effect and trigger an update.
+>  In the following APIs, setting the same value or object for the same attribute of the **instance** object will not trigger an update.
 
 ### applyNormalAttribute
 applyNormalAttribute(instance: T) : void

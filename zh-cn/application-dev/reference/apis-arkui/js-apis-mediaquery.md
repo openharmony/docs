@@ -9,8 +9,6 @@
 > 该模块不支持在[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)的文件声明处使用，即不能在UIAbility的生命周期中调用，需要在创建组件实例后使用。
 >
 > 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](js-apis-arkui-UIContext.md#uicontext)说明。
->
-> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getMediaQuery](js-apis-arkui-UIContext.md#getmediaquery)方法获取当前UI上下文关联的[MediaQuery](js-apis-arkui-UIContext.md#mediaquery)对象。
 
 
 ## 导入模块
@@ -20,11 +18,17 @@ import { mediaquery } from '@kit.ArkUI';
 ```
 
 
-## mediaquery.matchMediaSync
+## mediaquery.matchMediaSync<sup>(deprecated)</sup>
 
 matchMediaSync(condition: string): MediaQueryListener
 
 设置媒体查询的查询条件，并返回对应的监听句柄。
+
+> **说明：** 
+>
+> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getMediaQuery](js-apis-arkui-UIContext.md#getmediaquery)获取[MediaQuery](js-apis-arkui-UIContext.md#mediaquery)实例，再通过此实例调用替代方法[matchMediaSync](js-apis-arkui-UIContext.md#matchmediasync)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getMediaQuery](js-apis-arkui-UIContext.md#getmediaquery)方法获取当前UI上下文关联的[MediaQuery](js-apis-arkui-UIContext.md#mediaquery)对象。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 

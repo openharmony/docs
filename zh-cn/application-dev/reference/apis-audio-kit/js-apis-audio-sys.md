@@ -619,38 +619,6 @@ import { audio } from '@kit.AudioKit';
 let audioEffectManager: audio.AudioEffectManager = audioManager.getEffectManager();
 ```
 
-### getSpatializationManager<sup>11+</sup>
-
-getSpatializationManager(): AudioSpatializationManager
-
-获取空间音频管理器。
-
-**系统接口：** 该接口为系统接口
-
-**系统能力：** SystemCapability.Multimedia.Audio.Spatialization
-
-**返回值：**
-
-| 类型                                       | 说明                          |
-|------------------------------------------| ----------------------------- |
-| [AudioSpatializationManager](#audiospatializationmanager11) | AudioSpatializationManager实例 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 202     | Not system App.                             |
-
-**示例：**
-
-```ts
-import { audio } from '@kit.AudioKit';
-
-let audioSpatializationManager: audio.AudioSpatializationManager = audioManager.getSpatializationManager();
-```
-
 ### disableSafeMediaVolume<sup>12+</sup>
 
 disableSafeMediaVolume(): Promise&lt;void&gt;
@@ -2262,7 +2230,7 @@ async function getPreferredInputDeviceByFilter(){
 }
 ```
 
-### excludeOutputDevices<sup>16+</sup>
+### excludeOutputDevices<sup>18+</sup>
 
 excludeOutputDevices(usage: DeviceUsage, devices: AudioDeviceDescriptors): Promise&lt;void&gt;
 
@@ -2323,7 +2291,7 @@ async function excludeOutputDevices(){
 }
 ```
 
-### unexcludeOutputDevices<sup>16+</sup>
+### unexcludeOutputDevices<sup>18+</sup>
 
 unexcludeOutputDevices(usage: DeviceUsage, devices: AudioDeviceDescriptors): Promise&lt;void&gt;
 
@@ -2380,7 +2348,7 @@ async function unexcludeOutputDevices(){
 }
 ```
 
-### unexcludeOutputDevices<sup>16+</sup>
+### unexcludeOutputDevices<sup>18+</sup>
 
 unexcludeOutputDevices(usage: DeviceUsage): Promise&lt;void&gt;
 
@@ -2421,7 +2389,7 @@ async function unexcludeOutputDevices(){
 }
 ```
 
-### getExcludedDevices<sup>16+</sup>
+### getExcludedDevices<sup>18+</sup>
 
 getExcludedDevices(usage: DeviceUsage): AudioDeviceDescriptors
 
@@ -2556,7 +2524,7 @@ let inputAudioCapturerFilter: audio.AudioCapturerFilter = {
 
 ## AudioSpatializationManager<sup>11+</sup>
 
-空间音频管理。在使用AudioSpatializationManager的接口前，需要使用[getSpatializationManager](#getspatializationmanager11)获取AudioSpatializationManager实例。
+空间音频管理。在使用AudioSpatializationManager的接口前，需要使用[getSpatializationManager](js-apis-audio.md#getspatializationmanager18)获取AudioSpatializationManager实例。
 
 ### isSpatializationSupported<sup>11+</sup>
 

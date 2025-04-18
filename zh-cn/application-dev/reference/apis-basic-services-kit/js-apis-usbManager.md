@@ -806,7 +806,6 @@ usbSubmitTransfer(transfer: UsbDataTransferParams): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 801 | Capability not supported. |
 | 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first. |
 | 14400007 | Resource busy. |
@@ -820,6 +819,7 @@ usbSubmitTransfer(transfer: UsbDataTransferParams): void
 >
 > 以下示例代码需要放入具体的方法中执行，只是调用usbSubmitTransfer接口的必要流程，实际调用时，设备开发者需要遵循设备相关协议进行调用，确保数据的正确传输和设备的兼容性。
 
+<!--code_no_check-->
 ```ts
 //usbManager.getDevices 接口返回数据集合，取其中一个设备对象，并获取权限。
 //把获取到的设备对象作为参数传入usbManager.connectDevice;当usbManager.connectDevice接口成功返回之后；
@@ -889,7 +889,6 @@ usbCancelTransfer(transfer: UsbDataTransferParams): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 801 | Capability not supported. |
 | 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first. |
 | 14400008 | No such device (it may have been disconnected). |
@@ -908,6 +907,7 @@ usbCancelTransfer(transfer: UsbDataTransferParams): void
 >
 > 以下示例代码需要放入具体的方法中执行，只是调用usbCancelTransfer接口的必要流程，实际调用时，设备开发者需要遵循设备相关协议进行调用，确保数据的正确传输和设备的兼容性。
 
+<!--code_no_check-->
 ```ts
 //usbManager.getDevices 接口返回数据集合，取其中一个设备对象，并获取权限。
 //把获取到的设备对象作为参数传入usbManager.connectDevice;当usbManager.connectDevice接口成功返回之后；
