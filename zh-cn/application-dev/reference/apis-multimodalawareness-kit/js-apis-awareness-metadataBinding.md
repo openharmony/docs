@@ -38,9 +38,11 @@ import { metadataBinding } from '@ohos.multimodalAwareness';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let metadata: string = "";
-metadataBinding.submitMetadata(metadata).catch((error: BusinessError)=>{
+try {
+  metadataBinding.submitMetadata(metadata);
+} catch (error) {
   console.error("submit metadata error" + error);
-});
+}
 ```
 
 ## metadataBinding.on('operationSubmitMetadata', string,  Callback\<number\>)
@@ -71,13 +73,15 @@ import { metadataBinding } from '@ohos.multimodalAwareness';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleName: string = '';
-metadataBinding.on('operationSubmitMetadata', bundleName, (event: number)=>{
-	if (event == 1) {
-		console.info("The screenshot request is intercepted and the app link is obtained");
-	}
-}).catch((error:BusinessError)=>{
-	console.error("subscript screenshot event" + error);
-});
+try {
+  metadataBinding.on('operationSubmitMetadata', bundleName, (event: number) =>{
+    if (event == 1) {
+      console.info("The screenshot request is intercepted and the app link is obtained");
+    }
+  });
+} catch (error) {
+  console.info("register screenshot event error");
+}
 ```
 
 
@@ -109,7 +113,9 @@ import { metadataBinding } from '@ohos.multimodalAwareness';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleName: string = '';
-metadataBinding.off('operationSubmitMetadata', bundleName, (evnet: number)=>{}).catch((error: BusinessError)=>{
-	console.error("unsubscript screenshot event" + error);
-});
+try {
+  metadataBinding.off('operationSubmitMetadata', bundleName, (evnet: number)=>{});
+} catch (error) {
+  console.error("unsubscript screenshot event" + error);
+}
 ```
