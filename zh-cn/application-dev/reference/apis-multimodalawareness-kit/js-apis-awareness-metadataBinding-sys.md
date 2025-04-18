@@ -48,7 +48,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let captureImage: image.PixelMap | undefined;
 let metadata: string = "";
 let srcImage: image.PixelMap | undefined = undefined;
-metadataBinding.encodeImage(srcImage, metadata).then((pixelMap : image.PixelMap) =>{
+metadataBinding.encodeImage(srcImage, metadata).then((pixelMap: image.PixelMap) =>{
 	captureImage = pixelMap;
 }).catch((error:BusinessError)=>{
 	console.error("encode image error" + error);
@@ -87,7 +87,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let encodeImage: image.PixelMap | undefined;
 let captrueMetadata: string = "";
-metadataBinding.decodeImage(encodeImage).then((metadata : string) =>{
+metadataBinding.decodeImage(encodeImage).then((metadata: string) =>{
 	captrueMetadata = metadata;
 }).catch((error:BusinessError)=>{
 	console.error("decode image error" + error);
@@ -121,7 +121,7 @@ import { metadataBinding } from '@ohos.multimodalAwareness';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let metadata:string = '';
-metadataBinding.notifyMetadataBindingEvent(metadata).catch((error:BusinessError)=>{
+metadataBinding.notifyMetadataBindingEvent(metadata).catch((error: BusinessError)=>{
   console.error("notify metadata error" + error);
 });
 ```
