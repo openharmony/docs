@@ -55,8 +55,6 @@ registerFont(options: FontOptions): void
 
 ```ts
 // xxx.ets
-import { font } from '@kit.ArkUI';
-
 @Entry
 @Component
 struct FontExample {
@@ -64,29 +62,30 @@ struct FontExample {
   // iconFont示例，假设0000为指定icon的Unicode，实际需要开发者从注册的iconFont的ttf文件里面获取Unicode
   @State unicode: string = '\u0000';
   @State codePoint: string = String.fromCharCode(0x0000);
+  private uiContext: UIContext = this.getUIContext();
 
   aboutToAppear() {
     // familyName和familySrc都支持系统Resource
-    font.registerFont({
+    this.uiContext.getFont().registerFont({
       // 建议使用 this.getUIContext().getFont().registerFont()接口
       familyName: $r('app.string.font_name'),
       familySrc: $r('app.string.font_src')
     })
 
     // familySrc支持RawFile
-    font.registerFont({
+    this.uiContext.getFont().registerFont({
       familyName: 'mediumRawFile',
       familySrc: $rawfile('font/medium.ttf')
     })
 
     // 注册iconFont
-    font.registerFont({
+    this.uiContext.getFont().registerFont({
       familyName: 'iconFont',
       familySrc: '/font/iconFont.ttf'
     })
 
     // familyName和familySrc都支持string
-    font.registerFont({
+    this.uiContext.getFont().registerFont({
       familyName: 'medium',
       familySrc: '/font/medium.ttf' // font文件夹与pages目录同级
     })
@@ -149,6 +148,8 @@ getSystemFontList(): Array\<string>
 > **说明**
 >
 > 推荐通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getFont](./js-apis-arkui-UIContext.md#getfont)方法获取当前UI上下文关联的[Font](./js-apis-arkui-UIContext.md#font)对象。
+
+<!--deprecated_code_no_check-->
 
 ```ts
 // xxx.ets
@@ -224,6 +225,8 @@ getFontByName(fontName: string): FontInfo
 > **说明**
 >
 > 推荐通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getFont](./js-apis-arkui-UIContext.md#getfont)方法获取当前UI上下文关联的[Font](./js-apis-arkui-UIContext.md#font)对象。
+
+<!--deprecated_code_no_check-->
 
 ```ts
 // xxx.ets
