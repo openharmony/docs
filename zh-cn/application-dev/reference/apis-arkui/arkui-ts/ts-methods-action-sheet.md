@@ -136,7 +136,8 @@ struct ActionSheetExample {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Button('Click to Show ActionSheet')
         .onClick(() => {
-          ActionSheet.show({ // 建议使用 this.getUIContext().showActionSheet()接口
+          ActionSheet.show({
+            // 建议使用 this.getUIContext().showActionSheet()接口
             title: 'ActionSheet title',
             subtitle: 'ActionSheet subtitle',
             message: 'message',
@@ -145,41 +146,41 @@ struct ActionSheetExample {
               defaultFocus: true,
               value: 'Confirm button',
               action: () => {
-                console.log('Get Alert Dialog handled')
+                console.log('Get Alert Dialog handled');
               }
             },
             cancel: () => {
-              console.log('actionSheet canceled')
+              console.log('actionSheet canceled');
             },
-              onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
-                console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
-                console.log("dialog onWillDismiss")
-                if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-                  dismissDialogAction.dismiss()
-                }
-                if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-                  dismissDialogAction.dismiss()
-                }
-              },
+            onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
+              console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
+              console.log("dialog onWillDismiss");
+              if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
+                dismissDialogAction.dismiss();
+              }
+              if (dismissDialogAction.reason === DismissReason.TOUCH_OUTSIDE) {
+                dismissDialogAction.dismiss();
+              }
+            },
             alignment: DialogAlignment.Bottom,
             offset: { dx: 0, dy: -10 },
             sheets: [
               {
                 title: 'apples',
                 action: () => {
-                  console.log('apples')
+                  console.log('apples');
                 }
               },
               {
                 title: 'bananas',
                 action: () => {
-                  console.log('bananas')
+                  console.log('bananas');
                 }
               },
               {
                 title: 'pears',
                 action: () => {
-                  console.log('pears')
+                  console.log('pears');
                 }
               }
             ]
@@ -216,41 +217,41 @@ struct ActionSheetExample {
               defaultFocus: true,
               value: 'Confirm button',
               action: () => {
-                console.log('Get Alert Dialog handled')
+                console.log('Get Alert Dialog handled');
               }
             },
             cancel: () => {
-              console.log('actionSheet canceled')
+              console.log('actionSheet canceled');
             },
-              onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
-                console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
-                console.log("dialog onWillDismiss")
-                if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-                  dismissDialogAction.dismiss()
-                }
-                if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-                  dismissDialogAction.dismiss()
-                }
-              },
+            onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
+              console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
+              console.log("dialog onWillDismiss");
+              if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
+                dismissDialogAction.dismiss();
+              }
+              if (dismissDialogAction.reason === DismissReason.TOUCH_OUTSIDE) {
+                dismissDialogAction.dismiss();
+              }
+            },
             alignment: DialogAlignment.Center,
             offset: { dx: 0, dy: -10 },
             sheets: [
               {
                 title: 'apples',
                 action: () => {
-                  console.log('apples')
+                  console.log('apples');
                 }
               },
               {
                 title: 'bananas',
                 action: () => {
-                  console.log('bananas')
+                  console.log('bananas');
                 }
               },
               {
                 title: 'pears',
                 action: () => {
-                  console.log('pears')
+                  console.log('pears');
                 }
               }
             ]
@@ -275,46 +276,47 @@ struct ActionSheetExample {
     Column({ space: 5 }) {
       Button('ActionSheet Set Duration')
         .onClick(() => {
-            ActionSheet.show({
-              title: 'ActionSheet 1',
-              message: 'Set Animation Duration open 3 second, close 100 ms',
-              autoCancel: true,
-              alignment: DialogAlignment.Top,
-              transition:TransitionEffect.asymmetric(TransitionEffect.OPACITY
-                .animation({ duration: 3000, curve: Curve.Sharp }).combine(TransitionEffect.scale({x: 1.5, y: 1.5}).animation({duration: 3000, curve: Curve.Sharp})),
-                TransitionEffect.OPACITY.animation({ duration: 100, curve: Curve.Smooth })
-                  .combine(TransitionEffect.scale({x: 0.5, y: 0.5}).animation({duration: 100, curve: Curve.Smooth}))),
-              offset: { dx: 0, dy: -20 },
-              confirm: {
-                value: 'button',
+          ActionSheet.show({
+            title: 'ActionSheet 1',
+            message: 'Set Animation Duration open 3 second, close 100 ms',
+            autoCancel: true,
+            alignment: DialogAlignment.Top,
+            transition: TransitionEffect.asymmetric(TransitionEffect.OPACITY
+              .animation({ duration: 3000, curve: Curve.Sharp })
+              .combine(TransitionEffect.scale({ x: 1.5, y: 1.5 }).animation({ duration: 3000, curve: Curve.Sharp })),
+              TransitionEffect.OPACITY.animation({ duration: 100, curve: Curve.Smooth })
+                .combine(TransitionEffect.scale({ x: 0.5, y: 0.5 }).animation({ duration: 100, curve: Curve.Smooth }))),
+            offset: { dx: 0, dy: -20 },
+            confirm: {
+              value: 'button',
+              action: () => {
+                console.info('Button-clicking callback');
+              }
+            },
+            cancel: () => {
+              console.info('Closed callbacks');
+            },
+            sheets: [
+              {
+                title: 'apples',
                 action: () => {
-                  console.info('Button-clicking callback')
+                  console.log('apples');
                 }
               },
-              cancel: () => {
-                console.info('Closed callbacks')
-              },
-              sheets: [
-                {
-                  title: 'apples',
-                  action: () => {
-                    console.log('apples')
-                  }
-                },
-                {
-                  title: 'bananas',
-                  action: () => {
-                    console.log('bananas')
-                  }
-                },
-                {
-                  title: 'pears',
-                  action: () => {
-                    console.log('pears')
-                  }
+              {
+                title: 'bananas',
+                action: () => {
+                  console.log('bananas');
                 }
-              ]
-            })
+              },
+              {
+                title: 'pears',
+                action: () => {
+                  console.log('pears');
+                }
+              }
+            ]
+          })
         }).backgroundColor(0x317aff).height("88px")
     }.width('100%').margin({ top: 5 })
   }
@@ -342,28 +344,33 @@ struct ActionSheetExample {
             height: 350,
             cornerRadius: 20,
             borderWidth: 1,
-            borderStyle: BorderStyle.Solid,//使用borderStyle属性，需要和borderWidth属性一起使用
-            borderColor: Color.Blue,//使用borderColor属性，需要和borderWidth属性一起使用
+            borderStyle: BorderStyle.Solid, //使用borderStyle属性，需要和borderWidth属性一起使用
+            borderColor: Color.Blue, //使用borderColor属性，需要和borderWidth属性一起使用
             backgroundColor: Color.White,
-            shadow: ({ radius: 20, color: Color.Grey, offsetX: 50, offsetY: 0}),
+            shadow: ({
+              radius: 20,
+              color: Color.Grey,
+              offsetX: 50,
+              offsetY: 0
+            }),
             confirm: {
               defaultFocus: true,
               value: 'Confirm button',
               action: () => {
-                console.log('Get Alert Dialog handled')
+                console.log('Get Alert Dialog handled');
               }
             },
             cancel: () => {
-              console.log('actionSheet canceled')
+              console.log('actionSheet canceled');
             },
-            onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
-              console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
-              console.log("dialog onWillDismiss")
-              if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-                dismissDialogAction.dismiss()
+            onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
+              console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
+              console.log("dialog onWillDismiss");
+              if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
+                dismissDialogAction.dismiss();
               }
-              if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-                dismissDialogAction.dismiss()
+              if (dismissDialogAction.reason === DismissReason.TOUCH_OUTSIDE) {
+                dismissDialogAction.dismiss();
               }
             },
             alignment: DialogAlignment.Bottom,
@@ -372,19 +379,19 @@ struct ActionSheetExample {
               {
                 title: 'apples',
                 action: () => {
-                  console.log('apples')
+                  console.log('apples');
                 }
               },
               {
                 title: 'bananas',
                 action: () => {
-                  console.log('bananas')
+                  console.log('bananas');
                 }
               },
               {
                 title: 'pears',
                 action: () => {
-                  console.log('pears')
+                  console.log('pears');
                 }
               }
             ]
@@ -409,7 +416,8 @@ struct ActionSheetExample {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Button('Click to Show ActionSheet')
         .onClick(() => {
-          ActionSheet.show({ // 建议使用 this.getUIContext().showActionSheet()接口
+          ActionSheet.show({
+            // 建议使用 this.getUIContext().showActionSheet()接口
             title: 'ActionSheet title',
             subtitle: 'ActionSheet subtitle',
             message: 'message',
@@ -418,20 +426,20 @@ struct ActionSheetExample {
               defaultFocus: true,
               value: 'Confirm button',
               action: () => {
-                console.log('Get Alert Dialog handled')
+                console.log('Get Alert Dialog handled');
               }
             },
             cancel: () => {
-              console.log('actionSheet canceled')
+              console.log('actionSheet canceled');
             },
-            onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
-              console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
-              console.log("dialog onWillDismiss")
-              if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-                dismissDialogAction.dismiss()
+            onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
+              console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
+              console.log("dialog onWillDismiss");
+              if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
+                dismissDialogAction.dismiss();
               }
-              if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-                dismissDialogAction.dismiss()
+              if (dismissDialogAction.reason === DismissReason.TOUCH_OUTSIDE) {
+                dismissDialogAction.dismiss();
               }
             },
             alignment: DialogAlignment.Bottom,
@@ -442,19 +450,19 @@ struct ActionSheetExample {
               {
                 title: 'apples',
                 action: () => {
-                  console.log('apples')
+                  console.log('apples');
                 }
               },
               {
                 title: 'bananas',
                 action: () => {
-                  console.log('bananas')
+                  console.log('bananas');
                 }
               },
               {
                 title: 'pears',
                 action: () => {
-                  console.log('pears')
+                  console.log('pears');
                 }
               }
             ]
