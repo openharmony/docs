@@ -264,7 +264,7 @@
         if (rawFile != nullptr) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, tag, "OH_ResourceManager_OpenRawFile success");
         }
-        // 获取rawfile的描述符RawFileDescriptor {fd, offset, length}
+        // 获取rawfile的描述符RawFileDescriptor （fd, offset, length）
         RawFileDescriptor descriptor;
         OH_ResourceManager_GetRawFileDescriptor(rawFile, descriptor);
         // 关闭打开的指针对象
