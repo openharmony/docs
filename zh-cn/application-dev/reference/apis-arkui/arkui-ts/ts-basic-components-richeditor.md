@@ -2279,6 +2279,12 @@ struct SelectionMenu {
           .bindSelectionMenu(RichEditorSpanType.TEXT, this.panel, ResponseType.RightClick, { onDisappear: () => {
             this.sliderShow = false
           }})
+          .bindSelectionMenu(RichEditorSpanType.IMAGE, this.panel, ResponseType.LongPress, { 
+            menuType : MenuType.PREVIEW_MENU,
+            previewMenuOptions : {
+              hapticFeedbackMode : HapticFeedbackMode.ENABLED
+            }
+          })
           .borderWidth(1)
           .borderColor(Color.Red)
           .width(200)
