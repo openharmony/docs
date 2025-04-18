@@ -4649,6 +4649,18 @@ Allows a system application to start the components provided by Tips.
 
 **Valid since**: 18
 
+### ohos.permission.UPDATE_FONT
+
+Allows an application to install and uninstall fonts.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：19
+
 ## ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
 
 Allows an application to call the accessibility service extension APIs to query and manipulate UI components.
