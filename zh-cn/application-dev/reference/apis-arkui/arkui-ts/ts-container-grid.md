@@ -82,7 +82,7 @@ columnsTemplate('repeat(auto-stretch, track-size)')是设置固定列宽值为tr
 其中repeat、auto-fit、auto-fill、auto-stretch为关键字。track-size为列宽，支持的单位包括px、vp、%或有效数字，默认单位为vp，track-size至少包括一个有效列宽。<br/>
 auto-stretch模式只支持track-size为一个有效列宽值，并且track-size只支持px、vp和有效数字，不支持%。
 
-使用效果可以参考示[示例8](#示例8设置自适应列数)。
+使用效果可以参考[示例8](#示例8设置自适应列数)。
 
 设置为'0fr'时，该列的列宽为0，不显示GridItem。设置为其他非法值时，GridItem显示为固定1列。
 
