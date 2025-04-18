@@ -329,8 +329,7 @@ Incorrect socket protocol type.
 
 **可能原因**
 
-标识了协议的Socket函数在不支持的socket上进行操作，
-如Internet UDP协议不能被标识为SOCK_STREAM socket类型。
+标识了协议的Socket函数在不支持的socket上进行操作，如Internet UDP协议不能被标识为SOCK_STREAM socket类型。
 
 **处理步骤**
 
