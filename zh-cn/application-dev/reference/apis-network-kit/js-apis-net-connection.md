@@ -212,8 +212,7 @@ connection.setAppHttpProxy({
 
 **预置锁定证书PIN:**
 
-证书PIN是对证书文件用sha256算法计算出的hash值。 
-对于证书server.pem, 可以用如下openssl命令计算它的PIN:
+证书PIN是对证书文件用sha256算法计算出的hash值。对于证书server.pem, 可以用如下openssl命令计算它的PIN:
 
 ```shell
 cat server.pem \
