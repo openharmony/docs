@@ -21,7 +21,7 @@ bool res = OH_HiAppEvent_Configure(MAX_STORAGE, "100M");
 
 **起始版本：** 8
 
-**相关模块：**[HiAppEvent](_hi_app_event.md)
+**相关模块：** [HiAppEvent](_hi_app_event.md)
 
 
 ## 汇总

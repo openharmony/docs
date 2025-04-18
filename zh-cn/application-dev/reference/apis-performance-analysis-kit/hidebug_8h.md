@@ -13,7 +13,7 @@
 
 **起始版本：** 12
 
-**相关模块：**[HiDebug](_hi_debug.md)
+**相关模块：** [HiDebug](_hi_debug.md)
 
 
 ## 汇总

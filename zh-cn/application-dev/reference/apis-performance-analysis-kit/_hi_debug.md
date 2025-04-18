@@ -595,7 +595,7 @@ void OH_HiDebug_FreeThreadCpuUsage (HiDebug_ThreadCpuUsagePtr * threadCpuUsage)
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -614,7 +614,7 @@ double OH_HiDebug_GetAppCpuUsage ()
 
 **返回：**
 
-返回进程的CPU使用率百分比。如果返回结果为0，可能的原因是获取失败。
+返回进程的CPU使用率百分比。如果返回结果为0，可能的原因是当前应用的cpu使用率过低。
 
 
 ### OH_HiDebug_GetAppMemoryLimit()
@@ -627,7 +627,7 @@ void OH_HiDebug_GetAppMemoryLimit (HiDebug_MemoryLimit * memoryLimit)
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -644,7 +644,7 @@ void OH_HiDebug_GetAppNativeMemInfo (HiDebug_NativeMemInfo * nativeMemInfo)
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -663,7 +663,7 @@ HiDebug_ThreadCpuUsagePtr OH_HiDebug_GetAppThreadCpuUsage ()
 
 **返回：**
 
-返回所有线程CPU使用情况，见[HiDebug_ThreadCpuUsagePtr](#hidebug_threadcpuusageptr)。 如果返回的结果是null，说明调用失败。
+返回所有线程CPU使用情况，见[HiDebug_ThreadCpuUsagePtr](#hidebug_threadcpuusageptr)。 如果返回的结果是null，可能的原因是未获取到线程相关的数据。
 
 
 ### OH_HiDebug_GetGraphicsMemory()
@@ -676,7 +676,7 @@ HiDebug_ErrorCode OH_HiDebug_GetGraphicsMemory (uint32_t * value)
 
 **起始版本：** 14
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -716,7 +716,7 @@ void OH_HiDebug_GetSystemMemInfo (HiDebug_SystemMemInfo * systemMemInfo)
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -733,7 +733,7 @@ HiDebug_ErrorCode OH_HiDebug_StartAppTraceCapture (HiDebug_TraceFlag flag, uint6
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
