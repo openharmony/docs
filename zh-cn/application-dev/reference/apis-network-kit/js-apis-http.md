@@ -1212,10 +1212,10 @@ request方法回调函数的返回值类型。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------| --- | ----------- |
-| certPath | string | 是 | 证书路径 |
-| certType | [CertType](#certtype11) | 否 | 证书类型，默认是PEM |
-| keyPath | string | 是 | 证书秘钥的路径 |
-| keyPassword | string | 否  | 证书秘钥的密码 |
+| certPath | string | 是 | 证书路径。 |
+| certType | [CertType](#certtype11) | 否 | 证书类型，默认是PEM。 |
+| keyPath | string | 是 | 证书秘钥的路径。 |
+| keyPassword | string | 否  | 证书秘钥的密码。 |
 
 ## PerformanceTiming<sup>11+</sup>
 
@@ -1238,7 +1238,7 @@ request方法回调函数的返回值类型。
 
 ## DataReceiveProgressInfo<sup>11+</sup>
 
-数据接收信息
+数据接收信息。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -1249,7 +1249,7 @@ request方法回调函数的返回值类型。
 
 ## DataSendProgressInfo<sup>11+</sup>
 
-数据发送信息
+数据发送信息。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -1270,7 +1270,7 @@ request方法回调函数的返回值类型。
 
 | 名称 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| name        | string | 是  | 数据名称                                                                      |
+| name        | string | 是  | 数据名称。                                                                      |
 | contentType | string | 是 | 数据类型，如'text/plain'，'image/png', 'image/jpeg', 'audio/mpeg', 'video/mp4'等。 |
 | remoteFileName | string | 否 | 上传到服务器保存为文件的名称。                                                 |
 | data | string \| Object \| ArrayBuffer | 否 | 表单数据内容。                                                 |
@@ -1536,9 +1536,9 @@ http协议版本。
 
 | 名称 | 说明       |
 | --- | ---------- |
-| PEM | 证书类型PEM |
-| DER | 证书类型DER |
-| P12 | 证书类型P12 |
+| PEM | 证书类型PEM。 |
+| DER | 证书类型DER。 |
+| P12 | 证书类型P12。 |
 
 ## CertificatePinning<sup>12+</sup>
 
