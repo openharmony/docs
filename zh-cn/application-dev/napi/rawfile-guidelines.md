@@ -30,7 +30,7 @@
 
 ## 开发步骤
 
-   以ArkTS侧获取rawfile文件列表、rawfile文件内容、rawfile描述符{fd, offset, length}三种调用方式为例。
+   以ArkTS侧获取rawfile文件列表、rawfile文件内容、rawfile描述符（fd, offset, length）三种调用方式为例。
 
 **1. 创建工程**
 
@@ -86,7 +86,7 @@
     static napi_value IsRawDir(napi_env env, napi_callback_info info)
     ```
 
-3. 在hello.cpp文件中获取Js的资源对象，并转为Native的资源对象，即可调用资源的Native接口，获取rawfile列表、rawfile文件内容以及rawfile描述符{fd, offset, length}三种调用方式示例代码如下：
+3. 在hello.cpp文件中获取Js的资源对象，并转为Native的资源对象，即可调用资源的Native接口，获取rawfile列表、rawfile文件内容以及rawfile描述符（fd, offset, length）三种调用方式示例代码如下：
 
     ```c++
     #include <rawfile/raw_file.h>
@@ -316,7 +316,7 @@
 
 1. 打开src\main\ets\pages\index.ets, 导入"libentry.so"。
 
-2. 资源获取包括获取本应用包资源、应用内跨包资源、跨应用包资源。<br>获取本应用包resourceManager对象，通过.context().resourceManager方法。<br>获取应用内跨包resourceManager对象，通过.context().createModuleContext().resourceManager 方法。<br>获取跨应用包resourceManager对象，通过.context.createModuleContext(bundleName:'bundleName name',moduleName:'module name').resourceManager方法，该方法仅支持系统应用使用。<br>Context的更多使用信息请参考[应用上下文Context](../application-models/application-context-stage.md)。
+2. 资源获取包括获取本应用包资源、应用内跨包资源、跨应用包资源。<br>获取本应用包resourceManager对象，通过.context().resourceManager方法。<br>获取应用内跨包resourceManager对象，通过.context().createModuleContext().resourceManager 方法。<br>获取跨应用包resourceManager对象，通过.context.createModuleContext(bundleName: 'bundleName name', moduleName: 'module name').resourceManager方法，该方法仅支持系统应用使用。<br>Context的更多使用信息请参考[应用上下文Context](../application-models/application-context-stage.md)。
     
 3. 调用Native接口getFileList即为src/main/cpp/types/libentry/index.d.ts中声明的接口，传入js的资源对象，以及rawfile文件夹的相对路径。
 
