@@ -232,7 +232,7 @@ constructor(name: string)
 
 | 参数名 | 类型 | 必填 | 说明            |
 | ------ | -------- | ---- | --------------- |
-| name   | string   | 是   | FieldNode的值， 不能为空。 |
+| name   | string   | 是   | FieldNode的值，不能为空。 |
 
 **错误码：**
 
