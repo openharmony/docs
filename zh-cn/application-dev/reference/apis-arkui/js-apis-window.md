@@ -2474,7 +2474,6 @@ setTitleAndDockHoverShown(isTitleHoverShown?: boolean, isDockHoverShown?: boolea
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation. |
@@ -6865,11 +6864,10 @@ maximize(presentation?: MaximizePresentation): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 801     | Capability not supported. Function maximize can not work correctly due to limited device capabilities. |
 | 1300002 | This window state is abnormal.                |
 | 1300003 | This window manager service works abnormally. |
 | 1300004 | Unauthorized operation.                       |
-| 1300005 | This window stage is abnormal. |
 
 **示例：**
 
@@ -7382,7 +7380,6 @@ setWindowDecorVisible(isVisible: boolean): void
 | 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002  | This window state is abnormal. |
-| 1300004  | Unauthorized operation.        |
 
 **示例：**
 
@@ -7593,6 +7590,7 @@ setSubWindowModal(isModal: boolean): Promise&lt;void&gt;
 | 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002  | This window state is abnormal. |
+| 1300003  | This window manager service works abnormally. |
 | 1300004  | Unauthorized operation.        |
 
 **示例：**
@@ -7670,6 +7668,7 @@ setSubWindowModal(isModal: boolean, modalityType: ModalityType): Promise&lt;void
 | 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002  | This window state is abnormal. |
+| 1300003  | This window manager service works abnormally. |
 | 1300004  | Unauthorized operation.        |
 
 **示例：**
@@ -12923,6 +12922,7 @@ setWindowModal(isModal: boolean): Promise&lt;void&gt;
 | 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002  | This window state is abnormal. |
 | 1300003  | This window manager service works abnormally. |
+| 1300005 | This window stage is abnormal. |
 
 **示例：**
 
@@ -13179,6 +13179,7 @@ isWindowRectAutoSave(): Promise&lt;boolean&gt;
 | ------- | ------------------------------ |
 | 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
+| 1300003 | This window manager services works abnormally. |
 
 **示例：**
 
