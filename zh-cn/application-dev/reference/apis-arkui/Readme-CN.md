@@ -518,3 +518,6 @@
   - 图形图像<!--arkui-graphics-images-arkts-errcode-->
     - [屏幕错误码](errorcode-display.md)
     - [窗口错误码](errorcode-window.md)
+  - UI编译
+    - [编译错误码](_ark_ui_compile.md)
+  
