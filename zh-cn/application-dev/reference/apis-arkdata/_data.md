@@ -3,7 +3,7 @@
 
 ## 概述
 
-分布式数据管理（Distributed data manager，data）支持单设备的各种结构化数据的持久化，以及端云间的同步、共享功能。 分布式数据管理定义了一系列数据类型，可以对数据进行增删改查。
+分布式数据管理（Distributed data manager，data）支持单设备的各种结构化数据的持久化，以及端云间的同步、共享功能。分布式数据管理定义了一系列数据类型，可以对数据进行增删改查。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -112,7 +112,7 @@ Data_Asset** OH_Data_Asset_CreateMultiple (uint32_t count)
 
 **描述**
 
-创造指定数量的[Data_Asset](#data_asset) 类型实例
+创造指定数量的[Data_Asset](#data_asset) 类型实例。
 
 **起始版本：** 11
 
@@ -139,7 +139,7 @@ Data_Asset* OH_Data_Asset_CreateOne ()
 
 **描述**
 
-创造一个[Data_Asset](#data_asset) 类型实例
+创造一个[Data_Asset](#data_asset) 类型实例。
 
 **起始版本：** 11
 
