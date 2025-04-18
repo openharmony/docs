@@ -48,7 +48,7 @@
 | flush(callback: AsyncCallback&lt;void&gt;): void             | 将当前Preferences实例的数据异步存储到用户首选项持久化文件中。 |
 | on(type: 'change', callback: Callback&lt;string&gt;): void | 订阅数据变更，订阅的数据发生变更后，在执行flush方法后，触发callback回调。 |
 | off(type: 'change', callback?: Callback&lt;string&gt;): void | 取消订阅数据变更。                                           |
-| deletePreferences(context: Context, options: Options, callback: AsyncCallback&lt;void&gt;): void | 从内存中移除指定的Preferences实例。若Preferences实例有对应的持久化文件，则同时删除其持久化文件。true表示支持，false表示不支持。|
+| deletePreferences(context: Context, options: Options, callback: AsyncCallback&lt;void&gt;): void | 从内存中移除指定的Preferences实例。若Preferences实例有对应的持久化文件，则同时删除其持久化文件。 |
 
 
 ## 开发步骤
