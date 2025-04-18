@@ -16404,7 +16404,7 @@ int32_t OH_ArkUI_RegisterLayoutCallbackOnNodeHandle (ArkUI_NodeHandle node, void
 
 注册组件布局完成回调方法。同一组件仅能注册一个布局完成回调方法。
 
-**起始版本：** 16
+**起始版本：** 15
 
 **参数:**
 
@@ -16429,7 +16429,7 @@ int32_t OH_ArkUI_RegisterDrawCallbackOnNodeHandle (ArkUI_NodeHandle node, void* 
 
 注册组件绘制完成回调方法。同一组件仅能注册一个绘制完成回调方法。
 
-**起始版本：** 16
+**起始版本：** 15
 
 **参数:**
 
@@ -16454,7 +16454,7 @@ int32_t OH_ArkUI_UnregisterLayoutCallbackOnNodeHandle (ArkUI_NodeHandle node)
 
 取消注册组件布局完成回调方法。
 
-**起始版本：** 16
+**起始版本：** 15
 
 **参数:**
 
@@ -16477,7 +16477,7 @@ int32_t OH_ArkUI_UnregisterDrawCallbackOnNodeHandle (ArkUI_NodeHandle node)
 
 取消注册组件绘制完成回调方法。
 
-**起始版本：** 16
+**起始版本：** 15
 
 **参数:**
 
