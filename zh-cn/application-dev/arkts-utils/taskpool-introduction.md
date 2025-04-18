@@ -20,7 +20,32 @@ TaskPool支持开发者在宿主线程封装任务抛给任务队列，系统选
 
 - 实现任务的函数入参需满足序列化支持的类型，详情请参见[线程间通信对象](interthread-communication-overview.md)。目前不支持使用[@State装饰器](../ui/state-management/arkts-state.md)、[@Prop装饰器](../ui/state-management/arkts-prop.md)、[@Link装饰器](../ui/state-management/arkts-link.md)等装饰器修饰的复杂类型。
 
-- ArrayBuffer参数在TaskPool中默认转移，需要设置转移列表的话可通过接口[setTransferList()](../reference/apis-arkts/js-apis-taskpool.md#settransferlist10)设置。
+- ArrayBuffer参数在TaskPool中默认转移，需要设置转移列表的话可通过接口[setTransferList()](../reference/apis-arkts/js-apis-taskpool.md#settransferlist10)设置。如果需要多次调用使用ArrayBuffer作为参数的task，则需要通过接口[setCloneList()](../reference/apis-arkts/js-apis-taskpool.md#setclonelist11)把ArrayBuffer在线程中的传输行为改成拷贝传递，避免对原有对象产生影响。
+
+  ```ts
+  import { taskpool } from '@kit.ArkTS';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  
+  @Concurrent
+  function printArrayBuffer(buffer:ArrayBuffer) {
+    return buffer
+  }
+  
+  function testArrayBuffer() {
+    let buffer = new ArrayBuffer(1);
+    let group = new taskpool.TaskGroup();
+    let task = new taskpool.Task(printArrayBuffer, buffer);
+    group.addTask(task);
+    task.setCloneList([buffer]);
+    for (let i = 0; i < 5; i++) {
+      taskpool.execute(group).then(() => {
+        console.info("execute group success");
+      }).catch((e: BusinessError) => {
+        console.error("execute group error: " + e.message);
+      })
+    }
+  }
+  ```
 
 - 由于不同线程中上下文对象是不同的，因此TaskPool工作线程只能使用线程安全的库，例如UI相关的非线程安全库不能使用。
 
