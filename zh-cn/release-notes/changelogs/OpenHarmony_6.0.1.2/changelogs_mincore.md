@@ -18,11 +18,9 @@
 
 mincore详细使用方法可见[man mincore](https://man7.org/linux/man-pages/man2/mincore.2.html)。
 
-**变更前：**判断对应物理页是否有有效物理地址，若有则mincore出参返回1，反之则返回0。
+变更前：判断对应物理页是否有有效物理地址，若有则mincore出参返回1，反之则返回0。
 
-**变更后：**增加对pagecache和swapcache的校验，若对应物理页在RAM中，则mincore出参返回1，反之则返回0。
-
-**对用户态的影响**：修改后，用户态程序无法区分出参`vec = 1`是因为页面确实位于RAM中，还是因为权限不足导致的参数返回，这可能导致误判，尤其是在处理非自身文件时。
+变更后：增加对pagecache和swapcache的校验，若对应物理页在RAM中，则mincore出参返回1，反之则返回0。
 
 **起始 API Level**
 
@@ -36,7 +34,7 @@ mincore详细使用方法可见[man mincore](https://man7.org/linux/man-pages/ma
 
 mincore
 
-**使用建议**
+**适配指导**
 
  - 场景一：判断自身文件是否在RAM中
 
@@ -51,7 +49,7 @@ mincore
 
     如果权限校验未通过，则不应继续调用`mincore`，避免因权限不足导致的误判。
 
-**示例分析**
+示例分析
 
 - 错误示例
 
