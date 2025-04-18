@@ -129,7 +129,7 @@ bool UpdateThermalState(const std::string& tag, const std::string& val, bool isI
     ```
 
 ## 参考 
-开发过程中可参考的配置文件路径：[默认热场景源码路径](https://gitee.com/openharmony/powermgr_thermal_manager/blob/master/services/native/profile/thermal_service_config.xml)
+开发过程中可参考的配置文件路径：[默认热场景源码路径](https://gitee.com/openharmony/powermgr_thermal_manager/blob/master/services/native/profile/thermal_service_config.xml)。
 
-打包路径：`/vendor/etc/thermal_config/hdf`
+打包路径：`/vendor/etc/thermal_config/hdf`。
 
