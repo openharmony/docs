@@ -69,7 +69,7 @@ INfcInterface::ControlGranted ([out] enum NfcStatus status)
 ### CoreInitialized()
 
 ```
-INfcInterface::CoreInitialized ([in] List< unsigned char > data, [out] enum NfcStatus status )
+INfcInterface::CoreInitialized ([in] List< unsigned char > data, [out] enum NfcStatus status)
 ```
 
 **描述**
@@ -93,7 +93,7 @@ NFC初始化。
 ### Ioctl()
 
 ```
-INfcInterface::Ioctl ([in] enum NfcCommand cmd, [in] List< unsigned char > data, [out] enum NfcStatus status )
+INfcInterface::Ioctl ([in] enum NfcCommand cmd, [in] List< unsigned char > data, [out] enum NfcStatus status)
 ```
 
 **描述**
@@ -118,7 +118,7 @@ NFC协议栈通过IO控制指令和数据发送给HDI。
 ### Open()
 
 ```
-INfcInterface::Open ([in] INfcCallback callbackObj, [out] enum NfcStatus status )
+INfcInterface::Open ([in] INfcCallback callbackObj, [out] enum NfcStatus status)
 ```
 
 **描述**
@@ -178,7 +178,7 @@ INfcInterface::Prediscover ([out] enum NfcStatus status)
 ### Write()
 
 ```
-INfcInterface::Write ([in] List< unsigned char > data, [out] enum NfcStatus status )
+INfcInterface::Write ([in] List< unsigned char > data, [out] enum NfcStatus status)
 ```
 
 **描述**
