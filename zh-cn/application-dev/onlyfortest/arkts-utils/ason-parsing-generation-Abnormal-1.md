@@ -135,3 +135,16 @@ struct Index {
 }
 ```
 <!--@[actor_model](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/MultithreadedConcurrency/MultiThreadConcurrencyOverview/entry/src/main/ets/pages/Index.ets)-->
+
+
+## 嵌套的ID，docs中不含嵌套部分(修改4的部分，是否因为空行导致的报错，此文档中，已经取消了空行)
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+promise.then((result: number) => {
+  console.info(`Random number is ${result}`);
+}).catch((error: BusinessError) => {
+  console.error(error.message);
+});
+```
+<!--@[promise_then_catch_handling](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets)-->

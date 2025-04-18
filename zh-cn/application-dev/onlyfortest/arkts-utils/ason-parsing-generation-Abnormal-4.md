@@ -108,11 +108,6 @@ const promise: Promise<number> = new Promise((resolve: Function, reject: Functio
 ```ts
 async function myAsyncFunction(): Promise<string> {
   const result: string = await new Promise((resolve: Function) => {
-    // [StartExclude test-timeout]
-    setTimeout(() => {
-      resolve('Hello, world!');
-    }, 3000);
-    // [EndExclude timeout]
   });
   console.info(result); // 输出： Hello, world!
   return result;
