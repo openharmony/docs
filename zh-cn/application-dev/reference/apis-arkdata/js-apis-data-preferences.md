@@ -1152,9 +1152,7 @@ Preferences的存储模式枚举。
 ## preferences.isStorageTypeSupported<sup>18+</sup>
 isStorageTypeSupported(type: StorageType): boolean
 
-判断当前平台是否支持传入的存储模式，此为同步接口。
-
-当当前平台支持传入模式时，该接口返回true；反之，返回false。
+判断当前平台是否支持传入的存储模式，此为同步接口。如果当前平台支持传入的存储模式时，该接口返回true；反之，返回false。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -2214,9 +2212,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer = (data: Record<string, preferences.ValueType>) => {
   for (const keyValue of Object.entries(data)) {
-    console.info(`observer : ${keyValue}`)
+    console.info(`observer : ${keyValue}`);
   }
-  console.info("The observer called.")
+  console.info("The observer called.");
 }
 let keys = ['name', 'age']
 dataPreferences.on('dataChange', keys, observer);
@@ -2358,9 +2356,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer = (data: Record<string, preferences.ValueType>) => {
   for (const keyValue of Object.entries(data)) {
-    console.info(`observer : ${keyValue}`)
+    console.info(`observer : ${keyValue}`);
   }
-  console.info("The observer called.")
+  console.info("The observer called.");
 }
 let keys = ['name', 'age']
 dataPreferences.on('dataChange', keys, observer);
