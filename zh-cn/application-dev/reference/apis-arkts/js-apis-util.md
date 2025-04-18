@@ -2597,18 +2597,22 @@ compareTo(other: ScopeComparable): boolean
 构造新类，实现compareTo方法。后续示例代码中，均以此Temperature类为例。
 
 ```ts
-class Temperature{
+class Temperature implements util.ScopeComparable {
   private readonly _temp: number;
-  constructor(value : number) {
+
+  constructor(value: number) {
     this._temp = value;
   }
-  compareTo(value : Temperature ) {
+
+  compareTo(value: Temperature) {
     return this._temp >= value.getTemp();
   }
+
   getTemp() {
     return this._temp;
   }
-  toString() : string {
+
+  toString(): string {
     return this._temp.toString();
   }
 }
@@ -2661,18 +2665,22 @@ constructor(lowerObj: ScopeType, upperObj: ScopeType)
 **示例：**
 
 ```ts
-class Temperature{
+class Temperature implements util.ScopeComparable {
   private readonly _temp: number;
-  constructor(value : number) {
+
+  constructor(value: number) {
     this._temp = value;
   }
-  compareTo(value : Temperature ) {
+
+  compareTo(value: Temperature) {
     return this._temp >= value.getTemp();
   }
+
   getTemp() {
     return this._temp;
   }
-  toString() : string {
+
+  toString(): string {
     return this._temp.toString();
   }
 }
@@ -2702,18 +2710,22 @@ toString(): string
 **示例：**
 
 ```ts
-class Temperature{
+class Temperature implements util.ScopeComparable {
   private readonly _temp: number;
-  constructor(value : number) {
+
+  constructor(value: number) {
     this._temp = value;
   }
-  compareTo(value : Temperature ) {
+
+  compareTo(value: Temperature) {
     return this._temp >= value.getTemp();
   }
+
   getTemp() {
     return this._temp;
   }
-  toString() : string {
+
+  toString(): string {
     return this._temp.toString();
   }
 }
@@ -2759,18 +2771,22 @@ intersect(range: ScopeHelper): ScopeHelper
 **示例：**
 
 ```ts
-class Temperature{
+class Temperature implements util.ScopeComparable {
   private readonly _temp: number;
-  constructor(value : number) {
+
+  constructor(value: number) {
     this._temp = value;
   }
-  compareTo(value : Temperature ) {
+
+  compareTo(value: Temperature) {
     return this._temp >= value.getTemp();
   }
+
   getTemp() {
     return this._temp;
   }
-  toString() : string {
+
+  toString(): string {
     return this._temp.toString();
   }
 }
@@ -2818,18 +2834,22 @@ intersect(lowerObj:ScopeType,upperObj:ScopeType):ScopeHelper
 **示例：**
 
 ```ts
-class Temperature{
+class Temperature implements util.ScopeComparable {
   private readonly _temp: number;
-  constructor(value : number) {
+
+  constructor(value: number) {
     this._temp = value;
   }
-  compareTo(value : Temperature ) {
+
+  compareTo(value: Temperature) {
     return this._temp >= value.getTemp();
   }
+
   getTemp() {
     return this._temp;
   }
-  toString() : string {
+
+  toString(): string {
     return this._temp.toString();
   }
 }
@@ -2863,18 +2883,22 @@ getUpper(): ScopeType
 **示例：**
 
 ```ts
-class Temperature{
+class Temperature implements util.ScopeComparable {
   private readonly _temp: number;
-  constructor(value : number) {
+
+  constructor(value: number) {
     this._temp = value;
   }
-  compareTo(value : Temperature ) {
+
+  compareTo(value: Temperature) {
     return this._temp >= value.getTemp();
   }
+
   getTemp() {
     return this._temp;
   }
-  toString() : string {
+
+  toString(): string {
     return this._temp.toString();
   }
 }
@@ -2906,18 +2930,22 @@ getLower(): ScopeType
 **示例：**
 
 ```ts
-class Temperature{
+class Temperature implements util.ScopeComparable {
   private readonly _temp: number;
-  constructor(value : number) {
+
+  constructor(value: number) {
     this._temp = value;
   }
-  compareTo(value : Temperature ) {
+
+  compareTo(value: Temperature) {
     return this._temp >= value.getTemp();
   }
+
   getTemp() {
     return this._temp;
   }
-  toString() : string {
+
+  toString(): string {
     return this._temp.toString();
   }
 }
@@ -2964,18 +2992,22 @@ expand(lowerObj: ScopeType,upperObj: ScopeType): ScopeHelper
 **示例：**
 
 ```ts
-class Temperature{
+class Temperature implements util.ScopeComparable {
   private readonly _temp: number;
-  constructor(value : number) {
+
+  constructor(value: number) {
     this._temp = value;
   }
-  compareTo(value : Temperature ) {
+
+  compareTo(value: Temperature) {
     return this._temp >= value.getTemp();
   }
+
   getTemp() {
     return this._temp;
   }
-  toString() : string {
+
+  toString(): string {
     return this._temp.toString();
   }
 }
@@ -3023,18 +3055,22 @@ expand(range: ScopeHelper): ScopeHelper
 **示例：**
 
 ```ts
-class Temperature{
+class Temperature implements util.ScopeComparable {
   private readonly _temp: number;
-  constructor(value : number) {
+
+  constructor(value: number) {
     this._temp = value;
   }
-  compareTo(value : Temperature ) {
+
+  compareTo(value: Temperature) {
     return this._temp >= value.getTemp();
   }
+
   getTemp() {
     return this._temp;
   }
-  toString() : string {
+
+  toString(): string {
     return this._temp.toString();
   }
 }
@@ -3083,18 +3119,22 @@ expand(value: ScopeType): ScopeHelper
 **示例：**
 
 ```ts
-class Temperature{
+class Temperature implements util.ScopeComparable {
   private readonly _temp: number;
-  constructor(value : number) {
+
+  constructor(value: number) {
     this._temp = value;
   }
-  compareTo(value : Temperature ) {
+
+  compareTo(value: Temperature) {
     return this._temp >= value.getTemp();
   }
+
   getTemp() {
     return this._temp;
   }
-  toString() : string {
+
+  toString(): string {
     return this._temp.toString();
   }
 }
@@ -3141,18 +3181,22 @@ contains(value: ScopeType): boolean
 **示例：**
 
 ```ts
-class Temperature{
+class Temperature implements util.ScopeComparable {
   private readonly _temp: number;
-  constructor(value : number) {
+
+  constructor(value: number) {
     this._temp = value;
   }
-  compareTo(value : Temperature ) {
+
+  compareTo(value: Temperature) {
     return this._temp >= value.getTemp();
   }
+
   getTemp() {
     return this._temp;
   }
-  toString() : string {
+
+  toString(): string {
     return this._temp.toString();
   }
 }
@@ -3199,18 +3243,22 @@ contains(range: ScopeHelper): boolean
 **示例：**
 
 ```ts
-class Temperature{
+class Temperature implements util.ScopeComparable {
   private readonly _temp: number;
-  constructor(value : number) {
+
+  constructor(value: number) {
     this._temp = value;
   }
-  compareTo(value : Temperature ) {
+
+  compareTo(value: Temperature) {
     return this._temp >= value.getTemp();
   }
+
   getTemp() {
     return this._temp;
   }
-  toString() : string {
+
+  toString(): string {
     return this._temp.toString();
   }
 }
@@ -3259,18 +3307,22 @@ clamp(value: ScopeType): ScopeType
 **示例：**
 
 ```ts
-class Temperature{
+class Temperature implements util.ScopeComparable {
   private readonly _temp: number;
-  constructor(value : number) {
+
+  constructor(value: number) {
     this._temp = value;
   }
-  compareTo(value : Temperature ) {
+
+  compareTo(value: Temperature) {
     return this._temp >= value.getTemp();
   }
+
   getTemp() {
     return this._temp;
   }
-  toString() : string {
+
+  toString(): string {
     return this._temp.toString();
   }
 }
@@ -5758,28 +5810,33 @@ constructor(lowerObj: ScopeType, upperObj: ScopeType)
 | upperObj | [ScopeType](#scopetype8) | 是 | 指定作用域实例的上限。 |
 
 **示例：**
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature implements util.ScopeComparable {
+  private readonly _temp: number;
+
+  constructor(value: number) {
+    this._temp = value;
   }
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let range = new util.Scope(tempLower, tempUpper);
-  console.info("range = " + range);
-  // 输出结果：range = [30, 40]
-  ```
+
+  compareTo(value: Temperature) {
+    return this._temp >= value.getTemp();
+  }
+
+  getTemp() {
+    return this._temp;
+  }
+
+  toString(): string {
+    return this._temp.toString();
+  }
+}
+
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.Scope(tempLower, tempUpper);
+console.info("range = " + range);
+// 输出结果：range = [30, 40]
+```
 
 ### toString<sup>(deprecated)</sup>
 
@@ -5801,30 +5858,34 @@ toString(): string
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature implements util.ScopeComparable {
+  private readonly _temp: number;
+
+  constructor(value: number) {
+    this._temp = value;
   }
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let range = new util.Scope(tempLower, tempUpper);
-  let result = range.toString();
-  console.info("result = " + result);
-  // 输出结果：result = [30, 40]
-  ```
+  compareTo(value: Temperature) {
+    return this._temp >= value.getTemp();
+  }
+
+  getTemp() {
+    return this._temp;
+  }
+
+  toString(): string {
+    return this._temp.toString();
+  }
+}
+
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.Scope(tempLower, tempUpper);
+let result = range.toString();
+console.info("result = " + result);
+// 输出结果：result = [30, 40]
+```
 
 ### intersect<sup>(deprecated)</sup>
 
@@ -5852,31 +5913,35 @@ intersect(range: Scope): Scope
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature implements util.ScopeComparable {
+  private readonly _temp: number;
+
+  constructor(value: number) {
+    this._temp = value;
   }
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let range = new util.Scope(tempLower, tempUpper);
-  let tempMiDF = new Temperature(35);
-  let tempMidS = new Temperature(39);
-  let rangeFir = new util.Scope(tempMiDF, tempMidS);
-  let result = range.intersect(rangeFir );
-  console.info("result = " + result);
+  compareTo(value: Temperature) {
+    return this._temp >= value.getTemp();
+  }
+
+  getTemp() {
+    return this._temp;
+  }
+
+  toString(): string {
+    return this._temp.toString();
+  }
+}
+
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.Scope(tempLower, tempUpper);
+let tempMiDF = new Temperature(35);
+let tempMidS = new Temperature(39);
+let rangeFir = new util.Scope(tempMiDF, tempMidS);
+let result = range.intersect(rangeFir );
+console.info("result = " + result);
   // 输出结果：result = [35, 39]
   ```
 
@@ -5907,32 +5972,36 @@ intersect(lowerObj:ScopeType,upperObj:ScopeType):Scope
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature implements util.ScopeComparable {
+  private readonly _temp: number;
+
+  constructor(value: number) {
+    this._temp = value;
   }
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let tempMiDF = new Temperature(35);
-  let tempMidS = new Temperature(39);
-  let range = new util.Scope(tempLower, tempUpper);
-  let result = range.intersect(tempMiDF, tempMidS);
-  console.info("result = " + result);
-  // 输出结果：result = [35, 39]
-  ```
+  compareTo(value: Temperature) {
+    return this._temp >= value.getTemp();
+  }
+
+  getTemp() {
+    return this._temp;
+  }
+
+  toString(): string {
+    return this._temp.toString();
+  }
+}
+
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let tempMidS = new Temperature(39);
+let range = new util.Scope(tempLower, tempUpper);
+let result = range.intersect(tempMiDF, tempMidS);
+console.info("result = " + result);
+// 输出结果：result = [35, 39]
+```
 
 ### getUpper<sup>(deprecated)</sup>
 
@@ -5954,30 +6023,34 @@ getUpper(): ScopeType
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature implements util.ScopeComparable {
+  private readonly _temp: number;
+
+  constructor(value: number) {
+    this._temp = value;
   }
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let range = new util.Scope(tempLower, tempUpper);
-  let result = range.getUpper();
-  console.info("result = " + result);
-  // 输出结果：result = 40
-  ```
+  compareTo(value: Temperature) {
+    return this._temp >= value.getTemp();
+  }
+
+  getTemp() {
+    return this._temp;
+  }
+
+  toString(): string {
+    return this._temp.toString();
+  }
+}
+
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.Scope(tempLower, tempUpper);
+let result = range.getUpper();
+console.info("result = " + result);
+// 输出结果：result = 40
+```
 
 ### getLower<sup>(deprecated)</sup>
 
@@ -5999,30 +6072,34 @@ getLower(): ScopeType
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature implements util.ScopeComparable {
+  private readonly _temp: number;
+
+  constructor(value: number) {
+    this._temp = value;
   }
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let range = new util.Scope(tempLower, tempUpper);
-  let result = range.getLower();
-  console.info("result = " + result);
-  // 输出结果：result = 30
-  ```
+  compareTo(value: Temperature) {
+    return this._temp >= value.getTemp();
+  }
+
+  getTemp() {
+    return this._temp;
+  }
+
+  toString(): string {
+    return this._temp.toString();
+  }
+}
+
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.Scope(tempLower, tempUpper);
+let result = range.getLower();
+console.info("result = " + result);
+// 输出结果：result = 30
+```
 
 ### expand<sup>(deprecated)</sup>
 
@@ -6051,32 +6128,36 @@ expand(lowerObj: ScopeType,upperObj: ScopeType): Scope
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature implements util.ScopeComparable {
+  private readonly _temp: number;
+
+  constructor(value: number) {
+    this._temp = value;
   }
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let tempMiDF = new Temperature(35);
-  let tempMidS = new Temperature(39);
-  let range = new util.Scope(tempLower, tempUpper);
-  let result = range.expand(tempMiDF, tempMidS);
-  console.info("result = " + result);
-  // 输出结果：result = [30, 40]
-  ```
+  compareTo(value: Temperature) {
+    return this._temp >= value.getTemp();
+  }
+
+  getTemp() {
+    return this._temp;
+  }
+
+  toString(): string {
+    return this._temp.toString();
+  }
+}
+
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let tempMidS = new Temperature(39);
+let range = new util.Scope(tempLower, tempUpper);
+let result = range.expand(tempMiDF, tempMidS);
+console.info("result = " + result);
+// 输出结果：result = [30, 40]
+```
 
 ### expand<sup>(deprecated)</sup>
 
@@ -6104,33 +6185,37 @@ expand(range: Scope): Scope
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature implements util.ScopeComparable {
+  private readonly _temp: number;
+
+  constructor(value: number) {
+    this._temp = value;
   }
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let tempMiDF = new Temperature(35);
-  let tempMidS = new Temperature(39);
-  let range = new util.Scope(tempLower, tempUpper);
-  let rangeFir = new util.Scope(tempMiDF, tempMidS);
-  let result = range.expand(rangeFir);
-  console.info("result = " + result);
-  // 输出结果：result = [30, 40]
-  ```
+  compareTo(value: Temperature) {
+    return this._temp >= value.getTemp();
+  }
+
+  getTemp() {
+    return this._temp;
+  }
+
+  toString(): string {
+    return this._temp.toString();
+  }
+}
+
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let tempMidS = new Temperature(39);
+let range = new util.Scope(tempLower, tempUpper);
+let rangeFir = new util.Scope(tempMiDF, tempMidS);
+let result = range.expand(rangeFir);
+console.info("result = " + result);
+// 输出结果：result = [30, 40]
+```
 
 ### expand<sup>(deprecated)</sup>
 
@@ -6158,31 +6243,35 @@ expand(value: ScopeType): Scope
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature implements util.ScopeComparable {
+  private readonly _temp: number;
+
+  constructor(value: number) {
+    this._temp = value;
   }
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let tempMiDF = new Temperature(35);
-  let range = new util.Scope(tempLower, tempUpper);
-  let result = range.expand(tempMiDF);
-  console.info("result = " + result);
-  // 输出结果：result = [30, 40]
-  ```
+  compareTo(value: Temperature) {
+    return this._temp >= value.getTemp();
+  }
+
+  getTemp() {
+    return this._temp;
+  }
+
+  toString(): string {
+    return this._temp.toString();
+  }
+}
+
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let range = new util.Scope(tempLower, tempUpper);
+let result = range.expand(tempMiDF);
+console.info("result = " + result);
+// 输出结果：result = [30, 40]
+```
 
 ### contains<sup>(deprecated)</sup>
 
@@ -6210,31 +6299,35 @@ contains(value: ScopeType): boolean
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature implements util.ScopeComparable {
+  private readonly _temp: number;
+
+  constructor(value: number) {
+    this._temp = value;
   }
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let tempMiDF = new Temperature(35);
-  let range = new util.Scope(tempLower, tempUpper);
-  let result = range.contains(tempMiDF);
-  console.info("result = " + result);
-  // 输出结果：result = true
-  ```
+  compareTo(value: Temperature) {
+    return this._temp >= value.getTemp();
+  }
+
+  getTemp() {
+    return this._temp;
+  }
+
+  toString(): string {
+    return this._temp.toString();
+  }
+}
+
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let range = new util.Scope(tempLower, tempUpper);
+let result = range.contains(tempMiDF);
+console.info("result = " + result);
+// 输出结果：result = true
+```
 
 ### contains<sup>(deprecated)</sup>
 
@@ -6262,33 +6355,37 @@ contains(range: Scope): boolean
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature implements util.ScopeComparable {
+  private readonly _temp: number;
+
+  constructor(value: number) {
+    this._temp = value;
   }
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let range = new util.Scope(tempLower, tempUpper);
-  let tempLess = new Temperature(20);
-  let tempMore = new Temperature(45);
-  let rangeSec = new util.Scope(tempLess, tempMore);
-  let result = range.contains(rangeSec);
-  console.info("result = " + result);
-  // 输出结果：result = false
-  ```
+  compareTo(value: Temperature) {
+    return this._temp >= value.getTemp();
+  }
+
+  getTemp() {
+    return this._temp;
+  }
+
+  toString(): string {
+    return this._temp.toString();
+  }
+}
+
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.Scope(tempLower, tempUpper);
+let tempLess = new Temperature(20);
+let tempMore = new Temperature(45);
+let rangeSec = new util.Scope(tempLess, tempMore);
+let result = range.contains(rangeSec);
+console.info("result = " + result);
+// 输出结果：result = false
+```
 
 ### clamp<sup>(deprecated)</sup>
 
@@ -6317,31 +6414,35 @@ clamp(value: ScopeType): ScopeType
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature implements util.ScopeComparable {
+  private readonly _temp: number;
+
+  constructor(value: number) {
+    this._temp = value;
   }
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let tempMiDF = new Temperature(35);
-  let range = new util.Scope(tempLower, tempUpper);
-  let result = range.clamp(tempMiDF);
-  console.info("result = " + result);
-  // 输出结果：result = 35
-  ```
+  compareTo(value: Temperature) {
+    return this._temp >= value.getTemp();
+  }
+
+  getTemp() {
+    return this._temp;
+  }
+
+  toString(): string {
+    return this._temp.toString();
+  }
+}
+
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let range = new util.Scope(tempLower, tempUpper);
+let result = range.clamp(tempMiDF);
+console.info("result = " + result);
+// 输出结果：result = 35
+```
 
 
 ## Base64<sup>(deprecated)</sup>
