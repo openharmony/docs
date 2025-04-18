@@ -4,13 +4,17 @@
 
 >  **说明：**
 >
->  从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## gestureModifier
 
 gestureModifier(modifier:&nbsp;GestureModifier)
 
 动态设置组件绑定的手势。
+
+>  **说明：**
+>
+>  gestureModifier不支持自定义组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
