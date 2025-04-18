@@ -45,7 +45,7 @@ import image from '@ohos.multimedia.image';
 import { metadataBinding } from '@ohos.multimodalAwareness';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let captureImage: image.PixelMap | undefined;
+let captureImage: image.PixelMap | undefined = undefined;
 let metadata: string = "";
 let srcImage: image.PixelMap | undefined = undefined;
 metadataBinding.encodeImage(srcImage, metadata).then((pixelMap: image.PixelMap) =>{
@@ -85,7 +85,7 @@ import image from '@ohos.multimedia.image';
 import { metadataBinding } from '@ohos.multimodalAwareness';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let encodeImage: image.PixelMap | undefined;
+let encodeImage: image.PixelMap | undefined = undefined;
 let captrueMetadata: string = "";
 metadataBinding.decodeImage(encodeImage).then((metadata: string) =>{
 	captrueMetadata = metadata;
