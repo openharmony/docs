@@ -7,6 +7,8 @@
 >**说明：**
 >
 >从API version 12开始，开发者可以使用UIUtils中的getTarget接口获取状态管理框架代理前的原始对象。
+>
+>预览器上暂不支持使用UIUtils.getTarget接口。
 
 ## 概述
 

@@ -12,7 +12,7 @@ PersistenceV2提供状态变量持久化能力，开发者可以通过connect绑
 >
 >PersistenceV2从API version 12开始支持。
 >
-
+>预览器上不支持使用PersistenceV2及其API功能。
 
 ## 概述
 
