@@ -58,7 +58,7 @@
 
 ```ts
 // 从@kit.NetworkKit中导入netFirewall命名空间
-import { netFirewall } '@kit.NetworkKit';
+import { netFirewall } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // 定义防火墙策略：打开，入站阻止，出站允许
