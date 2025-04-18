@@ -210,34 +210,41 @@ createAccountImplicitly(owner: string, callback: AuthCallback): void
   import { BusinessError } from '@kit.BasicServicesKit';
   import { Want, common } from '@kit.AbilityKit';
 
-  let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  @Entry
+  @Component
+  struct Index {
+    context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
 
-  function onResultCallback(code: number, result?: appAccount.AuthResult): void {
-    console.log('resultCode: ' + code);
-    console.log('result: ' + JSON.stringify(result));
-  }
-
-  function onRequestRedirectedCallback(request: Want): void {
-    let wantInfo: Want = {
-      deviceId: '',
-      bundleName: 'com.example.accountjsdemo',
-      action: 'ohos.want.action.viewData',
-      entities: ['entity.system.default'],
+    onResultCallback(code: number, result?: appAccount.AuthResult): void {
+      console.log('resultCode: ' + code);
+      console.log('result: ' + JSON.stringify(result));
     }
-    context.startAbility(wantInfo).then(() => {
-      console.log('startAbility successfully');
-    }).catch((err: BusinessError) => {
-      console.log('startAbility err: ' + JSON.stringify(err));
-    })
-  }
 
-  try {  
-    appAccountManager.createAccountImplicitly('com.example.accountjsdemo', {
-      onResult: onResultCallback,
-      onRequestRedirected: onRequestRedirectedCallback
-    });
-  } catch (err) {
-    console.log('createAccountImplicitly exception: ' + JSON.stringify(err));
+    onRequestRedirectedCallback(request: Want): void {
+      let wantInfo: Want = {
+        deviceId: '',
+        bundleName: 'com.example.accountjsdemo',
+        action: 'ohos.want.action.viewData',
+        entities: ['entity.system.default'],
+      }
+      this.context.startAbility(wantInfo).then(() => {
+        console.log('startAbility successfully');
+      }).catch((err: BusinessError) => {
+        console.log('startAbility err: ' + JSON.stringify(err));
+      })
+    }
+
+    aboutToAppear(): void {
+      try {
+        appAccountManager.createAccountImplicitly('com.example.accountjsdemo', {
+          onResult: this.onResultCallback,
+          onRequestRedirected: this.onRequestRedirectedCallback
+        });
+      } catch (err) {
+        console.log('createAccountImplicitly exception: ' + JSON.stringify(err));
+      }
+    }
+    build() {}
   }
   ```
 
@@ -275,38 +282,45 @@ createAccountImplicitly(owner: string, options: CreateAccountImplicitlyOptions, 
   import { BusinessError } from '@kit.BasicServicesKit';
   import { Want, common } from '@kit.AbilityKit';
 
-  let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  @Entry
+  @Component
+  struct Index {
+    context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
 
-  function onResultCallback(code: number, result?: appAccount.AuthResult): void {
-    console.log('resultCode: ' + code);
-    console.log('result: ' + JSON.stringify(result));
-  }
-
-  function onRequestRedirectedCallback(request: Want): void {
-    let wantInfo: Want = {
-      deviceId: '',
-      bundleName: 'com.example.accountjsdemo',
-      action: 'ohos.want.action.viewData',
-      entities: ['entity.system.default'],
+    onResultCallback(code: number, result?: appAccount.AuthResult): void {
+      console.log('resultCode: ' + code);
+      console.log('result: ' + JSON.stringify(result));
     }
-    context.startAbility(wantInfo).then(() => {
-      console.log('startAbility successfully');
-    }).catch((err: BusinessError) => {
-      console.log('startAbility err: ' + JSON.stringify(err));
-    })
-  }
 
-  let options: appAccount.CreateAccountImplicitlyOptions = {
-    authType: 'getSocialData',
-    requiredLabels: [ 'student' ]
-  };
-  try {
-    appAccountManager.createAccountImplicitly('com.example.accountjsdemo', options, {
-      onResult: onResultCallback,
-      onRequestRedirected: onRequestRedirectedCallback
-    });
-  } catch (err) {
-    console.log('createAccountImplicitly exception: ' + JSON.stringify(err));
+    onRequestRedirectedCallback(request: Want): void {
+      let wantInfo: Want = {
+        deviceId: '',
+        bundleName: 'com.example.accountjsdemo',
+        action: 'ohos.want.action.viewData',
+        entities: ['entity.system.default'],
+      }
+      this.context.startAbility(wantInfo).then(() => {
+        console.log('startAbility successfully');
+      }).catch((err: BusinessError) => {
+        console.log('startAbility err: ' + JSON.stringify(err));
+      })
+    }
+
+    aboutToAppear(): void {
+      let options: appAccount.CreateAccountImplicitlyOptions = {
+        authType: 'getSocialData',
+        requiredLabels: [ 'student' ]
+      };
+      try {
+        appAccountManager.createAccountImplicitly('com.example.accountjsdemo', options, {
+          onResult: this.onResultCallback,
+          onRequestRedirected: this.onRequestRedirectedCallback
+        });
+      } catch (err) {
+        console.log('createAccountImplicitly exception: ' + JSON.stringify(err));
+      }
+    }
+    build() {}
   }
   ```
 
@@ -1448,34 +1462,41 @@ auth(name: string, owner: string, authType: string, callback: AuthCallback): voi
   import { BusinessError } from '@kit.BasicServicesKit';
   import { Want, common } from '@kit.AbilityKit';
 
-  let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  @Entry
+  @Component
+  struct Index {
+    context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
 
-  function onResultCallback(code: number, authResult?: appAccount.AuthResult): void {
-    console.log('resultCode: ' + code);
-    console.log('authResult: ' + JSON.stringify(authResult));
-  }
-
-  function onRequestRedirectedCallback(request: Want): void {
-    let wantInfo: Want = {
-      deviceId: '',
-      bundleName: 'com.example.accountjsdemo',
-      action: 'ohos.want.action.viewData',
-      entities: ['entity.system.default'],
+    onResultCallback(code: number, authResult?: appAccount.AuthResult): void {
+      console.log('resultCode: ' + code);
+      console.log('authResult: ' + JSON.stringify(authResult));
     }
-    context.startAbility(wantInfo).then(() => {
-      console.log('startAbility successfully');
-    }).catch((err: BusinessError) => {
-      console.log('startAbility err: ' + JSON.stringify(err));
-    })
-  }
 
-  try {
-    appAccountManager.auth('LiSi', 'com.example.accountjsdemo', 'getSocialData', {
-        onResult: onResultCallback,
-        onRequestRedirected: onRequestRedirectedCallback
-    });
-  } catch (err) {
-    console.log('auth exception: ' + JSON.stringify(err));
+    onRequestRedirectedCallback(request: Want): void {
+      let wantInfo: Want = {
+        deviceId: '',
+        bundleName: 'com.example.accountjsdemo',
+        action: 'ohos.want.action.viewData',
+        entities: ['entity.system.default'],
+      }
+      this.context.startAbility(wantInfo).then(() => {
+        console.log('startAbility successfully');
+      }).catch((err: BusinessError) => {
+        console.log('startAbility err: ' + JSON.stringify(err));
+      })
+    }
+
+    aboutToAppear(): void {
+      try {
+        appAccountManager.auth('LiSi', 'com.example.accountjsdemo', 'getSocialData', {
+          onResult: this.onResultCallback,
+          onRequestRedirected: this.onRequestRedirectedCallback
+        });
+      } catch (err) {
+        console.log('auth exception: ' + JSON.stringify(err));
+      }
+    }
+    build() {}
   }
   ```
 
@@ -1515,37 +1536,44 @@ auth(name: string, owner: string, authType: string, options: Record<string, Obje
   import { BusinessError } from '@kit.BasicServicesKit';
   import { Want, common } from '@kit.AbilityKit';
 
-  let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  @Entry
+  @Component
+  struct Index {
+    context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
 
-  function onResultCallback(code: number, authResult?: appAccount.AuthResult): void {
-    console.log('resultCode: ' + code);
-    console.log('authResult: ' + JSON.stringify(authResult));
-  }
-
-  function onRequestRedirectedCallback(request: Want): void {
-    let wantInfo: Want = {
-      deviceId: '',
-      bundleName: 'com.example.accountjsdemo',
-      action: 'ohos.want.action.viewData',
-      entities: ['entity.system.default'],
+    onResultCallback(code: number, authResult?: appAccount.AuthResult): void {
+      console.log('resultCode: ' + code);
+      console.log('authResult: ' + JSON.stringify(authResult));
     }
-    context.startAbility(wantInfo).then(() => {
-      console.log('startAbility successfully');
-    }).catch((err: BusinessError) => {
-      console.log('startAbility err: ' + JSON.stringify(err));
-    })
-  }
 
-  let options: Record<string, Object> = {
-    'password': 'xxxx',
-  };
-  try {
-    appAccountManager.auth('LiSi', 'com.example.accountjsdemo', 'getSocialData', options, {
-        onResult: onResultCallback,
-        onRequestRedirected: onRequestRedirectedCallback
-    });
-  } catch (err) {
-    console.log('auth exception: ' + JSON.stringify(err));
+    onRequestRedirectedCallback(request: Want): void {
+      let wantInfo: Want = {
+        deviceId: '',
+        bundleName: 'com.example.accountjsdemo',
+        action: 'ohos.want.action.viewData',
+        entities: ['entity.system.default'],
+      }
+      this.context.startAbility(wantInfo).then(() => {
+        console.log('startAbility successfully');
+      }).catch((err: BusinessError) => {
+        console.log('startAbility err: ' + JSON.stringify(err));
+      })
+    }
+
+    aboutToAppear(): void {
+      let options: Record<string, Object> = {
+        'password': 'xxxx',
+      };
+      try {
+        appAccountManager.auth('LiSi', 'com.example.accountjsdemo', 'getSocialData', options, {
+          onResult: this.onResultCallback,
+          onRequestRedirected: this.onRequestRedirectedCallback
+        });
+      } catch (err) {
+        console.log('auth exception: ' + JSON.stringify(err));
+      }
+    }
+    build() {}
   }
   ```
 
@@ -3024,31 +3052,38 @@ addAccountImplicitly(owner: string, authType: string, options: {[key: string]: a
   import { BusinessError } from '@kit.BasicServicesKit';
   import { Want, common } from '@kit.AbilityKit';
 
-  let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  @Entry
+  @Component
+  struct Index {
+    context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
 
-  function onResultCallback(code: number, result: Record<string, Object>): void {
-    console.log('resultCode: ' + code);
-    console.log('result: ' + JSON.stringify(result));
-  }
-
-  function onRequestRedirectedCallback(request: Want): void {
-    let wantInfo: Want = {
-      deviceId: '',
-      bundleName: 'com.example.accountjsdemo',
-      action: 'ohos.want.action.viewData',
-      entities: ['entity.system.default'],
+    onResultCallback(code: number, result: Record<string, Object>): void {
+      console.log('resultCode: ' + code);
+      console.log('result: ' + JSON.stringify(result));
     }
-    context.startAbility(wantInfo).then(() => {
-      console.log('startAbility successfully');
-    }).catch((err: BusinessError) => {
-      console.log('startAbility err: ' + JSON.stringify(err));
-    })
-  }
 
-  appAccountManager.addAccountImplicitly('com.example.accountjsdemo', 'getSocialData', {}, {
-    onResult: onResultCallback,
-    onRequestRedirected: onRequestRedirectedCallback
-  });
+    onRequestRedirectedCallback(request: Want): void {
+      let wantInfo: Want = {
+        deviceId: '',
+        bundleName: 'com.example.accountjsdemo',
+        action: 'ohos.want.action.viewData',
+        entities: ['entity.system.default'],
+      }
+      this.context.startAbility(wantInfo).then(() => {
+        console.log('startAbility successfully');
+      }).catch((err: BusinessError) => {
+        console.log('startAbility err: ' + JSON.stringify(err));
+      })
+    }
+
+    aboutToAppear(): void {
+      appAccountManager.addAccountImplicitly('com.example.accountjsdemo', 'getSocialData', {}, {
+        onResult: this.onResultCallback,
+        onRequestRedirected: this.onRequestRedirectedCallback
+      });
+    }
+    build() {}
+  }
   ```
 
 ### deleteAccount<sup>(deprecated)</sup>
@@ -4034,31 +4069,38 @@ authenticate(name: string, owner: string, authType: string, options: {[key: stri
   import { BusinessError } from '@kit.BasicServicesKit';
   import { Want, common } from '@kit.AbilityKit';
 
-  let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  @Entry
+  @Component
+  struct Index {
+    context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
 
-  function onResultCallback(code: number, result: Record<string, Object>): void {
+    onResultCallback(code: number, result: Record<string, Object>): void {
       console.log('resultCode: ' + code);
       console.log('result: ' + JSON.stringify(result));
-  }
-
-  function onRequestRedirectedCallback(request: Want): void {
-    let wantInfo: Want = {
-      deviceId: '',
-      bundleName: 'com.example.accountjsdemo',
-      action: 'ohos.want.action.viewData',
-      entities: ['entity.system.default'],
     }
-    context.startAbility(wantInfo).then(() => {
-      console.log('startAbility successfully');
-    }).catch((err: BusinessError) => {
-      console.log('startAbility err: ' + JSON.stringify(err));
-    })
-  }
 
-  appAccountManager.authenticate('LiSi', 'com.example.accountjsdemo', 'getSocialData', {}, {
-    onResult: onResultCallback,
-    onRequestRedirected: onRequestRedirectedCallback
-  });
+    onRequestRedirectedCallback(request: Want): void {
+      let wantInfo: Want = {
+        deviceId: '',
+        bundleName: 'com.example.accountjsdemo',
+        action: 'ohos.want.action.viewData',
+        entities: ['entity.system.default'],
+      }
+      this.context.startAbility(wantInfo).then(() => {
+        console.log('startAbility successfully');
+      }).catch((err: BusinessError) => {
+        console.log('startAbility err: ' + JSON.stringify(err));
+      })
+    }
+
+    aboutToAppear(): void {
+      appAccountManager.authenticate('LiSi', 'com.example.accountjsdemo', 'getSocialData', {}, {
+        onResult: this.onResultCallback,
+        onRequestRedirected: this.onRequestRedirectedCallback
+      });
+    }
+    build() {}
+  }
   ```
 
 ### getOAuthToken<sup>(deprecated)</sup>
