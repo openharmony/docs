@@ -37,8 +37,8 @@ function submitMetadata(metadata: string): void;
 import { metadataBinding } from '@ohos.multimodalAwareness';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let metadata:string = "";
-metadataBinding.submitMetadata(metadata).catch((error:BusinessError)=>{
+let metadata: string = "";
+metadataBinding.submitMetadata(metadata).catch((error: BusinessError)=>{
   console.error("submit metadata error" + error);
 });
 ```
@@ -70,8 +70,8 @@ metadataBinding.on(type: 'operationSubmitMetadata', bundleName: string, callback
 import { metadataBinding } from '@ohos.multimodalAwareness';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let bundleName:string = '';
-metadataBinding.on('operationSubmitMetadata', bundleName, (event:number)=>{
+let bundleName: string = '';
+metadataBinding.on('operationSubmitMetadata', bundleName, (event: number)=>{
 	if (event == 1) {
 		console.info("The screenshot request is intercepted and the app link is obtained");
 	}
@@ -108,8 +108,8 @@ metadataBinding.off(type: 'operationSubmitMetadata', bundleName: string, callbac
 import { metadataBinding } from '@ohos.multimodalAwareness';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let bundleName:string = '';
-metadataBinding.off('operationSubmitMetadata', bundleName, (evnet:number)=>{}).catch((error:BusinessError)=>{
+let bundleName: string = '';
+metadataBinding.off('operationSubmitMetadata', bundleName, (evnet: number)=>{}).catch((error: BusinessError)=>{
 	console.error("unsubscript screenshot event" + error);
 });
 ```
