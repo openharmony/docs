@@ -128,7 +128,7 @@ let para: Record<string, number> = { 'PropA': 47 };
 let localStorage: LocalStorage = new LocalStorage(para);
 let res: boolean = localStorage.setOrCreate('PropB', 121);
 let config: PiPWindow.PiPConfiguration = {
-  context: getContext(this),
+  context: this.getUIContext().getHostContext(),
   componentController: mXComponentController,
   navigationId: navId,
   templateType: PiPWindow.PiPTemplateType.VIDEO_PLAY,
@@ -199,7 +199,7 @@ xComponent.initialize({
 let contentWidth: number = 800; // 假设当前内容宽度800px。
 let contentHeight: number = 600; // 假设当前内容高度600px。
 let config: PiPWindow.PiPConfiguration = {
-  context: getContext(this),
+  context: this.getUIContext().getHostContext(),
   componentController: xComponentController,
   templateType: PiPWindow.PiPTemplateType.VIDEO_PLAY,
   contentWidth: contentWidth,
