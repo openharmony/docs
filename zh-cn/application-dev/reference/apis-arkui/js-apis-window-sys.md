@@ -1770,6 +1770,8 @@ setSnapshotSkip(isSkip: boolean): void
 
 截屏录屏是否忽略当前窗口。此接口一般用于禁止截屏/录屏的场景。
 
+***注***：由于窗口在退出后台到重新进入前台的过程中，控件节点会被销毁重建，所以先前设置的值将会失效，因此需要调用方在窗口退后台时先取消旧值，待窗口重新进入前台时再重新设置一次。
+
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
