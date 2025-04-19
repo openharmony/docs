@@ -1210,13 +1210,13 @@ type Nullable\<T> = T | undefined;
 | LEFT     | 1   | 左手。 |
 | RIGHT    | 2   | 右手。 |
 
-## FocusDrawLevel<sup>18+</sup>
+## FocusDrawLevel<sup>19+</sup>
 
 定义节点获焦框的绘制层级。
 
-**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 19开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
