@@ -1434,6 +1434,63 @@ try {
 }
 ```
 
+
+## bundleManager.getAbilityInfo<sup>20+</sup>
+
+getAbilityInfo(uri: string, abilityFlags: number):  Promise<Array\<AbilityInfo>>
+
+根据给定的uri、abilityFlags和userId获取一个或多个AbilityInfo，使用Promise异步回调。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**需要权限：** ohos.permission.GET_ABILITY_INFO
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名      | 类型   | 必填 | 说明                                                  |
+| ------------ | ------ | ---- | ------------------------------------------------------- |
+| uri         | string   | 是   | 表示用于匹配能力的uri。                 |
+| abilityFlags | [number](#abilityflag) | 是   | 表示指定返回的AbilityInfo所包含的信息。 |                     |
+
+**返回值：**
+
+| 类型                                                         | 说明                                 |
+| ------------------------------------------------------------ | ------------------------------------ |
+| Promise<Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>> | Promise对象，返回Array\<AbilityInfo>。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. At least one parameter(action, entity, uri or type) is required for implicit query.  |
+| 17700003 | The specified ability is not found.    |
+
+**示例：**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
+let uri = "https://www.example.com";
+
+try {
+    bundleManager.getAbilityInfo(uri, abilityFlags).then((data) => {
+        console.info('getAbilityInfo successfully. Data: ' + JSON.stringify(data));
+    }).catch((err) => {
+        let message = (err as BusinessError).message;
+        console.error('getAbilityInfo failed. Cause: ' + message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    console.error('getAbilityInfo failed. Cause: ' + message);
+}
+```
+
 ## ApplicationInfo
 
 type ApplicationInfo = _ApplicationInfo
