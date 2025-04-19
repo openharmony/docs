@@ -123,7 +123,7 @@ enum FileManagement_ErrCode
 ### OH_FileIO_GetFileLocation()
 
 ```
-FileManagement_ErrCode OH_FileIO_GetFileLocation (char * uri, int uriLength, FileIO_FileLocation * location )
+FileManagement_ErrCode OH_FileIO_GetFileLocation(char *uri, int uriLength, FileIO_FileLocation *location)
 ```
 
 **描述**
