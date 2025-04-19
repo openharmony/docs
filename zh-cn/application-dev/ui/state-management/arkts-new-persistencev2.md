@@ -539,8 +539,7 @@ struct Page1 {
 
   // 使用key:global2连接，使用构造函数形式，加密参数不传入默认加密等级为EL2
   @Local p2: Sample = PersistenceV2.connect(Sample, 'connect2', () => new Sample())!;
-
-  private context = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   build() {
     Column() {
