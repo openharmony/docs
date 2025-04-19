@@ -128,7 +128,7 @@ let para: Record<string, number> = { 'PropA': 47 };
 let localStorage: LocalStorage = new LocalStorage(para);
 let res: boolean = localStorage.setOrCreate('PropB', 121);
 let config: PiPWindow.PiPConfiguration = {
-  context: getContext(this),
+  context: this.getUIContext().getHostContext(),
   componentController: mXComponentController,
   navigationId: navId,
   templateType: PiPWindow.PiPTemplateType.VIDEO_PLAY,
@@ -200,7 +200,7 @@ let contentWidth: number = 800; // 假设当前内容宽度800px。
 let contentHeight: number = 600; // 假设当前内容高度600px。
 let defaultWindowSizeType: number = 1; // 指定画中画第一次拉起窗口为小窗口
 let config: PiPWindow.PiPConfiguration = {
-  context: getContext(this),
+  context: this.getUIContext().getHostContext(),
   componentController: xComponentController,
   templateType: PiPWindow.PiPTemplateType.VIDEO_PLAY,
   contentWidth: contentWidth,
