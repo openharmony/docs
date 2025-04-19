@@ -8,6 +8,7 @@
 
 ## 导入模块
 
+<!--deprecated_code_no_check-->
 ```ts
 import { inspector } from '@kit.ArkUI'
 ```
@@ -41,7 +42,6 @@ createComponentObserver(id: string): ComponentObserver
 |[ComponentObserver](#componentobserver)| 组件回调事件监听句柄，用于注册和取消注册监听回调。 |
 
 **示例：** 
-
 ```ts
 let listener:inspector.ComponentObserver = inspector.createComponentObserver('COMPONENT_ID'); //监听id为COMPONENT_ID的组件回调事件
 ```
@@ -144,7 +144,7 @@ off(type: 'draw', callback?: () => void): void
       }.height(320).width(360).padding({ right: 10, top: 10 })
     }
 
-    listener:inspector.ComponentObserver = inspector.createComponentObserver('IMAGE_ID') // 建议使用 this.getUIContext().getUIInspector().createComponentObserver()接口
+    listener:inspector.ComponentObserver = this.getUIContext().getUIInspector().createComponentObserver('IMAGE_ID')
 
     aboutToAppear() {
       let onLayoutComplete:()=>void=():void=>{
