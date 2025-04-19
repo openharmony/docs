@@ -159,9 +159,9 @@ html页面代码
 
 ## 使用ArkWeb默认的方式处理文件上传请求
 
-accept 属性是一个字符串，它定义了文件 input 应该接受的文件类型。这个字符串是一个以逗号为分隔的唯一文件类型说明符列表。由于给定的文件类型可以用多种方式指定，因此当你需要给定格式的文件时，提供一组完整的类型指定符是非常有用的。
+`'accept'` 属性是一个字符串，它定义了文件 input 应该接受的文件类型。这个字符串是一个以逗号为分隔的唯一文件类型说明符列表。由于给定的文件类型可以用多种方式指定，因此当你需要给定格式的文件时，提供一组完整的类型指定符是非常有用的。
 
-capture 属性是一个字符串，如果 accept 属性指出了 input 是图片或者视频类型，则它指定了使用哪个摄像头去获取这些数据。值 user 表示应该使用前置摄像头和（或）麦克风。值 environment 表示应该使用后置摄像头和（或）麦克风。如果缺少此属性，则用户代理可以自由决定做什么。如果请求的前置模式不可用，则用户代理可能退回到其首选的默认模式。
+`'capture'` 属性是一个字符串，如果 `'accept'` 属性指出了 input 是图片或者视频类型，则它指定了使用哪个摄像头去获取这些数据。值 `'user'` 表示应该使用前置摄像头和（或）麦克风。值 `'environment'` 表示应该使用后置摄像头和（或）麦克风。如果缺少此属性，则用户代理可以自由决定做什么。如果请求的前置模式不可用，则用户代理可能退回到其首选的默认模式。
 
 示例页面内有数个文件选择器，分别设置了不同的accept及capture属性，这两个属性对相机的影响如下：
 
@@ -182,7 +182,7 @@ capture 属性是一个字符串，如果 accept 属性指出了 input 是图片
 >  - 图片：tif, xbm, tiff, pjp, jfif, bmp, avif, apng, ico, webp, svg, gif, svgz, jpg, jpeg, png, pjpeg
 >  - 视频：mp4, mpg, mpeg, m4v, ogm, ogv, webm
 
->  **注意：** ArkWeb默认仅拉起相机后置摄像头，`'user'`属性不会被处理成拉起前置摄像头。如有需要，请在应用侧通过[onShowFileSelector()](../reference/apis-arkweb/ts-basic-components-web.md#onshowfileselector9)接口另行处理
+>  **注意：** ArkWeb默认仅拉起相机后置摄像头，值 `'user'`不会被处理成拉起前置摄像头。如有需要，请在应用侧通过[onShowFileSelector()](../reference/apis-arkweb/ts-basic-components-web.md#onshowfileselector9)接口另行处理
 
 html页面代码
 ```html
