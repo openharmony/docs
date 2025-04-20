@@ -59,19 +59,17 @@ startAbility接口由FA模型切换到Stage模型的示例：
 - Stage示例示例
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import { BusinessError } from '@ohos.base';
-  import { Caller } from '@ohos.app.ability.UIAbility';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { Want, common, Caller } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   const TAG: string = '[Page_UIAbilityComponentsInteractive]';
   const DOMAIN_NUMBER: number = 0xFF00;
-  
+
   @Entry
   @Component
   struct Page_UIAbilityComponentsInteractive {
-    private context = getContext(this) as common.UIAbilityContext;
+    private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     caller: Caller | undefined = undefined;
     build() {
       Column() {
