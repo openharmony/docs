@@ -1,4 +1,5 @@
 # @ohos.ability.dataUriUtils (DataUriUtils模块)
+<!--deprecated_code_no_check-->
 
 DataUriUtils模块提供用于处理uri对象的能力，包括获取、绑定、删除和更新指定uri对象的路径末尾的ID。
 
