@@ -8,7 +8,7 @@
 
 **变更原因**
 
-selectionMenuOptions接口功能已被其他接口覆盖，无需同时维护两个接口。
+selectionMenuOptions接口功能已被editMenuOptions接口覆盖。
 
 **变更影响**
 
