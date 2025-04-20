@@ -1436,7 +1436,7 @@ export default class EntryAbility extends UIAbility {
 
 getVisibleWindowInfo(): Promise&lt;Array&lt;WindowInfo&gt;&gt;
 
-获取当前屏幕的可见窗口（未退至后台的窗口）信息。使用Promise异步回调。
+获取当前屏幕的可见主窗口（未退至后台的主窗口）信息。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -1446,7 +1446,7 @@ getVisibleWindowInfo(): Promise&lt;Array&lt;WindowInfo&gt;&gt;
 
 | 类型 | 说明 |
 | ------------------- | ----------------------- |
-| Promise&lt;Array&lt;WindowInfo&gt;&gt; | Promise对象，返回当前可见窗口的相关信息。 |
+| Promise&lt;Array&lt;WindowInfo&gt;&gt;(#WindowInfo) | Promise对象，返回当前可见窗口的相关信息。 |
 
 **错误码：**
 
