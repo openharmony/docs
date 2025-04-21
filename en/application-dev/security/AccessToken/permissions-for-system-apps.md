@@ -4623,7 +4623,7 @@ Users can set default applications for the system, for example, specifying an ap
 
 **Enable via ACL**: true
 
-**Valid since**: 17
+**Valid since**: 19
 
 ## ohos.permission.SEND_NOTIFICATION_CROSS_USER
 
