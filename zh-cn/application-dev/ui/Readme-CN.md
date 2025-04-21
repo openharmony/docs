@@ -11,7 +11,7 @@
       - [自定义组件的自定义布局](../ui/state-management/arkts-page-custom-components-layout.md)
       - [自定义组件成员属性访问限定符使用限制](../ui/state-management/arkts-custom-components-access-restrictions.md)
     - [\@Builder装饰器：自定义构建函数](../ui/state-management/arkts-builder.md)
-    - [\@LocalBuilder装饰器：维持组件父子关系](../ui/state-management/arkts-localBuilder.md)
+    - [\@LocalBuilder装饰器：维持组件关系](../ui/state-management/arkts-localBuilder.md)
     - [\@BuilderParam装饰器：引用\@Builder函数](../ui/state-management/arkts-builderparam.md)
     - [wrapBuilder：封装全局@Builder](../ui/state-management/arkts-wrapBuilder.md)
     - [\@Styles装饰器：定义组件重用样式](../ui/state-management/arkts-style.md)
