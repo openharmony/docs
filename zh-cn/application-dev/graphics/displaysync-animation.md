@@ -24,6 +24,7 @@
    ```ts
    Button()
     .onClick(() => {
+      // uiContext需通过getUIContext获取，具体可见下文完整示例
       this.uiContext?.animateTo({
         duration: 1200,
         iterations: 10,
@@ -53,7 +54,7 @@ struct AnimationToAnimationDemo {
   aboutToAppear() {
     this.uiContext = this.getUIContext();
     if (!this.uiContext) {
-      console.warn("no uiContext");
+      console.warn('no uiContext');
       return;
     }
   }
