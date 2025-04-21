@@ -598,7 +598,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
   import { UIExtensionContentSession } from '@kit.AbilityKit';
   import { uiExtension, window } from '@kit.ArkUI';
   import { BusinessError } from '@kit.BasicServicesKit';
-  let storage = LocalStorage.getShared()
+  let storage = new LocalStorage();
 
   @Entry(storage)
   @Component
