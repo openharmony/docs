@@ -75,7 +75,7 @@ static show(value: ActionSheetOptions)
 | icon   | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否   | 选项的图标，默认无图标显示。<br>string格式可用于加载网络图片和本地图片，常用于加载网络图片。当使用相对路径引用本地图片时，例如Image("common/test.jpg")。|
 | action | ()=&gt;void  | 是   | 选项选中的回调。 |
 
-## levelMode<sup>15+</sup>
+## LevelMode<sup>15+</sup>
 
 type LevelMode = LevelMode
 

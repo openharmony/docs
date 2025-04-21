@@ -7,11 +7,11 @@
 
 提供ArkUI在Native侧的通用按键事件能力。
 
-提供ArkUI在Native侧的注册手势回调的能力。
+提供ArkUI在Native侧的注册手势回调的能力。更多详细介绍请参考[绑定手势事件](../../ui/ndk-bind-gesture-events.md)。
 
-提供ArkUI在Native侧动画回调的能力。
+提供ArkUI在Native侧动画回调的能力。更多详细介绍请参考[使用动画](../../ui/ndk-use-animation.md)。
 
-提供ArkUI在Native侧的UI能力，如UI组件创建销毁、树节点操作，属性设置，事件监听等。
+提供ArkUI在Native侧的UI能力，如UI组件创建销毁、树节点操作，属性设置，事件监听等。更多详细介绍请参考[接入ArkTS页面](../../ui/ndk-access-the-arkts-page.md)。
 
 **起始版本：** 12
 
