@@ -122,7 +122,7 @@ class TextNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private message: string = 'create PiP';
+  private message: string = 'createPiP';
   private pipController: PiPWindow.PiPController | undefined = undefined;
   private mXComponentController: XComponentController = new XComponentController(); // 开发者应使用该mXComponentController初始化XComponent: XComponent( {id: 'video', type: 'surface', controller: mXComponentController} )，保证XComponent的内容可以被迁移到画中画窗口。
   private nodeController: TextNodeController = new TextNodeController('this is custom UI');
@@ -132,7 +132,7 @@ struct Index {
   private para: Record<string, number> = { 'PropA': 47 };
   private localStorage: LocalStorage = new LocalStorage(this.para);
   private res: boolean = this.localStorage.setOrCreate('PropB', 121);
-  private defaultWindowSizeType: number = 1;
+  private defaultWindowSizeType: number = 1; // 指定画中画第一次拉起窗口为小窗口。
   private config: PiPWindow.PiPConfiguration = {
     context: this.getUIContext().getHostContext() as Context,
     componentController: this.mXComponentController,
@@ -211,16 +211,15 @@ import { typeNode } from '@ohos.arkui.node';
 @Entry
 @Component
 struct Index {
-  private message = 'create pip'
+  private message = 'createPiP'
   private pipController: PiPWindow.PiPController | undefined = undefined;
   private xComponentController: XComponentController = new XComponentController();
   private context: UIContext | undefined = this.getUIContext(); // 可传入UIContext或在布局中通过this.getUIContext()为context赋有效值
   private contentWidth: number = 800; // 假设当前内容宽度800px。
   private contentHeight: number = 600; // 假设当前内容高度600px。
-  private defaultWindowSizeType: number = 1; // 指定画中画第一次拉起窗口为小窗口
   private config: PiPWindow.PiPConfiguration = {
-    context: this.getUIContext().getHostContext(),
-    componentController: this.gitxComponentController,
+    context: this.getUIContext().getHostContext() as Context,
+    componentController: this.xComponentController,
     templateType: PiPWindow.PiPTemplateType.VIDEO_PLAY,
     contentWidth: this.contentWidth,
     contentHeight: this.contentHeight,
@@ -229,17 +228,18 @@ struct Index {
     type: XComponentType.SURFACE,
     controller: this.xComponentController
   }
-  private xComponent = typeNode.createNode(context, 'XComponent', this.options);
+  private xComponent = typeNode.createNode(this.context, 'XComponent', this.options);
 
   createPiP() {
-    let promise : Promise<PiPWindow.PiPController> = PiPWindow.create(config, xComponent);
+    let promise : Promise<PiPWindow.PiPController> = PiPWindow.create(this.config, this.xComponent);
     promise.then((data : PiPWindow.PiPController) => {
-      pipController = data;
+      this.pipController = data;
       console.info(`Succeeded in creating pip controller. Data:${data}`);
     }).catch((err: BusinessError) => {
       console.error(`Failed to create pip controller. Cause:${err.code}, message:${err.message}`);
     });
   }
+
   //仅用于功能测试，实际开发过程中开发者按功能需求设计组件
   build() {
     RelativeContainer() {
@@ -250,7 +250,6 @@ struct Index {
     }
   }
 }
-
 ```
 
 ## PiPConfiguration
