@@ -123,700 +123,6 @@ closeToast(toastId: number): void
 
 示例请看[promptAction.openToaset18](#promptactionopentoast18)的示例。
 
-## promptAction.showToast<sup>(deprecated)</sup>
-
-showToast(options: ShowToastOptions): void
-
-创建并显示文本提示框。
-
-> **说明：**
->
-> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[showToast](js-apis-arkui-UIContext.md#showtoast)。
->
-> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](js-apis-arkui-UIContext.md#promptaction)对象。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名     | 类型                                    | 必填   | 说明      |
-| ------- | ------------------------------------- | ---- | ------- |
-| options | [ShowToastOptions](#showtoastoptions) | 是    | 文本弹窗选项。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
-
-| 错误码ID   | 错误信息 |
-| --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 100001    | Internal error. |
-
-**示例：**
-
-```ts
-import { promptAction } from '@kit.ArkUI'
-import { BusinessError } from '@kit.BasicServicesKit';
-
-@Entry
-@Component
-struct toastExample {
-  build() {
-    Column() {
-      Button('Show toast').fontSize(20)
-        .onClick(() => {
-          try {
-            promptAction.showToast({
-              message: 'Hello World',
-              duration: 2000
-            });
-          } catch (error) {
-            let message = (error as BusinessError).message
-            let code = (error as BusinessError).code
-            console.error(`showToast args error code is ${code}, message is ${message}`);
-          };
-        })
-    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
-  }
-}
-```
-API version 11及之前Toast样式。
-
-![zh-cn_image_0001](figures/toast-api11.gif)
-
-API version 12及之后Toast样式。
-
-![zh-cn_image_0001](figures/toast-api12.gif)
-
-## promptAction.showDialog<sup>(deprecated)</sup>
-
-showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
-
-创建并显示对话框，对话框响应后异步返回结果。
-
-> **说明：**
->
-> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[showDialog](js-apis-arkui-UIContext.md#showdialog-1)。
->
-> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](js-apis-arkui-UIContext.md#promptaction)对象。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名     | 类型                                      | 必填   | 说明     |
-| ------- | --------------------------------------- | ---- | ------ |
-| options | [ShowDialogOptions](#showdialogoptions) | 是    | 对话框选项。 |
-
-**返回值：**
-
-| 类型                                       | 说明       |
-| ---------------------------------------- | -------- |
-| Promise&lt;[ShowDialogSuccessResponse](#showdialogsuccessresponse)&gt; | 对话框响应结果。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
-
-| 错误码ID   | 错误信息 |
-| --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 100001    | Internal error. |
-
-**示例：**
-
-```ts
-import { promptAction } from '@kit.ArkUI'
-
-promptAction.showDialog({
-  title: 'Title Info',
-  message: 'Message Info',
-  buttons: [
-    {
-      text: 'button1',
-      color: '#000000'
-    },
-    {
-      text: 'button2',
-      color: '#000000'
-    }
-  ],
-})
-  .then(data => {
-    console.info('showDialog success, click button: ' + data.index);
-  })
-  .catch((err: Error) => {
-    console.info('showDialog error: ' + err);
-  })
-```
-
-![zh-cn_image_0002](figures/zh-cn_image_0002.gif)
-
-## promptAction.showDialog<sup>(deprecated)</sup>
-
-showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSuccessResponse&gt;):void
-
-创建并显示对话框，对话框响应结果异步返回。
-
-> **说明：**
->
-> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[showDialog](js-apis-arkui-UIContext.md#showdialog)。
->
-> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](js-apis-arkui-UIContext.md#promptaction)对象。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名      | 类型                                       | 必填   | 说明           |
-| -------- | ---------------------------------------- | ---- | ------------ |
-| options  | [ShowDialogOptions](#showdialogoptions)  | 是    | 页面显示对话框信息描述。 |
-| callback | AsyncCallback&lt;[ShowDialogSuccessResponse](#showdialogsuccessresponse)&gt; | 是    | 对话框响应结果回调。   |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
-
-| 错误码ID   | 错误信息 |
-| --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 100001    | Internal error. |
-
-**示例：**
-
-```ts
-import { promptAction } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-try {
-  promptAction.showDialog({
-    title: 'showDialog Title Info',
-    message: 'Message Info',
-    buttons: [
-      {
-        text: 'button1',
-        color: '#000000'
-      },
-      {
-        text: 'button2',
-        color: '#000000'
-      }
-    ]
-  }, (err, data) => {
-    if (err) {
-      console.info('showDialog err: ' + err);
-      return;
-    }
-    console.info('showDialog success callback, click button: ' + data.index);
-  });
-} catch (error) {
-  let message = (error as BusinessError).message
-  let code = (error as BusinessError).code
-  console.error(`showDialog args error code is ${code}, message is ${message}`);
-};
-```
-
-![zh-cn_image_0004](figures/zh-cn_image_0004.gif)
-
-当弹窗的showInSubWindow属性为true时，弹窗可显示在窗口外。
-
-```ts
-import { promptAction } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-try {
-  promptAction.showDialog({
-    title: 'showDialog Title Info',
-    message: 'Message Info',
-    isModal: true,
-    showInSubWindow: true,
-    buttons: [
-      {
-        text: 'button1',
-        color: '#000000'
-      },
-      {
-        text: 'button2',
-        color: '#000000'
-      }
-    ]
-  }, (err, data) => {
-    if (err) {
-      console.info('showDialog err: ' + err);
-      return;
-    }
-    console.info('showDialog success callback, click button: ' + data.index);
-  });
-} catch (error) {
-  let message = (error as BusinessError).message
-  let code = (error as BusinessError).code
-  console.error(`showDialog args error code is ${code}, message is ${message}`);
-};
-```
-
-![zh-cn_image_0002_showinsubwindow](figures/zh-cn_image_0002_showinsubwindow.jpg)
-
-
-
-## promptAction.showActionMenu<sup>(deprecated)</sup>
-
-showActionMenu(options: ActionMenuOptions, callback: AsyncCallback&lt;ActionMenuSuccessResponse&gt;):void
-
-创建并显示操作菜单，菜单响应结果异步返回。
-
-> **说明：**
->
-> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[showActionMenu](js-apis-arkui-UIContext.md#showactionmenu11)。
->
-> 从API version 11开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](js-apis-arkui-UIContext.md#promptaction)对象。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full。
-
-**参数：**
-
-| 参数名      | 类型                                       | 必填   | 说明        |
-| -------- | ---------------------------------------- | ---- | --------- |
-| options  | [ActionMenuOptions](#actionmenuoptions)  | 是    | 操作菜单选项。   |
-| callback | AsyncCallback&lt;[ActionMenuSuccessResponse](#actionmenusuccessresponse)> | 是    | 菜单响应结果回调。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
-
-| 错误码ID   | 错误信息 |
-| --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 100001    | Internal error. |
-
-**示例：**
-
-```ts
-import { promptAction } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-try {
-  promptAction.showActionMenu({
-    title: 'Title Info',
-    buttons: [
-      {
-        text: 'item1',
-        color: '#666666'
-      },
-      {
-        text: 'item2',
-        color: '#000000'
-      },
-    ]
-  }, (err, data) => {
-    if (err) {
-      console.info('showActionMenu err: ' + err);
-      return;
-    }
-    console.info('showActionMenu success callback, click button: ' + data.index);
-  })
-} catch (error) {
-  let message = (error as BusinessError).message
-  let code = (error as BusinessError).code
-  console.error(`showActionMenu args error code is ${code}, message is ${message}`);
-};
-```
-
-![zh-cn_image_0005](figures/zh-cn_image_0005.gif)
-
-## promptAction.showActionMenu<sup>(deprecated)</sup>
-
-showActionMenu(options: ActionMenuOptions): Promise&lt;ActionMenuSuccessResponse&gt;
-
-创建并显示操作菜单，菜单响应后异步返回结果。
-
-> **说明：**
->
-> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[showActionMenu](js-apis-arkui-UIContext.md#showactionmenu)。
->
-> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](js-apis-arkui-UIContext.md#promptaction)对象。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名     | 类型                                      | 必填   | 说明      |
-| ------- | --------------------------------------- | ---- | ------- |
-| options | [ActionMenuOptions](#actionmenuoptions) | 是    | 操作菜单选项。 |
-
-**返回值：**
-
-| 类型                                       | 说明      |
-| ---------------------------------------- | ------- |
-| Promise&lt;[ActionMenuSuccessResponse](#actionmenusuccessresponse)&gt; | 菜单响应结果。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
-
-| 错误码ID   | 错误信息 |
-| --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 100001    | Internal error. |
-
-**示例：**
-
-```ts
-import { promptAction } from '@kit.ArkUI';
-
-promptAction.showActionMenu({
-  title: 'showActionMenu Title Info',
-  buttons: [
-    {
-      text: 'item1',
-      color: '#666666'
-    },
-    {
-      text: 'item2',
-      color: '#000000'
-    },
-  ]
-})
-  .then(data => {
-    console.info('showActionMenu success, click button: ' + data.index);
-  })
-  .catch((err: Error) => {
-    console.info('showActionMenu error: ' + err);
-  })
-```
-
-![zh-cn_image_0006](figures/zh-cn_image_0006.gif)
-
-## promptAction.openCustomDialog<sup>(deprecated)</sup>
-
-openCustomDialog(options: CustomDialogOptions): Promise&lt;number&gt;
-
-打开自定义弹窗。
-
-<!--Del-->不支持在ServiceExtension中使用。<!--DelEnd-->
-
-暂不支持isModal = true与showInSubWindow = true同时使用。
-
-弹窗宽度在设备竖屏时默认为 所在窗口宽度 - 左右margin（16vp，设备为2in1时为40vp），最大默认宽度为400vp。
-
-> **说明：**
->
-> 从API version 11开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[openCustomDialog](js-apis-arkui-UIContext.md#opencustomdialog12-1)。
->
-> 从API version 12开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](js-apis-arkui-UIContext.md#promptaction)对象。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名  | 类型                                          | 必填 | 说明               |
-| ------- | --------------------------------------------- | ---- | ------------------ |
-| options | [CustomDialogOptions](#customdialogoptions11) | 是   | 自定义弹窗的内容。 |
-
-**返回值：**
-
-| 类型                  | 说明                                  |
-| --------------------- | ------------------------------------- |
-| Promise&lt;number&gt; | 返回供closeCustomDialog使用的对话框id。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
-
-| 错误码ID | 错误信息                           |
-| -------- | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 100001   | Internal error. |
-
-**示例：**
-
-```ts
-import { promptAction } from '@kit.ArkUI'
-import { BusinessError } from '@kit.BasicServicesKit'
-
-@Entry
-@Component
-struct Index {
-  private customDialogComponentId: number = 0
-
-  @Builder
-  customDialogComponent() {
-    Column() {
-      Text('弹窗').fontSize(30)
-      Row({ space: 50 }) {
-        Button("确认").onClick(() => {
-          try {
-            promptAction.closeCustomDialog(this.customDialogComponentId)
-          } catch (error) {
-            let message = (error as BusinessError).message;
-            let code = (error as BusinessError).code;
-            console.error(`closeCustomDialog error code is ${code}, message is ${message}`);
-          }
-        })
-        Button("取消").onClick(() => {
-          try {
-            promptAction.closeCustomDialog(this.customDialogComponentId)
-          } catch (error) {
-            let message = (error as BusinessError).message;
-            let code = (error as BusinessError).code;
-            console.error(`closeCustomDialog error code is ${code}, message is ${message}`);
-          }
-        })
-      }
-    }.height(200).padding(5).justifyContent(FlexAlign.SpaceBetween)
-  }
-
-  build() {
-    Row() {
-      Column({ space: 20 }) {
-        Text('组件内弹窗')
-          .fontSize(30)
-          .onClick(() => {
-            promptAction.openCustomDialog({
-              builder: () => {
-                this.customDialogComponent()
-              },
-              onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
-                console.info("reason" + JSON.stringify(dismissDialogAction.reason))
-                console.log("dialog onWillDismiss")
-                if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-                  dismissDialogAction.dismiss()
-                }
-                if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-                  dismissDialogAction.dismiss()
-                }
-              }
-            }).then((dialogId: number) => {
-              this.customDialogComponentId = dialogId
-            })
-              .catch((error: BusinessError) => {
-                console.error(`openCustomDialog error code is ${error.code}, message is ${error.message}`)
-              })
-          })
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-
-```
-该示例定义了弹窗样式，如宽度、高度、背景色、阴影等等。
-
-> **说明：**
-> 
-> 直接使用openCustomDialog可能导致实例不明确的问题，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[openCustomDialog](js-apis-arkui-UIContext.md#opencustomdialog12-1)。
-
-```ts
-import { LevelMode, ImmersiveMode } from '@kit.ArkUI'
-
-let customDialogId: number = 0;
-
-@Builder
-function customDialogBuilder(uiContext: UIContext) {
-  Column() {
-    Text('Custom dialog Message').fontSize(10)
-    Row() {
-      Button("确认").onClick(() => {
-        uiContext.getPromptAction().closeCustomDialog(customDialogId)
-      })
-      Blank().width(50)
-      Button("取消").onClick(() => {
-        uiContext.getPromptAction().closeCustomDialog(customDialogId)
-      })
-    }
-  }
-}
-
-@Entry
-@Component
-struct Index {
-  @State message: string = 'Hello World';
-  private uiContext: UIContext = this.getUIContext();
-
-  @Builder
-  customDialogComponent() {
-    customDialogBuilder(this.uiContext)
-  }
-
-  build() {
-    Row() {
-      Column() {
-        Text(this.message).id("test_text")
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-          .onClick(() => {
-            const node: FrameNode | null = this.uiContext.getFrameNodeById("test_text") || null;
-            this.uiContext.getPromptAction().openCustomDialog({
-              builder: () => {
-                this.customDialogComponent()
-              },
-              keyboardAvoidMode: KeyboardAvoidMode.NONE,
-              showInSubWindow: false,
-              offset: { dx: 5, dy: 5 },
-              backgroundColor: 0xd9ffffff,
-              cornerRadius: 20,
-              width: '80%',
-              height: 200,
-              borderWidth: 1,
-              borderStyle: BorderStyle.Dashed, // 使用borderStyle属性，需要和borderWidth属性一起使用
-              borderColor: Color.Blue, // 使用borderColor属性，需要和borderWidth属性一起使用
-              shadow: ({
-                radius: 20,
-                color: Color.Grey,
-                offsetX: 50,
-                offsetY: 0
-              }),
-              levelMode: LevelMode.EMBEDDED,
-              levelUniqueId: node?.getUniqueId(),
-              immersiveMode: ImmersiveMode.DEFAULT,
-            }).then((dialogId: number) => {
-              customDialogId = dialogId;
-            })
-          })
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
-![zh-cn_image_0007](figures/zh-cn_image_0007.gif)
-
-该示例实现了一个页面内的弹窗。
-
-> **说明：**
-> 
-> 直接使用openCustomDialog可能导致实例不明确的问题，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[openCustomDialog](js-apis-arkui-UIContext.md#opencustomdialog12-1)。
-
-```ts
-// Index.ets
-import { LevelMode, ImmersiveMode } from '@kit.ArkUI'
-
-let customDialogId: number = 0;
-
-@Builder
-function customDialogBuilder(uiContext: UIContext) {
-  Column() {
-    Text('Custom dialog Message').fontSize(10).height(100)
-    Row() {
-      Button("Next").onClick(() => {
-        uiContext.getRouter().pushUrl({ url: 'pages/Next' })
-      })
-      Blank().width(50)
-      Button("Close").onClick(() => {
-        uiContext.getPromptAction().closeCustomDialog(customDialogId)
-      })
-    }
-  }.padding(20)
-}
-
-@Entry
-@Component
-struct Index {
-  @State message: string = 'Hello World';
-  private uiContext: UIContext = this.getUIContext();
-
-  @Builder
-  customDialogComponent() {
-    customDialogBuilder(this.uiContext)
-  }
-
-  build() {
-    Row() {
-      Column() {
-        Text(this.message).id("test_text")
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-          .onClick(() => {
-            const node: FrameNode | null = this.uiContext.getFrameNodeById("test_text") || null;
-            this.uiContext.getPromptAction().openCustomDialog({
-              builder: () => {
-                this.customDialogComponent()
-              },
-              levelMode: LevelMode.EMBEDDED,
-              levelUniqueId: node?.getUniqueId(),
-              immersiveMode: ImmersiveMode.DEFAULT,
-            }).then((dialogId: number) => {
-              customDialogId = dialogId;
-            })
-          })
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
-```ts
-// Next.ets
-@Entry
-@Component
-struct Next {
-  @State message: string = 'Back';
-
-  build() {
-    Row() {
-      Column() {
-        Button(this.message)
-          .onClick(() => {
-            this.getUIContext().getRouter().back()
-          })
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
-![embedded_dialog](figures/embedded_dialog.gif)
-
-## promptAction.closeCustomDialog<sup>(deprecated)</sup>
-
-closeCustomDialog(dialogId: number): void
-
-关闭自定义弹窗。
-
-> **说明：**
->
-> 从API version 11开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[closeCustomDialog](js-apis-arkui-UIContext.md#closecustomdialog12-1)。
->
-> 从API version 12开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](js-apis-arkui-UIContext.md#promptaction)对象。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名   | 类型   | 必填 | 说明                             |
-| -------- | ------ | ---- | -------------------------------- |
-| dialogId | number | 是   | openCustomDialog返回的对话框id。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
-
-| 错误码ID | 错误信息                           |
-| -------- | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 100001   | Internal error. |
-
-**示例：**
-
-示例请看[promptAction.openCustomDialog](#promptactionopencustomdialogdeprecated)的示例。
-
 ## ShowToastOptions
 
 文本提示框的选项。
@@ -1217,3 +523,702 @@ Dialog关闭的信息。
 | text  | string&nbsp;\|&nbsp; [Resource](arkui-ts/ts-types.md#resource类型) | 是    | 按钮文本内容。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | color | string&nbsp;\| &nbsp;[Resource](arkui-ts/ts-types.md#resource类型) | 是    | 按钮文本颜色。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | primary<sup>12+</sup> | boolean | 否    | 在弹窗获焦且未进行tab键走焦时，按钮是否默认响应Enter键。多个Button时，只允许一个Button的该字段配置为true，否则所有Button均不响应。多重弹窗可自动获焦连续响应。<br />**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+
+## promptAction.showToast<sup>(deprecated)</sup>
+
+showToast(options: ShowToastOptions): void
+
+创建并显示文本提示框。
+
+> **说明：**
+>
+> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[showToast](js-apis-arkui-UIContext.md#showtoast)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](js-apis-arkui-UIContext.md#promptaction)对象。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                  | 必填 | 说明           |
+| ------- | ------------------------------------- | ---- | -------------- |
+| options | [ShowToastOptions](#showtoastoptions) | 是   | 文本弹窗选项。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | Internal error.                                              |
+
+**示例：**
+
+```ts
+import { promptAction } from '@kit.ArkUI'
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct toastExample {
+  build() {
+    Column() {
+      Button('Show toast').fontSize(20)
+        .onClick(() => {
+          try {
+            promptAction.showToast({
+              message: 'Hello World',
+              duration: 2000
+            });
+          } catch (error) {
+            let message = (error as BusinessError).message
+            let code = (error as BusinessError).code
+            console.error(`showToast args error code is ${code}, message is ${message}`);
+          };
+        })
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
+```
+
+API version 11及之前Toast样式。
+
+![zh-cn_image_0001](figures/toast-api11.gif)
+
+API version 12及之后Toast样式。
+
+![zh-cn_image_0001](figures/toast-api12.gif)
+
+## promptAction.showDialog<sup>(deprecated)</sup>
+
+showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
+
+创建并显示对话框，对话框响应后异步返回结果。
+
+> **说明：**
+>
+> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[showDialog](js-apis-arkui-UIContext.md#showdialog-1)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](js-apis-arkui-UIContext.md#promptaction)对象。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                    | 必填 | 说明         |
+| ------- | --------------------------------------- | ---- | ------------ |
+| options | [ShowDialogOptions](#showdialogoptions) | 是   | 对话框选项。 |
+
+**返回值：**
+
+| 类型                                                         | 说明             |
+| ------------------------------------------------------------ | ---------------- |
+| Promise&lt;[ShowDialogSuccessResponse](#showdialogsuccessresponse)&gt; | 对话框响应结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | Internal error.                                              |
+
+**示例：**
+
+```ts
+import { promptAction } from '@kit.ArkUI'
+
+promptAction.showDialog({
+  title: 'Title Info',
+  message: 'Message Info',
+  buttons: [
+    {
+      text: 'button1',
+      color: '#000000'
+    },
+    {
+      text: 'button2',
+      color: '#000000'
+    }
+  ],
+})
+  .then(data => {
+    console.info('showDialog success, click button: ' + data.index);
+  })
+  .catch((err: Error) => {
+    console.info('showDialog error: ' + err);
+  })
+```
+
+![zh-cn_image_0002](figures/zh-cn_image_0002.gif)
+
+## promptAction.showDialog<sup>(deprecated)</sup>
+
+showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSuccessResponse&gt;):void
+
+创建并显示对话框，对话框响应结果异步返回。
+
+> **说明：**
+>
+> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[showDialog](js-apis-arkui-UIContext.md#showdialog)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](js-apis-arkui-UIContext.md#promptaction)对象。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                     |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------ |
+| options  | [ShowDialogOptions](#showdialogoptions)                      | 是   | 页面显示对话框信息描述。 |
+| callback | AsyncCallback&lt;[ShowDialogSuccessResponse](#showdialogsuccessresponse)&gt; | 是   | 对话框响应结果回调。     |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | Internal error.                                              |
+
+**示例：**
+
+```ts
+import { promptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  promptAction.showDialog({
+    title: 'showDialog Title Info',
+    message: 'Message Info',
+    buttons: [
+      {
+        text: 'button1',
+        color: '#000000'
+      },
+      {
+        text: 'button2',
+        color: '#000000'
+      }
+    ]
+  }, (err, data) => {
+    if (err) {
+      console.info('showDialog err: ' + err);
+      return;
+    }
+    console.info('showDialog success callback, click button: ' + data.index);
+  });
+} catch (error) {
+  let message = (error as BusinessError).message
+  let code = (error as BusinessError).code
+  console.error(`showDialog args error code is ${code}, message is ${message}`);
+};
+```
+
+![zh-cn_image_0004](figures/zh-cn_image_0004.gif)
+
+当弹窗的showInSubWindow属性为true时，弹窗可显示在窗口外。
+
+```ts
+import { promptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  promptAction.showDialog({
+    title: 'showDialog Title Info',
+    message: 'Message Info',
+    isModal: true,
+    showInSubWindow: true,
+    buttons: [
+      {
+        text: 'button1',
+        color: '#000000'
+      },
+      {
+        text: 'button2',
+        color: '#000000'
+      }
+    ]
+  }, (err, data) => {
+    if (err) {
+      console.info('showDialog err: ' + err);
+      return;
+    }
+    console.info('showDialog success callback, click button: ' + data.index);
+  });
+} catch (error) {
+  let message = (error as BusinessError).message
+  let code = (error as BusinessError).code
+  console.error(`showDialog args error code is ${code}, message is ${message}`);
+};
+```
+
+![zh-cn_image_0002_showinsubwindow](figures/zh-cn_image_0002_showinsubwindow.jpg)
+
+
+
+## promptAction.showActionMenu<sup>(deprecated)</sup>
+
+showActionMenu(options: ActionMenuOptions, callback: AsyncCallback&lt;ActionMenuSuccessResponse&gt;):void
+
+创建并显示操作菜单，菜单响应结果异步返回。
+
+> **说明：**
+>
+> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[showActionMenu](js-apis-arkui-UIContext.md#showactionmenu11)。
+>
+> 从API version 11开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](js-apis-arkui-UIContext.md#promptaction)对象。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full。
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明               |
+| -------- | ------------------------------------------------------------ | ---- | ------------------ |
+| options  | [ActionMenuOptions](#actionmenuoptions)                      | 是   | 操作菜单选项。     |
+| callback | AsyncCallback&lt;[ActionMenuSuccessResponse](#actionmenusuccessresponse)> | 是   | 菜单响应结果回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | Internal error.                                              |
+
+**示例：**
+
+```ts
+import { promptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  promptAction.showActionMenu({
+    title: 'Title Info',
+    buttons: [
+      {
+        text: 'item1',
+        color: '#666666'
+      },
+      {
+        text: 'item2',
+        color: '#000000'
+      },
+    ]
+  }, (err, data) => {
+    if (err) {
+      console.info('showActionMenu err: ' + err);
+      return;
+    }
+    console.info('showActionMenu success callback, click button: ' + data.index);
+  })
+} catch (error) {
+  let message = (error as BusinessError).message
+  let code = (error as BusinessError).code
+  console.error(`showActionMenu args error code is ${code}, message is ${message}`);
+};
+```
+
+![zh-cn_image_0005](figures/zh-cn_image_0005.gif)
+
+## promptAction.showActionMenu<sup>(deprecated)</sup>
+
+showActionMenu(options: ActionMenuOptions): Promise&lt;ActionMenuSuccessResponse&gt;
+
+创建并显示操作菜单，菜单响应后异步返回结果。
+
+> **说明：**
+>
+> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[showActionMenu](js-apis-arkui-UIContext.md#showactionmenu)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](js-apis-arkui-UIContext.md#promptaction)对象。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                    | 必填 | 说明           |
+| ------- | --------------------------------------- | ---- | -------------- |
+| options | [ActionMenuOptions](#actionmenuoptions) | 是   | 操作菜单选项。 |
+
+**返回值：**
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| Promise&lt;[ActionMenuSuccessResponse](#actionmenusuccessresponse)&gt; | 菜单响应结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | Internal error.                                              |
+
+**示例：**
+
+```ts
+import { promptAction } from '@kit.ArkUI';
+
+promptAction.showActionMenu({
+  title: 'showActionMenu Title Info',
+  buttons: [
+    {
+      text: 'item1',
+      color: '#666666'
+    },
+    {
+      text: 'item2',
+      color: '#000000'
+    },
+  ]
+})
+  .then(data => {
+    console.info('showActionMenu success, click button: ' + data.index);
+  })
+  .catch((err: Error) => {
+    console.info('showActionMenu error: ' + err);
+  })
+```
+
+![zh-cn_image_0006](figures/zh-cn_image_0006.gif)
+
+## promptAction.openCustomDialog<sup>(deprecated)</sup>
+
+openCustomDialog(options: CustomDialogOptions): Promise&lt;number&gt;
+
+打开自定义弹窗。
+
+<!--Del-->不支持在ServiceExtension中使用。<!--DelEnd-->
+
+暂不支持isModal = true与showInSubWindow = true同时使用。
+
+弹窗宽度在设备竖屏时默认为 所在窗口宽度 - 左右margin（16vp，设备为2in1时为40vp），最大默认宽度为400vp。
+
+> **说明：**
+>
+> 从API version 11开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[openCustomDialog](js-apis-arkui-UIContext.md#opencustomdialog12-1)。
+>
+> 从API version 12开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](js-apis-arkui-UIContext.md#promptaction)对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                          | 必填 | 说明               |
+| ------- | --------------------------------------------- | ---- | ------------------ |
+| options | [CustomDialogOptions](#customdialogoptions11) | 是   | 自定义弹窗的内容。 |
+
+**返回值：**
+
+| 类型                  | 说明                                    |
+| --------------------- | --------------------------------------- |
+| Promise&lt;number&gt; | 返回供closeCustomDialog使用的对话框id。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | Internal error.                                              |
+
+**示例：**
+
+```ts
+import { promptAction } from '@kit.ArkUI'
+import { BusinessError } from '@kit.BasicServicesKit'
+
+@Entry
+@Component
+struct Index {
+  private customDialogComponentId: number = 0
+
+  @Builder
+  customDialogComponent() {
+    Column() {
+      Text('弹窗').fontSize(30)
+      Row({ space: 50 }) {
+        Button("确认").onClick(() => {
+          try {
+            promptAction.closeCustomDialog(this.customDialogComponentId)
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            console.error(`closeCustomDialog error code is ${code}, message is ${message}`);
+          }
+        })
+        Button("取消").onClick(() => {
+          try {
+            promptAction.closeCustomDialog(this.customDialogComponentId)
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            console.error(`closeCustomDialog error code is ${code}, message is ${message}`);
+          }
+        })
+      }
+    }.height(200).padding(5).justifyContent(FlexAlign.SpaceBetween)
+  }
+
+  build() {
+    Row() {
+      Column({ space: 20 }) {
+        Text('组件内弹窗')
+          .fontSize(30)
+          .onClick(() => {
+            promptAction.openCustomDialog({
+              builder: () => {
+                this.customDialogComponent()
+              },
+              onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
+                console.info("reason" + JSON.stringify(dismissDialogAction.reason))
+                console.log("dialog onWillDismiss")
+                if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
+                  dismissDialogAction.dismiss()
+                }
+                if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
+                  dismissDialogAction.dismiss()
+                }
+              }
+            }).then((dialogId: number) => {
+              this.customDialogComponentId = dialogId
+            })
+              .catch((error: BusinessError) => {
+                console.error(`openCustomDialog error code is ${error.code}, message is ${error.message}`)
+              })
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
+```
+
+该示例定义了弹窗样式，如宽度、高度、背景色、阴影等等。
+
+> **说明：**
+>
+> 直接使用openCustomDialog可能导致实例不明确的问题，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[openCustomDialog](js-apis-arkui-UIContext.md#opencustomdialog12-1)。
+
+```ts
+import { LevelMode, ImmersiveMode } from '@kit.ArkUI'
+
+let customDialogId: number = 0;
+
+@Builder
+function customDialogBuilder(uiContext: UIContext) {
+  Column() {
+    Text('Custom dialog Message').fontSize(10)
+    Row() {
+      Button("确认").onClick(() => {
+        uiContext.getPromptAction().closeCustomDialog(customDialogId)
+      })
+      Blank().width(50)
+      Button("取消").onClick(() => {
+        uiContext.getPromptAction().closeCustomDialog(customDialogId)
+      })
+    }
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+  private uiContext: UIContext = this.getUIContext();
+
+  @Builder
+  customDialogComponent() {
+    customDialogBuilder(this.uiContext)
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message).id("test_text")
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            const node: FrameNode | null = this.uiContext.getFrameNodeById("test_text") || null;
+            this.uiContext.getPromptAction().openCustomDialog({
+              builder: () => {
+                this.customDialogComponent()
+              },
+              keyboardAvoidMode: KeyboardAvoidMode.NONE,
+              showInSubWindow: false,
+              offset: { dx: 5, dy: 5 },
+              backgroundColor: 0xd9ffffff,
+              cornerRadius: 20,
+              width: '80%',
+              height: 200,
+              borderWidth: 1,
+              borderStyle: BorderStyle.Dashed, // 使用borderStyle属性，需要和borderWidth属性一起使用
+              borderColor: Color.Blue, // 使用borderColor属性，需要和borderWidth属性一起使用
+              shadow: ({
+                radius: 20,
+                color: Color.Grey,
+                offsetX: 50,
+                offsetY: 0
+              }),
+              levelMode: LevelMode.EMBEDDED,
+              levelUniqueId: node?.getUniqueId(),
+              immersiveMode: ImmersiveMode.DEFAULT,
+            }).then((dialogId: number) => {
+              customDialogId = dialogId;
+            })
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![zh-cn_image_0007](figures/zh-cn_image_0007.gif)
+
+该示例实现了一个页面内的弹窗。
+
+> **说明：**
+>
+> 直接使用openCustomDialog可能导致实例不明确的问题，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[openCustomDialog](js-apis-arkui-UIContext.md#opencustomdialog12-1)。
+
+```ts
+// Index.ets
+import { LevelMode, ImmersiveMode } from '@kit.ArkUI'
+
+let customDialogId: number = 0;
+
+@Builder
+function customDialogBuilder(uiContext: UIContext) {
+  Column() {
+    Text('Custom dialog Message').fontSize(10).height(100)
+    Row() {
+      Button("Next").onClick(() => {
+        uiContext.getRouter().pushUrl({ url: 'pages/Next' })
+      })
+      Blank().width(50)
+      Button("Close").onClick(() => {
+        uiContext.getPromptAction().closeCustomDialog(customDialogId)
+      })
+    }
+  }.padding(20)
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+  private uiContext: UIContext = this.getUIContext();
+
+  @Builder
+  customDialogComponent() {
+    customDialogBuilder(this.uiContext)
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message).id("test_text")
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            const node: FrameNode | null = this.uiContext.getFrameNodeById("test_text") || null;
+            this.uiContext.getPromptAction().openCustomDialog({
+              builder: () => {
+                this.customDialogComponent()
+              },
+              levelMode: LevelMode.EMBEDDED,
+              levelUniqueId: node?.getUniqueId(),
+              immersiveMode: ImmersiveMode.DEFAULT,
+            }).then((dialogId: number) => {
+              customDialogId = dialogId;
+            })
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+```ts
+// Next.ets
+@Entry
+@Component
+struct Next {
+  @State message: string = 'Back';
+
+  build() {
+    Row() {
+      Column() {
+        Button(this.message)
+          .onClick(() => {
+            this.getUIContext().getRouter().back()
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![embedded_dialog](figures/embedded_dialog.gif)
+
+## promptAction.closeCustomDialog<sup>(deprecated)</sup>
+
+closeCustomDialog(dialogId: number): void
+
+关闭自定义弹窗。
+
+> **说明：**
+>
+> 从API version 11开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[closeCustomDialog](js-apis-arkui-UIContext.md#closecustomdialog12-1)。
+>
+> 从API version 12开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](js-apis-arkui-UIContext.md#promptaction)对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明                             |
+| -------- | ------ | ---- | -------------------------------- |
+| dialogId | number | 是   | openCustomDialog返回的对话框id。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | Internal error.                                              |
+
+**示例：**
+
+示例请看[promptAction.openCustomDialog](#promptactionopencustomdialogdeprecated)的示例。
