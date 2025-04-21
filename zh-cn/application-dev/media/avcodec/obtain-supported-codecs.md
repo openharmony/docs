@@ -32,7 +32,7 @@
 
    支持两种获取音视频编解码能力实例的方式：
    
-   方式一：通过`OH_AVCodec_GetCapability`获取框架推荐的音视频编解码器能力实例。与`OH_XXX_CreateByMime`系列接口框架推荐策略一致。
+   方式一：通过`OH_AVCodec_GetCapability`获取系统推荐的音视频编解码器能力实例。与`OH_XXX_CreateByMime`系列接口系统推荐策略一致。
    ```c++
    // 获取系统推荐的音频AAC解码器能力实例。
    OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_AUDIO_AAC, false);
@@ -43,7 +43,7 @@
    // 获取指定硬件的视频AVC编码器能力实例。
    OH_AVCapability *capability = OH_AVCodec_GetCapabilityByCategory(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true, HARDWARE);
    ```
-   若获取能力实例成功，则可继续向下执行。开发者无需关注该实例的回收问题，框架会自行回收。
+   若获取能力实例成功，则可继续向下执行。开发者无需关注该实例的回收问题，系统会自行回收。
 
 4. 按需调用相应查询接口，详细的API说明请参考[API文档](../../reference/apis-avcodec-kit/_a_v_capability.md)。
 
@@ -517,7 +517,7 @@ bool isSupported = frameRate >= frameRateRange.minVal && frameRate <= frameRateR
 ```c++
 constexpr int32_t width = 1920;
 constexpr int32_t height = 1080;
-int32_t frameRate = 120;
+double frameRate = 120;
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
 // 1. 确认待配置尺寸是否能达到理想帧率。
 bool isSupported = OH_AVCapability_AreVideoSizeAndFrameRateSupported(capability, width, height, frameRate);
@@ -534,7 +534,7 @@ if (!isSupported) {
 // 3. 配置尺寸和帧率参数。
 OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
 OH_AVFormat *format = OH_AVFormat_CreateVideoFormat(OH_AVCODEC_MIMETYPE_VIDEO_AVC, width, height);
-if (!OH_AVFormat_SetIntValue(format, OH_MD_KEY_FRAME_RATE, frameRate)) {
+if (!OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, frameRate)) {
    // 异常处理。
 }
 if (OH_VideoEncoder_Configure(videoEnc, format) != AV_ERR_OK) {

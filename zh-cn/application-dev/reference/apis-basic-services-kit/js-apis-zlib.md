@@ -4075,7 +4075,7 @@ gzbuffer(size: number):Promise&lt;number&gt;
 
 ```ts
 import { fileIo as fs } from '@kit.CoreFileKit';
-import { zlib } from '@kit.BasicServicesKit'
+import { zlib } from '@kit.BasicServicesKit';
 
 async function gzbufferDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzbuffer");
@@ -4302,7 +4302,7 @@ struct Index {
 
 gzclose(): Promise&lt;ReturnStatus&gt;
 
-清除文件的所有挂起输出，如有必要，关闭文件和释放(解)压缩状态。
+清除文件的所有挂起输出，如有必要，关闭文件和释放（解）压缩状态。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4856,7 +4856,7 @@ struct Index {
 
 gzcloser(): Promise&lt;ReturnStatus&gt;
 
-与gzclose（）功能相同，仅适用于读取时。
+与gzclose()功能相同，仅适用于读取时。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

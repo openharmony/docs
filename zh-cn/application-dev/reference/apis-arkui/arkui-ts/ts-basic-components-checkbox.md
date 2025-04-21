@@ -6,7 +6,7 @@
 >
 >  API version 11开始，Checkbox默认样式由圆角方形变为圆形。
 >
->  该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 子组件
 
@@ -28,9 +28,11 @@ Checkbox(options?: CheckboxOptions)
 
 | 参数名  | 类型                                        | 必填 | 说明               |
 | ------- | ------------------------------------------- | ---- | ------------------ |
-| options | [CheckboxOptions](#checkboxoptions对象说明) | 否   | 配置复选框的参数。 |
+| options | [CheckboxOptions](#checkboxoptions对象说明) | 否   | 配置多选框的参数。 |
 
 ## CheckboxOptions对象说明
+
+多选框的信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -50,8 +52,8 @@ select(value: boolean)
 
 设置多选框是否选中。
 
-从API version 10开始，该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
-从API version 18开始，该属性支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。
+从API version 10开始，该属性支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。
+从API version 18开始，该属性支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -71,7 +73,7 @@ select(isSelected: Optional\<boolean>)
 
 设置多选框是否选中。与[select](#select)相比，isSelected参数新增了对undefined类型的支持。
 
-该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。该属性支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。
+该属性支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。该属性支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -235,7 +237,7 @@ contentModifier(modifier: ContentModifier\<CheckBoxConfiguration>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                             |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
-| modifier  | [ContentModifier\<CheckBoxConfiguration>](#checkboxconfiguration12对象说明) | 是   | 在CheckBox组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
+| modifier  | [ContentModifier\<CheckBoxConfiguration>](#checkboxconfiguration12对象说明) | 是   | 在CheckBox组件上，定制内容区的方法。<br/>modifier：内容修改器，开发者需要自定义class实现ContentModifier接口。 |
 
 ### contentModifier<sup>18+</sup>
 
@@ -251,7 +253,7 @@ contentModifier(modifier: Optional<ContentModifier\<CheckBoxConfiguration>>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| modifier | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ContentModifier\<CheckBoxConfiguration>](#checkboxconfiguration12对象说明)> | 是   | 在CheckBox组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。<br/>当modifier的值为undefined时，不使用内容修改器。 |
+| modifier | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ContentModifier\<CheckBoxConfiguration>](#checkboxconfiguration12对象说明)> | 是   | 在CheckBox组件上，定制内容区的方法。<br/>modifier：内容修改器，开发者需要自定义class实现ContentModifier接口。<br/>当modifier的值为undefined时，不使用内容修改器。 |
 
 ## 事件
 
@@ -343,14 +345,14 @@ struct CheckboxExample {
         .selectedColor(0xed6f21)
         .shape(CheckBoxShape.CIRCLE)
         .onChange((value: boolean) => {
-          console.info('Checkbox1 change is' + value)
+          console.info('Checkbox1 change is' + value);
         })
       Checkbox({ name: 'checkbox2', group: 'checkboxGroup' })
         .select(false)
         .selectedColor(0x39a2db)
         .shape(CheckBoxShape.ROUNDED_SQUARE)
         .onChange((value: boolean) => {
-          console.info('Checkbox2 change is' + value)
+          console.info('Checkbox2 change is' + value);
         })
     }
   }
@@ -378,7 +380,7 @@ struct Index {
             .selectedColor(0x39a2db)
             .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
-              console.info('Checkbox1 change is'+ value)
+              console.info('Checkbox1 change is'+ value);
             })
             .mark({
               strokeColor:Color.Black,
@@ -395,7 +397,7 @@ struct Index {
             .selectedColor(0x39a2db)
             .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
-              console.info('Checkbox2 change is' + value)
+              console.info('Checkbox2 change is' + value);
             })
             .width(30)
             .height(30)
@@ -418,41 +420,58 @@ struct Index {
 ```ts
 // xxx.ets
 class MyCheckboxStyle implements ContentModifier<CheckBoxConfiguration> {
-  selectedColor: Color = Color.White
+  selectedColor: Color = Color.White;
+
   constructor(selectedColor: Color) {
     this.selectedColor = selectedColor;
   }
-  applyContent() : WrappedBuilder<[CheckBoxConfiguration]>
-  {
-    return wrapBuilder(buildCheckbox)
+
+  applyContent(): WrappedBuilder<[CheckBoxConfiguration]> {
+    return wrapBuilder(buildCheckbox);
   }
 }
 
-@Builder function buildCheckbox(config: CheckBoxConfiguration) {
-  Column({space:10}) {
-      Text(config.name  + (config.selected ? "（ 选中 ）" : "（ 非选中 ）")).margin({right : 70, top : 50})
-      Text(config.enabled ? "enabled true" : "enabled false").margin({right : 110})
-      Shape() {
-        Path().width(100).height(100).commands('M100 0 L0 100 L50 200 L150 200 L200 100 Z').fillOpacity(0).strokeWidth(3).onClick(()=>{
+@Builder
+function buildCheckbox(config: CheckBoxConfiguration) {
+  Column({ space: 10 }) {
+    Text(config.name + (config.selected ? "（ 选中 ）" : "（ 非选中 ）")).margin({ right: 70, top: 50 })
+    Text(config.enabled ? "enabled true" : "enabled false").margin({ right: 110 })
+    Shape() {
+      Path()
+        .width(100)
+        .height(100)
+        .commands('M100 0 L0 100 L50 200 L150 200 L200 100 Z')
+        .fillOpacity(0)
+        .strokeWidth(3)
+        .onClick(() => {
           if (config.selected) {
-            config.triggerChange(false)
+            config.triggerChange(false);
           } else {
-            config.triggerChange(true)
+            config.triggerChange(true);
           }
-        }).opacity(config.enabled ? 1 : 0.1)
-        Path().width(10).height(10).commands('M50 0 L100 100 L0 100 Z')
-          .visibility(config.selected ? Visibility.Visible : Visibility.Hidden)
-          .fill(config.selected ? (config.contentModifier as MyCheckboxStyle).selectedColor : Color.Black)
-          .stroke((config.contentModifier as MyCheckboxStyle).selectedColor)
-          .margin({left:10,top:10})
-          .opacity(config.enabled ? 1 : 0.1)
-      }
-      .width(300)
-      .height(200)
-      .viewPort({ x: 0, y: 0, width: 310, height: 310 })
-      .strokeLineJoin(LineJoinStyle.Miter)
-      .strokeMiterLimit(5)
-      .margin({left:50})
+        })
+        .opacity(config.enabled ? 1 : 0.1)
+      Path()
+        .width(10)
+        .height(10)
+        .commands('M50 0 L100 100 L0 100 Z')
+        .visibility(config.selected ? Visibility.Visible : Visibility.Hidden)
+        .fill(config.selected ? (config.contentModifier as MyCheckboxStyle).selectedColor : Color.Black)
+        .stroke((config.contentModifier as MyCheckboxStyle).selectedColor)
+        .margin({ left: 10, top: 10 })
+        .opacity(config.enabled ? 1 : 0.1)
+    }
+    .width(300)
+    .height(200)
+    .viewPort({
+      x: 0,
+      y: 0,
+      width: 310,
+      height: 310
+    })
+    .strokeLineJoin(LineJoinStyle.Miter)
+    .strokeMiterLimit(5)
+    .margin({ left: 50 })
   }
 }
 
@@ -460,24 +479,25 @@ class MyCheckboxStyle implements ContentModifier<CheckBoxConfiguration> {
 @Component
 struct Index {
   @State checkboxEnabled: boolean = true;
+
   build() {
     Column({ space: 100 }) {
-        Checkbox({ name: '复选框状态', group: 'checkboxGroup' })
+      Checkbox({ name: '复选框状态', group: 'checkboxGroup' })
         .contentModifier(new MyCheckboxStyle(Color.Red))
         .onChange((value: boolean) => {
-          console.info('Checkbox change is' + value)
+          console.info('Checkbox change is' + value);
         }).enabled(this.checkboxEnabled)
 
       Row() {
         Toggle({ type: ToggleType.Switch, isOn: true }).onChange((value: boolean) => {
           if (value) {
-            this.checkboxEnabled = true
+            this.checkboxEnabled = true;
           } else {
-            this.checkboxEnabled = false
+            this.checkboxEnabled = false;
           }
         })
       }.position({ x: 50, y: 130 })
-    }.margin({top : 30})
+    }.margin({ top: 30 })
   }
 }
 ```
@@ -509,7 +529,7 @@ struct CheckboxExample {
           Checkbox({ name: 'checkbox1', group: 'checkboxGroup', indicatorBuilder:()=>{this.indicatorBuilder(9)}})
             .shape(CheckBoxShape.CIRCLE)
             .onChange((value: boolean) => {
-              console.info('Checkbox1 change is'+ value)
+              console.info('Checkbox1 change is'+ value);
             })
             .mark({
               strokeColor:Color.Black,
@@ -524,7 +544,7 @@ struct CheckboxExample {
           Checkbox({ name: 'checkbox2', group: 'checkboxGroup', indicatorBuilder:()=>{this.indicatorBuilder(100)}})
             .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
-              console.info('Checkbox2 change is' + value)
+              console.info('Checkbox2 change is' + value);
             })
             .width(30)
             .height(30)

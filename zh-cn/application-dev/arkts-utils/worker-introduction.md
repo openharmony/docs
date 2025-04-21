@@ -22,7 +22,7 @@ Worker主要作用是为应用程序提供一个多线程的运行环境，可�
 - 使用Worker模块时，API version 18及之后的版本推荐在宿主线程中注册onAllErrors回调，以捕获Worker线程生命周期内的各种异常，API version 15及之前的版本需要注册onerror回调。如果未注册onAllErrors或onerror接口，当Worker线程出现异常时会发生jscrash问题。需要注意的是，onerror接口仅能捕获onmessage回调中的同步异常，且捕获异常后Worker线程会进入销毁流程，无法继续使用。详情请参见[onAllErrors接口与onerror接口之间的行为差异](#onallerrors接口与onerror接口之间的行为差异)。
 - 不支持跨HAP使用Worker线程文件。
 - 引用HAR/HSP前，需要先配置对HAR/HSP的依赖，详见[引用共享包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-har-import-V5)。
-- 不支持在Worker工作线程中使用[AppStorage](../quick-start/arkts-appstorage.md)。
+- 不支持在Worker工作线程中使用[AppStorage](../ui/state-management/arkts-appstorage.md)。
 - 从API version 18开始，Worker线程优先级可以在构造函数的参数[WorkerOptions](../reference/apis-arkts/js-apis-worker.md#workeroptions)中进行指定。
 
 ### 创建Worker的注意事项

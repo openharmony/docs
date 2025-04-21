@@ -9,6 +9,7 @@
 
 **相关模块：**[OH_Print](_o_h___print.md)
 
+**所在头文件：**[ohprint.h](ohprint_8h.md)
 
 ## 汇总
 
@@ -32,6 +33,7 @@
 uint32_t Print_PageSize::height
 ```
 **描述**
+
 纸张高度。
 
 
@@ -41,6 +43,7 @@ uint32_t Print_PageSize::height
 char* Print_PageSize::id
 ```
 **描述**
+
 纸张id。
 
 
@@ -50,6 +53,7 @@ char* Print_PageSize::id
 char* Print_PageSize::name
 ```
 **描述**
+
 纸张名称。
 
 
@@ -59,4 +63,5 @@ char* Print_PageSize::name
 uint32_t Print_PageSize::width
 ```
 **描述**
+
 纸张宽度。

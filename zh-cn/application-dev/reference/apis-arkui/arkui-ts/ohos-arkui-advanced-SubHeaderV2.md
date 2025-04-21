@@ -3,13 +3,16 @@
 
 子标题，用于列表项顶部，将该组列表划分为一个区块，子标题名称用来概括该区块内容。也可以用于内容项顶部，子标题名称用来概括该区块内容。
 
-该组件基于[状态管理V2](../../../quick-start/arkts-state-management-overview.md#状态管理v2)实现，相较于[状态管理V1](../../../quick-start/arkts-state-management-overview.md#状态管理v1)，状态管理V2增强了对数据对象的深度观察与管理能力，不再局限于组件层级。借助状态管理V2，开发者可以通过该组件更灵活地控制子标题的数据和状态，实现更高效的用户界面刷新。
+该组件基于[状态管理V2](../../../ui/state-management/arkts-state-management-overview.md#状态管理v2)实现，相较于[状态管理V1](../../../ui/state-management/arkts-state-management-overview.md#状态管理v1)，状态管理V2增强了对数据对象的深度观察与管理能力，不再局限于组件层级。借助状态管理V2，开发者可以通过该组件更灵活地控制子标题的数据和状态，实现更高效的用户界面刷新。
 
 
 
 > **说明：**
 >
 > - 该组件从API version 18开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 
+> - 该组件不支持在Wearable设备上使用。
+
 
 
 ## 导入模块
@@ -304,7 +307,7 @@ import {
   SubHeaderV2,
   SubHeaderV2Title,
   SubHeaderV2OperationItem,
-  promptAction,
+  Prompt,
   TextModifier
 } from '@kit.ArkUI'
 
@@ -332,7 +335,7 @@ struct SubHeaderExample {
     this.operationItems = [new SubHeaderV2OperationItem({
       content: '操作',
       action: () => {
-        promptAction.showToast({ message: 'demo2' })
+        Prompt.showToast({ message: 'demo2' })
       }
     })]
   }
@@ -363,7 +366,7 @@ import {
   SubHeaderV2,
   SubHeaderV2Title,
   SubHeaderV2OperationItem,
-  promptAction,
+  Prompt,
   TextModifier
 } from '@kit.ArkUI'
 
@@ -384,7 +387,7 @@ struct SubHeaderExample {
     this.operationItems = [new SubHeaderV2OperationItem({
       content: '更多',
       action: () => {
-        promptAction.showToast({ message: 'demo2' })
+        Prompt.showToast({ message: 'demo2' })
       }
     })]
   }
@@ -415,7 +418,7 @@ import {
   SubHeaderV2OperationItem,
   SubHeaderV2Title,
   SubHeaderV2Select,
-  promptAction
+  Prompt
 } from '@kit.ArkUI'
 
 @Entry
@@ -441,7 +444,7 @@ struct SubHeaderExample {
       selectedContent: this.selectedValue,
       selectedIndex: this.selectedIndex,
       onSelect: (index: number, value?: string) => {
-        promptAction.showToast({ message: 'selectdemo' })
+        Prompt.showToast({ message: 'selectdemo' })
       }
     })
 
@@ -449,19 +452,19 @@ struct SubHeaderExample {
       new SubHeaderV2OperationItem({
         content: $r('sys.media.ohos_ic_public_email'),
         action: () => {
-          promptAction.showToast({ message: 'demo' })
+          Prompt.showToast({ message: 'demo' })
         }
       }),
       new SubHeaderV2OperationItem({
         content: $r('sys.media.ohos_ic_public_email'),
         action: () => {
-          promptAction.showToast({ message: 'demo' })
+          Prompt.showToast({ message: 'demo' })
         }
       }),
       new SubHeaderV2OperationItem({
         content: $r('sys.media.ohos_ic_public_email'),
         action: () => {
-          promptAction.showToast({ message: 'demo' })
+          Prompt.showToast({ message: 'demo' })
         }
       })]
   }
@@ -491,7 +494,7 @@ import {
   SubHeaderV2OperationType,
   SubHeaderV2OperationItem,
   SubHeaderV2Title,
-  promptAction,
+  Prompt,
   SymbolGlyphModifier
 } from '@kit.ArkUI'
 
@@ -514,7 +517,7 @@ struct SubHeaderExample {
         operationItems: [new SubHeaderV2OperationItem({
           content: '操作',
           action: () => {
-            promptAction.showToast({ message: 'demo' })
+            Prompt.showToast({ message: 'demo' })
           }
         })]
       })
@@ -535,7 +538,7 @@ import {
   SubHeaderV2OperationItem,
   SubHeaderV2Title,
   SubHeaderV2Select,
-  promptAction,
+  Prompt,
   SymbolGlyphModifier
 } from '@kit.ArkUI'
 
@@ -565,7 +568,7 @@ struct SubHeaderExample {
       selectedContent: this.selectedValue,
       selectedIndex: this.selectedIndex,
       onSelect: (index: number, value?: string) => {
-        promptAction.showToast({ message: 'demo' })
+        Prompt.showToast({ message: 'demo' })
       }
     })
 
@@ -573,7 +576,7 @@ struct SubHeaderExample {
       new SubHeaderV2OperationItem({
         content: new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')).fontWeight(FontWeight.Lighter),
         action: () => {
-          promptAction.showToast({ message: 'demo1' })
+          Prompt.showToast({ message: 'demo1' })
         }
       }),
       new SubHeaderV2OperationItem({
@@ -582,7 +585,7 @@ struct SubHeaderExample {
           .fontColor([Color.Blue, Color.Grey, Color.Green])
       ,
         action: () => {
-          promptAction.showToast({ message: 'demo2' })
+          Prompt.showToast({ message: 'demo2' })
         }
       }),
       new SubHeaderV2OperationItem({
@@ -591,7 +594,7 @@ struct SubHeaderExample {
           .fontColor([Color.Blue, Color.Grey, Color.Green])
       ,
         action: () => {
-          promptAction.showToast({ message: 'demo3' })
+          Prompt.showToast({ message: 'demo3' })
         }
       })]
   }
@@ -619,7 +622,7 @@ import {
   SubHeaderV2OperationType,
   SubHeaderV2OperationItem,
   SubHeaderV2Title,
-  promptAction
+  Prompt
 } from '@kit.ArkUI'
 
 @Entry
@@ -636,7 +639,7 @@ struct SubHeaderExample {
     this.operationItem = [new SubHeaderV2OperationItem({
       content: '更多信息',
       action: () => {
-        promptAction.showToast({ message: 'demo' })
+        Prompt.showToast({ message: 'demo' })
       }
     })]
   }
@@ -676,7 +679,7 @@ import {
   SubHeaderV2OperationType,
   SubHeaderV2OperationItem,
   SubHeaderV2Title,
-  promptAction,
+  Prompt,
   TextModifier
 } from '@kit.ArkUI'
 
@@ -698,7 +701,7 @@ struct SubHeaderExample {
     this.operationItems4 = [new SubHeaderV2OperationItem({
       content: '更多信息',
       action: () => {
-        promptAction.showToast({ message: 'demo' })
+        Prompt.showToast({ message: 'demo' })
       }
     })]
   }
@@ -728,7 +731,7 @@ import {
   SubHeaderV2OperationItem,
   SubHeaderV2IconType,
   SubHeaderV2Select,
-  promptAction
+  Prompt
 } from '@kit.ArkUI'
 
 @Entry
@@ -758,7 +761,7 @@ struct SubHeaderExample {
     this.operationItems = [new SubHeaderV2OperationItem({
       content: '操作',
       action: () => {
-        promptAction.showToast({ message: 'demo2' })
+        Prompt.showToast({ message: 'demo2' })
       }
     })]
   }
@@ -789,7 +792,7 @@ struct SubHeaderExample {
             onSelect: (index: number, value?: string) => {
               this.selectedIndex = index;
               this.selectedValue = value;
-              promptAction.showToast({ message: this.selectedValue })
+              Prompt.showToast({ message: this.selectedValue })
             }
           }),
           operationType: this.subHeaderOperationType3,
@@ -823,7 +826,7 @@ import {
   SubHeaderV2,
   SubHeaderV2Title,
   SubHeaderV2OperationItem,
-  promptAction,
+  Prompt,
   TextModifier
 } from '@kit.ArkUI'
 
@@ -851,7 +854,7 @@ struct SubHeaderExample {
       content: '操作',
       defaultFocus: true,
       action: () => {
-        promptAction.showToast({ message: 'demo2' })
+        Prompt.showToast({ message: 'demo2' })
       }
     })]
   }

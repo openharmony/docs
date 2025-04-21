@@ -5,7 +5,7 @@
 
 提供后台子进程调度策略管控C接口。
 
-**起始版本：** 15
+**起始版本：** 17
 
 
 ## 汇总
@@ -38,8 +38,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| int [OH_BackgroundProcessManager_SetProcessPriority](#oh_backgroundprocessmanager_setprocesspriority) (int pid, [BackgroundProcessManager_ProcessPriority](#backgroundprocessmanager_processpriority) priority) | 设置子进程的压制档位，子进程被压制后可获得的CPU资源将会受到限制。如果主进程调度策略发生变化，如从后台切至前台等， 子进程会跟随主进程一同变化，子进程如需继续压制，需要重新调用本接口。  | 
-| int [OH_BackgroundProcessManager_ResetProcessPriority](#oh_backgroundprocessmanager_resetprocesspriority) (int pid) | 为子进程解压制，即子进程策略恢复为主进程调度策略。若主进程调度策略发生变化，如从后台切至前台等， 子进程会跟随主进程一同变化，等效于执行一次resetProcessPriority动作。  | 
+| int [OH_BackgroundProcessManager_SetProcessPriority](#oh_backgroundprocessmanager_setprocesspriority) (int pid, [BackgroundProcessManager_ProcessPriority](#backgroundprocessmanager_processpriority) priority) | 设置子进程的压制档位，子进程被压制后可获得的CPU资源将会受到限制。如果主进程调度策略发生变化，如从后台切至前台等，子进程会跟随主进程一同变化，子进程如需继续压制，需要重新调用本接口。  | 
+| int [OH_BackgroundProcessManager_ResetProcessPriority](#oh_backgroundprocessmanager_resetprocesspriority) (int pid) | 为子进程解压制，即子进程策略恢复为主进程调度策略。若主进程调度策略发生变化，如从后台切至前台等，子进程会跟随主进程一同变化，等效于执行一次resetProcessPriority动作。  | 
 
 
 ## 类型定义说明
@@ -54,7 +54,7 @@ typedef enum BackgroundProcessManager_ErrorCodeBackgroundProcessManager_ErrorCod
 
 定义后台子进程管控错误码。
 
-**起始版本：** 15
+**起始版本：** 17
 
 
 ### BackgroundProcessManager_ProcessPriority
@@ -66,7 +66,7 @@ typedef enum BackgroundProcessManager_ProcessPriorityBackgroundProcessManager_Pr
 
 子进程压制档位。
 
-**起始版本：** 15
+**起始版本：** 17
 
 
 ## 枚举类型说明
@@ -81,7 +81,7 @@ enum BackgroundProcessManager_ErrorCode
 
 定义后台子进程管控错误码。
 
-**起始版本：** 15
+**起始版本：** 17
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -99,7 +99,7 @@ enum BackgroundProcessManager_ProcessPriority
 
 子进程压制档位。
 
-**起始版本：** 15
+**起始版本：** 17
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -119,7 +119,7 @@ int OH_BackgroundProcessManager_ResetProcessPriority (int pid)
 
 为子进程解压制，即子进程策略恢复为主进程调度策略。若主进程调度策略发生变化，如从后台切至前台等， 子进程会跟随主进程一同变化，等效于执行一次resetProcessPriority动作。
 
-**起始版本：** 15
+**起始版本：** 17
 
 **参数:**
 
@@ -139,9 +139,9 @@ int OH_BackgroundProcessManager_SetProcessPriority (int pid, BackgroundProcessMa
 ```
 **描述**
 
-设置子进程的压制档位，子进程被压制后可获得的CPU资源将会受到限制。如果主进程调度策略发生变化，如从后台切至前台等， 子进程会跟随主进程一同变化，子进程如需继续压制，需要重新调用本接口。
+设置子进程的压制档位，子进程被压制后可获得的CPU资源将会受到限制。如果主进程调度策略发生变化，如从后台切至前台等，子进程会跟随主进程一同变化，子进程如需继续压制，需要重新调用本接口。
 
-**起始版本：** 15
+**起始版本：** 17
 
 **参数:**
 

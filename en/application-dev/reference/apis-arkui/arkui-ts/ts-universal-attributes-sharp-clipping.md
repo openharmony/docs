@@ -28,7 +28,7 @@ Sets whether to clip the areas of child components that extend beyond this compo
 
 clip(clip: Optional\<boolean>)
 
-Sets whether to clip the areas of child components that extend beyond this component's boundaries, that is, whether to perform clipping based on the edge contour of the parent container Compared to [clip<sup>12+</sup>](#clip12), the **clip** parameter supports the **undefined** type.
+Sets whether to clip the areas of child components that extend beyond this component's boundaries, that is, whether to perform clipping based on the edge contour of the parent container Compared to [clip<sup>12+</sup>](#clip12), this API supports the **undefined** type for the **clip** parameter.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -84,7 +84,7 @@ Clips this component based on the given shape.
 
 clipShape(shape: Optional\<CircleShape | EllipseShape | PathShape | RectShape>)
 
-Sets whether to clip this component based on the given shape. Compared to [clipShape<sup>12+</sup>](#clipshape12), the **shape** parameter supports the **undefined** type.
+Sets whether to clip this component based on the given shape. Compared to [clipShape<sup>12+</sup>](#clipshape12), this API supports the **undefined** type for the **shape** parameter.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -118,7 +118,7 @@ Adds a mask to the component to indicate the progress.
 
 mask(mask: Optional\<ProgressMask>)
 
-Adds a mask to the component to indicate the progress. Compared to [mask<sup>12+</sup>](#mask12), the **mask** parameter supports the **undefined** type.
+Adds a mask to the component to indicate the progress. Compared to [mask<sup>12+</sup>](#mask12), this API supports the **undefined** type for the **mask** parameter.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -172,7 +172,7 @@ Adds a mask of the specified shape to the component.
 
 maskShape(shape: Optional\<CircleShape | EllipseShape | PathShape | RectShape>)
 
-Adds a mask of the specified shape to the component. Compared to [maskShape<sup>12+</sup>](#maskshape12), the **shape** parameter supports the **undefined** type.
+Adds a mask of the specified shape to the component. Compared to [maskShape<sup>12+</sup>](#maskshape12), this API supports the **undefined** type for the **shape** parameter.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

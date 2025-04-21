@@ -34,7 +34,7 @@ FolderStack(options?: FolderStackOptions)
 
 | Name      | Type        | Mandatory| Description                      |
 | ------------ | -------------------------- | ---- |----------------------------|
-| upperItems |    Array<string\>  | No  | Configuration of the **FolderStack** component.<br>**upperItems**: array of IDs of child components that will be moved to the upper half screen in the hover state. On hover, child components with IDs in this array automatically shift away from the folding screen's crease area and move to the upper half screen, while other components are stacked in the lower half screen.|
+| upperItems<sup>11+</sup> |    Array<string\>  | No  | Configuration of the **FolderStack** component.<br>**upperItems**: array of IDs of child components that will be moved to the upper half screen in the hover state. On hover, child components with IDs in this array automatically shift away from the folding screen's crease area and move to the upper half screen, while other components are stacked in the lower half screen.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## Attributes
 
@@ -168,7 +168,7 @@ Called when the folding state changes. This API takes effect only in landscape m
 
 | Name    | Type                                           | Mandatory| Description                |
 | ---------- | ----------------------------------------------- | ---- | -------------------- |
-| foldStatus | [FoldStatus](ts-appendix-enums.md#foldstatus11) | Yes  | Current fold state of the device.|
+| foldStatus<sup>11+</sup> | [FoldStatus](ts-appendix-enums.md#foldstatus11) | Yes  | Current fold state of the device.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## HoverEventParam<sup>12+</sup>
 

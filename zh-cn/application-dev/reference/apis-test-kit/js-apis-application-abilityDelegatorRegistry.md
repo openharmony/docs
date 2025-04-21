@@ -30,7 +30,7 @@ Ability生命周期状态。
 
 getAbilityDelegator(): AbilityDelegator
 
-获取应用程序的AbilityDelegator对象
+获取应用程序的AbilityDelegator对象。
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
@@ -52,7 +52,7 @@ let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
 getArguments(): AbilityDelegatorArgs
 
-获取单元测试参数AbilityDelegatorArgs对象
+获取单元测试参数AbilityDelegatorArgs对象。
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 

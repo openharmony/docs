@@ -942,6 +942,7 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 801 | this operation is not supported.          |
 | 17620001 | memory error. |
 | 17630001 | crypto operation error. |
 
@@ -1108,6 +1109,7 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 801 | this operation is not supported.          |
 | 17620001 | memory error. |
 | 17630001 | crypto operation error. |
 
@@ -1256,6 +1258,7 @@ getEncodedPem(format: string, config: KeyEncodingConfig): string
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
 | 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 801 | this operation is not supported.          |
 | 17620001 | memory error. |
 | 17630001 | crypto operation error. |
 
@@ -5396,6 +5399,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 17620001| memory error. |
 | 17630001 | crypto operation error. |
 
 ### update
@@ -5432,6 +5436,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 17620001| memory error. |
 | 17630001 | crypto operation error. |
 
 ### updateSync<sup>12+</sup>
@@ -5464,6 +5469,7 @@ updateSync(input: DataBlob): void
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.      |
+| 17620001| memory error. |
 | 17630001 | crypto operation error. |
 
 ### digest
@@ -5780,6 +5786,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 17620001| memory error. |
 | 17630001 | crypto operation error. |
 
 ### init
@@ -5812,6 +5819,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 17620001| memory error. |
 | 17630001 | crypto operation error. |
 
 ### initSync<sup>12+</sup>
@@ -5842,6 +5850,7 @@ initSync(key: SymKey): void
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.     |
+| 17620001| memory error. |
 | 17630001 | crypto operation error. |
 
 ### update
@@ -5873,6 +5882,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 17620001| memory error. |
 | 17630001 | crypto operation error. |
 
 ### update
@@ -5909,6 +5919,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 17620001| memory error. |
 | 17630001 | crypto operation error. |
 
 ### updateSync<sup>12+</sup>
@@ -5943,6 +5954,7 @@ updateSync(input: DataBlob): void
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.      |
+| 17620001| memory error. |
 | 17630001 | crypto operation error. |
 
 ### doFinal

@@ -1,6 +1,6 @@
-# 使用Image处理PixelMap数据
+# 位图操作
 
-开发者可以通过本指导了解如何使用Native Image的接口。
+开发者可以通过本指导了解如何使用Native Image的接口完成位图操作。
 
 ## 开发步骤
 

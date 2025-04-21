@@ -726,6 +726,79 @@ try {
 }
 ```
 
+### on('callingDisplayDidChange')<sup>18+</sup>
+
+on(type: 'callingDisplayDidChange', callback: Callback\<number>): void
+
+订阅编辑框对应窗口所在屏幕ID变化。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                                          | 必填 | 说明                                       |
+| -------- | --------------------------------------------- | ---- | ------------------------------------------ |
+| type     | string                                        | 是   | 设置监听类型，固定取值为'callingDisplayDidChange'。 |
+| callback |  Callback\<number> | 是   | 回调函数，返回编辑框设置对应窗口屏幕ID。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                       |
+| -------- | ---------------------------------------------- |
+| 801 | capability not supported. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { inputMethodEngine } from '@kit.IMEKit';
+
+let callingDisplayDidChangeCallback = (num: number) => {
+  console.log(`display id: ${num}`);
+}
+try {
+  console.log(`regist calling display changed`);
+  inputMethodEngine.getInputMethodAbility().on('callingDisplayDidChange', callingDisplayDidChangeCallback);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`regist calling display changed error: ${error.code} ${error.message}`);
+}
+```
+
+### off('callingDisplayDidChange')<sup>18+</sup>
+
+off(type: 'callingDisplayDidChange', callback?: Callback\<number>): void
+
+取消编辑框对应窗口所在屏幕ID变化。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                                        | 必填 | 说明                                                         |
+| -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                      | 是   | 设置监听类型，固定取值为'callingDisplayDidChange'。                   |
+| callback | Callback\<number>  | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { inputMethodEngine } from '@kit.IMEKit';
+
+try {
+  console.log(`unregist calling display changed `);
+  inputMethodEngine.getInputMethodAbility().off('callingDisplayDidChange', (num: number) => {
+    console.log('InputMethodAbility delete calling display  notification.');
+  });
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`unregist calling display changed error: ${error.code} ${error.message}`);
+}
+```
+
 ### getSecurityMode<sup>11+</sup>
 
 getSecurityMode(): SecurityMode
@@ -1289,7 +1362,7 @@ on(type: 'editorAttributeChanged', callback: (attr: EditorAttribute) => void): v
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 文本变化事件，固定取值为'editorAttributeChanged'。 |
-| callback | (attr: EditorAttribute) => void | 是   | 回调函数，返回变化的编辑框属性。|
+| callback | (attr: [EditorAttribute](#editorattribute)) => void | 是   | 回调函数，返回变化的编辑框属性。|
 
 **示例：**
 
@@ -1316,7 +1389,7 @@ off(type: 'editorAttributeChanged', callback?: (attr: EditorAttribute) => void):
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 文本变化事件，固定取值为'editorAttributeChanged'。 |
-| callback | (attr: EditorAttribute) => void | 否   | 所要取消订阅的回调处理函数。参数不填写时，取消订阅type对应的所有回调事件。 |
+| callback | (attr: [EditorAttribute](#editorattribute)) => void | 否   | 所要取消订阅的回调处理函数。参数不填写时，默认取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
@@ -4536,6 +4609,8 @@ try {
 | isTextPreviewSupported<sup>12+</sup> | boolean | 否 | 否 | 编辑框是否支持预上屏。 |
 | bundleName<sup>14+</sup> | string | 是 | 是 | 编辑框所属应用包名；该值可能为""，使用该属性时需要考虑为""的场景。 |
 | immersiveMode<sup>15+</sup> | [ImmersiveMode](#immersivemode15) | 是   | 是   | 输入法沉浸模式。 |
+| windowId<sup>18+</sup> | number | 是 | 是 | 编辑框设置所属窗口ID。 |
+| displayId<sup>18+</sup> | number | 是   | 是   | 编辑框设置窗口对应的屏幕ID。如果没有设置windowId，取当前焦点窗口屏幕ID。|
 
 ## KeyEvent
 

@@ -9,6 +9,7 @@ ArkUI提供的Native侧自定义弹窗接口集合2。
 
 **相关模块：**[ArkUI_NativeModule](_ark_u_i___native_module.md)
 
+**所在头文件：** [native_dialog.h](native__dialog_8h.md)
 
 ## 汇总
 

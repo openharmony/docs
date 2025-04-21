@@ -252,7 +252,7 @@
 | [OH_Rdb_Subscribe](#oh_rdb_subscribe) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SubscribeType](#rdb_subscribetype) type, const [Rdb_DataObserver](_rdb___data_observer.md) \*observer) | 为数据库注册观察者。当分布式数据库中的数据发生更改时，将调用回调。 |
 | [OH_Rdb_Unsubscribe](#oh_rdb_unsubscribe) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SubscribeType](#rdb_subscribetype) type, const [Rdb_DataObserver](_rdb___data_observer.md) \*observer) | 从数据库中删除指定类型的指定观察者。 |
 | [OH_Rdb_GetTableDetails](#oh_rdb_gettabledetails) ([Rdb_ProgressDetails](_rdb___progress_details.md) \*progress, int32_t version) | 从端云同步任务的统计信息中获取数据库表的统计信息。 |
-| [OH_Rdb_CloudSync](#oh_rdb_cloudsync) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SyncMode](#rdb_syncmode) mode, const char \*tables, int count, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 进行端云同步。 |
+| [OH_Rdb_CloudSync](#oh_rdb_cloudsync) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SyncMode](#rdb_syncmode) mode, const char \*tables[], uint32_t count, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 进行端云同步。 |
 | [OH_Rdb_SubscribeAutoSyncProgress](#oh_rdb_subscribeautosyncprogress) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 订阅RDB存储的自动同步进度。当收到自动同步进度的通知时，将调用回调。 |
 | [OH_Rdb_UnsubscribeAutoSyncProgress](#oh_rdb_unsubscribeautosyncprogress) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 取消订阅RDB存储的自动同步进程。 |
 | int [OH_Rdb_LockRow](#oh_rdb_lockrow) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_Predicates](_o_h___predicates.md) \*predicates) | 根据指定的条件锁定数据库中的数据，锁定数据不执行端云同步。 |
@@ -515,7 +515,7 @@ typedef enum Rdb_Tokenizer Rdb_Tokenizer
 
 描述数据库的分词器类型。
 
-**起始版本：** 18
+**起始版本：** 17
 
 ### OH_Rdb_ConfigV2
 
@@ -1093,13 +1093,13 @@ enum Rdb_Tokenizer
 
 描述数据库的分词器类型。
 
-**起始版本：** 18
+**起始版本：** 17
 
 | 枚举值 | 描述 |
 | -------- | -------- |
 | RDB_NONE_TOKENIZER | 表示不使用分词器。 |
 | RDB_ICU_TOKENIZER | 表示使用原生ICU分词器。 |
-| RDB_CUSTOM_TOKENIZER | 表示使用CUSTOM分词器。 |
+| RDB_CUSTOM_TOKENIZER<sup>18+</sup> | 表示使用CUSTOM分词器。 |
 
 ### Rdb_DBType
 
@@ -1701,7 +1701,7 @@ int OH_Rdb_SetTokenizer (OH_Rdb_ConfigV2 *config, Rdb_Tokenizer tokenizer )
 
 给指定的数据库文件配置设置分词器类型。
 
-**起始版本：** 18
+**起始版本：** 17
 
 **参数：**
 
@@ -4530,7 +4530,7 @@ RDB_E_INVALID_ARGS 表示无效参数。
 ### OH_Rdb_CloudSync()
 
 ```
-int OH_Rdb_CloudSync (OH_Rdb_Store *store, Rdb_SyncMode mode, const char *tables, int count, const Rdb_ProgressObserver *observer )
+int OH_Rdb_CloudSync (OH_Rdb_Store *store, Rdb_SyncMode mode, const char *tables[], uint32_t count, const Rdb_ProgressObserver *observer )
 ```
 
 **描述**

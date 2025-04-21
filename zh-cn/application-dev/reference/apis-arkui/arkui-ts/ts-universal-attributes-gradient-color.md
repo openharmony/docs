@@ -162,7 +162,7 @@ radialGradient(options: Optional\<RadialGradientOptions>)
 | 名称      | 类型                                                         | 必填 | 说明                                                   |
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------ |
 | center    | &nbsp;[[Length](./ts-types.md#length), Length]               | 是   | 径向渐变的中心点，即相对于当前组件左上角的坐标。       |
-| radius    | number&nbsp;\|&nbsp;string                                   | 是   | 径向渐变的半径。&nbsp;取值范围：[0,+∞)。               |
+| radius    | [Length](./ts-types.md#length)                                   | 是   | 径向渐变的半径。<br/>取值范围：[0,+∞)                |
 | colors    | Array&lt;[[ResourceColor](ts-types.md#resourcecolor),&nbsp;number]&gt; | 是   | 指定渐变色颜色和其对应的百分比位置的数组，设置非法颜色直接跳过。 |
 | repeating | boolean                                                     | 否   | 为渐变的颜色重复着色。默认值：false。                  |
 

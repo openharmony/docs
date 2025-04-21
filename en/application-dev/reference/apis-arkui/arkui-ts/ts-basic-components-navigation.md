@@ -1341,7 +1341,7 @@ Provides the destination information.
 | Name | Type | Mandatory | Description |
 |-------|-------|------|-------|
 | name | string | No| Name of the navigation destination. If the view is a root view (**NavBar**), the return value is **undefined**.|
-| index | number | Yes| Index of the navigation destination in the navigation stack. If the view is a root view (**NavBar**), the return value is **-1**.<br>Value range: [-1, +8)|
+| index | number | Yes| Index of the navigation destination in the navigation stack. If the view is a root view (**NavBar**), the return value is **-1**.<br>Value range: [-1, +∞)|
 | mode | [NavDestinationMode](ts-basic-components-navdestination.md#navdestinationmode11) | No| Mode of the navigation destination. If the view is a root view (**NavBar**), the return value is **undefined**.|
 | param<sup>12+</sup> | Object | No| Parameters loaded on the navigation destination page.|
 | navDestinationId<sup>12+</sup> | string | No| Unique identifier of the navigation destination page.|
@@ -1356,7 +1356,7 @@ Defines the custom transition animation protocol. You need to implement this pro
 
 | Name| Type| Mandatory| Description|
 |------|-----|-----|------|
-| timeout | number | No| Animation timeout time.<br> Unit: ms<br>Value range: [0, +8)<br> Default value: no default value for interactive animations; 1000 ms for non-interactive animations.|
+| timeout | number | No| Animation timeout time.<br> Unit: ms<br>Value range: [0, +∞)<br> Default value: no default value for interactive animations; 1000 ms for non-interactive animations.|
 | transition | (transitionProxy : [NavigationTransitionProxy](#navigationtransitionproxy-11)) =&gt; void | Yes| Callback for executing the custom transition animation.<br> **transitionProxy**: proxy for the custom transition animation.|
 | onTransitionEnd | (success: boolean) => void | No| Callback invoked when the transition is complete.<br> **success**: whether the transition is successful.|
 | isInteractive<sup>12+</sup> | boolean | No| Whether the transition animation is interactive.<br> Default value: **false**<br>**true**: The transition animation is interactive.<br>**false**: The transition animation is not interactive.|

@@ -706,7 +706,6 @@ getAppNativeMemInfo(): NativeMemInfo
 > 
 > 由于/proc/{pid}/smaps_rollup的读取比较耗时，该接口不建议在主线程中使用，以免造成应用卡顿。
 
-**注意：** 由于/proc/{pid}/smaps_rollup的读取比较耗时，该接口不建议在主线程中使用，以免造成应用卡顿。
 
 **返回值：**
 
@@ -1058,4 +1057,56 @@ try {
 } catch (error) {
   console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
+```
+
+## hidebug.dumpJsRawHeapData<sup>18+</sup>
+
+dumpJsRawHeapData(needGC?: boolean): Promise&lt;string&gt;
+
+为当前线程转储虚拟机的原始堆快照。使用Promise异步回调。
+
+> **注意：**
+>
+> 系统通过该接口转存快照时，会消耗大量系统资源，因此系统对该接口的调用频率和次数做了严格的管控。该接口生成的文件通常较大，建议在处理完该文件后立即将其删除。  
+> 建议开发者仅在应用的灰度测试版本中使用。在应用正式版本中要避免使用，以免影响应用的流畅性。
+
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| 参数名                     | 类型      | 必填 | 说明                                       |
+|-------------------------|---------|----|------------------------------------------|
+| needGC         | boolean | 否  | 转储堆快照时是否需要GC，默认为true。当不填写该参数时，在转储前将触发GC。 |
+
+**返回值：**
+
+| 类型  | 说明                                                                                                   |
+| ------ |------------------------------------------------------------------------------------------------------|
+| Promise&lt;string&gt; | Promise对象，返回生成的快照文件路径（[应用沙箱内路径](../../file-management/app-sandbox-directory.md#应用沙箱路径和真实物理路径的对应关系)）。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Hidebug错误码](errorcode-hiviewdfx-hidebug.md)。
+
+| 错误码ID    | 错误信息 |
+|----------| ----------------------------------------------------------------- |
+| 11400106 | Quota exceeded. |
+| 11400107 | Fork operation failed. |
+| 11400108 | Failed to wait for the child process to finish. |
+| 11400109 | Timeout while waiting for the child process to finish. |
+| 11400110 | Disk remaining space too low. |
+| 11400111 | Napi interface call exception. |
+| 11400112 | Repeated data dump. |
+| 11400113 | Failed to create dump file. |
+
+**示例**
+
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+hidebug.dumpJsRawHeapData().then((filePath: string) => {
+  console.info(`dumpJsRawHeapData success and generated file path is ${filePath}`)
+}).catch((error: BusinessError) => {
+  console.error(`error code: ${error.code}, error msg: ${error.message}`);
+})
 ```

@@ -148,6 +148,42 @@ try {
 }
 ```
 
+## media.getScreenCaptureMonitor<sup>18+</sup>
+
+getScreenCaptureMonitor(): Promise\<ScreenCaptureMonitor>
+
+获取录屏监控模块实例。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
+
+**系统接口：** 该接口为系统接口。
+
+**返回值：**
+
+| 类型                                      | 说明                                                         |
+| ----------------------------------------- | ------------------------------------------------------------ |
+| Promise<[ScreenCaptureMonitor](#screencapturemonitor18)> | Promise对象。可用于查询和监听系统录屏状态。<br>异步返回ScreenCaptureMonitor实例，失败时返回null。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
+
+| 错误码ID | 错误信息                      |
+| -------- | ----------------------------- |
+| 202  | Not System App. |
+| 5400101  | No memory. Return by promise. |
+
+**示例：**
+
+```ts
+let screenCaptureMonitor: media.ScreenCaptureMonitor;
+try {
+  screenCaptureMonitor = await media.getScreenCaptureMonitor();
+} catch (err) {
+  console.error(`getScreenCaptureMonitor failed, error message:${err.message}`);
+}
+```
+
 ## PixelMapParams<sup>11+</sup>
 
 获取视频缩略图时，输出缩略图的格式参数。
@@ -1198,3 +1234,98 @@ videoRecorder.on('error', (error: BusinessError) => { // 设置'error'事件回�
 | --------- | ------ | ---- | ---------------- |
 | top       | number | 是   | 显示位置，距离图像顶部的像素偏移量。 |
 | left      | number | 是   | 显示位置，距离图像左部的像素偏移量。 |
+
+## ScreenCaptureMonitor<sup>18+</sup>
+
+录屏状态监控类，用于查询和监听系统录屏的录屏状态。在调用ScreenCaptureMonitor方法前，需要先通过[getScreenCaptureMonitor()](#mediagetscreencapturemonitor18)构建一个[ScreenCaptureMonitor](#screencapturemonitor18)实例。
+
+### 属性
+
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
+
+**系统接口：** 该接口为系统接口。
+
+| 名称               | 类型                                   | 可读 | 可写 | 说明             |
+| ------------------ | -------------------------------------- | ---- | ---- | ---------------- |
+| isSystemScreenRecorderWorking<sup>18+</sup> | bool | 是   | 否   | 系统录屏是否处于录屏状态。 |
+
+### on('systemScreenRecorder')<sup>18+</sup>
+
+on(type: 'systemScreenRecorder', callback: Callback\<ScreenCaptureEvent>): void
+
+开始订阅系统录屏的录屏状态。当上报ScreenCaptureEvent事件后，用户可以根据ScreenCaptureEvent事件得知系统录屏当前处于开启还是停止的状态。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
+
+**系统接口：** 该接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                                         |
+| -------- | ------------- | ---- | ------------------------------------------------------------ |
+| type     | string        | 是   | 录屏状态回调类型'systemScreenRecorder'。<br/>-&nbsp;'systemScreenRecorder'：系统录屏应用的录屏状态发生变化，触发该事件。 |
+| callback | function | 是   | 系统录屏状态回调。[ScreenCaptureEvent](#screencaptureevent18)表示切换到的状态。                                       |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                          |
+| -------- | --------------------------------- |
+| 202  | Not System App.    |
+
+**示例：**
+
+```ts
+
+// 当系统录屏应用的录屏状态发生变化时通过此订阅事件上报。
+screenCaptureMonitor.on('systemScreenRecorder', (event: media.ScreenCaptureEvent) => { 
+  // 设置'systemScreenRecorder'事件回调。
+  console.info(`system ScreenRecorder event: ${event}`);
+})
+```
+
+### off('systemScreenRecorder')<sup>18+</sup>
+
+off(type: 'systemScreenRecorder', callback?: Callback\<ScreenCaptureEvent>): void
+
+取消订阅系统录屏的录屏状态。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
+
+**系统接口：** 该接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                                         |
+| -------- | ------------- | ---- | ------------------------------------------------------------ |
+| type     | string        | 是   | 录屏状态回调类型'systemScreenRecorder'。<br/>-&nbsp;'systemScreenRecorder'：系统录屏应用的录屏状态发生变化，触发该事件。 |
+| callback | function | 否   | 系统录屏状态回调。[ScreenCaptureEvent](#screencaptureevent18)表示切换到的状态，不填此参数则会取消最后一次订阅事件。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                          |
+| -------- | --------------------------------- |
+| 202  | Not System App.    |
+
+**示例：**
+
+```ts
+screenCaptureMonitor.off('systemScreenRecorder');   
+```
+
+## ScreenCaptureEvent<sup>18+</sup>
+
+系统录屏应用录屏状态的枚举值。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
+
+**系统接口：** 该接口为系统接口。
+
+| 名称                     | 值              | 说明                                                         |
+| ------------------------ | --------------- | ------------------------------------------------------------ |
+| SCREENCAPTURE_STARTED       | 0   | 表示系统录屏应用开始录屏。                       |
+| SCREENCAPTURE_STOPPED        | 1    | 表示系统录屏应用停止录屏。 |
+

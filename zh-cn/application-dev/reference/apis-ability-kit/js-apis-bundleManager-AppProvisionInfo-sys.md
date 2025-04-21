@@ -26,7 +26,7 @@
 | certificate              | string | 是   | 否   | 配置文件中的证书公钥。 |
 | apl                      | string | 是   | 否   | 配置文件中的apl字段，为normal、system_basic和system_core其中之一。 |
 | issuer                      | string | 是   | 否   | 配置文件中的发行者名称。 |
-|appIdentifier<sup>11+</sup>| string         | 是   | 否   | 应用的唯一标识，是AppGallery Connect创建应用时分配的[APP ID](https://developer.huawei.com/consumer/cn/doc/app/agc-help-createharmonyapp-0000001945392297)，为云端统一分配的随机字符串。该ID在应用全生命周期中不会发生变化，包括版本升级、证书变更、开发者公私钥变更、应用转移等。            |
+|appIdentifier<sup>11+</sup>| string         | 是   | 否   | 应用的唯一标识，是AppGallery Connect创建应用时分配的[APP ID](https://developer.huawei.com/consumer/cn/doc/app/agc-help-createharmonyapp-0000001945392297)，为云端统一分配的随机字符串。该ID在应用全生命周期中不会发生变化，包括版本升级、证书变更、开发者公私钥变更、应用转移等。如果您使用多台调试设备，或在断网情况下调试，或需要和其他应用交互，推荐使用[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section297715173233)。            |
 | organization<sup>12+</sup> | string | 是   | 否   | 应用的组织信息。 |
 
 ## Validity
@@ -37,5 +37,5 @@
 
 | 名称                      | 类型   | 只读 | 可选 | 说明                 |
 | ------------------------- | ------ | ---- | ---- | -------------------- |
-| notBefore                 | number | 是   | 否   | 配置文件的最早有效日期。 |
-| notAfter                  | number | 是   | 否   | 配置文件的最晚有效日期。 |
+| notBefore                 | number | 是   | 否   | 配置文件的最早有效日期的时间戳。 |
+| notAfter                  | number | 是   | 否   | 配置文件的最晚有效日期的时间戳。 |

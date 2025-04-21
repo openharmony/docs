@@ -127,6 +127,27 @@ async function example() {
 }
 ```
 
+## PhotoSelectOptions
+
+Defines additional options for selecting media assets from Gallery. It inherits from **BaseSelectOptions**. It is used to start the picker of the corresponding user ID space.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| userId<sup>18+</sup> | number  | No  | ID of the user space to access. The default value is **-1**.<br>To use it as a parameter of [PhotoViewPicker.select](js-apis-photoAccessHelper.md#select), request the permission ohos.permission.INTERACTA_CROSS_LOCAL_ACCOUNTS.<br>**System API**: This is a system API.|
+
+**Example**
+
+```ts
+  private photoPicker() {
+    let picker = new photoAccessHelper.PhotoViewPicker();
+    let option = new photoAccessHelper.PhotoSelectOptions();
+    option.userId = 101;
+    picker.select(option);
+  }
+```
+
 ### createAsset
 
 createAsset(displayName: string, options: PhotoCreateOptions, callback: AsyncCallback&lt;PhotoAsset&gt;): void
@@ -255,7 +276,7 @@ Creates an album. This API uses an asynchronous callback to return the result.
 
 The album name must meet the following requirements:
 - The album name cannot exceed 255 characters.
-- The album name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -313,7 +334,7 @@ Creates an album. This API uses a promise to return the result.
 
 The album name must meet the following requirements:
 - The album name cannot exceed 255 characters.
-- The album name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -518,7 +539,7 @@ Obtains hidden albums based on the specified display mode and retrieval options.
 | -------- | ------------------------ | ---- | ------------------------- |
 | mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | Yes  | Display mode of hidden albums. |
 | options  | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions)         | Yes  |  Options for retrieving the hidden albums. |
-| callback |  AsyncCallback&lt;[FetchResult](js-apis-photoAccessHelper.md#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback used to return the result.|
+| callback |  AsyncCallback&lt;[FetchResult](js-apis-photoAccessHelper.md#fetchresult)&lt;[Album](#album)&gt;&gt; | Callback used to return the result.|
 
 **Error codes**
 
@@ -1571,7 +1592,7 @@ Obtains the thumbnail of the specified type for the key frame. This API uses a p
 | Name | Type            | Mandatory  | Description   |
 | ---- | -------------- | ---- | ----- |
 | beginFrameTimeMs | number | Yes   | Time of the start frame, in ms. <br>The value **0** indicates the cover frame.|
-| type | [ThumbnailType](#thumbnailtype13)| Yes   | Type of the thumbnail to obtain.|
+| type | [ThumbnailType](#thumbnailtype13)| Yes   | Type of the thumbnail.|
 
 **Return value**
 
@@ -2586,7 +2607,7 @@ Checks whether this image or video asset is edited. This API uses an asynchronou
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. The value **true** means that the image or video asset is edited, and **false** means the opposite. The default value is **false**.|
 
 **Error codes**
 
@@ -2647,7 +2668,7 @@ Checks whether this image or video asset is edited. This API uses a promise to r
 
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-|Promise&lt;boolean&gt; | Promise used to return the result.|
+|Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the image or video asset is edited, and **false** means the opposite. The default value is **false**.|
 
 
 **Error codes**
@@ -4866,7 +4887,7 @@ Creates a **MediaAlbumChangeRequest** instance.
 
 The album name must comply with the following specifications:
 - The album name cannot exceed 255 characters.
-- The album name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -7092,7 +7113,7 @@ Defines the key information about an image or video file.
 | MOVING_PHOTO_EFFECT_MODE<sup>12+</sup>  | 'moving_photo_effect_mode' | Effect of the moving photo. <br>**System API**: This is a system API.|
 | CE_AVAILABLE<sup>13+</sup>  | 'ce_available' | Cloud enhancement identifier. <br>**System API**: This is a system API.|
 | SUPPORTED_WATERMARK_TYPE<sup>14+</sup>  | 'supported_watermark_type' | Editable watermark identifier. <br>**System API**: This is a system API.|
-| IS_CE_AUTO<sup>18+</sup>  | 'is_auto' | Specifies whether automatic cloud enhancement is supported.<br>**System API**: This is a system API.|
+| IS_CE_AUTO<sup>18+</sup>  | 'is_auto' | Specifies whether automatic cloud enhancement is supported. <br>**System API**: This is a system API.|
 
 ## AlbumKeys
 
@@ -7205,6 +7226,7 @@ Enumerates the types of the resources to write.
 | ----- |  ---- |  ---- |
 | PHOTO_PROXY |  3 |  Photo proxy. <br>**System API**: This is a system API.|
 | PRIVATE_MOVING_PHOTO_RESOURCE<sup>13+</sup> |  4 |  Private moving photo. <br>**System API**: This is a system API.|
+| PRIVATE_MOVING_PHOTO_METADATA<sup>18+</sup> |  5 |  Metadata resource of the private moving photo. <br>**System API**: This is a system API.|
 
 ## DefaultChangeUri
 

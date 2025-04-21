@@ -5,6 +5,10 @@
 
 声明图像接口使用的公共枚举和结构体。
 
+**库：** libimage_common.so
+
+**引用文件**：&lt;multimedia/image_framework/image/image_common.h&gt;
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **起始版本：** 12
@@ -199,7 +203,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PictureMetadata_Create](_image___native_module.md#oh_picturemetadata_create) ([Image_MetadataType](_image___native_module.md#image_metadatatype) metadataType, [OH_PictureMetadata](_image___native_module.md#oh_picturemetadata) \*\*metadata) | 创建OH_PictureMetadata指针。 | 
-| [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PictureMetadata_GetProperty](_image___native_module.md#oh_picturemetadata_getproperty) ([OH_PictureMetadata](_image___native_module.md#oh_picturemetadata) \*metadata, [Image_String](_image___string.md) \*key, [Image_String](_image___string.md) \*value) | 根据key获取Metadata的单条属性。 | 
-| [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PictureMetadata_SetProperty](_image___native_module.md#oh_picturemetadata_setproperty) ([OH_PictureMetadata](_image___native_module.md#oh_picturemetadata) \*metadata, [Image_String](_image___string.md) \*key, [Image_String](_image___string.md) \*value) | 根据key修改Metadata的单条属性。 | 
+| [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PictureMetadata_GetProperty](_image___native_module.md#oh_picturemetadata_getproperty) ([OH_PictureMetadata](_image___native_module.md#oh_picturemetadata) \*metadata, [Image_String](_image___string.md) \*key, [Image_String](_image___string.md) \*value) | 根据key获取对应的Metadata属性。 | 
+| [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PictureMetadata_SetProperty](_image___native_module.md#oh_picturemetadata_setproperty) ([OH_PictureMetadata](_image___native_module.md#oh_picturemetadata) \*metadata, [Image_String](_image___string.md) \*key, [Image_String](_image___string.md) \*value) | 根据key修改对应的Metadata属性。 | 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PictureMetadata_Release](_image___native_module.md#oh_picturemetadata_release) ([OH_PictureMetadata](_image___native_module.md#oh_picturemetadata) \*metadata) | 释放OH_PictureMetadata指针。 | 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PictureMetadata_Clone](_image___native_module.md#oh_picturemetadata_clone) ([OH_PictureMetadata](_image___native_module.md#oh_picturemetadata) \*oldMetadata, [OH_PictureMetadata](_image___native_module.md#oh_picturemetadata) \*\*newMetadata) | 拷贝元数据。 | 

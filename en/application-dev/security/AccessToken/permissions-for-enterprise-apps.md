@@ -171,6 +171,21 @@ Allows a system application to kill other applications.
 
 **Changelog**: This permission is available only to system applications in API versions 7 to 13. From API version 14, it is available to normal enterprise applications.
 
+### ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
+
+Allows a system application or carrier application to set the eSIM nickname and activate the eSIM.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 14
+
+**Changelog**: Since API version 14, the permission level is changed to system_basic, and this permission is available only to normal enterprise applications instead of all applications.
+
 ## ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION
 
 Allows an application to manage Wi-Fi connections.

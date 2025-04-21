@@ -36,7 +36,7 @@ uint32_t osVersion_t::api
 
 **描述:**
 
-API接口版本号
+API接口版本号。
 
 
 ### kernel
@@ -48,4 +48,4 @@ uint32_t osVersion_t::kernel
 
 **描述:**
 
-内核版本号
+内核版本号。

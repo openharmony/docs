@@ -894,6 +894,19 @@ try {
 }
 ```
 
+## SetPreviewTextCallback<sup>17+</sup>
+
+type SetPreviewTextCallback = (text: string, range: Range) => void
+
+当输入法框架需要显示预览文本时触发的回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 参数名       | 类型          | 必填 | 说明                          |
+| ------- | ----------------- | ---- | ----------------------------- |
+| text    | string            | 是   | 预览文本内容。                 |
+| range   | [Range](#range10) | 是   | 文本的选中范围。 |
+
 ## InputMethodController
 
 下列API示例中都需使用[getController](#inputmethodgetcontroller9)获取到InputMethodController实例，再通过实例调用对应方法。
@@ -2968,6 +2981,196 @@ try {
 }
 ```
 
+### on('setPreviewText')<sup>17+</sup>
+
+on(type: 'setPreviewText', callback: SetPreviewTextCallback): void
+
+订阅输入法应用操作文本预览内容的事件。使用callback异步回调。
+
+> **说明：**
+> 
+> 使用预览文本功能，需在调用[attach](#attach10)前订阅此事件，并和[on('finishTextPreview')](#onfinishtextpreview17)一起订阅。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明     |
+| -------- | ----- | ---- | ------ |
+| type     | string  | 是   | 设置监听类型，固定取值为'setPreviewText'。 |
+| callback | [SetPreviewTextCallback](#setpreviewtextcallback17) | 是   | 回调函数。用于接收文本预览的内容并返回。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | -------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+
+**示例：**
+
+```ts
+let setPreviewTextCallback1: inputMethod.SetPreviewTextCallback = (text: string, range: inputMethod.Range) => {
+  console.info(`SetPreviewTextCallback1: Received text - ${text}, Received range - start: ${range.start}, end: ${range.end}`);
+};
+
+let setPreviewTextCallback2: inputMethod.SetPreviewTextCallback = (text: string, range: inputMethod.Range) => {
+  console.info(`setPreviewTextCallback2: Received text - ${text}, Received range - start: ${range.start}, end: ${range.end}`);
+};
+
+try {
+  inputMethodController.on('setPreviewText', setPreviewTextCallback1);
+  console.log(`SetPreviewTextCallback1 subscribed to setPreviewText`);
+  inputMethodController.on('setPreviewText', setPreviewTextCallback2);
+  console.log(`SetPreviewTextCallback2 subscribed to setPreviewText`);
+  // 仅取消setPreviewText的callback1的回调。
+  inputMethodController.off('setPreviewText', setPreviewTextCallback1);
+  console.log(`SetPreviewTextCallback1 unsubscribed from setPreviewText`);
+  // 取消setPreviewText的所有回调。
+  inputMethodController.off('setPreviewText');
+  console.log(`All callbacks unsubscribed from setPreviewText`);
+} catch(err) {
+  console.error(`Failed to operate on setPreviewText: ${JSON.stringify(err)}`);
+}
+```
+
+### off('setPreviewText')<sup>17+</sup>
+
+off(type: 'setPreviewText', callback?: SetPreviewTextCallback): void
+
+取消订阅输入法应用操作文本预览内容的事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | 是   | 设置监听类型，固定取值为'setPreviewText'。 |
+| callback | [SetPreviewTextCallback](#setpreviewtextcallback17) | 否  | 取消订阅的回调函数，需要与on接口传入的保持一致。<br>参数不填写时，取消订阅type对应的所有回调事件。|
+
+**示例：**
+
+```ts
+let setPreviewTextCallback1: inputMethod.SetPreviewTextCallback = (text: string, range: inputMethod.Range) => {
+  console.info(`SetPreviewTextCallback1: Received text - ${text}, Received range - start: ${range.start}, end: ${range.end}`);
+};
+
+let setPreviewTextCallback2: inputMethod.SetPreviewTextCallback = (text: string, range: inputMethod.Range) => {
+  console.info(`setPreviewTextCallback2: Received text - ${text}, Received range - start: ${range.start}, end: ${range.end}`);
+};
+
+try {
+  inputMethodController.on('setPreviewText', setPreviewTextCallback1);
+  console.log(`SetPreviewTextCallback1 subscribed to setPreviewText`);
+  inputMethodController.on('setPreviewText', setPreviewTextCallback2);
+  console.log(`SetPreviewTextCallback2 subscribed to setPreviewText`);
+  // 仅取消setPreviewText的callback1的回调。
+  inputMethodController.off('setPreviewText', setPreviewTextCallback1);
+  console.log(`SetPreviewTextCallback1 unsubscribed from setPreviewText`);
+  // 取消setPreviewText的所有回调。
+  inputMethodController.off('setPreviewText');
+  console.log(`All callbacks unsubscribed from setPreviewText`);
+} catch(err) {
+  console.error(`Failed to operate on setPreviewText: ${JSON.stringify(err)}`);
+}
+```
+
+### on('finishTextPreview')<sup>17+</sup>
+
+on(type: 'finishTextPreview', callback: Callback&gt;void&gt;): void
+
+订阅结束文本预览事件。使用callback异步回调。
+
+> **说明：**
+> 
+> 使用预览文本功能，需在调用[attach](#attach10)前订阅此事件，并和[on('setPreviewText')](#onsetpreviewtext17)一起订阅。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明     |
+| -------- | ----- | ---- | ------ |
+| type     | string  | 是   | 设置监听类型，固定取值为'finishTextPreview'。 |
+| callback | Callback&lt;void&gt; | 是   | 回调函数。用于处理预览文本结束的逻辑，类型为void。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | -------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+
+**示例：**
+
+```ts
+let finishTextPreviewCallback1 = () => {
+  console.info(`FinishTextPreviewCallback1: finishTextPreview event triggered`);
+};
+let finishTextPreviewCallback2 = () => {
+  console.info(`FinishTextPreviewCallback2: finishTextPreview event triggered`);
+};
+
+try {
+  inputMethodController.on('finishTextPreview', finishTextPreviewCallback1);
+  console.log(`FinishTextPreviewCallback1 subscribed to finishTextPreview`);
+  inputMethodController.on('finishTextPreview', finishTextPreviewCallback2);
+  console.log(`FinishTextPreviewCallback2 subscribed to finishTextPreview`);
+  // 仅取消finishTextPreview的callback1的回调。
+  inputMethodController.off('finishTextPreview', finishTextPreviewCallback1);
+  console.log(`FinishTextPreviewCallback1 unsubscribed from finishTextPreview`);
+  // 取消finishTextPreview的所有回调。
+  inputMethodController.off('finishTextPreview');
+  console.log(`All callbacks unsubscribed from finishTextPreview`);
+} catch(err) {
+  console.error(`Failed to operate on finishTextPreview (subscribe/off): ${JSON.stringify(err)}`);
+}
+```
+
+### off('finishTextPreview')<sup>17+</sup>
+
+off(type: 'finishTextPreview', callback?: Callback&gt;void&gt;): void
+
+取消订阅结束文本预览事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | 是   | 设置监听类型，固定取值为'finishTextPreview'。 |
+| callback | Callback&lt;void&gt; | 否  | 取消订阅的回调函数，需要与on接口传入的保持一致。<br>参数不填写时，取消订阅type对应的所有回调事件。|
+
+**示例：**
+
+```ts
+let finishTextPreviewCallback1 = () => {
+  console.info(`FinishTextPreviewCallback1: finishTextPreview event triggered`);
+};
+let finishTextPreviewCallback2 = () => {
+  console.info(`FinishTextPreviewCallback2: finishTextPreview event triggered`);
+};
+
+try {
+  inputMethodController.on('finishTextPreview', finishTextPreviewCallback1);
+  console.log(`FinishTextPreviewCallback1 subscribed to finishTextPreview`);
+  inputMethodController.on('finishTextPreview', finishTextPreviewCallback2);
+  console.log(`FinishTextPreviewCallback2 subscribed to finishTextPreview`);
+  // 仅取消finishTextPreview的callback1的回调。
+  inputMethodController.off('finishTextPreview', finishTextPreviewCallback1);
+  console.log(`FinishTextPreviewCallback1 unsubscribed from finishTextPreview`);
+  // 取消finishTextPreview的所有回调。
+  inputMethodController.off('finishTextPreview');
+  console.log(`All callbacks unsubscribed from finishTextPreview`);
+} catch(err) {
+  console.error(`Failed to operate on finishTextPreview (subscribe/off): ${JSON.stringify(err)}`);
+}
+```
+
 ## InputMethodSetting<sup>8+</sup>
 
 下列API均需使用[getSetting](#inputmethodgetsetting9)获取到InputMethodSetting实例后，通过实例调用。
@@ -3466,11 +3669,14 @@ try {
 }
 ```
 
-### showOptionalInputMethods<sup>9+</sup>
+### showOptionalInputMethods<sup>(deprecated)</sup>
 
 showOptionalInputMethods(callback: AsyncCallback&lt;boolean&gt;): void
 
 显示输入法选择对话框。使用callback异步回调。
+> **说明：**
+>
+> 从API version 9开始支持，从API version 18开始废弃。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -3506,11 +3712,15 @@ try {
 }
 ```
 
-### showOptionalInputMethods<sup>9+</sup>
+### showOptionalInputMethods<sup>(deprecated)</sup>
 
 showOptionalInputMethods(): Promise&lt;boolean&gt;
 
 显示输入法选择对话框。使用promise异步回调。
+
+> **说明：**
+>
+> 从API version 9开始支持，从API version 18开始废弃。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -3610,7 +3820,7 @@ displayOptionalInputMethod(callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[showOptionalInputMethods()](#showoptionalinputmethods9)替代。
+> 从API version 8开始支持，从API version 9开始废弃。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -3642,7 +3852,7 @@ displayOptionalInputMethod(): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[showOptionalInputMethods()](#showoptionalinputmethods9-1)替代。
+> 从API version 8开始支持，从API version 9开始废弃。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 

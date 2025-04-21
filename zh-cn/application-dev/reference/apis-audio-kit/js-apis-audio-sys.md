@@ -619,38 +619,6 @@ import { audio } from '@kit.AudioKit';
 let audioEffectManager: audio.AudioEffectManager = audioManager.getEffectManager();
 ```
 
-### getSpatializationManager<sup>11+</sup>
-
-getSpatializationManager(): AudioSpatializationManager
-
-获取空间音频管理器。
-
-**系统接口：** 该接口为系统接口
-
-**系统能力：** SystemCapability.Multimedia.Audio.Spatialization
-
-**返回值：**
-
-| 类型                                       | 说明                          |
-|------------------------------------------| ----------------------------- |
-| [AudioSpatializationManager](#audiospatializationmanager11) | AudioSpatializationManager实例 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 202     | Not system App.                             |
-
-**示例：**
-
-```ts
-import { audio } from '@kit.AudioKit';
-
-let audioSpatializationManager: audio.AudioSpatializationManager = audioManager.getSpatializationManager();
-```
-
 ### disableSafeMediaVolume<sup>12+</sup>
 
 disableSafeMediaVolume(): Promise&lt;void&gt;
@@ -976,7 +944,7 @@ isAppVolumeMutedForUid(uid: number, owned: boolean\): Promise<boolean\>
 
 | 类型                | 说明                  |
 | ------------------- |---------------------|
-| Promise&lt;boolean&gt; | Promise对象，返回应用静音状态。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示应用为静音状态；返回false表示应用为非静音状态。 |
 
 **错误码：**
 
@@ -2262,7 +2230,7 @@ async function getPreferredInputDeviceByFilter(){
 }
 ```
 
-### excludeOutputDevices<sup>16+</sup>
+### excludeOutputDevices<sup>18+</sup>
 
 excludeOutputDevices(usage: DeviceUsage, devices: AudioDeviceDescriptors): Promise&lt;void&gt;
 
@@ -2323,7 +2291,7 @@ async function excludeOutputDevices(){
 }
 ```
 
-### unexcludeOutputDevices<sup>16+</sup>
+### unexcludeOutputDevices<sup>18+</sup>
 
 unexcludeOutputDevices(usage: DeviceUsage, devices: AudioDeviceDescriptors): Promise&lt;void&gt;
 
@@ -2380,7 +2348,7 @@ async function unexcludeOutputDevices(){
 }
 ```
 
-### unexcludeOutputDevices<sup>16+</sup>
+### unexcludeOutputDevices<sup>18+</sup>
 
 unexcludeOutputDevices(usage: DeviceUsage): Promise&lt;void&gt;
 
@@ -2421,7 +2389,7 @@ async function unexcludeOutputDevices(){
 }
 ```
 
-### getExcludedDevices<sup>16+</sup>
+### getExcludedDevices<sup>18+</sup>
 
 getExcludedDevices(usage: DeviceUsage): AudioDeviceDescriptors
 
@@ -2556,7 +2524,7 @@ let inputAudioCapturerFilter: audio.AudioCapturerFilter = {
 
 ## AudioSpatializationManager<sup>11+</sup>
 
-空间音频管理。在使用AudioSpatializationManager的接口前，需要使用[getSpatializationManager](#getspatializationmanager11)获取AudioSpatializationManager实例。
+空间音频管理。在使用AudioSpatializationManager的接口前，需要使用[getSpatializationManager](js-apis-audio.md#getspatializationmanager18)获取AudioSpatializationManager实例。
 
 ### isSpatializationSupported<sup>11+</sup>
 
@@ -3785,10 +3753,10 @@ try {
 
 | 名称                          | 类型                       | 可读 | 可写 | 说明       |
 | ----------------------------- | -------------------------- | ---- | ---- | ---------- |
-| address<sup>11+</sup>                    | string         | 是   | 是   | 空间化设备地址。|
-| isSpatializationSupported<sup>11+</sup>  | boolean        | 是   | 是   | 空间化设备是否支持空间音频渲染。|
-| isHeadTrackingSupported<sup>11+</sup>    | boolean        | 是   | 是   | 空间化设备是否支持头动跟踪。|
-| spatialDeviceType<sup>11+</sup>          | [AudioSpatialDeviceType](#audiospatialdevicetype11)   | 是   | 是   | 空间化设备类型。|
+| address | string         | 是   | 是   | 空间化设备地址。|
+| isSpatializationSupported | boolean        | 是   | 是   | 空间化设备是否支持空间音频渲染。true表示支持，false表示不支持。|
+| isHeadTrackingSupported | boolean        | 是   | 是   | 空间化设备是否支持头动跟踪。true表示支持，false表示不支持。|
+| spatialDeviceType | [AudioSpatialDeviceType](#audiospatialdevicetype11)   | 是   | 是   | 空间化设备类型。|
 
 **示例：**
 
@@ -3868,6 +3836,7 @@ let spatialDeviceState: audio.AudioSpatialDeviceState = {
 | TONE_TYPE_COMMON_SUPERVISORY_RADIO_NOT_AVAILABLE  | 104    | 呼叫监管音调，无线电不可用。     |
 | TONE_TYPE_COMMON_SUPERVISORY_CALL_WAITING         | 106    | 呼叫监管音调，呼叫等待。        |
 | TONE_TYPE_COMMON_SUPERVISORY_RINGTONE             | 107    | 呼叫监管音调，铃声。            |
+| TONE_TYPE_COMMON_SUPERVISORY_CALL_HOLDING<sup>18+</sup>  | 108  | 呼叫保持音调。            |
 | TONE_TYPE_COMMON_PROPRIETARY_BEEP                 | 200    | 专有声调，一般蜂鸣声。          |
 | TONE_TYPE_COMMON_PROPRIETARY_ACK                  | 201    | 专有声调，ACK。                |
 | TONE_TYPE_COMMON_PROPRIETARY_PROMPT               | 203    | 专有声调，PROMPT。             |
@@ -4371,7 +4340,7 @@ let mode = asrProcessingController.getAsrWhisperDetectionMode();
 
 setAsrVoiceControlMode(mode: AsrVoiceControlMode, enable: boolean): boolean
 
-设置在系统通话中上报modem及通话录音的上行通路的ASR音频通路选择。
+设置在系统通话中上报mode及通话录音的上行通路的ASR音频通路选择。
 
 **系统接口：** 该接口为系统接口
 
@@ -4382,13 +4351,13 @@ setAsrVoiceControlMode(mode: AsrVoiceControlMode, enable: boolean): boolean
 | 参数名  | 类型                  | 必填 | 说明     |
 |------|---------------------|-------|--------|
 | mode | [AsrVoiceControlMode](#asrvoicecontrolmode12) | 是 | 音频通路模式。 |
-| enable   | boolean             | 是 | 开关状态   |
+| enable   | boolean             | 是 | 表示系统通话中上报mode及通话录音的上行通路的ASR音频通路选择开关状态。true表示打开，false表示关闭。 |
 
 **返回值：**
 
 | 类型 | 说明                                                             |
 |-------|----------------------------------------------------------------|
-| boolean | 返回设置在系统通话中上报modem及通话录音的上行通路的ASR音频通路选择的结果，true为设置成功，false为设置失败。 |
+| boolean | 返回设置在系统通话中上报mode及通话录音的上行通路的ASR音频通路选择的结果。true为设置成功，false为设置失败。 |
 
 **错误码：**
 
@@ -4422,13 +4391,13 @@ setAsrVoiceMuteMode(mode: AsrVoiceMuteMode, enable: boolean): boolean
 | 参数名  | 类型                                    | 必填 | 说明       |
 |------|---------------------------------------|-------|----------|
 | mode | [AsrVoiceMuteMode](#asrvoicemutemode12) | 是 | 静音控制模式。 |
-| enable   | boolean                               | 是 | 开关状态。     |
+| enable   | boolean                               | 是 | 表示在系统通话中设置ASR音频通路静音状态。true表示静音，false表示非静音。 |
 
 **返回值：**
 
 | 类型 | 说明                                               |
 |-------|--------------------------------------------------|
-| boolean | 返回在系统通话中，对ASR音频通路进行静音控制的结果，true为设置成功，false为设置失败。 |
+| boolean | 返回在系统通话中，对ASR音频通路进行静音控制的结果。true为设置成功，false为设置失败。 |
 
 **错误码：**
 

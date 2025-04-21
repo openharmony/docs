@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 18开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 18开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 导入模块
 
@@ -71,6 +71,7 @@ ArcSlider({ options: ArcSliderOptions })
 | digitalCrownSensitivity | [CrownSensitivity](ts-appendix-enums.md#crownsensitivity18) | 否 | @Trace | 设置旋转表冠的灵敏度。<br/>默认值：CrownSensitivity.MEDIUM |
 | onTouch | [ArcSliderTouchHandler](#arcslidertouchhandler) | 否 | @Trace | 弧形Slider被触摸时，告知应用。<br/>默认值：不传入的情况，无回调。 |
 | onChange | [ArcSliderChangeHandler](#arcsliderchangehandler) | 否 | @Trace | 弧形Slider的进度值发生变化时，告知应用。<br/>默认值：不传入的情况，无回调。 |
+| onEnlarge | [ArcSliderEnlargeHandler](#arcsliderenlargehandler) | 否 | @Trace | 弧形Slider放大或缩小时，告知应用。<br/>默认值：不传入的情况，无回调。 |
 
 ### constructor
 
@@ -230,6 +231,22 @@ type ArcSliderChangeHandler = (progress: number) => void
 | -------- | ------ | ---- | -------------------- |
 | progress | number | 是   | Slider当前的进度值。 |
 
+## ArcSliderEnlargeHandler
+
+type ArcSliderEnlargeHandler = (isEnlarged: boolean) => void
+
+弧形Slider放大或缩小时，告知应用。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Circle
+
+**参数：**
+
+| 参数名     | 类型    | 必填 | 说明                                                         |
+| ---------- | ------- | ---- | ------------------------------------------------------------ |
+| isEnlarged | boolean | 是   | ArcSlider当前是否放大。<br/>isEnlarged为false时，ArcSlider组件处于缩小状态。<br/>isEnlarged为true时，ArcSlider组件处于放大状态。 |
+
 ## ArcSliderOptionsConstructorOptions
 
 ArcSliderOptions的构造信息。
@@ -246,6 +263,7 @@ ArcSliderOptions的构造信息。
 | digitalCrownSensitivity | [CrownSensitivity](ts-appendix-enums.md#crownsensitivity18) | 否   | 设置旋转表冠的灵敏度。<br/>默认值：CrownSensitivity.MEDIUM   |
 | onTouch                 | [ArcSliderTouchHandler](#arcslidertouchhandler)             | 否   | 弧形Slider被触摸时，告知应用。<br/>默认值：不传入的情况，无回调。 |
 | onChange                | [ArcSliderChangeHandler](#arcsliderchangehandler)           | 否   | 弧形Slider的进度值发生变化时，告知应用。<br/>默认值：不传入的情况，无回调。 |
+| onEnlarge               | [ArcSliderEnlargeHandler](#arcsliderenlargehandler)         | 否   | 弧形Slider放大或缩小时，告知应用。<br/>默认值：不传入的情况，无回调。 |
 
 ## ArcSliderValueOptionsConstructorOptions
 
@@ -338,6 +356,8 @@ struct ArcSliderExample {
     onTouch: (event: TouchEvent) => {
     },
     onChange: (progress: number) => {
+    },
+    onEnlarge: (isEnlarged: boolean) => {
     }
   }
   arcSliderOptions: ArcSliderOptions = new ArcSliderOptions(this.arcSliderOptionsConstructorOptions)

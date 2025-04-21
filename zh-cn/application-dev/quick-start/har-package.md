@@ -14,12 +14,12 @@ HAR（Harmony Archive）是静态共享包，可以包含代码、C++库、资�
 > **说明：**
 >
 > 如果使用[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口拉起HAR中的UIAbility，接口参数中的moduleName取值需要为依赖该HAR的[HAP](hap-package.md)/[HSP](in-app-hsp.md)的moduleName。
-- HAR不支持在配置文件中声明[pages](./module-configuration-file.md#pages标签)页面，但是可以包含pages页面，并通过[命名路由](../ui/arkts-routing.md#命名路由)的方式进行跳转。
+- HAR不支持在配置文件中声明[pages](./module-configuration-file.md#pages标签)页面，但是可以包含pages页面，并通过[Navigation跳转](../ui/arkts-navigation-navigation.md#路由操作)的方式进行跳转。
 - HAR不支持引用AppScope目录中的资源。在编译构建时，AppScope中的内容不会打包到HAR中，因此会导致HAR资源引用失败。
 - HAR可以依赖其他HAR，但不支持循环依赖，也不支持依赖传递。
 
 ## 创建
-通过DevEco Studio创建一个HAR模块，详见[创建库模块](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-har-V13#section643521083015)。
+通过DevEco Studio创建一个HAR模块，详见[创建库模块](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-har#section643521083015)。
 
 
 ## 开发
@@ -33,7 +33,7 @@ Index.ets文件是HAR导出声明文件的入口，HAR需要导出的接口，�
 }
 ```
 ### 导出ArkUI组件
-ArkUI组件的导出方式与ts的导出方式一致，通过`export`导出ArkUI组件，示例如下：
+通过`export`导出ArkUI组件，示例如下：
 ```ts
 // library/src/main/ets/components/mainpage/MainPage.ets
 @Component
@@ -72,10 +72,10 @@ HAR对外暴露的接口，在Index.ets导出文件中声明如下所示：
 // library/Index.ets
 export { MainPage } from './src/main/ets/components/mainpage/MainPage';
 ```
-### 导出ts类和方法
-通过`export`导出ts类和方法，支持导出多个ts类和方法，示例如下所示：
+### 导出类和方法
+通过`export`导出类和方法，支持导出多个类和方法，示例如下所示：
 ```ts
-// library/src/main/ts/test.ets
+// library/src/main/ets/test.ets
 export class Log {
     static info(msg: string) {
         console.info(msg);
@@ -93,9 +93,9 @@ export function func2() {
 HAR对外暴露的接口，在Index.ets导出文件中声明如下所示：
 ```ts
 // library/Index.ets
-export { Log } from './src/main/ts/test';
-export { func } from './src/main/ts/test';
-export { func2 } from './src/main/ts/test';
+export { Log } from './src/main/ets/test';
+export { func } from './src/main/ets/test';
+export { func2 } from './src/main/ets/test';
 ```
 
 ### 导出native方法
@@ -141,7 +141,7 @@ export { nativeAdd } from './src/main/ets/utils/nativeTest';
 
 ### 引用HAR的ArkUI组件
 
-HAR的依赖配置成功后，可以引用HAR的ArkUI组件。ArkUI组件的导入方式与ts的导入方式一致，通过`import`引入HAR导出的ArkUI组件，示例如下所示：
+HAR的依赖配置成功后，可以引用HAR的ArkUI组件。通过`import`引入HAR导出的ArkUI组件，示例如下所示：
 ```ts
 // entry/src/main/ets/pages/IndexSec.ets
 import { MainPage } from 'library';
@@ -158,8 +158,8 @@ struct IndexSec {
   }
 }
 ```
-### 引用HAR的ts类和方法
-通过`import`引用HAR导出的ts类和方法，示例如下所示：
+### 引用HAR的类和方法
+通过`import`引用HAR导出的类和方法，示例如下所示：
 ```ts
 // entry/src/main/ets/pages/Index.ets
 import { Log } from 'library';
@@ -182,7 +182,7 @@ struct Index {
         .margin({ top: '32px' })
         .width('624px')
 
-      //引用HAR的ts类和方法
+      //引用HAR的ets类和方法
       Button($r('app.string.button'))
         .id('button')
         .height(48)

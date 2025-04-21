@@ -14,9 +14,9 @@
   **图1** 页面跳转  
 ![router-jump-to-detail](figures/router-jump-to-detail.gif)
 
-Router模块提供了两种跳转模式，分别是[router.pushUrl](../reference/apis-arkui/js-apis-router.md#routerpushurl9)和[router.replaceUrl](../reference/apis-arkui/js-apis-router.md#routerreplaceurl9)。这两种模式决定了目标页面是否会替换当前页。
+Router模块提供了两种跳转模式，分别是[pushUrl](../reference/apis-arkui/js-apis-arkui-UIContext.md#pushurl)和[replaceUrl](../reference/apis-arkui/js-apis-arkui-UIContext.md#replaceurl)。这两种模式决定了目标页面是否会替换当前页。
 
-- router.pushUrl：目标页面不会替换当前页，而是压入页面栈。这样可以保留当前页的状态，并且可以通过返回键或者调用[router.back](../reference/apis-arkui/js-apis-router.md#routerback)方法返回到当前页。
+- router.pushUrl：目标页面不会替换当前页，而是压入页面栈。这样可以保留当前页的状态，并且可以通过返回键或者调用[back](../reference/apis-arkui/js-apis-arkui-UIContext.md#back)方法返回到当前页。
 
 - router.replaceUrl：目标页面会替换当前页，并销毁当前页。这样可以释放当前页的资源，并且无法返回到当前页。
 
@@ -25,7 +25,7 @@ Router模块提供了两种跳转模式，分别是[router.pushUrl](../reference
 >- 创建新页面时，请参考<!--RP1-->[构建第二个页面](../quick-start/start-with-ets-stage.md#构建第二个页面)<!--RP1End-->配置第二个页面的路由。
 >
 >
->- 页面栈的最大容量为32个页面。如果超过这个限制，可以调用[router.clear](../reference/apis-arkui/js-apis-router.md#routerclear)方法清空历史页面栈，释放内存空间。
+>- 页面栈的最大容量为32个页面。如果超过这个限制，可以调用[clear](../reference/apis-arkui/js-apis-arkui-UIContext.md#clear)方法清空历史页面栈，释放内存空间。
 
 同时，Router模块提供了两种实例模式，分别是Standard和Single。这两种模式决定了目标url是否会对应多个实例。
 
@@ -164,12 +164,10 @@ function onJumpClick(): void {
 }
 ```
 
-在目标页面中，可以通过调用Router模块的[getParams](../reference/apis-arkui/js-apis-router.md#routergetparams)方法来获取传递过来的参数。例如：
+在目标页面中，可以通过调用Router模块的[getParams](../reference/apis-arkui/js-apis-arkui-UIContext.md#getparams)方法来获取传递过来的参数。例如：
 
 
 ```ts
-import { router } from '@kit.ArkUI';
-
 class InfoTmp {
   age: number = 0
 }
@@ -180,7 +178,7 @@ class RouTmp {
   info: InfoTmp = new InfoTmp()
 }
 
-const params: RouTmp = router.getParams() as RouTmp; // 获取传递过来的参数对象
+const params: RouTmp = this.getUIContext().getRouter().getParams() as RouTmp; // 获取传递过来的参数对象
 const id: object = params.id // 获取id属性的值
 const age: number = params.info.age // 获取age属性的值
 ```
@@ -194,12 +192,7 @@ const age: number = params.info.age // 获取age属性的值
 
 ![router-back-to-home](figures/router-back-to-home.gif)
 
-在使用页面路由Router相关功能之前，需要在代码中先导入Router模块。
-
-
-```ts
-import { router } from '@kit.ArkUI';
-```
+直接使用router可能导致实例不明确的问题，建议使用[getUIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getRouter](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
 
 可以使用以下几种方式返回页面：
 
@@ -207,9 +200,7 @@ import { router } from '@kit.ArkUI';
 
 
   ```ts
-  import { router } from '@kit.ArkUI';
-
-  router.back();
+  this.getUIContext().getRouter().back();
   ```
 
   这种方式会返回到上一个页面，即上一个页面在页面栈中的位置。但是，上一个页面必须存在于页面栈中才能够返回，否则该方法将无效。
@@ -220,9 +211,7 @@ import { router } from '@kit.ArkUI';
   返回普通页面。
 
   ```ts
-  import { router } from '@kit.ArkUI';
-
-  router.back({
+  this.getUIContext().getRouter().back({
     url: 'pages/Home'
   });
   ```
@@ -230,9 +219,7 @@ import { router } from '@kit.ArkUI';
   返回命名路由页面。
 
   ```ts
-  import { router } from '@kit.ArkUI';
-
-  router.back({
+  this.getUIContext().getRouter().back({
     url: 'myPage' //myPage为返回的命名路由页面别名
   });
   ```
@@ -245,9 +232,7 @@ import { router } from '@kit.ArkUI';
   返回到普通页面。
 
   ```ts
-  import { router } from '@kit.ArkUI';
-
-  router.back({
+  this.getUIContext().getRouter().back({
     url: 'pages/Home',
     params: {
       info: '来自Home页'
@@ -258,9 +243,7 @@ import { router } from '@kit.ArkUI';
   返回命名路由页面。
 
   ```ts
-  import { router } from '@kit.ArkUI';
-
-  router.back({
+  this.getUIContext().getRouter().back({
     url: 'myPage', //myPage为返回的命名路由页面别名
     params: {
       info: '来自Home页'
@@ -313,26 +296,20 @@ struct Home {
 
 ### 系统默认询问框
 
-为了实现这个功能，可以使用页面路由Router模块提供的两个方法：[router.showAlertBeforeBackPage](../reference/apis-arkui/js-apis-router.md#routershowalertbeforebackpage9)和[router.back](../reference/apis-arkui/js-apis-router.md#routerback)来实现这个功能。
+为了实现这个功能，可以使用页面路由Router模块提供的两个方法：[showAlertBeforeBackPage](../reference/apis-arkui/js-apis-arkui-UIContext.md#showalertbeforebackpage)和[back](../reference/apis-arkui/js-apis-arkui-UIContext.md#back)来实现这个功能。
 
-在使用页面路由Router相关功能之前，需要在代码中先导入Router模块。
+直接使用router可能导致实例不明确的问题，建议使用[getUIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getRouter](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
 
-
-```ts
-import { router } from '@kit.ArkUI';
-```
-
-如果想要在目标界面开启页面返回询问框，需要在调用[router.back](../reference/apis-arkui/js-apis-router.md#routerback)方法之前，通过调用[router.showAlertBeforeBackPage](../reference/apis-arkui/js-apis-router.md#routershowalertbeforebackpage9)方法设置返回询问框的信息。例如，在支付页面中定义一个返回按钮的点击事件处理函数：
+如果想要在目标界面开启页面返回询问框，需要在调用[back](../reference/apis-arkui/js-apis-arkui-UIContext.md#back)方法之前，通过调用[showAlertBeforeBackPage](../reference/apis-arkui/js-apis-arkui-UIContext.md#showalertbeforebackpage)方法设置返回询问框的信息。例如，在支付页面中定义一个返回按钮的点击事件处理函数：
 
 ```ts
-import { router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // 定义一个返回按钮的点击事件处理函数
 function onBackClick(): void {
-  // 调用router.showAlertBeforeBackPage()方法，设置返回询问框的信息
+  // 调用this.getUIContext().getRouter().showAlertBeforeBackPage方法，设置返回询问框的信息
   try {
-    router.showAlertBeforeBackPage({
+    this.getUIContext().getRouter().showAlertBeforeBackPage({
       message: '您还没有完成支付，确定要返回吗？' // 设置询问框的内容
     });
   } catch (err) {
@@ -341,33 +318,28 @@ function onBackClick(): void {
     console.error(`Invoke showAlertBeforeBackPage failed, code is ${code}, message is ${message}`);
   }
 
-  // 调用router.back()方法，返回上一个页面
-  router.back();
+  // 调用this.getUIContext().getRouter().back()方法，返回上一个页面
+  this.getUIContext().getRouter().back();
 }
 ```
 
-其中，router.showAlertBeforeBackPage方法接收一个对象作为参数，该对象包含以下属性：
+其中，this.getUIContext().getRouter().showAlertBeforeBackPage方法接收一个对象作为参数，该对象包含以下属性：
 
 message：string类型，表示询问框的内容。
 如果调用成功，则会在目标界面开启页面返回询问框；如果调用失败，则会抛出异常，并通过err.code和err.message获取错误码和错误信息。
 
-当用户点击“返回”按钮时，会弹出确认对话框，询问用户是否确认返回。选择“取消”将停留在当前页目标页面；选择“确认”将触发router.back方法，并根据参数决定如何执行跳转。
+当用户点击“返回”按钮时，会弹出确认对话框，询问用户是否确认返回。选择“取消”将停留在当前页目标页面；选择“确认”将触发this.getUIContext().getRouter().back方法，并根据参数决定如何执行跳转。
 
 ### 自定义询问框
 
-自定义询问框的方式，可以使用弹窗[promptAction.showDialog](../reference/apis-arkui/js-apis-promptAction.md#promptactionshowdialog)或者自定义弹窗实现。这样可以让应用界面与系统默认询问框有所区别，提高应用的用户体验度。本文以弹窗为例，介绍如何实现自定义询问框。
+自定义询问框的方式，可以使用弹窗[showDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#showdialog-1)或者自定义弹窗实现。这样可以让应用界面与系统默认询问框有所区别，提高应用的用户体验度。本文以弹窗为例，介绍如何实现自定义询问框。
 
-在使用页面路由Router相关功能之前，需要在代码中先导入Router模块。
+直接使用router可能导致实例不明确的问题，建议使用[getUIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getRouter](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
 
-
-```ts
-import { router } from '@kit.ArkUI';
-```
-
-在事件回调中，调用弹窗的[promptAction.showDialog](../reference/apis-arkui/js-apis-promptAction.md#promptactionshowdialog)方法：
+在事件回调中，调用弹窗的[showDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#showdialog-1)方法：
 
 ```ts
-import { promptAction, router } from '@kit.ArkUI';
+import { promptAction} from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function onBackClick() {
@@ -391,8 +363,8 @@ function onBackClick() {
     } else if (result.index === 1) {
       // 用户点击了“确认”按钮
       console.info('User confirmed the operation.');
-      // 调用router.back()方法，返回上一个页面
-      router.back();
+      // 调用this.getUIContext().getRouter().back()方法，返回上一个页面
+      this.getUIContext().getRouter().back();
     }
   }).catch((err: Error) => {
     let message = (err as BusinessError).message
@@ -406,7 +378,7 @@ function onBackClick() {
 
 ## 命名路由
 
-在开发中为了跳转到共享包[HAR](../quick-start/har-package.md)或者[HSP](../quick-start/in-app-hsp.md)中的页面（即共享包中路由跳转），可以使用[router.pushNamedRoute](../reference/apis-arkui/js-apis-router.md#routerpushnamedroute10)来实现。
+在开发中为了跳转到共享包[HAR](../quick-start/har-package.md)或者[HSP](../quick-start/in-app-hsp.md)中的页面（即共享包中路由跳转），可以使用[pushNamedRoute](../reference/apis-arkui/js-apis-arkui-UIContext.md#pushnamedroute)来实现。
 
   **图4** 命名路由跳转  
 
@@ -419,7 +391,7 @@ function onBackClick() {
 import { router } from '@kit.ArkUI';
 ```
 
-在想要跳转到的共享包[HAR](../quick-start/har-package.md)或者[HSP](../quick-start/in-app-hsp.md)页面里，给@Entry修饰的自定义组件[EntryOptions](../quick-start/arkts-create-custom-components.md#entryoptions10)命名：
+在想要跳转到的共享包[HAR](../quick-start/har-package.md)或者[HSP](../quick-start/in-app-hsp.md)页面里，给@Entry修饰的自定义组件[EntryOptions](../ui/state-management/arkts-create-custom-components.md#entryoptions10)命名：
 
 ```ts
 // library/src/main/ets/pages/Index.ets

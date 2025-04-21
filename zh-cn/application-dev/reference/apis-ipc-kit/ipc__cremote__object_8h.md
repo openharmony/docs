@@ -13,6 +13,7 @@
 
 **相关模块：**[OHIPCRemoteObject](_o_h_i_p_c_remote_object.md)
 
+**所在头文件：** [ipc_cremote_object.h](ipc__cremote__object_8h.md)
 
 ## 汇总
 

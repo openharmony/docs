@@ -17,6 +17,7 @@
   - [使用AudioHaptic开发音振协同播放功能](using-audiohaptic-for-playback.md)
   - [播放音量管理](volume-management.md)
   - [音效管理](audio-effect-management.md)
+  - [空间音频管理](public-audio-spatialization-management.md)
   <!--Del-->
   - [空间音频管理(仅对系统应用开放)](audio-spatialization-management.md)
   <!--DelEnd-->

@@ -165,7 +165,7 @@ backgroundImagePosition(value: Position | Alignment)
 
 ## SystemAdaptiveOptions<sup>18+</sup>
 
-系统自适应调节参数。
+系统自适应调节参数，系统会默认开启根据芯片算力进行自适应效果调节的能力。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 

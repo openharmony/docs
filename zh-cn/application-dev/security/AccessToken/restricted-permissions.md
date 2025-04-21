@@ -475,6 +475,18 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：16
 
+### ohos.permission.kernel.DISABLE_GOTPLT_RO_PROTECTION
+
+允许应用关闭进程内.got.plt段的只读保护。
+
+<!--RP22--><!--RP22End-->
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**起始版本**：17
+
 ### ohos.permission.USE_FRAUD_APP_PICKER
 
 允许应用使用诈骗应用选择器，获取应用信息。

@@ -13,6 +13,7 @@
 
 [Native XComponent](_o_h___native_x_component.md)
 
+**所在头文件：** [native_interface_xcomponent.h](native__interface__xcomponent_8h.md)
 
 ## 汇总
 

@@ -9,8 +9,7 @@
 
 ## 导入模块
 ```ts
-import { metadataBinding  }'@ohos.multimodalAwareness';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { metadataBinding } from '@ohos.multimodalAwareness';
 ```
 
 ## submitMetadata(string)
@@ -30,19 +29,23 @@ function submitMetadata(metadata: string): void;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-|   401    | Parameter error. Parameter verification failed.|
 |32100001|Internal handling failed. Set Meta data to screenshot app fail.|
 
 **示例**：
 
 ```ts
-let metadata:string = "";
-metadataBinding.submitMetadata(metadata).catch((error:BusinessError)=>{
+import { metadataBinding } from '@ohos.multimodalAwareness';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let metadata: string = "";
+try {
+  metadataBinding.submitMetadata(metadata);
+} catch (error) {
   console.error("submit metadata error" + error);
-});
+}
 ```
 
-## metadataBinding.on('operationSubmitMetadata', string)
+## metadataBinding.on('operationSubmitMetadata', string,  Callback\<number\>)
 metadataBinding.on(type: 'operationSubmitMetadata', bundleName: string, callback: Callback\<number\>): void;  
 
 订阅系统事件以获取编码内容，应用注册回调，事件发生时回传编码内容。  
@@ -61,24 +64,28 @@ metadataBinding.on(type: 'operationSubmitMetadata', bundleName: string, callback
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-|401|Parameter error. Parameter verification failed.|
 |32100001|Internal handling failed. Service exception.|
 |32100004|Subscribe Failed.|
 
 **示例：**  
 ```ts
-let bundleName:string = '';
-metadataBinding.on('operationSubmitMetadata', bundleName, (evnet:number)=>{
-	if (event == 1) {
-		console.info("The screenshot request is intercepted and the app link is obtained");
-	}
-}).catch((error:Error)=>{
-	console.error("subscript screenshot event" + error);
-});
+import { metadataBinding } from '@ohos.multimodalAwareness';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let bundleName: string = '';
+try {
+  metadataBinding.on('operationSubmitMetadata', bundleName, (event: number) =>{
+    if (event == 1) {
+      console.info("The screenshot request is intercepted and the app link is obtained");
+    }
+  });
+} catch (error) {
+  console.info("register screenshot event error");
+}
 ```
 
 
-## metadataBinding.off('operationSubmitMetadata', string)
+## metadataBinding.off('operationSubmitMetadata', string,  Callback\<number\>)
 metadataBinding.off(type: 'operationSubmitMetadata', bundleName: string, callback?: Callback\<number>): void;  
 取消订阅系统获取编码内容的事件。取消注册回调接口。  
 **系统能力**：SystemCapability.MultimodalAwarness.metadataBinding  
@@ -96,15 +103,19 @@ metadataBinding.off(type: 'operationSubmitMetadata', bundleName: string, callbac
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-|401|Parameter error. Parameter verification failed.|
 |32100001|Internal handling failed. Service exception.|
 |32100005|Unsubscribe Failed.|
 
 **示例**：
 
 ```ts
-let bundleName:string = '';
-metadataBinding.off('operationSubmitMetadata', bundleName, (evnet:number)=>{}).catch((error:Error)=>{
-	console.error("unsubscript screenshot event" + error);
-});
+import { metadataBinding } from '@ohos.multimodalAwareness';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let bundleName: string = '';
+try {
+  metadataBinding.off('operationSubmitMetadata', bundleName, (evnet: number)=>{});
+} catch (error) {
+  console.error("unsubscript screenshot event" + error);
+}
 ```

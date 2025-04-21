@@ -601,7 +601,7 @@ registerKeyObserver(context: Context, name: string, domainName: string, observer
 | context  | Context                | 是   | 应用上下文(仅支持UIAbilityContext和ExtensionContext)。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | name     | string                 | 是   | 数据项的名称。数据项名称分为以下两种。<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 |domainName| string                 | 是   | 指定要设置的域名。 <br>- domainName为domainName.DEVICE_SHARED,<br>&nbsp;&nbsp;&nbsp;设备属性共享域。<br>- domainName为domainName.USER_PROPERTY,<br>&nbsp;&nbsp;&nbsp;表示为用户属性域。 <br>- domainName为domainName.USER_SECURITY,<br>&nbsp;&nbsp;&nbsp;表示为用户安全属性域(仅对系统应用开放)。|
-|observer  |  AsyncCallback\<void>  | 是   | 使用collback方式获取数据项的值。                   |
+|observer  |  AsyncCallback\<void>  | 是   | 使用callback方式获取数据项的值。                   |
 
 **返回值**：
 

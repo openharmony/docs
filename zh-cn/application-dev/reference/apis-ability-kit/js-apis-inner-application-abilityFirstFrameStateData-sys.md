@@ -25,4 +25,4 @@ import { appManager } from '@kit.AbilityKit';
 | moduleName  | string  | 是   | 否   | 应用Module名称。 |
 | abilityName | string  | 是   | 否   | Ability名称。    |
 | appIndex    | number  | 是   | 否   | DLP沙盒的索引。  |
-| isColdStart | boolean | 是   | 否   | 是否冷启动。     |
+| isColdStart | boolean | 是   | 否   | 是否冷启动。true表示冷启动，false表示热启动。     |

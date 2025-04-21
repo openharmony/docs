@@ -2,7 +2,7 @@
 
 ArkTS是OpenHarmony应用开发的官方高级语言。
 
-ArkTS提供了[声明式UI范式](../quick-start/arkts-declarative-ui-description.md)、[状态管理](../quick-start/arkts-state-management-overview.md)、[渲染控制](../quick-start/arkts-rendering-control-overview.md)等相应的能力，让开发者能够以更简洁、更自然的方式开发应用。
+ArkTS提供了[声明式UI范式](../ui/state-management/arkts-declarative-ui-description.md)、[状态管理](../ui/state-management/arkts-state-management-overview.md)、[渲染控制](../ui/state-management/arkts-rendering-control-overview.md)等相应的能力，让开发者能够以更简洁、更自然的方式开发应用。
 
 ArkTS在[TypeScript](https://www.typescriptlang.org/)（简称TS）生态基础上做了进一步扩展，保持了TS的基本风格，同时通过规范定义强化开发期静态检查和分析，提升代码健壮性，并实现更好的程序执行稳定性和性能。对比标准TS的差异可以参考[从TypeScript到ArkTS的适配规则](../quick-start/typescript-to-arkts-migration-guide.md)。ArkTS同时也支持与TS/JavaScript（简称JS）高效互操作。
 

@@ -40,4 +40,3 @@
   - [DeviceUsageStatistics错误码](errorcode-DeviceUsageStatistics.md)
   - [reminderAgentManager错误码](errorcode-reminderAgentManager.md)
   - [workScheduler错误码](errorcode-workScheduler.md)
-  - [backgroundProcessManager错误码](errorcode-backgroundProcessManager.md)

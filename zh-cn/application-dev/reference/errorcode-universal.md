@@ -80,7 +80,7 @@ Capability not supported. Failed to call the API due to limited device capabilit
 
 **可能原因**
 
-可能出现该错误码的场景为：该设备已支持该API所属的Syscap, 但是并不支持此API。
+可能出现该错误码的场景为：该设备已支持该API所属的Syscap，但是并不支持此API。
 
 **处理步骤**
 

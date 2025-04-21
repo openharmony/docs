@@ -166,8 +166,7 @@
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetEncodingType](#oh_audiorenderer_getencodingtype)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, [OH_AudioStream_EncodingType](#oh_audiostream_encodingtype) \*encodingType) | 查询当前输出音频流编码类型。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetFramesWritten](#oh_audiorenderer_getframeswritten)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, int64_t \*frames) | 查询自创建流以来已写入的帧数。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetTimestamp](#oh_audiorenderer_gettimestamp)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, clockid_t clockId, int64_t \*framePosition, int64_t \*timestamp) | 获取输出音频流时间戳和位置信息。  | 
-| [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetAudioTimestampInfo](#oh_audiorenderer_getaudiotimestampinfo) ([OH_AudioRenderer](#oh_audiorenderer)
- \*renderer, int64_t \*framePosition, int64_t \*timestamp) | 获取输出音频流时间戳和位置信息，适配倍速接口。 | 
+| [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetAudioTimestampInfo](#oh_audiorenderer_getaudiotimestampinfo) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, int64_t \*framePosition, int64_t \*timestamp) | 获取输出音频流时间戳和位置信息，适配倍速接口。 | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetFrameSizeInCallback](#oh_audiorenderer_getframesizeincallback)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, int32_t \*frameSize) | 在回调中查询帧大小。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetSpeed](#oh_audiorenderer_getspeed)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, float \*speed) | 获取音频渲染速率。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_SetSpeed](#oh_audiorenderer_setspeed)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, float speed) | 设置音频渲染速率。  | 
@@ -949,7 +948,7 @@ enum OH_AudioStream_SampleFormat
 | AUDIOSTREAM_SAMPLE_S16LE  | Short 16位小端。   | 
 | AUDIOSTREAM_SAMPLE_S24LE  | Short 24位小端。   | 
 | AUDIOSTREAM_SAMPLE_S32LE  | Short 32位小端。   | 
-| AUDIOSTREAM_SAMPLE_F32LE  | Float 32位小端。<br>**起始版本：** 18   | 
+| AUDIOSTREAM_SAMPLE_F32LE  | Float 32位小端。<br>**起始版本：** 17   | 
 
 
 ### OH_AudioStream_SourceType

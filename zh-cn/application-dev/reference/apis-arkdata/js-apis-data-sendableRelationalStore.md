@@ -50,7 +50,7 @@ const asset1: sendableRelationalStore.NonSendableAsset = {
   path: '//path/example',
   createTime: 'createTime1',
   modifyTime: 'modifyTime1',
-  size: 'size1',
+  size: 'size1'
 };
 const asset2: sendableRelationalStore.NonSendableAsset = {
   name: 'hangman',
@@ -58,8 +58,8 @@ const asset2: sendableRelationalStore.NonSendableAsset = {
   path: '//path/example',
   createTime: 'createTime1',
   modifyTime: 'modifyTime1',
-  size: 'size1',
-}
+  size: 'size1'
+};
 const u8 = new Uint8Array([1, 2, 3]);
 const valuesBucket: sendableRelationalStore.NonSendableBucket = {
   age: 18,
@@ -69,7 +69,7 @@ const valuesBucket: sendableRelationalStore.NonSendableBucket = {
   data1: asset1,
   blobType: u8,
   bigValue: BigInt("15822401018187971961171"),
-  data2: [asset1, asset2],
+  data2: [asset1, asset2]
 };
 
 const sendableValuesBucket = sendableRelationalStore.toSendableValuesBucket(valuesBucket);
@@ -113,7 +113,7 @@ const asset1: sendableRelationalStore.NonSendableAsset = {
   path: '//path/example',
   createTime: 'createTime1',
   modifyTime: 'modifyTime1',
-  size: 'size1',
+  size: 'size1'
 };
 const asset2: sendableRelationalStore.NonSendableAsset = {
   name: 'hangman',
@@ -121,8 +121,8 @@ const asset2: sendableRelationalStore.NonSendableAsset = {
   path: '//path/example',
   createTime: 'createTime1',
   modifyTime: 'modifyTime1',
-  size: 'size1',
-}
+  size: 'size1'
+};
 const u8 = new Uint8Array([1, 2, 3]);
 
 const sendableValuesBucket = sendableRelationalStore.toSendableValuesBucket({
@@ -133,7 +133,7 @@ const sendableValuesBucket = sendableRelationalStore.toSendableValuesBucket({
   data1: asset1,
   blobType: u8,
   bigValue: BigInt("15822401018187971961171"),
-  data2: [asset1, asset2],
+  data2: [asset1, asset2]
 });
 const nonSendableBucket = sendableRelationalStore.fromSendableValuesBucket(sendableValuesBucket);
 ```
@@ -174,7 +174,7 @@ const asset1: sendableRelationalStore.NonSendableAsset = {
   path: '//path/example',
   createTime: 'createTime1',
   modifyTime: 'modifyTime1',
-  size: 'size1',
+  size: 'size1'
 };
 const sendableAsset = sendableRelationalStore.toSendableAsset(asset1);
 ```
@@ -216,7 +216,7 @@ const asset1: sendableRelationalStore.NonSendableAsset = {
   path: '//path/example',
   createTime: 'createTime1',
   modifyTime: 'modifyTime1',
-  size: 'size1',
+  size: 'size1'
 };
 const sendableAsset = sendableRelationalStore.toSendableAsset(asset1);
 const normalAsset = sendableRelationalStore.fromSendableAsset(sendableAsset);

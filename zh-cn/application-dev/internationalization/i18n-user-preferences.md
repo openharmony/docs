@@ -32,7 +32,7 @@
    let date: Date = new Date(2023, 9, 25); // 时间日期为2023.10.25
    let appPreferredLanguage: string = 'ar';
    let dateTimeFmt: intl.DateTimeFormat = new intl.DateTimeFormat(appPreferredLanguage);
-   let formattedTime: string = dateTimeFmt.format(date); // formattedTime = '٢٠٢٣/١٠/٢٥'（采用阿语本地数字表示）
+   let formattedTime: string = dateTimeFmt.format(date); // formattedTime = '٢٠٢٣/١٠/٢٥'（使用阿拉伯语本地数字表示）
    ```
 
 4. 设置格式化的24小时制。

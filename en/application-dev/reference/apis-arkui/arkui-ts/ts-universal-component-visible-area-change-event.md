@@ -38,8 +38,34 @@ Called when the visible area of the component changes.
 >
 >- It does not support visibility change calculations for nodes that are not in the component tree. For example, preloaded nodes or custom nodes mounted using the [overlay](ts-universal-attributes-overlay.md#overlay) capability.
 
+## onVisibleAreaApproximateChange<sup>18+</sup>
+
+onVisibleAreaApproximateChange(options: VisibleAreaEventOptions, event: VisibleAreaChangeCallback | undefined): void
+
+Called to set the callback parameters for the [onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange) event and restrict its execution interval.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                      |
+| ------ | ------ | ---- | -------------------------- |
+| options  | [VisibleAreaEventOptions](./ts-types.md#visibleareaeventoptions12) | Yes  | Options of visible area changes.|
+| event  | [VisibleAreaChangeCallback](./ts-types.md#visibleareachangecallback12)   \| undefined | Yes  | Callback for the **onVisibleAreaChange** event. This callback is triggered when the ratio of the component's visible area to its total area approaches the threshold set in **options**.|
+
+>**NOTE**
+>
+> This callback is not a real-time callback. The actual callback interval may differ from the expected interval.
+>
+> The interval between two visible area change callbacks will not be less than the expected update interval. If the provided expected interval is too short, the actual callback interval will be determined by the system load.
+>
+> By default, the interval threshold of the visible area change callback includes 0. This means that, if the provided threshold is [0.5], the effective threshold will be [0.0, 0.5].
 
 ## Example
+
+### Example 1: Using onVisibleAreaChange to Listen for Visible Area Changes
 
 This example demonstrates how to set an **onVisibleAreaChange** event for a component, which triggers the callback when the component is fully displayed or completely hidden.
 
@@ -140,5 +166,4 @@ struct ScrollExample {
   }
 }
 ```
-
 ![en-us_visible_area_change.gif](figures/en-us_visible_area_change.gif)

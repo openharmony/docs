@@ -2863,6 +2863,62 @@ getOsAccountDomainInfo(localId: number): Promise&lt;DomainAccountInfo&gt;;
   })
   ```
 
+## DomainAccountManager<sup>18+</sup>
+
+域账号管理类。
+
+### updateAccountInfo<sup>18+</sup>
+
+updateAccountInfo(oldAccountInfo: DomainAccountInfo, newAccountInfo: DomainAccountInfo): Promise&lt;void&gt;
+
+修改指定域账号信息。使用Promise异步回调。
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.MANAGE_DOMAIN_ACCOUNTS
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名      | 类型                                    | 必填 | 说明             |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| oldAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示旧域账号信息。|
+| newAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示新域账号信息。|
+
+**返回值：**
+
+| 类型                      | 说明                     |
+| :------------------------ | ----------------------- |
+| Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 201 | Permission denied.|
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
+| 12300002 | The new account info is invalid. |
+| 12300003 | The old account not found. |
+| 12300004 | The new account already exists. |
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let oldDomainInfo: osAccount.DomainAccountInfo =
+    {domain: 'testDomain', accountName: 'oldtestAccountName'};
+  let newDomainInfo: osAccount.DomainAccountInfo =
+    {domain: 'testDomain', accountName: 'newtestAccountName'};
+  try {
+    osAccount.DomainAccountManager.updateAccountInfo(oldDomainInfo, newDomainInfo).then(() => {
+      console.log('updateAccountInfo, success');
+    }).catch((err: BusinessError) => {
+      console.log('updateAccountInfo err: ' + err);
+    });
+  } catch (e) {
+    console.log('updateAccountInfo exception: ' + e);
+  }
+  ```
+
 ## OsAccountInfo
 
 表示系统账号信息。
@@ -2942,7 +2998,6 @@ static addServerConfig(parameters: Record&lt;string, Object&gt;): Promise&lt;Dom
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
-| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.|
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid server config parameters. |
@@ -2992,7 +3047,6 @@ static removeServerConfig(configId: string): Promise&lt;void&gt;
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
-| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.|
 | 12300001 | The system service works abnormally. |
 | 12300212 | Server config not found. |
@@ -3010,6 +3064,157 @@ static removeServerConfig(configId: string): Promise&lt;void&gt;
     console.log('add domain server configuration successfully, the added config: ' + JSON.stringify(serverConfig));
     osAccount.DomainServerConfigManager.removeServerConfig(serverConfig.id);
     console.log('remove domain server configuration successfully');
+  }).catch((err: BusinessError) => {
+    console.log('add server configuration failed, error: ' + JSON.stringify(err));
+  });
+  ```
+
+### updateServerConfig<sup>18+</sup>
+
+static updateServerConfig(configId: string, parameters: Record&lt;string, Object&gt;): Promise&lt;DomainServerConfig&gt;
+
+更新域服务器配置。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.MANAGE_DOMAIN_ACCOUNT_SERVER_CONFIGS
+
+**参数：**
+
+| 参数名    | 类型                     | 必填 | 说明                      |
+| ----------| ----------------------- | --- | -------------------------- |
+| configId   | string  | 是  | 指示服务器配置标识。 |
+| parameters   | Record&lt;string, Object&gt;  | 是  | 指示域服务器配置参数。 |
+
+**返回值：**
+
+| 类型                      | 说明                     |
+| :------------------------ | ----------------------- |
+| Promise&lt;[DomainServerConfig](#domainserverconfig18)&gt; | Promise对象，返回更新后的域服务器配置。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 201 | Permission denied.|
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
+| 12300002 | Invalid server config parameters. |
+| 12300211 | Server unreachable. |
+| 12300212 | Server config not found. |
+| 12300213 | Server config already exists. |
+| 12300214 | Server config has been associated with an account. |
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let configParams: Record<string, Object> = {
+    'uri': 'test.example.com',
+    'port': 100
+  };
+  osAccount.DomainServerConfigManager.addServerConfig(configParams).then((
+    serverConfig: osAccount.DomainServerConfig) => {
+    console.log('add domain server configuration successfully, the added config: ' + JSON.stringify(serverConfig));
+    osAccount.DomainServerConfigManager.updateServerConfig(serverConfig.id, configParams).then((data) => {
+      console.log('update domain server configuration successfully, return config: ' + JSON.stringify(data));
+    }).catch((err: BusinessError) => {
+      console.log('update domain server configuration failed, error: ' + JSON.stringify(err));
+    });
+  }).catch((err: BusinessError) => {
+    console.log('add server configuration failed, error: ' + JSON.stringify(err));
+  });
+  ```
+
+### getServerConfig<sup>18+</sup>
+
+static getServerConfig(configId: string): Promise&lt;DomainServerConfig&gt;
+
+获取域服务器配置。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.MANAGE_DOMAIN_ACCOUNT_SERVER_CONFIGS
+
+**参数：**
+
+| 参数名    | 类型                     | 必填 | 说明                      |
+| ----------| ----------------------- | --- | -------------------------- |
+| configId   | string  | 是  | 指示服务器配置标识。 |
+
+**返回值：**
+
+| 类型                      | 说明                     |
+| :------------------------ | ----------------------- |
+| Promise&lt;[DomainServerConfig](#domainserverconfig18)&gt; | Promise对象，返回获取的域服务器配置。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 201 | Permission denied.|
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
+| 12300212 | Server config not found. |
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let configParams: Record<string, Object> = {
+    'uri': 'test.example.com',
+    'port': 100
+  };
+  osAccount.DomainServerConfigManager.addServerConfig(configParams).then((
+    serverConfig: osAccount.DomainServerConfig) => {
+    console.log('add domain server configuration successfully, the added config: ' + JSON.stringify(serverConfig));
+    osAccount.DomainServerConfigManager.getServerConfig(serverConfig.id).then((data: osAccount.DomainServerConfig) => {
+      console.log('get domain server configuration successfully, return config: ' + JSON.stringify(data));
+    }).catch((err: BusinessError) => {
+      console.log('get domain server configuration failed, error: ' + JSON.stringify(err));
+    });
+  }).catch((err: BusinessError) => {
+    console.log('add server configuration failed, error: ' + JSON.stringify(err));
+  });
+  ```
+
+### getAllServerConfigs<sup>18+</sup>
+
+static getAllServerConfigs(): Promise&lt;Array&lt;DomainServerConfig&gt;&gt;
+
+获取所有域服务器配置。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.MANAGE_DOMAIN_ACCOUNT_SERVER_CONFIGS
+
+**返回值：**
+
+| 类型                      | 说明                     |
+| :------------------------ | ----------------------- |
+| Promise&lt;Array&lt;[DomainServerConfig](#domainserverconfig18)&gt;&gt; | Promise对象，返回获取的所有域服务器配置。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 201 | Permission denied.|
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let configParams: Record<string, Object> = {
+    'uri': 'test.example.com',
+    'port': 100
+  };
+  osAccount.DomainServerConfigManager.addServerConfig(configParams).then((
+    serverConfig: osAccount.DomainServerConfig) => {
+    console.log('add domain server configuration successfully, the added config: ' + JSON.stringify(serverConfig));
+    osAccount.DomainServerConfigManager.getAllServerConfigs().then((data: Array<osAccount.DomainServerConfig>) => {
+      console.log('get all domain server configuration successfully, return config: ' + JSON.stringify(data));
+    }).catch((err: BusinessError) => {
+      console.log('get all domain server configuration failed, error: ' + JSON.stringify(err));
+    });
   }).catch((err: BusinessError) => {
     console.log('add server configuration failed, error: ' + JSON.stringify(err));
   });
@@ -3042,7 +3247,6 @@ static getAccountServerConfig(domainAccountInfo: DomainAccountInfo): Promise&lt;
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
-| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.|
 | 12300001 | The system service works abnormally. |
 | 12300003 | Domain account not found. |

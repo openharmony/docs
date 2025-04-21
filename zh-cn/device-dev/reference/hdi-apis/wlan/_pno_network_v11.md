@@ -17,7 +17,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| boolean [isHidden](#ishidden) | 是否扫描隐藏网络  | 
+| boolean [isHidden](#ishidden) | isHidden为true支持扫描隐藏网络，反之为false则不支持扫描隐藏网络  | 
 | int[] [freqs](#freqs) | 扫描频率  | 
 | struct [HdfWifiDriverScanSsid](_hdf_wifi_driver_scan_ssid_v11.md)[ssid](#ssid) | 扫描SSID  | 
 

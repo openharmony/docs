@@ -140,7 +140,7 @@ component
    }
    ```
 
-   示例4：在部件的bundle.json中添加模块配置：test/examples/bundle.json。每个部件都有一个bundle.json配置文件，在部件的根目录下。示例见：[部件的bundle.json](subsys-build-component.md#部件配置规则)
+   示例4：在部件的bundle.json中添加模块配置：test/examples/bundle.json。每个部件都有一个bundle.json配置文件，在部件的根目录下。示例见：[部件的bundle.json](subsys-build-component.md#部件配置规则)。
 
 2. 将部件添加到产品配置中。 在产品的配置中添加部件，产品对应的配置文件：//vendor/{product_company}/{product-name}/config.json。下面以vendor/hisilicon/hispark_taurus_standard/config.json为例：
 

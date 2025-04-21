@@ -564,9 +564,9 @@ struct DropAnimationExample {
           })
           .onDragEnd((event) => {
             if (event.getResult() === DragResult.DRAG_SUCCESSFUL) {
-              promptAction.showToast({ duration: 100, message: 'Drag Success' });
+              console.log('Drag Success');
             } else if (event.getResult() === DragResult.DRAG_FAILED) {
-              promptAction.showToast({ duration: 100, message: 'Drag failed' });
+              console.log('Drag failed');
             }
           })
       }.width('45%')
@@ -597,6 +597,8 @@ struct DropAnimationExample {
           dragEvent.useCustomDropAnimation = true;
           dragEvent.executeDropAnimation(this.customDropAnimation)
         })
+        .width(this.imageWidth)
+        .height(this.imageHeight)
       }.width('45%')
       .height('100%')
       .margin({ left: '5%' })

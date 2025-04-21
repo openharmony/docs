@@ -83,6 +83,11 @@ struct Index {
           .width(500)
           .height(500)
           .backgroundColor(Color.Blue)
+        Button('changeGesture')
+          .onClick(() => {
+            this.modifier.supportDoubleTap = !this.modifier.supportDoubleTap;
+          })
+          .margin({top: 10})
       }
       .width('100%')
     }

@@ -24,7 +24,7 @@ import {
 
 >  **说明：** 
 >
->  - 子组件类型：系统组件和自定义组件，支持渲染控制类型（[if/else](../../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../../quick-start/arkts-rendering-control-foreach.md)和[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)）。
+>  - 子组件类型：系统组件和自定义组件，支持渲染控制类型（[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)和[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)）。
 >- 不建议在执行翻页动画过程中增加或减少子组件，会导致未进行动画的子组件提前进入视窗，引起显示异常。
 
 ## 接口
@@ -142,7 +142,7 @@ digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 
 | 参数名 | 类型                                                        | 必填 | 说明                                                |
 | ------ | ----------------------------------------------------------- | ---- | --------------------------------------------------- |
-| sensitivity  | Optional\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity18)> | 是   | 旋转表冠的灵敏度。<br/>默认值：CrownSensitivity.LOW |
+| sensitivity  | Optional\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity18)> | 是   | 旋转表冠的灵敏度。<br/>默认值：CrownSensitivity.MEDIUM |
 
 ### effectMode
 
@@ -598,12 +598,13 @@ finishTransition(): void
 ```ts
 // xxx.ets
 import {
+  CircleShape,
   ArcSwiper,
   ArcSwiperAttribute,
   ArcDotIndicator,
   ArcDirection,
   ArcSwiperController
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 class MyDataSource implements IDataSource {
   private list: Color[] = []
@@ -636,6 +637,7 @@ struct TestNewInterface {
   private arcDotIndicator: ArcDotIndicator = new ArcDotIndicator()
   private data: MyDataSource = new MyDataSource([])
   @State backgroundColors: Color[] = [Color.Green, Color.Blue, Color.Yellow, Color.Pink, Color.White, Color.Gray, Color.Orange, Color.Transparent]
+  innerSelectedIndex: number = 0
 
   aboutToAppear(): void {
     let list: Color[] = []
@@ -658,7 +660,7 @@ struct TestNewInterface {
               .fontSize(30)
           })
         }
-        .clip(new Circle({ width: 233, height: 233 }))
+        .clipShape(new CircleShape({ width: 233, height: 233 }))
         .effectMode(EdgeEffect.None)
         .backgroundColor(Color.Transparent)
         .index(0)
@@ -675,11 +677,29 @@ struct TestNewInterface {
           console.info("onChange:" + index.toString())
         })
         .onAnimationStart((index: number, targetIndex: number, extraInfo: SwiperAnimationEvent) => {
+          this.innerSelectedIndex = targetIndex
           console.info("index: " + index)
           console.info("targetIndex: " + targetIndex)
           console.info("current offset: " + extraInfo.currentOffset)
           console.info("target offset: " + extraInfo.targetOffset)
           console.info("velocity: " + extraInfo.velocity)
+        })
+        .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer,
+          others: Array<GestureRecognizer>): GestureJudgeResult => { // 在识别器即将要成功时，根据当前组件状态，设置识别器使能状态
+          if (current) {
+            let target = current.getEventTargetInfo();
+            if (target && current.isBuiltIn() && current.getType() == GestureControl.GestureType.PAN_GESTURE) {
+              let swiperTaget = target as ScrollableTargetInfo
+              if (swiperTaget instanceof ScrollableTargetInfo &&
+                (swiperTaget.isBegin() || this.innerSelectedIndex === 0)) { // 此处判断swiperTaget.isBegin()或innerSelectedIndex === 0，表明ArcSwiper滑动到开头
+                let panEvent = event as PanGestureEvent;
+                if (panEvent && panEvent.offsetX > 0 && (swiperTaget.isBegin() || this.innerSelectedIndex === 0)) {
+                  return GestureJudgeResult.REJECT;
+                }
+              }
+            }
+          }
+          return GestureJudgeResult.CONTINUE;
         })
         .onAnimationEnd((index: number, extraInfo: SwiperAnimationEvent) => {
           console.info("index: " + index)

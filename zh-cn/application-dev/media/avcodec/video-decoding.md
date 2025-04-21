@@ -382,14 +382,39 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 6. 设置surface。
 
     本例中的nativeWindow，有两种方式获取：
-    1. 如果解码后直接显示，则从XComponent组件获取，获取方式请参考 [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)；
-    2. 如果解码后接OpenGL后处理，则从NativeImage获取，获取方式请参考 [NativeImage](../../graphics/native-image-guidelines.md)。
+
+    6.1 如果解码后直接显示，则从XComponent组件获取。
+
+    添加头文件。
+
+    ```c++
+    #include <native_window/external_window.h>
+    ```
+
+    在 CMake 脚本中链接动态库。
+
+    ``` cmake
+    target_link_libraries(sample PUBLIC libnative_window.so)
+    ```
+
+    6.1.1 在ArkTS侧，通过xComponentController组件的getXComponentSurfaceId接口获取XComponent对应的Surface的ID。详情请参考[自定义渲染 (XComponent)](../../ui/napi-xcomponent-guidelines.md#arkts-xcomponent场景)。
+
+    6.1.2 在Native侧，调用OH_NativeWindow_CreateNativeWindowFromSurfaceId接口创建出NativeWindow实例。
+
+    ```c++
+    OHNativeWindow* nativeWindow;
+    // 基于步骤1.1中获取的surfaceId创建对应的nativeWindow实例。
+    OH_NativeWindow_CreateNativeWindowFromSurfaceId(surfaceId, nativeWindow);
+    ```
+
+    6.2 如果解码后接OpenGL后处理，则从NativeImage获取，获取方式请参考 [NativeImage](../../graphics/native-image-guidelines.md)。
 
     Surface模式，开发者可以在解码过程中执行该步骤，即动态切换surface。
 
     ```c++
+    // 设置surface。
     // 配置送显窗口参数。
-    int32_t ret = OH_VideoDecoder_SetSurface(videoDec, nativeWindow);    // 从XComponent获取nativeWindow。
+    int32_t ret = OH_VideoDecoder_SetSurface(videoDec, nativeWindow);  // nativeWindow通过以上两种方式获取。
     if (ret != AV_ERR_OK) {
         // 异常处理。
     }
@@ -1056,7 +1081,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     - OH_MD_KEY_VIDEO_STRIDE表示wStride；
     - OH_MD_KEY_VIDEO_SLICE_HEIGHT表示hStride。
 
-    ![copy by line](figures/copy-by-line.png)
+    ![copy by line](figures/copy-by-line-decoder.png)
 
     添加头文件。
 

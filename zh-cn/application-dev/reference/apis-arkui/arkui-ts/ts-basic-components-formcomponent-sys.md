@@ -45,7 +45,7 @@ FormComponent (value: FormInfo)
 | bundle    | string                          | 是   | 目标卡片包名。                                                          |
 | ability   | string                          | 是   | 目标卡片Ability名称。                                                   |
 | module    | string                          | 是   | 卡片模块名称。                                                          |
-| dimension | [FormDimension](#formdimension) | 否   | 卡片尺寸，支持2 * 2，4 * 4，4 * 2类型卡片。<br/>默认值：Dimension_2_2。 |
+| dimension | [FormDimension](#formdimension) | 否   | 卡片尺寸，支持2 * 2，4 * 4，2 * 4等类型卡片。<br/>默认值：Dimension_2_2。 |
 | temporary | boolean                         | 否   | 卡片是否为临时卡片，true表示是临时卡片，false表示不是临时卡片。<br/>默认值：false。 |
 | renderingMode | [FormRenderingMode](#formrenderingmode11) | 否   | 卡片渲染模式。取值如下，默认值为 FULL_COLOR。<br>- FULL_COLOR：代表全色模式，卡片框架不会对卡片效果做出修改，保持和卡片开发者设置的效果不变。<br>- SINGLE_COLOR：代表单色模式，卡片框架会把卡片背景设为透明，开发者需按最佳实践设置卡片风格。<br>**说明：**<br/>如果系统不支持统一渲染模式，卡片框架在单色模式下也不会把卡片背景设为透明。 |
 
@@ -58,6 +58,24 @@ FormComponent (value: FormInfo)
 | id        | number                 | 是   | 卡片标识（number类型）。<br/>**说明：**<br>如果获取到的id为-1，说明id大于等于2^53，需要使用idString获取。                                        |
 | idString      | string            | 是           | 卡片标识（string类型）。                             |
 | isLocked<sup>18+</sup>  |boolean  | 是           | 标识卡片是否为[管控状态](../../apis-form-kit/js-apis-app-form-formHost-sys.md#updateformlockedstate18)，true表示管控状态，false表示非管控状态。     |
+
+## FormSize<sup>18+</sup>
+
+卡片大小信息。
+
+| 参数名    | 参数类型                        | 必填 | 参数描述    |
+| --------- | ------------------------------- | ---- |---------|
+| width        | number                 | 是   | 卡片宽的尺寸，单位：vp。 |
+| height      | number            | 是           | 卡片高的尺寸，单位：vp。 |
+
+## ErrorInformation<sup>18+</sup>
+
+卡片错误信息。
+
+| 参数名    | 参数类型                        | 必填 | 参数描述                                                                |
+| --------- | ------------------------------- | ---- | ----------------------------------------------------------------------- |
+| errcode        | number                 | 是   | [错误码](../../apis-form-kit/errorcode-form.md)。                                        |
+| msg      | string            | 是           | 错误信息。                             |
 
 ## FormDimension
 
@@ -81,9 +99,9 @@ FormComponent (value: FormInfo)
 
 ## 属性
 
-### size
+### size<sup>18+</sup>
 
-size(value: { width: number; height: number })
+size(formSize: FormSize)
 
 设置高宽尺寸。
 
@@ -95,7 +113,7 @@ size(value: { width: number; height: number })
 
 | 参数名 | 类型                                                      | 必填 | 说明       |
 | ------ | --------------------------------------------------------- | ---- | ---------- |
-| value  | {<br/>width?:&nbsp;number,<br/>height?:&nbsp;number<br/>} | 是   | 宽高尺寸。 |
+| formSize  | [FormSize](#formsize18) | 是   | 宽高尺寸。 |
 
 ### moduleName
 
@@ -117,7 +135,7 @@ moduleName(value: string)
 
 dimension(value: FormDimension)
 
-设置卡片尺寸，支持2 * 2，4 * 4，4 * 2类型卡片。
+设置卡片尺寸，支持2 * 2，4 * 4，2 * 4等类型卡片。
 
 **系统接口：** 此接口为系统接口。
 
@@ -165,7 +183,7 @@ visibility(value: Visibility)
 
 ### onAcquired
 
-onAcquired(callback:&nbsp;Callback[\<FormCallbackInfo>](#formcallbackinfo12)):&nbsp;FormComponentAttribute
+onAcquired(callback:&nbsp;Callback[\<FormCallbackInfo>](#formcallbackinfo12))&nbsp;
 
 获取到卡片后触发，返回卡片的id。
 
@@ -177,11 +195,11 @@ onAcquired(callback:&nbsp;Callback[\<FormCallbackInfo>](#formcallbackinfo12)):&n
 
 | 参数名 | 类型                                | 必填 | 说明       |
 | ------ | ----------------------------------- | ---- | ---------- |
-| Callback | [FormCallbackInfo](#formcallbackinfo12) | 是   | 卡片的id。 |
+| callback | [FormCallbackInfo](#formcallbackinfo12) | 是   | 卡片的id。 |
 
-### onError
+### onError<sup>18+</sup>
 
-onError(callback: (info: { errcode: number; msg: string }) => void)
+onError(callback: Callback\<ErrorInformation\>)
 
 组件加载错误回调。
 
@@ -193,11 +211,11 @@ onError(callback: (info: { errcode: number; msg: string }) => void)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                            |
 | ------ | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
-| info   | &nbsp;{&nbsp;errcode:&nbsp;number,&nbsp;msg:&nbsp;string&nbsp;} | 是   | errcode:&nbsp;错误码。<br/>msg:&nbsp;错误信息。 |
+| callback   | Callback<[ErrorInformation](#errorinformation18)> | 是   | errcode:&nbsp;错误码。<br/>msg:&nbsp;错误信息。 |
 
-### onRouter
+### onRouter<sup>18+</sup>
 
-onRouter(callback:&nbsp;(info:&nbsp;any)&nbsp;=&gt;&nbsp;void)
+onRouter(callback: Callback\<object\>)
 
 组件路由事件回调，返回[routerEvent](../js-service-widget-ui/js-service-widget-syntax-hml.md#事件绑定)中的信息。
 
@@ -207,13 +225,13 @@ onRouter(callback:&nbsp;(info:&nbsp;any)&nbsp;=&gt;&nbsp;void)
 
 **参数：** 
 
-| 参数名 | 类型 | 必填 | 说明                                                         |
-| ------ | ---- | ---- | ------------------------------------------------------------ |
-| info   | any  | 是   | [routerEvent](../js-service-widget-ui/js-service-widget-syntax-hml.md#事件绑定)中的信息。 |
+| 参数名  | 类型 | 必填 | 说明                                                         |
+|------| - | ---- | ------------------------------------------------------------ |
+| callback | Callback\<object\>  | 是   | [routerEvent](../js-service-widget-ui/js-service-widget-syntax-hml.md#事件绑定)中的信息。 |
 
 ### onUninstall
 
-onUninstall(callback:&nbsp;Callback[\<FormCallbackInfo>](#formcallbackinfo12)):&nbsp;FormComponentAttribute
+onUninstall(callback:&nbsp;Callback[\<FormCallbackInfo>](#formcallbackinfo12))&nbsp;
 
 组件卸载回调，返回卸载卡片的id。
 
@@ -223,10 +241,25 @@ onUninstall(callback:&nbsp;Callback[\<FormCallbackInfo>](#formcallbackinfo12)):&
 
 **参数：** 
 
-| 参数名 | 类型                                | 必填 | 说明       |
-| ------ | ----------------------------------- | ---- | ---------- |
-| Callback   | [FormCallbackInfo](#formcallbackinfo12) | 是   | 卡片的id。 |
+| 参数名      | 类型                                | 必填 | 说明       |
+|----------| ----------------------------------- | ---- | ---------- |
+| callback | [FormCallbackInfo](#formcallbackinfo12) | 是   | 卡片的id。 |
 
+### onLoad<sup>18+</sup>
+
+onLoad(callback: VoidCallback)
+
+组件加载回调，返回加载卡片的id。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名      | 类型                                | 必填 | 说明       |
+|----------| ----------------------------------- | ---- | ---------- |
+| callback | [VoidCallback](ts-types.md#voidcallback12) | 是   | 卡片的id。 |
 
 ## 示例
 

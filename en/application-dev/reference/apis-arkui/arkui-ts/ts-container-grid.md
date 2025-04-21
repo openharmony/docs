@@ -170,7 +170,7 @@ Sets the gap between columns. A value less than 0 evaluates to the default value
 
 | Name| Type                        | Mandatory| Description                        |
 | ------ | ---------------------------- | ---- | ---------------------------- |
-| value  | [Length](ts-types.md#length) | Yes  | Gap between columns.<br>Default value: **0**|
+| value  | [Length](ts-types.md#length) | Yes  | Gap between columns.<br>Default value: **0**<br>Value range: [0, +∞).|
 
 ### rowsGap
 
@@ -186,7 +186,7 @@ Sets the gap between rows. A value less than 0 evaluates to the default value.
 
 | Name| Type                        | Mandatory| Description                        |
 | ------ | ---------------------------- | ---- | ---------------------------- |
-| value  | [Length](ts-types.md#length) | Yes  | Gap between rows.<br>Default value: **0**|
+| value  | [Length](ts-types.md#length) | Yes  | Gap between rows.<br>Default value: **0**<br>Value range: [0, +∞).|
 
 ### scrollBar
 
@@ -218,7 +218,7 @@ Sets the scrollbar color.
 
 | Name| Type                                                        | Mandatory| Description          |
 | ------ | ------------------------------------------------------------ | ---- | -------------- |
-| value  | [Color](ts-appendix-enums.md#color) \| number \| string | Yes  | Scrollbar color.<br>Default value: **'\#182431'** (40% opacity)|
+| value  | [Color](ts-appendix-enums.md#color) \| number \| string | Yes  | Scrollbar color.<br>Default value: **'\#182431'** (40% opacity)<br>A number value indicates a HEX color in RGB or ARGB format, for example, **0xffffff**. A string value indicates a color in RGB or ARGB format, for example, **'#ffffff'**.|
 
 ### scrollBarWidth
 
@@ -234,13 +234,13 @@ Sets the scrollbar width. This attribute cannot be set in percentage. After the 
 
 | Name| Type                      | Mandatory| Description                                     |
 | ------ | -------------------------- | ---- | ----------------------------------------- |
-| value  | number \| string | Yes  | Scrollbar width.<br>Default value: **4**<br>Unit: vp|
+| value  | number \| string | Yes  | Scrollbar width.<br>Default value: **4**<br>Unit: vp<br>If this parameter is set to a value less than or equal to 0, the default value is used. The value **0** means not to show the scrollbar.|
 
 ### cachedCount
 
 cachedCount(value: number)
 
-Sets the number of grid items to be cached (preloaded). It works only in [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md) and [Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md) with the **virtualScroll** option enabled. A value less than 0 evaluates to the default value. <!--Del-->For details, see [Minimizing White Blocks During Swiping](../../../performance/arkts-performance-improvement-recommendation.md#minimizing-white-blocks-during-swiping).<!--DelEnd-->
+Sets the number of grid items to be cached (preloaded). It works only in [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md) and [Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md) with the **virtualScroll** option enabled. <!--Del-->For details, see [Minimizing White Blocks During Swiping](../../../performance/arkts-performance-improvement-recommendation.md#minimizing-white-blocks-during-swiping).<!--DelEnd-->
 
 The number of the grid items to be cached before and after the currently displayed one equals the value of **cachedCount** multiplied by the number of columns.
 
@@ -254,7 +254,7 @@ In [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md) an
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | Yes  | Number of grid items to be cached (preloaded).<br>Default value: the number of rows visible on the screen for vertical scrolling, or the number of columns visible on the screen for horizontal scrolling. The maximum value is 16.|
+| value  | number | Yes  | Number of grid items to be cached (preloaded).<br>Default value: the number of rows visible on the screen for vertical scrolling, or the number of columns visible on the screen for horizontal scrolling. The maximum value is 16.<br>Value range: [0, +∞).<br>Values less than 0 are treated as **1**.|
 
 ### cachedCount<sup>14+</sup>
 
@@ -272,8 +272,8 @@ The number of the grid items to be cached before and after the currently display
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| count  | number | Yes  | Number of grid items to be cached (preloaded).<br>Default value: the number of rows visible on the screen for vertical scrolling, or the number of columns visible on the screen for horizontal scrolling. The maximum value is 16.|
-| show  | boolean | Yes  | Whether to display the preloaded nodes.<br> Default value: **false**|
+| count  | number | Yes  | Number of grid items to be cached (preloaded).<br>Default value: the number of rows visible on the screen for vertical scrolling, or the number of columns visible on the screen for horizontal scrolling. The maximum value is 16.<br>Value range: [0, +∞).<br>Values less than 0 are treated as **1**.|
+| show  | boolean | Yes  | Whether to display the preloaded nodes.<br> Default value: **false** (the preloaded nodes are not displayed).|
 
 ### editMode<sup>8+</sup>
 
@@ -289,7 +289,7 @@ Sets whether to enable edit mode. In edit mode, the user can drag the [grid item
 
 | Name| Type  | Mandatory| Description                                    |
 | ------ | ------ | ---- | ---------------------------------------- |
-| value  | boolean | Yes  | Whether to enable edit mode.<br>Default value: **false**|
+| value  | boolean | Yes  | Whether to enable edit mode.<br>Default value: **false** (the edit mode is disabled).|
 
 ### layoutDirection<sup>8+</sup>
 
@@ -339,6 +339,8 @@ When **layoutDirection** is **Row** or **RowReverse**, the value indicates the m
 
 When **layoutDirection** is **Column** or **ColumnReverse**, the value indicates the minimum number of rows that can be displayed.
 
+If the value of **minCount** is greater than that of **maxCount**, both **minCount** and **maxCount** are treated as using their default values.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -367,13 +369,13 @@ When **layoutDirection** is **Column** or **ColumnReverse**, the value indicates
 
 | Name| Type  | Mandatory| Description                                                   |
 | ------ | ------ | ---- | ------------------------------------------------------- |
-| value  | number | Yes  | Height per row or width per column.<br>Default value: size of the first element<br>Unit: vp|
+| value  | number | Yes  | Height per row or width per column.<br>Default value: size of the first element<br>Unit: vp<br>Value range: [0, +∞).<br>If a value less than 0 is set, the default value is used.|
 
 ### multiSelectable<sup>8+</sup>
 
 multiSelectable(value: boolean)
 
-Sets whether to enable multiselect. When multiselect is enabled, you can use the **selected** attribute and **onSelect** event to obtain the selected status of grid items; you can also set the [style](./ts-universal-attributes-polymorphic-style.md) for the selected state (by default, no style is set for the selected state).
+Whether to enable multiselect. When multiselect is enabled, you can use the **selected** attribute and **onSelect** event to obtain the selected status of grid items; you can also set the [style](./ts-universal-attributes-polymorphic-style.md) for the selected state (by default, no style is set for the selected state).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -399,7 +401,7 @@ Sets whether to enable animation. Currently, the grid item drag animation is sup
 
 | Name| Type   | Mandatory| Description                            |
 | ------ | ------- | ---- | -------------------------------- |
-| value  | boolean | Yes  | Whether to enable animation.<br>Default value: **false**|
+| value  | boolean | Yes  | Whether to enable animation.<br>Default value: **false** (animation is disabled).|
 
 ### edgeEffect<sup>10+</sup>
 
@@ -454,7 +456,7 @@ Sets the nested scrolling options. You can set the nested scrolling mode in the 
 
 friction(value: number | Resource)
 
-Sets the friction coefficient. It applies only to gestures in the scrolling area, and it affects only indirectly the scroll chaining during the inertial scrolling process. If this attribute is set to a value less than or equal to 0, the default value is used.
+Sets the friction coefficient. It applies only to gestures in the scrolling area, and it affects only indirectly the scroll chaining during the inertial scrolling process.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -464,7 +466,7 @@ Sets the friction coefficient. It applies only to gestures in the scrolling area
 
 | Name| Type                                                | Mandatory| Description                                                       |
 | ------ | ---------------------------------------------------- | ---- | ----------------------------------------------------------- |
-| value  | number \| [Resource](ts-types.md#resource) | Yes  | Friction coefficient.<br>Default value: **0.9** for wearable devices and **0.6** for non-wearable devices<br>Since API version 11, the default value for non-wearable devices is **0.7**.<br>Since API version 12, the default value for non-wearable devices is **0.75**.|
+| value  | number \| [Resource](ts-types.md#resource) | Yes  | Friction coefficient.<br>Default value: **0.9** for wearable devices and **0.6** for non-wearable devices<br>Since API version 11, the default value for non-wearable devices is **0.7**.<br>Since API version 12, the default value for non-wearable devices is **0.75**.<br>Value range: (0, +∞). If this parameter is set to a value less than or equal to 0, the default value is used.|
 
 ### alignItems<sup>12+</sup>
 
@@ -640,7 +642,7 @@ Triggered when the dragged grid item is dropped on the drop target of the grid.
 
 onScrollBarUpdate(event: (index: number, offset: number) => ComputedBarAttribute)
 
-Triggered when the first item displayed in the grid changes. You can use the callback to set the position and length of the scrollbar.
+Triggered at the end of each frame layout in the grid. You can use the callback to set the position and length of the scrollbar.
 
 This API is intended solely for setting the scroll position of the grid. Avoid implementing service logic within this API.
 
@@ -1476,7 +1478,7 @@ struct GridColumnsTemplate {
 ### Example 9: Setting Grid Item Heights Based on the Tallest Item in the Current Row
 This example implements a grid that contains two columns. The grid item in each column consists of two **Column** components with determined heights and one **Text** component with an undetermined height.
 
-By default, the heights of the left and right grid items may differ; however, after the grid's **alignItems** attribute is set to **GridItemAlignment.STRETCH**, the grid item with a shorter height in a row will adopt the height of the taller grid item, aligning their heights within the same row.
+By default, the heights of the left and right grid items may differ; however, after the grid's [alignItems](#alignitems12) attribute is set to **GridItemAlignment.STRETCH**, the grid item with a shorter height in a row will adopt the height of the taller grid item, aligning their heights within the same row.
 
 ```ts
 @Entry

@@ -216,75 +216,28 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
 
 ### 断开连接
 
-   IPC通信结束后，FA模型使用featureAbility的[disconnectAbility](../reference/apis-ability-kit/js-apis-ability-featureAbility.md#featureabilitydisconnectability7)接口断开连接
+   IPC通信结束后，FA模型使用featureAbility的[disconnectAbility](../reference/apis-ability-kit/js-apis-ability-featureAbility.md#featureabilitydisconnectability7)接口断开连接，此处使用的[connectId](./ipc-rpc-development-guideline.md#客户端连接服务获取服务代理proxy)是在连接服务时保存下的。
 
    ```ts
     import { featureAbility } from "@kit.AbilityKit";
-    import { Want, common } from '@kit.AbilityKit';
-    import { rpc } from '@kit.IPCKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
 
-    let proxy: rpc.IRemoteObject | undefined;
     let connectId: number;
-
-    let want: Want = {
-      // 写包名和组件名实际的值
-      bundleName: "ohos.rpc.test.server",
-      abilityName: "ohos.rpc.test.server.ServiceAbility",
-    };
-    let connect: common.ConnectOptions = {
-      onConnect: (elementName, remoteProxy) => {
-        hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
-        proxy = remoteProxy;
-      },
-      onDisconnect: (elementName) => {
-        hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
-      },
-      onFailed: () => {
-        hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
-      }
-    };
-
-    connectId = featureAbility.connectAbility(want, connect);
 
     function disconnectCallback() {
       hilog.info(0x0000, 'testTag', 'disconnect ability done');
     }
-    // 断开连接
+    // 断开连接，使用连接服务成功时保存下来的connectId断开连接
     featureAbility.disconnectAbility(connectId, disconnectCallback);
    ```
 
-   Stage模型在获取context后用提供的[disconnectServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability-1)接口断开连接。
+   Stage模型在获取context后用提供的[disconnectServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability-1)接口断开连接，此处使用的connectId是在连接服务时保存下的。
 
    ```ts
-    import { featureAbility } from "@kit.AbilityKit";
-    import { Want, common } from '@kit.AbilityKit';
-    import { rpc } from '@kit.IPCKit';
-    import { hilog } from '@kit.PerformanceAnalysisKit';
-
-    let proxy: rpc.IRemoteObject | undefined;
     let connectId: number;
-
-    let want: Want = {
-      // 包名和组件名写实际的值
-      bundleName: "ohos.rpc.test.server",
-      abilityName: "ohos.rpc.test.server.ServiceAbility",
-    };
-    let connect: common.ConnectOptions = {
-      onConnect: (elementName, remoteProxy) => {
-        hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
-        proxy = remoteProxy;
-      },
-      onDisconnect: (elementName) => {
-        hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
-      },
-      onFailed: () => {
-        hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
-      }
-    };
     let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-    connectId = this.context.connectServiceExtensionAbility(want,connect);
-    // 断开连接
+
+    // 断开连接，使用连接服务成功时保存下来的connectId断开连接
     this.context.disconnectServiceExtensionAbility(connectId);
    ```
 

@@ -517,7 +517,7 @@ uiContext.getAttachedFrameNodeById("TestNode")
 getFrameNodeByUniqueId(id: number): FrameNode | null
 
 提供getFrameNodeByUniqueId接口通过组件的uniqueId获取组件树的实体节点。
-1. 当uniqueId对应的是内置组件时，返回组件所对应的FrameNode；
+1. 当uniqueId对应的是系统组件时，返回组件所对应的FrameNode；
 2. 当uniqueId对应的是自定义组件时，若其有渲染内容，则返回该自定义组件的根节点，类型为__Common__；若其无渲染内容，则返回其第一个子组件的FrameNode。
 3. 当uniqueId无对应的组件时，返回null。
 
@@ -2545,6 +2545,71 @@ getTextMenuController(): TextMenuController
 **示例：**
 
 参考[TextMenuController](#textmenucontroller16)接口示例。
+
+### createUIContextWithoutWindow<sup>17+</sup>
+
+static createUIContextWithoutWindow(context: common.UIAbilityContext | common.ExtensionContext) : UIContext | undefined
+
+创建一个不依赖窗口的UI实例，并返回其UI上下文。该接口所创建的UI实例是单例。
+
+> **说明：**
+>
+> 返回的UI上下文只可用于创建[自定义节点](../../ui/arkts-user-defined-node.md)，不能执行其他UI操作。
+
+**原子化服务API:** 从API version 17 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                     | 必填 | 说明        |
+| ------- | ---------------------------------------- | ---- | ----------- |
+| context | common.[UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| common.[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md) | 是    | [UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)或[ExtensionAbility](../apis-ability-kit/js-apis-app-ability-extensionAbility.md)所对应的上下文环境。 |
+
+**返回值：**
+
+|类型|说明|
+|----|----|
+| UIContext \| undefined | 创建的UI实例的上下文，创建失败时返回undefined。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[UI上下文](errorcode-uicontext.md)错误码。
+
+| 错误码ID  | 错误信息                        |
+| ------ | ---------------------------------- |
+| 401    | Parameter error. Possible causes: <br> 1. The number of parameters is incorrect.<br> 2. Invalid parameter type of context. |
+| 100001 | Internal error. |
+
+
+**示例：**
+```ts
+import { UIContext } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    let uiContext : UIContext | undefined = UIContext.createUIContextWithoutWindow(this.context);
+  }
+
+  // ......
+}
+```
+
+### destroyUIContextWithoutWindow<sup>17+</sup>
+
+static destroyUIContextWithoutWindow(): void
+
+销毁[createUIContextWithoutWindow](#createuicontextwithoutwindow17)创建的UI实例。
+
+**原子化服务API:** 从API version 17 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+```ts
+UIContext.destroyUIContextWithoutWindow();
+```
 
 ### dispatchKeyEvent<sup>15+</sup>
 
@@ -5709,10 +5774,10 @@ type CustomBuilderWithId = (id: number)&nbsp;=&gt;&nbsp;void
 
 **参数：**
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| id | string&nbsp;\|&nbsp;number | 是 | 指定popup或menu绑定的目标节点。<br/>**说明：** <br/>1. 当id是number时，对应组件实例的UniquelD，此id由系统保证唯一性。<br/>2. 当id是string时，对应[通用属性id](arkui-ts/ts-universal-attributes-component-id.md#id)所指定的组件，此id的唯一性需由开发者确保，但实际可能会有多个。 |
-| componentId | number | 否 | 目标节点所在的自定义组件的UniquelD。当上述id指定为string类型时，可通过此属性圈定范围。方便开发者在一定范围内保证id: string的唯一性。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| id | string&nbsp;\|&nbsp;number | 否 | 否 | 指定popup或menu绑定的目标节点。<br/>**说明：** <br/>1. 当id是number时，对应组件实例的UniquelD，此id由系统保证唯一性。<br/>2. 当id是string时，对应[通用属性id](arkui-ts/ts-universal-attributes-component-id.md#id)所指定的组件，此id的唯一性需由开发者确保，但实际可能会有多个。 |
+| componentId | number | 否 | 是 | 目标节点所在的自定义组件的UniquelD。当上述id指定为string类型时，可通过此属性圈定范围。方便开发者在一定范围内保证id: string的唯一性。 |
 
 ## PromptAction
 
@@ -6191,7 +6256,7 @@ openCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 103301 | the ComponentContent is incorrect. |
+| 103301 | The ComponentContent is incorrect. |
 | 103302 | Dialog content already exists.|
 
 **示例：**
@@ -6283,7 +6348,7 @@ openCustomDialogWithController\<T extends Object>(dialogContent: ComponentConten
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 103301 | the ComponentContent is incorrect. |
+| 103301 | The ComponentContent is incorrect. |
 | 103302 | Dialog content already exists.|
 
 **示例：**
@@ -6379,8 +6444,8 @@ closeCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>): Promi
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 103301 | the ComponentContent is incorrect. |
-| 103303 | the ComponentContent cannot be found. |
+| 103301 | The ComponentContent is incorrect. |
+| 103303 | The ComponentContent cannot be found. |
 
 **示例：**
 
@@ -6475,8 +6540,8 @@ updateCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, optio
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 103301 | the ComponentContent is incorrect. |
-| 103303 | the ComponentContent cannot be found. |
+| 103301 | The ComponentContent is incorrect. |
+| 103303 | The ComponentContent cannot be found. |
 
 **示例：**
 
@@ -6993,7 +7058,8 @@ export function showPopup(context: UIContext, uniqueId: number, contentNode: Com
   let targetId = frameNode?.getFirstChild()?.getUniqueId();
   promptAction.openPopup(contentNode, { id: targetId }, {
     radius: 16,
-    enableArrow: true
+    mask: { color: Color.Pink },
+    enableArrow: true,
   })
     .then(() => {
       console.info('openPopup success');
@@ -7881,7 +7947,7 @@ cancelDataLoading(key: string): void
 
 ### notifyDragStartRequest<sup>18+</sup>
 
-notifyDragStartRequest(requestStatus: draController.DragStartRequestStatus): void
+notifyDragStartRequest(requestStatus: dragController.DragStartRequestStatus): void
 
 控制应用是否可以发起拖拽。
 
@@ -7893,7 +7959,7 @@ notifyDragStartRequest(requestStatus: draController.DragStartRequestStatus): voi
 
 | 参数名 | 类型   | 必填| 说明                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| requestStatus  | [draController.DragStartRequestStatus](js-apis-arkui-dragController.md#dragstartrequeststatus18)    | 是  |定义应用是否可以发起拖拽。|
+| requestStatus  | [dragController.DragStartRequestStatus](js-apis-arkui-dragController.md#dragstartrequeststatus18)    | 是  |定义应用是否可以发起拖拽。|
 
 **示例：**
 
@@ -7995,16 +8061,18 @@ addComponentContent(content: ComponentContent, index?: number): void
 **示例：**
 
 ```ts
-import { ComponentContent, OverlayManager, router } from '@kit.ArkUI';
+import { ComponentContent, OverlayManager } from '@kit.ArkUI';
 
 class Params {
-  text: string = ""
-  offset: Position
+  text: string = "";
+  offset: Position;
+
   constructor(text: string, offset: Position) {
-    this.text = text
-    this.offset = offset
+    this.text = text;
+    this.offset = offset;
   }
 }
+
 @Builder
 function builderText(params: Params) {
   Column() {
@@ -8018,68 +8086,68 @@ function builderText(params: Params) {
 @Component
 struct OverlayExample {
   @State message: string = 'ComponentContent';
-  private uiContext: UIContext = this.getUIContext()
-  private overlayNode: OverlayManager = this.uiContext.getOverlayManager()
-  @StorageLink('contentArray') contentArray: ComponentContent<Params>[] = []
-  @StorageLink('componentContentIndex') componentContentIndex: number = 0
-  @StorageLink('arrayIndex') arrayIndex: number = 0
-  @StorageLink("componentOffset") componentOffset: Position = {x: 0, y: 80}
+  private uiContext: UIContext = this.getUIContext();
+  private overlayNode: OverlayManager = this.uiContext.getOverlayManager();
+  @StorageLink('contentArray') contentArray: ComponentContent<Params>[] = [];
+  @StorageLink('componentContentIndex') componentContentIndex: number = 0;
+  @StorageLink('arrayIndex') arrayIndex: number = 0;
+  @StorageLink("componentOffset") componentOffset: Position = { x: 0, y: 80 };
 
   build() {
     Column() {
-      Button("++componentContentIndex: " + this.componentContentIndex).onClick(()=>{
-        ++this.componentContentIndex
+      Button("++componentContentIndex: " + this.componentContentIndex).onClick(() => {
+        ++this.componentContentIndex;
       })
-      Button("--componentContentIndex: " + this.componentContentIndex).onClick(()=>{
-        --this.componentContentIndex
+      Button("--componentContentIndex: " + this.componentContentIndex).onClick(() => {
+        --this.componentContentIndex;
       })
-      Button("增加ComponentContent" + this.contentArray.length).onClick(()=>{
+      Button("增加ComponentContent" + this.contentArray.length).onClick(() => {
         let componentContent = new ComponentContent(
           this.uiContext, wrapBuilder<[Params]>(builderText),
           new Params(this.message + (this.contentArray.length), this.componentOffset)
-        )
-        this.contentArray.push(componentContent)
-        this.overlayNode.addComponentContent(componentContent, this.componentContentIndex)
+        );
+        this.contentArray.push(componentContent);
+        this.overlayNode.addComponentContent(componentContent, this.componentContentIndex);
       })
-      Button("++arrayIndex: " + this.arrayIndex).onClick(()=>{
-        ++this.arrayIndex
+      Button("++arrayIndex: " + this.arrayIndex).onClick(() => {
+        ++this.arrayIndex;
       })
-      Button("--arrayIndex: " + this.arrayIndex).onClick(()=>{
-        --this.arrayIndex
+      Button("--arrayIndex: " + this.arrayIndex).onClick(() => {
+        --this.arrayIndex;
       })
-      Button("删除ComponentContent" + this.arrayIndex).onClick(()=>{
+      Button("删除ComponentContent" + this.arrayIndex).onClick(() => {
         if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
-          let componentContent = this.contentArray.splice(this.arrayIndex, 1)
-          this.overlayNode.removeComponentContent(componentContent.pop())
+          let componentContent = this.contentArray.splice(this.arrayIndex, 1);
+          this.overlayNode.removeComponentContent(componentContent.pop());
         } else {
-          console.info("arrayIndex有误")
+          console.info("arrayIndex有误");
         }
       })
-      Button("显示ComponentContent" + this.arrayIndex).onClick(()=>{
+      Button("显示ComponentContent" + this.arrayIndex).onClick(() => {
         if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
-          let componentContent = this.contentArray[this.arrayIndex]
-          this.overlayNode.showComponentContent(componentContent)
+          let componentContent = this.contentArray[this.arrayIndex];
+          this.overlayNode.showComponentContent(componentContent);
         } else {
-          console.info("arrayIndex有误")
+          console.info("arrayIndex有误");
         }
       })
-      Button("隐藏ComponentContent" + this.arrayIndex).onClick(()=>{
+      Button("隐藏ComponentContent" + this.arrayIndex).onClick(() => {
         if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
-          let componentContent = this.contentArray[this.arrayIndex]
-          this.overlayNode.hideComponentContent(componentContent)
+          let componentContent = this.contentArray[this.arrayIndex];
+          this.overlayNode.hideComponentContent(componentContent);
         } else {
-          console.info("arrayIndex有误")
+          console.info("arrayIndex有误");
         }
       })
-      Button("显示所有ComponentContent").onClick(()=>{
-          this.overlayNode.showAllComponentContents()
+      Button("显示所有ComponentContent").onClick(() => {
+        this.overlayNode.showAllComponentContents();
       })
-      Button("隐藏所有ComponentContent").onClick(()=>{
-        this.overlayNode.hideAllComponentContents()
+      Button("隐藏所有ComponentContent").onClick(() => {
+        this.overlayNode.hideAllComponentContents();
       })
 
-      Button("跳转页面").onClick(()=>{
-        router.pushUrl({
+      Button("跳转页面").onClick(() => {
+        this.getUIContext().getRouter().pushUrl({
           url: 'pages/Second'
         })
       })
@@ -8770,7 +8838,7 @@ setAutoFocusTransfer(isAutoFocusTransfer: boolean): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------- | ------- | ------- | ------- |
-| isAutoFocusTransfer | boolean| 是 | 设置页面切换时，新的页面是否需要主动获取焦点，例如[Router](js-apis-router.md#routerpushurl9)、[Navigation](arkui-ts/ts-basic-components-navigation.md#navigation)、[Menu](arkui-ts/ts-basic-components-menu.md#menu)、[Dialog](arkui-ts/ohos-arkui-advanced-Dialog.md)、[Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup)等。true表示需要主动获取焦点，false表示不需要主动获取焦点。默认值为true。 |
+| isAutoFocusTransfer | boolean| 是 | 设置页面切换时，新的页面是否需要主动获取焦点，例如[Router](js-apis-router.md#routerpushurldeprecated)、[Navigation](arkui-ts/ts-basic-components-navigation.md#navigation)、[Menu](arkui-ts/ts-basic-components-menu.md#menu)、[Dialog](arkui-ts/ohos-arkui-advanced-Dialog.md)、[Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup)等。true表示需要主动获取焦点，false表示不需要主动获取焦点。默认值为true。 |
 
 ```ts
 @CustomDialog
@@ -9409,7 +9477,7 @@ createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boo
 | builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | 是   | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。 |
 | delay<sup>12+</sup>   | number | 否    | 指定触发截图指令的延迟时间。当布局中使用了图片组件时，需要指定延迟时间，以便系统解码图片资源。资源越大，解码需要的时间越长，建议尽量使用不需要解码的PixelMap资源。<br/> 当使用PixelMap资源或对Image组件设置syncload为true时，可以配置delay为0，强制不等待触发截图。该延迟时间并非指接口从调用到返回的时间，由于系统需要对传入的builder进行临时离屏构建，因此返回的时间通常要比该延迟时间长。<br/>**说明：** 截图接口传入的builder中，不应使用状态变量控制子组件的构建，如果必须要使用，在调用截图接口时，也不应再有变化，以避免出现截图不符合预期的情况。<br/> 默认值：300 <br/> 单位：毫秒|
 | checkImageStatus<sup>12+</sup>  | boolean | 否    | 指定是否允许在截图之前，校验图片解码状态。如果为true，则会在截图之前检查所有Image组件是否已经解码完成，如果没有完成检查，则会放弃截图并返回异常。<br/>默认值：false|
-| options<sup>12+</sup>       | [SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)           | 否    | 截图相关的自定义参数。 |
+| options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)           | 否    | 截图相关的自定义参数。 |
 
 **返回值：**
 
@@ -10289,3 +10357,79 @@ struct Index {
   }
 }
 ```
+## setPixelRoundMode<sup>18+</sup>
+
+setPixelRoundMode(mode: PixelRoundMode): void
+
+配置当前页面的像素取整模式。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名      | 类型         | 必填   | 说明   |
+| -------- | ---------- | ---- | ---- |
+| mode | [PixelRoundMode](./arkui-ts/ts-appendix-enums.md#pixelroundmode18)| 是    | 像素取整模式。<br />默认值：PixelRoundMode.PIXEL_ROUND_ON_LAYOUT_FINISH |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIContext } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err, data) => {
+      let uiContext :UIContext = windowStage.getMainWindowSync().getUIContext();
+      uiContext.setPixelRoundMode(PixelRoundMode.PIXEL_ROUND_ON_LAYOUT_FINISH);
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+    });
+  }
+```
+
+## getPixelRoundMode<sup>18+</sup>
+
+getPixelRoundMode(): PixelRoundMode
+
+获取当前页面的像素取整模式。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型         | 说明   |
+| ---------- | ---- |
+| [PixelRoundMode](./arkui-ts/ts-appendix-enums.md#pixelroundmode18)| 当前页面的像素取整模式。|
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIContext } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err, data) => {
+      let uiContext :UIContext = windowStage.getMainWindowSync().getUIContext();
+      console.info("pixelRoundMode : " + uiContext.getPixelRoundMode().valueOf());
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+    });
+  }

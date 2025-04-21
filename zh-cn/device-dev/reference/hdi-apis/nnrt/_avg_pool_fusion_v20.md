@@ -35,7 +35,7 @@
 | enum [PadMode](_n_n_rt_v20.md#padmode)[padMode](#padmode) | 填充模式。  | 
 | enum [RoundMode](_n_n_rt_v20.md#roundmode)[roundMode](#roundmode) | 取整数的算法。  | 
 | enum [Format](_n_n_rt_v20.md#format)[format](#format) | 运算时的数据排列排列，详情请参考：[Format](_n_n_rt_v20.md#format) | 
-| boolean [global](#global) | 是否是全局池化。  | 
+| boolean [global](#global) | global为true是全局池化，反之则不是。  | 
 | enum [ActivationType](_n_n_rt_v20.md#activationtype)[activationType](#activationtype) | 激活函数，详情请参考：[ActivationType](_n_n_rt_v20.md#activationtype) | 
 
 

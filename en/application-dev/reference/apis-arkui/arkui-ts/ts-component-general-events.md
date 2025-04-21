@@ -1,5 +1,5 @@
 # Universal Events
-
+<!--Del-->
 - [Click Event](ts-universal-events-click.md)
 - [Touch Event](ts-universal-events-touch.md)
 - [Show/Hide Event](ts-universal-events-show-hide.md)
@@ -18,3 +18,4 @@
 - [Custom Event Interception](ts-universal-attributes-on-touch-intercept.md)
 - [Focus Axis Event](ts-universal-events-focus_axis.md)
 - [Axis Event](ts-universal-events-axis.md)
+<!--DelEnd-->

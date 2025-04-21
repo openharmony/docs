@@ -7,8 +7,6 @@
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](./js-apis-arkui-UIContext.md#uicontext)说明。
->
-> 从API version 10开始，可以通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getFont](./js-apis-arkui-UIContext.md#getfont)方法获取当前UI上下文关联的[Font](./js-apis-arkui-UIContext.md#font)对象。
 
 ## 导入模块
 
@@ -16,11 +14,17 @@
 import { font } from '@kit.ArkUI'
 ```
 
-## font.registerFont
+## font.registerFont<sup>(deprecated)</sup>
 
 registerFont(options: FontOptions): void
 
 在字体管理中注册自定义字体。
+
+> **说明：**
+>
+> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getFont](js-apis-arkui-UIContext.md#getfont)获取[Font](js-apis-arkui-UIContext.md#font)实例，再通过此实例调用替代方法[registerFont](js-apis-arkui-UIContext.md#registerfont)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getFont](js-apis-arkui-UIContext.md#getfont)方法获取当前UI上下文关联的[Font](js-apis-arkui-UIContext.md#font)对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -51,8 +55,6 @@ registerFont(options: FontOptions): void
 
 ```ts
 // xxx.ets
-import { font } from '@kit.ArkUI';
-
 @Entry
 @Component
 struct FontExample {
@@ -60,29 +62,30 @@ struct FontExample {
   // iconFont示例，假设0000为指定icon的Unicode，实际需要开发者从注册的iconFont的ttf文件里面获取Unicode
   @State unicode: string = '\u0000';
   @State codePoint: string = String.fromCharCode(0x0000);
+  private uiContext: UIContext = this.getUIContext();
 
   aboutToAppear() {
     // familyName和familySrc都支持系统Resource
-    font.registerFont({
+    this.uiContext.getFont().registerFont({
       // 建议使用 this.getUIContext().getFont().registerFont()接口
       familyName: $r('app.string.font_name'),
       familySrc: $r('app.string.font_src')
     })
 
     // familySrc支持RawFile
-    font.registerFont({
+    this.uiContext.getFont().registerFont({
       familyName: 'mediumRawFile',
       familySrc: $rawfile('font/medium.ttf')
     })
 
     // 注册iconFont
-    font.registerFont({
+    this.uiContext.getFont().registerFont({
       familyName: 'iconFont',
       familySrc: '/font/iconFont.ttf'
     })
 
     // familyName和familySrc都支持string
-    font.registerFont({
+    this.uiContext.getFont().registerFont({
       familyName: 'medium',
       familySrc: '/font/medium.ttf' // font文件夹与pages目录同级
     })
@@ -114,11 +117,17 @@ struct FontExample {
 >
 > 在HSP工程中，不推荐采用相对路径的方式注册自定义字体，详见[通过$r访问HSP中的资源](../../quick-start/in-app-hsp.md)。
 
-## font.getSystemFontList<sup>10+</sup>
+## font.getSystemFontList<sup>(deprecated)</sup>
 
 getSystemFontList(): Array\<string>
 
 获取风格字体列表。
+
+> **说明：**
+>
+> 从API version 10开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getFont](js-apis-arkui-UIContext.md#getfont)获取[Font](js-apis-arkui-UIContext.md#font)实例，再通过此实例调用替代方法[getSystemFontList](js-apis-arkui-UIContext.md#getsystemfontlist)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getFont](js-apis-arkui-UIContext.md#getfont)方法获取当前UI上下文关联的[Font](js-apis-arkui-UIContext.md#font)对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -139,6 +148,8 @@ getSystemFontList(): Array\<string>
 > **说明**
 >
 > 推荐通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getFont](./js-apis-arkui-UIContext.md#getfont)方法获取当前UI上下文关联的[Font](./js-apis-arkui-UIContext.md#font)对象。
+
+<!--deprecated_code_no_check-->
 
 ```ts
 // xxx.ets
@@ -162,11 +173,17 @@ struct FontExample {
 }
 ```
 
-## font.getFontByName<sup>10+</sup>
+## font.getFontByName<sup>(deprecated)</sup>
 
 getFontByName(fontName: string): FontInfo
 
 根据传入的系统字体名称获取系统字体的相关信息。
+
+> **说明：**
+>
+> 从API version 10开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getFont](js-apis-arkui-UIContext.md#getfont)获取[Font](js-apis-arkui-UIContext.md#font)实例，再通过此实例调用替代方法[getFontByName](js-apis-arkui-UIContext.md#getfontbyname)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getFont](js-apis-arkui-UIContext.md#getfont)方法获取当前UI上下文关联的[Font](js-apis-arkui-UIContext.md#font)对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -208,6 +225,8 @@ getFontByName(fontName: string): FontInfo
 > **说明**
 >
 > 推荐通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getFont](./js-apis-arkui-UIContext.md#getfont)方法获取当前UI上下文关联的[Font](./js-apis-arkui-UIContext.md#font)对象。
+
+<!--deprecated_code_no_check-->
 
 ```ts
 // xxx.ets

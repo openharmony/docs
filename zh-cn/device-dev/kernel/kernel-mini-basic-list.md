@@ -67,7 +67,7 @@
 
 ### 示例代码
 
-示例代码如下:
+示例代码如下：
 
 本演示代码在 ./kernel/liteos_m/testsuites/src/osTest.c 中编译验证，在TestTaskEntry中调用验证入口函数ExampleList。
 
