@@ -63,6 +63,67 @@ Web组件支持前端页面选择文件上传功能，应用开发者可以使�
   </html>
   ```
 
+## 使用onShowFileSelector拉起图库
+
+下面的示例中，当用户在前端页面点击文件上传按钮，应用侧在[onShowFileSelector()](../reference/apis-arkweb/ts-basic-components-web.md#onshowfileselector9)接口中收到文件上传请求，在此接口中开发者将上传的本地图片路径设置给前端页面。
+
+
+- 应用侧代码。
+  
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { photoAccessHelper } from '@kit.MediaLibraryKit';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: $rawfile('local.html'), controller: this.controller })
+          .onShowFileSelector((event) => {
+            console.log('MyFileUploader onShowFileSelector invoked');
+            const photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
+            let uri: string | null = null;
+            const photoViewPicker = new photoAccessHelper.PhotoViewPicker();
+            photoViewPicker.select(photoSelectOptions).then((photoSelectResult) => {
+              uri = photoSelectResult[0];
+              console.info('photoViewPicker.select to file succeed and uri is:' + uri);
+              if (event) {
+                event.result.handleFileList([uri]);
+              }
+            }).catch((err: BusinessError) => {
+              console.error(`Invoke photoViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
+            })
+            return true;
+          })
+      }
+    }
+  }
+  ```
+
+
+- local.html页面代码。
+  
+  ```html
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <title>Document</title>
+  </head>
+
+  <body>
+  <!-- 点击上传文件按钮 -->
+  <input type="file" value="file"></br>
+  <meta name="viewport" content="width=device-width" />
+  </body>
+  </html>
+  ```
+
 ## 使用onShowFileSelector拉起相机
 
 Web组件支持前端页面上传图片文件时调用相机即时拍照，应用开发者可以使用[onShowFileSelector()](../reference/apis-arkweb/ts-basic-components-web.md#onshowfileselector9)接口来处理前端页面文件上传的请求并自行拉起相机，如果应用开发者不做任何处理，Web会提供默认行为来处理前端页面调用相机的请求。
@@ -162,6 +223,8 @@ html页面代码
 `accept` 属性是一个字符串，它定义了文件 input 应该接受的文件类型。这个字符串是一个以逗号为分隔的唯一文件类型说明符列表。由于给定的文件类型可以用多种方式指定，因此当你需要给定格式的文件时，提供一组完整的类型指定符是非常有用的。
 
 `capture` 属性是一个字符串，如果 `accept` 属性指出了 input 是图片或者视频类型，则它指定了使用哪个摄像头去获取这些数据。值 `user` 表示应该使用前置摄像头和（或）麦克风。值 `environment` 表示应该使用后置摄像头和（或）麦克风。如果缺少此属性，则用户代理可以自由决定做什么。如果请求的前置模式不可用，则用户代理可能退回到其首选的默认模式。
+
+当指定布尔类型属性 `multiple` 时，文件 input 允许用户选择多个文件。
 
 示例页面内有数个文件选择器，分别设置了不同的accept及capture属性，这两个属性对相机的影响如下：
 
