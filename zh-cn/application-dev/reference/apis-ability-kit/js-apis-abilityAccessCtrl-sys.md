@@ -460,7 +460,7 @@ getPermissionsStatus(tokenID: number, permissionList: Array&lt;Permissions&gt;):
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;Array&lt;[PermissionStatus](#permissionstatus12)&gt;&gt; | Promise对象，返回查询到的权限状态列表。 |
+| Promise&lt;Array&lt;[PermissionStatus](js-apis-abilityAccessCtrl.md#permissionstatus20)&gt;&gt; | Promise对象，返回查询到的权限状态列表。 |
 
 **错误码：**
 
@@ -661,19 +661,3 @@ atManager.requestPermissionOnApplicationSetting(tokenID).then(() => {
 | ------------------ | ----- | ----------- |
 | CLOSED  | 0    | 表示关闭状态。 |
 | OPEN | 1     | 表示开启状态。 |
-
-### PermissionStatus<sup>12+</sup>
-
-表示权限状态的枚举。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Security.AccessToken
-
-| 名称               |    值 | 说明        |
-| ------------------ | ----- | ----------- |
-| DENIED  | -1    | 表示未授权。 |
-| GRANTED | 0     | 表示已授权。 |
-| NOT_DETERMINED | 1     | 表示未操作。 |
-| INVALID | 2     | 表示无效。 |
-| RESTRICTED | 3     | 表示受限。 |
