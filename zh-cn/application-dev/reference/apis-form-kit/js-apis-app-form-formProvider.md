@@ -424,7 +424,6 @@ import { router } from '@kit.ArkUI';
 import { formProvider } from '@ohos.app.form.formProvider';
 import { common } from '@ohos.app.ability.common';
 
-const context = getContext(this) as common.UIAbilityContext;
 const TAG: string = 'FormEditDemo-Page] -->';
 
 @Entry
