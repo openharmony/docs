@@ -74,7 +74,7 @@ resetProcessPriority(pid: number): Promise&lt;void&gt;
 
 | 类型             | 说明               |
 | -------------- | ---------------- |
-| Promise\<void> | 使用Promise形式返回结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例**：
 
