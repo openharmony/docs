@@ -96,7 +96,7 @@ import { text } from '@kit.ArkGraphics2D';
 | NONE           | 0 | 装饰线不生效。|
 | UNDERLINE      | 1 | 下划线。      |
 | OVERLINE       | 2 | 上划线。     |
-| LINE_THROUGH   | 3 | 删除线。      |
+| LINE_THROUGH   | 4 | 删除线。      |
 
 ## TextDecorationStyle
 
