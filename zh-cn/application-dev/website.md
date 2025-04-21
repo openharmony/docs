@@ -3737,7 +3737,7 @@
             - [loop.h](reference/apis-ffrt-kit/loop_8h.md)
             - [mutex.h](reference/apis-ffrt-kit/mutex_8h.md)
             - [queue.h](reference/apis-ffrt-kit/queue_8h.md)
-            - [shared_mutex.h](reference/apis-ffrt-kit/queue_8h.md)
+            - [shared_mutex.h](reference/apis-ffrt-kit/shared__mutex_8h.md)
             - [sleep.h](reference/apis-ffrt-kit/sleep_8h.md)
             - [task.h](reference/apis-ffrt-kit/task_8h.md)
             - [timer.h](reference/apis-ffrt-kit/timer_8h.md)
