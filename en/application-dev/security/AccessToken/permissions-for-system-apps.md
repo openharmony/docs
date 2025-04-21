@@ -4672,3 +4672,15 @@ Allows an application to call the accessibility service extension APIs to query 
 **Enable via ACL**: true
 
 **Valid since**: 20
+
+## ohos.permission.SANDBOX_ACCESS_MANAGER
+
+Allows an application to access the sandbox directory of other applications.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 17
