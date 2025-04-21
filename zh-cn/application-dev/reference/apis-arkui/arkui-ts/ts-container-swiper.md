@@ -21,6 +21,8 @@
 >  - 当Swiper子组件设置了[offset](ts-universal-attributes-location.md#offset)属性时，会按照子组件的层级进行绘制，层级高的子组件会覆盖层级低的子组件。例如，Swiper包含3个子组件，其中第3个子组件设置了offset({ x : 100 })，那么在横向循环滑动中，第3个子组件会覆盖第1个子组件，此时可设置第1个子组件的[zIndex](ts-universal-attributes-z-order.md)属性值大于第3个子组件，使第1个子组件层级高于第3个子组件。
 >
 >  - 在走焦到用户定义的子节点时，导航点、箭头会由于[焦点样式](../../../ui/arkts-common-events-focus-event.md#焦点样式)修改zindex的行为被遮挡。
+>
+>  - 在包含大量子组件的场景中，建议采用懒加载、缓存数据、预加载数据和组件复用等方法，以优化Swiper的性能并减少内存占用。最佳实践请参考[优化Swiper组件加载慢丢帧问题](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-swiper_high_performance_development_guide)。
 
 ## 接口
 
@@ -264,6 +266,10 @@ displayMode(value: SwiperDisplayMode)
 cachedCount(value: number)
 
 设置预加载子组件个数，以当前页面为基准，加载当前显示页面的前后个数。例如cachedCount=1时，会将当前显示的页面的前面一页和后面一页的子组件都预加载。如果设置为按组翻页，即displayCount的swipeByGroup参数设为true，预加载时会以组为基本单位。例如cachedCount=1，swipeByGroup=true时，会将当前组的前面一组和后面一组的子组件都预加载。
+
+>  **说明：** 
+>
+>  - 在连续滑动场景中，一屏显示一个Swiper子组件时，通常将cachedCount值设置为1或2即可。最佳实践请参考[优化Swiper组件加载慢丢帧问题-缓存数据项](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-swiper_high_performance_development_guide#section143504547145)。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -1328,6 +1334,10 @@ Swiper组件结合LazyForEach使用时，不能在onChange事件里触发子页�
 onAnimationStart(event: OnSwiperAnimationStartCallback)
 
 切换动画开始时触发该回调。
+
+>  **说明：** 
+>
+>  - 调用此回调后，切换动画的逻辑将在渲染线程中执行，从而使处于空闲状态的主线程能够充分利用这段时间来加载子组件所需资源，减少后续在cachedCount范围内节点的预加载时间。最佳实践请参考[优化Swiper组件加载慢丢帧问题-提前加载数据](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-swiper_high_performance_development_guide#section8783121513246)。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
