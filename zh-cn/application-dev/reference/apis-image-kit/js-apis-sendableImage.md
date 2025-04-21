@@ -334,8 +334,8 @@ sendableImage下的PixelMap支持sendable属性，支持worker线程共享。sen
 
 | 名称              | 类型    | 可读 | 可写 | 说明                       |
 | -----------------| ------- | ---- | ---- | -------------------------- |
-| isEditable        | boolean | 是   | 否   | 图像像素是否可被编辑。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| isStrideAlignment | boolean | 是   | 否   | 图像内存是否为DMA内存，DMA内存的PixelMap会做256字节内存对齐，行末会存在padding区域。 |
+| isEditable        | boolean | 是   | 否   | true表示图像像素可被编辑，false表示不可被编辑。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| isStrideAlignment | boolean | 是   | 否   | true表示图像内存为DMA内存，false表示非DMA内存。DMA内存的PixelMap会做256字节内存对齐，行末会存在padding区域。 |
 
 ### readPixelsToBuffer
 
@@ -815,7 +815,7 @@ getDensity():number
 
 | 类型   | 说明            |
 | ------ | --------------- |
-| number | 图像像素的密度。|
+| number | 图像像素的密度，单位为ppi。|
 
 **示例：**
 
@@ -837,7 +837,7 @@ opacity(rate: number): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                        |
 | ------ | ------ | ---- | --------------------------- |
-| rate   | number | 是   | 透明比率的值。|
+| rate   | number | 是   | 透明比率的值，取值范围是(0,1]。|
 
 **返回值：**
 
@@ -876,7 +876,7 @@ opacitySync(rate: number): void
 
 | 参数名   | 类型                 | 必填 | 说明                           |
 | -------- | -------------------- | ---- | ------------------------------ |
-| rate     | number               | 是   | 透明比率的值。   |
+| rate     | number               | 是   | 透明比率的值，取值范围是(0,1]。   |
 
 **错误码：**
 
@@ -1064,8 +1064,8 @@ translate(x: number, y: number): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明        |
 | ------ | ------ | ---- | ----------- |
-| x      | number | 是   | 区域横坐标。|
-| y      | number | 是   | 区域纵坐标。|
+| x      | number | 是   | 区域横坐标。单位：像素。|
+| y      | number | 是   | 区域纵坐标。单位：像素。|
 
 **返回值：**
 
@@ -1222,8 +1222,8 @@ flip(horizontal: boolean, vertical: boolean): Promise\<void>
 
 | 参数名     | 类型    | 必填 | 说明      |
 | ---------- | ------- | ---- | --------- |
-| horizontal | boolean | 是   | 水平翻转。|
-| vertical   | boolean | 是   | 垂直翻转。|
+| horizontal | boolean              | 是   | true表示进行水平翻转，false表示不进行水平翻转。            |
+| vertical   | boolean              | 是   | true表示进行垂直翻转，false表示不进行垂直翻转。            |
 
 **返回值：**
 
@@ -1264,8 +1264,8 @@ flipSync(horizontal: boolean, vertical: boolean): void
 
 | 参数名     | 类型                 | 必填 | 说明                          |
 | ---------- | -------------------- | ---- | ----------------------------- |
-| horizontal | boolean              | 是   | 水平翻转。                    |
-| vertical   | boolean              | 是   | 垂直翻转。                    |
+| horizontal | boolean              | 是   | true表示进行水平翻转，false表示不进行水平翻转。            |
+| vertical   | boolean              | 是   | true表示进行垂直翻转，false表示不进行垂直翻转。            |
 
 **错误码：**
 
@@ -1719,14 +1719,14 @@ async function Demo() {
 | 名称 | 类型          | 只读 | 可选 | 说明         |
 | ---- | ------------- | ---- | ---- | ------------ |
 | size | [Size](#size) | 否   | 否   | 区域大小。   |
-| x    | number        | 否   | 否   | 区域横坐标。 |
-| y    | number        | 否   | 否   | 区域纵坐标。 |
+| x    | number        | 否   | 否   | 区域横坐标。单位：像素。 |
+| y    | number        | 否   | 否   | 区域纵坐标。单位：像素。 |
 
 ## sendableImage.createImageSource
 
 createImageSource(uri: string): ImageSource
 
-通过传入的uri创建图片源实例。
+通过传入的uri创建ImageSource实例。
 
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -1757,7 +1757,7 @@ const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createIm
 
 createImageSource(fd: number): ImageSource
 
-通过传入文件描述符来创建图片源实例。
+通过传入文件描述符来创建ImageSource实例。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1790,7 +1790,7 @@ const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createIm
 
 createImageSource(buf: ArrayBuffer): ImageSource
 
-通过缓冲区创建图片源实例。
+通过缓冲区创建ImageSource实例。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -1862,7 +1862,7 @@ let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(si
 
 ## ImageSource
 
-图片源类，用于获取图片相关信息。在调用ImageSource的方法前，需要先通过[createImageSource](#sendableimagecreateimagesource)构建一个ImageSource实例。
+ImageSource类，用于获取图片相关信息。在调用ImageSource的方法前，需要先通过[createImageSource](#sendableimagecreateimagesource)构建一个ImageSource实例。
 
 
 ### createPixelMap
@@ -1908,7 +1908,7 @@ sendableImageSourceApi.createPixelMap().then((pixelMap: sendableImage.PixelMap) 
 
 release(): Promise\<void>
 
-释放图片源实例，使用Promise形式返回结果。release是线程不安全的。
+释放ImageSource实例，使用Promise形式返回结果。release是线程不安全的。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -1935,8 +1935,7 @@ sendableImageSourceApi.release().then(() => {
 
 ## Image
 
-提供基本的图像操作，包括获取图像信息、读写图像数据。调用[readNextImage](#readnextimage)和[readLatestImage](#readlatestimage)接口时会返回image。
-继承自[lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable)。
+提供基本的图像操作，包括获取图像信息、读写图像数据。调用[readNextImage](#readnextimage)和[readLatestImage](#readlatestimage)接口时会返回image。继承自[lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable)。
 
 ### 属性
 

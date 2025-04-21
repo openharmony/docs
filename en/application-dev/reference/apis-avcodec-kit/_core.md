@@ -94,7 +94,7 @@ The Core module provides the basic backbone capabilities for the media framework
 | bool [OH_AVFormat_GetDoubleValue](#oh_avformat_getdoublevalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, double \*out) | Obtains the value of the double type of a key in an **OH_AVFormat** instance.| 
 | bool [OH_AVFormat_GetStringValue](#oh_avformat_getstringvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, const char \*\*out) | Obtains the value of the string type of a key in an **OH_AVFormat** instance.| 
 | bool [OH_AVFormat_GetBuffer](#oh_avformat_getbuffer) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, uint8_t \*\*addr, size_t \*size) | Reads data blocks of a specified length from an **OH_AVFormat** instance.| 
-| const char \* [OH_AVFormat_DumpInfo](#oh_avformat_dumpinfo) (struct [OH_AVFormat](#oh_avformat) \*format) | Returns a string consisting of key-value pairs contained in an **OH_AVFormat**.| 
+| const char \* [OH_AVFormat_DumpInfo](#oh_avformat_dumpinfo) (struct [OH_AVFormat](#oh_avformat) \*format) | Returns a string consisting of key-value pairs contained in an **OH_AVFormat** instance.| 
 | [OH_AVMemory](#oh_avmemory) \* [OH_AVMemory_Create](#oh_avmemory_create) (int32_t size) | Creates an **OH_AVMemory** instance. (This function is deprecated in API version 11.)| 
 | uint8_t \* [OH_AVMemory_GetAddr](#oh_avmemory_getaddr) (struct [OH_AVMemory](#oh_avmemory) \*mem) | Obtains the virtual memory address. (This function is deprecated in API version 11.)| 
 | int32_t [OH_AVMemory_GetSize](#oh_avmemory_getsize) (struct [OH_AVMemory](#oh_avmemory) \*mem) | Obtains the memory length. (This function is deprecated in API version 11.)| 
@@ -979,7 +979,7 @@ const char* OH_AVFormat_DumpInfo (struct OH_AVFormat *format)
 
 **Description**
 
-Returns a string consisting of key-value pairs contained in an **OH_AVFormat**. A string of up to 1024 bytes can be returned. The string pointer is released when the **OH_AVFormat** instance is destroyed.
+Returns a string consisting of key-value pairs contained in an **OH_AVFormat** instance. A string of up to 1024 bytes can be returned. The string pointer is released when the **OH_AVFormat** instance is destroyed.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 

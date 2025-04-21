@@ -127,6 +127,7 @@ import { geoLocationManager } from '@kit.LocationKit';
 | -------- | -------- | -------- | -------- | -------- |
 | interval | number | 否 | 否 | 表示上报位置信息的时间间隔，单位是秒。默认值为1，取值范围为大于等于0。等于0时对位置上报时间间隔无限制。|
 | locationScenario | [UserActivityScenario](#useractivityscenario12) &#124; [PowerConsumptionScenario](#powerconsumptionscenario12) | 否 | 否 | 表示定位的场景信息。取值范围见[UserActivityScenario](#useractivityscenario12)和[PowerConsumptionScenario](#powerconsumptionscenario12)的定义。 |
+| sportsType<sup>18+</sup> | [SportsType](#sportstype18) | 否 | 是 | 表示运动类型。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
 
 ## SingleLocationRequest<sup>12+</sup>
@@ -483,6 +484,21 @@ GNSS地理围栏请求参数。
 | connectable | boolean | 是 | 否 | 表示扫描到的设备是否可连接。true表示可连接，false表示不可连接。 |
 
 
+## SportsType<sup>18+</sup>
+
+运动类型。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| RUNNING   | 1 |  表示跑步。 |
+| WALKING    | 2 | 表示步行。 |
+| CYCLING     | 3 | 表示骑行。 |
+
+
 ## geoLocationManager.on('locationChange')
 
 on(type: 'locationChange', request: LocationRequest | ContinuousLocationRequest, callback: Callback&lt;Location&gt;): void
@@ -573,7 +589,6 @@ off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void
 |401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
 |801 | Capability not supported. Failed to call ${geoLocationManager.off('locationChange')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                           |
-|3301100 | The location switch is off.                                                 |
 
 **示例**
 
@@ -795,7 +810,7 @@ on(type: 'cachedGnssLocationsChange', request: CachedGnssLocationsRequest, callb
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“cachedGnssLocationsChange”，表示GNSS缓存定位结果上报。 |
-  | request |  [CachedGnssLocationsRequest](#cachedgnsslocationsrequest) | 是 | GNSS缓存功能配置参数 |
+  | request |  [CachedGnssLocationsRequest](#cachedgnsslocationsrequest) | 是 | GNSS缓存功能配置参数。 |
   | callback | Callback&lt;Array&lt;[Location](#location)&gt;&gt; | 是 | 回调函数，返回GNSS缓存位置。 |
 
 **错误码**：
@@ -1555,7 +1570,7 @@ isLocationEnabled(): boolean
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | boolean | true：位置信息开关已开启<br/>false：位置信息开关已关闭 |
+  | boolean | true：位置信息开关已开启。<br/>false：位置信息开关已关闭。 |
 
 **错误码**：
 
@@ -1781,7 +1796,7 @@ isGeocoderAvailable(): boolean
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | boolean | true:地理编码与逆地理编码服务可用<br/>false：地理编码与逆地理编码服务不可用。 |
+  | boolean | true:地理编码与逆地理编码服务可用。<br/>false：地理编码与逆地理编码服务不可用。 |
 
 **错误码**：
 

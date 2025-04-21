@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
-> 本模块首批接口从API version 15开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 17开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -31,12 +31,11 @@ setProcessPriority(pid: number, priority: ProcessPriority): Promise&lt;void&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[backgroundProcessManager错误码](errorcode-backgroundProcessManager.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID    | 错误信息             |
 |----------|------------------|
 | 401      | Parameter error. Possible causes: priority is out of range. |
-| 31800001 | remote error. Possible causes: remote is not work.    |
 
 **示例**：
 
@@ -66,14 +65,6 @@ resetProcessPriority(pid: number): Promise&lt;void&gt;
 | 参数名      | 类型                 | 必填   | 说明                                                                                                                        |
 |----------|--------------------| ---- |---------------------------------------------------------------------------------------------------------------------------|
 | pid      | number             | 是    | 子进程的进程号，[OH_Ability_StartNativeChildProcess](../apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_startnativechildprocess)接口创建子进程后的pid参数，即为子进程进程号。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[backgroundProcessManager错误码](errorcode-backgroundProcessManager.md)。
-
-| 错误码ID    | 错误信息                                                                                                           |
-|----------|----------------------------------------------------------------------------------------------------------------|
-| 31800001 | remote error. Possible causes: remote is not work.                                                             |
 
 **示例**：
 

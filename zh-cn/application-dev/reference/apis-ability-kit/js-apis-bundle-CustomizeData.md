@@ -3,11 +3,14 @@
 自定义元数据。
 
 > **说明：**
+> 
 > 本模块首批接口从API version 7 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 
+> 从API Version 9开始，该模块不再维护，建议使用[Metadata](js-apis-bundleManager-metadata.md)替代。
 
 ## CustomizeData<sup>(deprecated)</sup>
 
-> 从API version 9开始不再维护，建议使用[Metadata](js-apis-bundleManager-metadata.md)替代。
+> 从API version 9开始不再维护，建议使用[Metadata](js-apis-bundleManager-metadata.md#metadata-1)替代。
 
 **系统能力**:  SystemCapability.BundleManager.BundleFramework
 

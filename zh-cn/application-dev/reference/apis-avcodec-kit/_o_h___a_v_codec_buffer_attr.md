@@ -11,6 +11,8 @@
 
 **相关模块：**[Core](_core.md)
 
+**所在头文件：**[native_avbuffer_info.h](native__avbuffer__info_8h.md)
+
 
 ## 汇总
 

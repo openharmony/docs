@@ -12,6 +12,10 @@
 
    所有应用可申请。应用申请了此类权限后，还需要在应用动态运行时，通过发送弹窗的方式请求用户授权。
 
+- [受限开放权限](restricted-permissions.md)
+
+   面向普通应用开放的system_basic权限。
+
 - [企业类应用可用权限](permissions-for-enterprise-apps.md)
 
    仅面向企业普通应用、MDM应用<!--Del-->、系统应用<!--DelEnd-->开放。分发类型（app-distribution-type）为enterprise_normal（企业普通应用）、enterprise_mdm（MDM应用）的应用可申请。应用在申请时，需确认其授权方式，按照合适的方式申请。
@@ -23,7 +27,7 @@
 <!--Del-->
 - [系统应用可用权限](permissions-for-system-apps.md)
 
-   此列表中的权限仅面向系统应用/系统服务开放，分为三类：
+   此列表中的权限仅面向系统应用开放，分为三类：
 
    1. [可通过ACL跨级别申请的系统授权权限](permissions-for-system-apps.md)：
 

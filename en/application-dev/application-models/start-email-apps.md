@@ -1,6 +1,9 @@
 # Using startAbilityByType to Start an Email Application
 
 This topic describes how to open the vertical domain panel of email applications.
+> **NOTE**
+> 
+> If the parameter from the initiating application is a mailto string, you are advised to [use mailto to start an email application](start-email-apps-by-mailto.md). Upon receiving the mailto string, the email application parses the string to fill in details like the sender, recipient, and email body.
 
 ## Parameters on the Email Application Panel
 

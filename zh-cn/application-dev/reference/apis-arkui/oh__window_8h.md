@@ -13,7 +13,7 @@
 
 **起始版本：** 15
 
-**相关模块：**[WindowManager_NativeModule](_window_manager___native_module.md)
+**相关模块：**[WindowManager](_window_manager___native_module.md)
 
 
 ## 汇总
@@ -37,3 +37,5 @@
 | int32_t [OH_WindowManager_SetWindowPrivacyMode](_window_manager___native_module.md#oh_windowmanager_setwindowprivacymode) (int32_t windowId, bool isPrivacy) | 设置指定窗口是否开启隐私模式。 |
 | int32_t [OH_WindowManager_GetWindowProperties](_window_manager___native_module.md#oh_windowmanager_getwindowproperties) (int32_t windowId, [WindowManager_WindowProperties](_window_manager___window_properties.md) \*windowProperties) | 获取指定窗口属性。 |
 | int32_t [OH_WindowManager_Snapshot](_window_manager___native_module.md#oh_windowmanager_snapshot) (int32_t windowId, OH_PixelmapNative \*pixelMap) | 获取指定窗口截图。 |
+| int32_t [OH_WindowManager_GetAllWindowLayoutInfoList](_window_manager___native_module.md#oh_windowmanager_getallwindowlayoutinfolist) (int64_t displayId, [WindowManager_Rect](_window_manager___rect.md) \*\*windowLayoutInfoList, size_t \*windowLayoutInfoSize) | 获取指定屏幕上可见的窗口布局信息数组，按当前窗口层级排列，层级最高的对应数组下标为0。  | 
+| void [OH_WindowManager_ReleaseAllWindowLayoutInfoList](_window_manager___native_module.md#oh_windowmanager_releaseallwindowlayoutinfolist) ([WindowManager_Rect](_window_manager___rect.md) \*windowLayoutInfoList) | 释放窗口布局信息数组占用的内存。  | 

@@ -111,10 +111,10 @@ generateKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000013 | queried credential does not exist. |
 | 12000014 | memory is insufficient. |
-| 12000015 | call service failed. |
+| 12000015 | Failed to obtain the security information via UserIAM. |
 
 **示例：**
 
@@ -195,10 +195,10 @@ generateKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000013 | queried credential does not exist. |
 | 12000014 | memory is insufficient. |
-| 12000015 | call service failed. |
+| 12000015 | Failed to obtain the security information via UserIAM. |
 
 **示例：**
 
@@ -271,7 +271,7 @@ deleteKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<v
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
@@ -330,7 +330,7 @@ deleteKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
@@ -390,10 +390,10 @@ API version 9-11系统能力为SystemCapability.Security.Huks.Extension；从API
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000013 | queried credential does not exist. |
 | 12000014 | memory is insufficient. |
-| 12000015 | call service failed. |
+| 12000015 | Failed to obtain the security information via UserIAM. |
 
 **示例：**
 
@@ -487,10 +487,10 @@ importKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000013 | queried credential does not exist. |
 | 12000014 | memory is insufficient. |
-| 12000015 | call service failed. |
+| 12000015 | Failed to obtain the security information via UserIAM. |
 
 **示例：**
 
@@ -580,7 +580,7 @@ attestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<H
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
@@ -721,7 +721,7 @@ attestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResul
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
@@ -863,7 +863,7 @@ anonAttestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallbac
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
@@ -1007,7 +1007,7 @@ anonAttestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnR
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
@@ -1136,10 +1136,10 @@ API version 9-11系统能力为SystemCapability.Security.Huks.Extension；从API
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000013 | queried credential does not exist. |
 | 12000014 | memory is insufficient. |
-| 12000015 | call service failed. |
+| 12000015 | Failed to obtain the security information via UserIAM. |
 
 **示例：**
 
@@ -1370,10 +1370,10 @@ importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOp
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000013 | queried credential does not exist. |
 | 12000014 | memory is insufficient. |
-| 12000015 | call service failed. |
+| 12000015 | Failed to obtain the security information via UserIAM. |
 
 **示例：**
 
@@ -1431,7 +1431,7 @@ API version 9-11系统能力为SystemCapability.Security.Huks.Extension；从API
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
@@ -1494,7 +1494,7 @@ exportKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResul
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
@@ -1554,7 +1554,7 @@ API version 9-11系统能力为SystemCapability.Security.Huks.Extension；从API
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
@@ -1617,7 +1617,7 @@ getKeyItemProperties(keyAlias: string, options: HuksOptions) : Promise\<HuksRetu
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
@@ -1672,7 +1672,7 @@ isKeyItemExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
@@ -1735,7 +1735,7 @@ isKeyItemExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
@@ -1793,7 +1793,7 @@ hasKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<bool
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
@@ -1862,7 +1862,7 @@ hasKeyItem(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
@@ -1930,7 +1930,7 @@ initSession操作密钥接口，使用Callback回调异步返回结果。huks.in
 | 12000006 | error occurred in crypto engine. |
 | 12000010 | the number of sessions has reached limit. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 ## huks.initSession<sup>9+</sup>
@@ -1972,7 +1972,7 @@ initSession操作密钥接口，使用Promise方式异步返回结果。huks.ini
 | 12000006 | error occurred in crypto engine. |
 | 12000010 | the number of sessions has reached limit. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 ## huks.updateSession<sup>9+</sup>
@@ -2011,7 +2011,7 @@ updateSession操作密钥接口，使用Callback回调异步返回结果。huks.
 | 12000008 | verify auth token failed. |
 | 12000009 | auth token is already timeout. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 ## huks.updateSession<sup>9+</sup>
@@ -2051,7 +2051,7 @@ updateSession操作密钥接口，使用Callback回调异步返回结果。huks.
 | 12000008 | verify auth token failed. |
 | 12000009 | auth token is already timeout. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 ## huks.updateSession<sup>9+</sup>
@@ -2096,7 +2096,7 @@ updateSession操作密钥接口，使用Promise方式异步返回结果。huks.i
 | 12000008 | verify auth token failed. |
 | 12000009 | auth token is already timeout. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 ## huks.finishSession<sup>9+</sup>
@@ -2135,7 +2135,7 @@ finishSession操作密钥接口，使用Callback回调异步返回结果。huks.
 | 12000008 | verify auth token failed. |
 | 12000009 | auth token is already timeout. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 ## huks.finishSession<sup>9+</sup>
@@ -2175,7 +2175,7 @@ finishSession操作密钥接口，使用Callback回调异步返回结果。huks.
 | 12000008 | verify auth token failed. |
 | 12000009 | auth token is already timeout. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 ## huks.finishSession<sup>9+</sup>
@@ -2220,7 +2220,7 @@ finishSession操作密钥接口，使用Promise方式异步返回结果。huks.i
 | 12000008 | verify auth token failed. |
 | 12000009 | auth token is already timeout. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 ## huks.abortSession<sup>9+</sup>
@@ -2252,7 +2252,7 @@ abortSession操作密钥接口，使用Callback回调异步返回结果。
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
@@ -2362,7 +2362,7 @@ abortSession操作密钥接口，使用Promise方式异步返回结果。
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
@@ -2535,7 +2535,7 @@ listAliases(options: HuksOptions): Promise\<HuksListAliasesReturnResult>;
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
@@ -2830,8 +2830,8 @@ API version 10-11系统能力为SystemCapability.Security.Huks.Extension；从AP
 
 | 名称                                       | 值   | 说明                         |
 | ------------------------------------------ | ---- | ---------------------------- |
-| HUKS_RSA_PSS_SALT_LEN_DIGEST<sup>10+</sup> | 0    | 表示以摘要长度设置salt_len。 |
-| HUKS_RSA_PSS_SALT_LEN_MAX<sup>10+</sup>    | 1    | 表示以最大长度设置salt_len。 |
+| HUKS_RSA_PSS_SALT_LEN_DIGEST | 0    | 表示以摘要长度设置salt_len。 |
+| HUKS_RSA_PSS_SALT_LEN_MAX    | 1    | 表示以最大长度设置salt_len。 |
 
 ## HuksUserAuthType<sup>9+</sup>
 

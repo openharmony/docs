@@ -38,19 +38,6 @@ type SignalInformation = radio.SignalInformation
 | [radio.SignalInformation](js-apis-radio.md#signalinformation) | 网络信号强度信息对象。 |
 
 
-## CellInformation
-
-type CellInformation = radio.CellInformation
-
-小区信息。
-
-**系统能力**：SystemCapability.Telephony.StateRegistry
-
-|       类型       |            说明             |
-| ---------------- | --------------------------- |
-| [radio.CellInformation](js-apis-radio.md#cellinformation8) | 小区信息。 |
-
-
 ## DataConnectState
 
 type DataConnectState = data.DataConnectState

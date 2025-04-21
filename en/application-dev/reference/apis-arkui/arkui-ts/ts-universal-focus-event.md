@@ -10,7 +10,9 @@ A focus event is triggered when the page focus moves between components. It can 
 >
 >  - Components that have default interaction logic, such as [Button](ts-basic-components-button.md) and [TextInput](ts-basic-components-textinput.md), are focusable by default. Other components, such as [Text](ts-basic-components-text.md) and [Image](ts-basic-components-image.md), are not focusable by default. Only focusable components can trigger a focus event. To enable a component to be focusable, set its **focusable** attribute to **true**.
 >  
->  - For details about focus development, see [Focus Event](../../../ui/arkts-common-events-focus-event.md).
+>  - Container components that can gain focus, such as [Stack](ts-container-stack.md) and [Row](ts-container-row.md), are not focusable if they do not have any focusable child components. To make them focusable, you can add an **onClick** event or a tap gesture to the component. This makes the component implicitly focusable.
+> 
+>  - For details about focus development and component focusability, see [Focus Event](../../../ui/arkts-common-events-focus-event.md).
 
 ## onFocus
 

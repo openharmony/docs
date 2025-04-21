@@ -178,7 +178,7 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 | 参数名 | 类型                                                      | 必填 | 说明                                                  |
 | ------ | --------------------------------------------------------- | ---- | ----------------------------------------------------- |
-| isPrivacySensitiveMode  | [Optional\<boolean\>] | 是   | 设置隐私敏感，隐私模式下进度清零，文字将被遮罩。true表示打开隐私敏感，false表示关闭隐私敏感。<br/>**说明：** <br/>设置null则不敏感。<br/>[需要卡片框架支持。](./ts-universal-attributes-obscured.md) |
+| isPrivacySensitiveMode  | [Optional\<boolean\>] | 是   | 设置隐私敏感，隐私模式下进度清零，文字将被遮罩。true表示打开隐私敏感，false表示关闭隐私敏感。<br/>**说明：** <br/>设置null则不敏感。<!--Del--><br/>需要在卡片中使用Progress，并用[FormComponent](./ts-basic-components-formcomponent-sys.md)组件设置[隐私遮罩](./ts-universal-attributes-obscured.md)属性显示卡片时才有隐私遮罩效果。<!--DelEnd--> |
 
 ## ProgressConfiguration<sup>12+</sup>
 
@@ -570,7 +570,7 @@ struct Index {
           this.currentValue += 1
         }
       }).width('30%')
-      Button('addProgress--').onClick(() => {
+      Button('Progress--').onClick(() => {
         if (this.currentValue > 0) {
           this.currentValue -= 1
         }
@@ -591,21 +591,26 @@ struct Index {
 @Component
 struct ProgressExample {
   build() {
-    Scroll() {
+    Row() {
       Column({ space: 15 }) {
-        Row() {
-          Progress({ value: 50, total: 100, type: ProgressType.Capsule }).width(100).height(50)
-            .style({
-              borderColor: Color.Blue,
-              borderWidth: 1,
-              content: 'Installing...',
-              font: { size: 13, style: FontStyle.Normal },
-              fontColor: Color.Gray,
-              enableScanEffect: false,
-              showDefaultPercentage: true
-            })
-            .privacySensitive(true)
-        }
+        Progress({ value: 33, total: 100, type: ProgressType.Capsule }).width(300).height(50)
+          .color(Color.Blue)
+          .style({
+            borderWidth: 5,
+            font: { size: 13, style: FontStyle.Normal },
+            enableScanEffect: false,
+            showDefaultPercentage: true
+          })
+          .privacySensitive(true)
+        Progress({ value: 33, total: 100, type: ProgressType.Capsule }).width(300).height(50)
+          .color(Color.Blue)
+          .style({
+            borderWidth: 5,
+            content: 'Installing...',
+            font: { size: 13, style: FontStyle.Normal },
+            enableScanEffect: false,
+          })
+          .privacySensitive(true)
       }
     }
   }

@@ -5,6 +5,7 @@
 > **说明：**
 >
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
 > 无特殊说明，接口默认不支持并发。
 
 ## 导入模块
@@ -211,8 +212,7 @@ connection.setAppHttpProxy({
 
 **预置锁定证书PIN:**
 
-证书PIN是对证书文件用sha256算法计算出的hash值。 
-对于证书server.pem, 可以用如下openssl命令计算它的PIN:
+证书PIN是对证书文件用sha256算法计算出的hash值。对于证书server.pem, 可以用如下openssl命令计算它的PIN:
 
 ```shell
 cat server.pem \
@@ -233,8 +233,7 @@ cat server.pem \
 
 **预置JSON配置文件:**
 
-预置的证书与网络服务器的对应关系通过JSON配置。 
-配置文件在APP中的路径是：src/main/resources/base/profile/network_config.json
+预置的证书与网络服务器的对应关系通过JSON配置。配置文件在APP中的路径是：src/main/resources/base/profile/network_config.json
 
 **JSON配置文件:**
 
@@ -385,9 +384,7 @@ item必须包含1个digest(string:指示公钥PIN)。
 
 getDefaultHttpProxy(callback: AsyncCallback\<HttpProxy>): void
 
-获取网络默认的代理配置信息。
-如果设置了全局代理，则会返回全局代理配置信息。如果进程使用[setAppNet](#connectionsetappnet9)绑定到指定[NetHandle](#nethandle)对应的网络，则返回[NetHandle](#nethandle)对应网络的代理配置信息。在其它情况下，将返回默认网络的代理配置信息。
-使用callback方式作为异步方法。
+获取网络默认的代理配置信息。如果设置了全局代理，则会返回全局代理配置信息。如果进程使用[setAppNet](#connectionsetappnet9)绑定到指定[NetHandle](#nethandle)对应的网络，则返回[NetHandle](#nethandle)对应网络的代理配置信息。在其它情况下，将返回默认网络的代理配置信息。使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -425,9 +422,7 @@ connection.getDefaultHttpProxy((error: BusinessError, data: connection.HttpProxy
 
 getDefaultHttpProxy(): Promise\<HttpProxy>
 
-获取网络默认的代理配置信息。
-如果设置了全局代理，则会返回全局代理配置信息。如果进程使用[setAppNet](#connectionsetappnet9)绑定到指定[NetHandle](#nethandle)对应的网络，则返回[NetHandle](#nethandle)对应网络的代理配置信息。在其它情况下，将返回默认网络的代理配置信息。
-使用Promise方式作为异步方法。
+获取网络默认的代理配置信息。如果设置了全局代理，则会返回全局代理配置信息。如果进程使用[setAppNet](#connectionsetappnet9)绑定到指定[NetHandle](#nethandle)对应的网络，则返回[NetHandle](#nethandle)对应网络的代理配置信息。在其它情况下，将返回默认网络的代理配置信息。使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -2782,7 +2777,7 @@ netConnectionWlan.register((error: BusinessError) => {
 | 名称                 | 类型                                  | 必填 |            说明            |
 | -------------------- | ------------------------------------- | --- |--------------------------- |
 | netHandle            | [NetHandle](#nethandle)               | 是   |数据网络句柄(netHandle)。   |
-| blocked              | boolean                               | 是   |标识当前网络是否是堵塞状态。 |
+| blocked              | boolean                               | 是   |true：标识当前网络是堵塞状态；false：标识当前网络不是堵塞状态。 |
 
 ## ConnectionProperties
 
@@ -2810,8 +2805,8 @@ netConnectionWlan.register((error: BusinessError) => {
 | interface      | string                      | 是 |网卡名称。       |
 | destination    | [LinkAddress](#linkaddress) | 是 |目的地址。       |
 | gateway        | [NetAddress](#netaddress)   | 是 |网关地址。       |
-| hasGateway     | boolean                     | 是 |是否有网关。     |
-| isDefaultRoute | boolean                     | 是 |是否为默认路由。 |
+| hasGateway     | boolean                     | 是 |true：有网关；false：无网关。     |
+| isDefaultRoute | boolean                     | 是 |true：默认路由；false：非默认路由。 |
 
 ## LinkAddress
 

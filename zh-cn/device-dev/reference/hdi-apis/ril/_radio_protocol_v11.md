@@ -85,7 +85,7 @@ int RadioProtocol::technology
 ```
 **描述**
 
-Radio协议技术信息。
+Radio协议技术信息
 
 - 1：GSM
 

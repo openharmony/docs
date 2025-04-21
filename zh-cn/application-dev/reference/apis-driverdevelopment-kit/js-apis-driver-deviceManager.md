@@ -412,7 +412,6 @@ bindDriverWithDeviceId(deviceId: number, onDisconnect: AsyncCallback&lt;number&g
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
 | 201      | The permission check failed.             |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 26300001  | ExternalDeviceManager service exception. |
 | 26300002  | Service not allowed. |
 
@@ -464,7 +463,6 @@ unbindDriverWithDeviceId(deviceId: number): Promise&lt;number&gt;
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
 | 201      | The permission check failed.             |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 26300001 | ExternalDeviceManager service exception. |
 | 26300003 | There is no binding relationship. |
 

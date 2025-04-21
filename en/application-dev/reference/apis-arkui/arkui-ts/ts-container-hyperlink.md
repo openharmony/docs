@@ -48,7 +48,7 @@ Sets the color of the hyperlink text.
 
 | Name| Type                                                        | Mandatory| Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | [Color](ts-appendix-enums.md#color) \| number \| string \| [Resource](ts-types.md#resource) | Yes  | Color of the hyperlink text<br>Default value: **'#ff0a59f7'**|
+| value  | [Color](ts-appendix-enums.md#color) \| number \| string \| [Resource](ts-types.md#resource) | Yes  | Color of the hyperlink text<br><!--RP1-->Default value: **'#ff007dff'**.<br>Default value on wearable devices: **'ff1f71ff'**.<!--RP1End-->
 
 ## Example
 

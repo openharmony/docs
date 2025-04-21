@@ -18,9 +18,11 @@ import { WorkSchedulerExtensionAbility } from '@kit.BackgroundTasksKit';
 
 type WorkSchedulerExtensionContext = _WorkSchedulerExtensionContext
 
+**System capability**: SystemCapability.ResourceSchedule.WorkScheduler
+
 | Type| Description|
 | -------- |  -------- |
-| WorkSchedulerExtensionContext|  Context of the WorkSchedulerExtensionAbility.|
+| [_WorkSchedulerExtensionContext](js-apis-inner-application-WorkSchedulerExtensionContext.md)|  Context of the WorkSchedulerExtensionAbility.|
 
 ## WorkSchedulerExtensionAbility
 

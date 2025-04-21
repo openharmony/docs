@@ -21,7 +21,6 @@ FFRT并发队列提供了设置任务优先级（Priority）和队列并发度�
 ```c
 #include <stdio.h>
 #include <unistd.h>
-
 #include "ffrt/queue.h"
 #include "ffrt/task.h"
 
@@ -29,7 +28,7 @@ ffrt_queue_t create_bank_system(const char *name, int concurrency)
 {
     ffrt_queue_attr_t queue_attr;
     (void)ffrt_queue_attr_init(&queue_attr);
-    ffrt_queue_attr_set_max_concurrency(&queue_attr, 4);
+    ffrt_queue_attr_set_max_concurrency(&queue_attr, concurrency);
 
     // 创建一个并发队列
     ffrt_queue_t queue = ffrt_queue_create(ffrt_queue_concurrent, name, &queue_attr);
@@ -41,14 +40,14 @@ ffrt_queue_t create_bank_system(const char *name, int concurrency)
         return NULL;
     }
 
-    printf("create bank system successful\n");
+    printf("create bank system successfully\n");
     return queue;
 }
 
 void destroy_bank_system(ffrt_queue_t queue_handle)
 {
     ffrt_queue_destroy(queue_handle);
-    printf("destroy bank system successful\n");
+    printf("destroy bank system successfully\n");
 }
 
 void bank_business(void *arg)
@@ -59,7 +58,8 @@ void bank_business(void *arg)
 }
 
 // 封装提交队列任务函数
-ffrt_task_handle_t commit_request(ffrt_queue_t bank, void (*func)(void *), char *name, ffrt_queue_priority_t level, int delay)
+ffrt_task_handle_t commit_request(ffrt_queue_t bank, void (*func)(void *), const char *name,
+    ffrt_queue_priority_t level, int delay)
 {
     ffrt_task_attr_t task_attr;
     (void)ffrt_task_attr_init(&task_attr);
@@ -76,11 +76,6 @@ int cancel_request(ffrt_task_handle_t request)
     return ffrt_queue_cancel(request);
 }
 
-int get_bank_queue_size(ffrt_queue_t bank)
-{
-    return ffrt_queue_get_task_cnt(bank);
-}
-
 // 封装等待队列任务函数
 void wait_for_request(ffrt_task_handle_t task)
 {
@@ -91,7 +86,7 @@ int main()
 {
     ffrt_queue_t bank = create_bank_system("Bank", 2);
     if (!bank) {
-        printf("create bank system failed");
+        printf("create bank system failed\n");
         return -1;
     }
     commit_request(bank, bank_business, "customer1", ffrt_queue_priority_low, 0);
@@ -107,8 +102,6 @@ int main()
 
     // 取消客户5的服务
     cancel_request(task);
-
-    printf("bank current serving for %d customers\n", get_bank_queue_size(bank));
 
     // 等待所有的客户服务完成
     wait_for_request(task_last);

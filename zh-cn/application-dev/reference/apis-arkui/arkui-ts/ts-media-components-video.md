@@ -80,7 +80,7 @@ muted(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                         |
 | ------ | ------- | ---- | ---------------------------- |
-| value  | boolean | 是   | 是否静音。<br/>默认值：false |
+| value  | boolean | 是   | 是否静音。<br/>true：开启静音；false：关闭静音。<br/>默认值：false |
 
 ### autoPlay
 
@@ -96,7 +96,7 @@ autoPlay(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                             |
 | ------ | ------- | ---- | -------------------------------- |
-| value  | boolean | 是   | 是否自动播放。<br/>默认值：false |
+| value  | boolean | 是   | 是否自动播放。<br/>true：开启自动播放；false：关闭自动播放。<br/>默认值：false |
 
 ### controls
 
@@ -112,7 +112,7 @@ controls(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                            |
 | ------ | ------- | ---- | ----------------------------------------------- |
-| value  | boolean | 是   | 控制视频播放的控制栏是否显示。<br/>默认值：true |
+| value  | boolean | 是   | 控制视频播放的控制栏是否显示。<br/>true：控制栏显示；false：控制栏不显示。<br/>默认值：true |
 
 ### objectFit
 
@@ -144,7 +144,7 @@ loop(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                     |
 | ------ | ------- | ---- | ---------------------------------------- |
-| value  | boolean | 是   | 是否单个视频循环播放。<br/>默认值：false |
+| value  | boolean | 是   | 是否单个视频循环播放。<br/>true：开启循环播放；false：关闭循环播放。<br/>默认值：false |
 
 ### enableAnalyzer<sup>12+</sup>
 
@@ -162,7 +162,7 @@ enableAnalyzer(enable: boolean)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| enable | boolean | 是 | 是否启用AI分析功能 |
+| enable | boolean | 是 | 是否启用AI分析功能<br/>true：开启AI分析功能；false：关闭AI分析功能。<br/>默认值：false |
 
 > **说明：**
 >
@@ -197,7 +197,7 @@ enableShortcutKey(enabled: boolean)
 
 | 参数名  | 类型    | 必填 | 说明                                   |
 | ------- | ------- | ---- | -------------------------------------- |
-| enabled | boolean | 是   | 是否启用快捷键响应。<br/>默认值：false |
+| enabled | boolean | 是   | 是否启用快捷键响应。<br/>true：开启快捷键响应；false：关闭快捷键响应。<br/>默认值：false |
 
 ## 事件
 
@@ -361,7 +361,7 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 
 | 名称       | 类型    | 只读 | 可选 | 说明                         |
 | ----------- | ------- | ---- | ----  | ---------------------------- |
-| fullscreen<sup>10+</sup>  | boolean | 否 | 否  | 当前视频是否进入全屏播放状态。<br/>默认值：false<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| fullscreen<sup>10+</sup>  | boolean | 否 | 否  | 当前视频是否进入全屏播放状态。<br/>true：进入全屏播放状态；false：未进入全屏播放状态。<br/>默认值：false<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 
 ### PreparedInfo<sup>18+</sup>对象说明
 
@@ -371,7 +371,7 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名       | 类型    | 只读 | 可选 | 说明                         |
+| 名称       | 类型    | 只读 | 可选 | 说明                         |
 | ----------- | ------- | ---- | ----  | ---------------------------- |
 | duration<sup>10+</sup> | number  | 否 | 否  | 当前视频的时长。<br/>单位：秒<br/>取值范围：[0,+∞)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
@@ -383,7 +383,7 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名       | 类型    | 只读 | 可选 | 说明                         |
+| 名称       | 类型    | 只读 | 可选 | 说明                         |
 | ----------- | ------- | ---- | ---- | ---------------------------- |
 | time<sup>10+</sup> | number  | 否 | 否  | 当前视频播放的进度。<br/>单位：秒<br/>取值范围：[0,+∞)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
@@ -395,13 +395,13 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名       | 类型    | 只读 | 可选 | 说明                         |
+| 名称       | 类型    | 只读 | 可选 | 说明                         |
 | ----------- | ------- | ---- | ---- | ---------------------------- |
-| showFirstFrame   | boolean | 否 | 是 | 当前视频是否配置首帧送显。<br/>默认值：false      |
+| showFirstFrame   | boolean | 否 | 是 | 当前视频是否配置首帧送显。<br/>true：开启首帧送显；false：关闭首帧送显。<br/>默认值：false      |
 
 ## VideoController
 
-一个VideoController对象可以控制一个或多个video，可用视频播放实例请参考[@ohos.multimedia.media](../../apis-media-kit/js-apis-media.md)。
+一个VideoController对象可以控制一个或多个Video，可用视频播放实例请参考[@ohos.multimedia.media](../../apis-media-kit/js-apis-media.md)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -457,7 +457,7 @@ stop()
 
 reset(): void
 
-video组件重置AVPlayer。显示当前帧，再次播放时从头开始播放。
+Video组件重置AVPlayer。显示当前帧，再次播放时从头开始播放。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -493,7 +493,7 @@ requestFullscreen(value: boolean)
 
 | 参数名 | 类型 | 必填 | 说明                         |
 | ------ | -------- | ---- | -------------------------------- |
-| value  | boolean  | 是   | 是否全屏（填充满应用窗口）播放。 |
+| value  | boolean  | 是   | 是否全屏（填充满应用窗口）播放。<br/>true：请求全屏播放；false：不请求全屏播放。<br/>默认值：false |
 
 ### exitFullscreen
 

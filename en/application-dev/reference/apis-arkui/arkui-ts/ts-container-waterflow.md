@@ -202,7 +202,7 @@ Obtains the main axis size of a specified water flow item based on its index.
 
 | Name  | Type                           | Mandatory  | Description                  |
 | ---- | ----------------------------- | ---- | -------------------- |
-| index | number | Yes   | Index of the target water flow item.|
+| index | number | Yes   | Index of the target water flow item.<br>Value range: [0, total number of child nodes - 1].|
 
 **Return value**
 
@@ -298,7 +298,7 @@ Sets the gap between columns.
 
 | Name| Type                        | Mandatory| Description                         |
 | ------ | ---------------------------- | ---- | ----------------------------- |
-| value  | [Length](ts-types.md#length) | Yes  | Gap between columns.<br>Default value: **0**|
+| value  | [Length](ts-types.md#length) | Yes  | Gap between columns.<br>Default value: **0**<br>Value range: [0, +∞).|
 
 ### rowsGap
 
@@ -314,7 +314,7 @@ Sets the gap between rows.
 
 | Name| Type                        | Mandatory| Description                         |
 | ------ | ---------------------------- | ---- | ----------------------------- |
-| value  | [Length](ts-types.md#length) | Yes  | Gap between rows.<br>Default value: **0**|
+| value  | [Length](ts-types.md#length) | Yes  | Gap between rows.<br>Default value: **0**<br>Value range: [0, +∞).|
 
 ### layoutDirection
 
@@ -382,7 +382,7 @@ Sets the nested scrolling mode in the forward and backward directions to impleme
 
 friction(value: number | Resource)
 
-Sets the friction coefficient. It applies only to gestures in the scrolling area, and it affects only indirectly the scroll chaining during the inertial scrolling process. If this attribute is set to a value less than or equal to 0, the default value is used.
+Sets the friction coefficient. It applies only to gestures in the scrolling area, and it affects only indirectly the scroll chaining during the inertial scrolling process.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -392,13 +392,13 @@ Sets the friction coefficient. It applies only to gestures in the scrolling area
 
 | Name| Type                                                | Mandatory| Description                                                     |
 | ------ | ---------------------------------------------------- | ---- | --------------------------------------------------------- |
-| value  | number \| [Resource](ts-types.md#resource) | Yes  | Friction coefficient.<br>Default value: **0.9** for wearable devices and **0.6** for non-wearable devices.<br>Since API version 11, the default value for non-wearable devices is **0.7**.<br>Since API version 12, the default value for non-wearable devices is **0.75**.|
+| value  | number \| [Resource](ts-types.md#resource) | Yes  | Friction coefficient.<br>Default value: **0.9** for wearable devices and **0.6** for non-wearable devices.<br>Since API version 11, the default value for non-wearable devices is **0.7**.<br>Since API version 12, the default value for non-wearable devices is **0.75**.<br>Value range: (0, +∞).<br>If the value is less than or equal to 0, the default value is used.|
 
 ### cachedCount<sup>11+</sup>
 
 cachedCount(value: number)
 
-Sets the number of items to be cached. This attribute is effective only in [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md). After this attribute is set, items that exceed the display and cache range are released. A value less than 0 evaluates to the value **1**.
+Sets the number of items to be cached. This attribute is effective only in [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md). After this attribute is set, items that exceed the display and cache range are released.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -408,7 +408,7 @@ Sets the number of items to be cached. This attribute is effective only in [Lazy
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | Yes  | Number of water flow items to be preloaded (cached).<br>Default value: number of nodes visible on the screen, with the maximum value of 16|
+| value  | number | Yes  | Number of water flow items to be preloaded (cached).<br>Default value: number of nodes visible on the screen, with the maximum value of 16<br>Value range: [0, +∞).<br>Values less than 0 are treated as **1**.|
 
 ### cachedCount<sup>14+</sup>
 
@@ -428,8 +428,8 @@ In [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md) an
 
 | Name| Type  | Mandatory| Description                                    |
 | ------ | ------ | ---- | ---------------------------------------- |
-| count | number | Yes  | Number of water flow items to be preloaded (cached).<br>Default value: number of nodes visible on the screen, with the maximum value of 16|
-| show  | boolean | Yes  | Whether to display the cached water flow items.<br> Default value: **false**|
+| count | number | Yes  | Number of water flow items to be preloaded (cached).<br>Default value: number of nodes visible on the screen, with the maximum value of 16<br>Value range: [0, +∞).<br>Values less than 0 are treated as **1**.|
+| show  | boolean | Yes  | Whether to display the cached water flow items.<br> Default value: **false** (the preloaded water flow items are not displayed).|
 
 ## Events
 
@@ -496,8 +496,8 @@ This event is triggered when either of the preceding indexes changes.
 
 | Name| Type  | Mandatory| Description                                 |
 | ------ | ------ | ---- | ------------------------------------- |
-| first  | number | Yes  | Index of the first item of the component.|
-| last   | number | Yes  | Index of the last item of the component.   |
+| first  | number | Yes  | Index of the first item of the component.<br>Value range: [0, total number of child nodes - 1].|
+| last   | number | Yes  | Index of the last item of the component.<br>Value range: [0, total number of child nodes - 1].|
 
 ## Example
 
@@ -1030,6 +1030,7 @@ This example demonstrates how to use [priorityGesture](ts-gesture-settings.md) a
 ```ts
 // Index.ets
 import { WaterFlowDataSource } from './WaterFlowDataSource';
+import { image } from '@kit.ImageKit';
 
 @Reusable
 @Component
@@ -1039,17 +1040,12 @@ struct ReusableFlowItem {
   // Invoked when a reusable custom component is re-added to the component tree from the reuse cache. The component state variable can be updated here to display the correct content.
   aboutToReuse(params: Record<string, number>) {
     this.item = params.item;
-    console.info('Reuse item:' + this.item);
-  }
-
-  aboutToAppear() {
-    console.info('item:' + this.item);
   }
 
   build() {
     Column() {
       Text("N" + this.item).fontSize(12).height('16')
-      Image('res/waterFlow (' + this.item % 5 + ').JPG')
+      Image('res/waterFlow(' + this.item % 5 + ').JPG')
         .objectFit(ImageFit.Fill)
         .width('100%')
         .layoutWeight(1)
@@ -1063,10 +1059,17 @@ struct WaterFlowDemo {
   minSize: number = 80;
   maxSize: number = 180;
   colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F];
-  @State columns: number = 2;
-  dataSource: WaterFlowDataSource = new WaterFlowDataSource();
+  dataSource: WaterFlowDataSource = new WaterFlowDataSource(100);
   private itemWidthArray: number[] = [];
   private itemHeightArray: number[] = [];
+  @State columns: number = 2;
+  @State waterflowScale: number = 1;
+  @State imageScale: number = 1;
+  @State waterFlowOpacity: number = 1;
+  @State waterflowSnapshot: image.PixelMap | undefined = undefined;
+  private columnChanged: boolean = false;
+  private oldColumn: number = this.columns;
+  private pinchTime: number = 0;
 
   // Calculate the width and height of a water flow item.
   getSize() {
@@ -1083,11 +1086,23 @@ struct WaterFlowDemo {
   }
 
   aboutToAppear() {
+    // Read the last switched column count.
     let lastCount = AppStorage.get<number>('columnsCount');
     if (typeof lastCount != 'undefined') {
       this.columns = lastCount;
     }
     this.setItemSizeArray();
+  }
+
+  // Change the number of columns based on the scale threshold and trigger the WaterFlow component to re-layout.
+  changeColumns(scale: number) {
+    if (scale > (this.columns / (this.columns - 0.5)) && this.columns > 1) {
+      this.columns--;
+      this.columnChanged = true;
+    } else if (scale < 1 && this.columns < 4) {
+      this.columns++;
+      this.columnChanged = true;
+    }
   }
 
   build() {
@@ -1098,43 +1113,95 @@ struct WaterFlowDemo {
           .margin({ top: 10, left: 20 })
       }
 
-      WaterFlow() {
-        LazyForEach(this.dataSource, (item: number) => {
-          FlowItem() {
-            ReusableFlowItem({ item: item })
-          }
+      Stack() {
+        // Display the WaterFlow snapshot before scaling.
+        Image(this.waterflowSnapshot)
           .width('100%')
-          .height(this.itemHeightArray[item % 100])
-          .backgroundColor(this.colors[item % 5])
-        }, (item: string) => item)
-      }
-      .columnsTemplate('1fr '.repeat(this.columns))
-      .columnsGap(10)
-      .rowsGap(5)
-      .backgroundColor(0xFAEEE0)
-      .width('100%')
-      .height('100%')
-      .layoutWeight(1)
-      // Switching the number of columns triggers a reordering animation for the item positions.
-      .animation({
-        duration: 300,
-        curve: Curve.Smooth
-      })
-      .priorityGesture(
-        PinchGesture()
-          .onActionEnd((event: GestureEvent) => {
-            console.info('end scale:' + event.scale);
-            // When a user performs a pinch-to-zoom gesture by moving their fingers apart, and the number of columns decreases to a certain threshold (in this case, 2), it will cause the items to enlarge.
-            if (event.scale > 2) {
-              this.columns--;
-            } else if (event.scale < 0.6) {
-              this.columns++;
-            }
-            // You can set the maximum and minimum number of columns based on the device screen width. Here, the minimum number of columns is 1, and the maximum number of columns is 4.
-            this.columns = Math.min(4, Math.max(1, this.columns));
-            AppStorage.setOrCreate<number>('columnsCount', this.columns);
+          .height('100%')
+          .scale({
+            x: this.imageScale,
+            y: this.imageScale,
+            centerX: 0,
+            centerY: 0
           })
-      )
+
+        WaterFlow() {
+          LazyForEach(this.dataSource, (item: number) => {
+            FlowItem() {
+              ReusableFlowItem({ item: item })
+            }
+            .width('100%')
+            .aspectRatio(this.itemHeightArray[item % 100] / this.itemWidthArray[item%100])
+            .backgroundColor(this.colors[item % 5])
+          }, (item: string) => item)
+        }
+        .id('waterflow') // Set the ID for capturing snapshots.
+        .columnsTemplate('1fr '.repeat(this.columns))
+        .backgroundColor(0xFAEEE0)
+        .width('100%')
+        .height('100%')
+        .layoutWeight(1)
+        .opacity(this.waterFlowOpacity)
+        .scale({
+          x: this.waterflowScale,
+          y: this.waterflowScale,
+          centerX: 0,
+          centerY: 0
+        })
+        .priorityGesture(
+          PinchGesture()
+            .onActionStart((event: GestureEvent) => {
+              // Take a snapshot when the pinch gesture is recognized.
+              this.pinchTime = event.timestamp;
+              this.columnChanged = false;
+              this.oldColumn = this.columns;
+              this.getUIContext().getComponentSnapshot().get('waterflow', (error: Error, pixmap: image.PixelMap) => {
+                if (error) {
+                  console.info('error:' + JSON.stringify(error));
+                  return;
+                }
+                this.waterflowSnapshot = pixmap;
+              })
+            })
+            .onActionUpdate((event: GestureEvent) => {
+              // Limit column scaling.
+              if ((this.oldColumn === 1 && event.scale > 1) || (this.oldColumn === 4 && event.scale < 1)) {
+                return;
+              }
+              if (event.timestamp - this.pinchTime < 10000000) {
+                return;
+              }
+              this.pinchTime = event.timestamp;
+
+              this.waterflowScale = event.scale;
+              this.imageScale = event.scale;
+              // Set the WaterFlow opacity based on the scale factor.
+              this.waterFlowOpacity = (this.waterflowScale > 1) ? (this.waterflowScale - 1) : (1 - this.waterflowScale);
+              this.waterFlowOpacity *= 3;
+              if (!this.columnChanged) {
+                this.changeColumns(event.scale);
+              }
+              // Limit the scale factor to avoid blank areas.
+              if (this.columnChanged) {
+                this.waterflowScale = this.imageScale * this.columns / this.oldColumn;
+                if (event.scale < 1) {
+                  this.waterflowScale = this.waterflowScale > 1 ? this.waterflowScale : 1;
+                } else {
+                  this.waterflowScale = this.waterflowScale < 1 ? this.waterflowScale : 1;
+                }
+              }
+            })
+            .onActionEnd((event: GestureEvent) => {
+              // Animate back to the original position when the finger is released.
+              animateTo({ duration: 300 }, () => {
+                this.waterflowScale = 1;
+                this.waterFlowOpacity = 1;
+              })
+              // Record the current column count.
+              AppStorage.setOrCreate<number>('columnsCount', this.columns);
+            })
+        )
+      }
     }
   }
 }
@@ -1211,6 +1278,7 @@ struct WaterFlowDemo {
 
 This example demonstrates how to set a single-side edge effect for the **WaterFlow** component using the **edgeEffect** API.
 
+<!--code_no_check-->
 ```ts
 // Index.ets
 import { WaterFlowDataSource } from './WaterFlowDataSource';
@@ -1275,6 +1343,7 @@ struct WaterFlowDemo {
 
 This example demonstrates how to set and dynamically change the footer component in the **WaterFlow** component using **footerContent**. The footer component is updated using the **update** API of **ComponentContent**.
 
+<!--code_no_check-->
 ```ts
 // Index.ets
 import { ComponentContent, UIContext } from "@kit.ArkUI";

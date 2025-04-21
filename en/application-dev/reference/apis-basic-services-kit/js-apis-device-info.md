@@ -37,7 +37,7 @@ import { deviceInfo } from '@kit.BasicServicesKit';
 | serial | string | Yes| No| Device SN.<br>**NOTE**<br>The device SN can be used as the unique identifier of a device.<br>**Required permissions**: ohos.permission.sec.ACCESS_UDID<br>Example: The SN varies with the device.|
 | bootloaderVersion | string | Yes| No| Bootloader version.<br>Example: bootloader|
 | abiList | string | Yes| No| Application binary interface (Abi) list.<br>Example: arm64-v8a|
-| securityPatchTag | string | Yes| No| Security patch tag.<br>Example: <!--RP7-->2021-01-01<!--RP7End--> |
+| securityPatchTag | string | Yes| No| Security patch tag.<br>Example: <!--RP7-->2021/01/01<!--RP7End--> |
 | displayVersion | string | Yes| No| Product version.<br>Example: <!--RP8-->XXX X.X.X.X<!--RP8End--> |
 | incrementalVersion | string | Yes| No| Incremental version.<br>Example: default|
 | osReleaseType | string | Yes| No| OS release type. The options are as follows:<br>- **Canary**: Preliminary release open only to specific developers. This release does not promise API stability and may require tolerance of instability.<br>- **Beta**: Release open to all developers. This release does not promise API stability and may require tolerance of instability.<br>- **Release**: Official release open to all developers. This release promises that all APIs are stable.<br>Example: <!--RP9-->Canary/Beta/Release<!--RP9End--> |
@@ -49,19 +49,19 @@ import { deviceInfo } from '@kit.BasicServicesKit';
 | sdkApiVersion | number | Yes| No| SDK API version.<br>**Atomic service API**: This API can be used in atomic services since API version 14.<br>Example: 12|
 | firstApiVersion | number | Yes| No| First API version.<br>Example: 3|
 | versionId | string | Yes| No| Version ID. It consists of the following fields: **deviceType**, **manufacture**, **brand**, **productSeries**, **osFullName**, **productModel**, **softwareModel**, **sdkApiVersion**, **incrementalVersion**, and **buildType**.<br>Example: wearable/HUAWEI/HUAWEI/TAS/OpenHarmony-5.0.0.1/TAS-AL00/TAS-AL00/12/default/release:nolog|
-| buildType | string | Yes| No| Build type.<br>Example: release:nolog|
+| buildType | string | Yes| No| Build type.<br>Example: default|
 | buildUser | string | Yes| No| Build user.<br>Example: default|
 | buildHost | string | Yes| No| Build host.<br>Example: default|
 | buildTime | string | Yes| No| Build time.<br>Example: default|
 | buildRootHash | string | Yes| No| Build root hash.<br>Example: default|
 | udid<sup>7+</sup> | string | Yes| No| Device UDID.<br>**NOTE**<br>The data length is 65 bytes. The UDID can be used as the unique identifier of a device.<br>**Required permissions**: ohos.permission.sec.ACCESS_UDID<br>Example: 9D6AABD147XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXE5536412 |
 | distributionOSName<sup>10+</sup> | string | Yes| No| Distribution OS name.<!--Del--> It is defined by the issuer.<!--DelEnd-->.<br>Example: OpenHarmony|
-| distributionOSVersion<sup>10+</sup> | string | Yes| No| Distribution OS version.<!--Del--> It is defined by the issuer.<!--DelEnd-->.<!--RP11--><!--RP11End--><br>Example: 5.0.0.1 |
+| distributionOSVersion<sup>10+</sup> | string | Yes| No| Distribution OS version.<!--Del--> It is defined by the issuer.<!--DelEnd-->.<!--RP11--><!--RP11End--><br>Example: 5.0.0 |
 | distributionOSApiVersion<sup>10+</sup> | number| Yes| No| Distribution OS API version.<!--Del--> It is defined by the issuer.<!--DelEnd-->.<br>Example: 50001|
 | distributionOSApiName<sup>13+</sup> | string | Yes| No| Distribution OS API name.<!--Del--> It is defined by the issuer.<!--DelEnd-->.|
 | distributionOSReleaseType<sup>10+</sup> | string | Yes| No| Distribution OS release type.<!--Del--> It is defined by the issuer.<!--DelEnd-->.<br>Example: Release|
 | ODID<sup>12+</sup> | string | Yes| No|Open device identifier.<br>An ODID will be regenerated in the following scenarios:<br>Restore a phone to its factory settings.<br>Uninstall and reinstall all applications with the same **developerId** on one device.<br>An ODID is generated based on the following rules:<br>The value is generated based on the **groupId** parsed from the **developerId** in the signature information. As **groupId.developerId** is the rule, if no **groupId** exists, the **developerId** is used as the **groupId**.<br>Applications with the same **developerId** use the same ODID on one device.<br>Applications with different **developerId**s use different ODIDs on one device.<br>Applications with the same **developerId** use different ODIDs on different devices.<br>Applications with different **developerId**s use different ODIDs on different devices.<br>**NOTE**<br>The data length is 37 bytes.<br>Example: 1234a567-XXXX-XXXX-XXXX-XXXXXXXXXXXX|
-| diskSN<sup>15+</sup> | string | Yes| No| Disk SN.<br> **NOTE**<br>This field can be queried only on the 2-in-1 device. For other devices, the query result is empty.<br> **Required permissions**: ohos.permission.ACCESS_DISK_PHY_INFO<br> Example: 2502EM400567|
+| diskSN<sup>15+</sup> | string | Yes| No| Disk SN.<br>**NOTE**<br>This field can be queried only on the 2-in-1 device. For other devices, the query result is empty.<br> **Required permissions**: ohos.permission.ACCESS_DISK_PHY_INFO<br> Example: 2502EM400567 |
 
 **Example**
 
@@ -73,62 +73,62 @@ import { deviceInfo } from '@kit.BasicServicesKit';
     console.info('the value of the deviceType is :' + deviceTypeInfo);
 
     let manufactureInfo: string = deviceInfo.manufacture;
-    // Output: the value of the manufacture is: HUAWEI
+    // Output: the value of the manufactureInfo is: HUAWEI
     console.info('the value of the manufactureInfo is :' + manufactureInfo);
 
     let brandInfo: string = deviceInfo.brand;
-    // Output: the value of the brand is: HUAWEI
+    // Output: the value of the device brand is: HUAWEI
     console.info('the value of the device brand is :' + brandInfo);
 
     let marketNameInfo: string = deviceInfo.marketName;
-    // Output: the value of the marketName is: Mate XX
+    // Output: the value of the deviceInfo marketName is: Mate XX
     console.info('the value of the deviceInfo marketName is :' + marketNameInfo);
 
     let productSeriesInfo: string = deviceInfo.productSeries;
-    // Output: the value of the productSeries is: TAS
+    // Output: the value of the deviceInfo productSeries is: TAS
     console.info('the value of the deviceInfo productSeries is :' + productSeriesInfo);
 
     let productModelInfo: string = deviceInfo.productModel;
-    // Output: the value of the productModel is: TAS-AL00
+    // Output: the value of the deviceInfo productModel is: TAS-AL00
     console.info('the value of the deviceInfo productModel is :' + productModelInfo);
 
     let productModelAliasInfo: string = deviceInfo.productModelAlias;
     console.info('the value of the deviceInfo productModelAlias is :' + productModelAliasInfo);
 
     let softwareModelInfo: string = deviceInfo.softwareModel;
-    // Output result: the value of the softwareModel is: TAS-AL00
+    // Output result: the value of the deviceInfo softwareModel is: TAS-AL00
     console.info('the value of the deviceInfo softwareModel is :' + softwareModelInfo);
 
     let hardwareModelInfo: string = deviceInfo.hardwareModel;
-    // Output: the value of the hardwareModel is: TASA00CVN1
+    // Output: the value of the deviceInfo hardwareModel is: TASA00CVN1
     console.info('the value of the deviceInfo hardwareModel is :' + hardwareModelInfo);
 
     let serialInfo: string = deviceInfo.serial;
-    // Output: the value of the serial is: ABC123456789
+    // Output: the value of the deviceInfo serial is: The serial number varies depending on the device.
     console.info('the value of the deviceInfo serial is :' + serialInfo);
 
     let bootloaderVersionInfo: string = deviceInfo.bootloaderVersion;
-    // Output: the value of the bootloaderVersion is: bootloader
+    // Output: the value of the deviceInfo bootloaderVersion is: bootloader
     console.info('the value of the deviceInfo bootloaderVersion is :' + bootloaderVersionInfo);
 
     let abiListInfo: string = deviceInfo.abiList;
-    // Output: the value of the abiList is: arm64-v8a
+    // Output: the value of the deviceInfo abiList is: arm64-v8a
     console.info('the value of the deviceInfo abiList is :' + abiListInfo);
 
     let securityPatchTagInfo: string = deviceInfo.securityPatchTag;
-    // Output: the value of the securityPatchTag is: 2021-01-01
+    // Output: the value of the deviceInfo securityPatchTag is: 2021/01/01
     console.info('the value of the deviceInfo securityPatchTag is :' + securityPatchTagInfo);
 
     let displayVersionInfo: string = deviceInfo.displayVersion;
-    // Output: the value of the displayVersion is: XXX X.X.X.X
+    // Output: the value of the deviceInfo displayVersion is: XXX X.X.X.X
     console.info('the value of the deviceInfo displayVersion is :' + displayVersionInfo);
 
     let incrementalVersionInfo: string = deviceInfo.incrementalVersion;
-    // Output: the value of the incrementalVersion is: default
+    // Output: the value of the deviceInfo incrementalVersion is: default
     console.info('the value of the deviceInfo incrementalVersion is :' + incrementalVersionInfo);
 
     let osReleaseTypeInfo: string = deviceInfo.osReleaseType;
-    // Output: the value of the osReleaseType is: Release
+    // Output: the value of the deviceInfo osReleaseType is: Release
     console.info('the value of the deviceInfo osReleaseType is :' + osReleaseTypeInfo);
 
     let osFullNameInfo: string = deviceInfo.osFullName;
@@ -136,78 +136,78 @@ import { deviceInfo } from '@kit.BasicServicesKit';
     console.info('the value of the deviceInfo osFullName is :' + osFullNameInfo);
 
     let majorVersionInfo: number = deviceInfo.majorVersion;
-    // Output: the value of the majorVersion is: 5
+    // Output: the value of the deviceInfo majorVersion is: 5
     console.info('the value of the deviceInfo majorVersion is :' + majorVersionInfo);
 
     let seniorVersionInfo: number = deviceInfo.seniorVersion;
-    // Output: the value of the seniorVersion is: 0
+    // Output: the value of the deviceInfo seniorVersion is: 0
     console.info('the value of the deviceInfo seniorVersion is :' + seniorVersionInfo);
 
     let featureVersionInfo: number = deviceInfo.featureVersion;
-    // Output: the value of the featureVersion is: 0
+    // Output: the value of the deviceInfo featureVersion is: 0
     console.info('the value of the deviceInfo featureVersion is :' + featureVersionInfo);
 
     let buildVersionInfo: number = deviceInfo.buildVersion;
-    // Output: the value of the buildVersion is: 1
+    // Output: the value of the deviceInfo buildVersion is: 1
     console.info('the value of the deviceInfo buildVersion is :' + buildVersionInfo);
 
     let sdkApiVersionInfo: number = deviceInfo.sdkApiVersion;
-    // Output: the value of the sdkApiVersion is: 12
+    // Output: the value of the deviceInfo sdkApiVersion is: 12
     console.info('the value of the deviceInfo sdkApiVersion is :' + sdkApiVersionInfo);
 
     let firstApiVersionInfo: number = deviceInfo.firstApiVersion;
-    // Output: the value of the firstApiVersion is: 3
+    // Output: the value of the deviceInfo firstApiVersion is: 3
     console.info('the value of the deviceInfo firstApiVersion is :' + firstApiVersionInfo);
 
     let versionIdInfo: string = deviceInfo.versionId;
-    // Output result: the value of the versionId is: wearable/HUAWEI/HUAWEI/TAS/OpenHarmony-5.0.0.1/TAS-AL00/TAS-AL00/12/default/release:nolog
+    // Output result: the value of the deviceInfo versionId is: wearable/HUAWEI/HUAWEI/TAS/OpenHarmony-5.0.0.1/TAS-AL00/TAS-AL00/12/default/release:nolog
     console.info('the value of the deviceInfo versionId is :' + versionIdInfo);
 
     let buildTypeInfo: string = deviceInfo.buildType;
-    // Output: the value of the buildType is: release:nolog
+    // Output: the value of the deviceInfo buildUser is: default
     console.info('the value of the deviceInfo buildType is :' + buildTypeInfo);
 
     let buildUserInfo: string = deviceInfo.buildUser;
-    // Output: the value of the buildUser is: default
+    // Output: the value of the deviceInfo buildUser is: default
     console.info('the value of the deviceInfo buildUser is :' + buildUserInfo);
 
     let buildHostInfo: string = deviceInfo.buildHost;
-    // Output: the value of the buildHost is: default
+    // Output: the value of the deviceInfo buildHost is: default
     console.info('the value of the deviceInfo buildHost is :' + buildHostInfo);
 
     let buildTimeInfo: string = deviceInfo.buildTime;
-    // Output result: the value of the buildTime is: default
+    // Output result: the value of the deviceInfo buildTime is: default
     console.info('the value of the deviceInfo buildTime is :' + buildTimeInfo);
 
     let buildRootHashInfo: string = deviceInfo.buildRootHash;
-    // Output result: the value of the buildRootHash is: default
+    // Output result: the value of the deviceInfo buildRootHash is: default
     console.info('the value of the deviceInfo buildRootHash is :' + buildRootHashInfo);
 
     let udid: string = deviceInfo.udid;
-    // Output: the value of the udid is: 1234567890
+    // Output: the value of the deviceInfo udid is: 9D6AABD147XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXE5536412
     console.info('the value of the deviceInfo udid is :' + udid);
 
     let distributionOSName: string = deviceInfo.distributionOSName
-    // Output: the value of the distributionOSName is: OpenHarmony
+    // Output: the value of the deviceInfo distributionOSName is: OpenHarmony
     console.info('the value of the deviceInfo distributionOSName is :' + distributionOSName);
 
     let distributionOSVersion: string = deviceInfo.distributionOSVersion
-    // Output: the value of the distributionOSVersion is: 5.0.0
+    // Output: the value of the deviceInfo distributionOSVersion is: 5.0.0
     console.info('the value of the deviceInfo distributionOSVersion is :' + distributionOSVersion);
 
     let distributionOSApiVersion: number = deviceInfo.distributionOSApiVersion
-    // Output: the value of the distributionOSApiVersion is: 500001
+    // Output: the value of the deviceInfo distributionOSApiVersion is: 500001
     console.info('the value of the deviceInfo distributionOSApiVersion is :' + distributionOSApiVersion);
 
     let distributionOSApiName: string = deviceInfo.distributionOSApiName
     console.info('the value of the deviceInfo distributionOSApiName is :' + distributionOSApiName);
 
     let distributionOSReleaseType: string = deviceInfo.distributionOSReleaseType
-    // Output: the value of the distributionOSReleaseType is: Release
+    // Output: the value of the deviceInfo distributionOSReleaseType is: Release
     console.info('the value of the deviceInfo distributionOSReleaseType is :' + distributionOSReleaseType);
 
     let odid: string = deviceInfo.ODID;
-    // Output: the value of the ODID is: 1234a567-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+    // Output: the value of the deviceInfo odid is: 1234a567-XXXX-XXXX-XXXX-XXXXXXXXXXXX
     console.info('the value of the deviceInfo odid is :' + odid);
 
     let diskSN: string = deviceInfo.diskSN;

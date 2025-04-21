@@ -75,7 +75,7 @@ You can create multiple levels of subdirectories with custom names to store vari
 
 #### resfile Directory
 
-You can create multiple levels of subdirectories with custom names to store various resource files.<br>Resource files in the subdirectories are directly packed into the application without being compiled, and no IDs will be assigned to the resource files. After an application is installed, the **resfile** directory is decompressed to the application sandbox path. You can obtain the path through the [resourceDir](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-ability-kit/js-apis-inner-application-context.md#properties) attribute of **Context**.
+You can create multiple levels of subdirectories with custom names to store various resource files.<br>Resource files in the subdirectories are directly packed into the application without being compiled, and no IDs will be assigned to the resource files. After the application is installed, resources in the **resfile** repository are decompressed to the application sandbox path. After the **resfile** directory is obtained through the **Context** attribute [resourceDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#properties), the resources can be accessed through the file path in read-only mode.
 
 ### Resource Group Directories
 
@@ -133,14 +133,14 @@ The content of the **float.json** file is as follows:
 
 ```json
 {
-    "float":[
+    "float": [
         {
-            "name":"font_hello",
-            "value":"28.0fp"
+            "name": "font_hello",
+            "value": "28.0fp"
         },
-	      {
-            "name":"font_world",
-            "value":"20.0fp"
+	    {
+            "name": "font_world",
+            "value": "20.0fp"
         }
     ]
 }
@@ -150,22 +150,22 @@ The content of the **string.json** file is as follows:
 
 ```json
 {
-    "string":[
+    "string": [
         {
-            "name":"string_hello",
-            "value":"Hello"
+            "name": "string_hello",
+            "value": "Hello"
         },
-	      {
-            "name":"string_world",
-            "value":"World"
+	    {
+            "name": "string_world",
+            "value": "World"
         },
-	      {
-            "name":"message_arrive",
-            "value":"We will arrive at %1$s."
+	    {
+            "name": "message_arrive",
+            "value": "We will arrive at %1$s."
         },
         {
-            "name":"message_notification",
-            "value":"Hello, %1$s!,You have %2$d new messages."
+            "name": "message_notification",
+            "value": "Hello, %1$s!,You have %2$d new messages."
         }
     ]
 }
@@ -175,17 +175,17 @@ The content of the **plural.json** file is as follows:
 
 ```json
 {
-    "plural":[
+    "plural": [
         {
-            "name":"eat_apple",
-            "value":[
+            "name": "eat_apple",
+            "value": [
                 {
-                    "quantity":"one",
-                    "value":"%d apple"
+                    "quantity": "one",
+                    "value": "%d apple"
                 },
                 {
-                    "quantity":"other",
-                    "value":"%d apples"
+                    "quantity": "other",
+                    "value": "%d apples"
                 }
             ]
         }

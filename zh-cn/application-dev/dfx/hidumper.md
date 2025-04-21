@@ -419,9 +419,9 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
     >
     > 命令2：执行hdc shell "param get|grep const.product.software.version"查看当前版本是否包含"log"字符串。
     >
-    > release版本:命令1执行结果为0且命令2不包含"log"字符串
+    > release版本:命令1执行结果为0且命令2不包含"log"字符串。
     >
-    > debug版本:非release版本即为debug版本
+    > debug版本:非release版本即为debug版本。
 
     **使用样例：**
 
@@ -722,7 +722,7 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
     >
     > 如何区分debug和release版本：请查看`hidumper -p`中说明。
     >
-    > 导出的jsheap文件一般位于/data/log/faultlog/temp或/data/log/reliability/resource_leak/memory_leak下
+    > 导出的jsheap文件一般位于/data/log/faultlog/temp或/data/log/reliability/resource_leak/memory_leak下。
 
     **使用样例：**
 

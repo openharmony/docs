@@ -37,32 +37,33 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Entry
 @Component
-struct ShowNonFullScreenAd {
+struct Index {
   // Requested ad content.
-  private ads: Array<advertising.Advertisement> = [];
+  private ads: advertising.Advertisement[] = [];
   // Ad display parameters.
   private adDisplayOptions: advertising.AdDisplayOptions = {
     // Whether to mute the ad. By default, the ad is not muted.
     mute: false
-  }
+  };
 
   build() {
     Column() {
       // The AdComponent is used to show a non-full-screen ad.
       AdComponent({
-        ads: this.ads, displayOptions: this.adDisplayOptions,
+        ads: this.ads,
+        displayOptions: this.adDisplayOptions,
         interactionListener: {
           // Ad status change callback.
           onStatusChanged: (status: string, ad: advertising.Advertisement, data: string) => {
             switch (status) {
               case 'onAdOpen':
-                hilog.info(0x0000, 'testTag', '%{public}s', 'onAdOpen');
+                hilog.info(0x0000, 'testTag', 'onAdOpen');
                 break;
               case 'onAdClick':
-                hilog.info(0x0000, 'testTag', '%{public}s', 'onAdClick');
+                hilog.info(0x0000, 'testTag', 'onAdClick');
                 break;
               case 'onAdClose':
-                hilog.info(0x0000, 'testTag', '%{public}s', 'onAdClose');
+                hilog.info(0x0000, 'testTag', 'onAdClose');
                 break;
             }
           }
@@ -70,7 +71,9 @@ struct ShowNonFullScreenAd {
       })
         .width('100%')
         .height('100%')
-    }.width('100%').height('100%')
+    }
+    .width('100%')
+    .height('100%')
   }
 }
 ```

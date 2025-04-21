@@ -61,6 +61,7 @@ OH_AudioStreamBuilder_Destroy(builder);
 
 2. 配置音频流参数。
 
+    关于音频采样率可参考[配置合适的音频采样率](using-audiorenderer-for-playback.md#配置合适的音频采样率)。<br>
     创建音频播放构造器后，可以设置音频流所需要的参数，可以参考下面的案例。
 
     ```cpp

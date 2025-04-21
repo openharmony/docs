@@ -1,6 +1,9 @@
 # 拉起邮件类应用（startAbilityByType）
 
 本章节介绍如何拉起邮件类应用扩展面板。
+> **说明：**
+> 
+> 如果拉起方的参数为mailto协议字符串，可以[使用mailto方式拉起邮件应用](start-email-apps-by-mailto.md)。邮件应用会解析收到的mailto协议字符串，并填充发件人、收件人、邮件内容等信息。
 
 ## 邮件类应用扩展面板参数说明
 
@@ -8,13 +11,13 @@ startAbilityByType接口中type字段为mail，对应的wantParam参数：
 
 | 参数名                                | 类型                                                         | 必填 | 说明                                                         |
 | ------------------------------------- | ------------------------------------------------------------ | ------ | ------------------------------------------------------------ |
-| email                                 | string[ ]                                                    | 否   | 收件人邮箱地址（支持多个且以逗号分隔）                       |
-| cc                                    | string[ ]                                                    | 否   | 抄收人邮箱地址（支持多个且以逗号分隔）                       |
-| bcc                                   | string[ ]                                                    | 否   | 密送人邮箱地址（支持多个且以逗号分隔）                       |
-| subject                               | string                                                       | 否   | 邮件主题                                                     |
-| body                                  | string                                                       | 否   | 邮件内容                                                     |
-| ability.params.stream                 | string[ ]                                                    | 否   | 邮件附件（附件的uri地址列表）                                |
-| ability.want.params.uriPermissionFlag | [wantConstant.Flags](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#flags) | 否   | 给邮件附件赋予至少读权限。邮件附件参数存在时，该参数也必须要传 |
+| email                                 | string[ ]                                                    | 否   | 收件人邮箱地址（支持多个且以逗号分隔）。                       |
+| cc                                    | string[ ]                                                    | 否   | 抄收人邮箱地址（支持多个且以逗号分隔）。                       |
+| bcc                                   | string[ ]                                                    | 否   | 密送人邮箱地址（支持多个且以逗号分隔）。                       |
+| subject                               | string                                                       | 否   | 邮件主题。                                                     |
+| body                                  | string                                                       | 否   | 邮件内容。                                                     |
+| ability.params.stream                 | string[ ]                                                    | 否   | 邮件附件（附件的uri地址列表）。                                |
+| ability.want.params.uriPermissionFlag | [wantConstant.Flags](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#flags) | 否   | 给邮件附件赋予至少读权限。邮件附件参数存在时，该参数也必须要传。 |
 | sceneType                             | number                                                       | 否   | 意图场景，表明本次请求对应的操作意图。1：发邮件。默认为1。                              |
 
 > **说明：**
@@ -103,12 +106,12 @@ startAbilityByType接口中type字段为mail，对应的wantParam参数：
 
     | 参数名  | 类型      | 必填 | 说明                                   |
     | ------- | --------- | ---- | -------------------------------------- |
-    | email   | string[ ] | 否   | 收件人邮箱地址（支持多个且以逗号分隔） |
-    | cc      | string[ ] | 否   | 抄收人邮箱地址（支持多个且以逗号分隔） |
-    | bcc     | string[ ] | 否   | 密送人邮箱地址（支持多个且以逗号分隔） |
-    | subject | string    | 否   | 邮件主题                               |
-    | body    | string    | 否   | 邮件内容                               |
-    | stream  | string[ ] | 否   | 邮件附件列表（附件的uri地址列表）      |
+    | email   | string[ ] | 否   | 收件人邮箱地址（支持多个且以逗号分隔）。 |
+    | cc      | string[ ] | 否   | 抄收人邮箱地址（支持多个且以逗号分隔）。 |
+    | bcc     | string[ ] | 否   | 密送人邮箱地址（支持多个且以逗号分隔）。 |
+    | subject | string    | 否   | 邮件主题。                               |
+    | body    | string    | 否   | 邮件内容。                               |
+    | stream  | string[ ] | 否   | 邮件附件列表（附件的uri地址列表）。      |
     
     > **说明：**
     > 

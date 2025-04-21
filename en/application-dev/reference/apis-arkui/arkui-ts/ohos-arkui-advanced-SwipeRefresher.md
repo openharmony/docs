@@ -11,7 +11,7 @@ The swipe refresher is a component used to obtain and load content, typically wi
 ## Modules to Import
 
 ```
-import { SwipeRefresher } from '@kit.ArkUI'
+import { SwipeRefresher } from '@kit.ArkUI';
 ```
 
 
@@ -20,14 +20,14 @@ import { SwipeRefresher } from '@kit.ArkUI'
 Not supported
 
 ## Attributes
-The [universal attributes](ts-universal-attributes-size.md) are supported.
+The [universal attributes](ts-component-general-attributes.md) are not supported.
 
 
 ## SwipeRefresher
 
 SwipeRefresher ({content?: string, isLoading: boolean})
 
-**Decorator**: \@Component
+**Decorator**: @Component
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -35,13 +35,13 @@ SwipeRefresher ({content?: string, isLoading: boolean})
 
 **Parameters**
 
-| Name| Type| Mandatory| Decorator| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| content | string | No| \@Prop | Text displayed when the content is loaded.|
-| isLoading | boolean | If yes, | \@Prop | Whether content is being loaded.<br> The value **true** means that content is being loaded, and **false** means the opposite.|
+| Name| Type| Mandatory| Decorator| Description                                                                |
+| -------- | -------- | -------- | -------- |--------------------------------------------------------------------|
+| content | string | No| \@Prop | Text displayed when the content is loaded.<br>The default value is an empty string.<br>**NOTE**<br>If the text is longer than the column width, it will be truncated.                                        |
+| isLoading | boolean | If yes, | \@Prop | Whether content is being loaded.<br> The value **true** means that content is being loaded,<br> and **false** means the opposite.|
 
 ## Events
-The [universal events](ts-universal-events-click.md) are supported.
+The [universal events](ts-component-general-events.md) are not supported.
 
 ## Example
 This example demonstrates how setting the **content** parameter to empty or non-empty strings and toggling the **isLoading** parameter between **true** and **false** affects the loading effect.

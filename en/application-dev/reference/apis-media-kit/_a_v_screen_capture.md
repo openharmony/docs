@@ -79,6 +79,7 @@ You can refer to the corresponding development guide and samples based on your d
 | typedef void(\* [OH_AVScreenCapture_OnError](#oh_avscreencapture_onerror)) ([OH_AVScreenCapture](#oh_avscreencapture) \*capture, int32_t errorCode, void \*userData) | Defines a pointer to a callback function that is called when an error occurs during the running of an **OH_AVScreenCapture** instance.| 
 | typedef void(\* [OH_AVScreenCapture_OnBufferAvailable](#oh_avscreencapture_onbufferavailable)) ([OH_AVScreenCapture](#oh_avscreencapture) \*capture, OH_AVBuffer \*buffer, [OH_AVScreenCaptureBufferType](#oh_avscreencapturebuffertype) bufferType, int64_t timestamp, void \*userData) | Defines a pointer to a callback function that is called when an audio or a video buffer is available during the running of an **OH_AVScreenCapture** instance.| 
 | typedef enum [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1) [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) | Defines an enum for the error codes generated during screen recording.| 
+| typedef void(\* [OH_AVScreenCapture_OnDisplaySelected](#oh_avscreencapture_ondisplayselected)) ([OH_AVScreenCapture](#oh_avscreencapture) \*capture, uint64_t displayId, void \*userData) | Defines a pointer to a callback function that is called when screen capture starts.| 
 
 
 ### Enums
@@ -128,6 +129,8 @@ You can refer to the corresponding development guide and samples based on your d
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_ResizeCanvas](#oh_avscreencapture_resizecanvas) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, int32_t width, int32_t height) | Adjusts the screen resolution. | 
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_SkipPrivacyMode](#oh_avscreencapture_skipprivacymode) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, int32_t \*windowIDs, int32_t windowCount) | Exempts privacy windows during screen capture. | 
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_SetMaxVideoFrameRate](#oh_avscreencapture_setmaxvideoframerate) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, int32_t frameRate) | Sets the maximum frame rate for screen capture. | 
+| [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_ShowCursor](#oh_avscreencapture_showcursor) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, bool showCursor) | Sets whether to show the cursor.| 
+| [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_SetDisplayCallback](#oh_avscreencapture_setdisplaycallback) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, [OH_AVScreenCapture_OnDisplaySelected](#oh_avscreencapture_ondisplayselected) callback, void \*userData) | Sets a callback function for obtaining the display ID.| 
 
 
 ## Type Description
@@ -294,6 +297,29 @@ Defines a pointer to a callback function that is called when an audio or a video
 | buffer | Pointer to the **OH_AVBuffer** instance. After the callback is triggered, the buffer is no longer valid. | 
 | bufferType | Type of the buffer. | 
 | timestamp | Timestamp, in nanoseconds. | 
+| userData | Pointer to the user-defined data carried in the function.| 
+
+
+### OH_AVScreenCapture_OnDisplaySelected
+
+```
+typedef void (*OH_AVScreenCapture_OnDisplaySelected)(OH_AVScreenCapture *capture, uint64_t displayId, void *userData)
+```
+
+**Description**
+
+Defines a pointer to a callback function that is called when screen capture starts.
+
+**System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
+
+**Since**: 15
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| capture | Pointer to an **OH_AVScreenCapture** instance.| 
+| displayId | ID of the screen to capture.| 
 | userData | Pointer to the user-defined data carried in the function.| 
 
 
@@ -967,7 +993,7 @@ Obtains an audio buffer. When calling this function, the application must alloca
 
 **Returns**
 
-Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+Returns a result code defined in [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1).
 
 **AV_SCREEN_CAPTURE_ERR_OK**: The operation is successful.
 
@@ -1034,7 +1060,7 @@ Adds audio content to a content filter.
 
 **Returns**
 
-Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+Returns a result code defined in [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1).
 
 **AV_SCREEN_CAPTURE_ERR_OK**: The operation is successful.
 
@@ -1129,7 +1155,7 @@ Sets a content filter for an **OH_AVScreenCapture** instance.
 
 **Returns**
 
-Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+Returns a result code defined in [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1).
 
 **AV_SCREEN_CAPTURE_ERR_OK**: The operation is successful.
 
@@ -1158,7 +1184,7 @@ set all memory bytes of the OH_AVScreenCaptureConfig struct variables to **0**, 
 If both **audioSampleRate** and **audioChannels** in the [OH_AudioCaptureInfo](#oh_audiocaptureinfo) struct are **0**,
 the **OH_AVScreenCapture** instance ignores the audio parameters of this type and does not collect the audio data of this type.
 
-If both **videoFrameWidth** and **videoFrameHeight** in the [OH_AudioCaptureInfo](#oh_audiocaptureinfo) struct are **0**,
+If both **videoFrameWidth** and **videoFrameHeight** in the [OH_VideoCaptureInfo](#oh_videocaptureinfo) struct are **0**,
 the **OH_AVScreenCapture** instance ignores the corresponding video parameters and does not collect screen data.
 
 **System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
@@ -1174,7 +1200,7 @@ the **OH_AVScreenCapture** instance ignores the corresponding video parameters a
 
 **Returns**
 
-Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+Returns a result code defined in [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1).
 
 **AV_SCREEN_CAPTURE_ERR_OK**: The operation is successful.
 
@@ -1205,7 +1231,7 @@ Releases an **OH_AVScreenCapture** instance. This function is used in pair with 
 
 **Returns**
 
-Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+Returns a result code defined in [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1).
 
 **AV_SCREEN_CAPTURE_ERR_OK**: The operation is successful.
 
@@ -1240,7 +1266,7 @@ Releases an audio buffer. After the audio buffer is no longer needed, call this 
 
 **Returns**
 
-Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+Returns a result code defined in [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1).
 
 **AV_SCREEN_CAPTURE_ERR_OK**: The operation is successful.
 
@@ -1271,7 +1297,7 @@ Releases a content filter.
 
 **Returns**
 
-Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+Returns a result code defined in [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1).
 
 **AV_SCREEN_CAPTURE_ERR_OK**: The operation is successful.
 
@@ -1304,7 +1330,7 @@ Releases a video buffer. After the video buffer is no longer needed, call this f
 
 **Returns**
 
-Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+Returns a result code defined in [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1).
 
 **AV_SCREEN_CAPTURE_ERR_OK**: The operation is successful.
 
@@ -1340,7 +1366,7 @@ Sets a callback to listen for available video buffers and audio buffers and erro
 
 **Returns**
 
-Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+Returns a result code defined in [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1).
 
 **AV_SCREEN_CAPTURE_ERR_OK**: The operation is successful.
 
@@ -1376,7 +1402,7 @@ The default value is **false**.
 
 **Returns**
 
-Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+Returns a result code defined in [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1).
 
 **AV_SCREEN_CAPTURE_ERR_OK**: The operation is successful.
 
@@ -1418,7 +1444,7 @@ A successful call to this function leads to the following scenarios:
 
 **Returns**
 
-Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+Returns a result code defined in [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1).
 
 **AV_SCREEN_CAPTURE_ERR_OK**: The operation is successful.
 
@@ -1427,6 +1453,41 @@ Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_
 **AV_SCREEN_CAPTURE_ERR_NO_MEMORY**: The memory fails to be allocated due to insufficient memory.
 
 **AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT**: The operation is not allowed. The data callback fails to be set.
+
+
+### OH_AVScreenCapture_SetDisplayCallback()
+
+```
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetDisplayCallback(struct OH_AVScreenCapture *capture, OH_AVScreenCapture_OnDisplaySelected callback, void *userData)
+```
+
+**Description**
+
+Sets a callback function for obtaining the display ID.
+
+**System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
+
+**Since**: 15
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| capture | Pointer to an **OH_AVScreenCapture** instance.| 
+| callback | Callback function for returning the display ID. The callback function is an [OH_AVScreenCapture_OnDisplaySelected](#oh_avscreencapture_ondisplayselected) object.| 
+| userData | Pointer to the user-defined data. The data is returned as an input parameter when the state change callback is triggered.| 
+
+**Returns**
+
+Returns a result code defined in [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1).
+
+**AV_SCREEN_CAPTURE_ERR_OK**: The operation is successful.
+
+**AV_SCREEN_CAPTURE_ERR_INVALID_VAL**: The input parameter **capture** or **callback** is a null pointer.
+
+**AV_SCREEN_CAPTURE_ERR_NO_MEMORY**: The memory fails to be allocated due to insufficient memory.
+
+**AV_SCREEN_CAPTURE_ERR_INVALID_STATE**: This operation is not supported in the current state. The callback function must be called before **start** is called.
 
 
 ### OH_AVScreenCapture_SetErrorCallback()
@@ -1457,7 +1518,7 @@ After a successful call to this function, the callback [OH_AVScreenCaptureOnErro
 
 **Returns**
 
-Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+Returns a result code defined in [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1).
 
 **AV_SCREEN_CAPTURE_ERR_OK**: The operation is successful.
 
@@ -1493,7 +1554,7 @@ By default, the microphone is enabled.
 
 **Returns**
 
-Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+Returns a result code defined in [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1).
 
 **AV_SCREEN_CAPTURE_ERR_OK**: The operation is successful.
 
@@ -1538,7 +1599,7 @@ A privacy dialog box is displayed to ask for user consent before screen capture 
 
 **Returns**
 
-Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+Returns a result code defined in [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1).
 
 **AV_SCREEN_CAPTURE_ERR_OK**: The operation is successful.
 
@@ -1573,7 +1634,7 @@ The application can obtain the original streams of screen capture by calling [OH
 
 **Returns**
 
-Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+Returns a result code defined in [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1).
 
 **AV_SCREEN_CAPTURE_ERR_OK**: The operation is successful.
 
@@ -1605,7 +1666,7 @@ Starts screen capture in surface mode.
 
 **Returns**
 
-Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+Returns a result code defined in [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1).
 
 **AV_SCREEN_CAPTURE_ERR_OK**: The operation is successful.
 
@@ -1636,13 +1697,13 @@ Starts screen recording, with recordings saved in files.
 
 **Returns**
 
-Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+Returns a result code defined in [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1).
 
 **AV_SCREEN_CAPTURE_ERR_OK**: The operation is successful.
 
 **AV_SCREEN_CAPTURE_ERR_INVALID_VAL**: The input parameter **capture** is a null pointer.
 
-**AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT**: The operation is not allowed. The privacy permission fails to be enabled or screen recording fails to start.
+**AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT**: The operation is not allowed. The privacy permission fails to be enabled or screen capture fails to start.
 
 
 ### OH_AVScreenCapture_StopScreenCapture()
@@ -1667,7 +1728,7 @@ Stops screen capture. This function is used in pair with [OH_AVScreenCapture_Sta
 
 **Returns**
 
-Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+Returns a result code defined in [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1).
 
 **AV_SCREEN_CAPTURE_ERR_OK**: The operation is successful.
 
@@ -1698,13 +1759,13 @@ Stops screen recording. This function is used in pair with [OH_AVScreenCapture_S
 
 **Returns**
 
-Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+Returns a result code defined in [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1).
 
 **AV_SCREEN_CAPTURE_ERR_OK**: The operation is successful.
 
 **AV_SCREEN_CAPTURE_ERR_INVALID_VAL**: The input parameter **capture** is a null pointer.
 
-**AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT**: The operation is not allowed. Screen recording fails to stop.
+**AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT**: The operation is not allowed. Screen capture fails to stop.
 
 ### OH_AVScreenCapture_ResizeCanvas()
 
@@ -1734,13 +1795,46 @@ Currently, this function supports only the scenario of capturing streams, but no
 
 **Returns**
 
-Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+Returns a result code defined in [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1).
 
 **AV_SCREEN_CAPTURE_ERR_OK**: The operation is successful.
 
 **AV_SCREEN_CAPTURE_ERR_INVALID_VAL**: The input parameter **capture** is a null pointer.
 
 **AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT**: The operation is not allowed.
+
+
+### OH_AVScreenCapture_ShowCursor()
+
+```
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ShowCursor(struct OH_AVScreenCapture *capture, bool showCursor)
+```
+
+**Description**
+
+Sets whether to show the cursor.
+
+**System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
+
+**Since**: 15
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| capture | Pointer to an [OH_AVScreenCapture](#oh_avscreencapture) instance.| 
+| showCursor | Whether to show the cursor.| 
+
+**Returns**
+
+Returns a result code defined in [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1).
+
+**AV_SCREEN_CAPTURE_ERR_OK**: The operation is successful.
+
+**AV_SCREEN_CAPTURE_ERR_INVALID_VAL**: The input parameter **capture** is a null pointer.
+
+**AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT**: The operation is not allowed. The cursor setting fails.
+
 
 ### OH_AVScreenCapture_SkipPrivacyMode()
 
@@ -1768,7 +1862,7 @@ Currently, all the IDs of the subwindows and main windows to skip must be passed
 
 **Returns**
 
-Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+Returns a result code defined in [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1).
 
 **AV_SCREEN_CAPTURE_ERR_OK**: The operation is successful.
 
@@ -1785,6 +1879,10 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetMaxVideoFrameRate (struct OH_A
 **Description**
 
 Sets the maximum frame rate for screen capture.
+
+This function must be called after screen capture starts.
+
+ 
 
 The maximum frame rate that can be configured is subject to the device's limitations and is ultimately governed by the capabilities of the underlying system.
 
@@ -1803,7 +1901,7 @@ Although there is no limit on the maximum value of the input parameter, the maxi
 
 **Returns**
 
-Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+Returns a result code defined in [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1).
 
 **AV_SCREEN_CAPTURE_ERR_OK**: The operation is successful.
 

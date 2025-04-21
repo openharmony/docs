@@ -40,7 +40,6 @@ publish(event: string, callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- | 
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
-| 1500004  | A third-party application cannot send system common events.                |
 | 1500007  | Failed to send the message to the common event service. |
 | 1500008  | Failed to initialize the common event service. |
 | 1500009  | Failed to obtain system parameters.  |
@@ -92,7 +91,6 @@ publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
-| 1500004  | A third-party application cannot send system common events.                |
 | 1500007  | Failed to send the message to the common event service. |
 | 1500008  | Failed to initialize the common event service. |
 | 1500009  | Failed to obtain system parameters.  |
@@ -439,3 +437,60 @@ setTimeout(() => {
   }
 }, 500);
 ```
+
+## CommonEventData<sup>10+</sup>
+
+type CommonEventData = _CommonEventData
+
+公共事件的数据。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+| 类型 | 说明 |
+| --- | --- |
+| [_CommonEventData](js-apis-inner-commonEvent-commonEventData.md) | 表示公共事件的数据。 |
+
+## CommonEventSubscriber<sup>10+</sup>
+
+type CommonEventSubscriber = _CommonEventSubscriber
+
+描述公共事件的订阅者。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+| 类型 | 说明 |
+| --- | --- |
+| [_CommonEventSubscriber](js-apis-inner-commonEvent-commonEventSubscriber.md) | 描述公共事件的订阅者。 |
+
+## CommonEventSubscribeInfo<sup>10+</sup>
+
+type CommonEventSubscribeInfo = _CommonEventSubscribeInfo
+
+用于表示订阅者的信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+| 类型 | 说明 |
+| --- | --- |
+| [_CommonEventSubscribeInfo](js-apis-inner-commonEvent-commonEventSubscribeInfo.md) | 用于表示订阅者的信息。 |
+
+## CommonEventPublishData<sup>10+</sup>
+
+type CommonEventPublishData = _CommonEventPublishData
+
+描述公共事件内容和属性。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+| 类型 | 说明 |
+| --- | --- |
+| [_CommonEventPublishData](js-apis-inner-commonEvent-commonEventPublishData.md) | 描述公共事件内容和属性。 |
+

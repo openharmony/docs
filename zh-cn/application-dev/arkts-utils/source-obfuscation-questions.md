@@ -32,15 +32,14 @@
     * 在本地依赖的library中的consumer-rules.txt文件中检索"-compact"。
     * 在工程目录下的oh_modules文件夹中，对全部的obfuscation.txt文件检索"-compact"。
 
-**说明**：
-三方库中obfuscation.txt不建议配置如下开关选项，这些选项会在主模块开启混淆时生效，进而出现预期外的混淆效果，甚至会出现应用运行时崩溃。因此建议联系发布此三方库方删除这些选项并重新出包。
-```
--enable-property-obfuscation
--enable-string-property-obfuscation
--enable-toplevel-obfuscation
--remove-log
--compact
-```
+> **说明**：
+> 
+> 三方库中obfuscation.txt不建议配置如下开关选项，这些选项会在主模块开启混淆时生效，进而出现预期外的混淆效果，甚至会出现应用运行时崩溃。因此建议联系发布此三方库方删除这些选项并重新出包。  
+> -enable-property-obfuscation  
+> -enable-string-property-obfuscation  
+> -enable-toplevel-obfuscation  
+> -remove-log  
+> -compact
 
 ## 属性混淆的问题
 
@@ -48,7 +47,7 @@
 
 **问题现象**
 
-报错内容为 `table Account has no column named a23 in 'INSET INTO Account(a23)'`。
+报错内容为：`table Account has no column named a23 in 'INSET INTO Account(a23)'`。
 
 **问题原因**
 
@@ -321,5 +320,5 @@ HAP与HSP独立执行构建与混淆流程，本地源码HAR模块中暴露的�
 
 **解决方案**
 
-方案一：将HAP与HSP共同依赖的本地源码HAR改造为[字节码HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section179161312181613)，这样此HAR在被依赖时不会被二次混淆。    
-方案二：将HAP与HSP共同依赖的本地源码HAR以[release模式构建打包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section19788284410)，这样此HAR在被依赖时，其文件名与对外接口不会被混淆。
+方案一：将HAP与HSP共同依赖的本地源码HAR改造为[字节码HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-har#section16598338112415)，这样此HAR在被依赖时不会被二次混淆。    
+方案二：将HAP与HSP共同依赖的本地源码HAR以[release模式构建打包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-har#section19788284410)，这样此HAR在被依赖时，其文件名与对外接口不会被混淆。

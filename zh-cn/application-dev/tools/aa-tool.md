@@ -96,7 +96,6 @@ aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D]
   | 10106101 | The current ability will be placed in the queue to wait for the previous ability to finish launching. |
   | 10106102 | The device screen is locked during the application launch. |
   | 10106103 | The target application is an expired crowdtesting application. |
-  | 10106104 | An ability cannot be started or stopped in Wukong mode. |
   | 10106105 | The target application is under control. |
   | 10106106 | The target application is managed by EDM. |
   | 10106107 | The current device does not support using window options. |
@@ -291,7 +290,7 @@ aa force-stop <bundleName>
   | 错误码ID | 错误信息 |
   | ------- | -------- |
   | 10105001 | Failed to connect to the ability service. |
-  | 10104002 | Failed to obtain specified bundle information. |
+  | 10104002 | Failed to retrieve specified package information. |
   | 10106401 | Failed to terminate the process. |
   | 10106402 | Persistent processes cannot be terminated. |
 
@@ -339,11 +338,9 @@ aa test -b <bundleName> [-m <module-name>] [-p <package-name>] [-s class <test-c
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
-  | 10104002 | Failed to obtain specified bundle information. |
+  | 10104002 | Failed to retrieve specified package information. |
   | 10105001 | Failed to connect to the ability service. |
   | 10106002 | The target application does not support debug mode. |
-  | 10106501 | The aa test command is not available for multi-app mode. |
-  | 10106502 | The aa test command is not available for app clones. |
   | 10108501 | An internal error occurs during the execution of the aa test command. |
 
   **示例**：
@@ -454,7 +451,7 @@ aa appdebug -b <bundleName> [-p]
   | ------- | -------- |
   | 10105003 | Failed to connect to the app service. |
   | 10106001 | The current device is not in developer mode. |
-  | 10106701 | The target application is not a debug application. |
+  | 10106701 | Cannot debug applications using a release certificate. |
 
   **示例**：
 
@@ -741,7 +738,7 @@ aa start命令的参数中携带的AppCloneIndex是一个无效值，则返回�
 
 **错误信息**
 
-Another ability is being started. Wait until it finishes starting.
+The current ability will be placed in the queue to wait for the previous ability to finish launching.
 
 **错误描述**
 
@@ -790,24 +787,6 @@ The target application is an expired crowdtesting application.
 **处理步骤**
 
 请检查应用是否众测到期，已过有效期的众测应用无法启动。
-
-### 10106104 Wukong模式，不允许启动/停止Ability
-
-**错误信息**
-
-An ability cannot be started or stopped in Wukong mode.
-
-**错误描述**
-
-当Wukong模式下，启动/停止Ability时，方法将返回该错误码。
-
-**可能原因**
-
-Wukong模式，不允许启动/停止Ability。
-
-**处理步骤**
-
-退出Wukong模式后，再尝试启动/停止Ability。请勿在Wukong模式下启动/停止Ability。
 
 ### 10106105 目标应用被管控
 
@@ -981,41 +960,9 @@ aa force-stop命令指定的bundleName是常驻进程。
 
 检查目标应用是否为常驻进程，常驻进程无法通过命令杀死。
 
-### 10106501 aa test命令不支持应用多开
-
-**错误信息**
-
-The aa test command is not available for multi-app mode.
-
-**错误描述**
-
-aa test命令不支持应用多开。
-
-**可能原因**
-
-aa test命令指定的应用应用多开时返回该错误码。
-
 **处理步骤**
 
 关闭目标应用的多实例之后重新尝试。
-
-### 10106502 aa test命令不支持应用分身模式
-
-**错误信息**
-
-The aa test command is not available for app clones.
-
-**错误描述**
-
-aa test命令不支持应用分身。
-
-**可能原因**
-
-aa test命令指定的应用为应用分身时返回该错误码。
-
-**处理步骤**
-
-关闭目标应用的应用分身之后重新尝试。
 
 ### 10108501 aa test命令内部错误
 
@@ -1079,7 +1026,7 @@ aa attach/detach命令指定的包名不存在。
 
 **错误信息**
 
-The target application is not a debug application.
+Cannot debug applications using a release certificate.
 
 **错误描述**
 

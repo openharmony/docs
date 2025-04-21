@@ -37,6 +37,7 @@ The AVSource module provides the functions for constructing media resource objec
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVSource_Destroy](#oh_avsource_destroy) ([OH_AVSource](#oh_avsource) \*source) | Destroys an **OH_AVSource** instance and clears internal resources. | 
 | [OH_AVFormat](_core.md#oh_avformat) \* [OH_AVSource_GetSourceFormat](#oh_avsource_getsourceformat) ([OH_AVSource](#oh_avsource) \*source) | Obtains the basic information about a media resource file. | 
 | [OH_AVFormat](_core.md#oh_avformat) \* [OH_AVSource_GetTrackFormat](#oh_avsource_gettrackformat) ([OH_AVSource](#oh_avsource) \*source, uint32_t trackIndex) | Obtains the basic information about a track. | 
+| [OH_AVFormat](_core.md#oh_avformat) \* [OH_AVSource_GetCustomMetadataFormat](#oh_avsource_getcustommetadataformat) ([OH_AVSource](#oh_avsource) \*source) | Obtains the basic information about custom metadata.| 
 
 
 ## Type Description
@@ -203,6 +204,39 @@ Returns either of the following result codes:
     
     1. The source pointer is invalid.
     2. The pointer is null or does not point to an **OH_AVSource** instance.
+
+
+### OH_AVSource_GetCustomMetadataFormat()
+
+```
+OH_AVFormat *OH_AVSource_GetCustomMetadataFormat(OH_AVSource *source)
+```
+
+**Description**
+
+Obtains the basic information about custom metadata.
+
+The caller must call [OH_AVFormat_Destroy](_core.md#oh_avformat_destroy) to release the **OH_AVFormat** instance when its lifecycle ends.
+
+**System capability**: SystemCapability.Multimedia.Media.Spliter
+
+**Since**: 18
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| source | Pointer to an **OH_AVSource** instance.| 
+
+**Returns**
+
+Returns the basic information about the metadata if the operation is successful; returns NULL otherwise.
+
+The possible causes of an operation failure are as follows:
+
+1. The source pointer is invalid.
+2. The pointer is null or does not point to an **OH_AVSource** instance.
+3. The source is not initialized.
 
 
 ### OH_AVSource_GetSourceFormat()

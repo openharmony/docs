@@ -25,11 +25,11 @@ Defines the AI analysis type. If it is not set, subject recognition and text rec
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name    | Description          |
-| -------- | -------- |
-| SUBJECT | Subject recognition.|
-| TEXT | Text recognition.|
-| OBJECT_LOOKUP | Object lookup.|
+| Name    | Value   | Description          |
+| -------- | ----- | -------- |
+| SUBJECT | 0  | Subject recognition.|
+| TEXT | 1  | Text recognition.|
+| OBJECT_LOOKUP | 2  | Object lookup.|
 
 ## ImageAIOptions
 

@@ -14,8 +14,8 @@ Geo-fencing uses the following interfaces. For details, see [Location Kit](../..
 
 | API| Description| 
 | -------- | -------- |
-| [on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): void;](../../reference/apis-location-kit/js-apis-geoLocationManager.md#geolocationmanagerongnssfencestatuschange) | Registers a listener for status change events of the specified geofence.| 
-| [off(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): void;](../../reference/apis-location-kit/js-apis-geoLocationManager.md#geolocationmanageroffgnssfencestatuschange) | Unregisters the listener for status change events of the specified geofence.| 
+| [addGnssGeofence(fenceRequest: GnssGeofenceRequest): Promise&lt;number&gt;](../../reference/apis-location-kit/js-apis-geoLocationManager.md#geolocationmanageraddgnssgeofence12) | Adds a GNSS geofence and subscribes to geofence transition events. This API uses a promise to return the result.| 
+| [removeGnssGeofence(geofenceId: number): Promise&lt;void&gt;](../../reference/apis-location-kit/js-apis-geoLocationManager.md#geolocationmanagerremovegnssgeofence12) | Removes a GNSS geofence and unsubscribes from geofence transition events. This API uses a promise to return the result.| 
 
 ## How to Develop
 
@@ -115,7 +115,7 @@ Geo-fencing uses the following interfaces. For details, see [Location Kit](../..
    }
    ```
 
-5. Delete a geofence.
+6. Delete a geofence.
 
    ```ts
    // fenceId is obtained after geoLocationManager.addGnssGeofence is successfully executed.

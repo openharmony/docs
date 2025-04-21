@@ -214,6 +214,18 @@ Failed to install the HAP since the version of the HAP to install is too early.
 **处理步骤**<br/>
 确认新安装的应用版本号是否不低于已安装的同应用版本号。
 
+1. 已安装应用版本号查询，依赖[hdc工具](../../dfx/hdc.md#环境准备)。
+```
+// 取dump出来的最后一个字段
+hdc shell bm dump -n com.xxx.demo |grep versionCode
+```
+
+![示例图](figures/installed_hap_verisonCode.PNG)
+
+2. 新安装的应用查看版本，HAP或者HSP用IDE打开，查看里面module.json文件中的versionCode字段配置。
+
+![示例图](figures/hap_verisonCode.PNG)
+
 ## 17700018 安装失败，依赖的模块不存在
 
 **错误信息**<br/>
@@ -628,7 +640,7 @@ Failed to install the HAP because the VersionCode to be updated is not greater t
 2. installFlag被设置为NORMAL，此时待更新的应用的版本号必须大于当前已安装的版本。
 
 **处理步骤**<br/>
-1. 设置应用的版本号大于当前版本。
+1. 设置应用的版本号大于当前版本，查看版本号的方法请参考[17700017错误码](#17700017-新安装的应用版本号低于已安装的版本号导致应用安装失败)的操作步骤。
 2. 如果希望应用更新但版本号不升级，需要设置installFlag为REPLACE_EXISTING。
 
 ## 17700048 代码签名校验失败
@@ -673,7 +685,7 @@ Failed to install the HAP because an enterprise normal/MDM bundle cannot be inst
 
 **处理步骤**<br/>
 1. 检查安装设备是否为企业设备。
-2. 检查设备参数const.bms.allowenterprisebundle是否为true
+2. 检查设备参数const.bms.allowenterprisebundle是否为true。
 
 ## 17700051 应用自升级时调用方的分发类型不是企业mdm
 **错误信息**<br/>
@@ -1120,6 +1132,101 @@ System error occurred during copy execution.
 **处理步骤**<br/>
 1. 检查目标路径空间是否充足。
 2. 检查源路径文件是否存在。
+
+## 17700087 当前设备不支持安装插件
+
+**错误信息**<br/>
+Failed to install the plugin because the current device does not support plugin. 
+
+**错误描述**<br/>
+当前设备不支持插件能力。
+
+**可能原因**<br/>
+设备不具备插件能力，安装插件失败。
+
+**处理步骤**<br/>
+使用[param工具](../../tools/param-tool.md)设置const.bms.support_plugin的值为true，即执行hdc shell param set const.bms.support_plugin true。
+
+## 17700088 应用缺少安装插件的权限
+
+**错误信息**<br/>
+Failed to install the plugin because the host application lacks ohos.permission.kernel.SUPPORT_PLUGIN.
+
+**错误描述**<br/>
+应用缺少ohos.permission.kernel.SUPPORT_PLUGIN权限，安装插件失败。
+
+**可能原因**<br/>
+1. 应用没有申请ohos.permission.kernel.SUPPORT_PLUGIN权限。
+2. 应用申请了该权限，但是权限没有生效。
+
+**处理步骤**<br/>
+1. 参考[权限申请指导](../../security/AccessToken/declare-permissions.md)申请[ohos.permission.kernel.SUPPORT_PLUGIN权限](../../security/AccessToken/restricted-permissions.md#ohospermissionkernelsupport_plugin)。
+2. 该权限等级为system_basic，若[应用APL等级](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制)低于system_basic，请[申请受限权限](../../security/AccessToken/declare-permissions-in-acl.md)。
+
+## 17700089 插件的 pluginDistributionIDs 解析失败
+
+**错误信息**<br/>
+Failed to install the plugin because the plugin id fails to be parsed.
+
+**错误描述**<br/>
+解析插件profile签名文件中的pluginDistributionIDs失败，插件安装失败。
+
+**可能原因**<br/>
+插件应用签名文件中的pluginDistributionIDs配置不符合规范。
+
+**处理步骤**<br/>
+参考如下格式，重新配置插件profile签名文件中的"app-services-capabilities"字段。
+```
+"app-services-capabilities":{
+    "ohos.permission.kernel.SUPPORT_PLUGIN":{
+        "pluginDistributionIDs":"value-1|value-2|···"
+    }
+}
+```
+
+
+## 17700090 插件与应用之间 pluginDistributionIDs 校验失败
+
+**错误信息**<br/>
+Failed to install the plugin because the plugin id fails to be verified.
+
+**错误描述**<br/>
+插件与应用的pluginDistributionIDs之间没有共同值，校验失败，该应用上无法安装这个插件。
+
+**可能原因**<br/>
+插件与应用的pluginDistributionIDs之间没有共同值。
+
+**处理步骤**<br/>
+重新配置应用或者插件[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中的pluginDistributionIDs。
+
+## 17700091 插件与主体同包名
+
+**错误信息**<br/>
+Failed to install the plugin because the plugin name is same as host bundle name.
+
+**错误描述**<br/>
+插件的包名与应用的包名一致，不符合插件与应用之间异包名的规格，安装插件失败。
+
+**可能原因**<br/>
+插件的包名与应用的包名一致。
+
+**处理步骤**<br/>
+重新配置插件的包名。
+
+## 17700092 插件包名不存在
+
+**错误信息**<br/>
+Failed to uninstall the plugin because the specified plugin is not found.
+
+**错误描述**<br/>
+插件包名不存在，导致插件卸载时失败。
+
+**可能原因**<br/>
+插件没有在应用中安装。
+
+**处理步骤**<br/>
+使用[bm dump -n 命令](../../tools/bm-tool.md#查询应用信息命令dump)查询应用信息，确认插件是否安装。
+
 <!--DelEnd-->
 
 ## 17700101 包管理服务异常

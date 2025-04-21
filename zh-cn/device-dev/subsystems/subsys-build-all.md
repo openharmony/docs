@@ -66,12 +66,12 @@ OpenHarmony编译子系统是以GN和Ninja构建为基座，对构建和配置�
 
 安装编译所需的程序包。 安装命令：
 
-- 安装方式一：使用脚本，在当前工程目录执行
+- 安装方式一：使用脚本，在当前工程目录执行。
   ```shell
   ./build/build_scripts/env_setup.sh
   ```
   
-- 安装方式二：apt-get和pip3 install命令安装
+- 安装方式二：apt-get和pip3 install命令安装。
   ```shell
   apt-get update -y 
   apt-get install -y  
@@ -94,12 +94,12 @@ OpenHarmony编译子系统是以GN和Ninja构建为基座，对构建和配置�
   # export PATH=~/.local/bin:$PATH
   ```
 
-  ![icon-note.gif](../public_sys-resources/icon-note.gif)**注意**：上述安装ohos-build的过程中会安装编译工具hb，但有时会出现hb安装不成功的情况，若安装不成功，则按照[hb安装](../../device-dev/quick-start/quickstart-pkg-install-tool.md#安装hb)重新安装。
+  ![icon-note.gif](../public_sys-resources/icon-note.gif)**注意**：上述安装ohos-build的过程中会安装编译工具hb，但有时会出现hb安装不成功的情况。若安装不成功，则按照[hb安装](../../device-dev/quick-start/quickstart-pkg-install-tool.md#安装hb)重新安装。
 
 
 ## 配置规则
 
-为了实现芯片解决方案、产品解决方案与OpenHarmony是解耦的、可插拔的，子系统、产品、部件、芯片解决方案、模块、特性和系统能力需遵循一定的规则，具体配置规则见如下链接：
+为了实现芯片解决方案、产品解决方案与OpenHarmony是解耦的、可插拔的。子系统、产品、部件、芯片解决方案、模块、特性和系统能力需遵循一定的规则，具体配置规则见如下链接：
 
 - [产品配置规则](subsys-build-product.md#产品配置规则)
 - [子系统配置规则](subsys-build-subsystem.md#子系统配置规则)
@@ -222,7 +222,7 @@ hb是OpenHarmony的命令行工具，用来执行编译命令。以下对hb的�
 
 **hb set**
 
-设置要编译的产品
+设置要编译的产品。
 
 ```shell
 hb set -h
@@ -237,13 +237,13 @@ optional arguments:
 
 - hb set 后无参数，进入默认设置流程
 
-- hb set -root dir可直接设置代码根目录
+- hb set -root dir 可直接设置代码根目录
 
-- hb set -p设置要编译的产品
+- hb set -p 设置要编译的产品
 
 **hb env**
 
-查看当前设置信息
+查看当前设置信息。
 
 ```shell
 hb env
@@ -306,7 +306,7 @@ optional arguments:
                         specifies device operating mode
 ```
 
-- hb build后无参数，会按照设置好的代码路径、产品进行编译，编译选项使用与之前保持一致。-f 选项将删除当前产品所有编译产品，等同于hb clean + hb build.
+- hb build后无参数，会按照设置好的代码路径、产品进行编译，编译选项使用与之前保持一致。-f 选项将删除当前产品所有编译产品，等同于hb clean + hb build。
 
 - hb build {component_name}：基于设置好的产品对应的单板、内核，单独编译部件（e.g.：hb build kv_store)。
 

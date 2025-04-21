@@ -4,6 +4,7 @@
   
   - [@ohos.distributedDeviceManager (Device Management)](js-apis-distributedDeviceManager.md)
   - [@ohos.abilityConnectionManager (Cross-Device Connection Management)](js-apis-distributed-abilityConnectionManager.md)
+  - [@ohos.application.DistributedExtensionAbility (Distributed Extension)](js-apis-distributedExtensionAbility.md)
   
   <!--Del-->
   
@@ -11,7 +12,6 @@
   - [@ohos.distributedDeviceManager (Device Management) (System API)](js-apis-distributedDeviceManager-sys.md)
   - [@ohos.abilityConnectionManager (Cross-Device Connection Management) (System API)](js-apis-distributed-abilityConnectionManager-sys.md)
   - [@ohos.cooperate (Screen Hopping) (System API)](js-apis-devicestatus-cooperate-sys.md)
-  - [@ohos.application.DistributedExtensionAbility (Distributed Extension) (System API)](js-apis-distributedExtensionAbility-sys.md)
   - APIs No Longer Maintained<!--distributed-service-dep-->
     - [@ohos.distributedHardware.deviceManager (Device Management) (System API)](js-apis-device-manager-sys.md)
   

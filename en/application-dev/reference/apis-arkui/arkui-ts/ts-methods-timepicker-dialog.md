@@ -299,7 +299,7 @@ struct TimePickerDialogExample {
 }
 ```
 
-
+![TimetPickerDialog](figures/TimePickerDialogDemo4.png)
 
 ### Example 5: Setting the Mask Area
 
@@ -333,7 +333,7 @@ struct TimePickerDialogExample {
 }
 ```
 
-
+![TimetPickerDialog](figures/TimePickerDialogDemo5.png)
 
 ### Example 6: Setting the Background
 
@@ -368,7 +368,7 @@ struct TimePickerDialogExample {
   }
 }
 ```
-
+![TimetPickerDialog](figures/TimePickerDialogDemo6.png)
 
 ### Example 7: Setting the Start Time
 
@@ -404,7 +404,7 @@ struct TimePickerDialogExample {
   }
 }
 ```
-
+![TimetPickerDialog](figures/TimePickerDialogDemo7.png)
 
 ### Example 8: Setting the End Time
 
@@ -440,7 +440,7 @@ struct TimePickerDialogExample {
   }
 }
 ```
-
+![TimetPickerDialog](figures/TimePickerDialogDemo8.png)
 
 ### Example 9: Enabling the AM/PM Indicator to Automatically Switch Based on the Hour in 12-hour Format
 

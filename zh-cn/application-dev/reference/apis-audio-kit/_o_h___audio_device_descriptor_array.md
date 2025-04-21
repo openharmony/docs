@@ -9,6 +9,8 @@
 
 **相关模块：**[OHAudio](_o_h_audio.md)
 
+**所在头文件：**[native_audio_device_base.h](native__audio__device__base_8h.md)
+
 
 ## 汇总
 

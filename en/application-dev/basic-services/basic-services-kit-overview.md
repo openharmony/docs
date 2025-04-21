@@ -21,7 +21,7 @@ Basic Services Kit is typically used in the following scenarios:
 
 ## Capability Scope
 
-This kit provides the following capabilities:
+Depending on different use cases, this kit provides the following capabilities:
 
 - Data file processing
   - [Pasteboard](../reference/apis-basic-services-kit/js-apis-pasteboard.md): provides the copy and paste support. You can use the provided APIs to operate pasteboard content of the plain text, HTML, URI, pixel map, and other types.
@@ -40,7 +40,7 @@ This kit provides the following capabilities:
   - [Power management](../reference/apis-basic-services-kit/js-apis-power.md): provides system power management capabilities, such as querying the screen status.
   - [Running lock](../reference/apis-basic-services-kit/js-apis-runninglock.md): provides APIs for creating, querying, holding, and releasing running locks.
   - [Thermal management](../reference/apis-basic-services-kit/js-apis-thermal.md): provides thermal management capabilities, such as thermal level query.
-  - [USB management](../reference/apis-basic-services-kit/js-apis-usbManager.md): provides USB device management capabilities, including USB device list query, bulk data transfer, control transfer, and permission control. For details about the development guide, see [USB Service Development Overview](usb/usb-overview.md).
+  - [USB management](../reference/apis-basic-services-kit/js-apis-usbManager.md): provides USB device management capabilities, including USB device list query, bulk data transfer, control transfer, and permission control. For details about the development guide, see [USB Service Development Overview](usb/usbManager/usbHost-overview.md).
 
 - Others:
   - [App account management](../reference/apis-basic-services-kit/js-apis-appAccount.md): provides application account management and data management capabilities. For details, see [Managing App Accounts](account/manage-application-account.md).
@@ -54,6 +54,3 @@ This kit provides the following capabilities:
 - [Ability Kit](../application-models/abilitykit-overview.md): Common events in this kit are required for inter-process communication in Ability Kit.
 
 - [Core File Kit](../file-management/core-file-kit-intro.md): Core File Kit provides file access and management capabilities. You can use Core File Kit for application file access, file sharing, and data backup and restore, and use this kit to implement file compression, file upload and download, and file printing.
-
-<!--no_check-->
-

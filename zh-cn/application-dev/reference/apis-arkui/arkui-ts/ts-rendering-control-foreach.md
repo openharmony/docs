@@ -6,7 +6,7 @@ ForEach接口基于数组类型数据来进行循环渲染。
 >
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-开发者指南见：[ForEach开发者指南](../../../quick-start/arkts-rendering-control-foreach.md)。
+开发者指南见：[ForEach开发者指南](../../../ui/state-management/arkts-rendering-control-foreach.md)。
 
 ## 接口
 
@@ -61,13 +61,13 @@ onMove(handler: Optional\<OnMoveHandler\>): T;
 | ------ | --------- | ---- | ---------- |
 | handler  | Optional\<[OnMoveHandler](#onmovehandler)\> | 是   | 拖拽动作。 |
 
-### onMove<sup>18+</sup>
+### onMove<sup>20+</sup>
 
 onMove(handler: Optional\<OnMoveHandler\>, eventHandler: ItemDragEventHandler): T
 
 拖拽排序数据移动回调。拖拽排序只有在List组件中使用，并且ForEach每次迭代都生成一个ListItem组件时才生效。设置拖拽排序时可以定义不同的拖拽操作，并在响应事件发生时响应。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -76,13 +76,13 @@ onMove(handler: Optional\<OnMoveHandler\>, eventHandler: ItemDragEventHandler): 
 | 参数名 | 类型      | 必填 | 说明       |
 | ------ | --------- | ---- | ---------- |
 | handler  | Optional\<[OnMoveHandler](#onmovehandler)\> | 是   | 拖拽动作。 |
-| eventHandler  | [ItemDragEventHandler](#itemdrageventhandler18) | 是   | 拖拽发生时产生的回调。 |
+| eventHandler  | [ItemDragEventHandler](#itemdrageventhandler20) | 是   | 拖拽发生时产生的回调。 |
 
-### ItemDragEventHandler<sup>18+</sup>
+### ItemDragEventHandler<sup>20+</sup>
 
 定义数据源拖拽事件回调。用于响应不同的拖拽操作。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

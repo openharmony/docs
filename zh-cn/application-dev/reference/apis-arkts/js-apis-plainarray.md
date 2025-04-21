@@ -75,7 +75,7 @@ isEmpty(): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 为空返回true, 不为空返回false。 |
+| boolean | 为空返回true，不为空返回false。 |
 
 **错误码：**
 

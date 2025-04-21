@@ -4,7 +4,7 @@
 - [ArkWeb Process](web_component_process.md)
 - [Lifecycle of Web Components](web-event-sequence.md)
 - Setting Basic Attributes and Events<!--web-set-attributes-events-->
-  - [Developing UserAgent](web-default-userAgent.md)
+  - [Developing User-Agent](web-default-userAgent.md)
   - [Managing Cookies and Data Storage](web-cookie-and-data-storage-mgmt.md)
   - [Setting the Dark Mode](web-set-dark-mode.md)
   - [Opening Pages in a New Window](web-open-in-new-window.md)

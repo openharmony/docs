@@ -909,7 +909,7 @@ osStatus_t osKernelGetInfo (osVersion_t * version, char * id_buf, uint32_t id_si
 
 **描述:**
 
-获取系统版本号和系统名称。
+获取内核信息函数。
 
 **参数:**
 

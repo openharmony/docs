@@ -82,7 +82,7 @@ VSync回调函数类型。
 
 | 名称 | 描述 |
 | -------- | -------- |
-| timestamp | VSync使用CLOCK_MONOTONIC获取的系统时间戳, 单位为纳秒。 |
+| timestamp | VSync使用CLOCK_MONOTONIC获取的系统时间戳，单位为纳秒。 |
 | data | 用户自定义数据。 |
 
 
@@ -92,7 +92,7 @@ VSync回调函数类型。
 typedef enum OHNativeErrorCode OHNativeErrorCode
 ```
 
-**描述**
+**描述：**
 
 接口错误码说明（仅用于查询）。
 
@@ -108,7 +108,7 @@ typedef enum OHNativeErrorCode OHNativeErrorCode
 enum OHNativeErrorCode
 ```
 
-**描述**
+**描述：**
 
 接口错误码说明（仅用于查询）。
 
@@ -146,7 +146,7 @@ enum OHNativeErrorCode
 int OH_NativeVSync_DVSyncSwitch (OH_NativeVSync* nativeVsync, bool enable )
 ```
 
-**描述**
+**描述：**
 
 启用DVSync以提高自绘制动画场景的流畅性。 DVSync是Decoupled VSync的缩写，它是一种与硬件VSync解耦的帧时序管理策略。
 
@@ -241,7 +241,7 @@ OH_NativeVSync* OH_NativeVSync_Create (const char * name, unsigned int length )
 OH_NativeVSync* OH_NativeVSync_Create_ForAssociatedWindow (uint64_t windowID, const char* name, unsigned int length )
 ```
 
-**描述**
+**描述：**
 
 创建一个和窗口绑定的OH_NativeVSync实例，每次调用都会产生一个新的实例。
 
@@ -319,7 +319,7 @@ int OH_NativeVSync_RequestFrame (OH_NativeVSync * nativeVsync, OH_NativeVSync_Fr
 int OH_NativeVSync_RequestFrameWithMultiCallback (OH_NativeVSync* nativeVsync, OH_NativeVSync_FrameCallback callback, void* data )
 ```
 
-**描述**
+**描述：**
 
 请求下一次vsync信号，当信号到来时，调用回调函数callback。 如果在同一帧内中多次调用此接口，每一次传入的callback都会被执行。
 

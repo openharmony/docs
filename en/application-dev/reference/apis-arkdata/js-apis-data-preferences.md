@@ -26,7 +26,7 @@ import { preferences } from '@kit.ArkData';
 
 | Name            | Type| Readable| Writable| Description                                   |
 | ---------------- | -------- | ---- | ---- | --------------------------------------- |
-| MAX_KEY_LENGTH   | number   | Yes  | No  | Maximum length of a key, which is 1024 bytes.    |
+| MAX_KEY_LENGTH   | number   | Yes  | No  | Maximum key length, which is 1024 bytes.    |
 | MAX_VALUE_LENGTH | number   | Yes  | No  | Maximum value length, which is 16 MB.|
 
 
@@ -1130,17 +1130,17 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## StorageType<sup>16+</sup>
+## StorageType<sup>18+</sup>
 Enumerates the storage types of preferences.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 | Name| Value  | Description|
 | ---- | ---- | ---- |
 | XML |  0    | XML, which is the default storage mode of preferences.<br> In this mode, data is stored in XML format. Data operations are performed in the memory. To persist data, call **flush()**.    |
-| CLKV |  1    |CLKV.<br> Data is stored in CLKV database mode. Data operations are flushed on a real-time basis without calling **flush()**.     |
+| GSKV |  1    |GSKV.<br> Data is stored in GSKV mode. Data operations are flushed on a real-time basis without calling **flush()**.     |
 
 
 > **NOTE**
@@ -1149,14 +1149,14 @@ Enumerates the storage types of preferences.
 >   - Data cannot be directly migrated between the **Preferences** instances that use different storage types. To migrate data between them, you need to read the data to be migrated and then write the data.
 >   - If you need to change the storage directory of preferences, you cannot move or overwrite files. Instead, you need to read the data and then write the data.
 
-## preferences.isStorageTypeSupported<sup>16+</sup>
+## preferences.isStorageTypeSupported<sup>18+</sup>
 isStorageTypeSupported(type: StorageType): boolean
 
 Checks whether the specified storage type is supported. This API returns the result synchronously.
 
 If the storage type is supported, **true** is returned. Otherwise, **false** is returned.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1164,7 +1164,7 @@ If the storage type is supported, **true** is returned. Otherwise, **false** is 
 
 | Name | Type                 | Mandatory| Description                                                        |
 | ------- | --------------------- | ---- | ------------------------------------------------------------ |
-| type | [StorageType](#storagetype16)               | Yes  | Storage type to check.|
+| type | [StorageType](#storagetype18)               | Yes  | Storage type to check.|
 
 **Return value**
 
@@ -1185,11 +1185,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 let xmlType = preferences.StorageType.XML;
-let clkvType = preferences.StorageType.CLKV;
+let gskvType = preferences.StorageType.GSKV;
 let isXmlSupported = preferences.isStorageTypeSupported(xmlType);
-let isClkvSupported = preferences.isStorageTypeSupported(clkvType);
+let isGskvSupported = preferences.isStorageTypeSupported(gskvType);
 console.info("Is xml supported in current platform: " + isXmlSupported);
-console.info("Is clkv supported in current platform: " + isClkvSupported);
+console.info("Is gskv supported in current platform: " + isGskvSupported);
 ```
 
 ## Options<sup>10+</sup> 
@@ -1202,7 +1202,7 @@ Represents the configuration of a **Preferences** instance.
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | name        | string | Yes  | Name of the **Preferences** instance. It must be longer than 0 bytes and less than or equal to 255 bytes, and cannot contain or end with slashes (/).<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>                                   |
 | dataGroupId | string\|null\|undefined | No  | Application group ID. <!--RP1-->Currently, this parameter is not supported.<!--RP1End--><br>This parameter is optional. A **Preferences** instance will be created in the sandbox path corresponding to the specified **dataGroupId**. If this parameter is not specified, the **Preferences** instance is created in the sandbox directory of the application.<br> **Model restriction**: This attribute can be used only in the stage model.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>|
-| storageType<sup>16+</sup> | [StorageType](#storagetype16)\|null\|undefined | No | Storage mode to be used by the **Preferences** instance. This parameter is optional. If this parameter is left blank, the XML storage type is used by default. After the storage type is set for a **Preferences** instance, it cannot be changed.<br>**Atomic service API**: This API can be used in atomic services since API version 16.<br>|
+| storageType<sup>18+</sup> | [StorageType](#storagetype18)\|null\|undefined | No | Storage mode to be used by the **Preferences** instance. This parameter is optional. If this parameter is left blank, the XML storage type is used by default. After the storage type is set for a **Preferences** instance, it cannot be changed.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 
 ## Preferences

@@ -167,13 +167,13 @@ iterations(value: number)
 | ------ | ------ | ---- | ------------------------------------------------------ |
 | value  | number | 是   | 默认播放一次，设置为-1时表示无限次播放。<br/>默认值：1 |
 
-### monitorInvisibleArea<sup>18+</sup>
+### monitorInvisibleArea<sup>17+</sup>
 
 monitorInvisibleArea(monitorInvisibleArea: boolean)
 
 设置组件是否通过系统[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)的可见性判定判断组件的暂停和播放。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -430,7 +430,7 @@ struct ImageAnimatorExample {
 
 ### 示例3（设置不可见自动停播）
 
-通过[monitorInvisibleArea](#monitorinvisiblearea18)实现了当ImageAnimator的[state](#state)为AnimationStatus.Running时，控制组件在不可见时停止播放，在可见时恢复播放。
+通过[monitorInvisibleArea](#monitorinvisiblearea17)实现了当ImageAnimator的[state](#state)为AnimationStatus.Running时，控制组件在不可见时停止播放，在可见时恢复播放。
 
 ```ts
 @Entry

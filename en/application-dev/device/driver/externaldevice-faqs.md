@@ -29,8 +29,8 @@ The message "compileSdkVersion and releaseType of the app do not match the apiVe
 | Application development APIs (ArkTS APIs)| API10 | 4.0 Release or later|
 | USB DDK APIs| API10 | 4.0 Release or later|
 | HID DDK APIs| API11 | 4.0 Release or later|
-| USB Serial DDK API| API16 | 5.1 Release or later|
-| SCSI Peripheral DDK API| API16 | 5.1 Release or later|
+| USB Serial DDK API| API18 | 5.1 Release or later|
+| SCSI Peripheral DDK API| API18 | 5.1 Release or later|
 <!--RP3End-->
 
 ## Failed to Parse the Local .so File During HAP Installation

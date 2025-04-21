@@ -23,7 +23,6 @@ FFRT并发队列提供了设置任务优先级（Priority）和队列并发度�
 #include <unistd.h>
 #include "ffrt/cpp/queue.h"
 #include "ffrt/cpp/task.h"
-using namespace ffrt;
 
 class BankQueueSystem {
 private:
@@ -32,8 +31,9 @@ private:
 public:
     BankQueueSystem(const char *name, int concurrency)
     {
-        queue_ = std::make_unique<ffrt::queue>(queue_concurrent, name, queue_attr().max_concurrency(concurrency));
-        std::cout << "bank system has been initailized" << std::endl;
+        queue_ = std::make_unique<ffrt::queue>(
+            ffrt::queue_concurrent, name, ffrt::queue_attr().max_concurrency(concurrency));
+        std::cout << "bank system has been initialized" << std::endl;
     }
 
     ~BankQueueSystem()
@@ -43,24 +43,19 @@ public:
     }
 
     // 开始排队，即提交队列任务
-    task_handle Enter(const std::function<void()>& func, char *name, ffrt_queue_priority_t level, int delay)
+    ffrt::task_handle Enter(const std::function<void()>& func, const char *name, ffrt_queue_priority_t level, int delay)
     {
         return queue_->submit_h(func, ffrt::task_attr().name(name).priority(level).delay(delay));
     }
 
     // 退出排队，即取消队列任务
-    int Exit(const task_handle &t)
+    int Exit(const ffrt::task_handle &t)
     {
         return queue_->cancel(t);
     }
 
-    int GetQueueSize()
-    {
-        return queue_->get_task_cnt();
-    }
-
     // 等待排队，即等待队列任务
-    void Wait(const task_handle& handle)
+    void Wait(const ffrt::task_handle& handle)
     {
         queue_->wait(handle);
     }
@@ -78,7 +73,8 @@ void BankBusinessVIP()
     std::cout << "saving or withdraw VIP" << std::endl;
 }
 
-int main() {
+int main()
+{
     BankQueueSystem bankQueue("Bank", 2);
 
     bankQueue.Enter(BankBusiness, "customer1", ffrt_queue_priority_low, 0);
@@ -89,13 +85,11 @@ int main() {
     // VIP享受更优先的服务
     bankQueue.Enter(BankBusinessVIP, "vip", ffrt_queue_priority_high, 0);
 
-    task_handle handle = bankQueue.Enter(BankBusiness, "customer5", ffrt_queue_priority_low, 0);
-    task_handle handleLast = bankQueue.Enter(BankBusiness, "customer6", ffrt_queue_priority_low, 0);
+    ffrt::task_handle handle = bankQueue.Enter(BankBusiness, "customer5", ffrt_queue_priority_low, 0);
+    ffrt::task_handle handleLast = bankQueue.Enter(BankBusiness, "customer6", ffrt_queue_priority_low, 0);
 
     // 取消客户5的服务
     bankQueue.Exit(handle);
-
-    std::cout << "bank current serving for " << bankQueue.GetQueueSize() << " customers" << std::endl;
 
     // 等待所有的客户服务完成
     bankQueue.Wait(handleLast);

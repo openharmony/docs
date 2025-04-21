@@ -7,13 +7,13 @@
 
 nodeAttr参数是一段被序列化的数据，并调用OHOS的hdi的反序列化接口才能得到具体参数。 大致流程如下：
 
-1. 定义算子参数的结构体，OP op{}，其中OP可以被替换为[NodeAttrTypes.idl](_node_attr_types_8idl_v10.md)的算子参数结构体，op是变量名;
+1. 定义算子参数的结构体，OP op{}，其中OP可以被替换为[NodeAttrTypes.idl](_node_attr_types_8idl_v10.md)的算子参数结构体，op是变量名；
 
-2. 申明MessageParcle对象，用存储反序列化的数据，OHOS::MessageParcel data;
+2. 申明MessageParcle对象，用存储反序列化的数据，OHOS::MessageParcel data；
 
-3. 将nodeAttr写入data中，data.WriteBuffer(nodeAttr.data(),nodeAttr.size());
+3. 将nodeAttr写入data中，data.WriteBuffer(nodeAttr.data(),nodeAttr.size())；
 
-4. 将data中的数据反序列化到op结构体中，(void)OPBlockUnmarshalling(data, op);
+4. 将data中的数据反序列化到op结构体中，(void)OPBlockUnmarshalling(data, op)；
 
 然后就可以在op中查看具体的算子的参数值。
 

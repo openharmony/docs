@@ -9,6 +9,8 @@
 
 **相关模块：**[OHAVSession](_o_h_a_v_session.md)
 
+**所在头文件：**[native_avsession.h](native__avsession_8h.md)
+
 
 ## 汇总
 

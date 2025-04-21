@@ -32,6 +32,11 @@
 | struct  [NativeDisplayManager_DisplayInfo](_native_display_manager___display_info.md) | 显示设备的对象属性。 | 
 | struct  [NativeDisplayManager_DisplaysInfo](_native_display_manager___displays_info.md) | 多显示设备的Display对象。 | 
 
+### 宏定义
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| [OH_DISPLAY_NAME_LENGTH](#oh_display_name_length)   32 | 屏幕名称的最大长度。  | 
 
 ### 类型定义
 
@@ -95,6 +100,20 @@
 | void [OH_NativeDisplayManager_DestroyDisplay](#oh_nativedisplaymanager_destroydisplay) ([NativeDisplayManager_DisplayInfo](_native_display_manager___display_info.md) \*displayInfo) | 销毁指定屏幕的信息对象。 | 
 | [NativeDisplayManager_ErrorCode](#nativedisplaymanager_errorcode) [OH_NativeDisplayManager_CreatePrimaryDisplay](#oh_nativedisplaymanager_createprimarydisplay) ([NativeDisplayManager_DisplayInfo](_native_display_manager___display_info.md) \*\*displayInfo) | 获取主屏信息对象。除2in1之外的设备获取的是设备自带屏幕的屏幕信息；2in1设备外接屏幕时获取的是当前主屏幕的屏幕信息；2in1设备没有外接屏幕时获取的是自带屏幕的屏幕信息。 | 
 
+## 宏定义说明
+
+
+### OH_DISPLAY_NAME_LENGTH
+
+```
+#define OH_DISPLAY_NAME_LENGTH   32
+```
+
+**描述**
+
+屏幕名称的最大长度。
+
+**起始版本：** 14
 
 ## 类型定义说明
 

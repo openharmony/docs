@@ -196,9 +196,9 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
 9. Burn the customized version to the DAYU200 development board.
 
 ### Debugging and Verification
-1. Modify the code configuration.
-    Code path: `base/startup/init/services/init/init_config.c`
-    Function: `ReadConfig`
+1. Modify the code configuration.<br>
+    Code path: `base/startup/init/services/init/init_config.c`<br>
+    Function: `ReadConfig`<br>
     Before:
     ```c
     void ReadConfig(void)

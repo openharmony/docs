@@ -7,7 +7,9 @@ JavaScript虚拟机信息。
 
 **起始版本：** 11
 
-**相关模块：**[JSVM](_j_s_v_m.md)
+**相关模块：** [JSVM](_j_s_v_m.md)
+
+**所在头文件：** [jsvm_types.h](jsvm__types_8h.md)
 
 
 ## 汇总

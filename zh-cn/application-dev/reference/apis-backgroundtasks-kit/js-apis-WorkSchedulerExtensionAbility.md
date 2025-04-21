@@ -18,9 +18,11 @@ import { WorkSchedulerExtensionAbility } from '@kit.BackgroundTasksKit';
 
 type WorkSchedulerExtensionContext = _WorkSchedulerExtensionContext
 
+**系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
+
 | 类型 | 说明 |
 | -------- |  -------- |
-| WorkSchedulerExtensionContext|  WorkSchedulerExtension的上下文环境。 |
+| [_WorkSchedulerExtensionContext](js-apis-inner-application-WorkSchedulerExtensionContext.md)|  WorkSchedulerExtension的上下文环境。 |
 
 ## WorkSchedulerExtensionAbility
 

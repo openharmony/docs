@@ -29,8 +29,8 @@ Describes the common event capabilities provided by the **CommonEvent** for appl
 |[CommonEvent_Subscriber](#commonevent_subscriber) | Defines a subscriber.|
 |[CommonEvent_RcvData](#commonevent_rcvdata) | Defines a struct for the callback data of a common event.|
 |[CommonEvent_Parameters](#commonevent_parameters) | Defines the additional information about a common event.|
-|[CommonEvent_ReceiveCallback](#commonevent_receivecallback)| Defines the callback function of a common event.|
-|[CommonEvent_PublishInfo](#commonevent_publishinfo)| Defines a struct for the attribute object of a common event.|
+|[CommonEvent_ReceiveCallback](#commonevent_receivecallback)| Defines a callback to be invoked when a common event is triggered.|
+|[CommonEvent_PublishInfo](#commonevent_publishinfo)| Defines a struct for an attribute object used for publishing a custom common event.|
 
 ### Enums
 
@@ -118,7 +118,7 @@ Describes the common event capabilities provided by the **CommonEvent** for appl
 |static const char* const [COMMON_EVENT_BUNDLE_REMOVED](common_event/commonEventManager-definitions.md#common_event_bundle_removed) = "usual.event.BUNDLE_REMOVED"| Indicates the common event that an installed bundle has been uninstalled from the device with the application data retained.|
 |static const char* const [COMMON_EVENT_PACKAGE_FULLY_REMOVED](common_event/commonEventManager-definitions.md#common_event_package_fully_removed) = "usual.event.PACKAGE_FULLY_REMOVED"|Indicates the common event that an installed application, including both the application data and code, has been completely uninstalled from the device.|
 |static const char* const [COMMON_EVENT_PACKAGE_CHANGED](common_event/commonEventManager-definitions.md#common_event_package_changed) = "usual.event.PACKAGE_CHANGED"| Indicates the common event that an application package has been changed (for example, a component in the package has been enabled or disabled).|
-|static const char* const [COMMON_EVENT_PACKAGE_RESTARTED](common_event/commonEventManager-definitions.md#common_event_package_restarted) = "usual.event.PACKAGE_RESTARTED"| Indicates a common event that a user restarts an application package and kills all its processes.|
+|static const char* const [COMMON_EVENT_PACKAGE_RESTARTED](common_event/commonEventManager-definitions.md#common_event_package_restarted) = "usual.event.PACKAGE_RESTARTED"| Indicates the common event that a user restarts an application package and kills all its processes.|
 |static const char* const [COMMON_EVENT_PACKAGE_DATA_CLEARED](common_event/commonEventManager-definitions.md#common_event_package_data_cleared) = "usual.event.PACKAGE_DATA_CLEARED"| Indicates the common event that the user has cleared the application package data.|
 |static const char* const [COMMON_EVENT_PACKAGE_CACHE_CLEARED](common_event/commonEventManager-definitions.md#common_event_package_cache_cleared) = "usual.event.PACKAGE_CACHE_CLEARED"|Indicates the common event that the user has cleared the application package data cache.|
 |static const char* const [COMMON_EVENT_PACKAGES_SUSPENDED](common_event/commonEventManager-definitions.md#common_event_packages_suspended) = "usual.event.PACKAGES_SUSPENDED"|Indicates the common event that application packages have been suspended.|
@@ -148,7 +148,7 @@ Describes the common event capabilities provided by the **CommonEvent** for appl
 |static const char* const [COMMON_EVENT_NFC_ACTION_RF_FIELD_ON_DETECTED](common_event/commonEventManager-definitions.md#common_event_nfc_action_rf_field_on_detected) = "usual.event.nfc.action.RF_FIELD_ON_DETECTED"|Indicates the common event that the NFC RF field is on.|
 |static const char* const [COMMON_EVENT_NFC_ACTION_RF_FIELD_OFF_DETECTED](common_event/commonEventManager-definitions.md#common_event_nfc_action_rf_field_off_detected) = "usual.event.nfc.action.RF_FIELD_OFF_DETECTED"|Indicates the common event that the NFC RF field is off.|
 |static const char* const [COMMON_EVENT_DISCHARGING](common_event/commonEventManager-definitions.md#common_event_discharging) = "usual.event.DISCHARGING"| Indicates the common event that the system stops charging the battery.|
-|static const char* const [COMMON_EVENT_CHARGING](common_event/commonEventManager-definitions.md#common_event_charging) = "usual.event.CHARGING"|Indicates a common event that the system starts charging the battery.|
+|static const char* const [COMMON_EVENT_CHARGING](common_event/commonEventManager-definitions.md#common_event_charging) = "usual.event.CHARGING"|Indicates the common event that the system starts charging the battery.|
 |static const char* const [COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED](common_event/commonEventManager-definitions.md#common_event_device_idle_mode_changed) = "usual.event.DEVICE_IDLE_MODE_CHANGED"| Indicates the common event that the system standby mode has changed.|
 |static const char* const [COMMON_EVENT_CHARGE_IDLE_MODE_CHANGED](common_event/commonEventManager-definitions.md#common_event_charge_idle_mode_changed10) = "usual.event.CHARGE_IDLE_MODE_CHANGED"|Indicates the common event that the device enters the charging idle mode.|
 |static const char* const [COMMON_EVENT_POWER_SAVE_MODE_CHANGED](common_event/commonEventManager-definitions.md#common_event_power_save_mode_changed) = "usual.event.POWER_SAVE_MODE_CHANGED"|Indicates the common event that the system power saving mode is changed.|
@@ -181,7 +181,7 @@ typedef struct CommonEvent_SubscribeInfo CommonEvent_SubscribeInfo
 
 **Description**
 
-Defines the subscriber information.
+Defines a struct for the subscriber information.
 
 **Since**: 12
 
@@ -205,7 +205,7 @@ typedef struct CommonEvent_RcvData CommonEvent_RcvData
 
 **Description**
 
-Defines the callback data of a common event.
+Defines a struct for the callback data of a common event.
 
 **Since**: 12
 
@@ -229,7 +229,7 @@ typedef void (*CommonEvent_ReceiveCallback)(const CommonEvent_RcvData *data)
 
 **Description**
 
-Defines the callback function of a common event.
+Defines a callback to be invoked when a common event is triggered.
 
 **Since**: 12
 
@@ -241,9 +241,9 @@ typedef struct CommonEvent_PublishInfo CommonEvent_PublishInfo
 
 **Description**
 
-Describes an attribute object used for publishing a custom common event.
+Defines a struct for an attribute object used for publishing a custom common event.
 
-**Since**: 16
+**Since**: 18
 
 ## Enum Description
 
@@ -478,7 +478,7 @@ static const char* const COMMON_EVENT_PACKAGE_RESTARTED = "usual.event.PACKAGE_R
 
 **Description**
 
-Indicates a common event that a user restarts an application package and kills all its processes.
+Indicates the common event that a user restarts an application package and kills all its processes.
 
 **Since**: 12
 
@@ -670,7 +670,7 @@ static const char* const COMMON_EVENT_WIFI_HOTSPOT_STATE = "usual.event.wifi.HOT
 
 **Description**
 
-Indicates a common event of the Wi-Fi hotspot state.
+Indicates the common event of the Wi-Fi hotspot state.
 
 **Since**: 12
 
@@ -836,7 +836,7 @@ static const char* const COMMON_EVENT_CHARGING = "usual.event.CHARGING"
 
 **Description**
 
-Indicates a common event that the system starts charging the battery.
+Indicates the common event that the system starts charging the battery.
 
 ### COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED
 
@@ -1535,7 +1535,7 @@ Obtains the Boolean array with a specific key from the additional information of
 | -------- | -------- |
 | para | Additional information about a common event.|
 | key | Key.|
-| array | The **bool** array to receive data.|
+| array | The Boolean array to receive data.|
 
 **Returns**
 
@@ -1579,7 +1579,7 @@ Obtains the character array with a specific key from the additional information 
 | -------- | -------- |
 | para | Additional information about a common event.|
 | key | Key.|
-| array | The **char** array to receive data.|
+| array | The character array to receive data.|
 
 **Returns**
 
@@ -1623,7 +1623,7 @@ Obtains the double array with a specific key from the additional information of 
 | -------- | -------- |
 | para | Additional information about a common event.|
 | key | Key.|
-| array | The **double** array to receive data.|
+| array | The double array to receive data.|
 
 **Returns**
 
@@ -1639,7 +1639,7 @@ CommonEvent_Parameters* OH_CommonEvent_CreateParameters()
 
 Creates an additional information object of a common event.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -1659,7 +1659,7 @@ void OH_CommonEvent_DestroyParameters(CommonEvent_Parameters* param)
 
 Destroys an additional information object of a common event.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -1681,7 +1681,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetIntToParameters(CommonEvent_Parameters* pa
 
 Sets the additional information of a common event. The value is the content of the int type.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -1705,7 +1705,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetIntArrayToParameters(CommonEvent_Parameter
 
 Sets the additional information of a common event. The value is the content of the int array type.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -1730,7 +1730,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetLongToParameters(CommonEvent_Parameters* p
 
 Sets the additional information of a common event. The value is the content of the long type.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -1754,7 +1754,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetLongArrayToParameters(CommonEvent_Paramete
 
 Sets the additional information of a common event. The value is the content of the long array type.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -1779,7 +1779,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetDoubleToParameters(CommonEvent_Parameters*
 
 Sets the additional information of a common event. The value is the content of the double type.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -1803,7 +1803,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetDoubleArrayToParameters(CommonEvent_Parame
 
 Sets the additional information of a common event. The value is the content of the double array type.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -1828,7 +1828,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetBoolToParameters(CommonEvent_Parameters* p
 
 Sets the additional information of a common event. The value is the content of the Boolean type.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -1852,7 +1852,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetBoolArrayToParameters(CommonEvent_Paramete
 
 Sets the additional information of a common event. The value is the content of the Boolean array type.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -1877,7 +1877,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetCharToParameters(CommonEvent_Parameters* p
 
 Sets the additional information of a common event. The value is the content of the character type.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -1901,7 +1901,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetCharArrayToParameters(CommonEvent_Paramete
 
 Sets the additional information of a common event. The value is the content of the character array type.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -1926,7 +1926,7 @@ CommonEvent_PublishInfo* OH_CommonEvent_CreatePublishInfo(bool ordered)
 
 Creates an attribute object of a common event.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -1948,7 +1948,7 @@ void OH_CommonEvent_DestroyPublishInfo(CommonEvent_PublishInfo* info)
 
 Destroys an attribute object of a common event.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -1970,7 +1970,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoBundleName(CommonEvent_PublishI
 
 Sets the bundle name of a common event.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -1993,7 +1993,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoPermissions(CommonEvent_Publish
 
 Sets the common event permissions.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -2017,7 +2017,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoCode(CommonEvent_PublishInfo* i
 
 Sets the result code of a common event.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -2038,16 +2038,16 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoData(CommonEvent_PublishInfo* i
 
 **Description**
 
-Sets the result data of a common event.
+Sets the result data for the publishing information of a common event.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
 | Name| Description|
 | -------- | -------- |
 | info | Attribute object of the common event.|
-| code | Result data to set.|
+| data | Result data to set.|
 | length | Length of the result data.|
 
 **Returns**
@@ -2064,7 +2064,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoParameters(CommonEvent_PublishI
 
 Sets the additional information of a common event.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -2087,7 +2087,7 @@ CommonEvent_ErrCode OH_CommonEvent_Publish(const char* event)
 
 Publishes a custom common event.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -2109,7 +2109,7 @@ CommonEvent_ErrCode OH_CommonEvent_PublishWithInfo(const char* event, const Comm
 
 Publishes a custom common event with specified attributes.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -2132,7 +2132,7 @@ bool OH_CommonEvent_IsOrderedCommonEvent(const CommonEvent_Subscriber* subscribe
 
 Checks whether a common event is an ordered common event.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -2154,7 +2154,7 @@ bool OH_CommonEvent_FinishCommonEvent(CommonEvent_Subscriber* subscriber)
 
 Finishes an ordered common event.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -2176,7 +2176,7 @@ bool OH_CommonEvent_GetAbortCommonEvent(const CommonEvent_Subscriber* subscriber
 
 Checks whether an ordered common event is aborted.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -2198,7 +2198,7 @@ bool OH_CommonEvent_AbortCommonEvent(CommonEvent_Subscriber* subscriber)
 
 Aborts an ordered common event when used with **OH_CommonEvent_FinishCommonEvent**. After the abort, the common event is not sent to the next subscriber.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -2220,7 +2220,7 @@ bool OH_CommonEvent_ClearAbortCommonEvent(CommonEvent_Subscriber* subscriber)
 
 Clears the aborted state of an ordered common event when used with **OH_CommonEvent_FinishCommonEvent**. After the clearance, the common event is sent to the next subscriber.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -2242,7 +2242,7 @@ int32_t OH_CommonEvent_GetCodeFromSubscriber(const CommonEvent_Subscriber* subsc
 
 Obtains the result code of an ordered common event.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -2264,7 +2264,7 @@ const char* OH_CommonEvent_GetDataFromSubscriber(const CommonEvent_Subscriber* s
 
 Obtains the result data of an ordered common event.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -2286,7 +2286,7 @@ bool OH_CommonEvent_SetCodeToSubscriber(CommonEvent_Subscriber* subscriber, int3
 
 Sets the result code of an ordered common event.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -2309,7 +2309,7 @@ bool OH_CommonEvent_SetDataToSubscriber(CommonEvent_Subscriber* subscriber, cons
 
 Sets the result data of an ordered common event.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 

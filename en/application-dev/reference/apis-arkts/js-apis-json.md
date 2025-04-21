@@ -314,7 +314,7 @@ Checks whether an ArkTS object contains a key. This API can be used for related 
 
 | Type| Description|
 | -------- | -------- |
-| boolean | **true**: The ArkTS object contains the key.<br>**false**: The ArkTS object does not contain the key.|
+| boolean | Check result. The value **true** means that the ArkTS object contains the key, and **false** means the opposite.|
 
 **Error codes**
 

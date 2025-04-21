@@ -54,7 +54,7 @@ motionBlur(motionBlur: Optional\<MotionBlurOptions>)
 
 **参数：** 
 
-|            |                                                            |      |                                                              |
+|   参数名    |    类型                                                      |  必填  |     说明                                                       |
 | ---------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | motionBlur | Optional\<[MotionBlurOptions](#motionbluroptions对象说明)> | 是   | 定义运动模糊参数。<br/>当motionBlur的值为undefined时，维持之前取值。 |
 

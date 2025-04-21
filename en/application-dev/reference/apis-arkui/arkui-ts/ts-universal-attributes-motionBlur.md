@@ -6,7 +6,6 @@ You can apply a motion blur effect to a component being scaled or moved. This ef
 >
 >  The initial APIs of this module are supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
 
-
 ## motionBlur
 
 motionBlur(value: MotionBlurOptions)
@@ -25,13 +24,43 @@ Apply a motion blur effect to the component being scaled or moved.
 
 6. To avoid unexpected results, set the blur radius to a value less than 1.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Parameters**
 
-| Name | Type                                                        | Mandatory| Description                                                        |
-| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   | [MotionBlurOptions](#motionbluroptions) | Yes  | Motion blur options.|
+| Name| Type                                           | Mandatory| Description              |
+| ------ | ----------------------------------------------- | ---- | ------------------ |
+| value  | [MotionBlurOptions](#motionbluroptions) | Yes  | Motion blur options.|
+
+## motionBlur<sup>18+</sup>
+
+motionBlur(motionBlur: Optional\<MotionBlurOptions>)
+
+Apply a motion blur effect to the component being scaled or moved. Compared to [motionBlur](#motionblur), this API supports the **undefined** type for the **motionBlur** parameter.
+
+1. Do not use this API in intra-component transitions, shared element transitions, implicit element transitions, or particle animations. Doing so may cause unexpected results.
+
+2. The **radius** parameter of **motionBlur** must be set to **0** for the initial state. Otherwise, there may be unexpected results during a cold start.
+
+3. This API must be used together with the **onFinish** parameter of **AnimateParam**. Its **radius** parameter must be set to **0** when the animation ends; otherwise, there may be unexpected results.
+
+4. When using this API, do not frequently change the blur radius of the same component; otherwise, there may be unexpected results. For example, if you frequently click the image in the example, the blur effect may not work sometimes.
+
+5. To avoid unexpected results, make sure the coordinates of the motion blur anchor point are the same as those of the animation scaling anchor point.
+
+6. To avoid unexpected results, set the blur radius to a value less than 1.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**Parameters**
+
+|   Name   |    Type                                                     |  Mandatory |     Description                                                      |
+| ---------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| motionBlur | Optional\<[MotionBlurOptions](#motionbluroptions)> | Yes  | Motion blur options.<br>If **motionBlur** is set to **undefined**, the previous value is retained.|
 
 ## MotionBlurOptions
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name         | Type                                                       | Mandatory | Description                                                        |
 | ------------- | ----------------------------------------------------------- | ----- | ------------------------------------------------------------ |
@@ -39,6 +68,8 @@ Apply a motion blur effect to the component being scaled or moved.
 | anchor | [MotionBlurAnchor](#motionbluranchor) | Yes   | Coordinates of the motion blur anchor point. They must be the same as those of the animation scaling anchor point.|
 
 ## MotionBlurAnchor
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name         | Type                                                       | Mandatory | Description                                                        |
 | ------------- | ----------------------------------------------------------- | ----- | ------------------------------------------------------------ |
@@ -50,7 +81,7 @@ Apply a motion blur effect to the component being scaled or moved.
 This example demonstrates how to apply a motion blur effect.
 ```ts
 // xxx.ets
-import curves from '@ohos.curves';
+import { curves } from '@kit.ArkUI';
 
 @Entry
 @Component

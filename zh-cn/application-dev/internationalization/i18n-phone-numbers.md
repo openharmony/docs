@@ -56,28 +56,25 @@
 import { i18n } from '@kit.LocalizationKit';
 
 // 格式化电话号码
-let phoneNumberFormat1 = new i18n.PhoneNumberFormat('CN');
-let formattedPhoneNumber1 = phoneNumberFormat1.format('158****2312'); // formattedPhoneNumber1: 158 **** 2312
+let phoneNumberFormat: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN');
+let formattedPhoneNumber: string = phoneNumberFormat.format('158****2312'); // formattedPhoneNumber = '158 **** 2312'
 
 // RFC3966类型的电话号码
-let phoneNumberFormat2 = new i18n.PhoneNumberFormat('CN', {type: 'RFC3966'});
-let formattedPhoneNumber2 = phoneNumberFormat2.format('158****2312'); // formattedPhoneNumber2: tel:+86-158-****-2312
+let RFC3966Format: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN', { type: 'RFC3966' });
+formattedPhoneNumber = RFC3966Format.format('158****2312'); // formattedPhoneNumber = 'tel:+86-158-****-2312'
 
 // 判断电话号码是否有效
-let phoneNumberFormat3 = new i18n.PhoneNumberFormat('CN');
-let isValid = phoneNumberFormat3.isValidNumber('158****2312'); // isValid: true
+let isValid: boolean = phoneNumberFormat.isValidNumber('158****2312'); // isValid = true
 
 // 以某种语言显示号码归属地
-let phoneNumberFormat4 = new i18n.PhoneNumberFormat("CN");
-let locationName4 = phoneNumberFormat4.getLocationName('158****2312', 'en-GB') // locationName4: XiAn, Shanxi
+let locationName: string = phoneNumberFormat.getLocationName('158****2312', 'en-GB'); // locationName = 'XiAn, Shanxi'
 
 // 拨号中的电话号码格式化
-let phoneNumberFmt = new i18n.PhoneNumberFormat('CN', {type: 'TYPING'});
-let phoneNumber : string = "0755453";
-let formatResult : string = "";
+let typingFormat: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN', { type: 'TYPING' });
+let phoneNumber: string = '0755453';
+let formatResult: string = ''; // 通过如下方式对拨号中的号码格式化后，formatResult = '0755 453'
 for (let i = 0; i < phoneNumber.length; i++) {
   formatResult += phoneNumber.charAt(i);
-  formatResult = phoneNumberFmt.format(formatResult);
+  formatResult = typingFormat.format(formatResult);
 }
-console.log(formatResult); // formatResult: 0755 453
 ```

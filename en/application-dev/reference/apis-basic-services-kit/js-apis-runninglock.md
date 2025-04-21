@@ -287,7 +287,7 @@ Locks and holds a **RunningLock** object.
 
 | Name | Type  | Mandatory| Description                                     |
 | ------- | ------ | ---- | ----------------------------------------- |
-| timeout | number | Yes  | Duration for locking and holding the **RunningLock** object., in ms. The value must be a number. If timeout is set to **-1**, the running lock is permanently held and needs to be released manually. If timeout is set to **0**, the running lock is released after 3s. If timeout is set to a value greater than **0**, the running lock is released based on the input value.|
+| timeout | number | Yes  | Duration for locking and holding the **RunningLock** object, in ms.<br>The value must be a number:<br>**-1**: The lock is permanently held and needs to be released automatically.<br>**0**: The lock is released 3 seconds after the timer expires by default.<br>> 0: The lock is released based on the input value after the timer expires.|
 
 **Error codes**
 
@@ -301,27 +301,32 @@ For details about the error codes, see [RunningLock Error Codes](errorcode-runni
 
 **Example**
 
-```js
-static recordLock = null;
+```ts
+// RunningLockTest.ets
+class RunningLockTest {
+    public static recordLock: runningLock.RunningLock;
 
-if (recordLock) {
-    recordLock.hold(500);
-    console.info('hold running lock success');
-} else {
-   runningLock.create('running_lock_test', runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL, (err: Error, lock: runningLock.RunningLock) => {
-        if (typeof err === 'undefined') {
-            console.info('create running lock: ' + lock);
-            recordLock = lock;
-            try {
-                lock.hold(500);
-                console.info('hold running lock success');
-            } catch(err) {
-                console.error('hold running lock failed, err: ' + err);
-            }
+    public static holdRunningLock(): void {
+        if (RunningLockTest.recordLock) {
+            RunningLockTest.recordLock.hold(500);
+            console.info('hold running lock success');
         } else {
-            console.error('create running lock failed, err: ' + err);
+            runningLock.create('running_lock_test', runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL, (err: Error, lock: runningLock.RunningLock) => {
+                if (typeof err === 'undefined') {
+                    console.info('create running lock: ' + lock);
+                    RunningLockTest.recordLock = lock;
+                    try {
+                        lock.hold(500);
+                        console.info('hold running lock success');
+                    } catch(err) {
+                        console.error('hold running lock failed, err: ' + err);
+                    }
+                } else {
+                    console.error('create running lock failed, err: ' + err);
+                }
+            });
         }
-    });
+    }
 }
 ```
 
@@ -347,27 +352,32 @@ For details about the error codes, see [RunningLock Error Codes](errorcode-runni
 
 **Example**
 
-```js
-static recordLock = null;
+```ts
+// RunningLockTest.ets
+class RunningLockTest {
+    public static recordLock: runningLock.RunningLock;
 
-if (recordLock) {
-    recordLock.unhold();
-    console.info('unhold running lock success');
-} else {
-    runningLock.create('running_lock_test', runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL, (err: Error, lock: runningLock.RunningLock) => {
-        if (typeof err === 'undefined') {
-            console.info('create running lock: ' + lock);
-            recordLock = lock;
-            try {
-                lock.unhold();
-                console.info('unhold running lock success');
-            } catch(err) {
-                console.error('unhold running lock failed, err: ' + err);
-            }
+    public static unholdRunningLock(): void {
+        if (RunningLockTest.recordLock) {
+            RunningLockTest.recordLock.unhold();
+            console.info('hold running lock success');
         } else {
-            console.error('create running lock failed, err: ' + err);
+            runningLock.create('running_lock_test', runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL, (err: Error, lock: runningLock.RunningLock) => {
+                if (typeof err === 'undefined') {
+                    console.info('create running lock: ' + lock);
+                    RunningLockTest.recordLock = lock;
+                    try {
+                        lock.unhold();
+                        console.info('unhold running lock success');
+                    } catch(err) {
+                        console.error('unhold running lock failed, err: ' + err);
+                    }
+                } else {
+                    console.error('create running lock failed, err: ' + err);
+                }
+            });
         }
-    });
+    }
 }
 ```
 
@@ -395,28 +405,32 @@ For details about the error codes, see [RunningLock Error Codes](errorcode-runni
 
 **Example**
 
-```js
+```ts
+// RunningLockTest.ets
+class RunningLockTest {
+    public static recordLock: runningLock.RunningLock;
 
-static recordLock = null;
-
-if (recordLock) {
-    let isHolding = recordLock.isHolding();
-    console.info('check running lock holding status: ' + isHolding);
-} else {
-    runningLock.create('running_lock_test', runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL, (err: Error, lock: runningLock.RunningLock) => {
-        if (typeof err === 'undefined') {
-            console.info('create running lock: ' + lock);
-            runningLock = lock;
-            try {
-                let isHolding = lock.isHolding();
-                console.info('check running lock holding status: ' + isHolding);
-            } catch(err) {
-                console.error('check running lock holding status failed, err: ' + err);
-            }
+    public static isHoldingRunningLock(): void {
+        if (RunningLockTest.recordLock) {
+            let isHolding = RunningLockTest.recordLock.isHolding();
+            console.info('check running lock holding status: ' + isHolding);
         } else {
-            console.error('create running lock failed, err: ' + err);
+            runningLock.create('running_lock_test', runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL, (err: Error, lock: runningLock.RunningLock) => {
+                if (typeof err === 'undefined') {
+                    console.info('create running lock: ' + lock);
+                    RunningLockTest.recordLock = lock;
+                    try {
+                        let isHolding = lock.isHolding();
+                        console.info('check running lock holding status: ' + isHolding);
+                    } catch(err) {
+                        console.error('check running lock holding status failed, err: ' + err);
+                    }
+                } else {
+                    console.error('create running lock failed, err: ' + err);
+                }
+            });
         }
-    });
+    }
 }
 ```
 

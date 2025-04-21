@@ -204,7 +204,7 @@ struct Child {
 变更后：编译时报错
 
 ```
-A property decorated by '@Computed' cannot be used with two-way bind syntax.
+A property decorated by '@Computed' cannot be used with two-bind syntax.
 ```
 
 2. @Computed装饰的get属性方法，不能写set方法，编译进行ERROR报错提示

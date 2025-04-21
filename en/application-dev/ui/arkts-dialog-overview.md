@@ -19,15 +19,15 @@ Choose the appropriate component based on your specific requirements.
 Popup Window Name| Use Case|
 | --- | --- |
 | [Dialog](arkts-base-dialog-overview.md)| Use this popup window when you need to display information or actions that require the user's attention, such as when exiting the application for the second time.|
-|  [Menu](arkts-popup-and-menu-components-menu.md) | Opt for this popup window when you need to bind an action to a specific component, such as displaying operation options when an icon is long-pressed.|
-| [Popup](arkts-popup-and-menu-components-popup.md) | Use this popup window to display a tooltip for a specific component when, for example, a question mark icon is clicked.|
+| [Menu (Menu/openMenu)](arkts-menu-overview.md)  | Opt for this popup window when you need to bind an action to a specific component, such as displaying operation options when an icon is long-pressed.|
+| [Popup (Popup/openPopup)](arkts-popup-overview.md)  | Use this popup window to display a hint for a specific component, for example, a tooltip when a question mark is clicked.|
 | [Modal page (bindContentCover/bindSheet)](arkts-modal-overview.md) | Choose this popup window when a new page needs to overlay the old one without making the old page disappear, such as viewing a large image by clicking a thumbnail.|
 |  [Toast](arkts-create-toast.md) | Use this popup window to provide simple feedback on the user's current action in a small window, like displaying a message that a file has been saved successfully.|
 |  [Overlay (OverlayManager)](arkts-create-overlaymanager.md) | Use this popup window when you need to customize the content, behavior, and style, and want to display a floating layer on top of the page, such as a music or voice playback floating bubble.|
 
 ## Specifications Constraints
 
-* When multiple popup window components are displayed in sequence, the layer of the later displayed component is higher than that of the earlier one, and they exit in the reverse order of their display. The layer order cannot be adjusted.
+* When multiple popup window components are displayed in sequence, the layer of the later displayed component is higher than that of the earlier one, and they exit in the reverse order of their display.
 * On mobile devices, a popup window in subwindow mode cannot exceed the main window. On a 2-in-1 device, a modal popup window may need to be displayed beyond the main window. In this case, you can set **showInSubWindow** to **true** to achieve this effect. The following figure shows the effect.
 
   ![image](figures/Dialog01.png)

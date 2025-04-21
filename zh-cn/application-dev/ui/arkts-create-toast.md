@@ -37,12 +37,13 @@
 | UIExtension内布局 | 以UIExtension为主窗中布局，对齐方式与UIExtension对齐 | 以宿主窗口为主窗中布局，对齐方式与宿主窗口对齐 |
 
 ```ts
-import {promptAction} from '@kit.ArkUI';
+import { promptAction } from '@kit.ArkUI';
+
 @Entry
 @Component
 struct Index {
   build() {
-    Column({space: 10}) {
+    Column({ space: 10 }) {
       TextInput()
       Button() {
         Text("DEFAULT类型Toast")
@@ -51,14 +52,15 @@ struct Index {
 
       }
       .width('100%')
-      .onClick(()=>{
-        promptAction.showToast({
-          message:"ok，我是DEFAULT toast",
-          duration:2000,
+      .onClick(() => {
+        this.getUIContext().getPromptAction().showToast({
+          message: "ok，我是DEFAULT toast",
+          duration: 2000,
           showMode: promptAction.ToastShowMode.DEFAULT,
-          bottom:80
+          bottom: 80
         })
       })
+
       Button() {
         Text("TOPMOST类型Toast")
           .fontSize(20)
@@ -66,12 +68,12 @@ struct Index {
 
       }
       .width('100%')
-      .onClick(()=>{
-        promptAction.showToast({
-          message:"ok，我是TOP_MOST toast",
-          duration:2000,
+      .onClick(() => {
+        this.getUIContext().getPromptAction().showToast({
+          message: "ok，我是TOP_MOST toast",
+          duration: 2000,
           showMode: promptAction.ToastShowMode.TOP_MOST,
-          bottom:85
+          bottom: 85
         })
       })
     }
@@ -84,8 +86,8 @@ struct Index {
 适用于短时间内提示框自动消失的场景。
 
 ```ts
-import { LengthMetrics, PromptAction } from '@kit.ArkUI'
-import { BusinessError } from '@kit.BasicServicesKit'
+import { LengthMetrics, PromptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -120,8 +122,8 @@ struct toastExample {
 适用于提示框提留时间较长，用户操作可以提前关闭提示框的场景。
 
 ```ts
-import { LengthMetrics, PromptAction } from '@kit.ArkUI'
-import { BusinessError } from '@kit.BasicServicesKit'
+import { LengthMetrics, PromptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component

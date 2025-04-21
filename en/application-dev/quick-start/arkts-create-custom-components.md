@@ -40,6 +40,8 @@ struct HelloComponent {
 
 Multiple **HelloComponent** instances can be created in **build()** of other custom components. In this way, **HelloComponent** is reused by those custom components.
 
+
+
 ```ts
 @Entry
 @Component
@@ -109,7 +111,7 @@ The \@Component decorator can decorate only the structs declared by the **struct
   }
   ```
 
-### The build Function
+### build()
 
 The **build** function is used to define the declarative UI description of a custom component. Every custom component must define a **build** function.
 
@@ -129,7 +131,7 @@ A custom component decorated with \@Entry is used as the default entry component
   >
   > This decorator can be used in ArkTS widgets since API version 9.
   >
-  > Since API version 10, the \@Entry decorator accepts an optional parameter of type [LocalStorage](arkts-localstorage.md) or type [EntryOptions](#entryOptions).
+  > Since API version 10, the \@Entry decorator accepts an optional parameter of type [LocalStorage](arkts-localstorage.md) or type [EntryOptions](#entryoptions10).
   >
   > This decorator can be used in atomic services since API version 11.
 
@@ -394,7 +396,7 @@ Whatever declared in **build()** are called UI descriptions. UI descriptions mus
   }
   ```
 
-- Directly changing a state variable is not allowed. For details, see [Changing State Variables in build() Is Forbidden](./arkts-state.md#changing-state-variables-in-build-is-forbidden). The following example should be avoided:
+- Directly changing a state variable is not allowed. The following example should be avoided. For details, see [Changing State Variables in build() Is Forbidden](./arkts-state.md#changing-state-variables-in-build-is-forbidden).
 
   ```ts
   @Component

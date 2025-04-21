@@ -15,6 +15,14 @@ import { uiExtension } from '@kit.ArkUI'
 
 ## WindowProxy
 
+### Properties
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name                                | Type                 | Read Only| Optional| Description                                                                                                    |
+| ------------------------------------| -------------------------------------------------- | ---- | ---- | ------------------------------------------------------------------------------------------------------ |
+| properties<sup>14+</sup>            | [WindowProxyProperties](#windowproxyproperties14) |  No |  No | Information about the component (**EmbeddedComponent** or **UIExtensionComponent**).<br>**Atomic service API**: This API can be used in atomic services since API version 14.<br>**NOTE**<br>Due to architecture restrictions, avoid obtaining the value in [onSessionCreate](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessioncreate). Instead, when possible, obtain the value after receiving the [on('windowSizeChange')](../apis-arkui/js-apis-arkui-uiExtension.md#onwindowsizechange) callback.                                                                           |
+
 ### getWindowAvoidArea
 
 getWindowAvoidArea(type: window.AvoidAreaType): window.AvoidArea
@@ -304,36 +312,6 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 }
 ```
 
-### properties<sup>14+</sup>
-
-properties: WindowProxyProperties
-
-Provides information about the host application window and the component (**EmbeddedComponent** or **UIExtensionComponent**).
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Atomic service API**: This API can be used in atomic services since API version 14.
-
-| Name    | Type                                | Description                            |
-| ---------- | ------------------------------------ | -------------------------------- |
-| properties | [WindowProxyProperties](#windowproxyproperties14) | Information about the host application window and the component (**EmbeddedComponent** or **UIExtensionComponent**).|
-
-**Example**
-
-```ts
-// ExtensionProvider.ts
-import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
-
-export default class EntryAbility extends EmbeddedUIExtensionAbility {
-  onSessionCreate(want: Want, session: UIExtensionContentSession) {
-    const extensionWindow = session.getUIExtensionWindowProxy();
-    // Obtain the position and size information of the component (EmbeddedComponent or UIExtensionComponent).
-    const rect = extensionWindow.properties.uiExtensionHostWindowProxyRect;
-    console.log(`Rect Info: ${JSON.stringify(rect)}`);
-  }
-}
-```
-
 ### createSubWindowWithOptions
 
 createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptions): Promise&lt;window.Window&gt;
@@ -417,7 +395,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 }
 ```
 
-### occupyEvents<sup>16+</sup>
+### occupyEvents<sup>18+</sup>
 
 occupyEvents(eventFlags: number): Promise&lt;void&gt;
 
@@ -425,13 +403,13 @@ Sets the events that the component (**EmbeddedComponent** or **UIExtensionCompon
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **Parameters**
 
 | Name| Type   | Mandatory| Description          |
 | ------ | ------ | ---- | -------------- |
-| eventFlags | [EventFlag](js-apis-arkui-uiExtension.md#eventflag16) | Yes| Type of events to be occupied by the component.|
+| eventFlags | number | Yes| Type of events to occupy. For details about the available values, see [EventFlag](#eventflag18).|
 
 **Return value**
 
@@ -445,7 +423,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.   |
 | 1300002  | This window state is abnormal. |
 | 1300003  | This window manager service works abnormally. |
 
@@ -454,39 +432,38 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 // ExtensionProvider.ts
 import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
+import { uiExtension } from '@kit.ArkUI';
 
 export default class EntryAbility extends EmbeddedUIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
     const extensionWindow = session.getUIExtensionWindowProxy();
     // Occupy events.
-    try {
-      let promise = extensionWindow.occupyEvents(uiExtension.EventFlag.EVENT_CLICK | uiExtension.EventFlag.EVENT_LONG_PRESS);
-      promise.then(() => {
-        console.info('Succeeded in occupy events');
-      }).catch((err: BusinessError) => {
-        console.error(`Failed to occupy events. Cause code: ${err.code}, message: ${err.message}`);
-      });
-    } catch (e) {
-      console.error(`Occupy events got exception`);
-    }
+    setTimeout(() => {
+      try {
+        extensionWindow.occupyEvents(uiExtension.EventFlag.EVENT_CLICK | uiExtension.EventFlag.EVENT_LONG_PRESS);
+      } catch (e) {
+        console.error(`Occupy events got exception code: ${e.code}, message: ${e.message}`);
+      }
+    }, 500);
   }
 }
 ```
 
-## EventFlag<sup>16+</sup>
+## EventFlag<sup>18+</sup>
 
 Enumerates event types.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
 | Name                       | Value             | Description           |
 |-----------------------------| --------------- |----------------|
-| EVENT_NONE                  | 0x00000000      | None.     |
-| EVENT_PAN_GESTURE_LEFT      | 0x00000001      | Swipe left event.   |
-| EVENT_PAN_GESTURE_RIGHT     | 0x00000002      | Swipe right event.   |
-| EVENT_PAN_GESTURE_UP        | 0x00000004      | Swipe up event.   |
-| EVENT_PAN_GESTURE_DOWN      | 0x00000008      | Swipe down event.   |
+| EVENT_NONE                  | 0x00000000      | No event.     |
+| EVENT_PAN_GESTURE_LEFT      | 0x00000001      | Pan-left event.   |
+| EVENT_PAN_GESTURE_RIGHT     | 0x00000002      | Pan-right event.   |
+| EVENT_PAN_GESTURE_UP        | 0x00000004      | Pan-up event.   |
+| EVENT_PAN_GESTURE_DOWN      | 0x00000008      | Pan-down event.   |
 | EVENT_CLICK                 | 0x00000100      | Click event.   |
 | EVENT_LONG_PRESS            | 0x00000200      | Long press event.   |
 
@@ -505,7 +482,7 @@ Describes the information about the area where the window cannot be displayed.
 
 ## WindowProxyProperties<sup>14+</sup>
 
-Provides information about the host application window and component (**EmbeddedComponent** or **UIExtensionComponent**).
+Provides information about a component.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -523,9 +500,9 @@ Enumerates the reasons for changes in the rectangle (position and size) of the c
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
-| Name                   | Value  | Description                                                        |
-| ----------------------- | ---- | ------------------------------------------------------------ |
-| HOST_WINDOW_RECT_CHANGE | 1    | The rectangle of the host window containing the component changes.|
+| Name                   | Value    | Description                                                        |
+| ----------------------- | ------ | ------------------------------------------------------------ |
+| HOST_WINDOW_RECT_CHANGE | 0x0001 | The rectangle of the host window containing the component changes.|
 
 ## RectChangeOptions<sup>14+</sup>
 

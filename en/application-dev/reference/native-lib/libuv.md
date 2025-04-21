@@ -1076,7 +1076,7 @@ This API returns **0** if the operation is successful; returns an error code if 
 >
 > - **uv_async_t** is executed in the sequence defined by **uv_async_init** instead of **uv_async_send**. Therefore, it is necessary to manage the timing according to the initialization sequence.
 
-! [](./figures/libuv-inter-thread-communication.png)
+![](./figures/libuv-inter-thread-communication.png)
 
 Example:
 
@@ -1172,7 +1172,7 @@ Initializes a work request which will run the given **work_cb** in a thread from
 
 The following figure illustrates a simplified workflow of the libuv thread pool. The default pending flag of the handle is 1. The number of worker threads is an example only.
 
-! [](./figures/libuv-thread-pool.png)
+![](./figures/libuv-thread-pool.png)
 
 ### Use of libuv in OpenHarmony
 

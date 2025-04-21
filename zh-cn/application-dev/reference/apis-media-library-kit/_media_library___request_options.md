@@ -11,6 +11,8 @@
 
 **相关模块：**[MediaAssetManager](_media_asset_manager.md)
 
+**所在头文件：**[media_asset_base_capi.h](media__asset__base__capi_8h.md)
+
 
 ## 汇总
 

@@ -1303,3 +1303,17 @@ Defines the WantAgentInfo object.
 | Type| Description|
 | --- | --- |
 | [_WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md) | WantAgentInfo object.|
+
+## WantAgent
+
+type WantAgent = object
+
+Target WantAgent object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Type| Description|
+| --- | --- |
+| object | Target WantAgent object.|

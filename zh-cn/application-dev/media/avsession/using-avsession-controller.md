@@ -165,10 +165,10 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
    - validCommandChange：媒体会话支持的有效命令变化事件。
    - outputDeviceChange：播放设备变化事件。
    - sessionDestroy：媒体会话销毁事件。
-   - sessionEvent: 媒体会话自定义事件变化事件。
+   - sessionEvent：媒体会话自定义事件变化事件。
    - extrasChange：媒体会话自定义数据包变化事件。
-   - queueItemsChange: 媒体会话自定义播放列表变化事件。
-   - queueTitleChange: 媒体会话自定义播放列表的名称变化事件。
+   - queueItemsChange：媒体会话自定义播放列表变化事件。
+   - queueTitleChange：媒体会话自定义播放列表的名称变化事件。
 
    媒体会话控制方可以根据实际需要监听对应的事件。
 

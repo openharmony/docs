@@ -29,7 +29,7 @@ Ability的状态，该类型为枚举，可配合[AbilityRunningInfo](js-apis-in
 | BACKGROUNDING | 12 | 表示ability为后台调度中状态。  | 
 
 
-## getAbilityRunningInfos
+## abilityManager.getAbilityRunningInfos
 
 getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 

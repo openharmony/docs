@@ -5,8 +5,6 @@
 > **说明：**
 >
 > 从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
->
-> 从API version 10开始，可以通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getUIInspector](./js-apis-arkui-UIContext.md#getuiinspector)方法获取当前UI上下文关联的[UIInspector](./js-apis-arkui-UIContext.md#uiinspector)对象。
 
 ## 导入模块
 
@@ -14,11 +12,17 @@
 import { inspector } from '@kit.ArkUI'
 ```
 
-## inspector.createComponentObserver
+## inspector.createComponentObserver<sup>(deprecated)</sup>
 
 createComponentObserver(id: string): ComponentObserver
 
 绑定指定组件，返回对应的监听句柄。
+
+> **说明：**
+> 
+> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getUIInspector](js-apis-arkui-UIContext.md#getuiinspector)获取[UIInspector](js-apis-arkui-UIContext.md#uiinspector)实例，再通过此实例调用替代方法[createComponentObserver](js-apis-arkui-UIContext.md#createcomponentobserver)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getUIInspector](js-apis-arkui-UIContext.md#getuiinspector)方法获取当前UI上下文关联的[UIInspector](js-apis-arkui-UIContext.md#uiinspector)对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

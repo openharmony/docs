@@ -16,7 +16,9 @@
 import { common } from '@kit.AbilityKit';
 ```
 
-## onError
+## AbilityStartCallback
+
+### onError
 
 onError(code: number, name: string, message: string): void
 
@@ -65,7 +67,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## onResult<sup>12+<sup>
+### onResult<sup>12+<sup>
 
 onResult?(parameter: AbilityResult): void
 

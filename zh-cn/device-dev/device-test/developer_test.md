@@ -775,7 +775,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 		ohos_unittest("CalculatorSubTest") {
 		}
 		```
-	6. 编写具体的测试用例编译脚本（添加需要参与编译的源文件、配置和依赖）
+	6. 编写具体的测试用例编译脚本（添加需要参与编译的源文件、配置和依赖）。
 		```
 		ohos_unittest("CalculatorSubTest") {
 		module_out_path = module_output_path

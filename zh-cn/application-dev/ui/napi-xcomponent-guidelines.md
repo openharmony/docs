@@ -6,12 +6,34 @@ XComponent组件作为一种渲染组件，可用于EGL/OpenGLES和媒体数据�
 
 目前XComponent组件主要有两个应用场景。一个是Native XComponent场景，在native层获取Native XComponent实例，在native侧注册XComponent的生命周期回调，以及触摸、鼠标、按键等事件回调。另一个是ArkTS XComponent场景，在ArkTS侧获取SurfaceId，生命周期回调、触摸、鼠标、按键等事件回调等均在ArkTS侧触发。
 
+## 自绘制原理说明
+
+XComponent持有一个surface，开发者能通过调用[NativeWindow](../graphics/native-window-guidelines.md)等接口，申请并提交Buffer至图形队列，以此方式将自绘制内容传送至该surface。XComponent负责将此surface整合进UI界面，其中展示的内容正是开发者传送的自绘制内容。surface的默认位置与大小与XComponent组件一致，开发者可利用[setXComponentSurfaceRect](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#setxcomponentsurfacerect12)接口自定义调整surface的位置和大小。
+
+> **说明：** 
+>
+> 当开发者传输的绘制内容包含透明元素时，surface区域的显示效果会与下方内容进行合成展示。例如，若传输的内容完全透明，且XComponent的背景色被设置为黑色，同时Surface保持默认的大小与位置，则最终显示的将是一片黑色区域。
+
 ## Native XComponent场景
 在XComponent组件构造函数的libraryname中定义需要加载的动态库，而后应用就可以在Native层获取Native XComponent实例，其是XComponent组件提供在Native层的实例，可作为ArkTS层和Native层XComponent绑定的桥梁。XComponent所提供的NDK接口都依赖于该实例。接口能力包括获取NativeWindow实例、获取XComponent的布局/事件信息、注册XComponent的生命周期回调、注册XComponent的触摸、鼠标、按键等事件回调。针对Native XComponent，主要的开发场景如下：
 
 - 利用Native XComponent提供的接口注册XComponent的生命周期和事件回调。
 - 在这些回调中进行初始化环境、获取当前状态、响应各类事件的开发。
 - 利用NativeWindow和EGL接口开发自定义绘制内容以及申请和提交Buffer到图形队列。
+
+**约束条件**：
+
+1、构造XComponent时需要配置libraryname参数、id参数以及type参数。
+
+2、id需要唯一。
+
+> **说明**：
+>
+> 1. Native侧的OH_NativeXComponent缓存在字典中，其key需要保证其唯一性，当对应的XComponent销毁后，需要及时从字典里将其删除。
+>
+> 2. 对于使用[typeNode](../reference/apis-arkui/js-apis-arkui-frameNode.md#typenode12)创建的SURFACE或TEXTURE类型的XComponent组件，由于typeNode组件的生命周期与声明式组件存在差异，组件在创建后的缓冲区尺寸为未设置状态，因此在开始绘制内容之前，应调用[OH_NativeWindow_NativeWindowHandleOpt](../reference/apis-arkgraphics2d/_native_window.md#oh_nativewindow_nativewindowhandleopt)接口进行缓冲区尺寸设置。
+>
+> 3. 多个XComponent开发时，缓存Native侧资源需要保证key是唯一的，key推荐使用id+随机数或者surfaceId。
 
 **接口说明**
 
@@ -233,29 +255,29 @@ XComponent组件作为一种渲染组件，可用于EGL/OpenGLES和媒体数据�
                 eglCore_->Release();
                 delete eglCore_;
                 eglCore_ = nullptr;
-           }
-       }
-       static PluginRender* GetInstance(std::string& id);
-       static void Release(std::string& id);
-       static napi_value NapiDrawPattern(napi_env env, napi_callback_info info);
-       static napi_value TestGetXComponentStatus(napi_value env, napi_callback_info info);
-       void Export(napi_env env, napi_value exports);
-       void OnSurfaceChanged(OH_NativeXComponent* component, void* window);
-       void OnTouchEvent(OH_NativeXComponent* component, void* window);
-       void OnMouseEvent(OH_NativeXComponent* component, void* window);
-       void OnHoverEvent(OH_NativeXComponent* component, bool isHover);
-       void OnFocusEvent(OH_NativeXComponent* component, void* window);
-       void OnBlurEvent(OH_NativeXComponent* component, void* window);
-       void OnKeyEvent(OH_NativeXComponent* component, void* window);
-       void RegisterCallback(OH_NativeXComponent* NativeXComponent);
-   
+            }
+        }
+        static PluginRender* GetInstance(std::string& id);
+        static void Release(std::string& id);
+        static napi_value NapiDrawPattern(napi_env env, napi_callback_info info);
+        static napi_value TestGetXComponentStatus(napi_value env, napi_callback_info info);
+        void Export(napi_env env, napi_value exports);
+        void OnSurfaceChanged(OH_NativeXComponent* component, void* window);
+        void OnTouchEvent(OH_NativeXComponent* component, void* window);
+        void OnMouseEvent(OH_NativeXComponent* component, void* window);
+        void OnHoverEvent(OH_NativeXComponent* component, bool isHover);
+        void OnFocusEvent(OH_NativeXComponent* component, void* window);
+        void OnBlurEvent(OH_NativeXComponent* component, void* window);
+        void OnKeyEvent(OH_NativeXComponent* component, void* window);
+        void RegisterCallback(OH_NativeXComponent* NativeXComponent);
+
     public:
         static std::unordered_map<std::string, PluginRender*> instance_;
         EGLCore* eglCore_;
         std::string id_;
         static int32_t hasDraw_;
         static int32_t hasChangeColor_;
-   
+
     private:
         OH_NativeXComponent_Callback renderCallback_;
         OH_NativeXComponent_MouseEvent_Callback mouseCallback_;
@@ -271,8 +293,8 @@ XComponent组件作为一种渲染组件，可用于EGL/OpenGLES和媒体数据�
     PluginRender::PluginRender(std::string& id) {
         this->id_ = id;
         this->eglCore_ = new EGLCore();
-   }
-   
+    }
+
     PluginRender* PluginRender::GetInstance(std::string& id) {
         if (instance_.find(id) == instance_.end()) {
             PluginRender* instance = new PluginRender(id);
@@ -1202,6 +1224,14 @@ XComponent组件作为一种渲染组件，可用于EGL/OpenGLES和媒体数据�
 - 利用NativeWindow和EGL接口开发自定义绘制内容以及申请和提交Buffer到图形队列。
 - ArkTS侧获取生命周期、事件等信息传递到Native侧处理。
 
+> **说明**：
+>
+> 1. Native侧的NativeWindow缓存在字典中，其key需要保证其唯一性，当对应的XComponent销毁后，需要及时从字典里将其删除。
+>
+> 2. 对于使用[typeNode](../reference/apis-arkui/js-apis-arkui-frameNode.md#typenode12)创建的SURFACE或TEXTURE类型的XComponent组件，由于typeNode组件的生命周期与声明式组件存在差异，组件在创建后的缓冲区尺寸为未设置状态，因此在开始绘制内容之前，应调用[OH_NativeWindow_NativeWindowHandleOpt](../reference/apis-arkgraphics2d/_native_window.md#oh_nativewindow_nativewindowhandleopt)接口进行缓冲区尺寸设置。
+> 
+> 3. 多个XComponent开发时，缓存Native侧资源需要保证key是唯一的，key推荐使用id+随机数或者surfaceId。
+
 **接口说明**
 
 ArkTS侧的XComponentController
@@ -1657,14 +1687,6 @@ Native侧
         ${EGL-lib} ${GLES-lib} ${hilog-lib} ${libace-lib} ${libnapi-lib} ${libuv-lib} libnative_window.so)
     ```
 
-## 自绘制原理说明
-
-XComponent持有一个surface，开发者能通过调用NativeWindow等接口，申请并提交Buffer至图形队列，以此方式将自绘制内容传送至该surface。XComponent负责将此surface整合进UI界面，其中展示的内容正是开发者传送的自绘制内容。surface的默认位置与大小与XComponent组件一致，开发者可利用[setXComponentSurfaceRect](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#setxcomponentsurfacerect12)接口自定义调整surface的位置和大小。
-
-> **说明：** 
->
-> 当开发者传输的绘制内容包含透明元素时，surface区域的显示效果会与下方内容进行合成展示。例如，若传输的内容完全透明，且XComponent的背景色被设置为黑色，同时Surface保持默认的大小与位置，则最终显示的将是一片黑色区域。
-
 ## 生命周期说明
 
 开发者在ArkTS侧使用如下代码即可用XComponent组件进行利用EGL/OpenGLES渲染的开发。
@@ -1679,6 +1701,8 @@ function myComponent() {
 ```
 
 ### onLoad事件	
+
+使用场景：当需要用到native侧注册的方法，可以考虑调用。
 
 触发时刻：XComponent准备好surface后触发。
 
@@ -1703,6 +1727,8 @@ function myComponent() {
 ### onDestroy事件
 
 触发时刻：XComponent组件被销毁时触发，与一般ArkUI的组件销毁时机一致。
+
+使用场景：和onLoad事件对应，如果在onLoad申请了内存，可以在这里进行释放。
 
 **时序：**
 

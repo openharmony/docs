@@ -75,7 +75,7 @@ base目录是默认存在的目录，二级子目录element用于存放字符串
 
 #### resfile目录
 
-支持创建多层子目录，子目录名称可以自定义，文件夹内可以自由放置各类资源文件。<br/>目录中的资源文件会被直接打包进应用，不经过编译，也不会被赋予资源文件ID。应用安装后，resfile资源会被解压到应用沙箱路径，通过Context属性[resourceDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#属性)获取到resfile资源目录后，可通过文件路径访问。
+支持创建多层子目录，子目录名称可以自定义，文件夹内可以自由放置各类资源文件。<br/>目录中的资源文件会被直接打包进应用，不经过编译，也不会被赋予资源文件ID。应用安装后，resfile资源会被解压到应用沙箱路径，通过Context属性[resourceDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#属性)获取到resfile资源目录后，可通过文件路径访问，且该路径仅能以只读方式访问。
 
 ### 资源组目录
 
@@ -592,8 +592,9 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
 ```
 <!--DelEnd-->
 > **说明：**
+<!--Del-->>
 > - targetBundleName: 字符串类型，指定要overlay的bundleName。
->
+<!--DelEnd-->>
 > - targetModuleName: 字符串类型，指定要overlay的应用中的目标module。
 >
 > - targetPriority： 整数类型，指定overlay优先级。

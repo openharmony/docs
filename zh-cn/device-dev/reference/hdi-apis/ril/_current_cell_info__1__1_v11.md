@@ -63,4 +63,4 @@ union CurrentServiceCellParas_1_1 CurrentCellInfo_1_1::serviceCells
 ```
 **描述**
 
-小区信息参数，具体查看[CurrentServiceCellParas_1_1](union_current_service_cell_paras__1__1_v11.md).
+小区信息参数，具体查看[CurrentServiceCellParas_1_1](union_current_service_cell_paras__1__1_v11.md)

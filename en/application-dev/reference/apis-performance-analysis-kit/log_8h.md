@@ -73,8 +73,8 @@ Output:
 
 | Name| Description| 
 | -------- | -------- |
-| [LogType](_hi_log.md#logtype) { [LOG_APP](_hi_log.md) = 0 } | Enumerates the log types. | 
-| [LogLevel](_hi_log.md#loglevel) {<br>[LOG_DEBUG](_hi_log.md) = 3, [LOG_INFO](_hi_log.md) = 4, [LOG_WARN](_hi_log.md) = 5, [LOG_ERROR](_hi_log.md) = 6,<br>[LOG_FATAL](_hi_log.md) = 7<br>} | Enumerates the log levels. | 
+| [LogType](_hi_log.md#logtype) { LOG_APP = 0 } | Enumerates the log types. | 
+| [LogLevel](_hi_log.md#loglevel) {<br>LOG_DEBUG = 3,<br>LOG_INFO = 4,<br>LOG_WARN = 5,<br>LOG_ERROR = 6,<br>LOG_FATAL = 7<br>} | Enumerates the log levels. | 
 
 
 ### Functions
@@ -85,6 +85,6 @@ Output:
 | int bool [OH_LOG_IsLoggable](_hi_log.md#oh_log_isloggable) (unsigned int domain, const char \*tag, [LogLevel](_hi_log.md#loglevel) level) | Checks whether logs of the specified service domain, tag, and level can be printed. | 
 | void [OH_LOG_SetCallback](_hi_log.md#oh_log_setcallback) ([LogCallback](_hi_log.md#logcallback) callback) | Registers a callback function. | 
 | void [OH_LOG_SetMinLogLevel](_hi_log.md#oh_log_setminloglevel) ([LogLevel](_hi_log.md#loglevel) level) | Sets the minimum log level. When a process prints logs, both the minimum log level and global log level are verified.<br>Therefore, the minimum log level cannot be lower than the global log level. The default [global log level](../../dfx/hilog.md#displaying-and-setting-log-levels) is **Info**.| 
-| int [OH_LOG_PrintMsg](_hi_log.md#oh_log_printmsg) ([LogType](_hi_log.md#logtype) type, [LogLevel](_hi_log.md#loglevel) level, unsigned int domain, const char \*tag, const char \*message) | Outputs logs. Outputs constant log strings of the specified **type**, **level**, **domain**, and **tag**. | 
-| int [OH_LOG_PrintMsgByLen](_hi_log.md#oh_log_printmsgbylen) ([LogType](_hi_log.md#logtype) type, [LogLevel](_hi_log.md#loglevel) level, unsigned int domain, const char \*tag, size_t tagLen, const char \*message, size_t messageLen) |  Outputs constant string logs of the specified **domain**, **tag**, and **level**. The tag and string length must be specified. Unlike **OH_LOG_PrintMsg**, this API allows strings without terminators. | 
+| int [OH_LOG_PrintMsg](_hi_log.md#oh_log_printmsg) ([LogType](_hi_log.md#logtype) type, [LogLevel](_hi_log.md#loglevel) level, unsigned int domain, const char \*tag, const char \*message) | Outputs constant log strings of the specified **type**, **level**, **domain**, and **tag**. | 
+| int [OH_LOG_PrintMsgByLen](_hi_log.md#oh_log_printmsgbylen) ([LogType](_hi_log.md#logtype) type, [LogLevel](_hi_log.md#loglevel) level, unsigned int domain, const char \*tag, size_t tagLen, const char \*message, size_t messageLen) | Outputs constant log strings of the specified **domain**, **tag**, and **level**. The tag and string length must be specified. Unlike **OH_LOG_PrintMsg**, this API allows strings without terminators. | 
 | int [OH_LOG_VPrint](_hi_log.md#oh_log_vprint)(LogType type, LogLevel level, unsigned int domain, const char *tag, const char *fmt, va_list ap) | - |  Outputs logs of specified **type**, **level**, **domain**, **tag**, and variables determined by the format specifier and privacy identifier in the printf format. The variables are of the **va_list** type.|

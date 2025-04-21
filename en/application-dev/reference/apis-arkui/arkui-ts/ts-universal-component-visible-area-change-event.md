@@ -38,8 +38,34 @@ Called when the visible area of the component changes.
 >
 >- It does not support visibility change calculations for nodes that are not in the component tree. For example, preloaded nodes or custom nodes mounted using the [overlay](ts-universal-attributes-overlay.md#overlay) capability.
 
+## onVisibleAreaApproximateChange<sup>18+</sup>
+
+onVisibleAreaApproximateChange(options: VisibleAreaEventOptions, event: VisibleAreaChangeCallback | undefined): void
+
+Called to set the callback parameters for the [onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange) event and restrict its execution interval.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                      |
+| ------ | ------ | ---- | -------------------------- |
+| options  | [VisibleAreaEventOptions](./ts-types.md#visibleareaeventoptions12) | Yes  | Options of visible area changes.|
+| event  | [VisibleAreaChangeCallback](./ts-types.md#visibleareachangecallback12)   \| undefined | Yes  | Callback for the **onVisibleAreaChange** event. This callback is triggered when the ratio of the component's visible area to its total area approaches the threshold set in **options**.|
+
+>**NOTE**
+>
+> This callback is not a real-time callback. The actual callback interval may differ from the expected interval.
+>
+> The interval between two visible area change callbacks will not be less than the expected update interval. If the provided expected interval is too short, the actual callback interval will be determined by the system load.
+>
+> By default, the interval threshold of the visible area change callback includes 0. This means that, if the provided threshold is [0.5], the effective threshold will be [0.0, 0.5].
 
 ## Example
+
+### Example 1: Using onVisibleAreaChange to Listen for Visible Area Changes
 
 This example demonstrates how to set an **onVisibleAreaChange** event for a component, which triggers the callback when the component is fully displayed or completely hidden.
 
@@ -141,4 +167,105 @@ struct ScrollExample {
 }
 ```
 
+### Example 2: Using onVisibleAreaApproximateChange to Listen for Visible Area Changes
+
+This example demonstrates how to set an **onVisibleAreaApproximateChange** event for a component, which triggers the callback when the component is fully displayed or completely hidden.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct ScrollExample {
+  scroller: Scroller = new Scroller()
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  @State testTextStr: string = 'test'
+  @State testRowStr: string = 'test'
+
+  build() {
+    Column() {
+      Column() {
+        Text(this.testTextStr)
+          .fontSize(20)
+
+        Text(this.testRowStr)
+          .fontSize(20)
+      }
+      .height(100)
+      .backgroundColor(Color.Gray)
+      .opacity(0.3)
+
+      Scroll(this.scroller) {
+        Column() {
+          Text("Test Text Visible Change")
+            .fontSize(20)
+            .height(200)
+            .margin({ top: 50, bottom: 20 })
+            .backgroundColor(Color.Green)
+              // Set ratios to [0.0, 1.0] to invoke the callback when the component is fully visible or invisible on screen.
+            .onVisibleAreaApproximateChange({ratios: [0.0, 1.0], expectedUpdateInterval: 1000}, (isExpanding: boolean, currentRatio: number) => {
+              console.info('Test Text isExpanding: ' + isExpanding + ', currentRatio:' + currentRatio)
+              if (isExpanding && currentRatio >= 1.0) {
+                console.info('Test Text is fully visible. currentRatio:' + currentRatio)
+                this.testTextStr = 'Test Text is fully visible'
+              }
+
+              if (!isExpanding && currentRatio <= 0.0) {
+                console.info('Test Text is completely invisible.')
+                this.testTextStr = 'Test Text is completely invisible'
+              }
+            })
+
+          Row() {
+            Text('Test Row Visible Change')
+              .fontSize(20)
+              .margin({ bottom: 20 })
+
+          }
+          .height(200)
+          .backgroundColor(Color.Yellow)
+          .onVisibleAreaChange([0.0, 1.0], (isExpanding: boolean, currentRatio: number) => {
+            console.info('Test Row isExpanding:' + isExpanding + ', currentRatio:' + currentRatio)
+            if (isExpanding && currentRatio >= 1.0) {
+              console.info('Test Row is fully visible.')
+              this.testRowStr = 'Test Row is fully visible'
+            }
+
+            if (!isExpanding && currentRatio <= 0.0) {
+              console.info('Test Row is completely invisible.')
+              this.testRowStr = 'Test Row is completely invisible'
+            }
+          })
+
+          ForEach(this.arr, (item:number) => {
+            Text(item.toString())
+              .width('90%')
+              .height(150)
+              .backgroundColor(0xFFFFFF)
+              .borderRadius(15)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .margin({ top: 10 })
+          }, (item:number) => (item.toString()))
+
+        }.width('100%')
+      }
+      .backgroundColor(0x317aff)
+      .scrollable(ScrollDirection.Vertical)
+      .scrollBar(BarState.On)
+      .scrollBarColor(Color.Gray)
+      .scrollBarWidth(10)
+      .onWillScroll((xOffset: number, yOffset: number, scrollState: ScrollState) => {
+        console.info(xOffset + ' ' + yOffset)
+      })
+      .onScrollEdge((side: Edge) => {
+        console.info('To the edge')
+      })
+      .onScrollStop(() => {
+        console.info('Scroll Stop')
+      })
+
+    }.width('100%').height('100%').backgroundColor(0xDCDCDC)
+  }
+}
+```
 ![en-us_visible_area_change.gif](figures/en-us_visible_area_change.gif)

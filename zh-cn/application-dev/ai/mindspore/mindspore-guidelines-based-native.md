@@ -413,7 +413,7 @@
 import msliteNapi from 'libentry.so'
 import { resourceManager } from '@kit.LocalizationKit';
 
-let resMgr: resourceManager.ResourceManager = getContext().getApplicationContext().resourceManager;
+let resMgr = this.getUIContext()?.getHostContext()?.getApplicationContext().resourceManager;
 let max: number = 0;
 let maxIndex: number = 0;
 let maxArray: Array<number> = [];

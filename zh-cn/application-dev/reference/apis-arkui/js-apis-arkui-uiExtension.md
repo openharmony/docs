@@ -459,13 +459,13 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 
 | 名称                        | 值              | 说明            |
 |-----------------------------| --------------- |----------------|
-| EVENT_NONE                  | 0x00000000      | 无事件      |
-| EVENT_PAN_GESTURE_LEFT      | 0x00000001      | 左滑事件    |
-| EVENT_PAN_GESTURE_RIGHT     | 0x00000002      | 右滑事件    |
-| EVENT_PAN_GESTURE_UP        | 0x00000004      | 上滑事件    |
-| EVENT_PAN_GESTURE_DOWN      | 0x00000008      | 下滑事件    |
-| EVENT_CLICK                 | 0x00000100      | 点击事件    |
-| EVENT_LONG_PRESS            | 0x00000200      | 长按事件    |
+| EVENT_NONE                  | 0x00000000      | 无事件。      |
+| EVENT_PAN_GESTURE_LEFT      | 0x00000001      | 左滑事件。    |
+| EVENT_PAN_GESTURE_RIGHT     | 0x00000002      | 右滑事件。    |
+| EVENT_PAN_GESTURE_UP        | 0x00000004      | 上滑事件。    |
+| EVENT_PAN_GESTURE_DOWN      | 0x00000008      | 下滑事件。    |
+| EVENT_CLICK                 | 0x00000100      | 点击事件。    |
+| EVENT_LONG_PRESS            | 0x00000200      | 长按事件。    |
 
 ## AvoidAreaInfo
 

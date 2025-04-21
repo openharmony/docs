@@ -29,7 +29,7 @@ AVVolumePanel({volumeLevel?: number, volumeParameter?: AVVolumePanelParameter})
 
 音量面板，可用于在当前应用内展示音量调节面板。
 
-**装饰器类型：** [@Component](../../quick-start/arkts-create-custom-components.md)
+**装饰器类型：** [@Component](../../ui/state-management/arkts-create-custom-components.md)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -48,7 +48,7 @@ AVVolumePanel({volumeLevel?: number, volumeParameter?: AVVolumePanelParameter})
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
-| 名称 | 类型 | 必填 | 说明
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 |position | [Position](../apis-arkui/arkui-ts/ts-types.md#position) | 否 | 设置音量面板的位置。 |
 

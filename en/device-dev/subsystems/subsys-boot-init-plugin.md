@@ -30,8 +30,8 @@ bootchart and bootevent are available only for the standard system, and begetctl
 | param shell [name] | Enters the parameter shell.|begetctl param shell <br>or param shell|
 | param save | Persistently stores all parameters marked with a persistency flag in the workspace.|begetctl param save <br>or param save|
 | dump api | Displays information about APIs of the init process.|begetctl dump api |
-| getloglevel | Obtains the log level of the init process from **persist.init.debug.loglevel**.<br>0:debug<br> 1: info<br> 2: warning<br> 3: err<br> 4: fatal|begetctl getloglevel |
-| setloglevel level | Sets the log level to **info**.<br>The log level ranges from **0** to **4**.<br> 0:debug<br>1: info<br> 2: warning<br> 3: err<br>4: fatal|begetctl setloglevel 1 |
+| getloglevel | Obtains the log level of the init process from<br>**persist.init.debug.loglevel**.<br>0: debug<br> 1: info<br> 2: warning<br> 3: err<br> 4: fatal|begetctl getloglevel |
+| setloglevel level | Sets the log level to **info**.<br>The log level ranges from **0** to **4**.<br> 0: debug<br>1: info<br> 2: warning<br> 3: err<br>4: fatal|begetctl setloglevel 1 |
 | timer_stop servicename | Stops a service timer.<br>The value of **servicename** can contain a maximum of 96 characters.|begetctl timer_stop servicename | begetctl timer_stop appspawn |
 | timer_start servicename timeout | Starts the service timer.<br>The value of **servicename** can contain a maximum of 96 characters.<br>The default value of **timeout** is 10 ms.|begetctl timer_start servicename | begetctl timer_start appspawn|
 | start_service servicename | Starts a service.| begetctl start_service servicename or<br>start_service servicename|begetctl start_service appspawn |
@@ -68,7 +68,7 @@ bootchart and bootevent are available only for the standard system, and begetctl
 | bootchart enable | Enables graphics analysis.|begetctl bootchart enable |
 | dac uid username | Obtains the UID corresponding to the specified **username**.|begetctl dac uid username <br>Example:<br>begetctl dac uid root|
 | dac gid groupname | Obtains the GID corresponding to the specified **groupname** and group members.|begetctl dac gid groupname <br>Example:<br> begetctl dac gid shell |
-| get log level | Obtains the log level of the init process from **persist.init.debug.loglevel**.<br>0: debug<br> 1: info<br> 2: warning<br> 3: err<br> 4: fatal|begetctl get log level |
+| get log level | Obtains the log level of the init process from<br>**persist.init.debug.loglevel**.<br>0: debug<br> 1: info<br> 2: warning<br> 3: err<br> 4: fatal|begetctl get log level |
 | set log level | Set the log level to **info**.<br>The log level ranges from **0** to **4**.<br> 0: debug<br>1: info<br> 2: warning<br> 3: err<br>4: fatal|begetctl set log level 1 |
 | appspawn_time | Obtains the maximum and minimum time for application spawning.| begetctl appspawn_time <br>Example:<br>begetctl appspawn_time|
 | dump_nwebspawn | Dumps information about the nwebspawn application.|begetctl dump_nwebspawn <br>Example:<br>Opens Notepad.<br>begetctl dump_nwebspawn |

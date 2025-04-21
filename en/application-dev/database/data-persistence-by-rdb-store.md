@@ -20,10 +20,10 @@ Querying data from a large amount of data may take time or even cause applicatio
 
 ## Working Principles
 
-**RelationalStore** provides APIs for applications to perform data operations. With SQLite as the underlying persistent storage engine, **RelationalStore** provides SQLite database features, including transactions, indexes, views, triggers, foreign keys, parameterized queries, prepared SQL statements, and more.
+**RelationalStore** provides APIs for data operations. With SQLite as the underlying persistent storage engine, **RelationalStore** provides SQLite database features, including transactions, indexes, views, triggers, foreign keys, parameterized queries, prepared SQL statements, and more.
 
 **Figure 1** Working mechanism
- 
+
 ![relationStore_local](figures/relationStore_local.jpg)
 
 
@@ -31,13 +31,13 @@ Querying data from a large amount of data may take time or even cause applicatio
 
 - The default logging mode is Write Ahead Log (WAL), and the default flushing mode is **FULL** mode.
 
-- The RDB store supports a maximum of four read connections and one write connection. A thread performs the read operation when acquiring a read connection. When there is no read connection available but the write connection is idle, the write connection can be used to perform the read operation.
+- The RDB store supports a maximum of four read connections and one write connection. A thread performs the read operation when acquiring a read connection. When there is no read connection available but the write connection is idle, the write connection can be used to read data.
 
 - To ensure data accuracy, only one write operation is allowed at a time.
 
 - Once an application is uninstalled, related database files and temporary files on the device are automatically deleted.
 
-- ArkTS supports the following basic data types: number, string, binary data, and boolean.
+- ArkTS supports the following basic data types: number, string, binary, and boolean.
 
 - The maximum size of a data record is 2 MB. If a data record exceeds 2 MB, it can be inserted successfully but cannot be read.
 
@@ -45,26 +45,26 @@ Querying data from a large amount of data may take time or even cause applicatio
 
 The following table lists the APIs used for RDB data persistence. Most of the APIs are executed asynchronously, using a callback or promise to return the result. The following table uses the callback-based APIs as an example. For more information about the APIs, see [RDB Store](../reference/apis-arkdata/js-apis-data-relationalStore.md).
 
-| API| Description| 
+| API| Description|
 | -------- | -------- |
-| getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;RdbStore&gt;): void | Obtains an **RdbStore** instance to implement RDB store operations. You can set **RdbStore** parameters based on actual requirements and use **RdbStore** APIs to perform data operations.| 
-| executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;void&gt;):void | Executes an SQL statement that contains specified arguments but returns no value.| 
-| insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt;):void | Inserts a row of data into a table.| 
-| update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | Updates data in the RDB store based on the specified **predicates** instance.| 
-| delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | Deletes data from the RDB store based on the specified **predicates** instance.| 
-| query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void | Queries data in the RDB store based on specified conditions.| 
-| deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void | Deletes an RDB store.| 
+| getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;RdbStore&gt;): void | Obtains an **RdbStore** instance to implement RDB store operations. You can set **RdbStore** parameters based on actual requirements and use **RdbStore** APIs to perform data operations.|
+| executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;void&gt;):void | Executes an SQL statement that contains specified arguments but returns no value.|
+| insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt;):void | Inserts a row of data into a table.|
+| update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | Updates data in the RDB store based on the specified **predicates** instance.|
+| delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | Deletes data from the RDB store based on the specified **predicates** instance.|
+| query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void | Queries data in the RDB store based on specified conditions.|
+| deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void | Deletes an RDB store.|
 | isTokenizerSupported(tokenizer: Tokenizer): boolean | Checks whether the specified tokenizer is supported.|
 
 ## How to Develop
 Unless otherwise specified, the sample code without "stage model" or "FA model" applies to both models.
 
-If error 14800011 is thrown, you need to rebuild the database and restore data to ensure normal application development. For details, see [Rebuilding a RDB Store](data-backup-and-restore.md#rebuilding-an-rdb-store).
+If error 14800011 is thrown, you need to rebuild the database and restore data to ensure normal application development. For details, see [Rebuilding an RDB Store](data-backup-and-restore.md#rebuilding-an-rdb-store).
 
 1. Obtain an **RdbStore** instance, which includes operations of creating an RDB store and tables, and upgrading or downgrading the RDB store. <br>Example:
 
    Stage model:
-     
+   
    ```ts
    import { relationalStore} from '@kit.ArkData'; // Import the relationalStore module.
    import { UIAbility } from '@kit.AbilityKit';
@@ -102,7 +102,7 @@ If error 14800011 is thrown, you need to rebuild the database and restore data t
 
          // When the RDB store is created, the default version is 0.
          if (store.version === 0) {
-           store.executeSql(SQL_CREATE_TABLE); // Create a data table.
+           store.executeSql(SQL_CREATE_TABLE); // Create a table.
            // Set the RDB store version, which must be an integer greater than 0.
            store.version = 3;
          }
@@ -121,9 +121,8 @@ If error 14800011 is thrown, you need to rebuild the database and restore data t
            (store as relationalStore.RdbStore).executeSql('ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS TEXT');
            store.version = 3;
          }
+         // Before adding, deleting, modifying, and querying data in an RDB store, obtain an RdbStore instance and create a table.
        });
-
-       // Before performing data operations on the database, obtain an RdbStore instance.
      }
    }
    ```
@@ -154,7 +153,7 @@ If error 14800011 is thrown, you need to rebuild the database and restore data t
 
      // When the RDB store is created, the default version is 0.
      if (store.version === 0) {
-       store.executeSql(SQL_CREATE_TABLE); // Create a data table.
+       store.executeSql(SQL_CREATE_TABLE); // Create a table.
        // Set the RDB store version, which must be an integer greater than 0.
        store.version = 3;
      }
@@ -173,9 +172,9 @@ If error 14800011 is thrown, you need to rebuild the database and restore data t
        store.executeSql('ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS TEXT');
        store.version = 3;
      }
+     // Before adding, deleting, modifying, and querying data in an RDB store, obtain an RdbStore instance and create a table.
    });
 
-   // Before performing data operations on the database, obtain an RdbStore instance.
    ```
 
    > **NOTE**
@@ -186,8 +185,8 @@ If error 14800011 is thrown, you need to rebuild the database and restore data t
    > 
    > - For details about the error codes, see [Universal Error Codes](../reference/errorcode-universal.md) and [RDB Store Error Codes](../reference/apis-arkdata/errorcode-data-rdb.md).
 
-2. Use **insert()** to insert data to the RDB store. <br>Example:
-     
+2. Call **insert()** to insert data. <br>Example:
+   
    ```ts
    let store: relationalStore.RdbStore | undefined = undefined;
 
@@ -236,7 +235,7 @@ If error 14800011 is thrown, you need to rebuild the database and restore data t
 
 3. Modify or delete data based on the specified **Predicates** instance.
 
-   Use **update()** to modify data and **delete()** to delete data. <br>Example:
+   Call **update()** to modify data and **delete()** to delete data. <br>Example:
 
    ```ts
    let value6 = 'Rose';
@@ -296,7 +295,7 @@ If error 14800011 is thrown, you need to rebuild the database and restore data t
 
 4. Query data based on the conditions specified by **Predicates**.
 
-   Use **query()** to query data. The data obtained is returned in a **ResultSet** object. <br>Example:
+   Call **query()** to query data. The data obtained is returned in a **ResultSet** object. <br>Example:
 
    ```ts
    let predicates2 = new relationalStore.RdbPredicates('EMPLOYEE');
@@ -394,7 +393,7 @@ If error 14800011 is thrown, you need to rebuild the database and restore data t
 
 7. Delete the RDB store.
 
-   Use **deleteRdbStore()** to delete the RDB store and related database files. <br>Example:
+   Call **deleteRdbStore()** to delete the RDB store and related database files. <br>Example:
 
    Stage model:
 

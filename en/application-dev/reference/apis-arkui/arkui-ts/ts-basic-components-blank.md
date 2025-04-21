@@ -31,11 +31,11 @@ Since API version 10:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| min | number \| string | No| Minimum size of the **Blank** component in the container along the main axis.<br>Default value: **0**<br>**NOTE**<br>This parameter cannot be set in percentage. If the value is negative, the default value is used. If the minimum size is larger than the available space of the container, it is used as the component size, and the component extends beyond the container.|
+| min | number \| string | No| Minimum size of the **Blank** component in the container along the main axis.<br>Default value: **0**<br>If the type is number, the default unit is vp. If the type is string, the [pixel unit](ts-pixel-units.md) can be explicitly specified, for example, '**10px'**. If the unit is not specified, the default unit vp is used, in which case **'10'** is equivalent to **10vp**.<br>**NOTE**<br>This parameter cannot be set in percentage. If the value is negative, the default value is used. If the minimum size is larger than the available space of the container, it is used as the component size, and the component extends beyond the container.|
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### color
 
@@ -53,16 +53,18 @@ Sets the color to fill the blank.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | [ResourceColor](ts-types.md#resourcecolor) | Yes| Color to fill the blank.<br><br>Default value: **Color.Transparent**|
+| value | [ResourceColor](ts-types.md#resourcecolor) | Yes| Color to fill the blank.<br>Default value: **Color.Transparent**|
 
 ## Events
 
-The [universal events](ts-universal-events-click.md) are supported.
+The [universal events](ts-component-general-events.md) are supported.
 
 ## Example
 
-### Example 1
-The sample below shows how the **Blank** component fills the empty spaces in the container in landscape and portrait modes.
+### Example 1: Filling Remaining Space
+
+This example shows how the **Blank** component fills the remaining space in landscape and portrait modes.
+
 ```ts
 // xxx.ets
 @Entry
@@ -89,8 +91,9 @@ Landscape mode
 ![en-us_image_0000001212378418](figures/en-us_image_0000001212378418.gif)
 
 
-### Example 2
-Set the **min** parameter when the width of the parent container of the **Blank** component is not set.
+### Example 2: Filling a Fixed Width
+
+This example shows the effect of using the **min** parameter of the **Blank** component when its parent component does not have a width set.
 
 ```ts
 // xxx.ets

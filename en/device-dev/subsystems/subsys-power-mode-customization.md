@@ -278,6 +278,8 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
 
 ## Reference
 
-During development, you can refer to the [default power mode configuration](https://gitee.com/openharmony/powermgr_power_manager/blob/master/services/native/profile/power_mode_config.xml):
+During development, you can refer to the [default power mode configuration](https://gitee.com/openharmony/powermgr_power_manager/blob/master/services/native/profile/power_mode_config.xml).
+
+ 
 
 Packing path: `/system/etc/power_config/power_mode_config.xml`

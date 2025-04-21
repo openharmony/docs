@@ -335,25 +335,26 @@ Enumerates the audio device roles.
 
 Enumerates the audio device types.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
 | Name                | Value    | Description                                                     |
 | ---------------------| ------ | --------------------------------------------------------- |
-| INVALID              | 0      | Invalid device.                                               |
-| EARPIECE             | 1      | Earpiece.                                                   |
-| SPEAKER              | 2      | Speaker.                                                 |
-| WIRED_HEADSET        | 3      | Wired headset with a microphone.                                     |
-| WIRED_HEADPHONES     | 4      | Wired headset without microphone.                                     |
-| BLUETOOTH_SCO        | 7      | Bluetooth device using Synchronous Connection Oriented (SCO) links.     |
-| BLUETOOTH_A2DP       | 8      | Bluetooth device using Advanced Audio Distribution Profile (A2DP) links.|
-| MIC                  | 15     | Microphone.                                                 |
-| USB_HEADSET          | 22     | USB Type-C headset.                                      |
-| DISPLAY_PORT<sup>12+</sup>        | 23     | Display port (DP), which is used to connect to external devices.          |
-| REMOTE_CAST<sup>12+</sup>        | 24     | Remote cast device.          |
+| INVALID              | 0      | Invalid device.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| EARPIECE             | 1      | Earpiece.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| SPEAKER              | 2      | Speaker.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| WIRED_HEADSET        | 3      | Wired headset with a microphone.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| WIRED_HEADPHONES     | 4      | Wired headset without microphone.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| BLUETOOTH_SCO        | 7      | Bluetooth device using Synchronous Connection Oriented (SCO) links.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| BLUETOOTH_A2DP       | 8      | Bluetooth device using Advanced Audio Distribution Profile (A2DP) links.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| MIC                  | 15     | Microphone.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| USB_HEADSET          | 22     | USB Type-C headset.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| DISPLAY_PORT<sup>12+</sup>        | 23     | Display port (DP), which is used to connect to external devices.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| REMOTE_CAST<sup>12+</sup>        | 24     | Remote cast device.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | USB_DEVICE<sup>18+</sup>        | 25 | USB device (excluding USB headsets).          |
-| DEFAULT<sup>9+</sup> | 1000   | Default device type.                                           |
+| HDMI<sup>18+</sup>        | 27 | HDMI device (such as HDMI, ARC, and eARC).          |
+| LINE_DIGITAL<sup>18+</sup>        | 28 | Wired digital device (such as S/PDIF)          |
+| REMOTE_DAUDIO<sup>18+</sup>        | 29 | Distributed device.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| DEFAULT<sup>9+</sup> | 1000   | Default device type.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## CommunicationDeviceType<sup>9+</sup>
 

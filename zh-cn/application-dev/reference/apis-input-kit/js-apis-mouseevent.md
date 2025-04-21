@@ -99,7 +99,7 @@ import { Action, Button, Axis, AxisValue, MouseEvent } from '@kit.InputKit';
 | windowY        | number      | 是    | 否    | 鼠标所在窗口的纵坐标。                               |
 | rawDeltaX      | number      | 是    | 否    | 鼠标本次操作横坐标偏移值。 |
 | rawDeltaY      | number      | 是    | 否    | 鼠标本次操作纵坐标偏移值。                          |
-| button         | [Button](#button)      | 是    | 否    | 鼠标按钮。                               
+| button         | [Button](#button)      | 是    | 否    | 鼠标按钮。                       |        
 | pressedButtons | [Button](#button)[]    | 是    | 否    | 当前处于按下状态的鼠标按钮。                              |
 | axes           | [AxisValue](#axisvalue)[] | 是    | 否    | 事件包含的所有轴数据。                               |
 | pressedKeys    | [KeyCode](js-apis-keycode.md#keycode)[]   | 是    | 否    | 当前处于按下状态的按键列表。                            |

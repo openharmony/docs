@@ -15,6 +15,8 @@
 
 **相关模块：**[AVPlayer](_a_v_player.md)
 
+**所在头文件：**[avplayer_base.h](avplayer__base_8h.md)
+
 
 ## 汇总
 

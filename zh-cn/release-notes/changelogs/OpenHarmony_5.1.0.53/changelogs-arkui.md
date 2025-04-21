@@ -85,98 +85,7 @@ UX规格变更，不涉及接口和组件。
 
 默认行为变更，无需适配。
 
-## cl.arkui.3 在使用手写笔操作时，应用从onTouch回调中获取到的TouchEvent，其中touches数组内的TouchObject的id值发生变更。
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-在手写笔场景下，TouchEvent中changedTouches数组内的TouchObject的id，与touches数组内的TouchObject的id不一致。
-
-**变更影响**
-
-此变更不涉及应用适配。
-
-- 变更前：在使用手写笔操作时，应用在onTouch回调中获取到的TouchEvent中，touches数组中TouchObject的id和changedTouches中的TouchObject的id不一致。
-  
-- 变更后：在使用手写笔操作时，应用在onTouch回调中获取到的TouchEvent中，touches数组中TouchObject的id和changedTouches中的TouchObject的id保持一致。
-
-**起始API Level**
-
-7
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.1.0.53开始。
-
-**变更的接口/组件**
-
-| 文件               | 接口                                       |
-| ------------------ | ------------------------------------------ |
-| common.d.ts        | onTouch回调中的TouchEvent                  |
-| common.d.ts        | onTouchIntercept回调中的TouchEvent         |
-
-**适配指导**
-
-默认行为变更，应用无需适配。
-
-## cl.arkui.4 TEXTURE模式XComponent的本地窗口缓冲区支持设置旋转变换
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-TEXTURE模式XComponent的本地窗口缓冲区旋转变换在设置后不生效，导致开发者无法通过设置缓冲区旋转变换来调整显示画面的旋转方向。
-
-**变更影响**
-
-此变更涉及应用适配。
-
-变更前：
-设置TEXTURE模式XComponent的本地窗口缓冲区旋转变换后，旋转变换在实际显示的画面中不生效。
-
-变更后：
-设置TEXTURE模式XComponent的本地窗口缓冲区旋转变换后，旋转变换在实际显示的画面中生效。
-
-| 写入缓冲区的原始图像 | 变更前设置了缓冲区逆时针旋转90度后的实际显示画面 | 变更后设置了缓冲区逆时针旋转90度后的实际显示画面 |
-| --------- | --------- | --------- |
-|![原始图片](figures/XComponentBufferImage.PNG)|![变更前](figures/XComponentBufferTransform_before.PNG)       |![变更后](figures/XComponentBufferTransform_after.PNG)  |
-
-**起始API Level**
-
-API 10
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.1.0.53开始。
-
-**变更的接口/组件**
-
-ArkUI 内置组件XComponent。
-
-**适配指导**
-
-变更后，设置TEXTURE模式XComponent的本地窗口缓冲区旋转变换后，XComponent显示的内容将根据设置进行旋转。
-如开发者原先设置过TEXTURE模式XComponent的本地窗口缓冲区旋转变换，为避免显示内容旋转，
-应将原先设置本地窗口缓冲区旋转变换的相关调用语句去除。
-```
-OHNativeWindow* window;
-// 利用XComponent的surfaceId获取本地窗口
-OH_NativeWindow_CreateNativeWindowFromSurfaceId(surfaceId, &window);
-
-// ......
-
-// 应去除此处设置本地窗口缓冲区逆时针旋转90度的调用
-OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, SET_TRANSFORM, NATIVEBUFFER_ROTATE_90);
-
-// ......
-```
-
-## cl.arkui.5 按钮默认值变更为新增圆角矩形类型
+## cl.arkui.3 按钮默认值变更为新增圆角矩形类型
 
 **访问级别**
 
@@ -243,7 +152,7 @@ struct ButtonExample {
 
 ```
 
-## cl.arkui.6 修复Popup高级组件宽度限制计算错误的问题
+## cl.arkui.4 修复Popup高级组件宽度限制计算错误的问题
 
 **访问级别**
 
@@ -281,7 +190,7 @@ Popup高级组件。
 
 如果用户原来没有自定义Popup高级组件的宽度，且内容宽度大于320vp，变更前按320vp显示，变更后，Popup高级组件会变宽；如不符合预期，可以手动修改为想要的宽度。
 
-## cl.arkui.7 getKeyboardAvoidMode接口返回值变更
+## cl.arkui.5 getKeyboardAvoidMode接口返回值变更
 
 **访问级别**
 
@@ -297,7 +206,7 @@ getKeyboardAvoidMode接口实际返回值为字符串，与文档描述返回值
 
 - 变更前：getKeyboardAvoidMode接口返回字符串类型。
   
-- 变更后：getKeyboardAvoidMode接口返回KeyboardAvoidMode枚举值，为整数类型。
+- 变更后：getKeyboardAvoidMode接口返回KeyboardAvoidMode枚举值。
 
 **起始API Level**
 

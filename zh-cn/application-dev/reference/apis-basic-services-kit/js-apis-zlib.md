@@ -977,13 +977,13 @@ let zip = zlib.createZipSync();
 
 ## Zip<sup>12+</sup>
 
-压缩解压缩对象实例。
+压缩解压缩对象实例，支持以zlib、deflate、gzip格式对数据进行压缩与解压。
 
 ### getZStream<sup>12+</sup>
 
 getZStream(): Promise&lt;ZStream&gt;
 
-输出流，使用Promise异步返回。成功时返回zlib流。
+输出流，使用Promise异步返回。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -993,7 +993,7 @@ getZStream(): Promise&lt;ZStream&gt;
 
 | 类型                                 | 说明                      |
 | ------------------------------------ | ------------------------- |
-| Promise&lt;[ZStream](#zstream12)&gt; | Promise对象。返回zlib流。 |
+| Promise&lt;[ZStream](#zstream12)&gt; | Promise对象。返回ZStream流。 |
 
 **示例：**
 
@@ -1734,7 +1734,7 @@ inflateReset2(strm: ZStream, windowBits: number): Promise&lt;ReturnStatus&gt;
 | 参数名     | 类型    | 必填 | 说明                            |
 | ---------- | ------- | ---- | ------------------------------- |
 | strm       | ZStream | 是   | 参考[ZStream定义](#zstream12)。 |
-| windowBits | number  | 是   | 最大窗口大小的以2为底的对数。   |
+| windowBits | number  | 是   | 控制内存窗口的大小，并指定数据的格式（zlib、gzip、raw deflate）。取值如下：<br />zlib格式：[1, 15]。<br />gzip格式：大于15。<br />raw deflate格式：[-15, -1]。   |
 
 **返回值：**
 
@@ -1972,7 +1972,7 @@ inflateInit2(strm: ZStream, windowBits: number): Promise&lt;ReturnStatus&gt;
 | 参数名     | 类型    | 必填 | 说明                            |
 | ---------- | ------- | ---- | ------------------------------- |
 | strm       | ZStream | 是   | 参考[ZStream定义](#zstream12)。 |
-| windowBits | number  | 是   | 最大窗口大小的以2为底的对数。   |
+| windowBits | number  | 是   | 控制内存窗口的大小，并指定数据的格式（zlib、gzip、raw deflate）。取值如下：<br />zlib格式：[1, 15]。<br />gzip格式：大于15。<br />raw deflate格式：[-15, -1]。   |
 
 **返回值：**
 
@@ -2383,7 +2383,7 @@ inflateBackInit(strm: ZStream, windowBits: number, window: ArrayBuffer): Promise
 | 参数名     | 类型        | 必填 | 说明                                          |
 | ---------- | ----------- | ---- | --------------------------------------------- |
 | strm       | ZStream     | 是   | 参考[ZStream定义](#zstream12)。               |
-| windowBits | number      | 是   | 最大窗口大小的以2为底的对数，取值范围在8~15。 |
+| windowBits | number      | 是   | 控制内存窗口的大小，并指定数据的格式（zlib、gzip、raw deflate）。取值如下：<br />zlib格式：[1, 15]。<br />gzip格式：大于15。<br />raw deflate格式：[-15, -1]。 |
 | window     | ArrayBuffer | 是   | 预设的窗口缓冲区。                            |
 
 **返回值：**
@@ -2822,7 +2822,7 @@ deflateInit2(strm: ZStream, level: CompressLevel, method: CompressMethod, window
 | strm       | ZStream          | 是   | 参考[ZStream定义](#zstream12)。                     |
 | level      | CompressLevel    | 是   | 参考[CompressLevel枚举定义](#compresslevel)。       |
 | method     | CompressMethod   | 是   | 参考[CompressMethod枚举定义](#compressmethod12)。   |
-| windowBits | number           | 是   | 最大窗口大小的以2为底的对数。                       |
+| windowBits | number           | 是   | 控制内存窗口的大小，并指定数据的格式（zlib、gzip、raw deflate）。取值如下：<br />zlib格式：[1, 15]。<br />gzip格式：大于15。<br />raw deflate格式：[-15, -1]。                       |
 | memLevel   | MemLevel         | 是   | 参考[MemLevel枚举定义](#memlevel)。                 |
 | strategy   | CompressStrategy | 是   | 参考[CompressStrategy枚举定义](#compressstrategy)。 |
 
@@ -3351,8 +3351,8 @@ deflateTune(strm: ZStream, goodLength: number, maxLazy: number, niceLength: numb
 | strm       | ZStream | 是   | 参考[ZStream定义](#zstream12)。 |
 | goodLength | number  | 是   | 匹配的长度阈值。                |
 | maxLazy    | number  | 是   | 最大延迟匹配时间。              |
-| niceLength | number  | 是   | 适合的延迟长度阈值              |
-| maxChain   | number  | 是   | 最大链条长度                    |
+| niceLength | number  | 是   | 适合的延迟长度阈值。              |
+| maxChain   | number  | 是   | 最大链条长度。                    |
 
 **返回值：**
 
@@ -3842,14 +3842,14 @@ async function demo() {
 
 | 名称         | 类型        | 可读 | 可写 | 说明                                                         |
 | ------------ | ----------- | ---- | ---- | ------------------------------------------------------------ |
-| nextIn       | ArrayBuffer | 是   | 否   | 需要压缩的输入字节                                           |
-| availableIn  | number      | 是   | 否   | nextIn可用的字节数                                           |
-| totalIn      | number      | 是   | 否   | 到目前为止读取的输入字节总数                                 |
-| nextOut      | ArrayBuffer | 是   | 否   | 压缩后的输出字节                                             |
-| availableOut | number      | 是   | 否   | nextOut的剩余可用字节数                                      |
-| totalOut     | number      | 是   | 否   | 到目前为止输出字节总数                                       |
-| dataType     | number      | 是   | 否   | 关于数据类型的最佳猜测：deflate的二进制或文本，或inflate的解码状态 |
-| adler        | number      | 是   | 否   | 未压缩数据的Adler-32或CRC-32值                               |
+| nextIn       | ArrayBuffer | 是   | 否   | 需要压缩的输入字节。                                           |
+| availableIn  | number      | 是   | 否   | nextIn可用的字节数。                                           |
+| totalIn      | number      | 是   | 否   | 到目前为止读取的输入字节总数。                                 |
+| nextOut      | ArrayBuffer | 是   | 否   | 压缩后的输出字节。                                             |
+| availableOut | number      | 是   | 否   | nextOut的剩余可用字节数。                                      |
+| totalOut     | number      | 是   | 否   | 到目前为止输出字节总数。                                       |
+| dataType     | number      | 是   | 否   | 关于数据类型的最佳猜测：deflate的二进制或文本，或inflate的解码状态。 |
+| adler        | number      | 是   | 否   | 未压缩数据的Adler-32或CRC-32值。                               |
 
 ## ZipOutputInfo<sup>12+</sup>
 
@@ -4075,7 +4075,7 @@ gzbuffer(size: number):Promise&lt;number&gt;
 
 ```ts
 import { fileIo as fs } from '@kit.CoreFileKit';
-import { zlib } from '@kit.BasicServicesKit'
+import { zlib } from '@kit.BasicServicesKit';
 
 async function gzbufferDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzbuffer");
@@ -4302,7 +4302,7 @@ struct Index {
 
 gzclose(): Promise&lt;ReturnStatus&gt;
 
-清除文件的所有挂起输出，如有必要，关闭文件和释放(解)压缩状态。
+清除文件的所有挂起输出，如有必要，关闭文件和释放（解）压缩状态。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4856,7 +4856,7 @@ struct Index {
 
 gzcloser(): Promise&lt;ReturnStatus&gt;
 
-与gzclose（）功能相同，仅适用于读取时。
+与gzclose()功能相同，仅适用于读取时。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

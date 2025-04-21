@@ -24,7 +24,7 @@ import {
 
 >  **说明：** 
 >
->  - 子组件类型：系统组件和自定义组件，支持渲染控制类型（[if/else](../../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../../quick-start/arkts-rendering-control-foreach.md)和[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)）。
+>  - 子组件类型：系统组件和自定义组件，支持渲染控制类型（[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)和[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)）。
 >- 不建议在执行翻页动画过程中增加或减少子组件，会导致未进行动画的子组件提前进入视窗，引起显示异常。
 
 ## 接口
@@ -50,7 +50,7 @@ ArcSwiper(controller?: ArcSwiperController)
 
 ### index
 
-index(value: number)
+index(index: Optional\<number>)
 
 设置当前在容器中显示的子组件的索引值。设置小于0或大于等于子组件数量时，按照默认值0处理。
 
@@ -62,11 +62,11 @@ index(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                             |
 | ------ | ------ | ---- | ------------------------------------------------ |
-| value  | number | 是   | 当前在容器中显示的子组件的索引值。<br/>默认值：0 |
+| index  | Optional\<number> | 是   | 当前在容器中显示的子组件的索引值。<br/>默认值：0 |
 
 ### indicator
 
-indicator(value: ArcDotIndicator | boolean)
+indicator(style: Optional\<ArcDotIndicator | boolean>)
 
 设置弧形圆点指示器样式。
 
@@ -78,11 +78,11 @@ indicator(value: ArcDotIndicator | boolean)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ArcDotIndicator](#arcdotindicator)&nbsp;&nbsp;\|&nbsp;boolean | 是   | 弧形圆点指示器样式。<br/> \- ArcDotIndicator：弧形圆点指示器属性及功能。<br/> \- boolean：是否启用弧形圆点指示器。设置为true启用，false不启用。<br/> 默认值：true<br/> 默认类型：ArcDotIndicator |
+| style  | Optional\<[ArcDotIndicator](#arcdotindicator)&nbsp;&nbsp;\|&nbsp;boolean> | 是   | 弧形圆点指示器样式。<br/> \- ArcDotIndicator：弧形圆点指示器属性及功能。<br/> \- boolean：是否启用弧形圆点指示器。设置为true启用，false不启用。<br/> 默认值：true<br/> 默认类型：ArcDotIndicator |
 
 ### duration
 
-duration(value: number)
+duration(duration: Optional\<number>)
 
 设置子组件切换的动画时长。
 
@@ -94,11 +94,11 @@ duration(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                                  |
 | ------ | ------ | ---- | ----------------------------------------------------- |
-| value  | number | 是   | 子组件切换的动画时长。<br/>默认值：400<br/>单位：毫秒 |
+| duration  | Optional\<number> | 是   | 子组件切换的动画时长。<br/>默认值：400<br/>单位：毫秒 |
 
 ### vertical
 
-vertical(value: boolean)
+vertical(isVertical: Optional\<boolean>)
 
 设置是否为纵向滑动。
 
@@ -110,11 +110,11 @@ vertical(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| value  | boolean | 是   | 是否为纵向滑动。true为纵向滑动，false为横向滑动。<br/>默认值：false |
+| isVertical  | Optional\<boolean> | 是   | 是否为纵向滑动。true为纵向滑动，false为横向滑动。<br/>默认值：false |
 
 ### disableSwipe
 
-disableSwipe(value: boolean)
+disableSwipe(disabled: Optional\<boolean>)
 
 设置禁用组件滑动切换功能。
 
@@ -126,11 +126,11 @@ disableSwipe(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                     |
 | ------ | ------- | ---- | ---------------------------------------- |
-| value  | boolean | 是   | 禁用组件滑动切换功能。设置为true禁用，false不禁用。<br/>默认值：false |
+| disabled  | Optional\<boolean> | 是   | 禁用组件滑动切换功能。设置为true禁用，false不禁用。<br/>默认值：false |
 
 ### digitalCrownSensitivity
 
-disableSwipe(value: CrownSensitivity)
+digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 
 设置旋转表冠的灵敏度。
 
@@ -142,11 +142,11 @@ disableSwipe(value: CrownSensitivity)
 
 | 参数名 | 类型                                                        | 必填 | 说明                                                |
 | ------ | ----------------------------------------------------------- | ---- | --------------------------------------------------- |
-| value  | [CrownSensitivity](ts-appendix-enums.md#crownsensitivity18) | 是   | 旋转表冠的灵敏度。<br/>默认值：CrownSensitivity.LOW |
+| sensitivity  | Optional\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity18)> | 是   | 旋转表冠的灵敏度。<br/>默认值：CrownSensitivity.MEDIUM |
 
 ### effectMode
 
-effectMode(value: EdgeEffect)
+effectMode(edgeEffect: Optional\<EdgeEffect>)
 
 设置边缘滑动效果。 目前支持的滑动效果参见[EdgeEffect](ts-appendix-enums.md#edgeeffect)的枚举说明。调用控制器接口时回弹不生效。
 
@@ -158,25 +158,7 @@ effectMode(value: EdgeEffect)
 
 | 参数名 | 类型                                          | 必填 | 说明                                         |
 | ------ | --------------------------------------------- | ---- | -------------------------------------------- |
-| value  | [EdgeEffect](ts-appendix-enums.md#edgeeffect) | 是   | 边缘滑动效果。<br/>默认值：EdgeEffect.Spring |
-
-### customContentTransition
-
-customContentTransition(transition: SwiperContentAnimatedTransition)
-
-自定义ArcSwiper页面切换动画。在页面跟手滑动和离手后执行切换动画的过程中，会对视窗内所有页面逐帧触发回调。开发者可以在回调中设置透明度、缩放比例、位移等属性来自定义切换动画。
-
-在页面跟手滑动和离手后执行切换动画的过程中，会对视窗内所有页面逐帧触发[SwiperContentTransitionProxy](#swipercontenttransitionproxy)回调。例如，当视窗内有下标为0、1的两个页面时，会每帧触发两次index值分别为0和1的回调。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Circle
-
-**参数：**
-
-| 参数名     | 类型                                                         | 必填 | 说明                              |
-| ---------- | ------------------------------------------------------------ | ---- | --------------------------------- |
-| transition | [SwiperContentAnimatedTransition](#swipercontentanimatedtransition) | 是   | ArcSwiper自定义切换动画相关信息。 |
+| edgeEffect  | Optional\<[EdgeEffect](ts-appendix-enums.md#edgeeffect)> | 是   | 边缘滑动效果。<br/>默认值：EdgeEffect.Spring |
 
 ### disableTransitionAnimation
 
@@ -214,7 +196,7 @@ ArcSwiperController的构造函数。
 
 ### showNext
 
-showNext(): void
+showNext()
 
 翻至下一页。翻页带动效切换过程，时长通过[duration](#duration)指定。
 
@@ -224,7 +206,7 @@ showNext(): void
 
 ### showPrevious
 
-showPrevious(): void
+showPrevious()
 
 翻至上一页。翻页带动效切换过程，时长通过[duration](#duration)指定。
 
@@ -234,7 +216,7 @@ showPrevious(): void
 
 ### finishAnimation
 
-finishAnimation(handler?: FinishAnimationHandler): void
+finishAnimation(handler?: FinishAnimationHandler)
 
 停止播放动画。
 
@@ -280,7 +262,7 @@ arcDirection(direction: Optional\<ArcDirection>): ArcDotIndicator
 
 | 参数名    | 类型                                     | 必填 | 说明                                                         |
 | --------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| direction | [Optional\<ArcDirection>](#arcdirection) | 否   | 设置弧形指示器的方向。<br/>默认值：ArcDirection.SIX_CLOCK_DIRECTION，6点钟方向。 |
+| direction | [Optional\<ArcDirection>](#arcdirection) | 是   | 设置弧形指示器的方向。<br/>默认值：ArcDirection.SIX_CLOCK_DIRECTION，6点钟方向。 |
 
 **返回值：** 
 
@@ -302,7 +284,7 @@ itemColor(color: Optional\<ResourceColor>): ArcDotIndicator
 
 | 参数名 | 类型                                                  | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| color  | [Optional\<ResourceColor>](ts-types.md#resourcecolor) | 否   | 设置弧形指示器中，未选中导航点的颜色。<br/>默认值：'#A9FFFFFF' |
+| color  | [Optional\<ResourceColor>](ts-types.md#resourcecolor) | 是   | 设置弧形指示器中，未选中导航点的颜色。<br/>默认值：'#A9FFFFFF' |
 
 **返回值：** 
 
@@ -324,7 +306,7 @@ selectedItemColor(color: Optional\<ResourceColor>): ArcDotIndicator
 
 | 参数名 | 类型                                                  | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| color  | [Optional\<ResourceColor>](ts-types.md#resourcecolor) | 否   | 设置弧形指示器中，选中导航点的颜色。<br/>默认值：'#FF5EA1FF' |
+| color  | [Optional\<ResourceColor>](ts-types.md#resourcecolor) | 是   | 设置弧形指示器中，选中导航点的颜色。<br/>默认值：'#FF5EA1FF' |
 
 **返回值：** 
 
@@ -346,7 +328,7 @@ backgroundColor(color: Optional\<ResourceColor>): ArcDotIndicator
 
 | 参数名 | 类型                                                  | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| color  | [Optional\<ResourceColor>](ts-types.md#resourcecolor) | 否   | 设置弧形指示器被长按时，弧形指示器的颜色。<br/>默认值：'#FF404040' |
+| color  | [Optional\<ResourceColor>](ts-types.md#resourcecolor) | 是   | 设置弧形指示器被长按时，弧形指示器的颜色。<br/>默认值：'#FF404040' |
 
 **返回值：** 
 
@@ -368,7 +350,7 @@ maskColor(color: Optional\<LinearGradient>): ArcDotIndicator
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| color  | [Optional\<LinearGradient>](ts-basic-components-datapanel.md#lineargradient10) | 否   | 设置弧形指示器的遮罩渐变色。<br/>起始颜色默认值：'#00000000'<br/>结束颜色默认值：'#FF000000' |
+| color  | [Optional\<LinearGradient>](ts-basic-components-datapanel.md#lineargradient10) | 是   | 设置弧形指示器的遮罩渐变色。<br/>起始颜色默认值：'#00000000'<br/>结束颜色默认值：'#FF000000' |
 
 **返回值：** 
 
@@ -540,6 +522,24 @@ onGestureSwipe(handler: Optional\<GestureSwipeHandler>)
 | ------- | ------------------------------------------------------ | ---- | -------------------------------------- |
 | handler | [Optional\<GestureSwipeHandler>](#gestureswipehandler) | 是   | 在页面跟手滑动过程中，逐帧触发该回调。 |
 
+### customContentTransition
+
+customContentTransition(transition: Optional\<SwiperContentAnimatedTransition>)
+
+自定义ArcSwiper页面切换动画。在页面跟手滑动和离手后执行切换动画的过程中，会对视窗内所有页面逐帧触发回调。开发者可以在回调中设置透明度、缩放比例、位移等属性来自定义切换动画。
+
+在页面跟手滑动和离手后执行切换动画的过程中，会对视窗内所有页面逐帧触发[SwiperContentTransitionProxy](#swipercontenttransitionproxy)回调。例如，当视窗内有下标为0、1的两个页面时，会每帧触发两次index值分别为0和1的回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Circle
+
+**参数：**
+
+| 参数名     | 类型                                                         | 必填 | 说明                              |
+| ---------- | ------------------------------------------------------------ | ---- | --------------------------------- |
+| transition | Optional\<[SwiperContentAnimatedTransition](#swipercontentanimatedtransition)> | 是   | ArcSwiper自定义切换动画相关信息。 |
+
 ## SwiperContentAnimatedTransition
 
 ArcSwiper自定义切换动画相关信息。
@@ -598,12 +598,13 @@ finishTransition(): void
 ```ts
 // xxx.ets
 import {
+  CircleShape,
   ArcSwiper,
   ArcSwiperAttribute,
   ArcDotIndicator,
   ArcDirection,
   ArcSwiperController
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 class MyDataSource implements IDataSource {
   private list: Color[] = []
@@ -636,6 +637,7 @@ struct TestNewInterface {
   private arcDotIndicator: ArcDotIndicator = new ArcDotIndicator()
   private data: MyDataSource = new MyDataSource([])
   @State backgroundColors: Color[] = [Color.Green, Color.Blue, Color.Yellow, Color.Pink, Color.White, Color.Gray, Color.Orange, Color.Transparent]
+  innerSelectedIndex: number = 0
 
   aboutToAppear(): void {
     let list: Color[] = []
@@ -658,7 +660,7 @@ struct TestNewInterface {
               .fontSize(30)
           })
         }
-        .clip(new Circle({ width: 233, height: 233 }))
+        .clipShape(new CircleShape({ width: 233, height: 233 }))
         .effectMode(EdgeEffect.None)
         .backgroundColor(Color.Transparent)
         .index(0)
@@ -675,11 +677,29 @@ struct TestNewInterface {
           console.info("onChange:" + index.toString())
         })
         .onAnimationStart((index: number, targetIndex: number, extraInfo: SwiperAnimationEvent) => {
+          this.innerSelectedIndex = targetIndex
           console.info("index: " + index)
           console.info("targetIndex: " + targetIndex)
           console.info("current offset: " + extraInfo.currentOffset)
           console.info("target offset: " + extraInfo.targetOffset)
           console.info("velocity: " + extraInfo.velocity)
+        })
+        .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer,
+          others: Array<GestureRecognizer>): GestureJudgeResult => { // 在识别器即将要成功时，根据当前组件状态，设置识别器使能状态
+          if (current) {
+            let target = current.getEventTargetInfo();
+            if (target && current.isBuiltIn() && current.getType() == GestureControl.GestureType.PAN_GESTURE) {
+              let swiperTaget = target as ScrollableTargetInfo
+              if (swiperTaget instanceof ScrollableTargetInfo &&
+                (swiperTaget.isBegin() || this.innerSelectedIndex === 0)) { // 此处判断swiperTaget.isBegin()或innerSelectedIndex === 0，表明ArcSwiper滑动到开头
+                let panEvent = event as PanGestureEvent;
+                if (panEvent && panEvent.offsetX > 0 && (swiperTaget.isBegin() || this.innerSelectedIndex === 0)) {
+                  return GestureJudgeResult.REJECT;
+                }
+              }
+            }
+          }
+          return GestureJudgeResult.CONTINUE;
         })
         .onAnimationEnd((index: number, extraInfo: SwiperAnimationEvent) => {
           console.info("index: " + index)

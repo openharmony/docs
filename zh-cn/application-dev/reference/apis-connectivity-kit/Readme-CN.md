@@ -28,6 +28,7 @@
   - [@ohos.bluetooth.constant(蓝牙constant模块)(推荐)(系统接口)](js-apis-bluetooth-constant-sys.md)
   - [@ohos.bluetooth.hfp(蓝牙hfp模块)(推荐)(系统接口)](js-apis-bluetooth-hfp-sys.md)
   - [@ohos.bluetooth.hid(蓝牙hid模块)(推荐)(系统接口)](js-apis-bluetooth-hid-sys.md)
+  - [@ohos.bluetooth.opp(蓝牙opp模块)(推荐)(系统接口)](js-apis-bluetooth-opp-sys.md)
   - [@ohos.bluetooth.pan(蓝牙pan模块)(推荐)(系统接口)](js-apis-bluetooth-pan-sys.md)
   - [@ohos.bluetooth.pbap(蓝牙pbap模块)(推荐)(系统接口)](js-apis-bluetooth-pbap-sys.md)
   - [@ohos.bluetooth.map(蓝牙map模块)(推荐)(系统接口)](js-apis-bluetooth-map-sys.md)

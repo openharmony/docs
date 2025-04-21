@@ -3,12 +3,13 @@
 
 ## 概述
 
-定义了ArkWeb原生CookieManager接口。 在调用接口之前，建议使用ARKWEB_MEMBER_MISSING检查函数结构体是否有对应的函数指针，避免SDK与设备ROM不匹配导致崩溃。
+定义了ArkWeb的CookieManager接口。在调用接口之前，建议使用ARKWEB_MEMBER_MISSING检查函数结构体是否有对应的函数指针，避免SDK与设备ROM不匹配导致崩溃。
 
 **起始版本：** 12
 
 **相关模块：**[Web](_web.md)
 
+**所在头文件：** [arkweb_type.h](arkweb__type_8h.md)
 
 ## 汇总
 
@@ -64,7 +65,7 @@ ArkWeb_ErrorCode(* ArkWeb_CookieManagerAPI::configCookieSync) (const char *url, 
 
 **返回：**
 
-返回值错误码。 [ARKWEB_SUCCESS](_web.md) 设置cookie成功。 [ARKWEB_INVALID_URL](_web.md) 设置的URL无效。 [ARKWEB_INVALID_COOKIE_VALUE](_web.md) cookieValue参数无效。
+返回值错误码。 [ARKWEB_SUCCESS](_web.md#arkweb_errorcode-1) 设置cookie成功。 [ARKWEB_INVALID_URL](_web.md#arkweb_errorcode-1) 设置的URL无效。 [ARKWEB_INVALID_COOKIE_VALUE](_web.md#arkweb_errorcode-1) cookieValue参数无效。
 
 
 ### existCookies
@@ -101,13 +102,13 @@ ArkWeb_ErrorCode(* ArkWeb_CookieManagerAPI::fetchCookieSync) (const char *url, b
 | 名称 | 描述 | 
 | -------- | -------- |
 | url | 要获取的cookie所属的URL，建议使用完整的URL。  | 
-| incognito | true表示获取隐私模式下webview的内存cookie, false表示获取非隐私模式下的cookie。  | 
-| includeHttpOnly | 如果为true，则标记为HTTP-Only属性的cookie也将包含在cookieValue中。  | 
+| incognito | true表示获取隐私模式下webview的内存cookie，false表示获取非隐私模式下的cookie。  | 
+| includeHttpOnly | 如果为true，则标记为HTTP-Only属性的cookie也将包含在cookieValue中，false则不包含。  | 
 | cookieValue | 获取与URL对应的cookie值。  | 
 
 **返回：**
 
-返回值错误码。 [ARKWEB_SUCCESS](_web.md) 获取cookie成功。 [ARKWEB_INVALID_URL](_web.md) 设置的URL无效。 [ARKWEB_INVALID_PARAM](_web.md) cookieValue参数无效。
+返回值错误码。 [ARKWEB_SUCCESS](_web.md#arkweb_errorcode-1) 获取cookie成功。 [ARKWEB_INVALID_URL](_web.md#arkweb_errorcode-1) 设置的URL无效。 [ARKWEB_INVALID_PARAM](_web.md#arkweb_errorcode-1) cookieValue参数无效。
 
 
 ### size

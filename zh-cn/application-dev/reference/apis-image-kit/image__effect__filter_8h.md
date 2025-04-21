@@ -9,6 +9,8 @@
 
 **库：** libimage_effect.so
 
+**引用文件**：&lt;multimedia/image_effect/image_effect_filter.h&gt;
+
 **系统能力：** SystemCapability.Multimedia.ImageEffect.Core
 
 **起始版本：** 12

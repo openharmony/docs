@@ -16,7 +16,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libpixelmap.so)
 
 具体接口说明请参考[API文档](../../reference/apis-image-kit/_image___native_module.md)。
 
-在hello.cpp中实现C API接口调用逻辑，示例代码如下：
+在Deveco Studio新建Native C++应用，默认生成的项目中包含index.ets文件，在entry\src\main\cpp目录下会自动生成一个cpp文件（hello.cpp或napi_init.cpp，本示例以hello.cpp文件名为例）。在hello.cpp中实现C API接口调用逻辑，示例代码如下：
 
 **位图接口使用示例**
 
@@ -43,7 +43,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libpixelmap.so)
               data[i] = i + 1;
           }
 
-          //创建参数结构体实例，并设置参数。
+          // 创建参数结构体实例，并设置参数。
           OH_Pixelmap_InitializationOptions *createOpts;
           OH_PixelmapInitializationOptions_Create(&createOpts);
           OH_PixelmapInitializationOptions_SetWidth(createOpts, 6);
@@ -51,11 +51,11 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libpixelmap.so)
           OH_PixelmapInitializationOptions_SetPixelFormat(createOpts, PIXEL_FORMAT_RGBA_8888);
           OH_PixelmapInitializationOptions_SetAlphaType(createOpts, PIXELMAP_ALPHA_TYPE_UNKNOWN);
 
-          //创建Pixelmap实例。
+          // 创建Pixelmap实例。
           OH_PixelmapNative *pixelmap = nullptr;
           Image_ErrorCode errCode = OH_PixelmapNative_CreatePixelmap(data, dataSize, createOpts, &pixelmap);
 
-          //读取图像像素数据，结果写入数组里。
+          // 读取图像像素数据，结果写入数组里。
           uint8_t destination[96];
           size_t destinationSize = 96;
           errCode = OH_PixelmapNative_ReadPixels(pixelmap, destination, &destinationSize);
@@ -64,7 +64,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libpixelmap.so)
               return errCode;
           }
 
-          //读取缓冲区中的图片数据，结果写入Pixelmap中。
+          // 读取缓冲区中的图片数据，结果写入Pixelmap中。
           uint8_t source[96];
           size_t sourceSize = 96;
           for (int i = 0; i < sourceSize; i++) {
@@ -76,7 +76,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libpixelmap.so)
               return errCode;
           }
 
-          //创建图片信息实例，并获取图像像素信息。
+          // 创建图片信息实例，并获取图像像素信息。
           OH_Pixelmap_ImageInfo *imageInfo;
           OH_PixelmapImageInfo_Create(&imageInfo);
           errCode = OH_PixelmapNative_GetImageInfo(pixelmap, imageInfo);
@@ -85,7 +85,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libpixelmap.so)
               return errCode;
           }
 
-          //获取图片的宽，高，pixel格式，透明度等信息。
+          // 获取图片的宽，高，pixel格式，透明度等信息。
           uint32_t width, height, rowStride;
           int32_t pixelFormat, alphaType;
           OH_PixelmapImageInfo_GetWidth(imageInfo, &width);
@@ -96,42 +96,42 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libpixelmap.so)
           OH_PixelmapImageInfo_Release(imageInfo);
           OH_LOG_INFO(LOG_APP, "ImagePixelmapNativeCTest pixelmapTest GetImageInfo success, width: %{public}d, height: %{public}d, rowStride: %{public}d, pixelFormat: %{public}d, alphaType: %{public}d.", width, height, rowStride, pixelFormat, alphaType);
 
-          //设置透明比率来让Pixelap达到对应的透明效果。
+          // 设置透明比率来让Pixelap达到对应的透明效果。
           errCode = OH_PixelmapNative_Opacity(pixelmap, 0.5);
           if (errCode != IMAGE_SUCCESS) {
               OH_LOG_ERROR(LOG_APP, "ImagePixelmapNativeCTest pixelmapTest OH_PixelmapNative_Opacity failed, errCode: %{public}d.", errCode);
               return errCode;
           }
 
-          //对图片进行缩放。
+          // 对图片进行缩放。
           errCode = OH_PixelmapNative_Scale(pixelmap, 2.0, 1.0);
           if (errCode != IMAGE_SUCCESS) {
               OH_LOG_ERROR(LOG_APP, "ImagePixelmapNativeCTest pixelmapTest OH_PixelmapNative_Scale failed, errCode: %{public}d.", errCode);
               return errCode;
           }
 
-          //对图片进行位置变换。
+          // 对图片进行位置变换。
           errCode = OH_PixelmapNative_Translate(pixelmap, 50.0, 10.0);
           if (errCode != IMAGE_SUCCESS) {
               OH_LOG_ERROR(LOG_APP, "ImagePixelmapNativeCTest pixelmapTest OH_PixelmapNative_Translate failed, errCode: %{public}d.", errCode);
               return errCode;
           }
 
-          //对图片进行旋转。
+          // 对图片进行旋转。
           errCode = OH_PixelmapNative_Rotate(pixelmap, 90.0);
           if (errCode != IMAGE_SUCCESS) {
               OH_LOG_ERROR(LOG_APP, "ImagePixelmapNativeCTest pixelmapTest OH_PixelmapNative_Rotate failed, errCode: %{public}d.", errCode);
               return errCode;
           }
 
-          //对图片进行翻转。
+          // 对图片进行翻转。
           errCode = OH_PixelmapNative_Flip(pixelmap, true, true);
           if (errCode != IMAGE_SUCCESS) {
               OH_LOG_ERROR(LOG_APP, "ImagePixelmapNativeCTest pixelmapTest OH_PixelmapNative_Flip failed, errCode: %{public}d.", errCode);
               return errCode;
           }
 
-          //对图片进行裁剪。
+          // 对图片进行裁剪。
           Image_Region region;
           region.x = 100;
           region.y = 100;
@@ -143,7 +143,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libpixelmap.so)
               return errCode;
           }
 
-          //释放Pixelmap, InitializationOptions实例。
+          // 释放Pixelmap, InitializationOptions实例。
           OH_PixelmapNative_Release(pixelmap);
           OH_PixelmapInitializationOptions_Release(createOpts);
           return IMAGE_SUCCESS;

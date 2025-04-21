@@ -26,7 +26,7 @@ import { AbilityConstant } from '@kit.AbilityKit';
 | launchReasonMessage<sup>18+</sup> | string | 否 | 是 | 表示启动的详细原因。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
 | lastExitReason | [LastExitReason](#lastexitreason) | 否 | 否 | 枚举类型，表示最后退出原因。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | lastExitMessage<sup>12+</sup> | string | 否 | 否 | 表示最后退出详细原因。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
-| [lastExitDetailInfo](#lastexitdetailinfo18)<sup>18+</sup> | string | 否 | 否 | 表示最后退出时的进程状态和详细原因。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
+| lastExitDetailInfo<sup>18+</sup> | [LastExitDetailInfo](#lastexitdetailinfo18) | 否 | 是 | 表示最后退出时的进程状态和详细原因。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## LaunchReason
 

@@ -370,7 +370,7 @@ enableCellularDataRoaming(slotId: number): Promise\<void\>
 
 | 类型            | 说明                      |
 | --------------- | ------------------------- |
-| Promise\<void\> | 以Promise形式返回启用结果 |
+| Promise\<void\> | 以Promise形式返回启用结果。 |
 
 **错误码：**
 
@@ -469,7 +469,7 @@ disableCellularDataRoaming(slotId: number): Promise\<void\>
 
 | 类型            | 说明                      |
 | --------------- | ------------------------- |
-| Promise\<void\> | 以Promise形式返回禁用结果 |
+| Promise\<void\> | 以Promise形式返回禁用结果。 |
 
 **错误码：**
 

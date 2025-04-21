@@ -1,6 +1,7 @@
 # 加速Web页面的访问
 
 当Web页面加载缓慢时，可以使用预连接、预加载和预获取post请求的能力加速Web页面的访问。
+针对Web页面加载性能优化的详细内容请参考[Web页面加载优化性能指导](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-web-develop-optimization#section128761465256)
 
 ## 预解析和预连接
 
@@ -36,7 +37,7 @@ struct WebComponent {
 }
 ```
 
-也可以通过[initializeBrowserEngine()](../reference/apis-arkweb/js-apis-webview.md#initializewebengine)来提前初始化内核，然后在初始化内核后调用
+也可以通过[initializeWebEngine()](../reference/apis-arkweb/js-apis-webview.md#initializewebengine)来提前初始化内核，然后在初始化内核后调用
 [prepareForPageLoad()](../reference/apis-arkweb/js-apis-webview.md#prepareforpageload10)对即将要加载的页面进行预解析、预连接。这种方式适合提前对首页进行
 预解析、预连接。
 
@@ -164,7 +165,7 @@ struct WebComponent {
 }
 ```
 
-也可以通过[initializeBrowserEngine()](../reference/apis-arkweb/js-apis-webview.md#initializewebengine)提前初始化内核，然后在初始化内核后调用[prefetchResource()](../reference/apis-arkweb/js-apis-webview.md#prefetchresource12)预获取将要加载页面中的post请求。这种方式适合提前预获取首页的post请求。
+也可以通过[initializeWebEngine()](../reference/apis-arkweb/js-apis-webview.md#initializewebengine)提前初始化内核，然后在初始化内核后调用[prefetchResource()](../reference/apis-arkweb/js-apis-webview.md#prefetchresource12)预获取将要加载页面中的post请求。这种方式适合提前预获取首页的post请求。
 
   以下示例，在Ability的onCreate中，提前初始化Web内核并预获取首页的post请求。
 

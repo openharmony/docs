@@ -1,7 +1,7 @@
 # AbilityStage Component Container
 
 
-[AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md) is a component container at the [module](../quick-start/application-package-structure-stage.md) level. When the [HAP](../quick-start/hap-package.md) of an application is loaded for the first time, an AbilityStage instance is created. You can perform operations such as initialization on the instance.
+[AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md) is a component container at the [module](../quick-start/application-package-overview.md#multi-module design mechanism) level. When the [HAP](../quick-start/hap-package.md) of an application is loaded for the first time, an AbilityStage instance is created. You can perform operations such as initialization on the instance.
 
 
 An AbilityStage instance corresponds to a module.

@@ -5,6 +5,8 @@
 > **说明：**
 >
 > 该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> 该组件不支持在Wearable设备上使用。
 
 ## 导入模块
 
@@ -59,7 +61,7 @@ ChipOptions定义chip的样式及具体式样参数。
 | closeOptions<sup>14+</sup> | [CloseOptions](#closeoptions14) | 否 | 默认删除图标的无障碍朗读功能属性。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 | accessibilityDescription<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | Chip组件的无障碍描述。此描述用于向用户详细解释当前组件，开发人员应为组件的这一属性提供较为详尽的文本说明，以协助用户理解即将执行的操作及其可能产生的后果。特别是当这些后果无法仅从组件的属性和无障碍文本中直接获知时。如果组件同时具备文本属性和无障碍说明属性，当组件被选中时，系统将首先播报组件的文本属性，随后播报无障碍说明属性的内容。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 | accessibilityLevel<sup>14+</sup> | string | 否 | Chip组件无障碍重要性。用于控制后缀图标是否可被无障碍辅助服务所识别。<br>支持的值为:<br>"auto"：当前组件会转化为“yes”。<br>"yes"：当前组件可被无障碍辅助服务所识别。<br>"no"：当前组件不可被无障碍辅助服务所识别。<br>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br>默认值："auto"。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
-| accessibilitySelectedType<sup>14+</sup> | [AccessibilitySelectedType](#accessibilityselectedtype14) | 否 | Chip组件选中态类型。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| accessibilitySelectedType<sup>14+</sup> | [AccessibilitySelectedType](#accessibilityselectedtype14) | 否 | Chip组件选中态类型。<br>默认值：当设置了activated属性但未指定accessibilitySelectedType时，默认使用CHECKED类型。当未设置activated属性时，默认使用CLICKED类型。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 
 > **说明：**
 >
@@ -88,7 +90,7 @@ ChipSize是chip可指定的尺寸类型，如普通型Chip。
 
 ## AccessibilitySelectedType<sup>14+</sup>
 
-AccessibilitySelectedType是Chip可指定的选中态类型，如默认类型为AccessibilitySelectedType.CLICKED。
+AccessibilitySelectedType是Chip可指定的选中态类型，用于控制无障碍服务如何向用户传达组件的选中状态。不同的选中态类型提供了不同的语义和用户体验。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -96,9 +98,9 @@ AccessibilitySelectedType是Chip可指定的选中态类型，如默认类型为
 
 | 名称 | 值 | 说明 |
 | ---- | -- | ---- |
-| CLICKED | 0 | Chip组件选中态默认类型。|
-| CHECKED | 1 | Chip组件选中态复选类型。|
-| SELECTED | 2 | Chip组件选中态单选类型。|
+| CLICKED | 0 | 点击型。组件不向无障碍服务报告任何选中状态，仅作为可点击组件使用。适用于执行某个操作但不保持状态的场景，如普通按钮。|
+| CHECKED | 1 | 复选型。组件通过 [accessibilityChecked](ts-universal-attributes-accessibility.md#accessibilitychecked13) 属性向无障碍服务报告选中状态。适用于多选场景，如标签筛选、属性选择等。|
+| SELECTED | 2 | 单选型。组件通过 [accessibilitySelected](ts-universal-attributes-accessibility.md#accessibilityselected13) 属性向无障碍服务报告选中状态。适用于表示当前选中项的场景，如导航栏标签、单选列表项等。|
 
 ## IconCommonOptions
 
@@ -760,5 +762,105 @@ struct ChipExample2 {
         right: 16,
       })
     }
+}
+```
+
+### 示例9（Chip组件无障碍朗读）
+
+此示例展示了Chip组件的无障碍属性设置，包括不同的accessibilitySelectedType类型和各种无障碍属性的使用。
+
+```ts
+import { AccessibilitySelectedType, Chip, ChipSize } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct ChipAccessibilityExample {
+  @State clickedChipActivated: boolean = false;
+  @State checkedChipActivated: boolean = false;
+  @State selectedChipActivated: boolean = false;
+
+  build() {
+    Column({ space: 20 }) {
+      Text("Chip组件无障碍属性示例").fontSize(20).fontWeight(FontWeight.Bold)
+
+      // 点击型Chip - CLICKED类型
+      Chip({
+        label: { text: "点击型Chip" },
+        prefixIcon: {
+          src: $r('sys.media.ohos_app_icon'),
+          fillColor: Color.Blue
+        },
+        size: ChipSize.NORMAL,
+        accessibilitySelectedType: AccessibilitySelectedType.CLICKED, // 点击型
+        accessibilityDescription: "这是一个点击型Chip", // 整体无障碍描述
+        accessibilityLevel: "yes", // 确保可被无障碍服务识别
+        closeOptions: {
+          accessibilityDescription: "删除此Chip，此操作无法撤销" // 为删除按钮提供详细说明
+        },
+        activated: this.clickedChipActivated,
+        onClicked: () => {
+          this.clickedChipActivated = !this.clickedChipActivated;
+          this.getUIContext().getPromptAction().showToast({ message: "点击型Chip被点击" });
+        },
+        onClose: () => {
+          this.getUIContext().getPromptAction().showToast({ message: "点击型Chip的关闭按钮被点击" });
+        }
+      })
+
+      // 复选型Chip - CHECKED类型
+      Chip({
+        label: { text: "复选型Chip" },
+        prefixIcon: {
+          src: $r('sys.media.ohos_app_icon'),
+          fillColor: Color.Green
+        },
+        size: ChipSize.NORMAL,
+        accessibilitySelectedType: AccessibilitySelectedType.CHECKED, // 复选型
+        accessibilityDescription: "这是一个复选型Chip", // 整体无障碍描述
+        activated: this.checkedChipActivated,
+        onClicked: () => {
+          this.checkedChipActivated = !this.checkedChipActivated;
+          this.getUIContext().getPromptAction().showToast({
+            message: this.checkedChipActivated ? "复选型Chip被选中" : "复选型Chip被取消选中"
+          });
+        }
+      })
+
+      // 单选型Chip - SELECTED类型
+      Chip({
+        label: { text: "单选型Chip" },
+        prefixIcon: {
+          src: $r('sys.media.ohos_app_icon'),
+          fillColor: Color.Red
+        },
+        size: ChipSize.NORMAL,
+        accessibilitySelectedType: AccessibilitySelectedType.SELECTED, // 单选型
+        accessibilityDescription: "这是一个单选型Chip", // 整体无障碍描述
+        activated: this.selectedChipActivated,
+        onClicked: () => {
+          this.selectedChipActivated = !this.selectedChipActivated;
+          this.getUIContext().getPromptAction().showToast({
+            message: this.selectedChipActivated ? "单选型Chip被选中" : "单选型Chip被取消选中"
+          });
+        }
+      })
+
+      // 无障碍级别设置示例
+      Chip({
+        label: { text: "无障碍级别为no" },
+        size: ChipSize.NORMAL,
+        accessibilityLevel: "no", // 此Chip不能被无障碍服务识别
+        closeOptions: {
+          accessibilityLevel: "no"
+        },
+        backgroundColor: '#CCCCCC',
+        onClicked: () => {
+          this.getUIContext().getPromptAction().showToast({ message: "此Chip无法被无障碍服务识别" });
+        }
+      })
+    }
+    .width('100%')
+    .padding(16)
+  }
 }
 ```

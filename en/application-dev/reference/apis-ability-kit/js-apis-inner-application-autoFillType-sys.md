@@ -44,15 +44,15 @@ import { autoFillManager } from '@kit.AbilityKit';
 | NICKNAME<sup>12+</sup>                   | 24   | Nickname.|
 | DETAIL_INFO_WITHOUT_STREET<sup>12+</sup> | 25   | Detailed address without street information.|
 | FORMAT_ADDRESS<sup>12+</sup>             | 26   | Standard address.|
-| PASSPORT_NUMBER<sup>16+</sup>            | 27   | Passport number.|
-| VALIDITY<sup>16+</sup>                   | 28   | Validity period of the passport.|
-| ISSUE_AT<sup>16+</sup>                   | 29   | Location where the passport was issued.|
-| ORGANIZATION<sup>16+</sup>               | 30   | Invoice title.|
-| TAX_ID<sup>16+</sup>                     | 31   | Tax ID.|
-| ADDRESS_CITY_AND_STATE<sup>16+</sup>     | 32   | Location (city and state).|
-| FLIGHT_NUMBER<sup>16+</sup>              | 33   | Flight number.|
-| LICENSE_NUMBER<sup>16+</sup>             | 34   | Driver's license number.|
-| LICENSE_FILE_NUMBER<sup>16+</sup>        | 35   | Driver's license file number.|
-| LICENSE_PLATE<sup>16+</sup>              | 36   | License plate.|
-| ENGINE_NUMBER<sup>16+</sup>              | 37   | Vehicle engine number.|
-| LICENSE_CHASSIS_NUMBER<sup>16+</sup>     | 38   | Chassis number (VIN) of a vehicle.|
+| PASSPORT_NUMBER<sup>18+</sup>            | 27   | Passport number.|
+| VALIDITY<sup>18+</sup>                   | 28   | Validity period of the passport.|
+| ISSUE_AT<sup>18+</sup>                   | 29   | Location where the passport was issued.|
+| ORGANIZATION<sup>18+</sup>               | 30   | Invoice title.|
+| TAX_ID<sup>18+</sup>                     | 31   | Tax ID.|
+| ADDRESS_CITY_AND_STATE<sup>18+</sup>     | 32   | Location (city and state).|
+| FLIGHT_NUMBER<sup>18+</sup>              | 33   | Flight number.|
+| LICENSE_NUMBER<sup>18+</sup>             | 34   | Driver's license number.|
+| LICENSE_FILE_NUMBER<sup>18+</sup>        | 35   | Driver's license file number.|
+| LICENSE_PLATE<sup>18+</sup>              | 36   | License plate.|
+| ENGINE_NUMBER<sup>18+</sup>              | 37   | Vehicle engine number.|
+| LICENSE_CHASSIS_NUMBER<sup>18+</sup>     | 38   | Chassis number (VIN) of a vehicle.|

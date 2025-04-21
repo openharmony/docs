@@ -27,7 +27,7 @@ Ability Kit provides an application model for application development and runnin
    - The object-oriented development mode makes the code of complex applications easy to read, maintain, and scale.
    - Modular development is supported.
 
-2. **Native support for cross-device migration and multi-device collaboration at the application component level**
+2. **Support for cross-device migration and multi-device collaboration at the application component level**
 
    The stage model decouples application components from User Interfaces (UIs).
    - The declarative feature of ArkUI allows the UI to be restored based on the data or status saved in application components, which facilitates cross-device migration.

@@ -508,11 +508,10 @@ getNdefFormatable(tagInfo: [TagInfo](#taginfo)): [NdefFormatableTag](js-apis-nfc
 
 ## tag.getBarcodeTag<sup>18+</sup>
 
-getBarcodeTag(taginfo: [TagInfo](#taginfo)): [BartcodeTag](js-apis-nfctech.md#barcodetag18)
+getBarcodeTag(tagInfo: [TagInfo](#taginfo)): [BarcodeTag](js-apis-nfctech.md#barcodetag18)
 
 获取BarcodeTag类型Tag对象，通过该对象可访问BarcodeTag技术类型的Tag。
 
-**需要权限：** ohos.permission.NFC_TAG
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
@@ -535,7 +534,6 @@ getBarcodeTag(taginfo: [TagInfo](#taginfo)): [BartcodeTag](js-apis-nfctech.md#ba
 
 | 错误码ID | 错误信息|
 | ------- | -------|
-| 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 801  | Capability not supported. |
 | 3100201 | The tag running state is abnormal in the service. |
@@ -1247,20 +1245,18 @@ NFC Tag有多种不同的技术类型，定义常量描述不同的技术类型�
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 | **名称**                     |**类型**| **值** | **说明**                    |
 | ---------------------------- | ------ | ------ | --------------------------- |
-| NFC_A                        |  number | 1      | NFC-A (ISO 14443-3A)技术。  |
-| NFC_B                        |  number | 2      | NFC-B (ISO 14443-3B)技术。  |
-| ISO_DEP                      |  number | 3      | ISO-DEP (ISO 14443-4)技术。 |
-| NFC_F                        |  number | 4      | NFC-F (JIS 6319-4)技术。    |
-| NFC_V                        |  number | 5      | NFC-V (ISO 15693)技术。     |
-| NDEF                         |  number | 6      | NDEF技术。                  |
-| NDEF_FORMATABLE<sup>9+</sup> |  number | 7      | 可以格式化的NDEF技术。      |
-| MIFARE_CLASSIC               |  number | 8      | MIFARE Classic技术。        |
-| MIFARE_ULTRALIGHT            |  number | 9      | MIFARE Utralight技术。      |
-| NFC_BARCODE                  |  number | 10     | BARCODE技术。               |
+| NFC_A<sup>12+</sup>                        |  number | 1      | NFC-A (ISO 14443-3A)技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
+| NFC_B<sup>12+</sup>                        |  number | 2      | NFC-B (ISO 14443-3B)技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
+| ISO_DEP<sup>12+</sup>                      |  number | 3      | ISO-DEP (ISO 14443-4)技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| NFC_F<sup>12+</sup>                        |  number | 4      | NFC-F (JIS 6319-4)技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。    |
+| NFC_V<sup>12+</sup>                        |  number | 5      | NFC-V (ISO 15693)技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
+| NDEF<sup>12+</sup>                         |  number | 6      | NDEF技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                  |
+| NDEF_FORMATABLE<sup>9+</sup> |  number | 7      | 可以格式化的NDEF技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。       |
+| MIFARE_CLASSIC<sup>12+</sup>               |  number | 8      | MIFARE Classic技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。        |
+| MIFARE_ULTRALIGHT<sup>12+</sup>            |  number | 9      | MIFARE Utralight技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
+| NFC_BARCODE<sup>18+</sup>    |  number | 10     | BARCODE技术。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。               |
 
 ## TnfType<sup>9+</sup>
 NDEF Record的TNF(Type Name Field)类型值，参考NDEF标签技术规范《NFCForum-TS-NDEF_1.0》的定义细节。

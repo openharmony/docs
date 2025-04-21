@@ -23,9 +23,9 @@ ArkUI的弹出框默认设置为全局级别，弹窗节点作为页面根节点
 当弹出框弹出时，会自动获取当前显示的Page页面并将弹出框节点挂载在此页面下。此时弹出框的显示层级高于此Page页面下的所有Navigation页面。
 
 ```ts
-promptAction.openCustomDialog({
+this.getUIContext().getPromptAction().openCustomDialog({
   builder: () => {
-    this.customDialogComponent()
+    this.customDialogComponent();
   },
   levelMode: LevelMode.EMBEDDED, // 启用页面级弹出框
 })
@@ -41,9 +41,9 @@ promptAction.openCustomDialog({
 Text(this.message).id("test_text")
   .onClick(() => {
     const node: FrameNode | null = this.getUIContext().getFrameNodeById("test_text") || null;
-    promptAction.openCustomDialog({
+    this.getUIContext().getPromptAction().openCustomDialog({
       builder: () => {
-        this.customDialogComponent()
+        this.customDialogComponent();
       },
       levelMode: LevelMode.EMBEDDED, // 启用页面级弹出框
       levelUniqueId: node?.getUniqueId(), // 设置页面级弹出框所在页面的任意节点ID
@@ -53,15 +53,15 @@ Text(this.message).id("test_text")
 
 ## 设置页面级弹出框蒙层样式
 
-如果弹出框配置了蒙层，蒙层的遮盖范围会根据页面层级的变化进行调整，默认遮罩弹出框父节点所在的显示区域（Page页面或者Navigation页面）。此时，状态栏和导航条不会被蒙层遮挡。若希望遮挡状态栏和导航条，可将[immersiveMode](../reference/apis-arkui/js-apis-promptAction.md#immersivemode15)参数的值设为ImmersiveMode.EXTEND。
+如果弹出框配置了蒙层，蒙层的遮盖范围会根据页面层级的变化进行调整，默认遮罩范围为弹出框父节点的显示区域（Page页面或者Navigation页面）。此时，状态栏和导航条不会被蒙层遮挡。若希望遮挡状态栏和导航条，可将[immersiveMode](../reference/apis-arkui/js-apis-promptAction.md#immersivemode15)参数的值设为ImmersiveMode.EXTEND。
 
 ```ts
 Text(this.message).id("test_text")
   .onClick(() => {
     const node: FrameNode | null = this.getUIContext().getFrameNodeById("test_text") || null;
-    promptAction.openCustomDialog({
+    this.getUIContext().getPromptAction().openCustomDialog({
       builder: () => {
-        this.customDialogComponent()
+        this.customDialogComponent();
       },
       levelMode: LevelMode.EMBEDDED, // 启用页面级弹出框
       levelUniqueId: node?.getUniqueId(), // 设置页面级弹出框所在页面的任意节点ID
@@ -72,7 +72,7 @@ Text(this.message).id("test_text")
 
 ## 交互说明
 
-页面内弹出框在部分交互逻辑上依然遵循部分弹出框指定的交互策略。
+页面内弹出框在部分交互逻辑上依然遵循部分弹出框指定的交互策略：
 
 1. 侧滑时先关闭弹出框。通过侧滑手势返回上一页时，如果页面上存在弹出框，弹出框会优先关闭并结束本次手势行为。如果期望返回上一页，需要再次出发侧滑手势。
 
@@ -81,22 +81,22 @@ Text(this.message).id("test_text")
 ## 完整示例
 ```ts
 // Index.ets
-import { promptAction, LevelMode, ImmersiveMode, router } from '@kit.ArkUI'
+import { LevelMode, ImmersiveMode } from '@kit.ArkUI';
 
-let customDialogId: number = 0
+let customDialogId: number = 0;
 
 @Builder
-function customDialogBuilder() {
+function customDialogBuilder(uiContext: UIContext) {
   Column() {
     Text('Custom dialog Message').fontSize(20).height(100)
     Row() {
       Button("Next").onClick(() => {
         // 在弹窗内部进行路由跳转。
-        router.pushUrl({url: 'pages/Next'})
+        uiContext.getRouter().pushUrl({url: 'pages/Next'});
       })
       Blank().width(50)
       Button("Close").onClick(() => {
-        promptAction.closeCustomDialog(customDialogId)
+        uiContext.getPromptAction().closeCustomDialog(customDialogId);
       })
     }
   }.padding(20)
@@ -105,11 +105,12 @@ function customDialogBuilder() {
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
+  @State message: string = 'Hello World';
+  private uiContext: UIContext = this.getUIContext();
 
   @Builder
   customDialogComponent() {
-    customDialogBuilder()
+    customDialogBuilder(this.uiContext);
   }
 
   build() {
@@ -120,15 +121,15 @@ struct Index {
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
             const node: FrameNode | null = this.getUIContext().getFrameNodeById("test_text") || null;
-            promptAction.openCustomDialog({
+            this.uiContext.getPromptAction().openCustomDialog({
               builder: () => {
-                this.customDialogComponent()
+                this.customDialogComponent();
               },
               levelMode: LevelMode.EMBEDDED, // 启用页面级弹出框
               levelUniqueId: node?.getUniqueId(), // 设置页面级弹出框所在页面的任意节点ID
               immersiveMode: ImmersiveMode.EXTEND, // 设置页面级弹出框蒙层的显示模式
             }).then((dialogId: number) => {
-              customDialogId = dialogId
+              customDialogId = dialogId;
             })
           })
       }
@@ -140,12 +141,10 @@ struct Index {
 ```
 ```ts
 // Next.ets
-import { router } from '@kit.ArkUI'
-
 @Entry
 @Component
 struct Next {
-  @State message: string = 'Back'
+  @State message: string = 'Back';
 
   build() {
     Row() {
@@ -154,7 +153,7 @@ struct Next {
           .fontSize(20)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            router.back()
+            this.getUIContext().getRouter().back();
           })
       }
       .width('100%')

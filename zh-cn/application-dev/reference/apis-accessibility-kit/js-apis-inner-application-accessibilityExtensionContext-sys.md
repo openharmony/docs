@@ -251,7 +251,7 @@ axContext.startAbility(want).then(() => {
 });
 ```
 
-### getElements<sup>16+</sup>
+### getElements<sup>18+</sup>
 
 getElements(windowId: number, elementId?: number): Promise<Array&lt;AccessibilityElement&gt;>;
 
@@ -297,7 +297,7 @@ axContext.getElements(windowId, elementId).then((data:AccessibilityElement[]) =>
 });
 ```
 
-### getDefaultFocusedElementIds<sup>16+</sup>
+### getDefaultFocusedElementIds<sup>18+</sup>
 
 getDefaultFocusedElementIds(windowId: number): Promise<Array&lt;number&gt;>;
 

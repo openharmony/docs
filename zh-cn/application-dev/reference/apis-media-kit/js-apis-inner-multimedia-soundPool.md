@@ -25,11 +25,11 @@ import { audio } from '@kit.AudioKit';
 
 | 名称            | 类型                                     | 必填 | 说明                                                         |
 | --------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| loop | number   | 否  | 设置循环参数，0为循环一次，-1表示一直循环。默认值：0。                   |
+| loop | number   | 否  | 设置循环次数。<br>当loop≥0时，实际播放次数为loop+1。<br> 当loop＜0时，表示一直循环。<br>默认值：0，表示仅播放一次。                   |
 | rate | number    | 否  | 设置音频播放的倍速，具体倍速范围参照[AudioRendererRate](../apis-audio-kit/js-apis-audio.md#audiorendererrate8)。默认值：0。 |
 | leftVolume  | number | 否  | 设置左声道音量，设置范围（0.0~1.0）。默认值：1.0。                                    |
-| rightVolume | number  | 否  | 设置右声道音量。（当前不支持左右分别设置，将以左声道音量为准）。默认值：1.0。 |
-| priority  | number  | 否  | 音频流播放的优先级，0为最低优先级，数值越大优先级越高，通过相互比较大小确定播放优先级。默认值：0。      |
+| rightVolume | number  | 否  | 设置右声道音量，设置范围（0.0~1.0）。（当前不支持左右分别设置，将以左声道音量为准）。默认值：1.0。 |
+| priority  | number  | 否  | 音频流播放的优先级，0为最低优先级，数值越大优先级越高，通过相互比较大小确定播放优先级，设置范围为大于等于0的整数。默认值：0。      |
 
 ## SoundPool
 
@@ -731,7 +731,7 @@ setLoop(streamID: number, loop: number, callback: AsyncCallback\<void>): void;
 | 参数名   | 类型                   | 必填 | 说明                        |
 | -------- | ---------------------- | ---- | --------------------------- |
 | streamID | number | 是   | 音频流ID，通过play方法获取。 |
-| loop | number | 是   | 设置循环的次数，0为默认1次，-1为一直循环。 |
+| loop | number | 是   | 设置循环次数。<br>当loop≥0时，实际播放次数为loop+1。<br> 当loop＜0时，表示一直循环。 |
 | callback | AsyncCallback\<void> | 是   | 异步setLoop的回调方法。 |
 
 **错误码：**
@@ -790,7 +790,7 @@ setLoop(streamID: number, loop: number): Promise\<void>
 | 参数名   | 类型                   | 必填 | 说明                        |
 | -------- | ---------------------- | ---- | --------------------------- |
 | streamID | number | 是   | 音频流ID，通过play方法获取。 |
-| loop | number | 是   | 设置循环的次数，0为默认1次，-1为一直循环。|
+| loop | number | 是   | 设置循环次数。<br>当loop≥0时，实际播放次数为loop+1。<br> 当loop＜0时，表示一直循环。|
 
 **返回值：**
 
@@ -852,7 +852,7 @@ setPriority(streamID: number, priority: number, callback: AsyncCallback\<void>):
 | 参数名   | 类型                   | 必填 | 说明                        |
 | -------- | ---------------------- | ---- | --------------------------- |
 | streamID | number | 是   | 音频流ID，通过play方法获取。 |
-| priority | number | 是   | 优先级，0表示最低优先级。 |
+| priority | number | 是   | 优先级，0表示最低优先级。设置范围为大于等于0的整数。 |
 | callback | AsyncCallback\<void> | 是   | 异步音频池setPriority方法的回调方法。 |
 
 **错误码：**
@@ -911,7 +911,7 @@ setPriority(streamID: number, priority: number): Promise\<void>
 | 参数名   | 类型                   | 必填 | 说明                        |
 | -------- | ---------------------- | ---- | --------------------------- |
 | streamID | number | 是   | 音频流ID，通过play方法获取。 |
-| priority | number | 是   | 优先级，0表示最低优先级。 |
+| priority | number | 是   | 优先级，0表示最低优先级。设置范围为大于等于0的整数。 |
 
 **返回值：**
 
@@ -1096,7 +1096,7 @@ setVolume(streamID: number, leftVolume: number, rightVolume: number, callback: A
 | -------- | ---------------------- | ---- | --------------------------- |
 | streamID | number | 是   | 音频流ID，通过play方法获取。 |
 | leftVolume | number | 是   | 左声道音量，设置范围为0.0-1.0之间。 |
-| rightVolume | number | 是   | 右声道音量，当前右声道设置无效，以左声道为准。 |
+| rightVolume | number | 是   | 右声道音量，设置范围为0.0-1.0之间，当前右声道设置无效，以左声道为准。 |
 | callback | AsyncCallback\<void> | 是   | 异步音频池setVolume方法的回调方法。 |
 
 **错误码：**
@@ -1156,7 +1156,7 @@ setVolume(streamID: number, leftVolume: number, rightVolume: number): Promise\<v
 | -------- | ---------------------- | ---- | --------------------------- |
 | streamID | number | 是   | 音频流ID，通过play方法获取。 |
 | leftVolume | number | 是   | 左声道音量，设置范围为0.0-1.0之间。 |
-| rightVolume | number | 是   | 右声道音量，当前右声道设置无效，以左声道为准。 |
+| rightVolume | number | 是   | 右声道音量，设置范围为0.0-1.0之间，当前右声道设置无效，以左声道为准。 |
 
 **返回值：**
 

@@ -1,6 +1,9 @@
 # 使用AVScreenCapture录屏取码流(C/C++)
 
-屏幕录制主要为主屏幕录屏功能。
+屏幕录制支持开发者获取屏幕数据，可用于屏幕录制、会议共享、直播等场景。通过录屏取码流方式获取的流数据可根据场景，进行不同的处理。例如：
+- 对接NativeImage作为消费者端，提供Surface关联OpenGL外部纹理，具体使用请参考[NativeImage开发指导](../../graphics/native-image-guidelines.md)。
+- 对接编码器、封装器进行数据的编码、封装，具体使用请参考[视频编码](../avcodec/video-encoding.md)、[媒体数据封装](../avcodec/audio-video-muxer.md)。
+<!--RP1--><!--RP1End-->
 
 开发者可以调用录屏（[AVScreenCapture](media-kit-intro.md#avscreencapture)）模块的C API接口，完成屏幕录制，采集设备内、麦克风等的音视频源数据。当开发直播、办公等应用时，可以调用录屏模块获取音视频原始码流，然后通过流的方式流转到其他模块处理，达成直播时共享桌面的场景。
 
@@ -234,8 +237,8 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
         (void)userData;
     }
 
-    // 状态变更事件处理函数OnStageChange()。
-    void OnStageChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
+    // 状态变更事件处理函数OnStateChange()。
+    void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
         (void)capture;
         if (stateCode == OH_SCREEN_CAPTURE_STATE_STARTED) {
             // 处理录屏开始状态变更。
@@ -388,8 +391,8 @@ void OnError(OH_AVScreenCapture *capture, int32_t errorCode, void *userData) {
     (void)userData;
 }
 
-// 状态变更事件处理函数OnStageChange()。
-void OnStageChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
+// 状态变更事件处理函数OnStateChange()。
+void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
     (void)capture;
     if (stateCode == OH_SCREEN_CAPTURE_STATE_STARTED) {
         // 处理录屏开始状态变更。
@@ -425,6 +428,7 @@ void OnStageChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCo
 }
 
 // 获取并处理音视频原始码流数据回调函数OnBufferAvailable()。
+bool IsCaptureStreamRunning = true;
 void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer, OH_AVScreenCaptureBufferType bufferType, int64_t timestamp, void *userData) {
     // 处于录屏取码流状态。
     if (IsCaptureStreamRunning) {

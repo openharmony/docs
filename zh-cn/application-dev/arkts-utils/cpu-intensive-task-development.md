@@ -164,6 +164,7 @@ struct Index {
     在宿主线程中通过调用[onexit()](../reference/apis-arkts/js-apis-worker.md#onexit9)方法定义Worker线程销毁后的处理逻辑。
 
     ```ts
+    // Index.ets
     // Worker线程销毁后，执行onexit回调方法
     workerInstance.onexit = (): void => {
      console.info("main thread terminate");
@@ -173,6 +174,7 @@ struct Index {
     方式一：在宿主线程中通过调用[terminate()](../reference/apis-arkts/js-apis-worker.md#terminate9)方法销毁Worker线程，并终止Worker接收消息。
 
     ```ts
+    // Index.ets
     // 销毁Worker线程
     workerInstance.terminate();
     ```
@@ -180,6 +182,7 @@ struct Index {
     方式二：在Worker线程中通过调用[close()](../reference/apis-arkts/js-apis-worker.md#close9)方法主动销毁Worker线程，并终止Worker接收消息。
 
     ```ts
+    // MyWorker.ts
     // 销毁线程
     workerPort.close();
     ```

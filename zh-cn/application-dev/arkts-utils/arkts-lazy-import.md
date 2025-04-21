@@ -4,9 +4,9 @@
 
 > **说明：**
 > 
-> - 延迟加载特性在API12版本开始支持。
+> - 延迟加载特性在API 12版本开始支持。
 >
-> - 开发者如需在API12上使用lazy import语法，需在工程中配置"compatibleSdkVersionStage": "beta3"，否则将无法通过编译。参考[DevEco Studio build-profile.json5配置文件说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-profile-V5#section511142752919)。
+> - 开发者如需在API 12上使用lazy import语法，需在工程中配置"compatibleSdkVersionStage": "beta3"，否则将无法通过编译。参考[DevEco Studio build-profile.json5配置文件说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-profile-V5#section511142752919)。
 
 
 ## 功能特性
@@ -17,7 +17,7 @@
 
 开发者可以利用诸如<!--Del-->[<!--DelEnd-->Trace<!--Del-->](../performance/common-trace-using-instructions.md)<!--DelEnd-->工具或日志记录等手段，来识别冷启动期间未被实际调用的文件<!--RP1-->，分析方法可参考[延迟加载lazy-import使用指导](../performance/Lazy-Import-Instructions.md)<!--RP1End-->。通过对这些数据的分析，开发者能够精准地定位出启动阶段不必预先加载的文件列表。针对这些文件的调用点，可以直接增加lazy标识。但需要注意的是，后续执行的加载是同步加载，有可能会阻塞任务执行（如点击任务，触发了延迟加载，那么运行时会去执行冷启动未加载的文件，从而增加耗时），因此是否使用lazy需要开发者自行评估。
 
-> **说明**：
+> **说明：**
 >
 > 不推荐开发者盲目增加lazy，同样会增大编译及运行时的识别开销。
     
@@ -106,10 +106,10 @@
 
 | 语法                                            | ModuleRequest  | ImportName | LocalName   | 开始支持的API版本 |
 |:----------------------------------------------|:---------------|:-----------|:------------|:-----------|
-| import lazy { x } from "mod";                 | "mod"          | "x"        | "x"         | API12      |
-| import lazy { x as v } from "mod";            | "mod"          | "x"        | "v"         | API12      |
-| import lazy x from "mod";                     | "mod"          | "default"  | "x"         | API18      |
-| import lazy { KitClass } from "@kit.SomeKit"; | "@kit.SomeKit" | "KitClass" | "KitClass"  | API18      |
+| import lazy { x } from "mod";                 | "mod"          | "x"        | "x"         | API 12      |
+| import lazy { x as v } from "mod";            | "mod"          | "x"        | "v"         | API 12      |
+| import lazy x from "mod";                     | "mod"          | "default"  | "x"         | API 18      |
+| import lazy { KitClass } from "@kit.SomeKit"; | "@kit.SomeKit" | "KitClass" | "KitClass"  | API 18      |
 
 - 延迟加载共享模块或依赖路径内包含共享模块。
     延迟加载对于共享模块依旧生效，使用限制参考[共享模块开发指导](../arkts-utils/arkts-sendable-module.md)。
@@ -171,7 +171,7 @@
         let c = "c";
         export { c }
     ```
-    执行结果:
+    执行结果：
     ```typescript
         ReferenceError: c is not initaliized
              at func_main_0 (A.ets:2:13)
@@ -190,7 +190,7 @@
         let c = "c";
         export { c }
     ```
-    执行结果:
+    执行结果：
     ```typescript
     ReferenceError: module environment is undefined
         at func_main_0 (A_ns.js:2:13)

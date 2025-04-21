@@ -39,79 +39,7 @@ Menu组件。
 
 Menu UX默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
 
-## cl.arkui.2 MenuItem设置padding属性时默认布局行为变更
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-优化MenuItem添加padding时布局效果，变更后效果更佳。
-
-**变更影响**
-
-此变更不涉及应用适配。
-
-变更前：MenuItem设置padding属性时，布局和预期不符合。
-
-变更后：MenuItem设置padding属性时，布局符合预期。
-
-```ts
-@Entry
-@Component
-struct Index {
-  @Builder
-  MenuWithPadding() {
-    Menu() {
-      MenuItemGroup() {
-        MenuItem({content:"top bottom padding is 20vp"})
-          .padding({top:20, bottom: 20})
-          .borderWidth(2)
-          .borderColor(Color.Black)
-        MenuItem({content:"top padding is 20vp"})
-          .padding({top:20})
-          .borderWidth(2)
-          .borderColor(Color.Black)
-        MenuItem({content:"bottom padding is 20vp"})
-          .padding({bottom: 20})
-          .borderWidth(2)
-          .borderColor(Color.Black)
-      }
-    }
-  }
-
-  build() {
-    Column() {
-      Button("菜单")
-        .bindMenu(this.MenuWithPadding)
-    }
-    .width('100%')
-  }
-}
-```
-
-| 变更前 | 变更后 |
-|---------|---------|
-|  ![变更前](figures/item-padding-before.png)       |  ![变更后](figures/item-padding-after.png)       |
-
-**起始API Level**
-
-API 7
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.1.0.45 版本开始。
-
-**变更的接口/组件**
-
-MenuItem组件。
-
-**适配指导**
-
-MenuItem设置padding属性时默认布局效果变更，开发者无需适配。
-
-## cl.arkui.3 Repeat VirtualScroll 支持二级缓存冻结
+## cl.arkui.2 Repeat VirtualScroll 支持二级缓存冻结
 
 **访问级别**
 
@@ -236,7 +164,13 @@ struct ChildComponent {
 }
 ```
 
-## cl.arkui.4 ImageSpan组件borderRadius边框圆角属性Modifier设置变更
+在API version 18中，同时优化了组件冻结以下功能特性的行为表现：
+
+- 在组件冻结开启之后，明确了节点解冻的范围，子组件的非屏上节点不会再被父组件解冻，例子可见[Navigation和TabContent的混用](../../../application-dev/ui/state-management/arkts-custom-components-freeze.md#navigation和tabcontent的混用)。
+
+- 在状态管理V2组件冻结从父组件激活冻结状态的场景中，如果仅子组件开启了冻结，父组件未开启冻结，子组件也能冻结。例子可见[仅子组件开启组件冻结](../../../application-dev/ui/state-management/arkts-custom-components-freezeV2.md#仅子组件开启组件冻结)。
+
+## cl.arkui.3 ImageSpan组件borderRadius边框圆角属性Modifier设置变更
 
 **访问级别**
 
@@ -270,7 +204,7 @@ ImageSpanModifier接口的borderRadius属性
 
 无需应用适配，变更后ImageSpan组件的borderRadius边框圆角在Modifier接口设置生效，效果与开发者实际设置的圆角值显示一致。
 
-## cl.arkui.5 Search组件回车键类型为EnterKeyType.NEW_LINE（换行）时onSubmit回调中执行keepEditableState()函数，参数缺省时的行为变更
+## cl.arkui.4 Search组件回车键类型为EnterKeyType.NEW_LINE（换行）时onSubmit回调中执行keepEditableState()函数，参数缺省时的行为变更
 
 **访问级别**
 
@@ -329,7 +263,7 @@ struct EnterKeyTypeIsNewLineDemo {
 }
 ```
 
-## cl.arkui.6 TextInput/TextArea组件border属性dashGap、dashWidth参数Modifier设置变更
+## cl.arkui.5 TextInput/TextArea组件border属性dashGap、dashWidth参数Modifier设置变更
 
 **访问级别**
 

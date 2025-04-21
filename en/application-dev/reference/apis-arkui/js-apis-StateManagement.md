@@ -36,7 +36,7 @@ static connect\<T extends object\>( <br>
       type: TypeConstructorWithArgs\<T\>, <br>
       keyOrDefaultCreator?: string | StorageDefaultCreator\<T\>, <br>
       defaultCreator?: StorageDefaultCreator\<T\> <br>
-): T | undefined;
+): T | undefined
 
 Stores key-value pair data in the application memory. If the given key already exists in [AppStorageV2](../../quick-start/arkts-new-appstoragev2.md), it returns the corresponding value; otherwise, it constructs a default value using the constructor for obtaining the default value and returns it.
 
@@ -90,7 +90,7 @@ const as3: SampleClass = AppStorageV2.connect(SampleClass) as SampleClass;
 
 ### remove
 
-static remove\<T\>(keyOrType: string | TypeConstructorWithArgs\<T\>): void;
+static remove\<T\>(keyOrType: string | TypeConstructorWithArgs\<T\>): void
 
 Removes the specified key-value pair from [AppStorageV2](../../quick-start/arkts-new-appstoragev2.md). If the specified key does not exist in AppStorageV2, the removal will fail.
 
@@ -125,7 +125,7 @@ AppStorageV2.remove('key_as1');
 
 ### keys
 
-static keys(): Array\<string\>;
+static keys(): Array\<string\>
 
 Obtains all keys in [AppStorageV2](../../quick-start/arkts-new-appstoragev2.md).
 
@@ -160,19 +160,19 @@ Inherits from [AppStorageV2](#appstoragev2). For details, see [PersistenceV2: Pe
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### globalConnect<sup>16+</sup>
+### globalConnect<sup>18+</sup>
 
-static globalConnect<T extends object>(type: ConnectOptions\<T\>): T | undefined;
+static globalConnect\<T extends object\>(type: ConnectOptions\<T\>): T | undefined
 
 Stores key-value pair data on the application disk. If the given key already exists in [PersistenceV2](../../quick-start/arkts-new-persistencev2.md), the corresponding value is returned. Otherwise, a default value is constructed using the default value constructor and returned. If **globalConnect** is used for an @ObservedV2 decorated object, changes to the object's @Trace properties will trigger automatic refresh of the associated object, while changes to non-@Trace properties will not. If necessary, the **PersistenceV2.save** API can be called to store the data manually.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name  |Type  |Mandatory  | Description                                                     |
 | ------------- | ------------|-------------------|-------------------------- |
-| type    |[ConnectOptions\<T\>](#connectoptions16)    |Yes |**connect** parameter passed in. For details, see the description of **ConnectOptions**.|
+| type    |[ConnectOptions\<T\>](#connectoptions18)    |Yes |**connect** parameter passed in. For details, see the description of **ConnectOptions**.|
 
 **Return value**
 
@@ -202,6 +202,7 @@ Stores key-value pair data on the application disk. If the given key already exi
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { PersistenceV2, Type, ConnectOptions } from '@kit.ArkUI';
 import { contextConstant } from '@kit.AbilityKit';
@@ -226,8 +227,7 @@ export class Sample {
 @Local p1: Sample = PersistenceV2.globalConnect({type: Sample, key:'global1', defaultCreator:() => new Sample(), areaMode: contextConstant.AreaMode.EL1})!;
 
 // Use the key 'global2' with the constructor function for connection. If no encryption level is specified, the default EL2 level is used.
-options: ConnectOptions<Sample> = {type: Sample, key: 'global2', defaultCreator:() => new Sample()};
-@Local p2: Sample = PersistenceV2.globalConnect(this.options)!;
+@Local p2: Sample = PersistenceV2.globalConnect({type: Sample, key: 'global2', defaultCreator:() => new Sample()})!;
 
 // Use the key 'global3' with an explicit encryption level value (3 in this example) for connection. Note that values outside the valid range of 0-4 will cause application crashes.
 @Local p3: Sample = PersistenceV2.globalConnect({type: Sample, key:'global3', defaultCreator:() => new Sample(), areaMode: 3})!;
@@ -236,7 +236,7 @@ options: ConnectOptions<Sample> = {type: Sample, key: 'global2', defaultCreator:
 
 ### save
 
-static save\<T\>(keyOrType: string | TypeConstructorWithArgs\<T\>): void;
+static save\<T\>(keyOrType: string | TypeConstructorWithArgs\<T\>): void
 
 Persists the specified key-value pair data once.
 
@@ -273,7 +273,7 @@ PersistenceV2.remove('key_as1');
 
 ### notifyOnError
 
-static notifyOnError(callback: PersistenceErrorCallback | undefined): void;
+static notifyOnError(callback: PersistenceErrorCallback | undefined): void
 
 Called when persistence fails.
 
@@ -296,9 +296,9 @@ PersistenceV2.notifyOnError((key: string, reason: string, msg: string) => {
 });
 ```
 
-## ConnectOptions<sup>16+</sup>
+## ConnectOptions<sup>18+</sup>
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -319,7 +319,7 @@ Provides APIs for handling data transformations related to state management.
 
 ### getTarget
 
-static getTarget\<T extends object\>(source: T): T;
+static getTarget\<T extends object\>(source: T): T
 
 Obtains the original object from a proxy object wrapped by the state management framework. For details, see [getTarget API: Obtaining Original Objects](../../quick-start/arkts-new-getTarget.md).
 
@@ -362,7 +362,7 @@ struct Index {
 ```
 ### makeObserved
 
-static makeObserved\<T extends object\>(source: T): T;
+static makeObserved\<T extends object\>(source: T): T
 
 Converts ordinary unobservable data into observable data. For details, see [makeObserved API: Changing Unobservable Data to Observable Data](../../quick-start/arkts-new-makeObserved.md).
 

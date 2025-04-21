@@ -183,7 +183,7 @@ You can refer to the corresponding development guide and samples based on your d
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreateFromData](#oh_imagesourcenative_createfromdata) (uint8_t \*data, size_t dataSize, [OH_ImageSourceNative](#oh_imagesourcenative) \*\*res) | Creates the pointer to an **OH_ImageSourceNative** object based on buffer data. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreateFromRawFile](#oh_imagesourcenative_createfromrawfile) (RawFileDescriptor \*rawFile, [OH_ImageSourceNative](#oh_imagesourcenative) \*\*res) | Creates the pointer to an **OH_ImageSourceNative** object by using the raw file descriptor of an image resource file. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, [OH_DecodingOptions](#oh_decodingoptions) \*options, [OH_PixelmapNative](#oh_pixelmapnative) \*\*pixelmap) | Creates the pointer to an **OH_PixelmapNative** object based on decoding options. | 
-| [Image_ErrorCode](#image_errorcode)[OH_ImageSourceNative_CreatePixelmapUsingAllocator](#oh_imagesourcenative_createpixelmapusingallocator) (OH_ImageSourceNative \*source, [OH_DecodingOptions](#oh_decodingoptions) \*options, [IMAGE_ALLOCATOR_TYPE](#image_allocator_type) allocator, [OH_PixelmapNative](#oh_pixelmapnative) \*\*pixelmap) | Creates an **OH_PixelmapNative** object based on decoding options and memory type, where **allocatorType** specifies the memory type of the PixelMap.<br>By default, the system selects an appropriate memory type based on the image type, image size, and platform capability. When processing the returned PixelMap object, consider the impact of stride.| 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePixelmapUsingAllocator](#oh_imagesourcenative_createpixelmapusingallocator) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, [OH_DecodingOptions](#oh_decodingoptions) \*options, [IMAGE_ALLOCATOR_TYPE](#image_allocator_type) allocator, [OH_PixelmapNative](#oh_pixelmapnative) \*\*pixelmap) | Creates an **OH_PixelmapNative** object based on decoding options and memory type, where **allocatorType** specifies the memory type of the PixelMap.<br>By default, the system selects an appropriate memory type based on the image type, image size, and platform capability. When processing the returned PixelMap object, consider the impact of stride.| 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePixelmapList](#oh_imagesourcenative_createpixelmaplist) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, [OH_DecodingOptions](#oh_decodingoptions) \*options, OH_PixelmapNative \*resVecPixMap[], size_t size) | Creates an array of **OH_PixelmapNative** objects based on decoding options. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePicture](#oh_imagesourcenative_createpicture) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, OH_DecodingOptionsForPicture \*options, [OH_PictureNative](#oh_picturenative) \*\*picture) | Creates the pointer to an **OH_PictureNative** object based on decoding options. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_GetDelayTimeList](#oh_imagesourcenative_getdelaytimelist) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, int32_t \*delayTimeList, size_t size) | Obtains the image delay time list. | 
@@ -237,6 +237,8 @@ You can refer to the corresponding development guide and samples based on your d
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_SetRowStride](#oh_pixelmapinitializationoptions_setrowstride) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t rowStride) | Sets the row stride. | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_GetAlphaType](#oh_pixelmapinitializationoptions_getalphatype) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t \*alphaType) | Obtains the alpha type. | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_SetAlphaType](#oh_pixelmapinitializationoptions_setalphatype) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t alphaType) | Sets the alpha type. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_GetEditable](#oh_pixelmapinitializationoptions_geteditable) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, bool \*editable) | Obtains the editable flag.| 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_SetEditable](#oh_pixelmapinitializationoptions_seteditable) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, bool editable) | Sets the editable flag.| 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_Release](#oh_pixelmapinitializationoptions_release) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options) | Releases the pointer to an **OH_Pixelmap_InitializationOptions** struct. | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapImageInfo_Create](#oh_pixelmapimageinfo_create) ([OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) \*\*info) | Creates the pointer to an **OH_Pixelmap_ImageInfo** struct. | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapImageInfo_GetWidth](#oh_pixelmapimageinfo_getwidth) ([OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) \*info, uint32_t \*width) | Obtains the image width. | 
@@ -263,7 +265,8 @@ You can refer to the corresponding development guide and samples based on your d
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Rotate](#oh_pixelmapnative_rotate) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, float angle) | Rotates a PixelMap based on a given angle. | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Flip](#oh_pixelmapnative_flip) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, bool shouldFilpHorizontally, bool shouldFilpVertically) | Flips a PixelMap based on a given angle. | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Crop](#oh_pixelmapnative_crop) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, [Image_Region](_image___region.md) \*region) | Crops a PixelMap based on a given size. | 
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Release](#oh_pixelmapnative_release) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap) | Releases the pointer to an **OH_PixelmapNative** object. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Release](#oh_pixelmapnative_release) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap) | Releases the pointer to an **OH_PixelmapNative** object. [OH_PixelmapNative_Destroy](#oh_pixelmapnative_destroy) is recommended.| 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Destroy](#oh_pixelmapnative_destroy) (OH_PixelmapNative \*\*pixelmap) | Releases the pointer to an **OH_PixelmapNative** object.| 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_ConvertAlphaFormat](#oh_pixelmapnative_convertalphaformat) ([OH_PixelmapNative](#oh_pixelmapnative) \*srcpixelmap, [OH_PixelmapNative](#oh_pixelmapnative) \*dstpixelmap, const bool isPremul) | Converts pixel data of a PixelMap from premultiplied alpha to non-premultiplied alpha, or vice versa. | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_CreateEmptyPixelmap](#oh_pixelmapnative_createemptypixelmap) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, [OH_PixelmapNative](#oh_pixelmapnative) \*\*pixelmap) | Creates an empty PixelMap using **OH_Pixelmap_InitializationOptions**. The memory data is 0. | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_GetNativeBuffer](#oh_pixelmapnative_getnativebuffer) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, OH_NativeBuffer \*\*nativeBuffer) | Obtains the **NativeBuffer** object from a PixelMap in the DMA memory. | 
@@ -272,10 +275,10 @@ You can refer to the corresponding development guide and samples based on your d
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_SetColorSpaceNative](#oh_pixelmapnative_setcolorspacenative) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, [OH_NativeColorSpaceManager](#oh_nativecolorspacemanager) \*colorSpaceNative) | Sets a **NativeColorSpaceManager** object. | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_GetColorSpaceNative](#oh_pixelmapnative_getcolorspacenative) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, [OH_NativeColorSpaceManager](#oh_nativecolorspacemanager) \*\*colorSpaceNative) | Obtains a **NativeColorSpaceManager** object. | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_SetMemoryName](#oh_pixelmapnative_setmemoryname) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, char \*name, size_t \*size) | Sets the memory name of a PixelMap. | 
-| [Image_ErrorCode](#image_errorcode)[OH_PixelmapNative_GetByteCount](#oh_pixelmapnative_getbytecount) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, uint32_t \*byteCount) | Obtains the total number of bytes occupied by all pixels in a PixelMap, excluding any memory padding.| 
-| [Image_ErrorCode](#image_errorcode)[OH_PixelmapNative_GetAllocationByteCount](#oh_pixelmapnative_getallocationbytecount) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, uint32_t \*allocationByteCount) | Obtains the number of bytes in the memory allocated by a PixelMap to store pixels.| 
-| [Image_ErrorCode](#image_errorcode)[OH_PixelmapNative_AccessPixels](#oh_pixelmapnative_accesspixels) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, void \*\*addr) | Obtains the memory address where the pixels of a PixelMap are stored and locks the memory.<br>When the memory is locked, any attempts to alter or free the pixel data of the PixelMap will fail or be ineffective.| 
-| [Image_ErrorCode](#image_errorcode)[OH_PixelmapNative_UnaccessPixels](#oh_pixelmapnative_unaccesspixels) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap) | Unlocks the memory allocated to store the pixels of a PixelMap.<br>This function must be used together with [OH_PixelmapNative_AccessPixels](#oh_pixelmapnative_accesspixels).| 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_GetByteCount](#oh_pixelmapnative_getbytecount) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, uint32_t \*byteCount) | Obtains the total number of bytes occupied by all pixels in a PixelMap, excluding any memory padding.| 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_GetAllocationByteCount](#oh_pixelmapnative_getallocationbytecount) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, uint32_t \*allocationByteCount) | Obtains the number of bytes in the memory allocated by a PixelMap to store pixels.| 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_AccessPixels](#oh_pixelmapnative_accesspixels) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, void \*\*addr) | Obtains the memory address where the pixels of a PixelMap are stored and locks the memory.<br>When the memory is locked, any attempts to alter or free the pixel data of the PixelMap will fail or be ineffective.| 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_UnaccessPixels](#oh_pixelmapnative_unaccesspixels) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap) | Unlocks the memory allocated to store the pixels of a PixelMap.<br>This function must be used together with [OH_PixelmapNative_AccessPixels](#oh_pixelmapnative_accesspixels).| 
 
 
 ### Variables
@@ -443,7 +446,6 @@ typedef struct Image_String Image_MimeType
 Defines a struct for an image format type.
 
 **Since**: 12
-
 
 ### Image_Region
 
@@ -4316,6 +4318,30 @@ Obtains the alpha type.
 Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
 
 
+### OH_PixelmapInitializationOptions_GetEditable()
+
+```
+Image_ErrorCode OH_PixelmapInitializationOptions_GetEditable(OH_Pixelmap_InitializationOptions *options, bool *editable)
+```
+
+**Description**
+
+Obtains the editable flag.
+
+**Since**: 18
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| options | Pointer to an **OH_Pixelmap_InitializationOptions** struct.| 
+| editable | Pointer to the editable flag.| 
+
+**Returns**
+
+Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
+
+
 ### OH_PixelmapInitializationOptions_GetHeight()
 
 ```
@@ -4479,6 +4505,30 @@ Sets the alpha type.
 | -------- | -------- |
 | options | Pointer to an **OH_Pixelmap_InitializationOptions** struct. | 
 | alphaType | Alpha type. For details about the available options, see [PIXELMAP_ALPHA_TYPE](#pixelmap_alpha_type). | 
+
+**Returns**
+
+Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
+
+
+### OH_PixelmapInitializationOptions_SetEditable()
+
+```
+Image_ErrorCode OH_PixelmapInitializationOptions_SetEditable(OH_Pixelmap_InitializationOptions *options, bool editable)
+```
+
+**Description**
+
+Sets the editable flag.
+
+**Since**: 18
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| options | Pointer to an **OH_Pixelmap_InitializationOptions** struct.| 
+| editable | Editable flag.| 
 
 **Returns**
 
@@ -4768,7 +4818,7 @@ Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMap(OH_PixelmapNative *srcPix
 
 Creates a PixelMap that has been resized based on the specified scale factors of the width and height.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -4794,7 +4844,7 @@ Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMapWithAntiAliasing(OH_Pixelm
 
 Creates a PixelMap that has been resized based on the specified anti-aliasing level and the scale factors of the width and height.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -4829,6 +4879,29 @@ Crops a PixelMap based on a given size.
 | -------- | -------- |
 | pixelmap | Pointer to an **OH_PixelmapNative** object. | 
 | region | Pointer to the region of the image after cropping. | 
+
+**Returns**
+
+Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
+
+
+### OH_PixelmapNative_Destroy()
+
+```
+Image_ErrorCode OH_PixelmapNative_Destroy(OH_PixelmapNative **pixelmap)
+```
+
+**Description**
+
+Releases the pointer to an **OH_PixelmapNative** object.
+
+**Since**: 18
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| pixelmap | Pointer to an **OH_PixelmapNative** object.| 
 
 **Returns**
 
@@ -4870,7 +4943,7 @@ Image_ErrorCode OH_PixelmapNative_GetAllocationByteCount(OH_PixelmapNative *pixe
 
 Obtains the number of bytes in the memory allocated by a PixelMap to store pixels.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -4919,7 +4992,7 @@ Image_ErrorCode OH_PixelmapNative_GetByteCount(OH_PixelmapNative *pixelmap, uint
 
 Obtains the total number of bytes occupied by all pixels in a PixelMap, excluding any memory padding.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -5087,7 +5160,7 @@ Image_ErrorCode OH_PixelmapNative_Release(OH_PixelmapNative *pixelmap)
 
 **Description**
 
-Releases the pointer to an **OH_PixelmapNative** object.
+Releases the pointer to an **OH_PixelmapNative** object. [OH_PixelmapNative_Destroy](#oh_pixelmapnative_destroy) is recommended.
 
 **Since**: 12
 

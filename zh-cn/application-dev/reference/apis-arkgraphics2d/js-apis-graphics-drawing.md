@@ -1253,6 +1253,50 @@ if (path.getPositionAndTangent(false, 0.1, position, tangent)) {
 }
 ```
 
+### getSegment<sup>18+</sup>
+
+getSegment(forceClosed: boolean, start: number, stop: number, startWithMoveTo: boolean, dst: Path): boolean
+
+截取路径的片段并追加到目标路径上。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                            |
+| -------- | -------------------------------------------- | ---- | ------------------------------- |
+| forceClosed | boolean | 是   | 表示是否按照闭合路径测量，true表示测量时路径会被强制视为已闭合，false表示会根据路径的实际闭合状态测量。                 |
+| start | number | 是   | 表示与路径起始点的距离，距离路径起始点start距离的位置即为截取路径片段的起始点，小于0时会被视作0，大于等于stop时会截取失败。该参数为浮点数。               |
+| stop | number | 是   | 表示与路径起始点的距离，距离路径起始点stop距离的位置即为截取路径片段的终点，小于等于start时会截取失败，大于路径长度时会被视作路径长度。该参数为浮点数。                  |
+| startWithMoveTo | boolean | 是   | 表示是否在目标路径执行[moveTo](#moveto)移动到截取路径片段的起始点位置。true表示执行，false表示不执行。                |
+| dst | number | [Path](#path)   | 目标路径，截取成功时会将得到的路径片段追加到目标路径上，截取失败时不做改变。               |
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| boolean |表示是否成功截取路径片段。true表示截取成功，false表示截取失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+let path: drawing.Path = new drawing.Path();
+path.moveTo(0, 0);
+path.lineTo(0, 700);
+path.lineTo(700, 0);
+let dstPath: drawing.Path = new drawing.Path();
+console.info("getSegment-----result:  "+ path.getSegment(true, 10.0, 20.0, true, dstPath));
+```
+
 ### isClosed<sup>12+</sup>
 
 isClosed(): boolean
@@ -2652,6 +2696,7 @@ drawRegion(region: Region): void
 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -3386,7 +3431,7 @@ clipRegion(region: Region, clipOp?: ClipOp): void
 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
-import { drawing } from '@kit.ArkGraphics2D';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -5172,32 +5217,13 @@ getBounds(glyphs: Array\<number>): Array\<common2D.Rect>
 ```ts
 import { common2D, drawing } from '@kit.ArkGraphics2D';
 
-@Entry
-@Component
-struct Index {
-  @State message: string = 'Hello World';
-
-  build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-          .onClick(() => {
-            let font: drawing.Font = new drawing.Font();
-            let text: string = 'hello world';
-            let glyphs: number[] = font.textToGlyphs(text);
-            let fontBounds: Array<common2D.Rect> = font.getBounds(glyphs);
-            for (let index = 0; index < fontBounds.length; index++) {
-              console.info("get fontWidths[", index, "] left:", fontBounds[index].left, " top:", fontBounds[index].top,
-                " right:", fontBounds[index].right, " bottom:", fontBounds[index].bottom);
-            }
-          })
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
+let font: drawing.Font = new drawing.Font();
+let text: string = 'hello world';
+let glyphs: number[] = font.textToGlyphs(text);
+let fontBounds: Array<common2D.Rect> = font.getBounds(glyphs);
+for (let index = 0; index < fontBounds.length; index++) {
+  console.info("get fontWidths[", index, "] left:", fontBounds[index].left, " top:", fontBounds[index].top,
+    " right:", fontBounds[index].right, " bottom:", fontBounds[index].bottom);
 }
 ```
 
@@ -6003,7 +6029,7 @@ class DrawingRenderNode extends RenderNode {
 
 ### createSumPathEffect<sup>18+</sup>
 
-static createSumPathEffect(pathEffectOne: PathEffect, pathEffectTwo: PathEffect): PathEffect
+static createSumPathEffect(firstPathEffect: PathEffect, secondPathEffect: PathEffect): PathEffect
 
 通过两种路径效果创建一个叠加的路径效果。与createComposePathEffect不同的是，会分别对两个参数的效果各自独立进行表现，然后将两个效果简单的重叠在一起显示出来。
 
@@ -6013,8 +6039,8 @@ static createSumPathEffect(pathEffectOne: PathEffect, pathEffectTwo: PathEffect)
 
 | 参数名     | 类型           | 必填    | 说明                                               |
 | ---------- | ------------- | ------- | -------------------------------------------------- |
-| pathEffectOne | [PathEffect](#patheffect12) | 是 | 表示第一个路径效果。 |
-| pathEffectTwo | [PathEffect](#patheffect12) | 是 | 表示第二个路径效果。 |
+| firstPathEffect | [PathEffect](#patheffect12) | 是 | 表示第一个路径效果。 |
+| secondPathEffect | [PathEffect](#patheffect12) | 是 | 表示第二个路径效果。 |
 
 **返回值：**
 
@@ -8715,6 +8741,7 @@ isPointContained(x: number, y: number) : boolean
 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -8766,6 +8793,7 @@ isRegionContained(other: Region) : boolean
 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -8820,6 +8848,7 @@ op(region: Region, regionOp: RegionOp) : boolean
 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -8875,6 +8904,7 @@ quickReject(left: number, top: number, right: number, bottom: number) : boolean
 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -8926,6 +8956,7 @@ setPath(path: Path, clip: Region) : boolean
 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -8981,6 +9012,7 @@ setRect(left: number, top: number, right: number, bottom: number) : boolean
 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;

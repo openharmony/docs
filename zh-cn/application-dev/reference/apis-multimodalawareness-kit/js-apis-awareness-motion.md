@@ -43,7 +43,7 @@ import { motion } from '@kit.MultimodalAwarenessKit';
 | 参数名   | 类型                             | 必填 | 说明                                                         |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                           | 是   | 事件类型。type为“operatingHandChanged”，表示操作手状态变化。 |
-| callback | Callback&lt;[OperatingHandStatus](#operatinghandstatus)&gt; | 是   | 回调函数，返回操作手状态。                                   |
+| callback | Callback&lt;[OperatingHandStatus](#operatinghandstatus)&gt; | 是   | 回调函数，返回操作手结果。                                   |
 
 **错误码**：
 
@@ -51,18 +51,28 @@ import { motion } from '@kit.MultimodalAwarenessKit';
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission denied.                                           |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 801      | Capability not supported.Function can not work correctly due to limited device capabilities. |
-| 31500001 | Service exception.                                           |
-| 31500002 | Subscribe Failed.                                            |
+| 201      | Permission denied. An attempt was made to subscribe operatingHandChanged event forbidden by permission: ohos.permission.ACTIVITY_MOTION. |
+| 401      | Parameter error. Parameter verification failed. |
+| 801      | Capability not supported. Function can not work correctly due to limited device capabilities. |
+| 31500001 | Service exception. |
+| 31500002 | Subscribe Failed. |
 
 **示例**：
 
 ```ts
-motion.on('operatingHandChanged', (data:motion.OperatingHandStatus) => {
-    console.info('on success' + data);
-})
+import { BusinessError } from '@kit.BasicServicesKit';
+
+callback(data:motion.OperatingHandStatus) {
+    console.info('callback success' + data);
+}
+
+try {
+    motion.on('operatingHandChanged', this.callback);  
+    console.info("on succeeded");
+} catch (err) {
+    let error = err as BusinessError;
+    console.error("Failed on and err code is " + error.code);
+}
 ```
 
 
@@ -82,7 +92,7 @@ off(type: 'operatingHandChanged', callback?: Callback&lt;OperatingHandStatus&gt;
 | 参数名   | 类型                             | 必填 | 说明                                                         |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                           | 是   | 事件类型。type为“operatingHandChanged”，表示操作手状态变化。 |
-| callback | Callback&lt;[OperatingHandStatus](#operatinghandstatus)&gt; | 否   | 回调函数，返回操作手状态。                                   |
+| callback | Callback&lt;[OperatingHandStatus](#operatinghandstatus)&gt; | 否   | 回调函数，返回操作手结果。                                   |
 
 **错误码**：
 
@@ -90,18 +100,24 @@ off(type: 'operatingHandChanged', callback?: Callback&lt;OperatingHandStatus&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission denied.                                           |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 801      | Capability not supported.Function can not work correctly due to limited device capabilities. |
-| 31500001 | Service exception.                                           |
-| 31500003 | UnSubscribe Failed.                                          |
+| 201      | Permission denied. An attempt was made to unsubscribe operatingHandChanged event forbidden by permission: ohos.permission.ACTIVITY_MOTION. |
+| 401      | Parameter error. Parameter verification failed. |
+| 801      | Capability not supported. Function can not work correctly due to limited device capabilities. |
+| 31500001 | Service exception. |
+| 31500003 | Unsubscribe Failed. |
 
 **示例**：
 
 ```ts
-motion.off('operatingHandChanged', (data:motion.OperatingHandStatus) => {
-    console.info('off success' + data);
-})
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    motion.off('operatingHandChanged');
+    console.info("off succeeded");
+} catch (err) {
+    let error = err as BusinessError;
+    console.error("Failed off and err code is " + error.code);
+}
 ```
 
 
@@ -128,14 +144,21 @@ getRecentOperatingHandStatus(): OperatingHandStatus;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission denied.                                           |
-| 801      | Capability not supported.Function can not work correctly due to limited device capabilities. |
-| 31500001 | Service exception.                                           |
+| 201      | Permission denied. An attempt was made to get the recent operating hand status forbidden by permission: ohos.permission.ACTIVITY_MOTION. |
+| 801      | Capability not supported. Function can not work correctly due to limited device capabilities. |
+| 31500001 | Service exception. |
 
 **示例**：
 
 ```ts
-let data:motion.OperatingHandStatus = motion.getRecentOperatingHandStatus();
-console.info('get success' + data);
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    let data:motion.OperatingHandStatus = motion.getRecentOperatingHandStatus();
+    console.info('get success' + data);
+} catch (err) {
+    let error = err as BusinessError;
+    console.error("Failed get and err code is " + error.code);
+}
 ```
 

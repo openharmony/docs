@@ -1917,7 +1917,7 @@ try {
 
 ## pointer.setPointerSizeSync<sup>10+</sup>
 
-setPointerSizeSync(size: number): void;
+setPointerSizeSync(size: number): void
 
 Sets the pointer size. This API returns the result synchronously.
 
@@ -2156,7 +2156,7 @@ try {
 
 ## pointer.setPointerColorSync<sup>10+</sup>
 
-setPointerColorSync(color: number): void;
+setPointerColorSync(color: number): void
 
 Sets the pointer color. This API returns the result synchronously.
 

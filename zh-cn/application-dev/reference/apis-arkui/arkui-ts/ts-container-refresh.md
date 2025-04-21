@@ -4,9 +4,9 @@
 
 >  **说明：**
 >
->  - 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  - 该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
->  - 该组件从API Version 12开始支持与垂直滚动的Swiper和Web的联动。当Swiper设置loop属性为true时，Refresh无法和Swiper产生联动。
+>  - 该组件从API version 12开始支持与垂直滚动的Swiper和Web的联动。当Swiper设置loop属性为true时，Refresh无法和Swiper产生联动。
 
 ## 子组件
 
@@ -17,6 +17,8 @@
 ## 接口
 
 Refresh(value: RefreshOptions)
+
+创建Refresh容器。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -30,12 +32,14 @@ Refresh(value: RefreshOptions)
 
 ## RefreshOptions对象说明
 
+用于设置Refresh组件参数。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称         | 类型                                      | 必填   | 说明                                     |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| refreshing | boolean                                  | 是    | 组件当前是否处于刷新中状态。true表示处于刷新中状态，false表示未处于刷新中状态。<br/>默认值：false<br/>该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| offset<sup>(deprecated)</sup>    | number&nbsp;\|&nbsp;string   | 否    | 下拉起点距离组件顶部的距离。<br/>默认值：16，单位vp <br/>从API version 11开始废弃，无替代接口。<br/>**说明：**<br/>offset取值范围[0vp,64vp]。大于64vp按照64vp处理。不支持百分比，不支持负数。|
+| refreshing | boolean                                  | 是    | 组件当前是否处于刷新中状态。true表示处于刷新中状态，false表示未处于刷新中状态。<br/>默认值：false<br/>该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| offset<sup>(deprecated)</sup>    | number&nbsp;\|&nbsp;string   | 否    | 下拉起点距离组件顶部的距离。<br/>默认值：16，单位vp。类型为string时，需要显式指定像素单位，如'10px'；未指定像素单位时，如'10'，单位为vp。 <br/>从API version 11开始废弃，无替代接口。<br/>**说明：**<br/>offset取值范围[0vp,64vp]。大于64vp按照64vp处理。不支持百分比，不支持负数。|
 | friction<sup>(deprecated)</sup>   | number&nbsp;\|&nbsp;string               | 否    | 下拉摩擦系数，取值范围为0到100。<br/>默认值：62<br/>-&nbsp;0表示下拉刷新容器不跟随手势下拉而下拉。<br/>-&nbsp;100表示下拉刷新容器紧紧跟随手势下拉而下拉。<br/>-&nbsp;数值越大，下拉刷新容器跟随手势下拉的反应越灵敏。<br/>从API version 11开始废弃，从API version 12开始，可用[pullDownRatio](#pulldownratio12)属性替代。 |
 | builder<sup>10+</sup>    | [CustomBuilder](ts-types.md#custombuilder8) | 否    | 自定义刷新区域显示内容。<br/>**说明：**<br/>API version 10及之前版本，自定义组件的高度限制在64vp之内。API version 11及以后版本没有此限制。 <br/>自定义组件设置了固定高度时，自定义组件会以固定高度显示在刷新区域下方；自定义组件未设置高度时，自定义组件高度会自适应刷新区域高度，会发生自定义组件高度跟随刷新区域变化至0的现象。建议对自定义组件设置最小高度约束来避免自定义组件高度小于预期的情况发生，具体可参照[示例3](#示例3自定义刷新区域显示内容-builder)。 <br/>从API version 12开始，建议使用refreshingContent参数替代builder参数自定义刷新区域显示内容，以避免刷新过程中因自定义组件销毁重建造成的动画中断问题。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | promptText<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 设置刷新区域底部显示的自定义文本。<br/>**说明：**<br/>输入文本的限制参考Text组件，使用builder或refreshingContent参数自定义刷新区域显示内容时，promptText不显示。<br/>promptText设置有效时，[refreshOffset](#refreshoffset12)属性默认值为96vp。<br/>自定义文本最大的字体缩放倍数[maxFontScale](ts-basic-components-text.md#maxfontscale12)为2。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
@@ -145,6 +149,8 @@ onOffsetChange(callback: Callback\<number>)
 
 
 ## RefreshStatus枚举说明
+
+RefreshStatus刷新状态枚举。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -303,7 +309,7 @@ struct RefreshExample {
     }
     .align(Alignment.Center)
     .clip(true)
-    // 设置最小高度约束保证自定义组件高度随刷新区域高度变化时自定义组件高度不会低于minHeight
+    // 设置最小高度约束保证自定义组件高度随刷新区域高度变化时自定义组件高度不会低于minHeight。
     .constraintSize({ minHeight: 32 })
     .width("100%")
   }
@@ -379,7 +385,7 @@ function customRefreshingContent(params: Params) {
   }
   .align(Alignment.Center)
   .clip(true)
-  // 设置最小高度约束保证自定义组件高度随刷新区域高度变化时自定义组件高度不会低于minHeight
+  // 设置最小高度约束保证自定义组件高度随刷新区域高度变化时自定义组件高度不会低于minHeight。
   .constraintSize({ minHeight: 32 })
   .width("100%")
 }
@@ -429,7 +435,7 @@ struct RefreshExample {
       .onStateChange((refreshStatus: RefreshStatus) => {
         this.refreshStatus = refreshStatus
         this.params.refreshStatus = refreshStatus
-        // 更新自定义组件内容
+        // 更新自定义组件内容。
         this.contentNode?.update(this.params)
         console.info('Refresh onStatueChange state is ' + refreshStatus)
       })
@@ -463,7 +469,7 @@ function customRefreshingContent() {
   }
   .align(Alignment.Center)
   .clip(true)
-  // 设置最小高度约束保证自定义组件高度随刷新区域高度变化时自定义组件高度不会低于minHeight
+  // 设置最小高度约束保证自定义组件高度随刷新区域高度变化时自定义组件高度不会低于minHeight。
   .constraintSize({ minHeight: 32 })
   .width("100%")
 }
@@ -512,7 +518,7 @@ struct RefreshExample {
       .pullToRefresh(true)
       .refreshOffset(64)
       .onOffsetChange((offset: number) => {
-        // 越接近最大距离，下拉跟手系数越小
+        // 越接近最大距离，下拉跟手系数越小。
         this.ratio = 1 - Math.pow((offset / this.maxRefreshingHeight), 3)
       })
       .onStateChange((refreshStatus: RefreshStatus) => {
@@ -549,8 +555,8 @@ struct ListRefreshLoad {
   @Builder
   refreshBuilder() {
     Stack({ alignContent: Alignment.Bottom }) {
-      // 可以通过刷新状态控制是否存在Progress组件
-      // 当刷新状态处于下拉中或刷新中状态时Progress组件才存在
+      // 可以通过刷新状态控制是否存在Progress组件。
+      // 当刷新状态处于下拉中或刷新中状态时Progress组件才存在。
       if (this.refreshState != RefreshStatus.Inactive && this.refreshState != RefreshStatus.Done) {
         Progress({ value: this.refreshOffset, total: 64, type: ProgressType.Ring })
           .width(32).height(32)
@@ -571,7 +577,7 @@ struct ListRefreshLoad {
     }.width("100%")
     .height(64)
     .justifyContent(FlexAlign.Center)
-    // 当不处于加载中状态时隐藏组件
+    // 当不处于加载中状态时隐藏组件。
     .visibility(this.isLoading ? Visibility.Visible : Visibility.Hidden)
   }
 
@@ -594,10 +600,10 @@ struct ListRefreshLoad {
         }
       }
       .onScrollIndex((start: number, end: number) => {
-        // 当达到列表末尾时，触发新数据加载
+        // 当达到列表末尾时，触发新数据加载。
         if (end >= this.arr.length - 1) {
           this.isLoading = true;
-          // 模拟新数据加载
+          // 模拟新数据加载。
           setTimeout(() => {
             for (let i = 0; i < 10; i++) {
               this.arr.push(this.arr.length);
@@ -607,7 +613,7 @@ struct ListRefreshLoad {
         }
       })
       .scrollBar(BarState.Off)
-      // 开启边缘滑动效果
+      // 开启边缘滑动效果。
       .edgeEffect(EdgeEffect.Spring, { alwaysEnabled: true })
     }
     .width('100%')
@@ -620,7 +626,7 @@ struct ListRefreshLoad {
       this.refreshState = state;
     })
     .onRefreshing(() => {
-      // 模拟数据刷新
+      // 模拟数据刷新。
       setTimeout(() => {
         this.refreshing = false;
       }, 2000)

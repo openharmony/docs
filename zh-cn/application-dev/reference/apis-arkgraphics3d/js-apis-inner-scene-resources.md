@@ -24,6 +24,7 @@ import { SceneResourceType, SceneResource, Shader, MaterialType, Material, Shade
 | ANIMATION | 5 | 动画类型。 |
 | SHADER | 6 | 着色器类型。 |
 | IMAGE | 7 | 图片类型。 |
+| MESH_RESOURCE<sup>18+</sup> | 8 | 网格资源类型。 |
 
 ## SceneResource
 用于表示场景中的资源。
@@ -131,7 +132,7 @@ function destroy() : void {
 | aabb | [Aabb](js-apis-inner-scene-types.md#aabb) | 是 | 否 | 轴对齐包围盒。|
 | materialOverride | [Material](#material) | 否 | 是 | 材质，默认为空。 |
 
-## MeshResource<sup>16+</sup>
+## MeshResource<sup>18+</sup>
 网格资源，继承自[SceneResource](#sceneresource)。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D

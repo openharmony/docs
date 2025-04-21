@@ -7,7 +7,7 @@
 >  从API version 18开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## bindTips
-bindTips(message: TipsMessageType, options: TipsOptions)
+bindTips(message: TipsMessageType, options?: TipsOptions)
 
 给组件绑定Tips悬浮气泡。
 
@@ -41,13 +41,13 @@ bindTips(message: TipsMessageType, options: TipsOptions)
 | appearingTimeWithContinuousOperation    |     number   | 否   | 多个组件连续弹出悬浮气泡时，悬浮气泡的显示时延。 <br/>默认值：300<br/>单位：ms |
 | disappearingTimeWithContinuousOperation |     number   | 否   | 多个组件连续弹出悬浮气泡时，悬浮气泡的隐藏时延。 <br/>默认值：0<br/>单位：ms |
 | enableArrow        | boolean                                                      | 否   | 设置是否显示气泡箭头 。<br/>默认值：true<br/>**说明：** <br/>当页面可用空间无法让气泡完全避让时，气泡会覆盖到组件上并且不显示气泡箭头。 |
-| arrowPointPosition     | [ArrowPointPosition](ts-appendix-enums.md#arrowpointposition11) | 否   | 气泡箭头相对于父组件显示位置，气泡箭头在垂直和水平方向上有 ”Start“、”Center“、”End“三个位置点可选。以上所有位置点均位于父组件区域的范围内，不会超出父组件的边界范围。 |
+| arrowPointPosition     | [ArrowPointPosition](ts-appendix-enums.md#arrowpointposition11) | 否   | 气泡箭头相对于父组件显示位置，气泡箭头在垂直和水平方向上有 ”Start“、”Center“、”End“三个位置点可选。以上所有位置点均位于父组件区域的范围内，不会超出父组件的边界范围，不会覆盖圆角范围。<br/>默认值：ArrowPointPosition.CENTER |
 | arrowWidth           | [Dimension](ts-types.md#dimension10)                  | 否   | 设置气泡箭头宽度。若所设置的气泡箭头宽度超过所在边的长度减去两倍的气泡圆角大小，则不绘制气泡箭头。<br/>默认值：16<br/>单位：vp<br/>**说明：**<br />不支持设置百分比。 |
 | arrowHeight          | [Dimension](ts-types.md#dimension10)                  | 否   | 设置气泡箭头高度。<br/>默认值：8<br/>单位：vp<br/>**说明：**<br />不支持设置百分比。 |
 
 ## TipsMessageType
 
-TipsMessageType = ResourceStr | StyledString
+type TipsMessageType = ResourceStr | StyledString
 
 悬浮气泡弹窗信息。
 

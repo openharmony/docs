@@ -50,7 +50,7 @@ HAP（Harmony Ability Package）是应用安装和运行的基本单元。HAP包
 
 - **方法一：** 使用DevEco Studio进行调试，详见[应用程序包调试方法](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-run-debug-configurations-V13)。
 
-- **方法二：** 使用<!--Del-->[<!--DelEnd-->hdc工具<!--Del-->](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd-->(可通过OpenHarmony SDK获取，在SDK的toolchains目录下)进行调试。
+- **方法二：** 使用[hdc工具](../dfx/hdc.md#环境准备)进行调试。
 
    在调试前，需要先安装或更新HAP，此处有两种方式：
 

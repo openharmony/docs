@@ -2,6 +2,8 @@
 
 本模块提供浏览器管理能力，包括设置/取消浏览器策略、获取浏览器策略等。
 
+浏览器策略指通过配置或管理浏览器行为的一系列规则和设置，以确保安全性、合规性、性能优化或用户体验的一致性。
+
 > **说明：**
 >
 > 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -123,7 +125,7 @@ try {
 
 setManagedBrowserPolicy(admin: Want, bundleName: string, policyName: string, policyValue: string): void
 
-为指定的浏览器设置浏览器托管策略，成功后会发布系统公共事件[BROWSER_POLICY_CHANGED_EVENT](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_managed_browser_policy_changed)。
+为指定的浏览器设置浏览器策略，成功后会发布系统公共事件[BROWSER_POLICY_CHANGED_EVENT](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_managed_browser_policy_changed)。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BROWSER_POLICY
 
@@ -173,7 +175,7 @@ try {
 
 getManagedBrowserPolicy(admin: Want, bundleName: string): ArrayBuffer
 
-获取指定浏览器的浏览器托管策略。
+获取指定浏览器的浏览器策略。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -189,7 +191,7 @@ getManagedBrowserPolicy(admin: Want, bundleName: string): ArrayBuffer
 
 | 类型        | 说明         |
 | ----------- | ------------ |
-| ArrayBuffer | 浏览器托管策略。 |
+| ArrayBuffer | 浏览器策略。 |
 
 **错误码**：
 
@@ -226,7 +228,7 @@ try {
 
 getSelfManagedBrowserPolicyVersion(): string
 
-获取指定浏览器的浏览器托管策略版本。
+获取指定浏览器的浏览器策略版本。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -235,7 +237,7 @@ getSelfManagedBrowserPolicyVersion(): string
 
 | 类型    | 说明         |
 | ------ | ------------ |
-| string | 浏览器托管策略版本。 |
+| string | 浏览器策略版本。 |
 
 **示例：**
 
@@ -253,7 +255,7 @@ try {
 
 getSelfManagedBrowserPolicy(): ArrayBuffer
 
-获取指定浏览器的浏览器托管策略。
+获取指定浏览器的浏览器策略。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -262,7 +264,7 @@ getSelfManagedBrowserPolicy(): ArrayBuffer
 
 | 类型        | 说明         |
 | ----------- | ------------ |
-| ArrayBuffer | 浏览器托管策略。 |
+| ArrayBuffer | 浏览器策略。 |
 
 **示例：**
 

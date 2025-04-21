@@ -312,7 +312,7 @@ NativeChildProcess_Args* OH_Ability_GetCurrentChildProcessArgs();
 >
 > 当前仅支持2in1、tablet设备。
 
-**起始版本**：16
+**起始版本**：17
 
 **返回**：
 

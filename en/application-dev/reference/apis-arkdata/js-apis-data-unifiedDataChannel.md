@@ -588,6 +588,10 @@ Obtains data of the specified type from the current data record.
 | ------ |------------------------------------------------------|
 | [ValueType](#valuetype12) | Value obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | **ID**| **Error Message**                               |
 | ------------ | ------------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
@@ -1130,7 +1134,7 @@ Enumerates the data channel types supported by the UDMF. It is used to identify 
 
 type Options = { intention?: Intention; key?: string; }
 
-Defines the data operation performed by the UDMF. It includes two optional parameters: **intention** and **key**. The two parameters have no default value, and can be left unspecified. For details, see the parameter description of the specific API.
+Defines the data operation performed by the UDMF. It includes two optional parameters: **intention** and **key**. The two parameters can be left unspecified. For details, see the parameter description of the specific API.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1220,7 +1224,7 @@ Defines the callback used to return the data retrieval progress information and 
 
 Represents the parameters for obtaining data from UDMF, including the destination directory, option for resolving file conflicts, and progress indicator type.
 
-For details, see [Dragging-and-Dropping Data Asynchronously](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#example-3-dragging-and-dropping-data-asynchronously).
+For details, see [Obtaining Data Asynchronously Through Drag-and-Drop](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#example-3-obtaining-data-asynchronously-through-drag-and-drop).
 
 **Atomic service API**: This API can be used in atomic services since API version 15.
 
@@ -1249,7 +1253,7 @@ Inserts data to the UDMF public data channel. This API uses an asynchronous call
 
 | Name     | Type                        | Mandatory| Description                          |
 |----------|----------------------------|----|------------------------------|
-| options  | [Options](#options)        | Yes | Configuration parameters. Only the **intention** is required.       |
+| options  | [Options](#options)        | Yes | Configuration for the data insertion operation. The **intention** field is mandatory. If it is not specified, error code 401 will be returned. The settings of other parameters do not affect the use of this API.       |
 | data     | [UnifiedData](#unifieddata) | Yes | Data to insert.                       |
 | callback | AsyncCallback&lt;string&gt; | Yes | Callback used to return the key (unique identifier) of the data inserted.|
 
@@ -1303,7 +1307,7 @@ Inserts data to the UDMF public data channel. This API uses a promise to return 
 
 | Name    | Type                         | Mandatory| Description                   |
 |---------|-----------------------------|----|-----------------------|
-| options | [Options](#options)         | Yes | Configuration parameters. Only the **intention** is required.|
+| options | [Options](#options)         | Yes | Configuration for the data insertion operation. The **intention** field is mandatory. If it is not specified, error code 401 will be returned. The settings of other parameters do not affect the use of this API.|
 | data    | [UnifiedData](#unifieddata) | Yes | Data to insert.                |
 
 **Return value**
@@ -1359,7 +1363,7 @@ Updates the data in the UDMF public data channel. This API uses an asynchronous 
 
 | Name     | Type                         | Mandatory| Description                                 |
 |----------|-----------------------------|----|-------------------------------------|
-| options  | [Options](#options)         | Yes | Configuration parameters. Only the value of **key** is required.                    |
+| options  | [Options](#options)         | Yes | Configuration for the data update operation. The **key** field is mandatory. If it is not specified, error code 401 will be returned. The settings of other parameters do not affect the use of this API.                    |
 | data     | [UnifiedData](#unifieddata) | Yes | New data.                              |
 | callback | AsyncCallback&lt;void&gt;   | Yes | Callback used to return the result. If the data is updated successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
 
@@ -1413,7 +1417,7 @@ Updates the data in the UDMF public data channel. This API uses a promise to ret
 
 | Name    | Type                         | Mandatory| Description             |
 |---------|-----------------------------|----|-----------------|
-| options | [Options](#options)         | Yes | Configuration parameters. Only the value of **key** is required.|
+| options | [Options](#options)         | Yes | Configuration for the data update operation. The **key** field is mandatory. If it is not specified, error code 401 will be returned. The settings of other parameters do not affect the use of this API.|
 | data    | [UnifiedData](#unifieddata) | Yes | New data.          |
 
 **Return value**
@@ -1779,4 +1783,3 @@ try {
   console.error(`[UDMF]removeAppShareOptions throws an exception. code is ${error.code},message is ${error.message} `);
 }
 ```
-<!--no_check-->

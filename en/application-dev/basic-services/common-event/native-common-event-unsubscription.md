@@ -19,13 +19,8 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
 
    ```c++
    #include <cstdint>
-   #include <cstdio>
-   #include <cwchar>
-   #include <vector>
-   #include <string.h>
    #include "hilog/log.h"
    #include "BasicServicesKit/oh_commonevent.h"
-   #include "BasicServicesKit/oh_commonevent_support.h"
    ```
 
 2. Add dynamic link libraries to the CMake script.
@@ -47,6 +42,6 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
    void Unsubscribe(CommonEvent_Subscriber* subscriber) {
        // Unsubscribe from a common event by passing a subscriber.
        int32_t ret = OH_CommonEvent_UnSubscribe(subscriber);
-       OH_LOG_INFO(LOG_APP, "OH_CommonEvent_UnSubscribe ret <%{public}d>.", ret);
+       OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "OH_CommonEvent_UnSubscribe ret <%{public}d>.", ret);
    }
    ```

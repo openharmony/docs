@@ -35,17 +35,7 @@ For details about the development guide, see [Video Encoding](video-encoding.md)
 
 Currently, the following decoding capabilities are supported:
 
-| Container Format| Audio Decoding Type                |
-| -------- | :--------------------------- |
-| mp4      | AAC, MPEG (MP3), FLAC, Vorbis<!--RP1--><!--RP1End--> |
-| m4a      | AAC                          |
-| flac     | Flac                         |
-| ogg      | Vorbis<!--RP2--><!--RP2End-->    |
-| aac      | AAC                          |
-| mp3      | MPEG (MP3)                    |
-| amr      | AMR (AMR-NB and AMR-WB)           |
-| raw      | G711mu                       |
-| ape      | APE                          |
+AAC, MPEG (MP3), FLAC, Vorbis, AMR (AMR-NB and AMR-WB), G.711Mu, APE<!--RP1--><!--RP1End-->
 
 For details about the development guide, see [Audio Decoding](audio-decoding.md).
 
@@ -54,15 +44,7 @@ For details about the development guide, see [Audio Decoding](audio-decoding.md)
 
 Currently, the following encoding capabilities are supported:
 
-| Container Format| Audio Encoding Type      |
-| -------- | :--------------- |
-| mp4      | AAC, FLAC       |
-| m4a      | AAC              |
-| flac     | Flac             |
-| aac      | AAC              |
-| mp3      | MP3              |
-| raw      | G711mu           |
-<!--RP3--><!--RP3End-->
+AAC, FLAC, MP3, G.711Mu<!--RP3--><!--RP3End-->
 
 For details about the development guide, see [Audio Encoding](audio-encoding.md).
 

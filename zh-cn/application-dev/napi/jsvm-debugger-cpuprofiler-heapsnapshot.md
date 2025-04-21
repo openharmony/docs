@@ -172,6 +172,13 @@ static void EnableInspector(JSVM_Env env) {
 3. 稍等片刻，会在target下出现调试的内容，点击inspect即可调试。如下图所示：
    <div align=left><img src="figures/jsvm-debugger-cpuprofiler-heapsnapshot_4.png"/></div>
 
+### 使用 websocket 端口进行调试
+除了使用上述打开 "devtoolsFrontendUrl" 字段url的方法通过网页端 chrome devtools 调试代码之外，如果读者了解如何使用 CDP 协议代替网页端 devtools 功能，也可以通过连接 inspector 提供的 websocket 端口进行调试。
+
+其中连接 websocket 的方法为，根据前面提供的网页端调试步骤，在做完端口映射之后（如映射到 9229 端口），在 chrome 浏览器地址栏输入 "localhost:9229/json"，回车，获取"webSocketDebuggerUrl" 字段所对应的 url，然后使用标准的 websocket 客户端连接这个 url 即可发送 CDP 调试协议进行调试。需要注意的是，当前版本 inspector 提供的websocket 端口仅支持接收 Text Frame, Ping Frame 和 Connection Close Frame，所有其他类型的帧都会被视为错误帧而导致 websocket 连接中断。
+
+CDP 协议可以参考 chrome 的[官方文档](https://chromedevtools.github.io/devtools-protocol/)
+
 ## CPU Profiler及Heap Snapshot使用方法
 
 ### CPU Profiler接口使用方法

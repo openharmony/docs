@@ -9,6 +9,7 @@
 
 **相关模块：**[Native XComponent](_o_h___native_x_component.md)
 
+**所在头文件：** [native_interface_xcomponent.h](native__interface__xcomponent_8h.md)
 
 ## 汇总
 
@@ -22,7 +23,7 @@
 | float [screenY](_o_h___native_x_component.md#screeny-23) = 0.0 |  触摸点相对于XComponent所在应用窗口左上角的y坐标。| 
 | float [x](_o_h___native_x_component.md#x-23) = 0.0 |  触摸点相对于XComponent组件左边缘的x坐标。| 
 | float [y](_o_h___native_x_component.md#y-23) = 0.0 |  触摸点相对于XComponent组件上边缘的y坐标。| 
-| [OH_NativeXComponent_TouchEventType](_o_h___native_x_component.md#oh_nativexcomponent_toucheventtype)[type](_o_h___native_x_component.md#type-22) = [OH_NativeXComponent_TouchEventType::OH_NATIVEXCOMPONENT_UNKNOWN](_o_h___native_x_component.md) | 触摸事件的触摸类型。 | 
+| [OH_NativeXComponent_TouchEventType](_o_h___native_x_component.md#oh_nativexcomponent_toucheventtype)[type](_o_h___native_x_component.md#type-22) = OH_NativeXComponent_TouchEventType::OH_NATIVEXCOMPONENT_UNKNOWN | 触摸事件的触摸类型。 | 
 | double [size](_o_h___native_x_component.md#size-22) = 0.0 |  指垫和屏幕之间的接触面积。| 
 | float [force](_o_h___native_x_component.md#force-22) = 0.0 |  当前触摸事件的压力。| 
 | int64_t [deviceId](_o_h___native_x_component.md#deviceid) = 0 |  产生当前触摸事件的设备的ID。| 

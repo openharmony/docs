@@ -2,7 +2,7 @@
 
 The **deviceManager** module provides APIs for managing peripheral devices, including querying the peripheral device list and binding or unbinding a peripheral device.
 
->  **Note:**
+>  **NOTE**
 > 
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -39,8 +39,7 @@ Queries the list of peripheral devices. If the device has no peripheral device c
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
 | 201      | The permission check failed.             |
-| 401      | The parameter check failed.              |
-| 22900001 | ExternalDeviceManager service exception. |
+| 22900001 | ExternalDeviceManager service exception or busType parameter error. |
 
 **Example**
 
@@ -58,14 +57,17 @@ try {
 }
 ```
 
-## deviceManager.bindDevice
+## deviceManager.bindDevice<sup>(deprecated)</sup>
 
 bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
-  callback: AsyncCallback&lt;{deviceId: number; remote: rpc.IRemoteObject;}&gt;): void;
+  callback: AsyncCallback&lt;{deviceId: number; remote: rpc.IRemoteObject;}&gt;): void
 
 Binds a peripheral device based on the device information returned by **queryDevices()**. This API uses an asynchronous callback to return the result.
 
 You can use [deviceManager.queryDevices](#devicemanagerquerydevices) to obtain the peripheral device information first.
+
+> **NOTE**
+> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [deviceManager.bindDriverWithDeviceId](#devicemanagerbinddriverwithdeviceid18) instead.
 
 **Required permissions**: ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
@@ -75,7 +77,7 @@ You can use [deviceManager.queryDevices](#devicemanagerquerydevices) to obtain t
 
 | Name      | Type                                                                                                | Mandatory| Description                                  |
 | ------------ | ---------------------------------------------------------------------------------------------------- | ---- | -------------------------------------- |
-| deviceId     | number                                                                                               | Yes  | Device ID, which can be obtained by **queryDevices**.          |
+| deviceId     | number                                                                                               | Yes  | ID of the device to unbind. It can be obtained by **queryDevices()**.          |
 | onDisconnect | AsyncCallback&lt;number&gt;                                                                          | Yes  | Callback to be invoked when the bound peripheral device is disconnected.                    |
 | callback     | AsyncCallback&lt;{deviceId: number; remote: [rpc.IRemoteObject](../apis-ipc-kit/js-apis-rpc.md#iremoteobject);}&gt; | Yes  | Callback invoked to return the communication object of the peripheral device bound.|
 
@@ -115,13 +117,16 @@ try {
 }
 ```
 
-## deviceManager.bindDeviceDriver<sup>11+</sup>
+## deviceManager.bindDeviceDriver<sup>(deprecated)</sup>
 bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
-  callback: AsyncCallback&lt;RemoteDeviceDriver&gt;): void;
+  callback: AsyncCallback&lt;RemoteDeviceDriver&gt;): void
 
 Binds a peripheral device based on the device information returned by **queryDevices()**. This API uses an asynchronous callback to return the result.
 
 You can use [deviceManager.queryDevices](#devicemanagerquerydevices) to obtain the peripheral device information first.
+
+> **Description**
+> This API is supported since API version 11 and deprecated since API version 18. You are advised to use [deviceManager.bindDriverWithDeviceId](#devicemanagerbinddriverwithdeviceid18) instead.
 
 **Required permissions**: ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
@@ -131,7 +136,7 @@ You can use [deviceManager.queryDevices](#devicemanagerquerydevices) to obtain t
 
 | Name      | Type                       | Mandatory| Description                        |
 | ------------ | --------------------------- | ---- | ---------------------------- |
-| deviceId     | number                      | Yes  | Device ID, which can be obtained by **queryDevices**.|
+| deviceId     | number                      | Yes  | ID of the device to unbind. It can be obtained by **queryDevices()**.|
 | onDisconnect | AsyncCallback&lt;number&gt; | Yes  | Callback to be invoked when the bound peripheral device is disconnected.          |
 | callback     | AsyncCallback&lt;RemoteDeviceDriver&gt;| Yes| Binding result, including the device ID and remote object.|
 
@@ -166,7 +171,7 @@ try {
 }
 ```
 
-## deviceManager.bindDevice
+## deviceManager.bindDevice<sup>(deprecated)</sup>
 
 bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise&lt;{deviceId: number;
   remote: rpc.IRemoteObject;}&gt;;
@@ -174,6 +179,9 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise
 Binds a peripheral device based on the device information returned by **queryDevices()**. This API uses an asynchronous callback to return the result.
 
 You need to use [deviceManager.queryDevices](#devicemanagerquerydevices) to obtain the peripheral device information first.
+
+> **NOTE**
+> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [deviceManager.bindDriverWithDeviceId](#devicemanagerbinddriverwithdeviceid18) instead.
 
 **Required permissions**: ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
@@ -183,7 +191,7 @@ You need to use [deviceManager.queryDevices](#devicemanagerquerydevices) to obta
 
 | Name      | Type                       | Mandatory| Description                        |
 | ------------ | --------------------------- | ---- | ---------------------------- |
-| deviceId     | number                      | Yes  | Device ID, which can be obtained by **queryDevices**.|
+| deviceId     | number                      | Yes  | ID of the device to unbind. It can be obtained by **queryDevices()**.|
 | onDisconnect | AsyncCallback&lt;number&gt; | Yes  | Callback to be invoked when the bound peripheral device is disconnected.          |
 
 **Return value**
@@ -220,13 +228,16 @@ try {
   console.error(`bindDevice fail. Code is ${error.code}, message is ${error.message}`);
 }
 ```
-## deviceManager.bindDeviceDriver<sup>11+</sup>
+## deviceManager.bindDeviceDriver<sup>(deprecated)</sup>
 
 bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise&lt;RemoteDeviceDriver&gt;;
 
-Binds a peripheral device based on the device information returned by **queryDevices()**. This API uses an asynchronous callback to return the result.
+Binds a peripheral device based on the device information returned by **queryDevices()**. This API uses a promise to return the result.
 
 You need to use [deviceManager.queryDevices](#devicemanagerquerydevices) to obtain the peripheral device information first.
+
+> **NOTE**
+> This API is supported since API version 11 and deprecated since API version 18. You are advised to use [deviceManager.bindDriverWithDeviceId](#devicemanagerbinddriverwithdeviceid18) instead.
 
 **Required permissions**: ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
@@ -236,7 +247,7 @@ You need to use [deviceManager.queryDevices](#devicemanagerquerydevices) to obta
 
 | Name      | Type                       | Mandatory| Description                        |
 | ------------ | --------------------------- | ---- | ---------------------------- |
-| deviceId     | number                      | Yes  | Device ID, which can be obtained by **queryDevices**.|
+| deviceId     | number                      | Yes  | ID of the device to unbind. It can be obtained by **queryDevices()**.|
 | onDisconnect | AsyncCallback&lt;number&gt; | Yes  | Callback to be invoked when the bound peripheral device is disconnected.          |
 
 **Return value**
@@ -274,11 +285,14 @@ try {
 }
 ```
 
-## deviceManager.unbindDevice
+## deviceManager.unbindDevice<sup>(deprecated)</sup>
 
 unbindDevice(deviceId: number, callback: AsyncCallback&lt;number&gt;): void
 
 Unbinds a peripheral device. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [deviceManager.unbindDriverWithDeviceId](#devicemanagerunbinddriverwithdeviceid18) instead.
 
 **Required permissions**: ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
@@ -288,7 +302,7 @@ Unbinds a peripheral device. This API uses an asynchronous callback to return th
 
 | Name  | Type                       | Mandatory| Description                          |
 | -------- | --------------------------- | ---- | ------------------------------ |
-| deviceId | number                      | Yes  | Device ID, which can be obtained by **queryDevices**.|
+| deviceId | number                      | Yes  | ID of the device to unbind. It can be obtained by **queryDevices()**.|
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the result.              |
 
 **Error codes**
@@ -303,6 +317,7 @@ Unbinds a peripheral device. This API uses an asynchronous callback to return th
 
 ```ts
 import { deviceManager } from '@kit.DriverDevelopmentKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // For example, deviceId is 12345678. You can use queryDevices() to obtain the deviceId.
@@ -317,11 +332,14 @@ try {
   console.error(`unbindDevice fail. Code is ${error.code}, message is ${error.message}`);
 }
 ```
-## deviceManager.unbindDevice
+## deviceManager.unbindDevice<sup>(deprecated)</sup>
 
 unbindDevice(deviceId: number): Promise&lt;number&gt;
 
 Unbinds a peripheral device. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [deviceManager.unbindDriverWithDeviceId](#devicemanagerunbinddriverwithdeviceid18) instead.
 
 **Required permissions**: ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
@@ -331,7 +349,7 @@ Unbinds a peripheral device. This API uses an asynchronous callback to return th
 
 | Name  | Type  | Mandatory| Description                          |
 | -------- | ------ | ---- | ------------------------------ |
-| deviceId | number | Yes  | Device ID, which can be obtained by **queryDevices**.|
+| deviceId | number | Yes  | ID of the device to unbind. It can be obtained by **queryDevices()**.|
 
 **Error codes**
 
@@ -364,6 +382,109 @@ try {
   console.error(`unbindDevice fail. Code is ${error.code}, message is ${error.message}`);
 }
 ```
+## deviceManager.bindDriverWithDeviceId<sup>18+</sup>
+
+bindDriverWithDeviceId(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise&lt;RemoteDeviceDriver&gt;;
+
+Binds a peripheral device based on the device information returned by **queryDevices()**. This API uses an asynchronous callback to return the result.
+
+You need to call [deviceManager.queryDevices](#devicemanagerquerydevices) to obtain the device list.
+
+**Required permissions**: ohos.permission.ACCESS_DDK_DRIVERS
+
+**System capability**: SystemCapability.Driver.ExternalDevice
+
+**Parameters**
+
+| Name      | Type                       | Mandatory| Description                        |
+| ------------ | --------------------------- | ---- | ---------------------------- |
+| deviceId     | number                      | Yes  | ID of the device to unbind. It can be obtained by **queryDevices()**.|
+| onDisconnect | AsyncCallback&lt;number&gt; | Yes  | Callback to be invoked when the bound peripheral device is disconnected.          |
+
+**Return value**
+
+| Type                             | Description                                     |
+| --------------------------------- | -----------------------------------------|
+| Promise&lt;RemoteDeviceDriver&gt; | Promise used to return the [RemoteDeviceDriver](#remotedevicedriver11) object.|
+
+**Error codes**
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 201      | The permission check failed.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+| 26300001  | ExternalDeviceManager service exception. |
+| 26300002  | Service not allowed. |
+
+**Example**
+
+```ts
+import { deviceManager } from '@kit.DriverDevelopmentKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  // For example, deviceId is 12345678. You can use queryDevices() to obtain the deviceId.
+  deviceManager.bindDriverWithDeviceId(12345678, (error : BusinessError, data : number) => {
+    console.error(`Device is disconnected`);
+  }).then((data: deviceManager.RemoteDeviceDriver) => {
+    console.info(`bindDriverWithDeviceId success, Device_Id is ${data.deviceId}.
+    remote is ${data.remote != null ? data.remote.getDescriptor() : "null"}`);
+  }, (error: BusinessError) => {
+    console.error(`bindDriverWithDeviceId async fail. Code is ${error.code}, message is ${error.message}`);
+  });
+} catch (error) {
+  console.error(`bindDriverWithDeviceId fail. Code is ${error.code}, message is ${error.message}`);
+}
+```
+
+## deviceManager.unbindDriverWithDeviceId<sup>18+</sup>
+
+unbindDriverWithDeviceId(deviceId: number): Promise&lt;number&gt;
+
+Unbinds a peripheral device. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.ACCESS_DDK_DRIVERS
+
+**System capability**: SystemCapability.Driver.ExternalDevice
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description                          |
+| -------- | ------ | ---- | ------------------------------ |
+| deviceId | number | Yes  | ID of the device to unbind. It can be obtained by **queryDevices()**.|
+
+**Return value**
+
+| Type                 | Description                     |
+| --------------------- | ------------------------- |
+| Promise&lt;number&gt; | Promise used to return the device ID.|
+
+**Error codes**
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 201      | The permission check failed.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+| 26300001 | ExternalDeviceManager service exception. |
+| 26300003 | There is no binding relationship. |
+
+**Example**
+
+```ts
+import { deviceManager } from '@kit.DriverDevelopmentKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  // For example, deviceId is 12345678. You can use queryDevices() to obtain the deviceId.
+  deviceManager.unbindDriverWithDeviceId(12345678).then((data : number) => {
+    console.info(`unbindDriverWithDeviceId success, Device_Id is ${data}.`);
+  }, (error : BusinessError) => {
+    console.error(`unbindDriverWithDeviceId async fail. Code is ${error.code}, message is ${error.message}`);
+  });
+} catch (error) {
+  console.error(`unbindDriverWithDeviceId fail. Code is ${error.code}, message is ${error.message}`);
+}
+```
 
 ## Device
 
@@ -374,7 +495,7 @@ Represents the peripheral device information.
 | Name       | Type               | Mandatory| Description      |
 | ----------- | ------------------- | ---- | ---------- |
 | busType     | [BusType](#bustype) | Yes  | Bus type.|
-| deviceId    | number              | Yes  | Device ID.  |
+| deviceId    | number              | Yes  | ID of the peripheral device.  |
 | description | string              | Yes  | Description of the peripheral device.|
 
 ## USBDevice
@@ -406,5 +527,5 @@ Represents information about a remote device driver.
 
 | Name     | Type  | Mandatory| Description               |
 | --------- | ------ | ---- | ------------------- |
-| deviceId<sup>11+</sup>  | number | Yes  | Device ID. |
+| deviceId<sup>11+</sup>  | number | Yes  | ID of the peripheral device. |
 | remote<sup>11+</sup> | [rpc.IRemoteObject](../apis-ipc-kit/js-apis-rpc.md#iremoteobject) | Yes  | Remote driver object.|

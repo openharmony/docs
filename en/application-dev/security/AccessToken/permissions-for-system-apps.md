@@ -128,7 +128,7 @@ Allows a system application to write the protection advice database.
 
 **Enable via ACL**: true
 
-**Valid since**: 18
+**Valid since**: 17
 
 ## ohos.permission.READ_PROTECTION_ADVICE_POLICY
 
@@ -140,7 +140,7 @@ Allows a system application to read the protection advice database
 
 **Enable via ACL**: true
 
-**Valid since**: 18
+**Valid since**: 17
 
 ## ohos.permission.PROXY_MESSAGE_AUTH
 
@@ -279,6 +279,18 @@ Allows an application to obtain the phone numbers of the device.
 Allows a system application to set themes, including wallpapers, icons, skins, Always On Display (AOD), and fonts.
 
 **Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 11
+
+## ohos.permission.QUERY_ACCESSIBILITY_ELEMENT
+
+Allows an application to query accessibility elements in batches.
+
+**Permission level**: system_core
 
 **Authorization mode**: system_grant
 
@@ -1396,7 +1408,7 @@ Allows an application to obtain information about local accounts.
 
 ## ohos.permission.GET_TELEPHONY_STATE
 
-Allows an application to read telephony information.
+Allows an application to read telephony information. 
 
 **Permission level**: system_basic
 
@@ -2644,6 +2656,18 @@ Allows an application to create and manage application installation tasks.
 
 **Valid since**: 11
 
+## ohos.permission.MANAGE_APP_UNINSTALL
+
+Allows a system application to uninstall other applications.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
+
 ## ohos.permission.ACCESS_ADVANCED_SECURITY_MODE
 
 Allows a system application to access the advanced security mode configuration page.
@@ -3584,6 +3608,18 @@ Allows a system application or system ability to receive fusion service messages
 
 **Valid since**: 12
 
+## ohos.permission.RECEIVE_BMS_BROKER_MESSAGES
+
+Allows a system application or system service to receive BMS broker messages.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
+
 ## ohos.permission.ACCESS_FUSION_MANAGER
 
 Allows a system ability or system application to access the fusion service.
@@ -4294,8 +4330,8 @@ Allows a peripheral extension driver client to bind to the driver server.
 
 This permission can be requested successfully only when:
 
-- The target extension driver server in the value field of the permission declaration for the peripheral extension driver client has been launched or both the server and client have been launched.
-- The capabilities provided by the target extension driver server comply with the requirements of the peripheral extension driver client.
+1. The target extension driver server in the value field of the permission declaration for the peripheral extension driver client has been launched or both the server and client have been launched.
+2. The capabilities provided by the target extension driver server comply with the requirements of the peripheral extension driver client.
 
 **Permission level**: system_basic
 
@@ -4310,11 +4346,10 @@ This permission can be requested successfully only when:
 Allow a peripheral extension driver to access the SCSI DDK APIs.
 
 The SCSI DDK APIs can be used to develop the following types of peripheral extension drivers:
-
 Peripherals connected to the host via a USB bus and:
 
-- InterfaceClass of the peripheral is Mass Storage (0x08) and InterfaceSubClass is SCSI Transparent Command Set (0x06).
-- The peripheral can simulate a SCSI device in a way that is transparent to the operating system.
+1. InterfaceClass of the peripheral is Mass Storage (0x08) and InterfaceSubClass is SCSI Transparent Command Set (0x06).
+2. The peripheral can simulate a SCSI device in a way that is transparent to the operating system.
 
 **Permission level**: system_basic
 
@@ -4329,11 +4364,10 @@ Peripherals connected to the host via a USB bus and:
 Allows a peripheral extension driver to access the USB Serial DDK APIs.
 
 The USB Serial DDK APIs can be used to develop the following types of peripheral extension drivers:
-
 Peripherals connected to the host via a USB bus and:
 
-- InterfaceClass of the peripheral is Communication Device Control Class (0x02) and InterfaceSubClass follows ACMSubClass model(0x02).
-- The peripheral can simulate traditional serial communication through a USB interface.
+1. InterfaceClass of the peripheral is Communication Device Control Class (0x02) and InterfaceSubClass follows ACMSubClass model(0x02).
+2. The peripheral can simulate traditional serial communication through a USB interface.
 
 **Permission level**: system_basic
 
@@ -4529,9 +4563,95 @@ Allows an application to call the APIs for uninstalling plugins.
 
 ## ohos.permission.GET_EDM_CONFIG
 
-Allows a system application to obtain custom enterprise device management(EDM) configuration files.
+Allows a system application to obtain custom enterprise device management (EDM) configuration files.
 
-This permission prevents authorized access to custom EDM configuration files, such as the startup animation, startup logo, homepage layout, and wallpapers.
+This permission prevents unauthorized access to custom EDM configuration files, such as the startup animation, startup logo, homepage layout, and wallpapers.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
+
+## ohos.permission.READ_DHA
+
+Allows an application to read device health attestation information.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
+
+## ohos.permission.WRITE_DHA
+
+Allows an application to write device health attestation information.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
+
+## ohos.permission.NOTIFY_DHA
+
+Allows an application to notify the device health attestation event.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
+
+## ohos.permission.CHANGE_DEFAULT_APPLICATION
+
+Allows an application to listen for the changes of a default application.
+
+Users can set default applications for the system, for example, specifying an application to open files of a certain type by default. Any change in the default application will trigger an event indicating the change.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 19
+
+## ohos.permission.SEND_NOTIFICATION_CROSS_USER
+
+Allows an application to send notifications to the specified users in the system.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
+
+## ohos.permission.ALLOW_ACCESS_TIPS
+
+Allows a system application to start the components provided by Tips.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
+
+### ohos.permission.UPDATE_FONT
+
+Allows an application to install and uninstall fonts.
 
 **Permission level**：system_basic
 
@@ -4539,4 +4659,28 @@ This permission prevents authorized access to custom EDM configuration files, su
 
 **Enable via ACL**：true
 
-**Valid since**：18
+**Valid since**：19
+
+## ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+
+Allows an application to call the accessibility service extension APIs to query and manipulate UI components.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 20
+
+## ohos.permission.SANDBOX_ACCESS_MANAGER
+
+Allows an application to access the sandbox directory of other applications.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 17

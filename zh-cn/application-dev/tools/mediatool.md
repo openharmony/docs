@@ -1,6 +1,8 @@
 # mediatool工具
 
-mediatool是一个轻量级的命令行工具集合，开发者可通过此工具操作媒体库资源。媒体库中的图片视频资源会在系统图库中显示。
+mediatool是一个轻量级的命令行工具集合，开发者可通过此工具操作媒体库资源。媒体库为图库提供和管理数据，媒体库中的图片视频会在图库界面呈现。
+
+mediatool工具为系统自带工具，不需要安装，内置在/bin文件夹中，可以通过hdc shell直接调用。
 
 ## 前置条件
 
@@ -85,10 +87,11 @@ mediatool recv <resource-uri> <dest-path>
 <!--DelEnd-->
 文件导出成功后会打印导出文件的路径。
 
-媒体库资源uri可以通过<!--Del-->`mediatool list all`或者<!--DelEnd-->[mediatool query](#mediatool-query)获取。
+媒体库资源uri获取可参考[媒体库uri介绍/获取方式](#媒体库uri介绍获取方式)。
 
 将`<resource-uri>`指定为`all`则能够将所有媒体库资源的源文件导出。当`<resource-uri>`为`all`时，`<dest-path>`必须为文件夹路径。
 
+该命令无法导出隐藏相册内的媒体资产。
 <!--RP1--><!--RP1End-->
 
 **使用示例：**
@@ -107,7 +110,7 @@ mediatool delete <resource-uri>
 
 该命令能够彻底删除`<resource-uri>`指定uri的媒体库资源。被删除的资源无法恢复，请谨慎执行。
 
-媒体库资源uri可以通过<!--Del-->`mediatool list all`或者<!--DelEnd-->或者[mediatool query](#mediatool-query)获取。
+媒体库资源uri的获取可参考[媒体库uri介绍/获取方式](#媒体库uri介绍获取方式)。
 
 将`<resource-uri>`指定为`all`则指定删除所有媒体库资源，并重置媒体库的所有数据。
 
@@ -127,6 +130,8 @@ mediatool query <display-name> [-p] [-u]
 ```
 
 该命令能够查询出所有名字为`<display-name>`的媒体库资源，返回资源源文件真实路径或媒体资源uri。默认返回源文件真实路径。
+
+该命令无法查询出隐藏相册内的媒体资产。
 
   | 选项               | 说明             |
 | ---- |--------------- |
@@ -148,6 +153,7 @@ find 0 result
 
 # 查询的名字格式不正确
 > mediatool query IMG_001
+find 0 result
 The displayName format is not correct!
 
 # 查询媒体资源源文件路径
@@ -162,3 +168,76 @@ find 1 result:
 uri
 "file://media/Photo/2/IMG_1721381297_001/MyImage.jpg"
 ```
+
+## 使用指导
+
+以下使用指导说明了一些常见的mediatool使用场景。
+
+### 导出特定媒体库资产
+
+示例导出图库中名字叫MyImage的jpg图片。
+
+```shell
+> hdc shell mediatool query -u MyImage.jpg
+find 1 result
+uri
+"file://media/Photo/1/IMG_1743078145_000/MyImage.jpg"
+
+> hdc shell mediatool recv file://media/Photo/1 /data/local/tmp/out.jpg
+Table Name: Photos
+/data/local/tmp/out.jpg
+
+> hdc file recv /data/local/tmp/out.jpg .
+FileTransfer finish, Size:10015455, File count = 1, time:679ms rate:14750.30kB/s
+```
+
+### 导出所有媒体库资产
+
+```shell
+> hdc shell mediatool recv all /data/local/tmp/media
+Table Name: Photos
+/data/local/tmp/media/MyImage.jpg
+
+Table Name: Audios
+
+> hdc shell tar -cvf /data/local/tmp/media.tar /data/local/tmp/media/*
+removing leading '/' from member names
+data/local/tmp/media/MyImage.jpg
+
+> hdc file recv /data/local/tmp/media.tar .
+FileTransfer finish, Size:10017280, File count = 1, time:664ms rate:15086.27kB/s
+```
+
+### 删除特定媒体库资产
+
+示例删除图库中名字叫MyImage的jpg图片。
+
+```shell
+> hdc shell mediatool query -u MyImage.jpg
+find 1 result
+uri
+"file://media/Photo/1/IMG_1743078145_000/MyImage.jpg"
+
+> hdc shell mediatool delete file://media/Photo/1/IMG_1743078145_000/MyImage.jpg
+[SUCCESS] delete success.
+```
+
+### 彻底重置媒体库数据库
+```shell
+> hdc shell mediatool delete all
+```
+
+## 媒体库uri介绍/获取方式
+
+uri是媒体库资产的唯一标识符，每个uri都对应一个媒体资产。mediatool使用uri来判断需要操作的媒体资产对象。
+
+可使用以下方式获取uri：
+* mediatool query 加上 -u 的选项可以返回对应媒体资产的uri。需要输入对应资产的显示名（在图库中展示的名字带后缀名）。
+<!--Del-->
+* mediatool list all可以获取到所有媒体库资产的uri列表，以及对应的资产的显示名。
+<!--DelEnd-->
+
+媒体库uri可以用于mediatool recv命令导出特定媒体库资产，也可以用于mediatool delete删除特定媒体库资产。
+
+uri样例：`file://media/Photo/1/IMG_1743078145_000/MyImage.jpg`。
+在mediatool操作中，需要使用以上uri时，无论使用`file://media/Photo/1/IMG_1743078145_000/MyImage.jpg`还是`file://media/Photo/1`都能够正确的定位到目标资产。

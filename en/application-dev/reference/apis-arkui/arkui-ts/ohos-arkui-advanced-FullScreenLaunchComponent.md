@@ -13,7 +13,7 @@
 
 ## Modules to Import
 
-```
+```ts
 import { FullScreenLaunchComponent } from '@kit.ArkUI'
 ```
 
@@ -23,30 +23,31 @@ import { FullScreenLaunchComponent } from '@kit.ArkUI'
 Not supported
 
 ## Attributes
-The [universal attributes](ts-universal-attributes-size.md) are not supported.
+The [universal attributes](ts-component-general-attributes.md) are not supported.
+
+## Events
+The [universal events](ts-component-general-events.md) are not supported.
 
 ## FullScreenLaunchComponent
 
-FullScreenLaunchComponent({ content: Callback\<void>, appId: string, options?: AtomicServiceOptions })
+FullScreenLaunchComponent({ content: Callback\<void>, appId: string, options?: AtomicServiceOptions, onError?: ErrorCallback, onTerminated?: Callback\<TerminationInfo> })
 
 **Decorator**: \@Component
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-
-**Parameters**
-
 
 | Name| Type| Mandatory| Decorator Type| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| content | Callback\<void> | Yes| \@BuilderParam | Content displayed in the component.|
-| appId | string | Yes| - | Application ID for the atomic service.|
-| options | [AtomicServiceOptions](../../apis-ability-kit/js-apis-app-ability-atomicServiceOptions.md) | No| - | Parameters for launching the atomic service.|
+| content | Callback\<void> | Yes| \@BuilderParam | Custom placeholder icon displayed before launching the atomic service. This allows you to create a large launch icon similar to those used by desktop applications. Clicking the placeholder icon will launch the atomic service.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| appId | string | Yes| - |  Application ID of the atomic service to be launched. It is the unique identifier for the atomic service.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<!--RP1--><!--RP1End-->|
+| options | [AtomicServiceOptions](../../apis-ability-kit/js-apis-app-ability-atomicServiceOptions.md) | No| - | Parameters for launching the atomic service.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| onError<sup>18+<sup> | [ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback) | No| - | Triggered when an exception occurs during the execution of an embedded atomic service. You can obtain the error information based on the **code**, **name**, and **message** parameters in the callback and rectify the exception accordingly.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| onTerminated<sup>18+<sup> | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[TerminationInfo](ts-container-embedded-component.md#terminationinfo)> | No| - | Triggered when an embedded atomic service exits properly by calling [terminateSelfWithResult](../../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) or [terminateSelf](../../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself).<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
-## Events
-The [universal events](ts-universal-events-click.md) are not supported.
+> **NOTE**
+>
+> - If the atomic service exits by calling [terminateSelfWithResult](../../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult), the information it carries is passed to the callback parameter.
+> - If the atomic service exits by calling [terminateSelf](../../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself), the callback parameter has a default **code** value of **0** and **want** of **undefined**.
 
 ## Example
 
@@ -56,7 +57,7 @@ import { FullScreenLaunchComponent } from '@kit.ArkUI';
 @Entry
 @Component
 struct Index {
-  @State appId: string = '6918661953712445909';
+  @State appId: string = '6918661953712445909'; // Application ID of the atomic service.
 
   build() {
     Row() {
@@ -64,7 +65,13 @@ struct Index {
         FullScreenLaunchComponent({
           content: ColumChild,
           appId: this.appId,
-          options: {}
+          options: {},
+          onTerminated: (info) => {
+            console.info("onTerminated code: " + info.code.toString());
+          },
+          onError: (err) => {
+            console.error("onError code: " + err.code + ", message: ", err.message);
+          }
         }).width("80vp").height("80vp")
       }
       .width('100%')

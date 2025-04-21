@@ -199,14 +199,14 @@ Options for conversion.
 
 | Name             | Type| Mandatory| Description                                                       |
 | ----------------- | -------- | ---- | ----------------------------------------------------------- |
-| trim              | boolean  | Yes  | Whether to trim the whitespace characters before and after the text.                |
-| ignoreDeclaration | boolean  | No  | Whether to ignore the XML declaration. The default value is **false**.                       |
-| ignoreInstruction | boolean  | No  | Whether to ignore the XML processing instruction. The default value is **false**.                     |
-| ignoreAttributes  | boolean  | No  | Whether to ignore the element's attribute information. The default value is **false**.                  |
-| ignoreComment     | boolean  | No  | Whether to ignore element comments. The default value is **false**.                        |
-| ignoreCDATA       | boolean  | No  | Whether to ignore the element's CDATA information. The default value is **false**.                       |
-| ignoreDoctype     | boolean  | No  | Whether to ignore the element's Doctype information. The default value is **false**.                     |
-| ignoreText        | boolean  | No  | Whether to ignore the element's text information. The default value is **false**.                        |
+| trim              | boolean  | Yes  | Whether to trim the whitespace characters before and after the text. The value **true** means to trim the whitespace characters before and after the text, and **false** means to keep them.                |
+| ignoreDeclaration | boolean  | No  | Whether to ignore the XML declaration. The value **true** means to ignore the XML declaration, and **false** means the opposite. The default value is **false**.                       |
+| ignoreInstruction | boolean  | No  | Whether to ignore the XML processing instruction. The value **true** means to ignore the XML processing instruction, and **false** means the opposite. The default value is **false**.                     |
+| ignoreAttributes  | boolean  | No  | Whether to ignore the element's attribute information. The value **true** means to ignore the element's attribute information, and **false** means the opposite. The default value is **false**.                  |
+| ignoreComment     | boolean  | No  | Whether to ignore element comments. The value **true** means to ignore element comments, and **false** means the opposite. The default value is **false**.                        |
+| ignoreCDATA       | boolean  | No  | Whether to ignore the element's CDATA information. The value **true** means to ignore the element's CDATA information, and **false** means the opposite. The default value is **false**.                       |
+| ignoreDoctype     | boolean  | No  | Whether to ignore the element's Doctype information. The value **true** means to ignore the element's Doctype information, and **false** means the opposite. The default value is **false**.                     |
+| ignoreText        | boolean  | No  | Whether to ignore the element's text information. The value **true** means to ignore the element's text information, and **false** means the opposite. The default value is **false**.                        |
 | declarationKey    | string   | Yes  | Name of the attribute key for **declaration** in the output object.|
 | instructionKey    | string   | Yes  | Name of the attribute key for **instruction** in the output object.|
 | attributesKey     | string   | Yes  | Name of the attribute key for **attributes** in the output object.  |

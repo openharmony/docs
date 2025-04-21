@@ -16,7 +16,7 @@ OpenHarmony默认电池管理系统可以接收uevent事件，系统根据事件
 
 环境要求：
 
-Linux调测环境，相关要求和配置可参考《[快速入门](../quick-start/quickstart-overview.md)》
+Linux调测环境，相关要求和配置可参考《[快速入门](../quick-start/quickstart-overview.md)》。
 
 ### 开发步骤 
 
@@ -40,23 +40,23 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
 
     | 所属子系统 | 描述 |
     | -------- | -------- |
-    | SUBSYSTEM=hw_power | 所属子系统为hw_power|
+    | SUBSYSTEM=hw_power | 所属子系统为hw_power。|
 
     **表2** uevent事件说明
 
     | uevent事件 | 描述 |
     | -------- | -------- |
-    | BATTERY_UNDER_VOLTAGE=1 | uevent事件(支持正则表达式) 电池电压小于1 |
-    | BATTERY_UNDER_CURRENT=2 | uevent事件(支持正则表达式) 电池电流小于2 |
-    | BATTERY_UNDER_VOLTAGE=3 | uevent事件(支持正则表达式) 电池电压小于3|
+    | BATTERY_UNDER_VOLTAGE=1 | uevent事件（支持正则表达式）电池电压小于1。 |
+    | BATTERY_UNDER_CURRENT=2 | uevent事件（支持正则表达式）电池电流小于2。 |
+    | BATTERY_UNDER_VOLTAGE=3 | uevent事件（支持正则表达式）电池电压小于3。 |
 
     **表3** 动作配置说明
 
     | 动作 | 类型 | 描述 |
     | -------- | -------- | -------- |
-    | shutdown | string | 关机 |
-    | reboot | string | 重启 |
-    | sendcommonevent | string | 发送广播 |
+    | shutdown | string | 关机。 |
+    | reboot | string | 重启。 |
+    | sendcommonevent | string | 发送广播。 |
 
 2. 参考《[快速入门](../quick-start/quickstart-overview.md)》编译定制版本，编译命令如下：
 

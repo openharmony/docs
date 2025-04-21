@@ -9,6 +9,8 @@
 
 **相关模块：**[AssetType](_asset_type.md)
 
+**所在头文件：**[asset_type.h](asset__type_8h.md)
+
 
 ## 汇总
 

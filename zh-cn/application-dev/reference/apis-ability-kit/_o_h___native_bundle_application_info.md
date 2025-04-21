@@ -7,9 +7,11 @@
 
 OH_NativeBundle_ApplicationInfo是[OH_NativeBundle_GetCurrentApplicationInfo()](_bundle.md#oh_nativebundle_getcurrentapplicationinfo)的输出参数，描述了应用的相关信息。
 
-**起始版本**：9
+**起始版本：** 9
 
-**相关模块**：[Bundle](_bundle.md)
+**相关模块：** [Bundle](_bundle.md)
+
+**所在头文件：** [native_interface_bundle.h](native__interface__bundle.md)
 
 
 ## 汇总

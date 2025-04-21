@@ -1,13 +1,13 @@
 # LazyVGridLayout
 
-该组件用于实现支持懒加载的网格布局。
+该组件用于实现支持懒加载的网格布局，其父组件仅限于[WaterFlow](ts-container-waterflow.md)或[FlowItem](ts-container-flowitem.md)，并支持使用自定义组件、[NodeContainer](ts-basic-components-nodecontainer.md)组件封装后，在WaterFlow或FlowItem组件下应用。
+
+该组件仅在WaterFlow组件的单列模式或分段布局中的单列分段，并且布局方向为FlexDirection.Column的情况下支持懒加载。在WaterFlow的多列模式或布局方向为FlexDirection.Row或FlexDirection.RowReverse的情况下使用该组件，则不支持懒加载。此外，在布局方向为FlexDirection.ColumnReverse的WaterFlow组件下使用该组件会导致显示异常。当懒加载功能生效时，该组件仅加载WaterFlow显示区域内的子组件，并在帧间空闲时隙预加载显示区域上方和下方各半屏的内容。
 
 > **说明：**
 >
 > - 该组件从API version 18开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-> - 该组件的父组件只能是[WaterFlow](ts-container-waterflow.md)或[FlowItem](ts-container-flowitem.md)，支持使用自定义组件、[NodeContainer](ts-basic-components-nodecontainer.md)组件封装后在WaterFlow或FlowItem组件下使用。
-> - LazyVGridLayout在WaterFlow单列模式或分段布局中的单列分段下使用才能支持懒加载，在WaterFlow多列模式下使用不支持懒加载。
-> - LazyVGridLayout组件不建议设置高度、高度约束或宽高比，设置后会导致显示异常。
+> - LazyVGridLayout组件高度默认自适应内容，不建议设置高度、高度约束或宽高比，设置后会导致显示异常。
 
 ## 接口
 
@@ -29,7 +29,7 @@ columnsTemplate(value: string)
 
 设置当前网格布局列的数量、固定列宽或最小列宽值，不设置时默认1列。
 
-例如,&nbsp;'1fr&nbsp;1fr&nbsp;2fr'&nbsp;是将父组件分3列，将父组件允许的宽分为4等份，第一列占1份，第二列占1份，第三列占2份。
+例如，'1fr&nbsp;1fr&nbsp;2fr'&nbsp;是将父组件分3列，将父组件允许的宽分为4等份，第一列占1份，第二列占1份，第三列占2份。
 
 columnsTemplate('repeat(auto-fit, track-size)')是设置最小列宽值为track-size，自动计算列数和实际列宽。
 

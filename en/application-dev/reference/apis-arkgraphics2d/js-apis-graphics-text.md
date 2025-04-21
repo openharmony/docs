@@ -8,7 +8,7 @@ This module provides the following classes:
 - [FontCollection](#fontcollection): font manager, which controls various fonts.
 - [ParagraphStyle](#paragraphstyle): paragraph style, which controls the display style of a paragraph.
 - [Paragraph](#paragraph): paragraph, which is constructed by calling [build()](#build) in the **ParagraphBuilder** class.
-- [LineTypeset](#linetypeset16): line typesetter, which is constructed by calling [buildLineTypeset()](#buildlinetypeset16) in the **ParagraphBuilder** class.
+- [LineTypeset](#linetypeset18): line typesetter, which is constructed by calling [buildLineTypeset()](#buildlinetypeset18) in the **ParagraphBuilder** class.
 - [ParagraphBuilder](#paragraphbuilder): paragraph builder, which controls the generation of different paragraph objects.
 - [TextLine](#textline): carrier of the paragraph text in lines. It is obtained by calling [getTextLines()](#gettextlines) in the **Paragraph** class.
 - [Run](#run): rendering unit used for text typesetting. It is obtained by calling [getGlyphRuns()](#getglyphruns) in the **TextLine** class.
@@ -23,7 +23,7 @@ This module provides the following classes:
 import { text } from '@kit.ArkGraphics2D';
 ```
 
-## text.matchFontDescriptors<sup>16+</sup>
+## text.matchFontDescriptors<sup>18+</sup>
 
 matchFontDescriptors(desc: FontDescriptor): Promise&lt;Array&lt;FontDescriptor&gt;&gt;
 
@@ -262,11 +262,12 @@ Enumerates the word break types.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
-| Name       | Value  | Description                                                                                                                 |
-| ----------- | ---- | -------------------------------------------------------------------------------------------------------------------- |
-| NORMAL      | 0    | Default mode. Word breaks are allowed between words as appropriate to the relevant language writing systems.                                                                 |
-| BREAK_ALL   | 1    | Word breaks are allowed between any characters for non-CJK text. (CJK means Chinese, Japanese, and Korean.) This value is suitable for Asian text that contains some non-Asian text. For example, it can be used to break consecutive English characters.|
-| BREAK_WORD  | 2    | Works in the same way as **BREAK_ALL**, except that it does not break unbreakable words.                                  |
+| Name                         | Value  | Description                                                                                                                 |
+|-----------------------------| ---- | -------------------------------------------------------------------------------------------------------------------- |
+| NORMAL                      | 0    | Default mode. Word breaks are allowed between words as appropriate to the relevant language writing systems.                                                                 |
+| BREAK_ALL                   | 1    | Word breaks are allowed between any characters for non-CJK text. (CJK means Chinese, Japanese, and Korean.) This value is suitable for Asian text that contains some non-Asian text. For example, it can be used to break consecutive English characters.|
+| BREAK_WORD                  | 2    | Works in the same way as **BREAK_ALL**, except that it does not break unbreakable words.                                  |
+| BREAK_HYPHEN<sup>18+</sup>  | 3    | Uses a hyphen (-) to break a word at the end of each line. If adding a hyphen is not possible, it will behave the same as **BREAK_WORD**.                       |
 
 ## Decoration
 
@@ -367,7 +368,7 @@ Enumerates the text height modifier patterns.
 | ALL                   | 0x0 | Enables ascent for the first and last rows of a paragraph.           |
 | DISABLE_FIRST_ASCENT  | 0x1 | Disables ascent for the first row of a paragraph.                  |
 | DISABLE_LAST_ASCENT   | 0x2 | Disables ascent for the last row of a paragraph.                |
-| DISABLE_ALL           | 0x3 | Disables ascent for the first and last rows of a paragraph.         |
+| DISABLE_ALL           | 0x1 \| 0x2 | Disables ascent for the first and last rows of a paragraph.         |
 
 ## TextBaseline
 
@@ -504,7 +505,7 @@ Describes the font descriptor information.
 | fullName | string | No| Yes| Font name. Any value is acceptable. The default value is an empty string.|
 | fontFamily | string | No| Yes| Family name of the font. Any value is acceptable. The default value is an empty string.|
 | fontSubfamily | string | No| Yes| Subfamily name of the font. Any value is acceptable. The default value is an empty string.|
-| weight | [FontWeight](#fontweight) | No| Yes| Font weight. The default value is the value of **FontWeight.W100**, that is, **0**. In [matchFontDescriptors](#textmatchfontdescriptors16), omitting this parameter is equivalent to setting it to its default value.|
+| weight | [FontWeight](#fontweight) | No| Yes| Font weight. The default value is the value of **FontWeight.W100**, that is, **0**. In [matchFontDescriptors](#textmatchfontdescriptors18), omitting this parameter is equivalent to setting it to its default value.|
 | width | number | No| Yes| Font width. The value is an integer ranging from 1 to 9. The default value is **0**.|
 | italic | number | No| Yes| Whether the font is italic. The value **0** means that the font is not italic, and **1** means the opposite. The default value is **0**.|
 | monoSpace | boolean | No| Yes| Whether the font is monospaced. The value **true** means that the font is monospaced, and **false** means the opposite. The default value is **false**.|
@@ -602,7 +603,7 @@ struct RenderTest {
 }
 ```
 
-### loadFont<sup>16+</sup>
+### loadFont<sup>18+</sup>
 
 loadFont(name: string, path: string | Resource): Promise\<void>
 
@@ -702,7 +703,7 @@ Describes a paragraph style.
 | breakStrategy        | [BreakStrategy](#breakstrategy)            | Yes  | Yes  | Text break strategy. The default value is **GREEDY**.                       |
 | strutStyle           | [StrutStyle](#strutstyle)                  | Yes  | Yes  | Strut style. The default value is the initial **StrutStyle** object.              |
 | textHeightBehavior   | [TextHeightBehavior](#textheightbehavior)  | Yes  | Yes  | Text height modifier pattern. The default value is **ALL**.                             |
-| tab<sup>16+</sup>   | [TextTab](#texttab16)  | Yes  | Yes  | Alignment mode and position of the text after the tab character in a paragraph. By default, the tab character is replaced with a space. This parameter does not take effect when it is configured together with the text alignment mode (specified by **align**) or ellipsis content (specified by **ellipsis** in [TextStyle](#textstyle)).|
+| tab<sup>18+</sup>   | [TextTab](#texttab18)  | Yes  | Yes  | Alignment mode and position of the text after the tab character in a paragraph. By default, the tab character is replaced with a space. This parameter does not take effect when it is configured together with the text alignment mode (specified by **align**) or ellipsis content (specified by **ellipsis** in [TextStyle](#textstyle)).|
 
 
 ## PlaceholderAlignment
@@ -779,7 +780,7 @@ Performs typography and calculates the positions of all glyphs.
 paragraph.layoutSync(100);
 ```
 
-### layout<sup>16+</sup>
+### layout<sup>18+</sup>
 
 layout(width: number): Promise\<void>
 
@@ -1388,13 +1389,13 @@ Obtains the line measurement information of a line.
 let lineMetrics =  paragraph.getLineMetrics(0);
 ```
 
-## LineTypeset<sup>16+</sup>
+## LineTypeset<sup>18+</sup>
 
 Implements a carrier that stores the text content and style. It can be used to compute typography details for individual lines of text.
 
-Before calling any of the following APIs, you must use [buildLineTypeset()](#buildlinetypeset16) in the [ParagraphBuilder](#paragraphbuilder) class to create a **LineTypeset** object.
+Before calling any of the following APIs, you must use [buildLineTypeset()](#buildlinetypeset18) in the [ParagraphBuilder](#paragraphbuilder) class to create a **LineTypeset** object.
 
-### getLineBreak<sup>16+</sup>
+### getLineBreak<sup>18+</sup>
 
 getLineBreak(startIndex: number, width: number): number
 
@@ -1431,7 +1432,7 @@ let width = 100.0;
 let count = lineTypeset.getLineBreak(startIndex, width);
 ```
 
-### createLine<sup>16+</sup>
+### createLine<sup>18+</sup>
 
 createLine(startIndex: number, count: number): TextLine
 
@@ -1444,7 +1445,7 @@ Generates a text line object based on the specified layout range.
 | Name| Type  | Mandatory| Description          |
 | ----- | ------ | ---- | -------------- |
 | startIndex | number | Yes| Start position for layout calculation. The value is an integer in the range [0, total number of text characters).|
-| count | number | Yes  | Number of characters from the specified start position. The value is an integer in the range [0, total number of text characters). The sum of **startIndex** and **count** cannot be greater than the total number of text characters. When **count** is **0**, the specified range is [startIndex, end of the text]. You can use [getLineBreak](#getlinebreak16) to obtain the number of characters that can fit in the layout.|
+| count | number | Yes  | Number of characters from the specified start position. The value is an integer in the range [0, total number of text characters). The sum of **startIndex** and **count** cannot be greater than the total number of text characters. When **count** is **0**, the specified range is [startIndex, end of the text]. You can use [getLineBreak](#getlinebreak18) to obtain the number of characters that can fit in the layout.|
 
 **Return value**
 
@@ -1860,7 +1861,7 @@ struct Index {
 }
 ```
 
-### buildLineTypeset<sup>16+</sup>
+### buildLineTypeset<sup>18+</sup>
 
 buildLineTypeset(): LineTypeset
 
@@ -1872,7 +1873,7 @@ Builds a line typesetter.
 
 | Type                    | Description                          |
 | ------------------------ | ------------------------------ |
-| [LineTypeset](#linetypeset16)  | **LineTypeset** object.|
+| [LineTypeset](#linetypeset18)  | **LineTypeset** object.|
 
 **Example**
 
@@ -1915,7 +1916,7 @@ Inserts a symbol into the paragraph being built.
 
 | Name   | Type   | Mandatory| Description                                                       |
 | -------- | ------- | ---- | ----------------------------------------------------------- |
-| symbolId | number  | Yes  | Symbol code to insert. The value is a hexadecimal number in the range 0xF0000-0xF0C97. For details about the configurable symbol codes and symbol names, see the **value** and **name** fields in the [JSON file](https://gitee.com/openharmony/global_system_resources/blob/master/systemres/main/resources/base/element/symbol.json).|
+| symbolId | number  | Yes  | Symbol code to insert. The value is a hexadecimal number in the range 0xF0000-0xF0C97. For details about the configurable symbol codes (unicode values in the list view), see [HarmonyOS Symbol](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/).|
 
 **Example**
 
@@ -1951,7 +1952,7 @@ struct Index {
 }
 ```
 
-## TypographicBounds<sup>16+</sup>
+## TypographicBounds<sup>18+</sup>
 
 Describes the typographic boundary of a text line. The typographic boundary is related to the font and font size used for typography, but not the characters within the text. For example, for the string " a b " (which has a space before "a" and a space after "b"), the typographic boundary encompasses the spaces at the beginning and end. For the strings "j" and "E", the typographic boundaries are the same, indicating that they are irrelevant to specific characters.
 
@@ -1978,7 +1979,7 @@ Describes the typographic boundary of a text line. The typographic boundary is r
 >
 >![image_TypographicBounds_Character.png](figures/image_TypographicBounds_Character.png)
 
-## CaretOffsetsCallback<sup>16+</sup>
+## CaretOffsetsCallback<sup>18+</sup>
 
 type CaretOffsetsCallback = (offset: number, index: number, leadingEdge: boolean) => boolean
 
@@ -2003,7 +2004,7 @@ Defines the callback used to receive the offset and index of each character in a
 
 Implements a carrier that describes the basic text line structure of a paragraph.
 
-Before calling any of the following APIs, you must use [getTextLines ()](#gettextlines) of the [Paragraph](#paragraph) class or [createLine()](#createline16) of the [LineTypeset](#linetypeset16) class to create a **TextLine** object.
+Before calling any of the following APIs, you must use [getTextLines()](#gettextlines) of the [Paragraph](#paragraph) class or [createLine()](#createline18) of the [LineTypeset](#linetypeset18) class to create a **TextLine** object.
 ### getGlyphCount
 
 getGlyphCount(): number
@@ -2045,7 +2046,7 @@ struct Index {
 
 getTextRange(): Range
 
-Obtains the range of the text in this text line in the entire paragraph. The [TextLine](#textline) object created by calling [creatLine](#createline16) of the [LineTypeset](#linetypeset16) class is a temporary object and is automatically destroyed when [creatLine](#createline16) is called next time. Therefore, the index range returned by [getTextRange] through this object is relative to a temporary [Paragraph](#paragraph) object.
+Obtains the range of the text in this text line in the entire paragraph. The [TextLine](#textline) object created by calling [creatLine](#createline18) of the [LineTypeset](#linetypeset18) class is a temporary object and is automatically destroyed when [creatLine](#createline18) is called next time. Therefore, the index range returned by [getTextRange] through this object is relative to a temporary [Paragraph](#paragraph) object.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -2165,7 +2166,7 @@ struct Index {
 }
 ```
 
-### createTruncatedLine<sup>16+</sup>
+### createTruncatedLine<sup>18+</sup>
 
 createTruncatedLine(width: number, ellipsisMode: EllipsisMode, ellipsis: string): TextLine
 
@@ -2228,7 +2229,7 @@ struct Index {
 }
 ```
 
-### getTypographicBounds<sup>16+</sup>
+### getTypographicBounds<sup>18+</sup>
 
 getTypographicBounds(): TypographicBounds
 
@@ -2250,7 +2251,7 @@ Obtains the typographic boundary of this text line. The typographic boundary is 
 
 | Type| Description |
 | -| - |
-| [TypographicBounds](#typographicbounds16) | Typographic boundary of the text line.|
+| [TypographicBounds](#typographicbounds18) | Typographic boundary of the text line.|
 
 **Example**
 
@@ -2276,7 +2277,7 @@ struct Index {
 }
 ```
 
-### getImageBounds<sup>16+</sup>
+### getImageBounds<sup>18+</sup>
 
 getImageBounds(): common2D.Rect
 
@@ -2325,7 +2326,7 @@ struct Index {
 }
 ```
 
-### getTrailingSpaceWidth<sup>16+</sup>
+### getTrailingSpaceWidth<sup>18+</sup>
 
 getTrailingSpaceWidth(): number
 
@@ -2363,7 +2364,7 @@ struct Index {
 }
 ```
 
-### getStringIndexForPosition<sup>16+</sup>
+### getStringIndexForPosition<sup>18+</sup>
 
 getStringIndexForPosition(point: common2D.Point): number
 
@@ -2416,7 +2417,7 @@ struct Index {
 }
 ```
 
-### getOffsetForStringIndex<sup>16+</sup>
+### getOffsetForStringIndex<sup>18+</sup>
 
 getOffsetForStringIndex(index: number): number
 
@@ -2468,7 +2469,7 @@ struct Index {
 }
 ```
 
-### enumerateCaretOffsets<sup>16+</sup>
+### enumerateCaretOffsets<sup>18+</sup>
 
 enumerateCaretOffsets(callback: CaretOffsetsCallback): void
 
@@ -2480,7 +2481,7 @@ Enumerates the offset and index of each character in a text line.
 
 | Name| Type| Mandatory| Description|
 | -| - | - | - |
-| callback | [CaretOffsetsCallback](#caretoffsetscallback16) | Yes| Custom function, which is used to receive the offset and index of each character in a text line object as its parameters.|
+| callback | [CaretOffsetsCallback](#caretoffsetscallback18) | Yes| Custom function, which is used to receive the offset and index of each character in a text line object as its parameters.|
 
 **Error codes**
 
@@ -2518,7 +2519,7 @@ struct Index {
 }
 ```
 
-### getAlignmentOffset<sup>16+</sup>
+### getAlignmentOffset<sup>18+</sup>
 
 getAlignmentOffset(alignmentFactor: number, alignmentWidth: number): number
 
@@ -2651,7 +2652,7 @@ struct Index {
 }
 ```
 
-### getGlyphs<sup>16+</sup>
+### getGlyphs<sup>18+</sup>
 
 getGlyphs(range: Range): Array\<number>
 
@@ -2685,7 +2686,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { text } from "@kit.ArkGraphics2D"
 
 function textFunc() {
-  let glyphs = runs[0].getGlyphs (); // Obtain the index of all glyphs of the run.
+  let glyphs = runs[0].getGlyphs(); // Obtain the index of all glyphs of the run.
   let glyphsRange = runs[0].getGlyphs ({start:1, end:2}); // Obtain the indices of glyphs in the range starting from position 1, with a length of 2.
   glyphsRange = runs[0].getGlyphs({start:-1, end:2}); // -1 is an invalid value, and undefined is returned.
   glyphsRange = runs[0].getGlyphs({start:0, end:-10}); // -10 is an invalid value, and undefined is returned.
@@ -2727,7 +2728,7 @@ Obtains the position of each glyph relative to the respective line in this run.
 import { text } from "@kit.ArkGraphics2D";
 
 function textFunc() {
-  let positions = runs[0].getPositions (); // Obtain the positions of all glyphs in the run.
+  let positions = runs[0].getPositions(); // Obtain the positions of all glyphs in the run.
 }
 
 @Entry
@@ -2743,7 +2744,7 @@ struct Index {
   }
 }
 ```
-### getPositions<sup>16+</sup>
+### getPositions<sup>18+</sup>
 
 getPositions(range: Range): Array<common2D.Point>
 
@@ -2898,29 +2899,33 @@ import { text } from "@kit.ArkGraphics2D"
 import { common2D } from "@kit.ArkGraphics2D"
 import { image } from '@kit.ImageKit';
 
-function textFunc() {
-  const color: ArrayBuffer = new ArrayBuffer(160000);
-  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 200, width: 200 } }
-  let pixelMap: image.PixelMap = image.createPixelMapSync(color, opts);
-  let canvas = new drawing.Canvas(pixelMap);
+function textFunc(pixelmap: PixelMap) {
+  let canvas = new drawing.Canvas(pixelmap);
   runs[0].paint(canvas, 0, 0);
 }
 
 @Entry
 @Component
 struct Index {
+  @State pixelmap?: PixelMap = undefined;
   fun: Function = textFunc;
   build() {
     Column() {
+      Image(this.pixelmap).width(200).height(200);
       Button().onClick(() => {
-        this.fun();
+        if (this.pixelmap == undefined) {
+          const color: ArrayBuffer = new ArrayBuffer(160000);
+          let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 200, width: 200 } }
+          this.pixelmap = image.createPixelMapSync(color, opts);
+        }
+        this.fun(this.pixelmap);
       })
     }
   }
 }
 ```
 
-### getStringRange<sup>16+</sup>
+### getStringRange<sup>18+</sup>
 
 getStringRange(): Range
 
@@ -2960,7 +2965,7 @@ struct Index {
 }
 ```
 
-### getStringIndices<sup>16+</sup>
+### getStringIndices<sup>18+</sup>
 
 getStringIndices(range?: Range): Array\<number>
 
@@ -2994,7 +2999,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { text } from "@kit.ArkGraphics2D";
 
 function textFunc() {
-  let indices = runs[0].getStringIndices (); // Obtain the indices of all characters in the run.
+  let indices = runs[0].getStringIndices(); // Obtain the indices of all characters in the run.
   let indicesRange = runs[0].getStringIndices({start:1, end:2}); // Obtain the indices of characters in the range starting from position 1, with a length of 2.
   indicesRange = runs[0].getStringIndices({start:-1, end:2}); // -1 is an invalid value, and undefined is returned.
   indicesRange = runs[0].getStringIndices({start:0, end:-10}); // -10 is an invalid value, and undefined is returned.
@@ -3016,7 +3021,7 @@ struct Index {
 }
 ```
 
-### getImageBounds<sup>16+</sup>
+### getImageBounds<sup>18+</sup>
 
 getImageBounds(): common2D.Rect
 
@@ -3063,7 +3068,7 @@ struct Index {
 }
 ```
 
-### getTypographicBounds<sup>16+</sup>
+### getTypographicBounds<sup>18+</sup>
 
 getTypographicBounds(): TypographicBounds
 
@@ -3085,7 +3090,7 @@ Obtain a typographic boundary of this run. The typographic boundary is related t
 
 | Type                  | Description          |
 | ---------------------- | -------------- |
-|  [TypographicBounds](#typographicbounds16)  | Typographic boundary of the run.|
+|  [TypographicBounds](#typographicbounds18)  | Typographic boundary of the run.|
 
 **Example**
 
@@ -3110,7 +3115,7 @@ struct Index {
 }
 ```
 
-## TextTab<sup>16+</sup>
+## TextTab<sup>18+</sup>
 
 Implements a paragraph-style text tab, which stores the alignment mode and position.
 
@@ -3147,4 +3152,4 @@ Enumerates the font types, which can be combined through bitwise OR operations.
 | GENERIC  | 1 << 1 | System font type.|
 | STYLISH  | 1 << 2 | Style font type. The style font type is designed for 2-in-1 devices.|
 | INSTALLED  | 1 << 3 | Font type that has been installed.|
-| CUSTOMIZED<sup>16+</sup>  | 1 << 4 | Custom font type.|
+| CUSTOMIZED<sup>18+</sup>  | 1 << 4 | Custom font type.|

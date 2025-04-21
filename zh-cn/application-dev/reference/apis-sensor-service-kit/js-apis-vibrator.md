@@ -108,28 +108,45 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 const fileName: string = 'xxx.json';
 
-let rawFd: resourceManager.RawFileDescriptor = getContext().resourceManager.getRawFdSync(fileName);
+@Entry
+@Component
+struct Index {
+  uiContext = this.getUIContext();
 
-try {
-  vibrator.startVibration({
-    type: "file",
-    hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
-  }, {
-    id: 0,
-    usage: 'alarm' // 根据实际选择类型归属不同的开关管控
-  }, (error: BusinessError) => {
-    if (error) {
-      console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
-      return;
+  build() {
+    Row() {
+      Column() {
+        Button('alarm-file')
+          .onClick(() => {
+            let rawFd: resourceManager.RawFileDescriptor | undefined = this.uiContext.getHostContext()?.resourceManager.getRawFdSync(fileName);
+            if (rawFd != undefined) {
+              try {
+                vibrator.startVibration({
+                  type: "file",
+                  hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
+                }, {
+                  id: 0,
+                  usage: 'alarm' // 根据实际选择类型归属不同的开关管控
+                }, (error: BusinessError) => {
+                  if (error) {
+                    console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+                    return;
+                  }
+                  console.info('Succeed in starting vibration');
+                });
+              } catch (err) {
+                let e: BusinessError = err as BusinessError;
+                console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+              }
+            }
+            this.uiContext.getHostContext()?.resourceManager.closeRawFdSync(fileName);
+          })
+      }
+      .width('100%')
     }
-    console.info('Succeed in starting vibration');
-  });
-} catch (err) {
-  let e: BusinessError = err as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+    .height('100%')
+  }
 }
-
-getContext().resourceManager.closeRawFdSync(fileName);
 ```
 
 ## vibrator.startVibration<sup>9+</sup>
@@ -228,26 +245,45 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 const fileName: string = 'xxx.json';
 
-let rawFd: resourceManager.RawFileDescriptor = getContext().resourceManager.getRawFdSync(fileName);
+@Entry
+@Component
+struct Index {
+  uiContext = this.getUIContext();
 
-try {
-  vibrator.startVibration({
-    type: "file",
-    hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
-  }, {
-    id: 0,
-    usage: 'alarm' // 根据实际选择类型归属不同的开关管控
-  }).then(() => {
-    console.info('Succeed in starting vibration');
-  }, (error: BusinessError) => {
-    console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
-  });
-} catch (err) {
-  let e: BusinessError = err as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+  build() {
+    Row() {
+      Column() {
+        Button('alarm-file')
+          .onClick(() => {
+            let rawFd: resourceManager.RawFileDescriptor | undefined = this.uiContext.getHostContext()?.resourceManager.getRawFdSync(fileName);
+            if (rawFd != undefined) {
+              try {
+                vibrator.startVibration({
+                  type: "file",
+                  hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
+                }, {
+                  id: 0,
+                  usage: 'alarm' // 根据实际选择类型归属不同的开关管控
+                }, (error: BusinessError) => {
+                  if (error) {
+                    console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+                    return;
+                  }
+                  console.info('Succeed in starting vibration');
+                });
+              } catch (err) {
+                let e: BusinessError = err as BusinessError;
+                console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+              }
+            }
+            this.uiContext.getHostContext()?.resourceManager.closeRawFdSync(fileName);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
 }
-
-getContext().resourceManager.closeRawFdSync(fileName);
 ```
 
 ## vibrator.stopVibration<sup>9+</sup>
@@ -813,13 +849,13 @@ try {
 }
 ```
 
-## vibrator.VibratorPatternBuilder<sup>18+</sup>
+## VibratorPatternBuilder<sup>18+</sup>
+
+### vibrator('addContinuousEvent')<sup>18+</sup>
 
 addContinuousEvent(time: number, duration: number, options?: ContinuousParam): VibratorPatternBuilder;
 
 添加长振事件的方法成VibratorPattern对象。
-
-**需要权限**：ohos.permission.VIBRATE
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -830,6 +866,12 @@ addContinuousEvent(time: number, duration: number, options?: ContinuousParam): V
 | time     | number                                | 是   | 长期振动的起始时间。     |
 | duration | number                                | 是   | 长期振动的持续时间。     |
 | options  | [ContinuousParam](#continuousparam18) | 否   | 可选参数，可选参数对象。 |
+
+**返回值**：
+
+| 类型                   | 说明                                                 |
+| ---------------------- | ---------------------------------------------------- |
+| VibratorPatternBuilder | 返回已添加连续振动事件的VibratorPatternBuilder对象。 |
 
 **错误码**：
 
@@ -874,13 +916,11 @@ try {
 }
 ```
 
-## vibrator.addTransientEvent<sup>18+</sup>
+### vibrator('addTransientEvent')<sup>18+</sup>
 
 addTransientEvent(time: number, options?: TransientParam): VibratorPatternBuilder;
 
 添加短振事件的方法成VibratorPattern对象。
-
-**需要权限**：ohos.permission.VIBRATE
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -890,6 +930,12 @@ addTransientEvent(time: number, options?: TransientParam): VibratorPatternBuilde
 | ------- | ----------------------------------- | ---- | ------------------------ |
 | time    | number                              | 是   | 长期振动的起始时间。     |
 | options | [TransientParam](#transientparam18) | 否   | 可选参数，可选参数对象。 |
+
+**返回值**：
+
+| 类型                   | 说明                                             |
+| ---------------------- | ------------------------------------------------ |
+| VibratorPatternBuilder | 返回已添加短振事件的VibratorPatternBuilder对象。 |
 
 **错误码**：
 
@@ -920,13 +966,11 @@ try {
 }
 ```
 
-## vibrator.build<sup>18+</sup>
+### vibrator('build')<sup>18+</sup>
 
 build(): VibratorPattern;
 
 构造组合短事件或长事件的振动序列的方法。
-
-**需要权限**：ohos.permission.VIBRATE
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -1120,7 +1164,7 @@ try {
 
 | 名称   | 类型                       | 必填 | 说明                                                 |
 | ------ | -------------------------- | ---- | ---------------------------------------------------- |
-| time   | time                       | 是   | 振动绝对起始时间。                                   |
+| time   | number                     | 是   | 振动绝对起始时间。                                   |
 | events | Array&lt;VibratorEvent&gt; | 是   | 振动事件数组，build()方法返回的VibratorPattern对象。 |
 
 ## ContinuousParam<sup>18+</sup>

@@ -69,8 +69,10 @@ CustomDialog是自定义弹出框，可用于广告、中奖、警告、软件�
    ```ts
    @CustomDialog
    struct CustomDialogExample {
-     cancel?: () => void
-     confirm?: () => void
+     cancel: () => void = () => {
+     }
+     confirm: () => void = () => {
+     }
      controller: CustomDialogController
    
      build() {
@@ -188,7 +190,7 @@ CustomDialog是自定义弹出框，可用于广告、中奖、警告、软件�
          confirm: () => {
            this.onAccept()
          },
-         textValue: $textValue
+         textValue: this.textValue
        })
      })
    

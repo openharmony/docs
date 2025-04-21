@@ -7,6 +7,8 @@
 > **说明：**
 >
 > 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> 该组件不支持在Wearable设备上使用。
 
 
 ## 导入模块
@@ -48,10 +50,10 @@ boolean, colorOptions?: ProgressButtonColorOptions, progressButtonRadius?: Lengt
 
 | 名称              | 类型                                     | 必填 | 说明                                                                |
 |-----------------|----------------------------------------|----|-------------------------------------------------------------------|
-| progressColor   | [ResourceStr](ts-types.md#resourcestr) | 否  | 进度条颜色。<br/>默认值：#330A59F7                                          |
-| borderColor     | [ResourceStr](ts-types.md#resourcestr) | 否  | 按钮描边颜色。<br/>默认值：#330A59F7                                         |
-| textColor       | [ResourceStr](ts-types.md#resourcestr) | 否  | 按钮文本颜色。<br/>默认值：系统默认值                                             |
-| backgroundColor | [ResourceStr](ts-types.md#resourcestr) | 否  | 按钮背景色。<br/>默认值：\$r('sys.color.ohos_id_color_foreground_contrary') |
+| progressColor   | [ResourceColor](ts-types.md#resourcecolor) | 否  | 进度条颜色。<br/>默认值：#330A59F7                                          |
+| borderColor     | [ResourceColor](ts-types.md#resourcecolor) | 否  | 按钮描边颜色。<br/>默认值：#330A59F7                                         |
+| textColor       | [ResourceColor](ts-types.md#resourcecolor) | 否  | 按钮文本颜色。<br/>默认值：系统默认值                                             |
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否  | 按钮背景色。<br/>默认值：\$r('sys.color.ohos_id_color_foreground_contrary') |
 
 ## 事件
 不支持[通用事件](ts-component-general-events.md)。

@@ -12,7 +12,7 @@ formInfo模块提供了卡片信息和状态等相关类型和枚举。
 import { formInfo } from '@kit.FormKit';
 ```
 
-## formInfo.FormInfo
+## FormInfo
 
 卡片配置信息。
 
@@ -23,14 +23,14 @@ import { formInfo } from '@kit.FormKit';
 | bundleName  | string               | 是    | 否     | 卡片所属包的Bundle名称。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | moduleName  | string               | 是    | 否     | 卡片所属模块的模块名称。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | abilityName | string               | 是    | 否     | 卡片所属的Ability名称。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| name        | string               | 是    | 否     | 应用/原子化服务名称。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| displayName<sup>11+</sup> | string               | 是    | 否     | 卡片名称。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| name        | string               | 是    | 否     | 卡片名称。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| displayName<sup>11+</sup> | string               | 是    | 否     | 卡片展示名称。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | displayNameId<sup>11+</sup> | number               | 是    | 否     | 卡片预览时标识卡片名称的ID。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | description | string               | 是    | 否     | 卡片描述。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | descriptionId<sup>10+</sup>      | number               | 是    | 否     | 卡片描述id。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| type        | [FormType](#forminfoformtype)             | 是    | 否     | 卡片类型。当前支持JS卡片、ArkTS卡片。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| type        | [FormType](#formtype)             | 是    | 否     | 卡片类型。当前支持JS卡片、ArkTS卡片。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | jsComponentName      | string               | 是    | 否     | js卡片的组件名。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| colorMode  | [ColorMode](#forminfocolormode) | 是    | 否     | 卡片颜色模式。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| colorMode  | [ColorMode](#colormode) | 是    | 否     | 卡片颜色模式。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | isDefault    | boolean      | 是    | 否     | 卡片是否是默认卡片。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | updateEnabled  | boolean               | 是    | 否     | 卡片是否使能更新。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | formVisibleNotify  | boolean        | 是    | 否     | 卡片是否使能可见通知。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -38,16 +38,16 @@ import { formInfo } from '@kit.FormKit';
 | formConfigAbility | string               | 是    | 否     | 卡片配置ability。指定长按卡片弹出的选择框内，编辑选项所对应的ability。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | updateDuration        | number       | 是    | 否     | 卡片更新周期。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | defaultDimension  | number | 是    | 否     | 卡片规格  <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| supportDimensions    | Array&lt;number&gt;      | 是    | 否     | 卡片支持的规格。具体可选规格参考[FormDimension](#forminfoformdimension) <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| supportDimensions    | Array&lt;number&gt;      | 是    | 否     | 卡片支持的规格。具体可选规格参考[FormDimension](#formdimension) <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | customizeData    | Record\<string, string>      | 是    | 否     | 卡片用户数据。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | isDynamic<sup>10+</sup>      | boolean               | 是    | 否     | 卡片是否为动态卡片。<br/>仅ArkTS卡片区分动静态卡片，JS卡片均为动态卡片。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | transparencyEnabled<sup>11+</sup>      | boolean               | 是    | 否     | 卡片是否支持设置背景透明度。<br/>ArkTS卡片由用户配置决定是否支持，JS卡片均不支持。  <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| supportedShapes<sup>12+</sup>    | Array&lt;number&gt;      | 是    | 否     | 卡片支持的形状。具体可选形状参考[FormShape<sup>12+</sup>](#forminfoformshape12) <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
-| previewImages<sup>18+</sup> | Array&lt;number&gt; | 是 | 否 | 卡片预览图资源ID。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-| enableBlurBackground<sup>18+</sup>  | boolean               | 是    | 否     | 卡片是否使用模糊背板。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
-|renderingMode<sup>18+</sup>|[RenderingMode](#forminforenderingmode18)|是|否|卡片渲染模式。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+| supportedShapes<sup>12+</sup>    | Array&lt;number&gt;      | 是    | 否     | 卡片支持的形状。具体可选形状参考[FormShape<sup>12+</sup>](#formshape12) <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
+| <!--DelRow-->previewImages<sup>18+</sup> | Array&lt;number&gt; | 是 | 否 | 卡片预览图资源ID。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+| <!--DelRow-->enableBlurBackground<sup>18+</sup>  | boolean               | 是    | 否     | 卡片是否使用模糊背板。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+| <!--DelRow-->renderingMode<sup>18+</sup>|[RenderingMode](./js-apis-app-form-formInfo-sys.md#renderingmode18)|是|否|卡片渲染模式。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
-## formInfo.FormType
+## FormType
 
 支持的卡片类型枚举。
 
@@ -60,7 +60,7 @@ import { formInfo } from '@kit.FormKit';
 | JS      | 1    | 卡片类型为JS。   |
 | eTS     | 2    | 卡片类型为ArkTS。 |
 
-## formInfo.ColorMode
+## ColorMode
 
 卡片支持的颜色模式枚举。
 
@@ -74,7 +74,7 @@ import { formInfo } from '@kit.FormKit';
 | MODE_DARK    | 0   | 表示暗色。   |
 | MODE_LIGHT     | 1   | 表示亮色。   |
 
-## formInfo.FormStateInfo
+## FormStateInfo
 
 卡片状态信息。
 
@@ -84,10 +84,10 @@ import { formInfo } from '@kit.FormKit';
 
 | 名称        | 类型                 | 可读    | 可写    | 说明                                                         |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
-| formState  | [FormState](#forminfoformstate)               | 是    | 否     | 卡片状态。                          |
+| formState  | [FormState](#formstate)               | 是    | 否     | 卡片状态。                          |
 | want  | [Want](../apis-ability-kit/js-apis-app-ability-want.md)         | 是    | 否     | Want文本内容。    |
 
-##  formInfo.FormState
+## FormState
 
 卡片状态枚举。
 
@@ -101,7 +101,7 @@ import { formInfo } from '@kit.FormKit';
 | DEFAULT     | 0   | 表示默认状态。   |
 | READY      | 1   | 表示就绪状态。   |
 
-##  formInfo.FormParam
+## FormParam
 
 卡片参数枚举。
 
@@ -122,11 +122,11 @@ import { formInfo } from '@kit.FormKit';
 | PARAM_FORM_CUSTOMIZE_KEY<sup>10+</sup>    | 'ohos.extra.param.key.form_customize'   | 自定义数据。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | FORM_RENDERING_MODE_KEY<sup>11+</sup>    | 'ohos.extra.param.key.form_rendering_mode'   | 卡片渲染模式。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | HOST_BG_INVERSE_COLOR_KEY<sup>12+</sup>    | 'ohos.extra.param.key.host_bg_inverse_color'   | 卡片使用方的背景反色颜色值。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| FORM_LOCATION_KEY<sup>12+</sup>    | 'ohos.extra.param.key.form_location'   | 卡片位置。 <br>OTHER                         -1    (其他位置) <br>DESKTOP                       0     (桌面) <br>FORM_CENTER                   1     (桌面的卡片中心) <br>FORM_MANAGER                  2     (桌面的卡片管理器) <br>NEGATIVE_SCREEN               3     (负一屏) <br>FORM_CENTER_NEGATIVE_SCREEN   4     (负一屏的服务中心) <br>FORM_MANAGER_NEGATIVE_SCREEN  5     (负一屏的卡片管理器) <br>SCREEN_LOCK                   6     (锁屏) <br>AI_SUGGESTION                 7     (小艺建议推荐区)
+| FORM_LOCATION_KEY<sup>12+</sup>    | 'ohos.extra.param.key.form_location'   | 卡片位置。 <br>OTHER                         -1    （其他位置） <br>DESKTOP                       0     （桌面） <br>FORM_CENTER                   1     （桌面的卡片中心） <br>FORM_MANAGER                  2     （桌面的卡片管理器） <br>NEGATIVE_SCREEN               3     （负一屏） <br>FORM_CENTER_NEGATIVE_SCREEN   4     （负一屏的服务中心） <br>FORM_MANAGER_NEGATIVE_SCREEN  5     （负一屏的卡片管理器） <br>SCREEN_LOCK                   6     （锁屏） <br>AI_SUGGESTION                 7     （小艺建议推荐区）|
 | FORM_PERMISSION_NAME_KEY<sup>12+</sup> | 'ohos.extra.param.key.permission_name' | 用户授权权限名称。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | FORM_PERMISSION_GRANTED_KEY<sup>12+</sup> | 'ohos.extra.param.key.permission_granted' | 用户是否授权。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
-##  formInfo.FormDimension
+## FormDimension
 
 定义卡片尺寸枚举。
 
@@ -144,7 +144,7 @@ import { formInfo } from '@kit.FormKit';
 | DIMENSION_2_3<sup>18+<sup>      | 8   | 2 x 3 form。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用，为穿戴设备使用。|
 | DIMENSION_3_3<sup>18+<sup>      | 9   | 3 x 3 form。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用，为穿戴设备使用。|
 
-##  formInfo.FormShape<sup>12+</sup> 
+## FormShape<sup>12+</sup> 
 
 定义卡片形状枚举。
 
@@ -155,7 +155,7 @@ import { formInfo } from '@kit.FormKit';
 | RECT        | 1   | 方形 form。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | CIRCLE      | 2   | 圆形 form。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
-## formInfo.FormInfoFilter
+## FormInfoFilter
 
 卡片信息过滤器，仅将符合过滤器内要求的卡片信息返回。
 
@@ -169,7 +169,7 @@ import { formInfo } from '@kit.FormKit';
 
 
 
-## formInfo.VisibilityType
+## VisibilityType
 
 卡片当前可见类型枚举。
 
@@ -184,7 +184,7 @@ import { formInfo } from '@kit.FormKit';
 | FORM_INVISIBLE   | 2   | 表示卡片为不可见。 |
 
 
-## formInfo.LaunchReason<sup>10+</sup>
+## LaunchReason<sup>10+</sup>
 
 卡片创建原因枚举。
 
@@ -197,16 +197,3 @@ import { formInfo } from '@kit.FormKit';
 | FORM_DEFAULT | 1   | 表示卡片创建原因为默认创建。 |
 | FORM_SHARE   | 2   | 表示卡片创建原因为共享创建。 |
 
-## formInfo.RenderingMode<sup>18+</sup>
-
-卡片支持的渲染模式枚举。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Ability.Form
-
-| 名称        | 值   | 说明         |
-| ----------- | ---- | ------------ |
-| AUTO_COLOR    | 0    | 表示自动模式。   |
-| FULL_COLOR     | 1   | 表示全色模式。   |
-| SINGLE_COLOR      | 2   | 表示单色模式。   |

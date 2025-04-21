@@ -273,7 +273,7 @@ killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCal
 | -------- | -------- | -------- | -------- |
 | bundleName | string | 是 | 应用Bundle名称。 |
 | accountId | number | 是 | 系统账号的账号ID，详情参考[getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
-| callback | AsyncCallback\<void\> | 是 | 回调函数，当切断account进程成功。，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback\<void\> | 是 | 回调函数，当切断account进程成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 

@@ -28,7 +28,7 @@ onCreate(want: Want): void
 **示例：**
 
 ```ts
-import PrintExtensionAbility from '@ohos.app.ability.PrintExtensionAbility';
+import { PrintExtensionAbility } from '@kit.BasicServicesKit';
 import Want from '@ohos.app.ability.Want';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
@@ -50,7 +50,7 @@ onStartDiscoverPrinter(): void
 **示例：**
 
 ```ts
-import PrintExtensionAbility from '@ohos.app.ability.PrintExtensionAbility';
+import { PrintExtensionAbility } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onStartDiscoverPrinter(): void {
@@ -71,7 +71,7 @@ onStopDiscoverPrinter(): void
 **示例：**
 
 ```ts
-import PrintExtensionAbility from '@ohos.app.ability.PrintExtensionAbility';
+import { PrintExtensionAbility } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onStopDiscoverPrinter(): void {
@@ -97,7 +97,7 @@ onConnectPrinter(printerId: number): void
 **示例：**
 
 ```ts
-import PrintExtensionAbility from '@ohos.app.ability.PrintExtensionAbility';
+import { PrintExtensionAbility } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onConnectPrinter(printerId: number): void {
@@ -123,7 +123,7 @@ onDisconnectPrinter(printerId: number): void
 **示例：**
 
 ```ts
-import PrintExtensionAbility from '@ohos.app.ability.PrintExtensionAbility';
+import { PrintExtensionAbility } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onDisconnectPrinter(printerId: number): void {
@@ -144,7 +144,7 @@ onDestroy(): void
 **示例：**
 
 ```ts
-import PrintExtensionAbility from '@ohos.app.ability.PrintExtensionAbility';
+import { PrintExtensionAbility } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onDestroy(): void {

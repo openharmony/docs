@@ -28,9 +28,10 @@
 ### 开启、关闭蓝牙
 1. import需要的access模块。
 2. 需要SystemCapability.Communication.Bluetooth.Core系统能力。
-3. 开启蓝牙。
-4. 关闭蓝牙。
-5. 示例代码：
+3. 需要申请权限ohos.permission.ACCESS_BLUETOOTH。
+4. 开启蓝牙。
+5. 关闭蓝牙。
+6. 示例代码：
 
     ```ts
     import { access } from '@kit.ConnectivityKit';

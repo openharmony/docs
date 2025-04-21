@@ -614,7 +614,7 @@ Sets the background color for this RenderNode.
 
 | Name| Type  | Mandatory| Description                  |
 | ------ | ------ | ---- | ---------------------- |
-| color  | number | Yes  | Background color value, in ARGB format.|
+| color  | number | Yes  | Background color value, in ARGB format, for example, **0xE5E5E5**.|
 
 get backgroundColor(): number
 
@@ -753,7 +753,7 @@ Sets the opacity for this RenderNode. If the value passed in is less than **0**,
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| value  | number | Yes  | Opacity to set.<br>Value range: [0, 1]|
+| value  | number | Yes  | Opacity to set.<br>Value range: [0, 1]. A larger value indicates lower transparency.|
 
 get opacity(): number
 
@@ -767,7 +767,7 @@ Obtains the opacity of this RenderNode.
 
 | Type  | Description                                     |
 | ------ | ----------------------------------------- |
-| number | Opacity of the current RenderNode. The default value is **1**.|
+| number | Opacity of the current RenderNode. The default value is **1** (fully opaque).|
 
 **Example**
 ```ts
@@ -2595,7 +2595,7 @@ Sets whether to prioritize the drawing of this RenderNode and its childe nodes. 
 
 | Name   | Type                                              | Mandatory| Description              |
 | --------- | -------------------------------------------------- | ---- | ------------------ |
-| isNodeGroup | boolean | Yes  | Whether to prioritize the drawing of the current RenderNode and its childe nodes.|
+| isNodeGroup | boolean | Yes  | Whether to prioritize the drawing of the current RenderNode and its childe nodes.<br>The value **true** means to prioritize the drawing of the current RenderNode and its childe nodes, and **false** means the opposite.|
 
 get markNodeGroup(): boolean
 
@@ -2607,7 +2607,7 @@ Obtains whether to prioritize the drawing of this RenderNode and its childe node
 
 | Type   | Description                                       |
 | ------- | ------------------------------------------- |
-| boolean | Whether to prioritize the drawing of the current RenderNode and its childe nodes. The default value is **false**.|
+| boolean | Whether to prioritize the drawing of this RenderNode and its childe nodes.<br>The value **true** means to prioritize the drawing of the current RenderNode and its childe nodes, and **false** means the opposite.<br>Default value: **false**|
 
 **Example**
 

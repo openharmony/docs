@@ -11,6 +11,7 @@
 
 **相关模块：** [NativeWindow](_native_window.md)
 
+**所在头文件：**[external_window.h](external__window_8h.md)
 
 ## 汇总
 
@@ -33,9 +34,9 @@
 int32_t OHExtDataHandle::fd
 ```
 
-**描述**
+**描述：**
 
-句柄 Fd， -1代表不支持。
+句柄 Fd，-1代表不支持。
 
 
 ### reserve
@@ -44,7 +45,7 @@ int32_t OHExtDataHandle::fd
 int32_t OHExtDataHandle::reserve[0]
 ```
 
-**描述**
+**描述：**
 
 Reserve数组。
 
@@ -55,6 +56,6 @@ Reserve数组。
 uint32_t OHExtDataHandle::reserveInts
 ```
 
-**描述**
+**描述：**
 
 Reserve数组的个数。

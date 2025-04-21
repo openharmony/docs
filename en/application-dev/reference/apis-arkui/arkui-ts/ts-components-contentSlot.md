@@ -22,9 +22,23 @@ Called when content is added to a placeholder component
 
 | Name | Type| Mandatory| Description                                                    |
 | ------- | -------- | ---- | ------------------------------------------------------------ |
-| content | [Content](../js-apis-arkui-Content.md)  | Yes  | Manager of the **ContentSlot** component. Through the APIs provided by the native side, it can register and trigger the attach and detach event callbacks for **ContentSlot**, as well as manage the child components of **ContentSlot**.|
+| content | [Content](#content)  | Yes  | Manager of the **ContentSlot** component. Through the APIs provided by the native side, it can register and trigger the attach and detach event callbacks for **ContentSlot**, as well as manage the child components of **ContentSlot**.|
 
-**Example**
+## Content
+
+type Content = Content
+
+Defines a base class for **ComponentContent** and **NodeContent**.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Type| Description                                                    |
+| ---- | ------------------------------------------------------------ |
+| [Content](../js-apis-arkui-Content.md)   | Base class for **ComponentContent** and **NodeContent**.|
+
+## Example
 
 The following example shows the basic usage of **ContentSlot**.
 
@@ -35,18 +49,20 @@ import { NodeContent } from '@kit.ArkUI'
 @Entry
 @Component
 struct Parent {
-    private nodeContent: Content = new NodeContent();
+  private nodeContent: Content = new NodeContent();
 
-    aboutToAppear() {
-        // Create a node through the C API and add it to the nodeContent manager.
-        nativeNode.createNativeNode(this.nodeContent);
-    }
+  aboutToAppear() {
+    // Create a node through the C API and add it to the nodeContent manager.
+    nativeNode.createNativeNode(this.nodeContent);
+  }
 
-    build() {
-        Column() {
-            // Display the native components stored in the nodeContent manager.
-            ContentSlot(this.nodeContent)
-        }
+  build() {
+    Column() {
+      // Display the native components stored in the nodeContent manager.
+      ContentSlot(this.nodeContent)
     }
+  }
 }
 ```
+
+ 

@@ -50,7 +50,7 @@ const asset1: sendableRelationalStore.NonSendableAsset = {
   path: '//path/example',
   createTime: 'createTime1',
   modifyTime: 'modifyTime1',
-  size: 'size1',
+  size: 'size1'
 };
 const asset2: sendableRelationalStore.NonSendableAsset = {
   name: 'hangman',
@@ -58,8 +58,8 @@ const asset2: sendableRelationalStore.NonSendableAsset = {
   path: '//path/example',
   createTime: 'createTime1',
   modifyTime: 'modifyTime1',
-  size: 'size1',
-}
+  size: 'size1'
+};
 const u8 = new Uint8Array([1, 2, 3]);
 const valuesBucket: sendableRelationalStore.NonSendableBucket = {
   age: 18,
@@ -69,7 +69,7 @@ const valuesBucket: sendableRelationalStore.NonSendableBucket = {
   data1: asset1,
   blobType: u8,
   bigValue: BigInt("15822401018187971961171"),
-  data2: [asset1, asset2],
+  data2: [asset1, asset2]
 };
 
 const sendableValuesBucket = sendableRelationalStore.toSendableValuesBucket(valuesBucket);
@@ -113,7 +113,7 @@ const asset1: sendableRelationalStore.NonSendableAsset = {
   path: '//path/example',
   createTime: 'createTime1',
   modifyTime: 'modifyTime1',
-  size: 'size1',
+  size: 'size1'
 };
 const asset2: sendableRelationalStore.NonSendableAsset = {
   name: 'hangman',
@@ -121,8 +121,8 @@ const asset2: sendableRelationalStore.NonSendableAsset = {
   path: '//path/example',
   createTime: 'createTime1',
   modifyTime: 'modifyTime1',
-  size: 'size1',
-}
+  size: 'size1'
+};
 const u8 = new Uint8Array([1, 2, 3]);
 
 const sendableValuesBucket = sendableRelationalStore.toSendableValuesBucket({
@@ -133,7 +133,7 @@ const sendableValuesBucket = sendableRelationalStore.toSendableValuesBucket({
   data1: asset1,
   blobType: u8,
   bigValue: BigInt("15822401018187971961171"),
-  data2: [asset1, asset2],
+  data2: [asset1, asset2]
 });
 const nonSendableBucket = sendableRelationalStore.fromSendableValuesBucket(sendableValuesBucket);
 ```
@@ -174,7 +174,7 @@ const asset1: sendableRelationalStore.NonSendableAsset = {
   path: '//path/example',
   createTime: 'createTime1',
   modifyTime: 'modifyTime1',
-  size: 'size1',
+  size: 'size1'
 };
 const sendableAsset = sendableRelationalStore.toSendableAsset(asset1);
 ```
@@ -216,7 +216,7 @@ const asset1: sendableRelationalStore.NonSendableAsset = {
   path: '//path/example',
   createTime: 'createTime1',
   modifyTime: 'modifyTime1',
-  size: 'size1',
+  size: 'size1'
 };
 const sendableAsset = sendableRelationalStore.toSendableAsset(asset1);
 const normalAsset = sendableRelationalStore.fromSendableAsset(sendableAsset);
@@ -269,7 +269,7 @@ type ValueType = null | number | string | boolean | collection.Uint8Array | Asse
 | [Asset](#asset)  | 表示值类型为附件Asset。<br/>当字段类型是Asset时，在创建表的sql语句中，类型应当为：ASSET。             |
 | [Assets](#assets) | 表示值类型为附件数据集合Assets。<br/>当字段类型是Assets时，在创建表的sql语句中，类型应当为：ASSETS。 |
 | [collection.Float32Array](../apis-arkts/js-apis-arkts-collections.md#collectionstypedarray) | 表示值类型为浮点数组。<br/>当字段类型是collection.Float32Array时，在创建表的sql语句中，类型应当为：floatvector(128)。 |
-| bigint | 表示值类型为任意长度的整数。<br/>当字段类型是bigint时，在创建表的sql语句中，类型应当为：UNLIMITED INT, 详见[通过关系型数据库实现数据持久化](../../database/data-persistence-by-rdb-store.md)。<br/>**说明：** <br>bigint类型当前不支持比较大小，不支持如下谓词：between、notBetween、greaterThanlessThan、greaterThanOrEqualTo、lessThanOrEqualTo、orderByAsc、orderByDesc。<br/>bigint类型字段的数据写入时，需通过BigInt()方法或在数据尾部添加'n'的方式明确为bigint类型，如'let data = BigInt(1234)'或'let data = 1234n'。<br/>bigint字段如果写入number类型的数据，则查询该数据的返回类型为number，而非bigint。 |
+| bigint | 表示值类型为任意长度的整数。<br/>当字段类型是bigint时，在创建表的sql语句中，类型应当为：UNLIMITED INT，详见[通过关系型数据库实现数据持久化](../../database/data-persistence-by-rdb-store.md)。<br/>**说明：** <br>bigint类型当前不支持比较大小，不支持如下谓词：between、notBetween、greaterThanlessThan、greaterThanOrEqualTo、lessThanOrEqualTo、orderByAsc、orderByDesc。<br/>bigint类型字段的数据写入时，需通过BigInt()方法或在数据尾部添加'n'的方式明确为bigint类型，如'let data = BigInt(1234)'或'let data = 1234n'。<br/>bigint字段如果写入number类型的数据，则查询该数据的返回类型为number，而非bigint。 |
 
 ## ValuesBucket
 

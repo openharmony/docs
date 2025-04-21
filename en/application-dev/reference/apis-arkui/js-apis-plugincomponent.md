@@ -20,12 +20,12 @@ Describes the **PluginComponent** template parameters.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name   | Type  | Mandatory | Description                       |
+| Name   | Type  | Mandatory| Description                       |
 | ------- | ------ | ---- | --------------------------- |
 | source  | string | Yes  | Component template name.               |
-| ability | string | Yes  | Bundle name of the provider ability. |
+| ability | string | Yes  | Bundle name of the provider ability.|
 
-## PluginComponentManager
+## pluginComponentManager
 
 Implements a plugin component manager.
 
@@ -40,11 +40,11 @@ Stores information in key-value pairs in JSON format.
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 
-| Value Range             | Description                                    |
+| Type             | Description                                    |
 | --------------------- | ---------------------------------------- |
-| [key: string]         | Keyword. The value is a string and can be an empty string. |
+| [key: string]         | Keyword. The value is a string and can be an empty string.|
 | number                | Key value of the number type.                |
-| string                | Key value of the string type. The value can be an empty string. |
+| string                | Key value of the string type. The value can be an empty string.|
 | boolean               | Key value of the Boolean type.              |
 | []                    | Key value. The value can be [].                      |
 | [KVObject](#kvobject) | Key value of the KVObject type.            |
@@ -52,9 +52,7 @@ Stores information in key-value pairs in JSON format.
 
 ### PushParameters
 
-Sets the parameters to be passed in the **PluginManager.Push** API in the FA model.
-
-**Model restriction**: This API can be used only in the FA model.
+Defines the parameters required when using the **PluginManager.Push** API.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -66,13 +64,11 @@ Sets the parameters to be passed in the **PluginManager.Push** API in the FA mod
 | name      | string                              | Yes   | Component name.                                   |
 | data      | [KVObject](#kvobject)               | Yes   | Component data value.                                  |
 | extraData | [KVObject](#kvobject)               | Yes   | Additional data value.                                  |
-| jsonPath  | string                              | No   | Path to the [external.json](#about-the-externaljson-file) file that stores the template path. |
+| jsonPath  | string                              | No   | Path to the [external.json](#about-the-externaljson-file) file that stores the template path.|
 
 ### RequestParameters
 
-Sets the parameters to be passed in the **PluginManager.Request** API in the FA model.
-
-**Model restriction**: This API can be used only in the FA model.
+Defines the parameters required when using the **PluginManager.Request** API.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -83,7 +79,7 @@ Sets the parameters to be passed in the **PluginManager.Request** API in the FA 
 | want     | [Want](../apis-ability-kit/js-apis-application-want.md) | Yes   | Ability information of the component provider.                         |
 | name     | string                              | Yes   | Name of the requested component.                                 |
 | data     | [KVObject](#kvobject)               | Yes   | Additional data.                                   |
-| jsonPath | string                              | No   | Path to the [external.json](#about-the-externaljson-file) file that stores the template path. Request communication is not triggered when **jsonPath** is not empty or not set. |
+| jsonPath | string                              | No   | Path to the [external.json](#about-the-externaljson-file) file that stores the template path. Request communication is not triggered when **jsonPath** is not empty or not set.|
 
 ### RequestCallbackParameters
 
@@ -95,9 +91,9 @@ Provides the result returned after the **PluginManager.Request** API is called.
 
 | Name               | Type                                      | Mandatory  | Description   |
 | ----------------- | ---------------------------------------- | ---- | ----- |
-| componentTemplate | [PluginComponentTemplate](#plugincomponenttemplate) | Yes   | Component template. |
-| data              | [KVObject](#kvobject)                    | Yes   | Component data. |
-| extraData         | [KVObject](#kvobject)                    | Yes   | Additional data. |
+| componentTemplate | [PluginComponentTemplate](#plugincomponenttemplate) | Yes   | Component template.|
+| data              | [KVObject](#kvobject)                    | Yes   | Component data.|
+| extraData         | [KVObject](#kvobject)                    | Yes   | Additional data.|
 
 ### RequestEventResult
 
@@ -107,11 +103,11 @@ Provides the result returned after the request listener is registered and the re
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name       | Type                   | Mandatory  | Description   |
-| --------- | --------------------- | ---- | ----- |
-| template  | string                | No   | Component template. |
-| data      | [KVObject](#kvobject) | No   | Component data. |
-| extraData | [KVObject](#kvobject) | No   | Additional data. |
+| Type                   | Description   |
+| --------------------- | ----- |
+| string                | Component template.|
+| [KVObject](#kvobject) | Component data.|
+| [KVObject](#kvobject) | Additional data.|
 
 ### OnPushEventCallback
 
@@ -122,12 +118,14 @@ Registers the listener for the push event.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 | Name       | Type                                      | Mandatory  | Description                    |
 | --------- | ---------------------------------------- | ---- | ---------------------- |
 | source    | [Want](../apis-ability-kit/js-apis-application-want.md)      | Yes   | Information about the push request sender.        |
-| template  | [PluginComponentTemplate](#plugincomponenttemplate) | Yes   | Name of the request component template for the push request sender. |
+| template  | [PluginComponentTemplate](#plugincomponenttemplate) | Yes   | Name of the request component template for the push request sender.|
 | data      | [KVObject](#kvobject)                    | Yes   | Data.                   |
 | extraData | [KVObject](#kvobject)                    | Yes   | Additional data.                 |
 
@@ -155,13 +153,15 @@ Registers the listener for the request event.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 | Name       | Type                                 | Mandatory  | Description               |
 | --------- | ----------------------------------- | ---- | ----------------- |
-| source    | [Want](../apis-ability-kit/js-apis-application-want.md) | Yes   | Information about the request sender. |
+| source    | [Want](../apis-ability-kit/js-apis-application-want.md) | Yes   | Information about the request sender.|
 | name      | string                              | Yes   | Template name.            |
-| extraData | [KVObject](#kvobject)               | Yes   | Additional data.            |
+| data | [KVObject](#kvobject)               | Yes   | Additional data.            |
 
 **Example**
 
@@ -182,13 +182,11 @@ function onRequestListener(source: Want, name: string, data: pluginComponentMana
 }
 ```
 
-### push
+### pluginComponentManager.push
 
 push(param: PushParameters , callback: AsyncCallback&lt;void&gt;): void
 
 Pushes the component and data to the component user.
-
-**Model restriction**: This API can be used only in the FA model.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -198,7 +196,7 @@ Pushes the component and data to the component user.
 | Name     | Type                               | Mandatory  | Description          |
 | -------- | --------------------------------- | ---- | ------------ |
 | param    | [PushParameters](#pushparameters) | Yes   | Information about the component user. |
-| callback | AsyncCallback&lt;void&gt;         | Yes   | Asynchronous callback used to return the result. |
+| callback | AsyncCallback&lt;void&gt;         | Yes   | Asynchronous callback used to return the result.|
 
 **Example**
 
@@ -226,13 +224,11 @@ pluginComponentManager.push(
 )
 ```
 
-### request
+### pluginComponentManager.request
 
 request(param: RequestParameters, callback: AsyncCallback&lt;RequestCallbackParameters&gt;): void
 
 Requests the component from the component provider.
-
-**Model restriction**: This API can be used only in the FA model.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -241,10 +237,10 @@ Requests the component from the component provider.
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | param    | [RequestParameters](#requestparameters)                      | Yes  | Information about the component request.                                    |
-| callback | AsyncCallback&lt;[RequestCallbackParameters](#requestcallbackparameters)&gt; | Yes  | Asynchronous callback used to return the requested data. |
+| callback | AsyncCallback&lt;[RequestCallbackParameters](#requestcallbackparameters)&gt; | Yes  | Asynchronous callback used to return the requested data.|
 
 **Example**
 
@@ -272,7 +268,7 @@ pluginComponentManager.request(
 )
 ```
 
-### on
+### pluginComponentManager.on
 
 on(eventType: string, callback: OnPushEventCallback | OnRequestEventCallback ): void
 
@@ -287,7 +283,7 @@ Listens for events of the request type and returns the requested data, or listen
 | Name      | Type                                      | Mandatory  | Description                                      |
 | --------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | eventType | string                                   | Yes   | Type of the event to listen for. The options are as follows:<br>**"push"**: The component provider pushes data to the component user.<br>**"request"**: The component user proactively requests data from the component provider.|
-| callback  | [OnPushEventCallback](#onpusheventcallback) \| [OnRequestEventCallback](#onrequesteventcallback) | Yes   | Callback used to return the result. The type is [OnPushEventCallback](#onpusheventcallback) for the push event and [OnRequestEventCallback](#onrequesteventcallback) for the request event. |
+| callback  | [OnPushEventCallback](#onpusheventcallback) \| [OnRequestEventCallback](#onrequesteventcallback) | Yes   | Callback used to return the result. The type is [OnPushEventCallback](#onpusheventcallback) for the push event and [OnRequestEventCallback](#onrequesteventcallback) for the request event.|
 
 **Example**
 

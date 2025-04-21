@@ -6,12 +6,12 @@
 
 系统应用可调用接口实现如下功能：
 
-- 注册和解除注册设备上下线变化监听
-- 发现周边不可信设备
-- 认证和取消认证设备
-- 查询可信设备列表
-- 查询本地设备信息，包括设备名称，设备类型和设备标识
-- 发布设备发现
+- 注册和解除注册设备上下线变化监听。
+- 发现周边不可信设备。
+- 认证和取消认证设备。
+- 查询可信设备列表。
+- 查询本地设备信息，包括设备名称，设备类型和设备标识。
+- 发布设备发现。
 
 > **说明：**
 >
@@ -28,7 +28,7 @@ import deviceManager from '@ohos.distributedHardware.deviceManager';
 
 ## deviceManager.createDeviceManager
 
-createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager&gt;): void
+createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager&gt;): void;
 
 创建一个设备管理器实例。
 
@@ -49,7 +49,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 | 参数名     | 类型                                                 | 必填 | 说明                                                        |
 | ---------- | ---------------------------------------------------- | ---- | ----------------------------------------------------------- |
-| bundleName | string                                               | 是   | 指示应用程序的Bundle名称。                                  |
+| bundleName | string                                               | 是   | 指示应用程序的Bundle名称。长度范围1~255字符。                                  |
 | callback   | AsyncCallback&lt;[DeviceManager](#devicemanager)&gt; | 是   | DeviceManager实例创建时调用的回调，返回设备管理器对象实例。 |
 
 **示例：**
@@ -149,7 +149,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 | 名称            | 类型                                | 必填   | 说明                |
 | ------------- | --------------------------------- | ---- | ----------------- |
-| subscribeId   | number                            | 是    | 发现标识，用于标识不同的发现周期。 |
+| subscribeId   | number                            | 是    | 发现标识，用于标识不同的发现周期。 取值范围1~65535。|
 | mode          | [DiscoverMode ](#discovermode)    | 是    | 发现模式。             |
 | medium        | [ExchangeMedium](#exchangemedium) | 是    | 发现类型。             |
 | freq          | [ExchangeFreq](#exchangefreq)     | 是    | 发现频率。             |
@@ -264,7 +264,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 ### release
 
-release(): void
+release(): void;
 
 设备管理实例不再使用后，通过该方法释放DeviceManager实例。
 
@@ -286,7 +286,7 @@ release(): void
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -300,7 +300,7 @@ release(): void
 
 ### getTrustedDeviceListSync
 
-getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;
+getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;;
 
 同步获取所有可信设备列表。
 
@@ -328,7 +328,7 @@ getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -343,7 +343,7 @@ getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;
 
 ### getTrustedDeviceListSync<sup>10+</sup>
 
-getTrustedDeviceListSync(isRefresh: boolean): Array&lt;DeviceInfo&gt;
+getTrustedDeviceListSync(isRefresh: boolean): Array&lt;DeviceInfo&gt;;
 
 打开软总线系统端的心跳模式，让周围处于下线状态的可信设备快速上线，同时刷新已上线的可信设备列表。
 
@@ -378,7 +378,7 @@ getTrustedDeviceListSync(isRefresh: boolean): Array&lt;DeviceInfo&gt;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -393,7 +393,7 @@ getTrustedDeviceListSync(isRefresh: boolean): Array&lt;DeviceInfo&gt;
 
 ### getTrustedDeviceList<sup>8+</sup>
 
-getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): void
+getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): void;
 
 获取所有可信设备列表。使用callback异步回调。
 
@@ -420,7 +420,7 @@ getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): voi
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -441,7 +441,7 @@ getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): voi
 
 ### getTrustedDeviceList<sup>8+</sup>
 
-getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt;
+getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt;;
 
 获取所有可信设备列表。使用Promise异步回调。
 
@@ -467,7 +467,7 @@ getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -481,7 +481,7 @@ getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt;
 
 ### getLocalDeviceInfoSync<sup>8+</sup>
 
-getLocalDeviceInfoSync(): [DeviceInfo](#deviceinfo)
+getLocalDeviceInfoSync(): [DeviceInfo](#deviceinfo);
 
 同步获取本地设备信息。
 
@@ -509,7 +509,7 @@ getLocalDeviceInfoSync(): [DeviceInfo](#deviceinfo)
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -524,7 +524,7 @@ getLocalDeviceInfoSync(): [DeviceInfo](#deviceinfo)
 
 ### getLocalDeviceInfo<sup>8+</sup>
 
-getLocalDeviceInfo(callback:AsyncCallback&lt;DeviceInfo&gt;): void
+getLocalDeviceInfo(callback:AsyncCallback&lt;DeviceInfo&gt;): void;
 
 获取本地设备信息。使用callback异步回调。
 
@@ -551,7 +551,7 @@ getLocalDeviceInfo(callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -573,7 +573,7 @@ getLocalDeviceInfo(callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
 ### getLocalDeviceInfo<sup>8+</sup>
 
-getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;
+getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;;
 
 获取本地设备信息。使用Promise异步回调。
 
@@ -599,7 +599,7 @@ getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -613,7 +613,7 @@ getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;
 
 ### getDeviceInfo<sup>10+</sup>
 
-getDeviceInfo(networkId: string, callback:AsyncCallback&lt;DeviceInfo&gt;): void
+getDeviceInfo(networkId: string, callback:AsyncCallback&lt;DeviceInfo&gt;): void;
 
 通过指定设备的网络标识获取该设备的信息。使用callback异步回调。
 
@@ -627,7 +627,7 @@ getDeviceInfo(networkId: string, callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
   | 参数名       | 类型                                     | 必填   | 说明        |
   | -------- | ---------------------------------------- | ---- | --------- |
-  | networkId| string                                   | 是   | 设备的网络标识。 |
+  | networkId| string                                   | 是   | 设备的网络标识。长度范围1~255字符。 |
   | callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | 是    | 获取指定设备信息。 |
 
 **错误码：**
@@ -641,7 +641,7 @@ getDeviceInfo(networkId: string, callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -664,7 +664,7 @@ getDeviceInfo(networkId: string, callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
 ### getDeviceInfo<sup>10+</sup>
 
-getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;
+getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;;
 
 通过指定设备的网络标识获取该设备的信息。使用Promise异步回调。
 
@@ -678,7 +678,7 @@ getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;
 
   | 参数名   | 类型                                     | 必填 | 说明        |
   | -------- | ---------------------------------------- | ---- | --------- |
-  | networkId| string                                   | 是   | 设备的网络标识。 |
+  | networkId| string                                   | 是   | 设备的网络标识。长度范围1~255字符。 |
   
 **返回值：**
 
@@ -697,7 +697,7 @@ getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -713,7 +713,7 @@ getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;
 
 ### startDeviceDiscovery<sup>8+</sup>
 
-startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
+startDeviceDiscovery(subscribeInfo: SubscribeInfo): void;
 
 发现周边设备。发现状态持续两分钟，超过两分钟，会停止发现，最大发现数量99个。
 
@@ -743,7 +743,7 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -778,7 +778,7 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 
 ### startDeviceDiscovery<sup>9+</sup>
 
-startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
+startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void;
 
 发现周边设备。发现状态持续两分钟，超过两分钟，会停止发现，最大发现数量99个。
 
@@ -793,7 +793,7 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
   | 参数名            | 类型                       | 必填   | 说明    |
   | ------------- | ------------------------------- | ---- | -----  |
   | subscribeInfo | [SubscribeInfo](#subscribeinfo) | 是   | 发现信息。 |
-  | filterOptions | string                          | 否   | 发现设备过滤信息。可选，默认为undefined，发现未上线设备。|
+  | filterOptions | string                          | 否   | 发现设备过滤信息。可选，默认为undefined，发现未上线设备。长度范围1~255字符。|
 
 **错误码：**
 
@@ -809,7 +809,7 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -866,7 +866,7 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
 
 ### stopDeviceDiscovery
 
-stopDeviceDiscovery(subscribeId: number): void
+stopDeviceDiscovery(subscribeId: number): void;
 
 停止发现周边设备。
 
@@ -880,7 +880,7 @@ stopDeviceDiscovery(subscribeId: number): void
 
   | 参数名          | 类型   | 必填   | 说明    |
   | ----------- | ------ | ---- | ----- |
-  | subscribeId | number | 是    | 发现标识。 |
+  | subscribeId | number | 是    | 发现标识。取值范围为1~65535。 |
 
 **错误码：**
 
@@ -895,7 +895,7 @@ stopDeviceDiscovery(subscribeId: number): void
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -911,7 +911,7 @@ stopDeviceDiscovery(subscribeId: number): void
 
 ### publishDeviceDiscovery<sup>9+</sup>
 
-publishDeviceDiscovery(publishInfo: PublishInfo): void
+publishDeviceDiscovery(publishInfo: PublishInfo): void;
 
 发布设备发现。发布状态持续两分钟，超过两分钟会停止发布。
 
@@ -941,7 +941,7 @@ publishDeviceDiscovery(publishInfo: PublishInfo): void
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -971,7 +971,7 @@ publishDeviceDiscovery(publishInfo: PublishInfo): void
 
 ### unPublishDeviceDiscovery<sup>9+</sup>
 
-unPublishDeviceDiscovery(publishId: number): void
+unPublishDeviceDiscovery(publishId: number): void;
 
 停止发布设备发现。
 
@@ -985,7 +985,7 @@ unPublishDeviceDiscovery(publishId: number): void
 
   | 参数名        | 类型 | 必填 | 说明  |
   | ----------- | -------- | ---- | ----- |
-  | publishId   | number   | 是   | 发布标识。 |
+  | publishId   | number   | 是   | 发布标识。 取值范围为1~2147483647。|
 
 **错误码：**
 
@@ -1000,7 +1000,7 @@ unPublishDeviceDiscovery(publishId: number): void
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1016,7 +1016,7 @@ unPublishDeviceDiscovery(publishId: number): void
 
 ### authenticateDevice
 
-authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: AsyncCallback&lt;{deviceId: string, pinToken ?: number}&gt;): void
+authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: AsyncCallback&lt;{deviceId: string, pinToken ?: number}&gt;): void;
 
 认证设备。
 
@@ -1045,7 +1045,7 @@ authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: Async
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1111,7 +1111,7 @@ authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: Async
 
 ### unAuthenticateDevice<sup>8+</sup>
 
-unAuthenticateDevice(deviceInfo: DeviceInfo): void
+unAuthenticateDevice(deviceInfo: DeviceInfo): void;
 
 解除认证设备。
 
@@ -1140,7 +1140,7 @@ unAuthenticateDevice(deviceInfo: DeviceInfo): void
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1170,7 +1170,7 @@ unAuthenticateDevice(deviceInfo: DeviceInfo): void
 
 ### verifyAuthInfo
 
-verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{deviceId: string, level: number}&gt;): void
+verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{deviceId: string, level: number}&gt;): void;
 
 验证认证信息。
 
@@ -1198,7 +1198,7 @@ verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{deviceId: string,
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1244,7 +1244,7 @@ verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{deviceId: string,
 
 ### setUserOperation<sup>9+</sup>
 
-setUserOperation(operateAction: number, params: string): void
+setUserOperation(operateAction: number, params: string): void;
 
 设置用户ui操作行为。
 
@@ -1258,8 +1258,8 @@ setUserOperation(operateAction: number, params: string): void
 
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
-  | operateAction | number          | 是    | 用户操作动作。       |
-  | params        | string          | 是    | 表示用户的输入参数。 |
+  | operateAction | number          | 是    | 用户操作动作。取值范围为0~5。       |
+  | params        | string          | 是    | 表示用户的输入参数。长度范围1~255字符。 |
 
 **错误码：**
 
@@ -1273,7 +1273,7 @@ setUserOperation(operateAction: number, params: string): void
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1296,7 +1296,7 @@ setUserOperation(operateAction: number, params: string): void
 
 ### requestCredentialRegisterInfo<sup>10+</sup>
 
-requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{registerInfo: string}>): void
+requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{registerInfo: string}>): void;
 
 获取凭据的注册信息。
 
@@ -1310,7 +1310,7 @@ requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{regi
 
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
-  | requestInfo   | string          | 是    | 请求凭据信息。       |
+  | requestInfo   | string          | 是    | 请求凭据信息。最大长度255字符。       |
   | callback      | AsyncCallback<{registerInfo: string}>         | 是    | 凭据的注册信息回调。 |
 
 **错误码：**
@@ -1324,7 +1324,7 @@ requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{regi
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1358,7 +1358,7 @@ requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{regi
 
 ### importCredential<sup>10+</sup>
 
-importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: string}>): void
+importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: string}>): void;
 
 导入凭据信息。
 
@@ -1372,7 +1372,7 @@ importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: st
 
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
-  | credentialInfo| string          | 是    | 导入凭据信息。       |
+  | credentialInfo| string          | 是    | 导入凭据信息。长度范围1~64000字符。       |
   | callback      | AsyncCallback<{resultInfo: string}>           | 是    | 导入凭据结果回调。 |
 
 **错误码：**
@@ -1386,7 +1386,7 @@ importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: st
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
 <!--code_no_check-->
   ```ts
   import { BusinessError } from '@ohos.base';
@@ -1453,7 +1453,7 @@ importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: st
 
 ### deleteCredential<sup>10+</sup>
 
-deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}>): void
+deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}>): void;
 
 删除凭据信息。
 
@@ -1467,7 +1467,7 @@ deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}
 
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
-  | queryInfo     | string          | 是    | 删除凭据信息。       |
+  | queryInfo     | string          | 是    | 删除凭据信息。长度范围1~64000字符。       |
   | callback      | AsyncCallback<{resultInfo: string}>           | 是    | 删除凭据结果回调。 |
 
 **错误码：**
@@ -1481,7 +1481,7 @@ deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1518,7 +1518,7 @@ deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}
 
 ### on('uiStateChange')<sup>9+</sup>
 
-on(type: 'uiStateChange', callback: Callback&lt;{ param: string}&gt;): void
+on(type: 'uiStateChange', callback: Callback&lt;{ param: string}&gt;): void;
 
 ui状态变更回调。
 
@@ -1546,7 +1546,7 @@ ui状态变更回调。
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1573,7 +1573,7 @@ ui状态变更回调。
 
 ### off('uiStateChange')<sup>9+</sup>
 
-off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void
+off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void;
 
 取消ui状态变更回调。
 
@@ -1601,7 +1601,7 @@ off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1615,7 +1615,7 @@ off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void
 
 ### on('deviceStateChange')
 
-on(type: 'deviceStateChange',  callback: Callback&lt;{ action: DeviceStateChangeAction, device: DeviceInfo }&gt;): void
+on(type: 'deviceStateChange',  callback: Callback&lt;{ action: DeviceStateChangeAction, device: DeviceInfo }&gt;): void;
 
 注册设备状态回调。
 
@@ -1643,7 +1643,7 @@ on(type: 'deviceStateChange',  callback: Callback&lt;{ action: DeviceStateChange
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -1672,7 +1672,7 @@ on(type: 'deviceStateChange',  callback: Callback&lt;{ action: DeviceStateChange
 
 ### off('deviceStateChange')
 
-off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChangeAction, device: DeviceInfo }&gt;): void
+off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChangeAction, device: DeviceInfo }&gt;): void;
 
 取消注册设备状态回调。
 
@@ -1700,7 +1700,7 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -1729,7 +1729,7 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
 
 ### on('deviceFound')
 
-on(type: 'deviceFound', callback: Callback&lt;{ subscribeId: number, device: DeviceInfo }&gt;): void
+on(type: 'deviceFound', callback: Callback&lt;{ subscribeId: number, device: DeviceInfo }&gt;): void;
 
 注册发现设备回调监听。
 
@@ -1757,7 +1757,7 @@ on(type: 'deviceFound', callback: Callback&lt;{ subscribeId: number, device: Dev
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -1786,7 +1786,7 @@ on(type: 'deviceFound', callback: Callback&lt;{ subscribeId: number, device: Dev
 
 ### off('deviceFound')
 
-off(type: 'deviceFound', callback?: Callback&lt;{ subscribeId: number, device: DeviceInfo }&gt;): void
+off(type: 'deviceFound', callback?: Callback&lt;{ subscribeId: number, device: DeviceInfo }&gt;): void;
 
 取消注册设备发现回调。
 
@@ -1814,7 +1814,7 @@ off(type: 'deviceFound', callback?: Callback&lt;{ subscribeId: number, device: D
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -1843,7 +1843,7 @@ off(type: 'deviceFound', callback?: Callback&lt;{ subscribeId: number, device: D
 
 ### on('discoverFail')
 
-on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: number }&gt;): void
+on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: number }&gt;): void;
 
 注册设备发现失败回调监听。
 
@@ -1871,7 +1871,7 @@ on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: nu
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1892,7 +1892,7 @@ on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: nu
 
 ### off('discoverFail')
 
-off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: number }&gt;): void
+off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: number }&gt;): void;
 
 取消注册设备发现失败回调。
 
@@ -1920,7 +1920,7 @@ off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: 
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1941,7 +1941,7 @@ off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: 
 
 ### on('publishSuccess')<sup>9+</sup>
 
-on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): void
+on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): void;
 
 注册发布设备发现回调监听。
 
@@ -1969,7 +1969,7 @@ on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): voi
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1989,7 +1989,7 @@ on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): voi
 
 ### off('publishSuccess')<sup>9+</sup>
 
-off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): void
+off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): void;
 
 取消注册设备发布成功回调。
 
@@ -2017,7 +2017,7 @@ off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): v
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -2037,7 +2037,7 @@ off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): v
 
 ### on('publishFail')<sup>9+</sup>
 
-on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: number }&gt;): void
+on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: number }&gt;): void;
 
 注册设备发布失败回调监听。
 
@@ -2065,7 +2065,7 @@ on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: numbe
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -2086,7 +2086,7 @@ on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: numbe
 
 ### off('publishFail')<sup>9+</sup>
 
-off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: number }&gt;): void
+off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: number }&gt;): void;
 
 取消注册设备发布失败回调。
 
@@ -2114,7 +2114,7 @@ off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: num
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -2135,7 +2135,7 @@ off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: num
 
 ### on('serviceDie')
 
-on(type: 'serviceDie', callback: () =&gt; void): void
+on(type: 'serviceDie', callback: () =&gt; void): void;
 
 注册设备管理服务死亡监听。
 
@@ -2163,7 +2163,7 @@ on(type: 'serviceDie', callback: () =&gt; void): void
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -2179,7 +2179,7 @@ on(type: 'serviceDie', callback: () =&gt; void): void
 
 ### off('serviceDie')
 
-off(type: 'serviceDie', callback?: () =&gt; void): void
+off(type: 'serviceDie', callback?: () =&gt; void): void;
 
 取消注册设备管理服务死亡监听。
 
@@ -2207,7 +2207,7 @@ off(type: 'serviceDie', callback?: () =&gt; void): void
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 

@@ -58,7 +58,7 @@ applications/sample/hello
 
 3. 添加新组件。
    
-   修改文件build/lite/components/communication.json，添加组件hello_world_app的配置，如下所示为**communication.json**文件片段，"\#\#start\#\#"和"\#\#end\#\#"之间为新增配置（"\#\#start\#\#"和"\#\#end\#\#"仅用来标识位置，添加完配置后删除这两行）：
+   修改文件build/lite/components/communication.json，添加组件hello_world_app的配置。如下所示为**communication.json**文件片段，"\#\#start\#\#"和"\#\#end\#\#"之间为新增配置（"\#\#start\#\#"和"\#\#end\#\#"仅用来标识位置，添加完配置后删除这两行）：
 
    
    ```
@@ -121,7 +121,7 @@ applications/sample/hello
 
 4. 修改单板配置文件。
    
-   修改文件vendor/hisilicon/hispark_taurus/config.json，新增hello_world_app组件的条目，如下所示代码片段为applications子系统配置，"\#\#start\#\#"和"\#\#end\#\#"之间为新增条目（"\#\#start\#\#"和"\#\#end\#\#"仅用来标识位置，添加完配置后删除这两行）：
+   修改文件vendor/hisilicon/hispark_taurus/config.json，新增hello_world_app组件的条目。如下所示代码片段为applications子系统配置，"\#\#start\#\#"和"\#\#end\#\#"之间为新增条目（"\#\#start\#\#"和"\#\#end\#\#"仅用来标识位置，添加完配置后删除这两行）：
 
    
    ```

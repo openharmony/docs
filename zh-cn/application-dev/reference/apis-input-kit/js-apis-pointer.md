@@ -176,7 +176,7 @@ isPointerVisible(): Promise&lt;boolean&gt;
 
 | 参数                     | 说明                  |
 | ---------------------- | ------------------- |
-| Promise&lt;boolean&gt; | Promise对象，异步返回鼠标指针显示或隐藏状态。 |
+| Promise&lt;boolean&gt; | Promise对象，异步返回鼠标指针显示或隐藏状态。true代表显示状态，false代表隐藏状态。 |
 
 **示例**：
 
@@ -521,8 +521,8 @@ window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) =>
 
 | 名称                               | 值    | 说明     |
 | -------------------------------- | ---- | ------ |
-| LEFT                          | 0    | 鼠标左键     |
-| RIGHT                             | 1    | 鼠标右键   |
+| LEFT                          | 0    | 鼠标左键。     |
+| RIGHT                             | 1    | 鼠标右键。   |
 
 ## RightClickType<sup>10+</sup>
 

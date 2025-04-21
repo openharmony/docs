@@ -39,7 +39,7 @@ startWork(work: WorkInfo): void
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
 | 9700004 | Check on workInfo failed. |
-| 9700005 | Calling startWork failed |
+| 9700005 | Calling startWork failed. |
 
 **示例**：
 

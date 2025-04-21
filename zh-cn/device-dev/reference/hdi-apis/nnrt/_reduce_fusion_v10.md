@@ -7,7 +7,7 @@
 
 该算子对应的[NodeType](_n_n_rt_v10.md#nodetype)为NODE_TYPE_REDUCE_FUSION。
 
-参数说明：mode若为REDUCE_ALL,REDUCE_PROD和REDUCE_MEAN，则reduce_to_end为true时，Reduce之后的输出乘以coeff为最终输出。
+参数说明：mode若为REDUCE_ALL，REDUCE_PROD和REDUCE_MEAN，则reduce_to_end为true时，Reduce之后的输出乘以coeff为最终输出。
 
 输入：
 

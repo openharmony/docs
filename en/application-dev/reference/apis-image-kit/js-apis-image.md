@@ -1267,8 +1267,8 @@ To develop an atomic service, use [ImageSoure](#imagesource) to create a **Pixel
 
 | Name             | Type   | Readable| Writable| Description                      |
 | -----------------| ------- | ---- | ---- | -------------------------- |
-| isEditable        | boolean | Yes  | No  | Whether the pixels of an image are editable.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.|
-| isStrideAlignment<sup>11+</sup> | boolean | Yes  | No  | Whether the image memory is the DMA memory.|
+| isEditable        | boolean | Yes  | No  | Whether the PixelMap is editable. The value **true** means that the PixelMap is editable, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.|
+| isStrideAlignment<sup>11+</sup> | boolean | Yes  | No  | Whether the PixelMap uses DMA memory. The value** true** means that the PixelMap uses DMA memory, and **false** means the opposite.|
 
 ### readPixelsToBuffer<sup>7+</sup>
 
@@ -2627,7 +2627,7 @@ Creates an image that has been resized based on the specified anti-aliasing leve
 | ------ | ------ | ---- | ------------------------------- |
 | x      | number | Yes  | Scale factor of the width.|
 | y      | number | Yes  | Scale factor of the height.|
-| level  | [AntiAliasingLevel](#antialiasinglevel12) | Yes  | Anti-aliasing level.|
+| level  | [AntiAliasingLevel](#antialiasinglevel12) | No  | Anti-aliasing level.|
 
 **Return value**
 
@@ -2660,7 +2660,7 @@ async function CreateScaledPixelMapSync() {
 
 ### clone<sup>18+</sup>
 
-clone(): Promise</PixelMap>
+clone(): Promise\<PixelMap>
 
 Copies this **PixelMap** object. This API uses a promise to return the result.
 
@@ -3066,8 +3066,8 @@ Flips this image horizontally or vertically, or both. This API uses a promise to
 
 | Name    | Type   | Mandatory| Description     |
 | ---------- | ------- | ---- | --------- |
-| horizontal | boolean | Yes  | Whether to flip the image horizontally.|
-| vertical   | boolean | Yes  | Whether to flip the image vertically.|
+| horizontal | boolean | Yes  | Whether to flip the image horizontally. The value **true** means to flip the image horizontally.|
+| vertical   | boolean | Yes  | Whether to flip the image vertically. The value **true** means to flip the image vertically.|
 
 **Return value**
 
@@ -3903,7 +3903,7 @@ convertPixelFormat(targetPixelFormat: PixelMapFormat): Promise\<void>
 
 Performs a conversion between YUV and RGB formats. Currently, only conversion between NV12/NV21 and RGB888/RGBA8888/RGB565/BGRA8888/RGBAF16 and conversion between YCRCB_P010/YCBCR_P010 and RGBA1010102 are supported.
 
-Since API version 16, this API can be used for conversion from ASTC_4x4 to RGBA_8888.
+Since API version 18, this API can be used for conversion from ASTC_4x4 to RGBA_8888.
 
 > **NOTE**
 >
@@ -3915,7 +3915,7 @@ Since API version 16, this API can be used for conversion from ASTC_4x4 to RGBA_
 
 | Name  | Type                | Mandatory| Description              |
 | -------- | -------------------- | ---- | ------------------ |
-| targetPixelFormat | [PixelMapFormat](#pixelmapformat7) | Yes  | Target pixel format. Currently, only conversion between NV12/NV21 and RGB888/RGBA8888/RGB565/BGRA8888/RGBAF16, conversion between YCRCB_P010/YCBCR_P010 and RGBA1010102, and conversion from ASTC_4x4 to RGBA_8888 are supported. |
+| targetPixelFormat | [PixelMapFormat](#pixelmapformat7) | Yes  | Target pixel format. Currently, only conversion between NV12/NV21 and RGB888/RGBA8888/RGB565/BGRA8888/RGBAF16, conversion between YCRCB_P010/YCBCR_P010 and RGBA1010102, and conversion from ASTC_4x4 to RGBA_8888 are supported.|
 
 **Return value**
 
@@ -3974,7 +3974,6 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 401 | Parameter error. Possible causes: 1.The length of the input parameter is too long. 2.Parameter verification failed. |
-| 501 | Resource unavailable. |
 | 62980286 | Memory format not supported. |
 
 **Example**
@@ -4937,7 +4936,7 @@ Updates incremental data. This API uses an asynchronous callback to return the r
 | buf        | ArrayBuffer         | Yes  | Incremental data.          |
 | isFinished | boolean             | Yes  | Whether the update is complete.        |
 | offset      | number              | Yes  | Offset for data reading.            |
-| length     | number              | Yes  | Array length.            |
+| length     | number              | Yes  | Size of the array.            |
 | callback   | AsyncCallback\<void> | Yes  |  Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
@@ -5158,128 +5157,6 @@ if (pixelmap != undefined) {
 }
 ```
 
-### createPixelMapUsingAllocator<sup>15+</sup>
-
-createPixelMapUsingAllocator(option?: DecodingOptions, allocatorType?: AllocatorType): Promise\<PixelMap\>
-
-Creates a **PixelMap** object based on decoding options and memory type. This API uses a Promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Image.ImageSource
-
-**Parameters**
-
-| Name       | Type                                | Mandatory| Description                    |
-| ------------- | ------------------------------------ | ---- | ------------------------ |
-| option        | [DecodingOptions](#decodingoptions7) | No  | Decoding options.              |
-| allocatorType | [AllocatorType](#allocatortype15)   | No  | Type of the memory. The default value is **AllocatorType.AUTO**.|
-
-**Return value**
-
-| Type                            | Description                       |
-| -------------------------------- | --------------------------- |
-| Promise\<[PixelMap](#pixelmap7)> | Promise used to return the **PixelMap** object.|
-
-**Error codes**
-
-For details about the error codes, see [Image Error Codes](errorcode-image.md).
-
-| ID| Error Message                                                    |
-| -------- | ------------------------------------------------------------ |
-| 401      | Parameter error.Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types;3.Parameter verification failed. |
-| 7700101  | Bad source.                                                  |
-| 7700102  | Unsupported mimetype.                                        |
-| 7700103  | Image too large.                                             |
-| 7700201  | Unsupported allocator type, e.g., use share memory to decode a HDR image as only DMA supported hdr metadata. |
-| 7700203  | Unsupported options, e.g., cannot convert image into desired pixel format. |
-| 7700301  | Decode failed.                                               |
-| 7700302  | Memory allocation failed.                                    |
-
-**Example**
-
-```ts
-import image from '@ohos.multimedia.image';
-
-const context: Context = getContext(this);
-// 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
-let filePath: string = context.filesDir + "/test.jpg";
-let imageSource = image.createImageSource(filePath);
-let decodingOptions: image.DecodingOptions = {
-  editable: true,
-  desiredSize: { width: 3072, height: 4096 },
-  rotate: 10,
-  desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
-  desiredRegion: { size: { height: 3072, width: 4096 }, x: 0, y: 0 },
-  index: 0
-};
-let pixelmap = await imageSource.createPixelMapUsingAllocator(decodingOptions, image.AllocatorType.AUTO);
-if (pixelmap != undefined) {
-  console.info('Succeeded in creating pixelMap object.');
-} else {
-  console.info('Failed to create pixelMap.');
-}
-```
-
-### createPixelMapUsingAllocatorSync<sup>15+</sup>
-
-createPixelMapUsingAllocatorSync(option?: DecodingOptions, allocatorType?: AllocatorType): PixelMap
-
-Creates a **PixelMap** object based on decoding options and memory type. This API returns the result synchronously.
-
-**System capability**: SystemCapability.Multimedia.Image.ImageSource
-
-**Parameters**
-
-| Name       | Type                                | Mandatory| Description                    |
-| ------------- | ------------------------------------ | ---- | ------------------------ |
-| option        | [DecodingOptions](#decodingoptions7) | No  | Decoding options.              |
-| allocatorType | [AllocatorType](#allocatortype15)   | No  | Type of the memory. The default value is **AllocatorType.AUTO**.|
-
-**Return value**
-
-| Type                  | Description                  |
-| ---------------------- | ---------------------- |
-| [PixelMap](#pixelmap7) | **PixelMap** object.|
-
-**Error codes**
-
-For details about the error codes, see [Image Error Codes](errorcode-image.md).
-
-| ID| Error Message                                                    |
-| -------- | ------------------------------------------------------------ |
-| 401      | Parameter error.Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types;3.Parameter verification failed. |
-| 7700101  | Bad source.                                                  |
-| 7700102  | Unsupported mimetype.                                        |
-| 7700103  | Image too large.                                             |
-| 7700201  | Unsupported allocator type, e.g., use share memory to decode a HDR image as only DMA supported hdr metadata. |
-| 7700203  | Unsupported options, e.g., cannot convert image into desired pixel format. |
-| 7700301  | Decode failed.                                               |
-| 7700302  | Memory allocation failed.                                    |
-
-**Example**
-
-```ts
-import image from '@ohos.multimedia.image';
-
-const context: Context = getContext(this);
-// 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
-let filePath: string = context.filesDir + "/test.jpg";
-let imageSource = image.createImageSource(filePath);
-let decodingOptions: image.DecodingOptions = {
-  editable: true,
-  desiredSize: { width: 3072, height: 4096 },
-  rotate: 10,
-  desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
-  desiredRegion: { size: { height: 3072, width: 4096 }, x: 0, y: 0 },
-  index: 0
-};
-let pixelmap = imageSource.createPixelMapUsingAllocatorSync(decodingOptions, image.AllocatorType.AUTO);
-if (pixelmap != undefined) {
-  console.info('Succeeded in creating pixelMap object.');
-} else {
-  console.info('Failed to create pixelMap.');
-}
-```
-
 ### createPixelMapList<sup>10+</sup>
 
 createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>
@@ -5467,6 +5344,128 @@ imageSourceApi.createPixelMapList(decodeOpts, (err: BusinessError, pixelMapList:
     console.info('Succeeded in creating pixelMapList object.');
   }
 })
+```
+
+### createPixelMapUsingAllocator<sup>15+</sup>
+
+createPixelMapUsingAllocator(options?: DecodingOptions, allocatorType?: AllocatorType): Promise\<PixelMap>
+
+Creates a **PixelMap** object based on decoding options and memory type. This API uses a Promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
+
+**Parameters**
+
+| Name       | Type                                | Mandatory| Description                    |
+| ------------- | ------------------------------------ | ---- | ------------------------ |
+| options        | [DecodingOptions](#decodingoptions7) | No  | Decoding options.              |
+| allocatorType | [AllocatorType](#allocatortype15)   | No  | Type of the memory. The default value is **AllocatorType.AUTO**.|
+
+**Return value**
+
+| Type                            | Description                       |
+| -------------------------------- | --------------------------- |
+| Promise\<[PixelMap](#pixelmap7)> | Promise used to return the **PixelMap** object.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types;3.Parameter verification failed. |
+| 7700101  | Bad source.                                                  |
+| 7700102  | Unsupported mimetype.                                        |
+| 7700103  | Image too large.                                             |
+| 7700201  | Unsupported allocator type, e.g., use share memory to decode a HDR image as only DMA supported hdr metadata. |
+| 7700203  | Unsupported options, e.g., cannot convert image into desired pixel format. |
+| 7700301  | Decode failed.                                               |
+| 7700302  | Memory allocation failed.                                    |
+
+**Example**
+
+```ts
+import image from '@ohos.multimedia.image';
+
+const context: Context = getContext(this);
+// 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
+let filePath: string = context.filesDir + "/test.jpg";
+let imageSource = image.createImageSource(filePath);
+let decodingOptions: image.DecodingOptions = {
+  editable: true,
+  desiredSize: { width: 3072, height: 4096 },
+  rotate: 10,
+  desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
+  desiredRegion: { size: { height: 3072, width: 4096 }, x: 0, y: 0 },
+  index: 0
+};
+let pixelmap = await imageSource.createPixelMapUsingAllocator(decodingOptions, image.AllocatorType.AUTO);
+if (pixelmap != undefined) {
+  console.info('Succeeded in creating pixelMap object.');
+} else {
+  console.info('Failed to create pixelMap.');
+}
+```
+
+### createPixelMapUsingAllocatorSync<sup>15+</sup>
+
+createPixelMapUsingAllocatorSync(options?: DecodingOptions, allocatorType?: AllocatorType): PixelMap
+
+Creates a **PixelMap** object based on decoding options and memory type. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
+
+**Parameters**
+
+| Name       | Type                                | Mandatory| Description                    |
+| ------------- | ------------------------------------ | ---- | ------------------------ |
+| options        | [DecodingOptions](#decodingoptions7) | No  | Decoding options.              |
+| allocatorType | [AllocatorType](#allocatortype15)   | No  | Type of the memory. The default value is **AllocatorType.AUTO**.|
+
+**Return value**
+
+| Type                  | Description                  |
+| ---------------------- | ---------------------- |
+| [PixelMap](#pixelmap7) | **PixelMap** object.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types;3.Parameter verification failed. |
+| 7700101  | Bad source.                                                  |
+| 7700102  | Unsupported mimetype.                                        |
+| 7700103  | Image too large.                                             |
+| 7700201  | Unsupported allocator type, e.g., use share memory to decode a HDR image as only DMA supported hdr metadata. |
+| 7700203  | Unsupported options, e.g., cannot convert image into desired pixel format. |
+| 7700301  | Decode failed.                                               |
+| 7700302  | Memory allocation failed.                                    |
+
+**Example**
+
+```ts
+import image from '@ohos.multimedia.image';
+
+const context: Context = getContext(this);
+// 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
+let filePath: string = context.filesDir + "/test.jpg";
+let imageSource = image.createImageSource(filePath);
+let decodingOptions: image.DecodingOptions = {
+  editable: true,
+  desiredSize: { width: 3072, height: 4096 },
+  rotate: 10,
+  desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
+  desiredRegion: { size: { height: 3072, width: 4096 }, x: 0, y: 0 },
+  index: 0
+};
+let pixelmap = imageSource.createPixelMapUsingAllocatorSync(decodingOptions, image.AllocatorType.AUTO);
+if (pixelmap != undefined) {
+  console.info('Succeeded in creating pixelMap object.');
+} else {
+  console.info('Failed to create pixelMap.');
+}
 ```
 
 ### getDelayTimeList<sup>10+</sup>
@@ -6323,7 +6322,7 @@ imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts).then(() => {
 
 ### packToFile<sup>11+</sup>
 
-packToFile (source: PixelMap, fd: number, options: PackingOption,  callback: AsyncCallback\<void>): void;
+packToFile (source: PixelMap, fd: number, options: PackingOption,  callback: AsyncCallback\<void>): void
 
 Encodes a **PixelMap** object and packs it into a file. This API uses an asynchronous callback to return the result.
 
@@ -8635,8 +8634,6 @@ Enumerates the anti-aliasing levels.
 
 Enumerates the types of the memory used for image decoding.
 
-**Atomic service API**: This API can be used in atomic services since API version 15.
-
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 | Name        | Value  | Description                              |
@@ -8688,5 +8685,3 @@ The SVG tags are supported since API version 10. The used version is (SVG) 1.1. 
 - textPath
 - tspan
 - use
-
-<!--no_check-->

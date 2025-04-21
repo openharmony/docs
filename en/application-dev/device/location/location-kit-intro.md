@@ -18,7 +18,7 @@ These advanced location technologies make it possible to obtain the accurate loc
   A coordinate describes a location on the earth using the longitude and latitude in reference to the World Geodetic Coordinate System 1984.
 
 - **GNSS positioning**<br>
-  GNSS positioning locates a mobile device by using the location algorithm offered by the device chip to compute the location information provided by the Global Navigation Satellite System, for example, GPS, GLONASS, BeiDou, and Galileo. Whichever positioning system will be used during the location process depends on a hardware capability of the device.
+  GNSS positioning locates a mobile device by using the location algorithm offered by the device chip to compute the location information provided by the global navigation satellite system (GNSS), for example, GPS, GLONASS, BeiDou, and Galileo. Whichever positioning system will be used during the location process depends on a hardware capability of the device.
 
 - **Base station positioning**<br>
   Base station positioning estimates the current location of a mobile device based on the location of the resident base station in reference to the neighboring base stations. This technology provides only a low accuracy and requires access to the cellular network.
@@ -35,3 +35,4 @@ Your application can use the location function only after the user has granted t
 
 Since the location information is considered sensitive, your application still needs to obtain the location access permission from the user even if the user has turned on the location function. The system will provide the location service for your application only after it has been granted the permission to access the device location information.
 
+Depending on the hardware support, Location Kit provides different capabilities on different devices. For example, a GPS or Beidou positioning chip provides devices with the GNSS positioning capabilities. If a WLAN or cellular network module, instead of a positioning chip, is available, then the devices can use the WLAN or base station positioning capabilities.

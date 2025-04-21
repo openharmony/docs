@@ -944,7 +944,7 @@ isAppVolumeMutedForUid(uid: number, owned: boolean\): Promise<boolean\>
 
 | 类型                | 说明                  |
 | ------------------- |---------------------|
-| Promise&lt;boolean&gt; | Promise对象，返回应用静音状态。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示应用为静音状态；返回false表示应用为非静音状态。 |
 
 **错误码：**
 
@@ -3753,10 +3753,10 @@ try {
 
 | 名称                          | 类型                       | 可读 | 可写 | 说明       |
 | ----------------------------- | -------------------------- | ---- | ---- | ---------- |
-| address<sup>11+</sup>                    | string         | 是   | 是   | 空间化设备地址。|
-| isSpatializationSupported<sup>11+</sup>  | boolean        | 是   | 是   | 空间化设备是否支持空间音频渲染。|
-| isHeadTrackingSupported<sup>11+</sup>    | boolean        | 是   | 是   | 空间化设备是否支持头动跟踪。|
-| spatialDeviceType<sup>11+</sup>          | [AudioSpatialDeviceType](#audiospatialdevicetype11)   | 是   | 是   | 空间化设备类型。|
+| address | string         | 是   | 是   | 空间化设备地址。|
+| isSpatializationSupported | boolean        | 是   | 是   | 空间化设备是否支持空间音频渲染。true表示支持，false表示不支持。|
+| isHeadTrackingSupported | boolean        | 是   | 是   | 空间化设备是否支持头动跟踪。true表示支持，false表示不支持。|
+| spatialDeviceType | [AudioSpatialDeviceType](#audiospatialdevicetype11)   | 是   | 是   | 空间化设备类型。|
 
 **示例：**
 
@@ -4340,7 +4340,7 @@ let mode = asrProcessingController.getAsrWhisperDetectionMode();
 
 setAsrVoiceControlMode(mode: AsrVoiceControlMode, enable: boolean): boolean
 
-设置在系统通话中上报modem及通话录音的上行通路的ASR音频通路选择。
+设置在系统通话中上报mode及通话录音的上行通路的ASR音频通路选择。
 
 **系统接口：** 该接口为系统接口
 
@@ -4351,13 +4351,13 @@ setAsrVoiceControlMode(mode: AsrVoiceControlMode, enable: boolean): boolean
 | 参数名  | 类型                  | 必填 | 说明     |
 |------|---------------------|-------|--------|
 | mode | [AsrVoiceControlMode](#asrvoicecontrolmode12) | 是 | 音频通路模式。 |
-| enable   | boolean             | 是 | 开关状态   |
+| enable   | boolean             | 是 | 表示系统通话中上报mode及通话录音的上行通路的ASR音频通路选择开关状态。true表示打开，false表示关闭。   |
 
 **返回值：**
 
-| 类型 | 说明                                                             |
-|-------|----------------------------------------------------------------|
-| boolean | 返回设置在系统通话中上报modem及通话录音的上行通路的ASR音频通路选择的结果，true为设置成功，false为设置失败。 |
+| 类型 | 说明                                                            |
+|-------|---------------------------------------------------------------|
+| boolean | 返回设置在系统通话中上报mode及通话录音的上行通路的ASR音频通路选择的结果。true为设置成功，false为设置失败。 |
 
 **错误码：**
 
@@ -4391,13 +4391,13 @@ setAsrVoiceMuteMode(mode: AsrVoiceMuteMode, enable: boolean): boolean
 | 参数名  | 类型                                    | 必填 | 说明       |
 |------|---------------------------------------|-------|----------|
 | mode | [AsrVoiceMuteMode](#asrvoicemutemode12) | 是 | 静音控制模式。 |
-| enable   | boolean                               | 是 | 开关状态。     |
+| enable   | boolean                               | 是 | 表示在系统通话中设置ASR音频通路静音状态。true表示静音，false表示非静音。 |
 
 **返回值：**
 
 | 类型 | 说明                                               |
 |-------|--------------------------------------------------|
-| boolean | 返回在系统通话中，对ASR音频通路进行静音控制的结果，true为设置成功，false为设置失败。 |
+| boolean | 返回在系统通话中，对ASR音频通路进行静音控制的结果。true为设置成功，false为设置失败。 |
 
 **错误码：**
 

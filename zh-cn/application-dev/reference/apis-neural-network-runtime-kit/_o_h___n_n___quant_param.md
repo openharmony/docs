@@ -27,6 +27,7 @@ clamp函数定义如下：
 
 **相关模块：** [NeuralNeworkRuntime](_neural_network_runtime.md)
 
+**所在头文件：**[neural_network_runtime_type.h](neural__network__runtime__type_8h.md)
 
 ## 汇总
 

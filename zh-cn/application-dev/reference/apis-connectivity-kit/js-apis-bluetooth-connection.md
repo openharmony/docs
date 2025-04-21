@@ -288,7 +288,7 @@ try {
 
 getRemoteDeviceClass(deviceId: string): DeviceClass
 
-获取对端蓝牙设备的类别。从API16开始不再校验ohos.permission.ACCESS_BLUETOOTH权限。
+获取对端蓝牙设备的类别。从API18开始不再校验ohos.permission.ACCESS_BLUETOOTH权限。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 

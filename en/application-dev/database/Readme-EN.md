@@ -43,4 +43,3 @@
 - [UDMF Development Guide (C/C++)](native-unified-data-management-framework-guidelines.md)
 - [Persisting User Preferences (C/C++)](preferences-guidelines.md)
 
-<!--no_check-->

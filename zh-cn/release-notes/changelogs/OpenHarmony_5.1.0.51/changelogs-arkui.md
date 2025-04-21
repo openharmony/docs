@@ -1,69 +1,6 @@
 # ArkUI子系统Changelog
 
-## cl.arkui.1  DatePicker、DatePickerDialog、TextPicker、TextPickerDialog支持设置触控反馈（声音和振动）效果
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-UX规范变更。
-
-**变更影响**
-
-此变更不涉及应用适配，建议保持系统默认效果。
-
-- 变更前：在滑动选项时，DatePicker、DatePickerDialog、TextPicker、TextPickerDialog组件无触控反馈（声音和振动）效果。
-
-- 变更后：在快速滑动选项时，DatePicker、DatePickerDialog、TextPicker、TextPickerDialog组件均匀触发声音和振动效果。在滑动选项居中时，DatePicker、DatePickerDialog、TextPicker、TextPickerDialog组件触发一次声音和振动效果。
-
-**起始API Level**
-
-8
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.1.0.51开始。
-
-**适配指导**
-
-DatePicker、DatePickerDialog、TextPicker、TextPickerDialog默认支持触控反馈（声音和振动）效果，开发者可以通过如下代码关闭组件的触控反馈效果。如果开发者有自实现触控反馈，建议只保留一种，推荐使用组件的触控反馈。
-```ts
-@Entry
-@Component
-struct PickerHapticFeedbackExample {
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4']
-  build() {
-    Row() {
-      Column() {
-        DatePicker()
-          .enableHapticFeedback(false) //DatePicker设置关闭反馈效果
-
-        Button("DatePickerDialog")
-          .onClick(() => {
-            DatePickerDialog.show({
-              enableHapticFeedback: false, //DatePickerDialog设置关闭反馈效果
-            })
-          })
-
-        TextPicker({ range: this.fruits })
-          .enableHapticFeedback(false) //TextPicker设置关闭反馈效果
-          
-        Button("TextPickerDialog")
-          .onClick(() => {
-            TextPickerDialog.show({
-              range: this.fruits,
-              enableHapticFeedback: false, //TextPickerDialog设置关闭反馈效果
-            })
-          })
-      }.width('100%')
-    }.height('100%')
-  }
-}
-```
-
-## cl.arkui.2 TextController的SetStyledString接口支持保存设置的属性字符串信息到调用的TextController中
+## cl.arkui.1 TextController的SetStyledString接口支持保存设置的属性字符串信息到调用的TextController中
 
 **访问级别**
 
@@ -112,7 +49,7 @@ struct StyledStringExample {
 }
 ```
 
-## cl.arkui.3 Image、Text和ListItem组件onDragStart接口默认行为变更
+## cl.arkui.2 Image、Text和ListItem组件onDragStart接口默认行为变更
 
 **访问级别**
 

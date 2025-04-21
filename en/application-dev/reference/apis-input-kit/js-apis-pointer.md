@@ -34,7 +34,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID | Error Message            |
 | ---- | --------------------- |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
-| 801<sup>14+</sup>  | Capability not supported. |
+| 801  | Capability not supported. |
 
 **Example**
 
@@ -79,7 +79,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID | Error Message            |
 | ---- | --------------------- |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
-| 801<sup>14+</sup>  | Capability not supported. |
+| 801  | Capability not supported. |
 
 **Example**
 
@@ -176,7 +176,7 @@ Checks the visible status of the mouse pointer. This API uses a promise to retur
 
 | Name                    | Description                 |
 | ---------------------- | ------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the mouse pointer is visible, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -521,8 +521,8 @@ Type of the primary mouse button.
 
 | Name                              | Value   | Description    |
 | -------------------------------- | ---- | ------ |
-| LEFT                          | 0    | Left mouse button.    |
-| RIGHT                             | 1    | Right mouse button.  |
+| LEFT                          | 0    | Left button.    |
+| RIGHT                             | 1    | Right button.  |
 
 ## RightClickType<sup>10+</sup>
 
@@ -588,7 +588,7 @@ Enumerates mouse pointer styles.
 | CURSOR_CIRCLE<sup>10+</sup> | 41 | Circle|![Cursor_Circle.png](./figures/Cursor_Circle.png)|
 | LOADING<sup>10+</sup> | 42 | Animation loading|![Loading.png](./figures/Loading.png)<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | RUNNING<sup>10+</sup> | 43 | Animation running in the background|![Running.png](./figures/Running.png)<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| MIDDLE_BTN_EAST_WEST<sup>16+</sup>           | 44   | Scrolling east-west|![MID_Btn_East_West.png](./figures/MID_Btn_East_West.png)|
+| MIDDLE_BTN_EAST_WEST<sup>18+</sup>          | 44   | Scrolling east-west|![MID_Btn_East_West.png](./figures/MID_Btn_East_West.png)|
 
 ## pointer.setCustomCursor<sup>11+</sup>
 
@@ -696,7 +696,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID | Error Message            |
 | ---- | --------------------- |
 | 401  | Parameter error. Possible causes: 1. Abnormal windowId parameter passed in. 2. Abnormal pixelMap parameter passed in; 3. Abnormal focusX parameter passed in.4. Abnormal focusY parameter passed in. |
-| 26500001 | Invalid windowID. |
+| 26500001 | Invalid windowId. |
 
 **Example**
 

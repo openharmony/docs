@@ -58,7 +58,7 @@ ark_disasm.exe test.abc test.txt
 cat test.txt
 ```
 
-内容如下
+内容如下：
 
 ```
 # source binary: test.abc                                                    // 反汇编的方舟字节码文件

@@ -103,7 +103,7 @@ backgroundImage(src: ResourceStr&nbsp;|&nbsp;PixelMap, options?: BackgroundImage
 | 参数名 | 类型                                            | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | src    | [ResourceStr](ts-types.md#resourcestr) \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)          | 是   | 图片地址，支持网络图片资源地址、本地图片资源地址、Base64和PixelMap资源，不支持svg类型的图片。 |
-| options | [BackgroundImageOptions](ts-universal-attributes-image-effect.md#BackgroundImageOptions) | 否   | 设置背景图片加载模式 **说明：** <br/>默认为异步加载。|
+| options | [BackgroundImageOptions](ts-universal-attributes-image-effect.md#BackgroundImageOptions) | 否   | 设置背景图片加载模式。 <br/> **说明：** <br/>默认为异步加载。|
 
 ## backgroundImageSize
 
@@ -165,7 +165,7 @@ backgroundImagePosition(value: Position | Alignment)
 
 ## SystemAdaptiveOptions<sup>18+</sup>
 
-系统自适应调节参数。
+系统自适应调节参数，系统会默认开启根据芯片算力进行自适应效果调节的能力。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -224,7 +224,7 @@ backgroundBlurStyle(style: Optional\<BlurStyle>, options?: BackgroundBlurStyleOp
 
 backdropBlur(value: number, options?: BlurOptions)
 
-为组件添加背景模糊效果，可以自定设置模糊半径和灰阶参数。
+为组件添加背景模糊效果，可以自定义设置模糊半径和灰阶参数。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -243,7 +243,7 @@ backdropBlur(value: number, options?: BlurOptions)
 
 backdropBlur(radius: Optional\<number>, options?: BlurOptions, sysOptions?: SystemAdaptiveOptions)
 
-为组件添加背景模糊效果，可以自定设置模糊半径和灰阶参数。与[backdropBlur](#backdropblur)相比，radius参数新增了对undefined类型的支持。
+为组件添加背景模糊效果，可以自定义设置模糊半径和灰阶参数。与[backdropBlur](#backdropblur)相比，radius参数新增了对undefined类型的支持。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -605,7 +605,7 @@ struct BlurEffectsExample {
         Text('blur text')
           .blur(5).margin(10)
         Text('blur text')
-          .blur(10, undefined, { disableSystemAdaptation: true }).margin(10) // 内容模糊半径为5，禁用系统自适应优化策略。
+          .blur(10, undefined).margin(10) // 内容模糊半径为5，禁用系统自适应优化策略。
         Text('blur text')
           .blur(15).margin(10)
       }.width('90%').height(40)

@@ -80,7 +80,6 @@ ArkWeb是多进程模型，分为应用进程、Web渲染进程、Web GPU进程�
    ```ts
    // xxx.ets
    import { webview } from '@kit.ArkWeb';
-   import { BusinessError } from '@kit.BasicServicesKit';
    
    @Entry
    @Component

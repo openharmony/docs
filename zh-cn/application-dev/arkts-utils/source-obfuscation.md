@@ -80,7 +80,7 @@ test(a2);
 
 与其他代码混淆工具一样，混淆只能在一定程度上增加逆向过程的难度，并不能真正阻止逆向工程。
 
-并且，由于ArkGuard混淆工具仅支持基础混淆能力，开发者不应只依赖ArkGuard来保证应用的安全性，对于源码安全有高要求的开发者，应考虑使用[应用加密](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/code-protect-V5)、第三方安全加固等安全措施来保护代码。
+并且，由于ArkGuard混淆工具仅支持基础混淆能力，开发者不应只依赖ArkGuard来保证应用的安全性，对于源码安全有高要求的开发者，应考虑使用[应用加密](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/code-protect)、第三方安全加固等安全措施来保护代码。
 
 ## 混淆机制及流程
 
@@ -361,22 +361,22 @@ let params = obj['ohos.want.action.home'];
 
 若配置该选项，以下场景中的console.*语句会被删除：
 
-1. 文件顶层的调用
-2. 代码块中的调用  
+1. 文件顶层的调用。
+2. 代码块中的调用。  
    例如：
    ```
    function foo() {
     console.log('in block');
    }
    ```
-3. module或namespace中的调用  
+3. module或namespace中的调用。  
    例如：
    ```
    namespace ns {
     console.log('in ns');
    }
    ```
-4. switch语句中的调用
+4. switch语句中的调用。
 
 ### -print-namecache
 
@@ -530,6 +530,10 @@ strip-language-default
 `// @KeepSymbol`：用来标记需要保留的名称，通常写在代码上一行，表示该名称在编译时不会被混淆。
 
 `// @KeepAsConsumer`：用来标记需要保留的名称，通常写在代码上一行，表示该名称在编译时不会被混淆。在HAR/HSP模块中，被@KeepAsConsumer标记的名称还会生成在obfuscation.txt中；在HAP模块中，@KeepAsConsumer和@KeepSymbol的效果相同。
+
+> **注意**
+>
+> 以上两种标记均为注释，不可去除"//"。
 
 **当前支持这两种标记的语法如下：**
 
@@ -892,7 +896,7 @@ class MyClass {}
 let d = new MyClass();      // MyClass 可以被正确地混淆
 ```
 
-2.当以命名导入的方式导入 so 库的 API时，若同时开启`-enable-toplevel-obfuscation`和`-enable-export-obfuscation`选项，需要手动保留 API 的名称。
+2.当以命名导入的方式导入 so 库的 API 时，若同时开启`-enable-toplevel-obfuscation`和`-enable-export-obfuscation`选项，需要手动保留 API 的名称。
 
 ```
 import { testNapi, testNapi1 as myNapi } from 'library.so' // testNapi 和 testNapi1 应该被保留
@@ -900,7 +904,7 @@ import { testNapi, testNapi1 as myNapi } from 'library.so' // testNapi 和 testN
 
 ### -keep-file-name
 
-指定要保留的文件/文件夹的名称(不需要写文件后缀)，支持使用[名称类通配符](#名称类通配符)。例如：
+指定要保留的文件/文件夹的名称（不需要写文件后缀），支持使用[名称类通配符](#名称类通配符)。例如：
 
 ```
 -keep-file-name
@@ -1020,8 +1024,8 @@ export class exportClass {}
 
 | 通配符 | 含义                   | 示例                                       |
 | ------ | ---------------------- | ------------------------------------------ |
-| ?      | 匹配任意单个字符       | "AB?"能匹配"ABC"等，但不能匹配"AB"         |
-| \*     | 匹配任意数量的任意字符 | "\*AB\*"能匹配"AB"、"aABb"、"cAB"、"ABc"等 |
+| ?      | 匹配任意单个字符       | "AB?"能匹配"ABC"等，但不能匹配"AB"。        |
+| \*     | 匹配任意数量的任意字符 | "\*AB\*"能匹配"AB"、"aABb"、"cAB"、"ABc"等。 |
 
 **使用示例**：
 
@@ -1052,10 +1056,10 @@ a*
 
 | 通配符 | 含义                                                                     | 示例                                              |
 | ------ | ------------------------------------------------------------------------ | ------------------------------------------------- |
-| ?     | 匹配任意单个字符，除了路径分隔符`/`                                      | "../a?"能匹配"../ab"等，但不能匹配"../a/"         |
-| \*      | 匹配任意数量的任意字符，除了路径分隔符`/`                                | "../a*/c"能匹配"../ab/c"，但不能匹配"../ab/d/s/c" |
-| \*\*   | 匹配任意数量的任意字符                                                   | "../a**/c"能匹配"../ab/c"，也能匹配"../ab/d/s/c"  |
-| !      | 表示非，只能写在某个路径最前端，用来排除用户配置的白名单中已有的某种情况 | "!../a/b/c.ets"表示除"../a/b/c.ets"以外           |
+| ?     | 匹配任意单个字符，除了路径分隔符`/`。                                      | "../a?"能匹配"../ab"等，但不能匹配"../a/"。         |
+| \*      | 匹配任意数量的任意字符，除了路径分隔符`/`。                                | "../a*/c"能匹配"../ab/c"，但不能匹配"../ab/d/s/c"。 |
+| \*\*   | 匹配任意数量的任意字符。                                                   | "../a**/c"能匹配"../ab/c"，也能匹配"../ab/d/s/c"。  |
+| !      | 表示非，只能写在某个路径最前端，用来排除用户配置的白名单中已有的某种情况。 | "!../a/b/c.ets"表示除"../a/b/c.ets"以外。           |
 
 **使用示例**：
 
@@ -1137,16 +1141,16 @@ class A {
   指该远程HAR/HSP包中`obfuscation.txt`文件内容。  
 
 当构建HAP、HSP和HAR的时候，最终的混淆规则是下列文件的合并：
-* 当前构建模块的ruleOptions.files属性
-* 依赖的本地HSP的consumerFiles属性
-* 依赖的本地HAR的consumerFiles属性
+* 当前构建模块的ruleOptions.files属性。
+* 依赖的本地HSP的consumerFiles属性。
+* 依赖的本地HAR的consumerFiles属性。
 * 依赖的远程HAR和远程HSP中的obfuscation.txt文件
 
 如果构建的是HAR，生成的远程HAR中的obfuscation.txt是下列文件的合并：
-* 自身的consumerFiles属性
-* 依赖的本地HSP的consumerFiles属性
-* 依赖的本地HAR的consumerFiles属性
-* 依赖的远程HAR和远程HSP中的obfuscation.txt文件
+* 自身的consumerFiles属性。
+* 依赖的本地HSP的consumerFiles属性。
+* 依赖的本地HAR的consumerFiles属性。
+* 依赖的远程HAR和远程HSP中的obfuscation.txt文件。
 
 如果构建的是HSP，生成的远程HSP中的obfuscation.txt仅包含自身的consumerFiles属性。
 如果构建的是HAP，则不会生成obfuscation.txt。

@@ -18,6 +18,8 @@ NfcATag 提供 NFC-A(ISO 14443-3A)技术的属性和I/O操作的访问，继承�
 
 TagSession是所有NFC Tag技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
 
+NfcATag获取方式请参考[nfc-tag开发指南](../../connectivity/nfc/nfc-tag-access-guide.md)。
+
 以下是NfcATag的独有接口。
 
 ### NfcATag.getSak
@@ -77,6 +79,8 @@ console.info("nfcA atqa: " + atqa);
 NfcBTag 提供对NFC-B(ISO 14443-3B)技术的属性和I/O操作的访问，继承自TagSession。
 
 TagSession是所有NFC Tag技术类型的基类，提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
+
+NfcBTag获取方式请参考[nfc-tag开发指南](../../connectivity/nfc/nfc-tag-access-guide.md)。
 
 以下是NfcBTag的独有接口。
 
@@ -138,6 +142,8 @@ NfcFTag 提供对NFC-F(JIS 6319-4)技术的属性和I/O操作的访问，继承�
 
 TagSession是所有NFC Tag技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
 
+NfcFTag获取方式请参考[nfc-tag开发指南](../../connectivity/nfc/nfc-tag-access-guide.md)。
+
 以下是NfcFTag的独有接口。
 
 ### NfcFTag.getSystemCode
@@ -198,6 +204,8 @@ NfcVTag 提供对NFC-V(ISO 15693)技术的属性和I/O操作的访问，继承�
 
 TagSession是所有NFC Tag技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
 
+NfcVTag获取方式请参考[nfc-tag开发指南](../../connectivity/nfc/nfc-tag-access-guide.md)。
+
 以下是NfcVTag的独有接口。
 
 ### NfcvTag.getResponseFlags
@@ -257,6 +265,8 @@ console.info("nfcV dsfId: " + dsfId);
 IsoDepTag 提供对ISO-DEP(ISO 14443-4)技术的属性和I/O操作的访问，继承自TagSession。
 
 TagSession是所有NFC Tag技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
+
+IsoDepTag获取方式请参考[nfc-tag开发指南](../../connectivity/nfc/nfc-tag-access-guide.md)。
 
 以下是IsoDepTag的独有接口。
 
@@ -340,6 +350,7 @@ isExtendedApduSupported(): Promise&lt;boolean&gt;
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
+| 3100205 | The tag leaves the field. |
 
 **示例：**
 
@@ -398,7 +409,7 @@ isExtendedApduSupported(callback: AsyncCallback\<boolean>): void
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
-| 3100204 | The tag I/O operation failed. |
+| 3100204 | The Tag I/O operation failed. |
 
 **示例：**
 
@@ -467,6 +478,8 @@ console.info("ndef ndefRecords number: " + ndefRecords.length);
 提供对已格式化为NDEF的NFC标签的数据和操作的访问，继承自TagSession。
 
 TagSession是所有NFC Tag技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
+
+NdefTag获取方式请参考[nfc-tag开发指南](../../connectivity/nfc/nfc-tag-access-guide.md)。
 
 以下是NdefTag的独有接口。
 
@@ -575,6 +588,7 @@ readNdef(): Promise\<[NdefMessage](#ndefmessage9)>
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
+| 3100205 | The tag leaves the field. |
 
 **示例：**
 
@@ -633,7 +647,7 @@ readNdef(callback: AsyncCallback\<[NdefMessage](#ndefmessage9)>): void
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
-| 3100204 | The tag I/O operation failed. |
+| 3100204 | The Tag I/O operation failed. |
 
 **示例：**
 
@@ -701,6 +715,7 @@ writeNdef(msg: [NdefMessage](#ndefmessage9)): Promise\<void>
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
+| 3100205 | The tag leaves the field. |
 
 **示例：**
 
@@ -764,7 +779,7 @@ writeNdef(msg: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<void>): vo
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
-| 3100204 | The tag I/O operation failed. |
+| 3100204 | The Tag I/O operation failed. |
 
 **示例：**
 
@@ -867,6 +882,7 @@ setReadOnly(): Promise\<void>
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
+| 3100205 | The tag leaves the field. |
 
 **示例：**
 
@@ -925,7 +941,7 @@ setReadOnly(callback: AsyncCallback\<void>): void
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
-| 3100204 | The tag I/O operation failed. |
+| 3100204 | The Tag I/O operation failed. |
 
 **示例：**
 
@@ -1012,6 +1028,8 @@ MifareClassicTag提供对MIFARE Classic属性和I/O操作的访问，继承自[T
 
 TagSession是所有NFC Tag技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
 
+MifareClassicTag获取方式请参考[nfc-tag开发指南](../../connectivity/nfc/nfc-tag-access-guide.md)。
+
 以下是MifareClassicTag的独有接口。
 
 ### MifareClassicTag.authenticateSector<sup>9+</sup>
@@ -1050,6 +1068,7 @@ authenticateSector(sectorIndex: number, key: number[], isKeyA: boolean): Promise
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
+| 3100205 | The tag leaves the field. |
 
 **示例：**
 
@@ -1113,7 +1132,7 @@ authenticateSector(sectorIndex: number, key: number[], isKeyA: boolean, callback
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
-| 3100204 | The tag I/O operation failed. |
+| 3100204 | The Tag I/O operation failed. |
 
 **示例：**
 ```js
@@ -1182,6 +1201,7 @@ readSingleBlock(blockIndex: number): Promise\<number[]>
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
+| 3100205 | The tag leaves the field. |
 
 **示例：**
 
@@ -1242,7 +1262,7 @@ readSingleBlock(blockIndex: number, callback: AsyncCallback\<number[]>): void
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
-| 3100204 | The tag I/O operation failed. |
+| 3100204 | The Tag I/O operation failed. |
 
 **示例：**
 
@@ -1312,6 +1332,7 @@ writeSingleBlock(blockIndex: number, data: number[]): Promise\<void>
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
+| 3100205 | The tag leaves the field. |
 
 **示例：**
 
@@ -1375,7 +1396,7 @@ writeSingleBlock(blockIndex: number, data: number[], callback: AsyncCallback\<vo
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
-| 3100204 | The tag I/O operation failed. |
+| 3100204 | The Tag I/O operation failed. |
 
 **示例：**
 
@@ -1448,6 +1469,7 @@ incrementBlock(blockIndex: number, value: number): Promise\<void>
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
+| 3100205 | The tag leaves the field. |
 
 **示例：**
 
@@ -1510,7 +1532,7 @@ incrementBlock(blockIndex: number, value: number, callback: AsyncCallback\<void>
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
-| 3100204 | The tag I/O operation failed. |
+| 3100204 | The Tag I/O operation failed. |
 
 **示例：**
 
@@ -1581,6 +1603,7 @@ decrementBlock(blockIndex: number, value: number): Promise\<void>
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
+| 3100205 | The tag leaves the field. |
 
 **示例：**
 
@@ -1643,7 +1666,7 @@ decrementBlock(blockIndex: number, value: number, callback: AsyncCallback\<void>
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
-| 3100204 | The tag I/O operation failed. |
+| 3100204 | The Tag I/O operation failed. |
 
 **示例：**
 
@@ -1714,6 +1737,7 @@ transferToBlock(blockIndex: number): Promise\<void>
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
+| 3100205 | The tag leaves the field. |
 
 **示例：**
 
@@ -1774,7 +1798,7 @@ transferToBlock(blockIndex: number, callback: AsyncCallback\<void>): void
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
-| 3100204 | The tag I/O operation failed. |
+| 3100204 | The Tag I/O operation failed. |
 
 **示例：**
 
@@ -1844,6 +1868,7 @@ restoreFromBlock(blockIndex: number): Promise\<void>
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
+| 3100205 | The tag leaves the field. |
 
 **示例：**
 
@@ -1904,7 +1929,7 @@ restoreFromBlock(blockIndex: number, callback: AsyncCallback\<void>): void
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
-| 3100204 | The tag I/O operation failed. |
+| 3100204 | The Tag I/O operation failed. |
 
 **示例：**
 
@@ -2197,6 +2222,8 @@ MifareUltralightTag 提供对MIFARE Ultralight属性和I/O操作的访问，继�
 
 TagSession是所有NFC Tag技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
 
+MifareUltralightTag获取方式请参考[nfc-tag开发指南](../../connectivity/nfc/nfc-tag-access-guide.md)。
+
 以下是MifareUltralightTag的独有接口。
 
 ### MifareUltralightTag.readMultiplePages<sup>9+</sup>
@@ -2233,6 +2260,7 @@ readMultiplePages(pageIndex: number): Promise\<number[]>
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
+| 3100205 | The tag leaves the field. |
 
 **示例：**
 
@@ -2294,7 +2322,7 @@ readMultiplePages(pageIndex: number, callback: AsyncCallback\<number[]>): void
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
-| 3100204 | The tag I/O operation failed. |
+| 3100204 | The Tag I/O operation failed. |
 
 **示例：**
 
@@ -2364,6 +2392,7 @@ writeSinglePage(pageIndex: number, data: number[]): Promise\<void>
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
+| 3100205 | The tag leaves the field. |
 
 **示例：**
 
@@ -2426,7 +2455,7 @@ writeSinglePage(pageIndex: number, data: number[], callback: AsyncCallback\<void
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
-| 3100204 | The tag I/O operation failed. |
+| 3100204 | The Tag I/O operation failed. |
 
 **示例：**
 
@@ -2495,6 +2524,8 @@ NdefFormatableTag为NDEF Formattable的标签提供格式化操作，继承自Ta
 
 TagSession是所有NFC Tag 技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
 
+NdefFormatableTag获取方式请参考[nfc-tag开发指南](../../connectivity/nfc/nfc-tag-access-guide.md)。
+
 以下是NdefFormatableTag的独有接口。
 
 ### NdefFormatableTag.format<sup>9+</sup>
@@ -2531,6 +2562,7 @@ format(message: [NdefMessage](#ndefmessage9)): Promise\<void>
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
+| 3100205 | The tag leaves the field. |
 
 **示例：**
 
@@ -2600,7 +2632,7 @@ format(message: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<void>): v
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
-| 3100204 | The tag I/O operation failed. |
+| 3100204 | The Tag I/O operation failed. |
 
 **示例：**
 
@@ -2672,6 +2704,7 @@ formatReadOnly(message: [NdefMessage](#ndefmessage9)): Promise\<void>
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
+| 3100205 | The tag leaves the field. |
 
 **示例：**
 
@@ -2741,7 +2774,7 @@ formatReadOnly(message: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<v
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
-| 3100204 | The tag I/O operation failed. |
+| 3100204 | The Tag I/O operation failed. |
 
 **示例：**
 
@@ -2785,6 +2818,8 @@ function nfcTechDemo() {
 BarcodeTag提供读取条形码标签的属性和访问I/O操作的能力，继承自TagSession。
 
 TagSession是所有NFC Tag 技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
+
+BarcodeTag获取方式请参考[nfc-tag开发指南](../../connectivity/nfc/nfc-tag-access-guide.md)。
 
 以下是BarcodeTag的独有接口。
 

@@ -4020,6 +4020,7 @@ isFile(): boolean
 
 **示例：**
 
+  <!--code_no_check-->
   ```ts
   let dir = fileio.opendirSync(pathDir);
   let isFile = dir.readSync().isFile(); 

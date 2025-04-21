@@ -77,7 +77,7 @@ An \@BuilderParam decorated method can be initialized only by an \@Builder funct
     ```ts
     @Component
     struct Child {
-      label: string = `Child`;
+      label: string = 'Child';
       @Builder customBuilder() {};
       @Builder customChangeThisBuilder() {};
       @BuilderParam customBuilderParam: () => void = this.customBuilder;
@@ -94,7 +94,7 @@ An \@BuilderParam decorated method can be initialized only by an \@Builder funct
     @Entry
     @Component
     struct Parent {
-      label: string = `Parent`;
+      label: string = 'Parent';
 
       @Builder componentBuilder() {
         Text(`${this.label}`)
@@ -283,7 +283,7 @@ const builder_value: string = 'Hello World';
 @Entry
 @ComponentV2
 struct ParentPage {
-  @Local label: string = `Parent Page`;
+  @Local label: string = 'Parent Page';
 
   @Builder componentBuilder() {
     Row(){
@@ -321,7 +321,7 @@ In a custom component, the \@BuilderParam decorated variable is used to receive 
 ```ts
 @Component
 struct ChildPage {
-  label: string = `Child Page`;
+  label: string = 'Child Page';
   @Builder customBuilder() {};
   @BuilderParam customBuilderParam: () => void = this.customBuilder;
   @BuilderParam customChangeThisBuilderParam: () => void = this.customBuilder;
@@ -346,7 +346,7 @@ const builder_value: string = 'Hello World';
 @Entry
 @Component
 struct ParentPage {
-  label: string = `Parent Page`;
+  label: string = 'Parent Page';
 
   @Builder componentBuilder() {
     Row(){
@@ -389,12 +389,12 @@ struct ParentPage {
 
 ### Using @BuilderParam in a @ComponentV2 Decorated Custom Component
 
-Use global @Builder and local @Builder to initialize the @BuilderParam attribute of the @CompoentV2 decorated custom component.
+Use global @Builder and local @Builder to initialize the @BuilderParam attribute of the @ComponentV2 decorated custom component.
 
 ```ts
 @ComponentV2
 struct ChildPage {
-  @Param label: string = `Child Page`;
+  @Param label: string = 'Child Page';
   @Builder customBuilder() {};
   @BuilderParam customBuilderParam: () => void = this.customBuilder;
   @BuilderParam customChangeThisBuilderParam: () => void = this.customBuilder;
@@ -419,7 +419,7 @@ const builder_value: string = 'Hello World';
 @Entry
 @ComponentV2
 struct ParentPage {
-  @Local label: string = `Parent Page`;
+  @Local label: string = 'Parent Page';
 
   @Builder componentBuilder() {
     Row(){
@@ -472,7 +472,7 @@ When the custom component **ChildPage** is called, \@Builder is passed as a para
 ```ts
 @Component
 struct ChildPage {
-  @State label: string = `Child Page`;
+  @State label: string = 'Child Page';
   @Builder customBuilder() {};
   @BuilderParam customChangeThisBuilderParam: () => void = this.customBuilder;
 
@@ -486,7 +486,7 @@ struct ChildPage {
 @Entry
 @Component
 struct ParentPage {
-  @State label: string = `Parent Page`;
+  @State label: string = 'Parent Page';
 
   @Builder componentBuilder() {
     Row(){
@@ -519,7 +519,7 @@ The dynamic UI rendering can also be implemented by changing @Builder to @LocalB
 ```ts
 @Component
 struct ChildPage {
-  @State label: string = `Child Page`;
+  @State label: string = 'Child Page';
   @Builder customBuilder() {};
   @BuilderParam customChangeThisBuilderParam: () => void = this.customBuilder;
 
@@ -533,7 +533,7 @@ struct ChildPage {
 @Entry
 @Component
 struct ParentPage {
-  @State label: string = `Parent Page`;
+  @State label: string = 'Parent Page';
 
   @Builder componentBuilder() {
     Row(){

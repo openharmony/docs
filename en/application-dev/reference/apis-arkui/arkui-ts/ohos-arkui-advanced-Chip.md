@@ -18,7 +18,7 @@ Not supported
 
 ## Chip
 
-Chip({options:ChipOptions}): void
+Chip(options:ChipOptions): void
 
 **Decorator**: @Builder
 
@@ -28,9 +28,9 @@ Chip({options:ChipOptions}): void
 
 **Parameters**
 
-| Name   | Type                       | Mandatory| Decorator| Description                |
-| ------- | --------------------------- | ---- | ---------- | -------------------- |
-| options | [ChipOptions](#chipoptions) | Yes  | @Builder   | Parameters of the chip.|
+| Name   | Type                       | Mandatory| Description                |
+| ------- | --------------------------- | ---- | -------------------- |
+| options | [ChipOptions](#chipoptions) | Yes  | Parameters of the chip.|
 
 ## ChipOptions
 
@@ -41,25 +41,25 @@ Defines the type and style parameters of the chip.
 | Name           | Type                                                        | Mandatory| Description                                                        |
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | size            | [ChipSize](#chipsize) \| [SizeOptions](ts-types.md#sizeoptions) | No  | Size of the chip.<br>Default value: **ChipSize**: **ChipSize.NORMAL**<br>   If of the SizeOptions type, this parameter cannot be set in percentage.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| enabled         | boolean                                                      | No  | Whether the chip can be selected.<br>Default value: **true**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| activated      | boolean                                        | No  | Whether the chip is activated.<br>Default value: **false**<br>**Atomic service API**: This API can be used in atomic services since API version 12.                     |
+| enabled         | boolean                                                      | No  | Whether the chip can be selected.<br>Default value: **true**<br>**true**: The chip can be selected.<br>**false**: The chip cannot be selected.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| activated<sup>12+</sup>    | boolean                                        | No  | Whether the chip is activated.<br>Default value: **false**<br>**true**: The chip is activated.<br>**false**: The chip is not activated.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                     |
 | prefixIcon      | [PrefixIconOptions](#prefixiconoptions)                      | No  | Prefix icon of the chip.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| prefixSymbol   | [ChipSymbolGlyphOptions](#chipsymbolglyphoptions12)              | No  | Symbol-type prefix icon of the chip.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| prefixSymbol<sup>12+</sup>  | [ChipSymbolGlyphOptions](#chipsymbolglyphoptions12)              | No  | Symbol-type prefix icon of the chip.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | label           | [LabelOptions](#labeloptions)                                | Yes  | Text of the chip.<br>**Atomic service API**: This API can be used in atomic services since API version 12.  |
 | suffixIcon      | [SuffixIconOptions](#suffixiconoptions)                      | No  | Suffix icon of the chip.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| suffixSymbol    | [ChipSymbolGlyphOptions](#chipsymbolglyphoptions12)              | No  | Symbol-type suffix icon of the chip.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| suffixSymbol<sup>12+</sup>   | [ChipSymbolGlyphOptions](#chipsymbolglyphoptions12)              | No  | Symbol-type suffix icon of the chip.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | suffixSymbolOptions<sup>14+</sup> | [ChipSuffixSymbolGlyphOptions](#chipsuffixsymbolglyphoptions14) | No| Accessibility settings of the symbol-type suffix icon.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Background color of the chip.<br>Default value: **$r('sys.color.ohos_id_color_button_normal')**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| activatedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)          | No  | Background color of the chip when it is activated.<br>Default value: **$r('sys.color.ohos_id_color_emphasize').**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| activatedBackgroundColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor)          | No  | Background color of the chip when it is activated.<br>Default value: **$r('sys.color.ohos_id_color_emphasize').**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | borderRadius    | [Dimension](ts-types.md#dimension10)                         | No  | Border radius of the chip. This parameter cannot be set in percentage.<br>Default value: **$r('sys.float.ohos_id_corner_radius_button')**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | allowClose      | boolean                                                      | No  | Whether to show the close icon.<br>Default value: **true**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | onClose         | ()=>void                                                     | No  | Event triggered when the close icon is clicked.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| onClicked      | Callback\<void> | No  | Event triggered when the chip is clicked.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                      |
-| direction | [Direction](ts-appendix-enums.md#direction) | No| Layout direction.<br>Default value: **Direction.Auto**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| onClicked<sup>12+</sup>     | Callback\<void> | No  | Event triggered when the chip is clicked.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                      |
+| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction) | No| Layout direction.<br>Default value: **Direction.Auto**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | closeOptions<sup>14+</sup> | [CloseOptions](#closeoptions14) | No| Accessibility settings of the default close icon.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | accessibilityDescription<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Accessible description of the chip. You can provide comprehensive text explanations to help users understand the operation they are about to perform and its potential consequences, especially when these cannot be inferred from the component's attributes and accessibility text alone. If a component contains both text information and the accessible description, the text is announced first and then the accessible description, when the component is selected.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | accessibilityLevel<sup>14+</sup> | string | No| Accessibility level of the chip. It determines whether the component can be recognized by accessibility services.<br>The options are as follows:<br>**"auto"**: It is treated as "yes" by the system.<br>**"yes"**: The component can be recognized by accessibility services.<br>**"no"**: The component cannot be recognized by accessibility services.<br>**"no-hide-descendants"**: Neither the component nor its child components can be recognized by accessibility services.<br>Default value: **"auto"**<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
-| accessibilitySelectedType<sup>14+</sup> | [AccessibilitySelectedType](#accessibilityselectedtype14) | No| Type of selected state for the chip.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| accessibilitySelectedType<sup>14+</sup> | [AccessibilitySelectedType](#accessibilityselectedtype14) | No| Type of selected state for the chip.<br>Default value:<br>If the **activated** property is set but **accessibilitySelectedType** is not specified, the default type is **CHECKED**. If the **activated** property is not set, the default type is **CLICKED**.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 
 > **NOTE**
 >
@@ -88,7 +88,7 @@ Enumerates the size types of the chip.
 
 ## AccessibilitySelectedType<sup>14+</sup>
 
-Enumerates the selected state types of the chip.
+Enumerates the selected state types of the chip. It allows you to specify how accessibility services convey the component's selected state to users. Different selected state types provide distinct semantics and user experiences.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -96,9 +96,9 @@ Enumerates the selected state types of the chip.
 
 | Name| Value| Description|
 | ---- | -- | ---- |
-| CLICKED | 0 | Default selected state type of the chip.|
-| CHECKED | 1 | Selected state type of the chip when used as a check box.|
-| SELECTED | 2 | Selected state type of the chip when used as a radio button.|
+| CLICKED | 0 | Clickable type. The chip acts as a regular button, without reporting any selected state to accessibility services. Use this type when the chip triggers an action but does not maintain a selected state.|
+| CHECKED | 1 | Checkbox type. The chip reports its selected state to accessibility services using the [accessibilityChecked](ts-universal-attributes-accessibility.md#accessibilitychecked13) attribute. Use this type for multi-select scenarios, such as tag filtering and attribute selection.|
+| SELECTED | 2 | Radio type. The chip reports its selected state to accessibility services using the [accessibilitySelected](ts-universal-attributes-accessibility.md#accessibilityselected13) attribute. Use this type for single-select scenarios, such as navigation bar tabs and radio buttons.|
 
 ## IconCommonOptions
 
@@ -142,7 +142,7 @@ Inherits [IconCommonOptions](#iconcommonoptions).
 | ------ | ---------- | ---- | ------------------ |
 | action | () => void | No  | Action of the suffix icon.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | accessibilityText<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Accessibility text, that is, accessibility label name, of the suffix icon. If a component does not contain text information, it will not be announced by the screen reader when selected. In this case, the screen reader user cannot know which component is selected. To solve this problem, you can set accessibility text for components without text information. When such a component is selected, the screen reader announces the specified accessibility text, informing the user which component is selected.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
-| accessibilityDescription<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Accessible description of the suffix icon. You can provide comprehensive text explanations to help users understand the operation they are about to perform and its potential consequences, especially when these cannot be inferred from the component's attributes and accessibility text alone. If a component contains both text information and the accessible description, the text is announced first and then the accessible description, when the component is selected.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| accessibilityDescription<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Accessible description of the suffix icon. You can provide comprehensive text explanations to help users understand the operation they are about to perform and its potential consequences, especially when these cannot be inferred from the chip's attributes and accessibility text alone. If a component contains both text information and the accessible description, the text is announced first and then the accessible description, when the component is selected.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | accessibilityLevel<sup>14+</sup> | string | No| Accessibility level of the suffix icon. It determines whether the component can be recognized by accessibility services.<br>The options are as follows:<br>**"auto"**: It is treated as "yes" when **action** is set for the component and as "no" otherwise.<br>**"yes"**: The component can be recognized by accessibility services.<br>**"no"**: The component cannot be recognized by accessibility services.<br>**"no-hide-descendants"**: Neither the component nor its child components can be recognized by accessibility services.<br>Default value: **"auto"**<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 
 ## AccessibilityOptions<sup>14+</sup>
@@ -261,6 +261,7 @@ struct Index {
     Column({ space: 10 }) {
       Chip({
         prefixIcon: {
+          // Replace 'app.media.chips' with your actual icon resource.
           src: $r('app.media.chips'),
           size: { width: 16, height: 16 },
           fillColor: Color.Red
@@ -273,6 +274,7 @@ struct Index {
           labelMargin: { left: 20, right: 30 }
         },
         suffixIcon: {
+          // Replace 'app.media.close' with your actual icon resource.
           src: $r('app.media.close'),
           size: { width: 16, height: 16 },
           fillColor: Color.Red
@@ -305,6 +307,7 @@ struct Index {
     Column({ space: 10 }) {
       Chip({
         prefixIcon: {
+          // Replace 'app.media.chips' with your actual icon resource.
           src: $r('app.media.chips'),
           size: { width: 16, height: 16 },
           fillColor: Color.Blue
@@ -344,6 +347,7 @@ struct Index {
     Column({ space: 10 }) {
       Chip({
         prefixIcon: {
+          // Replace 'app.media.chips' with your actual icon resource.
           src: $r('app.media.chips'),
           size: { width: 16, height: 16 },
           fillColor: Color.Blue
@@ -388,6 +392,7 @@ struct Index {
     Column({ space: 10 }) {
       Chip({
         prefixIcon: {
+          // Replace 'app.media.chips' with your actual icon resource.
           src: $r('app.media.chips'),
           size: { width: 16, height: 16 },
           fillColor: Color.Blue,
@@ -443,6 +448,7 @@ struct Index {
     Column({ space: 10 }) {
       Chip({
         prefixIcon: {
+          // Replace 'app.media.chips' with your actual icon resource.
           src: $r('app.media.chips'),
           size: { width: 16, height: 16 },
           fillColor: Color.Blue,
@@ -502,6 +508,7 @@ struct ChipPage {
       Chip({
         direction: Direction.Rtl,
         prefixIcon: {
+          // Replace 'app.media.chips' with your actual icon resource.
           src: $r('app.media.chips'),
           size: { width: 16, height: 16 },
           fillColor: Color.Red,
@@ -514,6 +521,7 @@ struct ChipPage {
           localizedLabelMargin: { start: LengthMetrics.vp(20), end: LengthMetrics.vp(20) },
         },
         suffixIcon: {
+          // Replace 'app.media.close' with your actual icon resource.
           src: $r('app.media.close'),
           size: { width: 16, height: 16 },
           fillColor: Color.Red,
@@ -540,7 +548,7 @@ This example implements the accessibility feature for a chip with an image-type 
 
 ```ts
 // xxx.ets
-import { Chip, SymbolGlyphModifier } from '@kit.ArkUI';
+import { Chip } from '@kit.ArkUI';
 
 @Builder
 function DefaultFunction(): void {
@@ -752,5 +760,105 @@ struct ChipExample2 {
         right: 16,
       })
     }
+}
+```
+
+### Example 9: Implementing Chip Accessibility
+
+This example demonstrates how to set accessibility properties for the chip, including different selected state types.
+
+```ts
+import { AccessibilitySelectedType, Chip, ChipSize } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct ChipAccessibilityExample {
+  @State clickedChipActivated: boolean = false;
+  @State checkedChipActivated: boolean = false;
+  @State selectedChipActivated: boolean = false;
+
+  build() {
+    Column({ space: 20 }) {
+      Text("Chip accessibility example").fontSize(20).fontWeight(FontWeight.Bold)
+
+      // Clickable chip - CLICKED type
+      Chip({
+        label: { text: "Clickable chip" },
+        prefixIcon: {
+          src: $r('sys.media.ohos_app_icon'),
+          fillColor: Color.Blue
+        },
+        size: ChipSize.NORMAL,
+        accessibilitySelectedType: AccessibilitySelectedType.CLICKED, // Clickable type
+        accessibilityDescription: "This is a clickable chip", // Overall accessibility description
+        accessibilityLevel: "yes," // Make sure it can be recognized by accessibility services.
+        closeOptions: {
+          accessibilityDescription: "Remove this chip. This action cannot be undone" // Detailed description for the close icon.
+        },
+        activated: this.clickedChipActivated,
+        onClicked: () => {
+          this.clickedChipActivated = !this.clickedChipActivated;
+          this.getUIContext().getPromptAction().showToast({ message: "Clickable chip is clicked" });
+        },
+        onClose: () => {
+          this.getUIContext().getPromptAction().showToast({ message: "The close icon of the clickable chip is clicked" });
+        }
+      })
+
+      // Checkbox chip - CHECKED type
+      Chip({
+        label: { text: "Checkbox chip" },
+        prefixIcon: {
+          src: $r('sys.media.ohos_app_icon'),
+          fillColor: Color.Green
+        },
+        size: ChipSize.NORMAL,
+        accessibilitySelectedType: AccessibilitySelectedType.CHECKED, // Checkbox chip
+        accessibilityDescription: "This is a checkbox chip", // Overall accessibility description
+        activated: this.checkedChipActivated,
+        onClicked: () => {
+          this.checkedChipActivated = !this.checkedChipActivated;
+          this.getUIContext().getPromptAction().showToast({
+            message: this.checkedChipActivated ? "Checkbox chip is selected" : "Checkbox chip is deselected"
+          });
+        }
+      })
+
+      // Radio chip - SELECTED type
+      Chip({
+        label: { text: "Radio chip" },
+        prefixIcon: {
+          src: $r('sys.media.ohos_app_icon'),
+          fillColor: Color.Red
+        },
+        size: ChipSize.NORMAL,
+        accessibilitySelectedType: AccessibilitySelectedType.SELECTED, // Radio type
+        accessibilityDescription: "This is a radio chip", // Overall accessibility description
+        activated: this.selectedChipActivated,
+        onClicked: () => {
+          this.selectedChipActivated = !this.selectedChipActivated;
+          this.getUIContext().getPromptAction().showToast({
+            message: this.checkedChipActivated ? "Radio chip is selected" : "Radio chip is deselected"
+          });
+        }
+      })
+
+      // Example of setting the accessibility level
+      Chip({
+        label: { text: ""Accessibility level set to no" },
+        size: ChipSize.NORMAL,
+        accessibilityLevel: "no," // This chip cannot be recognized by accessibility services.
+        closeOptions: {
+          accessibilityLevel: "no"
+        },
+        backgroundColor: '#CCCCCC',
+        onClicked: () => {
+          this.getUIContext().getPromptAction().showToast({ message: "This chip cannot be recognized by accessibility services." });
+        }
+      })
+    }
+    .width('100%')
+    .padding(16)
+  }
 }
 ```

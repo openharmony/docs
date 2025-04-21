@@ -116,4 +116,4 @@ IStreamOperatorCallback::OnFrameShutter ([in] int captureId, [in] int[] streamId
 
 **参见：**
 
-Capture
+[Capture](https://gitee.com/openharmony-sig/interface_native_header/blob/master/zh-cn/device_api/hdi/camera/v1_0/IStreamOperator.idl)

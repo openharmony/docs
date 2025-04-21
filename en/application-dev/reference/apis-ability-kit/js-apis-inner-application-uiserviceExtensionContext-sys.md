@@ -6,7 +6,7 @@ UIServiceExtensionContext provides access to a UIServiceExtensionAbility and API
 
 > **NOTE**
 >
->  - The initial APIs of this module are supported since API version 13. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>  - The initial APIs of this module are supported since API version 14. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >  - The APIs of this module can be used only in the stage model.
 >  - The APIs of this module must be used in the main thread, but not in sub-threads such as Worker and TaskPool.
 >  - The APIs provided by this module are system APIs.
@@ -34,7 +34,7 @@ class UIServiceExtAbility extends UIServiceExtensionAbility {
 ```
 
 
-## UIServiceExtensionContext.startAbility<sup>13+<sup>
+## UIServiceExtensionContext.startAbility
 
 startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
@@ -121,7 +121,7 @@ class UIEntryAbility extends UIServiceExtensionAbility {
 ```
 
 
-## UIServiceExtensionContext.terminateSelf<sup>13+<sup>
+## UIServiceExtensionContext.terminateSelf
 
 terminateSelf(): Promise&lt;void&gt;
 
@@ -160,7 +160,7 @@ class UIEntryAbility extends UIServiceExtensionAbility {
 }
 ```
 
-## UIServiceExtensionContext.startAbilityByType<sup>13+<sup>
+## UIServiceExtensionContext.startAbilityByType
 
 startAbilityByType(type: string, wantParam: Record&lt;string, Object&gt;,
     abilityStartCallback: AbilityStartCallback): Promise&lt;void&gt;
@@ -253,7 +253,7 @@ struct SubIndex {
 }
 ```
 
-## UIServiceExtensionContext.connectServiceExtensionAbility<sup>13+<sup>
+## UIServiceExtensionContext.connectServiceExtensionAbility
 
 connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
@@ -376,11 +376,11 @@ struct Page_UIServiceExtensionAbility {
 }
 ```
 
-## UIServiceExtensionContext.disconnectServiceExtensionAbility<sup>13+<sup>
+## UIServiceExtensionContext.disconnectServiceExtensionAbility
 
 disconnectServiceExtensionAbility(connectionId: number): Promise&lt;void&gt;
 
-Disconnects from a [UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md). This API is opposite to [connectServiceExtensionAbility](#uiserviceextensioncontextconnectserviceextensionability13).
+Disconnects from a [UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md). This API is opposite to [connectServiceExtensionAbility](#uiserviceextensioncontextconnectserviceextensionability).
 
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -391,7 +391,7 @@ Disconnects from a [UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.m
 
 | Name               | Type                    | Read Only| Optional| Description             |
 | -------------------- | ------------------------ | ---- | ----------------- | ----------------- |
-| connectionId         | number                   | Yes | No| Connection ID returned by [connectServiceExtensionAbility](#uiserviceextensioncontextconnectserviceextensionability13).|
+| connectionId         | number                   | Yes | No| Connection ID returned by [connectServiceExtensionAbility](#uiserviceextensioncontextconnectserviceextensionability).|
 
 
 **Return value**

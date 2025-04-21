@@ -13,7 +13,7 @@ The **FormProvider** module provides APIs related to the widget provider. You ca
 import formProvider from '@ohos.application.formProvider';
 ```
 
-## setFormNextRefreshTime
+## formProvider.setFormNextRefreshTime
 
 setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -43,7 +43,7 @@ Sets the next refresh time for a widget. This API uses an asynchronous callback 
   });
   ```
 
-## setFormNextRefreshTime
+## formProvider.setFormNextRefreshTime
 
 setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
 
@@ -78,7 +78,7 @@ Sets the next refresh time for a widget. This API uses a promise to return the r
   });
   ```
 
-## updateForm
+## formProvider.updateForm
 
 updateForm(formId: string, formBindingData: formBindingData.FormBindingData,callback: AsyncCallback&lt;void&gt;): void
 
@@ -114,7 +114,7 @@ Updates a widget. This API uses an asynchronous callback to return the result.
   });
   ```
 
-## updateForm
+## formProvider.updateForm
 
 updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Promise&lt;void&gt;
 

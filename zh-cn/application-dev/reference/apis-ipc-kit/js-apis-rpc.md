@@ -3688,8 +3688,8 @@ writeArrayBuffer(buf: ArrayBuffer, typeCode: TypeCode): void
     data.writeArrayBuffer(buffer, rpc.TypeCode.INT16_ARRAY);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffe fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffe fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffer fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffer fail, errorMessage ' + e.message);
   }
   ```
 
@@ -3741,8 +3741,8 @@ readArrayBuffer(typeCode: TypeCode): ArrayBuffer
     data.writeArrayBuffer(buffer, rpc.TypeCode.INT16_ARRAY);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffe fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffe fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffer fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffer fail, errorMessage ' + e.message);
   }
   try {
     let result = data.readArrayBuffer(rpc.TypeCode.INT16_ARRAY);
@@ -7265,78 +7265,6 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   | -------- | -------- |
   | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.Failed to obtain the passed object instance. |
 
-**示例：**
-
-  ```ts
-  // FA模型需要从@kit.AbilityKit导入featureAbility
-  // import { featureAbility } from '@kit.AbilityKit';
-  import { Want, common } from '@kit.AbilityKit';
-  import { hilog } from '@kit.PerformanceAnalysisKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  let proxy: rpc.IRemoteObject | undefined;
-  let connect: common.ConnectOptions = {
-    onConnect: (elementName, remoteProxy) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
-      proxy = remoteProxy;
-    },
-    onDisconnect: (elementName) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
-    },
-    onFailed: () => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
-    }
-  };
-  let want: Want = {
-    bundleName: "com.ohos.server",
-    abilityName: "com.ohos.server.EntryAbility",
-  };
-  function sendMessageRequestCallback(err: BusinessError, result: rpc.RequestResult) {
-    if (result.errCode === 0) {
-      hilog.info(0x0000, 'testTag', 'sendMessageRequest got result');
-      let num = result.reply.readInt();
-      let msg = result.reply.readString();
-      hilog.info(0x0000, 'testTag', 'RPCTest: reply num: ' + num);
-      hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
-    } else {
-      hilog.error(0x0000, 'testTag', 'RPCTest: sendMessageRequest failed, errCode: ' + result.errCode);
-    }
-    hilog.info(0x0000, 'testTag', 'RPCTest: sendMessageRequest ends, reclaim parcel');
-    result.data.reclaim();
-    result.reply.reclaim();
-}
-
-  // FA模型使用此方法连接服务
-  // FA.connectAbility(want,connect);
-
-  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let connectionId = context.connectServiceExtensionAbility(want, connect);
-  ```
-
-  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendMessageRequest接口方法发送消息
-
-  ```ts
-  import { hilog } from '@kit.PerformanceAnalysisKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  let option = new rpc.MessageOption();
-  let data = rpc.MessageSequence.create();
-  let reply = rpc.MessageSequence.create();
-  data.writeInt(1);
-  data.writeString("hello");
-  if (proxy != undefined) {
-    try {
-      proxy.sendMessageRequest(1, data, reply, option, sendMessageRequestCallback);
-    } catch (error) {
-      let e: BusinessError = error as BusinessError;
-      hilog.error(0x0000, 'testTag', 'rpc sendMessageRequest fail, errorCode ' + e.code);
-      hilog.error(0x0000, 'testTag', 'rpc sendMessageRequest fail, errorMessage ' + e.message);
-    }
-  }
-  ```
-
 ### sendRequest<sup>(deprecated)</sup>
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
@@ -7358,69 +7286,6 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 | reply    | [MessageParcel](#messageparceldeprecated)                    | 是   | 接收应答数据的MessageParcel对象。                            |
 | options  | [MessageOption](#messageoption)                              | 是   | 本次请求的同异步模式，默认同步调用。                         |
 | callback | AsyncCallback&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | 是   | 接收发送结果的回调。                                         |
-
-**示例：**
-
-  ```ts
-  // FA模型需要从@kit.AbilityKit导入featureAbility
-  // import { featureAbility } from '@kit.AbilityKit';
-  import { Want, common } from '@kit.AbilityKit';
-  import { hilog } from '@kit.PerformanceAnalysisKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  let proxy: rpc.IRemoteObject | undefined;
-  let connect: common.ConnectOptions = {
-    onConnect: (elementName, remoteProxy) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
-      proxy = remoteProxy;
-    },
-    onDisconnect: (elementName) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
-    },
-    onFailed: () => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
-    }
-  };
-  let want: Want = {
-      bundleName: "com.ohos.server",
-      abilityName: "com.ohos.server.EntryAbility",
-  };
-  function sendRequestCallback(err: BusinessError, result: rpc.SendRequestResult) {
-    if (result.errCode === 0) {
-      hilog.info(0x0000, 'testTag', 'sendRequest got result');
-      let num = result.reply.readInt();
-      let msg = result.reply.readString();
-      hilog.info(0x0000, 'testTag', 'RPCTest: reply num: ' + num);
-      hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
-    } else {
-      hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed, errCode: ' + result.errCode);
-    }
-    hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
-    result.data.reclaim();
-    result.reply.reclaim();
-}
-
-  // FA模型使用此方法连接服务
-  // FA.connectAbility(want,connect);
-
-  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let connectionId = context.connectServiceExtensionAbility(want, connect);
-  ```
-
-  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendRequest接口方法发送消息
-
-  ```ts
-  let option = new rpc.MessageOption();
-  let data = rpc.MessageParcel.create();
-  let reply = rpc.MessageParcel.create();
-  data.writeInt(1);
-  data.writeString("hello");
-  if (proxy != undefined) {
-    proxy.sendRequest(1, data, reply, option, sendRequestCallback);
-  }
-  ```
 
 ### getLocalInterface<sup>9+</sup>
 
@@ -8223,7 +8088,7 @@ getFlags(): number
     hilog.info(0x0000, 'testTag', 'create object successfully');
     let flog = option.getFlags();
     hilog.info(0x0000, 'testTag', 'run getFlags success, flog is ' + flog);
-    option.setFlags(1)
+    option.setFlags(rpc.MessageOption.TF_ASYNC);
     hilog.info(0x0000, 'testTag', 'run setFlags success');
     let flog2 = option.getFlags();
     hilog.info(0x0000, 'testTag', 'run getFlags success, flog2 is ' + flog2);
@@ -8253,7 +8118,7 @@ setFlags(flags: number): void
 
   try {
     let option = new rpc.MessageOption();
-    option.setFlags(1)
+    option.setFlags(rpc.MessageOption.TF_ASYNC);
     hilog.info(0x0000, 'testTag', 'run setFlags success');
     let flog = option.getFlags();
     hilog.info(0x0000, 'testTag', 'run getFlags success, flog is ' + flog);
@@ -8988,40 +8853,6 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   | -------- | -------- |
   | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.Failed to obtain the passed object instance. |
 
-**示例：**
-
-  ```ts
-  import { hilog } from '@kit.PerformanceAnalysisKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  class TestRemoteObject extends rpc.RemoteObject {
-    constructor(descriptor: string) {
-      super(descriptor);
-    }
-  }
-  function sendRequestCallback(err: BusinessError, result: rpc.RequestResult) {
-    if (result.errCode === 0) {
-      hilog.info(0x0000, 'testTag', 'sendRequest got result');
-      let num = result.reply.readInt();
-      let msg = result.reply.readString();
-      hilog.info(0x0000, 'testTag', 'RPCTest: reply num: ' + num);
-      hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
-    } else {
-      hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed, errCode: ' + result.errCode);
-    }
-    hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
-    result.data.reclaim();
-    result.reply.reclaim();
-  }
-  let testRemoteObject = new TestRemoteObject("testObject");
-  let option = new rpc.MessageOption();
-  let data = rpc.MessageSequence.create();
-  let reply = rpc.MessageSequence.create();
-  data.writeInt(1);
-  data.writeString("hello");
-  testRemoteObject.sendMessageRequest(1, data, reply, option, sendRequestCallback);
-  ```
-
 ### sendRequest<sup>(deprecated)</sup> 
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
@@ -9043,54 +8874,6 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 | reply         | [MessageParcel](#messageparceldeprecated)                    | 是   | 接收应答数据的MessageParcel对象。                            |
 | options       | [MessageOption](#messageoption)                              | 是   | 本次请求的同异步模式，默认同步调用。                         |
 | callback      | AsyncCallback&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | 是   | 接收发送结果的回调。                                         |
-
-**示例：**
-
-  ```ts
-  import { hilog } from '@kit.PerformanceAnalysisKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  class MyDeathRecipient implements rpc.DeathRecipient {
-    onRemoteDied() {
-      hilog.info(0x0000, 'testTag', 'server died');
-    }
-  }
-  class TestRemoteObject extends rpc.RemoteObject {
-    constructor(descriptor: string) {
-      super(descriptor);
-    }
-    addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-      return true;
-    }
-    removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-      return true;
-    }
-    isObjectDead(): boolean {
-      return false;
-    }
-  }
-  function sendRequestCallback(err: BusinessError, result: rpc.SendRequestResult) {
-    if (result.errCode === 0) {
-      hilog.info(0x0000, 'testTag', 'sendRequest got result');
-      let num = result.reply.readInt();
-      let msg = result.reply.readString();
-      hilog.info(0x0000, 'testTag', 'RPCTest: reply num: ' + num);
-      hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
-    } else {
-      hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed, errCode: ' + result.errCode);
-    }
-    hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
-    result.data.reclaim();
-    result.reply.reclaim();
-  }
-  let testRemoteObject = new TestRemoteObject("testObject");
-  let option = new rpc.MessageOption();
-  let data = rpc.MessageParcel.create();
-  let reply = rpc.MessageParcel.create();
-  data.writeInt(1);
-  data.writeString("hello");
-  testRemoteObject.sendRequest(1, data, reply, option, sendRequestCallback);
-  ```
 
 ### onRemoteMessageRequest<sup>9+</sup>
 
@@ -9958,7 +9741,7 @@ mapTypedAshmem(mapType: number): void
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
-    ashmem.mapTypedAshmem(ashmem.PROT_READ | ashmem.PROT_WRITE);
+    ashmem.mapTypedAshmem(rpc.Ashmem.PROT_READ | rpc.Ashmem.PROT_WRITE);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'Rpc map ashmem fail, errorCode ' + e.code);
@@ -9996,7 +9779,7 @@ mapAshmem(mapType: number): boolean
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
-  let mapReadAndWrite = ashmem.mapAshmem(ashmem.PROT_READ | ashmem.PROT_WRITE);
+  let mapReadAndWrite = ashmem.mapAshmem(rpc.Ashmem.PROT_READ | rpc.Ashmem.PROT_WRITE);
   hilog.info(0x0000, 'testTag', 'RpcTest: map ashmem result is ' + mapReadAndWrite);
   ```
 
@@ -10151,7 +9934,7 @@ setProtectionType(protectionType: number): void
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
-    ashmem.setProtectionType(ashmem.PROT_READ);
+    ashmem.setProtectionType(rpc.Ashmem.PROT_READ);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'Rpc set protection type fail, errorCode ' + e.code);
@@ -10189,7 +9972,7 @@ setProtection(protectionType: number): boolean
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
-  let result = ashmem.setProtection(ashmem.PROT_READ);
+  let result = ashmem.setProtection(rpc.Ashmem.PROT_READ);
   hilog.info(0x0000, 'testTag', 'RpcTest: Ashmem setProtection result is ' + result);
   ```
 

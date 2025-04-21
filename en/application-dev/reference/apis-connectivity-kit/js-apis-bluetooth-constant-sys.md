@@ -1,11 +1,11 @@
-# @ohos.bluetooth.constant (Bluetooth Constant Module) (System API)
+# @ohos.bluetooth.constant (Bluetooth constant Module) (System API)
 
 The **constant** module provides definitions of the constants used in Bluetooth.
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.bluetooth.constant (Bluetooth Constant Module)](js-apis-bluetooth-constant.md).
+> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.bluetooth.constant (Bluetooth constant Module)](js-apis-bluetooth-constant.md).
 
 ## Modules to Import
 

@@ -9,6 +9,7 @@
 
 **相关模块：**[Drawing](_drawing.md)
 
+**所在头文件：**[drawing_text_blob.h](drawing__text__blob_8h.md)
 
 ## 汇总
 

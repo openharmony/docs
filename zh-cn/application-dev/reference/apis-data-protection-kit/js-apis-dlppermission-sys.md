@@ -121,10 +121,10 @@ installDLPSandbox(bundleName: string, access: DLPFileAccess, userId: number, uri
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 是 | 应用包名。 |
+| bundleName | string | 是 | 应用包名。最小7字节，最大128字节。 |
 | access | [DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess) | 是 | DLP文件授权类型。 |
 | userId | number | 是 | 当前的用户ID，通过账号子系统获取的OS账号ID，默认主用户ID：100。 |
-| uri | string | 是 | DLP文件的URI。 |
+| uri | string | 是 | DLP文件的URI。不超过4095字节。 |
 
 **返回值：**
 
@@ -175,10 +175,10 @@ installDLPSandbox(bundleName: string, access: DLPFileAccess, userId: number, uri
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 是 | 应用包名。 |
+| bundleName | string | 是 | 应用包名。最小7字节，最大128字节。 |
 | access | [DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess) | 是 | DLP文件授权类型。 |
 | userId | number | 是 | 当前的用户ID，通过账号子系统获取的系账号ID，默认主用户ID：100。 |
-| uri | string | 是 | DLP文件的URI。 |
+| uri | string | 是 | DLP文件的URI。不超过4095字节。 |
 | callback | AsyncCallback&lt;[DLPSandboxInfo](#dlpsandboxinfo)&gt; | 是 | 获取应用沙箱信息的回调。 |
 
 **错误码：**
@@ -229,7 +229,7 @@ uninstallDLPSandbox(bundleName: string, userId: number, appIndex: number): Promi
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 是 | 应用包名。 |
+| bundleName | string | 是 | 应用包名。最小7字节，最大128字节。 |
 | userId | number | 是 | 当前的用户ID，通过账号子系统获取的系统账号ID，默认主用户ID：100。 |
 | appIndex | number | 是 | DLP沙箱号。 |
 
@@ -284,7 +284,7 @@ uninstallDLPSandbox(bundleName: string, userId: number, appIndex: number, callba
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 是 | 应用包名。 |
+| bundleName | string | 是 | 应用包名。最小7字节，最大128字节。 |
 | userId | number | 是 | 当前的用户ID，通过账号子系统获取的系统账号ID，默认主用户ID：100。 |
 | appIndex | number | 是 | DLP沙箱号，即installDLPSandbox接口调用成功后的返回值。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 获取卸载结果的回调。 |
@@ -444,7 +444,7 @@ addDLPLinkFile(linkFileName: string): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| linkFileName | string | 是 | 用于fuse文件系统的link文件名。 |
+| linkFileName | string | 是 | 用于fuse文件系统的link文件名。不超过255字节。 |
 
 **返回值：**
 
@@ -519,7 +519,7 @@ addDLPLinkFile(linkFileName: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| linkFileName | string | 是 | 用于fuse文件系统的link文件名。 |
+| linkFileName | string | 是 | 用于fuse文件系统的link文件名。不超过255字节。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 获取添加结果的回调。 |
 
 **错误码：**
@@ -884,7 +884,7 @@ replaceDLPLinkFile(linkFileName: string): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| linkFileName | string | 是 | 用于fuse文件系统的link文件名。 |
+| linkFileName | string | 是 | 用于fuse文件系统的link文件名。不超过255字节。 |
 
 **返回值：**
 
@@ -962,7 +962,7 @@ replaceDLPLinkFile(linkFileName: string, callback: AsyncCallback&lt;void&gt;): v
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| linkFileName | string | 是 | 用于fuse文件系统的link文件名。 |
+| linkFileName | string | 是 | 用于fuse文件系统的link文件名。不超过255字节。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 获取替换结果的回调。 |
 
 **错误码：**
@@ -1040,7 +1040,7 @@ deleteDLPLinkFile(linkFileName: string): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| linkFileName | string | 是 | 用于fuse文件系统的link文件名。 |
+| linkFileName | string | 是 | 用于fuse文件系统的link文件名。不超过255字节。 |
 
 **返回值：**
 
@@ -1116,7 +1116,7 @@ deleteDLPLinkFile(linkFileName: string, callback: AsyncCallback&lt;void&gt;): vo
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| linkFileName | string | 是 | 用于fuse文件系统的link文件名。 |
+| linkFileName | string | 是 | 用于fuse文件系统的link文件名。不超过255字节。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 获取删除结果的回调。 |
 
 **错误码：**
@@ -1654,7 +1654,7 @@ openDLPFile(ciphertextFd: number, appId: string): Promise&lt;DLPFile&gt;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | ciphertextFd | number | 是 | 加密文件的fd。 |
-| appId | string | 是 | 调用方身份。 |
+| appId | string | 是 | 调用方身份。最小8字节，最大1024字节。 |
 
 **返回值：**
 
@@ -1737,7 +1737,7 @@ DLP管理应用调用该接口，打开DLP文件。获取DLPFile管理对象，�
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | ciphertextFd | number | 是 | 加密文件的fd。 |
-| appId | string | 是 | 调用方身份。 |
+| appId | string | 是 | 调用方身份。最小8字节，最大1024字节。 |
 | callback | AsyncCallback&lt;[DLPFile](#dlpfile)&gt; | 是 | 回调函数。返回DLPFile对象。 |
 
 **错误码：**
@@ -1825,7 +1825,7 @@ DLP沙箱身份。
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| bundleName | string | 是 | 否 | 表示应用包名。 |
+| bundleName | string | 是 | 否 | 表示应用包名。最小7字节，最大128字节。 |
 | appIndex | number | 是 | 否 | 表示DLP沙箱应用索引。 |
 
 ## AccountType
@@ -1851,7 +1851,7 @@ DLP沙箱身份。
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| authAccount | string | 否 | 是 | 表示被授权用户账号。 |
+| authAccount | string | 否 | 是 | 表示被授权用户账号。不超过255字节。 |
 | authAccountType | [AccountType](#accounttype) | 否 | 是 | 表示被授权用户账号类型。 |
 | dlpFileAccess | [DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess) | 否 | 是 | 表示被授予的权限。 |
 | permExpiryTime | number | 否 | 是 | 表示授权到期时间。 |
@@ -1866,12 +1866,12 @@ DLP沙箱身份。
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| ownerAccount | string | 否 | 是 | 表示权限设置者账号。 |
-| ownerAccountID | string | 否 | 是 | 表示权限设置者账号的ID。 |
+| ownerAccount | string | 否 | 是 | 表示权限设置者账号。不超过255字节。 |
+| ownerAccountID | string | 否 | 是 | 表示权限设置者账号的ID。不超过255字节。 |
 | ownerAccountType | [AccountType](#accounttype) | 否 | 是 | 表示权限设置者账号类型。 |
 | authUserList | Array&lt;[AuthUser](#authuser)&gt; | 否 | 否 | 表示授权用户列表，默认为空。 |
-| contactAccount | string | 否 | 是 | 表示联系人账号。 |
-| offlineAccess | boolean | 否 | 是 | 表示是否是离线打开。 |
+| contactAccount | string | 否 | 是 | 表示联系人账号。不超过255字节。 |
+| offlineAccess | boolean | 否 | 是 | 表示是否是离线打开。true表示允许离线打开，false表示不可离线打开。 |
 | everyoneAccessList | Array&lt;[DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess)&gt; | 否 | 否 | 表示授予所有人的权限，默认为空。 |
 | expireTime<sup>11+</sup> | number | 否 | 否 | 表示文件权限到期时间戳，默认为空。 |
 

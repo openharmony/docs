@@ -80,7 +80,7 @@ struct rotation {
 }
 ```
 
-监听窗口旋转的同步事件windowsSizeChange来实现视图的切换。例如可在EntryAbility.ets文件的onWindowStageCreate方法中添加处理逻辑以获取屏幕的显示方向
+监听窗口旋转的同步事件windowsSizeChange来实现视图的切换。例如可在EntryAbility.ets文件的onWindowStageCreate方法中添加处理逻辑以获取屏幕的显示方向。
 ```ts
 onWindowStageCreate(windowStage: window.WindowStage): void {
 
@@ -119,7 +119,7 @@ onWindowStageCreate(windowStage: window.WindowStage): void {
 }
 ```
 
-需要在项目的 module.json5 文件中的 abilities 列表里添加 "orientation"，指定为 "auto_rotation"
+需要在项目的 module.json5 文件中的 abilities 列表里添加 "orientation"，指定为 "auto_rotation"。
 ```json
 "orientation": "auto_rotation",
 ```

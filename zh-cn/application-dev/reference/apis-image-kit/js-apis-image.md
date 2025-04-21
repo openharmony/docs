@@ -1,6 +1,6 @@
 # @ohos.multimedia.image (图片处理)
 
-本模块提供图片处理效果，包括通过属性创建PixelMap、读取图像像素数据、读取区域内的图片数据等。
+本模块提供图片解码、图片编码、图片编辑和处理、图片接收等能力，包括创建PixelMap、读取图像像素数据、读取区域内的图片数据等。
 
 > **说明：**
 >
@@ -620,7 +620,7 @@ async function CreatePremultipliedPixelMap() {
   let dstPixelMap = image.createPixelMapSync(optsForPre);
   image.createPremultipliedPixelMap(srcPixelmap, dstPixelMap, (error: BusinessError) => {
     if(error) {
-      console.error(`Failed to convert pixelmap. code is ${error.code}, message is ${error.message}`);
+      console.error(`Failed to convert pixelmap, error code is ${error}`);
       return;
     } else {
       console.info('Succeeded in converting pixelmap.');
@@ -682,7 +682,7 @@ async function CreatePremultipliedPixelMap() {
   image.createPremultipliedPixelMap(srcPixelmap, dstPixelMap).then(() => {
     console.info('Succeeded in converting pixelmap.');
   }).catch((error: BusinessError) => {
-    console.error(`Failed to convert pixelmap. code is ${error.code}, message is ${error.message}`);
+    console.error(`Failed to convert pixelmap, error code is ${error}`);
   })
 }
 ```
@@ -734,7 +734,7 @@ async function CreateUnpremultipliedPixelMap() {
   let dstPixelMap = image.createPixelMapSync(optsForUnpre);
   image.createUnpremultipliedPixelMap(srcPixelmap, dstPixelMap, (error: BusinessError) => {
     if(error) {
-      console.error(`Failed to convert pixelmap. code is ${error.code}, message is ${error.message}`);
+      console.error(`Failed to convert pixelmap, error code is ${error}`);
       return;
     } else {
       console.info('Succeeded in converting pixelmap.');
@@ -796,7 +796,7 @@ async function CreateUnpremultipliedPixelMap() {
   image.createUnpremultipliedPixelMap(srcPixelmap, dstPixelMap).then(() => {
     console.info('Succeeded in converting pixelmap.');
   }).catch((error: BusinessError) => {
-    console.error(`Failed to convert pixelmap. code is ${error.code}, message is ${error.message}`);
+    console.error(`Failed to convert pixelmap, error code is ${error}`);
   })
 }
 ```
@@ -2076,7 +2076,7 @@ getDensity():number
 
 | 类型   | 说明            |
 | ------ | --------------- |
-| number | 图像像素的密度。|
+| number | 图像像素的密度，单位为ppi。|
 
 **示例：**
 
@@ -2100,7 +2100,7 @@ opacity(rate: number, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                 | 必填 | 说明                           |
 | -------- | -------------------- | ---- | ------------------------------ |
-| rate     | number               | 是   | 透明比率的值。   |
+| rate     | number               | 是   | 透明比率的值，取值范围是(0,1]。  |
 | callback | AsyncCallback\<void> | 是   | 回调函数。当设置透明比率成功，err为undefined，否则为错误对象。 |
 
 **示例：**
@@ -2139,7 +2139,7 @@ opacity(rate: number): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                        |
 | ------ | ------ | ---- | --------------------------- |
-| rate   | number | 是   | 透明比率的值。|
+| rate   | number | 是   | 透明比率的值，取值范围是(0,1]。|
 
 **返回值：**
 
@@ -2178,7 +2178,7 @@ opacitySync(rate: number): void
 
 | 参数名   | 类型                 | 必填 | 说明                           |
 | -------- | -------------------- | ---- | ------------------------------ |
-| rate     | number               | 是   | 透明比率的值。   |
+| rate     | number               | 是   | 透明比率的值，取值范围是(0,1]。   |
 
 **错误码：**
 
@@ -2615,7 +2615,7 @@ createScaledPixelMapSync(x: number, y: number, level?: AntiAliasingLevel): Pixel
 | ------ | ------ | ---- | ------------------------------- |
 | x      | number | 是   | 宽度的缩放倍数。|
 | y      | number | 是   | 高度的缩放倍数。|
-| level  | [AntiAliasingLevel](#antialiasinglevel12) | 是   | 采用的缩放算法。|
+| level  | [AntiAliasingLevel](#antialiasinglevel12) | 否   | 采用的缩放算法。|
 
 **返回值：**
 
@@ -2648,7 +2648,7 @@ async function CreateScaledPixelMapSync() {
 
 ### clone<sup>18+</sup>
 
-clone(): Promise</PixelMap>
+clone(): Promise\<PixelMap>
 
 拷贝一份当前Pixelmap对象，使用Promise形式返回。
 
@@ -3007,8 +3007,8 @@ flip(horizontal: boolean, vertical: boolean, callback: AsyncCallback\<void>): vo
 
 | 参数名     | 类型                 | 必填 | 说明                          |
 | ---------- | -------------------- | ---- | ----------------------------- |
-| horizontal | boolean              | 是   | 水平翻转。                    |
-| vertical   | boolean              | 是   | 垂直翻转。                    |
+| horizontal | boolean              | 是   | true表示进行水平翻转，false表示不进行水平翻转。            |
+| vertical   | boolean              | 是   | true表示进行垂直翻转，false表示不进行垂直翻转。            |
 | callback   | AsyncCallback\<void> | 是   | 回调函数，当对图片翻转成功，err为undefined，否则为错误对象。|
 
 **示例：**
@@ -3048,8 +3048,8 @@ flip(horizontal: boolean, vertical: boolean): Promise\<void>
 
 | 参数名     | 类型    | 必填 | 说明      |
 | ---------- | ------- | ---- | --------- |
-| horizontal | boolean | 是   | true表示进行水平翻转。|
-| vertical   | boolean | 是   | true表示进行垂直翻转。|
+| horizontal | boolean              | 是   | true表示进行水平翻转，false表示不进行水平翻转。            |
+| vertical   | boolean              | 是   | true表示进行垂直翻转，false表示不进行垂直翻转。            |
 
 **返回值：**
 
@@ -3089,8 +3089,8 @@ flipSync(horizontal: boolean, vertical: boolean): void
 
 | 参数名     | 类型                 | 必填 | 说明                          |
 | ---------- | -------------------- | ---- | ----------------------------- |
-| horizontal | boolean              | 是   | 水平翻转。                    |
-| vertical   | boolean              | 是   | 垂直翻转。                    |
+| horizontal | boolean              | 是   | true表示进行水平翻转，false表示不进行水平翻转。            |
+| vertical   | boolean              | 是   | true表示进行垂直翻转，false表示不进行垂直翻转。            |
 
 **错误码：**
 
@@ -3342,7 +3342,7 @@ async function ApplyColorSpace() {
   if (pixelMap != undefined) {
     pixelMap.applyColorSpace(targetColorSpace, (err: BusinessError) => {
       if (err) {
-        console.error(`Failed to apply color space for pixelmap object. code is ${err.code}, message is ${err.message}`);
+        console.error(`Failed to apply color space for pixelmap object, error code is ${error}`);
         return;
       } else {
         console.info('Succeeded in applying color space for pixelmap object.');
@@ -3396,7 +3396,7 @@ async function ApplyColorSpace() {
     pixelMap.applyColorSpace(targetColorSpace).then(() => {
       console.info('Succeeded in applying color space for pixelmap object.');
     }).catch((error: BusinessError) => {
-      console.error(`Failed to apply color space for pixelmap object. code is ${error.code}, message is ${error.message}`);
+      console.error(`Failed to apply color space for pixelmap object, error code is ${error}`);
     })
   }
 }
@@ -3427,8 +3427,8 @@ toSdr(): Promise\<void>
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image'
-import resourceManager from '@ohos.resourceManager'
+import image from '@ohos.multimedia.image';
+import resourceManager from '@ohos.resourceManager';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 //此处'hdr.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
@@ -3486,7 +3486,7 @@ getMetadata(key: HdrMetadataKey): HdrMetadataValue
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import image from '@ohos.multimedia.image'
+import image from '@ohos.multimedia.image';
 
 // 'app.media.test'需要替换为本地hdr图片。
 let img = getContext().resourceManager.getMediaContentSync($r('app.media.test'));
@@ -3543,7 +3543,7 @@ setMetadata(key: HdrMetadataKey, value: HdrMetadataValue): Promise\<void>
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image'
+import image from '@ohos.multimedia.image';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let staticMetadata: image.HdrStaticMetadata = {
@@ -3555,9 +3555,9 @@ let staticMetadata: image.HdrStaticMetadata = {
   minLuminance: 1.0,
   maxContentLightLevel: 2.1,
   maxFrameAverageLightLevel: 2.1,
-}
+};
 const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
-let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
+let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } };
 image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
   pixelMap.setMetadata(image.HdrMetadataKey.HDR_STATIC_METADATA, staticMetadata).then(() => {
     console.info('Succeeded in setting pixelMap metadata.');
@@ -3582,7 +3582,7 @@ pixelmap在跨线程传输时，断开原线程的引用。适用于需立即释
 
 | 参数名   | 类型               | 必填 | 说明                          |
 | ------- | ------------------ | ---- | ----------------------------- |
-| detached | boolean   | 是   | 是否断开原线程引用。                  |
+| detached | boolean   | 是   | true表示断开原线程引用，false表示不断开原线程引用。 |
 
 **错误码：**
 
@@ -3978,7 +3978,7 @@ async function SetMemoryNameSync() {
 
 createImageSource(uri: string): ImageSource
 
-通过传入的uri创建图片源实例。
+通过传入的uri创建ImageSource实例。
 
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -4010,7 +4010,7 @@ const imageSourceApi: image.ImageSource = image.createImageSource(path);
 
 createImageSource(uri: string, options: SourceOptions): ImageSource
 
-通过传入的uri创建图片源实例。
+通过传入的uri创建ImageSource实例。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -4045,7 +4045,7 @@ let imageSourceApi: image.ImageSource = image.createImageSource(path, sourceOpti
 
 createImageSource(fd: number): ImageSource
 
-通过传入文件描述符来创建图片源实例。
+通过传入文件描述符来创建ImageSource实例。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -4079,7 +4079,7 @@ const imageSourceApi: image.ImageSource = image.createImageSource(file.fd);
 
 createImageSource(fd: number, options: SourceOptions): ImageSource
 
-通过传入文件描述符来创建图片源实例。
+通过传入文件描述符来创建ImageSource实例。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -4117,7 +4117,7 @@ const imageSourceApi: image.ImageSource = image.createImageSource(file.fd, sourc
 
 createImageSource(buf: ArrayBuffer): ImageSource
 
-通过缓冲区创建图片源实例。buf数据应该是未解码的数据，不要传入类似于RBGA，YUV的像素buffer数据，如果想通过像素buffer数据创建pixelMap，可以调用[image.createPixelMapSync](#createpixelmapsync12)这一类接口。
+通过缓冲区创建ImageSource实例。buf数据应该是未解码的数据，不要传入类似于RBGA，YUV的像素buffer数据，如果想通过像素buffer数据创建pixelMap，可以调用[image.createPixelMapSync](#createpixelmapsync12)这一类接口。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -4149,7 +4149,7 @@ const imageSourceApi: image.ImageSource = image.createImageSource(buf);
 
 createImageSource(buf: ArrayBuffer, options: SourceOptions): ImageSource
 
-通过缓冲区创建图片源实例。buf数据应该是未解码的数据，不要传入类似于RBGA，YUV的像素buffer数据，如果想通过像素buffer数据创建pixelMap，可以调用[image.createPixelMapSync](#createpixelmapsync12)这一类接口。
+通过缓冲区创建ImageSource实例。buf数据应该是未解码的数据，不要传入类似于RBGA，YUV的像素buffer数据，如果想通过像素buffer数据创建pixelMap，可以调用[image.createPixelMapSync](#createpixelmapsync12)这一类接口。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -4182,7 +4182,7 @@ const imageSourceApi: image.ImageSource = image.createImageSource(data, sourceOp
 
 createImageSource(rawfile: resourceManager.RawFileDescriptor, options?: SourceOptions): ImageSource
 
-通过图像资源文件的RawFileDescriptor创建图片源实例。
+通过图像资源文件的RawFileDescriptor创建ImageSource实例。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -4221,15 +4221,15 @@ resourceMgr.getRawFd('test.jpg').then((rawFileDescriptor: resourceManager.RawFil
 
 CreateIncrementalSource(buf: ArrayBuffer): ImageSource
 
-通过缓冲区以增量的方式创建图片源实例，IncrementalSource不支持读写Exif信息。
+通过缓冲区以增量的方式创建ImageSource实例，IncrementalSource不支持读写Exif信息。
 
-以增量方式创建的图片源实例ImageSource，仅支持使用以下功能，同步、异步callback、异步Promise均支持。
+以增量方式创建的ImageSource实例，仅支持使用以下功能，同步、异步callback、异步Promise均支持。
 - 获取图片信息：指定序号-[getImageInfo](#getimageinfo)、直接获取-[getImageInfo](#getimageinfo-1)
 - 获取图片中给定索引处图像的指定属性键的值：[getImageProperty](#getimageproperty11)
 - 批量获取图片中的指定属性键的值：[getImageProperties](#getimageproperties12)
 - 更新增量数据：[updateData](#updatedata9)
 - 创建PixelMap对象：通过图片解码参数创建-[createPixelMap](#createpixelmap7)、通过默认参数创建-[createPixelMap](#createpixelmap7-1) 、通过图片解码参数-[createPixelMap](#createpixelmap7-2)
-- 释放图片源实例：[release](#release)
+- 释放ImageSource实例：[release](#release)
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -4243,27 +4243,27 @@ CreateIncrementalSource(buf: ArrayBuffer): ImageSource
 
 | 类型                        | 说明                              |
 | --------------------------- | --------------------------------- |
-| [ImageSource](#imagesource) | 返回图片源，失败时返回undefined。 |
+| [ImageSource](#imagesource) | 返回ImageSource，失败时返回undefined。 |
 
 **示例：**
 
 ```ts
-const context: Context = getContext(this)
-let imageArray = context.resourceManager.getMediaContentSync($r('app.media.startIcon')) // 获取图像资源。
+const context: Context = getContext(this);
+let imageArray = context.resourceManager.getMediaContentSync($r('app.media.startIcon')); // 获取图像资源。
 // 此处'app.media.startIcon'仅作示例，请开发者自行替换，否则imageArray创建失败会导致后续无法正常执行。
-let splitBuff1 = imageArray.slice(0, imageArray.byteLength / 2)  // 分片。
-let splitBuff2 = imageArray.slice(imageArray.byteLength / 2)
+let splitBuff1 = imageArray.slice(0, imageArray.byteLength / 2);  // 分片。
+let splitBuff2 = imageArray.slice(imageArray.byteLength / 2);
 const imageSourceIncrementalSApi: image.ImageSource = image.CreateIncrementalSource(new ArrayBuffer(imageArray.byteLength));
 imageSourceIncrementalSApi.updateData(splitBuff1, false, 0, splitBuff1.byteLength).then(() => {
   imageSourceIncrementalSApi.updateData(splitBuff2, true, 0, splitBuff2.byteLength).then(() => {
-    let pixelMap = imageSourceIncrementalSApi.createPixelMapSync()
-    let imageInfo = pixelMap.getImageInfoSync()
-    console.info('Succeeded in creating pixelMap')
+    let pixelMap = imageSourceIncrementalSApi.createPixelMapSync();
+    let imageInfo = pixelMap.getImageInfoSync();
+    console.info('Succeeded in creating pixelMap');
   }).catch((error : BusinessError) => {
-    console.error(`Failed to updateData error code is ${error.code}, message is ${error.message}`)
+    console.error(`Failed to updateData error code is ${error.code}, message is ${error.message}`);
   })
 }).catch((error : BusinessError) => {
-  console.error(`Failed to updateData error code is ${error.code}, message is ${error.message}`)
+  console.error(`Failed to updateData error code is ${error.code}, message is ${error.message}`);
 })
 ```
 
@@ -4271,7 +4271,7 @@ imageSourceIncrementalSApi.updateData(splitBuff1, false, 0, splitBuff1.byteLengt
 
 CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 
-通过缓冲区以增量的方式创建图片源实例，IncrementalSource不支持读写Exif信息。
+通过缓冲区以增量的方式创建ImageSource实例，IncrementalSource不支持读写Exif信息。
 
 此接口支持的功能与[CreateIncrementalSource(buf: ArrayBuffer): ImageSource](#imagecreateincrementalsource9)所生成的实例支持的功能相同。
 
@@ -4288,35 +4288,35 @@ CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 
 | 类型                        | 说明                              |
 | --------------------------- | --------------------------------- |
-| [ImageSource](#imagesource) | 返回图片源，失败时返回undefined。 |
+| [ImageSource](#imagesource) | 返回ImageSource，失败时返回undefined。 |
 
 **示例：**
 
 ```ts
-const context: Context = getContext(this)
+const context: Context = getContext(this);
 let imageArray = context.resourceManager.getMediaContentSync($r('app.media.startIcon')) // 获取图像资源。
 // 此处'app.media.startIcon'仅作示例，请开发者自行替换，否则imageArray创建失败会导致后续无法正常执行。
-let splitBuff1 = imageArray.slice(0, imageArray.byteLength / 2)  // 分片。
-let splitBuff2 = imageArray.slice(imageArray.byteLength / 2)
+let splitBuff1 = imageArray.slice(0, imageArray.byteLength / 2);  // 分片。
+let splitBuff2 = imageArray.slice(imageArray.byteLength / 2);
 let sourceOptions: image.SourceOptions = { sourceDensity: 120};
 
 const imageSourceIncrementalSApi: image.ImageSource = image.CreateIncrementalSource(new ArrayBuffer(imageArray.byteLength), sourceOptions);
 imageSourceIncrementalSApi.updateData(splitBuff1, false, 0, splitBuff1.byteLength).then(() => {
   imageSourceIncrementalSApi.updateData(splitBuff2, true, 0, splitBuff2.byteLength).then(() => {
-    let pixelMap = imageSourceIncrementalSApi.createPixelMapSync()
-    let imageInfo = pixelMap.getImageInfoSync()
-    console.info('Succeeded in creating pixelMap')
+    let pixelMap = imageSourceIncrementalSApi.createPixelMapSync();
+    let imageInfo = pixelMap.getImageInfoSync();
+    console.info('Succeeded in creating pixelMap');
   }).catch((error : BusinessError) => {
-    console.error(`Failed to updateData error code is ${error.code}, message is ${error.message}`)
+    console.error(`Failed to updateData error code is ${error.code}, message is ${error.message}`);
   })
 }).catch((error : BusinessError) => {
-  console.error(`Failed to updateData error code is ${error.code}, message is ${error.message}`)
+  console.error(`Failed to updateData error code is ${error.code}, message is ${error.message}`);
 })
 ```
 
 ## ImageSource
 
-图片源类，用于获取图片相关信息。在调用ImageSource的方法前，需要先通过[createImageSource](#imagecreateimagesource)构建一个ImageSource实例。
+ImageSource类，用于获取图片相关信息。在调用ImageSource的方法前，需要先通过[createImageSource](#imagecreateimagesource)构建一个ImageSource实例。
 
 ### 属性
 
@@ -4342,7 +4342,7 @@ getImageInfo(index: number, callback: AsyncCallback\<ImageInfo>): void
 
 | 参数名   | 类型                                   | 必填 | 说明                                     |
 | -------- | -------------------------------------- | ---- | ---------------------------------------- |
-| index    | number                                 | 是   | 创建图片源时的序号。                     |
+| index    | number                                 | 是   | 创建ImageSource时的序号。默认值为0，表示第一张图片。当取值为N时，表示第N-1张图片。单帧图片场景中取值只能为0，动图等多帧图片场景中取值范围为：0~（帧数-1）。                   |
 | callback | AsyncCallback<[ImageInfo](#imageinfo)> | 是   | 回调函数。当获取图片信息成功，err为undefined，data为获取到的图片信息；否则为错误对象。 |
 
 **示例：**
@@ -4407,7 +4407,7 @@ getImageInfo(index?: number): Promise\<ImageInfo>
 
 | 参数名| 类型   | 必填 | 说明                                  |
 | ----- | ------ | ---- | ------------------------------------- |
-| index | number | 否   | 创建图片源时的序号，不选择时默认为0。 |
+| index | number | 否   | 创建ImageSource时的序号。默认值为0，表示第一张图片。当取值为N时，表示第N-1张图片。单帧图片场景中取值只能为0，动图等多帧图片场景中取值范围为：0~（帧数-1）。 |
 
 **返回值：**
 
@@ -4440,7 +4440,7 @@ getImageInfoSync(index?: number): ImageInfo
 
 | 参数名| 类型   | 必填 | 说明                                  |
 | ----- | ------ | ---- | ------------------------------------- |
-| index | number | 否   | 创建图片源时的序号，不选择时默认为0。 |
+| index | number | 否   | 创建ImageSource时的序号。默认值为0，表示第一张图片。当取值为N时，表示第N-1张图片。单帧图片场景中取值只能为0，动图等多帧图片场景中取值范围为：0~（帧数-1）。 |
 
 **返回值：**
 
@@ -4877,10 +4877,10 @@ updateData(buf: ArrayBuffer, isFinished: boolean, offset: number, length: number
 
 | 参数名     | 类型        | 必填 | 说明         |
 | ---------- | ----------- | ---- | ------------ |
-| buf        | ArrayBuffer | 是   | 增量数据。   |
-| isFinished | boolean     | 是   | 是否更新完。 |
-| offset      | number      | 是   | 偏移量。     |
-| length     | number      | 是   | 数组长。     |
+| buf        | ArrayBuffer         | 是   | 存放增量数据的buffer。           |
+| isFinished | boolean             | 是   | true表示数据更新完成，当前buffer内存放最后一段数据；false表示数据还未更新完成，需要继续更新。|
+| offset      | number              | 是   | 即当前buffer中的数据首地址，相对于整个图片文件首地址的偏移量。单位：字节。             |
+| length     | number              | 是   | 当前buffer的长度。单位：字节。            |
 
 **返回值：**
 
@@ -4914,10 +4914,10 @@ updateData(buf: ArrayBuffer, isFinished: boolean, offset: number, length: number
 
 | 参数名     | 类型                | 必填 | 说明                 |
 | ---------- | ------------------- | ---- | -------------------- |
-| buf        | ArrayBuffer         | 是   | 增量数据。           |
-| isFinished | boolean             | 是   | 是否更新完。         |
-| offset      | number              | 是   | 偏移量。             |
-| length     | number              | 是   | 数组长度。             |
+| buf        | ArrayBuffer         | 是   | 存放增量数据的buffer。           |
+| isFinished | boolean             | 是   | true表示数据更新完成，当前buffer内存放最后一段数据；false表示数据还未更新完成，需要继续更新。|
+| offset      | number              | 是   | 即当前buffer中的数据首地址，相对于整个图片文件首地址的偏移量。单位：字节。             |
+| length     | number              | 是   | 当前buffer的长度。单位：字节。            |
 | callback   | AsyncCallback\<void> | 是   |  回调函数，当更新增量数据成功，err为undefined，否则为错误对象。 |
 
 **示例：**
@@ -5080,7 +5080,8 @@ let decodingOptions: image.DecodingOptions = {
   desiredSize: { width: 1, height: 2 },
   rotate: 10,
   desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
-  desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
+  desiredRegion: { size: { width: 1, height: 2 }, x: 0, y: 0 },
+  cropAndScaleStrategy: image.CropAndScaleStrategy.CROP_FIRST,
   index: 0
 };
 imageSourceApi.createPixelMap(decodingOptions, (err: BusinessError, pixelMap: image.PixelMap) => {
@@ -5127,7 +5128,8 @@ let decodingOptions: image.DecodingOptions = {
   desiredSize: { width: 1, height: 2 },
   rotate: 10,
   desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
-  desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
+  desiredRegion: { size: { width: 1, height: 2 }, x: 0, y: 0 },
+  cropAndScaleStrategy: image.CropAndScaleStrategy.CROP_FIRST,
   index: 0
 };
 let pixelmap = imageSource.createPixelMapSync(decodingOptions);
@@ -5201,7 +5203,7 @@ let decodeOpts: image.DecodingOptions = {
 imageSourceApi.createPixelMapList(decodeOpts).then((pixelMapList: Array<image.PixelMap>) => {
   console.info('Succeeded in creating pixelMapList object.');
 }).catch((err: BusinessError) => {
-  console.error(`Failed to create pixelMapList object.code is ${err.code},message is ${err.message}`);
+  console.error(`Failed to create pixelMapList object, error code is ${error}`);
 })
 ```
 
@@ -5253,7 +5255,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 imageSourceApi.createPixelMapList((err: BusinessError, pixelMapList: Array<image.PixelMap>) => {
   if (err) {
-    console.error(`Failed to create pixelMapList object.code is ${err.code},message is ${err.message}`);
+    console.error(`Failed to create pixelMapList object, error code is ${error}`);
   } else {
     console.info('Succeeded in creating pixelMapList object.');
   }
@@ -5317,7 +5319,7 @@ let decodeOpts: image.DecodingOptions = {
 };
 imageSourceApi.createPixelMapList(decodeOpts, (err: BusinessError, pixelMapList: Array<image.PixelMap>) => {
   if (err) {
-    console.error(`Failed to create pixelMapList object.code is ${err.code},message is ${err.message}`);
+    console.error(`Failed to create pixelMapList object, error code is ${error}`);
   } else {
     console.info('Succeeded in creating pixelMapList object.');
   }
@@ -5326,7 +5328,7 @@ imageSourceApi.createPixelMapList(decodeOpts, (err: BusinessError, pixelMapList:
 
 ### createPixelMapUsingAllocator<sup>15+</sup>
 
-createPixelMapUsingAllocator(option?: DecodingOptions, allocatorType?: AllocatorType): Promise\<PixelMap\>
+createPixelMapUsingAllocator(options?: DecodingOptions, allocatorType?: AllocatorType): Promise\<PixelMap>
 
 使用指定的分配器根据图像解码参数异步创建PixelMap对象。使用Promise返回对象。
 
@@ -5336,7 +5338,7 @@ createPixelMapUsingAllocator(option?: DecodingOptions, allocatorType?: Allocator
 
 | 参数名        | 类型                                 | 必填 | 说明                     |
 | ------------- | ------------------------------------ | ---- | ------------------------ |
-| option        | [DecodingOptions](#decodingoptions7) | 否   | 解码参数。               |
+| options        | [DecodingOptions](#decodingoptions7) | 否   | 解码参数。               |
 | allocatorType | [AllocatorType](#allocatortype15)   | 否   | 用于图像解码的内存类型。默认值为AllocatorType.AUTO。 |
 
 **返回值：**
@@ -5374,7 +5376,8 @@ let decodingOptions: image.DecodingOptions = {
   desiredSize: { width: 3072, height: 4096 },
   rotate: 10,
   desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
-  desiredRegion: { size: { height: 3072, width: 4096 }, x: 0, y: 0 },
+  desiredRegion: { size: { width: 3072, height: 4096 }, x: 0, y: 0 },
+  cropAndScaleStrategy: image.CropAndScaleStrategy.CROP_FIRST,
   index: 0
 };
 let pixelmap = await imageSource.createPixelMapUsingAllocator(decodingOptions, image.AllocatorType.AUTO);
@@ -5387,7 +5390,7 @@ if (pixelmap != undefined) {
 
 ### createPixelMapUsingAllocatorSync<sup>15+</sup>
 
-createPixelMapUsingAllocatorSync(option?: DecodingOptions, allocatorType?: AllocatorType): PixelMap
+createPixelMapUsingAllocatorSync(options?: DecodingOptions, allocatorType?: AllocatorType): PixelMap
 
 根据指定的分配器同步创建一个基于图像解码参数的PixelMap对象。
 
@@ -5397,7 +5400,7 @@ createPixelMapUsingAllocatorSync(option?: DecodingOptions, allocatorType?: Alloc
 
 | 参数名        | 类型                                 | 必填 | 说明                     |
 | ------------- | ------------------------------------ | ---- | ------------------------ |
-| option        | [DecodingOptions](#decodingoptions7) | 否   | 解码参数。               |
+| options        | [DecodingOptions](#decodingoptions7) | 否   | 解码参数。               |
 | allocatorType | [AllocatorType](#allocatortype15)   | 否   | 用于图像解码的内存类型。默认值为AllocatorType.AUTO。 |
 
 **返回值：**
@@ -5435,7 +5438,8 @@ let decodingOptions: image.DecodingOptions = {
   desiredSize: { width: 3072, height: 4096 },
   rotate: 10,
   desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
-  desiredRegion: { size: { height: 3072, width: 4096 }, x: 0, y: 0 },
+  desiredRegion: { size: { width: 3072, height: 4096 }, x: 0, y: 0 },
+  cropAndScaleStrategy: image.CropAndScaleStrategy.CROP_FIRST,
   index: 0
 };
 let pixelmap = imageSource.createPixelMapUsingAllocatorSync(decodingOptions, image.AllocatorType.AUTO);
@@ -5664,7 +5668,7 @@ imageSourceApi.getDisposalTypeList().then((disposalTypes: Array<number>) => {
 
 release(callback: AsyncCallback\<void>): void
 
-释放图片源实例，使用callback形式返回结果。
+释放ImageSource实例，使用callback形式返回结果。
 
 ArkTS有内存回收机制，ImageSource对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
 
@@ -5694,7 +5698,7 @@ imageSourceApi.release((err: BusinessError) => {
 
 release(): Promise\<void>
 
-释放图片源实例，使用Promise形式返回结果。
+释放ImageSource实例，使用Promise形式返回结果。
 
 ArkTS有内存回收机制，ImageSource对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
 
@@ -5742,7 +5746,7 @@ const imagePackerApi: image.ImagePacker = image.createImagePacker();
 
 ## ImagePacker
 
-图片打包器类，用于图片压缩和打包。在调用ImagePacker的方法前，需要先通过[createImagePacker](#imagecreateimagepacker)构建一个ImagePacker实例，当前支持格式有：jpeg、webp、png、heif<sup>12+</sup>（不同硬件设备支持情况不同）。
+图片编码器类，用于图片压缩和编码。在调用ImagePacker的方法前，需要先通过[createImagePacker](#imagecreateimagepacker)构建一个ImagePacker实例，当前支持格式有：jpeg、webp、png、heif<sup>12+</sup>（不同硬件设备支持情况不同）。
 
 ### 属性
 
@@ -5750,13 +5754,13 @@ const imagePackerApi: image.ImagePacker = image.createImagePacker();
 
 | 名称             | 类型           | 可读 | 可写 | 说明                       |
 | ---------------- | -------------- | ---- | ---- | -------------------------- |
-| supportedFormats | Array\<string> | 是   | 否   | 图片打包支持的格式 jpeg、webp、png、heic<sup>12+</sup>（不同硬件设备支持情况不同）。 |
+| supportedFormats | Array\<string> | 是   | 否   | 图片编码支持的格式 jpeg、webp、png、heic<sup>12+</sup>（不同硬件设备支持情况不同）。 |
 
 ### packToData<sup>13+</sup>
 
 packToData(source: ImageSource, options: PackingOption): Promise\<ArrayBuffer>
 
-图片压缩或重新打包，使用Promise形式返回结果。
+图片压缩或重新编码，使用Promise形式返回结果。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -5766,8 +5770,8 @@ packToData(source: ImageSource, options: PackingOption): Promise\<ArrayBuffer>
 
 | 参数名 | 类型                            | 必填 | 说明           |
 | ------ | ------------------------------- | ---- | -------------- |
-| source | [ImageSource](#imagesource)     | 是   | 打包的图片源。 |
-| options | [PackingOption](#packingoption) | 是   | 设置打包参数。 |
+| source | [ImageSource](#imagesource)     | 是   | 编码的ImageSource。 |
+| options | [PackingOption](#packingoption) | 是   | 设置编码参数。 |
 
 **错误码：**
 
@@ -5789,7 +5793,7 @@ packToData(source: ImageSource, options: PackingOption): Promise\<ArrayBuffer>
 
 | 类型                         | 说明                                          |
 | ---------------------------- | --------------------------------------------- |
-| Promise\<ArrayBuffer>        | Promise对象，返回压缩或打包后的数据。 |
+| Promise\<ArrayBuffer>        | Promise对象，返回压缩或编码后的数据。 |
 
 **示例：**
 
@@ -5814,7 +5818,7 @@ imagePackerApi.packToData(imageSourceApi, packOpts)
 
 packToData(source: PixelMap, options: PackingOption): Promise\<ArrayBuffer>
 
-图片压缩或重新打包，使用Promise形式返回结果。
+图片压缩或重新编码，使用Promise形式返回结果。
 
 > **注意：**
 > 接口如果返回401错误码，表明参数异常，可能是PixelMap对象被提前释放了。需要调用方排查，在该方法调用结束后再释放PixelMap对象。
@@ -5827,14 +5831,14 @@ packToData(source: PixelMap, options: PackingOption): Promise\<ArrayBuffer>
 
 | 参数名 | 类型                            | 必填 | 说明               |
 | ------ | ------------------------------- | ---- | ------------------ |
-| source | [PixelMap](#pixelmap7)           | 是   | 打包的PixelMap源。 |
-| options | [PackingOption](#packingoption) | 是   | 设置打包参数。     |
+| source | [PixelMap](#pixelmap7)           | 是   | 编码的PixelMap源。 |
+| options | [PackingOption](#packingoption) | 是   | 设置编码参数。     |
 
 **返回值：**
 
 | 类型                  | 说明                                         |
 | --------------------- | -------------------------------------------- |
-| Promise\<ArrayBuffer> | Promise对象，返回压缩或打包后的数据。|
+| Promise\<ArrayBuffer> | Promise对象，返回压缩或编码后的数据。|
 
 **错误码：**
 
@@ -5877,7 +5881,7 @@ image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
 
 packing(picture: Picture, options: PackingOption): Promise\<ArrayBuffer>
 
-将图像压缩或重新打包，使用Promise形式返回结果。
+将图像压缩或重新编码，使用Promise形式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
@@ -5885,14 +5889,14 @@ packing(picture: Picture, options: PackingOption): Promise\<ArrayBuffer>
 
 | 参数名           | 类型                                                 | 必填 | 说明                 |
 | ---------------- | ---------------------------------------------------- | ---- | -------------------- |
-| picture | [Picture](#picture13)                           | 是   | 打包的Picture对象。 |
-| options          | [PackingOption](#packingoption) | 是   | 设置打包参数。       |
+| picture | [Picture](#picture13)                           | 是   | 编码的Picture对象。 |
+| options          | [PackingOption](#packingoption) | 是   | 设置编码参数。       |
 
 **返回值：**
 
 | 类型                  | 说明                                  |
 | --------------------- | ------------------------------------- |
-| Promise\<ArrayBuffer> | Promise对象，返回压缩或打包后的数据。 |
+| Promise\<ArrayBuffer> | Promise对象，返回压缩或编码后的数据。 |
 
 **错误码：**
 
@@ -5937,11 +5941,70 @@ async function Packing() {
 }
 ```
 
+### packToDataFromPixelmapSequence<sup>18+</sup>
+
+packToDataFromPixelmapSequence(pixelmapSequence: Array\<PixelMap>, options: PackingOptionsForSequence): Promise\<ArrayBuffer>
+
+将多个PixelMap编码成GIF数据。使用Promise形式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
+
+**参数：**
+
+| 参数名           | 类型                                                      | 必填 | 说明                   |
+| ---------------- | --------------------------------------------------------- | ---- | ---------------------- |
+| pixelmapSequence | Array\<[PixelMap](#pixelmap7)>                            | 是   | 待编码的PixelMap序列。 |
+| options          | [PackingOptionsForSequence](#packingoptionsforsequence18) | 是   | 动图编码参数。         |
+
+**返回值：**
+
+| 类型                  | 说明                            |
+| --------------------- | ------------------------------- |
+| Promise\<ArrayBuffer> | Promise对象，返回编码后的数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+| 7800201  | Unsupported options.                                         |
+| 7800301  | Encoding failed.                                               |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import image from "@ohos.multimedia.image";
+
+const context = getContext();
+const resourceMgr = context.resourceManager;
+// 此处'moving_test.gif'仅作示例，请开发者自行替换。否则imageSource会创建失败，导致后续无法正常执行。
+const fileData = await resourceMgr.getRawFileContent('moving_test.gif');
+const color = fileData.buffer;
+let imageSource = image.createImageSource(color);
+let pixelMapList = await imageSource.createPixelMapList();
+let ops: image.PackingOptionsForSequence = {
+  frameCount: 3,  // 指定GIF编码中的帧数为3。
+  delayTimeList: [10, 10, 10],  // 指定GIF编码中3帧的延迟时间分别为100ms、100ms、100ms。
+  disposalTypes: [3, 2, 3], // 指定GIF编码中3帧的帧过渡模式分别为3（恢复到之前的状态）、2（恢复背景色)、3(恢复到之前的状态)。
+  loopCount: 0 // 指定GIF编码中循环次数为无限循环。
+};
+let Packer = image.createImagePacker();
+Packer.packToDataFromPixelmapSequence(pixelMapList, ops)
+  .then((data: ArrayBuffer) => {
+    console.info('Succeeded in packing.');
+  }).catch((error: BusinessError) => {
+  console.error('Failed to packing.');
+  })
+```
+
 ### packing<sup>(deprecated)</sup>
 
 packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<ArrayBuffer>): void
 
-图片压缩或重新打包，使用callback形式返回结果。
+图片压缩或重新编码，使用callback形式返回结果。
 
 > **说明：**
 >
@@ -5955,9 +6018,9 @@ packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<Arr
 
 | 参数名   | 类型                               | 必填 | 说明                               |
 | -------- | ---------------------------------- | ---- | ---------------------------------- |
-| source   | [ImageSource](#imagesource)        | 是   | 打包的图片源。                     |
-| option   | [PackingOption](#packingoption)    | 是   | 设置打包参数。                      |
-| callback | AsyncCallback\<ArrayBuffer>        | 是   | 回调函数，当图片打包成功，err为undefined，data为获取到的压缩或打包数据；否则为错误对象。  |
+| source   | [ImageSource](#imagesource)        | 是   | 编码的ImageSource。                     |
+| option   | [PackingOption](#packingoption)    | 是   | 设置编码参数。                      |
+| callback | AsyncCallback\<ArrayBuffer>        | 是   | 回调函数，当图片编码成功，err为undefined，data为获取到的压缩或编码数据；否则为错误对象。  |
 
 **示例：**
 
@@ -5983,7 +6046,7 @@ imagePackerApi.packing(imageSourceApi, packOpts, (err: BusinessError, data: Arra
 
 packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 
-图片压缩或重新打包，使用Promise形式返回结果。
+图片压缩或重新编码，使用Promise形式返回结果。
 
 > **说明：**
 >
@@ -5997,14 +6060,14 @@ packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 
 | 参数名 | 类型                            | 必填 | 说明           |
 | ------ | ------------------------------- | ---- | -------------- |
-| source | [ImageSource](#imagesource)     | 是   | 打包的图片源。 |
-| option | [PackingOption](#packingoption) | 是   | 设置打包参数。 |
+| source | [ImageSource](#imagesource)     | 是   | 编码的ImageSource。 |
+| option | [PackingOption](#packingoption) | 是   | 设置编码参数。 |
 
 **返回值：**
 
 | 类型                         | 说明                                          |
 | ---------------------------- | --------------------------------------------- |
-| Promise\<ArrayBuffer>        | Promise对象，返回压缩或打包后的数据。 |
+| Promise\<ArrayBuffer>        | Promise对象，返回压缩或编码后的数据。 |
 
 **示例：**
 
@@ -6029,7 +6092,7 @@ imagePackerApi.packing(imageSourceApi, packOpts)
 
 packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayBuffer>): void
 
-图片压缩或重新打包，使用callback形式返回结果。
+图片压缩或重新编码，使用callback形式返回结果。
 
 > **说明：**
 >
@@ -6046,9 +6109,9 @@ packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayB
 
 | 参数名   | 类型                            | 必填 | 说明                               |
 | -------- | ------------------------------- | ---- | ---------------------------------- |
-| source   | [PixelMap](#pixelmap7)           | 是   | 打包的PixelMap资源。               |
-| option   | [PackingOption](#packingoption) | 是   | 设置打包参数。                     |
-| callback | AsyncCallback\<ArrayBuffer>     | 是   | 回调函数，当图片打包成功，err为undefined，data为获取到的压缩或打包数据；否则为错误对象。  |
+| source   | [PixelMap](#pixelmap7)           | 是   | 编码的PixelMap资源。               |
+| option   | [PackingOption](#packingoption) | 是   | 设置编码参数。                     |
+| callback | AsyncCallback\<ArrayBuffer>     | 是   | 回调函数，当图片编码成功，err为undefined，data为获取到的压缩或编码数据；否则为错误对象。  |
 
 **示例：**
 
@@ -6076,7 +6139,7 @@ image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
 
 packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 
-图片压缩或重新打包，使用Promise形式返回结果。
+图片压缩或重新编码，使用Promise形式返回结果。
 
 > **说明：**
 >
@@ -6093,14 +6156,14 @@ packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 
 | 参数名 | 类型                            | 必填 | 说明               |
 | ------ | ------------------------------- | ---- | ------------------ |
-| source | [PixelMap](#pixelmap7)           | 是   | 打包的PixelMap源。 |
-| option | [PackingOption](#packingoption) | 是   | 设置打包参数。     |
+| source | [PixelMap](#pixelmap7)           | 是   | 编码的PixelMap源。 |
+| option | [PackingOption](#packingoption) | 是   | 设置编码参数。     |
 
 **返回值：**
 
 | 类型                  | 说明                                         |
 | --------------------- | -------------------------------------------- |
-| Promise\<ArrayBuffer> | Promise对象，返回压缩或打包后的数据。|
+| Promise\<ArrayBuffer> | Promise对象，返回压缩或编码后的数据。|
 
 **示例：**
 
@@ -6127,7 +6190,7 @@ image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
 
 release(callback: AsyncCallback\<void>): void
 
-释放图片打包实例，使用callback形式返回结果。
+释放图片编码实例，使用callback形式返回结果。
 
 ArkTS有内存回收机制，ImagePacker对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
 
@@ -6137,7 +6200,7 @@ ArkTS有内存回收机制，ImagePacker对象不调用release方法，内存最
 
 | 参数名   | 类型                 | 必填 | 说明                           |
 | -------- | -------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback\<void> | 是   | 回调函数，当释放图片打包实例成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数，当释放图片编码实例成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -6158,7 +6221,7 @@ imagePackerApi.release((err: BusinessError)=>{
 
 release(): Promise\<void>
 
-释放图片打包实例，使用Promise形式返回释放结果。
+释放图片编码实例，使用Promise形式返回释放结果。
 
 ArkTS有内存回收机制，ImagePacker对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
 
@@ -6187,7 +6250,7 @@ imagePackerApi.release().then(() => {
 
 packToFile(source: ImageSource, fd: number, options: PackingOption, callback: AsyncCallback\<void>): void
 
-指定打包参数，将ImageSource图片源编码后直接打包进文件。使用callback形式返回结果。
+指定编码参数，将ImageSource直接编码进文件。使用callback形式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
@@ -6195,10 +6258,10 @@ packToFile(source: ImageSource, fd: number, options: PackingOption, callback: As
 
 | 参数名   | 类型                            | 必填 | 说明                           |
 | -------- | ------------------------------- | ---- | ------------------------------ |
-| source   | [ImageSource](#imagesource)     | 是   | 打包的图片源。                 |
+| source   | [ImageSource](#imagesource)     | 是   | 编码的ImageSource。                 |
 | fd       | number                          | 是   | 文件描述符。                   |
-| options   | [PackingOption](#packingoption) | 是   | 设置打包参数。                 |
-| callback | AsyncCallback\<void>            | 是   | 回调函数，当打包进文件成功，err为undefined，否则为错误对象。  |
+| options   | [PackingOption](#packingoption) | 是   | 设置编码参数。                 |
+| callback | AsyncCallback\<void>            | 是   | 回调函数，当编码进文件成功，err为undefined，否则为错误对象。  |
 
 **错误码：**
 
@@ -6243,7 +6306,7 @@ imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts, (err: BusinessError
 
 packToFile (source: ImageSource, fd: number, options: PackingOption): Promise\<void>
 
-指定打包参数，将ImageSource图片源编码后直接打包进文件。使用Promise形式返回结果。
+指定编码参数，将ImageSource直接编码进文件。使用Promise形式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
@@ -6251,9 +6314,9 @@ packToFile (source: ImageSource, fd: number, options: PackingOption): Promise\<v
 
 | 参数名 | 类型                            | 必填 | 说明           |
 | ------ | ------------------------------- | ---- | -------------- |
-| source | [ImageSource](#imagesource)     | 是   | 打包的图片源。 |
+| source | [ImageSource](#imagesource)     | 是   | 编码的ImageSource。 |
 | fd     | number                          | 是   | 文件描述符。   |
-| options | [PackingOption](#packingoption) | 是   | 设置打包参数。 |
+| options | [PackingOption](#packingoption) | 是   | 设置编码参数。 |
 
 **返回值：**
 
@@ -6302,7 +6365,7 @@ imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts).then(() => {
 
 packToFile (source: PixelMap, fd: number, options: PackingOption,  callback: AsyncCallback\<void>): void
 
-指定打包参数，将PixelMap图片源编码后直接打包进文件。使用callback形式返回结果。
+指定编码参数，将PixelMap直接编码进文件。使用callback形式返回结果。
 
 > **注意：**
 > 接口如果返回62980115错误码，表明参数异常，可能是PixelMap对象被提前释放了。需要调用方排查，在该方法调用结束后再释放PixelMap对象。
@@ -6313,10 +6376,10 @@ packToFile (source: PixelMap, fd: number, options: PackingOption,  callback: Asy
 
 | 参数名   | 类型                            | 必填 | 说明                           |
 | -------- | ------------------------------- | ---- | ------------------------------ |
-| source   | [PixelMap](#pixelmap7)          | 是   | 打包的PixelMap资源。           |
+| source   | [PixelMap](#pixelmap7)          | 是   | 编码的PixelMap资源。           |
 | fd       | number                          | 是   | 文件描述符。                   |
-| options   | [PackingOption](#packingoption) | 是   | 设置打包参数。                 |
-| callback | AsyncCallback\<void>            | 是   | 回调函数，当打包图片进文件成功，err为undefined，否则为错误对象。  |
+| options   | [PackingOption](#packingoption) | 是   | 设置编码参数。                 |
+| callback | AsyncCallback\<void>            | 是   | 回调函数，当编码图片进文件成功，err为undefined，否则为错误对象。  |
 
 **错误码：**
 
@@ -6362,7 +6425,7 @@ image.createPixelMap(color, opts).then((pixelmap: image.PixelMap) => {
 
 packToFile (source: PixelMap, fd: number, options: PackingOption): Promise\<void>
 
-指定打包参数，将PixelMap图片源编码后直接打包进文件。使用Promise形式返回结果。
+指定编码参数，将PixelM直接编码进文件。使用Promise形式返回结果。
 
 > **注意：**
 > 接口如果返回62980115错误码，表明参数异常，可能是PixelMap对象被提前释放了。需要调用方排查，在该方法调用结束后再释放PixelMap对象。
@@ -6373,9 +6436,9 @@ packToFile (source: PixelMap, fd: number, options: PackingOption): Promise\<void
 
 | 参数名 | 类型                            | 必填 | 说明                 |
 | ------ | ------------------------------- | ---- | -------------------- |
-| source | [PixelMap](#pixelmap7)          | 是   | 打包的PixelMap资源。 |
+| source | [PixelMap](#pixelmap7)          | 是   | 编码的PixelMap资源。 |
 | fd     | number                          | 是   | 文件描述符。         |
-| options | [PackingOption](#packingoption) | 是   | 设置打包参数。       |
+| options | [PackingOption](#packingoption) | 是   | 设置编码参数。       |
 
 **返回值：**
 
@@ -6426,7 +6489,7 @@ image.createPixelMap(color, opts).then((pixelmap: image.PixelMap) => {
 
 packToFile(picture: Picture, fd: number, options: PackingOption): Promise\<void>
 
-指定打包参数，将Picture图片源编码后直接打包进文件。使用Promise形式返回结果。
+指定编码参数，将Picture直接编码进文件。使用Promise形式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
@@ -6434,9 +6497,9 @@ packToFile(picture: Picture, fd: number, options: PackingOption): Promise\<void>
 
 | 参数名  | 类型                         | 必填 | 说明                 |
 | ------- | ---------------------------- | ---- | -------------------- |
-| picture  | [Picture](#picture13)          | 是   | 打包的Picture资源。 |
+| picture  | [Picture](#picture13)          | 是   | 编码的Picture资源。 |
 | fd      | number                       | 是   | 文件描述符。         |
-| options | [PackingOption](#packingoption) | 是   | 设置打包参数。       |
+| options | [PackingOption](#packingoption) | 是   | 设置编码参数。       |
 
 **返回值：**
 
@@ -6492,6 +6555,69 @@ async function PackToFile() {
 }
 ```
 
+### packToFileFromPixelmapSequence<sup>18+</sup>
+
+packToFileFromPixelmapSequence(pixelmapSequence: Array\<PixelMap>, fd: number, options: PackingOptionsForSequence): Promise\<void>
+
+指定编码参数，将多个PixelMap编码成GIF文件。使用Promise形式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
+
+**参数：**
+
+| 参数名           | 类型                                                      | 必填 | 说明                   |
+| ---------------- | --------------------------------------------------------- | ---- | ---------------------- |
+| pixelmapSequence | Array<[PixelMap](#pixelmap7)>                             | 是   | 待编码的PixelMap序列。 |
+| fd               | number                                                    | 是   | 文件描述符。           |
+| options          | [PackingOptionsForSequence](#packingoptionsforsequence18) | 是   | 动图编码参数。         |
+
+**返回值：**
+
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+| 7800201  | Unsupported options.                                         |
+| 7800301  | Encoding failed.                                               |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import fs from '@ohos.file.fs';
+import image from "@ohos.multimedia.image";
+
+const context = getContext();
+const resourceMgr = context.resourceManager;
+// 此处'moving_test.gif'仅作示例，请开发者自行替换。否则imageSource会创建失败，导致后续无法正常执行。
+const fileData = await resourceMgr.getRawFileContent('moving_test.gif');
+const color = fileData.buffer;
+let imageSource = image.createImageSource(color);
+let pixelMapList = await imageSource.createPixelMapList();
+let path: string = context.cacheDir + '/result.gif';
+let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+let ops: image.PackingOptionsForSequence = {
+  frameCount: 3,  // 指定GIF编码中的帧数为3。
+  delayTimeList: [10, 10, 10],  // 指定GIF编码中3帧的延迟时间分别为100ms、100ms、100ms。
+  disposalTypes: [3, 2, 3], // 指定GIF编码中3帧的帧过渡模式分别为3（恢复到之前的状态）、2（恢复背景色)、3(恢复到之前的状态)。
+  loopCount: 0 // 指定GIF编码中循环次数为无限循环。
+};
+let Packer = image.createImagePacker();
+Packer.packToFileFromPixelmapSequence(pixelMapList, file.fd, ops)
+  .then(() => {
+    console.info('Succeeded in packToFileMultiFrames.');
+  }).catch((error: BusinessError) => {
+  console.error('Failed to packToFileMultiFrames.');
+  })
+```
+
 ## image.createAuxiliaryPicture<sup>13+</sup>
 
 createAuxiliaryPicture(buffer: ArrayBuffer, size: Size, type: AuxiliaryPictureType): AuxiliaryPicture
@@ -6504,8 +6630,8 @@ createAuxiliaryPicture(buffer: ArrayBuffer, size: Size, type: AuxiliaryPictureTy
 
 | 参数名 | 类型                                            | 必填 | 说明                         |
 | ------ | ----------------------------------------------- | ---- | ---------------------------- |
-| buffer | ArrayBuffer                                     | 是   | 以buffer形式存放的图像数据。 |
-| size   | [Size](#size)                                   | 是   | 辅助图的尺寸。               |
+| buffer | ArrayBuffer                                     | 是   | 以buffer形式存放的图像数据。  |
+| size   | [Size](#size)                                   | 是   | 辅助图的尺寸。单位：像素。    |
 | type   | [AuxiliaryPictureType](#auxiliarypicturetype13) | 是   | 辅助图类型。                 |
 
 **返回值：**
@@ -7197,8 +7323,8 @@ createImageReceiver(width: number, height: number, format: number, capacity: num
 
 | 参数名   | 类型   | 必填 | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
-| width    | number | 是   | 图像的默认宽度。       |
-| height   | number | 是   | 图像的默认高度。       |
+| width    | number | 是   | 图像的默认宽度。单位：像素。       |
+| height   | number | 是   | 图像的默认高度。单位：像素。       |
 | format   | number | 是   | 图像格式，取值为[ImageFormat](#imageformat9)常量（目前仅支持 ImageFormat:JPEG，实际返回格式由生产者决定，如相机）。  |
 | capacity | number | 是   | 同时访问的最大图像数。 |
 
@@ -7563,8 +7689,8 @@ createImageCreator(width: number, height: number, format: number, capacity: numb
 
 | 参数名   | 类型   | 必填 | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
-| width    | number | 是   | 图像的默认宽度。       |
-| height   | number | 是   | 图像的默认高度。       |
+| width    | number | 是   | 图像的默认宽度。单位：像素。       |
+| height   | number | 是   | 图像的默认高度。单位：像素。       |
 | format   | number | 是   | 图像格式，如YCBCR_422_SP，JPEG。             |
 | capacity | number | 是   | 同时访问的最大图像数。 |
 
@@ -7652,7 +7778,7 @@ creator.dequeueImage().then((img: image.Image) => {
 
 queueImage(interface: Image, callback: AsyncCallback\<void>): void
 
-将绘制好的图片放入Dirty队列，并使用callback返回结果。
+将绘制好的图片放入队列，并使用callback返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageCreator
 
@@ -7661,7 +7787,7 @@ queueImage(interface: Image, callback: AsyncCallback\<void>): void
 | 参数名        | 类型                     | 必填 | 说明                 |
 | ------------- | -------------------------| ---- | -------------------- |
 | interface     | [Image](#image9)                    | 是   | 绘制好的buffer图像。 |
-| callback      | AsyncCallback\<void>     | 是   | 回调函数，当将图片放入Dirty队列成功，err为undefined，否则为错误对象。  |
+| callback      | AsyncCallback\<void>     | 是   | 回调函数，当将图片放入队列成功，err为undefined，否则为错误对象。  |
 
 **示例：**
 
@@ -7694,7 +7820,7 @@ creator.dequeueImage().then((img: image.Image) => {
 
 queueImage(interface: Image): Promise\<void>
 
-将绘制好的图片放入Dirty队列，并使用promise返回结果。
+将绘制好的图片放入队列，并使用promise返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageCreator
 
@@ -7997,7 +8123,7 @@ img.release().then(() => {
 | 名称   | 类型               | 只读|  可选| 说明                                                         |
 | ------ | ------------------ | ---| -----|------------------------------------------------------- |
 | pixels | ArrayBuffer        | 否 |   否  | 像素。仅支持BGRA_8888格式的图像像素数据。 |
-| offset | number             | 否 |   否  |  偏移量。                                                     |
+| offset | number             | 否 |   否  |  偏移量。单位：字节。                                                     |
 | stride | number             | 否 |   否  | 跨距，内存中每行像素所占的空间。stride >= region.size.width*4。                   |
 | region | [Region](#region8) | 否 |   否  |区域，按照区域读写。写入的区域宽度加X坐标不能大于原图的宽度，写入的区域高度加Y坐标不能大于原图的高度。 |
 
@@ -8015,7 +8141,7 @@ img.release().then(() => {
 | pixelFormat<sup>12+</sup> | [PixelMapFormat](#pixelmapformat7) | 否  |  否 | 像素格式。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
 | alphaType<sup>12+</sup> | [AlphaType](#alphatype9)  | 否  |  否  |透明度。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
 | mimeType<sup>12+</sup> | string  |  否  |   否  |图片真实格式（MIME type）。  |
-| isHdr<sup>12+</sup> | boolean  |  否  | 否  | 图片是否为高动态范围（HDR）。对于[ImageSource](#imagesource)，代表源图片是否为HDR；对于[PixelMap](#pixelmap7)，代表解码后的pixelmap是否为HDR。 |
+| isHdr<sup>12+</sup> | boolean  |  否  | 否  | true表示图片为高动态范围（HDR），false表示图片非高动态范围（SDR）。对于[ImageSource](#imagesource)，代表源图片是否为HDR；对于[PixelMap](#pixelmap7)，代表解码后的pixelmap是否为HDR。 |
 
 ## Size
 
@@ -8138,7 +8264,7 @@ ImageSource的初始化选项。
 
 | 名称              | 类型                               | 只读 | 可选 | 说明               |
 | ----------------- | ---------------------------------- | ---- | ---- | ------------------ |
-| sourceDensity     | number                             | 否   | 否   | 图片资源像素密度，单位DPI。<br>在解码参数[DecodingOptions](#decodingoptions7)未设置desiredSize的前提下，当前参数SourceOptions.sourceDensity与DecodingOptions.fitDensity非零时将对解码输出的pixelmap进行缩放。<br>缩放后宽计算公式如下(高同理)：(width * fitDensity + (sourceDensity >> 1)) / sourceDensity。|
+| sourceDensity     | number                             | 否   | 否   | 图片资源像素密度，单位为ppi。<br>在解码参数[DecodingOptions](#decodingoptions7)未设置desiredSize的前提下，当前参数SourceOptions.sourceDensity与DecodingOptions.fitDensity非零时将对解码输出的pixelmap进行缩放。<br>缩放后宽计算公式如下(高同理)：(width * fitDensity + (sourceDensity >> 1)) / sourceDensity。|
 | sourcePixelFormat | [PixelMapFormat](#pixelmapformat7) | 否   | 是   | 图片像素格式，默认值为UNKNOWN。     |
 | sourceSize        | [Size](#size)                      | 否   | 是   | 图像像素大小，默认值为空。     |
 
@@ -8152,7 +8278,7 @@ PixelMap的初始化选项。
 | 名称                     | 类型                               | 只读 |可选 |  说明           |
 | ------------------------ | ---------------------------------- | ----| -----|  -------------- |
 | alphaType<sup>9+</sup>   | [AlphaType](#alphatype9)           | 否   | 是| 透明度。默认值为IMAGE_ALPHA_TYPE_PREMUL。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。      |
-| editable                 | boolean                            | 否   | 是| 是否可编辑。默认值为false。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。|
+| editable                 | boolean                            | 否   | 是| true表示可编辑，false表示不可编辑。默认值为false。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。|
 | srcPixelFormat<sup>12+</sup>  | [PixelMapFormat](#pixelmapformat7) | 否 | 是 | 传入的buffer数据的像素格式。默认值为BGRA_8888。|
 | pixelFormat              | [PixelMapFormat](#pixelmapformat7) | 否 | 是| 生成的pixelMap的像素格式。默认值为RGBA_8888。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。     |
 | scaleMode<sup>9+</sup>   | [ScaleMode](#scalemode9)           | 否  | 是 | 缩略值。默认值为0。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
@@ -8168,14 +8294,15 @@ PixelMap的初始化选项。
 | ------------------ | ---------------------------------- | ---- | ---- | ---------------- |
 | sampleSize         | number                             | 否   | 是   | 缩略图采样大小，默认值为1。当前只能取1。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
 | rotate             | number                             | 否   | 是   | 旋转角度。默认值为0。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
-| editable           | boolean                            | 否   | 是   | 是否可编辑。默认值为false。当取值为false时，图片不可二次编辑，如writepixels操作将失败。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。  |
+| editable           | boolean                            | 否   | 是   | true表示可编辑，false表示不可编辑。默认值为false。当取值为false时，图片不可二次编辑，如writepixels操作将失败。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。  |
 | desiredSize        | [Size](#size)                      | 否   | 是   | 期望输出大小，必须为正整数，若与原尺寸比例不一致，则会进行拉伸/缩放到指定尺寸，默认为原始尺寸。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
 | desiredRegion      | [Region](#region8)                 | 否   | 是   | 解码图像中由Region指定的矩形区域，当原始图像很大而只需要解码图像的一部分时，可以设置该参数，有助于提升性能，默认为原始大小。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
 | desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 否   | 是   | 解码的像素格式。默认值为RGBA_8888。仅支持设置：RGBA_8888、BGRA_8888和RGB_565。有透明通道图片格式不支持设置RGB_565，如PNG、GIF、ICO和WEBP。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
-| index              | number                             | 否   | 是   | 解码图片序号。默认值为0。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
+| index              | number                             | 否   | 是   | 解码图片序号。默认值为0，表示第一张图片。当取值为N时，表示第N-1张图片。单帧图片场景中取值只能为0，动图等多帧图片场景中取值范围为：0~（帧数-1）。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
 | fitDensity<sup>9+</sup> | number                        | 否   | 是   | 图像像素密度，单位为ppi。默认值为0。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
 | desiredColorSpace<sup>11+</sup> | [colorSpaceManager.ColorSpaceManager](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspacemanager) | 否   | 是   | 目标色彩空间。默认值为UNKNOWN。 |
 | desiredDynamicRange<sup>12+</sup> | [DecodingDynamicRange](#decodingdynamicrange12) | 否   | 是   | 目标动态范围，默认值为SDR。<br>通过[CreateIncrementalSource](#imagecreateincrementalsource9)创建的imagesource不支持设置此属性，默认解码为SDR内容。<br>如果平台不支持HDR，设置无效，默认解码为SDR内容。 |
+| cropAndScaleStrategy<sup>18+</sup> | [CropAndScaleStrategy](#cropandscalestrategy18) | 否   | 是   | 解码参数如果同时设置desiredRegion与desiredSize，由此决定裁剪与缩放操作的先后策略。<br>仅支持设置：SCALE_FIRST、CROP_FIRST。 |
 
 ## DecodingOptionsForPicture<sup>13+</sup>
 
@@ -8200,22 +8327,35 @@ PixelMap的初始化选项。
 | 名称 | 类型          | 只读 | 可选| 说明         |
 | ---- | ------------- | ---- | ---- | ------------ |
 | size<sup>7+</sup> | [Size](#size) | 否   | 否   | 区域大小。   |
-| x<sup>7+</sup>    | number        | 否   | 否  | 区域左上角横坐标。 |
-| y<sup>7+</sup>    | number        | 否  | 否  | 区域左上角纵坐标。 |
+| x<sup>7+</sup>    | number        | 否   | 否  | 区域左上角横坐标。单位：像素。 |
+| y<sup>7+</sup>    | number        | 否  | 否  | 区域左上角纵坐标。单位：像素。 |
 
 ## PackingOption
 
-表示图片打包选项。
+表示图片编码选项。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 | 名称    | 类型   | 只读 | 可选 | 说明                                                |
 | ------- | ------ | ---- | ---- | --------------------------------------------------- |
 | format  | string | 否   | 否   | 目标格式。</br>当前只支持"image/jpeg"、"image/webp"、"image/png"和"image/heic(或者image/heif)"<sup>12+</sup>（不同硬件设备支持情况不同）。<br>**说明：** 因为jpeg不支持透明通道，若使用带透明通道的数据编码jpeg格式，透明色将变为黑色。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| quality | number | 否   | 否   | JPEG编码中设定输出图片质量的参数，取值范围为0-100。0质量最低，100质量最高，质量越高生成图片所占空间越大。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| quality | number | 否   | 否   | 编码中设定输出图片质量的参数，该参数仅对JPEG图片和HEIF图片生效。取值范围为0-100。0质量最低，100质量最高，质量越高生成图片所占空间越大。WebP、PNG等图片均为无损编码。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | bufferSize<sup>9+</sup> | number | 否   | 是   | 接收编码数据的缓冲区大小，单位为Byte。如果不设置大小，默认为25M。如果编码图片超过25M，需要指定大小。bufferSize需大于编码后图片大小。使用[packToFile](#packtofile11)不受此参数限制。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | desiredDynamicRange<sup>12+</sup> | [PackingDynamicRange](#packingdynamicrange12) | 否   | 是   | 目标动态范围。默认值为SDR。 |
-| needsPackProperties<sup>12+</sup> | boolean | 否   | 是   | 是否需要编码图片属性信息，例如EXIF。默认值为false。 |
+| needsPackProperties<sup>12+</sup> | boolean | 否   | 是   | 是否需要编码图片属性信息，例如EXIF。true表示需要，false表示不需要。默认值为false。 |
+
+## PackingOptionsForSequence<sup>18+</sup>
+
+描述动图编码参数的选项。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
+
+| 名称          | 类型           | 只读 | 可选 | 说明                                                         |
+| ------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
+| frameCount    | number         | 否   | 否   | GIF编码中指定的帧数。                                        |
+| delayTimeList | Array\<number> | 否   | 否   | GIF编码中设定每帧输出图像的延迟时间，取值需大于0。<br>- 单位为10毫秒。例如，取值为10时，实际单帧延迟是100毫秒。<br>- 如果长度小于frameCount，不足的部分将使用delayTimeList中的最后一个值进行填充。 |
+| disposalTypes | Array\<number> | 否   | 是   | GIF编码中设定输出图片帧过渡模式的参数，可取值如下：<br>- 0：不需要任何操作。<br>- 1：保持图形不变。<br>- 2：恢复背景色。<br>- 3：恢复到之前的状态。 |
+| loopCount     | number         | 否   | 是   | 表示在GIF编码中输出图片循环播放次数，取值范围为[0，65535]。<br>0表示无限循环；若无此字段，则表示不循环播放。 |
 
 ## ImagePropertyOptions<sup>11+</sup>
 
@@ -8262,7 +8402,7 @@ PixelMap的初始化选项。
 | MAKE<sup>10+</sup>                        | "Make"                      | **读写能力：** 可读写<br> 生产商。|
 | MODEL<sup>10+</sup>                       | "Model"                     | **读写能力：** 可读写<br> 设备型号。|
 | STRIP_OFFSETS <sup>12+</sup>              | "StripOffsets"              | **读写能力：** 可读写<br> 每个strip的字节偏移量。|
-| ORIENTATION                               | "Orientation"               | **读写能力：** 可读写<br> 图片方向。<br/>- 1：Top-left，图像未旋转。<br/>- 2：Top-right，镜像水平翻转。<br/>- 3：Bottom-right，图像旋转180°。<br/>- 4：Bottom-left，镜像垂直翻转。<br/>- 5：Left-top，镜像水平翻转再顺时针旋转270°。<br/>- 6：Right-top，顺时针旋转90°。<br/>- 7：Right-bottom，镜像水平翻转再顺时针旋转90°。<br/>- 8：Left-bottom，顺时针旋转270°。<br/>- 未定义值返回Unknown Value。|
+| ORIENTATION                               | "Orientation"               | **读写能力：** 可读写<br> 图片方向。<br/> 1："Top-left"，图像未旋转。<br/> 2："Top-right"，镜像水平翻转。<br/> 3："Bottom-right"，图像旋转180°。<br/> 4："Bottom-left"，镜像垂直翻转。<br/> 5："Left-top"，镜像水平翻转再顺时针旋转270°。<br/> 6："Right-top"，顺时针旋转90°。<br/> 7："Right-bottom"，镜像水平翻转再顺时针旋转90°。<br/> 8："Left-bottom"，顺时针旋转270°。<br/> 如果读到未定义值会返回"Unknown Value 0"。获取该属性时会以字符串的形式返回。修改该属性时既可以以数字形式指定，也可以以字符串形式指定。|
 | SAMPLES_PER_PIXEL <sup>12+</sup>          | "SamplesPerPixel"           | **读写能力：** 可读写<br> 每个像素的分量数。由于该标准适用于 RGB 和 YCbCr 图像，因此该标签的值设置为 3。在 JPEG 压缩数据中，使用 JPEG 标记代替该标签。|
 | ROWS_PER_STRIP <sup>12+</sup>             | "RowsPerStrip"              | **读写能力：** 可读写<br> 每个strip的图像数据行数。|
 | STRIP_BYTE_COUNTS <sup>12+</sup>          | "StripByteCounts"           | **读写能力：** 可读写<br> 每个图像数据带的总字节数。|
@@ -8505,6 +8645,19 @@ PixelMap的初始化选项。
 | AUTO          | 0    | 自适应，根据[pixelmap](#pixelmap7)内容处理。即如果pixelmap本身为HDR，则会按照HDR内容进行编码；反之按照SDR内容编码。  |
 | SDR           | 1    | 按照标准动态范围处理图片。   |
 
+## CropAndScaleStrategy<sup>18+</sup>
+
+枚举，裁剪与缩放的先后策略。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 名称          | 值       | 说明         |
+| ------------- | ----------| ------------ |
+| SCALE_FIRST   | 1    | 解码参数如果同时设置desiredRegion与desiredSize，先根据desiredSize进行缩放，再根据desiredRegion进行区域裁剪。     |
+| CROP_FIRST    | 2    | 解码参数如果同时设置desiredRegion与desiredSize，先根据desiredRegion进行区域裁剪，再根据desiredSize进行缩放。     |
+
+
+
 ## HdrMetadataKey<sup>12+</sup>
 
 枚举，[pixelmap](#pixelmap7)使用的HDR相关元数据信息的关键字。
@@ -8573,7 +8726,7 @@ Gainmap使用的元数据值，[HdrMetadataKey](#hdrmetadatakey12)中HDR_GAINMAP
 | writerVersion     | number   | 否 | 否 | 元数据编写器使用的版本。  |
 | miniVersion     | number   | 否 | 否 | 元数据解析需要理解的最小版本。  |
 | gainmapChannelCount  | number    | 否 | 否 | Gainmap的颜色通道数，值为3时RGB通道的元数据值不同，值为1时各通道元数据值相同，参考ISO 21496-1。  |
-| useBaseColorFlag  | boolean     | 否 | 否 | 是否使用基础图的色彩空间，参考ISO 21496-1。   |
+| useBaseColorFlag  | boolean     | 否 | 否 | 是否使用基础图的色彩空间，参考ISO 21496-1。true表示是，false表示否。   |
 | baseHeadroom  | number    | 否 | 否 |  基础图提亮比，参考ISO 21496-1。   |
 | alternateHeadroom  | number     | 否 | 否 |  提取的可选择图像提亮比，参考ISO 21496-1。  |
 | channels  | Array<[GainmapChannel](#gainmapchannel12)> | 否 | 否 | 各通道的数据，长度为3，参考ISO 21496-1。 |
@@ -8624,7 +8777,7 @@ PixelMap使用的HDR元数据值类型，和[HdrMetadataKey](#hdrmetadatakey12)�
 
 ### SVG标签说明
 
-从API version 10开始支持SVG标签，使用版本为(SVG) 1.1，SVG文件需添加xml声明，应以“<?xml”开头，并且SVG标签需设置width，height。当前支持的标签列表有：
+从API version 10开始支持SVG标签，使用版本为(SVG) 1.1，SVG标签需设置width，height。SVG文件可添加xml声明，应以“<?xml”开头，当前支持的标签列表有：
 - a
 - circla
 - clipPath

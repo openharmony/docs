@@ -362,7 +362,7 @@ captionsManager.off('styleChange', (data: accessibility.CaptionsStyle) => {
 | itemCount        | number                                | 否   | 条目总数。        |
 | elementId<sup>12+</sup>        | number                                | 否   | 组件elementId。        |
 | textAnnouncedForAccessibility<sup>12+</sup>        | string                                | 否   | 主动播报的内容。        |
-| textResourceAnnouncedForAccessibility<sup>16+</sup>        | Resource      | 否   | 主动播报的内容支持传入Resource类型，Resource类型只支持传入string。  |
+| textResourceAnnouncedForAccessibility<sup>18+</sup>        | Resource      | 否   | 主动播报的内容支持传入Resource类型，Resource类型只支持传入string。  |
 | customId<sup>12+</sup>        | string                                | 否   | 主动聚焦的组件ID。        |
 
 ### constructor
@@ -442,9 +442,9 @@ type EventType = 'accessibilityFocus' | 'accessibilityFocusClear' |
 | 'scroll'                  | 表示滚动视图的事件。    |
 | 'requestFocusForAccessibility'     | 表示主动聚焦的事件。 |
 | 'announceForAccessibility'         | 表示主动播报的事件。 |
-| 'requestFocusForAccessibilityNotInterrupt'     | 表示主动聚焦不打断的事件。<br>此事件从API version 16开始支持。 |
-| 'announceForAccessibilityNotInterrupt'         | 表示主动播报不打断的事件。<br>此事件从API version 16开始支持。 |
-| 'scrolling'                  | 表示滚动视图中有item被滚出屏幕的事件。<br>此事件从API version 16开始支持。 |
+| 'requestFocusForAccessibilityNotInterrupt'     | 表示主动聚焦不打断的事件。<br>此事件从API version 18开始支持。 |
+| 'announceForAccessibilityNotInterrupt'         | 表示主动播报不打断的事件。<br>此事件从API version 18开始支持。 |
+| 'scrolling'                  | 表示滚动视图中有item被滚出屏幕的事件。<br>此事件从API version 18开始支持。 |
 
 ## TextMoveUnit
 
@@ -778,7 +778,7 @@ accessibility.on('touchGuideStateChange', (data: boolean) => {
 });
 ```
 
-## accessibility.on('screenReaderStateChange')<sup>16+</sup>
+## accessibility.on('screenReaderStateChange')<sup>18+</sup>
 
 on(type: 'screenReaderStateChange', callback: Callback&lt;boolean&gt;): void
 
@@ -877,7 +877,7 @@ accessibility.off('touchGuideStateChange', (data: boolean) => {
 });
 ```
 
-## accessibility.off('screenReaderStateChange')<sup>16+</sup>
+## accessibility.off('screenReaderStateChange')<sup>18+</sup>
 
 off(type: 'screenReaderStateChange', callback?: Callback&lt;boolean&gt;): void
 
@@ -1095,13 +1095,13 @@ import { accessibility } from '@kit.AccessibilityKit';
 let status: boolean = accessibility.isOpenTouchGuideSync();
 ```
 
-## accessibility.isScreenReaderOpenSync<sup>16+</sup>
+## accessibility.isScreenReaderOpenSync<sup>18+</sup>
 
 isScreenReaderOpenSync(): boolean
 
 是否开启了屏幕朗读模式。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Vision
 
@@ -1330,7 +1330,7 @@ accessibility.sendAccessibilityEvent(eventInfo, (err: BusinessError) => {
 });
 ```
 
-**主动播报支持Resource示例<sup>16+</sup>：**
+**主动播报支持Resource示例<sup>18+</sup>：**
 
 ```ts
 import { accessibility } from '@kit.AccessibilityKit';

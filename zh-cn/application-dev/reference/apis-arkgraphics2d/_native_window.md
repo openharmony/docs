@@ -80,7 +80,7 @@ NativeWindow模块提供图像buffer轮转功能，可用来和egl对接。开�
 | int32_t [OH_NativeWindow_GetSurfaceId](#oh_nativewindow_getsurfaceid) ([OHNativeWindow](#ohnativewindow) \*window, uint64_t \*surfaceId) | 通过OHNativeWindow获取对应的surfaceId。 | 
 | int32_t [OH_NativeWindow_CreateNativeWindowFromSurfaceId](#oh_nativewindow_createnativewindowfromsurfaceid) (uint64_t surfaceId, [OHNativeWindow](#ohnativewindow) \*\*window) | 通过surfaceId创建对应的OHNativeWindow。 | 
 | int32_t [OH_NativeWindow_NativeWindowSetScalingModeV2](#oh_nativewindow_nativewindowsetscalingmodev2)  ([OHNativeWindow](#ohnativewindow) \*window, [OHScalingModeV2](#ohscalingmodev2) scalingMode) | 设置OHNativeWindow的渲染缩放模式。  |
-| int32_t [OH_NativeWindow_GetLastFlushedBufferV2](#oh_nativewindow_getlastflushedbufferv2) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*\*buffer, int \*fenceFd, float matrix[16]) | 从OHNativeWindow获取上次送回到buffer队列中的OHNativeWindowBuffer, 与OH_NativeWindow_GetLastFlushedBuffer的差异在于matrix不同。  | 
+| int32_t [OH_NativeWindow_GetLastFlushedBufferV2](#oh_nativewindow_getlastflushedbufferv2) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*\*buffer, int \*fenceFd, float matrix[16]) | 从OHNativeWindow获取上次送回到buffer队列中的OHNativeWindowBuffer，与OH_NativeWindow_GetLastFlushedBuffer的差异在于matrix不同。  | 
 | void [OH_NativeWindow_SetBufferHold](#oh_nativewindow_setbufferhold) ([OHNativeWindow](#ohnativewindow) \*window) | 提前缓存一帧buffer，且缓存的这一帧延迟一帧上屏显示，以此抵消后续一次超长帧丢帧。  | 
 | int32_t [OH_NativeWindow_WriteToParcel](#oh_nativewindow_writetoparcel) ([OHNativeWindow](#ohnativewindow) \*window, [OHIPCParcel](#ohipcparcel) \*parcel) | 将窗口对象写入IPC序列化对象中。 | 
 | int32_t [OH_NativeWindow_ReadFromParcel](#oh_nativewindow_readfromparcel) ([OHIPCParcel](#ohipcparcel) \*parcel, [OHNativeWindow](#ohnativewindow) \*\*window) | 从IPC序列化对象中读取窗口对象。 | 
@@ -97,7 +97,7 @@ NativeWindow模块提供图像buffer轮转功能，可用来和egl对接。开�
 typedef enum OHSurfaceSource OHSurfaceSource
 ```
 
-**描述**
+**描述：**
 
 本地窗口内容来源类型枚举。
 
@@ -109,7 +109,7 @@ typedef enum OHSurfaceSource OHSurfaceSource
 typedef struct OHIPCParcel OHIPCParcel
 ```
 
-**描述**
+**描述：**
 
 提供对IPC序列化对象的访问功能。
 
@@ -121,7 +121,7 @@ typedef struct OHIPCParcel OHIPCParcel
 typedef enum NativeWindowOperation NativeWindowOperation
 ```
 
-**描述**
+**描述：**
 
 OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。
 
@@ -133,7 +133,7 @@ OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。
 typedef enum OHNativeErrorCode OHNativeErrorCode
 ```
 
-**描述**
+**描述：**
 
 接口错误码说明（仅用于查询）。
 
@@ -146,7 +146,7 @@ typedef enum OHNativeErrorCode OHNativeErrorCode
 typedef struct NativeWindow OHNativeWindow
 ```
 
-**描述**
+**描述：**
 
 提供对OHNativeWindow的访问功能。
 
@@ -159,7 +159,7 @@ typedef struct NativeWindow OHNativeWindow
 typedef struct NativeWindowBuffer OHNativeWindowBuffer
 ```
 
-**描述**
+**描述：**
 
 提供对OHNativeWindowBuffer的访问功能。
 
@@ -170,7 +170,7 @@ typedef struct NativeWindowBuffer OHNativeWindowBuffer
 ```
 typedef enum OHScalingModeV2 OHScalingModeV2
 ```
-**描述**
+**描述：**
 
 渲染缩放模式枚举。
 
@@ -184,7 +184,7 @@ typedef enum OHScalingModeV2 OHScalingModeV2
 typedef struct Region Region
 ```
 
-**描述**
+**描述：**
 
 表示本地窗口OHNativeWindow需要更新内容的矩形区域（脏区）。
 
@@ -199,7 +199,7 @@ typedef struct Region Region
 enum OHSurfaceSource
 ```
 
-**描述**
+**描述：**
 
 本地窗口内容来源类型枚举。
 
@@ -218,7 +218,7 @@ enum OHSurfaceSource
 ```
 enum OHNativeErrorCode
 ```
-**描述**
+**描述：**
 
 接口错误码说明（仅用于查询）。
 
@@ -254,7 +254,7 @@ enum OHNativeErrorCode
 enum NativeWindowOperation
 ```
 
-**描述**
+**描述：**
 
 OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。
 
@@ -262,30 +262,30 @@ OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| SET_BUFFER_GEOMETRY | 设置本地窗口缓冲区几何图形， 函数中的可变参数是 [输入] int32_t width，[输入] int32_t height。 | 
-| GET_BUFFER_GEOMETRY | 获取本地窗口缓冲区几何图形， 函数中的可变参数是 [输出] int32_t \*height， [输出] int32_t \*width。 | 
-| GET_FORMAT | 获取本地窗口缓冲区格式， 函数中的可变参数是 [输出] int32_t \*format，取值具体可见[OH_NativeBuffer_Format](_o_h___native_buffer.md#oh_nativebuffer_format-1)枚举值。 | 
-| SET_FORMAT | 设置本地窗口缓冲区格式， 函数中的可变参数是 [输入] int32_t format，取值具体可见[OH_NativeBuffer_Format](_o_h___native_buffer.md#oh_nativebuffer_format-1)枚举值。 | 
-| GET_USAGE | 获取本地窗口读写方式， 函数中的可变参数是 [输出] uint64_t \*usage，取值具体可见[OH_NativeBuffer_Usage](_o_h___native_buffer.md#oh_nativebuffer_usage-1)枚举值。 | 
-| SET_USAGE | 设置本地窗口缓冲区读写方式， 函数中的可变参数是 [输入] uint64_t usage，取值具体可见[OH_NativeBuffer_Usage](_o_h___native_buffer.md#oh_nativebuffer_usage-1)枚举值。 | 
-| SET_STRIDE<sup>(deprecated)</sup>  | 设置本地窗口缓冲区步幅， 函数中的可变参数是 [输入] int32_t stride。<br/>**弃用:** 从API version 16开始废弃。 | 
-| GET_STRIDE<sup>(deprecated)</sup>  | 获取本地窗口缓冲区步幅， 函数中的可变参数是 [输出] int32_t \*stride。<br/>**弃用:** 从API version 16开始废弃。<br/>**替代:** 使用[OH_NativeWindow_GetBufferHandleFromNative](#oh_nativewindow_getbufferhandlefromnative)接口获取BufferHandle实例， 从[BufferHandle](_buffer_handle.md)实例中获取stride值。 | 
-| SET_SWAP_INTERVAL | 设置本地窗口缓冲区交换间隔， 函数中的可变参数是 [输入] int32_t interval。 | 
-| GET_SWAP_INTERVAL | 获取本地窗口缓冲区交换间隔， 函数中的可变参数是 [输出] int32_t \*interval。 | 
+| SET_BUFFER_GEOMETRY | 设置本地窗口缓冲区几何图形，函数中的可变参数是 [输入] int32_t width，[输入] int32_t height。 | 
+| GET_BUFFER_GEOMETRY | 获取本地窗口缓冲区几何图形，函数中的可变参数是 [输出] int32_t \*height，[输出] int32_t \*width。 | 
+| GET_FORMAT | 获取本地窗口缓冲区格式，函数中的可变参数是 [输出] int32_t \*format，取值具体可见[OH_NativeBuffer_Format](_o_h___native_buffer.md#oh_nativebuffer_format-1)枚举值。 | 
+| SET_FORMAT | 设置本地窗口缓冲区格式，函数中的可变参数是 [输入] int32_t format，取值具体可见[OH_NativeBuffer_Format](_o_h___native_buffer.md#oh_nativebuffer_format-1)枚举值。 | 
+| GET_USAGE | 获取本地窗口读写方式，函数中的可变参数是 [输出] uint64_t \*usage，取值具体可见[OH_NativeBuffer_Usage](_o_h___native_buffer.md#oh_nativebuffer_usage-1)枚举值。 | 
+| SET_USAGE | 设置本地窗口缓冲区读写方式，函数中的可变参数是 [输入] uint64_t usage，取值具体可见[OH_NativeBuffer_Usage](_o_h___native_buffer.md#oh_nativebuffer_usage-1)枚举值。 | 
+| SET_STRIDE<sup>(deprecated)</sup>  | 设置本地窗口缓冲区步幅，函数中的可变参数是 [输入] int32_t stride。<br/>**弃用:** 从API version 16开始废弃。 | 
+| GET_STRIDE<sup>(deprecated)</sup>  | 获取本地窗口缓冲区步幅，函数中的可变参数是 [输出] int32_t \*stride。<br/>**弃用:** 从API version 16开始废弃。<br/>**替代:** 使用[OH_NativeWindow_GetBufferHandleFromNative](#oh_nativewindow_getbufferhandlefromnative)接口获取BufferHandle实例，从[BufferHandle](_buffer_handle.md)实例中获取stride值。 | 
+| SET_SWAP_INTERVAL | 设置本地窗口缓冲区交换间隔，函数中的可变参数是 [输入] int32_t interval。 | 
+| GET_SWAP_INTERVAL | 获取本地窗口缓冲区交换间隔，函数中的可变参数是 [输出] int32_t \*interval。 | 
 | SET_TIMEOUT | 设置请求本地窗口请求缓冲区的超时等待时间，未手动设置时默认值为3000毫秒，函数中的可变参数是 [输入] int32_t timeout，单位为毫秒。 | 
 | GET_TIMEOUT | 获取请求本地窗口请求缓冲区的超时等待时间，未手动设置时默认值为3000毫秒，函数中的可变参数是 [输出] int32_t \*timeout，单位为毫秒。 | 
-| SET_COLOR_GAMUT | 设置本地窗口缓冲区色彩空间， 函数中的可变参数是 [输入] int32_t colorGamut，取值具体可见[OH_NativeBuffer_ColorGamut](_o_h___native_buffer.md#oh_nativebuffer_colorgamut-1)枚举值。 | 
-| GET_COLOR_GAMUT | 获取本地窗口缓冲区色彩空间， 函数中的可变参数是 [输出] int32_t \*colorGamut，取值具体可见[OH_NativeBuffer_ColorGamut](_o_h___native_buffer.md#oh_nativebuffer_colorgamut-1)枚举值。 | 
-| SET_TRANSFORM | 设置本地窗口缓冲区变换， 函数中的可变参数是 [输入] int32_t transform，取值具体可见[OH_NativeBuffer_TransformType](_o_h___native_buffer.md#oh_nativebuffer_transformtype-1)枚举值。  | 
-| GET_TRANSFORM | 获取本地窗口缓冲区变换， 函数中的可变参数是 [输出] int32_t \*transform，取值具体可见[OH_NativeBuffer_TransformType](_o_h___native_buffer.md#oh_nativebuffer_transformtype-1)枚举值。  | 
-| SET_UI_TIMESTAMP | 设置本地窗口缓冲区UI时间戳， 函数中的可变参数是 [输入] uint64_t uiTimestamp。 | 
-| GET_BUFFERQUEUE_SIZE<sup>12+</sup> | 获取内存队列大小, 函数中的可变参数是 [输出] int32_t \*size. | 
-| SET_SOURCE_TYPE<sup>12+</sup> | 设置本地窗口内容来源, 函数中的可变参数是 [输入] int32_t sourceType， 取值具体可见[OHSurfaceSource](#ohsurfacesource)枚举值。 | 
-| GET_SOURCE_TYPE<sup>12+</sup> | 获取本地窗口内容来源, 函数中的可变参数是 [输出] int32_t \*sourceType， 取值具体可见[OHSurfaceSource](#ohsurfacesource)枚举值。 | 
-| SET_APP_FRAMEWORK_TYPE<sup>12+</sup> | 设置本地窗口应用框架名称, 函数中的可变参数是 [输入] char\* frameworkType， 最大支持64字节。 | 
-| GET_APP_FRAMEWORK_TYPE<sup>12+</sup> | 获取本地窗口应用框架名称, 函数中的可变参数是 [输出] char\* frameworkType。 | 
-| SET_HDR_WHITE_POINT_BRIGHTNESS<sup>12+</sup> | 设置HDR白点亮度, 函数中的可变参数是 [输入] float brightness. 取值范围为[0.0f, 1.0f]。 | 
-| SET_SDR_WHITE_POINT_BRIGHTNESS<sup>12+</sup> | 设置SDR白点亮度, 函数中的可变参数是 [输入] float brightness. 取值范围为[0.0f, 1.0f]。 | 
+| SET_COLOR_GAMUT | 设置本地窗口缓冲区色彩空间，函数中的可变参数是 [输入] int32_t colorGamut，取值具体可见[OH_NativeBuffer_ColorGamut](_o_h___native_buffer.md#oh_nativebuffer_colorgamut-1)枚举值。 | 
+| GET_COLOR_GAMUT | 获取本地窗口缓冲区色彩空间，函数中的可变参数是 [输出] int32_t \*colorGamut，取值具体可见[OH_NativeBuffer_ColorGamut](_o_h___native_buffer.md#oh_nativebuffer_colorgamut-1)枚举值。 | 
+| SET_TRANSFORM | 设置本地窗口缓冲区变换，函数中的可变参数是 [输入] int32_t transform，取值具体可见[OH_NativeBuffer_TransformType](_o_h___native_buffer.md#oh_nativebuffer_transformtype-1)枚举值。  | 
+| GET_TRANSFORM | 获取本地窗口缓冲区变换，函数中的可变参数是 [输出] int32_t \*transform，取值具体可见[OH_NativeBuffer_TransformType](_o_h___native_buffer.md#oh_nativebuffer_transformtype-1)枚举值。  | 
+| SET_UI_TIMESTAMP | 设置本地窗口缓冲区UI时间戳，函数中的可变参数是 [输入] uint64_t uiTimestamp。 | 
+| GET_BUFFERQUEUE_SIZE<sup>12+</sup> | 获取内存队列大小，函数中的可变参数是 [输出] int32_t \*size. | 
+| SET_SOURCE_TYPE<sup>12+</sup> | 设置本地窗口内容来源，函数中的可变参数是 [输入] int32_t sourceType，取值具体可见[OHSurfaceSource](#ohsurfacesource)枚举值。 | 
+| GET_SOURCE_TYPE<sup>12+</sup> | 获取本地窗口内容来源，函数中的可变参数是 [输出] int32_t \*sourceType，取值具体可见[OHSurfaceSource](#ohsurfacesource)枚举值。 | 
+| SET_APP_FRAMEWORK_TYPE<sup>12+</sup> | 设置本地窗口应用框架名称，函数中的可变参数是 [输入] char\* frameworkType，最大支持64字节。 | 
+| GET_APP_FRAMEWORK_TYPE<sup>12+</sup> | 获取本地窗口应用框架名称，函数中的可变参数是 [输出] char\* frameworkType。 | 
+| SET_HDR_WHITE_POINT_BRIGHTNESS<sup>12+</sup> | 设置HDR白点亮度，函数中的可变参数是 [输入] float brightness. 取值范围为[0.0f, 1.0f]。 | 
+| SET_SDR_WHITE_POINT_BRIGHTNESS<sup>12+</sup> | 设置SDR白点亮度，函数中的可变参数是 [输入] float brightness. 取值范围为[0.0f, 1.0f]。 | 
 | SET_DESIRED_PRESENT_TIMESTAMP<sup>13+</sup> | 设置本地窗口缓冲区期望上屏时间的时间戳。 当且仅当RenderService为本地窗口的消费者时，该时间戳生效。 本操作执行后需要配合调用[OH_NativeWindow_NativeWindowFlushBuffer](#oh_nativewindow_nativewindowflushbuffer)生效。 生产者下一次放入队列的buffer，达到该期望上屏时间后，才会被RenderService消费并上屏。 如果buffer队列中存在多个生产者放入的buffer，都设置了desiredPresentTimestamp并已达到期望上屏时间，则较早入队的buffer将被消费者丢弃回队列。 如果期望上屏时间大于消费者提供的时间 1 秒以上，则该期望上屏时间戳将被忽略。 函数中的可变参数是 [输入] int64_t desiredPresentTimestamp，取值范围大于0，应由std::chrono::steady_clock标准库时钟生成，且单位为纳秒。 | 
 
 ### OHHDRMetadataKey
@@ -294,7 +294,7 @@ OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。
 enum OHHDRMetadataKey
 ```
 
-**描述**
+**描述：**
 
 枚举HDR元数据关键字。
 
@@ -326,7 +326,7 @@ enum OHHDRMetadataKey
 enum OHScalingMode
 ```
 
-**描述**
+**描述：**
 
 缩放模式 Scaling Mode。
 
@@ -347,7 +347,7 @@ enum OHScalingMode
 ```
 enum OHScalingModeV2
 ```
-**描述**
+**描述：**
 渲染缩放模式枚举。
 
 **起始版本：** 12
@@ -356,7 +356,7 @@ enum OHScalingModeV2
 | -------- | -------- |
 | OH_SCALING_MODE_FREEZE_V2  | 冻结窗口，在接收到和窗口大小相等的缓冲区之前，窗口内容不进行更新。 | 
 | OH_SCALING_MODE_SCALE_TO_WINDOW_V2  | 缓冲区进行拉伸缩放以匹配窗口大小。| 
-| OH_SCALING_MODE_SCALE_CROP_V2  | 缓冲区按原比例缩放，使得缓冲区的较小边与窗口匹配， 较长边超出窗口部分被视为透明。 | 
+| OH_SCALING_MODE_SCALE_CROP_V2  | 缓冲区按原比例缩放，使得缓冲区的较小边与窗口匹配，较长边超出窗口部分被视为透明。 | 
 | OH_SCALING_MODE_NO_SCALE_CROP_V2  | 按窗口大小将缓冲区裁剪，裁剪矩形之外的像素被视为完全透明。 | 
 | OH_SCALING_MODE_SCALE_FIT_V2  | 缓冲区按原比例缩放。优先显示所有缓冲区内容。 如果比例与窗口比例不同，用背景颜色填充窗口的未填充区域。<!--Del-->开发板和<!--DelEnd-->模拟器不支持该模式。| 
 
@@ -369,7 +369,7 @@ enum OHScalingModeV2
 int32_t OH_NativeWindow_SetColorSpace (OHNativeWindow *window, OH_NativeBuffer_ColorSpace colorSpace )
 ```
 
-**描述**
+**描述：**
 
 为OHNativeWindow设置颜色空间属性。
 本接口为非线程安全类型接口。
@@ -396,7 +396,7 @@ int32_t OH_NativeWindow_SetColorSpace (OHNativeWindow *window, OH_NativeBuffer_C
 int32_t OH_NativeWindow_SetMetadataValue (OHNativeWindow *window, OH_NativeBuffer_MetadataKey metadataKey, int32_t size, uint8_t * metaData )
 ```
 
-**描述**
+**描述：**
 
 为OHNativeWindow设置元数据属性值。
 本接口为非线程安全类型接口。
@@ -424,7 +424,7 @@ int32_t OH_NativeWindow_SetMetadataValue (OHNativeWindow *window, OH_NativeBuffe
 int32_t OH_NativeWindow_GetColorSpace (OHNativeWindow *window, OH_NativeBuffer_ColorSpace *colorSpace )
 ```
 
-**描述**
+**描述：**
 
 获取OHNativeWindow颜色空间属性。
 本接口为非线程安全类型接口。
@@ -451,7 +451,7 @@ int32_t OH_NativeWindow_GetColorSpace (OHNativeWindow *window, OH_NativeBuffer_C
 int32_t OH_NativeWindow_GetMetadataValue (OHNativeWindow *window, OH_NativeBuffer_MetadataKey metadataKey, int32_t *size, uint8_t **metaData )
 ```
 
-**描述**
+**描述：**
 
 获取OHNativeWindow元数据属性值。
 本接口为非线程安全类型接口。
@@ -480,7 +480,7 @@ int32_t OH_NativeWindow_GetMetadataValue (OHNativeWindow *window, OH_NativeBuffe
 int32_t OH_NativeWindow_WriteToParcel (OHNativeWindow *window, OHIPCParcel *parcel )
 ```
 
-**描述**
+**描述：**
 
 将窗口对象写入IPC序列化对象中。
 本接口为非线程安全类型接口。
@@ -507,7 +507,7 @@ int32_t OH_NativeWindow_WriteToParcel (OHNativeWindow *window, OHIPCParcel *parc
 int32_t OH_NativeWindow_ReadFromParcel (OHIPCParcel *parcel, OHNativeWindow **window )
 ```
 
-**描述**
+**描述：**
 
 从IPC序列化对象中读取窗口对象。
 本接口为非线程安全类型接口。
@@ -535,9 +535,9 @@ int32_t OH_NativeWindow_ReadFromParcel (OHIPCParcel *parcel, OHNativeWindow **wi
 int32_t OH_NativeWindow_GetLastFlushedBufferV2 (OHNativeWindow *window, OHNativeWindowBuffer **buffer, int *fenceFd, float matrix[16] )
 ```
 
-**描述**
+**描述：**
 
-从OHNativeWindow获取上次送回到buffer队列中的OHNativeWindowBuffer, 与OH_NativeWindow_GetLastFlushedBuffer的差异在于matrix不同。
+从OHNativeWindow获取上次送回到buffer队列中的OHNativeWindowBuffer，与OH_NativeWindow_GetLastFlushedBuffer的差异在于matrix不同。
 本接口需要与OH_NativeWindow_NativeObjectUnreference接口配合使用，否则会存在内存泄露。
 本接口为非线程安全类型接口。
 
@@ -565,7 +565,7 @@ int32_t OH_NativeWindow_GetLastFlushedBufferV2 (OHNativeWindow *window, OHNative
 ```
 void OH_NativeWindow_SetBufferHold (OHNativeWindow *window)
 ```
-**描述**
+**描述：**
 提前缓存一帧buffer，且缓存的这一帧延迟一帧上屏显示，以此抵消后续一次超长帧丢帧。
 本接口为非线程安全类型接口。
 
@@ -587,7 +587,7 @@ void OH_NativeWindow_SetBufferHold (OHNativeWindow *window)
 OHNativeWindow* OH_NativeWindow_CreateNativeWindow (void* pSurface)
 ```
 
-**描述**
+**描述：**
 
 创建OHNativeWindow实例，每次调用都会产生一个新的OHNativeWindow实例。 说明：此接口不可用，可通过**OH_NativeImage_AcquireNativeWindow**创建，或通过XComponent创建。
 
@@ -616,7 +616,7 @@ OHNativeWindow* OH_NativeWindow_CreateNativeWindow (void* pSurface)
 OHNativeWindowBuffer* OH_NativeWindow_CreateNativeWindowBufferFromNativeBuffer (OH_NativeBuffer* nativeBuffer)
 ```
 
-**描述**
+**描述：**
 
 创建OHNativeWindowBuffer实例，每次调用都会产生一个新的OHNativeWindowBuffer实例。
 本接口需要与OH_NativeWindow_DestroyNativeWindowBuffer接口配合使用，否则会存在内存泄露。
@@ -643,7 +643,7 @@ OHNativeWindowBuffer* OH_NativeWindow_CreateNativeWindowBufferFromNativeBuffer (
 OHNativeWindowBuffer* OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer (void* pSurfaceBuffer)
 ```
 
-**描述**
+**描述：**
 
 创建OHNativeWindowBuffer实例，每次调用都会产生一个新的OHNativeWindowBuffer实例。
 
@@ -672,7 +672,7 @@ OHNativeWindowBuffer* OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer 
 int32_t OH_NativeWindow_CreateNativeWindowFromSurfaceId (uint64_t surfaceId, OHNativeWindow **window )
 ```
 
-**描述**
+**描述：**
 
 通过surfaceId创建对应的OHNativeWindow。
 本接口需要与OH_NativeWindow_DestroyNativeWindow接口配合使用，否则会存在内存泄露。
@@ -703,7 +703,7 @@ OH_NativeWindow_NativeObjectUnreference对OHNativeWindow进行引用计数加一
 void OH_NativeWindow_DestroyNativeWindow (OHNativeWindow* window)
 ```
 
-**描述**
+**描述：**
 
 将OHNativeWindow对象的引用计数减1，当引用计数为0的时候，该OHNativeWindow对象会被析构掉。
 本接口为非线程安全类型接口。
@@ -725,7 +725,7 @@ void OH_NativeWindow_DestroyNativeWindow (OHNativeWindow* window)
 void OH_NativeWindow_DestroyNativeWindowBuffer (OHNativeWindowBuffer* buffer)
 ```
 
-**描述**
+**描述：**
 
 将OHNativeWindowBuffer对象的引用计数减1，当引用计数为0的时候，该OHNativeWindowBuffer对象会被析构掉。
 本接口为非线程安全类型接口。
@@ -747,7 +747,7 @@ void OH_NativeWindow_DestroyNativeWindowBuffer (OHNativeWindowBuffer* buffer)
 BufferHandle* OH_NativeWindow_GetBufferHandleFromNative (OHNativeWindowBuffer* buffer)
 ```
 
-**描述**
+**描述：**
 
 通过OHNativeWindowBuffer获取该buffer的BufferHandle指针。
 
@@ -774,7 +774,7 @@ BufferHandle* OH_NativeWindow_GetBufferHandleFromNative (OHNativeWindowBuffer* b
 int32_t OH_NativeWindow_GetLastFlushedBuffer (OHNativeWindow *window, OHNativeWindowBuffer **buffer, int *fenceFd, float matrix[16] )
 ```
 
-**描述**
+**描述：**
 
 从OHNativeWindow获取上次送回到buffer队列中的OHNativeWindowBuffer。
 
@@ -806,7 +806,7 @@ int32_t OH_NativeWindow_GetLastFlushedBuffer (OHNativeWindow *window, OHNativeWi
 int32_t OH_NativeWindow_GetNativeObjectMagic (void *obj)
 ```
 
-**描述**
+**描述：**
 
 获取NativeObject的MagicId。
 本接口为非线程安全类型接口。
@@ -832,7 +832,7 @@ MagicId 返回值为魔鬼数字，每个NativeObject唯一。
 int32_t OH_NativeWindow_GetSurfaceId (OHNativeWindow *window, uint64_t *surfaceId )
 ```
 
-**描述**
+**描述：**
 
 通过OHNativeWindow获取对应的surfaceId。
 本接口为非线程安全类型接口。
@@ -859,7 +859,7 @@ int32_t OH_NativeWindow_GetSurfaceId (OHNativeWindow *window, uint64_t *surfaceI
 int32_t OH_NativeWindow_NativeObjectReference (void *obj)
 ```
 
-**描述**
+**描述：**
 
 增加一个NativeObject的引用计数。
 本接口需要与OH_NativeWindow_NativeObjectUnreference接口配合使用，否则会存在内存泄露。
@@ -886,7 +886,7 @@ int32_t OH_NativeWindow_NativeObjectReference (void *obj)
 int32_t OH_NativeWindow_NativeObjectUnreference (void *obj)
 ```
 
-**描述**
+**描述：**
 
 减少一个NativeObject的引用计数，当引用计数减少为0时，该NativeObject将被析构掉。
 本接口为非线程安全类型接口。
@@ -912,7 +912,7 @@ int32_t OH_NativeWindow_NativeObjectUnreference (void *obj)
 int32_t OH_NativeWindow_NativeWindowAbortBuffer (OHNativeWindow *window, OHNativeWindowBuffer *buffer )
 ```
 
-**描述**
+**描述：**
 
 通过OHNativeWindow将之前申请出来的OHNativeWindowBuffer返还到Buffer队列中，供下次再申请。
 本接口为非线程安全类型接口。
@@ -938,7 +938,7 @@ int32_t OH_NativeWindow_NativeWindowAbortBuffer (OHNativeWindow *window, OHNativ
 int32_t OH_NativeWindow_NativeWindowAttachBuffer (OHNativeWindow *window, OHNativeWindowBuffer *buffer )
 ```
 
-**描述**
+**描述：**
 
 将OHNativeWindowBuffer添加进OHNativeWindow中。
 本接口需要与OH_NativeWindow_NativeWindowDetachBuffer接口配合使用，否则会存在内存管理混乱问题。
@@ -966,7 +966,7 @@ int32_t OH_NativeWindow_NativeWindowAttachBuffer (OHNativeWindow *window, OHNati
 int32_t OH_NativeWindow_NativeWindowDetachBuffer (OHNativeWindow *window, OHNativeWindowBuffer *buffer )
 ```
 
-**描述**
+**描述：**
 
 将OHNativeWindowBuffer从OHNativeWindow中分离。
 本接口为非线程安全类型接口。
@@ -993,7 +993,7 @@ int32_t OH_NativeWindow_NativeWindowDetachBuffer (OHNativeWindow *window, OHNati
 int32_t OH_NativeWindow_NativeWindowFlushBuffer (OHNativeWindow *window, OHNativeWindowBuffer *buffer, int fenceFd, Region region )
 ```
 
-**描述**
+**描述：**
 
 通过OHNativeWindow将生产好内容的OHNativeWindowBuffer放回到Buffer队列中，用以内容消费。
 系统会将fenFd关闭，无需用户close。
@@ -1023,7 +1023,7 @@ int32_t OH_NativeWindow_NativeWindowFlushBuffer (OHNativeWindow *window, OHNativ
 int32_t OH_NativeWindow_NativeWindowHandleOpt (OHNativeWindow *window, int code,  ... )
 ```
 
-**描述**
+**描述：**
 
 设置/获取OHNativeWindow的属性，包括设置/获取宽高、内容格式等。
 本接口为非线程安全类型接口。
@@ -1051,7 +1051,7 @@ int32_t OH_NativeWindow_NativeWindowHandleOpt (OHNativeWindow *window, int code,
 int32_t OH_NativeWindow_NativeWindowRequestBuffer (OHNativeWindow *window, OHNativeWindowBuffer **buffer, int *fenceFd )
 ```
 
-**描述**
+**描述：**
 
 通过OHNativeWindow对象申请一块OHNativeWindowBuffer，用以内容生产。
 在调用本接口前，需要通过SET_BUFFER_GEOMETRY对OHNativeWindow设置宽高。
@@ -1082,7 +1082,7 @@ int32_t OH_NativeWindow_NativeWindowRequestBuffer (OHNativeWindow *window, OHNat
 int32_t OH_NativeWindow_NativeWindowSetMetaData (OHNativeWindow *window, uint32_t sequence, int32_t size, const OHHDRMetaData *metaData )
 ```
 
-**描述**
+**描述：**
 
 设置OHNativeWindow的元数据。
 
@@ -1112,7 +1112,7 @@ int32_t OH_NativeWindow_NativeWindowSetMetaData (OHNativeWindow *window, uint32_
 int32_t OH_NativeWindow_NativeWindowSetMetaDataSet (OHNativeWindow *window, uint32_t sequence, OHHDRMetadataKey key, int32_t size, const uint8_t *metaData )
 ```
 
-**描述**
+**描述：**
 
 设置OHNativeWindow的元数据集。
 
@@ -1143,7 +1143,7 @@ int32_t OH_NativeWindow_NativeWindowSetMetaDataSet (OHNativeWindow *window, uint
 int32_t OH_NativeWindow_NativeWindowSetScalingMode (OHNativeWindow *window, uint32_t sequence, OHScalingMode scalingMode )
 ```
 
-**描述**
+**描述：**
 
 设置OHNativeWindow的ScalingMode。
 
@@ -1173,7 +1173,7 @@ int32_t OH_NativeWindow_NativeWindowSetScalingMode (OHNativeWindow *window, uint
 ```
 int32_t OH_NativeWindow_NativeWindowSetScalingModeV2 (OHNativeWindow* window, OHScalingModeV2 scalingMode )
 ```
-**描述**
+**描述：**
 设置OHNativeWindow的渲染缩放模式。
 本接口为非线程安全类型接口。
 
@@ -1198,7 +1198,7 @@ int32_t OH_NativeWindow_NativeWindowSetScalingModeV2 (OHNativeWindow* window, OH
 int32_t OH_NativeWindow_NativeWindowSetTunnelHandle (OHNativeWindow *window, const OHExtDataHandle *handle )
 ```
 
-**描述**
+**描述：**
 
 设置OHNativeWindow的TunnelHandle。
 

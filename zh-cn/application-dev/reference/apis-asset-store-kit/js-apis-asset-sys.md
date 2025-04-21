@@ -29,7 +29,7 @@ addAsUser(userId: number, attributes: AssetMap): Promise\<void>
 
 | 参数名     | 类型     | 必填 | 说明                                                         |
 | ---------- | -------- | ---- | ------------------------------------------------------------ |
-| userId     | number                                | 是   | 用户ID。                                                           |
+| userId     | number                                | 是   | 用户ID。取值范围大于等于100。                           |
 | attributes | [AssetMap](js-apis-asset.md#assetmap) | 是   | 待新增关键资产的属性集合，包括关键资产明文、访问控制属性、自定义数据等。 |
 
 **返回值：**
@@ -105,7 +105,7 @@ removeAsUser(userId: number, query: AssetMap): Promise\<void>
 
 | 参数名 | 类型     | 必填 | 说明                                                   |
 | ------ | -------- | ---- | ------------------------------------------------------ |
-| userId | number                                | 是   | 用户ID。                                                  |
+| userId | number                                | 是   | 用户ID。取值范围大于等于100。                         |
 | query  | [AssetMap](js-apis-asset.md#assetmap) | 是   | 待删除关键资产的搜索条件，如别名、访问控制属性、自定义数据等。 |
 
 **返回值：**
@@ -175,7 +175,7 @@ updateAsUser(userId: number, query: AssetMap, attributesToUpdate: AssetMap): Pro
 
 | 参数名             | 类型     | 必填 | 说明                                                         |
 | ------------------ | -------- | ---- | ------------------------------------------------------------ |
-| userId             | number                                | 是   | 用户ID。                                                         |
+| userId             | number                                | 是   | 用户ID。取值范围大于等于100。                              |
 | query              | [AssetMap](js-apis-asset.md#assetmap) | 是   | 待更新关键资产的搜索条件，如关键资产别名、访问控制属性、自定义数据等。 |
 | attributesToUpdate | [AssetMap](js-apis-asset.md#assetmap) | 是   | 待更新关键资产的属性集合，如关键资产明文、自定义数据等。              |
 
@@ -250,7 +250,7 @@ preQueryAsUser(userId: number, query: AssetMap): Promise\<Uint8Array>
 
 | 参数名 | 类型     | 必填 | 说明                                                   |
 | ------ | -------- | ---- | ------------------------------------------------------ |
-| userId | number                                | 是   | 用户ID。                                            |
+| userId | number                                | 是   | 用户ID。取值范围大于等于100。                        |
 | query  | [AssetMap](js-apis-asset.md#assetmap) | 是   | 关键资产的查询条件，如别名、访问控制属性、自定义数据等。 |
 
 **返回值：**
@@ -323,7 +323,7 @@ queryAsUser(userId: number, query: AssetMap): Promise\<Array\<AssetMap>>
 
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| userId   | number                                          | 是   | 用户ID。                                                  |
+| userId   | number                                          | 是   | 用户ID。取值范围大于等于100。                          |
 | query    | [AssetMap](js-apis-asset.md#assetmap)           | 是   | 关键资产的查询条件，如别名、访问控制属性、自定义数据等。       |
 
 **返回值：**
@@ -400,7 +400,7 @@ postQueryAsUser(userId: number, handle: AssetMap): Promise\<void>
 
 | 参数名 | 类型     | 必填 | 说明                                                         |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| userId | number                                | 是   | 用户ID。                                                                     |
+| userId | number                                | 是   | 用户ID。取值范围大于等于100。                                      |
 | handle | [AssetMap](js-apis-asset.md#assetmap) | 是   | 待处理的查询句柄，当前包含[asset.preQueryAsUser](#assetprequeryasuser)执行成功返回的挑战值。 |
 
 **返回值：**

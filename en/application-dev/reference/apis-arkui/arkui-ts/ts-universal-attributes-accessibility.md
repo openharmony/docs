@@ -10,7 +10,9 @@ You can set accessibility attributes and events for components.
 
 accessibilityGroup(value: boolean)
 
-Sets the accessibility group.
+Sets whether to enable accessibility grouping. When accessibility grouping is enabled, the component and all its children are treated as a single selectable unit, and the accessibility service will no longer focus on the individual child components.
+
+If accessibility grouping is enabled and the component does not contain a universal text attribute or an [accessibility text](#accessibilitytext) attribute, the system will concatenate the universal text attributes of its child components to form a merged text for the component. If a child component lacks a universal text attribute, it will be ignored in the concatenation process. The merged text will not use the accessibility text of the child components.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -22,13 +24,17 @@ Sets the accessibility group.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Accessibility group. If this attribute is set to **true**, the component and all its child components form an entire selectable component, and the accessibility service will no longer be available for the content of its child components.<br>Default value: **false**|
+| value  | boolean | Yes  | Whether to enable accessibility grouping. When accessibility grouping is enabled, the component and all its children are treated as a single selectable unit, and the accessibility service will no longer focus on the individual child components.<br>Default value: **false**|
 
 ## accessibilityGroup<sup>14+</sup>
 
 accessibilityGroup(isGroup: boolean, accessibilityOptions: AccessibilityOptions)
 
-Groups components for accessibility purposes, allowing the accessibility service to read out concatenated text.
+Sets whether to enable accessibility grouping, with support for prioritizing the concatenation of accessibility text for accessibility announcement. When accessibility grouping is enabled, the component and all its children are treated as a single selectable entity, and the accessibility service will no longer focus on the individual child components.
+
+If accessibility grouping is enabled and the component does not contain a universal text attribute or an [accessibility text](#accessibilitytext) attribute, the system will concatenate the universal text attributes of its child components to form a merged text for the component. If a child component lacks a universal text attribute, it will be ignored in the concatenation process.
+
+When **accessibilityPreferred** is set to **true**, the system will prioritize concatenating the accessibility text attributes of the child components to form the merged text. If a child component lacks an accessibility text attribute, the system will continue to concatenate its universal text attribute. If a child component lacks both, it will be ignored.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 14.
 
@@ -40,8 +46,8 @@ Groups components for accessibility purposes, allowing the accessibility service
 
 | Name              | Type                                                   | Mandatory| Description                                                        |
 | -------------------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| isGroup              | boolean                                                 | Yes  | Whether to group the current component and its children. If this parameter is set to **true**, the component and all its children are treated as a single selectable unit. The accessibility service will not focus on individual child components.<br>Default value: **false**|
-| accessibilityOptions | [AccessibilityOptions](#accessibilityoptions14) | No  | Options to customize accessibility behavior, such as prioritizing concatenated text for reading.            |
+| isGroup              | boolean                                                 | Yes  | Whether to enable accessibility grouping. When accessibility grouping is enabled, the component and all its children are treated as a single selectable unit, and the accessibility service will no longer focus on the individual child components.<br>Default value: **false**|
+| accessibilityOptions | [AccessibilityOptions](#accessibilityoptions14) | Yes  | Options for accessibility grouping. When **accessibilityPreferred** is set to **true**, the system will prioritize concatenating the accessibility text attributes of the child components to form the merged text.<br>Default value: **false**           |
 
 ## AccessibilityOptions<sup>14+</sup>
 
@@ -49,13 +55,13 @@ Groups components for accessibility purposes, allowing the accessibility service
 
 | Name                  | Type   | Mandatory| Description                                                        |
 | ---------------------- | ------- | ---- | ------------------------------------------------------------ |
-| accessibilityPreferred | boolean | No  | Whether to prioritize the accessibility text of child components during a deep traversal. The value **true** means to prioritize the accessibility text of child components.<br>If a child component's accessibility text is empty, the accessibility service uses the component's own text content. The concatenated text is then assigned to the parent node if both its accessibility text and text content are empty.|
+| accessibilityPreferred | boolean | No  | Whether to prioritize the accessibility text of child components during a deep traversal. The value **true** means to prioritize the accessibility text of child components.<br>If a child component's accessibility text is empty, the accessibility service uses the component's own text content. The concatenated text is then assigned to the parent node if both its accessibility text and text content are empty.<br>Default value: **false**|
 
 ## accessibilityText
 
 accessibilityText(value: string)
 
-Sets the accessibility text.
+Sets the accessibility text. When a component does not contain a text attribute, you can use this API to set an accessibility text attribute, so that accessibility services can announce the specified content for the component.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -73,7 +79,7 @@ Sets the accessibility text.
 
 accessibilityText(text: Resource)
 
-Sets the accessibility text, which supports referencing resource files through **Resource**.
+Sets the accessibility text, with support for resource references using **Resource**. When a component does not contain a text attribute, you can use this API to set an accessibility text attribute, so that accessibility services can announce the specified content for the component.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -92,7 +98,7 @@ Sets the accessibility text, which supports referencing resource files through *
 
 accessibilityDescription(value: string)
 
-Sets the accessibility description.
+Sets the accessibility description. This property provides additional context or explanation for the component, helping users understand the action or function it performs.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -110,7 +116,7 @@ Sets the accessibility description.
 
 accessibilityDescription(description: Resource)
 
-Sets the accessibility description, which supports referencing resource files through **Resource**.
+Sets the accessibility description, with support for resource references using **Resource**. This property provides additional context or explanation for the component, helping users understand the action or function it performs.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -128,7 +134,7 @@ Sets the accessibility description, which supports referencing resource files th
 
 accessibilityLevel(value: string)
 
-Sets the accessibility level.
+Sets the accessibility level. This property determines whether the component can be recognized by accessibility services.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -140,13 +146,13 @@ Sets the accessibility level.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | string | Yes  | Accessibility level, which is used to decide whether a component can be identified by the accessibility service.<br>The options are as follows:<br>**"auto"**: The value is converted to **"yes"** or **"no"** based on the component.<br>**"yes"**: The current component is selectable for the accessibility service.<br>**"no"**: The current component is not selectable for the accessibility service.<br>**"no-hide-descendants"**: The current component and all its child components are not selectable for the accessibility service.<br>**Default value**: **"auto"**<br>**NOTE**<br>When the **accessibilityLevel** attribute of the following components is set to **"auto"**, they are selectable for the accessibility service: Checkbox, CheckboxGroup, Gauge, Marquee, MenuItem, MenuItemGroup, Menu, Navigation, DatePicker, Progress, Radio, Rating, ScrollBar, Select, Slider, Stepper, Text, TextClock, TextPicker, TextTimer, TimePicker, Toggle, Web.|
+| value  | string | Yes  | Accessibility level, which is used to decide whether a component can be identified by the accessibility service.<br>The options are as follows:<br>**"auto"**: The component's recognizability is determined by the accessibility grouping service and ArkUI.<br>**"yes"**: The component can be recognized by accessibility services.<br>**"no"**: The component cannot be recognized by accessibility services.<br>**"no-hide-descendants"**: Neither the component nor its child components can be recognized by accessibility services.<br>Default value: **"auto"**<br>**NOTE**<br>When accessibilityLevel is set to **"auto"**, the component's recognizability depends on the following factors:<br>1. The accessibility service internally determines whether the component can be recognized.<br>2. If the parent component's **accessibilityGroup** property has **isGroup** set to **true**, the accessibility service will not focus on its child components, making them unrecognizable.<br>3. If the parent component's **accessibilityLevel** is set to **"no-hide-descendants"**, the component will not be recognized by accessibility services.|
 
 ## accessibilityVirtualNode<sup>11+</sup>
 
 accessibilityVirtualNode(builder: CustomBuilder)
 
-Sets the accessibility virtual node.
+Sets an accessibility virtual child node. For custom drawing components, a **CustomBuilder** is passed, which is used to provide accessibility information. The components within the **CustomBuilder** are only used for layout and not for display. When the accessibility service obtains node information, it returns the node information from the **CustomBuilder**.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -164,7 +170,7 @@ Sets the accessibility virtual node.
 
 accessibilityChecked(isCheck: boolean)
 
-Sets the checked (selected) state of the accessibility node. It can be used to support multi-select scenarios.
+Sets the checked state of the accessibility component. This property is used in multiselect scenarios.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 13.
 
@@ -182,7 +188,7 @@ Sets the checked (selected) state of the accessibility node. It can be used to s
 
 accessibilitySelected(isSelect: boolean)
 
-Sets the selected state of the accessibility node. It can be used to support single-select scenarios.
+Sets the selected state of the accessibility component. This property is used in single-select scenarios.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 13.
 
@@ -196,15 +202,15 @@ Sets the selected state of the accessibility node. It can be used to support sin
 | -------- | ------- | ---- | ------------------------------------------------------------ |
 | isSelect | boolean | Yes  | Whether the current component is selected.<br>The options are as follows:<br>**true**: The component is selected.<br>**false**: The component is not selected.<br>**undefined**: The component determines its own selected state.<br>Default value: **undefined**<br>**NOTE**<br>1. When this parameter is set to **true** or **false**, to use it with **accessibilityChecked**, set the **accessibilityChecked** parameter to **undefined**.|
 
-## accessibilityRole<sup>16+</sup>
+## accessibilityRole<sup>18+</sup>
 
 accessibilityRole(role: AccessibilityRoleType)
 
-Updates the accessibility role of the component.
+Sets the role type of the accessibility component, which affects how the component is announced by screen readers.
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 16.
+**Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -212,17 +218,17 @@ Updates the accessibility role of the component.
 
 | Name  | Type   | Mandatory| Description                                                        |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| role | [AccessibilityRoleType](ts-universal-attributes-accessibility.md#AccessibilityRoleType16) | Yes  | Role of the component as announced by screen readers (for example, button or chart). You can define custom roles.|
+| role | [AccessibilityRoleType](ts-universal-attributes-accessibility.md#AccessibilityRoleType18) | Yes  | Role of the component as announced by screen readers (for example, button or chart). You can define custom roles.|
 
-## onAccessibilityFocus<sup>16+</sup>
+## onAccessibilityFocus<sup>18+</sup>
 
 onAccessibilityFocus(callback: AccessibilityFocusCallback)
 
-Registers a callback for focus and blur events on the accessibility node.
+Triggered when the accessibility component gains or loses focus. Callback triggered when the component gains or loses focus.
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 16.
+**Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -230,15 +236,15 @@ Registers a callback for focus and blur events on the accessibility node.
 
 | Name  | Type   | Mandatory| Description                                                        |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| callback | [AccessibilityFocusCallback](ts-universal-attributes-accessibility.md#AccessibilityFocusCallback16) | Yes  | Callback that notifies the registered component of focus and blur events.|
+| callback | [AccessibilityFocusCallback](ts-universal-attributes-accessibility.md#AccessibilityFocusCallback18) | Yes  | Callback that notifies the registered component of focus and blur events.|
 
-## AccessibilityFocusCallback<sup>16+</sup>
+## AccessibilityFocusCallback<sup>18+</sup>
 
 type AccessibilityFocusCallback = (isFocus: boolean) => void
 
 Defines the callback type used in **onAccessibilityFocus**.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -248,11 +254,11 @@ Defines the callback type used in **onAccessibilityFocus**.
 | ------ | ------ | ---- | ---------------- |
 | isFocus | boolean | Yes| Whether the component has gained or lost focus.|
 
-## AccessibilityRoleType<sup>16+</sup>
+## AccessibilityRoleType<sup>18+</sup>
 
 Enumerates the component role types used by screen readers.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -384,15 +390,15 @@ Enumerates the component role types used by screen readers.
 | XCOMPONENT | 123 | Custom rendering component.|
 | ROLE_NONE | 124 | Null.|
 
-## accessibilityNextFocusId<sup>16+</sup>
+## accessibilityNextFocusId<sup>18+</sup>
 
 accessibilityNextFocusId(nextId: string)
 
 Sets the next focus target for the component during focus traversal.
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 16.
+**Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -400,17 +406,17 @@ Sets the next focus target for the component during focus traversal.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| nextId | string | Yes  | ID of the next component to focus on. If the specified ID does not exist, the setting is ignored.|
+| nextId | string | Yes  | [Unique ID](ts-universal-attributes-component-id.md#id) of the next component to receive focus. If the ID does not correspond to any component, the setting is invalid.|
 
-## accessibilityDefaultFocus<sup>16+</sup>
+## accessibilityDefaultFocus<sup>18+</sup>
 
 accessibilityDefaultFocus(focus: boolean)
 
 Sets whether the component is the default initial focus for screen readers on the current page.
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 16.
+**Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -420,15 +426,15 @@ Sets whether the component is the default initial focus for screen readers on th
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | focus  | boolean | Yes  | Whether the component is the default initial focus for screen readers on the current page. The value **true** means the component is the default initial focus for screen readers on the current page. Other values are invalid.|
 
-## accessibilityUseSamePage<sup>16+</sup>
+## accessibilityUseSamePage<sup>18+</sup>
 
 accessibilityUseSamePage(pageMode: AccessibilitySamePageMode)
 
-Solves focus jumping issues in sub-tree scenarios like **UIExtensionComponent**. Focus jumping occurs due to the timing of page events sent by the UIExtensionComponent and the host application, causing the focus to move unexpectedly from one component to another.
+Solves focus jumping issues in sub-tree scenarios like UIExtensionComponent. Sets the same-page mode for this UIExtensionComponent and the host application. This property is intended to solve focus jumping issues in sub-tree scenarios. Due to the timing of page events sent by the UIExtensionComponent and the host application, focus may jump from one component to another, causing "focus jumping."
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 16.
+**Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -436,13 +442,13 @@ Solves focus jumping issues in sub-tree scenarios like **UIExtensionComponent**.
 
 | Name  | Type                                                        | Mandatory| Description                                            |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------ |
-| pageMode | [AccessibilitySamePageMode](#accessibilitysamepagemode16) | Yes  | Same-page mode for the current UIExtensionComponent and the host application.|
+| pageMode | [AccessibilitySamePageMode](#accessibilitysamepagemode18) | Yes  | Same-page mode for the current UIExtensionComponent and the host application.|
 
-## AccessibilitySamePageMode<sup>16+</sup>
+## AccessibilitySamePageMode<sup>18+</sup>
 
 Enumerates the same-page modes for the current UIExtensionComponent and the host application.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -451,15 +457,15 @@ Enumerates the same-page modes for the current UIExtensionComponent and the host
 | SEMI_SILENT | 0    | Ignores page events sent by the root node of the UIExtensionComponent page or during the initial page load.|
 | FULL_SILENT | 1    | Ignores all page events in the UIExtensionComponent.                                     |
 
-## accessibilityScrollTriggerable<sup>16+</sup>
+## accessibilityScrollTriggerable<sup>18+</sup>
 
 accessibilityScrollTriggerable(isTriggerable: boolean)
 
 Sets whether to enable automatic scrolling for screen readers when the current page has no focusable components.
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 16.
+**Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -468,6 +474,48 @@ Sets whether to enable automatic scrolling for screen readers when the current p
 | Name        |  Type   | Mandatory| Description                                                        |
 | -------------- | ------- | ---- | ------------------------------------------------------------ |
 | isTriggerable  | boolean | Yes  | Whether the component supports automatic scrolling for screen readers when the current page has no focusable components.<br>The options are as follows:<br>**true**: The component triggers automatic scrolling for screen readers when the current page has no focusable components.<br>**false**: The component does not trigger automatic scrolling for screen readers when the current page has no focusable components.<br>**undefined**: The default settings are restored.<br>Default value: **true**<br>**NOTE**<br>1. This parameter does not affect the original **scrollable** attribute of the component.<br>2. The final scrolling behavior is determined by the screen reader based on this parameter and whether the component supports scrolling.<br>3. This API applies to all basic components. It is recommended for scrollable components, including **List**, **Grid**, **Scroll**, **Waterflow**, and **Swiper**.|
+
+## accessibilityTextHint<sup>12+</sup>
+
+accessibilityTextHint(value: string)
+
+Sets the text hint for the component, which can be queried by accessibility services.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name        |  Type   | Mandatory| Description                                                        |
+| -------------- | ------- | ---- | ------------------------------------------------------------ |
+| value  | string | Yes  | Text hint for the component, which can be queried by accessibility services.|
+
+## accessibilityFocusDrawLevel<sup>18+</sup>
+
+accessibilityFocusDrawLevel(drawLevel: FocusDrawLevel)
+
+Sets the drawing level for the accessibility focus highlight (green box) to ensure it is visible and not obscured by other components.
+> **NOTE**
+>
+> 1. By default, the accessibility focus highlight (green box) is drawn at the same level as the focused component. This can sometimes result in the highlight being obscured or clipped by parent components or siblings with higher z-order.
+>
+> 2. Setting the drawing level to the topmost layer ensures that the accessibility focus highlight is not obscured by other components. This is useful when you want the highlight to be clearly visible at all times. However, this setting may not be suitable if you need to interact with components that should overlay the currently focused component and you do not want the accessibility highlight to be visible.
+
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 18.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type   | Mandatory| Description                                                        |
+| -------- | ------- | ---- | ------------------------------------------------------------ |
+| drawLevel | [FocusDrawLevel](ts-appendix-enums.md#focusdrawlevel18) | Yes  | Drawing level for the accessibility focus highlight.|
 
 ## Example 1: Setting Accessibility Text and Description
 
@@ -501,7 +549,7 @@ struct Index {
       .accessibilityGroup(true)
       .accessibilityLevel("yes")
       .accessibilityText("Group") // If a component has both text content and accessibility text, only the accessibility text is announced.
-      .accessibilityDescription("The <Column> component is selectable , and the text to be read out is "Group".)
+      .accessibilityDescription("The Column component is selectable , and the text to be read out is "Group".)
       .accessibilityVirtualNode(this.customAccessibilityNode)
       .accessibilityChecked(true)
       .accessibilitySelected(undefined)

@@ -31,9 +31,9 @@ ArcAlphabetIndexer(info: ArcAlphabetIndexerInitInfo)
 
 **参数：**  参数内容为设置弧形索引条索引项字符串数组、初始选中项索引位置。
 
-| 名称     | 类型     | 必填     | 说明     |
+| 参数名     | 类型     | 必填     | 说明     |
 | -------- | -------- | -------- | -------- |
-| info     | [ArcAlphabetIndexerInitInfo](#arcalphabetindexerinitinfo) | 是 | 定义弧形字母索引条的初始化参数。 |
+| info     | [ArcAlphabetIndexerInitInfo](#arcalphabetindexerinitinfo对象说明) | 是 | 定义弧形字母索引条的初始化参数。 |
 
 
 ## 属性
@@ -138,7 +138,7 @@ usePopup(enabled: Optional&lt;boolean&gt;)
 
 | 参数名 | 类型    | 必填 | 说明                                   |
 | ------ | ------- | ---- | -------------------------------------- |
-| enabled | Optional&lt;boolean&gt; | 是   | 是否使用提示弹窗。<br/>默认值：false，不使用提示弹窗。 |
+| enabled | Optional&lt;boolean&gt; | 是   | 是否使用提示弹窗，true表示使用提示弹窗，false表示不使用提示弹窗。<br/>默认值：false，不使用提示弹窗。 |
 
 ### selectedFont
 
@@ -158,7 +158,7 @@ selectedFont(font: Optional&lt;Font&gt;)
 
 ### popupFont
 
-popupFont(value: Optional&lt;Font&gt;)
+popupFont(font: Optional&lt;Font&gt;)
 
 设置提示弹窗字体样式。
 
@@ -170,7 +170,7 @@ popupFont(value: Optional&lt;Font&gt;)
 
 | 参数名 | 类型                     | 必填 | 说明                                                         |
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Optional&lt;Font&gt;](ts-types.md#font) | 是   | 提示弹窗字体样式。<br/>默认值：<br/>{<br/>size:'19.0fp',<br/> style:FontStyle.Normal,<br/> weight:500,<br/> family:'HarmonyOS Sans'<br/>} |
+| font  | [Optional&lt;Font&gt;](ts-types.md#font) | 是   | 提示弹窗字体样式。<br/>默认值：<br/>{<br/>size:'19.0fp',<br/> style:FontStyle.Normal,<br/> weight:500,<br/> family:'HarmonyOS Sans'<br/>} |
 
 ### font
 
@@ -202,7 +202,7 @@ itemSize(size: Optional&lt;LengthMetrics&gt;)
 
 | 参数名 | 类型                       | 必填 | 说明                                                         |
 | ------ | -------------------------- | ---- | ------------------------------------------------------------ |
-| size  | Optional&lt;LengthMetrics&gt; | 是   | 字母索引条字母区域大小，字母区域为圆形，即圆形直径。不支持设置为百分比。<br/>默认值：24.0 <br/>单位：vp |
+| size  | [Optional&lt;LengthMetrics&gt;](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 字母索引条字母区域大小，字母区域为圆形，即圆形直径。不支持设置为百分比。<br/>默认值：24.0 <br/>单位：vp |
 
 ### selected
 
@@ -218,7 +218,7 @@ selected(index: Optional&lt;number&gt;)
 
 | 参数名 | 类型   | 必填 | 说明                         |
 | ------ | ------ | ---- | ---------------------------- |
-| index  | Optional&lt;number&gt; | 是   | 选中项索引值 <br/>默认值：0 <br/>该参数支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。|
+| index  | Optional&lt;number&gt; | 是   | 选中项索引值 <br/>默认值：0 <br/>该参数支持[!!](../../../ui/state-management/arkts-new-binding.md)双向绑定变量。|
 
 ### autoCollapse
 
@@ -277,7 +277,7 @@ onSelect(handler: Optional&lt;OnSelectCallback&gt;)
 | handler  | Optional&lt;[OnSelectCallback](#onselectcallback)&gt; | 是   | 回调函数类型。 |
 
 
-## ArcAlphabetIndexerInitInfo
+## ArcAlphabetIndexerInitInfo对象说明
 
 定义弧形字母索引条的初始化参数。
 
@@ -287,10 +287,10 @@ onSelect(handler: Optional&lt;OnSelectCallback&gt;)
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | arrayValue | string[] | 是 | 字母索引字符串数组，不可设置为空。 |
-| selected   | number              | 是 | 初始选中项索引值，若超出索引值范围，则取默认值0。<br />该参数支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。|
+| selected   | number              | 是 | 初始选中项索引值，若超出索引值范围，则取默认值0。<br />该参数支持[!!](../../../ui/state-management/arkts-new-binding.md)双向绑定变量。|
 
 ## OnSelectCallback
 

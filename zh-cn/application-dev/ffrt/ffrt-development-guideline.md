@@ -340,10 +340,11 @@ FFRT任务的调度和执行过程中，利用了OH系统的Trace打点能力，
     int a = 0;
     // ******并行任务******
     // 提交不带handle返回值的并行任务
-    ffrt_submit_base(ffrt_create_function_wrapper(OnePlusForTest, NULL, &a), NULL, NULL, &attr);
+    ffrt_submit_base(
+        ffrt_create_function_wrapper(OnePlusForTest, NULL, &a, ffrt_function_kind_general), NULL, NULL, &attr);
     // 提交带handle返回值的并行任务
     ffrt_task_handle_t task = ffrt_submit_h_base(
-        ffrt_create_function_wrapper(OnePlusForTest, NULL, &a), NULL, NULL, &attr);
+        ffrt_create_function_wrapper(OnePlusForTest, NULL, &a, ffrt_function_kind_general), NULL, NULL, &attr);
 
     // ******串行任务******
     // 提交不返回handle的串行队列任务
@@ -468,11 +469,13 @@ FFRT任务中使用标准库的互斥锁可能发生死锁，需要更换为FFRT
 
     ```cpp
     #include <stdio.h>
-    #include <ffrt/cpp/task.h>
+    #include "ffrt/cpp/task.h"
 
     void abnormal_case_1()
     {
-        ffrt_task_handle_t h = ffrt_submit_h([](){printf("Test task running...\n");}, NULL, NULL, NULL, NULL, NULL);
+        ffrt_task_handle_t h = ffrt_submit_h_base(
+            ffrt::create_function_wrapper(std::function<void()>([](){ printf("Test task running...\n"); })),
+            NULL, NULL, NULL);
         // ...
         ffrt_task_handle_destroy(h);
         ffrt_task_handle_destroy(h); // 重复释放
@@ -483,11 +486,13 @@ FFRT任务中使用标准库的互斥锁可能发生死锁，需要更换为FFRT
 
     ```cpp
     #include <stdio.h>
-    #include <ffrt/cpp/task.h>
+    #include "ffrt/cpp/task.h"
 
     void abnormal_case_2()
     {
-        ffrt_task_handle_t h = ffrt_submit_h([](){printf("Test task running...\n");}, NULL, NULL, NULL, NULL, NULL);
+        ffrt_task_handle_t h = ffrt_submit_h_base(
+            ffrt::create_function_wrapper(std::function<void()>([](){ printf("Test task running...\n"); })),
+            NULL, NULL, NULL);
         // ...
         // 内存泄露
     }
@@ -497,11 +502,13 @@ FFRT任务中使用标准库的互斥锁可能发生死锁，需要更换为FFRT
 
     ```cpp
     #include <stdio.h>
-    #include <ffrt/cpp/task.h>
+    #include "ffrt/cpp/task.h"
 
     void normal_case()
     {
-        ffrt_task_handle_t h = ffrt_submit_h([](){printf("Test task running...\n");}, NULL, NULL, NULL, NULL, NULL);
+        ffrt_task_handle_t h = ffrt_submit_h_base(
+            ffrt::create_function_wrapper(std::function<void()>([](){ printf("Test task running...\n"); })),
+            NULL, NULL, NULL);
         // ...
         ffrt_task_handle_destroy(h);
         h = nullptr; // 必要时置空任务句柄变量
@@ -514,9 +521,8 @@ FFRT任务中使用标准库的互斥锁可能发生死锁，需要更换为FFRT
 - 错误示例1，变量生命周期已结束导致的UAF问题：
 
     ```cpp
-    #include "ffrt/cpp/mutex.h"
-    #include <ffrt/cpp/task.h>
     #include <unistd.h>
+    #include "ffrt/cpp/task.h"
 
     void abnormal_case_3()
     {
@@ -531,9 +537,9 @@ FFRT任务中使用标准库的互斥锁可能发生死锁，需要更换为FFRT
 - 错误示例2，互斥锁生命周期已结束继续使用导致功能异常：
 
     ```cpp
-    #include "ffrt/cpp/mutex.h"
-    #include <ffrt/cpp/task.h>
     #include <unistd.h>
+    #include "ffrt/cpp/mutex.h"
+    #include "ffrt/cpp/task.h"
 
     void abnormal_case_4()
     {
@@ -555,13 +561,14 @@ NDK（Native Development Kit）是HarmonyOS SDK提供的Native API的集合，�
 FFRT C API已集成在NDK中，在DevEco IDE中可以直接使用对应的接口。
 
 ```cpp
-#include "ffrt/task.h"
 #include "ffrt/type_def.h"
-#include "ffrt/condition_variable.h"
-#include "ffrt/loop.h"
-#include "ffrt/mutex.h"
+#include "ffrt/task.h"
 #include "ffrt/queue.h"
+#include "ffrt/condition_variable.h"
+#include "ffrt/mutex.h"
+#include "ffrt/shared_mutex.h"
 #include "ffrt/sleep.h"
+#include "ffrt/loop.h"
 #include "ffrt/timer.h"
 ```
 
@@ -591,8 +598,9 @@ target_link_libraries(<target_name> PUBLIC libffrt.z.so ffrt::ffrtapi)
 
 ```cpp
 #include "ffrt/cpp/task.h"
+#include "ffrt/cpp/queue.h"
 #include "ffrt/cpp/condition_variable.h"
 #include "ffrt/cpp/mutex.h"
-#include "ffrt/cpp/queue.h"
+#include "ffrt/cpp/shared_mutex.h"
 #include "ffrt/cpp/sleep.h"
 ```
