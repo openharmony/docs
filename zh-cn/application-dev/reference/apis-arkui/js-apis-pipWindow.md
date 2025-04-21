@@ -73,7 +73,7 @@ create(config: PiPConfiguration): Promise&lt;PiPController&gt;
 ```ts
 //Index.ets
 import { BusinessError } from '@kit.BasicServicesKit';
-import { BuilderNode, FrameNode, NodeController, Size, UIContext } from '@kit.ArkUI';
+import { BuilderNode, FrameNode, NodeController, PiPWindow, UIContext } from '@kit.ArkUI';
 
 class Params {
   text: string = '';
@@ -122,7 +122,7 @@ class TextNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  @state message: string = 'create PiP';
+  private message: string = 'create PiP';
   private pipController: PiPWindow.PiPController | undefined = undefined;
   private mXComponentController: XComponentController = new XComponentController(); // 开发者应使用该mXComponentController初始化XComponent: XComponent( {id: 'video', type: 'surface', controller: mXComponentController} )，保证XComponent的内容可以被迁移到画中画窗口。
   private nodeController: TextNodeController = new TextNodeController('this is custom UI');
@@ -130,8 +130,8 @@ struct Index {
   private contentWidth: number = 800; // 假设当前内容宽度800px。
   private contentHeight: number = 600; // 假设当前内容高度600px。
   private para: Record<string, number> = { 'PropA': 47 };
-  private localStorage: LocalStorage = new LocalStorage(para);
-  private res: boolean = localStorage.setOrCreate('PropB', 121);
+  private localStorage: LocalStorage = new LocalStorage(this.para);
+  private res: boolean = this.localStorage.setOrCreate('PropB', 121);
   private defaultWindowSizeType: number = 1;
   private config: PiPWindow.PiPConfiguration = {
     context: this.getUIContext().getHostContext() as Context,
@@ -159,9 +159,8 @@ struct Index {
   //仅用于功能测试，实际开发过程中开发者按功能需求设计组件
   build() {
     RelativeContainer() {
-      Text(this.message)
-        .id()
-        .onclick(() => {
+      Button(this.message)
+        .onClick(() => {
           this.createPiP();
         })
     }
@@ -204,6 +203,7 @@ create(config: PiPConfiguration, contentNode: typeNode.XComponent): Promise&lt;P
 **示例：**
 
 ```ts
+//Index.ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { PiPWindow, UIContext } from '@kit.ArkUI';
 import { typeNode } from '@ohos.arkui.node';
@@ -211,6 +211,7 @@ import { typeNode } from '@ohos.arkui.node';
 @Entry
 @Component
 struct Index {
+  private message = 'create pip'
   private pipController: PiPWindow.PiPController | undefined = undefined;
   private xComponentController: XComponentController = new XComponentController();
   private context: UIContext | undefined = this.getUIContext(); // 可传入UIContext或在布局中通过this.getUIContext()为context赋有效值
@@ -239,12 +240,11 @@ struct Index {
       console.error(`Failed to create pip controller. Cause:${err.code}, message:${err.message}`);
     });
   }
-//仅用于功能测试，实际开发过程中开发者按功能需求设计组件
+  //仅用于功能测试，实际开发过程中开发者按功能需求设计组件
   build() {
     RelativeContainer() {
-      Text(this.message)
-        .id()
-        .onclick(() => {
+      Button(this.message)
+        .onClick(() => {
           this.createPiP();
         })
     }
