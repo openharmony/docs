@@ -813,7 +813,7 @@ screen.setVirtualScreenSurface(screenId, surfaceId, (err: BusinessError) => {
   console.info('Succeeded in setting the surface for the virtual screen.');
 });
 ```
-## screen.setScreenPrivacyMaskImage<sup>18+</sup>
+## screen.setScreenPrivacyMaskImage<sup>19+</sup>
 
 setScreenPrivacyMaskImage(screenId:number, image?: image.PixelMap): Promise&lt;void&gt;
 
