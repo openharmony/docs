@@ -1,6 +1,6 @@
 # Video Variable Frame Rate
 
-With the CAPIs related to the video variable refresh rate feature, you can dynamically adjust the screen refresh rate based on the video content during playback. This helps save display power while maintaining smooth video playback.
+With the C APIs related to the video variable refresh rate feature, you can dynamically adjust the screen refresh rate based on the video content during playback. This helps save display power while maintaining smooth video playback.
 
 ## When to Use
 

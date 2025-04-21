@@ -24,7 +24,7 @@ Through the VideoDecoder module, your application can implement the following ke
 - Due to limited hardware decoder resources, you must call **OH_VideoDecoder_Destroy** to destroy every decoder instance when it is no longer needed.
 - The input streams for video decoding support only the AnnexB format, and the supported AnnexB format supports multiple slices. However, the slices of the same frame must be sent to the decoder at a time.
 - When **flush()**, **reset()**, or **stop()** is called, do not continue to operate the OH_AVBuffer obtained through the previous callback function.
-- The DRM decryption capability supports both non-secure and secure video channels in [surface mode](#surface-output), but only non-secure video channels in buffer mode (#buffer-output).
+- The DRM decryption capability supports both non-secure and secure video channels in [surface mode](#surface-output), but only non-secure video channels in buffer mode(#buffer-output).
 - The buffer mode and surface mode use the same APIs. Therefore, the surface mode is described as an example.
 - In buffer mode, after obtaining the pointer to an OH_AVBuffer instance through the callback function **OH_AVCodecOnNewOutputBuffer**, call **OH_VideoDecoder_FreeOutputBuffer** to notify the system that the buffer has been fully utilized. In this way, the system can write the subsequently decoded data to the corresponding location. If the OH_NativeBuffer instance is obtained through **OH_AVBuffer_GetNativeBuffer** and its lifecycle extends beyond that of the OH_AVBuffer pointer instance, you mut perform data duplication. In this case, you should manage the lifecycle of the newly generated OH_NativeBuffer object to ensure that the object can be correctly used and released.
 <!--RP6--><!--RP6End-->
@@ -166,7 +166,7 @@ The sample code provided in this section adheres to the C++17 standard and is fo
     };
     ```
 
-4. Define global variables.
+4. Configure global variables.
 
     These global variables are for reference only. They can be encapsulated into an object based on service requirements.
 
@@ -312,7 +312,7 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     #include <multimedia/drm_framework/native_drm_common.h>
     ```
 
-    Linking the Dynamic Libraries in the CMake Script
+    Link the dynamic library in the CMake script.
 
     ``` cmake
     target_link_libraries(sample PUBLIC libnative_drm.so)
@@ -371,6 +371,7 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, height); // Mandatory.
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, pixelFormat);
     // (Optional) Configure low-latency decoding.
+    // If supported by the platform, the video decoder outputs frames in the decoding sequence when OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY is enabled.
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY, 1);
     // Configure the decoder.
     int32_t ret = OH_VideoDecoder_Configure(videoDec, format);
@@ -382,15 +383,40 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
 
 6. Set the surface.
 
-    You can obtain the native window in either of the following ways:
-    - If the image is directly displayed after being decoded, obtain the native window from the **XComponent**. For details about the operation, see [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
-    - If OpenGL post-processing is performed after decoding, obtain the native window from NativeImage. For details about the operation, see [NativeImage](../../graphics/native-image-guidelines.md).
+    You can obtain NativeWindow in either of the following ways:
+
+    6.1 If the image is directly displayed after being decoded, obtain NativeWindow from the **XComponent**.
+
+    Add the header files.
+
+    ```c++
+    #include <native_window/external_window.h>
+    ```
+
+    Link the dynamic library in the CMake script.
+
+    ``` cmake
+    target_link_libraries(sample PUBLIC libnative_window.so)
+    ```
+
+    6.1.1 On ArkTS, call **getXComponentSurfaceId** of the xComponentController to obtain the surface ID of the XComponent. For details about the operation, see [Custom Rendering (XComponent)](../../ui/napi-xcomponent-guidelines.md#arkts-xcomponent-scenario).
+
+    6.1.2 On the native side, call **OH_NativeWindow_CreateNativeWindowFromSurfaceId** to create a **NativeWindow** instance.
+
+    ```c++
+    OHNativeWindow* nativeWindow;
+    // Create a NativeWindow instance based on the surface ID obtained in step 1.1.
+    OH_NativeWindow_CreateNativeWindowFromSurfaceId(surfaceId, nativeWindow);
+    ```
+
+    6.2 If OpenGL post-processing is performed after decoding, obtain NativeWindow from NativeImage. For details about the operation, see [NativeImage](../../graphics/native-image-guidelines.md).
 
     You perform this step during decoding, that is, dynamically switch the surface.
 
     ```c++
+    // Set the surface.
     // Set the window parameters.
-    int32_t ret = OH_VideoDecoder_SetSurface(videoDec, nativeWindow);    // Obtain the native window from the XComponent.
+    int32_t ret = OH_VideoDecoder_SetSurface(videoDec, nativeWindow); // Obtain a NativeWindow instance using either of the preceding methods.
     if (ret != AV_ERR_OK) {
         // Handle exceptions.
     }
@@ -1056,7 +1082,7 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     - **OH_MD_KEY_VIDEO_STRIDE** corresponds to **wStride**.
     - **OH_MD_KEY_VIDEO_SLICE_HEIGHT** corresponds to **hStride**.
 
-    ![copy by line](figures/copy-by-line.png)
+    ![copy by line](figures/copy-by-line-decoder.png)
 
     Add the header files.
 

@@ -8,7 +8,7 @@ Currently, the following decoding capabilities are supported:
 
 | Video Hardware Decoding Type      | Video Software Decoding Type  |
 | --------------------- | ---------------- |
-| AVC (H.264) and HEVC (H.265)<!--RP14--><!--RP14End--> | AVC (H.264)<!--RP12--><!--RP12End--> |
+| AVC (H.264), HEVC (H.265)<!--RP14--><!--RP14End--> | AVC (H.264)<!--RP12--><!--RP12End--> |
 
 Video software decoding and hardware decoding are different. When a decoder is created based on the MIME type, <!--RP13-->only H.264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) is supported for software decoding, <!--RP13End--><!--RP15-->and H.264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) and H.265 (OH_AVCODEC_MIMETYPE_VIDEO_HEVC)<!--RP15End--> can be used for hardware decoding as long as they are supported by the hardware platform.
 
@@ -22,7 +22,7 @@ Currently, the following encoding capabilities are supported:
 
 | Video Encoding Type                |
 | ---------------------------- |
-| HEVC (H.265) and AVC (H.264)|
+| HEVC (H.265), AVC (H.264)|
 
 Only hardware encoding is supported. When an encoder is created based on the MIME type, H.264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) and H.265 (OH_AVCODEC_MIMETYPE_VIDEO_HEVC) are supported.
 
@@ -35,17 +35,7 @@ For details about the development guide, see [Video Encoding](video-encoding.md)
 
 Currently, the following decoding capabilities are supported:
 
-| Container Format| Audio Decoding Type                |
-| -------- | :--------------------------- |
-| mp4      | AAC, MPEG (MP3), FLAC, Vorbis<!--RP1--><!--RP1End--> |
-| m4a      | AAC                          |
-| flac     | Flac                         |
-| ogg      | Vorbis<!--RP2--><!--RP2End-->    |
-| aac      | AAC                          |
-| mp3      | MPEG (MP3)                    |
-| amr      | AMR (AMR-NB and AMR-WB)           |
-| raw      | G711mu                       |
-| ape      | APE                          |
+AAC, MPEG (MP3), FLAC, Vorbis, AMR (AMR-NB and AMR-WB), G.711Mu, APE<!--RP1--><!--RP1End-->
 
 For details about the development guide, see [Audio Decoding](audio-decoding.md).
 
@@ -54,15 +44,7 @@ For details about the development guide, see [Audio Decoding](audio-decoding.md)
 
 Currently, the following encoding capabilities are supported:
 
-| Container Format| Audio Encoding Type      |
-| -------- | :--------------- |
-| mp4      | AAC, FLAC       |
-| m4a      | AAC              |
-| flac     | Flac             |
-| aac      | AAC              |
-| mp3      | MP3              |
-| raw      | G711mu           |
-<!--RP3--><!--RP3End-->
+AAC, FLAC, MP3, G.711Mu<!--RP3--><!--RP3End-->
 
 For details about the development guide, see [Audio Encoding](audio-encoding.md).
 
@@ -106,7 +88,7 @@ Currently, the following muxer capabilities are supported:
 | m4a      | -                     | AAC              | jpeg, png, bmp|
 | mp3      | -                     | MPEG (MP3)     | -              |
 | amr      | -                     | AMR (AMR-NB and AMR-WB)| -             |
-| wav      | -                     | G711mu(pcm-mulaw) | -             |
+| wav      | -                     | G711mu (pcm-mulaw)| -             |
 
 > **NOTE**
 >
