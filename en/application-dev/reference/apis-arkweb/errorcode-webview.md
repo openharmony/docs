@@ -23,7 +23,7 @@ Use [onControllerAttached()](ts-basic-components-web.md#oncontrollerattached10) 
 
 **Error Message**
 
-Invalid url.
+URL error.Possible causes:1.The URL webpage was not accessed by default before acquisition. 2. The webpage corresponding to the URL is invalid, or the URL length exceeds 2048.
 
 **Description**
 
@@ -72,7 +72,7 @@ Make sure the related function is enabled.
 
 **Error Message**
 
-Invalid cookie value.
+Invalid cookie value.The cookie format must follow defined in RFC 6265.
 
 **Description**
 
