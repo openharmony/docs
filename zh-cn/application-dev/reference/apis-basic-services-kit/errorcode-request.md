@@ -8,7 +8,7 @@
 
 **错误信息**
 
-File operation error.
+Invalid file or file system error.
 
 **错误描述**
 
@@ -16,7 +16,7 @@ File operation error.
 
 **可能原因**
 
-该错误码表示文件操作异常，可能原因文件权限不足。
+该错误码表示文件操作异常，可能原因是文件权限不足。
 
 **处理步骤**
 
@@ -26,7 +26,7 @@ File operation error.
 
 **错误信息**
 
-Bad file path.
+File path not supported or invalid.
 
 **错误描述**
 
@@ -34,7 +34,7 @@ Bad file path.
 
 **可能原因**
 
-该错误码表示文件路径异常，可能原因文件路径错误或文件路径下文件已存在。
+该错误码表示文件路径异常，可能原因是文件路径错误或文件路径下文件已存在。
 
 **处理步骤**
 
@@ -52,7 +52,7 @@ Task service ability error.
 
 **可能原因**
 
-该错误码表示服务异常，可能原因任务创建失败。
+该错误码表示服务异常，可能原因是任务创建失败。
 
 **处理步骤**
 
@@ -70,7 +70,7 @@ Other error.
 
 **可能原因**
 
-该错误码表示服务异常，可能原因任务创建失败。
+该错误码表示服务异常，可能原因是任务创建失败。
 
 **处理步骤**
 
@@ -103,7 +103,7 @@ The application task queue is full.
 
 **错误信息**
 
-Task mode error.
+Operation with wrong task mode.
 
 **错误描述**
 
@@ -123,7 +123,7 @@ Task mode error.
 
 **错误信息**
 
-Task not found.
+Task removed or not found.
 
 **错误描述**
 
@@ -145,7 +145,7 @@ Task not found.
 
 **错误信息**
 
-Task state error.
+Operation with wrong task state.
 
 **错误描述**
 
