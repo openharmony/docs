@@ -3006,7 +3006,7 @@ on(type: 'setPreviewText', callback: SetPreviewTextCallback): void
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 
 **示例：**
 
@@ -3079,7 +3079,7 @@ try {
 
 ### on('finishTextPreview')<sup>17+</sup>
 
-on(type: 'finishTextPreview', callback: Callback&gt;void&gt;): void
+on(type: 'finishTextPreview', callback: Callback&lt;void&gt;): void
 
 订阅结束文本预览事件。使用callback异步回调。
 
@@ -3102,7 +3102,7 @@ on(type: 'finishTextPreview', callback: Callback&gt;void&gt;): void
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 
 **示例：**
 
@@ -3132,7 +3132,7 @@ try {
 
 ### off('finishTextPreview')<sup>17+</sup>
 
-off(type: 'finishTextPreview', callback?: Callback&gt;void&gt;): void
+off(type: 'finishTextPreview', callback?: Callback&lt;void&gt;): void
 
 取消订阅结束文本预览事件。使用callback异步回调。
 
