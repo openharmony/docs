@@ -702,16 +702,14 @@ Span类型信息。
 
 菜单的响应类型。
 
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称    | 值     | 说明         |
 | ----- | ---- | ------------ |
-| RIGHT_CLICK  | 0 | 通过鼠标右键触发菜单弹出。  |
-| LONG_PRESS | 1 | 通过长按触发菜单弹出。   |
-| SELECT | 2 | 通过鼠标选中触发菜单弹出。  |
-| DEFAULT<sup>15+</sup> | 3 | 默认类型，不指定响应类型时生效。  |
+| RIGHT_CLICK  | 0 | 通过鼠标右键触发菜单弹出。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
+| LONG_PRESS | 1 | 通过长按触发菜单弹出。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
+| SELECT | 2 | 通过鼠标选中触发菜单弹出。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
+| DEFAULT<sup>15+</sup> | 3 | 默认类型，不指定响应类型时生效。 <br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。  |
 
 ## RichEditorTextStyleResult
 
