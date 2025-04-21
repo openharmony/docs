@@ -244,7 +244,7 @@ Window manager service error.
 
 **错误信息**
 
-The intput method is basic mode.
+The input method is basic mode.
 
 **错误描述**
 
