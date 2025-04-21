@@ -2216,7 +2216,7 @@ let observer = (data: Record<string, preferences.ValueType>) => {
   }
   console.info("The observer called.");
 }
-let keys = ['name', 'age']
+let keys = ['name', 'age'];
 dataPreferences.on('dataChange', keys, observer);
 dataPreferences.putSync('name', 'xiaohong');
 dataPreferences.putSync('weight', 125);
@@ -2360,7 +2360,7 @@ let observer = (data: Record<string, preferences.ValueType>) => {
   }
   console.info("The observer called.");
 }
-let keys = ['name', 'age']
+let keys = ['name', 'age'];
 dataPreferences.on('dataChange', keys, observer);
 dataPreferences.putSync('name', 'xiaohong');
 dataPreferences.putSync('weight', 125);
