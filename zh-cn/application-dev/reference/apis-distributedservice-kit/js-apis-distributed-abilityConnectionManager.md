@@ -96,21 +96,15 @@ createAbilityConnectionSession(serviceName:&nbsp;string,&nbsp;context:&nbsp;Cont
      "newKey1": "value1",
    };
  
-   const options: Record<string, string> = {
-     'ohos.collabrate.key.start.option': 'ohos.collabrate.value.foreground',
-   };
- 
    const connectOptions: abilityConnectionManager.ConnectOptions = {
-     needSendBigData: true,
-     needSendStream: false,
-     needReceiveStream: true,
-     options: options,
+     needSendData: true,
+     startOptions: abilityConnectionManager.StartOptionParams.START_IN_FOREGROUND,
      parameters: myRecord
    };
    let context = getContext(this) as common.UIAbilityContext;
    try {
-     this.sessionId = abilityConnectionManager.createAbilityConnectionSession("collabTest", context, peerInfo, connectOptions);
-     hilog.info(0x0000, 'testTag', 'createSession sessionId is', this.sessionId);
+     let sessionId = abilityConnectionManager.createAbilityConnectionSession("collabTest", context, peerInfo, connectOptions);
+     hilog.info(0x0000, 'testTag', 'createSession sessionId is', sessionId);
    } catch (error) {
      hilog.error(0x0000, 'testTag', error);
    }
@@ -124,7 +118,7 @@ createAbilityConnectionSession(serviceName:&nbsp;string,&nbsp;context:&nbsp;Cont
    import { hilog } from '@kit.PerformanceAnalysisKit';
  
    export default class EntryAbility extends UIAbility {
-     onCollaborate(wantParam: Record<string, Object>): AbilityConstant.OnCollaborateResult {
+     onCollaborate(wantParam: Record<string, Object>): AbilityConstant.CollaborateResult {
        hilog.info(0x0000, 'testTag', '%{public}s', 'on collaborate');
        let param = wantParam["ohos.extra.param.key.supportCollaborateIndex"] as Record<string, Object>
        this.onCollab(param);
@@ -147,9 +141,6 @@ createAbilityConnectionSession(serviceName:&nbsp;string,&nbsp;context:&nbsp;Cont
        }
  
        const options = collabParam["ConnectOptions"] as abilityConnectionManager.ConnectOptions;
-       options.needSendBigData = true;
-       options.needSendStream = true;
-       options.needReceiveStream = false;
        try {
          sessionId = abilityConnectionManager.createAbilityConnectionSession("collabTest", this.context, peerInfo, options);
          AppStorage.setOrCreate('sessionId', sessionId);
@@ -183,7 +174,8 @@ destroyAbilityConnectionSession(sessionId:&nbsp;number):&nbsp;void
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   hilog.info(0x0000, 'testTag', 'destroyAbilityConnectionSession called');
-  abilityConnectionManager.destroyAbilityConnectionSession(this.sessionId);
+  let sessionId = 100;
+  abilityConnectionManager.destroyAbilityConnectionSession(sessionId);
   ```
 
 ## abilityConnectionManager.getPeerInfoById
@@ -222,7 +214,8 @@ getPeerInfoById(sessionId:&nbsp;number):&nbsp;PeerInfo&nbsp;|&nbsp;undefined
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   hilog.info(0x0000, 'testTag', 'getPeerInfoById called');
-  const peerInfo = abilityConnectionManager.getPeerInfoById(this.sessionId);
+  let sessionId = 100;
+  const peerInfo = abilityConnectionManager.getPeerInfoById(sessionId);
   ```
 
 ## abilityConnectionManager.connect
@@ -261,7 +254,8 @@ connect(sessionId:&nbsp;number):&nbsp;Promise&lt;ConnectResult&gt;
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  abilityConnectionManager.connect(this.sessionId).then((ConnectResult) => {
+  let sessionId = 100;
+  abilityConnectionManager.connect(sessionId).then((ConnectResult) => {
     if (!ConnectResult.isConnected) {
       hilog.info(0x0000, 'testTag', 'connect failed');
       return;
@@ -314,7 +308,7 @@ acceptConnect(sessionId:&nbsp;number,&nbsp;token:&nbsp;string):&nbsp;Promise&lt;
       hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
     }
 
-    onCollaborate(wantParam: Record<string, Object>): AbilityConstant.OnCollaborateResult {
+    onCollaborate(wantParam: Record<string, Object>): AbilityConstant.CollaborateResult {
       hilog.info(0x0000, 'testTag', '%{public}s', 'on collaborate');
       let param = wantParam["ohos.extra.param.key.supportCollaborateIndex"] as Record<string, Object>
       this.onCollab(param);
@@ -343,9 +337,6 @@ acceptConnect(sessionId:&nbsp;number,&nbsp;token:&nbsp;string):&nbsp;Promise&lt;
       }
 
       const options = collabParam["ConnectOptions"] as abilityConnectionManager.ConnectOptions;
-      options.needSendBigData = true;
-      options.needSendStream = true;
-      options.needReceiveStream = false;
       try {
         sessionId = abilityConnectionManager.createAbilityConnectionSession("collabTest", this.context, peerInfo, options);
         AppStorage.setOrCreate('sessionId', sessionId);
@@ -379,11 +370,8 @@ disconnect(sessionId:&nbsp;number):&nbsp;void
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   hilog.info(0x0000, 'testTag', 'disconnectRemoteAbility begin');
-  if (this.sessionId == -1) {
-    hilog.info(0x0000, 'testTag', 'Invalid session ID.');
-  return;
-  }
-  abilityConnectionManager.disconnect(this.sessionId);
+  let sessionId = 100;
+  abilityConnectionManager.disconnect(sessionId);
   ```
 
 ## abilityConnectionManager.reject
@@ -412,13 +400,22 @@ reject(token:&nbsp;string,&nbsp;reason:&nbsp;string):&nbsp;void;
 **示例：**
 
   ```ts
+  import { AbilityConstant, UIAbility, Want} from '@kit.AbilityKit';
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  hilog.info(0x0000, 'testTag', 'reject begin');
-  const collabToken = collabParam["ohos.dms.collabToken"] as string;
-  const reason = "test";
-  abilityConnectionManager.reject(collabToken, reason);
+  export default class EntryAbility extends UIAbility {
+      onCollaborate(wantParam: Record<string, Object>): AbilityConstant.CollaborateResult {
+        hilog.info(0x0000, 'testTag', '%{public}s', 'on collaborate');
+        let collabParam = wantParam["ohos.extra.param.key.supportCollaborateIndex"] as Record<string, Object>;
+        const collabToken = collabParam["ohos.dms.collabToken"] as string;
+        const reason = "test";
+        hilog.info(0x0000, 'testTag', 'reject begin');
+        abilityConnectionManager.reject(collabToken, reason);
+        return AbilityConstant.CollaborateResult.REJECT;
+      }
+  }
+
   ```
 
 ## abilityConnectionManager.on('connect')
@@ -451,7 +448,8 @@ on(type:&nbsp;'connect',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callba
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  abilityConnectionManager.on("connect", this.sessionId,(callbackInfo) => {
+  let sessionId = 100;
+  abilityConnectionManager.on("connect", sessionId,(callbackInfo) => {
     hilog.info(0x0000, 'testTag', 'session connect, sessionId is', callbackInfo.sessionId);
   });
 
@@ -487,7 +485,8 @@ off(type:&nbsp;'connect',&nbsp;sessionId:&nbsp;number,&nbsp;callback?:&nbsp;Call
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  abilityConnectionManager.off("connect", this.sessionId);
+  let sessionId = 100;
+  abilityConnectionManager.off("connect", sessionId);
 
   ```
 
@@ -521,7 +520,8 @@ on(type:&nbsp;'disconnect',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Cal
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  abilityConnectionManager.on("disconnect", this.sessionId,(callbackInfo) => {
+  let sessionId = 100;
+  abilityConnectionManager.on("disconnect", sessionId,(callbackInfo) => {
     hilog.info(0x0000, 'testTag', 'session disconnect, sessionId is', callbackInfo.sessionId);
   });
 
@@ -557,7 +557,8 @@ off(type:&nbsp;'disconnect',&nbsp;sessionId:&nbsp;number,&nbsp;callback?:&nbsp;C
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  abilityConnectionManager.off("disconnect", this.sessionId);
+  let sessionId = 100;
+  abilityConnectionManager.off("disconnect", sessionId);
 
   ```
 
@@ -591,7 +592,8 @@ on(type:&nbsp;'receiveMessage',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  abilityConnectionManager.on("receiveMessage", this.sessionId,(callbackInfo) => {
+  let sessionId = 100;
+  abilityConnectionManager.on("receiveMessage", sessionId,(callbackInfo) => {
     hilog.info(0x0000, 'testTag', 'receiveMessage, sessionId is', callbackInfo.sessionId);
   });
 
@@ -627,7 +629,8 @@ off(type:&nbsp;'receiveMessage',&nbsp;sessionId:&nbsp;number,&nbsp;callback?:&nb
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  abilityConnectionManager.off("receiveMessage", this.sessionId);
+  let sessionId = 100;
+  abilityConnectionManager.off("receiveMessage", sessionId);
 
   ```
 
@@ -661,7 +664,8 @@ on(type:&nbsp;'receiveData',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Ca
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  abilityConnectionManager.on("receiveData", this.sessionId,(callbackInfo) => {
+  let sessionId = 100;
+  abilityConnectionManager.on("receiveData", sessionId,(callbackInfo) => {
     hilog.info(0x0000, 'testTag', 'receiveData, sessionId is', callbackInfo.sessionId);
   });
 
@@ -697,7 +701,8 @@ off(type:&nbsp;'receiveData',&nbsp;sessionId:&nbsp;number,&nbsp;callback?:&nbsp;
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  abilityConnectionManager.off("receiveData", this.sessionId);
+  let sessionId = 100;
+  abilityConnectionManager.off("receiveData", sessionId);
 
   ```
 
@@ -736,7 +741,8 @@ sendMessage(sessionId:&nbsp;number,&nbsp;msg:&nbsp;string):&nbsp;Promise&lt;void
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  abilityConnectionManager.sendMessage(this.sessionId, "message send success").then(() => {
+  let sessionId = 100;
+  abilityConnectionManager.sendMessage(sessionId, "message send success").then(() => {
     hilog.info(0x0000, 'testTag', "sendMessage success");
   }).catch(() => {
     hilog.error(0x0000, 'testTag', "connect failed");
@@ -777,11 +783,13 @@ sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;v
   ```ts
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { util } from '@kit.ArkTS';
 
   let textEncoder = util.TextEncoder.create("utf-8");
   const arrayBuffer  = textEncoder.encodeInto("data send success");
 
-  abilityConnectionManager.sendData(this.sessionId, arrayBuffer.buffer).then(() => {
+  let sessionId = 100;
+  abilityConnectionManager.sendData(sessionId, arrayBuffer.buffer).then(() => {
     hilog.info(0x0000, 'testTag', "sendMessage success");
   }).catch(() => {
     hilog.info(0x0000, 'testTag', "sendMessage failed");
@@ -835,8 +843,10 @@ sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;v
 | 名称       | 类型    | 可读   | 可写   | 说明          |
 | -------- | ------ | ---- | ---- | ----------- |
 | sessionId | number   | 是    | 是    |   表示当前事件对应的协同会话ID。 |
+| eventType | string   | 是    | 是    |   表示与在函数 “on” 中注册的类型一致的返回事件类型。 |
 | reason | [DisconnectReason](#disconnectreason)     | 是    | 否    |   表示断连原因。 |
 | msg | string   | 是    | 否    |   表示接收的消息。 |
+| data  | ArrayBuffer | 是    | 否    |   表示接收的字节流。 |
 
 ## CollaborateEventInfo
 
@@ -846,8 +856,9 @@ sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;v
 
 | 名称       | 类型   | 只读   | 可选   | 说明      |
 | -------- | ------ | ---- | ---- | ------- |
-| eventType | [CollaborateEventType](#collaborateeventtype) | 是    | 是    | 协同事件的类型。 |
-| eventMsg | string | 是    | 否    | 协同事件的消息内容。 |
+| sessionId | number   | 是    | 是    | 表示当前事件对应的协同会话ID。 |
+| eventType | [CollaborateEventType](#collaborateeventtype) | 是    | 是    | 表示协同事件的类型。 |
+| eventMsg | string | 是    | 否    | 表示协同事件的消息内容。 |
 
 ## ConnectErrorCode
 
@@ -862,6 +873,7 @@ sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;v
 | LOCAL_WIFI_NOT_OPEN | 2 |表示本端WiFi未开启。|
 | PEER_WIFI_NOT_OPEN | 3 |表示对端WiFi未开启。|
 | PEER_ABILITY_NO_ONCOLLABORATE | 4 |表示未实现onCollaborate方法。|
+| SYSTEM_INTERNAL_ERROR | 5 |表示系统内部错误。|
 
 ## StartOptionParams
 

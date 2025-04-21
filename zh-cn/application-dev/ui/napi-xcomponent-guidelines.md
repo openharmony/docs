@@ -21,6 +21,20 @@ XComponent持有一个surface，开发者能通过调用[NativeWindow](../graphi
 - 在这些回调中进行初始化环境、获取当前状态、响应各类事件的开发。
 - 利用NativeWindow和EGL接口开发自定义绘制内容以及申请和提交Buffer到图形队列。
 
+**约束条件**：
+
+1、构造XComponent时需要配置libraryname参数、id参数以及type参数。
+
+2、id需要唯一。
+
+> **说明**：
+>
+> 1. Native侧的OH_NativeXComponent缓存在字典中，其key需要保证其唯一性，当对应的XComponent销毁后，需要及时从字典里将其删除。
+>
+> 2. 对于使用[typeNode](../reference/apis-arkui/js-apis-arkui-frameNode.md#typenode12)创建的SURFACE或TEXTURE类型的XComponent组件，由于typeNode组件的生命周期与声明式组件存在差异，组件在创建后的缓冲区尺寸为未设置状态，因此在开始绘制内容之前，应调用[OH_NativeWindow_NativeWindowHandleOpt](../reference/apis-arkgraphics2d/_native_window.md#oh_nativewindow_nativewindowhandleopt)接口进行缓冲区尺寸设置。
+>
+> 3. 多个XComponent开发时，缓存Native侧资源需要保证key是唯一的，key推荐使用id+随机数或者surfaceId。
+
 **接口说明**
 
 | 接口名                                                       | 描述                                                         |
@@ -241,29 +255,29 @@ XComponent持有一个surface，开发者能通过调用[NativeWindow](../graphi
                 eglCore_->Release();
                 delete eglCore_;
                 eglCore_ = nullptr;
-           }
-       }
-       static PluginRender* GetInstance(std::string& id);
-       static void Release(std::string& id);
-       static napi_value NapiDrawPattern(napi_env env, napi_callback_info info);
-       static napi_value TestGetXComponentStatus(napi_value env, napi_callback_info info);
-       void Export(napi_env env, napi_value exports);
-       void OnSurfaceChanged(OH_NativeXComponent* component, void* window);
-       void OnTouchEvent(OH_NativeXComponent* component, void* window);
-       void OnMouseEvent(OH_NativeXComponent* component, void* window);
-       void OnHoverEvent(OH_NativeXComponent* component, bool isHover);
-       void OnFocusEvent(OH_NativeXComponent* component, void* window);
-       void OnBlurEvent(OH_NativeXComponent* component, void* window);
-       void OnKeyEvent(OH_NativeXComponent* component, void* window);
-       void RegisterCallback(OH_NativeXComponent* NativeXComponent);
-   
+            }
+        }
+        static PluginRender* GetInstance(std::string& id);
+        static void Release(std::string& id);
+        static napi_value NapiDrawPattern(napi_env env, napi_callback_info info);
+        static napi_value TestGetXComponentStatus(napi_value env, napi_callback_info info);
+        void Export(napi_env env, napi_value exports);
+        void OnSurfaceChanged(OH_NativeXComponent* component, void* window);
+        void OnTouchEvent(OH_NativeXComponent* component, void* window);
+        void OnMouseEvent(OH_NativeXComponent* component, void* window);
+        void OnHoverEvent(OH_NativeXComponent* component, bool isHover);
+        void OnFocusEvent(OH_NativeXComponent* component, void* window);
+        void OnBlurEvent(OH_NativeXComponent* component, void* window);
+        void OnKeyEvent(OH_NativeXComponent* component, void* window);
+        void RegisterCallback(OH_NativeXComponent* NativeXComponent);
+
     public:
         static std::unordered_map<std::string, PluginRender*> instance_;
         EGLCore* eglCore_;
         std::string id_;
         static int32_t hasDraw_;
         static int32_t hasChangeColor_;
-   
+
     private:
         OH_NativeXComponent_Callback renderCallback_;
         OH_NativeXComponent_MouseEvent_Callback mouseCallback_;
@@ -279,8 +293,8 @@ XComponent持有一个surface，开发者能通过调用[NativeWindow](../graphi
     PluginRender::PluginRender(std::string& id) {
         this->id_ = id;
         this->eglCore_ = new EGLCore();
-   }
-   
+    }
+
     PluginRender* PluginRender::GetInstance(std::string& id) {
         if (instance_.find(id) == instance_.end()) {
             PluginRender* instance = new PluginRender(id);
@@ -1210,6 +1224,14 @@ XComponent持有一个surface，开发者能通过调用[NativeWindow](../graphi
 - 利用NativeWindow和EGL接口开发自定义绘制内容以及申请和提交Buffer到图形队列。
 - ArkTS侧获取生命周期、事件等信息传递到Native侧处理。
 
+> **说明**：
+>
+> 1. Native侧的NativeWindow缓存在字典中，其key需要保证其唯一性，当对应的XComponent销毁后，需要及时从字典里将其删除。
+>
+> 2. 对于使用[typeNode](../reference/apis-arkui/js-apis-arkui-frameNode.md#typenode12)创建的SURFACE或TEXTURE类型的XComponent组件，由于typeNode组件的生命周期与声明式组件存在差异，组件在创建后的缓冲区尺寸为未设置状态，因此在开始绘制内容之前，应调用[OH_NativeWindow_NativeWindowHandleOpt](../reference/apis-arkgraphics2d/_native_window.md#oh_nativewindow_nativewindowhandleopt)接口进行缓冲区尺寸设置。
+> 
+> 3. 多个XComponent开发时，缓存Native侧资源需要保证key是唯一的，key推荐使用id+随机数或者surfaceId。
+
 **接口说明**
 
 ArkTS侧的XComponentController
@@ -1680,6 +1702,8 @@ function myComponent() {
 
 ### onLoad事件	
 
+使用场景：当需要用到native侧注册的方法，可以考虑调用。
+
 触发时刻：XComponent准备好surface后触发。
 
 参数context：其上面挂载了暴露在模块上的Native方法，使用方法类似于利用 import context from "libnativerender.so" 直接加载模块后获得的context实例。
@@ -1703,6 +1727,8 @@ function myComponent() {
 ### onDestroy事件
 
 触发时刻：XComponent组件被销毁时触发，与一般ArkUI的组件销毁时机一致。
+
+使用场景：和onLoad事件对应，如果在onLoad申请了内存，可以在这里进行释放。
 
 **时序：**
 

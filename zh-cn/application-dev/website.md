@@ -206,7 +206,8 @@
         - [Uniform Type Descriptor(UTD)预置类型列表](database/uniform-data-type-list.md)
       - 应用数据持久化<!--app-data-persistence-->
         - [应用数据持久化概述](database/app-data-persistence-overview.md)
-        - [通过用户首选项实现数据持久化](database/data-persistence-by-preferences.md)
+        - [通过用户首选项实现数据持久化 (ArkTS)](database/data-persistence-by-preferences.md)
+        - [通过用户首选项实现数据持久化 (C/C++)](database/preferences-guidelines.md)
         - [通过键值型数据库实现数据持久化](database/data-persistence-by-kv-store.md)
         - [通过关系型数据库实现数据持久化](database/data-persistence-by-rdb-store.md)
         - [通过向量数据库实现数据持久化 (ArkTS)](database/data-persistence-by-vector-store.md)
@@ -239,7 +240,6 @@
         - [应用数据向量化](database/aip-data-intelligence-embedding.md)
       - [RelationalStore开发指导 (C/C++)](database/native-relational-store-guidelines.md)
       - [UDMF开发指导 (C/C++)](database/native-unified-data-management-framework-guidelines.md)
-      - [通过用户首选项实现数据持久化 (C/C++)](database/preferences-guidelines.md)
     - ArkTS（方舟编程语言）<!--arkts-->
       - [ArkTS简介](arkts-utils/arkts-overview.md)
       - ArkTS基础类库<!--arkts-utils-->

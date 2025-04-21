@@ -526,13 +526,17 @@ orientation(orientation: ImageRotateOrientation)
 
 | 参数名 | 类型                                    | 必填 | 说明                             |
 | ------ | --------------------------------------- | ---- | -------------------------------- |
-| orientation  | [ImageRotateOrientation](#imagerotateorientation14) | 是   | 图像内容的显示方向。<br/>默认值：ImageRotateOrientation.UP |
+| orientation  | [ImageRotateOrientation](#imagerotateorientation14) | 是   | 图像内容的显示方向。<br/>如果需要显示携带旋转角度信息的图片，建议使用ImageRotateOrientation.AUTO进行设置。<br/>默认值：ImageRotateOrientation.UP |
 
 ### hdrBrightness<sup>20+</sup>
 
 hdrBrightness(brightness: number)
 
 设置组件在显示HDR图片时的亮度。
+
+svg类型图源不支持该属性。
+
+该属性与[dynamicRangeMode](#dynamicrangemode12)属性同时设置时，[dynamicRangeMode](#dynamicrangemode12)属性不生效。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -909,6 +913,7 @@ struct ImageExample2 {
           console.error('image createPixelMap success');
           this.pixelMapImg = pixelMap;
         })
+        imgSource.release()
       }
     })
   }

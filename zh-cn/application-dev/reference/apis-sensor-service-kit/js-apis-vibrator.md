@@ -831,6 +831,12 @@ addContinuousEvent(time: number, duration: number, options?: ContinuousParam): V
 | duration | number                                | 是   | 长期振动的持续时间。     |
 | options  | [ContinuousParam](#continuousparam18) | 否   | 可选参数，可选参数对象。 |
 
+**返回值**：
+
+| 类型                   | 说明                                                 |
+| ---------------------- | ---------------------------------------------------- |
+| VibratorPatternBuilder | 返回已添加连续振动事件的VibratorPatternBuilder对象。 |
+
 **错误码**：
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
@@ -888,6 +894,12 @@ addTransientEvent(time: number, options?: TransientParam): VibratorPatternBuilde
 | ------- | ----------------------------------- | ---- | ------------------------ |
 | time    | number                              | 是   | 长期振动的起始时间。     |
 | options | [TransientParam](#transientparam18) | 否   | 可选参数，可选参数对象。 |
+
+**返回值**：
+
+| 类型                   | 说明                                             |
+| ---------------------- | ------------------------------------------------ |
+| VibratorPatternBuilder | 返回已添加短振事件的VibratorPatternBuilder对象。 |
 
 **错误码**：
 

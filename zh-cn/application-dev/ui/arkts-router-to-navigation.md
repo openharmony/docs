@@ -39,7 +39,7 @@ struct Index {
           .height(40)
           .margin(20)
           .onClick(() => {
-            router.pushUrl({
+            this.getUIContext().getRouter().pushUrl({
               url: 'pages/pageOne' // 目标url
             }, router.RouterMode.Standard, (err) => {
               if (err) {
@@ -482,7 +482,7 @@ Router可以通过命名路由的方式实现跨包跳转。
            .backgroundColor('#ccc')
            .onClick(() => { // 点击跳转到其他共享包中的页面
              try {
-               router.pushNamedRoute({
+               this.getUIContext().getRouter().pushNamedRoute({
                  name: 'myPage',
                  params: {
                    data1: 'message',

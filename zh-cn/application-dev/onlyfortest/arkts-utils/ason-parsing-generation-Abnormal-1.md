@@ -1,45 +1,10 @@
 # 验证示例代码同源--异常场景1
-存在Exclude字段
-`<!--@[actor_model](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/MultithreadedConcurrency/MultiThreadConcurrencyOverview/entry/src/main/ets/pages/Index.ets)-->`
 
-
-
-
-存在Exclude字段，存在start嵌套字段，同时存在单一的start字段
-`<!--@[async_operation_error_handling_with_try_catch](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets)-->`
-
-`<!--@[async_await_sync_operation](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets)-->`
-
-`<!--@[promise_then_catch_handling](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets)-->`
-
-`<!--@[promise_async_operation](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets)-->`
-
-
-
-
-存在Exclude字段
-`<!--@[concurrent_taskpool_common_usage](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/TaskPoolIntroduction/entry/src/main/ets/managers/generaluse.ets)-->`
-
-`<!--@[quickstart1](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/TaskPoolIntroduction/entry/src/main/ets/managers/generaluse.ets)-->`
-
-`<!--@[quickstart](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/TaskPoolIntroduction/entry/src/main/ets/managers/generaluse.ets)-->`
-
-
-
-存在Exclude字段
-`<!--@[concurrent_taskpool_promise_return](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/TaskPoolIntroduction/entry/src/main/ets/managers/returnpromise.ets)-->`
-
-
-
-
-存在Exclude字段
-`<!--@[concurrent_taskpool_async_promise_usage](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/TaskPoolIntroduction/entry/src/main/ets/managers/asynchronousfunctions.ets)-->`
 
 ## ID无嵌套，存在空行
 
 代码不一致（空行）
 ```ts
-// 代码不一致，单行缩进不一致
 const promise: Promise<number> = new Promise((resolve: Function, reject: Function) => {
   setTimeout(() => {
     const randomNumber: number = Math.random();
@@ -52,12 +17,11 @@ const promise: Promise<number> = new Promise((resolve: Function, reject: Functio
   }, 1000);
 })
 ```
-<!--@[Start promise_async_operation](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/MultithreadedConcurrency/MultiThreadConcurrencyOverview/entry/src/main/ets/pages/Index.ets)-->
+<!--@[promise_async_operation](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets)-->
 
 ## docs文档中的ID在Sample中不存在(不匹配)
 
 ```ts
-// 代码ID在Sample中不存在
 const promise: Promise<number> = new Promise((resolve: Function, reject: Function) => {
   setTimeout(() => {
     const randomNumber: number = Math.random();
@@ -69,12 +33,52 @@ const promise: Promise<number> = new Promise((resolve: Function, reject: Functio
   }, 1000);
 })
 ```
-<!--@[Start code-null](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/MultithreadedConcurrency/MultiThreadConcurrencyOverview/entry/src/main/ets/pages/Index.ets)-->
+<!--@[code-null](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/MultithreadedConcurrency/MultiThreadConcurrencyOverview/entry/src/main/ets/pages/Index.ets)-->
 
 
 ## 引用部分代码（Exclude字段）
 
-### docs代码中为去除Exclude字段
+### 注释不一致（新增注释），代码内容一致
+
+```ts
+//新增注释
+// 开始--async_await_sync_operation
+async function myAsyncFunction(): Promise<string> {
+  const result: string = await new Promise((resolve: Function) => {
+    setTimeout(() => {
+      resolve('Hello, world!');
+    }, 3000);
+  });
+  console.info(result); // 输出： Hello, world!
+  return result;
+}
+
+@Entry
+@Component
+struct PromiseAsyncAwait {
+  @State message: string = 'Hello World';
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(async () => {
+            let res = await myAsyncFunction();
+            console.info('res is: ' + res);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+// 结束--async_await_sync_operation
+```
+<!--@[async_await_sync_operation](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets)-->
+
+### docs代码中未去除Exclude字段
 
 ```ts
 import { taskpool } from '@kit.ArkTS';
@@ -118,13 +122,9 @@ struct Index {
               console.error(e.message);
             })
           }
-          // StartExclude-update_message_on_success
           this.message = 'success';
-          // EndExclude-update_message_on_success
         })
-        // StartExclude-set_button_id
         .id('button')
-        // EndExclude-set_button_id
         .width('20%')
         .height('20%')
       }
@@ -135,3 +135,16 @@ struct Index {
 }
 ```
 <!--@[actor_model](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/MultithreadedConcurrency/MultiThreadConcurrencyOverview/entry/src/main/ets/pages/Index.ets)-->
+
+
+## 嵌套的ID，docs中不含嵌套部分(修改4的部分，是否因为空行导致的报错，此文档中，已经取消了空行)
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+promise.then((result: number) => {
+  console.info(`Random number is ${result}`);
+}).catch((error: BusinessError) => {
+  console.error(error.message);
+});
+```
+<!--@[promise_then_catch_handling](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets)-->
