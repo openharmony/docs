@@ -336,7 +336,7 @@ ICodecComponent::GetConfig ([in] unsigned int index, [in] byte[] inCfgStruct, [o
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| index | 待填充结构的索引，详见**OMX_INDEXTYPE**。 | 
+| index | 待填充结构的索引，详见[OMX_INDEXTYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。 | 
 | inCfgStruct | 指向由组件填充的应用程序分配的结构体指针。 | 
 | outCfgStruct | 指向由组件填充的应用程序分配的结构体指针。 | 
 
@@ -370,7 +370,7 @@ ICodecComponent::GetExtensionIndex ([in] String paramName, [out] unsigned int in
 | 名称 | 描述 | 
 | -------- | -------- |
 | paramName | 组件用来转换为配置索引的字符串。 | 
-| indexType | 由paramName转换的配置索引，详见**OMX_INDEXTYPE**。 | 
+| indexType | 由paramName转换的配置索引，详见[OMX_INDEXTYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。 | 
 
 **返回：**
 
@@ -401,7 +401,7 @@ ICodecComponent::GetParameter ([in] unsigned int index, [in] byte[] inParamStruc
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| index | 待填充结构的索引，详见OMX IL定义的OMX_INDEXTYPE。 | 
+| index | 待填充结构的索引，详见OMX IL定义的[OMX_INDEXTYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。 | 
 | inParamStruct | 指向由组件填充的应用程序分配的结构体指针。 | 
 | outParamStruct | 指向由组件填充的应用程序分配的结构体指针。 | 
 
@@ -530,7 +530,7 @@ ICodecComponent::SetConfig ([in] unsigned int index, [in] byte[] cfgStruct )
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| index | 要设置的结构索引，详见**OMX_INDEXTYPE**。 | 
+| index | 要设置的结构索引，详见[OMX_INDEXTYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。 | 
 | cfgStruct | 指向组件用于初始化的应用程序分配结构的指针。 | 
 
 **返回：**
@@ -570,7 +570,7 @@ ICodecComponent::SetParameter ([in] unsigned int index, [in] byte[] paramStruct 
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| index | 要设置的结构索引，详见OMX IL定义的OMX_INDEXTYPE。 | 
+| index | 要设置的结构索引，详见OMX IL定义的[OMX_INDEXTYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。 | 
 | paramStruct | 指向组件用于初始化的应用程序分配结构的指针。 | 
 
 **返回：**
