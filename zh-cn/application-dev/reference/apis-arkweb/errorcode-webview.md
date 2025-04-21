@@ -23,7 +23,7 @@ WebviewController还没有和具体的Web组件关联，无法进行相应的操
 
 **错误信息**
 
-Invalid url.
+URL error.Possible causes:1.The URL webpage was not accessed by default before acquisition. 2. The webpage corresponding to the URL is invalid, or the URL length exceeds 2048.
 
 **错误描述**
 
@@ -72,7 +72,7 @@ Function not enabled.
 
 **错误信息**
 
-Invalid cookie value.
+Invalid cookie value.The cookie format must follow defined in RFC 6265.
 
 **错误描述**
 
