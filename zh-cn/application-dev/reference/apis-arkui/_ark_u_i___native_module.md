@@ -836,9 +836,6 @@
 | int32_t [OH_ArkUI_GetGestureParam_duration](#oh_arkui_getgestureparam_duration) (ArkUI_GestureRecognizer \*recognizer, int\* duration) | 获取手势识别器的触发长按的最短时间。 |
 | int32_t [OH_ArkUI_GetGestureParam_angle](#oh_arkui_getgestureparam_angle) (ArkUI_GestureRecognizer \*recognizer, double\* angle) | 获取手势识别器的旋转手势的最小改变度数。 |
 | int32_t [OH_ArkUI_GetGestureParam_distanceThreshold](#oh_arkui_getgestureparam_distancethreshold) (ArkUI_GestureRecognizer \*recognizer, double\* distanceThreshold) | 获取手势识别器的手势移动阈值。 |
-|int32_t [OH_ArkUI_DragEvent_RequestDragEndPending](#oh_arkui_dragevent_requestdragendpending)([ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent)\* event, int32_t* requestIdentify); | 请求延迟执行拖拽结束。|
-|int32_t [OH_ArkUI_NotifyDragResult](#oh_arkui_notifydragresult)(int32_t requestIdentify, [ArkUI_DragResult](#arkui_dragresult) \* result); | 通知拖拽结果。|
-|int32_t [OH_ArkUI_NotifyDragEndPendingDone](#oh_arkui_notifydragendpendingdone)(int32_t requestIdentify);| 通知拖拽延迟执行结束。|
 | int32_t [OH_ArkUI_GetNodeSnapshot](#oh_arkui_getnodesnapshot)(ArkUI_NodeHandle node, ArkUI_SnapshotOptions* snapshotOptions, OH_PixelmapNative** pixelMap);| 获取指定组件节点的截图，执行过程为同步，调用时应确保对应节点已被渲染(避免在把节点挂树时就立即执行截图，因为图形的渲染一般需要一帧时间生效)。|
 | ArkUI_SnapshotOptions* [OH_ArkUI_CreateSnapshotOptions](#oh_arkui_createsnapshotoptions)();| 创建一个截图选项，当返回值不再使用时必须通过`OH_ArkUI_SnapshotOptions_Dispose`释放。|
 | void [OH_ArkUI_DestroySnapshotOptions](#oh_arkui_destroysnapshotoptions)(ArkUI_SnapshotOptions* snapshotOptions);| 销毁截图选项指针。|
@@ -17192,84 +17189,6 @@ int32_t OH_ArkUI_GetGestureParam_distanceThreshold(ArkUI_GestureRecognizer* reco
 
 ARKUI_ERROR_CODE_NO_ERROR 成功。
 ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED 不支持手势识别器类型。
-
-
-### OH_ArkUI_DragEvent_RequestDragEndPending()
-
-```
-int32_t OH_ArkUI_DragEvent_RequestDragEndPending(ArkUI_DragEvent* event, int32_t* requestIdentify)
-```
-**描述：**
-
-请求延迟执行拖拽结束。在系统通知应用drop时，调用该方法，可以明确告知系统，需要延迟一段时间才能告知拖拽处理结果，系统会推迟结束整个拖拽的结束，等待应用通过 OH_ArkUI_NotifyDragResult 接口返回拖拽处理结果后，再执行后续流程。这通常使用在不想在主线程处理拖拽数据的情况下，以免长时间阻塞主线程，同时又可确保，在整个拖拽流程结束时，拖起方可以拿到准确的拖拽处理结果。但需要注意的时，系统不会无限等待应用，最大超时时间为2s，在超时后，如果仍然无法收到 OH_ArkUI_NotifyDragResult 通知，则会强制结束拖拽流程，并通知拖起方落入失败。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| event | ArkUI_DragEvent事件指针。  | 
-| requestIdentify | 此次延迟落入行为的唯一标识。 | 
-
-
-**返回：**
-
-ARKUI_ERROR_CODE_NO_ERROR 成功。
-ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
-ARKUI_ERROR_CODE_DRAG_DROP_OPERATION_NOT_ALLOWED 执行函数时不在落入的时机。
-
-
-
-### OH_ArkUI_NotifyDragResult()
-
-```
-int32_t OH_ArkUI_NotifyDragResult(int32_t requestIdentify, ArkUI_DragResult result)
-```
-**描述：**
-
-通知拖拽结果。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| requestIdentify | 此次延迟落入行为的唯一标识。 |
-| result | 拖拽事件对应的拖拽结果。 | 
-
-
-**返回：**
-
-ARKUI_ERROR_CODE_NO_ERROR 成功。
-ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
-ARKUI_ERROR_CODE_DRAG_DROP_OPERATION_NOT_ALLOWED 执行函数时不允许落入。
-
-
-### OH_ArkUI_NotifyDragEndPendingDone()
-
-```
-int32_t OH_ArkUI_NotifyDragEndPendingDone(int32_t requestIdentify)
-```
-**描述：**
-
-通知拖拽延迟执行结束。
-
-**起始版本：** 18
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| requestIdentify | 此次延迟落入行为的唯一标识。 |
-
-
-**返回：**
-
-ARKUI_ERROR_CODE_NO_ERROR 成功。
-ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
-ARKUI_ERROR_CODE_DRAG_DROP_OPERATION_NOT_ALLOWED 执行函数时不允许落入。
 
 ### OH_ArkUI_GetNodeSnapshot()
 
