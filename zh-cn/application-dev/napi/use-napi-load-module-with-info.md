@@ -43,8 +43,8 @@ napi_status napi_load_module_with_info(napi_env env,
 
 ## 异常场景
 1. 加载hsp失败，返回错误码`napi_generic_failure`。
-2. 模块加载过程中，发生链接关系出错、包内找不到对应文件等问题时，该API将抛出ReferenceError异常，并返回错误码`napi_pending_exception`。
-3. 系统侧发生非预期行为导致加载无法正常执行，将抛出cppcrash。
+2. 在模块加载过程中，若出现链接关系错误或包内未找到对应文件等问题，该API将抛出referenceError异常，并返回错误码`napi_pending_exception`。
+3. 系统侧发生非预期行为导致加载模块无法正常执行，将抛出cppcrash。
 
 ## 使用示例
 
@@ -61,7 +61,7 @@ function test() {
 export {value, test};
 ```
 
-1. 需要当前模块的build-profile.json5文件中进行以下配置：
+1. 当前模块的build-profile.json5文件中需进行以下配置：
 
     ```json
     {
@@ -81,7 +81,8 @@ export {value, test};
 
     > **注意**
     >
-    > 开启useNormalizedOHMUrl后(即将工程目录中与entry同级别的应用级build-profile.json5文件中strictMode属性的useNormalizedOHMUrl字段配置为true)，加载模块内文件路径时：1、bundleName不会影响最终加载逻辑，会智能通过module名索引进程内对应的hap，例如：工程的bundleName为com.example.application，实际入参时填写为 com.example.application1，模块也能正常加载。2、路径需要以packageName开头，packageName指的是模块的oh-package.json5中配置的name字段。
+    >开启useNormalizedOHMUrl后（即将工程目录中与entry同级别的应用级build-profile.json5文件中strictMode属性的useNormalizedOHMUrl字段配置为true），加载模块内文件路径时：1. bundleName不会影响最终加载逻辑，会智能通过module名索引进程内对应的hap，例如：工程的bundleName为com.example.application，实际入参时填写为 com.example.application1，模块也能正常加载。2. 路径需要以packageName开头，packageName指的是模块的oh-package.json5中配置的name字段。
+
 
     ```cpp
     static napi_value loadModule(napi_env env, napi_callback_info info) {
@@ -147,7 +148,7 @@ HAR包Index.ets文件如下：
     }
     ```
 
-3. 用napi_load_module_with_info加载library，调用函数test以及获取变量value：
+3. 使用napi_load_module_with_info加载library，调用函数test以及获取变量value：
 
     ```cpp
     static napi_value loadModule(napi_env env, napi_callback_info info) {
@@ -202,7 +203,7 @@ HAR包Index.ets文件如下：
     }
     ```
 
-3. 用napi_load_module_with_info加载@ohos/hypium，获取DEFAULT变量：
+3. 使用napi_load_module_with_info加载@ohos/hypium，获取DEFAULT变量：
 
     ```cpp
     static napi_value loadModule(napi_env env, napi_callback_info info) {
@@ -421,7 +422,7 @@ export {value, test};
     }
     ```
 
-3. 在har1中用napi_load_module_with_info加载har2，调用函数test以及获取变量value：
+3. 在har1中使用napi_load_module_with_info加载har2，调用test函数并获取value变量：
 
     ```cpp
     static napi_value loadModule(napi_env env, napi_callback_info info) {
