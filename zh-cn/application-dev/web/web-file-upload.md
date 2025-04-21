@@ -62,6 +62,7 @@ Web组件支持前端页面选择文件上传功能，应用开发者可以使�
   </body>
   </html>
   ```
+![web-app-document](./figures/web-app-document.gif)
 
 ## 使用onShowFileSelector拉起图库
 
@@ -73,31 +74,33 @@ Web组件支持前端页面选择文件上传功能，应用开发者可以使�
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
-  import { BusinessError } from '@kit.BasicServicesKit';
+  import { picker } from '@kit.CoreFileKit';
   import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: webview.WebviewController = new webview.WebviewController();
+    controller: webview.WebviewController = new webview.WebviewController()
+
+    async selectFile(result: FileSelectorResult): Promise<void> {
+      let photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
+      let photoPicker = new photoAccessHelper.PhotoViewPicker();
+      // 过滤选择媒体文件类型为IMAGE
+      photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
+      // 设置最大选择数量
+      photoSelectOptions.maxSelectNumber = 5;
+      let chooseFile: picker.PhotoSelectResult = await photoPicker.select(photoSelectOptions);
+      // 获取选择的文件列表
+      result.handleFileList(chooseFile.photoUris);
+    }
 
     build() {
       Column() {
         Web({ src: $rawfile('local.html'), controller: this.controller })
           .onShowFileSelector((event) => {
-            console.log('MyFileUploader onShowFileSelector invoked');
-            const photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
-            let uri: string | null = null;
-            const photoViewPicker = new photoAccessHelper.PhotoViewPicker();
-            photoViewPicker.select(photoSelectOptions).then((photoSelectResult) => {
-              uri = photoSelectResult[0];
-              console.info('photoViewPicker.select to file succeed and uri is:' + uri);
-              if (event) {
-                event.result.handleFileList([uri]);
-              }
-            }).catch((err: BusinessError) => {
-              console.error(`Invoke photoViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
-            })
+            if (event) {
+              this.selectFile(event.result);
+            }
             return true;
           })
       }
@@ -123,6 +126,7 @@ Web组件支持前端页面选择文件上传功能，应用开发者可以使�
   </body>
   </html>
   ```
+![web-app-photo](./figures/web-app-photo.gif)
 
 ## 使用onShowFileSelector拉起相机
 
