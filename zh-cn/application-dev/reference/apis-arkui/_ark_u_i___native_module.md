@@ -3662,7 +3662,7 @@ enum ArkUI_NodeAttributeType
 | NODE_CALENDAR_PICKER_TEXT_STYLE  | 设置日历选择器入口区的文本颜色、字号、字体粗细。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0]?.u32： 入口区的文本颜色。<br/>.value[1]?.f32： 入口区的文本字号，单位为fp。<br/>.value[2]?.i32： 入口区的文本字体粗细，参数类型[ArkUI_FontWeight](#arkui_fontweight)。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32： 入口区的文本颜色。<br/>.value[1].f32： 入口区的文本字号，单位为fp。<br/>.value[2].i32： 入口区的文本字体粗细，参数类型[ArkUI_FontWeight](#arkui_fontweight)。 | 
 | NODE_CALENDAR_PICKER_START | 设置日历选择器的开始日期。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：开始日期字符串。<br/>设置开始日期格式："2025-02-14"。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：开始日期字符串。<br/>**起始版本：** 18 |
 | NODE_CALENDAR_PICKER_END  | 设置日历选择器的结束日期。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：结束日期字符串。<br/>设置结束日期格式："2025-02-27"。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：结束日期字符串。<br/>**起始版本：** 18 |
-| NODE_CALENDAR_PICKER_DISABLED_DATE_RANGE  | 设置日历选择器的禁用日期区间。支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：禁用日期区间字符串。禁用日期区间："第一个区间开始日期,第一个区间结束日期,第二个区间开始日期,第二个区间结束日期,...,第n个区间开始日期,第n个区间结束日期"。<br/>设置的禁用日期区间格式："1910-01-01,1910-12-31,2020-01-01,2020-12-31"。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>string：禁用日期区间字符串。<br/>**起始版本：** 18 |
+| NODE_CALENDAR_PICKER_DISABLED_DATE_RANGE  | 设置日历选择器的禁用日期区间。支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：禁用日期区间字符串。禁用日期区间："第一个区间开始日期，第一个区间结束日期，第二个区间开始日期，第二个区间结束日期，...，第n个区间开始日期，第n个区间结束日期"。<br/>设置的禁用日期区间格式："1910-01-01，1910-12-31，2020-01-01，2020-12-31"。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>string：禁用日期区间字符串。<br/>**起始版本：** 18 |
 | NODE_CALENDAR_PICKER_MARK_TODAY  | 设置日历选择器在系统当前日期时，是否保持高亮显示。支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：true代表日历选择器在系统当前日期时，保持高亮显示。false代表日历选择器在系统当前日期时，不保持高亮显示。默认值：false。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：1代表日历选择器在系统当前日期时，保持高亮显示。0代表日历选择器在系统当前日期时，不保持高亮显示。<br/>**起始版本：** 18 |
 | NODE_SLIDER_BLOCK_COLOR  | Slider滑块的颜色，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].u32：滑块的颜色, 类型为0xargb，如0xFF1122FF。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：滑块的颜色, 类型为0xargb，如0xFF1122FF。 | 
 | NODE_SLIDER_TRACK_COLOR  | Slider滑轨的背景颜色，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].u32：背景颜色, 类型为0xargb，如0xFF1122FF。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：背景颜色, 类型为0xargb，如0xFF1122FF。 | 
@@ -18348,7 +18348,7 @@ void OH_ArkUI_TextPickerRangeArray_SetIconAtIndex(ArkUI_TextPickerRangeContentAr
 | -------- | -------- |
 | handle | 指向TextPickerRangeContent数组的指针。|
 | icon | 图片地址。|
-| index | 数组位置,从0开始。|
+| index | 数组位置，从0开始。|
 
 
 ### OH_ArkUI_TextPickerRangeContentArray_SetTextAtIndex()
@@ -18368,7 +18368,7 @@ void OH_ArkUI_TextPickerRangeContentArray_SetTextAtIndex(ArkUI_TextPickerRangeCo
 | -------- | -------- |
 | handle | 指向TextPickerRangeContent数组的指针。|
 | text | 文本内容。|
-| index | 数组位置,从0开始。|
+| index | 数组位置，从0开始。|
 
 
 ### OH_ArkUI_TextPickerRangeContentArray_Destroy()
