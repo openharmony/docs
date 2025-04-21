@@ -64,9 +64,9 @@
              .onClick(() => {
                let iconItemSourceList: IconItemSource[] = [];
                // 创建Task
-               let lodePictureTask: taskpool.Task = new taskpool.Task(loadPicture, 30);
+               let loadPictureTask: taskpool.Task = new taskpool.Task(loadPicture, 30);
                // 执行Task，并返回结果
-               taskpool.execute(lodePictureTask).then((res: object) => {
+               taskpool.execute(loadPictureTask).then((res: object) => {
                  // loadPicture方法的执行结果
                  iconItemSourceList = res as IconItemSource[];
                })
