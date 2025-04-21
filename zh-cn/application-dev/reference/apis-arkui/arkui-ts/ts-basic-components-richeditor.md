@@ -1750,7 +1750,7 @@ RichEditor span信息。
 
 | 名称          | 类型         | 必填   | 说明            |
 | ----------- | ---------- | ---- | ------------- |
-| hapticFeedbackMode | [HapticFeedbackMode](ts-universal-attributes-menu.md#hapticfeedbackmode18)| 否 | 菜单弹出时振动效果。<br/>默认值：HapticFeedbackMode.DISABLED，菜单弹出时不振动。<br/>**注意：** 仅当应用具备 ohos.permission.VIBRATE权限，且用户启用了触感反馈时才会生效。|
+| hapticFeedbackMode | [HapticFeedbackMode](ts-universal-attributes-menu.md#hapticfeedbackmode18)| 否 | 菜单弹出时振动效果。<br/>默认值：HapticFeedbackMode.DISABLED，菜单弹出时不振动。<br/>**注意：** 仅当应用具备ohos.permission.VIBRATE权限，且用户启用了触感反馈时才会生效。|
 
 ## PasteEvent<sup>11+</sup>
 
