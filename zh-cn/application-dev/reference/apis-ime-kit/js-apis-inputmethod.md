@@ -719,7 +719,7 @@ Enter键的功能类型。
 | textInputType<sup>10+</sup>  | [TextInputType](#textinputtype10) | 否 | 否 | 文本输入类型。|
 | enterKeyType<sup>10+</sup>  | [EnterKeyType](#enterkeytype10) | 否 | 否 | Enter键功能类型。|
 | placeholder<sup>20+</sup> | string | 否 | 是 | 编辑框设置的占位符信息。 <br/>- 编辑框设置占位符信息时，编码格式为UTF-8，长度不超过256个字符，用于提示或引导用户输入临时性文本或符号。（例如：提示输入项为"必填"或"非必填"的输入结果反馈。）<br/>- 编辑框没有设置占位符信息时，默认为空字符串。<br/>- 该字段在调用[attach](#attach10)时提供给输入法应用。|
-| abilityName<sup>20+</sup> | string | 否 | 是 | 编辑框设置的ability名称。<br/>- 编辑框设置ability名称时，编码格式为UTF-8，长度不超过32个字符。<br/>- 编辑框未设置ability名称时，默认为空字符串。<br/>- 该字段在调用绑定[attach](#attach10)时提供给输入法应用。|
+| abilityName<sup>20+</sup> | string | 否 | 是 | 编辑框设置的ability名称。<br/>- 编辑框设置ability名称时，编码格式为UTF-8，长度不超过127个字符。<br/>- 编辑框未设置ability名称时，默认为空字符串。<br/>- 该字段在调用绑定[attach](#attach10)时提供给输入法应用。|
 
 ## TextConfig<sup>10+</sup>
 
