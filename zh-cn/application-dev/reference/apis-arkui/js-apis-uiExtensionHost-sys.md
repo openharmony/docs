@@ -358,7 +358,7 @@ export default class EntryAbility extends UIExtensionAbility {
     // 创建子窗口
     extensionHostWindow.createSubWindowWithOptions('subWindowForHost', subWindowOpts)
       .then((subWindow: window.Window) => {
-        subWindow.loadContent('pages/Index', (err, data) =>{
+        subWindow.setUIContent('pages/Index', (err, data) =>{
           if (err && err.code != 0) {
             return;
           }
@@ -594,7 +594,7 @@ export default class EntryAbility extends UIExtensionAbility {
   import { BusinessError } from '@kit.BasicServicesKit';
   import { uiExtensionHost, window } from '@kit.ArkUI';
 
-  let storage = LocalStorage.getShared()
+  let storage = new LocalStorage();
 
   @Entry(storage)
   @Component
