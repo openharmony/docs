@@ -169,7 +169,7 @@ predicates.equalTo("NAME", "Rose").limit(10, 3)
 
 in(field: string, value: Array&lt;ValueType&gt;): DataSharePredicates
 
-该接口用于配置谓词以匹配值在指范围内的字段。
+该接口用于配置谓词以匹配值在指定范围内的字段。
 
 目前仅RDB及KVDB(schema)支持该谓词。
 
