@@ -411,7 +411,7 @@ import { window } from '@kit.ArkUI';
 
 | 名称   | 类型   | 只读 | 可选 | 说明                                       |
 | ------ | ------ | ---- | ---- | ------------------------------------------ |
-| rect  | [Rect](js-apis-window.md#rect7)   | 是   | 否   | 窗口内可绘制区域尺寸，其中左边界上边界是相对窗口计算。 |
+| rect  | [Rect](js-apis-window.md#rect7)   | 是   | 否   | 窗口尺寸。 |
 | bundleName  | string   | 是   | 否   | 应用Bundle的名称。          |
 | abilityName | string   | 是   | 否   | Ability的名称。               |
 | windowId | number | 是   | 否   | 窗口ID。   |
