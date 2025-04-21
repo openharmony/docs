@@ -421,10 +421,7 @@ openFormEditAbility(abilityName: string, formId: string, isMainPage?: boolean): 
 
 ```ts
 import { router } from '@kit.ArkUI';
-import { formProvider } from '@ohos.app.form.formProvider';
-import { common } from '@ohos.app.ability.common';
 
-const context = getContext(this) as common.UIAbilityContext;
 const TAG: string = 'FormEditDemo-Page] -->';
 
 @Entry
@@ -501,7 +498,7 @@ const want: Want = {
   },
 };
 try {
-  formProvider.openFormManager(this.want);
+  formProvider.openFormManager(want);
 } catch (error) {
   console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
 }
@@ -548,7 +545,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 const formId: string = '388344236';
 try {
-  formProvider.getPublishedFormInfoById(this.formId).then((data: formInfo.FormInfo) => {
+  formProvider.getPublishedFormInfoById(formId).then((data: formInfo.FormInfo) => {
     console.log(`formProvider getPublishedFormInfoById, data: ${JSON.stringify(data)}`);
   }).catch((error: BusinessError) => {
     console.error(`promise error, code: ${error.code}, message: ${error.message})`);

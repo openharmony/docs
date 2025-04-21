@@ -73,7 +73,6 @@
     ```ts
     //src/main/ets/widgeteventcallcard/WidgetEventCallEntryAbility/WidgetEventCallEntryAbility.ets
     import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-    import { promptAction } from '@kit.ArkUI';
     import { BusinessError } from '@kit.BasicServicesKit';
     import { rpc } from '@kit.IPCKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -113,17 +112,11 @@
           this.callee.on('funA', (data: rpc.MessageSequence) => {
             // 获取call事件中传递的所有参数
             hilog.info(DOMAIN_NUMBER, TAG, `FunACall param:  ${JSON.stringify(data.readString())}`);
-            promptAction.showToast({
-              message: 'FunACall param:' + JSON.stringify(data.readString())
-            });
             return new MyParcelable(CONST_NUMBER_1, 'aaa');
           });
           this.callee.on('funB', (data: rpc.MessageSequence) => {
             // 获取call事件中传递的所有参数
             hilog.info(DOMAIN_NUMBER, TAG, `FunBCall param:  ${JSON.stringify(data.readString())}`);
-            promptAction.showToast({
-              message: 'FunBCall param:' + JSON.stringify(data.readString())
-            });
             return new MyParcelable(CONST_NUMBER_2, 'bbb');
           });
         } catch (err) {
