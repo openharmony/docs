@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-开发者通过createJsCore方法来创建一个新的JS基础运行时环境，并通过该方法获得一个CoreID，通过evaluateJS方法使用CoreID对应的运行环境来运行JS代码，在JS代码中创建promise并异步执行函数，最后使用releaseJsCore方法来释放CoreID对应的运行环境。
+开发者通过createJsCore方法来创建一个新的JS运行时环境，并通过该方法获得一个CoreID。然后，通过evaluateJS方法使用CoreID对应的运行环境来运行JS代码，在JS代码中创建promise并异步执行函数。最后，使用releaseJsCore方法来释放CoreID对应的运行环境。
 
 ## 使用示例
 
