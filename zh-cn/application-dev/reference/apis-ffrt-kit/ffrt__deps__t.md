@@ -18,8 +18,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| uint32_t [len](#len) | 依赖数量  | 
-| const [ffrt_dependence_t](ffrt__dependence__t.md) \* [items](#items) | 依赖数据  | 
+| uint32_t [len](#len) | 依赖数量。  | 
+| const [ffrt_dependence_t](ffrt__dependence__t.md) \* [items](#items) | 依赖数据。  | 
 
 
 ## 结构体成员变量说明
@@ -31,7 +31,7 @@
 const ffrt_dependence_t* ffrt_deps_t::items
 ```
 **描述**
-依赖数据
+依赖数据。
 
 
 ### len
@@ -40,4 +40,4 @@ const ffrt_dependence_t* ffrt_deps_t::items
 uint32_t ffrt_deps_t::len
 ```
 **描述**
-依赖数量
+依赖数量。
