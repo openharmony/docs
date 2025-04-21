@@ -1956,6 +1956,6 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 
 | 名称                     | 值   | 说明                 |
 |------------------------|-----|--------------------|
-| REeUIRED | 1   | 会议日程主送者。           |
+| REQUIRED | 1   | 会议日程主送者。           |
 | OPTIONAL | 2   | 会议日程抄送者。           |
 | RESOURCE | 3   | 会议中使用的资源（电视或投影仪等）。 |
