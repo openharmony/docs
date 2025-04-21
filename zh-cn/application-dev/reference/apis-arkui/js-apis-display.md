@@ -187,6 +187,20 @@ import { display } from '@kit.ArkUI';
 | RECTANGLE | 0 | 表示设备屏幕形状为矩形。|
 | ROUND | 1 | 表示设备屏幕形状为圆形。|
 
+## VirtualScreenConfig<sup>16+</sup>
+
+创建虚拟屏幕的参数。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称      | 类型 | 只读 | 可选 | 说明                       |
+| --------- | -------- | ---- | ---- |--------------------------|
+| name      | string   | 否   | 否   | 指定虚拟屏幕的名称，用户可自行定义。               |
+| width     | number   | 否   | 否   | 指定虚拟屏幕的宽度，单位为px，该参数应为正整数。 |
+| height    | number   | 否   | 否   | 指定虚拟屏幕的高度，单位为px，该参数应为正整数。 |
+| density   | number   | 否   | 否   | 指定虚拟屏幕的密度，单位为px，该参数为浮点数。 |
+| surfaceId | string   | 否   | 否   | 指定虚拟屏幕的surfaceId，用户可自行定义。        |
+
 ## display.getDisplayByIdSync<sup>12+</sup>
 
 getDisplayByIdSync(displayId: number): Display
@@ -1103,6 +1117,210 @@ promise.then((data: Array<display.Display>) => {
   console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
   console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
+});
+```
+
+## display.createVirtualScreen<sup>16+</sup>
+
+createVirtualScreen(config:VirtualScreenConfig): Promise&lt;number&gt;
+
+创建虚拟屏幕，使用Promise异步回调。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**需要权限**：ohos.permission.ACCESS_VIRTUAL_SCREEN
+
+**参数：**
+
+| 参数名  | 类型                                        | 必填 | 说明                     |
+| ------- | ------------------------------------------- | ---- | ------------------------ |
+| config | [VirtualScreenConfig](#virtualscreenconfig16) | 是   | 用于创建虚拟屏幕的参数。|
+
+**返回值：**
+
+| 类型                             | 说明                                  |
+| -------------------------------- | ------------------------------------- |
+| Promise&lt;number&gt; | Promise对象。返回创建的虚拟屏幕ID。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 801     | Capability not supported.function createVirtualScreen can not work correctly due to limited device capabilities. |
+| 1400001 | Invalid display or screen. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+class VirtualScreenConfig {
+  name : string = '';
+  width : number = 0;
+  height : number = 0;
+  density : number = 0;
+  surfaceId : string = '';
+}
+
+let config : VirtualScreenConfig = {
+  name: 'screen01',
+  width: 1080,
+  height: 2340,
+  density: 2,
+  surfaceId: ''
+};
+
+display.createVirtualScreen(config).then((screenId: number) => {
+  console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(screenId));
+}).catch((err: BusinessError) => {
+  console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
+});
+```
+
+## display.destroyVirtualScreen<sup>16+</sup>
+
+destroyVirtualScreen(screenId:number): Promise&lt;void&gt;
+
+销毁虚拟屏幕，使用Promise异步回调。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**需要权限**：ohos.permission.ACCESS_VIRTUAL_SCREEN
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明       |
+| -------- | ------ | ---- | ---------- |
+| screenId | number | 是   | 屏幕id，与创建的虚拟屏幕id保持一致，即使用createVirtualScreen()接口成功创建对应虚拟屏幕时的返回值，该参数仅支持整数输入。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 801     | Capability not supported.function destroyVirtualScreen can not work correctly due to limited device capabilities. |
+| 1400001 | Invalid display or screen. |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let screenId: number = 1;
+display.destroyVirtualScreen(screenId).then(() => {
+  console.info('Succeeded in destroying the virtual screen.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to destroy the virtual screen.Code:${err.code},message is ${err.message}`);
+});
+```
+
+## display.setVirtualScreenSurface<sup>16+</sup>
+
+setVirtualScreenSurface(screenId:number, surfaceId: string): Promise&lt;void&gt;
+
+设置虚拟屏幕的surfaceId，使用Promise异步回调。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**需要权限**：ohos.permission.ACCESS_VIRTUAL_SCREEN
+
+**参数：**
+
+| 参数名    | 类型   | 必填 | 说明          |
+| --------- | ------ | ---- | ------------- |
+| screenId  | number | 是   | 屏幕id，与创建的虚拟屏幕id保持一致，即使用createVirtualScreen()接口成功创建对应虚拟屏幕时的返回值，该参数仅支持整数输入。    |
+| surfaceId | string | 是   | 代表虚拟屏幕的surface标识符，surfaceId值可自行定义。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 801     | Capability not supported.function setVirtualScreenSurface can not work correctly due to limited device capabilities. |
+| 1400001 | Invalid display or screen. |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let screenId: number = 1;
+let surfaceId: string = '2048';
+display.setVirtualScreenSurface(screenId, surfaceId).then(() => {
+  console.info('Succeeded in setting the surface for the virtual screen.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to set the surface for the virtual screen. Code:${err.code},message is ${err.message}`);
+});
+```
+
+## display.makeUnique<sup>16+</sup>
+
+makeUnique(screenId:number): Promise&lt;void&gt;
+
+将屏幕设置为异源模式，使用Promise异步回调。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**需要权限**：ohos.permission.ACCESS_VIRTUAL_SCREEN
+
+**参数：**
+
+| 参数名    | 类型   | 必填 | 说明          |
+| --------- | ------ | ---- | ------------- |
+| screenId  | number | 是   | 要设置成异源模式的屏幕id。其中id应为大于等于0的整数，否则返回401错误码。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
+| 801     | Capability not supported.function makeUnique can not work correctly due to limited device capabilities. |
+| 1400001 | Invalid display or screen. |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let screenId: number = 0;
+display.makeUnique(screenId).then(() => {
+  console.info('Succeeded in making unique screens.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to make unique screens. Code:${err.code},message is ${err.message}`);
 });
 ```
 
