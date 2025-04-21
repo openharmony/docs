@@ -1446,7 +1446,7 @@ getVisibleWindowInfo(): Promise&lt;Array&lt;WindowInfo&gt;&gt;
 
 | 类型 | 说明 |
 | ------------------- | ----------------------- |
-| Promise&lt;Array&lt;[WindowInfo](#windowinfo)&gt;&gt; | Promise对象，返回当前可见窗口的相关信息。 |
+| Promise&lt;Array&lt;[WindowInfo](#windowinfo18)&gt;&gt; | Promise对象，返回当前可见窗口的相关信息。 |
 
 **错误码：**
 
