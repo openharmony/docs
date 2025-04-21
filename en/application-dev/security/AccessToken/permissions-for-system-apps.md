@@ -4547,7 +4547,7 @@ Allows an application to call the APIs for installing plugins.
 
 **Enable via ACL**: true
 
-**Valid since**: 18
+**Valid since**: 19
 
 ## ohos.permission.UNINSTALL_PLUGIN_BUNDLE
 
@@ -4559,7 +4559,7 @@ Allows an application to call the APIs for uninstalling plugins.
 
 **Enable via ACL**: true
 
-**Valid since**: 18
+**Valid since**: 19
 
 ## ohos.permission.GET_EDM_CONFIG
 

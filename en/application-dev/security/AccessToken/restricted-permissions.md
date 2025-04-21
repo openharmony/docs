@@ -536,7 +536,7 @@ Allows an application to install plugins.
 
 **Authorization mode**: system_grant
 
-**Valid since**: 18
+**Valid since**: 19
 
 ### ohos.permission.CUSTOM_SANDBOX
 
