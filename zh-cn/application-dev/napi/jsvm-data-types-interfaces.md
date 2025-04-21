@@ -2041,7 +2041,7 @@ static napi_value TestDefineClassWithProperty(napi_env env1, napi_callback_info 
     return nullptr;
 }
 ```
-场景示例：设置父类class并通过DefineClassOptions设置监听拦截属性操作
+场景示例：设置父类并通过DefineClassOptions设置监听拦截属性操作
 
 具体示例参考[使用JSVM进行class相关开发](use-jsvm-about-class.md)。
 
@@ -2082,7 +2082,7 @@ OH_JSVM_GetVersion(env, &versionId);
 | OH_JSVM_FreeArrayBufferBackingStoreData | 释放 BackingStore 内存。 |
 | OH_JSVM_CreateArrayBufferFromBackingStoreData | 基于申请的 BackingStore 内存创建 array buffer。 |
 
-> BackingStore 的使用属于高危操作，需要使用者自身保证内存的正确使用，请参考下方的正确示例，谨慎使用。
+> 使用 BackingStore 属于高危操作，使用者需确保内存使用正确。请参考下方正确示例，谨慎操作。
 
 场景示例：
 内存管理。
@@ -2440,7 +2440,7 @@ static napi_value Add([[maybe_unused]] napi_env _env, [[maybe_unused]] napi_call
 
 #### 场景介绍
 
-检索通过OH_JSVM_SetInstanceData()与当前运行的JSVM环境相关联的数据。
+使用OH_JSVM_SetInstanceData()函数，检索与当前运行的JSVM环境相关联的数据。
 
 #### 接口说明
 | 接口 | 功能说明 |
@@ -2535,7 +2535,7 @@ static napi_value GetInstanceData(napi_env env1, napi_callback_info info)
 
 #### 场景介绍
 
-在虚拟机内部启动任务队列的运行，检查是否有微任务在队列中等待，这个任务队列可以由外部事件循环执行。
+在虚拟机内部启动任务队列的运行，检查队列中是否有微任务等待，任务队列可由外部事件循环执行。
 
 #### 接口说明
 | 接口 | 功能说明 |
