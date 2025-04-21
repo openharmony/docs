@@ -193,7 +193,7 @@ type AnimationRange\<T>=[from: T, to: T]
 
 ## BorderRadiusType<sup>18+</sup>
 
-type BorderRadiusType\<T>= [Length](ts-types.md#length) | [BorderRadiuses](ts-types.md#borderradiuses9) | [LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12)
+type BorderRadiusType = [Length](ts-types.md#length) | [BorderRadiuses](ts-types.md#borderradiuses9) | [LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12)
 
 圆角类型。
 
