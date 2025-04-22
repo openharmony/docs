@@ -2667,10 +2667,10 @@ clone(): Promise\<PixelMap>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 501 | Resource unavailable. |
-| 62980102 | Image malloc abnormal. This status code is thrown when an error occurs during the process of copying data. |
-| 62980103 | Image YUV And ASTC types are not supported. |
-| 62980104 | Image initialization abnormal. This status code is thrown when an error occurs during the process of createing empty pixelmap. |
-| 62980106 | The image data is to large.This status code is thrown when an error occurs during the process of checking size. |
+| 62980102 | Image malloc abnormal. |
+| 62980103 | Image types are not supported. |
+| 62980104 | Image initialization abnormal. |
+| 62980106 | The image data is to large. |
 
 **示例：**
 
@@ -2709,10 +2709,10 @@ cloneSync(): PixelMap
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 501 | Resource unavailable. |
-| 62980102 | Image malloc abnormal. This status code is thrown when an error occurs during the process of copying data. |
-| 62980103 | Image YUV And ASTC types are not supported. |
-| 62980104 | Image initialization abnormal. This status code is thrown when an error occurs during the process of createing empty pixelmap. |
-| 62980106 | The image data is to large.This status code is thrown when an error occurs during the process of checking size. |
+| 62980102 | Image malloc abnormal. |
+| 62980103 | Image types are not supported. |
+| 62980104 | Image initialization abnormal. |
+| 62980106 | The image data is to large. |
 
 **示例：**
 
@@ -3955,6 +3955,7 @@ setMemoryNameSync(name: string): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 401 | Parameter error. Possible causes: 1.The length of the input parameter is too long. 2.Parameter verification failed. |
+| 501 | Resource unavailable. |
 | 62980286 | Memory format not supported. |
 
 **示例：**
