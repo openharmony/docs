@@ -212,8 +212,7 @@ connection.setAppHttpProxy({
 
 **预置锁定证书PIN:**
 
-证书PIN是对证书文件用sha256算法计算出的hash值。 
-对于证书server.pem, 可以用如下openssl命令计算它的PIN:
+证书PIN是对证书文件用sha256算法计算出的hash值。对于证书server.pem, 可以用如下openssl命令计算它的PIN:
 
 ```shell
 cat server.pem \
@@ -234,8 +233,7 @@ cat server.pem \
 
 **预置JSON配置文件:**
 
-预置的证书与网络服务器的对应关系通过JSON配置。 
-配置文件在APP中的路径是：src/main/resources/base/profile/network_config.json
+预置的证书与网络服务器的对应关系通过JSON配置。配置文件在APP中的路径是：src/main/resources/base/profile/network_config.json
 
 **JSON配置文件:**
 
@@ -386,9 +384,7 @@ item必须包含1个digest(string:指示公钥PIN)。
 
 getDefaultHttpProxy(callback: AsyncCallback\<HttpProxy>): void
 
-获取网络默认的代理配置信息。
-如果设置了全局代理，则会返回全局代理配置信息。如果进程使用[setAppNet](#connectionsetappnet9)绑定到指定[NetHandle](#nethandle)对应的网络，则返回[NetHandle](#nethandle)对应网络的代理配置信息。在其它情况下，将返回默认网络的代理配置信息。
-使用callback方式作为异步方法。
+获取网络默认的代理配置信息。如果设置了全局代理，则会返回全局代理配置信息。如果进程使用[setAppNet](#connectionsetappnet9)绑定到指定[NetHandle](#nethandle)对应的网络，则返回[NetHandle](#nethandle)对应网络的代理配置信息。在其它情况下，将返回默认网络的代理配置信息。使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -426,9 +422,7 @@ connection.getDefaultHttpProxy((error: BusinessError, data: connection.HttpProxy
 
 getDefaultHttpProxy(): Promise\<HttpProxy>
 
-获取网络默认的代理配置信息。
-如果设置了全局代理，则会返回全局代理配置信息。如果进程使用[setAppNet](#connectionsetappnet9)绑定到指定[NetHandle](#nethandle)对应的网络，则返回[NetHandle](#nethandle)对应网络的代理配置信息。在其它情况下，将返回默认网络的代理配置信息。
-使用Promise方式作为异步方法。
+获取网络默认的代理配置信息。如果设置了全局代理，则会返回全局代理配置信息。如果进程使用[setAppNet](#connectionsetappnet9)绑定到指定[NetHandle](#nethandle)对应的网络，则返回[NetHandle](#nethandle)对应网络的代理配置信息。在其它情况下，将返回默认网络的代理配置信息。使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 

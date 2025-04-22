@@ -4623,7 +4623,7 @@
 
 **ACL使能**：true
 
-**起始版本**：17
+**起始版本**：19
 
 ## ohos.permission.SEND_NOTIFICATION_CROSS_USER
 
@@ -4649,6 +4649,18 @@
 
 **起始版本**：18
 
+### ohos.permission.UPDATE_FONT
+
+允许应用安装和卸载字体。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：19
+
 ## ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
 
 允许应用通过无障碍服务接口查询和操作界面上的组件。
@@ -4660,3 +4672,15 @@
 **ACL使能**：true
 
 **起始版本**：20
+
+## ohos.permission.SANDBOX_ACCESS_MANAGER
+
+允许应用访问其它应用的沙箱目录。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：17

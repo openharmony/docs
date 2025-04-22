@@ -1,6 +1,6 @@
 # hitrace
 
-HiTrace 提供业务流程调用链跟踪的维测接口，帮助开发者迅速获取指定业务流程调用链的运行日志，定位跨设备、跨进程、跨线程的故障问题。
+HiTrace提供业务流程调用链跟踪的维测接口，帮助开发者迅速获取指定业务流程调用链的运行日志，定位跨设备、跨进程、跨线程的故障问题。
 
 ## 环境要求
 
@@ -237,7 +237,7 @@ $ hitrace --start_bgsrv
 
 ### 快照模式导出trace
 
-默认将二进制格式的trace信息保存到/data/log/hitrace/文件夹下，文件命名格式为`trace-YYMMDDHHmmSS@[BOOT_TIME].sys`。可以使用[HiSmartPerf](https://gitee.com/openharmony/developtools_smartperf_host)工具进行可视化trace分析。工具下载链接：[developtools_smartperf_host 发行版](https://gitee.com/openharmony/developtools_smartperf_host/releases)。
+默认将二进制格式的trace信息保存到`/data/log/hitrace/`文件夹下，文件命名格式为`trace-YYMMDDHHmmSS@[BOOT_TIME].sys`。可以使用[HiSmartPerf](https://gitee.com/openharmony/developtools_smartperf_host)工具进行可视化trace分析。工具下载链接：[developtools_smartperf_host 发行版](https://gitee.com/openharmony/developtools_smartperf_host/releases)。
 
 ```shell
 hitrace --dump_bgsrv

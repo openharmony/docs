@@ -2,7 +2,7 @@
 
 ## 通过DevEco Studio可视化界面查看
 
-使用DevEco Studio Profiler的CPU Insight功能，可视化展示HiTraceMeter日志内容，分析应用或服务的CPU使用率和线程运行状态，查看指定时间段内程序在CPU上的执行耗时。具体使用指导请参考[CPU活动分析：CPU分析](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-insight-session-cpu-V5)。
+使用DevEco Studio Profiler的CPU Insight功能，可视化展示HiTraceMeter日志内容，分析应用或服务的CPU使用率和线程运行状态，查看指定时间段内程序在CPU上的执行耗时。具体使用指导请参考[CPU活动分析：CPU分析](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-insight-session-cpu)。
 
 ## 通过命令行工具查看
 
@@ -48,7 +48,9 @@
 
 8. HiTraceMeter支持文本日志的可视化分析。
 
-   - 导入DevEco Studio进行分析。具体参考[CPU活动分析：CPU分析](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-insight-session-cpu-V5)文档，在DevEco Studio Profiler的会话区选择“Open File”，将HiTraceMeter文本日志导入DevEco Studio。
+   - 导入DevEco Studio进行分析。
+     在DevEco Studio Profiler的会话区选择“Open File”，将HiTraceMeter文本日志导入DevEco Studio。
+     具体分析可参考[CPU活动分析：CPU分析](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-insight-session-cpu)文档。
    - 通过[HiSmartPerf](https://gitee.com/openharmony/developtools_smartperf_host)工具进行分析，工具下载链接[developtools_smartperf_host 发行版](https://gitee.com/openharmony/developtools_smartperf_host/releases)。
 
 ## 用户态trace格式说明
@@ -83,7 +85,7 @@
 
 - **[ChainId,SpanId,ParentSpanId]#**
 
-  开启HiTraceChain时，会将HiTraceId记录在trace打点中，结尾使用#分隔符与name字段区分。
+  开启HiTraceChain时，会将HiTraceId记录在trace打点中，结尾使用#分隔符与`name`字段区分。
 
   未开启HiTraceChain时，打点不包含该字段。
 
@@ -93,19 +95,19 @@
 
 - **name**
 
-  name字段表示打点名称或整数变量名。
+  `name`字段表示打点名称或整数变量名。
 
 - **taskId**
 
-  taskId字段表示异步跟踪id，和name字段一起用于匹配相同的异步开始与结束打点。
+  `taskId`字段表示异步跟踪id，和`name`字段一起用于匹配相同的异步开始与结束打点。
 
-  taskId与name字段之间使用空格进行分隔。
+  `taskId`与`name`字段之间使用空格进行分隔。
 
 - **count**
 
-  count字段为整数值。
+  `count`字段为整数值。
 
-  count与name字段之间使用空格进行分隔。
+  `count`与`name`字段之间使用空格进行分隔。
 
 ### API 18后用户态trace格式
 
@@ -121,7 +123,7 @@
 
 > **说明：**
 >
-> 用户态trace总长度限制512字符，建议name、customCategory和customArgs总长度不超过420字符，避免被截断。
+> 用户态trace总长度限制512字符，建议`name`、`customCategory`和`customArgs`总长度不超过420字符，避免被截断。
 
 #### 格式中的字段说明
 
@@ -139,7 +141,7 @@
 
 - **[ChainId,SpanId,ParentSpanId]#**
 
-  开启HiTraceChain时，会将HiTraceId记录在trace打点中，结尾使用#分隔符与name字段区分。
+  开启HiTraceChain时，会将HiTraceId记录在trace打点中，结尾使用#分隔符与`name`字段区分。
 
   未开启HiTraceChain时，打点不包含该字段。
 
@@ -149,25 +151,25 @@
 
 - **name**
 
-  name字段表示打点名称或整数变量名。
+  `name`字段表示打点名称或整数变量名。
 
 - **taskId**
 
-  taskId字段表示异步跟踪id，和name字段一起用于匹配相同的异步开始与结束打点。
+  `taskId`字段表示异步跟踪id，和`name`字段一起用于匹配相同的异步开始与结束打点。
 
 - **count**
 
-  count字段为整数值。
+  `count`字段为整数值。
 
 - **%level**
 
-  通过打点接口传入的level字段，表示打点级别，该字段为以下字符之一：D、I、C、M。
+  通过打点接口传入的`level`字段，表示打点级别，该字段为以下字符之一：D、I、C、M。
 
-  level字段与%level映射关系参考[HiTraceOutputLevel](#hitraceoutputlevel)。
+  `level`字段与%level映射关系参考[HiTraceOutputLevel](#hitraceoutputlevel)。
 
   > **说明：**
   >
-  > API 18前的trace打点接口没有level字段，这些trace打点默认为COMMERCIAL级别打点。
+  > API 18前的trace打点接口没有`level`字段，这些trace打点默认为COMMERCIAL级别打点。
 
 - **%tag**
 
@@ -181,31 +183,32 @@
 
 - **customCategory**
 
-  customCategory字段表示自定义聚类名称。
+  `customCategory`字段表示自定义聚类名称。
 
   在trace可视化工具中，同一进程中相同聚类名称的异步打点放在同一泳道上进行展示。
 
 - **customArgs**
 
-  customArgs字段表示自定义键值对，格式为“key=value”，多个键值对使用逗号分隔，例如“key1=value1,key2=value2”。
+  `customArgs`字段表示自定义键值对，格式为“key=value”，多个键值对使用逗号分隔，例如“key1=value1,key2=value2”。
 
-  在trace可视化工具中，对满足格式要求的customArgs以键值对形式展示解析结果。
+  在trace可视化工具中，对满足格式要求的`customArgs`以键值对形式展示解析结果。
 
 #### 特殊情况说明
 
-customCategory和customArgs字段根据实际开发需要不使用，则传入空字符串；针对这两个字段是否为空字符串的情况，以未开启HiTraceChain时的格式为例，进行说明。仅有开始同步trace打点接口和开始异步trace打点接口涉及这两个字段。
+实际开发中，如`customCategory`和`customArgs`字段不需要，则传入空字符串（仅开始同步trace打点接口和开始异步trace打点接口涉及这两个字段）。
+针对这两个字段是否为空字符串的情况，以未开启HiTraceChain时的格式为例，进行说明。HiTraceChain具体使用指导请参考[使用HiTraceChain打点](hitracechain-guidelines-arkts.md)。
 
 API 18前的trace打点接口默认将这两个字段视为空字符串。
 
 - 开始同步trace打点接口
 
-  - customArgs字段不为空字符串
+  - `customArgs`字段不为空字符串
 
     ```text
     B|PID|H:name|%level%tag|customArgs
     ```
 
-  - customArgs字段为空字符串
+  - `customArgs`字段为空字符串
 
     ```text
     B|PID|H:name|%level%tag
@@ -213,25 +216,25 @@ API 18前的trace打点接口默认将这两个字段视为空字符串。
 
 - 开始异步trace打点接口
 
-  - customCategory和customArgs字段均不为空字符串
+  - `customCategory`和`customArgs`字段均不为空字符串
 
     ```text
     S|PID|H:name|taskId|%level%tag|customCategory|customArgs
     ```
 
-  - customCategory字段为空字符串，customArgs字段不为空字符串
+  - `customCategory`字段为空字符串，`customArgs`字段不为空字符串
 
     ```text
     S|PID|H:name|taskId|%level%tag||customArgs
     ```
 
-  - customCategory字段不为空字符串，customArgs字段为空字符串
+  - `customCategory`字段不为空字符串，`customArgs`字段为空字符串
 
     ```text
     S|PID|H:name|taskId|%level%tag|customCategory
     ```
 
-  - customCategory和customArgs字段均为空字符串
+  - `customCategory`和`customArgs`字段均为空字符串
 
     ```text
     S|PID|H:name|taskId|%level%tag

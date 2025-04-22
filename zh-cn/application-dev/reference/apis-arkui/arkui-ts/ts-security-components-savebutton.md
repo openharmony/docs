@@ -165,7 +165,7 @@ struct Index {
     async (event: ClickEvent, result: SaveButtonOnClickResult, error: BusinessError<void>) => {
       if (result == SaveButtonOnClickResult.SUCCESS) {
         try {
-          const context = getContext(this);
+          const context = this.getUIContext().getHostContext();
           let helper = photoAccessHelper.getPhotoAccessHelper(context);
           // onClick触发后10秒内通过createAsset接口创建图片文件，10秒后createAsset权限收回。
           let uri = await helper.createAsset(photoAccessHelper.PhotoType.IMAGE, 'png');
