@@ -73,7 +73,6 @@
     ```ts
     //src/main/ets/widgeteventcallcard/WidgetEventCallEntryAbility/WidgetEventCallEntryAbility.ets
     import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-    import { promptAction } from '@kit.ArkUI';
     import { BusinessError } from '@kit.BasicServicesKit';
     import { rpc } from '@kit.IPCKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
