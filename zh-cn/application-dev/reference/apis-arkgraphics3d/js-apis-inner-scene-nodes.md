@@ -124,7 +124,6 @@ function append() : void {
 }
 ```
 
-
 ### insertAfter
 insertAfter(item: T, sibling: T | null): void
 
@@ -389,3 +388,43 @@ function getNode() : void {
 | enabled | boolean | 否 | 否 | 是否使能相机。true表示使用相机，false表示不使用相机。 |
 | postProcess | [PostProcessSettings](js-apis-inner-scene-post-process-settings.md#postprocesssettings) \| null | 否 | 否 | 后处理设置。 |
 | clearColor | [Color](js-apis-inner-scene-types.md#color) \| null | 否 | 否 | 将渲染目标（render target）清空后的特定颜色。 |
+
+### raycast<sup>20+</sup>
+raycast(viewPosition: Vec2, params: RaycastParameters): Promise<RaycastResult[]>;
+
+从屏幕指定位置发射射线，检测并返回所有命中的3D物体信息。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| ---- | ---- | ---- | ---- |
+| viewPosition | [Vec2](js-apis-inner-scene-types.md#vec2) | 是 | 标准化设备坐标 (NDC)，范围 [-1, 1]。(-1, -1) 为屏幕左下角，(1, 1) 为屏幕右上角。|
+| params | RaycastParameters | 是 | 射线检测的配置参数（如检测范围、过滤节点等）。|
+
+**返回值：**
+| 类型 | 说明 |
+| ---- | ---- |
+| Promise<RaycastResult[]> | 命中结果数组（按距离从近到远排序），若无命中则返回空数组。 |
+
+**示例：**
+```ts
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, Vec2, Vec3, RaycastParameters,
+  RaycastResult } from '@kit.ArkGraphics3D';
+
+function Raycast() : void {
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  scene.then(async (result: Scene) => {
+    if (result) {
+      let sceneFactory: SceneResourceFactory = result.getResourceFactory();
+      let sceneCameraParameter: SceneNodeParameters = { name: "camera1" };
+      // 创建相机
+      let camera: Promise<Camera> = sceneFactory.createCamera(sceneCameraParameter);
+      camera.enabled = true;
+      lookAt(this.cam, { x: 15, y: 10, z: 20 }, { x: 0, y: 0, z: 0 }, { x: 0, y: 1, z: 0 });
+      let viewPos: scene3d.Vec2 = { x: 0.5, y: 0.5 };
+      return camera?.raycast(viewPos, result.root);
+    }
+  });
+}
+```
