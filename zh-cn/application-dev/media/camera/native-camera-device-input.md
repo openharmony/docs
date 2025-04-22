@@ -110,7 +110,7 @@
    >
    > 在相机设备输入之前需要先完成相机管理，详细开发步骤请参考[相机管理](native-camera-device-management.md)。
 
-4. 通过[OH_CameraManager_GetSupportedSceneModes()](../../reference/apis-camera-kit/_o_h___camera.md#oh_cameramanager_getsupportedscenemodes)方法，获获取当前相机设备支持的模式列表，列表中存储了相机设备支持的所有模式[Camera_SceneMode](../../reference/apis-camera-kit/_o_h___camera.md#camera_scenemode)。
+4. 通过[OH_CameraManager_GetSupportedSceneModes()](../../reference/apis-camera-kit/_o_h___camera.md#oh_cameramanager_getsupportedscenemodes)方法，获取当前相机设备支持的模式列表，列表中存储了相机设备支持的所有模式[Camera_SceneMode](../../reference/apis-camera-kit/_o_h___camera.md#camera_scenemode)。
 
    ```c++
    bool IsSupportedSceneMode(Camera_Device camera, Camera_SceneMode sceneMode)
