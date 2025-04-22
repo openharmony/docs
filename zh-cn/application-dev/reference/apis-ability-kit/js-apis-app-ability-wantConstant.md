@@ -39,6 +39,7 @@ want的Params操作的常量。
 | APP_INSTANCE_KEY<sup>14+</sup>  | ohos.extra.param.key.appInstance  | 指示具体的应用实例。 |
 | CREATE_APP_INSTANCE_KEY<sup>14+</sup>  | ohos.extra.param.key.createAppInstance  | 指示创建新应用实例。 |
 | CALLER_APP_CLONE_INDEX<sup>14+</sup>  | ohos.param.callerAppCloneIndex  | 指示拉起方应用的分身索引。|
+| APP_LAUNCH_TRUSTLIST<sup>17+</sup>  | ohos.params.appLaunchTrustList  | 指示隐式启动时的应用过滤列表，隐式启动时仅匹配列表中的应用，值为string类型的[AppIdentifier](js-apis-bundleManager-bundleInfo.md#signatureinfo)数组，过滤列表最多支持50个应用，传入空数组不生效。<br>**原子化服务API**：从API version 17开始，该接口支持在原子化服务中使用。 |
 | LAUNCH_REASON_MESSAGE<sup>18+</sup>  | ohos.params.launchReasonMessage  | 调用方拉起目标方Ability时，可通过该字段设置拉起原因。调用方必须为系统应用，且需要申请ohos.permission.SET_LAUNCH_REASON_MESSAGE权限。当前取值仅支持"ReasonMessage_SystemShare"。 <br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## Flags
