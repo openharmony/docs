@@ -123,7 +123,7 @@ struct SheetDemo {
 // 第一步：声明onWillDismiss回调
 onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
 // 第二步：确认二次回调交互能力，此处用AlertDialog提示 "是否需要关闭半模态"
-  AlertDialog.show(
+  this.getUIContext().showAlertDialog(
     {
       message: '是否选择关闭半模态',
       autoCancel: true,
