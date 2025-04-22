@@ -8144,7 +8144,7 @@ try {
 }
 ```
 
-### setParentWindow<sup>18+</sup>
+### setParentWindow<sup>19+</sup>
 
 setParentWindow(windowId: number): Promise&lt;void&gt;
 
@@ -8158,7 +8158,7 @@ setParentWindow(windowId: number): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -8178,7 +8178,6 @@ setParentWindow(windowId: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
@@ -8205,7 +8204,7 @@ try {
 }
 ```
 
-### getParentWindow<sup>18+</sup>
+### getParentWindow<sup>19+</sup>
 
 getParentWindow(): Window
 
@@ -8215,7 +8214,7 @@ getParentWindow(): Window
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
