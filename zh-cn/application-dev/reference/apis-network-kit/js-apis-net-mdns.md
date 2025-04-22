@@ -785,7 +785,7 @@ discoveryService.off('serviceLost', (data: mdns.LocalServiceInfo) => {
 
 ## LocalServiceInfo
 
-mDNS服务信息
+mDNS服务信息。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -801,7 +801,7 @@ mDNS服务信息
 
 ## ServiceAttribute
 
-mDNS服务属性信息
+mDNS服务属性信息。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -814,7 +814,7 @@ mDNS服务属性信息
 
 ## DiscoveryEventInfo<sup>11+</sup>
 
-监听到的mDNS服务事件信息
+监听到的mDNS服务事件信息。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

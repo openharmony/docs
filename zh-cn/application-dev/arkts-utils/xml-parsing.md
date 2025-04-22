@@ -165,7 +165,7 @@ XML模块提供XmlPullParser类对XML文件解析，输入为含有XML文本的A
 3. 自定义回调函数，本例直接打印元素事件类型及元素深度。
 
     ```ts
-    let str: string  = '';
+    let str: string = '';
     function func(name: xml.EventType, value: xml.ParseInfo): boolean {
       str = name + ' ' + value.getDepth(); // getDepth 获取元素的当前深度
       console.info(str)

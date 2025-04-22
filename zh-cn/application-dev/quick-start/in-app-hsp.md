@@ -185,7 +185,6 @@ export { nativeMulti } from './src/main/ets/utils/nativeTest';
 // entry/src/main/ets/pages/index.ets
 import { Log, add, MyTitleBar, ResManager, nativeMulti } from 'library';
 import { BusinessError } from "@kit.BasicServicesKit";
-import router from '@ohos.router';
 
 const TAG = 'Index';
 

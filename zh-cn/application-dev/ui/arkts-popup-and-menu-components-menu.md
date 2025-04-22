@@ -36,7 +36,7 @@ Button('click for Menu')
 
 ## 创建自定义样式的菜单
 
-当默认样式不满足开发需求时，可使用[@Builder](../../application-dev/quick-start/arkts-builder.md)自定义菜单内容，通过bindMenu接口进行菜单的自定义。
+当默认样式不满足开发需求时，可使用[@Builder](../../application-dev/ui/state-management/arkts-builder.md)自定义菜单内容，通过bindMenu接口进行菜单的自定义。
 
 ### @Builder开发菜单内的内容
 

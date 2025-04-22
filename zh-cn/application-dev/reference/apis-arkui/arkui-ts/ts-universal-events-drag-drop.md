@@ -316,7 +316,6 @@ type DataSyncOptions = GetDataParams
 ```ts
 // xxx.ets
 import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
-import { promptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
@@ -395,9 +394,9 @@ struct Index {
           .onDragEnd((event) => {
             // onDragEnd里取到的result值在接收方onDrop设置
             if (event.getResult() === DragResult.DRAG_SUCCESSFUL) {
-              promptAction.showToast({ duration: 100, message: 'Drag Success' });
+              console.info('Drag Success');
             } else if (event.getResult() === DragResult.DRAG_FAILED) {
-              promptAction.showToast({ duration: 100, message: 'Drag failed' });
+              console.error('Drag failed');
             }
           })
         Text('test drag event')
@@ -497,6 +496,8 @@ struct Index {
             this.textContent = plainText.textContent;
           })
         })
+        .width(this.imageWidth)
+        .height(this.imageHeight)
       }.width('45%')
       .height('100%')
       .margin({ left: '5%' })

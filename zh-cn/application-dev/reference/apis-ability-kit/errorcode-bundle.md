@@ -685,7 +685,7 @@ Failed to install the HAP because an enterprise normal/MDM bundle cannot be inst
 
 **处理步骤**<br/>
 1. 检查安装设备是否为企业设备。
-2. 检查设备参数const.bms.allowenterprisebundle是否为true
+2. 检查设备参数const.bms.allowenterprisebundle是否为true。
 
 ## 17700051 应用自升级时调用方的分发类型不是企业mdm
 **错误信息**<br/>
@@ -967,6 +967,23 @@ Failed to install the HAP because an application with the same bundle name but d
 
 1. 卸载设备上相同包名的应用。
 2. 若设备上存在相同包名但签名信息不一致的应用被保留数据地卸载，导致安装失败，则先安装已卸载的应用之后不保留数据地卸载掉。
+
+<!--Del-->
+## 17700077 安装应用失败，但安装对应的预置应用成功
+
+**错误信息**<br/>
+Failed to install the HAP and restore to preinstalled bundle.
+
+**错误描述**<br/>
+安装指定应用前，若对应的预置应用已卸载，会优先安装预置应用，预置应用安装成功后安装指定应用失败。
+
+**可能原因**<br/>
+1. 待安装应用的版本号小于等于预置版本号。
+
+**处理步骤**<br/>
+1. 检查并确保指定应用版本号大于对应的预置应用版本号，查看版本号的方法请参考[17700017错误码](#17700017-新安装的应用版本号低于已安装的版本号导致应用安装失败)的操作步骤。
+2. 重新安装指定应用。
+<!--DelEnd-->
 
 ## 17700101 包管理服务异常
 **错误信息**<br/>

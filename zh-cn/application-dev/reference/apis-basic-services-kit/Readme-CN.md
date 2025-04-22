@@ -102,7 +102,6 @@
     - [TimeService](_time_service.md)
   - 头文件<!--basic-services-headerfile-->
     - [deviceinfo.h](deviceinfo_8h.md)
-    - [init_sync.h](init__sync_8h.md)
     - [ohbattery_info.h](ohbattery__info_8h.md)
     - [oh_commonevent.h](oh_commonevent_8h.md)
     - [oh_commonevnt_support.h](oh_commonevent_support_8h.md)

@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
-> 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](../js-apis-arkui-UIContext.md#uicontext)说明。
 >
@@ -246,20 +246,20 @@ struct AlertDialogExample {
               confirm: {
                 value: 'button',
                 action: () => {
-                  console.info('Button-clicking callback')
+                  console.info('Button-clicking callback');
                 }
               },
               cancel: () => {
-                console.info('Closed callbacks')
+                console.info('Closed callbacks');
               },
-              onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
-                console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
-                console.log("dialog onWillDismiss")
+              onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
+                console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
+                console.log("dialog onWillDismiss");
                 if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-                  dismissDialogAction.dismiss()
+                  dismissDialogAction.dismiss();
                 }
                 if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-                  dismissDialogAction.dismiss()
+                  dismissDialogAction.dismiss();
                 }
               }
             }
@@ -281,7 +281,7 @@ struct AlertDialogExample {
               primaryButton: {
                 value: 'cancel',
                 action: () => {
-                  console.info('Callback when the first button is clicked')
+                  console.info('Callback when the first button is clicked');
                 }
               },
               secondaryButton: {
@@ -290,26 +290,26 @@ struct AlertDialogExample {
                 style: DialogButtonStyle.HIGHLIGHT,
                 value: 'ok',
                 action: () => {
-                  console.info('Callback when the second button is clicked')
+                  console.info('Callback when the second button is clicked');
                 }
               },
               cancel: () => {
-                console.info('Closed callbacks')
+                console.info('Closed callbacks');
               },
-              onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
+              onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
                 console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
                 console.log("dialog onWillDismiss")
-                if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-                  dismissDialogAction.dismiss()
+                if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
+                  dismissDialogAction.dismiss();
                 }
-                if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-                  dismissDialogAction.dismiss()
+                if (dismissDialogAction.reason === DismissReason.TOUCH_OUTSIDE) {
+                  dismissDialogAction.dismiss();
                 }
               }
             }
           )
         }).backgroundColor(0x317aff)
-        Button('three button dialog')
+      Button('three button dialog')
         .onClick(() => {
           // 建议使用this.getUIContext().showAlertDialog()
           AlertDialog.show(
@@ -326,13 +326,13 @@ struct AlertDialogExample {
                 {
                   value: '按钮',
                   action: () => {
-                    console.info('Callback when button1 is clicked')
+                    console.info('Callback when button1 is clicked');
                   }
                 },
                 {
                   value: '按钮',
                   action: () => {
-                    console.info('Callback when button2 is clicked')
+                    console.info('Callback when button2 is clicked');
                   }
                 },
                 {
@@ -341,21 +341,21 @@ struct AlertDialogExample {
                   defaultFocus: true,
                   style: DialogButtonStyle.HIGHLIGHT,
                   action: () => {
-                    console.info('Callback when button3 is clicked')
+                    console.info('Callback when button3 is clicked');
                   }
                 },
               ],
               cancel: () => {
-                console.info('Closed callbacks')
+                console.info('Closed callbacks');
               },
-              onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
-                console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
-                console.log("dialog onWillDismiss")
-                if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-                  dismissDialogAction.dismiss()
+              onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
+                console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
+                console.log("dialog onWillDismiss");
+                if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
+                  dismissDialogAction.dismiss();
                 }
-                if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-                  dismissDialogAction.dismiss()
+                if (dismissDialogAction.reason === DismissReason.TOUCH_OUTSIDE) {
+                  dismissDialogAction.dismiss();
                 }
               }
             }
@@ -402,13 +402,13 @@ struct AlertDialogExample {
                 {
                   value: '按钮',
                   action: () => {
-                    console.info('Callback when button1 is clicked')
+                    console.info('Callback when button1 is clicked');
                   }
                 },
                 {
                   value: '按钮',
                   action: () => {
-                    console.info('Callback when button2 is clicked')
+                    console.info('Callback when button2 is clicked');
                   }
                 },
                 {
@@ -417,21 +417,21 @@ struct AlertDialogExample {
                   defaultFocus: true,
                   style: DialogButtonStyle.HIGHLIGHT,
                   action: () => {
-                    console.info('Callback when button3 is clicked')
+                    console.info('Callback when button3 is clicked');
                   }
                 },
               ],
               cancel: () => {
-                console.info('Closed callbacks')
+                console.info('Closed callbacks');
               },
               onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
-                console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
-                console.log("dialog onWillDismiss")
-                if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-                  dismissDialogAction.dismiss()
+                console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
+                console.log("dialog onWillDismiss");
+                if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
+                  dismissDialogAction.dismiss();
                 }
-                if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-                  dismissDialogAction.dismiss()
+                if (dismissDialogAction.reason === DismissReason.TOUCH_OUTSIDE) {
+                  dismissDialogAction.dismiss();
                 }
               }
             })
@@ -458,31 +458,33 @@ struct AlertDialogExample {
   build() {
     Column({ space: 5 }) {
       Button('AlertDialog Set Duration')
-        .onClick(()=>{
-            // 建议使用this.getUIContext().showAlertDialog()
-            AlertDialog.show(
-              {
-                title: 'AlertDialog 1',
-                message: 'Set Animation Duration open 3 second, close 100ms',
-                autoCancel: true,
-                alignment: DialogAlignment.Top,
-                offset: { dx: 0, dy: -20 },
-                gridCount: 3,
-                transition:TransitionEffect.asymmetric(TransitionEffect.OPACITY
-                  .animation({ duration: 3000, curve: Curve.Sharp }).combine(TransitionEffect.scale({x: 1.5, y: 1.5}).animation({duration: 3000, curve: Curve.Sharp})),
-                  TransitionEffect.OPACITY.animation({ duration: 100, curve: Curve.Smooth })
-                    .combine(TransitionEffect.scale({x: 0.5, y: 0.5}).animation({duration: 100, curve: Curve.Smooth}))),
-                confirm: {
-                  value: 'button',
-                  action: () => {
-                    console.info('Button-clicking callback')
-                  }
-                },
-                cancel: () => {
-                  console.info('Closed callbacks')
+        .onClick(() => {
+          // 建议使用this.getUIContext().showAlertDialog()
+          AlertDialog.show(
+            {
+              title: 'AlertDialog 1',
+              message: 'Set Animation Duration open 3 second, close 100ms',
+              autoCancel: true,
+              alignment: DialogAlignment.Top,
+              offset: { dx: 0, dy: -20 },
+              gridCount: 3,
+              transition: TransitionEffect.asymmetric(TransitionEffect.OPACITY
+                .animation({ duration: 3000, curve: Curve.Sharp })
+                .combine(TransitionEffect.scale({ x: 1.5, y: 1.5 }).animation({ duration: 3000, curve: Curve.Sharp })),
+                TransitionEffect.OPACITY.animation({ duration: 100, curve: Curve.Smooth })
+                  .combine(TransitionEffect.scale({ x: 0.5, y: 0.5 })
+                    .animation({ duration: 100, curve: Curve.Smooth }))),
+              confirm: {
+                value: 'button',
+                action: () => {
+                  console.info('Button-clicking callback');
                 }
+              },
+              cancel: () => {
+                console.info('Closed callbacks');
               }
-            )
+            }
+          )
         })
         .backgroundColor(0x317aff).height("88px")
     }.width('100%').margin({ top: 5 })
@@ -521,28 +523,33 @@ struct AlertDialogExample {
               height: 200,
               cornerRadius: 20,
               borderWidth: 1,
-              borderStyle: BorderStyle.Dashed,//使用borderStyle属性，需要和borderWidth属性一起使用
-              borderColor: Color.Blue,//使用borderColor属性，需要和borderWidth属性一起使用
+              borderStyle: BorderStyle.Dashed, //使用borderStyle属性，需要和borderWidth属性一起使用
+              borderColor: Color.Blue, //使用borderColor属性，需要和borderWidth属性一起使用
               backgroundColor: Color.White,
-              shadow: ({ radius: 20, color: Color.Grey, offsetX: 50, offsetY: 0}),
+              shadow: ({
+                radius: 20,
+                color: Color.Grey,
+                offsetX: 50,
+                offsetY: 0
+              }),
               textStyle: { wordBreak: WordBreak.BREAK_ALL },
               confirm: {
                 value: 'button',
                 action: () => {
-                  console.info('Button-clicking callback')
+                  console.info('Button-clicking callback');
                 }
               },
               cancel: () => {
-                console.info('Closed callbacks')
+                console.info('Closed callbacks');
               },
-              onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
-                console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
-                console.log("dialog onWillDismiss")
-                if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-                  dismissDialogAction.dismiss()
+              onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
+                console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
+                console.log("dialog onWillDismiss");
+                if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
+                  dismissDialogAction.dismiss();
                 }
-                if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-                  dismissDialogAction.dismiss()
+                if (dismissDialogAction.reason === DismissReason.TOUCH_OUTSIDE) {
+                  dismissDialogAction.dismiss();
                 }
               }
             }
@@ -578,19 +585,19 @@ struct AlertDialogExample {
               confirm: {
                 value: 'button',
                 action: () => {
-                  console.info('Button-clicking callback')
+                  console.info('Button-clicking callback');
                 }
               },
               cancel: () => {
-                console.info('Closed callbacks')
+                console.info('Closed callbacks');
               },
-              onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
+              onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
                 console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
                 console.log("dialog onWillDismiss");
-                if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
+                if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
                   dismissDialogAction.dismiss();
                 }
-                if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
+                if (dismissDialogAction.reason === DismissReason.TOUCH_OUTSIDE) {
                   dismissDialogAction.dismiss();
                 }
               },

@@ -11,7 +11,7 @@
 
 
 ```js
-import { inputConsumer } from '@kit.InputKit';
+import { inputConsumer, KeyEvent } from '@kit.InputKit';
 ```
 
 ## HotkeyOptions<sup>14+</sup>
@@ -34,8 +34,8 @@ import { inputConsumer } from '@kit.InputKit';
 
 | 名称        | 类型   | 可读   | 可写   | 说明      |
 | --------- | ------ | ------- | ------- | ------- |
-| key       | number  | 是      | 否      | 按键键值。<br>当前仅支持[KEYCODE_VOLUME_UP](js-apis-keycode.md#keycode)键和[KEYCODE_VOLUME_DOWN](js-apis-keycode.md#keycode)键。 |  
-| action    | number  | 是      | 否      | 按键事件类型。取值如下，当前仅支持取值为1。<br>- 1：按键按下。<br>- 2：按键抬起。 |  
+| key       | number  | 是      | 否      | 按键键值。<br>当前仅支持[KEYCODE_VOLUME_UP](js-apis-keycode.md#keycode)键和[KEYCODE_VOLUME_DOWN](js-apis-keycode.md#keycode)键。 |
+| action    | number  | 是      | 否      | 按键事件类型。取值如下，当前仅支持取值为1。<br>- 1：按键按下。<br>- 2：按键抬起。 |
 | isRepeat  | boolean  | 是      | 否      | 是否上报重复的按键事件。 |
 
 ## inputConsumer.getAllSystemHotkeys<sup>14+</sup>
@@ -68,7 +68,7 @@ inputConsumer.getAllSystemHotkeys().then((data: Array<inputConsumer.HotkeyOption
 });
 ```
 
-## inputConsumer.on('hotkeyOptions')<sup>14+</sup>
+## inputConsumer.on('hotkeyChange')<sup>14+</sup>
 
 on(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback: Callback&lt;HotkeyOptions&gt;): void
 
@@ -115,7 +115,7 @@ try {
 }
 ```
 
-## inputConsumer.off('hotkeyOptions')<sup>14+</sup>
+## inputConsumer.off('hotkeyChange')<sup>14+</sup>
 
 off(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback?: Callback&lt;HotkeyOptions&gt;): void
 

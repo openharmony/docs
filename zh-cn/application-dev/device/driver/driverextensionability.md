@@ -37,7 +37,7 @@
     const REQUEST_CODE = 99; // 与扩展外设客户端约定请求码
     ```
 
-4. 打开DriverExtAbility.ets文件，导入[RPC通信模块](../../reference/apis-ipc-kit/js-apis-rpc.md)，重载onRemoteMessageRequest()方法，接收应用传递过来的消息，并将处理的结果返回给应用。REQUEST_VALUE用于校验应用发送的服务请求码。
+4. 打开DriverExtAbility.ets文件，导入[RPC通信模块](../../reference/apis-ipc-kit/js-apis-rpc.md)，重载onRemoteMessageRequest()方法，接收应用传递过来的消息，并将处理的结果返回给应用。REQUEST_CODE用于校验应用发送的服务请求码。
 
     ```ts
     class StubTest extends rpc.RemoteObject {
@@ -169,6 +169,12 @@
 ## 扩展设备能力
 
 扩展外设管理提供了HID DDK和USB DDK两种能力，用于驱动开发。
+
+具体使用方法，请参考：
+
+- [HID DDK开发指导](../../napi/hid-ddk-guidelines.md)
+- [USB DDK开发指导](../../napi/usb-ddk-guidelines.md)
+
 
 ## 应用签名
 

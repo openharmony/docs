@@ -4526,10 +4526,10 @@ remove(id: string, callback: AsyncCallback&lt;void&gt;): void
 
   request.agent.remove("123456", (err: BusinessError) => {
     if (err) {
-      console.error(`Failed to removing a download task, Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to remove a download task, Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info(`Succeeded in creating a download task.`);
+    console.info(`Succeeded in removing a download task.`);
   });
   ```
 

@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## onTouch
 
@@ -30,7 +30,7 @@ onTouch(event: (event: TouchEvent) => void): T
 
 ## TouchEvent对象说明
 
-继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明)。非事件注入场景下，changedTouches是按屏幕显示刷新率重采样的点，touches是按器件刷新率报上来的点，changedTouches的数据可能会和touches里面的不相同。
+继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明8)。非事件注入场景下，changedTouches是按屏幕显示刷新率重采样的点，touches是按器件刷新率报上来的点，changedTouches的数据可能会和touches里面的不相同。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -52,7 +52,7 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**返回值:**
+**返回值：**
 
 | 类型     | 描述                      |
 | ------ | ----------------------- |

@@ -22,7 +22,7 @@ ForEach(this.nums,(item) => {
 
 **参考链接**
 
-[渲染控制语法](../quick-start/arkts-rendering-control-overview.md)
+[渲染控制语法](../ui/state-management/arkts-rendering-control-overview.md)
 
 
 ## 使用\@Builder装饰器包含自定义组件的方法与普通方法的区别是什么(API 9)
@@ -33,7 +33,7 @@ ForEach(this.nums,(item) => {
 
 **参考链接**
 
-[@BuilderParam](../quick-start/arkts-builderparam.md)
+[@BuilderParam](../ui/state-management/arkts-builderparam.md)
 
 
 ## 如何使用\@BuilderParam装饰器进行组件传参(API 9)
@@ -50,7 +50,7 @@ ForEach(this.nums,(item) => {
 
 **参考链接**
 
-[@BuilderParam](../quick-start/arkts-builderparam.md)
+[@BuilderParam](../ui/state-management/arkts-builderparam.md)
 
 
 ## 如何监听数组内对象属性变化(API 9)
@@ -102,7 +102,7 @@ ForEach(this.nums,(item) => {
 
 **参考链接**
 
-[Observed和ObjectLink数据管理](../quick-start/arkts-observed-and-objectlink.md)
+[Observed和ObjectLink数据管理](../ui/state-management/arkts-observed-and-objectlink.md)
 
 
 ## 子组件使用\@Link修饰成员变量时，如何通过父组件传值(API 9)
@@ -158,7 +158,7 @@ ForEach(this.nums,(item) => {
 
 **参考链接**
 
-[@Link](../quick-start/arkts-link.md)
+[@Link](../ui/state-management/arkts-link.md)
 
 
 ## 父组件如何与孙子组件进行状态同步(API 9)
@@ -736,7 +736,7 @@ systemTime.getCurrentTime(false)和new Date().getTime()一样，都是返回1970
 
 **参考链接**
 
-[@BuilderParam装饰器：引用@Builder函数](../quick-start/arkts-builderparam.md)
+[@BuilderParam装饰器：引用@Builder函数](../ui/state-management/arkts-builderparam.md)
 
 
 ## 加上lineHeight，Text垂直不居中的原因(API 9)
@@ -794,7 +794,7 @@ Radio组件使用$$绑定的变量变更时，仅渲染当前组件，提高渲�
 
 **参考链接**
 
-[内置组件双向同步](../quick-start/arkts-two-way-sync.md)
+[内置组件双向同步](../ui/state-management/arkts-two-way-sync.md)
 
 ## ForEach组件在真机上无法执行(API 9)
 
@@ -836,7 +836,7 @@ AppStorage是UI相关的数据，需要运行在UI线程，无法将对象共享
 
 **参考链接**
 
-[AppStorage：应用全局的UI状态存储](../quick-start/arkts-appstorage.md)
+[AppStorage：应用全局的UI状态存储](../ui/state-management/arkts-appstorage.md)
 
 ## 自定义字体的注册方式有哪些，推荐的字体资源存放路径是哪里，如何从资源存放路径中取出字体资源(API 10)
 
@@ -880,5 +880,5 @@ ArkUI还提供了一种更轻量的UI元素复用机制@Builder，@Builder所装
 
 **参考链接**
 
-1. [@Builder装饰器：自定义构建函数](../quick-start/arkts-builder.md)
-2. [@BuilderParam装饰器：引用@Builder函数](../quick-start/arkts-builderparam.md)
+1. [@Builder装饰器：自定义构建函数](../ui/state-management/arkts-builder.md)
+2. [@BuilderParam装饰器：引用@Builder函数](../ui/state-management/arkts-builderparam.md)

@@ -11,7 +11,7 @@
 
 ## 子组件
 
-不支持自定义组件作为子组件， 仅可包含子组件[TabContent](ts-container-tabcontent.md)， 以及渲染控制类型[if/else](../../../quick-start/arkts-rendering-control-ifelse.md)和[ForEach](../../../quick-start/arkts-rendering-control-foreach.md), 并且if/else和ForEach下也仅支持TabContent, 不支持自定义组件。
+不支持自定义组件作为子组件，仅可包含子组件[TabContent](ts-container-tabcontent.md)，以及渲染控制类型[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)和[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)，并且if/else和ForEach下也仅支持TabContent，不支持自定义组件。
 
 >  **说明：**
 >
@@ -44,9 +44,9 @@ Tabs组件参数，设置Tabs的页签位置，当前显示页签的索引，Tab
 
 | 名称         | 类型                              | 必填   | 说明                                     |
 | ----------- | --------------------------------- | ---- | ---------------------------------------- |
-| barPosition | [BarPosition](#barposition枚举说明)| 否    | 设置Tabs的页签位置。<br/>默认值：BarPosition.Start。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
-| index       | number                            | 否    | 设置当前显示页签的索引。<br/>默认值：0<br/>**说明：** <br/>设置为小于0的值时按默认值显示。<br/>可选值为[0, TabContent子节点数量-1]。<br/>直接修改index跳页时，切换动效不生效。 使用TabController的changeIndex时，默认生效切换动效，可以设置animationDuration为0关闭动画。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br/>Tabs重建、系统资源切换（如系统字体切换、系统深浅色切换）或者组件属性变化时，会跳转到index对应的页面。若需要在上述情况下不跳转，建议使用双向绑定。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| controller  | [TabsController](#tabscontroller) | 否    | 设置Tabs控制器。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                               |
+| barPosition<sup>7+</sup> | [BarPosition](#barposition枚举说明)| 否    | 设置Tabs的页签位置。<br/>默认值：BarPosition.Start。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
+| index<sup>7+</sup>       | number                            | 否    | 设置当前显示页签的索引。<br/>默认值：0<br/>**说明：** <br/>设置为小于0的值时按默认值显示。<br/>可选值为[0, TabContent子节点数量-1]。<br/>直接修改index跳页时，切换动效不生效。 使用TabController的changeIndex时，默认生效切换动效，可以设置animationDuration为0关闭动画。<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br/>Tabs重建、系统资源切换（如系统字体切换、系统深浅色切换）或者组件属性变化时，会跳转到index对应的页面。若需要在上述情况下不跳转，建议使用双向绑定。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| controller<sup>7+</sup>  | [TabsController](#tabscontroller) | 否    | 设置Tabs控制器。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                               |
 | barModifier<sup>15+</sup>  | [CommonModifier](#commonmodifier15) | 否    | 设置TabBar的[通用属性](ts-component-general-attributes.md)。<br/>**说明：** <br/>动态置为undefined时会保持当前状态不变，不会重置各通用属性。 <br/>由一个CommonModifier切换为另一个CommonModifier时，重复属性会进行覆盖，非重复属性会同时生效，不会重置前一个CommonModifier的通用属性。<br/>Tabs的[barWidth](#barwidth)、[barHeight](#barheight)、[barBackgroundColor](#barbackgroundcolor10)、[barBackgroundBlurStyle](#barbackgroundblurstyle11)会覆盖CommonModifier的[width](ts-universal-attributes-size.md#width)、[height](ts-universal-attributes-size.md#height)、[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)、[backgroundBlurStyle](ts-universal-attributes-background.md#backgroundblurstyle9)属性。<br/>[align](ts-universal-attributes-location.md#align)属性仅在[BarMode.Scrollable](#barmode10-1)模式下生效，且Tabs为横向时还需[nonScrollableLayoutStyle](#scrollablebarmodeoptions10对象说明)未设置或设置为异常值时才能生效。<br/>[TabContent](ts-container-tabcontent.md)组件的[tabBar](ts-container-tabcontent.md#tabbar9)属性为底部页签样式时不支持拖拽功能。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 
 ## BarPosition枚举说明
@@ -181,7 +181,7 @@ API Version 14之前的版本，若设置barHeight为固定值后，TabBar无法
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Length](ts-types.md#length)<sup>8+</sup> | 是   | TabBar的高度值。<br/>默认值：<br/>未设置带样式的TabBar且vertical属性为false时，默认值为56vp。<br/>未设置带样式的TabBar且vertical属性为true时，默认值为Tabs的高度。<br/>设置[SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle9)样式且vertical属性为false时，默认值为56vp。<br/>设置SubTabBarStyle样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置[BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle9)样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置BottomTabBarStyle样式且vertical属性为false时，默认值为56vp, 从API Version 12开始，默认值变更为48vp。 |
+| value  | [Length](ts-types.md#length)<sup>8+</sup> | 是   | TabBar的高度值。<br/>默认值：<br/>未设置带样式的TabBar且vertical属性为false时，默认值为56vp。<br/>未设置带样式的TabBar且vertical属性为true时，默认值为Tabs的高度。<br/>设置[SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle9)样式且vertical属性为false时，默认值为56vp。<br/>设置SubTabBarStyle样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置[BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle9)样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置BottomTabBarStyle样式且vertical属性为false时，默认值为56vp，从API Version 12开始，默认值变更为48vp。 |
 
 ### animationDuration
 
@@ -245,7 +245,7 @@ divider(value: DividerStyle | null)
 
 | 参数名 | 类型                                                      | 必填 | 说明                                                         |
 | ------ | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [DividerStyle](#dividerstyle10对象说明)&nbsp;\|&nbsp;null | 是   | 分割线样式，默认不显示分割线。<br/>DividerStyle: 分割线的样式；<br/>null: 不显示分割线。 |
+| value  | [DividerStyle](#dividerstyle10对象说明)&nbsp;\|&nbsp;null | 是   | 分割线样式，默认不显示分割线。<br/>DividerStyle：分割线的样式；<br/>null：不显示分割线。 |
 
 ### fadingEdge<sup>10+</sup>
 
@@ -261,7 +261,7 @@ fadingEdge(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                               |
 | ------ | ------- | ---- | -------------------------------------------------- |
-| value  | boolean | 是   | 页签超过容器宽度时是否渐隐消失。<br />默认值：true，页签超过容器宽度时会渐隐消失。 |
+| value  | boolean | 是   | 页签超过容器宽度时是否渐隐消失。<br />默认值：true，页签超过容器宽度时会渐隐消失。设置为false时，页签超过容器宽度直接截断显示，不产生任何渐变效果‌。 |
 
 ### barOverlap<sup>10+</sup>
 
@@ -277,7 +277,7 @@ barOverlap(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | TabBar是否背后变模糊并叠加在TabContent之上。当barOverlap设置为true时，TabBar默认模糊材质的BlurStyle值修改为'BlurStyle.COMPONENT_THICK'。<br />默认值：false |
+| value  | boolean | 是   | TabBar是否背后变模糊并叠加在TabContent之上。当barOverlap设置为true时，TabBar背后变模糊并叠加在TabContent之上，并且TabBar默认模糊材质的BlurStyle值修改为'BlurStyle.COMPONENT_THICK'。当barOverlap设置为false时，无模糊和叠加效果。<br />默认值：false |
 
 ### barBackgroundColor<sup>10+</sup>
 
@@ -474,7 +474,7 @@ Tab页签切换后触发的事件。
 
 2、通过[控制器](#tabscontroller)调用[changeIndex](#changeindex)接口，Tab页签切换后触发。
 
-3、动态修改[状态变量](../../../quick-start/arkts-state.md)构造的index属性值，Tab页签切换后触发。
+3、动态修改[状态变量](../../../ui/state-management/arkts-state.md)构造的index属性值，Tab页签切换后触发。
 
 4、点击TabBar页签，Tab页签切换后触发。
 
@@ -1469,6 +1469,11 @@ struct TabsExample {
   private controller: TabsController = new TabsController()
   @Builder tabBuilder(title: string,targetIndex: number) {
     Column(){
+      Image(this.selectedIndex === targetIndex ? $r('app.media.star_fill') : $r('app.media.star'))
+        .width(24)
+        .height(24)
+        .margin({ bottom: 4 })
+        .objectFit(ImageFit.Contain)
       Text(title).fontColor(this.selectedIndex === targetIndex ? '#1698CE' : '#6B6B6B')
     }.width('100%')
     .height(50)
@@ -2153,37 +2158,20 @@ struct TabsBarModifierExample {
 
 ```ts
 // xxx.ets
-class TabsMyDataSource implements IDataSource {
-  private list: number[] = []
-  constructor(list: number[]) {
-    this.list = list
-  }
-  totalCount(): number {
-    return this.list.length
-  }
-  getData(index: number): number {
-    return this.list[index]
-  }
-  registerDataChangeListener(listener: DataChangeListener): void {
-  }
-  unregisterDataChangeListener() {
-  }
-}
 @Entry
 @Component
 struct TabsExample {
   @State currentIndex: number = 0
   @State currentAnimationMode: AnimationMode = AnimationMode.CONTENT_FIRST
   private controller: TabsController = new TabsController()
-  private data: TabsMyDataSource = new TabsMyDataSource([])
-  private sum : number = 10
+  private data: number[] = []
+
   aboutToAppear(): void {
-    let list: number[] = []
-    for (let i = 0; i < this.sum; i++) {
-      list.push(i);
+    for (let i = 0; i < 10; i++) {
+      this.data.push(i);
     }
-    this.data = new TabsMyDataSource(list)
   }
+
   @Builder
   tabBuilder(title: string,targetIndex: number) {
     Column(){
@@ -2192,10 +2180,11 @@ struct TabsExample {
     .height(50)
     .justifyContent(FlexAlign.Center)
   }
+
   build() {
     Column() {
       Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.currentIndex }) {
-        LazyForEach(this.data, (item: string) => {
+        ForEach(this.data, (item: string) => {
           TabContent() {
             Column(){
               Text('' + item)
@@ -2203,8 +2192,6 @@ struct TabsExample {
           }.tabBar(this.tabBuilder('P' + item, parseInt(item)))
         }, (item: string) => item)
       }
-      .vertical(false)
-      .barMode(BarMode.Fixed)
       .barWidth(360)
       .barHeight(60)
       .animationMode(this.currentAnimationMode)
@@ -2215,8 +2202,9 @@ struct TabsExample {
       .width(360)
       .height(120)
       .backgroundColor('#F1F3F5')
-      .scrollable(true)
+
       Text('AnimationMode:' + AnimationMode[this.currentAnimationMode])
+
       Button('AnimationMode').width('50%').margin({ top: 1 }).height(25)
         .onClick(()=>{
           if (this.currentAnimationMode === AnimationMode.CONTENT_FIRST) {
@@ -2237,3 +2225,60 @@ struct TabsExample {
 ```
 
 ![tabs15](figures/tabs15.gif)
+
+### 示例16（设置边缘滑动效果）
+
+本示例通过edgeEffect实现了不同的边缘滑动效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TabsExample {
+  @State edgeEffect: EdgeEffect = EdgeEffect.Spring
+
+  build() {
+    Column() {
+      Tabs() {
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#00CB87')
+        }.tabBar('green')
+
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#007DFF')
+        }.tabBar('blue')
+
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#FFBF00')
+        }.tabBar('yellow')
+
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#E67C92')
+        }.tabBar('pink')
+      }
+      .width(360)
+      .height(296)
+      .margin({ top: 52 })
+      .backgroundColor('#F1F3F5')
+      .edgeEffect(this.edgeEffect)
+
+      Button('EdgeEffect.Spring').width('50%').margin({ top: 20 })
+        .onClick(() => {
+          this.edgeEffect = EdgeEffect.Spring
+        })
+
+      Button('EdgeEffect.Fade').width('50%').margin({ top: 20 })
+        .onClick(() => {
+          this.edgeEffect = EdgeEffect.Fade
+        })
+
+      Button('EdgeEffect.None').width('50%').margin({ top: 20 })
+        .onClick(() => {
+          this.edgeEffect = EdgeEffect.None
+        })
+    }.width('100%')
+  }
+}
+```
+
+![tabs16](figures/tabs_edges_slide.gif)

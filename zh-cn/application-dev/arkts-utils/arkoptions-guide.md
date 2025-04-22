@@ -2,7 +2,7 @@
 
 ## 概述
 
-arkOptions主要提供ArkTS编译相关配置，当前文档介绍arkOptions中types配置类型、maxFlowDepth配置控制流分析最大栈深度等，arkOptions中的其他配置项请参考[build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-profile-V5)。
+arkOptions主要提供ArkTS编译相关配置，当前文档介绍arkOptions中types配置类型、maxFlowDepth配置控制流分析最大栈深度等，arkOptions中的其他配置项请参考[build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-configuration-file-overview)。
 
 ## types
 
@@ -10,9 +10,9 @@ arkOptions主要提供ArkTS编译相关配置，当前文档介绍arkOptions中t
 
   arkOptions的types字段配置文件标签说明：
 
-| 属性名称 | 含义 | 数据类型 | 是否可缺省 |
-| -------- | -------- | -------- | -------- |
-| types | 通过types字段将指定的类型声明文件作为全局引入，从而避免在每个源码文件中单独引入。 | 数组 | 该标签可缺省，缺省值为空。 |
+| 属性名称 | 含义 | 配置范围 | 数据类型 | 是否可缺省 |
+| -------- | -------- | -------- | -------- | -------- |
+| types | 通过types字段将指定的类型声明文件作为全局引入，从而避免在每个源码文件中单独引入。 | 模块级 | 数组 | 该标签可缺省，缺省值为空。 |
 
 ### arkOptions中的types字段配置说明
 

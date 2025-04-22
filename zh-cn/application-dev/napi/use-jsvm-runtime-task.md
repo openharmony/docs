@@ -192,10 +192,10 @@ static int CreateJsCore(uint32_t *result) {
 
 // 对外提供释放JSVM环境接口，通过envId释放对应环境
 static int ReleaseJsCore(uint32_t coreEnvId) {
+    std::lock_guard<std::mutex> lock_guard(envMapLock);
+
     OH_LOG_INFO(LOG_APP, "JSVM ReleaseJsCore START");
     CHECK_COND(g_envMap.count(coreEnvId) != 0 && g_envMap[coreEnvId] != nullptr);
-
-    std::lock_guard<std::mutex> lock_guard(envMapLock);
 
     CHECK(OH_JSVM_DestroyEnv(*g_envMap[coreEnvId]));
     g_envMap[coreEnvId] = nullptr;

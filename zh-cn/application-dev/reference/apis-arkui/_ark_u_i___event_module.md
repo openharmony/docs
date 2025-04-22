@@ -1558,7 +1558,7 @@ double OH_ArkUI_FocusAxisEvent_GetAxisValue (const ArkUI_UIInputEvent * event，
 | 名称 | 描述 | 
 | -------- | -------- |
 | event | 表示指向当前UI输入事件的指针。  | 
-| axis | 焦点轴事件的轴类型。  | 
+| [axis](#anonymous-enum-5) | 焦点轴事件的轴类型。  | 
 
 **返回：**
 
