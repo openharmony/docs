@@ -421,7 +421,6 @@ openFormEditAbility(abilityName: string, formId: string, isMainPage?: boolean): 
 
 ```ts
 import { router } from '@kit.ArkUI';
-import { common } from '@kit.AbilityKit';
 
 const TAG: string = 'FormEditDemo-Page] -->';
 
