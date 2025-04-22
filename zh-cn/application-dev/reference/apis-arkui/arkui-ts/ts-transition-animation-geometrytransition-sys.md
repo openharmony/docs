@@ -77,7 +77,7 @@ struct Index {
       }
     }
     .onClick(() => {
-      animateTo({ duration: 1000 }, () => {
+      this.getUIContext()?.animateTo({ duration: 1000 }, () => {
         this.isShow = !this.isShow
       })
     })
