@@ -377,7 +377,7 @@
             - 其他状态管理<!--arkts-other-state-mgmt-functions-->
               - [其他状态管理概述](ui/state-management/arkts-other-state-mgmt-functions-overview.md)
               - [\@Watch装饰器：状态变量更改通知](ui/state-management/arkts-watch.md)
-              - [$$语法：内置组件双向同步](ui/state-management/arkts-two-way-sync.md)
+              - [$$语法：系统组件双向同步](ui/state-management/arkts-two-way-sync.md)
               - [\@Track装饰器：class对象属性级更新](ui/state-management/arkts-track.md)
               - [自定义组件冻结功能](ui/state-management/arkts-custom-components-freeze.md)
             - [MVVM模式](ui/state-management/arkts-mvvm.md)
@@ -1256,6 +1256,7 @@
         - [Multimodal Awareness Kit简介](device/stationary/multimodalawareness-kit-intro.md)
         - [Stationary开发指导](device/stationary/stationary-guidelines.md)
         - [获取用户动作开发指导](device/stationary/motion-guidelines.md)
+        - [设备状态感知开发指导](device/stationary/deviceStatus-guidelines.md)
       - Sensor Service Kit（传感器服务）<!--sensor-service-kit-->
         - [Sensor Service Kit开发简介](device/sensor/sensorservice-kit-intro.md)
         - 传感器<!--sensor-->
@@ -3040,6 +3041,8 @@
         - 图形图像<!--arkui-graphics-images-arkts-errcode-->
           - [屏幕错误码](reference/apis-arkui/errorcode-display.md)
           - [窗口错误码](reference/apis-arkui/errorcode-window.md)
+        - UI编译<!--arkui-compile-arkts-errcode-->
+          - [编译错误码](reference/apis-arkui/_ark_ui_compile.md)
     - ArkWeb（方舟Web）<!--arkweb-api-->
       - ArkTS API<!--arkweb-arkts-->
         - [@ohos.web.webview (Webview)](reference/apis-arkweb/js-apis-webview.md)
@@ -3906,6 +3909,7 @@
         - 错误码<!--ultimodal-awareness-arkts-errcode-->
           - [行为动作感知错误码](reference/apis-multimodalawareness-kit/errorcode-motion.md)
           - [回旋镖错误码](reference/apis-multimodalawareness-kit/errorcode-metadataBinding.md)
+          - [设备状态感知错误码](reference/apis-multimodalawareness-kit/errorcode-deviceStatus.md)
       - Sensor Service Kit（传感器服务）<!--sensor-service-api-->
         - ArkTS API<!--sensor-service-arkts-->
           - [@ohos.sensor(传感器)](reference/apis-sensor-service-kit/js-apis-sensor.md)
@@ -4315,6 +4319,9 @@
         - [@ohos.file.PhotoPickerComponent (PhotoPicker组件)](reference/apis-media-library-kit/ohos-file-PhotoPickerComponent.md)
         - [@ohos.file.RecentPhotoComponent (最近图片组件)](reference/apis-media-library-kit/ohos-file-RecentPhotoComponent.md)
         - [@ohos.multimedia.movingphotoview (动态照片)](reference/apis-media-library-kit/ohos-multimedia-movingphotoview.md)
+        <!--Del-->
+        - [@ohos.multimedia.movingphotoview (动态照片)(系统接口)](reference/apis-media-library-kit/ohos-multimedia-movingphotoview-sys.md)
+        <!--DelEnd-->
       - C API<!--media-library-c-->
         - 模块<!--media-library-module-->
           - [MediaAssetManager](reference/apis-media-library-kit/_media_asset_manager.md)
