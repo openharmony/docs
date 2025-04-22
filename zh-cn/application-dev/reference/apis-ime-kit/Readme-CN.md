@@ -6,7 +6,7 @@
   - [@ohos.inputMethod.Panel (输入法面板)](js-apis-inputmethod-panel.md)
   - [@ohos.InputMethodSubtype (输入法子类型)](js-apis-inputmethod-subtype.md)
         <!--Del-->
-  - [@ohos.inputMethod (输入法框架)(系统接口)](reference/apis-ime-kit/js-apis-inputmethod-sys.md)
+  - [@ohos.inputMethod (输入法框架)(系统接口)](js-apis-inputmethod-sys.md)
         <!--DelEnd-->
   - [@ohos.inputMethod (输入法框架)](js-apis-inputmethod.md)
   - [@ohos.inputMethodEngine (输入法服务)](js-apis-inputmethodengine.md)
