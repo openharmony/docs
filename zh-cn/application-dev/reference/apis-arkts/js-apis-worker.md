@@ -2101,14 +2101,14 @@ Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 | messageObject | Object                                    | 是   | 发送至宿主线程的数据，该数据对象必须是可序列化，序列化支持类型见[其他说明](#序列化支持类型)。 |
 | transfer| Transferable[]                            | 是   | 暂不支持该参数类型。                                         |
 
-### postMessage<sup>9+</sup>
+### postMessage<sup>(deprecated)</sup>
 
 postMessage(messageObject: Object, transfer: ArrayBuffer[]): void
 
 Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 
 > **说明：**<br/>
-> DedicatedWorkerGlobalScope类自API version 9开始废弃，本接口建议使用[ThreadWorkerGlobalScope<sup>9+</sup>.postMessage<sup>9+</sup>](#postmessage9-2)替代。
+> 此接口暂不支持使用，从API version 9开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>.postMessage<sup>9+</sup>](#postmessage9-2)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
