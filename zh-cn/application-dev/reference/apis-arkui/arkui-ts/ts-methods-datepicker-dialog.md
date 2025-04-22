@@ -148,7 +148,7 @@ struct DatePickerDialogExample {
       Button("DatePickerDialog")
         .margin(20)
         .onClick(() => {
-          DatePickerDialog.show({
+          this.getUIContext().showDatePickerDialog({
             start: new Date("2000-1-1"),
             end: new Date("2100-12-31"),
             selected: this.selectedDate,
@@ -473,7 +473,7 @@ struct DatePickerDialogExample {
       Button("Lunar DatePickerDialog")
         .margin(20)
         .onClick(() => {
-          DatePickerDialog.show({
+          this.getUIContext().showDatePickerDialog({
             start: new Date("2000-1-1"),
             end: new Date("2100-12-31"),
             selected: this.selectedDate,
