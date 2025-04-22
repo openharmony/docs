@@ -1,6 +1,6 @@
 # 使用Web组件的PDF文档预览能力
 
-Web组件提供了在网页中预览PDF的能力。应用通过Web组件的[src](../reference/apis-arkweb/ts-basic-components-web.md#web)参数和[loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl)接口加载PDF文档。根据PDF文档来源分为三种场景：网络PDF文档、应用沙箱内PDF文档、应用内resource资源PDF文档和本地PDF文档。
+Web组件提供了在网页中预览PDF的能力。应用通过Web组件的[src](../reference/apis-arkweb/ts-basic-components-web.md#web)参数和[loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl)接口加载PDF文档。根据PDF文档来源分为四种场景：网络PDF文档、应用沙箱内PDF文档、应用内resource资源PDF文档和本地PDF文档。
 
 若涉及网络文档获取，需在module.json5中配置网络访问权限，添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md)。
 
@@ -28,10 +28,10 @@ struct WebComponent {
     Column() {
       Web({ 
       	src: 
-      	"https://www.example.com/test.pdf", 					// 方式一 加载网络PDF文档
-      	// getContext(this).filesDir + "/test.pdf", // 方式二 加载本地应用沙箱内PDF文档
+      	"https://www.example.com/test.pdf", 					// 方式一 网络PDF文档
+      	// getContext(this).filesDir + "/test.pdf", // 方式二 本地应用沙箱内PDF文档
       	// "resource://rawfile/test.pdf", 						// 方式三 应用内resource资源PDF文档
-      	// $rawfile('test.pdf'), 								// 方式四 应用内resource资源PDF文档
+      	// $rawfile('test.pdf'), 								// 方式四 本地PDF文档
       	controller: this.controller 
       })
         .domStorageAccess(true)
