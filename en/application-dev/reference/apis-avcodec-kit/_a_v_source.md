@@ -227,7 +227,7 @@ Obtains the basic information about a media resource file.
 
 **Returns**
 
-Returns the basic information about the file if the operation is successful; returns NULL otherwise.
+Returns the pointer to an **OH_AVSource** instance if the operation is successful; returns NULL otherwise.
 
 The possible causes of an operation failure are as follows:
 
