@@ -3050,7 +3050,7 @@
         - [@ohos.inputMethod.Panel (输入法面板)](reference/apis-ime-kit/js-apis-inputmethod-panel.md)
         - [@ohos.InputMethodSubtype (输入法子类型)](reference/apis-ime-kit/js-apis-inputmethod-subtype.md)
               <!--Del-->
-        - [@ohos.inputMethod (输入法框架)(系统接口)](reference/apis-ime-kit/reference/apis-ime-kit/js-apis-inputmethod-sys.md)
+        - [@ohos.inputMethod (输入法框架)(系统接口)](reference/apis-ime-kit/js-apis-inputmethod-sys.md)
               <!--DelEnd-->
         - [@ohos.inputMethod (输入法框架)](reference/apis-ime-kit/js-apis-inputmethod.md)
         - [@ohos.inputMethodEngine (输入法服务)](reference/apis-ime-kit/js-apis-inputmethodengine.md)
@@ -3491,7 +3491,7 @@
             - [@ohos.settings (设置数据项名称)(系统接口)](reference/apis-basic-services-kit/js-apis-settings-sys.md)
             - [@ohos.systemDateTime (系统时间、时区)(系统接口)](reference/apis-basic-services-kit/js-apis-system-date-time-sys.md)
                     <!--DelEnd-->
-            - [@ohos.systemDateTime (系统时间、时区)](reference/apis-basic-services-kit/reference/apis-basic-services-kit/js-apis-date-time.md)
+            - [@ohos.systemDateTime (系统时间、时区)](reference/apis-basic-services-kit/js-apis-date-time.md)
                     <!--Del-->
              - [@ohos.wallpaper (壁纸)(系统接口)](reference/apis-basic-services-kit/js-apis-wallpaper-sys.md)
             - [@ohos.WallpaperExtensionAbility (WallpaperExtensionAbility)(系统接口)](reference/apis-basic-services-kit/js-apis-WallpaperExtensionAbility-sys.md)

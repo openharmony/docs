@@ -275,20 +275,20 @@
         - [动画帧](ui-js-animate-frame.md)
   - [自定义组件](ui-js-custom-components.md)
   - WebGL<!--ui-js-webgl-->
-    - [使用WebGL绘制图形](webgl/webgl-2d-guidelines.md)
+    - [使用WebGL绘制图形](../webgl/webgl-2d-guidelines.md)
 - 窗口管理<!--window-manager-->
-  - [窗口开发概述](windowmanager/window-overview.md)
-  - [管理应用窗口（Stage模型）](windowmanager/application-window-stage.md)
-  - [管理应用窗口（FA模型）](windowmanager/application-window-fa.md)
+  - [窗口开发概述](../windowmanager/window-overview.md)
+  - [管理应用窗口（Stage模型）](../windowmanager/application-window-stage.md)
+  - [管理应用窗口（FA模型）](../windowmanager/application-window-fa.md)
   <!--Del-->
-  - [管理系统窗口（仅Stage模型支持）](windowmanager/system-window-stage.md)
-  - [WindowExtensionAbility（仅对系统应用开放）](windowmanager/windowextensionability.md)
+  - [管理系统窗口（仅Stage模型支持）](../windowmanager/system-window-stage.md)
+  - [WindowExtensionAbility（仅对系统应用开放）](../windowmanager/windowextensionability.md)
   <!--DelEnd-->
-  - [使用NativeWindowEventFilter过滤多模输入事件（C/C++）](windowmanager/native-window-event-filter.md)
+  - [使用NativeWindowEventFilter过滤多模输入事件（C/C++）](../windowmanager/native-window-event-filter.md)
 - 屏幕管理<!--display-manager-->
-  - [屏幕管理简介](displaymanager/displayManager-overview.md)
-  - [使用OH_DisplayManager实现屏幕基础信息查询和状态监听 (C/C++)](displaymanager/native-display-manager.md)
-  - [使用Display实现屏幕属性获取及状态监听 (ArkTS)](displaymanager/screenProperty-guideline.md)
+  - [屏幕管理简介](../displaymanager/displayManager-overview.md)
+  - [使用OH_DisplayManager实现屏幕基础信息查询和状态监听 (C/C++)](../displaymanager/native-display-manager.md)
+  - [使用Display实现屏幕属性获取及状态监听 (ArkTS)](../displaymanager/screenProperty-guideline.md)
   <!--Del-->
-  - [虚拟屏的创建和使用 (ArkTS) (仅对系统应用开放)](displaymanager/virtualScreen-guideline.md)
+  - [虚拟屏的创建和使用 (ArkTS) (仅对系统应用开放)](../displaymanager/virtualScreen-guideline.md)
   <!--DelEnd-->
