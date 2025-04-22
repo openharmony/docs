@@ -67,6 +67,7 @@ useEffect(useEffect: boolean, effectType: EffectType)
 
 该示例主要通过背景模糊等特效进行绘制合并效果。
 
+<!--code_no_check-->
 ```ts
 //Index.ets
 @Entry
