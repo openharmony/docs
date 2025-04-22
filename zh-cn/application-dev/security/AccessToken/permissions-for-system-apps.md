@@ -4486,6 +4486,7 @@
 **ACL使能**：true
 
 **起始版本**：18
+
 ## ohos.permission.ACCESS_MEDIALIB_RESTORE
 
 允许应用挂载媒体恢复路径。
