@@ -8352,19 +8352,20 @@ import { window } from '@kit.ArkUI';
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const context = (getContext(this) as common.UIAbilityContext);
 let windowClass: window.Window | undefined;
 let keyUpEventAry: string[] = [];
 
 @Entry
 @Component
 struct Index {
+  private context = (this.getUIContext()?.getHostContext() as common.UIAbilityContext);
+
   build() {
     RelativeContainer() {
       Button("窗口置顶")
         .onClick(() => {
           try {
-            let promiseCtx = window.getLastWindow(context);
+            let promiseCtx = window.getLastWindow(this.context);
             promiseCtx.then((data) => {
               windowClass = data;
               //  true:窗口置顶，false:取消窗口置顶
