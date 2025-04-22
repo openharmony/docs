@@ -214,7 +214,7 @@
    ```ts
    // 新增StoreConfig配置，配置haMode参数为MAIN_REPLICA。
    const AUTO_BACKUP_CONFIG :relationalStore.StoreConfig = {
-     name: "BackupResotreTest.db",
+     name: "BackupRestoreTest.db",
      securityLevel: relationalStore.SecurityLevel.S3,
      haMode: relationalStore.HAMode.MAIN_REPLICA, // 配置为双写备份
      allowRebuild: true
@@ -345,7 +345,7 @@
            }
        }
        let storeConfig: relationalStore.StoreConfig = {
-         name: "BackupResotreTest.db",
+         name: "BackupRestoreTest.db",
          securityLevel: relationalStore.SecurityLevel.S3,
          allowRebuild: true
        }
