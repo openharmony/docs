@@ -503,6 +503,22 @@ enableToolBarAdaptation(enable: Optional&lt;boolean&gt;)
 | ------ | -------------- | ---- | ------------------ |
 | enable  | Optional&lt;boolean&gt; | 是   |是否启用Navigation和NavDestination的工具栏自适应能力。默认值：true。 <br/>true: 启用Navigation和NavDestination的工具栏自适应能力。<br/>false: 不启用Navigation和NavDestination的工具栏自适应能力。 |
 
+### splitPlaceholder<sup>20+</sup>
+
+splitPlaceholder(placeholder: ComponentContent)
+
+Navigation双栏模式下，支持设置右侧页面显示默认占位页，占位页仅作为UI展示页，不可获焦和响应事件。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型         | 必填 | 说明               |
+| ------ | -------------- | ---- | ------------------ |
+| placeholder  |[ComponentContent](../js-apis-arkui-ComponentContent.md#componentcontent-1) | 是   |设置Navigation双栏模式下右侧的默认占位页。|
+
 ### subTitle<sup>(deprecated)</sup>
 
 subTitle(value: string)
