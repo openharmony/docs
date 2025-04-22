@@ -44,7 +44,7 @@ import { FaultLogger } from '@kit.PerformanceAnalysisKit';
 
 query(faultType: FaultType, callback: AsyncCallback&lt;Array&lt;FaultLogInfo&gt;&gt;) : void
 
-获取当前进程故障信息，该方法通过回调方式获取故障信息数组，故障信息数组内最多上报10份故障信息。
+获取当前应用故障信息，该方法通过回调方式获取故障信息数组，故障信息数组内最多上报10份故障信息。
 
 **系统能力**：SystemCapability.HiviewDFX.Hiview.FaultLogger
 
@@ -101,7 +101,7 @@ try {
 
 query(faultType: FaultType) : Promise&lt;Array&lt;FaultLogInfo&gt;&gt;
 
-获取当前进程故障信息，该方法通过Promise方式返回故障信息数组，故障信息数组内最多上报10份故障信息。
+获取当前应用故障信息，该方法通过Promise方式返回故障信息数组，故障信息数组内最多上报10份故障信息。
 
 **系统能力**：SystemCapability.HiviewDFX.Hiview.FaultLogger
 
@@ -165,7 +165,7 @@ querySelfFaultLog(faultType: FaultType, callback: AsyncCallback&lt;Array&lt;Faul
 >
 > 从 API Version 9 开始废弃，建议使用[FaultLogger.query](#faultloggerquery9)替代。
 
-获取当前进程故障信息，该方法通过回调方式获取故障信息数组，故障信息数组内最多上报10份故障信息。
+获取当前应用故障信息，该方法通过回调方式获取故障信息数组，故障信息数组内最多上报10份故障信息。
 
 **系统能力**：SystemCapability.HiviewDFX.Hiview.FaultLogger
 
@@ -212,7 +212,7 @@ querySelfFaultLog(faultType: FaultType) : Promise&lt;Array&lt;FaultLogInfo&gt;&g
 >
 > 从 API Version 9 开始废弃，建议使用[FaultLogger.query](#faultloggerquery9-1)替代。
 
-获取当前进程故障信息，该方法通过Promise方式返回故障信息数组，故障信息数组内最多上报10份故障信息。
+获取当前应用故障信息，该方法通过Promise方式返回故障信息数组，故障信息数组内最多上报10份故障信息。
 
 **系统能力**：SystemCapability.HiviewDFX.Hiview.FaultLogger
 
