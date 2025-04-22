@@ -3135,7 +3135,9 @@ doFinal(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 >
 >  1. 对称加解密中，调用doFinal标志着一次加解密流程已经完成，即[Cipher](#cipher)实例的状态被清除，因此当后续开启新一轮加解密流程时，需要重新调用init()并传入完整的参数列表进行初始化<br/>（比如即使是对同一个Cipher实例，采用同样的对称密钥，进行加密然后解密，则解密中调用init的时候仍需填写params参数，而不能直接省略为null）。
 >  2. 如果遇到解密失败，需检查加解密数据和init时的参数是否匹配，包括GCM模式下加密得到的authTag是否填入解密时的GcmParamsSpec等。
->  3. doFinal的结果可能为null，因此使用.data字段访问doFinal结果的具体数据前，请记得先判断结果是否为null，避免产生异常。
+>  3. doFinal的结果可能为null，因此使用.data字段访问doFinal结果的具体数据前，请记得先判断结果是否为null，避免产生异常。<br/>
+>    对于加密，doFinal结果不会为null。<br/>
+>    对于解密，GCM和CCM模式，如果doFinal传null，则返回结果为null；对于解密，其他模式，如果明文是16字节整倍数，调用update传入所有密文，调用doFinal传null, 则返回结果为null。<br/>
 >  4. 非对称加解密时多次doFinal操作的示例代码详见[使用RSA非对称密钥分段加解密](../../security/CryptoArchitectureKit/crypto-rsa-asym-encrypt-decrypt-by-segment.md)，SM2和RSA的操作类似。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -3229,6 +3231,8 @@ doFinal(data: DataBlob | null): Promise\<DataBlob>
 >  1. 对称加解密中，调用doFinal标志着一次加解密流程已经完成，即[Cipher](#cipher)实例的状态被清除，因此当后续开启新一轮加解密流程时，需要重新调用init()并传入完整的参数列表进行初始化<br/>（比如即使是对同一个Cipher实例，采用同样的对称密钥，进行加密然后解密，则解密中调用init的时候仍需填写params参数，而不能直接省略为null）。
 >  2. 如果遇到解密失败，需检查加解密数据和init时的参数是否匹配，包括GCM模式下加密得到的authTag是否填入解密时的GcmParamsSpec等。
 >  3. doFinal的结果可能为null，因此使用.data字段访问doFinal结果的具体数据前，请记得先判断结果是否为null，避免产生异常。
+>    对于加密，doFinal结果不会为null。<br/>
+>    对于解密，GCM和CCM模式，如果doFinal传null，则返回结果为null；对于解密，其他模式，如果明文是16字节整倍数，调用update传入所有密文，调用doFinal传null, 则返回结果为null。<br/>
 >  4. 非对称加解密时多次doFinal操作的示例代码详见[使用RSA非对称密钥分段加解密](../../security/CryptoArchitectureKit/crypto-rsa-asym-encrypt-decrypt-by-segment.md)，SM2和RSA的操作类似。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
