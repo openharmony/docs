@@ -549,7 +549,7 @@ TextShadowStyle | GestureStyle | ImageAttachment | ParagraphStyle | LineHeightSt
 | 名称           | 类型              | 只读   | 可选   | 说明     |
 | ------------ |---------------------| ---- | ---- | ------ |
 | fontColor  | [ResourceColor](ts-types.md#resourcecolor) |  是  |  是  | 获取属性字符串的文本颜色。 |
-| fontFamily | string   | 是    | 是   | 获取属性字符串的文本字体。 |
+| fontFamily | string   | 是    | 是   | 获取属性字符串的文本字体。<br/>默认返回undefined。 |
 | fontSize   | number   | 是    | 是    | 获取属性字符串的文本字体大小。<br/>单位：fp |
 | fontWeight   | number   | 是    | 是    | 获取属性字符串的文本字体粗细。 |
 | fontStyle   | [FontStyle](ts-appendix-enums.md#fontstyle) | 是    | 是    | 获取属性字符串的文本字体样式。 |
@@ -810,6 +810,8 @@ constructor(lineHeight: LengthMetrics)
 constructor(value: ShadowOptions | Array\<ShadowOptions>)
 
 文本阴影对象的构造函数。
+
+ShadowOptions对象中不支持fill字段。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2171,7 +2173,7 @@ struct styled_string_demo8 {
 }
 ```
 
-![](figures/styledstring_8.gif)
+![](figures/styledString_8.gif)
 
 
 ### 示例9（设置超链接）

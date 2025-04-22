@@ -640,6 +640,7 @@ ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
 
 - SCSIPERIPHERAL_DDK_INVALID_OPERATION 不支持该操作。
 
+- SCSIPERIPHERAL_DDK_TIMEOUT 传输超时。
 
 ### OH_ScsiPeripheral_ParseBasicSenseInfo()
 

@@ -173,20 +173,21 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
     Add the header files.
 
+
     ```c++
-#include <multimedia/drm_framework/native_mediakeysystem.h>
+    #include <multimedia/drm_framework/native_mediakeysystem.h>
     #include <multimedia/drm_framework/native_mediakeysession.h>
     #include <multimedia/drm_framework/native_drm_err.h>
     #include <multimedia/drm_framework/native_drm_common.h>
     ```
     Link the dynamic library in the CMake script.
-    
+
     ``` cmake
-target_link_libraries(sample PUBLIC libnative_drm.so)
+    target_link_libraries(sample PUBLIC libnative_drm.so)
     ```
-    
+
     The following is the sample code:
-```c++
+    ```c++
     // Create a media key system based on the media key system information. The following uses com.clearplay.drm as an example.
     MediaKeySystem *system = nullptr;
     int32_t ret = OH_MediaKeySystem_Create("com.clearplay.drm", &system);
@@ -194,9 +195,9 @@ target_link_libraries(sample PUBLIC libnative_drm.so)
         printf("create media key system failed");
         return;
     }
-    
+
     // Create a media key session.
-MediaKeySession *session = nullptr;
+    MediaKeySession *session = nullptr;
     DRM_ContentProtectionLevel contentProtectionLevel = CONTENT_PROTECTION_LEVEL_SW_CRYPTO;
     ret = OH_MediaKeySystem_CreateMediaKeySession(system, &contentProtectionLevel, &session);
     if (ret != DRM_OK) {
@@ -213,7 +214,7 @@ MediaKeySession *session = nullptr;
     bool secureAudio = false;
     ret = OH_AudioCodec_SetDecryptionConfig(audioDec_, session, secureAudio);
     ```
-    
+
 5. Call **OH_AudioCodec_Configure()** to configure the decoder.
 
    Key values of configuration options are described as follows:

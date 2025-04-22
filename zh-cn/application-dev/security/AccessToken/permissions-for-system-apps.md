@@ -4623,7 +4623,7 @@
 
 **ACL使能**：true
 
-**起始版本**：17
+**起始版本**：19
 
 ## ohos.permission.SEND_NOTIFICATION_CROSS_USER
 
@@ -4672,3 +4672,15 @@
 **ACL使能**：true
 
 **起始版本**：20
+
+## ohos.permission.SANDBOX_ACCESS_MANAGER
+
+允许应用访问其它应用的沙箱目录。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：17

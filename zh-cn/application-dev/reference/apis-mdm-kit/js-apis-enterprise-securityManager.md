@@ -163,7 +163,6 @@ installUserCertificate(admin: Want, certificate: CertBlob, accountId: number): s
 | 9200002  | The administrator application does not have permission to manage the device. |
 | 9201001  | Failed to manage the certificate.                            |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -219,7 +218,6 @@ getUserCertificates(admin: Want, accountId: number): Array&lt;string&gt;
 | 9200001  | The application is not an administrator application of the device. |
 | 9200002  | The administrator application does not have permission to manage the device. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -514,7 +512,6 @@ setAppClipboardPolicy(admin: Want, bundleName: string, accountId: number, policy
 | 9200001 | The application is not an administrator application of the device.                                                                              |
 | 9200002 | The administrator application does not have permission to manage the device.                                                                    |
 | 201     | Permission verification failed. The application does not have the permission required to call the API.                                          |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -568,7 +565,6 @@ getAppClipboardPolicy(admin: Want, bundleName: string, accountId: number): strin
 | 9200001 | The application is not an administrator application of the device.                                                                              |
 | 9200002 | The administrator application does not have permission to manage the device.                                                                    |
 | 201     | Permission verification failed. The application does not have the permission required to call the API.                                          |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 

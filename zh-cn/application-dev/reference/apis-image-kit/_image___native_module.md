@@ -746,7 +746,7 @@ typedef struct OH_PackingOptionsForSequence OH_PackingOptionsForSequence
 **描述**
 图像序列编码选项。
 
-**起始版本：** 13
+**起始版本：** 18
 
 
 ### OH_PictureMetadata
@@ -2307,7 +2307,7 @@ Image_ErrorCode OH_ImagePackerNative_PackToDataFromPixelmapSequence(OH_ImagePack
 **描述**
 将Pixelmap序列编码为数据。
 
-**起始版本：** 13
+**起始版本：** 18
 
 **参数：**
 
@@ -2405,7 +2405,7 @@ Image_ErrorCode OH_ImagePackerNative_PackToFileFromPixelmapSequence(OH_ImagePack
 **描述**
 将一个Pixelmap序列编码到文件中。
 
-**起始版本：** 13
+**起始版本：** 18
 
 **参数：**
 
@@ -3451,7 +3451,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_Create(OH_PackingOptionsForSequence
 **描述**
 创建OH_PackingOptionsForSequence结构体的指针。
 
-**起始版本：** 13
+**起始版本：** 18
 
 **参数：**
 
@@ -3472,7 +3472,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetDelayTimeList(OH_PackingOptionsF
 **描述**
 获取编码时图片的延迟时间数组。
 
-**起始版本：** 13
+**起始版本：** 18
 
 **参数：**
 
@@ -3495,7 +3495,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetDisposalTypes(OH_PackingOptionsF
 **描述**
 获取编码时图片的过渡帧模式数组。
 
-**起始版本：** 13
+**起始版本：** 18
 
 **参数：**
 
@@ -3518,7 +3518,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetFrameCount(OH_PackingOptionsForS
 **描述**
 获取编码时指定的帧数。
 
-**起始版本：** 13
+**起始版本：** 18
 
 **参数：**
 
@@ -3540,7 +3540,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetLoopCount(OH_PackingOptionsForSe
 **描述**
 获取编码时图片循环播放次数。
 
-**起始版本：** 13
+**起始版本：** 18
 
 **参数：**
 
@@ -3562,7 +3562,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_Release(OH_PackingOptionsForSequenc
 **描述**
 释放OH_PackingOptionsForSequence指针。
 
-**起始版本：** 13
+**起始版本：** 18
 
 **参数：**
 
@@ -3583,14 +3583,14 @@ Image_ErrorCode OH_PackingOptionsForSequence_SetDelayTimeList(OH_PackingOptionsF
 **描述**
 设定编码时图片的延迟时间数组。
 
-**起始版本：** 13
+**起始版本：** 18
 
 **参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
 | options | 用于操作的OH_PackingOptionsForSequence指针。  | 
-| delayTimeList | 图片延迟时间数组的指针。  | 
+| delayTimeList | 图片延迟时间数组的指针，每帧输出图像的延迟时间，取值需大于0。<br>- 单位为10毫秒。例如，取值为10时，实际单帧延迟是100毫秒。<br>- 如果长度小于frameCount，不足的部分将使用delayTimeList中的最后一个值进行填充。| 
 | delayTimeListLength | 图片延迟时间数组的长度。  | 
 
 **返回：**
@@ -3606,14 +3606,14 @@ Image_ErrorCode OH_PackingOptionsForSequence_SetDisposalTypes(OH_PackingOptionsF
 **描述**
 设定编码时图片的过渡帧模式数组。
 
-**起始版本：** 13
+**起始版本：** 18
 
 **参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
 | options | 用于操作的OH_PackingOptionsForSequence指针。  | 
-| disposalTypes | 图片过渡帧模式数组的指针。  | 
+| disposalTypes | 图片过渡帧模式数组的指针，图片帧过渡模式的参数，如果长度小于frameCount，不足的部分将使用disposalTypes中的最后一个值进行填充，可取值如下：<br>- 0：不需要任何操作。<br>- 1：保持图形不变。<br>- 2：恢复背景色。<br>- 3：恢复到之前的状态。| 
 | disposalTypesLength | 图片过渡帧模式数组的长度。  | 
 
 **返回：**
@@ -3629,7 +3629,7 @@ mage_ErrorCode OH_PackingOptionsForSequence_SetFrameCount(OH_PackingOptionsForSe
 **描述**
 设置编码时指定的帧数。
 
-**起始版本：** 13
+**起始版本：** 18
 
 **参数：**
 
@@ -3649,9 +3649,9 @@ mage_ErrorCode OH_PackingOptionsForSequence_SetFrameCount(OH_PackingOptionsForSe
 Image_ErrorCode OH_PackingOptionsForSequence_SetLoopCount(OH_PackingOptionsForSequence *options, uint32_t loopCount)
 ```
 **描述**
-设定编码时图片循环播放次数。
+设定编码时图片循环播放次数，取值范围为[0，65535]，<br>0表示无限循环；若无此字段，则表示不循环播放。
 
-**起始版本：** 13
+**起始版本：** 18
 
 **参数：**
 
