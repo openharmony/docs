@@ -4497,7 +4497,7 @@ Allows an application to moutmedia restore paths.
 
 **Enable via ACL**: true
 
-**Valid since**: 18
+**Valid since**: 17
 
 ## ohos.permission.ACCESS_TRUST_LIST_OOBE_MANAGER
 
