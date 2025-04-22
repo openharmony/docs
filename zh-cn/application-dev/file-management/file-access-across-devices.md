@@ -12,7 +12,8 @@
 
    ```ts
    import { common, abilityAccessCtrl } from '@kit.AbilityKit';
-   let context = getContext(this) as common.UIAbilityContext; // 获取UIAbilityContext信息
+   // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
    let atManager = abilityAccessCtrl.createAtManager();
    try {
      atManager.requestPermissionsFromUser(context, ['ohos.permission.DISTRIBUTED_DATASYNC']).then((data) => {
@@ -35,7 +36,8 @@
    import { common } from '@kit.AbilityKit';
    import { BusinessError } from '@kit.BasicServicesKit';
  
-   let context = getContext(this) as common.UIAbilityContext; // 获取设备A的UIAbilityContext信息
+   // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
    let pathDir: string = context.distributedFilesDir;
    // 获取分布式目录的文件路径
    let filePath: string = pathDir + '/test.txt';
@@ -81,7 +83,8 @@
    // 访问并挂载公共文件目录
    fs.connectDfs(networkId, listeners).then(() => {
      console.info("Success to connectDfs");
-     let context = getContext(); // 获取设备B的UIAbilityContext信息
+     // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+     let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
      let pathDir: string = context.distributedFilesDir;
      // 获取分布式目录的文件路径
      let filePath: string = pathDir + '/test.txt';

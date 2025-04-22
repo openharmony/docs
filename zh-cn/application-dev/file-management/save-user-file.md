@@ -45,8 +45,8 @@
 
    ```ts
    let uris: Array<string> = [];
-   // 请确保 getContext(this) 返回结果为 UIAbilityContext
-   let context = getContext(this) as common.Context;
+   // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
    const documentViewPicker = new picker.DocumentViewPicker(context);
    documentViewPicker.save(documentSaveOptions).then((documentSaveResult: Array<string>) => {
      uris = documentSaveResult;
@@ -105,8 +105,8 @@
 
    ```ts
    let uri: string = '';
-   // 请确保 getContext(this) 返回结果为 UIAbilityContext
-   let context = getContext(this) as common.Context; 
+   // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;  
    const audioViewPicker = new picker.AudioViewPicker(context);
    audioViewPicker.save(audioSaveOptions).then((audioSelectResult: Array<string>) => {
      uri = audioSelectResult[0];
@@ -171,8 +171,8 @@
 
    ```ts
    let uri: string = '';
-   // 请确保 getContext(this) 返回结果为 UIAbilityContext
-   let context = getContext(this) as common.Context; 
+   // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
    const documentViewPicker = new picker.DocumentViewPicker(context);
    const documentSaveOptions = new picker.DocumentSaveOptions();
    documentSaveOptions.pickerMode = picker.DocumentPickerMode.DOWNLOAD;
@@ -187,4 +187,3 @@
      console.error(`Invoke documentViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
    })
    ```
-   
