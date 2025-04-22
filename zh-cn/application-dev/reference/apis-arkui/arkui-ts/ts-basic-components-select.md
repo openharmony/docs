@@ -737,13 +737,13 @@ avoidance(mode: AvoidanceMode)
 | --------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | mode      | [AvoidanceMode](#avoidancemode18枚举说明)  | 是   | 设置下拉菜单的避让模式。<br/>默认值：AvoidanceMode.COVER_TARGET |
 
-### menuOutline<sup>18+</sup>
+### menuOutline<sup>20+</sup>
 
-menuOutline(value: MenuOutlineOptions)
+menuOutline(outline: MenuOutlineOptions)
 
 设置下拉菜单框的外描边样式。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -751,7 +751,7 @@ menuOutline(value: MenuOutlineOptions)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [MenuOutlineOptions](#menuoutlineoptions18对象说明) | 是   | 下拉菜单框的外描边样式。 |
+| outline  | [MenuOutlineOptions](#menuoutlineoptions20对象说明) | 是   | 下拉菜单框的外描边样式。 |
 
 ### textModifier<sup>20+</sup>
 
@@ -874,11 +874,11 @@ selectedOptionTextModifier(modifier: Optional\<[TextModifier](ts-universal-attri
 | index  | number | 是   | 下拉菜单项的索引，索引值从0开始。 |
 | triggerSelect  | (index: number, value: string) :void | 是   | 下拉菜单选中某一项的回调函数。<br/>index：选中菜单项的索引。<br/>value：选中菜单项的文本。<br/>说明：index会赋值给事件[onSelect](#onselect)回调中的索引参数； value会返回给Select组件显示，同时会赋值给事件[onSelect](#onselect)回调中的文本参数。 |
 
-## MenuOutlineOptions<sup>18+</sup>对象说明
+## MenuOutlineOptions<sup>20+</sup>对象说明
 
 下拉菜单框的外描边参数对象。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

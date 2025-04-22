@@ -142,8 +142,8 @@ isShown为true，弹出菜单。isShown为false，隐藏菜单。弹出菜单项
 | backgroundBlurStyleOptions<sup>18+</sup> | [BackgroundBlurStyleOptions](ts-universal-attributes-background.md#backgroundblurstyleoptions10对象说明) | 否 | 背景模糊效果。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | backgroundEffect<sup>18+</sup> | [BackgroundEffectOptions](ts-universal-attributes-background.md#backgroundeffectoptions11) | 否 | 背景效果参数。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | hapticFeedbackMode<sup>18+</sup> | [HapticFeedbackMode](#hapticfeedbackmode18) | 否 | 菜单弹出时振动效果。<br/>默认值：HapticFeedbackMode.DISABLED，菜单弹出时不振动。<br />**说明：**<br />只有一级菜单可配置弹出时振动效果。<br />仅当应用具备 ohos.permission.VIBRATE 权限，且用户启用了触感反馈时才会生效。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
-| outlineWidth<sup>18+</sup> | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeOutlineWidths](ts-universal-attributes-outline.md#edgeoutlinewidths对象说明) | 否 | 设置菜单边框外描边宽度。<br />**说明：**<br />不支持百分比，若需要外描边效果width为必填项。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
-| outlineColor<sup>18+</sup> | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](ts-universal-attributes-outline.md#edgecolors对象说明) | 否 | 设置菜单边框外描边颜色。<br />**说明：**<br />默认值：#19ffffff<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| outlineWidth<sup>20+</sup> | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeOutlineWidths](ts-universal-attributes-outline.md#edgeoutlinewidths对象说明) | 否 | 设置菜单边框外描边宽度。<br />**说明：**<br />不支持百分比，若需要外描边效果outlineWidth为必填项。<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| outlineColor<sup>20+</sup> | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](ts-universal-attributes-outline.md#edgecolors对象说明) | 否 | 设置菜单边框外描边颜色。<br />**说明：**<br />默认值：#19ffffff<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## MenuPreviewMode<sup>11+</sup>
 
