@@ -207,7 +207,7 @@ struct Index {
           subtitle: '副标题',
           isSaveIconRequired: false,
           onCancel: () => {
-            router.back();
+            this.getUIContext()?.getRouter()?.back();
           },
         })
         Divider().height(2).color(0xCCCCCC);
@@ -227,7 +227,7 @@ struct Index {
           isSaveIconRequired: false,
           // 点击左侧Back图标，触发的动作。
           onCancel: () => {
-            router.back();
+            this.getUIContext()?.getRouter()?.back();
           },
         })
         Divider().height(2).color(0xCCCCCC);
@@ -256,7 +256,7 @@ struct Index {
             }
           ],
           onCancel: () => {
-            router.back();
+            this.getUIContext()?.getRouter()?.back();
           },
         })
       }
@@ -317,7 +317,7 @@ struct Index1 {
             }
           ],
           onCancel: () => {
-            router.back();
+            this.getUIContext()?.getRouter()?.back();
           },
         })
         Divider().height(2).color(0xCCCCCC)
@@ -390,7 +390,7 @@ struct Index {
           }
         ],
         onCancel: () => {
-          router.back();
+          this.getUIContext()?.getRouter()?.back();
         },
       })
     }
