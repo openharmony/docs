@@ -4317,7 +4317,7 @@
         - [@ohos.file.RecentPhotoComponent (最近图片组件)](reference/apis-media-library-kit/ohos-file-RecentPhotoComponent.md)
         - [@ohos.multimedia.movingphotoview (动态照片)](reference/apis-media-library-kit/ohos-multimedia-movingphotoview.md)
         <!--Del-->
-        - [@ohos.multimedia.movingphotoview (动态照片)(系统接口)](reference/apis-media-library-kit/ohos-multimedia-movingphotoview-sys.md)【】
+        - [@ohos.multimedia.movingphotoview (动态照片)(系统接口)](reference/apis-media-library-kit/ohos-multimedia-movingphotoview-sys.md)
         <!--DelEnd-->
       - C API<!--media-library-c-->
         - 模块<!--media-library-module-->
