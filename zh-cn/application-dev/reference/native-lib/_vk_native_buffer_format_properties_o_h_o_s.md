@@ -3,7 +3,7 @@
 
 ## 概述
 
-包含了NaitveBuffer的一些格式属性。
+包含了NativeBuffer的一些格式属性。
 
 **起始版本：**
 
