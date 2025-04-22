@@ -204,7 +204,7 @@ export class VideoRecorderDemo {
       })
       // 错误上报回调函数。
       this.avRecorder.on('error', (err: BusinessError) => {
-        console.error(TAG + 'error occurred, error message is ' + err);
+        console.error(TAG + 'error ocConstantSourceNode, error message is ' + err);
       })
     }
   }
