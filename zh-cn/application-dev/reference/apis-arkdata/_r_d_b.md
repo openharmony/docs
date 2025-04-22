@@ -112,7 +112,7 @@
 | [Rdb_DBType](#rdb_dbtype-1) { RDB_SQLITE = 1, RDB_CAYLEY = 2, DBTYPE_BUTT = 64 } | 描述数据库的内核类型。 |
 | [OH_OrderType](#oh_ordertype-1) { ASC = 0, DESC = 1 } | 排序方式。 |
 | [OH_Rdb_SecurityLevel](#oh_rdb_securitylevel-1) { S1 = 1, S2, S3, S4 } | 数据库的安全级别枚举。 |
-| [Rdb_SecurityArea](#rdb_securityarea-1) { RDB_SECURITY_AREA_EL1 = 1, RDB_SECURITY_AREA_EL2, RDB_SECURITY_AREA_EL3, RDB_SECURITY_AREA_EL4 } | 描述数据库的安全区域等级。 |
+| [Rdb_SecurityArea](#rdb_securityarea-1) { RDB_SECURITY_AREA_EL1 = 1, RDB_SECURITY_AREA_EL2, RDB_SECURITY_AREA_EL3, RDB_SECURITY_AREA_EL4, RDB_SECURITY_AREA_EL5 } | 描述数据库的安全区域等级。 |
 | [Rdb_DistributedType](#rdb_distributedtype-1) { RDB_DISTRIBUTED_CLOUD } | 描述表的分布式类型的枚举。 |
 | [Rdb_ChangeType](#rdb_changetype-1) { RDB_DATA_CHANGE, RDB_ASSET_CHANGE } | 描述数据变更类型。 |
 | [Rdb_SubscribeType](#rdb_subscribetype-1) { RDB_SUBSCRIBE_TYPE_CLOUD, RDB_SUBSCRIBE_TYPE_CLOUD_DETAILS, RDB_SUBSCRIBE_TYPE_LOCAL_DETAILS } | 描述订阅类型。 |
@@ -226,8 +226,8 @@
 | int [OH_Rdb_BeginTransWithTrxId](#oh_rdb_begintranswithtrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t \*trxId) | 在开始执行SQL语句之前，开始事务，并获得该事务的ID，仅支持向量数据库。 |
 | int [OH_Rdb_RollBackByTrxId](#oh_rdb_rollbackbytrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t trxId) | 使用指定的事务ID，回滚已经执行的SQL语句，仅支持向量数据库。 |
 | int [OH_Rdb_CommitByTrxId](#oh_rdb_commitbytrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t trxId) | 使用指定的事务ID，提交已经执行的SQL语句，仅支持向量数据库。 |
-| [OH_VBucket_PutAsset](#oh_vbucket_putasset) ([OH_VBucket](_o_h___v_bucket.md) \*bucket, const char \*field, OH_Asset \*value) | 将**OH_Asset**类型的对象放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。 |
-| [OH_VBucket_PutAssets](#oh_vbucket_putassets) ([OH_VBucket](_o_h___v_bucket.md) \*bucket, const char \*field, OH_Asset \*\*value, int count) | 将**OH_Asset**类型的对象数组放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。 |
+| [OH_VBucket_PutAsset](#oh_vbucket_putasset) ([OH_VBucket](_o_h___v_bucket.md) \*bucket, const char \*field, Data_Asset \*value) | 将**Data_Asset**类型的对象放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。 |
+| [OH_VBucket_PutAssets](#oh_vbucket_putassets) ([OH_VBucket](_o_h___v_bucket.md) \*bucket, const char \*field, Data_Asset \*\*value, int count) | 将**Data_Asset**类型的对象数组放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。 |
 | [OH_Rdb_CreateValueObject](#oh_rdb_createvalueobject) () | 创建[OH_VObject](_o_h___v_object.md)实例。 |
 | [OH_Rdb_CreateValuesBucket](#oh_rdb_createvaluesbucket) () | 创建[OH_VBucket](_o_h___v_bucket.md)实例。 |
 | [OH_Rdb_CreatePredicates](#oh_rdb_createpredicates) (const char \*table) | 创建[OH_Predicates](_o_h___predicates.md)实例。 |
@@ -1234,7 +1234,7 @@ enum Rdb_SecurityArea
 | RDB_SECURITY_AREA_EL2 | 安全区域等级为2。 |
 | RDB_SECURITY_AREA_EL3 | 安全区域等级为3。 |
 | RDB_SECURITY_AREA_EL4 | 安全区域等级为4。 |
-
+| RDB_SECURITY_AREA_EL5<sup>12+</sup> | 安全区域等级为5。 |
 
 ### Rdb_SubscribeType
 
@@ -5323,12 +5323,12 @@ int OH_Rdb_Update (OH_Rdb_Store *store, OH_VBucket *valuesBucket, OH_Predicates 
 ### OH_VBucket_PutAsset()
 
 ```
-int OH_VBucket_PutAsset (OH_VBucket *bucket, const char *field, OH_Asset *value )
+int OH_VBucket_PutAsset (OH_VBucket *bucket, const char *field, Data_Asset *value )
 ```
 
 **描述**
 
-将**OH_Asset** 类型的对象放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。
+将**Data_Asset**类型的对象放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。
 
 **起始版本：** 11
 
@@ -5352,12 +5352,12 @@ int OH_VBucket_PutAsset (OH_VBucket *bucket, const char *field, OH_Asset *value 
 ### OH_VBucket_PutAssets()
 
 ```
-int OH_VBucket_PutAssets (OH_VBucket *bucket, const char *field, OH_Asset **value, int count )
+int OH_VBucket_PutAssets (OH_VBucket *bucket, const char *field, Data_Asset **value, int count )
 ```
 
 **描述**
 
-将**OH_Asset** 类型的对象数组放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。
+将**Data_Asset**类型的对象数组放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。
 
 **起始版本：** 11
 
@@ -5368,7 +5368,7 @@ int OH_VBucket_PutAssets (OH_VBucket *bucket, const char *field, OH_Asset **valu
 | bucket | 表示指向[OH_VBucket](_o_h___v_bucket.md)实例的指针。 |
 | field | 数据库表中的列名。 |
 | value | 数据库表中指定列名对应的值。 |
-| count | 表示传入的**OH_Asset**对象数组元素的个数。 |
+| count | 表示传入的**Data_Asset**对象数组元素的个数。 |
 
 **返回：**
 
