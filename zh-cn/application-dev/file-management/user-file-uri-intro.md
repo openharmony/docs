@@ -56,10 +56,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { Want } from '@kit.AbilityKit';
 import { common } from '@kit.AbilityKit';
 import { fileAccess } from '@kit.CoreFileKit';
-// context 是EntryAbility 传过来的context
-let context = getContext(this) as common.UIAbilityContext;
+// context 是EntryAbility 传过来的context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
 
-async function example() {
+async function example(context: common.UIAbilityContext) {
     let fileAccessHelper: fileAccess.FileAccessHelper;
     // wantInfos 从getFileAccessAbilityInfo()获取
     let wantInfos: Array<Want> = [
@@ -178,10 +178,11 @@ import { dataSharePredicates } from '@kit.ArkData';
 
 // 定义一个uri数组，用于接收PhotoViewPicker选择图片返回的uri
 let uris: Array<string> = [];
-const context = getContext(this);
+// context 是EntryAbility 传过来的context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
 
 // 调用PhotoViewPicker.select选择图片
-async function photoPickerGetUri() {
+async function photoPickerGetUri(context: common.UIAbilityContext) {
   try {  
     let PhotoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
     PhotoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
@@ -248,15 +249,15 @@ try {
 
 复制文件代码示例：
 
-```
+```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { Want } from '@kit.AbilityKit';
 import { common } from '@kit.AbilityKit';
 import { fileAccess } from '@kit.CoreFileKit';
 
-// context 是EntryAbility 传过来的context
-let context = getContext(this) as common.UIAbilityContext;
-async function example() {
+// context 是EntryAbility 传过来的context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
+async function example(context: common.UIAbilityContext) {
     let fileAccessHelper: fileAccess.FileAccessHelper;
     // wantInfos 从getFileAccessAbilityInfo()获取
     let wantInfos: Array<Want> = [

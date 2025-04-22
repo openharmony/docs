@@ -12,7 +12,8 @@
 
    ```ts
    import { common, abilityAccessCtrl } from '@kit.AbilityKit';
-   let context = getContext(this) as common.UIAbilityContext; // 获取UIAbilityContext信息
+   // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
    let atManager = abilityAccessCtrl.createAtManager();
    try {
      atManager.requestPermissionsFromUser(context, ['ohos.permission.DISTRIBUTED_DATASYNC']).then((data) => {
@@ -36,7 +37,8 @@
    import { BusinessError } from '@kit.BasicServicesKit';
    import { fileUri } from '@kit.CoreFileKit';
 
-   let context = getContext(this) as common.UIAbilityContext; // 获取设备A的UIAbilityContext信息
+   // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
    let pathDir: string = context.filesDir;
    let distributedPathDir: string = context.distributedFilesDir;
    // 待拷贝文件沙箱路径
@@ -77,7 +79,8 @@
    import { fileUri } from '@kit.CoreFileKit';
    import { distributedDeviceManager } from '@kit.DistributedServiceKit'
 
-   let context = getContext(this) as common.UIAbilityContext; // 获取设备B的UIAbilityContext信息
+   // context是EntryAbility传过来的context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
    let pathDir: string = context.filesDir;
    let distributedPathDir: string = context.distributedFilesDir;
    // 待拷贝文件的目标路径(沙箱路径)
