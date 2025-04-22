@@ -4489,7 +4489,7 @@ Allows a system application to access the installation file path copied from ano
 
 ## ohos.permission.ACCESS_MEDIALIB_RESTORE
 
-Allows an application to moutmedia restore paths.
+Allows an application to mount media restore paths.
 
 **Permission level**: system_basic
 
