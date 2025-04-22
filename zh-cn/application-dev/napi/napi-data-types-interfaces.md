@@ -552,7 +552,7 @@ napi_status napi_queue_async_work_with_qos(napi_env env,
                                            napi_qos_t qos);
 ```
 
-用法同napi_queue_async_work，但可以指定QoS等级。napi_queue_async_work_with_qos使用方法可参考[指定异步任务调度优先级](../performance/develop-Native-modules-using-NAPI-safely-and-efficiently.md#指定异步任务调度优先级)。QoS详细介绍可参考[QoS 开发指导](qos-guidelines.md)
+用法同napi_queue_async_work，但可以指定QoS等级。napi_queue_async_work_with_qos使用方法可参考指定异步任务调度优先级。QoS详细介绍可参考[QoS 开发指导](qos-guidelines.md)
 
 #### napi_run_script_path
 
