@@ -41,7 +41,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
 > **NOTE**
 >
-> The word 'sample' in the preceding code snippet is only an example. Use the actual project directory name.
+> The word **sample** in the preceding code snippet is only an example. Use the actual project directory name.
 >
 
 ### How to Develop
@@ -58,12 +58,12 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    #include <sys/stat.h>
    ```
 
-2. Create a resource object.
+2. Create a resource instance.
 
    When using **open** to obtain the FD, convert the value of **filepath** to a [sandbox path](../../file-management/app-sandbox-directory.md#mappings-between-application-sandbox-paths-and-physical-paths) to obtain sandbox resources.
 
    ```c++
-   // Create the FD. You must have the read permission on the file handle when opening the file. (filePath indicates the path of the file to be demuxed. The file must exist.)
+   // Create the FD. You must have the read permission on the file instance to open the file. (filePath indicates the path of the file to be demuxed. The file must exist.)
    std::string filePath = "test.mp4";
    int fd = open(filePath.c_str(), O_RDONLY);
    struct stat fileStatus {};
@@ -74,23 +74,23 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
       printf("get stat failed");
       return;
    }
-   // Create a source resource object for the FD resource file. If offset is not the start position of the file or size is not the actual file size, the data obtained may be incomplete. Consequently, the source resource object may fail to create or subsequent demuxing may fail.
+   // Create a source resource instance for the FD resource file. If offset is not the start position of the file or size is not the actual file size, the data obtained may be incomplete. Consequently, the source resource object may fail to create or subsequent demuxing may fail.
    OH_AVSource *source = OH_AVSource_CreateWithFD(fd, 0, fileSize);
    if (source == nullptr) {
       printf("create source failed");
       return;
    }
-   // (Optional) Create a source resource object for the URI resource file.
+   // (Optional) Create a source resource instance for the URI resource file.
    // OH_AVSource *source = OH_AVSource_CreateWithURI(uri);
 
-   // (Optional) Create a source resource object for the custom data source. Before the operation, you must implement AVSourceReadAt.
+   // (Optional) Create a source resource instance for the custom data source. Before the operation, you must implement AVSourceReadAt.
    // Add g_filePath when OH_AVSource_CreateWithDataSource is used.
    // g_filePath = filePath ;
    // OH_AVDataSource dataSource = {fileSize, AVSourceReadAt};
    // OH_AVSource *source = OH_AVSource_CreateWithDataSource(&dataSource);
    ```
 
-   Implement the **AVSourceReadAt** API before creating the resource object.
+   Implement the **AVSourceReadAt** API before creating the resource instance.
 
    ```c++
    // Add the header file.
@@ -147,7 +147,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    ```
 3. Create a demuxer instance.
    ```c++
-   // Create a demuxer for the resource object.
+   // Create a demuxer for the resource instance.
    OH_AVDemuxer *demuxer = OH_AVDemuxer_CreateWithSource(source);
    if (demuxer == nullptr) {
       printf("create demuxer failed");
@@ -358,7 +358,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 > **NOTE**
 >
 > Attribute data can be obtained only when the file is parsed normally. If the file information is incorrect or missing, the parsing is abnormal and the corresponding data cannot be obtained.
-> 
+>
 > For details about the data type and value range, see [Media Data Key-Value Pairs](../../reference/apis-avcodec-kit/_codec_base.md#media-data-key-value-pairs).
 
 **Table 2** Supported track-level attributes
