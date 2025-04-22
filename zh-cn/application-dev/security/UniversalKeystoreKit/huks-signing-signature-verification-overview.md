@@ -24,7 +24,7 @@
 | ED25519/NoDigest | NoDigest需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE。 | 8+ | 是 |
 | SM2/SM3 | - | 9+ | 是 |
 
-**轻设备设备规格**
+**轻设备规格**
 
 <!--Del-->
 轻量级设备所列规格，OEM厂商将基于实际情况决定是否实现，如需使用，请查阅具体厂商提供的说明，确保规格支持再使用。
