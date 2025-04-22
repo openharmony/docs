@@ -147,8 +147,8 @@ struct Index {
   };
 
   createPiP() {
-    let promise : Promise<PiPWindow.PiPController> = PiPWindow.create(this.config);
-    promise.then((data : PiPWindow.PiPController) => {
+    let promise: Promise<PiPWindow.PiPController> = PiPWindow.create(this.config);
+    promise.then((data: PiPWindow.PiPController) => {
       this.pipController = data;
       console.info(`Succeeded in creating pip controller. Data:${data}`);
     }).catch((err: BusinessError) => {
@@ -231,8 +231,8 @@ struct Index {
   private xComponent = typeNode.createNode(this.context, 'XComponent', this.options);
 
   createPiP() {
-    let promise : Promise<PiPWindow.PiPController> = PiPWindow.create(this.config, this.xComponent);
-    promise.then((data : PiPWindow.PiPController) => {
+    let promise: Promise<PiPWindow.PiPController> = PiPWindow.create(this.config, this.xComponent);
+    promise.then((data: PiPWindow.PiPController) => {
       this.pipController = data;
       console.info(`Succeeded in creating pip controller. Data:${data}`);
     }).catch((err: BusinessError) => {
