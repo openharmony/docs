@@ -1338,7 +1338,7 @@ function getCameraConcurrentinfos(cameraManager: camera.CameraManager, cameraDev
 | ---------------------------- | ---- | ------------- |
 | OFF    | 0    | 常关模式。      |
 | ON  | 1    | 常开模式。 |
-| AUTO      | 2    | 自动模式。 |
+| AUTO      | 2    | 自动模式。 根据环境自动调节亮度。|
 
 ## TorchStatusInfo<sup>11+</sup>
 
