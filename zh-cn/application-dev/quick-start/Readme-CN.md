@@ -41,6 +41,11 @@
     - [ArkTS语法适配背景](arkts-migration-background.md)
     - [从TypeScript到ArkTS的适配规则](typescript-to-arkts-migration-guide.md)
     - [适配指导案例](arkts-more-cases.md)
+  - 从ArkTS1.1到ArkTS1.2的适配指导<!--arkts1.1-to-arkts1.2-migration-->
+    - [ArkTS1.2互操作概述](arkts-interop-overview.md)
+    - [ArkTS1.2互操作类型映射规则](arkts-interop-type-mapping.md)
+    - [ArkTS1.2互操作场景](arkts-interop-more.md)
+    - [ArkTS1.2互操作特性规范](arkts-interop-spec.md)
   - [ArkTS高性能编程实践](arkts-high-performance-programming.md)
   - UI范式基本语法<!--arkts-ui-paradigm-basic-syntax-->
     - [基本语法概述](arkts-basic-syntax-overview.md)
