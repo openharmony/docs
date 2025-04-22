@@ -59,20 +59,19 @@
 | 名称 | 参数 | 描述 |
 | -------- | -------- | -------- |
 | scrollTo | {&nbsp;index:&nbsp;number(指定位置)&nbsp;} | list滑动到指定index的item位置。 |
-
-
+| rotation | {&nbsp;focus:&nbsp;boolean&nbsp;} | 控制list是否请求旋转表冠的焦点。设置focus参数为true，list将获取旋转表冠的焦点，允许用户通过旋转表冠来滚动选择器中的选项；设置为false将释放旋转表冠的焦点。|
 ## 示例
 
 
 ```html
 <!-- index.hml -->
 <div class="container">
-  <list class="todo-wraper">
-    <list-item for="{{todolist}}" class="todo-item">
-      <text class="todo-title">{{$item.title}}</text>
-      <text class="todo-title">{{$item.date}}</text>
-    </list-item>
-  </list>
+    <list class="todo-wraper" ref="listObj">
+        <list-item for="{{todolist}}" class="todo-item">
+            <text class="todo-title">{{$item.title}}</text>
+            <text class="todo-title">{{$item.date}}</text>
+        </list-item>
+    </list>
 </div>
 ```
 
@@ -80,15 +79,30 @@
 ```js
 // index.js
 export default {
-  data: {
-    todolist: [{
-      title: '刷题',
-      date: '2021-12-31 10:00:00',
-    }, {
-      title: '看电影',
-      date: '2021-12-31 20:00:00',
-    }],
-  },
+    data: {
+        todolist: [{
+            title: '刷题',
+            date: '2021-12-31 10:00:00',
+        }, {
+            title: '看电影',
+            date: '2021-12-31 20:00:00',
+        }
+        , {
+            title: '看书',
+            date: '2021-12-31 21:00:00',
+        },
+        {
+            title: '洗澡',
+            date: '2021-12-31 22:00:00',
+        },
+        {
+            title: '睡觉',
+            date: '2021-12-31 23:00:00',
+        }],
+    },
+    onShow() {
+        this.$refs.listObj.rotation({focus: true})
+    }
 }
 ```
 
