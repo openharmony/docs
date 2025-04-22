@@ -234,10 +234,10 @@
 
 ## trace对比
 
-不使用worker：
+不使用Worker：
 
 ![camera-in-ui-thread](figures/camera-in-ui-thread.png)
 
-使用woker：
+使用Worker：
 
 ![camera-in-worker-thread](figures/camera-in-worker-thread.png)
