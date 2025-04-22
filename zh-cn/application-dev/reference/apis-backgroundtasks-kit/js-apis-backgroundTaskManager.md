@@ -489,6 +489,7 @@ export default class EntryAbility extends UIAbility {
 ## DelaySuspendInfo
 
 延迟挂起信息。
+
 > **说明：**
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[DelaySuspendInfo](js-apis-resourceschedule-backgroundTaskManager.md#delaysuspendinfo)替代。
 
@@ -503,6 +504,7 @@ export default class EntryAbility extends UIAbility {
 ## BackgroundMode<sup>8+</sup>
 
 长时任务类型。
+
 > **说明：**
 > 从 API version 8开始支持，从API version 9开始废弃。建议使用[BackgroundMode](js-apis-resourceschedule-backgroundTaskManager.md#backgroundmode)替代。
 
