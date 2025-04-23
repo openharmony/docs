@@ -1283,7 +1283,7 @@ function getCameraDevice(cameraManager: camera.CameraManager, position: camera.C
 }
 ```
 
-### getCameraConcurrentinfos<sup>18+</sup>
+### getCameraConcurrentInfos<sup>18+</sup>
 
 getCameraConcurrentInfos(cameras: Array\<CameraDevice\>): Array\<CameraConcurrentInfo\>
 
@@ -1316,14 +1316,14 @@ getCameraConcurrentInfos(cameras: Array\<CameraDevice\>): Array\<CameraConcurren
 ```ts
 import { camera } from '@kit.CameraKit';
 
-function getCameraConcurrentinfos(cameraManager: camera.CameraManager, cameraDeviceArray: Array<camera.CameraDevice>): void {
+function getCameraConcurrentInfos(cameraManager: camera.CameraManager, cameraDeviceArray: Array<camera.CameraDevice>): void {
   try {
     let cameraconcurrentinfos: Array<camera.CameraConcurrentInfo> = [];
     cameraconcurrentinfos = cameraManager.getCameraConcurrentInfos(cameraDeviceArray);
   } catch (error) {
     // 失败返回错误码并处理。
     let err = error as BusinessError;
-    console.error(`The getCameraConcurrentinfos call failed. error code: ${err.code}`);
+    console.error(`The getCameraConcurrentInfos call failed. error code: ${err.code}`);
   }
 }
 ```
