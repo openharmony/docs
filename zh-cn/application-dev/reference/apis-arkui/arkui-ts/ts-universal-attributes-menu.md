@@ -141,9 +141,9 @@ isShown为true，弹出菜单。isShown为false，隐藏菜单。弹出菜单项
 | layoutRegionMargin<sup>13+</sup>  | [Margin](ts-types.md#margin) | 否   | 设置预览图与菜单布局时距上下左右边界的最小边距。<br />**说明：** <br/> 仅支持vp、px、fp、lpx、百分比。<br/> 当margin设置异常值或负值时，按默认值处理。<br/> 若preview为CustomBuilder，设置margin.left或margin.right时，预览图取消最大栅格的宽度限制。<br/> 注意应避免设置过大的margin导致布局区域变小，使得预览图和菜单无法正常布局。<br />当水平方向上margin之和超过布局最大宽度时，margin.left和margin.right均不生效，按默认值处理。<br/> 当垂直方向上margin之和超过布局最大高度时，margin.top和margin.bottom均不生效，按默认值处理。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 | backgroundBlurStyleOptions<sup>18+</sup> | [BackgroundBlurStyleOptions](ts-universal-attributes-background.md#backgroundblurstyleoptions10对象说明) | 否 | 背景模糊效果。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | backgroundEffect<sup>18+</sup> | [BackgroundEffectOptions](ts-universal-attributes-background.md#backgroundeffectoptions11) | 否 | 背景效果参数。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
-| hapticFeedbackMode<sup>18+</sup> | [HapticFeedbackMode](#hapticfeedbackmode18) | 否 | 菜单弹出时振动效果。<br/>默认值：HapticFeedbackMode.DISABLED，菜单弹出时不振动。<br />**说明：**<br />只有一级菜单可配置弹出时振动效果。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
-| outlineWidth<sup>18+</sup> | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeOutlineWidths](ts-universal-attributes-outline.md#edgeoutlinewidths对象说明) | 否 | 设置菜单边框外描边宽度。<br />**说明：**<br />不支持百分比，若需要外描边效果width为必填项。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
-| outlineColor<sup>18+</sup> | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](ts-universal-attributes-outline.md#edgecolors对象说明) | 否 | 设置菜单边框外描边颜色。<br />**说明：**<br />默认值：#19ffffff<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| hapticFeedbackMode<sup>18+</sup> | [HapticFeedbackMode](#hapticfeedbackmode18) | 否 | 菜单弹出时振动效果。<br/>默认值：HapticFeedbackMode.DISABLED，菜单弹出时不振动。<br />**说明：**<br />只有一级菜单可配置弹出时振动效果。<br />仅当应用具备 ohos.permission.VIBRATE 权限，且用户启用了触感反馈时才会生效。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| outlineWidth<sup>20+</sup> | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeOutlineWidths](ts-universal-attributes-outline.md#edgeoutlinewidths对象说明) | 否 | 设置菜单边框外描边宽度。<br />**说明：**<br />不支持百分比，若需要外描边效果outlineWidth为必填项。<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| outlineColor<sup>20+</sup> | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](ts-universal-attributes-outline.md#edgecolors对象说明) | 否 | 设置菜单边框外描边颜色。<br />**说明：**<br />默认值：#19ffffff<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## MenuPreviewMode<sup>11+</sup>
 
@@ -198,7 +198,7 @@ type AnimationRange\<T>=[from: T, to: T]
 
 ## BorderRadiusType<sup>18+</sup>
 
-type BorderRadiusType\<T>= [Length](ts-types.md#length) | [BorderRadiuses](ts-types.md#borderradiuses9) | [LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12)
+type BorderRadiusType = [Length](ts-types.md#length) | [BorderRadiuses](ts-types.md#borderradiuses9) | [LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12)
 
 圆角类型。
 
@@ -230,13 +230,13 @@ struct MenuExample {
           {
             value: 'Menu1',
             action: () => {
-              console.info('handle Menu1 select')
+              console.info('handle Menu1 select');
             }
           },
           {
             value: 'Menu2',
             action: () => {
-              console.info('handle Menu2 select')
+              console.info('handle Menu2 select');
             }
           },
         ])
@@ -257,7 +257,7 @@ struct MenuExample {
 @Entry
 @Component
 struct MenuExample {
-  @State listData: number[] = [0, 0, 0]
+  @State listData: number[] = [0, 0, 0];
 
   @Builder MenuBuilder() {
     Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
@@ -272,7 +272,7 @@ struct MenuExample {
           .justifyContent(FlexAlign.Center)
           .align(Alignment.Center)
           .onClick(() => {
-            console.info(`Menu${index as number + 1} Clicked!`)
+            console.info(`Menu${index as number + 1} Clicked!`);
           })
 
           if (index != this.listData.length - 1) {
@@ -389,7 +389,7 @@ struct DirectiveMenuExample {
 @Entry
 @Component
 struct Index {
-  private iconStr: ResourceStr = $r("app.media.icon")
+  private iconStr: ResourceStr = $r("app.media.icon");
 
   @Builder
   MyMenu() {
@@ -433,7 +433,7 @@ struct Index {
 @Entry
 @Component
 struct Index {
-  private iconStr: ResourceStr = $r("app.media.icon")
+  private iconStr: ResourceStr = $r("app.media.icon");
 
   @Builder
   MyMenu() {
@@ -485,8 +485,8 @@ struct Index {
 @Entry
 @Component
 struct Index {
-  private iconStr: ResourceStr = $r("app.media.icon")
-  @State isShown: boolean = false
+  private iconStr: ResourceStr = $r("app.media.icon");
+  @State isShown: boolean = false;
 
   @Builder
   MyMenu() {
@@ -519,14 +519,14 @@ struct Index {
             .bindContextMenu(this.isShown, this.MyMenu,
               {
                 preview: this.MyPreview,
-                onDisappear: ()=>{
-                    this.isShown = false;
+                aboutToDisappear: ()=>{
+                  this.isShown = false;
                 }
               })
           Button('click')
             .onClick(()=>{
-                this.isShown = true;
-             })
+              this.isShown = true;
+            })
         }
       }.width('100%')
     }
@@ -568,8 +568,8 @@ struct MenuExample {
         .height(50)
     }
   }
-  @State isShow:boolean = false
-  private iconStr: ResourceStr = $r("app.media.icon")
+  @State isShow:boolean = false;
+  private iconStr: ResourceStr = $r("app.media.icon");
 
   @Builder
   MyMenu() {
@@ -627,14 +627,14 @@ struct MenuExample {
         value: 'Menu1',
         symbolIcon:this.symbolIconModifier1,
         action: () => {
-          console.info('handle Menu1 select')
+          console.info('handle Menu1 select');
         }
       },
       {
         value: 'Menu2',
         symbolIcon:this.symbolIconModifier2,
         action: () => {
-          console.info('handle Menu2 select')
+          console.info('handle Menu2 select');
         }
       },
     ])
@@ -653,7 +653,7 @@ struct MenuExample {
 @Entry
 @Component
 struct Index {
-  private iconStr: ResourceStr = $r("app.media.app_icon")
+  private iconStr: ResourceStr = $r("app.media.app_icon");
 
   @Builder
   MyMenu() {
@@ -764,13 +764,13 @@ struct MenuExample {
             {
               value: 'Menu1',
               action: () => {
-                console.info('handle Menu1 select')
+                console.info('handle Menu1 select');
               }
             },
             {
               value: 'Menu2',
               action: () => {
-                console.info('handle Menu2 select')
+                console.info('handle Menu2 select');
               }
             },
           ],

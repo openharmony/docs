@@ -91,7 +91,7 @@ SIGSEGV是一种信号，它表示进程试图访问一个不属于它的内存�
 
 - 方式一：通过DevEco Studio获取日志
 
-    DevEco Studio会收集设备`/data/log/faultlog/faultlogger/`路径下的进程崩溃故障日志到FaultLog下，根据进程名和故障和时间分类显示。获取日志的方法参见：<!--RP1-->[DevEco Studio使用指南-FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-fault-log-V5)<!--RP1End-->。
+    DevEco Studio会收集设备`/data/log/faultlog/faultlogger/`路径下的进程崩溃故障日志到FaultLog下，根据进程名和故障和时间分类显示。获取日志的方法参见：[DevEco Studio使用指南-FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-fault-log)。
 
 - 方式二：通过hiAppEvent接口订阅
 
@@ -518,7 +518,7 @@ Tid:18257, Name:crasher_cpp                 <- 故障线程号，线程名
 
 #### 方式三：通过 DevEco Studio hstack 工具解析堆栈信息
 
-hstack是DevEco Studio为开发人员提供的用于将release应用混淆后的crash堆栈还原为源码对应堆栈的工具，支持Windows、Mac、Linux三个平台。[DevEco Studio hstack使用指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-command-line-hstack-V5)。
+hstack是DevEco Studio为开发人员提供的用于将release应用混淆后的crash堆栈还原为源码对应堆栈的工具，支持Windows、Mac、Linux三个平台。[DevEco Studio hstack使用指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-command-line-hstack)。
 
 ### 结合业务检视代码
 
@@ -923,7 +923,7 @@ SIGABRT信号被发送到进程，告诉进程中止。既可以进程自己调�
 
 **定位思路**
 
-每次地址出错都很有规律，但node地址不应该落在libace_napi_ark.z.so，从此类问题的现象来看，很有可能是踩内存问题。踩内存问题可使用[ASAN工具](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-asan-V5)排查问题。于是后续使用ASAN版本进行压测复现，也找到了稳定必现的场景。ASAN版本检测出来的问题也和上面崩溃栈反映的问题一致。堆栈报的是heap-use-after-free，实际上是对同一个address进行重复释放，只是在重复释放那次操作时，使用该地址去访问了其对象成员，进而报出了UAF问题。
+每次地址出错都很有规律，但node地址不应该落在libace_napi_ark.z.so，从此类问题的现象来看，很有可能是踩内存问题。踩内存问题可使用[ASAN工具](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-asan)排查问题。于是后续使用ASAN版本进行压测复现，也找到了稳定必现的场景。ASAN版本检测出来的问题也和上面崩溃栈反映的问题一致。堆栈报的是heap-use-after-free，实际上是对同一个address进行重复释放，只是在重复释放那次操作时，使用该地址去访问了其对象成员，进而报出了UAF问题。
 ASAN核心日志如下：
 
 ```text
@@ -1072,7 +1072,7 @@ js侧通过Add接口添加数据，native侧以napi_value保存到vector，js侧
 
 #### 工具一：ASAN
 
-[ASAN使用指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-asan-V5)。
+[ASAN使用指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-asan)。
 
 #### 工具二：方舟多线程检测
 

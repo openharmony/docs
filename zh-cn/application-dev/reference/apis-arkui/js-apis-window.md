@@ -262,9 +262,11 @@ import { window } from '@kit.ArkUI';
 | 名称       | 类型      | 可读 | 可写 | 说明               |
 | ---------- | ------------- | ---- | ---- | ------------------ |
 | colorMode   | [ConfigurationConstant.ColorMode](../apis-ability-kit/js-apis-app-ability-configurationConstant.md#colormode) | 是   | 是   | 颜色模式。深色模式下按钮颜色适配为浅色，浅色模式下按钮颜色适配为深色。未设置则默认跟随系统颜色模式。 |
-| buttonBackgroundSize   | number        | 是   | 是   | 按钮高亮显示时的大小，取值范围20vp-40vp，默认值28vp。 |
-| spacingBetweenButtons  | number        | 是   | 是   | 按钮间距，取值范围12vp-24vp，默认值12vp。 |
-| closeButtonRightMargin | number        | 是   | 是   | 关闭按钮右侧距窗口边距，取值范围8vp-22vp，默认值20vp。 |
+| buttonBackgroundSize   | number        | 是   | 是   | 按钮高亮显示时的大小，取值范围20vp-40vp，默认值28vp；buttonBackgroundSize与spacingBetweenButtons之和应大于等于40vp。 |
+| spacingBetweenButtons  | number        | 是   | 是   | 按钮间距，取值范围8vp-24vp，默认值12vp；buttonBackgroundSize与spacingBetweenButtons之和应大于等于40vp。 |
+| closeButtonRightMargin | number        | 是   | 是   | 关闭按钮右侧距窗口边距，取值范围6vp-22vp，默认值20vp。 |
+| buttonIconSize<sup>20+</sup> | number        | 是   | 是   | 按键icon的大小，取值范围16vp-24vp，默认值20vp。 |
+| buttonBackgroundCornerRadius<sup>20+</sup> | number        | 是   | 是   | 按键背板圆角半径，取值范围4-8vp，默认值4vp。 |
 
 ## ColorSpace<sup>8+</sup>
 
@@ -404,6 +406,21 @@ import { window } from '@kit.ArkUI';
 | beginRect | [Rect](#rect7)  | 是 | 动画开始前软键盘的位置和大小。 |
 | endRect | [Rect](#rect7)  | 是 | 动画结束后软键盘的位置和大小。 |
 
+## WindowInfo<sup>18+</sup>
+
+当前窗口的详细信息。
+
+**系统能力：**  SystemCapability.Window.SessionManager
+
+| 名称   | 类型   | 只读 | 可选 | 说明                                       |
+| ------ | ------ | ---- | ---- | ------------------------------------------ |
+| rect  | [Rect](js-apis-window.md#rect7)   | 是   | 否   | 窗口尺寸。 |
+| bundleName  | string   | 是   | 否   | 应用Bundle的名称。          |
+| abilityName | string   | 是   | 否   | Ability的名称。               |
+| windowId | number | 是   | 否   | 窗口ID。   |
+| windowStatusType | [WindowStatusType](js-apis-window.md#windowstatustype11) | 是   | 否   | 窗口模式枚举。   |
+| isFocused | boolean | 是   | 是   | 窗口是否获焦。true表示窗口获焦；false表示窗口未获焦。   |
+
 ## Callback<sup>15+</sup>
 
 ### (data: T)<sup>15+</sup>
@@ -429,6 +446,61 @@ import { window } from '@kit.ArkUI';
 | 类型 | 说明 |
 | -------------------------------- | ------------------------------------ |
 | V | 回调函数需要返回V类型的返回值。 |
+
+## RotationChangeType<sup>18+</sup>
+
+窗口旋转类型。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.Window.SessionManager
+
+| 名称   | 值 | 类型  | 说明                    |
+| ------ | --- | --- | ------------------------ |
+| WINDOW_WILL_ROTATE| 0 | number | 窗口即将旋转。 |
+| WINDOW_DID_ROTATE | 1 | number | 窗口旋转结束。 |
+
+## RectType<sup>18+</sup>
+
+窗口矩形区域坐标系类型。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.Window.SessionManager
+
+| 名称   | 值 | 类型  | 说明                    |
+| ------ | --- | --- | ------------------------ |
+| RELATIVE_TO_SCREEN | 0 | number | 窗口矩形区域相对于屏幕坐标系。 |
+| RELATIVE_TO_PARENT_WINDOW | 1 | number | 窗口矩形区域相对于父窗口坐标系。 |
+
+## RotationChangeInfo<sup>18+</sup>
+
+窗口旋转变化时的窗口信息。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.Window.SessionManager
+
+| 名称   | 类型 | 只读  | 可写 | 说明                    |
+| ------ | ---- | ----- | ---- | ----------------------- |
+| type | [RotationChangeType](#rotationchangetype18) | 是 | 否 | 窗口旋转类型。 |
+| orientation | number | 是 | 否 | 窗口旋转方向。<br>- 0表示竖屏。<br>- 1表示横屏。<br>- 2表示反向竖屏。<br>- 3表示反向竖屏。 |
+| displayId | number | 是 | 否 | 窗口所在屏幕Id。 |
+| displayRect | [Rect](#rect7) | 是 | 否 | 窗口所在屏幕旋转后的矩形区域大小。 |
+
+## RotationChangeResult<sup>18+</sup>
+
+应用在窗口旋转变化时返回的信息，系统会根据此信息改变当前窗口矩形区域大小。当返回主窗口旋转变化的信息时，系统不改变主窗口的大小。
+应用窗口与系统窗口大小存在限制，具体限制与相关规则可见[resize](#resize9)。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.Window.SessionManager
+
+| 名称   | 类型 | 只读  | 可写 | 说明                    |
+| ------ | ---- | ----- | ---- | ----------------------- |
+| rectType | [RectType](#recttype18) | 否 | 是 | 窗口矩形区域坐标系类型。 |
+| windowRect | [Rect](#rect7) | 否 | 是 | 相对于屏幕或父窗坐标系的窗口矩形区域信息。|
 
 ## window.createWindow<sup>9+</sup>
 
@@ -933,7 +1005,7 @@ import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-    
+
   onWindowStageCreate(windowStage: window.WindowStage): void {
     let windowClass = windowStage.getMainWindowSync();
     try {
@@ -999,7 +1071,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let displayId = 0;
-  let promise = window.getAllWindowLayoutInfo(displayId)
+  let promise = window.getAllWindowLayoutInfo(displayId);
   promise.then((data) => {
     console.info('Succeeded in obtaining all window layout info. Data: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
@@ -1413,6 +1485,56 @@ export default class EntryAbility extends UIAbility {
     });
   }
 }
+```
+
+## window.getVisibleWindowInfo<sup>18+</sup>
+
+getVisibleWindowInfo(): Promise&lt;Array&lt;WindowInfo&gt;&gt;
+
+获取当前屏幕的可见主窗口（未退至后台的主窗口）信息。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**需要权限：** ohos.permission.VISIBLE_WINDOW_INFO
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------- | ----------------------- |
+| Promise&lt;Array&lt;[WindowInfo](#windowinfo18)&gt;&gt; | Promise对象，返回当前可见窗口的相关信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 801     | Capability not supported. Function getVisibleWindowInfo can not work correctly due to limited device capabilities. |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let promise = window.getVisibleWindowInfo();
+promise.then((data) => {
+  data.forEach(windowInfo=>{
+    console.info(`left:${windowInfo.rect.left}`);
+    console.info(`top:${windowInfo.rect.top}`);
+    console.info(`width:${windowInfo.rect.width}`);
+    console.info(`height:${windowInfo.rect.height}`);
+    console.info(`windowId:${windowInfo.windowId}`);
+    console.info(`windowStatusType:${windowInfo.windowStatusType}`);
+    console.info(`abilityName:${windowInfo.abilityName}`);
+    console.info(`bundleName:${windowInfo.bundleName}`);
+    console.info(`isFocused:${windowInfo.isFocused}`);
+  })
+}).catch((err: BusinessError) => {
+  console.error('Failed to getWindowInfo. Cause: ' + JSON.stringify(err));
+});
 ```
 
 ## SpecificSystemBar<sup>11+</sup>
@@ -2417,7 +2539,6 @@ setTitleAndDockHoverShown(isTitleHoverShown?: boolean, isDockHoverShown?: boolea
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation. |
@@ -3404,7 +3525,7 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Invalid path parameter.|
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
@@ -3456,7 +3577,7 @@ loadContent(path: string, storage: LocalStorage): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Invalid path parameter.|
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
@@ -5417,6 +5538,125 @@ try {
 }
 ```
 
+### on('rotationChange')<sup>18+</sup>
+
+on(type: 'rotationChange', callback: RotationChangeCallback&lt;info: RotationChangeInfo, RotationChangeResult | void&gt;): void
+
+开启窗口旋转变化的监听。[RotationChangeInfo](#rotationchangeinfo18)中窗口旋转类型为窗口即将旋转时，必须返回[RotationChangeResult](#rotationchangeresult18)。窗口旋转类型为窗口旋转结束时返回[RotationChangeResult](#rotationchangeresult18)不生效。
+
+同一个窗口多次注册同类型回调函数，只生效最新注册的同类型回调函数返回值。系统提供了超时保护机制，若20ms内窗口未返回[RotationChangeResult](#rotationchangeresult18)，系统不处理该返回值。
+
+<!--RP10-->此接口在2in1设备上调用不生效。<!--RP10End-->
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                           | 必填 | 说明                                                     |
+| -------- | ------------------------------ | ---- | -------------------------------------------------------- |
+| type     | string                         | 是   | 监听事件，固定为'rotationChange'，即窗口旋转变化事件。 |
+| callback | RotationChangeCallback&lt;[RotationChangeInfo](#rotationchangeinfo18), [RotationChangeResult](#rotationchangeresult18) \| void&gt; | 是 | 回调函数。返回窗口旋转信息[RotationChangeInfo](#rotationchangeinfo18)，应用返回当前窗口变化结果[RotationChangeResult](#rotationchangeresult18)。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+function calculateRect(info: window.RotationChangeInfo): window.Rect {
+    // calculate result with info
+    let rect : window.Rect = {
+      left: 0,
+      top: 0,
+      width: 500,
+      height: 600,
+    }
+    return rect;
+}
+
+const callback = (info: window.RotationChangeInfo): window.RotationChangeResult | void => {
+  let result: window.RotationChangeResult = {
+    rectType: window.RectType.RELATIVE_TO_SCREEN;
+    windowRect: {
+      left: 0,
+      top: 0,
+      width: 0,
+      height: 0,
+    }
+  };
+  if (info.type === window.RotationChangeType.WINDOW_WILL_ROTATE) {
+      result.rectType = window.RectType.RELATIVE_TO_SCREEN;
+      result.windowRect = calculateRect(info);
+      return result;
+  } else {
+      // do something after rotate
+      return;
+  }
+}
+
+try {
+  windowClass.on('rotationChange', callback);
+} catch (exception) {
+  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### off('rotationChange')<sup>18+</sup>
+
+off(type: 'rotationChange', callback?: RotationChangeCallback&lt;info: RotationChangeInfo, RotationChangeResult | void&gt;): void
+
+关闭窗口旋转变化的监听。
+
+<!--RP10-->此接口在2in1设备上调用不生效。<!--RP10End-->
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                           | 必填 | 说明                                                         |
+| -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                         | 是   | 监听事件，固定为'rotationChange'，即窗口旋转变化事件。     |
+| callback | RotationChangeCallback&lt;info: [RotationChangeInfo](#rotationchangeinfo18), [RotationChangeResult](#rotationchangeresult18) \| void&gt; | 否   | 回调函数。如果传入参数，则关闭该监听。如果未传入参数，则关闭该窗口的所有监听。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+const callback = (info: window.RotationChangeInfo): window.RotationChangeResult | void => {
+  // ...
+  return;
+}
+try {
+  windowClass.off('rotationChange', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听。
+  windowClass.off('rotationChange');
+} catch (exception) {
+  console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
 ### isWindowSupportWideGamut<sup>9+</sup>
 
 isWindowSupportWideGamut(callback: AsyncCallback&lt;boolean&gt;): void
@@ -6689,11 +6929,10 @@ maximize(presentation?: MaximizePresentation): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 801     | Capability not supported. Function maximize can not work correctly due to limited device capabilities. |
 | 1300002 | This window state is abnormal.                |
 | 1300003 | This window manager service works abnormally. |
 | 1300004 | Unauthorized operation.                       |
-| 1300005 | This window stage is abnormal. |
 
 **示例：**
 
@@ -7090,6 +7329,8 @@ setWindowMask(windowMask: Array&lt;Array&lt;number&gt;&gt;): Promise&lt;void&gt;
 设置异形窗口的掩码，使用Promise异步回调。异形窗口为非常规形状的窗口，掩码用于描述异形窗口的形状。此接口仅限子窗和全局悬浮窗可用。
 当异形窗口大小发生变化时，实际的显示内容为掩码大小和窗口大小的交集部分。
 
+该接口只在多个线程操作同一个窗口时可能返回错误码1300002。窗口被销毁场景下错误码返回401。
+
 <!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -7206,7 +7447,6 @@ setWindowDecorVisible(isVisible: boolean): void
 | 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002  | This window state is abnormal. |
-| 1300004  | Unauthorized operation.        |
 
 **示例：**
 
@@ -7417,6 +7657,7 @@ setSubWindowModal(isModal: boolean): Promise&lt;void&gt;
 | 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002  | This window state is abnormal. |
+| 1300003  | This window manager service works abnormally. |
 | 1300004  | Unauthorized operation.        |
 
 **示例：**
@@ -7494,6 +7735,7 @@ setSubWindowModal(isModal: boolean, modalityType: ModalityType): Promise&lt;void
 | 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002  | This window state is abnormal. |
+| 1300003  | This window manager service works abnormally. |
 | 1300004  | Unauthorized operation.        |
 
 **示例：**
@@ -7620,9 +7862,11 @@ export default class EntryAbility extends UIAbility {
         let colorMode : ConfigurationConstant.ColorMode = ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT;
         let style: window.DecorButtonStyle = {
           colorMode: colorMode,
-          buttonBackgroundSize: 24,
+          buttonBackgroundSize: 28,
           spacingBetweenButtons: 12,
-          closeButtonRightMargin: 20
+          closeButtonRightMargin: 20,
+          buttonIconSize: 20,
+          buttonBackgroundCornerRadius: 4
         };
         windowClass.setDecorButtonStyle(style);
         console.info('Succeeded in setting the style of button. Data: ' + JSON.stringify(style));
@@ -8108,19 +8352,20 @@ import { window } from '@kit.ArkUI';
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const context = (getContext(this) as common.UIAbilityContext);
 let windowClass: window.Window | undefined;
 let keyUpEventAry: string[] = [];
 
 @Entry
 @Component
 struct Index {
+  private context = (this.getUIContext()?.getHostContext() as common.UIAbilityContext);
+
   build() {
     RelativeContainer() {
       Button("窗口置顶")
         .onClick(() => {
           try {
-            let promiseCtx = window.getLastWindow(context);
+            let promiseCtx = window.getLastWindow(this.context);
             promiseCtx.then((data) => {
               windowClass = data;
               //  true:窗口置顶，false:取消窗口置顶
@@ -11974,7 +12219,7 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Invalid path parameter.|
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window stage is abnormal. |
 
@@ -12040,7 +12285,7 @@ loadContent(path: string, storage?: LocalStorage): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Invalid path parameter.|
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window stage is abnormal. |
 
@@ -12099,7 +12344,7 @@ loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Invalid path parameter.|
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window stage is abnormal. |
 
@@ -12745,6 +12990,7 @@ setWindowModal(isModal: boolean): Promise&lt;void&gt;
 | 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002  | This window state is abnormal. |
 | 1300003  | This window manager service works abnormally. |
+| 1300005 | This window stage is abnormal. |
 
 **示例：**
 
@@ -13001,6 +13247,7 @@ isWindowRectAutoSave(): Promise&lt;boolean&gt;
 | ------- | ------------------------------ |
 | 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
+| 1300003 | This window manager services works abnormally. |
 
 **示例：**
 

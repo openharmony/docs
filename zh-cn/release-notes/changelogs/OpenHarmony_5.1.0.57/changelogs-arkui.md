@@ -9,11 +9,9 @@
 
 **变更原因**
 
-[List](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-list.md)、[Grid](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Scroll](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-scroll.md)和[WaterFlow](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-waterflow.md)组件默认不支持点击状态栏回到顶部，为了推广点击状态栏回到顶部特性，提升应用体验，[List](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-list.md)、[Grid](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Scroll](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-scroll.md)和[WaterFlow](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-waterflow.md)组件修改为默认支持点击状态栏回到顶部。
+[List](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-list.md)、[Grid](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Scroll](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-scroll.md)和[WaterFlow](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-waterflow.md)组件默认不支持点击状态栏回到顶部，用户体验较差。
 
 **变更影响**
-
-此变更涉及应用适配。
 
 - 变更前：[List](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-list.md)、[Grid](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Scroll](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-scroll.md)和[WaterFlow](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-waterflow.md)组件[backToTop](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-scrollable-common.md#backtotop15)属性默认值为false，默认不支持点击状态栏回到顶部。
   
@@ -35,4 +33,4 @@ API 15
 
 **适配指导**
 
-默认行为变更，涉及[List](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-list.md)、[Grid](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Scroll](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-scroll.md)和[WaterFlow](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-waterflow.md)组件的应用需进行适配，若期望不支持点击状态栏回到顶部功能，则需要设置[backToTop](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-scrollable-common.md#backtotop15)属性为false。
+默认行为变更，原则上无需适配，若应用期望点击状态栏不回到顶部，则需要设置[backToTop](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-scrollable-common.md#backtotop15)属性为false。

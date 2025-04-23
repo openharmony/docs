@@ -737,13 +737,13 @@ avoidance(mode: AvoidanceMode)
 | --------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | mode      | [AvoidanceMode](#avoidancemode18枚举说明)  | 是   | 设置下拉菜单的避让模式。<br/>默认值：AvoidanceMode.COVER_TARGET |
 
-### menuOutline<sup>18+</sup>
+### menuOutline<sup>20+</sup>
 
-menuOutline(value: MenuOutlineOptions)
+menuOutline(outline: MenuOutlineOptions)
 
 设置下拉菜单框的外描边样式。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -751,7 +751,7 @@ menuOutline(value: MenuOutlineOptions)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [MenuOutlineOptions](#menuoutlineoptions18对象说明) | 是   | 下拉菜单框的外描边样式。 |
+| outline  | [MenuOutlineOptions](#menuoutlineoptions20对象说明) | 是   | 下拉菜单框的外描边样式。 |
 
 ### textModifier<sup>20+</sup>
 
@@ -874,11 +874,11 @@ selectedOptionTextModifier(modifier: Optional\<[TextModifier](ts-universal-attri
 | index  | number | 是   | 下拉菜单项的索引，索引值从0开始。 |
 | triggerSelect  | (index: number, value: string) :void | 是   | 下拉菜单选中某一项的回调函数。<br/>index：选中菜单项的索引。<br/>value：选中菜单项的文本。<br/>说明：index会赋值给事件[onSelect](#onselect)回调中的索引参数； value会返回给Select组件显示，同时会赋值给事件[onSelect](#onselect)回调中的文本参数。 |
 
-## MenuOutlineOptions<sup>18+</sup>对象说明
+## MenuOutlineOptions<sup>20+</sup>对象说明
 
 下拉菜单框的外描边参数对象。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -948,10 +948,10 @@ type OnSelectCallback = (index: number, selectStr: string) => void
 @Entry
 @Component
 struct SelectExample {
-  @State text: string = "TTTTT"
-  @State index: number = 2
-  @State space: number = 8
-  @State arrowPosition: ArrowPosition = ArrowPosition.END
+  @State text: string = "TTTTT";
+  @State index: number = 2;
+  @State space: number = 8;
+  @State arrowPosition: ArrowPosition = ArrowPosition.END;
 
   build() {
     Column() {
@@ -971,7 +971,7 @@ struct SelectExample {
         .optionWidth(200)
         .optionHeight(300)
         .onSelect((index: number, text?: string | undefined) => {
-          console.info('Select:' + index)
+          console.info('Select:' + index);
           this.index = index;
           if (text) {
             this.text = text;
@@ -997,10 +997,10 @@ import { SymbolGlyphModifier } from '@kit.ArkUI'
 @Entry
 @Component
 struct SelectExample {
-  @State text: string = "TTTTT"
-  @State index: number = 2
-  @State space: number = 8
-  @State arrowPosition: ArrowPosition = ArrowPosition.END
+  @State text: string = "TTTTT";
+  @State index: number = 2;
+  @State space: number = 8;
+  @State arrowPosition: ArrowPosition = ArrowPosition.END;
   @State symbolModifier1: SymbolGlyphModifier =
     new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')).fontColor([Color.Green]);
   @State symbolModifier2: SymbolGlyphModifier =
@@ -1026,7 +1026,7 @@ struct SelectExample {
         .arrowPosition(this.arrowPosition)
         .menuAlign(MenuAlignType.START, { dx: 0, dy: 0 })
         .onSelect((index: number, text?: string | undefined) => {
-          console.info('Select:' + index)
+          console.info('Select:' + index);
           this.index = index;
           if (text) {
             this.text = text;
@@ -1044,17 +1044,17 @@ struct SelectExample {
 该示例实现了一个自定义下拉菜选项的Select组件。自定义下拉菜单选项样式为“文本 + Symbol图片 + 空白间隔 + 文本 + 绘制三角形”，点击菜单选项后Select组件显示菜单选项的文本内容。
 
 ```ts
-import { SymbolGlyphModifier } from '@kit.ArkUI'
+import { SymbolGlyphModifier } from '@kit.ArkUI';
 
 class MyMenuItemContentModifier implements ContentModifier<MenuItemConfiguration> {
-  modifierText: string = ""
+  modifierText: string = "";
 
   constructor(text: string) {
     this.modifierText = text;
   }
 
   applyContent(): WrappedBuilder<[MenuItemConfiguration]> {
-    return wrapBuilder(MenuItemBuilder)
+    return wrapBuilder(MenuItemBuilder);
   }
 }
 
@@ -1080,14 +1080,14 @@ function MenuItemBuilder(configuration: MenuItemConfiguration) {
       .strokeWidth(3)
   }
   .onClick(() => {
-    configuration.triggerSelect(configuration.index, configuration.value.valueOf().toString())
+    configuration.triggerSelect(configuration.index, configuration.value.valueOf().toString());
   })
 }
 
 @Entry
 @Component
 struct SelectExample {
-  @State text: string = "Content Modifier Select"
+  @State text: string = "Content Modifier Select";
   @State symbolModifier1: SymbolGlyphModifier =
     new SymbolGlyphModifier($r('sys.symbol.ohos_trash')).fontColor([Color.Gray]);
   @State symbolModifier2: SymbolGlyphModifier =
@@ -1100,8 +1100,8 @@ struct SelectExample {
           { value: 'item1', icon: $r('app.media.icon'), symbolIcon: this.symbolModifier2 }])
           .value(this.text)
           .onSelect((index: number, text?: string) => {
-            console.info('Select index:' + index)
-            console.info('Select text:' + text)
+            console.info('Select index:' + index);
+            console.info('Select text:' + text);
           })
           .menuItemContentModifier(new MyMenuItemContentModifier("Content Modifier"))
 
@@ -1120,9 +1120,9 @@ struct SelectExample {
 @Entry
 @Component
 struct SelectExample {
-  @State text: string = "TTTTT"
-  @State index: number = -1
-  @State arrowPosition: ArrowPosition = ArrowPosition.END
+  @State text: string = "TTTTT";
+  @State index: number = -1;
+  @State arrowPosition: ArrowPosition = ArrowPosition.END;
 
   build() {
     Column() {
@@ -1147,7 +1147,7 @@ struct SelectExample {
           endMargin: 10
         })
         .onSelect((index: number, text?: string | undefined) => {
-          console.info('Select:' + index)
+          console.info('Select:' + index);
           this.index = index;
           if (text) {
             this.text = text;
@@ -1168,9 +1168,9 @@ struct SelectExample {
 @Entry
 @Component
 struct SelectExample {
-  @State text: string = "TTTTT"
-  @State index: number = -1
-  @State arrowPosition: ArrowPosition = ArrowPosition.END
+  @State text: string = "TTTTT";
+  @State index: number = -1;
+  @State arrowPosition: ArrowPosition = ArrowPosition.END;
 
   build() {
     Column() {
@@ -1190,7 +1190,7 @@ struct SelectExample {
         .optionHeight(300)
         .divider(null)
         .onSelect((index: number, text?: string | undefined) => {
-          console.info('Select:' + index)
+          console.info('Select:' + index);
           this.index = index;
           if (text) {
             this.text = text;
@@ -1212,10 +1212,10 @@ import { TextModifier, SymbolGlyphModifier } from "@kit.ArkUI";
 @Entry
 @Component
 struct SelectExample {
-  @State text: string = "TTTTTTTTTT".repeat(3)
-  @State index: number = 2
-  textModifier: TextModifier = new TextModifier()
-  symbolGlyphModifier: SymbolGlyphModifier = new SymbolGlyphModifier()
+  @State text: string = "TTTTTTTTTT".repeat(3);
+  @State index: number = 2;
+  textModifier: TextModifier = new TextModifier();
+  symbolGlyphModifier: SymbolGlyphModifier = new SymbolGlyphModifier();
 
   aboutToAppear(): void {
     this.textModifier
@@ -1244,7 +1244,7 @@ struct SelectExample {
         .textModifier(this.textModifier)
         .arrowModifier(this.symbolGlyphModifier)
         .onSelect((index: number, text?: string) => {
-          console.info('Select:' + index)
+          console.info('Select:' + index);
           this.index = index;
           if (text) {
             this.text = text;
@@ -1278,10 +1278,10 @@ import { TextModifier } from "@kit.ArkUI";
 @Entry
 @Component
 struct SelectExample {
-  @State text: string = "TTTTTTTTTT".repeat(3)
-  @State index: number = 2
-  optiontextModifier: TextModifier = new TextModifier()
-  selectedOptiontextModifier: TextModifier = new TextModifier()
+  @State text: string = "TTTTTTTTTT".repeat(3);
+  @State index: number = 2;
+  optiontextModifier: TextModifier = new TextModifier();
+  selectedOptiontextModifier: TextModifier = new TextModifier();
   aboutToAppear(): void {
     this.optiontextModifier
       .maxLines(1)
@@ -1311,7 +1311,7 @@ struct SelectExample {
         .selected(this.index)
         .value(this.text)
         .onSelect((index: number, text?: string) => {
-          console.info('Select:' + index)
+          console.info('Select:' + index);
           this.index = index;
           if (text) {
             this.text = text;

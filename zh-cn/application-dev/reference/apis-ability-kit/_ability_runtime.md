@@ -347,7 +347,7 @@ ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST - 当前环境的上下文不存在
 ### OH_AbilityRuntime_ApplicationContextGetDatabaseDir
 
 ```
-AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetDatabaseDir(char* buffer, const int32_t bufferSize, int32_t* writeLength);
+AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetDatabaseDir(char* buffer, const int32_t bufferSize, int32_t* writeLength)
 ```
 
 **描述**
@@ -2156,7 +2156,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbilityWithStartOptions(Ab
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
 | want      | 启动当前应用UIAbility时需要的Want信息。                           |
-| options      | 启动当前应用UIAbility时需要的StartOptions信息。                           |
+| options      | 启动当前应用UIAbility时需要的StartOptions信息。<br>**说明：**<br>如果该参数中[startVisibility](#abilityruntime_startvisibility)属性的值不为空，必须确保当前应用已添加到状态栏，否则会返回ABILITY_RUNTIME_ERROR_VISIBILITY_SETTING_DISABLED错误码。 |
 
 **返回：**
 

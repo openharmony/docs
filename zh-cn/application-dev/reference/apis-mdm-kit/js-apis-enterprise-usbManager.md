@@ -232,7 +232,7 @@ try {
   usbManager.setUsbStorageDeviceAccessPolicy(wantTemp, policy);
   console.info(`Succeeded in setting USB storage device access policy.`);
 } catch (err) {
-  console.error(`Failed to setting USB storage device access policy. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to set USB storage device access policy. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -283,7 +283,7 @@ try {
   let result: usbManager.UsbPolicy = usbManager.getUsbStorageDeviceAccessPolicy(wantTemp);
   console.info(`Succeeded in getting USB storage device access policy. Result: ${JSON.stringify(result)}`);
 } catch (err) {
-  console.error(`Failed togetting USB storage device access policy. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to get USB storage device access policy. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 

@@ -6,7 +6,7 @@ LazyForEach从提供的数据源中按需迭代数据，并在每次迭代过程
 
 ## 使用限制
 
-- LazyForEach必须在容器组件内使用，仅有[List](../../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Grid](../../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Swiper](../../reference/apis-arkui/arkui-ts/ts-container-swiper.md)以及[WaterFlow](../../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)组件支持数据懒加载（可配置cachedCount属性，即只加载可视部分以及其前后少量数据用于缓冲），其他组件仍然是一次性加载所有的数据。
+- LazyForEach必须在容器组件内使用，仅有[List](../../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Grid](../../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Swiper](../../reference/apis-arkui/arkui-ts/ts-container-swiper.md)以及[WaterFlow](../../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)组件支持数据懒加载（可配置cachedCount属性，即只加载可视部分以及其前后少量数据用于缓冲），其他组件仍然是一次性加载所有的数据。支持数据懒加载的父组件根据自身及子组件的高度或宽度计算可视区域内需布局的子节点数量，高度或宽度的缺失会导致部分场景[懒加载失效](#懒加载失效)。
 - LazyForEach依赖生成的键值判断是否刷新子组件，若键值不发生改变，则无法触发LazyForEach刷新对应的子组件。
 - 容器组件内使用LazyForEach的时候，只能包含一个LazyForEach。以List为例，同时包含ListItem、ForEach、LazyForEach的情形是不推荐的；同时包含多个LazyForEach也是不推荐的。
 - LazyForEach在每次迭代中，必须创建且只允许创建一个子组件；即LazyForEach的子组件生成函数有且只有一个根组件。
@@ -1816,6 +1816,83 @@ LazyForEach(this.data, (item: string) => {
 
 定义键值生成函数后，点击按钮更新数据，组件刷新。  
 ![LazyForEach-Refresh-Not-Expected-Repair](./figures/LazyForEach-Refresh-Not-Expected-Repair.gif)
+
+### 懒加载失效
+
+支持数据懒加载的父组件基于自身和子组件的高度或宽度计算可视范围内应布局的子节点数量，高度或宽度的缺失会导致部分场景懒加载失效。如下示例，在纵向布局中，首次渲染时子组件的高度缺失，所有数据项对应组件都会被创建。
+
+```ts
+/** BasicDataSource代码见文档末尾BasicDataSource示例代码: string类型数组的BasicDataSource代码 **/
+
+class MyDataSource extends BasicDataSource {
+  public dataArray: string[] = [];
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  public getData(index: number): string {
+    return this.dataArray[index];
+  }
+
+  public pushData(data: string): void {
+    this.dataArray.push(data);
+    this.notifyDataAdd(this.dataArray.length - 1);
+  }
+}
+
+@Entry
+@Component
+struct MyComponent {
+  private data: MyDataSource = new MyDataSource();
+
+  aboutToAppear() {
+    for (let i = 0; i <= 100; i++) {
+      this.data.pushData(``);
+    }
+  }
+
+  build() {
+    List() {
+      LazyForEach(this.data, (item: string, index: number) => {
+        ChildComponent({ message: item, index: index })
+          // 子组件未设置默认高度，首次渲染时所有数据项对应组件都被创建
+          // .height(60)
+      }, (item: string, index: number) => item + index)
+    }
+    .cachedCount(2)
+  }
+}
+
+@Component
+struct ChildComponent {
+  message: string = ``;
+  index: number = -1;
+
+  aboutToAppear(): void {
+    console.log(`about to appear ${this.index}`);
+  }
+
+  build() {
+    Text(this.message).fontSize(50)
+  }
+}
+```
+
+上述示例由于子组件`ChildComponent`的变量`message`初始值为空字符串，导致其内部的`Text`组件高度为 0，同时子组件未显式设置默认高度（如`.height(60)`），因此在首次渲染时所有子组件的高度均被计算为0。父组件`List`在基于高度计算可视范围时，判断所有子组件均位于可视区域内，导致懒加载机制失效，最终触发了全部数据项对应组件的创建（可通过日志观察到所有`about to appear`打印）。
+
+为子组件设置默认高度，确保父组件能正确计算可视范围，从而恢复此场景下懒加载功能。
+
+```ts
+List() {
+  LazyForEach(this.data, (item: string, index: number) => {
+    ChildComponent({ message: item, index: index })
+      // 设置子组件默认高度，首次渲染懒加载生效
+      .height(60)
+  }, (item: string, index: number) => item + index)
+}
+.cachedCount(2)
+```
 
 ## BasicDataSource示例代码
 

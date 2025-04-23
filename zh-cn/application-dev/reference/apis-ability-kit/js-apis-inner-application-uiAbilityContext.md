@@ -2871,8 +2871,8 @@ revokeDelegator() : Promise&lt;void&gt;
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 | 16000065 | The API can be called only when the ability is running in the foreground. |
-| 16000084 | The context does not belong to HookAbility; multiple calls are invoked. |
-| 16000085 | Failed to cancel the hook of the window module. |
+| 16000084 | Only allow DelegatorAbility to call the method once. |
+| 16000085 | The interaction process between Ability and Window encountered an error. |
 
 **示例**：
 

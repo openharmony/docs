@@ -5,7 +5,7 @@
 
 为nfc服务提供统一的访问nfc驱动的接口。
 
-通过ConnectedNfcTag服务获取到ConnectedNFCTag驱动对象或者代理提供的API访问ConnectedNFCTag设备，这些API包含可以初始化或者去初始化ConnectedNfcTag驱动，往NFC卡中读写Ndef内容。
+通过ConnectedNfcTag服务获取到ConnectedNfcTag驱动对象或者代理提供的API访问ConnectedNfcTag设备，这些API包含可以初始化或者去初始化ConnectedNfcTag驱动，往NFC卡中读写Ndef内容。
 
 **起始版本：** 3.2
 

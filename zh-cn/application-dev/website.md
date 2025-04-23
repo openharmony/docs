@@ -206,7 +206,8 @@
         - [Uniform Type Descriptor(UTD)预置类型列表](database/uniform-data-type-list.md)
       - 应用数据持久化<!--app-data-persistence-->
         - [应用数据持久化概述](database/app-data-persistence-overview.md)
-        - [通过用户首选项实现数据持久化](database/data-persistence-by-preferences.md)
+        - [通过用户首选项实现数据持久化 (ArkTS)](database/data-persistence-by-preferences.md)
+        - [通过用户首选项实现数据持久化 (C/C++)](database/preferences-guidelines.md)
         - [通过键值型数据库实现数据持久化](database/data-persistence-by-kv-store.md)
         - [通过关系型数据库实现数据持久化](database/data-persistence-by-rdb-store.md)
         - [通过向量数据库实现数据持久化 (ArkTS)](database/data-persistence-by-vector-store.md)
@@ -239,7 +240,6 @@
         - [应用数据向量化](database/aip-data-intelligence-embedding.md)
       - [RelationalStore开发指导 (C/C++)](database/native-relational-store-guidelines.md)
       - [UDMF开发指导 (C/C++)](database/native-unified-data-management-framework-guidelines.md)
-      - [通过用户首选项实现数据持久化 (C/C++)](database/preferences-guidelines.md)
     - ArkTS（方舟编程语言）<!--arkts-->
       - [ArkTS简介](arkts-utils/arkts-overview.md)
       - ArkTS基础类库<!--arkts-utils-->
@@ -544,7 +544,7 @@
             - [绑定手势事件](ui/ndk-bind-gesture-events.md)
             - [拖拽事件](ui/ndk-drag-event.md)
           - [使用动画](ui/ndk-use-animation.md)
-          - [使用懒加载开发长列表界面](ui/ndk-loading-long-list.md)
+          - [使用列表](ui/ndk-loading-long-list.md)
           - [构建弹窗](ui/ndk-build-pop-up-window.md)
           - [构建自定义组件](ui/ndk-build-custom-components.md)
           - [嵌入ArkTS组件](ui/ndk-embed-arkts-components.md)
@@ -696,8 +696,8 @@
         - [使用crashpad收集Web组件崩溃信息](web/web-crashpad.md)
     - Background Tasks Kit（后台任务开发服务）<!--background-task-kit-->
       <!--Del-->
-      - 后台任务管理
-      <!--DelEnd-->
+      - 后台任务管理 <!--background-task-management--><!--DelEnd-->
+
         - [后台任务总体概述](task-management/background-task-overview.md)
         - [短时任务(ArkTS)](task-management/transient-task.md)
         - [短时任务(C/C++)](task-management/native-transient-task.md)
@@ -2961,7 +2961,7 @@
           - [Native Accessibility](reference/apis-arkui/arkui_native_interface_accessibility.md)
           - [Native XComponent](reference/apis-arkui/_o_h___native_x_component.md)
           - [ArkUI_EventModule](reference/apis-arkui/_ark_u_i___event_module.md)
-          - [WindowManager_NativeModule](reference/apis-arkui/_window_manager___native_module.md)
+          - [WindowManager](reference/apis-arkui/_window_manager___native_module.md)
           - [OH_DisplayManager](reference/apis-arkui/_o_h___display_manager.md)
         - 头文件<!--arkui-headerfile-->
           - [drag_and_drop.h](reference/apis-arkui/drag__and__drop_8h.md)

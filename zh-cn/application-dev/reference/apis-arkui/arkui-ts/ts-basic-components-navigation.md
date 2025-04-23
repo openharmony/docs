@@ -72,7 +72,7 @@ title(value: ResourceStr | CustomBuilder | NavigationCommonTitle | NavigationCus
 
 ### menus
 
-menus(items: Array&lt;NavigationMenuItem&gt; | CustomBuilder, options?: NavigationMenuOptions)
+menus(value: Array&lt;NavigationMenuItem&gt; | CustomBuilder)
 
 > **说明：**
 >
@@ -89,8 +89,29 @@ menus(items: Array&lt;NavigationMenuItem&gt; | CustomBuilder, options?: Navigati
 
 | 参数名 | 类型                                                         | 必填 | 说明             |
 | ------ | ------------------------------------------------------------ | ---- | ---------------- |
+| value  | Array<[NavigationMenuItem](#navigationmenuitem)&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 页面右上角菜单。 |
+
+### menus<sup>18+</sup>
+
+menus(items: Array&lt;NavigationMenuItem&gt; | CustomBuilder, options?: NavigationMenuOptions)
+
+> **说明：**
+>
+> 不支持通过SymbolGlyphModifier对象的fontSize属性修改图标大小、effectStrategy属性修改动效、symbolEffect属性修改动效类型。
+
+
+设置页面右上角菜单。不设置时不显示菜单项。与[menus](#menus)相比，新增菜单选项。使用Array<[NavigationMenuItem](#navigationmenuitem)&gt; 写法时，竖屏最多支持显示3个图标，横屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明             |
+| ------ | ------------------------------------------------------------ | ---- | ---------------- |
 | items  | Array<[NavigationMenuItem](#navigationmenuitem)&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 页面右上角菜单。 |
-| options<sup>18+</sup> | [NavigationMenuOptions](#navigationmenuoptions18) | 否   | 页面右上角菜单选项。 |
+| options | [NavigationMenuOptions](#navigationmenuoptions18) | 否   | 页面右上角菜单选项。 |
 
 ### titleMode
 
@@ -144,7 +165,7 @@ hideToolBar(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 是否隐藏工具栏。<br/>默认值：false。<br/>true: 隐藏工具栏。<br/>false: 显示工具栏。 |
+| value  | boolean | 是   | 是否隐藏工具栏。<br/>默认值：false。<br/>true：隐藏工具栏。<br/>false：显示工具栏。 |
 
 ### hideToolBar<sup>13+</sup>
 
@@ -160,8 +181,8 @@ hideToolBar(hide: boolean, animated: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| hide  | boolean | 是   | 是否隐藏工具栏。<br/>默认值：false。<br/>true: 隐藏工具栏。<br/>false: 显示工具栏。 |
-| animated  | boolean | 是   | 设置是否使用动画显隐工具栏。<br/>默认值：false。<br/>true: 使用动画显示隐藏工具栏。<br/>false: 不使用动画显示隐藏工具栏。 |
+| hide  | boolean | 是   | 是否隐藏工具栏。<br/>默认值：false。<br/>true：隐藏工具栏。<br/>false：显示工具栏。 |
+| animated  | boolean | 是   | 设置是否使用动画显隐工具栏。<br/>默认值：false。<br/>true：使用动画显示隐藏工具栏。<br/>false：不使用动画显示隐藏工具栏。 |
 
 ### hideTitleBar
 
@@ -177,7 +198,7 @@ hideTitleBar(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 是否隐藏标题栏。<br/>默认值：false。<br/>true: 隐藏标题栏。<br/>false: 显示标题栏。 |
+| value  | boolean | 是   | 是否隐藏标题栏。<br/>默认值：false。<br/>true：隐藏标题栏。<br/>false：显示标题栏。 |
 
 ### hideTitleBar<sup>13+</sup>
 
@@ -193,8 +214,8 @@ hideTitleBar(hide: boolean, animated: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| hide  | boolean | 是   | 是否隐藏标题栏。<br/>默认值：false。<br/>true: 隐藏标题栏。<br/>false: 显示标题栏。 |
-| animated  | boolean | 是   | 设置是否使用动画显隐标题栏。<br/>默认值：false。<br/>true: 使用动画显示隐藏标题栏。<br/>false: 不使用动画显示隐藏标题栏。 |
+| hide  | boolean | 是   | 是否隐藏标题栏。<br/>默认值：false。<br/>true：隐藏标题栏。<br/>false：显示标题栏。 |
+| animated  | boolean | 是   | 设置是否使用动画显隐标题栏。<br/>默认值：false。<br/>true：使用动画显示隐藏标题栏。<br/>false：不使用动画显示隐藏标题栏。 |
 
 ### hideBackButton
 
@@ -210,7 +231,7 @@ hideBackButton(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 是否隐藏标题栏中的返回键。 <br/>默认值：false。<br/>true: 隐藏返回键。<br/>false: 显示返回键。 |
+| value  | boolean | 是   | 是否隐藏标题栏中的返回键。 <br/>默认值：false。<br/>true：隐藏返回键。<br/>false：显示返回键。 |
 
 ### navBarWidth<sup>9+</sup>
 
@@ -321,7 +342,7 @@ hideNavBar(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| value  | boolean | 是   | 是否隐藏导航栏。<br/>默认值：false。 <br/>true: 隐藏导航栏。<br/>false: 显示导航栏。|
+| value  | boolean | 是   | 是否隐藏导航栏。<br/>默认值：false。 <br/>true：隐藏导航栏。<br/>false：显示导航栏。|
 
 ### navDestination<sup>10+</sup>
 
@@ -397,8 +418,8 @@ ignoreLayoutSafeArea(types?: Array&lt;LayoutSafeAreaType&gt;, edges?: Array&lt;L
 
 | 参数名 | 类型                                               | 必填 | 说明                                                         |
 | ------ | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| types  | Array <[LayoutSafeAreaType](ts-types.md#layoutsafeareatype12)> | 否   | 配置扩展安全区域的类型。<br />默认值: <br />[LayoutSafeAreaType.SYSTEM] |
-| edges  | Array <[LayoutSafeAreaEdge](ts-types.md#layoutsafeareaedge12)> | 否   | 配置扩展安全区域的方向。<br /> 默认值: <br />[LayoutSafeAreaEdge.TOP, LayoutSafeAreaEdge.BOTTOM]。|
+| types  | Array <[LayoutSafeAreaType](ts-types.md#layoutsafeareatype12)> | 否   | 配置扩展安全区域的类型。<br />默认值：<br />[LayoutSafeAreaType.SYSTEM] |
+| edges  | Array <[LayoutSafeAreaEdge](ts-types.md#layoutsafeareaedge12)> | 否   | 配置扩展安全区域的方向。<br /> 默认值：<br />[LayoutSafeAreaEdge.TOP, LayoutSafeAreaEdge.BOTTOM]。|
 
 >  **说明：**
 >   
@@ -447,7 +468,7 @@ recoverable(recoverable: Optional&lt;boolean&gt;)
 
 | 参数名 | 类型         | 必填 | 说明               |
 | ------ | -------------- | ---- | ------------------ |
-| recoverable  | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;boolean&gt; | 是   | Navigation是否可恢复，默认为不可恢复。<br/>默认值:false。<br/>true:页面栈可恢复。<br/>false:页面栈不可恢复。|
+| recoverable  | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;boolean&gt; | 是   | Navigation是否可恢复，默认为不可恢复。<br/>默认值：false。<br/>true：页面栈可恢复。<br/>false：页面栈不可恢复。|
 
 >  **使用说明：**
 >
@@ -469,7 +490,7 @@ enableDragBar(isEnabled: Optional&lt;boolean&gt;)
 
 | 参数名 | 类型         | 必填 | 说明               |
 | ------ | -------------- | ---- | ------------------ |
-| isEnabled  | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;boolean&gt; | 是   | 是否开启拖拽条，默认为无拖拽条样式。<br/>默认值:false。<br/>true:有拖拽条样式。<br/>false:无拖拽条样式。|
+| isEnabled  | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;boolean&gt; | 是   | 是否开启拖拽条，默认为无拖拽条样式。<br/>默认值：false。<br/>true：有拖拽条样式。<br/>false：无拖拽条样式。|
 
 ### enableModeChangeAnimation<sup>15+</sup>
 
@@ -485,7 +506,7 @@ enableModeChangeAnimation(isEnabled: Optional&lt;boolean&gt;)
 
 | 参数名 | 类型         | 必填 | 说明               |
 | ------ | -------------- | ---- | ------------------ |
-| isEnabled  | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;boolean&gt; | 是   | 是否开启单双栏切换动效。<br/>默认值:true。<br/>true: 开启单双栏切换动效。<br/>false: 关闭单双栏切换动效。|
+| isEnabled  | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;boolean&gt; | 是   | 是否开启单双栏切换动效。<br/>默认值：true。<br/>true：开启单双栏切换动效。<br/>false：关闭单双栏切换动效。|
 
 ### enableToolBarAdaptation<sup>18+</sup>
 
@@ -501,7 +522,7 @@ enableToolBarAdaptation(enable: Optional&lt;boolean&gt;)
 
 | 参数名 | 类型         | 必填 | 说明               |
 | ------ | -------------- | ---- | ------------------ |
-| enable  | Optional&lt;boolean&gt; | 是   |是否启用Navigation和NavDestination的工具栏自适应能力。默认值：true。 <br/>true: 启用Navigation和NavDestination的工具栏自适应能力。<br/>false: 不启用Navigation和NavDestination的工具栏自适应能力。 |
+| enable  | Optional&lt;boolean&gt; | 是   |是否启用Navigation和NavDestination的工具栏自适应能力。默认值：true。 <br/>true：启用Navigation和NavDestination的工具栏自适应能力。<br/>false：不启用Navigation和NavDestination的工具栏自适应能力。 |
 
 ### subTitle<sup>(deprecated)</sup>
 
@@ -591,7 +612,7 @@ onNavigationModeChange(callback: (mode: NavigationMode) =&gt; void)
 
 | 参数名    | 类型    | 必填 | 说明                                           |
 | --------- | ------- | ---- | ---------------------------------------------- |
-| mode | [NavigationMode](#navigationmode9枚举说明) | 是   | NavigationMode.Split: 当前Navigation显示为双栏;<br/>NavigationMode.Stack: 当前Navigation显示为单栏。|
+| mode | [NavigationMode](#navigationmode9枚举说明) | 是   | NavigationMode.Split：当前Navigation显示为双栏;<br/>NavigationMode.Stack：当前Navigation显示为单栏。|
 
 ### customNavContentTransition<sup>11+</sup>
 
@@ -653,7 +674,7 @@ pushPath(info: NavPathInfo, animated?: boolean): void
 | 参数名   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | NavDestination页面的信息。 |
-| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true:支持转场动画。<br/>false:不支持转场动画。 |
+| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 ### pushPath<sup>12+</sup>
 
@@ -688,7 +709,7 @@ pushPathByName(name: string, param: unknown, animated?: boolean): void
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | unknown | 是    | 开发者设置的NavDestination页面详细参数。 |
-| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true:支持转场动画。<br/>false:不支持转场动画。 |
+| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 ### pushPathByName<sup>11+</sup>
 
@@ -707,7 +728,7 @@ pushPathByName(name: string, param: Object, onPop: Callback\<PopInfo>, animated?
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | Object | 是    | 开发者设置的NavDestination页面详细参数。 |
 | onPop | Callback\<[PopInfo](#popinfo11)> | 是 | Callback回调，用于页面出栈时触发该回调处理返回结果。仅[pop](#pop11)、[popToName](#poptoname11)、[popToIndex](#poptoindex11)中设置result参数后触发。 |
-| animated | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true:支持转场动画。<br/>false:不支持转场动画。 |
+| animated | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 ### pushDestination<sup>11+</sup>
 
@@ -724,7 +745,7 @@ pushDestination(info: NavPathInfo, animated?: boolean): Promise&lt;void&gt;
 | 参数名   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | NavDestination页面的信息。 |
-| animated | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true:支持转场动画。<br/>false:不支持转场动画。 |
+| animated | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 **返回值：**
 
@@ -793,7 +814,7 @@ pushDestinationByName(name: string, param: Object, animated?: boolean): Promise&
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | Object | 是    | 开发者设置的NavDestination页面详细参数。 |
-| animated | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true:支持转场动画。<br/>false:不支持转场动画。 |
+| animated | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 **返回值：**
 
@@ -829,7 +850,7 @@ pushDestinationByName(name: string, param: Object, onPop: Callback\<PopInfo>, an
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | Object | 是    | 开发者设置的NavDestination页面详细参数。 |
 | onPop | Callback\<[PopInfo](#popinfo11)> | 是    | Callback回调，用于页面出栈时处理返回结果。仅[pop]#pop11中设置result参数后触发。 |
-| animated | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true:支持转场动画。<br/>false:不支持转场动画。 |
+| animated | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 **返回值：**
 
@@ -863,7 +884,7 @@ replacePath(info: NavPathInfo, animated?: boolean): void
 | 参数名   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | 新栈顶页面参数信息。 |
-| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true:支持转场动画。<br/>false:不支持转场动画。 |
+| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 ### replacePath<sup>12+</sup>
 
@@ -898,7 +919,7 @@ replacePathByName(name: string, param: Object, animated?: boolean): void
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | Object | 是    | 开发者设置的NavDestination页面详细参数。 |
-| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true:支持转场动画。<br/>false:不支持转场动画。 |
+| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 ### replaceDestination<sup>18+</sup>
 
@@ -998,7 +1019,7 @@ removeByNavDestinationId(navDestinationId: string): boolean
 
 | 类型          | 说明                       |
 | ----------- | ------------------------ |
-| boolean | 返回是否成功删除该页面，<br/>true:删除成功。<br/>false:删除失败。 |
+| boolean | 返回是否成功删除该页面，<br/>true：删除成功。<br/>false：删除失败。 |
 
 ### pop<sup>10+</sup>
 
@@ -1014,7 +1035,7 @@ pop(animated?: boolean): NavPathInfo | undefined
 
 | 参数名   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
-| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true:支持转场动画。<br/>false:不支持转场动画。 |
+| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 **返回值：**
 
@@ -1038,7 +1059,7 @@ pop(result: Object, animated?: boolean): NavPathInfo | undefined
 | 参数名   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | result | Object | 是 | 页面自定义处理结果。不支持boolean类型。 |
-| animated | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true:支持转场动画。<br/>false:不支持转场动画。 |
+| animated | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 **返回值：**
 
@@ -1062,7 +1083,7 @@ popToName(name: string, animated?: boolean): number
 | 参数名   | 类型     | 必填   | 说明                  |
 | ---- | ------ | ---- | ------------------- |
 | name | string | 是    | NavDestination页面名称。 |
-| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true:支持转场动画。<br/>false:不支持转场动画。 |
+| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 **返回值：**
 
@@ -1086,7 +1107,7 @@ popToName(name: string, result: Object, animated?: boolean): number
 | ---- | ------ | ---- | ------------------- |
 | name | string | 是    | NavDestination页面名称。 |
 | result | Object | 是 | 页面自定义处理结果。不支持boolean类型。 |
-| animated | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true:支持转场动画。<br/>false:不支持转场动画。 |
+| animated | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 **返回值：**
 
@@ -1109,7 +1130,7 @@ popToIndex(index: number, animated?: boolean): void
 | 参数名    | 类型     | 必填   | 说明                     |
 | ----- | ------ | ---- | ---------------------- |
 | index | number | 是    | NavDestination页面的位置索引。索引值从0开始。 |
-| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true:支持转场动画。<br/>false:不支持转场动画。 |
+| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 ### popToIndex<sup>11+</sup>
 
@@ -1127,7 +1148,7 @@ popToIndex(index: number, result: Object, animated?: boolean): void
 | ----- | ------ | ---- | ---------------------- |
 | index | number | 是    | NavDestination页面的位置索引。索引值从0开始。 |
 | result | Object | 是 | 页面自定义处理结果。不支持boolean类型。 |
-| animated | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true:支持转场动画。<br/>false:不支持转场动画。 |
+| animated | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 ### moveToTop<sup>10+</sup>
 
@@ -1144,7 +1165,7 @@ moveToTop(name: string, animated?: boolean): number
 | 参数名   | 类型     | 必填   | 说明                  |
 | ---- | ------ | ---- | ------------------- |
 | name | string | 是    | NavDestination页面名称。 |
-| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true:支持转场动画。<br/>false:不支持转场动画。 |
+| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 **返回值：**
 
@@ -1167,7 +1188,7 @@ moveIndexToTop(index: number, animated?: boolean): void
 | 参数名    | 类型     | 必填   | 说明                     |
 | ----- | ------ | ---- | ---------------------- |
 | index | number | 是    | NavDestination页面的位置索引。索引值从0开始。|
-| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true:支持转场动画。<br/>false:不支持转场动画。|
+| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true：支持转场动画。<br/>false：不支持转场动画。|
 
 ### clear<sup>10+</sup>
 
@@ -1183,7 +1204,7 @@ clear(animated?: boolean): void
 
 | 参数名    | 类型     | 必填   | 说明                     |
 | ----- | ------ | ---- | ---------------------- |
-| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true:支持转场动画。<br/>false:不支持转场动画。 |
+| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 ### getAllPathName<sup>10+</sup>
 
@@ -1298,7 +1319,7 @@ disableAnimation(value: boolean): void
 
 | 参数名    | 类型     | 必填   | 说明                    |
 | ----- | ------ | ---- | ---------------------- |
-| value | boolean | 是   | 是否关闭转场动画，<br/>默认值：false。<br/>true:关闭转场动画。<br/>false:不关闭转场动画。 |
+| value | boolean | 是   | 是否关闭转场动画，<br/>默认值：false。<br/>true：关闭转场动画。<br/>false：不关闭转场动画。 |
 
 ### getParent<sup>11+</sup>
 
@@ -1363,7 +1384,7 @@ setPathStack(pathStack: Array\<NavPathInfo\>, animated?: boolean): void
 | 参数名    | 类型     | 必填   | 说明                     |
 | ---- | ---- | --- | ---|
 |pathStack| Array\<[NavPathInfo](#navpathinfo10)\>| 是 | 设置当前路由栈中的路由页面信息数组。|
-|animated| boolean | 否 | 是否开启转场动画。 <br /> 默认值：true。<br/>true:开启转场动画。<br/>false:不开启转场动画。|
+|animated| boolean | 否 | 是否开启转场动画。 <br /> 默认值：true。<br/>true：开启转场动画。<br/>false：不开启转场动画。|
 
 >  **说明：**
 >
@@ -1390,7 +1411,7 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>, isEntry?: 
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | unknown | 是    | 开发者设置的NavDestination页面详细参数。 |
 | onPop<sup>11+</sup> | Callback\<[PopInfo](#popinfo11)> | 否 | NavDestination页面触发[pop](#pop11)、[popToName](#poptoname11)、[popToIndex](#poptoindex11)时返回的回调。仅[pop](#pop11)、[popToName](#poptoname11)、[popToIndex](#poptoindex11)中设置result参数后触发。 |
-| isEntry<sup>12+</sup> | boolean | 否 | 标记NavDestination是否为入口页面。<br/>默认值：false。<br/>true:NavDestination是入口页面。<br/>false:NavDestination不是入口页面。 <br/>标记清理时机：1、在当前navDestination页面触发一次全局返回事件。2、应用退至后台。<br/>**说明**：<br/>入口NavDestination不响应应用内的全局back事件，直接触发应用间的全局back事件。 |
+| isEntry<sup>12+</sup> | boolean | 否 | 标记NavDestination是否为入口页面。<br/>默认值：false。<br/>true：NavDestination是入口页面。<br/>false：NavDestination不是入口页面。 <br/>标记清理时机：1、在当前navDestination页面触发一次全局返回事件。2、应用退至后台。<br/>**说明**：<br/>入口NavDestination不响应应用内的全局back事件，直接触发应用间的全局back事件。 |
 
 ### 属性
 
@@ -1403,7 +1424,7 @@ NavPathInfo参数信息。
 | name  | string  | 是    | NavDestination页面名称。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | param | unknown | 否    | 开发者设置的NavDestination页面详细参数。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | onPop<sup>11+</sup> | Callback\<[PopInfo](#popinfo11)> | 否 | NavDestination页面触发[pop](#pop11)、[popToName](#poptoname11)、[popToIndex](#poptoindex11)时返回的回调。仅[pop](#pop11)、[popToName](#poptoname11)、[popToIndex](#poptoindex11)中设置result参数后触发。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| isEntry<sup>12+</sup> | boolean | 否 | 标记NavDestination是否为入口页面。<br/>默认值：false。<br/>true:NavDestination是入口页面。<br/>false:NavDestination不是入口页面。 <br/>标记清理时机：1、在当前navDestination页面触发一次全局back事件。2、应用退至后台。<br/>**说明**：<br/>入口NavDestination不响应应用内的全局back事件，直接触发应用间的全局back事件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| isEntry<sup>12+</sup> | boolean | 否 | 标记NavDestination是否为入口页面。<br/>默认值：false。<br/>true：NavDestination是入口页面。<br/>false：NavDestination不是入口页面。 <br/>标记清理时机：1、在当前navDestination页面触发一次全局back事件。2、应用退至后台。<br/>**说明**：<br/>入口NavDestination不响应应用内的全局back事件，直接触发应用间的全局back事件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | navDestinationId<sup>18+</sup>  | string  | 否    | NavDestination页面唯一标识符，该id由系统默认生成且全局唯一，通过[getPathStack](#getpathstack18)接口可读取，但不可以主动赋新值。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。   |
 
 ## PopInfo<sup>11+</sup>
@@ -1446,9 +1467,9 @@ NavPathInfo参数信息。
 | 名称 | 类型 | 必填 | 说明 |
 |------|-----|-----|------|
 | timeout | number | 否 | 动画超时结束时间。<br> 单位：ms。<br/>取值范围：[0, +∞)。<br> 默认值：可交互动画无默认值，不可交互动画默认超时时间为1000ms。|
-| transition | (transitionProxy : [NavigationTransitionProxy](#navigationtransitionproxy-11)) =&gt; void | 是 | 自定义转场动画执行回调。<br> transitionProxy: 自定义转场动画代理对象。|
-| onTransitionEnd | (success: boolean)&nbsp;=>&nbsp;void | 否 | 转场完成回调。<br> success: 转场是否成功。 |
-| isInteractive<sup>12+</sup> | boolean | 否 | 本次转场动画是否为可交互转场。<br> 默认值：false。<br/>true:本次转场动画是可交互转场。<br/>false:本次转场动画不是可交互转场。|
+| transition | (transitionProxy：[NavigationTransitionProxy](#navigationtransitionproxy-11)) =&gt; void | 是 | 自定义转场动画执行回调。<br> transitionProxy：自定义转场动画代理对象。|
+| onTransitionEnd | (success: boolean)&nbsp;=>&nbsp;void | 否 | 转场完成回调。<br> success：转场是否成功。 |
+| isInteractive<sup>12+</sup> | boolean | 否 | 本次转场动画是否为可交互转场。<br> 默认值：false。<br/>true：本次转场动画是可交互转场。<br/>false：本次转场动画不是可交互转场。|
 
 ## NavigationTransitionProxy <sup>11+</sup>
 
@@ -1468,7 +1489,7 @@ NavigationTransitionProxy参数信息。
 |------|-------|-----|-------|
 | from | [NavContentInfo](#navcontentinfo11) | 是 | 退场页面信息。|
 | to | [NavContentInfo](#navcontentinfo11) | 是 | 进场页面信息。|
-| isInteractive<sup>12+</sup> | boolean | 否 | 是否为可交互转场动画。<br/>true:本次转场动画是可交互转场。<br/>false:本次转场动画不是可交互转场。|
+| isInteractive<sup>12+</sup> | boolean | 否 | 是否为可交互转场动画。<br/>true：本次转场动画是可交互转场。<br/>false：本次转场动画不是可交互转场。|
 
 ### finishTransition
 
@@ -1535,7 +1556,7 @@ navigation页面跳转前和页面跳转后的拦截回调。
 | from | [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11) \|[NavBar](#navbar12) | 是 |  页面跳转之前的栈顶页面信息。参数值为navBar，则表示跳转前的页面为Navigation首页。 |
 | to | [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11) \|[NavBar](#navbar12) | 是 | 页面跳转之后的栈顶页面信息。参数值为navBar，则表示跳转的目标页面为Navigation首页。 |
 | operation | [NavigationOperation](#navigationoperation11枚举说明) | 是 | 当前页面跳转类型。 |
-| isAnimated | boolean | 是 | 页面跳转是否有动画。<br/>true:页面跳转有动画。<br/>false:页面跳转没有动画。 |
+| isAnimated | boolean | 是 | 页面跳转是否有动画。<br/>true：页面跳转有动画。<br/>false：页面跳转没有动画。 |
 
 ### InterceptionModeCallback<sup>12+</sup>
 
@@ -1573,7 +1594,7 @@ Navigation首页名字。
 
 | 名称     | 类型            | 必填   | 说明              |
 | ------ | ------------- | ---- | --------------- |
-| value  | string \| [Resource<sup>14+<sup>](ts-types.md#resource)       | 是    | API Version 9: 显示菜单栏单个选项的文本。<br> 从API Version 10开始，不显示菜单栏单个选项的文本。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| value  | string \| [Resource<sup>14+<sup>](ts-types.md#resource)       | 是    | API Version 9：显示菜单栏单个选项的文本。<br> 从API Version 10开始，不显示菜单栏单个选项的文本。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | icon   | string \| [Resource<sup>14+<sup>](ts-types.md#resource)       | 否    | 菜单栏单个选项的图标资源路径。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | isEnabled<sup>12+</sup>   | boolean        | 否    | 使能状态，默认使能（false未使能，true使能）。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | action | () =&gt; void | 否    | 当前选项被选中的事件回调。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -1714,14 +1735,14 @@ Navigation自定义标题。
 | ------ | ------------- | ---- | --------------- |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 标题栏背景颜色，不设置时为系统默认颜色。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | backgroundBlurStyle   | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)        | 否    | 标题栏背景模糊样式，不设置时关闭背景模糊效果。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| backgroundBlurStyleOptions<sup>18+</sup>   | [BackgroundBlurStyleOptions](ts-universal-attributes-background.md#backgroundblurstyleoptions10对象说明)        | 否    | 标题栏背景模糊选项。<br/>**说明：** <br/>只在设置了backgroundBlurStyle时生效。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
-| backgroundEffect<sup>18+</sup>   | [BackgroundEffectOptions](ts-universal-attributes-background.md#backgroundeffectoptions11)        | 否    | 设置标题栏背景属性包括：模糊半径，亮度，饱和度，颜色等。<br/>**说明：** <br/>与backgroundBlurStyleOptions同时设置时，只有backgroundEffect生效。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| backgroundBlurStyleOptions<sup>18+</sup>   | [BackgroundBlurStyleOptions](ts-universal-attributes-background.md#backgroundblurstyleoptions10对象说明)        | 否    | 标题栏背景模糊选项。<br/>**说明：** <br/>只在设置了backgroundBlurStyle时生效。<br/>不建议与backgroundEffect同时使用。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| backgroundEffect<sup>18+</sup>   | [BackgroundEffectOptions](ts-universal-attributes-background.md#backgroundeffectoptions11)        | 否    | 设置标题栏背景属性包括：模糊半径，亮度，饱和度，颜色等。<br/>**说明：** <br/>不建议与backgroundBlurStyleOptions同时使用。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | barStyle<sup>12+</sup>   | [BarStyle](#barstyle12枚举说明)        | 否    | 设置标题栏布局方式。<br/>默认值：BarStyle.STANDARD<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| paddingStart<sup>12+</sup>   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)        | 否    | 标题栏起始端内间距。<br/>仅支持以下任一场景:<br/>1. 显示返回图标，即[hideBackButton](#hidebackbutton)为false；<br/>2. 使用非自定义标题，即[标题value](#title)类型为ResourceStr或NavigationCommonTitle。<br/>默认值：<br/>LengthMetrics.resource(`$r('sys.float.margin_left')`)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| paddingEnd<sup>12+</sup>   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)        | 否    | 标题栏结束端内间距。<br/>仅支持以下任一场景:<br/>1. 使用非自定义菜单，即[菜单value](#menus)为Array&lt;NavigationMenuItem&gt;；<br/>2. 没有右上角菜单，且使用非自定义标题，即[标题value](#title)类型为ResourceStr或NavigationCommonTitle。<br/>默认值：<br/>LengthMetrics.resource(`$r('sys.float.margin_right')`)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| paddingStart<sup>12+</sup>   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)        | 否    | 标题栏起始端内间距。<br/>仅支持以下任一场景：<br/>1. 显示返回图标，即[hideBackButton](#hidebackbutton)为false；<br/>2. 使用非自定义标题，即[标题value](#title)类型为ResourceStr或NavigationCommonTitle。<br/>默认值：<br/>LengthMetrics.resource(`$r('sys.float.margin_left')`)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| paddingEnd<sup>12+</sup>   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)        | 否    | 标题栏结束端内间距。<br/>仅支持以下任一场景：<br/>1. 使用非自定义菜单，即[菜单value](#menus)为Array&lt;NavigationMenuItem&gt;；<br/>2. 没有右上角菜单，且使用非自定义标题，即[标题value](#title)类型为ResourceStr或NavigationCommonTitle。<br/>默认值：<br/>LengthMetrics.resource(`$r('sys.float.margin_right')`)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | mainTitleModifier<sup>13+</sup>   | [TextModifier](./ts-universal-attributes-attribute-modifier.md)  | 否 | 主标题属性修改器。<br/>1. 通过Modifier设置的属性会覆盖系统默认的属性（如果Modifier设置了fontSize, maxFontSize, minFontSize任一属性，则系统设置的大小相关属性不生效，以开发者的设置为准）；<br/>2. 不设该属性或者设置了异常值，则恢复系统默认设置；<br/>3. [Free](#navigationtitlemode枚举说明)模式下设置字体大小时，原有滑动改变标题大小的效果失效。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 | subTitleModifier<sup>13+</sup>   | [TextModifier](./ts-universal-attributes-attribute-modifier.md)  | 否 | 子标题属性修改器。<br/>1. 通过Modifier设置的属性会覆盖系统默认的属性（如果Modifier设置了fontSize, maxFontSize, minFontSize任一属性，则系统设置的大小相关属性不生效，以开发者的设置为准）；<br/>2. 不设该属性或者设置了异常值，则恢复系统默认设置。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
-| enableHoverMode<sup>13+</sup>   | boolean | 否 | 是否响应悬停态。<br/>使用规则：<br/>1. 需满足Navigation为全屏大小；<br/>2. 标题栏显示模式为[Free](#navigationtitlemode枚举说明)时或者标题栏布局方式为[STANDARD](#barstyle12枚举说明)时，此接口设置无效。<br/>默认值：false。<br/>true:响应悬停态。<br/>false:不响应悬停态。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
+| enableHoverMode<sup>13+</sup>   | boolean | 否 | 是否响应悬停态。<br/>使用规则：<br/>1. 需满足Navigation为全屏大小；<br/>2. 标题栏显示模式为[Free](#navigationtitlemode枚举说明)时或者标题栏布局方式为[STANDARD](#barstyle12枚举说明)时，此接口设置无效。<br/>默认值：false。<br/>true：响应悬停态。<br/>false：不响应悬停态。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 
 ## NavigationToolbarOptions<sup>11+</sup>
 
@@ -1733,10 +1754,10 @@ Navigation自定义标题。
 | ------ | ------------- | ---- | --------------- |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 工具栏背景颜色，不设置时为系统默认颜色。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | backgroundBlurStyle   | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)        | 否    | 工具栏背景模糊样式，不设置时关闭背景模糊效果。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| backgroundBlurStyleOptions<sup>18+</sup>   | [BackgroundBlurStyleOptions](ts-universal-attributes-background.md#backgroundblurstyleoptions10对象说明)        | 否    | 工具栏背景模糊选项。<br/>**说明：** <br/>只在设置了backgroundBlurStyle时生效。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
-| backgroundEffect<sup>18+</sup>   | [BackgroundEffectOptions](ts-universal-attributes-background.md#backgroundeffectoptions11)        | 否    | 设置工具栏背景属性包括：模糊半径，亮度，饱和度，颜色等。<br/>**说明：** <br/>与backgroundBlurStyleOptions同时设置时，只有backgroundEffect生效。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| backgroundBlurStyleOptions<sup>18+</sup>   | [BackgroundBlurStyleOptions](ts-universal-attributes-background.md#backgroundblurstyleoptions10对象说明)        | 否    | 工具栏背景模糊选项。<br/>**说明：** <br/>只在设置了backgroundBlurStyle时生效。<br/>不建议与backgroundEffect同时使用。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| backgroundEffect<sup>18+</sup>   | [BackgroundEffectOptions](ts-universal-attributes-background.md#backgroundeffectoptions11)        | 否    | 设置工具栏背景属性包括：模糊半径，亮度，饱和度，颜色等。<br/>**说明：** <br/>不建议与backgroundBlurStyleOptions同时使用。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | barStyle<sup>14+</sup>   | [BarStyle](#barstyle12枚举说明)        | 否    | 设置工具栏布局方式。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
-| hideItemValue<sup>18+</sup>   | boolean | 否    | 设置是否隐藏工具栏的文本，默认显示文本。<br/>默认值：false。<br/>true:隐藏工具栏的文本。<br/>false:不隐藏工具栏的文本。 |
+| hideItemValue<sup>18+</sup>   | boolean | 否    | 设置是否隐藏工具栏的文本，默认显示文本。<br/>默认值：false。<br/>true：隐藏工具栏的文本。<br/>false：不隐藏工具栏的文本。 |
 | moreButtonOptions<sup>18+</sup>   | [MoreButtonOptions](#morebuttonoptions18)        | 否    | 工具栏更多图标的菜单选项。 |
 
 ## NavigationMenuOptions<sup>18+</sup>
@@ -1777,7 +1798,7 @@ Navigation自定义标题。
 | 名称     | 类型            | 必填   | 说明              |
 | ------ | ------------- | ---- | --------------- |
 | launchMode | [LaunchMode](#launchmode12枚举说明)  | 否    | 页面栈的操作模式。<br/>默认值：LaunchMode.STANDARD |
-| animated   | boolean  | 否    | 是否支持转场动画。<br/>默认值：true。<br/>true:支持转场动画。<br/>false:不支持转场动画。|
+| animated   | boolean  | 否    | 是否支持转场动画。<br/>默认值：true。<br/>true：支持转场动画。<br/>false：不支持转场动画。|
 
 ## MoreButtonOptions<sup>18+</sup>
 
@@ -1790,8 +1811,8 @@ Navigation自定义标题。
 | 名称     | 类型            | 必填   | 说明              |
 | ------ | ------------- | ---- | --------------- |
 | backgroundBlurStyle   | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)        | 否    | 更多图标的菜单背景模糊样式，不设置时关闭背景模糊效果。 |
-| backgroundBlurStyleOptions   | [BackgroundBlurStyleOptions](ts-universal-attributes-background.md#backgroundblurstyleoptions10对象说明)        | 否    | 更多图标的菜单背景模糊选项。<br/>**说明：** <br/>只在设置了backgroundBlurStyle时生效。 |
-| backgroundEffect   | [BackgroundEffectOptions](ts-universal-attributes-background.md#backgroundeffectoptions11)        | 否    | 设置更多图标的菜单背景属性包括：模糊半径，亮度，饱和度，颜色等。<br/>**说明：** <br/>与backgroundBlurStyleOptions同时设置时，只有backgroundEffect生效。 |
+| backgroundBlurStyleOptions   | [BackgroundBlurStyleOptions](ts-universal-attributes-background.md#backgroundblurstyleoptions10对象说明)        | 否    | 更多图标的菜单背景模糊选项。<br/>**说明：** <br/>只在设置了backgroundBlurStyle时生效。<br/>不建议与backgroundEffect同时使用。 |
+| backgroundEffect   | [BackgroundEffectOptions](ts-universal-attributes-background.md#backgroundeffectoptions11)        | 否    | 设置更多图标的菜单背景属性包括：模糊半径，亮度，饱和度，颜色等。<br/>**说明：** <br/>不建议与backgroundBlurStyleOptions同时使用。 |
 
 ## SystemBarStyle<sup>12+</sup>
 
@@ -2255,7 +2276,7 @@ struct NavigationExample {
             if (toParam.start) {
               toParam.start(true, false);
             }
-            animateTo({
+            this.getUIContext()?.animateTo({
               duration: 500, onFinish: () => {
                 transitionProxy.finishTransition();
               }
@@ -2268,7 +2289,7 @@ struct NavigationExample {
             if (fromParam.start) {
               fromParam.start(true, true);
             }
-            animateTo({
+            this.getUIContext()?.animateTo({
               duration: 500, onFinish: () => {
                 transitionProxy.finishTransition();
               }
@@ -2322,7 +2343,7 @@ export struct PageOne {
     }, (operation: NavigationOperation) => {
       if (operation == NavigationOperation.PUSH) {
         this.translateX = '100%';
-        animateTo({
+        this.getUIContext()?.animateTo({
           duration: 1000,
           onFinish: () => {
             this.translateX = '0';
@@ -2332,7 +2353,7 @@ export struct PageOne {
         })
       } else {
         this.translateX = '0';
-        animateTo({
+        this.getUIContext()?.animateTo({
           duration: 1000,
           onFinish: () => {
             this.translateX = '0';
@@ -2433,7 +2454,7 @@ export struct PageTwo {
     }, (operation: NavigationOperation) => {
       if (operation == NavigationOperation.PUSH) {
         this.translateX = '100%';
-        animateTo({
+        this.getUIContext()?.animateTo({
           duration: 500, onFinish: () => {
             this.translateX = '0';
           }
@@ -2442,7 +2463,7 @@ export struct PageTwo {
         })
       } else {
         this.translateX = '0';
-        animateTo({
+        this.getUIContext()?.animateTo({
           duration: 500, onFinish: () => {
             this.translateX = "0"
           }
@@ -4088,7 +4109,7 @@ struct NavigationCustomTransitionExample {
               fromParam.start(true, true);
               toParam.start(true, false);
             }
-            animateTo({
+            this.getUIContext()?.animateTo({
               duration: 500, curve: Curve.Friction, onFinish: () => {
                 // 动画结束后需要手动调用finishTransition，否则在timeout时间后由系统调用
                 transitionProxy.finishTransition();
@@ -4108,7 +4129,7 @@ struct NavigationCustomTransitionExample {
               fromParam.start(false, true);
               toParam.start(false, false);
             }
-            animateTo({
+            this.getUIContext()?.animateTo({
               duration: 500, curve: Curve.Friction, onFinish: () => {
                 // 动画结束后需要手动调用finishTransition，否则在timeout时间后由系统调用
                 transitionProxy.finishTransition();

@@ -7547,10 +7547,9 @@ export function doSomething(context: UIContext, uniqueId: number, contentNode: C
 }
 
 @Builder
-
 function MyMenu() {
   Column() {
-    Menu(){
+    Menu() {
       MenuItem({ startIcon: $r("app.media.startIcon"), content: "菜单选项1" })
       MenuItem({ startIcon: $r("app.media.startIcon"), content: "菜单选项2" })
     }
@@ -7560,14 +7559,12 @@ function MyMenu() {
 }
 
 export function showMenu(context: UIContext, uniqueId: number, contentNode: ComponentContent<Object>) {
-
   const promptAction = context.getPromptAction();
   let frameNode: FrameNode | null = context.getFrameNodeByUniqueId(uniqueId);
   let frameNodeTarget = frameNode?.getFirstChild();
   frameNodeTarget = frameNodeTarget?.getChild(0);
   let targetId = frameNodeTarget?.getUniqueId();
-
-  promptAction.openMenu(contentNode, {id: targetId},{
+  promptAction.openMenu(contentNode, { id: targetId }, {
     enableArrow: true,
   });
 }
@@ -7576,7 +7573,7 @@ export function showMenu(context: UIContext, uniqueId: number, contentNode: Comp
 @Component
 struct Index {
   build() {
-    Column(){
+    Column() {
       Button('OpenMenu', { type: ButtonType.Normal, stateEffect: true })
         .borderRadius('16lpx')
         .width('80%')
@@ -7640,10 +7637,9 @@ export function doSomething(context: UIContext, uniqueId: number, contentNode: C
 }
 
 @Builder
-
 function MyMenu() {
   Column() {
-    Menu(){
+    Menu() {
       MenuItem({ startIcon: $r("app.media.startIcon"), content: "菜单选项1" })
       MenuItem({ startIcon: $r("app.media.startIcon"), content: "菜单选项2" })
     }
@@ -7653,17 +7649,14 @@ function MyMenu() {
 }
 
 export function showMenu(context: UIContext, uniqueId: number, contentNode: ComponentContent<Object>) {
-
   const promptAction = context.getPromptAction();
   let frameNode: FrameNode | null = context.getFrameNodeByUniqueId(uniqueId);
   let frameNodeTarget = frameNode?.getFirstChild();
   frameNodeTarget = frameNodeTarget?.getChild(0);
   let targetId = frameNodeTarget?.getUniqueId();
-
-  promptAction.openMenu(contentNode, {id: targetId},{
+  promptAction.openMenu(contentNode, { id: targetId }, {
     enableArrow: true,
   });
-
   setTimeout(() => {
     promptAction.updateMenu(contentNode, {
       enableArrow: false,
@@ -7675,7 +7668,7 @@ export function showMenu(context: UIContext, uniqueId: number, contentNode: Comp
 @Component
 struct Index {
   build() {
-    Column(){
+    Column() {
       Button('OpenMenu', { type: ButtonType.Normal, stateEffect: true })
         .borderRadius('16lpx')
         .width('80%')
@@ -7732,10 +7725,9 @@ export function doSomething(context: UIContext, uniqueId: number, contentNode: C
 }
 
 @Builder
-
 function MyMenu() {
   Column() {
-    Menu(){
+    Menu() {
       MenuItem({ startIcon: $r("app.media.startIcon"), content: "菜单选项1" })
       MenuItem({ startIcon: $r("app.media.startIcon"), content: "菜单选项2" })
     }
@@ -7745,17 +7737,14 @@ function MyMenu() {
 }
 
 export function showMenu(context: UIContext, uniqueId: number, contentNode: ComponentContent<Object>) {
-
   const promptAction = context.getPromptAction();
   let frameNode: FrameNode | null = context.getFrameNodeByUniqueId(uniqueId);
   let frameNodeTarget = frameNode?.getFirstChild();
   frameNodeTarget = frameNodeTarget?.getChild(0);
   let targetId = frameNodeTarget?.getUniqueId();
-
-  promptAction.openMenu(contentNode, {id: targetId},{
+  promptAction.openMenu(contentNode, { id: targetId }, {
     enableArrow: true,
   });
-
   setTimeout(() => {
     promptAction.closeMenu(contentNode);
   }, 2000)
@@ -7765,7 +7754,7 @@ export function showMenu(context: UIContext, uniqueId: number, contentNode: Comp
 @Component
 struct Index {
   build() {
-    Column(){
+    Column() {
       Button('OpenMenu', { type: ButtonType.Normal, stateEffect: true })
         .borderRadius('16lpx')
         .width('80%')
@@ -7846,7 +7835,7 @@ struct DragControllerPage {
                 extraParams:string = ''
               }
               let eve:tmp = new tmp()
-              dragController.executeDrag(()=>{this.DraggingBuilder()}, dragInfo, (err, eve) => {
+              this.getUIContext().getDragController().executeDrag(()=>{this.DraggingBuilder()}, dragInfo, (err, eve) => {
                 if(eve.event){
                   if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
                   // ...
@@ -7897,7 +7886,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 **示例：**
 
 ```ts
-import { dragController, componentSnapshot } from "@kit.ArkUI"
+import { dragController } from "@kit.ArkUI"
 import { image } from '@kit.ImageKit';
 import { unifiedDataChannel } from '@kit.ArkData';
 
@@ -7939,7 +7928,7 @@ struct DragControllerPage {
                 extraParams: ''
               }
               let pb:CustomBuilder = ():void=>{this.PixmapBuilder()}
-              componentSnapshot.createFromBuilder(pb).then((pix: image.PixelMap) => {
+              this.getUIContext().getComponentSnapshot().createFromBuilder(pb).then((pix: image.PixelMap) => {
                 this.pixmap = pix;
                 let dragItemInfo: DragItemInfo = {
                   pixelMap: this.pixmap,
@@ -7952,7 +7941,7 @@ struct DragControllerPage {
                   extraParams:string = ''
                 }
                 let eve:tmp = new tmp()
-                dragController.executeDrag(dragItemInfo, dragInfo)
+                this.getUIContext().getDragController().executeDrag(dragItemInfo, dragInfo)
                   .then((eve) => {
                     if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
                       // ...
@@ -8028,10 +8017,9 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability
-    let storage: LocalStorage = new LocalStorage();
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
-    windowStage.loadContent('pages/Index', storage, (err, data) => {
+    windowStage.loadContent('pages/Index', this.storage, (err, data) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
@@ -8067,20 +8055,20 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
-2.通过LocalStorage.getShared()获取上下文，进而获取DragController对象实施后续操作。
+2.通过this.getUIContext().getSharedLocalStorage()获取上下文，进而获取DragController对象实施后续操作。
 ```ts
 import { dragController, componentSnapshot, UIContext, DragController } from "@kit.ArkUI"
 import { image } from '@kit.ImageKit';
 import { unifiedDataChannel } from '@kit.ArkData';
 
-let storages = LocalStorage.getShared();
-
-@Entry(storages)
+@Entry()
 @Component
 struct DragControllerPage {
   @State pixmap: image.PixelMap|null = null
   private dragAction: dragController.DragAction|null = null;
   customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
+  storages = this.getUIContext().getSharedLocalStorage()
+
   @Builder DraggingBuilder() {
     Column() {
       Text("DraggingBuilder")
@@ -8115,7 +8103,7 @@ struct DragControllerPage {
               extraParams: ''
             }
             try{
-              let uiContext: UIContext = storages.get<UIContext>('uiContext') as UIContext;
+              let uiContext: UIContext = this.storages?.get<UIContext>('uiContext') as UIContext;
               this.dragAction = uiContext.getDragController().createDragAction(this.customBuilders, dragInfo)
               if(!this.dragAction){
                 console.info("listener dragAction is null");
@@ -8351,16 +8339,18 @@ addComponentContent(content: ComponentContent, index?: number): void
 **示例：**
 
 ```ts
-import { ComponentContent, OverlayManager, router } from '@kit.ArkUI';
+import { ComponentContent, OverlayManager } from '@kit.ArkUI';
 
 class Params {
-  text: string = ""
-  offset: Position
+  text: string = "";
+  offset: Position;
+
   constructor(text: string, offset: Position) {
-    this.text = text
-    this.offset = offset
+    this.text = text;
+    this.offset = offset;
   }
 }
+
 @Builder
 function builderText(params: Params) {
   Column() {
@@ -8374,68 +8364,68 @@ function builderText(params: Params) {
 @Component
 struct OverlayExample {
   @State message: string = 'ComponentContent';
-  private uiContext: UIContext = this.getUIContext()
-  private overlayNode: OverlayManager = this.uiContext.getOverlayManager()
-  @StorageLink('contentArray') contentArray: ComponentContent<Params>[] = []
-  @StorageLink('componentContentIndex') componentContentIndex: number = 0
-  @StorageLink('arrayIndex') arrayIndex: number = 0
-  @StorageLink("componentOffset") componentOffset: Position = {x: 0, y: 80}
+  private uiContext: UIContext = this.getUIContext();
+  private overlayNode: OverlayManager = this.uiContext.getOverlayManager();
+  @StorageLink('contentArray') contentArray: ComponentContent<Params>[] = [];
+  @StorageLink('componentContentIndex') componentContentIndex: number = 0;
+  @StorageLink('arrayIndex') arrayIndex: number = 0;
+  @StorageLink("componentOffset") componentOffset: Position = { x: 0, y: 80 };
 
   build() {
     Column() {
-      Button("++componentContentIndex: " + this.componentContentIndex).onClick(()=>{
-        ++this.componentContentIndex
+      Button("++componentContentIndex: " + this.componentContentIndex).onClick(() => {
+        ++this.componentContentIndex;
       })
-      Button("--componentContentIndex: " + this.componentContentIndex).onClick(()=>{
-        --this.componentContentIndex
+      Button("--componentContentIndex: " + this.componentContentIndex).onClick(() => {
+        --this.componentContentIndex;
       })
-      Button("增加ComponentContent" + this.contentArray.length).onClick(()=>{
+      Button("增加ComponentContent" + this.contentArray.length).onClick(() => {
         let componentContent = new ComponentContent(
           this.uiContext, wrapBuilder<[Params]>(builderText),
           new Params(this.message + (this.contentArray.length), this.componentOffset)
-        )
-        this.contentArray.push(componentContent)
-        this.overlayNode.addComponentContent(componentContent, this.componentContentIndex)
+        );
+        this.contentArray.push(componentContent);
+        this.overlayNode.addComponentContent(componentContent, this.componentContentIndex);
       })
-      Button("++arrayIndex: " + this.arrayIndex).onClick(()=>{
-        ++this.arrayIndex
+      Button("++arrayIndex: " + this.arrayIndex).onClick(() => {
+        ++this.arrayIndex;
       })
-      Button("--arrayIndex: " + this.arrayIndex).onClick(()=>{
-        --this.arrayIndex
+      Button("--arrayIndex: " + this.arrayIndex).onClick(() => {
+        --this.arrayIndex;
       })
-      Button("删除ComponentContent" + this.arrayIndex).onClick(()=>{
+      Button("删除ComponentContent" + this.arrayIndex).onClick(() => {
         if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
-          let componentContent = this.contentArray.splice(this.arrayIndex, 1)
-          this.overlayNode.removeComponentContent(componentContent.pop())
+          let componentContent = this.contentArray.splice(this.arrayIndex, 1);
+          this.overlayNode.removeComponentContent(componentContent.pop());
         } else {
-          console.info("arrayIndex有误")
+          console.info("arrayIndex有误");
         }
       })
-      Button("显示ComponentContent" + this.arrayIndex).onClick(()=>{
+      Button("显示ComponentContent" + this.arrayIndex).onClick(() => {
         if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
-          let componentContent = this.contentArray[this.arrayIndex]
-          this.overlayNode.showComponentContent(componentContent)
+          let componentContent = this.contentArray[this.arrayIndex];
+          this.overlayNode.showComponentContent(componentContent);
         } else {
-          console.info("arrayIndex有误")
+          console.info("arrayIndex有误");
         }
       })
-      Button("隐藏ComponentContent" + this.arrayIndex).onClick(()=>{
+      Button("隐藏ComponentContent" + this.arrayIndex).onClick(() => {
         if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
-          let componentContent = this.contentArray[this.arrayIndex]
-          this.overlayNode.hideComponentContent(componentContent)
+          let componentContent = this.contentArray[this.arrayIndex];
+          this.overlayNode.hideComponentContent(componentContent);
         } else {
-          console.info("arrayIndex有误")
+          console.info("arrayIndex有误");
         }
       })
-      Button("显示所有ComponentContent").onClick(()=>{
-          this.overlayNode.showAllComponentContents()
+      Button("显示所有ComponentContent").onClick(() => {
+        this.overlayNode.showAllComponentContents();
       })
-      Button("隐藏所有ComponentContent").onClick(()=>{
-        this.overlayNode.hideAllComponentContents()
+      Button("隐藏所有ComponentContent").onClick(() => {
+        this.overlayNode.hideAllComponentContents();
       })
 
-      Button("跳转页面").onClick(()=>{
-        router.pushUrl({
+      Button("跳转页面").onClick(() => {
+        this.getUIContext().getRouter().pushUrl({
           url: 'pages/Second'
         })
       })
@@ -10645,4 +10635,81 @@ struct Index {
     .height('100%')
   }
 }
+```
+## setPixelRoundMode<sup>18+</sup>
+
+setPixelRoundMode(mode: PixelRoundMode): void
+
+配置当前页面的像素取整模式。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名      | 类型         | 必填   | 说明   |
+| -------- | ---------- | ---- | ---- |
+| mode | [PixelRoundMode](./arkui-ts/ts-appendix-enums.md#pixelroundmode18)| 是    | 像素取整模式。<br />默认值：PixelRoundMode.PIXEL_ROUND_ON_LAYOUT_FINISH |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIContext } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err, data) => {
+      let uiContext :UIContext = windowStage.getMainWindowSync().getUIContext();
+      uiContext.setPixelRoundMode(PixelRoundMode.PIXEL_ROUND_ON_LAYOUT_FINISH);
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+    });
+  }
+```
+
+## getPixelRoundMode<sup>18+</sup>
+
+getPixelRoundMode(): PixelRoundMode
+
+获取当前页面的像素取整模式。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型         | 说明   |
+| ---------- | ---- |
+| [PixelRoundMode](./arkui-ts/ts-appendix-enums.md#pixelroundmode18)| 当前页面的像素取整模式。|
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIContext } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err, data) => {
+      let uiContext :UIContext = windowStage.getMainWindowSync().getUIContext();
+      console.info("pixelRoundMode : " + uiContext.getPixelRoundMode().valueOf());
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+    });
+  }
 ```

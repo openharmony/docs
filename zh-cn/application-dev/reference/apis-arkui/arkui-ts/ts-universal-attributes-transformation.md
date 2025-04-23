@@ -275,7 +275,7 @@ struct Index {
         Button('change prep')
           .margin({ top: 100 })
           .onClick(() => {
-            animateTo({
+            this.getUIContext()?.animateTo({
               duration: 2000,
               curve: Curve.EaseIn,
               iterations: 1,

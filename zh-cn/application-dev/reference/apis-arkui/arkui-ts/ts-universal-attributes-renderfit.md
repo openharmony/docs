@@ -107,7 +107,7 @@ struct RenderFitExample {
 
       Button("animate")
         .onClick(() => {
-          animateTo({ curve: Curve.Ease }, () => {
+          this.getUIContext()?.animateTo({ curve: Curve.Ease }, () => {
             if (this.flag) {
               this.width1 = 150;
               this.height1 = 50;

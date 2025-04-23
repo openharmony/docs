@@ -359,3 +359,58 @@ struct Index {
   }
 }
 ```
+
+## cl.arkui.5 ListItem组件创建行为变更
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+如果ListItem组件不是通过LazyForEach和Repeat动态生成，创建ListItem时会执行两次ListItem的属性方法，需要优化为只执行一次属性方法以提升性能。
+
+**变更影响**
+
+此变更涉及应用适配，只涉及ListItem组件。
+
+变更前：如果ListItem组件不是通过LazyForEach和Repeat动态生成，创建ListItem时会执行两次ListItem的属性方法。
+
+变更后：ListItem在创建时只执行一次属性方法。
+
+如下代码运行后，变更前会打印两次“GetWidth”，变更后只会打印一次“GetWidth”。
+
+```ts
+@Entry
+@Component
+struct ListItemExample {
+  getWidth(): string {
+    console.log("GetWidth");
+    return "100%"
+  }
+  build() {
+    Column() {
+      List({ space: 20, initialIndex: 0 }) {
+        ListItem() {
+          Text('Item')
+        }
+        .width(this.getWidth())
+      }.width('90%')
+    }.width('100%').height('100%')
+  }
+}
+```
+
+**起始API Level**
+
+API 7
+
+**变更发生版本**
+从OpenHarmony SDK 6.0.1.2开始。
+
+**变更的接口/组件**
+
+ListItem组件。
+
+**适配指导**
+
+需要排查ListItem属性方法中是否有调用函数获取属性值，排查函数调用次数是否对业务有影响，如果有影响需要根据实际业务场景适配。

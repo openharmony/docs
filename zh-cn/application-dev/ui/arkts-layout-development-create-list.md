@@ -381,7 +381,7 @@ List() {
 
 >**说明：**
 >- 滚动条组件[ScrollBar](../reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md)，还可配合其他可滚动组件使用，如[ArcList](../reference/apis-arkui/arkui-ts/ts-container-arclist.md)、[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md)、[WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)。
->- 在圆形屏幕设备上，[list](../reference/apis-arkui/arkui-ts/ts-container-grid.md)可以与弧形滚动条组件[ArcScrollBar](../reference/apis-arkui/arkui-ts/ts-basic-components-arcscrollbar.md)配合使用为列表添加弧形外置滚动条，使用方式可参考[创建弧形列表 (ArcList)](./arkts-layout-development-create-arclist.md)的[添加外置滚动条ArcScrollBar](./arkts-layout-development-create-arclist.md#添加外置滚动条arcscrollbar)章节。
+>- 在圆形屏幕设备上，[list](../reference/apis-arkui/arkui-ts/ts-container-list.md)可以与弧形滚动条组件[ArcScrollBar](../reference/apis-arkui/arkui-ts/ts-basic-components-arcscrollbar.md)配合使用为列表添加弧形外置滚动条，使用方式可参考[创建弧形列表 (ArcList)](./arkts-layout-development-create-arclist.md)的[添加外置滚动条ArcScrollBar](./arkts-layout-development-create-arclist.md#添加外置滚动条arcscrollbar)章节。
 
 ## 支持分组列表
 
@@ -453,11 +453,34 @@ class Contact {
     this.icon = icon;
   }
 }
-class ContactsGroup {
+export class ContactsGroup {
   title: string = ''
   contacts: Array<object> | null = null
   key: string = ""
 }
+
+export class ContactsGroupDataSource implements IDataSource {
+  private list: object[] = [];
+
+  constructor(list: object[]) {
+    this.list = list;
+  }
+
+  totalCount(): number {
+    return this.list.length;
+  }
+
+  getData(index: number): object {
+    return this.list[index];
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+  }
+}
+
 export let contactsGroups: object[] = [
   {
     title: 'A',
@@ -478,6 +501,8 @@ export let contactsGroups: object[] = [
   } as ContactsGroup,
   // ...
 ]
+export let contactsGroupsDataSource: ContactsGroupDataSource = new ContactsGroupDataSource(contactsGroups)
+
 @Entry
 @Component
 struct ContactsList {
@@ -493,11 +518,11 @@ struct ContactsList {
   build() {
     List() {
       // 循环渲染ListItemGroup，contactsGroups为多个分组联系人contacts和标题title的数据集合
-      ForEach(contactsGroups, (itemGroup: ContactsGroup) => {
+      LazyForEach(contactsGroupsDataSource, (itemGroup: ContactsGroup) => {
         ListItemGroup({ header: this.itemHead(itemGroup.title) }) {
           // 循环渲染ListItem
           if (itemGroup.contacts) {
-            ForEach(itemGroup.contacts, (item: Contact) => {
+            LazyForEach(new ContactsGroupDataSource(itemGroup.contacts), (item: Contact) => {
               ListItem() {
                 // ...
               }

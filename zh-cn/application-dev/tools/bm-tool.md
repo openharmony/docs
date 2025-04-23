@@ -450,6 +450,9 @@ bm install-plugin [-h] [-n hostBundleName] [-p filePath]
 # 安装一个插件
 bm install-plugin -n com.ohos.app -p /data/plugin.hsp
 ```
+> **说明：**
+>
+> 在同一个应用中安装同一个插件，则视作插件版本更新，插件不支持降级安装；插件版本更新后，需要重启应用插件才能生效。
 
 
 ## 卸载插件命令（uninstall-plugin）
@@ -699,45 +702,6 @@ error: fail to verify pkcs7 file.
 
 1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。在连接设备后，重新为应用进行签名。
 2. 使用手动签名，请参考[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section297715173233)。
-
-
-### 9568347 解析本地so文件失败
-**错误信息**
-
-error: install parse native so failed.
-
-**错误描述**
-
-在启动调试或运行C++应用/服务时，安装HAP包出现错误，提示“error: install parse native so failed”错误信息。
-
-**可能原因**
-
-设备支持的Abi类型与C++工程中配置的Abi类型不匹配。
-
-> **说明：**
->
-> - 如果工程有依赖HSP或者HAR模块，请确保所有包含C++代码的模块配置的Abi类型包含设备支持的Abi类型。
-> - 如果工程依赖的三方库包含so文件，请确保oh_modules/三方库/libs目录包含有设备支持的Abi目录，如libs/arm64-v8a、/libs/x86_64。
-<!--RP1--><!--RP1End-->
-
-**处理步骤**
-
-1. 将设备与DevEco Studio进行连接。
-2. 执行如下命令，查询设备支持的Abi列表，返回结果为default/armeabi-v7a/armeabi/arm64-v8a/x86/x86_64中的一个或多个Abi类型。
-    ```
-    hdc shell
-    param get const.product.cpu.abilist
-    ```
-3. 根据查询返回结果，检查[模块级build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-profile)文件中的[“abiFilters”参数](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ohos-abi#%E5%9C%A8%E7%BC%96%E8%AF%91%E6%9E%B6%E6%9E%84%E4%B8%AD%E6%8C%87%E5%AE%9Aabi)中的配置，规则如下：
-    * 若返回结果为default，请执行如下命令，查询是否存在lib64文件夹。
-      ```
-      cd /system/
-      ls
-      ```
-      ![示例图](figures/zh-cn_image_0000001609001262.png)
-      * 存在lib64文件夹：则“abiFilters”参数中需要包含arm64-v8a类型。
-      * 不存在lib64文件夹：则“abiFilters”参数中需要至少包含armeabi/armeabi-v7a中的一个类型。
-    * 若返回结果为armeabi-v7a/armeabi/arm64-v8a/x86/x86_64中的一个或多个，需要在“abiFilters”参数中至少包含返回结果中的一个Abi类型。
 
 
 ### 9568344 解析配置文件失败
@@ -1047,7 +1011,7 @@ error: install failed due to insufficient disk memory.
 查看设备存储空间并清理，保证满足安装所需空间，再重试安装应用。
 
 ```bash
-// 查看磁盘空间使用情况
+# 查看磁盘空间使用情况
 hdc shell df -h /system
 hdc shell df -h /data
 ```
@@ -1070,14 +1034,7 @@ error: install failed due to grant request permissions failed.
 
 **处理步骤**
 
-1. 打开IDE安装路径，在sdk目录下找到UnsgnedDebugProfileTemplate.json配置文件。
-```
-IDE安装路径\sdk\版本号或者default\openharmony\toolchains\lib\
-
-例如：xxxx\Huawei\DevEco Studio\sdk\HarmonyOS-NEXT-DB1\openharmony\toolchains\lib\
-例如：xxxx\Huawei\DevEco Studio\sdk\default\openharmony\toolchains\lib\
-```
-2. 在UnsgnedDebugProfileTemplate.json文件中修改APL等级，修改APL等级为system_core等级，重新签名打包即可。
+根据[ACL签名指导](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section157591551175916)为应用申请受限ACL权限。
 
 
 ### 9568290 更新HAP token失败导致安装失败
@@ -1112,11 +1069,11 @@ error: install failed due to singleton not same.
 
 **错误描述**
 
-应用更新时，应用已安装的hap包和更新包app.json5配置文件中singleton配置（从API verison 9开始废弃）不一致。
+应用更新时，应用已安装的HAP包和更新包app.json5配置文件中singleton配置（从API verison 9开始废弃）不一致。
 
 **可能原因**
 
-应用已安装的hap包和更新包app.json5配置文件中singleton配置（从API verison 9开始废弃）不一致。
+应用已安装的HAP包和更新包app.json5配置文件中singleton配置（从API verison 9开始废弃）不一致。
 
 **处理步骤**
 
@@ -1215,7 +1172,7 @@ error: verify signature failed.
 
 * 场景一：HSP只能给同包名的应用使用，只有集成态HSP可以给不同包名的应用使用。需要用户与三方开发者确认，三方开发者应提供集成态HSP、或同包名的HSP给用户使用。
 
-* 场景二：检查签名流程和签名证书，参考[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-signing-V13)。
+* 场景二：检查签名流程和签名证书，参考[应用/元服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing)。
 
 
 ### 9568266 安装权限拒绝
@@ -2000,6 +1957,155 @@ error: Failed to install the HSP because installing a shared bundle specified by
 1. 安装应用间HSP时使用“hdc install -s ***”指令。
 
 
+### 9568349 操作文件时传入参数异常
+**错误信息**
+
+error: installd param error.
+
+**错误描述**
+
+操作文件时传入参数异常，导致安装失败。
+
+**可能原因**
+
+安装过程中，传入参数无效或者传入目录路径为空。
+
+**处理步骤**
+
+1. 重启手机后再次尝试安装应用。
+
+2. 重复上述步骤3到5次后依旧安装失败，请导出日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
+
+```
+# 导出日志文件
+hdc file recv /data/log/hilog/
+```
+
+
+### 9568351 创建文件目录异常导致安装失败
+**错误信息**
+
+error: installd create dir failed.
+
+**错误描述**
+
+创建文件目录异常，导致安装失败。
+
+**可能原因**
+
+创建文件目录时没有写权限。
+
+**处理步骤**
+
+1. 重启手机后再次尝试安装应用。
+
+2. 重复上述步骤3到5次后依旧安装失败，请导出日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
+
+```
+# 导出日志文件
+hdc file recv /data/log/hilog/
+```
+
+
+### 9568354 删除文件目录异常导致安装失败
+**错误信息**
+
+error: installd remove dir failed.
+
+**错误描述**
+
+删除文件目录失败，导致安装失败。
+
+**可能原因**
+
+删除文件目录不存在，或者当前目录没有可写权限。
+
+**处理步骤**
+
+1. 重启手机后再次尝试安装应用。
+
+2. 重复上述步骤3到5次后依旧安装失败，请导出日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
+
+```
+# 导出日志文件
+hdc file recv /data/log/hilog/
+```
+
+
+### 9568355 安装包中提取文件失败
+**错误信息**
+
+error: installd extract files failed.
+
+**错误描述**
+
+安装包中提取文件失败，导致安装失败。
+
+**可能原因**
+
+安装过程中，解压so的目录创建失败，导致HAP包中提取so失败。
+
+**处理步骤**
+
+1. 重启手机后再次尝试安装应用。
+
+2. 重复上述步骤3到5次后依旧安装失败，请导出日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
+
+```
+# 导出日志文件
+hdc file recv /data/log/hilog/
+```
+
+
+### 9568356 安装过程中重命名目录名失败
+**错误信息**
+
+error: installd rename dir failed.
+
+**错误描述**
+
+重命名目录名失败，导致安装失败。
+
+**可能原因**
+
+安装过程中，重命名目录，目录名称超出260字符，或者当前目录没有可写权限。
+
+**处理步骤**
+
+1. 重启手机后再次尝试安装应用。
+
+2. 重复上述步骤3到5次后依旧安装失败，请导出日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
+
+```
+# 导出日志文件
+hdc file recv /data/log/hilog/
+```
+
+### 9568357 清理文件失败
+**错误信息**
+
+error: installd clean dir failed.
+
+**错误描述**
+
+清理文件失败，导致安装失败。
+
+**可能原因**
+
+安装过程中，待清理的文件无可写权限导致清理文件失败。
+
+**处理步骤**
+
+1. 重启手机后再次尝试安装应用。
+
+2. 重复上述步骤3到5次后依旧安装失败，请导出日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
+
+```
+# 导出日志文件
+hdc file recv /data/log/hilog/
+```
+
+
 ### 9568359 安装设置selinux失败
 **错误信息**
 
@@ -2392,7 +2498,7 @@ error: Install incompatible signature info.
 
 **处理步骤**
 
-重新签名，使多个HAP包签名信息一致。参考[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-signing-V13)。
+重新签名，使多个HAP包签名信息一致。参考[应用/元服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing)。
 
 ### 9568334 模块名称重复
 **错误信息**
@@ -2410,6 +2516,26 @@ error: Install failed due to hap moduleName duplicate.
 **处理步骤**
 
 同一个应用多个模块的名称要保证唯一性。
+
+
+<!--Del-->
+### 9568335 安装参数hashParams校验失败
+**错误信息**
+
+error: Install failed due to check hap hash param failed.
+
+**错误描述**
+
+安装时，参数InstallParam.hashParams校验失败。
+
+**可能原因**
+
+[参数InstallParam.hashParams](../reference/apis-ability-kit/js-apis-installer-sys.md#installparam)中包含多余的模块名称。
+
+**处理步骤**
+
+检查参数InstallParam.hashParams，不能包含多余的模块名称。<!--DelEnd-->
+
 
 ### 9568340 配置文件缺失
 **错误信息**
@@ -2444,18 +2570,113 @@ error: Install parse bad profile.
 **处理步骤**
 使用DevEco Studio重新构建、打包、安装。
 
-### 9568350 安装时获取install proxy对象失败
+
+### 9568342 配置文件数据类型错误
+**错误信息**
+
+error: Install parse profile prop type error.
+
+**错误描述**
+
+安装解析配置文件时，数据类型错误，导致安装失败。
+
+
+**可能原因**
+
+[module.json、pack.info](../quick-start/application-package-structure-stage.md)等配置文件存在数据类型错误的字段。
+
+**处理步骤**
+
+使用DevEco Studio重新构建、打包、安装。
+
+### 9568345 配置文件中的字符串长度或者数组大小过大
+**错误信息**
+
+error: Too large size of string or array type element in the profile.
+
+**错误描述**
+
+安装解析配置文件时，字符串长度或者数组大小过大，导致安装失败。
+
+**可能原因**
+
+[module.json、pack.info](../quick-start/application-package-structure-stage.md)等配置文件存在字符串长度或者数组大小过大的字段。
+
+**处理步骤**
+
+使用DevEco Studio重新构建、打包、安装。
+
+
+### 9568347 解析本地so文件失败
+**错误信息**
+
+error: install parse native so failed.
+
+**错误描述**
+
+在启动调试或运行C++应用/服务时，安装HAP包出现错误，提示“error: install parse native so failed”错误信息。
+
+**可能原因**
+
+设备支持的Abi类型与C++工程中配置的Abi类型不匹配。
+
+> **说明：**
+>
+> - 如果工程有依赖HSP或者HAR模块，请确保所有包含C++代码的模块配置的Abi类型包含设备支持的Abi类型。
+> - 如果工程依赖的三方库包含so文件，请确保oh_modules/三方库/libs目录包含有设备支持的Abi目录，如libs/arm64-v8a、/libs/x86_64。
+<!--RP1--><!--RP1End-->
+
+**处理步骤**
+
+1. 将设备与DevEco Studio进行连接。
+2. 执行如下命令，查询设备支持的Abi列表，返回结果为default/armeabi-v7a/armeabi/arm64-v8a/x86/x86_64中的一个或多个Abi类型。
+    ```
+    hdc shell
+    param get const.product.cpu.abilist
+    ```
+3. 根据查询返回结果，检查[模块级build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-profile)文件中的[“abiFilters”参数](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ohos-abi#%E5%9C%A8%E7%BC%96%E8%AF%91%E6%9E%B6%E6%9E%84%E4%B8%AD%E6%8C%87%E5%AE%9Aabi)中的配置，规则如下：
+    * 若返回结果为default，请执行如下命令，查询是否存在lib64文件夹。
+      ```
+      cd /system/
+      ls
+      ```
+      ![示例图](figures/zh-cn_image_0000001609001262.png)
+      * 存在lib64文件夹：则“abiFilters”参数中需要包含arm64-v8a类型。
+      * 不存在lib64文件夹：则“abiFilters”参数中需要至少包含armeabi/armeabi-v7a中的一个类型。
+    * 若返回结果为armeabi-v7a/armeabi/arm64-v8a/x86/x86_64中的一个或多个，需要在“abiFilters”参数中至少包含返回结果中的一个Abi类型。
+
+
+### 9568348 解析 ark native SO文件失败
+
+**错误信息**
+
+error: Install parse ark native file failed.
+
+**错误描述**
+
+安装时，解析 ark native SO文件失败。
+
+**可能原因**
+
+安装多HAP时，存在Abi不一致，且与当前设备支持的Abi不匹配。
+
+**处理步骤**
+
+检查多HAP的Abi是否一致，请参考[错误码9568347](#9568347-解析本地so文件失败)的处理步骤。
+
+
+### 9568350 安装时获取代理对象失败
 **错误信息**
 
 error: Installd get proxy error.
 
 **错误描述**
 
-安装时获取install proxy对象失败。
+安装时获取代理对象失败。
 
 **可能原因**
 
-服务异常导致获取install proxy对象失败。
+包管理或其他服务异常，导致获取代理失败。
 
 **处理步骤**
 1. 重启手机后再次尝试安装应用。
@@ -2463,7 +2684,7 @@ error: Installd get proxy error.
 2. 重复上述步骤3到5次后依旧安装失败，请导出日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
 
 ```
-// 导出日志文件
+# 导出日志文件
 hdc file recv /data/log/hilog/
 ```
 
