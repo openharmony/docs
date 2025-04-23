@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **OH_RecorderInfo** struct describes the recording file information.
+The OH_RecorderInfo struct describes the recording file information.
 
 **System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
 

@@ -274,7 +274,7 @@ let audioRendererInfo: audio.AudioRendererInfo = {
   rendererFlags: 1
 }
 let soundID: number = 0;
-media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
+media.createSoundPool(5, audioRendererInfo, async (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
     console.error(`Failed to createSoundPool`)
     return;
@@ -282,7 +282,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     soundPool = soundPool_;
     console.info(`Succeeded in createSoundPool`)
     // The test_01.mp3 file is an audio file in the rawfile directory.
-    let fileDescriptor = getContext().resourceManager.getRawFd('test_01.mp3');
+    let fileDescriptor = await getContext().resourceManager.getRawFd('test_01.mp3');
     soundPool.load(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length, (error: BusinessError, soundId_: number) => {
       if (error) {
         console.error(`Failed to load soundPool: errCode is ${error.code}, errMessage is ${error.message}`)
@@ -387,7 +387,7 @@ let audioRendererInfo: audio.AudioRendererInfo = {
   rendererFlags: 1
 }
 let soundID: number = 0;
-media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
+media.createSoundPool(5, audioRendererInfo, async (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
     console.error(`Failed to createSoundPool`)
     return;
@@ -395,7 +395,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     soundPool = soundPool_;
     console.info(`Succeeded in createSoundPool`)
     // The test_01.mp3 file is an audio file in the rawfile directory.
-    let fileDescriptor = getContext().resourceManager.getRawFd('test_01.mp3');
+    let fileDescriptor = await getContext().resourceManager.getRawFd('test_01.mp3');
     soundPool.load(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length).then((soundId: number) => {
       console.info('Succeeded in loading soundpool');
       soundID = soundId;
@@ -454,7 +454,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     let soundID: number = 0;
     let streamID: number = 0;
     let playParameters: media.PlayParameters = {
-      loop: 3, // The sound loops three times.
+      loop: 3, // The sound is played four times (three loops).
       rate: audio.AudioRendererRate.RENDER_RATE_NORMAL, // The sound is played at the original frequency.
       leftVolume: 0.5, // range = 0.0-1.0
       rightVolume: 0.5, // range = 0.0-1.0
@@ -585,8 +585,8 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     let playParameters: media.PlayParameters = {
       loop: 3, // The sound is played four times (three loops).
       rate: audio.AudioRendererRate.RENDER_RATE_NORMAL, // The sound is played at the original frequency.
-      leftVolume: 0.5, // range = 0.0-1.0
-      rightVolume: 0.5, // range = 0.0-1.0
+      leftVolume: 0.5, // range = 0.0-1.0.
+      rightVolume: 0.5, // range = 0.0-1.0.
       priority: 0, // The sound playback has the lowest priority.
     }
 

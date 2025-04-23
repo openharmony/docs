@@ -25,9 +25,9 @@ Read [AVTranscoder](../../reference/apis-media-kit/js-apis-media.md#avtranscoder
 
 2. Set the events to listen for.
 
-   | Event Type| Description| 
+   | Event Type| Description|
    | -------- | -------- |
-   | complete | Mandatory; used to listen for the completion of transcoding.| 
+   | complete | Mandatory; used to listen for the completion of transcoding.|
    | error | Mandatory; used to listen for AVTranscoder errors.|
 
    ```ts
@@ -36,7 +36,7 @@ Read [AVTranscoder](../../reference/apis-media-kit/js-apis-media.md#avtranscoder
    // Callback function for the completion of transcoding.
    avTranscoder.on('complete', () => {
      console.log(`transcoder is completed`);
-     // Listen for transcoding completion events.
+     // Listen for the transcoding completion event and call release.
    });
    
    // Callback function for errors.
@@ -79,6 +79,8 @@ Read [AVTranscoder](../../reference/apis-media-kit/js-apis-media.md#avtranscoder
    > **NOTE**
    >
    > Only transcoding-related parameters are set in the input parameter **avConfig** of the **prepare()** API.
+   >
+   > Only the supported [transcoding formats](media-kit-intro.md#avtranscoder) can be used due to the limited demultiplexing, multiplexing, encoding, and decoding capabilities.
 
    ```ts
    import { media } from '@kit.MediaKit';
@@ -138,7 +140,7 @@ Read [AVTranscoder](../../reference/apis-media-kit/js-apis-media.md#avtranscoder
 ## Sample Code
 
   Refer to the sample code below to implement transcoding, covering the process of starting, pausing, resuming, and exiting transcoding.
-  
+
 ```ts
 import { media } from '@kit.MediaKit';
 import { BusinessError } from '@kit.BasicServicesKit';
