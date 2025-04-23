@@ -326,7 +326,7 @@ export class ECStoreManager {
 
 ```ts
 // EntryAbility.ets
-import { AbilityConstant, contextConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { AbilityConstant, application, contextConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 import { distributedKVStore } from '@kit.ArkData';
@@ -372,7 +372,7 @@ let cInfo: StoreInfo | null = null;
 let eInfo: StoreInfo | null = null;
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+  async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): Promise<void> {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
     let cContext = this.context;
     cInfo = {
@@ -392,7 +392,7 @@ export default class EntryAbility extends UIAbility {
         securityLevel: distributedKVStore.SecurityLevel.S3
       }
     }
-    let eContext = this.context.createModuleContext("entry");
+    let eContext = await application.createModuleContext(this.context,"entry");
     eContext.area = contextConstant.AreaMode.EL5;
     eInfo = {
       "kvManagerConfig": {
