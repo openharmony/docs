@@ -141,7 +141,7 @@ import { webview } from '@kit.ArkWeb';
 @Entry
 @Component
 struct Index {
-  webviewController: webview.WebviewController = new webview.WebviewController()
+  webviewController: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -166,9 +166,8 @@ import { camera, cameraPicker } from '@kit.CameraKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-let mContext = getContext(this) as common.Context;
-
-async function openCamera(callback: Callback<string>) {
+async function openCamera(callback: Callback<string>, uiContext: UIContext) {
+  let mContext = uiContext.getHostContext() as common.Context;
   try {
     let pickerProfile: cameraPicker.PickerProfile = {
       cameraPosition: camera.CameraPosition.CAMERA_POSITION_BACK
@@ -185,7 +184,7 @@ async function openCamera(callback: Callback<string>) {
 @Entry
 @Component
 struct Index {
-  webviewController: webview.WebviewController = new webview.WebviewController()
+  webviewController: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -200,7 +199,7 @@ struct Index {
                 console.log('Capture is ' + event.fileSelector.isCapture());
                 event.result.handleFileList([result]);
                 }
-            })
+            }, this.getUIContext())
             return true;
         })
     }
