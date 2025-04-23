@@ -3763,7 +3763,7 @@ startScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): Promise&lt;v
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth disabled.                 |
-|2900009 | Fails to start scan as it is out of hardware.                 |
+|2900009 | Fails to start scan as it is out of hardware resources.                 |
 |2900099 | Operation failed.                        |
 |2902050 | Failed to start scan as Ble scan is already started by the app.|
 
@@ -4246,17 +4246,15 @@ try {
 
 扫描的配置参数。
 
-**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称        | 类型                    | 可读   | 可写   | 说明                                     |
 | --------- | ----------------------- | ---- | ---- | -------------------------------------- |
-| interval  | number                  | 是    | 是    | 表示扫描结果上报延迟时间，默认值为0。                    |
-| dutyMode  | [ScanDuty](#scanduty)   | 是    | 是    | 表示扫描模式，默认值为SCAN_MODE_LOW_POWER。        |
-| matchMode | [MatchMode](#matchmode) | 是    | 是    | 表示硬件的过滤匹配模式，默认值为MATCH_MODE_AGGRESSIVE。 |
-| phyType<sup>12+</sup> | [PhyType](#phytype12) | 是    | 是    | 表示扫描中使用的PHY类型。 |
-| reportMode<sup>15+</sup> | [ScanReportMode](#scanreportmode15) | 是    | 是    | 表示扫描结果数据上报模式。 |
+| interval  | number                  | 是    | 是    | 表示扫描结果上报延迟时间，默认值为0。**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                    |
+| dutyMode  | [ScanDuty](#scanduty)   | 是    | 是    | 表示扫描模式，默认值为SCAN_MODE_LOW_POWER。**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。        |
+| matchMode | [MatchMode](#matchmode) | 是    | 是    | 表示硬件的过滤匹配模式，默认值为MATCH_MODE_AGGRESSIVE。**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
+| phyType<sup>12+</sup> | [PhyType](#phytype12) | 是    | 是    | 表示扫描中使用的PHY类型。**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
+| reportMode<sup>15+</sup> | [ScanReportMode](#scanreportmode15) | 是    | 是    | 表示扫描结果数据上报模式。**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。 |
 
 
 ## GattProperties
