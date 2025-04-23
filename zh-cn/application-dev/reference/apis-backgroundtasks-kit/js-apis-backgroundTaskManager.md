@@ -488,7 +488,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-## DelaySuspendInfo
+## DelaySuspendInfo<sup>(deprecated)</sup>
 
 延迟挂起信息。
 
@@ -503,7 +503,7 @@ export default class EntryAbility extends UIAbility {
 | actualDelayTime | number | 是    | 应用的实际挂起延迟时间，以毫秒为单位。<br/>一般情况下默认值为180000，低电量（依据系统低电量广播）时默认值为60000。 |
 
 
-## BackgroundMode<sup>8+</sup>
+## BackgroundMode<sup>8+</sup><sup>(deprecated)</sup>
 
 长时任务类型。
 
