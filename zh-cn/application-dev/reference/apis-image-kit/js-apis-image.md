@@ -2527,7 +2527,7 @@ scaleSync(x: number, y: number, level: AntiAliasingLevel): void
 | ------ | ------ | ---- | ------------------------------- |
 | x      | number | 是   | 宽度的缩放倍数。|
 | y      | number | 是   | 高度的缩放倍数。|
-| level  | [AntiAliasingLevel](#antialiasinglevel12) | 否   | 采用的缩放算法。|
+| level  | [AntiAliasingLevel](#antialiasinglevel12) | 是   | 采用的缩放算法。|
 
 **错误码：**
 
@@ -3771,6 +3771,7 @@ setMemoryNameSync(name: string): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 401 | Parameter error. Possible causes: 1.The length of the input parameter is too long. 2.Parameter verification failed. |
+| 501 | Resource Unavailable. |
 | 62980286 | Memory format not supported. |
 
 **示例：**

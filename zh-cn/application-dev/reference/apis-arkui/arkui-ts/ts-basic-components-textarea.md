@@ -1831,3 +1831,43 @@ struct TextAreaExample {
 
 ![textAreaEditMenuOptions](figures/textAreaEditMenuOptions.gif)
 
+### 示例15（设置选中指定区域的文本内容）
+
+该示例通过setTextSelection方法展示如何设置选中指定区域的文本内容以及菜单的显隐策略。
+
+```ts
+// xxx.ets
+
+@Entry
+@Component
+struct TextAreaExample {
+  controller: TextAreaController = new TextAreaController()
+  @State startIndex: number = 0
+  @State endIndex: number = 0
+
+  build() {
+    Column({ space: 3 }) {
+      Text('Selection start:' + this.startIndex + ' end:' + this.endIndex)
+      TextArea({ text: 'Hello World', controller: this.controller })
+        .width('95%')
+        .height(80)
+        .margin(10)
+        .defaultFocus(true)
+        .enableKeyboardOnFocus(true)
+        .onTextSelectionChange((selectionStart: number, selectionEnd: number) => {
+          this.startIndex = selectionStart
+          this.endIndex = selectionEnd
+        })
+
+      Button('setTextSelection [0,3], set menuPolicy is MenuPolicy.SHOW')
+        .onClick(() => {
+          this.controller.setTextSelection(0, 3, { menuPolicy: MenuPolicy.SHOW })
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![textAreaSetTextSelection](figures/textAreaSetTextSelection.gif)

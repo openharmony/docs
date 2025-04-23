@@ -5167,7 +5167,7 @@ addResource(path: string) : void
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let path = getContext().bundleCodeDir + "/library1-default-signed.hsp";
+  let path = this.context.bundleCodeDir + "/library1-default-signed.hsp";
   try {
     this.context.resourceManager.addResource(path);
   } catch (error) {
@@ -5206,7 +5206,7 @@ removeResource(path: string) : void
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let path = getContext().bundleCodeDir + "/library1-default-signed.hsp";
+  let path = this.context.bundleCodeDir + "/library1-default-signed.hsp";
   try {
     this.context.resourceManager.removeResource(path);
   } catch (error) {
@@ -6175,23 +6175,23 @@ AsyncCallback<T> {
 
     ```json
     {
-    "string": [
+      "string": [
         {
-        "name": "test",
-        "value": "10"
+          "name": "test",
+          "value": "10"
         }
-    ]
+      ]
     }
     ```
 
     ```json
     {
-    "string": [
-     {
-        "name": "test",
-        "value": "%s %d %f"
+      "string": [
+        {
+          "name": "test",
+          "value": "%s %d %f"
         }
-    ]
+      ]
     }
     ```
 
@@ -6199,16 +6199,16 @@ AsyncCallback<T> {
 
     ```json
     {
-    "strarray": [
+      "strarray": [
         {
-        "name": "test",
-        "value": [
-          {
-            "value": "strarray_test"
-          }
-        ]
+          "name": "test",
+          "value": [
+            {
+              "value": "strarray_test"
+            }
+          ]
         }
-    ]
+      ]
     }
     ```  
 
@@ -6217,19 +6217,19 @@ AsyncCallback<T> {
     {
       "plural": [
         {
-        "name": "test",
-        "value": [
+          "name": "test",
+          "value": [
             {
-            "quantity": "one",
-            "value": "%d apple"
+              "quantity": "one",
+              "value": "%d apple"
             },
             {
-            "quantity": "other",
-            "value": "%d apples"
+              "quantity": "other",
+              "value": "%d apples"
             }
-        ]
+          ]
         }
-    ]
+      ]
     }
     ``` 
 
@@ -6238,10 +6238,10 @@ AsyncCallback<T> {
     {
     "boolean": [
         {
-        "name": "boolean_test",
-        "value": true
+          "name": "boolean_test",
+          "value": true
         }
-    
+      ]
     }
     ``` 
 
@@ -6274,7 +6274,7 @@ AsyncCallback<T> {
         {
           "name": "test",
           "value": "#FFFFFF"
-       }
+        }
       ]
     }
     ``` 

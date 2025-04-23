@@ -111,7 +111,7 @@ restool -i entry/src/main -j entry/src/main/module.json -p com.ohos.demo -o out 
 }
 ```
 
-步骤二：完成资源ID固定。完成固定的方式有两种，通过命令一完成固定或者将自定义的id_definded.json放在resource/base/element/目录下后通过命令二完成固定。
+步骤二：完成资源ID固定。完成固定的方式有两种，通过命令一完成固定或者将自定义的id_defined.json放在resource/base/element/目录下后通过命令二完成固定。
 
 + 命令一：
 ```

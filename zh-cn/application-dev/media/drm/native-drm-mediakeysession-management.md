@@ -25,23 +25,23 @@ DRM会话管理（MediaKeySession）支持媒体密钥管理及媒体解密等�
 
     ```c++
     // 适用于单个MediaKeySystem实例的场景。
-    static Drm_ErrCode SessoinEventCallBack(DRM_EventType  eventType, uint8_t *info, int32_t infoLen, char *extra)
+    static Drm_ErrCode SessionEventCallBack(DRM_EventType  eventType, uint8_t *info, int32_t infoLen, char *extra)
     {
         return DRM_ERR_OK;
     }
 
-    static Drm_ErrCode SessoinKeyChangeCallBack(DRM_KeysInfo *keysInfo, bool newKeysAvailable)
+    static Drm_ErrCode SessionKeyChangeCallBack(DRM_KeysInfo *keysInfo, bool newKeysAvailable)
     {
         return DRM_ERR_OK;
     }
 
     // 适用于多个MediaKeySystem实例的场景。
-    static Drm_ErrCode SessoinEventCallBackWithObj(MediaKeySession *mediaKeySessoin, DRM_EventType eventType, uint8_t *info, int32_t infoLen, char *extra)
+    static Drm_ErrCode SessionEventCallBackWithObj(MediaKeySession *mediaKeySession, DRM_EventType eventType, uint8_t *info, int32_t infoLen, char *extra)
     {
         return DRM_ERR_OK;
     }
 
-    static Drm_ErrCode SessoinKeyChangeCallBackWithObj(MediaKeySession *mediaKeySessoin, DRM_KeysInfo *keysInfo, bool hasNewGoodKeys)
+    static Drm_ErrCode SessionKeyChangeCallBackWithObj(MediaKeySession *mediaKeySession, DRM_KeysInfo *keysInfo, bool hasNewGoodKeys)
     {
         return DRM_ERR_OK;
     }
@@ -51,14 +51,14 @@ DRM会话管理（MediaKeySession）支持媒体密钥管理及媒体解密等�
 
     ```c++
     // 适用于单个MediaKeySystem实例的场景。
-    MediaKeySession_Callback sessionCallback = { SessoinEventCallBack, SessoinKeyChangeCallBack };
+    MediaKeySession_Callback sessionCallback = { SessionEventCallBack, SessionKeyChangeCallBack };
     Drm_ErrCode ret = OH_MediaKeySession_SetMediaKeySessionCallback(mediaKeySession, &sessionCallback);
     if (ret != DRM_ERR_OK) {
         printf("OH_MediaKeySession_SetMediaKeySessionCallback failed.");
     }
 
     // 适用于多个MediaKeySystem实例的场景。
-    OH_MediaKeySession_Callback sessionCallback = { SessoinEventCallBackWithObj, SessoinKeyChangeCallBackWithObj };
+    OH_MediaKeySession_Callback sessionCallback = { SessionEventCallBackWithObj, SessionKeyChangeCallBackWithObj };
     ret = OH_MediaKeySession_SetCallback(mediaKeySession, &sessionCallback);
     if (ret != DRM_ERR_OK) {
         printf("OH_MediaKeySession_SetCallback failed.");

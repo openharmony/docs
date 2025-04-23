@@ -16,15 +16,15 @@ int res = OH_HiAppEvent_Write("user_domain", EVENT_USER_LOGIN, BEHAVIOR, list);
 OH_HiAppEvent_DestroyParamList(list);
 ```
 
-**库：** libhiappevent_ndk.z.so
-
 **引用文件：** &lt;hiappevent/hiappevent_event.h&gt;
+
+**库：** libhiappevent_ndk.z.so
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
 **起始版本：** 8
 
-**相关模块：**[HiAppEvent](_hi_app_event.md)
+**相关模块：** [HiAppEvent](_hi_app_event.md)
 
 
 ## 汇总
@@ -44,4 +44,6 @@ OH_HiAppEvent_DestroyParamList(list);
 | [EVENT_CPU_USAGE_HIGH](_hi_app_event.md#event_cpu_usage_high)&nbsp;&nbsp;&nbsp;"CPU_USAGE_HIGH" | 应用CPU资源占用高事件。  | 
 | [EVENT_BATTERY_USAGE](_hi_app_event.md#event_battery_usage)&nbsp;&nbsp;&nbsp;"BATTERY_USAGE" | 应用电源使用率事件。  | 
 | [EVENT_RESOURCE_OVERLIMIT](_hi_app_event.md#event_resource_overlimit)&nbsp;&nbsp;&nbsp;"RESOURCE_OVERLIMIT" | 应用资源超限事件。  | 
+| [EVENT_ADDRESS_SANITIZER](_hi_app_event.md#event_address_sanitizer)&nbsp;&nbsp;&nbsp;"ADDRESS_SANITIZER" | 应用踩内存事件。  | 
+| [EVENT_MAIN_THREAD_JANK](_hi_app_event.md#event_main_thread_jank)&nbsp;&nbsp;&nbsp;"MAIN_THREAD_JANK" | 应用主线程超时事件。  | 
 | [DOMAIN_OS](_hi_app_event.md#domain_os)&nbsp;&nbsp;&nbsp;"OS" | OS作用域。  | 

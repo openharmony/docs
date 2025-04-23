@@ -975,7 +975,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let displayId = 0;
-  let promise = window.getAllWindowLayoutInfo(displayId)
+  let promise = window.getAllWindowLayoutInfo(displayId);
   promise.then((data) => {
     console.info('Succeeded in obtaining all window layout info. Data: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
@@ -6691,6 +6691,8 @@ setWindowMask(windowMask: Array&lt;Array&lt;number&gt;&gt;): Promise&lt;void&gt;
 
 设置异形窗口的掩码，使用Promise异步回调。异形窗口为非常规形状的窗口，掩码用于描述异形窗口的形状。此接口仅限子窗和全局悬浮窗可用。
 当异形窗口大小发生变化时，实际的显示内容为掩码大小和窗口大小的交集部分。
+
+该接口只在多个线程操作同一个窗口时可能返回错误码1300002。窗口被销毁场景下错误码返回401。
 
 <!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 

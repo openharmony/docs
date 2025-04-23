@@ -1602,7 +1602,7 @@ struct SearchExample {
 
 ### 示例15（关闭系统文本选择菜单）
 
-该示例通过defaultFocus、enableKeyboardOnFocus属性展示如何关闭系统文本选择菜单。
+该示例通过selectionMenuHidden属性展示如何关闭系统文本选择菜单。
 
 ```ts
 // xxx.ets
@@ -1662,7 +1662,7 @@ struct SearchExample {
 
 ### 示例17（设置选中指定区域的文本内容）
 
-该示例通过setTextSelection方法展示如何设置选中指定区域的文本内容。
+该示例通过setTextSelection方法展示如何设置选中指定区域的文本内容以及菜单的显隐策略。
 
 ```ts
 // xxx.ets
@@ -1688,7 +1688,7 @@ struct SearchExample {
 
       Button('Selection [0,3]')
         .onClick(() => {
-          this.controller.setTextSelection(0, 3)
+          this.controller.setTextSelection(0, 3, { menuPolicy: MenuPolicy.SHOW })
         })
     }
     .width('100%')

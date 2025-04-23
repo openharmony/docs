@@ -316,7 +316,6 @@ type DataSyncOptions = GetDataParams
 ```ts
 // xxx.ets
 import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
-import { promptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
@@ -395,9 +394,9 @@ struct Index {
           .onDragEnd((event) => {
             // onDragEnd里取到的result值在接收方onDrop设置
             if (event.getResult() === DragResult.DRAG_SUCCESSFUL) {
-              console.log('Drag Success');
+              this.getUIContext().getPromptAction().showToast({ duration: 100, message: 'Drag Success' });
             } else if (event.getResult() === DragResult.DRAG_FAILED) {
-              console.log('Drag failed');
+              this.getUIContext().getPromptAction().showToast({ duration: 100, message: 'Drag failed' });
             }
           })
         Text('test drag event')
@@ -523,6 +522,7 @@ import { common } from '@kit.AbilityKit'
 struct ImageExample {
   @State uri: string = "";
   @State blockArr: string[] = [];
+  uiContext = this.getUIContext();
   udKey: string = '';
 
   build() {
@@ -536,18 +536,20 @@ struct ImageExample {
           .border({ width: 1 })
           .draggable(true)
           .onDragStart((event:DragEvent) => {
-            const context: Context = getContext(this);
-            let data = context.resourceManager.getMediaContentSync($r('app.media.startIcon').id, 120);
-            const arrayBuffer: ArrayBuffer = data.buffer.slice(data.byteOffset, data.byteLength + data.byteOffset);
-            let filePath = context.filesDir + '/test.png';
-            let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-            fs.writeSync(file.fd, arrayBuffer);
-            //获取图片的uri
-            let uri = fileUri.getUriFromPath(filePath);
-            let image: unifiedDataChannel.Image = new unifiedDataChannel.Image();
-            image.imageUri = uri;
-            let dragData: unifiedDataChannel.UnifiedData = new unifiedDataChannel.UnifiedData(image);
-            (event as DragEvent).setData(dragData);
+            const context: Context|undefined = this.uiContext.getHostContext();
+            if(context) {
+              let data = context.resourceManager.getMediaContentSync($r('app.media.startIcon').id, 120);
+              const arrayBuffer: ArrayBuffer = data.buffer.slice(data.byteOffset, data.byteLength + data.byteOffset);
+              let filePath = context.filesDir + '/test.png';
+              let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+              fs.writeSync(file.fd, arrayBuffer);
+              //获取图片的uri
+              let uri = fileUri.getUriFromPath(filePath);
+              let image: unifiedDataChannel.Image = new unifiedDataChannel.Image();
+              image.imageUri = uri;
+              let dragData: unifiedDataChannel.UnifiedData = new unifiedDataChannel.UnifiedData(image);
+              (event as DragEvent).setData(dragData);
+            }
           })
       }
       .margin({ bottom: 20 })
@@ -572,7 +574,7 @@ struct ImageExample {
           .width('100%')
           .onDrop((event?: DragEvent, extraParams?: string) => {
             console.log("enter onDrop")
-            let context = getContext(this) as common.UIAbilityContext;
+            let context = this.uiContext.getHostContext() as common.UIAbilityContext;
             let pathDir: string = context.distributedFilesDir;
             let destUri = fileUri.getUriFromPath(pathDir);
             let progressListener: unifiedDataChannel.DataProgressListener = (progress: unifiedDataChannel.ProgressInfo, dragData: UnifiedData|null) => {
