@@ -237,7 +237,7 @@ struct SubIndex {
               // 按目标ability的类型启动UIAbility或UIExtensionAbility
               context.startAbilityByType("mail", startWant, abilityStartCallback)
                 .then(() => {
-                  console.log(TAG + `Successed in windows starting ability`);
+                  console.log(TAG + `Succeeded in windows starting ability`);
                 }).catch((err: BusinessError) => {
                 console.log(TAG + `Failed to windows starting ability, Code is ${err.code}, message is ${err.message}`);
               })
