@@ -273,7 +273,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 Requests a continuous task from the system. This API uses a promise to return the result.
 
 > **NOTE**
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [backgroundTaskManager.backgroundtaskmanagerstartbackgroundrunning-1](js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerrequestsuspenddelay).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [backgroundTaskManager.startBackgroundRunning](js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerstartbackgroundrunning-1).
 
 **Required permissions**: ohos.permission.KEEP_BACKGROUND_RUNNING
 
