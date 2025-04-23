@@ -3558,7 +3558,8 @@ try {
 ```ts
 // ets/pages/Index.ets
 export const entryName : string = 'Index';
-@Entry({routeName: entryName, storage : LocalStorage.getShared()})
+@Entry({routeName: entryName})
+@LocalStorageLink('storageSimpleProp') storageSimpleProp: number = 1;
 @Component
 export struct Index {
   @State message: string = 'Hello World'
@@ -3704,7 +3705,8 @@ try {
 ```ts
 // ets/pages/Index.ets
 export const entryName : string = 'Index';
-@Entry({routeName: entryName, storage : LocalStorage.getShared()})
+@Entry({routeName: entryName})
+@LocalStorageLink('storageSimpleProp') storageSimpleProp: number = 1;
 @Component
 export struct Index {
   @State message: string = 'Hello World'
@@ -12124,7 +12126,8 @@ export default class EntryAbility extends UIAbility {
 ```ts
 // ets/pages/Index.ets
 export const entryName : string = 'Index';
-@Entry({routeName: entryName, storage : LocalStorage.getShared()})
+@Entry({routeName: entryName})
+@LocalStorageLink('storageSimpleProp') storageSimpleProp: number = 1;
 @Component
 export struct Index {
   @State message: string = 'Hello World'
@@ -12285,7 +12288,8 @@ export default class EntryAbility extends UIAbility {
 ```ts
 // ets/pages/Index.ets
 export const entryName : string = 'Index';
-@Entry({routeName: entryName, storage : LocalStorage.getShared()})
+@Entry({routeName: entryName})
+@LocalStorageLink('storageSimpleProp') storageSimpleProp: number = 1;
 @Component
 export struct Index {
   @State message: string = 'Hello World'
