@@ -19,7 +19,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 > **说明：**
 >
-> 上述'sample'字样仅为示例，此处由调用者根据实际工程目录自定义。
+> 上述'sample'字样仅为示例，此处由开发者根据实际工程目录自定义。
 >
 
 **添加头文件**
