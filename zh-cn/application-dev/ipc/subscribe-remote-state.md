@@ -77,10 +77,10 @@ if (proxy != undefined) {
 
 ## Stub感知Proxy消亡（匿名Stub的使用）
 
-正向的消亡通知是Proxy感知Stub的状态，若想达到反向的死消亡通知，即Stub感知Proxy的状态，可以巧妙的利用正向消亡通知。如两个进程A（原Stub所在进程）和B（原Proxy所在进程），进程B在获取到进程A的Proxy对象后，在B进程新建一个匿名Stub对象（匿名指未向SAMgr注册），可称之为回调Stub，再通过SendRequest接口将回调Stub传给进程A的原Stub。这样一来，进程A便获取到了进程B的回调Proxy。当进程B消亡或B所在设备离开组网时，回调Stub会消亡，回调Proxy会感知，进而通知给原Stub，便实现了反向消亡通知。
+正向的消亡通知是Proxy感知Stub的状态，若想达到反向的消亡通知，即Stub感知Proxy的状态，可以巧妙的利用正向消亡通知。如两个进程A（原Stub所在进程）和B（原Proxy所在进程），进程B在获取到进程A的Proxy对象后，在B进程新建一个匿名Stub对象（匿名指未向SAMgr注册），可称之为回调Stub，再通过SendRequest接口将回调Stub传给进程A的原Stub。这样一来，进程A便获取到了进程B的回调Proxy。当进程B消亡或B所在设备离开组网时，回调Stub会消亡，回调Proxy会感知，进而通知给原Stub，便实现了反向消亡通知。
 
 注意：
 
 > 反向死亡通知仅限设备内跨进程通信使用，不可用于跨设备。
 
-> 当匿名Stub对象没有被任何一个Proxy指向的时候，内核会自动回收。
+> 当匿名Stub对象没有被任何一个Proxy指向时，内核会自动回收。
