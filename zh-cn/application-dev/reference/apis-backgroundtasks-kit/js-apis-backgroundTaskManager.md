@@ -30,8 +30,9 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 后台应用申请延迟挂起。
 
 延迟挂起时间一般情况下默认值为3分钟，低电量（依据系统低电量广播）时默认值为1分钟。
+
 > **说明：**
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[backgroundTaskManager.requestSuspendDelay](js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerrequestsuspenddelay)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[backgroundTaskManager.requestSuspendDelay](js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerrequestsuspenddelay)替代。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -73,8 +74,9 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;): void
 
 获取应用程序进入挂起状态前的剩余时间，使用callback形式返回。
+
 > **说明：**
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[backgroundTaskManager.getRemainingDelayTime](js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagergetremainingdelaytime)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[backgroundTaskManager.getRemainingDelayTime](js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagergetremainingdelaytime)替代。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -109,7 +111,7 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 获取应用程序进入挂起状态前的剩余时间，使用Promise形式返回。
 
 > **说明：**
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[backgroundTaskManager.getRemainingDelayTime](js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagergetremainingdelaytime-1)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[backgroundTaskManager.getRemainingDelayTime](js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagergetremainingdelaytime-1)替代。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -147,7 +149,7 @@ cancelSuspendDelay(requestId: number): void
 取消延迟挂起。
 
 > **说明：**
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[backgroundTaskManager.cancelSuspendDelay](js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagercancelsuspenddelay)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[backgroundTaskManager.cancelSuspendDelay](js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagercancelsuspenddelay)替代。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -172,7 +174,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 向系统申请长时任务，使用callback形式返回结果。
 
 > **说明：**
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[backgroundTaskManager.startBackgroundRunning](js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerstartbackgroundrunning)替代。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[backgroundTaskManager.startBackgroundRunning](js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerstartbackgroundrunning)替代。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -271,7 +273,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 向系统申请长时任务，使用promise形式返回结果。
 
 > **说明：**
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[backgroundTaskManager.startBackgroundRunning](js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerstartbackgroundrunning-1)替代。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[backgroundTaskManager.startBackgroundRunning](js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerstartbackgroundrunning-1)替代。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -368,7 +370,7 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 向系统申请取消长时任务，使用callback形式返回结果。
 
 > **说明：**
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[backgroundTaskManager.stopBackgroundRunning](js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerstopbackgroundrunning)替代。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[backgroundTaskManager.stopBackgroundRunning](js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerstopbackgroundrunning)替代。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -431,7 +433,7 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 向系统申请取消长时任务，使用promise形式返回结果。
 
 > **说明：**
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[backgroundTaskManager.stopBackgroundRunning](js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerstopbackgroundrunning-1)替代。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[backgroundTaskManager.stopBackgroundRunning](js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerstopbackgroundrunning-1)替代。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -491,7 +493,7 @@ export default class EntryAbility extends UIAbility {
 延迟挂起信息。
 
 > **说明：**
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[DelaySuspendInfo](js-apis-resourceschedule-backgroundTaskManager.md#delaysuspendinfo)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[DelaySuspendInfo](js-apis-resourceschedule-backgroundTaskManager.md#delaysuspendinfo)替代。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -506,7 +508,7 @@ export default class EntryAbility extends UIAbility {
 长时任务类型。
 
 > **说明：**
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[BackgroundMode](js-apis-resourceschedule-backgroundTaskManager.md#backgroundmode)替代。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[BackgroundMode](js-apis-resourceschedule-backgroundTaskManager.md#backgroundmode)替代。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
