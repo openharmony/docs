@@ -167,7 +167,7 @@ cancelSuspendDelay(requestId: number): void
   ```
 
 
-## backgroundTaskManager.startBackgroundRunning<sup>8+</sup><sup>(deprecated)</sup>
+## backgroundTaskManager.startBackgroundRunning<sup>(deprecated)</sup>
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback&lt;void&gt;): void
 
@@ -266,7 +266,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-## backgroundTaskManager.startBackgroundRunning<sup>8+</sup><sup>(deprecated)</sup>
+## backgroundTaskManager.startBackgroundRunning<sup>(deprecated)</sup>
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt;
 
@@ -363,7 +363,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-## backgroundTaskManager.stopBackgroundRunning<sup>8+</sup><sup>(deprecated)</sup>
+## backgroundTaskManager.stopBackgroundRunning<sup>(deprecated)</sup>
 
 stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): void
 
@@ -426,7 +426,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-## backgroundTaskManager.stopBackgroundRunning<sup>8+</sup><sup>(deprecated)</sup>
+## backgroundTaskManager.stopBackgroundRunning<sup>(deprecated)</sup>
 
 stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
@@ -503,7 +503,7 @@ export default class EntryAbility extends UIAbility {
 | actualDelayTime | number | 是    | 应用的实际挂起延迟时间，以毫秒为单位。<br/>一般情况下默认值为180000，低电量（依据系统低电量广播）时默认值为60000。 |
 
 
-## BackgroundMode<sup>8+</sup><sup>(deprecated)</sup>
+## BackgroundMode<sup>(deprecated)</sup>
 
 长时任务类型。
 
