@@ -2108,7 +2108,7 @@ postMessage(messageObject: Object, transfer: ArrayBuffer[]): void
 Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 
 > **说明：**<br/>
-> 此接口暂不支持使用，从API version 9开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>.postMessage<sup>9+</sup>](#postmessage9-2)替代。
+> DedicatedWorkerGlobalScope类自API version 9开始废弃，本接口建议使用[ThreadWorkerGlobalScope<sup>9+</sup>.postMessage<sup>9+</sup>](#postmessage9-2)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
