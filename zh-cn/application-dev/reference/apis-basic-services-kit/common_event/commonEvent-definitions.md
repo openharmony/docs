@@ -78,7 +78,7 @@
 
 
 * COMMON_EVENT_TIME_CHANGED
-提示系统时间被被重新设置。
+提示系统时间被重新设置。
   - 值：usual.event.TIME_CHANGED
   - 订阅者所需权限：无
 
