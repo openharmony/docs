@@ -563,3 +563,17 @@ Allows an application to call the screen time guard APIs to restrict screen usag
 **Enable via ACL**: true
 
 **Valid since**: 20
+
+### ohos.permission.CUSTOMIZE_SAVE_BUTTON
+
+Allows an application to customize the icon and text of SaveButton.
+
+<!--RP41--><!--RP41End-->
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 20
