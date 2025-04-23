@@ -79,7 +79,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     OH_AVScreenCapture_Init(capture, config);
     ```
 
-5. (Optional) Enable the microphone.  
+5. (Optional) Enable the microphone.
 
     ```c++
     bool isMic = true;
@@ -364,6 +364,96 @@ Currently, the buffer holds original streams, which can be encoded and saved in 
 #include <fcntl.h>
 #include "string"
 #include "unistd.h"
+// OnError(), a callback function invoked when an error occurs.
+void OnError(OH_AVScreenCapture *capture, int32_t errorCode, void *userData) {
+    (void)capture;
+    (void)errorCode;
+    (void)userData;
+}
+
+// OnStageChange(), a callback function invoked when the state changes.
+void OnStageChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
+    (void)capture;
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_STARTED) {
+        // Process the screen capture start event.
+    }
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_CANCELED) {
+        // Process the screen capture cancellation event.
+    }
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL) {
+        // Process the event indicating that screen capture is interrupted by a call.
+    }
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_MIC_UNAVAILABLE) {
+        // Process the event indicating that the microphone is unavailable during screen capture.
+    }
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_INTERRUPTED_BY_OTHER) {
+        // Process the event indicating that screen capture is interrupted by others.
+    }
+    ...
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_EXIT_PRIVATE_SCENE) {
+        // Process the event indicating that the application exits the privacy mode during screen capture.
+    }
+    (void)userData;
+}
+
+// Obtain and process the OnBufferAvailable() callback function of the original audio and video stream data.
+void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer, OH_AVScreenCaptureBufferType bufferType, int64_t timestamp, void *userData) {
+    // Screen capture is in progress.
+    if (IsCaptureStreamRunning) {
+        if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_VIDEO) {
+            // Video buffer.
+            OH_NativeBuffer *nativeBuffer = OH_AVBuffer_GetNativeBuffer(buffer);
+            if (nativeBuffer != nullptr && capture != nullptr) {
+                // Obtain the buffer capacity.
+                int bufferLen = OH_AVBuffer_GetCapacity(buffer);
+
+                // Obtain the buffer attribute.
+                OH_AVCodecBufferAttr info;
+                OH_AVBuffer_GetBufferAttr(buffer, &info);
+
+                // Obtain the native buffer configuration.
+                OH_NativeBuffer_Config config;
+                OH_NativeBuffer_GetConfig(nativeBuffer, &config);
+
+                // Obtain the buffer address.
+                uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
+                if (buf != nullptr) {
+                    return;
+                }
+                // Use the buffer data.
+
+                // The reference count of the native buffer is decremented by 1. When the reference count reaches 0, the buffer is released.
+                OH_NativeBuffer_Unreference(nativeBuffer);
+            }
+        } else if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_INNER) {
+            // Buffer for internal recording.
+            // Obtain the buffer attribute.
+            OH_AVCodecBufferAttr info;
+            OH_AVBuffer_GetBufferAttr(buffer, &info);
+
+            // Obtain the buffer capacity.
+            int bufferLen = OH_AVBuffer_GetCapacity(buffer);
+
+            // Obtain the buffer address.
+            uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
+            if (buf != nullptr) {
+                return;
+            }
+            // Use the buffer data.
+        } else if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_MIC) {
+            // Microphone buffer.
+            // Obtain the buffer capacity.
+            int bufferLen = OH_AVBuffer_GetCapacity(buffer);
+
+            // Obtain the buffer address.
+            uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
+            if (buf != nullptr) {
+                return;
+            }
+            // Use the buffer data.
+        }
+    }
+}
 
 struct OH_AVScreenCapture *capture;
 static napi_value Screencapture(napi_env env, napi_callback_info info) {

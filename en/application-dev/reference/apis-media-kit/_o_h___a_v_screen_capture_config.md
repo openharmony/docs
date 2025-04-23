@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **OH_AVScreenCaptureConfig** struct describes the screen capture configuration.
+The OH_AVScreenCaptureConfig struct describes the screen capture configuration.
 
 **System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
 

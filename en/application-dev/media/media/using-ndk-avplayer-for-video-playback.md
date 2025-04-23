@@ -5,7 +5,6 @@ The [AVPlayer](../../reference/apis-media-kit/_a_v_player.md#avplayer) is used t
 
 The full playback process includes creating an AVPlayer instance, setting callback functions, setting the media asset to play, setting playback parameters (volume, speed, and focus mode), setting the playback window, controlling playback (play, pause, seek, and stop), resetting the playback configuration, and releasing the AVPlayer instance.
 
-
 During application development, you can obtain the playback process information through the callbacks [OH_AVPlayerOnInfoCallback](../../reference/apis-media-kit/_a_v_player.md#oh_avplayeroninfocallback) and [OH_AVPlayerOnErrorCallback](../../reference/apis-media-kit/_a_v_player.md#oh_avplayeronerrorcallback) of the AVPlayer. If the application performs an operation when the AVPlayer is not in the given state, the system may throw an exception or generate other undefined behavior.
 
 **Figure 1** Playback state transition
@@ -145,7 +144,7 @@ void HandleStateChange(OH_AVPlayer *player, AVPlayerState state) {
         case AV_PREPARED:
 //            ret = OH_AVPlayer_SetAudioEffectMode(player, EFFECT_NONE); // Set the audio effect mode.
 //            if (ret != AV_ERR_OK) {
-//            // Handle the exception.   
+//            // Handle the exception.  
 //            }  
             ret = OH_AVPlayer_Play(player); // Call OH_AVPlayer_Play() to start playback.
             if (ret != AV_ERR_OK) {
@@ -309,7 +308,7 @@ void OHAVPlayerOnErrorCallback(OH_AVPlayer *player, int32_t errorCode, const cha
         return;
     }
     demoNdkPlayer->errorCode = errorCode;
-    // do something
+    // Do something.
 }
 
 // Describe the mapped play method in the index.d.ts file and pass in a parameter of the string type.
@@ -382,13 +381,13 @@ static napi_value Play(napi_env env, napi_callback_info info)
     OH_AudioStream_Usage streamUsage = OH_AudioStream_Usage::AUDIOSTREAM_USAGE_UNKNOWN;
     ret = OH_AVPlayer_SetAudioRendererInfo(player, streamUsage);
     if (ret != AV_ERR_OK) {
-    // Handle the exception.   
+    // Handle the exception.
     }
     // Set the audio interruption mode.
     OH_AudioInterrupt_Mode interruptMode = OH_AudioInterrupt_Mode::AUDIOSTREAM_INTERRUPT_MODE_INDEPENDENT;
     ret = OH_AVPlayer_SetAudioInterruptMode(player, interruptMode);
     if (ret != AV_ERR_OK) {
-    // Handle the exception.   
+    // Handle the exception. 
     }
     napi_value value;
     napi_create_int32(env, 0, &value);
