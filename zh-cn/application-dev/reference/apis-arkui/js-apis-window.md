@@ -3559,10 +3559,10 @@ try {
 // ets/pages/Index.ets
 export const entryName : string = 'Index';
 @Entry({routeName: entryName, useSharedStorage: true})
-@LocalStorageLink('storageSimpleProp') storageSimpleProp: number = 1;
 @Component
 export struct Index {
   @State message: string = 'Hello World'
+  @LocalStorageLink('storageSimpleProp') storageSimpleProp: number = 1;
   build() {
     Row() {
       Column() {
@@ -3706,10 +3706,10 @@ try {
 // ets/pages/Index.ets
 export const entryName : string = 'Index';
 @Entry({routeName: entryName, useSharedStorage: true})
-@LocalStorageLink('storageSimpleProp') storageSimpleProp: number = 1;
 @Component
 export struct Index {
   @State message: string = 'Hello World'
+  @LocalStorageLink('storageSimpleProp') storageSimpleProp: number = 1;
   build() {
     Row() {
       Column() {
@@ -12127,10 +12127,10 @@ export default class EntryAbility extends UIAbility {
 // ets/pages/Index.ets
 export const entryName : string = 'Index';
 @Entry({routeName: entryName, useSharedStorage: true})
-@LocalStorageLink('storageSimpleProp') storageSimpleProp: number = 1;
 @Component
 export struct Index {
   @State message: string = 'Hello World'
+  @LocalStorageLink('storageSimpleProp') storageSimpleProp: number = 1;
   build() {
     Row() {
       Column() {
@@ -12289,10 +12289,10 @@ export default class EntryAbility extends UIAbility {
 // ets/pages/Index.ets
 export const entryName : string = 'Index';
 @Entry({routeName: entryName, useSharedStorage: true})
-@LocalStorageLink('storageSimpleProp') storageSimpleProp: number = 1;
 @Component
 export struct Index {
   @State message: string = 'Hello World'
+  @LocalStorageLink('storageSimpleProp') storageSimpleProp: number = 1;
   build() {
     Row() {
       Column() {
