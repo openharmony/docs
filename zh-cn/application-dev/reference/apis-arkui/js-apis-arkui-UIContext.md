@@ -7257,10 +7257,9 @@ export function doSomething(context: UIContext, uniqueId: number, contentNode: C
 }
 
 @Builder
-
 function MyMenu() {
   Column() {
-    Menu(){
+    Menu() {
       MenuItem({ startIcon: $r("app.media.startIcon"), content: "菜单选项1" })
       MenuItem({ startIcon: $r("app.media.startIcon"), content: "菜单选项2" })
     }
@@ -7270,14 +7269,12 @@ function MyMenu() {
 }
 
 export function showMenu(context: UIContext, uniqueId: number, contentNode: ComponentContent<Object>) {
-
   const promptAction = context.getPromptAction();
   let frameNode: FrameNode | null = context.getFrameNodeByUniqueId(uniqueId);
   let frameNodeTarget = frameNode?.getFirstChild();
   frameNodeTarget = frameNodeTarget?.getChild(0);
   let targetId = frameNodeTarget?.getUniqueId();
-
-  promptAction.openMenu(contentNode, {id: targetId},{
+  promptAction.openMenu(contentNode, { id: targetId }, {
     enableArrow: true,
   });
 }
@@ -7286,7 +7283,7 @@ export function showMenu(context: UIContext, uniqueId: number, contentNode: Comp
 @Component
 struct Index {
   build() {
-    Column(){
+    Column() {
       Button('OpenMenu', { type: ButtonType.Normal, stateEffect: true })
         .borderRadius('16lpx')
         .width('80%')
@@ -7350,10 +7347,9 @@ export function doSomething(context: UIContext, uniqueId: number, contentNode: C
 }
 
 @Builder
-
 function MyMenu() {
   Column() {
-    Menu(){
+    Menu() {
       MenuItem({ startIcon: $r("app.media.startIcon"), content: "菜单选项1" })
       MenuItem({ startIcon: $r("app.media.startIcon"), content: "菜单选项2" })
     }
@@ -7363,17 +7359,14 @@ function MyMenu() {
 }
 
 export function showMenu(context: UIContext, uniqueId: number, contentNode: ComponentContent<Object>) {
-
   const promptAction = context.getPromptAction();
   let frameNode: FrameNode | null = context.getFrameNodeByUniqueId(uniqueId);
   let frameNodeTarget = frameNode?.getFirstChild();
   frameNodeTarget = frameNodeTarget?.getChild(0);
   let targetId = frameNodeTarget?.getUniqueId();
-
-  promptAction.openMenu(contentNode, {id: targetId},{
+  promptAction.openMenu(contentNode, { id: targetId }, {
     enableArrow: true,
   });
-
   setTimeout(() => {
     promptAction.updateMenu(contentNode, {
       enableArrow: false,
@@ -7385,7 +7378,7 @@ export function showMenu(context: UIContext, uniqueId: number, contentNode: Comp
 @Component
 struct Index {
   build() {
-    Column(){
+    Column() {
       Button('OpenMenu', { type: ButtonType.Normal, stateEffect: true })
         .borderRadius('16lpx')
         .width('80%')
@@ -7442,10 +7435,9 @@ export function doSomething(context: UIContext, uniqueId: number, contentNode: C
 }
 
 @Builder
-
 function MyMenu() {
   Column() {
-    Menu(){
+    Menu() {
       MenuItem({ startIcon: $r("app.media.startIcon"), content: "菜单选项1" })
       MenuItem({ startIcon: $r("app.media.startIcon"), content: "菜单选项2" })
     }
@@ -7455,17 +7447,14 @@ function MyMenu() {
 }
 
 export function showMenu(context: UIContext, uniqueId: number, contentNode: ComponentContent<Object>) {
-
   const promptAction = context.getPromptAction();
   let frameNode: FrameNode | null = context.getFrameNodeByUniqueId(uniqueId);
   let frameNodeTarget = frameNode?.getFirstChild();
   frameNodeTarget = frameNodeTarget?.getChild(0);
   let targetId = frameNodeTarget?.getUniqueId();
-
-  promptAction.openMenu(contentNode, {id: targetId},{
+  promptAction.openMenu(contentNode, { id: targetId }, {
     enableArrow: true,
   });
-
   setTimeout(() => {
     promptAction.closeMenu(contentNode);
   }, 2000)
@@ -7475,7 +7464,7 @@ export function showMenu(context: UIContext, uniqueId: number, contentNode: Comp
 @Component
 struct Index {
   build() {
-    Column(){
+    Column() {
       Button('OpenMenu', { type: ButtonType.Normal, stateEffect: true })
         .borderRadius('16lpx')
         .width('80%')
