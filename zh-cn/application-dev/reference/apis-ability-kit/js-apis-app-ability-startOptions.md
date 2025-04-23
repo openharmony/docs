@@ -23,8 +23,8 @@ import { StartOptions } from '@kit.AbilityKit';
 | windowMode<sup>12+<sup> | number | 否 | 是 | 启动Ability时的窗口模式，详见[WindowMode](./js-apis-app-ability-abilityConstant.md#windowmode12)。 |
 | displayId | number | 否 | 是 | 屏幕ID模式。默认是0，表示当前屏幕。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | withAnimation<sup>11+</sup> | boolean | 否 | 是 | 启动Ability时是否具有动画效果。true表示具有动画效果，false表示不具有动画效果。<br>**约束：**<br>1.该功能仅在2in1和tablet设备上生效。<br>2.调用方与目标方必须为同一应用。 |
-| windowLeft<sup>11+</sup> | number | 否 | 是 | 窗口左边的位置，单位为px。如果设置为负值，系统会默认设置为0。建议同时设置Left和Top，并大于零。 |
-| windowTop<sup>11+</sup> | number | 否 | 是 | 窗口顶部的位置，单位为px。如果设置为负值，系统会默认设置为0。建议同时设置Left和Top，并大于零。 |
+| windowLeft<sup>11+</sup> | number | 否 | 是 | 窗口左边的位置，单位为px。如果设置为负值，系统会默认设置为0。当配置了windowLeft时，建议同时配置windowTop，并设置为正数。 |
+| windowTop<sup>11+</sup> | number | 否 | 是 | 窗口顶部的位置，单位为px。如果设置为负值，系统会默认设置为0。当配置了windowTop时，建议同时配置windowLeft，并设置为正数。 |
 | windowWidth<sup>11+</sup> | number | 否 | 是 | 窗口的宽度，单位为px。 |
 | windowHeight<sup>11+</sup> | number | 否 | 是 | 窗口的高度，单位为px。 |
 | processMode<sup>12+</sup> | [contextConstant.ProcessMode](js-apis-app-ability-contextConstant.md#processmode12) | 否 | 是 | 进程模式。<br>**约束：**<br>1.该功能仅在2in1和tablet设备上生效。<br>2.仅在[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1)中生效。<br>3.processMode和startupVisibility必须同时设置。 |
