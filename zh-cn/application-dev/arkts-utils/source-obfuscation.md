@@ -149,7 +149,7 @@ test(a2);
 
 若配置该选项，所有属性名将被混淆，以下场景除外：
 
-* 被`import/export`直接导入或导出的类、对象的属性名不会被混淆。例如下面例子中的属性名`data`不会被混淆。
+* 在未开启`-enable-export-obfuscation`选项的情况下，被`import/export`直接导入或导出的类、对象的属性名不会被混淆。例如下面例子中的属性名`data`不会被混淆。
 
     ```
     export class MyClass {
@@ -235,7 +235,7 @@ let params = obj['ohos.want.action.home'];
 
 若配置该选项，所有顶层作用域的名称都会被混淆，以下场景除外：
 
-* 被`import/export`直接导入或导出的名称不会被混淆。
+* 在未开启`-enable-export-obfuscation`选项的情况下，被`import/export`直接导入或导出的名称不会被混淆。
 * 当前文件找不到声明的名称不会被混淆。
 * 被[保留选项](#-keep-global-name)指定的顶层作用域名称不会被混淆。
 * SDK API列表中的顶层作用域名称不会被混淆。
@@ -289,13 +289,13 @@ let params = obj['ohos.want.action.home'];
 * 模块内module.json5文件中'srcEntry'字段配置的文件/文件夹名称不会被混淆。
 * 被[-keep-file-name](#-keep-file-name)指定的文件/文件夹名称不会被混淆。
 * 非ECMAScript模块引用方式（例如：`const module = require('./module')`）。
-* 非路径引用方式，例如例子中的json5不会被混淆 `import module from 'json5'`。
+* 非路径引用方式，例如`import module from 'json5'`中的`json5`不会被混淆。
 
 >**注意**：
 >
 >由于系统会在应用运行时加载某些指定的文件，针对这类文件，开发者需要手动在[-keep-file-name](#-keep-file-name)选项中配置相应的白名单，防止指定文件被混淆，导致运行失败。
 >
->编译入口、Ability组件、Worker多线程，这三种不能混淆的文件名在DevEco Studio 5.0.3.500版本已被自动收集进白名单中，无需再手动配置，其它不能混淆文件名的场景仍需开发者手动配置。
+>编译入口、Ability组件、Worker多线程，这三种不能混淆的文件名在DevEco Studio 5.0.3.500及以上版本已被自动收集进白名单中，无需再手动配置，其它不能混淆文件名的场景仍需开发者手动配置。
 
 ### -compact
 
@@ -318,8 +318,7 @@ let params = obj['ohos.want.action.home'];
 
 >**注意**：
 >
->release模式构建的应用栈信息仅包含代码行号，不包含列号，因此compact功能开启后无法依据报错栈中的行号定位到源码具体位置。
-
+>release模式构建的应用栈信息仅包含代码行号，不包含列号，因此-compact功能开启后无法依据报错栈中的行号定位到源码具体位置。
 
 ### -remove-comments
 
@@ -397,7 +396,7 @@ let params = obj['ohos.want.action.home'];
 ### -apply-namecache
 
 复用指定的名称缓存文件*filepath*。其中，*filepath*为必选参数，支持相对路径和绝对路径，相对路径的起始位置为混淆配置文件的当前目录。*filepath*参数中的文件名请以`.json`为后缀。
-该选项应该在增量编译场景中被使用。开启该选项后，名称将会被混淆成缓存映射对应的名称，若找不到对应的缓存，则会被混淆成新的随机名称。
+该选项适用于增量编译场景。开启该选项后，名称将会被混淆成缓存映射对应的名称，若找不到对应的缓存，则会被混淆成新的随机名称。
 
 例如：
 ```
@@ -1008,7 +1007,7 @@ export class exportClass {}
 ../oh_modules/harName3          // harName3目录下所有文件及子文件夹中的名称都不混淆
 ```
 
-模块级`oh_moudles`和工程级`oh_modules`在`DevEco Studio`中的目录结构如下图所示：
+模块级`oh_modules`和工程级`oh_modules`在`DevEco Studio`中的目录结构如下图所示：
 
 ![oh_modules](./figures/oh_modules.png)
 
@@ -1146,7 +1145,7 @@ class A {
 * 当前构建模块的ruleOptions.files属性。
 * 依赖的本地HSP的consumerFiles属性。
 * 依赖的本地HAR的consumerFiles属性。
-* 依赖的远程HAR和远程HSP中的obfuscation.txt文件
+* 依赖的远程HAR和远程HSP中的obfuscation.txt文件。
 
 如果构建的是HAR，生成的远程HAR中的obfuscation.txt是下列文件的合并：
 * 自身的consumerFiles属性。
