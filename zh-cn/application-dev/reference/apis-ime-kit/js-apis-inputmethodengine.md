@@ -4673,6 +4673,8 @@ try {
 | immersiveMode<sup>15+</sup> | number | 是   | 是   | 输入法沉浸模式。 |
 | windowId<sup>18+</sup> | number | 是 | 是 | 编辑框设置所属窗口ID。 |
 | displayId<sup>18+</sup> | number | 是   | 是   | 编辑框设置窗口对应的屏幕ID。如果没有设置windowId，取当前焦点窗口屏幕ID。|
+| placeholder<sup>20+</sup> | string | 是 | 是 | 编辑框设置的占位符信息。|
+| abilityName<sup>20+</sup> | string | 是 | 是 | 编辑框设置的ability名称。|
 
 ## KeyEvent
 

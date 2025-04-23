@@ -1099,7 +1099,7 @@ controller: RichEditorController = new RichEditorController()
 
 ### addTextSpan
 
-addTextSpan(value: string, options?: RichEditorTextSpanOptions): number
+addTextSpan(content: ResourceStr, options?: RichEditorTextSpanOptions): number
 
 添加文本内容，如果组件光标闪烁，插入后光标位置更新为新插入文本的后面。
 
@@ -1111,7 +1111,7 @@ addTextSpan(value: string, options?: RichEditorTextSpanOptions): number
 
 | 参数名     | 类型                                     | 必填   | 说明  |
 | ------- | ---------------------------------------- | ---- | ----- |
-| value   | string                                   | 是    | 文本内容。 |
+| content | [ResourceStr](ts-types.md#resourcestr) | 是    | 文本内容。 |
 | options | [RichEditorTextSpanOptions](#richeditortextspanoptions) | 否    | 文本选项。 |
 
 **返回值：**

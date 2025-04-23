@@ -813,6 +813,24 @@ RSA私钥编码参数，使用获取私钥字符串时，可以添加此参数�
 >
 > cipherName是必选参数，表示CMAC消息验证码使用的对称加密算法名。
 
+## EccSignatureSpec<sup>20+</sup>
+包含（r、s）的sm2签名数据的结构体。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.CryptoFramework.Signature
+
+| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| r | bigint | 是   | 是   | r分量。|
+| s | bigint | 是   | 是   | s分量。 |
+
+> **说明：**
+>
+> - r和s的长度各为256位。
+>
+
+
 ## Key
 
 密钥（父类），在运行密码算法（如加解密）时需要提前生成其子类对象，并传入[Cipher](#cipher)实例的[init()](#init-2)方法。
@@ -6671,4 +6689,117 @@ generateSecretSync(params: KdfSpec): DataBlob
   let kdf = cryptoFramework.createKdf('HKDF|SHA256|EXTRACT_AND_EXPAND');
   let secret = kdf.generateSecretSync(spec);
   console.info("[Sync]key derivation output is " + secret.data);
+  ```
+
+## SignatureUtils<sup>20+</sup>
+
+用于SM2数据转换的工具类。
+
+### genEccSignatureSpec<sup>20+</sup>
+
+static genEccSignatureSpec(data: Uint8Array): EccSignatureSpec
+
+从ASN1 DER格式的sm2签名数据获取r和s。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.CryptoFramework.Signature
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                   |
+| ------ | ------ | ---- | ---------------------- |
+| data   | Uint8Array        | 是   | ASN1 DER格式的签名数据。 |
+
+**返回值：**
+
+| 类型               | 说明     |
+| ------------------ | -------- |
+| [EccSignatureSpec](#eccsignaturespec20) | 包含r和s的数据结构体。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 401 | Parameter error.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.  |
+| 17620001 | memory error.          |
+| 17620002 | runtime error. |
+| 17630001 | crypto operation error. |
+
+**示例：**
+
+  ```ts
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  function testGenEccSignatureSpec() {
+    try {
+      let data =
+        new Uint8Array([48, 69, 2, 33, 0, 216, 15, 76, 238, 158, 165, 108, 76, 72, 63, 115, 52, 255, 51, 149, 54, 224,
+          179, 49, 225, 70, 36, 117, 88, 154, 154, 27, 194, 161, 3, 1, 115, 2, 32, 51, 9, 53, 55, 248, 82, 7, 159, 179,
+          144, 57, 151, 195, 17, 31, 106, 123, 32, 139, 219, 6, 253, 62, 240, 181, 134, 214, 107, 27, 230, 175, 40])
+      let spec: cryptoFramework.EccSignatureSpec = cryptoFramework.SignatureUtils.genEccSignatureSpec(data)
+      console.info('genEccSignatureSpec success');
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error(`ecc error, ${e.code}, ${e.message}`);
+    }
+  }
+  ```
+
+
+### genEccSignature<sup>20+</sup>
+
+static genEccSignature(spec: EccSignatureSpec): Uint8Array;
+
+将（r、s）的sm2签名数据转换为ASN1 DER格式。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.CryptoFramework.Signature
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                   |
+| ------ | ------ | ---- | ---------------------- |
+| spec   | [EccSignatureSpec](#eccsignaturespec20)        | 是   | （r、s）的sm2签名数据。 |
+
+**返回值：**
+
+| 类型               | 说明     |
+| ------------------ | -------- |
+| Uint8Array | ASN1 DER格式的签名数据。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 401 | Parameter error.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.  |
+| 17620001 | memory error.          |
+| 17620002 | runtime error. |
+| 17630001 | crypto operation error. |
+
+**示例：**
+
+  ```ts
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  function testGenEccSignature() {
+    try {
+      let spec: cryptoFramework.EccSignatureSpec = {
+        r: BigInt('97726608965854271693043443511967021777934035174185659091642456228829830775155'),
+        s: BigInt('23084224202834231287427338597254751764391338275617140205467537273296855150376'),
+      }
+
+      let data = cryptoFramework.SignatureUtils.genEccSignature(spec)
+      console.info('genEccSignature success');
+      console.info('data is ' + data)
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error(`ecc error, ${e.code}, ${e.message}`);
+    }
+  }
   ```
