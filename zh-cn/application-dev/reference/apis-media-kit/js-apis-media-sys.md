@@ -446,6 +446,50 @@ avRecorder.setWatermark(watermark, watermarkConfig).then(() => {
 });
 ```
 
+### setMetadata<sup>18+</sup>
+setMetadata(metadata: Record\<string, string\>): void
+
+给AVRecorder录制文件中设置自定义meta数据。无返回值。
+
+当且仅当[prepare()](js-apis-media.md#prepare9-3)事件成功触发后，且在[stop()](js-apis-media.md#stop9-3)之前，才能调用setMetadata方法。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+**系统接口：** 该接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明                                                                |
+| -------- | -------------------- | ---- |-------------------------------------------------------------------|
+| metadata | [Record<string, string>]  | 是   | 以键值对形式设置meta数据的tag和value，第一个string为meta tag，第二个string为meta value。 |
+
+**返回值：**
+
+| 类型            | 说明        |
+| --------------- |-----------|
+| void | 同步执行无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息            |
+|-------|-----------------|
+| 202   | Not System App. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let meta : Record<string, string> = {
+   'com.openharmony.userdefine':'10',
+   'com.openharmony.userdefine2':'20'
+};
+
+avRecorder.setMetadata(meta);
+```
+
 ## VideoRecorder<sup>9+</sup>
 
 > **说明：**
