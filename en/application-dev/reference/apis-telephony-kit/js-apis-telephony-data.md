@@ -523,7 +523,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { data } from '@kit.TelephonyKit';
 
-cellular.queryAllApns().then((data: Array<cellular.ApnInfo>) => {
+data.queryAllApns().then((data: Array<data.ApnInfo>) => {
     console.info(`queryAllApns success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`queryAllApns failed, promise: err->${JSON.stringify(err)}`);
@@ -559,7 +559,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { data } from '@kit.TelephonyKit';
 
-let apnInfo: cellular.ApnInfo;
+let apnInfo: data.ApnInfo;
 apnInfo = {
   apnName: "CMNET",
   apn: "cmnet",
@@ -567,7 +567,7 @@ apnInfo = {
   mnc: "07",
 };
 
-cellular.queryApnIds(apnInfo).then((data: Array<number>) => {
+data.queryApnIds(apnInfo).then((data: Array<number>) => {
     console.info(`queryApnIds success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`queryApnIds failed, promise: err->${JSON.stringify(err)}`);
@@ -608,7 +608,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { data } from '@kit.TelephonyKit';
 
 let apnId: number = 0; // apnId is a valid value returned by queryApnIds. If an invalid APN ID is passed to setPreferredApn, the default preferred APN configured by the carrier is used.
-cellular.setPreferredApn(apnId).then((data: boolean) => {
+data.setPreferredApn(apnId).then((data: boolean) => {
     console.info(`setPreferredApn success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`setPreferredApn failed, promise: err->${JSON.stringify(err)}`);

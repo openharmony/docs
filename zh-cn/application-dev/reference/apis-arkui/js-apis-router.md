@@ -12,9 +12,7 @@
 >
 > - 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](./js-apis-arkui-UIContext.md#uicontext)说明。
 >
-> - 从API version 10开始，可以通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getRouter](./js-apis-arkui-UIContext.md#getrouter)方法获取当前UI上下文关联的[Router](./js-apis-arkui-UIContext.md#router)对象。
->
-> - 如果使用传入callback形式的[pushUrl](#routerpushurl9-1)或[pushNamedRoute](#routerpushnamedroute10-1)接口，callback中通过[getLength](#routergetlength)等接口获取的栈信息为中间态的栈信息，可能与栈操作完全结束后，再通过[getLength](#routergetlength)等接口获取的栈信息不一致。
+> - 如果使用传入callback形式的[pushUrl](js-apis-arkui-UIContext.md#pushurl-1)或[pushNamedRoute](js-apis-arkui-UIContext.md#pushnamedroute-1)接口，callback中通过[getLength](js-apis-arkui-UIContext.md#getlength)等接口获取的栈信息为中间态的栈信息，可能与栈操作完全结束后，再通过[getLength](js-apis-arkui-UIContext.md#getlength)等接口获取的栈信息不一致。
 
 ## 导入模块
 
@@ -22,11 +20,17 @@
 import { router } from '@kit.ArkUI';
 ```
 
-## router.pushUrl<sup>9+</sup>
+## router.pushUrl<sup>(deprecated)</sup>
 
 pushUrl(options: RouterOptions): Promise&lt;void&gt;
 
 跳转到应用内的指定页面。
+
+> **说明：**
+>
+> 从API version 9开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)获取[Router](js-apis-arkui-UIContext.md#router)实例，再通过此实例调用替代方法[pushUrl](js-apis-arkui-UIContext.md#pushurl)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)方法获取当前UI上下文关联的[Router](js-apis-arkui-UIContext.md#router)对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -93,11 +97,17 @@ router.pushUrl({
   })
 ```
 
-## router.pushUrl<sup>9+</sup>
+## router.pushUrl<sup>(deprecated)</sup>
 
 pushUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 跳转到应用内的指定页面。
+
+> **说明：**
+>
+> 从API version 9开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)获取[Router](js-apis-arkui-UIContext.md#router)实例，再通过此实例调用替代方法[pushUrl](js-apis-arkui-UIContext.md#pushurl-1)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)方法获取当前UI上下文关联的[Router](js-apis-arkui-UIContext.md#router)对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -156,11 +166,17 @@ router.pushUrl({
   console.info('pushUrl success');
 })
 ```
-## router.pushUrl<sup>9+</sup>
+## router.pushUrl<sup>(deprecated)</sup>
 
 pushUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 
 跳转到应用内的指定页面。
+
+> **说明：**
+>
+> 从API version 9开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)获取[Router](js-apis-arkui-UIContext.md#router)实例，再通过此实例调用替代方法[pushUrl](js-apis-arkui-UIContext.md#pushurl-2)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)方法获取当前UI上下文关联的[Router](js-apis-arkui-UIContext.md#router)对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -228,11 +244,17 @@ router.pushUrl({
   })
 ```
 
-## router.pushUrl<sup>9+</sup>
+## router.pushUrl<sup>(deprecated)</sup>
 
 pushUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;void&gt;): void
 
 跳转到应用内的指定页面。
+
+> **说明：**
+>
+> 从API version 9开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)获取[Router](js-apis-arkui-UIContext.md#router)实例，再通过此实例调用替代方法[pushUrl](js-apis-arkui-UIContext.md#pushurl-3)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)方法获取当前UI上下文关联的[Router](js-apis-arkui-UIContext.md#router)对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -293,11 +315,17 @@ router.pushUrl({
 })
 ```
 
-## router.replaceUrl<sup>9+</sup>
+## router.replaceUrl<sup>(deprecated)</sup>
 
 replaceUrl(options: RouterOptions): Promise&lt;void&gt;
 
 用应用内的某个页面替换当前页面，并销毁被替换的页面。不支持设置页面转场动效，如需设置，推荐使用[Navigation组件](../../ui/arkts-navigation-navigation.md)。
+
+> **说明：**
+>
+> 从API version 9开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)获取[Router](js-apis-arkui-UIContext.md#router)实例，再通过此实例调用替代方法[replaceUrl](js-apis-arkui-UIContext.md#replaceurl)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)方法获取当前UI上下文关联的[Router](js-apis-arkui-UIContext.md#router)对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -353,11 +381,17 @@ router.replaceUrl({
   })
 ```
 
-## router.replaceUrl<sup>9+</sup>
+## router.replaceUrl<sup>(deprecated)</sup>
 
 replaceUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 用应用内的某个页面替换当前页面，并销毁被替换的页面。
+
+> **说明：**
+>
+> 从API version 9开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)获取[Router](js-apis-arkui-UIContext.md#router)实例，再通过此实例调用替代方法[replaceUrl](js-apis-arkui-UIContext.md#replaceurl-1)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)方法获取当前UI上下文关联的[Router](js-apis-arkui-UIContext.md#router)对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -406,11 +440,17 @@ router.replaceUrl({
 })
 ```
 
-## router.replaceUrl<sup>9+</sup>
+## router.replaceUrl<sup>(deprecated)</sup>
 
 replaceUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 
 用应用内的某个页面替换当前页面，并销毁被替换的页面。
+
+> **说明：**
+>
+> 从API version 9开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)获取[Router](js-apis-arkui-UIContext.md#router)实例，再通过此实例调用替代方法[replaceUrl](js-apis-arkui-UIContext.md#replaceurl-2)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)方法获取当前UI上下文关联的[Router](js-apis-arkui-UIContext.md#router)对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -468,11 +508,17 @@ router.replaceUrl({
   })
 ```
 
-## router.replaceUrl<sup>9+</sup>
+## router.replaceUrl<sup>(deprecated)</sup>
 
 replaceUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;void&gt;): void
 
 用应用内的某个页面替换当前页面，并销毁被替换的页面。
+
+> **说明：**
+>
+> 从API version 9开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)获取[Router](js-apis-arkui-UIContext.md#router)实例，再通过此实例调用替代方法[replaceUrl](js-apis-arkui-UIContext.md#replaceurl-3)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)方法获取当前UI上下文关联的[Router](js-apis-arkui-UIContext.md#router)对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -522,11 +568,17 @@ router.replaceUrl({
 });
 ```
 
-## router.pushNamedRoute<sup>10+</sup>
+## router.pushNamedRoute<sup>(deprecated)</sup>
 
 pushNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 
 跳转到指定的命名路由页面。
+
+> **说明：**
+>
+> 从API version 10开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)获取[Router](js-apis-arkui-UIContext.md#router)实例，再通过此实例调用替代方法[pushNamedRoute](js-apis-arkui-UIContext.md#pushnamedroute)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)方法获取当前UI上下文关联的[Router](js-apis-arkui-UIContext.md#router)对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -595,11 +647,17 @@ router.pushNamedRoute({
 
 详细示例请参考：[UI开发-页面路由](../../ui/arkts-routing.md#命名路由)
 
-## router.pushNamedRoute<sup>10+</sup>
+## router.pushNamedRoute<sup>(deprecated)</sup>
 
 pushNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 跳转到指定的命名路由页面。
+
+> **说明：**
+>
+> 从API version 10开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)获取[Router](js-apis-arkui-UIContext.md#router)实例，再通过此实例调用替代方法[pushNamedRoute](js-apis-arkui-UIContext.md#pushnamedroute-1)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)方法获取当前UI上下文关联的[Router](js-apis-arkui-UIContext.md#router)对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -658,11 +716,17 @@ router.pushNamedRoute({
   console.info('pushNamedRoute success');
 })
 ```
-## router.pushNamedRoute<sup>10+</sup>
+## router.pushNamedRoute<sup>(deprecated)</sup>
 
 pushNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;void&gt;
 
 跳转到指定的命名路由页面。
+
+> **说明：**
+>
+> 从API version 10开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)获取[Router](js-apis-arkui-UIContext.md#router)实例，再通过此实例调用替代方法[pushNamedRoute](js-apis-arkui-UIContext.md#pushnamedroute-2)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)方法获取当前UI上下文关联的[Router](js-apis-arkui-UIContext.md#router)对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -730,11 +794,17 @@ router.pushNamedRoute({
   })
 ```
 
-## router.pushNamedRoute<sup>10+</sup>
+## router.pushNamedRoute<sup>(deprecated)</sup>
 
 pushNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: AsyncCallback&lt;void&gt;): void
 
 跳转到指定的命名路由页面。
+
+> **说明：**
+>
+> 从API version 10开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)获取[Router](js-apis-arkui-UIContext.md#router)实例，再通过此实例调用替代方法[pushNamedRoute](js-apis-arkui-UIContext.md#pushnamedroute-3)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)方法获取当前UI上下文关联的[Router](js-apis-arkui-UIContext.md#router)对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -795,11 +865,17 @@ router.pushNamedRoute({
 })
 ```
 
-## router.replaceNamedRoute<sup>10+</sup>
+## router.replaceNamedRoute<sup>(deprecated)</sup>
 
 replaceNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 
 用指定的命名路由页面替换当前页面，并销毁被替换的页面。
+
+> **说明：**
+>
+> 从API version 10开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)获取[Router](js-apis-arkui-UIContext.md#router)实例，再通过此实例调用替代方法[replaceNamedRoute](js-apis-arkui-UIContext.md#replacenamedroute)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)方法获取当前UI上下文关联的[Router](js-apis-arkui-UIContext.md#router)对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -855,11 +931,17 @@ router.replaceNamedRoute({
   })
 ```
 
-## router.replaceNamedRoute<sup>10+</sup>
+## router.replaceNamedRoute<sup>(deprecated)</sup>
 
 replaceNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 用指定的命名路由页面替换当前页面，并销毁被替换的页面。
+
+> **说明：**
+>
+> 从API version 10开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)获取[Router](js-apis-arkui-UIContext.md#router)实例，再通过此实例调用替代方法[replaceNamedRoute](js-apis-arkui-UIContext.md#replacenamedroute-1)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)方法获取当前UI上下文关联的[Router](js-apis-arkui-UIContext.md#router)对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -908,11 +990,17 @@ router.replaceNamedRoute({
 })
 ```
 
-## router.replaceNamedRoute<sup>10+</sup>
+## router.replaceNamedRoute<sup>(deprecated)</sup>
 
 replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;void&gt;
 
 用指定的命名路由页面替换当前页面，并销毁被替换的页面。
+
+> **说明：**
+>
+> 从API version 10开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)获取[Router](js-apis-arkui-UIContext.md#router)实例，再通过此实例调用替代方法[replaceNamedRoute](js-apis-arkui-UIContext.md#replacenamedroute-2)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)方法获取当前UI上下文关联的[Router](js-apis-arkui-UIContext.md#router)对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -970,11 +1058,17 @@ router.replaceNamedRoute({
   })
 ```
 
-## router.replaceNamedRoute<sup>10+</sup>
+## router.replaceNamedRoute<sup>(deprecated)</sup>
 
 replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: AsyncCallback&lt;void&gt;): void
 
 用指定的命名路由页面替换当前页面，并销毁被替换的页面。
+
+> **说明：**
+>
+> 从API version 10开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)获取[Router](js-apis-arkui-UIContext.md#router)实例，再通过此实例调用替代方法[replaceNamedRoute](js-apis-arkui-UIContext.md#replacenamedroute-3)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)方法获取当前UI上下文关联的[Router](js-apis-arkui-UIContext.md#router)对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1024,11 +1118,17 @@ router.replaceNamedRoute({
 });
 ```
 
-## router.back
+## router.back<sup>(deprecated)</sup>
 
 back(options?: RouterOptions ): void
 
 返回上一页面或指定的页面，会删除当前页面与指定页面之间的所有页面。
+
+> **说明：**
+>
+> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)获取[Router](js-apis-arkui-UIContext.md#router)实例，再通过此实例调用替代方法[back](js-apis-arkui-UIContext.md#back)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)方法获取当前UI上下文关联的[Router](js-apis-arkui-UIContext.md#router)对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1043,14 +1143,20 @@ back(options?: RouterOptions ): void
 **示例：**
 
 ```ts
-router.back({ url: 'pages/detail' });
+this.getUIContext().getRouter().back({ url: 'pages/detail' });
 ```
 
-## router.back<sup>12+</sup>
+## router.back<sup>(deprecated)</sup>
 
 back(index: number, params?: Object): void;
 
 返回指定的页面，会删除当前页面与指定页面之间的所有页面。
+
+> **说明：**
+>
+> 从API version 12开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)获取[Router](js-apis-arkui-UIContext.md#router)实例，再通过此实例调用替代方法[back](js-apis-arkui-UIContext.md#back12)。
+>
+> 从API version 12开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)方法获取当前UI上下文关联的[Router](js-apis-arkui-UIContext.md#router)对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1066,17 +1172,23 @@ back(index: number, params?: Object): void;
 **示例：**
 
 ```ts
-router.back(1);
+this.getUIContext().getRouter().back(1);
 ```
 ```ts
-router.back(1, { info: '来自Home页' }); //携带参数返回
+this.getUIContext().getRouter().back(1, { info: '来自Home页' }); //携带参数返回
 ```
 
-## router.clear
+## router.clear<sup>(deprecated)</sup>
 
 clear(): void
 
 清空页面栈中的所有历史页面，仅保留当前页面作为栈顶页面。
+
+> **说明：**
+>
+> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)获取[Router](js-apis-arkui-UIContext.md#router)实例，再通过此实例调用替代方法[clear](js-apis-arkui-UIContext.md#clear)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)方法获取当前UI上下文关联的[Router](js-apis-arkui-UIContext.md#router)对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1085,14 +1197,20 @@ clear(): void
 **示例：**
 
 ```ts
-router.clear();
+this.getUIContext().getRouter().clear();
 ```
 
-## router.getLength
+## router.getLength<sup>(deprecated)</sup>
 
 getLength(): string
 
 获取当前在页面栈内的页面数量。
+
+> **说明：**
+>
+> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)获取[Router](js-apis-arkui-UIContext.md#router)实例，再通过此实例调用替代方法[getLength](js-apis-arkui-UIContext.md#getlength)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)方法获取当前UI上下文关联的[Router](js-apis-arkui-UIContext.md#router)对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1107,15 +1225,21 @@ getLength(): string
 **示例：**
 
 ```ts
-let size = router.getLength();
+let size = this.getUIContext().getRouter().getLength();
 console.log('pages stack size = ' + size);
 ```
 
-## router.getState
+## router.getState<sup>(deprecated)</sup>
 
 getState(): RouterState
 
 获取栈顶页面的状态信息。
+
+> **说明：**
+>
+> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)获取[Router](js-apis-arkui-UIContext.md#router)实例，再通过此实例调用替代方法[getState](js-apis-arkui-UIContext.md#getstate)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)方法获取当前UI上下文关联的[Router](js-apis-arkui-UIContext.md#router)对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1130,17 +1254,23 @@ getState(): RouterState
 **示例：** 
 
 ```ts
-let page = router.getState();
+let page = this.getUIContext().getRouter().getState();
 console.log('current index = ' + page.index);
 console.log('current name = ' + page.name);
 console.log('current path = ' + page.path);
 ```
 
-## router.getStateByIndex<sup>12+</sup>
+## router.getStateByIndex<sup>(deprecated)</sup>
 
 getStateByIndex(index: number): RouterState | undefined
 
 通过索引值获取对应页面的状态信息。
+
+> **说明：**
+>
+> 从API version 12开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)获取[Router](js-apis-arkui-UIContext.md#router)实例，再通过此实例调用替代方法[getStateByIndex](js-apis-arkui-UIContext.md#getstatebyindex12)。
+>
+> 从API version 12开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)方法获取当前UI上下文关联的[Router](js-apis-arkui-UIContext.md#router)对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1169,11 +1299,17 @@ if (options != undefined) {
   console.log('params = ' + options.params);
 }
 ```
-## router.getStateByUrl<sup>12+</sup>
+## router.getStateByUrl<sup>(deprecated)</sup>
 
 getStateByUrl(url: string): Array&lt;RouterState&gt;
 
 通过url获取对应页面的状态信息。
+
+> **说明：**
+>
+> 从API version 12开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)获取[Router](js-apis-arkui-UIContext.md#router)实例，再通过此实例调用替代方法[getStateByUrl](js-apis-arkui-UIContext.md#getstatebyurl12)。
+>
+> 从API version 12开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)方法获取当前UI上下文关联的[Router](js-apis-arkui-UIContext.md#router)对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1216,11 +1352,17 @@ for (let i: number = 0; i < options.length; i++) {
 | path  | string | 是   | 表示当前页面的路径。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | params<sup>12+</sup>  | Object |  是  | 表示当前页面携带的参数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                         |
 
-## router.showAlertBeforeBackPage<sup>9+</sup>
+## router.showAlertBeforeBackPage<sup>(deprecated)</sup>
 
 showAlertBeforeBackPage(options: EnableAlertOptions): void
 
 开启页面返回询问对话框。
+
+> **说明：**
+>
+> 从API version 9开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)获取[Router](js-apis-arkui-UIContext.md#router)实例，再通过此实例调用替代方法[showAlertBeforeBackPage](js-apis-arkui-UIContext.md#showalertbeforebackpage)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)方法获取当前UI上下文关联的[Router](js-apis-arkui-UIContext.md#router)对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1247,7 +1389,7 @@ showAlertBeforeBackPage(options: EnableAlertOptions): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  router.showAlertBeforeBackPage({
+  this.getUIContext().getRouter().showAlertBeforeBackPage({
     message: 'Message Info'
   });
 } catch (err) {
@@ -1266,11 +1408,17 @@ try {
 | ------- | ------ | ---- | -------- |
 | message | string | 是    | 询问对话框内容。 |
 
-## router.hideAlertBeforeBackPage<sup>9+</sup>
+## router.hideAlertBeforeBackPage<sup>(deprecated)</sup>
 
 hideAlertBeforeBackPage(): void
 
 禁用页面返回询问对话框。
+
+> **说明：**
+>
+> 从API version 9开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)获取[Router](js-apis-arkui-UIContext.md#router)实例，再通过此实例调用替代方法[hideAlertBeforeBackPage](js-apis-arkui-UIContext.md#hidealertbeforebackpage)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)方法获取当前UI上下文关联的[Router](js-apis-arkui-UIContext.md#router)对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1279,14 +1427,20 @@ hideAlertBeforeBackPage(): void
 **示例：**
 
 ```ts
-router.hideAlertBeforeBackPage();
+this.getUIContext().getRouter().hideAlertBeforeBackPage();   
 ```
 
-##  router.getParams
+##  router.getParams<sup>(deprecated)</sup>
 
 getParams(): Object
 
 获取发起跳转的页面往当前页传入的参数。
+
+> **说明：**
+>
+> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)获取[Router](js-apis-arkui-UIContext.md#router)实例，再通过此实例调用替代方法[getParams](js-apis-arkui-UIContext.md#getparams)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getRouter](js-apis-arkui-UIContext.md#getrouter)方法获取当前UI上下文关联的[Router](js-apis-arkui-UIContext.md#router)对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1301,7 +1455,7 @@ getParams(): Object
 **示例：**
 
 ```ts
-router.getParams();
+this.getUIContext().getRouter().getParams();
 ```
 
 ## RouterOptions
@@ -1369,7 +1523,7 @@ export default {
 // 在detail页面中
 export default {
   onInit() {
-    console.info('showData1:' + router.getParams()['data1']);
+    console.info('showData1:' + this.getUIContext().getRouter().getParams()['data1']);
   }
 }
 ```
@@ -1380,6 +1534,7 @@ export default {
 > 
 > 直接使用router可能导致实例不明确的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getRouter](js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
 
+<!--deperecated_code_no_check-->
 ```ts
 // 通过router.pushUrl跳转至目标页携带params参数
 import { router } from '@kit.ArkUI';
@@ -1471,8 +1626,8 @@ class routerParams {
 struct Second {
   private content: string = "这是第二页"
   // 建议使用this.getUIContext().getRouter().getParams()
-  @State text: string = (router.getParams() as routerParams).text
-  @State data: object = (router.getParams() as routerParams).data
+  @State text: string = (this.getUIContext().getRouter().getParams() as routerParams).text
+  @State data: object = (this.getUIContext().getRouter().getParams() as routerParams).data
   @State secondData: string = ''
 
   build() {
@@ -1503,7 +1658,7 @@ push(options: RouterOptions): void
 
 跳转到应用内的指定页面。
 
-从API version9开始不再维护，建议使用[pushUrl<sup>9+</sup>](#routerpushurl9)
+从API version9开始不再维护，建议使用[pushUrl](js-apis-arkui-UIContext.md#pushurl)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1547,7 +1702,7 @@ replace(options: RouterOptions): void
 
 用应用内的某个页面替换当前页面，并销毁被替换的页面。
 
-从API version9开始不再维护，建议使用[replaceUrl<sup>9+</sup>](#routerreplaceurl9)
+从API version9开始不再维护，建议使用[replaceUrl](js-apis-arkui-UIContext.md#replaceurl)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Lite
 
@@ -1580,7 +1735,7 @@ enableAlertBeforeBackPage(options: EnableAlertOptions): void
 
 开启页面返回询问对话框。
 
-从API version9开始不再维护，建议使用[showAlertBeforeBackPage<sup>9+</sup>](#routershowalertbeforebackpage9)
+从API version9开始不再维护，建议使用[showAlertBeforeBackPage](js-apis-arkui-UIContext.md#showalertbeforebackpage)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1604,7 +1759,7 @@ disableAlertBeforeBackPage(): void
 
 禁用页面返回询问对话框。
 
-从API version9开始不再维护，建议使用[hideAlertBeforeBackPage<sup>9+</sup>](#routerhidealertbeforebackpage9)
+从API version9开始不再维护，建议使用[hideAlertBeforeBackPage](js-apis-arkui-UIContext.md#hidealertbeforebackpage)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

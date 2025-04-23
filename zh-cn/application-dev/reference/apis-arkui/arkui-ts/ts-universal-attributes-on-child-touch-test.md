@@ -88,12 +88,13 @@ onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult): T
 
 ```ts
 // xxx.ets
-import { promptAction } from '@kit.ArkUI';
+import { PromptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct ListExample {
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  promptAction: PromptAction = this.getUIContext().getPromptAction();
   @State text: string = 'Button'
 
   build() {
@@ -134,7 +135,7 @@ struct ListExample {
         .margin({ top: 80 })
         .onClick(() => {
           this.text = 'click the button'
-          promptAction.showToast({ message: 'you click the button.', duration: 3000 })
+          this.promptAction.showToast({ message: 'you click the button.', duration: 3000 })
         })
     }
     .width('100%')
@@ -162,12 +163,13 @@ struct ListExample {
 
 ```ts
 // xxx.ets
-import { promptAction } from '@kit.ArkUI';
+import { PromptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct ListExample {
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  promptAction: PromptAction = this.getUIContext().getPromptAction();
   @State text: string = 'Button'
 
   build() {
@@ -208,7 +210,7 @@ struct ListExample {
         .margin({ top: 80 })
         .onClick(() => {
           this.text = 'click the button'
-          promptAction.showToast({ message: 'you click the button.', duration: 3000 })
+          this.promptAction.showToast({ message: 'you click the button.', duration: 3000 })
         })
     }
     .width('100%')
@@ -236,12 +238,13 @@ struct ListExample {
 
 ```ts
 // xxx.ets
-import { promptAction } from '@kit.ArkUI';
+import { PromptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct ListExample {
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  promptAction: PromptAction = this.getUIContext().getPromptAction();
   @State text: string = 'Button'
 
   build() {
@@ -282,7 +285,7 @@ struct ListExample {
         .margin({ top: 80 })
         .onClick(() => {
           this.text = 'click the button'
-          promptAction.showToast({ message: 'you click the button.', duration: 3000 })
+          this.promptAction.showToast({ message: 'you click the button.', duration: 3000 })
         })
     }
     .width('100%')

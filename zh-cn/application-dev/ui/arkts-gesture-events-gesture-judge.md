@@ -69,12 +69,13 @@
 4. 代码完整示例。
 
    ```ts
-   import { promptAction } from '@kit.ArkUI';
+   import { PromptAction } from '@kit.ArkUI';
    
    @Entry
    @Component
    struct Index {
      scroller: Scroller = new Scroller();
+     promptAction: PromptAction = this.getUIContext().getPromptAction();
    
      build() {
        Scroll(this.scroller) {
@@ -90,7 +91,7 @@
              Image($r('sys.media.ohos_app_icon'))
                .draggable(true)
                .onDragStart(()=>{
-                 promptAction.showToast({ message: "Drag 下半区蓝色区域，Image响应" });
+                 this.promptAction.showToast({ message: "Drag 下半区蓝色区域，Image响应" });
                })
                .width('200vp').height('200vp')
              // Stack的上半区是绑定了长按手势的浮动区域。
@@ -102,7 +103,7 @@
              .gesture(GestureGroup(GestureMode.Parallel,
                LongPressGesture()
                  .onAction((event: GestureEvent) => {
-                   promptAction.showToast({ message: "LongPressGesture 长按上半区 红色区域，红色区域响应" });
+                   this.promptAction.showToast({ message: "LongPressGesture 长按上半区 红色区域，红色区域响应" });
                  })
                  .tag("longpress")
              ))
@@ -145,7 +146,7 @@
 
 | **接口** | **说明** |
 | ------- | -------------- |
-|[shouldBuiltInRecognizerParallelWith](../reference/apis-arkui/arkui-ts/ts-gesture-blocking-enhancement.md#shouldbuiltinrecognizerparallelwith)|用于设置系统原生组件内置手势与其他手势并行。|
+|[shouldBuiltInRecognizerParallelWith](../reference/apis-arkui/arkui-ts/ts-gesture-blocking-enhancement.md#shouldbuiltinrecognizerparallelwith)|用于设置系统组件内置手势与其他手势并行。|
 |[onGestureRecognizerJudgeBegin](../reference/apis-arkui/arkui-ts/ts-gesture-blocking-enhancement.md#ongesturerecognizerjudgebegin)|用于手势拦截，获取手势识别器，初始化手势识别器开闭状态。|
 |[parallelGesture](arkts-gesture-events-binding.md#parallelgesture并行手势绑定方法)|可使开发者定义的手势，与比他优先级高的手势并行。|
 

@@ -6,7 +6,7 @@ The sorting function allows list content, for example, the language list in **Se
 
 ## How to Develop
 
-The sorting function is implemented by the [compare](../reference/apis-localization-kit/js-apis-intl.md#compare8) API of the [Collator](../reference/apis-localization-kit/js-apis-intl.md#collator8) class. The development procedure is as follows:
+You can implement the sorting function by using the [compare](../reference/apis-localization-kit/js-apis-intl.md#compare8) API of the [Collator](../reference/apis-localization-kit/js-apis-intl.md#collator8) class. The development procedure is as follows:
 
 1. Import the **intl** module.
    ```ts
@@ -37,17 +37,17 @@ The sorting function is implemented by the [compare](../reference/apis-localizat
 |  | best fit | Exact matching.|  | 
 | usage | sort | Sorting.|  | 
 |  | search | Search for matched strings.|  | 
-| sensitivity | base | Compare different letters.| Example: a ≠ b, a = á, a = A| 
-|  | accent | Compare different letters or accents.| Example: a ≠ b, a ≠ á, a = A| 
-|  | case | Compare the capitalization of different letters or the same letter.| Example: a ≠ b, a = á, a = A| 
-|  | variant | Compare different letters or accents, and other distinctive signs or capitalization.| Example: a ≠ b, a ≠ á, a ≠ A| 
-| ignorePunctuation | true | Ignore punctuation.| a, b = ab | 
-|  | false | Not ignore punctuation.| a, b &lt; ab | 
-| numeric | true | Sort by number.| 1 &lt; 2 &lt; 10 &lt; 11 | 
-|  | false | Not sort by number.| 1 &lt; 10 &lt; 11 &lt; 2 | 
-| caseFirst | upper | Place uppercase letters in the front.| ab, aB, AB, Ab =&gt; AB &lt; Ab &lt; aB &lt; ab | 
-|  | lower | Place lowercase letters in the front.| ab, aB, AB, Ab =&gt; ab &lt; aB &lt; Ab &lt; AB | 
-|  | false | Not distinguish first letter capitalization.| ab, aB, AB, Ab =&gt; ab &lt; aB &lt; Ab &lt; AB | 
+| sensitivity | base | Compare different letters.| 'a' ≠ 'b', 'a' = 'á', 'a' = 'A' | 
+|  | accent | Compare different letters or accents.| 'a' ≠ 'b', 'a' ≠ 'á', 'a' = 'A' | 
+|  | case | Compare the capitalization of different letters or the same letter.| 'a' ≠ 'b', 'a' = 'á', 'a' ≠ 'A' | 
+|  | variant | Compare different letters or accents, and other distinctive signs or capitalization.| 'a' ≠ 'b', 'a' ≠ 'á', 'a' ≠ 'A' | 
+| ignorePunctuation | true | Ignore punctuation.| 'a,b' = 'ab' | 
+|  | false | Not ignore punctuation.| 'a,b' &lt; 'ab' | 
+| numeric | true | Sort by number.| '1' &lt; '2' &lt; '10' &lt; '11' | 
+|  | false | Not sort by number.| '1' &lt; '10' &lt; '11' &lt; '2' | 
+| caseFirst | upper | Place uppercase letters in the front.| 'AB' &lt; 'Ab' &lt; 'aB' &lt; 'ab' | 
+|  | lower | Place lowercase letters in the front.| 'ab' &lt; 'aB' &lt; 'Ab' &lt; 'AB' | 
+|  | false | Not distinguish first letter capitalization.| 'ab' &lt; 'aB' &lt; 'Ab' &lt; 'AB' | 
 | collation | big5han | Pinyin sorting for Latin letters.|  | 
 |  | compat | Compatibility sorting, only for Arabic.|  | 
 |  | dict | Dictionary-style sorting, only for Singhalese.|  | 

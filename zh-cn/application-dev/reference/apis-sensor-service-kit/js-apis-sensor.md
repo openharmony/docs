@@ -4395,7 +4395,7 @@ try {
 | x    | number | 是   | 是   | 旋转矢量x轴分量。 |
 | y    | number | 是   | 是   | 旋转矢量y轴分量。 |
 | z    | number | 是   | 是   | 旋转矢量z轴分量。 |
-| w    | number | 是   | 是   | 标量。            |
+| w    | number | 是   | 是   | 标量，描述设备相对于某个参考方向的旋转状态，单位：弧度。            |
 
 
 ## GyroscopeResponse

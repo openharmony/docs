@@ -7,17 +7,16 @@ ArrayBuffer是ArkTS中的一种数据类型，用于表示通用的、固定长�
 ## 基本概念
 
 - **ArrayBuffer**：ArrayBuffer对象用来表示一个通用的、固定长度的原始二进制数据缓冲区。不能直接操作ArrayBuffer的内容，而是需要包装成TypedArray对象或DataView对象来读写。ArrayBuffer常用于处理大量的二进制数据，如文件、网络数据包等。
-- **生命周期和内存管理**：在使用Node-API处理ArrayBuffer时，需注意创建的arrayBufferPtr生命周期由引擎管理，不允许用户自己delete，否则会double free。
 
 ## 场景和功能介绍
 
-以下Node-API接口通常在Node-API模块中操作ArrayBuffer类型的数据。以下是一些可能的使用场景：
+以下Node-API接口用于操作ArrayBuffer类型的数据。
 
 | 接口 | 描述 |
 | -------- | -------- |
-| napi_is_arraybuffer | 检查一个值是否为ArrayBuffer，以确保正在处理正确的数据类型。需要注意的是，此函数只能判断一个值是否为ArrayBuffer，而不能判断一个值是否为TypedArray。如果需要判断一个值是否为TypedArray，可以使用napi_is_typedarray函数。 |
+| napi_is_arraybuffer | 检查一个值是否为ArrayBuffer，以确保正在处理正确的数据类型。需要注意的是，此函数只能判断一个值是否为ArrayBuffer，而不能判断一个值是否为TypedArray。要判断一个值是否为TypedArray，可以使用napi_is_typedarray函数。 |
 | napi_get_arraybuffer_info | 获取给定的ArrayBuffer对象的相关信息，包括数据指针和数据长度。 |
-| napi_detach_arraybuffer | 在某些情况下，当需要频繁地访问ArrayBuffer的底层数据缓冲区时，将其分离可以提高性能。分离后可以直接在C/C++中操作数据，而无需通过Node-API接口进行数据访问。 |
+| napi_detach_arraybuffer | 将arraybuffer底层缓冲区与arraybuffer对象分离。分离后可以直接在C/C++中操作数据，而无需通过Node-API接口进行数据访问。 |
 | napi_is_detached_arraybuffer | 判断给定的ArrayBuffer是否已经被分离。 |
 | napi_create_arraybuffer | 用于在Node-API模块中创建一个具有指定字节长度的ArkTS ArrayBuffer对象。 |
 
@@ -76,6 +75,10 @@ try {
 }
 ```
 
+输出日志：
+Test Node-API napi_is_arraybuffer: true
+Test Node-API napi_is_arraybuffer: false
+
 ### napi_get_arraybuffer_info
 
 获取ArrayBuffer的底层数据缓冲区和长度。
@@ -114,7 +117,8 @@ static napi_value GetArrayBufferInfo(napi_env env, napi_callback_info info)
     napi_create_uint32(env, byteLength, &byteLengthValue);
     napi_set_named_property(env, result, "byteLength", byteLengthValue);
     napi_value bufferData;
-    napi_create_arraybuffer(env, byteLength, &data, &bufferData);
+    void *newData = nullptr;
+    napi_create_arraybuffer(env, byteLength, &newData, &bufferData);
     napi_set_named_property(env, result, "buffer", bufferData);
     return result;
 }
@@ -126,7 +130,7 @@ static napi_value GetArrayBufferInfo(napi_env env, napi_callback_info info)
 // index.d.ts
 export class ArrayBufferInfo {
   byteLength: number;
-  buffer: Object;
+  buffer: ArrayBuffer;
 }
 export const getArrayBufferInfo: (data: ArrayBuffer) => ArrayBufferInfo | void;
 ```
@@ -140,6 +144,9 @@ import testNapi from 'libentry.so'
 const buffer = new ArrayBuffer(10);
 hilog.info(0x0000, 'testTag', 'Test Node-API get_arrayBuffer_info:%{public}s ', JSON.stringify(testNapi.getArrayBufferInfo(buffer)));
 ```
+
+输出日志：
+Test Node-API get_arrayBuffer_info:{"byteLength":10,"buffer":{}}
 
 ### napi_detach_arraybuffer
 
@@ -204,6 +211,10 @@ try {
 }
 ```
 
+输出日志：
+Test Node-API napi_is_detached_arraybuffer one: false
+Test Node-API napi_is_detached_arraybuffer two: true
+
 ### napi_create_arraybuffer
 
 用于在C/C++中创建一个具有指定字节长度的ArkTS ArrayBuffer对象，如果调用者想要直接操作缓冲区，则可以选择将底层缓冲区返回给调用者。要从ArkTS写入此缓冲区，需要创建类型化数组或DataView对象。
@@ -264,3 +275,10 @@ add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
 target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
 ```
+
+输出日志：
+Test Node-API napi_create_arraybuffer:[object ArrayBuffer]
+
+## 注意事项
+
+- **生命周期和内存管理**：在使用Node-API处理ArrayBuffer时，需注意，void*类型的buffer数据段生命周期由引擎管理，[不允许用户自己delete，否则会double free](napi-guidelines.md#防止重复释放获取的buffer)。

@@ -143,7 +143,7 @@
    | -------- | -------- | -------- |
    | name | Ability名称，对应Ability派生的ExtensionAbility类名。 | 是 |
    | type | Ability类型，DataShare对应的Ability类型为“dataShare”，表示基于datashare模板开发的。 | 是 |
-   | uri | 通信使用的URI，是客户端链接服务端的唯一标识。<br/> 支持添加后缀参数来设置具体的访问对象，URI添加后缀参数需在URI结尾以"?"符号开始参数。<br/> - 当前仅支持设置"user"参数。<br/> - "user"仅支持设置为整型，表示数据提供方的用户ID。不填写时，默认为数据访问方所在的用户ID。user的定义及获取参照[user](../reference/apis-basic-services-kit/js-apis-osAccount.md#getactivatedosaccountlocalids9)。<br/> - 目前跨用户访问需要数据访问方配有跨用户访问权限ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS才可成功访问。 | 是 |
+   | uri | 通信使用的URI，是客户端链接服务端的唯一标识。 | 是 |
    | exported | 对其他应用是否可见，设置为true时，才能与其他应用进行通信传输数据。 | 是 |
    | readPermission | 访问数据时需要的权限，不配置默认不进行读权限校验。<br>注意：当前DataShareExtensionAbility的权限约束方式与静默访问的权限约束方式不同，请注意区分，切勿混淆，具体可参考[静默访问章节](share-data-by-silent-access.md)。 | 否 |
    | writePermission | 修改数据时需要的权限，不配置默认不进行写权限校验。<br>注意：当前DataShareExtensionAbility的权限约束方式与静默访问的权限约束方式不同，请注意区分，切勿混淆，具体可参考[静默访问章节](share-data-by-silent-access.md)。 | 否 |
@@ -218,7 +218,7 @@
    import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
-2. 定义与数据提供方通信的URI字符串。
+2. 定义与数据提供方通信的URI字符串。<br/> URI即为上文数据提供方在配置文件中配置的标识。URI支持添加后缀参数来设置具体的访问对象，URI添加后缀参数需在URI结尾以"?"符号开始参数。<br/> - 当前仅支持设置"user"参数。<br/> - "user"仅支持设置为整型，表示数据提供方的用户ID。不填写时，默认为数据访问方所在的用户ID。user的定义及获取参照[user](../reference/apis-basic-services-kit/js-apis-osAccount.md#getactivatedosaccountlocalids9)。<br/> - 目前跨用户访问需要数据访问方配有跨用户访问权限ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS才可成功访问。目前跨用户访问功能仅支持增删改查功能，订阅通知功能不支持跨用户。
    
    ```ts
    // 作为参数传递的URI，与module.json5中定义的URI的区别是多了一个"/"，是因为作为参数传递的URI中，在第二个与第三个"/"中间，存在一个DeviceID的参数

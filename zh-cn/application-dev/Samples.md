@@ -20,7 +20,7 @@
 
 3.若存在三级导航（如Border 边框、点击事件等），点击跳转至详情页面。
 ##### 基本原理
-示例使用 [Tabs容器组件](reference/apis-arkui/arkui-ts/ts-container-tabs.md) 搭建整体应用框架，每个 [TabContent内容视图](reference/apis-arkui/arkui-ts/ts-container-tabcontent.md) 使用 [List容器组件](reference/apis-arkui/arkui-ts/ts-container-list.md) 布局，在每个 [ListItem](reference/apis-arkui/arkui-ts/ts-container-listitem.md) 中使用 [循环渲染](quick-start/arkts-rendering-control-foreach.md) 加载此分类下分类导航数据，底部导航菜单使用 [TabContent中tabBar属性](reference/apis-arkui/arkui-ts/ts-container-tabcontent.md) 设置自定义样式 。
+示例使用 [Tabs容器组件](reference/apis-arkui/arkui-ts/ts-container-tabs.md) 搭建整体应用框架，每个 [TabContent内容视图](reference/apis-arkui/arkui-ts/ts-container-tabcontent.md) 使用 [List容器组件](reference/apis-arkui/arkui-ts/ts-container-list.md) 布局，在每个 [ListItem](reference/apis-arkui/arkui-ts/ts-container-listitem.md) 中使用 [循环渲染](ui/state-management/arkts-rendering-control-foreach.md) 加载此分类下分类导航数据，底部导航菜单使用 [TabContent中tabBar属性](reference/apis-arkui/arkui-ts/ts-container-tabcontent.md) 设置自定义样式 。
 将组件库分成四大类：  
 组件模块：  
 1、空白与分隔：使用全局组件TitleBar，CommonItemSlider，CommonItemSelect，引入全局样式搭建分隔器组件页面。  
@@ -61,7 +61,7 @@
 
 #### 状态管理
 ##### 介绍
-本示例通过使用[页面级的状态变量](quick-start/arkts-localstorage.md) 和[应用级的状态变量](quick-start/arkts-appstorage.md) 来实现应用的状态管理。展示内容包括修饰的对象类型、父子组件之间的状态同步、爷孙组件之间的状态同步以及兄弟组件之间的状态同步。
+本示例通过使用[页面级的状态变量](ui/state-management/arkts-localstorage.md) 和[应用级的状态变量](ui/state-management/arkts-appstorage.md) 来实现应用的状态管理。展示内容包括修饰的对象类型、父子组件之间的状态同步、爷孙组件之间的状态同步以及兄弟组件之间的状态同步。
 ##### 使用
 1.点击首页的切换按钮，可切换List和Grid布局。
 
@@ -2959,7 +2959,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例使用 [SystemCapability.Telephony.CellularData系统能力](reference/apis-telephony-kit/js-apis-telephony-data.md) 获取SIM卡信息及网络信息。使用 [@Builder](quick-start/arkts-builder.md) 在一个自定义组件内快速生成多个布局内容。通过获取SIM卡相关信息，展示打开本应用时网络信息。
+本示例使用 [SystemCapability.Telephony.CellularData系统能力](reference/apis-telephony-kit/js-apis-telephony-data.md) 获取SIM卡信息及网络信息。使用 [@Builder](ui/state-management/arkts-builder.md) 在一个自定义组件内快速生成多个布局内容。通过获取SIM卡相关信息，展示打开本应用时网络信息。
 
 ##### 使用
 

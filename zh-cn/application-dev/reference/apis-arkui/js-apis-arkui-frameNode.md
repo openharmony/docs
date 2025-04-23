@@ -756,7 +756,7 @@ getUniqueId(): number
 
 getNodeType(): string
 
-获取节点的类型。内置组件类型为组件名称，例如，按钮组件Button的类型为Button。而对于自定义组件，若其有渲染内容，则其类型为__Common__。
+获取节点的类型。系统组件类型为组件名称，例如，按钮组件Button的类型为Button。而对于自定义组件，若其有渲染内容，则其类型为__Common__。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5504,7 +5504,7 @@ struct ListNodeTest {
 ## 节点复用回收使用示例
 
 ```ts
-import { NodeController, BuilderNode, Size, FrameNode, UIContext } from '@kit.ArkUI';
+import { NodeController, BuilderNode, FrameNode, UIContext } from '@kit.ArkUI';
 
 class Params {
   text: string = "this is a text"
@@ -5527,14 +5527,13 @@ class MyNodeController extends NodeController {
   private wrapBuilder: WrappedBuilder<[Params]> = wrapBuilder(buttonBuilder);
 
   makeNode(uiContext: UIContext): FrameNode {
-    if (this.buttonNode == null) {
-      this.buttonNode = new BuilderNode(uiContext);
+    if (this.rootNode == null) {
       this.rootNode = new FrameNode(uiContext);
-      let childNode1: FrameNode = new FrameNode(uiContext);
-      this.rootNode.appendChild(childNode1);
+      this.buttonNode = new BuilderNode(uiContext);
       this.buttonNode.build(this.wrapBuilder, { text: "This is a Button" });
+      this.rootNode.appendChild(this.buttonNode.getFrameNode());
     }
-    return this.buttonNode!.getFrameNode()!;
+    return this.rootNode;
   }
 
   onAttach(): void {
@@ -5547,12 +5546,14 @@ class MyNodeController extends NodeController {
 
   //  onBind时复用
   onBind(containerId: number): void {
+    // 该方法触发子组件复用，全局复用场景下，复用FrameNode后端资源。
     this.rootNode?.reuse();
     console.log("Cmw myButton reuse");
   }
 
   //  onUnbind时回收
   onUnbind(containerId: number): void {
+    // 该方法触发子组件的回收，全局复用场景下，回收FrameNode后端资源用于重新利用。
     this.rootNode?.recycle();
     console.log("Cmw myButton recycle");
   }

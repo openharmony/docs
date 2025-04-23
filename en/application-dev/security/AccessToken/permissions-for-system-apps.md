@@ -4623,7 +4623,7 @@ Users can set default applications for the system, for example, specifying an ap
 
 **Enable via ACL**: true
 
-**Valid since**: 17
+**Valid since**: 19
 
 ## ohos.permission.SEND_NOTIFICATION_CROSS_USER
 
@@ -4636,3 +4636,51 @@ Allows an application to send notifications to the specified users in the system
 **Enable via ACL**: true
 
 **Valid since**: 18
+
+## ohos.permission.ALLOW_ACCESS_TIPS
+
+Allows a system application to start the components provided by Tips.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
+
+### ohos.permission.UPDATE_FONT
+
+Allows an application to install and uninstall fonts.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：19
+
+## ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+
+Allows an application to call the accessibility service extension APIs to query and manipulate UI components.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 20
+
+## ohos.permission.SANDBOX_ACCESS_MANAGER
+
+Allows an application to access the sandbox directory of other applications.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 17

@@ -1,6 +1,6 @@
-# @ohos.multimodalawareness.motion (Motion Sensing)
+# @ohos.multimodalawareness.motion (Motion Awareness)
 
-The **motion** module provides the capability of sensing user motions, including user gestures and actions.
+The **motion** module provides the user motion awareness capabilities, including user gestures and actions.
 
 > **NOTE**
 >
@@ -47,7 +47,7 @@ Subscribes to operating hand change events.
 
 **Error codes**
 
-For details about the error codes, see [Motion Sensing Error Codes](errorcode-motion.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Motion Awareness Error Codes](errorcode-motion.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -96,7 +96,7 @@ Unsubscribes from operating hand change events.
 
 **Error codes**
 
-For details about the error codes, see [Motion Sensing Error Codes](errorcode-motion.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Motion Awareness Error Codes](errorcode-motion.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -140,7 +140,7 @@ Obtains the latest operating hand status.
 
 **Error codes**
 
-For details about the error codes, see [Motion Sensing Error Codes](errorcode-motion.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Motion Awareness Error Codes](errorcode-motion.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |

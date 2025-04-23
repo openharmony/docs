@@ -109,7 +109,7 @@
 
     ```ts
     .parallelGesture(LongPressGesture().onAction(() => {
-       promptAction.showToast({ duration: 100, message: 'Long press gesture trigger' });
+       this.getUIContext().getPromptAction().showToast({ duration: 100, message: 'Long press gesture trigger' });
     }))
     ```
 
@@ -249,9 +249,9 @@
     .onDragEnd((event) => {
         // onDragEnd里取到的result值在接收方onDrop设置
       if (event.getResult() === DragResult.DRAG_SUCCESSFUL) {
-        promptAction.showToast({ duration: 100, message: 'Drag Success' });
+        this.getUIContext().getPromptAction().showToast({ duration: 100, message: 'Drag Success' });
       } else if (event.getResult() === DragResult.DRAG_FAILED) {
-        promptAction.showToast({ duration: 100, message: 'Drag failed' });
+        this.getUIContext().getPromptAction().showToast({ duration: 100, message: 'Drag failed' });
       }
     })
     ```
@@ -345,7 +345,7 @@ struct Index {
             .visibility(this.imgState)
             // 绑定平行手势，可同时触发应用自定义长按手势
             .parallelGesture(LongPressGesture().onAction(() => {
-              promptAction.showToast({ duration: 100, message: 'Long press gesture trigger' });
+              this.getUIContext().getPromptAction().showToast({ duration: 100, message: 'Long press gesture trigger' });
             }))
             .onDragStart((event) => {
               let data: unifiedDataChannel.Image = new unifiedDataChannel.Image();
@@ -366,9 +366,9 @@ struct Index {
             .onDragEnd((event) => {
               // onDragEnd里取到的result值在接收方onDrop设置
               if (event.getResult() === DragResult.DRAG_SUCCESSFUL) {
-                promptAction.showToast({ duration: 100, message: 'Drag Success' });
+                this.getUIContext().getPromptAction().showToast({ duration: 100, message: 'Drag Success' });
               } else if (event.getResult() === DragResult.DRAG_FAILED) {
-                promptAction.showToast({ duration: 100, message: 'Drag failed' });
+                this.getUIContext().getPromptAction().showToast({ duration: 100, message: 'Drag failed' });
               }
             })
         }
@@ -714,9 +714,9 @@ struct DropAnimationExample {
           })
           .onDragEnd((event) => {
             if (event.getResult() === DragResult.DRAG_SUCCESSFUL) {
-              promptAction.showToast({ duration: 100, message: 'Drag Success' });
+              console.log('Drag Success');
             } else if (event.getResult() === DragResult.DRAG_FAILED) {
-              promptAction.showToast({ duration: 100, message: 'Drag failed' });
+              console.log('Drag failed');
             }
           })
       }.width('45%')
@@ -747,6 +747,8 @@ struct DropAnimationExample {
           dragEvent.useCustomDropAnimation = true;
           dragEvent.executeDropAnimation(this.customDropAnimation)
         })
+        .width(this.imageWidth)
+        .height(this.imageHeight)
       }.width('45%')
       .height('100%')
       .margin({ left: '5%' })

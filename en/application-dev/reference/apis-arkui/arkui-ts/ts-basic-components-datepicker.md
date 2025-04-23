@@ -334,7 +334,7 @@ Triggered when a date is selected. Compared to [onDateChange](#ondatechange10)<s
 
 ### Example 1: Switching Between Gregorian and Lunar Calendars
 
-This example implements a date picker that allows switching between the Gregorian and lunar calendars by clicking a button.
+This example implements a date picker that allows users to switch between the Gregorian (solar) calendar and the lunar calendar by clicking a button.
 
 
 ```ts

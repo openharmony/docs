@@ -134,6 +134,7 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 | 1600014  | No permission.                                   |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
+| 1600020  | The application is not allowed to publish notifications due to permission control settings. |
 | 2300007  | Network unreachable.                              |
 
 **示例：**
@@ -2215,6 +2216,8 @@ notificationManager.getDoNotDisturbDate(userId).then((data: notificationManager.
 
 查询是否支持免打扰功能。使用callback异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
@@ -2236,6 +2239,7 @@ notificationManager.getDoNotDisturbDate(userId).then((data: notificationManager.
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -2771,6 +2775,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 | 1600012  | No memory space.                          |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
+| 1600020  | The application is not allowed to publish notifications due to permission control settings. |
 | 2300007  | Network unreachable.                              |
 
 **示例：**
@@ -2852,6 +2857,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 | 1600012  | No memory space.                          |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
+| 1600020  | The application is not allowed to publish notifications due to permission control settings. |
 | 2300007  | Network unreachable.                              |
 
 **示例：**
@@ -2928,6 +2934,7 @@ publishAsBundle(representativeBundle: BundleOption, request: NotificationRequest
 | 1600012  | No memory space.                          |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
+| 1600020  | The application is not allowed to publish notifications due to permission control settings. |
 | 2300007  | Network unreachable.                              |
 
 **示例：**
@@ -4625,7 +4632,7 @@ try {
   }).catch((err: BusinessError) => {
     hilog.error(0x0000, 'testTag', '%{public}s', `disableNotificationFeature failed, code is ${err.code}, message is ${err.message}`);
   });
-} catch (err: BusinessError) {
+} catch (err) {
   hilog.error(0x0000, 'testTag', '%{public}s', `testTag failed, code is ${err.code}, message is ${err.message}`);
 }
 ```

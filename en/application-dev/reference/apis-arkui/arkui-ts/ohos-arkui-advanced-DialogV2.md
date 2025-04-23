@@ -152,7 +152,7 @@ Displays a dialog box that contains custom content and operation area.
 | primaryTitle       | [ResourceStr](ts-types.md#resourcestr)               | No | @Param        | Primary title of the dialog box.<br>It is not displayed by default.            |
 | secondaryTitle     | [ResourceStr](ts-types.md#resourcestr)               | No | @Param        | Secondary title of the dialog box.<br>It is not displayed by default.          |
 | contentAreaPadding | [LocalizedPadding](ts-types.md#localizedpadding12)     | No | @Param        | Padding of the content area of the dialog box.<br>It is not displayed by default.        |
-| buttons            | [AdvacnedDialogV2Button](#advanceddialogv2button)\[] | No | @Param        | Buttons in the operation area of the dialog box. A maximum of four buttons are allowed.<br>It is not displayed by default.|
+| buttons            | [AdvancedDialogV2Button](#advanceddialogv2button)\[] | No | @Param        | Buttons in the operation area of the dialog box. A maximum of four buttons are allowed.<br>It is not displayed by default.|
 
 ## PopoverDialogV2OnVisibleChange
 

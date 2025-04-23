@@ -7,6 +7,8 @@
 > **说明：**
 >
 > 该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> 该组件不支持在Wearable设备上使用。
 
 
 ## 导入模块
@@ -256,9 +258,9 @@ struct Index {
       ExceptionPrompt({
         options: {
           icon: $r('sys.symbol.house'),
-          tip: '异常提示异常提示异常提示异常提示异常提示',
+          tip: '异常提示',
           marginType: MarginType.DEFAULT_MARGIN,
-          actionText: '设置网络设置网络设置网络设置网络设置网络',
+          actionText: '设置网络',
           marginTop: 80,
           isShown: true,
         },
@@ -267,10 +269,10 @@ struct Index {
         options: {
           icon: $r('sys.symbol.house'),
           symbolStyle: new SymbolGlyphModifier($r('sys.symbol.bell')).fontColor([Color.Red]),
-          tip: '异常提示异常提示异常提示异常提示异常提示',
+          tip: '异常提示',
           marginType: MarginType.DEFAULT_MARGIN,
-          actionText: '设置网络设置网络设置网络设置网络设置网络',
-          marginTop: 80,
+          actionText: '设置网络',
+          marginTop: 200,
           isShown: true,
         },
       })

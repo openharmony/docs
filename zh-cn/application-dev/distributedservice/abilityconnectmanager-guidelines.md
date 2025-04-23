@@ -199,7 +199,7 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
     options: options,
     parameters: myRecord
   };
-  let context = getContext(this) as common.UIAbilityContext;
+  let context = this.getUIContext().getHostContext();
   try {
     this.sessionId = abilityConnectionManager.createAbilityConnectionSession("collabTest", context, peerInfo, connectOption);
     hilog.info(0x0000, 'testTag', 'createSession sessionId is', this.sessionId);

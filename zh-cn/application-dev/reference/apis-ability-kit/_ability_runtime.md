@@ -347,7 +347,7 @@ ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST - 当前环境的上下文不存在
 ### OH_AbilityRuntime_ApplicationContextGetDatabaseDir
 
 ```
-AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetDatabaseDir(char* buffer, const int32_t bufferSize, int32_t* writeLength);
+AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetDatabaseDir(char* buffer, const int32_t bufferSize, int32_t* writeLength)
 ```
 
 **描述**
@@ -887,7 +887,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_GetStartOptionsWithAnimation(AbilityR
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
 | startOptions     | StartOptions结构体。                           |
-| withAnimation     | 获取到的启动动效标记位。                           |
+| withAnimation     | 启动Ability时是否具有动画效果。                           |
 
 **起始版本：** 17
 
@@ -1535,7 +1535,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_SetStartOptionsStartWindowBackgroundC
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
 | startOptions     | StartOptions结构体。                           |
-| startWindowBackgroundColor     | 需要设置的窗口背景颜色。                           |
+| startWindowBackgroundColor     | 需要设置的窗口背景颜色。固定为ARGB格式, 如：`#E5FFFFFF`。|
 
 **起始版本：** 17
 
@@ -1582,7 +1582,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_GetStartOptionsStartWindowBackgroundC
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
 | startOptions     | StartOptions结构体。                           |
-| startWindowBackgroundColor     | 获取到的窗口背景颜色。                           |
+| startWindowBackgroundColor     | 获取到的窗口背景颜色。固定为ARGB格式, 如：`#E5FFFFFF`。|
 | size     | 获取到的窗口背景颜色的大小。                           |
 
 **起始版本：** 17
@@ -2156,7 +2156,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbilityWithStartOptions(Ab
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
 | want      | 启动当前应用UIAbility时需要的Want信息。                           |
-| options      | 启动当前应用UIAbility时需要的StartOptions信息。                           |
+| options      | 启动当前应用UIAbility时需要的StartOptions信息。<br>**说明：**<br>如果该参数中[startVisibility](#abilityruntime_startvisibility)属性的值不为空，必须确保当前应用已添加到状态栏，否则会返回ABILITY_RUNTIME_ERROR_VISIBILITY_SETTING_DISABLED错误码。 |
 
 **返回：**
 
@@ -2190,7 +2190,7 @@ ABILITY_RUNTIME_ERROR_VISIBILITY_SETTING_DISABLED - 禁止设置应用启动可�
 
 ABILITY_RUNTIME_ERROR_CODE_MULTI_APP_NOT_SUPPORTED - 应用不支持分身和多实例。
 
-ABILITY_RUNTIME_ERROR_CODE_INVALID_APP_INSTANCE_KEY - 无效多实例。
+ABILITY_RUNTIME_ERROR_CODE_INVALID_APP_INSTANCE_KEY - 传入的instanceKey无效。
 
 ABILITY_RUNTIME_ERROR_CODE_UPPER_LIMIT_REACHED - 多实例已达到上限。
 

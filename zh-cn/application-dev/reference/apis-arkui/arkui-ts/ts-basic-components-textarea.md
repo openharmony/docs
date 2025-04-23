@@ -37,7 +37,7 @@ TextArea(value?: TextAreaOptions)
 | 名称 | 类型  | 必填   | 说明 |
 | ---- | ----- | ---- | ---- |
 | placeholder      | [ResourceStr](ts-types.md#resourcestr)  | 否    | 设置无输入时的提示文本。输入内容后，提示文本不显示。<br/>仅设置placeholder属性时，手柄依然跟随拖动，手柄松开后光标停留在文字开头位置。     |
-| text             | [ResourceStr](ts-types.md#resourcestr)  | 否    | 设置输入框当前的文本内容。</br>建议通过onChange事件将状态变量与文本实时绑定，</br>避免组件刷新时TextArea中的文本内容异常。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br />从API version 18开始，该参数支持[!!](../../../quick-start/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。|
+| text             | [ResourceStr](ts-types.md#resourcestr)  | 否    | 设置输入框当前的文本内容。</br>建议通过onChange事件将状态变量与文本实时绑定，</br>避免组件刷新时TextArea中的文本内容异常。<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />从API version 18开始，该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。|
 | controller<sup>8+</sup> | [TextAreaController](#textareacontroller8) | 否    | 设置TextArea控制器。 |
 
 
@@ -156,7 +156,7 @@ fontSize(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                                                         |
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Length](ts-types.md#length) | 是   | 字体大小。fontSize为number类型时，使用fp单位。字体默认大小16fp，wearable设备上默认值为：18fp。不支持设置百分比字符串。 |
+| value  | [Length](ts-types.md#length) | 是   | 字体大小。fontSize为number类型时，使用fp单位。字体默认大小16fp，Wearable设备上默认值为：18fp。不支持设置百分比字符串。 |
 
 ### fontStyle
 
@@ -706,6 +706,23 @@ lineSpacing(value: LengthMetrics)
 | ------ | ------------------------------------------------------------ | ---- | ---------------- |
 | value  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 文本的行间距。默认值：0 |
 
+### lineSpacing<sup>20+</sup>
+
+lineSpacing(value: LengthMetrics, options?: LineSpacingOptions)
+
+设置文本的行间距。当不配置LineSpacingOptions时，首行上方默认会有行间距。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明             |
+| ------ | ------------------------------------------------------------ | ---- | ---------------- |
+| value  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 文本的行间距。设置值不大于0时，取默认值0。 |
+| options  | [LineSpacingOptions](ts-basic-components-text.md#linespacingoptions20对象说明) | 否   | 设置行间距配置项。<br/>默认值：{&nbsp;onlyBetweenLines:&nbsp;false&nbsp;} |
+
 ### lineBreakStrategy<sup>12+</sup>
 
 lineBreakStrategy(strategy: LineBreakStrategy)
@@ -1192,18 +1209,17 @@ stopEditing(): void
 
 ## TextAreaType<sup>11+</sup>枚举说明
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称   | 值  | 说明 |
 | ------ | ----- | ------ |
-| NORMAL   | 0 | 基本输入模式。<br/>支持输入数字、字母、下划线、空格、特殊字符。 |
-| NUMBER   | 2 | 纯数字输入模式。      |
-| PHONE_NUMBER | 3 | 电话号码输入模式。<br/>支持输入数字、空格、+ 、-、*、#、(、)，长度不限。 |
-| EMAIL    | 5 | 邮箱地址输入模式。<br/>支持数字，字母，下划线、小数点、!、#、$、%、&、'、*、+、-、/、=、?、^、`、\{、\|、\}、~，以及@字符（只能存在一个@字符）。 |
-| NUMBER_DECIMAL<sup>12+</sup>  | 12 | 带小数点的数字输入模式。<br/>支持数字，小数点（只能存在一个小数点）。|
-| URL<sup>12+</sup>  | 13 | 带URL的输入模式。 |
+| NORMAL   | 0 | 基本输入模式。<br/>支持输入数字、字母、下划线、空格、特殊字符。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| NUMBER   | 2 | 纯数字输入模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
+| PHONE_NUMBER | 3 | 电话号码输入模式。<br/>支持输入数字、空格、+ 、-、*、#、(、)，长度不限。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| EMAIL    | 5 | 邮箱地址输入模式。<br/>支持数字，字母，下划线、小数点、!、#、$、%、&、'、*、+、-、/、=、?、^、`、\{、\|、\}、~，以及@字符（只能存在一个@字符）。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| NUMBER_DECIMAL<sup>12+</sup>  | 12 | 带小数点的数字输入模式。<br/>支持数字，小数点（只能存在一个小数点）。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| URL<sup>12+</sup>  | 13 | 带URL的输入模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| ONE_TIME_CODE<sup>20+</sup>  | 14 | 验证码输入模式。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## TextAreaSubmitCallback<sup>14+</sup>
 
@@ -1667,6 +1683,9 @@ struct TextAreaExample {
       TextArea({ text: 'This is the TextArea with lineSpacing set to 100%.' })
         .fontSize(12)
         .lineSpacing(LengthMetrics.percent(1))
+      TextArea({ text: 'The line spacing of this TextArea is set to 20_px, and the spacing is effective only between the lines.' })
+        .fontSize(12)
+        .lineSpacing(LengthMetrics.px(20), { onlyBetweenLines: true })
     }.height(600).width(350).padding({ left: 35, right: 35, top: 35 })
   }
 }
@@ -2067,3 +2086,44 @@ struct TextAreaExample {
   }
 }
 ```
+
+### 示例18（设置选中指定区域的文本内容）
+
+该示例通过setTextSelection方法展示如何设置选中指定区域的文本内容以及菜单的显隐策略。
+
+```ts
+// xxx.ets
+
+@Entry
+@Component
+struct TextAreaExample {
+  controller: TextAreaController = new TextAreaController()
+  @State startIndex: number = 0
+  @State endIndex: number = 0
+
+  build() {
+    Column({ space: 3 }) {
+      Text('Selection start:' + this.startIndex + ' end:' + this.endIndex)
+      TextArea({ text: 'Hello World', controller: this.controller })
+        .width('95%')
+        .height(80)
+        .margin(10)
+        .defaultFocus(true)
+        .enableKeyboardOnFocus(true)
+        .onTextSelectionChange((selectionStart: number, selectionEnd: number) => {
+          this.startIndex = selectionStart
+          this.endIndex = selectionEnd
+        })
+
+      Button('setTextSelection [0,3], set menuPolicy is MenuPolicy.SHOW')
+        .onClick(() => {
+          this.controller.setTextSelection(0, 3, { menuPolicy: MenuPolicy.SHOW })
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![textAreaSetTextSelection](figures/textAreaSetTextSelection.gif)

@@ -4,9 +4,9 @@
 
 ### `JSVM_Status`
 
-    是一个枚举数据类型，表示 JSVM-API 接口返回的状态信息。
+    这是一个枚举数据类型，用来表示 JSVM-API 接口返回的状态信息。
 
-    每当调用一个 JSVM-API 函数，都会返回该值，表示操作成功与否的相关信息。
+    每调用一次 JSVM-API 函数，都会返回一个值，用来表示操作成功与否的相关信息。
 
 ```c++
     typedef enum {
@@ -386,7 +386,10 @@ typedef JSVM_PropertyHandlerConfigurationStruct* JSVM_PropertyHandlerCfg;
 | OH_JSVM_CloseHandleScope| 关闭Handle scope |
 
 ##### JSVM_InitOptions 的使用描述
-通过传入 JSVM_InitOptions 可以初始化具备不同能力的 VM 平台。
+
+JSVM 提供了多种配置选项，允许开发者在执行 `OH_JSVM_Init` 时灵活配置其行为。可以通过 `OH_JSVM_GetVMInfo` 接口获取当前 JSVM 版本所对应的 V8 引擎版本。JSVM 中可支持的选项范围与对应的 V8 引擎版本可支持的选项范围保持一致。`OH_JSVM_GetVMInfo` 接口的使用参考[使用JSVM-API接口获取JSVM API的版本号](use-jsvm-about-version.md)。
+
+**注意：** 建议开发者在非必要情况下，仅使用 JSVM 内部的默认配置选项。
 
 场景示例：
 常规模式下初始化 VM 平台
@@ -848,7 +851,8 @@ int main(int argc, char *argv[]) {
 
 #### 场景介绍
 
-JSVM-API WebAssembly 接口提供了 wasm 字节码编译、wasm 函数优化、wasm cache 序列化和反序列化的能力。
+JSVM-API WebAssembly 接口提供了 WebAssembly 字节码编译、WebAssembly 函数优化、WebAssembly cache 序列化和反序列化的能力。
+详见[使用 JSVM-API WebAssembly 接口](use-jsvm-about-wasm.md)。
 
 #### 接口说明
 
@@ -868,7 +872,7 @@ JSVM-API WebAssembly 接口提供了 wasm 字节码编译、wasm 函数优化、
 
 #### 场景介绍
 
-获取、抛出、清理JS异常
+获取、抛出、清理JS异常。
 
 #### 接口说明
 | 接口 | 功能说明 |
@@ -1028,7 +1032,7 @@ OH_JSVM_CloseHandleScope(env, scope);
 
 #### 场景介绍
 
-创建JS对象类型和基本类型
+创建JS对象类型和基本类型。
 
 #### 接口说明
 | 接口 | 功能说明 |
@@ -1128,11 +1132,11 @@ JSVM_Value value;
 OH_JSVM_CreateSet(env, &value);
 ```
 
-### 从JS类型获取C类型&获取JS类型信息
+### 从JS类型获取C类型&JS类型信息
 
 #### 场景介绍
 
-从JS类型获取C类型&获取JS类型信息。
+从JS类型获取C类型&JS类型信息。
 
 #### 接口说明
 | 接口 | 功能说明 |
@@ -1206,7 +1210,7 @@ size_t arrayBufferLength = 0;
 OH_JSVM_GetArraybufferInfo(env, retArrayBuffer, &tmpArrayBufferPtr, &arrayBufferLength);
 ```
 
-创建utf8类型的String，并获取C字符串。
+根据 UTF-8 编码的C字符串创建一个 JavaScript 字符串，以及获取给定 JavaScript 字符串的 UTF-8 编码C字符串。
 
 ```c++
 const char *testStringStr = "testString";
@@ -1373,7 +1377,7 @@ OH_JSVM_IsRegExp(env, result, &isRegExp);
 
 #### 场景介绍
 
-JS对象属性的增删获取和判断
+JS对象属性的增加、删除、获取和判断。
 
 #### 接口说明
 | 接口 | 功能说明 |
@@ -1558,7 +1562,7 @@ OH_JSVM_CreateFunctionWithScript(env, "add", JSVM_AUTO_LENGTH, 2, argus, script,
 |OH_JSVM_CheckObjectTypeTag | 检查给定的类型标签是否与对象上的类型标签匹配。 |
 |OH_JSVM_AddFinalizer | 为对象添加 JSVM_Finalize 回调，以便在 JavaScript 对象被垃圾回收时调用来释放原生对象。 |
 |OH_JSVM_DefineClassWithPropertyHandler | 定义一个具有给定类名、构造函数、属性和回调处理程序的JavaScript类，并作为函数回调进行调用。属性操作包括getter、setter、deleter、enumerator等。 |
-|OH_JSVM_DefineClassWithOptions | 定义一个具有给定类名、构造函数、属性和回调处理程序、父类的JavaScript类，并根据传入了DefineClassOptions来决定是否需要为所定义的Class设置属性代理、预留internal-filed槽位、为class作为函数进行调用时设置函数回调。|
+|OH_JSVM_DefineClassWithOptions | 定义一个具有给定类名、构造函数、属性和回调处理程序、父类的JavaScript类，并根据传入了DefineClassOptions来决定是否需要为所定义的Class设置属性代理、预留internal-field槽位、为class作为函数进行调用时设置函数回调。|
 
 场景示例：
 对象绑定操作。
@@ -2038,7 +2042,7 @@ static napi_value TestDefineClassWithProperty(napi_env env1, napi_callback_info 
     return nullptr;
 }
 ```
-场景示例：设置父类class并通过DefineClassOptions设置监听拦截属性操作
+场景示例：设置父类并通过DefineClassOptions设置监听拦截属性操作
 
 具体示例参考[使用JSVM进行class相关开发](use-jsvm-about-class.md)。
 
@@ -2068,7 +2072,7 @@ OH_JSVM_GetVersion(env, &versionId);
 
 #### 场景介绍
 
-内存管理
+内存管理。
 
 #### 接口说明
 | 接口                                          | 功能说明                                                                                                   |
@@ -2079,7 +2083,7 @@ OH_JSVM_GetVersion(env, &versionId);
 | OH_JSVM_FreeArrayBufferBackingStoreData | 释放 BackingStore 内存。 |
 | OH_JSVM_CreateArrayBufferFromBackingStoreData | 基于申请的 BackingStore 内存创建 array buffer。 |
 
-> BackingStore 的使用属于高危操作，需要使用者自身保证内存的正确使用，请参考下方的正确示例，谨慎使用。
+> 使用 BackingStore 属于高危操作，使用者需确保内存使用正确。请参考下方正确示例，谨慎操作。
 
 场景示例：
 内存管理。
@@ -2240,7 +2244,7 @@ OH_JSVM_JsonParse(env, jsonString, &result);
 
 #### 场景介绍
 
-创建和使用虚拟机的启动快照
+创建和使用虚拟机的启动快照。
 
 #### 接口说明
 | 接口 | 功能说明 |
@@ -2255,7 +2259,7 @@ OH_JSVM_JsonParse(env, jsonString, &result);
 
 #### 场景介绍
 
-检查传入的值是否可调用
+检查传入的值是否可调用。
 
 #### 接口说明
 | 接口 | 功能说明 |
@@ -2334,7 +2338,7 @@ static napi_value MyJSVMDemo([[maybe_unused]] napi_env _env, [[maybe_unused]] na
 
 #### 场景介绍
 
-Lock操作
+Lock操作。
 
 #### 接口说明
 | 接口 | 功能说明 |
@@ -2437,7 +2441,7 @@ static napi_value Add([[maybe_unused]] napi_env _env, [[maybe_unused]] napi_call
 
 #### 场景介绍
 
-检索通过OH_JSVM_SetInstanceData()与当前运行的JSVM环境相关联的数据
+使用OH_JSVM_SetInstanceData()函数，检索与当前运行的JSVM环境相关联的数据。
 
 #### 接口说明
 | 接口 | 功能说明 |
@@ -2532,7 +2536,7 @@ static napi_value GetInstanceData(napi_env env1, napi_callback_info info)
 
 #### 场景介绍
 
-在虚拟机内部启动任务队列的运行，检查是否有微任务在队列中等待，这个任务队列可以由外部事件循环执行
+在虚拟机内部启动任务队列的运行，检查队列中是否有微任务等待，任务队列可由外部事件循环执行。
 
 #### 接口说明
 | 接口 | 功能说明 |

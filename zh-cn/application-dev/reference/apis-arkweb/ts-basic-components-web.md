@@ -134,6 +134,8 @@ Web组件指定共享渲染进程。
   ```
 
 通过resources协议加载，适用Webview加载带有"#"路由的链接。
+
+使用 `resource://rawfile/` 协议前缀可以避免常规 `$rawfile` 方式在处理带有"#"路由链接时的局限性。当URL中包含"#"号时，"#"后面的内容会被视为锚点（fragment）。
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -146,11 +148,41 @@ Web组件指定共享渲染进程。
     build() {
       Column() {
         // 通过resource协议加载本地资源文件。
-        Web({ src: "resource://rawfile/index.html", controller: this.controller })
+        Web({ src: "resource://rawfile/index.html#home", controller: this.controller })
       }
     }
   }
   ```
+
+在“src\main\resources\rawfile”文件夹下创建index.html：
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<body>
+<div id="content"></div>
+
+<script>
+	function loadContent() {
+	  var hash = window.location.hash;
+	  var contentDiv = document.getElementById('content');
+
+	  if (hash === '#home') {
+		contentDiv.innerHTML = '<h1>Home Page</h1><p>Welcome to the Home Page!</p>';
+	  } else {
+		contentDiv.innerHTML = '<h1>Default Page</h1><p>This is the default content.</p>';
+	  }
+	}
+
+	// 加载界面
+	window.addEventListener('load', loadContent);
+
+	// 当hash变化时，更新界面
+	window.addEventListener('hashchange', loadContent);
+</script>
+</body>
+</html>
+```
 
 加载沙箱路径下的本地资源文件，需要开启应用中文件系统的访问[fileAccess](#fileaccess)权限。
 
@@ -2631,13 +2663,17 @@ enableNativeMediaPlayer(config: NativeMediaPlayerConfig)
   }
   ```
 
-### selectionMenuOptions<sup>12+</sup>
+### selectionMenuOptions<sup>(deprecated)</sup>
 
 selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
 
 Web组件自定义菜单扩展项接口，允许用户设置扩展项的文本内容、图标、回调方法。
 
 该接口只支持选中纯文本，当选中内容包含图片及其他非文本内容时，action信息中会显示乱码。
+
+> **说明：**
+>
+> 从API version 12开始支持，从API version 20开始废弃。建议使用[editMenuOptions<sup>12+</sup>](#editmenuoptions12)替代。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2795,7 +2831,7 @@ Web组件自定义文本选择菜单。
 
 在[onMenuItemClick](../apis-arkui/arkui-ts/ts-text-common.md#onmenuitemclick)中，可以自定义菜单选项的回调函数。该函数在菜单选项被点击后触发，并根据返回值决定是否执行系统默认的回调。返回true不执行系统回调，返回false继续执行系统回调。
 
-本接口在与[selectionMenuOptions](#selectionmenuoptions12)同时使用时，会使selectionMenuOptions不生效。
+本接口在与[selectionMenuOptions<sup>(deprecated)</sup>](#selectionmenuoptionsdeprecated)同时使用时，会使selectionMenuOptions<sup>(deprecated)</sup>不生效。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

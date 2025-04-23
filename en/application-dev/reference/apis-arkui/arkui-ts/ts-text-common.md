@@ -13,8 +13,8 @@
 
 | Name| Type                                  | Mandatory| Description|
 | ------ | ------------------------------------------ | ---- | -------- |
-| width  | [Length](ts-types.md#length)               | No  | Caret size. It cannot be set in percentage.|
-| color  | [ResourceColor](ts-types.md#resourcecolor) | No  | Caret color.|
+| width  | [Length](ts-types.md#length)               | No  | Caret size. It cannot be set in percentage.<br>Default value: **'2vp'**.|
+| color  | [ResourceColor](ts-types.md#resourcecolor) | No  | Caret color.<br>Default value: **'#ff007dff'**.|
 
 ## LayoutManager<sup>12+</sup>
 
@@ -74,7 +74,7 @@ Obtains the position of a glyph close to a given coordinate.
 
 getLineMetrics(lineNumber: number): LineMetrics
 
-Obtains the metrics information of a specified line.
+Obtains the information about the specified line, including line metrics, text style information, and font properties.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -84,13 +84,13 @@ Obtains the metrics information of a specified line.
 
 | Name   | Type  | Mandatory  | Description                |
 | ------ | ------ | ---- | -------------------- |
-| lineNumber | number | Yes   | Line number, starting at 0.|
+| lineNumber | number | Yes   | Line number, which is zero-based.|
 
 **Return value**
 
 | Type                                      | Description      |
 | ---------------------------------------- | -------- |
-| [LineMetrics](#linemetrics12) | Button("Line Metrics")|
+| [LineMetrics](#linemetrics12) | Information about the specified line, including line metrics, text style information, and font properties.<br>Returns an invalid value if the line number is less than 0 or exceeds the actual number of lines.|
 
 ### getRectsForRange<sup>14+</sup>
 
@@ -131,28 +131,28 @@ Describes the position and affinity of a glyph.
 
 ## TextMenuItemId<sup>12+</sup>
 
-Provides the menu ID.
+Defines the unique identifier for a custom menu item. It is used to identify menu items. The IDs for built-in menu items are listed in the table below.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name          | Type             | Read Only  | Optional | Description    |
 | ------------ |---------------------| ---- | ---- | ------ |
-| CUT  | [TextMenuItemId](#textmenuitemid12) |  Yes |  Yes| Default cut operation.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| COPY  | [TextMenuItemId](#textmenuitemid12) |  Yes |  Yes | Default copy operation.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| PASTE | [TextMenuItemId](#textmenuitemid12)   | Yes   | Yes   | Default paste operation.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| SELECT_ALL   | [TextMenuItemId](#textmenuitemid12)   | Yes   | Yes   | Default select-all operation.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| COLLABORATION_SERVICE   | [TextMenuItemId](#textmenuitemid12)   | Yes   | Yes   | Collaboration service.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| CAMERA_INPUT   | [TextMenuItemId](#textmenuitemid12)   | Yes   | Yes  | Camera input.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| AI_WRITER<sup>13+</sup>   | [TextMenuItemId](#textmenuitemid12)   | Yes   | Yes   | Text enhancement features, such as polishing, summary extraction, and formatting, for selected text. This menu item requires foundation model capabilities to function.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
-| TRANSLATE<sup>15+</sup>   | [TextMenuItemId](#textmenuitemid12)   | Yes   | Yes   | Translation service.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
-| SHARE<sup>18+</sup>   | [TextMenuItemId](#textmenuitemid12)   | Yes   | Yes   | Sharing service, which launches a share window to share the selected text.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
-| SEARCH<sup>18+</sup>   | [TextMenuItemId](#textmenuitemid12)   | Yes   | Yes   | Search service, which launches a browser to search the selected text.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| CUT  | [TextMenuItemId](#textmenuitemid12) |  Yes |  Yes| ID for the cut menu item.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| COPY  | [TextMenuItemId](#textmenuitemid12) |  Yes |  Yes | ID for the paste menu item.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| PASTE | [TextMenuItemId](#textmenuitemid12)   | Yes   | Yes   | ID for the paste menu item.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| SELECT_ALL   | [TextMenuItemId](#textmenuitemid12)   | Yes   | Yes   | ID for the select-all menu item.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| COLLABORATION_SERVICE   | [TextMenuItemId](#textmenuitemid12)   | Yes   | Yes   | ID for the collaboration service menu item.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| CAMERA_INPUT   | [TextMenuItemId](#textmenuitemid12)   | Yes   | Yes  | ID for the camera input menu item.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| AI_WRITER<sup>13+</sup>   | [TextMenuItemId](#textmenuitemid12)   | Yes   | Yes   | ID for the menu item involving text enhancement features, such as polishing, summary extraction, and formatting, for selected text. This menu item requires foundation model capabilities to function.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| TRANSLATE<sup>15+</sup>   | [TextMenuItemId](#textmenuitemid12)   | Yes   | Yes   | ID for the translate menu item.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+| SHARE<sup>18+</sup>   | [TextMenuItemId](#textmenuitemid12)   | Yes   | Yes   | ID for the share menu item, which launches a window for sharing the selected text.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| SEARCH<sup>18+</sup>   | [TextMenuItemId](#textmenuitemid12)   | Yes   | Yes   | ID for the search menu item, which launches a browser to search the selected text.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 ### of
 
@@ -409,7 +409,7 @@ Defines the font settings, including smooth and continuous adjustments for the f
 
 | Name    | Type                                            | Mandatory| Description                                                    |
 | -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
-| enableVariableFontWeight | boolean | No  | Whether to support variable font weight adjustment.<br>Default value: **false**|
+| enableVariableFontWeight | boolean | No  | Whether to support variable font weight adjustment.<br>Default value: **false**.<br>**true**: Support variable font weight adjustment.<br>**false**: Do not support variable font weight adjustment.|
 
 ## OnDidChangeCallback<sup>12+</sup>
 
@@ -491,8 +491,8 @@ On non-2-in-1 devices, when **options** is set to **MenuPolicy.DEFAULT**, the fo
 
 | Name           | Type  | Mandatory  | Description   |
 | -------------- | ------ | ---- | ------- |
-| selectionStart | number | Yes   | Start position of the selection.|
-| selectionEnd   | number | Yes   | End position of the selection.|
+| selectionStart | number | Yes   | Start position of the selection.<br>Values less than 0 are treated as **0**.|
+| selectionEnd   | number | Yes   | End position of the selection.<br>If the value exceeds the text length, the current text length is used instead.|
 | options   | [SelectionOptions](ts-types.md#selectionoptions12) | No   | Configuration of options.|
 
 ### closeSelectionMenu<sup>12+</sup>

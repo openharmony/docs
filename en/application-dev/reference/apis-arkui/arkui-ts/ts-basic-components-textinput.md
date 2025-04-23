@@ -649,7 +649,7 @@ Sets the content type for autofill.
 
 | Name| Type                                 | Mandatory| Description          |
 | ------ | ------------------------------------- | ---- | -------------- |
-| value  | [ContentType](#contenttype12) | Yes  | Content type for autofill.|
+| value  | [ContentType](#contenttype12-1) | Yes  | Content type for autofill.|
 
 ### underlineColor<sup>12+</sup>
 
@@ -1018,7 +1018,7 @@ Sets whether half leading is enabled.
 
 | Name| Type                                         | Mandatory| Description                                         |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| halfLeading | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | Yes | Whether half leading is enabled.<br>Whether half leading is enabled. Half leading is the leading split in half and applied equally to the top and bottom edges. The value **true** means that half leading is enabled, and **false** means the opposite.<br>Default value: **false**|
+| halfLeading | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | Yes | Whether half leading is enabled.<br>Half leading is the leading split in half and applied equally to the top and bottom edges. The value **true** means that half leading is enabled, and **false** means the opposite.<br>Default value: **false**|
 
 ### minFontScale<sup>18+</sup>
 
@@ -1094,7 +1094,7 @@ Sets the ellipsis position. For the settings to work, **overflow** must be set t
 | ----------------------------- | ------------------------------------------------------------ |
 | Normal                        | Normal input mode. In this mode, there is no special restriction on the input characters.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | Password                      | Password input mode.<br>An eye icon is used to show or hide the password. By default, the entered characters are temporarily shown before being obscured by dots; they are directly obscured by dots since API version 12 on certain devices. The password input mode does not support underlines. If Password Vault is enabled, autofill is available for the username and password.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| Email                         | Email address input mode.<br>This mode accepts only digits, letters, underscores (_), dots (.), and the following special characters: ! # $ % & ' * + - / = ? ^ ` \{ \| \} ~ @ (which can only appear once)<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| Email                         | Email address input mode.<br>This mode accepts only digits, letters, underscores (_), dots (.), and the following special characters: ! # $ % & ' " * + - / = ? ^ ` \{ \| \} ~ @ (which can only appear once)<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | Number                        | Digit input mode.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | PhoneNumber<sup>9+</sup>      | Phone number input mode.<br>In this mode, the following are allowed: digits, spaces, plus signs (+), hyphens (-), asterisks (*), and number signs (#); the length is not limited.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | USER_NAME<sup>11+</sup>       | Username input mode.<br>If Password Vault is enabled, autofill is available for the username and password.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -1526,7 +1526,7 @@ Defines the user submission event.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### Attributes
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

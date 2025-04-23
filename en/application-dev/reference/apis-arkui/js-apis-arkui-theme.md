@@ -1,4 +1,4 @@
-# @ohos.arkui.Theme (Theme)
+# @ohos.arkui.theme(Theme)
 
 You can define a custom theme to apply to components in your application.
 

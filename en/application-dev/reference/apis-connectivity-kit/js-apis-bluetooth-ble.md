@@ -3,8 +3,8 @@
 The **ble** module provides APIs for operating and managing Bluetooth.
 
 > **NOTE**
->
-> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - You can use [util.generateRandomUUID](../apis-arkts/js-apis-util.md#utilgeneraterandomuuid9) to generate a UUID wherever necessary.
 
 
 
@@ -30,7 +30,7 @@ Defines the profile connection status of the Bluetooth device.
 | [constant.ProfileConnectionState](js-apis-bluetooth-constant.md#profileconnectionstate) | Profile connection status of the Bluetooth device.|
 
 
-## ble.createGattServer<a name="createGattServer"></a>
+## ble.createGattServer
 
 createGattServer(): GattServer
 
@@ -54,7 +54,7 @@ console.info('gatt success');
 ```
 
 
-## ble.createGattClientDevice<a name="createGattClientDevice"></a>
+## ble.createGattClientDevice
 
 createGattClientDevice(deviceId: string): GattClientDevice
 
@@ -97,7 +97,7 @@ try {
 ```
 
 
-## ble.getConnectedBLEDevices<a name="getConnectedBLEDevices"></a>
+## ble.getConnectedBLEDevices
 
 getConnectedBLEDevices(): Array&lt;string&gt;
 
@@ -137,11 +137,15 @@ try {
 ```
 
 
-## ble.startBLEScan<a name="startBLEScan"></a>
+## ble.startBLEScan
 
 startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 
 Starts BLE scanning.
+> **NOTE**
+> - This API can be used to scan only BLE devices.
+> - This API supports only single-channel scanning. That is, the application can call this API only once at a time. Before calling this API again, you need to call [ble.stopBLEScan](#blestopscan) to stop previous scanning.
+> - To use multi-channel scanning, call [BleScanner](#blescanner15).
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -195,7 +199,7 @@ try {
 ```
 
 
-## ble.stopBLEScan<a name="stopBLEScan"></a>
+## ble.stopBLEScan
 
 stopBLEScan(): void
 
@@ -231,7 +235,7 @@ try {
 ```
 
 
-## ble.startAdvertising<a name="startAdvertising"></a>
+## ble.startAdvertising
 
 startAdvertising(setting: AdvertiseSetting, advData: AdvertiseData, advResponse?: AdvertiseData): void
 
@@ -312,7 +316,7 @@ try {
 ```
 
 
-## ble.stopAdvertising<a name="stopAdvertising"></a>
+## ble.stopAdvertising
 
 stopAdvertising(): void
 
@@ -348,7 +352,7 @@ try {
 ```
 
 
-## ble.startAdvertising<sup>11+</sup><a name="startAdvertising"></a>
+## ble.startAdvertising<sup>11+</sup>
 
 startAdvertising(advertisingParams: AdvertisingParams, callback: AsyncCallback&lt;number&gt;): void
 
@@ -440,7 +444,7 @@ try {
 ```
 
 
-## ble.startAdvertising<sup>11+</sup><a name="startAdvertising"></a>
+## ble.startAdvertising<sup>11+</sup>
 
 startAdvertising(advertisingParams: AdvertisingParams): Promise&lt;number&gt;
 
@@ -533,7 +537,7 @@ try {
 ```
 
 
-## ble.enableAdvertising<sup>11+</sup><a name="enableAdvertising"></a>
+## ble.enableAdvertising<sup>11+</sup>
 
 enableAdvertising(advertisingEnableParams: AdvertisingEnableParams, callback: AsyncCallback&lt;void&gt;): void
 
@@ -637,7 +641,7 @@ try {
 ```
 
 
-## ble.enableAdvertising<sup>11+</sup><a name="enableAdvertising"></a>
+## ble.enableAdvertising<sup>11+</sup>
 
 enableAdvertising(advertisingEnableParams: AdvertisingEnableParams): Promise&lt;void&gt;
 
@@ -745,7 +749,7 @@ try {
 ```
 
 
-## ble.disableAdvertising<sup>11+</sup><a name="disableAdvertising"></a>
+## ble.disableAdvertising<sup>11+</sup>
 
 disableAdvertising(advertisingDisableParams: AdvertisingDisableParams, callback: AsyncCallback&lt;void&gt;): void
 
@@ -846,7 +850,7 @@ try {
 ```
 
 
-## ble.disableAdvertising<sup>11+</sup><a name="disableAdvertising"></a>
+## ble.disableAdvertising<sup>11+</sup>
 
 disableAdvertising(advertisingDisableParams: AdvertisingDisableParams): Promise&lt;void&gt;
 
@@ -950,7 +954,7 @@ try {
 }
 ```
 
-## ble.stopAdvertising<sup>11+</sup><a name="stopAdvertising"></a>
+## ble.stopAdvertising<sup>11+</sup>
 
 stopAdvertising(advertisingId: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1048,7 +1052,7 @@ try {
 ```
 
 
-## ble.stopAdvertising<sup>11+</sup><a name="stopAdvertising"></a>
+## ble.stopAdvertising<sup>11+</sup>
 
 stopAdvertising(advertisingId: number): Promise&lt;void&gt;
 
@@ -3146,6 +3150,8 @@ try {
 setBLEMtuSize(mtu: number): void
 
 Sets the maximum transmission unit (MTU) that can be transmitted between the GATT client and its peer BLE device. This API can be used only after a connection is set up by calling [connect](#connect).
+> **NOTE**
+> - This API subscribes to MTU status change events through [on ('BLEMtuChange')] (#onblemtuchange-1).
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -4253,7 +4259,7 @@ Defines the scan configuration parameters.
 | reportMode<sup>15+</sup> | [ScanReportMode](#scanreportmode15) | Yes   | Yes   | Scan result reporting mode.|
 
 
-## GattProperties<a name="GattProperties"></a>
+## GattProperties
 
 Defines the properties of a GATT characteristic.
 
@@ -4270,7 +4276,7 @@ Defines the properties of a GATT characteristic.
 | indicate | boolean   | No   | Whether to indicate the client when the characteristic value changes. The value **true** means to indicate the client of the characteristic change. An acknowledgment from the client is also required.|
 
 
-## GattWriteType<a name="GattWriteType"></a>
+## GattWriteType
 
 Enumerates the GATT write types.
 

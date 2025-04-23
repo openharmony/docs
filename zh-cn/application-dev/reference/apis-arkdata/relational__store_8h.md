@@ -48,6 +48,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
+| typedef enum [Rdb_Tokenizer](_r_d_b.md#rdb_tokenizer) [Rdb_Tokenizer](_r_d_b.md#rdb_tokenizer) | 描述数据库的分词器类型。 |
 | [OH_Rdb_SecurityLevel](_r_d_b.md#oh_rdb_securitylevel) | 数据库的安全级别枚举。 |
 | [Rdb_SecurityArea](_r_d_b.md#rdb_securityarea) | 描述数据库的安全区域等级。 |
 | typedef struct [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) | 管理关系数据库配置，与[OH_Rdb_Config](_o_h___rdb___config.md)的区别是该结构体成员变量不对外暴露，使用一系列方法配置该结构体的属性，支持向量数据库。 |
@@ -77,6 +78,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
+| [Rdb_Tokenizer](_r_d_b.md#rdb_tokenizer-1) { RDB_NONE_TOKENIZER = 1, RDB_ICU_TOKENIZER = 2, RDB_CUSTOM_TOKENIZER = 3 } | 描述数据库的分词器类型。 |
 | [OH_Rdb_SecurityLevel](_r_d_b.md#oh_rdb_securitylevel-1) { S1 = 1, S2, S3, S4} | 数据库的安全级别枚举。 |
 | [Rdb_SecurityArea](_r_d_b.md#rdb_securityarea-1) { RDB_SECURITY_AREA_EL1 = 1, RDB_SECURITY_AREA_EL2, RDB_SECURITY_AREA_EL3, RDB_SECURITY_AREA_EL4, RDB_SECURITY_AREA_EL5 } | 描述数据库的安全区域等级。 |
 | [Rdb_DBType](_r_d_b.md#rdb_dbtype-1) { RDB_SQLITE = 1, RDB_CAYLEY = 2, DBTYPE_BUTT = 64 } | 描述数据库的内核类型。 |
@@ -140,7 +142,7 @@
 | [OH_Rdb_Subscribe](_r_d_b.md#oh_rdb_subscribe) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SubscribeType](_r_d_b.md#rdb_subscribetype) type, const [Rdb_DataObserver](_rdb___data_observer.md) \*observer) | 为数据库注册观察者。当分布式数据库中的数据发生更改时，将调用回调。 |
 | [OH_Rdb_Unsubscribe](_r_d_b.md#oh_rdb_unsubscribe) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SubscribeType](_r_d_b.md#rdb_subscribetype) type, const [Rdb_DataObserver](_rdb___data_observer.md) \*observer) | 从数据库中删除指定类型的指定观察者。 |
 | [OH_Rdb_GetTableDetails](_r_d_b.md#oh_rdb_gettabledetails) ([Rdb_ProgressDetails](_rdb___progress_details.md) \*progress, int32_t version) | 从端云同步任务的统计信息中获取数据库表的统计信息。 |
-| [OH_Rdb_CloudSync](_r_d_b.md#oh_rdb_cloudsync) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SyncMode](_r_d_b.md#rdb_syncmode) mode, const char \*tables, int count, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 进行端云同步。 |
+| [OH_Rdb_CloudSync](_r_d_b.md#oh_rdb_cloudsync) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SyncMode](_r_d_b.md#rdb_syncmode) mode, const char \*tables[], uint32_t count, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 进行端云同步。 |
 | [OH_Rdb_SubscribeAutoSyncProgress](_r_d_b.md#oh_rdb_subscribeautosyncprogress) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 订阅RDB存储的自动同步进度。当收到自动同步进度的通知时，将调用回调。 |
 | [OH_Rdb_UnsubscribeAutoSyncProgress](_r_d_b.md#oh_rdb_unsubscribeautosyncprogress) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 取消订阅RDB存储的自动同步进程。 |
 | int [OH_Rdb_LockRow](_r_d_b.md#oh_rdb_lockrow) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_Predicates](_o_h___predicates.md) \*predicates) | 根据指定的条件锁定数据库中的数据，锁定数据不执行端云同步。 |

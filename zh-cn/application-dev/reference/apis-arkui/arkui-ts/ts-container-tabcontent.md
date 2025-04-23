@@ -13,7 +13,7 @@
 
 >  **说明：**
 >
->  可内置系统组件和自定义组件，支持渲染控制类型（[if/else](../../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../../quick-start/arkts-rendering-control-foreach.md)和[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)）。
+>  可内置系统组件和自定义组件，支持渲染控制类型（[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)和[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)）。
 
 
 ## 接口
@@ -107,8 +107,8 @@ tabBar(content: ComponentContent | SubTabBarStyle | BottomTabBarStyle | string |
 
 | 名称 | 类型         | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| icon<sup>7+</sup> | string \| [ResourceStr](ts-types.md#resourcestr) | 否 | 页签内的图片内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| text<sup>7+</sup> | string \| [ResourceStr](ts-types.md#resourcestr) | 否 | 页签内的文字内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| icon<sup>7+</sup> | string \| [Resource](ts-types.md#resource) | 否 | 页签内的图片内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| text<sup>7+</sup> | string \| [Resource](ts-types.md#resource) | 否 | 页签内的文字内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## SubTabBarStyle<sup>9+</sup>
 

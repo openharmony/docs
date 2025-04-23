@@ -230,7 +230,7 @@ try {
 ## display.addVirtualScreenBlocklist<sup>18+</sup>
 addVirtualScreenBlocklist(windowIds: Array\<number>): Promise\<void>
 
-将主窗口添加到禁止投屏显示的名单中，被添加的窗口无法在投屏时显示。使用Promise异步回调。
+将窗口添加到禁止投屏显示的名单中，被添加的窗口无法在投屏时显示。仅对应用主窗或系统窗口生效。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -240,7 +240,7 @@ addVirtualScreenBlocklist(windowIds: Array\<number>): Promise\<void>
 
 | 参数名   | 类型                                       | 必填 | 说明                                                    |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
-| windowIds     | Array\<number>    | 是   | 窗口id列表，仅传入主窗口id时生效，传入其他类型窗口id时不生效。窗口id为大于0的整数。推荐使用[getWindowProperties()](js-apis-window.md#getwindowproperties9)方法获取窗口id属性。|
+| windowIds     | Array\<number>    | 是   | 窗口id列表，传入子窗窗口id时不生效。窗口id为大于0的整数。推荐使用[getWindowProperties()](js-apis-window.md#getwindowproperties9)方法获取窗口id属性。|
 
 **返回值：**
 
@@ -285,7 +285,7 @@ export default class EntryAbility extends UIAbility {
 ## display.removeVirtualScreenBlocklist<sup>18+</sup>
 removeVirtualScreenBlocklist(windowIds: Array\<number>): Promise\<void>
 
-将主窗口从禁止投屏显示的名单中移除，被移除的窗口可以在投屏时显示。使用Promise异步回调。
+将窗口从禁止投屏显示的名单中移除，被移除的窗口可以在投屏时显示。仅对应用主窗或系统窗口生效。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -295,7 +295,7 @@ removeVirtualScreenBlocklist(windowIds: Array\<number>): Promise\<void>
 
 | 参数名   | 类型                                       | 必填 | 说明                                                    |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
-| windowIds     | Array\<number>    | 是   | 窗口id列表，仅传入主窗口id时生效，传入其他类型窗口id时不生效。窗口id为大于0的整数。推荐使用[getWindowProperties()](js-apis-window.md#getwindowproperties9)方法获取窗口id属性。|
+| windowIds     | Array\<number>    | 是   | 窗口id列表，传入子窗窗口id时不生效。窗口id为大于0的整数。推荐使用[getWindowProperties()](js-apis-window.md#getwindowproperties9)方法获取窗口id属性。|
 
 **返回值：**
 

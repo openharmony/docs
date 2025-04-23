@@ -32,7 +32,7 @@ For details about how to use the APIs, see [setUsingLocalDigit](../reference/api
    let date: Date = new Date(2023, 9, 25); // The date is 2023-10-25.
    let appPreferredLanguage: string = 'ar';
    let dateTimeFmt: intl.DateTimeFormat = new intl.DateTimeFormat(appPreferredLanguage);
-   let formattedTime: string = dateTimeFmt.format(date); // formattedTime = '٢٠٢٣/١٠/٢٥' (represented by Arabic numerals)
+   let formattedTime: string = dateTimeFmt.format(date); // formattedTime = '٢٠٢٣/١٠/٢٥' (represented by localized numbers in Arabic)
    ```
 
 4. Set the 24-hour clock format.

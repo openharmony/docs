@@ -166,9 +166,9 @@ struct ChildComponent {
 
 在API version 18中，同时优化了组件冻结以下功能特性的行为表现：
 
-- 在组件冻结开启之后，明确了节点解冻的范围，子组件的非屏上节点不会再被父组件解冻，例子可见[Navigation和TabContent的混用](../../../application-dev/quick-start/arkts-custom-components-freeze.md#navigation和tabcontent的混用)。
+- 在组件冻结开启之后，明确了节点解冻的范围，子组件的非屏上节点不会再被父组件解冻，例子可见[Navigation和TabContent的混用](../../../application-dev/ui/state-management/arkts-custom-components-freeze.md#navigation和tabcontent的混用)。
 
-- 在状态管理V2组件冻结从父组件激活冻结状态的场景中，如果仅子组件开启了冻结，父组件未开启冻结，子组件也能冻结。例子可见[仅子组件开启组件冻结](../../../application-dev/quick-start/arkts-custom-components-freezeV2.md#仅子组件开启组件冻结)。
+- 在状态管理V2组件冻结从父组件激活冻结状态的场景中，如果仅子组件开启了冻结，父组件未开启冻结，子组件也能冻结。例子可见[仅子组件开启组件冻结](../../../application-dev/ui/state-management/arkts-custom-components-freezeV2.md#仅子组件开启组件冻结)。
 
 ## cl.arkui.3 ImageSpan组件borderRadius边框圆角属性Modifier设置变更
 

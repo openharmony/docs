@@ -221,7 +221,7 @@ anonymous enum
 | UI_MOUSE_EVENT_ACTION_PRESS  | 鼠标按键按下。  | 
 | UI_MOUSE_EVENT_ACTION_RELEASE  | 鼠标按键松开。  | 
 | UI_MOUSE_EVENT_ACTION_MOVE  | 鼠标移动。  | 
-| UI_MOUSE_EVENT_ACTION_CANCEL  | 鼠标按键被取消。  | 
+| UI_MOUSE_EVENT_ACTION_CANCEL  | 鼠标按键被取消。<br/>**起始版本：** 18  | 
 
 
 ### anonymous enum
@@ -1517,7 +1517,7 @@ double OH_ArkUI_FocusAxisEvent_GetAxisValue (const ArkUI_UIInputEvent * event，
 | 名称 | 描述 | 
 | -------- | -------- |
 | event | 表示指向当前UI输入事件的指针。  | 
-| axis | 焦点轴事件的轴类型。  | 
+| [axis](#anonymous-enum-5) | 焦点轴事件的轴类型。  | 
 
 **返回：**
 

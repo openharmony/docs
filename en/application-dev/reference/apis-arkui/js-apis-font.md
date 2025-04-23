@@ -132,7 +132,7 @@ Obtains the system font list.
 
 >  **NOTE**
 >
->  This API takes effect only on 2-in-1 devices.
+>  This API takes effect only on 2-in-1 devices.<br>To obtain the latest list of fonts supported by the system, use the [getSystemFontFullNamesByType](../apis-arkgraphics2d/js-apis-graphics-text.md#textgetsystemfontfullnamesbytype14) API.
 
 **Example**
 

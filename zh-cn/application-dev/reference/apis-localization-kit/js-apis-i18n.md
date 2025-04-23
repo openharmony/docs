@@ -3226,6 +3226,14 @@ constructor(numberFormat: intl.NumberFormat | SimpleNumberFormat, options?: Styl
 | numberFormat | [intl.NumberFormat](js-apis-intl.md#numberformat) \| [SimpleNumberFormat](#simplenumberformat18) | 是   | 用于格式化数字的对象。  |
 | options | [StyledNumberFormatOptions](#stylednumberformatoptions18) | 否 | 指定数字格式化对象的配置项。默认值：默认的文本样式。  |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';

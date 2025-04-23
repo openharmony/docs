@@ -52,7 +52,7 @@ Failed to resolve the proxy name.
 
 **可能原因**
 
-服务器的URL不正确
+服务器的URL不正确。
 
 **处理步骤**
 
@@ -78,7 +78,7 @@ Failed to resolve the host name.
 
 1.请检查输入的服务器的URL是否合理。
 
-2.请检查网络连接情况
+2.请检查网络连接情况。
 
 ## 2300007 无法连接到服务器
 
@@ -164,7 +164,7 @@ Transferred a partial file.
 
 **可能原因**
 
-可能与服务器实现有关
+可能与服务器实现有关。
 
 **处理步骤**
 
@@ -182,8 +182,9 @@ Failed to write the received data to the disk or application.
 
 **可能原因**
 
-1、应用没有写文件权限或待下载的文件超过5M。
-2、上一次请求数据未接受完毕便调用destroy销毁导致接收数据不完整。
+1.应用没有写文件权限或待下载的文件超过5M。
+
+2.上一次请求数据未接受完毕便调用destroy销毁导致接收数据不完整。
 
 **处理步骤**
 
@@ -201,7 +202,7 @@ Upload failed.
 
 **可能原因**
 
-文件过大或者网络问题。对于FTP，服务器通常会拒绝STOR命令。错误缓冲区通常包含服务器的解释。
+文件过大或者网络问题，对于FTP，服务器通常会拒绝STOR命令，错误缓冲区通常包含服务器的解释。
 
 **处理步骤**
 
@@ -219,7 +220,7 @@ Failed to open or read local data from the file or application.
 
 **可能原因**
 
-应用没有读文件权限
+应用没有读文件权限。
 
 **处理步骤**
 
@@ -273,7 +274,7 @@ The number of redirections reaches the maximum allowed.
 
 **可能原因**
 
-重定向次数过多
+重定向次数过多。
 
 **处理步骤**
 
@@ -327,7 +328,7 @@ Failed to receive data from the peer.
 
 **可能原因**
 
-网络问题
+网络问题。
 
 **处理步骤**
 
@@ -381,7 +382,7 @@ Invalid SSL peer certificate or SSH remote key.
 
 **可能原因**
 
-无法校验服务器身份，有可能是证书过期了
+无法校验服务器身份，有可能是证书过期了。
 
 **处理步骤**
 
@@ -435,7 +436,7 @@ Remote disk full.
 
 **可能原因**
 
-服务器磁盘已满
+服务器磁盘已满。
 
 **处理步骤**
 
@@ -489,7 +490,7 @@ URL请求的文件不存在。
 
 **可能原因**
 
-URL请求的文件不存在
+URL请求的文件不存在。
 
 **处理步骤**
 
@@ -547,7 +548,7 @@ It is not allowed to access this domain.
 
 **处理步骤**
 
-可参考[配置服务器域名文档](https://developer.huawei.com/consumer/cn/doc/atomic-guides-V5/agc-help-harmonyos-server-domain-V5)完成服务器域名相关配置。
+可参考配置服务器域名文档完成服务器域名相关配置。
 
 ## 2300999 未知错误
 

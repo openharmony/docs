@@ -460,7 +460,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 ```ts
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 
-let storage = LocalStorage.getShared()
+let storage = new LocalStorage()
 AppStorage.setOrCreate('message', 'UIExtensionAbility')
 
 @Entry(storage)

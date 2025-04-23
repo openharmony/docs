@@ -1491,6 +1491,8 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
 
 ### queryEventInstances<sup>18+</sup>
 
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
 queryEventInstances(start: number, end: number, ids?: number[], eventKey?: (keyof Event)[]): Promise\<Event[]>
 
 获取Calendar下符合查询条件的日程实例，使用Promise异步回调。
@@ -1501,9 +1503,9 @@ queryEventInstances(start: number, end: number, ids?: number[], eventKey?: (keyo
 
 | 参数名      | 类型                        | 必填   | 说明         |
 | ----------- | --------------------------- |------|------------|
-| start  | number | 是    | 日程开始时间。    |
-| end    | number | 是    | 日程结束时间。    |
-| ids    | number[] | 否    | 日程id数组。    |
+| start  | number | 是    | 日程开始时间，类型为13位时间戳。    |
+| end    | number | 是    | 日程结束时间，类型为13位时间戳。    |
+| ids    | number[] | 否    | 需要查询的日程id数组，可为空数组或undefined，id>0。    |
 | eventKey    | (keyof [Event](#event))[]   | 否    | 所有查询日程的字段。 |
 
 **返回值**：

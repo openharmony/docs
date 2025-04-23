@@ -268,7 +268,7 @@ openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
 }
 ```
 
-预置证书公钥哈希值的配置例子如下:
+预置证书公钥哈希值的配置例子如下：
 ```
 {
   "network-security-config": {
@@ -304,7 +304,7 @@ openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
 |domain-config              | array           |指示每个域的安全配置。可以包含任意个item。item必须包含1个domains，可以包含0或者1个trust-anchors，可以包含0个或者1个pin-set。|
 |trust-anchors              | array           |受信任的CA。可以包含任意个item。item必须包含1个certificates。|
 |certificates               | string          |CA证书路径。 |
-|domains                    | array           |域。可以包含任意个item。item必须包含1个name(string:指示域名)，可以包含0或者1个include-subdomains。|
+|domains                    | array           |域。可以包含任意个item。item必须包含1个name(string：指示域名)，可以包含0或者1个include-subdomains。|
 |include-subdomains         | boolean         |指示规则是否适用于子域。 |
 |pin-set                    | object          |证书公钥哈希设置。必须包含1个pin，可以包含0或者1个expiration。|
 |expiration                 | string          |指示证书公钥哈希的过期时间。 |

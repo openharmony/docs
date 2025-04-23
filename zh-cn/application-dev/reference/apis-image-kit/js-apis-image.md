@@ -620,7 +620,7 @@ async function CreatePremultipliedPixelMap() {
   let dstPixelMap = image.createPixelMapSync(optsForPre);
   image.createPremultipliedPixelMap(srcPixelmap, dstPixelMap, (error: BusinessError) => {
     if(error) {
-      console.error(`Failed to convert pixelmap. code is ${error.code}, message is ${error.message}`);
+      console.error(`Failed to convert pixelmap, error code is ${error}`);
       return;
     } else {
       console.info('Succeeded in converting pixelmap.');
@@ -682,7 +682,7 @@ async function CreatePremultipliedPixelMap() {
   image.createPremultipliedPixelMap(srcPixelmap, dstPixelMap).then(() => {
     console.info('Succeeded in converting pixelmap.');
   }).catch((error: BusinessError) => {
-    console.error(`Failed to convert pixelmap. code is ${error.code}, message is ${error.message}`);
+    console.error(`Failed to convert pixelmap, error code is ${error}`);
   })
 }
 ```
@@ -734,7 +734,7 @@ async function CreateUnpremultipliedPixelMap() {
   let dstPixelMap = image.createPixelMapSync(optsForUnpre);
   image.createUnpremultipliedPixelMap(srcPixelmap, dstPixelMap, (error: BusinessError) => {
     if(error) {
-      console.error(`Failed to convert pixelmap. code is ${error.code}, message is ${error.message}`);
+      console.error(`Failed to convert pixelmap, error code is ${error}`);
       return;
     } else {
       console.info('Succeeded in converting pixelmap.');
@@ -796,7 +796,7 @@ async function CreateUnpremultipliedPixelMap() {
   image.createUnpremultipliedPixelMap(srcPixelmap, dstPixelMap).then(() => {
     console.info('Succeeded in converting pixelmap.');
   }).catch((error: BusinessError) => {
-    console.error(`Failed to convert pixelmap. code is ${error.code}, message is ${error.message}`);
+    console.error(`Failed to convert pixelmap, error code is ${error}`);
   })
 }
 ```
@@ -2667,10 +2667,10 @@ clone(): Promise\<PixelMap>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 501 | Resource unavailable. |
-| 62980102 | Image malloc abnormal. This status code is thrown when an error occurs during the process of copying data. |
-| 62980103 | Image YUV And ASTC types are not supported. |
-| 62980104 | Image initialization abnormal. This status code is thrown when an error occurs during the process of createing empty pixelmap. |
-| 62980106 | The image data is to large.This status code is thrown when an error occurs during the process of checking size. |
+| 62980102 | Image malloc abnormal. |
+| 62980103 | Image types are not supported. |
+| 62980104 | Image initialization abnormal. |
+| 62980106 | The image data is to large. |
 
 **示例：**
 
@@ -2709,10 +2709,10 @@ cloneSync(): PixelMap
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 501 | Resource unavailable. |
-| 62980102 | Image malloc abnormal. This status code is thrown when an error occurs during the process of copying data. |
-| 62980103 | Image YUV And ASTC types are not supported. |
-| 62980104 | Image initialization abnormal. This status code is thrown when an error occurs during the process of createing empty pixelmap. |
-| 62980106 | The image data is to large.This status code is thrown when an error occurs during the process of checking size. |
+| 62980102 | Image malloc abnormal. |
+| 62980103 | Image types are not supported. |
+| 62980104 | Image initialization abnormal. |
+| 62980106 | The image data is to large. |
 
 **示例：**
 
@@ -3342,7 +3342,7 @@ async function ApplyColorSpace() {
   if (pixelMap != undefined) {
     pixelMap.applyColorSpace(targetColorSpace, (err: BusinessError) => {
       if (err) {
-        console.error(`Failed to apply color space for pixelmap object. code is ${err.code}, message is ${err.message}`);
+        console.error(`Failed to apply color space for pixelmap object, error code is ${error}`);
         return;
       } else {
         console.info('Succeeded in applying color space for pixelmap object.');
@@ -3396,7 +3396,7 @@ async function ApplyColorSpace() {
     pixelMap.applyColorSpace(targetColorSpace).then(() => {
       console.info('Succeeded in applying color space for pixelmap object.');
     }).catch((error: BusinessError) => {
-      console.error(`Failed to apply color space for pixelmap object. code is ${error.code}, message is ${error.message}`);
+      console.error(`Failed to apply color space for pixelmap object, error code is ${error}`);
     })
   }
 }
@@ -3427,8 +3427,8 @@ toSdr(): Promise\<void>
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image'
-import resourceManager from '@ohos.resourceManager'
+import image from '@ohos.multimedia.image';
+import resourceManager from '@ohos.resourceManager';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 //此处'hdr.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
@@ -3486,7 +3486,7 @@ getMetadata(key: HdrMetadataKey): HdrMetadataValue
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import image from '@ohos.multimedia.image'
+import image from '@ohos.multimedia.image';
 
 // 'app.media.test'需要替换为本地hdr图片。
 let img = getContext().resourceManager.getMediaContentSync($r('app.media.test'));
@@ -3543,7 +3543,7 @@ setMetadata(key: HdrMetadataKey, value: HdrMetadataValue): Promise\<void>
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image'
+import image from '@ohos.multimedia.image';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let staticMetadata: image.HdrStaticMetadata = {
@@ -3555,9 +3555,9 @@ let staticMetadata: image.HdrStaticMetadata = {
   minLuminance: 1.0,
   maxContentLightLevel: 2.1,
   maxFrameAverageLightLevel: 2.1,
-}
+};
 const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
-let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
+let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } };
 image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
   pixelMap.setMetadata(image.HdrMetadataKey.HDR_STATIC_METADATA, staticMetadata).then(() => {
     console.info('Succeeded in setting pixelMap metadata.');
@@ -3955,6 +3955,7 @@ setMemoryNameSync(name: string): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 401 | Parameter error. Possible causes: 1.The length of the input parameter is too long. 2.Parameter verification failed. |
+| 501 | Resource unavailable. |
 | 62980286 | Memory format not supported. |
 
 **示例：**
@@ -4248,22 +4249,22 @@ CreateIncrementalSource(buf: ArrayBuffer): ImageSource
 **示例：**
 
 ```ts
-const context: Context = getContext(this)
-let imageArray = context.resourceManager.getMediaContentSync($r('app.media.startIcon')) // 获取图像资源。
+const context: Context = getContext(this);
+let imageArray = context.resourceManager.getMediaContentSync($r('app.media.startIcon')); // 获取图像资源。
 // 此处'app.media.startIcon'仅作示例，请开发者自行替换，否则imageArray创建失败会导致后续无法正常执行。
-let splitBuff1 = imageArray.slice(0, imageArray.byteLength / 2)  // 分片。
-let splitBuff2 = imageArray.slice(imageArray.byteLength / 2)
+let splitBuff1 = imageArray.slice(0, imageArray.byteLength / 2);  // 分片。
+let splitBuff2 = imageArray.slice(imageArray.byteLength / 2);
 const imageSourceIncrementalSApi: image.ImageSource = image.CreateIncrementalSource(new ArrayBuffer(imageArray.byteLength));
 imageSourceIncrementalSApi.updateData(splitBuff1, false, 0, splitBuff1.byteLength).then(() => {
   imageSourceIncrementalSApi.updateData(splitBuff2, true, 0, splitBuff2.byteLength).then(() => {
-    let pixelMap = imageSourceIncrementalSApi.createPixelMapSync()
-    let imageInfo = pixelMap.getImageInfoSync()
-    console.info('Succeeded in creating pixelMap')
+    let pixelMap = imageSourceIncrementalSApi.createPixelMapSync();
+    let imageInfo = pixelMap.getImageInfoSync();
+    console.info('Succeeded in creating pixelMap');
   }).catch((error : BusinessError) => {
-    console.error(`Failed to updateData error code is ${error.code}, message is ${error.message}`)
+    console.error(`Failed to updateData error code is ${error.code}, message is ${error.message}`);
   })
 }).catch((error : BusinessError) => {
-  console.error(`Failed to updateData error code is ${error.code}, message is ${error.message}`)
+  console.error(`Failed to updateData error code is ${error.code}, message is ${error.message}`);
 })
 ```
 
@@ -4293,24 +4294,24 @@ CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 **示例：**
 
 ```ts
-const context: Context = getContext(this)
+const context: Context = getContext(this);
 let imageArray = context.resourceManager.getMediaContentSync($r('app.media.startIcon')) // 获取图像资源。
 // 此处'app.media.startIcon'仅作示例，请开发者自行替换，否则imageArray创建失败会导致后续无法正常执行。
-let splitBuff1 = imageArray.slice(0, imageArray.byteLength / 2)  // 分片。
-let splitBuff2 = imageArray.slice(imageArray.byteLength / 2)
+let splitBuff1 = imageArray.slice(0, imageArray.byteLength / 2);  // 分片。
+let splitBuff2 = imageArray.slice(imageArray.byteLength / 2);
 let sourceOptions: image.SourceOptions = { sourceDensity: 120};
 
 const imageSourceIncrementalSApi: image.ImageSource = image.CreateIncrementalSource(new ArrayBuffer(imageArray.byteLength), sourceOptions);
 imageSourceIncrementalSApi.updateData(splitBuff1, false, 0, splitBuff1.byteLength).then(() => {
   imageSourceIncrementalSApi.updateData(splitBuff2, true, 0, splitBuff2.byteLength).then(() => {
-    let pixelMap = imageSourceIncrementalSApi.createPixelMapSync()
-    let imageInfo = pixelMap.getImageInfoSync()
-    console.info('Succeeded in creating pixelMap')
+    let pixelMap = imageSourceIncrementalSApi.createPixelMapSync();
+    let imageInfo = pixelMap.getImageInfoSync();
+    console.info('Succeeded in creating pixelMap');
   }).catch((error : BusinessError) => {
-    console.error(`Failed to updateData error code is ${error.code}, message is ${error.message}`)
+    console.error(`Failed to updateData error code is ${error.code}, message is ${error.message}`);
   })
 }).catch((error : BusinessError) => {
-  console.error(`Failed to updateData error code is ${error.code}, message is ${error.message}`)
+  console.error(`Failed to updateData error code is ${error.code}, message is ${error.message}`);
 })
 ```
 
@@ -5080,7 +5081,8 @@ let decodingOptions: image.DecodingOptions = {
   desiredSize: { width: 1, height: 2 },
   rotate: 10,
   desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
-  desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
+  desiredRegion: { size: { width: 1, height: 2 }, x: 0, y: 0 },
+  cropAndScaleStrategy: image.CropAndScaleStrategy.CROP_FIRST,
   index: 0
 };
 imageSourceApi.createPixelMap(decodingOptions, (err: BusinessError, pixelMap: image.PixelMap) => {
@@ -5127,7 +5129,8 @@ let decodingOptions: image.DecodingOptions = {
   desiredSize: { width: 1, height: 2 },
   rotate: 10,
   desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
-  desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
+  desiredRegion: { size: { width: 1, height: 2 }, x: 0, y: 0 },
+  cropAndScaleStrategy: image.CropAndScaleStrategy.CROP_FIRST,
   index: 0
 };
 let pixelmap = imageSource.createPixelMapSync(decodingOptions);
@@ -5201,7 +5204,7 @@ let decodeOpts: image.DecodingOptions = {
 imageSourceApi.createPixelMapList(decodeOpts).then((pixelMapList: Array<image.PixelMap>) => {
   console.info('Succeeded in creating pixelMapList object.');
 }).catch((err: BusinessError) => {
-  console.error(`Failed to create pixelMapList object.code is ${err.code},message is ${err.message}`);
+  console.error(`Failed to create pixelMapList object, error code is ${error}`);
 })
 ```
 
@@ -5253,7 +5256,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 imageSourceApi.createPixelMapList((err: BusinessError, pixelMapList: Array<image.PixelMap>) => {
   if (err) {
-    console.error(`Failed to create pixelMapList object.code is ${err.code},message is ${err.message}`);
+    console.error(`Failed to create pixelMapList object, error code is ${error}`);
   } else {
     console.info('Succeeded in creating pixelMapList object.');
   }
@@ -5317,7 +5320,7 @@ let decodeOpts: image.DecodingOptions = {
 };
 imageSourceApi.createPixelMapList(decodeOpts, (err: BusinessError, pixelMapList: Array<image.PixelMap>) => {
   if (err) {
-    console.error(`Failed to create pixelMapList object.code is ${err.code},message is ${err.message}`);
+    console.error(`Failed to create pixelMapList object, error code is ${error}`);
   } else {
     console.info('Succeeded in creating pixelMapList object.');
   }
@@ -5374,7 +5377,8 @@ let decodingOptions: image.DecodingOptions = {
   desiredSize: { width: 3072, height: 4096 },
   rotate: 10,
   desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
-  desiredRegion: { size: { height: 3072, width: 4096 }, x: 0, y: 0 },
+  desiredRegion: { size: { width: 3072, height: 4096 }, x: 0, y: 0 },
+  cropAndScaleStrategy: image.CropAndScaleStrategy.CROP_FIRST,
   index: 0
 };
 let pixelmap = await imageSource.createPixelMapUsingAllocator(decodingOptions, image.AllocatorType.AUTO);
@@ -5435,7 +5439,8 @@ let decodingOptions: image.DecodingOptions = {
   desiredSize: { width: 3072, height: 4096 },
   rotate: 10,
   desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
-  desiredRegion: { size: { height: 3072, width: 4096 }, x: 0, y: 0 },
+  desiredRegion: { size: { width: 3072, height: 4096 }, x: 0, y: 0 },
+  cropAndScaleStrategy: image.CropAndScaleStrategy.CROP_FIRST,
   index: 0
 };
 let pixelmap = imageSource.createPixelMapUsingAllocatorSync(decodingOptions, image.AllocatorType.AUTO);
@@ -5966,7 +5971,7 @@ packToDataFromPixelmapSequence(pixelmapSequence: Array\<PixelMap>, options: Pack
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 7800201  | Unsupported options.                                         |
-| 7800301  | Encode failed.                                               |
+| 7800301  | Encoding failed.                                               |
 
 **示例：**
 
@@ -6581,7 +6586,7 @@ packToFileFromPixelmapSequence(pixelmapSequence: Array\<PixelMap>, fd: number, o
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 7800201  | Unsupported options.                                         |
-| 7800301  | Encode failed.                                               |
+| 7800301  | Encoding failed.                                               |
 
 **示例：**
 
@@ -8298,6 +8303,7 @@ PixelMap的初始化选项。
 | fitDensity<sup>9+</sup> | number                        | 否   | 是   | 图像像素密度，单位为ppi。默认值为0。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
 | desiredColorSpace<sup>11+</sup> | [colorSpaceManager.ColorSpaceManager](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspacemanager) | 否   | 是   | 目标色彩空间。默认值为UNKNOWN。 |
 | desiredDynamicRange<sup>12+</sup> | [DecodingDynamicRange](#decodingdynamicrange12) | 否   | 是   | 目标动态范围，默认值为SDR。<br>通过[CreateIncrementalSource](#imagecreateincrementalsource9)创建的imagesource不支持设置此属性，默认解码为SDR内容。<br>如果平台不支持HDR，设置无效，默认解码为SDR内容。 |
+| cropAndScaleStrategy<sup>18+</sup> | [CropAndScaleStrategy](#cropandscalestrategy18) | 否   | 是   | 解码参数如果同时设置desiredRegion与desiredSize，由此决定裁剪与缩放操作的先后策略。<br>仅支持设置：SCALE_FIRST、CROP_FIRST。 |
 
 ## DecodingOptionsForPicture<sup>13+</sup>
 
@@ -8349,7 +8355,7 @@ PixelMap的初始化选项。
 | ------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
 | frameCount    | number         | 否   | 否   | GIF编码中指定的帧数。                                        |
 | delayTimeList | Array\<number> | 否   | 否   | GIF编码中设定每帧输出图像的延迟时间，取值需大于0。<br>- 单位为10毫秒。例如，取值为10时，实际单帧延迟是100毫秒。<br>- 如果长度小于frameCount，不足的部分将使用delayTimeList中的最后一个值进行填充。 |
-| disposalTypes | Array\<number> | 否   | 是   | GIF编码中设定输出图片帧过渡模式的参数，可取值如下：<br>- 0：不需要任何操作。<br>- 1：保持图形不变。<br>- 2：恢复背景色。<br>- 3：恢复到之前的状态。 |
+| disposalTypes | Array\<number> | 否   | 是   | GIF编码中设定每帧输出图像的帧过渡模式，如果长度小于frameCount，不足的部分将使用disposalTypes中的最后一个值进行填充，可取值如下：<br>- 0：不需要任何操作。<br>- 1：保持图形不变。<br>- 2：恢复背景色。<br>- 3：恢复到之前的状态。 |
 | loopCount     | number         | 否   | 是   | 表示在GIF编码中输出图片循环播放次数，取值范围为[0，65535]。<br>0表示无限循环；若无此字段，则表示不循环播放。 |
 
 ## ImagePropertyOptions<sup>11+</sup>
@@ -8640,6 +8646,19 @@ PixelMap的初始化选项。
 | AUTO          | 0    | 自适应，根据[pixelmap](#pixelmap7)内容处理。即如果pixelmap本身为HDR，则会按照HDR内容进行编码；反之按照SDR内容编码。  |
 | SDR           | 1    | 按照标准动态范围处理图片。   |
 
+## CropAndScaleStrategy<sup>18+</sup>
+
+枚举，裁剪与缩放的先后策略。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 名称          | 值       | 说明         |
+| ------------- | ----------| ------------ |
+| SCALE_FIRST   | 1    | 解码参数如果同时设置desiredRegion与desiredSize，先根据desiredSize进行缩放，再根据desiredRegion进行区域裁剪。     |
+| CROP_FIRST    | 2    | 解码参数如果同时设置desiredRegion与desiredSize，先根据desiredRegion进行区域裁剪，再根据desiredSize进行缩放。     |
+
+
+
 ## HdrMetadataKey<sup>12+</sup>
 
 枚举，[pixelmap](#pixelmap7)使用的HDR相关元数据信息的关键字。
@@ -8759,7 +8778,7 @@ PixelMap使用的HDR元数据值类型，和[HdrMetadataKey](#hdrmetadatakey12)�
 
 ### SVG标签说明
 
-从API version 10开始支持SVG标签，使用版本为(SVG) 1.1，SVG文件需添加xml声明，应以“<?xml”开头，并且SVG标签需设置width，height。当前支持的标签列表有：
+从API version 10开始支持SVG标签，使用版本为(SVG) 1.1，SVG标签需设置width，height。SVG文件可添加xml声明，应以“<?xml”开头，当前支持的标签列表有：
 - a
 - circla
 - clipPath

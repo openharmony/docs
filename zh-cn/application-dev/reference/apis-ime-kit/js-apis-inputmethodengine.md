@@ -3618,7 +3618,7 @@ getEditorAttributeSync(): EditorAttribute
 
 | 类型                                | 说明           |
 | ----------------------------------- | -------------- |
-| [EditorAttribute](#editorattribute) | 编辑框属性对象 |
+| [EditorAttribute](#editorattribute) | 编辑框属性对象。 |
 
 **错误码：**
 

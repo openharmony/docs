@@ -246,12 +246,13 @@ struct Index {
 
 ```ts
 // xxx.ets
-import { promptAction } from '@kit.ArkUI';
+import { PromptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Index {
   scroller: Scroller = new Scroller()
+  promptAction: PromptAction = this.getUIContext().getPromptAction();
 
   build() {
     Scroll(this.scroller) {
@@ -268,7 +269,7 @@ struct Index {
           Image($r('sys.media.ohos_app_icon'))
             .draggable(true)
             .onDragStart(()=>{
-              promptAction.showToast({ message: "Drag 下半区蓝色区域，Image响应" })
+              this.promptAction.showToast({ message: "Drag 下半区蓝色区域，Image响应" })
             })
             .width('200vp').height('200vp')
           // Stack的上半区是绑定了长按手势的浮动区域。
@@ -298,7 +299,7 @@ struct Index {
           .gesture(GestureGroup(GestureMode.Parallel,
             LongPressGesture()
               .onAction((event: GestureEvent) => {
-                promptAction.showToast({ message: "LongPressGesture 长按上半区 红色区域，红色区域响应" })
+                this.promptAction.showToast({ message: "LongPressGesture 长按上半区 红色区域，红色区域响应" })
               })
               .tag("tap111")
           ))

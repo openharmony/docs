@@ -54,7 +54,7 @@ onHoverMove(event: Callback&lt;HoverEvent&gt;): T
 
 ## HoverEvent<sup>10+</sup>对象说明
 
-继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明)。
+继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明8)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

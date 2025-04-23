@@ -176,7 +176,7 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
 | routes              | Array\<[RouteInfo](../reference/apis-network-kit/js-apis-net-connection.md#routeinfo)\> | 否   | VPN虚拟网卡的路由信息(目前最多可配置1024条路由)。            |
 | dnsAddresses        | Array\<string\>                                              | 否   | DNS服务器地址信息。配置后VPN白名单的应用访问网络时使用这些DNS服务器，不配置则使用系统分配的DNS服务器地址。 |
 | searchDomains       | Array\<string\>                                              | 否   | DNS的搜索域列表。                                            |
-| mtu                 | number                                                       | 否   | 最大传输单元MTU值(单位:字节)。                               |
+| mtu                 | number                                                       | 否   | 最大传输单元MTU值(单位：字节)。                               |
 | isIPv4Accepted      | boolean                                                      | 否   | 是否支持IPV4，默认值为true。                                 |
 | isIPv6Accepted      | boolean                                                      | 否   | 是否支持IPV6，默认值为false。                                |
 | isInternal          | boolean                                                      | 否   | 是否支持内置VPN，默认值为false。                             |

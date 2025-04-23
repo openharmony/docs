@@ -685,7 +685,7 @@ Failed to install the HAP because an enterprise normal/MDM bundle cannot be inst
 
 **处理步骤**<br/>
 1. 检查安装设备是否为企业设备。
-2. 检查设备参数const.bms.allowenterprisebundle是否为true
+2. 检查设备参数const.bms.allowenterprisebundle是否为true。
 
 ## 17700051 应用自升级时调用方的分发类型不是企业mdm
 **错误信息**<br/>

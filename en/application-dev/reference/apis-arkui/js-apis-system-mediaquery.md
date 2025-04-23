@@ -57,7 +57,7 @@ Defines a media query event.
 
 Defines a media query list.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

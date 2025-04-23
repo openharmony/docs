@@ -549,7 +549,7 @@ TextShadowStyle | GestureStyle | ImageAttachment | ParagraphStyle | LineHeightSt
 | 名称           | 类型              | 只读   | 可选   | 说明     |
 | ------------ |---------------------| ---- | ---- | ------ |
 | fontColor  | [ResourceColor](ts-types.md#resourcecolor) |  是  |  是  | 获取属性字符串的文本颜色。 |
-| fontFamily | string   | 是    | 是   | 获取属性字符串的文本字体。 |
+| fontFamily | string   | 是    | 是   | 获取属性字符串的文本字体。<br/>默认返回undefined。 |
 | fontSize   | number   | 是    | 是    | 获取属性字符串的文本字体大小。<br/>单位：fp |
 | fontWeight   | number   | 是    | 是    | 获取属性字符串的文本字体粗细。 |
 | fontStyle   | [FontStyle](ts-appendix-enums.md#fontstyle) | 是    | 是    | 获取属性字符串的文本字体样式。 |
@@ -617,6 +617,18 @@ constructor(value?: GestureStyleInterface)
 | onClick | Callback\<[ClickEvent](ts-universal-events-click.md#clickevent对象说明)> | 否   | 设置点击事件。 |
 | onLongPress | Callback\<[GestureEvent](./ts-gesture-settings.md#gestureevent对象说明)> | 否   | 设置长按事件。 |
 
+## DecorationOptions<sup>20+</sup>
+
+文本装饰线样式的额外配置选项对象说明。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  | 类型                              | 必填 | 说明   |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| enableMultiType | boolean | 否   | 是否开启多装饰线显示。<br/>默认值：undefined。设置为true开启，设置为false/undefined关闭。<br/>所有需要显示的装饰线都必须启用此选项，在这些装饰线的交集区域显示多装饰线效果，样式和颜色将采用最后设置的装饰线的效果。 |
+
 ## DecorationStyle
 
 文本装饰线样式对象说明。
@@ -625,15 +637,15 @@ constructor(value?: GestureStyleInterface)
 
 ### 属性
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称           | 类型              | 只读   |可选   | 说明     |
 | ------------ |---------------------| ---- | ---- | ------ |
-| type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) |  是  |  否  | 获取属性字符串的文本装饰线类型。 |
-| color | [ResourceColor](ts-types.md#resourcecolor)   | 是    | 是  | 获取属性字符串的文本装饰线颜色。 |
-| style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | 是    |是  | 获取属性字符串的文本装饰线样式。 |
+| type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) |  是  |  否  | 获取属性字符串的文本装饰线类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| color | [ResourceColor](ts-types.md#resourcecolor)   | 是    | 是  | 获取属性字符串的文本装饰线颜色。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | 是    |是  | 获取属性字符串的文本装饰线样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| thicknessScale<sup>20+</sup> | number | 是    |是  | 获取属性字符串的文本装饰线粗细缩放值。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| options<sup>20+</sup> | [DecorationOptions](#decorationoptions20) | 是    |是  | 获取属性字符串的文本装饰线样式的额外配置选项。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ### constructor
 
@@ -649,19 +661,37 @@ constructor(value: DecorationStyleInterface)
 
 | 参数名  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| value | [DecorationStyleInterface](#decorationstyleinterface对象说明) | 是   | 文本装饰线设置项。<br/>默认值：<br/>{<br/>&nbsp;type:&nbsp;TextDecorationType.None,<br/>&nbsp;color:&nbsp;Color.Black,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>} |
+| value | [DecorationStyleInterface](#decorationstyleinterface) | 是   | 文本装饰线设置项。<br/>默认值：<br/>{<br/>&nbsp;type:&nbsp;TextDecorationType.None,<br/>&nbsp;color:&nbsp;Color.Black,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>} |
 
-## DecorationStyleInterface对象说明
+### constructor<sup>20+</sup>
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+constructor(value: DecorationStyleInterface, options?: DecorationOptions)
+
+文本装饰线样式的构造函数，包含额外配置选项。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                              | 必填 | 说明   |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| value | [DecorationStyleInterface](#decorationstyleinterface) | 是   | 文本装饰线设置项。<br/>默认值：<br/>{<br/>&nbsp;type:&nbsp;TextDecorationType.None,<br/>&nbsp;color:&nbsp;Color.Black,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>} |
+| options | [DecorationOptions](#decorationoptions20) | 否   | 文本装饰线额外配置选项。<br/>默认值：<br/>{<br/>&nbsp;enableMultiType:&nbsp;undefined<br/>} |
+
+## DecorationStyleInterface
+
+文本装饰线样式接口对象说明。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| type | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 装饰线类型。 |
-| color | [ResourceColor](ts-types.md#resourcecolor) | 否   | 装饰线颜色。 |
-| style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | 否   | 装饰线样式。 |
+| type | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 装饰线类型。<br/>默认值：TextDecorationType.None <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| color | [ResourceColor](ts-types.md#resourcecolor) | 否   | 装饰线颜色。<br/>默认值：Color.Black <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | 否   | 装饰线样式。<br/>默认值：TextDecorationStyle.SOLID <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| thicknessScale<sup>20+</sup> | number | 否   | 装饰线粗细缩放。<br/>默认值：1.0 <br/>取值范围：[0, +∞) <br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## BaselineOffsetStyle
 
@@ -781,6 +811,8 @@ constructor(value: ShadowOptions | Array\<ShadowOptions>)
 
 文本阴影对象的构造函数。
 
+ShadowOptions对象中不支持fill字段。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -804,7 +836,7 @@ constructor(value: ShadowOptions | Array\<ShadowOptions>)
 | 名称           | 类型              | 只读   | 可选   | 说明     |
 | ------------ |---------------------| ---- | ---- | ------ |
 | value  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) |  是  |  否  | 获取属性字符串的图片数据源。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| size  | [SizeOptions](ts-types.md#sizeoptions) |  是  |  是  | 获取属性字符串的图片尺寸。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| size  | [SizeOptions](ts-types.md#sizeoptions) |  是  |  是  | 获取属性字符串的图片尺寸。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>返回number类型值的单位为`px`。 |
 | verticalAlign  | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) |  是  |  是  | 获取属性字符串的图片对齐方式。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | objectFit  | [ImageFit](ts-appendix-enums.md#imagefit) |  是  |  是  | 获取属性字符串的图片缩放类型。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | layoutStyle  | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle对象说明) |  是  |  是  | 获取属性字符串的图片布局。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -1334,26 +1366,25 @@ struct styled_string_demo1 {
 
 ```ts
 // xxx.ets
-import { promptAction } from '@kit.ArkUI';
-
 @Entry
 @Component
 struct styled_string_demo2 {
   scroll: Scroller = new Scroller();
   fontStyleAttr1: TextStyle = new TextStyle({ fontColor: Color.Blue });
+  private uiContext: UIContext = this.getUIContext();
   clickGestureAttr: GestureStyle = new GestureStyle({
     onClick: () => {
-      promptAction.showToast({ message: 'clickGestureAttr object trigger click event' })
+      this.uiContext.getPromptAction().showToast({ message: 'clickGestureAttr object trigger click event' })
       this.backgroundColor1 = Color.Yellow
     }
   })
   gestureStyleAttr: GestureStyle = new GestureStyle({
     onClick: () => {
-      promptAction.showToast({ message: 'gestureStyleAttr object trigger click event' })
+      this.uiContext.getPromptAction().showToast({ message: 'gestureStyleAttr object trigger click event' })
       this.backgroundColor1 = Color.Green
     },
     onLongPress: () => {
-      promptAction.showToast({ message: 'gestureStyleAttr object trigger long press event' })
+      this.uiContext.getPromptAction().showToast({ message: 'gestureStyleAttr object trigger long press event' })
       this.backgroundColor1 = Color.Orange
     }
   });
@@ -1614,11 +1645,12 @@ import { LengthMetrics } from '@kit.ArkUI'
 @Entry
 @Component
 struct styled_string_demo4 {
-  @State message: string = 'Hello World'
+  @State message: string = 'Hello World';
   imagePixelMap: image.PixelMap | undefined = undefined
   @State imagePixelMap3: image.PixelMap | undefined = undefined
   mutableStr: MutableStyledString = new MutableStyledString('123');
   controller: TextController = new TextController();
+  private uiContext: UIContext = this.getUIContext();
   mutableStr2: MutableStyledString = new MutableStyledString('This is set decoration line style to the mutableStr2', [{
     start: 0,
     length: 15,
@@ -1632,16 +1664,16 @@ struct styled_string_demo4 {
 
   async aboutToAppear() {
     console.info("aboutToAppear initial imagePixelMap")
-    this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.icon'))
+    this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.app_icon'))
   }
 
   private async getPixmapFromMedia(resource: Resource) {
-    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+    let unit8Array = await this.uiContext.getHostContext()?.resourceManager?.getMediaContent({
       bundleName: resource.bundleName,
       moduleName: resource.moduleName,
       id: resource.id
     })
-    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+    let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength))
     let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
     })
@@ -1656,7 +1688,6 @@ struct styled_string_demo4 {
           .copyOption(CopyOptions.InApp)
           .draggable(true)
           .fontSize(30)
-
         Button('设置图片')
           .onClick(() => {
             if (this.imagePixelMap !== undefined) {
@@ -1670,12 +1701,11 @@ struct styled_string_demo4 {
               this.controller.setStyledString(this.mutableStr)
             }
           })
-
         Button('设置资源类型图片')
           .onClick(() => {
             if (this.imagePixelMap !== undefined) {
               this.mutableStr = new MutableStyledString(new ImageAttachment({
-                resourceValue: $r('app.media.icon'),
+                resourceValue: $r('app.media.sky'), //建议使用自定义的本地图片
                 size: { width: 50, height: 50 },
                 layoutStyle: { borderRadius: LengthMetrics.vp(10) },
                 verticalAlign: ImageSpanAlignment.BASELINE,
@@ -1685,37 +1715,12 @@ struct styled_string_demo4 {
               this.controller.setStyledString(this.mutableStr)
             }
           })
-
-        Button('Image之Append')
-          .onClick(() => {
-            let str = new StyledString('123')
-            this.mutableStr.appendStyledString(str)
-            this.controller.setStyledString(this.mutableStr)
-          })
-
-        Button('Image之Insert 前')
-          .onClick(() => {
-            this.mutableStr.insertString(0, '123')
-            this.controller.setStyledString(this.mutableStr)
-          })
-
-        Button('Image之Insert 后')
-          .onClick(() => {
-            this.mutableStr.insertString(1, '123')
-            this.controller.setStyledString(this.mutableStr)
-          })
-
-        Button('Image之replace')
-          .onClick(() => {
-            this.mutableStr.replaceString(2, 5, "789")
-            this.controller.setStyledString(this.mutableStr)
-          })
-
         Button('Image之Get')
           .onClick(() => {
             let imageArray = this.mutableStr.getStyles(0, 1, StyledStringKey.IMAGE)
             for (let i = 0; i < imageArray.length; ++i) {
-              console.info('mutableStr start ' + imageArray[i].start + ' length ' + imageArray[i].length + ' type ' + imageArray[i].styledKey)
+              console.info('mutableStr start ' + imageArray[i].start + ' length ' + imageArray[i].length + ' type ' +
+              imageArray[i].styledKey)
               if (imageArray[i].styledKey === 300) {
                 let attachment = imageArray[i].styledValue as ImageAttachment
                 this.imagePixelMap3 = attachment.value
@@ -1730,12 +1735,30 @@ struct styled_string_demo4 {
                   console.info('mutableStr radius ' + JSON.stringify(radius))
                 }
               }
-
             }
           })
-
         Image(this.imagePixelMap3).width(50).height(50)
-
+        Button('Image之Append')
+          .onClick(() => {
+            let str = new StyledString('123')
+            this.mutableStr.appendStyledString(str)
+            this.controller.setStyledString(this.mutableStr)
+          })
+        Button('Image之Insert 前')
+          .onClick(() => {
+            this.mutableStr.insertString(0, '123')
+            this.controller.setStyledString(this.mutableStr)
+          })
+        Button('Image之Insert 后')
+          .onClick(() => {
+            this.mutableStr.insertString(1, '123')
+            this.controller.setStyledString(this.mutableStr)
+          })
+        Button('Image之replace')
+          .onClick(() => {
+            this.mutableStr.replaceString(2, 5, "789")
+            this.controller.setStyledString(this.mutableStr)
+          })
       }
       .width('100%')
     }
@@ -1744,7 +1767,7 @@ struct styled_string_demo4 {
 }
 ```
 
-![](figures/styledstring_4.png)
+![](figures/styledstring_4.gif)
 
 ### 示例5（设置文本行高和段落样式）
 
@@ -1901,6 +1924,8 @@ struct Index {
 import { drawing } from '@kit.ArkGraphics2D'
 import { LengthMetrics } from '@kit.ArkUI'
 
+let gUIContext: UIContext;
+
 class MyCustomSpan extends CustomSpan {
   constructor(word: string, width: number, height: number) {
     super();
@@ -1929,7 +1954,7 @@ class MyCustomSpan extends CustomSpan {
     canvas.attachBrush(brush);
     canvas.drawRect({
       left: options.x + 10,
-      right: options.x + vp2px(this.width) - 10,
+      right: options.x + gUIContext.vp2px(this.width) - 10,
       top: options.lineTop + 10,
       bottom: options.lineBottom - 10
     });
@@ -1963,6 +1988,10 @@ struct styled_string_demo6 {
   textStyle: MutableStyledString = new MutableStyledString("123");
   textController: TextController = new TextController();
   isPageShow: boolean = true;
+
+  aboutToAppear() {
+    gUIContext = this.getUIContext();
+  }
 
   async onPageShow() {
     if (!this.isPageShow) {

@@ -23,7 +23,7 @@ For details about how to use related APIs, see [IndexUtil](../reference/apis-loc
    let indexList: Array<string> = indexUtil.getIndexList();
    ```
 
-4. Obtain the index list.
+4. Obtain the index.
    ```ts
    let index: string = indexUtil.getIndex(text: string);
    ```
@@ -36,14 +36,13 @@ import { i18n } from '@kit.LocalizationKit';
 
 // Create indexes in a single language.
 let indexUtil: i18n.IndexUtil = i18n.getInstance('zh-CN');
-let indexList: Array<string> = indexUtil.getIndexList(); // indexList = ['…', 'A', 'B', 'C', ... 'X', 'Y', 'Z', '…']
+let indexList: Array<string> = indexUtil.getIndexList(); // indexList = ['...', 'A', 'B', 'C', ... 'X', 'Y', 'Z', '...']
 
 // Create indexes in multiple languages.
 indexUtil.addLocale('ru-RU');
-// indexList = ['…', 'A', 'B', 'C', ... 'X', 'Y', 'Z', '…', 'А', 'Б', 'В', ... 'Э', 'Ю', 'Я', '…']
+// indexList = ['...', 'A', 'B', 'C', ... 'X', 'Y', 'Z', '...', 'А', 'Б', 'В', ... 'Э', 'Ю', 'Я', '...']
 indexList = indexUtil.getIndexList(); 
 
 // Obtain the index of the string.
 let index: string = indexUtil.getIndex('Nihao'); // index = 'N'
 ```
-<!--no_check-->

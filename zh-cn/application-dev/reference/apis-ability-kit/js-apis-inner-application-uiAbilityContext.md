@@ -2845,13 +2845,13 @@ export default class EntryAbility extends UIAbility {
 
 revokeDelegator() : Promise&lt;void&gt;
 
-如果Module下首个UIAbility启动时期望重定向到另一个UIAbility，该重定向的UIAbility被称为“HookAbility”。HookAbility的设置详见当前接口示例的步骤1。
+如果Module下首个UIAbility启动时期望重定向到另一个UIAbility，该重定向的UIAbility被称为“DelegatorAbility”。DelegatorAbility的设置详见当前接口示例的步骤1。
 
-当HookAbility完成特定操作时，可以使用该接口回到首个UIAbility。使用Promise异步回调。
+当DelegatorAbility完成特定操作时，可以使用该接口回到首个UIAbility。使用Promise异步回调。
 
 > **说明**：
 >
-> 当接口调用成功后，HookAbility中的[Window](../apis-arkui/js-apis-window.md)方法会失效。
+> 当接口调用成功后，DelegatorAbility中的[Window](../apis-arkui/js-apis-window.md)方法会失效。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -2871,34 +2871,38 @@ revokeDelegator() : Promise&lt;void&gt;
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 | 16000065 | The API can be called only when the ability is running in the foreground. |
-| 16000084 | The context does not belong to HookAbility; multiple calls are invoked. |
-| 16000085 | Failed to cancel the hook of the window module. |
+| 16000084 | Only allow DelegatorAbility to call the method once. |
+| 16000085 | The interaction process between Ability and Window encountered an error. |
 
 **示例**：
 
-1. 设置HookAbility。
+1. 设置DelegatorAbility。
 
-    在[module.json5](../../quick-start/module-configuration-file.md#modulejson5配置文件)配置文件标签中配置了abilitySrcEntryDelegator和abilityStageSrcEntryDelegator。当Module下首个UIAbility冷启动时，系统优先启动abilitySrcEntryDelegator指向的UIAbility。
+    在[module.json5](../../quick-start/module-configuration-file.md#modulejson5配置文件)配置文件标签中配置abilitySrcEntryDelegator和abilityStageSrcEntryDelegator。当Module下首个UIAbility冷启动时，系统优先启动abilitySrcEntryDelegator指向的UIAbility。
+    > **说明**：
+    >
+    >  - 当UIAbility是通过[startAbilityByCall](#uiabilitycontextstartabilitybycall)启动时，系统会忽略在[module.json5](../../quick-start/module-configuration-file.md#modulejson5配置文件)配置文件标签中配置的abilitySrcEntryDelegator和abilityStageSrcEntryDelegator。
+    >  - abilityStageSrcEntryDelegator指定的ModuleName不能与当前ModuleName相同。
     ```json
     {
-    "module": {
-      // ...
-    "abilityStageSrcEntryDelegator": "xxxModuleName",
-    "abilitySrcEntryDelegator": "xxxAbilityName",
+      "module": {
+        // ...
+        "abilityStageSrcEntryDelegator": "xxxModuleName",
+        "abilitySrcEntryDelegator": "xxxAbilityName",
+        // ...
       }
     }
     ```
-    当UIAbility是通过[startAbilityByCall](#uiabilitycontextstartabilitybycall)启动时，系统会忽略在[module.json5](../../quick-start/module-configuration-file.md#modulejson5配置文件)配置文件标签中配置的abilitySrcEntryDelegator和abilityStageSrcEntryDelegator。
 
-2. 取消HookAbility。
+2. 取消DelegatorAbility。
 
     ```ts
     import { UIAbility } from '@kit.AbilityKit';
     import { BusinessError } from '@kit.BasicServicesKit';
 
-    export default class HookAbility extends UIAbility {
+    export default class DelegatorAbility extends UIAbility {
       onForeground() {
-        // HookAbility完成特定操作后，调用revokeDelegator回到首个UIAbility
+        // DelegatorAbility完成特定操作后，调用revokeDelegator回到首个UIAbility
         this.context.revokeDelegator().then(() => {
           console.info('revokeDelegator success');
         }).catch((err: BusinessError) => {

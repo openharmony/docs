@@ -59,9 +59,9 @@ readonly &#91;index: number&#93;: T
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 参数名    | 类型   | 必填 | 说明                                                            |
-| ----- | ------ | ---- | ------------------------------------------------------------------ |
-| index | number | 是   | 所需代码单元的从零开始的索引。当index<0 或者index>=length，则会抛出错误。 |
+| 参数名    | 类型   | 必填 | 说明                       |
+| ----- | ------ | ---- | ---------------------------- |
+| index | number | 是   | 所需代码单元的从零开始的索引。  |
 
 **返回值：**
 
@@ -295,10 +295,11 @@ ArkTS Array的构造函数，通过开发者提供的元素进行初始化。
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                            |
 | -------- | --------------------------------------------------- |
+| 401      | Parameter error.                                    |
 | 10200012 | The Array's constructor cannot be directly invoked. |
 
 **示例：**
@@ -363,10 +364,11 @@ static create\<T>(arrayLength: number, initialValue: T): Array\<T>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+| 401      | Parameter error.                   |
 | 10200011 | The create method cannot be bound. |
 
 **示例：**
@@ -399,10 +401,11 @@ static from\<T>(arrayLike: ArrayLike\<T>): Array\<T>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+| 401      | Parameter error.                 |
 | 10200011 | The from method cannot be bound. |
 
 **示例：**
@@ -420,7 +423,7 @@ let array : Array<Array<string>> = [['str1', 'str2', 'str3'], ['str4', 'str5', '
 let sendableArray = collections.Array.from<Array<string>>(array); // 打印异常信息：Parameter error.Only accept sendable value
 ```
 
-### from<sup>12+</sup>
+### from
 
 static from\<T>(iterable: Iterable\<T>): Array\<T>
 
@@ -500,7 +503,7 @@ static from\<T>(arrayLike: ArrayLike\<T> | Iterable\<T>, mapFn: ArrayFromMapFn\<
 
 ```ts
 let array : Array<number> = [1, 2, 3]; // 原生Array<T>，T是Sendable数据类型。
-let newarray = collections.Array.from<number, number>(array, (value, index) => value + index); // 返回新的 Array<T>
+let newarray = collections.Array.from<number>(array, (value, index) => value + index); // 返回新的 Array<T>
 console.info(newarray.toString());
 // 预期输出： 1, 3, 5
 ```
@@ -548,7 +551,7 @@ console.info(newarray.toString());
 
 ### isArray<sup>18+</sup>
 
-static isArray\<T>(value: Object | undefined | null): boolean
+static isArray(value: Object | undefined | null): boolean
 
 检查传入的参数是否是一个ArkTS Array。
 
@@ -726,7 +729,7 @@ some(predicate: ArrayPredicateFn\<T, Array\<T>>): boolean
 
 | 参数名  | 类型   | 必填 | 说明                                                  |
 | ------- | ------ | ---- | ---------------------------------------------------- |
-| predicate | ArrayPredicateFn\<T, Array> | 是 | 用于测试的断言函数。|
+| predicate | ArrayPredicateFn\<T, Array\<T>> | 是 | 用于测试的断言函数。|
 
 **返回值：**
 
@@ -892,10 +895,11 @@ push(...items: T[]): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+| 401      | Parameter error.                 |
 | 10200011 | The push method cannot be bound. |
 | 10200201 | Concurrent modification error.   |
 
@@ -930,10 +934,11 @@ join(separator?: string): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+| 401      | Parameter error.                 |
 | 10200011 | The join method cannot be bound. |
 | 10200201 | Concurrent modification error.   |
 
@@ -1034,10 +1039,11 @@ unshift(...items: T[]): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | Parameter error.                    |
 | 10200011 | The unshift method cannot be bound. |
 | 10200201 | Concurrent modification error.      |
 
@@ -1096,7 +1102,7 @@ slice(start?: number, end?: number): Array\<T>
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | start  | number | 否   | 开始索引。如果`start < 0`，则会从`start + array.length`位置开始。默认值为0。   |
-| end    | number | 否   | 结束索引（不包括该元素）。如果`end < 0`，则会到`end + array.length`位置结束。默认为ArkTS Array的长度。 |
+| end    | number | 否   | 结束索引（不包括该元素）。如果`end < 0`，则会到`end + array.length`位置结束。默认为原始ArkTS Array的长度。 |
 
 **返回值：**
 
@@ -1106,10 +1112,11 @@ slice(start?: number, end?: number): Array\<T>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                          |
 | -------- | --------------------------------- |
+| 401      | Parameter error.                  |
 | 10200011 | The slice method cannot be bound. |
 | 10200201 | Concurrent modification error.    |
 
@@ -1144,10 +1151,11 @@ sort(compareFn?: (a: T, b: T) => number): Array\<T>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+| 401      | Parameter error.                 |
 | 10200011 | The sort method cannot be bound. |
 | 10200201 | Concurrent modification error.   |
 
@@ -1174,7 +1182,7 @@ indexOf(searchElement: T, fromIndex?: number): number
 | 参数名        | 类型   | 必填 | 说明                        |
 | ------------- | ------ | ---- | --------------------------- |
 | searchElement | T      | 是   | 要搜索的值。                |
-| fromIndex     | number | 否   | 开始搜索的索引。默认值为0。 |
+| fromIndex     | number | 否   | 开始搜索的索引，从0开始，默认值为0。 |
 
 **返回值：**
 
@@ -1184,10 +1192,11 @@ indexOf(searchElement: T, fromIndex?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | Parameter error.                    |
 | 10200011 | The indexOf method cannot be bound. |
 | 10200201 | Concurrent modification error.      |
 
@@ -1216,10 +1225,11 @@ forEach(callbackFn: (value: T, index: number, array: Array\<T>) => void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | Parameter error.                    |
 | 10200011 | The forEach method cannot be bound. |
 | 10200201 | Concurrent modification error.      |
 
@@ -1256,10 +1266,11 @@ map\<U>(callbackFn: (value: T, index: number, array: Array\<T>) => U): Array\<U>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
+| 401      | Parameter error.                |
 | 10200011 | The map method cannot be bound. |
 | 10200201 | Concurrent modification error.  |
 
@@ -1298,10 +1309,11 @@ filter(predicate: (value: T, index: number, array: Array\<T>) => boolean): Array
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                           |
 | -------- | ---------------------------------- |
+| 401      | Parameter error.                   |
 | 10200011 | The filter method cannot be bound. |
 | 10200201 | Concurrent modification error.     |
 
@@ -1336,10 +1348,11 @@ reduce(callbackFn: (previousValue: T, currentValue: T, currentIndex: number, arr
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                           |
 | -------- | ---------------------------------- |
+| 401      | Parameter error.                   |
 | 10200011 | The reduce method cannot be bound. |
 | 10200201 | Concurrent modification error.     |
 
@@ -1375,10 +1388,11 @@ reduce\<U>(callbackFn: (previousValue: U, currentValue: T, currentIndex: number,
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                           |
 | -------- | ---------------------------------- |
+| 401      | Parameter error.                   |
 | 10200011 | The reduce method cannot be bound. |
 | 10200201 | Concurrent modification error.     |
 
@@ -1415,10 +1429,11 @@ at(index: number): T | undefined
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
+| 401      | Parameter error.               |
 | 10200011 | The at method cannot be bound. |
 | 10200201 | Concurrent modification error. |
 
@@ -1556,10 +1571,11 @@ find(predicate: (value: T, index: number, obj: Array\<T>) => boolean): T | undef
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+| 401      | Parameter error.                 |
 | 10200011 | The find method cannot be bound. |
 | 10200201 | Concurrent modification error.   |
 
@@ -1595,10 +1611,11 @@ includes(searchElement: T, fromIndex?: number): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | ------------------------------------ |
+| 401      | Parameter error.                     |
 | 10200011 | The includes method cannot be bound. |
 | 10200201 | Concurrent modification error.       |
 
@@ -1633,10 +1650,11 @@ findIndex(predicate: (value: T, index: number, obj: Array\<T>) => boolean): numb
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
+| 401      | Parameter error.                      |
 | 10200011 | The findIndex method cannot be bound. |
 | 10200201 | Concurrent modification error.        |
 
@@ -1673,10 +1691,11 @@ fill(value: T, start?: number, end?: number): Array\<T>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+| 401      | Parameter error.                 |
 | 10200011 | The fill method cannot be bound. |
 | 10200201 | Concurrent modification error.   |
 
@@ -1705,10 +1724,11 @@ shrinkTo(arrayLength: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+| 401      | Parameter error.                 |
 | 10200011 | The shrinkTo method cannot be bound. |
 | 10200201 | Concurrent modification error.   |
 
@@ -1741,10 +1761,11 @@ extendTo(arrayLength: number, initialValue: T): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+| 401      | Parameter error.                 |
 | 10200011 | The extendTo method cannot be bound. |
 | 10200201 | Concurrent modification error.   |
 
@@ -2074,10 +2095,11 @@ constructor(entries?: readonly (readonly [K, V])[] | null)
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
+| 401      | Parameter error.                                        |
 | 10200012 | The ArkTS Map's constructor cannot be directly invoked. |
 
 **示例：**
@@ -2299,10 +2321,11 @@ delete(key: K): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
+| 401      | Parameter error.                                     |
 | 10200011 | The delete method cannot be bound with non-sendable. |
 | 10200201 | Concurrent modification exception.                   |
 
@@ -2345,10 +2368,11 @@ callbackFn的参数说明：
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                              |
 | -------- | ----------------------------------------------------- |
+| 401      | Parameter error.                                      |
 | 10200011 | The forEach method cannot be bound with non-sendable. |
 | 10200201 | Concurrent modification exception.                    |
 
@@ -2401,10 +2425,11 @@ get(key: K): V | undefined
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
+| 401      | Parameter error.                                  |
 | 10200011 | The get method cannot be bound with non-sendable. |
 | 10200201 | Concurrent modification exception.                |
 
@@ -2437,10 +2462,11 @@ has(key: K): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
+| 401      | Parameter error.                                  |
 | 10200011 | The has method cannot be bound with non-sendable. |
 | 10200201 | Concurrent modification exception.                |
 
@@ -2473,10 +2499,11 @@ set(key: K, value: V): Map<K, V>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
+| 401      | Parameter error.                                  |
 | 10200011 | The set method cannot be bound with non-sendable. |
 | 10200201 | Concurrent modification exception.                |
 
@@ -2577,10 +2604,11 @@ constructor(values?: readonly T[] | null)
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
+| 401      | Parameter error.                                        |
 | 10200012 | The ArkTS Set's constructor cannot be directly invoked. |
 
 **示例：**
@@ -2774,7 +2802,7 @@ delete(value: T): boolean
 
 | 参数名 | 类型 | 必填 | 说明             |
 | ------ | ---- | ---- | ---------------- |
-| key    | K    | 是   | 待删除元素的键。 |
+| value    | T    | 是   | 待删除元素的值。 |
 
 **返回值：**
 
@@ -2805,7 +2833,7 @@ console.info("result:" + mySet.delete("hello"));
 ```
 
 ### forEach
-forEach(callbackFn: (value1: T, value2: T, set: Set\<T>) => void): void
+forEach(callbackFn: (value: T, value2: T, set: Set\<T>) => void): void
 
 按插入顺序对该Set中的每个键/值对执行一次回调函数。
 
@@ -2817,21 +2845,22 @@ forEach(callbackFn: (value1: T, value2: T, set: Set\<T>) => void): void
 
 | 参数名     | 类型                                         | 必填 | 说明       |
 | ---------- | -------------------------------------------- | ---- | ---------- |
-| callbackFn | (value1: T, value2: T, set: Set\<T>) => void | 是   | 回调函数。 |
+| callbackFn | (value: T, value2: T, set: Set\<T>) => void  | 是   | 回调函数。  |
 
 callbackFn的参数说明：
 | 参数名 | 类型         | 必填 | 说明                         |
 | ------ | ------------ | ---- | ---------------------------- |
-| value1 | T            | 否   | 当前遍历到的元素键值对的值。 |
+| value  | T            | 否   | 当前遍历到的元素键值对的值。 |
 | value2 | T            | 否   | 当前遍历到的元素键值对的键。 |
 | set    | Set&lt;T&gt; | 否   | 当前set实例对象。            |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                              |
 | -------- | ----------------------------------------------------- |
+| 401      | Parameter error.                                      |
 | 10200011 | The forEach method cannot be bound with non-sendable. |
 | 10200201 | Concurrent modification exception.                    |
 
@@ -2862,6 +2891,12 @@ has(value: T): boolean
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**参数：**
+
+| 参数名  | 类型 | 必填 | 说明             |
+| ------ | ---- | ---- | ---------------- |
+| value  | T    | 是   | 待查找元素的值。 |
+
 **返回值：**
 
 | 类型    | 说明                                          |
@@ -2870,10 +2905,11 @@ has(value: T): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
+| 401      | Parameter error.                                  |
 | 10200011 | The has method cannot be bound with non-sendable. |
 | 10200201 | Concurrent modification exception.                |
 
@@ -2895,6 +2931,12 @@ add(value: T): Set\<T>
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名  | 类型 | 必填 | 说明             |
+| ------ | ---- | ---- | ---------------- |
+| value  | T    | 是   | 待插入元素的值。  |
 
 **返回值：**
 
@@ -2968,7 +3010,7 @@ for (let item of val) {
 ```
 
 ## collections.ArrayBuffer
-ArkTS TypedArray的底层数据结构。
+ArkTS TypedArray的底层数据结构。该类使用[@Sendable装饰器](../../arkts-utils/arkts-sendable.md)装饰。
 
 ### 属性
 
@@ -2997,10 +3039,11 @@ constructor(byteLength: number)
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
+| 401      | Parameter error.                                          |
 | 10200012 | The ArrayBuffer's constructor cannot be directly invoked. |
 
 **示例：**
@@ -3024,7 +3067,7 @@ slice(begin: number, end?: number): ArrayBuffer
 | 参数名 | 类型   | 必填 | 说明                                              |
 | ------ | ------ | ---- | ------------------------------------------------ |
 | begin  | number | 是   | 开始索引，如果`begin < 0`，则会从`begin + arraybuffer.byteLength`位置开始。 |
-| end    | number | 否   | 结束索引（不包括该元素），如果`end < 0`，则会到`end + arraybuffer.byteLength`位置结束。默认为ArkTS ArrayBuffer的长度。|
+| end    | number | 否   | 结束索引（不包括该元素），如果`end < 0`，则会到`end + arraybuffer.byteLength`位置结束。默认为原ArkTS ArrayBuffer的长度。|
 
 **返回值：**
 
@@ -3034,10 +3077,11 @@ slice(begin: number, end?: number): ArrayBuffer
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID |                    错误信息                   |
 | -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
 | 10200011 | The slice method cannot be bound.            |
 | 10200201 | Concurrent modification error.               |
 
@@ -3063,7 +3107,7 @@ ArkTS TypedArray映射函数类型。
 | 参数名  | 类型   | 必填 | 说明                          |
 | ------- | ------ | ---- | --------------------------- |
 | value | FromElementType | 是 | 当前遍历的用于构造ArkTS TypedArray的元素。 |
-| index | number | 是 | 当前遍历的用于构造ArkTS TypedArray的元素下标。 |
+| index | number | 是 | 当前遍历的用于构造ArkTS TypedArray的元素下标，从0开始。 |
 
 **返回值：**
 
@@ -3085,7 +3129,7 @@ ArkTS TypedArray断言测试函数类型。
 | 参数名  | 类型   | 必填 | 说明                          |
 | ------- | ------ | ---- | --------------------------- |
 | value | ElementType | 是 | 当前遍历的ArkTS TypedArray元素。 |
-| index | number | 是 | 当前遍历的ArkTS TypedArray元素下标。 |
+| index | number | 是 | 当前遍历的ArkTS TypedArray元素下标，从0开始。 |
 | array | ArrayType | 是 | 当前遍历的ArkTS TypedArray实例。 |
 
 **返回值：**
@@ -3108,7 +3152,7 @@ ArkTS TypedArray遍历函数类型。
 | 参数名  | 类型   | 必填 | 说明                          |
 | ------- | ------ | ---- | --------------------------- |
 | value | ElementType | 是 | 当前遍历的ArkTS TypedArray元素。 |
-| index | number | 是 | 当前遍历的ArkTS TypedArray元素下标。 |
+| index | number | 是 | 当前遍历的ArkTS TypedArray元素下标，从0开始。 |
 | array | ArrayType | 是 | 当前遍历的ArkTS TypedArray实例。 |
 
 ## TypedArrayMapCallback
@@ -3125,7 +3169,7 @@ ArkTS TypedArray转换映射函数类型。
 | 参数名  | 类型   | 必填 | 说明                          |
 | ------- | ------ | ---- | --------------------------- |
 | value | ElementType | 是 | 当前映射的ArkTS TypedArray元素。 |
-| index | number | 是 | 当前映射的ArkTS TypedArray元素下标。 |
+| index | number | 是 | 当前映射的ArkTS TypedArray元素下标，从0开始。 |
 | array | ArrayType | 是 | 当前映射的ArkTS TypedArray实例。 |
 
 **返回值：**
@@ -3149,7 +3193,7 @@ ArkTS TypedArray归约函数类型。
 | ------- | ------ | ---- | --------------------------- |
 | previousValue | AccType | 是 | 当前遍历所累积的值。|
 | currentValue | ElementType | 是 | 当前遍历的ArkTS TypedArray元素。 |
-| currentIndex | number | 是 | 当前遍历的ArkTS TypedArray元素下标。 |
+| currentIndex | number | 是 | 当前遍历的ArkTS TypedArray元素下标，从0开始。 |
 | array | ArrayType | 是 | 当前遍历的ArkTS TypedArray实例。 |
 
 **返回值：**
@@ -3248,10 +3292,11 @@ constructor(length: number)
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                                  |
 | -------- | -------------------------------------------------------  |
+| 401      | Parameter error.                                         |
 | 10200012 | The TypedArray's constructor cannot be directly invoked. |
 
 
@@ -3286,10 +3331,11 @@ constructor(array: ArrayLike\<number> | ArrayBuffer)
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
+| 401      | Parameter error.                                         |
 | 10200012 | The TypedArray's constructor cannot be directly invoked. |
 
 **示例：**
@@ -3329,15 +3375,16 @@ constructor(buffer: ArrayBuffer, byteOffset?: number, length?: number)
 | 参数名  | 类型   | 必填 | 说明                                         |
 | ------- | ------ | ---- | ------------------------------------------ |
 | buffer | ArrayBuffer | 是 | 用于构造ArkTS TypedArray的ArrayBuffer对象。buffer所占的字节数须是4的整数倍。|
-| byteOffset | number | 否 | 指定buffer的字节偏移，默认为0。 |
+| byteOffset | number | 否 | 指定buffer的字节偏移，从0开始，默认为0。 |
 | length | number | 否 | 指定ArkTS TypedArray的长度，默认为0。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                                   |
 | -------- | -------------------------------------------------------   |
+| 401      | Parameter error.                                         |
 | 10200012 | The TypedArray's constructor cannot be directly invoked. |
 
 **示例：**
@@ -3592,10 +3639,11 @@ copyWithin(target: number, start: number, end?: number): TypedArray
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------ |
+| 401      | Parameter error.                                 |
 | 10200011 | The copyWithin method cannot be bound.           |
 | 10200201 | Concurrent modification exception.               |
 
@@ -3630,10 +3678,11 @@ some(predicate: TypedArrayPredicateFn\<number, TypedArray>): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ---------------------------------- |
+| 401      | Parameter error.                   |
 | 10200011 | The some method cannot be bound.   |
 | 10200201 | Concurrent modification exception. |
 
@@ -3671,10 +3720,11 @@ every(predicate: TypedArrayPredicateFn\<number, TypedArray>): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
+| 401      | Parameter error.                  |
 | 10200011 | The every method cannot be bound. |
 | 10200201 | Concurrent modification exception. |
 
@@ -3704,7 +3754,7 @@ fill(value: number, start?: number, end?: number): TypedArray
 | ------- | ------ | ---- | --------------------------------------------------------|
 | value | number | 是 | 待填充的值。|
 | start | number | 否 | 开始填充的索引，如果`start < 0`，则会从`start + typedarray.length`位置开始。默认值为0。|
-| end | number | 否 | 结束填充的索引，如果`end < 0`，则会到`end + typedarray.length`位置结束。默认为ArkTS TypedArray的长度。|
+| end | number | 否 | 结束填充的索引（不包括该元素），如果`end < 0`，则会到`end + typedarray.length`位置结束。默认为ArkTS TypedArray的长度。|
 
 **返回值：**
 
@@ -3714,10 +3764,11 @@ fill(value: number, start?: number, end?: number): TypedArray
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
+| 401      | Parameter error.                 |
 | 10200011 | The fill method cannot be bound. |
 | 10200201 | Concurrent modification exception. |
 
@@ -3753,10 +3804,11 @@ filter(predicate: TypedArrayPredicateFn\<number, TypedArray>): TypedArray
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
+| 401      | Parameter error.                   |
 | 10200011 | The filter method cannot be bound. |
 | 10200201 | Concurrent modification exception. |
 
@@ -3791,10 +3843,11 @@ find(predicate: TypedArrayPredicateFn\<number, TypedArray>): number | undefined
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
+| 401      | Parameter error.                 |
 | 10200011 | The find method cannot be bound. |
 | 10200201 | Concurrent modification exception. |
 
@@ -3829,10 +3882,11 @@ findIndex(predicate: TypedArrayPredicateFn\<number, TypedArray>): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
+| 401      | Parameter error.                      |
 | 10200011 | The findIndex method cannot be bound. |
 | 10200201 | Concurrent modification exception.  |
 
@@ -3861,10 +3915,11 @@ forEach(callbackFn: TypedArrayForEachCallback\<number, TypedArray>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
+| 401      | Parameter error.                    |
 | 10200011 | The forEach method cannot be bound. |
 | 10200201 | Concurrent modification exception. |
 
@@ -3901,10 +3956,11 @@ indexOf(searchElement: number, fromIndex?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
+| 401      | Parameter error.                    |
 | 10200011 | The indexOf method cannot be bound. |
 | 10200201 | Concurrent modification exception.                |
 
@@ -3988,10 +4044,11 @@ join(separator?: string): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
+| 401      | Parameter error.                 |
 | 10200011 | The join method cannot be bound. |
 | 10200201 | Concurrent modification exception.  |
 
@@ -4025,10 +4082,11 @@ map(callbackFn: TypedArrayMapCallback\<number, TypedArray>): TypedArray
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
+| 401      | Parameter error.                |
 | 10200011 | The map method cannot be bound. |
 | 10200201 | Concurrent modification exception. |
 
@@ -4061,10 +4119,11 @@ reduce(callbackFn: TypedArrayReduceCallback\<number, number, TypedArray>): numbe
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID |                      错误信息                     |
 | -------- | ------------------------------------------------ |
+| 401      | Parameter error.                                 |
 | 10200011 | The reduce method cannot be bound.               |
 | 10200201 | Concurrent modification exception.               |
 
@@ -4140,10 +4199,11 @@ reduce(callbackFn: TypedArrayReduceCallback\<number, number, TypedArray>, initia
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
+| 401      | Parameter error.                   |
 | 10200011 | The reduce method cannot be bound. |
 | 10200201 | Concurrent modification exception. |
 
@@ -4220,10 +4280,11 @@ reduce\<U>(callbackFn: TypedArrayReduceCallback\<U, number, TypedArray>, initial
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
+| 401      | Parameter error.                   |
 | 10200011 | The reduce method cannot be bound. |
 | 10200201 | Concurrent modification exception.  |
 
@@ -4283,10 +4344,11 @@ set(array: ArrayLike\<number>, offset?: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
+| 401      | Parameter error.                |
 | 10200011 | The set method cannot be bound. |
 | 10200201 | Concurrent modification exception.  |
 
@@ -4322,10 +4384,11 @@ slice(start?: number, end?: number): TypedArray
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
+| 401      | Parameter error.                  |
 | 10200011 | The slice method cannot be bound. |
 | 10200201 | Concurrent modification exception. |
 
@@ -4361,10 +4424,11 @@ sort(compareFn?: TypedArrayCompareFn\<number>): TypedArray
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------ |
+| 401      | Parameter error.                 |
 | 10200011 | The sort method cannot be bound. |
 | 10200201 | Concurrent modification exception.         |
 
@@ -4401,10 +4465,11 @@ subarray(begin?: number, end?: number): TypedArray
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID |            错误信息                               |
 | -------- | -------------------------------------------------|
+| 401      | Parameter error.                                 |
 | 10200011 | The subarray method cannot be bound.             |
 | 10200201 | Concurrent modification exception.               |
 
@@ -4438,10 +4503,11 @@ at(index: number): number | undefined
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID |                       错误信息                    |
 | -------- | ------------------------------------------------ |
+| 401      | Parameter error.                                 |
 | 10200011 | The at method cannot be bound.                   |
 | 10200201 | Concurrent modification exception.               |
 
@@ -4478,10 +4544,11 @@ includes(searchElement: number, fromIndex?: number): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
+| 401      | Parameter error.                     |
 | 10200011 | The includes method cannot be bound. |
 | 10200201 | Concurrent modification exception. |
 

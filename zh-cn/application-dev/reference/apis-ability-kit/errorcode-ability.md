@@ -951,31 +951,31 @@ The extension can not start the ability due to extension control.
 
 查看对应类型ExtensionAbility的使用约束限制，确保接口使用符合约束限制。
 
-## 16000084 只允许HookAbility单次调用
+## 16000084 只允许DelegatorAbility单次调用
 
 **错误信息**
 
-The context does not belong to HookAbility; multiple calls are invoked.
+Only allow DelegatorAbility to call the method once.
 
 **错误描述**
 
-系统只允许HookAbility调用该接口。系统不允许HookAbility重复调用该接口。
+系统只允许DelegatorAbility调用该接口一次。
 
 **可能原因**
 
-1. 调用方不是HookAbility。
-2. 调用方是HookAbility，但是重复调用接口。
+1. 调用方不是DelegatorAbility。
+2. 调用方是DelegatorAbility，但是重复调用接口。
 
 **处理步骤**
 
-1. 检查调用方是否HookAbility。
+1. 检查调用方是否DelegatorAbility。
 2. 检查是否重复调用。
 
 ## 16000085 元能力与窗口的交互流程发生错误
 
 **错误信息**
 
-Failed to cancel the hook of the window module.
+The interaction process between Ability and Window encountered an error.
 
 **错误描述**
 
