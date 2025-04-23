@@ -61,7 +61,7 @@ export struct Page1 {
         .onClick(() => {
           router.pushUrl({ url: 'pages/Page2' });
           setTimeout(() => {
-            this.bookTest = new Book("Jane Austen oPride and Prejudice");
+            this.bookTest = new Book("Jane Austen's Pride and Prejudice");
           }, 1000)
         })
     }
@@ -509,7 +509,7 @@ export struct Child {
       Button('change BookName')
         .onClick(() => {
           setTimeout(() => {
-            this.bookTest = new Book('Jane Austen oPride and Prejudice');
+            this.bookTest = new Book('Jane Austen's Pride and Prejudice');
           }, 3000);
         })
     }
