@@ -253,9 +253,9 @@ OpenHarmony 5.0.3 Release版本对标准系统的能力进行持续完善，以�
 
 ### 企业定制
 
-- 新增支持为指定的浏览器设置浏览器托管策略。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.3-Release/zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-browser.md#browsersetmanagedbrowserpolicy15)）
+- 新增支持为指定的浏览器设置浏览器策略。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.3-Release/zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-browser.md#browsersetmanagedbrowserpolicy15)）
 
-- 新增支持设置指定用户下的网络代理（仅限2in1设备）。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.3-Release/zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-browser.md#browsersetmanagedbrowserpolicy15)）
+- 新增支持设置指定用户下的网络代理（仅限2in1设备）。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.3-Release/zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-networkManager.md#networkmanagersetglobalproxyforaccount15)）
 
 
 ### 输入法
@@ -286,8 +286,6 @@ OpenHarmony 5.0.3 Release版本对标准系统的能力进行持续完善，以�
 - 上传下载新增支持使用单个上传请求上传多文件，该能力通过Config的multipart参数配置。（[API参考](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request.md#config10)）
 
 - 上传下载新增支持自定义通知栏的信息。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.3-Release/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request.md#notification15)）
-
-- 上传下载新增支持使用单个上传请求上传多文件，该能力通过Config的multipart参数配置。（[API参考](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request.md#config10)）
 
 
 ### 全球化
