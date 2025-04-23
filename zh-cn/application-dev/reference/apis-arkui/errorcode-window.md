@@ -12,10 +12,11 @@ Repeated operation.
 当进行某些重复操作时，系统会报此错误码。
 
 **可能原因**<br>
-创建的窗口已经存在时，再次创建该窗口会报错。
+1.窗口已经被创建。<br>
+2.窗口已经处于当前状态。
 
 **处理步骤**<br>
-在创建窗口前，检查该窗口是否已经存在，确保为首次创建该窗口。
+在创建窗口前，检查该窗口是否已经被创建或者是否已经处于当前状态。
 
 ## 1300002 窗口状态异常
 **错误信息**<br>
@@ -45,16 +46,17 @@ This window manager service works abnormally.
 
 ## 1300004 无权限操作
 **错误信息**<br>
-Unauthorized operation.
+Forbidden operation.
 
 **错误描述**<br>
-当对无操作权限的对象进行操作时，会报此错误码。
+当操作的窗口类型不符或者子窗口状态异常时，会报此错误码。
 
 **可能原因**<br>
-操作了其它进程的窗口对象。
+1.窗口类型错误。<br>
+2.子窗口正在被销毁或正在被销毁。
 
 **处理步骤**<br>
-请检查是否非法操作了别的进程的对象，删除相关操作。
+请检查窗口类型是否正确，或者操作的窗口是否正在被销毁。
 
 ## 1300005 WindowStage异常
 **错误信息**<br>
@@ -64,7 +66,8 @@ This window stage is abnormal.
 当WindowStage异常，如已被销毁时，操作该WindowStage，会报此错误码。
 
 **可能原因**<br>
-操作WindowStage时，该WindowStage已被销毁。
+1.该WindowStage没有被创建或者已经被销毁。<br>
+2.这个窗口没有被创建或者已经被销毁。
 
 **处理步骤**<br>
 在对WindowStage进行操作前，检查该WindowStage是否存在，若已被销毁，请释放该WindowStage下的窗口。
@@ -98,16 +101,19 @@ WindowExtension拉起应用的参数异常。
 
 ## 1300008 显示设备异常
 
-**错误信息**<br>The display device is abnormal.
+**错误信息**<br>
+The display device is abnormal.
 
-**错误描述**<br>显示设备异常。
+**错误描述**<br>
+显示设备异常。
 
 **可能原因**<br>
 1. 显示设备没有准备好。<br>
 2. 显示设备被移除。<br>
 3. 显示设备被损坏。
 
-**处理步骤**<br>确保显示设备正常，再进行相关开发。
+**处理步骤**<br>
+确保显示设备正常，再进行相关开发。
 
 ## 1300009 父窗口无效
 
@@ -139,9 +145,11 @@ WindowExtension拉起应用的参数异常。
 
 ## 1300011 销毁画中画窗口失败
 
-**错误信息**<br>Failed to destroy the PiP window.
+**错误信息**<br>
+Failed to destroy the PiP window.
 
-**错误描述**<br>销毁画中画窗口失败。
+**错误描述**<br>
+销毁画中画窗口失败。
 
 **可能原因**<br>
 画中画窗口空指针。<br>
@@ -151,9 +159,11 @@ WindowExtension拉起应用的参数异常。
 
 ## 1300012 画中画窗口状态异常
 
-**错误信息**<br>The PiP window state is abnormal.
+**错误信息**<br>
+The PiP window state is abnormal.
 
-**错误描述**<br>画中画窗口状态异常。
+**错误描述**<br>
+画中画窗口状态异常。
 
 **可能原因**<br>
 画中画窗口状态异常。
@@ -163,9 +173,11 @@ WindowExtension拉起应用的参数异常。
 
 ## 1300013 创建画中画窗口失败
 
-**错误信息**<br>Failed to create the PiP window.
+**错误信息**<br>
+Failed to create the PiP window.
 
-**错误描述**<br>创建画中画窗口失败。
+**错误描述**<br>
+创建画中画窗口失败。
 
 **可能原因**<br>
 1. 启动画中画时传入参数有误。<br>
@@ -177,24 +189,31 @@ WindowExtension拉起应用的参数异常。
 
 ## 1300014 画中画内部错误
 
-**错误信息**<br>PiP internal error.
+**错误信息**<br>
+PiP internal error.
 
-**错误描述**<br>画中画内部错误。
+**错误描述**<br>
+画中画内部错误。
 
 **可能原因**<br>
-内部错误。
+1.napi抛出了一个错误的任务。<br>
+2.画中画窗口异常。<br>
+3.画中画控制器异常。
 
 **处理步骤**<br>
 无需处理。
 
 ## 1300015 重复操作画中画
 
-**错误信息**<br>Repeated PiP operation.
+**错误信息**<br>
+Repeated PiP operation.
 
-**错误描述**<br>重复操作画中画。
+**错误描述**<br>
+重复操作画中画。
 
 **可能原因**<br>
-重复启动/停止画中画。<br>
+1.这个画中画已经被创建<br>
+2.这个画中画窗口已经被销毁。
 
 **处理步骤**<br>
 不要重复启动/停止画中画。<br>
