@@ -381,9 +381,9 @@ UDMF新增支持将传入的data转换成多样式数据结构的能力。若原
 
 | 软件 | 版本 | 备注 | 
 | -------- | -------- | -------- |
-| OpenHarmony | 5.0.3 Release | NA | 
-| Public SDK | Ohos_sdk_public 5.0.3.135 (API Version 14 Release) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。通过DevEco Studio默认获取的SDK为Public SDK。 | 
-| HUAWEI DevEco Studio（可选） | 5.0.3 Release | OpenHarmony应用开发推荐使用。 | 
+| OpenHarmony | 5.1.0 Release | NA | 
+| Public SDK | Ohos_sdk_public 5.1.0.160 (API Version 18 Release) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。通过DevEco Studio默认获取的SDK为Public SDK。 | 
+| HUAWEI DevEco Studio（可选） | 5.1.0 Release | OpenHarmony应用开发推荐使用。 | 
 | HUAWEI DevEco Device Tool（可选） | 4.0 Release | OpenHarmony智能设备集成开发环境推荐使用。 | 
 
 
