@@ -382,8 +382,6 @@
 
 **订阅者所需权限：** 无
 
-**系统能力：** SystemCapability.Notification.CommonEvent
-
 **取值：** "usual.event.USER_INFO_UPDATED"
 
 
@@ -396,8 +394,6 @@
 **系统能力：** SystemCapability.Notification.CommonEvent
 
 **订阅者所需权限：** 无
-
-**系统能力：** SystemCapability.Notification.CommonEvent
 
 **取值：** "usual.event.USER_UNLOCKED"
 

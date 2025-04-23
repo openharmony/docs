@@ -11,6 +11,8 @@ The **OH_AVCodecBufferAttr** struct defines the description information about th
 
 **Related module**: [Core](_core.md)
 
+**Header file**: [native_avbuffer_info.h](native__avbuffer__info_8h.md)
+
 
 ## Summary
 

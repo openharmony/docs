@@ -4,9 +4,9 @@
 
 >  **说明：**
 >
->  - 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  - 该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
->  - 该组件从API Version 12开始支持与垂直滚动的Swiper和Web的联动。当Swiper设置loop属性为true时，Refresh无法和Swiper产生联动。
+>  - 该组件从API version 12开始支持与垂直滚动的Swiper和Web的联动。当Swiper设置loop属性为true时，Refresh无法和Swiper产生联动。
 
 ## 子组件
 
@@ -309,7 +309,7 @@ struct RefreshExample {
     }
     .align(Alignment.Center)
     .clip(true)
-    // 设置最小高度约束保证自定义组件高度随刷新区域高度变化时自定义组件高度不会低于minHeight
+    // 设置最小高度约束保证自定义组件高度随刷新区域高度变化时自定义组件高度不会低于minHeight。
     .constraintSize({ minHeight: 32 })
     .width("100%")
   }
@@ -385,7 +385,7 @@ function customRefreshingContent(params: Params) {
   }
   .align(Alignment.Center)
   .clip(true)
-  // 设置最小高度约束保证自定义组件高度随刷新区域高度变化时自定义组件高度不会低于minHeight
+  // 设置最小高度约束保证自定义组件高度随刷新区域高度变化时自定义组件高度不会低于minHeight。
   .constraintSize({ minHeight: 32 })
   .width("100%")
 }
@@ -469,7 +469,7 @@ function customRefreshingContent() {
   }
   .align(Alignment.Center)
   .clip(true)
-  // 设置最小高度约束保证自定义组件高度随刷新区域高度变化时自定义组件高度不会低于minHeight
+  // 设置最小高度约束保证自定义组件高度随刷新区域高度变化时自定义组件高度不会低于minHeight。
   .constraintSize({ minHeight: 32 })
   .width("100%")
 }
@@ -555,8 +555,8 @@ struct ListRefreshLoad {
   @Builder
   refreshBuilder() {
     Stack({ alignContent: Alignment.Bottom }) {
-      // 可以通过刷新状态控制是否存在Progress组件
-      // 当刷新状态处于下拉中或刷新中状态时Progress组件才存在
+      // 可以通过刷新状态控制是否存在Progress组件。
+      // 当刷新状态处于下拉中或刷新中状态时Progress组件才存在。
       if (this.refreshState != RefreshStatus.Inactive && this.refreshState != RefreshStatus.Done) {
         Progress({ value: this.refreshOffset, total: 64, type: ProgressType.Ring })
           .width(32).height(32)
@@ -577,7 +577,7 @@ struct ListRefreshLoad {
     }.width("100%")
     .height(64)
     .justifyContent(FlexAlign.Center)
-    // 当不处于加载中状态时隐藏组件
+    // 当不处于加载中状态时隐藏组件。
     .visibility(this.isLoading ? Visibility.Visible : Visibility.Hidden)
   }
 
@@ -600,10 +600,10 @@ struct ListRefreshLoad {
         }
       }
       .onScrollIndex((start: number, end: number) => {
-        // 当达到列表末尾时，触发新数据加载
+        // 当达到列表末尾时，触发新数据加载。
         if (end >= this.arr.length - 1) {
           this.isLoading = true;
-          // 模拟新数据加载
+          // 模拟新数据加载。
           setTimeout(() => {
             for (let i = 0; i < 10; i++) {
               this.arr.push(this.arr.length);
@@ -613,7 +613,7 @@ struct ListRefreshLoad {
         }
       })
       .scrollBar(BarState.Off)
-      // 开启边缘滑动效果
+      // 开启边缘滑动效果。
       .edgeEffect(EdgeEffect.Spring, { alwaysEnabled: true })
     }
     .width('100%')
@@ -626,7 +626,7 @@ struct ListRefreshLoad {
       this.refreshState = state;
     })
     .onRefreshing(() => {
-      // 模拟数据刷新
+      // 模拟数据刷新。
       setTimeout(() => {
         this.refreshing = false;
       }, 2000)

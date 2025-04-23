@@ -17,7 +17,7 @@
 | 接口名 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_FontConfigInfo\* OH_Drawing_GetSystemFontConfigInfo(OH_Drawing_FontConfigInfoErrorCode\*) | 获取系统字体配置信息，返回系统字体配置信息结构体OH_Drawing_FontConfigInfo。 | 
-| void OH_Drawing_DestroySystemFontConfigInfo(OH_Drawing_FontConfigInfo\*) | 释放系统字体配置信息占用的的内存。 | 
+| void OH_Drawing_DestroySystemFontConfigInfo(OH_Drawing_FontConfigInfo\*) | 释放系统字体配置信息占用的内存。 | 
 | OH_Drawing_FontCollection\* OH_Drawing_CreateSharedFontCollection(void) | 创建可共享的字体集对象OH_Drawing_FontCollection。 | 
 | OH_Drawing_TextStyle\* OH_Drawing_CreateTextStyle(void) | 创建指向OH_Drawing_TextStyle对象的指针，用于设置文本样式。 | 
 | OH_Drawing_SetTextStyleFontFamilies (OH_Drawing_TextStyle \*, int, const char \*fontFamilies[]) | 设置指定文本样式的字体家族类型。 | 
@@ -92,10 +92,10 @@
 
    ![zh-cn_image_0000002211603636](figures/zh-cn_image_0000002211603636.png)
 
-4. 如若后续不再需要系统字体的系统配置信息时，则释放其占用的的内存。
+4. 如若后续不再需要系统字体的系统配置信息时，则释放其占用的内存。
 
    ```c++
-   OH_Drawing_DestroySystemFontConfigInfo(fontConfigInfo );
+   OH_Drawing_DestroySystemFontConfigInfo(fontConfigInfo);
    ```
 
 
@@ -173,7 +173,7 @@
 >
 > 禁用系统字体后，请确保注册使用自定义字体，否则文本将无法正常显示。
 
-1. 确保已成功注册自定义字体，用于保证禁用系统字体后文本的正常显示，具体可见[自定义字体的的注册和使用](custom-font-c.md)。
+1. 确保已成功注册自定义字体，用于保证禁用系统字体后文本的正常显示，具体可见[自定义字体的注册和使用](custom-font-c.md)。
 
 2. 导入依赖的相关头文件。
 

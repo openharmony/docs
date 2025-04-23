@@ -26,14 +26,14 @@ disableAdmin(admin: Want, userId?: number): Promise\<void>
 
 
 
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数**：
 
 | 参数名 | 类型                                                    | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
-| userId | number                                                  | 否   | 用户ID， 取值范围：大于等于0。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。 |
+| userId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。 |
 
 **返回值：**
 
@@ -78,7 +78,7 @@ subscribeManagedEventSync(admin: Want, managedEvents: Array\<ManagedEvent>): voi
 
 
 
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -128,7 +128,7 @@ unsubscribeManagedEventSync(admin: Want, managedEvents: Array\<ManagedEvent>): v
 
 
 
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -178,7 +178,7 @@ setDelegatedPolicies(admin: Want, bundleName: string, policies: Array&lt;string&
 
 
 
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -230,7 +230,7 @@ getDelegatedPolicies(admin: Want, bundleName: string): Array&lt;string&gt;
 
 
 
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -286,7 +286,7 @@ getDelegatedBundleNames(admin: Want, policy: string): Array&lt;string&gt;
 
 
 
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -342,7 +342,7 @@ startAdminProvision(admin: Want, type: AdminType, context: common.Context, param
 
 
 
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -426,7 +426,7 @@ try {
 |set_browser_policies|[browser.setPolicySync](js-apis-enterprise-browser.md#browsersetpolicysync)<br>[browser.getPoliciesSync](js-apis-enterprise-browser.md#browsergetpoliciessync)|为指定的浏览器设置浏览器子策略。<br>获取指定浏览器的策略。|
 |allowed_install_bundles|[bundleManager.addAllowedInstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanageraddallowedinstallbundlessync)<br>[bundleManager.removeAllowedInstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanagerremoveallowedinstallbundlessync)<br>[bundleManager.getAllowedInstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanagergetallowedinstallbundlessync)|添加应用至包安装白名单，添加至白名单的应用允许在当前/指定用户下安装，否则不允许安装。<br>从包安装白名单中移除应用。<br>获取当前/指定用户下的包安装白名单。|
 |disallowed_install_bundles|[bundleManager.addDisallowedInstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanageradddisallowedinstallbundlessync)<br>[bundleManager.removeDisallowedInstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanagerremoveallowedinstallbundlessync)<br>[bundleManager.getDisallowedInstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanagergetdisallowedinstallbundlessync)|添加应用至包安装黑名单，添加至黑名单的应用不允许在当前/指定用户下安装。<br>从包安装黑名单中移除应用。<br>获取当前/指定用户下的包安装黑名单。|
-|disallowed_uninstall_bundles|[bundleManager.addDisallowedUninstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanageradddisalloweduninstallbundlessync)<br>[bundleManager.removeDisallowedUninstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanagerremovedisalloweduninstallbundlessync)<br>[bundleManager.getDisallowedUninstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanagergetdisalloweduninstallbundlessync)|添添加应用至包卸载黑名单，添加至黑名单的应用不允许在当前/指定用户下卸载。<br>从包卸载黑名单中移除应用。<br>获取当前/指定用户下包卸载黑名单接口。|
+|disallowed_uninstall_bundles|[bundleManager.addDisallowedUninstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanageradddisalloweduninstallbundlessync)<br>[bundleManager.removeDisallowedUninstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanagerremovedisalloweduninstallbundlessync)<br>[bundleManager.getDisallowedUninstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanagergetdisalloweduninstallbundlessync)|添加应用至包卸载黑名单，添加至黑名单的应用不允许在当前/指定用户下卸载。<br>从包卸载黑名单中移除应用。<br>获取当前/指定用户下包卸载黑名单接口。|
 |get_device_info|[deviceInfo.getDeviceInfo](js-apis-enterprise-deviceInfo.md#deviceinfogetdeviceinfo)|获取设备信息。|
 |location_policy|[locationManager.setLocationPolicy](js-apis-enterprise-locationManager.md#locationmanagersetlocationpolicy)<br>[locationManager.getLocationPolicy](js-apis-enterprise-locationManager.md#locationmanagergetlocationpolicy)|设置位置服务管理策略。<br>查询位置服务策略。|
 |disabled_network_interface|[networkManager.setNetworkInterfaceDisabledSync](js-apis-enterprise-networkManager.md#networkmanagersetnetworkinterfacedisabledsync)<br>[networkManager.isNetworkInterfaceDisabledSync](js-apis-enterprise-networkManager.md#networkmanagerisnetworkinterfacedisabledsync)|禁止设备使用指定网络。<br>查询指定网络接口是否被禁用。|

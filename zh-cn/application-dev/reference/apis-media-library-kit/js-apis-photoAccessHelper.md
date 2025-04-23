@@ -5233,7 +5233,7 @@ title参数规格为：
 | ------- | --------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | type    | [NotifyType](#notifytype) | 是   | 否   | ChangeData的通知类型。                                       |
 | uris    | Array&lt;string&gt;         | 是   | 否   | 相同[NotifyType](#notifytype)的所有uri，可以是PhotoAsset或Album。 |
-| extraUris | Array&lt;string&gt;         | 是   | 否   | 相册中变动文件的uri数组。                                    |
+| extraUris | Array&lt;string&gt;         | 是   | 否   | 相册中变动文件的uri数组。可能为undefined，使用前需要检查是否为undefined。                           |
 
 ## NotifyType
 

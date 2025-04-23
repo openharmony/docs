@@ -1574,6 +1574,7 @@ typedef struct OH_Drawing_GpuContextOptions OH_Drawing_GpuContextOptions
 
 **起始版本：** 12
 
+**废弃：** 从API version 18开始废弃。
 
 ### OH_Drawing_Image
 
@@ -11119,6 +11120,8 @@ OH_Drawing_GpuContext* OH_Drawing_GpuContextCreateFromGL (OH_Drawing_GpuContextO
 
 **起始版本：** 12
 
+**废弃：** 从API version 18开始废弃，请使用[OH_Drawing_GpuContextCreate](#oh_drawing_gpucontextcreate)替代。
+
 **参数:**
 
 | 名称 | 描述 | 
@@ -14409,7 +14412,7 @@ void OH_Drawing_SetTextStyleDecoration (OH_Drawing_TextStyle* , int  )
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 | 
-| int | 设置装饰，设置1为下划线，设置2为上划线，设置3为删除线，设置0或其它为无装饰，具体可见[OH_Drawing_TextDecoration](#oh_drawing_textdecoration)枚举。 | 
+| int | 设置装饰，设置1为下划线，设置2为上划线，设置4为删除线，设置0或其它为无装饰，具体可见[OH_Drawing_TextDecoration](#oh_drawing_textdecoration)枚举。 | 
 
 
 ### OH_Drawing_SetTextStyleDecorationColor()

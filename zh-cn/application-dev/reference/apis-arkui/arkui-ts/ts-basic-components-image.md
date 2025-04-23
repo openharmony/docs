@@ -523,7 +523,7 @@ orientation(orientation: ImageRotateOrientation)
 
 | 参数名 | 类型                                    | 必填 | 说明                             |
 | ------ | --------------------------------------- | ---- | -------------------------------- |
-| orientation  | [ImageRotateOrientation](#imagerotateorientation14) | 是   | 图像内容的显示方向。<br/>默认值：ImageRotateOrientation.UP |
+| orientation  | [ImageRotateOrientation](#imagerotateorientation14) | 是   | 图像内容的显示方向。<br/>如果需要显示携带旋转角度信息的图片，建议使用ImageRotateOrientation.AUTO进行设置。<br/>默认值：ImageRotateOrientation.UP |
 
 ## ImageContent<sup>12+</sup>
 
@@ -890,6 +890,7 @@ struct ImageExample2 {
           console.error('image createPixelMap success');
           this.pixelMapImg = pixelMap;
         })
+        imgSource.release()
       }
     })
   }
@@ -983,12 +984,12 @@ struct ImageExample4 {
     }
   }
   private async getPixmapFromMedia(resource: Resource) {
-    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
       bundleName: resource.bundleName,
       moduleName: resource.moduleName,
       id: resource.id
     })
-    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+    let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength))
     let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
     })
@@ -1153,12 +1154,12 @@ struct ImageExample {
   }
 
   private async getPixmapListFromMedia(resource: Resource) {
-    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
       bundleName: resource.bundleName,
       moduleName: resource.moduleName,
       id: resource.id
     })
-    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+    let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength))
     let createPixelMap: Array<image.PixelMap> = await imageSource.createPixelMapList({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
     })
@@ -1167,12 +1168,12 @@ struct ImageExample {
   }
 
   private async getPixmapFromMedia(resource: Resource) {
-    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
       bundleName: resource.bundleName,
       moduleName: resource.moduleName,
       id: resource.id
     })
-    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+    let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength))
     let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
     })
@@ -1353,7 +1354,7 @@ import { curves } from '@kit.ArkUI';
 @Entry
 @Component
 struct ImageExample11 {
-  private curve = curves.cubicBezier(0.33, 0, 0.67, 1);
+  private curve = curves.cubicBezierCurve(0.33, 0, 0.67, 1);
   @State moveImg: string[] = ['imageScanEffect'];
   @State moveImgVisible: Visibility = Visibility.Visible;
   @State durationTime: number = 1500;
@@ -1372,7 +1373,7 @@ struct ImageExample11 {
     setTimeout(() => {
       this.imgResource = $r('app.media.img');
     }, 3000);
-    animateTo({
+    this.getUIContext()?.animateTo({
       duration: this.durationTime,
       curve: this.curve,
       tempo: 1,

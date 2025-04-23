@@ -88,7 +88,7 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
    ```ts
    import { media } from '@kit.MediaKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-   import { fileIo as fs } form '@kit.CoreFileKit';
+   import { fileIo as fs } from '@kit.CoreFileKit';
 
    let avProfile: media.AVRecorderProfile = {
      fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4。

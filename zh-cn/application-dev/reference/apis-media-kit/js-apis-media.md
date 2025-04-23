@@ -525,6 +525,8 @@ type PlayParameters = _PlayParameters
 | AVERR_IO_SSL_SERVER_CERT_UNTRUSTED<sup>14+</sup> | 5411010 | 表示客户端校验服务端证书失败。 <br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。        |
 | AVERR_IO_UNSUPPORTED_REQUEST<sup>14+</sup> | 5411011 | 表示网络协议的原因导致请求不受支持。 <br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。        |
 | AVERR_SEEK_CONTINUOUS_UNSUPPORTED<sup>18+</sup> | 5410002 | 表示不支持SEEK_CONTINUOUS模式的seek。 <br> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。        |
+| AVERR_SUPER_RESOLUTION_UNSUPPORTED<sup>18+</sup> | 5410003 | 表示不支持超分。 <br> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。        |
+| AVERR_SUPER_RESOLUTION_NOT_ENABLED<sup>18+</sup> | 5410004 | 表示未使能超分。 <br> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。        |
 
 ## MediaType<sup>8+</sup>
 
@@ -1051,7 +1053,7 @@ setMediaMuted(mediaType: MediaType,  muted: boolean ): Promise\<void>
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
 | mediaType | [MediaType](#mediatype8) | 是   | 播放策略。 |
-| muted | boolean | 是   | 是否静音播放。 |
+| muted | boolean | 是   | 是否静音播放。true表示是静音播放，false表示不是静音播放。 |
 
 **返回值：**
 
@@ -2650,8 +2652,8 @@ addSubtitleFromFd(fd: number, offset?: number, length?: number): Promise\<void>
 | 参数名 | 类型                   | 必填 | 说明                                                         |
 | ------ | ---------------------- | ---- | ------------------------------------------------------------ |
 | fd | number   | 是   | 资源句柄，通过[resourceManager.getRawFd](../apis-localization-kit/js-apis-resource-manager.md#getrawfd9)获取。 |
-| offset | number | 否   | 资源偏移量，需要基于预置资源的信息输入，非法值会造成字幕频资源解析错误。 |
-| length | number | 否   | 资源长度，默认值为文件中从偏移量开始的剩余字节，需要基于预置资源的信息输入，非法值会造成字幕频资源解析错误。 |
+| offset | number | 否   | 资源偏移量，需要基于预置资源的信息输入，非法值会造成字幕频资源解析错误，默认值:0。 |
+| length | number | 否   | 资源长度，默认值为文件中从偏移量开始的剩余字节，需要基于预置资源的信息输入，非法值会造成字幕频资源解析错误，默认值:0。 |
 
 **返回值：**
 
@@ -3015,7 +3017,7 @@ setSuperResolution(enabled: boolean) : Promise\<void>
 | -------- | ------------------------------------------ |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5410003  | Super-resolution not supported. Return by promise. |
-| 5410004  | Missing enable super-resolution feature in [PlaybackStrategy](#playbackstrategy12). |
+| 5410004  | Missing enable super-resolution feature in [PlaybackStrategy](#playbackstrategy12). Return by promise. |
 
 **示例：**
 
@@ -3054,10 +3056,10 @@ setVideoWindowSize(width: number, height: number) : Promise\<void>
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
-| 401      | The parameter check failed. Return by promise. |
+| 401      | Parameter error. Return by promise. |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5410003  | Super-resolution not supported. Return by promise. |
-| 5410004  | Missing enable super-resolution feature in [PlaybackStrategy](#playbackstrategy12). |
+| 5410004  | Missing enable super-resolution feature in [PlaybackStrategy](#playbackstrategy12). Return by promise. |
 
 **示例：**
 
@@ -3195,6 +3197,23 @@ type OnVideoSizeChangeHandler = (width: number, height: number) => void
 | width  | number | 是 | 视频宽度，单位为像素（px）。|
 | height | number | 是 | 视频高度，单位为像素（px）。|
 
+## OnSeiMessageHandle<sup>18+</sup>
+
+type OnSeiMessageHandle = (messages: Array\<SeiMessage>, playbackPosition?: number) => void
+
+获取SEI信息，使用场景：订阅SEI信息事件，回调返回SEI详细信息。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名   |   类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| messages | Array\<[SeiMessage](#seimessage18)> | 是  | SEI信息。 |
+| playbackPosition | number | 否  | 获取当前播放位置（单位：毫秒）。 |
+
 ## OnSuperResolutionChanged <sup>18+</sup>
 
 type OnSuperResolutionChanged = (enabled: boolean) => void
@@ -3266,23 +3285,6 @@ SEI信息内容，描述SEI信息的负载类型和数据。
 | ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
 | payloadType | number | 否  | 否  | SEI信息的负载类型。 |
 | payload | ArrayBuffer | 否  | 否  | SEI信息的负载数据。 |
-
-## OnSeiMessageHandle<sup>18+</sup>
-
-type OnSeiMessageHandle = (messages: Array\<SeiMessage>, playbackPosition?: number) => void
-
-获取SEI信息，使用场景：订阅SEI信息事件，回调返回SEI详细信息。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Multimedia.Media.Core
-
-**参数：**
-
-| 名称   | 类型   | 必填 | 说明                                                         |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| messages | Array\<[SeiMessage](#seimessage18)> | 是  | SEI信息。 |
-| playbackPosition | number | 否  | 获取当前播放位置（单位：毫秒）。 |
 
 ## SeekMode<sup>8+</sup>
 
@@ -4816,8 +4818,8 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ------ | ------------------------------------------------------------ |
-| state  | [AVRecorderState](#avrecorderstate9) | 必填 | 当前录制状态。     |
-| reason | [StateChangeReason](#statechangereason9) | 必填 | 当前录制状态的切换原因。 |
+| state  | [AVRecorderState](#avrecorderstate9) | 是 | 当前录制状态。     |
+| reason | [StateChangeReason](#statechangereason9) | 是 | 当前录制状态的切换原因。 |
 
 ## AVRecorderConfig<sup>9+</sup>
 
@@ -8121,7 +8123,7 @@ let sourceReadCallback: media.SourceReadCallback = (uuid: number, requestedOffse
 
 ## SourceCloseCallback<sup>18+</sup>
 
-type SourceCloseCallback(uuid: number): void
+type SourceCloseCallback = (uuid: number) => void
 
 由应用实现此回调函数，应用应释放相关资源。
 >
@@ -8160,9 +8162,7 @@ let sourceCloseCallback: media.SourceCloseCallback = (uuid: number) => {
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
-**参数：**
-
-| 参数名   | 类型     | 必填 | 说明                 |
+| 名称   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
 | open | [SourceOpenCallback](#sourceopencallback18) | 是  | 由应用程序实现的回调函数，用于处理资源打开请求。 |
 | read | [SourceReadCallback](#sourcereadcallback18) | 是  | 由应用程序实现的回调函数，用于处理资源读取请求。 |
@@ -8210,7 +8210,14 @@ player.setMediaSource(mediaSource, playStrategy);
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
+### 属性
+
 **系统能力：** SystemCapability.Multimedia.Media.Core
+
+| 名称   | 类型    | 只读   | 可选   | 说明                |
+| --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
+| url<sup>18+</sup>        | string                        | 否   | 否   | 资源url，需要应用程序打开的资源路径。 |
+| header<sup>18+</sup>     | Record<string, string>        | 否   | 是   | 网络请求标头，如果存在需要应用在下载数据是将头信息设置到http请求中。 |
 
 ### respondData<sup>18+</sup>
 

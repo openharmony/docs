@@ -2667,10 +2667,10 @@ clone(): Promise\<PixelMap>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 501 | Resource unavailable. |
-| 62980102 | Image malloc abnormal. This status code is thrown when an error occurs during the process of copying data. |
-| 62980103 | Image YUV And ASTC types are not supported. |
-| 62980104 | Image initialization abnormal. This status code is thrown when an error occurs during the process of createing empty pixelmap. |
-| 62980106 | The image data is to large.This status code is thrown when an error occurs during the process of checking size. |
+| 62980102 | Image malloc abnormal. |
+| 62980103 | Image types are not supported. |
+| 62980104 | Image initialization abnormal. |
+| 62980106 | The image data is to large. |
 
 **示例：**
 
@@ -2709,10 +2709,10 @@ cloneSync(): PixelMap
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 501 | Resource unavailable. |
-| 62980102 | Image malloc abnormal. This status code is thrown when an error occurs during the process of copying data. |
-| 62980103 | Image YUV And ASTC types are not supported. |
-| 62980104 | Image initialization abnormal. This status code is thrown when an error occurs during the process of createing empty pixelmap. |
-| 62980106 | The image data is to large.This status code is thrown when an error occurs during the process of checking size. |
+| 62980102 | Image malloc abnormal. |
+| 62980103 | Image types are not supported. |
+| 62980104 | Image initialization abnormal. |
+| 62980106 | The image data is to large. |
 
 **示例：**
 
@@ -3955,6 +3955,7 @@ setMemoryNameSync(name: string): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 401 | Parameter error. Possible causes: 1.The length of the input parameter is too long. 2.Parameter verification failed. |
+| 501 | Resource unavailable. |
 | 62980286 | Memory format not supported. |
 
 **示例：**
@@ -8354,7 +8355,7 @@ PixelMap的初始化选项。
 | ------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
 | frameCount    | number         | 否   | 否   | GIF编码中指定的帧数。                                        |
 | delayTimeList | Array\<number> | 否   | 否   | GIF编码中设定每帧输出图像的延迟时间，取值需大于0。<br>- 单位为10毫秒。例如，取值为10时，实际单帧延迟是100毫秒。<br>- 如果长度小于frameCount，不足的部分将使用delayTimeList中的最后一个值进行填充。 |
-| disposalTypes | Array\<number> | 否   | 是   | GIF编码中设定输出图片帧过渡模式的参数，可取值如下：<br>- 0：不需要任何操作。<br>- 1：保持图形不变。<br>- 2：恢复背景色。<br>- 3：恢复到之前的状态。 |
+| disposalTypes | Array\<number> | 否   | 是   | GIF编码中设定每帧输出图像的帧过渡模式，如果长度小于frameCount，不足的部分将使用disposalTypes中的最后一个值进行填充，可取值如下：<br>- 0：不需要任何操作。<br>- 1：保持图形不变。<br>- 2：恢复背景色。<br>- 3：恢复到之前的状态。 |
 | loopCount     | number         | 否   | 是   | 表示在GIF编码中输出图片循环播放次数，取值范围为[0，65535]。<br>0表示无限循环；若无此字段，则表示不循环播放。 |
 
 ## ImagePropertyOptions<sup>11+</sup>

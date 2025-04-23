@@ -30,6 +30,8 @@ static close()
 >
 > 推荐通过使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[getContextMenuController](../js-apis-arkui-UIContext.md#contextmenucontroller12)来明确UI的执行上下文。
 
+<!--deprecated_code_no_check-->
+
 ```ts
 // xxx.ets
 @Entry

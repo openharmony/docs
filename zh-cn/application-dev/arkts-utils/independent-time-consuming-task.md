@@ -1,8 +1,8 @@
 # 使用TaskPool执行独立的耗时任务
 
-对于一个独立运行的耗时任务，只需要在任务执行完毕后将结果返回给宿主线程，没有上下文依赖，可以通过以下方式实现。
+对于独立运行的耗时任务，任务执行完毕后将结果返回给宿主线程，没有上下文依赖，可采用以下方式实现。
 
-下面以图片加载为例进行说明。
+下面通过图片加载来说明。
 
 1. 实现子线程需要执行的任务。
 
@@ -42,7 +42,7 @@
    }
    ```
 
-2. 通过TaskPool中的execute方法执行上述任务，即加载图片。
+2. 使用TaskPool中的execute方法执行上述任务，加载图片。
 
    ```ts
    // Index.ets
@@ -64,9 +64,9 @@
              .onClick(() => {
                let iconItemSourceList: IconItemSource[] = [];
                // 创建Task
-               let lodePictureTask: taskpool.Task = new taskpool.Task(loadPicture, 30);
+               let loadPictureTask: taskpool.Task = new taskpool.Task(loadPicture, 30);
                // 执行Task，并返回结果
-               taskpool.execute(lodePictureTask).then((res: object) => {
+               taskpool.execute(loadPictureTask).then((res: object) => {
                  // loadPicture方法的执行结果
                  iconItemSourceList = res as IconItemSource[];
                })

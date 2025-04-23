@@ -404,6 +404,21 @@ import { window } from '@kit.ArkUI';
 | beginRect | [Rect](#rect7)  | 是 | 动画开始前软键盘的位置和大小。 |
 | endRect | [Rect](#rect7)  | 是 | 动画结束后软键盘的位置和大小。 |
 
+## WindowInfo<sup>18+</sup>
+
+当前窗口的详细信息。
+
+**系统能力：**  SystemCapability.Window.SessionManager
+
+| 名称   | 类型   | 只读 | 可选 | 说明                                       |
+| ------ | ------ | ---- | ---- | ------------------------------------------ |
+| rect  | [Rect](js-apis-window.md#rect7)   | 是   | 否   | 窗口尺寸。 |
+| bundleName  | string   | 是   | 否   | 应用Bundle的名称。          |
+| abilityName | string   | 是   | 否   | Ability的名称。               |
+| windowId | number | 是   | 否   | 窗口ID。   |
+| windowStatusType | [WindowStatusType](js-apis-window.md#windowstatustype11) | 是   | 否   | 窗口模式枚举。   |
+| isFocused | boolean | 是   | 是   | 窗口是否获焦。true表示窗口获焦；false表示窗口未获焦。   |
+
 ## Callback<sup>15+</sup>
 
 ### (data: T)<sup>15+</sup>
@@ -1000,7 +1015,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let displayId = 0;
-  let promise = window.getAllWindowLayoutInfo(displayId)
+  let promise = window.getAllWindowLayoutInfo(displayId);
   promise.then((data) => {
     console.info('Succeeded in obtaining all window layout info. Data: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
@@ -1414,6 +1429,56 @@ export default class EntryAbility extends UIAbility {
     });
   }
 }
+```
+
+## window.getVisibleWindowInfo<sup>18+</sup>
+
+getVisibleWindowInfo(): Promise&lt;Array&lt;WindowInfo&gt;&gt;
+
+获取当前屏幕的可见主窗口（未退至后台的主窗口）信息。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**需要权限：** ohos.permission.VISIBLE_WINDOW_INFO
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------- | ----------------------- |
+| Promise&lt;Array&lt;[WindowInfo](#windowinfo18)&gt;&gt; | Promise对象，返回当前可见窗口的相关信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 801     | Capability not supported. Function getVisibleWindowInfo can not work correctly due to limited device capabilities. |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let promise = window.getVisibleWindowInfo();
+promise.then((data) => {
+  data.forEach(windowInfo=>{
+    console.info(`left:${windowInfo.rect.left}`);
+    console.info(`top:${windowInfo.rect.top}`);
+    console.info(`width:${windowInfo.rect.width}`);
+    console.info(`height:${windowInfo.rect.height}`);
+    console.info(`windowId:${windowInfo.windowId}`);
+    console.info(`windowStatusType:${windowInfo.windowStatusType}`);
+    console.info(`abilityName:${windowInfo.abilityName}`);
+    console.info(`bundleName:${windowInfo.bundleName}`);
+    console.info(`isFocused:${windowInfo.isFocused}`);
+  })
+}).catch((err: BusinessError) => {
+  console.error('Failed to getWindowInfo. Cause: ' + JSON.stringify(err));
+});
 ```
 
 ## SpecificSystemBar<sup>11+</sup>
@@ -7052,6 +7117,8 @@ setWindowMask(windowMask: Array&lt;Array&lt;number&gt;&gt;): Promise&lt;void&gt;
 设置异形窗口的掩码，使用Promise异步回调。异形窗口为非常规形状的窗口，掩码用于描述异形窗口的形状。此接口仅限子窗和全局悬浮窗可用。
 当异形窗口大小发生变化时，实际的显示内容为掩码大小和窗口大小的交集部分。
 
+该接口只在多个线程操作同一个窗口时可能返回错误码1300002。窗口被销毁场景下错误码返回401。
+
 <!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -7967,19 +8034,20 @@ import { window } from '@kit.ArkUI';
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const context = (getContext(this) as common.UIAbilityContext);
 let windowClass: window.Window | undefined;
 let keyUpEventAry: string[] = [];
 
 @Entry
 @Component
 struct Index {
+  private context = (this.getUIContext()?.getHostContext() as common.UIAbilityContext);
+
   build() {
     RelativeContainer() {
       Button("窗口置顶")
         .onClick(() => {
           try {
-            let promiseCtx = window.getLastWindow(context);
+            let promiseCtx = window.getLastWindow(this.context);
             promiseCtx.then((data) => {
               windowClass = data;
               //  true:窗口置顶，false:取消窗口置顶
