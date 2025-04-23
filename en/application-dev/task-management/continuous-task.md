@@ -128,8 +128,8 @@ The following walks you through how to request a continuous task for recording t
     @Component
     struct Index {
       @State message: string = 'ContinuousTask';
-     // Use getHostContet to obtain the context of the UIAbility for the page.
-      private context: Context | undefined = this.getUIContext().getHostContet();
+     // Use getContext to obtain the context of the UIAbility for the page.
+      private context: Context = getContext(this);
 
       OnContinuousTaskCancel() {
         try {

@@ -23,16 +23,13 @@ import backgroundTaskManager from '@ohos.backgroundTaskManager';
 ```
 
 
-## backgroundTaskManager.requestSuspendDelay<sup>(deprecated)</sup>
+## backgroundTaskManager.requestSuspendDelay
 
 requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspendInfo
 
 Requests delayed suspension after the application switches to the background.
 
 The default duration of delayed suspension is 3 minutes when the battery level is higher than or equal to the broadcast low battery level and 1 minute when the battery level is lower than the broadcast low battery level.
-
-> **NOTE**
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [backgroundTaskManager.requestSuspendDelay](js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerrequestsuspenddelay).
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -69,14 +66,11 @@ The default duration of delayed suspension is 3 minutes when the battery level i
   ```
 
 
-## backgroundTaskManager.getRemainingDelayTime<sup>(deprecated)</sup>
+## backgroundTaskManager.getRemainingDelayTime
 
 getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the remaining duration before the application is suspended. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [backgroundTaskManager.getRemainingDelayTime](js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagergetremainingdelaytime).
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -104,14 +98,11 @@ Obtains the remaining duration before the application is suspended. This API use
   ```
 
 
-## backgroundTaskManager.getRemainingDelayTime<sup>(deprecated)</sup>
+## backgroundTaskManager.getRemainingDelayTime
 
 getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
 Obtains the remaining duration before the application is suspended. This API uses a promise to return the result.
-
-> **NOTE**
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [backgroundTaskManager.getRemainingDelayTime](js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagergetremainingdelaytime-1).
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -142,14 +133,11 @@ let delayInfo = backgroundTaskManager.requestSuspendDelay("test", () => {});
 ```
 
 
-## backgroundTaskManager.cancelSuspendDelay<sup>(deprecated)</sup>
+## backgroundTaskManager.cancelSuspendDelay
 
 cancelSuspendDelay(requestId: number): void
 
 Cancels the suspension delay.
-
-> **NOTE**
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [backgroundTaskManager.cancelSuspendDelay](js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagercancelsuspenddelay).
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -167,14 +155,11 @@ Cancels the suspension delay.
   ```
 
 
-## backgroundTaskManager.startBackgroundRunning<sup>(deprecated)</sup>
+## backgroundTaskManager.startBackgroundRunning<sup>8+</sup>
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback&lt;void&gt;): void
 
 Requests a continuous task from the system. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [backgroundTaskManager.startBackgroundRunning](js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerstartbackgroundrunning).
 
 **Required permissions**: ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -266,14 +251,11 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-## backgroundTaskManager.startBackgroundRunning<sup>(deprecated)</sup>
+## backgroundTaskManager.startBackgroundRunning<sup>8+</sup>
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt;
 
 Requests a continuous task from the system. This API uses a promise to return the result.
-
-> **NOTE**
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [backgroundTaskManager.startBackgroundRunning](js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerstartbackgroundrunning-1).
 
 **Required permissions**: ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -363,14 +345,11 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-## backgroundTaskManager.stopBackgroundRunning<sup>(deprecated)</sup>
+## backgroundTaskManager.stopBackgroundRunning<sup>8+</sup>
 
 stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): void
 
 Requests to cancel a continuous task. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [backgroundTaskManager.stopBackgroundRunning](js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerstopbackgroundrunning).
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -426,14 +405,11 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-## backgroundTaskManager.stopBackgroundRunning<sup>(deprecated)</sup>
+## backgroundTaskManager.stopBackgroundRunning<sup>8+</sup>
 
 stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
 Requests to cancel a continuous task. This API uses a promise to return the result.
-
-> **NOTE**
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [backgroundTaskManager.stopBackgroundRunning](js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerstopbackgroundrunning-1).
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -488,12 +464,9 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-## DelaySuspendInfo<sup>(deprecated)</sup>
+## DelaySuspendInfo
 
 Provides the information about the suspension delay.
-
-> **NOTE**
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [DelaySuspendInfo](js-apis-resourceschedule-backgroundTaskManager.md#delaysuspendinfo).
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -503,12 +476,7 @@ Provides the information about the suspension delay.
 | actualDelayTime | number | Yes   | Actual suspension delay duration of the application, in milliseconds.<br>The default duration is 180000 when the battery level is higher than or equal to the broadcast low battery level and 60000 when the battery level is lower than the broadcast low battery level.|
 
 
-## BackgroundMode<sup>(deprecated)</sup>
-
-Type of the continuous task.
-
-> **NOTE**
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [BackgroundMode](js-apis-resourceschedule-backgroundTaskManager.md#backgroundmode).
+## BackgroundMode<sup>8+</sup>
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
