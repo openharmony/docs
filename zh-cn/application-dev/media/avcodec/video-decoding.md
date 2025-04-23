@@ -425,11 +425,11 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     ```
 
     > **注意：**
-    > 若应用创建的1号和2号解码器Set的是同一片surface，在2号解码器处于Running状态时1号解码器调用Destroy接口，解码器内部会调用CleanCache，清理surface中原有的buffer。2号解码器这一轮向surface申请的buffer会被1号解码器的CleanCache逻辑清理掉，从而导致视频播放画面卡住。
+    > 若应用对1号和2号解码器均通过调用OH_VideoDecoder_SetSurface接口绑定至同一个NativeWindow。在2号解码器处于Running状态时，1号解码器调用OH_VideoDecoder_Destroy接口后，会导致2号解码器的视频播放画面卡住。
     >
     > 可以采用以下方案进行更改：
     > 1. 等1号解码器完全释放后，再调用OH_VideoDecoder_Start接口启动2号解码器；
-    > 2. 1号解码器用surface1，2号解码器先调用OH_ConsumerSurface_Create接口创建临时Surface，等1号解码器释放后，再调用OH_VideoDecoder_SetSurface接口将2号解码器绑定至surface1上，详情请参见：[创建视频解码器和NativeWindow初始化并行](../../media/avcodec/parallel-decoding-nativeWindow.md)。
+    > 2. 1号解码器用surface1，2号解码器先调用OH_ConsumerSurface_Create接口创建临时surface，等1号解码器释放后，再调用OH_VideoDecoder_SetSurface接口将2号解码器绑定至surface1上，详情请参见：[创建视频解码器和NativeWindow初始化并行](../../media/avcodec/parallel-decoding-nativeWindow.md)。
     
 7. （可选）OH_VideoDecoder_SetParameter()动态配置解码器surface参数。
     详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
