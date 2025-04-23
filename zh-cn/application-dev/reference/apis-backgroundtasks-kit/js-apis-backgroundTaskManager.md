@@ -47,7 +47,7 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 
 | 类型                                    | 说明        |
 | ------------------------------------- | --------- |
-| [DelaySuspendInfo](#delaysuspendinfo) | 返回延迟挂起信息。 |
+| [DelaySuspendInfo](#delaysuspendinfodeprecated) | 返回延迟挂起信息。 |
 
 **示例**：
 
@@ -84,7 +84,7 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 
 | 参数名       | 类型                          | 必填   | 说明                                       |
 | --------- | --------------------------- | ---- | ---------------------------------------- |
-| requestId | number                      | 是    | 延迟挂起的请求ID。这个值通过调用[requestSuspendDelay](#backgroundtaskmanagerrequestsuspenddelay)方法获取。 |
+| requestId | number                      | 是    | 延迟挂起的请求ID。这个值通过调用[requestSuspendDelay](#backgroundtaskmanagerrequestsuspenddelaydeprecated)方法获取。 |
 | callback  | AsyncCallback&lt;number&gt; | 是    | 指定的callback回调方法。用于返回应用程序进入挂起状态之前的剩余时间，以毫秒为单位。 |
 
 **示例**：
@@ -119,7 +119,7 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
 | 参数名       | 类型     | 必填   | 说明         |
 | --------- | ------ | ---- | ---------- |
-| requestId | number | 是    | 延迟挂起的请求ID。这个值通过调用[requestSuspendDelay](#backgroundtaskmanagerrequestsuspenddelay)方法获取。 |
+| requestId | number | 是    | 延迟挂起的请求ID。这个值通过调用[requestSuspendDelay](#backgroundtaskmanagerrequestsuspenddelaydeprecated)方法获取。 |
 
 **返回值**：
 
@@ -157,7 +157,7 @@ cancelSuspendDelay(requestId: number): void
 
 | 参数名       | 类型     | 必填   | 说明         |
 | --------- | ------ | ---- | ---------- |
-| requestId | number | 是    | 延迟挂起的请求ID。这个值通过调用[requestSuspendDelay](#backgroundtaskmanagerrequestsuspenddelay)方法获取。 |
+| requestId | number | 是    | 延迟挂起的请求ID。这个值通过调用[requestSuspendDelay](#backgroundtaskmanagerrequestsuspenddelaydeprecated)方法获取。 |
 
 **示例**：
 
@@ -185,7 +185,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 | 参数名    | 类型                                          | 必填 | 说明                                                         |
 | --------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context   | Context                                       | 是   | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
-| bgMode    | [BackgroundMode](#backgroundmode8)            | 是   | 向系统申请的后台模式。                                       |
+| bgMode    | [BackgroundMode](#backgroundmodedeprecated)            | 是   | 向系统申请的后台模式。                                       |
 | wantAgent | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) | 是   | 通知参数，用于指定长时任务通知点击后跳转的界面。             |
 | callback  | AsyncCallback&lt;void&gt;                     | 是   | callback形式返回启动长时任务的结果。                         |
 
@@ -284,7 +284,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 | 参数名    | 类型                                          | 必填 | 说明                                                         |
 | --------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context   | Context                                       | 是   | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
-| bgMode    | [BackgroundMode](#backgroundmode8)            | 是   | 向系统申请的后台模式。                                       |
+| bgMode    | [BackgroundMode](#backgroundmodedeprecated)            | 是   | 向系统申请的后台模式。                                       |
 | wantAgent | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) | 是   | 通知参数，用于指定长时任务通知点击跳转的界面。               |
 
 **返回值**：
