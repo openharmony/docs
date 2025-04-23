@@ -46,14 +46,13 @@ This window manager service works abnormally.
 
 ## 1300004 无权限操作
 **错误信息**<br>
-Forbidden operation.
+Unauthorized operation.
 
 **错误描述**<br>
-当操作的窗口类型不符或者子窗口状态异常时，会报此错误码。
+当对无操作权限的对象进行操作时，会报此错误码。
 
 **可能原因**<br>
-1.窗口类型错误。<br>
-2.子窗口正在被销毁或正在被销毁。
+操作了其它进程的窗口对象。
 
 **处理步骤**<br>
 请检查窗口类型是否正确，或者操作的窗口是否正在被销毁。
