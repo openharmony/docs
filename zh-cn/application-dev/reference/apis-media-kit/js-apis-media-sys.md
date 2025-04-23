@@ -449,9 +449,9 @@ avRecorder.setWatermark(watermark, watermarkConfig).then(() => {
 ### setMetadata<sup>18+</sup>
 setMetadata(metadata: Record\<string, string\>): void
 
-给AVRecorder录制文件中设置自定义meta数据。无返回值。
+给AVRecorder的录制文件中设置自定义meta数据。
 
-当且仅当[prepare()](js-apis-media.md#prepare9-3)事件成功触发后，且在[stop()](js-apis-media.md#stop9-3)之前，才能调用setMetadata方法。
+只有当[prepare()](js-apis-media.md#prepare9-3)事件成功触发后，并在调用[stop()](js-apis-media.md#stop9-3)方法之前，才能调用setMetadata方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -461,13 +461,13 @@ setMetadata(metadata: Record\<string, string\>): void
 
 | 参数名   | 类型                  | 必填 | 说明                                                                |
 | -------- | -------------------- | ---- |-------------------------------------------------------------------|
-| metadata | [Record<string, string>]  | 是   | 以键值对形式设置meta数据的tag和value，第一个string为meta tag，第二个string为meta value。 |
+| metadata | [Record<string, string>]  | 是   | 以键值对形式设置meta数据的tag和value。<br>- 第一个string为meta tag。<br>- 第二个string为meta value。 |
 
 **返回值：**
 
 | 类型            | 说明        |
 | --------------- |-----------|
-| void | 同步执行无返回结果。 |
+| void | 无返回结果。 |
 
 **错误码：**
 
