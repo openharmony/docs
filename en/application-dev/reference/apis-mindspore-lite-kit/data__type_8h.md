@@ -5,13 +5,15 @@
 
 Declares tensor data types.
 
-**Since**
+**File to include**: <mindspore/data_type.h>
 
-9
+**Library**: libmindspore_lite_ndk.so
 
-**Related module**
+**System capability**: SystemCapability.Ai.MindSpore
 
-[MindSpore](_mind_spore.md)
+**Since**: 9
+
+**Related module**: [MindSpore](_mind_spore.md)
 
 
 ## Summary
@@ -21,7 +23,7 @@ Declares tensor data types.
 
 | Name| Description|
 | -------- | -------- |
-| [OH_AI_DataType](_mind_spore.md#oh_ai_datatype-1) | Declares data types supported by MSTensor.|
+| [OH_AI_DataType](_mind_spore.md#oh_ai_datatype-1) | Data types supported by MSTensor.|
 
 
 ### Enums
