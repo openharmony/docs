@@ -67,7 +67,7 @@ OpenHarmony 5.0.3 Release版本对标准系统的能力进行持续完善，以�
   - 新增C API支持控制焦点以及处理焦点事件的能力。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.3-Release/zh-cn/application-dev/reference/apis-arkui/native__interface__focus_8h.md)）
   - 新增C API支持克隆事件的转发。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.3-Release/zh-cn/application-dev/reference/apis-arkui/_ark_u_i___event_module.md#oh_arkui_pointerevent_postclonedevent)）
   - 通用事件新增C API支持获取当前触摸事件触发的ID。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.3-Release/zh-cn/application-dev/reference/apis-arkui/_ark_u_i___event_module.md#oh_arkui_pointerevent_getchangedpointerid)）
-  - 支持C API组件截图能力。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.3-Release/zh-cn/application-dev/reference/apis-arkui/_ark_u_i___node_component_snapshot.md)）
+  - 支持C API组件截图能力。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.3-Release/zh-cn/application-dev/reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_getnodesnapshot)）
   - 新增支持NODE_CHECKBOX_GROUP相关能力。可在API参考中搜索该关键字。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.3-Release/zh-cn/application-dev/reference/apis-arkui/_ark_u_i___native_module.md)）
 
 - 新增支持获取触摸相关的事件来自左手还是右手，涉及多个数据对象：
