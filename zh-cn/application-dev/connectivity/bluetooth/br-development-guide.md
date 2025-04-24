@@ -10,7 +10,7 @@
 
 ## 接口说明
 
-完整的JS API说明以及示例代码请参考：[access 接口](../../reference/apis-connectivity-kit/js-apis-bluetooth-access.md)。
+完整的JS API说明以及示例代码请参考：[access接口](../../reference/apis-connectivity-kit/js-apis-bluetooth-access.md)。
 
 具体接口说明如下表。
 
