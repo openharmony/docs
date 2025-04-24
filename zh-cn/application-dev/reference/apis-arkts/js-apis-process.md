@@ -472,7 +472,7 @@ getUidForName(v: string): number
 
 ```js
 let pro = new process.ProcessManager();
-let pres = pro .getUidForName("tool");
+let pres = pro.getUidForName("tool");
 ```
 
 

@@ -28,7 +28,7 @@ Canvas是图形绘制的核心，本章中提到的所有绘制操作（包括�
 1. 从XComponent对应的NativeWindow中获取BufferHandle对象。NativeWindow相关的API请参考[_native_window](../reference/apis-arkgraphics2d/_native_window.md)。
 
    ```c++
-   uint64_t widht, height;
+   uint64_t width, height;
    OHNativeWindow *nativeWindow;    // NativeWindow及其宽高需要从XComponent获取
    int32_t usage = NATIVEBUFFER_USAGE_CPU_READ | NATIVEBUFFER_USAGE_CPU_WRITE | NATIVEBUFFER_USAGE_MEM_DMA;
    int ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, SET_USAGE, usage);
