@@ -28,7 +28,7 @@ HiTrace为开发者提供业务流程调用链跟踪的维测接口。通过使�
 
 > **说明**
 >
-> 快照模式定义为固定trace标签的trace捕获，默认情况不落盘，开发者可通过 `--dump_bgsrv` 命令触发当前时刻的trace转储，trace为二进制格式，文件默认生成在 `/data/log/hitrace` 目录下，文件命名格式为`trace-YYMMDDHHmmSS@[BOOT_TIME].sys`。可通过[HiSmartPerf](https://gitee.com/openharmony/developtools_smartperf_host)工具进行可视化trace分析，工具下载链接[developtools_smartperf_host 官方发行版](https://gitee.com/openharmony/developtools_smartperf_host/releases)。
+> 快照模式定义为固定trace标签的trace捕获，默认情况不落盘，开发者可通过 `--dump_bgsrv` 命令触发当前时刻的trace转储，trace为二进制格式，文件默认生成在 `/data/log/hitrace` 目录下，文件命名格式为`trace-YYMMDDHHmmSS@[BOOT_TIME].sys`。可通过[HiSmartPerf](https://gitee.com/openharmony/developtools_smartperf_host)工具进行可视化trace分析，工具下载链接[developtools_smartperf_host官方发行版](https://gitee.com/openharmony/developtools_smartperf_host/releases)。
 
 ## 常用命令
 
@@ -50,7 +50,7 @@ $ hitrace -l
        animation - Animation
              app - APP Module
              ark - ARK Module
-       bluetooth - communication bluetooth
+       bluetooth - communicatio bluetooth
            cloud - Cloud subsystem tag
        cloudfile - Cloud file system
       commercial - Commercial version tag
@@ -63,7 +63,7 @@ $ hitrace -l
            dhfwk - Distributed Hardware FWK
           dinput - Distributed Input
             disk - Disk I/O
-distributeddatamgr - Distributed Data Manager
+istributeddatamgr - Distributed Data Manager
           dlpcre - Dlp Credential Service
              drm - Digital Rights Management
           dsched - Distributed Schedule
@@ -136,7 +136,7 @@ $ hitrace --trace_begin --record app
 
 ### 结束捕获trace
 
-默认情况下，trace信息将输出至命令行窗口。
+默认将trace信息打印在命令行窗口。
 
 ```shell
 hitrace --trace_finish --record
@@ -182,7 +182,7 @@ $ hitrace -b 10240 -t 10 -o /data/local/tmp/test2.ftrace app ability
 
 ### 导出trace信息
 
-默认情况下，trace信息将输出至命令行窗口。
+默认将信息显示在命令行窗口。
 
 ```shell
 hitrace --trace_dump
@@ -236,7 +236,7 @@ $ hitrace --start_bgsrv
 
 ### 快照模式导出trace
 
-默认将trace信息保存至/data/log/hitrace/文件夹下，文件命名格式为`trace-YYMMDDHHmmSS@[BOOT_TIME].sys`，保存的是二进制trace。可通过[HiSmartPerf](https://gitee.com/openharmony/developtools_smartperf_host)工具进行可视化trace分析，工具下载链接[developtools_smartperf_host 官方发行版](https://gitee.com/openharmony/developtools_smartperf_host/releases)。
+默认将trace信息保存至/data/log/hitrace/文件夹下，文件命名格式为`trace-YYMMDDHHmmSS@[BOOT_TIME].sys`，保存的是二进制trace。可通过[HiSmartPerf](https://gitee.com/openharmony/developtools_smartperf_host)工具进行可视化trace分析，工具下载链接[developtools_smartperf_host官方发行版](https://gitee.com/openharmony/developtools_smartperf_host/releases)。
 
 ```shell
 hitrace --dump_bgsrv
@@ -293,7 +293,7 @@ $ hitrace --trace_clock boot -b 102400 -t 10 sched freq idle disk -o /data/local
 
 ### 结束捕获trace，取消trace信息打印在命令行窗口
 
-默认情况下，trace信息将保存至/data/log/hitrace/目录下。
+默认将trace信息保存至/data/log/hitrace/文件夹下。
 
 ```shell
 hitrace --trace_finish_nodump
