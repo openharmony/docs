@@ -390,21 +390,22 @@ function getNode() : void {
 | clearColor | [Color](js-apis-inner-scene-types.md#color) \| null | 否 | 否 | 将渲染目标（render target）清空后的特定颜色。 |
 
 ### raycast<sup>20+</sup>
-raycast(viewPosition: Vec2, params: RaycastParameters): Promise<RaycastResult[]>;
+raycast(viewPosition: Vec2, params: RaycastParameters): Promise<RaycastResult[]>
 
-从屏幕指定位置发射射线，检测并返回所有命中的3D物体信息。
+从屏幕指定位置发射射线，检测并返回所有命中的3D物体信息。使用Promise异步回调。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
+
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| viewPosition | [Vec2](js-apis-inner-scene-types.md#vec2) | 是 | 标准化设备坐标 (NDC)，范围 [-1, 1]。(-1, -1) 为屏幕左下角，(1, 1) 为屏幕右上角。|
-| params | RaycastParameters | 是 | 射线检测的配置参数（如检测范围、过滤节点等）。|
+| viewPosition | [Vec2](js-apis-inner-scene-types.md#vec2) | 是 | 标准化设备坐标(NDC)，范围[-1, 1]。(-1, -1)为屏幕左下角，(1, 1)为屏幕右上角。|
+| params | [RaycastParameters](js-apis-inner-scene.md#raycastparameters20) | 是 | 射线检测的配置参数（如检测范围、过滤节点等）。|
 
 **返回值：**
 | 类型 | 说明 |
 | ---- | ---- |
-| Promise<RaycastResult[]> | 命中结果数组（按距离从近到远排序），若无命中则返回空数组。 |
+| Promise<[RaycastResult](js-apis-inner-scene.md#raycastresult20)[]> | 返回命中的结果数组（按距离从近到远排序），若无命中则返回空数组。 |
 
 **示例：**
 ```ts

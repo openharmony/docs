@@ -6,7 +6,7 @@
 
 ## 导入模块
 ```ts
-import { SceneResourceParameters, SceneNodeParameters, RaycastResult<sup>20+</sup>, RaycastParameters<sup>20+</sup>, SceneResourceFactory, RenderParameters<sup>15+</sup>, Scene } from '@kit.ArkGraphics3D';
+import { SceneResourceParameters, SceneNodeParameters, RaycastResult, RaycastParameters, SceneResourceFactory, RenderParameters, Scene } from '@kit.ArkGraphics3D';
 ```
 
 ## SceneResourceParameters
@@ -75,9 +75,9 @@ function createNodePromise() : Promise<Node> {
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| node<sup>20+</sup> | [Node](js-apis-inner-scene-nodes.md#node) | 是 | 否 | 被射线击中的3D场景节点，可通过该节点操作目标物体（如移动、旋转、隐藏）。 |
-| centerDistance<sup>20+</sup> | number | 是 | 否 | 命中物体包围盒中心到摄像机中心的距离。 |
-| hitPosition<sup>20+</sup> | [Position3](js-apis-inner-scene-types.md#position3) | 是 | 否 | 射线与物体碰撞点的精确世界坐标（{x: number, y: number, z: number}）。 |
+| node | [Node](js-apis-inner-scene-nodes.md#node) | 是 | 否 | 被射线击中的3D场景节点，可通过该节点操作目标物体（如移动、旋转、隐藏）。 |
+| centerDistance | number | 是 | 否 | 命中物体包围盒中心到摄像机中心的距离，取值范围大于0。 |
+| hitPosition | [Position3](js-apis-inner-scene-types.md#position3) | 是 | 否 | 射线与物体碰撞点的精确世界坐标（{x: number, y: number, z: number}）。 |
 
 
 ## RaycastParameters<sup>20+</sup>
@@ -86,7 +86,7 @@ function createNodePromise() : Promise<Node> {
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| rootNode<sup>20+</sup> | [Node](js-apis-inner-scene-nodes.md#node) | 否 | 是 | 限定检测范围：仅检测该节点及其子节点。未设置时检测全场景。 |
+| rootNode | [Node](js-apis-inner-scene-nodes.md#node) | 否 | 是 | 限定检测范围：仅检测该节点及其子节点。未设置时检测全场景。 |
 
 
 ## SceneResourceFactory
