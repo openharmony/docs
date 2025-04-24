@@ -104,7 +104,7 @@ fillOpacity(value: number | string | Resource)
 
 stroke(value: ResourceColor)
 
-设置边框颜色，不设置时，默认没有边框线条。异常值不会绘制边框线条。
+设置边框颜色，不设置时，默认有黑色边框线条。异常值不会绘制边框线条。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
