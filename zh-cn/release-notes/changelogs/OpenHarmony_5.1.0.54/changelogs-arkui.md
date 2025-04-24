@@ -15,7 +15,7 @@ UX规格变更。
 **变更影响**
 
 此变更不涉及应用适配。
- 
+
 场景1：竖屏下，状态栏隐藏时，半模态底部样式最大高度也需要避让状态栏安全区。
 
 - 变更前：状态栏隐藏时，半模态底部样式最大高度距离屏幕上边界8vp，未避让状态栏安全区。
@@ -24,7 +24,7 @@ UX规格变更。
 | 变更前 | 变更后 |
 |------ |--------|
 |![verticalSheet1](figures/verticalSheet1.png)|![verticalSheet2](figures/verticalSheet2.png)|
- 
+
 场景2：横屏下，状态栏不隐藏时，半模态底部样式最大高度也需要避让状态栏安全区。
 
 - 变更前：状态栏不隐藏时，半模态底部样式最大高度距离屏幕上边界8vp，未避让状态栏安全区，且与状态栏区域重合。
@@ -278,3 +278,83 @@ SheetType.POPUP
 **适配指导**
 
 默认行为变更，开发者无需适配。若API version 18前希望实现的效果为位于弹出节点底部并且同弹出节点左对齐或者右对齐，可以通过设置placement值为BottomLeft或BottomRight来实现对应显示效果。
+## cl.arkui. 6当使用自定义组件名和内置属性重名时编译报错变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+当使用自定义组件名和内置属性重名时，编译会根据指定的白名单进行拦截报错，如果白名单中不存在，编译就拦截不到，导致编译转换后的产物出现问题。
+
+**变更影响**
+
+该变更涉及应用适配。
+
+举例说明，执行以下用例：
+
+```ts
+@Entry
+@Component
+struct enableAnalyzer {
+  build() {
+    Canvas()
+      .enableAnalyzer(true)
+  }
+}
+```
+
+变更前：
+不在白名单的内置组件属性与自定义组件重名时，编译没有拦截报错，导致运行时crash。
+
+变更后：
+在白名单的内置组件属性与自定义组件重名时，编译拦截报错。
+
+![arkui_pg1](figures/arkui_pg1.PNG)
+
+**起始API Level**
+
+API 10
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.54开始。
+
+**变更的接口/组件**
+
+ArkUI 内置组件属性API。
+
+**适配指导**
+
+自定义组件名和内置组件属性重名时，编译报错，修改自定义组件名为其他非内置组件属性名即可解决。
+
+修改前：
+
+自定义组件enableAnalyzer和Canvas的enableAnalyzer重名。
+
+```ts
+@Entry
+@Component
+struct enableAnalyzer {
+  build() {
+    Canvas()
+      .enableAnalyzer(true)
+  }
+}
+```
+
+修改后：
+
+将自定义组件名改为任意不和内置组件重名的名称，如EnableAnalyzerComp。
+
+```ts
+@Entry
+@Component
+struct EnableAnalyzerComp {
+  build() {
+    Canvas()
+      .enableAnalyzer(true)
+  }
+}
+```
