@@ -12,7 +12,7 @@ ArkUI在处理触屏事件时，会在触屏事件触发前进行按压点和组
 
 onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult): T
 
-当前组件可通过设置回调来自定义子节点如何去做触摸测试。
+当前组件可通过设置回调来自定义触摸测试，可以控制触摸测试中的子节点行为。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -36,7 +36,7 @@ onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult): T
 
 ## TouchTestInfo
 
-当前按压点所在组件的坐标系、id和尺寸相关信息。
+当前屏幕触点所在组件的坐标系、id和尺寸相关信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
