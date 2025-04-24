@@ -311,3 +311,15 @@ struct Index {
 }
 ```
 ![web-default-camera](./figures/web-default-camera.gif)
+
+## 常见问题
+
+### 1.onShowFileSelector配合ArkWeb默认弹窗使用
+
+用户点击文件上传按钮后，程序优先执行onShowFileSelector中的回调进行逻辑处理，应用开发者可以根据处理结果选择 `return false;` ，进而拉起ArkWeb默认弹窗，此时不推荐同时拉起应用侧各Picker。
+
+### 2.回调中getAcceptType和getMimeTypes的区别
+
+getAcceptType返回的是 `accept` 属性值全量转换为文件扩展名所组成的字符串数组，getMimeTypes返回的是 `accept` 属性值用逗号拆分后所组成的字符串数组。
+
+如若 `accept` 属性值为 `video/mp4, .png` ，则getAcceptType返回  `.mp4, .m4v; .png` ，getMimeTypes返回 `video/mp4; .png` 。
