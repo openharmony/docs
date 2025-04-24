@@ -297,7 +297,7 @@ udp.bind(bindAddr).then(() => {
   console.log('bind success');
 }).catch((err: BusinessError) => {
   console.log('bind fail');
-  return；
+  return;
 });
 let netAddress: socket.NetAddress = {
   address: '192.168.xx.xxx', // 对端地址
@@ -329,7 +329,7 @@ udp.bind(bindAddr).then(() => {
   console.log('bind success');
 }).catch((err: BusinessError) => {
   console.log('bind fail');
-  return；
+  return;
 });
 let netAddress: socket.NetAddress = {
   address: '192.168.xx.xxx', // 对端地址
