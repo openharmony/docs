@@ -34,7 +34,10 @@ photoAccessHelper提供监听媒体资源变更的接口，供开发者对指定
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-const context = getContext(this);
+import { common } from '@kit.AbilityKit';
+
+// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
@@ -81,7 +84,10 @@ async function example() {
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-const context = getContext(this);
+import { common } from '@kit.AbilityKit';
+
+// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
@@ -135,7 +141,10 @@ async function example() {
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-const context = getContext(this);
+import { common } from '@kit.AbilityKit';
+
+// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
@@ -180,7 +189,10 @@ async function example() {
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-const context = getContext(this);
+import { common } from '@kit.AbilityKit';
+
+// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
