@@ -114,7 +114,7 @@ sendMessage\(options: SendMessageOptions\): void
 >
 > 从 API version 6开始支持，从API version 10开始废弃。建议使用[sendShortMessage](#smssendshortmessage10)替代。
 
-**需要权限**：ohos.permission.SEND_MESSAGES（该权限仅系统应用可申请）
+**需要权限**：ohos.permission.SEND_MESSAGES(该权限仅系统应用可申请)
 
 **系统能力**：SystemCapability.Telephony.SmsMms
 
@@ -167,7 +167,7 @@ sendShortMessage\(options: SendMessageOptions, callback: AsyncCallback&lt;void&g
 
 发送短信。使用callback异步回调。
 
-**需要权限**：ohos.permission.SEND_MESSAGES（该权限仅系统应用可申请）
+**需要权限**：ohos.permission.SEND_MESSAGES(该权限仅系统应用可申请)
 
 **系统能力**：SystemCapability.Telephony.SmsMms
 
@@ -223,7 +223,7 @@ sendShortMessage\(options: SendMessageOptions\): Promise&lt;void&gt;
 
 发送短信。使用Promise异步回调。
 
-**需要权限**：ohos.permission.SEND_MESSAGES（该权限仅系统应用可申请）
+**需要权限**：ohos.permission.SEND_MESSAGES(该权限仅系统应用可申请)
 
 **系统能力**：SystemCapability.Telephony.SmsMms
 
@@ -501,7 +501,7 @@ promise.then((data: number) => {
 
 |   名称     | 类型                            | 必填 |                                               说明                                         |
 | ---------- | ------------------------------- | ---- | ----------------------------------------------------------------------------------------- |
-| isLastPart | boolean                         | 是   | 指定这是否是长短信的最后一部分。<br/>-true：是<br/>-false：否<br/> |
+| isLastPart | boolean                         | 是   | 指定这是否是长短信的最后一部分。默认为false。<br/>-true：是<br/>-false：否<br/> |
 | result     | [SendSmsResult](#sendsmsresult) | 是   | 短信发送结果。                                                                             |
 | url        | string                          | 是   | 存储发送短信的URI。                                                                        |
 
