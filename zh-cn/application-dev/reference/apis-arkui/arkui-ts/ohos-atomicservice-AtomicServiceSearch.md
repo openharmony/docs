@@ -302,9 +302,7 @@ struct Index {
   }
 
   private alert(message: string): void {
-    AlertDialog.show({
-      message: message
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -352,9 +350,7 @@ struct Index {
   }
 
   private alert(message: string): void {
-    AlertDialog.show({
-      message: message
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -421,9 +417,7 @@ struct Index {
   }
 
   private alert(message: string): void {
-    AlertDialog.show({
-      message: message
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -555,9 +549,7 @@ struct Index {
   }
 
   private alert(message: string): void {
-    AlertDialog.show({
-      message: message
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -678,9 +670,7 @@ struct Index {
   }
 
   private alert(message: string): void {
-    AlertDialog.show({
-      message: message
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -736,9 +726,7 @@ struct Index {
   }
 
   public alert(message: string): void {
-    AlertDialog.show({
-      message: message,
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -783,9 +771,7 @@ struct Index {
   }
 
   public alert(message: string): void {
-    AlertDialog.show({
-      message: message,
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -828,9 +814,7 @@ struct Index {
   }
 
   public alert(message: string): void {
-    AlertDialog.show({
-      message: message,
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -871,9 +855,7 @@ struct Index {
   }
 
   public alert(message: string): void {
-    AlertDialog.show({
-      message: message,
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -945,9 +927,7 @@ struct Index {
   }
 
   public alert(message: string): void {
-    AlertDialog.show({
-      message: message,
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -987,9 +967,7 @@ struct Index {
   }
 
   public alert(message: string): void {
-    AlertDialog.show({
-      message: message,
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -1033,9 +1011,7 @@ struct Index {
   }
 
   public alert(message: string): void {
-    AlertDialog.show({
-      message: message,
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```

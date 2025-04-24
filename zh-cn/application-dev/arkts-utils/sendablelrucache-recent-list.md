@@ -59,8 +59,6 @@
    ```ts
    // Book1.ets
 
-   import { router } from '@kit.ArkUI';
-
    @Entry
    @Component
    struct Index1 {
@@ -82,9 +80,7 @@
            .padding(10)
            .fontWeight(FontWeight.Bold)
            .onClick(() => {
-             router.pushUrl({
-               url: 'pages/Index',
-             });
+             this.getUIContext().getRouter().pushUrl({ url: 'pages/Index' });
            })
        }
        .height('100%')
@@ -94,8 +90,6 @@
    ```
    ```ts
    // Book2.ets
-
-   import { router } from '@kit.ArkUI';
 
    @Entry
    @Component
@@ -118,9 +112,7 @@
            .padding(10)
            .fontWeight(FontWeight.Bold)
            .onClick(() => {
-             router.pushUrl({
-               url: 'pages/Index',
-             });
+             this.getUIContext().getRouter().pushUrl({ url: 'pages/Index' });
            })
        }
        .height('100%')
@@ -130,8 +122,6 @@
    ```
    ```ts
    // Book3.ets
-
-   import { router } from '@kit.ArkUI';
 
    @Entry
    @Component
@@ -154,9 +144,7 @@
            .padding(10)
            .fontWeight(FontWeight.Bold)
            .onClick(() => {
-             router.pushUrl({
-               url: 'pages/Index',
-             });
+             this.getUIContext().getRouter().pushUrl({ url: 'pages/Index' });
            })
        }
        .height('100%')
@@ -166,8 +154,6 @@
    ```
    ```ts
    // Book4.ets
-
-   import { router } from '@kit.ArkUI';
 
    @Entry
    @Component
@@ -190,9 +176,7 @@
            .padding(10)
            .fontWeight(FontWeight.Bold)
            .onClick(() => {
-             router.pushUrl({
-               url: 'pages/Index',
-             });
+             this.getUIContext().getRouter().pushUrl({ url: 'pages/Index' });
            })
        }
        .height('100%')
@@ -220,7 +204,6 @@
    // Index.ets
 
    import { taskpool } from '@kit.ArkTS';
-   import { router } from '@kit.ArkUI';
    import { lruCache } from './LruCache'
 
    @Concurrent
@@ -259,9 +242,7 @@
              let value = await lruCache.get(this.books[3]);
              // 更新最近访问列表
              taskpool.execute(updateBooks, this.books[3], value);
-             router.pushUrl({
-               url: 'pages/' + value,
-             });
+             this.getUIContext().getRouter().pushUrl({ url: 'pages/' + value });
            })
          Button(this.books[2])
            .fontSize(20)
@@ -272,9 +253,7 @@
              let value = await lruCache.get(this.books[2]);
              // 更新最近访问列表
              taskpool.execute(updateBooks, this.books[2], value);
-             router.pushUrl({
-               url: 'pages/' + value,
-             });
+             this.getUIContext().getRouter().pushUrl({ url: 'pages/' + value });
            })
          Button(this.books[1])
            .fontSize(20)
@@ -285,9 +264,7 @@
              let value = await lruCache.get(this.books[1]);
              // 更新最近访问列表
              taskpool.execute(updateBooks, this.books[1], value);
-             router.pushUrl({
-               url: 'pages/' + value,
-             });
+             this.getUIContext().getRouter().pushUrl({ url: 'pages/' + value });
            })
          Button(this.books[0])
            .fontSize(20)
@@ -298,9 +275,7 @@
              let value = await lruCache.get(this.books[0]);
              // 更新最近访问列表
              taskpool.execute(updateBooks, this.books[0], value);
-             router.pushUrl({
-               url: 'pages/' + value,
-             });
+             this.getUIContext().getRouter().pushUrl({ url: 'pages/' + value });
            })
        }
        .height('100%')

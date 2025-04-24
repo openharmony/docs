@@ -1007,12 +1007,12 @@ struct ImageExample4 {
     }
   }
   private async getPixmapFromMedia(resource: Resource) {
-    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
       bundleName: resource.bundleName,
       moduleName: resource.moduleName,
       id: resource.id
     })
-    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+    let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength))
     let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
     })
@@ -1177,12 +1177,12 @@ struct ImageExample {
   }
 
   private async getPixmapListFromMedia(resource: Resource) {
-    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
       bundleName: resource.bundleName,
       moduleName: resource.moduleName,
       id: resource.id
     })
-    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+    let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength))
     let createPixelMap: Array<image.PixelMap> = await imageSource.createPixelMapList({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
     })
@@ -1191,12 +1191,12 @@ struct ImageExample {
   }
 
   private async getPixmapFromMedia(resource: Resource) {
-    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
       bundleName: resource.bundleName,
       moduleName: resource.moduleName,
       id: resource.id
     })
-    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+    let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength))
     let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
     })
@@ -1377,7 +1377,7 @@ import { curves } from '@kit.ArkUI';
 @Entry
 @Component
 struct ImageExample11 {
-  private curve = curves.cubicBezier(0.33, 0, 0.67, 1);
+  private curve = curves.cubicBezierCurve(0.33, 0, 0.67, 1);
   @State moveImg: string[] = ['imageScanEffect'];
   @State moveImgVisible: Visibility = Visibility.Visible;
   @State durationTime: number = 1500;
@@ -1396,7 +1396,7 @@ struct ImageExample11 {
     setTimeout(() => {
       this.imgResource = $r('app.media.img');
     }, 3000);
-    animateTo({
+    this.getUIContext()?.animateTo({
       duration: this.durationTime,
       curve: this.curve,
       tempo: 1,
@@ -1665,9 +1665,9 @@ struct Index {
   @State bright: number = 0; // 默认亮度为0
   aboutToAppear(): void {
     // 获取资源管理器中的媒体资源
-    let img = getContext().resourceManager.getMediaByNameSync(this.imgUrl);
+    let img = this.getUIContext().getHostContext()?.resourceManager.getMediaByNameSync(this.imgUrl);
     // 创建图片源并获取图片信息
-    let imageSource = image.createImageSource(img.buffer.slice(0));
+    let imageSource = image.createImageSource(img?.buffer.slice(0));
     let imageInfo = imageSource.getImageInfoSync();
     // 检查图片信息是否获取成功
     if (imageInfo == undefined) {
@@ -1687,7 +1687,7 @@ struct Index {
       Button("图片动态提亮 0->1")  
         .onClick(() => {
           // 动画过渡，切换亮度值
-          animateTo({}, () => {
+          this.getUIContext()?.animateTo({}, () => {
             this.bright = 1.0 - this.bright;
           })
         })

@@ -185,7 +185,7 @@
 | [ArkUI_TextAlignment](#arkui_textalignment) { ARKUI_TEXT_ALIGNMENT_START = 0, ARKUI_TEXT_ALIGNMENT_CENTER, ARKUI_TEXT_ALIGNMENT_END, ARKUI_TEXT_ALIGNMENT_JUSTIFY } | 定义字体水平对齐样式枚举值。  | 
 | [ArkUI_EnterKeyType](#arkui_enterkeytype) {<br/>ARKUI_ENTER_KEY_TYPE_GO = 2, ARKUI_ENTER_KEY_TYPE_SEARCH = 3, ARKUI_ENTER_KEY_TYPE_SEND, ARKUI_ENTER_KEY_TYPE_NEXT,<br/>ARKUI_ENTER_KEY_TYPE_DONE, ARKUI_ENTER_KEY_TYPE_PREVIOUS, ARKUI_ENTER_KEY_TYPE_NEW_LINE<br/>} | 定义单行文本输入法回车键类型枚举值。  | 
 | [ArkUI_TextInputType](#arkui_textinputtype) {<br/>ARKUI_TEXTINPUT_TYPE_NORMAL = 0, ARKUI_TEXTINPUT_TYPE_NUMBER = 2, ARKUI_TEXTINPUT_TYPE_PHONE_NUMBER = 3, ARKUI_TEXTINPUT_TYPE_EMAIL = 5,<br/>ARKUI_TEXTINPUT_TYPE_PASSWORD = 7, ARKUI_TEXTINPUT_TYPE_NUMBER_PASSWORD = 8, ARKUI_TEXTINPUT_TYPE_SCREEN_LOCK_PASSWORD = 9, ARKUI_TEXTINPUT_TYPE_USER_NAME = 10,<br/>ARKUI_TEXTINPUT_TYPE_NEW_PASSWORD = 11, ARKUI_TEXTINPUT_TYPE_NUMBER_DECIMAL = 12, ARKUI_TEXTINPUT_TYPE_ONE_TIME_CODE = 14<br/>} | 定义单行文本输入法类型枚举值。  | 
-| [ArkUI_TextAreaType](#arkui_textareatype) { ARKUI_TEXTAREA_TYPE_NORMAL = 0, ARKUI_TEXTAREA_TYPE_NUMBER = 2, ARKUI_TEXTAREA_TYPE_PHONE_NUMBER = 3, ARKUI_TEXTAREA_TYPE_EMAIL = 5 } | 定义多行文本输入法类型枚举值。  | 
+| [ArkUI_TextAreaType](#arkui_textareatype) { ARKUI_TEXTAREA_TYPE_NORMAL = 0, ARKUI_TEXTAREA_TYPE_NUMBER = 2, ARKUI_TEXTAREA_TYPE_PHONE_NUMBER = 3, ARKUI_TEXTAREA_TYPE_EMAIL = 5, ARKUI_TEXTAREA_TYPE_ONE_TIME_CODE = 14 } | 定义多行文本输入法类型枚举值。  | 
 | [ArkUI_CancelButtonStyle](#arkui_cancelbuttonstyle) { ARKUI_CANCELBUTTON_STYLE_CONSTANT = 0, ARKUI_CANCELBUTTON_STYLE_INVISIBLE, ARKUI_CANCELBUTTON_STYLE_INPUT } | 定义清除按钮样式枚举值。  | 
 | [ArkUI_XComponentType](#arkui_xcomponenttype) { ARKUI_XCOMPONENT_TYPE_SURFACE = 0, ARKUI_XCOMPONENT_TYPE_TEXTURE = 2 } | 定义XComponent类型枚举值。  | 
 | [ArkUI_ProgressType](#arkui_progresstype) {<br/>ARKUI_PROGRESS_TYPE_LINEAR = 0, ARKUI_PROGRESS_TYPE_RING, ARKUI_PROGRESS_TYPE_ECLIPSE, ARKUI_PROGRESS_TYPE_SCALE_RING,<br/>ARKUI_PROGRESS_TYPE_CAPSULE<br/>} | 定义进度条类型枚举值。  | 
@@ -3663,7 +3663,7 @@ enum ArkUI_NodeAttributeType
 | NODE_CALENDAR_PICKER_TEXT_STYLE  | 设置日历选择器入口区的文本颜色、字号、字体粗细。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0]?.u32： 入口区的文本颜色。<br/>.value[1]?.f32： 入口区的文本字号，单位为fp。<br/>.value[2]?.i32： 入口区的文本字体粗细，参数类型[ArkUI_FontWeight](#arkui_fontweight)。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32： 入口区的文本颜色。<br/>.value[1].f32： 入口区的文本字号，单位为fp。<br/>.value[2].i32： 入口区的文本字体粗细，参数类型[ArkUI_FontWeight](#arkui_fontweight)。 | 
 | NODE_CALENDAR_PICKER_START | 设置日历选择器的开始日期。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：开始日期字符串。<br/>设置开始日期格式："2025-02-14"。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：开始日期字符串。<br/>**起始版本：** 18 |
 | NODE_CALENDAR_PICKER_END  | 设置日历选择器的结束日期。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：结束日期字符串。<br/>设置结束日期格式："2025-02-27"。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：结束日期字符串。<br/>**起始版本：** 18 |
-| NODE_CALENDAR_PICKER_DISABLED_DATE_RANGE  | 设置日历选择器的禁用日期区间。支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：禁用日期区间字符串。禁用日期区间："第一个区间开始日期,第一个区间结束日期,第二个区间开始日期,第二个区间结束日期,...,第n个区间开始日期,第n个区间结束日期"。<br/>设置的禁用日期区间格式："1910-01-01,1910-12-31,2020-01-01,2020-12-31"。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>string：禁用日期区间字符串。<br/>**起始版本：** 18 |
+| NODE_CALENDAR_PICKER_DISABLED_DATE_RANGE  | 设置日历选择器的禁用日期区间。支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：禁用日期区间字符串。禁用日期区间："第一个区间开始日期，第一个区间结束日期，第二个区间开始日期，第二个区间结束日期，...，第n个区间开始日期，第n个区间结束日期"。<br/>设置的禁用日期区间格式："1910-01-01，1910-12-31，2020-01-01，2020-12-31"。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>string：禁用日期区间字符串。<br/>**起始版本：** 18 |
 | NODE_CALENDAR_PICKER_MARK_TODAY  | 设置日历选择器在系统当前日期时，是否保持高亮显示。支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：true代表日历选择器在系统当前日期时，保持高亮显示。false代表日历选择器在系统当前日期时，不保持高亮显示。默认值：false。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：1代表日历选择器在系统当前日期时，保持高亮显示。0代表日历选择器在系统当前日期时，不保持高亮显示。<br/>**起始版本：** 18 |
 | NODE_SLIDER_BLOCK_COLOR  | Slider滑块的颜色，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].u32：滑块的颜色, 类型为0xargb，如0xFF1122FF。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：滑块的颜色, 类型为0xargb，如0xFF1122FF。 | 
 | NODE_SLIDER_TRACK_COLOR  | Slider滑轨的背景颜色，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].u32：背景颜色, 类型为0xargb，如0xFF1122FF。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：背景颜色, 类型为0xargb，如0xFF1122FF。 | 
@@ -4694,6 +4694,7 @@ enum ArkUI_TextAreaType
 | ARKUI_TEXTAREA_TYPE_NUMBER  | 纯数字模式。  | 
 | ARKUI_TEXTAREA_TYPE_PHONE_NUMBER  | 电话号码输入模式。  | 
 | ARKUI_TEXTAREA_TYPE_EMAIL  | 邮箱地址输入模式。  | 
+| ARKUI_TEXTAREA_TYPE_ONE_TIME_CODE  | 验证码输入模式。<br/>**起始版本：** 20  | 
 
 
 ### ArkUI_TextCase
@@ -4897,7 +4898,7 @@ enum ArkUI_TextInputType
 | ARKUI_TEXTINPUT_TYPE_USER_NAME  | 用户名输入模式。  | 
 | ARKUI_TEXTINPUT_TYPE_NEW_PASSWORD  | 新密码输入模式。  | 
 | ARKUI_TEXTINPUT_TYPE_NUMBER_DECIMAL  | 带小数点的数字输入模式。  | 
-| ARKUI_TEXTINPUT_TYPE_ONE_TIME_CODE  | 验证码输入模式。  | 
+| ARKUI_TEXTINPUT_TYPE_ONE_TIME_CODE  | 验证码输入模式。<br/>**起始版本：** 20  | 
 
 
 ### ArkUI_TextOverflow
@@ -18349,7 +18350,7 @@ void OH_ArkUI_TextPickerRangeArray_SetIconAtIndex(ArkUI_TextPickerRangeContentAr
 | -------- | -------- |
 | handle | 指向TextPickerRangeContent数组的指针。|
 | icon | 图片地址。|
-| index | 数组位置,从0开始。|
+| index | 数组位置，从0开始。|
 
 
 ### OH_ArkUI_TextPickerRangeContentArray_SetTextAtIndex()
@@ -18369,7 +18370,7 @@ void OH_ArkUI_TextPickerRangeContentArray_SetTextAtIndex(ArkUI_TextPickerRangeCo
 | -------- | -------- |
 | handle | 指向TextPickerRangeContent数组的指针。|
 | text | 文本内容。|
-| index | 数组位置,从0开始。|
+| index | 数组位置，从0开始。|
 
 
 ### OH_ArkUI_TextPickerRangeContentArray_Destroy()

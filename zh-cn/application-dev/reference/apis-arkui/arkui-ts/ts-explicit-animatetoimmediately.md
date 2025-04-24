@@ -63,7 +63,7 @@ struct AnimateToImmediatelyExample {
             }, () => {
               this.opacitySize = 1
             })
-            animateTo({
+            this.getUIContext()?.animateTo({
               delay: 1000,
               duration: 1000
             }, () => {
@@ -78,7 +78,7 @@ struct AnimateToImmediatelyExample {
               this.widthSize = 250
               this.heightSize = 100
             })
-            animateTo({
+            this.getUIContext()?.animateTo({
               delay: 1000,
               duration: 1000
             }, () => {

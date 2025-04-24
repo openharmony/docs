@@ -1847,7 +1847,8 @@ import { common, Want } from '@kit.AbilityKit';
 @Component
 struct Index {
   @StorageLink('count') count: number = 0;
-  private context: common.UIAbilityContext= getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
   build() {
     Column() {
       Text(`EntryAbility count: ${this.count}`)
@@ -1874,7 +1875,8 @@ import { common, Want } from '@kit.AbilityKit';
 @Component
 struct Index1 {
   @StorageLink('count') count: number = 0;
-  private context: common.UIAbilityContext= getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
   build() {
     Column() {
       Text(`EntryAbility1 count: ${this.count}`)
@@ -1910,7 +1912,8 @@ export class MyStorage {
 @ComponentV2
 struct Index {
   @Local storage: MyStorage = AppStorageV2.connect(MyStorage, 'storage', () => new MyStorage())!;
-  private context: common.UIAbilityContext= getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
   build() {
     Column() {
       Text(`EntryAbility1 count: ${this.storage.count}`)
@@ -1944,7 +1947,8 @@ export class MyStorage {
 @ComponentV2
 struct Index1 {
   @Local storage: MyStorage = AppStorageV2.connect(MyStorage, 'storage', () => new MyStorage())!;
-  private context: common.UIAbilityContext= getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
     build() {
       Column() {
         Text(`EntryAbility1 count: ${this.storage.count}`)
@@ -1975,7 +1979,8 @@ import { common, Want } from '@kit.AbilityKit';
 @Component
 struct Index {
   @StorageProp('count') count: number = 0;
-  private context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
   build() {
     Column() {
       Text(`EntryAbility count: ${this.count}`)
@@ -2006,7 +2011,8 @@ import { common, Want } from '@kit.AbilityKit';
 @Component
 struct Index1 {
   @StorageProp('count') count: number = 0;
-  private context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
   build() {
     Column() {
       Text(`EntryAbility1 count: ${this.count}`)
@@ -2047,7 +2053,7 @@ export class MyStorage {
 struct Index {
   @Local storage: MyStorage = AppStorageV2.connect(MyStorage, 'storage', () => new MyStorage())!;
   @Local count: number = this.storage.count;
-  private context: common.UIAbilityContext= getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   @Monitor('storage.count')
   onCountChange(mon: IMonitor) {
@@ -2091,7 +2097,7 @@ export class MyStorage {
 struct Index1 {
   @Local storage: MyStorage = AppStorageV2.connect(MyStorage, 'storage', () => new MyStorage())!;
   @Local count: number = this.storage.count;
-  private context: common.UIAbilityContext= getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   @Monitor('storage.count')
   onCountChange(mon: IMonitor) {

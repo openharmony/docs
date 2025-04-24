@@ -51,7 +51,7 @@ $ hitrace -l
        animation - Animation
              app - APP Module
              ark - ARK Module
-       bluetooth - communicatio bluetooth
+       bluetooth - communication bluetooth
            cloud - Cloud subsystem tag
        cloudfile - Cloud file system
       commercial - Commercial version tag
@@ -64,7 +64,7 @@ $ hitrace -l
            dhfwk - Distributed Hardware FWK
           dinput - Distributed Input
             disk - Disk I/O
-istributeddatamgr - Distributed Data Manager
+distributeddatamgr - Distributed Data Manager
           dlpcre - Dlp Credential Service
              drm - Digital Rights Management
           dsched - Distributed Schedule
@@ -237,7 +237,7 @@ $ hitrace --start_bgsrv
 
 ### 快照模式导出trace
 
-默认将二进制格式的trace信息保存到`/data/log/hitrace/`文件夹下，文件命名格式为`trace-YYMMDDHHmmSS@[BOOT_TIME].sys`。可以使用[HiSmartPerf](https://gitee.com/openharmony/developtools_smartperf_host)工具进行可视化trace分析。工具下载链接：[developtools_smartperf_host 发行版](https://gitee.com/openharmony/developtools_smartperf_host/releases)。
+默认将二进制格式的trace信息保存到`/data/log/hitrace/`文件夹下，文件命名格式为`trace-YYMMDDHHmmSS@[BOOT_TIME].sys`。可以使用[HiSmartPerf](https://gitee.com/openharmony/developtools_smartperf_host)工具进行可视化trace分析。工具下载链接：[developtools_smartperf_host官方发行版](https://gitee.com/openharmony/developtools_smartperf_host/releases)。
 
 ```shell
 hitrace --dump_bgsrv
@@ -311,7 +311,7 @@ $ hitrace --trace_finish_nodump
 
 打点级别优先级从高到低分别为 `M`(commercial)、`C`（critical）、`I`（info）、`D`（debug），低于trace输出级别阈值的打点将不会生效。
 
-开发者可使用带trace级别的打点接口（参考[js-apis-hitracemeter](../reference/apis-performance-analysis-kit/js-apis-hitracemeter.md)和[_hitrace](../reference/apis-performance-analysis-kit/_hitrace.md)中的API version 18的trace打点接口），测试不同阈值下的trace输出情况。
+开发者可使用带trace级别的打点接口（参考[js-apis-hitracemeter](../reference/apis-performance-analysis-kit/js-apis-hitracemeter.md)和[_hitrace](../reference/apis-performance-analysis-kit/_hitrace.md)中的API version 18的trace打点接口），测试不同阈值下的trace输出是否符合预期。
 
 ```shell
 // 查看trace输出级别阈值，打印的为数值，0表示Debug，1表示Info，2表示Critical，3表示Commercial

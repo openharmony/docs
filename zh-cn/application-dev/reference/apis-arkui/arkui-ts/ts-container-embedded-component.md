@@ -194,7 +194,7 @@ onError(callback: ErrorCallback)
   ```ts
   import { UIExtensionContentSession } from '@kit.AbilityKit';
 
-  let storage = LocalStorage.getShared()
+  let storage = new LocalStorage()
 
   @Entry(storage)
   @Component

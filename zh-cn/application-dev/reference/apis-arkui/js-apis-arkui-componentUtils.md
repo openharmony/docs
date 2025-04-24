@@ -206,7 +206,7 @@ struct Utils {
         .key("image_01")
       Button('getRectangleById')
       .onClick(() => {
-        this.value = JSON.stringify(componentUtils.getRectangleById("image_01")) // 建议使用this.getUIContext().getComponentUtils()接口
+        this.value = JSON.stringify(this.getUIContext().getComponentUtils().getRectangleById("image_01")) // 建议使用this.getUIContext().getComponentUtils()接口
       }).margin(10).id('onClick')
       Text(this.value)
         .margin(20)

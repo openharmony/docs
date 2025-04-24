@@ -55,7 +55,7 @@
 
 ## 用户态trace格式说明
 
-### API 18前用户态trace格式
+### API 19前用户态trace格式
 
 | 打点类型          | 开启HiTraceChain时格式                              | 未开启HiTraceChain时格式 |
 | ----------------- | --------------------------------------------------- | ------------------------ |
@@ -109,7 +109,7 @@
 
   `count`与`name`字段之间使用空格进行分隔。
 
-### API 18后用户态trace格式
+### API 19后用户态trace格式
 
 各字段均使用竖线作为分隔符，对后续新增字段，均以**竖线+字段**的方式，追加在当前用户态trace格式的末尾。
 
@@ -169,7 +169,7 @@
 
   > **说明：**
   >
-  > API 18前的trace打点接口没有`level`字段，这些trace打点默认为COMMERCIAL级别打点。
+  > API 19前的trace打点接口没有`level`字段，这些trace打点默认为COMMERCIAL级别打点。
 
 - **%tag**
 
@@ -198,7 +198,7 @@
 实际开发中，如`customCategory`和`customArgs`字段不需要，则传入空字符串（仅开始同步trace打点接口和开始异步trace打点接口涉及这两个字段）。
 针对这两个字段是否为空字符串的情况，以未开启HiTraceChain时的格式为例，进行说明。HiTraceChain具体使用指导请参考[使用HiTraceChain打点](hitracechain-guidelines-arkts.md)。
 
-API 18前的trace打点接口默认将这两个字段视为空字符串。
+API 19前的trace打点接口默认将这两个字段视为空字符串。
 
 - 开始同步trace打点接口
 

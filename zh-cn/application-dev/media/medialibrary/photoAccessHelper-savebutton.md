@@ -12,8 +12,10 @@
 
 ```ts
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { common } from '@kit.AbilityKit';
 
-let context = getContext(this);
+// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 @Entry
 @Component
@@ -55,6 +57,7 @@ struct Index {
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
@@ -72,7 +75,7 @@ struct Index {
           .onClick(async (event, result: SaveButtonOnClickResult) => {
              if (result == SaveButtonOnClickResult.SUCCESS) {
                try {
-                 let context = getContext();
+                 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
                  let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
                  // 需要确保fileUri对应的资源存在。
                  let fileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
@@ -110,8 +113,10 @@ struct Index {
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { fileIo } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
-let context = getContext(this);
+// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {

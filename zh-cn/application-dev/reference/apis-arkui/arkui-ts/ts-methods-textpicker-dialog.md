@@ -108,7 +108,7 @@ struct TextPickerDialogExample {
         Button("TextPickerDialog:" + this.v)
           .margin(20)
           .onClick(() => {
-            TextPickerDialog.show({
+            this.getUIContext().showTextPickerDialog({
               range: this.fruits,
               selected: this.select,
               value: this.v,
