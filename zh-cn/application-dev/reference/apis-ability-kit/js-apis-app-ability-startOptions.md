@@ -25,8 +25,8 @@ import { StartOptions } from '@kit.AbilityKit';
 | withAnimation<sup>11+</sup> | boolean | 否 | 是 | 启动Ability时是否具有动画效果。true表示具有动画效果，false表示不具有动画效果。<br>**约束：**<br>1.该功能仅在2in1和tablet设备上生效。<br>2.调用方与目标方必须为同一应用。 |
 | windowLeft<sup>11+</sup> | number | 否 | 是 | 窗口左边的位置，单位为px。如果设置为负值，系统会默认设置为0。当配置了windowLeft时，建议同时配置windowTop，并设置为正值。 |
 | windowTop<sup>11+</sup> | number | 否 | 是 | 窗口顶部的位置，单位为px。如果设置为负值，系统会默认设置为0。当配置了windowTop时，建议同时配置windowLeft，并设置为正值。 |
-| windowWidth<sup>11+</sup> | number | 否 | 是 | 窗口的宽度，单位为px。 |
-| windowHeight<sup>11+</sup> | number | 否 | 是 | 窗口的高度，单位为px。 |
+| windowWidth<sup>11+</sup> | number | 否 | 是 | 窗口的宽度，单位为px。最小值320vp，最大值1920vp。 |
+| windowHeight<sup>11+</sup> | number | 否 | 是 | 窗口的高度，单位为px。最小值72vp，最大值1920vp。 |
 | processMode<sup>12+</sup> | [contextConstant.ProcessMode](js-apis-app-ability-contextConstant.md#processmode12) | 否 | 是 | 进程模式。<br>**约束：**<br>1.该功能仅在2in1和tablet设备上生效。<br>2.仅在[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1)中生效。<br>3.processMode和startupVisibility必须同时设置。 |
 | startupVisibility<sup>12+</sup> | [contextConstant.StartupVisibility](js-apis-app-ability-contextConstant.md#startupvisibility12) | 是 | 否 | Ability启动后的可见性。<br>**约束：**<br>1.该功能仅在2in1和tablet设备上生效。<br>2.仅在[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1)中生效。<br>3.processMode和startupVisibility必须同时设置。 |
 | startWindowIcon<sup>14+</sup> | [image.PixelMap](../../reference/apis-image-kit/js-apis-image.md#pixelmap7) | 否 | 是 |  在应用内启动UIAbility时，启动页所显示的图标。如果未配置该字段，则默认采用module.json5文件中startWindowIcon字段的配置。<br>**约束：**<br>1.该功能仅在2in1和tablet设备上生效。<br>2.仅在[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1)中生效。<br>3.图片数据大小限制为600M。|
