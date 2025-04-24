@@ -148,17 +148,17 @@ struct Child {
   @State title: string = 'Hello World';
   // 组件生命周期
   aboutToDisappear() {
-    console.info('[lifeCycle] Child aboutToDisappear');
+    console.info('Child aboutToDisappear');
   }
 
   // 组件生命周期
   onDidBuild() {
-    console.info('[lifeCycle] Child onDidBuild');
+    console.info('Child onDidBuild');
   }
 
   // 组件生命周期
   aboutToAppear() {
-    console.info('[lifeCycle] Child aboutToAppear');
+    console.info('Child aboutToAppear');
   }
 
   build() {
@@ -181,23 +181,36 @@ struct Page {
 
   // 只有被@Entry装饰的组件才可以调用页面的生命周期
   onPageShow() {
+    console.info('Page onPageShow');
     this.num = 5;
   }
 
   // 只有被@Entry装饰的组件才可以调用页面的生命周期
   onPageHide() {
-    console.log("Page onPageHide");
+    console.info('Page onPageHide');
   }
 
   // 只有被@Entry装饰的组件才可以调用页面的生命周期
   onBackPress() { // 不设置返回值按照false处理
+    console.info('Page onBackPress');
     this.textColor = Color.Grey;
     this.num = 0;
   }
 
   // 组件生命周期
   aboutToAppear() {
+    console.info('Page aboutToAppear');
     this.textColor = Color.Blue;
+  }
+
+// 组件生命周期
+  onDidBuild() {
+    console.info('Page onDidBuild');
+  }
+
+  // 组件生命周期
+  aboutToDisappear() {
+    console.info('Page aboutToDisappear');
   }
 
   build() {
@@ -216,19 +229,49 @@ struct Page {
 }
 ```
 
-以上示例中，Index页面包含两个自定义组件，一个是被\@Entry装饰的MyComponent，也是页面的入口组件，即页面的根节点；一个是Child，是MyComponent的子组件。只有\@Entry装饰的节点才可以使页面级别的生命周期方法生效，因此在MyComponent中声明当前Index页面的页面生命周期函数（onPageShow / onPageHide / onBackPress）。MyComponent和其子组件Child分别声明了各自的组件级别生命周期函数（aboutToAppear / onDidBuild/aboutToDisappear）。
+以上示例中，Index页面包含两个自定义组件，一个是被\@Entry装饰的MyComponent，也是页面的入口组件，即页面的根节点；一个是Child，是MyComponent的子组件。只有\@Entry装饰的节点才可以使页面级别的生命周期方法生效，因此在MyComponent中声明当前Index页面的页面生命周期函数（onPageShow / onPageHide / onBackPress）。MyComponent和其子组件Child分别声明了各自的组件级别生命周期函数（aboutToAppear / onDidBuild / aboutToDisappear）。
 
+- 应用冷启动的初始化流程为：MyComponent aboutToAppear --&gt; MyComponent build --&gt; MyComponent onDidBuild --&gt; Child aboutToAppear --&gt; Child build --&gt; Child onDidBuild --&gt; Index onPageShow。此时日志输出信息如下：
 
-- 应用冷启动的初始化流程为：MyComponent aboutToAppear --&gt; MyComponent build --&gt; MyComponent onDidBuild--&gt; Child aboutToAppear --&gt; Child build --&gt; Child onDidBuild --&gt; Index onPageShow。
+```ts
+MyComponent aboutToAppear
+MyComponent onDidBuild
+Child aboutToAppear
+Child onDidBuild
+Index onPageShow
+```
 
 - 点击“delete Child”，if绑定的this.showChild变成false，删除Child组件，会执行Child aboutToDisappear方法。
 
 
 - 点击“push to next page”，调用router.pushUrl接口，跳转到另外一个页面，当前Index页面隐藏，执行页面生命周期Index onPageHide。此处调用的是router.pushUrl接口，Index页面被隐藏，并没有销毁，所以只调用onPageHide。跳转到新页面后，执行初始化新页面的生命周期的流程。
 
-- 如果调用的是router.replaceUrl，则当前Index页面被销毁，上文已经提到，组件的销毁是从组件树上直接摘下子树，所以执行的生命周期流程将变为：新页面的初始化生命周期流程，然后执行Index onPageHide --&gt; MyComponent aboutToDisappear --&gt; Child aboutToDisappear。
+- 如果调用的是router.replaceUrl，则当前Index页面被销毁，上文已经提到，组件的销毁是从组件树上直接摘下子树，所以执行的生命周期流程将变为：Page aboutToAppear --&gt; Page build --&gt; Page onDidBuild --&gt; Index onPageHide --&gt; Page onPageShow --&gt; MyComponent aboutToDisappear --&gt; Child aboutToDisappear。此时日志输出信息如下：
 
-- 点击返回按钮，触发页面生命周期Index onBackPress，且触发返回一个页面后会导致当前Index页面被销毁。
+```ts
+Page aboutToAppear
+Page onDidBuild
+Index onPageHide
+Page onPageShow
+MyComponent aboutToDisappear
+Child aboutToDisappear
+```
+
+- 如果当前页面在Index页，点击返回按钮，触发页面生命周期Index onBackPress，若onBackPress使用默认false返回值，则触发返回后会导致当前Index页面被隐藏，执行页面生命周期Index onPageHide。此时日志输出信息如下：
+
+```ts
+Index onBackPress
+Index onPageHide
+```
+
+- 如果当前页面在Page页，点击返回按钮，触发页面生命周期Page onBackPress，若onBackPress使用默认false返回值，则触发返回后会导致当前Page页面被销毁，执行页面生命周期Page onPageHide和Page aboutToDisappear。相关日志输出信息如下：
+
+```ts
+Page onBackPress
+Page onPageHide
+Index onPageShow
+Page aboutToDisappear
+```
 
 - 最小化应用或者应用进入后台，触发Index onPageHide。当前Index页面没有被销毁，所以并不会执行组件的aboutToDisappear。应用回到前台，执行Index onPageShow。
 
