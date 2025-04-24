@@ -1,6 +1,9 @@
 # Using AVScreenCapture to Capture Screens and Obtain Streams (C/C++)
 
-Screen capture is mainly used to record the main screen.
+Screen recording enables you to capture screen data for various applications like screen recording, conference sharing, and live streaming. The stream data captured through screen recording can be processed differently based on the use case. For example:
+- You can connect to NativeImage as the consumer to provide a surface associated with an OpenGL external texture. For details, see [Native Image Development (C/C++)](../../graphics/native-image-guidelines.md).
+- You can connect to encoders and muxers to encode and multiplex the data. For detailed usage, see [Video Encoding](../avcodec/video-encoding.md) and [Media Data Multiplexing](../avcodec/audio-video-muxer.md).
+<!--RP1--><!--RP1End-->
 
 You can call the C APIs of the [AVScreenCapture](media-kit-intro.md#avscreencapture) module to record the screen and collect audio and video source data output by the device and microphone. When developing a live streaming or an office application, you can call the APIs to obtain original audio and video streams and transfer the streams to other modules for processing. In this way, the home screen can be shared during live streaming.
 
@@ -79,7 +82,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     OH_AVScreenCapture_Init(capture, config);
     ```
 
-5. (Optional) Enable the microphone.  
+5. (Optional) Enable the microphone.
 
     ```c++
     bool isMic = true;
@@ -235,8 +238,8 @@ This section describes how to set screen capture parameters, set callback functi
         (void)userData;
     }
 
-    // OnStageChange(), a callback function invoked when the state changes.
-    void OnStageChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
+    // OnStateChange(), a callback function invoked when the state changes.
+    void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
         (void)capture;
         if (stateCode == OH_SCREEN_CAPTURE_STATE_STARTED) {
             // Process the screen capture start event.
@@ -390,8 +393,8 @@ void OnError(OH_AVScreenCapture *capture, int32_t errorCode, void *userData) {
     (void)userData;
 }
 
-// OnStageChange(), a callback function invoked when the state changes.
-void OnStageChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
+// OnStateChange(), a callback function invoked when the state changes.
+void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
     (void)capture;
     if (stateCode == OH_SCREEN_CAPTURE_STATE_STARTED) {
         // Process the screen capture start event.
@@ -427,6 +430,7 @@ void OnStageChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCo
 }
 
 // Obtain and process the OnBufferAvailable() callback function of the original audio and video stream data.
+bool IsCaptureStreamRunning = true;
 void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer, OH_AVScreenCaptureBufferType bufferType, int64_t timestamp, void *userData) {
     // Screen capture is in progress.
     if (IsCaptureStreamRunning) {

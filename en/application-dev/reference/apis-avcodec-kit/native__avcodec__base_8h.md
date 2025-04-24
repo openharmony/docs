@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **native_avcodec_base.h** file declares the native APIs used for basic audio and video muxing, demuxing, encoding, and decoding.
+The **native_avcodec_base.h** file declares the native APIs used for basic audio and video multiplexing, demultiplexing, encoding, and decoding.
 
 **Library**: libnative_media_codecbase.so
 
@@ -101,12 +101,12 @@ The **native_avcodec_base.h** file declares the native APIs used for basic audio
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_MPEG](_codec_base.md#oh_avcodec_mimetype_audio_mpeg) | Pointer to the key that describes the MIME type of the MP3 audio decoder.| 
 | const char \* [OH_AVCODEC_MIMETYPE_VIDEO_HEVC](_codec_base.md#oh_avcodec_mimetype_video_hevc) | Pointer to the key that describes the MIME type of HEVC (H.265) video codec.| 
 | const char \* [OH_AVCODEC_MIMETYPE_VIDEO_H263](_codec_base.md#oh_avcodec_mimetype_video_h263) | Pointer to the key that describes the MIME type of H.263 video codec.                    |
-| const char \* [OH_AVCODEC_MIMETYPE_VIDEO_MPEG4](_codec_base.md#oh_avcodec_mimetype_video_mpeg4) | Pointer to the key that describes the MIME type of the MPEG4 video encoder, which is used only for muxing MPEG4 video streams.| 
+| const char \* [OH_AVCODEC_MIMETYPE_VIDEO_MPEG4](_codec_base.md#oh_avcodec_mimetype_video_mpeg4) | Pointer to the key that describes the MIME type of the MPEG4 video encoder, which is used only for multiplexing MPEG4 video streams.| 
 | const char \* [OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2](_codec_base.md#oh_avcodec_mimetype_video_mpeg4_part2) | Pointer to the key that describes the MIME type of MPEG4 Part 2 video codec.| 
 | const char \* [OH_AVCODEC_MIMETYPE_VIDEO_MPEG2](_codec_base.md#oh_avcodec_mimetype_video_mpeg2) | Pointer to the key that describes the MIME type of MPEG2 video codec.| 
-| const char \* [OH_AVCODEC_MIMETYPE_IMAGE_JPG](_codec_base.md#oh_avcodec_mimetype_image_jpg) | Pointer to the key that describes the MIME type of the JPG image encoder, which is used only for muxing JPG covers.| 
-| const char \* [OH_AVCODEC_MIMETYPE_IMAGE_PNG](_codec_base.md#oh_avcodec_mimetype_image_png) | Pointer to the key that describes the MIME type of the PNG image encoder, which is used only for muxing PNG covers.| 
-| const char \* [OH_AVCODEC_MIMETYPE_IMAGE_BMP](_codec_base.md#oh_avcodec_mimetype_image_bmp) | Pointer to the key that describes the MIME type of the BMP image encoder, which is used only for muxing BMP covers.| 
+| const char \* [OH_AVCODEC_MIMETYPE_IMAGE_JPG](_codec_base.md#oh_avcodec_mimetype_image_jpg) | Pointer to the key that describes the MIME type of the JPG image encoder, which is used only for multiplexing JPG covers.| 
+| const char \* [OH_AVCODEC_MIMETYPE_IMAGE_PNG](_codec_base.md#oh_avcodec_mimetype_image_png) | Pointer to the key that describes the MIME type of the PNG image encoder, which is used only for multiplexing PNG covers.| 
+| const char \* [OH_AVCODEC_MIMETYPE_IMAGE_BMP](_codec_base.md#oh_avcodec_mimetype_image_bmp) | Pointer to the key that describes the MIME type of the BMP image encoder, which is used only for multiplexing BMP covers.| 
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_VIVID](_codec_base.md#oh_avcodec_mimetype_audio_vivid) | Pointer to the key that describes the MIME type of the Audio Vivid audio decoder. <!--Del-->(This specification is not available yet.)<!--DelEnd-->  | 
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_AMR_NB](_codec_base.md#oh_avcodec_mimetype_audio_amr_nb) | Pointer to the key that describes the MIME type of the AMR-NB audio decoder.| 
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB](_codec_base.md#oh_avcodec_mimetype_audio_amr_wb) | Pointer to the key that describes the MIME type of the AMR-WB audio decoder.| 
@@ -166,7 +166,7 @@ The **native_avcodec_base.h** file declares the native APIs used for basic audio
 | const char \* [OH_MD_MAX_INPUT_BUFFER_COUNT](_codec_base.md#oh_md_max_input_buffer_count) | Pointer to the key that describes the maximum number of input buffers. The value type is int32_t.| 
 | const char \* [OH_MD_MAX_OUTPUT_BUFFER_COUNT](_codec_base.md#oh_md_max_output_buffer_count) | Pointer to the key that describes the maximum number of output buffers. The value type is int32_t.| 
 | const char \* [OH_MD_KEY_AUDIO_COMPRESSION_LEVEL](_codec_base.md#oh_md_key_audio_compression_level) | Pointer to the key that describes the compression level for audio encoding and decoding. The value type is int32_t type. This key is used only for audio encoding.| 
-| const char \* [OH_MD_KEY_VIDEO_IS_HDR_VIVID](_codec_base.md#oh_md_key_video_is_hdr_vivid) | Pointer to the key that describes whether the video track in a media file is HDR Vivid. The value type is int32_t. This key is used for both muxing and demuxing.|
+| const char \* [OH_MD_KEY_VIDEO_IS_HDR_VIVID](_codec_base.md#oh_md_key_video_is_hdr_vivid) | Pointer to the key that describes whether the video track in a media file is HDR Vivid. The value type is int32_t. This key is used for both multiplexing and demultiplexing.|
 | const char \* [OH_MD_KEY_AUDIO_OBJECT_NUMBER](_codec_base.md#oh_md_key_audio_object_number) | Pointer to the key that describes the number of audio objects. The value type is int32_t. This key is used only for Audio Vivid decoding.| 
 | const char \* [OH_MD_KEY_AUDIO_VIVID_METADATA](_codec_base.md#oh_md_key_audio_vivid_metadata) | Pointer to the key that describes the Audio Vivid metadata. The value type is uint8_t\*. This key is used only for Audio Vivid decoding.| 
 | const char \* [OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT](_codec_base.md#oh_feature_property_key_video_encoder_max_ltr_frame_count) | Pointer to the key that describes the maximum number of long-term reference frames obtained during video encoding. The value type is int32_t. | 
