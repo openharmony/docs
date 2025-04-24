@@ -655,15 +655,14 @@ getStyledString(): MutableStyledString
 
 后端返回的文本装饰线样式信息。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| type | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 装饰线类型。 |
-| color | [ResourceColor](ts-types.md#resourcecolor) | 是   | 装饰线颜色。 |
-| style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | 否   | 装饰线样式。 |
+| type | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 装饰线类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| color | [ResourceColor](ts-types.md#resourcecolor) | 是   | 装饰线颜色。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | 否   | 装饰线样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| thicknessScale<sup>20+</sup> | number | 否   | 装饰线粗细缩放比例。<br/>默认值：1.0<br/>**说明：** 负值按0处理<br/> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## LineMetrics<sup>12+</sup>
 
