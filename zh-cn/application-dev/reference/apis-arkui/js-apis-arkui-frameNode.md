@@ -5324,23 +5324,23 @@ class MyNodeController extends NodeController {
   }
 
   onAttach(): void {
-    console.log("Cmw myButton on attach");
+    console.log("myButton on attach");
   }
 
   onDetach(): void {
-    console.log("Cmw myButton on detach");
+    console.log("myButton on detach");
   }
 
   //  onBind时复用
   onBind(containerId: number): void {
     this.rootNode?.reuse();
-    console.log("Cmw myButton reuse");
+    console.log("myButton reuse");
   }
 
   //  onUnbind时回收
   onUnbind(containerId: number): void {
     this.rootNode?.recycle();
-    console.log("Cmw myButton recycle");
+    console.log("myButton recycle");
   }
 
   getButtonNode(): BuilderNode<[Params]> | null {
