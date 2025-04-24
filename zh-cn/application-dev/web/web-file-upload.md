@@ -62,6 +62,7 @@ Web组件支持前端页面选择文件上传功能，应用开发者可以使�
   </body>
   </html>
   ```
+![web-app-document](./figures/web-app-document.gif)
 
 ## 使用onShowFileSelector拉起图库
 
@@ -73,31 +74,33 @@ Web组件支持前端页面选择文件上传功能，应用开发者可以使�
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
-  import { BusinessError } from '@kit.BasicServicesKit';
+  import { picker } from '@kit.CoreFileKit';
   import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: webview.WebviewController = new webview.WebviewController();
+    controller: webview.WebviewController = new webview.WebviewController()
+
+    async selectFile(result: FileSelectorResult): Promise<void> {
+      let photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
+      let photoPicker = new photoAccessHelper.PhotoViewPicker();
+      // 过滤选择媒体文件类型为IMAGE
+      photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
+      // 设置最大选择数量
+      photoSelectOptions.maxSelectNumber = 5;
+      let chooseFile: picker.PhotoSelectResult = await photoPicker.select(photoSelectOptions);
+      // 获取选择的文件列表
+      result.handleFileList(chooseFile.photoUris);
+    }
 
     build() {
       Column() {
         Web({ src: $rawfile('local.html'), controller: this.controller })
           .onShowFileSelector((event) => {
-            console.log('MyFileUploader onShowFileSelector invoked');
-            const photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
-            let uri: string | null = null;
-            const photoViewPicker = new photoAccessHelper.PhotoViewPicker();
-            photoViewPicker.select(photoSelectOptions).then((photoSelectResult) => {
-              uri = photoSelectResult[0];
-              console.info('photoViewPicker.select to file succeed and uri is:' + uri);
-              if (event) {
-                event.result.handleFileList([uri]);
-              }
-            }).catch((err: BusinessError) => {
-              console.error(`Invoke photoViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
-            })
+            if (event) {
+              this.selectFile(event.result);
+            }
             return true;
           })
       }
@@ -123,6 +126,7 @@ Web组件支持前端页面选择文件上传功能，应用开发者可以使�
   </body>
   </html>
   ```
+![web-app-photo](./figures/web-app-photo.gif)
 
 ## 使用onShowFileSelector拉起相机
 
@@ -230,22 +234,24 @@ html页面代码
 
 | accept                      | capture                     | 文件选择器行为                                     |
 | --------------------------- | --------------------------- | -------------------------------------------------- |
-| 仅包含图片类型              | 设置为"environment"或"user" | 直接拉起相机拍照模式                               |
-|                             | 不设置                      | 先拉起弹窗，用户选择拍照后拉起相机拍照模式         |
-| 仅包含视频类型              | 设置为"environment"或"user" | 直接拉起相机录像模式                               |
-|                             | 不设置                      | 先拉起弹窗，用户选择拍照后拉起相机录像模式         |
-| 包含图片和视频类型          | 设置为"environment"或"user" | 直接拉起相机拍照模式，可录像                       |
-|                             | 不设置                      | 先拉起弹窗，用户选择拍照后拉起相机拍照模式，可录像 |
-| 不设置图片或视频类型        | 设置为"environment"或"user" | 直接拉起相机拍照模式，可录像                       |
-|                             | 不设置                      | 先拉起弹窗，用户选择拍照后拉起相机拍照模式，可录像 |
-| 不包含图片或视频类型        | 设置为"environment"或"user" | 直接拉起文件选择，不可拉起相机                      |
-|                             | 不设置                      | 直接拉起文件选择，不可拉起相机                     |
+| 仅包含图片类型              | 设置为"environment"或"user" | 直接拉起相机拍照模式。                             |
+| 仅包含图片类型               | 不设置                      | 先拉起弹窗，用户选择拍照后拉起相机拍照模式。       |
+| 仅包含视频类型              | 设置为"environment"或"user" | 直接拉起相机录像模式。                             |
+| 仅包含视频类型               | 不设置                      | 先拉起弹窗，用户选择拍照后拉起相机录像模式。       |
+| 包含图片和视频类型          | 设置为"environment"或"user" | 直接拉起相机拍照模式，可录像。                     |
+| 包含图片和视频类型            | 不设置                      | 先拉起弹窗，用户选择拍照后拉起相机拍照模式，可录像。 |
+| 不设置图片或视频类型        | 设置为"environment"或"user" | 直接拉起相机拍照模式，可录像。                     |
+| 不设置图片或视频类型          | 不设置                      | 先拉起弹窗，用户选择拍照后拉起相机拍照模式，可录像。 |
+| 不包含图片或视频类型        | 设置为"environment"或"user" | 直接拉起文件选择，不可拉起相机。                    |
+| 不包含图片或视频类型          | 不设置                      | 直接拉起文件选择，不可拉起相机。                   |
 
 > 当前ArkWeb识别的文件类型有
 >  - 图片：tif, xbm, tiff, pjp, jfif, bmp, avif, apng, ico, webp, svg, gif, svgz, jpg, jpeg, png, pjpeg
 >  - 视频：mp4, mpg, mpeg, m4v, ogm, ogv, webm
 
->  **注意：** ArkWeb默认仅拉起相机后置摄像头，值 `'user'`不会被处理成拉起前置摄像头。如有需要，请在应用侧通过[onShowFileSelector()](../reference/apis-arkweb/ts-basic-components-web.md#onshowfileselector9)接口另行处理
+>  **说明：** 
+>
+> ArkWeb默认仅拉起相机后置摄像头，值 `'user'`不会被处理成拉起前置摄像头。如有需要，请在应用侧通过[onShowFileSelector()](../reference/apis-arkweb/ts-basic-components-web.md#onshowfileselector9)接口另行处理
 
 html页面代码
 ```html
