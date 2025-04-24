@@ -159,7 +159,7 @@ FullScreenLaunchComponent不支持通用事件，会将事件经过坐标转换�
 
 - 根据使用方应用的页面以及提供方页面的背景色，更改FullScreenLaunchComponent的背景色（[背景设置](../reference/apis-arkui/arkui-ts/ts-universal-attributes-background.md)），做到在加载过程中配合场景过渡显示，从而实现无跳变感知。
 
-如果消减后效果不能完全满足应用交互诉求，由于跨进程的能力约束，建议应用优先考虑其他方案。
+如果削减后效果不能完全满足应用交互诉求，由于跨进程的能力约束，建议应用优先考虑其他方案。
 
 ### 其他约束
 
