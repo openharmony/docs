@@ -49,11 +49,11 @@ AAC, FLAC, MP3, G.711Mu<!--RP3--><!--RP3End-->
 For details about the development guide, see [Audio Encoding](audio-encoding.md).
 
 
-## Media Data Muxing and Demuxing
+## Media Data Multiplexing and Demultiplexing
 
-### Media Data Demuxing
+### Media Data Demultiplexing
 
-The following container formats are supported:
+The following formats are supported:
 
 | Media Format | Container Format                     | Stream Format                     |
 | -------- | :----------------------------| :----------------------------|
@@ -73,12 +73,12 @@ The following container formats are supported:
 | External subtitle  | srt                        |Subtitle stream: SRT|
 | External subtitle  | webvtt                     |Subtitle stream: WEBVTT|
 
-The DRM demuxing capability supports the following formats: <!--RP10-->mp4 (H.264 and AAC) and mpeg-ts (H.264 and AAC)<!--RP10End-->.
+The DRM demultiplexing capability supports the following formats: <!--RP10-->mp4 (H.264 and AAC) and mpeg-ts (H.264 and AAC)<!--RP10End-->.
 
-For details about the development guide, see [Media Data Demuxing](audio-video-demuxer.md).
+For details about the development guide, see [Media Data Demultiplexing](audio-video-demuxer.md).
 
 
-### Media Data Muxing
+### Media Data Multiplexing
 
 Currently, the following muxer capabilities are supported:
 
@@ -158,4 +158,4 @@ wav container format
    | OH_MD_KEY_CHANNEL_LAYOUT           | Channel layout             |  Optional |
    | OH_MD_KEY_BITRATE                  | Bit rate                 |  Mandatory |
    
-For details about the development guide, see [Media Data Muxing](audio-video-muxer.md).
+For details about the development guide, see [Media Data Multiplexing](audio-video-muxer.md).
