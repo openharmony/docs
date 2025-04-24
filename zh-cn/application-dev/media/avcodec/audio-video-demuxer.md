@@ -340,7 +340,8 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    // 2. 异步调用的方式
    // 为每个线程定义处理函数
    void ReadTrackSamples(OH_AVFormatDemuxer *demuxer, int trackIndex, int buffer_size, 
-                        std::atomic<bool>& isEnd, std::atomic<bool>& threadFinished) {
+                         std::atomic<bool>& isEnd, std::atomic<bool>& threadFinished)
+   {
       // 创建缓冲区
       OH_AVBuffer *buffer = OH_AVBuffer_Create(buffer_size);
       if (buffer == nullptr) {
@@ -361,8 +362,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
                   isEnd.store(true);
                }
                // 处理缓冲区数据（这里可以根据需要实现解码逻辑）
-         }
-         else {
+         } else {
                printf("Read sample failed for track %d\n", trackIndex);
          }
          // 销毁缓冲区
@@ -382,9 +382,9 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    
    // 创建线程
    std::thread audioThread(ReadTrackSamples, demuxer, audioTrackIndex, audioBufferSize, 
-                          std::ref(audioIsEnd), std::ref(audioThreadFinished));
+                           std::ref(audioIsEnd), std::ref(audioThreadFinished));
    std::thread videoThread(ReadTrackSamples, demuxer, videoTrackIndex, videoBufferSize, 
-                          std::ref(videoIsEnd), std::ref(videoThreadFinished));
+                           std::ref(videoIsEnd), std::ref(videoThreadFinished));
    audioThread.join();
    videoThread.join();
    ```
