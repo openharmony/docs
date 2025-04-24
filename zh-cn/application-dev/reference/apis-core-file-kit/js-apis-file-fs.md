@@ -4204,7 +4204,8 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import { common } from '@kit.AbilityKit';
 import { fileIo as fs} from '@kit.CoreFileKit';
 
-let context = getContext(this) as common.UIAbilityContext;
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let pathDir = context.filesDir;
 
 try {
@@ -4246,7 +4247,8 @@ import { common } from '@kit.AbilityKit';
 import { fileIo as fs} from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let context = getContext(this) as common.UIAbilityContext;
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let pathDir = context.filesDir;
 
 try {
@@ -4298,7 +4300,8 @@ import { fileIo as fs} from '@kit.CoreFileKit';
 import { util, buffer } from '@kit.ArkTS';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let context = getContext(this) as common.UIAbilityContext;
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let pathDir = context.filesDir;
 
 try {
@@ -4347,7 +4350,8 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import { common } from '@kit.AbilityKit';
 import { fileIo as fs} from '@kit.CoreFileKit';
 
-let context = getContext(this) as common.UIAbilityContext;
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let pathDir = context.filesDir;
 
 try {
@@ -4381,7 +4385,8 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import { common } from '@kit.AbilityKit';
 import { fileIo as fs} from '@kit.CoreFileKit';
 
-let context = getContext(this) as common.UIAbilityContext;
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let pathDir = context.filesDir;
 
 try {
@@ -4416,7 +4421,8 @@ import { fileIo as fs} from '@kit.CoreFileKit';
 import { util, buffer } from '@kit.ArkTS';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let context = getContext(this) as common.UIAbilityContext;
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let pathDir = context.filesDir;
 
 let file = new fs.AtomicFile(`${pathDir}/write.txt`);
@@ -4449,7 +4455,8 @@ delete(): void
 import { common } from '@kit.AbilityKit';
 import { fileIo as fs} from '@kit.CoreFileKit';
 
-let context = getContext(this) as common.UIAbilityContext;
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let pathDir = context.filesDir;
 
 try {
@@ -4500,6 +4507,9 @@ createWatcher(path: string, events: number, listener: WatchEventListener): Watch
 
   ```ts
   import { fileIo as fs, WatchEvent } from '@kit.CoreFileKit';
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  let pathDir = context.filesDir;
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   let watcher = fs.createWatcher(filePath, 0x2 | 0x10, (watchEvent: WatchEvent) => {
@@ -4579,8 +4589,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 import { fileUri } from '@kit.CoreFileKit';
 import common from '@ohos.app.ability.common';
-let context = getContext(this) as common.UIAbilityContext;
-let pathDir: string = context.filesDir;
+
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let pathDir = context.filesDir;
+
 let srcDirPathLocal: string = pathDir + "/src";
 let dstDirPathLocal: string = pathDir + "/dest";
 let srcDirUriLocal: string = fileUri.getUriFromPath(srcDirPathLocal);
