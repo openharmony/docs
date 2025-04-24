@@ -120,7 +120,7 @@ enableDataDetector(enable: boolean)
 
 该接口依赖设备底层应具有文本识别能力，否则设置不会生效。
 
-当enableDataDetector设置为true且未设置dataDetectorConfig属性时，默认识别所有类型的实体。所识别实体的color和decoration样式如下：
+当enableDataDetector设置为true且未设置dataDetectorConfig属性时，默认识别所有类型的实体。所识别实体的color和decoration会被更改为如下样式：
 
 ```ts
 color: '#ff007dff'
@@ -214,7 +214,7 @@ placeholder(value: ResourceStr, style?: PlaceholderStyle)
 | 参数名 | 类型                                    | 必填 | 说明                                                    |
 | ------ | --------------------------------------- | ---- | ------------------------------------------------------- |
 | value  | [ResourceStr](ts-types.md#resourcestr)  | 是   | 无输入时的提示文本。                                    |
-| style  | [PlaceholderStyle](#placeholderstyle12) | 否   | 提示文本的字体样式。<br />缺省时默认跟随主题。 |
+| style  | [PlaceholderStyle](#placeholderstyle12) | 否   | 提示文本的字体样式。<br/>缺省时默认跟随主题。 |
 
 ### caretColor<sup>12+</sup>
 
@@ -389,7 +389,7 @@ stopBackPress(isStopped: Optional&lt;boolean&gt;)
 
 | 参数名 | 类型                                          | 必填  | 说明                                                                                  |
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
-| isStopped  | Optional&lt;boolean&gt; | 否   | 是否阻止返回键。<br/>默认值：true。<br/>**说明：** <br/>当不设置该属性或设置异常值时，取默认值。
+| isStopped  | Optional&lt;boolean&gt; | 否   | 是否阻止返回键。<br/>默认值：true。<br/>**说明：** <br/>当不设置该属性或设置异常值时，取默认值。|
 
 ## 事件
 
@@ -399,7 +399,7 @@ stopBackPress(isStopped: Optional&lt;boolean&gt;)
 
 onReady(callback:Callback\<void\>)
 
-富文本组件初始化完成触发回调。
+富文本组件初始化完成后触发回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -453,7 +453,7 @@ aboutToIMEInput(callback:Callback\<[RichEditorInsertValue](#richeditorinsertvalu
 
 onDidIMEInput(callback:Callback\<TextRange>)
 
-输入法完成输入内容时，触发回调。
+输入法完成输入内容后，触发回调。
 
 使用[RichEditorStyledStringOptions](#richeditorstyledstringoptions12)构建的RichEditor组件不支持该回调。
 
@@ -528,7 +528,7 @@ onDeleteComplete(callback:Callback\<void\>)
 
 onPaste(callback: [PasteEventCallback](#pasteeventcallback12) )
 
-粘贴前，触发回调。开发者可以通过该方法，覆盖系统默认行为，实现图文的粘贴。
+粘贴时，触发回调。开发者可以通过该方法，覆盖系统默认行为，实现图文的粘贴。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -538,13 +538,13 @@ onPaste(callback: [PasteEventCallback](#pasteeventcallback12) )
 
 | 参数名 | 类型    | 必填 | 说明                          |
 | ------ | ------- | ---- | ----------------------------- |
-| callback | [PasteEventCallback](#pasteeventcallback12) | 是   | 订阅粘贴前的回调。 |
+| callback | [PasteEventCallback](#pasteeventcallback12) | 是   | 订阅粘贴时的回调。 |
 
 ### onSelectionChange<sup>12+</sup>
 
 onSelectionChange(callback:Callback\<[RichEditorRange](#richeditorrange)\>)
 
-当组件内内容选择区域或编辑状态下的光标位置发生变化时，将触发该回调。光标位置变化时，选择区域的起始和终止位置相等。
+当组件内内容选择区域或编辑状态下的光标位置发生变化时，将触发该回调。光标位置变化时，回调中选择区域的起始和终止位置相等。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -644,7 +644,7 @@ onCut(callback: Callback\<CutEvent\>)
 
 onCopy(callback: Callback\<CopyEvent\>)
 
-复制前，触发回调。系统的默认复制行为，只支持纯文本的复制。开发者可以通过该方法，覆盖系统默认行为，实现图文的复制。
+复制时触发回调。系统的默认复制行为，只支持纯文本的复制。开发者可以通过该方法，覆盖系统默认行为，实现图文的复制。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -658,7 +658,7 @@ onCopy(callback: Callback\<CopyEvent\>)
 
 ## RichEditorInsertValue
 
-插入文本。
+插入文本的信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -682,7 +682,7 @@ onCopy(callback: Callback\<CopyEvent\>)
 | offset                | number                                   | 是    | 删除内容的偏移位置。          |
 | direction             | [RichEditorDeleteDirection](#richeditordeletedirection) | 是    | 删除操作的方向。            |
 | length                | number                                   | 是    | 删除内容长度。             |
-| richEditorDeleteSpans | Array<[RichEditorTextSpanResult](#richeditortextspanresult) \| [RichEditorImageSpanResult](#richeditorimagespanresult)> | 是    | 删除的文本或图片Span信息。 |
+| richEditorDeleteSpans | Array<[RichEditorTextSpanResult](#richeditortextspanresult) \| [RichEditorImageSpanResult](#richeditorimagespanresult)> | 是    | 删除的文本或图片Span的信息。 |
 
 
 ## RichEditorDeleteDirection
@@ -1530,7 +1530,7 @@ SymbolSpan样式选项。
 
 继承自[RichEditorSpanStyleOptions](#richeditorspanstyleoptions)。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1544,7 +1544,7 @@ SymbolSpan样式选项。
 
 继承自[RichEditorSpanStyleOptions](#richeditorspanstyleoptions)。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1786,7 +1786,7 @@ RichEditor span信息。
 
 | 名称             | 类型          | 必填   | 说明                            |
 | -------------- | ----------- | ---- | ----------------------------- |
-| preventDefault | Callback\<void\>  | 否    | 阻止系统默认复制操作事件。 |
+| preventDefault | Callback\<void\>  | 否    | 阻止组件的默认复制操作。 |
 
 ## RichEditorGesture<sup>11+</sup>
 
@@ -5017,7 +5017,7 @@ struct richEditorNew03 {
 ![StyledString](figures/builderspan_drag_config.gif)
 
 ### 示例27（文本设置Url样式）
-在addTextSpan、UpdateSpanStyle接口中添加UrlStyle，实现文本点击跳转链接。
+在addTextSpan、UpdateSpanStyle接口中添加UrlStyle，实现文本点击跳转链接的功能。
 
 ```ts
 // xxx.ets
