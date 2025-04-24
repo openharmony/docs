@@ -203,7 +203,7 @@ struct CheckboxExample {
             .checkboxShape(CheckBoxShape.ROUNDED_SQUARE)
             .selectedColor('#007DFF')
             .onChange((itemName: CheckboxGroupResult) => {
-              console.info("checkbox group content" + JSON.stringify(itemName))
+              console.info("checkbox group content" + JSON.stringify(itemName));
             })
           Text('Select All').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
         }
@@ -214,7 +214,7 @@ struct CheckboxExample {
             .selectedColor('#007DFF')
             .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
-              console.info('Checkbox1 change is' + value)
+              console.info('Checkbox1 change is' + value);
             })
           Text('Checkbox1').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
         }.margin({ left: 36 })
@@ -225,7 +225,7 @@ struct CheckboxExample {
             .selectedColor('#007DFF')
             .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
-              console.info('Checkbox2 change is' + value)
+              console.info('Checkbox2 change is' + value);
             })
           Text('Checkbox2').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
         }.margin({ left: 36 })
@@ -236,7 +236,7 @@ struct CheckboxExample {
             .selectedColor('#007DFF')
             .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
-              console.info('Checkbox3 change is' + value)
+              console.info('Checkbox3 change is' + value);
             })
           Text('Checkbox3').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
         }.margin({ left: 36 })
@@ -265,7 +265,7 @@ struct Index {
             .checkboxShape(CheckBoxShape.ROUNDED_SQUARE)
             .selectedColor(Color.Orange)
             .onChange((itemName: CheckboxGroupResult) => {
-              console.info("checkbox group content" + JSON.stringify(itemName))
+              console.info("checkbox group content" + JSON.stringify(itemName));
             })
             .mark({
               strokeColor:Color.Black,
@@ -282,7 +282,7 @@ struct Index {
             .selectedColor(0x39a2db)
             .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
-              console.info('Checkbox1 change is'+ value)
+              console.info('Checkbox1 change is'+ value);
             })
             .mark({
               strokeColor:Color.Black,
@@ -299,7 +299,7 @@ struct Index {
             .selectedColor(0x39a2db)
             .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
-              console.info('Checkbox2 change is' + value)
+              console.info('Checkbox2 change is' + value);
             })
             .width(30)
             .height(30)
@@ -310,7 +310,7 @@ struct Index {
             .selectedColor(0x39a2db)
             .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
-              console.info('Checkbox3 change is' + value)
+              console.info('Checkbox3 change is' + value);
             })
             .width(30)
             .height(30)

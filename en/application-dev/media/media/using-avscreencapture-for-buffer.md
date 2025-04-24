@@ -1,6 +1,9 @@
 # Using AVScreenCapture to Capture Screens and Obtain Streams (C/C++)
 
-Screen capture is mainly used to record the main screen.
+Screen recording enables you to capture screen data for various applications like screen recording, conference sharing, and live streaming. The stream data captured through screen recording can be processed differently based on the use case. For example:
+- You can connect to NativeImage as the consumer to provide a surface associated with an OpenGL external texture. For details, see [Native Image Development (C/C++)](../../graphics/native-image-guidelines.md).
+- You can connect to encoders and muxers to encode and multiplex the data. For detailed usage, see [Video Encoding](../avcodec/video-encoding.md) and [Media Data Multiplexing](../avcodec/audio-video-muxer.md).
+<!--RP1--><!--RP1End-->
 
 You can call the C APIs of the [AVScreenCapture](media-kit-intro.md#avscreencapture) module to record the screen and collect audio and video source data output by the device and microphone. When developing a live streaming or an office application, you can call the APIs to obtain original audio and video streams and transfer the streams to other modules for processing. In this way, the home screen can be shared during live streaming.
 
@@ -79,7 +82,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     OH_AVScreenCapture_Init(capture, config);
     ```
 
-5. (Optional) Enable the microphone.  
+5. (Optional) Enable the microphone.
 
     ```c++
     bool isMic = true;
@@ -120,13 +123,13 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     OH_AVScreenCapture_Release(capture);
     ```
 
-## Specifications for Selecting the Window to Capture on 2-in-1 Devices
-For 2-in-1 devices, a selection page is offered to users for capturing a specific window. To maintain compatibility with the existing interface design, when third-party applications set the screen capture mode to **OH_CAPTURE_SPECIFIED_SCREEN** or **OH_CAPTURE_SPECIFIED_WINDOW**, a picker dialog appears with the designated window ID pre-selected. The content that gets captured ultimately depends on the user's choice within the picker.
+## Specifications for Selecting the Window to Capture on PCs or 2-in-1 Devices
+For PCs or 2-in-1 devices, a selection page is offered to users for capturing a specific window. To maintain compatibility with the existing interface design, when third-party applications set the screen capture mode to **OH_CAPTURE_SPECIFIED_SCREEN** or **OH_CAPTURE_SPECIFIED_WINDOW**, a picker dialog appears with the designated window ID pre-selected. The content that gets captured ultimately depends on the user's choice within the picker.
 
-It is recommended that the selection page be used in **OH_CAPTURE_SPECIFIED_WINDOW** mode. You need to configure the screen capture height and width based on the 2-in-1 device's resolution and pass the display ID (and a window ID if you want to capture a specific window).
+It is recommended that the selection page be used in **OH_CAPTURE_SPECIFIED_WINDOW** mode. You need to configure the screen capture height and width based on the PC's or 2-in-1 device's resolution and pass the display ID (and a window ID if you want to capture a specific window).
 
 ```c++
-// Configure the screen capture width and height in config_ based on the 2-in-1 device's resolution.
+// Configure the screen capture width and height in config_ based on the PC's or 2-in-1 device's resolution.
 config_.videoInfo.videoCapInfo.videoFrameWidth = 2880;
 config_.videoInfo.videoCapInfo.videoFrameHeight = 1920;
 
@@ -144,10 +147,10 @@ The selection page is also compatible with the following screen capture modes:
 
 1. OH_CAPTURE_SPECIFIED_WINDOW mode, with multiple window IDs passed.
 
-    The 2-in-1 device does not display a picker dialog box. Instead, it displays a privacy dialog box to ask for user approval. Multiple windows can be captured at the same time.
+    The PC or 2-in-1 device does not display a picker dialog box. Instead, it displays a privacy dialog box to ask for user approval. Multiple windows can be captured at the same time.
 
     ```c++
-    // Configure the screen capture width and height in config_ based on the 2-in-1 device's resolution.
+    // Configure the screen capture width and height in config_ based on the PC's or 2-in-1 device's resolution.
     config_.videoInfo.videoCapInfo.videoFrameWidth = 2880;
     config_.videoInfo.videoCapInfo.videoFrameHeight = 1920;
 
@@ -163,10 +166,10 @@ The selection page is also compatible with the following screen capture modes:
 
 2. OH_CAPTURE_SPECIFIED_SCREEN mode.
 
-    The 2-in-1 device displays a picker dialog box, with the display (specified by the passed display ID) pre-selected.
+    The PC or 2-in-1 device displays a picker dialog box, with the display (specified by the passed display ID) pre-selected.
 
     ```c++
-    // Configure the screen capture width and height in config_ based on the 2-in-1 device's resolution.
+    // Configure the screen capture width and height in config_ based on the PC's or 2-in-1 device's resolution.
     config_.videoInfo.videoCapInfo.videoFrameWidth = 2880;
     config_.videoInfo.videoCapInfo.videoFrameHeight = 1920;
 
@@ -177,10 +180,10 @@ The selection page is also compatible with the following screen capture modes:
 
 3. OH_CAPTURE_HOME_SCREEN mode.
 
-    The 2-in-1 device does not display a picker dialog box. Instead, it displays a privacy dialog box to ask for user approval.
+    The PC or 2-in-1 device does not display a picker dialog box. Instead, it displays a privacy dialog box to ask for user approval.
 
     ```c++
-    // Configure the screen capture width and height in config_ based on the 2-in-1 device's resolution.
+    // Configure the screen capture width and height in config_ based on the PC's or 2-in-1 device's resolution.
     config_.videoInfo.videoCapInfo.videoFrameWidth = 2880;
     config_.videoInfo.videoCapInfo.videoFrameHeight = 1920;
 
@@ -235,8 +238,8 @@ This section describes how to set screen capture parameters, set callback functi
         (void)userData;
     }
 
-    // OnStageChange(), a callback function invoked when the state changes.
-    void OnStageChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
+    // OnStateChange(), a callback function invoked when the state changes.
+    void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
         (void)capture;
         if (stateCode == OH_SCREEN_CAPTURE_STATE_STARTED) {
             // Process the screen capture start event.
@@ -379,8 +382,8 @@ void OnError(OH_AVScreenCapture *capture, int32_t errorCode, void *userData) {
     (void)userData;
 }
 
-// OnStageChange(), a callback function invoked when the state changes.
-void OnStageChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
+// OnStateChange(), a callback function invoked when the state changes.
+void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
     (void)capture;
     if (stateCode == OH_SCREEN_CAPTURE_STATE_STARTED) {
         // Process the screen capture start event.

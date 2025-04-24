@@ -6,17 +6,25 @@ HiCollie模块对外提供检测业务线程卡死、卡顿，以及上报卡死
 
 | 接口名                          | 描述                              |
 | ------------------------------- | --------------------------------- |
-| OH_HiCollie_Init_StuckDetection | 注册应用业务线程卡死的周期性检测任务。用户实现回调函数，用于定时检测业务线程卡死情况。          |
-| OH_HiCollie_Init_JankDetection | 注册应用业务线程卡顿检测的回调函数。线程卡顿监控功能需要开发者实现两个卡顿检测回调函数，分别放在业务线程处理事件的前后。作为插桩函数，监控业务线程处理事件执行情况。                 |
-| OH_HiCollie_Report | 用于上报应用业务线程卡死事件，生成超时故障日志，辅助定位应用超时问题。结合OH_HiCollie_Init_StuckDetection接口配套使用，先初始化卡死检测，出现卡死时，再上报事件。 |
-
-> **说明：**
->
-> 业务线程卡死故障日志是以appfreeze-开头，生成在”设备/data/log/faultlog/faultlogger/”路径下。该日志文件名格式为“appfreeze-应用包名-应用UID-秒级时间”。具体规格可参考：[appfreeze-应用无响应日志分析](./appfreeze-guidelines.md#应用无响应日志分析)。
->
-> 业务线程卡顿故障日志规格，可参考：[MAIN_THREAD_JANK-主线程超时事件规格](./hiappevent-watcher-mainthreadjank-events.md#主线程超时事件规格)。
+| OH_HiCollie_Init_StuckDetection | 注册应用业务线程卡死的周期性检测任务。用户实现回调函数, 用于定时检测业务线程卡死情况。<br/>默认检测时间：3s上报BUSSINESS_THREAD_BLOCK_3S告警事件，6s上报BUSSINESS_THREAD_BLOCK_6S卡死事件。|
+| OH_HiCollie_Init_JankDetection | 注册应用业务线程卡顿检测的回调函数。<br/>线程卡顿监控功能需要开发者实现两个卡顿检测回调函数，分别放在业务线程处理事件的前后。作为插桩函数，监控业务线程处理事件执行情况。 |
+| OH_HiCollie_Report | 上报应用业务线程卡死事件，生成卡死故障日志，辅助定位应用卡死问题。<br/>先调用OH_HiCollie_Init_StuckDetection接口，初始化检测的task；<br/>如果task任务超时，结合业务逻辑，调用OH_HiCollie_Report接口上报卡死事件。|
 
 API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[HiCollie](../reference/apis-performance-analysis-kit/_hi_collie.md)。
+
+## 检测原理
+
+1. 业务线程卡顿OH_HiCollie_Init_StuckDetection故障规格，请参考[主线程超时事件默认时间规格](./hiappevent-watcher-mainthreadjank-events.md#主线程超时事件默认时间规格)。
+
+2. 业务线程卡死故障：
+
+- OH_HiCollie_Init_StuckDetection检测原理：应用的watchdog线程会周期性进行业务线程判活检测。当判活检测超过3s没有被执行，上报BUSSINESS_THREAD_BLOCK_3S线程告警事件；超过6s依然没有被执行，会上报BUSSINESS_THREAD_BLOCK_6S线程卡死事件。两个事件匹配生成appfreeze故障日志。
+
+### 日志规格
+
+1. 业务线程卡死故障日志以appfreeze-开头，生成在“设备/data/log/faultlog/faultlogger/”路径下。该日志文件名格式为“appfreeze-应用包名-应用UID-秒级时间”。具体规格可参考：[appfreeze-应用无响应日志分析](./appfreeze-guidelines.md#应用无响应日志分析)。
+
+2. OH_HiCollie_Init_StuckDetection日志规格，请参考[主线程超时事件日志规格](./hiappevent-watcher-mainthreadjank-events.md#主线程超时事件日志规格)。
 
 ## 开发步骤
 
@@ -210,7 +218,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
     （1）等待10s，再点击"testHiCollieJankNdk"按钮（线程启动10s内，不进行卡顿检测）。
       此时窗口将显示通过OH_HiCollie_Init_JankDetection接口获取的应用业务线程采样栈的超时信息。
-      生成栈文件目录地址：/data/storage/el2/log/watchdog/MAIN_THREAD_JANK_yyyyMMDDHHmmss_xxxx.txt。xxxx：代表进程pid。
+      生成栈文件目录地址：/data/app/el2/100/log/应用bundle name/watchdog/BUSSINESS_THREAD_JANK_XXX.txt。
 
     （2）点击"testHiCollieStuckNdk"按钮。
       此时窗口将显示通过OH_HiCollie_Init_StuckDetection接口，初始化卡死检测回调函数。可以根据实际业务场景，自行定义卡死检测函数。

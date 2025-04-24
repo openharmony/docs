@@ -5,6 +5,8 @@
 
 提供MindSpore Lite的模型推理相关接口，该模块下的接口是非线程安全的。
 
+**系统能力：** SystemCapability.Ai.MindSpore
+
 **起始版本：** 9
 
 ## 汇总

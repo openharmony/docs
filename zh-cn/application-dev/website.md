@@ -205,7 +205,8 @@
         - [Uniform Type Descriptor(UTD)预置类型列表](database/uniform-data-type-list.md)
       - 应用数据持久化<!--app-data-persistence-->
         - [应用数据持久化概述](database/app-data-persistence-overview.md)
-        - [通过用户首选项实现数据持久化](database/data-persistence-by-preferences.md)
+        - [通过用户首选项实现数据持久化 (ArkTS)](database/data-persistence-by-preferences.md)
+        - [通过用户首选项实现数据持久化 (C/C++)](database/preferences-guidelines.md)
         - [通过键值型数据库实现数据持久化](database/data-persistence-by-kv-store.md)
         - [通过关系型数据库实现数据持久化](database/data-persistence-by-rdb-store.md)
       - 同应用跨设备数据同步（分布式）<!--distributed-data-sync-->
@@ -233,7 +234,6 @@
         - [应用数据向量化](database/aip-data-intelligence-embedding.md)
       - [RelationalStore开发指导 (C/C++)](database/native-relational-store-guidelines.md)
       - [UDMF开发指导 (C/C++)](database/native-unified-data-management-framework-guidelines.md)
-      - [通过用户首选项实现数据持久化 (C/C++)](database/preferences-guidelines.md)
     - ArkTS（方舟编程语言）<!--arkts-->
       - [ArkTS简介](arkts-utils/arkts-overview.md)
       - ArkTS基础类库<!--arkts-utils-->
@@ -320,7 +320,7 @@
           - [方舟字节码函数命名规则](arkts-utils/arkts-bytecode-function-name.md)
           - [编译期自定义修改方舟字节码](arkts-utils/customize-bytecode-during-compilation.md)
         - [Disassembler反汇编工具](arkts-utils/tool-disassembler.md)
-        - ArkGuard源码混淆<!--arkts-arkguard-->
+        - ArkGuard源码混淆工具<!--arkts-arkguard-->
           - [ArkGuard混淆概述](arkts-utils/source-obfuscation-overview.md)
           - [ArkGuard混淆原理及功能](arkts-utils/source-obfuscation.md)
           - [ArkGuard混淆开启指南](arkts-utils/source-obfuscation-guide.md)
@@ -526,7 +526,7 @@
             - [监听组件事件](ui/ndk-listen-to-component-events.md)
             - [绑定手势事件](ui/ndk-bind-gesture-events.md)
           - [使用动画](ui/ndk-use-animation.md)
-          - [使用懒加载开发长列表界面](ui/ndk-loading-long-list.md)
+          - [使用列表](ui/ndk-loading-long-list.md)
           - [构建弹窗](ui/ndk-build-pop-up-window.md)
           - [构建自定义组件](ui/ndk-build-custom-components.md)
           - [嵌入ArkTS组件](ui/ndk-embed-arkts-components.md)
@@ -678,7 +678,8 @@
         - [使用crashpad收集Web组件崩溃信息](web/web-crashpad.md)
     - Background Tasks Kit（后台任务开发服务）<!--background-task-kit-->
       <!--Del-->
-      - 后台任务管理<!--DelEnd-->
+      - 后台任务管理 <!--background-task-management--><!--DelEnd-->
+
         - [后台任务总体概述](task-management/background-task-overview.md)
         - [短时任务(ArkTS)](task-management/transient-task.md)
         - [短时任务(C/C++)](task-management/native-transient-task.md)
@@ -784,7 +785,7 @@
       - [Localization Kit简介](internationalization/i18n-l10n.md)
       - 应用国际化<!--i18n-->
           - [国际化界面设计](internationalization/i18n-ui-design.md)
-          - [区域标识与文化习惯划分](internationalization/i18n-locale-culture.md)
+          - [区域ID与文化习惯划分](internationalization/i18n-locale-culture.md)
           - 设置语言与用户偏好<!--i18n-language-user-preferences-->
               - [设置系统语言与区域](internationalization/i18n-system-language-region.md)
               - [设置应用偏好语言](internationalization/i18n-preferred-language.md)
@@ -3049,14 +3050,14 @@
         - [@ohos.InputMethodExtensionContext (InputMethodExtensionContext)](reference/apis-ime-kit/js-apis-inputmethod-extension-context.md)
         - [@ohos.inputMethod.Panel (输入法面板)](reference/apis-ime-kit/js-apis-inputmethod-panel.md)
         - [@ohos.InputMethodSubtype (输入法子类型)](reference/apis-ime-kit/js-apis-inputmethod-subtype.md)
-        <!--Del-->
+              <!--Del-->
         - [@ohos.inputMethod (输入法框架)(系统接口)](reference/apis-ime-kit/js-apis-inputmethod-sys.md)
-        <!--DelEnd-->
+              <!--DelEnd-->
         - [@ohos.inputMethod (输入法框架)](reference/apis-ime-kit/js-apis-inputmethod.md)
         - [@ohos.inputMethodEngine (输入法服务)](reference/apis-ime-kit/js-apis-inputmethodengine.md)
-        <!--Del-->
+                <!--Del-->
         - [@ohos.inputMethodEngine (输入法服务)(系统接口)](reference/apis-ime-kit/js-apis-inputmethodengine-sys.md)
-         <!--DelEnd-->
+                <!--DelEnd-->
         - [@ohos.inputMethodList (输入法切换列表控件)](reference/apis-ime-kit/js-apis-inputmethodlist.md)
       - C API<!--ime-c-->
         - 模块<!--ime-module-->
@@ -3302,7 +3303,7 @@
           - [@ohos.wifi (WLAN)(待停用)(系统接口)](reference/apis-connectivity-kit/js-apis-wifi-sys.md)
           <!--DelEnd-->
       - Distributed Service Kit（分布式管理服务）<!--distributed-service-api-->
-        - ArkTS API<!--distributed-service-arkts-->
+        - ArkTS API<!--distributed-service-arkts--> 
           - [@ohos.distributedDeviceManager (设备管理)](reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md)
           <!--Del-->
           - [@ohos.distributedHardware.hardwareManager (分布式硬件管理)(系统接口)](reference/apis-distributedservice-kit/js-apis-distributedHardwareManager-sys.md)
@@ -3389,7 +3390,6 @@
           - [流量管理错误码](reference/apis-network-kit/errorcode-net-statistics.md)
           - [VPN错误码](reference/apis-network-kit/errorcode-net-vpn.md)
           - [NetworkSecurity错误码](reference/apis-network-kit/errorcode-net-networkSecurity.md)
-
       - Telephony Kit（蜂窝通信服务）<!--telephony-api-->
         - ArkTS API<!--telephony-arkts-->
           - [@ohos.telephony.call (拨打电话)](reference/apis-telephony-kit/js-apis-call.md)
@@ -3491,10 +3491,10 @@
             - [@ohos.configPolicy (配置策略)(系统接口)](reference/apis-basic-services-kit/js-apis-configPolicy-sys.md)
             - [@ohos.settings (设置数据项名称)(系统接口)](reference/apis-basic-services-kit/js-apis-settings-sys.md)
             - [@ohos.systemDateTime (系统时间、时区)(系统接口)](reference/apis-basic-services-kit/js-apis-system-date-time-sys.md)
-            <!--DelEnd-->
+                    <!--DelEnd-->
             - [@ohos.systemDateTime (系统时间、时区)](reference/apis-basic-services-kit/js-apis-date-time.md)
-            <!--Del-->
-            - [@ohos.wallpaper (壁纸)(系统接口)](reference/apis-basic-services-kit/js-apis-wallpaper-sys.md)
+                    <!--Del-->
+             - [@ohos.wallpaper (壁纸)(系统接口)](reference/apis-basic-services-kit/js-apis-wallpaper-sys.md)
             - [@ohos.WallpaperExtensionAbility (WallpaperExtensionAbility)(系统接口)](reference/apis-basic-services-kit/js-apis-WallpaperExtensionAbility-sys.md)
             - [@ohos.systemTimer (系统定时器)(系统接口)](reference/apis-basic-services-kit/js-apis-system-timer-sys.md)
             <!--DelEnd-->
@@ -3740,7 +3740,6 @@
           - [Sensor错误码](reference/apis-sensor-service-kit/errorcode-sensor.md)
           - [Vibrator错误码](reference/apis-sensor-service-kit/errorcode-vibrator.md)
     - 调测调优<!--system-debug-optimize-api-->
-
       - Performance Analysis Kit（性能分析服务）<!--performance-analysis-api-->
         - ArkTS API<!--performance-analysis-arkts-->
           - [@ohos.faultLogger (故障日志获取)](reference/apis-performance-analysis-kit/js-apis-faultLogger.md)
@@ -4104,6 +4103,9 @@
         - [@ohos.file.PhotoPickerComponent (PhotoPicker组件)](reference/apis-media-library-kit/ohos-file-PhotoPickerComponent.md)
         - [@ohos.file.RecentPhotoComponent (最近图片组件)](reference/apis-media-library-kit/ohos-file-RecentPhotoComponent.md)
         - [@ohos.multimedia.movingphotoview (动态照片)](reference/apis-media-library-kit/ohos-multimedia-movingphotoview.md)
+        <!--Del-->
+        - [@ohos.multimedia.movingphotoview (动态照片)(系统接口)](reference/apis-media-library-kit/ohos-multimedia-movingphotoview-sys.md)
+        <!--DelEnd-->
       - C API<!--media-library-c-->
         - 模块<!--media-library-module-->
           - [MediaAssetManager](reference/apis-media-library-kit/_media_asset_manager.md)
@@ -4119,7 +4121,7 @@
           - [MediaLibrary_RequestOptions](reference/apis-media-library-kit/_media_library___request_options.md)
   - 图形<!--graphics-api-->
     - ArkGraphics 2D（方舟2D图形服务）<!--arkgraphics-api-->
-      - ArkTS API<!--arkgraphics-arkts-->
+      - ArkTS API<!--arkgraphics-arkts--> 
         - [@ohos.effectKit (图像效果)](reference/apis-arkgraphics2d/js-apis-effectKit.md)
         - [@ohos.graphics.colorSpaceManager (色彩管理)](reference/apis-arkgraphics2d/js-apis-colorSpaceManager.md)
         - [@ohos.graphics.sendableColorSpaceManager (可共享的色彩管理)](reference/apis-arkgraphics2d/js-apis-sendableColorSpaceManager.md)
@@ -4251,7 +4253,7 @@
         - [@ohos.identifier.oaid (广告标识服务)(系统接口)](reference/apis-ads-kit/js-apis-oaid-sys.md)
         - 接口依赖的元素及定义<!--ads-api-interface-depend-->
           - advertising<!--ads-advertising-->
-            - [Advertisement](reference/apis-ads-kit/js-apis-inner-advertising-advertisement.md)
+            - [advertisement (广告内容)](reference/apis-ads-kit/js-apis-inner-advertising-advertisement.md)
       - ArkTS组件<!--ads-comp-->
         - [@ohos.advertising.AdComponent (非全屏广告展示组件)](reference/apis-ads-kit/js-apis-adcomponent.md)
         - [@ohos.advertising.AutoAdComponent (轮播广告展示组件)](reference/apis-ads-kit/js-apis-autoadcomponent.md)
@@ -4264,7 +4266,7 @@
         - [@ohos.calendarManager（日程管理）](reference/apis-calendar-kit/js-apis-calendarManager.md)
       - 错误码<!--calendar-arkts-errcode-->
         - [CalendarManager错误码](reference/apis-calendar-kit/errorcode-calendarManager.md)
-    - Contacts Kit（联系人服务）<!--contacts-->
+    - Contacts Kit（联系人服务）<!--contacts-api-->
       - ArkTS API<!--contacts-arkts-->
         - [@ohos.contact (联系人)](reference/apis-contacts-kit/js-apis-contact.md)
       - 错误码<!--contacts-arkts-errcode-->
@@ -4278,7 +4280,7 @@
         - [@ohos.app.ability.FenceExtensionAbility (FenceExtensionAbility)](reference/apis-location-kit/js-apis-app-ability-FenceExtensionAbility.md)
         - [@ohos.app.ability.FenceExtensionContext (FenceExtensionContext)](reference/apis-location-kit/js-apis-app-ability-FenceExtensionContext.md)
         <!--Del-->
-        - [@ohos.app.ability.FenceExtensionContext (FenceExtensionContext系统接口)](reference/apis-location-kit/js-apis-app-ability-FenceExtensionContext-sys.md)
+        - [@ohos.app.ability.FenceExtensionContext (FenceExtensionContext)(系统接口)](reference/apis-location-kit/js-apis-app-ability-FenceExtensionContext-sys.md)
         <!--DelEnd-->
         - 已停止维护的接口<!--location-arkts-dep-->
           - [@ohos.geolocation (位置服务)](reference/apis-location-kit/js-apis-geolocation.md)
@@ -4419,7 +4421,7 @@
       - [Native api中导出的EGL符号列表](reference/native-lib/egl-symbol.md)
       - [Native api中导出的ICU4C符号列表](reference/native-lib/icu4c-symbol.md)
       - [Native api中导出的OpenGL ES 3.2符号列表](reference/native-lib/openglesv3-symbol.md)
-<!--Del-->
+      <!--Del-->
 - 常见问题
   - [如何编译full-SDK](faqs/full-sdk-compile-guide.md)
   - [如何替换full-SDK](faqs/full-sdk-switch-guide.md)

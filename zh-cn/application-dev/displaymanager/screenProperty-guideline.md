@@ -58,7 +58,7 @@ displayClass = display.getDefaultDisplaySync();
    displayClass = display.getDefaultDisplaySync();
    
    // 获取屏幕Id
-   console.info(`The scree Id is ${displayClass.id}.`);
+   console.info(`The screen Id is ${displayClass.id}.`);
    // 获取屏幕刷新率
    console.info(`The screen is ${displayClass.refreshRate}.`);
    // 获取屏幕宽度
@@ -86,10 +86,10 @@ displayClass = display.getDefaultDisplaySync();
    });
    ```
 
-3. 此外，还可以通过display.isCaptured()判断当前设备是都正在截屏、投屏或录屏。
+3. 此外，还可以通过display.isCaptured()判断当前设备是否正在截屏、投屏或录屏。
 
    ```ts
-   console.info(`The sceeen is captured or not : ${display.isCaptured()}`);
+   console.info(`The screen is captured or not : ${display.isCaptured()}`);
    ```
 
 ## 监听屏幕状态变化

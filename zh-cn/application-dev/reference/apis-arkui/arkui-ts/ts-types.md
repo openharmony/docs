@@ -741,7 +741,7 @@ getSelection(): TextRange
 
 | 名称    | 参数类型                                                    | 必填 | 描述                                                         |
 | ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 设置文本装饰线样式。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 设置文本装饰线类型。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | color  | &nbsp;[ResourceColor](#resourcecolor) | 否   | 设置文本装饰线颜色。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | 否   | 设置文本装饰线样式。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
@@ -846,12 +846,12 @@ setTextSelection选中文字时的配置。
 
 | 名称      | 类型   | 只读 | 说明 |
 | --------- | ------ | ---- |---------- |
-| MATCH_PARENT | LayoutPolicy | 是 | 适应父组件布局。 |
+| matchParent | LayoutPolicy | 是 | 适应父组件布局。 |
 
 >  **说明：**
 >
 >  - 当线性布局组件的父容器设定了长度，组件将以父容器的尺寸为基准，自动调整以适应父组件的布局。若父容器未设定长度，线性布局组件则会等待所有子组件完成布局后，再进行自身调整以适应父组件布局。
 > 
->  - 若同一父组件下有多个设置MATCH_PARENT的子组件，则多个子组件均会被设置为父组件大小，也即会产生溢出现象。
+>  - 若同一父组件下有多个设置matchParent的子组件，则多个子组件均会被设置为父组件大小，也即会产生溢出现象。
 > 
->  - MATCH_PARENT会强制将自身大小设置成父组件大小，因此其设置的其他约束大小的属性将会失效。
+>  - matchParent会强制将自身大小设置成父组件大小，因此其设置的其他约束大小的属性将会失效。

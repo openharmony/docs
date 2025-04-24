@@ -3,8 +3,8 @@
 - ArkTS API<!--notification-arkts-->
   - [@ohos.notificationManager (NotificationManager模块)](js-apis-notificationManager.md)
         <!--Del-->
-  - [@ohos.notificationManager (NotificationManager模块)(系统接口)](reference/apis-notification-kit/js-apis-notificationManager-sys.md)
-  - [@ohos.notificationSubscribe (NotificationSubscribe模块)(系统接口)](reference/apis-notification-kit/js-apis-notificationSubscribe-sys.md)
+  - [@ohos.notificationManager (NotificationManager模块)(系统接口)](js-apis-notificationManager-sys.md)
+  - [@ohos.notificationSubscribe (NotificationSubscribe模块)(系统接口)](js-apis-notificationSubscribe-sys.md)
         <!--DelEnd-->
   - notification<!--notification-->
     - [NotificationActionButton](js-apis-inner-notification-notificationActionButton.md)

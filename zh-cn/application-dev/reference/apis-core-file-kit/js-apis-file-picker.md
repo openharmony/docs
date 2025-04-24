@@ -5,6 +5,7 @@
 > 该模块接口从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 选择器(Picker)是一个封装PhotoViewPicker、DocumentViewPicker、AudioViewPicker等API模块，具有选择与保存的能力。应用可以自行选择使用哪种API实现文件选择和文件保存的功能。该类接口，需要应用在界面UIAbility中调用，否则无法拉起photoPicker应用或FilePicker应用。
+调用本模块接口返回的URI数组，路径中如果存在中文及非数字字母的特殊字符，将会被编译成对应的ASCII码，拼接在URI中。
 
 ## 导入模块
 
@@ -778,16 +779,16 @@ async function example18(context: common.Context) { // 需确保 context 由 UIA
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
-| 名称                    | 类型                                          | 必填 | 说明                                       |
-| :---------------------- |---------------------------------------------| ---- |------------------------------------------|
-| maxSelectNumber<sup>10+</sup>       | number                                      | 否   | 选择文件最大个数，上限500，有效值范围1-500（选择目录仅对具有该系统能力的设备开放。且目录选择的最大个数为1）。默认值是1。<br>**系统能力**：SystemCapability.FileManagement.UserFileService  |
-| defaultFilePathUri<sup>10+</sup>    | string                                      | 否   | 指定选择的文件或者目录路径。默认为空（效果为拉起最近打开页）。                            |
-| fileSuffixFilters<sup>10+</sup>     | Array&lt;string&gt;                         | 否   | 选择文件的后缀类型。传入字符串数组，每一项代表一个后缀选项，每一项内部用"\|\"分为两部分，第一部分为描述，第二部分为过滤后缀。没有"\|\"则没有描述，该项整体是一个过滤后缀。每项过滤后缀可以存在多个后缀名，则每一个后缀名之间用英文逗号进行分隔，传入数组长度不能超过100。仅对具有该系统能力的设备开放。默认不过滤，即显示所有文件。<br>**系统能力**：SystemCapability.FileManagement.UserFileService   |
-| selectMode<sup>11+</sup>         | [DocumentSelectMode](#documentselectmode11) | 否   | 仅支持2in1设备。默认值是文件类型。<br>**系统能力**：SystemCapability.FileManagement.UserFileService.FolderSelection  |
-| authMode<sup>12+</sup>    | boolean                              | 否   | 拉起授权picker，默认为false（非授权模式）。当authMode为true时为授权模式，defaultFilePathUri必填，表明待授权uri。仅支持2in1设备。<br>**系统能力**：SystemCapability.FileManagement.UserFileService.FolderSelection  | 
-|multiAuthMode<sup>15+</sup>  | boolean                             |否    | 支持批量授权模式，默认为false（非批量授权模式）。当multAuthMode为true时为批量授权模式。当multAuthMode为true时，只有multiUriArray参数生效，其他参数不生效。仅支持手机设备。<br>**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。|
-|multiUriArray<sup>15+</sup>  | Array&lt;string&gt;                             |否    | 传入需要批量授权的uri数组（仅支持文件，文件夹不生效）。配合multAuthMode使用。当multAuthMode为false时，配置该参数不生效。默认为空（效果为拉起批量授权页面后展示的文件为空）。仅支持手机设备。<br>**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。|
-|mergeMode<sup>15+</sup>  | [MergeTypeMode](#mergetypemode15)                             |否    | 开启聚合视图模式，支持拉起文件管理应用的聚合视图。默认为DEFAULT，表示该参数不生效，非聚合视图。当该参数置为非DEFAULT时，其他参数不生效。仅支持手机设备。<br>**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。|    
+| 名称                    | 类型                                          | 只读 | 可选 | 说明                                       |
+| :---------------------- |---------------------------------------------| ---- | ---- | ------------------------------------------|
+| maxSelectNumber<sup>10+</sup>       | number                                      | 否   | 是 | 选择文件最大个数，上限500，有效值范围1-500（选择目录仅对具有该系统能力的设备开放。且目录选择的最大个数为1）。默认值是1。<br>**系统能力**：SystemCapability.FileManagement.UserFileService  |
+| defaultFilePathUri<sup>10+</sup>    | string                                      | 否   | 是 | 指定选择的文件或者目录路径。默认为空（效果为拉起最近打开页）。                            |
+| fileSuffixFilters<sup>10+</sup>     | Array&lt;string&gt;                         | 否   | 是 | 选择文件的后缀类型。传入字符串数组，每一项代表一个后缀选项，每一项内部用"\|\"分为两部分，第一部分为描述，第二部分为过滤后缀。没有"\|\"则没有描述，该项整体是一个过滤后缀。每项过滤后缀可以存在多个后缀名，则每一个后缀名之间用英文逗号进行分隔，传入数组长度不能超过100。仅对具有该系统能力的设备开放。默认不过滤，即显示所有文件。<br>**系统能力**：SystemCapability.FileManagement.UserFileService   |
+| selectMode<sup>11+</sup>         | [DocumentSelectMode](#documentselectmode11) | 否   | 是 | 仅支持2in1设备。默认值是文件类型。<br>**系统能力**：SystemCapability.FileManagement.UserFileService.FolderSelection  |
+| authMode<sup>12+</sup>    | boolean                              | 否   | 是 | 拉起授权Picker，默认为false（非授权模式）。当authMode为true时为授权模式，defaultFilePathUri必填，表明待授权URI。仅支持2in1设备。<br>**系统能力**：SystemCapability.FileManagement.UserFileService.FolderSelection  | 
+|multiAuthMode<sup>15+</sup>  | boolean                             |否    | 是 | 支持批量授权模式，默认为false（非批量授权模式）。当multAuthMode为true时为批量授权模式。当multAuthMode为true时，只有multiUriArray参数生效，其他参数不生效。仅支持手机设备。<br>**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。|
+|multiUriArray<sup>15+</sup>  | Array&lt;string&gt;                             |否    | 是 | 传入需要批量授权的URI数组（仅支持文件，文件夹不生效）。配合multAuthMode使用。当multAuthMode为false时，配置该参数不生效。默认为空（效果为拉起批量授权页面后展示的文件为空）。仅支持手机设备。<br>**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。|
+|mergeMode<sup>15+</sup>  | [MergeTypeMode](#mergetypemode15)                             |否    | 是 | 开启聚合视图模式，支持拉起文件管理应用的聚合视图。默认为DEFAULT，表示该参数不生效，非聚合视图。当该参数置为非DEFAULT时，其他参数不生效。仅支持手机设备。<br>**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。|
 
 ## DocumentPickerMode<sup>12+</sup>
 

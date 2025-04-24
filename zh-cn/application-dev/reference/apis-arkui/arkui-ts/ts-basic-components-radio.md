@@ -183,7 +183,7 @@ struct RadioExample {
           .height(50)
           .width(50)
           .onChange((isChecked: boolean) => {
-            console.log('Radio1 status is ' + isChecked)
+            console.log('Radio1 status is ' + isChecked);
           })
       }
       Column() {
@@ -195,7 +195,7 @@ struct RadioExample {
           .height(50)
           .width(50)
           .onChange((isChecked: boolean) => {
-            console.log('Radio2 status is ' + isChecked)
+            console.log('Radio2 status is ' + isChecked);
           })
       }
       Column() {
@@ -207,7 +207,7 @@ struct RadioExample {
           .height(50)
           .width(50)
           .onChange((isChecked: boolean) => {
-            console.log('Radio3 status is ' + isChecked)
+            console.log('Radio3 status is ' + isChecked);
           })
       }
     }.padding({ top: 30 })
@@ -236,7 +236,7 @@ struct RadioExample {
           .height(50)
           .width(80)
           .onChange((isChecked: boolean) => {
-            console.log('Radio1 status is ' + isChecked)
+            console.log('Radio1 status is ' + isChecked);
           })
       }
       Column() {
@@ -247,7 +247,7 @@ struct RadioExample {
           .height(50)
           .width(80)
           .onChange((isChecked: boolean) => {
-            console.log('Radio2 status is ' + isChecked)
+            console.log('Radio2 status is ' + isChecked);
           })
       }
       Column() {
@@ -259,7 +259,7 @@ struct RadioExample {
           .height(50)
           .width(80)
           .onChange((isChecked: boolean) => {
-            console.log('Radio3 status is ' + isChecked)
+            console.log('Radio3 status is ' + isChecked);
           })
       }
     }.padding({ top: 30 })
@@ -271,16 +271,16 @@ struct RadioExample {
 该示例通过contentModifier实现自定义单选框样式。
 ```ts
 class MyRadioStyle implements ContentModifier<RadioConfiguration> {
-  type: number = 0
-  selectedColor: ResourceColor = Color.Black
+  type: number = 0;
+  selectedColor: ResourceColor = Color.Black;
 
   constructor(numberType: number, colorType: ResourceColor) {
-    this.type = numberType
-    this.selectedColor = colorType
+    this.type = numberType;
+    this.selectedColor = colorType;
   }
 
   applyContent(): WrappedBuilder<[RadioConfiguration]> {
-    return wrapBuilder(buildRadio)
+    return wrapBuilder(buildRadio);
   }
 }
 
@@ -296,9 +296,9 @@ function buildRadio(config: RadioConfiguration) {
       .backgroundColor('#2787D9')
       .onClick(() => {
         if (config.checked) {
-          config.triggerChange(false)
+          config.triggerChange(false);
         } else {
-          config.triggerChange(true)
+          config.triggerChange(true);
         }
       })
   }

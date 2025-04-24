@@ -2,8 +2,7 @@
 
 The **abilityAccessCtrl** module provides APIs for application permission management, including authentication and authorization.
 
-> **NOTE**
->
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -16,7 +15,7 @@ import { abilityAccessCtrl } from '@kit.AbilityKit'
 
 createAtManager(): AtManager
 
-Creates an **AtManager** instance, which is used for application access control.
+Creates an **AtManager** instance for application access control.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -54,7 +53,7 @@ Checks whether a permission is granted to an application. This API uses a promis
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | tokenID   |  number   | Yes  | Application token ID, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
-| permissionName | Permissions | Yes  | Permission to check. For details about the permissions, see [Application Permissions](../../security/AccessToken/app-permissions.md).|
+| permissionName | Permissions | Yes  | Permission to check. For details about the permission, see [Application Permissions](../../security/AccessToken/app-permissions.md).|
 
 **Return value**
 
@@ -101,7 +100,7 @@ Checks whether a permission is granted to an application. This API returns the r
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | tokenID   |  number   | Yes  | Application token ID, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
-| permissionName | Permissions | Yes  | Permission to check. For details about the permissions, see [Application Permissions](../../security/AccessToken/app-permissions.md).|
+| permissionName | Permissions | Yes  | Permission to check. For details about the permission, see [Application Permissions](../../security/AccessToken/app-permissions.md).|
 
 **Return value**
 
@@ -211,7 +210,7 @@ If the user rejects to grant the permission, the authorization dialog box cannot
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | context | [Context](js-apis-inner-application-context.md) | Yes| Context of the <!--RP1-->UIAbility<!--RP1End--> that requests the permission.|
-| permissionList | Array&lt;Permissions&gt; | Yes| Permissions to request. For details about the permissions, see [Application Permissions](../../security/AccessToken/app-permissions.md).|
+| permissionList | Array&lt;Permissions&gt; | Yes| Permissions to request. For details, see [Application Permissions](../../security/AccessToken/app-permissions.md).|
 
 **Return value**
 
@@ -379,7 +378,7 @@ Verifies whether a permission is granted to an application. This API returns the
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | tokenID   |  number   | Yes  | Application token ID, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
-| permissionName | Permissions | Yes  | Permission to verify. For details about the permissions, see [Application Permissions](../../security/AccessToken/app-permissions.md). |
+| permissionName | Permissions | Yes  | Permission to verify. For details about the permission, see [Application Permissions](../../security/AccessToken/app-permissions.md).|
 
 **Return value**
 
@@ -428,7 +427,7 @@ Verifies whether a permission is granted to an application. This API uses a prom
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | tokenID   |  number   | Yes  | Application token ID, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
-| permissionName | Permissions | Yes  | Permission to verify. For details about the permissions, see [Application Permissions](../../security/AccessToken/app-permissions.md). |
+| permissionName | Permissions | Yes  | Permission to verify. For details about the permission, see [Application Permissions](../../security/AccessToken/app-permissions.md).|
 
 **Return value**
 
@@ -469,7 +468,7 @@ Verifies whether a permission is granted to an application. This API uses a prom
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | tokenID   |  number   | Yes  | Application token ID, which is the value of **accessTokenId** in [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
-| permissionName | string | Yes  | Permission to verify. For details about the permissions, see [Application Permissions](../../security/AccessToken/app-permissions.md). |
+| permissionName | string | Yes  | Permission to verify. For details about the permission, see [Application Permissions](../../security/AccessToken/app-permissions.md).|
 
 **Return value**
 
@@ -523,7 +522,7 @@ Enumerates the global switch types.
 
 type PermissionRequestResult = _PermissionRequestResult
 
-Represents the permission request result object.
+Represents the permission request result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -533,13 +532,13 @@ Represents the permission request result object.
 
 | Type| Description|
 | -------- | -------- |
-| [PermissionRequestResult](js-apis-permissionrequestresult.md) | Permission request result object.|
+| [_PermissionRequestResult](js-apis-permissionrequestresult.md) | Permission request result object.|
 
 ## Context<sup>10+</sup>
 
 type Context = _Context
 
-Provides context for abilities or applications to access application-specific resources.
+Represents the context for the ability or application. It allows access to application-specific resources.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -549,4 +548,4 @@ Provides context for abilities or applications to access application-specific re
 
 | Type| Description|
 | -------- | -------- |
-| [Context](js-apis-inner-application-context.md) | Context for abilities or applications to access application-specific resources. |
+| [_Context](js-apis-inner-application-context.md) | Context for an ability or application to access to application-specific resources.|

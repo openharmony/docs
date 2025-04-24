@@ -712,6 +712,7 @@ type OnHomeShowOnTopCallback = (name: string) => void
 
 本示例演示MultiNavigation的基本功能。
 
+<!--code_no_check-->
 ```typescript
 // pages/Index.ets
 import { MultiNavigation, MultiNavPathStack, SplitPolicy } from '@ohos.arkui.advanced.MultiNavigation';

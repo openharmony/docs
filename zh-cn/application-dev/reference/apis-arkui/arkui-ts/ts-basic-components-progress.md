@@ -178,7 +178,7 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 | 参数名 | 类型                                                      | 必填 | 说明                                                  |
 | ------ | --------------------------------------------------------- | ---- | ----------------------------------------------------- |
-| isPrivacySensitiveMode  | [Optional\<boolean\>] | 是   | 设置隐私敏感，隐私模式下进度清零，文字将被遮罩。true表示打开隐私敏感，false表示关闭隐私敏感。<br/>**说明：** <br/>设置null则不敏感。<br/>[需要卡片框架支持。](./ts-universal-attributes-obscured.md) |
+| isPrivacySensitiveMode  | [Optional\<boolean\>] | 是   | 设置隐私敏感，隐私模式下进度清零，文字将被遮罩。true表示打开隐私敏感，false表示关闭隐私敏感。<br/>**说明：** <br/>设置null则不敏感。<br/><!--Del--><br/>需要在卡片中使用Progress，并用[FormComponent](./ts-basic-components-formcomponent-sys.md)组件设置[隐私遮罩](./ts-universal-attributes-obscured.md)属性显示卡片时才有隐私遮罩效果。<!--DelEnd--> |
 
 ## ProgressConfiguration<sup>12+</sup>
 
@@ -189,7 +189,7 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 | 名称 | 类型  | 必填 |说明         |
 | ------ | ------ | ------- |------------|
 | value  | number | 是 | 当前进度值。当设置的数值小于0时，将其置为0。当设置的数值大于total时，将其置为total。<br/>默认值：0<br/>取值范围：[0, total] |
-| total  | number | 是 | 进度总长。<br/>取值范围：[0, +∞]   |
+| total  | number | 是 | 进度总长。<br/>取值范围：[0, +∞)   |
 
 ## CommonProgressStyleOptions<sup>10+</sup>
 
