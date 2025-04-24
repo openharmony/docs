@@ -24,7 +24,7 @@ export class SendableObjTest {
 ```
 
 
-Naitve实现加载ArkTS模块的能力
+Native实现加载ArkTS模块的能力
 
 ```cpp
 // napi_init.cpp
@@ -93,7 +93,7 @@ export class SendableObjTest {
 }
 ```
 
-Naitve实现两个线程的序列化反序列化Sendable的逻辑
+Native实现两个线程的序列化反序列化Sendable的逻辑
 
 ```cpp
 // napi_init.cpp
