@@ -129,7 +129,7 @@ GPU后端Canvas指画布是基于GPU进行绘制的，GPU的并行计算能力�
    #include <native_drawing/drawing_surface.h>
    ```
 
-2. 创建GPU后端Cnavas。GPU后端Canvas需要借助Surface对象来获取，需先创建surface，surface的API请参考[drawing_surface.h](../reference/apis-arkgraphics2d/drawing__surface_8h.md)。目前drawing支持基于OpenGL的GPU后端绘制，所以需要先通过OH_Drawing_GpuContextCreateFromGL接口创建绘图上下文，再将这个上下文作为参数创建surface，最后通过OH_Drawing_SurfaceGetCanvas接口从surface中获取到canvas。
+2. 创建GPU后端Canvas。GPU后端Canvas需要借助Surface对象来获取，需先创建surface，surface的API请参考[drawing_surface.h](../reference/apis-arkgraphics2d/drawing__surface_8h.md)。目前drawing支持基于OpenGL的GPU后端绘制，所以需要先通过OH_Drawing_GpuContextCreateFromGL接口创建绘图上下文，再将这个上下文作为参数创建surface，最后通过OH_Drawing_SurfaceGetCanvas接口从surface中获取到canvas。
 
    ```c++
    // 设置宽高（按需设定）
