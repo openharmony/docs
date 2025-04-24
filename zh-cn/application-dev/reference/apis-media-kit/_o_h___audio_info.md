@@ -13,6 +13,8 @@
 
 **相关模块：**[AVScreenCapture](_a_v_screen_capture.md)
 
+**所在头文件：**[native_avscreen_capture_base.h](native__avscreen__capture__base_8h.md)
+
 
 ## 汇总
 
