@@ -509,7 +509,7 @@ export struct Child {
       Button('change BookName')
         .onClick(() => {
           setTimeout(() => {
-            this.bookTest = new Book('Jane Austen's Pride and Prejudice');
+            this.bookTest = new Book("Jane Austen's Pride and Prejudice");
           }, 3000);
         })
     }
