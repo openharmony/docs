@@ -4,18 +4,18 @@
 
 > **说明：**
 >
-> - 在进行功能开发前，请开发者查阅[开发准备](photoAccessHelper-preparation.md)，了解如何获取相册管理模块实例和如何申请相册管理模块功能开发相关权限。
-> - 文档中使用到photoAccessHelper的地方默认为使用开发准备中获取的对象，如未添加此段代码报photoAccessHelper未定义的错误请自行添加。
+> - 在进行功能开发前，请查阅[开发准备](photoAccessHelper-preparation.md)，了解如何获取相册管理模块实例和如何申请相册管理模块功能开发相关权限。
+> - 文档中使用到photoAccessHelper的地方，默认为使用[开发准备](photoAccessHelper-preparation.md)中获取的对象，如果未添加此段代码，报photoAccessHelper未定义的错误，请自行添加。
 
-为了保证应用的运行效率，大部分photoAccessHelper的接口调用都是异步的。以下异步调用的API示例均采用Promise函数，更多方式可以查阅[API参考](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md)。
+为了保证应用的运行效率，大部分photoAccessHelper的接口调用都是异步的。示例采用Promise函数，更多方式可以查阅[API参考](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md)。
 
 ## 获取指定媒体资源
 
-开发者可以根据特定的条件查询媒体资源，如指定类型、指定日期、指定相册等。
+根据特定条件查询媒体资源，如类型、日期、相册等。
 
-应用通过调用[PhotoAccessHelper.getAssets](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets-1)获取媒体资源，并传入[FetchOptions](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#fetchoptions)对象指定检索条件。如无特别说明，文档中涉及的待获取的资源均视为已经预置且在数据库中存在相应数据。如出现按照示例代码执行出现获取资源为空的情况请确认文件是否已预置，数据库中是否存在该文件的数据。
+应用通过调用[PhotoAccessHelper.getAssets](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets-1)获取媒体资源，并传入[FetchOptions](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#fetchoptions)对象指定检索条件。如无特别说明，文档中涉及的待获取的资源均视为已经预置且在数据库中存在相应数据。如出现获取资源为空的情况，请确认文件是否已预置，数据库中是否存在该文件的数据。
 
-如果只想获取某个位置的对象（如第一个、最后一个、指定索引等），可以通过[FetchResult](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#fetchresult)中的接口获取对应位置的媒体资源对象。
+如果只想获取某个位置的对象（如第一个、最后一个、指定索引等），可以通过[FetchResult](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#fetchresult)中的接口获取。
 
 **前提条件**
 
@@ -65,7 +65,7 @@ async function example() {
 
 当需要在相册展示图片和视频、编辑预览，应用需要获取某张图片的缩略图。
 
-参考以下示例，获取图片的文件描述符fd后，需要解码为统一的PixelMap，方便在应用中进行图片显示或图片处理，具体请参考[图片解码](../image/image-decoding.md)。
+参考以下示例，获取图片的文件描述符fd后，需要解码为统一的PixelMap，以便在应用中进行图片显示或图片处理，具体请参考[图片解码](../image/image-decoding.md)。
 
 下面以获取一张图片的缩略图为例，缩略图尺寸为720*720。
 
@@ -156,7 +156,7 @@ async function example() {
 
 重命名修改的是文件的PhotoAsset.displayName属性，即文件的显示文件名，包含文件后缀。
 
-调用[MediaAssetChangeRequest.setTitle](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#settitle11)重命名后再通过[PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11)更新到数据库中完成修改。
+调用[MediaAssetChangeRequest.setTitle](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#settitle11)重命名后，再通过[PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11)更新到数据库中完成修改。
 
 在重命名文件之前，需要先获取文件对象，可以通过[FetchResult](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#fetchresult)中的接口获取对应位置的文件。
 
@@ -172,7 +172,7 @@ async function example() {
 1. 建立检索条件，用于获取图片资源。
 2. 调用[PhotoAccessHelper.getAssets](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets-1)接口获取目标图片资源。
 3. 调用[FetchResult.getFirstObject](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getfirstobject-1)接口获取第一张图片，即要重命名的图片对象。
-4. 调用[MediaAssetChangeRequest.setTitle](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#settitle11)接口将图片重命名为新的名字。
+4. 调用[MediaAssetChangeRequest.setTitle](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#settitle11)接口将图片重命名。
 5. 调用[PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11)接口将修改的图片属性更新到数据库中完成修改。
 
 ```ts
@@ -206,7 +206,7 @@ async function example() {
 
 通过[MediaAssetChangeRequest.deleteAssets](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#deleteassets11)可以将文件放入回收站。
 
-放入回收站的文件将会保存30天，30天后会自动彻底删除。在此期间，应用用户可以通过系统应用“文件管理”或“图库”恢复文件。
+放入回收站的文件将保存30天，到期后自动彻底删除。在此期间，用户可以通过系统应用“文件管理”或“图库”恢复文件。
 
 **前提条件**
 
