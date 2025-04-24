@@ -157,7 +157,7 @@ struct Index {
           .width('100%')
           .height('90%')
           .onTerminated((info: TerminationInfo) => {
-            this.message = 'Terminarion: code = ' + info.code + ', want = ' + JSON.stringify(info.want);
+            this.message = 'Termination: code = ' + info.code + ', want = ' + JSON.stringify(info.want);
           })
           .onError((error: BusinessError) => {
             this.message = 'Error: code = ' + error.code;
