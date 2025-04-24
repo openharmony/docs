@@ -293,7 +293,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    | AVCODEC_BUFFER_FLAGS_CODEC_DATA | 含参数集信息的帧。 |
    | AVCODEC_BUFFER_FLAGS_DISCARD  | 可丢弃的帧。 |
 
-   OH_AVDemuxer_ReadSampleBuffer接口本身可能会耗时，建议以异步方式进行调用。
+   OH_AVDemuxer_ReadSampleBuffer接口本身可能存在耗时久，取决于文件IO，建议以异步方式进行调用。
    ```c++
    // 1. 同步调用的方式
    // 按照指定size创建buffer，用于保存用户解封装得到的数据。
