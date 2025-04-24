@@ -4565,7 +4565,7 @@ client.off('message');
 
 ### on('connect')<sup>11+</sup>
 
-on(type: 'connect', callback: Callback\<void\>): void;
+on(type: 'connect', callback: Callback\<void\>): void
 
 订阅LocalSocket的连接事件。使用callback方式作为异步方法。
 
@@ -4597,7 +4597,7 @@ client.on('connect', () => {
 
 ### off('connect')<sup>11+</sup>
 
-off(type: 'connect', callback?: Callback\<void\>): void;
+off(type: 'connect', callback?: Callback\<void\>): void
 
 取消订阅LocalSocket的连接事件。使用callback方式作为异步方法。
 
@@ -4633,7 +4633,7 @@ client.off('connect');
 
 ### on('close')<sup>11+</sup>
 
-on(type: 'close', callback: Callback\<void\>): void;
+on(type: 'close', callback: Callback\<void\>): void
 
 订阅LocalSocket的关闭事件。使用callback方式作为异步方法。
 
@@ -4666,7 +4666,7 @@ client.on('close', callback);
 
 ### off('close')<sup>11+</sup>
 
-off(type: 'close', callback?: Callback\<void\>): void;
+off(type: 'close', callback?: Callback\<void\>): void
 
 订阅LocalSocket的关闭事件。使用callback方式作为异步方法。
 
@@ -4734,7 +4734,7 @@ client.on('error', (err: Object) => {
 
 ### off('error')<sup>11+</sup>
 
-off(type: 'error', callback?: ErrorCallback): void;
+off(type: 'error', callback?: ErrorCallback): void
 
 取消订阅LocalSocket连接的error事件。使用callback方式作为异步方法。
 
@@ -5385,7 +5385,7 @@ server.listen(localAddr).then(() => {
 
 ### on('message')<sup>11+</sup>
 
-on(type: 'message', callback: Callback\<LocalSocketMessageInfo\>): void;
+on(type: 'message', callback: Callback\<LocalSocketMessageInfo\>): void
 
 订阅LocalSocketConnection连接的接收消息事件。使用callback方式作为异步方法。
 
@@ -6044,7 +6044,7 @@ tls.setExtraOptions(tcpExtraOptions).then(() => {
 
 ### on('message')<sup>9+</sup>
 
-on(type: 'message', callback: Callback\<SocketMessageInfo\>): void;
+on(type: 'message', callback: Callback\<SocketMessageInfo\>): void
 
 订阅TLSSocket连接的接收消息事件。使用callback方式作为异步方法。
 
