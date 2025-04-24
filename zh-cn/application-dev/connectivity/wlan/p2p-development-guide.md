@@ -11,7 +11,7 @@ P2P模式，主要提供了wlan设备的一种点对点连接技术，它可以�
 
 ## 接口说明
 
-完整的JS API说明以及示例代码请参考：[P2P 接口](../../reference/apis-connectivity-kit/js-apis-wifiManager.md)。
+完整的JS API说明以及示例代码请参考：[P2P接口](../../reference/apis-connectivity-kit/js-apis-wifiManager.md)。
 
 具体接口说明如下表。
 
