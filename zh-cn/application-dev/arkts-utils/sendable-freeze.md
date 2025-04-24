@@ -40,7 +40,7 @@ Sendable对象支持冻结操作，冻结后的对象变成只读对象，不能
            .fontWeight(FontWeight.Bold)
            .onClick(() => {
              let gConfig = new GlobalConfig();
-             gConifg.init();
+             gConfig.init();
              const workerInstance = new worker.ThreadWorker('entry/ets/workers/Worker.ets', { name: "Worker1" });
              workerInstance.postMessage(gConfig);
            })
