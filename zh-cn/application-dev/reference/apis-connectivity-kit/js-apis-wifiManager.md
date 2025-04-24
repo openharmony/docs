@@ -2403,6 +2403,8 @@ getMultiLinkedInfo(): &nbsp;Array&lt;WifiLinkedInfo&gt;
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
+当macType是1 - 设备MAC地址时，获取 macAddress 还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限（该权限仅系统应用可申请），无该权限时，macAddress 返回随机MAC地址。
+
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **返回值：**
