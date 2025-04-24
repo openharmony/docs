@@ -43,7 +43,7 @@
    try {
      // 在分布式目录下创建文件
      let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-     console.info('Succeeded in createing.');
+     console.info('Succeeded in creating.');
      // 向文件中写入内容
      fs.writeSync(file.fd, 'content');
      // 关闭文件
