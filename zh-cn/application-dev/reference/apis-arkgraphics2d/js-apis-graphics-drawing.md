@@ -3793,7 +3793,7 @@ let imgFilter = drawing.ImageFilter.createBlurImageFilter(5, 10, drawing.TileMod
 
 static createFromImage(pixelmap: image.PixelMap, srcRect?: common2D.Rect | null, dstRect?: common2D.Rect | null): ImageFilter
 
-基于给定的图像创建一个图像滤波器。
+基于给定的图像创建一个图像滤波器。此接口不建议用于录制类型的画布，会影响性能。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -9284,7 +9284,7 @@ let shader = drawing.ShaderEffect.createComposeShader(dstShader, srcShader, draw
 
 static createImageShader(pixelmap: image.PixelMap, tileX: TileMode, tileY: TileMode, samplingOptions: SamplingOptions, matrix?: Matrix | null): ShaderEffect
 
-基于图片创建一个着色器。
+基于图片创建一个着色器。此接口不建议用于录制类型的画布，会影响性能。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
