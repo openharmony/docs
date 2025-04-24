@@ -343,7 +343,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
                         std::atomic<bool>& isEnd, std::atomic<bool>& threadFinished) {
       // 创建缓冲区
       OH_AVBuffer *buffer = OH_AVBuffer_Create(buffer_size);
-      if (!buffer) {
+      if (buffer == nullptr) {
          printf("Create buffer failed for track %d\n", trackIndex);
          threadFinished.store(true);
          return;
