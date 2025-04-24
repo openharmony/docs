@@ -375,11 +375,11 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    // 根据需求计算合适的缓冲区大小
    int audioBufferSize = 4096;  // 典型音频缓冲区大小
    int videoBufferSize = w * h * 3 >> 1;  // 原始视频缓冲区大小
-   
+
    // 创建原子变量用于线程通信
    std::atomic<bool> audioIsEnd(false), videoIsEnd(false); // 表示流是否结束
    std::atomic<bool> audioThreadFinished(false), videoThreadFinished(false); // 表示线程是否暂停
-   
+
    // 创建线程
    std::thread audioThread(ReadTrackSamples, demuxer, audioTrackIndex, audioBufferSize, 
                            std::ref(audioIsEnd), std::ref(audioThreadFinished));
