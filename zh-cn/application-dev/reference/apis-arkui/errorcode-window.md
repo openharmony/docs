@@ -66,8 +66,7 @@ This window stage is abnormal.
 当WindowStage异常，如已被销毁时，操作该WindowStage，会报此错误码。
 
 **可能原因**<br>
-1.该WindowStage没有被创建或者已经被销毁。<br>
-2.这个窗口没有被创建或者已经被销毁。
+1.该WindowStage没有被创建或者已经被销毁。
 
 **处理步骤**<br>
 在对WindowStage进行操作前，检查该WindowStage是否存在，若已被销毁，请释放该WindowStage下的窗口。
@@ -196,8 +195,8 @@ PiP internal error.
 画中画内部错误。
 
 **可能原因**<br>
-1.napi抛出了一个错误的任务。<br>
-2.画中画窗口异常。<br>
+1.napi内部错误，画中画任务框架异常。
+2.画中画依赖的窗口异常，可能窗口为空。
 3.画中画控制器异常。
 
 **处理步骤**<br>
@@ -212,8 +211,7 @@ Repeated PiP operation.
 重复操作画中画。
 
 **可能原因**<br>
-1.这个画中画已经被创建<br>
-2.这个画中画窗口已经被销毁。
+1.这个画中画已经被拉起或者已经被关闭。
 
 **处理步骤**<br>
 不要重复启动/停止画中画。<br>
