@@ -4,11 +4,7 @@
 
 在转码过程中，若未指定音频轨道格式，系统默认将其转换为AAC编码格式。
 
-<!--RP2-->
-## 转码是否支持HDR转SDR？为什么使用其他系统的设备录制HDR视频转码会失败
-
-当前转码仅支持HDR vivid至SDR视频的转换，其他HDR格式不支持。可以通过`OH_VideoProcessing_IsColorSpaceConversionSupported`接口查询当前设备是否支持，具体可以参考：[VPE支持规格](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/video-csc)
-<!--RP2End-->
+<!--RP2--><!--RP2End-->
 
 ## 按照原视频的比例缩放设置目标视频的分辨率，为何仍会报告参数错误
 
@@ -28,6 +24,6 @@
 
 1. 需要确认视频与设置的目标视频格式当前转码系统能力是否支持。
 
-   当前转码能力支持情况：[AVTranscoder支持规格](media-kit-intro.md#avtranscoder)、[AVCodec支持规格](../avcodec/avcodec-support-formats.md)<!--RP1-->、[VPE支持规格](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/video-csc)<!--RP1End-->
+   当前转码能力支持情况：[AVTranscoder支持规格](media-kit-intro.md#avtranscoder)、[AVCodec支持规格](../avcodec/avcodec-support-formats.md)<!--RP1--><!--RP1End-->
 
 2. 应用在收到error事件后，建议发送原视频；应用在收到complete事件后，建议先调用release再对转码后的视频做发送、上云等操作。
