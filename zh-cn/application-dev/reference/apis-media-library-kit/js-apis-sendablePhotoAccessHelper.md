@@ -18,7 +18,7 @@ getPhotoAccessHelper(context: Context): PhotoAccessHelper
 
 获取相册管理模块的实例，用于访问和修改相册中的媒体文件。
 
-**模型约束**： 此接口仅支持Stage模型。
+**模型约束**： 此接口仅可在Stage模型下使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
