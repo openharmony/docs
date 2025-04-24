@@ -3211,6 +3211,45 @@ audioVolumeGroupManager.on('ringerModeChange', (ringerMode: audio.AudioRingMode)
 });
 ```
 
+### off('ringerModeChange')<sup>18+</sup>
+
+off(type: 'ringerModeChange', callback?: Callback&lt;AudioRingMode&gt;): void
+
+取消监听铃声模式变化事件。使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名   | 类型                                   | 必填 | 说明                                                         |
+| -------- | -------------------------------------- |----| ------------------------------------------------------------ |
+| type     | string                                 | 是  | 监听事件，固定为：'ringerModeChange'。 |
+| callback |Callback&lt;[AudioRingMode](#audioringmode)&gt; | 否  | 回调函数，返回变化后的铃音模式。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+// 取消该事件的所有监听。
+audioVolumeGroupManager.off('ringerModeChange');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let ringerModeChangeCallback = (ringerMode: audio.AudioRingMode) => {
+  console.info(`Updated ringermode: ${ringerMode}`);
+};
+
+audioVolumeGroupManager.on('ringerModeChange', ringerModeChangeCallback);
+
+audioVolumeGroupManager.off('ringerModeChange', ringerModeChangeCallback);
+```
+
 ### setMicrophoneMute<sup>(deprecated)</sup>
 
 setMicrophoneMute(mute: boolean, callback: AsyncCallback&lt;void&gt;): void
@@ -6629,6 +6668,7 @@ write(buffer: ArrayBuffer, callback: AsyncCallback\<number>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 let bufferSize: number;
 class Options {
@@ -6639,7 +6679,9 @@ audioRenderer.getBufferSize().then((data: number)=> {
   console.info(`AudioFrameworkRenderLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
   console.info(`Buffer size: ${bufferSize}`);
-  let path = getContext().cacheDir;
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  let path = context.cacheDir;
   let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
   let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
   fs.stat(filePath).then(async (stat: fs.Stat) => {
@@ -6695,6 +6737,7 @@ write(buffer: ArrayBuffer): Promise\<number>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 let bufferSize: number;
 class Options {
@@ -6705,7 +6748,9 @@ audioRenderer.getBufferSize().then((data: number) => {
   console.info(`AudioFrameworkRenderLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
   console.info(`BufferSize: ${bufferSize}`);
-  let path = getContext().cacheDir;
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  let path = context.cacheDir;
   let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
   let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
   fs.stat(filePath).then(async (stat: fs.Stat) => {
@@ -8355,6 +8400,7 @@ on(type: 'writeData', callback: AudioRendererWriteDataCallback): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import {fileIo as fs} from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 class Options {
   offset?: number;
@@ -8362,7 +8408,9 @@ class Options {
 }
 
 let bufferSize: number = 0;
-let path = getContext().cacheDir;
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let path = context.cacheDir;
 // 确保该沙箱路径下存在该资源。
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
@@ -9695,6 +9743,7 @@ on(type: 'readData', callback: Callback\<ArrayBuffer>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 class Options {
   offset?: number;
@@ -9702,7 +9751,9 @@ class Options {
 }
 
 let bufferSize: number = 0;
-let path = getContext().cacheDir;
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let path = context.cacheDir;
 // 确保该沙箱路径下存在该资源。
 let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
 let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
