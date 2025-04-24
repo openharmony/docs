@@ -41,7 +41,7 @@
 
   ```ts
   // index.ets
-  import { MyButtonModifier } from './setAttribute'
+  import { MyButtonModifier } from './setAttribute';
 
   @Entry
   @Component
