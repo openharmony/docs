@@ -1679,7 +1679,6 @@ isKeyItemExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { promptAction } from '@kit.ArkUI';
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -1687,12 +1686,12 @@ let emptyOptions: huks.HuksOptions = {
 };
 huks.isKeyItemExist(keyAlias, emptyOptions, (error, data) => {
     if (data) {
-        promptAction.showToast({
-            message: "keyAlias: " + keyAlias +"is existed！",
+        this.getUIContext().getPromptAction().showToast({
+            message: "keyAlias: " + keyAlias + " is existed！",
             duration: 2500,
         })
     } else {
-        promptAction.showToast({
+        this.getUIContext().getPromptAction().showToast({
             message: "find key failed",
             duration: 2500,
         })
@@ -1742,7 +1741,6 @@ isKeyItemExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { promptAction } from '@kit.ArkUI';
 
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
@@ -1750,12 +1748,12 @@ let emptyOptions: huks.HuksOptions = {
     properties: []
 };
 huks.isKeyItemExist(keyAlias, emptyOptions).then((data) => {
-    promptAction.showToast({
-        message: "keyAlias: " + keyAlias +"is existed！",
+    this.getUIContext().getPromptAction().showToast({
+        message: "keyAlias: " + keyAlias + " is existed！",
         duration: 500,
     })
 }).catch((error: Error)=>{
-    promptAction.showToast({
+    this.getUIContext().getPromptAction().showToast({
         message: "find key failed",
         duration: 6500,
     })
@@ -1800,7 +1798,6 @@ hasKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<bool
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { promptAction } from '@kit.ArkUI';
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -1810,12 +1807,12 @@ let emptyOptions: huks.HuksOptions = {
 try {
     huks.hasKeyItem(keyAlias, emptyOptions, (error, data) => {
         if (data) {
-            promptAction.showToast({
+            this.getUIContext().getPromptAction().showToast({
                 message: "keyAlias: " + keyAlias +" is existed!",
                 duration: 2500,
             })
         } else {
-            promptAction.showToast({
+            this.getUIContext().getPromptAction().showToast({
                 message: "find key failed",
                 duration: 2500,
             })
@@ -1869,7 +1866,6 @@ hasKeyItem(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { promptAction } from '@kit.ArkUI';
 
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
@@ -1878,18 +1874,18 @@ let emptyOptions: huks.HuksOptions = {
 };
 huks.hasKeyItem(keyAlias, emptyOptions).then((data) => {
     if (data) {
-        promptAction.showToast({
+        this.getUIContext().getPromptAction().showToast({
             message: "keyAlias: " + keyAlias +" is existed!",
             duration: 2500,
         })
     } else {
-        promptAction.showToast({
+        this.getUIContext().getPromptAction().showToast({
             message: "find key failed",
             duration: 2500,
         })
     }
 }).catch((error: Error)=>{
-    promptAction.showToast({
+    this.getUIContext().getPromptAction().showToast({
         message: "find key failed",
         duration: 6500,
     })
