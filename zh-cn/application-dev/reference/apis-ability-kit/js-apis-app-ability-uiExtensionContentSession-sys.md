@@ -121,7 +121,7 @@ struct Index {
       Button('SendData')
         .onClick(() => {
           this.session?.setReceiveDataCallback((data: Record<string, Object>) => {
-            console.info(`Successed in setReceiveDataCallback, data: ${JSON.stringify(data)}`);
+            console.info(`Succeeded in setReceiveDataCallback, data: ${JSON.stringify(data)}`);
           });
         })
     }
@@ -176,7 +176,7 @@ struct Index {
       Button('SetReceiveDataForResultCallback')
         .onClick(() => {
           this.session?.setReceiveDataForResultCallback((data: Record<string, Object>) => {
-            console.info(`Successed in setReceiveDataCallback, data: ${JSON.stringify(data)}`);
+            console.info(`Succeeded in setReceiveDataCallback, data: ${JSON.stringify(data)}`);
             return data;
           });
         })
@@ -250,7 +250,7 @@ export default class UIExtAbility extends UIExtensionAbility {
         console.error(`Failed to startAbility, code: ${err.code}, msg: ${err.message}`);
         return;
       }
-      console.info(`Successed in startAbility`);
+      console.info(`Succeeded in startAbility`);
     })
   }
 
@@ -324,7 +324,7 @@ export default class UIExtAbility extends UIExtensionAbility {
         console.error(`Failed to startAbility, code: ${err.code}, msg: ${err.message}`);
         return;
       }
-      console.info(`Successed in startAbility`);
+      console.info(`Succeeded in startAbility`);
     })
   }
 
@@ -402,7 +402,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 
     session.startAbility(want, starOptions)
       .then(() => {
-        console.info(`Successed in startAbility`);
+        console.info(`Succeeded in startAbility`);
       })
       .catch((err: BusinessError) => {
         console.error(`Failed to startAbility, code: ${err.code}, msg: ${err.message}`);
@@ -481,7 +481,7 @@ export default class UIExtAbility extends UIExtensionAbility {
         console.error(`Failed to startAbilityForResult, code: ${err.code}, msg: ${err.message}`);
         return;
       }
-      console.info(`Successed in startAbilityForResult, data: ${JSON.stringify(data)}`);
+      console.info(`Succeeded in startAbilityForResult, data: ${JSON.stringify(data)}`);
     })
   }
 
@@ -560,7 +560,7 @@ export default class UIExtAbility extends UIExtensionAbility {
         console.error(`Failed to startAbilityForResult, code: ${err.code}, msg: ${err.message}`);
         return;
       }
-      console.info(`Successed in startAbilityForResult, data: ${JSON.stringify(data)}`);
+      console.info(`Succeeded in startAbilityForResult, data: ${JSON.stringify(data)}`);
     })
   }
 
@@ -644,7 +644,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 
     session.startAbilityForResult(want, starOptions)
       .then((data: common.AbilityResult) => {
-        console.info(`Successed in startAbilityForResult, data: ${JSON.stringify(data)}`);
+        console.info(`Succeeded in startAbilityForResult, data: ${JSON.stringify(data)}`);
       })
       .catch((err: BusinessError) => {
         console.error(`Failed to startAbilityForResult, code: ${err.code}, msg: ${err.message}`);
@@ -773,7 +773,7 @@ export default class UIExtAbility extends UIExtensionAbility {
         console.error(`Failed to startAbilityAsCaller, code: ${err.code}, msg: ${err.message}`);
         return;
       }
-      console.info(`Successed in startAbilityAsCaller`);
+      console.info(`Succeeded in startAbilityAsCaller`);
     })
   }
 
@@ -847,7 +847,7 @@ export default class UIExtAbility extends UIExtensionAbility {
         console.error(`Failed to startAbilityAsCaller, code: ${err.code}, msg: ${err.message}`);
         return;
       }
-      console.info(`Successed in startAbilityAsCaller`);
+      console.info(`Succeeded in startAbilityAsCaller`);
     })
   }
 
@@ -925,7 +925,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 
     session.startAbilityAsCaller(localWant, startOptions)
       .then(() => {
-        console.info(`Successed in startAbilityAsCaller`);
+        console.info(`Succeeded in startAbilityAsCaller`);
       })
       .catch((err: BusinessError) => {
         console.error(`Failed to startAbilityAsCaller, code: ${err.code}, msg: ${err.message}`);
