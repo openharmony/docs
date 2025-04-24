@@ -38,7 +38,7 @@ Subscribes to steady standing state events.
 | Name  | Type                            | Mandatory| Description                                                        |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                           | Yes  | Event type. This field has a fixed value of **steadyStandingDetect**.|
-| callback | Callback&lt;[SteadyStandingStatus](#SteadyStandingStatus)&gt; | Yes  | Callback used to return the steady standing state of the device.|
+| callback | Callback&lt;[SteadyStandingStatus](#steadystandingstatus)&gt; | Yes  | Callback used to return the steady standing state of the device.|
 
 **Error codes**
 
@@ -76,7 +76,7 @@ Unsubscribes from steady standing state events.
 | Name  | Type                            | Mandatory| Description                                                        |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                           | Yes  | Event type. This field has a fixed value of **steadyStandingDetect**.|
-| callback | Callback&lt;[SteadyStandingStatus](#SteadyStandingStatus)&gt; | Yes  | Callback used to return the steady standing state of the device.|
+| callback | Callback&lt;[SteadyStandingStatus](#steadystandingstatus)&gt; | Yes  | Callback used to return the steady standing state of the device.|
 
 **Error codes**
 
