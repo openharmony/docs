@@ -21,8 +21,7 @@ FFRT并发队列提供了设置任务优先级（Priority）和队列并发度�
 ```cpp
 #include <iostream>
 #include <unistd.h>
-#include "ffrt/cpp/queue.h"
-#include "ffrt/cpp/task.h"
+#include "ffrt/ffrt.h"
 
 class BankQueueSystem {
 private:
@@ -77,22 +76,18 @@ int main()
 {
     BankQueueSystem bankQueue("Bank", 2);
 
-    bankQueue.Enter(BankBusiness, "customer1", ffrt_queue_priority_low, 0);
-    bankQueue.Enter(BankBusiness, "customer2", ffrt_queue_priority_low, 0);
-    bankQueue.Enter(BankBusiness, "customer3", ffrt_queue_priority_low, 0);
-    bankQueue.Enter(BankBusiness, "customer4", ffrt_queue_priority_low, 0);
-
+    auto task1 = bankQueue.Enter(BankBusiness, "customer1", ffrt_queue_priority_low, 0);
+    auto task2 = bankQueue.Enter(BankBusiness, "customer2", ffrt_queue_priority_low, 0);
     // VIP享受更优先的服务
-    bankQueue.Enter(BankBusinessVIP, "vip", ffrt_queue_priority_high, 0);
+    auto task3 = bankQueue.Enter(BankBusinessVIP, "customer3 vip", ffrt_queue_priority_high, 0);
+    auto task4 = bankQueue.Enter(BankBusiness, "customer4", ffrt_queue_priority_low, 0);
+    auto task5 = bankQueue.Enter(BankBusiness, "customer5", ffrt_queue_priority_low, 0);
 
-    ffrt::task_handle handle = bankQueue.Enter(BankBusiness, "customer5", ffrt_queue_priority_low, 0);
-    ffrt::task_handle handleLast = bankQueue.Enter(BankBusiness, "customer6", ffrt_queue_priority_low, 0);
-
-    // 取消客户5的服务
-    bankQueue.Exit(handle);
+    // 取消客户4的服务
+    bankQueue.Exit(task4);
 
     // 等待所有的客户服务完成
-    bankQueue.Wait(handleLast);
+    bankQueue.Wait(task5);
     return 0;
 }
 ```
@@ -109,7 +104,8 @@ int main()
 
 > **说明：**
 >
-> 如何使用FFRT C++ API详见：[C++接口使用指导](ffrt-development-guideline.md#using-ffrt-c-api-1)
+> - 如何使用FFRT C++ API详见：[FFRT C++接口三方库使用指导](ffrt-development-guideline.md#using-ffrt-c-api-1)。
+> - 使用FFRT C接口或C++接口时，都可以通过FFRT C++接口三方库简化头文件包含，即使用`#include "ffrt/ffrt.h"`头文件包含语句。
 
 ## 约束限制
 
