@@ -61,7 +61,7 @@ import { window } from '@kit.ArkUI';
 | -------------------------------- | ---- | ------------------------------------------------------------ |
 | TYPE_SYSTEM                      | 0    | 表示系统默认区域。<!--RP11-->包含状态栏和三键导航栏区域。<!--RP11End-->       |
 | TYPE_CUTOUT                      | 1    | 表示刘海屏区域。                                                              |
-| TYPE_SYSTEM_GESTURE<sup>9+</sup> | 2    | 表示手势区域，当前无实现。                                                     |
+| TYPE_SYSTEM_GESTURE<sup>9+</sup> | 2    | 表示手势区域。当前，各设备均无此类型避让区域。                                    |
 | TYPE_KEYBOARD<sup>9+</sup>       | 3    | 表示软键盘区域。                                                              |
 | TYPE_NAVIGATION_INDICATOR<sup>11+</sup> | 4    | 表示底部导航条区域。                                                    |
 
