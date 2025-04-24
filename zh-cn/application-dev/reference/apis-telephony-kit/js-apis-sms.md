@@ -501,7 +501,7 @@ promise.then((data: number) => {
 
 |   名称     | 类型                            | 必填 |                                               说明                                         |
 | ---------- | ------------------------------- | ---- | ----------------------------------------------------------------------------------------- |
-| isLastPart | boolean                         | 是   | 指定这是否是长短信的最后一部分。<br/>-true：是<br/>-false：否<br/> |
+| isLastPart | boolean                         | 是   | 指定这是否是长短信的最后一部分。默认为false。<br/>-true：是<br/>-false：否<br/> |
 | result     | [SendSmsResult](#sendsmsresult) | 是   | 短信发送结果。                                                                             |
 | url        | string                          | 是   | 存储发送短信的URI。                                                                        |
 
