@@ -2101,7 +2101,7 @@ Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 | messageObject | Object                                    | 是   | 发送至宿主线程的数据，该数据对象必须是可序列化，序列化支持类型见[其他说明](#序列化支持类型)。 |
 | transfer| Transferable[]                            | 是   | 暂不支持该参数类型。                                         |
 
-### postMessage<sup>9+</sup>
+### postMessage<sup>(deprecated)</sup>
 
 postMessage(messageObject: Object, transfer: ArrayBuffer[]): void
 
