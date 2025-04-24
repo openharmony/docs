@@ -168,6 +168,7 @@ sendShortMessage\(options: SendMessageOptions, callback: AsyncCallback&lt;void&g
 发送短信。使用callback异步回调。
 
 **需要权限**：ohos.permission.SEND_MESSAGES(该权限仅系统应用可申请)
+
 **系统能力**：SystemCapability.Telephony.SmsMms
 
 **参数：**
