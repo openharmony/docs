@@ -11,7 +11,7 @@ SPP是Serial Port Profile（串口协议）的缩写，是一种蓝牙协议，�
 
 ## 接口说明
 
-完整的JS API说明以及示例代码请参考：[SPP 接口](../../reference/apis-connectivity-kit/js-apis-bluetooth-socket.md)。
+完整的JS API说明以及示例代码请参考：[SPP接口](../../reference/apis-connectivity-kit/js-apis-bluetooth-socket.md)。
 
 具体接口说明如下表。
 
