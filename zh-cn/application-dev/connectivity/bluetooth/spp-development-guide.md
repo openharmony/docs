@@ -18,7 +18,7 @@ SPP是Serial Port Profile（串口协议）的缩写，是一种蓝牙协议，�
 | 接口名                             | 功能描述                                                                       |
 | ---------------------------------- | ------------------------------------------------------------------------------ |
 | sppListen()                        | 创建一个服务端监听socket。                                                       |
-| sppAccept()                        | 服务端监听socket等待客户端连接。                                                 |
+| sppAccept()                        | 服务端监听socket等待客户端连接。                                                  |
 | sppConnect()                       | 客户端向远端设备发起spp连接。                                                     |
 | sppCloseServerSocket()             | 关闭服务端监听socket。                                                           |
 | sppCloseClientSocket()             | 关闭客户端socket。                                                               |
