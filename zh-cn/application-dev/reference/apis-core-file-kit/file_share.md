@@ -182,7 +182,7 @@ ohos.permission.FILE_ACCESS_PERSIST
 
 **返回：**
 
-返回FileManageMent模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
+返回FileManagement模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
 
 
 ### OH_FileShare_CheckPersistentPermission()
@@ -212,7 +212,7 @@ ohos.permission.FILE_ACCESS_PERSIST
 
 **返回：**
 
-返回FileManageMent模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
+返回FileManagement模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
 
 
 ### OH_FileShare_DeactivatePermission()
@@ -242,7 +242,7 @@ ohos.permission.FILE_ACCESS_PERSIST
 
 **返回：**
 
-返回FileManageMent模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
+返回FileManagement模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
 
 
 ### OH_FileShare_PersistPermission()
@@ -272,7 +272,7 @@ ohos.permission.FILE_ACCESS_PERSIST
 
 **返回：**
 
-返回FileManageMent模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
+返回FileManagement模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
 
 
 ### OH_FileShare_ReleasePolicyErrorResult()
@@ -322,4 +322,4 @@ ohos.permission.FILE_ACCESS_PERSIST
 
 **返回：**
 
-返回FileManageMent模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
+返回FileManagement模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
