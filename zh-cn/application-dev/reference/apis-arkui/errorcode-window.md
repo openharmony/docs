@@ -52,7 +52,7 @@ Unauthorized operation.
 当对无操作权限的对象进行操作时，会报此错误码。
 
 **可能原因**<br>
-1.窗口类型错误。
+窗口类型错误。
 
 **处理步骤**<br>
 请检查窗口类型是否正确。
@@ -65,7 +65,7 @@ This window stage is abnormal.
 当WindowStage异常，如已被销毁时，操作该WindowStage，会报此错误码。
 
 **可能原因**<br>
-1.该WindowStage没有被创建或者已经被销毁。
+该WindowStage没有被创建或者已经被销毁。
 
 **处理步骤**<br>
 在对WindowStage进行操作前，检查该WindowStage是否存在，若已被销毁，请释放该WindowStage下的窗口。
@@ -209,7 +209,7 @@ Repeated PiP operation.
 重复操作画中画。
 
 **可能原因**<br>
-1.这个画中画已经被拉起或者已经被关闭。
+这个画中画已经被拉起或者已经被关闭。
 
 **处理步骤**<br>
 不要重复启动/停止画中画。<br>
