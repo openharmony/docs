@@ -58,16 +58,16 @@ import { window } from '@kit.ArkUI';
 
 | 名称                             | 值   | 说明                                                         |
 | -------------------------------- | ---- | ------------------------------------------------------------ |
-| TYPE_SYSTEM                      | 0    | 表示系统默认区域。一般表示状态栏，各设备系统定义可能不同。       |
-| TYPE_CUTOUT                      | 1    | 表示刘海屏区域。                                             |
-| TYPE_SYSTEM_GESTURE<sup>9+</sup> | 2    | 表示手势区域，当前无实现。                                      |
-| TYPE_KEYBOARD<sup>9+</sup>       | 3    | 表示软键盘区域。                                             |
-| TYPE_NAVIGATION_INDICATOR<sup>11+</sup> | 4    | 表示底部导航区域。根据用户设置表现为AI导航条或三键导航栏。 |
+| TYPE_SYSTEM                      | 0    | 表示系统默认区域。<!--RP11-->包含状态栏和三键导航栏区域。<!--RP11End-->       |
+| TYPE_CUTOUT                      | 1    | 表示刘海屏区域。                                                              |
+| TYPE_SYSTEM_GESTURE<sup>9+</sup> | 2    | 表示手势区域，当前无实现。                                                     |
+| TYPE_KEYBOARD<sup>9+</sup>       | 3    | 表示软键盘区域。                                                              |
+| TYPE_NAVIGATION_INDICATOR<sup>11+</sup> | 4    | 表示底部导航条区域。                                                    |
 
 
 ## SystemBarProperties
 
-状态栏、导航栏的属性。在设置窗口级状态栏、导航栏属性时使用。
+状态栏、三键导航栏的属性。在设置窗口级状态栏、三键导航栏属性时使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -76,11 +76,11 @@ import { window } from '@kit.ArkUI';
 | statusBarColor                         | string   |  否   | 状态栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。默认值：`'#66000000'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
 | isStatusBarLightIcon<sup>7+</sup>      | boolean  |  否   | 状态栏图标是否为高亮状态。true表示高亮；false表示不高亮。默认值：false。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
 | statusBarContentColor<sup>8+</sup>     | string   |  否   | 状态栏文字颜色。当设置此属性后， `isStatusBarLightIcon`属性设置无效。默认值：`'#E5FFFFFF'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| navigationBarColor                     | string   |  否   | 导航栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。默认值：`'#66000000'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| isNavigationBarLightIcon<sup>7+</sup>  | boolean  |  否   | 导航栏图标是否为高亮状态。true表示高亮；false表示不高亮。默认值：false。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| navigationBarContentColor<sup>8+</sup> | string   |  否   | 导航栏文字颜色。当设置此属性后， `isNavigationBarLightIcon`属性设置无效。默认值：`'#E5FFFFFF'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| navigationBarColor                     | string   |  否   | 三键导航栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。默认值：`'#66000000'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| isNavigationBarLightIcon<sup>7+</sup>  | boolean  |  否   | 三键导航栏图标是否为高亮状态。true表示高亮；false表示不高亮。默认值：false。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| navigationBarContentColor<sup>8+</sup> | string   |  否   | 三键导航栏文字颜色。当设置此属性后， `isNavigationBarLightIcon`属性设置无效。默认值：`'#E5FFFFFF'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
 | enableStatusBarAnimation<sup>12+</sup> | boolean   |  否   | 是否使能状态栏属性变化时动画效果。true表示变化时使能动画效果；false表示没有使能动画效果。默认值：false。 <br> **系统能力：** SystemCapability.Window.SessionManager|
-| enableNavigationBarAnimation<sup>12+</sup> | boolean   |  否   | 是否使能导航栏属性变化时动画效果。true表示变化时使能动画效果；false表示没有使能动画效果。默认值：false。 <br> **系统能力：** SystemCapability.Window.SessionManager|
+| enableNavigationBarAnimation<sup>12+</sup> | boolean   |  否   | 是否使能三键导航栏属性变化时动画效果。true表示变化时使能动画效果；false表示没有使能动画效果。默认值：false。 <br> **系统能力：** SystemCapability.Window.SessionManager|
 
 ## SystemBarStyle<sup>12+</sup>
 
@@ -140,11 +140,11 @@ import { window } from '@kit.ArkUI';
 
 除此之外还需注意规避区域的如下约束，具体为：
 
-- 底部手势区域中非导航条区域支持点击、长按事件透传，不支持拖入。
+- 底部手势区域中非底部导航条区域支持点击、长按事件透传，不支持拖入。
 
 - 左右侧边手势区域支持点击、长按以及上下滑动事件透传，不支持拖入。
 
-- 导航条区域支持长按、点击、拖入事件响应，不支持事件向下透传。
+- 底部导航条区域支持长按、点击、拖入事件响应，不支持事件向下透传。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2311,8 +2311,8 @@ export default class EntryAbility extends UIAbility {
 setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
 设置主窗口或子窗口的布局是否为沉浸式布局，使用Promise异步回调。<!--RP8-->从API version 14开始，该接口在2in1设备上调用不生效。<!--RP8End-->
-沉浸式布局生效时，布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
-非沉浸式布局生效时，布局避让状态栏与导航栏，组件不会与其重叠。
+沉浸式布局生效时，布局不避让状态栏与三键导航栏，组件可能产生与其重叠的情况。
+非沉浸式布局生效时，布局避让状态栏与三键导航栏，组件不会与其重叠。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2322,7 +2322,7 @@ setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------------ | ------- | -- | ------------------------------------------------------------------------------------------------ |
-| isLayoutFullScreen | boolean | 是 | 窗口的布局是否为沉浸式布局（该沉浸式布局状态栏、导航栏仍然显示）。true表示沉浸式布局；false表示非沉浸式布局。 |
+| isLayoutFullScreen | boolean | 是 | 窗口的布局是否为沉浸式布局（该沉浸式布局状态栏、三键导航栏仍然显示）。true表示沉浸式布局；false表示非沉浸式布局。 |
 
 **返回值：**
 
