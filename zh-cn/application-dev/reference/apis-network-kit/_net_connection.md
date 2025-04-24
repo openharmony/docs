@@ -113,7 +113,7 @@ typedef struct NetConn_ConnectionProperties NetConn_ConnectionProperties
 
 **描述**
 
-网络链接信息。
+网络连接信息。
 
 **起始版本：** 11
 
