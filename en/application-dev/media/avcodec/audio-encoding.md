@@ -10,10 +10,10 @@ For details about the supported encoding capabilities, see [AVCodec Supported Fo
 
 - Audio recording
 
-  Record incoming PCM data, encode it into the desired stream format, and then [wrap](audio-video-muxer.md#media-data-muxing) it in the target file format.
+  Record incoming PCM data, encode it into the desired stream format, and then [wrap](audio-video-muxer.md#media-data-multiplexing) it in the target file format.
 - Audio editing
 
-  When exporting edited PCM data as an audio file, the PCM data must be encoded into the appropriate audio format and then [wrapped](audio-video-muxer.md#media-data-muxing) into a file.
+  When exporting edited PCM data as an audio file, the PCM data must be encoded into the appropriate audio format and then [wrapped](audio-video-muxer.md#media-data-multiplexing) into a file.
 > **NOTE**
 >
 > AAC encoders adopt the VBR mode by default, which may differ in the configured parameters.
