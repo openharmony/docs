@@ -83,7 +83,7 @@ Core File Kit常见的使用场景：
 
 ## 与相关Kit的关系
 
-Ability Kit: Core File Kit中用户文件访问框架依赖Ability Kit提供的Extension基础能力，受Ability Kit服务调度管理。
+Ability Kit：Core File Kit中用户文件访问框架依赖Ability Kit提供的Extension基础能力，受Ability Kit服务调度管理。
 
 ## 相关实例
 
