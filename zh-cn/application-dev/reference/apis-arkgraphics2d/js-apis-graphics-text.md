@@ -1617,24 +1617,7 @@ getGlyphCount(): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
-
-function textFunc() {
-  let GlyphCount = lines[0].getGlyphCount();
-}
-
-@Entry
-@Component
-struct Index {
-  fun: Function = textFunc;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let GlyphCount = lines[0].getGlyphCount();
 ```
 
 ### getTextRange
@@ -1654,24 +1637,7 @@ getTextRange(): Range
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
-
-function textFunc() {
-  let textRange = lines[0].getTextRange();
-}
-
-@Entry
-@Component
-struct Index {
-  fun: Function = textFunc;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let textRange = lines[0].getTextRange();
 ```
 
 ### getGlyphRuns
@@ -1691,24 +1657,7 @@ getGlyphRuns(): Array\<Run>
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
-
-function textFunc() {
-  let runs = lines[0].getGlyphRuns();
-}
-
-@Entry
-@Component
-struct Index {
-  fun: Function = textFunc;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let runs = lines[0].getGlyphRuns();
 ```
 
 ### paint
@@ -1729,6 +1678,7 @@ paint(canvas: drawing.Canvas, x: number, y: number): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { drawing } from '@kit.ArkGraphics2D'
 import { text } from "@kit.ArkGraphics2D"
@@ -1784,24 +1734,7 @@ getGlyphCount(): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
-
-function textFunc() {
-  let glyphs = runs[0].getGlyphCount();
-}
-
-@Entry
-@Component
-struct Index {
-  fun: Function = textFunc;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let glyphs = runs[0].getGlyphCount();
 ```
 
 ### getGlyphs
@@ -1821,24 +1754,7 @@ getGlyphs(): Array\<number>
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
-
-function textFunc() {
-  let glyph = runs[0].getGlyphs();
-}
-
-@Entry
-@Component
-struct Index {
-  fun: Function = textFunc;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let glyph = runs[0].getGlyphs();
 ```
 
 ### getPositions
@@ -1858,24 +1774,7 @@ getPositions(): Array<common2D.Point>
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function textFunc() {
-  let positions = runs[0].getPositions(); // 获取渲染块全部字形位置
-}
-
-@Entry
-@Component
-struct Index {
-  fun: Function = textFunc;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let positions = runs[0].getPositions();
 ```
 
 ### getOffsets
@@ -1895,24 +1794,7 @@ getOffsets(): Array<common2D.Point>
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function textFunc() {
-  let offsets = runs[0].getOffsets();
-}
-
-@Entry
-@Component
-struct Index {
-  fun: Function = textFunc;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let offsets = runs[0].getOffsets();
 ```
 
 ### getFont
@@ -1932,25 +1814,7 @@ getFont(): drawing.Font
 **示例：**
 
 ```ts
-import { drawing } from '@kit.ArkGraphics2D'
-import { text } from "@kit.ArkGraphics2D";
-
-function textFunc() {
-  let font = runs[0].getFont();
-}
-
-@Entry
-@Component
-struct Index {
-  fun: Function = textFunc;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let font = runs[0].getFont();
 ```
 
 ### paint
@@ -1971,6 +1835,7 @@ paint(canvas: drawing.Canvas, x: number, y: number): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { drawing } from '@kit.ArkGraphics2D'
 import { text } from "@kit.ArkGraphics2D"
