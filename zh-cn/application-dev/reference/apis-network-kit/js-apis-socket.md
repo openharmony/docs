@@ -162,8 +162,19 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',  // 本端地址
+  port: 1234
+}
+udp.bind(bindAddr, (err: BusinessError) => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
+});
 let netAddress: socket.NetAddress = {
-  address: '192.168.xx.xxx',
+  address: '192.168.xx.xxx',  // 对端地址
   port: 8080
 }
 let sendOptions: socket.UDPSendOptions = {
@@ -217,8 +228,18 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx', // 本端地址
+  port: 8080
+}
+udp.bind(bindAddr).then(() => {
+  console.log('bind success');
+}).catch((err: BusinessError) => {
+  console.log('bind fail');
+  return;
+});
 let netAddress: socket.NetAddress = {
-  address: '192.168.xx.xxx',
+  address: '192.168.xx.xxx', // 对端地址
   port: 8080
 }
 let sendOptions: socket.UDPSendOptions = {
