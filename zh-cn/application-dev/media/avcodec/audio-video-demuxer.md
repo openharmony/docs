@@ -293,7 +293,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    | AVCODEC_BUFFER_FLAGS_CODEC_DATA | 含参数集信息的帧。 |
    | AVCODEC_BUFFER_FLAGS_DISCARD  | 可丢弃的帧。 |
 
-   OH_AVDemuxer_ReadSampleBuffer接口本身可能存在耗时，建议以异步方式进行调用。
+   OH_AVDemuxer_ReadSampleBuffer接口本身可能会耗时，建议以异步方式进行调用。
    ```c++
    // 1. 同步调用的方式
    // 按照指定size创建buffer，用于保存用户解封装得到的数据。
@@ -341,34 +341,30 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    // 为每个线程定义处理函数
    void ReadTrackSamples(OH_AVFormatDemuxer *demuxer, int trackIndex, int buffer_size, 
                         std::atomic<bool>& isEnd, std::atomic<bool>& threadFinished) {
-      OH_AVBuffer *buffer = nullptr;
+      // 创建缓冲区
+      OH_AVBuffer *buffer = OH_AVBuffer_Create(buffer_size);
+      if (!buffer) {
+         printf("Create buffer failed for track %d\n", trackIndex);
+         threadFinished.store(true);
+         return;
+      }
       OH_AVCodecBufferAttr info;
       int32_t ret;
-      
-      while (!isEnd.load()) {
-         // 创建缓冲区
-         buffer = OH_AVBuffer_Create(buffer_size);
-         if (!buffer) {
-               printf("Create buffer failed for track %d\n", trackIndex);
-               break;
-         }
 
+      while (!isEnd.load()) {
          ret = OH_AVDemuxer_ReadSampleBuffer(demuxer, trackIndex, buffer);
          if (ret == AV_ERR_OK) {
                OH_AVBuffer_GetBufferAttr(buffer, &info);
                printf("Track %d sample size: %d\n", trackIndex, info.size);
-               
                // 检查EOS标志
                if (info.flags == OH_AVCodecBufferFlags::AVCODEC_BUFFER_FLAGS_EOS) {
                   isEnd.store(true);
                }
-               
                // 处理缓冲区数据（这里可以根据需要实现解码逻辑）
          }
          else {
                printf("Read sample failed for track %d\n", trackIndex);
          }
-
          // 销毁缓冲区
          OH_AVBuffer_Destroy(buffer);
          buffer = nullptr;
@@ -381,23 +377,16 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    int videoBufferSize = w * h * 3 >> 1;  // 原始视频缓冲区大小
    
    // 创建原子变量用于线程通信
-   std::atomic<bool> audioIsEnd(false), videoIsEnd(false);
-   std::atomic<bool> audioThreadFinished(false), videoThreadFinished(false);
+   std::atomic<bool> audioIsEnd(false), videoIsEnd(false); // 表示流是否结束
+   std::atomic<bool> audioThreadFinished(false), videoThreadFinished(false); // 表示线程是否暂停
    
    // 创建线程
    std::thread audioThread(ReadTrackSamples, demuxer, audioTrackIndex, audioBufferSize, 
                           std::ref(audioIsEnd), std::ref(audioThreadFinished));
    std::thread videoThread(ReadTrackSamples, demuxer, videoTrackIndex, videoBufferSize, 
                           std::ref(videoIsEnd), std::ref(videoThreadFinished));
-   // 等待线程完成
-   while (!audioThreadFinished && !videoThreadFinished) {
-       // 可以添加超时处理逻辑
-       std::this_thread::sleep_for(std::chrono::milliseconds(100));
-   }
    audioThread.join();
    videoThread.join();
-    
-   // 后续清理逻辑...
    ```
 
 10. 销毁解封装实例。
