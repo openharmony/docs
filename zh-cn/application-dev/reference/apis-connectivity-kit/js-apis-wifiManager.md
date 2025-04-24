@@ -490,12 +490,12 @@ WLAN配置信息。
 | phase2Method | [Phase2Method](#phase2method10) | 是 | 否 | 第二阶段认证方式。只有eapMethod为EAP_PEAP或EAP_TTLS时需要填写。 |
 | identity | string | 是 | 否 | 身份信息。当eapMethod为EAP_PEAP、EAP_TLS或EAP_PWD时，该字段不能为空串。 |
 | anonymousIdentity | string | 是 | 否 | 匿名身份。暂未使用。 |
-| password | string | 是 | 否 | 密码。当eapMethod为EAP_PEAP或EAP_PWD时，该字段不能为空串，最大长度为128。 |
+| password | string | 是 | 否 | 密码。当eapMethod为EAP_PEAP或EAP_PWD时，该字段不能为空串，最大长度为128字节。 |
 | caCertAlias | string | 是 | 否 | CA 证书别名。 |
 | caPath | string | 是 | 否 | CA 证书路径。 |
 | clientCertAlias | string | 是 | 否 | 客户端证书别名。 |
 | certEntry | Uint8Array | 是 | 是 | CA 证书内容。当eapMethod为EAP_TLS时，如果该字段为空，则clientCertAlias不能为空。 |
-| certPassword | string | 是 | 是 | CA证书密码，最大长度为128。 |
+| certPassword | string | 是 | 是 | CA证书密码，最大长度为128字节。 |
 | altSubjectMatch | string | 是 | 否 | 替代主题匹配。 |
 | domainSuffixMatch | string | 是 | 否 | 域后缀匹配。 |
 | realm | string | 是 | 否 | 通行证凭证的领域。 |
