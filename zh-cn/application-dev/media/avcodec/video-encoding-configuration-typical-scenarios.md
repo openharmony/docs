@@ -1,10 +1,10 @@
 # 典型场景的视频编码配置
 
-此文档描述了AVCodec视频编码能力在不同应用场景下的推荐配置参数，供调用者根据实际应用场景进行视频编码应用的开发。
+此文档描述了AVCodec视频编码能力在不同应用场景下的推荐配置参数，供开发者根据实际应用场景进行视频编码应用的开发。
 
 视频编码在视频通话、视频会议、直播、视频编辑、视频分享等场景均有广泛使用，按照体验要求，上述场景可归纳划分为低时延、实时流媒体、离线编码三大类别应用场景。
 
-本文将给出三大类别应用场景下视频编码的推荐参数配置，供调用者根据不同的应用场景下的需求进行参数配置选择。
+本文将给出三大类别应用场景下视频编码的推荐参数配置，供开发者根据不同的应用场景下的需求进行参数配置选择。
 
 
 ## 通用开发步骤
@@ -86,7 +86,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     if (isSupported) {
         // 使能低时延特性：YUV进一帧，出一帧码流数据。
         // 如果查询视频编码器支持低时延特性(isSupported = true)，则必须配置。
-        OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY, 1)
+        OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY, 1);
     }
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_I_FRAME_INTERVAL, -1); // 必须配置，接入帧间隔。
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE, OH_BitrateMode::BITRATE_MODE_CBR); // 必须配置，码控模式配置为CBR。
@@ -129,7 +129,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 **开发指导**
 
-基础编码流程请参考[视频编码](video-encoding.md)，下面仅针对编码器配置阶段，配置实时流媒体编码场景的参数做具体说明。
+基础编码流程请参考[视频编码](video-encoding.md)，下面仅针对编码器配置阶段，对配置实时流媒体编码场景的参数做具体说明。
 
 娱乐直播场景，典型分辨率的编码参数（以H.265为例）推荐如下：
 
@@ -179,7 +179,7 @@ OH_AVFormat_Destroy(format);
 
 **开发指导**
 
-基础编码流程请参考[视频编码](video-encoding.md)，下面仅针对编码器配置阶段，配置离线编码场景的编码参数做具体说明。
+基础编码流程请参考[视频编码](video-encoding.md)，下面仅针对编码器配置阶段，对配置离线编码场景的编码参数做具体说明。
 
 视频编辑场景，典型分辨率的编码参数（以H.265为例）推荐如下：
 
