@@ -522,14 +522,14 @@ struct ButtonExample {
 @Entry
 @Component
 struct SwipeGestureExample {
-  @State count: number = 0
+  @State count: number = 0;
 
   build() {
     Column() {
       Text(`${this.count}`)
         .fontSize(30)
         .onClick(() => {
-          this.count++
+          this.count++;
         })
       if (this.count <= 0) {
         Button('count is negative').fontSize(30).height(50)
@@ -657,23 +657,24 @@ struct ButtonExample {
 该示例实现了自定义样式的功能，自定义样式实现了一个圆圈替换原本的按钮样式。如果按压，圆圈将变成红色，标题会显示按压字样；如果没有按压，圆圈将变成黑色，标题会显示非按压字样。
 ```ts
 class MyButtonStyle implements ContentModifier<ButtonConfiguration> {
-  x: number = 0
-  y: number = 0
-  selectedColor:Color = Color.Black
+  x: number = 0;
+  y: number = 0;
+  selectedColor: Color = Color.Black;
 
-  constructor(x : number, y: number,ColorType:Color) {
-    this.x = x
-    this.y = y
-    this.selectedColor = ColorType
+  constructor(x: number, y: number, ColorType: Color) {
+    this.x = x;
+    this.y = y;
+    this.selectedColor = ColorType;
   }
-  applyContent() : WrappedBuilder<[ButtonConfiguration]>
-  {
-    return wrapBuilder(buildButton1)
+
+  applyContent(): WrappedBuilder<[ButtonConfiguration]> {
+    return wrapBuilder(buildButton1);
   }
 }
 
-@Builder function buildButton1(config: ButtonConfiguration) {
-  Column({space:30}) {
+@Builder
+function buildButton1(config: ButtonConfiguration) {
+  Column({ space: 30 }) {
     Text(config.enabled ? "enabled true" : "enabled false")
     Text('圆圈状态' + (config.pressed ? "（ 按压 ）" : "（ 非按压 ）"))
     Text('点击位置x坐标：' + (config.enabled ? (config.contentModifier as MyButtonStyle).x : "0"))
@@ -681,8 +682,8 @@ class MyButtonStyle implements ContentModifier<ButtonConfiguration> {
     Circle({ width: 50, height: 50 })
       .fill(config.pressed ? (config.contentModifier as MyButtonStyle).selectedColor : Color.Black)
       .gesture(
-        TapGesture({count:1}).onAction((event: GestureEvent)=>{
-          config.triggerClick(event.fingerList[0].localX,event.fingerList[0].localY)
+        TapGesture({ count: 1 }).onAction((event: GestureEvent) => {
+          config.triggerClick(event.fingerList[0].localX, event.fingerList[0].localY)
         })).opacity(config.enabled ? 1 : 0.1)
   }
 }
@@ -691,27 +692,28 @@ class MyButtonStyle implements ContentModifier<ButtonConfiguration> {
 @Component
 struct ButtonExample {
   @State buttonEnabled: boolean = true;
-  @State positionX: number = 0
-  @State positionY: number = 0
-  @State state : boolean[] = [true,false]
-  @State index:number = 0
+  @State positionX: number = 0;
+  @State positionY: number = 0;
+  @State state: boolean[] = [true, false];
+  @State index: number = 0;
+
   build() {
     Column() {
       Button('OK')
-        .contentModifier(new MyButtonStyle(this.positionX,this.positionY,Color.Red))
+        .contentModifier(new MyButtonStyle(this.positionX, this.positionY, Color.Red))
         .onClick((event) => {
-          console.info('change' + JSON.stringify(event))
-          this.positionX = event.displayX
-          this.positionY = event.displayY
+          console.info('change' + JSON.stringify(event));
+          this.positionX = event.displayX;
+          this.positionY = event.displayY;
         }).enabled(this.buttonEnabled)
       Row() {
         Toggle({ type: ToggleType.Switch, isOn: true }).onChange((value: boolean) => {
           if (value) {
-            this.buttonEnabled = true
+            this.buttonEnabled = true;
           } else {
-            this.buttonEnabled = false
+            this.buttonEnabled = false;
           }
-        }).margin({left:-80})
+        }).margin({ left: -80 })
       }
     }.height('100%').width('100%').justifyContent(FlexAlign.Center)
   }

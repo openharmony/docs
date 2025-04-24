@@ -55,23 +55,28 @@ struct ComponentDemo {
 
 
 ```ts
-import { curves, window, display, mediaquery } from '@kit.ArkUI';
+import { curves, window, display, mediaquery, UIContext } from '@kit.ArkUI';
 import { UIAbility } from '@kit.AbilityKit';
 
-export default class GlobalContext extends AppStorage{
-  static mainWin: window.Window|undefined = undefined;
-  static mainWindowSize:window.Size|undefined = undefined;
+export default class GlobalContext extends AppStorage {
+  static mainWin: window.Window | undefined = undefined;
+  static mainWindowSize: window.Size | undefined = undefined;
 }
 /**
  * 窗口、屏幕相关信息管理类
  */
 export class WindowManager {
-  private static instance: WindowManager|null = null;
-  private displayInfo: display.Display|null = null;
-  private orientationListener = mediaquery.matchMediaSync('(orientation: landscape)');
+  private static instance: WindowManager | null = null;
+  private displayInfo: display.Display | null = null;
+  private uiContext: UIContext;
+  private orientationListener: mediaquery.MediaQueryListener;
 
-  constructor() {
-    this.orientationListener.on('change', (mediaQueryResult: mediaquery.MediaQueryResult) => { this.onPortrait(mediaQueryResult) })
+  constructor(uiContext: UIContext) {
+    this.uiContext = uiContext
+    this.orientationListener = this.uiContext.getMediaQuery().matchMediaSync('(orientation: landscape)');
+    this.orientationListener.on('change', (mediaQueryResult: mediaquery.MediaQueryResult) => {
+      this.onPortrait(mediaQueryResult)
+    })
     this.loadDisplayInfo()
   }
 
@@ -98,14 +103,14 @@ export class WindowManager {
       AppStorage.setOrCreate<number>('mainWinWidth', winWidth)
       let winHeight = this.getMainWindowHeight();
       AppStorage.setOrCreate<number>('mainWinHeight', winHeight)
-      let context:UIAbility = new UIAbility()
+      let context: UIAbility = new UIAbility()
       context.context.eventHub.emit("windowSizeChange", winWidth, winHeight)
     })
   }
 
-  static getInstance(): WindowManager {
+  static getInstance(uiContext: UIContext): WindowManager {
     if (WindowManager.instance == null) {
-      WindowManager.instance = new WindowManager();
+      WindowManager.instance = new WindowManager(uiContext);
     }
     return WindowManager.instance
   }
@@ -138,28 +143,28 @@ export class WindowManager {
    * 获取main窗口宽度，单位vp
    */
   getMainWindowWidth(): number {
-    return GlobalContext.mainWindowSize != null ? px2vp(GlobalContext.mainWindowSize.width) : 0
+    return GlobalContext.mainWindowSize != null ? this.uiContext.px2vp(GlobalContext.mainWindowSize.width) : 0
   }
 
   /**
    * 获取main窗口高度，单位vp
    */
   getMainWindowHeight(): number {
-    return GlobalContext.mainWindowSize != null ? px2vp(GlobalContext.mainWindowSize.height) : 0
+    return GlobalContext.mainWindowSize != null ? this.uiContext.px2vp(GlobalContext.mainWindowSize.height) : 0
   }
 
   /**
    * 获取屏幕宽度，单位vp
    */
   getDisplayWidth(): number {
-    return this.displayInfo != null ? px2vp(this.displayInfo.width) : 0
+    return this.displayInfo != null ? this.uiContext.px2vp(this.displayInfo.width) : 0
   }
 
   /**
    * 获取屏幕高度，单位vp
    */
   getDisplayHeight(): number {
-    return this.displayInfo != null ? px2vp(this.displayInfo.height) : 0
+    return this.displayInfo != null ? this.uiContext.px2vp(this.displayInfo.height) : 0
   }
 
   /**
@@ -167,7 +172,9 @@ export class WindowManager {
    */
   release() {
     if (this.orientationListener) {
-      this.orientationListener.off('change', (mediaQueryResult: mediaquery.MediaQueryResult) => { this.onPortrait(mediaQueryResult)})
+      this.orientationListener.off('change', (mediaQueryResult: mediaquery.MediaQueryResult) => {
+        this.onPortrait(mediaQueryResult)
+      })
     }
     if (GlobalContext.mainWin != null) {
       GlobalContext.mainWin.off('windowSizeChange')
@@ -210,7 +217,7 @@ export const taskDataArr: Array<TaskData> =
 @Entry
 @Component
 export struct TaskSwitchMainPage {
-  displayWidth: number = WindowManager.getInstance().getDisplayWidth();
+  displayWidth: number = WindowManager.getInstance(this.getUIContext()).getDisplayWidth();
   scroller: Scroller = new Scroller();
   cardSpace: number = 0; // 卡片间距
   cardWidth: number = this.displayWidth / 2 - this.cardSpace / 2; // 卡片宽度
@@ -220,7 +227,7 @@ export struct TaskSwitchMainPage {
   @State taskViewOffsetX: number = 0;
   @State cardOffset: number = this.displayWidth / 4;
   lastCardOffset: number = this.cardOffset;
-  startTime: number|undefined=undefined
+  startTime: number | undefined = undefined
 
   // 每个卡片初始位置
   aboutToAppear() {
@@ -246,7 +253,7 @@ export struct TaskSwitchMainPage {
       // 滑动组件
       Scroll(this.scroller) {
         Row({ space: this.cardSpace }) {
-          ForEach(taskDataArr, (item:TaskData, index) => {
+          ForEach(taskDataArr, (item: TaskData, index) => {
             Column()
               .width(this.cardWidth)
               .height(this.cardHeight)
@@ -267,7 +274,7 @@ export struct TaskSwitchMainPage {
               .translate({ x: this.cardOffset })
               .animation({ curve: curves.springMotion() })
               .zIndex((this.getProgress(index) >= 0.4 && this.getProgress(index) <= 0.6) ? 2 : 1)
-          }, (item:TaskData) => item.toString())
+          }, (item: TaskData) => item.toString())
         }
         .width((this.cardWidth + this.cardSpace) * (taskDataArr.length + 1))
         .height('100%')
@@ -275,20 +282,20 @@ export struct TaskSwitchMainPage {
       .gesture(
         GestureGroup(GestureMode.Parallel,
           PanGesture({ direction: PanDirection.Horizontal, distance: 5 })
-            .onActionStart((event: GestureEvent|undefined) => {
-              if(event){
+            .onActionStart((event: GestureEvent | undefined) => {
+              if (event) {
                 this.startTime = event.timestamp;
               }
             })
-            .onActionUpdate((event: GestureEvent|undefined) => {
-              if(event){
+            .onActionUpdate((event: GestureEvent | undefined) => {
+              if (event) {
                 this.cardOffset = this.lastCardOffset + event.offsetX;
               }
             })
-            .onActionEnd((event: GestureEvent|undefined) => {
-              if(event){
+            .onActionEnd((event: GestureEvent | undefined) => {
+              if (event) {
                 let time = 0
-                if(this.startTime){
+                if (this.startTime) {
                   time = event.timestamp - this.startTime;
                 }
                 let speed = event.offsetX / (time / 1000000000);

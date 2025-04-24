@@ -24,9 +24,9 @@ PluginComponent(options: PluginComponentOptions)
 
 | 参数名  | 参数类型                                                     | 必填 | 参数描述                                                     |
 | ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [PluginComponentOptions](#plugincomponentoptions14类型说明) | 是   | 定义用于构造插件组件的选项。 |
+| options | [PluginComponentOptions](#plugincomponentoptions18类型说明) | 是   | 定义用于构造插件组件的选项。 |
 
-## PluginComponentOptions<sup>14+</sup>类型说明
+## PluginComponentOptions<sup>18+</sup>类型说明
 
 定义用于构造插件组件的选项。
 
@@ -87,17 +87,17 @@ onError(callback:&nbsp;{info:&nbsp;PluginErrorCallback})
 
 | 参数名    | 类型                                                         | 必填 | 说明                                            |
 | --------- | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
-| callback  | [PluginErrorCallback](#pluginerrorcallback14类型说明)          | 是   | 发生错误时调用回调。 |
+| callback  | [PluginErrorCallback](#pluginerrorcallback18类型说明)          | 是   | 发生错误时调用回调。 |
 
-## PluginErrorCallback<sup>14+</sup>类型说明
+## PluginErrorCallback<sup>18+</sup>类型说明
 
 发生错误时调用回调。
 
 | 参数     | 类型               | 描述                        |
 | -------- | ------------------ | --------------------------- |
-| info     | [PluginErrorData](#pluginerrordata14类型说明)  | 发生错误时提供的数据。 |
+| info     | [PluginErrorData](#pluginerrordata18类型说明)  | 发生错误时提供的数据。 |
 
-## PluginErrorData<sup>14+</sup>类型说明
+## PluginErrorData<sup>18+</sup>类型说明
 
 发生错误时提供的数据。
 

@@ -42,8 +42,6 @@
 页面1：
 
 ```ts
-import { router } from '@kit.ArkUI';
-
 @Entry
 @Component({ freezeWhenInactive: true })
 struct Page1 {
@@ -62,7 +60,7 @@ struct Page1 {
         })
       Button('go to next page').fontSize(30)
         .onClick(() => {
-          router.pushUrl({ url: 'pages/Page2' })
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/Page2' });
         })
     }
   }
@@ -72,8 +70,6 @@ struct Page1 {
 页面2：
 
 ```ts
-import { router } from '@kit.ArkUI';
-
 @Entry
 @Component({ freezeWhenInactive: true })
 struct Page2 {
@@ -89,7 +85,7 @@ struct Page2 {
       Text(`second Page ${this.storageLink2}`).fontSize(50)
       Button('Change Divider.strokeWidth')
         .onClick(() => {
-          router.back()
+          this.getUIContext().getRouter().back();
         })
 
       Button('second page storageLink2 + 2').fontSize(30)

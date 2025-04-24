@@ -57,6 +57,8 @@ struct Index {
 
 4、不支持简单类型，如string、number、boolean等。
 
+5、@Type不支持构造函数含参的类。
+
 ## 使用场景
 
 ### 持久化数据

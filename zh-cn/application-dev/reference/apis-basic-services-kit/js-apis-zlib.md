@@ -4028,9 +4028,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzdopenDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzdopenDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4099,9 +4100,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzbufferDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzbufferDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4168,9 +4170,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzopenDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzopenDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4232,9 +4235,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzeofDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzeofDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4286,9 +4290,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzdirectDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzdirectDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4348,9 +4353,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzcloseDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzcloseDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4414,9 +4420,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzclearerrDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzclearerrDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4488,9 +4495,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzerrorDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzerrorDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4553,9 +4561,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzgetcDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzgetcDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4622,9 +4631,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzflushDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzflushDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4698,9 +4708,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzfwriteDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzfwriteDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4778,9 +4789,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzfreadDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzfreadDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4840,9 +4852,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzclosewDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzclosewDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4903,9 +4916,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzcloserDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzcloserDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4976,9 +4990,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzwriteDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzwriteDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5046,9 +5061,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzungetcDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzungetcDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5108,9 +5124,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gztellDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gztellDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5179,9 +5196,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzsetparamsDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzsetparamsDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5249,9 +5267,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzseekDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzseekDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5313,9 +5332,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzrewindDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzrewindDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5391,9 +5411,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzreadDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzreadDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5460,9 +5481,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzputsDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzputsDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5529,9 +5551,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzputcDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzputcDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5600,9 +5623,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzprintfDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzprintfDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5662,9 +5686,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzoffsetDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzoffsetDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5735,9 +5760,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzgetsDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzgetsDemo(pathDir);
+            }
           })
       }
       .width('100%')

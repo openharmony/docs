@@ -315,7 +315,7 @@ export default class EntryAbility extends UIAbility {
 
 startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void
 
-启动一个新的ServiceExtensionAbility（callback形式）。
+启动一个新的ServiceExtensionAbility。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -386,7 +386,7 @@ export default class EntryAbility extends UIAbility {
 
 startServiceExtensionAbility(want: Want): Promise\<void>
 
-启动一个新的ServiceExtensionAbility（Promise形式）。
+启动一个新的ServiceExtensionAbility。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -456,7 +456,7 @@ export default class EntryAbility extends UIAbility {
 
 startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void
 
-启动一个新的ServiceExtensionAbility（callback形式）。
+启动一个新的ServiceExtensionAbility。使用callback异步回调。
 
 > **说明：**
 > 
@@ -536,7 +536,7 @@ export default class EntryAbility extends UIAbility {
 
 startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>
 
-启动一个新的ServiceExtensionAbility（Promise形式）。
+启动一个新的ServiceExtensionAbility。使用Promise异步回调。
 
 > **说明：**
 > 
@@ -614,7 +614,7 @@ export default class EntryAbility extends UIAbility {
 
 stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void
 
-停止同一应用程序内的服务（callback形式）。
+停止同一应用程序内的服务。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -683,7 +683,7 @@ export default class EntryAbility extends UIAbility {
 
 stopServiceExtensionAbility(want: Want): Promise\<void>
 
-停止同一应用程序内的服务（Promise形式）。
+停止同一应用程序内的服务。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -749,7 +749,7 @@ export default class EntryAbility extends UIAbility {
 
 stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void
 
-停止同一应用程序内指定账户的服务（callback形式）。
+停止同一应用程序内指定账户的服务。使用callback异步回调。
 
 > **说明：**
 > 
@@ -824,7 +824,7 @@ export default class EntryAbility extends UIAbility {
 
 stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>
 
-停止同一应用程序内指定账户的服务（Promise形式）。
+停止同一应用程序内指定账户的服务。使用Promise异步回调。
 
 > **说明：**
 > 
@@ -1279,7 +1279,7 @@ export default class EntryAbility extends UIAbility {
 
 setMissionIcon(icon: image.PixelMap, callback: AsyncCallback\<void>): void
 
-设置当前ability在任务中显示的图标, 图标大小最大为600M（callback形式）。
+设置当前Ability在任务中显示的图标，图标大小最大为600M。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1289,8 +1289,8 @@ setMissionIcon(icon: image.PixelMap, callback: AsyncCallback\<void>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| icon | image.PixelMap | 是 | 在最近的任务中显示的ability图标。 |
-| callback | AsyncCallback\<void> | 是 | 指定的回调函数的结果。 |
+| icon | image.PixelMap | 是 | 在最近的任务中显示的Ability图标。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数。当设置当前Ability在任务中显示的图标成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -1335,7 +1335,7 @@ export default class EntryAbility extends UIAbility {
 
 setMissionIcon(icon: image.PixelMap): Promise\<void>
 
-设置当前ability在任务中显示的图标, 图标大小最大为600M（promise形式）。
+设置当前Ability在任务中显示的图标, 图标大小最大为600M。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1345,13 +1345,13 @@ setMissionIcon(icon: image.PixelMap): Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| icon | image.PixelMap | 是 | 在最近的任务中显示的ability图标。 |
+| icon | image.PixelMap | 是 | 在最近的任务中显示的Ability图标。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1478,8 +1478,6 @@ export default class EntryAbility extends UIAbility {
 startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
 启动一个指定的Ability。如果这个Ability有多个实例，将拉起最近启动的那个实例。当开发者需要携带启动参数时可以选择此API。使用callback异步回调。仅支持在主线程调用。
-
-
 
 > **说明：**
 >

@@ -1209,3 +1209,21 @@ type Nullable\<T> = T | undefined;
 | NONE     | 0   | 未知。 |
 | LEFT     | 1   | 左手。 |
 | RIGHT    | 2   | 右手。 |
+
+## PixelRoundMode<sup>18+</sup>
+
+指定像素取整模式。
+
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    |  值   | 说明                   |
+| ------  |---- | -------------------- |
+| PIXEL_ROUND_ON_LAYOUT_FINISH | 0 | 在组件测量大小和位置后进行像素取整，默认值为0。 |
+| PIXEL_ROUND_AFTER_MEASURE |  1 | 在组件测量大小结束后进行像素取整。 |
+
+>  **说明：**
+> 在PIXEL_ROUND_AFTER_MEASURE模式下，组件会在测量时进行一次取整，也即最终大小与PIXEL_ROUND_ON_LAYOUT_FINISH会有1px的区别。

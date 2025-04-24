@@ -292,7 +292,7 @@ struct Index {
 | NONE           | 0 | 装饰线不生效。|
 | UNDERLINE      | 1 | 下划线。      |
 | OVERLINE       | 2 | 上划线。     |
-| LINE_THROUGH   | 3 | 删除线。      |
+| LINE_THROUGH   | 4 | 删除线。      |
 
 ## TextDecorationStyle
 
@@ -2019,24 +2019,7 @@ getGlyphCount(): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
-
-function textFunc() {
-  let GlyphCount = lines[0].getGlyphCount();
-}
-
-@Entry
-@Component
-struct Index {
-  fun: Function = textFunc;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let glyphCount = lines[0].getGlyphCount();
 ```
 
 ### getTextRange
@@ -2056,24 +2039,7 @@ getTextRange(): Range
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
-
-function textFunc() {
-  let textRange = lines[0].getTextRange();
-}
-
-@Entry
-@Component
-struct Index {
-  fun: Function = textFunc;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let textRange = lines[0].getTextRange();
 ```
 
 ### getGlyphRuns
@@ -2093,24 +2059,7 @@ getGlyphRuns(): Array\<Run>
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
-
-function textFunc() {
-  let runs = lines[0].getGlyphRuns();
-}
-
-@Entry
-@Component
-struct Index {
-  fun: Function = textFunc;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let runs = lines[0].getGlyphRuns();
 ```
 
 ### paint
@@ -2131,6 +2080,7 @@ paint(canvas: drawing.Canvas, x: number, y: number): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { drawing } from '@kit.ArkGraphics2D'
 import { text } from "@kit.ArkGraphics2D"
@@ -2195,6 +2145,7 @@ createTruncatedLine(width: number, ellipsisMode: EllipsisMode, ellipsis: string)
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { drawing, text, common2D } from '@kit.ArkGraphics2D'
 import { image } from '@kit.ImageKit';
@@ -2253,25 +2204,8 @@ getTypographicBounds(): TypographicBounds
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
-
-function textFunc() {
-  let bounds = lines[0].getTypographicBounds();
-  console.info('textLine ascent:' + bounds.ascent + ', descent:' + bounds.descent + ', leading:' + bounds.leading + ', width:' + bounds.width);
-}
-
-@Entry
-@Component
-struct Index {
-  fun: Function = textFunc;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let bounds = lines[0].getTypographicBounds();
+console.info('textLine ascent:' + bounds.ascent + ', descent:' + bounds.descent + ', leading:' + bounds.leading + ', width:' + bounds.width);
 ```
 
 ### getImageBounds<sup>18+</sup>
@@ -2302,25 +2236,7 @@ getImageBounds(): common2D.Rect
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
-
-function textFunc() {
-  let imageBounds = lines[0].getImageBounds();
-  console.info('textLine left:' + imageBounds.left + ', top:' + imageBounds.top + ', right:' + imageBounds.right + ', bottom:' + imageBounds.bottom);
-}
-
-@Entry
-@Component
-struct Index {
-  fun: Function = textFunc;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let imageBounds = lines[0].getImageBounds();
 ```
 
 ### getTrailingSpaceWidth<sup>18+</sup>
@@ -2340,25 +2256,7 @@ getTrailingSpaceWidth(): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
-
-function textFunc() {
-  let trailingSpaceWidth = lines[0].getTrailingSpaceWidth();
-  console.info('textLine trailingSpaceWidth:' + trailingSpaceWidth);
-}
-
-@Entry
-@Component
-struct Index {
-  fun: Function = textFunc;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let trailingSpaceWidth = lines[0].getTrailingSpaceWidth();
 ```
 
 ### getStringIndexForPosition<sup>18+</sup>
@@ -2392,26 +2290,8 @@ getStringIndexForPosition(point: common2D.Point): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
-
-function textFunc() {
-  let point : common2D.Point = { x: 15.0, y: 2.0 };
-  let index = lines[0].getStringIndexForPosition(point);
-  console.info('textLine getStringIndexForPosition(15.0, 2.0):' + index);
-}
-
-@Entry
-@Component
-struct Index {
-  fun: Function = textFunc;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let point : common2D.Point = { x: 15.0, y: 2.0 };
+let index = lines[0].getStringIndexForPosition(point);
 ```
 
 ### getOffsetForStringIndex<sup>18+</sup>
@@ -2445,25 +2325,7 @@ getOffsetForStringIndex(index: number): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
-
-function textFunc() {
-  let offset = lines[0].getOffsetForStringIndex(3);
-  console.info('textLine getOffsetForStringIndex(3):' + offset);
-}
-
-@Entry
-@Component
-struct Index {
-  fun: Function = textFunc;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let offset = lines[0].getOffsetForStringIndex(3);
 ```
 
 ### enumerateCaretOffsets<sup>18+</sup>
@@ -2491,29 +2353,11 @@ enumerateCaretOffsets(callback: CaretOffsetsCallback): void
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
-
 function callback(offset: number, index: number, leadingEdge: boolean): boolean {
   console.info('textLine: offset: ' + offset + ', index: ' + index + ', leadingEdge: ' + leadingEdge);
   return index > 50;
 }
-
-function textFunc() {
-  lines[0].enumerateCaretOffsets(callback);
-}
-
-@Entry
-@Component
-struct Index {
-  fun: Function = textFunc;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+lines[0].enumerateCaretOffsets(callback);
 ```
 
 ### getAlignmentOffset<sup>18+</sup>
@@ -2548,25 +2392,7 @@ getAlignmentOffset(alignmentFactor: number, alignmentWidth: number): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
-
-function textFunc() {
-  let alignmentOffset = lines[0].getAlignmentOffset(0.5, 500);
-  console.info('textLine getAlignmentOffset(0.5, 500):' + alignmentOffset);
-}
-
-@Entry
-@Component
-struct Index {
-  fun: Function = textFunc;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let alignmentOffset = lines[0].getAlignmentOffset(0.5, 500);
 ```
 
 ## Run
@@ -2592,24 +2418,7 @@ getGlyphCount(): number
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
-
-function textFunc() {
-  let glyphs = runs[0].getGlyphCount();
-}
-
-@Entry
-@Component
-struct Index {
-  fun: Function = textFunc;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let glyphs = runs[0].getGlyphCount();
 ```
 
 ### getGlyphs
@@ -2629,24 +2438,7 @@ getGlyphs(): Array\<number>
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
-
-function textFunc() {
-  let glyph = runs[0].getGlyphs();
-}
-
-@Entry
-@Component
-struct Index {
-  fun: Function = textFunc;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let glyph = runs[0].getGlyphs();
 ```
 
 ### getGlyphs<sup>18+</sup>
@@ -2679,6 +2471,7 @@ getGlyphs(range: Range): Array\<number>
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { text } from "@kit.ArkGraphics2D"
 
@@ -2722,24 +2515,7 @@ getPositions(): Array<common2D.Point>
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function textFunc() {
-  let positions = runs[0].getPositions(); // 获取渲染块全部字形位置
-}
-
-@Entry
-@Component
-struct Index {
-  fun: Function = textFunc;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let positions = runs[0].getPositions();
 ```
 ### getPositions<sup>18+</sup>
 
@@ -2771,6 +2547,7 @@ getPositions(range: Range): Array<common2D.Point>
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { text } from "@kit.ArkGraphics2D";
 
@@ -2814,24 +2591,7 @@ getOffsets(): Array<common2D.Point>
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function textFunc() {
-  let offsets = runs[0].getOffsets();
-}
-
-@Entry
-@Component
-struct Index {
-  fun: Function = textFunc;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let offsets = runs[0].getOffsets();
 ```
 
 ### getFont
@@ -2851,25 +2611,7 @@ getFont(): drawing.Font
 **示例：**
 
 ```ts
-import { drawing } from '@kit.ArkGraphics2D'
-import { text } from "@kit.ArkGraphics2D";
-
-function textFunc() {
-  let font = runs[0].getFont();
-}
-
-@Entry
-@Component
-struct Index {
-  fun: Function = textFunc;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let font = runs[0].getFont();
 ```
 
 ### paint
@@ -2890,6 +2632,7 @@ paint(canvas: drawing.Canvas, x: number, y: number): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { drawing } from '@kit.ArkGraphics2D'
 import { text } from "@kit.ArkGraphics2D"
@@ -2940,26 +2683,9 @@ getStringRange(): Range
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function textFunc() {
-  let runStringRange = runs[0].getStringRange();
-  let location = runStringRange.start;
-  let length = runStringRange.end;
-}
-
-@Entry
-@Component
-struct Index {
-  fun: Function = textFunc;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let runStringRange = runs[0].getStringRange();
+let location = runStringRange.start;
+let length = runStringRange.end;
 ```
 
 ### getStringIndices<sup>18+</sup>
@@ -2992,6 +2718,7 @@ getStringIndices(range?: Range): Array\<number>
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { text } from "@kit.ArkGraphics2D";
 
@@ -3045,24 +2772,7 @@ getImageBounds(): common2D.Rect
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function textFunc() {
-  let bounds = runs[0].getImageBounds();
-}
-
-@Entry
-@Component
-struct Index {
-  fun: Function = textFunc;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let bounds = runs[0].getImageBounds();
 ```
 
 ### getTypographicBounds<sup>18+</sup>
@@ -3092,24 +2802,7 @@ getTypographicBounds(): TypographicBounds
 **示例：**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function textFunc() {
-  let typographicBounds = runs[0].getTypographicBounds();
-}
-
-@Entry
-@Component
-struct Index {
-  fun: Function = textFunc;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let typographicBounds = runs[0].getTypographicBounds();
 ```
 
 ## TextTab<sup>18+</sup>

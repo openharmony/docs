@@ -63,7 +63,7 @@ I/O密集型任务的性能重点通常不在于CPU的处理能力，而在于I/
               .fontSize(50)
               .fontWeight(FontWeight.Bold)
               .onClick(() => {
-                let context = getContext() as common.UIAbilityContext;
+                let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     
                 // 使用TaskPool执行包含密集I/O的并发函数
                 // 数组较大时，I/O密集型任务分发也会抢占UI主线程，需要使用多线程能力

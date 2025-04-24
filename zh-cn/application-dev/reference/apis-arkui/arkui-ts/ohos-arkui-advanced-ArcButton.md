@@ -63,12 +63,12 @@ ArcButton({ options: ArcButtonOptions })
 | status           | [ArcButtonStatus](#arcbuttonstatus)                          | 是   | 弧形按钮状态。<br/>默认值：ArcButtonStatus.NORMAL          |
 | label     | [ResourceStr](ts-types.md#resourcestr)                       | 是   | 弧形按钮显示文本。                                           |
 | backgroundBlurStyle | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 是   | 弧形按钮背景模糊能力。<br/>默认值：BlurStyle.NONE |
-| backgroundColor  | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  | 是   | 弧形按钮背景颜色。<br/>默认值：Color.Black                 |
+| backgroundColor  | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  | 是   | 弧形按钮背景颜色。<br/>ArcButtonStyleMode需要设置为CUSTOM。<br/>默认值：Color.Black                 |
 | shadowColor      | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  | 是   | 弧形按钮阴影颜色。<br/>默认值：Color.Black                 |
 | shadowEnabled    | boolean                                                      | 是   | 弧形按钮阴影开关。<br/>默认值：false<br/>值为true时，显示阴影。值为false时，不显示阴影。 |
 | fontSize | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 弧形按钮文本大小。<br/>默认值：19fp                        |
-| fontColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  | 是   | 弧形按钮文本颜色。<br/>默认值：Color.White                 |
-| pressedFontColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  | 是   | 弧形按钮按下文本颜色。<br/>默认值：Color.White             |
+| fontColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  | 是   | 弧形按钮文本颜色。<br/>ArcButtonStyleMode需要设置为CUSTOM。<br/>默认值：Color.White                 |
+| pressedFontColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  | 是   | 弧形按钮按下文本颜色。<br/>ArcButtonStyleMode需要设置为CUSTOM。<br/>默认值：Color.White             |
 | fontStyle | [FontStyle](ts-appendix-enums.md#fontstyle)                  | 是   | 弧形按钮文本样式。<br/>默认值：FontStyle.Normal            |
 | fontFamily | string \| [Resource](ts-types.md#resource)                   | 是   | 弧形按钮字体名。                                             |
 | fontMargin | [LocalizedMargin](ts-types.md#localizedmargin12)             | 是   | 弧形按钮文本边距。<br/>默认值：{start:24vp, top: 10vp,end: 24vp, bottom:16vp } |
@@ -106,12 +106,12 @@ ArcButton的默认样式或自定义样式参数。
 | status              | [ArcButtonStatus](#arcbuttonstatus)                          |否   | 弧形按钮状态。<br/>默认值：ArcButtonStatus.NORMAL            |
 | label               | [ResourceStr](ts-types.md#resourcestr)                       |否 | 弧形按钮显示文本。                                           |
 | backgroundBlurStyle | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 否  | 弧形按钮背景模糊能力。<br/>默认值：BlurStyle.NONE            |
-| backgroundColor     | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  | 否 | 弧形按钮背景颜色。<br/>默认值：Color.Black                   |
+| backgroundColor     | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  | 否 | 弧形按钮背景颜色。<br/>ArcButtonStyleMode需要设置为CUSTOM。<br/>默认值：Color.Black                   |
 | shadowColor         | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  | 否  | 弧形按钮阴影颜色。<br/>默认值：Color.Black                   |
 | shadowEnabled       | boolean                                                      | 否 | 弧形按钮阴影开关。<br/>默认值：false<br/>值为true时，显示阴影。值为false时，不显示阴影。 |
 | fontSize            | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否  | 弧形按钮文本大小。<br/>默认值：19fp                          |
-| fontColor           | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  |否  | 弧形按钮文本颜色。<br/>默认值：Color.White                   |
-| pressedFontColor    | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  | 否  | 弧形按钮按下文本颜色。<br/>默认值：Color.White               |
+| fontColor           | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  |否  | 弧形按钮文本颜色。<br/>ArcButtonStyleMode需要设置为CUSTOM。<br/>默认值：Color.White                   |
+| pressedFontColor    | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  | 否  | 弧形按钮按下文本颜色。<br/>ArcButtonStyleMode需要设置为CUSTOM。<br/>默认值：Color.White               |
 | fontStyle           | [FontStyle](ts-appendix-enums.md#fontstyle)                  | 否  | 弧形按钮文本样式。<br/>默认值：FontStyle.Normal              |
 | fontFamily          | string \| [Resource](ts-types.md#resource)                   |否  | 弧形按钮字体名。                                             |
 | fontMargin          | [LocalizedMargin](ts-types.md#localizedmargin12)             | 否  | 弧形按钮文本边距。<br/>默认值：{start:24vp, top: 10vp,end: 24vp, bottom:16vp } |
@@ -146,7 +146,7 @@ ArcButton的默认样式或自定义样式参数。
 | EMPHASIZED_DARK  | 1    | 强调状态，暗色。 |
 | NORMAL_LIGHT     | 2    | 正常状态，亮色。 |
 | NORMAL_DARK      | 3    | 正常状态，暗色。 |
-| CUSTOM           | 4    | 用户自定义样式。 |
+| CUSTOM           | 4    | 自定义按钮颜色和字体颜色。 |
 
 
 ## ArcButtonStatus

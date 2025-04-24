@@ -11,7 +11,7 @@
 
 ## 导入模块
 ```ts
-import { metadataBinding  }'@ohos.multimodalAwareness';
+import { metadataBinding } from '@ohos.multimodalAwareness';
 ```
 
 ## encodeImage(image.PixelMap, string)
@@ -42,11 +42,13 @@ encodeImage(srcImage: image.PixelMap, metadata: string): Promise<image.PixelMap>
 
 ```ts
 import image from '@ohos.multimedia.image';
-import { metadataBinding  }'@ohos.multimodalAwareness';
+import { metadataBinding } from '@ohos.multimodalAwareness';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let captureImage: image.PixelMap | undefined;
-metadataBinding.encodeImage(metadata, srcImage).then((pixelMap : image.PixelMap) =>{
+let captureImage: image.PixelMap | undefined = undefined;
+let metadata: string = "";
+let srcImage: image.PixelMap | undefined = undefined;
+metadataBinding.encodeImage(srcImage, metadata).then((pixelMap: image.PixelMap) =>{
 	captureImage = pixelMap;
 }).catch((error:BusinessError)=>{
 	console.error("encode image error" + error);
@@ -64,7 +66,7 @@ function decodeImage(encodedImage: image.PixelMap): Promise\<string\>
 
 | 参数名   | 类型                             | 必填 | 说明                                                         |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| srcImage     | PixelMap                           | 是   | 带有信息的图片。 |
+| encodedImage     | PixelMap                           | 是   | 带有信息的图片。 |
 |Promise|Promise\<string\>|是|回调函数，返回从图片解析出的信息。|
 
 **错误码**：  
@@ -80,11 +82,13 @@ function decodeImage(encodedImage: image.PixelMap): Promise\<string\>
 **示例：**  
 ```ts
 import image from '@ohos.multimedia.image';
-import { metadataBinding  }'@ohos.multimodalAwareness';
+import { metadataBinding } from '@ohos.multimodalAwareness';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let encodeImage: image.PixelMap | undefined;
-metadataBinding.decodeImage(srcImage).then((metadata : string) =>{
+let encodeImage: image.PixelMap | undefined = undefined;
+let captrueMetadata: string = "";
+metadataBinding.decodeImage(encodeImage).then((metadata: string) =>{
+	captrueMetadata = metadata;
 }).catch((error:BusinessError)=>{
 	console.error("decode image error" + error);
 }); 
@@ -113,12 +117,11 @@ notifyMetadataBindingEvent(metadata: string): void；
 **示例**：
 
 ```ts
-import { metadataBinding  }'@ohos.multimodalAwareness';
+import { metadataBinding } from '@ohos.multimodalAwareness';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let bundleName:string = '';
-metadataBinding.notifyMetadataBindingEvent(metadata).then((metadata : string) =>{
-}).catch((error:BusinessError)=>{
-  console.error("get metadata error" + error);
+let metadata:string = '';
+metadataBinding.notifyMetadataBindingEvent(metadata).catch((error: BusinessError)=>{
+  console.error("notify metadata error" + error);
 });
 ```

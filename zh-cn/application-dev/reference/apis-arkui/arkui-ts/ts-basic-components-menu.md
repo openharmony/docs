@@ -117,11 +117,7 @@ startMargin + endMargin 超过组件宽度后startMargin和endMargin会被置0�
 
 | 参数名     | 类型                                                     | 必填         | 说明           |
 |---------|--------------------------------------------------------|------------| -------------- |
-<<<<<<< HEAD
-| options | [DividerStyleOptions](ts-types.md#dividerstyleoptions12)&nbsp;\| &nbsp;undefined | 是   | 设置menuItem分割线样式。<br />-strokeWidth:分割线的线宽。<br />-color：分割线的颜色。<br />-startMargin：分割线与menuItem侧边起端的距离。<br />-endMargin：分割线与menuItem侧边结束端的距离。 |
-=======
 | options | [DividerStyleOptions](ts-types.md#dividerstyleoptions12)&nbsp;\| &nbsp;undefined | 是   | 设置menuItem分割线样式。<br />-strokeWidth：分割线的线宽。<br />-color：分割线的颜色。<br />-startMargin：分割线与menuItem侧边起端的距离。<br />-endMargin：分割线与menuItem侧边结束端的距离。<br />-mode：分割线的模式，默认值为FLOATING_ABOVE_MENU。 |
->>>>>>> b50eebe73fa (update 标点)
 
 ### menuItemGroupDivider<sup>12+</sup>
 
@@ -137,7 +133,7 @@ menuItemGroupDivider(options: DividerStyleOptions | undefined)
 
 | 参数名     | 类型                                                     | 必填         | 说明           |
 |---------|--------------------------------------------------------|------------| -------------- |
-| options | [DividerStyleOptions](ts-types.md#dividerstyleoptions12)&nbsp;\| &nbsp;undefined | 是   | 设置menuItemGroup顶部和底部分割线样式。<br />-strokeWidth：分割线的线宽，默认值是1px。<br />-color：分割线的颜色，默认值是#33000000。<br />-startMargin：分割线与menuItemGroup侧边起端的距离，默认值是16。<br />-endMargin：分割线与menuItemGroup侧边结束端的距离，默认值是16。 |
+| options | [DividerStyleOptions](ts-types.md#dividerstyleoptions12)&nbsp;\| &nbsp;undefined | 是   | 设置menuItemGroup顶部和底部分割线样式。<br />-strokeWidth：分割线的线宽，默认值是1px。<br />-color：分割线的颜色，默认值是 #33000000。<br />-startMargin：分割线与menuItemGroup侧边起端的距离，默认值是16。<br />-endMargin：分割线与menuItemGroup侧边结束端的距离，默认值是16。<br />-mode：分割线的模式，默认值为FLOATING_ABOVE_MENU。 |
 
 ### subMenuExpandingMode<sup>12+</sup>
 
@@ -163,11 +159,11 @@ Menu子菜单展开样式枚举。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称            | 值 | 说明                                       |
-| --------------- | - | ------------------------------------------ |
-| SIDE_EXPAND     | 0 | 默认展开样式，子菜单位于同一平面侧边展开。 |
-| EMBEDDED_EXPAND | 1 | 直接展开样式，子菜单嵌于主菜单内展开。     |
-| STACK_EXPAND    | 2 | 堆叠样式，子菜单浮于主菜单上方展开。       |
+| 名称            | 值   | 说明                                       |
+| --------------- | ---- | ------------------------------------------ |
+| SIDE_EXPAND     | 0    | 默认展开样式，子菜单位于同一平面侧边展开。 |
+| EMBEDDED_EXPAND | 1    | 直接展开样式，子菜单嵌于主菜单内展开。     |
+| STACK_EXPAND    | 2    | 堆叠样式，子菜单浮于主菜单上方展开。       |
 
 ## 示例
 
@@ -179,9 +175,9 @@ Menu子菜单展开样式枚举。
 @Entry
 @Component
 struct Index {
-  @State select: boolean = true
-  private iconStr: ResourceStr = $r("app.media.view_list_filled")
-  private iconStr2: ResourceStr = $r("app.media.arrow_right_filled")
+  @State select: boolean = true;
+  private iconStr: ResourceStr = $r("app.media.view_list_filled");
+  private iconStr2: ResourceStr = $r("app.media.arrow_right_filled");
 
   @Builder
   SubMenu() {

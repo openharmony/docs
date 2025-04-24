@@ -215,6 +215,7 @@ struct Title {
 @Component
 struct Page {
   @State translateObj: Translate = new Translate();
+
   build() {
     Column() {
       Title({
@@ -233,7 +234,7 @@ struct Page {
           x:this.translateObj.translateX
         })
         .onClick(() => {
-          animateTo({
+          this.getUIContext().animateTo({
             duration: 50
           },()=>{
             this.translateObj.translateX = (this.translateObj.translateX + 50) % 150
@@ -270,6 +271,7 @@ struct Title {
 @Component
 struct Page1 {
   @State translateObj: Translate = new Translate();
+
   build() {
     Column() {
       Title()
@@ -280,7 +282,7 @@ struct Page1 {
       .height(400)
       Button("move")
         .onClick(() => {
-          animateTo({
+          this.getUIContext().animateTo({
             duration: 50
           },()=>{
             this.translateObj.translateX = (this.translateObj.translateX + 50) % 150

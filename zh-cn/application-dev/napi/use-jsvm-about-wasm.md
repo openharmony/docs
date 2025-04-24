@@ -92,7 +92,7 @@ static JSVM_Value InstantiateWasmModule(JSVM_Env env, JSVM_Value wasmModule) {
 
     JSVM_Value instance;
     JSVM_Value argv[] = {wasmModule};
-    status = OH_JSVM_NewInstance(env, WebAssemblyInstance, 1, argv, &instance);
+    status = OH_JSVM_NewInstance(env, webAssemblyInstance, 1, argv, &instance);
     CHECK(status == JSVM_OK);
     return instance;
 }
