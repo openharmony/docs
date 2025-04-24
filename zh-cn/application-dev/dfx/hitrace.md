@@ -311,7 +311,7 @@ $ hitrace --trace_finish_nodump
 
 打点级别优先级D<I<C<M，低于trace输出级别阈值的打点将不会生效。
 
-开发者可使用带trace级别的打点接口（使用参考[js-apis-hitracemeter](../reference/apis-performance-analysis-kit/js-apis-hitracemeter.md)和[_hitrace](../reference/apis-performance-analysis-kit/_hitrace.md)中的API version 18的trace打点接口），测试不同阈值下的trace输出情况是否符合预期。
+开发者可使用带trace级别的打点接口（使用参考[js-apis-hitracemeter](../reference/apis-performance-analysis-kit/js-apis-hitracemeter.md)和[_hitrace](../reference/apis-performance-analysis-kit/_hitrace.md)中的API version 19的trace打点接口），测试不同阈值下的trace输出情况是否符合预期。
 
 ```shell
 // 查看trace输出级别阈值，打印的为数值，0表示Debug，1表示Info，2表示Critical，3表示Commercial
