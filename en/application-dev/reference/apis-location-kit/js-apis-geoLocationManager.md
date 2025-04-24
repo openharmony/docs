@@ -127,6 +127,7 @@ Defines a continuous location request.
 | -------- | -------- | -------- | -------- | -------- |
 | interval | number | No| No| Time interval at which location information is reported, in seconds. The specified value must be greater than or equal to **0**. The default value is **1**. If this parameter is set to **0**, there is no limitation on the location reporting interval.|
 | locationScenario | [UserActivityScenario](#useractivityscenario12) &#124; [PowerConsumptionScenario](#powerconsumptionscenario12) | No| No| Location scenario. For details, see [UserActivityScenario](#useractivityscenario12) and [PowerConsumptionScenario](#powerconsumptionscenario12).|
+| sportsType<sup>18+</sup> | [SportsType](#sportstype18) | No| Yes| Sports type.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 
 ## SingleLocationRequest<sup>12+</sup>
@@ -483,6 +484,21 @@ Defines the Bluetooth scan result.
 | connectable | boolean | Yes| No| Whether the discovered device is connectable. The value **true** means the discovered device is connectable, and the value **false** means the opposite.|
 
 
+## SportsType<sup>18+</sup>
+
+Enumerates sports types.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Location.Location.Core
+
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| RUNNING   | 1 |  Running.|
+| WALKING    | 2 | Walking.|
+| CYCLING     | 3 | Cycling.|
+
+
 ## geoLocationManager.on('locationChange')
 
 on(type: 'locationChange', request: LocationRequest | ContinuousLocationRequest, callback: Callback&lt;Location&gt;): void
@@ -573,7 +589,6 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 |401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
 |801 | Capability not supported. Failed to call ${geoLocationManager.off('locationChange')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                           |
-|3301100 | The location switch is off.                                                 |
 
 **Example**
 

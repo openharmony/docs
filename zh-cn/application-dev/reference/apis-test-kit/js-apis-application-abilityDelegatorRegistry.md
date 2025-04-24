@@ -16,7 +16,7 @@ import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry
 
 Ability生命周期状态。
 
-**系统能力** ：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称          | 值   | 说明                        |
 | ------------- | ---- | --------------------------- |
@@ -32,7 +32,7 @@ getAbilityDelegator(): AbilityDelegator
 
 获取应用程序的AbilityDelegator对象。
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
 

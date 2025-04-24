@@ -78,5 +78,5 @@ HiAppEvent提供系统崩溃事件的订阅接口。
 | file | string | 文件名。 |
 | packageName | string | 模块的包名。 |
 | symbol | string | 函数名称。 |
-| column | number | 异常所在行。 |
-| line | number | 异常所在列。 |
+| line | number | 异常所在代码行号。 |
+| column | number | 异常所在代码列号。 |

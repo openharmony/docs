@@ -105,7 +105,7 @@ struct Index {
           middle: { anchor: '__container__', align: HorizontalAlign.Center }
         })
         .onClick(async () => {
-          let context = getContext(this);
+          let context : Context = this.getUIContext().getHostContext() as Context;
 
           // 数据准备
           const count = 5
@@ -274,7 +274,7 @@ struct Index {
              middle: { anchor: '__container__', align: HorizontalAlign.Center }
            })
            .onClick(async () => {
-             let context = getContext(this);
+             let context : Context = this.getUIContext().getHostContext() as Context;
    
              // 数据准备
              const count = 5
@@ -492,7 +492,7 @@ struct Index {
              middle: { anchor: '__container__', align: HorizontalAlign.Center }
            })
            .onClick(async () => {
-             let context = getContext(this);
+             let context : Context = this.getUIContext().getHostContext() as Context;
              let material = initMaterial();
              await taskpool.execute(create, context);
              await taskpool.execute(insert, context, material.getBuckets());
