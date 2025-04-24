@@ -480,7 +480,7 @@ struct Index {
             .bindContextMenu(this.isShown, this.MyMenu,
               {
                 preview: this.MyPreview,
-                onDisappear: ()=>{
+                aboutToDisappear: ()=>{
                     this.isShown = false;
                 }
               })

@@ -237,7 +237,7 @@ struct SubIndex {
               // 按目标ability的类型启动UIAbility或UIExtensionAbility
               context.startAbilityByType("mail", startWant, abilityStartCallback)
                 .then(() => {
-                  console.log(TAG + `Successed in windows starting ability`);
+                  console.log(TAG + `Succeeded in windows starting ability`);
                 }).catch((err: BusinessError) => {
                 console.log(TAG + `Failed to windows starting ability, Code is ${err.code}, message is ${err.message}`);
               })
@@ -380,7 +380,7 @@ struct Page_UIServiceExtensionAbility {
 
 disconnectServiceExtensionAbility(connectionId: number): Promise&lt;void&gt;
 
-断开与[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)的连接, 与[connectServiceExtensionAbility](#uiserviceextensioncontextconnectserviceextensionability13)功能相反。
+断开与[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)的连接，与[connectServiceExtensionAbility](#uiserviceextensioncontextconnectserviceextensionability13)功能相反。
 
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core

@@ -97,7 +97,7 @@ ICodecCallback::EventHandler ([in] enum OMX_EVENTTYPE event, [in] struct EventIn
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| event | 要通知的事件类型，详见**[OMX_EVENTTYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)**。  | 
+| event | 要通知的事件类型，详见[OMX_EVENTTYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。  | 
 | info | 指向事件上报携带的信息指针，详见[EventInfo](_event_info_v10.md)。 | 
 
 **返回：**

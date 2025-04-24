@@ -417,7 +417,7 @@
     - [Native Accessibility](arkui_native_interface_accessibility.md)
     - [Native XComponent](_o_h___native_x_component.md)
     - [ArkUI_EventModule](_ark_u_i___event_module.md)
-    - [WindowManager_NativeModule](_window_manager___native_module.md)
+    - [WindowManager](_window_manager___native_module.md)
     - [OH_DisplayManager](_o_h___display_manager.md)
   - 头文件<!--arkui-headerfile-->
     - [drag_and_drop.h](drag__and__drop_8h.md)

@@ -84,7 +84,7 @@ getRequestCallback(want: Want): RequestCallback
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| [RequestCallback](#requestcallback) | 请求方RequestCallback,用于设置返回结果。 |
+| [RequestCallback](#requestcallback) | 请求方RequestCallback，用于设置返回结果。 |
 
 **错误码**：
 

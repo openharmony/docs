@@ -1,13 +1,13 @@
 # Worker和宿主线程的即时消息通信
 
 
-在ArkTS中，Worker相对于Taskpool存在一定的差异性，有数量限制但是可以长时间存在。一个[Worker](worker-introduction.md)中可能会执行多个不同的任务，每个任务执行的时长或者返回的结果可能都不相同，宿主线程需要根据情况调用Worker中的不同方法，Worker则需要及时地将结果返回给宿主线程。
+在ArkTS中，Worker相对于Taskpool存在一定的差异性，有数量限制但是可以长时间存在。一个[Worker](worker-introduction.md)中可能会执行多个不同的任务，每个任务的执行时长或返回结果可能都不同，宿主线程需要根据情况调用Worker中的不同方法，Worker则需要及时地将结果返回给宿主线程。
 
 
-下面以Worker响应"hello world"请求为例进行说明。
+下面以Worker响应"hello world"请求为例说明。
 
 
-1. 首先，创建一个执行多个任务Worker。
+1. 首先，创建一个执行多个任务的Worker。
 
    ```ts
    // Worker.ets
@@ -22,7 +22,7 @@
    }
    ```
 
-2. 这里的宿主线程为UI主线程，在宿主线程中创建这个Worker的对象，在点击Button的时候调用postmessage向Worker发送消息，通过Worker的onmessage方法接收Worker返回的数据。
+2. 这里的宿主线程是UI主线程，在宿主线程中创建Worker对象，当点击Button时调用postMessage向Worker线程发送消息，通过Worker的onmessage方法接收Worker线程返回的数据。
 
    ```ts
    // Index.ets
@@ -87,4 +87,4 @@
    ```
 
 
-在上文这段示例代码中，Worker接收来自宿主线程的消息，并做了相应处理后把结果发回给宿主线程。这样就可以实现宿主线程和Worker间的即时通信，方便宿主线程使用Worker的运行结果。
+在示例代码中，Worker接收宿主线程的消息，并进行处理后将结果返回给宿主线程。实现了宿主线程与Worker之间的即时通信，使宿主线程能够方便地使用Worker的运行结果。

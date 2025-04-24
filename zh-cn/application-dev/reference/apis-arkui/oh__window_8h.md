@@ -13,7 +13,7 @@
 
 **起始版本：** 15
 
-**相关模块：**[WindowManager_NativeModule](_window_manager___native_module.md)
+**相关模块：**[WindowManager](_window_manager___native_module.md)
 
 
 ## 汇总
@@ -23,6 +23,8 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
+| int32_t [OH_WindowManager_GetAllWindowLayoutInfoList](_window_manager___native_module.md#oh_windowmanager_getallwindowlayoutinfolist) (int64_t displayId, [WindowManager_Rect](_window_manager___rect.md) \*\*windowLayoutInfoList, size_t \*windowLayoutInfoSize) | 获取指定屏幕上可见的窗口布局信息数组，按当前窗口层级排列，层级最高的对应数组下标为0。  | 
+| void [OH_WindowManager_ReleaseAllWindowLayoutInfoList](_window_manager___native_module.md#oh_windowmanager_releaseallwindowlayoutinfolist) ([WindowManager_Rect](_window_manager___rect.md) \*windowLayoutInfoList) | 释放窗口布局信息数组占用的内存。  | 
 | int32_t [OH_WindowManager_SetWindowStatusBarEnabled](_window_manager___native_module.md#oh_windowmanager_setwindowstatusbarenabled) (int32_t windowId, bool enabled, bool enableAnimation) | 设置指定窗口是否显示状态栏。 |
 | int32_t [OH_WindowManager_SetWindowStatusBarColor](_window_manager___native_module.md#oh_windowmanager_setwindowstatusbarcolor) (int32_t windowId, int32_t color) | 设置指定窗口的状态栏内容颜色。 |
 | int32_t [OH_WindowManager_SetWindowNavigationBarEnabled](_window_manager___native_module.md#oh_windowmanager_setwindownavigationbarenabled) (int32_t windowId, bool enabled, bool enableAnimation) | 设置指定窗口是否显示导航栏。 |

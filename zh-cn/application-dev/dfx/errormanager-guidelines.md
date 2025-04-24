@@ -17,11 +17,10 @@
 | on(type: "error", observer: ErrorObserver): number       | 注册错误监听接口，当系统监测到应用异常时会回调该监听。该接口为同步接口，返回值为注册的监听对象对应的序号。 |
 | off(type: "error", observerId: number,  callback: AsyncCallback\<void\>): void | 以callback的形式解除注册监听，传入的number为之前注册监听时返回的序号。  |
 | off(type: "error", observerId: number): Promise\<void\> | 以Promise的形式解除注册监听，传入的number为之前注册监听时返回的序号。  |
-| on(type: 'loopObserver', timeout: number, observer: LoopObserver): void<sup>12+</sup> | 注册主线程消息处理耗时监听器，当系统监测到应用主线程事件处理超时时会回调该监听。只能在主线程调用，多次注册后，后一次的注册会覆盖前一次的。  |
-| off(type: 'loopObserver', observer?: LoopObserver): void<sup>12+</sup> | 解除应用主线程消息处理耗时监听。  |
+| on(type: 'loopObserver', timeout: number, observer: LoopObserver): void<sup>12+</sup> | 注册主线程消息处理耗时监听器，当系统监测到应用主线程事件处理超时时会回调该监听。<br/>只能在主线程调用，多次注册后，后一次的注册会覆盖前一次的。  |
+| off(type: 'loopObserver', observer?: LoopObserver): void<sup>12+</sup> | 以LoopObserver的形式解除应用主线程消息处理耗时监听。  |
 
 当采用callback作为异步回调时，可以在callback中进行下一步处理。当采用Promise对象返回时，可以在Promise对象中类似地处理接口返回值。具体结果码说明见[解除注册结果码](#解除注册结果码)。
-
 
 **错误监听(ErrorObserver)接口功能介绍：**
 
@@ -30,13 +29,11 @@
 | onUnhandledException(errMsg: string): void | 系统回调接口，应用注册后，当应用产生未捕获的异常时的回调。 |
 | onException?(errObject: Error): void | 系统回调接口，应用注册后，当应用产生异常上报js层时的回调。 |
 
-
 **应用主线程监听(LoopObserver)接口功能介绍：**
 
 | 接口名称                         | 说明                                                         |
 | ------------------------------ | ------------------------------------------------------------ |
 | onLoopTimeOut?(timeout: number): void<sup>12+</sup> | 系统回调接口，应用注册后，当应用主线程处理事件超时的回调。 |
-
 
 ### 解除注册结果码
 
@@ -49,6 +46,7 @@
 ## 开发示例
 
 > **注意：**
+>
 > 建议在异常回调函数处理的最后，增加同步退出操作，否则可能出现多次异常回调的现象。
 
 ```ts
@@ -59,13 +57,13 @@ import process from '@ohos.process';
 let registerId = -1;
 let callback: errorManager.ErrorObserver = {
     onUnhandledException: (errMsg) => {
-        console.log(errMsg);
+        console.info(errMsg);
     },
     onException: (errorObj) => {
-        console.log('onException, name: ', errorObj.name);
-        console.log('onException, message: ', errorObj.message);
+        console.info('onException, name: ', errorObj.name);
+        console.info('onException, message: ', errorObj.message);
         if (typeof(errorObj.stack) === 'string') {
-            console.log('onException, stack: ', errorObj.stack);
+            console.info('onException, stack: ', errorObj.stack);
         }
         //回调函数执行完，采用同步退出方式，避免多次触发异常
         let pro = new process.ProcessManager();
@@ -77,21 +75,21 @@ let abilityWant: Want;
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        console.log("[Demo] EntryAbility onCreate");
+        console.info("[Demo] EntryAbility onCreate");
         registerId = errorManager.on("error", callback);
         abilityWant = want;
     }
 
     onDestroy() {
-        console.log("[Demo] EntryAbility onDestroy");
+        console.info("[Demo] EntryAbility onDestroy");
         errorManager.off("error", registerId, (result) => {
-            console.log("[Demo] result " + result.code + ";" + result.message);
+            console.info("[Demo] result " + result.code + ";" + result.message);
         });
     }
 
     onWindowStageCreate(windowStage: window.WindowStage) {
         // Main window is created, set main page for this ability
-        console.log("[Demo] EntryAbility onWindowStageCreate");
+        console.info("[Demo] EntryAbility onWindowStageCreate");
 
         windowStage.loadContent("pages/index", (err, data) => {
             if (err.code) {
@@ -104,17 +102,17 @@ export default class EntryAbility extends UIAbility {
 
     onWindowStageDestroy() {
         // Main window is destroyed, release UI related resources
-        console.log("[Demo] EntryAbility onWindowStageDestroy");
+        console.info("[Demo] EntryAbility onWindowStageDestroy");
     }
 
     onForeground() {
         // Ability has brought to foreground
-        console.log("[Demo] EntryAbility onForeground");
+        console.info("[Demo] EntryAbility onForeground");
     }
 
     onBackground() {
         // Ability has back to background
-        console.log("[Demo] EntryAbility onBackground");
+        console.info("[Demo] EntryAbility onBackground");
     }
 };
 ```

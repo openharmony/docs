@@ -30,7 +30,7 @@
 
 ## 开发步骤
 
-   以ArkTS侧获取rawfile文件列表、rawfile文件内容、rawfile描述符{fd, offset, length}三种调用方式为例。
+   以ArkTS侧获取rawfile文件列表、rawfile文件内容、rawfile描述符（fd, offset, length）三种调用方式为例。
 
 **1. 创建工程**
 
@@ -86,7 +86,7 @@
     static napi_value IsRawDir(napi_env env, napi_callback_info info)
     ```
 
-3. 在hello.cpp文件中获取Js的资源对象，并转为Native的资源对象，即可调用资源的Native接口，获取rawfile列表、rawfile文件内容以及rawfile描述符{fd, offset, length}三种调用方式示例代码如下：
+3. 在hello.cpp文件中获取Js的资源对象，并转为Native的资源对象，即可调用资源的Native接口，获取rawfile列表、rawfile文件内容以及rawfile描述符（fd, offset, length）三种调用方式示例代码如下：
 
     ```c++
     #include <rawfile/raw_file.h>
@@ -264,7 +264,7 @@
         if (rawFile != nullptr) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, tag, "OH_ResourceManager_OpenRawFile success");
         }
-        // 获取rawfile的描述符RawFileDescriptor {fd, offset, length}
+        // 获取rawfile的描述符RawFileDescriptor （fd, offset, length）
         RawFileDescriptor descriptor;
         OH_ResourceManager_GetRawFileDescriptor(rawFile, descriptor);
         // 关闭打开的指针对象
