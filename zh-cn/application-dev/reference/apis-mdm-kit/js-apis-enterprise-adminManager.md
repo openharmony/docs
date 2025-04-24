@@ -366,16 +366,15 @@ startAdminProvision(admin: Want, type: AdminType, context: common.Context, param
 
 ```ts
 import { common, Want } from '@kit.AbilityKit';
-import adminManager from '@ohos.enterprise.adminManager';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let context = getContext(this) as common.UIAbilityContext;
 let recordParameters: Record<string, string> = {
   "activateId": "activateId testValue",
   "customizedInfo": "customizedInfo testValue"
-}
+};
+const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 try {
   console.info('context:' + JSON.stringify(context));
   adminManager.startAdminProvision(wantTemp, adminManager.AdminType.ADMIN_TYPE_BYOD, context, recordParameters);
