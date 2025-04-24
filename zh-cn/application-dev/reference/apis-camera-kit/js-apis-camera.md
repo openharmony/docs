@@ -1387,7 +1387,7 @@ function getCameraConcurrentinfos(cameraManager: camera.CameraManager, cameraDev
 | CAMERA_FORMAT_JPEG      | 2000      | JPEG格式的图片。            |
 | CAMERA_FORMAT_YCBCR_P010<sup>11+</sup> |   2001    | YCBCR_P010格式的图片。      |
 | CAMERA_FORMAT_YCRCB_P010<sup>11+</sup> |   2002    | YCRCB_P010格式的图片。      |
-| CAMERA_FORMAT_HEIC<sup>13+</sup>       |   2003    | HEIF格式的图片,HEIC是HEIF格式图片的一种文件拓展名。            |
+| CAMERA_FORMAT_HEIC<sup>13+</sup>       |   2003    | HEIF格式的图片。            |
 
 ## VideoCodecType<sup>13+</sup>
 
