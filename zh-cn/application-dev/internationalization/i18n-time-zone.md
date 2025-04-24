@@ -2,7 +2,7 @@
 
 ## 使用场景
 
-全球各国家和地区的经度不同，地方时间也有所不同，因此划分了不同的时区。例如英国采用0时区，中国采用东8时区，中国时间要比英国快8个小时，中国北京中午12:00是英国伦敦凌晨4点。时区模块主要用于获取时区列表，应用可基于时区列表实现业务逻辑，如双时钟应用。
+全球各国家和地区的经度不同，地方时间也有所不同，因此划分了不同的时区。例如英国采用0时区，中国采用东8时区，中国时间要比英国快8个小时，中国北京中午12:00是英国伦敦凌晨4点。时区模块可用于获取时区列表，应用可基于时区列表实现业务逻辑，如双时钟应用。
 
 ## 开发步骤
 
@@ -19,7 +19,7 @@
    let timezone: i18n.TimeZone = i18n.getTimeZone('America/Sao_Paulo'); // 传入特定时区，创建时区类
    let timezoneId: string = timezone.getID(); // timezoneId = 'America/Sao_Paulo'
 
-   // 获取城市Id对应的时区对象
+   // 获取城市ID对应的时区对象
    let aucklandTimezone: i18n.TimeZone = i18n.TimeZone.getTimezoneFromCity('Auckland');
    timezoneId = aucklandTimezone.getID(); // timezoneId = 'Pacific/Auckland'
 
@@ -35,13 +35,13 @@
    // 时区的实际偏移量（固定偏移量+夏令时）
    let offset: number = timezone.getOffset(1234567890); // offset = -10800000
 
-   // 系统支持的时区Id列表
+   // 系统支持的时区ID列表
    let availableIDs: Array<string> = i18n.TimeZone.getAvailableIDs(); // availableIDs = ['America/Adak', 'Asia/Hovd', ...]
 
-   // 系统支持的时区城市Id列表
+   // 系统支持的时区城市ID列表
    let cityIDs: Array<string> = i18n.TimeZone.getAvailableZoneCityIDs(); // cityIDs = ['Auckland', 'Magadan', ...]
 
-   // 遍历时区城市Id列表
+   // 遍历时区城市ID列表
    let timezoneList: Array<object> = []; // 呈现给用户的时区列表
 
    class Item {
@@ -53,7 +53,7 @@
 
    for (let i = 0; i < cityIDs.length; i++) {
      let cityId: string = cityIDs[i];
-     let timezone: i18n.TimeZone = i18n.TimeZone.getTimezoneFromCity(cityId); // 城市Id对应的时区对象
+     let timezone: i18n.TimeZone = i18n.TimeZone.getTimezoneFromCity(cityId); // 城市ID对应的时区对象
      let cityDisplayName: string = i18n.TimeZone.getCityDisplayName(cityId, 'zh-CN'); // 本地化城市名称
      let timestamp: number = (new Date()).getTime();
      let item: Item = {
