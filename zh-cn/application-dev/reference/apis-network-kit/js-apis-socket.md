@@ -6811,7 +6811,7 @@ import { util } from '@kit.ArkTS';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getCertificate().then((data: socket.X509CertRawData) => {
   const decoder = util.TextDecoder.create();
-  const str = decoder.decodeToString(data.data);
+  const str = decoder.decodeWithStream(data.data);
   console.log("getCertificate: " + str);
 }).catch((err: BusinessError) => {
   console.error("failed" + err);
@@ -6852,7 +6852,7 @@ tls.getRemoteCertificate((err: BusinessError, data: socket.X509CertRawData) => {
     console.log("getRemoteCertificate callback error = " + err);
   } else {
     const decoder = util.TextDecoder.create();
-    const str = decoder.decodeToString(data.data);
+    const str = decoder.decodeWithStream(data.data);
     console.log("getRemoteCertificate callback = " + str);
   }
 });
@@ -6889,7 +6889,7 @@ import { util } from '@kit.ArkTS';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getRemoteCertificate().then((data: socket.X509CertRawData) => {
   const decoder = util.TextDecoder.create();
-  const str = decoder.decodeToString(data.data);
+  const str = decoder.decodeWithStream(data.data);
   console.log("getRemoteCertificate:" + str);
 }).catch((err: BusinessError) => {
   console.error("failed" + err);
@@ -7902,7 +7902,7 @@ tlsServer.getCertificate((err: BusinessError, data: socket.X509CertRawData) => {
     console.log("getCertificate callback error = " + err);
   } else {
     const decoder = util.TextDecoder.create();
-    const str = decoder.decodeToString(data.data);
+    const str = decoder.decodeWithStream(data.data);
     console.log("getCertificate callback: " + str);
   }
 });
@@ -7967,7 +7967,7 @@ tlsServer.listen(tlsConnectOptions).then(() => {
 });
 tlsServer.getCertificate().then((data: socket.X509CertRawData) => {
   const decoder = util.TextDecoder.create();
-  const str = decoder.decodeToString(data.data);
+  const str = decoder.decodeWithStream(data.data);
   console.log("getCertificate: " + str);
 }).catch((err: BusinessError) => {
   console.error("failed" + err);
@@ -8865,7 +8865,7 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
       console.log("getRemoteCertificate callback error: " + err);
     } else {
       const decoder = util.TextDecoder.create();
-      const str = decoder.decodeToString(data.data);
+      const str = decoder.decodeWithStream(data.data);
       console.log("getRemoteCertificate callback: " + str);
     }
   });
@@ -8928,7 +8928,7 @@ tlsServer.listen(tlsConnectOptions).then(() => {
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getRemoteCertificate().then((data: socket.X509CertRawData) => {
     const decoder = util.TextDecoder.create();
-    const str = decoder.decodeToString(data.data);
+    const str = decoder.decodeWithStream(data.data);
     console.log("getRemoteCertificate success: " + str);
   }).catch((err: BusinessError) => {
     console.error("failed" + err);
