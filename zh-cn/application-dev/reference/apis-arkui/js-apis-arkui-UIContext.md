@@ -1315,7 +1315,7 @@ getFilteredInspectorTree(filters?: Array\<string\>): string
 
 | 参数名  | 类型            | 必填 | 说明                                                         |
 | ------- | --------------- | ---- | ------------------------------------------------------------ |
-| filters | Array\<string\> | 否   | 需要获取的组件属性的过滤列表。目前仅支持过滤字段：<br/>"id"：组件唯一标识。<br/>"src"：资源来源。 <br/>"content"：元素、组件或对象所包含的信息或数据。<br/>"editable"：是否可编辑。<br/>"scrollable"：是否可滚动。<br/>"selectable"：是否可选择。<br/>"focusable"：是否可聚焦。<br/>"focused"：是否已聚焦。<br/>如果在filters参数中包含以上一个或者多个字段，则未包含的字段会在组件属性查询结果中被过滤掉。如果用户未传入filters参数或者filters参数为空数组，则以上字段全部不会在组件属性查询结果中被过滤掉。<br/>其余字段仅供测试场景使用。 |
+| filters | Array\<string\> | 否   | 需要获取的组件属性的过滤列表。目前仅支持过滤字段：<br/>"id"：组件唯一标识。<br/>"src"：资源来源。 <br/>"content"：元素、组件或对象所包含的信息或数据。<br/>"editable"：是否可编辑。<br/>"scrollable"：是否可滚动。<br/>"selectable"：是否可选择。<br/>"focusable"：是否可聚焦。<br/>"focused"：是否已聚焦。<br/>从API version 20开始，支持该过滤字段：<br/>"isLayoutInspector"：是否显示自定义组件的属性。<br/>如果在filters参数中包含以上一个或者多个字段，则未包含的字段会在组件属性查询结果中被过滤掉。如果用户未传入filters参数或者filters参数为空数组，则以上字段全部不会在组件属性查询结果中被过滤掉。<br/>其余字段仅供测试场景使用。 |
 
 **返回值：** 
 
@@ -1336,6 +1336,69 @@ getFilteredInspectorTree(filters?: Array\<string\>): string
 <!--code_no_check-->
 ```ts
 uiContext.getFilteredInspectorTree(['id', 'src', 'content']);
+```
+
+<!--code_no_check-->
+```ts
+// xxx.ets
+import { UIContext } from '@kit.ArkUI';
+@Entry
+@Component
+struct ComponentPage {
+  loopConsole(inspectorStr: string, i: string) {
+    console.log(`InsTree ${i}| type: ${JSON.parse(inspectorStr).$type}, ID: ${JSON.parse(inspectorStr).$ID}`)
+    if (JSON.parse(inspectorStr).$children) {
+      i += '-'
+      for (let index = 0; index < JSON.parse(inspectorStr).$children.length; index++) {
+        this.loopConsole(JSON.stringify(JSON.parse(inspectorStr).$children[index]), i)
+      }
+    }
+  }
+
+  build() {
+    Column() {
+      Button('content').onClick(() => {
+        const uiContext: UIContext = this.getUIContext();
+        let inspectorStr = uiContext.getFilteredInspectorTree(['content']);
+        console.log(`InsTree : ${inspectorStr}`)
+        inspectorStr = JSON.stringify(JSON.parse(inspectorStr))
+        this.loopConsole(inspectorStr, '-')
+      })
+      Button('isLayoutInspector').onClick(() => {
+        const uiContext: UIContext = this.getUIContext();
+        let inspectorStr = uiContext.getFilteredInspectorTree(['isLayoutInspector']);
+        console.log(`InsTree : ${inspectorStr}`)
+        inspectorStr = JSON.stringify(JSON.parse(inspectorStr).content)
+        this.loopConsole(inspectorStr, '-')
+      })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+当传入"content"过滤字段时，返回的JSON字符串结构如下：
+
+<!--code_no_check-->
+```ts
+InsTree : {"$type":"root","width":"720.000000","height":"1280.000000","$resolution":"1.500000","$children":[{"$type":"Column","$ID":15,"type":"build-in","$rect":"[0.00, 72.00],[720.00,1208.00]","$debugLine":"","$attrs":{},"$children":[{"$type":"Button","$ID":16,"type":"build-in","$rect":"[293.00, 72.00],[427.00,132.00]","$debugLine":"","$attrs":{}},{"$type":"Button","$ID":18,"type":"build-in","$rect":"[237.00, 132.00],[484.00,192.00]","$debugLine":"","$attrs":{}}]}]}\
+InsTree -| type: root, ID: undefined
+InsTree --| type: Column, ID: 15
+InsTree ---| type: Button, ID: 16
+InsTree ---| type: Button, ID: 18
+```
+
+从API version 20开始，当传入"isLayoutInspector"过滤字段时，返回的JSON字符串结构新增外层结构"type"与"content"，其中"content"包含未增加该字段时的原有JSON字符串结构；同时，返回值结构中增添自定义组件。返回的JSON字符串结构如下：
+
+<!--code_no_check-->
+```ts
+InsTree : {"type":"root","content":{"$type":"root","width":"720.000000","height":"1280.000000","$resolution":"1.500000","$children":[{"$type":"JsView","$ID":13,"type":"custom","state":{"observedPropertiesInfo":[],"viewInfo":{"componentName":"ComponentPage","id":14,"isV2":false,"isViewActive_":true}},"$rect":"[0.00, 72.00],[720.00,1208.00]","$debugLine":"{\"$line\":\"(0:0)\"}","viewTag":"ComponentPage","$attrs":{"viewKey":"13"},"$children":[{"$type":"Column","$ID":15, "type":"build-in","$rect":"[0.00, 72.00],[720.00,1208.00]","$debugLine":"","$attrs":{ ...
+InsTree -| type: root, ID: undefined
+InsTree --| type: JsView, ID: 13
+InsTree ---| type: Column, ID: 15
+InsTree ----| type: Button, ID: 16
+InsTree ----| type: Button, ID: 18
 ```
 
 ### getFilteredInspectorTreeById<sup>12+</sup>
