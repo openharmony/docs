@@ -544,7 +544,7 @@ onPaste(callback: [PasteEventCallback](#pasteeventcallback12) )
 
 onSelectionChange(callback:Callback\<[RichEditorRange](#richeditorrange)\>)
 
-当组件内内容选择区域或编辑状态下的光标位置发生变化时，将触发该回调。光标位置变化时，回调中选择区域的起始和终止位置相等。
+内容选择区域或编辑状态下的光标位置发生变化时，将触发该回调。光标位置变化时，回调中选择区域的起始和终止位置相等。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
