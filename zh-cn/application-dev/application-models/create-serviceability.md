@@ -22,7 +22,7 @@
         }
       }
 
-      onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
+      onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean {
         hilog.info(domain, TAG, 'ServiceAbility onRemoteRequest called');
         if (code === 1) {
           let string = data.readString();
