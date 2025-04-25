@@ -200,6 +200,7 @@ enum OHNativeErrorCode
 ```
 int32_t OH_NativeImage_SetDropBufferMode (OH_NativeImage* image, bool isOpen )
 ```
+
 **描述**
 
 设置OH_NativeImage是否为渲染丢帧模式。
