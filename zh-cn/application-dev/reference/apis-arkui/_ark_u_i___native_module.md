@@ -18229,7 +18229,7 @@ int32_t OH_ArkUI_GetGestureParam_distanceThreshold(ArkUI_GestureRecognizer* reco
 | 名称 | 描述 | 
 | -------- | -------- |
 | recognizer | 手势识别器指针。  | 
-| distanceThreshold | 手势识别器的手势移动阈值。  | 
+| distanceThreshold | 手势识别器的手势移动阈值。单位：px。  | 
 
 **返回：**
 
