@@ -2942,7 +2942,7 @@ export default class EntryAbility extends UIAbility {
 
 setStatusBarColor(color: ColorMetrics): Promise&lt;void&gt;
 
-设置主窗口状态栏的文字颜色，使用Promise异步回调。
+设置主窗口状态栏的文字颜色，使用Promise异步回调。该接口在2in1设备上调用不生效。
 
 子窗口不支持设置状态栏文字颜色，调用无效果。
 
