@@ -963,7 +963,7 @@ type ProxyConfiguration = 'system' | 'no-proxy' | HttpProxy
 
 | 名称 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| code   | number | 否   | 错误码，关闭WebSocket连接时的可选参数，可根据实际情况来填。默认值为1000。 |
+| code   | number | 否   | 错误码，关闭WebSocket连接时的可选参数，可根据实际情况来填。传入值需为正整数，默认值为1000。 |
 | reason | string | 否   | 原因值，关闭WebSocket连接时的可选参数，可根据实际情况来填。默认值为空字符串（""）。 |
 
 ## CloseResult<sup>10+</sup>
