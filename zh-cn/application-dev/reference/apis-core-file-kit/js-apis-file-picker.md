@@ -23,13 +23,14 @@ import  { picker } from '@kit.CoreFileKit';
 
 constructor(context: Context)
 
-创建DocumentViewPicker对象，推荐使用该构造函数，获取context参考[getContext](../apis-arkui/js-apis-getContext.md)。
+创建DocumentViewPicker对象，推荐使用该构造函数，获取context参考[getHostContext](../apis-arkui/js-apis-arkui-UIContext.md#gethostcontext12)。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **参数：**
+
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
 | context | Context| 是   | 应用上下文（仅支持UIAbilityContext）。Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
@@ -51,7 +52,7 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
           .onClick(()=>{
-            let context = getContext(this) as common.Context; // 请确保getContext(this)返回结果为UIAbilityContext
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // 请确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
             let documentPicker = new picker.DocumentViewPicker(context);
           })
       }
@@ -114,7 +115,7 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
           .onClick(()=>{
-            let context = getContext(this) as common.Context; // 请确保getContext(this)返回结果为UIAbilityContext
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // 请确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
             let windowClass: window.Window | undefined = undefined;
             windowClass = window.findWindow('test'); // 请确保window已创建，此处的'test'为window创建时的name参数
             let documentPicker = new picker.DocumentViewPicker(context, windowClass);
@@ -157,7 +158,7 @@ select(option?: DocumentSelectOptions): Promise&lt;Array&lt;string&gt;&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 import  { picker } from '@kit.CoreFileKit';
-async function example07(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
+async function example07(context: common.UIAbilityContext) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let documentSelectOptions = new picker.DocumentSelectOptions();
     let documentPicker = new picker.DocumentViewPicker(context);
@@ -198,7 +199,7 @@ select(option: DocumentSelectOptions, callback: AsyncCallback&lt;Array&lt;string
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 import  { picker } from '@kit.CoreFileKit';
-async function example08(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
+async function example08(context: common.UIAbilityContext) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let documentSelectOptions = new picker.DocumentSelectOptions();
     let documentPicker = new picker.DocumentViewPicker(context);
@@ -240,7 +241,7 @@ select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 import  { picker } from '@kit.CoreFileKit';
-async function example09(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
+async function example09(context: common.UIAbilityContext) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let documentPicker = new picker.DocumentViewPicker(context);
     documentPicker.select((err: BusinessError, documentSelectResult: Array<string>) => {
@@ -287,7 +288,7 @@ save(option?: DocumentSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 import  { picker } from '@kit.CoreFileKit';
-async function example10(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
+async function example10(context: common.UIAbilityContext) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let documentSaveOptions = new picker.DocumentSaveOptions();
     documentSaveOptions.newFileNames = ['DocumentViewPicker01.txt'];
@@ -329,7 +330,7 @@ save(option: DocumentSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 import  { picker } from '@kit.CoreFileKit';
-async function example11(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
+async function example11(context: common.UIAbilityContext) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let documentSaveOptions = new picker.DocumentSaveOptions();
     documentSaveOptions.newFileNames = ['DocumentViewPicker02.txt'];
@@ -372,7 +373,7 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 import  { picker } from '@kit.CoreFileKit';
-async function example12(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
+async function example12(context: common.UIAbilityContext) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let documentPicker = new picker.DocumentViewPicker(context);
     documentPicker.save((err: BusinessError, documentSaveResult: Array<string>) => {
@@ -411,7 +412,7 @@ getSelectedIndex(): number
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 import  { picker } from '@kit.CoreFileKit';
-async function exampleIndex(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
+async function exampleIndex(context: common.UIAbilityContext) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let documentSaveOptions = new picker.DocumentSaveOptions();
     //保存文件的名字
@@ -447,7 +448,7 @@ async function exampleIndex(context: common.Context) { // 需确保 context 由 
 
 constructor(context: Context)
 
-创建AudioViewPicker对象，推荐使用该构造函数，获取context参考[getContext](../apis-arkui/js-apis-getContext.md)。
+创建AudioViewPicker对象，推荐使用该构造函数，获取context参考[getHostContext](../apis-arkui/js-apis-arkui-UIContext.md#gethostcontext12)。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -475,7 +476,7 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
           .onClick(()=>{
-            let context = getContext(this) as common.Context; // 请确保getContext(this)返回结果为UIAbilityContext
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // 请确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
             let audioPicker = new picker.AudioViewPicker(context);
           })
       }
@@ -531,7 +532,7 @@ select(option?: AudioSelectOptions): Promise&lt;Array&lt;string&gt;&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 import  { picker } from '@kit.CoreFileKit';
-async function example13(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
+async function example13(context: common.UIAbilityContext) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let audioSelectOptions = new picker.AudioSelectOptions();
     let audioPicker = new picker.AudioViewPicker(context);
@@ -570,7 +571,7 @@ select(option: AudioSelectOptions, callback: AsyncCallback&lt;Array&lt;string&gt
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 import  { picker } from '@kit.CoreFileKit';
-async function example14(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
+async function example14(context: common.UIAbilityContext) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let audioSelectOptions = new picker.AudioSelectOptions();
     let audioPicker = new picker.AudioViewPicker(context);
@@ -610,7 +611,7 @@ select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 import  { picker } from '@kit.CoreFileKit';
-async function example15(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
+async function example15(context: common.UIAbilityContext) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let audioPicker = new picker.AudioViewPicker(context);
     audioPicker.select((err: BusinessError, audioSelectResult: Array<string>) => {
@@ -657,7 +658,7 @@ save(option?: AudioSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 import  { picker } from '@kit.CoreFileKit';
-async function example16(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
+async function example16(context: common.UIAbilityContext) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let audioSaveOptions = new picker.AudioSaveOptions();
     audioSaveOptions.newFileNames = ['AudioViewPicker01.mp3'];
@@ -697,7 +698,7 @@ save(option: AudioSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 import  { picker } from '@kit.CoreFileKit';
-async function example17(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
+async function example17(context: common.UIAbilityContext) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let audioSaveOptions = new picker.AudioSaveOptions();
     audioSaveOptions.newFileNames = ['AudioViewPicker02.mp3'];
@@ -738,7 +739,7 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 import  { picker } from '@kit.CoreFileKit';
-async function example18(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
+async function example18(context: common.UIAbilityContext) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let audioPicker = new picker.AudioViewPicker(context);
     audioPicker.save((err: BusinessError, audioSaveResult: Array<string>) => {
@@ -872,7 +873,7 @@ constructor(context: Context)
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
-创建PhotoViewPicker对象，推荐使用该构造函数，获取context参考[getContext](../apis-arkui/js-apis-getContext.md)。
+创建PhotoViewPicker对象，推荐使用该构造函数，获取context参考[getHostContext](../apis-arkui/js-apis-arkui-UIContext.md#gethostcontext12)。
 
 **示例：**
 
@@ -891,7 +892,7 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
           .onClick(()=>{
-            let context = getContext(this) as common.Context; // 请确保 getContext(this) 返回结果为 UIAbilityContext
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // 请确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
             let photoPicker = new picker.PhotoViewPicker(context);
           })
       }
@@ -952,7 +953,7 @@ select(option?: PhotoSelectOptions): Promise&lt;PhotoSelectResult&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 import  { picker } from '@kit.CoreFileKit';
-async function example01(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
+async function example01(context: common.UIAbilityContext) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let photoSelectOptions = new picker.PhotoSelectOptions();
     photoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
@@ -999,7 +1000,7 @@ select(option: PhotoSelectOptions, callback: AsyncCallback&lt;PhotoSelectResult&
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 import  { picker } from '@kit.CoreFileKit';
-async function example02(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
+async function example02(context: common.UIAbilityContext) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let photoSelectOptions = new picker.PhotoSelectOptions();
     photoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
@@ -1047,7 +1048,7 @@ select(callback: AsyncCallback&lt;PhotoSelectResult&gt;): void
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 import  { picker } from '@kit.CoreFileKit';
-async function example03(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
+async function example03(context: common.UIAbilityContext) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let photoPicker = new picker.PhotoViewPicker(context);
     photoPicker.select((err: BusinessError, photoSelectResult: picker.PhotoSelectResult) => {
@@ -1096,7 +1097,7 @@ save(option?: PhotoSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 import  { picker } from '@kit.CoreFileKit';
-async function example04(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
+async function example04(context: common.UIAbilityContext) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let photoSaveOptions = new picker.PhotoSaveOptions();
     photoSaveOptions.newFileNames = ['PhotoViewPicker01.jpg', 'PhotoViewPicker01.mp4'];
@@ -1140,7 +1141,7 @@ save(option: PhotoSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 import  { picker } from '@kit.CoreFileKit';
-async function example05(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
+async function example05(context: common.UIAbilityContext) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let photoSaveOptions = new picker.PhotoSaveOptions();
     photoSaveOptions.newFileNames = ['PhotoViewPicker02.jpg','PhotoViewPicker02.mp4'];
@@ -1185,7 +1186,7 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 import  { picker } from '@kit.CoreFileKit';
-async function example06(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
+async function example06(context: common.UIAbilityContext) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let photoPicker = new picker.PhotoViewPicker(context);
     photoPicker.save((err: BusinessError, photoSaveResult: Array<string>) => {
