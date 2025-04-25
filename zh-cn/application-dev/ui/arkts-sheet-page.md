@@ -10,7 +10,7 @@
 
  - 半模态内嵌[UIExtension](../reference/apis-arkui/js-apis-arkui-uiExtension.md)时，不支持再在UIExtension内拉起半模态/弹窗。
 
- - 若无二次确认或者自定义关闭行为的场景，不建议使用[shouldDismiss/onWilDismiss](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions)接口。
+ - 若无二次确认或者自定义关闭行为的场景，不建议使用[shouldDismiss/onWillDismiss](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions)接口。
 
 ## 生命周期
 
