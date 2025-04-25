@@ -55,7 +55,7 @@ export default class EntryAbility extends UIAbility {
   @Entry
   @Component
   struct Page_EventHub {
-    private context = getContext(this) as common.UIAbilityContext;
+    private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
     startAbilityTest(): void {
       let want: Want = {
@@ -81,7 +81,7 @@ export default class EntryAbility extends UIAbility {
   @Component
   struct Page_UIAbilityComponentsBasicUsage {
     startAbilityTest(): void {
-      let context = getContext(this) as common.UIAbilityContext;
+      let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
       let want: Want = {
         // Want参数信息
       };
@@ -110,7 +110,7 @@ export default class EntryAbility extends UIAbility {
         //...
         Button('FuncAbilityB')
           .onClick(() => {
-            let context = getContext(this) as common.UIAbilityContext;
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
             try {
               context.terminateSelf((err: BusinessError) => {
                 if (err.code) {
@@ -149,7 +149,7 @@ export default class EntryAbility extends UIAbility {
     @Component
     struct Index {
       @State message: string = 'Hello World';
-      @State context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+      @State context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
       build() {
         Scroll() {

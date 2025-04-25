@@ -120,7 +120,7 @@
   @Component
   struct Index {
     @State message: string = 'Hello World';
-    private context = getContext(this) as common.UIAbilityContext;
+    private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
     build() {
       Row() {
@@ -211,12 +211,11 @@ export default class EntryAbility extends UIAbility {
 ```ts
 // Index.ets
 import { contextConstant, common } from '@kit.AbilityKit';
-import { promptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Page_Context {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   build() {
     Column() {
@@ -231,7 +230,7 @@ struct Page_Context {
             // 存储普通信息前，切换到EL1设备级加密
             if (this.context.area === contextConstant.AreaMode.EL2) { // 获取area
               this.context.area = contextConstant.AreaMode.EL1; // 修改area
-              promptAction.showToast({
+              this.getUIContext().getPromptAction().showToast({
                 message: 'SwitchToEL1'
               });
             }
@@ -247,7 +246,7 @@ struct Page_Context {
             // 存储敏感信息前，切换到EL2用户级加密
             if (this.context.area === contextConstant.AreaMode.EL1) { // 获取area
               this.context.area = contextConstant.AreaMode.EL2; // 修改area
-              promptAction.showToast({
+              this.getUIContext().getPromptAction().showToast({
                 message: 'SwitchToEL2'
               });
             }
@@ -270,7 +269,6 @@ struct Page_Context {
   
   ```ts
   import { common, application } from '@kit.AbilityKit';
-  import { promptAction } from '@kit.ArkUI';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let storageEventCall = new LocalStorage();
@@ -278,7 +276,7 @@ struct Page_Context {
   @Entry(storageEventCall)
   @Component
   struct Page_Context {
-    private context = getContext(this) as common.UIAbilityContext;
+    private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
     build() {
       Column() {
@@ -294,7 +292,7 @@ struct Page_Context {
                 .then((data: common.Context) => {
                   console.info(`CreateModuleContext success, data: ${JSON.stringify(data)}`);
                   if (data !== null) {
-                    promptAction.showToast({
+                    this.getUIContext().getPromptAction().showToast({
                       message: ('成功获取Context')
                     });
                   }
