@@ -1,6 +1,6 @@
 # 使用Node-API接口进行模块加载
 
-Node-API中的napi_load_module_with_info接口的功能是进行模块的加载，当模块加载出来之后，可以使用函数napi_get_property获取模块导出的变量，也可以使用napi_get_named_property获取模块导出的函数，该函数可以在[新创建的ArkTS基础运行时环境](use-napi-ark-runtime.md)中使用。
+Node-API中的napi_load_module_with_info接口的功能是进行模块的加载，当模块加载出来之后，可以使用函数napi_get_property获取模块导出的变量，也可以使用napi_get_named_property获取模块导出的函数，该函数可以在[新创建的ArkTS基础运行时环境](use-napi-ark-runtime.md)中使用，即napi_create_ark_runtime接口创建的运行时环境。
 
 ## 函数说明
 
@@ -38,12 +38,12 @@ napi_status napi_load_module_with_info(napi_env env,
 > **注意**
 >
 > 1. 加载一个模块名，实际的行为是加载该模块的入口文件，一般为index.ets/ts。
-> 2. 如果在HAR中加载另外一个HAR，需要确保module_info的配置正确，尤其注意moduleName应为HAP的moduleName。
+> 2. 如果在HAR中加载另外一个HAR，需要确保module_info的配置正确，尤其注意moduleName的moduleName应为HAP或者HSP的moduleName。
 > 3. 如果在HAP/HSP中直接或间接使用了三方包，该三方包中使用napi_load_module_with_info接口加载其他模块A，则需要在HAP/HSP中也添加A的依赖。
 
 ## 异常场景
 1. 加载hsp失败，返回错误码`napi_generic_failure`。
-2. 模块加载过程中，发生链接关系出错、包内找不到对应文件等问题时，该API将抛出referenceError异常，并返回错误码`napi_pending_exception`。
+2. 模块加载过程中，发生链接关系出错、包内找不到对应文件等问题时，该API将抛出ReferenceError异常，并返回错误码`napi_pending_exception`。
 3. 系统侧发生非预期行为导致加载无法正常执行，将抛出cppcrash。
 
 ## 使用示例
@@ -108,18 +108,18 @@ export {value, test};
     }
     ```
 
-- **加载HAR模块名**
+- **加载源码HAR模块**
 
 HAR包Index.ets文件如下：
 
-```javascript
-//library Index.ets
-let value = 123;
-function test() {
-  console.log("Hello OpenHarmony");
-}
-export {value, test};
-```
+    ```javascript
+    //library Index.ets
+    let value = 123;
+    function test() {
+        console.log("Hello OpenHarmony");
+    }
+    export {value, test};
+    ```
 
 1. 在oh-package.json5文件中配置dependencies项：
 
