@@ -263,17 +263,19 @@ export const getNWeb = (url: ResourceStr) : myNodeController | undefined => {
 ```
 
 ```ts
-import router from '@ohos.router'
+// index.ets
+import { webview } from '@kit.ArkWeb';
+
 @Entry
 @Component
 struct Index1 {
-  WebviewController: webview.WebviewController = new webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   
   build() {
     Column() {
       //已经预启动Render进程 
       Button("跳转到Web页面").onClick(()=>{
-        router.pushUrl({url: "pages/index2"})
+       this.getUIContext().getRouter().pushUrl({url: "pages/index2"});
       })
         .width('100%')
         .height('100%')
@@ -283,16 +285,18 @@ struct Index1 {
 ```
 
 ```ts
-import web_webview from '@ohos.web.webview'
+// index2.ets
+import { webview } from '@kit.ArkWeb';
+
 @Entry
 @Component
 struct index2 {
-  WebviewController: webview.WebviewController = new webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   
   build() {
     Row() {
       Column() {
-        Web({src: 'https://www.example.com', controller: this.webviewController})
+        Web({src: 'https://www.example.com', controller: this.controller})
           .width('100%')
           .height('100%')
       }
@@ -434,7 +438,7 @@ export const getNWeb = (url : string) : myNodeController | undefined => {
 ```ts
 // 使用NodeController的Page页
 // Index.ets
-import {createNWeb, getNWeb} from "./common"
+import {createNWeb, getNWeb} from "./common";
 
 @Entry
 @Component
