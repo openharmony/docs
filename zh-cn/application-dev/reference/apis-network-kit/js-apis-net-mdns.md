@@ -795,7 +795,7 @@ mDNS服务信息。
 | --------------------- | ---------------------------------- | --- | ------------------------ |
 | serviceType   | string                             |  是 |  mDNS服务的类型。格式_\<name>.<_tcp/_udp>，name长度小于63字符并且不能包含字符'.'。  |
 | serviceName | string                             |  是 |  mDNS服务的名字。   |
-| port            | number           |  否 |  mDNS服务的端口号。           |
+| port            | number           |  否 |  mDNS服务的端口号。取值范围[0,65535]。           |
 | host           |  [NetAddress](js-apis-net-connection.md#netaddress) |  否 |  mDNS服务设备的IP地址。采用设备的IP，添加服务和移除服务时候不生效。               |
 | serviceAttribute     | Array\<[ServiceAttribute](#serviceattribute)> |  否 |  mDNS服务属性信息。               |
 
