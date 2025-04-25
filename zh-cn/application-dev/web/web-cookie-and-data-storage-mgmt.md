@@ -1,11 +1,10 @@
 # 管理Cookie及数据存储
 
-
-## Cookie管理
-
 Cookie是服务端发送客户端的数据。客户端持有Cookie，便于服务端快速识别身份和状态。
 
 当Cookie的SameSite属性未指定时，默认值为SameSite=Lax。这种设置下，Cookie仅在用户导航到其源站点时发送，不会在跨站请求中发送。
+
+## Cookie管理
 
 Web组件提供[WebCookieManager](../reference/apis-arkweb/js-apis-webview.md#webcookiemanager)类来管理Cookie信息。Cookie信息存储在应用沙箱路径下/proc/{pid}/root/data/storage/el2/base/cache/web/Cookies的文件中。
 
