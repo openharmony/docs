@@ -201,6 +201,7 @@ enum OHNativeErrorCode
 int32_t OH_NativeImage_SetDropBufferMode (OH_NativeImage* image, bool isOpen )
 ```
 **描述**
+
 设置OH_NativeImage是否为渲染丢帧模式。
 
 处于此模式时，大部分生产端生产的buffer将会被丢弃，最新的buffer会及时上屏渲染。
