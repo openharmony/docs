@@ -134,7 +134,7 @@ import { display } from '@kit.ArkUI';
 /**
  * 鼠标在矩形区域内时，触发的回调任务。
  */
-function callback(mouseEvent : MouseEvent) {
+let callback = (mouseEvent : MouseEvent) => {
   this.getUIContext().getPromptAction.showToast({
     message: `监听成功：${JSON.stringify(mouseEvent)}`
   })
