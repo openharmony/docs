@@ -333,7 +333,6 @@ struct MovingPhotoViewDemo {
         Button('PICK')
           .margin(5)
           .onClick(async () => {
-            let context = getContext(this)
             try {
               let uris: Array<string> = []
               const photoSelectOptions = new photoAccessHelper.PhotoSelectOptions()
@@ -485,7 +484,6 @@ struct MovingPhotoViewDemo {
         Button('PICK')
           .margin(5)
           .onClick(async () => {
-            let context = getContext(this)
             try {
               let uris: Array<string> = []
               const photoSelectOptions = new photoAccessHelper.PhotoSelectOptions()
