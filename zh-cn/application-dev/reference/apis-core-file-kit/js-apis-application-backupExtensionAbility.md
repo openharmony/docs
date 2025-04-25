@@ -39,7 +39,7 @@ import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
 
 ### onBackup
 
-onBackup(): void;
+onBackup(): void
 
 Extension生命周期回调，在执行备份数据时回调，由开发者提供扩展的备份数据的操作。
 
@@ -130,7 +130,7 @@ onBackupEx返回值不能为空字符串，若onBackupEx返回值为空字符串
 
 ### onRestore
 
-onRestore(bundleVersion: BundleVersion): void;
+onRestore(bundleVersion: BundleVersion): void
 
 Extension生命周期回调，在执行恢复数据时回调，由开发者提供扩展的恢复数据的操作。
 
@@ -239,7 +239,7 @@ onProcess(): string;
 > **说明：**
 > - onProcess可以不实现，系统有默认处理机制；若要实现，返回值结构严格按照示例代码返回。
 > - 实现onProcess时，业务需要将onBackup(onBackupEx)/onRestore(onRestoreEx)做异步实现，且需要单独开辟子线程，否则onProcess相关功能无法正常运行。具体使用方式见示例代码。
-> - onProcess() 推荐使用示例如下。
+> - onProcess()推荐使用示例如下。
 
 **示例：**
 
