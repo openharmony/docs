@@ -147,7 +147,7 @@ static JSVM_Value CoerceToObject(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return obj;
 }
-// CoerceToObjec注册回调
+// CoerceToObject注册回调
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = CoerceToObject},
 };
