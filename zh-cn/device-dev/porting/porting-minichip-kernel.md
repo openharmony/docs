@@ -49,6 +49,7 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
 编译框架搭建完成后，需要将芯片厂商的SDK加入OpenHarmony编译框架，从而可以编译出带SDK的烧录文件（此时编译出的是不带系统的裸机工程），以便OpenHarmony可以调用SDK中的接口。通过以下步骤将厂商SDK加入OpenHarmony编译框架中：
 
 1. 将芯片厂商sdk置于device目录下合适的位置，SDK的编译脚本/镜像打包脚本整合进编译框架中。
+   
    参考编译脚本：“device/MyDeviceCompany/MyBoard/BUILD.gn”
 
      
@@ -100,17 +101,19 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
    }
    ```
 
-     **图1** 目标的依赖执行顺序  
+     **图1** 目标的依赖执行顺序 
+ 
    ![zh-cn_image_0000001378481233](figures/zh-cn_image_0000001378481233.png)
 
 1. 自定义芯片厂“target_config.h”文件。
+
    厂商应在“device/MyDeviceCompany/MyBoard”下合适位置创建内核配置文件“target_config.h”，并根据芯片的硬件资源修改参数（具体参数介绍详见表2target_config.h文件主要配置项）。
 
    参考文件路径：“device/hisilicon/hispark_pegasus/sdk_liteos/platform/os/Huawei_LiteOS/targets/hi3861v100/include/target_config.h”
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+   >
    > 1. 若已有的配置项不能满足需求，可查看“kernel/liteos_m/kernel/include/los_config.h”，其为liteos_m内核的全量配置文件。
-   > 
    > 2. “target_config.h”文件中出现的配置将会覆盖“los_config.h”中的配置。
 
      **表2** target_config.h文件主要配置项
