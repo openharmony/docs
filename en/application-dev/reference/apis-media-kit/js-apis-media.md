@@ -907,20 +907,23 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { common } from '@kit.AbilityKit';
 
-let player = await media.createAVPlayer();
-let context = getContext(this) as common.UIAbilityContext
-let fileDescriptor = await context.resourceManager.getRawFd('xxx.mp4')
-player.fdSrc = fileDescriptor
-let playStrategy : media.PlaybackStrategy = {
-  preferredWidth: 1,
-  preferredHeight: 2,
-  preferredBufferDuration: 3,
-  preferredHdr: false,
-  mutedMediaType: media.MediaType.MEDIA_TYPE_AUD,
-  preferredBufferDurationForPlaying: 1,
-  thresholdForAutoQuickPlay: 5
-};
-player.setPlaybackStrategy(playStrategy);
+async function getPlaybackStrategy(context: Context) {
+  let player = await media.createAVPlayer();
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext
+  let fileDescriptor = await context.resourceManager.getRawFd('xxx.mp4')
+  player.fdSrc = fileDescriptor
+  let playStrategy : media.PlaybackStrategy = {
+    preferredWidth: 1,
+    preferredHeight: 2,
+    preferredBufferDuration: 3,
+    preferredHdr: false,
+    mutedMediaType: media.MediaType.MEDIA_TYPE_AUD,
+    preferredBufferDurationForPlaying: 1,
+    thresholdForAutoQuickPlay: 5
+  };
+  player.setPlaybackStrategy(playStrategy);
+}
+
 ```
 
 ### setPlaybackRange<sup>18+</sup>
@@ -2677,7 +2680,7 @@ Adds an external subtitle to a video based on the FD. Currently, the external su
 ```ts
 import { common } from '@kit.AbilityKit'
 
-let context = getContext(this) as common.UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext
 let fileDescriptor = await context.resourceManager.getRawFd('xxx.srt')
 
 avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length)
@@ -4740,7 +4743,7 @@ When the application initiates multiple subscriptions to this event, the last su
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit'
 let photoAsset: photoAccessHelper.PhotoAsset;
-let context = getContext(this) as common.UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext
 
 // Example: Process the photoAsset callback and save the video.
 async function saveVideo(asset: photoAccessHelper.PhotoAsset) {
@@ -8042,7 +8045,7 @@ let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx
 import { common } from '@kit.AbilityKit';
 import { resourceManager } from '@kit.LocalizationKit';
 
-let context = getContext(this) as common.UIAbilityContext;
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext
 let mgr = context.resourceManager;
 let fileDescriptor = await mgr.getRawFd("xxx.m3u8");
 
