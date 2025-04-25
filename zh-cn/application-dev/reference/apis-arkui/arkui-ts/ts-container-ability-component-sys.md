@@ -1,4 +1,5 @@
 # AbilityComponent (系统接口)
+<!--deprecated_code_no_check-->
 
 独立显示Ability的容器。
 
