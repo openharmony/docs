@@ -3,11 +3,9 @@
 
 ## 概述
 
-提供调试功能。
+为应用提供多种以供调试、调优的方法。
 
-提供调试代码的定义。
-
-本模块函数可用于获取cpu uage、memory、heap、capture trace等。
+本模块可用于应用进程的内存、CPU、GPU等相关数据的获取，开启进程trace采集等。由于该模块的接口大多比较耗费性能，接口调用较为耗时，且基于HiDebug模块定义，该模块内的接口仅建议在应用调试，调优阶段使用。若需要在其他场景使用时，请认真评估所需调用的接口对应用性能的影响。
 
 **起始版本：** 12
 
@@ -27,11 +25,10 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[HiDebug_ThreadCpuUsage](_hi_debug___thread_cpu_usage.md) | 应用程序所有线程的CPU使用率结构体定义。  | 
-| struct&nbsp;&nbsp;[HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md) | 系统内存信息结构类型定义。  | 
-| struct&nbsp;&nbsp;[HiDebug_NativeMemInfo](_hi_debug___native_mem_info.md) | 应用程序进程本机内存信息结构类型定义。  | 
-| struct&nbsp;&nbsp;[HiDebug_MemoryLimit](_hi_debug___memory_limit.md) | 应用程序进程内存限制结构类型定义。  | 
-
+| struct&nbsp;&nbsp;[HiDebug_ThreadCpuUsage](_hi_debug___thread_cpu_usage.md) | 应用程序所有线程的CPU使用率结构体定义。| 
+| struct&nbsp;&nbsp;[HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md) | 系统内存信息结构类型定义。|
+| struct&nbsp;&nbsp;[HiDebug_NativeMemInfo](_hi_debug___native_mem_info.md) | 应用程序进程本机内存信息结构类型定义。| 
+| struct&nbsp;&nbsp;[HiDebug_MemoryLimit](_hi_debug___memory_limit.md) | 应用程序进程内存限制结构类型定义。|
 
 ### 宏定义
 
@@ -98,14 +95,14 @@
 | -------- | -------- |
 | double [OH_HiDebug_GetSystemCpuUsage](#oh_hidebug_getsystemcpuusage) () | 获取系统的CPU资源占用情况百分比。  | 
 | double [OH_HiDebug_GetAppCpuUsage](#oh_hidebug_getappcpuusage) () | 获取进程的CPU使用率百分比。  | 
-| [HiDebug_ThreadCpuUsagePtr](#hidebug_threadcpuusageptr) [OH_HiDebug_GetAppThreadCpuUsage](#oh_hidebug_getappthreadcpuusage) () | 获取应用所有线程CPU使用情况。  | 
+| [HiDebug_ThreadCpuUsagePtr](#hidebug_threadcpuusageptr) [OH_HiDebug_GetAppThreadCpuUsage](#oh_hidebug_getappthreadcpuusage) () | 获取应用所有线程的CPU使用率。  | 
 | void [OH_HiDebug_FreeThreadCpuUsage](#oh_hidebug_freethreadcpuusage) ([HiDebug_ThreadCpuUsagePtr](#hidebug_threadcpuusageptr) \*threadCpuUsage) | 释放线程数据结构。  | 
 | void [OH_HiDebug_GetSystemMemInfo](#oh_hidebug_getsystemmeminfo) ([HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md) \*systemMemInfo) | 获取系统内存信息。  | 
 | void [OH_HiDebug_GetAppNativeMemInfo](#oh_hidebug_getappnativememinfo) ([HiDebug_NativeMemInfo](_hi_debug___native_mem_info.md) \*nativeMemInfo) | 获取应用程序进程的内存信息。  | 
 | void [OH_HiDebug_GetAppMemoryLimit](#oh_hidebug_getappmemorylimit) ([HiDebug_MemoryLimit](_hi_debug___memory_limit.md) \*memoryLimit) | 获取应用程序进程的内存限制。  | 
 | [HiDebug_ErrorCode](#hidebug_errorcode) [OH_HiDebug_StartAppTraceCapture](#oh_hidebug_startapptracecapture) ([HiDebug_TraceFlag](#hidebug_traceflag) flag, uint64_t tags, uint32_t limitSize, char \*fileName, uint32_t length) | 启动应用trace采集。  | 
 | [HiDebug_ErrorCode](#hidebug_errorcode) [OH_HiDebug_StopAppTraceCapture](#oh_hidebug_stopapptracecapture) () | 停止采集应用程序trace。  | 
-| [HiDebug_ErrorCode](#hidebug_errorcode) [OH_HiDebug_GetGraphicsMemory](#oh_hidebug_getgraphicsmemory) (uint32_t \*value) | 获取应用gpu显存大小。  | 
+| [HiDebug_ErrorCode](#hidebug_errorcode) [OH_HiDebug_GetGraphicsMemory](#oh_hidebug_getgraphicsmemory) (uint32_t \*value) | 获取应用GPU显存大小。  | 
 
 
 ## 宏定义说明
@@ -472,7 +469,7 @@ SA标签。
 typedef enum HiDebug_ErrorCodeHiDebug_ErrorCode
 ```
 **描述**
-错误码定义。
+错误码的定义。
 
 **起始版本：** 12
 
@@ -483,7 +480,7 @@ typedef enum HiDebug_ErrorCodeHiDebug_ErrorCode
 typedef struct HiDebug_MemoryLimitHiDebug_MemoryLimit
 ```
 **描述**
-应用程序进程内存限制结构类型定义。
+应用程序进程内存限制的结构类型定义。
 
 **起始版本：** 12
 
@@ -494,7 +491,7 @@ typedef struct HiDebug_MemoryLimitHiDebug_MemoryLimit
 typedef struct HiDebug_NativeMemInfoHiDebug_NativeMemInfo
 ```
 **描述**
-应用程序进程本机内存信息结构类型定义。
+应用程序进程本机内存信息的结构类型定义。
 
 **起始版本：** 12
 
@@ -505,7 +502,7 @@ typedef struct HiDebug_NativeMemInfoHiDebug_NativeMemInfo
 typedef struct HiDebug_SystemMemInfoHiDebug_SystemMemInfo
 ```
 **描述**
-系统内存信息结构类型定义。
+系统内存信息的结构类型定义。
 
 **起始版本：** 12
 
@@ -516,7 +513,7 @@ typedef struct HiDebug_SystemMemInfoHiDebug_SystemMemInfo
 typedef struct HiDebug_ThreadCpuUsageHiDebug_ThreadCpuUsage
 ```
 **描述**
-应用程序所有线程的CPU使用率结构体定义。
+应用程序所有线程的CPU使用率结构体的定义。
 
 **起始版本：** 12
 
@@ -527,7 +524,7 @@ typedef struct HiDebug_ThreadCpuUsageHiDebug_ThreadCpuUsage
 typedef HiDebug_ThreadCpuUsage* HiDebug_ThreadCpuUsagePtr
 ```
 **描述**
-HiDebug_ThreadCpuUsage指针定义。
+HiDebug_ThreadCpuUsage指针的定义。
 
 **起始版本：** 12
 
@@ -538,7 +535,7 @@ HiDebug_ThreadCpuUsage指针定义。
 typedef enum HiDebug_TraceFlagHiDebug_TraceFlag
 ```
 **描述**
-采集trace线程的类型。
+采集trace线程类型的定义。
 
 **起始版本：** 12
 
@@ -552,14 +549,14 @@ typedef enum HiDebug_TraceFlagHiDebug_TraceFlag
 enum HiDebug_ErrorCode
 ```
 **描述**
-错误码定义。
+错误码的定义。
 
 **起始版本：** 12
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
 | HIDEBUG_SUCCESS  | 成功。&nbsp;&nbsp; | 
-| HIDEBUG_INVALID_ARGUMENT  | 无效参数，可能的原因： 1.参数传值问题；2.参数类型问题。&nbsp;&nbsp; | 
+| HIDEBUG_INVALID_ARGUMENT  | 无效参数，原因包括：1. 参数传值问题；2. 参数类型问题。&nbsp;&nbsp; | 
 | HIDEBUG_TRACE_CAPTURED_ALREADY  | 重复采集。&nbsp;&nbsp; | 
 | HIDEBUG_NO_PERMISSION  | 没有写文件的权限。&nbsp;&nbsp; | 
 | HIDEBUG_TRACE_ABNORMAL  | 系统内部错误。&nbsp;&nbsp; | 
@@ -608,13 +605,13 @@ void OH_HiDebug_FreeThreadCpuUsage (HiDebug_ThreadCpuUsagePtr * threadCpuUsage)
 double OH_HiDebug_GetAppCpuUsage ()
 ```
 **描述**
-获取进程的CPU使用率百分比。
+获取进程的CPU使用率百分比的函数。
 
 **起始版本：** 12
 
 **返回：**
 
-返回进程的CPU使用率百分比。如果返回结果为0，可能的原因是获取失败。
+返回进程的CPU使用率百分比。如果返回结果为0，原因可能是获取失败。
 
 
 ### OH_HiDebug_GetAppMemoryLimit()
@@ -623,7 +620,7 @@ double OH_HiDebug_GetAppCpuUsage ()
 void OH_HiDebug_GetAppMemoryLimit (HiDebug_MemoryLimit * memoryLimit)
 ```
 **描述**
-获取应用程序进程的内存限制。
+获取应用程序进程的内存限制的函数。
 
 **起始版本：** 12
 
@@ -640,7 +637,7 @@ void OH_HiDebug_GetAppMemoryLimit (HiDebug_MemoryLimit * memoryLimit)
 void OH_HiDebug_GetAppNativeMemInfo (HiDebug_NativeMemInfo * nativeMemInfo)
 ```
 **描述**
-获取应用程序进程的内存信息。
+获取应用程序进程的内存信息的函数。
 
 **起始版本：** 12
 
@@ -657,13 +654,13 @@ void OH_HiDebug_GetAppNativeMemInfo (HiDebug_NativeMemInfo * nativeMemInfo)
 HiDebug_ThreadCpuUsagePtr OH_HiDebug_GetAppThreadCpuUsage ()
 ```
 **描述**
-获取应用所有线程CPU使用情况。
+获取应用所有线程的CPU使用情况的函数。
 
 **起始版本：** 12
 
 **返回：**
 
-返回所有线程CPU使用情况，见[HiDebug_ThreadCpuUsagePtr](#hidebug_threadcpuusageptr)。 如果返回的结果是null，说明调用失败。
+返回所有线程的CPU使用情况，见[HiDebug_ThreadCpuUsagePtr](#hidebug_threadcpuusageptr)。如果返回结果为nullptr，表示调用失败。
 
 
 ### OH_HiDebug_GetGraphicsMemory()
@@ -672,7 +669,7 @@ HiDebug_ThreadCpuUsagePtr OH_HiDebug_GetAppThreadCpuUsage ()
 HiDebug_ErrorCode OH_HiDebug_GetGraphicsMemory (uint32_t * value)
 ```
 **描述**
-获取应用gpu显存大小。
+获取应用的GPU显存大小。
 
 **起始版本：** 14
 
@@ -686,9 +683,9 @@ HiDebug_ErrorCode OH_HiDebug_GetGraphicsMemory (uint32_t * value)
 
 0 - 接口获取成功。
 
-401 - 无效参数，所传递参数为空指针。
+401 - 参数无效，传递的参数为空指针。
 
-11400104 - 系统内部错误。
+11400104 - 内部错误。
 
 
 ### OH_HiDebug_GetSystemCpuUsage()
@@ -703,7 +700,7 @@ double OH_HiDebug_GetSystemCpuUsage ()
 
 **返回：**
 
-返回系统CPU资源占用情况百分比。如果返回结果为0，可能的原因是获取失败。
+返回系统CPU资源占用情况的百分比。如果返回结果为0，原因可能是获取失败。
 
 
 ### OH_HiDebug_GetSystemMemInfo()
@@ -712,7 +709,7 @@ double OH_HiDebug_GetSystemCpuUsage ()
 void OH_HiDebug_GetSystemMemInfo (HiDebug_SystemMemInfo * systemMemInfo)
 ```
 **描述**
-获取系统内存信息。
+获取系统的内存信息。
 
 **起始版本：** 12
 
@@ -720,7 +717,7 @@ void OH_HiDebug_GetSystemMemInfo (HiDebug_SystemMemInfo * systemMemInfo)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| systemMemInfo | 表示指向[HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md)。 经过该函数调用，如果结构体里的数据为空，说明调用失败。  | 
+| systemMemInfo | 表示指向[HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md)的指针。如果调用该函数后，结构体中的数据为空，则说明调用失败。  | 
 
 
 ### OH_HiDebug_StartAppTraceCapture()
@@ -747,13 +744,13 @@ HiDebug_ErrorCode OH_HiDebug_StartAppTraceCapture (HiDebug_TraceFlag flag, uint6
 
 0 - 成功。
 
-HIDEBUG_INVALID_ARGUMENT 401 - fileName参数为空指针或者传入的length参数过小或者limitSize参数小于等于0。
+401 - fileName参数为空指针，length参数过小，或limitSize参数小于等于0。
 
-11400102 - 已经开启了一个trace。
+11400102 - 已开启trace。
 
-11400103 - 没有权限去开启trace。
+11400103 - 无权限开启trace。
 
-11400104 - 系统内部错误。
+11400104 - 内部错误。
 
 
 ### OH_HiDebug_StopAppTraceCapture()
@@ -770,6 +767,6 @@ HiDebug_ErrorCode OH_HiDebug_StopAppTraceCapture ()
 
 0 - 成功。
 
-11400104 - 系统内部错误。
+11400104 - 内部错误。
 
-11400105 - 当前没有trace正在运行。
+11400105 - 无trace运行。

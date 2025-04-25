@@ -3,7 +3,7 @@
 
 ## 概述
 
-定义HiDebug模块的调试功能。
+定义HiDebug模块的调试接口。
 
 **库：** libohhidebug.so
 
