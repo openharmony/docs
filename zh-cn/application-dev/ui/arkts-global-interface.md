@@ -47,6 +47,7 @@ FA模型默认只支持一个ArkUI实例，没有多实例的场景。当框架�
 
 下述示例，实现了在具体窗口内弹出Toast。ArkUI可感知到是在当前页面下调用，找到对应的UI实例。但是，如果一些复杂场景的起始调用不在页面中，经过了异步调用，作用的实例就可能出现行为不明确的问题。
 
+<!--deprecated_code_no_check-->
 ```ts
 import { promptAction } from '@kit.ArkUI'
 
@@ -68,6 +69,7 @@ struct Index {
 ```
 下述示例，callNative是Node-API方法，回调如果是由C侧异步触发，执行时无法感知当前页面信息，无法确定响应的UI实例。
 
+<!--deprecated_code_no_check-->
 ```ts
 import { promptAction } from '@kit.ArkUI'
 
@@ -121,6 +123,7 @@ struct Index {
 
 上文的示例也可以使用如下方法实现。
 
+<!--deprecated_code_no_check-->
 ```ts
 // 执行绑定实例的闭包
 import { promptAction } from '@kit.ArkUI'
