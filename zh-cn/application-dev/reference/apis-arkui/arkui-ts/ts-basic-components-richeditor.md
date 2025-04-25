@@ -135,7 +135,7 @@ decoration:{
 
 对addBuilderSpan的节点文本，该功能不会生效。
 
-当copyOption设置为CopyOptions.None时，点击实体弹出的菜单没有选择文本和复制功能。
+当copyOptions设置为CopyOptions.None时，点击实体弹出的菜单没有选择文本和复制功能。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
