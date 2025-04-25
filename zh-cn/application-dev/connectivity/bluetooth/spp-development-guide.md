@@ -32,7 +32,7 @@ SPP是Serial Port Profile（串口协议）的缩写，是一种蓝牙协议，�
 1. 导入所需的socket模块。
 2. 需要SystemCapability.Communication.Bluetooth.Core系统能力。
 3. 需要申请权限ohos.permission.ACCESS_BLUETOOTH。
-4. 启用设备蓝牙功能。
+4. 开启设备蓝牙。
 5. 创建服务端socket，并返回serverId。
 6. 服务端等待客户端连接，并返回clientId。
 7. 服务端向客户端发送数据。
@@ -118,7 +118,7 @@ SPP是Serial Port Profile（串口协议）的缩写，是一种蓝牙协议，�
 ### 通过socket连接对端设备
 1. 导入所需的socket模块。
 2. 需要SystemCapability.Communication.Bluetooth.Core系统能力。
-3. 启用设备蓝牙功能。
+3. 开启设备蓝牙。
 4. 启用BLE扫描功能，获取对端设备的MAC地址。
 5. 建立与对端设备的连接。
 6. 示例代码：
