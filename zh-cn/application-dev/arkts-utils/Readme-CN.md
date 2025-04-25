@@ -64,6 +64,8 @@
       - [ArkUI数据更新场景](makeobserved-sendable.md)
       - [C++线程间数据共享场景](native-interthread-shared.md)
       - [ArkUI瀑布流渲染场景](taskpool-waterflow.md)
+      - [ArkTS多线程间操作Native对象场景](napi-coerce-to-native-binding-object.md)
+      - [Worker常驻线程通过TaskPool进行多任务并发处理](worker-and-taskpool.md)
 - [ArkTS跨语言交互](arkts-cross-language-interaction.md)
 - ArkTS运行时<!--arkts-runtime-->
   - [ArkTS运行时概述](arkts-runtime-overview.md)
