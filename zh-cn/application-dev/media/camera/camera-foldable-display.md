@@ -61,7 +61,7 @@
     import { camera } from '@kit.CameraKit';
     import { BusinessError } from '@kit.BasicServicesKit';
 
-    let cameraManager = camera.getCameraManager(getContext())
+    let cameraManager = camera.getCameraManager(getContext());
 
     function registerFoldStatusChanged(err: BusinessError, foldStatusInfo: camera.FoldStatusInfo) {
       // foldStatus 变量用来控制显示XComponent组件。
