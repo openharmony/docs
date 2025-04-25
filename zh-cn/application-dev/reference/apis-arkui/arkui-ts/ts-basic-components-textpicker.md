@@ -420,6 +420,19 @@ digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 >
 >  用于穿戴设备圆形屏幕使用。组件响应[表冠事件](ts-universal-events-crown.md)，需要先获取焦点。
 
+### selectedBackgroundStyle<sup>20+</sup>
+selectedBackgroundStyle(style: Optional\<PickerBackgroundStyle>)
+
+设置选中项的背景样式。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名   | 类型                                     | 必填   | 说明                      |
+| ----- | ---------------------------------------- | ---- | ------------------------- |
+| style | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerBackgroundStyle](#pickerbackgroundstyle20)> | 是    | 选中项背景的颜色和边框圆角半径。<br/>默认值：<br/>{ <br/>color: '#0C182431'<br/>borderRadius: { value:24 unit:1 }<br/>}|
+
 ## 事件
 
 除支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
@@ -615,6 +628,20 @@ type TextPickerEnterSelectedAreaCallback = (value: string | string[], index: num
 | value  | string&nbsp;\|&nbsp;string[] | 是   | 当前选中项的文本。多列的情况，value为数组类型。   |
 | index  | number&nbsp;\|&nbsp;number[] | 是   | 当前选中项的索引值，索引从0开始。多列的情况，index为数组类型。 |
 
+## PickerBackgroundStyle<sup>20+</sup>
+
+选择器选项背景样式，包括选项背景颜色和选项边框圆角半径。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                              |
+| ------ | ------------------------------------- | ---- | ------------------------------------------------- |
+| color  | [ResourceColor](ts-types.md#resourcecolor) | 否   | 选项背景颜色，默认值为'#0C182431'。   |
+| borderRadius  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) &nbsp;\|&nbsp; [BorderRadiuses](ts-types.md#borderradiuses9) &nbsp;\|&nbsp; [LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12) | 否   | 选项边框圆角半径。LengthMetrics类型的value参数同时作用于四个圆角半径大小，unit参数用于设置单位；BorderRadiuses类型可以设置四个不同值的圆角半径，所有单位固定为VP。LocalizedBorderRadiuses类型可以设置四个不同值的圆角半径，并且可以单独设置每个圆角的单位。默认值为{ value:24 unit:1 }，即四个圆角半径均为24VP。 |
 ## 示例
 
 ### 示例1（设置选择器列数）
@@ -979,3 +1006,65 @@ struct TextPickerExample {
 ```
 
 ![textpicker](figures/TextPickerDemo9.jpeg)
+
+### 示例10（设置选中项背景样式）
+
+该示例通过配置selectedBackgroundStyle实现文本选择器选中项的背景样式。
+
+```ts
+// xxx.ets
+import { TextPickerModifier } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct TextPickerExample {
+  private showText1: string [] =
+    ['Text1', 'Text1', 'Text1', 'Text1']
+  private showText2: string[] [] =
+    [
+      ['Text2', 'Text2', 'Text2', 'Text2'],
+      ['Text3', 'Text3', 'Text3', 'Text3']
+    ]
+  private textPickerModifier: TextPickerModifier = new TextPickerModifier()
+    .selectedBackgroundStyle({
+      borderRadius: {
+        topLeft:8,
+        topRight:8,
+        bottomLeft:8,
+        bottomRight:8
+      },
+      color: "#FFFFEEF6"
+    })
+  build() {
+    Column() {
+      Row() {
+        TextPicker({ range: this.showText1 })
+          .selectedBackgroundStyle({
+            color:"#FFD5D5D5",
+            borderRadius: { value:0, unit :1 }
+          })
+        Column()
+          .width("10%")
+        TextPicker({ range: this.showText1 })
+          .selectedBackgroundStyle({
+            color:"#FFE3F8F9",
+            borderRadius: {
+              topStart: { value:5, unit:1 },
+              topEnd: { value:10, unit:1 },
+              bottomStart: { value:15, unit:1 },
+              bottomEnd: { value:20, unit:1 },
+            }
+          })
+      }
+      Row()
+        .height("10%")
+      Row() {
+        TextPicker({ range: this.showText2 })
+          .attributeModifier(this.textPickerModifier)
+      }
+    }.height('100%')
+  }
+}
+```
+
+![textpicker](figures/TextPickerDemo10.jpeg)
