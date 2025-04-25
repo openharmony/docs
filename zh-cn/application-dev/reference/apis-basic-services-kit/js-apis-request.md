@@ -100,7 +100,10 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
-
+  import { common } from '@kit.AbilityKit';
+  
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let uploadTask: request.UploadTask;
   let uploadConfig: request.UploadConfig = {
     url: 'http://www.example.com', // 需要手动将url替换为真实服务器的HTTP协议地址
@@ -110,7 +113,7 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
     data: [{ name: "name123", value: "123" }],
   };
   try {
-    request.uploadFile(getContext(), uploadConfig).then((data: request.UploadTask) => {
+    request.uploadFile(context, uploadConfig).then((data: request.UploadTask) => {
       uploadTask = data;
     }).catch((err: BusinessError) => {
       console.error(`Failed to request the upload. Code: ${err.code}, message: ${err.message}`);
@@ -157,7 +160,10 @@ uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&l
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let uploadTask: request.UploadTask;
   let uploadConfig: request.UploadConfig = {
     url: 'http://www.example.com', // 需要手动将url替换为真实服务器的HTTP协议地址
@@ -167,7 +173,7 @@ uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&l
     data: [{ name: "name123", value: "123" }],
   };
   try {
-    request.uploadFile(getContext(), uploadConfig, (err: BusinessError, data: request.UploadTask) => {
+    request.uploadFile(context, uploadConfig, (err: BusinessError, data: request.UploadTask) => {
       if (err) {
         console.error(`Failed to request the upload. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -850,11 +856,14 @@ downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadT
 **示例：**
 
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   try {
     // 需要手动将url替换为真实服务器的HTTP协议地址
-    request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
        let downloadTask: request.DownloadTask = data;
     }).catch((err: BusinessError) => {
       console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
@@ -902,11 +911,14 @@ downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallba
 **示例：**
 
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   try {
     // 需要手动将url替换为真实服务器的HTTP协议地址
-    request.downloadFile(getContext(), {
+    request.downloadFile(context, {
       url: 'https://xxxx/xxxxx.hap',
       filePath: 'xxx/xxxxx.hap'
     }, (err: BusinessError, data: request.DownloadTask) => {
@@ -1062,11 +1074,14 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 **示例：**
 
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   try {
     // 需要手动将url替换为真实服务器的HTTP协议地址
-    request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
       let downloadTask: request.DownloadTask = data;
       let progressCallback = (receivedSize: number, totalSize: number) => {
         console.info("download receivedSize:" + receivedSize + " totalSize:" + totalSize);
@@ -1116,10 +1131,13 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 try {
   // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let progressCallback1 = (receivedSize: number, totalSize: number) => {
       console.info('Download delete progress notification.' + 'receivedSize:' + receivedSize + 'totalSize:' + totalSize);
@@ -1169,10 +1187,13 @@ on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
 
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 try {
   // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let completeCallback = () => {
       console.info('Download task completed.');
@@ -1224,10 +1245,13 @@ off(type: 'complete'|'pause'|'remove', callback?: () =&gt; void): void
 
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 try {
   // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let completeCallback1 = () => {
       console.info('Download delete complete notification.');
@@ -1310,10 +1334,13 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
 
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 try {
   // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let failCallback = (err: number) => {
       console.error(`Failed to download the task. Code: ${err}`);
@@ -1355,10 +1382,13 @@ off(type: 'fail', callback?: (err: number) =&gt; void): void
 
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 try {
   // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let failCallback1 = (err: number) => {
       console.error(`Failed to download the task. Code: ${err}`);
@@ -1408,10 +1438,13 @@ delete(): Promise&lt;boolean&gt;
 
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 try {
   // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.delete().then((result: boolean) => {
       console.info('Succeeded in removing the download task.');
@@ -1459,10 +1492,13 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
 
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 try {
   // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.delete((err: BusinessError, result: boolean) => {
       if (err) {
@@ -1512,10 +1548,13 @@ getTaskInfo(): Promise&lt;DownloadInfo&gt;
 
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 try {
   // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.getTaskInfo().then((downloadInfo: request.DownloadInfo) => {
       console.info('Succeeded in querying the download task')
@@ -1563,10 +1602,13 @@ getTaskInfo(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 try {
   // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.getTaskInfo((err: BusinessError, downloadInfo: request.DownloadInfo) => {
       if (err) {
@@ -1616,10 +1658,13 @@ getTaskMimeType(): Promise&lt;string&gt;
 
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 try {
   // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.getTaskMimeType().then((data: string) => {
       console.info('Succeeded in querying the download MimeType');
@@ -1667,10 +1712,13 @@ getTaskMimeType(callback: AsyncCallback&lt;string&gt;): void;
 
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 try {
   // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.getTaskMimeType((err: BusinessError, data: string) => {
       if (err) {
@@ -1720,10 +1768,13 @@ suspend(): Promise&lt;boolean&gt;
 
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 try {
   // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.suspend().then((result: boolean) => {
       console.info('Succeeded in pausing the download task.');
@@ -1771,10 +1822,13 @@ suspend(callback: AsyncCallback&lt;boolean&gt;): void
 
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 try {
   // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.suspend((err: BusinessError, result: boolean) => {
       if (err) {
@@ -1824,10 +1878,13 @@ restore(): Promise&lt;boolean&gt;
 
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 try {
   // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.restore().then((result: boolean) => {
       console.info('Succeeded in resuming the download task.')
@@ -1875,10 +1932,13 @@ restore(callback: AsyncCallback&lt;boolean&gt;): void
 
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 try {
   // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.restore((err: BusinessError, result: boolean) => {
       if (err) {
@@ -2642,12 +2702,14 @@ on(event: 'progress', callback: (progress: [Progress](#progress10)) =&gt; void):
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
       filename: "taskOnTest.avi",
-      mimeType: "application/octet-stream",
       path: "./taskOnTest.avi",
     }
   }];
@@ -2676,7 +2738,7 @@ on(event: 'progress', callback: (progress: [Progress](#progress10)) =&gt; void):
   let createOnCallback = (progress: request.agent.Progress) => {
     console.info('upload task progress.');
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.on('progress', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
     task.start();
@@ -2718,12 +2780,14 @@ on(event: 'completed', callback: (progress: [Progress](#progress10)) =&gt; void)
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
       filename: "taskOnTest.avi",
-      mimeType: "application/octet-stream",
       path: "./taskOnTest.avi",
     }
   }];
@@ -2752,7 +2816,7 @@ on(event: 'completed', callback: (progress: [Progress](#progress10)) =&gt; void)
   let createOnCallback = (progress: request.agent.Progress) => {
     console.info('upload task completed.');
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.on('completed', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
     task.start();
@@ -2794,12 +2858,14 @@ on(event: 'failed', callback: (progress: [Progress](#progress10)) =&gt; void): v
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
       filename: "taskOnTest.avi",
-      mimeType: "application/octet-stream",
       path: "./taskOnTest.avi",
     }
   }];
@@ -2828,7 +2894,7 @@ on(event: 'failed', callback: (progress: [Progress](#progress10)) =&gt; void): v
   let createOnCallback = (progress: request.agent.Progress) => {
     console.info('upload task failed.');
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.on('failed', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
     task.start();
@@ -2868,12 +2934,14 @@ on(event: 'pause', callback: (progress: [Progress](#progress10)) =&gt; void): vo
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
       filename: "taskOnTest.avi",
-      mimeType: "application/octet-stream",
       path: "./taskOnTest.avi",
     }
   }];
@@ -2902,10 +2970,12 @@ on(event: 'pause', callback: (progress: [Progress](#progress10)) =&gt; void): vo
   let createOnCallback = (progress: request.agent.Progress) => {
     console.info('upload task pause.');
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.on('pause', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
     task.start();
+    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    task.pause();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2942,12 +3012,14 @@ on(event: 'resume', callback: (progress: [Progress](#progress10)) =&gt; void): v
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
       filename: "taskOnTest.avi",
-      mimeType: "application/octet-stream",
       path: "./taskOnTest.avi",
     }
   }];
@@ -2976,10 +3048,14 @@ on(event: 'resume', callback: (progress: [Progress](#progress10)) =&gt; void): v
   let createOnCallback = (progress: request.agent.Progress) => {
     console.info('upload task resume.');
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.on('resume', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
     task.start();
+    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    task.pause();
+    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    task.resume();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -3016,12 +3092,14 @@ on(event: 'remove', callback: (progress: [Progress](#progress10)) =&gt; void): v
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
       filename: "taskOnTest.avi",
-      mimeType: "application/octet-stream",
       path: "./taskOnTest.avi",
     }
   }];
@@ -3050,10 +3128,12 @@ on(event: 'remove', callback: (progress: [Progress](#progress10)) =&gt; void): v
   let createOnCallback = (progress: request.agent.Progress) => {
     console.info('upload task remove.');
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.on('remove', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
     task.start();
+    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    request.agent.remove(task.tid);
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -3092,12 +3172,14 @@ on(event: 'response', callback: Callback&lt;HttpResponse&gt;): void
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
       filename: "taskOnTest.avi",
-      mimeType: "application/octet-stream",
       path: "./taskOnTest.avi",
     }
   }];
@@ -3126,7 +3208,7 @@ on(event: 'response', callback: Callback&lt;HttpResponse&gt;): void
   let createOnCallback = (response: request.agent.HttpResponse) => {
     console.info('upload task response.');
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.on('response', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
     task.start();
@@ -3168,12 +3250,14 @@ off(event: 'progress', callback?: (progress: [Progress](#progress10)) =&gt; void
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
       filename: "taskOffTest.avi",
-      mimeType: "application/octet-stream",
       path: "./taskOffTest.avi",
     }
   }];
@@ -3205,7 +3289,7 @@ off(event: 'progress', callback?: (progress: [Progress](#progress10)) =&gt; void
   let createOffCallback2 = (progress: request.agent.Progress) => {
     console.info('upload task progress.');
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.on('progress', createOffCallback1);
     task.on('progress', createOffCallback2);
     //表示取消createOffCallback1的订阅
@@ -3252,12 +3336,14 @@ off(event: 'completed', callback?: (progress: [Progress](#progress10)) =&gt; voi
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
       filename: "taskOffTest.avi",
-      mimeType: "application/octet-stream",
       path: "./taskOffTest.avi",
     }
   }];
@@ -3289,7 +3375,7 @@ off(event: 'completed', callback?: (progress: [Progress](#progress10)) =&gt; voi
   let createOffCallback2 = (progress: request.agent.Progress) => {
     console.info('upload task completed.');
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.on('completed', createOffCallback1);
     task.on('completed', createOffCallback2);
     //表示取消createOffCallback1的订阅
@@ -3336,12 +3422,14 @@ off(event: 'failed', callback?: (progress: [Progress](#progress10)) =&gt; void):
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
       filename: "taskOffTest.avi",
-      mimeType: "application/octet-stream",
       path: "./taskOffTest.avi",
     }
   }];
@@ -3373,7 +3461,7 @@ off(event: 'failed', callback?: (progress: [Progress](#progress10)) =&gt; void):
   let createOffCallback2 = (progress: request.agent.Progress) => {
     console.info('upload task failed.');
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.on('failed', createOffCallback1);
     task.on('failed', createOffCallback2);
     //表示取消createOffCallback1的订阅
@@ -3418,12 +3506,14 @@ off(event: 'pause', callback?: (progress: [Progress](#progress10)) =&gt; void): 
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
       filename: "taskOffTest.avi",
-      mimeType: "application/octet-stream",
       path: "./taskOffTest.avi",
     }
   }];
@@ -3455,7 +3545,7 @@ off(event: 'pause', callback?: (progress: [Progress](#progress10)) =&gt; void): 
   let createOffCallback2 = (progress: request.agent.Progress) => {
     console.info('upload task pause.');
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.on('pause', createOffCallback1);
     task.on('pause', createOffCallback2);
     //表示取消createOffCallback1的订阅
@@ -3500,12 +3590,14 @@ off(event: 'resume', callback?: (progress: [Progress](#progress10)) =&gt; void):
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
       filename: "taskOffTest.avi",
-      mimeType: "application/octet-stream",
       path: "./taskOffTest.avi",
     }
   }];
@@ -3537,7 +3629,7 @@ off(event: 'resume', callback?: (progress: [Progress](#progress10)) =&gt; void):
   let createOffCallback2 = (progress: request.agent.Progress) => {
     console.info('upload task resume.');
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.on('resume', createOffCallback1);
     task.on('resume', createOffCallback2);
     //表示取消createOffCallback1的订阅
@@ -3582,12 +3674,14 @@ off(event: 'remove', callback?: (progress: [Progress](#progress10)) =&gt; void):
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
       filename: "taskOffTest.avi",
-      mimeType: "application/octet-stream",
       path: "./taskOffTest.avi",
     }
   }];
@@ -3619,7 +3713,7 @@ off(event: 'remove', callback?: (progress: [Progress](#progress10)) =&gt; void):
   let createOffCallback2 = (progress: request.agent.Progress) => {
     console.info('upload task remove.');
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.on('remove', createOffCallback1);
     task.on('remove', createOffCallback2);
     //表示取消createOffCallback1的订阅
@@ -3666,12 +3760,14 @@ off(event: 'response', callback?: Callback&lt;HttpResponse&gt;): void
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
       filename: "taskOffTest.avi",
-      mimeType: "application/octet-stream",
       path: "./taskOffTest.avi",
     }
   }];
@@ -3703,7 +3799,7 @@ off(event: 'response', callback?: Callback&lt;HttpResponse&gt;): void
   let createOffCallback2 = (progress: request.agent.HttpResponse) => {
     console.info('upload task response.');
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.on('response', createOffCallback1);
     task.on('response', createOffCallback2);
     //表示取消createOffCallback1的订阅
@@ -3756,7 +3852,10 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
@@ -3779,7 +3878,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.start((err: BusinessError) => {
       if (err) {
         console.error(`Failed to start the download task, Code: ${err.code}, message: ${err.message}`);
@@ -3832,7 +3931,10 @@ start(): Promise&lt;void&gt;
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
@@ -3855,7 +3957,7 @@ start(): Promise&lt;void&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.start().then(() => {
       console.info(`Succeeded in starting a download task.`);
     }).catch((err: BusinessError) => {
@@ -3898,7 +4000,10 @@ pause(callback: AsyncCallback&lt;void&gt;): void
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
@@ -3921,7 +4026,7 @@ pause(callback: AsyncCallback&lt;void&gt;): void
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.start();
     for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
     task.pause((err: BusinessError) => {
@@ -3964,7 +4069,10 @@ pause(): Promise&lt;void&gt;
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
@@ -3987,7 +4095,7 @@ pause(): Promise&lt;void&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.start();
     for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
     task.pause().then(() => {
@@ -4031,7 +4139,10 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
@@ -4054,7 +4165,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.start();
     for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
     task.pause();
@@ -4102,7 +4213,10 @@ resume(): Promise&lt;void&gt;
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
@@ -4125,7 +4239,7 @@ resume(): Promise&lt;void&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.start();
     for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
     task.pause();
@@ -4170,7 +4284,10 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
@@ -4193,7 +4310,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.start();
     for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
     task.stop((err: BusinessError) => {
@@ -4239,7 +4356,10 @@ stop(): Promise&lt;void&gt;
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
@@ -4262,7 +4382,7 @@ stop(): Promise&lt;void&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.start();
     for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
     task.stop().then(() => {
@@ -4309,13 +4429,16 @@ setMaxSpeed(speed: number): Promise\<void\>
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     saveas: "./",
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     // 设置任务速度上限。
     task.setMaxSpeed(10 * 1024 * 1024).then(() => {
       console.info(`Succeeded in setting the max speed of the task. result: ${task.tid}`);
@@ -4365,12 +4488,14 @@ create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let attachments: Array<request.agent.FormItem> = [{
     name: "createTest",
     value: {
       filename: "createTest.avi",
-      mimeType: "application/octet-stream",
       path: "./createTest.avi",
     }
   }];
@@ -4396,7 +4521,7 @@ create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(getContext(), config, async (err: BusinessError, task: request.agent.Task) => {
+  request.agent.create(context, config, async (err: BusinessError, task: request.agent.Task) => {
     if (err) {
       console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
       return;
@@ -4455,12 +4580,14 @@ create(context: BaseContext, config: Config): Promise&lt;Task&gt;
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let attachments: Array<request.agent.FormItem> = [{
     name: "createTest",
     value: {
       filename: "createTest.avi",
-      mimeType: "application/octet-stream",
       path: "./createTest.avi",
     }
   }];
@@ -4486,7 +4613,7 @@ create(context: BaseContext, config: Config): Promise&lt;Task&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(getContext(), config).then(async (task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     console.info(`Succeeded in creating a download task. result: ${task.config}`);
     await task.start();
     //用户需要手动调用remove从而结束task对象的生命周期
@@ -4536,8 +4663,11 @@ getTask(context: BaseContext, id: string, token?: string): Promise&lt;Task&gt;
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
-  request.agent.getTask(getContext(), "123456").then((task: request.agent.Task) => {
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  request.agent.getTask(context, "123456").then((task: request.agent.Task) => {
     console.info(`Succeeded in querying a task. result: ${task.tid}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to query a task, Code: ${err.code}, message: ${err.message}`);
