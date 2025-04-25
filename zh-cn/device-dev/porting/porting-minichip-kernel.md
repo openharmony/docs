@@ -103,8 +103,9 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
 
      
     **图1** 目标的依赖执行顺序 
+
  
-     ![zh-cn_image_0000001378481233](figures/zh-cn_image_0000001378481233.png)
+       ![zh-cn_image_0000001378481233](figures/zh-cn_image_0000001378481233.png)
 
 2. 自定义芯片厂“target_config.h”文件。
 
