@@ -1,5 +1,8 @@
 # @ohos.faultLogger (故障日志获取)
 
+应用可以使用faultLogger接口查询系统侧缓存的当前应用的故障日志。接口以应用包名和系统分配的UID作为唯一键值。
+系统侧保存的应用故障日志数量受系统日志的压力限制，推荐使用[@ohos.hiviewdfx.hiAppEvent](js-apis-hiviewdfx-hiappevent.md)订阅APP_CRASH及APP_FREEZE等故障事件。
+
 > **说明：**
 >
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
