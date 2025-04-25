@@ -1248,7 +1248,7 @@ function unregisterTorchStatusChange(cameraManager: camera.CameraManager): void 
 | ---------------------------- | ---- | ------------- |
 | OFF    | 0    | 常关模式。      |
 | ON  | 1    | 常开模式。 |
-| AUTO      | 2    | 自动模式。 |
+| AUTO      | 2    | 自动模式，系统根据环境自动调节手电筒亮度。  |
 
 ## TorchStatusInfo<sup>11+</sup>
 
@@ -1292,7 +1292,7 @@ function unregisterTorchStatusChange(cameraManager: camera.CameraManager): void 
 
 | 名称                     | 值        | 说明         |
 | ----------------------- | --------- | ------------ |
-| CAMERA_FORMAT_RGBA_8888 | 3         | RGBA_888格式的图片。        |
+| CAMERA_FORMAT_RGBA_8888 | 3         | RGBA_8888格式的图片。        |
 | CAMERA_FORMAT_YUV_420_SP| 1003      | YUV_420_SP格式的图片。      |
 | CAMERA_FORMAT_JPEG      | 2000      | JPEG格式的图片。            |
 | CAMERA_FORMAT_YCBCR_P010<sup>11+</sup> |   2001    | YCBCR_P010格式的图片。      |
