@@ -83,7 +83,7 @@ contentModifier(modifier: ContentModifier\<LoadingProgressConfiguration>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                             |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
-| modifier  | [ContentModifier\<LoadingProgressConfiguration>](#loadingprogressconfiguration12对象说明) | 是   | 在LoadingProgress组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
+| modifier  | [ContentModifier\<LoadingProgressConfiguration>](#loadingprogressconfiguration12对象说明) | 是   | 在LoadingProgress组件上，定制内容区的方法。<br/>modifier： 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
 
 ## 事件
 
