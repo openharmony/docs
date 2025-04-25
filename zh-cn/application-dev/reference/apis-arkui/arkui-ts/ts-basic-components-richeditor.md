@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 10开始支持。后续版本新增内容，采用上角标单独标记该内容的起始版本。
+>  该组件从API version 10开始支持。后续版本新增内容，采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -100,7 +100,7 @@ copyOptions(value: CopyOptions)
 
 copyOptions不为CopyOptions.None时，长按组件内容，会弹出文本选择弹框。如果通过bindSelectionMenu等方式自定义文本选择菜单，则会弹出自定义的菜单。
 
-设置copyOptions为CopyOptions.None，禁用复制、剪切、翻译、搜索、帮写功能。
+设置copyOptions为CopyOptions.None时，禁用复制、剪切、翻译、搜索、帮写功能。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -120,7 +120,7 @@ enableDataDetector(enable: boolean)
 
 该接口依赖设备底层应具有文本识别能力，否则设置不会生效。
 
-当enableDataDetector设置为true且未设置dataDetectorConfig属性时，默认识别所有类型的实体。所识别实体的color和decoration会被更改为如下样式：
+当enableDataDetector设置为true且未指定dataDetectorConfig属性时，系统将默认识别所有类型的实体，并将这些实体的color和decoration更改为预设样式：
 
 ```ts
 color: '#ff007dff'
@@ -389,7 +389,7 @@ stopBackPress(isStopped: Optional&lt;boolean&gt;)
 
 | 参数名 | 类型                                          | 必填  | 说明                                                                                  |
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
-| isStopped  | Optional&lt;boolean&gt; | 否   | 是否阻止返回键。<br/>默认值：true。<br/>**说明：** <br/>当不设置该属性或设置异常值时，取默认值。|
+| isStopped  | Optional&lt;boolean&gt; | 否   | 是否阻止返回键。<br/>默认值：true，阻止返回键。<br/>**说明：** <br/>当不设置该属性或设置异常值时，取默认值。|
 
 ## 事件
 
@@ -4959,7 +4959,7 @@ struct RichEditorExample {
 ![StyledString](figures/maxLengthmaxLines.gif)
 
 ### 示例26（设置自定义布局拖拽背板及拖拽投影配置）
-通过addBuilderSpan，可以设置自定义布局的拖拽背板和拖拽投影。
+通过使用addBuilderSpan，可以在拖拽场景中为自定义布局的拖拽背板和拖拽投影设置相关参数。
 
 ```ts
 // xxx.ets
@@ -5017,7 +5017,7 @@ struct richEditorNew03 {
 ![StyledString](figures/builderspan_drag_config.gif)
 
 ### 示例27（文本设置Url样式）
-在addTextSpan、UpdateSpanStyle接口中添加UrlStyle，实现文本点击跳转链接的功能。
+可以通过在addTextSpan和UpdateSpanStyle接口中加入UrlStyle，来实现文本点击时跳转到指定链接的功能。
 
 ```ts
 // xxx.ets
