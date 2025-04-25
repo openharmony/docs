@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  从 API Version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从 API version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 
@@ -2942,10 +2942,10 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh:
 | 参数    | 类型 | 必填   | 说明 |
 | ----- | ---------------------------------------- | ---- | ----------------------------- |
 | image | [ImageBitmap](ts-components-canvas-imagebitmap.md) 或[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 是 | 图片资源，请参考ImageBitmap或PixelMap。 |
-| sx    | number | 是  | 裁切源图像时距离源图像左上角的x坐标值。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，API Version 18前，默认单位：px；API Version 18及以后，默认单位：vp。 |
-| sy    | number | 是  | 裁切源图像时距离源图像左上角的y坐标值。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，API Version 18前，默认单位：px；API Version 18及以后，默认单位：vp。  |
-| sw    | number | 是  | 裁切源图像时需要裁切的宽度。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，API Version 18前，默认单位：px；API Version 18及以后，默认单位：vp。 |
-| sh    | number | 是  | 裁切源图像时需要裁切的高度。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，API Version 18前，默认单位：px；API Version 18及以后，默认单位：vp。 |
+| sx    | number | 是  | 裁切源图像时距离源图像左上角的x坐标值。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，API version 18前，默认单位：px；API version 18及以后，默认单位：vp。 |
+| sy    | number | 是  | 裁切源图像时距离源图像左上角的y坐标值。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，API version 18前，默认单位：px；API version 18及以后，默认单位：vp。  |
+| sw    | number | 是  | 裁切源图像时需要裁切的宽度。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，API version 18前，默认单位：px；API version 18及以后，默认单位：vp。 |
+| sh    | number | 是  | 裁切源图像时需要裁切的高度。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，API version 18前，默认单位：px；API version 18及以后，默认单位：vp。 |
 | dx    | number | 是  | 绘制区域左上角在x轴的位置。<br>默认单位：vp。 |
 | dy    | number | 是  | 绘制区域左上角在y轴的位置。<br>默认单位：vp。 |
 | dw    | number | 是  | 绘制区域的宽度。<br>默认单位：vp。 |
