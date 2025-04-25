@@ -46,10 +46,9 @@
     - 当options中的appLinkingOnly为false时，会优先尝试以AppLinking的方式拉起，如果没有匹配的应用则改为使用DeepLinking的方式拉起目标应用。
 
     ```ts
-    import { common } from '@kit.AbilityKit';
-    import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
-    import { BusinessError } from '@ohos.base';
-    import hilog from '@ohos.hilog';
+    import { common, OpenLinkOptions } from '@kit.AbilityKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
 
     const TAG: string = '[UIAbilityComponentsOpenLink]';
     const DOMAIN_NUMBER: number = 0xFF00;
@@ -63,7 +62,7 @@
           .height('5%')
           .margin({ bottom: '12vp' })
           .onClick(() => {
-            let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
             // 通过startAbility接口显式启动其他UIAbility，推荐使用openLink接口。
             // let want: Want = {
             //   bundleName: "com.test.example",
@@ -146,10 +145,9 @@
     - 当options中的appLinkingOnly为false时，会优先尝试以AppLinking的方式拉起，如果没有匹配的应用则改为使用DeepLinking的方式拉起目标应用。
 
     ```ts
-    import { common } from '@kit.AbilityKit';
-    import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
-    import { BusinessError } from '@ohos.base';
-    import hilog from '@ohos.hilog';
+    import { common, OpenLinkOptions } from '@kit.AbilityKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
 
     const TAG: string = '[UIAbilityComponentsOpenLink]';
     const DOMAIN_NUMBER: number = 0xFF00;
@@ -163,7 +161,7 @@
           .height('5%')
           .margin({ bottom: '12vp' })
           .onClick(() => {
-            let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
             // 通过startAbility接口显式启动其他UIAbility，推荐使用openLink接口。
             // let want: Want = {
             //   bundleName: "com.test.example",
