@@ -40,6 +40,18 @@ import { request } from '@kit.BasicServicesKit';
 | bundle | string | 否 | 应用程序的包名，仅用于系统查询。<br/>**系统接口**：此接口为系统接口。|
 
 
+## Notification<sup>15+</sup>
+
+通知栏自定义信息。
+
+**需要权限**：ohos.permission.REQUEST_DISABLE_NOTIFICATION
+
+**系统能力**：SystemCapability.Request.FileTransferAgent
+
+| 名称 | 类型 | 必填 | 说明                                                                      |
+| -------- | -------- | -------- |-------------------------------------------------------------------------|
+| disable<sup>20+</sup> | boolean | 否 | 是否关闭通知栏显示。true表示不显示通知，false表示显示通知。<br/>默认为false。<br/>**系统接口**：此接口为系统接口。 |
+
 
 ## request.agent.query<sup>10+</sup>
 
