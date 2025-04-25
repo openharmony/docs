@@ -27,6 +27,7 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 | NOT_SUPPORT                           | 801      | 操作不支持。                  |
 | ERR_OUT_OF_MEMORY                     | 19020001 | 内存错误。                    |
 | ERR_RUNTIME_ERROR                     | 19020002 | 运行时外部错误。              |
+| ERR_PARAMETER_CHECK_FAILED<sup>20+</sup>             | 19020003 | 参数检查失败。 <br> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。               |
 | ERR_CRYPTO_OPERATION                  | 19030001 | 调用三方算法库API出错。       |
 | ERR_CERT_SIGNATURE_FAILURE            | 19030002 | 证书签名验证错误。            |
 | ERR_CERT_NOT_YET_VALID                | 19030003 | 证书尚未生效。                |
@@ -34,7 +35,7 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 | ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY | 19030005 | 无法获取证书的颁发者。        |
 | ERR_KEYUSAGE_NO_CERTSIGN              | 19030006 | 证书的秘钥用途不含证书签名。   |
 | ERR_KEYUSAGE_NO_DIGITAL_SIGNATURE     | 19030007 |  证书的秘钥用途不含数字签名。  |
-| ERR_MAYBE_WRONG_PASSWORD<sup>18+</sup>              | 19030008 | 私钥密码错误。                |
+| ERR_MAYBE_WRONG_PASSWORD<sup>18+</sup>              | 19030008 | 私钥密码错误。<br> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                |
 
 ## DataBlob
 buffer数组。
@@ -1443,9 +1444,9 @@ getIssuerName(encodingType: EncodingType): string
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 401 | Parameter error.  Possible causes: <br>1. Incorrect parameter types;<br>2. Parameter verification failed.           |
 | 19020001 | memory error.                                     |
 | 19020002 | runtime error.                                    |
+| 19020003 | parameter check failed. Possible causes: <br>1. The value of encodingType is not in the EncodingType enumeration range.|
 | 19030001 | crypto operation error.|
 
 **示例：**
@@ -2937,9 +2938,9 @@ toString(encodingType: EncodingType): string
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | Parameter error.  Possible causes: <br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
 | 19020001 | memory error. |
 | 19020002 | runtime error. |
+| 19020003 | parameter check failed. Possible causes: <br>1. The value of encodingType is not in the EncodingType enumeration range.|
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -6294,9 +6295,9 @@ getIssuerName(encodingType: EncodingType): string
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 401 | Parameter error.  Possible causes: <br>1. Incorrect parameter types;<br>2. Parameter verification failed.           |
 | 19020001 | memory error.                                     |
 | 19020002 | runtime error.                                    |
+| 19020003 | parameter check failed. Possible causes: <br>1. The value of encodingType is not in the EncodingType enumeration range.|
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -7548,9 +7549,9 @@ toString(encodingType: EncodingType): string
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 401 | Parameter error.  Possible causes: <br>1. Incorrect parameter types;<br>2. Parameter verification failed.           |
 | 19020001 | memory error.                                     |
 | 19020002 | runtime error.                                    |
+| 19020003 | parameter check failed. Possible causes: <br>1. The value of encodingType is not in the EncodingType enumeration range.|
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -8801,10 +8802,10 @@ getCertIssuer(encodingType: EncodingType): string
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 401 | Parameter error.  Possible causes: <br>1. Incorrect parameter types;<br>2. Parameter verification failed.           |
 | 801 | this operation is not supported. |
 | 19020001 | memory error.                                     |
 | 19020002 | runtime error.                                    |
+| 19020003 | parameter check failed. Possible causes: <br>1. The value of encodingType is not in the EncodingType enumeration range.|
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -11737,9 +11738,9 @@ getName(encodingType: EncodingType): string
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | Parameter error.  Possible causes: <br>1. Incorrect parameter types;<br>2. Parameter verification failed.|
 | 19020001 | memory error. |
 | 19020002 | runtime error. |
+| 19020003 | parameter check failed. Possible causes: <br>1. The value of encodingType is not in the EncodingType enumeration range.|
 | 19030001 | crypto operation error. |
 
 **示例：**
