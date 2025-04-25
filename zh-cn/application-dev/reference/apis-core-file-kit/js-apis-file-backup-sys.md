@@ -1121,7 +1121,7 @@ release(): Promise&lt;void&gt;
     }
   };
   let sessionBackup = new backup.SessionBackup(generalCallbacks); // 创建备份流程
-  sessionBackup.release();
+  sessionBackup.release(); // 备份业务执行完成后，释放session
   console.info('release success');
   ```
 
