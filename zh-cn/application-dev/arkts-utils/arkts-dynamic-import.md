@@ -116,6 +116,12 @@ import('harlibrary').then((ns:ESObject) => {
   import('myHar').then((ns:ESObject) => {
     console.info(ns.add(3, 5));
   });
+
+  // 可使用 await 处理动态导入 (必须在 async 函数内使用)
+  async function asyncDynamicImport() {
+    let ns:ESObject = await import('myHar');
+    console.info(ns.add(3, 5));
+  }
   ```
 
   ```json5
