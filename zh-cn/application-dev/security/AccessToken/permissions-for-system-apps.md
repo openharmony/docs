@@ -4559,7 +4559,7 @@
 
 **ACL使能**：true
 
-**起始版本**：18
+**起始版本**：19
 
 ## ohos.permission.UNINSTALL_PLUGIN_BUNDLE
 
@@ -4571,7 +4571,7 @@
 
 **ACL使能**：true
 
-**起始版本**：18
+**起始版本**：19
 
 ## ohos.permission.GET_EDM_CONFIG
 
