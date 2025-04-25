@@ -2045,7 +2045,7 @@ struct WebComponent {
 ```
 
 ```ts
-// 使用ArrayBuffer入参，从文件中获取JavaScript脚本数据
+// 使用ArrayBuffer入参，从文件中获取JavaScript脚本数据。
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo } from '@kit.CoreFileKit';
@@ -2065,16 +2065,17 @@ struct WebComponent {
       Button('runJavaScriptExt')
         .onClick(() => {
           try {
-            let context = getContext(this) as common.UIAbilityContext;
-            let filePath = context.filesDir + 'test.txt';
-            // 新建并打开文件
+            let uiContext : UIContext = this.getUIContext();
+            let context : Context | undefined = uiContext.getHostContext() as common.UIAbilityContext;
+            let filePath = context!.filesDir + 'test.txt';
+            // 新建并打开文件。
             let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
-            // 写入一段内容至文件
+            // 写入一段内容至文件。
             fileIo.writeSync(file.fd, "test()");
-            // 从文件中读取内容
+            // 从文件中读取内容。
             let arrayBuffer: ArrayBuffer = new ArrayBuffer(6);
             fileIo.readSync(file.fd, arrayBuffer, { offset: 0, length: arrayBuffer.byteLength });
-            // 关闭文件
+            // 关闭文件。
             fileIo.closeSync(file);
             this.controller.runJavaScriptExt(
               arrayBuffer,
@@ -2251,7 +2252,7 @@ struct WebComponent {
 ```
 
 ```ts
-// 使用ArrayBuffer入参，从文件中获取JavaScript脚本数据
+// 使用ArrayBuffer入参，从文件中获取JavaScript脚本数据。
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo } from '@kit.CoreFileKit';
@@ -2271,16 +2272,17 @@ struct WebComponent {
       Button('runJavaScriptExt')
         .onClick(() => {
           try {
-            let context = getContext(this) as common.UIAbilityContext;
-            let filePath = context.filesDir + 'test.txt';
-            // 新建并打开文件
+            let uiContext : UIContext = this.getUIContext();
+            let context : Context | undefined = uiContext.getHostContext() as common.UIAbilityContext;
+            let filePath = context!.filesDir + 'test.txt';
+            // 新建并打开文件。
             let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
-            // 写入一段内容至文件
+            // 写入一段内容至文件。
             fileIo.writeSync(file.fd, "test()");
-            // 从文件中读取内容
+            // 从文件中读取内容。
             let arrayBuffer: ArrayBuffer = new ArrayBuffer(6);
             fileIo.readSync(file.fd, arrayBuffer, { offset: 0, length: arrayBuffer.byteLength });
-            // 关闭文件
+            // 关闭文件。
             fileIo.closeSync(file);
             this.controller.runJavaScriptExt(arrayBuffer)
               .then((result) => {
@@ -6514,7 +6516,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let webPrintDocadapter = this.controller.createWebPrintDocumentAdapter('example.pdf');
-            print.print('example_jobid', webPrintDocadapter, null, getContext());
+            print.print('example_jobid', webPrintDocadapter, null, this.getUIContext().getHostContext());
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -7540,21 +7542,21 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { abilityAccessCtrl, PermissionRequestResult, common } from '@kit.AbilityKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-try {
-  let context: Context = getContext(this) as common.UIAbilityContext;
-  atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA'], (err: BusinessError, data: PermissionRequestResult) => {
-    console.info('data:' + JSON.stringify(data));
-    console.info('data permissions:' + data.permissions);
-    console.info('data authResults:' + data.authResults);
-  })
-} catch (error) {
-  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-}
 
 @Entry
 @Component
 struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
+  uiContext: UIContext = this.getUIContext();
+
+  aboutToAppear(): void {
+    let context: Context | undefined = this.uiContext.getHostContext() as common.UIAbilityContext;
+    atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA'], (err: BusinessError, data: PermissionRequestResult) => {
+      console.info('data:' + JSON.stringify(data));
+      console.info('data permissions:' + data.permissions);
+      console.info('data authResults:' + data.authResults);
+    })
+  }
 
   build() {
     Column() {
@@ -7582,7 +7584,7 @@ struct WebComponent {
       Web({ src: $rawfile('index.html'), controller: this.controller })
         .onPermissionRequest((event) => {
           if (event) {
-            AlertDialog.show({
+            this.uiContext.showAlertDialog({
               title: 'title',
               message: 'text',
               primaryButton: {
@@ -7606,7 +7608,6 @@ struct WebComponent {
     }
   }
 }
-
 ```
 加载的html文件。
  ```html
@@ -7750,15 +7751,17 @@ precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: Cac
    export interface BuilderData {
      url: string;
      controller: WebviewController;
+     context: UIContext;
    }
 
-   const storage = LocalStorage.getShared();
+   let storage : LocalStorage | undefined = undefined;
 
    export class NodeControllerImpl extends NodeController {
      private rootNode: BuilderNode<BuilderData[]> | null = null;
      private wrappedBuilder: WrappedBuilder<BuilderData[]> | null = null;
 
-     constructor(wrappedBuilder: WrappedBuilder<BuilderData[]>) {
+     constructor(wrappedBuilder: WrappedBuilder<BuilderData[]>, context: UIContext) {
+       storage = context.getSharedLocalStorage();
        super();
        this.wrappedBuilder = wrappedBuilder;
      }
@@ -7775,7 +7778,7 @@ precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: Cac
          return;
        }
 
-       const uiContext: UIContext = storage.get<UIContext>("uiContext") as UIContext;
+       const uiContext: UIContext = storage!.get<UIContext>("uiContext") as UIContext;
        if (!uiContext) {
          return;
        }
@@ -7785,7 +7788,7 @@ precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: Cac
    }
 
    export const createNode = (wrappedBuilder: WrappedBuilder<BuilderData[]>, data: BuilderData) => {
-     const baseNode = new NodeControllerImpl(wrappedBuilder);
+     const baseNode = new NodeControllerImpl(wrappedBuilder, data.context);
      baseNode.initWeb(data.url, data.controller);
      return baseNode;
    }
@@ -7803,16 +7806,16 @@ precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: Cac
    function WebBuilder(data: BuilderData) {
      Web({ src: data.url, controller: data.controller })
        .onControllerAttached(() => {
-         precompile(data.controller, configs);
+         precompile(data.controller, configs, data.context);
        })
        .fileAccess(true)
    }
 
    export const precompileWebview = wrapBuilder<BuilderData[]>(WebBuilder);
 
-   export const precompile = async (controller: WebviewController, configs: Array<Config>) => {
+   export const precompile = async (controller: WebviewController, configs: Array<Config>, context: UIContext) => {
      for (const config of configs) {
-       let content = await readRawFile(config.localPath);
+       let content = await readRawFile(config.localPath, context);
 
        try {
          controller.precompileJavaScript(config.url, content, config.options)
@@ -7827,9 +7830,9 @@ precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: Cac
      }
    }
 
-   async function readRawFile(path: string) {
+   async function readRawFile(path: string, context: UIContext) {
      try {
-       return await getContext().resourceManager.getRawFileContent(path);;
+       return await context.getHostContext()!.resourceManager.getRawFileContent(path);;
      } catch (err) {
        return new Uint8Array(0);
      }
@@ -7904,7 +7907,7 @@ JavaScript资源的获取方式也可通过[网络请求](../apis-network-kit/js
      aboutToAppear(): void {
        // 初始化用于注入本地资源的Web组件
        this.precompileNode = createNode(precompileWebview,
-         { url: "https://www.example.com/empty.html", controller: this.precompileController});
+         { url: "https://www.example.com/empty.html", controller: this.precompileController, context: this.getUIContext()});
      }
 
      build() {
@@ -7914,7 +7917,8 @@ JavaScript资源的获取方式也可通过[网络请求](../apis-network-kit/js
            .onClick(() => {
              this.businessNode = createNode(businessWebview, {
                url:  "https://www.example.com/business.html",
-               controller: this.businessController
+               controller: this.businessController,
+               context: this.getUIContext()
              });
            })
          // 用于业务的Web组件
@@ -8302,15 +8306,17 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
    export interface BuilderData {
      url: string;
      controller: WebviewController;
+     context: UIContext;
    }
 
-   const storage = LocalStorage.getShared();
+   let storage : LocalStorage | undefined = undefined;
 
    export class NodeControllerImpl extends NodeController {
      private rootNode: BuilderNode<BuilderData[]> | null = null;
      private wrappedBuilder: WrappedBuilder<BuilderData[]> | null = null;
 
-     constructor(wrappedBuilder: WrappedBuilder<BuilderData[]>) {
+     constructor(wrappedBuilder: WrappedBuilder<BuilderData[]>, context: UIContext) {
+       storage = context.getSharedLocalStorage();
        super();
        this.wrappedBuilder = wrappedBuilder;
      }
@@ -8327,7 +8333,7 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
          return;
        }
 
-       const uiContext: UIContext = storage.get<UIContext>("uiContext") as UIContext;
+       const uiContext: UIContext = storage!.get<UIContext>("uiContext") as UIContext;
        if (!uiContext) {
          return;
        }
@@ -8337,7 +8343,7 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
    }
 
    export const createNode = (wrappedBuilder: WrappedBuilder<BuilderData[]>, data: BuilderData) => {
-     const baseNode = new NodeControllerImpl(wrappedBuilder);
+     const baseNode = new NodeControllerImpl(wrappedBuilder, data.context);
      baseNode.initWeb(data.url, data.controller);
      return baseNode;
    }
@@ -8357,7 +8363,7 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
      Web({ src: data.url, controller: data.controller })
        .onControllerAttached(async () => {
          try {
-           data.controller.injectOfflineResources(await getData ());
+           data.controller.injectOfflineResources(await getData (data.context));
          } catch (err) {
            console.error("error: " + err.code + " " + err.message);
          }
@@ -8367,14 +8373,14 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
 
    export const injectWebview = wrapBuilder<BuilderData[]>(WebBuilder);
 
-   export async function getData() {
+   export async function getData(context: UIContext) {
      const resourceMapArr: Array<webview.OfflineResourceMap> = [];
 
      // 读取配置，从rawfile目录中读取文件内容
      for (let config of resourceConfigs) {
        let buf: Uint8Array = new Uint8Array(0);
        if (config.localPath) {
-         buf = await readRawFile(config.localPath);
+         buf = await readRawFile(config.localPath, context);
        }
 
        resourceMapArr.push({
@@ -8388,9 +8394,9 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
      return resourceMapArr;
    }
 
-   export async function readRawFile(url: string) {
+   export async function readRawFile(url: string, context: UIContext) {
      try {
-       return await getContext().resourceManager.getRawFileContent(url);
+       return await context.getHostContext()!.resourceManager.getRawFileContent(url);
      } catch (err) {
        return new Uint8Array(0);
      }
@@ -8477,7 +8483,7 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
      aboutToAppear(): void {
        // 初始化用于注入本地资源的Web组件, 提供一个空的html页面作为url即可
        this.injectNode = createNode(injectWebview,
-           { url: "https://www.example.com/empty.html", controller: this.injectController});
+           { url: "https://www.example.com/empty.html", controller: this.injectController, context: this.getUIContext()});
      }
 
      build() {
@@ -8487,7 +8493,8 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
            .onClick(() => {
              this.businessNode = createNode(businessWebview, {
                url: "https://www.example.com/business.html",
-               controller: this.businessController
+               controller: this.businessController,
+               context: this.getUIContext()
              });
            })
          // 用于业务的Web组件
@@ -8790,6 +8797,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct WebComponent {
   controller: WebviewController = new webview.WebviewController();
+  uiContext: UIContext = this.getUIContext();
 
   build() {
     Row() {
@@ -8798,10 +8806,10 @@ struct WebComponent {
           try {
             // 设置允许可以跨域访问的路径列表
             this.controller.setPathAllowingUniversalAccess([
-              getContext().resourceDir,
-              getContext().filesDir + "/example"
+              this.uiContext.getHostContext()!.resourceDir,
+              this.uiContext.getHostContext()!.filesDir + "/example"
             ])
-            this.controller.loadUrl("file://" + getContext().resourceDir + "/index.html")
+            this.controller.loadUrl("file://" + this.getUIContext().getHostContext()!.resourceDir + "/index.html")
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -8815,7 +8823,7 @@ struct WebComponent {
 
 ```
 
-加载的html文件，位于应用资源目录resource/rawfile/index.html。
+加载的html文件，位于应用资源目录resource/resfile/index.html。
 ```html
 <!-- index.html -->
 <!DOCTYPE html>
@@ -8861,7 +8869,7 @@ struct WebComponent {
 </html>
 ```
 
-html中使用file协议通过XMLHttpRequest跨域访问本地js文件，js文件位于resource/rawfile/js/script.js。
+html中使用file协议通过XMLHttpRequest跨域访问本地js文件，js文件位于resource/resfile/js/script.js。
 <!--code_no_check-->
 ```javascript
 const body = document.body;
@@ -9073,7 +9081,7 @@ struct Index {
             (error, result: webview.PdfData) => {
               try {
                 // 获取组件上下文
-                let context = getContext(this) as common.UIAbilityContext;
+                let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
                 // 获取沙箱路径，设置pdf文件名
                 let filePath = context.filesDir + "/test.pdf";
                 let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
@@ -9155,7 +9163,7 @@ struct Index {
             .then((result: webview.PdfData) => {
               try {
                 // 获取组件上下文
-                let context = getContext(this) as common.UIAbilityContext;
+                let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
                 // 获取沙箱路径，设置pdf文件名
                 let filePath = context.filesDir + "/test.pdf";
                 let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
@@ -9196,7 +9204,6 @@ getScrollOffset(): ScrollOffset
 
 ```ts
 import { webview } from '@kit.ArkWeb';
-import { componentUtils } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -9222,11 +9229,11 @@ struct WebComponent {
       Web({ src: $rawfile("scrollByTo.html"), controller: this.controller })
         .key("web_01")
         .overScrollMode(this.mode)
-        .onTouch((event) => {
+        .onTouch(() => {
           this.controllerX = this.controller.getScrollOffset().x;
           this.controllerY = this.controller.getScrollOffset().y;
-          let componentInfo = componentUtils.getRectangleById("web_01");
-          let webHeight = px2vp(componentInfo.size.height);
+          let componentInfo = this.getUIContext().getComponentUtils().getRectangleById("web_01");
+          let webHeight = this.getUIContext().px2vp(componentInfo.size.height);
           let pageHeight = this.controller.getPageHeight();
           if (this.controllerY < 0) {
             // case1：网页向下过滚动时，可直接使用ScrollOffset.y
