@@ -1002,7 +1002,7 @@ let longestLine = paragraph.getLongestLine();
 
 getLongestLineWithIndent(): number
 
-获取文本最长一行的宽度（该宽度包含当前行缩进的宽度），建议实际使用时将返回值向上取整。当文本内容为空时，返回0。
+获取文本最长一行的宽度（包含缩进），建议向上取整。文本内容为空时返回0。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1022,7 +1022,7 @@ let longestLineWithIndent = paragraph.getLongestLineWithIndent();
 
 getMinIntrinsicWidth(): number
 
-获取该段落所占水平空间的最小固有宽度。
+获取段落最小固有宽度。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1042,7 +1042,7 @@ let minIntrinsicWidth = paragraph.getMinIntrinsicWidth();
 
 getMaxIntrinsicWidth(): number
 
-获取该段落所占水平空间的最大固有宽度。
+获取段落最大固有宽度。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1062,7 +1062,7 @@ let maxIntrinsicWidth = paragraph.getMaxIntrinsicWidth();
 
 getAlphabeticBaseline(): number
 
-获取拉丁字母下的基线位置。
+获取拉丁字母基线位置。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1102,7 +1102,7 @@ let ideographicBaseline = paragraph.getIdeographicBaseline();
 
 getRectsForRange(range: Range, widthStyle: RectWidthStyle, heightStyle: RectHeightStyle): Array\<TextBox>
 
-获取给定的矩形区域宽度以及矩形区域高度的规格下，文本中该区间范围内的字符的所占的矩形区域。
+获取给定的矩形区域宽度以及矩形区域高度的规格下，文本中该区间范围内的字符所占的矩形区域。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1151,7 +1151,7 @@ let placeholderRects = paragraph.getRectsForPlaceholders();
 
 getGlyphPositionAtCoordinate(x: number, y: number): PositionWithAffinity
 
-获取较为接近给定坐标的字形的位置信息。
+获取与给定坐标最接近的字形位置信息。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1178,7 +1178,7 @@ let positionWithAffinity = paragraph.getGlyphPositionAtCoordinate(0, 0);
 
 getWordBoundary(offset: number): Range
 
-返回给定的 offset 的字形所处的单词的索引区间。
+返回给定 offset 的字形所在单词的索引区间。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1204,7 +1204,7 @@ let wordRange = paragraph.getWordBoundary(0);
 
 getLineCount(): number
 
-返回文本行数量。
+返回文本行数。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1224,7 +1224,7 @@ let lineCount = paragraph.getLineCount();
 
 getLineHeight(line: number): number
 
-返回指定行索引的行高。
+返回指定行的行高。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1250,7 +1250,7 @@ let lineHeight = paragraph.getLineHeight(0);
 
 getLineWidth(line: number): number
 
-返回指定行索引的行宽。
+返回指定行的行宽。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1276,7 +1276,7 @@ let lineWidth = paragraph.getLineWidth(0);
 
 didExceedMaxLines(): boolean
 
-返回段落是否超过最大行限制。
+返回段落是否超过最大行数。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1296,7 +1296,7 @@ let didExceed = paragraph.didExceedMaxLines();
 
 getTextLines(): Array\<TextLine>
 
-返回所有的文本行载体。
+返回所有的文本行。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1316,7 +1316,7 @@ let lines = paragraph.getTextLines();
 
 getActualTextRange(lineNumber: number, includeSpaces: boolean): Range
 
-获取指定行号上的实际可见文本范围，这不包括由于文本溢出而显示的省略号。
+获取指定行的实际可见文本范围，不包括溢出的省略号。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1324,14 +1324,14 @@ getActualTextRange(lineNumber: number, includeSpaces: boolean): Range
 
 | 参数名 | 类型   | 必填 | 说明      |
 | ----- | ------ | ---- | --------- |
-| lineNumber  | number | 是   | 要获取文本范围的行号，行号从0开始。该接口只能获取已有行的边界，即输入行索引从0开始。最大行索引为文本行数量-1，文本行数量可通过[getLineCount](#getlinecount)接口获取。|
+| lineNumber  | number | 是   | 要获取文本范围的行索引，行索引从0开始。该接口只能获取已有行的边界，即输入行索引从0开始。最大行索引为文本行数量-1，文本行数量可通过[getLineCount](#getlinecount)接口获取。|
 | includeSpaces  | boolean | 是   | 指示是否应包含空白字符。true表示包含空白字符，false表示不包含空白字符。|
 
 **返回值：**
 
 | 类型             | 说明                                              |
 | ---------------- | ------------------------------------------------ |
-| [Range](#range)  | 表明了对应行数的实际文本范围。如果输入的行索引是非法的行索引，则返回的实际文本范围的start和end都为0。 |
+| [Range](#range)  | 返回对应行数的实际文本范围。如果行索引非法，返回的start和end均为0。 |
 
 **示例：**
 
@@ -1396,7 +1396,7 @@ let lineMetrics =  paragraph.getLineMetrics(0);
 
 getLineBreak(startIndex: number, width: number): number
 
-计算在限定排版宽度的情况下，从指定位置处开始可以排版的字符个数。
+计算在限定宽度下，从指定位置开始可以排版的字符数。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1411,7 +1411,7 @@ getLineBreak(startIndex: number, width: number): number
 
 | 类型         | 说明                         |
 | ------------ | --------------------------- |
-| number | 返回在限定排版宽度的情况下，从指定位置处开始可以排版的字符总数，取值为整数。|
+| number | 返回在限定排版宽度下，从指定位置开始可排版的字符总数，取值为整数。|
 
 **错误码：**
 
@@ -1442,7 +1442,7 @@ createLine(startIndex: number, count: number): TextLine
 | 参数名 | 类型   | 必填 | 说明           |
 | ----- | ------ | ---- | -------------- |
 | startIndex | number | 是 | 开始计算排版的起始位置，整数，取值范围为[0, 文本字符总数)。|
-| count | number | 是   | 从指定排版起始位置开始进行排版的字符个数，取值为[0,文本字符总数)的整数，startIndex和count之和不能大于文本字符总数。当count为0时，表示指定的排版区间为[startIndex, 文本结尾]。可以先使用[getLineBreak](#getlinebreak18)获得合理的可用于进行排版的字符总数。|
+| count | number | 是   | 从指定起始位置开始进行排版的字符个数，取值为[0,文本字符总数)的整数，startIndex和count之和不能大于文本字符总数。当count为0时，表示排版区间为[startIndex, 文本结尾]。可以先使用[getLineBreak](#getlinebreak18)获取合理的排版字符总数。|
 
 **返回值：**
 
@@ -1480,7 +1480,7 @@ let line : text.TextLine = lineTypeset.createLine(startIndex, count);
 
 ## LineMetrics
 
-用于描述文本布局中单行文字的度量信息。
+描述文本布局中单行文字的度量信息。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -1511,7 +1511,7 @@ let line : text.TextLine = lineTypeset.createLine(startIndex, count);
 
 ## PositionWithAffinity
 
-位置以及亲和度。
+位置和亲和度。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -1612,11 +1612,11 @@ struct Index {
 
  pushStyle(textStyle: TextStyle): void
 
-更新文本样式。
+更新当前文本块的样式。
 
 > **说明：**
 >
-> 更新当前文本块的样式 ，直到对应的 [popStyle](#popstyle) 操作被执行，会还原到上一个文本样式。
+> 更新当前文本块的样式 ，直到对应的 [popStyle](#popstyle) 操作被执行，会恢复到上一个文本样式。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1666,7 +1666,7 @@ struct Index {
 
 popStyle(): void
 
-还原至上一个文本样式。
+还原到上一个文本样式。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1711,7 +1711,7 @@ struct Index {
 
 addText(text: string): void
 
-用于向正在构建的文本段落中插入具体的文本字符串。
+向正在构建的文本段落中插入具体的文本字符串。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1761,7 +1761,7 @@ struct Index {
 
 addPlaceholder(placeholderSpan: PlaceholderSpan): void
 
-用于在构建文本段落时插入占位符。
+用于构建文本段落时插入占位符。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1813,7 +1813,7 @@ struct Index {
 
 build(): Paragraph
 
-用于完成段落的构建过程，生成一个可用于后续排版渲染的段落对象。
+用于构建段落，生成可用于后续排版渲染的段落对象。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1862,7 +1862,7 @@ struct Index {
 
 buildLineTypeset(): LineTypeset
 
-构建生成一个行排版器。
+构建行排版器。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1870,7 +1870,7 @@ buildLineTypeset(): LineTypeset
 
 | 类型                     | 说明                           |
 | ------------------------ | ------------------------------ |
-| [LineTypeset](#linetypeset18)  | 可用于行排版的LineTypeset对象。|
+| [LineTypeset](#linetypeset18)  | 可用于后续渲染的LineTypeset对象。|
 
 **示例：**
 
@@ -1905,7 +1905,7 @@ struct Index {
 
 addSymbol(symbolId: number): void
 
-用于向正在构建的文本段落中插入具体的符号。
+向正在构建的文本段落中插入具体符号。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1980,7 +1980,7 @@ struct Index {
 
 type CaretOffsetsCallback = (offset: number, index: number, leadingEdge: boolean) => boolean
 
-将文本行中枚举的每个字符偏移量、索引值作为参数的回调方法。
+将文本行中每个字符的偏移量和索引值作为参数的回调方法。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -2006,7 +2006,7 @@ type CaretOffsetsCallback = (offset: number, index: number, leadingEdge: boolean
 
 getGlyphCount(): number
 
-获取该文本行中字形的数量。
+获取文本行中字形的数量。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -2026,7 +2026,7 @@ let glyphCount = lines[0].getGlyphCount();
 
 getTextRange(): Range
 
-获取该文本行中的文本在整个段落文本中的索引区间。使用[LineTypeset](#linetypeset18)类的[creatLine](#createline18)方法创建的[TextLine](#textline)对象属于一个内部的临时对象，通过该对象调用[getTextRange](#gettextrange)方法返回的索引区间是相对于临时的[Paragraph](#paragraph)对象的区间，该临时对象在下一次调用[creatLine](#createline18)方法时会自动销毁。
+获取该文本行中的文本在整个段落文本中的索引区间。使用[LineTypeset](#linetypeset18)类的[createLine](#createline18)方法创建的[TextLine](#textline)对象属于一个内部的临时对象，通过该对象调用[getTextRange](#gettextrange)方法返回的索引区间是相对于临时的[Paragraph](#paragraph)对象的区间，该临时对象在下一次调用[createLine](#createline18)方法时会自动销毁。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -2046,7 +2046,7 @@ let textRange = lines[0].getTextRange();
 
 getGlyphRuns(): Array\<Run>
 
-获取该文本行中的文本渲染单位数组。
+获取文本行的渲染单位数组。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -2066,7 +2066,7 @@ let runs = lines[0].getGlyphRuns();
 
 paint(canvas: drawing.Canvas, x: number, y: number): void
 
-在画布上以坐标点 (x, y) 为左上角位置绘制该文本行。
+在画布上绘制文本行，(x, y) 为左上角位置。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -2263,7 +2263,7 @@ let trailingSpaceWidth = lines[0].getTrailingSpaceWidth();
 
 getStringIndexForPosition(point: common2D.Point): number
 
-获取给定位置在文本行中对应的字符串索引。
+获取文本行中给定位置的字符串索引。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -2340,7 +2340,7 @@ enumerateCaretOffsets(callback: CaretOffsetsCallback): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -| - | - | - |
-| callback | [CaretOffsetsCallback](#caretoffsetscallback18) | 是 | 用户自定义函数。将文本行中枚举的每个字符偏移量、索引值作为参数的回调方法。 |
+| callback | [CaretOffsetsCallback](#caretoffsetscallback18) | 是 | 用户自定义函数。回调方法参数包括文本行中每个字的符偏移量和索引值。 |
 
 **错误码：**
 
@@ -2364,7 +2364,7 @@ lines[0].enumerateCaretOffsets(callback);
 
 getAlignmentOffset(alignmentFactor: number, alignmentWidth: number): number
 
-获取文本行根据对齐因子和对齐宽度计算对齐后所需的偏移量。
+获取文本行根据对齐因子和对齐宽度计算的对齐所需偏移量。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -2373,7 +2373,7 @@ getAlignmentOffset(alignmentFactor: number, alignmentWidth: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -| - | - | - |
 | alignmentFactor | number | 是 | 对齐因子，即对齐的程度，浮点数。小于等于0.0表示左对齐，大于0.0小于0.5表示偏左对齐，0.5表示居中对齐，大于0.5小于1.0表示偏右对齐，大于等于1.0表示右对齐。|
-| alignmentWidth | number | 是 | 对齐宽度，即文本行的宽度，浮点数。如果小于文本行的实际宽度，则返回0。|
+| alignmentWidth | number | 是 | 对齐宽度，即文本行的宽度，浮点数。小于文本行的实际宽度时，返回0。|
 
 **返回值：**
 
@@ -2399,7 +2399,7 @@ let alignmentOffset = lines[0].getAlignmentOffset(0.5, 500);
 
 文本排版的渲染单元。
 
-下列API示例中都需先使用[TextLine](#textline)类的[getGlyphRuns()](#getglyphruns)接口获取到Run对象实例，再通过此实例调用对应方法。
+下列API示例中都需先使用[TextLine](#textline)类的[getGlyphRuns()](#getglyphruns)接口获取Run对象实例，再通过此实例调用对应方法。
 
 ### getGlyphCount
 
@@ -2425,7 +2425,7 @@ let glyphs = runs[0].getGlyphCount();
 
 getGlyphs(): Array\<number>
 
-获取该渲染单元中每个字符对应的字形序号。
+获取该渲染单元中每个字符的字形序号。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -2445,7 +2445,7 @@ let glyph = runs[0].getGlyphs();
 
 getGlyphs(range: Range): Array\<number>
 
-获取该渲染单元指定范围内每个字符对应的字形序号。
+获取该渲染单元指定范围内每个字符的字形序号。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -2578,7 +2578,7 @@ struct Index {
 
 getOffsets(): Array<common2D.Point>
 
-获取该渲染单元中每个字形相对于其索引的偏移量。
+获取该渲染单元中每个字形的索引偏移量。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -2598,7 +2598,7 @@ let offsets = runs[0].getOffsets();
 
 getFont(): drawing.Font
 
-获取该渲染单元的字体属性对象实例。
+获取渲染单元的字体属性对象。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -2618,7 +2618,7 @@ let font = runs[0].getFont();
 
 paint(canvas: drawing.Canvas, x: number, y: number): void
 
-在画布上以坐标点 (x, y) 为左上角位置绘制该渲染单元。
+在画布上以 (x, y) 为左上角位置绘制渲染单元。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -2669,7 +2669,7 @@ struct Index {
 
 getStringRange(): Range
 
-获取该渲染单元生成字形的字符范围。
+获取渲染单元生成字形的字符范围。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -2677,7 +2677,7 @@ getStringRange(): Range
 
 | 类型                   | 说明           |
 | ---------------------- | -------------- |
-| [Range](#range) | 渲染单元生成字形的字符范围，Rang类型中的start表示字符范围的开始位置，该位置是相对于整个段落的索引，Rang类型中的end表示字符范围的长度。|
+| [Range](#range) | 渲染单元生成字形的字符范围，Range类型中的start表示字符范围的开始位置，该位置是相对于整个段落的索引，Range类型中的end表示字符范围的长度。|
 
 
 **示例：**
@@ -2706,7 +2706,7 @@ getStringIndices(range?: Range): Array\<number>
 
 | 类型                   | 说明           |
 | ---------------------- | -------------- |
-| Array\<number>  | 该渲染单元中每个字符的索引。|
+| Array\<number>  | 返回每个字符的索引。|
 
 **错误码：**
 
@@ -2813,7 +2813,7 @@ let typographicBounds = runs[0].getTypographicBounds();
 
 | 名称               | 类型                    | 只读 | 可选 | 说明                                               |
 | -----------------  | ----------------------- | ---- | ---  | -------------------------------------------------- |
-| alignment          | [TextAlign](#textalign) | 是   |  否  | 段落中制表符之后的文本对齐方式，支持设置[TextAlign](#textalign)的LEFT左对齐、RIGHT右对齐和CENTER居中对齐方式，其他枚举值为左对齐效果，默认为左对齐效果。 |
+| alignment          | [TextAlign](#textalign) | 是   |  否  | 段落中制表符之后的文本对齐方式，支持设置[TextAlign](#textalign)的LEFT左对齐、RIGHT右对齐和CENTER居中对齐方式，其他枚举值为左对齐，默认为左对齐。 |
 | location           | number                  | 是   |  否  | 制表符之后的文本对齐位置，浮点数，单位为物理像素px，最小值为1.0，当该值小于1.0时，该制表符会被替换为一个空格。 |
 
 **示例：**
