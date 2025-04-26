@@ -249,7 +249,7 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 | SESSION_CONFIG_LOCKED      | 7400105    | session 配置已锁定返回。     |
 | DEVICE_SETTING_LOCKED      | 7400106    | 设备设置已锁定返回。     |
 | CONFLICT_CAMERA            | 7400107    | 设备重复打开返回。     |
-| DEVICE_DISABLED            | 7400108    | 安全原因摄像头被禁用。     |
+| DEVICE_DISABLED            | 7400108    | 安全原因相机被禁用。     |
 | DEVICE_PREEMPTED           | 7400109    | 相机被抢占导致无法使用。     |
 | UNRESOLVED_CONFLICTS_WITH_CURRENT_CONFIGURATIONS<sup>12+</sup> | 7400110   | 与当前配置存在冲突。     |
 | SERVICE_FATAL_ERROR        | 7400201    | 相机服务错误返回。     |
@@ -1283,7 +1283,7 @@ function getCameraDevice(cameraManager: camera.CameraManager, position: camera.C
 }
 ```
 
-### getCameraConcurrentinfos<sup>18+</sup>
+### getCameraConcurrentInfos<sup>18+</sup>
 
 getCameraConcurrentInfos(cameras: Array\<CameraDevice\>): Array\<CameraConcurrentInfo\>
 
@@ -1316,14 +1316,14 @@ getCameraConcurrentInfos(cameras: Array\<CameraDevice\>): Array\<CameraConcurren
 ```ts
 import { camera } from '@kit.CameraKit';
 
-function getCameraConcurrentinfos(cameraManager: camera.CameraManager, cameraDeviceArray: Array<camera.CameraDevice>): void {
+function getCameraConcurrentInfos(cameraManager: camera.CameraManager, cameraDeviceArray: Array<camera.CameraDevice>): void {
   try {
     let cameraconcurrentinfos: Array<camera.CameraConcurrentInfo> = [];
     cameraconcurrentinfos = cameraManager.getCameraConcurrentInfos(cameraDeviceArray);
   } catch (error) {
     // 失败返回错误码并处理。
     let err = error as BusinessError;
-    console.error(`The getCameraConcurrentinfos call failed. error code: ${err.code}`);
+    console.error(`The getCameraConcurrentInfos call failed. error code: ${err.code}`);
   }
 }
 ```
@@ -1338,7 +1338,7 @@ function getCameraConcurrentinfos(cameraManager: camera.CameraManager, cameraDev
 | ---------------------------- | ---- | ------------- |
 | OFF    | 0    | 常关模式。      |
 | ON  | 1    | 常开模式。 |
-| AUTO      | 2    | 自动模式。 |
+| AUTO      | 2    | 自动模式，系统根据环境自动调节手电筒亮度。|
 
 ## TorchStatusInfo<sup>11+</sup>
 
@@ -1382,7 +1382,7 @@ function getCameraConcurrentinfos(cameraManager: camera.CameraManager, cameraDev
 
 | 名称                     | 值        | 说明         |
 | ----------------------- | --------- | ------------ |
-| CAMERA_FORMAT_RGBA_8888 | 3         | RGBA_888格式的图片。        |
+| CAMERA_FORMAT_RGBA_8888 | 3         | RGBA_8888格式的图片。        |
 | CAMERA_FORMAT_YUV_420_SP| 1003      | YUV_420_SP格式的图片。      |
 | CAMERA_FORMAT_JPEG      | 2000      | JPEG格式的图片。            |
 | CAMERA_FORMAT_YCBCR_P010<sup>11+</sup> |   2001    | YCBCR_P010格式的图片。      |

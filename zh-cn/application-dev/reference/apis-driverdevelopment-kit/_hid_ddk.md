@@ -724,7 +724,7 @@ ohos.permission.ACCESS_DDK_HID
 
 - HID_DDK_INVALID_OPERATION 连接hid_ddk服务失败或者调用方不是设备的创建者。
 
-- HID_DDK_FAILURE 对应设备不存在。
+- HID_DDK_NULL_PTR 对应设备不存在。
 
 
 ### OH_Hid_EmitEvent()

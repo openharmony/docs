@@ -32,9 +32,9 @@ HarmonyOS Device Connector (hdc) is a command-line tool for debugging. It can be
 **NOTE**<br>Configuration of the environment variable **hdc_server_port** and global environment variables is mandatory.
 
 ## Development Device
-
-* Currently, RK3568 is used as the device for development, debugging, and verification. For details about how to compile and burn the RK3568, see [Quick Start](https://gitee.com/openharmony/docs/blob/master/en/device-dev/quick-start/quickstart-pkg-3568-burn.md).
-* During peripheral client and driver development, you need to connect an external USB device for debugging. Currently, **only an external USB device is supported**.
-* The product ID and vendor ID of the USB device are required for defining drivers and implementing IPC.
+<!--RP1-->
+- Currently, RK3568 is used as the device for development, debugging, and verification. For details about how to compile and burn the RK3568, see [Quick Start](https://gitee.com/openharmony/docs/blob/master/en/device-dev/quick-start/quickstart-pkg-3568-burn.md).<!--RP1End-->
+- During peripheral client and driver development, you need to connect an external USB device for debugging. Currently, **only an external USB device is supported**.
+- The product ID and vendor ID of the USB device are required for defining drivers and implementing IPC.
 
 <!--no_check-->

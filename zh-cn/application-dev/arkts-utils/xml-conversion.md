@@ -68,7 +68,7 @@ XML解析及转换需要确保传入的XML数据符合标准格式。
 
    ```ts
    let conv: convertxml.ConvertXML = new convertxml.ConvertXML();
-   let result: object = conv.convertToJSObject(xml, options);
+   let result: object = conv.fastConvertToJSObject(xml, options);
    let strRes: string = JSON.stringify(result); // 将js对象转换为json字符串，用于显式输出
    console.info(strRes);
    ```
@@ -78,8 +78,8 @@ XML解析及转换需要确保传入的XML数据符合标准格式。
    ```json
    strRes:
    {"_declaration":{"_attributes":{"version":"1.0","encoding":"utf-8"}},"_elements":[{"_type":"element","_name":"note",
-    "_attributes":{"importance":"high","logged":"true"},"_elements":[{"_type":"element","_name":"title",
-    "_elements":[{"_type":"text","_text":"Happy"}]},{"_type":"element","_name":"todo",
-    "_elements":[{"_type":"text","_text":"Work"}]},{"_type":"element","_name":"todo",
-    "_elements":[{"_type":"text","_text":"Play"}]}]}]}
+    "_attributes":{"importance":"high","logged":"true"},"_elements":[{"_type":"element","_name":"title","_parent":"note",
+    "_elements":[{"_type":"text","_text":"Happy"}]},{"_type":"element","_name":"todo","_parent":"note","_elements":
+    [{"_type":"text","_text":"Work"}]},{"_type":"element","_name":"todo","_parent":"note","_elements":[{"_type":"text",
+    "_text":"Play"}]}]}]}
    ```

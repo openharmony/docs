@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
-> 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## motionPath
 motionPath(value: MotionPathOptions)
@@ -50,7 +50,7 @@ struct MotionPathExample {
           rotatable: true
         }) // 执行动画：从起点移动到(300,200)，再到(300,500)，再到终点
         .onClick(() => {
-          animateTo({ duration: 4000, curve: Curve.Linear }, () => {
+          this.getUIContext()?.animateTo({ duration: 4000, curve: Curve.Linear }, () => {
             this.toggle = !this.toggle // 通过this.toggle变化组件的位置
           })
         })

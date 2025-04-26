@@ -616,7 +616,7 @@ View层根据需要来组织，但View层需要区分一下三种组件：
   @Component
   struct TodoList {
     @State thingsTodo: TodoListViewModel = new TodoListViewModel();
-    private context = getContext(this) as common.UIAbilityContext;
+    private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
     async aboutToAppear() {
       await this.thingsTodo.loadTasks(this.context);

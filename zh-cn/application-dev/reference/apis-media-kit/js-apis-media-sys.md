@@ -382,7 +382,7 @@ isWatermarkSupported(): Promise\<boolean>
 
 | 类型             | 说明                             |
 | ---------------- | -------------------------------- |
-| Promise\<boolean> | 获取是否支持水印的Promise返回值。 |
+| Promise\<boolean> | 获取是否支持水印的Promise返回值，支持水印：true，不支持水印：false。 |
 
 **示例：**
 
@@ -444,6 +444,50 @@ avRecorder.setWatermark(watermark, watermarkConfig).then(() => {
 }).catch((error: BusinessError) => {
   console.error(`Failed to setWatermark and catch error is ${error.message}`);
 });
+```
+
+### setMetadata<sup>18+</sup>
+setMetadata(metadata: Record\<string, string\>): void
+
+给AVRecorder的录制文件中设置自定义meta数据。
+
+只有当[prepare()](js-apis-media.md#prepare9-3)事件成功触发后，并在调用[stop()](js-apis-media.md#stop9-3)方法之前，才能调用setMetadata方法。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+**系统接口：** 该接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明                                                                |
+| -------- | -------------------- | ---- |-------------------------------------------------------------------|
+| metadata | [Record<string, string>]  | 是   | 以键值对形式设置meta数据的tag和value。<br>- 第一个string为meta tag。<br>- 第二个string为meta value。 |
+
+**返回值：**
+
+| 类型            | 说明        |
+| --------------- |-----------|
+| void | 无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息            |
+|-------|-----------------|
+| 202   | Not System App. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let meta : Record<string, string> = {
+   'com.openharmony.userdefine':'10',
+   'com.openharmony.userdefine2':'20'
+};
+
+avRecorder.setMetadata(meta);
 ```
 
 ## VideoRecorder<sup>9+</sup>

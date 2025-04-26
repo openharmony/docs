@@ -108,28 +108,45 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 const fileName: string = 'xxx.json';
 
-let rawFd: resourceManager.RawFileDescriptor = getContext().resourceManager.getRawFdSync(fileName);
+@Entry
+@Component
+struct Index {
+  uiContext = this.getUIContext();
 
-try {
-  vibrator.startVibration({
-    type: "file",
-    hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
-  }, {
-    id: 0,
-    usage: 'alarm' // 根据实际选择类型归属不同的开关管控
-  }, (error: BusinessError) => {
-    if (error) {
-      console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
-      return;
+  build() {
+    Row() {
+      Column() {
+        Button('alarm-file')
+          .onClick(() => {
+            let rawFd: resourceManager.RawFileDescriptor | undefined = this.uiContext.getHostContext()?.resourceManager.getRawFdSync(fileName);
+            if (rawFd != undefined) {
+              try {
+                vibrator.startVibration({
+                  type: "file",
+                  hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
+                }, {
+                  id: 0,
+                  usage: 'alarm' // 根据实际选择类型归属不同的开关管控
+                }, (error: BusinessError) => {
+                  if (error) {
+                    console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+                    return;
+                  }
+                  console.info('Succeed in starting vibration');
+                });
+              } catch (err) {
+                let e: BusinessError = err as BusinessError;
+                console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+              }
+            }
+            this.uiContext.getHostContext()?.resourceManager.closeRawFdSync(fileName);
+          })
+      }
+      .width('100%')
     }
-    console.info('Succeed in starting vibration');
-  });
-} catch (err) {
-  let e: BusinessError = err as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+    .height('100%')
+  }
 }
-
-getContext().resourceManager.closeRawFdSync(fileName);
 ```
 
 ## vibrator.startVibration<sup>9+</sup>
@@ -228,26 +245,45 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 const fileName: string = 'xxx.json';
 
-let rawFd: resourceManager.RawFileDescriptor = getContext().resourceManager.getRawFdSync(fileName);
+@Entry
+@Component
+struct Index {
+  uiContext = this.getUIContext();
 
-try {
-  vibrator.startVibration({
-    type: "file",
-    hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
-  }, {
-    id: 0,
-    usage: 'alarm' // 根据实际选择类型归属不同的开关管控
-  }).then(() => {
-    console.info('Succeed in starting vibration');
-  }, (error: BusinessError) => {
-    console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
-  });
-} catch (err) {
-  let e: BusinessError = err as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+  build() {
+    Row() {
+      Column() {
+        Button('alarm-file')
+          .onClick(() => {
+            let rawFd: resourceManager.RawFileDescriptor | undefined = this.uiContext.getHostContext()?.resourceManager.getRawFdSync(fileName);
+            if (rawFd != undefined) {
+              try {
+                vibrator.startVibration({
+                  type: "file",
+                  hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
+                }, {
+                  id: 0,
+                  usage: 'alarm' // 根据实际选择类型归属不同的开关管控
+                }, (error: BusinessError) => {
+                  if (error) {
+                    console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+                    return;
+                  }
+                  console.info('Succeed in starting vibration');
+                });
+              } catch (err) {
+                let e: BusinessError = err as BusinessError;
+                console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+              }
+            }
+            this.uiContext.getHostContext()?.resourceManager.closeRawFdSync(fileName);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
 }
-
-getContext().resourceManager.closeRawFdSync(fileName);
 ```
 
 ## vibrator.stopVibration<sup>9+</sup>

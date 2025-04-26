@@ -496,6 +496,8 @@
   ```ts
   import { drawing } from '@kit.ArkGraphics2D';
 
+  let gUIContext: UIContext;
+
   class MyCustomSpan extends CustomSpan {
     constructor(word: string, width: number, height: number, fontSize: number) {
       super();
@@ -507,7 +509,7 @@
 
     onMeasure(measureInfo: CustomSpanMeasureInfo): CustomSpanMetrics {
       return { width: this.width, height: this.height };
-    } 
+    }
 
     onDraw(context: DrawContext, options: CustomSpanDrawInfo) {
       let canvas = context.canvas;
@@ -520,12 +522,13 @@
         blue: 0
       });
       const font = new drawing.Font();
-      font.setSize(vp2px(this.fontSize));
+      font.setSize(gUIContext.vp2px(this.fontSize));
       const textBlob =
         drawing.TextBlob.makeFromString(this.word.substring(0, 5), font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
       canvas.attachBrush(brush);
 
-      this.onDrawRectByRadius(context, options.x, options.x + vp2px(this.width), options.lineTop, options.lineBottom, 20);
+      this.onDrawRectByRadius(context, options.x, options.x + gUIContext.vp2px(this.width), options.lineTop,
+        options.lineBottom, 20);
       brush.setColor({
         alpha: 255,
         red: 255,
@@ -543,7 +546,7 @@
       canvas.attachBrush(brush);
       const textBlob1 =
         drawing.TextBlob.makeFromString(this.word.substring(5), font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
-      canvas.drawTextBlob(textBlob1, options.x + vp2px(100), options.lineBottom - 30);
+      canvas.drawTextBlob(textBlob1, options.x + gUIContext.vp2px(100), options.lineBottom - 30);
 
       canvas.detachBrush();
     }
@@ -584,6 +587,10 @@
     textStyle: MutableStyledString = new MutableStyledString("123");
     textController: TextController = new TextController();
     isPageShow: boolean = true;
+
+    aboutToAppear() {
+      gUIContext = this.getUIContext();
+    }
 
     async onPageShow() {
       if (!this.isPageShow) {

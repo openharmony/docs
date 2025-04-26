@@ -213,7 +213,7 @@ plural.json文件的内容如下：
 
 ### 创建资源文件
 
-在资源目录（element、media、profile）的右键菜单选择“New > XXX Resource File”，即可创建对应资源组目录的资源文件。例如，在element目录下可新建Element Resource File。
+在资源组目录（element、media、profile）的右键菜单选择“New > XXX Resource File”，即可创建对应资源组目录的资源文件。例如，在element目录下可新建Element Resource File。
 
   ![create-resource-file-3](figures/create-resource-file-3.png)
 

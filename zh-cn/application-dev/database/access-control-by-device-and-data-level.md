@@ -113,20 +113,26 @@ try {
 
   
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+import { UIAbility } from '@kit.AbilityKit';
 import { relationalStore } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let store: relationalStore.RdbStore;
-let context = getContext(this);
-const STORE_CONFIG: relationalStore.StoreConfig = {
-  name: 'RdbTest.db',
-  securityLevel: relationalStore.SecurityLevel.S3
-};
-let promise = relationalStore.getRdbStore(context, STORE_CONFIG);
-promise.then(async (rdbStore) => {
-  store = rdbStore;
-  console.info('Succeeded in getting RdbStore.')
-}).catch((err: BusinessError) => {
-  console.error(`Failed to get RdbStore. Code:${err.code},message:${err.message}`);
-})
+export default class EntryAbility extends UIAbility {
+  async onCreate(): Promise<void> {
+    let store: relationalStore.RdbStore | undefined = undefined;
+    let context = this.context;
+
+    try {
+      const STORE_CONFIG: relationalStore.StoreConfig = {
+        name: 'RdbTest.db',
+        securityLevel: relationalStore.SecurityLevel.S3
+      };
+      store = await relationalStore.getRdbStore(context, STORE_CONFIG);
+      console.info('Succeeded in getting RdbStore.')
+    } catch (e) {
+      const err = e as BusinessError;
+      console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
+    }
+  }
+}
 ```
