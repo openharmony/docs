@@ -259,7 +259,7 @@ setAudioVolumeScale(scale: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)、[媒体服务错误码](../apis-media-kit/errorcode-media.md)和[铃声错误码说明文档](./errorcode-ringtone.md)。
 
 | 错误码ID | 错误信息                                                                                                    |
 | -------- | ----------------------------------------------------------------------------------------------------------- |
@@ -327,14 +327,13 @@ getSupportedHapticsFeatures(): Promise&lt;Array&lt;systemSoundManager.ToneHaptic
 
 **返回值：**
 
-
 | 类型                                                                                                                          | 说明                                                                                                                  |
 |-----------------------------------------------------------------------------------------------------------------------------| --------------------------------------------------------------------------------------------------------------------- |
 | Promise&lt;Array&lt;[systemSoundManager.ToneHapticsFeature](js-apis-systemSoundManager-sys.md#tonehapticsfeature13)&gt;&gt; | Promise回调返回当前支持的振动风格。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[铃声错误码说明文档](./errorcode-ringtone.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -363,8 +362,8 @@ setHapticsFeature(hapticsFeature: systemSoundManager.ToneHapticsFeature): void
 **系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
-**参数：**
 
+**参数：**
 
 | 参数名         | 类型                                                                                              | 必填 | 说明             |
 | -------------- |-------------------------------------------------------------------------------------------------| ---- | ---------------- |
@@ -372,7 +371,7 @@ setHapticsFeature(hapticsFeature: systemSoundManager.ToneHapticsFeature): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)、[媒体服务错误码](../apis-media-kit/errorcode-media.md)和[铃声错误码说明文档](./errorcode-ringtone.md)。
 
 | 错误码ID | 错误信息                                                                                                    |
 | -------- | ----------------------------------------------------------------------------------------------------------- |
@@ -409,14 +408,14 @@ getHapticsFeature(): systemSoundManager.ToneHapticsFeature
 
 **返回值：**
 
-
 | 类型                                                                                              | 说明     |
 |-------------------------------------------------------------------------------------------------| -------- |
 | [systemSoundManager.ToneHapticsFeature](js-apis-systemSoundManager-sys.md#tonehapticsfeature13) | 振动风格 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[铃声错误码说明文档](./errorcode-ringtone.md)。
+
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -457,7 +456,6 @@ on(type: 'playFinished', streamId: number, callback: Callback\<number>): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 202      | Not system App.  |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 20700002 | Parameter check error. |
 
 **示例：**
@@ -502,7 +500,6 @@ off(type: 'playFinished', callback?: Callback\<number>): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 202      | Not system App.  |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 20700002 | Parameter check error. |
 
 **示例：**
@@ -543,7 +540,6 @@ on(type: 'error', callback: ErrorCallback): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 202      | Not system App.  |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 20700002 | Parameter check error. |
 
 **示例：**
@@ -578,7 +574,6 @@ off(type: 'error', callback?: ErrorCallback): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 202      | Not system App.  |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 20700002 | Parameter check error. |
 
 **示例：**
