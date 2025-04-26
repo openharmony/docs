@@ -1,8 +1,8 @@
 # @ohos.graphics.text (文本模块)
 
-本模块允许开发者创建复杂的文本段落，包括多样的文本样式、段落样式、换行规则等，并最终将这些信息转换为能在屏幕上高效渲染的布局数据，本模块采用屏幕物理像素单位px。
+本模块提供了一系列低级编程接口，用于文本布局和字体管理。本文布局相关的接口旨在提供高质量的排版，包括字符到字形的转换、字距调整、换行、对齐、文本测量等。字体管理接口则提供了字体注册、字体描述符、字体集合管理等功能。
 
-该模块提供以下创建复杂的文本段落的常用功能：
+该模块提供以下创建复杂样式的文本段落的常用类：
 
 - [TextStyle](#textstyle)：文本样式，控制文本的字体类型、大小、间距等属性。
 - [FontCollection](#fontcollection)：字体管理器，控制各种不同的字体。
@@ -390,8 +390,8 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 | 名称   | 值 | 说明      |
 | ------ | - | --------- |
-| START  | 0 | 开头省略号。|
-| MIDDLE | 1 | 中间省略号。|
+| START  | 0 | 开头省略号。，只在设置maxline为1时生效。|
+| MIDDLE | 1 | 中间省略号。，只在设置maxline为1时生效。|
 | END    | 2 | 末尾省略号。|
 
 ## TextShadow
@@ -463,12 +463,12 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 | heightOnly    | boolean                                              | 是 | 是 | true表示根据字体大小和heightScale设置文本框的高度，false表示根据行高和行距，默认为false。|
 | halfLeading   | boolean                                              | 是 | 是 | true表示将行间距平分至行的顶部与底部，false则不平分，默认为false。|
 | ellipsis      | string                                               | 是 | 是 | 省略号样式，表示省略号生效后使用该字段值替换省略号部分。       |
-| ellipsisMode  | [EllipsisMode](#ellipsismode)                        | 是 | 是 | 省略号类型，默认为END，行尾省略号。                        |
+| ellipsisMode  | [EllipsisMode](#ellipsismode)                        | 是 | 是 | 省略号类型，默认为END，行尾省略号。其中开头省略号和中间省略号只在设置maxline为1时生效。                       |
 | locale        | string                                               | 是 | 是 | 语言类型，如字段为'en'代表英文，'zh-Hans'代表简体中文，'zh-Hant'代表繁体中文。具体请参照ISO 639-1规范，默认为空字符串。|
 | baselineShift | number                                               | 是 | 是 | 文本下划线的偏移距离，浮点数，默认为0.0px。                 |
 | fontFeatures  | Array\<[FontFeature](#fontfeature)>                  | 是 | 是 | 文本字体特征数组。|
 | fontVariations| Array\<[FontVariation](#fontvariation)>              | 是 | 是 | 可变字体属性数组。|
-| textShadows   | Array\<[TextShadow](#textshadow)>                    | 是 | 是 | 文本字体阴影数组。|
+| textShadows   | Array\<[TextShadow](#textshadow)>                    | 是 | 是 | 文本阴影数组。|
 | backgroundRect| [RectStyle](#rectstyle)                              | 是 | 是 | 文本矩形框样式。|
 
 ## StrutStyle
