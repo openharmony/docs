@@ -1011,7 +1011,7 @@ struct TabsExample {
           .width('47%')
           .height(50)
           .onClick((event?: ClickEvent) => {
-            this.text += '文本增加'
+            this.text += '文本增加';
           })
           .margin({ right: '6%', bottom: '12vp' })
 
@@ -1019,7 +1019,7 @@ struct TabsExample {
           .width('47%')
           .height(50)
           .onClick((event?: ClickEvent) => {
-            this.text = "文本"
+            this.text = "文本";
           })
           .margin({ bottom: '12vp' })
       }
@@ -1029,7 +1029,7 @@ struct TabsExample {
           .width('47%')
           .height(50)
           .onClick((event?: ClickEvent) => {
-            this.barMode = BarMode.Fixed
+            this.barMode = BarMode.Fixed;
           })
           .margin({ right: '6%', bottom: '12vp' })
 
@@ -1037,7 +1037,7 @@ struct TabsExample {
           .width('47%')
           .height(50)
           .onClick((event?: ClickEvent) => {
-            this.barMode = BarMode.Scrollable
+            this.barMode = BarMode.Scrollable;
           })
           .margin({ bottom: '12vp' })
       }
@@ -1308,7 +1308,7 @@ struct TabsDivider1 {
       .barHeight(200)
       .animationDuration(400)
       .onChange((index: number) => {
-        console.info(index.toString())
+        console.info(index.toString());
       })
       .height('200vp')
       .margin({ bottom: '12vp' })
@@ -1435,7 +1435,7 @@ struct TabsOpaque {
       .barHeight(80)
       .animationDuration(400)
       .onChange((index: number) => {
-        console.info(index.toString())
+        console.info(index.toString());
       })
       .fadingEdge(this.selfFadingFade)
       .height('30%')
@@ -1473,7 +1473,7 @@ struct TabsOpaque {
       .barWidth(80)
       .animationDuration(400)
       .onChange((index: number) => {
-        console.info(index.toString())
+        console.info(index.toString());
       })
       .fadingEdge(this.selfFadingFade)
       .height('30%')
@@ -1685,13 +1685,13 @@ struct TabsCustomAnimationExample {
         this.getUIContext()?.animateTo({
           duration: this.durationList[from],
           onFinish: () => {
-            proxy.finishTransition()
+            proxy.finishTransition();
           }
         }, () => {
-          this.scaleList[from] = 0.5
-          this.scaleList[to] = 1.0
-          this.opacityList[from] = 0.5
-          this.opacityList[to] = 1.0
+          this.scaleList[from] = 0.5;
+          this.scaleList[to] = 1.0;
+          this.opacityList[from] = 0.5;
+          this.opacityList[to] = 1.0;
         });
       }
     } as TabContentAnimatedTransition
@@ -1849,7 +1849,7 @@ export default class EntryAbility extends UIAbility {
 import { i18n, intl } from '@kit.LocalizationKit';
 
 export class CommonUtil {
-  private static isRTL: boolean = i18n.isRTL((new intl.Locale()).language)
+  private static isRTL: boolean = i18n.isRTL((new intl.Locale()).language);
 
   public static setIsRTL(isRTL: boolean): void {
     CommonUtil.isRTL = isRTL;
@@ -1926,7 +1926,7 @@ struct TabsExample {
       .backgroundColor('#F1F3F5')
       .animationDuration(this.animationDuration)
       .onChange((index: number) => {
-        this.currentIndex = index ;// 监听索引index的变化，实现页签内容的切换。
+        this.currentIndex = index;// 监听索引index的变化，实现页签内容的切换。
       })
       .onAnimationStart((index: number, targetIndex: number, event: TabsAnimationEvent) => {
         // 切换动画开始时触发该回调。下划线跟着页面一起滑动，同时宽度渐变。
@@ -2045,10 +2045,10 @@ struct TabsPreloadItems {
           // 预加载第0、2、3个子节点，提高滑动或点击切换至这些节点时的性能
           this.tabsController.preloadItems([0, 2, 3])
             .then(() => {
-              console.info('preloadItems success.')
+              console.info('preloadItems success.');
             })
             .catch((error: BusinessError) => {
-              console.error('preloadItems failed, error code: ' + error.code + ', error message: ' + error.message)
+              console.error('preloadItems failed, error code: ' + error.code + ', error message: ' + error.message);
             })
         })
     }
@@ -2197,8 +2197,8 @@ struct TabsSwiperExample {
         })
       }
       .onTabBarClick((index: number) => {
-        this.currentIndex = index
-        this.swiperController.changeIndex(index, true)
+        this.currentIndex = index;
+        this.swiperController.changeIndex(index, true);
       })
       .barMode(BarMode.Scrollable)
       .backgroundColor('#F1F3F5')
@@ -2209,10 +2209,10 @@ struct TabsSwiperExample {
         LazyForEach(this.swiperData, (item: string) => {
           Text(item.toString())
             .onAppear(()=>{
-              console.info('onAppear ' + item.toString())
+              console.info('onAppear ' + item.toString());
             })
             .onDisAppear(()=>{
-              console.info('onDisAppear ' + item.toString())
+              console.info('onDisAppear ' + item.toString());
             })
             .width('100%')
             .height('100%')
@@ -2223,7 +2223,7 @@ struct TabsSwiperExample {
       }
       .loop(false)
       .onChange((index: number) => {
-        this.currentIndex = index
+        this.currentIndex = index;
       })
       .onAnimationStart((index: number, targetIndex: number, extraInfo: SwiperAnimationEvent) => {
         this.currentIndex = targetIndex;
@@ -2245,10 +2245,10 @@ struct TabsSwiperExample {
 @Entry
 @Component
 struct TabsExample {
-  @State currentIndex: number = 0
-  @State currentAnimationMode: AnimationMode = AnimationMode.CONTENT_FIRST
-  private controller: TabsController = new TabsController()
-  private data: number[] = []
+  @State currentIndex: number = 0;
+  @State currentAnimationMode: AnimationMode = AnimationMode.CONTENT_FIRST;
+  private controller: TabsController = new TabsController();
+  private data: number[] = [];
 
   aboutToAppear(): void {
     for (let i = 0; i < 10; i++) {
