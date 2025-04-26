@@ -132,92 +132,6 @@ Web组件支持前端页面选择文件上传功能，应用开发者可以使�
 
 Web组件支持前端页面上传图片文件时调用相机即时拍照，应用开发者可以使用[onShowFileSelector()](../reference/apis-arkweb/ts-basic-components-web.md#onshowfileselector9)接口来处理前端页面文件上传的请求并自行拉起相机，如果应用开发者不做任何处理，Web会提供默认行为来处理前端页面调用相机的请求。
 
-### 通过ArkWeb默认的方式拉起相机
-
-示例页面内有数个文件选择器，分别设置了不同的accept及capture属性，这两个属性对相机的影响如下：
-
-| accept                      | capture                     | 文件选择器行为                                     |
-| --------------------------- | --------------------------- | -------------------------------------------------- |
-| 仅包含图片类型              | 设置为"environment"或"user" | 直接拉起相机拍照模式                               |
-|                             | 不设置                      | 先拉起弹窗，用户选择拍照后拉起相机拍照模式         |
-| 仅包含视频类型              | 设置为"environment"或"user" | 直接拉起相机录像模式                               |
-|                             | 不设置                      | 先拉起弹窗，用户选择拍照后拉起相机录像模式         |
-| 包含图片和视频类型          | 设置为"environment"或"user" | 直接拉起相机拍照模式，可录像                       |
-|                             | 不设置                      | 先拉起弹窗，用户选择拍照后拉起相机拍照模式，可录像 |
-| 不设置/不包含图片或视频类型 | 设置为"environment"或"user" | 直接拉起相机拍照模式，可录像                       |
-|                             | 不设置                      | 直接拉起文件选择，不可拉起相机                     |
-
-> 当前ArkWeb识别的文件类型有
->  - 图片：tif, xbm, tiff, pjp, jfif, bmp, avif, apng, ico, webp, svg, gif, svgz, jpg, jpeg, png, pjpeg
->  - 视频：mp4, mpg, mpeg, m4v, ogm, ogv, webm
-
->  **注意：** ArkWeb默认仅拉起相机后置摄像头，`'user'`属性不会被处理成拉起前置摄像头。如有需要，请在应用侧通过[onShowFileSelector()](../reference/apis-arkweb/ts-basic-components-web.md#onshowfileselector9)接口另行处理
-
-html页面代码
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebCamera</title>
-</head>
-<body>
-    <input type="file" name="photo" id="photo" accept="image/*" capture="environment"><br>
-    <input type="file" name="photo2" id="photo2" capture="environment"><br>
-    <input type="file" name="picture" id="picture" accept="image/*"><br>
-    <input type="file" name="none" id="none"><br>
-    <img style="display: none;width:200px" id="img">
-    <script>
-        let photo = document.getElementById("photo");
-        let photo2 = document.getElementById("photo2");
-        let picture = document.getElementById("picture");
-        let none = document.getElementById("none");
-        photo.addEventListener("change", preViewImg)
-        photo2.addEventListener("change", preViewImg)
-        picture.addEventListener("change", preViewImg)
-        none.addEventListener("change", preViewImg)
-
-        function preViewImg(event) {
-            let fileReader = new FileReader();
-            let img = document.getElementById("img");
-            fileReader.addEventListener(
-                "load",
-                () => {
-                    // 将图像文件转换为 Base64 字符串
-                    img.src = fileReader.result;
-                },
-                false,
-            );
-            fileReader.readAsDataURL(event.target.files[0]);
-            img.style.display = "block";
-        }
-    </script>
-</body>
-</html>
-```
-
-应用侧代码
-```ts
-// xxx.ets
-import { webview } from '@kit.ArkWeb';
-
-@Entry
-@Component
-struct Index {
-  webviewController: webview.WebviewController = new webview.WebviewController();
-
-  build() {
-    Column() {
-      Web({ src: $rawfile("webCamera.html"), controller: this.webviewController })
-    }
-    .height('100%')
-    .width('100%')
-  }
-}
-```
-![web-default-camera](./figures/web-default-camera.gif)
-
 ### 应用侧拦截系统弹窗并自行拉起相机
 
 此示例中，应用侧通过监听[onShowFileSelector](../reference/apis-arkweb/ts-basic-components-web.md#onshowfileselector9)事件并返回`true`拦截ArkWeb默认弹窗,并调用系统CameraPicker拉起相机。
@@ -407,16 +321,16 @@ struct Index {
 
 ## 常见问题
 
-### 1.onShowFileSelector配合ArkWeb默认弹窗使用
+### onShowFileSelector配合ArkWeb默认弹窗使用
 
 用户点击文件上传按钮后，程序优先执行onShowFileSelector中的回调进行逻辑处理，应用开发者可以根据处理结果选择 `return false;` ，进而拉起ArkWeb默认弹窗，此时不推荐同时拉起应用侧各Picker。
 
-### 2.回调中getAcceptType和getMimeTypes的区别
+### 回调中getAcceptType和getMimeTypes的区别
 
 getAcceptType返回的是 `accept` 属性值全量转换为文件扩展名所组成的字符串数组，getMimeTypes返回的是 `accept` 属性值用逗号拆分后所组成的字符串数组。
 
 如若 `accept` 属性值为 `video/mp4, .png` ，则getAcceptType返回  `.mp4, .m4v; .png` ，getMimeTypes返回 `video/mp4; .png` 。
 
-### 3.ArkWeb默认弹窗的说明
+### ArkWeb默认弹窗的说明
 
 选项“图片”会拉起图库，根据 `accept` 属性值不同，用户可以选择上传图片或视频；选项“拍照”会拉起相机，根据 `accept` 属性值不同，用户可以选择拍照或录像；选项“文件”会拉起文管，用户可以上传任意内容。
