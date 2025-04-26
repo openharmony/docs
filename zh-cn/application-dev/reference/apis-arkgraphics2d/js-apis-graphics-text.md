@@ -390,8 +390,8 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 | 名称   | 值 | 说明      |
 | ------ | - | --------- |
-| START  | 0 | 开头省略号。，只在设置maxline为1时生效。|
-| MIDDLE | 1 | 中间省略号。，只在设置maxline为1时生效。|
+| START  | 0 | 开头省略号，只在设置maxline为1时生效。|
+| MIDDLE | 1 | 中间省略号，只在设置maxline为1时生效。|
 | END    | 2 | 末尾省略号。|
 
 ## TextShadow
