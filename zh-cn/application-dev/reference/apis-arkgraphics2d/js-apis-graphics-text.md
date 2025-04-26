@@ -1,8 +1,8 @@
 # @ohos.graphics.text (文本模块)
 
-本模块允许开发者创建复杂的文本段落，包括多样的文本样式、段落样式、换行规则等，并最终将这些信息转换为能在屏幕上高效渲染的布局数据，本模块采用屏幕物理像素单位px。
+本模块允许创建复杂的文本段落，包括多样的文本样式、段落样式和换行规则，并将这些信息转换为屏幕上的高效渲染布局数据。本模块使用屏幕物理像素单位px。
 
-该模块提供以下创建复杂的文本段落的常用功能：
+该模块提供以下常用功能，用于创建复杂的文本段落：
 
 - [TextStyle](#textstyle)：文本样式，控制文本的字体类型、大小、间距等属性。
 - [FontCollection](#fontcollection)：字体管理器，控制各种不同的字体。
@@ -35,7 +35,7 @@ matchFontDescriptors(desc: FontDescriptor): Promise&lt;Array&lt;FontDescriptor&g
 
 | 参数名 | 类型 | 必填 | 说明 |
 | - | - | - | - |
-| desc | [FontDescriptor](#fontdescriptor14) | 是 | 指定需要用来做匹配的字体描述符，其中path字段不作为有效匹配字段，weight字段不填写时不生效，其他字段为非默认值时生效，如果所有字段都不填写或者是默认值，则返回所有的系统字体描述符。如果匹配失败，返回空数组。 |
+| desc | [FontDescriptor](#fontdescriptor14) | 是 | 指定用于匹配的字体描述符。path字段无效，weight字段未填写时无效，其他非默认字段生效。所有字段未填写或默认时，返回所有系统字体描述符。匹配失败返回空数组。 |
 
 **返回值：**
 
@@ -110,7 +110,7 @@ getSystemFontFullNamesByType(fontType: SystemFontType): Promise&lt;Array&lt;stri
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+请参见[通用错误码](../errorcode-universal.md)以获取错误码的详细介绍。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -157,8 +157,8 @@ struct Index {
 
 getFontDescriptorByFullName(fullName: string, fontType: SystemFontType): Promise&lt;FontDescriptor&gt;
 
-根据字体名称和字体类型获取对应的字体描述符，使用Promise异步回调。
-字体描述符是描述字体特征的一种数据结构，它包含了定义字体外观和属性的详细信息。
+根据字体名称和类型获取字体描述符，使用Promise异步回调。
+字体描述符是描述字体特征的数据结构，包含字体外观和属性的详细信息。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -166,7 +166,7 @@ getFontDescriptorByFullName(fullName: string, fontType: SystemFontType): Promise
 
 | 参数名 | 类型 | 必填 | 说明 |
 | - | - | - | - |
-| fullName | string | 是 | 指定的字体名称。是从字体文件的name表中解析出来的一个字段。可以使用[getSystemFontFullNamesByType](#textgetsystemfontfullnamesbytype14)获取指定类型对应的所有字体的字体名称。 |
+| fullName | string | 是 | 指定的字体名称是从字体文件的name表中解析出来的字段。可以使用[getSystemFontFullNamesByType](#textgetsystemfontfullnamesbytype14)获取指定类型的所有字体名称。 |
 | fontType | [SystemFontType](#systemfonttype14) | 是 | 指定的字体类型。 |
 
 **返回值：**
@@ -177,7 +177,7 @@ getFontDescriptorByFullName(fullName: string, fontType: SystemFontType): Promise
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+请参见[通用错误码](../errorcode-universal.md)以获取错误码的详细介绍。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -353,8 +353,8 @@ struct Index {
 | 名称    | 值 | 说明                                                 |
 | ------- | - | ---------------------------------------------------- |
 | NORMAL  | 0 | 常规样式。                                            |
-| ITALIC  | 1 | 斜体，如果当前字体没有可用的斜体版本，会选用倾斜体替代。  |
-| OBLIQUE | 2 | 倾斜体，如果当前字体没有可用的倾斜体版本，会选用斜体替代。|
+| ITALIC  | 1 | 斜体。如果当前字体没有可用的斜体版本，会选用倾斜体替代。  |
+| OBLIQUE | 2 | 倾斜体。如果当前字体没有可用的倾斜体版本，会选用斜体替代。|
 
 ## TextHeightBehavior
 
@@ -377,8 +377,8 @@ struct Index {
 
 | 名称        | 值 | 说明 |
 | ----------- | - | ---- |
-| ALPHABETIC  | 0 | 通常用于拉丁字母的文本基线对齐。|
-| IDEOGRAPHIC | 1 | 通常用于CJK（中文，日文，韩文）的文本基线对齐。|
+| ALPHABETIC  | 0 | 用于拉丁字母的文本基线对齐。|
+| IDEOGRAPHIC | 1 | 用于CJK（中文，日文，韩文）的文本基线对齐。|
 
 ## EllipsisMode
 
@@ -428,7 +428,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 | 名称      | 类型                                                 | 只读 | 可选 | 说明                                       |
 | --------- | ---------------------------------------------------- | --  | ---  | ----------------------------------------- |
-| name      | string                                               | 是  |  否   | 字体特征键值对中关键字所标识的字符串。       |
+| name      | string                                               | 是  |  否   | 字体特征键值对中的关键字标识的字符串。       |
 | value     | number                                               | 是  |  否   | 字体特征键值对的值。                        |
 
 ## FontVariation
@@ -439,7 +439,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 | 名称      | 类型                                                 | 只读 | 可选 | 说明                                       |
 | --------- | ---------------------------------------------------- | --  | ---  | ----------------------------------------- |
-| axis      | string                                               | 是  |  否   | 可变字体属性键值对中关键字所标识的字符串。       |
+| axis      | string                                               | 是  |  否   | 可变字体属性键值对中的关键字标识的字符串。       |
 | value     | number                                               | 是  |  否   | 可变字体属性键值对的值。                        |
 
 ## TextStyle
@@ -479,16 +479,16 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 | 名称                      | 类型                                       | 只读 | 可选 | 说明                                                                 |
 | -------------  | ---------------------------------------------------- | ---- | -- | --------------------------------------------------------------------- |
-| fontFamilies   | Array\<string>                                       | 是   | 是 | 字体类型，默认为系统字体。                                               |
+| fontFamilies   | Array\<string>                                       | 是   | 是 | 字体族名称列表，默认为系统字体。                                               |
 | fontStyle      | [FontStyle](#fontstyle)                              | 是   | 是 | 字体样式，默认为常规样式。                                               |
 | fontWidth      | [FontWidth](#fontwidth)                              | 是   | 是 | 字体宽度，默认为NORMAL。                                                |
-| fontWeight     | [FontWeight](#fontweight)                            | 是   | 是 | 字重，默认为W400。目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold（即W600）时字体粗细无变化，当设置字重值大于等于semi-bold（即W600）时可能会触发伪加粗效果。                             |
-| fontSize       | number                                               | 是   | 是 | 字体大小，浮点数，默认为14.0，单位为物理像素px。                             |
+| fontWeight     | [FontWeight](#fontweight)                            | 是   | 是 | 字重，默认为W400。系统默认字体支持字重调节，其他字体设置字重值小于W600时无变化，大于等于W600时可能触发伪加粗效果。                             |
+| fontSize       | number                                               | 是   | 是 | 字体大小，浮点数，默认14.0，单位物理像素px。                             |
 | height         | number                                               | 是   | 是 | 行高缩放倍数，浮点数，默认为1.0。                                         |
 | leading        | number                                               | 是   | 是 | 以自定义行距应用于支柱的行距，浮点数，默认为-1.0。                          |
 | forceHeight    | boolean                                              | 是   | 是 | 是否所有行都将使用支柱的高度，true表示使用，false表示不使用，默认为false。     |
 | enabled        | boolean                                              | 是   | 是 | 是否启用支柱样式，true表示使用，false表示不使用，默认为false。              |
-| heightOverride | boolean                                              | 是   | 是 | 是否覆盖高度，true表示覆盖，false表示不覆盖，默认为false。                  |
+| heightOverride | boolean                                              | 是   | 是 | 是否覆盖高度，默认为false。                  |
 | halfLeading    | boolean                                              | 是   | 是 | true表示将行间距平分至行的顶部与底部，false则不平分，默认为false。           |
 
 ## FontDescriptor<sup>14+</sup>
@@ -499,15 +499,15 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | - | - | -  | - | - |
-| path | string | 否 | 是 | 字体绝对路径，可取任意值，默认值为空字符串。 |
-| postScriptName | string | 否 | 是 | 字体唯一标识名称，可取任意值，默认值为空字符串。 |
-| fullName | string | 否 | 是 | 字体名称，可取任意值，默认值为空字符串。 |
-| fontFamily | string | 否 | 是 | 字体家族，可取任意值，默认值为空字符串。 |
-| fontSubfamily | string | 否 | 是 | 子字体家族，可取任意值，默认值为空字符串。 |
-| weight | [FontWeight](#fontweight) | 否 | 是 | 字体字重，默认值为FontWeight.W100的取值，即0。作为[matchFontDescriptors](#textmatchfontdescriptors18)接口入参使用时，不使用该字段视作该字段为默认值。 |
-| width | number | 否 | 是 | 字体宽度，取值范围是1-9整数，默认值为0。 |
-| italic | number | 否 | 是 | 是否是斜体字体，0表示非斜体，1表示斜体字体，默认值为0。 |
-| monoSpace | boolean | 否 | 是 | 是否是等宽字体，true表示等宽字体，false表示非等宽字体，默认值为false。 |
+| path | string | 否 | 是 | 字体绝对路径，可取任意值，默认为空字符串。 |
+| postScriptName | string | 否 | 是 | 字体唯一标识名称，可取任意值，默认为空字符串。 |
+| fullName | string | 否 | 是 | 字体名称，可取任意值，默认为空字符串。 |
+| fontFamily | string | 否 | 是 | 字体家族，可取任意值，默认为空字符串。 |
+| fontSubfamily | string | 否 | 是 | 子字体家族，可取任意值，默认为空字符串。 |
+| weight | [FontWeight](#fontweight) | 否 | 是 | 字体字重，默认值为0。作为[matchFontDescriptors](#textmatchfontdescriptors18)接口入参时，不使用该字段视为默认值。 |
+| width | number | 否 | 是 | 字体宽度，取值范围1-9，默认值为0。 |
+| italic | number | 否 | 是 | 是否是斜体字体，0表示非斜体，1表示斜体，默认值为0。 |
+| monoSpace | boolean | 否 | 是 | 是否是等宽字体，true表示等宽，false表示非等宽，默认值为false。 |
 | symbolic | boolean | 否 | 是 | 是否支持符号，true表示支持，false表示不支持，默认值为false。 |
 
 ## FontCollection
@@ -518,7 +518,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 static getGlobalInstance(): FontCollection
 
-获取应用全局FontCollection的实例。
+获取应用全局FontCollection实例。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -555,7 +555,7 @@ struct Index {
 
 loadFontSync(name: string, path: string | Resource): void
 
-同步接口，将路径对应的文件，以name作为使用的别名，加载成自定义字体。其中参数name对应的值需要在[TextStyle](#textstyle)中的fontFamilies属性配置，才能显示自定义的字体效果。支持的字体文件格式包含：ttf、otf。
+同步接口，将路径对应的文件以name作为使用的别名加载成自定义字体。其中参数name对应的值需要在[TextStyle](#textstyle)中的fontFamilies属性配置，才能显示自定义的字体效果。支持的字体文件格式包含：ttf、otf。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -563,7 +563,7 @@ loadFontSync(name: string, path: string | Resource): void
 
 | 参数名 | 类型               | 必填 | 说明                              |
 | ----- | ------------------ | ---- | --------------------------------------------------------------------------------- |
-| name  | string             | 是   | 加载成字体后，调用该字体所使用的命名。                                                |
+| name  | string             | 是   | 加载成字体后，调用该字体所使用的名称。                                                |
 | path  | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 是   | 需要导入的字体文件的路径，应为 "file:// + 字体文件绝对路径" 或 "rawfile/目录or文件名"。 |
 
 **示例：**
@@ -614,7 +614,7 @@ loadFont(name: string, path: string | Resource): Promise\<void>
 
 |   参数名 | 类型               | 必填 | 说明                              |
 |   -----  | ------------------ | ---- | --------------------------------------------------------------------------------- |
-|   name   | string             | 是   | 该字体对应使用的别名，可填写任意值，可使用该别名指定并使用该字体。 |
+|   name   | string             | 是   | 加载成字体后，调用该字体所使用的别名，可填写任意值，可使用该别名指定并使用该字体。 |
 |   path   | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 是   | 需要加载的字体文件的路径，支持两种格式： "file:// + 字体文件绝对路径" 或 "rawfile/目录or文件名"。 |
 
 **返回值：**
@@ -694,41 +694,41 @@ struct Index {
 | -------------------- | ------------------------------------------ | ---- | ---- | -------------------------------------------- |
 | textStyle            | [TextStyle](#textstyle)                    | 是   | 是   | 作用于整个段落的文本样式，默认为初始的文本样式。|
 | textDirection        | [TextDirection](#textdirection)            | 是   | 是   | 文本方向，默认为LTR。                          |
-| align                | [TextAlign](#textalign)                    | 是   | 是   | 文本对齐方式，默认为START。当与制表符对齐方式同时配置时（即同时配置tab属性时），制表符对齐方式不生效。|
+| align                | [TextAlign](#textalign)                    | 是   | 是   | 文本对齐方式，默认为START。若同时配置tab属性，制表符对齐方式将失效。|
 | wordBreak            | [WordBreak](#wordbreak)                    | 是   | 是   | 断词类型，默认为BREAK_WORD。                    |
 | maxLines             | number                                     | 是   | 是   | 最大行数限制，整数，默认为1e9。                  |
 | breakStrategy        | [BreakStrategy](#breakstrategy)            | 是   | 是   | 断行策略，默认为GREEDY。                        |
 | strutStyle           | [StrutStyle](#strutstyle)                  | 是   | 是   | 支柱样式，默认为初始的StrutStyle。               |
 | textHeightBehavior   | [TextHeightBehavior](#textheightbehavior)  | 是   | 是   | 文本高度修饰符模式，默认为ALL。                              |
-| tab<sup>18+</sup>   | [TextTab](#texttab18)  | 是   | 是   | 表示段落中文本制表符之后文本的对齐方式及位置，默认为将制表符替换为一个空格。与文本对齐方式（即align属性）或省略号样式（即[TextStyle](#textstyle)中的ellipsis属性）共同配置时，此参数不生效。 |
+| tab<sup>18+</sup>   | [TextTab](#texttab18)  | 是   | 是   | 表示段落中文本制表符后的文本对齐方式及位置，默认将制表符替换为一个空格。此参数与文本对齐方式（align属性）或省略号样式（[TextStyle](#textstyle)中的ellipsis属性）共同配置时无效。 |
 
 
 ## PlaceholderAlignment
 
-占位符相对于周围文本的纵向的对齐方式。
+占位符相对于周围文本的纵向对齐方式。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
 | 名称                | 值 | 说明                   |
 | ------------------- | - | ---------------------- |
 | OFFSET_AT_BASELINE  | 0 | 基线与文本基线对齐。     |
-| ABOVE_BASELINE      | 1 | 将底部与文本基线对齐。   |
-| BELOW_BASELINE      | 2 | 将顶部与文本基线对齐。   |
-| TOP_OF_ROW_BOX      | 3 | 将顶部与文本顶部对齐。   |
-| BOTTOM_OF_ROW_BOX   | 4 | 将底部与文本底部对齐。   |
-| CENTER_OF_ROW_BOX   | 5 | 中线与文本的中线位置对齐。|
+| ABOVE_BASELINE      | 1 | 底部与文本基线对齐。   |
+| BELOW_BASELINE      | 2 | 顶部与文本基线对齐。   |
+| TOP_OF_ROW_BOX      | 3 | 顶部与文本顶部对齐。   |
+| BOTTOM_OF_ROW_BOX   | 4 | 底部与文本底部对齐。   |
+| CENTER_OF_ROW_BOX   | 5 | 中线与文本中线对齐。|
 
 ![zh-ch_image_PlaceholderAlignment.png](figures/zh-ch_image_PlaceholderAlignment.png)
 
 > **说明：**
 >
-> 示意图只展示了后三种，前三种与其类似，只不过比较位置变成了文本基线位置，即绿色线条部分。
+> 示意图展示了后三种对齐方式，前三种对齐方式类似，比较位置是文本基线，即绿色线条部分。
 >
 >![zh-ch_image_Baseline.png](figures/zh-ch_image_Baseline.png)
 
 ## PlaceholderSpan
 
-描述占位符样式的载体。
+描述占位符样式。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -736,13 +736,13 @@ struct Index {
 | -------------- | --------------------------------------------- | ---- | --- | --------------------------- |
 | width          | number                                        | 是   | 否   | 占位符的宽度，浮点数，单位为物理像素px。|
 | height         | number                                        | 是   | 否   | 占位符的高度，浮点数，单位为物理像素px。|
-| align          | [PlaceholderAlignment](#placeholderalignment) | 是   | 否   | 相对于周围文本的纵向的对齐方式。|
+| align          | [PlaceholderAlignment](#placeholderalignment) | 是   | 否   | 相对于周围文本的纵向对齐方式。|
 | baseline       | [TextBaseline](#textbaseline)                 | 是   | 否   | 基线类型。                   |
 | baselineOffset | number                                        | 是   | 否   | 基线偏移量，浮点数，单位为物理像素px。  |
 
 ## Range
 
-描述一个左闭右开的区间。
+描述左闭右开区间。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -753,7 +753,7 @@ struct Index {
 
 ## Paragraph
 
-保存着文本内容以及样式的载体，可以进行排版绘制等操作。
+保存文本内容及样式的载体，支持排版与绘制操作。
 
 下列API示例中都需先使用[ParagraphBuilder](#paragraphbuilder)类的[build()](#build)接口获取到Paragraph对象实例，再通过此实例调用对应方法。
 
@@ -761,7 +761,7 @@ struct Index {
 
 layoutSync(width: number): void
 
-进行排版，计算所有字形的位置。
+进行排版并计算所有字形位置。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -781,7 +781,7 @@ paragraph.layoutSync(100);
 
 layout(width: number): Promise\<void>
 
-进行排版，计算所有字形的位置，使用Promise异步回调。
+进行排版并计算所有字形位置，使用Promise进行异步处理。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -789,7 +789,7 @@ layout(width: number): Promise\<void>
 
 |   参数名   |    类型               | 必填 | 说明                                    |
 |   -----   |   ------------------  | ---- | --------------------------------------- |
-|   width   | number                | 是   | 单行的最大宽度，取值范围为大于0的浮点数，单位为物理像素单位px。    |
+|   width   | number                | 是   | 单行的最大宽度，浮点数，单位为物理像素px。    |
 
 **返回值：**
 
@@ -879,7 +879,7 @@ struct Index {
 
 >**说明：**
 >
->示意图展示了layout接口示例代码点击按钮之后的运行结果。
+>示意图展示了点击按钮后layout接口示例代码的运行结果。
 >
 >![zh-ch_image_layout.png](figures/zh-ch_image_layout.png)
 
@@ -887,7 +887,7 @@ struct Index {
 
 paint(canvas: drawing.Canvas, x: number, y: number): void
 
-在画布上以坐标点 (x, y) 为左上角位置绘制文本。
+在画布上以 (x, y) 为左上角绘制文本。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -942,7 +942,7 @@ paragraph.paintOnPath(canvas, path, 0, 0);
 
 getMaxWidth(): number
 
-获取文本最大的行宽。
+获取文本最大行宽。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -982,7 +982,7 @@ let height = paragraph.getHeight();
 
 getLongestLine(): number
 
-获取文本最长一行的宽度。
+获取文本最长行宽。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
