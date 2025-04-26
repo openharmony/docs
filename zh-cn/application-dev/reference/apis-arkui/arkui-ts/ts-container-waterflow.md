@@ -1064,10 +1064,10 @@ struct WaterFlowDemo {
   private itemWidthArray: number[] = [];
   private itemHeightArray: number[] = [];
   @State columns: number = 2;
-  @State waterflowScale: number = 1;
+  @State waterFlowScale: number = 1;
   @State imageScale: number = 1;
   @State waterFlowOpacity: number = 1;
-  @State waterflowSnapshot: image.PixelMap | undefined = undefined;
+  @State waterFlowSnapshot: image.PixelMap | undefined = undefined;
   private columnChanged: boolean = false;
   private oldColumn: number = this.columns;
   private pinchTime: number = 0;
@@ -1116,7 +1116,7 @@ struct WaterFlowDemo {
 
       Stack() {
         // 用于展示缩放前的WaterFlow截图
-        Image(this.waterflowSnapshot)
+        Image(this.waterFlowSnapshot)
           .width('100%')
           .height('100%')
           .scale({
@@ -1144,8 +1144,8 @@ struct WaterFlowDemo {
         .layoutWeight(1)
         .opacity(this.waterFlowOpacity)
         .scale({
-          x: this.waterflowScale,
-          y: this.waterflowScale,
+          x: this.waterFlowScale,
+          y: this.waterFlowScale,
           centerX: 0,
           centerY: 0
         })
@@ -1161,7 +1161,7 @@ struct WaterFlowDemo {
                   console.info('error:' + JSON.stringify(error));
                   return;
                 }
-                this.waterflowSnapshot = pixmap;
+                this.waterFlowSnapshot = pixmap;
               })
             })
             .onActionUpdate((event: GestureEvent) => {
@@ -1174,28 +1174,28 @@ struct WaterFlowDemo {
               }
               this.pinchTime = event.timestamp;
 
-              this.waterflowScale = event.scale;
+              this.waterFlowScale = event.scale;
               this.imageScale = event.scale;
               // 根据缩放比例设置WaterFlow透明度
-              this.waterFlowOpacity = (this.waterflowScale > 1) ? (this.waterflowScale - 1) : (1 - this.waterflowScale);
+              this.waterFlowOpacity = (this.waterFlowScale > 1) ? (this.waterFlowScale - 1) : (1 - this.waterFlowScale);
               this.waterFlowOpacity *= 3;
               if (!this.columnChanged) {
                 this.changeColumns(event.scale);
               }
               // 限制缩放比例避免出现空白
               if (this.columnChanged) {
-                this.waterflowScale = this.imageScale * this.columns / this.oldColumn;
+                this.waterFlowScale = this.imageScale * this.columns / this.oldColumn;
                 if (event.scale < 1) {
-                  this.waterflowScale = this.waterflowScale > 1 ? this.waterflowScale : 1;
+                  this.waterFlowScale = this.waterFlowScale > 1 ? this.waterFlowScale : 1;
                 } else {
-                  this.waterflowScale = this.waterflowScale < 1 ? this.waterflowScale : 1;
+                  this.waterFlowScale = this.waterFlowScale < 1 ? this.waterFlowScale : 1;
                 }
               }
             })
             .onActionEnd((event: GestureEvent) => {
               // 离手做动画归位
               this.getUIContext()?.animateTo({ duration: 300 }, () => {
-                this.waterflowScale = 1;
+                this.waterFlowScale = 1;
                 this.waterFlowOpacity = 1;
               })
               // 记录当前列数
