@@ -1,11 +1,15 @@
 # @ohos.graphics.text (文本模块)
 
+<<<<<<< HEAD
 本模块提供了一系列低级编程接口，用于文本布局和字体管理。本文布局相关的接口旨在提供高质量的排版，包括字符到字形的转换、字距调整、换行、对齐、文本测量等。字体管理接口则提供了字体注册、字体描述符、字体集合管理等功能。
+=======
+本模块允许创建复杂的文本段落，包括多样的文本样式、段落样式和换行规则，并将这些信息转换为屏幕上的高效渲染布局数据。本模块使用屏幕物理像素px。
+>>>>>>> 3e8fda33a50 (人工评审意见修改)
 
 该模块提供以下创建复杂样式的文本段落的常用类：
 
 - [TextStyle](#textstyle)：文本样式，控制文本的字体类型、大小、间距等属性。
-- [FontCollection](#fontcollection)：字体管理器，控制各种不同的字体。
+- [FontCollection](#fontcollection)：字体集，控制各种不同的字体。
 - [ParagraphStyle](#paragraphstyle)：段落样式，控制整个段落的显示样式。
 - [Paragraph](#paragraph)：段落，由ParagraphBuilder类调用[build()](#build)接口构建而成。
 - [LineTypeset](#linetypeset18)：行排版器，由ParagraphBuilder类调用[buildLineTypeset()](#buildlinetypeset18)接口构建而成。
@@ -364,10 +368,10 @@ struct Index {
 
 | 名称                  |  值 | 说明                                                  |
 | --------------------- | --- | ---------------------------------------------------- |
-| ALL                   | 0x0 | 高度修饰符设置为段落中第一行和最后一行都上升。            |
+| ALL                   | 0x0 | 高度修饰符设置为段落中第一行上升、最后一行下降。            |
 | DISABLE_FIRST_ASCENT  | 0x1 | 高度修饰符设置为禁止段落中第一行上升。                   |
-| DISABLE_LAST_ASCENT   | 0x2 | 高度修饰符设置为禁止段落中最后一行上升。                 |
-| DISABLE_ALL           | 0x1 \| 0x2 | 高度修饰符设置为段落中第一行和最后一行都不上升。          |
+| DISABLE_LAST_ASCENT   | 0x2 | 高度修饰符设置为禁止段落中最后一行下降。                 |
+| DISABLE_ALL           | 0x1 \| 0x2 | 高度修饰符设置为段落中第一行上升、最后一行下降。          |
 
 ## TextBaseline
 
@@ -450,8 +454,8 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 | 名称                      | 类型                                     | 只读 | 可选 | 说明                                                   |
 | ------------- | ---------------------------------------------------- | -- | -- | --------------------------------------------------------- |
-| decoration    | [Decoration](#decoration)                            | 是 | 是 | 装饰线置，默认初始的Decoration。             |
-| color         | [common2D.Color](js-apis-graphics-common2D.md#color) | 是 | 是 | 字体色，默认为白色。                         |
+| decoration    | [Decoration](#decoration)                            | 是 | 是 | 装饰线设置，默认不使用装饰线。             |
+| color         | [common2D.Color](js-apis-graphics-common2D.md#color) | 是 | 是 | 文字颜色，默认为白色。                         |
 | fontWeight    | [FontWeight](#fontweight)                            | 是 | 是 | 字重，默认为W400。 目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold（即W600）时字体粗细无变化，当设置字重值大于等于semi-bold（即W600）时可能会触发伪加粗效果。                         |
 | fontStyle     | [FontStyle](#fontstyle)                              | 是 | 是 | 字体样式，默认为常规样式。                          |
 | baseline      | [TextBaseline](#textbaseline)                        | 是 | 是 | 文本基线型，默认为ALPHABETIC。               |
@@ -512,7 +516,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 ## FontCollection
 
-字体管理器。
+字体集。
 
 ### getGlobalInstance
 
@@ -555,7 +559,7 @@ struct Index {
 
 loadFontSync(name: string, path: string | Resource): void
 
-同步接口，将路径对应的文件以name作为使用的别名加载成自定义字体。其中参数name对应的值需要在[TextStyle](#textstyle)中的fontFamilies属性配置，才能显示自定义的字体效果。支持的字体文件格式包含：ttf、otf。
+同步接口，加载自定义字体。其中参数name对应的值需要在[TextStyle](#textstyle)中的fontFamilies属性配置，才能显示自定义字体效果。支持的字体文件格式包含：ttf、otf。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -606,7 +610,7 @@ struct RenderTest {
 
 loadFont(name: string, path: string | Resource): Promise\<void>
 
-使用指定的别名和文件路径加载对应字体，使用Promise异步回调。
+异步接口，加载自定义字体。其中参数name对应的值需要在[TextStyle](#textstyle)中的fontFamilies属性配置，才能显示自定义字体效果，支持的字体文件格式包含：ttf、otf。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1232,7 +1236,7 @@ getLineHeight(line: number): number
 
 | 参数名 | 类型   | 必填 | 说明      |
 | ----- | ------ | ---- | --------- |
-| line  | number | 是   | 文本行索引，整数。|
+| line  | number | 是   | 文本行索引，整数，范围为0~getLineCount()返回结果。|
 
 **返回值：**
 
@@ -1258,7 +1262,7 @@ getLineWidth(line: number): number
 
 | 参数名 | 类型   | 必填 | 说明      |
 | ----- | ------ | ---- | --------- |
-| line  | number | 是   | 文本行索引，整数。|
+| line  | number | 是   | 文本行索引，整数，范围为0~getLineCount()返回结果。|
 
 **返回值：**
 
@@ -1528,7 +1532,7 @@ let line : text.TextLine = lineTypeset.createLine(startIndex, count);
 
 | 名称  | 值 | 说明                                   |
 | ----- | - | -------------------------------------- |
-| TIGHT | 0 | 不设置letterSpacing时，与字形紧贴，否则包含letterSpacing。                            |
+| TIGHT | 0 | 不设置letterSpacing时，与字形紧贴，否则包含letterSpacing的宽度。|
 | MAX   | 1 | 扩展宽度，以匹配所有行上最宽矩形的位置。   |
 
 ## RectHeightStyle
@@ -1574,7 +1578,7 @@ ParagraphBuilder对象的构造函数。
 | 参数名         | 类型                               | 必填 | 说明        |
 | -------------- | --------------------------------- | ---- | ----------- |
 | paragraphStyle | [ParagraphStyle](#paragraphstyle) | 是   | 段落样式。   |
-| fontCollection | [FontCollection](#fontcollection) | 是   | 字体管理器。 |
+| fontCollection | [FontCollection](#fontcollection) | 是   | 字体集。 |
 
 **示例：**
 
@@ -1719,7 +1723,7 @@ addText(text: string): void
 
 | 参数名   | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| text    | string  | 是   | 段落中插入的具体文本字符串。 |
+| text    | string  | 是   | 段落中插入的具体文本字符串，穿入非法Unicode时会显示乱码。 |
 
 **示例：**
 
