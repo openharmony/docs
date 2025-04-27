@@ -46,7 +46,7 @@ createVpnConnection(context: AbilityContext): VpnConnection
 
 **示例：**
 
-**注意：**关于示例代码中this的说明：在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，[请参见获取UIAbility的上下文消息](http://gitee.com/openharmony/docs/blob/222f8d93e6f0056409aac096e041df3fdd8ae5ec/zh-cn/application-dev/application-models/uiability-usage.md)。
+**注意：** 关于示例代码中this的说明：在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，[请参见获取UIAbility的上下文消息](http://gitee.com/openharmony/docs/blob/222f8d93e6f0056409aac096e041df3fdd8ae5ec/zh-cn/application-dev/application-models/uiability-usage.md)。
 
 Stage 模型示例：
 
