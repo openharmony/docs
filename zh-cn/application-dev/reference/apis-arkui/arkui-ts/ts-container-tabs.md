@@ -310,7 +310,7 @@ barBackgroundBlurStyle(value: BlurStyle)
 | 参数名 | 类型                                         | 必填 | 说明                                     |
 | ------ | -------------------------------------------- | ---- | ---------------------------------------- |
 | value  | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 是   | TabBar的背景模糊材质。<br />默认值：BlurStyle.NONE |
- 
+
 ### barGridAlign<sup>10+</sup>
 
 barGridAlign(value: BarGridColumnOptions)
@@ -1762,7 +1762,7 @@ struct TabsExample {
     let indexInfo = this.textInfos[index];
     let nextIndexInfo = this.textInfos[nextIndex];
     let swipeRatio = Math.abs(event.currentOffset / this.tabsWidth);
-    let currentIndex = swipeRatio > 0.5 ? nextIndex : index ;// 页面滑动超过一半，tabBar切换到下一页。
+    let currentIndex = swipeRatio > 0.5 ? nextIndex : index;// 页面滑动超过一半，tabBar切换到下一页。
     let currentLeft = indexInfo[0] + (nextIndexInfo[0] - indexInfo[0]) * swipeRatio;
     let currentWidth = indexInfo[1] + (nextIndexInfo[1] - indexInfo[1]) * swipeRatio;
     return { 'index': currentIndex, 'left': currentLeft, 'width': currentWidth }
@@ -1770,7 +1770,7 @@ struct TabsExample {
 
   private startAnimateTo(duration: number, leftMargin: number, width: number) {
     this.isStartAnimateTo = true;
-    this.getUIContext()?.animateTo({
+    animateTo({
       duration: duration, // 动画时长
       curve: Curve.Linear, // 动画曲线
       iterations: 1, // 播放次数
@@ -2123,7 +2123,7 @@ struct TabsBarModifierExample {
 }
 ```
 
-![tabs15](figures/tabs_barModifier_clip.gif)
+![tabs14](figures/tabs_barModifier_clip.gif)
 
 ### 示例15（页签对齐布局）
 
@@ -2304,7 +2304,7 @@ struct TabsExample {
 
 ### 示例17（设置边缘滑动效果）
 
-该示例通过edgeEffect实现了不同边缘滑动效果。
+本示例通过edgeEffect实现了不同的边缘滑动效果。
 
 ```ts
 // xxx.ets
@@ -2356,4 +2356,5 @@ struct TabsExample {
   }
 }
 ```
+
 ![tabs17](figures/tabs_edges_slide.gif)
