@@ -213,15 +213,15 @@ cancelSuspendDelay(requestId: number): void
 
 getAllTransientTasks(): Promise&lt;TransientTaskInfo&gt;
 
-获取所有短时任务信息。
+获取所有短时任务信息，使用Promise异步回调。
 
-**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+**系统能力**: SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
 **返回值**：
 
 | 类型                                      | 说明          |
 |-----------------------------------------|-------------|
-| [TransientTaskInfo](#transienttaskinfo20) | 返回所有短时任务信息。 |
+|  Promise&lt;[TransientTaskInfo](#transienttaskinfo20)&gt; | Promise对象，返回所有短时任务信息。 |
 
 **示例**：
 
@@ -741,21 +741,21 @@ export default class EntryAbility extends UIAbility {
 
 getAllContinuousTasks(context: Context): Promise&lt;ContinuousTaskInfo[]&gt;
 
-获取所有长时任务信息。
+获取所有长时任务信息，使用Promise异步回调。
 
-**需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
+**需要权限**: ohos.permission.KEEP_BACKGROUND_RUNNING
 
-**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+**系统能力**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 **返回值**：
 
 | 类型                                            | 说明          |
 |-----------------------------------------------|-------------|
-| [ContinuousTaskInfo](#continuoustaskinfo20)[] | 返回所有长时任务信息。 |
+|  Promise&lt;[ContinuousTaskInfo](#continuoustaskinfo20)&gt; | Promise对象，返回所有长时任务信息。 |
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -900,7 +900,7 @@ export default class EntryAbility extends UIAbility {
 
 所有短时任务信息。
 
-**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+**系统能力**: SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
 | 名称             | 类型                                      | 必填   | 说明              |
 | --------------- |-----------------------------------------| ---- |-----------------|
@@ -988,11 +988,11 @@ export default class EntryAbility extends UIAbility {
 | ----------------------- | ---- | --------------------- |
 | SUB_MODE           | 'subMode'    | 子类型。                  |
 
-## ContinuousTaskInfo <sup>20+</sup>
+## ContinuousTaskInfo<sup>20+</sup>
 
 长时任务信息。
 
-**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+**系统能力**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 | 名称          | 类型       | 必填   | 说明                    |
 |-------------|----------| ---- |-----------------------|
