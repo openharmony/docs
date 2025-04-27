@@ -45,6 +45,9 @@ createVpnConnection(context: AbilityContext): VpnConnection
 | 401       | Parameter error.                                 |
 
 **示例：**
+
+**注意：**：关于示例代码中this的说明：在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，[请参见获取UIAbility的上下文消息](http://gitee.com/openharmony/docs/blob/222f8d93e6f0056409aac096e041df3fdd8ae5ec/zh-cn/application-dev/application-models/uiability-usage.md)。
+
 Stage 模型示例：
 
 ```ts
@@ -54,7 +57,7 @@ import { common } from '@kit.AbilityKit';
 @Entry
 @Component
 struct Index {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
   functiontest()
   {
@@ -104,6 +107,8 @@ setUp(config: VpnConfig, callback: AsyncCallback\<number\>): void
 
 **示例：**
 
+**注意：**：关于示例代码中this的说明：在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，[请参见获取UIAbility的上下文消息](http://gitee.com/openharmony/docs/blob/222f8d93e6f0056409aac096e041df3fdd8ae5ec/zh-cn/application-dev/application-models/uiability-usage.md)。
+
 ```js
 import { vpn } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -112,7 +117,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct Index {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
   SetUp(): void {
     let config: vpn.VpnConfig = {
@@ -176,6 +181,8 @@ setUp(config: VpnConfig): Promise\<number\>
 
 **示例：**
 
+**注意：**：关于示例代码中this的说明：在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，[请参见获取UIAbility的上下文消息](http://gitee.com/openharmony/docs/blob/222f8d93e6f0056409aac096e041df3fdd8ae5ec/zh-cn/application-dev/application-models/uiability-usage.md)。
+
 ```js
 import { vpn } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -184,7 +191,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct Index {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
   SetUp(): void {
     let config: vpn.VpnConfig = {
@@ -243,6 +250,8 @@ protect(socketFd: number, callback: AsyncCallback\<void\>): void
 
 **示例：**
 
+**注意：**：关于示例代码中this的说明：在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，[请参见获取UIAbility的上下文消息](http://gitee.com/openharmony/docs/blob/222f8d93e6f0056409aac096e041df3fdd8ae5ec/zh-cn/application-dev/application-models/uiability-usage.md)。
+
 ```js
 import { socket, vpn } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -251,7 +260,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct Index {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
 
   Protect(): void {
@@ -320,6 +329,8 @@ protect(socketFd: number): Promise\<void\>
 
 **示例：**
 
+**注意：**：关于示例代码中this的说明：在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，[请参见获取UIAbility的上下文消息](http://gitee.com/openharmony/docs/blob/222f8d93e6f0056409aac096e041df3fdd8ae5ec/zh-cn/application-dev/application-models/uiability-usage.md)。
+
 ```js
 import { socket, vpn } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -328,7 +339,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct Index {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
 
   Protect(): void {
@@ -391,6 +402,8 @@ destroy(callback: AsyncCallback\<void\>): void
 
 **示例：**
 
+**注意：**：关于示例代码中this的说明：在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，[请参见获取UIAbility的上下文消息](http://gitee.com/openharmony/docs/blob/222f8d93e6f0056409aac096e041df3fdd8ae5ec/zh-cn/application-dev/application-models/uiability-usage.md)。
+
 ```js
 import { vpn } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -399,7 +412,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct Index {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
   Destroy(): void {
     this.VpnConnection.destroy((error: BusinessError) => {
@@ -442,6 +455,8 @@ destroy(): Promise\<void\>
 
 **示例：**
 
+**注意：**：关于示例代码中this的说明：在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，[请参见获取UIAbility的上下文消息](http://gitee.com/openharmony/docs/blob/222f8d93e6f0056409aac096e041df3fdd8ae5ec/zh-cn/application-dev/application-models/uiability-usage.md)。
+
 ```js
 import { vpn } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -450,7 +465,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct Index {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
   Destroy(): void {
     this.VpnConnection.destroy().then(() => {
