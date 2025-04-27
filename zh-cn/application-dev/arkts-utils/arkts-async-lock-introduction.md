@@ -4,15 +4,15 @@
 
 由于ArkTS语言支持异步操作，阻塞锁容易产生死锁问题，因此在ArkTS中仅支持异步锁（非阻塞式锁）。同时，异步锁还可以用于保证单线程内的异步任务时序一致性，防止异步任务时序不确定导致的同步问题。
 
-更多异步锁相关接口，可见[异步锁ArkTSUtils.locks](../reference/apis-arkts/js-apis-arkts-utils.md#arktsutilslocks)。
+更多异步锁相关接口，请参见[异步锁ArkTSUtils.locks](../reference/apis-arkts/js-apis-arkts-utils.md#arktsutilslocks)。
 
 > **说明：**
 >
-> 使用异步锁的方法需要标记为async，调用方需要使用await修饰，才能保证时序正确。
+> 使用异步锁的方法需标记为async，调用时需用await修饰，以确保时序正确。
 
 ## 使用示例
 
-为了解决[@Sendable共享对象](arkts-sendable.md)在不同线程修改共享变量导致的竞争问题，可以采用异步锁进行数据保护。示例如下：
+为了防止[@Sendable共享对象](arkts-sendable.md)在不同线程修改共享变量导致的竞争问题，可以使用异步锁保护数据。示例如下：
 
 ```ts
 import { ArkTSUtils, taskpool } from '@kit.ArkTS';

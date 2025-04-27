@@ -93,7 +93,7 @@ struct UIServiceExtensionAbility {
 
   // 自定义连接UIServiceExtension的函数
   myConnectUIServiceExtensionAbility() {
-    let context = getContext(this) as common.UIAbilityContext;
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     let startWant: Want = {
       deviceId: '',
       bundleName: 'com.acts.myapplication',

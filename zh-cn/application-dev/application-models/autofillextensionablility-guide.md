@@ -127,13 +127,9 @@
 
       ```ts
       import { autoFillManager } from '@kit.AbilityKit';
-      
-      const storage = LocalStorage.getShared();
-      let fillCallback: autoFillManager.FillRequestCallback | undefined = storage.get<autoFillManager.FillRequestCallback>('fillCallback');
-      let viewData: autoFillManager.ViewData | undefined = storage.get<autoFillManager.ViewData>('viewData');
-      
+
       // 将需要回填的数据组装到viewData中，并通过callback的onSuccess带回到客户端用于自动填充
-      function successFunc(data: autoFillManager.ViewData, target: string) {
+      function successFunc(data: autoFillManager.ViewData, target: string, fillCallback?: autoFillManager.FillRequestCallback) {
         console.info(`data.pageNodeInfos.length`, data.pageNodeInfos.length);
         for (let i = 0; i < data.pageNodeInfos.length; i++) {
           console.info(`data.pageNodeInfos[i].isFocus`, data.pageNodeInfos[i].isFocus);
@@ -147,14 +143,14 @@
           fillCallback.onSuccess(response);
         }
       }
-      
-      function failFunc() {
+
+      function failFunc(fillCallback?: autoFillManager.FillRequestCallback) {
         if (fillCallback) {
           fillCallback.onFailure();
         }
       }
-      
-      function cancelFunc(fillContent?: string) {
+
+      function cancelFunc(fillContent?: string, fillCallback?: autoFillManager.FillRequestCallback) {
         if (fillCallback) {
           try {
             fillCallback.onCancel(fillContent);
@@ -163,10 +159,14 @@
           }
         }
       }
-      
+
       @Entry
       @Component
       struct AutoFillControl {
+        storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
+        fillCallback: autoFillManager.FillRequestCallback | undefined = this.storage?.get<autoFillManager.FillRequestCallback>('fillCallback');
+        viewData: autoFillManager.ViewData | undefined = this.storage?.get<autoFillManager.ViewData>('viewData');
+
         build() {
           Column() {
             Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
@@ -177,7 +177,7 @@
                 .fontColor('#000000')
                 .margin({ left: '4.4%' })
             }.margin({ top: '8.8%', left: '4.9%' }).height('7.2%')
-      
+
             Row() {
               Column() {
                 List({ space: 10, initialIndex: 0 }) {
@@ -190,9 +190,9 @@
                       .borderRadius(5)
                   }
                   .onClick(() => {
-                    if (viewData != undefined) {
+                    if (this.viewData != undefined) {
                       // 将选择的账号信息回填到客户端
-                      successFunc(viewData, '15501212262')
+                      successFunc(this.viewData, '15501212262', this.fillCallback);
                     }
                   })
                 }
@@ -215,19 +215,19 @@
               .shadow(ShadowStyle.OUTER_FLOATING_SM)
               .margin({ top: 50 })
             }
-      
+
             Row() {
               Button("Cancel")
                 .onClick(() => {
                   // 放弃本次自动填充的场景触发cancelFunc()通知客户端取消自动填充
-                  cancelFunc();
+                  cancelFunc(undefined, this.fillCallback);
                 })
                 .margin({ top: 30, bottom: 10, left: 10, right: 10 })
-      
+
               Button("Failure")
                 .onClick(() => {
                   // 未获取到账号密码数据的情况下触发failFunc()通知客户端自动填充失败
-                  failFunc();
+                  failFunc(this.fillCallback);
                 })
                 .margin({ top: 30, bottom: 10, left: 10, right: 10 })
             }
@@ -246,11 +246,8 @@
       ```ts
       import { autoFillManager } from '@kit.AbilityKit';
       import { hilog } from '@kit.PerformanceAnalysisKit';
-      
-      let storage=LocalStorage.getShared();
-      let saveRequestCallback = storage.get<autoFillManager.SaveRequestCallback>('saveCallback');
-      
-      function SuccessFunc(success : boolean) {
+
+      function SuccessFunc(success : boolean, saveRequestCallback?: autoFillManager.SaveRequestCallback) {
         if (saveRequestCallback) {
           if (success) {
             saveRequestCallback.onSuccess();
@@ -260,11 +257,14 @@
         }
         hilog.error(0x0000, "testTag", "saveRequestCallback is nullptr!");
       }
-      
+
       @Entry
       @Component
       struct SavePage {
         @State message: string = 'Save Account?'
+        storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
+        saveRequestCallback: autoFillManager.SaveRequestCallback | undefined = this.storage?.get<autoFillManager.SaveRequestCallback>('saveCallback');
+
         build() {
           Row() {
             Column() {
@@ -278,7 +278,7 @@
                   .fontSize(20)
                   .margin({ top: 30, right: 30 })
                   .onClick(() => {
-                    SuccessFunc(true);
+                    SuccessFunc(true, this.saveRequestCallback);
                   })
                 // 用户保存表单数据失败或放弃保存表单数据，点击页面back按钮触发onFailure()回调通知客户端保存表单数据失败
                 Button("back")
@@ -286,7 +286,7 @@
                   .fontSize(20)
                   .margin({ top: 30, left: 30 })
                   .onClick(() => {
-                    SuccessFunc(false);
+                    SuccessFunc(false, this.saveRequestCallback);
                   })
               }
             }

@@ -160,7 +160,7 @@ contentModifier(modifier:ContentModifier\<ProgressConfiguration\>)
 **参数：**
 | 参数名 | 类型   | 必填 | 说明         |
 | ------ | ------ | ---- | ------------ |
-| modifier | [ContentModifier\<ProgressConfiguration\>](#progressconfiguration12) | 是   | 在progress组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
+| modifier | [ContentModifier\<ProgressConfiguration\>](#progressconfiguration12) | 是   | 在progress组件上，定制内容区的方法。<br/>modifier： 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
 
 ### privacySensitive<sup>12+</sup>
 
@@ -189,7 +189,7 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 | 名称 | 类型  | 必填 |说明         |
 | ------ | ------ | ------- |------------|
 | value  | number | 是 | 当前进度值。当设置的数值小于0时，将其置为0。当设置的数值大于total时，将其置为total。<br/>默认值：0<br/>取值范围：[0, total] |
-| total  | number | 是 | 进度总长。<br/>取值范围：[0, +∞]   |
+| total  | number | 是 | 进度总长。<br/>取值范围：[0, +∞)   |
 
 ## CommonProgressStyleOptions<sup>10+</sup>
 

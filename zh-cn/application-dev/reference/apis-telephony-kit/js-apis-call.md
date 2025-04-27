@@ -228,7 +228,7 @@ makeCall\(context: Context, phoneNumber: string\): Promise\<void\>
 
 | 参数名      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| context | Context | 是   | 应用上下文Context |
+| context | Context | 是   | 应用上下文Context。 |
 | phoneNumber | string | 是   | 电话号码。 |
 
 **返回值：**

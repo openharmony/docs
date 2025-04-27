@@ -30,7 +30,7 @@
     @Entry
     @Component
     struct Index {
-      private context = getContext(this) as common.UIAbilityContext;
+      private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
       private callbackId: number = 0; // 注册订阅系统环境变化的ID
 
       subscribeConfigurationUpdate(): void {
@@ -81,7 +81,7 @@
     @Entry
     @Component
     struct Index {
-      private context = getContext(this) as common.UIAbilityContext;
+      private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
       private callbackId: number = 0; // 注册订阅系统环境变化的ID
 
       unsubscribeConfigurationUpdate() {

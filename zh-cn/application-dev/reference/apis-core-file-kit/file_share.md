@@ -15,7 +15,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [oh_file_share.h](oh__file__share_8h.md) | 提供基于URI的文件及目录授于持久化权限、权限激活、权限查询等方法。 | 
+| [oh_file_share.h](oh__file__share_8h.md) | 提供基于URI的文件及目录授予持久化权限、权限激活、权限查询等方法。 | 
 
 
 ### 结构体
@@ -182,8 +182,7 @@ ohos.permission.FILE_ACCESS_PERSIST
 
 **返回：**
 
-返回FileManageMent模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
-
+返回FileManagement模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
 **E_PARAMS** 401 - 输入参数无效。可能的原因有：  
 1.参数policies或参数result或参数resultNum为空指针；  
 2.参数policyNum值为0或者超过最大长度(500)；  
@@ -195,7 +194,6 @@ ohos.permission.FILE_ACCESS_PERSIST
 **E_EPERM** 13900001 - 操作不被允许。  
 **E_UNKNOWN_ERROR** 13900042 - 内部未知错误，调用其它部件返回的除以上错误之外的其它错误。  
 **E_NO_ERROR** 0 - 接口调用成功。
-
 
 ### OH_FileShare_CheckPersistentPermission()
 
@@ -216,7 +214,7 @@ FileManagement_ErrCode OH_FileShare_CheckPersistentPermission (const FileShare_P
 | policies | 一个指向FileShare_PolicyInfo实例的指针。 | 
 | policyNum | FileShare_PolicyInfo实例数组的大小。 | 
 | result | 授权校验结果指针。请引用头文件malloc.h并使用free()进行资源释放。 | 
-| resultNum | 校验结果数组的大小。 | 
+| resultNum | 校验结果数组的大小。| 
 
 **需要权限：**
 
@@ -224,8 +222,7 @@ ohos.permission.FILE_ACCESS_PERSIST
 
 **返回：**
 
-返回FileManageMent模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
-
+返回FileManagement模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
 **E_PARAMS** 401 - 输入参数无效。可能的原因有：  
 1.参数policies或参数result或参数resultNum为空指针；  
 2.参数policyNum值为0或者超过最大长度(500)；  
@@ -266,8 +263,7 @@ ohos.permission.FILE_ACCESS_PERSIST
 
 **返回：**
 
-返回FileManageMent模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
-
+返回FileManagement模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
 **E_PARAMS** 401 - 输入参数无效。可能的原因有：  
 1.参数policies或参数result或参数resultNum为空指针；  
 2.参数policyNum值为0或者超过最大长度(500)；  
@@ -308,8 +304,7 @@ ohos.permission.FILE_ACCESS_PERSIST
 
 **返回：**
 
-返回FileManageMent模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
-
+返回FileManagement模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
 **E_PARAMS** 401 - 输入参数无效。可能的原因有：  
 1.参数policies或参数result或参数resultNum为空指针；  
 2.参数policyNum值为0或者超过最大长度(500)；  
@@ -369,7 +364,7 @@ ohos.permission.FILE_ACCESS_PERSIST
 
 **返回：**
 
-返回FileManageMent模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
+返回FileManagement模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
 **E_PARAMS** 401 - 输入参数无效。可能的原因有：  
 1.参数policies或参数result或参数resultNum为空指针；  
 2.参数policyNum值为0或者超过最大长度(500)；  
