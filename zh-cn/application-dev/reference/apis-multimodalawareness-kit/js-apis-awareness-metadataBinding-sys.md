@@ -36,7 +36,7 @@ encodeImage(srcImage: image.PixelMap, metadata: string): Promise<image.PixelMap>
 | -------- | ------------------------------------------------------------ |
 |   202    | Permission check failed. A non-system application uses the system API.|
 |32100001  | Internal handling failed. File creation failed.|
-|32100002  | Encode process fail.|
+|32100002  | Encode process fail. Possible causes: 1. Image processing error; 2. Channel coding error|
 
 **示例**：
 
@@ -77,7 +77,7 @@ function decodeImage(encodedImage: image.PixelMap): Promise\<string\>
 | -------- | ------------------------------------------------------------ |
 |   202    | Permission check failed. A non-system application uses the system API.|
 |32100001  | Internal handling failed. File read failed.|
-|32100003  | Decode process fail.|
+|32100003  | Decode process fail. Possible causes: 1. Image is not an encoded Image; 2. Image destroyed, decoding failed|
 
 **示例：**  
 ```ts
