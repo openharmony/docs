@@ -2034,7 +2034,6 @@ struct TabsSwiperExample {
 
 ![tabs13](figures/tabs_swiper_lazyForEach.gif)
 
-
 ### 示例14（页签超出TabBar区域显示）
 
 本示例通过使用barModifier设置tabBar的clip属性实现页签超出tabBar区域显示效果。
