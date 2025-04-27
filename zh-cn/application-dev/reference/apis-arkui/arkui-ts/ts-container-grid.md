@@ -71,7 +71,7 @@ columnsTemplate(value: string)
 
 设置当前网格布局列的数量、固定列宽或最小列宽值，不设置时默认1列。
 
-例如,&nbsp;'1fr&nbsp;1fr&nbsp;2fr'&nbsp;是将父组件分3列，将父组件允许的宽分为4等份，第一列占1份，第二列占1份，第三列占2份。
+例如，&nbsp;'1fr&nbsp;1fr&nbsp;2fr'&nbsp;是将父组件分3列，将父组件允许的宽分为4等份，第一列占1份，第二列占1份，第三列占2份。
 
 columnsTemplate('repeat(auto-fit, track-size)')是设置最小列宽值为track-size，自动计算列数和实际列宽。
 
@@ -102,7 +102,7 @@ rowsTemplate(value: string)
 
 设置当前网格布局行的数量、固定行高或最小行高值，不设置时默认1行。
 
-例如,&nbsp;'1fr&nbsp;1fr&nbsp;2fr'是将父组件分3行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。
+例如，&nbsp;'1fr&nbsp;1fr&nbsp;2fr'是将父组件分3行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。
 
 rowsTemplate('repeat(auto-fit, track-size)')是设置最小行高值为track-size，自动计算行数和实际行高。
 
@@ -1285,7 +1285,7 @@ struct GridExample {
 
 ### 示例6（自适应Grid）
 
-layoutDirection、maxcount、minCount、cellLength的使用。
+layoutDirection、maxCount、minCount、cellLength的使用。
 
 ```ts
 @Entry
@@ -1303,7 +1303,7 @@ struct GridExample {
     Scroll() {
       Column({ space: 5 }) {
         Blank()
-        Text('rowsTemplate、columnsTemplate都不设置layoutDirection、maxcount、minCount、cellLength才生效')
+        Text('rowsTemplate、columnsTemplate都不设置layoutDirection、maxCount、minCount、cellLength才生效')
           .fontSize(15).fontColor(0xCCCCCC).width('90%')
         Grid() {
           ForEach(this.numbers, (day: string) => {
