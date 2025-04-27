@@ -878,6 +878,8 @@
 | int32_t [OH_ArkUI_GetGestureParam_duration](#oh_arkui_getgestureparam_duration) (ArkUI_GestureRecognizer \*recognizer, int\* duration) | 获取手势识别器的触发长按的最短时间。 |
 | int32_t [OH_ArkUI_GetGestureParam_angle](#oh_arkui_getgestureparam_angle) (ArkUI_GestureRecognizer \*recognizer, double\* angle) | 获取手势识别器的旋转手势的最小改变度数。 |
 | int32_t [OH_ArkUI_GetGestureParam_distanceThreshold](#oh_arkui_getgestureparam_distancethreshold) (ArkUI_GestureRecognizer \*recognizer, double\* distanceThreshold) | 获取手势识别器的手势移动阈值。 |
+| ArkUI_ErrorCode [OH_ArkUI_SetGestureParamDistanceMap](#oh_arkui_setgestureparamdistancemap) (ArkUI_GestureRecognizer \*recognizer, int size, int\* toolTypeArray, double\* distanceArray) | 设置手势最小滑动阈值表。 |
+| ArkUI_ErrorCode [OH_ArkUI_PanGesture_GetDistanceByToolType](#oh_arkui_pangesture_getdistancebytooltype) (ArkUI_GestureRecognizer \*recognizer, int toolType, double\* distance) | 获取手势识别器的手势移动阈值表。 |
 |int32_t [OH_ArkUI_DragEvent_RequestDragEndPending](#oh_arkui_dragevent_requestdragendpending)([ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent)\* event, int32_t* requestIdentify); | 请求延迟执行拖拽结束。|
 |int32_t [OH_ArkUI_NotifyDragResult](#oh_arkui_notifydragresult)(int32_t requestIdentify, [ArkUI_DragResult](#arkui_dragresult) \* result); | 通知拖拽结果。|
 |int32_t [OH_ArkUI_NotifyDragEndPendingDone](#oh_arkui_notifydragendpendingdone)(int32_t requestIdentify);| 通知拖拽延迟执行结束。|
@@ -18227,13 +18229,63 @@ int32_t OH_ArkUI_GetGestureParam_distanceThreshold(ArkUI_GestureRecognizer* reco
 | 名称 | 描述 | 
 | -------- | -------- |
 | recognizer | 手势识别器指针。  | 
-| distanceThreshold | 手势识别器的手势移动阈值。  | 
+| distanceThreshold | 手势识别器的手势移动阈值。单位：px。  | 
 
 **返回：**
 
 ARKUI_ERROR_CODE_NO_ERROR 成功。
 ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED 不支持手势识别器类型。
 
+### OH_ArkUI_SetGestureParamDistanceMap()
+
+```
+ArkUI_ErrorCode OH_ArkUI_SetGestureParamDistanceMap(ArkUI_GestureRecognizer* recognizer, int size, int* toolTypeArray, double* distanceArray)
+```
+**描述：**
+
+设置手势最小滑动阈值表。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| recognizer | 手势识别器指针。  | 
+| size | 手势最小滑动阈值数组的大小。 |
+| toolTypeArray | 指向输入事件的工具类型数组的指针。 |
+| distanceArray | 指向最小滑动阈值数组的指针。 |
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。
+ARKUI_ERROR_CODE_PARAM_INVALID 参数错误。
+ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED 不支持手势识别器类型。
+
+### OH_ArkUI_PanGesture_GetDistanceByToolType()
+
+```
+ArkUI_ErrorCode OH_ArkUI_PanGesture_GetDistanceByToolType(ArkUI_GestureRecognizer* recognizer, int toolType, double* distance)
+```
+**描述：**
+
+获取手势识别器的手势移动阈值表。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| recognizer | 手势识别器指针。  | 
+| toolType | 输入事件的工具类型。 |
+| distance | 手势识别器的手势移动阈值。 |
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。
+ARKUI_ERROR_CODE_PARAM_INVALID 参数错误。
+ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED 不支持手势识别器类型。
 
 ### OH_ArkUI_DragEvent_RequestDragEndPending()
 

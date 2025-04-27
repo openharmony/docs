@@ -80,8 +80,6 @@
 
 ```ts
 // Index.ets
-import { router } from '@kit.ArkUI';
-
 @Entry
 @Component
 struct MyComponent {
@@ -137,7 +135,7 @@ struct MyComponent {
       // push到Page页面，执行onPageHide
       Button('push to next page')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/Page' });
+          this.getUIContext().getRouter().pushUrl({url: 'pages/Page'});
         })
     }
   }
@@ -284,7 +282,7 @@ Page aboutToDisappear
 
 ```ts
 // Index.ets
-import { uiObserver, router, UIObserver } from '@kit.ArkUI';
+import { uiObserver, UIObserver } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -313,9 +311,7 @@ struct Index {
         .fontSize(25)
       Button("push self")
         .onClick(() => {
-          router.pushUrl({
-            url: 'pages/Index'
-          })
+          this.getUIContext().getRouter().pushUrl({url: 'pages/Index'});
         })
       Column() {
         SubComponent()

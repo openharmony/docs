@@ -123,6 +123,7 @@ Access to script at 'xxx' from origin 'xxx' has been blocked by CORS policy: Cro
   @Component
   struct WebComponent {
     controller: WebviewController = new webview.WebviewController();
+    uiContext: UIContext = this.getUIContext();
 
     build() {
       Row() {
@@ -131,12 +132,12 @@ Access to script at 'xxx' from origin 'xxx' has been blocked by CORS policy: Cro
             try {
               // 设置允许可以跨域访问的路径列表
               this.controller.setPathAllowingUniversalAccess([
-                getContext().resourceDir,
-                getContext().filesDir + "/example"
+                this.uiContext.getHostContext()!.resourceDir,
+                this.uiContext.getHostContext()!.filesDir + "/example"
               ])
-              this.controller.loadUrl("file://" + getContext().resourceDir + "/index.html")
+              this.controller.loadUrl("file://" + this.uiContext.getHostContext()!.resourceDir + "/index.html")
             } catch (error) {
-              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as   BusinessError).message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code}, Message: ${(error as BusinessError).message}`);
             }
           })
           .javaScriptAccess(true)

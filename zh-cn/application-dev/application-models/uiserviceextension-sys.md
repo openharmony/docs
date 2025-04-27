@@ -170,7 +170,7 @@
 
 ### 启动UIServiceExtension
 
-应用通过[startUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartuiserviceextensionability14)方法启动一个[UIServiceExtension](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md)，组件的[onRequest()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#uiserviceextensionabilityonrequest)回调就会被调用，并在该回调方法中接收到调用者传递过来的want对象。[UIServiceExtension](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md)启动后，其生命周期独立于客户端，即使客户端已经销毁，该后台服务仍可继续运行，窗口创建失败或销毁后该服务会被销毁。因此，后台服务需要在其工作完成时通过调用[UIServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-uiserviceExtensionContext-sys.md)的[terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-uiserviceExtensionContext-sys.md#uiserviceextensioncontextterminateself13)来自行停止。
+应用通过[startUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartuiserviceextensionability14)方法启动一个[UIServiceExtension](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md)，组件的[onRequest()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#uiserviceextensionabilityonrequest)回调就会被调用，并在该回调方法中接收到调用者传递过来的want对象。[UIServiceExtension](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md)启动后，其生命周期独立于客户端，即使客户端已经销毁，该后台服务仍可继续运行，窗口创建失败或销毁后该服务会被销毁。因此，后台服务需要在其工作完成时通过调用[UIServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-uiserviceExtensionContext-sys.md)的[terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-uiserviceExtensionContext-sys.md#uiserviceextensioncontextterminateself)来自行停止。
 
   在应用中启动一个新的[UIServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md)。示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
 
@@ -189,7 +189,7 @@ struct Index {
         Button('start ability')
           .enabled(true)
           .onClick(() => {
-            let context = getContext(this) as common.UIAbilityContext;
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
             let startWant: Want = {
               bundleName: 'com.acts.uiserviceextensionability',
               abilityName: 'UiServiceExtAbility',
@@ -221,19 +221,19 @@ struct Index {
     ```ts
     import { common, Want } from '@kit.AbilityKit';
     import { BusinessError } from '@kit.BasicServicesKit';
-    
+
     @Entry
     @Component
     struct Page_UIServiceExtensionAbility {
       @State uiServiceProxy: common.UIServiceProxy | null = null;
-    
+
       build() {
         Column() {
           //...
           Row() {
             //...
           }.onClick(() => {
-            const context = getContext(this) as common.UIAbilityContext;
+            const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
             const want: Want = {
               deviceId: '',
               bundleName: 'com.example.myapplication',
@@ -265,19 +265,19 @@ struct Index {
     ```ts
     import { common } from '@kit.AbilityKit';
     import { BusinessError } from '@kit.BasicServicesKit';
-    
+
     @Entry
     @Component
     struct Page_UIServiceExtensionAbility {
       @State uiServiceProxy: common.UIServiceProxy | null = null;
-    
+
       build() {
         Column() {
           //...
           Row() {
             //...
           }.onClick(() => {
-            const context = getContext(this) as common.UIAbilityContext;
+            const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
             // this.uiServiceProxy是连接时保存的proxy对象
             context.disconnectUIServiceExtensionAbility(this.uiServiceProxy).then(() => {
               console.log('disconnectUIServiceExtensionAbility success');
@@ -309,7 +309,7 @@ struct Index {
     ```ts
     import { common, Want} from '@kit.AbilityKit';
     import { BusinessError } from '@kit.BasicServicesKit';
-    
+
     @Entry
     @Component
     struct Index {
@@ -322,7 +322,7 @@ struct Index {
           console.log("onDisconnect");
         }
       }
-    
+
       build() {
         Column() {
           Row() {
@@ -330,14 +330,14 @@ struct Index {
             Button("connect ability")
               .enabled(true)
               .onClick(() => {
-                let context = getContext(this) as common.UIAbilityContext;
+                let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
                 let startWant:Want = {
                   bundleName: 'com.acts.uiserviceextensionability',
                   abilityName: 'UiServiceExtAbility',
                 };
                 try {
-                // 连接UIServiceExtensionAbility
-                context.connectUIServiceExtensionAbility(startWant, this.connectCallback).then((proxy: common.UIServiceProxy) => {
+                  // 连接UIServiceExtensionAbility
+                  context.connectUIServiceExtensionAbility(startWant, this.connectCallback).then((proxy: common.UIServiceProxy) => {
                     this.comProxy = proxy;
                     let formData: Record<string, string> = {
                       'test': 'test'
