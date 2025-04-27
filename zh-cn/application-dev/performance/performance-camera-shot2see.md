@@ -323,7 +323,7 @@
        let curPhotoAsset = GlobalContext.get().getT<photoAccessHelper.PhotoAsset>('imageInfo');
        this.photoUri = curPhotoAsset.uri;
        let requestImageParams: RequestImageParams = {
-         context: getContext(),
+         context: this.getUIContext().getHostContext(),
          photoAsset: curPhotoAsset,
          callback: this.photoBufferCallback
        };

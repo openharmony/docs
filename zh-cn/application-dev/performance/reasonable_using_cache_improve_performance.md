@@ -131,7 +131,7 @@ struct Index {
    * @returns
    */
   async saveImage(buffer: ArrayBuffer | string): Promise<void> {
-    const context = getContext(this) as common.UIAbilityContext;
+    const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     const filePath: string = context.cacheDir + '/test.jpg';
     AppStorage.set('net_picture', filePath);
     const file = await fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
@@ -157,7 +157,7 @@ struct Index {
   }
 
   async aboutToAppear(): Promise<void> {
-    const context = getContext(this) as common.UIAbilityContext;
+    const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     const atManager = abilityAccessCtrl.createAtManager();
     await atManager.requestPermissionsFromUser(context, PERMISSIONS);
     this.useCachePic(); // 从本地缓存获取数据
@@ -229,7 +229,7 @@ const MYLOCATION = 'myLocation';
 // 定义获取模糊位置的权限
 const PERMISSIONS: Array<Permissions> = ['ohos.permission.APPROXIMATELY_LOCATION'];
 // 获取上下文信息
-const context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+const context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // 初始化PersistentStorage。PersistentStorage用于持久化存储选定的AppStorage属性
 PersistentStorage.persistProp(MYLOCATION, '');
 
@@ -425,7 +425,7 @@ import { common } from '@kit.AbilityKit';
 import { httpRequest } from '../utils/NetRequest';
 
 // 获取应用文件路径
-let context = getContext(this) as common.UIAbilityContext;
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let filesDir = context.filesDir;
 let fileUrl = filesDir + '/xxx.png'; // 当使用实际网络地址时，需填入实际地址的后缀。
 let para: Record<string, PixelMap | undefined> = { 'imageData': undefined };
@@ -492,7 +492,7 @@ import { fileIo as fs } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
 
 // 获取应用文件路径
-let context = getContext(this) as common.UIAbilityContext;
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let filesDir = context.filesDir;
 let fileUrl = filesDir + '/xxx.png'; // 当使用实际网络地址时，需填入实际地址的后缀。
 

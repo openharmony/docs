@@ -44,17 +44,18 @@ struct ViewA {
   aboutToAppear() {
     // 耗时操作
     this.computeTask();
-    let context = context.resourceManager.getStringSync($r('app.string.startup_text'));
+    let context = this.getUIContext().getHostContext() as Context;
+    this.text = context.resourceManager.getStringSync($r('app.string.startup_text'));
   }
 
   computeTask(): void {
     this.count = 0;
-    while (this.count < LARGE_NUMBER) {
-    this.count++;
+      while (this.count < LARGE_NUMBER) {
+      this.count++;
+    }
+    let context = this.getUIContext().getHostContext() as Context;
+    this.text = context.resourceManager.getStringSync($r('app.string.task_text'));
   }
-  let context = getContext(this) as Context;
-  this.text = context.resourceManager.getStringSync($r('app.string.task_text'));
-}
 }
 ```
 #### 正例
@@ -70,26 +71,26 @@ struct ViewB {
   aboutToAppear() {
     // 耗时操作
     this.computeTaskAsync(); // 异步任务
-    let context = getContext(this) as Context;
+    let context = this.getUIContext().getHostContext() as Context;
     this.text = context.resourceManager.getStringSync($r('app.string.startup_text'));
   }
 
   computeTask(): void {
     this.count = 0;
     while (this.count < LARGE_NUMBER) {
-    this.count++;
+      this.count++;
+    }
+    let context = this.getUIContext().getHostContext() as Context;
+    this.text = context.resourceManager.getStringSync($r('app.string.task_text'));
   }
-  let context = getContext(this) as Context;
-  this.text = context.resourceManager.getStringSync($r('app.string.task_text'));
-}
 
-// 运算任务异步处理
-private computeTaskAsync(): void {
-  setTimeout(() => {
-  // 这里使用setTimeout来实现异步延迟运行
-  this.computeTask();
-  }, DELAYED_TIME)
-}
+  // 运算任务异步处理
+  private computeTaskAsync(): void {
+    setTimeout(() => {
+      // 这里使用setTimeout来实现异步延迟运行
+      this.computeTask();
+    }, DELAYED_TIME)
+  }
 }
 ```
 #### 高频程度&收益（5满分）
@@ -636,7 +637,7 @@ struct ViewA {
    * 弹窗函数
    */
   showToast() {
-    promptAction.showToast({
+    this.getUIContext().getPromptAction().showToast({
       message: $r('app.string.water_mark_toast_message')
     })
   }
@@ -662,7 +663,7 @@ struct ViewB {
    * 弹窗函数
    */
   showToast() {
-    promptAction.showToast({
+    this.getUIContext().getPromptAction().showToast({
       message: $r('app.string.water_mark_toast_message')
     })
   }
@@ -927,5 +928,4 @@ struct ViewB {
 1
 
 <!--no_check-->
-
 
