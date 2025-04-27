@@ -42,7 +42,7 @@
 | -------- | -------- |
 | [OH_AVImageGenerator](#oh_avimagegenerator) \* [OH_AVImageGenerator_Create](#oh_avimagegenerator_create) (void) | 创建OH_AVImageGenerator实例，用于生成指定时间点视频帧。  | 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVImageGenerator_SetFDSource](#oh_avimagegenerator_setfdsource) ([OH_AVImageGenerator](#oh_avimagegenerator) \*generator, int32_t fd, int64_t offset, int64_t size) | 通过媒体文件描述设置数据源。  | 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVImageGenerator_FetchFrameByTime](#oh_avimagegenerator_fetchframebytime) ([OH_AVImageGenerator](#oh_avimagegenerator) \*generator, int64_t timeUs, [OH_AVImageGenerator_QueryOptions](#oh_avimagegenerator_queryoptions) options, OH_PixelmapNative \*\*pixelMap) | 从视频资源中获取指定时间的视频帧。  | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVImageGenerator_FetchFrameByTime](#oh_avimagegenerator_fetchframebytime) ([OH_AVImageGenerator](#oh_avimagegenerator) \*generator, int64_t timeUs, [OH_AVImageGenerator_QueryOptions](#oh_avimagegenerator_queryoptions) options, OH_PixelmapNative \*\*pixelMap) | 从视频资源中获取指定时间点视频帧。  | 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVImageGenerator_Release](#oh_avimagegenerator_release) ([OH_AVImageGenerator](#oh_avimagegenerator) \*generator) | 释放用于OH_AVImageGenerator的资源以及销毁OH_AVImageGenerator实例。  | 
 
 
@@ -147,9 +147,9 @@ OH_AVErrCode OH_AVImageGenerator_FetchFrameByTime(OH_AVImageGenerator* generator
 
 AV_ERR_OK：执行成功。
 
-AV_ERR_INVALID_VAL：输入generator为空指针或者输入参数无效。
+AV_ERR_INVALID_VAL：输入generator为空指针或参数无效。
 
-AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+AV_ERR_OPERATE_NOT_PERMIT：操作被禁止。
 
 AV_ERR_UNSUPPORTED_FORMAT：格式不支持。
 
@@ -179,7 +179,7 @@ OH_AVErrCode OH_AVImageGenerator_Release(OH_AVImageGenerator* generator)
 
 AV_ERR_OK：执行成功。
 
-AV_ERR_INVALID_VAL：输入generator为空指针或者输入参数无效。
+AV_ERR_INVALID_VAL：输入generator为空指针或参数无效。。
 
 
 ### OH_AVImageGenerator_SetFDSource()
@@ -207,7 +207,7 @@ OH_AVErrCode OH_AVImageGenerator_SetFDSource(OH_AVImageGenerator* generator, int
 
 函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
 
-AV_ERR_OK：操作成功。
+AV_ERR_OK：执行成功。
 
 AV_ERR_INVALID_VAL：输入的generator为空指针或参数无效。
 
