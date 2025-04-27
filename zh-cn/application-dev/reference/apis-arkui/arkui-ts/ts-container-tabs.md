@@ -1480,7 +1480,7 @@ struct TabsCustomAnimationExample {
         this.scaleList[to] = 0.5;
         this.opacityList[from] = 1.0;
         this.opacityList[to] = 0.5;
-        this.getUIContext()?.animateTo({
+        animateTo({
           duration: this.durationList[from],
           onFinish: () => {
             proxy.finishTransition();
@@ -1724,7 +1724,7 @@ struct TabsExample {
       .backgroundColor('#F1F3F5')
       .animationDuration(this.animationDuration)
       .onChange((index: number) => {
-        this.currentIndex = index;// 监听索引index的变化，实现页签内容的切换。
+        this.currentIndex = index; // 监听索引index的变化，实现页签内容的切换。
       })
       .onAnimationStart((index: number, targetIndex: number, event: TabsAnimationEvent) => {
         // 切换动画开始时触发该回调。下划线跟着页面一起滑动，同时宽度渐变。
@@ -2033,7 +2033,6 @@ struct TabsSwiperExample {
 ```
 
 ![tabs13](figures/tabs_swiper_lazyForEach.gif)
-
 
 ### 示例14（页签超出TabBar区域显示）
 
@@ -2356,4 +2355,5 @@ struct TabsExample {
   }
 }
 ```
+
 ![tabs17](figures/tabs_edges_slide.gif)
