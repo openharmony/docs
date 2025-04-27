@@ -755,7 +755,7 @@ getAllContinuousTasks(context: Context): Promise&lt;ContinuousTaskInfo[]&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -990,7 +990,7 @@ export default class EntryAbility extends UIAbility {
 
 ## ContinuousTaskInfo <sup>20+</sup>
 
-所有短时任务信息。
+长时任务信息。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
