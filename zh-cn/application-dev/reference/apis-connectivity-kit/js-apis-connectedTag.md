@@ -256,9 +256,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let rawData = "010203"; // change it to be correct.
 connectedTag.writeNdefTag(rawData).then(() => {
-    console.log("connectedTag writeNdefTag Promise success.");
+    console.log("connectedTag.writeNdefTag Promise success.");
 }).catch((err: BusinessError)=> {
-    console.log("connectedTag writeNdefTag Promise err: " + err);
+    console.log("connectedTag.writeNdefTag Promise err: " + err);
 });
 ```
 
@@ -303,9 +303,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let rawData = [0x01, 0x02, 0x03]; // change it to be correct.
 connectedTag.write(rawData).then(() => {
-    console.log("connectedTag write NdefTag Promise success.");
+    console.log("connectedTag.writeNdefTag Promise success.");
 }).catch((err: BusinessError)=> {
-    console.log("connectedTag write NdefTag Promise err: " + err);
+    console.log("connectedTag.writeNdefTag Promise err: " + err);
 });
 ```
 
@@ -334,9 +334,9 @@ import { connectedTag } from '@kit.ConnectivityKit';
 let rawData = "010203"; // change it to be correct.
 connectedTag.writeNdefTag(rawData, (err)=> {
     if (err) {
-        console.log("connectedTag writeNdefTag AsyncCallback err: " + err);
+        console.log("connectedTag.writeNdefTag AsyncCallback err: " + err);
     } else {
-        console.log("connectedTag writeNdefTag AsyncCallback success.");
+        console.log("connectedTag.writeNdefTag AsyncCallback success.");
     }
 });
 ```
@@ -377,9 +377,9 @@ import { connectedTag } from '@kit.ConnectivityKit';
 let rawData = [0x01, 0x02, 0x03]; // change it to be correct.
 connectedTag.write(rawData, (err)=> {
     if (err) {
-        console.log("connectedTag write NdefTag AsyncCallback err: " + err);
+        console.log("connectedTag.writeNdefTag AsyncCallback err: " + err);
     } else {
-        console.log("connectedTag write NdefTag AsyncCallback success.");
+        console.log("connectedTag.writeNdefTag AsyncCallback success.");
     }
 });
 ```
