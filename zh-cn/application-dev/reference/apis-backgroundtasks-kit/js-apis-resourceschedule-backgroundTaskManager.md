@@ -221,7 +221,7 @@ getAllTransientTasks(): Promise&lt;TransientTaskInfo&gt;
 
 | 类型                                      | 说明          |
 |-----------------------------------------|-------------|
-| [TransientTaskInfo](#transienttaskinfo) | 返回所有短时任务信息。 |
+| [TransientTaskInfo](#transienttaskinfo20) | 返回所有短时任务信息。 |
 
 **示例**：
 
