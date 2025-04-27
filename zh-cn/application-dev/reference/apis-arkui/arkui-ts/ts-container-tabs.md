@@ -310,8 +310,7 @@ barBackgroundBlurStyle(value: BlurStyle)
 | 参数名 | 类型                                         | 必填 | 说明                                     |
 | ------ | -------------------------------------------- | ---- | ---------------------------------------- |
 | value  | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 是   | TabBar的背景模糊材质。<br />默认值：BlurStyle.NONE |
- 
-### barGridAlign<sup>10+</sup>
+ ### barGridAlign<sup>10+</sup>
 
 barGridAlign(value: BarGridColumnOptions)
 
@@ -2304,7 +2303,7 @@ struct TabsExample {
 
 ### 示例17（设置边缘滑动效果）
 
-该示例通过edgeEffect实现不同边缘滑动效果。
+该示例通过edgeEffect实现了不同边缘滑动效果。
 
 ```ts
 // xxx.ets
