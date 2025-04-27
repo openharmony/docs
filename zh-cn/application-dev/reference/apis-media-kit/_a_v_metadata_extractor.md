@@ -129,9 +129,9 @@ OH_AVErrCode OH_AVMetadataExtractor_FetchAlbumCover(OH_AVMetadataExtractor* extr
 
 AV_ERR_OK：执行成功。
 
-AV_ERR_INVALID_VAL：输入extractor为空指针或者输入参数无效。
+AV_ERR_INVALID_VAL：输入的extractor为空指针或参数无效。
 
-AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+AV_ERR_OPERATE_NOT_PERMIT：操作被禁止。
 
 AV_ERR_UNSUPPORTED_FORMAT：格式不支持。
 
@@ -163,9 +163,9 @@ OH_AVErrCode OH_AVMetadataExtractor_FetchMetadata(OH_AVMetadataExtractor* extrac
 
 AV_ERR_OK：执行成功。
 
-AV_ERR_INVALID_VAL：输入extractor为空指针或者输入参数无效。
+AV_ERR_INVALID_VAL：输入的extractor为空指针或参数无效。
 
-AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+AV_ERR_OPERATE_NOT_PERMIT：操作被禁止。
 
 AV_ERR_UNSUPPORTED_FORMAT：格式不支持。
 
@@ -196,7 +196,7 @@ OH_AVErrCode OH_AVMetadataExtractor_Release(OH_AVMetadataExtractor* extractor)
 
 AV_ERR_OK：执行成功。
 
-AV_ERR_INVALID_VAL：输入extractor为空指针或者输入参数无效。
+AV_ERR_INVALID_VAL：输入的extractor为空指针或参数无效。
 
 
 ### OH_AVMetadataExtractor_SetFDSource()
@@ -226,9 +226,9 @@ OH_AVErrCode OH_AVMetadataExtractor_SetFDSource(OH_AVMetadataExtractor* extracto
 
 AV_ERR_OK：执行成功。
 
-AV_ERR_INVALID_VAL：输入extractor为空指针或者输入参数无效。
+AV_ERR_INVALID_VAL：输入的extractor为空指针或参数无效。
 
-AV_ERR_OPERATE_NOT_PERMIT：操作不允许。
+AV_ERR_OPERATE_NOT_PERMIT：操作被禁止。
 
 AV_ERR_NO_MEMORY：内部内存分配失败。
 

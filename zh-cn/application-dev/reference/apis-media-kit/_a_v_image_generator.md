@@ -115,7 +115,7 @@ OH_AVImageGenerator* OH_AVImageGenerator_Create(void)
 
 **返回：**
 
-如果创建成功返回指向OH_AVImageGenerator实例的指针，否则返回空指针。
+创建成功时返回指向OH_AVImageGenerator实例的指针，否则返回空指针。
 
 可能的失败原因：HstEngineFactory未能创建AVMetadataHelperEngine。
 
@@ -147,7 +147,7 @@ OH_AVErrCode OH_AVImageGenerator_FetchFrameByTime(OH_AVImageGenerator* generator
 
 AV_ERR_OK：执行成功。
 
-AV_ERR_INVALID_VAL：输入generator为空指针或参数无效。
+AV_ERR_INVALID_VAL：输入的generator为空指针或参数无效。
 
 AV_ERR_OPERATE_NOT_PERMIT：操作被禁止。
 
@@ -179,7 +179,7 @@ OH_AVErrCode OH_AVImageGenerator_Release(OH_AVImageGenerator* generator)
 
 AV_ERR_OK：执行成功。
 
-AV_ERR_INVALID_VAL：输入generator为空指针或参数无效。。
+AV_ERR_INVALID_VAL：输入的generator为空指针或参数无效。。
 
 
 ### OH_AVImageGenerator_SetFDSource()
