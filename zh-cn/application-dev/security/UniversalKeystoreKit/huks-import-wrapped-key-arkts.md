@@ -29,9 +29,9 @@
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
 
-let IV = '0000000000000000';
+let IV = '0000000000000000'; // 此处的IV(Initialization Vector)为随机数，用于在加密过程中对明文进行初始处理，增加安全性
 let AAD = "abababababababab";
-let NONCE = "hahahahahaha";
+let NONCE = "hahahahahaha"; // 此处的NONCE(Number used once)为随机数，用于增强系统安全性、防止攻击并确保数据唯一性
 let TAG_SIZE = 16;
 let FILED_LENGTH = 4;
 let importedAes192PlainKey = "The aes192 key to import";

@@ -109,7 +109,7 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 /*
  * 确定密钥别名和封装密钥属性参数集
  */
-let IV = '1234567890123456';
+let IV = '1234567890123456'; // 此处的IV(Initialization Vector)为随机数，用于在加密过程中对明文进行初始处理，增加安全性
 let srcKeyAlias = 'test_sm4_key_alias';
 let handle: number;
 let challenge: Uint8Array;
@@ -252,7 +252,7 @@ import { huks } from '@kit.UniversalKeystoreKit';
 /*
 * 确定封装密钥属性参数集
 */
-let IV = '1234567890123456';
+let IV = '1234567890123456'; // 此处的IV(Initialization Vector)为随机数，用于在加密过程中对明文进行初始处理，增加安全性
 let cipherInData = 'Hks_SM4_Cipher_Test_101010101010101010110_string';
 let handle: number;
 let fingerAuthToken: Uint8Array;
