@@ -160,7 +160,7 @@ API version 18之前：
 
 Repeat组件在virtualScroll模式下默认启用复用功能。从API version 18开始，可以通过配置`reusable`字段选择是否启用复用功能。为提高渲染性能，建议启用复用功能。代码示例见[VirtualScrollOptions对象说明](../../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md#virtualscrolloptions对象说明)。
 
-通过典型的[滑动场景](#滑动场景)和[数据更新场景](#数据更新场景)示例来展示virtualScroll模式下子组件的渲染逻辑。定义长度为20的数组，数组前5项的template type为`aa`，其余项为`bb`。`aa`缓存池容量为3，`bb`缓存池容量为4。容器组件的预加载区域大小为2。为了便于理解，在`aa`和`bb`缓存池中分别加入一个和两个空闲节点。
+通过典型的<!--Del-->[<!--DelEnd-->滑动场景<!--Del-->](#滑动场景)<!--DelEnd-->和<!--Del-->[<!--DelEnd-->数据更新场景<!--Del-->](#数据更新场景)<!--DelEnd-->示例来展示virtualScroll模式下子组件的渲染逻辑。定义长度为20的数组，数组前5项的template type为`aa`，其余项为`bb`。`aa`缓存池容量为3，`bb`缓存池容量为4。容器组件的预加载区域大小为2。为了便于理解，在`aa`和`bb`缓存池中分别加入一个和两个空闲节点。
 
 首次渲染，列表的节点状态如下图所示。
 
