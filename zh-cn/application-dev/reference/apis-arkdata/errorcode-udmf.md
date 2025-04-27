@@ -4,11 +4,11 @@
 >
 > 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
 
-## 20400001 设置已存在
+## 20400001 设置已存在，若要重新配置请移除原有共享选项
 
 **错误信息**
 
-Settings already exist.
+Settings already exist, if need to reconfigure, please remove the previous share options.
 
 **错误描述**
 
