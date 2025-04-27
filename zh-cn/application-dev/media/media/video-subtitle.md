@@ -93,7 +93,7 @@ export class AVPlayerSubtitleDemo {
     // 创建回调函数。
     this.setAVPlayerCallback(this.avPlayer);
 
-    let context = getContext(this) as common.UIAbilityContext;
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     let fileDescriptor = await context.resourceManager.getRawFd('xxx.srt');
 
     this.avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length);
