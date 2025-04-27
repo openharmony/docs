@@ -7053,6 +7053,7 @@ setExposureMode(aeMode: ExposureMode): void
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
+| 7400102                | Operation not allowed.                                 |
 | 7400103                |  Session not config.                                   |
 
 **示例：**
