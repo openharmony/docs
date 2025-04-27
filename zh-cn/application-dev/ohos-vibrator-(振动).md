@@ -100,7 +100,7 @@ startVibration\(effect: VibrateEffect, attribute: VibrateAttribute, callback: As
 
 **错误码**：
 
-以下错误码的详细介绍请参见[振动错误码](zh-cn_topic_0000002178215396.md)和[通用错误码](zh-cn_topic_0000002213534485.md)。
+以下错误码的详细介绍请参见振动错误码和通用错误码。
 
 <a name="table1954945717172647"></a>
 <table><thead align="left"><tr id="row1418871003172647"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="entry2019914886172647p0"><a name="entry2019914886172647p0"></a><a name="entry2019914886172647p0"></a>错误码ID</p>
@@ -290,7 +290,7 @@ startVibration\(effect: VibrateEffect, attribute: VibrateAttribute\): Promise<vo
 
 **错误码**：
 
-以下错误码的详细介绍请参见[振动错误码](zh-cn_topic_0000002178215396.md)和[通用错误码](zh-cn_topic_0000002213534485.md)。
+以下错误码的详细介绍请参见振动错误码和通用错误码。
 
 <a name="table574486526172647"></a>
 <table><thead align="left"><tr id="row748883584172647"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="entry616275806172647p0"><a name="entry616275806172647p0"></a><a name="entry616275806172647p0"></a>错误码ID</p>
@@ -455,7 +455,7 @@ stopVibration\(stopMode: VibratorStopMode, callback: AsyncCallback<void\>\): voi
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](zh-cn_topic_0000002213534485.md)。
+以下错误码的详细介绍请参见通用错误码。
 
 <a name="table1990867192172647"></a>
 <table><thead align="left"><tr id="row2009398225172647"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="entry1549271889172647p0"><a name="entry1549271889172647p0"></a><a name="entry1549271889172647p0"></a>错误码ID</p>
@@ -621,7 +621,7 @@ stopVibration\(stopMode: VibratorStopMode\): Promise<void\>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](zh-cn_topic_0000002213534485.md)。
+以下错误码的详细介绍请参见通用错误码。
 
 <a name="table1550640637172647"></a>
 <table><thead align="left"><tr id="row1203314731172647"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="entry1724451914172647p0"><a name="entry1724451914172647p0"></a><a name="entry1724451914172647p0"></a>错误码ID</p>
@@ -762,7 +762,7 @@ stopVibration\(callback: AsyncCallback<void\>\): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](zh-cn_topic_0000002213534485.md)。
+以下错误码的详细介绍请参见通用错误码。
 
 <a name="table415586495172647"></a>
 <table><thead align="left"><tr id="row1298265124172647"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="entry205375702172647p0"><a name="entry205375702172647p0"></a><a name="entry205375702172647p0"></a>错误码ID</p>
@@ -831,7 +831,7 @@ stopVibration\(\): Promise<void\>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](zh-cn_topic_0000002213534485.md)。
+以下错误码的详细介绍请参见通用错误码。
 
 <a name="table1105310870172647"></a>
 <table><thead align="left"><tr id="row1846502663172647"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="entry2014288093172647p0"><a name="entry2014288093172647p0"></a><a name="entry2014288093172647p0"></a>错误码ID</p>
@@ -881,7 +881,7 @@ stopVibrationSync\(\): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[振动错误码](zh-cn_topic_0000002178215396.md)和[通用错误码](zh-cn_topic_0000002213534485.md)。
+以下错误码的详细介绍请参见振动错误码和通用错误码。
 
 <a name="table142415023172647"></a>
 <table><thead align="left"><tr id="row2005588024172647"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="entry638708116172647p0"><a name="entry638708116172647p0"></a><a name="entry638708116172647p0"></a>错误码ID</p>
@@ -963,7 +963,7 @@ isSupportEffect\(effectId: string, callback: AsyncCallback<boolean\>\): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](zh-cn_topic_0000002213534485.md)。
+以下错误码的详细介绍请参见通用错误码。
 
 <a name="table1846252132172647"></a>
 <table><thead align="left"><tr id="row255167485172647"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="entry1200171128172647p0"><a name="entry1200171128172647p0"></a><a name="entry1200171128172647p0"></a>错误码ID</p>
@@ -1082,7 +1082,7 @@ isSupportEffect\(effectId: string\): Promise<boolean\>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](zh-cn_topic_0000002213534485.md)。
+以下错误码的详细介绍请参见通用错误码。
 
 <a name="table930436600172647"></a>
 <table><thead align="left"><tr id="row34218914172647"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="entry573585897172647p0"><a name="entry573585897172647p0"></a><a name="entry573585897172647p0"></a>错误码ID</p>
@@ -1196,7 +1196,7 @@ isSupportEffectSync\(effectId: string\): boolean
 
 **错误码**：
 
-以下错误码的详细介绍请参见[振动错误码](zh-cn_topic_0000002178215396.md)和[通用错误码](zh-cn_topic_0000002213534485.md)。
+以下错误码的详细介绍请参见振动错误码和通用错误码。
 
 <a name="table1855836572172647"></a>
 <table><thead align="left"><tr id="row1747952473172647"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="entry1096512566172647p0"><a name="entry1096512566172647p0"></a><a name="entry1096512566172647p0"></a>错误码ID</p>
@@ -1263,8 +1263,7 @@ isHdHapticSupported\(\): boolean
 </table>
 
 **错误码**：
-
-以下错误码的详细介绍请参见[振动错误码](zh-cn_topic_0000002178215396.md)。
+以下错误码的详细介绍请参见振动错误码。
 
 <a name="table945274599172647"></a>
 <table><thead align="left"><tr id="row1691413124172647"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="entry696905958172647p0"><a name="entry696905958172647p0"></a><a name="entry696905958172647p0"></a>错误码ID</p>
@@ -1523,7 +1522,7 @@ try {
 
 ## VibrateFromFile<sup>10+</sup><a name="vibratefromfile10"></a>
 
-自定义振动类型。仅部分设备支持。当设备不支持此振动类型时，返回[设备不支持错误码](zh-cn_topic_0000002213534485.md)。当调用[vibrator.startVibration9+](#vibratorstartvibration9)或[vibrator.startVibration9+](#vibratorstartvibration9-1)时，[VibrateEffect9+](#vibrateeffect9)参数的值可以为VibrateFromFile，表示触发自定义振动类型。
+自定义振动类型。仅部分设备支持。当设备不支持此振动类型时，返回设备不支持错误码。当调用[vibrator.startVibration9+](#vibratorstartvibration9)或[vibrator.startVibration9+](#vibratorstartvibration9-1)时，[VibrateEffect9+](#vibrateeffect9)参数的值可以为VibrateFromFile，表示触发自定义振动类型。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -1561,7 +1560,7 @@ try {
 
 ## HapticFileDescriptor<sup>10+</sup><a name="hapticfiledescriptor10"></a>
 
-自定义振动配置文件的描述符。必须确认资源文件可用，其参数可通过[文件管理API](zh-cn_topic_0000002178055048.md#fsopen)从沙箱路径获取或者通过[资源管理API](zh-cn_topic_0000002213535525.md#getrawfd9)从HAP资源获取。使用场景：振动序列被存储在一个文件中，需要根据偏移量和长度进行振动。振动序列存储格式，请参考[自定义振动格式](zh-cn_topic_0000002178053620.md#自定义振动)。
+自定义振动配置文件的描述符。必须确认资源文件可用，其参数可通过文件管理API从沙箱路径获取或者通过资源管理API从HAP资源获取。使用场景：振动序列被存储在一个文件中，需要根据偏移量和长度进行振动。振动序列存储格式，请参考自定义振动格式。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
