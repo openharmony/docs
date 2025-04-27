@@ -6,6 +6,8 @@
 
 详细的API说明请参考[Camera API参考](../../reference/apis-camera-kit/js-apis-camera.md)。
 
+Context获取方式请参考：[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ## 创建XComponent
    使用两个[XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)分别展示折叠态和展开态，防止切换折叠屏状态亮屏的时候上一个相机还未关闭，残留上一个相机的画面。
 
@@ -61,15 +63,18 @@
     import { camera } from '@kit.CameraKit';
     import { BusinessError } from '@kit.BasicServicesKit';
 
-    let cameraManager = camera.getCameraManager(getContext());
-
     function registerFoldStatusChanged(err: BusinessError, foldStatusInfo: camera.FoldStatusInfo) {
       // foldStatus 变量用来控制显示XComponent组件。
       AppStorage.setOrCreate<number>('foldStatus', foldStatusInfo.foldStatus);
     }
 
-    cameraManager.on('foldStatusChange', registerFoldStatusChanged);
-    //cameraManager.off('foldStatusChange', registerFoldStatusChanged);
+    function onFoldStatusChange(cameraManager: camera.CameraManager) {
+      cameraManager.on('foldStatusChange', registerFoldStatusChanged);
+    }
+
+    function offFoldStatusChange(cameraManager: camera.CameraManager) {
+      cameraManager.off('foldStatusChange', registerFoldStatusChanged);
+    }
     ```
 - **方案二：使用图形图像的[display.on('foldStatusChange')](../../reference/apis-arkui/js-apis-display.md#displayonfoldstatuschange10)监听设备折叠态变化。**
     ```ts

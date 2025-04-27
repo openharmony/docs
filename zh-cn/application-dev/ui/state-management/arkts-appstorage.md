@@ -12,7 +12,7 @@ AppStorage是应用全局的UI状态存储，是和应用的进程绑定的，�
 
 AppStorage是应用全局的UI状态存储，不同于\@State等装饰器仅能在组件树上传递，AppStorage的目的是为了给开发者提供更大范围的跨ability基本的数据共享。在阅读本文档前，建议开发者对状态管理框架中AppStorage的定位有一个宏观了解。建议提前阅读：[状态管理概述](./arkts-state-management-overview.md)。
 
-AppStorage还提供了API接口，可以让开发者通过接口在自定义组件外手动触发AppStorage对应key的增删改查，建议配合[AppStorage API文档](../../reference/apis-arkui/arkui-ts/ts-state-management.md#appstorage)阅读。
+AppStorage还提供了API接口，可以让开发者通过接口在自定义组件外手动触发AppStorage对应key的增删改查，建议配合[AppStorage API文档](../../reference/apis-arkui/arkui-ts/ts-state-management.md#appstorage)阅读。最佳实践请参考[状态管理最佳实践](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-status-management)。
 
 
 ## 概述
