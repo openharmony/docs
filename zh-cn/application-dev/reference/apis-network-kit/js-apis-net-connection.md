@@ -2833,7 +2833,7 @@ netConnectionWlan.register((error: BusinessError) => {
 | ------- | ------ | -- |---------------------------- |
 | address | string | 是 |地址。                       |
 | family  | number | 否 |IPv4 = 1，IPv6 = 2，默认IPv4。|
-| port    | number | 否 |端口，取值范围\[0, 65535]。   |
+| port    | number | 否 |端口，取值范围\[0, 65535]，默认值为0。  |
 
 ## HttpRequest
 
