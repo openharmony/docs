@@ -892,21 +892,20 @@ setRectShape(rect: Rect): void
 ```ts
 import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
 
-const mask = new ShapeMask();
-mask.setRectShape({ left: 0, right: vp2px(150), top: 0, bottom: vp2px(150) });
-mask.fillColor = 0X55FF0000;
-
-const renderNode = new RenderNode();
-renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
-renderNode.backgroundColor = 0XFF00FF00;
-renderNode.shapeMask = mask;
-
-
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(uiContext);
+
+    const mask = new ShapeMask();
+    mask.setRectShape({ left: 0, right: uiContext.vp2px(150), top: 0, bottom: uiContext.vp2px(150) });
+    mask.fillColor = 0X55FF0000;
+
+    const renderNode = new RenderNode();
+    renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
+    renderNode.backgroundColor = 0XFF00FF00;
+    renderNode.shapeMask = mask;
 
     const rootRenderNode = this.rootNode.getRenderNode();
     if (rootRenderNode !== null) {
@@ -951,30 +950,29 @@ setRoundRectShape(roundRect: RoundRect): void
 ```ts
 import { RenderNode, FrameNode, NodeController, ShapeMask,RoundRect} from '@kit.ArkUI';
 
-const mask = new ShapeMask();
-const roundRect: RoundRect = {
-  rect: { left: 0, top: 0, right: vp2px(150), bottom: vp2px(150) },
-  corners: {
-    topLeft: { x: 32, y: 32 },
-    topRight: { x: 32, y: 32 },
-    bottomLeft: { x: 32, y: 32 },
-    bottomRight: { x: 32, y: 32 }
-  }
-}
-mask.setRoundRectShape(roundRect);
-mask.fillColor = 0X55FF0000;
-
-const renderNode = new RenderNode();
-renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
-renderNode.backgroundColor = 0XFF00FF00;
-renderNode.shapeMask = mask;
-
-
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(uiContext);
+
+    const mask = new ShapeMask();
+    const roundRect: RoundRect = {
+      rect: { left: 0, top: 0, right: uiContext.vp2px(150), bottom: uiContext.vp2px(150) },
+      corners: {
+        topLeft: { x: 32, y: 32 },
+        topRight: { x: 32, y: 32 },
+        bottomLeft: { x: 32, y: 32 },
+        bottomRight: { x: 32, y: 32 }
+      }
+    }
+    mask.setRoundRectShape(roundRect);
+    mask.fillColor = 0X55FF0000;
+
+    const renderNode = new RenderNode();
+    renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
+    renderNode.backgroundColor = 0XFF00FF00;
+    renderNode.shapeMask = mask;
 
     const rootRenderNode = this.rootNode.getRenderNode();
     if (rootRenderNode !== null) {
@@ -1019,21 +1017,20 @@ setCircleShape(circle: Circle): void
 ```ts
 import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
 
-const mask = new ShapeMask();
-mask.setCircleShape({ centerY: vp2px(75), centerX: vp2px(75), radius: vp2px(75) });
-mask.fillColor = 0X55FF0000;
-
-const renderNode = new RenderNode();
-renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
-renderNode.backgroundColor = 0XFF00FF00;
-renderNode.shapeMask = mask;
-
-
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(uiContext);
+
+    const mask = new ShapeMask();
+    mask.setCircleShape({ centerY: uiContext.vp2px(75), centerX: uiContext.vp2px(75), radius: uiContext.vp2px(75) });
+    mask.fillColor = 0X55FF0000;
+
+    const renderNode = new RenderNode();
+    renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
+    renderNode.backgroundColor = 0XFF00FF00;
+    renderNode.shapeMask = mask;
 
     const rootRenderNode = this.rootNode.getRenderNode();
     if (rootRenderNode !== null) {
@@ -1078,21 +1075,20 @@ setOvalShape(oval: Rect): void
 ```ts
 import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
 
-const mask = new ShapeMask();
-mask.setOvalShape({ left: 0, right: vp2px(150), top: 0, bottom: vp2px(100) });
-mask.fillColor = 0X55FF0000;
-
-const renderNode = new RenderNode();
-renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
-renderNode.backgroundColor = 0XFF00FF00;
-renderNode.shapeMask = mask;
-
-
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(uiContext);
+
+    const mask = new ShapeMask();
+    mask.setOvalShape({ left: 0, right: uiContext.vp2px(150), top: 0, bottom: uiContext.vp2px(100) });
+    mask.fillColor = 0X55FF0000;
+
+    const renderNode = new RenderNode();
+    renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
+    renderNode.backgroundColor = 0XFF00FF00;
+    renderNode.shapeMask = mask;
 
     const rootRenderNode = this.rootNode.getRenderNode();
     if (rootRenderNode !== null) {
@@ -1487,8 +1483,8 @@ struct Index {
             rect: {
               left: 0,
               top: 0,
-              right: vp2px(150),
-              bottom: vp2px(150)
+              right: this.getUIContext().vp2px(150),
+              bottom: this.getUIContext().vp2px(150)
             },
             corners: {
               topLeft: { x: 32, y: 32 },
@@ -1635,9 +1631,9 @@ struct Index {
         .onClick(() => {
           renderNode.shapeClip.setOvalShape({
             left: 0,
-            right: vp2px(150),
+            right: this.getUIContext().vp2px(150),
             top: 0,
-            bottom: vp2px(100)
+            bottom: this.getUIContext().vp2px(100)
           });
           renderNode.shapeClip = renderNode.shapeClip;
         })
