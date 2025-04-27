@@ -383,7 +383,7 @@ unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback\<void>):
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // 定义订阅者，用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-let subscriber: commonEventManager.CommonEventSubscriber; 
+let subscriber: commonEventManager.CommonEventSubscriber | undefined; 
 // 订阅者信息
 let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
   events: ['event']
@@ -418,6 +418,8 @@ function unsubscribeCB(err: BusinessError) {
     console.error(`Failed to unsubscribe. Code is ${err.code}, message is ${err.message}`);
     return;
   }
+  // subscriber不再使用时需要将其置为undefined，避免内存泄露
+  subscriber = undefined;
   console.info(`Succeeded in unsubscribing.`);
 }
 // 创建订阅者
