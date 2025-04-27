@@ -225,33 +225,50 @@ export default class DemoProcess extends ChildProcess {
 // 使用childProcessManager.startArkChildProcess方法启动子进程:
 // module1/src/main/ets/tool/Tool.ets
 import { common, ChildProcessArgs, ChildProcessOptions, childProcessManager } from '@kit.AbilityKit';
-import fs from '@ohos.file.fs';
+import { fileIo } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import DemoProcess from '../process/DemoProcess';
 
-try {
-  DemoProcess.toString(); // 这里要调用下DemoProcess类的任意方法，防止没有引用到而被构建工具优化掉
-  let context = getContext(this) as common.UIAbilityContext;
-  let path = context.filesDir + "/test.txt";
-  let file = fs.openSync(path, fs.OpenMode.READ_ONLY | fs.OpenMode.CREATE);
-  let args: ChildProcessArgs = {
-    entryParams: "testParam",
-    fds: {
-      "key1": file.fd
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Text('Click')
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            try {
+              DemoProcess.toString(); // 这里要调用下DemoProcess类的任意方法，防止没有引用到而被构建工具优化掉
+              let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+              let path = context.filesDir + "/test.txt";
+              let file = fileIo.openSync(path, fileIo.OpenMode.READ_ONLY | fileIo.OpenMode.CREATE);
+              let args: ChildProcessArgs = {
+                entryParams: "testParam",
+                fds: {
+                  "key1": file.fd
+                }
+              };
+              let options: ChildProcessOptions = {
+                isolationMode: false
+              };
+              childProcessManager.startArkChildProcess("module1/./ets/process/DemoProcess.ets", args, options)
+                .then((pid) => {
+                  console.info(`startChildProcess success, pid: ${pid}`);
+                })
+                .catch((err: BusinessError) => {
+                  console.error(`startChildProcess business error, errorCode: ${err.code}, errorMsg:${err.message}`);
+                })
+            } catch (err) {
+              console.error(`startChildProcess error, errorCode: ${err.code}, errorMsg:${err.message}`);
+            }
+          });
+      }
+      .width('100%')
     }
-  };
-  let options: ChildProcessOptions = {
-    isolationMode: false
-  };
-  childProcessManager.startArkChildProcess("module1/./ets/process/DemoProcess.ets", args, options)
-    .then((pid) => {
-      console.info(`startChildProcess success, pid: ${pid}`);
-    })
-    .catch((err: BusinessError) => {
-      console.error(`startChildProcess business error, errorCode: ${err.code}, errorMsg:${err.message}`);
-    })
-} catch (err) {
-  console.error(`startChildProcess error, errorCode: ${err.code}, errorMsg:${err.message}`);
+    .height('100%')
+  }
 }
 ```
 
@@ -329,30 +346,47 @@ void Main(NativeChildProcess_Args args)
 // 主进程：
 // 使用childProcessManager.startNativeChildProcess方法启动子进程:
 import { common, ChildProcessArgs, ChildProcessOptions, childProcessManager } from '@kit.AbilityKit';
-import fs from '@ohos.file.fs';
+import { fileIo } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-  let context = getContext(this) as common.UIAbilityContext;
-  let path = context.filesDir + "/test.txt";
-  let file = fs.openSync(path, fs.OpenMode.READ_ONLY | fs.OpenMode.CREATE);
-  let args: ChildProcessArgs = {
-    entryParams: "testParam",
-    fds: {
-      "key1": file.fd
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Text('Click')
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            try {
+              let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+              let path = context.filesDir + "/test.txt";
+              let file = fileIo.openSync(path, fileIo.OpenMode.READ_ONLY | fileIo.OpenMode.CREATE);
+              let args: ChildProcessArgs = {
+                entryParams: "testParam",
+                fds: {
+                  "key1": file.fd
+                }
+              };
+              let options: ChildProcessOptions = {
+                isolationMode: false
+              };
+              childProcessManager.startNativeChildProcess("libentry.so:Main", args, options)
+                .then((pid) => {
+                  console.info(`startChildProcess success, pid: ${pid}`);
+                })
+                .catch((err: BusinessError) => {
+                  console.error(`startChildProcess business error, errorCode: ${err.code}, errorMsg:${err.message}`);
+                })
+            } catch (err) {
+              console.error(`startChildProcess error, errorCode: ${err.code}, errorMsg:${err.message}`);
+            }
+          });
+      }
+      .width('100%')
     }
-  };
-  let options: ChildProcessOptions = {
-    isolationMode: false
-  };
-  childProcessManager.startNativeChildProcess("libentry.so:Main", args, options)
-    .then((pid) => {
-      console.info(`startChildProcess success, pid: ${pid}`);
-    })
-    .catch((err: BusinessError) => {
-      console.error(`startChildProcess business error, errorCode: ${err.code}, errorMsg:${err.message}`);
-    })
-} catch (err) {
-  console.error(`startChildProcess error, errorCode: ${err.code}, errorMsg:${err.message}`);
+    .height('100%')
+  }
 }
 ```

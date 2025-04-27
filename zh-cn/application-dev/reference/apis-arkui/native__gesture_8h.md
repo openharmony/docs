@@ -110,3 +110,5 @@
 | int32_t [OH_ArkUI_GetGestureParam_duration](_ark_u_i___native_module.md#oh_arkui_getgestureparam_duration) (ArkUI_GestureRecognizer \*recognizer, int \*duration) | 获取手势识别器的触发长按的最短时间。  | 
 | int32_t [OH_ArkUI_GetGestureParam_angle](_ark_u_i___native_module.md#oh_arkui_getgestureparam_angle) (ArkUI_GestureRecognizer \*recognizer, double \*angle) | 获取手势识别器的旋转手势的最小改变度数。  | 
 | int32_t [OH_ArkUI_GetGestureParam_distanceThreshold](_ark_u_i___native_module.md#oh_arkui_getgestureparam_distancethreshold) (ArkUI_GestureRecognizer \*recognizer, double \*distanceThreshold) | 获取手势识别器的手势移动阈值。  | 
+| ArkUI_ErrorCode [OH_ArkUI_SetGestureParamDistanceMap](_ark_u_i___native_module.md#oh_arkui_setgestureparamdistancemap) (ArkUI_GestureRecognizer \*recognizer, int size, int\* toolTypeArray, double\* distanceArray) | 设置手势最小滑动阈值表。 |
+| ArkUI_ErrorCode [OH_ArkUI_PanGesture_GetDistanceByToolType](_ark_u_i___native_module.md#oh_arkui_pangesture_getdistancebytooltype) (ArkUI_GestureRecognizer \*recognizer, int toolType, double\* distance) | 获取手势识别器的手势移动阈值表。 |

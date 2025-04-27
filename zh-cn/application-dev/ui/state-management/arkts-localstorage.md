@@ -9,7 +9,7 @@ LocalStorage是页面级的UI状态存储，通过\@Entry装饰器接收的参�
 
 在阅读本文档前，建议开发者对状态管理框架有基本的了解。建议提前阅读：[状态管理概述](./arkts-state-management-overview.md)。
 
-LocalStorage还提供了API接口，可以让开发者通过接口在自定义组件外手动触发Storage对应key的增删改查，建议配合[LocalStorage API文档](../../reference/apis-arkui/arkui-ts/ts-state-management.md#localstorage9)阅读。
+LocalStorage还提供了API接口，可以让开发者通过接口在自定义组件外手动触发Storage对应key的增删改查，建议配合[LocalStorage API文档](../../reference/apis-arkui/arkui-ts/ts-state-management.md#localstorage9)阅读。最佳实践请参考[状态管理最佳实践](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-status-management)。
 
 > **说明：**
 >
@@ -20,7 +20,7 @@ LocalStorage还提供了API接口，可以让开发者通过接口在自定义�
 
 LocalStorage是ArkTS为构建页面级别状态变量提供存储的内存内的“数据库”。
 
-- 应用程序可以创建多个LocalStorage实例，LocalStorage实例可以在页面内共享，也可以通过getShared接口，实现跨页面、UIAbility实例内共享。
+- 应用程序可以创建多个LocalStorage实例，LocalStorage实例可以在页面内共享，也可以通过getSharedLocalStorage接口，实现跨页面、UIAbility实例内共享。
 
 - 组件树的根节点，即被\@Entry装饰的\@Component，可以被分配一个LocalStorage实例，此组件的所有子组件实例将自动获得对该LocalStorage实例的访问权限。
 
@@ -197,7 +197,7 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 
 3. LocalStorage创建后，命名属性的类型不可更改。后续调用Set时必须使用相同类型的值。
 
-4. LocalStorage是页面级存储，[getShared](../../reference/apis-arkui/arkui-ts/ts-state-management.md#getshared10)接口仅能获取当前Stage通过[windowStage.loadContent](../../reference/apis-arkui/js-apis-window.md#loadcontent9)传入的LocalStorage实例，否则返回undefined。例子可见[将LocalStorage实例从UIAbility共享到一个或多个视图](#将localstorage实例从uiability共享到一个或多个视图)。
+4. LocalStorage是页面级存储，[getSharedLocalStorage](../../reference/apis-arkui/js-apis-arkui-UIContext.md#getsharedlocalstorage12)接口仅能获取当前Stage通过[windowStage.loadContent](../../reference/apis-arkui/js-apis-window.md#loadcontent9)传入的LocalStorage实例，否则返回undefined。例子可见[将LocalStorage实例从UIAbility共享到一个或多个视图](#将localstorage实例从uiability共享到一个或多个视图)。
 
 
 ## 使用场景
@@ -476,17 +476,17 @@ export default class EntryAbility extends UIAbility {
 ```
 > **说明：**
 >
-> 在UI页面通过getShared接口获取通过loadContent共享的LocalStorage实例。
+> 在UI页面通过getSharedLocalStorage获取当前stage共享的LocalStorage实例。
 >
-> LocalStorage.getShared()只在模拟器或者实机上才有效，在Previewer预览器中使用不生效。
+> this.getUIContext().getSharedLocalStorage()只在模拟器或者实机上才有效，在Previewer预览器中使用不生效。
 
 
-在下面的用例中，Index页面中的propA通过getShared()方法获取到共享的LocalStorage实例。点击Button跳转到Page页面，点击Change propA改变propA的值，back回Index页面后，页面中propA的值也同步修改。
+在下面的用例中，Index页面中的propA通过使用共享的LocalStorage实例。点击Button跳转到Page页面，点击Change propA改变propA的值，back回Index页面后，页面中propA的值也同步修改。
 ```ts
 // index.ets
 
-// 通过getShared接口获取stage共享的LocalStorage实例
-@Entry({ storage: LocalStorage.getShared() })
+// 预览器上不支持获取页面共享的LocalStorage实例。
+@Entry({ useSharedStorage: true })
 @Component
 struct Index {
   // 可以使用@LocalStorageLink/Prop与LocalStorage实例中的变量建立联系

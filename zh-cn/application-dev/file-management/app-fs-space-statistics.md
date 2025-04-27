@@ -35,7 +35,8 @@ API的详细介绍请参见[ohos.file.statvfs](../reference/apis-core-file-kit/j
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
   
-  let context = getContext(this) as common.UIAbilityContext;
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
   let path = context.filesDir;
   statfs.getFreeSize(path, (err: BusinessError, number: number) => {
     if (err) {

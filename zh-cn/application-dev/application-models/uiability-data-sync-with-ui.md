@@ -46,12 +46,11 @@
 
     ```ts
     import { common } from '@kit.AbilityKit';
-    import { promptAction } from '@kit.ArkUI';
 
     @Entry
     @Component
     struct Page_EventHub {
-      private context = getContext(this) as common.UIAbilityContext;
+      private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
       eventHubFunc(): void {
         // 不带参数触发自定义“event1”事件
@@ -73,7 +72,7 @@
               }
               .onClick(() => {
                 this.eventHubFunc();
-                promptAction.showToast({
+                this.getUIContext().getPromptAction().showToast({
                   message: 'EventHubFuncA'
                 });
               })
@@ -86,7 +85,7 @@
               }
               .onClick(() => {
                 this.context.eventHub.off('event1');
-                promptAction.showToast({
+                this.getUIContext().getPromptAction().showToast({
                   message: 'EventHubFuncB'
                 });
               })

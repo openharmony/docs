@@ -1876,7 +1876,7 @@ struct Index {
           .fontSize(30)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            let context = getContext(this) as common.UIAbilityContext;
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
             context.showAbility().then(() => {
               console.log(`showAbility success`);
@@ -1974,7 +1974,7 @@ struct Index {
           .fontSize(30)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            let context = getContext(this) as common.UIAbilityContext;
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
             context.hideAbility().then(() => {
               console.log(`hideAbility success`);
@@ -2072,7 +2072,7 @@ struct Index {
           .fontSize(30)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            let context = getContext(this) as common.UIAbilityContext;
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
             context.moveAbilityToBackground().then(() => {
               console.log(`moveAbilityToBackground success.`);
@@ -2247,7 +2247,7 @@ struct Index {
     RelativeContainer() {
       Button("Call StartAbilityForResult")
         .onClick(() => {
-          let context = getContext(this) as common.UIAbilityContext;
+          let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
           let link: string = 'https://www.example.com';
           let openLinkOptions: OpenLinkOptions = {
             appLinkingOnly: true,
@@ -2341,7 +2341,7 @@ struct Index {
 
         Button("Call StartAbilityForResult")
           .onClick(() => {
-            let context: common.UIAbilityContext = getContext() as common.UIAbilityContext;
+            let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
             let want: Want = {
               bundleName: 'com.example.demo2',
               abilityName: 'EntryAbility'
@@ -2535,7 +2535,7 @@ struct Index {
         Button('start ability')
           .enabled(true)
           .onClick(() => {
-            let context = getContext(this) as common.UIAbilityContext;
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
             let startWant: Want = {
               bundleName: 'com.acts.uiserviceextensionability',
               abilityName: 'UiServiceExtAbility',
@@ -2628,7 +2628,7 @@ struct UIServiceExtensionAbility {
 
   async myConnect() {
     // 获取上下文
-    let context = getContext(this) as common.UIAbilityContext;
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     let startWant: Want = {
       deviceId: '',
       bundleName: 'com.example.myapplication',
@@ -2745,7 +2745,7 @@ struct UIServiceExtensionAbility {
   }
 
   myDisconnectUIServiceExtensionAbility() {
-    let context = getContext(this) as common.UIAbilityContext;
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
     try {
       // 断开UIServiceExtension连接

@@ -4487,6 +4487,18 @@
 
 **起始版本**：18
 
+## ohos.permission.ACCESS_MEDIALIB_RESTORE
+
+允许应用挂载媒体恢复路径。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：17
+
 ## ohos.permission.ACCESS_TRUST_LIST_OOBE_MANAGER
 
 允许应用管理在开机向导中可被拉起的应用名单。
@@ -4547,7 +4559,7 @@
 
 **ACL使能**：true
 
-**起始版本**：18
+**起始版本**：19
 
 ## ohos.permission.UNINSTALL_PLUGIN_BUNDLE
 
@@ -4559,7 +4571,7 @@
 
 **ACL使能**：true
 
-**起始版本**：18
+**起始版本**：19
 
 ## ohos.permission.GET_EDM_CONFIG
 

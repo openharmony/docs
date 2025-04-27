@@ -4487,6 +4487,18 @@ Allows a system application to access the installation file path copied from ano
 
 **Valid since**: 18
 
+## ohos.permission.ACCESS_MEDIALIB_RESTORE
+
+Allows an application to mount media restore paths.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 17
+
 ## ohos.permission.ACCESS_TRUST_LIST_OOBE_MANAGER
 
 Allows an application to access the list of applications that can be started in the out-of-box experience.
@@ -4547,7 +4559,7 @@ Allows an application to call the APIs for installing plugins.
 
 **Enable via ACL**: true
 
-**Valid since**: 18
+**Valid since**: 19
 
 ## ohos.permission.UNINSTALL_PLUGIN_BUNDLE
 
@@ -4559,7 +4571,7 @@ Allows an application to call the APIs for uninstalling plugins.
 
 **Enable via ACL**: true
 
-**Valid since**: 18
+**Valid since**: 19
 
 ## ohos.permission.GET_EDM_CONFIG
 
