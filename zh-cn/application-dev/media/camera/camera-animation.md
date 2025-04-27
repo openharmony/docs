@@ -138,7 +138,7 @@
          let imageInfo: image.ImageInfo = await BlurAnimateUtil.surfaceShot.getImageInfo();
          console.info('doSurfaceShot surfaceShot:' + JSON.stringify(imageInfo.size));
        } catch (err) {
-         console.error(JSON.stringify(err));
+         console.error(err);
        }
      }
    
