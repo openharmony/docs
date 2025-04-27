@@ -7,7 +7,7 @@ Web组件菜单分为文本选中菜单和上下文菜单。
 
 ## 文本选中菜单
 
-应用可通过[editmenuoptions](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/ts-basic-components-web.md#editmenuoptions12)或者[selectionmenuoptions](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/ts-basic-components-web.md#selectionmenuoptionsdeprecated)(不建议，该接口将在API20废弃)对文本选中菜单进行自定义操作
+文本选中菜单在用户手势长按选中文本后或编辑态长按出现单手柄后出现。菜单项横向排列，系统提供默认的菜单实现。应用可通过[editmenuoptions](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/ts-basic-components-web.md#editmenuoptions12)或者[selectionmenuoptions](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/ts-basic-components-web.md#selectionmenuoptionsdeprecated)(不建议，该接口将在API20废弃)对文本选中菜单进行自定义操作
 
 ### 通过editmenuoptions自定义文本选中菜单
 
@@ -96,7 +96,7 @@ struct WebComponent {
 2. 通过onMenuItemClick方法对菜单项点击事件进行处理，可通过返回值定义是否系统默认菜单项行为。
 3. 创建EditMenuOptions实例，通过editMenuOptions将菜单与Web组件绑定。
 
-### 通过selectionmenuoptions自定义文本选中菜单(不推荐)
+### 通过selectionmenuoptions自定义文本选中菜单(不推荐，该接口将在API20废弃)
 
 **示例：**
 
@@ -160,7 +160,7 @@ build() {
 目前Web菜单与手柄绑定，通过JS设置选区时不会显示手柄，导致菜单也不会显示。
 
 ## 上下文菜单
-上下文菜单需要开发者通过[Menu](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-menu.md#menu)组件创建一个菜单子窗口与Web绑定，通过菜单弹出时的[onContextMenuShow](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/ts-basic-components-web.md#oncontextmenushow)接口获取到上下文菜单详细信息，包含点击位置的HTML元素信息，点击位置信息等。
+上下文菜单在手势长按富文本或鼠标右键点击时出现。菜单项竖向排列，上下文菜单需要开发者通过[Menu](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-menu.md#menu)组件创建一个菜单子窗口与Web绑定，通过菜单弹出时的[onContextMenuShow](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/ts-basic-components-web.md#oncontextmenushow)接口获取到上下文菜单详细信息，包含点击位置的HTML元素信息，点击位置信息等。
 
 **示例：**
 
