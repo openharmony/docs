@@ -2355,5 +2355,4 @@ struct TabsExample {
   }
 }
 ```
-
 ![tabs17](figures/tabs_edges_slide.gif)
