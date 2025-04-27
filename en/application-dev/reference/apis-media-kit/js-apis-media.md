@@ -907,22 +907,20 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { common } from '@kit.AbilityKit';
 
-async function getPlaybackStrategy(context: Context) {
-  let player = await media.createAVPlayer();
-  let context = this.getUIContext().getHostContext() as common.UIAbilityContext
-  let fileDescriptor = await context.resourceManager.getRawFd('xxx.mp4')
-  player.fdSrc = fileDescriptor
-  let playStrategy : media.PlaybackStrategy = {
-    preferredWidth: 1,
-    preferredHeight: 2,
-    preferredBufferDuration: 3,
-    preferredHdr: false,
-    mutedMediaType: media.MediaType.MEDIA_TYPE_AUD,
-    preferredBufferDurationForPlaying: 1,
-    thresholdForAutoQuickPlay: 5
-  };
-  player.setPlaybackStrategy(playStrategy);
-}
+let player = await media.createAVPlayer();
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext
+let fileDescriptor = await context.resourceManager.getRawFd('xxx.mp4')
+player.fdSrc = fileDescriptor
+let playStrategy : media.PlaybackStrategy = {
+  preferredWidth: 1,
+  preferredHeight: 2,
+  preferredBufferDuration: 3,
+  preferredHdr: false,
+  mutedMediaType: media.MediaType.MEDIA_TYPE_AUD,
+  preferredBufferDurationForPlaying: 1,
+  thresholdForAutoQuickPlay: 5
+};
+player.setPlaybackStrategy(playStrategy);
 
 ```
 
