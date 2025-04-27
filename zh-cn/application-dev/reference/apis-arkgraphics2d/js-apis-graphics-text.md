@@ -7,10 +7,10 @@
 - [TextStyle](#textstyle)：文本样式，控制文本的字体类型、大小、间距等属性。
 - [FontCollection](#fontcollection)：字体集，控制各种不同的字体。
 - [FontDescriptor](#fontdescriptor14)：字体描述符信息。
-- [ParagraphStyle](#paragraphstyle)：段落样式，控制整个段落的显示样式换行策略、换词策略等属性。
+- [ParagraphStyle](#paragraphstyle)：段落样式，控制整个段落的换行策略、换词策略等属性。
 - [ParagraphBuilder](#paragraphbuilder)：段落生成器，控制生成不同的段落对象。
 - [Paragraph](#paragraph)：段落，由ParagraphBuilder类调用[build()](#build)接口构建而成。
-- [TextLine](#textline)：以行为单位的段落文本的载体，由段落类调用[getTextLines()](#gettextlines)接口获取。
+- [TextLine](#textline)：以行为单位的段落文本的载体，由Paragraph类调用[getTextLines()](#gettextlines)接口获取。
 - [Run](#run)：文本排版单元，由TextLine类调用[getGlyphRuns()](#getglyphruns)接口获取。
 
 > **说明：**
@@ -196,11 +196,11 @@ struct Index {
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
-| 名称        | 值   | 说明                                                                                                                  |
-| ----------- | ---- | -------------------------------------------------------------------------------------------------------------------- |
-| NORMAL      | 0    | 默认的换行规则。依据各自语言的规则，允许在字间发生换行。                                                                  |
-| BREAK_ALL   | 1    | 对于Non-CJK（非中文，日文，韩文）文本允许在任意字符内发生换行。该值适合包含一些非亚洲文本的亚洲文本，比如使连续的英文字符断行。|
-| BREAK_WORD  | 2    | 与`BREAK_ALL`基本相同，不同的地方在于它要求一个没有断行破发点的词必须保持为一个整体单位。                                   |
+| 名称                          | 值   | 说明                                                                                                                  |
+|-----------------------------| ---- | -------------------------------------------------------------------------------------------------------------------- |
+| NORMAL                      | 0    | 默认的换行规则。依据各自语言的规则，允许在字间发生换行。                                                                  |
+| BREAK_ALL                   | 1    | 对于Non-CJK（非中文，日文，韩文）文本允许在任意字符内发生换行。该值适合包含一些非亚洲文本的亚洲文本，比如使连续的英文字符断行。|
+| BREAK_WORD                  | 2    | 对于Non-CJK的文本可在任意2个字符间断行，一行文本中有断行破发点（如空白符）时，优先按破发点换行，保障单词优先完整显示。若整一行文本均无断行破发点时，则在任意2个字符间断行。对于CJK与NORMAL效果一致。|
 
 ## Decoration
 
@@ -433,7 +433,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | - | - | -  | - | - |
-| path | string | 否 | 是 | 字体绝对路径，可取任意字符串，默认为空字符串。 |
+| path | string | 否 | 是 | 字体绝对路径，可取任意字符串，禁用“:?*"<>|”等符号，默认为空字符串。 |
 | postScriptName | string | 否 | 是 | 字体唯一标识名称，可取任意字符串，默认为空字符串。 |
 | fullName | string | 否 | 是 | 字体名称，可取任意字符串，默认为空字符串。 |
 | fontFamily | string | 否 | 是 | 字体家族，可取任意字符串，默认为空字符串。 |
@@ -1409,7 +1409,7 @@ addText(text: string): void
 
 | 参数名   | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| text    | string  | 是   | 段落中插入的具体文本字符串，穿入非法Unicode时会显示乱码。 |
+| text    | string  | 是   | 段落中插入的具体文本字符串，传入非法Unicode时会显示�。 |
 
 **示例：**
 
@@ -1625,7 +1625,7 @@ let GlyphCount = lines[0].getGlyphCount();
 
 getTextRange(): Range
 
-获取该文本行中的文本在整个段落文本中的索引区间。
+获取该行文本在整个段落文本中的索引区间。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
