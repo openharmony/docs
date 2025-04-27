@@ -35,6 +35,8 @@
 
 #### 反例
 ```typescript
+const LARGE_NUMBER = 1000000;
+
 @Entry
 @Component
 struct ViewA {
@@ -89,7 +91,7 @@ struct ViewB {
     setTimeout(() => {
       // 这里使用setTimeout来实现异步延迟运行
       this.computeTask();
-    }, DELAYED_TIME)
+    }, this.DELAYED_TIME)
   }
 }
 ```
@@ -626,11 +628,11 @@ import promptAction from '@ohos.promptAction';
 @Component
 struct ViewA {
   aboutToAppear(): void {
-    hilog.info('Index.ets aboutToAppear')  // 无具体业务逻辑的日志
+    hilog.info(0x101, 'tag', 'Index.ets aboutToAppear')  // 无具体业务逻辑的日志
   }
 
   aboutToDisappear(): void{
-    hilog.info('Index.ets aboutToDisappear') // 无具体业务逻辑的日志
+    hilog.info(0x101, 'tag', 'Index.ets aboutToDisappear') // 无具体业务逻辑的日志
   }
 
   /**

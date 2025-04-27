@@ -675,7 +675,7 @@ const DELAYED_TIME = 1000;
 @Entry
 @Component
 struct Index {
-  @State private text: string = "";
+  @State private text: string | undefined = "";
   private count: number = 0;
 
   aboutToAppear() {

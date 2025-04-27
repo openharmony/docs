@@ -140,6 +140,7 @@ struct ClickRight {
 @Entry
 @Component
 struct TabsError {
+  tabsWidth: number = 100;
   @State currentIndex: number = 0;
   @State animationDuration: number = 300;
   @State indicatorLeftMargin: number = 0;
