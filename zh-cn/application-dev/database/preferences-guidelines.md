@@ -61,7 +61,7 @@ libohpreferences.so
 ```
 
 ## 开发步骤
-下列实例展示如何通过Preferences实现对KV数据的修改与持久化。
+下列实例展示如何通过Preferences实现对键值数据的修改与持久化。
 1. 创建Preferences配置选项（PreferencesOption）对象并设置配置选项成员（名称、应用组ID、包名、存储模式）。使用完毕后，调用OH_PreferencesOption_Destroy销毁配置选项实例。
 2. 调用OH_Preferences_Open打开一个Preferences实例，该实例使用完后需要调用OH_Preferences_Close关闭。
 3. 调用OH_Preferences_RegisterDataObserver注册3个Key的数据变更订阅，订阅回调函数为DataChangeObserverCallback。
