@@ -1480,7 +1480,7 @@ struct TabsCustomAnimationExample {
         this.scaleList[to] = 0.5;
         this.opacityList[from] = 1.0;
         this.opacityList[to] = 0.5;
-        this.getUIContext()?.animateTo({
+        animateTo({
           duration: this.durationList[from],
           onFinish: () => {
             proxy.finishTransition();
