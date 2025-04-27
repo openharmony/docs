@@ -143,9 +143,10 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
   ```
 
   Stage模型通过context获取服务后用提供的接口[connectServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)连接Ability。
+  在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
   ```ts
-    let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+    let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
     // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
     let connectId = context.connectServiceExtensionAbility(want,connect);
    ```
@@ -232,10 +233,11 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    ```
 
    Stage模型在获取context后用提供的[disconnectServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability-1)接口断开连接，此处使用的connectId是在连接服务时保存下的。
+   在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
    ```ts
     let connectId: number;
-    let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+    let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
 
     // 断开连接，使用连接服务成功时保存下来的connectId断开连接
     this.context.disconnectServiceExtensionAbility(connectId);
