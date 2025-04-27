@@ -197,12 +197,12 @@ export struct LongTermTaskView {
 
   aboutToAppear() {
     // 请求发送通知的许可
-    notificationManager.requestEnableNotification().then(() => {
+    notificationManager.requestEnableNotification(this.getUIContext().getHostContext() as common.UIAbilityContext).then(() => {
       console.info(`[EntryAbility] requestEnableNotification success`);
       // 申请定位相关权限
       let atManager = abilityAccessCtrl.createAtManager();
       try {
-        atManager.requestPermissionsFromUser(getContext(this), ['ohos.permission.INTERNET',
+        atManager.requestPermissionsFromUser(this.getUIContext().getHostContext(), ['ohos.permission.INTERNET',
           'ohos.permission.LOCATION',
           'ohos.permission.LOCATION_IN_BACKGROUND',
           'ohos.permission.APPROXIMATELY_LOCATION'])
@@ -244,13 +244,13 @@ export struct LongTermTaskView {
 
   // 开始长时任务
   startContinuousTask() {
-    let context: Context = getContext(this);
+    let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
     // 通知参数，指定点击长时任务通知后跳转的应用
     let wantAgentInfo: wantAgent.WantAgentInfo = {
       wants: [
         {
-          bundleName: (context as common.UIAbilityContext).abilityInfo.bundleName,
-          abilityName: (context as common.UIAbilityContext).abilityInfo.name
+          bundleName: context.abilityInfo.bundleName,
+          abilityName: context.abilityInfo.name
         }
       ],
       operationType: wantAgent.OperationType.START_ABILITY,
@@ -269,7 +269,7 @@ export struct LongTermTaskView {
 
   // 停止长时任务
   stopContinuousTask() {
-    backgroundTaskManager.stopBackgroundRunning(getContext()).then(() => {
+    backgroundTaskManager.stopBackgroundRunning(this.getUIContext().getHostContext()).then(() => {
       console.info(`Succeeded in operationing stopBackgroundRunning.`);
     }).catch((err: BusinessError) => {
       console.error(`Failed to operation stopBackgroundRunning. Code is ${err.code}, message is ${err.message}`);
