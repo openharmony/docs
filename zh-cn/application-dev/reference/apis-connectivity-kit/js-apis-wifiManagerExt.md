@@ -12,7 +12,7 @@
 import { wifiManagerExt } from '@kit.ConnectivityKit';
 ```
 
-## wifiManagerExt.enableHotspot<sup>9+</sup>
+## wifiManagerExt.enableHotspot<sup>(deprecated)</sup>
 
 enableHotspot(): void;
 
@@ -47,7 +47,7 @@ enableHotspot(): void;
   }
 ```
 
-## wifiManagerExt.disableHotspot<sup>9+</sup>
+## wifiManagerExt.disableHotspot<sup>(deprecated)</sup>
 
 disableHotspot(): void;
 
@@ -254,9 +254,9 @@ getPowerMode(callback: AsyncCallback&lt;PowerMode&gt;): void
   });
 ```
 
-## wifiManagerExt.setPowerMode<sup>9+</sup>
+## wifiManagerExt.setPowerMode<sup>(deprecated)</sup>
 
-setPowerMode(mode: PowerMode) : void;
+setPowerMode(mode: PowerMode) : void
 
  设置功率模式。
 
