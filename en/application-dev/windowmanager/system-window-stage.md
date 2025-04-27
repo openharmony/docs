@@ -331,7 +331,7 @@ struct Index {
     animationConfig.ShowWindowWithCustomAnimation(systemTypeWindow,(context:window.TransitionContext)=>{
       console.info('LOCAL-TEST start show window animation');
       let toWindow = context.toWindow;
-      animateTo({
+      this.getUIContext()?.animateTo({
         duration: 200, // Animation duration
         tempo: 0.5, // Playback speed.
         curve: Curve.EaseInOut, // Animation curve.
@@ -369,7 +369,7 @@ struct Index {
     animationConfig.HideWindowWithCustomAnimation(systemTypeWindow,(context:window.TransitionContext)=>{
       console.info('LOCAL-TEST start hide window animation');
       let toWindow = context.toWindow;
-      animateTo({
+      this.getUIContext()?.animateTo({
         duration: 200, // Animation duration
         tempo: 0.5, // Playback speed.
         curve: Curve.EaseInOut, // Animation curve.
