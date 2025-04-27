@@ -597,7 +597,7 @@ changeIndex(index: number, useAnimation?: boolean)
 
 | 参数名      | 类型       | 必填  | 说明     |
 | -------- | ---------- | ---- | -------- |
-| index| number | 是    | 指定页面在Swiper中的索引值。<br/>**说明：** <br/>设置的值小于0或大于最大页面索引时，取0。 |
+| index| number | 是    | 指定页面在Swiper中的索引值。 |
 | useAnimation| boolean | 否    | 设置翻至指定页面时是否有动效，true表示有动效，false表示没有动效。<br/>默认值：false。 |
 
 ### changeIndex<sup>15+</sup>
@@ -616,7 +616,7 @@ changeIndex(index: number, animationMode?: SwiperAnimationMode | boolean)
 
 | 参数名      | 类型       | 必填  | 说明     |
 | -------- | ---------- | ---- | -------- |
-| index| number | 是    | 指定页面在Swiper中的索引值。<br/>**说明：** <br/>设置的值小于0或大于最大页面索引时，取0。 |
+| index| number | 是    | 指定页面在Swiper中的索引值。 |
 | animationMode| [SwiperAnimationMode](#swiperanimationmode15枚举说明)&nbsp;\|&nbsp;boolean | 否    | 设置翻页至指定页面时的动效模式。<br/>默认值：SwiperAnimationMode.NO_ANIMATION<br/> **说明：** <br/>当传入true时有动效，等同于SwiperAnimationMode.DEFAULT_ANIMATION；当传入false时无动效，等同于SwiperAnimationMode.NO_ANIMATION。 |
 
 ### finishAnimation
