@@ -18,6 +18,7 @@ Web组件打印html页面时可通过W3C标准协议接口和应用接口两种�
 可通过前端css样式控制是否打印，例如@media print。再通过web加载该html页面的方式运行。
 
 - print.html页面代码。
+
   示例一：
 
   ```html
@@ -71,8 +72,8 @@ Web组件打印html页面时可通过W3C标准协议接口和应用接口两种�
   </body>
   ```
   
-  示例二（iframe嵌套页面的方式）：
-  参考[打印](https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_media_queries/Printing)。
+  示例二（iframe嵌套页面的方式，参考[打印](https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_media_queries/Printing)）：
+
 
   ```html
   <!DOCTYPE html>
