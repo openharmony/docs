@@ -904,7 +904,7 @@ export default class EntryAbility extends UIAbility {
 
 | 名称             | 类型                                      | 必填   | 说明              |
 | --------------- |-----------------------------------------| ---- |-----------------|
-| remainingQuota       | number                                  | 是    | 当前当日所剩余总配额。     |
+| remainingQuota       | number                                  | 是    | 应用当日所剩余总配额。     |
 | transientTasks | [DelaySuspendInfo](#delaysuspendinfo)[] | 是    | 当前已申请的所有短时任务信息。 |
 
 ## BackgroundMode
