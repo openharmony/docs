@@ -4922,7 +4922,36 @@ AVSessionController控制器可查看会话ID，并可完成对会话发送命�
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { avSession } from '@kit.AVSessionKit';
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
 
+  build() {
+    Column() {
+      Text(this.message)
+        .onClick(()=>{
+          let currentAVSession: avSession.AVSession | undefined = undefined;
+          let tag: string = "createNewSession";
+          let context: Context = this.getUIContext().getHostContext() as Context;
+          let sessionId: string = "";
+          let AVSessionController: avSession.AVSessionController;
+          avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
+            currentAVSession = data;
+            sessionId = currentAVSession.sessionId;
+            AVSessionController = await currentAVSession.getController();
+            console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+          }).catch((err: BusinessError) => {
+            console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
+          });
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ### getAVPlaybackState<sup>10+</sup>
