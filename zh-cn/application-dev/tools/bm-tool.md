@@ -699,6 +699,7 @@ error: install parse profile prop check error.
         d. 将证书指纹中SHA256的内容去掉冒号，即为最终要获得的签名指纹。
 
         如下图（仅作为格式示意，内容以实际为准）：
+
         ![示例图](figures/zh-cn_image_0000001635921233.png)
 
         去掉冒号后的签名指纹为：5753DDBC1A8EF88A62058A9FC4B6AFAFC1C5D8D1A1B86FB3532739B625F8F3DB。
@@ -2089,7 +2090,7 @@ error: Failed to install the HAP because an enterprise normal/MDM bundle can not
 
 **错误描述**
 
-非企业设备禁止安装分发类型为enterprise_mdm或enterprise_normal的应用。
+非企业设备禁止安装[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中的类型为enterprise_mdm或enterprise_normal的应用。
 
 **可能原因**
 
@@ -2099,22 +2100,22 @@ error: Failed to install the HAP because an enterprise normal/MDM bundle can not
 
 1. 使用企业设备安装企业应用。
 
-### 9568402 禁止安装分发类型为app_gallery的release应用
+### 9568402 禁止安装签名证书profile文件中的类型为app_gallery的release应用
 **错误信息**
 
 error: Release bundle can not be installed.
 
 **错误描述**
 
-禁止通过bm命令安装分发类型为app_gallery并且签名证书类型为release的应用。
+禁止通过bm命令安装[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中的类型为app_gallery并且签名证书类型为release的应用。
 
 **可能原因**
 
-安装应用的分发类型为app_gallery并且签名证书类型为release。
+安装应用[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中的类型为app_gallery并且签名证书类型为release。
 
 **处理步骤**
 
-1. 使用非app_gallery分发类型的证书对应用重新签名。
+1. 使用[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中的类型非app_gallery的文件对应用重新签名。
 2. 使用debug类型证书对应用重新签名。
 
 ### 9568403 安装加密校验失败
@@ -2325,6 +2326,10 @@ error: install version code not same.
 **错误信息**
 
 error: the app distribution type is not allowed install.
+
+**错误描述**
+
+签名证书profile文件中的类型被限制，不允许安装到当前设备中。
 
 **可能原因**
 

@@ -35,7 +35,7 @@
     @Entry
     @Component
     struct Page_UIAbilityComponentsInteractive {
-      private context = getContext(this) as common.UIAbilityContext;
+      private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
       build() {
         Column() {
@@ -111,7 +111,7 @@
           //...
           Button('FuncAbilityB')
             .onClick(() => {
-              let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+              let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
               // context为需要停止的UIAbility实例的AbilityContext
               context.terminateSelf((err) => {
                 if (err.code) {
@@ -142,7 +142,6 @@
     ```ts
     import { common, Want } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
-    import { promptAction } from '@kit.ArkUI';
     import { BusinessError } from '@kit.BasicServicesKit';
 
     const TAG: string = '[Page_UIAbilityComponentsInteractive]';
@@ -160,7 +159,7 @@
                 //...
               }
               .onClick(() => {
-                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+                let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
                 const RESULT_CODE: number = 1001;
                 let want: Want = {
                   deviceId: '', // deviceId为空表示本设备
@@ -178,7 +177,7 @@
                     let info = data.want?.parameters?.info;
                     hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(info) ?? '');
                     if (info !== null) {
-                      promptAction.showToast({
+                      this.getUIContext().getPromptAction().showToast({
                         message: JSON.stringify(info)
                       });
                     }
@@ -219,7 +218,7 @@
                 //...
               }
               .onClick(() => {
-                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+                let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
                 const RESULT_CODE: number = 1001;
                 let abilityResult: common.AbilityResult = {
                   resultCode: RESULT_CODE,
@@ -254,7 +253,6 @@
     ```ts
     import { common, Want } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
-    import { promptAction } from '@kit.ArkUI';
     import { BusinessError } from '@kit.BasicServicesKit';
 
     const TAG: string = '[Page_UIAbilityComponentsInteractive]';
@@ -272,7 +270,7 @@
                 //...
               }
               .onClick(() => {
-                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+                let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
                 const RESULT_CODE: number = 1001;
 
                 let want: Want = {
@@ -291,7 +289,7 @@
                     let info = data.want?.parameters?.info;
                     hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(info) ?? '');
                     if (info !== null) {
-                      promptAction.showToast({
+                      this.getUIContext().getPromptAction().showToast({
                         message: JSON.stringify(info)
                       });
                     }
@@ -351,7 +349,7 @@ struct Page_UIAbilityComponentsInteractive {
             //...
           }
           .onClick(() => {
-            let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
             let want: Want = {
               deviceId: '', // deviceId为空表示本设备
               bundleName: 'com.samples.stagemodelabilityinteraction',
@@ -558,7 +556,7 @@ struct Page_UIAbilityComponentsInteractive {
             //...
           }
           .onClick(() => {
-            let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
             let want: Want = {
               deviceId: '', // deviceId为空表示本设备
               bundleName: 'com.samples.stagemodelabilitydevelop',
@@ -816,7 +814,6 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
     ```ts
     import { common, Want, Caller } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
-    import { promptAction } from '@kit.ArkUI';
     import { BusinessError } from '@kit.BasicServicesKit';
 
     const TAG: string = '[Page_UIAbilityComponentsInteractive]';
@@ -852,7 +849,7 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
                 // ...
               }
               .onClick(() => {
-                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+                let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
                 let want: Want = {
                   bundleName: 'com.samples.stagemodelabilityinteraction',
                   abilityName: 'CalleeAbility',
@@ -870,7 +867,7 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
                   else {
                     hilog.info(DOMAIN_NUMBER, TAG, 'get caller success');
                     this.regOnRelease(caller);
-                    promptAction.showToast({
+                    this.getUIContext().getPromptAction().showToast({
                       message: 'CallerSuccess'
                     });
                     try {

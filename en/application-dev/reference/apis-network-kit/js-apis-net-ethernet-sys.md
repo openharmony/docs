@@ -151,8 +151,8 @@ Obtains the configuration of a network interface. This API uses an asynchronous 
 
 | Name  | Type                                           | Mandatory | Description        |
 | -------- | ----------------------------------------------- | ----- | ------------ |
-| iface    | string                                          | Yes   | Interface name.|
-| callback | AsyncCallback\<[InterfaceConfiguration](#interfaceconfiguration9)> | Yes   | Callback used to return the result.  |
+| iface    | string                                          | Yes   | Network interface.|
+| callback | AsyncCallback\<[InterfaceConfiguration](#interfaceconfiguration9)> | Yes   | Callback used to return the result.    |
 
 **Error codes**
 
@@ -202,7 +202,7 @@ Obtains the configuration of a network interface. This API uses a promise to ret
 
 | Name  | Type                                   | Mandatory| Description        |
 | -------- | --------------------------------------- | ---- | ------------ |
-| iface    | string                                  | Yes  | Interface name.|
+| iface    | string                                  | Yes  | Network interface.|
 
 **Return value**
 
@@ -351,7 +351,7 @@ Obtains the list of all active network interfaces. This API uses an asynchronous
 
 | Name  | Type                                | Mandatory| Description                          |
 | -------- | ------------------------------------ | ---- | ------------------------------ |
-| callback | AsyncCallback\<Array\<string>>         | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<Array\<string>>         | Yes  | Callback used to return the result.  |
 
 **Error codes**
 

@@ -17,7 +17,7 @@
    import { media } from '@kit.MediaKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    
-   let avTranscoder: media.AVTranscoder;
+   let avTranscoder: media.AVTranscoder | undefined = undefined;
    media.createAVTranscoder().then((transcoder: media.AVTranscoder) => {
      avTranscoder = transcoder;
      // 需要在avTranscoder完成赋值后，再进行其他操作。

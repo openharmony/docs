@@ -255,7 +255,7 @@ on(type: 'cameraMute', callback: AsyncCallback\<boolean\>): void
 
 | 参数名     | 类型             | 必填 | 说明       |
 | -------- | --------------- | ---- | --------- |
-| type     | string          | 是   | 监听事件，固定为'cameraMute'，系统相机摄像头开关，cameraManager对象获取成功后可监听。系统设置打开或禁用相机会触发该事件并返回状态。 |
+| type     | string          | 是   | 监听事件，固定为'cameraMute'，系统相机开关，cameraManager对象获取成功后可监听。系统设置打开或禁用相机会触发该事件并返回状态。 |
 | callback | AsyncCallback\<boolean> | 是   | 回调函数，用于获取禁用状态变化信息，返回true为开启状态，返回false为禁用状态。               |
 
 **示例：**
@@ -291,7 +291,7 @@ off(type: 'cameraMute', callback?: AsyncCallback\<boolean\>): void
 
 | 参数名     | 类型             | 必填 | 说明                                                      |
 | -------- | --------------- | ---- |---------------------------------------------------------|
-| type     | string          | 是   | 监听事件，固定为'cameraMute'，系统相机摄像头开关，cameraManager对象获取成功后可监听。 |
+| type     | string          | 是   | 监听事件，固定为'cameraMute'，系统相机开关，cameraManager对象获取成功后可监听。 |
 | callback | AsyncCallback\<boolean> | 否   | 回调函数，可选参数，返回true为开启状态，返回false为禁用状态，有就是匹配on('cameraMute') callback（callback对象不可是匿名函数）。                  |
 
 **示例：**
@@ -485,7 +485,7 @@ function getDeferredPreviewOutput(context: common.BaseContext, previewProfile: c
 
 preSwitchCamera(cameraId: string): void
 
-预切换摄像头，提升摄像头启动速度。
+预切换相机，提升相机启动速度。
 
 **系统接口：** 此接口为系统接口。
 
@@ -525,7 +525,7 @@ function preSwitch(cameraDevice: camera.CameraDevice, context: common.BaseContex
 ```
 
 ## CameraOcclusionDetectionResult<sup>12+</sup>
-摄像头模组被遮挡状态。
+相机模组被遮挡状态。
 
 **系统接口：** 此接口为系统接口。
 

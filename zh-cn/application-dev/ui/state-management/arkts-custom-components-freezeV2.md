@@ -29,8 +29,6 @@
 页面1：
 
 ```ts
-import { router } from '@kit.ArkUI';
-
 @ObservedV2
 export class Book {
   @Trace name: string = "100";
@@ -59,7 +57,7 @@ export struct Page1 {
         })
       Button('go to next page').fontSize(25)
         .onClick(() => {
-          router.pushUrl({ url: 'pages/Page2' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/Page2' });
           setTimeout(() => {
             this.bookTest = new Book("Jane Austen oPride and Prejudice");
           }, 1000)
@@ -72,8 +70,6 @@ export struct Page1 {
 页面2：
 
 ```ts
-import { router } from '@kit.ArkUI';
-
 @Entry
 @ComponentV2
 struct Page2 {
@@ -82,7 +78,7 @@ struct Page2 {
       Text(`This is the page2`).fontSize(25)
       Button('Back')
         .onClick(() => {
-          router.back();
+          this.getUIContext().getRouter().back();
         })
     }
   }
