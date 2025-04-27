@@ -797,7 +797,7 @@ struct Page {
           x: this.translateObj.translateX
         })
         .onClick(() => {
-          animateTo({
+          this.getUIContext().animateTo({
             duration: 50
           }, () => {
             this.translateObj.translateX = (this.translateObj.translateX + 50) % 150
@@ -835,7 +835,7 @@ struct Page1 {
       }
       Button("move")
         .onClick(() => {
-          animateTo({
+          this.getUIContext().animateTo({
             duration: 50
           }, () => {
             this.translateObj.translateX = (this.translateObj.translateX + 50) % 150
@@ -1075,7 +1075,7 @@ struct NecessaryState {
     Column() {
       Button(this.buttonMsg)
         .onClick(() => {
-          animateTo(
+          this.getUIContext().animateTo(
             {
               duration: 50
             }, () => {
