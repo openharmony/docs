@@ -1174,6 +1174,8 @@ getLinkedInfo(): Promise&lt;WifiLinkedInfo&gt;
 | 2501000  | Operation failed.|
 | 2501001  | Wi-Fi STA disabled.|
 
+
+
 ## wifiManager.getLinkedInfo<sup>9+</sup>
 
 getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
