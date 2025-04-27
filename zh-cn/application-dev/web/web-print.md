@@ -72,7 +72,7 @@ Web组件打印html页面时可通过W3C标准协议接口和应用接口两种�
   </body>
   ```
 
-  示例二（iframe嵌套页面的方式，参考[打印](https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_media_queries/Printing)）：
+  示例二（iframe嵌套页面的方式）：
 
 
   ```html
