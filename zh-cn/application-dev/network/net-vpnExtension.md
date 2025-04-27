@@ -59,11 +59,13 @@ OpenHarmony为开发者提供了用于创建VPN的API解决方案。本文将指
 
 当VPN应用启动VPN连接时，需要调用startVpnExtensionAbility接口，携带需要启动的VpnExtensionAbility信息，其中bundleName需要与您的VPN应用bundleName一致，abilityName为您在前面创建的VpnExtensionAbility名。您可参考如下示例：
 
+**注意：**：关于示例代码中this的说明：在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，[请参见获取UIAbility的上下文消息](http://gitee.com/openharmony/docs/blob/222f8d93e6f0056409aac096e041df3fdd8ae5ec/zh-cn/application-dev/application-models/uiability-usage.md)。
+
 ```ts
 import { common, Want } from '@kit.AbilityKit';
 import { vpnExtension } from '@kit.NetworkKit';
 
-let context = getContext(this) as common.VpnExtensionContext;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let want: Want = {
   deviceId: "",
   bundleName: "com.example.myvpndemo",
@@ -101,13 +103,15 @@ struct Index {
 
 当VPN应用需要停止VPN连接时，需要调用stopVpnExtensionAbility接口，携带需要停止的VpnExtensionAbility信息。系统会对调用方做权限校验，stopVpnExtensionAbility的调用方应用必须获取了用户的VPN信任授权，且只允许停止应用自己启动的VpnExtensionAbility，所以接口传入的参数中bundleName需要与您的VPN应用bundleName一致，abilityName为指定停止VPN的VpnExtensionAbility名。
 
+**注意：**：关于示例代码中this的说明：在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，[请参见获取UIAbility的上下文消息](http://gitee.com/openharmony/docs/blob/222f8d93e6f0056409aac096e041df3fdd8ae5ec/zh-cn/application-dev/application-models/uiability-usage.md)。
+
 您可参考如下示例：
 
 ```ts
 import { common, Want } from '@kit.AbilityKit';
 import { vpnExtension } from '@kit.NetworkKit';
 
-let context = getContext(this) as common.VpnExtensionContext;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let want: Want = {
   deviceId: "",
   bundleName: "com.example.myvpndemo",
