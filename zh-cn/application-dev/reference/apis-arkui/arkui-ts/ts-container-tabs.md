@@ -46,8 +46,8 @@ Tabs组件参数，设置Tabs的页签位置，当前显示页签的索引，Tab
 | ----------- | --------------------------------- | ---- | ---------------------------------------- |
 | barPosition<sup>7+</sup> | [BarPosition](#barposition枚举说明)| 否    | 设置Tabs的页签位置。<br/>默认值：BarPosition.Start。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
 | index<sup>7+</sup>       | number                            | 否    | 设置当前显示页签的索引。<br/>默认值：0<br/>**说明：** <br/>设置为小于0的值时按默认值显示。<br/>可选值为[0, TabContent子节点数量-1]。<br/>直接修改index跳页时，切换动效不生效。 使用TabController的changeIndex时，默认生效切换动效，可以设置animationDuration为0关闭动画。<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br/>Tabs重建、系统资源切换（如系统字体切换、系统深浅色切换）或者组件属性变化时，会跳转到index对应的页面。若需要在上述情况下不跳转，建议使用双向绑定。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| controller<sup>7+</sup>  | [TabsController](#tabscontroller) | 否    | 设置Tabs控制器。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                               |
-| barModifier<sup>15+</sup>  | [CommonModifier](#commonmodifier15) | 否    | 设置TabBar的[通用属性](ts-component-general-attributes.md)。<br/>**说明：** <br/>动态置为undefined时会保持当前状态不变，不会重置各通用属性。 <br/>由一个CommonModifier切换为另一个CommonModifier时，重复属性会进行覆盖，非重复属性会同时生效，不会重置前一个CommonModifier的通用属性。<br/>Tabs的[barWidth](#barwidth)、[barHeight](#barheight)、[barBackgroundColor](#barbackgroundcolor10)、[barBackgroundBlurStyle](#barbackgroundblurstyle11)会覆盖CommonModifier的[width](ts-universal-attributes-size.md#width)、[height](ts-universal-attributes-size.md#height)、[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)、[backgroundBlurStyle](ts-universal-attributes-background.md#backgroundblurstyle9)属性。<br/>[align](ts-universal-attributes-location.md#align)属性仅在[BarMode.Scrollable](#barmode10-1)模式下生效，且Tabs为横向时还需[nonScrollableLayoutStyle](#scrollablebarmodeoptions10对象说明)未设置或设置为异常值时才能生效。<br/>[TabContent](ts-container-tabcontent.md)组件的[tabBar](ts-container-tabcontent.md#tabbar9)属性为底部页签样式时不支持拖拽功能。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
+| controller<sup>7+</sup>  | [TabsController](#tabscontroller) | 否    | 设置Tabs控制器。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。         |
+| barModifier<sup>15+</sup>  | [CommonModifier](#commonmodifier15) | 否    | 设置TabBar的[通用属性](ts-component-general-attributes.md)。<br/>**说明：** <br/>动态置为undefined时会保持当前状态不变，不会重置各通用属性。 <br/>由一个CommonModifier切换为另一个CommonModifier时，重复属性会进行覆盖，非重复属性会同时生效，不会重置前一个CommonModifier的通用属性。<br/>Tabs的[barWidth](#barwidth)、[barHeight](#barheight)、[barBackgroundColor](#barbackgroundcolor10)、[barBackgroundBlurStyle](#barbackgroundblurstyle15)、[barBackgroundEffect](#barbackgroundeffect15)属性会覆盖CommonModifier的[width](ts-universal-attributes-size.md#width)、[height](ts-universal-attributes-size.md#height)、[backgroundColor](ts-universal-attributes-background.md#backgroundcolor18)、[backgroundBlurStyle](ts-universal-attributes-background.md#backgroundblurstyle18)、[backgroundEffect](ts-universal-attributes-background.md#backgroundeffect18)属性。<br/>[align](ts-universal-attributes-location.md#align)属性仅在[BarMode.Scrollable](#barmode10-1)模式下生效，且Tabs为横向时还需[nonScrollableLayoutStyle](#scrollablebarmodeoptions10对象说明)未设置或设置为异常值时才能生效。<br/>[TabContent](ts-container-tabcontent.md)组件的[tabBar](ts-container-tabcontent.md#tabbar18)属性为底部页签样式时不支持拖拽功能。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 
 ## BarPosition枚举说明
 
@@ -311,6 +311,23 @@ barBackgroundBlurStyle(value: BlurStyle)
 | ------ | -------------------------------------------- | ---- | ---------------------------------------- |
 | value  | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 是   | TabBar的背景模糊材质。<br />默认值：BlurStyle.NONE |
 
+### barBackgroundBlurStyle<sup>15+</sup>
+
+barBackgroundBlurStyle(style: BlurStyle, options: BackgroundBlurStyleOptions)
+
+为TabBar提供一种在背景和内容之间的模糊能力，通过枚举值的方式封装了不同的模糊半径、蒙版颜色、蒙版透明度、饱和度、亮度。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名                | 类型                                                         | 必填 | 说明                                                         |
+| --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| style                 | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)                 | 是   | 背景模糊样式。模糊样式中封装了模糊半径、蒙版颜色、蒙版透明度、饱和度、亮度五个参数。 |
+| options | [BackgroundBlurStyleOptions](ts-universal-attributes-background.md#backgroundblurstyleoptions10对象说明) | 是   | 背景模糊选项。   
+
 ### barGridAlign<sup>10+</sup>
 
 barGridAlign(value: BarGridColumnOptions)
@@ -342,6 +359,22 @@ edgeEffect(edgeEffect: Optional&lt;EdgeEffect&gt;)
 | 参数名 | 类型                                          | 必填 | 说明                                         |
 | ------ | --------------------------------------------- | ---- | -------------------------------------------- |
 | edgeEffect  | Optional&lt;[EdgeEffect](ts-appendix-enums.md#edgeeffect)&gt; | 是   | 边缘滑动效果。<br/>默认值：EdgeEffect.Spring |
+
+### barBackgroundEffect<sup>15+</sup>
+
+barBackgroundEffect(options: BackgroundEffectOptions)
+
+设置TabBar背景属性，包含背景模糊半径，亮度，饱和度，颜色等参数。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                                         | 必填 | 说明                                       |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
+| options | [BackgroundEffectOptions](ts-universal-attributes-background.md#backgroundeffectoptions11) | 是   | 设置TabBar背景属性包括：模糊半径，亮度，饱和度，颜色等。 |
 
 ### pageFlipMode<sup>15+</sup>
 
@@ -426,7 +459,7 @@ TabBar布局模式枚举。
 | ------------- | ---- | ------------------------------------------------------------ |
 | CONTENT_FIRST | 0    | 先加载目标页内容，再开始切换动画。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | ACTION_FIRST  | 1    | 先开始切换动画，再加载目标页内容；生效需要同时需要满足：Tabs的height、width没有设置成auto。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| NO_ANIMATION  | 2    | 关闭默认动画。调用TabsController的changeIndex接口切换TabContent时该枚举值不生效。<br>可以通过设置animationDuration为0实现调用TabsController的changeIndex接口时不带动画。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| NO_ANIMATION  | 2    | 关闭默认动画。调用TabsController的changeIndex接口切换TabContent时该枚举值不生效。<br>可以通过设置animationDuration为0实现调用TabsController的changeIndex接口时不带动画。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | CONTENT_FIRST_WITH_JUMP<sup>15+</sup> | 3    | 先加载目标页内容，再无动画跳转到目标页附近，最后有动画跳转到目标页。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 | ACTION_FIRST_WITH_JUMP<sup>15+</sup>  | 4    | 先无动画跳转到目标页附近，再有动画跳转到目标页，最后加载目标页内容。此项生效需要同时需要满足：Tabs的height、width没有设置成auto。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
@@ -464,7 +497,7 @@ type CommonModifier = CommonModifier
 
 ### onChange
 
-onChange(event:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)
+onChange(event: Callback\<number>)
 
 Tab页签切换后触发的事件。
 
@@ -490,11 +523,11 @@ Tab页签切换后触发的事件。
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| index  | number | 是   | 当前显示的index索引，索引从0开始计算。 |
+| event  | [Callback](./ts-types.md#callback12)\<number> | 是   | 当前显示的index索引，索引从0开始计算。 |
 
 ### onTabBarClick<sup>10+</sup>
 
-onTabBarClick(event:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)
+onTabBarClick(event: Callback\<number>)
 
 Tab页签点击后触发的事件。
 
@@ -506,13 +539,13 @@ Tab页签点击后触发的事件。
 
 | 参数名 | 类型   | 必填 | 说明                                 |
 | ------ | ------ | ---- | ------------------------------------ |
-| index  | number | 是   | 被点击的index索引，索引从0开始计算。 |
+| event  | [Callback](./ts-types.md#callback12)\<number> | 是   | 被点击的index索引，索引从0开始计算。 |
 
 ### onAnimationStart<sup>11+</sup>
 
-onAnimationStart(handler: (index: number, targetIndex: number, event: TabsAnimationEvent) => void)
+onAnimationStart(handler: OnTabsAnimationStartCallback)
 
-切换动画开始时触发该回调。参数为动画开始前的index值（不是最终结束动画的index值）。当[animationDuration](#animationduration)为0时动画关闭，不触发该回调。
+切换动画开始时触发该回调。当[animationDuration](#animationduration)为0时动画关闭，不触发该回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -520,17 +553,15 @@ onAnimationStart(handler: (index: number, targetIndex: number, event: TabsAnimat
 
 **参数：** 
 
-| 参数名      | 类型                                                   | 必填 | 说明                                                         |
-| ----------- | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| index       | number                                                 | 是   | 当前显示元素的索引，索引从0开始。                            |
-| targetIndex | number                                                 | 是   | 切换动画目标元素的索引，索引从0开始。                        |
-| event       | [TabsAnimationEvent](#tabsanimationevent11对象说明) | 是   | 动画相关信息，包括主轴方向上当前显示元素和目标元素相对Tabs起始位置的位移，以及离手速度。 |
+| 参数名 | 类型   | 必填 | 说明                 |
+| ------ | ------ | ---- | -------------------- |
+| handler  | [OnTabsAnimationStartCallback](#ontabsanimationstartcallback18) | 是   | 切换动画开始时触发的回调。 |
 
 ### onAnimationEnd<sup>11+</sup>
 
-onAnimationEnd(handler: (index: number, event: TabsAnimationEvent) => void)
+onAnimationEnd(handler: OnTabsAnimationEndCallback)
 
-切换动画结束时触发该回调。当Tabs切换动效结束时触发，包括动画过程中手势中断。参数为动画结束后的index值。当[animationDuration](#animationduration)为0时动画关闭，不触发该回调。
+切换动画结束时触发该回调，包括动画过程中手势中断。当animationDuration为0时动画关闭，不触发该回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -538,14 +569,13 @@ onAnimationEnd(handler: (index: number, event: TabsAnimationEvent) => void)
 
 **参数：** 
 
-| 参数名 | 类型                                                   | 必填 | 说明                                                         |
-| ------ | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| index  | number                                                 | 是   | 当前显示元素的索引，索引从0开始。                                |
-| event  | [TabsAnimationEvent](#tabsanimationevent11对象说明) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Tabs起始位置的位移。 |
+| 参数名 | 类型   | 必填 | 说明                 |
+| ------ | ------ | ---- | -------------------- |
+| handler  | [OnTabsAnimationEndCallback](#ontabsanimationendcallback18) | 是   | 切换动画结束时触发的回调。 |
 
 ### onGestureSwipe<sup>11+</sup>
 
-onGestureSwipe(handler: (index: number, event: TabsAnimationEvent) => void)
+onGestureSwipe(handler: OnTabsGestureSwipeCallback)
 
 在页面跟手滑动过程中，逐帧触发该回调。
 
@@ -555,14 +585,13 @@ onGestureSwipe(handler: (index: number, event: TabsAnimationEvent) => void)
 
 **参数：** 
 
-| 参数名 | 类型                                                   | 必填 | 说明                                                         |
-| ------ | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| index  | number                                                 | 是   | 当前显示元素的索引，索引从0开始。                                |
-| event  | [TabsAnimationEvent](#tabsanimationevent11对象说明) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Tabs起始位置的位移。 |
+| 参数名 | 类型   | 必填 | 说明                 |
+| ------ | ------ | ---- | -------------------- |
+| handler  | [OnTabsGestureSwipeCallback](#ontabsgestureswipecallback18) | 是   | 在页面跟手滑动过程中，逐帧触发的回调。 |
 
 ### customContentTransition<sup>11+</sup>
 
-customContentTransition(delegate: (from: number, to: number) => TabContentAnimatedTransition \| undefined)
+customContentTransition(delegate: TabsCustomContentTransitionCallback)
 
 自定义Tabs页面切换动画。
 
@@ -570,28 +599,20 @@ customContentTransition(delegate: (from: number, to: number) => TabContentAnimat
 
 1、当使用自定义切换动画时，Tabs组件自带的默认切换动画会被禁用，同时，页面也无法跟手滑动。<br>2、当设置为undefined时，表示不使用自定义切换动画，仍然使用组件自带的默认切换动画。<br>3、当前自定义切换动画不支持打断。<br>4、目前自定义切换动画只支持两种场景触发：点击页签和调用TabsController.changeIndex()接口。<br>5、当使用自定义切换动画时，Tabs组件支持的事件中，除了onGestureSwipe，其他事件均支持。<br>6、onChange和onAnimationEnd事件的触发时机需要特殊说明：如果在第一次自定义动画执行过程中，触发了第二次自定义动画，那么在开始第二次自定义动画时，就会触发第一次自定义动画的onChange和onAnimationEnd事件。<br>7、当使用自定义动画时，参与动画的页面布局方式会改为Stack布局。如果开发者未主动设置相关页面的zIndex属性，那么所有页面的zIndex值是一样的，页面的渲染层级会按照在组件树上的顺序（即页面的index值顺序）确定。因此，开发者需要主动修改页面的zIndex属性，来控制页面的渲染层级。
 
-**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
-| 参数名 | 类型   | 必填 | 说明                            |
-| ------ | ------ | ---- | ------------------------------- |
-| from   | number | 是   | 动画开始时，当前页面的index值，索引从0开始。 |
-| to     | number | 是   | 动画开始时，目标页面的index值，索引从0开始。 |
+| 参数名 | 类型   | 必填 | 说明                 |
+| ------ | ------ | ---- | -------------------- |
+| delegate  | [TabsCustomContentTransitionCallback](#tabscustomcontenttransitioncallback18) | 是   | 自定义Tabs页面切换动画开始时触发的回调。 |
 
-**返回值：** 
-
-| 类型                                                         | 说明                     |
-| ------------------------------------------------------------ | ------------------------ |
-| [TabContentAnimatedTransition](#tabcontentanimatedtransition11)&nbsp;\|&nbsp;undefined | 自定义切换动画相关信息。 |
 
 ### onContentWillChange<sup>12+</sup>
 
-onContentWillChange(handler: (currentIndex: number, comingIndex: number) => boolean)
+onContentWillChange(handler: OnTabsContentWillChangeCallback)
 
 自定义Tabs页面切换拦截事件能力，新页面即将显示时触发该回调。
 
@@ -608,6 +629,157 @@ onContentWillChange(handler: (currentIndex: number, comingIndex: number) => bool
 5、TabBar页签获焦后，通过键盘左右方向键等切换新页面时触发。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                 |
+| ------ | ------ | ---- | -------------------- |
+| handler  | [OnTabsContentWillChangeCallback](#ontabscontentwillchangecallback18) | 是   | 自定义Tabs页面切换拦截事件能力，新页面即将显示时触发的回调。 |
+
+### onSelected<sup>18+</sup>
+
+onSelected(event: Callback\<number>)
+
+当选中元素改变时触发该回调，返回值为当前选中的元素的索引值。
+
+满足以下任一条件，即可触发该事件：
+
+1. 滑动离手时满足翻页阈值，开始切换动画时触发。
+
+2. 通过[TabsController控制器](#tabscontroller)调用[changeIndex](#changeindex)接口，开始切换动画时触发。
+
+3. 动态修改[状态变量](../../../ui/state-management/arkts-state.md)构造的index属性值后触发。
+
+4. 通过页签处点击触发。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| event  | [Callback](./ts-types.md#callback12)\<number> | 是   | 当前选中元素的索引。 |
+
+> **说明：**
+>
+> onSelected回调中不可通过TabsOptions的index设置当前显示页的索引，不可调用TabsController.changeIndex()方法。
+
+### onUnselected<sup>18+</sup>
+
+onUnselected(event: Callback\<number>)
+
+当选中元素改变时触发该回调，返回值为将要隐藏的元素的索引值。
+
+满足以下任一条件，即可触发该事件：
+
+1. 滑动离手时满足翻页阈值，开始切换动画时触发。
+
+2. 通过[TabsController控制器](#tabscontroller)调用[changeIndex](#changeindex)接口，开始切换动画时触发。
+
+3. 动态修改[状态变量](../../../ui/state-management/arkts-state.md)构造的index属性值后触发。
+
+4. 通过页签处点击触发。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| event  | [Callback](./ts-types.md#callback12)\<number> | 是   | 将要隐藏元素的索引。 |
+
+> **说明：**
+>
+> onUnselected回调中不可通过TabsOptions的index设置当前显示页的索引，不可调用TabsController.changeIndex()方法。
+
+## OnTabsAnimationStartCallback<sup>18+</sup>
+
+type OnTabsAnimationStartCallback = (index: number, targetIndex: number, extraInfo: TabsAnimationEvent) => void
+
+切换动画开始时触发的回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名      | 类型                                                   | 必填 | 说明                                                         |
+| ----------- | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| index       | number                                                 | 是   | 当前显示元素的索引，索引从0开始。                             |
+| targetIndex | number                                                 | 是   | 切换动画目标元素的索引，索引从0开始。                         |
+| extraInfo       | [TabsAnimationEvent](#tabsanimationevent11对象说明) | 是   | 动画相关信息，包括主轴方向上当前显示元素和目标元素相对Tabs起始位置的位移，以及离手速度。 |
+
+## OnTabsAnimationEndCallback<sup>18+</sup>
+
+type OnTabsAnimationEndCallback = (index: number, extraInfo: TabsAnimationEvent) => void
+
+切换动画结束时触发的回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                   | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| index  | number                                                 | 是   | 当前显示元素的索引，索引从0开始。                                    |
+| extraInfo  | [TabsAnimationEvent](#tabsanimationevent11对象说明) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Tabs起始位置的位移。 |
+
+## OnTabsGestureSwipeCallback<sup>18+</sup>
+
+type OnTabsGestureSwipeCallback = (index: number, extraInfo: TabsAnimationEvent) => void
+
+在页面跟手滑动过程中，逐帧触发的回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                   | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| index  | number                                                 | 是   | 当前显示元素的索引，索引从0开始。                                    |
+| extraInfo  | [TabsAnimationEvent](#tabsanimationevent11对象说明) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Tabs起始位置的位移。 |
+
+## TabsCustomContentTransitionCallback<sup>18+</sup>
+
+type TabsCustomContentTransitionCallback = (from: number, to: number) => TabContentAnimatedTransition | undefined
+
+自定义Tabs页面切换动画开始时触发的回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                            |
+| ------ | ------ | ---- | ------------------------------- |
+| from   | number | 是   | 动画开始时，当前页面的index值，索引从0开始。 |
+| to     | number | 是   | 动画开始时，目标页面的index值，索引从0开始。 |
+
+**返回值：** 
+
+| 类型                                                         | 说明                     |
+| ------------------------------------------------------------ | ------------------------ |
+| [TabContentAnimatedTransition](#tabcontentanimatedtransition11)&nbsp;\|&nbsp;undefined | 自定义切换动画相关信息。 |
+
+## OnTabsContentWillChangeCallback<sup>18+</sup>
+
+type OnTabsContentWillChangeCallback = (currentIndex: number, comingIndex: number) => boolean
+
+自定义Tabs页面切换拦截事件能力，新页面即将显示时触发的回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -651,7 +823,7 @@ Tabs自定义切换动画相关信息。
 | 名称            | 类型         | 必填   | 说明                                       |
 | ------------- | ---------------------- | ---- |---------------------- |
 | timeout | number | 否 | Tabs自定义切换动画超时时间。从自定义动画开始切换计时，如果到达该时间后，开发者仍未调用[TabContentTransitionProxy](#tabcontenttransitionproxy11)的finishTransition接口通知Tabs组件自定义动画结束，那么组件就会认为此次自定义动画已结束，直接执行后续操作。<br/>默认值：1000<br/>单位：ms<br/>取值范围：[0, +∞)。|
-| transition | (proxy: [TabContentTransitionProxy](#tabcontenttransitionproxy11)) => void| 是 | 自定义切换动画具体内容。|
+| transition | [Callback](./ts-types.md#callback12)\<[TabContentTransitionProxy](#tabcontenttransitionproxy11)> | 是 | 自定义切换动画具体内容。|
 
 ## TabContentTransitionProxy<sup>11+</sup>
 
@@ -799,8 +971,8 @@ setTabBarOpacity(opacity: number): void
 @Entry
 @Component
 struct TabsExample {
-  @State text: string = "文本"
-  @State barMode: BarMode = BarMode.Fixed
+  @State text: string = "文本";
+  @State barMode: BarMode = BarMode.Fixed;
 
   build() {
     Column() {
@@ -809,7 +981,7 @@ struct TabsExample {
           .width('47%')
           .height(50)
           .onClick((event?: ClickEvent) => {
-            this.text += '文本增加'
+            this.text += '文本增加';
           })
           .margin({ right: '6%', bottom: '12vp' })
 
@@ -817,7 +989,7 @@ struct TabsExample {
           .width('47%')
           .height(50)
           .onClick((event?: ClickEvent) => {
-            this.text = "文本"
+            this.text = "文本";
           })
           .margin({ bottom: '12vp' })
       }
@@ -827,7 +999,7 @@ struct TabsExample {
           .width('47%')
           .height(50)
           .onClick((event?: ClickEvent) => {
-            this.barMode = BarMode.Fixed
+            this.barMode = BarMode.Fixed;
           })
           .margin({ right: '6%', bottom: '12vp' })
 
@@ -835,7 +1007,7 @@ struct TabsExample {
           .width('47%')
           .height(50)
           .onClick((event?: ClickEvent) => {
-            this.barMode = BarMode.Scrollable
+            this.barMode = BarMode.Scrollable;
           })
           .margin({ bottom: '12vp' })
       }
@@ -874,10 +1046,10 @@ struct TabsExample {
 @Entry
 @Component
 struct TabsExample6 {
-  private controller: TabsController = new TabsController()
-  @State scrollMargin: number = 0
-  @State layoutStyle: LayoutStyle = LayoutStyle.ALWAYS_CENTER
-  @State text: string = "文本"
+  private controller: TabsController = new TabsController();
+  @State scrollMargin: number = 0;
+  @State layoutStyle: LayoutStyle = LayoutStyle.ALWAYS_CENTER;
+  @State text: string = "文本";
 
   build() {
     Column() {
@@ -887,7 +1059,7 @@ struct TabsExample6 {
           .height(50)
           .margin({ top: 5 })
           .onClick((event?: ClickEvent) => {
-            this.scrollMargin += 10
+            this.scrollMargin += 10;
           })
           .margin({ right: '6%', bottom: '12vp' })
         Button("scrollMargin-10 " + this.scrollMargin)
@@ -895,7 +1067,7 @@ struct TabsExample6 {
           .height(50)
           .margin({ top: 5 })
           .onClick((event?: ClickEvent) => {
-            this.scrollMargin -= 10
+            this.scrollMargin -= 10;
           })
           .margin({ bottom: '12vp' })
       }
@@ -906,7 +1078,7 @@ struct TabsExample6 {
           .height(50)
           .margin({ top: 5 })
           .onClick((event?: ClickEvent) => {
-            this.text += '文本增加'
+            this.text += '文本增加';
           })
           .margin({ right: '6%', bottom: '12vp' })
         Button("文本重置")
@@ -914,7 +1086,7 @@ struct TabsExample6 {
           .height(50)
           .margin({ top: 5 })
           .onClick((event?: ClickEvent) => {
-            this.text = "文本"
+            this.text = "文本";
           })
           .margin({ bottom: '12vp' })
       }
@@ -992,11 +1164,11 @@ struct TabsExample6 {
 @Entry
 @Component
 struct TabsExample {
-  @State fontColor: string = '#182431'
-  @State selectedFontColor: string = '#007DFF'
-  @State currentIndex: number = 0
-  @State selectedIndex: number = 0
-  private controller: TabsController = new TabsController()
+  @State fontColor: string = '#182431';
+  @State selectedFontColor: string = '#007DFF';
+  @State currentIndex: number = 0;
+  @State selectedIndex: number = 0;
+  private controller: TabsController = new TabsController();
 
   @Builder tabBuilder(index: number, name: string) {
     Column() {
@@ -1039,15 +1211,15 @@ struct TabsExample {
       .animationDuration(400)
       .onChange((index: number) => {
         // currentIndex控制TabContent显示页签
-        this.currentIndex = index
-        this.selectedIndex = index
+        this.currentIndex = index;
+        this.selectedIndex = index;
       })
       .onAnimationStart((index: number, targetIndex: number, event: TabsAnimationEvent) => {
         if (index === targetIndex) {
-          return
+          return;
         }
         // selectedIndex控制自定义TabBar内Image和Text颜色切换
-        this.selectedIndex = targetIndex
+        this.selectedIndex = targetIndex;
       })
       .width(360)
       .height(296)
@@ -1069,12 +1241,12 @@ struct TabsExample {
 @Entry
 @Component
 struct TabsDivider1 {
-  private controller1: TabsController = new TabsController()
-  @State dividerColor: string = 'red'
-  @State strokeWidth: number = 2
-  @State startMargin: number = 0
-  @State endMargin: number = 0
-  @State nullFlag: boolean = false
+  private controller1: TabsController = new TabsController();
+  @State dividerColor: string = 'red';
+  @State strokeWidth: number = 2;
+  @State startMargin: number = 0;
+  @State endMargin: number = 0;
+  @State nullFlag: boolean = false;
 
   build() {
     Column() {
@@ -1106,7 +1278,7 @@ struct TabsDivider1 {
       .barHeight(200)
       .animationDuration(400)
       .onChange((index: number) => {
-        console.info(index.toString())
+        console.info(index.toString());
       })
       .height('200vp')
       .margin({ bottom: '12vp' })
@@ -1127,40 +1299,40 @@ struct TabsDivider1 {
         })
       Button('空Divider').width('100%').margin({ bottom: '12vp' })
         .onClick(() => {
-          this.nullFlag = true
+          this.nullFlag = true;
         })
       Button('颜色变为蓝色').width('100%').margin({ bottom: '12vp' })
         .onClick(() => {
-          this.dividerColor = 'blue'
+          this.dividerColor = 'blue';
         })
       Button('宽度增加').width('100%').margin({ bottom: '12vp' })
         .onClick(() => {
-          this.strokeWidth += 2
+          this.strokeWidth += 2;
         })
       Button('宽度减小').width('100%').margin({ bottom: '12vp' })
         .onClick(() => {
           if (this.strokeWidth > 2) {
-            this.strokeWidth -= 2
+            this.strokeWidth -= 2;
           }
         })
       Button('上边距增加').width('100%').margin({ bottom: '12vp' })
         .onClick(() => {
-          this.startMargin += 2
+          this.startMargin += 2;
         })
       Button('上边距减少').width('100%').margin({ bottom: '12vp' })
         .onClick(() => {
           if (this.startMargin > 2) {
-            this.startMargin -= 2
+            this.startMargin -= 2;
           }
         })
       Button('下边距增加').width('100%').margin({ bottom: '12vp' })
         .onClick(() => {
-          this.endMargin += 2
+          this.endMargin += 2;
         })
       Button('下边距减少').width('100%').margin({ bottom: '12vp' })
         .onClick(() => {
           if (this.endMargin > 2) {
-            this.endMargin -= 2
+            this.endMargin -= 2;
           }
         })
     }.padding({ top: '24vp', left: '24vp', right: '24vp' })
@@ -1179,9 +1351,9 @@ struct TabsDivider1 {
 @Entry
 @Component
 struct TabsOpaque {
-  @State message: string = 'Hello World'
-  private controller: TabsController = new TabsController()
-  private controller1: TabsController = new TabsController()
+  @State message: string = 'Hello World';
+  private controller: TabsController = new TabsController();
+  private controller1: TabsController = new TabsController();
   @State selfFadingFade: boolean = true;
 
   build() {
@@ -1233,7 +1405,7 @@ struct TabsOpaque {
       .barHeight(80)
       .animationDuration(400)
       .onChange((index: number) => {
-        console.info(index.toString())
+        console.info(index.toString());
       })
       .fadingEdge(this.selfFadingFade)
       .height('30%')
@@ -1271,7 +1443,7 @@ struct TabsOpaque {
       .barWidth(80)
       .animationDuration(400)
       .onChange((index: number) => {
-        console.info(index.toString())
+        console.info(index.toString());
       })
       .fadingEdge(this.selfFadingFade)
       .height('30%')
@@ -1293,7 +1465,7 @@ struct TabsOpaque {
 @Entry
 @Component
 struct barHeightTest {
-  @State arr: number[] = [0, 1, 2, 3]
+  @State arr: number[] = [0, 1, 2, 3];
   @State barOverlap: boolean = true;
   build() {
     Column() {
@@ -1344,10 +1516,10 @@ struct barHeightTest {
 @Entry
 @Component
 struct TabsExample5 {
-  private controller: TabsController = new TabsController()
-  @State gridMargin: number = 10
-  @State gridGutter: number = 10
-  @State sm: number = -2
+  private controller: TabsController = new TabsController();
+  @State gridMargin: number = 10;
+  @State gridGutter: number = 10;
+  @State sm: number = -2;
   @State clickedContent: string = "";
 
   build() {
@@ -1358,7 +1530,7 @@ struct TabsExample5 {
           .height(50)
           .margin({ top: 5 })
           .onClick((event?: ClickEvent) => {
-            this.gridMargin += 10
+            this.gridMargin += 10;
           })
           .margin({ right: '6%', bottom: '12vp' })
         Button("gridMargin-10 " + this.gridMargin)
@@ -1366,7 +1538,7 @@ struct TabsExample5 {
           .height(50)
           .margin({ top: 5 })
           .onClick((event?: ClickEvent) => {
-            this.gridMargin -= 10
+            this.gridMargin -= 10;
           })
           .margin({ bottom: '12vp' })
       }
@@ -1377,7 +1549,7 @@ struct TabsExample5 {
           .height(50)
           .margin({ top: 5 })
           .onClick((event?: ClickEvent) => {
-            this.gridGutter += 10
+            this.gridGutter += 10;
           })
           .margin({ right: '6%', bottom: '12vp' })
         Button("gridGutter-10 " + this.gridGutter)
@@ -1385,7 +1557,7 @@ struct TabsExample5 {
           .height(50)
           .margin({ top: 5 })
           .onClick((event?: ClickEvent) => {
-            this.gridGutter -= 10
+            this.gridGutter -= 10;
           })
           .margin({ bottom: '12vp' })
       }
@@ -1396,12 +1568,12 @@ struct TabsExample5 {
           .height(50)
           .margin({ top: 5 })
           .onClick((event?: ClickEvent) => {
-            this.sm += 2
+            this.sm += 2;
           })
           .margin({ right: '6%' })
         Button("sm-2 " + this.sm).width('47%').height(50).margin({ top: 5 })
           .onClick((event?: ClickEvent) => {
-            this.sm -= 2
+            this.sm -= 2;
           })
       }
 
@@ -1466,44 +1638,44 @@ struct TabsCustomAnimationExample {
     {
       text: 'Blue',
       backgroundColor: Color.Blue
-    }]
-  @State opacityList: number[] = []
-  @State scaleList: number[] = []
+    }];
+  @State opacityList: number[] = [];
+  @State scaleList: number[] = [];
 
-  private durationList: number[] = []
-  private timeoutList: number[] = []
+  private durationList: number[] = [];
+  private timeoutList: number[] = [];
   private customContentTransition: (from: number, to: number) => TabContentAnimatedTransition = (from: number, to: number) => {
     let tabContentAnimatedTransition = {
       timeout: this.timeoutList[from],
       transition: (proxy: TabContentTransitionProxy) => {
-        this.scaleList[from] = 1.0
-        this.scaleList[to] = 0.5
-        this.opacityList[from] = 1.0
-        this.opacityList[to] = 0.5
-        animateTo({
+        this.scaleList[from] = 1.0;
+        this.scaleList[to] = 0.5;
+        this.opacityList[from] = 1.0;
+        this.opacityList[to] = 0.5;
+        this.getUIContext()?.animateTo({
           duration: this.durationList[from],
           onFinish: () => {
-            proxy.finishTransition()
+            proxy.finishTransition();
           }
         }, () => {
-          this.scaleList[from] = 0.5
-          this.scaleList[to] = 1.0
-          this.opacityList[from] = 0.5
-          this.opacityList[to] = 1.0
-        })
+          this.scaleList[from] = 0.5;
+          this.scaleList[to] = 1.0;
+          this.opacityList[from] = 0.5;
+          this.opacityList[to] = 1.0;
+        });
       }
     } as TabContentAnimatedTransition
-    return tabContentAnimatedTransition
+    return tabContentAnimatedTransition;
   }
 
   aboutToAppear(): void {
-    let duration = 1000
-    let timeout = 1000
+    let duration = 1000;
+    let timeout = 1000;
     for (let i = 1; i <= this.data.length; i++) {
-      this.opacityList.push(1.0)
-      this.scaleList.push(1.0)
-      this.durationList.push(duration * i)
-      this.timeoutList.push(timeout * i)
+      this.opacityList.push(1.0);
+      this.scaleList.push(1.0);
+      this.durationList.push(duration * i);
+      this.timeoutList.push(timeout * i);
     }
   }
 
@@ -1539,9 +1711,9 @@ struct TabsCustomAnimationExample {
 @Entry
 @Component
 struct TabsExample {
-  @State selectedIndex: number = 2
-  @State currentIndex: number = 2
-  private controller: TabsController = new TabsController()
+  @State selectedIndex: number = 2;
+  @State currentIndex: number = 2;
+  private controller: TabsController = new TabsController();
   @Builder tabBuilder(title: string,targetIndex: number) {
     Column(){
       Image(this.selectedIndex === targetIndex ? $r('app.media.star_fill') : $r('app.media.star'))
@@ -1587,8 +1759,8 @@ struct TabsExample {
       .barHeight(60)
       .animationDuration(0)
       .onChange((index: number) => {
-        this.currentIndex = index
-        this.selectedIndex = index
+        this.currentIndex = index;
+        this.selectedIndex = index;
       })
       .width(360)
       .height(600)
@@ -1596,20 +1768,20 @@ struct TabsExample {
       .scrollable(true)
       .onContentWillChange((currentIndex, comingIndex) => {
         if (comingIndex == 2) {
-          return false
+          return false;
         }
-        return true
+        return true;
       })
 
       Button('动态修改index').width('50%').margin({ top: 20 })
         .onClick(()=>{
-          this.currentIndex = (this.currentIndex + 1) % 4
+          this.currentIndex = (this.currentIndex + 1) % 4;
         })
 
       Button('changeIndex').width('50%').margin({ top: 20 })
         .onClick(()=>{
-          this.currentIndex = (this.currentIndex + 1) % 4
-          this.controller.changeIndex(this.currentIndex)
+          this.currentIndex = (this.currentIndex + 1) % 4;
+          this.controller.changeIndex(this.currentIndex);
         })
     }.width('100%')
   }
@@ -1634,7 +1806,7 @@ export default class EntryAbility extends UIAbility {
   onConfigurationUpdate(newConfig: Configuration): void {
     // 监听系统配置变化
     if (newConfig.language) {
-      CommonUtil.setIsRTL(i18n.isRTL(newConfig.language))
+      CommonUtil.setIsRTL(i18n.isRTL(newConfig.language));
     }
   }
 }
@@ -1647,14 +1819,14 @@ export default class EntryAbility extends UIAbility {
 import { i18n, intl } from '@kit.LocalizationKit';
 
 export class CommonUtil {
-  private static isRTL: boolean = i18n.isRTL((new intl.Locale()).language)
+  private static isRTL: boolean = i18n.isRTL((new intl.Locale()).language);
 
   public static setIsRTL(isRTL: boolean): void {
-    CommonUtil.isRTL = isRTL
+    CommonUtil.isRTL = isRTL;
   }
 
   public static getIsRTL(): boolean {
-    return CommonUtil.isRTL
+    return CommonUtil.isRTL;
   }
 }
 ```
@@ -1670,14 +1842,14 @@ import { CommonUtil } from '../common/CommonUtil';
 @Component
 struct TabsExample {
   @State colorArray: [string, string][] =
-    [['green', '#00CB87'], ['blue', '#007DFF'], ['yellow', '#FFBF00'], ['pink', '#E67C92']]
-  @State currentIndex: number = 0
-  @State animationDuration: number = 300
-  @State indicatorLeftMargin: number = 0
-  @State indicatorWidth: number = 0
-  private tabsWidth: number = 0
-  private textInfos: [number, number][] = []
-  private isStartAnimateTo: boolean = false
+    [['green', '#00CB87'], ['blue', '#007DFF'], ['yellow', '#FFBF00'], ['pink', '#E67C92']];
+  @State currentIndex: number = 0;
+  @State animationDuration: number = 300;
+  @State indicatorLeftMargin: number = 0;
+  @State indicatorWidth: number = 0;
+  private tabsWidth: number = 0;
+  private textInfos: [number, number][] = [];
+  private isStartAnimateTo: boolean = false;
 
   aboutToAppear():void {
     for (let i = 0; i < this.colorArray.length; i++) {
@@ -1694,9 +1866,9 @@ struct TabsExample {
         .fontWeight(this.currentIndex === index ? 500 : 400)
         .id(index.toString())
         .onAreaChange((oldValue: Area, newValue: Area) => {
-          this.textInfos[index] = [newValue.globalPosition.x as number, newValue.width as number]
+          this.textInfos[index] = [newValue.globalPosition.x as number, newValue.width as number];
           if (!this.isStartAnimateTo && this.currentIndex === index && this.tabsWidth > 0) {
-            this.setIndicatorAttr(this.textInfos[this.currentIndex][0], this.textInfos[this.currentIndex][1])
+            this.setIndicatorAttr(this.textInfos[this.currentIndex][0], this.textInfos[this.currentIndex][1]);
           }
         })
     }.width('100%')
@@ -1712,9 +1884,9 @@ struct TabsExample {
         })
       }
       .onAreaChange((oldValue: Area, newValue: Area)=> {
-        this.tabsWidth = newValue.width as number
+        this.tabsWidth = newValue.width as number;
         if (!this.isStartAnimateTo) {
-          this.setIndicatorAttr(this.textInfos[this.currentIndex][0], this.textInfos[this.currentIndex][1])
+          this.setIndicatorAttr(this.textInfos[this.currentIndex][0], this.textInfos[this.currentIndex][1]);
         }
       })
       .barWidth('100%')
@@ -1724,23 +1896,23 @@ struct TabsExample {
       .backgroundColor('#F1F3F5')
       .animationDuration(this.animationDuration)
       .onChange((index: number) => {
-        this.currentIndex = index // 监听索引index的变化，实现页签内容的切换。
+        this.currentIndex = index;// 监听索引index的变化，实现页签内容的切换。
       })
       .onAnimationStart((index: number, targetIndex: number, event: TabsAnimationEvent) => {
         // 切换动画开始时触发该回调。下划线跟着页面一起滑动，同时宽度渐变。
-        this.currentIndex = targetIndex
-        this.startAnimateTo(this.animationDuration, this.textInfos[targetIndex][0], this.textInfos[targetIndex][1])
+        this.currentIndex = targetIndex;
+        this.startAnimateTo(this.animationDuration, this.textInfos[targetIndex][0], this.textInfos[targetIndex][1]);
       })
       .onAnimationEnd((index: number, event: TabsAnimationEvent) => {
         // 切换动画结束时触发该回调。下划线动画停止。
-        let currentIndicatorInfo = this.getCurrentIndicatorInfo(index, event)
-        this.startAnimateTo(0, currentIndicatorInfo.left, currentIndicatorInfo.width)
+        let currentIndicatorInfo = this.getCurrentIndicatorInfo(index, event);
+        this.startAnimateTo(0, currentIndicatorInfo.left, currentIndicatorInfo.width);
       })
       .onGestureSwipe((index: number, event: TabsAnimationEvent) => {
         // 在页面跟手滑动过程中，逐帧触发该回调。
-        let currentIndicatorInfo = this.getCurrentIndicatorInfo(index, event)
-        this.currentIndex = currentIndicatorInfo.index
-        this.setIndicatorAttr(currentIndicatorInfo.left, currentIndicatorInfo.width)
+        let currentIndicatorInfo = this.getCurrentIndicatorInfo(index, event);
+        this.currentIndex = currentIndicatorInfo.index;
+        this.setIndicatorAttr(currentIndicatorInfo.left, currentIndicatorInfo.width);
       })
 
       Column()
@@ -1752,44 +1924,44 @@ struct TabsExample {
   }
 
   private getCurrentIndicatorInfo(index: number, event: TabsAnimationEvent): Record<string, number> {
-    let nextIndex = index
+    let nextIndex = index;
     if (index > 0 && (CommonUtil.getIsRTL() ? event.currentOffset < 0 : event.currentOffset > 0)) {
-      nextIndex--
+      nextIndex--;
     } else if (index < this.textInfos.length - 1 &&
         (CommonUtil.getIsRTL() ? event.currentOffset > 0 : event.currentOffset < 0)) {
-      nextIndex++
+      nextIndex++;
     }
-    let indexInfo = this.textInfos[index]
-    let nextIndexInfo = this.textInfos[nextIndex]
-    let swipeRatio = Math.abs(event.currentOffset / this.tabsWidth)
-    let currentIndex = swipeRatio > 0.5 ? nextIndex : index // 页面滑动超过一半，tabBar切换到下一页。
-    let currentLeft = indexInfo[0] + (nextIndexInfo[0] - indexInfo[0]) * swipeRatio
-    let currentWidth = indexInfo[1] + (nextIndexInfo[1] - indexInfo[1]) * swipeRatio
+    let indexInfo = this.textInfos[index];
+    let nextIndexInfo = this.textInfos[nextIndex];
+    let swipeRatio = Math.abs(event.currentOffset / this.tabsWidth);
+    let currentIndex = swipeRatio > 0.5 ? nextIndex : index ;// 页面滑动超过一半，tabBar切换到下一页。
+    let currentLeft = indexInfo[0] + (nextIndexInfo[0] - indexInfo[0]) * swipeRatio;
+    let currentWidth = indexInfo[1] + (nextIndexInfo[1] - indexInfo[1]) * swipeRatio;
     return { 'index': currentIndex, 'left': currentLeft, 'width': currentWidth }
   }
 
   private startAnimateTo(duration: number, leftMargin: number, width: number) {
-    this.isStartAnimateTo = true
-    animateTo({
+    this.isStartAnimateTo = true;
+    this.getUIContext()?.animateTo({
       duration: duration, // 动画时长
       curve: Curve.Linear, // 动画曲线
       iterations: 1, // 播放次数
       playMode: PlayMode.Normal, // 动画模式
       onFinish: () => {
-        this.isStartAnimateTo = false
-        console.info('play end')
+        this.isStartAnimateTo = false;
+        console.info('play end');
       }
     }, () => {
-      this.setIndicatorAttr(leftMargin, width)
-    })
+      this.setIndicatorAttr(leftMargin, width);
+    });
   }
 
   private setIndicatorAttr(leftMargin: number, width: number) {
-    this.indicatorWidth = width
+    this.indicatorWidth = width;
     if (CommonUtil.getIsRTL()) {
-      this.indicatorLeftMargin = this.tabsWidth - leftMargin - width
+      this.indicatorLeftMargin = this.tabsWidth - leftMargin - width;
     } else {
-      this.indicatorLeftMargin = leftMargin
+      this.indicatorLeftMargin = leftMargin;
     }
   }
 }
@@ -1808,8 +1980,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct TabsPreloadItems {
-  @State currentIndex: number = 1
-  private tabsController: TabsController = new TabsController()
+  @State currentIndex: number = 1;
+  private tabsController: TabsController = new TabsController();
 
   build() {
     Column() {
@@ -1834,7 +2006,7 @@ struct TabsPreloadItems {
       .height(296)
       .backgroundColor('#F1F3F5')
       .onChange((index: number) => {
-        this.currentIndex = index
+        this.currentIndex = index;
       })
 
       Button('preload items: [0, 2, 3]')
@@ -1843,10 +2015,10 @@ struct TabsPreloadItems {
           // 预加载第0、2、3个子节点，提高滑动或点击切换至这些节点时的性能
           this.tabsController.preloadItems([0, 2, 3])
             .then(() => {
-              console.info('preloadItems success.')
+              console.info('preloadItems success.');
             })
             .catch((error: BusinessError) => {
-              console.error('preloadItems failed, error code: ' + error.code + ', error message: ' + error.message)
+              console.error('preloadItems failed, error code: ' + error.code + ', error message: ' + error.message);
             })
         })
     }
@@ -1855,14 +2027,14 @@ struct TabsPreloadItems {
 
 @Component
 struct MyComponent {
-  private color: string = ""
+  private color: string = "";
 
   aboutToAppear(): void {
-    console.info('aboutToAppear backgroundColor:' + this.color)
+    console.info('aboutToAppear backgroundColor:' + this.color);
   }
 
   aboutToDisappear(): void {
-    console.info('aboutToDisappear backgroundColor:' + this.color)
+    console.info('aboutToDisappear backgroundColor:' + this.color);
   }
 
   build() {
@@ -1883,18 +2055,18 @@ struct MyComponent {
 @Entry
 @Component
 struct TabsExample {
-  private controller: TabsController = new TabsController()
+  private controller: TabsController = new TabsController();
 
   build() {
     Column() {
       Button('设置TabBar的平移距离').margin({ top: 20 })
         .onClick(() => {
-          this.controller.setTabBarTranslate({ x: -20, y: -20 })
+          this.controller.setTabBarTranslate({ x: -20, y: -20 });
         })
 
       Button('设置TabBar的透明度').margin({ top: 20 })
         .onClick(() => {
-          this.controller.setTabBarOpacity(0.5)
+          this.controller.setTabBarOpacity(0.5);
         })
 
       Tabs({ barPosition: BarPosition.End, controller: this.controller }) {
@@ -1933,18 +2105,18 @@ struct TabsExample {
 ```ts
 // xxx.ets
 class MyDataSource implements IDataSource {
-  private list: number[] = []
+  private list: number[] = [];
 
   constructor(list: number[]) {
-    this.list = list
+    this.list = list;
   }
 
   totalCount(): number {
-    return this.list.length
+    return this.list.length;
   }
 
   getData(index: number): number {
-    return this.list[index]
+    return this.list[index];
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -1957,19 +2129,19 @@ class MyDataSource implements IDataSource {
 @Entry
 @Component
 struct TabsSwiperExample {
-  @State fontColor: string = '#182431'
-  @State selectedFontColor: string = '#007DFF'
-  @State currentIndex: number = 0
-  private list: number[] = []
-  private tabsController: TabsController = new TabsController()
-  private swiperController: SwiperController = new SwiperController()
-  private swiperData: MyDataSource = new MyDataSource([])
+  @State fontColor: string = '#182431';
+  @State selectedFontColor: string = '#007DFF';
+  @State currentIndex: number = 0;
+  private list: number[] = [];
+  private tabsController: TabsController = new TabsController();
+  private swiperController: SwiperController = new SwiperController();
+  private swiperData: MyDataSource = new MyDataSource([]);
 
   aboutToAppear(): void {
     for (let i = 0; i <= 9; i++) {
       this.list.push(i);
     }
-    this.swiperData = new MyDataSource(this.list)
+    this.swiperData = new MyDataSource(this.list);
   }
 
   @Builder tabBuilder(index: number, name: string) {
@@ -1995,8 +2167,8 @@ struct TabsSwiperExample {
         })
       }
       .onTabBarClick((index: number) => {
-        this.currentIndex = index
-        this.swiperController.changeIndex(index, true)
+        this.currentIndex = index;
+        this.swiperController.changeIndex(index, true);
       })
       .barMode(BarMode.Scrollable)
       .backgroundColor('#F1F3F5')
@@ -2007,10 +2179,10 @@ struct TabsSwiperExample {
         LazyForEach(this.swiperData, (item: string) => {
           Text(item.toString())
             .onAppear(()=>{
-              console.info('onAppear ' + item.toString())
+              console.info('onAppear ' + item.toString());
             })
             .onDisAppear(()=>{
-              console.info('onDisAppear ' + item.toString())
+              console.info('onDisAppear ' + item.toString());
             })
             .width('100%')
             .height('100%')
@@ -2021,11 +2193,11 @@ struct TabsSwiperExample {
       }
       .loop(false)
       .onChange((index: number) => {
-        this.currentIndex = index
+        this.currentIndex = index;
       })
       .onAnimationStart((index: number, targetIndex: number, extraInfo: SwiperAnimationEvent) => {
-        this.currentIndex = targetIndex
-        this.tabsController.changeIndex(targetIndex)
+        this.currentIndex = targetIndex;
+        this.tabsController.changeIndex(targetIndex);
       })
     }
   }
@@ -2033,6 +2205,7 @@ struct TabsSwiperExample {
 ```
 
 ![tabs13](figures/tabs_swiper_lazyForEach.gif)
+
 
 ### 示例14（页签超出TabBar区域显示）
 
@@ -2045,14 +2218,14 @@ import { CommonModifier } from '@kit.ArkUI';
 @Entry
 @Component
 struct TabsBarModifierExample {
-  @State selectedIndex: number = 2
-  @State currentIndex: number = 2
-  @State isClip: boolean = false
-  @State tabBarModifier: CommonModifier = new CommonModifier()
-  private controller: TabsController = new TabsController()
+  @State selectedIndex: number = 2;
+  @State currentIndex: number = 2;
+  @State isClip: boolean = false;
+  @State tabBarModifier: CommonModifier = new CommonModifier();
+  private controller: TabsController = new TabsController();
 
   aboutToAppear(): void {
-    this.tabBarModifier.clip(this.isClip)
+    this.tabBarModifier.clip(this.isClip);
   }
 
   @Builder
@@ -2103,8 +2276,8 @@ struct TabsBarModifierExample {
       .barWidth(340)
       .barHeight(60)
       .onChange((index: number) => {
-        this.currentIndex = index
-        this.selectedIndex = index
+        this.currentIndex = index;
+        this.selectedIndex = index;
       })
       .width(340)
       .height(400)
@@ -2114,15 +2287,15 @@ struct TabsBarModifierExample {
       Button("isClip: " + this.isClip)
         .margin({ top: 30 })
         .onClick(() => {
-          this.isClip = !this.isClip
-          this.tabBarModifier.clip(this.isClip)
+          this.isClip = !this.isClip;
+          this.tabBarModifier.clip(this.isClip);
         })
     }.width('100%')
   }
 }
 ```
 
-![tabs14](figures/tabs_barModifier_clip.gif)
+![tabs15](figures/tabs_barModifier_clip.gif)
 
 ### 示例15（页签对齐布局）
 
@@ -2135,10 +2308,10 @@ import { CommonModifier } from '@kit.ArkUI';
 @Entry
 @Component
 struct TabsBarModifierExample {
-  private controller: TabsController = new TabsController()
-  @State text: string = "文本"
-  @State isVertical: boolean = false
-  @State tabBarModifier: CommonModifier = new CommonModifier()
+  private controller: TabsController = new TabsController();
+  @State text: string = "文本";
+  @State isVertical: boolean = false;
+  @State tabBarModifier: CommonModifier = new CommonModifier();
 
   build() {
     Column() {
@@ -2148,7 +2321,7 @@ struct TabsBarModifierExample {
           .height(50)
           .margin({ top: 5 })
           .onClick((event?: ClickEvent) => {
-            this.tabBarModifier.align(Alignment.Start)
+            this.tabBarModifier.align(Alignment.Start);
           })
           .margin({ right: '6%', bottom: '12vp' })
         Button("Alignment.End")
@@ -2156,7 +2329,7 @@ struct TabsBarModifierExample {
           .height(50)
           .margin({ top: 5 })
           .onClick((event?: ClickEvent) => {
-            this.tabBarModifier.align(Alignment.End)
+            this.tabBarModifier.align(Alignment.End);
           })
           .margin({ bottom: '12vp' })
       }
@@ -2167,7 +2340,7 @@ struct TabsBarModifierExample {
           .height(50)
           .margin({ top: 5 })
           .onClick((event?: ClickEvent) => {
-            this.tabBarModifier.align(Alignment.Center)
+            this.tabBarModifier.align(Alignment.Center);
           })
           .margin({ right: '6%', bottom: '12vp' })
         Button("isVertical: " + this.isVertical)
@@ -2175,7 +2348,7 @@ struct TabsBarModifierExample {
           .height(50)
           .margin({ top: 5 })
           .onClick((event?: ClickEvent) => {
-            this.isVertical = !this.isVertical
+            this.isVertical = !this.isVertical;
           })
           .margin({ bottom: '12vp' })
       }
@@ -2194,7 +2367,7 @@ struct TabsBarModifierExample {
           .height(50)
           .margin({ top: 5 })
           .onClick((event?: ClickEvent) => {
-            this.tabBarModifier.align(Alignment.Bottom)
+            this.tabBarModifier.align(Alignment.Bottom);
           })
           .margin({ bottom: '12vp' })
       }
@@ -2236,10 +2409,10 @@ struct TabsBarModifierExample {
 @Entry
 @Component
 struct TabsExample {
-  @State currentIndex: number = 0
-  @State currentAnimationMode: AnimationMode = AnimationMode.CONTENT_FIRST
-  private controller: TabsController = new TabsController()
-  private data: number[] = []
+  @State currentIndex: number = 0;
+  @State currentAnimationMode: AnimationMode = AnimationMode.CONTENT_FIRST;
+  private controller: TabsController = new TabsController();
+  private data: number[] = [];
 
   aboutToAppear(): void {
     for (let i = 0; i < 10; i++) {
@@ -2272,7 +2445,7 @@ struct TabsExample {
       .animationMode(this.currentAnimationMode)
       .animationDuration(4000)
       .onChange((index: number) => {
-        this.currentIndex = index
+        this.currentIndex = index;
       })
       .width(360)
       .height(120)
@@ -2283,15 +2456,15 @@ struct TabsExample {
       Button('AnimationMode').width('50%').margin({ top: 1 }).height(25)
         .onClick(()=>{
           if (this.currentAnimationMode === AnimationMode.CONTENT_FIRST) {
-            this.currentAnimationMode = AnimationMode.ACTION_FIRST
+            this.currentAnimationMode = AnimationMode.ACTION_FIRST;
           } else if (this.currentAnimationMode === AnimationMode.ACTION_FIRST) {
-            this.currentAnimationMode = AnimationMode.NO_ANIMATION
+            this.currentAnimationMode = AnimationMode.NO_ANIMATION;
           } else if (this.currentAnimationMode === AnimationMode.NO_ANIMATION) {
-            this.currentAnimationMode = AnimationMode.CONTENT_FIRST_WITH_JUMP
+            this.currentAnimationMode = AnimationMode.CONTENT_FIRST_WITH_JUMP;
           } else if (this.currentAnimationMode === AnimationMode.CONTENT_FIRST_WITH_JUMP) {
-            this.currentAnimationMode = AnimationMode.ACTION_FIRST_WITH_JUMP
+            this.currentAnimationMode = AnimationMode.ACTION_FIRST_WITH_JUMP;
           } else if (this.currentAnimationMode === AnimationMode.ACTION_FIRST_WITH_JUMP) {
-            this.currentAnimationMode = AnimationMode.CONTENT_FIRST
+            this.currentAnimationMode = AnimationMode.CONTENT_FIRST;
           }
         })
     }.width('100%')
@@ -2303,14 +2476,14 @@ struct TabsExample {
 
 ### 示例17（设置边缘滑动效果）
 
-本示例通过edgeEffect实现了不同的边缘滑动效果。
+该示例通过edgeEffect实现不同边缘滑动效果。
 
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct TabsExample {
-  @State edgeEffect: EdgeEffect = EdgeEffect.Spring
+  @State edgeEffect: EdgeEffect = EdgeEffect.Spring;
 
   build() {
     Column() {
@@ -2339,21 +2512,20 @@ struct TabsExample {
 
       Button('EdgeEffect.Spring').width('50%').margin({ top: 20 })
         .onClick(() => {
-          this.edgeEffect = EdgeEffect.Spring
+          this.edgeEffect = EdgeEffect.Spring;
         })
 
       Button('EdgeEffect.Fade').width('50%').margin({ top: 20 })
         .onClick(() => {
-          this.edgeEffect = EdgeEffect.Fade
+          this.edgeEffect = EdgeEffect.Fade;
         })
 
       Button('EdgeEffect.None').width('50%').margin({ top: 20 })
         .onClick(() => {
-          this.edgeEffect = EdgeEffect.None
+          this.edgeEffect = EdgeEffect.None;
         })
     }.width('100%')
   }
 }
 ```
-
 ![tabs17](figures/tabs_edges_slide.gif)
