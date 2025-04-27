@@ -313,6 +313,130 @@ struct Index {
 ```
 ![attributeModifier](figures/attributeModifier.gif)
 
+### 示例5（组件绑定Modifier获焦样式）
+
+该示例通过 Button 绑定 Modifier 实现了组件在获得焦点时的样式效果。点击 Button2 后，Button 会显示获得焦点后的样式。
+
+```ts
+class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
+
+  applyNormalAttribute(instance: ButtonAttribute): void {
+    instance.backgroundColor(Color.Blue)
+  }
+  applyFocusedAttribute(instance: ButtonAttribute): void {
+    instance.backgroundColor(Color.Green)
+  }
+}
+
+@Entry
+@Component
+struct attributeDemo {
+  @State modifier: MyButtonModifier = new MyButtonModifier()
+  @State isDisable: boolean = true;
+
+  build() {
+    Row() {
+      Column() {
+        Button("Button")
+          .attributeModifier(this.modifier)
+          .enabled(this.isDisable)
+          .id("app")
+        Divider().vertical(false).strokeWidth(15).color(Color.Transparent)
+        Button("Button2")
+          .onClick(() => {
+            this.getUIContext().getFocusController().activate(true)
+            this.getUIContext().getFocusController().requestFocus("app")
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+![applyFocusedAttribute](figures/applyFocusedAttribute.gif)
+
+### 示例6（组件绑定Modifier禁用状态的样式）
+
+该示例通过 Button 绑定 Modifier 实现了组件禁用时的样式效果。点击 Button2 后，Button 会显示禁用状态的样式。
+
+```ts
+class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
+  applyDisabledAttribute(instance: ButtonAttribute): void {
+    instance.width(200)
+  }
+}
+
+@Entry
+@Component
+struct attributeDemo {
+  @State modifier: MyButtonModifier = new MyButtonModifier()
+  @State isDisable: boolean = true
+
+  build() {
+    Row() {
+      Column() {
+        Button("Button")
+          .attributeModifier(this.modifier)
+          .enabled(this.isDisable)
+        Divider().vertical(false).strokeWidth(15).color(Color.Transparent)
+        Button("Button2")
+          .onClick(() => {
+            this.isDisable = !this.isDisable
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+![applyDisabledAttribute](figures/applyDisabledAttribute.gif)
+
+### 示例7（组件绑定Modifier选中状态样式）
+
+该示例通过Radio绑定Modifier实现了展示组件选中时样式的效果。
+
+```ts
+class MyRadioModifier implements AttributeModifier<RadioAttribute> {
+  applyNormalAttribute(instance: RadioAttribute): void {
+    instance.backgroundColor(Color.Blue)
+  }
+  applySelectedAttribute(instance: RadioAttribute): void {
+    instance.backgroundColor(Color.Red)
+    instance.borderWidth(2)
+  }
+}
+
+@Entry
+@Component
+struct attributeDemo {
+  @State modifier: MyRadioModifier = new MyRadioModifier()
+  @State value: boolean = false
+  @State value2: boolean = false
+
+  build() {
+    Row() {
+      Column() {
+        Radio({ value: 'Radio1', group: 'radioGroup1' })
+          .checked(this.value)
+          .height(50)
+          .width(50)
+          .borderWidth(0)
+          .borderRadius(30)
+          .onClick(() => {
+            this.value = !this.value
+          })
+          .attributeModifier(this.modifier)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+![applySelectedAttribute](figures/applySelectedAttribute.gif)
+
 ## Attribute支持范围
 
 未在表格中列举的属性默认为支持。
