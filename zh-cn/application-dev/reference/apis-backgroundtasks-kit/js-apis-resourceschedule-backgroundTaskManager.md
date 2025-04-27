@@ -209,6 +209,36 @@ cancelSuspendDelay(requestId: number): void
   }
   ```
 
+## backgroundTaskManager.getAllTransientTasks<sup>20+</sup>
+
+getAllTransientTasks(): Promise&lt;TransientTaskInfo&gt;
+
+获取所有短时任务信息。
+
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+
+**返回值**：
+
+| 类型                                      | 说明          |
+|-----------------------------------------|-------------|
+| [TransientTaskInfo](#transienttaskinfo) | 返回所有短时任务信息。 |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    backgroundTaskManager.getAllTransientTasks().then((res: backgroundTaskManager.TransientTaskInfo) => {
+        console.info("Operation getAllTransientTasks succeeded. data: " + JSON.stringify(res));
+    }).catch((error : BusinessError) => {
+        console.error(`Operation getAllTransientTasks failed. code is ${error.code} message is ${error.message}`);
+    });
+} catch (error) {
+    console.error(`Operation getAllTransientTasks failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+}
+```
+
 ## backgroundTaskManager.startBackgroundRunning
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback&lt;void&gt;): void
@@ -707,6 +737,57 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
+## backgroundTaskManager.getAllContinuousTasks<sup>20+</sup>
+
+getAllContinuousTasks(context: Context): Promise&lt;ContinuousTaskInfo[]&gt;
+
+获取所有长时任务信息。
+
+**需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
+
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+
+**返回值**：
+
+| 类型                                            | 说明          |
+|-----------------------------------------------|-------------|
+| [ContinuousTaskInfo](#continuoustaskinfo20)[] | 返回所有长时任务信息。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+| 201 | Permission denied. |
+
+**示例**：
+
+```ts
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        try {
+            try {
+                // 如果当前没有申请长时任务，则获取到一个空数组
+                backgroundTaskManager.getAllContinuousTasks(this.context).then((res: backgroundTaskManager.ContinuousTaskInfo[]) => {
+                    console.info("Operation getAllTransientTasks succeeded. data: " + JSON.stringify(res));
+                }).catch((error: BusinessError) => {
+                    console.error(`Operation getAllContinuousTasks failed. code is ${error.code} message is ${error.message}`);
+                });
+            } catch (error) {
+                console.error(`Operation getAllContinuousTasks failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+            }
+        } catch (error) {
+            console.error(`Operation getWantAgent failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+        }
+    }
+};
+```
+
 ## backgroundTaskManager.on('continuousTaskCancel')<sup>15+</sup>
 
 on(type: 'continuousTaskCancel', callback: Callback&lt;ContinuousTaskCancelInfo&gt;): void
@@ -815,6 +896,17 @@ export default class EntryAbility extends UIAbility {
 | requestId       | number | 是    | 短时任务的请求ID。                               |
 | actualDelayTime | number | 是    | 应用实际申请的短时任务时间，单位为毫秒。<br/> **说明** ：申请时间最长为3分钟，[低电量](../apis-basic-services-kit/js-apis-battery-info.md)时最长为1分钟。 |
 
+## TransientTaskInfo<sup>20+</sup>
+
+所有短时任务信息。
+
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+
+| 名称             | 类型                                      | 必填   | 说明              |
+| --------------- |-----------------------------------------| ---- |-----------------|
+| remainingQuota       | number                                  | 是    | 当前当日所剩余总配额。     |
+| transientTasks | [DelaySuspendInfo](#delaysuspendinfo)[] | 是    | 当前已申请的所有短时任务信息。 |
+
 ## BackgroundMode
 
 长时任务类型。
@@ -895,3 +987,23 @@ export default class EntryAbility extends UIAbility {
 | 名称                     | 值  | 说明                    |
 | ----------------------- | ---- | --------------------- |
 | SUB_MODE           | 'subMode'    | 子类型。                  |
+
+## ContinuousTaskInfo <sup>20+</sup>
+
+所有短时任务信息。
+
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+
+| 名称          | 类型       | 必填   | 说明                    |
+|-------------|----------| ---- |-----------------------|
+| abilityName | string   | 是    | UIAbility名称。          |
+| uid         | number   | 是    | 应用 uid。               |
+| pid         | number   | 是    | 应用 pid。               |
+| isFromWebView | boolean  | 是    | 是否通过Webview方式申请。      |
+| backgroundModes | string[] | 是    | 长时任务类型。               |
+| backgroundSubModes | string[] | 是    | 长时任务子类型。              |
+| notificationId | number   | 是    | 通知 id。                |
+| continuousTaskId | number   | 是    | 长时任务 id。              |
+| abilityId | number   | 是    | UIAbility id。         |
+| wantAgentBundleName | string   | 是    | wantAgent配置包名。        |
+| wantAgentAbilityName | string   | 是    | wantAgent配置ability名称。 |
