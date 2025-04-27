@@ -329,15 +329,6 @@ cpp 部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// GetValueBool注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetValueBool},
-};
-static JSVM_CallbackStruct *method = param;
-// GetValueBool方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getValueBool", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_GetValueBool的样例方法
 static JSVM_Value GetValueBool(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -357,39 +348,26 @@ static JSVM_Value GetValueBool(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_GetBoolean(env, result, &boolJv);
     return boolJv;
 }
+// GetValueBool注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetValueBool},
+};
+static JSVM_CallbackStruct *method = param;
+// GetValueBool方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getValueBool", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char *srcCallNative = R"JS(getValueBool("abc");
+                                getValueBool(true);
+                                getValueBool(false);)JS";
 ```
 
-ArkTS 侧示例代码
-
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-// 分别传入布尔值和非布尔值检测接口,传入布尔值将返回原布尔值,传入其他类型返回undefined
-try {
-  let data = `"abc"`;
-  let script: string = `getValueBool(${data})`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'JSVM', 'GetValueBool: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'JSVM', 'GetValueBool: %{public}s', error.message);
-}
-try {
-  let data = true;
-  let script: string = `getValueBool(${data})`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'JSVM', 'GetValueBool: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'JSVM', 'GetValueBool: %{public}s', error.message);
-}
-try {
-  let data = false;
-  let script: string = `getValueBool(${data})`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'JSVM', 'GetValueBool: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'JSVM', 'GetValueBool: %{public}s', error.message);
-}
+预期结果
+```
+JSVM OH_JSVM_GetValueBool fail:7
+JSVM OH_JSVM_GetValueBool success:1
+JSVM OH_JSVM_GetValueBool success:0
 ```
 
 ### OH_JSVM_GetGlobal
