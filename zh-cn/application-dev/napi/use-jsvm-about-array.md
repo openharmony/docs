@@ -359,7 +359,8 @@ static JSVM_Value GetArrayLength(JSVM_Env env, JSVM_CallbackInfo info)
     size_t argc = 1;
     JSVM_Value args[1] = {nullptr};
     JSVM_Value result = nullptr;
-    uint32_t length;
+    // 这里要对length进行初始化
+    uint32_t length = 0;
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
     // 检查参数是否为数组
     bool isArray = false;
@@ -368,10 +369,17 @@ static JSVM_Value GetArrayLength(JSVM_Env env, JSVM_CallbackInfo info)
         OH_LOG_INFO(LOG_APP, "JSVM Argument must be an array");
         return nullptr;
     }
-    OH_JSVM_GetArrayLength(env, args[0], &length);
-    // 创建返回值
-    OH_JSVM_CreateInt32(env, length, &result);
-    OH_LOG_INFO(LOG_APP, "JSVM length: %{public}d", length);
+    /*
+     * 当成功获取数组长度时，length会被赋值成实际JSArray的长度，接口返回JSVM_OK状态码；
+     * 当args[0]不是一个JSArray类型。例如，当args[0]是一个proxy对象时，无法获取长度。
+     * 此时，length维持原值不变，接口返回JSVM_ARRAY_EXPECTED状态码。
+     */
+    JSVM_Status status = OH_JSVM_GetArrayLength(env, args[0], &length);
+    if (status == JSVM_OK) {
+        // 创建返回值
+        OH_JSVM_CreateInt32(env, length, &result);
+        OH_LOG_INFO(LOG_APP, "JSVM length: %{public}d", length);
+    }
     return result;
 }
 // GetArrayLength注册回调
