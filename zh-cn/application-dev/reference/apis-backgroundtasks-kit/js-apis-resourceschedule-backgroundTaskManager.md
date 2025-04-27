@@ -747,11 +747,17 @@ getAllContinuousTasks(context: Context): Promise&lt;ContinuousTaskInfo[]&gt;
 
 **系统能力**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
+**参数**：
+
+| 参数名       | 类型                                 | 必填   | 说明                                       |
+| --------- | ---------------------------------- | ---- | ---------------------------------------- |
+| context   | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                            | 是    | 应用运行的上下文。 |
+
 **返回值**：
 
 | 类型                                            | 说明          |
 |-----------------------------------------------|-------------|
-|  Promise&lt;[ContinuousTaskInfo](#continuoustaskinfo20)&gt; | Promise对象，返回所有长时任务信息。 |
+|  Promise&lt;[ContinuousTaskInfo](#continuoustaskinfo20)[]&gt; | Promise对象，返回所有长时任务信息。 |
 
 **错误码**：
 
@@ -764,7 +770,6 @@ getAllContinuousTasks(context: Context): Promise&lt;ContinuousTaskInfo[]&gt;
 **示例**：
 
 ```ts
-import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
