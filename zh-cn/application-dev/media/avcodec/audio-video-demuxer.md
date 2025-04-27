@@ -295,49 +295,6 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
    OH_AVDemuxer_ReadSampleBuffer接口本身可能存在耗时久，取决于文件IO，建议以异步方式进行调用。
    ```c++
-   // 1. 同步调用的方式
-   // 按照指定size创建buffer，用于保存用户解封装得到的数据。
-   // buffer大小设置建议大于待获取的码流大小，示例中buffer大小设置为单帧图像的大小。
-   OH_AVBuffer *buffer = OH_AVBuffer_Create(w * h * 3 >> 1);
-   if (buffer == nullptr) {
-      printf("build buffer failed");
-      return;
-   }
-   OH_AVCodecBufferAttr info;
-   bool videoIsEnd = false;
-   bool audioIsEnd = false;
-   int32_t ret;
-   while (!audioIsEnd || !videoIsEnd) {
-      // 在调用 OH_AVDemuxer_ReadSampleBuffer 接口获取数据前，需要先调用 OH_AVDemuxer_SelectTrackByID 选中需要获取数据的轨道。
-      // 注意：
-      // avi格式由于容器标准不支持封装时间戳信息，demuxer解出的帧中不含pts信息，需要调用方根据帧率及解码出帧后的显示顺序自行计算显示时间戳信息。
-      // 获取音频sample。
-      if(!audioIsEnd) {
-         ret = OH_AVDemuxer_ReadSampleBuffer(demuxer, audioTrackIndex, buffer);
-         if (ret == AV_ERR_OK) {
-            // 可通过 buffer 获取并处理音频sample。
-            OH_AVBuffer_GetBufferAttr(buffer, &info);
-            printf("audio info.size: %d\n", info.size);
-            if (info.flags == OH_AVCodecBufferFlags::AVCODEC_BUFFER_FLAGS_EOS) {
-               audioIsEnd = true;
-            }
-         }
-      }
-      if(!videoIsEnd) {
-         ret = OH_AVDemuxer_ReadSampleBuffer(demuxer, videoTrackIndex, buffer);
-         if (ret == AV_ERR_OK) {
-            // 可通过 buffer 获取并处理视频sample。
-            OH_AVBuffer_GetBufferAttr(buffer, &info);
-            printf("video info.size: %d\n", info.size);
-            if (info.flags == OH_AVCodecBufferFlags::AVCODEC_BUFFER_FLAGS_EOS) {
-               videoIsEnd = true;
-            }
-         }
-      }
-   }
-   OH_AVBuffer_Destroy(buffer);
-
-   // 2. 异步调用的方式
    // 为每个线程定义处理函数。
    void ReadTrackSamples(OH_AVFormatDemuxer *demuxer, int trackIndex, int buffer_size, 
                          std::atomic<bool>& isEnd, std::atomic<bool>& threadFinished)
