@@ -201,6 +201,8 @@ plural.json文件的内容如下：
 
 在resources目录右键菜单选择“New > Resource File”，可同时创建资源目录和资源文件，文件默认创建在base目录的对应资源组。如果选择了限定词，则会按照命名规范自动生成限定词和资源组目录，并将文件创建在限定词目录中。
 
+不同类型的限定词可以组合，如同时选择Locale为zh_CN，ColorMode为Dark，将创建zh_CN-dark目录，具体组合规则参考[限定词目录](#限定词目录)。
+
 图中File name为需要创建的文件名。Resource type为资源组类型，默认是element。Root Element为资源类型。Avaliable qualifiers为供选择的限定词目录，通过右边的小箭头可添加或者删除。<br/>创建的目录名自动生成，格式固定为“限定词.资源组”，例如：创建一个限定词为dark的element目录，自动生成的目录名称为“dark/element”。
 
   ![create-resource-file-1](figures/create-resource-file-1.png)
@@ -216,6 +218,19 @@ plural.json文件的内容如下：
 在资源组目录（element、media、profile）的右键菜单选择“New > XXX Resource File”，即可创建对应资源组目录的资源文件。例如，在element目录下可新建Element Resource File。
 
   ![create-resource-file-3](figures/create-resource-file-3.png)
+
+### 示例
+
+以创建中文和英文字符串资源文件为例，说明如何创建不同限定词的资源。
+
+1. 在resources目录右键菜单选择“New > Resource File”，File name填写为string_sample，Resource type选择Element，Root Element选择string，Avaliable qualifiers选中Locale，在右侧的语言列表中选择zh，地区列表中选择CN，将会在resources目录下创建zh_CN/element/string_sample.json文件。
+  ![create-resource-file-4](figures/create-resource-file-4.png)
+
+2. 同理，语言选择en，地区选择US，创建en_US/element/string_sample.json文件。
+
+最终创建的资源文件如下。资源文件创建完成后，如何访问资源文件请参见[资源访问](#资源访问)与[相关实例](#相关实例)。
+
+![create-resource-file-5](figures/create-resource-file-5.png)
 
 ## 资源可翻译特性
 
@@ -519,7 +534,7 @@ struct Index {
 
 ### overlay机制
 
-overlay是一种资源替换机制，针对不同品牌、产品的显示风格，开发者可以在不重新打包业务逻辑hap的情况下，通过配置和使用overlay资源包，实现应用界面风格变换。overlay资源包只包含资源文件、资源索引文件和配置文件。
+overlay是一种资源替换机制，针对不同品牌、产品的显示风格，开发者可以在不重新打包HAP的情况下，通过配置和使用overlay资源包，实现应用界面风格变换。overlay资源包只包含资源文件、资源索引文件和配置文件。
 
 - 动态overlay使用方式
 
