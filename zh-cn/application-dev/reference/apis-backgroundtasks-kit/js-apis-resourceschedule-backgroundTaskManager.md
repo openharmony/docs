@@ -1011,4 +1011,4 @@ export default class EntryAbility extends UIAbility {
 | continuousTaskId | number   | 是    | 长时任务 Id。              |
 | abilityId | number   | 是    | UIAbility Id。         |
 | wantAgentBundleName | string   | 是    | WantAgent配置的包名。WantAgent为通知参数，用于指定点击长时任务通知后跳转的界面，在申请长时任务时作为参数传入。        |
-| wantAgentAbilityName | string   | 是    | WantAgent配置的ability名称。WantAgent为通知参数，用于指定点击长时任务通知后跳转的界面，在申请长时任务时作为参数传入。。 |
+| wantAgentAbilityName | string   | 是    | WantAgent配置的ability名称。WantAgent为通知参数，用于指定点击长时任务通知后跳转的界面，在申请长时任务时作为参数传入。 |
