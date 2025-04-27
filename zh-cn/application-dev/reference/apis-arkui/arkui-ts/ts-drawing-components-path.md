@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -25,7 +25,7 @@ Path(value?: { width?: number | string; height?: number | string; commands?: str
 
 | 参数名                                             | 类型         | 必填 | 说明                   |
 | ------ | ---------------- | ---- | ------------------------------------------------------------ |
-| value  | { width?: number \| string; height?: number \| string; [commands](ts-drawing-components-path.md#commands)?: string } | 否   | width：路径所在矩形的宽度，取值范围≥0。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。<br/>默认单位：vp<br/>height：路径所在矩形的高度，取值范围≥0。<br/>值为异常值或缺省时按照自身内容需要的高度处理。<br/>默认单位：vp<br/> commands：径绘制的命令字符串。默认值：''<br/>异常值按照默认值处理。|
+| value  | { width?: number \| string; height?: number \| string; [commands](ts-drawing-components-path.md#commands)?: string } | 否   | width：路径所在矩形的宽度，取值范围≥0。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。<br/>默认单位：vp<br/>height：路径所在矩形的高度，取值范围≥0。<br/>值为异常值或缺省时按照自身内容需要的高度处理。<br/>默认单位：vp<br/> commands：路径绘制的命令字符串。默认值：''<br/>异常值按照默认值处理。|
 
 ## 属性
 

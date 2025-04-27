@@ -147,7 +147,7 @@ cpp 部分代码：
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// CoerceToObjec注册回调
+// CoerceToObject注册回调
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = CoerceToObject},
 };

@@ -45,7 +45,7 @@ publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): vo
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 202      | not system app.                     |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |  
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |  
 | 1500004  | A third-party application cannot send system common events.                |
 | 1500007  | Failed to send the message to the common event service. |
 | 1500008  | Failed to initialize the common event service. |
@@ -60,9 +60,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 function publishCB(err: BusinessError) {
   if (err) {
     console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info("publishAsUser");
+    return;
   }
+  console.info("publishAsUser");
 }
 
 //指定发送的用户
@@ -103,7 +103,7 @@ publishAsUser(event: string, userId: number, options: CommonEventPublishData, ca
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 202      | not system app.                     |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |  
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |  
 | 1500004  | A third-party application cannot send system common events.                |
 | 1500007  | Failed to send the message to the common event service. |
 | 1500008  | Failed to initialize the common event service. |
@@ -123,9 +123,9 @@ let options:commonEventManager.CommonEventPublishData = {
 function publishCB(err: BusinessError) {
   if (err) {
     console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info("publishAsUser");
+    return;
   }
+  console.info("publishAsUser");
 }
 // 指定发送的用户
 let userId = 100;
@@ -165,7 +165,7 @@ removeStickyCommonEvent(event: string, callback: AsyncCallback\<void>): void
 | -------- | ----------------------------------- |
 | 201      | The application dose not have permission to call the interface.     |  
 | 202      | not system app.                     |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |   
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |   
 | 1500004  | A third-party application cannot send system common events.                |
 | 1500007  | Failed to send the message to the common event service.             |
 | 1500008  | Failed to initialize the common event service.     |
@@ -216,7 +216,7 @@ removeStickyCommonEvent(event: string): Promise\<void>
 | -------- | ----------------------------------- |
 | 201      | The application dose not have permission to call the interface.     |  
 | 202      | not system app.                     |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 | 1500004  | A third-party application cannot send system common events.                |
 | 1500007  | Failed to send the message to the common event service.             |
 | 1500008  | Failed to initialize the common event service.     |
@@ -259,7 +259,7 @@ setStaticSubscriberState(enable: boolean, callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 202      | not system app.                     |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 | 1500007  | Failed to send the message to the common event service.             |
 | 1500008  | Failed to initialize the common event service.     |
 
@@ -308,7 +308,7 @@ setStaticSubscriberState(enable: boolean): Promise\<void>
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 202      | not system app.                     |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 | 1500007  | Failed to send the message to the common event service.             |
 | 1500008  | Failed to initialize the common event service.     |
 
@@ -357,7 +357,7 @@ setStaticSubscriberState(enable: boolean, events?: Array\<string>): Promise\<voi
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
 | 202      | not system app.                     |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 | 1500007  | Failed to send the message to the common event service.        |
 | 1500008  | Failed to initialize the common event service. |
 

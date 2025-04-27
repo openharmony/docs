@@ -30,7 +30,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备DRM�
     }
    ```
 
-4.（可选）获取设备支持的DRM解决方案的名称和唯一标识的列表。
+4. （可选）获取设备支持的DRM解决方案的名称和唯一标识的列表。
 
    ```c++
     uint32_t count = 1; // count是当前设备实际支持的DRM插件的个数，用户根据实际情况设置。
@@ -52,7 +52,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备DRM�
     }
    ```
 
-6.（可选）声明MediaKeySystem事件监听回调。
+6. （可选）声明MediaKeySystem事件监听回调。
 
    ```c++
      // 适用于多个MediaKeySystem实例的场景。
@@ -68,7 +68,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备DRM�
     }
    ```
 
-7.（可选）设置MediaKeySystem事件监听回调。
+7. （可选）设置MediaKeySystem事件监听回调。
 
    ```c++
      // 适用于多个MediaKeySystem实例的场景。
@@ -119,92 +119,92 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备DRM�
             printf("OH_MediaKeySystem_ProcessKeySystemResponse failed.");
         }
     }
-   ```
+    ```
 
-10. (可选)获取离线媒体密钥标识，获取离线媒体密钥状态、清理离线媒体密钥。
+10. （可选）获取离线媒体密钥标识，获取离线媒体密钥状态、清理离线媒体密钥。
 
-   ```c++
-    DRM_OfflineMediakeyIdArray offlineMediaKeyIds;
-    ret = OH_MediaKeySystem_GetOfflineMediaKeyIds(mediaKeySystem, &offlineMediaKeyIds);
-    if (ret != DRM_ERR_OK) {
-        printf("OH_MediaKeySystem_GetOfflineMediaKeyIds failed.");
-    }
-    DRM_OfflineMediaKeyStatus OfflineMediaKeyStatus = OFFLINE_MEDIA_KEY_STATUS_UNKNOWN;
-    ret = OH_MediaKeySystem_GetOfflineMediaKeyStatus(mediaKeySystem, offlineMediaKeyIds.ids[0], offlineMediaKeyIds.idsLen[0], &OfflineMediaKeyStatus);
-    if (ret != DRM_ERR_OK) {
-        printf("OH_MediaKeySystem_GetOfflineMediaKeyStatus failed.");
-    }
-    ret = OH_MediaKeySystem_ClearOfflineMediaKeys(mediaKeySystem, offlineMediaKeyIds.ids[0], offlineMediaKeyIds.idsLen[0]);
-    if (ret != DRM_ERR_OK) {
-        printf("OH_MediaKeySystem_ClearOfflineMediaKeys failed.");
-    }
-   ```
+     ```c++
+      DRM_OfflineMediakeyIdArray offlineMediaKeyIds;
+      ret = OH_MediaKeySystem_GetOfflineMediaKeyIds(mediaKeySystem, &offlineMediaKeyIds);
+      if (ret != DRM_ERR_OK) {
+         printf("OH_MediaKeySystem_GetOfflineMediaKeyIds failed.");
+      }
+      DRM_OfflineMediaKeyStatus OfflineMediaKeyStatus = OFFLINE_MEDIA_KEY_STATUS_UNKNOWN;
+      ret = OH_MediaKeySystem_GetOfflineMediaKeyStatus(mediaKeySystem, offlineMediaKeyIds.ids[0], offlineMediaKeyIds.idsLen[0], &OfflineMediaKeyStatus);
+      if (ret != DRM_ERR_OK) {
+         printf("OH_MediaKeySystem_GetOfflineMediaKeyStatus failed.");
+      }
+      ret = OH_MediaKeySystem_ClearOfflineMediaKeys(mediaKeySystem, offlineMediaKeyIds.ids[0], offlineMediaKeyIds.idsLen[0]);
+      if (ret != DRM_ERR_OK) {
+          printf("OH_MediaKeySystem_ClearOfflineMediaKeys failed.");
+      }
+    ```
 
-11. (可选)设置和获取DRM配置属性信息。
+11. （可选）设置和获取DRM配置属性信息。
 
-   > **说明：**
-   >
-   > 不同的DRM方案的配置属性信息可能存在差别，支持的属性名包含："vendor"、"version"、"description"、"algorithms"、"maxSessionNum"、"currentHDCPLevel"。需解决方案支持属性值设置能力才能设置DRM配置属性信息。
+    > **说明：**
+    >
+    > 不同的DRM方案的配置属性信息可能存在差别，支持的属性名包含："vendor"、"version"、"description"、"algorithms"、"maxSessionNum"、"currentHDCPLevel"。需解决方案支持属性值设置能力才能设置DRM配置属性信息。
 
-   ```c++
-    ret = OH_MediaKeySystem_SetConfigurationString(mediaKeySystem, "version", "2.0"); // 设置字符串类型的配置信息。
-    if (ret == DRM_ERR_OK) {
-        printf("MediaKeySystem_SetConfigurationString success");
-    } else {
-        printf("MediaKeySystem_SetConfigurationString failed. %d ", ret);
-    }
-    char value[32];
-    int32_t valueLen = 32;
-    // 获取字符串类型的配置信息。
-    ret = OH_MediaKeySystem_GetConfigurationString(mediaKeySystem, "version", value, valueLen);
-    if (ret == DRM_ERR_OK) {
-        printf("OH_MediaKeySystem_GetConfigurationString success");
-    } else {
-        printf("OH_MediaKeySystem_GetConfigurationString failed. %d ", ret);
-    }
-    // 设置字符数组类型的配置信息，请根据实际数据和长度传入。
-    uint8_t description[4] = {0x00, 0x00, 0x00, 0x00};
-    ret = OH_MediaKeySystem_SetConfigurationByteArray(mediaKeySystem, "description", description, sizeof(description)/sizeof(uint8_t));
-    if (ret == DRM_ERR_OK) {
-        printf("OH_MediaKeySystem_SetConfigurationByteArray success ");
-    } else {
-        printf("OH_MediaKeySystem_SetConfigurationByteArray failed. %d ", ret);
-    }
-     // 获取字符数组类型的配置信息，根据DRM解决方案实际情况填入。
-    uint8_t descriptionValue[32];
-    int32_t descriptionValueLen = 32;
-    ret = OH_MediaKeySystem_GetConfigurationByteArray(mediaKeySystem, "description", descriptionValue, &descriptionValueLen);
-    if (ret == DRM_ERR_OK) {
-        printf("OH_MediaKeySystem_GetConfigurationByteArray success ");
-    } else {
-        printf("OH_MediaKeySystem_GetConfigurationByteArray failed. %d ", ret);
-    }
-   ```
+     ```c++
+       ret = OH_MediaKeySystem_SetConfigurationString(mediaKeySystem, "version", "2.0"); // 设置字符串类型的配置信息。
+       if (ret == DRM_ERR_OK) {
+           printf("MediaKeySystem_SetConfigurationString success");
+       } else {
+           printf("MediaKeySystem_SetConfigurationString failed. %d ", ret);
+       }
+       char value[32];
+       int32_t valueLen = 32;
+       // 获取字符串类型的配置信息。
+       ret = OH_MediaKeySystem_GetConfigurationString(mediaKeySystem, "version", value, valueLen);
+       if (ret == DRM_ERR_OK) {
+           printf("OH_MediaKeySystem_GetConfigurationString success");
+       } else {
+           printf("OH_MediaKeySystem_GetConfigurationString failed. %d ", ret);
+       }
+       // 设置字符数组类型的配置信息，请根据实际数据和长度传入。
+       uint8_t description[4] = {0x00, 0x00, 0x00, 0x00};
+       ret = OH_MediaKeySystem_SetConfigurationByteArray(mediaKeySystem, "description", description, sizeof(description)/sizeof(uint8_t));
+       if (ret == DRM_ERR_OK) {
+           printf("OH_MediaKeySystem_SetConfigurationByteArray success ");
+       } else {
+           printf("OH_MediaKeySystem_SetConfigurationByteArray failed. %d ", ret);
+       }
+        // 获取字符数组类型的配置信息，根据DRM解决方案实际情况填入。
+       uint8_t descriptionValue[32];
+       int32_t descriptionValueLen = 32;
+       ret = OH_MediaKeySystem_GetConfigurationByteArray(mediaKeySystem, "description", descriptionValue, &descriptionValueLen);
+       if (ret == DRM_ERR_OK) {
+           printf("OH_MediaKeySystem_GetConfigurationByteArray success ");
+       } else {
+           printf("OH_MediaKeySystem_GetConfigurationByteArray failed. %d ", ret);
+       }
+      ```
 
 12. （可选）获取设备支持的最大内容保护级别。
 
-   ```c++
-    DRM_ContentProtectionLevel contentProtectionLevel = CONTENT_PROTECTION_LEVEL_UNKNOWN;
-    ret = OH_MediaKeySystem_GetMaxContentProtectionLevel(mediaKeySystem, &contentProtectionLevel);
-    if (ret != DRM_ERR_OK) {
-        printf("OH_MediaKeySystem_GetMaxContentProtectionLevel failed.");
-    }
-   ```
+     ```c++
+      DRM_ContentProtectionLevel contentProtectionLevel = CONTENT_PROTECTION_LEVEL_UNKNOWN;
+      ret = OH_MediaKeySystem_GetMaxContentProtectionLevel(mediaKeySystem, &contentProtectionLevel);
+      if (ret != DRM_ERR_OK) {
+          printf("OH_MediaKeySystem_GetMaxContentProtectionLevel failed.");
+      }
+     ```
 
 13. 销毁MediaKeySession实例。
 
-   ```c++
-    ret = OH_MediaKeySession_Destroy(mediaKeySession);
-    if (ret != DRM_ERR_OK) {
-        printf("OH_MediaKeySession_Destroy failed.");
-    }
-   ```
+     ```c++
+      ret = OH_MediaKeySession_Destroy(mediaKeySession);
+      if (ret != DRM_ERR_OK) {
+          printf("OH_MediaKeySession_Destroy failed.");
+      }
+     ```
 
 14. 销毁MediaKeySystem实例。
 
-   ```c++
-    ret = OH_MediaKeySystem_Destroy(mediaKeySystem);
-    if (ret != DRM_ERR_OK) {
-        printf("OH_MediaKeySystem_Destroy failed.");
-    }
-   ```
+     ```c++
+      ret = OH_MediaKeySystem_Destroy(mediaKeySystem);
+      if (ret != DRM_ERR_OK) {
+          printf("OH_MediaKeySystem_Destroy failed.");
+      }
+     ```

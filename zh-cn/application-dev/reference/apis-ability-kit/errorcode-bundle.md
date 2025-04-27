@@ -687,15 +687,15 @@ Failed to install the HAP because an enterprise normal/MDM bundle cannot be inst
 1. 检查安装设备是否为企业设备。
 2. 检查设备参数const.bms.allowenterprisebundle是否为true。
 
-## 17700051 应用自升级时调用方的分发类型不是企业mdm
+## 17700051 应用自升级时调用方的签名证书profile文件中的类型不是企业mdm
 **错误信息**<br/>
 Failed to install the HAP because the distribution type of the caller application is not enterprise_mdm.
 
 **错误描述**<br/>
-企业mdm应用自升级时，调用方的分发类型不是企业mdm。
+企业mdm应用自升级时，调用方[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中的类型不是企业mdm。
 
 **可能原因**<br/>
-调用方的分发类型不是企业mdm。
+调用方签名证书profile文件中的类型不是企业mdm。
 
 **处理步骤**<br/>
 检查应用的签名文件是否正确配置。

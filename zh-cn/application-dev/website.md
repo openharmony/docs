@@ -205,7 +205,8 @@
         - [Uniform Type Descriptor(UTD)预置类型列表](database/uniform-data-type-list.md)
       - 应用数据持久化<!--app-data-persistence-->
         - [应用数据持久化概述](database/app-data-persistence-overview.md)
-        - [通过用户首选项实现数据持久化](database/data-persistence-by-preferences.md)
+        - [通过用户首选项实现数据持久化 (ArkTS)](database/data-persistence-by-preferences.md)
+        - [通过用户首选项实现数据持久化 (C/C++)](database/preferences-guidelines.md)
         - [通过键值型数据库实现数据持久化](database/data-persistence-by-kv-store.md)
         - [通过关系型数据库实现数据持久化](database/data-persistence-by-rdb-store.md)
       - 同应用跨设备数据同步（分布式）<!--distributed-data-sync-->
@@ -233,7 +234,6 @@
         - [应用数据向量化](database/aip-data-intelligence-embedding.md)
       - [RelationalStore开发指导 (C/C++)](database/native-relational-store-guidelines.md)
       - [UDMF开发指导 (C/C++)](database/native-unified-data-management-framework-guidelines.md)
-      - [通过用户首选项实现数据持久化 (C/C++)](database/preferences-guidelines.md)
     - ArkTS（方舟编程语言）<!--arkts-->
       - [ArkTS简介](arkts-utils/arkts-overview.md)
       - ArkTS基础类库<!--arkts-utils-->
@@ -528,7 +528,7 @@
             - [监听组件事件](ui/ndk-listen-to-component-events.md)
             - [绑定手势事件](ui/ndk-bind-gesture-events.md)
           - [使用动画](ui/ndk-use-animation.md)
-          - [使用懒加载开发长列表界面](ui/ndk-loading-long-list.md)
+          - [使用列表](ui/ndk-loading-long-list.md)
           - [构建弹窗](ui/ndk-build-pop-up-window.md)
           - [构建自定义组件](ui/ndk-build-custom-components.md)
           - [嵌入ArkTS组件](ui/ndk-embed-arkts-components.md)
@@ -680,7 +680,8 @@
         - [使用crashpad收集Web组件崩溃信息](web/web-crashpad.md)
     - Background Tasks Kit（后台任务开发服务）<!--background-task-kit-->
       <!--Del-->
-      - 后台任务管理<!--DelEnd-->
+      - 后台任务管理 <!--background-task-management--><!--DelEnd-->
+
         - [后台任务总体概述](task-management/background-task-overview.md)
         - [短时任务(ArkTS)](task-management/transient-task.md)
         - [短时任务(C/C++)](task-management/native-transient-task.md)
@@ -786,7 +787,7 @@
       - [Localization Kit简介](internationalization/i18n-l10n.md)
       - 应用国际化<!--i18n-->
           - [国际化界面设计](internationalization/i18n-ui-design.md)
-          - [区域标识与文化习惯划分](internationalization/i18n-locale-culture.md)
+          - [区域ID与文化习惯划分](internationalization/i18n-locale-culture.md)
           - 设置语言与用户偏好<!--i18n-language-user-preferences-->
               - [设置系统语言与区域](internationalization/i18n-system-language-region.md)
               - [设置应用偏好语言](internationalization/i18n-preferred-language.md)
@@ -1478,6 +1479,7 @@
         - 视频转码<!--media-transcoder-arkts-->
           - [使用AVTranscoder实现视频转码(ArkTS)](media/media/using-avtranscoder-for-transcodering.md)
           - [创建异步线程执行AVTranscoder视频转码(ArkTS)](media/media/avtranscoder-practice.md)
+          - [转码常见问题](media/media/avtranscoder-faq.md)
       - 媒体开发指导(C/C++)<!--media-kit-dev--c-->
         - 播放<!--media-playback-c-->
           - [使用AVPlayer播放音频(C/C++)](media/media/using-ndk-avplayer-for-playback.md)
@@ -3479,7 +3481,7 @@
               - [CommonEventPublishData](reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventPublishData.md)
               - [CommonEventSubscriber](reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventSubscriber.md)
               - [CommonEventSubscribeInfo](reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventSubscribeInfo.md)
-          - 其他<!--others-->
+          - 其他<!--basic-services-others-->
             <!--Del-->
             - [@ohos.ai.intelligentVoice (智能语音)(系统接口)](reference/apis-basic-services-kit/js-apis-intelligentVoice-sys.md)
             <!--DelEnd-->
@@ -4422,6 +4424,7 @@
       - [Native api中导出的EGL符号列表](reference/native-lib/egl-symbol.md)
       - [Native api中导出的ICU4C符号列表](reference/native-lib/icu4c-symbol.md)
       - [Native api中导出的OpenGL ES 3.2符号列表](reference/native-lib/openglesv3-symbol.md)
+      <!--Del-->
 - 常见问题
   - [如何编译full-SDK](faqs/full-sdk-compile-guide.md)
   - [如何替换full-SDK](faqs/full-sdk-switch-guide.md)
@@ -4453,3 +4456,4 @@
   - [NDK开发常见问题](faqs/faqs-ndk.md)
   - [语言编译运行时常见问题](faqs/faqs-compiler-runtime.md)
   - [三四方库使用常见问题](faqs/faqs-third-fourth-party-library.md)
+<!--DelEnd-->
