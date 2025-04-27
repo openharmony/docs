@@ -34,7 +34,7 @@ import { fileIo as fs } from '@kit.CoreFileKit';
 
 stat(file: string | number): Promise&lt;Stat&gt;
 
-获取文件详细属性信息，使用Promise异步返回。
+获取文件或目录详细属性信息，使用Promise异步返回。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -72,7 +72,7 @@ stat(file: string | number): Promise&lt;Stat&gt;
 
 stat(file: string | number, callback: AsyncCallback&lt;Stat&gt;): void
 
-获取文件详细属性信息，使用callback异步回调。
+获取文件或目录详细属性信息，使用callback异步回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -106,7 +106,7 @@ stat(file: string | number, callback: AsyncCallback&lt;Stat&gt;): void
 
 statSync(file: string | number): Stat
 
-以同步方法获取文件详细属性信息。
+以同步方法获取文件或目录详细属性信息。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -377,7 +377,7 @@ accessSync(path: string, mode: AccessModeType, flag: AccessFlagType): boolean
 
 close(file: number | File): Promise&lt;void&gt;
 
-关闭文件，使用Promise异步返回。
+关闭文件或目录，使用Promise异步返回。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -416,7 +416,7 @@ close(file: number | File): Promise&lt;void&gt;
 
 close(file: number | File, callback: AsyncCallback&lt;void&gt;): void
 
-关闭文件，使用callback异步回调。
+关闭文件或目录，使用callback异步回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -452,7 +452,7 @@ close(file: number | File, callback: AsyncCallback&lt;void&gt;): void
 
 closeSync(file: number | File): void
 
-以同步方法关闭文件。
+以同步方法关闭文件或目录。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1077,7 +1077,7 @@ disconnectDfs(networkId: string): Promise&lt;void&gt;
 
 setxattr(path: string, key: string, value: string): Promise&lt;void&gt;
 
-设置文件的扩展属性。
+设置文件或目录的扩展属性。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1119,7 +1119,7 @@ setxattr(path: string, key: string, value: string): Promise&lt;void&gt;
 
 setxattrSync(path: string, key: string, value: string): void
 
-设置文件的扩展属性。
+设置文件或目录的扩展属性。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1157,7 +1157,7 @@ setxattrSync(path: string, key: string, value: string): void
 
 getxattr(path: string, key: string): Promise&lt;string&gt;
 
-获取文件的扩展属性。
+获取文件或目录的扩展属性。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1198,7 +1198,7 @@ getxattr(path: string, key: string): Promise&lt;string&gt;
 
 getxattrSync(path: string, key: string): string
 
-使用同步接口获取文件的扩展属性。
+使用同步接口获取文件或目录的扩展属性。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1443,7 +1443,7 @@ mkdirSync(path: string, recursion: boolean): void
 
 open(path: string, mode?: number): Promise&lt;File&gt;
 
-打开文件，使用Promise异步返回。支持使用URI打开文件。
+打开文件或目录，使用Promise异步返回。支持使用URI打开文件。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1484,7 +1484,7 @@ open(path: string, mode?: number): Promise&lt;File&gt;
 
 open(path: string, mode: number, callback: AsyncCallback&lt;File&gt;): void
 
-打开文件，可设置打开文件的选项。使用callback异步回调。
+打开文件或目录，可设置打开文件的选项。使用callback异步回调。
 
 支持使用URI打开文件。
 
@@ -1523,7 +1523,7 @@ open(path: string, mode: number, callback: AsyncCallback&lt;File&gt;): void
 
 open(path: string, callback: AsyncCallback&lt;File&gt;): void
 
-打开文件，使用callback异步回调。支持使用URI打开文件。
+打开文件或目录，使用callback异步回调。支持使用URI打开文件。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1559,7 +1559,7 @@ open(path: string, callback: AsyncCallback&lt;File&gt;): void
 
 openSync(path: string, mode?: number): File
 
-以同步方法打开文件。支持使用URI打开文件。
+以同步方法打开文件或目录。支持使用URI打开文件。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
