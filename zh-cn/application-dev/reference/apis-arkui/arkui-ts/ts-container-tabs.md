@@ -2304,7 +2304,7 @@ struct TabsExample {
 
 ### 示例17（设置边缘滑动效果）
 
-该示例通过edgeEffect实现不同的边缘滑动效果。
+该示例通过edgeEffect实现了不同的边缘滑动效果。
 
 ```ts
 // xxx.ets
