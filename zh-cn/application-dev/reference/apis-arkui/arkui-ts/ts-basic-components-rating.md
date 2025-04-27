@@ -589,7 +589,7 @@ struct ratingExample {
 
 ### 示例4（通过Resource资源设置评分的样式）
 
-该示例通过Resource资源设置评分的样式。
+该示例通过Resource资源配置starStyle，实现自定义星级图片链接。
 
 ```ts
 // xxx.ets
