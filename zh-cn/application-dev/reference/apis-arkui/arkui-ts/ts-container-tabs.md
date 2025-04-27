@@ -311,7 +311,7 @@ barBackgroundBlurStyle(value: BlurStyle)
 | ------ | -------------------------------------------- | ---- | ---------------------------------------- |
 | value  | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 是   | TabBar的背景模糊材质。<br />默认值：BlurStyle.NONE |
  
- ### barGridAlign<sup>10+</sup>
+### barGridAlign<sup>10+</sup>
 
 barGridAlign(value: BarGridColumnOptions)
 
