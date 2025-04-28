@@ -13,11 +13,15 @@ import { http } from '@kit.NetworkKit';
 
 ## 完整示例 
 
+**注意：** 关于示例代码中this的说明：在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，[请参见获取UIAbility的上下文消息](http://gitee.com/openharmony/docs/blob/222f8d93e6f0056409aac096e041df3fdd8ae5ec/zh-cn/application-dev/application-models/uiability-usage.md)。
+
 ```ts
 // 引入包名
 import { http } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // 每一个httpRequest对应一个HTTP请求任务，不可复用。
 let httpRequest = http.createHttp();
 // 用于订阅HTTP响应头，此接口会比request请求先返回。可以根据业务需要订阅此消息。
@@ -67,7 +71,7 @@ httpRequest.request(// 填写HTTP请求的URL地址，可以带参数也可以�
         name: "Part2", // 数据名，自API 11开始支持该属性。
         contentType: 'text/plain', // 数据类型，自API 11开始支持该属性。
         // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.txt
-        filePath: `${getContext(this).filesDir}/fileName.txt`, // 可选，传入文件路径，自API 11开始支持该属性。
+        filePath: `${context.filesDir}/fileName.txt`, // 可选，传入文件路径，自API 11开始支持该属性。
         remoteFileName: 'fileName.txt' // 可选，自API 11开始支持该属性。
       }
     ],
