@@ -1,18 +1,18 @@
 # @ohos.util.LinkedList (线性容器LinkedList)
 
-LinkedList底层通过双向链表实现，双向链表的每个节点都包含对前一个元素和后一个元素的引用。当需要查询元素时，可以从头遍历，也可以从尾部遍历，插入、删除效率高，查询效率低。LinkedList允许元素为null。
+LinkedList底层通过双向链表实现，每个节点都包含对前一个元素和后一个元素的引用。查询元素时，可以从头或从尾部遍历，插入和删除效率高，查询效率低。LinkedList允许元素为null。
 
 LinkedList和[List](js-apis-list.md)相比，LinkedList是双向链表，可以快速地在头尾进行增删，而List是单向链表，无法双向操作。
 
-LinkedList和[ArrayList](js-apis-arraylist.md)相比，插入数据效率LinkedList优于ArrayList，而查询效率ArrayList优于LinkedList。
+LinkedList和[ArrayList](js-apis-arraylist.md)相比，LinkedList插入数据效率高于ArrayList，而ArrayList查询效率高于LinkedList。
 
 > **注意：**
 >
-> 在LinkedList中使用\[index\]的方式虽然能够获取对应位置的元素，但这会导致未定义结果。推荐使用get()方法。
+> 在LinkedList中使用\[index\]的方式获取元素可能导致未定义结果，推荐使用get()方法。
 
-**推荐使用场景：** 当需要频繁的插入删除元素，并且需要使用双向链表时，推荐使用LinkedList高效操作。
+**推荐使用场景：** 当需要频繁的插入删除元素且需要使用双向链表时，推荐使用LinkedList。
 
-文档中存在泛型的使用，涉及以下泛型标记符：<br>
+文档中使用了泛型，涉及以下泛型标记符：
 - T： Type，类
 
 > **说明：**
@@ -157,7 +157,7 @@ linkedList.addFirst(false);
 
 insert(index: number, element: T): void
 
-在长度范围内任意插入指定元素。
+在长度范围内任意位置插入指定元素。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -193,7 +193,7 @@ linkedList.insert(2, true);
 
 has(element: T): boolean
 
-判断此LinkedList中是否含有该指定元素。
+判断LinkedList中是否包含指定元素。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -276,7 +276,7 @@ let result = linkedList.get(2);
 
 getLastIndexOf(element: T): number
 
-返回指定元素最后一次出现时的下标值，查找失败返回-1。
+查找指定元素最后一次出现时的下标值，查找失败返回-1。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -320,7 +320,7 @@ let result = linkedList.getLastIndexOf(2);
 
 getIndexOf(element: T): number
 
-返回指定元素第一次出现时的下标值，查找失败返回-1。
+查找指定元素第一次出现时的下标值，查找失败返回-1。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -380,7 +380,7 @@ removeByIndex(index: number): T
 
 | 类型 | 说明 |
 | -------- | -------- |
-| T | 返回删除的元素，如果为空返回undefined。 |
+| T | 返回删除的元素，如果元素为空返回undefined。 |
 
 **错误码：**
 
@@ -482,7 +482,7 @@ let result = linkedList.removeLast();
 
 remove(element: T): boolean
 
-删除查找到的第一个指定的元素。
+删除查找到的第一个指定元素。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -609,7 +609,7 @@ let result = linkedList.removeLastFound(4);
 
 clone(): LinkedList&lt;T&gt;
 
-克隆一个与LinkedList相同的实例，并返回克隆后的实例。修改克隆后的实例并不会影响原实例。
+克隆一个与LinkedList相同的实例并返回。修改克隆后的实例并不会影响原实例。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -645,7 +645,7 @@ let result = linkedList.clone();
 forEach(callbackFn: (value: T, index?: number, LinkedList?: LinkedList&lt;T&gt;) => void,
 thisArg?: Object): void
 
-通过回调函数来遍历LinkedList实例对象上的元素以及元素对应的下标。
+通过回调函数来遍历LinkedList实例对象上的元素以及其下标。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -656,9 +656,9 @@ thisArg?: Object): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | 是 | 回调函数。 |
-| thisArg | Object | 否 | callbackfn被调用时用作this值，默认值为当前实例对象。 |
+| thisArg | Object | 否 | callbackFn被调用时用作this值，默认值为当前实例对象。 |
 
-callbackfn的参数说明：
+callbackFn的参数说明：
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -692,7 +692,7 @@ linkedList.forEach((value: number, index?: number) => {
 
 clear(): void
 
-清除LinkedList中的所有元素，并把length置为0。
+清除LinkedList中的所有元素，并将length置为0。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -721,7 +721,7 @@ linkedList.clear();
 
 set(index: number, element: T): T
 
-将此LinkedList中指定位置的元素替换为指定元素。
+替换LinkedList指定位置的元素。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -738,7 +738,7 @@ set(index: number, element: T): T
 
 | 类型 | 说明 |
 | -------- | -------- |
-| T | 返回替换后的元素，如果为空返回undefined。 |
+| T | 返回替换后的元素，如果元素为空则返回undefined。 |
 
 **错误码：**
 
@@ -765,7 +765,7 @@ let result = linkedList.set(2, "b");
 
 convertToArray(): Array&lt;T&gt;
 
-把当前LinkedList实例转换成数组，并返回转换后的数组。
+将当前LinkedList实例转换成数组并返回。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -809,7 +809,7 @@ getFirst(): T
 
 | 类型 | 说明 |
 | -------- | -------- |
-| T | 返回对应元素，如果元素为空返回undefined。 |
+| T | 返回对应元素，若元素为空则返回undefined。 |
 
 **错误码：**
 
@@ -844,7 +844,7 @@ getLast(): T
 
 | 类型 | 说明 |
 | -------- | -------- |
-| T | 返回对应元素，如果为元素空返回undefined。 |
+| T | 返回对应元素，若元素为空则返回undefined。 |
 
 **错误码：**
 
@@ -869,7 +869,7 @@ let result = linkedList.getLast();
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
-返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象，并返回该对象。
+返回一个迭代器，迭代器的每一项都是一个JavaScript对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
