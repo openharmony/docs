@@ -1295,6 +1295,7 @@ struct TabsOpaque {
 struct barHeightTest {
   @State arr: number[] = [0, 1, 2, 3];
   @State barOverlap: boolean = true;
+
   build() {
     Column() {
       Text(`barOverlap ${this.barOverlap}`).fontSize(16)
@@ -1492,9 +1493,9 @@ struct TabsCustomAnimationExample {
           this.opacityList[to] = 1.0;
         });
       }
-    } as TabContentAnimatedTransition
+    } as TabContentAnimatedTransition;
     return tabContentAnimatedTransition;
-  }
+  };
 
   aboutToAppear(): void {
     let duration = 1000;
@@ -1542,6 +1543,7 @@ struct TabsExample {
   @State selectedIndex: number = 2;
   @State currentIndex: number = 2;
   private controller: TabsController = new TabsController();
+  
   @Builder tabBuilder(title: string,targetIndex: number) {
     Column(){
       Image(this.selectedIndex === targetIndex ? $r('app.media.star_fill') : $r('app.media.star'))
@@ -1554,6 +1556,7 @@ struct TabsExample {
     .height(50)
     .justifyContent(FlexAlign.Center)
   }
+
   build() {
     Column() {
       Tabs({ barPosition: BarPosition.End, index: this.currentIndex, controller: this.controller }) {
@@ -2186,7 +2189,7 @@ struct TabsBarModifierExample {
           .height(50)
           .margin({ top: 5 })
           .onClick((event?: ClickEvent) => {
-            this.tabBarModifier.align(Alignment.Top)
+            this.tabBarModifier.align(Alignment.Top);
           })
           .margin({ right: '6%', bottom: '12vp' })
         Button("Alignment.Bottom")
