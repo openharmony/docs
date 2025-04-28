@@ -203,7 +203,7 @@ setFoldDisplayMode(mode: FoldDisplayMode, reason: string): void
 | 参数名   | 类型                                       | 必填 | 说明                                                    |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | mode     | [FoldDisplayMode](js-apis-display.md#folddisplaymode10)    | 是   | 可折叠设备的显示模式。 |
-| reason     | string    | 否   | 更改显示模式的原因。 |
+| reason     | string    | 否   | 更改显示模式的原因。不设置，则默认为空字符串。 |
 
 **错误码：**
 
