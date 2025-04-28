@@ -189,9 +189,7 @@ Creates a **PixelMap** object based on the surface ID and region information. Th
 
 > **NOTE**
 >
-> The width and height of [Region](#region8).size must be the same as those of the [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
->
-> You need to adjust the width and height of the [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md) when switching the folded state of a foldable device.
+> When working with foldable devices, switching between folded and unfolded states may cause the API call to fail due to the rotation angle of surface. To address this, you need to adjust the width and height according to the rotation angle.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -199,8 +197,8 @@ Creates a **PixelMap** object based on the surface ID and region information. Th
 
 | Name                | Type                | Mandatory| Description                                    |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
-| surfaceId              | string              | Yes  | Surface ID, which is obtained from [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).|
-| region                 | [Region](#region8)  | Yes  | Region information.|
+| surfaceId              | string              | Yes  | Surface ID, which can be obtained through the preview component, for example, [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).|
+| region                 | [Region](#region8)  | Yes  | Region information. The width and height in [Region](#region8).size must be the same as those of the preview stream.|
 
 **Return value**
 | Type                            | Description                 |
@@ -240,9 +238,7 @@ Creates a **PixelMap** object based on the surface ID and region information. Th
 
 > **NOTE**
 >
-> The width and height of [Region](#region8).size must be the same as those of the [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
->
-> You need to adjust the width and height of the [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md) when switching the folded state of a foldable device.
+> When working with foldable devices, switching between folded and unfolded states may cause the API call to fail due to the rotation angle of surface. To address this, you need to adjust the width and height according to the rotation angle.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -250,8 +246,8 @@ Creates a **PixelMap** object based on the surface ID and region information. Th
 
 | Name                | Type                | Mandatory| Description                                    |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
-| surfaceId              | string              | Yes  | Surface ID, which is obtained from [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).|
-| region                 | [Region](#region8)  | Yes  | Region information.|
+| surfaceId              | string              | Yes  | Surface ID, which can be obtained through the preview component, for example, [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).|
+| region                 | [Region](#region8)  | Yes  | Region information. The width and height in [Region](#region8).size must be the same as those of the preview stream.|
 
 **Return value**
 | Type                            | Description                 |
@@ -597,6 +593,8 @@ Since API version 11, **PixelMap** supports cross-thread calls through workers. 
 
 Before calling any API in **PixelMap**, you must use [image.createPixelMap](#imagecreatepixelmap8) to create a **PixelMap** object.
 
+To develop an atomic service, use [ImageSoure](#imagesource) to create a **PixelMap** object.
+
 ### Properties
 
 **System capability**: SystemCapability.Multimedia.Image.Core
@@ -761,7 +759,7 @@ RGBA region calculation formula: region to read (region.size{width * height}) * 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function ReadPixels() {
+async function ReadPixelsRGBA() {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(8), // 8 is the size of the PixelMap buffer to create. The value is calculated as follows: height * width * 4.
     offset: 0,
@@ -777,7 +775,7 @@ async function ReadPixels() {
   }
 }
 
-async function ReadPixels() {
+async function ReadPixelsYUV() {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(6),  // 6 is the size of the PixelMap buffer to create. The value is calculated as follows: height * width * 1.5.
     offset: 0,
@@ -824,7 +822,7 @@ RGBA region calculation formula: region to read (region.size{width * height}) * 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function ReadPixels() {
+async function ReadPixelsRGBA() {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(8), // 8 is the size of the PixelMap buffer to create. The value is calculated as follows: height * width * 4.
     offset: 0,
@@ -843,7 +841,7 @@ async function ReadPixels() {
   }
 }
 
-async function ReadPixels() {
+async function ReadPixelsYUV() {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(6),  // 6 is the size of the PixelMap buffer to create. The value is calculated as follows: height * width * 1.5.
     offset: 0,
@@ -941,7 +939,7 @@ RGBA region calculation formula: region to read (region.size{width * height}) * 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function WritePixels() {
+async function WritePixelsRGBA() {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(8), // 8 is the size of the PixelMap buffer to create. The value is calculated as follows: height * width * 4.
     offset: 0,
@@ -961,7 +959,7 @@ async function WritePixels() {
   }
 }
 
-async function WritePixels() {
+async function WritePixelsYUV() {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(6),  // 6 is the size of the PixelMap buffer to create. The value is calculated as follows: height * width * 1.5.
     offset: 0,
@@ -1012,7 +1010,7 @@ RGBA region calculation formula: region to read (region.size{width * height}) * 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function WritePixels() {
+async function WritePixelsRGBA() {
   const area: image.PositionArea = { pixels: new ArrayBuffer(8), // 8 is the size of the PixelMap buffer to create. The value is calculated as follows: height * width * 4.
     offset: 0,
     stride: 8,
@@ -1034,7 +1032,7 @@ async function WritePixels() {
   }
 }
 
-async function WritePixels() {
+async function WritePixelsYUV() {
   const area: image.PositionArea = { pixels: new ArrayBuffer(6), // 6 is the size of the PixelMap buffer to create. The value is calculated as follows: height * width * 1.5.
     offset: 0,
     stride: 8,
@@ -4232,6 +4230,9 @@ createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>
 
 Creates an array of **PixelMap** objects based on image decoding parameters. This API uses a promise to return the result. For dynamic images such as GIF and WebP images, this API returns the data of each frame of the image. For static images, this API returns the data of the unique frame of the image.
 
+> **NOTE**
+>
+> This function decodes all frames at once. If the number of frames is high or the size of individual frames is large, it can lead to significant memory usage. In these cases, you are advised to use the **Image** component for displaying animations. The **Image** component decodes frames one by one, which uses less memory than this function.
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
 **Parameters**
@@ -4296,6 +4297,10 @@ createPixelMapList(callback: AsyncCallback<Array\<PixelMap>>): void
 
 Creates an array of **PixelMap** objects based on the default parameters. This API uses an asynchronous callback to return the result. For dynamic images such as GIF and WebP images, this API returns the data of each frame of the image. For static images, this API returns the data of the unique frame of the image.
 
+> **NOTE**
+>
+> This function decodes all frames at once. If the number of frames is high or the size of individual frames is large, it can lead to significant memory usage. In these cases, you are advised to use the **Image** component for displaying animations. The **Image** component decodes frames one by one, which uses less memory than this function.
+
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
 **Parameters**
@@ -4347,6 +4352,10 @@ imageSourceApi.createPixelMapList((err: BusinessError, pixelMapList: Array<image
 createPixelMapList(options: DecodingOptions, callback: AsyncCallback<Array\<PixelMap>>): void
 
 Creates an array of **PixelMap** objects based on image decoding parameters. This API uses an asynchronous callback to return the result. For dynamic images such as GIF and WebP images, this API returns the data of each frame of the image. For static images, this API returns the data of the unique frame of the image.
+
+> **NOTE**
+>
+> This function decodes all frames at once. If the number of frames is high or the size of individual frames is large, it can lead to significant memory usage. In these cases, you are advised to use the **Image** component for displaying animations. The **Image** component decodes frames one by one, which uses less memory than this function.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 

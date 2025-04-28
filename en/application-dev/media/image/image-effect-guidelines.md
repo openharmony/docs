@@ -232,7 +232,7 @@ To implement and register a custom filter, perform the following steps:
             root["name"] = "CustomBrightness";
             root["values"] = values;
         
-        　　 // Convert the JSON object into a string.
+        　　 // Convert the JSON object into the string infoStr.
             // ...
 
             // Assign a serialized string address to *info.
