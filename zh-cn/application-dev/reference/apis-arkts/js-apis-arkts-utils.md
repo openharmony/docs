@@ -519,14 +519,6 @@ static request(name: string): ConditionVariable
 | ----------------------- | -------------------------------- |
 | [ConditionVariable](#conditionvariable18) | 返回查找到或创建后的异步等待通知操作的实例。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息          |
-| -------- | ----------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-
 **示例：**
 
 ```ts
@@ -579,14 +571,6 @@ waitFor(timeout : number) : Promise\<void>
 | 类型        | 说明                        |
 | ----------- | --------------------------- |
 | Promise\<void> | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息          |
-| -------- | ----------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -1277,14 +1261,6 @@ get(key: K): V | undefined
 | ------------------------ | ------------------------------------------------------------ |
 | V \| undefined | 如果指定的键存在于缓冲区中，则返回与键关联的值；否则调用createDefault接口，如果返回值为undefined，则返回undefined，否则返回createDefault接口结果。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-
 **示例：**
 
 ```ts
@@ -1317,14 +1293,6 @@ put(key: K,value: V): V
 | 类型 | 说明                                                         |
 | ---- | ------------------------------------------------------------ |
 | V    | 返回与添加的键关联的值。如果键或值为空，则抛出错误ID为401的参数错误异常。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -1412,14 +1380,6 @@ remove(key: K): V | undefined
 | ------------------------ | ------------------------------------------------------------ |
 | V&nbsp;\|&nbsp;undefined | 返回一个包含已删除键值对的Optional对象；如果key不存在，则返回undefined，如果key为null，则抛出异常。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-
 **示例：**
 
 ```ts
@@ -1451,14 +1411,6 @@ contains(key: K): boolean
 | 类型    | 说明                                       |
 | ------- | ------------------------------------------ |
 | boolean | 如果缓冲区包含指定的键，则返回true，否则返回false。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
