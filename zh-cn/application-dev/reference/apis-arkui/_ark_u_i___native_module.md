@@ -5327,7 +5327,7 @@ int32_t OH_ArkUI_AccessibilityValue_GetCurrent (ArkUI_AccessibilityValue * value
 
 **返回：**
 
-基于范围组件的当前值, 默认为-1; 若函数参数异常，返回-1。
+基于范围组件的当前值，默认为-1；若函数参数异常，返回-1。
 
 
 ### OH_ArkUI_AccessibilityValue_GetMax()
@@ -5349,7 +5349,7 @@ int32_t OH_ArkUI_AccessibilityValue_GetMax (ArkUI_AccessibilityValue * value)
 
 **返回：**
 
-基于范围组件的最大值, 默认为-1; 若函数参数异常，返回-1。
+基于范围组件的最大值，默认为-1；若函数参数异常，返回-1。
 
 
 ### OH_ArkUI_AccessibilityValue_GetMin()
@@ -5371,7 +5371,7 @@ int32_t OH_ArkUI_AccessibilityValue_GetMin (ArkUI_AccessibilityValue * value)
 
 **返回：**
 
-基于范围组件的最小值, 默认为-1; 若函数参数异常，返回-1。
+基于范围组件的最小值，默认为-1; 若函数参数异常，返回-1。
 
 
 ### OH_ArkUI_AccessibilityValue_GetText()
@@ -5393,7 +5393,7 @@ const char* OH_ArkUI_AccessibilityValue_GetText (ArkUI_AccessibilityValue * valu
 
 **返回：**
 
-组件的文本描述信息, 默认为空字符串; 若函数参数异常，返回空指针。
+组件的文本描述信息，默认为空字符串；若函数参数异常，返回空指针。
 
 
 ### OH_ArkUI_AccessibilityValue_SetCurrent()
@@ -5412,7 +5412,7 @@ void OH_ArkUI_AccessibilityValue_SetCurrent (ArkUI_AccessibilityValue * value, i
 | 名称 | 描述 | 
 | -------- | -------- |
 | value | 无障碍信息对象指针。  | 
-| current | 基于范围组件的当前值, 默认为-1。  | 
+| current | 基于范围组件的当前值，默认为-1。  | 
 
 
 ### OH_ArkUI_AccessibilityValue_SetMax()
@@ -5431,7 +5431,7 @@ void OH_ArkUI_AccessibilityValue_SetMax (ArkUI_AccessibilityValue * value, int32
 | 名称 | 描述 | 
 | -------- | -------- |
 | value | 无障碍信息对象指针。  | 
-| max | 基于范围组件的最大值, 默认为-1。  | 
+| max | 基于范围组件的最大值，默认为-1。  | 
 
 
 ### OH_ArkUI_AccessibilityValue_SetMin()
@@ -5450,7 +5450,7 @@ void OH_ArkUI_AccessibilityValue_SetMin (ArkUI_AccessibilityValue * value, int32
 | 名称 | 描述 | 
 | -------- | -------- |
 | value | 无障碍信息对象指针。  | 
-| min | 基于范围组件的最小值, 默认为-1。  | 
+| min | 基于范围组件的最小值，默认为-1。  | 
 
 
 ### OH_ArkUI_AccessibilityValue_SetText()
@@ -5469,7 +5469,7 @@ void OH_ArkUI_AccessibilityValue_SetText (ArkUI_AccessibilityValue * value, cons
 | 名称 | 描述 | 
 | -------- | -------- |
 | value | 无障碍信息对象指针。  | 
-| text | 组件的文本描述信息, 默认为空字符串。  | 
+| text | 组件的文本描述信息，默认为空字符串。  | 
 
 
 ### OH_ArkUI_ActiveChildrenInfo_Destroy()
