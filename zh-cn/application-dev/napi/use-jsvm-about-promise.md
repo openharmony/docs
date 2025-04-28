@@ -170,8 +170,8 @@ OH_JSVM_RejectDeferred reject
 
 用于设置 Promise 解析或拒绝后的回调，效果等价于调用原生的 `Promise.then()` 或 `Promise.catch()`
 
-cpp 部分代码
-```
+以下为完整的cpp代码。
+```cpp
 #include "napi/native_api.h"
 #include "hilog/log.h"
 #include "ark_runtime/jsvm.h"

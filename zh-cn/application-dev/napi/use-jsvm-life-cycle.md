@@ -253,7 +253,6 @@ JSVM UseReference success
 Finalizer 方法被注册后无法取消，如果在调用 OH_JSVM_DestroyEnv 前均未被执行，则在 OH_JVSM_DestroyEnv 时执行。
 
 以下为完整的cpp代码。
-
 ```cpp
 #include "napi/native_api.h"
 #include "hilog/log.h"
