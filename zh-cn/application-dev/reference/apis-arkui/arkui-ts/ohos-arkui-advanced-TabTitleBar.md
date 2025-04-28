@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```
-import { TabTitleBar } from '@kit.ArkUI'
+import { TabTitleBar } from '@kit.ArkUI';
 ```
 
 
@@ -75,7 +75,7 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 该示例实现了带有左侧页签和右侧菜单列表的页签型标题栏。
 
 ```ts
-import { TabTitleBar, promptAction, TabTitleBarTabItem, TabTitleBarMenuItem } from '@kit.ArkUI'
+import { TabTitleBar, promptAction, TabTitleBarTabItem, TabTitleBarMenuItem } from '@kit.ArkUI';
 
 @Entry
 @Component

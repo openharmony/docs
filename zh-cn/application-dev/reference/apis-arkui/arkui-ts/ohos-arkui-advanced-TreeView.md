@@ -15,7 +15,7 @@
 ## 导入模块
 
 ```
-import { TreeView } from "@kit.ArkUI"
+import { TreeView } from "@kit.ArkUI";
 ```
 
 
@@ -267,7 +267,7 @@ off(type: TreeListenType, callback?: (callbackParam: CallbackParam) =&gt; void):
 ## 示例
 通过树视图组件的控制器对树的节点进行新增、删除、重命名，展示新增不同参数节点的实现效果。
 ```ts
-import { TreeController, TreeListener, TreeListenerManager, TreeListenType, NodeParam, TreeView, CallbackParam } from '@kit.ArkUI'
+import { TreeController, TreeListener, TreeListenerManager, TreeListenType, NodeParam, TreeView, CallbackParam } from '@kit.ArkUI';
 
 @Entry
 @Component

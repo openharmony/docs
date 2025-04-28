@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```
-import { Filter } from '@kit.ArkUI'
+import { Filter } from '@kit.ArkUI';
 ```
 
 
