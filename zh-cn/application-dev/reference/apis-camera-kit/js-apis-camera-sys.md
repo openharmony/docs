@@ -1064,7 +1064,8 @@ enableDepthFusion(enabled: boolean): void;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function enableDepthFusion(DepthFusion: camera.DepthFusion): void {
-  DepthFusion.enableDepthFusion().then(() => {
+  enabled: boolean = true;
+  DepthFusion.enableDepthFusion(enabled).then(() => {
     console.info('Promise returned to indicate that enableDepthFusion method execution success.');
   }).catch((error: BusinessError) => {
     console.error(`Failed to depth fusion enableDepthFusion, error code: ${error.code}.`);
