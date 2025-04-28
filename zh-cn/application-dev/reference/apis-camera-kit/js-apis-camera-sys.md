@@ -1027,7 +1027,7 @@ function isDepthFusionEnabled(DepthFusion: camera.DepthFusion): void {
   DepthFusion.isDepthFusionEnabled().then(() => {
     console.info('Promise returned to indicate that isDepthFusionEnabled method execution success.');
   }).catch((error: BusinessError) => {
-    console.error(`Failed to depth fusion query  isDepthFusionEnabled, error code: ${error.code}.`);
+    console.error(`Failed to depth fusion isDepthFusionEnabled, error code: ${error.code}.`);
   });
 }
 ```
@@ -1067,7 +1067,7 @@ function enableDepthFusion(DepthFusion: camera.DepthFusion): void {
   DepthFusion.enableDepthFusion().then(() => {
     console.info('Promise returned to indicate that enableDepthFusion method execution success.');
   }).catch((error: BusinessError) => {
-    console.error(`Failed to depth fusion query  enableDepthFusion, error code: ${error.code}.`);
+    console.error(`Failed to depth fusion enableDepthFusion, error code: ${error.code}.`);
   });
 }
 ```
