@@ -600,17 +600,17 @@ export default class EntryAbility extends UIExtensionAbility {
     @State message: string = 'UIExtensionAbility Index';
     private storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
     private session: UIExtensionContentSession | undefined = this.storage?.get<UIExtensionContentSession>('session');
-    private extensionWindow: uiExtensionHost.UIExtensionHostWindowProxy | undefined = this.session?.getUIExtensionHostWindowProxy();
+    private extensionHostWindow: uiExtensionHost.UIExtensionHostWindowProxy | undefined = this.session?.getUIExtensionHostWindowProxy();
     private subWindow: window.Window | undefined = undefined;
 
     aboutToAppear(): void {
-      this.extensionWindow?.on('windowSizeChange', (size) => {
+      this.extensionHostWindow?.on('windowSizeChange', (size) => {
           console.info(`size = ${JSON.stringify(size)}`);
       });
-      this.extensionWindow?.on('avoidAreaChange', (info) => {
+      this.extensionHostWindow?.on('avoidAreaChange', (info) => {
           console.info(`type = ${JSON.stringify(info.type)}, area = ${JSON.stringify(info.area)}`);
       });
-      let promise = this.extensionWindow?.hideNonSecureWindows(true);
+      let promise = this.extensionHostWindow?.hideNonSecureWindows(true);
       promise?.then(()=> {
         console.log(`Succeeded in hiding the non-secure windows.`);
       }).catch((err: BusinessError)=> {
@@ -624,9 +624,9 @@ export default class EntryAbility extends UIExtensionAbility {
     }
 
     aboutToDisappear(): void {
-      this.extensionWindow?.off('windowSizeChange');
-      this.extensionWindow?.off('avoidAreaChange');
-      let promise = this.extensionWindow?.hideNonSecureWindows(false);
+      this.extensionHostWindow?.off('windowSizeChange');
+      this.extensionHostWindow?.off('avoidAreaChange');
+      let promise = this.extensionHostWindow?.hideNonSecureWindows(false);
       promise?.then(()=> {
         console.log(`Succeeded in showing the non-secure windows.`);
       }).catch((err: BusinessError)=> {
@@ -640,11 +640,11 @@ export default class EntryAbility extends UIExtensionAbility {
           .fontSize(20)
           .fontWeight(FontWeight.Bold)
         Button("获取组件大小").width('90%').margin({top: 5, bottom: 5}).fontSize(16).onClick(() => {
-          let rect = this.extensionWindow?.properties.uiExtensionHostWindowProxyRect;
+          let rect = this.extensionHostWindow?.properties.uiExtensionHostWindowProxyRect;
           console.info(`UIExtensionComponent的宽高和位置信息: ${JSON.stringify(rect)}`);
         })
         Button("获取系统规避区信息").width('90%').margin({top: 5, bottom: 5}).fontSize(16).onClick(() => {
-          let avoidArea: window.AvoidArea | undefined = this.extensionWindow?.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM);
+          let avoidArea: window.AvoidArea | undefined = this.extensionHostWindow?.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM);
           console.info(`系统规避区: ${JSON.stringify(avoidArea)}`);
         })
         Button("创建子窗口").width('90%').margin({top: 5, bottom: 5}).fontSize(16).onClick(() => {
@@ -652,7 +652,7 @@ export default class EntryAbility extends UIExtensionAbility {
             'title': 'This is a subwindow',
             decorEnabled: true
           };
-          this.extensionWindow?.createSubWindowWithOptions('subWindowForHost', subWindowOpts)
+          this.extensionHostWindow?.createSubWindowWithOptions('subWindowForHost', subWindowOpts)
             .then((subWindow: window.Window) => {
               this.subWindow = subWindow;
               this.subWindow.loadContent('pages/Index', this.storage, (err, data) =>{
