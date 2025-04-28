@@ -1019,17 +1019,20 @@ connectDfs(networkId: string, listeners: DfsListeners): Promise&lt;void&gt;
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   let dmInstance = distributedDeviceManager.createDeviceManager("com.example.filesync");
   let deviceInfoList: Array<distributedDeviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
-  let networkId = deviceInfoList[0].networkId;
-  let listeners: fs.DfsListeners = {
-    onStatus(networkId, status) {
-      console.info('onStatus');
-    }
+  if (deviceInfoList && deviceInfoList.length > 0) {
+    console.info(`Success to get available device list`);
+    let networkId = deviceInfoList[0].networkId;
+    let listeners: fs.DfsListeners = {
+      onStatus(networkId, status) {
+        console.info('onStatus');
+      }
+    };
+    fs.connectDfs(networkId, listeners).then(() => {
+      console.info("Success to connectDfs");
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to connectDfs. Code: ${err.code}, message: ${err.message}`);
+    });
   }
-  fs.connectDfs(networkId, listeners).then(() => {
-    console.info("Success to connectDfs");
-  }).catch((err: BusinessError) => {
-    console.error("connectDfs failed with error message: " + err.message + ", error code: " + err.code);
-  });
   ```
 
 ## fs.disconnectDfs<sup>12+</sup>
@@ -1066,12 +1069,15 @@ disconnectDfs(networkId: string): Promise&lt;void&gt;
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   let dmInstance = distributedDeviceManager.createDeviceManager("com.example.filesync");
   let deviceInfoList: Array<distributedDeviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
-  let networkId = deviceInfoList[0].networkId;
-  fs.disconnectDfs(networkId).then(() => {
-    console.info("Success to disconnectDfs");
-  }).catch((err: BusinessError) => {
-    console.error('disconnectDfs failed with error message: ${JSON.stringify(err)}')
-  })
+  if (deviceInfoList && deviceInfoList.length > 0) {
+    console.info(`Success to get available device list`);
+    let networkId = deviceInfoList[0].networkId;
+    fs.disconnectDfs(networkId).then(() => {
+      console.info("Success to disconnect dfs");
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to disconnect dfs. Code: ${err.code}, message: ${err.message}`);
+    })
+  }
   ```
 
 ## fs.setxattr<sup>12+</sup>

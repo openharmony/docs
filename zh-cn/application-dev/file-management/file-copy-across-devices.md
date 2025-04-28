@@ -12,16 +12,18 @@
 
    ```ts
    import { common, abilityAccessCtrl } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    let context = getContext(this) as common.UIAbilityContext; // 获取UIAbilityContext信息
    let atManager = abilityAccessCtrl.createAtManager();
    try {
-     atManager.requestPermissionsFromUser(context, ['ohos.permission.DISTRIBUTED_DATASYNC']).then((data) => {
-       console.log(`data: ${JSON.stringify(data)}`);
-     }).catch((err: object) => {
-       console.log(`err: ${JSON.stringify(err)}`);
+     atManager.requestPermissionsFromUser(context, ['ohos.permission.DISTRIBUTED_DATASYNC']).then((result) => {
+       console.log(`Request permission result: ${JSON.stringify(result)}`);
+     }).catch((err: BusinessError) => {
+       console.error(`Failed to request permissions from user. Code: ${err.code}, message: ${err.message}`);
      })
-   } catch (err) {
-     console.log(`catch err-> ${JSON.stringify(err)}`);
+   } catch (error) {
+     let err: BusinessError = error as BusinessError;
+     console.error(`Catch err. Failed to request permissions from user. Code: ${err.code}, message: ${err.message}`);
    }
    ```
 
@@ -61,10 +63,10 @@
        console.info(`src: ${srcUri} dest: ${destUri}`);
      }).catch((error: BusinessError)=>{
        let err: BusinessError = error as BusinessError;
-       console.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
+       console.error(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
      })
    } catch (error) {
-     console.error(`Failed to getData. Code: ${error.code}, message: ${error.message}`);
+     console.error(`Catch err. Failed to copy. Code: ${error.code}, message: ${error.message}`);
    }
    ```
 
@@ -75,7 +77,7 @@
    import { common } from '@kit.AbilityKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    import { fileUri } from '@kit.CoreFileKit';
-   import { distributedDeviceManager } from '@kit.DistributedServiceKit'
+   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 
    let context = getContext(this) as common.UIAbilityContext; // 获取设备B的UIAbilityContext信息
    let pathDir: string = context.filesDir;
@@ -96,7 +98,7 @@
    };
    let options: fs.CopyOptions = {
      "progressListener" : progressListener
-   }
+   };
    // 通过分布式设备管理的接口获取设备A的networkId信息
    let dmInstance = distributedDeviceManager.createDeviceManager("com.example.hap");
    let deviceInfoList: Array<distributedDeviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
@@ -108,8 +110,8 @@
       onStatus: (networkId: string, status: number): void => {
         console.info(`Failed to access public directory`);
       }
-    }
-    // 访问并挂载分布式目录
+    };
+    // 开始跨设备文件访问
     fs.connectDfs(networkId, listeners).then(()=>{
       try {
         // 将分布式路径下的文件拷贝到其他沙箱路径下
@@ -119,12 +121,15 @@
           fs.unlinkSync(srcPath); // 拷贝完成后清理分布式路径下的临时文件
         }).catch((error: BusinessError)=>{
           let err: BusinessError = error as BusinessError;
-          console.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
         })
       } catch (error) {
-        console.error(`Failed to copy. Code: ${error.code}, message: ${error.message}`);
+        console.error(`Catch err. Failed to copy. Code: ${error.code}, message: ${error.message}`);
       }
-    })
+    }).catch((error: BusinessError) => {
+     let err: BusinessError = error as BusinessError;
+     console.error(`Failed to connect dfs. Code: ${err.code}, message: ${err.message}`);
+    });
    }
    ```
 
@@ -139,13 +144,14 @@
    let dmInstance = distributedDeviceManager.createDeviceManager("com.example.hap");
    let deviceInfoList: Array<distributedDeviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
    if (deviceInfoList && deviceInfoList.length > 0) {
+    console.info(`Success to get available device list`);
     let networkId = deviceInfoList[0].networkId; // 这里只是两个设备连接，列表中首个即为A设备的networkId
-    // 取消公共文件目录挂载
+    // 关闭跨设备文件访问
     fs.disconnectDfs(networkId).then(() => {
-      console.info(`Success to disconnectDfs`);
+      console.info(`Success to disconnect dfs`);
     }).catch((error: BusinessError) => {
       let err: BusinessError = error as BusinessError;
-      console.error(`Failed to disconnectDfs Code: ${err.code}, message: ${err.message}`)
+      console.error(`Failed to disconnect dfs. Code: ${err.code}, message: ${err.message}`);
     })
    }
    ```
