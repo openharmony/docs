@@ -9,6 +9,8 @@ Defines the response structure.
 
 **Related module**: [SCSI Peripheral DDK](_s_c_s_i.md)
 
+**Header file**: [scsi_peripheral_types.h](scsi__peripheral__types_8h.md)
+
 
 ## Summary
 
@@ -18,7 +20,7 @@ Defines the response structure.
 | Name| Description| 
 | -------- | -------- |
 | uint8_t [senseData](#sensedata) [[SCSIPERIPHERAL_MAX_SENSE_DATA_LEN](_s_c_s_i.md#scsiperipheral_max_sense_data_len)] | Sense data, that is, information returned by the SCSI device to the host to report the device status, error information, and diagnosis information.| 
-| [ScsiPeripheral_Status](_s_c_s_i.md#scsiperipheral_status)[status](#status) | Status when the call is complete, for example, **Good** or **Busy**.| 
+| [ScsiPeripheral_Status](_s_c_s_i.md#scsiperipheral_status) [status](#status) | Status when the call is complete, for example, **Good** or **Busy**.| 
 | uint8_t [maskedStatus](#maskedstatus) | Masked status, which is used in SCSI Generic (SG) interfaces of Linux to store the processed SCSI status for easy access by applications.| 
 | uint8_t [msgStatus](#msgstatus) | Message status.| 
 | uint8_t [sbLenWr](#sblenwr) | Number of bytes that are actually written to the sense buffer.| 

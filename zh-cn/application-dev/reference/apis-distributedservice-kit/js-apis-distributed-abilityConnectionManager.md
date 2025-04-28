@@ -101,7 +101,7 @@ createAbilityConnectionSession(serviceName:&nbsp;string,&nbsp;context:&nbsp;Cont
      startOptions: abilityConnectionManager.StartOptionParams.START_IN_FOREGROUND,
      parameters: myRecord
    };
-   let context = getContext(this) as common.UIAbilityContext;
+   let context = this.getUIContext().getHostContext();
    try {
      let sessionId = abilityConnectionManager.createAbilityConnectionSession("collabTest", context, peerInfo, connectOptions);
      hilog.info(0x0000, 'testTag', 'createSession sessionId is', sessionId);
@@ -843,7 +843,6 @@ sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;v
 | 名称       | 类型    | 可读   | 可写   | 说明          |
 | -------- | ------ | ---- | ---- | ----------- |
 | sessionId | number   | 是    | 是    |   表示当前事件对应的协同会话ID。 |
-| eventType | string   | 是    | 是    |   表示与在函数 “on” 中注册的类型一致的返回事件类型。 |
 | reason | [DisconnectReason](#disconnectreason)     | 是    | 否    |   表示断连原因。 |
 | msg | string   | 是    | 否    |   表示接收的消息。 |
 | data  | ArrayBuffer | 是    | 否    |   表示接收的字节流。 |
@@ -856,7 +855,6 @@ sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;v
 
 | 名称       | 类型   | 只读   | 可选   | 说明      |
 | -------- | ------ | ---- | ---- | ------- |
-| sessionId | number   | 是    | 是    | 表示当前事件对应的协同会话ID。 |
 | eventType | [CollaborateEventType](#collaborateeventtype) | 是    | 是    | 表示协同事件的类型。 |
 | eventMsg | string | 是    | 否    | 表示协同事件的消息内容。 |
 

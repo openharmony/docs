@@ -1503,9 +1503,9 @@ queryEventInstances(start: number, end: number, ids?: number[], eventKey?: (keyo
 
 | 参数名      | 类型                        | 必填   | 说明         |
 | ----------- | --------------------------- |------|------------|
-| start  | number | 是    | 日程开始时间。    |
-| end    | number | 是    | 日程结束时间。    |
-| ids    | number[] | 否    | 日程id数组。    |
+| start  | number | 是    | 日程开始时间，类型为13位时间戳。    |
+| end    | number | 是    | 日程结束时间，类型为13位时间戳。    |
+| ids    | number[] | 否    | 需要查询的日程id数组，可为空数组或undefined，id>0。    |
 | eventKey    | (keyof [Event](#event))[]   | 否    | 所有查询日程的字段。 |
 
 **返回值**：

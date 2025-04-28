@@ -12,7 +12,8 @@
 
    ```ts
    import { common, abilityAccessCtrl } from '@kit.AbilityKit';
-   let context = getContext(this) as common.UIAbilityContext; // 获取UIAbilityContext信息
+   // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
    let atManager = abilityAccessCtrl.createAtManager();
    try {
      atManager.requestPermissionsFromUser(context, ['ohos.permission.DISTRIBUTED_DATASYNC']).then((data) => {
@@ -25,7 +26,7 @@
    }
    ```
 
-3. 拷贝跨设备文件。
+3. 执行跨设备文件拷贝操作。
    同一应用不同设备之间实现跨设备文件拷贝，只需要将对应的文件放在应用沙箱的分布式文件路径即可。
 
    将A设备的待拷贝沙箱文件，拷贝到A设备的分布式路径下。
@@ -36,7 +37,8 @@
    import { BusinessError } from '@kit.BasicServicesKit';
    import { fileUri } from '@kit.CoreFileKit';
 
-   let context = getContext(this) as common.UIAbilityContext; // 获取设备A的UIAbilityContext信息
+   // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
    let pathDir: string = context.filesDir;
    let distributedPathDir: string = context.distributedFilesDir;
    // 待拷贝文件沙箱路径
@@ -77,7 +79,8 @@
    import { fileUri } from '@kit.CoreFileKit';
    import { distributedDeviceManager } from '@kit.DistributedServiceKit'
 
-   let context = getContext(this) as common.UIAbilityContext; // 获取设备B的UIAbilityContext信息
+   // context是EntryAbility传过来的context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
    let pathDir: string = context.filesDir;
    let distributedPathDir: string = context.distributedFilesDir;
    // 待拷贝文件的目标路径(沙箱路径)
@@ -128,7 +131,7 @@
    }
    ```
 
-4. 跨设备文件copy完成，断开链路。
+4. 跨设备文件拷贝完成，断开链路。
 
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';

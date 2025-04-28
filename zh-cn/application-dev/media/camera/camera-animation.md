@@ -10,7 +10,7 @@
 
 - 前后置切换动效，使用预览流截图做翻转模糊动效过渡。
 
-   图片为从前置摄像头切换为后置摄像头的效果。
+   图片为从前置相机切换为后置相机的效果。
 
    ![](figures/front-rear-switching.gif)
 
@@ -23,6 +23,8 @@
 ## 闪黑动效
 
 使用组件覆盖的形式实现闪黑效果。
+
+以下所有步骤中的示例代码均为自定义组件（即被@Component修饰的组件）的内部方法或逻辑。
 
 1. 导入依赖，需要导入相机框架、图片、ArkUI相关领域依赖。
 
@@ -49,8 +51,8 @@
    if (this.isShowBlack) {
      Column()
        .key('black')
-       .width(px2vp(1080)) // 与预览流XComponent宽高保持一致，图层在预览流之上，截图组件之下。
-       .height(px2vp(1920))
+       .width(this.getUIContext().px2vp(1080)) // 与预览流XComponent宽高保持一致，图层在预览流之上，截图组件之下。
+       .height(this.getUIContext().px2vp(1920))
        .backgroundColor(Color.Black)
        .opacity(this.flashBlackOpacity)
    }
@@ -59,7 +61,8 @@
 3. 实现闪黑动效。
 
    ```ts
-   function flashBlackAnim() {
+   // @Component修饰组件的内部方法
+   flashBlackAnim() {
      console.info('flashBlackAnim E');
      this.flashBlackOpacity = 1; // 闪黑组件不透明。
      this.isShowBlack = true; // 显示闪黑组件。
@@ -84,8 +87,7 @@
    ```ts
    onCaptureClick(): void {
      console.info('onCaptureClick');
-       console.info('onCaptureClick');
-       this.flashBlackAnim();
+     this.flashBlackAnim();
    }
    ```
 
@@ -94,6 +96,8 @@
 ## 模糊动效
 
 通过预览流截图，实现模糊动效，从而完成模式切换，或是前后置切换的动效。
+
+以下除了步骤2的其他步骤中的示例代码均为自定义组件（即被@Component修饰的组件）的内部方法或逻辑。
 
 1. 导入依赖，需要导入相机框架、图片、ArkUI相关领域依赖。
 
@@ -108,8 +112,6 @@
    预览流截图通过图形提供的[image.createPixelMapFromSurface](../../reference/apis-image-kit/js-apis-image.md#imagecreatepixelmapfromsurface11)接口实现，surfaceId为当前预览流的surfaceId，size为当前预览流profile的宽高。创建截图工具类(ts文件)，导入依赖，导出获取截图方法供页面使用，截图工具类实现参考：
 
    ```ts
-   import { image } from '@kit.ImageKit';
-   
    export class BlurAnimateUtil {
      public static surfaceShot: image.PixelMap;
    
@@ -125,18 +127,18 @@
          return;
        }
        try {
-         if (this.surfaceShot) {
-           await this.surfaceShot.release();
+         if (BlurAnimateUtil.surfaceShot) {
+           await BlurAnimateUtil.surfaceShot.release();
          }
-         this.surfaceShot = await image.createPixelMapFromSurface(surfaceId, {
+         BlurAnimateUtil.surfaceShot = await image.createPixelMapFromSurface(surfaceId, {
            size: { width: 1920, height: 1080 }, // 取预览流profile的宽高。
            x: 0,
            y: 0
          });
-         let imageInfo: image.ImageInfo = await this.surfaceShot.getImageInfo();
+         let imageInfo: image.ImageInfo = await BlurAnimateUtil.surfaceShot.getImageInfo();
          console.info('doSurfaceShot surfaceShot:' + JSON.stringify(imageInfo.size));
        } catch (err) {
-         console.error(JSON.stringify(err));
+         console.error(err);
        }
      }
    
@@ -145,7 +147,7 @@
       * @returns
       */
      public static getSurfaceShot(): image.PixelMap {
-       return this.surfaceShot;
+       return BlurAnimateUtil.surfaceShot;
      }
    }
    ```
@@ -181,12 +183,12 @@
          .opacity(this.shotImgOpacity)
          .rotate(this.shotImgRotation)// ArkUI提供，用于组件旋转。
          .scale(this.shotImgScale)
-         .width(px2vp(1080)) // 与预览流XComponent宽高保持一致，图层在预览流之上。
-         .height(px2vp(1920))
+         .width(this.getUIContext().px2vp(1080)) // 与预览流XComponent宽高保持一致，图层在预览流之上。
+         .height(this.getUIContext().px2vp(1920))
          .syncLoad(true)
      }
-     .width(px2vp(1080))
-     .height(px2vp(1920))
+     .width(this.getUIContext().px2vp(1080))
+     .height(this.getUIContext().px2vp(1920))
    }
    ```
 
@@ -199,7 +201,7 @@
    > 注意：由于图形提供的image.createPixelMapFromSurface接口是截取surface内容获取PixelMap，其内容和XComponent组件绘制逻辑不同，需要根据**前后置**镜头做不同的**图片内容旋转补偿**和**组件旋转补偿**。
 
    ```ts
-   async function showBlurAnim() {
+   async showBlurAnim() {
      console.info('showBlurAnim E');
      // 获取已完成的surface截图。
      let shotPixel = BlurAnimateUtil.getSurfaceShot();
@@ -242,7 +244,7 @@
    模糊消失动效：由新模式预览流首帧回调[on('frameStart')](../../reference/apis-camera-kit/js-apis-camera.md#onframestart)触发，截图组件模糊到清晰，显示新预览流。
 
    ```ts
-   function hideBlurAnim(): void {
+   hideBlurAnim(): void {
      this.isShowBlack = false;
      console.info('hideBlurAnim E');
      animateToImmediately({
@@ -273,7 +275,7 @@
    /**
     * 先向外翻转90°，前后置切换触发
     */
-   async function rotateFirstAnim() {
+   async rotateFirstAnim() {
      console.info('rotateFirstAnim E');
      // 获取已完成的surface截图。
      let shotPixel = BlurAnimateUtil.getSurfaceShot();
@@ -319,7 +321,7 @@
    /**
     * 再向内翻转90°
     */
-   async function rotateSecondAnim() {
+   async rotateSecondAnim() {
      console.info('rotateSecondAnim E');
      // 获取已完成的surface截图。
      let shotPixel = BlurAnimateUtil.getSurfaceShot();
@@ -358,7 +360,7 @@
    /**
     * 向外翻转90°同时
     */
-   function blurFirstAnim() {
+   blurFirstAnim() {
      console.info('blurFirstAnim E');
      // 初始化动效参数。
      this.shotImgBlur = 0; //无模糊。
@@ -385,7 +387,7 @@
    /**
     * 向内翻转90°同时
     */
-   function blurSecondAnim() {
+   blurSecondAnim() {
      console.info('blurSecondAnim E');
      animateToImmediately(
        {

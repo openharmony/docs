@@ -100,7 +100,7 @@ struct TimePickerDialogExample {
       Button("TimePickerDialog 12小时制")
         .margin(20)
         .onClick(() => {
-          TimePickerDialog.show({
+          this.getUIContext().showTimePickerDialog({
             selected: this.selectTime,
             format: TimePickerFormat.HOUR_MINUTE,
             useMilitaryTime: false,
@@ -135,7 +135,7 @@ struct TimePickerDialogExample {
       Button("TimePickerDialog 24小时制")
         .margin(20)
         .onClick(() => {
-          TimePickerDialog.show({
+          this.getUIContext().showTimePickerDialog({
             selected: this.selectTime,
             format: TimePickerFormat.HOUR_MINUTE_SECOND,
             useMilitaryTime: true,

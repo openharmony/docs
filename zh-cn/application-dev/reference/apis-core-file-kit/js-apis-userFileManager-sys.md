@@ -38,8 +38,10 @@ getUserFileMgr(context: Context): UserFileManager
 **示例：**
 
 ```ts
-//此处获取的userFileManager实例mgr为全局对象，后续使用到mgr的地方默认为使用此处获取的对象，如未添加此段代码报mgr未定义的错误请自行添加
-const context = getContext(this);
+// 此处获取的userFileManager实例mgr为全局对象，后续使用到mgr的地方默认为使用此处获取的对象，如未添加此段代码报mgr未定义的错误请自行添加
+// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
+import { common } from '@kit.AbilityKit';
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let mgr = userFileManager.getUserFileMgr(context);
 ```
 
@@ -4491,7 +4493,7 @@ async function example() {
 | ------- | --------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | type    | [NotifyType](#notifytype10) | 是   | 否   | ChangeData的通知类型。                                       |
 | uris    | Array&lt;string&gt;         | 是   | 否   | 相同[NotifyType](#notifytype10)的所有uri，可以是FileAsset或Album。 |
-| subUris | Array&lt;string&gt;         | 是   | 否   | 相册中变动文件的uri数组。                                    |
+| subUris | Array&lt;string&gt;         | 是   | 否   | 相册中变动文件的uri数组。可能为undefined，使用前需要检查是否为undefined。|
 
 ## NotifyType<sup>10+</sup>
 

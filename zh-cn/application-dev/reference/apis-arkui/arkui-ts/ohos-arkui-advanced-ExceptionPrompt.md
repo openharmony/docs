@@ -258,9 +258,9 @@ struct Index {
       ExceptionPrompt({
         options: {
           icon: $r('sys.symbol.house'),
-          tip: '异常提示异常提示异常提示异常提示异常提示',
+          tip: '异常提示',
           marginType: MarginType.DEFAULT_MARGIN,
-          actionText: '设置网络设置网络设置网络设置网络设置网络',
+          actionText: '设置网络',
           marginTop: 80,
           isShown: true,
         },
@@ -269,10 +269,10 @@ struct Index {
         options: {
           icon: $r('sys.symbol.house'),
           symbolStyle: new SymbolGlyphModifier($r('sys.symbol.bell')).fontColor([Color.Red]),
-          tip: '异常提示异常提示异常提示异常提示异常提示',
+          tip: '异常提示',
           marginType: MarginType.DEFAULT_MARGIN,
-          actionText: '设置网络设置网络设置网络设置网络设置网络',
-          marginTop: 80,
+          actionText: '设置网络',
+          marginTop: 200,
           isShown: true,
         },
       })
@@ -281,4 +281,4 @@ struct Index {
 }
 ```
 
-![ExceptionPrompt1](figures/ExceptionPrompt3.png)
+![ExceptionPrompt3](figures/ExceptionPrompt3.png)

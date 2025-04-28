@@ -15,7 +15,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [oh_file_share.h](oh__file__share_8h.md) | 提供基于URI的文件及目录授于持久化权限、权限激活、权限查询等方法。 | 
+| [oh_file_share.h](oh__file__share_8h.md) | 提供基于URI的文件及目录授予持久化权限、权限激活、权限查询等方法。 | 
 
 
 ### 结构体
@@ -173,7 +173,7 @@ FileManagement_ErrCode OH_FileShare_ActivatePermission (const FileShare_PolicyIn
 | -------- | -------- |
 | policies | 一个指向FileShare_PolicyInfo实例的指针。 | 
 | policyNum | FileShare_PolicyInfo实例数组的大小。 | 
-| result | FileShare_PolicyErrorResult数组指针。 请使用OH_FileShare_ReleasePolicyErrorResult()进行资源释放。 | 
+| result | FileShare_PolicyErrorResult数组指针。请使用OH_FileShare_ReleasePolicyErrorResult()进行资源释放。 | 
 | resultNum | FileShare_PolicyErrorResult数组大小。 | 
 
 **需要权限：**
@@ -182,8 +182,18 @@ ohos.permission.FILE_ACCESS_PERSIST
 
 **返回：**
 
-返回FileManageMent模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
+返回FileManagement模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
+**E_PARAMS** 401 - 输入参数无效。可能的原因有：  
+1.参数policies或参数result或参数resultNum为空指针；  
+2.参数policyNum值为0或者超过最大长度(500)；  
+3.参数policies中携带的uri为空或者length为0或者uri的长度与length不一致。
 
+**E_DEVICE_NOT_SUPPORT** 801 - 当前设备类型不支持此接口。  
+**E_PERMISSION** 201 - 接口权限校验失败。  
+**E_ENOMEM** 13900011 - 分配或者拷贝内存失败。  
+**E_EPERM** 13900001 - 操作不被允许。  
+**E_UNKNOWN_ERROR** 13900042 - 内部未知错误，调用其它部件返回的除以上错误之外的其它错误。  
+**E_NO_ERROR** 0 - 接口调用成功。
 
 ### OH_FileShare_CheckPersistentPermission()
 
@@ -212,7 +222,18 @@ ohos.permission.FILE_ACCESS_PERSIST
 
 **返回：**
 
-返回FileManageMent模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
+返回FileManagement模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
+**E_PARAMS** 401 - 输入参数无效。可能的原因有：  
+1.参数policies或参数result或参数resultNum为空指针；  
+2.参数policyNum值为0或者超过最大长度(500)；  
+3.参数policies中携带的uri为空或者length为0或者uri的长度与length不一致。
+
+**E_DEVICE_NOT_SUPPORT** 801 - 当前设备类型不支持此接口。  
+**E_PERMISSION** 201 - 接口权限校验失败。  
+**E_ENOMEM** 13900011 - 分配或者拷贝内存失败。  
+**E_EPERM** 13900001 - 操作不被允许。可能的原因为policies中携带的所有uri都不符合规范或者uri转换出来的路径不存在。  
+**E_UNKNOWN_ERROR** 13900042 - 内部未知错误，调用其它部件返回的除以上错误之外的其它错误。  
+**E_NO_ERROR** 0 - 接口调用成功。
 
 
 ### OH_FileShare_DeactivatePermission()
@@ -233,7 +254,7 @@ FileManagement_ErrCode OH_FileShare_DeactivatePermission (const FileShare_Policy
 | -------- | -------- |
 | policies | 一个指向FileShare_PolicyInfo实例的指针。 | 
 | policyNum | FileShare_PolicyInfo实例数组的大小。 | 
-| result | FileShare_PolicyErrorResult数组指针。 请使用OH_FileShare_ReleasePolicyErrorResult()进行资源释放。 | 
+| result | FileShare_PolicyErrorResult数组指针。请使用OH_FileShare_ReleasePolicyErrorResult()进行资源释放。 | 
 | resultNum | FileShare_PolicyErrorResult数组大小。 | 
 
 **需要权限：**
@@ -242,7 +263,18 @@ ohos.permission.FILE_ACCESS_PERSIST
 
 **返回：**
 
-返回FileManageMent模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
+返回FileManagement模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
+**E_PARAMS** 401 - 输入参数无效。可能的原因有：  
+1.参数policies或参数result或参数resultNum为空指针；  
+2.参数policyNum值为0或者超过最大长度(500)；  
+3.参数policies中携带的uri为空或者length为0或者uri的长度与length不一致。
+
+**E_DEVICE_NOT_SUPPORT** 801 - 当前设备类型不支持此接口。  
+**E_PERMISSION** 201 - 接口权限校验失败。  
+**E_ENOMEM** 13900011 - 分配或者拷贝内存失败。  
+**E_EPERM** 13900001 - 操作不被允许。  
+**E_UNKNOWN_ERROR** 13900042 - 内部未知错误，调用其它部件返回的除以上错误之外的其它错误。  
+**E_NO_ERROR** 0 - 接口调用成功。
 
 
 ### OH_FileShare_PersistPermission()
@@ -272,7 +304,18 @@ ohos.permission.FILE_ACCESS_PERSIST
 
 **返回：**
 
-返回FileManageMent模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
+返回FileManagement模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
+**E_PARAMS** 401 - 输入参数无效。可能的原因有：  
+1.参数policies或参数result或参数resultNum为空指针；  
+2.参数policyNum值为0或者超过最大长度(500)；  
+3.参数policies中携带的uri为空或者length为0或者uri的长度与length不一致。
+
+**E_DEVICE_NOT_SUPPORT** 801 - 当前设备类型不支持此接口。  
+**E_PERMISSION** 201 - 接口权限校验失败。  
+**E_ENOMEM** 13900011 - 分配或者拷贝内存失败。  
+**E_EPERM** 13900001 - 操作不被允许。  
+**E_UNKNOWN_ERROR** 13900042 - 内部未知错误，调用其它部件返回的除以上错误之外的其它错误。  
+**E_NO_ERROR** 0 - 接口调用成功。
 
 
 ### OH_FileShare_ReleasePolicyErrorResult()
@@ -302,10 +345,9 @@ FileManagement_ErrCode OH_FileShare_RevokePermission (const FileShare_PolicyInfo
 ```
 
 **描述**
+对所选择的多个文件或目录URI取消持久化授权。
 
-对所选择的多个文件或目录uri取消持久化授权。
-
-**起始版本：** 12
+**起始版本**：12
 
 **参数:**
 
@@ -322,4 +364,15 @@ ohos.permission.FILE_ACCESS_PERSIST
 
 **返回：**
 
-返回FileManageMent模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
+返回FileManagement模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
+**E_PARAMS** 401 - 输入参数无效。可能的原因有：  
+1.参数policies或参数result或参数resultNum为空指针；  
+2.参数policyNum值为0或者超过最大长度(500)；  
+3.参数policies中携带的uri为空或者length为0或者uri的长度与length不一致。
+
+**E_DEVICE_NOT_SUPPORT** 801 - 当前设备类型不支持此接口。  
+**E_PERMISSION** 201 - 接口权限校验失败。  
+**E_ENOMEM** 13900011 - 分配或者拷贝内存失败。  
+**E_EPERM** 13900001 - 操作不被允许。  
+**E_UNKNOWN_ERROR** 13900042 - 内部未知错误，调用其它部件返回的除以上错误之外的其它错误。  
+**E_NO_ERROR** 0 - 接口调用成功。

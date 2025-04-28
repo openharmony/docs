@@ -75,7 +75,7 @@ XML模块提供XmlPullParser类对XML文件解析，输入为含有XML文本的A
 
     ```ts
     let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tagValueCallbackFunction:func};
-    that.parse(options);
+    that.parseXml(options);
     ```
 
 	输出结果如下所示：
@@ -131,7 +131,7 @@ XML模块提供XmlPullParser类对XML文件解析，输入为含有XML文本的A
 
     ```ts
     let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, attributeValueCallbackFunction:func};
-    that.parse(options);
+    that.parseXml(options);
     console.info(str); // 一次打印出所有的属性及其值
     ```
 
@@ -165,7 +165,7 @@ XML模块提供XmlPullParser类对XML文件解析，输入为含有XML文本的A
 3. 自定义回调函数，本例直接打印元素事件类型及元素深度。
 
     ```ts
-    let str: string  = '';
+    let str: string = '';
     function func(name: xml.EventType, value: xml.ParseInfo): boolean {
       str = name + ' ' + value.getDepth(); // getDepth 获取元素的当前深度
       console.info(str)
@@ -177,7 +177,7 @@ XML模块提供XmlPullParser类对XML文件解析，输入为含有XML文本的A
 
      ```ts
      let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func};
-     that.parse(options);
+     that.parseXml(options);
      ```
 
    输出结果如下所示：
@@ -239,32 +239,32 @@ let options: xml.ParseOptions = {
   attributeValueCallbackFunction: attFunc,
   tokenValueCallbackFunction: tokenFunc
 };
-that.parse(options);
+that.parseXml(options);
 ```
 
 输出结果如下所示：
 
-   ```
-   tag-
-   token-0 0
-   tag-book
-   attri-category COOKING
-   token-2 1
-   tag-title
-   attri-lang en
-   token-2 2
-   tag-Everyday
-   token-4 2
-   tag-title
-   token-3 2
-   tag-author
-   token-2 2
-   tag-Giana
-   token-4 2
-   tag-author
-   token-3 2
-   tag-book
-   token-3 1
-   tag-
-   token-1 0
-   ```
+```
+tag-
+token-0 0
+tag-book
+token-2 1
+attri-category COOKING
+tag-title
+token-2 2
+attri-lang en
+tag-Everyday
+token-4 2
+tag-title
+token-3 2
+tag-author
+token-2 2
+tag-Giana
+token-4 2
+tag-author
+token-3 2
+tag-book
+token-3 1
+tag-
+token-1 0
+```

@@ -195,7 +195,7 @@ installUserCertificate(admin: Want, certificate: CertBlob, callback: AsyncCallba
 **示例：**
 
 ```ts
-import { Want } from '@kit.AbilityKit';
+import { common, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
@@ -204,7 +204,8 @@ let wantTemp: Want = {
 let certFileArray: Uint8Array = new Uint8Array();
 // The variable context needs to be initialized in MainAbility's onCreate callback function
 // test.cer needs to be placed in the rawfile directory
-getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
+const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+context.resourceManager.getRawFileContent("test.cer").then((value) => {
   certFileArray = value;
   deviceSettings.installUserCertificate(wantTemp, { inData: certFileArray, alias: "cert_alias_xts" }, (err, result) => {
     if (err) {
@@ -215,7 +216,7 @@ getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
   });
 }).catch((error: BusinessError) => {
   console.error(`Failed to get row file content. message: ${error.message}`);
-  return
+  return;
 });
 ```
 
@@ -258,7 +259,7 @@ installUserCertificate(admin: Want, certificate: CertBlob): Promise&lt;string&gt
 **示例：**
 
 ```ts
-import { Want } from '@kit.AbilityKit';
+import { common, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
@@ -267,7 +268,8 @@ let wantTemp: Want = {
 let certFileArray: Uint8Array = new Uint8Array();
 // The variable context needs to be initialized in MainAbility's onCreate callback function
 // test.cer needs to be placed in the rawfile directory
-getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
+const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+context.resourceManager.getRawFileContent("test.cer").then((value) => {
   certFileArray = value
   deviceSettings.installUserCertificate(wantTemp, { inData: certFileArray, alias: "cert_alias_xts" })
     .then((result) => {
@@ -277,7 +279,7 @@ getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
   })
 }).catch((error: BusinessError) => {
   console.error(`Failed to get row file content. message: ${error.message}`);
-  return
+  return;
 });
 ```
 

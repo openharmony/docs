@@ -1,6 +1,6 @@
 # @ohos.multimedia.camera (相机管理)
 
-本模块为开发者提供一套简单且易于理解的相机服务接口，开发者通过调用接口可以开发相机应用。应用通过访问和操作相机硬件，实现基础操作，如预览、拍照和录像；还可以通过接口组合完成更多操作，如控制闪光灯和曝光时间、对焦或调焦等。
+本模块为开发者提供了一套简单易懂的相机服务接口。通过调用这些接口，开发者可以开发相机应用，访问和操作相机硬件，实现基础功能如预览、拍照和录像。此外，还可以通过接口组合完成更多操作，如控制闪光灯、曝光时间和对焦等。
 
 > **说明：**
 >
@@ -67,11 +67,11 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 
 | 名称                              | 类型                                  | 只读 | 可选 | 说明        |
 |---------------------------------|-------------------------------------| ---- |----|---------- |
-| cameraId                        | string                              | 是   | 否  | 相机id。|
+| cameraId                        | string                              | 是   | 否  | 相机ID。|
 | cameraPosition                  | [CameraPosition](#cameraposition)   | 是   | 否  | 相机位置。    |
 | cameraType                      | [CameraType](#cameratype)           | 是   | 否  | 相机类型。    |
 | connectionType                  | [ConnectionType](#connectiontype)   | 是   | 否  | 相机连接类型。 |
-| cameraOrientation<sup>12+</sup> | number                              | 是   | 否  | 镜头的安装角度，不会随着屏幕旋转而改变，取值范围为0°-360°。 |
+| cameraOrientation<sup>12+</sup> | number                              | 是   | 否  | 相机安装角度，不会随着屏幕旋转而改变，取值范围为0°-360°，单位：度。 |
 | hostDeviceName<sup>15+</sup>    | string                              | 是   | 否  | 远端设备名称。 |
 | hostDeviceType<sup>15+</sup>    | [HostDeviceType](#hostdevicetype15) | 是   | 否  | 远端设备类型。 |
 
@@ -155,7 +155,7 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 
 ## CameraStatusInfo
 
-相机管理器回调返回的接口实例，表示相机状态信息。
+相机管理器回调返回的接口实例，该实例表示相机状态信息。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -184,7 +184,7 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 | 名称      | 类型                          | 只读 | 可选 | 说明         |
 | -------- | ----------------------------- |---- | ---- | ------------- |
 | format   | [CameraFormat](#cameraformat) | 是  |  否  | 输出格式。      |
-| size     | [Size](#size)                 | 是  |  否  | 分辨率。<br>设置的是相机分辨率宽高，非实际出图宽高。  |
+| size     | [Size](#size)                 | 是  |  否  | 分辨率。<br>设置的是相机的分辨率宽度和高度，而非实际输出图像的宽度和高度。  |
 
 ## FrameRateRange
 
@@ -205,7 +205,7 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 
 | 名称                       | 类型                                      | 只读 | 可选 | 说明        |
 | ------------------------- | ----------------------------------------- | --- | ---- |----------- |
-| frameRateRange            | [FrameRateRange](#frameraterange)         | 是  |  否  | 帧率范围，fps(frames per second)。 |
+| frameRateRange            | [FrameRateRange](#frameraterange)         | 是  |  否  | 帧率范围，单位：fps(frames per second)。 |
 
 ## CameraOutputCapability
 
@@ -222,7 +222,7 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 
 ## SceneMode<sup>11+</sup>
 
-枚举，相机支持模式。
+枚举，相机模式。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -249,20 +249,20 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 | SESSION_CONFIG_LOCKED      | 7400105    | session 配置已锁定返回。     |
 | DEVICE_SETTING_LOCKED      | 7400106    | 设备设置已锁定返回。     |
 | CONFLICT_CAMERA            | 7400107    | 设备重复打开返回。     |
-| DEVICE_DISABLED            | 7400108    | 安全原因摄像头被禁用。     |
+| DEVICE_DISABLED            | 7400108    | 安全原因相机被禁用。     |
 | DEVICE_PREEMPTED           | 7400109    | 相机被抢占导致无法使用。     |
 | UNRESOLVED_CONFLICTS_WITH_CURRENT_CONFIGURATIONS<sup>12+</sup> | 7400110   | 与当前配置存在冲突。     |
 | SERVICE_FATAL_ERROR        | 7400201    | 相机服务错误返回。     |
 
 ## CameraManager
 
-相机管理器类，使用前需要通过[getCameraManager](#cameragetcameramanager)获取相机管理实例。
+相机管理器类，使用前需要通过[getCameraManager](#cameragetcameramanager)接口获取相机管理实例。
 
 ### getSupportedCameras
 
 getSupportedCameras(): Array\<CameraDevice\>
 
-获取支持指定的相机设备对象，同步返回结果。
+获取支持的相机设备对象，同步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -362,7 +362,7 @@ function getSupportedOutputCapability(camera: camera.CameraDevice, cameraManager
 
 getSupportedOutputCapability(camera: CameraDevice, mode: SceneMode): CameraOutputCapability
 
-查询相机设备在模式下支持的输出能力，同步返回结果。
+查询相机设备在指定模式下支持的输出能力，同步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -392,7 +392,7 @@ function getSupportedOutputCapability(camera: camera.CameraDevice, cameraManager
 
 isCameraMuted(): boolean
 
-查询相机当前的禁用状态（禁用/未禁用）。
+查询当前相机是否禁用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -431,7 +431,7 @@ createCameraInput(camera: CameraDevice): CameraInput
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [CameraInput](#camerainput)    | CameraInput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| [CameraInput](#camerainput)    | 返回CameraInput实例。接口调用失败会返回相应错误码，错误码类型为[CameraErrorCode](#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -475,14 +475,14 @@ createCameraInput(position: CameraPosition, type: CameraType): CameraInput
 
 | 参数名     | 类型                                        | 必填 | 说明                                |
 | -------- | ------------------------------------------- | ---- | --------------------------------- |
-| position | [CameraPosition](#cameraposition)           | 是   | 相机位置，通过 [getSupportedCameras](#getsupportedcameras) 接口获取设备，然后获取设备位置信息。  |
-| type     | [CameraType](#cameratype)                   | 是   | 相机类型，通过 [getSupportedCameras](#getsupportedcameras) 接口获取设备，然后获取设备类型信息。 |
+| position | [CameraPosition](#cameraposition)           | 是   | 相机位置，首先通过 [getSupportedCameras](#getsupportedcameras) 接口获取支持的相机设备对象，然后根据返回的相机设备对象获取设备位置信息。  |
+| type     | [CameraType](#cameratype)                   | 是   | 相机类型，首先通过 [getSupportedCameras](#getsupportedcameras) 接口获取支持的相机设备对象，然后根据返回的相机设备对象获取设备类型信息。 |
 
 **返回值：**
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [CameraInput](#camerainput)    | CameraInput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| [CameraInput](#camerainput)    | 返回CameraInput实例。接口调用失败会返回相应错误码，错误码类型为[CameraErrorCode](#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -1283,7 +1283,7 @@ function getCameraDevice(cameraManager: camera.CameraManager, position: camera.C
 }
 ```
 
-### getCameraConcurrentinfos<sup>18+</sup>
+### getCameraConcurrentInfos<sup>18+</sup>
 
 getCameraConcurrentInfos(cameras: Array\<CameraDevice\>): Array\<CameraConcurrentInfo\>
 
@@ -1316,14 +1316,14 @@ getCameraConcurrentInfos(cameras: Array\<CameraDevice\>): Array\<CameraConcurren
 ```ts
 import { camera } from '@kit.CameraKit';
 
-function getCameraConcurrentinfos(cameraManager: camera.CameraManager, cameraDeviceArray: Array<camera.CameraDevice>): void {
+function getCameraConcurrentInfos(cameraManager: camera.CameraManager, cameraDeviceArray: Array<camera.CameraDevice>): void {
   try {
     let cameraconcurrentinfos: Array<camera.CameraConcurrentInfo> = [];
     cameraconcurrentinfos = cameraManager.getCameraConcurrentInfos(cameraDeviceArray);
   } catch (error) {
     // 失败返回错误码并处理。
     let err = error as BusinessError;
-    console.error(`The getCameraConcurrentinfos call failed. error code: ${err.code}`);
+    console.error(`The getCameraConcurrentInfos call failed. error code: ${err.code}`);
   }
 }
 ```
@@ -1338,7 +1338,7 @@ function getCameraConcurrentinfos(cameraManager: camera.CameraManager, cameraDev
 | ---------------------------- | ---- | ------------- |
 | OFF    | 0    | 常关模式。      |
 | ON  | 1    | 常开模式。 |
-| AUTO      | 2    | 自动模式。 |
+| AUTO      | 2    | 自动模式，系统根据环境自动调节手电筒亮度。|
 
 ## TorchStatusInfo<sup>11+</sup>
 
@@ -1382,7 +1382,7 @@ function getCameraConcurrentinfos(cameraManager: camera.CameraManager, cameraDev
 
 | 名称                     | 值        | 说明         |
 | ----------------------- | --------- | ------------ |
-| CAMERA_FORMAT_RGBA_8888 | 3         | RGBA_888格式的图片。        |
+| CAMERA_FORMAT_RGBA_8888 | 3         | RGBA_8888格式的图片。        |
 | CAMERA_FORMAT_YUV_420_SP| 1003      | YUV_420_SP格式的图片。      |
 | CAMERA_FORMAT_JPEG      | 2000      | JPEG格式的图片。            |
 | CAMERA_FORMAT_YCBCR_P010<sup>11+</sup> |   2001    | YCBCR_P010格式的图片。      |
@@ -4487,7 +4487,7 @@ function unregisterMetadataOutputError(metadataOutput: camera.MetadataOutput): v
 | 名称                           | 值   | 说明         |
 | ----------------------------- | ---- | ----------- |
 | EXPOSURE_MODE_LOCKED          | 0    | 锁定曝光模式。不支持曝光区域中心点设置。 |
-| EXPOSURE_MODE_AUTO            | 1    | 自动曝光模式。支持曝光区域中心点设置，可以使用[AutoExposure.setMeteringPoint](#setmeteringpoint11)设置曝光区域中心点。 |
+| EXPOSURE_MODE_AUTO            | 1    | 自动曝光模式。支持曝光区域中心点设置，可以使用[AutoExposure.setMeteringPoint](#setmeteringpoint11)接口设置曝光区域中心点。 |
 | EXPOSURE_MODE_CONTINUOUS_AUTO | 2    | 连续自动曝光。不支持曝光区域中心点设置。 |
 
 ## FocusMode
@@ -4527,7 +4527,7 @@ function unregisterMetadataOutputError(metadataOutput: camera.MetadataOutput): v
 | LOW       | 1    | 使用基础防抖算法。   |
 | MIDDLE    | 2    | 使用防抖效果一般的防抖算法，防抖效果优于LOW类型。   |
 | HIGH      | 3    | 使用防抖效果最好的防抖算法，防抖效果优于MIDDLE类型。   |
-| AUTO      | 4    | 自动进行选择。   |
+| AUTO      | 4    | 自动进行选择防抖算法。   |
 
 ## Session<sup>11+</sup>
 
@@ -6942,7 +6942,7 @@ function getFlashMode(captureSession: camera.CaptureSession): camera.FlashMode |
 
 isExposureModeSupported(aeMode: ExposureMode): boolean
 
-检测曝光模式是否支持。
+查询曝光模式是否支持。
 
 > **说明：**
 >从 API version 10开始支持，从API version 11开始废弃。建议使用[AutoExposure.isExposureModeSupported](#isexposuremodesupported11)替代。

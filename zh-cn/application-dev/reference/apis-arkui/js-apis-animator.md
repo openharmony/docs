@@ -68,6 +68,7 @@ create(options: AnimatorOptions): AnimatorResult
 >
 > 推荐通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[createAnimator](js-apis-arkui-UIContext.md#createanimator)接口明确UI上下文。
 
+<!--deprecated_code_no_check-->
 ```ts
 import { Animator as animator, AnimatorOptions } from '@kit.ArkUI';
 
@@ -81,7 +82,7 @@ let options: AnimatorOptions = {
   begin: 200.0,
   end: 400.0
 };
-animator.create(options); // 建议使用 UIContext.creatAnimator()接口
+animator.create(options); // 建议使用 UIContext.createAnimator()接口
 ```
 
 ### create<sup>18+</sup>
@@ -120,10 +121,11 @@ create(options: AnimatorOptions \| [SimpleAnimatorOptions](#simpleanimatoroption
 >
 > 推荐通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[createAnimator](js-apis-arkui-UIContext.md#createanimator)接口明确UI上下文。
 
+<!--deprecated_code_no_check-->
 ```ts
 import { Animator as animator, SimpleAnimatorOptions } from '@kit.ArkUI';
 let options: SimpleAnimatorOptions = new SimpleAnimatorOptions(100, 200).duration(2000);
-animator.create(options);// 建议使用 UIContext.creatAnimator()接口
+animator.create(options);// 建议使用 UIContext.createAnimator()接口
 ```
 
 ### createAnimator<sup>(deprecated)</sup>
@@ -260,6 +262,7 @@ reset(options: AnimatorOptions \| [SimpleAnimatorOptions](#simpleanimatoroptions
 
 **示例：**
 
+<!--deprecated_code_no_check-->
 ```ts
 import { Animator as animator, AnimatorResult, AnimatorOptions, SimpleAnimatorOptions } from '@kit.ArkUI';
 let options: AnimatorOptions = {
@@ -378,6 +381,7 @@ onFrame: (progress: number) => void
 
 **示例：**
 
+<!--deprecated_code_no_check-->
 ```ts
 import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
 
@@ -399,6 +403,7 @@ onFinish: () => void
 
 **示例：**
 
+<!--deprecated_code_no_check-->
 ```ts
 import {Animator as animator, AnimatorResult } from '@kit.ArkUI';
 let animatorResult:AnimatorResult|undefined = animator.create(options)
@@ -419,6 +424,7 @@ onCancel: () => void
 
 **示例：**
 
+<!--deprecated_code_no_check-->
 ```ts
 import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
 
@@ -440,6 +446,7 @@ onRepeat: () => void
 
 **示例：**
 
+<!--deprecated_code_no_check-->
 ```ts
 import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
 
@@ -522,6 +529,7 @@ oncancel: () => void
 
 **示例：**
 
+<!--deprecated_code_no_check-->
 ```ts
 import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
 
@@ -574,6 +582,7 @@ setExpectedFrameRateRange(rateRange: ExpectedFrameRateRange): void
 
 **示例：**
 
+<!--deprecated_code_no_check-->
 ```ts
 import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
 
@@ -863,6 +872,7 @@ let animatorResult:AnimatorResult = animator.create(options);
 </div>
 ```
 
+<!--deprecated_code_no_check-->
 ```ts
 import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -953,6 +963,7 @@ class DateT {
 >
 > 推荐通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[createAnimator](js-apis-arkui-UIContext.md#createanimator)接口明确UI上下文。
 
+<!--deprecated_code_no_check-->
 ```ts
 import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
 
@@ -967,7 +978,7 @@ struct AnimatorTest {
 
   create() {
     this.backAnimator = animator.create({
-      // 建议使用 this.getUIContext.creatAnimator()接口
+      // 建议使用 this.getUIContext.createAnimator()接口
       duration: 2000,
       easing: "ease",
       delay: 0,

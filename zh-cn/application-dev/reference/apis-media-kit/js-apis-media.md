@@ -236,7 +236,7 @@ createAVTranscoder(): Promise\<AVTranscoder>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let avTranscoder: media.AVTranscoder;
+let avTranscoder: media.AVTranscoder | undefined = undefined;
 media.createAVTranscoder().then((transcoder: media.AVTranscoder) => {
   if (transcoder != null) {
     avTranscoder = transcoder;
@@ -1053,7 +1053,7 @@ setMediaMuted(mediaType: MediaType,  muted: boolean ): Promise\<void>
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
 | mediaType | [MediaType](#mediatype8) | 是   | 播放策略。 |
-| muted | boolean | 是   | 是否静音播放。 |
+| muted | boolean | 是   | 是否静音播放。true表示是静音播放，false表示不是静音播放。 |
 
 **返回值：**
 
@@ -2652,8 +2652,8 @@ addSubtitleFromFd(fd: number, offset?: number, length?: number): Promise\<void>
 | 参数名 | 类型                   | 必填 | 说明                                                         |
 | ------ | ---------------------- | ---- | ------------------------------------------------------------ |
 | fd | number   | 是   | 资源句柄，通过[resourceManager.getRawFd](../apis-localization-kit/js-apis-resource-manager.md#getrawfd9)获取。 |
-| offset | number | 否   | 资源偏移量，需要基于预置资源的信息输入，非法值会造成字幕频资源解析错误。 |
-| length | number | 否   | 资源长度，默认值为文件中从偏移量开始的剩余字节，需要基于预置资源的信息输入，非法值会造成字幕频资源解析错误。 |
+| offset | number | 否   | 资源偏移量，需要基于预置资源的信息输入，非法值会造成字幕频资源解析错误，默认值:0。 |
+| length | number | 否   | 资源长度，默认值为文件中从偏移量开始的剩余字节，需要基于预置资源的信息输入，非法值会造成字幕频资源解析错误，默认值:0。 |
 
 **返回值：**
 
@@ -4818,8 +4818,8 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ------ | ------------------------------------------------------------ |
-| state  | [AVRecorderState](#avrecorderstate9) | 必填 | 当前录制状态。     |
-| reason | [StateChangeReason](#statechangereason9) | 必填 | 当前录制状态的切换原因。 |
+| state  | [AVRecorderState](#avrecorderstate9) | 是 | 当前录制状态。     |
+| reason | [StateChangeReason](#statechangereason9) | 是 | 当前录制状态的切换原因。 |
 
 ## AVRecorderConfig<sup>9+</sup>
 
@@ -4872,7 +4872,6 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 | videoFrameRate   | number                                       | 否   | 视频帧率，选择视频录制时必填，支持范围[1 - 60]。             |
 | isHdr<sup>11+</sup>            | boolean                        | 否   | HDR编码，选择视频录制时选填，isHdr默认为false，对应编码格式没有要求，isHdr为true时，对应的编码格式必须为video/hevc。|
 | enableTemporalScale<sup>12+</sup>            | boolean                        | 否   | 视频录制是否支持时域分层编码功能，选择视频录制时选填，enableTemporalScale默认为false。设置为true时，编码输出的码流中部分帧可以支持跳过不编码。|
-| enableStableQualityMode<sup>18+</sup>            | boolean                        | 否   | 视频录制是否选择稳定质量模式，选择视频录制时选填，enableStableQualityMode默认为false。设置为true时，启用视频编码策略以实现质量稳定的编码。|
 
 ## AudioSourceType<sup>9+</sup>
 

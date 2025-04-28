@@ -1441,7 +1441,7 @@ getSubjectName(encodingType?: EncodingType) : DataBlob
 
 | 类型                  | 说明                 |
 | --------------------- | -------------------- |
-| [DataBlob](#datablob) | 表示X509证书主体名称。 |
+| [DataBlob](#datablob) | 表示X509证书主体名称，转化成字符串后使用逗号分隔相对可分辨名称。 |
 
 **错误码：**
 
@@ -9881,7 +9881,7 @@ buildX509CertChain(param: [CertChainBuildParameters](#certchainbuildparameters12
 
 | 参数名   | 类型                  | 必填 | 说明                       |
 | -------- | -------------------- | ---- | -------------------------- |
-| param | [CertChainBuildParameters](#certchainbuildparameters12) | 是   | 构建证书链的参数对象。 |
+| param | [CertChainBuildParameters](#certchainbuildparameters12) | 是   | 构建证书链的参数对象。 <br> [CertChainBuildParameters](#certchainbuildparameters12)中的maxLength要小于证书集合中证书数量。 |
 
 **返回值：**
 

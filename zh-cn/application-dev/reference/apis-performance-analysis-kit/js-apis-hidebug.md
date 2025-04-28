@@ -231,30 +231,23 @@ getServiceDump(serviceid : number, fd : number, args : Array&lt;string&gt;) : vo
 ```ts
 import { fileIo } from '@kit.CoreFileKit';
 import { hidebug } from '@kit.PerformanceAnalysisKit';
-import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let applicationContext: common.Context | null = null;
+let fileFd = -1;
 try {
-  let context = getContext() as common.UIAbilityContext;
-  applicationContext = context.getApplicationContext();
+  let path: string = this.getUIContext().getHostContext()!.filesDir + "/serviceInfo.txt";
+  console.info("output path: " + path);
+  fileFd = fileIo.openSync(path, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE).fd;
+  let serviceId: number = 10;
+  let args: Array<string> = new Array("allInfo");
+  hidebug.getServiceDump(serviceId, fileFd, args);
 } catch (error) {
   console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
 
-let filesDir: string = applicationContext!.filesDir;
-let path: string = filesDir + "/serviceInfo.txt";
-console.info("output path: " + path);
-let file = fileIo.openSync(path, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
-let serviceId: number = 10;
-let args: Array<string> = new Array("allInfo");
-
-try {
-  hidebug.getServiceDump(serviceId, file.fd, args);
-} catch (error) {
-  console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+if (fileFd >= 0) {
+  fileIo.closeSync(fileFd);
 }
-fileIo.closeSync(file);
 ```
 
 ## hidebug.startJsCpuProfiling<sup>9+</sup>

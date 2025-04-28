@@ -8,7 +8,7 @@
 
 此场景示例，涉及到的文本样式属性如下，具体及更多文本样式可参考[TextStyle](../reference/apis-arkgraphics2d/js-apis-graphics-text.md#textstyle)。
 
-- color：字体颜色，默认为白色。请注意与画布颜色进行区分，以保证文本的的正常显示。
+- color：字体颜色，默认为白色。请注意与画布颜色进行区分，以保证文本的正常显示。
 
 - fontSize：字体大小，浮点数，默认为14.0，单位为物理像素px。
 

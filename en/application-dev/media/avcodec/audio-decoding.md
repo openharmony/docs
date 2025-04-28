@@ -17,7 +17,7 @@ For details about the supported decoding capabilities, see [AVCodec Supported Fo
   Decode audio and transmit the data for audio editing (for example, adjusting the playback speed of a channel). Audio editing is performed based on PCM streams.
 > **NOTE**
 >
-> Streams generated in the MP3 audio encoding process cannot be directly decoded through the MP3 audio decoding process. The following process is recommended: PCM stream -> MP3 audio encoding -> muxing -> demuxing -> MP3 audio decoding.
+> Streams generated in the MP3 audio encoding process cannot be directly decoded through the MP3 audio decoding process. The following process is recommended: PCM stream -> MP3 audio encoding -> multiplexing -> demultiplexing -> MP3 audio decoding.
 
 ## How to Develop
 
@@ -167,26 +167,27 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
 4. (Optional) Call **OH_AudioCodec_SetDecryptionConfig** to set the decryption configuration.
 
-    Call this API after the media key system information is obtained but before **Prepare()** is called. For details about how to obtain such information, see step 4 in [Media Data Demuxing](audio-video-demuxer.md).
+    Call this API after the media key system information is obtained but before **Prepare()** is called. For details about how to obtain such information, see step 4 in [Media Data Demultiplexing](audio-video-demuxer.md).
 
     For details about DRM APIs, see [DRM](../../reference/apis-drm-kit/_drm.md).
 
     Add the header files.
 
+
     ```c++
-#include <multimedia/drm_framework/native_mediakeysystem.h>
+    #include <multimedia/drm_framework/native_mediakeysystem.h>
     #include <multimedia/drm_framework/native_mediakeysession.h>
     #include <multimedia/drm_framework/native_drm_err.h>
     #include <multimedia/drm_framework/native_drm_common.h>
     ```
     Link the dynamic library in the CMake script.
-    
+
     ``` cmake
-target_link_libraries(sample PUBLIC libnative_drm.so)
+    target_link_libraries(sample PUBLIC libnative_drm.so)
     ```
-    
+
     The following is the sample code:
-```c++
+    ```c++
     // Create a media key system based on the media key system information. The following uses com.clearplay.drm as an example.
     MediaKeySystem *system = nullptr;
     int32_t ret = OH_MediaKeySystem_Create("com.clearplay.drm", &system);
@@ -194,9 +195,9 @@ target_link_libraries(sample PUBLIC libnative_drm.so)
         printf("create media key system failed");
         return;
     }
-    
+
     // Create a media key session.
-MediaKeySession *session = nullptr;
+    MediaKeySession *session = nullptr;
     DRM_ContentProtectionLevel contentProtectionLevel = CONTENT_PROTECTION_LEVEL_SW_CRYPTO;
     ret = OH_MediaKeySystem_CreateMediaKeySession(system, &contentProtectionLevel, &session);
     if (ret != DRM_OK) {
@@ -213,7 +214,7 @@ MediaKeySession *session = nullptr;
     bool secureAudio = false;
     ret = OH_AudioCodec_SetDecryptionConfig(audioDec_, session, secureAudio);
     ```
-    
+
 5. Call **OH_AudioCodec_Configure()** to configure the decoder.
 
    Key values of configuration options are described as follows:
@@ -299,7 +300,7 @@ MediaKeySession *session = nullptr;
    
 8. (Optional) Call **OH_AVCencInfo_SetAVBuffer()** to set the Common Encryption Scheme (CENC) information.
 
-    If the content being played is DRM encrypted and [demuxing](audio-video-demuxer.md#media-data-demuxing) is performed by the upper-layer application, call **OH_AVCencInfo_SetAVBuffer()** to set the CENC information to the AVBuffer so that the media data can be decrypted in the AVBuffer.
+    If the content being played is DRM encrypted and [demultiplexing](audio-video-demuxer.md#media-data-demultiplexing) is performed by the upper-layer application, call **OH_AVCencInfo_SetAVBuffer()** to set the CENC information to the AVBuffer so that the media data can be decrypted in the AVBuffer.
 
     Add the header file.
 

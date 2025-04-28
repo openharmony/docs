@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 >  本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](../js-apis-arkui-UIContext.md#uicontext)说明。
 >
@@ -106,7 +106,7 @@ struct AnimateToExample {
         .onClick(() => {
           if (this.flag) {
             // 建议使用this.getUIContext()?.animateTo()
-            animateTo({
+            this.getUIContext()?.animateTo({
               duration: 2000,
               curve: Curve.EaseOut,
               iterations: 3,
@@ -120,7 +120,7 @@ struct AnimateToExample {
             })
           } else {
             // 建议使用this.getUIContext()?.animateTo()
-            animateTo({}, () => {
+            this.getUIContext()?.animateTo({}, () => {
               this.widthSize = 250
               this.heightSize = 100
             })
@@ -133,7 +133,7 @@ struct AnimateToExample {
         .onAppear(() => {
           // 组件出现时开始做动画
           // 建议使用this.getUIContext()?.animateTo()
-          animateTo({
+          this.getUIContext()?.animateTo({
             duration: 1200,
             curve: Curve.Friction,
             delay: 500,
@@ -150,7 +150,7 @@ struct AnimateToExample {
         })
         .onClick(() => {
           // 建议使用this.getUIContext()?.animateTo()
-          animateTo({ duration: 0 }, () => {
+          this.getUIContext()?.animateTo({ duration: 0 }, () => {
             // this.rotateAngle之前为90，在duration为0的动画中修改属性，可以停止该属性之前的动画，按新设置的属性显示
             this.rotateAngle = 0
           })
@@ -185,7 +185,7 @@ struct AttrAnimationExample {
           .backgroundColor('blue')
           .onClick(() => {
             // 建议使用this.getUIContext()?.animateTo()
-            animateTo({
+            this.getUIContext()?.animateTo({
               duration: 2000,
               curve: Curve.EaseOut,
               iterations: 1,
