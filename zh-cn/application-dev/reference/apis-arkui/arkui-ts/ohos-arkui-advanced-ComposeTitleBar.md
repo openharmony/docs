@@ -14,7 +14,7 @@
 ## 导入模块
 
 ```
-import { ComposeTitleBar } from '@kit.ArkUI'
+import { ComposeTitleBar } from '@kit.ArkUI';
 ```
 
 
@@ -69,7 +69,7 @@ ComposeTitleBar({item?: ComposeTitleBarMenuItem, title: ResourceStr, subtitle?: 
 ### 示例1（简单的标题栏）
 该示例实现了简单的标题栏，带有返回箭头的标题栏和带有右侧菜单项目列表的标题栏。
 ```ts
-import { ComposeTitleBar, Prompt, ComposeTitleBarMenuItem } from '@kit.ArkUI'
+import { ComposeTitleBar, Prompt, ComposeTitleBarMenuItem } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -145,7 +145,7 @@ struct Index {
 ### 示例2（右侧自定义按钮播报）
 该示例通过设置标题栏右侧自定义按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
 ```ts
-import { ComposeTitleBar, Prompt, ComposeTitleBarMenuItem } from '@kit.ArkUI'
+import { ComposeTitleBar, Prompt, ComposeTitleBarMenuItem } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -239,7 +239,7 @@ struct Index {
 该示例通过设置ComposeTitleBarMenuItem的属性symbolStyle，展示了自定义Symbol类型图标。
 
 ```ts
-import { ComposeTitleBar, Prompt, ComposeTitleBarMenuItem, SymbolGlyphModifier } from '@kit.ArkUI'
+import { ComposeTitleBar, Prompt, ComposeTitleBarMenuItem, SymbolGlyphModifier } from '@kit.ArkUI';
 
 @Entry
 @Component
