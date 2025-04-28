@@ -890,21 +890,6 @@ Wi-Fi状态变化。
 
 **取值：** "usual.event.wifi.WIFI_HS_STA_LEAVE"
 
-
-### COMMON_EVENT_WIFI_MPLINK_STATE_CHANGE
-
-表示MPLink（增强Wi-Fi功能）状态已更改。
-
-当MPLink（增强Wi-Fi功能）状态发生变化，将会触发事件通知服务发布该系统公共事件。
-
-
-**系统能力：** SystemCapability.Notification.CommonEvent
-
-**订阅方需要的权限：** ohos.permission.MPLINK_CHANGE_STATE
-
-**取值：** "usual.event.wifi.mplink.STATE_CHANGE"
-
-
 ### COMMON_EVENT_WIFI_P2P_CONN_STATE
 
 表示Wi-Fi P2P连接状态改变。

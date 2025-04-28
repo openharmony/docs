@@ -917,7 +917,7 @@ addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 
 添加网络配置，使用Promise异步回调。
 
-**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.SET_WIFI_CONFIG
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.SET_WIFI_CONFIG(仅系统应用可申请)
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -971,7 +971,7 @@ addDeviceConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&gt;)
 
 添加网络配置，使用callback异步回调。
 
-**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.SET_WIFI_CONFIG
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.SET_WIFI_CONFIG(仅系统应用可申请)
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -1019,7 +1019,7 @@ getDeviceConfigs(): &nbsp;Array&lt;WifiDeviceConfig&gt;
 
 获取网络配置。
 
-**需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.GET_WIFI_CONFIG
+**需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.GET_WIFI_CONFIG(仅系统应用可申请)
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
