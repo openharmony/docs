@@ -252,7 +252,7 @@ JSVM UseReference success
 为 JavaScript 对象添加 JSVM_Finalize 回调，当 JavaScript 对象被垃圾回收时执行函数回调，该接口通常被用于释放与 JavaScript 对象相关的原生对象。如果传入的参数类型不是 JavaScript 对象，该接口调用失败并返回错误码。
 Finalizer 方法被注册后无法取消，如果在调用 OH_JSVM_DestroyEnv 前均未被执行，则在 OH_JVSM_DestroyEnv 时执行。
 
-以下仅对 cpp 部分代码进行展示，其余框架代码如 `TestJSVM` 函数参考 [使用JSVM-API接口进行任务队列相关开发](use-jsvm-execute_tasks.md) OH_JSVM_SetMicrotaskPolicy 段落中的实现。
+以下仅对cpp部分代码进行展示，其余代码框架如`TestJSVM`函数参考[使用JSVM-API接口进行任务队列相关开发](use-jsvm-execute_tasks.md#oh_jsvm_setmicrotaskpolicy) 段落中的实现。
 
 ```cpp
 static int AddFinalizer(JSVM_VM vm, JSVM_Env env) {
