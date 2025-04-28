@@ -353,19 +353,19 @@ console.log(t.createController()!.value);
 **应用代码**
 
 ```typescript
-import { router } from '@kit.ArkUI';
-let params: Object = router.getParams();
-let funNum: number = params['funNum'];
-let target: string = params['target'];
+function foo(params: Object) {
+    let funNum: number = params['funNum'];
+    let target: string = params['target'];
+}
 ```
 
 **建议改法**
 
 ```typescript
-import { router } from '@kit.ArkUI';
-let params = router.getParams() as Record<string, string | number>;
-let funNum: number = params.funNum as number;
-let target: string = params.target as string;
+function foo(params: Record<string, string | number>) {
+    let funNum: number = params['funNum'] as number;
+    let target: string = params['target'] as string;
+}
 ```
 
 ## arkts-no-inferred-generic-params
