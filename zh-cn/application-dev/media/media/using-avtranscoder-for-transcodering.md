@@ -71,7 +71,11 @@
      private context:Context | undefined = this.getUIContext().getHostContext();
      private avTranscoder: AVTranscoderDemo = new AVTranscoderDemo(this.context);
      build() {
-       this.avTranscoder.avTranscoderDemo();
+       Column() {
+        Button('转码').onClick(() => {
+          this.avTranscoder.avTranscoderDemo();
+        })
+      }
      }
    }
    ```
@@ -82,7 +86,9 @@
 
    private context: Context | undefined;
     constructor(context: Context) {
-    this.context = context; // this.getUIContext().getHostContext();
+      if (context != undefined) {
+        this.context = context; // this.getUIContext().getHostContext();
+      }
    }
    let fileDescriptor = await this.context.resourceManager.getRawFd('H264_AAC.mp4');
    // 设置转码的源文件属性fdSrc。
@@ -174,7 +180,9 @@ export class AVTranscoderDemo {
   private avTranscoder: media.AVTranscoder | undefined = undefined;
   private context: Context | undefined;
   constructor(context: Context) {
-    this.context = context;
+    if (context != undefined) {
+      this.context = context;
+    }
   }
   private avConfig: media.AVTranscoderConfig = {
     audioBitrate: 100000, // 音频比特率。
