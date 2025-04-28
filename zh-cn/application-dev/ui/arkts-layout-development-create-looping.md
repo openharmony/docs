@@ -338,21 +338,21 @@ Swiper支持通过[customContentTransition](../reference/apis-arkui/arkui-ts/ts-
 @Entry
 @Component
 struct SwiperCustomAnimationExample {
-  private DISPLAY_COUNT: number = 2
-  private MIN_SCALE: number = 0.75
+  private DISPLAY_COUNT: number = 2;
+  private MIN_SCALE: number = 0.75;
 
-  @State backgroundColors: Color[] = [Color.Green, Color.Blue, Color.Yellow, Color.Pink, Color.Gray, Color.Orange]
-  @State opacityList: number[] = []
-  @State scaleList: number[] = []
-  @State translateList: number[] = []
-  @State zIndexList: number[] = []
+  @State backgroundColors: Color[] = [Color.Green, Color.Blue, Color.Yellow, Color.Pink, Color.Gray, Color.Orange];
+  @State opacityList: number[] = [];
+  @State scaleList: number[] = [];
+  @State translateList: number[] = [];
+  @State zIndexList: number[] = [];
 
   aboutToAppear(): void {
     for (let i = 0; i < this.backgroundColors.length; i++) {
-      this.opacityList.push(1.0)
-      this.scaleList.push(1.0)
-      this.translateList.push(0.0)
-      this.zIndexList.push(0)
+      this.opacityList.push(1.0);
+      this.scaleList.push(1.0);
+      this.translateList.push(0.0);
+      this.zIndexList.push(0);
     }
   }
 
@@ -376,22 +376,22 @@ struct SwiperCustomAnimationExample {
         transition: (proxy: SwiperContentTransitionProxy) => {
           if (proxy.position <= proxy.index % this.DISPLAY_COUNT || proxy.position >= this.DISPLAY_COUNT + proxy.index % this.DISPLAY_COUNT) {
             // 同组页面完全滑出视窗外时，重置属性值
-            this.opacityList[proxy.index] = 1.0
-            this.scaleList[proxy.index] = 1.0
-            this.translateList[proxy.index] = 0.0
-            this.zIndexList[proxy.index] = 0
+            this.opacityList[proxy.index] = 1.0;
+            this.scaleList[proxy.index] = 1.0;
+            this.translateList[proxy.index] = 0.0;
+            this.zIndexList[proxy.index] = 0;
           } else {
             // 同组页面未滑出视窗外时，对同组中左右两个页面，逐帧根据position修改属性值
             if (proxy.index % this.DISPLAY_COUNT === 0) {
-              this.opacityList[proxy.index] = 1 - proxy.position / this.DISPLAY_COUNT
-              this.scaleList[proxy.index] = this.MIN_SCALE + (1 - this.MIN_SCALE) * (1 - proxy.position / this.DISPLAY_COUNT)
-              this.translateList[proxy.index] = - proxy.position * proxy.mainAxisLength + (1 - this.scaleList[proxy.index]) * proxy.mainAxisLength / 2.0
+              this.opacityList[proxy.index] = 1 - proxy.position / this.DISPLAY_COUNT;
+              this.scaleList[proxy.index] = this.MIN_SCALE + (1 - this.MIN_SCALE) * (1 - proxy.position / this.DISPLAY_COUNT);
+              this.translateList[proxy.index] = - proxy.position * proxy.mainAxisLength + (1 - this.scaleList[proxy.index]) * proxy.mainAxisLength / 2.0;
             } else {
-              this.opacityList[proxy.index] = 1 - (proxy.position - 1) / this.DISPLAY_COUNT
-              this.scaleList[proxy.index] = this.MIN_SCALE + (1 - this.MIN_SCALE) * (1 - (proxy.position - 1) / this.DISPLAY_COUNT)
-              this.translateList[proxy.index] = - (proxy.position - 1) * proxy.mainAxisLength - (1 - this.scaleList[proxy.index]) * proxy.mainAxisLength / 2.0
+              this.opacityList[proxy.index] = 1 - (proxy.position - 1) / this.DISPLAY_COUNT;
+              this.scaleList[proxy.index] = this.MIN_SCALE + (1 - this.MIN_SCALE) * (1 - (proxy.position - 1) / this.DISPLAY_COUNT);
+              this.translateList[proxy.index] = - (proxy.position - 1) * proxy.mainAxisLength - (1 - this.scaleList[proxy.index]) * proxy.mainAxisLength / 2.0;
             }
-            this.zIndexList[proxy.index] = -1
+            this.zIndexList[proxy.index] = -1;
           }
         }
       })
@@ -409,18 +409,18 @@ Swiper选中的元素改变时，会通过onSelected回调事件，将元素的�
 ```ts
 // xxx.ets
 class MyDataSource implements IDataSource {
-  private list: number[] = []
+  private list: number[] = [];
 
   constructor(list: number[]) {
-    this.list = list
+    this.list = list;
   }
 
   totalCount(): number {
-    return this.list.length
+    return this.list.length;
   }
 
   getData(index: number): number {
-    return this.list[index]
+    return this.list[index];
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -433,19 +433,19 @@ class MyDataSource implements IDataSource {
 @Entry
 @Component
 struct TabsSwiperExample {
-  @State fontColor: string = '#182431'
-  @State selectedFontColor: string = '#007DFF'
-  @State currentIndex: number = 0
-  private list: number[] = []
-  private tabsController: TabsController = new TabsController()
-  private swiperController: SwiperController = new SwiperController()
-  private swiperData: MyDataSource = new MyDataSource([])
+  @State fontColor: string = '#182431';
+  @State selectedFontColor: string = '#007DFF';
+  @State currentIndex: number = 0;
+  private list: number[] = [];
+  private tabsController: TabsController = new TabsController();
+  private swiperController: SwiperController = new SwiperController();
+  private swiperData: MyDataSource = new MyDataSource([]);
 
   aboutToAppear(): void {
     for (let i = 0; i <= 9; i++) {
       this.list.push(i);
     }
-    this.swiperData = new MyDataSource(this.list)
+    this.swiperData = new MyDataSource(this.list);
   }
 
   @Builder tabBuilder(index: number, name: string) {
@@ -471,8 +471,8 @@ struct TabsSwiperExample {
         })
       }
       .onTabBarClick((index: number) => {
-        this.currentIndex = index
-        this.swiperController.changeIndex(index, true)
+        this.currentIndex = index;
+        this.swiperController.changeIndex(index, true);
       })
       .barMode(BarMode.Scrollable)
       .backgroundColor('#F1F3F5')
@@ -483,10 +483,10 @@ struct TabsSwiperExample {
         LazyForEach(this.swiperData, (item: string) => {
           Text(item.toString())
             .onAppear(()=>{
-              console.info('onAppear ' + item.toString())
+              console.info('onAppear ' + item.toString());
             })
             .onDisAppear(()=>{
-              console.info('onDisAppear ' + item.toString())
+              console.info('onDisAppear ' + item.toString());
             })
             .width('100%')
             .height('40%')
@@ -497,9 +497,9 @@ struct TabsSwiperExample {
       }
       .loop(false)
       .onSelected((index: number) => {
-        console.info("onSelected:" + index)
+        console.info("onSelected:" + index);
         this.currentIndex = index;
-        this.tabsController.changeIndex(index)
+        this.tabsController.changeIndex(index);
       })
     }
   }
@@ -552,22 +552,22 @@ Swiper() {
 圆点导航点设置间距及忽略组件大小完整示列代码如下：
 
 ```ts
-import { LengthMetrics } from '@kit.ArkUI'
+import { LengthMetrics } from '@kit.ArkUI';
 
 // MyDataSource.ets
 class MyDataSource implements IDataSource {
-  private list: number[] = []
+  private list: number[] = [];
 
   constructor(list: number[]) {
-    this.list = list
+    this.list = list;
   }
 
   totalCount(): number {
-    return this.list.length
+    return this.list.length;
   }
 
   getData(index: number): number {
-    return this.list[index]
+    return this.list[index];
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -582,23 +582,23 @@ class MyDataSource implements IDataSource {
 @Component
 struct SwiperExample {
 
-  @State space: LengthMetrics = LengthMetrics.vp(0)
-  @State spacePool: LengthMetrics[] = [LengthMetrics.vp(0), LengthMetrics.px(3), LengthMetrics.vp(10)]
-  @State spaceIndex: number = 0
+  @State space: LengthMetrics = LengthMetrics.vp(0);
+  @State spacePool: LengthMetrics[] = [LengthMetrics.vp(0), LengthMetrics.px(3), LengthMetrics.vp(10)];
+  @State spaceIndex: number = 0;
 
-  @State ignoreSize: boolean = false
-  @State ignoreSizePool: boolean[] = [false, true]
-  @State ignoreSizeIndex: number = 0
+  @State ignoreSize: boolean = false;
+  @State ignoreSizePool: boolean[] = [false, true];
+  @State ignoreSizeIndex: number = 0;
 
-  private swiperController1: SwiperController = new SwiperController()
-  private data1: MyDataSource = new MyDataSource([])
+  private swiperController1: SwiperController = new SwiperController();
+  private data1: MyDataSource = new MyDataSource([]);
 
   aboutToAppear(): void {
-    let list1: number[] = []
+    let list1: number[] = [];
     for (let i = 1; i <= 10; i++) {
       list1.push(i);
     }
-    this.data1 = new MyDataSource(list1)
+    this.data1 = new MyDataSource(list1);
   }
 
   build() {
