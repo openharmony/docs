@@ -4295,9 +4295,8 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
    import { BusinessError } from '@kit.BasicServicesKit';
    import { common } from '@kit.AbilityKit';
 
-   let mContext = getContext(this) as common.Context;
-
-   async function openCamera(callback: Callback<string>) {
+   async function openCamera(callback: Callback<string>, uiContext: UIContext) {
+    let mContext = uiContext.getHostContext() as common.Context;
      try {
        let pickerProfile: cameraPicker.PickerProfile = {
          cameraPosition: camera.CameraPosition.CAMERA_POSITION_BACK
@@ -4314,7 +4313,7 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
    @Entry
    @Component
    struct WebComponent {
-     controller: webview.WebviewController = new webview.WebviewController()
+     controller: webview.WebviewController = new webview.WebviewController();
 
      build() {
        Column() {
@@ -4329,7 +4328,7 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
                  console.log('Mime types are ' + event.fileSelector.getMimeTypes());
                  event.result.handleFileList([result]);
                }
-             })
+             }, this.getUIContext())
              return true;
            })
        }
@@ -4992,12 +4991,13 @@ onPermissionRequest(callback: Callback\<OnPermissionRequestEvent\>)
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
+    uiContext: UIContext = this.getUIContext();
 
     aboutToAppear() {
       // 配置Web开启调试模式
       webview.WebviewController.setWebDebuggingAccess(true);
       let atManager = abilityAccessCtrl.createAtManager();
-      atManager.requestPermissionsFromUser(getContext(this), ['ohos.permission.CAMERA', 'ohos.permission.MICROPHONE'])
+      atManager.requestPermissionsFromUser(this.uiContext.getHostContext(), ['ohos.permission.CAMERA', 'ohos.permission.MICROPHONE'])
         .then((data) => {
           console.info('data:' + JSON.stringify(data));
           console.info('data permissions:' + data.permissions);
@@ -5012,7 +5012,7 @@ onPermissionRequest(callback: Callback\<OnPermissionRequestEvent\>)
         Web({ src: $rawfile('index.html'), controller: this.controller })
           .onPermissionRequest((event) => {
             if (event) {
-              AlertDialog.show({
+              this.uiContext.showAlertDialog({
                 title: 'title',
                 message: 'text',
                 primaryButton: {
