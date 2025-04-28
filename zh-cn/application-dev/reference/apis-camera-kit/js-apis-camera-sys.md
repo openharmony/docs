@@ -945,11 +945,12 @@ isDepthFusionSupported(): boolean;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function isDepthFusionSupported(DepthFusionQuery: camera.DepthFusionQuery): void {
-  DepthFusionQuery.isDepthFusionSupported().then(() => {
+  try {
+    let isSupperted: boolean = DepthFusionQuery.isDepthFusionSupported();
     console.info('Promise returned to indicate that isDepthFusionSupported method execution success.');
-  }).catch((error: BusinessError) => {
+  } catch (error: BusinessError) {
     console.error(`Failed to depth fusion query  isDepthFusionSupported, error code: ${error.code}.`);
-  });
+  }
 }
 
 ```
@@ -983,14 +984,15 @@ getDepthFusionThreshold(): Array<number>;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function getDepthFusionThreshold(DepthFusionQuery: camera.DepthFusionQuery): void {
-  DepthFusionQuery.getDepthFusionThreshold().then(() => {
+  try {
+    let threshold: Array<number> = DepthFusionQuery.getDepthFusionThreshold();
     console.info('Promise returned to indicate that getDepthFusionThreshold method execution success.');
-  }).catch((error: BusinessError) => {
+  } catch (error: BusinessError) {
     console.error(`Failed to depth fusion query  getDepthFusionThreshold, error code: ${error.code}.`);
-  });
+  }
 }
 ```
-## DepthFusion<sup>13+</sup>
+## DepthFusion<sup>14+</sup>
 
 深度融合类。继承[DepthFusionQuery](js-apis-camera.md#DepthFusionQuery)。
 
@@ -1024,11 +1026,12 @@ isDepthFusionEnabled(): boolean;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function isDepthFusionEnabled(DepthFusion: camera.DepthFusion): void {
-  DepthFusion.isDepthFusionEnabled().then(() => {
+  try {
+    let isEnable: boolean = DepthFusion.isDepthFusionEnabled();
     console.info('Promise returned to indicate that isDepthFusionEnabled method execution success.');
-  }).catch((error: BusinessError) => {
+  } catch (error: BusinessError) {
     console.error(`Failed to depth fusion isDepthFusionEnabled, error code: ${error.code}.`);
-  });
+  };
 }
 ```
 
@@ -1064,12 +1067,13 @@ enableDepthFusion(enabled: boolean): void;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function enableDepthFusion(DepthFusion: camera.DepthFusion): void {
-  enabled: boolean = true;
-  DepthFusion.enableDepthFusion(enabled).then(() => {
+  try {
+    let enabled: boolean = true;
+    DepthFusion.enableDepthFusion(enabled);
     console.info('Promise returned to indicate that enableDepthFusion method execution success.');
-  }).catch((error: BusinessError) => {
+  } catch (error: BusinessError) {
     console.error(`Failed to depth fusion enableDepthFusion, error code: ${error.code}.`);
-  });
+  };
 }
 ```
 
