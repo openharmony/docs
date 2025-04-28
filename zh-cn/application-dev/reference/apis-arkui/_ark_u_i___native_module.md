@@ -18615,8 +18615,8 @@ ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
 
 ### OH_ArkUI_AccessibilityValue_SetRangeMin
 
-```C
-void OH_ArkUI_AccessibilityValue_SetRangeMin(ArkUI_AccessibilityValue* value, int32_t rangeMin);
+```
+void OH_ArkUI_AccessibilityValue_SetRangeMin(ArkUI_AccessibilityValue* value, int32_t rangeMin)
 ```
 
 **描述：**
@@ -18631,16 +18631,14 @@ void OH_ArkUI_AccessibilityValue_SetRangeMin(ArkUI_AccessibilityValue* value, in
 
 | 名称      | 描述                   |
 | --------- | ---------------------- |
-| value | 无障碍信息对象指针。   |
+| value | 需要设置最小值的范围组件无障碍信息对象指针。   |
 | rangeMin       | 基于范围组件的最小值，默认为-1。              |
-
-**返回：** 无
 
 
 ### OH_ArkUI_AccessibilityValue_GetRangeMin
 
-```C
-int32_t OH_ArkUI_AccessibilityValue_GetRangeMin(ArkUI_AccessibilityValue* value);
+```
+int32_t OH_ArkUI_AccessibilityValue_GetRangeMin(ArkUI_AccessibilityValue* value)
 ```
 
 **描述：**
@@ -18655,7 +18653,7 @@ int32_t OH_ArkUI_AccessibilityValue_GetRangeMin(ArkUI_AccessibilityValue* value)
 
 | 名称      | 描述                   |
 | --------- | ---------------------- |
-| value | 无障碍信息对象指针。   |
+| value | 需要获取最小值的范围组件无障碍信息对象指针。   |
 
 **返回：**
 
@@ -18664,8 +18662,8 @@ int32_t OH_ArkUI_AccessibilityValue_GetRangeMin(ArkUI_AccessibilityValue* value)
 
 ### OH_ArkUI_AccessibilityValue_SetRangeMax
 
-```C
-void OH_ArkUI_AccessibilityValue_SetRangeMax(ArkUI_AccessibilityValue* value, int32_t rangeMax);
+```
+void OH_ArkUI_AccessibilityValue_SetRangeMax(ArkUI_AccessibilityValue* value, int32_t rangeMax)
 ```
 
 **描述：**
@@ -18680,16 +18678,14 @@ void OH_ArkUI_AccessibilityValue_SetRangeMax(ArkUI_AccessibilityValue* value, in
 
 | 名称      | 描述                   |
 | --------- | ---------------------- |
-| value | 无障碍信息对象指针。   |
+| value | 需要设置最大值的范围组件无障碍信息对象指针。   |
 | rangeMin       | 基于范围组件的最大值，默认为-1。              |
-
-**返回：** 无
 
 
 ### OH_ArkUI_AccessibilityValue_GetRangeMax
 
-```C
-int32_t OH_ArkUI_AccessibilityValue_GetRangeMax(ArkUI_AccessibilityValue* value);
+```
+int32_t OH_ArkUI_AccessibilityValue_GetRangeMax(ArkUI_AccessibilityValue* value)
 ```
 
 **描述：**
@@ -18704,7 +18700,7 @@ int32_t OH_ArkUI_AccessibilityValue_GetRangeMax(ArkUI_AccessibilityValue* value)
 
 | 名称      | 描述                   |
 | --------- | ---------------------- |
-| value | 无障碍信息对象指针。   |
+| value | 需要获取最大值的范围组件无障碍信息对象指针。   |
 
 **返回：**
 
@@ -18713,8 +18709,8 @@ int32_t OH_ArkUI_AccessibilityValue_GetRangeMax(ArkUI_AccessibilityValue* value)
 
 ### OH_ArkUI_AccessibilityValue_SetRangeCurrent
 
-```C
-void OH_ArkUI_AccessibilityValue_SetRangeCurrent(ArkUI_AccessibilityValue* value, int32_t rangeCurrent);
+```
+void OH_ArkUI_AccessibilityValue_SetRangeCurrent(ArkUI_AccessibilityValue* value, int32_t rangeCurrent)
 ```
 
 **描述：**
@@ -18729,16 +18725,14 @@ void OH_ArkUI_AccessibilityValue_SetRangeCurrent(ArkUI_AccessibilityValue* value
 
 | 名称      | 描述                   |
 | --------- | ---------------------- |
-| value | 无障碍信息对象指针。   |
+| value | 需要设置当前值的范围组件无障碍信息对象指针。   |
 | rangeCurrent       | 基于范围组件的当前值，默认为-1。              |
-
-**返回：** 无
 
 
 ### OH_ArkUI_AccessibilityValue_GetRangeCurrent
 
-```C
-int32_t OH_ArkUI_AccessibilityValue_GetRangeCurrent(ArkUI_AccessibilityValue* value);
+```
+int32_t OH_ArkUI_AccessibilityValue_GetRangeCurrent(ArkUI_AccessibilityValue* value)
 ```
 
 **描述：**
@@ -18753,7 +18747,7 @@ int32_t OH_ArkUI_AccessibilityValue_GetRangeCurrent(ArkUI_AccessibilityValue* va
 
 | 名称      | 描述                   |
 | --------- | ---------------------- |
-| value | 无障碍信息对象指针。   |
+| value | 需要获取当前值的范围组件无障碍信息对象指针。   |
 
 **返回：**
 
