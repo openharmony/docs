@@ -80,7 +80,6 @@ startVpnExtensionAbility(want: Want): Promise\<void>
 | 16200001  | The caller has been released.          |
 
 **示例：**
-
 Stage 模型示例：
 
 ```ts
@@ -149,7 +148,6 @@ stopVpnExtensionAbility(want: Want): Promise\<void>
 | 16200001  | The caller has been released.          |
 
 **示例：**
-
 Stage 模型示例：
 
 ```ts
