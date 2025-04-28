@@ -4141,7 +4141,6 @@ import { socket } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let sandboxPath: string = context.filesDir + '/testSocket';
 let localAddress : socket.LocalAddress = {
