@@ -47,7 +47,7 @@ Tabs组件参数，设置Tabs的页签位置，当前显示页签的索引，Tab
 | barPosition<sup>7+</sup> | [BarPosition](#barposition枚举说明)| 否    | 设置Tabs的页签位置。<br/>默认值：BarPosition.Start。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
 | index<sup>7+</sup>       | number                            | 否    | 设置当前显示页签的索引。<br/>默认值：0<br/>**说明：** <br/>设置为小于0的值时按默认值显示。<br/>可选值为[0, TabContent子节点数量-1]。<br/>直接修改index跳页时，切换动效不生效。 使用TabController的changeIndex时，默认生效切换动效，可以设置animationDuration为0关闭动画。<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br/>Tabs重建、系统资源切换（如系统字体切换、系统深浅色切换）或者组件属性变化时，会跳转到index对应的页面。若需要在上述情况下不跳转，建议使用双向绑定。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | controller<sup>7+</sup>  | [TabsController](#tabscontroller) | 否    | 设置Tabs控制器。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。         |
-| barModifier<sup>15+</sup>  | [CommonModifier](#commonmodifier15) | 否    | 设置TabBar的[通用属性](ts-component-general-attributes.md)。<br/>**说明：** <br/>动态置为undefined时会保持当前状态不变，不会重置各通用属性。 <br/>由一个CommonModifier切换为另一个CommonModifier时，重复属性会进行覆盖，非重复属性会同时生效，不会重置前一个CommonModifier的通用属性。<br/>Tabs的[barWidth](#barwidth)、[barHeight](#barheight)、[barBackgroundColor](#barbackgroundcolor10)、[barBackgroundBlurStyle](#barbackgroundblurstyle15)、[barBackgroundEffect](#barbackgroundeffect15)属性会覆盖CommonModifier的[width](ts-universal-attributes-size.md#width)、[height](ts-universal-attributes-size.md#height)、[backgroundColor](ts-universal-attributes-background.md#backgroundcolor18)、[backgroundBlurStyle](ts-universal-attributes-background.md#backgroundblurstyle18)、[backgroundEffect](ts-universal-attributes-background.md#backgroundeffect18)属性。<br/>[align](ts-universal-attributes-location.md#align)属性仅在[BarMode.Scrollable](#barmode10-1)模式下生效，且Tabs为横向时还需[nonScrollableLayoutStyle](#scrollablebarmodeoptions10对象说明)未设置或设置为异常值时才能生效。<br/>[TabContent](ts-container-tabcontent.md)组件的[tabBar](ts-container-tabcontent.md#tabbar18)属性为底部页签样式时不支持拖拽功能。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
+| barModifier<sup>15+</sup>  | [CommonModifier](#commonmodifier15) | 否    | 设置TabBar的[通用属性](ts-component-general-attributes.md)。<br/>**说明：** <br/>动态置为undefined时会保持当前状态不变，不会重置各通用属性。 <br/>由一个CommonModifier切换为另一个CommonModifier时，重复属性会进行覆盖，非重复属性会同时生效，不会重置前一个CommonModifier的通用属性。<br/>Tabs的[barWidth](#barwidth)、[barHeight](#barheight)、[barBackgroundColor](#barbackgroundcolor10)、[barBackgroundBlurStyle](#barbackgroundblurstyle18)、[barBackgroundEffect](#barbackgroundeffect18)属性会覆盖CommonModifier的[width](ts-universal-attributes-size.md#width)、[height](ts-universal-attributes-size.md#height)、[backgroundColor](ts-universal-attributes-background.md#backgroundcolor18)、[backgroundBlurStyle](ts-universal-attributes-background.md#backgroundblurstyle18)、[backgroundEffect](ts-universal-attributes-background.md#backgroundeffect18)属性。<br/>[align](ts-universal-attributes-location.md#align)属性仅在[BarMode.Scrollable](#barmode10-1)模式下生效，且Tabs为横向时还需[nonScrollableLayoutStyle](#scrollablebarmodeoptions10对象说明)未设置或设置为异常值时才能生效。<br/>[TabContent](ts-container-tabcontent.md)组件的[tabBar](ts-container-tabcontent.md#tabbar18)属性为底部页签样式时不支持拖拽功能。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 
 ## BarPosition枚举说明
 
@@ -311,13 +311,13 @@ barBackgroundBlurStyle(value: BlurStyle)
 | ------ | -------------------------------------------- | ---- | ---------------------------------------- |
 | value  | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 是   | TabBar的背景模糊材质。<br />默认值：BlurStyle.NONE |
 
-### barBackgroundBlurStyle<sup>15+</sup>
+### barBackgroundBlurStyle<sup>18+</sup>
 
 barBackgroundBlurStyle(style: BlurStyle, options: BackgroundBlurStyleOptions)
 
 为TabBar提供一种在背景和内容之间的模糊能力，通过枚举值的方式封装了不同的模糊半径、蒙版颜色、蒙版透明度、饱和度、亮度。
 
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -360,13 +360,13 @@ edgeEffect(edgeEffect: Optional&lt;EdgeEffect&gt;)
 | ------ | --------------------------------------------- | ---- | -------------------------------------------- |
 | edgeEffect  | Optional&lt;[EdgeEffect](ts-appendix-enums.md#edgeeffect)&gt; | 是   | 边缘滑动效果。<br/>默认值：EdgeEffect.Spring |
 
-### barBackgroundEffect<sup>15+</sup>
+### barBackgroundEffect<sup>18+</sup>
 
 barBackgroundEffect(options: BackgroundEffectOptions)
 
 设置TabBar背景属性，包含背景模糊半径，亮度，饱和度，颜色等参数。
 
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
