@@ -3535,13 +3535,13 @@ aVCastController.getSupportedDecoders().then((decoderTypes: avSession.DecoderTyp
 });
 ```
 
-### getRecommendedResolutionLevel<sup>18+</sup>
+### getRecommendedResolutionLevel<sup>19+</sup>
 
 getRecommendedResolutionLevel(decoderType: DecoderType): Promise\<ResolutionLevel>
 
 通过传递解码方式，获取推荐的分辨率。使用Promise异步回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
