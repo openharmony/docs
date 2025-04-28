@@ -239,7 +239,7 @@ struct Index {
 该示例通过设置ComposeTitleBarMenuItem的属性symbolStyle，展示了自定义Symbol类型图标。
 
 ```ts
-import { ComposeTitleBar, ComposeTitleBarMenuItem, SymbolGlyphModifier } from '@kit.ArkUI';
+import { ComposeTitleBar, Prompt, ComposeTitleBarMenuItem, SymbolGlyphModifier } from '@kit.ArkUI';
 
 @Entry
 @Component
