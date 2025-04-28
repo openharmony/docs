@@ -4596,111 +4596,6 @@ try {
 }
 ```
 
-### getAttachOptions<sup>17+</sup>
-
-getAttachOptions(): AttachOptions
-
-获取绑定输入法时的附加选项。
-
-**系统能力：**  SystemCapability.MiscServices.InputMethodFramework
-
-**返回值：**
-
-| 类型 | 说明         |
-| ---- | ------------ |
-| [AttachOptions](#attachoptions17) | 返回绑定输入法时的附加选项内容。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息         |
-| -------- | ---------------- |
-| 801      | Capability not supported. |
-
-**示例：**
-
-```ts
-try {
-  let attachOptions = inputClient.getAttachOptions();
-  console.log(`Succeeded in getting AttachOptions, AttachOptions is ${attachOptions}`);
-} catch (err) {
-  console.error(`Failed to get AttachOptions: ${JSON.stringify(err)}`);
-}
-```
-
-### on('attachOptionsDidChange')<sup>17+</sup>
-
-on(type: 'attachOptionsDidChange', callback: Callback\<AttachOptions>): void
-
-订阅绑定输入法时的附加选项变更事件。使用callback异步回调。
-
-**系统能力：** SystemCapability.MiscServices.InputMethodFramework
-
-**参数：**
-
-| 参数名   | 类型                                        | 必填 | 说明                                           |
-| -------- | ------------------------------------------- | ---- | ---------------------------------------------- |
-| type     | string                                      | 是   | 设置监听类型，固定取值为'attachOptionsDidChange'。 |
-| callback | Callback\<[AttachOptions](#attachoptions17)> | 是   | 回调函数，返回绑定输入法时的附加选项。       |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息         |
-| -------- | ---------------- |
-| 801      | Capability not supported. |
-
-**示例：**
-
-```ts
-let attachOptionsDidChangeCallback = (attachOptions: inputMethodEngine.AttachOptions) => {
-  console.info(`AttachOptionsDidChangeCallback1: attachOptionsDidChange event triggered`);
-};
-
-try {
-  inputClient.on('attachOptionsDidChange', attachOptionsDidChangeCallback);
-  console.info(`attachOptionsDidChangeCallback subscribed to attachOptionsDidChange`);
-  inputClient.off('attachOptionsDidChange', attachOptionsDidChangeCallback);
-  console.info(`attachOptionsDidChange unsubscribed from attachOptionsDidChange`);
-} catch(err) {
-  console.error(`Failed to operate on attachOptionsDidChange (subscribe/off): ${JSON.stringify(err)}`);
-}
-```
-
-### off('attachOptionsDidChange')<sup>17+</sup>
-
-off(type: 'attachOptionsDidChange', callback?: Callback\<AttachOptions>): void
-
-取消订阅绑定输入法时的附加选项变更事件。使用callback异步回调。
-
-**系统能力：** SystemCapability.MiscServices.InputMethodFramework
-
-**参数：**
-
-| 参数名   | 类型                                        | 必填 | 说明                                                         |
-| -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                      | 是   | 设置监听类型，固定取值为'attachOptionsDidChange'。               |
-| callback | Callback\<[AttachOptions](#attachoptions17)> | 否   | 取消订阅的回调函数。参数不填写时，默认取消订阅type对应的所有回调事件。 |
-
-**示例：**
-
-```ts
-let attachOptionsDidChangeCallback = (attachOptions: inputMethodEngine.AttachOptions) => {
-  console.info(`AttachOptionsDidChangeCallback1: attachOptionsDidChange event triggered`);
-};
-
-try {
-  inputClient.on('attachOptionsDidChange', attachOptionsDidChangeCallback);
-  console.info(`attachOptionsDidChangeCallback subscribed to attachOptionsDidChange`);
-  inputClient.off('attachOptionsDidChange', attachOptionsDidChangeCallback);
-  console.info(`attachOptionsDidChange unsubscribed from attachOptionsDidChange`);
-} catch(err) {
-  console.error(`Failed to operate on attachOptionsDidChange (subscribe/off): ${JSON.stringify(err)}`);
-}
-```
-
 ### EditorAttribute
 
 编辑框属性值。
@@ -4802,16 +4697,6 @@ try {
 | left   | number | 是   | 否   | 键盘区域的左边界到面板区域左边界的距离，单位为px，该参数为整数。 |
 | right  | number | 是   | 否   | 键盘区域的右边界到面板区域右边界的距离，单位为px，该参数为整数。 |
 
-## AttachOptions<sup>17+</sup>
-
-绑定输入法时的附加选项。
-
-**系统能力：** SystemCapability.MiscServices.InputMethodFramework
-
-| 名称   | 类型   | 只读 | 可选 | 说明                                                         |
-| ------ | ------ | ---- | ---- | ---------------------------------------------------------- |
-| requestKeyboardReason    | [RequestKeyboardReason](#requestkeyboardreason17) | 否   | 是   | 请求键盘输入原因。 |
-
 ## WindowInfo<sup>12+</sup>
 
 窗口信息。
@@ -4835,19 +4720,6 @@ try {
 | IMMERSIVE      | 1 | 沉浸模式，由输入法应用确定沉浸模式类型。 |
 | LIGHT_IMMERSIVE  | 2 | 浅色沉浸模式。 |
 | DARK_IMMERSIVE   | 3 | 深色沉浸模式。 |
-
-## RequestKeyboardReason<sup>17+</sup>
-
-枚举，请求键盘输入原因。
-
-**系统能力：** SystemCapability.MiscServices.InputMethodFramework
-
-| 名称         | 值 | 说明               |
-| ------------ | -- | ------------------ |
-| NONE  | 0 | 表示没有特定的原因触发键盘请求。 |
-| MOUSE | 1 | 表示键盘请求是由鼠标操作触发的。 |
-| TOUCH | 2 | 表示键盘请求是由触摸操作触发的。 |
-| OTHER | 20 | 表示键盘请求是由其他原因触发的。 |
 
 ## TextInputClient<sup>(deprecated)</sup>
 
