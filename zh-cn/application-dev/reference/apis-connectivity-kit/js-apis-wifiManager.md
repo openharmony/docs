@@ -1233,8 +1233,6 @@ getLinkedInfoSync(): WifiLinkedInfo;
 
 当macType是1 - 设备MAC地址时，获取 macAddress 还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限（该权限仅系统应用可申请），无该权限时，macAddress 返回随机MAC地址。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **返回值：**
@@ -1292,6 +1290,22 @@ getLinkedInfoSync(): WifiLinkedInfo;
 | wifiStandard<sup>10+</sup> | [WifiStandard](#wifistandard10) | 是 | 否 | 当前连接热点的Wi-Fi标准。 |
 | supportedWifiCategory<sup>12+</sup> | [WifiCategory](#wificategory12) | 是 | 否 | 热点支持的最高Wi-Fi级别。 |
 | isHiLinkNetwork<sup>12+</sup> | boolean | 是 | 否| 热点是否支持hilink，true:支持，&nbsp;false:不支持。 |
+| wifiLinkType<sup>18+</sup> | [WifiLinkType](#wifilinktype18) | 是 | 否|  Wi-Fi7连接类型。  |
+
+
+## WifiLinkType<sup>18+</sup>
+
+枚举，Wi-Fi7连接类型。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| DEFAULT_LINK | 0 | 默认连接类型。 |
+| WIFI7_SINGLE_LINK | 1 | Wi-Fi7单链连接。 |
+| WIFI7_MLSR | 2 | Wi-Fi7 MLSR（multi-link single-radio，多链路多天线）连接。 |
+| WIFI7_EMLSR | 3 | Wi-Fi7 EMLSR（enhanced multi-link single-radio, 增强型多链路单天线）连接。 |
+| WIFI7_STR | 4 | Wi-Fi7 STR（Simultaneous Tx and Rx， 同时发送和接收）连接。 |
 
 ## ConnState<sup>9+</sup>
 
@@ -2381,9 +2395,48 @@ stopDiscoverDevices(): void
 		console.error("failed:" + JSON.stringify(error));
 	}
 ```
+## wifiManager.getMultiLinkedInfo<sup>18+</sup>
 
+getMultiLinkedInfo(): &nbsp;Array&lt;WifiLinkedInfo&gt;
 
+获取MLO（Multi-Link Operation，多链路操作）Wi-Fi连接信息。
 
+**需要权限：** ohos.permission.GET_WIFI_INFO
+
+> **注意：**
+> - 当macType是1（设备MAC地址），获取 macAddress 还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限（该权限仅系统应用可申请），无该权限时，macAddress 返回为空。
+> - 如果应用申请了ohos.permission.GET_WIFI_PEERS_MAC权限（该权限仅系统应用可申请），则返回结果中的bssid为真实mac地址，否则为随机设备地址。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**返回值：**
+
+  | **类型** | **说明** |
+  | -------- | -------- |
+  | &nbsp;Array&lt;[WifiLinkedInfo](#wifilinkedinfo9)&gt; | Wi-Fi连接信息。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[WIFI错误码](errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+| -------- | -------- |
+| 201 | Permission denied. |
+| 801 | Capability not supported. |
+| 2501000  | Operation failed. |
+| 2501001  | Wi-Fi STA disabled. |
+
+**示例：**
+```ts
+import { wifiManager } from '@kit.ConnectivityKit';
+
+  try {
+    let linkedInfo = wifiManager.getMultiLinkedInfo();
+    console.info("linkedInfo:" + JSON.stringify(linkedInfo));
+  }catch(error){
+    console.error("failed:" + JSON.stringify(error));
+  }
+```
 ## WifiP2pGroupInfo<sup>9+</sup>
 
 表示P2P群组相关信息。
