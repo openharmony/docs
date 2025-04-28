@@ -170,8 +170,56 @@ OH_JSVM_RejectDeferred reject
 
 用于设置 Promise 解析或拒绝后的回调，效果等价于调用原生的 `Promise.then()` 或 `Promise.catch()`
 
-cpp 部分代码
-```
+以下为完整的cpp代码。
+```cpp
+#include "napi/native_api.h"
+#include "hilog/log.h"
+#include "ark_runtime/jsvm.h"
+
+#define LOG_DOMAIN 0x3200
+#define LOG_TAG "APP"
+
+static int g_aa = 0;
+
+#define CHECK_RET(theCall)                                                                                             \
+    do {                                                                                                               \
+        JSVM_Status cond = theCall;                                                                                    \
+        if ((cond) != JSVM_OK) {                                                                                       \
+            const JSVM_ExtendedErrorInfo *info;                                                                        \
+            OH_JSVM_GetLastErrorInfo(env, &info);                                                                      \
+            OH_LOG_ERROR(LOG_APP, "jsvm fail file: %{public}s line: %{public}d ret = %{public}d message = %{public}s", \
+                        __FILE__, __LINE__, cond, info != nullptr ? info->errorMessage : "");                         \
+            return -1;                                                                                                 \
+        }                                                                                                              \
+    } while (0)
+
+#define CHECK(theCall)                                                                                                 \
+    do {                                                                                                               \
+        JSVM_Status cond = theCall;                                                                                    \
+        if ((cond) != JSVM_OK) {                                                                                       \
+            OH_LOG_ERROR(LOG_APP, "jsvm fail file: %{public}s line: %{public}d ret = %{public}d", __FILE__, __LINE__,  \
+                        cond);                                                                                        \
+            return -1;                                                                                                 \
+        }                                                                                                              \
+    } while (0)
+
+// 用于调用theCall并检查其返回值是否为JSVM_OK。
+// 如果不是，则调用OH_JSVM_GetLastErrorInfo处理错误并返回retVal。
+#define JSVM_CALL_BASE(env, theCall, retVal)                                                                           \
+    do {                                                                                                               \
+        JSVM_Status cond = theCall;                                                                                    \
+        if (cond != JSVM_OK) {                                                                                         \
+            const JSVM_ExtendedErrorInfo *info;                                                                        \
+            OH_JSVM_GetLastErrorInfo(env, &info);                                                                      \
+            OH_LOG_ERROR(LOG_APP, "jsvm fail file: %{public}s line: %{public}d ret = %{public}d message = %{public}s", \
+                        __FILE__, __LINE__, cond, info != nullptr ? info->errorMessage : "");                         \
+            return retVal;                                                                                             \
+        }                                                                                                              \
+    } while (0)
+
+// JSVM_CALL_BASE的简化版本，返回nullptr
+#define JSVM_CALL(theCall) JSVM_CALL_BASE(env, theCall, nullptr)
+
 static int PromiseRegisterHandler(JSVM_VM vm, JSVM_Env env) {
     const char *defineFunction = R"JS(
         var x1 = 0;
@@ -255,6 +303,69 @@ static void RunDemo(JSVM_VM vm, JSVM_Env env) {
         OH_LOG_INFO(LOG_APP, "Run PromiseRegisterHandler failed");
     }
 }
+
+static int32_t TestJSVM() {
+    JSVM_InitOptions initOptions = {0};
+    JSVM_VM vm;
+    JSVM_Env env = nullptr;
+    JSVM_VMScope vmScope;
+    JSVM_EnvScope envScope;
+    JSVM_HandleScope handleScope;
+    JSVM_Value result;
+    // 初始化JavaScript引擎实例
+    if (g_aa == 0) {
+        g_aa++;
+        CHECK(OH_JSVM_Init(&initOptions));
+    }
+    // 创建JSVM环境
+    CHECK(OH_JSVM_CreateVM(nullptr, &vm));
+    CHECK(OH_JSVM_CreateEnv(vm, 0, descriptor, &env));
+    CHECK(OH_JSVM_OpenVMScope(vm, &vmScope));
+    CHECK_RET(OH_JSVM_OpenEnvScope(env, &envScope));
+    CHECK_RET(OH_JSVM_OpenHandleScope(env, &handleScope));
+
+    // 运行Demo
+    RunDemo(vm, env);
+
+    // 销毁JSVM环境
+    CHECK_RET(OH_JSVM_CloseHandleScope(env, handleScope));
+    CHECK_RET(OH_JSVM_CloseEnvScope(env, envScope));
+    CHECK(OH_JSVM_CloseVMScope(vm, vmScope));
+    CHECK(OH_JSVM_DestroyEnv(env));
+    CHECK(OH_JSVM_DestroyVM(vm));
+    return 0;
+}
+
+static napi_value RunTest(napi_env env, napi_callback_info info)
+{
+    TestJSVM();
+    return nullptr;
+}
+
+// 模块初始化
+EXTERN_C_START
+static napi_value Init(napi_env env, napi_value exports) {
+    // 实现ArkTS接口与C++接口的绑定和映射  
+    napi_property_descriptor desc[] = {
+    {"runTest", nullptr, RunTest, nullptr, nullptr, nullptr, napi_default, nullptr}
+    };
+    // 在exports对象上挂载RunJsVm的Native方法
+    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+    return exports;
+}
+EXTERN_C_END
+
+static napi_module demoModule = {
+    .nm_version = 1,
+    .nm_flags = 0,
+    .nm_filename = nullptr,
+    .nm_register_func = Init,
+    .nm_modname = "entry",
+    .nm_priv = ((void *)0),
+    .reserved = {0},
+};
+
+extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
 ```
 
 预期结果
