@@ -5371,7 +5371,7 @@ int32_t OH_ArkUI_AccessibilityValue_GetMin (ArkUI_AccessibilityValue * value)
 
 **返回：**
 
-基于范围组件的最小值，默认为-1; 若函数参数异常，返回-1。
+基于范围组件的最小值，默认为-1；若函数参数异常，返回-1。
 
 
 ### OH_ArkUI_AccessibilityValue_GetText()
