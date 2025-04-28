@@ -25,7 +25,7 @@ import { GesturePath } from '@kit.AccessibilityKit';
 | 名称           | 类型                                                                              | 可读   | 可写   | 说明     |
 | ------------ |---------------------------------------------------------------------------------| ---- | ---- | ------ |
 | points       | Array&lt;[GesturePoint](js-apis-accessibility-GesturePoint.md#gesturepoint)&gt; | 是    | 是    | 手势触摸点。    |
-| durationTime | number                                                                          | 是    | 是    | 手势总耗时, 单位为毫秒。 |
+| durationTime | number                                                                          | 是    | 是    | 手势总耗时，单位为毫秒。 |
 
 ### constructor<sup>(deprecated)</sup>
 
