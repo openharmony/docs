@@ -1,13 +1,13 @@
 # @ohos.graphics.text (文本模块)
 
-本模块提供一系列用于文本布局和字体管理的编程接口。文本布局相关的接口旨在提供高质量的排版，包括字符到字形的转换、字距调整、换行、对齐、文本测量等。字体管理接口提供字体注册、字体描述符、字体集合管理等功能。
+本模块提供一系列用于文本布局和字体管理的编程接口。文本布局相关的接口旨在提供高质量的排版，包括字符到字形的转换、字距调整、换行、对齐、文本测量等。字体管理接口提供字体注册、字体描述符、字体集管理等功能。
 
 该模块提供以下创建复杂样式的文本段落的常用类：
 
 - [TextStyle](#textstyle)：文本样式，控制文本的字体类型、大小、间距等属性。
 - [FontCollection](#fontcollection)：字体集，控制各种不同的字体。
 - [FontDescriptor](#fontdescriptor14)：字体描述符信息。
-- [ParagraphStyle](#paragraphstyle)：段落样式，控制整个段落的换行策略、换词策略等属性。
+- [ParagraphStyle](#paragraphstyle)：段落样式，控制整个段落的断行策略、断词策略等属性。
 - [ParagraphBuilder](#paragraphbuilder)：段落生成器，控制生成不同的段落对象。
 - [Paragraph](#paragraph)：段落，由ParagraphBuilder类调用[build()](#build)接口构建而成。
 - [LineTypeset](#linetypeset18)：行排版器，由ParagraphBuilder类调用[buildLineTypeset()](#buildlinetypeset18)接口构建而成。
@@ -107,11 +107,11 @@ getSystemFontFullNamesByType(fontType: SystemFontType): Promise&lt;Array&lt;stri
 
 | 类型 | 说明 |
 | - | - |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回相应字体类型的所有字体的fullname。 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回相应字体类型的所有字体的full name。 |
 
 **错误码：**
 
-请参见[通用错误码](../errorcode-universal.md)以获取错误码的详细介绍。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -159,6 +159,7 @@ struct Index {
 getFontDescriptorByFullName(fullName: string, fontType: SystemFontType): Promise&lt;FontDescriptor&gt;
 
 根据字体名称和类型获取字体描述符，使用Promise异步回调。
+
 字体描述符是描述字体特征的数据结构，包含字体外观和属性的详细信息。
 
 **系统能力：** SystemCapability.Graphics.Drawing
@@ -167,7 +168,7 @@ getFontDescriptorByFullName(fullName: string, fontType: SystemFontType): Promise
 
 | 参数名 | 类型 | 必填 | 说明 |
 | - | - | - | - |
-| fullName | string | 是 | 指定的字体名称。对应字体文件的name表中的fullName。可以使用[getSystemFontFullNamesByType](#textgetsystemfontfullnamesbytype14)获取指定类型的所有字体名称。 |
+| fullName | string | 是 | 指定的字体名称。对应字体文件的name表中的full name。可以使用[getSystemFontFullNamesByType](#textgetsystemfontfullnamesbytype14)获取。 |
 | fontType | [SystemFontType](#systemfonttype14) | 是 | 指定的字体类型。 |
 
 **返回值：**
@@ -178,7 +179,7 @@ getFontDescriptorByFullName(fullName: string, fontType: SystemFontType): Promise
 
 **错误码：**
 
-请参见[通用错误码](../errorcode-universal.md)以获取错误码的详细介绍。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -489,7 +490,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 | leading        | number                                               | 是   | 是 | 以自定义行距应用于支柱的行距，浮点数，默认为-1.0。                          |
 | forceHeight    | boolean                                              | 是   | 是 | 是否所有行都将使用支柱的高度，true表示使用，false表示不使用，默认为false。     |
 | enabled        | boolean                                              | 是   | 是 | 是否启用支柱样式，true表示使用，false表示不使用，默认为false。              |
-| heightOverride | boolean                                              | 是   | 是 | 是否覆盖高度，默认为false。                  |
+| heightOverride | boolean                                              | 是   | 是 | 是否覆盖高度，true表示覆盖，false表示不覆盖，默认为false。                  |
 | halfLeading    | boolean                                              | 是   | 是 | true表示将行间距平分至行的顶部与底部，false则不平分，默认为false。           |
 
 ## FontDescriptor<sup>14+</sup>
@@ -615,7 +616,7 @@ loadFont(name: string, path: string | Resource): Promise\<void>
 
 |   参数名 | 类型               | 必填 | 说明                              |
 |   -----  | ------------------ | ---- | --------------------------------------------------------------------------------- |
-|   name   | string             | 是   | 加载成字体后，调用该字体所使用的别名，可填写任意字符串，可使用该别名指定并使用该字体。 |
+|   name   | string             | 是   | 加载字体后，调用该字体所使用的别名，可填写任意字符串，可使用该别名指定并使用该字体。 |
 |   path   | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 是   | 需要加载的字体文件的路径，支持两种格式： "file:// + 字体文件绝对路径" 或 "rawfile/目录or文件名"。 |
 
 **返回值：**
@@ -782,7 +783,7 @@ paragraph.layoutSync(100);
 
 layout(width: number): Promise\<void>
 
-进行排版并计算所有字形位置，使用Promise进行异步处理。
+进行排版并计算所有字形位置，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1179,7 +1180,7 @@ let positionWithAffinity = paragraph.getGlyphPositionAtCoordinate(0, 0);
 
 getWordBoundary(offset: number): Range
 
-返回给定 offset 的字形所在单词的索引区间。
+返回给定offset的字形所在单词的索引区间。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1233,7 +1234,7 @@ getLineHeight(line: number): number
 
 | 参数名 | 类型   | 必填 | 说明      |
 | ----- | ------ | ---- | --------- |
-| line  | number | 是   | 文本行索引，整数，范围为0~getLineCount()返回结果。|
+| line  | number | 是   | 文本行索引，整数，范围为0~getLineCount()-1。|
 
 **返回值：**
 
@@ -1259,7 +1260,7 @@ getLineWidth(line: number): number
 
 | 参数名 | 类型   | 必填 | 说明      |
 | ----- | ------ | ---- | --------- |
-| line  | number | 是   | 文本行索引，整数，范围为0~getLineCount()返回结果。|
+| line  | number | 是   | 文本行索引，整数，范围为0~getLineCount()-1。|
 
 **返回值：**
 
@@ -1617,7 +1618,7 @@ struct Index {
 
 > **说明：**
 >
-> 更新当前文本块的样式 ，直到对应的 [popStyle](#popstyle) 操作被执行，会恢复到上一个文本样式。
+> 更新当前文本块的样式，之后添加文字均采用该样式。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -2035,7 +2036,7 @@ getTextRange(): Range
 
 | 类型             | 说明                                              |
 | ---------------- | ------------------------------------------------ |
-| [Range](#range)  | 该文本行中的文本在整个段落文本中的索引区间。|
+| [Range](#range)  | 该行文本在整个段落文本中的索引区间。|
 
 **示例：**
 
@@ -2264,7 +2265,7 @@ let trailingSpaceWidth = lines[0].getTrailingSpaceWidth();
 
 getStringIndexForPosition(point: common2D.Point): number
 
-获取给定位置在原始字符串中字符索引。
+获取给定位置在原始字符串中的字符索引。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -2341,7 +2342,7 @@ enumerateCaretOffsets(callback: CaretOffsetsCallback): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -| - | - | - |
-| callback | [CaretOffsetsCallback](#caretoffsetscallback18) | 是 | 用户自定义函数。回调方法参数包括文本行中每个字的符偏移量和索引值。 |
+| callback | [CaretOffsetsCallback](#caretoffsetscallback18) | 是 | 用户自定义函数。回调方法参数包括文本行中每个字符的偏移量和索引值。 |
 
 **错误码：**
 
@@ -2619,7 +2620,7 @@ let font = runs[0].getFont();
 
 paint(canvas: drawing.Canvas, x: number, y: number): void
 
-在画布上以 (x, y) 为左上角位置绘制排版单元。
+在画布上以(x, y)为左上角位置绘制排版单元。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
