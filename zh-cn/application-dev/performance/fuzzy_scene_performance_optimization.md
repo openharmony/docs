@@ -92,10 +92,10 @@ struct Index {
 
   // 静态模糊
   async staticBlur() {
-    let context = getContext(this); // 获得当前Ability的Context
-    let resourceMgr = context.resourceManager; // 获取resourceManager对象
-    const fileData = await resourceMgr.getRawFileContent('test.png'); // 获取rawfile目录下的图片
-    let buffer: ArrayBuffer = fileData.buffer.slice(0); // 创建ArrayBuffer实例
+    let context = this.getUIContext().getHostContext(); // 获得当前Ability的Context
+    let resourceMgr = context?.resourceManager; // 获取resourceManager对象
+    const fileData = await resourceMgr?.getRawFileContent('test.png'); // 获取rawfile目录下的图片
+    let buffer: ArrayBuffer | undefined = fileData?.buffer?.slice(0); // 创建ArrayBuffer实例
     this.imgSource = image.createImageSource(buffer); // 创建图片源实例
     // 创建像素的属性
     let opts: image.InitializationOptions = {

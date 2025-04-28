@@ -547,13 +547,13 @@ struct Index {
       Button("普通页面")
         .type(ButtonType.Capsule)
         .onClick(() => {
-          router.pushUrl({ url: 'pages/CommonPage' })
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/CommonPage' })
         })
       // 进入预加载页面
       Button("预加载页面")
         .type(ButtonType.Capsule)
         .onClick(() => {
-          router.pushUrl({ url: 'pages/PreloadedPage' })
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/PreloadedPage' })
         })
     }.height('100%')
     .width('100%')
