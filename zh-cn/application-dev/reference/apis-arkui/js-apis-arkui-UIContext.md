@@ -8319,6 +8319,49 @@ struct NormalEts {
     }
 }
 ```
+### enableDropDisallowedBadge<sup>20+</sup>
+
+enableDropDisallowedBadge(enable: boolean): void
+
+当组件的类型与配置的[allowDrop](../apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#allowdrop)无交集时可显示禁用角标。当目标进行拖拽时，通过该方法检查是否显示拖拽禁止角标。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| enable | boolean | 是   | 当组件的类型与配置的[allowDrop](../apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#allowdrop)无交集时可显示禁用角标，当目标进行拖拽时，通过enableDropDisallowedBadge方法检查是否显示拖拽禁止角标。true表示显示拖拽禁止角标，false表示不显示拖拽禁止角标。默认值为false。 |
+
+**示例：**
+
+该示例通过enableDropDisallowedBadge接口实现了对目标进行拖拽时显示拖拽禁止角标的功能。
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { window, UIContext } from '@kit.ArkUI';
+
+ export default class EntryAbility extends UIAbility {
+   onWindowStageCreate(windowStage: window.WindowStage): void {
+       windowStage.loadContent('pages/Index', (err, data) => {
+         if (err.code) {
+         return;
+       }
+       windowStage.getMainWindow((err, data) => {
+         if (err.code) {
+           return;
+         }
+         let windowClass: window.Window = data;
+         let uiContext: UIContext = windowClass.getUIContext();
+         uiContext.getDragController().enableDropDisallowedBadge(true);
+     });
+   });
+ }
+}
+```
+![UIContext](figures/UIContext.png)
 
 ## OverlayManager<sup>12+</sup>
 
