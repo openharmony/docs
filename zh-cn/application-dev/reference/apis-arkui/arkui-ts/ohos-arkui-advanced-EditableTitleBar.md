@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```
-import { EditableTitleBar } from '@kit.ArkUI'
+import { EditableTitleBar } from '@kit.ArkUI';
 ```
 
 

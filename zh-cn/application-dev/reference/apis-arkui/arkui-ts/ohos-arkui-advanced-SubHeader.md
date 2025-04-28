@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```ts
-import { SubHeader } from '@kit.ArkUI'
+import { SubHeader } from '@kit.ArkUI';
 ```
 
 

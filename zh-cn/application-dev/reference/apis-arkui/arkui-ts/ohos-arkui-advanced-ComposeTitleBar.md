@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```
-import { ComposeTitleBar } from '@kit.ArkUI'
+import { ComposeTitleBar } from '@kit.ArkUI';
 ```
 
 
@@ -62,7 +62,7 @@ ComposeTitleBar({item?: ComposeTitleBarMenuItem, title: ResourceStr, subtitle?: 
 
 该示例实现了简单的标题栏，带有返回箭头的标题栏和带有右侧菜单项目列表的标题栏。
 ```ts
-import { ComposeTitleBar, promptAction, ComposeTitleBarMenuItem } from '@kit.ArkUI'
+import { ComposeTitleBar, promptAction, ComposeTitleBarMenuItem } from '@kit.ArkUI';
 
 @Entry
 @Component
