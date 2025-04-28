@@ -23,6 +23,26 @@
 import { text } from '@kit.ArkGraphics2D';
 ```
 
+## text.setTextHighContrast<sup>20+</sup>
+
+setTextHighContrast(action: TextHighContrast): void
+
+用于设置文本渲染高对比度模式。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型               | 必填 | 说明                              |
+| ----- | ------------------ | ---- | --------------------------------------------------------------------------------- |
+| action | [TextHighContrast](#texthighcontrast20)  | 是   | 文本渲染高对比度模式。                                                              |
+
+**示例：**
+
+```ts
+text.setTextHighContrast(text.TEXT_APP_DISABLE_HIGH_CONTRAST)
+```
+
 ## text.matchFontDescriptors<sup>18+</sup>
 
 matchFontDescriptors(desc: FontDescriptor): Promise&lt;Array&lt;FontDescriptor&gt;&gt;
@@ -216,6 +236,18 @@ struct Index {
   }
 }
 ```
+
+## TextHighContrast<sup>20+</sup>
+
+文本渲染高对比度配置类型枚举。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称                               | 值   | 说明                                            |
+| ---------------------------------- | ---- | ---------------------------------------------- |
+| TEXT_FOLLOW_SYSTEM_HIGH_CONTRAST   | 0    | 跟随系统的文本渲染高对比度配置。                  |
+| TEXT_APP_DISABLE_HIGH_CONTRAST     | 1    | 关闭APP的文本渲染高对比度配置。                   |
+| TEXT_APP_ENABLE_HIGH_CONTRAST      | 2    | 开启APP的文本渲染高对比度配置。                   |
 
 ## TextAlign
 
