@@ -423,7 +423,7 @@ displayArrow(value: ArrowStyle | boolean, isHoverShow?: boolean)
 
 nextMargin(value: Length, ignoreBlank?:boolean)
 
-设置后边距，用于露出后一项的一小部分。仅当Swiper子组件的布局方式为拉伸时生效，主要包括两种场景：1、displayMode属性设置为SwiperDisplayMode.STRETCH；2、displayCount属性设置为number类型。
+设置后边距，用于露出后一项的一小部分，使用效果可以参考[示例1设置导航点交互及翻页动效](#示例1设置导航点交互及翻页动效)。仅当Swiper子组件的布局方式为拉伸时生效，主要包括两种场景：1、displayMode属性设置为SwiperDisplayMode.STRETCH；2、displayCount属性设置为number类型。
 
 当主轴方向为横向布局时，nextMargin/prevMargin中任意一个大于子组件测算的宽度，nextMargin和prevMargin均不显示。
 
@@ -444,7 +444,7 @@ nextMargin(value: Length, ignoreBlank?:boolean)
 
 prevMargin(value: Length, ignoreBlank?:boolean)
 
-设置前边距，用于露出前一项的一小部分。仅当Swiper子组件的布局方式为拉伸时生效，主要包括两种场景：1、displayMode属性设置为SwiperDisplayMode.STRETCH；2、displayCount属性设置为number类型。
+设置前边距，用于露出前一项的一小部分，使用效果可以参考[示例1设置导航点交互及翻页动效](#示例1设置导航点交互及翻页动效)。仅当Swiper子组件的布局方式为拉伸时生效，主要包括两种场景：1、displayMode属性设置为SwiperDisplayMode.STRETCH；2、displayCount属性设置为number类型。
 
 当主轴方向为横向布局时，nextMargin/prevMargin中任意一个大于子组件测算的宽度，nextMargin和prevMargin均不显示。
 
@@ -1685,7 +1685,9 @@ struct SwiperExample {
       .loop(true)
       .indicatorInteractive(true)
       .duration(1000)
-      .itemSpace(0)
+      .itemSpace(5)
+      .prevMargin(35)
+      .nextMargin(35)
       .indicator( // 设置圆点导航点样式
         new DotIndicator()
           .itemWidth(15)
@@ -1723,13 +1725,13 @@ struct SwiperExample {
       })
 
       Row({ space: 12 }) {
-        Button('showNext')
-          .onClick(() => {
-            this.swiperController.showNext()
-          })
         Button('showPrevious')
           .onClick(() => {
             this.swiperController.showPrevious()
+          })
+        Button('showNext')
+          .onClick(() => {
+            this.swiperController.showNext()
           })
       }.margin(5)
       Row({ space: 5 }) {
