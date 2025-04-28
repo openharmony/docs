@@ -176,7 +176,7 @@ Grid() {
 @Entry
 @Component
 struct OfficeService {
-  @State services: Array<string> = ['会议', '投票', '签到', '打印']
+  @State services: Array<string> = ['会议', '投票', '签到', '打印'];
 
   build() {
     Column() {
@@ -232,7 +232,7 @@ Grid() {
 @Entry
 @Component
 struct Shopping {
-  @State services: Array<string> = ['直播', '进口']
+  @State services: Array<string> = ['直播', '进口'];
 
   build() {
     Column({ space: 5 }) {
@@ -263,7 +263,7 @@ Grid组件初始化时，可以绑定一个[Scroller](../reference/apis-arkui/ar
 
 
 ```ts
-private scroller: Scroller = new Scroller()
+private scroller: Scroller = new Scroller();
 ```
 
 在日历页面中，用户在点击“下一页”按钮时，应用响应点击事件，通过指定scrollPage方法的参数next为true，滚动到下一页。
@@ -275,19 +275,19 @@ Column({ space: 5 }) {
   }
   .columnsTemplate('1fr 1fr 1fr 1fr 1fr 1fr 1fr')
 
-  Row({space: 20}) {
+  Row({ space: 20 }) {
     Button('上一页')
       .onClick(() => {
         this.scroller.scrollPage({
           next: false
-        })
+        });
       })
 
     Button('下一页')
       .onClick(() => {
         this.scroller.scrollPage({
           next: true
-        })
+        });
       })
   }
 }
