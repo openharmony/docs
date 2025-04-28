@@ -1748,7 +1748,8 @@ createImageSource(uri: string): ImageSource
 **示例：**
 
 ```ts
-const context: Context = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 const path: string = context.cacheDir + "/test.jpg";
 const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createImageSource(path);
 ```
@@ -1780,7 +1781,8 @@ createImageSource(fd: number): ImageSource
 ```ts
 import { fileIo as fs } from '@kit.CoreFileKit';
 
-const context: Context = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 const path: string = context.cacheDir + "/test.jpg";
 let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
 const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createImageSource(file.fd);
@@ -1894,7 +1896,8 @@ createPixelMap(options?: image.DecodingOptions): Promise\<PixelMap>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const context: Context = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 const path: string = context.cacheDir + "/test.jpg";
 const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createImageSource(path);
 sendableImageSourceApi.createPixelMap().then((pixelMap: sendableImage.PixelMap) => {
@@ -1923,7 +1926,8 @@ release(): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const context: Context = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 const path: string = context.cacheDir + "/test.jpg";
 const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createImageSource(path);
 sendableImageSourceApi.release().then(() => {
