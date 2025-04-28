@@ -3083,7 +3083,6 @@ struct Index {
 
 ```ts
 // xxx.ets
-import { font } from '@kit.ArkUI'
 
 const canvasWidth = 1000
 const canvasHeight = 100
@@ -4402,7 +4401,7 @@ struct Index {
   }
 
   private async getPixmapFromMedia(resource: Resource) {
-    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
       bundleName: resource.bundleName,
       moduleName: resource.moduleName,
       id: resource.id
