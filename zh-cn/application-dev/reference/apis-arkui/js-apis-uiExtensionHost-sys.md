@@ -558,7 +558,7 @@ export default class EntryAbility extends UIExtensionAbility {
   ```ts
   import { UIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 
-  const TAG: string = '[ExampleUIExtensionAbility]'
+  const TAG: string = '[ExampleUIExtensionAbility]';
   export default class ExampleUIExtensionAbility extends UIExtensionAbility {
     onCreate() {
       console.log(TAG, `onCreate`);
