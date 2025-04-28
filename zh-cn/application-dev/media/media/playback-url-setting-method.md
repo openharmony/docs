@@ -83,6 +83,11 @@
 当应用需要通过解析应用沙箱中的的m3u8文件，播放在线流媒体资源时，可以通过[fs.openSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)获取文件句柄，将其拼接成fdUrl，并通过[setMimeType](../../reference/apis-media-kit/js-apis-media.md#setmimetype12)设置MIME类型为APPLICATION_M3U8。
 ```ts
   import { fileIo as fs } from '@kit.CoreFileKit';
+  import { common } from '@kit.AbilityKit';
+  private context: Context | undefined;
+  constructor(context: Context) {
+    this.context = context; // this.getUIContext().getHostContext();
+  }
   // 创建avPlayer实例对象。
   let avPlayer: media.AVPlayer = await media.createAVPlayer();
 
