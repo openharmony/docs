@@ -43,7 +43,7 @@ constructor(durationTime: number);
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| durationTime | number | 是 | 手势总耗时,单位为毫秒。 |
+| durationTime | number | 是 | 手势总耗时，单位为毫秒。 |
 
 **示例：**
 
