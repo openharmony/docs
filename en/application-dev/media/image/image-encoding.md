@@ -1,6 +1,6 @@
 # Using ImagePacker to Encode Images
 
-Image encoding refers to the process of encoding a PixelMap into an archived image in different formats for subsequent processing, such as storage and transmission. Currently, images can be encoded only into the JPEG, WebP, PNG, or HEIF format (depending on the hardware).
+Image encoding refers to the process of encoding a PixelMap into an image in different formats for subsequent processing, such as storage and transmission. Currently, images can be encoded only into the JPEG, WebP, PNG, or HEIF format (depending on the hardware).
 
 ## How to Develop
 
@@ -42,8 +42,8 @@ Read [Image API Reference](../../reference/apis-image-kit/js-apis-image.md#image
 
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
-   imagePackerApi.packing(pixelMap, packOpts).then( (data : ArrayBuffer) => {
-     // data is the file stream obtained after packing. You can write the file and save it to obtain an image.
+   imagePackerApi.packToData(pixelMap, packOpts).then( (data : ArrayBuffer) => {
+     // data is the file stream obtained after encoding. You can write the file and save it to obtain an image.
    }).catch((error : BusinessError) => { 
      console.error('Failed to pack the image. And the error is: ' + error); 
    })
@@ -53,8 +53,8 @@ Read [Image API Reference](../../reference/apis-image-kit/js-apis-image.md#image
 
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
-   imagePackerApi.packing(imageSource, packOpts).then( (data : ArrayBuffer) => {
-       // data is the file stream obtained after packing. You can write the file and save it to obtain an image.
+   imagePackerApi.packToData(imageSource, packOpts).then( (data : ArrayBuffer) => {
+       // data is the file stream obtained after encoding. You can write the file and save it to obtain an image.
    }).catch((error : BusinessError) => { 
      console.error('Failed to pack the image. And the error is: ' + error); 
    })
@@ -73,7 +73,7 @@ During encoding, you can pass in a file path so that the encoded memory data is 
    const path : string = context.cacheDir + "/pixel_map.jpg";
    let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
    imagePackerApi.packToFile(pixelMap, file.fd, packOpts).then(() => {
-       // Pack the image into the file.
+       // Encode the data directly into the file.
    }).catch((error : BusinessError) => { 
      console.error('Failed to pack the image. And the error is: ' + error); 
    }).finally(()=>{
@@ -90,7 +90,7 @@ During encoding, you can pass in a file path so that the encoded memory data is 
    const filePath : string = context.cacheDir + "/image_source.jpg";
    let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
    imagePackerApi.packToFile(imageSource, file.fd, packOpts).then(() => {
-       // Pack the image into the file.
+       // Encode the data directly into the file.
    }).catch((error : BusinessError) => { 
      console.error('Failed to pack the image. And the error is: ' + error); 
    }).finally(()=>{
