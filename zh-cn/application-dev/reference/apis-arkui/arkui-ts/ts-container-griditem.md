@@ -226,7 +226,7 @@ GridItem通过设置合理的ColumnStart、ColumnEnd、RowStart、RowEnd属性�
 @Entry
 @Component
 struct GridItemExample {
-  @State numbers: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"]
+  @State numbers: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"];
 
   build() {
     Column() {
@@ -279,7 +279,7 @@ struct GridItemExample {
 @Entry
 @Component
 struct GridItemExample {
-  @State numbers: String[] = ['0', '1', '2']
+  @State numbers: String[] = ['0', '1', '2'];
 
   build() {
     Column({ space: 5 }) {
