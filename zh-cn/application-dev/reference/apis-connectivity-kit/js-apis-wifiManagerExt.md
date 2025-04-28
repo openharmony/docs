@@ -14,7 +14,7 @@ import { wifiManagerExt } from '@kit.ConnectivityKit';
 
 ## wifiManagerExt.enableHotspot<sup>(deprecated)</sup>
 
-enableHotspot(): void;
+enableHotspot(): void
 
 使能WLAN热点。
 
@@ -49,7 +49,7 @@ enableHotspot(): void;
 
 ## wifiManagerExt.disableHotspot<sup>(deprecated)</sup>
 
-disableHotspot(): void;
+disableHotspot(): void
 
 去使能WLAN热点。
 
