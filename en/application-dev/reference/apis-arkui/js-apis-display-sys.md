@@ -189,44 +189,6 @@ try {
 }
 ```
 
-## display.setFoldDisplayMode<sup>19+</sup>
-setFoldDisplayMode(mode: FoldDisplayMode, reason: string): void
-
-Sets the display mode of the foldable device, and indicate the reason.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Window.SessionManager
-
-**Parameters**
-
-| Name  | Type                                      | Mandatory| Description                                                   |
-| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
-| mode     | [FoldDisplayMode](js-apis-display.md#folddisplaymode10)    | Yes  | Display mode.|
-| reason     | string    | No  | Display mode change reason.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
-
-| ID| Error Message|
-| ------- | ----------------------- |
-| 202     | Permission verification failed. A non-system application calls a system API.|
-| 1400003 | This display manager service works abnormally. |
-
-**Example**
-
-```ts
-import { display } from '@kit.ArkUI';
-
-try {
-  let mode: display.FoldDisplayMode = display.FoldDisplayMode.FOLD_DISPLAY_MODE_MAIN;
-  display.setFoldDisplayMode(mode, 'backSelfie');
-} catch (exception) {
-  console.error('Failed to change the fold display mode. Code: ' + JSON.stringify(exception));
-}
-```
-
 ## display.setFoldStatusLocked<sup>11+</sup>
 setFoldStatusLocked(locked: boolean): void
 
