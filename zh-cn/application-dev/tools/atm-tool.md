@@ -119,15 +119,15 @@ atm dump [-h] [-t [-i <token-id>] [-b <bundle-name>] [-n <process-name>]] [-r [-
 | ----------------------------------------------- | ---------------------------------------------------- | 
 | -h                                     | 帮助信息。                              | 
 | -t                                     | 必选参数，查询系统中所有应用进程信息。                             | 
-| -t&nbsp;-i \<token-id\>                     | 可选参数，通过应用进程的tokenid，查询该应用的基本信息以及对应的权限信息。             | 
-| -t&nbsp;-b \<bundle-name\>                  |  可选参数，通过应用进程的包名bundle-name，查询该应用的基本信息以及对应的权限信息。     | 
-| -t&nbsp;-n \<process-name\>                 |  可选参数，通过应用进程的进程名process-name，查询该应用的基本信息以及对应的权限信息。  |
-| <!--DelRow-->-r                        |  必选参数，查询系统内的所有权限使用记录。                           | 
-| <!--DelRow-->-r&nbsp;-i \<token-id\>        | 可选参数，通过应用进程的tokenid，查询该应用的权限使用记录。        | 
-| <!--DelRow-->-r&nbsp;-p \<permission-name\> | 可选参数，通过权限名，查询该权限的使用记录。                        |
-| -v                                     | 必选参数，查询系统中所有应用进程的权限使用类型。                    | 
-| -v&nbsp;-i \<token-id\>                     | 可选参数，通过应用进程的tokenid，查询该应用的权限使用类型。         | 
-| -v&nbsp;-p \<permission-name\>              | 可选参数，通过权限名，查询该权限的使用类型。                        | 
+| -t&nbsp;-i \<token-id\>                     | 可选参数，通过应用进程的tokenid，查询该应用的基本信息以及对应的[权限信息](../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#grantstatus)。             | 
+| -t&nbsp;-b \<bundle-name\>                  |  可选参数，通过应用进程的包名bundle-name，查询该应用的基本信息以及对应的[权限信息](../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#grantstatus)。     | 
+| -t&nbsp;-n \<process-name\>                 |  可选参数，通过应用进程的进程名process-name，查询该应用的基本信息以及对应的[权限信息](../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#grantstatus)。  |
+| <!--DelRow-->-r                        |  必选参数，查询系统内的所有[权限使用记录](../reference/apis-ability-kit/js-apis-privacyManager-sys.md#permissionusedresponse)。                           | 
+| <!--DelRow-->-r&nbsp;-i \<token-id\>        | 可选参数，通过应用进程的tokenid，查询该应用的[权限使用记录](../reference/apis-ability-kit/js-apis-privacyManager-sys.md#permissionusedresponse)。        | 
+| <!--DelRow-->-r&nbsp;-p \<permission-name\> | 可选参数，通过权限名，查询该权限的[使用记录](../reference/apis-ability-kit/js-apis-privacyManager-sys.md#permissionusedresponse)。                        |
+| -v                                     | 必选参数，查询系统中所有应用进程的[权限使用类型](../reference/apis-ability-kit/js-apis-privacyManager-sys.md#permissionusedtypeinfo12)。                    | 
+| -v&nbsp;-i \<token-id\>                     | 可选参数，通过应用进程的tokenid，查询该应用的[权限使用类型](../reference/apis-ability-kit/js-apis-privacyManager-sys.md#permissionusedtypeinfo12)。         | 
+| -v&nbsp;-p \<permission-name\>              | 可选参数，通过权限名，查询该权限的[使用类型](../reference/apis-ability-kit/js-apis-privacyManager-sys.md#permissionusedtypeinfo12)。                        | 
 
 示例：
 
@@ -140,15 +140,53 @@ atm dump -t
 
 #按tokenid查询权限信息
 atm dump -t -i *********
+# 执行结果
+# {
+#   "tokenID": 672078897,
+#   "processName": "samgr",
+#   "apl": 2,
+#   "permStateList": [
+#     {
+#       "permissionName": "ohos.permission.DISTRIBUTED_DATASYNC",
+#       "grantStatus": 0,
+#       "grantFlag": 4,
+#     }
+#   ]
+# }
 
 #按包名查询权限信息
 atm dump -t -b ohos.telephony.resources
+# 执行结果
+# {
+#   "tokenID": 537280686,
+#   "tokenAttr": 1,
+#   "ver": 1,
+#   "userId": 100,
+#   "bundleName": "ohos.telephony.resources",
+#   "instIndex": 0,
+#   "dlpType": 0,
+#   "isRemote": 0,
+#   "isPermDialogForbidden": 0,
+#   "permStateList": [
+#     {
+#       "permissionName": "ohos.permission.DISTRIBUTED_DATASYNC",
+#       "grantStatus": 0,
+#       "grantFlag": 4,
+#     }
+#   ]
+# }
 
 #按进程名查询权限信息
 atm dump -t -n *********
 
 #查询所有应用的权限使用类型
 atm dump -v
+#执行结果
+# {
+#   "tokenId": 537088946,
+#   "permissionName": ohos.permission.GET_INSTALLED_BUNDLE_LIST,
+#   "usedType": 0,
+# }
 
 #按应用tokenid查询权限使用类型
 atm dump -v -i *********
@@ -164,6 +202,41 @@ atm dump -v -i ********* -p ohos.permission.CAMERA
 ```bash
 #查询系统内的所有权限使用记录
 atm dump -r
+# 执行结果
+# {
+#   "beginTime": 1501837281916,
+#   "endTime": 1501837281916,
+#   "bundleRecords": [
+#     {
+#       "tokenId": 537088946,
+#       "isRemote": 0,
+#       "bundleName": com.ohos.permissionmanager,
+#       "permissionRecords": [
+#         {
+#           "permissionName": "ohos.permission.GET_INSTALLED_BUNDLE_LIST",
+#           "accessCount": "1",
+#           "secAccessCount": "0",
+#           "rejectCount": 0,
+#           "lastAccessTime": 1501837281916,
+#           "lastRejectTime": 0,
+#           "lastAccessDuration": 0,
+#           "accessRecords": [
+#             {
+#               "status": "1",
+#               "lockScreenStatus": "1",
+#               "timestamp": "1501837281916",
+#               "duration": 0,
+#               "count": 1,
+#               "usedType": 0,
+#             },
+#           ]
+#           "rejectRecords": [
+#           ]
+#         },
+#       ]
+#     }
+#   ]
+# }
 
 #按应用tokenid查询权限使用记录
 atm dump -r -i *********
