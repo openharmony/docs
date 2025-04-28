@@ -1,18 +1,22 @@
-# Web菜单相关功能
+# Web组件菜单开发指导
 
-Web组件菜单分为文本选中菜单和上下文菜单。
-文本选中菜单在用户手势长按选中文本后或编辑态长按出现单手柄后出现。菜单项横向排列，系统提供默认的菜单实现。
-上下文菜单在手势长按富文本或鼠标右键点击时出现。菜单项竖向排列，系统不提供默认实现如开发者为实现则不弹出菜单。
-
+Web组件菜单分为文本选中菜单、上下文菜单和自定义菜单。
+用户手势长按选中文本后或编辑态长按出现单手柄时，将显示横向排列的文本选中菜单。系统提供默认的菜单实现。
+用户长按富文本或鼠标右键点击时，将显示竖向排列的上下文菜单。系统不提供默认实现，若开发者未实现，则不弹出菜单。
 
 ## 文本选中菜单
 
-文本选中菜单在用户手势长按选中文本后或编辑态长按出现单手柄后出现。菜单项横向排列，系统提供默认的菜单实现。应用可通过[editmenuoptions](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/ts-basic-components-web.md#editmenuoptions12)或者[selectionmenuoptions](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/ts-basic-components-web.md#selectionmenuoptionsdeprecated)(不建议，该接口将在API20废弃)对文本选中菜单进行自定义操作
+应用可通过[editmenuoptions](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/ts-basic-components-web.md#editmenuoptions12)或者[selectionmenuoptions](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/ts-basic-components-web.md#selectionmenuoptionsdeprecated)(不建议，editmenuoptions接口功能可以完全覆盖selectionmenuoptions，该接口将在API20废弃)对文本选中菜单进行自定义操作。当两个接口同时使用时，selectionmenuoptions接口不生效。
 
 ### 通过editmenuoptions自定义文本选中菜单
 
-**示例：**
-
+#### 规格说明
+应用需要创建一个EditMenuOptions对象，通过Web组件的editMenuOptions方法与Web组件绑定，对象包含onCreateMenu和onMenuItemClick两个方法，onCreateMenu通过处理Array<[TextMenuItem](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-menuitem.md)>数组控制菜单项信息，onMenuItemClick通过传入的TextMenuItem理对应菜单项点击事件。
+onCreateMenu处理菜单项信息，菜单项由Array<[TextMenuItem](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-menuitem.md)>数组控制，通过操作Array<[TextMenuItem](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-menuitem.md)>数组可对显示菜单项进行增减操作。[TextMenuItem](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-menuitem.md)中可定义菜单项名称，图标，ID等内容。
+onMenuItemClick处理菜单项点击事件，当返回false时会执行系统默认逻辑。方法入参为[TextMenuItem](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-text-common.md#textmenuitem12%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)菜单项信息和[TextRange](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-text-common.md#textrange12)选中文本信息。
+本接口在与[selectionmenuoptions](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/ts-basic-components-web.md#selectionmenuoptionsdeprecated)同时使用时，会使selectionmenuoptions接口不生效。
+ 
+#### 代码示例
   ```ts
 // xxx.ets
 import { webview } from '@kit.ArkWeb';
@@ -91,15 +95,20 @@ struct WebComponent {
   </body>
 </html>
   ```
-#### 实现说明
-1. 通过onCreateMenu方法自定义菜单项，通过处理Array<[TextMenuItem](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-menuitem.md)>数组可对显示菜单项进行增减操作，在[TextMenuItem](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-menuitem.md)中可定义菜单项名称，图标等内容。
-2. 通过onMenuItemClick方法对菜单项点击事件进行处理，可通过返回值定义是否系统默认菜单项行为。
-3. 创建EditMenuOptions实例，通过editMenuOptions将菜单与Web组件绑定。
+1. 通过onCreateMenu方法自定义菜单项，通过操作Array<[TextMenuItem](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-menuitem.md)>数组可对显示菜单项进行增减操作，在TextMenuItem中定义菜单项名称、图标等内容。
+2. 通过onMenuItemClick方法处理菜单项点击事件，当返回false时会执行系统默认逻辑。
+3. 创建一个EditMenuOptions对象，通过Web组件的editMenuOptions方法与Web组件绑定。
 
-### 通过selectionmenuoptions自定义文本选中菜单(不推荐，该接口将在API20废弃)
+### 通过selectionmenuoptions自定义文本选中菜单
 
-**示例：**
+#### 规格说明
+1. 从API version 12开始支持，从API version 20开始废弃。建议使用[editMenuOptions](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/ts-basic-components-web.md#editmenuoptions12)替代。
+2. Web组件自定义菜单扩展项接口，允许设置文本内容、图标和回调方法。
+3. 该接口只支持选中纯文本，当选中内容包含图片及其他非文本内容时，action信息中会显示乱码。
+4. 需定义[ExpandedMenuItemOptions](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/ts-basic-components-web.md#expandedmenuitemoptions12)数组作为菜单项，通过Web组件的selectionMenuOptions方法绑定。
+5. 与[editMenuOptions](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/ts-basic-components-web.md#editmenuoptions12)同时使用时，该接口不生效。
 
+#### 代码示例
   ```ts
 // xxx.ets
 import { webview } from '@kit.ArkWeb';
@@ -138,32 +147,15 @@ build() {
 </body>
 </html>
   ```
-#### 实现说明
-1. 定义一个Array<ExpandedMenuItemOptions>数组，通过[ExpandedMenuItemOptions](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/ts-basic-components-web.md#expandedmenuitemoptions12)实现每个菜单项的行为
-2. 通过selectionMenuOptions将menuOptionArray与Web绑定
-
-### 常见问题
-
-#### 如何实现长按文本时菜单隐藏
-```ts
-  onCreateMenu(menuItems: Array<TextMenuItem>): Array<TextMenuItem> {
-    let items = menuItems.filter((menuItem) => {
-      // 过滤用户需要的系统按键
-      return false;
-    });
-    return items;
-  }
-```
-在onCreateMenu方法中把菜单数组置空
-
-#### 通过JS设置选区手柄菜单不显示
-目前Web菜单与手柄绑定，通过JS设置选区时不会显示手柄，导致菜单也不会显示。
+1. 定义一个Array<[ExpandedMenuItemOptions](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/ts-basic-components-web.md#expandedmenuitemoptions12)>数组。通过ExpandedMenuItemOptions实现每个菜单项的行为。
+2. 通过Web组件的[selectionmenuoptions](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/ts-basic-components-web.md#selectionmenuoptionsdeprecated)方法将menuOptionArray与Web组件绑定。
 
 ## 上下文菜单
-上下文菜单在手势长按富文本或鼠标右键点击时出现。菜单项竖向排列，上下文菜单需要开发者通过[Menu](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-menu.md#menu)组件创建一个菜单子窗口与Web绑定，通过菜单弹出时的[onContextMenuShow](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/ts-basic-components-web.md#oncontextmenushow)接口获取到上下文菜单详细信息，包含点击位置的HTML元素信息，点击位置信息等。
 
-**示例：**
-
+### 规格说明
+长按特定元素（例如图片，链接）或鼠标右键，跳出菜单。菜单项竖向排列，上下文菜单需要开发者通过[Menu](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-menu.md#menu)组件创建一个菜单子窗口与Web绑定，通过菜单弹出时的[onContextMenuShow](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/ts-basic-components-web.md#oncontextmenushow)接口获取到上下文菜单详细信息，包含点击位置的HTML元素信息，点击位置信息等。
+ 
+### 代码示例
 ```ts
 // xxx.ets
 import { webview } from '@kit.ArkWeb';
@@ -299,7 +291,133 @@ struct WebComponent {
 </body>
 </html>
 ```
-### 实现说明
 1. 创建一个[Menu](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-menu.md#menu)组件作为弹出的菜单，包含所有菜单项与菜单的行为与样式。
-2. 通过bindPopup将Menu组件与Web绑定，上下文菜单弹出时将弹出创建的Menu组件。
-3. 在OnContextMenuShow回调中获取菜单事件信息，[OnContextMenuShowEvent](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/ts-basic-components-web.md#oncontextmenushowevent12)。其中param为[WebContextMenuParam](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/ts-basic-components-web.md#webcontextmenuparam9)类型包括点击位置对应HTML元素信息和位置信息，result为[WebContextMenuParam](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/ts-basic-components-web.md#webcontextmenuresult9)提供常见的菜单能力。
+2. 使用bindPopup方法将Menu组件与Web组件绑定，当上下文菜单弹出时，将弹出创建的Menu组件。
+3. 在onContextMenuShow回调中获取菜单事件信息，[onContextMenuShowEvent](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/ts-basic-components-web.md#oncontextmenushowevent12)。其中param为[WebContextMenuParam](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/ts-basic-components-web.md#webcontextmenuparam9)类型包括点击位置对应HTML元素信息和位置信息，result为[WebContextMenuResult](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/ts-basic-components-web.md#webcontextmenuresult9)提供常见的菜单能力。
+
+## 自定义菜单
+
+### 规格说明
+自定义菜单允许应用通过[bindselectionmenu](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/ts-basic-components-web.md#bindselectionmenu13)根据事件类型与元素类型弹出自定义菜单，目前支持响应长按图片。
+[bindselectionmenu]入参和说明：
+|  参数名  | 类型  |  必填  |  说明  |
+|  ----  | ----  | ----  | ----  |
+| elementType  | (WebElementType)[https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/ts-basic-components-web.md#webelementtype13%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E] |  是  |  网页元素信息  |
+| content  | (CustomBuilder)[https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-types.md#custombuilder8] |  是  |  菜单弹窗  |
+| responseType  | (WebResponseType)[https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/ts-basic-components-web.md#webresponsetype13%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E] |  是  |  菜单的响应事件类型  |
+| options  | (SelectionMenuOptionsExt)[https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/ts-basic-components-web.md#selectionmenuoptionsext13] |  是  |  自定义菜单扩展项  |
+
+### 代码示例
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+
+interface PreviewBuilderParam {
+  previewImage: Resource | string | undefined;
+  width: number;
+  height: number;
+}
+
+@Builder function PreviewBuilderGlobal($$: PreviewBuilderParam) {
+  Column() {
+    Image($$.previewImage)
+      .objectFit(ImageFit.Fill)
+      .autoResize(true)
+  }.width($$.width).height($$.height)
+}
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  private result: WebContextMenuResult | undefined = undefined;
+  @State previewImage: Resource | string | undefined = undefined;
+  @State previewWidth: number = 0;
+  @State previewHeight: number = 0;
+
+  @Builder
+  MenuBuilder() {
+    Menu() {
+      MenuItem({ content: '复制', })
+        .onClick(() => {
+          this.result?.copy();
+          this.result?.closeContextMenu();
+        })
+      MenuItem({ content: '全选', })
+        .onClick(() => {
+          this.result?.selectAll();
+          this.result?.closeContextMenu();
+        })
+    }
+  }
+  build() {
+    Column() {
+      Web({ src: $rawfile("index.html"), controller: this.controller })
+        .bindSelectionMenu(WebElementType.IMAGE, this.MenuBuilder, WebResponseType.LONG_PRESS,
+          {
+            onAppear: () => {},
+            onDisappear: () => {
+              this.result?.closeContextMenu();
+            },
+            preview: PreviewBuilderGlobal({
+              previewImage: this.previewImage,
+              width: this.previewWidth,
+              height: this.previewHeight
+            }),
+            menuType: MenuType.PREVIEW_MENU
+          })
+        .onContextMenuShow((event) => {
+            if (event) {
+              this.result = event.result;
+              if (event.param.getLinkUrl()) {
+                return false;
+              }
+              this.previewWidth = px2vp(event.param.getPreviewWidth());
+              this.previewHeight = px2vp(event.param.getPreviewHeight());
+              if (event.param.getSourceUrl().indexOf("resource://rawfile/") == 0) {
+                this.previewImage = $rawfile(event.param.getSourceUrl().substr(19));
+              } else {
+                this.previewImage = event.param.getSourceUrl();
+              }
+              return true;
+            }
+            return false;
+          })
+    }
+  }
+}
+```
+```html
+<!--index.html-->
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>测试网页</title>
+  </head>
+  <body>
+    <h1>bindSelectionMenu Demo</h1>
+    <img src="./img.png" >
+  </body>
+</html>
+```
+1. 创建[Menu](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-menu.md#menu)组件作为菜单弹窗
+2. 通过Web组件的[bindselectionmenu](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/ts-basic-components-web.md#bindselectionmenu13)方法绑定MenuBuilder菜单弹窗。
+   将 elementType 设置为 WebElementType.IMAGE，responseType 设置为 WebResponseType.LONG_PRESS。长按图片时弹出菜单。
+   在 options 中定义菜单显示回调 onAppear、菜单消失回调 onDisappear、预览窗口 preview 和菜单类型 menuType。
+
+## 常见问题
+### 如何禁用长按选择时弹出菜单
+```ts
+  onCreateMenu(menuItems: Array<TextMenuItem>): Array<TextMenuItem> {
+    let items = menuItems.filter((menuItem) => {
+      // 过滤用户需要的系统按键
+      return false;
+    });
+    return items;
+  }
+```
+在onCreateMenu方法中将菜单数组置空。
+
+### 长按出现选区时手柄菜单不显示
+Web组件菜单与手柄绑定，当JS设置选区时，不会显示手柄和菜单。
