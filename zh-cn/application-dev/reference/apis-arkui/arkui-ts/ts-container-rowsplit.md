@@ -39,7 +39,7 @@ resizeable(value: boolean)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | boolean | 是 | 分割线是否可拖拽。<br/>默认值：false |
+| value | boolean | 是 | 分割线是否可拖拽。设置为true时表示分割线可拖拽，设置为false时表示分割线不可拖拽。<br/>默认值：false |
 
 >  **说明：**
 >
