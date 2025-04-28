@@ -18622,6 +18622,7 @@ void OH_ArkUI_AccessibilityValue_SetRangeMin(ArkUI_AccessibilityValue* value, in
 **描述：**
 
 用于设置范围组件的无障碍最小值信息。
+
 当范围组件未设置无障碍最小值时，默认为-1。
 
 **起始版本：** 16
@@ -18645,6 +18646,7 @@ int32_t OH_ArkUI_AccessibilityValue_GetRangeMin(ArkUI_AccessibilityValue* value)
 **描述：**
 
 用于获取范围组件的无障碍最小值信息。
+
 若函数参数异常或范围组件未设置最小值信息，返回默认值-1。
 
 **起始版本：** 16
@@ -18669,6 +18671,7 @@ void OH_ArkUI_AccessibilityValue_SetRangeMax(ArkUI_AccessibilityValue* value, in
 **描述：**
 
 用于设置范围组件的无障碍最大值信息。
+
 当范围组件未设置无障碍最大值时，默认为-1。
 
 **起始版本：** 16
@@ -18692,6 +18695,7 @@ int32_t OH_ArkUI_AccessibilityValue_GetRangeMax(ArkUI_AccessibilityValue* value)
 **描述：**
 
 用于获取范围组件的无障碍最大值信息。
+
 若函数参数异常或范围组件未设置最大值信息，返回默认值-1。
 
 **起始版本：** 16
@@ -18716,6 +18720,7 @@ void OH_ArkUI_AccessibilityValue_SetRangeCurrent(ArkUI_AccessibilityValue* value
 **描述：**
 
 用于设置范围组件的无障碍当前值信息。
+
 当范围组件未设置无障碍当前值时，默认为-1。
 
 **起始版本：** 16
@@ -18739,6 +18744,7 @@ int32_t OH_ArkUI_AccessibilityValue_GetRangeCurrent(ArkUI_AccessibilityValue* va
 **描述：**
 
 用于获取范围组件的无障碍当前值信息。
+
 若函数参数异常或范围组件未设置当前值信息，返回默认值-1。
 
 **起始版本：** 16
