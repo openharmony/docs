@@ -63,3 +63,7 @@ ArkTS卡片与JS卡片具备不同的实现原理及特征，在场景能力上�
 ## 约束与限制
 
 - 当前仅支持基于ArkUI开发卡片，不支持跨平台开发。
+
+## 相关实例
+
+- [基于Form Kit实现音乐服务卡片](gttps://gitee.com/harmonyos_samples/MusicCard)
