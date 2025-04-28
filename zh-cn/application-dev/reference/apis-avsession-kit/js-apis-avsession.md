@@ -3545,6 +3545,8 @@ getRecommendedResolutionLevel(decoderType: DecoderType): Promise\<ResolutionLeve
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**参数：** [DecoderType](https://gitee.com/Z_B_y/docs/blob/master/zh-cn/application-dev/reference/apis-avsession-kit/js-apis-avsession.md#decodertype19)
+
 **返回值：**
 
 | 类型                                                        | 说明                                                         |
