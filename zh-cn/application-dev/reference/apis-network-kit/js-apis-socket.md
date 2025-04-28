@@ -162,8 +162,19 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',  // 本端地址
+  port: 1234
+}
+udp.bind(bindAddr, (err: BusinessError) => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
+});
 let netAddress: socket.NetAddress = {
-  address: '192.168.xx.xxx',
+  address: '192.168.xx.xxx',  // 对端地址
   port: 8080
 }
 let sendOptions: socket.UDPSendOptions = {
@@ -217,8 +228,18 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx', // 本端地址
+  port: 8080
+}
+udp.bind(bindAddr).then(() => {
+  console.log('bind success');
+}).catch((err: BusinessError) => {
+  console.log('bind fail');
+  return;
+});
 let netAddress: socket.NetAddress = {
-  address: '192.168.xx.xxx',
+  address: '192.168.xx.xxx', // 对端地址
   port: 8080
 }
 let sendOptions: socket.UDPSendOptions = {
@@ -4332,7 +4353,7 @@ client.off('message');
 
 ### on('connect')<sup>11+</sup>
 
-on(type: 'connect', callback: Callback\<void\>): void;
+on(type: 'connect', callback: Callback\<void\>): void
 
 订阅LocalSocket的连接事件。使用callback方式作为异步方法。
 
@@ -4364,7 +4385,7 @@ client.on('connect', () => {
 
 ### off('connect')<sup>11+</sup>
 
-off(type: 'connect', callback?: Callback\<void\>): void;
+off(type: 'connect', callback?: Callback\<void\>): void
 
 取消订阅LocalSocket的连接事件。使用callback方式作为异步方法。
 
@@ -4400,7 +4421,7 @@ client.off('connect');
 
 ### on('close')<sup>11+</sup>
 
-on(type: 'close', callback: Callback\<void\>): void;
+on(type: 'close', callback: Callback\<void\>): void
 
 订阅LocalSocket的关闭事件。使用callback方式作为异步方法。
 
@@ -4433,7 +4454,7 @@ client.on('close', callback);
 
 ### off('close')<sup>11+</sup>
 
-off(type: 'close', callback?: Callback\<void\>): void;
+off(type: 'close', callback?: Callback\<void\>): void
 
 订阅LocalSocket的关闭事件。使用callback方式作为异步方法。
 
@@ -4501,7 +4522,7 @@ client.on('error', (err: Object) => {
 
 ### off('error')<sup>11+</sup>
 
-off(type: 'error', callback?: ErrorCallback): void;
+off(type: 'error', callback?: ErrorCallback): void
 
 取消订阅LocalSocket连接的error事件。使用callback方式作为异步方法。
 
@@ -5152,7 +5173,7 @@ server.listen(localAddr).then(() => {
 
 ### on('message')<sup>11+</sup>
 
-on(type: 'message', callback: Callback\<LocalSocketMessageInfo\>): void;
+on(type: 'message', callback: Callback\<LocalSocketMessageInfo\>): void
 
 订阅LocalSocketConnection连接的接收消息事件。使用callback方式作为异步方法。
 
@@ -5809,7 +5830,7 @@ tls.setExtraOptions(tcpExtraOptions).then(() => {
 
 ### on('message')<sup>9+</sup>
 
-on(type: 'message', callback: Callback\<SocketMessageInfo\>): void;
+on(type: 'message', callback: Callback\<SocketMessageInfo\>): void
 
 订阅TLSSocket连接的接收消息事件。使用callback方式作为异步方法。
 
@@ -6392,7 +6413,7 @@ import { util } from '@kit.ArkTS';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getCertificate().then((data: socket.X509CertRawData) => {
   const decoder = util.TextDecoder.create();
-  const str = decoder.decodeWithStream(data.data);
+  const str = decoder.decodeToString(data.data);
   console.log("getCertificate: " + str);
 }).catch((err: BusinessError) => {
   console.error("failed" + err);
@@ -6433,7 +6454,7 @@ tls.getRemoteCertificate((err: BusinessError, data: socket.X509CertRawData) => {
     console.log("getRemoteCertificate callback error = " + err);
   } else {
     const decoder = util.TextDecoder.create();
-    const str = decoder.decodeWithStream(data.data);
+    const str = decoder.decodeToString(data.data);
     console.log("getRemoteCertificate callback = " + str);
   }
 });
@@ -6470,7 +6491,7 @@ import { util } from '@kit.ArkTS';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getRemoteCertificate().then((data: socket.X509CertRawData) => {
   const decoder = util.TextDecoder.create();
-  const str = decoder.decodeWithStream(data.data);
+  const str = decoder.decodeToString(data.data);
   console.log("getRemoteCertificate:" + str);
 }).catch((err: BusinessError) => {
   console.error("failed" + err);
@@ -7482,7 +7503,7 @@ tlsServer.getCertificate((err: BusinessError, data: socket.X509CertRawData) => {
     console.log("getCertificate callback error = " + err);
   } else {
     const decoder = util.TextDecoder.create();
-    const str = decoder.decodeWithStream(data.data);
+    const str = decoder.decodeToString(data.data);
     console.log("getCertificate callback: " + str);
   }
 });
@@ -7547,7 +7568,7 @@ tlsServer.listen(tlsConnectOptions).then(() => {
 });
 tlsServer.getCertificate().then((data: socket.X509CertRawData) => {
   const decoder = util.TextDecoder.create();
-  const str = decoder.decodeWithStream(data.data);
+  const str = decoder.decodeToString(data.data);
   console.log("getCertificate: " + str);
 }).catch((err: BusinessError) => {
   console.error("failed" + err);
@@ -8445,7 +8466,7 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
       console.log("getRemoteCertificate callback error: " + err);
     } else {
       const decoder = util.TextDecoder.create();
-      const str = decoder.decodeWithStream(data.data);
+      const str = decoder.decodeToString(data.data);
       console.log("getRemoteCertificate callback: " + str);
     }
   });
@@ -8508,7 +8529,7 @@ tlsServer.listen(tlsConnectOptions).then(() => {
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getRemoteCertificate().then((data: socket.X509CertRawData) => {
     const decoder = util.TextDecoder.create();
-    const str = decoder.decodeWithStream(data.data);
+    const str = decoder.decodeToString(data.data);
     console.log("getRemoteCertificate success: " + str);
   }).catch((err: BusinessError) => {
     console.error("failed" + err);

@@ -205,7 +205,7 @@ static queryAll(): AsyncLockState[]
 
 ```ts
 let states: ArkTSUtils.locks.AsyncLockState[] = ArkTSUtils.locks.AsyncLock.queryAll();
-if (states.length == 0) {
+if (states.length === 0) {
     throw new Error('测试失败：期望至少有1个状态，但得到的是 ' + states.length);
 }
 ```
@@ -214,7 +214,7 @@ if (states.length == 0) {
 
 lockAsync\<T>(callback: AsyncLockCallback\<T>): Promise\<T>
 
-在获取的锁下独占执行操作。该方法首先获取锁，然后调用回调，最后释放锁。回调在调用[lockAsync](#lockasync)的同一线程中以异步方式执行。
+在获取的锁下执行操作。该方法首先获取锁，然后调用回调，最后释放锁。回调在调用[lockAsync](#lockasync)的同一线程中以异步方式执行。
 
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 

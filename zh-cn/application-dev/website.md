@@ -244,6 +244,7 @@
           - [XML解析](arkts-utils/xml-parsing.md)
           - [XML转换](arkts-utils/xml-conversion.md)
         - [Buffer介绍](arkts-utils/buffer.md)
+        - [JSON扩展库](arkts-utils/arkts-json.md)
         - ArkTS容器类库<!--containers-->
           - [容器类库概述](arkts-utils/container-overview.md)
           - [线性容器](arkts-utils/linear-container.md)
@@ -299,6 +300,8 @@
             - [ArkUI数据更新场景](arkts-utils/makeobserved-sendable.md)
             - [C++线程间数据共享场景](arkts-utils/native-interthread-shared.md)
             - [ArkUI瀑布流渲染场景](arkts-utils/taskpool-waterflow.md)
+            - [ArkTS多线程间操作Native对象场景](arkts-utils/napi-coerce-to-native-binding-object.md)
+            - [Worker常驻线程通过TaskPool进行多任务并发处理](arkts-utils/worker-and-taskpool.md)
       - [ArkTS跨语言交互](arkts-utils/arkts-cross-language-interaction.md)
       - ArkTS运行时<!--arkts-runtime-->
         - [ArkTS运行时概述](arkts-utils/arkts-runtime-overview.md)
@@ -1484,6 +1487,7 @@
         - 视频转码<!--media-transcoder-arkts-->
           - [使用AVTranscoder实现视频转码(ArkTS)](media/media/using-avtranscoder-for-transcodering.md)
           - [创建异步线程执行AVTranscoder视频转码(ArkTS)](media/media/avtranscoder-practice.md)
+          - [转码常见问题](media/media/avtranscoder-faq.md)
       - 媒体开发指导(C/C++)<!--media-kit-dev--c-->
         - 播放<!--media-playback-c-->
           - [使用AVPlayer播放音频(C/C++)](media/media/using-ndk-avplayer-for-playback.md)
@@ -1577,6 +1581,7 @@
       - [日程管理](calendarmanager/calendarmanager-event-developer.md)
     - Contacts Kit（联系人服务）<!--contacts-kit-->
       - [Contacts Kit开发概述](contacts/contacts-intro.md)
+    <!--Del-->
     - Location Kit（位置服务）<!--location-kit-->
       - [Location Kit简介](device/location/location-kit-intro.md)
       - [申请位置权限开发指导(ArkTS)](device/location/location-permission-guidelines.md)
@@ -1586,6 +1591,7 @@
       - [基于设备自身定位的地理围栏开发指导(ArkTS)](device/location/geofence-guidelines.md)
       - [基于FenceExtensionAbility的云侧地理围栏开发指导](device/location/fenceExtensionAbility.md)
       - [相关实例](device/location/app-samples.md)
+    <!--DelEnd-->
     - Notification Kit（用户通知服务）<!--notification-kit-->
       - [Notification Kit简介](notification/notification-overview.md)
       - [请求通知授权](notification/notification-enable.md)
@@ -3546,6 +3552,7 @@
             - [os_account.h](reference/apis-basic-services-kit/os__account_8h.md)
             - [os_account_common.h](reference/apis-basic-services-kit/os__account__common_8h.md)
             - [ohprint.h](reference/apis-basic-services-kit/ohprint_8h.md)
+            - [ohscan.h](reference/apis-basic-services-kit/c-apis-scan.md)
             - [time_service.h](reference/apis-basic-services-kit/time__service_8h.md)
           - 结构体<!--basic-services-struct-->
             - [Print_Margin](reference/apis-basic-services-kit/_print___margin.md)

@@ -72,10 +72,10 @@ import bluetooth from '@system.bluetooth';
       console.log('call bluetooth.stopBLEScan success.');
     },
     fail(data, code) {
-      console.log('call bluethooth.stopBLEScan fail, code:' + code + ', data:' + data);
+      console.log('call bluetooth.stopBLEScan fail, code:' + code + ', data:' + data);
     },
     complete() {
-      console.log('call bluethooth.stopBLEScan complete.');
+      console.log('call bluetooth.stopBLEScan complete.');
     }
   });
   ```
@@ -101,7 +101,7 @@ import bluetooth from '@system.bluetooth';
 | -------- | -------- | -------- |
 | devices | Array&lt;BluetoothDevice&gt; | 新搜索到的设备列表。 |
 
-**表5** BluethoothDevice
+**表5** BluetoothDevice
 
 | 参数名 | 类型 | 说明 |
 | -------- | -------- | -------- |

@@ -1,5 +1,5 @@
 # 启动ServiceAbility
-
+<!--deprecated_code_no_check-->
 
 ServiceAbility的启动与其他Ability并无区别，应用开发者可以在PageAbility中通过featureAbility的startAbility接口拉起ServiceAbility，在ServiceAbility中通过particleAbility的startAbility接口拉起ServiceAbility。ServiceAbility的启动规则详见[组件启动规则](component-startup-rules.md)章节。
 
