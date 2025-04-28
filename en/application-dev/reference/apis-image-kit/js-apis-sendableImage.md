@@ -126,8 +126,8 @@ async function Demo() {
       size: { height: 4, width: 6 },
       alphaType: 3
    }
-   let pixelMap: image.PixelMap | undefined = undefined;
-   sendableImage.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
+   let pixelMap: sendableImage.PixelMap | undefined = undefined;
+   sendableImage.createPixelMap(color, opts).then((srcPixelMap: sendableImage.PixelMap) => {
       pixelMap = srcPixelMap;
    })
    if (pixelMap != undefined) {
@@ -238,7 +238,7 @@ async function Demo() {
 
 convertFromPixelMap(pixelMap: image.PixelMap): PixelMap
 
-Creates a **PixelMap** object under **sendableImage** from a **PixelMap** object under **image**. This API returns the result synchronously. The APIs of the **PixelMap** object under **image** cannot be called any more.
+Creates a **PixelMap** object under **sendableImage** from a **PixelMap** object under **image**. This API returns the result synchronously. The APIs of the **PixelMap** object under **image** cannot be called anymore.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -280,7 +280,7 @@ async function Demo() {
 
 convertToPixelMap(pixelMap: PixelMap): image.PixelMap
 
-Creates a **PixelMap** object under **image** from a **PixelMap** object under **sendableImage**. This API returns the result synchronously. The APIs of the **PixelMap** object under **sendableImage** cannot be called any more.
+Creates a **PixelMap** object under **image** from a **PixelMap** object under **sendableImage**. This API returns the result synchronously. The APIs of the **PixelMap** object under **sendableImage** cannot be called anymore.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -332,8 +332,8 @@ Before calling any API in **PixelMap**, you must use [sendableImage.createPixelM
 
 | Name             | Type   | Readable| Writable| Description                      |
 | -----------------| ------- | ---- | ---- | -------------------------- |
-| isEditable        | boolean | Yes  | No  | Whether the pixels of an image are editable.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| isStrideAlignment | boolean | Yes  | No  | Whether the image memory is the DMA memory. In the case of DMA, a 256-byte alignment is carried out, which means that a padding area exists at the end of the line.|
+| isEditable        | boolean | Yes  | No  | Whether the PixelMap is editable. <br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| isStrideAlignment | boolean | Yes  | No  | Whether the PixelMap uses DMA memory. The PixelMap in DMA memory is aligned to 256-byte boundaries, with padding areas at the end of each row.|
 
 ### readPixelsToBuffer
 
@@ -803,7 +803,7 @@ let pixelBytesNumber: number = pixelMap.getPixelBytesNumber();
 
 getDensity():number
 
-Obtains the density of this image.
+Obtains the pixel density of this image.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -813,7 +813,7 @@ Obtains the density of this image.
 
 | Type  | Description           |
 | ------ | --------------- |
-| number | Density of the image.|
+| number | Pixel density.|
 
 **Example**
 
@@ -1907,6 +1907,7 @@ sendableImageSourceApi.createPixelMap().then((pixelMap: sendableImage.PixelMap) 
 release(): Promise\<void>
 
 Releases this **ImageSource** instance. This API uses a promise to return the result.
+
 The thread that runs **release** is insecure.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
@@ -1953,6 +1954,7 @@ This class inherits from [lang.ISendable](../../arkts-utils/arkts-sendable.md#is
 getComponent(componentType: image.ComponentType): Promise\<image.Component>
 
 Obtains the component buffer from the **Image** instance based on the color component type. This API uses a promise to return the result.
+
 The thread that runs **getComponent** is insecure.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
@@ -2180,6 +2182,7 @@ receiver.on('imageArrival', () => {
 release(): Promise\<void>
 
 Releases this **ImageReceiver** instance. This API uses a promise to return the result.
+
 The thread that runs **release** is insecure.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageReceiver

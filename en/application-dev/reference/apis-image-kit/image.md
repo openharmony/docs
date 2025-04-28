@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **Image** module enables access to image APIs.
+The Image module enables access to image APIs.
 
 You can refer to the corresponding development guide and samples based on your development requirements.
 
@@ -390,7 +390,7 @@ Enumerates the error codes returned by the functions.
 | OHOS_IMAGE_RESULT_BAD_PARAMETER | Invalid parameter.| 
 
 
-### anonymous enum [1/3]
+### Image Color Channel Types
 
 ```
 anonymous enum
@@ -3793,7 +3793,7 @@ int32_t OhosImageSourceInfo::density
 
 **Description**
 
-Defines the image density of the image source. It is set in [OH_ImageSource_Create](#oh_imagesource_create).
+Defines the density of the image source. It is set in [OH_ImageSource_Create](#oh_imagesource_create).
 
 **Since**: 10
 

@@ -61,13 +61,12 @@ You can refer to the corresponding development guide and samples based on your d
 | typedef struct [OH_ImageNative](#oh_imagenative) [OH_ImageNative](#oh_imagenative) | Defines the alias for an image object at the native layer. | 
 | typedef struct [OH_ImagePackerNative](#oh_imagepackernative) [OH_ImagePackerNative](#oh_imagepackernative) | Defines a struct for the image packer, which is used to perform operations related to an image packer. | 
 | typedef struct [OH_PackingOptions](#oh_packingoptions) [OH_PackingOptions](#oh_packingoptions) | Defines a struct for image encoding parameters. | 
-| typedef struct [OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) [OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) | Defines a struct for image sequence encoding parameters. | 
 | typedef struct [OH_ImageReceiverNative](#oh_imagereceivernative) [OH_ImageReceiverNative](#oh_imagereceivernative) | Defines the data type name of the image receiver at the native layer. | 
 | typedef struct [OH_ImageReceiverOptions](#oh_imagereceiveroptions) [OH_ImageReceiverOptions](#oh_imagereceiveroptions) | Defines the data type name of the image receiver options. | 
 | typedef void(\* [OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback)) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver) | Defines the callbacks for the image receiver at the native layer. | 
 | typedef struct [OH_ImageSourceNative](#oh_imagesourcenative) [OH_ImageSourceNative](#oh_imagesourcenative) | Defines a struct for the image source, which is used to perform operations related to an image source. | 
 | typedef struct [OH_ImageSource_Info](#oh_imagesource_info) [OH_ImageSource_Info](#oh_imagesource_info) | Defines a struct for the image source information, which is created by calling [OH_ImageSourceInfo_Create](#oh_imagesourceinfo_create).| 
-| typedef struct [OH_DecodingOptions](#oh_decodingoptions) [OH_DecodingOptions](#oh_decodingoptions) | Defines a struct for decoding parameters, which are used in [OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap). | 
+| typedef struct [OH_DecodingOptions](#oh_decodingoptions) [OH_DecodingOptions](#oh_decodingoptions) | Defines a struct for decoding options, which are used in [OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap). | 
 | typedef struct [OH_PictureNative](#oh_picturenative) [OH_PictureNative](#oh_picturenative) | Defines a struct for the picture, which is used to perform operations related to the picture. | 
 | typedef struct [OH_AuxiliaryPictureNative](#oh_auxiliarypicturenative) [OH_AuxiliaryPictureNative](#oh_auxiliarypicturenative) | Defines a struct for the auxiliary picture, which is used to perform operations related to the auxiliary picture. | 
 | typedef struct [OH_AuxiliaryPictureInfo](#oh_auxiliarypictureinfo) [OH_AuxiliaryPictureInfo](#oh_auxiliarypictureinfo) | Defines a struct for the auxiliary picture information, which is used to perform operations related to the auxiliary picture information. | 
@@ -91,8 +90,8 @@ You can refer to the corresponding development guide and samples based on your d
 | [IMAGE_PACKER_DYNAMIC_RANGE](#image_packer_dynamic_range) {<br>IMAGE_PACKER_DYNAMIC_RANGE_AUTO = 0,<br>IMAGE_PACKER_DYNAMIC_RANGE_SDR = 1 } | Enumerates the desired dynamic range for encoding.| 
 | [IMAGE_DYNAMIC_RANGE](#image_dynamic_range) {<br>IMAGE_DYNAMIC_RANGE_AUTO = 0,<br>IMAGE_DYNAMIC_RANGE_SDR = 1,<br>IMAGE_DYNAMIC_RANGE_HDR = 2 } | Enumerates the desired dynamic range for decoding.| 
 | [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) {<br>AUXILIARY_PICTURE_TYPE_GAINMAP = 1, AUXILIARY_PICTURE_TYPE_DEPTH_MAP = 2, AUXILIARY_PICTURE_TYPE_UNREFOCUS_MAP = 3, AUXILIARY_PICTURE_TYPE_LINEAR_MAP = 4,<br>AUXILIARY_PICTURE_TYPE_FRAGMENT_MAP = 5<br>} | Enumerates the auxiliary picture types. | 
-| [PIXELMAP_ALPHA_TYPE](#pixelmap_alpha_type) {<br>PIXELMAP_ALPHA_TYPE_UNKNOWN = 0,<br>PIXELMAP_ALPHA_TYPE_OPAQUE = 1,<br>PIXELMAP_ALPHA_TYPE_PREMULTIPLIED = 2 } | Enumerates the alpha types of a PixelMap.| 
-| [PIXEL_FORMAT](#pixel_format) {<br>PIXEL_FORMAT_UNKNOWN = 0, PIXEL_FORMAT_RGB_565 = 2,<br>PIXEL_FORMAT_RGBA_8888 = 3, PIXEL_FORMAT_BGRA_8888 = 4,<br>PIXEL_FORMAT_RGB_888 = 5, PIXEL_FORMAT_ALPHA_8 = 6,<br>PIXEL_FORMAT_RGBA_F16 = 7, PIXEL_FORMAT_NV21 = 8,<br>PIXEL_FORMAT_NV12 = 9<br>} | Enumerates the image pixel formats.| 
+| [PIXELMAP_ALPHA_TYPE](#pixelmap_alpha_type) {<br>PIXELMAP_ALPHA_TYPE_UNKNOWN = 0,<br>PIXELMAP_ALPHA_TYPE_OPAQUE = 1,<br>PIXELMAP_ALPHA_TYPE_PREMULTIPLIED = 2, <br>PIXELMAP_ALPHA_TYPE_UNPREMULTIPLIED = 3 } | Enumerates the alpha types of a PixelMap.| 
+| [PIXEL_FORMAT](#pixel_format) {<br/>PIXEL_FORMAT_UNKNOWN = 0, PIXEL_FORMAT_RGB_565 = 2,<br/>PIXEL_FORMAT_RGBA_8888 = 3, PIXEL_FORMAT_BGRA_8888 = 4,<br/>PIXEL_FORMAT_RGB_888 = 5, PIXEL_FORMAT_ALPHA_8 = 6,<br/>PIXEL_FORMAT_RGBA_F16 = 7, PIXEL_FORMAT_NV21 = 8,<br/>PIXEL_FORMAT_NV12 = 9, <br/>PIXEL_FORMAT_RGBA_1010102 = 10, <br/>PIXEL_FORMAT_YCBCR_P010 = 11, <br/>PIXEL_FORMAT_YCRCB_P010 = 12<br/>} | Enumerates the image pixel formats. | 
 | [OH_PixelmapNative_AntiAliasingLevel](#oh_pixelmapnative_antialiasinglevel) { <br>OH_PixelmapNative_AntiAliasing_NONE = 0, <br>OH_PixelmapNative_AntiAliasing_LOW = 1, <br>OH_PixelmapNative_AntiAliasing_MEDIUM = 2, <br>OH_PixelmapNative_AntiAliasing_HIGH = 3 <br>} | Enumerates the anti-aliasing levels used for scaling PixelMaps. | 
 | [OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey) { <br>HDR_METADATA_TYPE = 0, <br>HDR_STATIC_METADATA = 1, <br>HDR_DYNAMIC_METADATA = 2, <br>HDR_GAINMAP_METADATA = 3 } | Enumerates the keys of the HDR related metadata information used by the PixelMap. It is used in [OH_PixelmapNative_SetMetadata](#oh_pixelmapnative_setmetadata) and [OH_PixelmapNative_GetMetadata](#oh_pixelmapnative_getmetadata). | 
 | [OH_Pixelmap_HdrMetadataType](#oh_pixelmap_hdrmetadatatype) { <br>HDR_METADATA_TYPE_NONE = 0, <br>HDR_METADATA_TYPE_BASE = 1, <br>HDR_METADATA_TYPE_GAINMAP = 2, <br>HDR_METADATA_TYPE_ALTERNATE = 3 } | Enumerates the HDR metadata types, which are the values of **HDR_METADATA_TYPE**. | 
@@ -123,25 +122,13 @@ You can refer to the corresponding development guide and samples based on your d
 | [Image_ErrorCode](#image_errorcode) [OH_PackingOptions_GetDesiredDynamicRange](#oh_packingoptions_getdesireddynamicrange) ([OH_PackingOptions](#oh_packingoptions) \*options, int32_t \*desiredDynamicRange) | Obtains the desired dynamic range during encoding. | 
 | [Image_ErrorCode](#image_errorcode) [OH_PackingOptions_SetDesiredDynamicRange](#oh_packingoptions_setdesireddynamicrange) ([OH_PackingOptions](#oh_packingoptions) \*options, int32_t desiredDynamicRange) | Sets the desired dynamic range during encoding. | 
 | [Image_ErrorCode](#image_errorcode) [OH_PackingOptions_Release](#oh_packingoptions_release) ([OH_PackingOptions](#oh_packingoptions) \*options) | Releases the pointer to an **OH_PackingOptions** struct. | 
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptionsForSequence_Create](#oh_packingoptionsforsequence_create) ([OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) \*\*options) | Creates the pointer to an **OH_PackingOptionsForSequence** struct. | 
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptionsForSequence_SetFrameCount](#oh_packingoptionsforsequence_setframecount) ([OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) \*options, uint32_t frameCount) | Sets the number of frames for image sequence encoding. | 
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptionsForSequence_GetFrameCount](#oh_packingoptionsforsequence_getframecount) ([OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) \*options, uint32_t \*frameCount) | Obtains the number of frames for image sequence encoding. | 
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptionsForSequence_SetDelayTimeList](#oh_packingoptionsforsequence_setdelaytimelist) ([OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) \*options, int32_t \*delayTimeList, size_t delayTimeListLength) | Sets the delay time array for image sequence encoding. | 
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptionsForSequence_GetDelayTimeList](#oh_packingoptionsforsequence_getdelaytimelist) ([OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) \*options, int32_t \*delayTimeList, size_t delayTimeListLength) | Obtains the delay time array for image sequence encoding. | 
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptionsForSequence_SetDisposalTypes](#oh_packingoptionsforsequence_setdisposaltypes) ([OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) \*options, uint32_t \*disposalTypes, size_t disposalTypesLength) | Sets the disposal type array for image sequence encoding. | 
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptionsForSequence_GetDisposalTypes](#oh_packingoptionsforsequence_getdisposaltypes) ([OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) \*options, uint32_t \*disposalTypes, size_t disposalTypesLength) | Obtains the disposal type array for image sequence encoding. | 
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptionsForSequence_SetLoopCount](#oh_packingoptionsforsequence_setloopcount) ([OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) \*options, uint32_t loopCount) | Sets the number of loops for image sequence encoding. | 
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptionsForSequence_GetLoopCount](#oh_packingoptionsforsequence_getloopcount) ([OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) \*options, uint32_t \*loopCount) | Obtains the number of loops for image sequence encoding. | 
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptionsForSequence_Release](#oh_packingoptionsforsequence_release) ([OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) \*options) | Releases the pointer to an **OH_PackingOptionsForSequence** object. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_Create](#oh_imagepackernative_create) ([OH_ImagePackerNative](#oh_imagepackernative) \*\*imagePacker) | Creates the pointer to an **OH_ImagePackerNative** object. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_PackToDataFromImageSource](#oh_imagepackernative_packtodatafromimagesource) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker, [OH_PackingOptions](#oh_packingoptions) \*options, [OH_ImageSourceNative](#oh_imagesourcenative) \*imageSource, uint8_t \*outData, size_t \*size) | Encodes an image source into data in a given format. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_PackToDataFromPixelmap](#oh_imagepackernative_packtodatafrompixelmap) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker, [OH_PackingOptions](#oh_packingoptions) \*options, [OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, uint8_t \*outData, size_t \*size) | Encodes a PixelMap into data in a given format. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_PackToDataFromPicture](#oh_imagepackernative_packtodatafrompicture) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker, [OH_PackingOptions](#oh_packingoptions) \*options, [OH_PictureNative](#oh_picturenative) \*picture, uint8_t \*outData, size_t \*size) | Encodes a picture into data in a given format. | 
-| [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_PackToDataFromPixelmapSequence](#oh_imagepackernative_packtodatafrompixelmapsequence) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker, [OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) \*options, [OH_ImagePackerNative](#oh_imagepackernative) \*\*pixelmapSequence, size_t sequenceLength, uint8_t \*outData, size_t \*outDataSize) | Encodes a PixelMap sequence into data. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_PackToFileFromImageSource](#oh_imagepackernative_packtofilefromimagesource) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker, [OH_PackingOptions](#oh_packingoptions) \*options, [OH_ImageSourceNative](#oh_imagesourcenative) \*imageSource, int32_t fd) | Encodes an image source into a file. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_PackToFileFromPixelmap](#oh_imagepackernative_packtofilefrompixelmap) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker, [OH_PackingOptions](#oh_packingoptions) \*options, [OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, int32_t fd) | Encodes a PixelMap into a file. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_PackToFileFromPicture](#oh_imagepackernative_packtofilefrompicture) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker, [OH_PackingOptions](#oh_packingoptions) \*options, [OH_PictureNative](#oh_picturenative) \*picture, int32_t fd) | Encodes a picture into a file. | 
-| [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_PackToFileFromPixelmapSequence](#oh_imagepackernative_packtofilefrompixelmapsequence) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker, [OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) \*options, [OH_ImagePackerNative](#oh_imagepackernative) \*\*pixelmapSequence, size_t sequenceLength, int32_t fd) | Encodes a PixelMap sequence into a file. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_Release](#oh_imagepackernative_release) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker) | Releases the pointer to an **OH_ImagePackerNative** object. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverOptions_Create](#oh_imagereceiveroptions_create) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*\*options) | Creates an **OH_ImageReceiverOptions** object at the application layer. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverOptions_GetSize](#oh_imagereceiveroptions_getsize) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*options, [Image_Size](_image___size.md) \*size) | Obtains the [Image_Size](_image___size.md) information of an [OH_ImageReceiverOptions](#oh_imagereceiveroptions) object. | 
@@ -181,9 +168,9 @@ You can refer to the corresponding development guide and samples based on your d
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreateFromFd](#oh_imagesourcenative_createfromfd) (int32_t fd, [OH_ImageSourceNative](#oh_imagesourcenative) \*\*res) | Creates the pointer to an **OH_ImageSourceNative** object based on a file descriptor. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreateFromData](#oh_imagesourcenative_createfromdata) (uint8_t \*data, size_t dataSize, [OH_ImageSourceNative](#oh_imagesourcenative) \*\*res) | Creates the pointer to an **OH_ImageSourceNative** object based on buffer data. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreateFromRawFile](#oh_imagesourcenative_createfromrawfile) (RawFileDescriptor \*rawFile, [OH_ImageSourceNative](#oh_imagesourcenative) \*\*res) | Creates the pointer to an **OH_ImageSourceNative** object by using the raw file descriptor of an image resource file. | 
-| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, [OH_DecodingOptions](#oh_decodingoptions) \*options, [OH_PixelmapNative](#oh_pixelmapnative) \*\*pixelmap) | Creates the pointer to an **OH_PixelmapNative** object based on image decoding parameters. | 
-| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePixelmapList](#oh_imagesourcenative_createpixelmaplist) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, [OH_DecodingOptions](#oh_decodingoptions) \*options, OH_PixelmapNative \*resVecPixMap[], size_t size) | Creates an array of **OH_PixelmapNative** objects based on image decoding parameters. | 
-| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePicture](#oh_imagesourcenative_createpicture) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, OH_DecodingOptionsForPicture \*options, [OH_PictureNative](#oh_picturenative) \*\*picture) | Creates the pointer to an **OH_PictureNative** object based on image decoding parameters. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, [OH_DecodingOptions](#oh_decodingoptions) \*options, [OH_PixelmapNative](#oh_pixelmapnative) \*\*pixelmap) | Creates the pointer to an **OH_PixelmapNative** object based on decoding options. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePixelmapList](#oh_imagesourcenative_createpixelmaplist) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, [OH_DecodingOptions](#oh_decodingoptions) \*options, OH_PixelmapNative \*resVecPixMap[], size_t size) | Creates an array of **OH_PixelmapNative** objects based on decoding options. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePicture](#oh_imagesourcenative_createpicture) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, OH_DecodingOptionsForPicture \*options, [OH_PictureNative](#oh_picturenative) \*\*picture) | Creates the pointer to an **OH_PictureNative** object based on decoding options. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_GetDelayTimeList](#oh_imagesourcenative_getdelaytimelist) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, int32_t \*delayTimeList, size_t size) | Obtains the image delay time list. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_GetImageInfo](#oh_imagesourcenative_getimageinfo) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, int32_t index, [OH_ImageSource_Info](#oh_imagesource_info) \*info) | Obtains the information about an image with a given index. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_GetImageProperty](#oh_imagesourcenative_getimageproperty) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, [Image_String](_image___string.md) \*key, [Image_String](_image___string.md) \*value) | Obtains the value of an image property. | 
@@ -191,8 +178,8 @@ You can refer to the corresponding development guide and samples based on your d
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_GetFrameCount](#oh_imagesourcenative_getframecount) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, uint32_t \*frameCount) | Obtains the number of image frames. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_Release](#oh_imagesourcenative_release) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source) | Releases the pointer to an **OH_ImageSourceNative** object. | 
 | [Image_ErrorCode](#image_errorcode) [OH_DecodingOptionsForPicture_Create](#oh_decodingoptionsforpicture_create) (OH_DecodingOptionsForPicture \*\*options) | Creates the pointer to an **OH_DecodingOptionsForPicture** struct. | 
-| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptionsForPicture_GetDesiredAuxiliaryPictures](#oh_decodingoptionsforpicture_getdesiredauxiliarypictures) (OH_DecodingOptionsForPicture \*options, [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) \*\*desiredAuxiliaryPictures, size_t \*length) | Obtains desired auxiliary pictures in the decoding parameters (auxiliary pictures contained in **picture** expected to be decoded.) | 
-| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptionsForPicture_SetDesiredAuxiliaryPictures](#oh_decodingoptionsforpicture_setdesiredauxiliarypictures) (OH_DecodingOptionsForPicture \*options, [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) \*desiredAuxiliaryPictures, size_t length) | Sets desired auxiliary pictures in the decoding parameters. | 
+| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptionsForPicture_GetDesiredAuxiliaryPictures](#oh_decodingoptionsforpicture_getdesiredauxiliarypictures) (OH_DecodingOptionsForPicture \*options, [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) \*\*desiredAuxiliaryPictures, size_t \*length) | Obtains desired auxiliary pictures in the decoding options (auxiliary pictures contained in **picture** expected to be decoded.) | 
+| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptionsForPicture_SetDesiredAuxiliaryPictures](#oh_decodingoptionsforpicture_setdesiredauxiliarypictures) (OH_DecodingOptionsForPicture \*options, [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) \*desiredAuxiliaryPictures, size_t length) | Sets desired auxiliary pictures in the decoding options. | 
 | [Image_ErrorCode](#image_errorcode) [OH_DecodingOptionsForPicture_Release](#oh_decodingoptionsforpicture_release) (OH_DecodingOptionsForPicture \*options) | Releases the pointer to an **OH_DecodingOptionsForPicture** struct. | 
 | [Image_ErrorCode](#image_errorcode) [OH_PictureNative_CreatePicture](#oh_picturenative_createpicture) (OH_PixelmapNative \*mainPixelmap, [OH_PictureNative](#oh_picturenative) \*\*picture) | Creates the pointer to an **OH_PictureNative** object. | 
 | [Image_ErrorCode](#image_errorcode) [OH_PictureNative_GetMainPixelmap](#oh_picturenative_getmainpixelmap) ([OH_PictureNative](#oh_picturenative) \*picture, OH_PixelmapNative \*\*mainPixelmap) | Obtains the pointer to an **OH_PixelmapNative** object of a main picture. | 
@@ -276,7 +263,7 @@ You can refer to the corresponding development guide and samples based on your d
 | -------- | -------- |
 | static const char \*[MIME_TYPE_BMP](#mime_type_bmp) = "image/bmp" | BMP image format.| 
 | static const char \*[MIME_TYPE_JPEG](#mime_type_jpeg) = "image/jpeg" | JPEG image format.| 
-| static const char \*[MIME_TYPE_HEIC](#mime_type_heic) = "image/heic" | HEIF image format.| 
+| static const char \*[MIME_TYPE_HEIC](#mime_type_heic) = "image/heic" | HEIC image format.| 
 | static const char \*[MIME_TYPE_PNG](#mime_type_png) = "image/png" | PNG image format.| 
 | static const char \*[MIME_TYPE_WEBP](#mime_type_webp) = "image/webp" | WebP image format.| 
 | static const char \*[MIME_TYPE_GIF](#mime_type_gif) = "image/gif" | GIF image format.| 
@@ -394,7 +381,7 @@ You can refer to the corresponding development guide and samples based on your d
 | static const char \*[OHOS_IMAGE_PROPERTY_LENS_SERIAL_NUMBER](#ohos_image_property_lens_serial_number) = "LensSerialNumber" | Serial number of the lens.| 
 | static const char \*[OHOS_IMAGE_PROPERTY_LENS_SPECIFICATION](#ohos_image_property_lens_specification) = "LensSpecification" | Specifications of the lens.| 
 | static const char \*[OHOS_IMAGE_PROPERTY_NEW_SUBFILE_TYPE](#ohos_image_property_new_subfile_type) = "NewSubfileType" | Data type of a subfile, such as a full-resolution image, a thumbnail, or a part of a multi-frame image. The value is a bit mask. The value 0 indicates a full-resolution image, **1** indicates a thumbnail, and **2** indicates a part of a multi-frame image.| 
-| static const char \*[OHOS_IMAGE_PROPERTY_OFFSET_TIME](#ohos_image_property_offset_time) = "OffsetTime" | Time with an offset from UTC when the image was captured, in the format of HH:MM.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_OFFSET_TIME](#ohos_image_property_offset_time) = "OffsetTime" | Time with an offset from UTC when the image was captured, in the format of Â±HH:MM.| 
 | static const char \*[OHOS_IMAGE_PROPERTY_OFFSET_TIME_DIGITIZED](#ohos_image_property_offset_time_digitized) = "OffsetTimeDigitized" | Time with an offset from UTC when the image was digitized. It helps to accurately adjust the timestamp.| 
 | static const char \*[OHOS_IMAGE_PROPERTY_OFFSET_TIME_ORIGINAL](#ohos_image_property_offset_time_original) = "OffsetTimeOriginal" | Time with an offset from UTC when the original image was created. It is critical for time-sensitive applications.| 
 | static const char \*[OHOS_IMAGE_PROPERTY_SOURCE_EXPOSURE_TIMES_OF_COMPOSITE_IMAGE](#ohos_image_property_source_exposure_times_of_composite_image) = "SourceExposureTimesOfCompositeImage" | Exposure time of source images of the composite image.| 
@@ -404,7 +391,7 @@ You can refer to the corresponding development guide and samples based on your d
 | static const char \*[OHOS_IMAGE_PROPERTY_PHOTOGRAPHIC_SENSITIVITY](#ohos_image_property_photographic_sensitivity) = "PhotographicSensitivity" | Sensitivity of the camera or input device when the image was captured.| 
 | static const char \*[OHOS_IMAGE_PROPERTY_BURST_NUMBER](#ohos_image_property_burst_number) = "HwMnoteBurstNumber" | Number of burst shooting times.| 
 | static const char \*[OHOS_IMAGE_PROPERTY_FACE_CONF](#ohos_image_property_face_conf) = "HwMnoteFaceConf" | Face confidence.| 
-| static const char \*[OHOS_IMAGE_PROPERTY_FACE_LEYE_CENTER](#ohos_image_property_face_leye_center) = "HwMnoteFaceLeyeCenter" | Left eye centered. It is used in [OH_ImageSource_GetImageProperty](#oh_imagesourcenative_getimageproperty) and [OH_ImageSource_ModifyImageProperty](#oh_imagesourcenative_modifyimageproperty).| 
+| static const char \*[OHOS_IMAGE_PROPERTY_FACE_LEYE_CENTER](#ohos_image_property_face_leye_center) = "HwMnoteFaceLeyeCenter" | Left eye centered. |
 | static const char \*[OHOS_IMAGE_PROPERTY_FACE_MOUTH_CENTER](#ohos_image_property_face_mouth_center) = "HwMnoteFaceMouthCenter" | Mouth centered.| 
 | static const char \*[OHOS_IMAGE_PROPERTY_FACE_POINTER](#ohos_image_property_face_pointer) = "HwMnoteFacePointer" | Face pointer.| 
 | static const char \*[OHOS_IMAGE_PROPERTY_FACE_RECT](#ohos_image_property_face_rect) = "HwMnoteFaceRect" | Face rectangle.| 
@@ -646,19 +633,6 @@ Defines a struct for image encoding parameters.
 The fields in this struct cannot be directly operated. Instead, they must be manipulated via function calls. For details about the struct content and operation mode, see [OH_PackingOptions Struct](../../media/image/image-structure-c.md#oh_packingoptions-struct).
 
 **Since**: 12
-
-
-### OH_PackingOptionsForSequence
-
-```
-typedef struct OH_PackingOptionsForSequence OH_PackingOptionsForSequence
-```
-
-**Description**
-
-Defines a struct for image sequence encoding parameters.
-
-**Since**: 13
 
 
 ### OH_PictureMetadata
@@ -936,6 +910,9 @@ Enumerates the image pixel formats.
 | PIXEL_FORMAT_RGBA_F16 | RGBA_F16 format.| 
 | PIXEL_FORMAT_NV21 | NV21 format.| 
 | PIXEL_FORMAT_NV12 | NV12 format.|
+| PIXEL_FORMAT_RGBA_1010102 | RGBA_1010102 format.| 
+| PIXEL_FORMAT_YCBCR_P010 | YCBCR_P010 format.| 
+| PIXEL_FORMAT_YCRCB_P010 | YCRCB_P010 format.| 
 
 
 ### OH_Pixelmap_HdrMetadataKey
@@ -1015,6 +992,7 @@ Enumerates the alpha types of a PixelMap.
 | PIXELMAP_ALPHA_TYPE_UNKNOWN | Unknown format.| 
 | PIXELMAP_ALPHA_TYPE_OPAQUE | Opaque format.| 
 | PIXELMAP_ALPHA_TYPE_PREMULTIPLIED | Premultiplied format.| 
+| PIXELMAP_ALPHA_TYPE_UNPREMULTIPLIED | Non-premultiplied format.|
 
 
 ## Function Description
@@ -1670,7 +1648,6 @@ Releases the pointer to an **OH_DecodingOptions** struct.
 Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
 
 
-
 ### OH_DecodingOptions_SetDesiredDynamicRange()
 
 ```
@@ -1846,7 +1823,7 @@ Image_ErrorCode OH_DecodingOptionsForPicture_GetDesiredAuxiliaryPictures(OH_Deco
 
 **Description**
 
-Obtains desired auxiliary pictures in the decoding parameters (auxiliary pictures contained in **picture** expected to be decoded.)
+Obtains desired auxiliary pictures in the decoding options (auxiliary pictures contained in **picture** expected to be decoded.)
 
 **Since**: 13
 
@@ -1894,7 +1871,7 @@ Image_ErrorCode OH_DecodingOptionsForPicture_SetDesiredAuxiliaryPictures(OH_Deco
 
 **Description**
 
-Sets desired auxiliary pictures in the decoding parameters.
+Sets desired auxiliary pictures in the decoding options.
 
 **Since**: 13
 
@@ -2217,34 +2194,6 @@ Encodes a PixelMap into data in a given format.
 Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect; returns **IMAGE_DECODE_FAILED** if image decoding fails; returns **IMAGE_ALLOC_FAILED** if memory allocation fails; returns **IMAGE_TOO_LARGE** if the data or image is too large; returns **IMAGE_UNKNOWN_ERROR** if an unknown error occurs. For details, see [Image_ErrorCode](#image_errorcode).
 
 
-### OH_ImagePackerNative_PackToDataFromPixelmapSequence()
-
-```
-Image_ErrorCode OH_ImagePackerNative_PackToDataFromPixelmapSequence(OH_ImagePackerNative *imagePacker, OH_PackingOptionsForSequence *options, OH_PixelmapNative **pixelmapSequence, size_t sequenceLength, uint8_t *outData, size_t *outDataSize)
-```
-
-**Description**
-
-Encodes a PixelMap sequence into data.
-
-**Since**: 13
-
-**Parameters**
-
-| Name| Description| 
-| -------- | -------- |
-| imagePacker | Pointer to an **OH_ImagePackerNative** object. | 
-| options | Pointer to an [OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) struct. | 
-| pixelmapSequence | Double pointer to the PixelMap sequence to encode. | 
-| sequenceLength | Length of the PixelMap sequence. | 
-| outData | Pointer to the buffer used to store the output data. | 
-| outDataSize | Pointer to the size of the buffer. | 
-
-**Returns**
-
-Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect; returns **IMAGE_DECODE_FAILED** if decoding fails. For details, see [Image_ErrorCode](#image_errorcode).
-
-
 ### OH_ImagePackerNative_PackToFileFromImageSource()
 
 ```
@@ -2321,33 +2270,6 @@ Encodes a PixelMap into a file.
 **Returns**
 
 Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect; returns **IMAGE_DECODE_FAILED** if image decoding fails; returns **IMAGE_UNKNOWN_ERROR** if an unknown error occurs. For details, see [Image_ErrorCode](#image_errorcode).
-
-
-### OH_ImagePackerNative_PackToFileFromPixelmapSequence()
-
-```
-Image_ErrorCode OH_ImagePackerNative_PackToFileFromPixelmapSequence(OH_ImagePackerNative *imagePacker, OH_PackingOptionsForSequence *options, OH_PixelmapNative **pixelmapSequence, size_t sequenceLength, int32_t fd)
-```
-
-**Description**
-
-Encodes a PixelMap sequence into a file.
-
-**Since**: 13
-
-**Parameters**
-
-| Name| Description| 
-| -------- | -------- |
-| imagePacker | Pointer to an **OH_ImagePackerNative** object. | 
-| options | Pointer to an [OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) struct. | 
-| pixelmapSequence | Double pointer to the PixelMap sequence to encode. | 
-| sequenceLength | Length of the PixelMap sequence. | 
-| fd | File descriptor, which is writable. | 
-
-**Returns**
-
-Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect; returns **IMAGE_DECODE_FAILED** if decoding fails. For details, see [Image_ErrorCode](#image_errorcode).
 
 
 ### OH_ImagePackerNative_Release()
@@ -3003,7 +2925,7 @@ Image_ErrorCode OH_ImageSourceNative_CreatePicture(OH_ImageSourceNative *source,
 
 **Description**
 
-Creates the pointer to an **OH_PictureNative** object based on image decoding parameters.
+Creates the pointer to an **OH_PictureNative** object based on decoding options.
 
 **Since**: 13
 
@@ -3012,7 +2934,7 @@ Creates the pointer to an **OH_PictureNative** object based on image decoding pa
 | Name| Description| 
 | -------- | -------- |
 | source | Pointer to an **OH_ImageSourceNative** object. | 
-| options | Pointer to the image decoding parameters. | 
+| options | Pointer to the decoding options. | 
 | picture | Double pointer to the **OH_PictureNative** object created at the C++ local layer. | 
 
 **Returns**
@@ -3028,7 +2950,7 @@ Image_ErrorCode OH_ImageSourceNative_CreatePixelmap(OH_ImageSourceNative *source
 
 **Description**
 
-Creates the pointer to an **OH_PixelmapNative** object based on image decoding parameters.
+Creates the pointer to an **OH_PixelmapNative** object based on decoding options.
 
 **Since**: 12
 
@@ -3037,7 +2959,7 @@ Creates the pointer to an **OH_PixelmapNative** object based on image decoding p
 | Name| Description| 
 | -------- | -------- |
 | source | Pointer to an **OH_ImageSourceNative** object. | 
-| options | Pointer to the image decoding parameters. | 
+| options | Pointer to the decoding options. | 
 | resPixMap | Double pointer to the **OH_PixelmapNative** object created at the C++ local layer. | 
 
 **Returns**
@@ -3053,7 +2975,11 @@ Image_ErrorCode OH_ImageSourceNative_CreatePixelmapList(OH_ImageSourceNative *so
 
 **Description**
 
-Creates an array of **OH_PixelmapNative** objects based on image decoding parameters.
+Creates an array of **OH_PixelmapNative** objects based on decoding options.
+
+> **NOTE**
+>
+> This function decodes all frames at once. If the number of frames is high or the size of individual frames is large, it can lead to significant memory usage. In these cases, you are advised to use the** Image** component for displaying animations. The **Image** component decodes frames one by one, which uses less memory than this function.
 
 **Since**: 12
 
@@ -3062,7 +2988,7 @@ Creates an array of **OH_PixelmapNative** objects based on image decoding parame
 | Name| Description| 
 | -------- | -------- |
 | source | Pointer to an **OH_ImageSourceNative** object. | 
-| options | Pointer to the image decoding parameters. | 
+| options | Pointer to the decoding options. | 
 | resVecPixMap | Pointer to an array of **OH_PixelmapNative** objects created at the C++ local layer. | 
 | size | Size of the array. You can use [OH_ImageSourceNative_GetFrameCount](#oh_imagesourcenative_getframecount) to obtain the size. | 
 
@@ -3162,7 +3088,7 @@ Obtains the value of an image property.
 | Name| Description| 
 | -------- | -------- |
 | source | Pointer to an **OH_ImageSourceNative** object. | 
-| key | Pointer to the property key. For details, see [Image_String](_image___string.md). For details about the value range of **key**, see the definition of **OHOS_IMAGE_PROPERTY_XXX**. The memory must be released after the image source is used. For details, see [OH_ImageSourceNative_Release](#oh_imagesourcenative_release). | 
+| key | Pointer to the property key. For details, see [Image_String](_image___string.md). For details about the value range of **key**, see the definition of **OHOS_IMAGE_PROPERTY_XXX**. The memory must be released after the image source is used. For details, see [OH_ImageSourceNative_Release](#oh_imagesourcenative_release). |
 | value | Pointer to the value obtained. You can pass in a null pointer with the size set to zero. In this case, the system will allocate memory, but you must release the memory after use. | 
 
 **Returns**
@@ -3408,248 +3334,6 @@ Sets the encoding quality.
 Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
 
 
-### OH_PackingOptionsForSequence_Create()
-
-```
-Image_ErrorCode OH_PackingOptionsForSequence_Create(OH_PackingOptionsForSequence **options)
-```
-
-**Description**
-
-Creates the pointer to an **OH_PackingOptionsForSequence** struct.
-
-**Since**: 13
-
-**Parameters**
-
-| Name| Description| 
-| -------- | -------- |
-| options | Double pointer to the **OH_PackingOptionsForSequence** struct created. | 
-
-**Returns**
-
-Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
-
-
-### OH_PackingOptionsForSequence_GetDelayTimeList()
-
-```
-Image_ErrorCode OH_PackingOptionsForSequence_GetDelayTimeList(OH_PackingOptionsForSequence *options, int32_t *delayTimeList, size_t delayTimeListLength)
-```
-
-**Description**
-
-Obtains the delay time array for image sequence encoding.
-
-**Since**: 13
-
-**Parameters**
-
-| Name| Description| 
-| -------- | -------- |
-| options | Pointer to an **OH_PackingOptionsForSequence** struct. | 
-| delayTimeList | Pointer to the delay time array. | 
-| delayTimeListLength | Length of the delay time array. | 
-
-**Returns**
-
-Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
-
-
-### OH_PackingOptionsForSequence_GetDisposalTypes()
-
-```
-Image_ErrorCode OH_PackingOptionsForSequence_GetDisposalTypes(OH_PackingOptionsForSequence *options, uint32_t *disposalTypes, size_t disposalTypesLength)
-```
-
-**Description**
-
-Obtains the disposal type array for image sequence encoding.
-
-**Since**: 13
-
-**Parameters**
-
-| Name| Description| 
-| -------- | -------- |
-| options | Pointer to an **OH_PackingOptionsForSequence** struct. | 
-| disposalTypes | Pointer to the disposal type array. | 
-| disposalTypesLength | Length of the disposal type array. | 
-
-**Returns**
-
-Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
-
-
-### OH_PackingOptionsForSequence_GetFrameCount()
-
-```
-Image_ErrorCode OH_PackingOptionsForSequence_GetFrameCount(OH_PackingOptionsForSequence *options, uint32_t *frameCount)
-```
-
-**Description**
-
-Obtains the number of frames for packing.
-
-**Since**: 13
-
-**Parameters**
-
-| Name| Description| 
-| -------- | -------- |
-| options | Pointer to an **OH_PackingOptionsForSequence** struct. | 
-| frameCount | Pointer to the number of frames. | 
-
-**Returns**
-
-Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
-
-
-### OH_PackingOptionsForSequence_GetLoopCount()
-
-```
-Image_ErrorCode OH_PackingOptionsForSequence_GetLoopCount(OH_PackingOptionsForSequence *options, uint32_t *loopCount)
-```
-
-**Description**
-
-Obtains the number of loops for image sequence encoding.
-
-**Since**: 13
-
-**Parameters**
-
-| Name| Description| 
-| -------- | -------- |
-| options | Pointer to an **OH_PackingOptionsForSequence** struct. | 
-| loopCount | Pointer to the number of loops. | 
-
-**Returns**
-
-Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
-
-
-### OH_PackingOptionsForSequence_Release()
-
-```
-Image_ErrorCode OH_PackingOptionsForSequence_Release(OH_PackingOptionsForSequence *options)
-```
-
-**Description**
-
-Releases the pointer to an **OH_PackingOptionsForSequence** object.
-
-**Since**: 13
-
-**Parameters**
-
-| Name| Description| 
-| -------- | -------- |
-| options | Pointer to an **OH_PackingOptionsForSequence** struct. | 
-
-**Returns**
-
-Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
-
-
-### OH_PackingOptionsForSequence_SetDelayTimeList()
-
-```
-Image_ErrorCode OH_PackingOptionsForSequence_SetDelayTimeList(OH_PackingOptionsForSequence *options, int32_t *delayTimeList, size_t delayTimeListLength)
-```
-
-**Description**
-
-Sets the delay time array of images for encoding.
-
-**Since**: 13
-
-**Parameters**
-
-| Name| Description| 
-| -------- | -------- |
-| options | Pointer to an **OH_PackingOptionsForSequence** struct. | 
-| delayTimeList | Pointer to the delay time array. | 
-| delayTimeListLength | Length of the delay time array. | 
-
-**Returns**
-
-Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
-
-
-### OH_PackingOptionsForSequence_SetDisposalTypes()
-
-```
-Image_ErrorCode OH_PackingOptionsForSequence_SetDisposalTypes(OH_PackingOptionsForSequence *options, uint32_t *disposalTypes, size_t disposalTypesLength)
-```
-
-**Description**
-
-Sets the disposal type array for image sequence encoding.
-
-**Since**: 13
-
-**Parameters**
-
-| Name| Description| 
-| -------- | -------- |
-| options | Pointer to an **OH_PackingOptionsForSequence** struct. | 
-| disposalTypes | Pointer to the disposal type array. | 
-| disposalTypesLength | Length of the disposal type array. | 
-
-**Returns**
-
-Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
-
-
-### OH_PackingOptionsForSequence_SetFrameCount()
-
-```
-mage_ErrorCode OH_PackingOptionsForSequence_SetFrameCount(OH_PackingOptionsForSequence *options, uint32_t frameCount)
-```
-
-**Description**
-
-Sets the number of frames for image sequence encoding.
-
-**Since**: 13
-
-**Parameters**
-
-| Name| Description| 
-| -------- | -------- |
-| options | Pointer to an **OH_PackingOptionsForSequence** struct. | 
-| frameCount | Number of frames. | 
-
-**Returns**
-
-Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
-
-
-### OH_PackingOptionsForSequence_SetLoopCount()
-
-```
-Image_ErrorCode OH_PackingOptionsForSequence_SetLoopCount(OH_PackingOptionsForSequence *options, uint32_t loopCount)
-```
-
-**Description**
-
-Sets the number of loops for image sequence encoding.
-
-**Since**: 13
-
-**Parameters**
-
-| Name| Description| 
-| -------- | -------- |
-| options | Pointer to an **OH_PackingOptionsForSequence** struct. | 
-| loopCount | Number of loops. | 
-
-**Returns**
-
-Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
-
-
 ### OH_PictureMetadata_Clone()
 
 ```
@@ -3672,7 +3356,6 @@ Clones metadata.
 **Returns**
 
 Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect; returns **IMAGE_ALLOC_FAILED** if the memory allocation fails; returns **IMAGE_COPY_FAILED** if the memory copy fails. For details, see [Image_ErrorCode](#image_errorcode).
-
 
 ### OH_PictureMetadata_Create()
 
@@ -4395,7 +4078,6 @@ Sets the alpha type.
 
 Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
 
-
 ### OH_PixelmapInitializationOptions_SetHeight()
 
 ```
@@ -4692,7 +4374,6 @@ Flips a PixelMap based on a given angle.
 Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
 
 
-
 ### OH_PixelmapNative_GetArgbPixels()
 
 ```
@@ -4715,7 +4396,7 @@ Reads data in ARGB format from a PixelMap.
 
 **Returns**
 
-Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect; returns **IMAGE_UNSUPPORTED_CONVERSION** if the PixelMap format does not support ARGB data reading; returns **IMAGE_ALLOC_FAILED** if the memory allocation fails; returns **IMAGE_COPY_FAILED** if the memory data fails to be copied, read, or operated. For details, see [Image_ErrorCode](#image_errorcode). For details, see [Image_ErrorCode](#image_errorcode).
+Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect; returns **IMAGE_UNSUPPORTED_CONVERSION** if the PixelMap format does not support ARGB data reading; returns **IMAGE_ALLOC_FAILED** if the memory allocation fails; returns **IMAGE_COPY_FAILED** if the memory data fails to be copied, read, or operated. For details, see [Image_ErrorCode](#image_errorcode).
 
 
 ### OH_PixelmapNative_GetColorSpaceNative()
@@ -5146,7 +4827,7 @@ static const char* MIME_TYPE_HEIC = "image/heic"
 
 **Description**
 
-HEIF image format.
+HEIC image format.
 
 **Since**: 12
 
@@ -6420,7 +6101,7 @@ static const char* OHOS_IMAGE_PROPERTY_OFFSET_TIME = "OffsetTime"
 
 **Description**
 
-Time with an offset from UTC when the image was captured, in the format of HH:MM.
+Time with an offset from UTC when the image was captured, in the format of ¡ÀHH:MM.
 
 **Since**: 12
 
