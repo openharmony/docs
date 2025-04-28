@@ -291,7 +291,7 @@ connectToDevice(config: WifiDeviceConfig): void
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.SET_WIFI_CONFIG(仅系统应用可申请) 和 ohos.permission.MANAGE_WIFI_CONNECTION，仅系统应用可用。
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.SET_WIFI_CONFIG 和 ohos.permission.MANAGE_WIFI_CONNECTION，以上权限仅系统应用可申请。
 
 **系统能力：**
   SystemCapability.Communication.WiFi.STA
