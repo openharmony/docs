@@ -376,7 +376,7 @@ client.on('close', () => {
 
 // 传入指定的本地套接字路径，连接服务端。
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let sandboxPath: string = context.fileDir + '/testSocket';
+let sandboxPath: string = context.filesDir + '/testSocket';
 let localAddress : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -441,7 +441,7 @@ import { common } from '@kit.AbilityKit';
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 // 创建并绑定本地套接字文件testSocket，进行监听
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let sandboxPath: string = context.fileDir + '/testSocket';
+let sandboxPath: string = context.filesDir + '/testSocket';
 let listenAddr: socket.LocalAddress = {
   address: sandboxPath
 }
