@@ -9531,7 +9531,7 @@ export default class EntryAbility extends UIAbility {
 
 setSubWindowZLevel(zLevel: number): Promise&lt;void&gt;
 
-设置当前子窗口层级级别，设置了模态属性的子窗不支持。
+设置当前子窗口层级级别，设置了模态属性的子窗不支持。使用Promise异步回调。
 
 通过该接口改变子窗口的显示层级时，不会发生焦点切换。推荐使用[shiftAppWindowFocus()](#windowshiftappwindowfocus11)进行焦点切换。
 
