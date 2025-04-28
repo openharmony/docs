@@ -17,7 +17,7 @@
 ## 导入模块
 
 ```ts
-import { SubHeader } from '@kit.ArkUI'
+import { SubHeader } from '@kit.ArkUI';
 ```
 
 
@@ -308,7 +308,7 @@ import {
   SubHeaderV2OperationItem,
   Prompt,
   TextModifier
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -367,7 +367,7 @@ import {
   SubHeaderV2OperationItem,
   Prompt,
   TextModifier
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -418,7 +418,7 @@ import {
   SubHeaderV2Title,
   SubHeaderV2Select,
   Prompt
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -495,7 +495,7 @@ import {
   SubHeaderV2Title,
   Prompt,
   SymbolGlyphModifier
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -539,7 +539,7 @@ import {
   SubHeaderV2Select,
   Prompt,
   SymbolGlyphModifier
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -622,7 +622,7 @@ import {
   SubHeaderV2OperationItem,
   SubHeaderV2Title,
   Prompt
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -680,7 +680,7 @@ import {
   SubHeaderV2Title,
   Prompt,
   TextModifier
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -731,7 +731,7 @@ import {
   SubHeaderV2IconType,
   SubHeaderV2Select,
   Prompt
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -827,7 +827,7 @@ import {
   SubHeaderV2OperationItem,
   Prompt,
   TextModifier
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
