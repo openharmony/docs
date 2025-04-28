@@ -594,13 +594,12 @@ export default class EntryAbility extends UIExtensionAbility {
   import { BusinessError } from '@kit.BasicServicesKit';
   import { uiExtensionHost, window } from '@kit.ArkUI';
 
-  let storage = new LocalStorage();
-
-  @Entry(storage)
+  @Entry()
   @Component
   struct Extension {
     @State message: string = 'UIExtensionAbility Index';
-    private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
+    private storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
+    private session: UIExtensionContentSession | undefined = this.storage?.get<UIExtensionContentSession>('session');
     private extensionWindow: uiExtensionHost.UIExtensionHostWindowProxy | undefined = this.session?.getUIExtensionHostWindowProxy();
     private subWindow: window.Window | undefined = undefined;
 
@@ -656,7 +655,7 @@ export default class EntryAbility extends UIExtensionAbility {
           this.extensionWindow?.createSubWindowWithOptions('subWindowForHost', subWindowOpts)
             .then((subWindow: window.Window) => {
               this.subWindow = subWindow;
-              this.subWindow.loadContent('pages/Index', storage, (err, data) =>{
+              this.subWindow.loadContent('pages/Index', this.storage, (err, data) =>{
                 if (err && err.code != 0) {
                   return;
                 }
