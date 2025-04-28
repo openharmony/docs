@@ -107,7 +107,7 @@ getSystemFontFullNamesByType(fontType: SystemFontType): Promise&lt;Array&lt;stri
 
 | 类型 | 说明 |
 | - | - |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回相应字体类型的所有字体的full name。 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回相应字体类型的所有字体的fullName。 |
 
 **错误码：**
 
@@ -168,7 +168,7 @@ getFontDescriptorByFullName(fullName: string, fontType: SystemFontType): Promise
 
 | 参数名 | 类型 | 必填 | 说明 |
 | - | - | - | - |
-| fullName | string | 是 | 指定的字体名称。对应字体文件的name表中的full name。可以使用[getSystemFontFullNamesByType](#textgetsystemfontfullnamesbytype14)获取。 |
+| fullName | string | 是 | 指定的字体名称。对应字体文件的name表中的fullName。可以使用[getSystemFontFullNamesByType](#textgetsystemfontfullnamesbytype14)获取。 |
 | fontType | [SystemFontType](#systemfonttype14) | 是 | 指定的字体类型。 |
 
 **返回值：**
@@ -392,8 +392,8 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 | 名称   | 值 | 说明      |
 | ------ | - | --------- |
-| START  | 0 | 开头省略号，只在设置maxline为1时生效。|
-| MIDDLE | 1 | 中间省略号，只在设置maxline为1时生效。|
+| START  | 0 | 开头省略号，只在[ParagraphStyle](#paragraphstyle)中设置maxLines为1时生效。|
+| MIDDLE | 1 | 中间省略号，只在[ParagraphStyle](#paragraphstyle)中设置maxLines为1时生效。|
 | END    | 2 | 末尾省略号。|
 
 ## TextShadow
@@ -465,7 +465,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 | heightOnly    | boolean                                              | 是 | 是 | true表示根据字体大小和heightScale设置文本框的高度，false表示根据行高和行距，默认为false。|
 | halfLeading   | boolean                                              | 是 | 是 | true表示将行间距平分至行的顶部与底部，false则不平分，默认为false。|
 | ellipsis      | string                                               | 是 | 是 | 省略号文本，表示省略号生效后使用该字段值替换省略号部分。       |
-| ellipsisMode  | [EllipsisMode](#ellipsismode)                        | 是 | 是 | 省略号类型，默认为END，行尾省略号。其中开头省略号和中间省略号只在设置maxline为1时生效。                       |
+| ellipsisMode  | [EllipsisMode](#ellipsismode)                        | 是 | 是 | 省略号类型，默认为END，行尾省略号。                       |
 | locale        | string                                               | 是 | 是 | 语言类型，如字段为'en'代表英文，'zh-Hans'代表简体中文，'zh-Hant'代表繁体中文。具体请参照ISO 639-1规范，默认为空字符串。|
 | baselineShift | number                                               | 是 | 是 | 文本下划线的偏移距离，浮点数，默认为0.0px。                 |
 | fontFeatures  | Array\<[FontFeature](#fontfeature)>                  | 是 | 是 | 文本字体特征数组。|
@@ -501,13 +501,13 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | - | - | -  | - | - |
-| path | string | 否 | 是 | 字体绝对路径，可取任意字符串，禁用“:?*"<>|”等符号，默认为空字符串。 |
+| path | string | 否 | 是 | 字体绝对路径，可取任意字符串，跟随实际系统路径限制规则，默认为空字符串。 |
 | postScriptName | string | 否 | 是 | 字体唯一标识名称，可取任意字符串，默认为空字符串。 |
 | fullName | string | 否 | 是 | 字体名称，可取任意字符串，默认为空字符串。 |
 | fontFamily | string | 否 | 是 | 字体家族，可取任意字符串，默认为空字符串。 |
 | fontSubfamily | string | 否 | 是 | 子字体家族，可取任意字符串，默认为空字符串。 |
 | weight | [FontWeight](#fontweight) | 否 | 是 | 字体字重，默认值为0。 |
-| width | number | 否 | 是 | 字体宽度，取值范围1-9，默认值为0。 |
+| width | number | 否 | 是 | 字体宽度，取值范围1-9整数，默认值为0。 |
 | italic | number | 否 | 是 | 是否是斜体字体，0表示非斜体，1表示斜体，默认值为0。 |
 | monoSpace | boolean | 否 | 是 | 是否是等宽字体，true表示等宽，false表示非等宽，默认值为false。 |
 | symbolic | boolean | 否 | 是 | 是否支持符号，true表示支持，false表示不支持，默认值为false。 |
@@ -2068,7 +2068,7 @@ let runs = lines[0].getGlyphRuns();
 
 paint(canvas: drawing.Canvas, x: number, y: number): void
 
-在画布上绘制文本行，(x, y) 为左上角位置。
+在画布上以坐标点(x, y)为左上角位置绘制该文本行。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
