@@ -49,7 +49,7 @@ matchFontDescriptors(desc: FontDescriptor): Promise&lt;Array&lt;FontDescriptor&g
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
 
 **示例：**
 
@@ -629,7 +629,7 @@ loadFont(name: string, path: string | Resource): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -803,7 +803,7 @@ layout(width: number): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
 
 **示例：**
 
@@ -1419,7 +1419,7 @@ getLineBreak(startIndex: number, width: number): number
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3. Parameter verification failed. |
 
 **示例：**
 
@@ -1456,7 +1456,7 @@ createLine(startIndex: number, count: number): TextLine
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3. Parameter verification failed. |
 
 **示例：**
 
@@ -2135,14 +2135,6 @@ createTruncatedLine(width: number, ellipsisMode: EllipsisMode, ellipsis: string)
 | ------------ | --------------------------- |
 | [TextLine](#textline)  | 截断的文本行对象。|
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
-
 **示例：**
 
 <!--code_no_check-->
@@ -2279,14 +2271,6 @@ getStringIndexForPosition(point: common2D.Point): number
 | ------------ | --------------------------- |
 | number | 给定位置在文本行中对应的字符串索引，整数。|
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
-
 **示例：**
 
 ```ts
@@ -2314,14 +2298,6 @@ getOffsetForStringIndex(index: number): number
 | ------------ | --------------------------- |
 | number | 给定字符串索引处的偏移量，浮点数。|
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
-
 **示例：**
 
 ```ts
@@ -2341,14 +2317,6 @@ enumerateCaretOffsets(callback: CaretOffsetsCallback): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -| - | - | - |
 | callback | [CaretOffsetsCallback](#caretoffsetscallback18) | 是 | 用户自定义函数。将文本行中枚举的每个字符偏移量、索引值作为参数的回调方法。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
 **示例：**
 
@@ -2380,14 +2348,6 @@ getAlignmentOffset(alignmentFactor: number, alignmentWidth: number): number
 | 类型         | 说明                         |
 | ------------ | --------------------------- |
 | number | 计算得到的对齐所需偏移量，浮点数。|
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
 **示例：**
 
@@ -2461,14 +2421,6 @@ getGlyphs(range: Range): Array\<number>
 | --------------- | -------------------------------- |
 | Array\<number>  | 该渲染单元中每个字符对应的字形序号。|
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types. |
-
 **示例：**
 
 <!--code_no_check-->
@@ -2536,14 +2488,6 @@ getPositions(range: Range): Array<common2D.Point>
 | 类型                   | 说明                                   |
 | ---------------------- | ------------------------------------- |
 | Array<[common2D.Point](js-apis-graphics-common2D.md#point12)>  | 该渲染单元中每个字形相对于每行的字形位置。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types. |
 
 **示例：**
 
@@ -2707,14 +2651,6 @@ getStringIndices(range?: Range): Array\<number>
 | 类型                   | 说明           |
 | ---------------------- | -------------- |
 | Array\<number>  | 该渲染单元中每个字符的索引。|
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types. |
 
 **示例：**
 
