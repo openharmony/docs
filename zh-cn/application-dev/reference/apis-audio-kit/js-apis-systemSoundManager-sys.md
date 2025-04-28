@@ -553,7 +553,7 @@ let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSo
 
 setSystemRingtoneUri(context: Context, uri: string, type: RingtoneType, callback: AsyncCallback&lt;void&gt;): void
 
-设置系统铃声uri，使用callback方式异步返回结果。
+设置系统铃声uri。使用callback异步回调。
 
 > **说明：**
 > 从 API version 10 开始支持，从 API version 11 开始废弃，建议使用[setRingtoneUri](#setringtoneuri11)替代。
@@ -569,7 +569,7 @@ setSystemRingtoneUri(context: Context, uri: string, type: RingtoneType, callback
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md)   | 是   | 当前应用的上下文。           |
 | uri      | string                                   | 是   | 被设置的系统铃声的uri，资源支持可参考[media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9)。 |
 | type     | [RingtoneType](#ringtonetype)            | 是   | 被设置的系统铃声的类型。     |
-| callback | AsyncCallback&lt;void&gt;                | 是   | 回调返回设置成功或失败。     |
+| callback | AsyncCallback&lt;void&gt;                | 是   | 回调函数。当设置系统铃声uri成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -596,7 +596,7 @@ systemSoundManagerInstance.setSystemRingtoneUri(context, uri, type, (err: Busine
 
 setSystemRingtoneUri(context: Context, uri: string, type: RingtoneType): Promise&lt;void&gt;
 
-设置系统铃声uri，使用Promise方式异步返回结果。
+设置系统铃声uri。使用Promise异步回调。
 
 > **说明：**
 > 从 API version 10 开始支持，从 API version 11 开始废弃，建议使用[setRingtoneUri](#setringtoneuri11)替代。
@@ -617,7 +617,7 @@ setSystemRingtoneUri(context: Context, uri: string, type: RingtoneType): Promise
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise回调返回设置成功或失败。   |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -642,7 +642,7 @@ systemSoundManagerInstance.setSystemRingtoneUri(context, uri, type).then(() => {
 
 getSystemRingtoneUri(context: Context, type: RingtoneType, callback: AsyncCallback&lt;string&gt;): void
 
-获取系统铃声uri，使用callback方式异步返回结果。
+获取系统铃声uri。使用callback异步回调。
 
 > **说明：**
 > 从 API version 10 开始支持，从 API version 11 开始废弃，建议使用[getRingtoneUri](#getringtoneuri11)替代。
@@ -657,7 +657,7 @@ getSystemRingtoneUri(context: Context, type: RingtoneType, callback: AsyncCallba
 | -------- |-----------------------------------------------------------------------| ---- | ------------------------ |
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md)   | 是   | 当前应用的上下文。         |
 | type     | [RingtoneType](#ringtonetype)                                         | 是   | 待获取的系统铃声的类型。    |
-| callback | AsyncCallback&lt;string&gt;                                           | 是   | 回调返回获取的系统铃声uri。 |
+| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。当获取系统铃声uri成功，err为undefined，data为获取到的系统铃声uri；否则为错误对象。 |
 
 **示例：**
 
@@ -683,7 +683,7 @@ systemSoundManagerInstance.getSystemRingtoneUri(context, type, (err: BusinessErr
 
 getSystemRingtoneUri(context: Context, type: RingtoneType): Promise&lt;string&gt;
 
-获取系统铃声uri，使用Promise方式异步返回结果。
+获取系统铃声uri。使用Promise异步回调。
 
 > **说明：**
 > 从 API version 10 开始支持，从 API version 11 开始废弃，建议使用[getRingtoneUri](#getringtoneuri11)替代。
@@ -703,7 +703,7 @@ getSystemRingtoneUri(context: Context, type: RingtoneType): Promise&lt;string&gt
 
 | 类型                | 说明                                |
 | ------------------- | ---------------------------------- |
-| Promise&lt;string&gt; | Promise回调返回获取的系统铃声uri。 |
+| Promise&lt;string&gt; | Promise对象，返回获取的系统铃声uri。 |
 
 **示例：**
 
@@ -727,7 +727,7 @@ systemSoundManagerInstance.getSystemRingtoneUri(context, type).then((value: stri
 
 getSystemRingtonePlayer(context: Context, type: RingtoneType, callback: AsyncCallback&lt;RingtonePlayer&gt;): void
 
-获取系统铃声播放器，使用callback方式异步返回结果。
+获取系统铃声播放器。使用callback异步回调。
 
 > **说明：**
 > 从 API version 10 开始支持，从 API version 11 开始废弃，建议使用[getRingtonePlayer](#getringtoneplayer11)替代。
@@ -742,7 +742,7 @@ getSystemRingtonePlayer(context: Context, type: RingtoneType, callback: AsyncCal
 | -------- | -----------------------------------------| ---- | --------------------------- |
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md)  | 是   | 当前应用的上下文。            |
 | type     | [RingtoneType](#ringtonetype)            | 是   | 待获取播放器的系统铃声的类型。 |
-| callback | AsyncCallback&lt;[RingtonePlayer](js-apis-inner-multimedia-ringtonePlayer-sys.md#ringtoneplayer)&gt; | 是 | 回调返回获取的系统铃声播放器。 |
+| callback | AsyncCallback&lt;[RingtonePlayer](js-apis-inner-multimedia-ringtonePlayer-sys.md#ringtoneplayer)&gt; | 是 | 回调函数。当获取系统铃声播放器成功，err为undefined，data为获取到的系统铃声播放器；否则为错误对象。 |
 
 **示例：**
 
@@ -770,7 +770,7 @@ systemSoundManagerInstance.getSystemRingtonePlayer(context, type, (err: Business
 
 getSystemRingtonePlayer(context: Context, type: RingtoneType): Promise&lt;RingtonePlayer&gt;
 
-获取系统铃声播放器，使用Promise方式异步返回结果。
+获取系统铃声播放器。使用Promise异步回调。
 
 > **说明：**
 > 从 API version 10 开始支持，从 API version 11 开始废弃，建议使用[getRingtonePlayer](#getringtoneplayer11)替代。
@@ -790,7 +790,7 @@ getSystemRingtonePlayer(context: Context, type: RingtoneType): Promise&lt;Ringto
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| Promise&lt;[RingtonePlayer](js-apis-inner-multimedia-ringtonePlayer-sys.md#ringtoneplayer)&gt; | Promise回调返回获取的系统铃声播放器。 |
+| Promise&lt;[RingtonePlayer](js-apis-inner-multimedia-ringtonePlayer-sys.md#ringtoneplayer)&gt; | Promise对象，返回获取的系统铃声播放器。 |
 
 **示例：**
 
@@ -816,7 +816,7 @@ systemSoundManagerInstance.getSystemRingtonePlayer(context, type).then((value: s
 
 setRingtoneUri(context: BaseContext, uri: string, type: RingtoneType): Promise&lt;void&gt;
 
-设置系统铃声uri，使用Promise方式异步返回结果。
+设置系统铃声uri。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -834,7 +834,7 @@ setRingtoneUri(context: BaseContext, uri: string, type: RingtoneType): Promise&l
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise回调返回设置成功或失败。   |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -869,7 +869,7 @@ systemSoundManagerInstance.setRingtoneUri(context, uri, type).then(() => {
 
 getRingtoneUri(context: BaseContext, type: RingtoneType): Promise&lt;string&gt;
 
-获取系统铃声uri，使用Promise方式异步返回结果。
+获取系统铃声uri。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -886,7 +886,7 @@ getRingtoneUri(context: BaseContext, type: RingtoneType): Promise&lt;string&gt;
 
 | 类型                | 说明                                |
 | ------------------- | ---------------------------------- |
-| Promise&lt;string&gt; | Promise回调返回获取的系统铃声uri。 |
+| Promise&lt;string&gt; | Promise对象，返回获取的系统铃声uri。 |
 
 **错误码：**
 
@@ -920,7 +920,7 @@ systemSoundManagerInstance.getRingtoneUri(context, type).then((value: string) =>
 
 getRingtonePlayer(context: BaseContext, type: RingtoneType): Promise&lt;RingtonePlayer&gt;
 
-获取系统铃声播放器，使用Promise方式异步返回结果。
+获取系统铃声播放器。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -937,7 +937,7 @@ getRingtonePlayer(context: BaseContext, type: RingtoneType): Promise&lt;Ringtone
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| Promise&lt;[RingtonePlayer](js-apis-inner-multimedia-ringtonePlayer-sys.md#ringtoneplayer)&gt; | Promise回调返回获取的系统铃声播放器。 |
+| Promise&lt;[RingtonePlayer](js-apis-inner-multimedia-ringtonePlayer-sys.md#ringtoneplayer)&gt; | Promise对象，返回获取的系统铃声播放器。 |
 
 **错误码：**
 
@@ -972,7 +972,7 @@ systemSoundManagerInstance.getRingtonePlayer(context, type).then((value: systemS
 
 setSystemToneUri(context: BaseContext, uri: string, type: SystemToneType): Promise&lt;void&gt;
 
-设置系统提示音uri，使用Promise方式异步返回结果。
+设置系统提示音uri。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -990,7 +990,7 @@ setSystemToneUri(context: BaseContext, uri: string, type: SystemToneType): Promi
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise回调返回设置成功或失败。   |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1025,7 +1025,7 @@ systemSoundManagerInstance.setSystemToneUri(context, uri, type).then(() => {
 
 getSystemToneUri(context: BaseContext, type: SystemToneType): Promise&lt;string&gt;
 
-获取系统提示音uri，使用Promise方式异步返回结果。
+获取系统提示音uri。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -1042,7 +1042,7 @@ getSystemToneUri(context: BaseContext, type: SystemToneType): Promise&lt;string&
 
 | 类型                | 说明                                |
 | ------------------- | ---------------------------------- |
-| Promise&lt;string&gt; | Promise回调返回获取的系统提示音uri。 |
+| Promise&lt;string&gt; | Promise对象，返回获取的系统提示音uri。 |
 
 **错误码：**
 
@@ -1076,7 +1076,7 @@ systemSoundManagerInstance.getSystemToneUri(context, type).then((value: string) 
 
 getSystemTonePlayer(context: BaseContext, type: SystemToneType): Promise&lt;SystemTonePlayer&gt;
 
-获取系统提示音播放器，使用Promise方式异步返回结果。
+获取系统提示音播放器。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -1093,7 +1093,7 @@ getSystemTonePlayer(context: BaseContext, type: SystemToneType): Promise&lt;Syst
 
 | 类型                                                                                               | 说明                            |
 |--------------------------------------------------------------------------------------------------| ------------------------------- |
-| Promise&lt;[SystemTonePlayer](js-apis-inner-multimedia-systemTonePlayer-sys.md#systemtoneplayer)&gt; | Promise回调返回获取的系统提示音播放器。 |
+| Promise&lt;[SystemTonePlayer](js-apis-inner-multimedia-systemTonePlayer-sys.md#systemtoneplayer)&gt; | Promise对象，返回获取的系统提示音播放器。 |
 
 **错误码：**
 
@@ -1128,7 +1128,7 @@ systemSoundManagerInstance.getSystemTonePlayer(context, type).then((value: syste
 
 getDefaultRingtoneAttrs(context: BaseContext, type: RingtoneType): Promise&lt;ToneAttrs&gt;
 
-获取系统铃声的属性，使用Promise方式异步返回结果。
+获取系统铃声的属性。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -1143,9 +1143,9 @@ getDefaultRingtoneAttrs(context: BaseContext, type: RingtoneType): Promise&lt;To
 
 **返回值：**
 
-| 类型                                       | 说明                  |
-|------------------------------------------|---------------------|
-| Promise&lt;[ToneAttrs](#toneattrs12)&gt; | Promise回调返回系统铃声的属性。 |
+| 类型                                                                                               | 说明                            |
+|--------------------------------------------------------------------------------------------------| ------------------------------- |
+| Promise&lt;[ToneAttrs](#toneattrs12)&gt; | Promise对象，返回系统铃声的属性。 |
 
 **错误码：**
 
@@ -1179,7 +1179,7 @@ systemSoundManagerInstance.getDefaultRingtoneAttrs(context, type).then((value: s
 
 getRingtoneAttrList(context: BaseContext, type: RingtoneType): Promise&lt;ToneAttrsArray&gt;
 
-获取系统铃声的属性列表，使用Promise方式异步返回结果。
+获取系统铃声的属性列表。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -1194,9 +1194,9 @@ getRingtoneAttrList(context: BaseContext, type: RingtoneType): Promise&lt;ToneAt
 
 **返回值：**
 
-| 类型                                                 | 说明                    |
-|----------------------------------------------------|-----------------------|
-| Promise&lt;[ToneAttrsArray](#toneattrsarray12)&gt; | Promise回调返回系统铃声的属性列表。 |
+| 类型                                                                                               | 说明                            |
+|--------------------------------------------------------------------------------------------------| ------------------------------- |
+| Promise&lt;[ToneAttrsArray](#toneattrsarray12)&gt; | Promise对象，返回系统铃声的属性列表。 |
 
 **错误码：**
 
@@ -1230,7 +1230,7 @@ systemSoundManagerInstance.getRingtoneAttrList(context, type).then((value: syste
 
 getDefaultSystemToneAttrs(context: BaseContext, type: SystemToneType): Promise&lt;ToneAttrs&gt;
 
-获取系统提示音的属性，使用Promise方式异步返回结果。
+获取系统提示音的属性。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -1247,7 +1247,7 @@ getDefaultSystemToneAttrs(context: BaseContext, type: SystemToneType): Promise&l
 
 | 类型                                      | 说明                   |
 |-----------------------------------------|----------------------|
-| Promise&lt;[ToneAttrs](#toneattrs12)&gt; | Promise回调返回系统提示音的属性。 |
+| Promise&lt;[ToneAttrs](#toneattrs12)&gt; | Promise对象，返回系统提示音的属性。 |
 
 **错误码：**
 
@@ -1281,7 +1281,7 @@ systemSoundManagerInstance.getDefaultSystemToneAttrs(context, type).then((value:
 
 getSystemToneAttrList(context: BaseContext, type: SystemToneType): Promise&lt;ToneAttrsArray&gt;
 
-获取系统提示音的属性列表，使用Promise方式异步返回结果。
+获取系统提示音的属性列表。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -1298,7 +1298,7 @@ getSystemToneAttrList(context: BaseContext, type: SystemToneType): Promise&lt;To
 
 | 类型                                                | 说明                     |
 |---------------------------------------------------|------------------------|
-| Promise&lt;[ToneAttrsArray](#toneattrsarray12)&gt; | Promise回调返回系统提示音的属性列表。 |
+| Promise&lt;[ToneAttrsArray](#toneattrsarray12)&gt; | Promise对象，返回系统提示音的属性列表。 |
 
 **错误码：**
 
@@ -1332,7 +1332,7 @@ systemSoundManagerInstance.getSystemToneAttrList(context, type).then((value: sys
 
 getDefaultAlarmToneAttrs(context: BaseContext): Promise&lt;ToneAttrs&gt;
 
-获取系统闹铃的属性，使用Promise方式异步返回结果。
+获取系统闹铃的属性。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -1348,7 +1348,7 @@ getDefaultAlarmToneAttrs(context: BaseContext): Promise&lt;ToneAttrs&gt;
 
 | 类型                                      | 说明                  |
 |-----------------------------------------|---------------------|
-| Promise&lt;[ToneAttrs](#toneattrs12)&gt; | Promise回调返回系统闹铃的属性。 |
+| Promise&lt;[ToneAttrs](#toneattrs12)&gt; | Promise对象，返回系统闹铃的属性。 |
 
 **错误码：**
 
@@ -1381,7 +1381,7 @@ systemSoundManagerInstance.getDefaultAlarmToneAttrs(context).then((value: system
 
 setAlarmToneUri(context: Context, uri: string): Promise&lt;void&gt;
 
-设置系统闹铃uri，使用Promise方式异步返回结果。
+设置系统闹铃uri。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -1398,7 +1398,7 @@ setAlarmToneUri(context: Context, uri: string): Promise&lt;void&gt;
 
 | 类型                | 说明                   |
 | ------------------- |----------------------|
-| Promise&lt;void&gt; | Promise回调返回设置成功或失败。  |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -1422,7 +1422,7 @@ systemSoundManagerInstance.setAlarmToneUri(context, uri).then(() => {
 
 getAlarmToneUri(context: Context): Promise&lt;string&gt;
 
-获取系统当前闹铃uri，使用Promise方式异步返回结果。
+获取系统当前闹铃uri。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -1438,7 +1438,7 @@ getAlarmToneUri(context: Context): Promise&lt;string&gt;
 
 | 类型                    | 说明                    |
 |-----------------------|-----------------------|
-| Promise&lt;string&gt; | Promise回调返回系统当前闹铃uri。 |
+| Promise&lt;string&gt; | Promise对象，返回系统当前闹铃uri。 |
 
 **示例：**
 
@@ -1461,7 +1461,7 @@ systemSoundManagerInstance.getAlarmToneUri(context).then((value: string) => {
 
 getAlarmToneAttrList(context: BaseContext): Promise&lt;ToneAttrsArray&gt;
 
-获取全部闹铃属性列表，使用Promise方式异步返回结果。
+获取全部闹铃属性列表。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -1477,7 +1477,7 @@ getAlarmToneAttrList(context: BaseContext): Promise&lt;ToneAttrsArray&gt;
 
 | 类型                                                 | 说明                   |
 |----------------------------------------------------|----------------------|
-| Promise&lt;[ToneAttrsArray](#toneattrsarray12)&gt; | Promise回调返回全部闹铃属性列表。 |
+| Promise&lt;[ToneAttrsArray](#toneattrsarray12)&gt; | Promise对象，返回全部闹铃属性列表。 |
 
 **错误码：**
 
@@ -1510,7 +1510,7 @@ systemSoundManagerInstance.getAlarmToneAttrList(context).then((value: systemSoun
 
 openAlarmTone(context: Context, uri: string): Promise&lt;number&gt;
 
-打开闹铃文件，使用Promise方式异步返回结果。
+打开闹铃文件。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -1527,7 +1527,7 @@ openAlarmTone(context: Context, uri: string): Promise&lt;number&gt;
 
 | 类型                    | 说明             |
 |-----------------------|----------------|
-| Promise&lt;number&gt; | Promise回调返回fd。 |
+| Promise&lt;number&gt; | Promise对象，返回fd。 |
 
 **错误码：**
 
@@ -1562,7 +1562,7 @@ systemSoundManagerInstance.openAlarmTone(context, uri).then((value: number) => {
 
 close(fd: number): Promise&lt;void&gt;
 
-关闭闹铃文件，使用Promise方式异步返回结果。
+关闭闹铃文件。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -1578,7 +1578,7 @@ close(fd: number): Promise&lt;void&gt;
 
 | 类型                  | 说明             |
 |---------------------|----------------|
-| Promise&lt;void&gt; | Promise回调返回设置成功或失败。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1612,7 +1612,7 @@ systemSoundManagerInstance.close(fd).then(() => {
 
 addCustomizedTone(context: BaseContext, toneAttr: ToneAttrs, externalUri: string): Promise&lt;string&gt;
 
-通过铃音uri将自定义铃音添加到铃音库，使用Promise方式异步返回结果。
+通过铃音uri将自定义铃音添加到铃音库。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -1630,7 +1630,7 @@ addCustomizedTone(context: BaseContext, toneAttr: ToneAttrs, externalUri: string
 
 | 类型                    | 说明                      |
 |-----------------------|-------------------------|
-| Promise&lt;string&gt; | Promise回调返回铃音在铃音库中的uri。 |
+| Promise&lt;string&gt; | Promise对象，返回铃音在铃音库中的uri。 |
 
 **错误码：**
 
@@ -1675,7 +1675,7 @@ systemSoundManagerInstance.addCustomizedTone(context, toneAttrs, path).then((val
 
 addCustomizedTone(context: BaseContext, toneAttr: ToneAttrs, fd: number, offset?: number, length?: number): Promise&lt;string&gt;
 
-通过文件描述符fd将自定义铃音添加到铃音库，使用Promise方式异步返回结果。
+通过文件描述符fd将自定义铃音添加到铃音库。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -1695,7 +1695,7 @@ addCustomizedTone(context: BaseContext, toneAttr: ToneAttrs, fd: number, offset?
 
 | 类型                    | 说明                      |
 |-----------------------|-------------------------|
-| Promise&lt;string&gt; | Promise回调返回铃音在铃音库中的uri。 |
+| Promise&lt;string&gt; | Promise对象，返回铃音在铃音库中的uri。 |
 
 **错误码：**
 
@@ -1742,7 +1742,7 @@ systemSoundManagerInstance.addCustomizedTone(context, toneAttrs, fd, offset, len
 
 removeCustomizedTone(context: BaseContext, uri: string): Promise&lt;void&gt;
 
-从铃音库中删除自定义铃音，使用Promise方式异步返回结果。
+从铃音库中删除自定义铃音。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -1759,7 +1759,7 @@ removeCustomizedTone(context: BaseContext, uri: string): Promise&lt;void&gt;
 
 | 类型                  | 说明                    |
 |---------------------|-----------------------|
-| Promise&lt;void&gt; | Promise回调返回设置成功或失败。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1795,7 +1795,7 @@ systemSoundManagerInstance.removeCustomizedTone(context, uri).then(() => {
 
 getToneHapticsSettings(context: BaseContext, type: ToneHapticsType): Promise&lt;ToneHapticsSettings&gt;
 
-获取系统铃音的振动设置，使用Promise方式异步返回结果。
+获取系统铃音的振动设置。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -1812,7 +1812,7 @@ getToneHapticsSettings(context: BaseContext, type: ToneHapticsType): Promise&lt;
 
 | 类型                  | 说明                    |
 |---------------------|-----------------------|
-| Promise&lt;[ToneHapticsSettings](#tonehapticssettings14)&gt; | Promise回调返回铃声的振动设置。 |
+| Promise&lt;[ToneHapticsSettings](#tonehapticssettings14)&gt; | Promise对象，返回铃声的振动设置。 |
 
 **错误码：**
 
@@ -1847,7 +1847,7 @@ systemSoundManagerInstance.getToneHapticsSettings(context, type).then((value: sy
 
 setToneHapticsSettings(context: BaseContext, type: ToneHapticsType, settings: ToneHapticsSettings): Promise&lt;void&gt;
 
-设置系统铃音的振动，使用Promise方式异步返回结果。
+设置系统铃音的振动。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -1865,7 +1865,7 @@ setToneHapticsSettings(context: BaseContext, type: ToneHapticsType, settings: To
 
 | 类型                  | 说明                    |
 |---------------------|-----------------------|
-| Promise&lt;void&gt; | Promise回调返回设置成功或失败。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1905,7 +1905,7 @@ systemSoundManagerInstance.setToneHapticsSettings(context, type, toneHapticsSett
 
 getToneHapticsList(context: BaseContext, isSynced: boolean): Promise&lt;ToneHapticsAttrsArray&gt;
 
-获取同步或者非同步的系统铃音的振动属性列表，使用Promise方式异步返回结果。
+获取同步或者非同步的系统铃音的振动属性列表。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -1922,7 +1922,7 @@ getToneHapticsList(context: BaseContext, isSynced: boolean): Promise&lt;ToneHapt
 
 | 类型                  | 说明                    |
 |---------------------|-----------------------|
-| Promise&lt;[ToneHapticsAttrsArray](#tonehapticsattrsarray14)&gt; | Promise回调返回同步或者非同步的系统铃音的振动属性列表。 |
+| Promise&lt;[ToneHapticsAttrsArray](#tonehapticsattrsarray14)&gt; | Promise对象，返回同步或者非同步的系统铃音的振动属性列表。 |
 
 **错误码：**
 
@@ -1956,7 +1956,7 @@ systemSoundManagerInstance.getToneHapticsList(context, false).then((value: syste
 
 getHapticsAttrsSyncedWithTone(context: BaseContext, toneUri: string): Promise&lt;ToneHapticsAttrs&gt;
 
-获取与指定铃音同步的振动属性，使用Promise方式异步返回结果。
+获取与指定铃音同步的振动属性。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -1973,7 +1973,7 @@ getHapticsAttrsSyncedWithTone(context: BaseContext, toneUri: string): Promise&lt
 
 | 类型                  | 说明                    |
 |---------------------|-----------------------|
-| Promise&lt;[ToneHapticsAttrs](#tonehapticsattrs14)&gt; | Promise回调返回与指定铃音同步的振动属性。 |
+| Promise&lt;[ToneHapticsAttrs](#tonehapticsattrs14)&gt; | Promise对象，返回与指定铃音同步的振动属性。 |
 
 **错误码：**
 
@@ -2009,7 +2009,7 @@ systemSoundManagerInstance.getHapticsAttrsSyncedWithTone(context, toneUri).then(
 
 openToneHaptics(context: Context, hapticsUri: string): Promise&lt;number&gt;
 
-打开系统铃音的振动，使用Promise方式异步返回结果。
+打开系统铃音的振动。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -2026,7 +2026,7 @@ openToneHaptics(context: Context, hapticsUri: string): Promise&lt;number&gt;
 
 | 类型                    | 说明             |
 |-----------------------|----------------|
-| Promise&lt;number&gt; | Promise回调返回fd。 |
+| Promise&lt;number&gt; | Promise对象，返回fd。 |
 
 **错误码：**
 
