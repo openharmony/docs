@@ -4088,7 +4088,7 @@ import { common } from '@kit.AbilityKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance()
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let sandboxPath: string = context.fileDir + '/testSocket';
+let sandboxPath: string = context.filesDir + '/testSocket';
 let address : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4143,7 +4143,7 @@ import { common } from '@kit.AbilityKit';
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let sandboxPath: string = context.fileDir + '/testSocket';
+let sandboxPath: string = context.filesDir + '/testSocket';
 let localAddress : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4198,7 +4198,7 @@ import { common } from '@kit.AbilityKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance()
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let sandboxPath: string = context.fileDir + '/testSocket';
+let sandboxPath: string = context.filesDir + '/testSocket';
 let localAddress : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4282,7 +4282,7 @@ import { common } from '@kit.AbilityKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let sandboxPath: string = context.fileDir + '/testSocket';
+let sandboxPath: string = context.filesDir + '/testSocket';
 let localAddress : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4330,7 +4330,7 @@ import { common } from '@kit.AbilityKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let sandboxPath: string = context.fileDir + '/testSocket';
+let sandboxPath: string = context.filesDir + '/testSocket';
 let localAddress : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4390,7 +4390,7 @@ import { common } from '@kit.AbilityKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let sandboxPath: string = context.fileDir + '/testSocket';
+let sandboxPath: string = context.filesDir + '/testSocket';
 let localAddress : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4448,7 +4448,7 @@ import { common } from '@kit.AbilityKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let sandboxPath: string = context.fileDir + '/testSocket';
+let sandboxPath: string = context.filesDir + '/testSocket';
 let localAddress : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4502,7 +4502,7 @@ import { common } from '@kit.AbilityKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let sandboxPath: string = context.fileDir + '/testSocket';
+let sandboxPath: string = context.filesDir + '/testSocket';
 let address : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4927,7 +4927,7 @@ import { common } from '@kit.AbilityKit';
 
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let sandboxPath: string = context.fileDir + '/testSocket';
+let sandboxPath: string = context.filesDir + '/testSocket';
 let addr: socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4966,7 +4966,7 @@ import { common } from '@kit.AbilityKit';
 
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let sandboxPath: string = context.fileDir + '/testSocket';
+let sandboxPath: string = context.filesDir + '/testSocket';
 let listenAddr: socket.LocalAddress = {
   address: sandboxPath
 }
@@ -5022,7 +5022,7 @@ import { common } from '@kit.AbilityKit';
 
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let sandboxPath: string = context.fileDir + '/testSocket';
+let sandboxPath: string = context.filesDir + '/testSocket';
 let listenAddr: socket.NetAddress = {
   address: sandboxPath
 }
@@ -5077,7 +5077,7 @@ import { common } from '@kit.AbilityKit';
 
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let sandboxPath: string = context.fileDir + '/testSocket';
+let sandboxPath: string = context.filesDir + '/testSocket';
 let listenAddr: socket.LocalAddress = {
   address: sandboxPath
 }
@@ -5127,7 +5127,7 @@ import { common } from '@kit.AbilityKit';
 
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let sandboxPath: string = context.fileDir + '/testSocket';
+let sandboxPath: string = context.filesDir + '/testSocket';
 let listenAddr: socket.LocalAddress = {
   address: sandboxPath
 }
@@ -5421,7 +5421,7 @@ import { common } from '@kit.AbilityKit';
 
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let sandboxPath: string = context.fileDir + '/testSocket';
+let sandboxPath: string = context.filesDir + '/testSocket';
 let localAddr: socket.LocalAddress = {
   address: sandboxPath
 }
@@ -5475,7 +5475,7 @@ import { common } from '@kit.AbilityKit';
 
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let sandboxPath: string = context.fileDir + '/testSocket';
+let sandboxPath: string = context.filesDir + '/testSocket';
 let listenAddr: socket.LocalAddress = {
   address: sandboxPath
 }
