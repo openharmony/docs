@@ -18611,3 +18611,138 @@ int32_t OH_ArkUI_SnapshotOptions_SetScale(ArkUI_SnapshotOptions* snapshotOptions
 
 ARKUI_ERROR_CODE_NO_ERROR 成功。
 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+
+### OH_ArkUI_AccessibilityValue_SetRangeMin
+
+```C
+void OH_ArkUI_AccessibilityValue_SetRangeMin(ArkUI_AccessibilityValue* value, int32_t rangeMin);
+```
+
+**描述：**
+
+设置无障碍最小值信息。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称      | 描述                   |
+| --------- | ---------------------- |
+| value | 无障碍信息对象指针。   |
+| rangeMin       | 基于范围组件的最小值，默认为-1。              |
+
+**返回：** 无
+
+
+### OH_ArkUI_AccessibilityValue_GetRangeMin
+
+```C
+int32_t OH_ArkUI_AccessibilityValue_GetRangeMin(ArkUI_AccessibilityValue* value);
+```
+
+**描述：**
+
+获取无障碍最小值信息。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称      | 描述                   |
+| --------- | ---------------------- |
+| value | 无障碍信息对象指针。   |
+
+**返回：**
+
+基于范围组件的最小值，默认为-1；若函数参数异常，返回-1。
+
+
+### OH_ArkUI_AccessibilityValue_SetRangeMax
+
+```C
+void OH_ArkUI_AccessibilityValue_SetRangeMax(ArkUI_AccessibilityValue* value, int32_t rangeMax);
+```
+
+**描述：**
+
+设置无障碍最大值信息。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称      | 描述                   |
+| --------- | ---------------------- |
+| value | 无障碍信息对象指针。   |
+| rangeMin       | 基于范围组件的最大值，默认为-1。              |
+
+**返回：** 无
+
+
+### OH_ArkUI_AccessibilityValue_GetRangeMax
+
+```C
+int32_t OH_ArkUI_AccessibilityValue_GetRangeMax(ArkUI_AccessibilityValue* value);
+```
+
+**描述：**
+
+获取无障碍最大值信息。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称      | 描述                   |
+| --------- | ---------------------- |
+| value | 无障碍信息对象指针。   |
+
+**返回：**
+
+基于范围组件的最大值，默认为-1；若函数参数异常，返回-1。
+
+
+### OH_ArkUI_AccessibilityValue_SetRangeCurrent
+
+```C
+void OH_ArkUI_AccessibilityValue_SetRangeCurrent(ArkUI_AccessibilityValue* value, int32_t rangeCurrent);
+```
+
+**描述：**
+
+设置无障碍当前值信息。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称      | 描述                   |
+| --------- | ---------------------- |
+| value | 无障碍信息对象指针。   |
+| rangeCurrent       | 基于范围组件的当前值，默认为-1。              |
+
+**返回：** 无
+
+
+### OH_ArkUI_AccessibilityValue_GetRangeCurrent
+
+```C
+int32_t OH_ArkUI_AccessibilityValue_GetRangeCurrent(ArkUI_AccessibilityValue* value);
+```
+
+**描述：**
+
+获取无障碍当前值信息。
+
+**起始版本：** 16
+
+**参数：** 
+
+| 名称      | 描述                   |
+| --------- | ---------------------- |
+| value | 无障碍信息对象指针。   |
+
+**返回：**
+
+基于范围组件的当前值，默认为-1；若函数参数异常，返回-1。
