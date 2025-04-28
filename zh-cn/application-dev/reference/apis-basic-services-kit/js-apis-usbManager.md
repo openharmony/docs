@@ -1290,7 +1290,6 @@ resetUsbDevice(pipe: USBDevicePipe): boolean
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported. |
 | 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
 | 14400008 | No such device (it may have been disconnected). |
