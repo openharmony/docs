@@ -61,7 +61,7 @@ import { describe, it, expect } from '@ohos/hypium';
 import { abilityDelegatorRegistry } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 
-const delegator = abilityDelegatorRegistry.getAbilityDelegator()
+const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 function sleep(time: number) {
   return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
@@ -97,7 +97,7 @@ export default function abilityTest() {
   @Entry
   @Component
   struct Index {
-    @State message: string = 'Hello World'
+    @State message: string = 'Hello World';
 
     build() {
       Row() {
@@ -129,7 +129,7 @@ export default function abilityTest() {
   import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
   import { UIAbility, Want } from '@kit.AbilityKit';
 
-  const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
+  const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
   const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
   function sleep(time: number) {
     return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
@@ -556,11 +556,11 @@ hdc shell uitest uiInput text hello
 
 #### uiInput keyEvent使用示例
 
-| 配置参数             | 必填       | 描述 |                
-|------|------|----------|
+| 配置参数             | 必填       | 描述                                                                     |                
+|------|------|------------------------------------------------------------------------|
 | keyID1   | 是    | 实体按键对应ID，取值范围：KeyCode/Back/Home/Power。<br>当取Back/Home/Power时，不支持输入组合键。 | 
-| keyID2    | 否    | 实体按键对应ID。 |
-| keyID3    | 否    | 实体按键对应ID。 |
+| keyID2    | 否    | 实体按键对应ID，默认值为空。                                                        |
+| keyID3    | 否    | 实体按键对应ID，默认值为空。                                                              |
 
 >**说明**
 >

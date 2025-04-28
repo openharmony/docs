@@ -309,7 +309,7 @@ id(id: string, pattern: MatchPattern): On
 
 ```ts
 import { MatchPattern, On, ON } from '@kit.TestKit';
-let on:On = ON.id('id', MatchPattern.REG_EXP_ICASE) // 忽略大小写匹配控件的id属性值
+let on:On = ON.id('id', MatchPattern.REG_EXP_ICASE); // 忽略大小写匹配控件的id属性值
 ```
 
 ### type<sup>9+</sup>
@@ -767,7 +767,7 @@ isAfter(on: On): On
 import { On, ON } from '@kit.TestKit';
 
 // 使用静态构造器ON创建On对象，指定目标控件位于给出的特征属性控件之后。
-let on:On = ON.type('Text').isAfter(ON.text('123'))  // 查找 text为123之后的第一个Text组件
+let on:On = ON.type('Text').isAfter(ON.text('123'));  // 查找 text为123之后的第一个Text组件
 ```
 
 ### within<sup>10+</sup>
@@ -3065,7 +3065,7 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): P
 import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  await driver.mouseScroll({x:360, y:640}, true, 30, 2072)
+  await driver.mouseScroll({x:360, y:640}, true, 30, 2072);
 }
 ```
 
@@ -3100,7 +3100,7 @@ mouseMoveTo(p: Point): Promise\<void>;
 import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  await driver.mouseMoveTo({x:100, y:100})
+  await driver.mouseMoveTo({x:100, y:100});
 }
 ```
 
@@ -3134,7 +3134,7 @@ createUIEventObserver(): UIEventObserver;
 import { Driver, UIEventObserver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let observer: UIEventObserver = await driver.createUIEventObserver()
+  let observer: UIEventObserver = await driver.createUIEventObserver();
 }
 ```
 
@@ -3174,7 +3174,7 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number, sp
 import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  await driver.mouseScroll({x:360, y:640}, true, 30, 2072,20)
+  await driver.mouseScroll({x:360, y:640}, true, 30, 2072,20);
 }
 ```
 
@@ -4281,13 +4281,13 @@ once(type: 'toastShow', callback: Callback\<UIElementInfo>): void;
 import { Driver, UIElementInfo, UIEventObserver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let observer:  UIEventObserver = await driver.createUIEventObserver()
+  let observer:  UIEventObserver = await driver.createUIEventObserver();
   let  callback = (UIElementInfo: UIElementInfo)=>{
-    console.info(UIElementInfo.bundleName)
-    console.info(UIElementInfo.text)
-    console.info(UIElementInfo.type)
+    console.info(UIElementInfo.bundleName);
+    console.info(UIElementInfo.text);
+    console.info(UIElementInfo.type);
   }
-  observer.once('toastShow', callback)
+  observer.once('toastShow', callback);
 }
 ```
 
@@ -4322,13 +4322,13 @@ once(type: 'dialogShow', callback: Callback\<UIElementInfo>): void;
 import { Driver, UIElementInfo, UIEventObserver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let observer: UIEventObserver = await driver.createUIEventObserver()
+  let observer: UIEventObserver = await driver.createUIEventObserver();
   let  callback = (UIElementInfo: UIElementInfo)=>{
-    console.info(UIElementInfo.bundleName)
-    console.info(UIElementInfo.text)
-    console.info(UIElementInfo.type)
+    console.info(UIElementInfo.bundleName);
+    console.info(UIElementInfo.text);
+    console.info(UIElementInfo.type);
   }
-  observer.once('dialogShow', callback)
+  observer.once('dialogShow', callback);
 }
 ```
 
