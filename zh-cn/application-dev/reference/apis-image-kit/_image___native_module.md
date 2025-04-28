@@ -3039,7 +3039,7 @@ Image_ErrorCode OH_ImageSourceNative_CreatePicture(OH_ImageSourceNative *source,
 ### OH_ImageSourceNative_CreatePixelmap()
 
 ```
-Image_ErrorCode OH_ImageSourceNative_CreatePixelmap(OH_ImageSourceNative *source, OH_DecodingOptions *options, OH_PixelmapNative **pixelmap)
+Image_ErrorCode OH_ImageSourceNative_CreatePixelmap(OH_ImageSourceNative *source, OH_DecodingOptions *options, OH_PixelmapNative **resPixMap)
 ```
 **描述**
 通过图片解码参数创建OH_PixelmapNative指针。
@@ -3052,7 +3052,7 @@ Image_ErrorCode OH_ImageSourceNative_CreatePixelmap(OH_ImageSourceNative *source
 | -------- | -------- |
 | source | 被操作的OH_ImageSourceNative指针。  | 
 | options | 解码参数。  | 
-| resPixMap | 指向c++本地层创建的OH_PixelmapNative对象的指针。  | 
+| resPixMap | 指向c++本地层创建的OH_PixelmapNative对象指针的指针。  | 
 
 **返回：**
 
