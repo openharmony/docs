@@ -7,6 +7,8 @@ The **image_source_native.h** file declares the APIs for image decoding.
 
 **Library**: libimage_source.so
 
+**File to include**: &lt;multimedia/image_framework/image/image_source_native.h&gt;
+
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
 **Since**: 12
@@ -22,7 +24,7 @@ The **image_source_native.h** file declares the APIs for image decoding.
 | Name| Description| 
 | -------- | -------- |
 | typedef struct [OH_ImageSourceNative](_image___native_module.md#oh_imagesourcenative) [OH_ImageSourceNative](_image___native_module.md#oh_imagesourcenative) | Defines a struct for the image source, which is used to perform operations related to an image source.| 
-| typedef struct [OH_ImageSource_Info](_image___native_module.md#oh_imagesource_info) [OH_ImageSource_Info](_image___native_module.md#oh_imagesource_info) | Defines a struct for the image source information, which is created by calling [OH_ImageSourceInfo_Create](_image___native_module.md#oh_imagesourceinfo_create).| 
+| typedef struct [OH_ImageSource_Info](_image___native_module.md#oh_imagesource_info) [OH_ImageSource_Info](_image___native_module.md#oh_imagesource_info) | Defines a struct for the image source information, which is used in [OH_ImageSourceInfo_Create](_image___native_module.md#oh_imagesourceinfo_create).| 
 | typedef struct [OH_DecodingOptions](_image___native_module.md#oh_decodingoptions) [OH_DecodingOptions](_image___native_module.md#oh_decodingoptions) | Defines a struct for decoding options, which are used in [OH_ImageSourceNative_CreatePixelmap](_image___native_module.md#oh_imagesourcenative_createpixelmap).| 
 
 
