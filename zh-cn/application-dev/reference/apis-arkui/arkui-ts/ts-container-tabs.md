@@ -1467,6 +1467,7 @@ struct TabsOpaque {
 struct barHeightTest {
   @State arr: number[] = [0, 1, 2, 3];
   @State barOverlap: boolean = true;
+
   build() {
     Column() {
       Text(`barOverlap ${this.barOverlap}`).fontSize(16)
@@ -1664,9 +1665,9 @@ struct TabsCustomAnimationExample {
           this.opacityList[to] = 1.0;
         });
       }
-    } as TabContentAnimatedTransition
+    } as TabContentAnimatedTransition;
     return tabContentAnimatedTransition;
-  }
+  };
 
   aboutToAppear(): void {
     let duration = 1000;
@@ -1714,6 +1715,7 @@ struct TabsExample {
   @State selectedIndex: number = 2;
   @State currentIndex: number = 2;
   private controller: TabsController = new TabsController();
+
   @Builder tabBuilder(title: string,targetIndex: number) {
     Column(){
       Image(this.selectedIndex === targetIndex ? $r('app.media.star_fill') : $r('app.media.star'))
@@ -1726,6 +1728,7 @@ struct TabsExample {
     .height(50)
     .justifyContent(FlexAlign.Center)
   }
+  
   build() {
     Column() {
       Tabs({ barPosition: BarPosition.End, index: this.currentIndex, controller: this.controller }) {
@@ -1896,7 +1899,7 @@ struct TabsExample {
       .backgroundColor('#F1F3F5')
       .animationDuration(this.animationDuration)
       .onChange((index: number) => {
-        this.currentIndex = index;// 监听索引index的变化，实现页签内容的切换。
+        this.currentIndex = index; // 监听索引index的变化，实现页签内容的切换。
       })
       .onAnimationStart((index: number, targetIndex: number, event: TabsAnimationEvent) => {
         // 切换动画开始时触发该回调。下划线跟着页面一起滑动，同时宽度渐变。
@@ -1934,7 +1937,7 @@ struct TabsExample {
     let indexInfo = this.textInfos[index];
     let nextIndexInfo = this.textInfos[nextIndex];
     let swipeRatio = Math.abs(event.currentOffset / this.tabsWidth);
-    let currentIndex = swipeRatio > 0.5 ? nextIndex : index ;// 页面滑动超过一半，tabBar切换到下一页。
+    let currentIndex = swipeRatio > 0.5 ? nextIndex : index;// 页面滑动超过一半，tabBar切换到下一页。
     let currentLeft = indexInfo[0] + (nextIndexInfo[0] - indexInfo[0]) * swipeRatio;
     let currentWidth = indexInfo[1] + (nextIndexInfo[1] - indexInfo[1]) * swipeRatio;
     return { 'index': currentIndex, 'left': currentLeft, 'width': currentWidth }
@@ -2432,7 +2435,7 @@ struct TabsBarModifierExample {
           .height(50)
           .margin({ top: 5 })
           .onClick((event?: ClickEvent) => {
-            this.tabBarModifier.align(Alignment.Top)
+            this.tabBarModifier.align(Alignment.Top);
           })
           .margin({ right: '6%', bottom: '12vp' })
         Button("Alignment.Bottom")
