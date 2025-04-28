@@ -3535,15 +3535,20 @@ aVCastController.getSupportedDecoders().then((decoderTypes: avSession.DecoderTyp
 });
 ```
 
-### getRecommendedResolutionLevel<sup>18+</sup>
+### getRecommendedResolutionLevel<sup>19+</sup>
 
 getRecommendedResolutionLevel(decoderType: DecoderType): Promise\<ResolutionLevel>
 
 通过传递解码方式，获取推荐的分辨率。使用Promise异步回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：** 
+| 参数名   | 类型                                      | 必填 | 说明                       |
+| -------- | ----------------------------------------- | ---- | -------------------------- |
+| decoderType | [DecoderType](#decodertype19) | 是 | 设备所支持的解码格式。<br>设备所支持的解码格式包括：<br>'OH_AVCODEC_MIMETYPE_VIDEO_AVC'：VIDEO AVC，<br>'OH_AVCODEC_MIMETYPE_VIDEO_HEVC'：VIDEO HEVC，<br>'OH_AVCODEC_MIMETYPE_AUDIO_VIVID'：AUDIO AV3A。 |
 
 **返回值：**
 
