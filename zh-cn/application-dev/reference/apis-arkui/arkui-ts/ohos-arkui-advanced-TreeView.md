@@ -17,7 +17,7 @@
 ## 导入模块
 
 ```
-import { TreeView } from '@kit.ArkUI';
+import { TreeView } from "@kit.ArkUI";
 ```
 
 
