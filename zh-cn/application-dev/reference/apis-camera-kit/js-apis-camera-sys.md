@@ -911,6 +911,167 @@ function unregisterDepthDataOutputError(depthDataOutput: camera.DepthDataOutput)
 }
 ```
 
+## DepthFusionQuery<sup>14+</sup>
+
+深度融合查询类。
+
+### isDepthFusionSupported<sup>14+</sup>
+
+isDepthFusionSupported(): boolean;
+
+查询是否支持深度融合，通过返回值获取结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型            | 说明                     |
+| -------------- | ----------------------- |
+| boolean | 返回true表示支持深度融合，返回false表示不支持深度融合。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202             | Not System Application. |
+| 7400103         |  Session not config.      |
+
+**示例：**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function isDepthFusionSupported(DepthFusionQuery: camera.DepthFusionQuery): void {
+  DepthFusionQuery.isDepthFusionSupported().then(() => {
+    console.info('Promise returned to indicate that isDepthFusionSupported method execution success.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to depth fusion query  isDepthFusionSupported, error code: ${error.code}.`);
+  });
+}
+
+```
+### getDepthFusionThreshold<sup>14+</sup>
+
+getDepthFusionThreshold(): Array<number>;
+
+获取深度融合阈值，通过返回值获取结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型            | 说明                     |
+| -------------- | ----------------------- |
+| Array<number> | 深度融合的阈值范围。       |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202             | Not System Application. |
+| 7400103         |  Session not config.      |
+
+**示例：**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getDepthFusionThreshold(DepthFusionQuery: camera.DepthFusionQuery): void {
+  DepthFusionQuery.getDepthFusionThreshold().then(() => {
+    console.info('Promise returned to indicate that getDepthFusionThreshold method execution success.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to depth fusion query  getDepthFusionThreshold, error code: ${error.code}.`);
+  });
+}
+```
+## DepthFusion<sup>13+</sup>
+
+深度融合类。继承[DepthFusionQuery](js-apis-camera.md#DepthFusionQuery)。
+
+### isDepthFusionEnabled<sup>14+</sup>
+
+isDepthFusionEnabled(): boolean;
+
+检测深度融合功能是否已启用，通过返回值获取结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型            | 说明                     |
+| -------------- | ----------------------- |
+| boolean | 返回true表示开启深度融合，返回false表示未开启深度融合。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202             | Not System Application. |
+| 7400103         |  Session not config.      |
+
+**示例：**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function isDepthFusionEnabled(DepthFusion: camera.DepthFusion): void {
+  DepthFusion.isDepthFusionEnabled().then(() => {
+    console.info('Promise returned to indicate that isDepthFusionEnabled method execution success.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to depth fusion query  isDepthFusionEnabled, error code: ${error.code}.`);
+  });
+}
+```
+
+### enableDepthFusion<sup>14+</sup>
+
+enableDepthFusion(enabled: boolean): void;
+
+启用深度融合功能。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型      | 必填 | 说明                                  |
+| -------- | ---------- | --- | ------------------------------------ |
+| enabled  | boolean    | 是   | 使能深度融合，true表示使能，false表示不使能 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息                                           |
+|---------|------------------------------------------------|
+| 202     | Not System Application.                        |
+| 7400101 | Parameter missing or parameter type incorrect. |
+| 7400103 | Session not config.                            |
+| 7400201 | Camera service fatal error.                    |
+
+**示例：**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function enableDepthFusion(DepthFusion: camera.DepthFusion): void {
+  DepthFusion.enableDepthFusion().then(() => {
+    console.info('Promise returned to indicate that enableDepthFusion method execution success.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to depth fusion query  enableDepthFusion, error code: ${error.code}.`);
+  });
+}
+```
+
 ## PrelaunchConfig
 
 相机预启动配置参数。
