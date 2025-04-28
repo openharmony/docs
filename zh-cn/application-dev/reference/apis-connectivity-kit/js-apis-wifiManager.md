@@ -1295,7 +1295,7 @@ getLinkedInfoSync(): WifiLinkedInfo;
 
 ## WifiLinkType<sup>18+</sup>
 
-Wi-Fi7连接类型枚举。
+枚举，Wi-Fi7连接类型。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -1303,9 +1303,9 @@ Wi-Fi7连接类型枚举。
 | -------- | -------- | -------- |
 | DEFAULT_LINK | 0 | 默认连接类型。 |
 | WIFI7_SINGLE_LINK | 1 | Wi-Fi7单链连接。 |
-| WIFI7_MLSR | 2 | Wi-Fi7 MLSR(multi-link single-radio，多链路多天线)连接。 |
-| WIFI7_EMLSR | 3 | Wi-Fi7 EMLSR(enhanced multi-link single-radio, 增强型多链路单天线)连接。 |
-| WIFI7_STR | 4 | Wi-Fi7 STR(Simultaneous Tx and Rx， 同时发送和接收)连接。 |
+| WIFI7_MLSR | 2 | Wi-Fi7 MLSR（multi-link single-radio，多链路多天线）连接。 |
+| WIFI7_EMLSR | 3 | Wi-Fi7 EMLSR（enhanced multi-link single-radio, 增强型多链路单天线）连接。 |
+| WIFI7_STR | 4 | Wi-Fi7 STR（Simultaneous Tx and Rx， 同时发送和接收）连接。 |
 
 ## ConnState<sup>9+</sup>
 
@@ -2399,12 +2399,13 @@ stopDiscoverDevices(): void
 
 getMultiLinkedInfo(): &nbsp;Array&lt;WifiLinkedInfo&gt;
 
-获取MLO(Multi-Link Operation，多链路操作) Wi-Fi连接信息。
+获取MLO（Multi-Link Operation，多链路操作）Wi-Fi连接信息。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
-当macType是1 - 设备MAC地址时，获取 macAddress 还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限（该权限仅系统应用可申请），无该权限时，macAddress 返回为空。
-如果应用申请了ohos.permission.GET_WIFI_PEERS_MAC权限（该权限仅系统应用可申请），则返回结果中的bssid为真实mac地址，否则为随机设备地址。
+> **注意：**
+> - 当macType是1 - 设备MAC地址时，获取 macAddress 还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限（该权限仅系统应用可申请），无该权限时，macAddress 返回为空。
+> - 如果应用申请了ohos.permission.GET_WIFI_PEERS_MAC权限（该权限仅系统应用可申请），则返回结果中的bssid为真实mac地址，否则为随机设备地址。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
