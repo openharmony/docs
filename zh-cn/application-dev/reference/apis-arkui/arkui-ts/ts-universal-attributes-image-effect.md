@@ -778,6 +778,10 @@ FractionStop = [ number, number ]
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+>  **说明：**
+>
+>  背景图片的同步加载可能会带来潜在性能问题，详情可见[Image](ts-basic-components-image.md#image-1)中说明。
+
 | 名称            |  类型                                           | 必填  | 说明                                                     |
 | -------------- | ------------------------------------------------| ----- | --------------------------------------------------------|
 | syncLoad       | boolean                                         | 否    | 设置背景图片的同步或异步加载模式。<br/>默认值：false  <br/>true时为同步加载模式，false时为异步加载模式。      |
