@@ -492,7 +492,7 @@ export default class EntryAbility extends UIAbility {
     let config: window.Configuration = {
       name: "test",
       windowType: window.WindowType.TYPE_DIALOG,
-      ctx: this.context // context对象也可在组件中通过getContext()方法获取
+      ctx: this.context
     };
     try {
       window.createWindow(config, (err: BusinessError, data) => {
@@ -563,7 +563,7 @@ export default class EntryAbility extends UIAbility {
     let config: window.Configuration = {
       name: "test",
       windowType: window.WindowType.TYPE_DIALOG,
-      ctx: this.context // context对象也可以在组件中通过getContext()方法获取
+      ctx: this.context
     };
     try {
       window.createWindow(config).then((value:window.Window) => {
