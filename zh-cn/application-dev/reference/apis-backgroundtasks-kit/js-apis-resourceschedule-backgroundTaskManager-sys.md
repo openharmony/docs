@@ -108,7 +108,7 @@ try {
 
 getAllEfficiencyResources(): Promise&lt;EfficiencyResourcesInfo[]&gt;
 
-获取已申请的所有能效资源信息，如能效资源类型、持久化等，使用Promise异步回调。
+获取已申请的所有能效资源信息，如能效资源类型等，使用Promise异步回调。
 
 **系统能力**: SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
 
@@ -203,8 +203,8 @@ try {
 |--------------------------------|---------| ---- |-------------|
 | [resourceTypes](#resourcetype) | number  | 是    | 能效资源类型。     |
 | timeout                        | number  | 是    | 超时时间，单位：ms。 |
-| isPersistent                   | boolean | 是    | 是否持久化。      |
-| isForProcess                   | boolean | 是    | 是否进程级别申请。   |
+| isPersistent                   | boolean | 是    | 取值为true表示持久化申请，取值为false表示非持久化申请。      |
+| isForProcess                   | boolean | 是    | 取值为true表示进程维度申请，取值为false表示应用维度申请。   |
 | reason                         | string  | 是    | 申请原因。       |
 | uid                            | number  | 是    | 应用的UID。     |
 | pid                            | number  | 是    | 应用进程的PID。   |
