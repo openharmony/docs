@@ -996,7 +996,9 @@ int32_t OH_NativeWindow_NativeWindowFlushBuffer (OHNativeWindow *window, OHNativ
 **描述：**
 
 通过OHNativeWindow将生产好内容的OHNativeWindowBuffer放回到Buffer队列中，用以内容消费。
-系统会将fenFd关闭，无需用户close。
+
+系统会将fenceFd关闭，无需用户close。
+
 本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
