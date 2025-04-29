@@ -4562,3 +4562,17 @@
 **ACL使能**：true
 
 **起始版本**：18
+
+## ohos.permission.ALLOW_IOURING
+
+允许系统应用调用io_uring相关系统调用实现异步IO操作。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：General
+
+**起始版本**：20

@@ -4552,3 +4552,17 @@ This permission prevents authorized access to custom EDM configuration files, su
 **Enable via ACL**：true
 
 **Valid since**：18
+
+## ohos.permission.ALLOW_IOURING
+
+Allows a system application to call io_uring to perform async IO operations.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: General
+
+**Valid since**：20
