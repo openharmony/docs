@@ -14,9 +14,11 @@ The application needs to call [getPhotoAccessHelper](../../reference/apis-media-
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { common } from '@kit.AbilityKit';
 
 // The photoAccessHelper instance obtained here is a global object. Unless otherwise specified, the object obtained here is used in subsequent operations in this document. If an undefined error is reported, add the code snippet here.
-const context = getContext(this);
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 ```
 
