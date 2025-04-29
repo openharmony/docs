@@ -2597,7 +2597,7 @@ static getThreeLetterLanguage(locale: string): string
 
 | 类型     | 说明                  |
 | ------ | ------------------- |
-| string | 返回传入语言代码对应的三字母代码。 |
+| string | 返回待转换语言二字母代码对应的三字母代码。 |
 
 **错误码：**
 
@@ -2641,7 +2641,7 @@ static getThreeLetterRegion(locale: string): string
 
 | 类型     | 说明                  |
 | ------ | ------------------- |
-| string | 返回传入地区代码对应的三字母代码。 |
+| string | 返回待转换地区二字母代码对应的三字母代码。 |
 
 **错误码：**
 
