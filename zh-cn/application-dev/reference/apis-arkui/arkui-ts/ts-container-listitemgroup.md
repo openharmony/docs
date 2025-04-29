@@ -147,7 +147,7 @@ export class TimeTableDataSource implements IDataSource {
   notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataChange(index);
-    })
+    });
   }
 
   // 修改第一个元素
@@ -212,7 +212,7 @@ struct ListItemGroupExample {
         title: '星期四',
         projects: ['美术', '音乐', '体育']
       }
-    ]
+    ];
     this.itemGroupArray = new TimeTableDataSource(timeTable);
   }
 
@@ -289,7 +289,7 @@ struct ListItemGroupExample2 {
       style: ListItemGroupStyle.NONE,
       itemStyles: [ListItemStyle.CARD, ListItemStyle.CARD, ListItemStyle.NONE]
     }
-  ]
+  ];
 
   build() {
     Column() {
@@ -370,16 +370,16 @@ function itemFoot(params: FootBuilderParams) {
 
 @Component
 struct MyItemGroup {
-  item: TimeTable = { title: "", projects: [] }
-  header?: ComponentContent<HeadBuilderParams> = undefined
-  footer?: ComponentContent<FootBuilderParams> = undefined
-  headerParam = new HeadBuilderParams(this.item.title)
-  footerParam = new FootBuilderParams(this.item.projects.length)
+  item: TimeTable = { title: "", projects: [] };
+  header?: ComponentContent<HeadBuilderParams> = undefined;
+  footer?: ComponentContent<FootBuilderParams> = undefined;
+  headerParam = new HeadBuilderParams(this.item.title);
+  footerParam = new FootBuilderParams(this.item.projects.length);
   itemArr: ProjectsDataSource = new ProjectsDataSource([]);
 
   aboutToAppear(): void {
-    this.header = new ComponentContent(this.getUIContext(), wrapBuilder(itemHead), this.headerParam)
-    this.footer = new ComponentContent(this.getUIContext(), wrapBuilder(itemFoot), this.footerParam)
+    this.header = new ComponentContent(this.getUIContext(), wrapBuilder(itemHead), this.headerParam);
+    this.footer = new ComponentContent(this.getUIContext(), wrapBuilder(itemFoot), this.footerParam);
     this.itemArr = new ProjectsDataSource(this.item.projects);
   }
   GetHeader() {
@@ -433,7 +433,7 @@ struct ListItemGroupExample {
         title: '星期四',
         projects: ['美术', '音乐']
       }
-    ]
+    ];
     this.itemGroupArray = new TimeTableDataSource(timeTable);
   }
 
