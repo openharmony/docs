@@ -492,11 +492,11 @@ getXComponentSurfaceRotation(): Required\<SurfaceRotationOptions>
 
 使用enableAnalyzer属性开启图像AI分析功能。可通过XComponentController控制开始、停止图形AI分析。
 
-<!--Del-->
+<!--RP1-->
 > **说明：**
 >
 > 本示例画图逻辑具体实现（和nativeRender相关的函数实现）可以参考[ArkTSXComponent示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/ArkTSXComponent)
-<!--DelEnd-->
+<!--RP1End-->
 
 ```ts
 // xxx.ets
@@ -593,7 +593,7 @@ struct XComponentExample {
   }
 }
 ```
-<!--RP1--><!--RP1End-->
+<!--RP2--><!--RP2End-->
 
 ### 示例2（在surface旋转过程中锁定）
 
