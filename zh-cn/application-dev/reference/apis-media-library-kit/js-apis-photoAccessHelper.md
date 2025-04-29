@@ -1840,7 +1840,7 @@ async function example() {
 
 clone(title: string): Promise&lt;PhotoAsset&gt;
 
-克隆资产时。可设置文件名，但不支持修改文件类型。
+克隆资产。可设置文件名，但不支持修改文件类型。
 
 **需要权限**：ohos.permission.WRITE\_IMAGEVIDEO
 
