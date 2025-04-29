@@ -2378,7 +2378,7 @@ dataPreferences.off('dataChange', keys, observer);
 
 type ValueType = number | string | boolean | Array\<number> | Array\<string> | Array\<boolean> | Uint8Array | object | bigint
 
-表示允许的数据字段类型。
+表示支持的值类型。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

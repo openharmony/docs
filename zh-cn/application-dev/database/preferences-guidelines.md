@@ -1,8 +1,7 @@
 # 通过用户首选项实现数据持久化 (C/C++)
 
 ## 场景介绍
-用户首选项（Preferences）模块主要提供轻量级Key-Value操作，支持本地存储少量数据，数据存储在文件和内存中，访问速度快。首选项提供非关系型数据存储，不建议存储大量数据，常用于操作键值对形式的数据。
-
+用户首选项（Preferences）模块主要提供轻量级Key-Value操作，支持本地存储少量数据，数据存储在文件和内存中，访问速度快。如果存在大量数据场景，请考虑使用键值型数据库或关系型数据库。
 
 ## 约束限制
 1. Preferences不支持C API与ArkTS API混合使用。
@@ -29,7 +28,7 @@
 | int OH_Preferences_UnregisterDataObserver (OH_Preferences \*preference, void \*context, OH_PreferencesDataObserver observer, const char \*keys[], uint32_t keyCount) | 取消注册选取Key的数据变更订阅。 |
 | int OH_Preferences_IsStorageTypeSupported (Preferences_StorageType type, bool \*isSupported) | 检查当前平台是否支持对应的存储模式。 |
 | OH_PreferencesOption \* OH_PreferencesOption_Create (void) | 创建一个Preferences配置选项的OH_PreferencesOption实例对象以及指向它的指针。 当不再需要使用指针时，请使用OH_PreferencesOption_Destroy销毁实例对象，否则会导致内存泄漏。 |
-| int OH_PreferencesOption_SetFileName (OH_PreferencesOption \*option, const char \*fileName) | 设置Preferences配置选项OH_PreferencesOption实例对象的文件名称。名称长度为0到255字节，其中不能包含或以'/'结尾。 |
+| int OH_PreferencesOption_SetFileName (OH_PreferencesOption \*option, const char \*fileName) | 设置Preferences配置选项OH_PreferencesOption实例对象的文件名称。名称长度为0到255字节，其中不能包含'/'。 |
 | int OH_PreferencesOption_SetBundleName (OH_PreferencesOption \*option, const char \*bundleName) | 设置Preferences配置选项OH_PreferencesOption实例对象的包名称。 |
 | int OH_PreferencesOption_SetDataGroupId (OH_PreferencesOption \*option, const char \*dataGroupId) | 设置Preferences配置选项OH_PreferencesOption实例对象的应用组ID。 |
 | int OH_PreferencesOption_SetStorageType (OH_PreferencesOption \*option, Preferences_StorageType type) | 设置Preferences配置选项 OH_PreferencesOption实例对象的存储模式。 |
