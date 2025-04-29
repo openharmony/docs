@@ -62,7 +62,7 @@ MediaKeySession实例数量超过上限（64个）。
 
 **错误信息**
 
-Fatal service error, for example, service died.
+Service error. For example, the service crashed.
 
 **错误描述**
 
