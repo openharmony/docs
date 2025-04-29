@@ -33,11 +33,11 @@ Inner error.
 
 **错误信息**
 
-Invalid database path.
+Failed to open or delete the database by an invalid database path.
 
 **错误描述**
 
-数据库路径不合法。
+数据库路径不合法，打开或删除数据库失败。
 
 **可能原因**
 
@@ -51,11 +51,11 @@ Invalid database path.
 
 **错误信息**
 
-Database corrupted.
+Failed to open the database because it is corrupted.
 
 **错误描述**
 
-数据库出现异常。
+数据库异常，打开失败。
 
 **可能原因**
 
@@ -69,7 +69,7 @@ Database corrupted.
 
 **错误信息**
 
-Row out of bounds.
+ResultSet is empty or pointer index is out of bounds.
 
 **错误描述**
 
@@ -87,7 +87,7 @@ Row out of bounds.
 
 **错误信息**
 
-Column out of bounds.
+Resultset is empty or column index is out of bounds.
 
 **错误描述**
 
@@ -110,7 +110,7 @@ Column out of bounds.
 
 **错误信息**
 
-Already closed.
+The RdbStore or ResultSet is already closed.
 
 **错误描述**
 
@@ -165,7 +165,7 @@ The database alias already exists.
 
 **错误信息**
 
-Config changed.
+StoreConfig is changed.
 
 **错误描述**
 
@@ -239,7 +239,7 @@ The secret key is corrupted or lost.
 
 **错误信息**
 
-SQLite: Generic error.
+SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.
 
 **错误描述**
 
