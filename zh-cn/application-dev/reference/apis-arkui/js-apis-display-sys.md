@@ -223,7 +223,7 @@ try {
   let mode: display.FoldDisplayMode = display.FoldDisplayMode.FOLD_DISPLAY_MODE_MAIN;
   display.setFoldDisplayMode(mode, 'backSelfie');
 } catch (exception) {
-  console.error('Failed to change the fold display mode. Code: ' + JSON.stringify(exception));
+  console.error(`Failed to change the fold display mode. Code: ${exception}`);
 }
 ```
 
