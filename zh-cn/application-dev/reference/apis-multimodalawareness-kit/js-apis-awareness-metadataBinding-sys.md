@@ -11,7 +11,7 @@
 
 ## 导入模块
 ```ts
-import { metadataBinding } from '@ohos.multimodalAwareness';
+import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 ```
 
 ## encodeImage(image.PixelMap, string)
@@ -36,13 +36,13 @@ encodeImage(srcImage: image.PixelMap, metadata: string): Promise<image.PixelMap>
 | -------- | ------------------------------------------------------------ |
 |   202    | Permission check failed. A non-system application uses the system API.|
 |32100001  | Internal handling failed. File creation failed.|
-|32100002  | Encode process fail.|
+|32100002  | Encode process fail. Possible causes: 1. Image processing error; 2. Channel coding error.|
 
 **示例**：
 
 ```ts
 import image from '@ohos.multimedia.image';
-import { metadataBinding } from '@ohos.multimodalAwareness';
+import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let captureImage: image.PixelMap | undefined = undefined;
@@ -77,12 +77,12 @@ function decodeImage(encodedImage: image.PixelMap): Promise\<string\>
 | -------- | ------------------------------------------------------------ |
 |   202    | Permission check failed. A non-system application uses the system API.|
 |32100001  | Internal handling failed. File read failed.|
-|32100003  | Decode process fail.|
+|32100003  | Decode process fail. Possible causes: 1. Image is not an encoded Image; 2. Image destroyed, decoding failed.|
 
 **示例：**  
 ```ts
 import image from '@ohos.multimedia.image';
-import { metadataBinding } from '@ohos.multimodalAwareness';
+import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let encodeImage: image.PixelMap | undefined = undefined;
@@ -117,7 +117,7 @@ notifyMetadataBindingEvent(metadata: string): void；
 **示例**：
 
 ```ts
-import { metadataBinding } from '@ohos.multimodalAwareness';
+import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let metadata:string = '';

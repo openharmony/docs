@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> 该组件从API Version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -249,7 +249,7 @@ setXComponentSurfaceSize(value: {surfaceWidth: number, surfaceHeight: number}): 
 
 设置XComponent持有Surface的宽度和高度，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
 
-该接口从API Version 12开始废弃，建议使用[setXComponentSurfaceRect](#setxcomponentsurfacerect12)替代。
+该接口从API version 12开始废弃，建议使用[setXComponentSurfaceRect](#setxcomponentsurfacerect12)替代。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -514,11 +514,11 @@ getXComponentSurfaceRotation(): Required\<SurfaceRotationOptions>
 
 使用enableAnalyzer属性开启图像AI分析功能。可通过XComponentController控制开始、停止图形AI分析。
 
-<!--Del-->
+<!--RP1-->
 > **说明：**
 >
 > 本示例画图逻辑具体实现（和nativeRender相关的函数实现）可以参考[ArkTSXComponent示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/ArkTSXComponent)
-<!--DelEnd-->
+<!--RP1End-->
 
 ```ts
 // xxx.ets
@@ -615,7 +615,7 @@ struct XComponentExample {
   }
 }
 ```
-<!--RP1--><!--RP1End-->
+<!--RP2--><!--RP2End-->
 
 ### 示例2（在surface旋转过程中锁定）
 

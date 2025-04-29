@@ -118,6 +118,8 @@ AV_ERR_INVALID_STATE：本接口必须在OH_VideoDecoder_Prepare接口前调用�
 
 AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION：不支持色彩空间转换功能。
 
+AV_ERR_UNSUPPORT：未支持的功能。
+
 
 ### OH_VideoDecoder_CreateByMime()
 

@@ -1,6 +1,6 @@
-# @ohos.enterprise.adminManager (企业设备管理)
+# @ohos.enterprise.adminManager (admin权限管理)
 
-本模块提供企业设备管理能力，使设备具备企业场景下所需的定制能力。
+本模块为企业MDM应用提供admin权限管理能力，包括激活/解除激活admin权限、事件订阅、委托授权等。
 
 > **说明：**
 >
@@ -18,7 +18,7 @@ import { adminManager } from '@kit.MDMKit';
 
 disableAdmin(admin: Want, userId?: number): Promise\<void>
 
-将当前设备指定用户的设备管理应用去激活。使用promise异步回调。
+将当前设备指定用户的设备管理应用解除激活。使用promise异步回调。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -39,7 +39,7 @@ disableAdmin(admin: Want, userId?: number): Promise\<void>
 
 | 类型           | 说明                                                         |
 | -------------- | ------------------------------------------------------------ |
-| Promise\<void> | 无返回结果的Promise对象。当去激活设备管理应用失败时，会抛出错误对象。 |
+| Promise\<void> | 无返回结果的Promise对象。当解除激活设备管理应用失败时，会抛出错误对象。 |
 
 **错误码**:
 
@@ -185,7 +185,7 @@ setDelegatedPolicies(admin: Want, bundleName: string, policies: Array&lt;string&
 | 参数名        | 类型                                                    | 必填 | 说明               |
 | ------------- | ------------------------------------------------------- | ---- | ------------------ |
 | admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
-| bundleName | string                   | 是   | 被委托应用包名。被委托应用仅支持enterprise_mdm和enterprise_normal两种类型，应用的分发类型具体请参考[指南](https://gitee.com/nezha-father/docs/blob/master/zh-cn/application-dev/security/app-provision-structure.md)。 |
+| bundleName | string                   | 是   | 被委托应用包名。被委托应用仅支持分发类型为enterprise_normal（企业普通应用）和enterprise_mdm（企业MDM应用）两种类型，开发者可在[Profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中查询分发类型字段app-distribution-type。 |
 | policies |  Array&lt;string&gt;                   | 是   | [委托策略列表](#可委托策略列表)。 |
 
 **错误码**：
@@ -237,7 +237,7 @@ getDelegatedPolicies(admin: Want, bundleName: string): Array&lt;string&gt;
 | 参数名     | 类型                                                    | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin      | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
-| bundleName | string                                                  | 是   | 被委托应用包名。被委托应用仅支持enterprise_mdm和enterprise_normal两种类型，应用的分发类型具体请参考[指南](https://gitee.com/nezha-father/docs/blob/master/zh-cn/application-dev/security/app-provision-structure.md)。 |
+| bundleName | string                                                  | 是   | 被委托应用包名。被委托应用仅支持分发类型为enterprise_normal（企业普通应用）和enterprise_mdm（企业MDM应用）两种类型，开发者可在[Profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中查询分发类型字段app-distribution-type。 |
 
 
 **返回值：**
@@ -366,16 +366,15 @@ startAdminProvision(admin: Want, type: AdminType, context: common.Context, param
 
 ```ts
 import { common, Want } from '@kit.AbilityKit';
-import adminManager from '@ohos.enterprise.adminManager';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let context = getContext(this) as common.UIAbilityContext;
 let recordParameters: Record<string, string> = {
   "activateId": "activateId testValue",
   "customizedInfo": "customizedInfo testValue"
-}
+};
+const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 try {
   console.info('context:' + JSON.stringify(context));
   adminManager.startAdminProvision(wantTemp, adminManager.AdminType.ADMIN_TYPE_BYOD, context, recordParameters);

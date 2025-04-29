@@ -80,5 +80,5 @@ set_target_properties(library
     PROPERTIES
     IMPORTED_LOCATION ${LIBRARY_DIR}/liblibrary.so)
 add_library(entry SHARED hello.cpp)
-target_link_libraries(entry PUBLIC libace_napi.z.so)
+target_link_libraries(entry PUBLIC libace_napi.z.so library)
 ```

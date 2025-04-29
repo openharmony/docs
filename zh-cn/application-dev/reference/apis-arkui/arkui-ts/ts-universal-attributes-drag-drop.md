@@ -1,6 +1,6 @@
 # 拖拽控制
 
-设置组件是否可以响应拖拽事件。
+组件提供了一些属性和接口，可用于配置组件对拖拽事件的响应行为，或影响系统对拖拽事件的处理方式，包括是否允许被拖拽，自定义拖拽跟手图的外观等。
 
 > **说明：**
 > 
@@ -121,7 +121,7 @@ dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 | ENABLE_DEFAULT_RADIUS<sup>12+</sup> | 4 | 启用非文本类组件统一圆角效果，默认值12vp。当应用自身设置的圆角值大于默认值或modifier设置的圆角时，则显示应用自定义圆角效果。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
 | ENABLE_DRAG_ITEM_GRAY_EFFECT<sup>18+</sup> | 5 | 启用支持原拖拽对象灰显（透明度）效果，对文本内容拖拽不生效。用户拖起时原对象显示灰显效果，释放时原对象恢复原有效果。开启默认灰显效果后，不建议在拖拽开始后自行修改透明度，如果开发者在拖拽发起后自行修改应用透明度，则灰显效果将被覆盖，且在结束拖拽时无法正确恢复原始透明度效果。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
 | ENABLE_MULTI_TILE_EFFECT<sup>18+</sup> | 6 | 启用支持多选对象鼠标拖拽不聚拢效果，当满足多选的情况下isMultiSelectionEnabled为true且生效时该参数才生效。不聚拢效果优先级高于[dragPreview](#dragpreview11)。不支持二次拖拽、圆角和缩放设置。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
-| ENABLE_TOUCH_POINT_CALCULATION_BASED_ON_FINAL_PREVIEW<sup>18+</sup> | 7 | 启用支持以拖拽预览图初始尺寸计算跟手点位置，设置DragPreviewMode.ENABLE_MULTI_TILE_EFFECT时不生效。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
+| ENABLE_TOUCH_POINT_CALCULATION_BASED_ON_FINAL_PREVIEW<sup>18+</sup> | 7 | 启用支持以拖拽预览图初始尺寸计算跟手点位置，鼠标拖拽，设置DragPreviewMode.ENABLE_MULTI_TILE_EFFECT时不生效。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## DraggingSizeChangeEffect<sup>18+</sup>
 
@@ -134,8 +134,8 @@ dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 | 名称 | 值 | 说明 |
 | -------- | ------- | -------- |
 | DEFAULT | 0 | 发起拖拽时直接从菜单预览图切换为最终尺寸的拖拽跟手图。 |
-| SIZE_TRANSITION | 1 | 发起拖拽时，由菜单预览图直接切换为拖拽跟手图，但尺寸逐步从菜单预览图尺寸过渡到最终跟手图尺寸。这在长按浮起预览图与拖拽跟手图相同时使用。 |
-| SIZE_CONTENT_TRANSITION | 2 | 发起拖拽时，由菜单预览图逐步过渡切换为最终拖拽跟手图。这常用于菜单预览图与拖拽跟手图差异较大时使用，过渡效果包含内容透明度及尺寸变化。 |
+| SIZE_TRANSITION | 1 | 发起拖拽时，由菜单预览图直接切换为拖拽跟手图，但尺寸逐步从菜单预览图尺寸过渡到最终跟手图尺寸，设置DragPreviewMode.DISABLE_SCALE时尺寸过渡不生效。这在长按浮起预览图与拖拽跟手图相同时使用。 |
+| SIZE_CONTENT_TRANSITION | 2 | 发起拖拽时，由菜单预览图逐步过渡切换为最终拖拽跟手图，设置DragPreviewMode.DISABLE_SCALE时尺寸过渡不生效。这常用于菜单预览图与拖拽跟手图差异较大时使用，过渡效果包含内容透明度及尺寸变化。 |
 
 
 ## DragInteractionOptions<sup>12+</sup>
@@ -819,3 +819,170 @@ struct LiftingExampleDemo {
 自定义预览图禁用浮起效果。
 
 ![isLiftingDisabled.gif](figures/isLiftingDisabled.gif)
+
+### 示例10（以拖拽预览图初始尺寸计算跟手点位置）
+该示例通过配置DragPreviewMode.ENABLE_TOUCH_POINT_CALCULATION_BASED_ON_FINAL_PREVIEW实现以拖拽预览图初始尺寸计算跟手点位置，设置DragPreviewMode.ENABLE_MULTI_TILE_EFFECT时不生效。
+```ts
+@Entry
+@Component
+struct Index {
+  private iconStr: ResourceStr = $r("app.media.app_icon")
+
+  @Builder
+  MyPreview() {
+    Image($r('app.media.image'))
+      .width(100)
+      .height(100)
+  }
+
+  @Builder
+  MyMenuPreview() {
+    Column() {
+      Image($r('app.media.image'))
+        .width(100)
+        .height(100)
+    }
+    .backgroundColor(Color.Green)
+    .width(300)
+    .height(300)
+  }
+
+  @Builder
+  MyMenu() {
+    Menu() {
+      MenuItem({ startIcon: this.iconStr, content: "菜单选项" })
+      MenuItem({ startIcon: this.iconStr, content: "菜单选项" })
+    }
+  }
+
+  @Builder
+  SubMenu() {
+    Menu() {
+      MenuItem({ content: "复制", labelInfo: "Ctrl+C" })
+      MenuItem({ content: "粘贴", labelInfo: "Ctrl+V" })
+    }
+  }
+
+  build() {
+    NavDestination() {
+      Scroll() {
+        Column() {
+          Text("no ENABLE_TOUCH_POINT_CALCULATION_BASED_ON_FINAL_PREVIEW")
+          Image($r('app.media.image'))
+            .width(200)
+            .height(200)
+            .bindContextMenu(this.MyMenu, ResponseType.LongPress, {
+              preview: this.MyPreview
+            })
+            .dragPreview(this.MyMenuPreview)
+            .draggable(true)
+
+          Text("ENABLE_TOUCH_POINT_CALCULATION_BASED_ON_FINAL_PREVIEW")
+          Image($r('app.media.image'))
+            .width(200)
+            .height(200)
+            .bindContextMenu(this.MyMenu, ResponseType.LongPress, {
+              preview: this.MyPreview
+            })
+            .dragPreview(this.MyMenuPreview)
+            .draggable(true)
+            .dragPreviewOptions({
+              mode: [DragPreviewMode.ENABLE_TOUCH_POINT_CALCULATION_BASED_ON_FINAL_PREVIEW]
+            })
+        }.width('100%')
+      }
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+![touchPointer.gif](figures/touchPointer.gif)
+
+### 示例11（长按浮起预览图与拖拽跟手图过渡动效）
+该示例通过配置DraggingSizeChangeEffect实现不同拖拽过渡效果。
+```ts
+@Entry
+@Component
+struct Index {
+  private iconStr: ResourceStr = $r("app.media.app_icon")
+
+  @Builder
+  MyPreview() {
+    Image($r('app.media.image'))
+      .width(200)
+      .height(200)
+  }
+
+  @Builder
+  MyMenuPreviewSame() {
+    Column() {
+      Image($r('app.media.image'))
+        .width(300)
+        .height(300)
+    }
+  }
+
+  @Builder
+  MyMenuPreview() {
+    Column() {
+      Image($r('app.media.startIcon'))
+        .width(300)
+        .height(300)
+    }
+  }
+
+  @Builder
+  MyMenu() {
+    Menu() {
+      MenuItem({ startIcon: this.iconStr, content: "菜单选项" })
+      MenuItem({ startIcon: this.iconStr, content: "菜单选项" })
+    }
+  }
+
+  @Builder
+  SubMenu() {
+    Menu() {
+      MenuItem({ content: "复制", labelInfo: "Ctrl+C" })
+      MenuItem({ content: "粘贴", labelInfo: "Ctrl+V" })
+    }
+  }
+
+  build() {
+    Column() {
+      Text("sizeChangeEffect: SIZE_TRANSITION，长按弹出菜单，拖拽移动后菜单预览图过渡到跟手图，有缩放无叠加效果")
+        .margin({ top: 10 })
+      Image($r('app.media.image'))
+        .width(200)
+        .height(200)
+        .bindContextMenu(this.MyMenu, ResponseType.LongPress, {
+          preview: this.MyMenuPreviewSame
+        })
+        .dragPreview(this.MyPreview)
+        .dragPreviewOptions({
+          sizeChangeEffect: DraggingSizeChangeEffect.SIZE_TRANSITION
+        })
+        .draggable(true)
+
+      Text("sizeChangeEffect: SIZE_CONTENT_TRANSITION，长按弹出菜单，拖拽移动后菜单预览图和拖拽跟手图两层叠加过渡")
+        .margin({ top: 10 })
+      Image($r('app.media.image'))
+        .width(200)
+        .height(200)
+        .bindContextMenu(this.MyMenu, ResponseType.LongPress, {
+          preview: this.MyMenuPreview
+        })
+        .dragPreview(this.MyPreview)
+        .dragPreviewOptions({
+          sizeChangeEffect: DraggingSizeChangeEffect.SIZE_CONTENT_TRANSITION
+        })
+        .draggable(true)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+![sizeChangeEffect.gif](figures/sizeChangeEffect.gif)

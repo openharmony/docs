@@ -52,13 +52,15 @@
     import { fileIo as fs } from '@kit.CoreFileKit';
     import { common } from '@kit.AbilityKit';
 
-    function readUserDownloadDirExample() {
+    // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
+    function readUserDownloadDirExample(context: common.UIAbilityContext) {
         // 检查是否具有 READ_WRITE_DOWNLOAD_DIRECTORY 权限，无权限则需要向用户申请授予权限。
         try {
             // 获取 Download 目录
             const downloadPath = Environment.getUserDownloadDir();
             console.info(`success to getUserDownloadDir: ${downloadPath}`);
-            const context = getContext() as common.UIAbilityContext;
             const dirPath = context.filesDir;
             console.info(`success to get filesDir: ${dirPath}`);
             // 查看 Download 目录下的文件并拷贝到沙箱目录中

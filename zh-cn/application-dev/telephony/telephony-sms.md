@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-短信服务模块提供了管理短信的一些基础能力，包括创建、发送短信，获取、设置发送短信的默认SIM卡槽ID，获取、设置短信服务中心地址，以及检查当前设备是否具备短信发送和接收能力等。
+短信服务模块提供了管理短信的一些基础能力，包括创建/发送短信、获取/设置发送短信的默认SIM卡槽ID、获取/设置短信服务中心地址，以及检查当前设备是否具备短信发送和接收能力等。
 
 常见的应用场景举例如下：
 
@@ -31,7 +31,7 @@
 ## 接口说明
 
 > **说明：**
-> 为了保证应用的运行效率，大部分API调用都是异步的，对于异步调用的API均提供了callback和Promise两种方式，以下示例均采用callback函数，更多方式可以查阅[API参考](../reference/apis-telephony-kit/js-apis-sms.md)。
+> 为了保证应用的运行效率，大部分API调用都是异步的，对于异步调用的API均提供了callback和Promise两种方式，以下示例采用callback回调方式，其他调用方式请参考[API](../reference/apis-telephony-kit/js-apis-sms.md)文档。
 
 | 接口名                                                       | 描述                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------- |
@@ -189,7 +189,7 @@ struct Index {
     Column() {
       Button('发送短信')
         .onClick(() => {
-          let context = getContext(this) as common.UIAbilityContext;
+          let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
           let exampleUrl = "sms:106XXXXXXXXXX?body=%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1%E5%86%85%E5%AE%B9";
         
           let want: Want = {

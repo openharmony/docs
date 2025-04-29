@@ -82,7 +82,7 @@ let options: AnimatorOptions = {
   begin: 200.0,
   end: 400.0
 };
-animator.create(options); // 建议使用 UIContext.creatAnimator()接口
+animator.create(options); // 建议使用 UIContext.createAnimator()接口
 ```
 
 ### create<sup>18+</sup>
@@ -125,7 +125,7 @@ create(options: AnimatorOptions \| [SimpleAnimatorOptions](#simpleanimatoroption
 ```ts
 import { Animator as animator, SimpleAnimatorOptions } from '@kit.ArkUI';
 let options: SimpleAnimatorOptions = new SimpleAnimatorOptions(100, 200).duration(2000);
-animator.create(options);// 建议使用 UIContext.creatAnimator()接口
+animator.create(options);// 建议使用 UIContext.createAnimator()接口
 ```
 
 ### createAnimator<sup>(deprecated)</sup>
@@ -978,7 +978,7 @@ struct AnimatorTest {
 
   create() {
     this.backAnimator = animator.create({
-      // 建议使用 this.getUIContext.creatAnimator()接口
+      // 建议使用 this.getUIContext.createAnimator()接口
       duration: 2000,
       easing: "ease",
       delay: 0,

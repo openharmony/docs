@@ -47,8 +47,10 @@ getPhotoAccessHelper(context: Context): PhotoAccessHelper
 **示例：**
 
 ```ts
-//此处获取的phAccessHelper实例为全局对象，后续使用到phAccessHelper的地方默认为使用此处获取的对象，如未添加此段代码报phAccessHelper未定义的错误请自行添加。
-let context = getContext(this);
+// 此处获取的phAccessHelper实例为全局对象，后续使用到phAccessHelper的地方默认为使用此处获取的对象，如未添加此段代码报phAccessHelper未定义的错误请自行添加。
+// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
+import { common } from '@kit.AbilityKit';
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 ```
 
@@ -85,6 +87,8 @@ getAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Photo
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -148,6 +152,8 @@ getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -207,6 +213,8 @@ getBurstAssets(burstKey: string, options: FetchOptions): Promise&lt;FetchResult&
 | 14000011       | Internal system error.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -273,6 +281,8 @@ createAsset(photoType: PhotoType, extension: string, options: CreateOptions, cal
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 async function example() {
   console.info('createAssetDemo');
@@ -326,6 +336,8 @@ createAsset(photoType: PhotoType, extension: string, callback: AsyncCallback&lt;
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 async function example() {
@@ -384,6 +396,8 @@ createAsset(photoType: PhotoType, extension: string, options?: CreateOptions): P
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 async function example() {
   console.info('createAssetDemo');
@@ -435,6 +449,8 @@ getAlbums(type: AlbumType, subtype: AlbumSubtype, options: FetchOptions, callbac
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -497,6 +513,8 @@ getAlbums(type: AlbumType, subtype: AlbumSubtype, callback: AsyncCallback&lt;Fet
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 async function example() {
   // 示例代码中为获取统相册VIDEO，默认已预置。
@@ -556,6 +574,8 @@ getAlbums(type: AlbumType, subtype: AlbumSubtype, options?: FetchOptions): Promi
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -610,6 +630,8 @@ registerChange(uri: string, forChildUris: boolean, callback: Callback&lt;ChangeD
 | 13900020     | Invalid argument.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -669,6 +691,8 @@ unRegisterChange(uri: string, callback?: Callback&lt;ChangeData&gt;): void
 | 13900020     | Invalid argument.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -734,6 +758,8 @@ createDeleteRequest(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;voi
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -803,6 +829,8 @@ createDeleteRequest(uriList: Array&lt;string&gt;): Promise&lt;void&gt;
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -896,6 +924,8 @@ release(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 async function example() {
   console.info('releaseDemo');
@@ -935,6 +965,8 @@ release(): Promise&lt;void&gt;
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 async function example() {
@@ -984,6 +1016,8 @@ showAssetsCreationDialog(srcFileUris: Array&lt;string&gt;, photoCreationConfigs:
 | 14000011 |  Internal system error. |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -1047,6 +1081,8 @@ createAssetWithShortTermPermission(photoCreationConfig: PhotoCreationConfig): Pr
 | 14000011 |  Internal system error |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { fileIo } from '@kit.CoreFileKit';
@@ -1119,6 +1155,8 @@ requestPhotoUrisReadPermission(srcFileUris: Array&lt;string&gt;): Promise&lt;Arr
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -1172,6 +1210,8 @@ getSupportedPhotoFormats(photoType: PhotoType): Promise&lt;Array&lt;string&gt;&g
 | 14000011 | Internal system error. It is recommended to retry and check the logs. |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
@@ -1248,6 +1288,8 @@ get(member: string): MemberType
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -1296,6 +1338,8 @@ set(member: string, value: string): void
 | 14000014     | Member is not a valid PhotoKey.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -1349,6 +1393,8 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -1408,6 +1454,8 @@ commitModify(): Promise&lt;void&gt;
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -1470,6 +1518,8 @@ getReadOnlyFd(callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 async function example() {
   console.info('getReadOnlyFdDemo');
@@ -1527,6 +1577,8 @@ getReadOnlyFd(): Promise&lt;number&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 async function example() {
   console.info('getReadOnlyFdDemo');
@@ -1582,6 +1634,8 @@ close(fd: number, callback: AsyncCallback&lt;void&gt;): void
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -1647,6 +1701,8 @@ close(fd: number): Promise&lt;void&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -1698,6 +1754,8 @@ getThumbnail(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -1751,6 +1809,8 @@ getThumbnail(size: image.Size, callback: AsyncCallback&lt;image.PixelMap&gt;): v
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -1812,6 +1872,8 @@ getThumbnail(size?: image.Size): Promise&lt;image.PixelMap&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
@@ -1869,6 +1931,8 @@ clone(title: string): Promise&lt;PhotoAsset&gt;
 | 14000011 | Internal system error. It is recommended to retry and check the logs.Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out. |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2091,6 +2155,8 @@ getCount(): number
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -2133,6 +2199,8 @@ isAfterLast(): boolean
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -2173,6 +2241,8 @@ close(): void
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2219,6 +2289,8 @@ getFirstObject(callback: AsyncCallback&lt;T&gt;): void
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2267,6 +2339,8 @@ getFirstObject(): Promise&lt;T&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -2309,6 +2383,8 @@ getNextObject(callback: AsyncCallback&lt;T&gt;): void
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2361,6 +2437,8 @@ getNextObject(): Promise&lt;T&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -2405,6 +2483,8 @@ getLastObject(callback: AsyncCallback&lt;T&gt;): void
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2453,6 +2533,8 @@ getLastObject(): Promise&lt;T&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -2495,6 +2577,8 @@ getObjectByPosition(index: number, callback: AsyncCallback&lt;T&gt;): void
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2549,6 +2633,8 @@ getObjectByPosition(index: number): Promise&lt;T&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -2590,6 +2676,8 @@ getAllObjects(callback: AsyncCallback&lt;Array&lt;T&gt;&gt;): void
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2637,6 +2725,8 @@ getAllObjects(): Promise&lt;Array&lt;T&gt;&gt;
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2703,6 +2793,8 @@ getAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Photo
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -2764,6 +2856,8 @@ getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -2818,6 +2912,8 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -2869,6 +2965,8 @@ commitModify(): Promise&lt;void&gt;
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2925,6 +3023,8 @@ addAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;):
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2993,6 +3093,8 @@ addAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -3053,6 +3155,8 @@ removeAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3121,6 +3225,8 @@ removeAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -3181,6 +3287,8 @@ constructor(asset: PhotoAsset)
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -3234,6 +3342,8 @@ static createImageAssetRequest(context: Context, fileUri: string): MediaAssetCha
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 async function example() {
   console.info('createImageAssetRequestDemo');
@@ -3283,6 +3393,8 @@ static createVideoAssetRequest(context: Context, fileUri: string): MediaAssetCha
 | 14000011   | System inner fail.        |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 async function example() {
@@ -3334,6 +3446,8 @@ static createAssetRequest(context: Context, photoType: PhotoType, extension: str
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 async function example() {
@@ -3390,6 +3504,8 @@ static deleteAssets(context: Context, assets: Array&lt;PhotoAsset&gt;): Promise&
 | 14000011 |  System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3448,6 +3564,8 @@ static deleteAssets(context: Context, uriList: Array&lt;string&gt;): Promise&lt;
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -3498,6 +3616,8 @@ getAsset(): PhotoAsset
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 async function example() {
   console.info('getAssetDemo');
@@ -3545,6 +3665,8 @@ title参数规格为：
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3601,6 +3723,8 @@ getWriteCacheHandler(): Promise&lt;number&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { fileIo } from '@kit.CoreFileKit';
 
@@ -3653,6 +3777,8 @@ addResource(type: ResourceType, fileUri: string): void
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 async function example() {
   console.info('addResourceByFileUriDemo');
@@ -3702,6 +3828,8 @@ addResource(type: ResourceType, data: ArrayBuffer): void
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 async function example() {
   console.info('addResourceByArrayBufferDemo');
@@ -3737,6 +3865,8 @@ saveCameraPhoto(): void
 | 14000016 |  Operation Not Support.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 async function example(asset: photoAccessHelper.PhotoAsset) {
@@ -3777,6 +3907,8 @@ saveCameraPhoto(imageFileType: ImageFileType): void
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3814,6 +3946,8 @@ discardCameraPhoto(): void
 | 14000016 |  Operation Not Support.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 async function example(asset: photoAccessHelper.PhotoAsset) {
@@ -3853,6 +3987,8 @@ setOrientation(orientation: number): void
 | 14000011 |  Internal system error.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3908,6 +4044,8 @@ constructor(album: Album)
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -3950,6 +4088,8 @@ getAlbum(): Album
 | 14000011 |  System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 async function example() {
@@ -3998,6 +4138,8 @@ setAlbumName(name: string): void
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 async function example() {
   console.info('setAlbumNameDemo');
@@ -4040,6 +4182,8 @@ addAssets(assets: Array&lt;PhotoAsset&gt;): void
 | 14000016 |  Operation Not Support.     |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -4092,6 +4236,8 @@ removeAssets(assets: Array&lt;PhotoAsset&gt;): void
 | 14000016 |  Operation Not Support.     |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -4164,6 +4310,8 @@ static requestImage(context: Context, asset: PhotoAsset, requestOptions: Request
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -4240,6 +4388,8 @@ static requestImageData(context: Context, asset: PhotoAsset, requestOptions: Req
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
@@ -4313,6 +4463,8 @@ static requestMovingPhoto(context: Context, asset: PhotoAsset, requestOptions: R
 | 14000011       | System inner fail         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -4392,6 +4544,8 @@ static requestVideoFile(context: Context, asset: PhotoAsset, requestOptions: Req
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -4558,6 +4712,8 @@ static quickRequestImage(context: Context, asset: PhotoAsset, requestOptions: Re
 | 14000011       | Internal system error.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -4730,6 +4886,8 @@ getUri(): string
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -4805,6 +4963,8 @@ requestContent(imageFileUri: string, videoFileUri: string): Promise\<void>
 | 14000011 |  System inner fail         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -4890,6 +5050,8 @@ requestContent(resourceType: ResourceType, fileUri: string): Promise\<void>
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -4971,6 +5133,8 @@ requestContent(resourceType: ResourceType): Promise\<ArrayBuffer>
 | 14000011 |  System inner fail         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -5421,7 +5585,7 @@ async function example() {
 | 名称                    | 类型                | 必填 | 说明                          |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
 | isEditSupported<sup>11+</sup>       | boolean | 否   | 是否支持编辑照片，true表示支持，false表示不支持，默认为true。     |
-| isOriginalSupported<sup>12+</sup>       | boolean | 否   | 是否显示选择原图按钮，true表示显示，false表示不显示，默认为false。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
+| isOriginalSupported<sup>12+</sup>       | boolean | 否   | 是否显示选择原图按钮，true表示显示，false表示不显示，默认为true。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
 | subWindowName<sup>12+</sup>       | string | 否   | 子窗窗口名称。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
 | completeButtonText<sup>14+</sup>       | [CompleteButtonText](#completebuttontext14) | 否   | 完成按钮显示的内容。<br>完成按钮指在界面右下方，用户点击表示图片选择已完成的按钮。 <br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。     |
 

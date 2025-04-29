@@ -108,28 +108,45 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 const fileName: string = 'xxx.json';
 
-let rawFd: resourceManager.RawFileDescriptor = getContext().resourceManager.getRawFdSync(fileName);
+@Entry
+@Component
+struct Index {
+  uiContext = this.getUIContext();
 
-try {
-  vibrator.startVibration({
-    type: "file",
-    hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
-  }, {
-    id: 0,
-    usage: 'alarm' // The switch control is subject to the selected type.
-  }, (error: BusinessError) => {
-    if (error) {
-      console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
-      return;
+  build() {
+    Row() {
+      Column() {
+        Button('alarm-file')
+          .onClick(() => {
+            let rawFd: resourceManager.RawFileDescriptor | undefined = this.uiContext.getHostContext()?.resourceManager.getRawFdSync(fileName);
+            if (rawFd != undefined) {
+              try {
+                vibrator.startVibration({
+                  type: "file",
+                  hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
+                }, {
+                  id: 0,
+                  usage: 'alarm' // The switch control is subject to the selected type.
+                }, (error: BusinessError) => {
+                  if (error) {
+                    console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+                    return;
+                  }
+                  console.info('Succeed in starting vibration');
+                });
+              } catch (err) {
+                let e: BusinessError = err as BusinessError;
+                console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+              }
+            }
+            this.uiContext.getHostContext()?.resourceManager.closeRawFdSync(fileName);
+          })
+      }
+      .width('100%')
     }
-    console.info('Succeed in starting vibration');
-  });
-} catch (err) {
-  let e: BusinessError = err as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+    .height('100%')
+  }
 }
-
-getContext().resourceManager.closeRawFdSync(fileName);
 ```
 
 ## vibrator.startVibration<sup>9+</sup>
@@ -228,26 +245,45 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 const fileName: string = 'xxx.json';
 
-let rawFd: resourceManager.RawFileDescriptor = getContext().resourceManager.getRawFdSync(fileName);
+@Entry
+@Component
+struct Index {
+  uiContext = this.getUIContext();
 
-try {
-  vibrator.startVibration({
-    type: "file",
-    hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
-  }, {
-    id: 0,
-    usage: 'alarm' // The switch control is subject to the selected type.
-  }).then(() => {
-    console.info('Succeed in starting vibration');
-  }, (error: BusinessError) => {
-    console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
-  });
-} catch (err) {
-  let e: BusinessError = err as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+  build() {
+    Row() {
+      Column() {
+        Button('alarm-file')
+          .onClick(() => {
+            let rawFd: resourceManager.RawFileDescriptor | undefined = this.uiContext.getHostContext()?.resourceManager.getRawFdSync(fileName);
+            if (rawFd != undefined) {
+              try {
+                vibrator.startVibration({
+                  type: "file",
+                  hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
+                }, {
+                  id: 0,
+                  usage: 'alarm' // The switch control is subject to the selected type.
+                }, (error: BusinessError) => {
+                  if (error) {
+                    console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+                    return;
+                  }
+                  console.info('Succeed in starting vibration');
+                });
+              } catch (err) {
+                let e: BusinessError = err as BusinessError;
+                console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+              }
+            }
+            this.uiContext.getHostContext()?.resourceManager.closeRawFdSync(fileName);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
 }
-
-getContext().resourceManager.closeRawFdSync(fileName);
 ```
 
 ## vibrator.stopVibration<sup>9+</sup>
@@ -831,6 +867,12 @@ Adds a long vibration event as a **VibratorPattern** object.
 | duration | number                                | Yes  | Duration of the long vibration.    |
 | options  | [ContinuousParam](#continuousparam18) | No  | Optional parameters.|
 
+**Return value**
+
+| Type                  | Description                                                |
+| ---------------------- | ---------------------------------------------------- |
+| VibratorPatternBuilder | **VibratorPattern** object representing a long vibration event.|
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
@@ -888,6 +930,12 @@ Adds a short vibration event as a **VibratorPattern** object.
 | ------- | ----------------------------------- | ---- | ------------------------ |
 | time    | number                              | Yes  | Start time of long vibration.    |
 | options | [TransientParam](#transientparam18) | No  | Optional parameters.|
+
+**Return value**
+
+| Type                  | Description                                            |
+| ---------------------- | ------------------------------------------------ |
+| VibratorPatternBuilder | **VibratorPatternBuilder** object representing a short vibration event.|
 
 **Error codes**
 

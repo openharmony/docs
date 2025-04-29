@@ -5,21 +5,20 @@
 
 Defines the tensor array structure, which is used to store the tensor array pointer and tensor array length.
 
-**Since**
+**System capability**: SystemCapability.Ai.MindSpore
 
-9
+**Since**: 9
 
-**Related module**
+**Related module**: [MindSpore](_mind_spore.md)
 
-[MindSpore](_mind_spore.md)
-
+**Header file**: [model.h](model_8h.md)
 
 ## Summary
 
 
 ### Member Variables
 
-| Name| Description.|
+| Name| Description|
 | -------- | -------- |
 | [handle_num](#handle_num) | Tensor array length.|
 | [handle_list](#handle_list) | Tensor array pointer.|
