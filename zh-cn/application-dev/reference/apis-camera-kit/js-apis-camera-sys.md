@@ -948,8 +948,9 @@ function isDepthFusionSupported(DepthFusionQuery: camera.DepthFusionQuery): void
   try {
     let isSupperted: boolean = DepthFusionQuery.isDepthFusionSupported();
     console.info('Promise returned to indicate that isDepthFusionSupported method execution success.');
-  } catch (error: BusinessError) {
-    console.error(`Failed to depth fusion query  isDepthFusionSupported, error code: ${error.code}.`);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to depth fusion query  isDepthFusionSupported, error code: ${err.code}.`);
   }
 }
 
@@ -987,8 +988,9 @@ function getDepthFusionThreshold(DepthFusionQuery: camera.DepthFusionQuery): voi
   try {
     let threshold: Array<number> = DepthFusionQuery.getDepthFusionThreshold();
     console.info('Promise returned to indicate that getDepthFusionThreshold method execution success.');
-  } catch (error: BusinessError) {
-    console.error(`Failed to depth fusion query  getDepthFusionThreshold, error code: ${error.code}.`);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to depth fusion query  getDepthFusionThreshold, error code: ${err.code}.`);
   }
 }
 ```
@@ -1029,8 +1031,9 @@ function isDepthFusionEnabled(DepthFusion: camera.DepthFusion): void {
   try {
     let isEnable: boolean = DepthFusion.isDepthFusionEnabled();
     console.info('Promise returned to indicate that isDepthFusionEnabled method execution success.');
-  } catch (error: BusinessError) {
-    console.error(`Failed to depth fusion isDepthFusionEnabled, error code: ${error.code}.`);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to depth fusion isDepthFusionEnabled, error code: ${err.code}.`);
   };
 }
 ```
@@ -1071,8 +1074,9 @@ function enableDepthFusion(DepthFusion: camera.DepthFusion): void {
     let enabled: boolean = true;
     DepthFusion.enableDepthFusion(enabled);
     console.info('Promise returned to indicate that enableDepthFusion method execution success.');
-  } catch (error: BusinessError) {
-    console.error(`Failed to depth fusion enableDepthFusion, error code: ${error.code}.`);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to depth fusion enableDepthFusion, error code: ${err.code}.`);
   };
 }
 ```
