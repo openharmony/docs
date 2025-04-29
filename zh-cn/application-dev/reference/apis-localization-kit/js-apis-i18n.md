@@ -2593,6 +2593,12 @@ static getThreeLetterLanguage(locale: string): string
 | ------ | ------ | ---- | ------------------------ |
 | locale | string | 是   | 待转换的语言二字母代码，如：zh。 |
 
+**返回值：**
+
+| 类型     | 说明                  |
+| ------ | ------------------- |
+| string | 返回传入语言代码对应的三字母代码。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
@@ -2630,6 +2636,12 @@ static getThreeLetterRegion(locale: string): string
 | 参数名 | 类型   | 必填 | 说明                     |
 | ------ | ------ | ---- | ------------------------ |
 | locale | string | 是   | 待转换的地区二字母代码，如：CN。 |
+
+**返回值：**
+
+| 类型     | 说明                  |
+| ------ | ------------------- |
+| string | 返回传入地区代码对应的三字母代码。 |
 
 **错误码：**
 
@@ -2670,6 +2682,12 @@ static getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: intl
 | path | string | 是   | 待处理的路径，如：/data/out/tmp。 |
 | delimiter | string | 否   | 路径分隔符，默认值：/。 |
 | locale | [intl.Locale](./js-apis-intl.md#locale) | 否   | 区域对象，默认值：new intl.Locale([i18n.System.getSystemLocale()](#getsystemlocale9))。 |
+
+**返回值：**
+
+| 类型     | 说明                  |
+| ------ | ------------------- |
+| string | 返回镜像处理后的文件路径。 |
 
 **错误码：**
 
