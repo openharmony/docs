@@ -102,8 +102,8 @@ enableNestedScroll(enabled: Optional\<boolean>)
 @Entry
 @Component
 struct ScrollBarExample {
-  private scroller: Scroller = new Scroller()
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+  private scroller: Scroller = new Scroller();
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
   build() {
     Column() {
@@ -151,8 +151,8 @@ struct ScrollBarExample {
 @Entry
 @Component
 struct ScrollBarExample {
-  private scroller: Scroller = new Scroller()
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+  private scroller: Scroller = new Scroller();
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
   build() {
     Column() {
@@ -194,7 +194,7 @@ struct ScrollBarExample {
 @Component
 struct StickyNestedScroll {
   listScroller: Scroller = new Scroller();
-  @State array: number[] = []
+  @State array: number[] = [];
 
   @Styles
   listCard() {
@@ -244,7 +244,7 @@ struct StickyNestedScroll {
 
   aboutToAppear() {
     for (let i = 0; i < 15; i++) {
-      this.array.push(i)
+      this.array.push(i);
     }
   }
 }
