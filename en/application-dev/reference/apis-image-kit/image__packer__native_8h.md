@@ -7,6 +7,8 @@ The **image_packer_native.h** file declares the APIs for image encoding.
 
 **Library**: libimage_packer.so
 
+**File to include**: &lt;multimedia/image_framework/image/image_packer_native.h&gt;
+
 **System capability**: SystemCapability.Multimedia.Image.ImagePacker
 
 **Since**: 12
@@ -29,7 +31,7 @@ The **image_packer_native.h** file declares the APIs for image encoding.
 
 | Name| Description| 
 | -------- | -------- |
-| [IMAGE_PACKER_DYNAMIC_RANGE](_image___native_module.md#image_packer_dynamic_range) {<br/>IMAGE_PACKER_DYNAMIC_RANGE_AUTO = 0,<br/>IMAGE_PACKER_DYNAMIC_RANGE_SDR = 1 } | Enumerates the dynamic range for encoding.| 
+| [IMAGE_PACKER_DYNAMIC_RANGE](_image___native_module.md#image_packer_dynamic_range) {<br>IMAGE_PACKER_DYNAMIC_RANGE_AUTO = 0,<br>IMAGE_PACKER_DYNAMIC_RANGE_SDR = 1 } | Enumerates the dynamic range for encoding.| 
 
 
 ### Functions

@@ -1,13 +1,13 @@
 # Image Kit
 
 - [Introduction to Image Kit](image-overview.md)
-- Image Development (ArkTS)
+- Image Development (ArkTS)<!--image-arkts-dev-->
   - [Using ImageSource to Decode Images](image-decoding.md)
   - [Using PixelMap to Transform Images](image-transformation.md)
   - [Using PixelMap for PixelMap Operations](image-pixelmap-operation.md)
   - [Using ImagePacker to Encode Images](image-encoding.md)
   - [Editing EXIF Data](image-tool.md)
-- Image Development (C/C++)
+- Image Development (C/C++)<!--image-native-->
   - [Introduction to the Image_NativeModule Structs](image-structure-c.md)
   - [Using Image_NativeModule to Decode Images](image-source-c.md)
   - [Using Image_NativeModule to Receive Images](image-receiver-c.md)
@@ -15,7 +15,7 @@
   - [Using Image_NativeModule to Process Image Information](image-info-c.md)
   - [Using Image_NativeModule to Encode Images](image-packer-c.md)
   - [Using ImageEffect to Edit Images](image-effect-guidelines.md)
-- Image Development (Dependent on JS Objects) (C/C++)
+- Image Development (Dependent on JS Objects) (C/C++)<!--image-native-js-objects-->
   - [Using Image to Decode Images](image-decoding-native.md)
   - [Using Image to Receive Images](image-receiver-native.md)
   - [Using Image to Transform Images](image-transformation-native.md)

@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **Image** module enables access to image APIs.
+The Image module enables access to image APIs.
 
 You can refer to the corresponding development guide and samples based on your development requirements.
 
@@ -390,7 +390,7 @@ Enumerates the error codes returned by the functions.
 | OHOS_IMAGE_RESULT_BAD_PARAMETER | Invalid parameter.| 
 
 
-### anonymous enum [1/3]
+### Image Color Channel Types
 
 ```
 anonymous enum
@@ -1304,7 +1304,7 @@ int32_t OH_Image_Size (const ImageNative * native, struct OhosImageSize * size )
 
 Obtains [OhosImageSize](_ohos_image_size.md) of an **ImageNative** object.
 
-If the [ImageNative](image.md#imagenative) object stores the camera preview stream data (YUV image data), the width and height in [OhosImageSize](_ohos_image_size.md) obtained correspond to the width and height of the YUV image. If the [ImageNative](image.md#imagenative) object stores the camera photo stream data (JPEG image data, which is already encoded), the width in [OhosImageSize](_ohos_image_size.md) obtained is the JPEG data size, and the height is 1. The type of data stored in the [ImageNative](image.md#imagenative) object depends on whether the application passes the surface ID in the receiver to a **previewOutput** or **captureOutput** object of the camera. 
+If the [ImageNative](image.md#imagenative) object stores the camera preview stream data (YUV image data), the width and height in [OhosImageSize](_ohos_image_size.md) obtained correspond to the width and height of the YUV image. If the [ImageNative](image.md#imagenative) object stores the camera photo stream data (JPEG image data, which is already encoded), the width in [OhosImageSize](_ohos_image_size.md) obtained is the JPEG data size, and the height is 1. The type of data stored in the [ImageNative](image.md#imagenative) object depends on whether the application passes the surface ID in the receiver to a **previewOutput** or **captureOutput** object of the camera. For details about the best practices of camera preview and photo capture, see [Secondary Processing of Preview Streams (C/C++)](../../media/camera/native-camera-preview-imageReceiver.md) and [Photo Capture (C/C++)](../../media/camera/native-camera-shooting.md).
 
 **Since**: 10
 
@@ -3793,7 +3793,7 @@ int32_t OhosImageSourceInfo::density
 
 **Description**
 
-Defines the image density of the image source. It is set in [OH_ImageSource_Create](#oh_imagesource_create).
+Defines the density of the image source. It is set in [OH_ImageSource_Create](#oh_imagesource_create).
 
 **Since**: 10
 
