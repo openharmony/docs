@@ -1270,12 +1270,12 @@ class DataSrc2 implements IDataSource {
 #### 标准型
 
 - 复用组件之间布局完全相同;
-- 示例同列表滚动中描述;
+- 示例同列表滚动中描述。
 
 #### 有限变化型
 
 - 复用组件之间有不同，但是类型有限;
-- 示例为复用组件显式设置两个reuseId与使用两个自定义组件进行复用;
+- 示例为复用组件显式设置两个reuseId与使用两个自定义组件进行复用。
 
 ```ts
 class MyDataSource implements IDataSource {
