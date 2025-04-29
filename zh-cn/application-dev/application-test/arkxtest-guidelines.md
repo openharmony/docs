@@ -62,7 +62,6 @@ import { abilityDelegatorRegistry } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
-const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 function sleep(time: number) {
   return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
 }
@@ -70,6 +69,8 @@ export default function abilityTest() {
   describe('ActsAbilityTest', () =>{
     it('testUiExample',0, async (done: Function) => {
       console.info("uitest: TestUiExample begin");
+       await sleep(1000);
+      const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
       //start tested ability
       const want: Want = {
         bundleName: bundleName,
@@ -558,9 +559,9 @@ hdc shell uitest uiInput text hello
 
 | 配置参数             | 必填       | 描述                                                                     |                
 |------|------|------------------------------------------------------------------------|
-| keyID1   | 是    | 实体按键对应ID，取值范围：KeyCode/Back/Home/Power。<br>当取Back/Home/Power时，不支持输入组合键。 | 
-| keyID2    | 否    | 实体按键对应ID，默认值为空。                                                        |
-| keyID3    | 否    | 实体按键对应ID，默认值为空。                                                              |
+| keyID1   | 是    | 实体按键对应ID，取值范围：Back/Home/Power 或 [KeyCode键码值](../reference/apis-input-kit/js-apis-keycode.md)。<br>当取Back/Home/Power时，不支持输入组合键。 | 
+| keyID2    | 否    | 实体按键对应ID，取值范围：[KeyCode键码值](../reference/apis-input-kit/js-apis-keycode.md)，默认值为空。                                                       |
+| keyID3    | 否    | 实体按键对应ID，取值范围：[KeyCode键码值](../reference/apis-input-kit/js-apis-keycode.md)，默认值为空。                                                                 |
 
 >**说明**
 >
