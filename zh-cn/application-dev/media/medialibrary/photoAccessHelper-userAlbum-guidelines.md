@@ -1,14 +1,14 @@
 # 用户相册资源使用指导
 
-photoAccessHelper提供用户相册相关的接口，供开发者创建、删除用户相册，往用户相册中添加和删除图片和视频资源等。
+photoAccessHelper提供用户相册相关的接口，支持创建和删除相册，以及添加和删除相册中的图片和视频资源。
 
 > **说明：**
 >
-> 在进行功能开发前，请开发者查阅[开发准备](photoAccessHelper-preparation.md)，了解如何获取相册管理模块实例和如何申请相册管理模块功能开发相关权限。
-> 文档中使用到photoAccessHelper的地方默认为使用开发准备中获取的对象，如未添加此段代码报photoAccessHelper未定义的错误请自行添加。
+> 在进行功能开发前，请查阅[开发准备](photoAccessHelper-preparation.md)，了解如何获取相册管理模块实例和申请相关权限。
+> 文档中使用到photoAccessHelper的地方默认为使用[开发准备](photoAccessHelper-preparation.md)中获取的对象，如未添加此段代码报photoAccessHelper未定义的错误请自行添加。
 
 为了保证应用的运行效率，大部分photoAccessHelper的接口调用都是异步的。以下异步调用的API示例均采用Promise函数，更多方式可以查阅[API参考](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md)。
-如无特别说明，文档中涉及的待获取的资源均视为已经预置且在数据库中存在相应数据。如出现按照示例代码执行出现获取资源为空的情况请确认文件是否已预置，数据库中是否存在该文件的数据。
+如无特别说明，文档中涉及的待获取资源均视为已预置，并且数据库中存在相应数据。如果按照示例代码执行后获取资源为空，请确认文件是否已预置，以及数据库中是否存在该文件的数据。
 
 <!--Del-->
 ## 创建用户相册（仅向系统应用开放）
@@ -99,13 +99,13 @@ async function example() {
 
 ## 重命名用户相册
 
-重命名用户相册修改的是相册的Album.albumName属性。
+重命名用户相册时，修改的是相册的Album.albumName属性。
 
 调用[MediaAlbumChangeRequest.setAlbumName](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#setalbumname11)重命名用户相册后再通过[PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11)更新到数据库中完成修改。
 
 在重命名用户相册之前，需要先获取相册对象，可以通过[FetchResult](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#fetchresult)中的接口获取对应位置的用户相册。
 
-重命名的相册名参数规格为：
+重命名相册时，相册名的参数规格为：
 
 - 相册名字符串长度为1~255。
 - 不允许出现的非法英文字符，包括：<br> . \ / : * ? " ' ` < > | { } [ ]
@@ -125,7 +125,7 @@ async function example() {
 2. 调用PhotoAccessHelper.getAlbums接口获取用户相册资源。
 3. 调用[FetchResult.getFirstObject](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getfirstobject-1)接口获取第一个用户相册。
 4. 调用MediaAlbumChangeRequest.setAlbumName接口设置新的相册名。
-5. 调用PhotoAccessHelper.applyChanges接口将修改的相册属性更新到数据中完成修改。
+5. 调用PhotoAccessHelper.applyChanges接口将修改的相册属性更新到数据库中完成修改。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -160,7 +160,7 @@ async function example() {
 
 ## 添加图片和视频到用户相册中
 
-先[获取用户相册](#获取用户相册)对象和需要添加到相册中的图片或视频的对象数组，然后调用[MediaAlbumChangeRequest.addAssets](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#addassets11)和[PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11)接口往用户相册中添加图片或视频。
+先[获取用户相册](#获取用户相册)对象和需要添加到用户相册中的图片或视频的对象数组，然后调用[MediaAlbumChangeRequest.addAssets](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#addassets11)和[PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11)接口往用户相册中添加图片或视频。
 
 **前提条件**
 
@@ -287,7 +287,7 @@ async function example() {
 - 获取相册管理模块photoAccessHelper实例。
 - [申请相册管理模块权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
 
-下面以将往相册名为'albumName'的用户相册中移除一张图片为例。
+下面以往相册名为'albumName'的用户相册中移除一张图片为例。
 
 **开发步骤**
 
