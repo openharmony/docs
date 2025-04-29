@@ -3,7 +3,7 @@
 
 ## Overview
 
-The OhosImageSourceSupportedFormat struct defines the format string supported by an image source. It is used in [OhosImageSourceSupportedFormatList](_ohos_image_source_supported_format_list.md) and [OH_ImageSource_GetSupportedFormats](image.md#oh_imagesource_getsupportedformats).
+The OhosImageSourceSupportedFormat struct defines the format string supported by an image source. It is used in the [OhosImageSourceSupportedFormatList](_ohos_image_source_supported_format_list.md) struct and the [OH_ImageSource_GetSupportedFormats](image.md#oh_imagesource_getsupportedformats) function.
 
 **System capability**: SystemCapability.Multimedia.Image
 
@@ -11,6 +11,7 @@ The OhosImageSourceSupportedFormat struct defines the format string supported by
 
 **Related module**: [Image](image.md)
 
+**Header file**: [image_source_mdk.h](image__source__mdk_8h.md)
 
 ## Summary
 
