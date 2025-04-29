@@ -114,6 +114,12 @@ getAllEfficiencyResources(): Promise&lt;EfficiencyResourcesInfo[]&gt;
 
 **系统API**: 此接口为系统接口。
 
+**返回值**：
+
+| 类型                                            | 说明          |
+|-----------------------------------------------|-------------|
+|  Promise&lt;[EfficiencyResourcesInfo](#efficiencyresourcesinfo20)[]&gt; | Promise对象，返回所有能效资源信息。 |
+
 **错误码**：
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
