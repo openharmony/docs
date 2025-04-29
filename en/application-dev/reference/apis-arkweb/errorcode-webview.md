@@ -72,7 +72,7 @@ Make sure the related function is enabled.
 
 **Error Message**
 
-Invalid cookie value.The cookie format must follow defined in RFC 6265.
+The provided cookie value is invalid. It must follow the format specified in RFC 6265.
 
 **Description**
 
