@@ -12,6 +12,9 @@
   - [@ohos.file.PhotoPickerComponent (PhotoPickerComponent)](ohos-file-PhotoPickerComponent.md)
   - [@ohos.file.RecentPhotoComponent (RecentPhotoComponent)](ohos-file-RecentPhotoComponent.md)
   - [@ohos.multimedia.movingphotoview (MovingPhotoView Component)](ohos-multimedia-movingphotoview.md)
+  <!--Del-->
+  - [@ohos.multimedia.movingphotoview (MovingPhotoView) (System API)](ohos-multimedia-movingphotoview-sys.md)
+  <!--DelEnd-->
 - C APIs<!--media-library-c-->
   - Modules<!--media-library-module-->
     - [MediaAssetManager](_media_asset_manager.md)
