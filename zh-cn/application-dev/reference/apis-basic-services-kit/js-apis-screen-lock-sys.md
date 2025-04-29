@@ -294,7 +294,7 @@ onSystemEvent(callback: Callback&lt;SystemEvent&gt;): boolean
   
   try {
     let isSuccess = screenLock.onSystemEvent((event: screenLock.SystemEvent) => {
-      console.log(`Succeeded in Registering the system event which related to screenlock. eventType: ${event.eventType}`);
+      console.info(`Succeeded in Registering the system event which related to screenlock. eventType: ${event.eventType}`);
     });
   } catch (err) {
     let error = err as BusinessError;
