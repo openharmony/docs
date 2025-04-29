@@ -11,7 +11,7 @@
 
 ## 申请权限
 
-请参考[申请位置权限开发指导](../../device/location/location-permission-guidelines.md#开发步骤)。
+<!--RP1-->请参考[申请位置权限开发指导](../../device/location/location-permission-guidelines.md#开发步骤)。<!--RP1End-->
 
 
 ## 导入模块
@@ -2421,7 +2421,7 @@ on(type: 'bluetoothScanResultChange', callback: Callback&lt;BluetoothScanResult&
 
 订阅蓝牙扫描信息上报事件，使用callback异步回调。
 
-<!--RP1--><!--RP1End-->
+<!--RP2--><!--RP2End-->
 
 本API会启动蓝牙扫描，为了避免产生较多功耗，需要开发者在适当的时机调用 [geoLocationManager.off('bluetoothScanResultChange')](#geolocationmanageroffbluetoothscanresultchange16)接口停止蓝牙扫描。
 
