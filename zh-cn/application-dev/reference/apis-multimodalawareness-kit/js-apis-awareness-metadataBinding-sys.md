@@ -11,7 +11,7 @@
 
 ## 导入模块
 ```ts
-import { metadataBinding } from '@ohos.multimodalAwareness';
+import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 ```
 
 ## encodeImage(image.PixelMap, string)
@@ -42,7 +42,7 @@ encodeImage(srcImage: image.PixelMap, metadata: string): Promise<image.PixelMap>
 
 ```ts
 import image from '@ohos.multimedia.image';
-import { metadataBinding } from '@ohos.multimodalAwareness';
+import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let captureImage: image.PixelMap | undefined = undefined;
@@ -82,7 +82,7 @@ function decodeImage(encodedImage: image.PixelMap): Promise\<string\>
 **示例：**  
 ```ts
 import image from '@ohos.multimedia.image';
-import { metadataBinding } from '@ohos.multimodalAwareness';
+import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let encodeImage: image.PixelMap | undefined = undefined;
@@ -117,7 +117,7 @@ notifyMetadataBindingEvent(metadata: string): void；
 **示例**：
 
 ```ts
-import { metadataBinding } from '@ohos.multimodalAwareness';
+import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let metadata:string = '';
