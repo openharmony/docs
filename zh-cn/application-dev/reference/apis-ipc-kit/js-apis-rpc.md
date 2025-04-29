@@ -2734,6 +2734,10 @@ readException(): void
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -2762,7 +2766,7 @@ readException(): void
   // FA.connectAbility(want,connect);
 
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -5637,6 +5641,10 @@ readException(): void
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -5665,7 +5673,7 @@ readException(): void
   // FA.connectAbility(want,connect);
 
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -6495,6 +6503,10 @@ asObject(): IRemoteObject
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -6523,7 +6535,7 @@ asObject(): IRemoteObject
   // FA.connectAbility(want,connect);
 
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -6986,6 +6998,10 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7014,7 +7030,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   // FA.connectAbility(want,connect);
 
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -7078,6 +7094,10 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7106,7 +7126,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   // FA.connectAbility(want,connect);
 
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -7172,6 +7192,10 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7200,7 +7224,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   // FA.connectAbility(want,connect);
 
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -7318,6 +7342,10 @@ getLocalInterface(interface: string): IRemoteBroker
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7346,7 +7374,7 @@ getLocalInterface(interface: string): IRemoteBroker
   // FA.connectAbility(want,connect);
 
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -7395,6 +7423,10 @@ queryLocalInterface(interface: string): IRemoteBroker
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7423,7 +7455,7 @@ queryLocalInterface(interface: string): IRemoteBroker
   // FA.connectAbility(want,connect);
 
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -7465,6 +7497,10 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7493,7 +7529,7 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
   // FA.connectAbility(want,connect);
 
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -7548,6 +7584,10 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7576,7 +7616,7 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   // FA.connectAbility(want,connect);
 
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -7623,6 +7663,10 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7651,7 +7695,7 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
   // FA.connectAbility(want,connect);
 
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -7707,6 +7751,10 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7735,7 +7783,7 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   // FA.connectAbility(want,connect);
 
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -7782,6 +7830,10 @@ getDescriptor(): string
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7810,7 +7862,7 @@ getDescriptor(): string
   // FA.connectAbility(want,connect);
 
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -7852,6 +7904,10 @@ getInterfaceDescriptor(): string
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7880,7 +7936,7 @@ getInterfaceDescriptor(): string
   // FA.connectAbility(want,connect);
 
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -7912,6 +7968,11 @@ isObjectDead(): boolean
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7940,7 +8001,7 @@ isObjectDead(): boolean
   // FA.connectAbility(want,connect);
 
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```

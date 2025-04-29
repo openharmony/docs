@@ -15,12 +15,25 @@
 1. 创建voice_call类型的AVSession，AVSession在构造方法中支持不同的类型参数，由AVSessionType定义，voice_call表示通话类型，如果不创建，将显示空列表。
 
    ```ts
-   import { avSession } from '@kit.AVSessionKit';
-
-   private session: avSession.AVSession | undefined = undefined;
-
-   // 通话开始时创建voice_call类型的avsession。
-   this.session = await avSession.createAVSession(getContext(this), 'voiptest', 'voice_call');
+    import { avSession } from '@kit.AVSessionKit';
+    @Entry
+    @Component
+    struct Index {
+      @State message: string = 'hello world';
+    
+      build() { 
+        Column() {
+            Text(this.message)
+              .onClick(()=>{
+                let context = this.getUIContext().getHostContext() as Context;
+                // 通话开始时创建voice_call类型的avsession。
+                let session: AVSessionManager.AVSession = await AVSessionManager.createAVSession(context, 'voiptest', 'voice_call');
+              })
+          }
+        .width('100%')
+        .height('100%')
+      }
+    }
    ```
 
 2. 在需要切换设备的通话界面创建AVCastPicker组件。

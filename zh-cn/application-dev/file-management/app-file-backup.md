@@ -36,12 +36,11 @@ import common from '@ohos.app.ability.common';
 import fs from '@ohos.file.fs';
 import { BusinessError } from '@ohos.base';
 
-// 获取应用文件路径
-let context = getContext(this) as common.UIAbilityContext;
-let filesDir = context.filesDir;
-
-async function getLocalCapabilities(): Promise<void> {
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+async function getLocalCapabilities(context: common.UIAbilityContext): Promise<void> {
  try {
+   let filesDir = context.filesDir;
    let fileData = await backup.getLocalCapabilities();
    console.info('getLocalCapabilities success');
    let fpath = filesDir + '/localCapabilities.json';
@@ -101,13 +100,13 @@ async function getLocalCapabilities(): Promise<void> {
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
 
-  // 获取沙箱路径
-  let context = getContext(this) as common.UIAbilityContext;
-  let filesDir = context.filesDir;
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
   // 创建SessionBackup类的实例用于备份数据
   let g_session: backup.SessionBackup;
-  function createSessionBackup(): backup.SessionBackup {
+  function createSessionBackup(context: common.UIAbilityContext): backup.SessionBackup {
     let generalCallbacks: backup.GeneralCallbacks = {
+      let filesDir = context.filesDir;
       // onFileReady为服务回调给应用侧数据完成的通知，建议开发者在该接口内不要进行过多的耗时实现，可以通过异步线程实现file.fd数据的处理
       onFileReady: (err: BusinessError, file: backup.File) => {
         if (err) {

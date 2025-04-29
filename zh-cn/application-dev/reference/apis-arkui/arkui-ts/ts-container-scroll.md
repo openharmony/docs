@@ -317,6 +317,10 @@ onWillScroll(handler: ScrollOnWillScrollCallback)
 
 3、越界回弹。 
 
+>  **说明：**
+>
+>  滚动事件的回调函数在滚动过程中会被频繁触发，因此应避免在该回调函数中执行耗时操作，以防止应用出现卡顿和丢帧的问题。最佳实践请参考[主线程耗时操作优化指导-高频回调场景](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-time-optimization-of-the-main-thread#section10112623611)。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -656,7 +660,7 @@ scrollToIndex(value: number, smooth?: boolean, align?: ScrollAlign, options?: Sc
 
 滑动到指定Index，支持设置滑动额外偏移量。
 
-开启smooth动效时，会对经过的所有item进行加载和布局计算，当大量加载item时会导致性能问题。
+开启smooth动效时，会对经过的所有item进行加载和布局计算，当大量加载item时会导致性能问题，建议先调用scrollToIndex不带动画跳转到目标附近位置，再调用scrollToIndex带动画滚动到目标位置。
 
 
 >  **说明：**

@@ -85,7 +85,7 @@
          await this.session.start();
        } catch (error) {
          let err = error as BusinessError;
-         console.error(`initCamera fail: ${JSON.stringify(err)}`);
+         console.error(`initCamera fail: ${err}`);
        }
      }
    
@@ -99,7 +99,7 @@
          await this.cameraInput?.close();
        } catch (error) {
          let err = error as BusinessError;
-         console.error(`releaseCamera fail: error: ${JSON.stringify(err)}`);
+         console.error(`releaseCamera fail: error: ${err}`);
        } finally {
          this.previewOutput = undefined;
          this.photoOutput = undefined;

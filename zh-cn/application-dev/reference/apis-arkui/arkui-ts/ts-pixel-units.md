@@ -90,8 +90,7 @@ struct Example {
 
         Column() {
           Text("width(vp2px(220) + 'px')")
-            // 建议使用this.getUIContext().vp2px()
-            .width(vp2px(220) + 'px')
+            .width(this.getUIContext().vp2px(220) + 'px')
             .height(40)
             .backgroundColor(0xF9CF93)
             .textAlign(TextAlign.Center)
@@ -111,8 +110,7 @@ struct Example {
 
         Column() {
           Text("width(px2vp(220))")
-            // 建议使用this.getUIContext().px2vp()
-            .width(px2vp(220))
+            .width(this.getUIContext().px2vp(220))
             .height(40)
             .backgroundColor(0xF9CF93)
             .textAlign(TextAlign.Center)
