@@ -22,7 +22,7 @@ Unknown error.
 
 获取异常的描述，并检查系统错误日志，根据异常描述及日志中的错误描述处理。。
 
-## 24700104 MediaKeySystem数量达到极限
+## 24700103 MediaKeySystem数量达到极限
 
 **错误信息**
 
@@ -40,7 +40,7 @@ MediaKeySystem实例数量超过上限（64个）。
 
 释放其他不再使用的MediaKeySystem资源。
 
-## 24700105 MediaKeySession数量达到极限
+## 24700104 MediaKeySession数量达到极限
 
 **错误信息**
 
