@@ -3,15 +3,16 @@
 
 ## Overview
 
-The **Image** module enables access to image APIs.
+The Image module enables access to image APIs.
 
 You can refer to the corresponding development guide and samples based on your development requirements.
 
-- [Using Image to Decode Images](../../media/image/image-decoding-native.md)
-- [Using Image to Receive Images](../../media/image/image-receiver-native.md)
-- [Using Image to Transform Images](../../media/image/image-transformation-native.md)
-- [Using PixelMap to Process PixelMap Data](../../media/image/image-pixelmap-operation-native.md)
-- [Using Image to Encode Images](../../media/image/image-encoding-native.md)
+- [Image Decoding](../../media/image/image-decoding-native.md)
+- [Image Encoding](../../media/image/image-encoding-native.md)
+- [Image Transformation](../../media/image/image-transformation-native.md)
+- [PixelMap Operations](../../media/image/image-pixelmap-operation-native.md)
+- [Image Receiving](../../media/image/image-receiver-native.md)
+
 
 **System capability**: SystemCapability.Multimedia.Image
 
@@ -3793,7 +3794,7 @@ int32_t OhosImageSourceInfo::density
 
 **Description**
 
-Defines the image density of the image source. It is set in [OH_ImageSource_Create](#oh_imagesource_create).
+Defines the density of the image source. It is set in [OH_ImageSource_Create](#oh_imagesource_create).
 
 **Since**: 10
 
@@ -3870,7 +3871,7 @@ uint32_t OhosImageDecodingOps::index
 
 **Description**
 
-Defines the index of the output PixelMap.
+Defines the index for decoding an image source. The default value is **0**, indicating the first frame. For single-frame images, the index is always **0**. For multi-frame images such as GIF images, the value ranges from 0 to N-1, where N indicates the (N-1)th frame.
 
 **Since**: 10
 
