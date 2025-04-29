@@ -26,9 +26,15 @@ import { camera } from '@kit.CameraKit';
 | PROFESSIONAL_PHOTO<sup>12+</sup>        | 5      | 专业拍照模式。**系统接口：** 此接口为系统接口。             |
 | PROFESSIONAL_VIDEO<sup>12+</sup>        | 6      | 专业录像模式。**系统接口：** 此接口为系统接口。             |
 | SLOW_MOTION_VIDEO<sup>12+</sup>        | 7   | 慢动作模式。**系统接口：** 此接口为系统接口。  |
+| MACRO_PHOTO<sup>12+</sup>        | 8   | 微距拍照模式。**系统接口：** 此接口为系统接口。  |
+| MACRO_VIDEO<sup>12+</sup>        | 9   | 微距录像模式。**系统接口：** 此接口为系统接口。  |
+| LIGHT_PAINTING_PHOTO<sup>12+</sup>        | 10   | 光绘摄影模式。**系统接口：** 此接口为系统接口。  |
 | HIGH_RESOLUTION_PHOTO<sup>12+</sup>        | 11     | 高像素拍照模式。 **系统接口：** 此接口为系统接口。          |
+| QUICK_SHOT_PHOTO<sup>12+</sup>        | 13   | 闪拍模式。**系统接口：** 此接口为系统接口。  |
+| APERTURE_VIDEO<sup>12+</sup>        | 14   | 大光圈录像模式。**系统接口：** 此接口为系统接口。  |
 | PANORAMA_PHOTO<sup>12+</sup>        | 15     | 全景拍照模式。 **系统接口：** 此接口为系统接口。          |
 | TIME_LAPSE_PHOTO<sup>12+</sup>        | 16     | 延时摄影模式。 **系统接口：** 此接口为系统接口。          |
+| FLUORESCENCE_PHOTO<sup>13+</sup>        | 17   | 荧光图片模式。**系统接口：** 此接口为系统接口。  |
 
 ## SlowMotionStatus<sup>12+</sup>
 
@@ -114,7 +120,7 @@ lcd闪光灯信息项。
 
 ### createDepthDataOutput<sup>13+</sup>
 
-createDepthDataOutput(profile: Profile): DepthDataOutput
+createDepthDataOutput(profile: DepthProfile): DepthDataOutput
 
 创建深度输出对象，同步返回结果。
 
@@ -149,7 +155,7 @@ createDepthDataOutput(profile: Profile): DepthDataOutput
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function createDepthDataOutput(cameraOutputCapability: camera.CameraOutputCapability, cameraManager: camera.CameraManager): camera.DepthDataOutput | undefined {
-  let profile: camera.Profile = cameraOutputCapability.depthProfiles[0];
+  let profile: camera.DepthProfile = cameraOutputCapability.depthProfiles[0];
   let depthDataOutput: camera.DepthDataOutput | undefined = undefined;
   try {
     depthDataOutput = cameraManager.createDepthDataOutput(profile);
@@ -440,7 +446,7 @@ function preLaunch(context: common.BaseContext): void {
 
 ### createDeferredPreviewOutput
 
-createDeferredPreviewOutput(profile: Profile): PreviewOutput
+createDeferredPreviewOutput(profile?: Profile): PreviewOutput
 
 创建延迟预览输出对象，在配流时替代普通的预览输出对象加入数据流。
 
@@ -882,7 +888,7 @@ function callback(depthDataOutputError: BusinessError): void {
 }
 
 function registerDepthDataOutputError(depthDataOutput: camera.DepthDataOutput): void {
-  depthDataOutput.on('error', callback)
+  depthDataOutput.on('error', callback);
 }
 ```
 
