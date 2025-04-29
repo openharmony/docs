@@ -18657,7 +18657,7 @@ int32_t OH_ArkUI_AccessibilityValue_GetRangeMin(ArkUI_AccessibilityValue* value)
 
 **返回：**
 
-基于范围组件的最小值，默认为-1；若函数参数异常，返回-1。
+基于范围组件的最小值；若函数参数异常，返回-1。
 
 
 ### OH_ArkUI_AccessibilityValue_SetRangeMax
@@ -18704,7 +18704,7 @@ int32_t OH_ArkUI_AccessibilityValue_GetRangeMax(ArkUI_AccessibilityValue* value)
 
 **返回：**
 
-基于范围组件的最大值，默认为-1；若函数参数异常，返回-1。
+基于范围组件的最大值；若函数参数异常，返回-1。
 
 
 ### OH_ArkUI_AccessibilityValue_SetRangeCurrent
@@ -18751,4 +18751,4 @@ int32_t OH_ArkUI_AccessibilityValue_GetRangeCurrent(ArkUI_AccessibilityValue* va
 
 **返回：**
 
-基于范围组件的当前值，默认为-1；若函数参数异常，返回-1。
+基于范围组件的当前值；若函数参数异常，返回-1。
