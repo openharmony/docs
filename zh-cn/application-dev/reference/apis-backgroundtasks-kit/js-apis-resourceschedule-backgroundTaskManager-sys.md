@@ -203,8 +203,8 @@ try {
 |--------------------------------|---------| ---- |-------------|
 | [resourceTypes](#resourcetype) | number  | 是    | 能效资源类型。     |
 | timeout                        | number  | 是    | 超时时间，单位：ms。 |
-| isPersistent                   | boolean | 是    | 取值为true表示持久化申请，取值为false表示非持久化申请。      |
-| isForProcess                   | boolean | 是    | 取值为true表示进程维度申请，取值为false表示应用维度申请。   |
-| reason                         | string  | 是    | 申请原因。       |
+| isPersistent                   | boolean | 是    | 是否永久持有资源，默认为false。取值为true表示永久持有。取值为false表示有限时间内持有。      |
+| isForProcess                   | boolean | 是    | 进程或应用申请，取值为true表示进程申请。取值为false表示应用申请。   |
+| reason                         | string  | 是    | 申请资源原因。       |
 | uid                            | number  | 是    | 应用的UID。     |
 | pid                            | number  | 是    | 应用进程的PID。   |
