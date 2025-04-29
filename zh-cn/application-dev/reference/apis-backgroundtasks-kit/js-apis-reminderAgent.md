@@ -6,7 +6,7 @@
 
 > **说明：**
 >
-> 从API Version 9开始，该接口不再维护，推荐使用新接口[@ohos.reminderAgentManager （后台代理提醒）](js-apis-reminderAgentManager.md)
+> 从API Version 9 开始，该接口不再维护，推荐使用新接口[@ohos.reminderAgentManager （后台代理提醒）](js-apis-reminderAgentManager.md)
 >
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
