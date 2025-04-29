@@ -75,7 +75,7 @@
   ```
 3. 创建指定的UIAbility
     
-   在UIAbility中监听call事件，根据监听到的method参数中的方法名称调用对应方法，并通过[rpc.Parcelable](../reference/apis-ipc-kit/js-apis-rpc.md#parcelable9)获取参数。注意：UIAbility中监听的方法与步骤2中调用的方法需保持一致。
+  在UIAbility中监听call事件，根据监听到的method参数中的方法名称调用对应方法，并通过[rpc.Parcelable](../reference/apis-ipc-kit/js-apis-rpc.md#parcelable9)获取参数。注意：UIAbility中监听的方法与步骤2中调用的方法需保持一致。
   ```ts
   //src/main/ets/widgeteventcallcard/WidgetEventCallEntryAbility/WidgetEventCallEntryAbility.ets
   import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
