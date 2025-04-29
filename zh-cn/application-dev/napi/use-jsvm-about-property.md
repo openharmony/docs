@@ -297,7 +297,6 @@ cpp部分代码
 
 ```cpp
 // OH_JSVM_HasOwnProperty的样例方法
-
 static JSVM_Value HasOwnProperty(JSVM_Env env, JSVM_CallbackInfo info)
 {
     // 获取js侧传入的两个参数
