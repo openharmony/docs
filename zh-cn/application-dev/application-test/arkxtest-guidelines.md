@@ -131,7 +131,6 @@ export default function abilityTest() {
   import { UIAbility, Want } from '@kit.AbilityKit';
 
   const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
-  const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
   function sleep(time: number) {
     return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
   }
@@ -139,6 +138,8 @@ export default function abilityTest() {
     describe('ActsAbilityTest', () => {
        it('testUiExample',0, async (done: Function) => {
           console.info("uitest: TestUiExample begin");
+           await sleep(1000);
+          const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
           //start tested ability
           const want: Want = {
              bundleName: bundleName,
