@@ -564,10 +564,6 @@ hdc shell uitest uiInput text hello
 | keyID2    | 否    | 实体按键对应ID，取值范围：[KeyCode键码值](../reference/apis-input-kit/js-apis-keycode.md)，默认值为空。                                                       |
 | keyID3    | 否    | 实体按键对应ID，取值范围：[KeyCode键码值](../reference/apis-input-kit/js-apis-keycode.md)，默认值为空。                                                                 |
 
->**说明**
->
-> 最多支持传入是三个键值，<!--RP3-->键值的具体取值请参考[KeyCode](../reference/apis-input-kit/js-apis-keycode.md)<!--RP3End-->。
-
 ```shell  
 # 返回主页。
 hdc shell uitest uiInput keyEvent Home
