@@ -240,14 +240,23 @@ OpenHarmony 5.1.0 Release版本正式推出API 18。相比前一个Release版本
 
 ### 基础通信
 
-- 蓝牙socket模块新增支持通过clientSocket获取对端设备地址的能力。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-socket.md#socketgetdeviceid17)）
+- 新增在蓝牙socket server端可以获取对端蓝牙设备虚拟MAC地址的功能（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-socket.md#socketgetdeviceid17)）
 
-- 新增支持获取对端蓝牙设备的名称。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-connection.md#connectiongetremotedevicename16)）
+- 新增获取对端蓝牙设备原始名字的功能。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-connection.md#connectiongetremotedevicename16)）
 
-- 新增支持连接远端设备所有允许连接的profiles。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-connection.md#connectionconnectallowedprofiles16-1)）
+- 新增连接对端蓝牙设备可用profile的功能，如A2DP、HFP、HID等协议profile。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-connection.md#connectionconnectallowedprofiles16)）
 
-- 新增支持持久化存储所获取的对端设备的MAC地址。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-access.md#accessaddpersistentdeviceid16)）
+- 新增持久化存储对端蓝牙设备虚拟MAC地址的功能。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-access.md#accessaddpersistentdeviceid16)）
 
+- 新增蓝牙BLE扫描围栏模式，可实现首次扫描到BLE广播报文时上报进入围栏，扫描不到BLE广播报文时上报离开围栏，并携带BLE广播报文信息。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#scanreportmode15)）
+
+- 完善蓝牙搜索到的设备信息，新增获取设备RSSI（信号强度）、名称和类别信息。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-connection.md#discoveryresult18)）
+
+- 新增异步读取和发送蓝牙socket数据的功能，如果链路断开，会上报IO异常。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-socket.md#socketsppwriteasync18)）
+
+### 位置服务
+
+新增支持订阅蓝牙扫描信息上报事件用于辅助定位。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-location-kit/js-apis-geoLocationManager.md#geolocationmanageronbluetoothscanresultchange16)）
 
 ### 网络管理
 
