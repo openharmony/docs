@@ -17293,7 +17293,6 @@ void OH_ArkUI_AccessibilityValue_SetRangeMin(ArkUI_AccessibilityValue* value, in
 
 当范围组件未设置无障碍最小值时，默认为-1。
 
-
 **起始版本：** 18
 
 **参数:**
