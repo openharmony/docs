@@ -23,7 +23,7 @@ WebviewController还没有和具体的Web组件关联，无法进行相应的操
 
 **错误信息**
 
-URL error.Possible causes:1.No valid cookie found for the specified URL. 2. The webpage corresponding to the URL is invalid, or the URL length exceeds 2048.
+URL error.Possible causes: 1. No valid cookie found for the specified URL. 2. The webpage corresponding to the URL is invalid, or the URL length exceeds 2048.
 
 **错误描述**
 
