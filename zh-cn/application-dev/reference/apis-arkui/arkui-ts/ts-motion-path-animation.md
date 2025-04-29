@@ -38,7 +38,7 @@ motionPath(value: MotionPathOptions)
 @Entry
 @Component
 struct MotionPathExample {
-  @State toggle: boolean = true
+  @State toggle: boolean = true;
 
   build() {
     Column() {

@@ -76,7 +76,7 @@ radialGradient(value: { center: [Length, Length]; radius: number | string; color
 
 ### 示例1（颜色从右向左线性渐变）
 
-该示例通过linearGradient来实现组件颜色线性渐变。
+该示例通过linearGradient来实现组件的颜色线性渐变。
 
 ```ts
 // xxx.ets
