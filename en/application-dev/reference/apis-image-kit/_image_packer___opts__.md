@@ -11,6 +11,8 @@ The ImagePacker_Opts_ struct defines the image encoding options.
 
 **Related module**: [Image](image.md)
 
+**Header file**: [image_packer_mdk.h](image__packer__mdk_8h.md)
+
 
 ## Summary
 
