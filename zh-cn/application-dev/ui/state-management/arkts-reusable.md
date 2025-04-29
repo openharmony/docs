@@ -13,6 +13,11 @@
 
 - \@Reusable适用自定义组件，与\@Component结合使用，标记为\@Reusable的自定义组件从组件树上被移除时，组件和其对应的JSView对象都会被放入复用缓存中，后续创建新自定义组件节点时，会复用缓存区中的节点，节约组件重新创建的时间。
 
+
+> **说明：**
+>
+> 关于组件复用的原理与使用、组件复用优化方法、适用场景，请参考最佳实践[组件复用最佳实践](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-component-reuse)。
+
 ## 限制条件
 
 - \@Reusable装饰器仅用于自定义组件。
@@ -1265,12 +1270,12 @@ class DataSrc2 implements IDataSource {
 #### 标准型
 
 - 复用组件之间布局完全相同;
-- 示例同列表滚动中描述;
+- 示例同列表滚动中描述。
 
 #### 有限变化型
 
 - 复用组件之间有不同，但是类型有限;
-- 示例为复用组件显式设置两个reuseId与使用两个自定义组件进行复用;
+- 示例为复用组件显式设置两个reuseId与使用两个自定义组件进行复用。
 
 ```ts
 class MyDataSource implements IDataSource {

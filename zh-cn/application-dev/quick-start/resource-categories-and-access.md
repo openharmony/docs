@@ -470,6 +470,8 @@ Image($r('sys.media.ohos_app_icon'))
 在Index.ets中，分别获取三种语言的资源并显示在文本框中，运行设备当前系统语言为中文，entry/src/main/ets/pages/Index.ets的代码如下：
 
 ```ts
+import { common } from '@kit.AbilityKit'
+
 @Entry
 @Component
 struct Index {
@@ -477,7 +479,8 @@ struct Index {
   @State germanString: string = ""
 
   getString(): string {
-    let resMgr = getContext().resourceManager
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext
+    let resMgr = context.resourceManager
     let resId = $r('app.string.greetings').id
 
     //获取符合当前系统语言地区、颜色模式、分辨率等配置的资源

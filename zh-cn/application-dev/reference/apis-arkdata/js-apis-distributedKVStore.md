@@ -362,7 +362,7 @@ import { featureAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let kvManager: distributedKVStore.KVManager;
-let context = featureAbility.getContext()
+let context = featureAbility.getContext();
 const kvManagerConfig: distributedKVStore.KVManagerConfig = {
   context: context,
   bundleName: 'com.example.datamanagertest'
@@ -2230,7 +2230,7 @@ limit(total: number, offset: number): Query
 
 | 参数名 | 类型 | 必填 | 说明               |
 | ------ | -------- | ---- | ------------------ |
-| total  | number   | 是   | 表示指定的结果数。 |
+| total  | number   | 是   | 表示最大数据记录数，取值应为非负整数，传入值小于0时，不会限制记录数量。 |
 | offset | number   | 是   | 指定查询结果的起始位置，默认初始位置为结果集的最前端。当offset为负数时，起始位置为结果集的最前端。当offset超出结果集最后位置时，查询结果为空。|
 
 **返回值：**

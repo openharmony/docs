@@ -26,7 +26,7 @@
        depthDataOutput = cameraManager.createDepthDataOutput(depthProfilesArray[0]);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to create the DepthDataOutput instance. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to create the DepthDataOutput instance. error: ${err}`);
      }
      return depthDataOutput;
    }
@@ -44,7 +44,7 @@
        await depthDataOutput.start();
      } catch (err) {
        const error = err as BusinessError;
-       console.error(`Failed to start depth data output. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to start depth data output. error: ${err}`);
      }
    }
    ```

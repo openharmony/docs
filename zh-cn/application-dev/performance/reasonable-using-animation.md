@@ -117,7 +117,7 @@ struct AnimateToExample2 {
       Button('click me')
         .onClick((event?: ClickEvent | undefined) => {
           if (this.flag) {
-            animateTo({
+            this.getUIContext().animateTo({
               duration: 2000, // 动画时长
               curve: Curve.Linear, // 动画曲线
               delay: 500, // 动画延迟
@@ -128,7 +128,7 @@ struct AnimateToExample2 {
               this.heightSize = 50;
             })
           } else {
-            animateTo({
+            this.getUIContext().animateTo({
               duration: 2000, // 动画时长
               curve: Curve.Linear, // 动画曲线
               delay: 500, // 动画延迟

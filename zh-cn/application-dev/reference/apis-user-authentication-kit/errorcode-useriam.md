@@ -130,8 +130,7 @@ The type of credential has not been enrolled.
 
 **可能原因**
 
-例如调用userAuth模块的getAvailableStatus接口，传入的authType参数为FACE，但是当前的设备没有录入人脸凭据，则会返回12500010错误码。
-调用start接口发起人脸认证，但是目前的设备没有录入人脸凭据，则会返回12500010错误码。
+例如调用userAuth模块的getAvailableStatus接口，传入的authType参数为FACE，但是当前的设备没有录入人脸凭据，则会返回12500010错误码。调用start接口发起人脸认证，但是目前的设备没有录入人脸凭据，则会返回12500010错误码。
 
 **处理步骤**
 

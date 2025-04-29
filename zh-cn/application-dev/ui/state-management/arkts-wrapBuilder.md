@@ -50,8 +50,8 @@ declare class WrappedBuilder< Args extends Object[]> {
 使用方法：
 
 ```ts
-let builderVar: WrappedBuilder<[string, number]> = wrapBuilder(MyBuilder)
-let builderArr: WrappedBuilder<[string, number]>[] = [wrapBuilder(MyBuilder)] //可以放入数组
+let builderVar: WrappedBuilder<[string, number]> = wrapBuilder(MyBuilder);
+let builderArr: WrappedBuilder<[string, number]>[] = [wrapBuilder(MyBuilder)]; //可以放入数组
 ```
 
 

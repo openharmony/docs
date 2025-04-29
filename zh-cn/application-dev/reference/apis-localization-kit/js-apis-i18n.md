@@ -537,11 +537,10 @@ static getTemperatureName(type: TemperatureType): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 
@@ -2674,11 +2673,10 @@ static getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: intl
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001   | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
@@ -2990,11 +2988,10 @@ getSimpleDateTimeFormatByPattern(pattern: string, locale?: intl.Locale): SimpleD
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
@@ -3036,11 +3033,10 @@ getSimpleDateTimeFormatBySkeleton(skeleton: string, locale?: intl.Locale): Simpl
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
@@ -3080,14 +3076,6 @@ format(date: Date): string
 | 类型                     | 说明    |
 | ---------------------- | ----- |
 | string | 格式化后的时间、日期字符串。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID  | 错误信息                   |
-| ------ | ---------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
   ```ts
@@ -3139,11 +3127,10 @@ getSimpleNumberFormatBySkeleton(skeleton: string, locale?: intl.Locale): SimpleN
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
@@ -3184,14 +3171,6 @@ format(value: number): string
 | ---------------------- | ----- |
 | string | 格式化后的数字字符串。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID  | 错误信息                   |
-| ------ | ---------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-
 **示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -3225,14 +3204,6 @@ constructor(numberFormat: intl.NumberFormat | SimpleNumberFormat, options?: Styl
 | --------- | ------------- | ---- | ------------- |
 | numberFormat | [intl.NumberFormat](js-apis-intl.md#numberformat) \| [SimpleNumberFormat](#simplenumberformat18) | 是   | 用于格式化数字的对象。  |
 | options | [StyledNumberFormatOptions](#stylednumberformatoptions18) | 否 | 指定数字格式化对象的配置项。默认值：默认的文本样式。  |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID  | 错误信息                   |
-| ------ | ---------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
   ```ts
@@ -3290,15 +3261,6 @@ format(value: number): StyledString
 |       类型        |         说明          |
 | ----------------- | ----------------------|
 | [StyledString](../apis-arkui/arkui-ts/ts-universal-styled-string.md#styledstring) | 返回格式化后的富文本对象。 |
-
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID  | 错误信息                   |
-| ------ | ---------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
   ```ts
