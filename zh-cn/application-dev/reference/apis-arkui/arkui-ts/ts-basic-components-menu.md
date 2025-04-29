@@ -151,6 +151,22 @@ subMenuExpandingMode(mode: SubMenuExpandingMode)
 | ------ | ---------------------------- | ---- |--------------|
 | mode  | [SubMenuExpandingMode](#submenuexpandingmode12枚举说明) | 是   | Menu子菜单展开样式。<br/>默认值：SubMenuExpandingMode.SIDE_EXPAND  |
 
+### subMenuExpandSymbol<sup>20+</sup>
+
+subMenuExpandSymbol(symbol: SymbolGlyphModifier)
+
+设置Menu子菜单展开符号。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                         | 必填 | 说明           |
+| ------ | ---------------------------- | ---- |--------------|
+| symbol  | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 是   | Menu子菜单展开符号。<br/>1、子菜单的展开样式为SubMenuExpandingMode.SIDE_EXPAND时，不显示展开符号。<br/>2、子菜单的展开样式为SubMenuExpandingMode.EMBEDDED_EXPAND时，展开时展开符号会顺时针旋转180°。<br/>默认值：`$r('sys.symbol.chevron_down')` <br/>3、子菜单的展开样式为SubMenuExpandingMode.STACK_EXPAND时，展开时展开符号会顺时针旋转90°。<br/>默认值：`$r('sys.symbol.chevron_right')`  |
+
 ## SubMenuExpandingMode<sup>12+</sup>枚举说明
 
 Menu子菜单展开样式枚举。
