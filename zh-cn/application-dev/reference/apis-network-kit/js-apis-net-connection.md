@@ -1908,6 +1908,8 @@ register(callback: AsyncCallback\<void>): void
 
 订阅指定网络状态变化的通知。
 
+**注意：** 使用完register接口后需要及时调用unregister取消注册。
+
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
