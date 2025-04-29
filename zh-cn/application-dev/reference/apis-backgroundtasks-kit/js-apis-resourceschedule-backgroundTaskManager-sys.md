@@ -104,6 +104,40 @@ try {
 }
 ```
 
+## backgroundTaskManager.getAllEfficiencyResources<sup>20+</sup>
+
+getAllEfficiencyResources(): Promise&lt;EfficiencyResourcesInfo[]&gt;
+
+获取已申请的所有能效资源信息，如能效资源类型、持久化等，使用Promise异步回调。
+
+**系统能力**: SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
+
+**系统API**: 此接口为系统接口。
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202 | Not System App. |
+
+**示例**：
+
+```js
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    backgroundTaskManager.getAllEfficiencyResources().then((res: backgroundTaskManager.EfficiencyResourcesInfo[]) => {
+        console.info(`Operation getAllEfficiencyResources succeeded. data: ` + JSON.stringify(res));
+    }).catch((error : BusinessError) => {
+        console.error(`Operation getAllEfficiencyResources failed. code is ${error.code} message is ${error.message}`);
+    });
+} catch (error) {
+    console.error(`Operation getAllEfficiencyResources failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+}
+```
+
 ## BackgroundMode
 
 长时任务模式。
@@ -150,3 +184,21 @@ try {
 | AUDIO                   | 64   | 音频资源，有音频播放时对应的应用进程不被挂起。 |
 | RUNNING_LOCK<sup>10+</sup> | 128 | RUNNING_LOCK资源，申请后挂起状态不会代理RUNNING_BACKGROUND锁。 |
 | SENSOR<sup>10+</sup> | 256 | 申请后不拦截Sensor回调。 |
+
+## EfficiencyResourcesInfo<sup>20+</sup>
+
+能效资源信息。
+
+**系统能力**: SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
+
+**系统API**: 此接口为系统接口。
+
+| 名称                             | 类型      | 必填   | 说明          |
+|--------------------------------|---------| ---- |-------------|
+| [resourceTypes](#resourcetype) | number  | 是    | 能效资源类型。     |
+| timeout                        | number  | 是    | 超时时间，单位：ms。 |
+| isPersistent                   | boolean | 是    | 是否持久化。      |
+| isForProcess                   | boolean | 是    | 是否进程级别申请。   |
+| reason                         | string  | 是    | 申请原因。       |
+| uid                            | number  | 是    | 应用的UID。     |
+| pid                            | number  | 是    | 应用进程的PID。   |
