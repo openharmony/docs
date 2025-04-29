@@ -157,7 +157,7 @@ export class Store {
     }
   }
 
-  updataOnedata(kvStore: distributedKVStore.SingleKVStore): void {
+  updateOnedata(kvStore: distributedKVStore.SingleKVStore): void {
     if (kvStore != undefined) {
       kvStore.getEntries('key_test_string', async (err: BusinessError, entries: distributedKVStore.Entry[]) => {
         if (err != undefined) {
@@ -171,7 +171,7 @@ export class Store {
             console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
           });
         }
-        console.info(`ECDB_Encry updata success`)
+        console.info(`ECDB_Encry update success`)
       });
     }
   }
@@ -209,7 +209,7 @@ export class SecretKeyObserver {
     this.storeManager = storeManager;
   }
 
-  updatalockStatus(code: number) {
+  updatelockStatus(code: number) {
     if (code === SecretStatus.Lock) {
       this.onLock();
     } else {
@@ -326,7 +326,7 @@ export class ECStoreManager {
 
 ```ts
 // EntryAbility.ets
-import { AbilityConstant, contextConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { AbilityConstant, application, contextConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 import { distributedKVStore } from '@kit.ArkData';
@@ -356,7 +356,7 @@ export function createCB(err: BusinessError, commonEventSubscriber: commonEventM
           console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
         } else {
           console.info(`ECDB_Encry SubscribeCB ${data.code}`);
-          e_secretKeyObserver.updatalockStatus(data.code);
+          e_secretKeyObserver.updatelockStatus(data.code);
         }
       });
     } catch (error) {
@@ -372,7 +372,7 @@ let cInfo: StoreInfo | null = null;
 let eInfo: StoreInfo | null = null;
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+  async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): Promise<void> {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
     let cContext = this.context;
     cInfo = {
@@ -392,7 +392,7 @@ export default class EntryAbility extends UIAbility {
         securityLevel: distributedKVStore.SecurityLevel.S3
       }
     }
-    let eContext = this.context.createModuleContext("entry");
+    let eContext = await application.createModuleContext(this.context,"entry");
     eContext.area = contextConstant.AreaMode.EL5;
     eInfo = {
       "kvManagerConfig": {
@@ -508,9 +508,9 @@ struct Index {
           storeOption.deleteOnedata(store);
         }).margin(5)
 
-        Button("updata").onClick(async (event: ClickEvent) => {
+        Button("update").onClick(async (event: ClickEvent) => {
           let store: distributedKVStore.SingleKVStore = await storeManager.getCurrentStore(e_secretKeyObserver.getCurrentStatus());
-          storeOption.updataOnedata(store);
+          storeOption.updateOnedata(store);
         }).margin(5)
 
         Text(this.message)
@@ -634,7 +634,7 @@ export class Store {
     }
   }
 
-  async updataOnedata(rdbStore: relationalStore.RdbStore) {
+  async updateOnedata(rdbStore: relationalStore.RdbStore) {
     if (rdbStore != undefined) {
       try {
         let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
@@ -686,7 +686,7 @@ export class SecretKeyObserver {
     this.storeManager = storeManager;
   }
 
-  updatalockStatus(code: number) {
+  updatelockStatus(code: number) {
     if (this.lockStatuas === SecretStatus.Lock) {
       this.onLock();
     } else {
@@ -784,7 +784,7 @@ export class ECStoreManager {
 
 ```ts
 // EntryAbility.ets
-import { AbilityConstant, contextConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { AbilityConstant, contextConstant, UIAbility, Want, application } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 import { relationalStore } from '@kit.ArkData';
@@ -814,7 +814,7 @@ export function createCB(err: BusinessError, commonEventSubscriber: commonEventM
           console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
         } else {
           console.info(`ECDB_Encry SubscribeCB ${data.code}`);
-          e_secretKeyObserver.updatalockStatus(data.code);
+          e_secretKeyObserver.updatelockStatus(data.code);
         }
       });
     } catch (error) {
@@ -830,7 +830,7 @@ let cInfo: StoreInfo | null = null;
 let eInfo: StoreInfo | null = null;
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+  async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): Promise<void> {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
     let cContext = this.context;
     cInfo = {
@@ -840,8 +840,8 @@ export default class EntryAbility extends UIAbility {
         securityLevel: relationalStore.SecurityLevel.S3,
       },
       storeId: "cstore.db"
-    }
-    let eContext = this.context.createModuleContext("entry");
+    };
+    let eContext = await application.createModuleContext(this.context, "entry");
     eContext.area = contextConstant.AreaMode.EL5;
     eInfo = {
       context: eContext,
@@ -850,7 +850,7 @@ export default class EntryAbility extends UIAbility {
         securityLevel: relationalStore.SecurityLevel.S3,
       },
       storeId: "estore.db",
-    }
+    };
     // 监听COMMON_EVENT_SCREEN_LOCK_FILE_ACCESS_STATE_CHANGED事件 code == 1解锁状态，code==0加锁状态
     console.info(`ECDB_Encry store area : estore:${eContext.area},cstore${cContext.area}`)
     try {
@@ -949,9 +949,9 @@ struct Index {
           storeOption.deleteAlldata(store);
         }).margin(5)
 
-        Button("updata").onClick(async (event: ClickEvent) => {
+        Button("update").onClick(async (event: ClickEvent) => {
           let store: relationalStore.RdbStore = await storeManager.getCurrentStore(e_secretKeyObserver.getCurrentStatus());
-          storeOption.updataOnedata(store);
+          storeOption.updateOnedata(store);
         }).margin(5)
 
         Text(this.message)

@@ -30,7 +30,7 @@ Invoked when a touch event is triggered.
 
 ## TouchEvent
 
-Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent). In non-injected event scenarios, **changedTouches** indicates points resampled according to the screen's refresh rate, while **touches** indicates points based on the device's refresh rate. As such, the data in **changedTouches** may differ from that in **touches**.
+Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent8). In non-injected event scenarios, **changedTouches** indicates points resampled according to the screen's refresh rate, while **touches** indicates points based on the device's refresh rate. As such, the data in **changedTouches** may differ from that in **touches**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -40,7 +40,7 @@ Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent). In non-injec
 | touches             | Array&lt;[TouchObject](#touchobject)&gt; | All finger information.<br>**Atomic service API**: This API can be used in atomic services since API version 11.     |
 | changedTouches      | Array&lt;[TouchObject](#touchobject)&gt; | Finger information changed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | stopPropagation      | () => void | Stops the event from bubbling upwards or downwards.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| preventDefault<sup>12+</sup>      | () => void | Blocks the default event.<br> **NOTE**<br>This API is only supported by the following components: **Hyperlink**, **Checkbox**, **CheckboxGroup**, **Rating**, **Radio**, **Toggle**. Asynchronous calls and the **Modifier** API are not yet supported.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| preventDefault<sup>12+</sup>      | () => void |  Blocks the default event.<br> **NOTE**<br>This API is only supported by the following components: **Hyperlink**. Asynchronous calls and the **Modifier** API are not yet supported.<br> **Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ### getHistoricalPoints<sup>10+</sup>
 
@@ -75,6 +75,11 @@ Obtains all historical points of the current frame. The touch event frequency of
 | displayY<sup>10+</sup> | number                       | Y coordinate of the touch point relative to the upper left corner of the application screen.<br>Unit: vp<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
 | screenX<sup>(deprecated)</sup> | number               | X coordinate of the touch point relative to the upper left corner of the application window.<br>Unit: vp<br>This API is deprecated since API version 10. You are advised to use **windowX** instead.  |
 | screenY<sup>(deprecated)</sup> | number               | Y coordinate of the touch point relative to the upper left corner of the application window.<br>Unit: vp<br>This API is deprecated since API version 10. You are advised to use **windowY** instead.  |
+| PressedTime<sup>15+</sup> | number | Time when the finger is pressed.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+| pressure<sup>15+</sup> | number | Pressure value of the finger press.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+| width<sup>15+</sup> | number | Width of the area pressed by the finger.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+| height<sup>15+</sup> | number | Height of the area pressed by the finger.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+| hand<sup>15+</sup> | [InteractionHand](./ts-gesture-settings.md#interactionhand15) | Whether the event is triggered by a left-hand or right-hand tap.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 
 ## HistoricalPoint<sup>10+</sup>
 
@@ -88,7 +93,8 @@ Obtains all historical points of the current frame. The touch event frequency of
 | size        | number                              | Size of the contact area between the finger and screen for the historical point.<br>Default value: **0**                                    |
 | force       | number                              | Touch force of the historical point.<br>Default value: **0**<br>Value range: [0, 65535). The greater the pressure, the larger the value.|
 | timestamp   | number                              | Timestamp of the historical point. It is the interval between the time when the event is triggered and the time when the system starts.<br>Unit: ns          |
-## Example 1: Obtaining Touch Event Parameters
+
+## Example
 
 This example configures a touch event for a button. When the button is touched, it obtains relevant parameters of the touch event.
 
@@ -117,7 +123,10 @@ struct TouchExample {
             this.text = 'TouchType:' + this.eventType + '\nDistance between touch point and touch element:\nx: '
             + event.touches[0].x + '\n' + 'y: ' + event.touches[0].y + '\nComponent globalPos:('
             + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\nwidth:'
-            + event.target.area.width + '\nheight:' + event.target.area.height
+            + event.target.area.width + '\nheight:' + event.target.area.height + '\ntargetDisplayId:' +
+            event.targetDisplayId + '\npressedTime:' + event.touches[0].pressedTime + '\npressure:' +
+            event.touches[0].pressure +
+              '\nwidth:' + event.touches[0].width + '\nheight:' + event.touches[0].height
           }
         })
       Button('Touch').height(50).width(200).margin(20)
@@ -135,7 +144,10 @@ struct TouchExample {
             this.text = 'TouchType:' + this.eventType + '\nDistance between touch point and touch element:\nx: '
             + event.touches[0].x + '\n' + 'y: ' + event.touches[0].y + '\nComponent globalPos:('
             + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\nwidth:'
-            + event.target.area.width + '\nheight:' + event.target.area.height
+            + event.target.area.width + '\nheight:' + event.target.area.height + '\ntargetDisplayId:' +
+            event.targetDisplayId + '\npressedTime:' + event.touches[0].pressedTime + '\npressure:' +
+            event.touches[0].pressure +
+              '\nwidth:' + event.touches[0].width + '\nheight:' + event.touches[0].height
           }
         })
       Text(this.text)
@@ -144,47 +156,4 @@ struct TouchExample {
 }
 ```
 
-![en-us_image_0000001209874754](figures/en-us_image_0000001209874754.gif)
-### Example 2: Preventing Default Touch Events
-This example demonstrates how to prevent default touch events on a **Checkbox** component while retaining the pressed state effect.
-```ts
-// xxx.ets
-@Entry
-@Component
-struct CheckboxExample {
-  @State isTouchPreventDefault: boolean = true;
-
-  build() {
-    Row() {
-      Column() {
-        Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-          Checkbox({ name: 'Checkbox', group: 'checkboxGroup' })
-            .shape(CheckBoxShape.CIRCLE)
-            .onChange((value: boolean) => {
-              console.info('Checkbox change is' + value)
-            })
-            .onTouch((event) => {
-              if (event != undefined && this.isTouchPreventDefault) {
-                try {
-                  event.preventDefault();
-                } catch (e) {
-                  console.log("onTouch ErrorCode" + JSON.stringify(e))
-                  console.log("onTouch ErrorMessage" + e.message)
-                }
-              }
-            })
-            .mark({
-              strokeColor: Color.Black,
-              size: 50,
-              strokeWidth: 5
-            })
-            .width(30)
-            .height(30)
-          Text('Checkbox').fontSize(20)
-        }.padding(15)
-      }.width('100%')
-    }.height('100%')
-  }
-}
-```
-![](figures/checkbox_5.gif)
+![touch](figures/touch.gif)

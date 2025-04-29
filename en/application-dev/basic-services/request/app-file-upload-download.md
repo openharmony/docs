@@ -173,7 +173,12 @@ try {
 // Way 2: Use request.agent.
 // pages/xxx.ets
 // Download the network resource file to the local application file directory, and read data from the file.
+import { common } from '@kit.AbilityKit';
+import fs from '@ohos.file.fs';
 import { BusinessError, request } from '@kit.BasicServicesKit';
+import { buffer } from '@kit.ArkTS';
+
+// Obtain the application file path.
 let context = getContext(this) as common.UIAbilityContext;
 let filesDir = context.filesDir;
 
@@ -210,3 +215,46 @@ request.agent.create(context, config).then((task: request.agent.Task) => {
   console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
 });
 ```
+
+## Adding Network Configuration
+
+### Intercepting HTTP
+
+You can set the configuration file to intercept HTTP. After HTTP is disabled for the upload and download module, upload and download tasks using plaintext HTTP cannot be created. The configuration file is stored in the **src/main/resources/base/profile/network_config.json** directory of the application.
+
+The sample configuration file is as follows:
+
+```ts
+{
+  "network-security-config": {
+    "base-config": {
+      "cleartextTrafficPermitted": true, 
+      "trust-anchors": [
+        {
+          "certificates": "/etc/security/certificates"
+        }
+      ]
+    },
+    "domain-config": [
+      {
+        "cleartextTrafficPermitted": true,
+        "domains": [
+          {
+            "include-subdomains": true,
+            "name": "*.example.com"
+          }
+        ],
+      }
+    ]
+  }
+}
+
+```
+
+The table below lists the description of each field.
+
+| Field                     | Type           | Description                                  |   
+| --------------------------| --------------- | -------------------------------------- |
+| base-config:<br> cleartextTrafficPermitted | boolean | Whether plaintext transfer is allowed in the global configuration. The value **true** means that plaintext transfer is allowed, that is, HTTP is not intercepted, and **false** means the opposite.|
+| domain-config:<br> cleartextTrafficPermitted | boolean | Whether plaintext transfer is allowed in a specified domain. The value **true** means that plaintext transfer is allowed, that is, HTTP is not intercepted, and **false** means the opposite.|
+| include-subdomains | boolean | Whether a rule applies to subdomains. The value **true** means that the regular expression is used to match the domain name, and **false** means the opposite.|

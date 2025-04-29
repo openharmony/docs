@@ -21,7 +21,7 @@
 | int [height](#height) | 图像高度。  | 
 | int [width](#width) | 图像宽度。  | 
 | int [stride](#stride) | 图像跨度。  | 
-| enum [PixelFormat](_display_v10.md#pixelformat)。[enColorFmt](#encolorfmt) | 图像格式。  | 
+| enum [PixelFormat](_display_v10.md#pixelformat) [enColorFmt](#encolorfmt) | 图像格式。  | 
 | boolean [bYCbCrClut](#bycbcrclut) | CLUT表是否位于 YCbCr 空间。  | 
 | boolean [bAlphaMax255](#balphamax255) | 图像Alpha最大值为255还是128。  | 
 | boolean [bAlphaExt1555](#balphaext1555) | 是否使能1555的Alpha扩展。  | 

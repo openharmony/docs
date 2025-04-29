@@ -5,7 +5,8 @@ The Decimal module provides a high-precision math library that offers the capabi
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
+>
+> This module can be imported only to ArkTS files (with the file name extension .ets).
 
 ## Modules to Import
 
@@ -90,7 +91,7 @@ Describes the configuration of a **Decimal** object. You can call [Decimal.set](
 | toExpPos  | number                 | No  | No  | Positive exponent value at and above which [toString](#tostring) returns exponential notation. The value range is [0, 9e15], and the default value is **21**.|
 | minE      | number                 | No  | No  | Minimum negative exponents. A decimal with an exponent less than this minimum value underflows towards zero. The value range is [-9e15, 0], and the default value is **-9e15**.|
 | maxE      | number                 | No  | No  | Maximum positive exponent. A decimal with an exponent greater than this maximum value overflows to infinity. The value range is [0, 9e15], and the default value is **9e15**.|
-| crypto    | boolean                | No  | No  | Whether to use a pseudorandom number for encryption. The default value is **false**. The capability is not supported yet, and error code 10200061 is reported if it is used. |
+| crypto    | boolean                | No  | No  | Whether to use a pseudorandom number for encryption. The value **true** means to use a pseudorandom number for encryption, and **false** means the opposite. The default value is **false**. The capability is not supported yet, and error code 10200061 is reported if it is used. |
 | modulo    | [Modulo](#modulo)      | No  | No  | Rounding mode used in the modulo operation. The value is an integer ranging from 0 to 9, and the default value is **1**.   |
 | defaults  | boolean                | No  | No  | Whether the default value is used if no value is passed in for a property. The value **true** means that the default value is used, and **false** means the opposite. The default value is **true**.|
 
@@ -151,7 +152,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -164,7 +165,7 @@ console.info("test Decimal constructor:" + data.toString()); // 'test Decimal co
 
 abs(): Decimal
 
-Returns a new **Decimal** object representing the absolute value of this decimal.
+Returns a **Decimal** object representing the absolute value of this decimal.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -187,7 +188,7 @@ console.info("test Decimal abs:" + data.toString()); // 'test Decimal abs:0.5'
 
 floor(): Decimal
 
-Returns a new **Decimal** object representing the nearest integer to which this decimal is rounded down.
+Returns a **Decimal** object representing the nearest integer to which this decimal is rounded down.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -210,7 +211,7 @@ console.info("test Decimal floor:" + data.toString()); // 'test Decimal floor:1'
 
 ceil(): Decimal
 
-Returns a new **Decimal** object representing the nearest integer to which this decimal is rounded up.
+Returns a **Decimal** object representing the nearest integer to which this decimal is rounded up.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -233,7 +234,7 @@ console.info("test Decimal ceil:" + data.toString()); // 'test Decimal ceil:2'
 
 trunc(): Decimal
 
-Returns a new **Decimal** object representing the integer part truncated from this decimal.
+Returns a **Decimal** object representing the integer part truncated from this decimal.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -256,7 +257,7 @@ console.info("test Decimal trunc:" + data.toString()); // 'test Decimal trunc:2'
 
 clamp(min: Value, max: Value): Decimal
 
-Returns a new **Decimal** object representing the value clamped to the inclusive range of **min** and **max**.
+Returns a **Decimal** object representing the value clamped to the inclusive range of **min** and **max**. If the actual value exceeds the maximum limit, **max** is returned; if it falls below the minimum limit, **min** is returned; otherwise, the actual value is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -281,7 +282,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200001 | The value of 'min' is out of range.                          |
 
 **Example**
@@ -295,9 +296,9 @@ console.info("test Decimal clamp:" + data.toString()); // 'test Decimal clamp:10
 
 ### add
 
-add(n: Value): Decimal;
+add(n: Value): Decimal
 
-Returns a new **Decimal** object representing the sum of adding the specified number *n* to this decimal.
+Returns a **Decimal** object representing the sum of adding the specified number *n* to this decimal.
 
 You can use [DecimalConfig.precision](#decimalconfig) to specify the precision and use [DecimalConfig.rounding](#decimalconfig) to specify the rounding mode.
 
@@ -323,7 +324,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -336,7 +337,7 @@ console.info("test Decimal add:" + data.toString()); // 'test Decimal add:1'
 
 sub(n: Value): Decimal
 
-Returns a new **Decimal** object representing the difference of subtracting the specified number *n* from this decimal.
+Returns a **Decimal** object representing the difference of subtracting the specified number *n* from this decimal.
 
 You can use [DecimalConfig.precision](#decimalconfig) to specify the precision and use [DecimalConfig.rounding](#decimalconfig) to specify the rounding mode.
 
@@ -362,7 +363,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -375,7 +376,7 @@ console.info("test Decimal sub:" + data.toString()); // 'test Decimal sub:0.5'
 
 mul(n: Value): Decimal
 
-Returns a new **Decimal** object representing the product of multiplying this decimal by the specified number *n*.
+Returns a **Decimal** object representing the product of multiplying this decimal by the specified number *n*.
 
 You can use [DecimalConfig.precision](#decimalconfig) to specify the precision and use [DecimalConfig.rounding](#decimalconfig) to specify the rounding mode.
 
@@ -401,7 +402,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -414,7 +415,7 @@ console.info("test Decimal mul:" + data.toString()); // 'test Decimal mul:0.5'
 
 div(n: Value): Decimal
 
-Returns a new **Decimal** object representing the quotient of dividing this decimal by the specified number *n*.
+Returns a **Decimal** object representing the quotient of dividing this decimal by the specified number *n*.
 
 You can use [DecimalConfig.precision](#decimalconfig) to specify the precision and use [DecimalConfig.rounding](#decimalconfig) to specify the rounding mode.
 
@@ -440,7 +441,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -453,7 +454,7 @@ console.info("test Decimal div:" + data.toString()); // 'test Decimal div:2'
 
 mod(n: Value): Decimal
 
-Returns a new **Decimal** object representing the remainder of dividing this decimal by the specified number *n*.
+Returns a **Decimal** object representing the remainder of dividing this decimal by the specified number *n*.
 
 You can use [DecimalConfig.precision](#decimalconfig) to specify the precision and use [DecimalConfig.rounding](#decimalconfig) to specify the rounding mode.
 
@@ -479,7 +480,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -492,7 +493,7 @@ console.info("test Decimal mod:" + data.toString()); // 'test Decimal mod:0'
 
 sqrt(): Decimal
 
-Returns a new **Decimal** object representing the square root of this decimal.
+Returns a **Decimal** object representing the square root of this decimal.
 
 You can use [DecimalConfig.precision](#decimalconfig) to specify the precision and use [DecimalConfig.rounding](#decimalconfig) to specify the rounding mode.
 
@@ -517,7 +518,7 @@ console.info("test Decimal sqrt:" + data.toString()); // 'test Decimal sqrt:1.73
 
 cbrt(): Decimal
 
-Returns a new **Decimal** object representing the cube root of this decimal.
+Returns a **Decimal** object representing the cube root of this decimal.
 
 You can use [DecimalConfig.precision](#decimalconfig) to specify the precision and use [DecimalConfig.rounding](#decimalconfig) to specify the rounding mode.
 
@@ -542,7 +543,7 @@ console.info("test Decimal cbrt:" + data.toString()); // 'test Decimal cbrt:1.44
 
 pow(n: Value): Decimal
 
-Returns a new **Decimal** object representing the value resulting from raising this decimal to the power of the specified number *n*.
+Returns a **Decimal** object representing the value resulting from raising this decimal to the power of the specified number *n*.
 
 You can use [DecimalConfig.precision](#decimalconfig) to specify the precision and use [DecimalConfig.rounding](#decimalconfig) to specify the rounding mode.
 
@@ -568,7 +569,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **Example**
@@ -582,7 +583,7 @@ console.info("test Decimal pow:" + data.toString()); // 'test Decimal pow:0.1111
 
 exp(): Decimal
 
-Returns a new **Decimal** object representing the value resulting from raising e to the power of this decimal.
+Returns a **Decimal** object representing the value resulting from raising e to the power of this decimal.
 
 You can use [DecimalConfig.precision](#decimalconfig) to specify the precision and use [DecimalConfig.rounding](#decimalconfig) to specify the rounding mode.
 
@@ -615,7 +616,7 @@ console.info("test Decimal exp:" + data.toString()); // 'test Decimal exp:7.3890
 
 log(n: Value): Decimal
 
-Returns a new **Decimal** object representing the logarithm of this decimal to the specified base *n*.
+Returns a **Decimal** object representing the logarithm of this decimal to the specified base *n*.
 
 You can use [DecimalConfig.precision](#decimalconfig) to specify the precision and use [DecimalConfig.rounding](#decimalconfig) to specify the rounding mode.
 
@@ -641,7 +642,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **Example**
@@ -655,7 +656,7 @@ console.info("test Decimal log:" + data.toString()); // 'test Decimal log:0.125'
 
 ln(): Decimal
 
-Returns a new **Decimal** object representing the natural logarithm of this decimal.
+Returns a **Decimal** object representing the natural logarithm of this decimal.
 
 You can use [DecimalConfig.precision](#decimalconfig) to specify the precision and use [DecimalConfig.rounding](#decimalconfig) to specify the rounding mode.
 
@@ -688,7 +689,7 @@ console.info("test Decimal ln:" + data.toString()); // 'test Decimal ln:69.28456
 
 cos(): Decimal
 
-Returns a new **Decimal** object representing the cosine of this decimal.
+Returns a **Decimal** object representing the cosine of this decimal.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -711,7 +712,7 @@ console.info("test Decimal cos:" + data.toString()); // 'test Decimal cos:0.9689
 
 sin(): Decimal
 
-Returns a new **Decimal** object representing the sine of this decimal.
+Returns a **Decimal** object representing the sine of this decimal.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -734,7 +735,7 @@ console.info("test Decimal sin:" + data.toString()); // 'test Decimal sin:0.6816
 
 tan(): Decimal
 
-Returns a new **Decimal** object representing the tangent of this decimal.
+Returns a **Decimal** object representing the tangent of this decimal.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -757,7 +758,7 @@ console.info("test Decimal tan:" + data.toString()); // 'test Decimal tan:0.9315
 
 cosh(): Decimal
 
-Returns a new **Decimal** object representing the hyperbolic cosine of this decimal.
+Returns a **Decimal** object representing the hyperbolic cosine of this decimal.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -780,7 +781,7 @@ console.info("test Decimal cosh:" + data.toString()); // 'test Decimal cosh:1.12
 
 sinh(): Decimal
 
-Returns a new **Decimal** object representing the hyperbolic sine of this decimal.
+Returns a **Decimal** object representing the hyperbolic sine of this decimal.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -803,7 +804,7 @@ console.info("test Decimal sinh:" + data.toString()); // 'test Decimal sinh:0.52
 
 tanh(): Decimal
 
-Returns a new **Decimal** object representing the hyperbolic tangent of this decimal.
+Returns a **Decimal** object representing the hyperbolic tangent of this decimal.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -826,7 +827,7 @@ console.info("test Decimal tanh:" + data.toString()); // 'test Decimal tanh:0.46
 
 acos(): Decimal
 
-Returns a new **Decimal** object representing the arc cosine of this decimal.
+Returns a **Decimal** object representing the arc cosine of this decimal.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -857,7 +858,7 @@ console.info("test Decimal acos:" + data.toString()); // 'test Decimal acos:1.04
 
 asin(): Decimal
 
-Returns a new **Decimal** object representing the arc sine of this decimal.
+Returns a **Decimal** object representing the arc sine of this decimal.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -888,7 +889,7 @@ console.info("test Decimal asin:" + data.toString()); // 'test Decimal asin:0.84
 
 atan(): Decimal
 
-Returns a new **Decimal** object representing the arc tangent of this decimal.
+Returns a **Decimal** object representing the arc tangent of this decimal.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -919,7 +920,7 @@ console.info("test Decimal atan:" + data.toString()); // 'test Decimal atan:0.64
 
 acosh(): Decimal
 
-Returns a new **Decimal** object representing the inverse hyperbolic cosine of this decimal.
+Returns a **Decimal** object representing the inverse hyperbolic cosine of this decimal.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -950,7 +951,7 @@ console.info("test Decimal acosh:" + data.toString()); // 'test Decimal acosh:4.
 
 asinh(): Decimal
 
-Returns a new **Decimal** object representing the inverse hyperbolic sine of this decimal.
+Returns a **Decimal** object representing the inverse hyperbolic sine of this decimal.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -981,7 +982,7 @@ console.info("test Decimal asinh:" + data.toString()); // 'test Decimal asinh:4.
 
 atanh(): Decimal
 
-Returns a new **Decimal** object representing the inverse hyperbolic tangent of this decimal.
+Returns a **Decimal** object representing the inverse hyperbolic tangent of this decimal.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1036,7 +1037,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -1070,7 +1071,7 @@ Checks whether this decimal is equal to the specified number *n*.
 
 | Type   | Description                                            |
 | ------- | ------------------------------------------------ |
-| boolean | **true**: They are equal.<br>**false**: They are not equal.|
+| boolean | Check result. The value **true** means that they are equal, and **false** means the opposite.|
 
 **Error codes**
 
@@ -1078,7 +1079,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -1108,7 +1109,7 @@ Checks whether this decimal is greater than the specified number *n*.
 
 | Type   | Description                                          |
 | ------- | ---------------------------------------------- |
-| boolean | **true**: The decimal is greater than *n*.<br>**false**: The decimal is not greater than *n*.|
+| boolean | Check result. The value **true** means that the decimal is greater than *n*, and **false** means the opposite.|
 
 **Error codes**
 
@@ -1116,7 +1117,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -1146,7 +1147,7 @@ Checks whether this decimal is greater than or equal to the specified number *n*
 
 | Type   | Description                                              |
 | ------- | -------------------------------------------------- |
-| boolean | **true**: The decimal is greater than or equal to *n*.<br>**false**: The decimal is not greater than or equal to *n*.|
+| boolean | Check result. The value **true** means that the decimal is greater than or equal to *n*, and **false** means the opposite.|
 
 **Error codes**
 
@@ -1154,7 +1155,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -1184,7 +1185,7 @@ Checks whether this decimal is less than the specified number *n*.
 
 | Type   | Description                                          |
 | ------- | ---------------------------------------------- |
-| boolean | **true**: The decimal is less than *n*.<br>**false**: The decimal is not less than *n*.|
+| boolean | Check result. The value **true** means that the decimal is less than *n*, and **false** means the opposite.|
 
 **Error codes**
 
@@ -1192,7 +1193,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -1222,7 +1223,7 @@ Checks whether this decimal is less than or equal to the specified number *n*.
 
 | Type   | Description                                              |
 | ------- | -------------------------------------------------- |
-| boolean | **true**: The decimal is less than or equal to *n*.<br>**false**: The decimal is not less than or equal to *n*.|
+| boolean | Check result. The value **true** means that the decimal is less than or equal to *n*, and **false** means the opposite.|
 
 **Error codes**
 
@@ -1230,7 +1231,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -1254,7 +1255,7 @@ Checks whether this decimal is finite.
 
 | Type   | Description                                        |
 | ------- | -------------------------------------------- |
-| boolean | **true**: The decimal is finite.<br>**false**: The decimal is not finite.|
+| boolean | Check result. The value **true** means that the decimal is finite, and **false** means the opposite.|
 
 **Example**
 
@@ -1278,7 +1279,7 @@ Checks whether this decimal is an integer.
 
 | Type   | Description                                      |
 | ------- | ------------------------------------------ |
-| boolean | **true**: The decimal is an integer.<br>**false**: The decimal is not an integer.|
+| boolean | Check result. The value **true** means that the decimal is an integer, and **false** means the opposite.|
 
 **Example**
 
@@ -1302,7 +1303,7 @@ Checks whether this decimal is NaN.
 
 | Type   | Description                                     |
 | ------- | ----------------------------------------- |
-| boolean | **true**: The decimal is NaN.<br>**false**: The decimal is not NaN.|
+| boolean | Check result. The value **true** means that the decimal is NaN, **false** means the opposite.|
 
 **Example**
 
@@ -1316,7 +1317,7 @@ console.info("test Decimal isNaN:" + data1); // 'test Decimal isNaN:true'
 
 isNegative(): boolean
 
-Checks whether this decimal is negative.
+Checks whether this decimal is negative (including a distinction between positive and negative zero).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1326,7 +1327,7 @@ Checks whether this decimal is negative.
 
 | Type   | Description                                      |
 | ------- | ------------------------------------------ |
-| boolean | **true**: The decimal is negative.<br>**false**: The decimal is not negative.|
+| boolean | Check result. The value **true** means that the decimal is negative, and **false** means the opposite.|
 
 **Example**
 
@@ -1336,7 +1337,7 @@ let data1: boolean = data.isNegative();
 console.info("test Decimal isNegative:" + data1); // 'test Decimal isNegative:true'
 
 let data2: Decimal = new Decimal(-0);
-let data3: boolean = data.isNegative();
+let data3: boolean = data2.isNegative();
 console.info("test Decimal isNegative:" + data3); // 'test Decimal isNegative:true'
 ```
 
@@ -1344,7 +1345,7 @@ console.info("test Decimal isNegative:" + data3); // 'test Decimal isNegative:tr
 
 isPositive(): boolean
 
-Checks whether this decimal is positive.
+Checks whether this decimal is positive (including a distinction between positive and negative zero).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1354,7 +1355,7 @@ Checks whether this decimal is positive.
 
 | Type   | Description                                      |
 | ------- | ------------------------------------------ |
-| boolean | **true**: The decimal is positive.<br>**false**: The decimal is not positive.|
+| boolean | Check result. The value **true** means that the decimal is positive, and **false** means the opposite.|
 
 **Example**
 
@@ -1364,7 +1365,7 @@ let data1: boolean = data.isPositive();
 console.info("test Decimal isPositive:" + data1); // 'test Decimal isPositive:true'
 
 let data2: Decimal = new Decimal(0);
-let data3: boolean = data.isPositive();
+let data3: boolean = data2.isPositive();
 console.info("test Decimal isPositive:" + data3); // 'test Decimal isPositive:true'
 ```
 
@@ -1382,7 +1383,7 @@ Returns whether this decimal is zero or minus zero.
 
 | Type   | Description                                         |
 | ------- | --------------------------------------------- |
-| boolean | **true**: The decimal is zero or minus zero.<br>**false**: The decimal is not zero.|
+| boolean | Check result. The value **true** means that the decimal is zero or minus zero, and **false** means the opposite.|
 
 **Example**
 
@@ -1396,7 +1397,7 @@ console.info("test Decimal isZero:" + data1.toString()); // 'test Decimal isZero
 
 dividedToIntegerBy(n: Value): Decimal
 
-Returns a new **Decimal** object representing the integer part of this decimal divided by the specified number *n*.
+Returns a **Decimal** object representing the integer part of this decimal divided by the specified number *n*.
 
 You can use [DecimalConfig.precision](#decimalconfig) to specify the precision and use [DecimalConfig.rounding](#decimalconfig) to specify the rounding mode.
 
@@ -1422,7 +1423,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -1437,7 +1438,7 @@ console.info("test Decimal dividedToIntegerBy:" + data2.toString()); // 'test De
 
 negate(): Decimal
 
-Returns a new **Decimal** object representing the result of multiplying this decimal by negative one.
+Returns a **Decimal** object representing the result of multiplying this decimal by negative one.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2146,7 +2147,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -2644,7 +2645,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -2681,7 +2682,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -2718,7 +2719,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -2755,7 +2756,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -2768,7 +2769,7 @@ console.info("test Decimal trunc:" + data.toString()); // 'test Decimal trunc:2'
 
 static clamp(n: Value, min: Value, max: Value): Decimal
 
-Returns a **Decimal** object representing the value clamped to the inclusive range of **min** and **max** of the specified number *n*.
+Returns a **Decimal** object representing the value clamped to the inclusive range of **min** and **max** of the specified number *n*. If the actual value exceeds the maximum limit, **max** is returned; if it falls below the minimum limit, **min** is returned; otherwise, the actual value is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2794,7 +2795,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200001 | The value of 'min' is out of range.                          |
 
 **Example**
@@ -2835,7 +2836,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -2874,7 +2875,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -2914,7 +2915,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -2954,7 +2955,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -2994,7 +2995,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 
 **Example**
@@ -3035,7 +3036,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -3074,7 +3075,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -3113,7 +3114,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -3151,7 +3152,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **Example**
@@ -3191,7 +3192,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **Example**
@@ -3232,7 +3233,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **Example**
@@ -3272,7 +3273,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **Example**
@@ -3312,7 +3313,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **Example**
@@ -3352,7 +3353,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **Example**
@@ -3392,7 +3393,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -3431,7 +3432,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -3470,7 +3471,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -3509,7 +3510,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -3548,7 +3549,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -3587,7 +3588,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -3626,7 +3627,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **Example**
@@ -3666,7 +3667,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **Example**
@@ -3706,7 +3707,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **Example**
@@ -3746,7 +3747,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **Example**
@@ -3786,7 +3787,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **Example**
@@ -3826,7 +3827,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **Example**
@@ -3867,7 +3868,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **Example**
@@ -3907,7 +3908,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -3944,7 +3945,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -3981,7 +3982,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -4048,7 +4049,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200061 | Crypto unavailable.                                          |
 
 **Example**
@@ -4085,7 +4086,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -4122,7 +4123,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **Example**
 
@@ -4154,7 +4155,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200001 | The value of 'DecimalConfig.properties' is out of range.     |
 | 10200061 | Crypto unavailable.                                          |
 

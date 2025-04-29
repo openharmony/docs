@@ -7,11 +7,11 @@ LMS全称为Lite Memory Sanitizer，是一种实时检测内存操作合法性�
 
 OpenHarmony LiteOS-A内核的LMS模块提供下面几种功能：
 
-- 支持多内存池检测；
+- 支持多内存池检测。
 
-- 支持LOS_MemAlloc、LOS_MemAllocAlign、LOS_MemRealloc申请出的内存检测；
+- 支持LOS_MemAlloc、LOS_MemAllocAlign、LOS_MemRealloc申请出的内存检测。
 
-- 支持安全函数的访问检测（默认开启）；
+- 支持安全函数的访问检测（默认开启）。
 
 - 支持libc 高频函数的访问检测，包括：memset、memcpy、memmove、strcat、strcpy、strncat、strncpy。
 

@@ -34,7 +34,7 @@ type AsyncLockCallback\<T> = () => T | Promise\<T>
 
 ### AsyncLock
 
-实现异步锁功能的类，允许在锁下执行异步操作。
+实现异步锁功能的类，允许在锁下执行异步操作。该类使用[@Sendable装饰器](../../arkts-utils/arkts-sendable.md)装饰。
 
 #### 属性
 
@@ -165,10 +165,11 @@ static query(name: string): AsyncLockState
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 401      | The input parameters are invalid. |
 | 10200030 | The lock does not exist. |
 
 **示例：**
@@ -204,7 +205,7 @@ static queryAll(): AsyncLockState[]
 
 ```ts
 let states: ArkTSUtils.locks.AsyncLockState[] = ArkTSUtils.locks.AsyncLock.queryAll();
-if (states.length == 0) {
+if (states.length === 0) {
     throw new Error('测试失败：期望至少有1个状态，但得到的是 ' + states.length);
 }
 ```
@@ -213,7 +214,7 @@ if (states.length == 0) {
 
 lockAsync\<T>(callback: AsyncLockCallback\<T>): Promise\<T>
 
-在获取的锁下独占执行操作。该方法首先获取锁，然后调用回调，最后释放锁。回调在调用[lockAsync](#lockasync)的同一线程中以异步方式执行。
+在获取的锁下执行操作。该方法首先获取锁，然后调用回调，最后释放锁。回调在调用[lockAsync](#lockasync)的同一线程中以异步方式执行。
 
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
@@ -233,10 +234,11 @@ lockAsync\<T>(callback: AsyncLockCallback\<T>): Promise\<T>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 401      | The input parameters are invalid. |
 | 10200030 | The lock does not exist. |
 
 **示例：**
@@ -273,10 +275,11 @@ lockAsync\<T>(callback: AsyncLockCallback\<T>, mode: AsyncLockMode): Promise\<T>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 401      | The input parameters are invalid. |
 | 10200030 | The lock does not exist. |
 
 **示例：**
@@ -314,10 +317,11 @@ lockAsync\<T, U>(callback: AsyncLockCallback\<T>, mode: AsyncLockMode, options: 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
+| 401      | The input parameters are invalid. |
 | 10200030 | The lock does not exist.     |
 | 10200031 | Timeout exceeded. |
 
@@ -355,27 +359,27 @@ let p: Promise<void> = lock.lockAsync<void, void>(
 let lock = new ArkTSUtils.locks.AsyncLock();
 // shared0可获取锁并开始执行
 lock.lockAsync(async () => {
-    console.log('shared0');
+    console.info('shared0');
     await new Promise<void>((resolve) => setTimeout(resolve, 1000));
 }, ArkTSUtils.locks.AsyncLockMode.SHARED);
 // shared1可获取锁并开始执行，无需等待shared0
 lock.lockAsync(async () => {
-    console.log('shared1');
+    console.info('shared1');
     await new Promise<void>((resolve) => setTimeout(resolve, 1000));
 }, ArkTSUtils.locks.AsyncLockMode.SHARED);
 // exclusive0需等待shared0、1执行完后才可获取锁并执行
 lock.lockAsync(async () => {
-    console.log('exclusive0');
+    console.info('exclusive0');
     await new Promise<void>((resolve) => setTimeout(resolve, 1000));
 }, ArkTSUtils.locks.AsyncLockMode.EXCLUSIVE);
 // shared2需等待exclusive0执行完后才可获取锁并执行
 lock.lockAsync(async () => {
-    console.log('shared2');
+    console.info('shared2');
     await new Promise<void>((resolve) => setTimeout(resolve, 1000));
 }, ArkTSUtils.locks.AsyncLockMode.SHARED);
 // shared3需等待exclusive0执行完后才可获取锁并执行，无需等待shared2
 lock.lockAsync(async () => {
-    console.log('shared3');
+    console.info('shared3');
     await new Promise<void>((resolve) => setTimeout(resolve, 1000));
 }, ArkTSUtils.locks.AsyncLockMode.SHARED);
 ```
@@ -420,7 +424,7 @@ options.signal = s;
 | 名称        | 类型                                  | 可读 | 可写 | 说明                                                                                                                      |
 | ----------- | ------------------------------------- | ---- | ---- | ------------------------------------------------------------------------------------------------------------------------- |
 | isAvailable | boolean                               | 是   | 是   | 当前锁是否可用。取值为true，则只有在尚未持有锁定请求时才会授予该锁定请求；为false则表示将等待当前锁被释放。默认为 false。 |
-| signal      | [AbortSignal\<T>](#abortsignal)\|null | 是   | 是   | 用于中止异步操作的对象。如果signal.aborted为true，则锁请求将被丢弃；为null则请求正常排队运行。默认为 null。               |
+| signal      | [AbortSignal\<T>](#abortsignal)\|null | 是   | 是   | 用于中止异步操作的对象。当signal.aborted为true时，锁请求将被丢弃；当signal.aborted为false时，请求会继续等待获取锁；当signal为null时，请求正常排队运行。默认为 null。               |
 | timeout     | number                                | 是   | 是   | 锁操作的超时时间（毫秒）。如果该值大于零，且运行超过该时间，[lockAsync](#lockasync)将返回被拒绝的Promise。默认为 0。      |
 
 ### AsyncLockState
@@ -466,7 +470,7 @@ options.signal = s;
 
 | 名称    | 类型    | 可读 | 可写 | 说明                                                             |
 | ------- | ------- | ---- | ---- | ---------------------------------------------------------------- |
-| aborted | boolean | 是   | 是   | 设置为true以中止操作。                                           |
+| aborted | boolean | 是   | 是   | 是否终止异步操作。为true时表示中止异步操作，为false时表示异步操作未被中止。     |
 | reason  | \<T>    | 是   | 是   | 中止的原因。此值将用于拒绝[lockAsync](#lockasync)返回的Promise。 |
 
 ### ConditionVariable<sup>18+</sup>
@@ -514,14 +518,6 @@ static request(name: string): ConditionVariable
 | 类型                    | 说明                             |
 | ----------------------- | -------------------------------- |
 | [ConditionVariable](#conditionvariable18) | 返回查找到或创建后的异步等待通知操作的实例。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息          |
-| -------- | ----------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -575,14 +571,6 @@ waitFor(timeout : number) : Promise\<void>
 | 类型        | 说明                        |
 | ----------- | --------------------------- |
 | Promise\<void> | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息          |
-| -------- | ----------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -1273,14 +1261,6 @@ get(key: K): V | undefined
 | ------------------------ | ------------------------------------------------------------ |
 | V \| undefined | 如果指定的键存在于缓冲区中，则返回与键关联的值；否则调用createDefault接口，如果返回值为undefined，则返回undefined，否则返回createDefault接口结果。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-
 **示例：**
 
 ```ts
@@ -1313,14 +1293,6 @@ put(key: K,value: V): V
 | 类型 | 说明                                                         |
 | ---- | ------------------------------------------------------------ |
 | V    | 返回与添加的键关联的值。如果键或值为空，则抛出错误ID为401的参数错误异常。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -1408,14 +1380,6 @@ remove(key: K): V | undefined
 | ------------------------ | ------------------------------------------------------------ |
 | V&nbsp;\|&nbsp;undefined | 返回一个包含已删除键值对的Optional对象；如果key不存在，则返回undefined，如果key为null，则抛出异常。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-
 **示例：**
 
 ```ts
@@ -1447,14 +1411,6 @@ contains(key: K): boolean
 | 类型    | 说明                                       |
 | ------- | ------------------------------------------ |
 | boolean | 如果缓冲区包含指定的键，则返回true，否则返回false。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 

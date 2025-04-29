@@ -713,11 +713,11 @@ This error code is reported when the application does not support clones.
 
 **Possible Causes**
 
-An application that does not support clones calls **getCurrentAppCloneIndex()**.
+This error code is reported when the [getCurrentAppCloneIndex](./js-apis-inner-application-applicationContext.md#applicationcontextgetcurrentappcloneindex12) API is called while the [multiAppMode](../../quick-start/app-configuration-file.md#multiappmode) field in the **app.json5** file is not set to **appClone** (meaning that the application does not support app clone mode).
 
 **Solution**
 
-Avoid calling **getCurrentAppCloneIndex()** in applications that do not support clones.
+Configure the **multiAppMode** field in the **app.json5** file by referring to [Creating an Application Multi-Instance](../../quick-start/multiInstance.md). After app clone mode is enabled, call the [getCurrentAppCloneIndex](./js-apis-inner-application-applicationContext.md#applicationcontextgetcurrentappcloneindex12) API.
 
 <!--Del-->
 ## 16000072 Multi-app Mode Is Not Supported
@@ -1585,3 +1585,75 @@ The value of **bundleName**, **moduleName**, **abilityName**, or **startTime** i
 **Solution**
 
 Pass in correct values for **bundleName**, **moduleName**, **abilityName**, and **startTime**.
+
+## 28800001 Startup Task or Dependency Not Found
+
+**Error Message**
+
+Startup task or its dependency not found.
+
+**Description**
+
+This error code is reported if the startup task or its dependency is not found during task startup.
+
+**Possible Causes**
+
+The startup task or dependency is not correctly configured.
+
+**Solution**
+
+Check whether the AppStartup configuration file is correctly compiled, and ensure that all configured startup tasks are implemented.
+
+## 28800002 Circular Dependencies Between Startup Tasks
+
+**Error Message**
+
+The startup tasks have circular dependencies.
+
+**Description**
+
+This error code is reported if circular dependencies are detected between startup tasks during startup task loading.
+
+**Possible Causes**
+
+There are circular dependencies between startup tasks.
+
+**Solution**
+
+Check the AppStartup configuration file, and ensure that no circular dependency exists between startup tasks.
+
+## 28800003 Error Occurs During Task Startup
+
+**Error Message**
+
+An error occurred while running the startup tasks.
+
+**Description**
+
+This error code is reported when an error occurs during task startup.
+
+**Possible Causes**
+
+The code logic for starting the task is incorrect, or no exception handling is available.
+
+**Solution**
+
+Check whether the startup task has logic errors, and ensure that each startup task contains the exception handling logic.
+
+## 28800004 Executing the Startup Task Times Out
+
+**Error Message**
+
+Running startup tasks timeout.
+
+**Description**
+
+This error code is reported if the execution time of a task exceeds the timeout interval (10000 ms by default).
+
+**Possible Causes**
+
+The startup task contains a large number of time-consuming operations, or the configured timeout interval is too short.
+
+**Solution**
+
+Adjust the timeout interval as required. For details about how to set the timeout interval, see [Setting Startup Parameters](../../application-models/app-startup.md#setting-startup-parameters).

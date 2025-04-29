@@ -21,6 +21,8 @@ Styled strings are string objects that facilitate the flexible use of text style
 
 constructor(value: string | ImageAttachment | CustomSpan , styles?: Array\<StyleOptions>)
 
+A constructor used to create a styled string.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -512,8 +514,8 @@ Defines the style for a styled string.
 
 | Name | Type                             | Mandatory| Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| start | number | No  | Start position of the styled string style.|
-| length | number | No  | Length of the styled string style.|
+| start | number | No  | Start position of the styled string style.<br>If the value is less than 0 or exceeds the string length, it is treated as **0**.|
+| length | number | No  | Length of the styled string style.<br>f the value is less than 0 or exceeds the difference between the string length and the value of **start**, it is treated as the difference between the string length and the value of **start**.|
 | styledKey | [StyledStringKey](#styledstringkey) | Yes  | Style key.|
 | styledValue | [StyledStringValue](#styledstringvalue) | Yes  | Style object.|
 
@@ -576,8 +578,8 @@ A constructor used to create a text style.
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | No  | Font color.|
 | fontFamily | [ResourceStr](ts-types.md#resourcestr) | No  | Font family.|
-| fontSize | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No  | Font size. If **unit** of **LengthMetrics** is percent, the setting does not take effect, and 16 fp is used.|
-| fontWeight | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string | No  | Font weight.|
+| fontSize | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No  | Font size. If **unit** of **LengthMetrics** is percent, the setting does not take effect, and 16 fp is used.<br>Unit: fp|
+| fontWeight | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string | No  | Font weight.<br>For the number type, the value ranges from 100 to 900, at an interval of 100. A larger value indicates a heavier font weight. The default value is **400**. For the string type, only strings that represent a number, for example, **400**, and the following enumerated values of **FontWeight** are supported: **bold**, **bolder**, **lighter**, **regular**, and **medium**.|
 | fontStyle | [FontStyle](ts-appendix-enums.md#fontstyle) | No  | Font style.|
 
 ## GestureStyle
@@ -645,7 +647,7 @@ A constructor used to create a text decorative line style.
 
 | Name | Type                             | Mandatory| Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| value | [DecorationStyleInterface](#decorationstyleinterface) | Yes  | Text decorative line options.|
+| value | [DecorationStyleInterface](#decorationstyleinterface) | Yes  | Text decorative line options.<br>Default value:<br>{<br> type: TextDecorationType.None,<br> color: Color.Black,<br> style: TextDecorationStyle.SOLID <br>} |
 
 ## DecorationStyleInterface
 
@@ -801,10 +803,10 @@ Describes the image attachment.
 | ------------ |---------------------| ---- | ---- | ------ |
 | value  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) |  Yes |  No | Image data source of the styled string. **Atomic service API**: This API can be used in atomic services since API version 12.|
 | size  | [SizeOptions](ts-types.md#sizeoptions) |  Yes |  Yes | Image size of the styled string. **Atomic service API**: This API can be used in atomic services since API version 12.|
-| verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) |  Yes |  Yes | Image alignment mode of the styled string. **Atomic service API**: This API can be used in atomic services since API version 12.|
+| verticalAlign  | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) |  Yes |  Yes | Image alignment mode of the styled string. **Atomic service API**: This API can be used in atomic services since API version 12.|
 | objectFit  | [ImageFit](ts-appendix-enums.md#imagefit) |  Yes |  Yes | Image scale type of the styled string. **Atomic service API**: This API can be used in atomic services since API version 12.|
 | layoutStyle  | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle) |  Yes |  Yes | Image layout of the styled string. **Atomic service API**: This API can be used in atomic services since API version 12.|
-| colorFilter<sup>16+</sup>  | [ColorFilter](ts-types.md#colorfilter9) |  Yes |  Yes | Image color filter of the styled string. **Atomic service API**: This API can be used in atomic services since API version 16.|
+| colorFilter<sup>15+</sup>  | [ColorFilterType](#colorfiltertype15) |  Yes |  Yes | Image color filter of the styled string. **Atomic service API**: This API can be used in atomic services since API version 15.|
 
 ### constructor
 
@@ -822,13 +824,13 @@ A constructor used to create an image object.
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | value | [ImageAttachmentInterface](#imageattachmentinterface) | Yes  | Image attachment options.|
 
-### constructor<sup>16+</sup>
+### constructor<sup>15+</sup>
 
 constructor(attachment: Optional\<AttachmentType\>)
 
 A constructor used to create an image object. Compared to the constructor with a **value** type parameter, this constructor with an **attachment** type parameter supports images of **undefined** and [ResourceStr](ts-types.md#resourcestr) types.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -836,22 +838,37 @@ A constructor used to create an image object. Compared to the constructor with a
 
 | Name | Type                             | Mandatory| Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| attachment | Optional<[AttachmentType](#attachmenttype16)> | Yes  | Image attachment, which can be of type PixelMap or [ResourceStr](ts-types.md#resourcestr).|
+| attachment | Optional<[AttachmentType](#attachmenttype15)> | Yes  | Image attachment, which can be of type PixelMap or [ResourceStr](ts-types.md#resourcestr).|
 
-## AttachmentType<sup>16+</sup>
+## AttachmentType<sup>15+</sup>
 
 type AttachmentType = ImageAttachmentInterface | ResourceImageAttachmentOptions
 
 Defines the image attachment type, which is used to set images of PixelMap or [ResourceStr](ts-types.md#resourcestr) type for styled strings.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Type | Description  |
 | ------ | ---------- |
 | [ImageAttachmentInterface](#imageattachmentinterface) | Settings for images of the PixelMap type.|
-| [ResourceImageAttachmentOptions](#resourceimageattachmentoptions16) | Settings for images of the ResourceStr type.|
+| [ResourceImageAttachmentOptions](#resourceimageattachmentoptions15) | Settings for images of the ResourceStr type.|
+
+## ColorFilterType<sup>15+</sup>
+
+type ColorFilterType = ColorFilter | DrawingColorFilter
+
+Defines the type for image color filter settings.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Type | Description  |
+| ------ | ---------- |
+| [ColorFilter](ts-types.md#colorfilter9) | Color filter settings of the ColorFilter type.|
+| [DrawingColorFilter](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#colorfilter) | Color filter settings of the DrawingColorFilter type.|
 
 ## ImageAttachmentInterface
 
@@ -860,11 +877,11 @@ Defines the image attachment type, which is used to set images of PixelMap or [R
 | Name | Type                             | Mandatory| Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | value | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) |  Yes | Image data source. **Atomic service API**: This API can be used in atomic services since API version 12.|
-| size | [SizeOptions](ts-types.md#sizeoptions) | No  | Image size. **Atomic service API**: This API can be used in atomic services since API version 12.|
-| verticalAlign | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | No  | Alignment mode of the image with the text. **Atomic service API**: This API can be used in atomic services since API version 12.|
-| objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | No  | Image scale type. **Atomic service API**: This API can be used in atomic services since API version 12.|
+| size | [SizeOptions](ts-types.md#sizeoptions) | No  | Image size. **Atomic service API**: This API can be used in atomic services since API version 12.<br>The default value of **size** depends on the value of **objectFit**. For example, if the value of **objectFit** is **Cover**, the image height is the component height minus the top and bottom paddings, and the image width is the component width minus the left and right paddings.|
+| verticalAlign | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) | No  | Alignment mode of the image with the text. **Atomic service API**: This API can be used in atomic services since API version 12.<br>Default value: **ImageSpanAlignment.BOTTOM**|
+| objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | No  | Image scale type. **Atomic service API**: This API can be used in atomic services since API version 12.<br>Default value: **ImageFit.Cover**|
 | layoutStyle | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle) | No  | Image layout. **Atomic service API**: This API can be used in atomic services since API version 12.|
-| colorFilter<sup>16+</sup>  | [ColorFilter](ts-types.md#colorfilter9) |  No | Image color filter of the styled string. **Atomic service API**: This API can be used in atomic services since API version 16.|
+| colorFilter<sup>15+</sup>  | [ColorFilterType](#colorfiltertype15) |  No | Image color filter of the styled string. **Atomic service API**: This API can be used in atomic services since API version 15.|
 
 ## ImageAttachmentLayoutStyle
 
@@ -874,15 +891,15 @@ Defines the image attachment type, which is used to set images of PixelMap or [R
 
 | Name | Type                             | Mandatory| Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| margin | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [Margin](ts-types.md#margin) | No  | Image margin.|
-| padding | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [Padding](ts-types.md#padding) | No  | Image padding.|
-| borderRadius | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [BorderRadiuses](ts-types.md#borderradiuses9) | No  | Radius of the image border corners.|
+| margin | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [Margin](ts-types.md#margin) | No  | Image margin.<br>Default value: **0**.<br>Unit: vp|
+| padding | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [Padding](ts-types.md#padding) | No  | Image padding.<br>Default value: **0**.<br>Unit: vp|
+| borderRadius | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [BorderRadiuses](ts-types.md#borderradiuses9) | No  | Radius of the image border corners.<br>Default value: **0**.<br>Unit: vp|
 
-## ResourceImageAttachmentOptions<sup>16+</sup>
+## ResourceImageAttachmentOptions<sup>15+</sup>
 
 Defines the settings for images of the ResourceStr type.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -890,10 +907,10 @@ Defines the settings for images of the ResourceStr type.
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | resourceValue | Optional<[ResourceStr](ts-types.md#resourcestr)> |  Yes | Image data source.|
 | size | [SizeOptions](ts-types.md#sizeoptions) | No  | Image size.|
-| verticalAlign | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | No  | Alignment mode of the image with the text.<br>Default value: **ImageSpanAlignment.BOTTOM**|
+| verticalAlign | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) | No  | Alignment mode of the image with the text.<br>Default value: **ImageSpanAlignment.BOTTOM**|
 | objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | No  | Image scale type.<br>Default value: **ImageFit.Cover**|
 | layoutStyle | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle) | No  | Image layout.|
-| colorFilter  | [ColorFilter](ts-types.md#colorfilter9) |  No | Image color filter of the styled string.|
+| colorFilter  | [ColorFilterType](#colorfiltertype15) |  No | Image color filter of the styled string.|
 | syncLoad  | boolean |  No | Whether to load the image synchronously. By default, the image is loaded asynchronously. During synchronous loading, the UI thread is blocked and the placeholder image is not displayed.<br>Default value: **false**|
 
 ## CustomSpan
@@ -999,18 +1016,17 @@ The style of a paragraph is the one (if any) set for the first element or the pa
 
 ### Properties
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name          | Type             | Read Only  | Optional  | Description    |
 | ------------ |---------------------| ---- | ---- | ------ |
-| textAlign  | [TextAlign](ts-appendix-enums.md#textalign) |  Yes |  Yes | Horizontal alignment of the text paragraph.|
-| textIndent | number   | Yes   | Yes   | First line indent of the text paragraph.|
-| maxLines   | number   | Yes   | Yes   | Maximum number of lines in the text paragraph.|
-| overflow   | [TextOverflow](ts-appendix-enums.md#textoverflow)   | Yes   | Yes  | Display mode when the text is too long in the text paragraph.|
-| wordBreak   | [WordBreak](ts-appendix-enums.md#wordbreak11) | Yes   | Yes   | Word break rule of the text paragraph.|
-| leadingMargin   | number \| [LeadingMarginPlaceholder](ts-basic-components-richeditor.md#leadingmarginplaceholder11) | Yes   | Yes  | Indent of the text paragraph.|
+| textAlign  | [TextAlign](ts-appendix-enums.md#textalign) |  Yes |  Yes | Horizontal alignment of the text paragraph.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| textIndent | number   | Yes   | Yes   | First line indent of the text paragraph. <br>Unit: VP.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| maxLines   | number   | Yes   | Yes   | Maximum number of lines in the text paragraph.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| overflow   | [TextOverflow](ts-appendix-enums.md#textoverflow)   | Yes   | Yes  | Display mode when the text is too long in the text paragraph.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| wordBreak   | [WordBreak](ts-appendix-enums.md#wordbreak11) | Yes   | Yes   | Word break rule of the text paragraph.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| leadingMargin   | number \| [LeadingMarginPlaceholder](ts-basic-components-richeditor.md#leadingmarginplaceholder11) | Yes   | Yes  | Indent of the text paragraph.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| paragraphSpacing<sup>18+</sup>  | number | Yes   | Yes  | Paragraph spacing of the styled string text. <br>Unit: VP.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 >  **NOTE**
 >
@@ -1034,18 +1050,17 @@ A constructor used to create a text paragraph style.
 
 ## ParagraphStyleInterface
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name | Type                             | Mandatory| Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| textAlign  | [TextAlign](ts-appendix-enums.md#textalign) |  No | Horizontal alignment of the text paragraph.|
-| textIndent | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)   | No   | First line indent of the text paragraph.|
-| maxLines   | number   | No   | Maximum number of lines in the text paragraph.|
-| overflow   | [TextOverflow](ts-appendix-enums.md#textoverflow)   |  No   | Display mode when the text is too long in the text paragraph.<br>This parameter must be used with **maxLines** for the settings to take effect. **TextOverflow.MARQUEE** is not supported.|
-| wordBreak   | [WordBreak](ts-appendix-enums.md#wordbreak11) | No   | Word break rule of the text paragraph.|
-| leadingMargin   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [LeadingMarginPlaceholder](ts-basic-components-richeditor.md#leadingmarginplaceholder11) | No   | Indent of the text paragraph.|
+| textAlign  | [TextAlign](ts-appendix-enums.md#textalign) |  No | Horizontal alignment of the text paragraph.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| textIndent | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)   | No   | First line indent of the text paragraph. The value cannot be in percentage.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| maxLines   | number   | No   | Maximum number of lines in the text paragraph.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| overflow   | [TextOverflow](ts-appendix-enums.md#textoverflow)   |  No   | Display mode when the text is too long in the text paragraph.<br>This parameter must be used with **maxLines** for the settings to take effect. **TextOverflow.MARQUEE** is not supported.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| wordBreak   | [WordBreak](ts-appendix-enums.md#wordbreak11) | No   | Word break rule of the text paragraph.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| leadingMargin   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [LeadingMarginPlaceholder](ts-basic-components-richeditor.md#leadingmarginplaceholder11) | No   | Indent of the text paragraph. The value cannot be in percentage.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| paragraphSpacing<sup>18+</sup>   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No | Paragraph spacing of the styled string text.<br>Default value: **0**.<br> The value cannot be in percentage.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 ## UserDataSpan
 
@@ -1061,21 +1076,21 @@ The extended user data does not affect the display effect.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name    |Description                          |
-| ------ | ----------------------------- |
-| FONT | Font style key, applicable to [TextStyle](./ts-universal-styled-string.md#textstyle).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| DECORATION | Text decorative line style key, applicable to [DecorationStyle](./ts-universal-styled-string.md#decorationstyle).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| BASELINE_OFFSET | Text baseline offset style key, applicable to [BaselineOffsetStyle](./ts-universal-styled-string.md#baselineoffsetstyle).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| LETTER_SPACING | Text letter spacing style key, applicable to [LetterSpacingStyle](./ts-universal-styled-string.md#letterspacingstyle).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| LINE_HEIGHT | Text line height style key, applicable to [LineHeightStyle](./ts-universal-styled-string.md#lineheightstyle).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| TEXT_SHADOW | Text shadow style key, applicable to [TextShadowStyle](./ts-universal-styled-string.md#textshadowstyle).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| BACKGROUND_COLOR<sup>14+</sup> | Text background color style key, applicable to [BackgroundColorStyle](./ts-universal-styled-string.md#backgroundcolorstyle14).<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
-| URL<sup>14+</sup> | Hyperlink style key, applicable to [UrlStyle](./ts-universal-styled-string.md#urlstyle14).<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
-| GESTURE | Gesture key, applicable to [GestureStyle](./ts-universal-styled-string.md#gesturestyle).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| PARAGRAPH_STYLE | Paragraph style key, applicable to [ParagraphStyle](./ts-universal-styled-string.md#paragraphstyle).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| IMAGE | Image key, applicable to [ImageAttachment](./ts-universal-styled-string.md#imageattachment).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| CUSTOM_SPAN | Custom span key, applicable to [CustomSpan](./ts-universal-styled-string.md#customspan).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| USER_DATA | User data span key, applicable to [UserDataSpan](./ts-universal-styled-string.md#userdataspan).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| Name    | Value| Description                          |
+| ------ | --- | ----------------------------- |
+| FONT | 0 | Font style key, applicable to [TextStyle](./ts-universal-styled-string.md#textstyle).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| DECORATION | 1 | Text decorative line style key, applicable to [DecorationStyle](./ts-universal-styled-string.md#decorationstyle).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| BASELINE_OFFSET | 2 | Text baseline offset style key, applicable to [BaselineOffsetStyle](./ts-universal-styled-string.md#baselineoffsetstyle).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| LETTER_SPACING | 3 | Text letter spacing style key, applicable to [LetterSpacingStyle](./ts-universal-styled-string.md#letterspacingstyle).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| TEXT_SHADOW | 4 | Text shadow style key, applicable to [TextShadowStyle](./ts-universal-styled-string.md#textshadowstyle).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| LINE_HEIGHT | 5 | Text line height style key, applicable to [LineHeightStyle](./ts-universal-styled-string.md#lineheightstyle).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| BACKGROUND_COLOR<sup>14+</sup> | 6 | Text background color style key, applicable to [BackgroundColorStyle](./ts-universal-styled-string.md#backgroundcolorstyle14).<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| URL<sup>14+</sup> | 7 | Hyperlink style key, applicable to [UrlStyle](./ts-universal-styled-string.md#urlstyle14).<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| GESTURE | 100 | Gesture key, applicable to [GestureStyle](./ts-universal-styled-string.md#gesturestyle).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| PARAGRAPH_STYLE | 200 | Paragraph style key, applicable to [ParagraphStyle](./ts-universal-styled-string.md#paragraphstyle).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| IMAGE | 300 | Image key, applicable to [ImageAttachment](./ts-universal-styled-string.md#imageattachment).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| CUSTOM_SPAN | 400 | Custom span key, applicable to [CustomSpan](./ts-universal-styled-string.md#customspan).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| USER_DATA | 500 | User data span key, applicable to [UserDataSpan](./ts-universal-styled-string.md#userdataspan).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## BackgroundColorStyle<sup>14+</sup>
 
@@ -1764,7 +1779,7 @@ struct Index {
     pixelMap: this.leadingMarkCreatorInstance.genSquareMark(24),
     size:[15, 15]
   }
-  titleParagraphStyleAttr: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.Center });
+  titleParagraphStyleAttr: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.Center, paragraphSpacing: LengthMetrics.px(10)});
   // Indent the first line of the first paragraph by 15 vp.
   paragraphStyleAttr1: ParagraphStyle = new ParagraphStyle({ textIndent: LengthMetrics.vp(15) });
   // Indent the second paragraph by 15 vp, with a placeholder in the first line.

@@ -154,7 +154,7 @@ getRealActiveTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 | 参数名   | 类型                        | 必填 | 说明   |
 | -------- | ---------- | ---- | -------------------------- |
 | isNano   | boolean                     | 是   | 返回结果是否为纳秒数。<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。 |
-| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自系统启动以来经过的时间，但不包括深度睡眠时间。 |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自系统启动以来经过的时间，不包括深度睡眠时间。 |
 
 **错误码：**
 
@@ -195,7 +195,7 @@ getRealActiveTime(callback: AsyncCallback&lt;number&gt;): void
 
 | 参数名   | 类型                        | 必填 | 说明    |
 | -------- | -------------- | ---- | --------------------- |
-| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自系统启动以来经过的时间，但不包括深度睡眠时间。 |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自系统启动以来经过的时间，不包括深度睡眠时间。 |
 
 **错误码：**
 
@@ -236,7 +236,7 @@ getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 
 | 参数名 | 类型    | 必填 | 说明                              |
 | ------ | ------- | ---- | ----------------------------------- |
-| isNano | boolean | 否   | 返回结果是否为纳秒数，默认值为false。<br/>默认值为false。<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。 |
+| isNano | boolean | 否   | 返回结果是否为纳秒数，默认值为false。<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。 |
 
 **返回值：**
 
@@ -793,7 +793,7 @@ try {
 
 setTimezone(timezone: string): Promise&lt;void&gt;
 
-设置系统时区，使用Promise异步回调。
+使用Promise异步回调设置系统时区。
 
 **需要权限：** ohos.permission.SET_TIME_ZONE
 

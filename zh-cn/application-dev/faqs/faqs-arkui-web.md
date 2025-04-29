@@ -276,15 +276,15 @@ Web({ src: 'www.example.com', controller: this.controller })
 [GET\_NETWORK\_INFO](../security/AccessToken/permissions-for-all.md#ohospermissionget_network_info)
 
 
-## 如何自定义拼接设置UserAgent参数(API 9)
+## 如何自定义拼接设置User-Agent参数(API 9)
 
 **解决措施**
 
-默认UserAgent需要通过WebviewController获取。WebviewController对象必须在Web组件绑定后，才能调用WebviewController上的方法getUserAgent获取默认UserAgent。因此在页面加载前通过自定义字符串拼接修改UserAgent，可采用此方式：
+默认User-Agent需要通过WebviewController获取。WebviewController对象必须在Web组件绑定后，才能调用WebviewController上的方法getUserAgent获取默认User-Agent。因此在页面加载前通过自定义字符串拼接修改User-Agent，可采用此方式：
 
-1. 使用\@State定义初始UserAgent，绑定到Web组件；
+1. 使用\@State定义初始User-Agent，绑定到Web组件；
 
-2. 在Web组件的onUrlLoadIntercept回调中，通过WebviewController.getUserAgent()获取默认UserAgent，并修改Web组件绑定的UserAgent
+2. 在Web组件的onUrlLoadIntercept回调中，通过WebviewController.getUserAgent()获取默认User-Agent，并修改Web组件绑定的User-Agent
 
 **代码示例**
 
@@ -448,7 +448,7 @@ Webview提供mixedMode(mixedMode: MixedMode)接口，设置是否允许加载超
 
 **参考链接**
 
-[动态创建Web组件](../web/web-page-loading-with-web-components.md#动态创建web组件)
+[动态创建Web组件](../web/web-page-loading-with-web-components.md)
 
 
 ## 目前OpenHarmony是否有提供类似其他系统的JavaScript引擎能力?

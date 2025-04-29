@@ -22,7 +22,7 @@ Divider()
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### vertical
 
@@ -58,7 +58,7 @@ Sets the color of the divider.
 
 | Name| Type                                      | Mandatory| Description                                 |
 | ------ | ------------------------------------------ | ---- | ------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Color of the divider.<br>Default value: **'\#33182431'**|
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Color of the divider.<br>Default value: **'\#33182431'**<br>You can set a common divider color using [WithTheme](ts-container-with-theme.md#withtheme).|
 
 ### strokeWidth
 
@@ -98,6 +98,8 @@ Sets the cap style of the divider.
 
 
 ## Example
+
+This example demonstrates how to define the style of a divider, including its direction, color, and width.
 
 ```ts
 // xxx.ets

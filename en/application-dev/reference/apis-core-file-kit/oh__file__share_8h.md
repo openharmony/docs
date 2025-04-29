@@ -39,8 +39,8 @@ Provides APIs for persisting permissions, activating or deactivating permissions
 
 | Name| Description| 
 | -------- | -------- |
-| [FileShare_OperationMode](file_share.md#fileshare_operationmode) { [READ_MODE](file_share.md#enum-description) = 1 &lt;&lt; 0, [WRITE_MODE](file_share.md#enum-description) = 1 &lt;&lt; 1 }| Enumerates the permissions on a URI. | 
-| [FileShare_PolicyErrorCode](file_share.md#enum-description) { [PERSISTENCE_FORBIDDEN](file_share.md#enum-description) = 1, [INVALID_MODE](file_share.md#enum-description) = 2, [INVALID_PATH](file_share.md#enum-description) = 3, [PERMISSION_NOT_PERSISTED](file_share.md#enum-description) = 4 }| Enumerates the permission policy error codes. | 
+| [FileShare_OperationMode](file_share.md#fileshare_operationmode) {<br>READ_MODE = 1 &lt;&lt; 0,<br>WRITE_MODE = 1 &lt;&lt; 1<br>} | Enumerates the permissions on a URI.| 
+| [FileShare_PolicyErrorCode](file_share.md#enum-description) {<br>PERSISTENCE_FORBIDDEN = 1,<br>INVALID_MODE = 2,<br>INVALID_PATH = 3,<br>PERMISSION_NOT_PERSISTED = 4<br>} | Enumerates the permission policy error codes.| 
 
 
 ### Functions

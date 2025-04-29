@@ -68,7 +68,7 @@ For details about the error codes, see [User Authentication Error Codes](errorco
 | -------- | ------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 12700001 | Operation failed. |
+| 12700001 | The service is unavailable. |
 
 **Example**
 

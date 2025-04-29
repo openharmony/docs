@@ -69,7 +69,7 @@ hasSerialRight(portId: number): boolean;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 14400005 | 14400005 Database operation exception. |
+| 14400005 | Database operation exception. |
 | 31400001 | Serial port management exception. |
 | 31400003 | Device does not exist. |
 
@@ -930,5 +930,4 @@ try {
 | 名称     | 值     | 说明    |
 |-----------|-----------|-----------|
 | STOPBIT_1 | 0 | 报文的有效停止位宽为1比特 |
-| STOPBIT_1P5 | 1 | 报文的有效停止位宽为1.2比特 |
-| STOPBIT_2 | 2 | 报文的有效停止位宽为2比特 |
+| STOPBIT_2 | 1 | 报文的有效停止位宽为2比特 |

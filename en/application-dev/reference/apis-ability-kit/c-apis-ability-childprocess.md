@@ -216,7 +216,7 @@ Enumerates the isolation modes of a child process.
 ### OH_Ability_CreateNativeChildProcess
 
 ```
-int OH_Ability_CreateNativeChildProcess (const char *libName, OH_Ability_OnNativeChildProcessStarted onProcessStarted )
+int OH_Ability_CreateNativeChildProcess (const char *libName, OH_Ability_OnNativeChildProcessStarted onProcessStarted)
 ```
 
 **Description**
@@ -299,3 +299,23 @@ The specified dynamic library must implement and export the entry parameters of 
 **Returns**
 
 Returns **NCP_NO_ERROR** if the operation is successful; returns an error code defined in [Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode) otherwise.
+
+### OH_Ability_GetCurrentChildProcessArgs
+
+```
+NativeChildProcess_Args* OH_Ability_GetCurrentChildProcessArgs();
+```
+
+**Description**
+
+Used by a child process, after being started by calling [OH_Ability_StartNativeChildProcess](#oh_ability_startnativechildprocess), to obtain the startup parameter [NativeChildProcess_Args](#nativechildprocess_args) from any .so file or child thread.
+
+> **NOTE**
+>
+> This function is valid only for 2-in-1 devices and tablets.
+
+**Since**: 16
+
+**Returns**
+
+Returns the pointer to a [NativeChildProcess_Args](#nativechildprocess_args) object if the operation is successful; returns a null pointer otherwise.

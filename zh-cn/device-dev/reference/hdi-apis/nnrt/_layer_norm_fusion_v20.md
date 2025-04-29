@@ -33,7 +33,7 @@
 | -------- | -------- |
 | long [beginNormAxis](#beginnormaxis) | 指定x需进行层归一化的起始维度。  | 
 | float [epsilon](#epsilon) | 为数值稳定性定义一个加到分母上的值。  | 
-| boolean [elementwiseAffine](#elementwiseaffine) | 是否为元素级别的操作。  | 
+| boolean [elementwiseAffine](#elementwiseaffine) | elementwiseAffine为true为元素级别的操作，反之则不是。  | 
 | long [beginParamsAxis](#beginparamsaxis) | 指定输入参数gamma，beta需进行层归一化的开始维度，其值必须在[-n, n)范围内。  | 
 
 
@@ -67,7 +67,7 @@ boolean LayerNormFusion::elementwiseAffine
 ```
 **描述**
 
-是否为元素级别的操作。
+elementwiseAffine为true为元素级别的操作，反之则不是。
 
 
 ### epsilon

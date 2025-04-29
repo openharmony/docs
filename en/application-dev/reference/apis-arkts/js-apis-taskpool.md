@@ -13,7 +13,7 @@ For details about the precautions for using **TaskPool**, see [Precautions for T
 The following concepts are used in this topic:
 - Task group task: task in a [TaskGroup](#taskgroup10).
 - Serial queue task: task in a [SequenceRunner](#sequencerunner-11).
-- Asynchronous queue task: task in an [AsyncRunner](#asyncrunner16).
+- Asynchronous queue task: task in an [AsyncRunner](#asyncrunner18).
 - Periodic task: task executed by calling [executePeriodically](#taskpoolexecuteperiodically12).
 
 > **NOTE**
@@ -725,7 +725,7 @@ function concurrentFunc() {
 concurrentFunc();
 ```
 
-## taskpool.cancel<sup>16+</sup>
+## taskpool.cancel<sup>18+</sup>
 
 cancel(taskId: number): void
 
@@ -733,7 +733,7 @@ Cancels a task in the task pool by task ID. If the task is in the internal queue
 
 **System capability**: SystemCapability.Utils.Lang
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **Parameters**
 
@@ -857,7 +857,7 @@ Checks whether a function is a concurrent function.
 
 | Type   | Description                                |
 | ------- | ------------------------------------ |
-| boolean | **true**: The function is a concurrent function, that is, a function decorated with [@Concurrent](../../arkts-utils/taskpool-introduction.md#concurrent-decorator).<br>**false**: The function is not a concurrent function.|
+| boolean | Check result. The value **true** means that the function is a concurrent function, that is, a function decorated with [@Concurrent](../../arkts-utils/taskpool-introduction.md#concurrent-decorator); **false** means the opposite.|
 
 **Error codes**
 
@@ -952,7 +952,7 @@ for (let i: number = 0; i < taskArray.length; i+=4) { // 4: Four tasks are execu
 
 Implements a task. Before calling any APIs in **Task**, you must use [constructor](#constructor) to create a **Task** instance. A task can be executed for multiple times, placed in a task group, serial queue, or asynchronous queue for execution, or added with dependencies for execution.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -961,10 +961,10 @@ Implements a task. Before calling any APIs in **Task**, you must use [constructo
 | function             | Function  | Yes  | Yes  | Function to be passed in during task creation. For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | arguments            | Object[]  | Yes  | Yes  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | name<sup>11+</sup>   | string    | Yes  | No  | Name of the task specified when the task is created.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| taskId<sup>16+</sup>   | number    | Yes  | No  | Task ID.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
-| totalDuration<sup>11+</sup>  | number    | Yes  | No  | Total execution time of the task.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| ioDuration<sup>11+</sup>     | number    | Yes  | No  | Asynchronous I/O time of the task.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| cpuDuration<sup>11+</sup>    | number    | Yes  | No  | CPU time of the task.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| taskId<sup>18+</sup>   | number    | Yes  | No  | Task ID.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| totalDuration<sup>11+</sup>  | number    | Yes  | No  | Total execution time of the task. in ms.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| ioDuration<sup>11+</sup>     | number    | Yes  | No  | Asynchronous I/O time of the task. in ms.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| cpuDuration<sup>11+</sup>    | number    | Yes  | No  | CPU time of the task. in ms.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
 ### constructor
 
@@ -1266,7 +1266,7 @@ export class DeriveClass extends BaseClass {
 <!--code_no_check-->
 ```ts
 // index.ets
-// The host thread (UI main thread) calls the methods of BaseClass and DeriveClass in the task pool thread and accesses their attributes.
+// The host thread (UI main thread) calls the methods of BaseClass and DeriveClass in the task pool thread and accesses their properties.
 import { taskpool } from '@kit.ArkTS'
 import { BusinessError } from '@kit.BasicServicesKit'
 import { BaseClass, DeriveClass } from './sendable'
@@ -1793,7 +1793,7 @@ Checks whether the task is complete.
 
 | Type   | Description                                |
 | ------- | ------------------------------------ |
-| boolean | **true**: The task is complete.<br>**false**: The task is not complete.|
+| boolean | Check result. The value **true** means that the task is complete, and **false** means the opposite.|
 
 **Example**
 
@@ -1846,6 +1846,7 @@ Describes a callback function with an error message.
 **System capability**: SystemCapability.Utils.Lang
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Parameters**
 
 | Name| Type  | Mandatory| Description              |
@@ -1976,7 +1977,7 @@ let name: string = task.name;
 
 ## TaskGroup<sup>10+</sup>
 
-Implements a task group, in which tasks are associated with each other and all tasks are executed at a time. If all the tasks are executed normally, an array of task results is returned asynchronously, and the sequence of elements in the array is the same as the sequence of tasks added by calling [addTask](#addtask10-1). If any task fails, the corresponding exception is thrown. A task group can be executed for multiple times, but no task can be added after the task group is executed. Before calling any APIs in **TaskGroup**, you must use [constructor](#constructor10) to create a **TaskGroup** instance.
+Implements a task group, in which tasks are associated with each other and all tasks are executed at a time. If all the tasks are executed normally, an array of task results is returned asynchronously, and the sequence of elements in the array is the same as the sequence of tasks added by calling [addTask](#addtask10-1). If any task fails, the corresponding exception is thrown. If multiple tasks in the task group fail, the exception of the first failed task is thrown. A task group can be executed for multiple times, but no task can be added after the task group is executed. Before calling any APIs in **TaskGroup**, you must use [constructor](#constructor10) to create a **TaskGroup** instance.
 
 ### constructor<sup>10+</sup>
 
@@ -2106,7 +2107,7 @@ let task: taskpool.Task = new taskpool.Task(printArgs, 200); // 200: test number
 taskGroup.addTask(task);
 ```
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2265,11 +2266,11 @@ async function seqRunner()
 }
 ```
 
-## AsyncRunner<sup>16+</sup>
+## AsyncRunner<sup>18+</sup>
 
-Implements an asynchronous queue, for which you can specify the task execution concurrency and queuing policy. Before calling any APIs in **AsyncRunner**, you must use [constructor](#constructor16) to create an **AsyncRunner** instance.
+Implements an asynchronous queue, for which you can specify the task execution concurrency and queuing policy. Before calling any APIs in **AsyncRunner**, you must use [constructor](#constructor18) to create an **AsyncRunner** instance.
 
-### constructor<sup>16+</sup>
+### constructor<sup>18+</sup>
 
 constructor(runningCapacity: number, waitingCapacity?: number)
 
@@ -2277,7 +2278,7 @@ A constructor used to create an **AsyncRunner** instance. It constructs a non-gl
 
 **System capability**: SystemCapability.Utils.Lang
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **Parameters**
 
@@ -2300,7 +2301,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 let runner: taskpool.AsyncRunner = new taskpool.AsyncRunner(5);
 ```
 
-### constructor<sup>16+</sup>
+### constructor<sup>18+</sup>
 
 constructor(name: string, runningCapacity: number, waitingCapacity?: number)
 
@@ -2313,14 +2314,14 @@ A constructor used to create an **AsyncRunner** instance. It constructs a global
 
 **System capability**: SystemCapability.Utils.Lang
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **Parameters**
 
 | Name  | Type                 | Mandatory| Description                                                      |
 | -------- | --------------------- | ---- | ---------------------------------------------------------- |
 | name     | string                | Yes  | Name of an asynchronous queue.|
-| runningCapacity | number | Yes  | Maximum number of tasks that can run concurrently. The value must be a positive integer. If a negative value is passed, an error is reported. If a non-integer is passed, the value is rounded down.|
+| runningCapacity | number | Yes  | Maximum number of tasks that can run concurrently. The value must be a positive integer. If a negative number is passed, an error is reported. If a non-integer is passed, the value is rounded down.|
 | waitingCapacity | number | No  | Maximum number of tasks that can be queued. The value must be greater than or equal to 0. If a negative number is passed, an error is reported. If a non-integer is passed, the value is rounded down. The default value is 0, indicating that there is no limit to the number of tasks that can wait. If a value greater than 0 is passed, tasks will be discarded from the front of the queue once the queue size exceeds this limit, implementing a discard policy.|
 
 **Error codes**
@@ -2337,7 +2338,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 let runner:taskpool.AsyncRunner = new taskpool.AsyncRunner("runner1", 5, 5);
 ```
 
-### execute<sup>16+</sup>
+### execute<sup>18+</sup>
 
 execute(task: Task, priority?: Priority): Promise\<Object>
 
@@ -2355,7 +2356,7 @@ Adds a task to the asynchronous queue for execution. Before using this API, you 
 
 **System capability**: SystemCapability.Utils.Lang
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **Parameters**
 
@@ -2439,7 +2440,7 @@ Describes the internal information about a task.
 
 **System capability**: SystemCapability.Utils.Lang
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2456,7 +2457,7 @@ Describes the internal information about a worker thread.
 
 **System capability**: SystemCapability.Utils.Lang
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2474,7 +2475,7 @@ Describes the internal information about a task pool.
 
 **System capability**: SystemCapability.Utils.Lang
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Utils.Lang
 

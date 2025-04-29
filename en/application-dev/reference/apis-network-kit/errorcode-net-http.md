@@ -513,6 +513,24 @@ The specified identity verification field does not match that on the server.
 
 Check whether the specified identity verification field matches that on the server.
 
+## 2300997 Plaintext HTTP Access Intercepted
+
+**Error Message**
+
+Cleartext traffic not permitted.
+
+**Description**
+
+This error code is reported if plaintext HTTP access is intercepted.
+
+**Cause**
+
+The plaintext access is not allowed in the **network_config.json** file.
+
+**Solution**
+
+Check the setting of the **cleartextTrafficPermitted** field in the **network_config.json** file.
+
 ## 2300998 Domain Access Denied
 
 **Error Message**

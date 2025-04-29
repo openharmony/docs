@@ -117,6 +117,7 @@ Before using obfuscation, you are advised to learn about the capabilities of [ob
 | Reducing the default system API trustlist| [`-extra-options strip-system-api-args`](#-extra-options-strip-system-api-args) |
 | Retaining declaration file parameters| [`-keep-parameter-names`](#-keep-parameter-names) |
 | Merging dependent module options| [`-enable-lib-obfuscation-options`](#-enable-lib-obfuscation-options) |
+| Marking trustlists in source code by comments| [`-use-keep-in-source`](#-use-keep-in-source) |
 
 ### -disable-obfuscation
 
@@ -522,6 +523,199 @@ Obfuscation configuration includes [obfuscation options](#obfuscation-options) a
 
 For details about the merging logic, see [Obfuscation Rule Merging Strategies](#obfuscation-rule-merging-strategies).
 
+### -use-keep-in-source
+
+Marks trustlists in .ts or .ets source code using the following two comment annotations (declaration files are not supported):
+
+// @KeepSymbol: This annotation is used to mark names that should be retained. It is usually placed on the line above the relevant code to ensure that the name is not obfuscated when the code is compiled.
+
+// @KeepAsConsumer: This annotation is used to mark names that should be retained. It is usually placed on the line above the relevant code to ensure that the name is not obfuscated when the code is compiled. In HAR/HSP modules, names marked with @KeepAsConsumer are also listed in the **obfuscation.txt** file. In HAP modules, @KeepAsConsumer works exactly like @KeepSymbol.
+
+> **NOTE**
+>
+> Both types of markings are comments and the slashes (//) should not be removed.
+
+ 
+
+The examples below use // @KeepSymbol, but // @KeepAsConsumer can be used in the same way for the same purposes.
+
+#### Classes
+
+You can mark the following elements in a class:
+
+- Class declarations
+- Constructors
+- Fields and methods
+
+**Example**
+
+```typescript
+// Retain the class name and all member names.
+// @KeepSymbol
+class MyClass01 {
+  prop01: string = "prop"; // MyClass01 and prop01 are not obfuscated.
+}
+
+// Use the constructor to retain the class name.
+class MyClass02 {
+  prop02: string = "prop";
+  // @KeepSymbol
+  constructor() {}; // MyClass02 is not obfuscated.
+}
+
+// Retain the class name and specified field and method names. MyClass03, prop03_1, and method03_2 in the class are not obfuscated.
+class MyClass03 {
+  // @KeepSymbol
+  prop03_1: string = "prop";
+  prop03_2: number = 1;
+  constructor() {};
+
+  method03_1(): void {};
+  // @KeepSymbol
+  method03_2(): void {};
+}
+```
+
+#### Interfaces
+
+You can mark the following elements in an interface:
+
+- Interface declarations
+- Fields and methods
+
+**Example**
+
+```typescript
+// Retain the interface name and all member names. MyInterface01, name01, and foo01 are not obfuscated.
+// @KeepSymbol
+interface MyInterface01 {
+  name01: string;
+  foo01(): void;
+}
+
+// Retain the interface name and specified field and method names. MyInterface02 and name02 are not obfuscated.
+interface MyInterface02 {
+  // @KeepSymbol
+  name02: string;
+  foo02(): void;
+}
+```
+
+#### Enums
+
+You can mark the following elements in an enum:
+
+- Enum declarations
+- Enum members
+
+**Example**
+
+```typescript
+// Retain the enum name and all member names. Color01, RED01, and BLUE01 are not obfuscated.
+// @KeepSymbol
+enum Color01 {
+  RED01,
+  BLUE01
+}
+
+// Retain the specified enum member name.
+enum Color02 {
+  RED02,
+  // @KeepSymbol
+  BLUE02 // Color02 and BLUE02 are not obfuscated.
+}
+```
+
+#### Functions
+
+Currently, function names can be marked.
+
+**Example**
+
+```typescript
+// Retain the function name. MyAdd is not obfuscated.
+// @KeepSymbol
+function MyAdd(a: number, b:number): number {
+  return a + b;
+}
+```
+
+#### Namespaces
+
+Currently, namespace names can be marked.
+
+**Example**
+
+```typescript
+// Retain the namespace name and the member names directly exported internally. MyNameSpace and foo are not obfuscated.
+// @KeepSymbol
+namespace MyNameSpace {
+  export function foo(){};
+  function bar(){};
+}
+```
+
+#### Global Variables
+
+Currently, only global variables can be marked. Local variables cannot be marked.
+
+**Example**
+
+```typescript
+// Retain the marked variable name. myVal is not obfuscated.
+// @KeepSymbol
+const myVal = 1;
+```
+
+#### Trustlist Addition Rules
+
+Marked names are added to the obfuscation trustlist based on the following rules. Names kept by **KeepAsConsumer** are also recorded in the **obfuscation.txt** file.
+
+* If a name is at the top level or directly exported, it goes into -keep-global-name.
+
+* If a name is directly exported, it also goes into -keep-property-name.
+
+* If a name is a property, it goes into -keep-property-name.
+
+* Local variable names are not added to the trustlist (they are not kept).
+
+**Example**
+
+```typescript
+// @KeepAsConsumer
+export class MyClass {
+  prop01: string = "prop";
+}
+```
+In this example, MyClass is added to -keep-global-name and -keep-property-name, and prop01 is added to -keep-property-name. They are also written into the **obfuscation.txt** file.
+
+#### -Scenarios Not Supported by -use-keep-in-source
+
+String properties, numeric properties, and computed properties are not supported.
+
+**Example**
+
+```typescript
+const myMethodName = "myMethod";
+
+// 11, aa, and myMethod are not added to the trustlist.
+class MyClass01 {
+  // @KeepSymbol
+  11:11;
+  // @KeepSymbol
+  'aa':'aa';
+  // @KeepSymbol
+  [myMethodName](){}
+}
+
+// RED is not added to the trustlist.
+enum MyEnum {
+  // @KeepSymbol
+  'RED',
+  BLUE
+}
+```
+
 ## Retention Options
 
 ### Summary of Existing Retention Options
@@ -796,9 +990,9 @@ Retains all names (such as variable names, class names, and property names) in t
 ```
 // Positive example:
 -keep
-./oh_modules/harName1         // Names in all the files under the harName1 directory and its subdirectories are not confused.
-./oh_modules/harName1/src     // Names in all the files under the src directory and its subdirectories are not confused.
-./oh_modules/folder/harName2  // Names in all the files under the harName2 directory and its subdirectories are not confused.
+./oh_modules/harName1         // Names in all the files under the harName1 directory and its subdirectories are not obfuscated.
+./oh_modules/harName1/src     // Names in all the files under the src directory and its subdirectories are not obfuscated.
+./oh_modules/folder/harName2  // Names in all the files under the harName2 directory and its subdirectories are not obfuscated.
 
 // Negative example:
 -keep
@@ -809,8 +1003,8 @@ Retains all names (such as variable names, class names, and property names) in t
 
 ```
 -keep
-../oh_modules                  // Names in all the files under the project-level oh_modules and its subdirectories are not confused.
-../oh_modules/harName3          // Names in all the files under the harName3 directory and its subdirectories are not confused.
+../oh_modules                  // Names in all the files under the project-level oh_modules and its subdirectories are not obfuscated.
+../oh_modules/harName3          // Names in all the files under the harName3 directory and its subdirectories are not obfuscated.
 ```
 
 The following figure shows the directory structure of module-level oh_moudles and project-level oh_modules in DevEco Studio.
@@ -1013,3 +1207,4 @@ When the obfuscation configuration file specified by **consumerFiles** contains 
 | -keep-comments               | Retains the classes, functions, namespaces, enums, structs, interfaces, modules, types, and JsDoc comments above properties in the declaration file generated after compilation.| 4.1.5.3 |
 | -keep                        | Retains all names in the specified path.| 5.0.0.18 |
 | Wildcard                      | The retention options of the name classes and path classes support wildcards.| 5.0.0.24 |
+| -use-keep-in-source          | Marks trustlists in source code by comments.| 5.1.0.57 |

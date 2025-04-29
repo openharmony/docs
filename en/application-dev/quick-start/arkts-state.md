@@ -31,7 +31,7 @@ An @State decorated variable, like all other decorated variables in the declarat
 | ------------------ | ------------------------------------------------------------ |
 | Decorator parameters        | None.                                                          |
 | Synchronization type          | Does not synchronize with any type of variable in the parent component.                            |
-| Allowed variable types| Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>(Applicable to API version 11 or later) [Map](#decorating-variables-of-the-map-type) or [Set](#decorating-variables-of-the-set-type) type.<br>**undefined** or **null**.<br>Union types defined by the ArkUI framework, for example, [Length](../reference/apis-arkui/arkui-ts/ts-types.md#length), [ResourceStr](../reference/apis-arkui/arkui-ts/ts-types.md#resourcestr) and [ResourceColor](../reference/apis-arkui/arkui-ts/ts-types.md#resourcecolor).<br>The type must be specified.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>**any** is not supported.<br>(Applicable to API version 11 or later) Union type of the preceding types, for example, **string \| number**, **string \| undefined** or **ClassA \| null**. For details, see [Union Type](#union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@State a : string \| undefined = undefined** is recommended; **@State a: string = undefined** is not recommended.|
+| Allowed variable types| Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>(Applicable to API version 11 or later) [Map](#decorating-variables-of-the-map-type) or [Set](#decorating-variables-of-the-set-type) type.<br>**undefined** or **null**.<br>Union types defined by the ArkUI framework, for example, [Length](../reference/apis-arkui/arkui-ts/ts-types.md#length), [ResourceStr](../reference/apis-arkui/arkui-ts/ts-types.md#resourcestr) and [ResourceColor](../reference/apis-arkui/arkui-ts/ts-types.md#resourcecolor).<br>The type must be specified.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>**any** is not supported.<br>(Applicable to API version 11 or later) Union type of the preceding types, for example, **string \| number**, **string \| undefined**, or **ClassA \| null**. For details, see [Union Type](#union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@State a: string \| undefined = undefined** is supported, but **@Prop a: string = undefined** is not.|
 | Initial value for the decorated variable| Local initialization is required.                                              |
 
 
@@ -236,7 +236,7 @@ Not all changes to state variables cause UI updates. Only changes that can be ob
 2. \@State cannot decorate variables of the function type. Otherwise, the framework throws a runtime error.
 
 
-## Application Scenarios
+## Use Scenarios
 
 
 ### Decorating Variables of Simple Types
@@ -812,15 +812,20 @@ struct ConsumerChild {
     console.log("dataObj changed");
   }
 
+  getContent() {
+    console.log(`this.dataObj.name change: ${this.dataObj.name}`);
+    return this.dataObj.name;
+  }
+
   build() {
     Column() {
-      Text(this.dataObj.name).fontSize(30)
+      Text(this.getContent()).fontSize(30)
     }
   }
 }
 ```
 
-In the preceding example, each time you click **Button('change to self')**, the same class constant is assigned to a state variable of the **Class** type, triggering re-rendering. In state management V1, a proxy is added to the @Observed decorated class objects and the @State decorated objects of the Class, Date, Map, Set, or Array type to observe the changes of top-level properties or API invoking. 
+In the preceding example, each time the **change to self** button is clicked, the same class constant is assigned to a state variable of the class type. This operation triggers re-render and generates the log **this.dataObj.name change: a**. In state management V1, a proxy is added to the @Observed decorated class objects and the @State decorated objects of the Class, Date, Map, Set, or Array type to observe the changes of top-level properties or API invoking. 
 **dataObjFromList** is of a **Proxy** type but **list[0]** is of an **Object** type. As a result, when **list[0]** is assigned to **dataObjFromList**, the value changes trigger re-rendering. 
 To avoid unnecessary value changes and re-renders, use \@Observed to decorate the class, or use [UIUtils.getTarget()](./arkts-new-getTarget.md) to obtain the original value and determine whether the original and new values are the same. If they are the same, do not perform value changes. 
 Method 1: Add \@Observed decorator.
@@ -999,7 +1004,7 @@ Therefore, you are not advised to change the state variables in **build**. When 
 
 ### Using the a.b(this.object) Format Fails to Trigger UI Re-render
 
-In the **build** method, when the variable decorated by \@State is of the object type and is called in the **a.b(this.object)** format, the native object of **this.object** is passed in the b method. If the property of **this.object** is changed, the UI cannot be re-rendered. In the following example, when the static method **Balloon.increaseVolume** or **this.reduceVolume** is used to change the **volume** of **Balloon**, the UI is not re-rendered.
+In the **build** method, when the variable decorated by \@State is of the object type and is called in the **a.b(this.object)** format, the original object of **this.object** is passed in the b method. If the property of **this.object** is changed, the UI cannot be re-rendered. In the following example, when the static method **Balloon.increaseVolume** or **this.reduceVolume** is used to change the **volume** of **Balloon**, the UI is not re-rendered.
 
 [Incorrect Usage]
 
@@ -1093,13 +1098,13 @@ struct Index {
 }
 ```
 
-### Changing State Variables Outside a Custom Component
+### Unregistration Existing Functions Before Changing State Variables by Registering a Callback
 
 You can register the arrow function in **aboutToAppear** to change the state variables in the component. Note that the registered function must be left empty in **aboutToDisappear**. Otherwise, the custom component cannot be released because the arrow function captures the **this** instance of the component, causing memory leakage.
 
 ```ts
 class Model {
-  private callback: Function | undefined = () => {}
+  private callback: (() => void) | undefined = () => {};
 
   add(callback: () => void): void {
     this.callback = callback;

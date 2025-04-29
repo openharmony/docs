@@ -5,9 +5,9 @@
 
 声明循环的C接口。
 
-**引用文件：**&lt;ffrt/condition_variable.h&gt;
+**引用文件：**&lt;ffrt/loop.h&gt;
 
-**库：** libffrt.z.so \@kit FunctionFlowRuntimeKit
+**库：** libffrt.z.so
 
 **系统能力：** SystemCapability.Resourceschedule.Ffrt.Core
 

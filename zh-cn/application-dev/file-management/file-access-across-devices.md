@@ -7,7 +7,26 @@
 1. 完成分布式组网。
    将需要跨设备访问的两个设备登录同一账号，保证设备蓝牙和Wi-Fi功能开启，蓝牙无需互连，Wi-Fi无需接入同一个局域网。
 
-2. 访问跨设备文件。
+2. 授权分布式数据同步权限。
+   分布式数据同步权限的授权方式为user_grant，因此需要调用requestPermissionsFromUser接口，以动态弹窗的方式向用户申请授权。示例中的context的获取方式请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+   ```ts
+   import { common, abilityAccessCtrl } from '@kit.AbilityKit';
+   // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
+   let atManager = abilityAccessCtrl.createAtManager();
+   try {
+     atManager.requestPermissionsFromUser(context, ['ohos.permission.DISTRIBUTED_DATASYNC']).then((data) => {
+       console.log('data: ' + JSON.stringify(data));
+     }).catch((err: object) => {
+       console.log('err: ' + JSON.stringify(err));
+     })
+   } catch (err) {
+     console.log('catch err->' + JSON.stringify(err));
+   }
+   ```
+
+3. 访问跨设备文件。
    同一应用不同设备之间实现跨设备文件访问，只需要将对应的文件放在应用沙箱的分布式文件路径即可。
 
    设备A上在分布式路径下创建测试文件，并写入内容。示例中的context的获取方式请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
@@ -17,7 +36,8 @@
    import { common } from '@kit.AbilityKit';
    import { BusinessError } from '@kit.BasicServicesKit';
  
-   let context = getContext(this) as common.UIAbilityContext; // 获取设备A的UIAbilityContext信息
+   // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
    let pathDir: string = context.distributedFilesDir;
    // 获取分布式目录的文件路径
    let filePath: string = pathDir + '/test.txt';
@@ -25,7 +45,7 @@
    try {
      // 在分布式目录下创建文件
      let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-     console.info('Succeeded in createing.');
+     console.info('Succeeded in creating.');
      // 向文件中写入内容
      fs.writeSync(file.fd, 'content');
      // 关闭文件
@@ -63,7 +83,8 @@
    // 访问并挂载公共文件目录
    fs.connectDfs(networkId, listeners).then(() => {
      console.info("Success to connectDfs");
-     let context = getContext(); // 获取设备B的UIAbilityContext信息
+     // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+     let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
      let pathDir: string = context.distributedFilesDir;
      // 获取分布式目录的文件路径
      let filePath: string = pathDir + '/test.txt';
@@ -84,6 +105,7 @@
        // 打印读取到的文件数据
        let buf = buffer.from(arrayBuffer, 0, num);
        console.info('read result: ' + buf.toString());
+       fs.closeSync(file);
      } catch (error) {
        let err: BusinessError = error as BusinessError;
        console.error(`Failed to openSync / readSync. Code: ${err.code}, message: ${err.message}`);

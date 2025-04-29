@@ -66,7 +66,7 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
    target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
    ```
 
-2. 在源文件中包含hilog头文件, 并定义domain、tag宏：
+2. 在源文件中包含hilog头文件，并定义domain、tag宏：
 
    ```c++
    #include "hilog/log.h"
@@ -100,7 +100,7 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
 
 > **注意**
 >
-> 回调函数里面不允许再调用hilog接口打印日志，不然会死循环
+> 在回调函数中禁止递归调用hilog接口，否则会导致循环调用问题。
 
 ```c++
 #include "hilog/log.h"
@@ -110,7 +110,7 @@ static constexpr OHOS::HiviewDFX::HiLogLabel LABEL = {LOG_CORE, 0xD003200, "MY_T
 void MyHiLog(const LogType type, const LogLevel level, const unsigned int domain, const char *tag, const char *msg)
 {
     // user-defined to handle your log, such as redirect/filter
-    // 注意: 回调函数里面不允许再调用hilog接口打印日志，不然会死循环
+    // 注意: 在回调函数中禁止递归调用hilog接口，否则会导致循环调用问题。
 }
 
 static void Test(void)

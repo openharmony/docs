@@ -1,6 +1,6 @@
 # @ohos.multimedia.avsession (AVSession Management)
 
-The **avSession** module provides APIs for media playback control so that applications can access the system's Media Controller.
+The avSession module provides APIs for media playback control so that applications can access the system's Media Controller.
 
 This module provides the following typical features related to media sessions:
 
@@ -168,7 +168,7 @@ You can use the strings listed in the following table.
 
 An **AVSession** object is created by calling [avSession.createAVSession](#avsessioncreateavsession10). The object enables you to obtain the session ID and set the metadata and playback state. 
 
-### Attributes
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -238,6 +238,9 @@ let metadata: avSession.AVMetadata = {
   // The LRC contains two types of elements: time tag + lyrics, and ID tag.
   // Example: [00:25.44]xxx\r\n[00:26.44]xxx\r\n
   lyric: "Lyrics in LRC format",
+  // The singleLyricText field stores a single line of lyric text without timestamps.
+  // Example: "Content of a single lyric line"
+  singleLyricText: "Content of a single lyric line",
   previousAssetId: "121277",
   nextAssetId: "121279"
 };
@@ -293,6 +296,9 @@ let metadata: avSession.AVMetadata = {
   // The LRC contains two types of elements: time tag + lyrics, and ID tag.
   // Example: [00:25.44]xxx\r\n[00:26.44]xxx\r\n
   lyric: "Lyrics in LRC format",
+  // The singleLyricText field stores a single line of lyric text without timestamps.
+  // Example: "Content of a single lyric line"
+  singleLyricText: "Content of a single lyric line",
   previousAssetId: "121277",
   nextAssetId: "121279"
 };
@@ -3333,6 +3339,162 @@ aVCastController.getAVPlaybackState().then((state: avSession.AVPlaybackState) =>
 });
 ```
 
+### getSupportedDecoders<sup>18+</sup>
+
+getSupportedDecoders(): Promise\<Array\<DecoderType>>
+
+Obtains the decoding modes supported by the current remote device. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Return value**
+
+| Type                                                       | Description                                                        |
+| --------- | ------------------------------------------------------------ |
+| Promise\<Array\<[DecoderType](#decodertype18)\>\> | Promise used to return an array of decoding modes supported by the remote device.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+aVCastController.getSupportedDecoders().then((decoderTypes: avSession.DecoderType[]) => {
+  console.info(`getSupportedDecoders : SUCCESS : decoderTypes.length : ${decoderTypes.length}`);
+  if (descriptors.length > 0 ) {
+    console.info(`getSupportedDecoders : SUCCESS : decoderTypes[0] : ${decoderTypes[0]}`);
+  }
+}).catch((err: BusinessError) => {
+  console.error(`getSupportedDecoders BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+### getRecommendedResolutionLevel<sup>18+</sup>
+
+getRecommendedResolutionLevel(decoderType: DecoderType): Promise\<ResolutionLevel>
+
+Obtains the recommended resolution level based on the passed decoding mode. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Return value**
+
+| Type                                                       | Description                                                        |
+| --------- | ------------------------------------------------------------ |
+| Promise\<[ResolutionLevel](#resolutionlevel18)\> | Promise used to return the recommended resolution level of the remote device.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let decoderType = avSession.DecoderType.OH_AVCODEC_MIMETYPE_VIDEO_AVC;
+let resolutionLeve = avSession.ResolutionLevel;
+aVCastController.getRecommendedResolutionLevel(decoderType).then((resolutionLeve) => {
+  console.info('getRecommendedResolutionLevel successfully');
+}).catch((err: BusinessError) => {
+  console.error(`getRecommendedResolutionLevel BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+### getSupportedHdrCapabilities<sup>18+</sup>
+
+getSupportedHdrCapabilities(): Promise\<Array\<hdrCapability.HDRFormat>>
+
+Obtains the HDR capabilities supported by the current remote device. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Return value**
+
+| Type                                                       | Description                                                        |
+| --------- | ------------------------------------------------------------ |
+| Promise\<Array\<[hdrCapability.HDRFormat](../apis-arkgraphics2d/js-apis-hdrCapability.md#hdrformat)\>\> | Promise used to return an array of HDR capabilities supported by the remote device.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import type hdrCapability from './@ohos.graphics.hdrCapability';
+
+aVCastController.getSupportedHdrCapabilities().then((hdrFormats: hdrCapability.HDRFormat[]) => {
+  console.info(`getSupportedHdrCapabilities : SUCCESS : hdrFormats.length : ${hdrFormats.length}`);
+  if (hdrFormats.length > 0 ) {
+    console.info(`getSupportedHdrCapabilities : SUCCESS : descriptors[0] : ${hdrFormats[0]}`);
+  }
+}).catch((err: BusinessError) => {
+  console.error(`getSupportedHdrCapabilities BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+### getSupportedPlaySpeeds<sup>18+</sup>
+
+getSupportedPlaySpeeds(): Promise\<Array\<number>>
+
+Obtains the playback speeds supported by the current remote device. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Return value**
+
+| Type                                                       | Description                                                        |
+| --------- | ------------------------------------------------------------ |
+| Promise\<Array\<number\>\> | Promise used to return an array of playback speeds supported by the remote device.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+aVCastController.getSupportedPlaySpeeds().then((nums: number[]) => {
+  console.info(`getSupportedPlaySpeeds : SUCCESS : hdrFormats.length : ${nums.length}`);
+  if (nums.length > 0 ) {
+    console.info(`getSupportedPlaySpeeds : SUCCESS : descriptors[0] : ${nums[0]}`);
+  }
+}).catch((err: BusinessError) => {
+  console.error(`getSupportedPlaySpeeds BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
 ### sendControlCommand<sup>10+</sup>
 
 sendControlCommand(command: AVCastControlCommand): Promise\<void>
@@ -5095,30 +5257,32 @@ Describes the media metadata.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
-| Name           | Type                     | Mandatory| Description                                                                 |
-| --------------- |-------------------------| ---- |---------------------------------------------------------------------|
-| assetId         | string                  | Yes  | Media asset ID. It is the unique ID of a song and defined by the application.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                    |
-| title           | string                  | No  | Title.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                |
-| artist          | string                  | No  | Artist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                               |
-| author          | string                  | No  | Author.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                              |
-| avQueueName<sup>12+</sup>       | string                  | No  | Playlist name.                                                              |
-| avQueueId<sup>11+</sup>       | string                  | No  | Unique ID of the playlist.                                                              |
-| avQueueImage<sup>11+</sup>    | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | No  | Cover image of the playlist, which can be pixel data of an image or an image path (local path or Internet path).<br>When the data type configured by running **setAVMetadata** is **PixelMap**, the data obtained by calling **getAVMetadata** is a pixel map. When the configured data type is **string**, the data obtained is a URL. |                       
-| album           | string                  | No  | Album name.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                              |
-| writer          | string                  | No  | Writer.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                               |
-| composer        | string                  | No  | composer.                                                               |
-| duration        | number                  | No  | Media duration, in ms.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                 |
-| mediaImage      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | No  | Pixel map or image path (local path or network path) of the image.<br>When the data type configured by running **setAVMetadata** is **PixelMap**, the data obtained by calling **getAVMetadata** is a pixel map. When the configured data type is **string**, the data obtained is a URL.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                            |
-| publishDate     | Date                    | No  | Release date.                                                            |
-| subtitle        | string                  | No  | Subtitle.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                               |
-| description     | string                  | No  | Media description.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                              |
-| lyric           | string                  | No  | Lyrics. The application needs to combine the lyrics into a string with less than or equal to 40960 bytes.<br>**NOTE**: The system supports lyrics in the simple LRC format. If the lyrics are not standard (for example, having duplicate timestamps), the lyrics fail to be parsed and cannot be displayed properly in the system.|
-| previousAssetId | string                  | No  | ID of the previous media asset.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                           |
-| nextAssetId     | string                  | No  | ID of the next media asset.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                           |
-| filter<sup>11+</sup>        | number         | No  | Protocol supported by the media session. The default value is **TYPE_CAST_PLUS_STREAM**. For details, see [ProtocolType](#protocoltype11).<br>**Atomic service API**: This API can be used in atomic services since API version 12.                  |
-| drmSchemes<sup>12+</sup>        | Array\<string>         | No  | DRM scheme supported by the media session. The value is the UUID of the DRM scheme.|
-| skipIntervals<sup>11+</sup>  | [SkipIntervals](#skipintervals11)        | No  | Fast-forward or rewind interval supported by the media session. The default value is **SECONDS_15**, that is, 15 seconds.                           |
-|displayTags<sup>11+</sup>     | number                           | No  | Display tags of the media asset. For details, see [DisplayTag](#displaytag11).                                                         |
+| Name           | Type                     | Read Only| Optional| Description                                                                 |
+| --------------- |-------------------------| ---- | ---- |---------------------------------------------------------------------|
+| assetId         | string                  | No  | No  | Media asset ID. It is the unique ID of a song and defined by the application.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                    |
+| title           | string                  | No  | Yes  | Title.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                |
+| artist          | string                  | No  | Yes  | Artist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                               |
+| author          | string                  | No  | Yes  | Author.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                              |
+| avQueueName<sup>12+</sup>       | string                  | No  | Yes  | Playlist name.                                                              |
+| avQueueId<sup>11+</sup>       | string                  | No  | Yes  | Unique ID of the playlist.                                                              |
+| avQueueImage<sup>11+</sup>    | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | No  | Yes  | Cover image of the playlist, which can be pixel data of an image or an image path (local path or Internet path). Applications call **setAVMetadata** to set the image data.<br>- If the data type is set to **PixelMap**, the data obtained by calling **getAVMetadata** is the pixel data of an image.<br>- If the data type is set to **url**, the data obtained is an image path. |
+| album           | string                  | No  | Yes  | Album name.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                              |
+| writer          | string                  | No  | Yes  | Writer.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                               |
+| composer        | string                  | No  | Yes  | composer.                                                               |
+| duration        | number                  | No  | Yes  | Media duration, in ms.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                 |
+| mediaImage      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | No  | Yes  | Pixel map or image path (local path or network path) of the image. Applications call **setAVMetadata** to set the image data.<br>- If the data type is set to **PixelMap**, the data obtained by calling **getAVMetadata** is the pixel data of an image.<br>- If the data type is set to **url**, the data obtained is an image path.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                            |
+| bundleIcon<sup>18+</sup>      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes  | Yes  | Pixel data of the image that is used as the application icon. It is read-only and cannot be set on the application side.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| publishDate     | Date                    | No  | Yes  | Release date.                                                            |
+| subtitle        | string                  | No  | Yes  | Subtitle.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                               |
+| description     | string                  | No  | Yes  | Media description.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                              |
+| lyric           | string                  | No  | Yes  | Lyrics. The application needs to combine the lyrics into a string.<br>The string length must not exceed 40960 bytes.<br>**NOTE**: The system supports lyrics in the simple LRC format. If the lyrics are not standard (for example, having duplicate timestamps), the lyrics fail to be parsed and cannot be displayed properly in the system.|
+| singleLyricText<sup>18+</sup> | string    | No  | Yes  | Lyrics of a single media asset. The application must combine the lyrics into a string (excluding the timestamp).<br>The string length must not exceed 40960 bytes.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| previousAssetId | string                  | No  | Yes  | ID of the previous media asset.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                           |
+| nextAssetId     | string                  | No  | Yes  | ID of the next media asset.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                           |
+| filter<sup>11+</sup>        | number         | No  | Yes  | Protocol supported by the media session. The default value is **TYPE_CAST_PLUS_STREAM**. For details, see [ProtocolType](#protocoltype11).<br>**Atomic service API**: This API can be used in atomic services since API version 12.                  |
+| drmSchemes<sup>12+</sup>        | Array\<string>         | No  | Yes  | DRM scheme supported by the media session. The value is the UUID of the DRM scheme.|
+| skipIntervals<sup>11+</sup>  | [SkipIntervals](#skipintervals11)        | No  | Yes  | Intervals supported for fast-forwarding and rewinding. The default value is **SECONDS_15**, that is, 15 seconds.                           |
+|displayTags<sup>11+</sup>     | number                           | No  | Yes  | Display tags of the media asset. For details, see [DisplayTag](#displaytag11).                                                         |
 
 ## AVMediaDescription<sup>10+</sup>
 
@@ -5254,6 +5418,33 @@ Enumerates the display tags of the media asset. The display tag is a special typ
 | Name                       | Value  | Description          |
 | --------------------------  | ---- | ------------ |
 | TAG_AUDIO_VIVID             | 1    | AUDIO VIVID  |
+
+## DecoderType<sup>18+</sup>
+
+Enumerates the decoding formats supported by the device.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+| Name                       | Value  | Description          |
+| --------------------------  | ---- | ------------ |
+| OH_AVCODEC_MIMETYPE_VIDEO_AVC      | "video/avc"  | VIDEO AVC. |
+| OH_AVCODEC_MIMETYPE_VIDEO_HEVC     | "video/hevc" | VIDEO HEVC. |
+| OH_AVCODEC_MIMETYPE_AUDIO_VIVID    | "audio/av3a" | AUDIO AV3A. |
+
+
+## ResolutionLevel<sup>18+</sup>
+
+Enumerates the resolution levels supported by the device.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+| Name                       | Value  | Description          |
+| --------------------------  | ---- | ------------ |
+| RESOLUTION_480P             | 0    | 480p (640 x 480 dpi).    |
+| RESOLUTION_720P             | 1    | 720p (1280 x 720 dpi).   |
+| RESOLUTION_1080P            | 2    | 1080p (1920 x 1080 dpi).  |
+| RESOLUTION_2K               | 3    | 2K (2560 x 1440 dpi).  |
+| RESOLUTION_4K               | 4    | 4K (4096 x 3840 dpi).  |
 
 ## AVCastCategory<sup>10+</sup>
 
@@ -8176,7 +8367,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 **Example**
 
@@ -8219,7 +8410,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 **Example**
 
@@ -8258,7 +8449,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 **Example**
 

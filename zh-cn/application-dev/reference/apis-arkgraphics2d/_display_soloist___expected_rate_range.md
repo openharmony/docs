@@ -9,6 +9,7 @@
 
 **相关模块：**[NativeDisplaySoloist](_native_display_soloist.md)
 
+**所在头文件：**[native_display_soloist.h](native__display__soloist_8h.md)
 
 ## 汇总
 

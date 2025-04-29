@@ -54,7 +54,7 @@ Connect a host to a device and use the **usbSubmitTransfer** API to transfer dat
 2. Obtain the USB device list.
 
     ```ts
-    // Obtain the list of USB devices connected to the main device.
+    // Obtain the list of USB devices connected to the host.
     let usbDevices: Array<usbManager.USBDevice> = usbManager.getDevices();
     console.info('usbDevices: ', JSON.stringify(usbDevices));
     if(usbDevices.length === 0) {
@@ -154,7 +154,7 @@ Connect a host to a device and use the **usbSubmitTransfer** API to transfer dat
     usbManager.releaseInterface(devicePipe, usbInterface);
     usbManager.closePipe(devicePipe);
     ```
-
+   
 ### Verification
 
 1. Connect the host to a terminal device (such as a mouse or a keyboard) that supports interrupt transfer through a USB interface.

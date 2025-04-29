@@ -29,7 +29,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_AVPixelFormat](_core.md#oh_avpixelformat-1) {<br/>AV_PIXEL_FORMAT_YUVI420 = 1,<br/>AV_PIXEL_FORMAT_NV12 = 2,<br/>AV_PIXEL_FORMAT_NV21 = 3,<br/>AV_PIXEL_FORMAT_SURFACE_FORMAT = 4,<br/>AV_PIXEL_FORMAT_RGBA = 5<br/>} | 视频像素格式的枚举类 | 
+| [OH_AVPixelFormat](_core.md#oh_avpixelformat-1) {<br/>AV_PIXEL_FORMAT_YUVI420 = 1,<br/>AV_PIXEL_FORMAT_NV12 = 2,<br/>AV_PIXEL_FORMAT_NV21 = 3,<br/>AV_PIXEL_FORMAT_SURFACE_FORMAT = 4,<br/>AV_PIXEL_FORMAT_RGBA = 5<br/>} | 视频像素格式的枚举类。 | 
 
 
 ### 函数

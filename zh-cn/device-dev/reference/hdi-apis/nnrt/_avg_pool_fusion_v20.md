@@ -32,10 +32,10 @@
 | long[] [kernelSize](#kernelsize) | 用来取平均值的kernel大小，是一个长度为2的int数组[kernel_height，kernel_weight]， 第一个数表示kernel高度，第二个数表示kernel宽度。  | 
 | long[] [strides](#strides) | kernel移动的距离，是一个长度为2的int数组[stride_height，stride_weight]， 第一个数表示高度上的移动步幅，第二个数表示宽度上的移动步幅。  | 
 | long[] [pad](#pad) | x周围的填充，是一个长度为4的int数组[top，bottom，left，right]，并且以最近邻的值填充。  | 
-| enum [PadMode](_n_n_rt_v20.md#padmode)[padMode](#padmode) | 填充模式  | 
-| enum [RoundMode](_n_n_rt_v20.md#roundmode)[roundMode](#roundmode) | 取整数的算法  | 
+| enum [PadMode](_n_n_rt_v20.md#padmode)[padMode](#padmode) | 填充模式。  | 
+| enum [RoundMode](_n_n_rt_v20.md#roundmode)[roundMode](#roundmode) | 取整数的算法。  | 
 | enum [Format](_n_n_rt_v20.md#format)[format](#format) | 运算时的数据排列排列，详情请参考：[Format](_n_n_rt_v20.md#format) | 
-| boolean [global](#global) | 是否是全局池化  | 
+| boolean [global](#global) | global为true是全局池化，反之则不是。  | 
 | enum [ActivationType](_n_n_rt_v20.md#activationtype)[activationType](#activationtype) | 激活函数，详情请参考：[ActivationType](_n_n_rt_v20.md#activationtype) | 
 
 
@@ -69,7 +69,7 @@ boolean AvgPoolFusion::global
 ```
 **描述**
 
-是否是全局池化
+是否是全局池化。
 
 
 ### kernelSize
@@ -99,7 +99,7 @@ enum PadMode AvgPoolFusion::padMode
 ```
 **描述**
 
-填充模式
+填充模式。
 
 
 ### roundMode
@@ -109,7 +109,7 @@ enum RoundMode AvgPoolFusion::roundMode
 ```
 **描述**
 
-取整数的算法
+取整数的算法。
 
 
 ### strides

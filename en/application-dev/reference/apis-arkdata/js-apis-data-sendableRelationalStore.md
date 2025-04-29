@@ -16,7 +16,7 @@ import { sendableRelationalStore } from '@kit.ArkData';
 
 toSendableValuesBucket(valuesBucket: NonSendableBucket): ValuesBucket
 
-Converts a key-value (KV) pair that cannot be transferred across threads into the data that can be transferred across threads.
+Converts a key-value (KV) pair that cannot be passed across threads into the data that can be passed across threads.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -24,13 +24,13 @@ Converts a key-value (KV) pair that cannot be transferred across threads into th
 
 | Name      | Type                                   | Mandatory| Description                              |
 | ------------ | --------------------------------------- | ---- | :--------------------------------- |
-| valuesBucket | [NonSendableBucket](#nonsendablebucket) | Yes  | Data that cannot be transferred across threads.|
+| valuesBucket | [NonSendableBucket](#nonsendablebucket) | Yes  | Data that cannot be passed across threads. |
 
 **Return value**
 
 | Type                         | Description                                |
 | ----------------------------- | ------------------------------------ |
-| [ValuesBucket](#valuesbucket) | Data that can be transferred across threads.|
+| [ValuesBucket](#valuesbucket) | Data that can be passed across threads. |
 
 **Error codes**
 
@@ -79,7 +79,7 @@ const sendableValuesBucket = sendableRelationalStore.toSendableValuesBucket(valu
 
 fromSendableValuesBucket(valuesBucket: ValuesBucket): NonSendableBucket
 
-Converts a KV pair that can be transferred across threads into the data that cannot be transferred across threads.
+Converts a KV pair that can be passed across threads into the data that cannot be passed across threads.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -87,13 +87,13 @@ Converts a KV pair that can be transferred across threads into the data that can
 
 | Name      | Type                         | Mandatory| Description                                |
 | ------------ | ----------------------------- | ---- | :----------------------------------- |
-| valuesBucket | [ValuesBucket](#valuesbucket) | Yes  | Data that can be transferred across threads.|
+| valuesBucket | [ValuesBucket](#valuesbucket) | Yes  | Data that can be passed across threads. |
 
 **Return value**
 
 | Type                                   | Description                              |
 | --------------------------------------- | ---------------------------------- |
-| [NonSendableBucket](#nonsendablebucket) | Data that cannot be transferred across threads.|
+| [NonSendableBucket](#nonsendablebucket) | Data that cannot be passed across threads. |
 
 **Error codes**
 
@@ -142,7 +142,7 @@ const nonSendableBucket = sendableRelationalStore.fromSendableValuesBucket(senda
 
 function toSendableAsset(asset: NonSendableAsset): Asset
 
-Converts the asset data that cannot be transferred across threads into the data that can be transferred across threads.
+Converts the asset data that cannot be passed across threads into the data that can be passed across threads.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -150,13 +150,13 @@ Converts the asset data that cannot be transferred across threads into the data 
 
 | Name| Type                                  | Mandatory| Description                       |
 | ------ | -------------------------------------- | ---- | :-------------------------- |
-| asset  | [NonSendableAsset](#nonsendablebucket) | Yes  | Asset data that cannot be transferred across threads.|
+| asset  | [NonSendableAsset](#nonsendablebucket) | Yes  | Asset data that cannot be passed across threads. |
 
 **Return value**
 
 | Type           | Description                     |
 | --------------- | ------------------------- |
-| [Asset](#asset) | Asset data that can be transferred across threads.|
+| [Asset](#asset) | Asset data that can be passed across threads. |
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
@@ -183,7 +183,7 @@ const sendableAsset = sendableRelationalStore.toSendableAsset(asset1);
 
 function fromSendableAsset(asset: Asset): NonSendableAsset
 
-Converts the asset data that can be transferred across threads into the data that cannot be transferred across threads.
+Converts the asset data that can be passed across threads into the data that cannot be passed across threads.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -191,13 +191,13 @@ Converts the asset data that can be transferred across threads into the data tha
 
 | Name| Type           | Mandatory| Description                     |
 | ------ | --------------- | ---- | :------------------------ |
-| asset  | [Asset](#asset) | Yes  | Asset data that can be transferred across threads.|
+| asset  | [Asset](#asset) | Yes  | Asset data that can be passed across threads. |
 
 **Return value**
 
 | Type                                  | Description                       |
 | -------------------------------------- | --------------------------- |
-| [NonSendableAsset](#nonsendablebucket) | Asset data that cannot be transferred across threads.|
+| [NonSendableAsset](#nonsendablebucket) | Asset data that cannot be passed across threads. |
 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
@@ -224,7 +224,7 @@ const normalAsset = sendableRelationalStore.fromSendableAsset(sendableAsset);
 
 ## Asset
 
-Represent information about an asset (such as a document, image, and video). **Asset** inherits from [lang.ISendable](../apis-arkts/js-apis-arkts-lang.md#langisendable) and is used to implement cross-thread transfer of asset data. The asset data does not support **Datashare** APIs. Use [sendableRelationalStore.toSendableAsset](#sendablerelationalstoretosendableasset) to create an **Asset** instance.
+Represent information about an asset (such as a document, image, or video). **Asset** inherits from [lang.ISendable](../apis-arkts/js-apis-arkts-lang.md#langisendable) and is used to implement cross-thread transfer of asset data. The asset data does not support **Datashare** APIs. Use [sendableRelationalStore.toSendableAsset](#sendablerelationalstoretosendableasset) to create an **Asset** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -243,7 +243,7 @@ Represent information about an asset (such as a document, image, and video). **A
 
 type Assets = collections.Array\<Asset>
 
-Represent an array of [Assets](#asset), which allows assets to be transferred across threads.
+Represent an array of [Assets](#asset), which allows assets to be passed across threads.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -255,7 +255,7 @@ Represent an array of [Assets](#asset), which allows assets to be transferred ac
 
 type ValueType = null | number | string | boolean | collection.Uint8Array | Asset | Assets | collection.Float32Array | bigint
 
-Enumerates the types of the value in a KV pair. The type varies with the parameter function.
+Defines the types of the value in a KV pair. The type varies with the parameter function.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -269,40 +269,40 @@ Enumerates the types of the value in a KV pair. The type varies with the paramet
 | [Asset](#asset)  | The value is an asset.<br>If the value type is **Asset**, the type in the SQL statement for creating a table must be **ASSET**.            |
 | [Assets](#assets) | The value is an array of assets.<br>If the value type is **Assets**, the type in the SQL statement for creating a table must be **ASSETS**.|
 | [collection.Float32Array](../apis-arkts/js-apis-arkts-collections.md#collectionstypedarray) | The value is an array of 32-bit floating-point numbers.<br>If the value type is **collection.Float32Array**, the type in the SQL statement for creating a table must be **floatvector(128)**.|
-| bigint | The value is an integer of any length.<br>If the value type is **bigint**, the type in the SQL statement for creating a table must be **UNLIMITED INT**. For details, see [Persisting RDB Store Data](../../database/data-persistence-by-rdb-store.md).<br>**NOTE**<br>The bigint type does not support value comparison and cannot be used with the following predicates: **between**, **notBetween**, **greaterThanlessThan**, **greaterThanOrEqualTo**, **lessThanOrEqualTo**, **orderByAsc**, and **orderByDesc**<br>To write a value of bigint type, use **BigInt()** or add **n** to the end of the value, for example,'let data = BigInt(1234)' or 'let data = 1234n'.<br>If data of the number type is written to a bigint field, the type of the return value obtained (queried) is number but not bigint.|
+| bigint | The value is an integer of any length.<br>If the value type is bigint, the type in the SQL statement for creating a table must be **UNLIMITED INT**. For details, see [Persisting RDB Store Data](../../database/data-persistence-by-rdb-store.md).<br>**NOTE**<br><br>The bigint type does not support value comparison and cannot be used with the following predicates: **between**, **notBetween**, **greaterThanlessThan**, **greaterThanOrEqualTo**, **lessThanOrEqualTo**, **orderByAsc**, and **orderByDesc**<br>To write a value of bigint type, use **BigInt()** or add **n** to the end of the value, for example, 'let data = BigInt(1234)' or 'let data = 1234n'.<br>If data of the number type is written to a bigint field, the type of the return value obtained (queried) is number but not bigint. |
 
 ## ValuesBucket
 
 type ValuesBucket = collections.Map<string, ValueType>
 
-Represents the KV pair that can be transferred across threads.
+Represents the KV pair that can be passed across threads.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| Type                                                                                                         | Description                                                                   |
-| ------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| [collections.Map](../apis-arkts/js-apis-arkts-collections.md#collectionsmap)<string, [ValueType](#valuetype)> | KV pair that can be transferred across threads. The key must be a string, and the value is of the **ValueType** type.|
+| Type                                                         | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [collections.Map](../apis-arkts/js-apis-arkts-collections.md#collectionsmap)<string, [ValueType](#valuetype)> | KV pair that can be passed across threads. The key must be a string, and the value is of the **ValueType** type. |
 
 ## NonSendableBucket
 
 type NonSendableBucket = relationalStore.ValuesBucket
 
-Represents the KV pair that cannot be transferred across threads
+Represents the KV pair that cannot be passed across threads.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 | Type                                                                          | Description                        |
 | ------------------------------------------------------------------------------ | ---------------------------- |
-| [relationalStore.ValuesBucket](./js-apis-data-relationalStore.md#valuesbucket) | KV pair that cannot be transferred across threads.|
+| [relationalStore.ValuesBucket](./js-apis-data-relationalStore.md#valuesbucket) | KV pair that cannot be passed across threads. |
 
 ## NonSendableAsset
 
 type NonSendableAsset = relationalStore.Asset
 
-Represent the asset (such as a document, image, and video) that cannot be transferred across threads
+Represent the asset (such as a document, image, or video) that cannot be passed across threads.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 | Type                                                              | Description                          |
 | ------------------------------------------------------------------ | ------------------------------ |
-| [relationalStore.Asset](./js-apis-data-relationalStore.md#asset10) | Asset that cannot be transferred across threads.|
+| [relationalStore.Asset](./js-apis-data-relationalStore.md#asset10) | Asset that cannot be passed across threads. |

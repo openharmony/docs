@@ -599,11 +599,10 @@ cancel(task: Task): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200015 | The task to cancel does not exist. |
 | 10200055 | The asyncRunner task has been canceled. |
 
@@ -739,11 +738,10 @@ cancel(taskId: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200015 | The task to cancel does not exist. |
 | 10200055 | The asyncRunner task has been canceled. |
 
@@ -958,9 +956,9 @@ for (let i: number = 0; i < taskArray.length; i+=4) { // 4: 每次执行4个任�
 | arguments            | Object[]  | 是   | 是   | 创建任务传入函数所需的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
 | name<sup>11+</sup>   | string    | 是   | 否   | 创建任务时指定的任务名称。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
 | taskId<sup>18+</sup>   | number    | 是   | 否   | 任务的ID。<br>**原子化服务API**：从API version 18 开始，该接口支持在原子化服务中使用。|
-| totalDuration<sup>11+</sup>  | number    | 是   | 否   | 执行任务总耗时。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
-| ioDuration<sup>11+</sup>     | number    | 是   | 否   | 执行任务异步IO耗时。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
-| cpuDuration<sup>11+</sup>    | number    | 是   | 否   | 执行任务CPU耗时。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
+| totalDuration<sup>11+</sup>  | number    | 是   | 否   | 执行任务总耗时。单位为ms。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
+| ioDuration<sup>11+</sup>     | number    | 是   | 否   | 执行任务异步IO耗时。单位为ms。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
+| cpuDuration<sup>11+</sup>    | number    | 是   | 否   | 执行任务CPU耗时。单位为ms。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
 
 ### constructor
 
@@ -2369,11 +2367,10 @@ execute(task: Task, priority?: Priority): Promise\<Object>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 10200006 | An exception occurred during serialization. |
 | 10200025 | dependent task not allowed.  |
 | 10200051 | The periodic task cannot be executed again.  |

@@ -544,7 +544,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 | ------ | ------- | ---- | --- | ---------------- |
 | bundle | string  | 是  | 否  | 应用的包名。       |
 | uid    | number  | 是  | 否  | 应用的uid。        |
-| enable | boolean | 是  | 否  | 应用通知使能状态。 |
+| enable | boolean | 是  | 否  | 应用通知使能状态。<br> - true：允许。<br> - false：禁止。 |
 
 
 ## BadgeNumberCallbackData<sup>10+</sup>

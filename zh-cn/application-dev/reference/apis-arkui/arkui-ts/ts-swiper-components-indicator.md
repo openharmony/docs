@@ -135,7 +135,7 @@ vertical(isVertical: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| isVertical  | boolean | 是   | 是否为纵向滑动。<br/>默认值：false |
+| isVertical  | boolean | 是   | 是否为纵向滑动。true为纵向滑动，false为横向滑动。<br/>默认值：false |
 
 ## 事件
 
@@ -157,7 +157,7 @@ onChange(event: Callback\<number>)
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)\<number> | 是   | 当当前显示元素的索引变化时触发的回调。|
+| event  | [Callback](./ts-types.md#callback12)\<number> | 是   | 当前显示元素的索引变化时触发的回调。|
 
 ## IndicatorComponentController
 

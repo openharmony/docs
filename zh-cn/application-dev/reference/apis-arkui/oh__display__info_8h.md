@@ -31,6 +31,11 @@
 | struct  [NativeDisplayManager_DisplayInfo](_native_display_manager___display_info.md) | 显示设备的对象属性。 | 
 | struct  [NativeDisplayManager_DisplaysInfo](_native_display_manager___displays_info.md) | 多显示设备的Display对象。 | 
 
+### 宏定义
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| [OH_DISPLAY_NAME_LENGTH](_o_h___display_manager.md#oh_display_name_length)   32 | 屏幕名称的最大长度。 | 
 
 ### 类型定义
 

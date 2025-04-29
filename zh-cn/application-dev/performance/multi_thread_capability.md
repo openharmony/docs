@@ -86,7 +86,7 @@ CSP与Actor之间的主要区别：
    
    ```typescript
    // 请求网络数据
-   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+   let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
    // 参数中mediaData和isImageData是根据开发者自己的业务需求添加的，其中mediaData为数据路径、isImageData为判断图片或视频的标识
    workerInstance.postMessage({ context, mediaData: this.mediaData, isImageData: this.isImageData });
    ```

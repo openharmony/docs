@@ -12,7 +12,7 @@ During application development, you can use the **state** attribute of the AVPla
 
 ![Playback status change](figures/playback-status-change.png)
 
-For details about the state, see [AVPlayerState](../../reference/apis-media-kit/js-apis-media.md#avplayerstate9). When the AVPlayer is in the **prepared**, **playing**, **paused**, or **completed** state, the playback engine is working and a large amount of RAM is occupied. If your application does not need to use the AVPlayer, call **reset()** or **release()** to release the instance..
+For details about the state, see [AVPlayerState](../../reference/apis-media-kit/js-apis-media.md#avplayerstate9). When the AVPlayer is in the **prepared**, **playing**, **paused**, or **completed** state, the playback engine is working and a large amount of RAM is occupied. If your application does not need to use the AVPlayer, call **reset()** or **release()** to release the instance.
 
 ## Developer's Tips
 
@@ -92,7 +92,7 @@ export class AVPlayerDemo {
       console.error(`Invoke avPlayer failed, code is ${err.code}, message is ${err.message}`);
       avPlayer.reset(); // Call reset() to reset the AVPlayer, which enters the idle state.
     });
-    // Callback function for state changes.
+    // Callback for state changes.
     avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason) => {
       switch (state) {
         case 'idle': // This state is reported upon a successful callback of reset().
@@ -102,8 +102,8 @@ export class AVPlayerDemo {
         case 'initialized': // This state is reported when the AVPlayer sets the playback source.
           console.info('AVPlayer state initialized called.');
           avPlayer.audioRendererInfo = {
-            usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
-            rendererFlags: 0
+            usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // Audio stream usage type: music. Set this parameter based on the service scenario.
+            rendererFlags: 0 // AudioRenderer flag.
           };
           avPlayer.prepare();
           break;
@@ -158,7 +158,7 @@ export class AVPlayerDemo {
   async avPlayerUrlDemo() {
     // Create an AVPlayer instance.
     let avPlayer: media.AVPlayer = await media.createAVPlayer();
-    // Set a callback function for state changes.
+    // Set a callback for state changes.
     this.setAVPlayerCallback(avPlayer);
     let fdPath = 'fd://';
     // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
@@ -176,7 +176,7 @@ export class AVPlayerDemo {
   async avPlayerFdSrcDemo() {
     // Create an AVPlayer instance.
     let avPlayer: media.AVPlayer = await media.createAVPlayer();
-    // Set a callback function for state changes.
+    // Set a callback for state changes.
     this.setAVPlayerCallback(avPlayer);
     // Call getRawFd of the resourceManager member of UIAbilityContext to obtain the media asset URL.
     // The return type is {fd,offset,length}, where fd indicates the file descriptor address of the HAP file, offset indicates the media asset offset, and length indicates the duration of the media asset to play.
@@ -193,7 +193,7 @@ export class AVPlayerDemo {
   async avPlayerDataSrcSeekDemo() {
     // Create an AVPlayer instance.
     let avPlayer: media.AVPlayer = await media.createAVPlayer();
-    // Set a callback function for state changes.
+    // Set a callback for state changes.
     this.setAVPlayerCallback(avPlayer);
     // dataSrc indicates the playback source address. When the seek operation is supported, fileSize indicates the size of the file to be played. The following describes how to assign a value to fileSize.
     let src: media.AVDataSrcDescriptor = {
@@ -228,7 +228,7 @@ export class AVPlayerDemo {
   async avPlayerDataSrcNoSeekDemo() {
     // Create an AVPlayer instance.
     let avPlayer: media.AVPlayer = await media.createAVPlayer();
-    // Set a callback function for state changes.
+    // Set a callback for state changes.
     this.setAVPlayerCallback(avPlayer);
     let context = getContext(this) as common.UIAbilityContext;
     let src: media.AVDataSrcDescriptor = {
@@ -259,7 +259,7 @@ export class AVPlayerDemo {
   async avPlayerLiveDemo() {
     // Create an AVPlayer instance.
     let avPlayer: media.AVPlayer = await media.createAVPlayer();
-    // Set a callback function for state changes.
+    // Set a callback for state changes.
     this.setAVPlayerCallback(avPlayer);
     this.isSeek = false; // The seek operation is not supported.
     avPlayer.url = 'http://xxx.xxx.xxx.xxx:xx/xx/index.m3u8';

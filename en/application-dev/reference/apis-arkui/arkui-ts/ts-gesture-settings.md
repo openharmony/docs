@@ -23,7 +23,7 @@ A region in which a gesture can be recognized may be specified by the [touch tar
 
 ## GestureType
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name| Description|
 | -------- | -------- |
@@ -57,7 +57,7 @@ The component binds gesture objects of different **GestureType** instances throu
 
 ## GestureEvent
 
-Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent).
+Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent8).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -76,7 +76,7 @@ Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent).
 | velocityY<sup>10+</sup> | number | Velocity along the y-axis. This parameter is used in [PanGesture](ts-basic-gestures-pangesture.md). The origin of the coordinate axis is the upper left corner of the screen. The velocity is positive if the movement is from top to bottom, and it is negative if the movement is from bottom to top. The unit is vp/s.|
 | velocity<sup>10+</sup> | number | Velocity along the main axis. This parameter is used in [PanGesture](ts-basic-gestures-pangesture.md). The value is the arithmetic square root of the sum of squares of the velocity along the x- and y-axis. The unit is vp/s.|
 
-## SourceType
+## SourceType<sup>8+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -97,6 +97,7 @@ Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent).
 | localY | number | Y-coordinate relative to the upper left corner of the current component's original area, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | displayX<sup>12+</sup> | number | X-coordinate relative to the upper left corner of the screen, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | displayY<sup>12+</sup> | number | Y-coordinate relative to the upper left corner of the screen, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| hand<sup>15+</sup> | [InteractionHand](#interactionhand15) | Whether the event is triggered by a left-hand or right-hand tap.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 
 ## SourceTool<sup>9+</sup>
 
@@ -108,6 +109,16 @@ Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent).
 | Mouse<sup>12+</sup> | Mouse device.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | Touchpad<sup>12+</sup> | Touchpad. Single-finger input on the touchpad is treated as a mouse input operation.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | Joystick<sup>12+</sup> | Joystick.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+
+## InteractionHand<sup>15+</sup>
+
+Defines whether an event is triggered by a left-hand or right-hand tap.
+
+| Name| Description|
+| -------- | -------- |
+| NONE | Unknown.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
+| LEFT | Left hand.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
+| RIGHT | Right hand.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
 
 
 ## Example

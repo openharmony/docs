@@ -19,7 +19,7 @@
 | -------- | -------- |
 | int [result](#result) | 查询结果，具体查看[RilErrType](_ril_v10.md#rilerrtype) | 
 | int [action](#action) | 禁止或使能CLIR功能  | 
-| int [clirStat](#clirstat) | CLIR业务在网络的签约状态。 | 
+| int [clirStat](#clirstat) | CLIR业务在网络的签约状态 | 
 
 
 ## 类成员变量说明

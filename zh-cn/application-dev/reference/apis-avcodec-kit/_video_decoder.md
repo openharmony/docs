@@ -77,7 +77,7 @@ OH_AVErrCode OH_VideoDecoder_Configure (OH_AVCodec *codec, OH_AVFormat *format )
 | -----------------------------------------------------------------------------| -------- | -------- | ------ |
 | OH_MD_KEY_WIDTH                                                              | AV_ERR_OK       | AV_ERR_INVALID_VAL      | AV_ERR_INVALID_VAL  |
 | OH_MD_KEY_HEIGHT                                                             | AV_ERR_OK       | AV_ERR_INVALID_VAL       | AV_ERR_INVALID_VAL     |
-| OH_MD_KEY_PIXEL_FORMAT 请参阅[OH_AVPixelFormat](_core.md#oh_avpixelformat)    | AV_ERR_OK       | AV_ERR_UNSUPPORT       | AV_ERR_OK      |
+| OH_MD_KEY_PIXEL_FORMAT 请参阅[OH_AVPixelFormat](_core.md#oh_avpixelformat-1)    | AV_ERR_OK       | AV_ERR_UNSUPPORT       | AV_ERR_OK      |
 | OH_MD_KEY_FRAME_RATE                                                         | AV_ERR_OK       | AV_ERR_INVALID_VAL       | AV_ERR_OK     |
 | OH_MD_KEY_ROTATION 请参阅[OH_MD_KEY_ROTATION](_codec_base.md#oh_md_key_rotation)| AV_ERR_OK       | AV_ERR_INVALID_VAL       | AV_ERR_OK      |
 
@@ -117,6 +117,8 @@ AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 AV_ERR_INVALID_STATE：本接口必须在OH_VideoDecoder_Prepare接口前调用，如果在其他状态时调用，则返回此错误码。
 
 AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION：不支持色彩空间转换功能。
+
+AV_ERR_UNSUPPORT：未支持的功能。
 
 
 ### OH_VideoDecoder_CreateByMime()
@@ -650,7 +652,6 @@ OH_AVErrCode OH_VideoDecoder_SetSurface (OH_AVCodec * codec, OHNativeWindow * wi
 设置输出surface以提供视频解码输出。
 
 在初始化阶段，必须在调用OH_VideoDecoder_Prepare接口之前调用此接口。在Executing状态可以直接调用该接口。
-
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoDecoder
 

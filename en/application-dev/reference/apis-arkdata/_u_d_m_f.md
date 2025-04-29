@@ -2678,7 +2678,7 @@ Destroys an [OH_UdmfGetDataParams](#oh_udmfgetdataparams) instance.
 
 | Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdmfGetDataParams] (#oh_udmfgetdataparams) instance to destroy.|
+| pThis | Pointer to the [OH_UdmfGetDataParams](#oh_udmfgetdataparams) instance to destroy.|
 
 **See**
 

@@ -4,9 +4,9 @@
 
 ArkTS共享容器（[@arkts.collections (ArkTS容器集)](../reference/apis-arkts/js-apis-arkts-collections.md)）是一种在并发任务间共享传输的容器类，可以用于并发场景下的高性能数据传递。功能与Ecmascript262规范定义的容器类似，但仍然有部分差异，具体可见[共享容器与原生API方法的行为差异对比](#共享容器与原生api方法的行为差异对比)。
 
-ArkTS共享容器在多个并发任务间传递时，其默认行为是引用传递，支持多个并发任务可以操作同一个容器实例。另外，也支持拷贝传递，即每个并发任务持有一个ArkTS容器实例。
+ArkTS共享容器在多个并发任务间传递时，默认采用引用传递，允许多个并发任务操作同一个容器实例。此外，还支持拷贝传递，即每个并发任务拥有一个独立的ArkTS容器实例。
 
-ArkTS共享容器并不是线程安全的，内部使用了fail-fast（快速失败）机制，即当检测多个并发实例同时对容器进行结构性改变时，会触发异常。因此，在容器内修改属性的场景下，开发者需要使用ArkTS提供的[异步锁](arkts-async-lock-introduction.md)机制保证ArkTS容器的安全访问。
+ArkTS共享容器不是线程安全的，内部使用了fail-fast（快速失败）机制，即当检测到多个并发实例同时对容器进行结构性修改时，会触发异常。因此，在容器内修改属性的场景下，开发者需要使用ArkTS提供的[异步锁](arkts-async-lock-introduction.md)机制保证ArkTS容器的安全访问。
 
 ArkTS共享容器包含如下几种：[Array](../reference/apis-arkts/js-apis-arkts-collections.md#collectionsarray)、[Map](../reference/apis-arkts/js-apis-arkts-collections.md#collectionsmap)、[Set](../reference/apis-arkts/js-apis-arkts-collections.md#collectionsset)、[TypedArray](../reference/apis-arkts/js-apis-arkts-collections.md#collectionstypedarray)（Int8Array、Uint8Array、Int16Array、Uint16Array、Int32Array、Uint32Array、Uint8ClampedArray、Float32Array）、[ArrayBuffer](../reference/apis-arkts/js-apis-arkts-collections.md#collectionsarraybuffer)等，具体可见[@arkts.collections (ArkTS容器集)](../reference/apis-arkts/js-apis-arkts-collections.md)。
 
@@ -64,7 +64,9 @@ ArkTS提供了Sendable数据相关的共享容器集，接口行为与原生API�
 
 > **说明：**
 >
-> ArkTS共享容器的类型与Ecmascript262规范定义的原生容器的类型不一致，因此采用原生容器Array的isArray()方法判断collections.Array实例对象会返回false。
+> ArkTS共享容器的类型与Ecmascript262规范定义的原生容器的类型不同，因此使用原生容器Array的isArray()方法判断collections.Array实例对象会返回false。
+>
+> ArkTS共享容器跨线程传递采用引用传递方式，与原生容器相比效率更高，如果开发者需要跨线程传输的数据量很大，建议使用ArkTS共享容器。
 
 ### Array
 
@@ -73,9 +75,9 @@ ArkTS提供了Sendable数据相关的共享容器集，接口行为与原生API�
 | 原生API方法 | ArkTS容器集方法 | 是否有行为差异 | 在ArkTS容器中的差异表现 |
 | -------- | -------- | -------- | -------- |
 | length: number | readonly length: number | 是 | 为了防止undefined扩散，不允许设置length。 |
-| new(arrayLength ?: number): any[] | static create(arrayLength: number, initialValue: T): Array | 是 | 为了防止undefined扩散，构造函数中必须提供一个初始值的构造函数。 |
+| new(arrayLength ?: number): any[] | static create(arrayLength: number, initialValue: T): Array | 是 | 为了防止undefined扩散，构造函数中必须提供一个初始值。 |
 | new &lt;T&gt;(arrayLength: number): T[] | constructor() | 否 | / |
-| new &lt;T&gt;(...items: T[]): T[] | constructor(first: T, ...left: T[]) | 是 | 为了防止undefined扩散，构造函数中必须提供一个初始值的构造函数，继承场景下，无法调用该函数进行对象构造。 |
+| new &lt;T&gt;(...items: T[]): T[] | constructor(first: T, ...left: T[]) | 是 | 为了防止undefined扩散，构造函数中必须提供一个初始值，继承场景下，无法调用该函数进行对象构造。 |
 | from&lt;T&gt;(arrayLike: ArrayLike&lt;T&gt;): T[] | static from&lt;T&gt;(arrayLike: ArrayLike&lt;T&gt;): Array&lt;T&gt; | 否 | / |
 | pop(): T \| undefined | pop(): T \| undefined | 是 | 不允许在遍历、访问过程中进行元素的增、删、改操作，否则会抛出异常。 |
 | push(...items: T[]): number | push(...items: T[]): number | 是 | 不允许在遍历、访问过程中进行元素的增、删、改操作，否则会抛出异常。 |
@@ -181,4 +183,4 @@ ArkTS提供了Sendable数据相关的共享容器集，接口行为与原生API�
 | entries(): IterableIterator&lt;[T, T]&gt; | entries(): IterableIterator&lt;[T, T]&gt; | 否 | / |
 | keys(): IterableIterator&lt;T&gt; | keys(): IterableIterator&lt;T&gt; | 否 | / |
 | values(): IterableIterator&lt;T&gt; | values(): IterableIterator&lt;T&gt; | 是 | Sendable类和接口中不允许使用计算属性名称(arkts-sendable-compated-prop-name)。 |
-| new &lt;T = any&gt;(values?: readonly T[] \| null): Set&lt;T&gt; | constructor(values?: readonly T[] \| null) | 是 | 构造时传入数据不能是非Sendable数据，否则编译会报错。 |
+| new &lt;T = any&gt;(values?: readonly T[] \| null): Set&lt;T&gt; | constructor(values?: readonly T[] \| null) | 是 | 构造时传入的数据必须是Sendable类型，否则编译会报错。 |

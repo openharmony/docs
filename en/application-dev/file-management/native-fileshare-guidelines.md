@@ -2,7 +2,7 @@
 
 ## When to Use
 
-If an application accesses a file by using a Picker, the permission for accessing the file will be automatically revoked after the application exits or the device restarts. To retain the permission for accessing the file, you need to [persistent the authorization](file-persistPermission.md#when-to-use). You can use the **FileShare** module to persist permissions on files or folders based on their URI, activate or deactivate persistent permissions on files or folders, and check the persistent permissions.
+If an application accesses a file by using Picker, the permission for accessing the file will be automatically invalidated after the application exits or the device restarts. To retain the permission for accessing the file, you need to [persist the permission](file-persistPermission.md#when-to-use). You can use the **FileShare** module to persist permissions on files or folders based on their URI, activate or deactivate persistent permissions on files or folders, and check the persistent permissions.
 
 ## Available APIs
 

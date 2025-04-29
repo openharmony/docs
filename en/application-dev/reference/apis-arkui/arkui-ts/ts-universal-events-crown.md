@@ -3,7 +3,7 @@ A crown event is an event triggered when the crown of a wearable device is rotat
 
 >  **NOTE**
 >
->  - This event is supported since API version 16. Updates will be marked with a superscript to indicate their earliest API version.
+>  - This event is supported since API version 18. Updates will be marked with a superscript to indicate their earliest API version.
 >
 >  - Manual rotation of the crown has default interaction logic. For example, rotating the crown causes the scrollbar to scroll in the direction of the rotation.
 >
@@ -19,7 +19,7 @@ onDigitalCrown(handler: Optional&lt;Callback&lt;CrownEvent&gt;&gt;): T
 
 Called when the crown is rotated while the component has focus.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -39,7 +39,7 @@ Called when the crown is rotated while the component has focus.
 
 Defines a data structure for the crown event received by a component. It includes timestamp, angular velocity, rotation angle, and crown action.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -48,7 +48,7 @@ Defines a data structure for the crown event received by a component. It include
 | timestamp	        | number	 | Timestamp.                                 |
 | angularVelocity	| number	 | Angular velocity in degrees per second (°/s).                  |
 | degree	        | number 	 | Relative rotation angle.<br>Unit: degrees<br>Value range: [-360, 360]    |
-| action	        | [CrownAction](ts-appendix-enums.md#crownaction16)   | Crown action. |
+| action	        | [CrownAction](ts-appendix-enums.md#crownaction18)   | Crown action. |
 | stopPropagation	| () => void     | Stops event propagation.                        |
 
 ## Example

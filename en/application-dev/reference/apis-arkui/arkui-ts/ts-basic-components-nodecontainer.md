@@ -10,6 +10,8 @@ The **NodeContainer** component is a basic component that accepts an instance of
 > [Proxy nodes](../js-apis-arkui-frameNode.md#ismodifiable12) of built-in system components obtained through querying cannot be attached to this component.
 >
 > This component does not work with the [attribute modifier](./ts-universal-attributes-attribute-modifier.md).
+>
+> During the construction of the node tree under this component, the UI instance UIContext](../js-apis-arkui-UIContext.md) is used. Switching between different UI instances might cause issues due to instance mismatches. As a result, this component currently does not support reusing nodes across multiple instances.
 ## Child Components
 
 Not supported
@@ -18,7 +20,7 @@ Not supported
 
 ### NodeContainer
 
-NodeContainer(controller: import('../api/@ohos.arkui.node').NodeController)
+NodeContainer(controller: NodeController)
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -31,11 +33,11 @@ NodeContainer(controller: import('../api/@ohos.arkui.node').NodeController)
 | controller | [NodeController](../js-apis-arkui-nodeController.md) | Yes  | **NodeController** instance used to control the upper and lower tree nodes in the **NodeContainer**. It represents the lifecycle of the **NodeContainer**.|
 ## Attributes
 
-The [universal attributes](ts-universal-attributes-size.md) are supported.
+The [universal attributes](ts-component-general-attributes.md) are supported.
 
 ## Events
 
-The [universal events](ts-universal-events-click.md) are supported.
+The [universal events](ts-component-general-events.md) are supported.
 
 ## Example
 

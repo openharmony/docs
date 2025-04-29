@@ -9,6 +9,7 @@
 
 **相关模块：**[Input](input.md)
 
+**所在头文件：**[oh_input_manager.h](oh__input__manager_8h.md)
 
 ## 汇总
 
@@ -30,6 +31,7 @@
 Input_DeviceAddedCallback Input_DeviceListener::deviceAddedCallback
 ```
 **描述**
+
 定义一个回调函数用于回调设备热插事件。
 
 
@@ -39,4 +41,5 @@ Input_DeviceAddedCallback Input_DeviceListener::deviceAddedCallback
 Input_DeviceRemovedCallback Input_DeviceListener::deviceRemovedCallback
 ```
 **描述**
+
 定义一个回调函数用于回调设备热拔事件。

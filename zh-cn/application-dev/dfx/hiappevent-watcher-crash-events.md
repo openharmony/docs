@@ -1,6 +1,6 @@
 # 崩溃事件介绍
 
-HiAppEvent提供接口用于订阅系统崩溃事件。
+HiAppEvent提供系统崩溃事件的订阅接口。
 
 - [订阅崩溃事件（ArkTS）](hiappevent-watcher-crash-events-arkts.md)
 - [订阅崩溃事件（C/C++）](hiappevent-watcher-crash-events-ndk.md)
@@ -13,7 +13,7 @@ HiAppEvent提供接口用于订阅系统崩溃事件。
 | ------- | ------ | ------------------------- |
 | time     | number | 事件触发时间，单位为毫秒。 |
 | crash_type | string | 崩溃类型。支持JsError和NativeCrash两种崩溃类型。 |
-| foreground | boolean | 应用是否处于前台状态。 |
+| foreground | boolean | 应用是否处于前台状态。true表示处于前台状态；false表示处于后台状态。 |
 | bundle_version | string | 应用版本。 |
 | bundle_name | string | 应用名称。 |
 | pid | number | 应用的进程id。|
@@ -51,7 +51,7 @@ HiAppEvent提供接口用于订阅系统崩溃事件。
 | code | number | 信号值二级分类（siginfo_t中的si_code属性）。 |
 | address | string | 信号错误地址（siginfo_t中的si_address属性）。 |
 
-[信号值&信号值二级分类详解](cppcrash-guidelines.md)
+[信号值及信号值二级分类详解](cppcrash-guidelines.md)
 
 **thread属性：**
 
@@ -61,7 +61,7 @@ HiAppEvent提供接口用于订阅系统崩溃事件。
 | tid | number | 线程id。 |
 | frames | object[] | 线程调用栈，详见frame属性。 |
 
-**frame属性(Native帧)：**
+**frame属性（Native帧）：**
 
 | 名称    | 类型   | 说明                       |
 | ------- | ------ | ------------------------- |
@@ -71,12 +71,12 @@ HiAppEvent提供接口用于订阅系统崩溃事件。
 | pc | string | pc寄存器地址。 |
 | offset | number | 函数偏移量。 |
 
-**frame属性(JS帧)：**
+**frame属性（JS帧）：**
 
 | 名称    | 类型   | 说明                       |
 | ------- | ------ | ------------------------- |
 | file | string | 文件名。 |
 | packageName | string | 模块的包名。 |
 | symbol | string | 函数名称。 |
-| column | number | 异常所在行。 |
-| line | number | 异常所在列。 |
+| line | number | 异常所在代码行号。 |
+| column | number | 异常所在代码列号。 |

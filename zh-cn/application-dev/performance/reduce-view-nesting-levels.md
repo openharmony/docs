@@ -217,7 +217,7 @@ struct MyComponent {
           .height('40vp')  
           .width('40vp')  
           .textAlign(TextAlign.Center)  
-          .clip(new Circle({ width: '40vp', height: '40vp' }))  
+          .clipShape(new Circle({ width: '40vp', height: '40vp' }))  
           .backgroundColor(Color.Green)  
           .alignRules({  
             center: { anchor: "__container__", align: VerticalAlign.Center },  

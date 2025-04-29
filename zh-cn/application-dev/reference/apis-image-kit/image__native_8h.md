@@ -9,6 +9,8 @@
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
+**引用文件**：&lt;multimedia/image_framework/image/image_native.h&gt;
+
 **起始版本：** 12
 
 **相关模块：**[Image_NativeModule](_image___native_module.md)

@@ -119,8 +119,8 @@ int32_t DacWrite(DevHandle handle, uint32_t channel, uint32_t val);
 | channel | uint32_t类型，DAC设备通道号。 |
 | val | uint32_t类型，设置DA的值。 |
 | **返回值** | **返回值描述** |
-| HDF_SUCCESS | 写入DA目标值成功 |
-| 负数 | 写入DA目标值失败 |
+| HDF_SUCCESS | 写入DA目标值成功。 |
+| 负数 | 写入DA目标值失败。 |
 
 ```c
 // 通过DAC_CHANNEL_NUM设备通道写入目标val值
@@ -147,7 +147,7 @@ void DacClose(DevHandle handle);
 | --------- | ------------ |
 | handle | DAC设备句柄。 |
 | **返回值** | **返回值描述** |
-| 无 | 无 |
+| 无 | 无。 |
 
 关闭DAC设备示例：
 

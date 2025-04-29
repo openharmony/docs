@@ -680,7 +680,7 @@ set clipToFrame(useClip: boolean)
 
 | 参数名  | 类型    | 必填 | 说明               |
 | ------- | ------- | ---- | ------------------ |
-| useClip | boolean | 是   | 设置是否进行剪裁。 |
+| useClip | boolean | 是   | 设置是否进行剪裁。<br/>true表示对当前RenderNode剪裁，false表示不对当前RenderNode剪裁。 |
 
 get clipToFrame(): boolean
 
@@ -694,7 +694,7 @@ get clipToFrame(): boolean
 
 | 类型    | 说明                                                |
 | ------- | --------------------------------------------------- |
-| boolean | 获取当前RenderNode是否需要进行剪裁，默认值为true。 |
+| boolean | 获取当前RenderNode是否需要进行剪裁，默认值为true。<br/>true表示对当前RenderNode剪裁，false表示不对当前RenderNode剪裁。 |
 
 **示例：**
 ```ts
@@ -753,7 +753,7 @@ set opacity(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| value  | number | 是   | 将要设置的不透明度，数据范围为[0, 1]。 |
+| value  | number | 是   | 将要设置的不透明度，数据范围为[0, 1]，值越大透明度越低。 |
 
 get opacity(): number
 
@@ -767,7 +767,7 @@ get opacity(): number
 
 | 类型   | 说明                                      |
 | ------ | ----------------------------------------- |
-| number | 获取当前RenderNode的不透明度，默认值为1。 |
+| number | 获取当前RenderNode的不透明度，默认值为1，不透明。 |
 
 **示例：**
 ```ts
@@ -1378,7 +1378,7 @@ set shadowColor(color: number)
 
 | 参数名 | 类型   | 必填 | 说明                                       |
 | ------ | ------ | ---- | ------------------------------------------ |
-| color  | number | 是   | 将要设置的RenderNode的阴影颜色，ARGB格式。 |
+| color  | number | 是   | 将要设置的RenderNode的阴影颜色，ARGB格式。<br/>取值范围是符合ARGB格式的颜色。 |
 
 get shadowColor(): number
 
@@ -1587,7 +1587,7 @@ set shadowAlpha(alpha: number)
 
 | 参数名 | 类型   | 必填 | 说明                                      |
 | ------ | ------ | ---- | ----------------------------------------- |
-| alpha  | number | 是   | 将要设置的RenderNode的阴影颜色的Alpha值。 |
+| alpha  | number | 是   | 将要设置的RenderNode的阴影颜色的Alpha值。<br/> 取值范围是alpha值。 |
 
 get shadowAlpha(): number
 
@@ -1659,7 +1659,7 @@ set shadowElevation(elevation: number)
 
 | 参数名    | 类型   | 必填 | 说明                             |
 | --------- | ------ | ---- | -------------------------------- |
-| elevation | number | 是   | 将要设置的RenderNode的光照高度。 |
+| elevation | number | 是   | 将要设置的RenderNode的光照高度。<br/> 取值范围：[0, +∞) |
 
 get shadowElevation(): number
 
@@ -1673,7 +1673,7 @@ get shadowElevation(): number
 
 | 类型   | 说明                                  |
 | ------ | ------------------------------------- |
-| number | 当前RenderNode的阴影高度，默认值为0。 |
+| number | 当前RenderNode的阴影高度，默认值为0。 <br/> 取值范围：[0, +∞) |
 
 **示例：**
 
@@ -1732,7 +1732,7 @@ set shadowRadius(radius: number)
 
 | 参数名 | 类型   | 必填 | 说明                                 |
 | ------ | ------ | ---- | ------------------------------------ |
-| radius | number | 是   | 将要设置的RenderNode的阴影模糊半径。 |
+| radius | number | 是   | 将要设置的RenderNode的阴影模糊半径。<br/> 取值范围：[0, +∞) |
 
 get shadowRadius(): number
 
@@ -1746,7 +1746,7 @@ get shadowRadius(): number
 
 | 类型   | 说明                                      |
 | ------ | ----------------------------------------- |
-| number | 当前RenderNode的阴影模糊半径，默认值为0。 |
+| number | 当前RenderNode的阴影模糊半径，默认值为0。<br/> 取值范围：[0, +∞) |
 
 **示例：**
 
@@ -1823,9 +1823,16 @@ import bridge from "libentry.so" // 该 so 由开发者通过 NAPI 编写并生�
 import { RenderNode, FrameNode, NodeController, DrawContext } from '@kit.ArkUI';
 
 class MyRenderNode extends RenderNode {
+  uiContext: UIContext;
+
+  constructor(uiContext: UIContext) {
+    super();
+    this.uiContext = uiContext;
+  }
+
   draw(context: DrawContext) {
     // 需要将 context 中的宽度和高度从vp转换为px
-    bridge.nativeOnDraw(0, context, vp2px(context.size.height), vp2px(context.size.width));
+    bridge.nativeOnDraw(0, context, this.uiContext.vp2px(context.size.height), this.uiContext.vp2px(context.size.width));
   }
 }
 
@@ -1837,7 +1844,7 @@ class MyNodeController extends NodeController {
 
     const rootRenderNode = this.rootNode.getRenderNode();
     if (rootRenderNode !== null) {
-      const renderNode = new MyRenderNode();
+      const renderNode = new MyRenderNode(uiContext);
       renderNode.size = { width: 100, height: 100 }
       rootRenderNode.appendChild(renderNode);
     }
@@ -1983,17 +1990,22 @@ import bridge from "libentry.so" // 该 so 由开发者通过 NAPI 编写并生�
 import { RenderNode, FrameNode, NodeController, DrawContext } from '@kit.ArkUI';
 
 class MyRenderNode extends RenderNode {
+  uiContext: UIContext;
+
+  constructor(uiContext: UIContext) {
+    super();
+    this.uiContext = uiContext;
+  }
+
   draw(context: DrawContext) {
     // 需要将 context 中的宽度和高度从vp转换为px
-    bridge.nativeOnDraw(0, context, vp2px(context.size.height), vp2px(context.size.width));
+    bridge.nativeOnDraw(0, context, this.uiContext.vp2px(context.size.height), this.uiContext.vp2px(context.size.width));
   }
 }
 
-const newNode = new MyRenderNode();
-newNode.size = { width: 100, height: 100 };
-
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
+  newNode: MyRenderNode | null = null;
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(uiContext);
@@ -2001,7 +2013,9 @@ class MyNodeController extends NodeController {
     if (renderNode === null) {
       return this.rootNode;
     }
-    renderNode.appendChild(newNode);
+    this.newNode = new MyRenderNode(uiContext);
+    this.newNode.size = { width: 100, height: 100 };
+    renderNode.appendChild(this.newNode);
     return this.rootNode;
   }
 }
@@ -2009,14 +2023,16 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+
   build() {
     Column() {
       Column() {
-        NodeContainer(new MyNodeController())
+        NodeContainer(this.myNodeController)
           .width('100%')
         Button('Invalidate')
           .onClick(() => {
-            newNode.invalidate()
+            this.myNodeController.newNode?.invalidate()
           })
       }
       .width('100%')
@@ -2479,8 +2495,8 @@ struct Index {
             rect: {
               left: 0,
               top: 0,
-              right: vp2px(150),
-              bottom: vp2px(150)
+              right: this.getUIContext().vp2px(150),
+              bottom: this.getUIContext().vp2px(150)
             },
             corners: {
               topLeft: { x: 32, y: 32 },
@@ -2501,9 +2517,9 @@ struct Index {
         .onClick(() => {
           renderNode.shapeClip.setOvalShape({
             left: 0,
-            right: vp2px(150),
+            right: this.getUIContext().vp2px(150),
             top: 0,
-            bottom: vp2px(100)
+            bottom: this.getUIContext().vp2px(100)
           });
           renderNode.shapeClip = renderNode.shapeClip;
         })
@@ -2595,7 +2611,7 @@ set markNodeGroup(isNodeGroup: boolean)
 
 | 参数名    | 类型                                               | 必填 | 说明               |
 | --------- | -------------------------------------------------- | ---- | ------------------ |
-| isNodeGroup | boolean | 是   | 设置是否优先绘制节点及其子节点。 |
+| isNodeGroup | boolean | 是   | 设置是否优先绘制节点及其子节点。<br/>true表示优先绘制节点及其子节点，false表示不是优先绘制节点及其子节点。 |
 
 get markNodeGroup(): boolean
 
@@ -2607,7 +2623,7 @@ get markNodeGroup(): boolean
 
 | 类型    | 说明                                        |
 | ------- | ------------------------------------------- |
-| boolean | 当前节点是否标记了优先绘制，默认值为false。 |
+| boolean | 当前节点是否标记了优先绘制。<br/>true表示当前节点标记了优先绘制，false表示当前节点没有标记优先绘制。<br/>默认值：false |
 
 **示例：**
 

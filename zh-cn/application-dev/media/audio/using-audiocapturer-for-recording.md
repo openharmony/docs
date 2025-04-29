@@ -52,10 +52,14 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
    ```
 
 2. 调用on('readData')方法，订阅监听音频数据读入回调。
+    > **注意：**
+    > - **线程管理**：不建议使用多线程来处理数据读取。若需使用多线程读取数据，需要做好线程管理。
+    > - **线程耗时**：`readData` 方法所在的线程中，不建议执行耗时任务。否则可能会导致数据处理线程响应回调延迟，进而引发录音数据缺失、卡顿、杂音等音频效果问题。 
 
    ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
     import { fileIo as fs } from '@kit.CoreFileKit';
+    import { common } from '@kit.AbilityKit';
 
     class Options {
       offset?: number;
@@ -63,7 +67,9 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
     }
 
     let bufferSize: number = 0;
-    let path = getContext().cacheDir;
+    // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    let path = context.cacheDir;
     let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
     let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
     let readDataCallback = (buffer: ArrayBuffer) => {
@@ -128,6 +134,7 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 const TAG = 'AudioCapturerDemo';
 
@@ -152,7 +159,9 @@ let audioCapturerOptions: audio.AudioCapturerOptions = {
   streamInfo: audioStreamInfo,
   capturerInfo: audioCapturerInfo
 };
-let path = getContext().cacheDir;
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let path = context.cacheDir;
 let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
 let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
 let readDataCallback = (buffer: ArrayBuffer) => {

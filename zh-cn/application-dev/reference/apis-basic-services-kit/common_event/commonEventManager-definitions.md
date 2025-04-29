@@ -382,8 +382,6 @@
 
 **订阅者所需权限：** 无
 
-**系统能力：** SystemCapability.Notification.CommonEvent
-
 **取值：** "usual.event.USER_INFO_UPDATED"
 
 
@@ -396,8 +394,6 @@
 **系统能力：** SystemCapability.Notification.CommonEvent
 
 **订阅者所需权限：** 无
-
-**系统能力：** SystemCapability.Notification.CommonEvent
 
 **取值：** "usual.event.USER_UNLOCKED"
 
@@ -899,12 +895,10 @@ Wi-Fi状态变化。
 
 表示MPLink（增强Wi-Fi功能）状态已更改。
 
-当MPLink（增强Wi-Fi功能）状态发生变化，将会触发事件通知服务发布该系统公共事件。
+当MPLink（增强Wi-Fi功能）状态发生变化，将会触发事件通知服务发布该系统公共事件（暂不支持）。
 
 
 **系统能力：** SystemCapability.Notification.CommonEvent
-
-**订阅方需要的权限：** ohos.permission.MPLINK_CHANGE_STATE
 
 **取值：** "usual.event.wifi.mplink.STATE_CHANGE"
 
@@ -2032,7 +2026,7 @@ Store Kit面向应用发布如下系统公共事件。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅者所需权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS该权限仅系统应用可申请）
+**订阅者所需权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS（该权限仅系统应用可申请）
 
 **取值：** "usual.event.data.ACCOUNT_DELETED"
 

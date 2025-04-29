@@ -1,4 +1,4 @@
-# Error Codes of the Print Service
+# Print Service Error Codes
 
 > **NOTE**
 >
@@ -12,7 +12,7 @@ Generic failure of print.
 
 **Possible Causes**
 
-The possible causes are as follows:
+
 1. Failed to create a task object in the **print** module.
 
 **Solution**
@@ -27,7 +27,7 @@ RPC failure.
 
 **Possible Causes**
 
-The possible causes are as follows:
+
 1. Failed to obtain the SA service object.
 2. Failed to conduct inter-process communication.
 
@@ -43,7 +43,7 @@ Failure of print service.
 
 **Possible Causes**
 
-The possible causes are as follows:
+
 1. Failed to start the print service.
 2. Failed to start the cups service.
 
@@ -59,7 +59,7 @@ Invalid print extension.
 
 **Possible Causes**
 
-The possible causes are as follows:
+
 1. Cannot find the print extension.
 2. An error occurred when printing extended parameters.
 3. An error occurred when printing the extended status.
@@ -76,7 +76,7 @@ Invalid printer.
 
 **Possible Causes**
 
-The possible causes are as follows:
+
 1. Incorrect printer ID.
 2. The cups failed to query the printer list.
 3. The cups failed to query the printer information.
@@ -93,7 +93,7 @@ Invalid print job.
 
 **Possible Causes**
 
-The possible causes are as follows:
+
 1. Incorrect print job ID.
 2. Incorrect print job status.
 3. Cannot find the print job.

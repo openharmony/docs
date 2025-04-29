@@ -4,9 +4,9 @@
 
 > **说明：**
 >
-> 从API Version 13 开始，该组件不再维护，推荐使用组件[Navigation](ts-basic-components-navigation.md)进行页面路由。
+> 从API version 13 开始，该组件不再维护，推荐使用组件[Navigation](ts-basic-components-navigation.md)进行页面路由。
 >
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -148,13 +148,11 @@ class TextObject {
 
 ```ts
 // Detail.ets
-import { router } from '@kit.ArkUI'
-
 @Entry
 @Component
 struct DetailExample {
   // 接收Navigator.ets的传参
-  params: Record<string, NameObject> = router.getParams() as Record<string, NameObject>
+  params: Record<string, NameObject> = this.getUIContext().getRouter().getParams() as Record<string, NameObject>
   @State name: NameObject = this.params.text
 
   build() {

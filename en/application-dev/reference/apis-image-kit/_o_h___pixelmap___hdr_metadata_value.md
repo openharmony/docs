@@ -9,6 +9,8 @@ The OH_Pixelmap_HdrMetadataValue struct describes the HDR metadata values used b
 
 **Related module**: [Image_NativeModule](_image___native_module.md)
 
+**Header file**: [pixelmap_native.h](pixelmap__native_8h.md)
+
 
 ## Summary
 

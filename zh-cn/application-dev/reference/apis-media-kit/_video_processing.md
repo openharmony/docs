@@ -97,7 +97,7 @@
 ### OH_AVFormat
 
 ```
-typedef struct OH_AVFormatOH_AVFormat
+typedef struct OH_AVFormat OH_AVFormat
 ```
 
 **描述**
@@ -110,7 +110,7 @@ typedef struct OH_AVFormatOH_AVFormat
 ### OH_VideoProcessing
 
 ```
-typedef struct OH_VideoProcessingOH_VideoProcessing
+typedef struct OH_VideoProcessing OH_VideoProcessing
 ```
 
 **描述**
@@ -215,7 +215,7 @@ typedef struct NativeWindow OHNativeWindow
 ### VideoDetailEnhancer_QualityLevel
 
 ```
-typedef enum VideoDetailEnhancer_QualityLevelVideoDetailEnhancer_QualityLevel
+typedef enum VideoDetailEnhancer_QualityLevel VideoDetailEnhancer_QualityLevel
 ```
 
 **描述**
@@ -232,7 +232,7 @@ typedef enum VideoDetailEnhancer_QualityLevelVideoDetailEnhancer_QualityLevel
 ### VideoProcessing_Callback
 
 ```
-typedef struct VideoProcessing_CallbackVideoProcessing_Callback
+typedef struct VideoProcessing_Callback VideoProcessing_Callback
 ```
 
 **描述**
@@ -247,7 +247,7 @@ typedef struct VideoProcessing_CallbackVideoProcessing_Callback
 ### VideoProcessing_ColorSpaceInfo
 
 ```
-typedef struct VideoProcessing_ColorSpaceInfoVideoProcessing_ColorSpaceInfo
+typedef struct VideoProcessing_ColorSpaceInfo VideoProcessing_ColorSpaceInfo
 ```
 
 **描述**
@@ -262,7 +262,7 @@ typedef struct VideoProcessing_ColorSpaceInfoVideoProcessing_ColorSpaceInfo
 ### VideoProcessing_ErrorCode
 
 ```
-typedef enum VideoProcessing_ErrorCodeVideoProcessing_ErrorCode
+typedef enum VideoProcessing_ErrorCode VideoProcessing_ErrorCode
 ```
 
 **描述**
@@ -275,7 +275,7 @@ typedef enum VideoProcessing_ErrorCodeVideoProcessing_ErrorCode
 ### VideoProcessing_State
 
 ```
-typedef enum VideoProcessing_StateVideoProcessing_State
+typedef enum VideoProcessing_State VideoProcessing_State
 ```
 
 **描述**

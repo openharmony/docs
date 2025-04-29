@@ -780,7 +780,7 @@ for (let i = 0; i < device.configs[0].interfaces.length; i++) {
 
 ## usbManager.usbSubmitTransfer<sup>18+</sup>
 
-usbSubmitTransfer(transfer: USBDataTransferParams): void
+usbSubmitTransfer(transfer: UsbDataTransferParams): void
 
 提交异步传输请求。
 
@@ -806,7 +806,6 @@ usbSubmitTransfer(transfer: USBDataTransferParams): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401 | Parameter error. Possible causes:Mandatory parameters are left unspecified; Incorrect parameter types. |
 | 801 | Capability not supported. |
 | 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first. |
 | 14400007 | Resource busy. |
@@ -820,6 +819,7 @@ usbSubmitTransfer(transfer: USBDataTransferParams): void
 >
 > 以下示例代码需要放入具体的方法中执行，只是调用usbSubmitTransfer接口的必要流程，实际调用时，设备开发者需要遵循设备相关协议进行调用，确保数据的正确传输和设备的兼容性。
 
+<!--code_no_check-->
 ```ts
 //usbManager.getDevices 接口返回数据集合，取其中一个设备对象，并获取权限。
 //把获取到的设备对象作为参数传入usbManager.connectDevice;当usbManager.connectDevice接口成功返回之后；
@@ -865,7 +865,7 @@ try {
 
 ## usbManager.usbCancelTransfer<sup>18+</sup>
 
-usbCancelTransfer(transfer: USBDataTransferParams): void
+usbCancelTransfer(transfer: UsbDataTransferParams): void
 
 取消异步传输请求。
 
@@ -889,7 +889,6 @@ usbCancelTransfer(transfer: USBDataTransferParams): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401 | Parameter error. Possible causes:Mandatory parameters are left unspecified; Incorrect parameter types. |
 | 801 | Capability not supported. |
 | 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first. |
 | 14400008 | No such device (it may have been disconnected). |
@@ -908,6 +907,7 @@ usbCancelTransfer(transfer: USBDataTransferParams): void
 >
 > 以下示例代码需要放入具体的方法中执行，只是调用usbCancelTransfer接口的必要流程，实际调用时，设备开发者需要遵循设备相关协议进行调用，确保数据的正确传输和设备的兼容性。
 
+<!--code_no_check-->
 ```ts
 //usbManager.getDevices 接口返回数据集合，取其中一个设备对象，并获取权限。
 //把获取到的设备对象作为参数传入usbManager.connectDevice;当usbManager.connectDevice接口成功返回之后；
@@ -1173,7 +1173,7 @@ try {
 
 openAccessory(accessory: USBAccessory): USBAccessoryHandle
 
-获取配件句柄并打开配件文件描述符。
+获取配件句柄并打开配件文件描述符。之后可以通过CoreFileKit提供的read/write接口和配件进行通信。
 
 需要调用[usbManager.getAccessoryList](#usbmanagergetaccessorylist14)获取配件列表，得到[USBAccessory](#usbaccessory14)作为参数。
 
@@ -1209,11 +1209,15 @@ openAccessory(accessory: USBAccessory): USBAccessoryHandle
 
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
   let flag = usbManager.requestAccessoryRight(accList[0])
   let handle = usbManager.openAccessory(accList[0])
   hilog.info(0, 'testTag ui', `openAccessory success`)
+  let arrayBuffer = new ArrayBuffer(4096);
+  let readLength = fs.readSync(handle.accessoryFd, arrayBuffer, {offset: 0, length: 4096});
+  hilog.info(0, 'testTag ui', 'readSync ret: ' + readLength.toString(10));
 } catch (error) {
   hilog.info(0, 'testTag ui', `openAccessory error ${error.code}, message is ${error.message}`)
 }
@@ -1451,7 +1455,7 @@ USB配件句柄。
 | timeout | number | 是 | 超时时间，单位为毫秒。 |
 | length | number |是 | 数据缓冲区的长度，必须是非负数（期望长度），单位为字节。 |
 | callback | AsyncCallback<[SubmitTransferCallback](#submittransfercallback18)> |是 | 传输完成时的回调信息。|
-| userData | Uint8Array | 否 | 用户上下文数据。 |
+| userData | Uint8Array | 是 | 用户上下文数据。 |
 | buffer | Uint8Array | 是 | 用于存储读或者写请求时的数据。 |
 | isoPacketCount | number | 是 | 实时传输时数据包的数量，仅用于具有实时传输端点的I/O。必须是非负数，单位为个数。 |
 
@@ -1476,9 +1480,9 @@ Usb传输类型。
 
 | 名称                         | 值   | 说明   |
 | ---------------------------- | ---- | ------ |
-| TRANSFER_TYPE_ISOCHRONOUS | 1    | 实时传输。 |
-| TRANSFER_TYPE_BULK  | 2    | 批量传输。 |
-| TRANSFER_TYPE_INTERRUPT     | 3    | 中断传输。|
+| TRANSFER_TYPE_ISOCHRONOUS | 0x1    | 实时传输。 |
+| TRANSFER_TYPE_BULK  | 0x2    | 批量传输。 |
+| TRANSFER_TYPE_INTERRUPT     | 0x3    | 中断传输。|
 
 ## SubmitTransferCallback<sup>18+</sup>
 
@@ -1486,15 +1490,15 @@ Usb异步传输回调。
 
 **系统能力：** SystemCapability.USB.USBManager
 
-| 名称         | 类型 | 说明    |
-| ---------- | ------ | ----- |
-| actualLength | number | 读写操作的实际长度值，单位为字节。 |
-| status | [UsbTransferStatus](#usbtransferstatus18) | 读写操作完成的状态。 |
-| isoPacketDescs | Array<Readonly<[UsbIsoPacketDescriptor](#usbisopacketdescriptor18)>> | 实时传输的分包信息。 |
+| 名称        | 类型 | 必填   | 说明    |
+| ---------- | ------ | ----- | ------ |
+| actualLength | number |  是 |读写操作的实际长度值，单位为字节。 |
+| status | [UsbTransferStatus](#usbtransferstatus18) | 是 |读写操作完成的状态。 |
+| isoPacketDescs | Array<Readonly<[UsbIsoPacketDescriptor](#usbisopacketdescriptor18)>> | 是 |实时传输的分包信息。 |
 
 ## UsbTransferStatus<sup>18+</sup>
 
-libusb实际处理完成后通过回调返回的状态码。
+数据处理完成后通过回调返回的状态码。
 
 **系统能力：** SystemCapability.USB.USBManager
 
@@ -1503,7 +1507,7 @@ libusb实际处理完成后通过回调返回的状态码。
 | TRANSFER_COMPLETED    | 0    | 传输完成。|
 | TRANSFER_ERROR | 1    | 传输失败。 |
 | TRANSFER_TIMED_OUT  | 2    | 传输超时。 |
-| TRANSFER_CANCELLED     | 3    |传输已被取消。 |
+| TRANSFER_CANCELED     | 3    |传输已被取消。 |
 | TRANSFER_STALL  | 4    | 检测到暂停（批量/中断端点）。|
 | TRANSFER_NO_DEVICE     | 5    | 设备已断开。|
 | TRANSFER_OVERFLOW     | 6    | 设备发送的数据比请求的多。|
@@ -1514,8 +1518,8 @@ libusb实际处理完成后通过回调返回的状态码。
 
 **系统能力：** SystemCapability.USB.USBManager
 
-| 名称         | 类型 | 说明    |
-| ---------- | ------ | ----- |
-| length | number | 读写操作的期望长度值，单位为字节。 |
-| actualLength | number| 读写操作的实际长度值，单位为字节。 |
-| status | [UsbTransferStatus](#usbtransferstatus18) | 实时传输分包的状态码。 |
+| 名称         | 类型 | 必填 | 说明    |
+| ---------- | ------ | ----- | ------ |
+| length | number | 是 |读写操作的期望长度值，单位为字节。 |
+| actualLength | number| 是 |读写操作的实际长度值，单位为字节。 |
+| status | [UsbTransferStatus](#usbtransferstatus18) | 是 |实时传输分包的状态码。 |

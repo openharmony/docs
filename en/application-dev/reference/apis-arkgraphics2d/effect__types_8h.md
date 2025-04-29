@@ -23,16 +23,15 @@ The **effect_types.h** file declares the data types of the image effect filter.
 
 | Name| Description| 
 | -------- | -------- |
-| struct  [OH_Filter](_o_h___filter.md) | Describes a filter used to generate a filter pixel map.| 
-| struct  [OH_Filter_ColorMatrix](_o_h___filter___color_matrix.md) | Describes a matrix used to create an effect filter.| 
+| struct&nbsp;&nbsp;[OH_Filter_ColorMatrix](_o_h___filter___color_matrix.md) | Describes a matrix used to create an effect filter.| 
 
 
 ### Types
 
 | Name| Description| 
 | -------- | -------- |
-| typedef struct [OH_Filter](_o_h___filter.md)  [pixelMap](effect_kit.md#pixelmap) | Defines a struct for a filter used to generate a filter pixel map.| 
-| typedef enum [EffectErrorCode](effect_kit.md#effecterrorcode)  [EffectErrorCode](effect_kit.md#effecterrorcode) | Defines an enum for the status codes that may be used by the effect filter.| 
+| typedef struct [OH_Filter](effect_kit.md#oh_filter) [OH_Filter](effect_kit.md#oh_filter) | Defines a struct for a filter used to generate a filter PixelMap.| 
+| typedef struct [OH_PixelmapNative](effect_kit.md#oh_pixelmapnative) [OH_PixelmapNative](effect_kit.md#oh_pixelmapnative) | Defines a struct for the PixelMap.| 
 
 
 ### Enums

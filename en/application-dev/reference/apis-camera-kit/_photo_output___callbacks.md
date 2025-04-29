@@ -11,6 +11,8 @@ For details, see [OH_PhotoOutput_RegisterCallback](_o_h___camera.md#oh_photooutp
 
 **Related module**: [OH_Camera](_o_h___camera.md)
 
+**Header file**: [photo_output.h](photo__output_8h.md)
+
 
 ## Summary
 

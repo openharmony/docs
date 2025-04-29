@@ -24,12 +24,14 @@ FoldSplitContainer({
   primary: Callback&lt;void&gt;,
   secondary: Callback&lt;void&gt;,
   extra?: Callback&lt;void&gt;,
-  expandedLayoutOptions?: ExpandedRegionLayoutOptions,
-  hoverModeLayoutOptions?: HoverModeRegionLayoutOptions,
-  foldedLayoutOptions?: FoldedRegionLayoutOptions,
+  expandedLayoutOptions: ExpandedRegionLayoutOptions,
+  hoverModeLayoutOptions: HoverModeRegionLayoutOptions,
+  foldedLayoutOptions: FoldedRegionLayoutOptions,
   animationOptions?: AnimateParam,
-  onHoverStatusChange?: onHoverStatusChangeHandler
+  onHoverStatusChange?: OnHoverStatusChangeHandler
 })
+
+Creates a **FoldSplitContainer** component to manage regions for two-panel and three-panel arrangements on a foldable device across various states, including the expanded state, the hover state, and the folded state.
 
 **Decorator**: \@Component
 
@@ -39,14 +41,14 @@ FoldSplitContainer({
 
 | Name| Type| Mandatory| Decorator| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| primary | ()=>void | No| @BuilderParam | Callback function for the primary region.|
-| secondary | ()=>void | No| @BuilderParam | Callback function for the secondary region.|
+| primary | ()=>void | Yes| @BuilderParam | Callback function for the primary region.|
+| secondary | ()=>void | Yes| @BuilderParam | Callback function for the secondary region.|
 | extra | ()=>void | No| @BuilderParam | Callback function for the extra region. If this parameter is not provided, there is no corresponding region.|
-| expandedLayoutOptions | [ExpandedRegionLayoutOptions](#expandedregionlayoutoptions) | No| @Prop | Layout information for the expanded state.|
-| hoverModeLayoutOptions | [HoverModeRegionLayoutOptions](#hovermoderegionlayoutoptions) | No| @Prop | Layout information for the hover state.|
-| foldedLayoutOptions | [FoldedRegionLayoutOptions](#foldedregionlayoutoptions) | No| @Prop | Layout information for the folded state.|
+| expandedLayoutOptions | [ExpandedRegionLayoutOptions](#expandedregionlayoutoptions) | Yes| @Prop | Layout information for the expanded state.|
+| hoverModeLayoutOptions | [HoverModeRegionLayoutOptions](#hovermoderegionlayoutoptions) | Yes| @Prop | Layout information for the hover state.|
+| foldedLayoutOptions | [FoldedRegionLayoutOptions](#foldedregionlayoutoptions) | Yes| @Prop | Layout information for the folded state.|
 | animationOptions | [AnimateParam](ts-explicit-animation.md#animateparam) \| null | No| @Prop | Animation settings. The value **null** indicates that the animation is disabled.|
-| onHoverStatusChange | [onHoverStatusChangeHandler](#onhoverstatuschangehandler) | No| - | Callback function triggered when the foldable device enters or exits the hover state.|
+| onHoverStatusChange | [OnHoverStatusChangeHandler](#onhoverstatuschangehandler) | No| - | Callback function triggered when the foldable device enters or exits the hover state.|
 
 ## ExpandedRegionLayoutOptions
 
@@ -84,17 +86,17 @@ Defines the layout information for the hover state.
 
 ## FoldedRegionLayoutOptions
 
+Defines the layout information for the folded state.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-Defines the layout information for the folded state.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | verticalSplitRatio | number | No| Height ratio between the primary and secondary regions. Default value: **PresetSplitRatio.LAYOUT_1V1**|
 
-## onHoverStatusChangeHandler
+## OnHoverStatusChangeHandler
 
 type OnHoverStatusChangeHandler = (status: HoverModeStatus) => void
 
@@ -112,7 +114,7 @@ Implements a handler for the **onHoverStatusChange** event.
 
 ## HoverModeStatus
 
-Defines the layout information for the folded state.
+Provides information about the device or application's folding, rotation, and window state.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -120,10 +122,10 @@ Defines the layout information for the folded state.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| foldStatus | [display.FoldStatus<sup>10+</sup>](../js-apis-display.md#foldstatus10) | Yes| Fold status of the device.|
+| foldStatus | [display.FoldStatus](../js-apis-display.md#foldstatus10) | Yes| Fold status of the device.|
 | isHoverMode | boolean | Yes| Whether the application is in the hover state.|
 | appRotation | number | Yes| Rotation angle of the application.|
-| windowStatusType | [window.WindowStatusType<sup>11+</sup>](../js-apis-window.md#windowstatustype11) | Yes| Window mode.|
+| windowStatusType | [window.WindowStatusType](../js-apis-window.md#windowstatustype11) | Yes| Window mode.|
 
 ## ExtraRegionPosition
 
@@ -148,9 +150,9 @@ Enumerates the split ratios.
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
-| LAYOUT_1V1 | 1/1 | 1:1.|
-| LAYOUT_3V2 | 3/2 | 3:2.|
-| LAYOUT_2V3 | 2/3 | 2:3.|
+| LAYOUT_1V1 | 1 | 1:1.|
+| LAYOUT_3V2 | 1.5 | 3:2.|
+| LAYOUT_2V3 | 0.6666666666666666 | 2:3.|
 
 ## Example
 

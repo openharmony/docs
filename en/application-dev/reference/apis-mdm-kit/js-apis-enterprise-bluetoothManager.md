@@ -170,7 +170,7 @@ try {
 
 ## bluetoothManager.getAllowedBluetoothDevices
 
-getAllowedBluetoothDevices(admin: Want): Array\<string>;
+getAllowedBluetoothDevices(admin: Want): Array\<string>
 
 Obtains allowed Bluetooth devices.
 

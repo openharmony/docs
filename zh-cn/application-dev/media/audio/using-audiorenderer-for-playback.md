@@ -77,6 +77,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
      import { audio } from '@kit.AudioKit';
      import { BusinessError } from '@kit.BasicServicesKit';
      import { fileIo as fs } from '@kit.CoreFileKit';
+     import { common } from '@kit.AbilityKit';
 
      class Options {
        offset?: number;
@@ -84,7 +85,9 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
      }
 
      let bufferSize: number = 0;
-     let path = getContext().cacheDir;
+     // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+     let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+     let path = context.cacheDir;
      // 确保该沙箱路径下存在该资源。
      let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
      let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
@@ -125,6 +128,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
      ```ts
      import { BusinessError } from '@kit.BasicServicesKit';
      import { fileIo as fs } from '@kit.CoreFileKit';
+     import { common } from '@kit.AbilityKit';
 
      class Options {
        offset?: number;
@@ -132,7 +136,9 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
      }
 
      let bufferSize: number = 0;
-     let path = getContext().cacheDir;
+     // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+     let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+     let path = context.cacheDir;
      // 确保该沙箱路径下存在该资源。
      let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
      let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
@@ -202,6 +208,16 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
 - 游戏场景错误使用`STREAM_USAGE_MUSIC`类型，游戏应用将无法和其他音乐应用并发播放，而游戏场景通常可以与其他音乐应用并发播放。
 - 导航场景错误使用`STREAM_USAGE_MUSIC`类型，导航应用播报时候会导致正在播放的音乐停止播放，而导航场景我们通常期望正在播放的音乐仅仅降低音量播放。
 
+### 配置合适的音频采样率
+
+采样率：指音频每秒单个声道样点数，单位为Hz。
+重采样：根据输入输出音频采样率的差异，进行上采样(通过插值增加样点数)或下采样(通过抽取减少样点数)。
+
+AudioRenderer支持枚举类型AudioSamplingRate中定义的所有采样率。
+若通过AudioRenderer设置的输入音频采样率与设备输出采样率不一致，系统会将输入音频重采样为设备输出采样率。
+
+若为减少重采样功耗，可使用采样率与输出设备采样率一致的输入音频。推荐使用48k采样率。
+
 ### 完整示例
 
 下面展示了使用AudioRenderer渲染音频文件的示例代码。
@@ -210,6 +226,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 const TAG = 'AudioRendererDemo';
 
@@ -234,7 +251,9 @@ let audioRendererOptions: audio.AudioRendererOptions = {
   streamInfo: audioStreamInfo,
   rendererInfo: audioRendererInfo
 };
-let path = getContext().cacheDir;
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let path = context.cacheDir;
 // 确保该沙箱路径下存在该资源。
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);

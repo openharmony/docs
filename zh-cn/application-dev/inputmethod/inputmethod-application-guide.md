@@ -334,31 +334,8 @@
    }
    ```
 
-## 验证方法
-
-1. 在应用中通过接口拉起输入法切换列表弹窗。
-
-  ```ts
-  import { inputMethod } from '@kit.IMEKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
-   
-  let inputMethodSetting = inputMethod.getSetting();
-  try {
-    inputMethodSetting.showOptionalInputMethods((err: BusinessError, data: boolean) => {
-      if (err) {
-        console.error(`Failed to showOptionalInputMethods: ${JSON.stringify(err)}`);
-        return;
-      }
-      console.log('Succeeded in showing optionalInputMethods.');
-    });
-  } catch (err) {
-    console.error(`Failed to showOptionalInputMethods: ${JSON.stringify(err)}`);
-  }
-  ```
-
-2. 在弹窗上显示的输入法应用列表中，选择并点击demo应用，将demo应用切换为当前输入法。
-
-3. 点击任意编辑框，即可拉起输入法demo。
+<!--RP1-->
+<!--RP1End-->
 
 ## 约束与限制
 
@@ -366,7 +343,7 @@
 
 > **说明：**
 >
-> - 严格遵从基础访问模式的功能约束。在此模式下，开发者应仅提供基础打字功能，不应提供任何形式与网络交互相关的功能。系统会逐步增加基础访问模式的安全管控能力，包括但不限于：以独立进程和沙箱的方式运行Extension进程；禁止Extension进程创建子进程；进程间通信与网络访问等。因此未遵从此约定可能会导致功能异常。
+> 严格遵从基础访问模式的功能约束。在此模式下，开发者应仅提供基础打字功能，不应提供任何形式与网络交互相关的功能。系统会逐步增加基础访问模式的安全管控能力，包括但不限于：以独立进程和沙箱的方式运行Extension进程；禁止Extension进程创建子进程；进程间通信与网络访问等。因此未遵从此约定可能会导致功能异常。
 
 ## 相关实例
 

@@ -3,7 +3,7 @@
 
 ## 概述
 
-声明GNSS模块提供的接口函数，包括启动GNSS芯片、启动导航、设置GNSS工作模式、注入参考信息、 删除辅助数据、注入PGNSS数据、获取GNSS缓存位置个数、获取所有缓存位置。
+声明GNSS模块提供的接口函数，包括启动GNSS芯片、启动导航、设置GNSS工作模式、注入参考信息、删除辅助数据、注入PGNSS数据、获取GNSS缓存位置个数、获取所有缓存位置。
 
 **起始版本：** 3.2
 
@@ -91,7 +91,7 @@ IGnssInterface::EnableGnss ([in] IGnssCallback callbackObj)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| callback | 表示GNSS回调函数。GNSS驱动通过此回调函数上报定位结果和卫星状态信息等。 详情参考[IGnssCallback](interface_i_gnss_callback.md)。 | 
+| callback | 表示GNSS回调函数。GNSS驱动通过此回调函数上报定位结果和卫星状态信息等。详情参考[IGnssCallback](interface_i_gnss_callback.md)。 | 
 
 **返回：**
 
@@ -229,7 +229,7 @@ IGnssInterface::StartGnss ([in] enum GnssStartType type)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| type | 表示GNSS启动类型，该参数是为了区分正常的GNSS定位功能和GNSS缓存功能。 详情参考[GnssStartType](_hdi_gnss.md#gnssstarttype)。 | 
+| type | 表示GNSS启动类型，该参数是为了区分正常的GNSS定位功能和GNSS缓存功能。详情参考[GnssStartType](_hdi_gnss.md#gnssstarttype)。 | 
 
 **返回：**
 
@@ -253,7 +253,7 @@ IGnssInterface::StopGnss ([in] enum GnssStartType type)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| type | 表示GNSS启动类型，该参数为了区分正常的GNSS定位功能和GNSS缓存功能。 详情参考[GnssStartType](_hdi_gnss.md#gnssstarttype)。 | 
+| type | 表示GNSS启动类型，该参数为了区分正常的GNSS定位功能和GNSS缓存功能。详情参考[GnssStartType](_hdi_gnss.md#gnssstarttype)。 | 
 
 **返回：**
 

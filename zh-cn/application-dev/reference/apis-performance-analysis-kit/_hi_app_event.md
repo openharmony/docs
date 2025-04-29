@@ -74,8 +74,8 @@ HiAppEvent模块提供应用事件打点功能。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [HiAppEvent_ErrorCode](#hiappevent_errorcode) {<br/>HIAPPEVENT_SUCCESS = 0, HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH = 4, HIAPPEVENT_PROCESSOR_IS_NULL = -7, HIAPPEVENT_PROCESSOR_NOT_FOUND = -8,<br/>HIAPPEVENT_INVALID_PARAM_VALUE = -9, HIAPPEVENT_EVENT_CONFIG_IS_NULL = -10, HIAPPEVENT_OPERATE_FAILED = -100, HIAPPEVENT_INVALID_UID = -200<br/>} | 错误码定义。  | 
-| [EventType](#eventtype) { FAULT = 1, STATISTIC = 2, SECURITY = 3, BEHAVIOR = 4 } | 事件类型。  | 
+| [HiAppEvent_ErrorCode](#hiappevent_errorcode) {<br/>HIAPPEVENT_SUCCESS = 0, <br/>HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH = 4, <br/>HIAPPEVENT_PROCESSOR_IS_NULL = -7, <br/>HIAPPEVENT_PROCESSOR_NOT_FOUND = -8,<br/>HIAPPEVENT_INVALID_PARAM_VALUE = -9, <br/>HIAPPEVENT_EVENT_CONFIG_IS_NULL = -10, <br/>HIAPPEVENT_OPERATE_FAILED = -100, <br/>HIAPPEVENT_INVALID_UID = -200<br/>} | 错误码定义。  | 
+| [EventType](#eventtype) {<br/>FAULT = 1, <br/>STATISTIC = 2, <br/>SECURITY = 3, <br/>BEHAVIOR = 4 <br/>} | 事件类型。  | 
 
 
 ### 函数

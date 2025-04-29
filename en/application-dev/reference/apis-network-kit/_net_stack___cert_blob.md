@@ -9,6 +9,7 @@ Defines the certificate data structure.
 
 **Related module**: [Netstack](netstack.md)
 
+**Header file**: [net_ssl_c_type.h](net__ssl__c__type_8h.md#net_ssl_c_typeh)
 
 ## Summary
 

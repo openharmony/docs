@@ -12,8 +12,8 @@
 
 该模块提供以下关系型数据库相关的常用功能：
 
-- [RdbPredicates](#rdbpredicates)： 数据库中用来代表数据实体的性质、特征或者数据实体之间关系的词项，主要用来定义数据库的操作条件。
-- [RdbStore](#rdbstore)：提供管理关系数据库(RDB)方法的接口。
+- [RdbPredicates](#rdbpredicates)：数据库中用来代表数据实体的性质、特征或者数据实体之间关系的词项，主要用来定义数据库的操作条件。
+- [RdbStore](#rdbstore)：提供管理关系数据库（RDB）方法的接口。
 - [ResultSet](#resultset)：提供用户调用关系型数据库查询接口之后返回的结果集合。
 - [Transaction](#transaction14)：提供管理事务对象的接口。
 
@@ -31,11 +31,13 @@ import { relationalStore } from '@kit.ArkData';
 
 getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;RdbStore&gt;): void
 
-获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，使用callback异步回调。
+创建或打开已有的关系型数据库，开发者可以根据自己的需求配置config参数，然后通过RdbStore调用相关接口执行数据操作。使用callback异步回调。
 
-加密参数[encrypt](#storeconfig)只在首次创建数据库时生效，因此在创建数据库时，选择正确的加密参数非常重要，并且在之后无法更改加密参数。
+对应沙箱路径下无数据库文件时，将创建数据库文件，文件创建位置详见[StoreConfig](#storeconfig)。对应路径下已有数据库文件时，将打开已有数据库文件。
 
-| 当前开库的加密类型  | 首次创建数据库的加密类型           | 结果 |
+开发者在创建数据库时，应谨慎配置是否进行数据库加密的参数[encrypt](#storeconfig)，数据库创建后，禁止对该参数进行修改。
+
+| 当前开库的加密类型  | 本设备上创建该数据库时的加密类型           | 结果 |
 | ------- | -------------------------------- | ---- |
 | 非加密 | 加密                          | 将数据库以加密方式打开。   |
 | 加密 | 非加密                          | 将数据库以非加密方式打开。   |
@@ -48,7 +50,7 @@ getRdbStore目前不支持多线程并发操作。
 
 | 参数名   | 类型                                           | 必填 | 说明                                                         |
 | -------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                        | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
+| context  | Context                                        | 是   | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
 | config   | [StoreConfig](#storeconfig)               | 是   | 与此RDB存储相关的数据库配置。                                |
 | callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | 是   | 指定callback回调函数，返回RdbStore对象。                   |
 
@@ -84,21 +86,22 @@ import { featureAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let store: relationalStore.RdbStore | undefined = undefined;
-let context = featureAbility.getContext(); 
+let context = featureAbility.getContext();
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
   securityLevel: relationalStore.SecurityLevel.S3
 };
 
-relationalStore.getRdbStore(context, STORE_CONFIG, (err: BusinessError, rdbStore: relationalStore.RdbStore) => {
-  store = rdbStore;
+relationalStore.getRdbStore(context, STORE_CONFIG, async (err: BusinessError, rdbStore: relationalStore.RdbStore) => {
   if (err) {
     console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info('Get RdbStore successfully.');
-})
+  store = rdbStore;
+  // 成功获取到 rdbStore 后执行后续操作
+});
 ```
 
 Stage模型示例：
@@ -116,15 +119,16 @@ class EntryAbility extends UIAbility {
       name: "RdbTest.db",
       securityLevel: relationalStore.SecurityLevel.S3
     };
-        
-    relationalStore.getRdbStore(this.context, STORE_CONFIG, (err: BusinessError, rdbStore: relationalStore.RdbStore) => {
-      store = rdbStore;
+
+    relationalStore.getRdbStore(this.context, STORE_CONFIG, async (err: BusinessError, rdbStore: relationalStore.RdbStore) => {
       if (err) {
         console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
         return;
       }
       console.info('Get RdbStore successfully.');
-    })
+      store = rdbStore;
+      // 成功获取到 rdbStore 后执行后续操作
+    });
   }
 }
 ```
@@ -133,11 +137,13 @@ class EntryAbility extends UIAbility {
 
 getRdbStore(context: Context, config: StoreConfig): Promise&lt;RdbStore&gt;
 
-获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，使用Promise异步回调。
+创建或打开已有的关系型数据库，开发者可以根据自己的需求配置config参数，然后通过RdbStore调用相关接口执行数据操作。使用Promise异步回调。
 
-加密参数[encrypt](#storeconfig)只在首次创建数据库时生效，因此在创建数据库时，选择正确的加密参数非常重要，并且在之后无法更改加密参数。
+对应沙箱路径下无数据库文件时，将创建数据库文件，文件创建位置详见[StoreConfig](#storeconfig)。对应路径下已有数据库文件时，将打开已有数据库文件。
 
-| 当前开库的加密类型  | 首次创建数据库的加密类型           | 结果 |
+开发者在创建数据库时，应谨慎配置是否进行数据库加密的参数[encrypt](#storeconfig)，数据库创建后，禁止对该参数进行修改。
+
+| 当前开库的加密类型  | 本设备上创建该数据库时的加密类型           | 结果 |
 | ------- | -------------------------------- | ---- |
 | 非加密 | 加密                          | 将数据库以加密方式打开。   |
 | 加密 | 非加密                          | 将数据库以非加密方式打开。   |
@@ -150,7 +156,7 @@ getRdbStore目前不支持多线程并发操作。
 
 | 参数名  | 类型                             | 必填 | 说明                                                         |
 | ------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| context | Context                          | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
+| context | Context                          | 是   | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
 | config  | [StoreConfig](#storeconfig) | 是   | 与此RDB存储相关的数据库配置。                                |
 
 **返回值**：
@@ -191,7 +197,7 @@ import { featureAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let store: relationalStore.RdbStore | undefined = undefined;
-let context = featureAbility.getContext(); 
+let context = featureAbility.getContext();
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
@@ -200,10 +206,10 @@ const STORE_CONFIG: relationalStore.StoreConfig = {
 
 relationalStore.getRdbStore(context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
   store = rdbStore;
-  console.info('Get RdbStore successfully.')
+  console.info('Get RdbStore successfully.');
 }).catch((err: BusinessError) => {
   console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
-})
+});
 ```
 
 Stage模型示例：
@@ -224,10 +230,10 @@ class EntryAbility extends UIAbility {
 
     relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
       store = rdbStore;
-      console.info('Get RdbStore successfully.')
+      console.info('Get RdbStore successfully.');
     }).catch((err: BusinessError) => {
       console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
-    })
+    });
   }
 }
 ```
@@ -246,7 +252,7 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                   | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
+| context  | Context                   | 是   | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
 | name     | string                    | 是   | 数据库名称。                                                 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 指定callback回调函数。                                       |
 
@@ -270,7 +276,7 @@ import { featureAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let store: relationalStore.RdbStore | undefined = undefined;
-let context = featureAbility.getContext(); 
+let context = featureAbility.getContext();
 
 relationalStore.deleteRdbStore(context, "RdbTest.db", (err: BusinessError) => {
   if (err) {
@@ -279,7 +285,7 @@ relationalStore.deleteRdbStore(context, "RdbTest.db", (err: BusinessError) => {
   }
   store = undefined;
   console.info('Delete RdbStore successfully.');
-})
+});
 ```
 
 Stage模型示例：
@@ -292,7 +298,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let store: relationalStore.RdbStore | undefined = undefined;
 
 class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage){
+  onWindowStageCreate(windowStage: window.WindowStage) {
     relationalStore.deleteRdbStore(this.context, "RdbTest.db", (err: BusinessError) => {
       if (err) {
         console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
@@ -300,7 +306,7 @@ class EntryAbility extends UIAbility {
       }
       store = undefined;
       console.info('Delete RdbStore successfully.');
-    })
+    });
   }
 }
 ```
@@ -319,7 +325,7 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
-| context | Context | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
+| context | Context | 是   | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
 | name    | string  | 是   | 数据库名称。                                                 |
 
 **返回值**：
@@ -348,14 +354,14 @@ import { featureAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let store: relationalStore.RdbStore | undefined = undefined;
-let context = featureAbility.getContext(); 
+let context = featureAbility.getContext();
 
-relationalStore.deleteRdbStore(context, "RdbTest.db").then(()=>{
+relationalStore.deleteRdbStore(context, "RdbTest.db").then(() => {
   store = undefined;
   console.info('Delete RdbStore successfully.');
 }).catch((err: BusinessError) => {
   console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
-})
+});
 ```
 
 Stage模型示例：
@@ -368,13 +374,13 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let store: relationalStore.RdbStore | undefined = undefined;
 
 class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage){
-    relationalStore.deleteRdbStore(this.context, "RdbTest.db").then(()=>{
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    relationalStore.deleteRdbStore(this.context, "RdbTest.db").then(() => {
       store = undefined;
       console.info('Delete RdbStore successfully.');
     }).catch((err: BusinessError) => {
       console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
-    })
+    });
   }
 }
 ```
@@ -393,7 +399,7 @@ deleteRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback\<v
 
 | 参数名   | 类型                        | 必填 | 说明                                                         |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                     | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
+| context  | Context                     | 是   | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
 | config   | [StoreConfig](#storeconfig) | 是   | 与此RDB存储相关的数据库配置。                                |
 | callback | AsyncCallback&lt;void&gt;   | 是   | 指定callback回调函数。                                       |
 
@@ -419,7 +425,7 @@ import { featureAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let store: relationalStore.RdbStore | undefined = undefined;
-let context = featureAbility.getContext(); 
+let context = featureAbility.getContext();
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
@@ -433,7 +439,7 @@ relationalStore.deleteRdbStore(context, STORE_CONFIG, (err: BusinessError) => {
   }
   store = undefined;
   console.info('Delete RdbStore successfully.');
-})
+});
 ```
 
 Stage模型示例：
@@ -446,7 +452,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let store: relationalStore.RdbStore | undefined = undefined;
 
 class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage){
+  onWindowStageCreate(windowStage: window.WindowStage) {
     const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "RdbTest.db",
       securityLevel: relationalStore.SecurityLevel.S3
@@ -458,7 +464,7 @@ class EntryAbility extends UIAbility {
       }
       store = undefined;
       console.info('Delete RdbStore successfully.');
-    })
+    });
   }
 }
 ```
@@ -477,7 +483,7 @@ deleteRdbStore(context: Context, config: StoreConfig): Promise\<void>
 
 | 参数名  | 类型                        | 必填 | 说明                                                         |
 | ------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| context | Context                     | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
+| context | Context                     | 是   | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
 | config  | [StoreConfig](#storeconfig) | 是   | 与此RDB存储相关的数据库配置。                                |
 
 **返回值**：
@@ -509,19 +515,19 @@ import { featureAbility } from "@kit.AbilityKit";
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let store: relationalStore.RdbStore | undefined = undefined;
-let context = featureAbility.getContext(); 
+let context = featureAbility.getContext();
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
   securityLevel: relationalStore.SecurityLevel.S3
 };
 
-relationalStore.deleteRdbStore(context, STORE_CONFIG).then(()=>{
+relationalStore.deleteRdbStore(context, STORE_CONFIG).then(() => {
   store = undefined;
   console.info('Delete RdbStore successfully.');
 }).catch((err: BusinessError) => {
   console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
-})
+});
 ```
 
 Stage模型示例：
@@ -534,17 +540,17 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let store: relationalStore.RdbStore | undefined = undefined;
 
 class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage){
+  onWindowStageCreate(windowStage: window.WindowStage) {
     const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "RdbTest.db",
       securityLevel: relationalStore.SecurityLevel.S3
     };
-    relationalStore.deleteRdbStore(this.context, STORE_CONFIG).then(()=>{
+    relationalStore.deleteRdbStore(this.context, STORE_CONFIG).then(() => {
       store = undefined;
       console.info('Delete RdbStore successfully.');
     }).catch((err: BusinessError) => {
       console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
-    })
+    });
   }
 }
 ```
@@ -582,7 +588,7 @@ isTokenizerSupported(tokenizer: Tokenizer): boolean
 
 | 参数名  | 类型                  | 必填 | 说明                                                         |
 | ------- | --------------------- | ---- | ------------------------------------------------------------ |
-| tokenizer | [Tokenizer](#tokenizer18)               | 是   | 需要被判断是否支持的分词器。 |
+| tokenizer | [Tokenizer](#tokenizer17)               | 是   | 需要被判断是否支持的分词器。 |
 
 **返回值：**
 
@@ -617,17 +623,17 @@ console.info("custom tokenizer supported on current platform: " + customTypeSupp
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
 | name          | string        | 是   | 数据库文件名，也是数据库唯一标识符。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core   |
 | securityLevel | [SecurityLevel](#securitylevel) | 是   | 设置数据库安全级别。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core|
-| encrypt       | boolean       | 否   | 指定数据库是否加密，默认不加密。<br/> true:加密。<br/> false:非加密。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| encrypt       | boolean       | 否   | 指定数据库是否加密，默认不加密。<br/> true：加密。<br/> false：非加密。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | dataGroupId<sup>10+</sup> | string | 否 | 应用组ID，<!--RP1-->暂不支持指定dataGroupId在对应的沙箱路径下创建RdbStore实例。<!--RP1End--><br/>**模型约束：** 此属性仅在Stage模型下可用。<br/>从API version 10开始，支持此可选参数。dataGroupId共沙箱的方式不支持多进程访问加密数据库，当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | customDir<sup>11+</sup> | string | 否 | 数据库自定义路径。<br/>**使用约束：** 数据库路径大小限制为128字节，如果超过该大小会开库失败，返回错误。<br/>从API version 11开始，支持此可选参数。数据库将在如下的目录结构中被创建：context.databaseDir + "/rdb/" + customDir，其中context.databaseDir是应用沙箱对应的路径，"/rdb/"表示创建的是关系型数据库，customDir表示自定义的路径。当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。从API version 18开始，如果同时配置了rootDir参数，将打开或删除如下路径数据库：rootDir + "/" + customDir + "/" + name。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | rootDir<sup>18+</sup> | string | 否 | 指定数据库根路径。<br/>从API version 18开始，支持此可选参数。将从如下目录打开或删除数据库：rootDir + "/" + customDir。通过设置此参数打开的数据库为只读模式，不允许对数据库进行写操作，否则返回错误码801。配置此参数打开或删除数据库时，应确保对应路径下数据库文件存在，并且有读取权限，否则返回错误码14800010。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | autoCleanDirtyData<sup>11+</sup> | boolean | 否 | 指定是否自动清理云端删除后同步到本地的数据，true表示自动清理，false表示手动清理，默认自动清理。<br/>对于端云协同的数据库，当云端删除的数据同步到设备端时，可通过该参数设置设备端是否自动清理。手动清理可以通过[cleanDirtyData<sup>11+</sup>](#cleandirtydata11)接口清理。<br/>从API version 11开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
-| allowRebuild<sup>12+</sup> | boolean | 否 | 指定数据库是否支持异常时自动删除，并重建一个空库空表，默认不删除。<br/>true:自动删除。<br/>false:不自动删除。<br/>从API version 12开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
-| isReadOnly<sup>12+</sup> | boolean | 否 | 指定数据库是否只读，默认为数据库可读写。<br/>true:只允许从数据库读取数据，不允许对数据库进行写操作，否则会返回错误码801。<br/>false:允许对数据库进行读写操作。<br/>从API version 12开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| allowRebuild<sup>12+</sup> | boolean | 否 | 指定数据库是否支持异常时自动删除，并重建一个空库空表，默认不删除。<br/>true：自动删除。<br/>false：不自动删除。<br/>从API version 12开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| isReadOnly<sup>12+</sup> | boolean | 否 | 指定数据库是否只读，默认为数据库可读写。<br/>true：只允许从数据库读取数据，不允许对数据库进行写操作，否则会返回错误码801。<br/>false：允许对数据库进行读写操作。<br/>从API version 12开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | pluginLibs<sup>12+</sup> | Array\<string> | 否 | 表示包含有fts（Full-Text Search，即全文搜索引擎）等能力的动态库名的数组。<br/>**使用约束：** <br/>1. 动态库名的数量限制最多为16个，如果超过该数量会开库失败，返回错误。<br/>2. 动态库名需为本应用沙箱路径下或系统路径下的动态库，如果动态库无法加载会开库失败，返回错误。<br/>3. 动态库名需为完整路径，用于被sqlite加载。<br/>样例：[context.bundleCodeDir+ "/libs/arm64/" + libtokenizer.so]，其中context.bundleCodeDir是应用沙箱对应的路径，"/libs/arm64/"表示子目录，libtokenizer.so表示动态库的文件名。当此参数不填时，默认不加载动态库。<br/>4. 动态库需要包含其全部依赖，避免依赖项丢失导致无法运行。<br/>例如：在ndk工程中，使用默认编译参数构建libtokenizer.so，此动态库依赖c++标准库。在加载此动态库时，由于namespace与编译时不一致，链接到了错误的libc++_shared.so，导致`__emutls_get_address`符号找不到。要解决此问题，需在编译时静态链接c++标准库，具体请参见[NDK工程构建概述](../../napi/build-with-ndk-overview.md)。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | cryptoParam<sup>14+</sup> | [CryptoParam](#cryptoparam14) | 否 | 指定用户自定义的加密参数。<br/>当此参数不填时，使用默认的加密参数，见[CryptoParam](#cryptoparam14)各参数默认值。<br/>此配置只有在encrypt选项设置为真时才有效。<br/>从API version 14开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | vector<sup>18+</sup> | boolean | 否 | 指定数据库是否是向量数据库，true表示向量数据库，false表示关系型数据库，默认为false。<br/>向量数据库适用于存储和处理高维向量数据，关系型数据库适用于存储和处理结构化数据。<br/>向量数据库目前支持[execute](#execute12-1)，[querySql](#querysql-1)，[beginTrans](#begintrans12)，[commit](#commit12)，[rollback](#rollback12)，[backup](#backup)，[restore](#restore)以及[ResultSet](#resultset)类型操作接口。当使用向量数据库时，在调用deleteRdbStore接口前，应当确保向量数据库已经被正确关闭。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
-| tokenizer<sup>18+</sup> | [Tokenizer](#tokenizer18) | 否 | 指定用户在fts场景下使用哪种分词器。<br/>当此参数不填时，则在fts下不支持中文以及多国语言分词，但仍可支持英文分词。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| tokenizer<sup>17+</sup> | [Tokenizer](#tokenizer17) | 否 | 指定用户在fts场景下使用哪种分词器。<br/>当此参数不填时，则在fts下不支持中文以及多国语言分词，但仍可支持英文分词。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | persist<sup>18+</sup> | boolean | 否 | 指定数据库是否需要持久化。true表示持久化，false表示不持久化，即内存数据库。默认为true。<br/>内存数据库不支持加密、backup、restore、跨进程访问及分布式能力，securityLevel属性会被忽略。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 
 ## SecurityLevel
@@ -697,7 +703,7 @@ console.info("custom tokenizer supported on current platform: " + customTypeSupp
 | KDF_SHA256 |  1    | PBKDF2_HMAC_SHA256算法。     |
 | KDF_SHA512 |  2    | PBKDF2_HMAC_SHA512算法。     |
 
-## Tokenizer<sup>18+</sup>
+## Tokenizer<sup>17+</sup>
 
 描述fts（全文搜索）场景下使用的分词器枚举。请使用枚举名称而非枚举值。
 
@@ -706,8 +712,8 @@ console.info("custom tokenizer supported on current platform: " + customTypeSupp
 | 名称                              | 值   | 说明             |
 | ------------------------------- | --- | -------------- |
 | NONE_TOKENIZER     | 0  | 不使用分词器。      |
-| ICU_TOKENIZER | 1 | 表示使用icu分词器，支持中文以及多国语言。指定icu分词器时，可指定使用哪种语言，例如zh_CN表示中文，tr_TR表示土耳其语等。详细支持的语言种类，请查阅[ICU分词器](https://gitee.com/openharmony/third_party_icu/blob/master/icu4c/source/data/lang/zh.txt)。详细的语言缩写，请查阅该目录([ICU支持的语言缩写](https://gitee.com/openharmony/third_party_icu/tree/master/icu4c/source/data/locales))下的文件名。|
-| CUSTOM_TOKENIZER | 2 | 表示使用自研分词器，可支持中文（简体、繁体）、英文、阿拉伯数字。CUSTOM_TOKENIZER相比ICU_TOKENIZER在分词准确率、常驻内存占用上更有优势。 |
+| ICU_TOKENIZER | 1 | 表示使用icu分词器，支持中文以及多国语言。指定icu分词器时，可指定使用哪种语言，例如zh_CN表示中文，tr_TR表示土耳其语等。详细支持的语言种类，请查阅[ICU分词器](https://gitee.com/openharmony/third_party_icu/blob/master/icu4c/source/data/lang/zh.txt)。详细的语言缩写，请查阅该目录（[ICU支持的语言缩写](https://gitee.com/openharmony/third_party_icu/tree/master/icu4c/source/data/locales)）下的文件名。|
+| CUSTOM_TOKENIZER<sup>18+</sup> | 2 | 表示使用自研分词器，可支持中文（简体、繁体）、英文、阿拉伯数字。CUSTOM_TOKENIZER相比ICU_TOKENIZER在分词准确率、常驻内存占用上更有优势。 |
 
 在使用不同的分词器时，使用的创表语句会有所区别。
 
@@ -723,7 +729,7 @@ import { window } from '@kit.ArkUI';
 
 // 此处示例在Stage模式、Ability中实现，使用者也可以在其他合理场景中使用
 class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage) {
+  async onWindowStageCreate(windowStage: window.WindowStage) {
     let store: relationalStore.RdbStore | undefined = undefined;
     const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "MyStore.db",
@@ -732,15 +738,15 @@ class EntryAbility extends UIAbility {
     };
     store = await relationalStore.getRdbStore(this.context, STORE_CONFIG);
 
-    const SQL_CREATE_TABLE = "CREATE VIRTUAL TABLE example USING fts4(name, content, tokenize=icu zh_CN)"
-    if(store != undefined) {
+    const SQL_CREATE_TABLE = "CREATE VIRTUAL TABLE example USING fts4(name, content, tokenize=icu zh_CN)";
+    if (store != undefined) {
       (store as relationalStore.RdbStore).executeSql(SQL_CREATE_TABLE, (err) => {
         if (err) {
           console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
           return;
         }
         console.info('create virtual table done.');
-      })
+      });
     }
   }
 }
@@ -756,7 +762,7 @@ import { window } from '@kit.ArkUI';
 
 // 此处示例在Stage模式、Ability中实现，使用者也可以在其他合理场景中使用
 class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage) {
+  async onWindowStageCreate(windowStage: window.WindowStage) {
     let store: relationalStore.RdbStore | undefined = undefined;
     const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "MyStore.db",
@@ -765,15 +771,15 @@ class EntryAbility extends UIAbility {
     };
     store = await relationalStore.getRdbStore(this.context, STORE_CONFIG);
 
-    const SQL_CREATE_TABLE = "CREATE VIRTUAL TABLE example USING fts5(name, content, tokenize='customtokenizer')"
-    if(store != undefined) {
+    const SQL_CREATE_TABLE = "CREATE VIRTUAL TABLE example USING fts5(name, content, tokenize='customtokenizer')";
+    if (store != undefined) {
       (store as relationalStore.RdbStore).executeSql(SQL_CREATE_TABLE, (err) => {
         if (err) {
           console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
           return;
         }
         console.info('create virtual table done.');
-      })
+      });
     }
   }
 }
@@ -840,7 +846,7 @@ type ValueType = null | number | string | boolean | Uint8Array | Asset | Assets 
 | Asset<sup>10+</sup>  | 表示值类型为附件[Asset](#asset10)。<br/>当字段类型是Asset时，在创建表的sql语句中，类型应当为：ASSET。 |
 | Assets<sup>10+</sup> | 表示值类型为附件数组[Assets](#assets10)。<br/>当字段类型是Assets时，在创建表的sql语句中，类型应当为：ASSETS。 |
 | Float32Array<sup>12+</sup> | 表示值类型为浮点数组。<br/>当字段类型是Float32Array时，在创建表的sql语句中，类型应当为：floatvector(128)。 |
-| bigint<sup>12+</sup> | 表示值类型为任意长度的整数。<br/>当字段类型是bigint时，在创建表的sql语句中，类型应当为：UNLIMITED INT, 详见[通过关系型数据库实现数据持久化](../../database/data-persistence-by-rdb-store.md)。<br/>**说明：** bigint类型当前不支持比较大小，不支持如下谓词：between、notBetween、greaterThanlessThan、greaterThanOrEqualTo、lessThanOrEqualTo、orderByAsc、orderByDesc。<br/>bigint类型字段的数据写入时，需通过BigInt()方法或在数据尾部添加'n'的方式明确为bigint类型，如'let data = BigInt(1234)'或'let data = 1234n'。<br/>bigint字段如果写入number类型的数据，则查询该数据的返回类型为number，而非bigint。 |
+| bigint<sup>12+</sup> | 表示值类型为任意长度的整数。<br/>当字段类型是bigint时，在创建表的sql语句中，类型应当为：UNLIMITED INT，详见[通过关系型数据库实现数据持久化](../../database/data-persistence-by-rdb-store.md)。<br/>**说明：** bigint类型当前不支持比较大小，不支持如下谓词：between、notBetween、greaterThanlessThan、greaterThanOrEqualTo、lessThanOrEqualTo、orderByAsc、orderByDesc。<br/>bigint类型字段的数据写入时，需通过BigInt()方法或在数据尾部添加'n'的方式明确为bigint类型，如'let data = BigInt(1234)'或'let data = 1234n'。<br/>bigint字段如果写入number类型的数据，则查询该数据的返回类型为number，而非bigint。 |
 
 ## ValuesBucket
 
@@ -1116,9 +1122,27 @@ type ModifyTime = Map<PRIKeyType, UTCTime>
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
 | transactionType          | [TransactionType](#transactiontype14)        | 否   | 事务类型。默认为DEFERRED。  |
 
+## ColumnType<sup>18+</sup>
+
+描述数据库列存储类型的枚举。请使用枚举名称而非枚举值。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| 名称          | 值   | 说明                                                         |
+| ------------- | ---- | ------------------------------------------------------------ |
+| NULL          | 0    | 表示列数据类型为NULL。                                       |
+| INTEGER       | 1    | 表示列数据类型为64位整数。可用于保存8位（包括布尔值）、16位、32位、64位整数。如果64位整数大于2^53或小于-2^53，需使用[getString](#getstring)将64位整数转换为字符串。 |
+| REAL          | 2    | 表示列类型为浮点数。                                         |
+| TEXT          | 3    | 表示列类型为字符串。                                         |
+| BLOB          | 4    | 表示列类型为Uint8Array。                                     |
+| ASSET         | 5    | 表示列类型为[Asset](#asset10)。                              |
+| ASSETS        | 6    | 表示列类型为[Assets](#assets10)。                            |
+| FLOAT_VECTOR  | 7    | 表示列类型为Float32Array。                                   |
+| UNLIMITED_INT | 8    | 表示列类型为bigint。                                         |
+
 ## RdbPredicates
 
-表示关系型数据库（RDB）的谓词。该类确定RDB中条件表达式的值是true还是false。谓词间支持多语句拼接，拼接时默认使用and()连接。不支持Sendable跨线程传递。 
+表示关系型数据库（RDB）的谓词。该类确定RDB中条件表达式的值是true还是false。谓词间支持多语句拼接，拼接时默认使用and()连接。不支持Sendable跨线程传递。
 
 ### constructor
 
@@ -1198,7 +1222,7 @@ try {
   }
 } catch (err) {
   let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message
+  let message = (err as BusinessError).message;
   console.error("createDeviceManager errCode:" + code + ",errMessage:" + message);
 }
 
@@ -1323,11 +1347,11 @@ beginWrap(): RdbPredicates
 ```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa")
-    .beginWrap()
-    .equalTo("AGE", 18)
-    .or()
-    .equalTo("SALARY", 200.5)
-    .endWrap()
+  .beginWrap()
+  .equalTo("AGE", 18)
+  .or()
+  .equalTo("SALARY", 200.5)
+  .endWrap();
 ```
 
 ### endWrap
@@ -1349,11 +1373,11 @@ endWrap(): RdbPredicates
 ```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa")
-    .beginWrap()
-    .equalTo("AGE", 18)
-    .or()
-    .equalTo("SALARY", 200.5)
-    .endWrap()
+  .beginWrap()
+  .equalTo("AGE", 18)
+  .or()
+  .equalTo("SALARY", 200.5)
+  .endWrap();
 ```
 
 ### or
@@ -1376,8 +1400,8 @@ or(): RdbPredicates
 // 匹配数据表的"NAME"列中值为"Lisa"或"Rose"的字段
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa")
-    .or()
-    .equalTo("NAME", "Rose")
+  .or()
+  .equalTo("NAME", "Rose");
 ```
 
 ### and
@@ -1400,8 +1424,8 @@ and(): RdbPredicates
 // 匹配数据表的"NAME"列中值为"Lisa"且"SALARY"列中值为"200.5"的字段
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa")
-    .and()
-    .equalTo("SALARY", 200.5)
+  .and()
+  .equalTo("SALARY", 200.5);
 ```
 
 ### contains
@@ -1978,7 +2002,7 @@ predicates.equalTo("NAME", "Rose").distinct();
 
 limitAs(value: number): RdbPredicates
 
-设置最大数据记录数的谓词。
+设置谓词的最大数据记录数量。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1986,7 +2010,7 @@ limitAs(value: number): RdbPredicates
 
 | 参数名 | 类型   | 必填 | 说明             |
 | ------ | ------ | ---- | ---------------- |
-| value  | number | 是   | 最大数据记录数。 |
+| value  | number | 是   | 最大数据记录数，取值应为正整数，传入值小于等于0时，不会限制记录数量。 |
 
 **返回值**：
 
@@ -2013,7 +2037,7 @@ predicates.equalTo("NAME", "Rose").limitAs(3);
 
 offsetAs(rowOffset: number): RdbPredicates
 
-配置谓词以指定返回结果的起始位置。
+设置谓词查询结果返回的起始位置。需要同步调用limitAs接口指定查询数量，否则将无查询结果。如需查询指定偏移位置后的所有行，limitAs接口入参需小于等于0。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2021,7 +2045,7 @@ offsetAs(rowOffset: number): RdbPredicates
 
 | 参数名    | 类型   | 必填 | 说明                               |
 | --------- | ------ | ---- | ---------------------------------- |
-| rowOffset | number | 是   | 返回结果的起始位置，取值为正整数。 |
+| rowOffset | number | 是   | 指定查询结果的起始位置，默认初始位置为结果集的最前端。当rowOffset为负数时，起始位置为结果集的最前端。当rowOffset超出结果集最后位置时，查询结果为空。 |
 
 **返回值**：
 
@@ -2041,7 +2065,7 @@ offsetAs(rowOffset: number): RdbPredicates
 
 ```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.equalTo("NAME", "Rose").offsetAs(3);
+predicates.equalTo("NAME", "Rose").limitAs(-1).offsetAs(3);
 ```
 
 ### groupBy
@@ -2230,7 +2254,7 @@ predicates.notContains("NAME", "os");
 
 notLike(field: string, value: string): RdbPredicates
 
-配置谓词以匹配数据表的field列中值不存在类似于value的字段。 
+配置谓词以匹配数据表的field列中值不存在类似于value的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2267,7 +2291,7 @@ predicates.notLike("NAME", "os");
 
 ## RdbStore
 
-提供管理关系数据库(RDB)方法的接口。
+提供管理关系数据库（RDB）方法的接口。
 
 在使用以下相关接口前，请使用[executeSql](#executesql)接口初始化数据库表结构和相关数据。
 
@@ -2315,18 +2339,19 @@ class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "RdbTest.db",
-      securityLevel: relationalStore.SecurityLevel.S3,
+      securityLevel: relationalStore.SecurityLevel.S3
     };
-
+    const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB, IDENTITY UNLIMITED INT, ASSETDATA ASSET, ASSETSDATA ASSETS, FLOATARRAY floatvector(128))';
     relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
       store = rdbStore;
-      console.info('Get RdbStore successfully.')
+      await (store as relationalStore.RdbStore).executeSql(SQL_CREATE_TABLE);
+      console.info('Get RdbStore successfully.');
     }).catch((err: BusinessError) => {
       console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
-    })
+    });
 
     // 设置数据库版本
-    if(store != undefined) {
+    if (store != undefined) {
       (store as relationalStore.RdbStore).version = 3;
       // 获取数据库版本
       console.info(`RdbStore version is ${store.version}`);
@@ -2393,29 +2418,29 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket1, (err: BusinessError, rowId: number) => {
     if (err) {
       console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info(`Insert is successful, rowId = ${rowId}`);
-  })
+  });
 }
 ```
 
@@ -2476,22 +2501,22 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket1, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE,
     (err: BusinessError, rowId: number) => {
       if (err) {
@@ -2499,7 +2524,7 @@ if(store != undefined) {
         return;
       }
       console.info(`Insert is successful, rowId = ${rowId}`);
-  })
+    });
 }
 ```
 
@@ -2566,27 +2591,27 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket1).then((rowId: number) => {
     console.info(`Insert is successful, rowId = ${rowId}`);
   }).catch((err: BusinessError) => {
     console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -2654,27 +2679,27 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket1, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE).then((rowId: number) => {
     console.info(`Insert is successful, rowId = ${rowId}`);
   }).catch((err: BusinessError) => {
     console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -2742,27 +2767,27 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
-if(store != undefined) {
+if (store != undefined) {
   try {
-    let rowId : number = (store as relationalStore.RdbStore).insertSync("EMPLOYEE", valueBucket1, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
+    let rowId: number = (store as relationalStore.RdbStore).insertSync("EMPLOYEE", valueBucket1, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
     console.info(`Insert is successful, rowId = ${rowId}`);
   } catch (error) {
-      console.error(`Insert is failed, code is ${error.code},message is ${error.message}`);
+    console.error(`Insert is failed, code is ${error.code},message is ${error.message}`);
   }
 }
 ```
@@ -2825,13 +2850,13 @@ const valuesBucket: relationalStore.ValuesBucket = {
   "NAME": 'hangman',
   "AGE": 18,
   "SALARY": 100.5,
-  "CODES": new Uint8Array([1,2,3]),
+  "CODES": new Uint8Array([1, 2, 3])
 };
 const sendableValuesBucket = sendableRelationalStore.toSendableValuesBucket(valuesBucket);
 
-if(store != undefined) {
+if (store != undefined) {
   try {
-    let rowId : number = (store as relationalStore.RdbStore).insertSync("EMPLOYEE", sendableValuesBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
+    let rowId: number = (store as relationalStore.RdbStore).insertSync("EMPLOYEE", sendableValuesBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
     console.info(`Insert is successful, rowId = ${rowId}`);
   } catch (error) {
     console.error(`Insert is failed, code is ${error.code},message is ${error.message}`);
@@ -2885,7 +2910,6 @@ batchInsert(table: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCal
 **示例：**
 
 ```ts
-
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
@@ -2903,23 +2927,23 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   'NAME': value5,
   'AGE': value6,
   'SALARY': value7,
-  'CODES': value8,
+  'CODES': value8
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   'NAME': value9,
   'AGE': value10,
   'SALARY': value11,
-  'CODES': value12,
+  'CODES': value12
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).batchInsert("EMPLOYEE", valueBuckets, (err, insertNum) => {
     if (err) {
       console.error(`batchInsert is failed, code is ${err.code},message is ${err.message}`);
@@ -3000,23 +3024,23 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   'NAME': value5,
   'AGE': value6,
   'SALARY': value7,
-  'CODES': value8,
+  'CODES': value8
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   'NAME': value9,
   'AGE': value10,
   'SALARY': value11,
-  'CODES': value12,
+  'CODES': value12
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).batchInsert("EMPLOYEE", valueBuckets).then((insertNum: number) => {
     console.info(`batchInsert is successful, the number of values that were inserted = ${insertNum}`);
   }).catch((err: BusinessError) => {
@@ -3095,28 +3119,28 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   'NAME': value5,
   'AGE': value6,
   'SALARY': value7,
-  'CODES': value8,
+  'CODES': value8
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   'NAME': value9,
   'AGE': value10,
   'SALARY': value11,
-  'CODES': value12,
+  'CODES': value12
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
-if(store != undefined) {
+if (store != undefined) {
   try {
     let insertNum: number = (store as relationalStore.RdbStore).batchInsertSync("EMPLOYEE", valueBuckets);
     console.info(`batchInsert is successful, the number of values that were inserted = ${insertNum}`);
   } catch (err) {
-      console.error(`batchInsert is failed, code is ${err.code},message is ${err.message}`);
+    console.error(`batchInsert is failed, code is ${err.code},message is ${err.message}`);
   }
 }
 ```
@@ -3192,28 +3216,28 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   'NAME': value5,
   'AGE': value6,
   'SALARY': value7,
-  'CODES': value8,
+  'CODES': value8
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   'NAME': value9,
   'AGE': value10,
   'SALARY': value11,
-  'CODES': value12,
+  'CODES': value12
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).batchInsertWithConflictResolution("EMPLOYEE", valueBuckets, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE).then((insertNum: number) => {
     console.info(`batchInsert is successful, insertNum = ${insertNum}`);
   }).catch((err: BusinessError) => {
     console.error(`batchInsert is failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -3288,28 +3312,28 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   'NAME': value5,
   'AGE': value6,
   'SALARY': value7,
-  'CODES': value8,
+  'CODES': value8
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   'NAME': value9,
   'AGE': value10,
   'SALARY': value11,
-  'CODES': value12,
+  'CODES': value12
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
-if(store != undefined) {
+if (store != undefined) {
   try {
     let insertNum: number = (store as relationalStore.RdbStore).batchInsertWithConflictResolutionSync("EMPLOYEE", valueBuckets, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
     console.info(`batchInsert is successful, the number of values that were inserted = ${insertNum}`);
   } catch (err) {
-      console.error(`batchInsert is failed, code is ${err.code},message is ${err.message}`);
+    console.error(`batchInsert is failed, code is ${err.code},message is ${err.message}`);
   }
 }
 ```
@@ -3360,7 +3384,6 @@ update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&
 **示例：**
 
 ```ts
-
 let value1 = "Rose";
 let value2 = 22;
 let value3 = 200.5;
@@ -3371,31 +3394,31 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
-if(store != undefined) {
-  (store as relationalStore.RdbStore).update(valueBucket1, predicates,(err, rows) => {
+if (store != undefined) {
+  (store as relationalStore.RdbStore).update(valueBucket1, predicates, (err, rows) => {
     if (err) {
       console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info(`Updated row count: ${rows}`);
-  })
+  });
 }
 ```
 
@@ -3446,7 +3469,6 @@ update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolu
 **示例：**
 
 ```ts
-
 let value1 = "Rose";
 let value2 = 22;
 let value3 = 200.5;
@@ -3457,31 +3479,31 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).update(valueBucket1, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE, (err, rows) => {
     if (err) {
       console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info(`Updated row count: ${rows}`);
-  })
+  });
 }
 ```
 
@@ -3548,29 +3570,29 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).update(valueBucket1, predicates).then(async (rows: Number) => {
     console.info(`Updated row count: ${rows}`);
   }).catch((err: BusinessError) => {
     console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -3638,29 +3660,29 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).update(valueBucket1, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE).then(async (rows: Number) => {
     console.info(`Updated row count: ${rows}`);
   }).catch((err: BusinessError) => {
     console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -3728,24 +3750,24 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
-if(store != undefined) {
+if (store != undefined) {
   try {
     let rows: Number = (store as relationalStore.RdbStore).updateSync(valueBucket1, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
     console.info(`Updated row count: ${rows}`);
@@ -3768,7 +3790,7 @@ delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
 | 参数名     | 类型                                 | 必填 | 说明                                      |
 | ---------- | ------------------------------------ | ---- | ----------------------------------------- |
 | predicates | [RdbPredicates](#rdbpredicates) | 是   | RdbPredicates的实例对象指定的删除条件。 |
-| callback   | AsyncCallback&lt;number&gt;          | 是   | 指定callback回调函数。返回受影响的行数。  |
+| callback   | AsyncCallback&lt;number&gt;          | 是   | 指定callback回调函数。返回受影响的行数量。 |
 
 **错误码：**
 
@@ -3802,14 +3824,14 @@ delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
 ```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).delete(predicates, (err, rows) => {
     if (err) {
       console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info(`Delete rows: ${rows}`);
-  })
+  });
 }
 ```
 
@@ -3831,7 +3853,7 @@ delete(predicates: RdbPredicates):Promise&lt;number&gt;
 
 | 类型                  | 说明                            |
 | --------------------- | ------------------------------- |
-| Promise&lt;number&gt; | Promise对象。返回受影响的行数。 |
+| Promise&lt;number&gt; | Promise对象。返回受影响的行数量。 |
 
 **错误码：**
 
@@ -3867,12 +3889,12 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).delete(predicates).then((rows: Number) => {
     console.info(`Delete rows: ${rows}`);
   }).catch((err: BusinessError) => {
     console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -3894,7 +3916,7 @@ deleteSync(predicates: RdbPredicates):number
 
 | 类型   | 说明               |
 | ------ | ------------------ |
-| number | 返回受影响的行数。 |
+| number | 返回受影响的行数量。 |
 
 **错误码：**
 
@@ -3930,9 +3952,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
-if(store != undefined) {
+if (store != undefined) {
   try {
-    let rows: Number = (store as relationalStore.RdbStore).deleteSync(predicates)
+    let rows: Number = (store as relationalStore.RdbStore).deleteSync(predicates);
     console.info(`Delete rows: ${rows}`);
   } catch (err) {
     console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
@@ -3971,8 +3993,8 @@ query(predicates: RdbPredicates, callback: AsyncCallback&lt;ResultSet&gt;):void
 ```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
-if(store != undefined) {
-  (store as relationalStore.RdbStore).query(predicates, (err, resultSet) => {
+if (store != undefined) {
+  (store as relationalStore.RdbStore).query(predicates, async (err, resultSet) => {
     if (err) {
       console.error(`Query failed, code is ${err.code},message is ${err.message}`);
       return;
@@ -3988,7 +4010,7 @@ if(store != undefined) {
     }
     // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
     resultSet.close();
-  })
+  });
 }
 ```
 
@@ -4024,8 +4046,8 @@ query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCa
 ```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
-if(store != undefined) {
-  (store as relationalStore.RdbStore).query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], (err, resultSet) => {
+if (store != undefined) {
+  (store as relationalStore.RdbStore).query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], async (err, resultSet) => {
     if (err) {
       console.error(`Query failed, code is ${err.code},message is ${err.message}`);
       return;
@@ -4041,7 +4063,7 @@ if(store != undefined) {
     }
     // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
     resultSet.close();
-  })
+  });
 }
 ```
 
@@ -4084,8 +4106,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
-if(store != undefined) {
-  (store as relationalStore.RdbStore).query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet: relationalStore.ResultSet) => {
+if (store != undefined) {
+  (store as relationalStore.RdbStore).query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then(async (resultSet: relationalStore.ResultSet) => {
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
     while (resultSet.goToNextRow()) {
@@ -4099,7 +4121,7 @@ if(store != undefined) {
     resultSet.close();
   }).catch((err: BusinessError) => {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -4142,7 +4164,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
-if(store != undefined) {
+if (store != undefined) {
   try {
     let resultSet: relationalStore.ResultSet = (store as relationalStore.RdbStore).querySync(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
@@ -4207,7 +4229,7 @@ let deviceId: string | undefined = undefined;
 try {
   dmInstance = distributedDeviceManager.createDeviceManager("com.example.appdatamgrverify");
   let devices = dmInstance.getAvailableDeviceListSync();
-  if(deviceId != undefined) {
+  if (deviceId != undefined) {
     deviceId = devices[0].networkId;
   }
 } catch (err) {
@@ -4218,8 +4240,8 @@ try {
 
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.greaterThan("id", 0);
-if(store != undefined && deviceId != undefined) {
-  (store as relationalStore.RdbStore).remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet: relationalStore.ResultSet) => {
+if (store != undefined && deviceId != undefined) {
+  (store as relationalStore.RdbStore).remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then(async (resultSet: relationalStore.ResultSet) => {
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
     while (resultSet.goToNextRow()) {
@@ -4233,7 +4255,7 @@ if(store != undefined && deviceId != undefined) {
     resultSet.close();
   }).catch((err: BusinessError) => {
     console.error(`Failed to remoteQuery, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -4287,7 +4309,7 @@ let deviceId: string | undefined = undefined;
 try {
   dmInstance = distributedDeviceManager.createDeviceManager("com.example.appdatamgrverify");
   let devices: Array<distributedDeviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
-  if(devices != undefined) {
+  if (devices != undefined) {
     deviceId = devices[0].networkId;
   }
 } catch (err) {
@@ -4298,8 +4320,8 @@ try {
 
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.greaterThan("id", 0);
-if(store != undefined && deviceId != undefined) {
-  (store as relationalStore.RdbStore).remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet: relationalStore.ResultSet) => {
+if (store != undefined && deviceId != undefined) {
+  (store as relationalStore.RdbStore).remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then(async (resultSet: relationalStore.ResultSet) => {
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
     while (resultSet.goToNextRow()) {
@@ -4313,7 +4335,7 @@ if(store != undefined && deviceId != undefined) {
     resultSet.close();
   }).catch((err: BusinessError) => {
     console.error(`Failed to remoteQuery, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -4323,7 +4345,7 @@ querySql(sql: string, callback: AsyncCallback&lt;ResultSet&gt;):void
 
 根据指定SQL语句查询数据库中的数据，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，使用callback异步回调。
 
-[向量数据库](#storeconfig)当前支持的标准语法有where、limit、offset、order by、group by以及having；扩展语法有<->(计算相似度)和<=>(计算余弦距离)，支持在聚合函数(max、min)中使用，不支持在聚合函数(sum、avg、count)和基础函数(random、abs、upper、lower、length)中使用。
+[向量数据库](#storeconfig)当前支持的标准语法有where、limit、offset、order by、group by以及having；扩展语法有<->（计算相似度）和<=>（计算余弦距离），支持在聚合函数（max、min）中使用，不支持在聚合函数（sum、avg、count）和基础函数（random、abs、upper、lower、length）中使用。
 
 聚合函数不支持嵌套使用。
 
@@ -4352,8 +4374,8 @@ querySql(sql: string, callback: AsyncCallback&lt;ResultSet&gt;):void
 关系型数据库：
 
 ```ts
-if(store != undefined) {
-  (store as relationalStore.RdbStore).querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'", (err, resultSet) => {
+if (store != undefined) {
+  (store as relationalStore.RdbStore).querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'", async (err, resultSet) => {
     if (err) {
       console.error(`Query failed, code is ${err.code},message is ${err.message}`);
       return;
@@ -4369,19 +4391,19 @@ if(store != undefined) {
     }
     // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
     resultSet.close();
-  })
+  });
 }
 ```
 
 向量数据库：
 
 ```ts
-// 相似度的计算符号是<->, 余弦距离的计算符号是<=>
+// 相似度的计算符号是<->，余弦距离的计算符号是<=>
 const querySql = "select id, repr <-> '[1.5,5.6]' as distance from test ORDER BY repr <-> '[1.5,5.6]' limit 10 offset 1;";
 let resultSet = await store.querySql(querySql);
 
 // 聚合查询，其中group by支持多列
-const querySql1 = "select id, repr from test group by id, repr having max(repr<=>[1.5,5.6]);";
+const querySql1 = "select id, repr from test group by id, repr having max(repr<=>'[1.5,5.6]');";
 let resultSet1 = await store.querySql(querySql1);
 
 // 子查询，最大支持嵌套32层
@@ -4395,7 +4417,7 @@ querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&
 
 根据指定SQL语句查询数据库中的数据，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，使用callback异步回调。
 
-[向量数据库](#storeconfig)当前支持的标准语法有where、limit、offset、order by、group by以及having；扩展语法有<->(计算相似度)和<=>(计算余弦距离)，支持在聚合函数(max、min)中使用，不支持在聚合函数(sum、avg、count)和基础函数(random、abs、upper、lower、length)中使用。
+[向量数据库](#storeconfig)当前支持的标准语法有where、limit、offset、order by、group by以及having；扩展语法有<->（计算相似度）和<=>（计算余弦距离），支持在聚合函数（max、min）中使用，不支持在聚合函数（sum、avg、count）和基础函数（random、abs、upper、lower、length）中使用。
 
 聚合函数不支持嵌套使用。
 
@@ -4423,8 +4445,8 @@ querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&
 **示例：**
 
 ```ts
-if(store != undefined) {
-  (store as relationalStore.RdbStore).querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'], (err, resultSet) => {
+if (store != undefined) {
+  (store as relationalStore.RdbStore).querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'], async (err, resultSet) => {
     if (err) {
       console.error(`Query failed, code is ${err.code},message is ${err.message}`);
       return;
@@ -4440,7 +4462,7 @@ if(store != undefined) {
     }
     // 释放数据集的内存，若不释放可能会引起fd泄露与内存泄露
     resultSet.close();
-  })
+  });
 }
 ```
 
@@ -4450,7 +4472,7 @@ querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt
 
 根据指定SQL语句查询数据库中的数据，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，使用Promise异步回调。
 
-[向量数据库](#storeconfig)当前支持的标准语法有where、limit、offset、order by、group by以及having；扩展语法有<->(计算相似度)和<=>(计算余弦距离)，支持在聚合函数(max、min)中使用，不支持在聚合函数(sum、avg、count)和基础函数(random、abs、upper、lower、length)中使用。
+[向量数据库](#storeconfig)当前支持的标准语法有where、limit、offset、order by、group by以及having；扩展语法有<->（计算相似度）和<=>（计算余弦距离），支持在聚合函数（max、min）中使用，不支持在聚合函数（sum、avg、count）和基础函数（random、abs、upper、lower、length）中使用。
 
 聚合函数不支持嵌套使用。
 
@@ -4487,8 +4509,8 @@ querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-if(store != undefined) {
-  (store as relationalStore.RdbStore).querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'").then((resultSet: relationalStore.ResultSet) => {
+if (store != undefined) {
+  (store as relationalStore.RdbStore).querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'").then(async (resultSet: relationalStore.ResultSet) => {
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
     while (resultSet.goToNextRow()) {
@@ -4502,7 +4524,7 @@ if(store != undefined) {
     resultSet.close();
   }).catch((err: BusinessError) => {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -4552,7 +4574,7 @@ querySqlSync(sql: string, bindArgs?: Array&lt;ValueType&gt;):ResultSet
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-if(store != undefined) {
+if (store != undefined) {
   try {
     let resultSet: relationalStore.ResultSet = (store as relationalStore.RdbStore).querySqlSync("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'");
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
@@ -4622,15 +4644,15 @@ executeSql(sql: string, callback: AsyncCallback&lt;void&gt;):void
 **示例：**
 
 ```ts
-const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = 'zhangsan'"
-if(store != undefined) {
+const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = 'zhangsan'";
+if (store != undefined) {
   (store as relationalStore.RdbStore).executeSql(SQL_DELETE_TABLE, (err) => {
     if (err) {
       console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info('Delete table done.');
-  })
+  });
 }
 ```
 
@@ -4685,15 +4707,15 @@ executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallbac
 **示例：**
 
 ```ts
-const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = ?"
-if(store != undefined) {
+const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = ?";
+if (store != undefined) {
   (store as relationalStore.RdbStore).executeSql(SQL_DELETE_TABLE, ['zhangsan'], (err) => {
     if (err) {
       console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info('Delete table done.');
-  })
+  });
 }
 ```
 
@@ -4755,13 +4777,13 @@ executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = 'zhangsan'"
-if(store != undefined) {
+const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = 'zhangsan'";
+if (store != undefined) {
   (store as relationalStore.RdbStore).executeSql(SQL_DELETE_TABLE).then(() => {
     console.info('Delete table done.');
   }).catch((err: BusinessError) => {
     console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -4771,7 +4793,7 @@ execute(sql: string, args?: Array&lt;ValueType&gt;):Promise&lt;ValueType&gt;
 
 执行包含指定参数的SQL语句，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，返回值类型为ValueType，使用Promise异步回调。
 
-该接口支持执行增删改操作，支持执行PRAGMA语法的sql，支持对表的操作（建表、删表、修改表）,返回结果类型由执行具体sql的结果决定。
+该接口支持执行增删改操作，支持执行PRAGMA语法的sql，支持对表的操作（建表、删表、修改表），返回结果类型由执行具体sql的结果决定。
 
 此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
 
@@ -4830,33 +4852,33 @@ execute(sql: string, args?: Array&lt;ValueType&gt;):Promise&lt;ValueType&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // 校验数据库完整性
-if(store != undefined) {
+if (store != undefined) {
   const SQL_CHECK_INTEGRITY = 'PRAGMA integrity_check';
   (store as relationalStore.RdbStore).execute(SQL_CHECK_INTEGRITY).then((data) => {
     console.info(`check result: ${data}`);
   }).catch((err: BusinessError) => {
     console.error(`check failed, code is ${err.code}, message is ${err.message}`);
-  })
+  });
 }
 
 // 删除表中所有数据
-if(store != undefined) {
+if (store != undefined) {
   const SQL_DELETE_TABLE = 'DELETE FROM test';
   (store as relationalStore.RdbStore).execute(SQL_DELETE_TABLE).then((data) => {
     console.info(`delete result: ${data}`);
   }).catch((err: BusinessError) => {
     console.error(`delete failed, code is ${err.code}, message is ${err.message}`);
-  })
+  });
 }
 
 // 删表
-if(store != undefined) {
+if (store != undefined) {
   const SQL_DROP_TABLE = 'DROP TABLE test';
   (store as relationalStore.RdbStore).execute(SQL_DROP_TABLE).then((data) => {
     console.info(`drop result: ${data}`);
   }).catch((err: BusinessError) => {
     console.error(`drop failed, code is ${err.code}, message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -4864,13 +4886,13 @@ if(store != undefined) {
 
 ```ts
 // FLOATVECTOR(2)是维度为2的向量属性，后续操作repr需依照该维度进行。
-let createSql = "CREATE TABLE test (ID text PRIMARY KEY,REPR FLOATVECTOR(2));";
+let createSql = "CREATE TABLE test (ID INTEGER PRIMARY KEY,REPR FLOATVECTOR(2));";
 // 建表
 await store!.execute(createSql);
 // 使用参数绑定插入数据
-let insertSql= "insert into test VALUES(?, ?);";
+let insertSql = "insert into test VALUES(?, ?);";
 const vectorValue: Float32Array = Float32Array.from([1.5, 6.6]);
-await store!.execute(insertSql, [0, vectorValue]); 
+await store!.execute(insertSql, [0, vectorValue]);
 // 不使用绑定参数直接执行
 await store!.execute("insert into test values(1, '[3.5, 1.8]');");
 ```
@@ -4935,17 +4957,17 @@ execute(sql: string, txId: number, args?: Array&lt;ValueType&gt;): Promise&lt;Va
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-if(store != null) {
-  let txId : number;
-  (store as relationalStore.RdbStore).beginTrans().then((txId : number) => {
+if (store != null) {
+  let txId: number;
+  (store as relationalStore.RdbStore).beginTrans().then((txId: number) => {
     (store as relationalStore.RdbStore).execute("DELETE FROM TEST WHERE age = ? OR age = ?", txId, ["18", "20"])
       .then(() => {
         (store as relationalStore.RdbStore).commit(txId);
-    })
-    .catch((err: BusinessError) => {
-      (store as relationalStore.RdbStore).rollback(txId)
-      console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
-    });
+      })
+      .catch((err: BusinessError) => {
+        (store as relationalStore.RdbStore).rollback(txId);
+        console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
+      });
   });
 }
 ```
@@ -5010,10 +5032,10 @@ executeSync(sql: string, args?: Array&lt;ValueType&gt;): ValueType
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // 校验数据库完整性
-if(store != undefined) {
+if (store != undefined) {
   const SQL_CHECK_INTEGRITY = 'PRAGMA integrity_check';
   try {
-    let data = (store as relationalStore.RdbStore).executeSync(SQL_CHECK_INTEGRITY)
+    let data = (store as relationalStore.RdbStore).executeSync(SQL_CHECK_INTEGRITY);
     console.info(`check result: ${data}`);
   } catch (err) {
     console.error(`check failed, code is ${err.code}, message is ${err.message}`);
@@ -5021,10 +5043,10 @@ if(store != undefined) {
 }
 
 // 删除表中所有数据
-if(store != undefined) {
+if (store != undefined) {
   const SQL_DELETE_TABLE = 'DELETE FROM test';
   try {
-    let data = (store as relationalStore.RdbStore).executeSync(SQL_DELETE_TABLE)
+    let data = (store as relationalStore.RdbStore).executeSync(SQL_DELETE_TABLE);
     console.info(`delete result: ${data}`);
   } catch (err) {
     console.error(`delete failed, code is ${err.code}, message is ${err.message}`);
@@ -5032,10 +5054,10 @@ if(store != undefined) {
 }
 
 // 删表
-if(store != undefined) {
+if (store != undefined) {
   const SQL_DROP_TABLE = 'DROP TABLE test';
   try {
-    let data = (store as relationalStore.RdbStore).executeSync(SQL_DROP_TABLE)
+    let data = (store as relationalStore.RdbStore).executeSync(SQL_DROP_TABLE);
     console.info(`drop result: ${data}`);
   } catch (err) {
     console.error(`drop failed, code is ${err.code}, message is ${err.message}`);
@@ -5091,7 +5113,7 @@ getModifyTime(table: string, columnName: string, primaryKeys: PRIKeyType[], call
 
 ```ts
 let PRIKey = [1, 4, 2, 3];
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).getModifyTime("EMPLOYEE", "NAME", PRIKey, (err, modifyTime: relationalStore.ModifyTime) => {
     if (err) {
       console.error(`getModifyTime failed, code is ${err.code},message is ${err.message}`);
@@ -5157,7 +5179,7 @@ getModifyTime(table: string, columnName: string, primaryKeys: PRIKeyType[]): Pro
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let PRIKey = [1, 2, 3];
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).getModifyTime("EMPLOYEE", "NAME", PRIKey)
     .then((modifyTime: relationalStore.ModifyTime) => {
       let size = modifyTime.size;
@@ -5207,19 +5229,18 @@ beginTransaction():void
 **示例：**
 
 ```ts
-
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).beginTransaction();
   const valueBucket: relationalStore.ValuesBucket = {
     'NAME': value1,
     'AGE': value2,
     'SALARY': value3,
-    'CODES': value4,
+    'CODES': value4
   };
   (store as relationalStore.RdbStore).insert("test", valueBucket);
   (store as relationalStore.RdbStore).commit();
@@ -5276,17 +5297,17 @@ beginTrans(): Promise&lt;number&gt;
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-if(store != null) {
-  let txId : number;
-  (store as relationalStore.RdbStore).beginTrans().then((txId : number) => {
+if (store != null) {
+  let txId: number;
+  (store as relationalStore.RdbStore).beginTrans().then((txId: number) => {
     (store as relationalStore.RdbStore).execute("DELETE FROM TEST WHERE age = ? OR age = ?", txId, ["18", "20"])
       .then(() => {
         (store as relationalStore.RdbStore).commit(txId);
-    })
-    .catch((err: BusinessError) => {
-      (store as relationalStore.RdbStore).rollback(txId)
-      console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
-    });
+      })
+      .catch((err: BusinessError) => {
+        (store as relationalStore.RdbStore).rollback(txId);
+        console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
+      });
   });
 }
 ```
@@ -5339,7 +5360,7 @@ createTransaction(options?: TransactionOptions): Promise&lt;Transaction&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
     transaction.execute("DELETE FROM test WHERE age = ? OR age = ?", [21, 20]).then(() => {
       transaction.commit();
@@ -5391,19 +5412,18 @@ commit():void
 **示例：**
 
 ```ts
-
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).beginTransaction();
   const valueBucket: relationalStore.ValuesBucket = {
     'NAME': value1,
     'AGE': value2,
     'SALARY': value3,
-    'CODES': value4,
+    'CODES': value4
   };
   (store as relationalStore.RdbStore).insert("test", valueBucket);
   (store as relationalStore.RdbStore).commit();
@@ -5462,17 +5482,17 @@ commit(txId : number):Promise&lt;void&gt;
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-if(store != null) {
-  let txId : number;
-  (store as relationalStore.RdbStore).beginTrans().then((txId : number) => {
+if (store != null) {
+  let txId: number;
+  (store as relationalStore.RdbStore).beginTrans().then((txId: number) => {
     (store as relationalStore.RdbStore).execute("DELETE FROM TEST WHERE age = ? OR age = ?", txId, ["18", "20"])
       .then(() => {
         (store as relationalStore.RdbStore).commit(txId);
-    })
-    .catch((err: BusinessError) => {
-      (store as relationalStore.RdbStore).rollback(txId)
-      console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
-    });
+      })
+      .catch((err: BusinessError) => {
+        (store as relationalStore.RdbStore).rollback(txId);
+        console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
+      });
   });
 }
 ```
@@ -5522,20 +5542,20 @@ let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
 
-if(store != undefined) {
+if (store != undefined) {
   try {
-    (store as relationalStore.RdbStore).beginTransaction()
+    (store as relationalStore.RdbStore).beginTransaction();
     const valueBucket: relationalStore.ValuesBucket = {
       'NAME': value1,
       'AGE': value2,
       'SALARY': value3,
-      'CODES': value4,
+      'CODES': value4
     };
     (store as relationalStore.RdbStore).insert("test", valueBucket);
     (store as relationalStore.RdbStore).commit();
   } catch (err) {
     let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message
+    let message = (err as BusinessError).message;
     console.error(`Transaction failed, code is ${code},message is ${message}`);
     (store as relationalStore.RdbStore).rollBack();
   }
@@ -5594,17 +5614,17 @@ rollback(txId : number):Promise&lt;void&gt;
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-if(store != null) {
-  let txId : number;
-  (store as relationalStore.RdbStore).beginTrans().then((txId : number) => {
+if (store != null) {
+  let txId: number;
+  (store as relationalStore.RdbStore).beginTrans().then((txId: number) => {
     (store as relationalStore.RdbStore).execute("DELETE FROM TEST WHERE age = ? OR age = ?", txId, ["18", "20"])
       .then(() => {
         (store as relationalStore.RdbStore).commit(txId);
-    })
-    .catch((err: BusinessError) => {
-      (store as relationalStore.RdbStore).rollback(txId)
-      console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
-    });
+      })
+      .catch((err: BusinessError) => {
+        (store as relationalStore.RdbStore).rollback(txId);
+        console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
+      });
   });
 }
 ```
@@ -5654,14 +5674,14 @@ backup(destName:string, callback: AsyncCallback&lt;void&gt;):void
 **示例：**
 
 ```ts
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).backup("dbBackup.db", (err) => {
     if (err) {
       console.error(`Backup failed, code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info('Backup success.');
-  })
+  });
 }
 ```
 
@@ -5716,13 +5736,13 @@ backup(destName:string): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-if(store != undefined) {
+if (store != undefined) {
   let promiseBackup = (store as relationalStore.RdbStore).backup("dbBackup.db");
   promiseBackup.then(() => {
     console.info('Backup success.');
   }).catch((err: BusinessError) => {
     console.error(`Backup failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -5770,14 +5790,14 @@ restore(srcName:string, callback: AsyncCallback&lt;void&gt;):void
 **示例：**
 
 ```ts
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).restore("dbBackup.db", (err) => {
     if (err) {
       console.error(`Restore failed, code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info('Restore success.');
-  })
+  });
 }
 ```
 
@@ -5832,13 +5852,13 @@ restore(srcName:string): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-if(store != undefined) {
+if (store != undefined) {
   let promiseRestore = (store as relationalStore.RdbStore).restore("dbBackup.db");
   promiseRestore.then(() => {
     console.info('Restore success.');
   }).catch((err: BusinessError) => {
     console.error(`Restore failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -5873,14 +5893,14 @@ setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;voi
 **示例：**
 
 ```ts
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).setDistributedTables(["EMPLOYEE"], (err) => {
     if (err) {
       console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info('SetDistributedTables successfully.');
-  })
+  });
 }
 ```
 
@@ -5898,7 +5918,7 @@ if(store != undefined) {
 
 | 参数名 | 类型                     | 必填 | 说明                     |
 | ------ | ------------------------ | ---- | ------------------------ |
-| tables | ArrayArray&lt;string&gt; | 是   | 要设置的分布式数据库表表名。 |
+| tables | Array&lt;string&gt; | 是   | 要设置的分布式数据库表表名。 |
 
 **返回值**：
 
@@ -5922,12 +5942,12 @@ if(store != undefined) {
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).setDistributedTables(["EMPLOYEE"]).then(() => {
     console.info('SetDistributedTables successfully.');
   }).catch((err: BusinessError) => {
     console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -5964,14 +5984,14 @@ setDistributedTables(tables: Array&lt;string&gt;, type: DistributedType, callbac
 **示例：**
 
 ```ts
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, (err) => {
     if (err) {
       console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info('SetDistributedTables successfully.');
-  })
+  });
 }
 ```
 
@@ -6009,7 +6029,7 @@ setDistributedTables(tables: Array&lt;string&gt;, type: DistributedType, config:
 **示例：**
 
 ```ts
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, {
     autoSync: true
   }, (err) => {
@@ -6018,7 +6038,7 @@ if(store != undefined) {
       return;
     }
     console.info('SetDistributedTables successfully.');
-  })
+  });
 }
 ```
 
@@ -6063,14 +6083,14 @@ if(store != undefined) {
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, {
     autoSync: true
   }).then(() => {
     console.info('SetDistributedTables successfully.');
   }).catch((err: BusinessError) => {
     console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -6122,18 +6142,18 @@ try {
   deviceId = devices[0].networkId;
 } catch (err) {
   let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message
+  let message = (err as BusinessError).message;
   console.error("createDeviceManager errCode:" + code + ",errMessage:" + message);
 }
 
-if(store != undefined && deviceId != undefined) {
+if (store != undefined && deviceId != undefined) {
   (store as relationalStore.RdbStore).obtainDistributedTableName(deviceId, "EMPLOYEE", (err, tableName) => {
     if (err) {
       console.error(`ObtainDistributedTableName failed, code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info(`ObtainDistributedTableName successfully, tableName= ${tableName}`);
-  })
+  });
 }
 ```
 
@@ -6190,16 +6210,16 @@ try {
   deviceId = devices[0].networkId;
 } catch (err) {
   let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message
+  let message = (err as BusinessError).message;
   console.error("createDeviceManager errCode:" + code + ",errMessage:" + message);
 }
 
-if(store != undefined && deviceId != undefined) {
+if (store != undefined && deviceId != undefined) {
   (store as relationalStore.RdbStore).obtainDistributedTableName(deviceId, "EMPLOYEE").then((tableName: string) => {
     console.info(`ObtainDistributedTableName successfully, tableName= ${tableName}`);
   }).catch((err: BusinessError) => {
     console.error(`ObtainDistributedTableName failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -6249,13 +6269,13 @@ try {
   }
 } catch (err) {
   let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message
+  let message = (err as BusinessError).message;
   console.error("createDeviceManager errCode:" + code + ",errMessage:" + message);
 }
 
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.inDevices(deviceIds);
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates, (err, result) => {
     if (err) {
       console.error(`Sync failed, code is ${err.code},message is ${err.message}`);
@@ -6265,7 +6285,7 @@ if(store != undefined) {
     for (let i = 0; i < result.length; i++) {
       console.info(`device= ${result[i][0]}, status= ${result[i][1]}`);
     }
-  })
+  });
 }
 ```
 
@@ -6320,13 +6340,13 @@ try {
   }
 } catch (err) {
   let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message
+  let message = (err as BusinessError).message;
   console.error("createDeviceManager errCode:" + code + ",errMessage:" + message);
 }
 
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.inDevices(deviceIds);
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates).then((result: Object[][]) => {
     console.info('Sync done.');
     for (let i = 0; i < result.length; i++) {
@@ -6334,7 +6354,7 @@ if(store != undefined) {
     }
   }).catch((err: BusinessError) => {
     console.error(`Sync failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -6367,7 +6387,7 @@ cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;, callback: A
 **示例：**
 
 ```ts
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, (progressDetails) => {
     console.info(`Progess: ${progressDetails}`);
   }, (err) => {
@@ -6416,7 +6436,7 @@ cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;): Promise&lt
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, (progressDetail: relationalStore.ProgressDetails) => {
     console.info(`progress: ${progressDetail}`);
   }).then(() => {
@@ -6459,7 +6479,7 @@ cloudSync(mode: SyncMode, tables: string[], progress: Callback&lt;ProgressDetail
 ```ts
 const tables = ["table1", "table2"];
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, (progressDetail: relationalStore.ProgressDetails) => {
     console.info(`Progess: ${progressDetail}`);
   }, (err) => {
@@ -6511,7 +6531,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 const tables = ["table1", "table2"];
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, (progressDetail: relationalStore.ProgressDetails) => {
     console.info(`progress: ${progressDetail}`);
   }).then(() => {
@@ -6560,16 +6580,16 @@ let storeObserver = (devices: Array<string>) => {
       console.info(`device= ${devices[i]} data changed`);
     }
   }
-}
+};
 
 try {
   if (store != undefined) {
-    (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
+    (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
   }
 } catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message
-    console.error(`Register observer failed, code is ${code},message is ${message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`Register observer failed, code is ${code},message is ${message}`);
 }
 ```
 
@@ -6587,7 +6607,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | -------- | ----------------------------------- | ---- | ------------------------------------------- |
 | event    | string                              | 是   | 取值为'dataChange'，表示数据更改。          |
 | type     | [SubscribeType](#subscribetype)    | 是   | 订阅类型。 |
-| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | 是   | 回调函数。<br>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端账号。 <br> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。<br>当type为SUBSCRIBE_TYPE_LOCAL_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为本地数据库中的数据更改的详情。 |
+| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | 是   | 回调函数。<br>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端账号。<br> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。<br>当type为SUBSCRIBE_TYPE_LOCAL_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为本地数据库中的数据更改的详情。 |
 
 **错误码：**
 
@@ -6612,10 +6632,10 @@ let storeObserver = (devices: Array<string>) => {
       console.info(`device= ${devices[i]} data changed`);
     }
   }
-}
+};
 
 try {
-  if(store != undefined) {
+  if (store != undefined) {
     (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
   }
 } catch (err) {
@@ -6634,10 +6654,10 @@ let changeInfos = (changeInfos: Array<relationalStore.ChangeInfo>) => {
   for (let i = 0; i < changeInfos.length; i++) {
     console.info(`changeInfos = ${changeInfos[i]}`);
   }
-}
+};
 
 try {
-  if(store != undefined) {
+  if (store != undefined) {
     (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_LOCAL_DETAILS, changeInfos);
   }
 } catch (err) {
@@ -6656,10 +6676,10 @@ try {
     'name': value1,
     'age': value2,
     'salary': value3,
-    'blobType': value4,
+    'blobType': value4
   };
 
-  if(store != undefined) {
+  if (store != undefined) {
     (store as relationalStore.RdbStore).insert('test', valueBucket);
   }
 } catch (err) {
@@ -6681,7 +6701,7 @@ on(event: string, interProcess: boolean, observer: Callback\<void>): void
 
 | 参数名       | 类型            | 必填 | 说明                                                         |
 | ------------ | --------------- | ---- | ------------------------------------------------------------ |
-| event        | string          | 是   | 订阅事件名称。                                               |
+| event        | string          | 是   | 订阅事件名称，与emit接口触发事件时的名称一致。               |
 | interProcess | boolean         | 是   | 指定是进程间还是本进程订阅。<br/> true：进程间。<br/> false：本进程。 |
 | observer     | Callback\<void> | 是   | 回调函数。                                                   |
 
@@ -6704,15 +6724,15 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let storeObserver = () => {
   console.info(`storeObserver`);
-}
+};
 
 try {
-  if(store != undefined) {
+  if (store != undefined) {
     (store as relationalStore.RdbStore).on('storeObserver', false, storeObserver);
   }
 } catch (err) {
   let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message
+  let message = (err as BusinessError).message;
   console.error(`Register observer failed, code is ${code},message is ${message}`);
 }
 ```
@@ -6749,15 +6769,15 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let progressDetail = (progressDetail: relationalStore.ProgressDetails) => {
   console.info(`progress: ${progressDetail}`);
-}
+};
 
 try {
-  if(store != undefined) {
-    (store as relationalStore.RdbStore).on('autoSyncProgress', progressDetail)
+  if (store != undefined) {
+    (store as relationalStore.RdbStore).on('autoSyncProgress', progressDetail);
   }
 } catch (err) {
   let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message
+  let message = (err as BusinessError).message;
   console.error(`Register observer failed, code is ${code},message is ${message}`);
 }
 ```
@@ -6799,10 +6819,10 @@ let sqlExecutionInfo = (sqlExecutionInfo: relationalStore.SqlExecutionInfo) => {
   console.info(`waitTime: ${sqlExecutionInfo.waitTime}`);
   console.info(`prepareTime: ${sqlExecutionInfo.prepareTime}`);
   console.info(`executeTime: ${sqlExecutionInfo.executeTime}`);
-}
+};
 
 try {
-  if(store != undefined) {
+  if (store != undefined) {
     (store as relationalStore.RdbStore).on('statistics', sqlExecutionInfo);
   }
 } catch (err) {
@@ -6821,9 +6841,9 @@ try {
     'NAME': value1,
     'AGE': value2,
     'SALARY': value3,
-    'CODES': value4,
+    'CODES': value4
   };
-  if(store != undefined) {
+  if (store != undefined) {
     (store as relationalStore.RdbStore).insert('test', valueBucket);
   }
 } catch (err) {
@@ -6868,26 +6888,26 @@ let storeObserver = (devices: Array<string>) => {
       console.info(`device= ${devices[i]} data changed`);
     }
   }
-}
+};
 
 try {
   if (store != undefined) {
     // 此处不能使用Lambda表达式
-    (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
+    (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
   }
 } catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message
-    console.error(`Register observer failed, code is ${code},message is ${message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`Register observer failed, code is ${code},message is ${message}`);
 }
 
 try {
-  if(store != undefined) {
+  if (store != undefined) {
     (store as relationalStore.RdbStore).off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
   }
 } catch (err) {
   let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message
+  let message = (err as BusinessError).message;
   console.error(`Unregister observer failed, code is ${code},message is ${message}`);
 }
 ```
@@ -6906,7 +6926,7 @@ off(event:'dataChange', type: SubscribeType, observer?: Callback&lt;Array&lt;str
 | -------- | ---------------------------------- | ---- | ------------------------------------------ |
 | event    | string                              | 是   | 取值为'dataChange'，表示数据更改。          |
 | type     | [SubscribeType](#subscribetype)     | 是   | 订阅类型。                                 |
-| observer | Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | 否 | 回调函数。<br/>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br/> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端账号。 <br/> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。<br>当type为SUBSCRIBE_TYPE_LOCAL_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为本地数据库中的数据更改的详情。<br> 当observer没有传入时，表示取消当前type类型下所有数据变更的事件监听。 |
+| observer | Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | 否 | 回调函数。<br/>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br/> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端账号。<br/> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。<br>当type为SUBSCRIBE_TYPE_LOCAL_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为本地数据库中的数据更改的详情。<br> 当observer没有传入时，表示取消当前type类型下所有数据变更的事件监听。 |
 
 **错误码：**
 
@@ -6931,10 +6951,10 @@ let storeObserver = (devices: Array<string>) => {
       console.info(`device= ${devices[i]} data changed`);
     }
   }
-}
+};
 
 try {
-  if(store != undefined) {
+  if (store != undefined) {
     (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
   }
 } catch (err) {
@@ -6944,12 +6964,12 @@ try {
 }
 
 try {
-  if(store != undefined) {
+  if (store != undefined) {
     (store as relationalStore.RdbStore).off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
   }
 } catch (err) {
   let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message
+  let message = (err as BusinessError).message;
   console.error(`Unregister observer failed, code is ${code},message is ${message}`);
 }
 ```
@@ -6966,7 +6986,7 @@ off(event: string, interProcess: boolean, observer?: Callback\<void>): void
 
 | 参数名       | 类型            | 必填 | 说明                                                         |
 | ------------ | --------------- | ---- | ------------------------------------------------------------ |
-| event        | string          | 是   | 取消订阅事件名称。                                           |
+| event        | string          | 是   | 取消订阅事件名称。事件名称与on接口调用时订阅事件的名称一致。 |
 | interProcess | boolean         | 是   | 指定是进程间还是本进程取消订阅。<br/> true：进程间。<br/> false：本进程。 |
 | observer     | Callback\<void> | 否   | 该参数存在，则取消指定Callback监听回调，否则取消该event事件的所有监听回调。 |
 
@@ -6989,25 +7009,25 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let storeObserver = () => {
   console.info(`storeObserver`);
-}
+};
 
 try {
-  if(store != undefined) {
+  if (store != undefined) {
     (store as relationalStore.RdbStore).on('storeObserver', false, storeObserver);
   }
 } catch (err) {
   let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message
+  let message = (err as BusinessError).message;
   console.error(`Register observer failed, code is ${code},message is ${message}`);
 }
 
 try {
-  if(store != undefined) {
+  if (store != undefined) {
     (store as relationalStore.RdbStore).off('storeObserver', false, storeObserver);
   }
 } catch (err) {
   let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message
+  let message = (err as BusinessError).message;
   console.error(`Unregister observer failed, code is ${code},message is ${message}`);
 }
 ```
@@ -7044,20 +7064,20 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let progressDetail = (progressDetail: relationalStore.ProgressDetails) => {
   console.info(`progress: ${progressDetail}`);
-}
+};
 
 try {
-  if(store != undefined) {
-    (store as relationalStore.RdbStore).on('autoSyncProgress', progressDetail)
+  if (store != undefined) {
+    (store as relationalStore.RdbStore).on('autoSyncProgress', progressDetail);
   }
 } catch (err) {
   let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message
+  let message = (err as BusinessError).message;
   console.error(`Register observer failed, code is ${code},message is ${message}`);
 }
 
 try {
-  if(store != undefined) {
+  if (store != undefined) {
     (store as relationalStore.RdbStore).off('autoSyncProgress', progressDetail);
   }
 } catch (err) {
@@ -7098,7 +7118,7 @@ off(event: 'statistics', observer?: Callback&lt;SqlExecutionInfo&gt;): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  if(store != undefined) {
+  if (store != undefined) {
     (store as relationalStore.RdbStore).off('statistics');
   }
 } catch (err) {
@@ -7120,7 +7140,7 @@ emit(event: string): void
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| event  | string | 是   | 通知订阅事件的名称。 |
+| event  | string | 是   | 通知订阅事件的名称，可自定义事件名称，不能与系统已有事件[dataChange](#ondatachange)，[autoSyncProgress](#onautosyncprogress11)，[statistics](#onstatistics12)名称重复。 |
 
 **错误码：**
 
@@ -7138,7 +7158,7 @@ emit(event: string): void
 **示例：**
 
 ```ts
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).emit('storeObserver');
 }
 ```
@@ -7189,14 +7209,14 @@ cleanDirtyData(table: string, cursor: number, callback: AsyncCallback&lt;void&gt
 **示例：**
 
 ```ts
-if(store != undefined) {
- (store as relationalStore.RdbStore).cleanDirtyData('test_table', 100, (err) => {
+if (store != undefined) {
+  (store as relationalStore.RdbStore).cleanDirtyData('test_table', 100, (err) => {
     if (err) {
       console.error(`clean dirty data failed, code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info('clean dirty data succeeded');
-  })
+  });
 }
 ```
 
@@ -7245,14 +7265,14 @@ cleanDirtyData(table: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).cleanDirtyData('test_table', (err) => {
     if (err) {
       console.error(`clean dirty data failed, code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info('clean dirty data succeeded');
-  })
+  });
 }
 ```
 
@@ -7308,12 +7328,12 @@ cleanDirtyData(table: string, cursor?: number): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-if(store != undefined) {
-    (store as relationalStore.RdbStore).cleanDirtyData('test_table', 100).then(() => {
-        console.info('clean dirty data  succeeded');
-    }).catch ((err: BusinessError) => {
-        console.error(`clean dirty data failed, code is ${err.code},message is ${err.message}`);
-    })
+if (store != undefined) {
+  (store as relationalStore.RdbStore).cleanDirtyData('test_table', 100).then(() => {
+    console.info('clean dirty data  succeeded');
+  }).catch((err: BusinessError) => {
+    console.error(`clean dirty data failed, code is ${err.code},message is ${err.message}`);
+  });
 }
 ```
 
@@ -7380,12 +7400,12 @@ attach不能并发调用，可能出现未响应情况，报错14800015，需要
 // 非加密数据库附加非加密数据库。
 import { BusinessError } from '@kit.BasicServicesKit';
 
-if(store != undefined) {
-    (store as relationalStore.RdbStore).attach("/path/rdbstore1.db", "attachDB").then((number: number) => {
-        console.info('attach succeeded');
-    }).catch ((err: BusinessError) => {
-        console.error(`attach failed, code is ${err.code},message is ${err.message}`);
-    })
+if (store != undefined) {
+  (store as relationalStore.RdbStore).attach("/path/rdbstore1.db", "attachDB").then((number: number) => {
+    console.info('attach succeeded');
+  }).catch((err: BusinessError) => {
+    console.error(`attach failed, code is ${err.code},message is ${err.message}`);
+  });
 }
 ```
 
@@ -7407,7 +7427,7 @@ attach不能并发调用，可能出现未响应情况，报错14800015，需要
 
 | 参数名        | 类型     | 必填  | 说明           |
 | ----------- | ------ | --- | ------------ |
-| context | Context                          | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
+| context | Context                          | 是   | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
 | config  | [StoreConfig](#storeconfig) | 是   | 与此RDB存储相关的数据库配置。                                |
 | attachName | string | 是   | 表示附加后的数据库的别名。 |
 | waitTime | number | 否   | 表示附加数据库文件的等待时长。默认值2s，最小值1s，最大值300s。 |
@@ -7457,23 +7477,23 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let attachStore: relationalStore.RdbStore | undefined = undefined;
 
 const STORE_CONFIG1: relationalStore.StoreConfig = {
-    name: "rdbstore1.db",
-    securityLevel: relationalStore.SecurityLevel.S3,
-}
+  name: "rdbstore1.db",
+  securityLevel: relationalStore.SecurityLevel.S3
+};
 
 relationalStore.getRdbStore(this.context, STORE_CONFIG1).then(async (rdbStore: relationalStore.RdbStore) => {
-    attachStore = rdbStore;
-    console.info('Get RdbStore successfully.')
+  attachStore = rdbStore;
+  console.info('Get RdbStore successfully.');
 }).catch((err: BusinessError) => {
-    console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
-})
+  console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+});
 
-if(store != undefined) {
-    (store as relationalStore.RdbStore).attach(this.context, STORE_CONFIG1, "attachDB").then((number: number) => {
-        console.info(`attach succeeded, number is ${number}`);
-    }).catch ((err: BusinessError) => {
-        console.error(`attach failed, code is ${err.code},message is ${err.message}`);
-    })
+if (store != undefined) {
+  (store as relationalStore.RdbStore).attach(this.context, STORE_CONFIG1, "attachDB").then((number: number) => {
+    console.info(`attach succeeded, number is ${number}`);
+  }).catch((err: BusinessError) => {
+    console.error(`attach failed, code is ${err.code},message is ${err.message}`);
+  });
 }
 ```
 
@@ -7484,26 +7504,25 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let attachStore: relationalStore.RdbStore | undefined = undefined;
 
-
 const STORE_CONFIG2: relationalStore.StoreConfig = {
-    name: "rdbstore2.db",
-    encrypt: true,
-    securityLevel: relationalStore.SecurityLevel.S3,
-}
+  name: "rdbstore2.db",
+  encrypt: true,
+  securityLevel: relationalStore.SecurityLevel.S3
+};
 
 relationalStore.getRdbStore(this.context, STORE_CONFIG2).then(async (rdbStore: relationalStore.RdbStore) => {
-    attachStore = rdbStore;
-    console.info('Get RdbStore successfully.')
+  attachStore = rdbStore;
+  console.info('Get RdbStore successfully.');
 }).catch((err: BusinessError) => {
-    console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
-})
+  console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+});
 
-if(store != undefined) {
-    (store as relationalStore.RdbStore).attach(this.context, STORE_CONFIG2, "attachDB2", 10).then((number: number) => {
-        console.info(`attach succeeded, number is ${number}`);
-    }).catch ((err: BusinessError) => {
-        console.error(`attach failed, code is ${err.code},message is ${err.message}`);
-    })
+if (store != undefined) {
+  (store as relationalStore.RdbStore).attach(this.context, STORE_CONFIG2, "attachDB2", 10).then((number: number) => {
+    console.info(`attach succeeded, number is ${number}`);
+  }).catch((err: BusinessError) => {
+    console.error(`attach failed, code is ${err.code},message is ${err.message}`);
+  });
 }
 ```
 
@@ -7563,12 +7582,12 @@ detach(attachName: string, waitTime?: number) : Promise&lt;number&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-if(store != undefined) {
-    (store as relationalStore.RdbStore).detach("attachDB").then((number: number) => {
-        console.info(`detach succeeded, number is ${number}`);
-    }).catch ((err: BusinessError) => {
-        console.error(`detach failed, code is ${err.code},message is ${err.message}`);
-    })
+if (store != undefined) {
+  (store as relationalStore.RdbStore).detach("attachDB").then((number: number) => {
+    console.info(`detach succeeded, number is ${number}`);
+  }).catch((err: BusinessError) => {
+    console.error(`detach failed, code is ${err.code},message is ${err.message}`);
+  });
 }
 ```
 
@@ -7630,12 +7649,12 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).lockRow(predicates).then(() => {
     console.info(`Lock success`);
   }).catch((err: BusinessError) => {
     console.error(`Lock failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -7697,12 +7716,12 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).unlockRow(predicates).then(() => {
     console.info(`Unlock success`);
   }).catch((err: BusinessError) => {
     console.error(`Unlock failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -7761,8 +7780,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
-if(store != undefined) {
-  (store as relationalStore.RdbStore).queryLockedRow(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet: relationalStore.ResultSet) => {
+if (store != undefined) {
+  (store as relationalStore.RdbStore).queryLockedRow(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then(async (resultSet: relationalStore.ResultSet) => {
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
     while (resultSet.goToNextRow()) {
@@ -7776,7 +7795,7 @@ if(store != undefined) {
     resultSet.close();
   }).catch((err: BusinessError) => {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 ### close<sup>12+</sup>
@@ -7807,12 +7826,12 @@ close(): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-if(store != undefined) {
-    (store as relationalStore.RdbStore).close().then(() => {
-        console.info(`close succeeded`);
-    }).catch ((err: BusinessError) => {
-        console.error(`close failed, code is ${err.code},message is ${err.message}`);
-    })
+if (store != undefined) {
+  (store as relationalStore.RdbStore).close().then(() => {
+    console.info(`close succeeded`);
+  }).catch((err: BusinessError) => {
+    console.error(`close failed, code is ${err.code},message is ${err.message}`);
+  });
 }
 ```
 
@@ -7820,46 +7839,7 @@ if(store != undefined) {
 
 提供通过查询数据库生成的数据库结果集的访问方法。结果集是指用户调用关系型数据库查询接口之后返回的结果集合，提供了多种灵活的数据访问方式，以便用户获取各项数据。
 
-### 使用说明
-
-首先需要获取resultSet对象。
-
-**示例：**
-
-```ts
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { window } from '@kit.ArkUI';
-
-let store: relationalStore.RdbStore | undefined = undefined;
-
-class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    const STORE_CONFIG: relationalStore.StoreConfig = {
-      name: "RdbTest.db",
-      securityLevel: relationalStore.SecurityLevel.S3,
-    };
-
-    relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
-      store = rdbStore;
-      console.info('Get RdbStore successfully.')
-    }).catch((err: BusinessError) => {
-      console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
-    })
-
-    let resultSet: relationalStore.ResultSet | undefined = undefined;
-    let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-    predicates.equalTo("AGE", 18);
-    if(store != undefined) {
-      (store as relationalStore.RdbStore).query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((result: relationalStore.ResultSet) => {
-        resultSet = result;
-        console.info(`resultSet columnNames: ${resultSet.columnNames}`);
-        console.info(`resultSet columnCount: ${resultSet.columnCount}`);
-      });
-    }
-  }
-}
-```
+下列API示例中，都需先使用[query](#query14)、[querySql](#querysql14)、[remoteQuery](#remotequery-1)、[queryLockedRow](#querylockedrow12)中任一方法获取到ResultSet实例，再通过此实例调用对应方法。
 
 ### 属性
 
@@ -7868,14 +7848,14 @@ class EntryAbility extends UIAbility {
 | 名称         | 类型            | 必填 | 说明                             |
 | ------------ | ------------------- | ---- | -------------------------------- |
 | columnNames  | Array&lt;string&gt; | 是   | 获取结果集中所有列的名称。       |
-| columnCount  | number              | 是   | 获取结果集中的列数。             |
-| rowCount     | number              | 是   | 获取结果集中的行数。             |
-| rowIndex     | number              | 是   | 获取结果集当前行的索引。         |
-| isAtFirstRow | boolean             | 是   | 检查结果集是否位于第一行。       |
-| isAtLastRow  | boolean             | 是   | 检查结果集是否位于最后一行。     |
-| isEnded      | boolean             | 是   | 检查结果集是否位于最后一行之后。 |
-| isStarted    | boolean             | 是   | 检查指针是否移动过。             |
-| isClosed     | boolean             | 是   | 检查当前结果集是否关闭。         |
+| columnCount  | number              | 是   | 获取结果集中列的数量。             |
+| rowCount     | number              | 是   | 获取结果集中行的数量。             |
+| rowIndex     | number              | 是   | 获取结果集当前行的索引位置，默认值为-1。索引位置下标从0开始。 |
+| isAtFirstRow | boolean             | 是   | 检查结果集指针是否位于第一行（行索引为0），true表示位于第一行，false表示不位于第一行。 |
+| isAtLastRow  | boolean             | 是   | 检查结果集指针是否位于最后一行，true表示位于最后一行，false表示不位于最后一行。 |
+| isEnded      | boolean             | 是   | 检查结果集指针是否位于最后一行之后，true表示位于最后一行之后，false表示不位于最后一行之后。 |
+| isStarted    | boolean             | 是   | 检查指针是否移动过，true表示指针已移动过，false表示指针未移动过。             |
+| isClosed     | boolean             | 是   | 检查当前结果集是否关闭，true表示结果集已关闭，false表示结果集未关闭。         |
 
 ### getColumnIndex
 
@@ -7927,7 +7907,7 @@ getColumnIndex(columnName: string): number
 **示例：**
 
 ```ts
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   const id = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("ID"));
   const name = (resultSet as relationalStore.ResultSet).getString((resultSet as relationalStore.ResultSet).getColumnIndex("NAME"));
   const age = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("AGE"));
@@ -7985,10 +7965,138 @@ getColumnName(columnIndex: number): string
 **示例：**
 
 ```ts
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   const id = (resultSet as relationalStore.ResultSet).getColumnName(0);
   const name = (resultSet as relationalStore.ResultSet).getColumnName(1);
   const age = (resultSet as relationalStore.ResultSet).getColumnName(2);
+}
+```
+
+### getColumnType<sup>18+</sup>
+
+getColumnType(columnIdentifier: number | string): Promise\<ColumnType>
+
+根据指定的列索引或列名称获取列数据类型，使用Promise异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名           | 类型             | 必填 | 说明                                                         |
+| ---------------- | ---------------- | ---- | ------------------------------------------------------------ |
+| columnIdentifier | number \| string | 是   | 表示结果集中指定列的索引或名称。索引必须是非负整数，最大不能超过属性columnNames的长度。列名必须是属性columnNames内的名称。 |
+
+**返回值：**
+
+| 类型                                 | 说明                                |
+| ------------------------------------ | ----------------------------------- |
+| Promise<[ColumnType](#columntype18)> | Promise对象。返回指定列的数据类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。其中，14800011错误码处理可参考[数据库备份与恢复](../../database/data-backup-and-restore.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 14800000     | Inner error.                                                 |
+| 14800011     | Database corrupted.                                          |
+| 14800012     | Row out of bounds.                                           |
+| 14800013     | Column out of bounds.                                        |
+| 14800014     | Already closed.                                              |
+| 14800019     | The SQL must be a query statement.                           |
+| 14800021     | SQLite: Generic error.                                       |
+| 14800022     | SQLite: Callback routine requested an abort.                 |
+| 14800023     | SQLite: Access permission denied.                            |
+| 14800024     | SQLite: The database file is locked.                         |
+| 14800025     | SQLite: A table in the database is locked.                   |
+| 14800026     | SQLite: The database is out of memory.                       |
+| 14800027     | SQLite: Attempt to write a readonly database.                |
+| 14800028     | SQLite: Some kind of disk I/O error occurred.                |
+| 14800029     | SQLite: The database is full.                                |
+| 14800030     | SQLite: Unable to open the database file.                    |
+| 14800031     | SQLite: TEXT or BLOB exceeds size limit.                     |
+| 14800032     | SQLite: Abort due to constraint violation.                   |
+| 14800033     | SQLite: Data type mismatch.                                  |
+| 14800034     | SQLite: Library used incorrectly.                            |
+
+**示例：**
+
+```ts
+if (resultSet != undefined) {
+  let idType = await (resultSet as relationalStore.ResultSet).getColumnType("ID") as relationalStore.ColumnType;
+  let nameType = await (resultSet as relationalStore.ResultSet).getColumnType("NAME") as relationalStore.ColumnType;
+  let ageType = await (resultSet as relationalStore.ResultSet).getColumnType("AGE") as relationalStore.ColumnType;
+  let salaryType = await (resultSet as relationalStore.ResultSet).getColumnType("SALARY") as relationalStore.ColumnType;
+  let codesType = await (resultSet as relationalStore.ResultSet).getColumnType("CODES") as relationalStore.ColumnType;
+  let identityType = await (resultSet as relationalStore.ResultSet).getColumnType(5) as relationalStore.ColumnType;
+  let assetDataType = await (resultSet as relationalStore.ResultSet).getColumnType(6) as relationalStore.ColumnType;
+  let assetsDataType = await (resultSet as relationalStore.ResultSet).getColumnType(7) as relationalStore.ColumnType;
+  let floatArrayType = await (resultSet as relationalStore.ResultSet).getColumnType(8) as relationalStore.ColumnType;
+}
+```
+
+### getColumnTypeSync<sup>18+</sup>
+
+getColumnTypeSync(columnIdentifier: number | string): ColumnType
+
+根据指定的列索引或列名称获取列数据类型。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core 
+
+**参数：**
+
+| 参数名           | 类型             | 必填 | 说明                                                         |
+| ---------------- | ---------------- | ---- | ------------------------------------------------------------ |
+| columnIdentifier | number \| string | 是   | 表示结果集中指定列的索引或名称。索引必须是非负整数，最大不能超过属性columnNames的长度。列名必须是属性columnNames内的名称。 |
+
+**返回值：**
+
+| 类型                        | 说明                   |
+| --------------------------- | ---------------------- |
+| [ColumnType](#columntype18) | 返回指定列的数据类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。其中，14800011错误码处理可参考[数据库备份与恢复](../../database/data-backup-and-restore.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 14800000     | Inner error.                                                 |
+| 14800011     | Database corrupted.                                          |
+| 14800012     | Row out of bounds.                                           |
+| 14800013     | Column out of bounds.                                        |
+| 14800014     | Already closed.                                              |
+| 14800019     | The SQL must be a query statement.                           |
+| 14800021     | SQLite: Generic error.                                       |
+| 14800022     | SQLite: Callback routine requested an abort.                 |
+| 14800023     | SQLite: Access permission denied.                            |
+| 14800024     | SQLite: The database file is locked.                         |
+| 14800025     | SQLite: A table in the database is locked.                   |
+| 14800026     | SQLite: The database is out of memory.                       |
+| 14800027     | SQLite: Attempt to write a readonly database.                |
+| 14800028     | SQLite: Some kind of disk I/O error occurred.                |
+| 14800029     | SQLite: The database is full.                                |
+| 14800030     | SQLite: Unable to open the database file.                    |
+| 14800031     | SQLite: TEXT or BLOB exceeds size limit.                     |
+| 14800032     | SQLite: Abort due to constraint violation.                   |
+| 14800033     | SQLite: Data type mismatch.                                  |
+| 14800034     | SQLite: Library used incorrectly.                            |
+
+**示例：**
+
+```ts
+if (resultSet != undefined) {
+  let idType = (resultSet as relationalStore.ResultSet).getColumnTypeSync("ID") as relationalStore.ColumnType;
+  let nameType = (resultSet as relationalStore.ResultSet).getColumnTypeSync("NAME") as relationalStore.ColumnType;
+  let ageType = (resultSet as relationalStore.ResultSet).getColumnTypeSync("AGE") as relationalStore.ColumnType;
+  let salaryType = (resultSet as relationalStore.ResultSet).getColumnTypeSync("SALARY") as relationalStore.ColumnType;
+  let codesType = (resultSet as relationalStore.ResultSet).getColumnTypeSync("CODES") as relationalStore.ColumnType;
+  let identityType = (resultSet as relationalStore.ResultSet).getColumnTypeSync(5) as relationalStore.ColumnType;
+  let assetDataType = (resultSet as relationalStore.ResultSet).getColumnTypeSync(6) as relationalStore.ColumnType;
+  let assetsDataType = (resultSet as relationalStore.ResultSet).getColumnTypeSync(7) as relationalStore.ColumnType;
+  let floatArrayType = (resultSet as relationalStore.ResultSet).getColumnTypeSync(8) as relationalStore.ColumnType;
 }
 ```
 
@@ -7996,7 +8104,7 @@ if(resultSet != undefined) {
 
 goTo(offset:number): boolean
 
-向前或向后转至结果集的指定行，相对于其当前位置偏移。
+指定相对当前结果集指针位置的偏移量，以移动结果集的指针位置。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -8004,7 +8112,7 @@ goTo(offset:number): boolean
 
 | 参数名 | 类型   | 必填 | 说明                         |
 | ------ | ------ | ---- | ---------------------------- |
-| offset | number | 是   | 表示相对于当前位置的偏移量。 |
+| offset | number | 是   | 表示相对当前结果集指针位置的偏移量，正值表示向后移动，负值表示向前移动。 |
 
 **返回值：**
 
@@ -8042,7 +8150,7 @@ goTo(offset:number): boolean
 **示例：**
 
 ```ts
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   (resultSet as relationalStore.ResultSet).goTo(1);
 }
 ```
@@ -8097,7 +8205,7 @@ goToRow(position: number): boolean
 **示例：**
 
 ```ts
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   (resultSet as relationalStore.ResultSet).goToRow(5);
 }
 ```
@@ -8146,7 +8254,7 @@ goToFirstRow(): boolean
 **示例：**
 
 ```ts
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   (resultSet as relationalStore.ResultSet).goToFirstRow();
 }
 ```
@@ -8194,7 +8302,7 @@ goToLastRow(): boolean
 **示例：**
 
 ```ts
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   (resultSet as relationalStore.ResultSet).goToLastRow();
 }
 ```
@@ -8242,7 +8350,7 @@ goToNextRow(): boolean
 **示例：**
 
 ```ts
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   (resultSet as relationalStore.ResultSet).goToNextRow();
 }
 ```
@@ -8290,7 +8398,7 @@ goToPreviousRow(): boolean
 **示例：**
 
 ```ts
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   (resultSet as relationalStore.ResultSet).goToPreviousRow();
 }
 ```
@@ -8345,7 +8453,7 @@ getValue(columnIndex: number): ValueType
 **示例：**
 
 ```ts
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   const codes = (resultSet as relationalStore.ResultSet).getValue((resultSet as relationalStore.ResultSet).getColumnIndex("BIGINT_COLUMN"));
 }
 ```
@@ -8401,7 +8509,7 @@ getBlob(columnIndex: number): Uint8Array
 **示例：**
 
 ```ts
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   const codes = (resultSet as relationalStore.ResultSet).getBlob((resultSet as relationalStore.ResultSet).getColumnIndex("CODES"));
 }
 ```
@@ -8456,7 +8564,7 @@ getString(columnIndex: number): string
 **示例：**
 
 ```ts
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   const name = (resultSet as relationalStore.ResultSet).getString((resultSet as relationalStore.ResultSet).getColumnIndex("NAME"));
 }
 ```
@@ -8511,9 +8619,9 @@ getLong(columnIndex: number): number
 **示例：**
 
 ```ts
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   const age = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("AGE"));
- }
+}
 ```
 
 ### getDouble
@@ -8566,7 +8674,7 @@ getDouble(columnIndex: number): number
 **示例：**
 
 ```ts
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   const salary = (resultSet as relationalStore.ResultSet).getDouble((resultSet as relationalStore.ResultSet).getColumnIndex("SALARY"));
 }
 ```
@@ -8621,7 +8729,7 @@ getAsset(columnIndex: number): Asset
 **示例：**
 
 ```ts
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   const doc = (resultSet as relationalStore.ResultSet).getAsset((resultSet as relationalStore.ResultSet).getColumnIndex("DOC"));
 }
 ```
@@ -8676,7 +8784,7 @@ getAssets(columnIndex: number): Assets
 **示例：**
 
 ```ts
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   const docs = (resultSet as relationalStore.ResultSet).getAssets((resultSet as relationalStore.ResultSet).getColumnIndex("DOCS"));
 }
 ```
@@ -8724,7 +8832,7 @@ getRow(): ValuesBucket
 **示例：**
 
 ```ts
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   const row = (resultSet as relationalStore.ResultSet).getRow();
 }
 ```
@@ -8742,7 +8850,7 @@ getRows(maxCount: number, position?: number): Promise<Array\<ValuesBucket>>
 | 参数名      | 类型   | 必填 | 说明                    |
 | ----------- | ------ | ---- | ----------------------- |
 | maxCount | number | 是   | 正整数，指定要从结果集中获取数据的条数。不为正整数则参数非法，抛出错误码401。 |
-| position | number | 否   | 非负整数，指定从结果集中获取数据的起始位置，不填则从结果集的当前行(默认首次获取数据时为当前结果集的第一行)开始获取数据。不为非负整数则参数非法，抛出错误码401。 |
+| position | number | 否   | 非负整数，指定从结果集中获取数据的起始位置，不填则从结果集的当前行（默认首次获取数据时为当前结果集的第一行）开始获取数据。不为非负整数则参数非法，抛出错误码401。 |
 
 
 **返回值：**
@@ -8782,23 +8890,23 @@ getRows(maxCount: number, position?: number): Promise<Array\<ValuesBucket>>
 async function proccessRows(resultSet: relationalStore.ResultSet) {
   // 示例1：仅指定maxCount
   if (resultSet != undefined) {
-    let rows:Array<relationalStore.ValuesBucket>
-    let maxCount:number = 50
-    // 从结果集的当前行(默认首次获取数据时为当前结果集的第一行，后续为上次获取数据结束位置的下一行)开始获取数据
+    let rows: Array<relationalStore.ValuesBucket>;
+    let maxCount: number = 50;
+    // 从结果集的当前行（默认首次获取数据时为当前结果集的第一行，后续为上次获取数据结束位置的下一行）开始获取数据
     // getRows会自动移动结果集当前行到上次getRows获取结束位置的下一行，无需使用goToFirstRow、goToNextRow等接口移动
     while ((rows = await (resultSet as relationalStore.ResultSet).getRows(maxCount)).length != 0) {
-      console.info(JSON.stringify(rows[0]))
+      console.info(JSON.stringify(rows[0]));
     }
   }
 
   // 示例2：指定maxCount和起始的position
   if (resultSet != undefined) {
-    let rows:Array<relationalStore.ValuesBucket>
-    let maxCount:number = 50
-    let position:number = 50
+    let rows: Array<relationalStore.ValuesBucket>;
+    let maxCount: number = 50;
+    let position: number = 50;
     while ((rows = await (resultSet as relationalStore.ResultSet).getRows(maxCount, position)).length != 0) {
-      console.info(JSON.stringify(rows[0]))
-      position += rows.length
+      console.info(JSON.stringify(rows[0]));
+      position += rows.length;
     }
   }
 }
@@ -8846,7 +8954,11 @@ getSendableRow(): sendableRelationalStore.ValuesBucket
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
+import { window } from '@kit.ArkUI';
+import { UIAbility } from '@kit.AbilityKit';
+import { relationalStore } from '@kit.ArkData';
 import { taskpool } from '@kit.ArkTS';
 import type ctx from '@ohos.app.ability.common';
 import { sendableRelationalStore } from '@kit.ArkData';
@@ -8871,19 +8983,19 @@ async function getDataByName(name: string, context: ctx.UIAbilityContext) {
   }
 }
 
-async function run() {
-  const task = new taskpool.Task(getDataByName, 'Lisa', getContext());
-  const sendableValuesBucket  = await taskpool.execute(task) as sendableRelationalStore.ValuesBucket;
+export default class EntryAbility extends UIAbility {
+  async onWindowStageCreate(windowStage: window.WindowStage) {
+    const task = new taskpool.Task(getDataByName, 'Lisa', this.context);
+    const sendableValuesBucket = await taskpool.execute(task) as sendableRelationalStore.ValuesBucket;
 
-  if (sendableValuesBucket) {
-    const columnCount = sendableValuesBucket.size;
-    const age = sendableValuesBucket.get('age');
-    const name = sendableValuesBucket.get('name');
-    console.info(`Query data in taskpool succeeded, name is "${name}", age is "${age}"`)
+    if (sendableValuesBucket) {
+      const columnCount = sendableValuesBucket.size;
+      const age = sendableValuesBucket.get('age');
+      const name = sendableValuesBucket.get('name');
+      console.info(`Query data in taskpool succeeded, name is "${name}", age is "${age}"`);
+    }
   }
 }
-
-run()
 ```
 
 ### isColumnNull
@@ -8936,7 +9048,7 @@ isColumnNull(columnIndex: number): boolean
 **示例：**
 
 ```ts
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   const isColumnNull = (resultSet as relationalStore.ResultSet).isColumnNull((resultSet as relationalStore.ResultSet).getColumnIndex("CODES"));
 }
 ```
@@ -8952,7 +9064,7 @@ close(): void
 **示例：**
 
 ```ts
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   (resultSet as relationalStore.ResultSet).close();
 }
 ```
@@ -8986,22 +9098,23 @@ import { window } from '@kit.ArkUI';
 let store: relationalStore.RdbStore | undefined = undefined;
 
 class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage) {
+  async onWindowStageCreate(windowStage: window.WindowStage) {
     const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "RdbTest.db",
-      securityLevel: relationalStore.SecurityLevel.S3,
+      securityLevel: relationalStore.SecurityLevel.S3
     };
 
-    relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
+    await relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
       store = rdbStore;
-      console.info('Get RdbStore successfully.')
+      console.info('Get RdbStore successfully.');
     }).catch((err: BusinessError) => {
       console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
-    })
+    });
 
-    if(store != undefined) {
+    if (store != undefined) {
       (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
         console.info(`createTransaction success`);
+        // 成功获取到事务对象后执行后续操作
       }).catch((err: BusinessError) => {
         console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
       });
@@ -9048,12 +9161,12 @@ let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
 
-if(store != undefined) {
+if (store != undefined) {
   const valueBucket: relationalStore.ValuesBucket = {
     'NAME': value1,
     'AGE': value2,
     'SALARY': value3,
-    'CODES': value4,
+    'CODES': value4
   };
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
     transaction.execute("DELETE FROM TEST WHERE age = ? OR age = ?", ["18", "20"]).then(() => {
@@ -9101,7 +9214,7 @@ rollback(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
     transaction.execute("DELETE FROM TEST WHERE age = ? OR age = ?", ["18", "20"]).then(() => {
       transaction.commit();
@@ -9113,7 +9226,6 @@ if(store != undefined) {
     console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
   });
 }
-
 ```
 
 ### insert<sup>14+</sup>
@@ -9173,22 +9285,22 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
     transaction.insert("EMPLOYEE", valueBucket1, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE).then((rowId: number) => {
       transaction.commit();
@@ -9260,28 +9372,28 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
     try {
       let rowId: number = (transaction as relationalStore.Transaction).insertSync("EMPLOYEE", valueBucket1, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
       transaction.commit();
       console.info(`Insert is successful, rowId = ${rowId}`);
-    } catch (e: BusinessError) {
+    } catch (e) {
       transaction.rollback();
       console.error(`Insert is failed, code is ${e.code},message is ${e.message}`);
     };
@@ -9354,23 +9466,23 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   'NAME': value5,
   'AGE': value6,
   'SALARY': value7,
-  'CODES': value8,
+  'CODES': value8
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   'NAME': value9,
   'AGE': value10,
   'SALARY': value11,
-  'CODES': value12,
+  'CODES': value12
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
     transaction.batchInsert("EMPLOYEE", valueBuckets).then((insertNum: number) => {
       transaction.commit();
@@ -9448,23 +9560,23 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   'NAME': value5,
   'AGE': value6,
   'SALARY': value7,
-  'CODES': value8,
+  'CODES': value8
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   'NAME': value9,
   'AGE': value10,
   'SALARY': value11,
-  'CODES': value12,
+  'CODES': value12
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
     try {
       let insertNum: number = (transaction as relationalStore.Transaction).batchInsertSync("EMPLOYEE", valueBuckets);
@@ -9547,23 +9659,23 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   'NAME': value5,
   'AGE': value6,
   'SALARY': value7,
-  'CODES': value8,
+  'CODES': value8
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   'NAME': value9,
   'AGE': value10,
   'SALARY': value11,
-  'CODES': value12,
+  'CODES': value12
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
     transaction.batchInsertWithConflictResolution("EMPLOYEE", valueBuckets, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE).then((insertNum: number) => {
       transaction.commit();
@@ -9645,23 +9757,23 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   'NAME': value5,
   'AGE': value6,
   'SALARY': value7,
-  'CODES': value8,
+  'CODES': value8
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   'NAME': value9,
   'AGE': value10,
   'SALARY': value11,
-  'CODES': value12,
+  'CODES': value12
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
     try {
       let insertNum: number = (transaction as relationalStore.Transaction).batchInsertWithConflictResolutionSync("EMPLOYEE", valueBuckets, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
@@ -9691,7 +9803,7 @@ update(values: ValuesBucket, predicates: RdbPredicates, conflict?: ConflictResol
 | ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | values     | [ValuesBucket](#valuesbucket)               | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
 | predicates | [RdbPredicates](#rdbpredicates)            | 是   | RdbPredicates的实例对象指定的更新条件。                      |
-| conflict   | [ConflictResolution](#conflictresolution10) | 否   | 指定冲突解决模式。 默认值是relationalStore.ConflictResolution.ON_CONFLICT_NONE。                                          |
+| conflict   | [ConflictResolution](#conflictresolution10) | 否   | 指定冲突解决模式。默认值是relationalStore.ConflictResolution.ON_CONFLICT_NONE。                                          |
 
 **返回值**：
 
@@ -9734,25 +9846,25 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.equalTo("NAME", "Lisa");
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
     transaction.update(valueBucket1, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE).then(async (rows: Number) => {
       transaction.commit();
@@ -9824,25 +9936,25 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
     try {
       let rows: Number = (transaction as relationalStore.Transaction).updateSync(valueBucket1, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
@@ -9906,7 +10018,7 @@ delete(predicates: RdbPredicates):Promise&lt;number&gt;
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
     transaction.delete(predicates).then((rows: Number) => {
       transaction.commit();
@@ -9969,7 +10081,7 @@ deleteSync(predicates: RdbPredicates): number
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
     try {
       let rows: Number = (transaction as relationalStore.Transaction).deleteSync(predicates);
@@ -10029,9 +10141,9 @@ query(predicates: RdbPredicates, columns?: Array&lt;string&gt;): Promise&lt;Resu
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
-    transaction.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet: relationalStore.ResultSet) => {
+    transaction.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then(async (resultSet: relationalStore.ResultSet) => {
       console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
       // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
       while (resultSet.goToNextRow()) {
@@ -10099,8 +10211,8 @@ querySync(predicates: RdbPredicates, columns?: Array&lt;string&gt;): ResultSet
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
 
-if(store != undefined) {
-  (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
+if (store != undefined) {
+  (store as relationalStore.RdbStore).createTransaction().then(async (transaction: relationalStore.Transaction) => {
     try {
       let resultSet: relationalStore.ResultSet = (transaction as relationalStore.Transaction).querySync(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
       console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
@@ -10167,9 +10279,9 @@ querySql(sql: string, args?: Array&lt;ValueType&gt;): Promise&lt;ResultSet&gt;
 **示例：**
 
 ```ts
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
-    transaction.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'").then((resultSet: relationalStore.ResultSet) => {
+    transaction.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'").then(async (resultSet: relationalStore.ResultSet) => {
       console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
       // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
       while (resultSet.goToNextRow()) {
@@ -10234,8 +10346,8 @@ querySqlSync(sql: string, args?: Array&lt;ValueType&gt;): ResultSet
 **示例：**
 
 ```ts
-if(store != undefined) {
-  (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
+if (store != undefined) {
+  (store as relationalStore.RdbStore).createTransaction().then(async (transaction: relationalStore.Transaction) => {
     try {
       let resultSet: relationalStore.ResultSet = (transaction as relationalStore.Transaction).querySqlSync("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'");
       console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
@@ -10314,7 +10426,7 @@ execute(sql: string, args?: Array&lt;ValueType&gt;): Promise&lt;ValueType&gt;
 
 ```ts
 // 删除表中所有数据
-if(store != undefined) {
+if (store != undefined) {
   const SQL_DELETE_TABLE = 'DELETE FROM test';
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
     transaction.execute(SQL_DELETE_TABLE).then((data) => {
@@ -10384,7 +10496,7 @@ executeSync(sql: string, args?: Array&lt;ValueType&gt;): ValueType
 
 ```ts
 // 删除表中所有数据
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
     const SQL_DELETE_TABLE = 'DELETE FROM test';
     try {

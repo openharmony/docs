@@ -165,10 +165,10 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
    - validCommandChange：媒体会话支持的有效命令变化事件。
    - outputDeviceChange：播放设备变化事件。
    - sessionDestroy：媒体会话销毁事件。
-   - sessionEvent: 媒体会话自定义事件变化事件。
+   - sessionEvent：媒体会话自定义事件变化事件。
    - extrasChange：媒体会话自定义数据包变化事件。
-   - queueItemsChange: 媒体会话自定义播放列表变化事件。
-   - queueTitleChange: 媒体会话自定义播放列表的名称变化事件。
+   - queueItemsChange：媒体会话自定义播放列表变化事件。
+   - queueTitleChange：媒体会话自定义播放列表的名称变化事件。
 
    媒体会话控制方可以根据实际需要监听对应的事件。
 
@@ -246,7 +246,7 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
    import { avSession as AVSessionManager } from '@kit.AVSessionKit';
    async function getInfoFromSessionByController() {
      // 假设我们已经有了一个对应session的controller，如何创建controller可以参考之前的案例。
-     let controller = await AVSessionManager.createController("")
+     let controller = await AVSessionManager.createController("");
      // 获取sessionId。
      let sessionId = controller.sessionId;
      console.info(`get sessionId by controller : isActive : ${sessionId}`);
@@ -292,7 +292,7 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
 
    async function  sendCommandToSessionByController() {
      // 假设我们已经有了一个对应session的controller，如何创建controller可以参考之前的案例。
-     let controller = await AVSessionManager.createController("")
+     let controller = await AVSessionManager.createController("");
      // 获取这个session支持的命令种类。
      let validCommandTypeArray = await controller.getValidCommands();
      console.info(`get validCommandArray by controller : length : ${validCommandTypeArray.length}`);
@@ -342,7 +342,7 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
 
    async function destroyController() {
      // 假设我们已经有了一个对应session的controller，如何创建controller可以参考之前的案例。
-     let controller = await AVSessionManager.createController("")
+     let controller = await AVSessionManager.createController("");
      
      // 销毁当前的controller，销毁后这个controller将不在可用。
      controller.destroy((err: BusinessError) => {

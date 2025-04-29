@@ -106,3 +106,6 @@
 | int32_t [OH_ArkUI_DragEvent_StartDataLoading](_ark_u_i___native_module.md#oh_arkui_dragevent_startdataloading) ([ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent)\* event, OH_UdmfGetDataParams\* options, char\* key, unsigned int keyLen) | 异步获取拖拽数据。  | 
 | int32_t [OH_ArkUI_CancelDataLoading](_ark_u_i___native_module.md#oh_arkui_canceldataloading) ([ArkUI_Context](_ark_u_i___native_module.md#arkui_context) uiContext, const char\* key) | 取消异步获取拖拽数据。 | 
 | int32_t [OH_ArkUI_DisableDropDataPrefetchOnNode](_ark_u_i___native_module.md#oh_arkui_disabledropdataprefetchonnode) ([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, bool disable) | 设置拖拽是否提前获取数据。true为不提前获取数据，默认值为false。  | 
+|int32_t [OH_ArkUI_DragEvent_RequestDragEndPending](_ark_u_i___native_module.md#oh_arkui_dragevent_requestdragendpending)([ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent)\* event, int32_t* requestIdentify) | 请求延迟执行拖拽结束。|
+|int32_t [OH_ArkUI_NotifyDragResult](_ark_u_i___native_module.md#oh_arkui_notifydragresult)(int32_t requestIdentify, [ArkUI_DragResult](_ark_u_i___native_module.md#arkui_dragresult) \* result) | 通知拖拽结果。|
+|int32_t [OH_ArkUI_NotifyDragEndPendingDone](_ark_u_i___native_module.md#oh_arkui_notifydragendpendingdone)(int32_t requestIdentify) | 通知拖拽延迟执行结束。|

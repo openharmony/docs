@@ -1,6 +1,7 @@
 # 加速Web页面的访问
 
 当Web页面加载缓慢时，可以使用预连接、预加载和预获取post请求的能力加速Web页面的访问。
+针对Web页面加载性能优化的详细内容请参考[Web页面加载优化性能指导](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-web-develop-optimization#section128761465256)
 
 ## 预解析和预连接
 
@@ -36,7 +37,7 @@ struct WebComponent {
 }
 ```
 
-也可以通过[initializeBrowserEngine()](../reference/apis-arkweb/js-apis-webview.md#initializewebengine)来提前初始化内核，然后在初始化内核后调用
+也可以通过[initializeWebEngine()](../reference/apis-arkweb/js-apis-webview.md#initializewebengine)来提前初始化内核，然后在初始化内核后调用
 [prepareForPageLoad()](../reference/apis-arkweb/js-apis-webview.md#prepareforpageload10)对即将要加载的页面进行预解析、预连接。这种方式适合提前对首页进行
 预解析、预连接。
 
@@ -164,7 +165,7 @@ struct WebComponent {
 }
 ```
 
-也可以通过[initializeBrowserEngine()](../reference/apis-arkweb/js-apis-webview.md#initializewebengine)提前初始化内核，然后在初始化内核后调用[prefetchResource()](../reference/apis-arkweb/js-apis-webview.md#prefetchresource12)预获取将要加载页面中的post请求。这种方式适合提前预获取首页的post请求。
+也可以通过[initializeWebEngine()](../reference/apis-arkweb/js-apis-webview.md#initializewebengine)提前初始化内核，然后在初始化内核后调用[prefetchResource()](../reference/apis-arkweb/js-apis-webview.md#prefetchresource12)预获取将要加载页面中的post请求。这种方式适合提前预获取首页的post请求。
 
   以下示例，在Ability的onCreate中，提前初始化Web内核并预获取首页的post请求。
 
@@ -234,15 +235,17 @@ export default class EntryAbility extends UIAbility {
    export interface BuilderData {
      url: string;
      controller: WebviewController;
+     context: UIContext;
    }
 
-   const storage = LocalStorage.getShared();
+   let storage : LocalStorage | undefined = undefined;
 
    export class NodeControllerImpl extends NodeController {
      private rootNode: BuilderNode<BuilderData[]> | null = null;
      private wrappedBuilder: WrappedBuilder<BuilderData[]> | null = null;
 
-     constructor(wrappedBuilder: WrappedBuilder<BuilderData[]>) {
+     constructor(wrappedBuilder: WrappedBuilder<BuilderData[]>, context: UIContext) {
+       storage = context.getSharedLocalStorage();
        super();
        this.wrappedBuilder = wrappedBuilder;
      }
@@ -259,7 +262,7 @@ export default class EntryAbility extends UIAbility {
          return;
        }
 
-       const uiContext: UIContext = storage.get<UIContext>("uiContext") as UIContext;
+       const uiContext: UIContext = storage!.get<UIContext>("uiContext") as UIContext;
        if (!uiContext) {
          return;
        }
@@ -269,7 +272,7 @@ export default class EntryAbility extends UIAbility {
    }
 
    export const createNode = (wrappedBuilder: WrappedBuilder<BuilderData[]>, data: BuilderData) => {
-     const baseNode = new NodeControllerImpl(wrappedBuilder);
+     const baseNode = new NodeControllerImpl(wrappedBuilder, data.context);
      baseNode.initWeb(data.url, data.controller);
      return baseNode;
    }
@@ -286,16 +289,16 @@ export default class EntryAbility extends UIAbility {
    function WebBuilder(data: BuilderData) {
      Web({ src: data.url, controller: data.controller })
        .onControllerAttached(() => {
-         precompile(data.controller, configs);
+         precompile(data.controller, configs, data.context);
        })
        .fileAccess(true)
    }
 
    export const precompileWebview = wrapBuilder<BuilderData[]>(WebBuilder);
 
-   export const precompile = async (controller: WebviewController, configs: Array<Config>) => {
+   export const precompile = async (controller: WebviewController, configs: Array<Config>, context: UIContext) => {
      for (const config of configs) {
-       let content = await readRawFile(config.localPath);
+       let content = await readRawFile(config.localPath, context);
 
        try {
          controller.precompileJavaScript(config.url, content, config.options)
@@ -310,9 +313,9 @@ export default class EntryAbility extends UIAbility {
      }
    }
 
-   async function readRawFile(path: string) {
+   async function readRawFile(path: string, context: UIContext) {
      try {
-       return await getContext().resourceManager.getRawFileContent(path);;
+       return await context.getHostContext()!.resourceManager.getRawFileContent(path);;
      } catch (err) {
        return new Uint8Array(0);
      }
@@ -385,7 +388,7 @@ JavaScript资源的获取方式也可通过[网络请求](../reference/apis-netw
      aboutToAppear(): void {
        // 初始化用于注入本地资源的Web组件
        this.precompileNode = createNode(precompileWebview,
-         { url: "https://www.example.com/empty.html", controller: this.precompileController});
+         { url: "https://www.example.com/empty.html", controller: this.precompileController, context: this.getUIContext()});
      }
 
      build() {
@@ -395,7 +398,8 @@ JavaScript资源的获取方式也可通过[网络请求](../reference/apis-netw
            .onClick(() => {
              this.businessNode = createNode(businessWebview, {
                url:  "https://www.example.com/business.html",
-               controller: this.businessController
+               controller: this.businessController,
+               context: this.getUIContext()
              });
            })
          // 用于业务的Web组件
@@ -445,15 +449,17 @@ JavaScript资源的获取方式也可通过[网络请求](../reference/apis-netw
    export interface BuilderData {
      url: string;
      controller: WebviewController;
+     context: UIContext;
    }
 
-   const storage = LocalStorage.getShared();
+   let storage : LocalStorage | undefined = undefined;
 
    export class NodeControllerImpl extends NodeController {
      private rootNode: BuilderNode<BuilderData[]> | null = null;
      private wrappedBuilder: WrappedBuilder<BuilderData[]> | null = null;
 
-     constructor(wrappedBuilder: WrappedBuilder<BuilderData[]>) {
+     constructor(wrappedBuilder: WrappedBuilder<BuilderData[]>,  context: UIContext) {
+      storage = context.getSharedLocalStorage();
        super();
        this.wrappedBuilder = wrappedBuilder;
      }
@@ -470,7 +476,7 @@ JavaScript资源的获取方式也可通过[网络请求](../reference/apis-netw
          return;
        }
 
-       const uiContext: UIContext = storage.get<UIContext>("uiContext") as UIContext;
+       const uiContext: UIContext = storage!.get<UIContext>("uiContext") as UIContext;
        if (!uiContext) {
          return;
        }
@@ -480,7 +486,7 @@ JavaScript资源的获取方式也可通过[网络请求](../reference/apis-netw
    }
 
    export const createNode = (wrappedBuilder: WrappedBuilder<BuilderData[]>, data: BuilderData) => {
-     const baseNode = new NodeControllerImpl(wrappedBuilder);
+     const baseNode = new NodeControllerImpl(wrappedBuilder, data.context);
      baseNode.initWeb(data.url, data.controller);
      return baseNode;
    }
@@ -500,7 +506,7 @@ JavaScript资源的获取方式也可通过[网络请求](../reference/apis-netw
      Web({ src: data.url, controller: data.controller })
        .onControllerAttached(async () => {
          try {
-           data.controller.injectOfflineResources(await getData ());
+           data.controller.injectOfflineResources(await getData (data.context));
          } catch (err) {
            console.error("error: " + err.code + " " + err.message);
          }
@@ -510,14 +516,14 @@ JavaScript资源的获取方式也可通过[网络请求](../reference/apis-netw
 
    export const injectWebview = wrapBuilder<BuilderData[]>(WebBuilder);
 
-   export async function getData() {
+   export async function getData(context: UIContext) {
      const resourceMapArr: Array<webview.OfflineResourceMap> = [];
 
      // 读取配置，从rawfile目录中读取文件内容
      for (let config of resourceConfigs) {
        let buf: Uint8Array = new Uint8Array(0);
        if (config.localPath) {
-         buf = await readRawFile(config.localPath);
+         buf = await readRawFile(config.localPath, context);
        }
 
        resourceMapArr.push({
@@ -531,9 +537,9 @@ JavaScript资源的获取方式也可通过[网络请求](../reference/apis-netw
      return resourceMapArr;
    }
 
-   export async function readRawFile(url: string) {
+   export async function readRawFile(url: string, context: UIContext) {
      try {
-       return await getContext().resourceManager.getRawFileContent(url);
+       return await context.getHostContext()!.resourceManager.getRawFileContent(url);
      } catch (err) {
        return new Uint8Array(0);
      }
@@ -619,7 +625,7 @@ JavaScript资源的获取方式也可通过[网络请求](../reference/apis-netw
      aboutToAppear(): void {
        // 初始化用于注入本地资源的Web组件, 提供一个空的html页面作为url即可
        this.injectNode = createNode(injectWebview,
-           { url: "https://www.example.com/empty.html", controller: this.injectController});
+           { url: "https://www.example.com/empty.html", controller: this.injectController, context: this.getUIContext()});
      }
 
      build() {
@@ -629,7 +635,8 @@ JavaScript资源的获取方式也可通过[网络请求](../reference/apis-netw
            .onClick(() => {
              this.businessNode = createNode(businessWebview, {
                url: "https://www.example.com/business.html",
-               controller: this.businessController
+               controller: this.businessController,
+               context: this.getUIContext()
              });
            })
          // 用于业务的Web组件

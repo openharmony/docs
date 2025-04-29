@@ -1,4 +1,4 @@
-# @ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable object)
+# @ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object)
 
 The sendablePhotoAccessHelper module provides APIs for album management, including creating an album and accessing and modifying media data in an album, based on a [Sendable](../../arkts-utils/arkts-sendable.md) object.
 
@@ -56,7 +56,7 @@ let phAccessHelper = sendablePhotoAccessHelper.getPhotoAccessHelper(context);
 
 ### getAssets
 
-getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
+getAssets(options: photoAccessHelper.FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
 Obtains media assets. This API uses a promise to return the result.
 
@@ -70,7 +70,7 @@ If the caller does not have the ohos.permission.READ_IMAGEVIDEO permission, use 
 
 | Name | Type                                                     | Mandatory| Description                |
 | ------- | --------------------------------------------------------- | ---- | -------------------- |
-| options | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | Yes  | Options for fetching the media assets.|
+| options | [photoAccessHelper.FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | Yes  | Options for fetching the media assets.|
 
 **Return value**
 
@@ -86,8 +86,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 201      | Permission denied.                                           |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **Example**
 
@@ -121,7 +120,7 @@ async function example() {
 
 ### getBurstAssets
 
-getBurstAssets(burstKey: string, options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
+getBurstAssets(burstKey: string, options: photoAccessHelper.FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
 Obtains burst assets. This API uses a promise to return the result.
 
@@ -133,8 +132,8 @@ Obtains burst assets. This API uses a promise to return the result.
 
 | Name  | Type                                                     | Mandatory| Description                                                        |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| burstKey | string                                                    | Yes  | Universally Unique Identifier (UUID) of a group of burst photos, that is, **BURST_KEY** of [PhotoKeys](js-apis-photoAccessHelper.md#photokeys).|
-| options  | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | Yes  | Options for fetching the burst photos.                                          |
+| burstKey | string                                                    | Yes  | Universally Unique Identifier (UUID) of a group of burst photos, that is, **BURST_KEY** of [PhotoKeys](js-apis-photoAccessHelper.md#photokeys). The value is a string of 36 characters.|
+| options  | [photoAccessHelper.FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | Yes  | Options for fetching the burst photos.                                          |
 
 **Return value**
 
@@ -170,28 +169,28 @@ async function example() {
   let photoAsset: sendablePhotoAccessHelper.PhotoAsset;
   // burstKey is a 36-bit UUID, which can be obtained from photoAccessHelper.PhotoKeys.
   for(photoAsset of photoAssetList){
-      let burstKey: string = photoAccessHelper.PhotoKeys.BURST_KEY.toString();
-      let photoAccessBurstKey: photoAccessHelper.MemberType = photoAsset.get(burstKey).toString();
-      try {
-         let fetchResult: sendablePhotoAccessHelper.FetchResult<sendablePhotoAccessHelper.PhotoAsset> = await 
+    let burstKey: string = photoAccessHelper.PhotoKeys.BURST_KEY.toString();
+    let photoAccessBurstKey: photoAccessHelper.MemberType = photoAsset.get(burstKey).toString();
+    try {
+      let fetchResult: sendablePhotoAccessHelper.FetchResult<sendablePhotoAccessHelper.PhotoAsset> = await
       phAccessHelper.getBurstAssets(photoAccessBurstKey, fetchOption);
-         if (fetchResult !== undefined) {
-           console.info('fetchResult success');
-           let photoAsset: sendablePhotoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-           if (photoAsset !== undefined) {
-              console.info('photoAsset.displayName :' + photoAsset.displayName);
+      if (fetchResult !== undefined) {
+        console.info('fetchResult success');
+        let photoAsset: sendablePhotoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+        if (photoAsset !== undefined) {
+          console.info('photoAsset.displayName :' + photoAsset.displayName);
+        }
       }
+    } catch (err) {
+      console.error(`getBurstAssets failed, error: ${err.code}, ${err.message}`);
     }
-  } catch (err) {
-    console.error(`getBurstAssets failed, error: ${err.code}, ${err.message}`);
   }
-}
 }
 ```
 
 ### createAsset
 
-createAsset(photoType: PhotoType, extension: string, options?: CreateOptions): Promise&lt;string&gt;
+createAsset(photoType: PhotoType, extension: string, options?: photoAccessHelper.CreateOptions): Promise&lt;string&gt;
 
 Creates a media asset with the specified file type, file name extension, and options. This API uses a promise to return the result.
 
@@ -208,8 +207,8 @@ If the caller does not have the ohos.permission.WRITE_IMAGEVIDEO permission, you
 | Name   | Type                                                       | Mandatory| Description                                |
 | --------- | ----------------------------------------------------------- | ---- | ------------------------------------ |
 | photoType | [PhotoType](#phototype)                                     | Yes  | Type of the file to create, which can be **IMAGE** or **VIDEO**.|
-| extension | string                                                      | Yes  | File name extension, for example, **'jpg'**.       |
-| options   | [CreateOptions](js-apis-photoAccessHelper.md#createoptions) | No  | Options for creating the media asset, for example, **{title: 'testPhoto'}**.|
+| extension | string                                                      | Yes  | File name extension, for example, **'jpg'**. The value contains 1 to 255 characters.       |
+| options   | [photoAccessHelper.CreateOptions](js-apis-photoAccessHelper.md#createoptions) | No  | Options for creating the media asset, for example, **{title: 'testPhoto'}**.|
 
 **Return value**
 
@@ -225,7 +224,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 201      | Permission denied.                                           |
-| 13900020 | Invalid argument.                                            |
 | 14000011 | Internal system error.                                        |
 
 **Example**
@@ -252,7 +250,7 @@ async function example() {
 
 ### getAlbums
 
-getAlbums(type: AlbumType, subtype: AlbumSubtype, options?: FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;
+getAlbums(type: AlbumType, subtype: AlbumSubtype, options?: photoAccessHelper.FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;
 
 Obtains albums based on the specified options and album type. This API uses a promise to return the result.
 
@@ -268,7 +266,7 @@ Before the operation, ensure that the albums to obtain exist.
 | ------- | --------------------------------------------------------- | ---- | -------------------------------------- |
 | type    | [AlbumType](#albumtype)                                   | Yes  | Type of the albums to obtain.                            |
 | subtype | [AlbumSubtype](#albumsubtype)                             | Yes  | Subtype of the album.                          |
-| options | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | No  | Options for fetching the albums. If this parameter is not specified, the albums are obtained based on the album type by default.|
+| options | [photoAccessHelper.FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | No  | Options for fetching the albums. If this parameter is not specified, the albums are obtained based on the album type by default.|
 
 **Return value**
 
@@ -284,8 +282,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 201      | Permission denied.                                           |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **Example**
 
@@ -319,7 +316,7 @@ async function example() {
 
 ### getAlbums
 
-getAlbums(options: FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;
+getAlbums(options: photoAccessHelper.FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;
 
 Obtains albums. This API uses a promise to return the result.
 
@@ -333,7 +330,7 @@ Before the operation, ensure that the albums to obtain exist.
 
 | Name | Type                                                     | Mandatory| Description    |
 | ------- | --------------------------------------------------------- | ---- | -------- |
-| options | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | Yes  | Options for obtaining the albums.|
+| options | [photoAccessHelper.FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | Yes  | Options for fetching the albums.|
 
 **Return value**
 
@@ -349,8 +346,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 201      | Permission denied.                                           |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **Example**
 
@@ -403,9 +399,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **Example**
 
@@ -437,9 +431,9 @@ Provides APIs for encapsulating file asset attributes.
 
 | Name       | Type                   | Read-Only| Optional| Description                                                        |
 | ----------- | ----------------------- | ---- | ---- | ------------------------------------------------------------ |
-| uri         | string                  | Yes  | No  | Media asset URI, for example, **file://media/Photo/1/IMG_datetime_0001/displayName.jpg**. For details, see [Media File URI](../../file-management/user-file-uri-intro.md#media-file-uri).|
-| photoType   | [PhotoType](#phototype) | Yes  | No  | Type of the file.                                              |
-| displayName | string                  | Yes  | No  | File name, including the file name extension, to display.                                    |
+| uri<sup>12+</sup>         | string                  | Yes  | No  | Media asset URI, for example, **file://media/Photo/1/IMG_datetime_0001/displayName.jpg**. For details, see [Media File URI](../../file-management/user-file-uri-intro.md#media-file-uri).|
+| photoType<sup>12+</sup>   | [PhotoType](#phototype) | Yes  | No  | Type of the file.                                              |
+| displayName<sup>12+</sup> | string                  | Yes  | No  | File name, including the file name extension, to display. The value contains 1 to 255 characters.                                    |
 
 ### convertToPhotoAsset
 
@@ -461,9 +455,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 13900020 | Invalid argument.                                            |
-| 14000014 | Member is not a valid PhotoKey.                              |
+| 201      | Permission denied.                                           |
+| 14000011 | Internal system error.                                        |
 
 **Example**
 
@@ -491,7 +484,7 @@ async function example() {
 
 ### get
 
-get(member: string): MemberType
+get(member: string): photoAccessHelper.MemberType
 
 Obtains a **PhotoAsset** member parameter.
 
@@ -507,7 +500,7 @@ Obtains a **PhotoAsset** member parameter.
 
 | Type                                                 | Description                        |
 | ----------------------------------------------------- | ---------------------------- |
-| [MemberType](js-apis-photoAccessHelper.md#membertype) | **PhotoAsset** member parameter obtained.|
+| [photoAccessHelper.MemberType](js-apis-photoAccessHelper.md#membertype) | **PhotoAsset** member parameter obtained.|
 
 **Error codes**
 
@@ -516,8 +509,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 13900020 | Invalid argument.                                            |
-| 14000014 | Member is not a valid PhotoKey.                              |
 
 **Example**
 
@@ -556,8 +547,8 @@ Sets a **PhotoAsset** member parameter.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| member | string | Yes  | Name of the parameter to set, for example, [PhotoKeys](js-apis-photoAccessHelper.md#photokeys).TITLE.|
-| value  | string | Yes  | Value to set. Only the value of [PhotoKeys](js-apis-photoAccessHelper.md#photokeys).TITLE can be changed.|
+| member | string | Yes  | Name of the parameter to set, for example, [PhotoKeys](js-apis-photoAccessHelper.md#photokeys).TITLE. The value contains 1 to 255 characters.|
+| value  | string | Yes  | Value to set. Only the value of [PhotoKeys](js-apis-photoAccessHelper.md#photokeys).TITLE can be changed. The title must meet the following requirements:<br>- It does not contain a file name extension.<br>- The file name, which is in the format of title+file name extension, does not exceed 255 characters.<br>- The title does not contain any of the following characters:\ / : * ? " ' ` < > \| { } [ ]  |
 
 **Error codes**
 
@@ -566,8 +557,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 13900020 | Invalid argument.                                            |
-| 14000014 | Member is not a valid PhotoKey.                              |
 
 **Example**
 
@@ -617,11 +606,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 201      | Permission denied.                                           |
-| 13900020 | Invalid argument.                                            |
-| 14000001 | Invalid display name.                                        |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **Example**
 
@@ -682,8 +669,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 201      | Permission denied.                                           |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **Example**
 
@@ -736,9 +722,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **Example**
 
@@ -779,9 +763,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **Example**
 
@@ -821,9 +803,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **Example**
 
@@ -868,9 +848,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **Example**
 
@@ -912,9 +890,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **Example**
 
@@ -931,8 +907,8 @@ async function example() {
   };
   let fetchResult: sendablePhotoAccessHelper.FetchResult<sendablePhotoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   await fetchResult.getFirstObject();
-    let photoAsset: sendablePhotoAccessHelper.PhotoAsset = await fetchResult.getNextObject();
-    console.info('photoAsset displayName: ', photoAsset.displayName);
+  let photoAsset: sendablePhotoAccessHelper.PhotoAsset = await fetchResult.getNextObject();
+  console.info('photoAsset displayName: ', photoAsset.displayName);
 }
 ```
 
@@ -956,9 +932,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **Example**
 
@@ -1006,8 +980,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **Example**
 
@@ -1048,9 +1021,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **Example**
 
@@ -1100,11 +1071,9 @@ Converts this Sendable album to a non-Sendable album.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**Return value**
-
 | Type                   | Description                                                     |
 | ----------------------- | --------------------------------------------------------- |
-| photoAccessHelper.Album | Non-Sendable [Album](js-apis-photoAccessHelper.md#album).|
+| [photoAccessHelper.Album](js-apis-photoAccessHelper.md#album) | Album of the non-Sendable type.|
 
 **Error codes**
 
@@ -1112,10 +1081,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 201      | Permission denied.                                           |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **Example**
 
@@ -1160,7 +1127,7 @@ Obtains media assets. This API uses a promise to return the result.
 
 | Name | Type                                                     | Mandatory| Description      |
 | ------- | --------------------------------------------------------- | ---- | ---------- |
-| options | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | Yes  | Options for fetching the assets.|
+| options | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | Yes  | Options for fetching the albums.|
 
 **Return value**
 
@@ -1177,7 +1144,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 201      | Permission denied.                                           |
 | 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **Example**
 
@@ -1229,10 +1196,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 201      | Permission denied.                                           |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **Example**
 
@@ -1271,6 +1236,31 @@ Enumerates media file types.
 | ----- | ---- | ------ |
 | IMAGE | 1    | Image.|
 | VIDEO | 2    | Video.|
+
+## PhotoSubtype<sup>14+</sup>
+
+Enumerates the [PhotoAsset](#photoasset) types.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name |  Value|  Description|
+| ----- |  ---- |  ---- |
+| DEFAULT |  0 |  Photo, which is the default type.|
+| MOVING_PHOTO |  3 |  Moving photo.|
+| BURST |  4 |  Burst photo.|
+
+## DynamicRangeType<sup>14+</sup>
+
+Enumerates the dynamic range types of media assets.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name |  Value|  Description|
+| ----- |  ---- |  ---- |
+| SDR |  0 |  Standard dynamic range (SDR).|
+| HDR |  1 |  High dynamic range (HDR). |
 
 ## AlbumType
 

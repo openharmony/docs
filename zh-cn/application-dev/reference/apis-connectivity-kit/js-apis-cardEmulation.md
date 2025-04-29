@@ -57,7 +57,7 @@ HCE(Host Card Emulation)，称为基于主机的卡模拟，表示不依赖安�
 import { cardEmulation } from '@kit.ConnectivityKit';
 ```
 
-## cardEmulation.FeatureType<sup>(deprecated)</sup>
+## FeatureType<sup>(deprecated)</sup>
 
 定义不同的NFC卡模拟类型。
 
@@ -102,7 +102,7 @@ isSupported(feature: number): boolean
 
 | 参数名     | 类型     | 必填   | 说明                                       |
 | ------- | ------ | ---- | ---------------------------------------- |
-| feature | number | 是    | 卡模拟类型值，详细请见[FeatureType](#cardemulationfeaturetypedeprecated)枚举值。 |
+| feature | number | 是    | 卡模拟类型值，详细请见[FeatureType](#featuretypedeprecated)枚举值。 |
 
 **返回值：**
 
@@ -347,7 +347,6 @@ on(type: 'hceCmd', callback: AsyncCallback\<number[]>): void
 | 错误码ID | 错误信息|
 | ------- | -------|
 |201 | Permission denied.                 |
-|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 |801 | Capability not supported.          |
 
 **示例：**
@@ -409,7 +408,7 @@ off(type: 'hceCmd', callback?: AsyncCallback\<number[]>): void
 | 错误码ID | 错误信息|
 | ------- | -------|
 |201 | Permission denied.                 |
-|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|401 | Invalid parameter.                 |
 |801 | Capability not supported.          |
 
 **示例：**

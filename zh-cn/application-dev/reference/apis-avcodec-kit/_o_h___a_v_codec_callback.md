@@ -13,6 +13,8 @@ OH_AVCodec中所有异步回调函数指针的集合。将该结构体的实例�
 
 **相关模块：**[CodecBase](_codec_base.md)
 
+**所在头文件：**[native_avcodec_base.h](native__avcodec__base_8h.md)
+
 
 ## 汇总
 

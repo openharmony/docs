@@ -13,7 +13,7 @@ import { ethernet } from '@kit.NetworkKit';
 
 ## HttpProxy
 
-type HttpProxy = connection.HttpProxy;
+type HttpProxy = connection.HttpProxy
 
 网络代理配置信息。
 

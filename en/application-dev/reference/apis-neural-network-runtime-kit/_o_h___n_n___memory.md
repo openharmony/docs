@@ -13,6 +13,7 @@ Defines the memory structure.
 
 **Related module**: [NeuralNeworkRuntime](_neural_network_runtime.md)
 
+**Header file**: [neural_network_runtime_type.h](neural__network__runtime__type_8h.md)
 
 ## Summary
 

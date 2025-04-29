@@ -172,17 +172,17 @@ enum OperationMode_V1_2
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| NORMAL | 普通模式，支持照片和视频场景 | 
-| CAPTURE | 拍摄模式，专用于照片场景 如果实现了此模式，则不应再实现 NORMAL 模式 | 
-| VIDEO | 视频模式，专用于视频秒控 如果实现了此模式，则不应再实现 NORMAL 模式 | 
-| PORTRAIT | 人像模式，专用于人像照片拍摄 | 
-| NIGHT | 夜间模式，专用于夜间拍摄场景 | 
-| PROFESSIONAL | 专业模式，专用于专业拍照场景 | 
-| SLOW_MOTION | 慢动作模式，专用于捕捉慢动作 | 
-| SCAN_CODE | 扫描模式，专用于扫码 | 
-| CAPTURE_MACRO | 微距模式，专用于微距拍照 | 
-| VIDEO_MACRO | 微距模式，专用于微距录像 | 
-| SUPER_STAB | 超级防抖模式，专用于使用超级防抖模式 | 
+| NORMAL | 普通模式，支持照片和视频场景。 | 
+| CAPTURE | 拍摄模式，专用于照片场景 如果实现了此模式，则不应再实现 NORMAL 模式。 | 
+| VIDEO | 视频模式，专用于视频秒控 如果实现了此模式，则不应再实现 NORMAL 模式。 | 
+| PORTRAIT | 人像模式，专用于人像照片拍摄。 | 
+| NIGHT | 夜间模式，专用于夜间拍摄场景。 | 
+| PROFESSIONAL | 专业模式，专用于专业拍照场景。 | 
+| SLOW_MOTION | 慢动作模式，专用于捕捉慢动作。 | 
+| SCAN_CODE | 扫描模式，专用于扫码。 | 
+| CAPTURE_MACRO | 微距模式，专用于微距拍照。 | 
+| VIDEO_MACRO | 微距模式，专用于微距录像。 | 
+| SUPER_STAB | 超级防抖模式，专用于使用超级防抖模式。 | 
 
 
 ### SessionStatus

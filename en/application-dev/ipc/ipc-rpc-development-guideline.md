@@ -192,13 +192,11 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
     // If the FA model is used, import featureAbility from @kit.AbilityKit.
     // import { featureAbility } from '@kit.AbilityKit';
     import { rpc } from '@kit.IPCKit';
-   ```
+    ```
 
-2. Connect to the desired ability.
+2. Bind the desired ability.
 
-   Construct the **want** variable, and specify the bundle name and component name of the application where the ability is located. If cross-device communication is involved, also specify the network ID of the target device, which can be obtained through **distributedDeviceManager**. 
-
-   Then, construct the **connect** variable, and specify the callback to be invoked when the binding is successful, the binding fails, or the ability is disconnected. If you use the FA model, call the API provided by **featureAbility** to bind an ability. If you use the stage model, obtain a service instance through **Context**, and then call the API provided by **featureAbility** to bind an ability.
+   Construct the **want** variable, and specify the bundle name and component name of the application where the ability is located. If cross-device communication is involved, also specify the network ID of the target device, which can be obtained through **distributedDeviceManager**. <br>Then, construct the **connect** variable, and specify the callback to be invoked when the binding is successful, the binding fails, or the ability is disconnected. If you use the FA model, call the API provided by **featureAbility** to bind an ability. If you use the stage model, obtain a service instance through **Context**, and then call the API provided by **featureAbility** to bind an ability.
 
    ```ts
     // If the FA model is used, import featureAbility from @kit.AbilityKit.
@@ -208,11 +206,11 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import { distributedDeviceManager } from '@kit.DistributedServiceKit';
     import { BusinessError } from '@kit.BasicServicesKit';
-   
+
     let dmInstance: distributedDeviceManager.DeviceManager | undefined;
     let proxy: rpc.IRemoteObject | undefined;
     let connectId: number;
-   
+
     // Bind an ability on a single device.
     let want: Want = {
       // Enter the bundle name and ability name.
@@ -233,11 +231,11 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
     };
     // Use this method to connect to the ability in the FA model.
     // connectId = featureAbility.connectAbility(want, connect);
-   
+
     let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
     // Save the connection ID, which will be used when the ability is disconnected.
     connectId = context.connectServiceExtensionAbility(want,connect);
-   
+
     // Bind an ability across devices.
     try{
       dmInstance = distributedDeviceManager.createDeviceManager("ohos.rpc.test");
@@ -245,7 +243,7 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
       let err: BusinessError = error as BusinessError;
       hilog.error(0x0000, 'testTag', 'createDeviceManager errCode:' + err.code + ', errMessage:' + err.message);
     }
-   
+
     // Use distributedDeviceManager to obtain the network ID of the target device.
     if (dmInstance != undefined) {
       let deviceList = dmInstance.getAvailableDeviceListSync();
@@ -259,13 +257,13 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
       // Save the connection ID, which will be used when the ability is disconnected.
       // Use this method to connect to the ability in the FA model.
       // connectId = featureAbility.connectAbility(want, connect);
-   
+
       // The first parameter specifies the bundle name of the application, and the second parameter specifies the callback used to return the network ID obtained by using distributedDeviceManager.
       connectId = context.connectServiceExtensionAbility(want,connect);
     }
    ```
 
-3. Process service requests sent from the client.
+3. Process requests sent from the client.
 
    Call **onConnect()** to return a proxy object inherited from [rpc.RemoteObject](../reference/apis-ipc-kit/js-apis-rpc.md#remoteobject) after the ability is successfully connected. Implement [onRemoteMessageRequest](../reference/apis-ipc-kit/js-apis-rpc.md#onremotemessagerequest9) for the proxy object to process requests sent from the client.
 
@@ -362,7 +360,7 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
     let proxy: rpc.IRemoteObject | undefined;
     let connectId: number;
 
-    // Connect to an ability on a single device.
+    // Bind an ability on a single device.
     let want: Want = {
       // Enter the bundle name and ability name.
       bundleName: "ohos.rpc.test.server",
@@ -386,3 +384,8 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
     this.context.disconnectServiceExtensionAbility(connectId);
    ```
 
+##  
+
+ 
+
+-  

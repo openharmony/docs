@@ -11,7 +11,7 @@ OpenHarmony支持系统睡眠时唤醒执行动作，如在睡眠中低电量情
 约束：
 唤醒后动作特性需要适配：
 
-- 满足唤醒条件（如电量低于阈值）时触发电源键事件;
+- 满足唤醒条件（如电量低于阈值）时触发电源键事件。
 - 唤醒原因（如低电量唤醒）保存到内核节点。
 
 配置策略：
@@ -27,7 +27,7 @@ OpenHarmony支持系统睡眠时唤醒执行动作，如在睡眠中低电量情
 
 环境要求：
 
-Linux调测环境，相关要求和配置可参考《[快速入门](../quick-start/quickstart-overview.md)》
+Linux调测环境，相关要求和配置可参考《[快速入门](../quick-start/quickstart-overview.md)》。
 
 ### 开发步骤 
 
@@ -61,7 +61,7 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
     | -------- | -------- |
     | 53 | 低电量唤醒 |
 
-    唤醒源配置来源于实际场景，如读取节点或其他获得，description用来描述具体来源
+    唤醒源配置来源于实际场景，如读取节点或其他获得，description用来描述具体来源。
 
     **表2** 唤醒场景说明
 
@@ -137,7 +137,7 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
     power_manager_feature_wakeup_action = true
     ```
     
-3. 参考[battery_config.json](https://gitee.com/openharmony/powermgr_battery_manager/blob/master/services/native/profile/battery_config.json)中添加如下配置
+3. 参考[battery_config.json](https://gitee.com/openharmony/powermgr_battery_manager/blob/master/services/native/profile/battery_config.json)中添加如下配置。
     ```json
     "charge_scene": {
         "low_battery_thers": {
@@ -153,7 +153,7 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
     ```
     battery_manager_feature_set_low_capacity_threshold = true
     ```    
-5. 在[power_config.json](https://gitee.com/openharmony/drivers_peripheral/blob/master/power/interfaces/hdi_service/profile/power_config.json)中添加如下部分
+5. 在[power_config.json](https://gitee.com/openharmony/drivers_peripheral/blob/master/power/interfaces/hdi_service/profile/power_config.json)中添加如下部分。
     ```json
     {
         "scene" :{

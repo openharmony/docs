@@ -21,7 +21,7 @@ useEffect(value: boolean)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | boolean | 是 | 控制组件是否继承EffectComponent组件的特效属性参数，从而合并绘制特效。<br/>useEffect为true时子组件继承EffectComponent组件的特效属性参数。<br/>默认值：false|
+| value | boolean | 是 | 控制组件是否继承EffectComponent组件的特效属性参数，从而合并绘制特效。<br/>useEffect为true时子组件继承EffectComponent组件的特效属性参数，为false时子组件不继承EffectComponent组件的特效属性参数。<br/>默认值：false|
 
 ## useEffect<sup>14+</sup>
 
@@ -83,6 +83,8 @@ useEffect(useEffect: Optional\<boolean>, effectType?: EffectType)
 ## 示例
 
 该示例主要通过背景模糊等特效进行绘制合并效果。
+
+<!--code_no_check-->
 
 ```ts
 //Index.ets

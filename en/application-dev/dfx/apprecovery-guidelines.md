@@ -15,15 +15,15 @@ In API version 10, application recovery is applicable to multiple abilities of a
 
 The application recovery APIs are provided by the **appRecovery** module, which can be imported via **import**. For details, see [Development Example](#development-example).
 
-### Application Recovery APIs
+### Available APIs
 
 | API                                                      | Description                                                |
 | ------------------------------------------------------------ | ---------------------------------------------------- |
-| enableAppRecovery(restart?: RestartFlag, saveOccasion?: SaveOccasionFlag, saveMode?: SaveModeFlag) : void;<sup>9+</sup> | Enables application recovery. After this API is called, the first ability that is displayed when the application is started from the initiator can be restored.|
-| saveAppState(): boolean;<sup>9+</sup> | Saves the state of the ability that supports recovery in the current application.|
-| restartApp(): void;<sup>9+</sup> | Restarts the current process and starts the ability specified by **setRestartWant**. If no ability is specified, a foreground ability that supports recovery is restarted.|
-| saveAppState(context?: UIAbilityContext): boolean;<sup>10+</sup> | Saves the ability state specified by **Context**.|
-| setRestartWant(want: Want): void;<sup>10+</sup> | Sets the abilities to restart when **restartApp** is actively called and **RestartFlag** is not **NO_RESTART**. The abilities must be under the same bundle name and must be a **UIAbility**.|
+| enableAppRecovery(restart?: RestartFlag, saveOccasion?: SaveOccasionFlag, saveMode?: SaveModeFlag) : void<sup>9+</sup> | Enables application recovery. After this API is called, the first ability that is displayed when the application is started from the initiator can be restored.|
+| saveAppState(): boolean<sup>9+</sup> | Saves the state of the ability that supports recovery in the current application.|
+| restartApp(): void<sup>9+</sup> | Restarts the current process and starts the ability specified by **setRestartWant**. If no ability is specified, a foreground ability that supports recovery is restarted.|
+| saveAppState(context?: UIAbilityContext): boolean<sup>10+</sup> | Saves the ability state specified by **Context**.|
+| setRestartWant(want: Want): void<sup>10+</sup> | Sets the abilities to restart when **restartApp** is actively called and **RestartFlag** is not **NO_RESTART**. The abilities must be under the same bundle name and must be a **UIAbility**.|
 
 No error will be thrown if the preceding APIs are used in the troubleshooting scenario. The following are some notes on API usage:
 
@@ -60,6 +60,7 @@ Fault management is an important way for applications to deliver a better user e
 
 The figure below does not illustrate the time when [faultLogger](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md) is called. You can refer to the [LastExitReason](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#abilityconstantlastexitreason) passed during application initialization to determine whether to call [faultLogger](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md) to query information about the previous fault.
 ![Fault rectification process](./figures/fault_rectification.png)
+
 It is recommended that you call [errorManager](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md) to handle the exception. After the processing is complete, you can call the **saveAppState** API and restart the application.
 If you do not register an [ErrorObserver](../reference/apis-ability-kit/js-apis-inner-application-errorObserver.md) instance or enable application recovery, the application process will exit according to the default processing logic of the system. Users can restart the application from the home screen.
 If you have enabled application recovery, the recovery framework first checks whether application state saving is supported and whether the application state saving is enabled. If so, the recovery framework invokes [onSaveState](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonsavestate) of the [ability](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md). Finally, the application is restarted.

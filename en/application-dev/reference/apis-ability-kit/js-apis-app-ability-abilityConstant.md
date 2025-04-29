@@ -23,9 +23,10 @@ Defines the parameters for starting an ability. The parameter values are automat
 | Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | launchReason | [LaunchReason](#launchreason)| No| No| Ability launch reason, which is an enumerated type.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| launchReasonMessage<sup>16+</sup> | string | No| Yes| Detailed message that describes the ability launch reason.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
+| launchReasonMessage<sup>18+</sup> | string | No| Yes| Detailed message that describes the ability launch reason.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 | lastExitReason | [LastExitReason](#lastexitreason) | No| No| Reason for the last exit, which is an enumerated type.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | lastExitMessage<sup>12+</sup> | string | No| No| Reason for the last exit.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| lastExitDetailInfo<sup>18+</sup> | [LastExitDetailInfo](#lastexitdetailinfo18) | No| Yes| Detailed information about the last exit.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 ## LaunchReason
 
@@ -74,8 +75,10 @@ Enumerates the reasons for the last exit. You can use it together with the value
 | JS_ERROR<sup>10+</sup>  | 4    | The ability exits due to a JS_ERROR fault triggered when an application has a JS syntax error that is not captured by developers.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | APP_FREEZE<sup>10+</sup>  | 5    | The ability exits because watchdog detects that the application is frozen.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | PERFORMANCE_CONTROL<sup>10+</sup>  | 6    | The ability exits due to system performance problems, for example, insufficient device memory.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**NOTE**: This API will be deprecated. You are advised to use **RESOURCE_CONTROL** instead.|
-| RESOURCE_CONTROL<sup>10+</sup>  | 7    | The ability exits due to improper use of system resources. The specific error cause can be obtained through [LaunchParam.lastExitMessage](#launchparam). The possible causes are as follows:<br> - **CPU Highload**: The CPU load is high.<br> - **CPU_EXT Highload**: A fast CPU load detection is carried out.<br> - **IO Manage Control**: An I/O management and control operation is carried out.<br> -** App Memory Deterioration**: The application memory usage exceeds the threshold.<br> - **Temperature Control**: The temperature is too high or too low.<br> - **Memory Pressure**: The system is low on memory, triggering ability exiting in ascending order of priority.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| RESOURCE_CONTROL<sup>10+</sup>  | 7    | The ability exits due to improper use of system resources. The specific error cause can be obtained through [LaunchParam.lastExitMessage](#launchparam). The possible causes are as follows:<br> - **CPU Highload**: The CPU load is high.<br> - **CPU_EXT Highload**: A fast CPU load detection is carried out.<br> - **IO Manage Control**: An I/O management and control operation is carried out.<br> - **App Memory Deterioration**: The application memory usage exceeds the threshold.<br> - **Temperature Control**: The temperature is too high or too low.<br> - **Memory Pressure**: The system is low on memory, triggering ability exiting in ascending order of priority.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | UPGRADE<sup>10+</sup>  | 8    | The ability exits due to an update.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| USER_REQUEST<sup>18+</sup>  | 9    | The ability exits because of an action in the multitasking center, for example, when users swipe up or hit the one-click clean button in the multitasking view.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| SIGNAL<sup>18+</sup>  | 10    | The ability exits because it receives a kill signal from the system.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 **Example**
 
@@ -89,6 +92,47 @@ class MyAbility extends UIAbility {
     }
     if (launchParam.lastExitReason === AbilityConstant.LastExitReason.RESOURCE_CONTROL) {
       console.log('The ability has exit last because the rss control, the lastExitReason is '+ launchParam.lastExitReason + ', the lastExitMessage is ' + launchParam.lastExitMessage);
+    }
+  }
+}
+```
+
+## LastExitDetailInfo<sup>18+</sup>
+
+Describes the detailed information about the last exit.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Name| Type| Read-only| Optional| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| pid | number | No| No| ID of the process where the ability is running when it exits last time.|
+| processName | string | No| No| Name of the process.|
+| uid | number | No| No| UID of the application.|
+| exitSubReason | number | No| No| Specific reason for the last exit of the ability.|
+| exitMsg | string | No| No| Reason why the process was killed.|
+| rss | number | No| No| RSS value of the process.|
+| pss | number | No| No| PSS value of the process.|
+| timestamp | number | No| No| Exact time when the ability last exits.|
+
+**Example**
+
+```ts
+import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
+
+class MyAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    if (launchParam.lastExitDetailInfo) {
+      console.log('pid: ' + launchParam.lastExitDetailInfo.pid +
+        '\n processName: ' + launchParam.lastExitDetailInfo.processName +
+        '\n uid: ' + launchParam.lastExitDetailInfo.uid +
+        '\n exitSubReason: ' + launchParam.lastExitDetailInfo.exitSubReason +
+        '\n exitMsg: ' + launchParam.lastExitDetailInfo.exitMsg +
+        '\n rss: ' + launchParam.lastExitDetailInfo.rss +
+        '\n pss: ' + launchParam.lastExitDetailInfo.pss +
+        '\n timestamp: ' + launchParam.lastExitDetailInfo.timestamp
+      );
     }
   }
 }
@@ -271,9 +315,9 @@ class MyAbility extends UIAbility {
 }
 ```
 
-## CollaborateResult<sup>16+</sup>
+## CollaborateResult<sup>18+</sup>
 
-Enumerates the collaboration request results. This enum is used in multi-device collaboration scenarios to specify whether the target application accepts the collaboration request from the caller application. It is used in [onCollaborate(wantParam)](js-apis-app-ability-uiAbility.md#uiabilityoncollaborate16) of the UIAbility.
+Enumerates the collaboration request results. This enum is used in multi-device collaboration scenarios to specify whether the target application accepts the collaboration request from the caller application. It is used in [onCollaborate(wantParam)](js-apis-app-ability-uiAbility.md#uiabilityoncollaborate18) of the UIAbility.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

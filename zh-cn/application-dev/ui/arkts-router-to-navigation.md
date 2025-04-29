@@ -39,7 +39,7 @@ struct Index {
           .height(40)
           .margin(20)
           .onClick(() => {
-            router.pushUrl({
+            this.getUIContext().getRouter().pushUrl({
               url: 'pages/pageOne' // 目标url
             }, router.RouterMode.Standard, (err) => {
               if (err) {
@@ -59,8 +59,6 @@ struct Index {
 
 ```ts
 // pageOne.ets
-import { router } from '@kit.ArkUI';
-
 @Entry
 @Component
 struct pageOne {
@@ -77,7 +75,7 @@ struct pageOne {
           .height(40)
           .margin(20)
           .onClick(() => {
-            router.back();
+            this.getUIContext().getRouter().back();
           })
       }
       .width('100%')
@@ -169,28 +167,26 @@ export struct PageOne {
 
 ## 路由操作
 
-Router通过`@ohos.router`模块提供的方法来操作页面，使用前需要先`import`。
+Router通过`@ohos.router`模块提供的方法来操作页面，建议使用[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)中的[getRouter](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter)获取[Router](../reference/apis-arkui/js-apis-arkui-UIContext.md#router)实例。
 
 ```ts
-import { router } from '@kit.ArkUI';
-
 // push page
 router.pushUrl({ url:"pages/pageOne", params: null })
 
 // pop page
-router.back({ url: "pages/pageOne" })
+this.getUIContext().getRouter().back({ url: "pages/pageOne" })
 
 // replace page
 router.replaceUrl({ url: "pages/pageOne" })
 
 // clear all page
-router.clear()
+this.getUIContext().getRouter().clear()
 
 // 获取页面栈大小
-let size = router.getLength()
+let size = this.getUIContext().getRouter().getLength()
 
 // 获取页面状态
-let pageState = router.getState()
+let pageState = this.getUIContext().getRouter().getState()
 ```
 
 Navigation通过页面栈对象[NavPathStack](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10)提供的方法来操作页面，需要创建一个栈对象并传入Navigation中。
@@ -445,7 +441,7 @@ Navigation也提供了共享元素一镜到底的转场能力，需要配合`geo
 
 Router可以通过命名路由的方式实现跨包跳转。
 
-1. 在想要跳转到的共享包[HAR](../quick-start/har-package.md)或者[HSP](../quick-start/in-app-hsp.md)页面里，给@Entry修饰的自定义组件[EntryOptions](../quick-start/arkts-create-custom-components.md#entryoptions10)命名。
+1. 在想要跳转到的共享包[HAR](../quick-start/har-package.md)或者[HSP](../quick-start/in-app-hsp.md)页面里，给@Entry修饰的自定义组件[EntryOptions](../ui/state-management/arkts-create-custom-components.md#entryoptions10)命名。
 
    ```ts
    // library/src/main/ets/pages/Index.ets
@@ -486,7 +482,7 @@ Router可以通过命名路由的方式实现跨包跳转。
            .backgroundColor('#ccc')
            .onClick(() => { // 点击跳转到其他共享包中的页面
              try {
-               router.pushNamedRoute({
+               this.getUIContext().getRouter().pushNamedRoute({
                  name: 'myPage',
                  params: {
                    data1: 'message',
@@ -589,7 +585,7 @@ Navigation作为路由组件，默认支持跨包跳转。
 1. 开发者自定义路由管理模块，各个提供路由页面的模块均依赖此模块；
 2. 构建Navigation组件时，将NavPathStack注入路由管理模块，路由管理模块对NavPathStack进行封装，对外提供路由能力；
 3. 各个路由页面不再提供组件，转为提供@build封装的构建函数，并再通过WrappedBuilder封装后，实现全局封装；
-4. 各个路由页面将模块名称、路由名称、WrappedBuilder封装后构建函数注册如路由模块。
+4. 各个路由页面将模块名称、路由名称、WrappedBuilder封装后构建函数注册如路由模块；
 5. 当路由需要跳转到指定路由时，路由模块完成对指定路由模块的动态导入，并完成路由跳转。
 
 具体的构建过程，可以参考Navigation[自动生成动态路由](https://gitee.com/harmonyos-cases/cases/blob/master/CommonAppDevelopment/common/routermodule/README_AUTO_GENERATE.md)示例。
@@ -659,12 +655,12 @@ Router可以通过[queryRouterPageInfo](../reference/apis-arkui/arkui-ts/ts-cust
 
 | 名称                 | 类型                        | 必填 | 说明                           |
 | -------------------- | --------------------------- | ---- | ------------------------------ |
-| context              | UIAbilityContext/ UIContext | 是   | routerPage页面对应的上下文信息 |
+| context              | UIAbilityContext/ UIContext | 是   | routerPage页面对应的上下文信息。 |
 | index                | number                      | 是   | routerPage在栈中的位置。       |
 | name                 | string                      | 是   | routerPage页面的名称。         |
 | path                 | string                      | 是   | routerPage页面的路径。         |
-| state                | RouterPageState             | 是   | routerPage页面的状态           |
-| pageId<sup>12+</sup> | string                      | 是   | routerPage页面的唯一标识       |
+| state                | RouterPageState             | 是   | routerPage页面的状态。           |
+| pageId<sup>12+</sup> | string                      | 是   | routerPage页面的唯一标识。       |
 
 ```ts
 import { uiObserver } from '@kit.ArkUI';

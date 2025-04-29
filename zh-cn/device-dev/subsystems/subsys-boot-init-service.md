@@ -38,7 +38,7 @@
    | sandbox | 可选 | 标准系统 | 沙盒功能是否打开。 | 1：打开服务的沙盒功能 （默认值）。<br>0：关闭服务的沙盒功能。 |
    | socket | 可选 | 标准系统 | 配置socket属性相关设置。 | 由socket创建流程的服务需配置此项。 |
    | env | 可选 | 标准系统 | 配置服务的环境变量。 | 类型：键值对型数组。 <br>支持同时配置多个环境变量，如：<br>"env" : [{<br> "name" : "SERVICE_NALE", <br>"value" : "ueventd"},{<br> "name" : "TEST",<br> "value" : "test_value" <br>}]。|
-   | period | 可选 | 标准系统 | 配置服务退出后的定时启动。 | 类型：int型，表示定时启动周期, 单位：秒。<br>使能后，服务退出后，会启动定时器，定时拉起服务,如："period" : 60，表示服务退出后，60s后定时拉起。|
+   | period | 可选 | 标准系统 | 配置服务退出后的定时启动。 | 类型：int型，表示定时启动周期，单位：秒。<br>使能后，服务退出后，会启动定时器，定时拉起服务,如："period" : 60，表示服务退出后，60s后定时拉起。|
    | cgroup | 可选 | 标准系统 | 按需配置cgroup的标志。    | 类型：bool，如"cgroup" : true。<br>使能后，服务退出后，会管控服务进程的子进程，同步销毁。|
 
    **表2**  socket字段说明
@@ -53,7 +53,7 @@
    | gid | socket节点文件的组ID。此项配置仅对如AF_UNIX地址族等有实体节点文件的socket类型有效。|
    | option | socket的可选配置。在调用setsockopt接口时传入设置，目前支持的option选项有SOCKET_OPTION_PASSCRED、SOCKET_OPTION_RCVBUFFORCE、SOCK_CLOEXEC和SOCK_NONBLOCK。|
 
-  - init服务启动控制(仅标准系统以上提供)<a name = "section56901555918">
+  - init服务启动控制(仅标准系统以上提供)
 
     init会根据用户的服务配置，把服务分成三类，在不同的阶段并行启动。
 
@@ -61,7 +61,7 @@
     - “normal”类型：默认配置，对应系统中的普通服务，该类服务在“post-init"阶段启动。
     - “condition”类型：必须通过启动命令启动，通过在jobs中添加“start xxxx”来启动对应服务。
 
-  - init服务支持命令执行(仅标准系统以上提供)<a name="section56901555919"></a>
+  - init服务支持命令执行(仅标准系统以上提供)
 
     init提供服务命令执行能力，在服务执行的不同阶段执行不同的命令。
 
@@ -135,7 +135,7 @@
 
   - 定时启动
 
-    通过约定时间拉起服务， 若服务已拉起， 则不在重新拉起服务。具体命令参考： **[begetctl命令说明](subsys-boot-init-plugin.md)** 。
+    通过约定时间拉起服务， 若服务已拉起， 则不再重新拉起服务。具体命令参考： **[begetctl命令说明](subsys-boot-init-plugin.md)** 。
     ```
     timer_start servicename timeout
     ```

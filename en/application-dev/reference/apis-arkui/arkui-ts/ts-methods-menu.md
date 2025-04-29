@@ -18,8 +18,9 @@ Closes the menu bound to this component through [bindContextMenu](./ts-universal
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-
 ## Example
+
+This example demonstrates how to call the **ContextMenu.close** API to close a context menu that is bound to a component using **bindContextMenu**.
 
 >  **NOTE**
 >

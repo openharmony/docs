@@ -441,7 +441,7 @@ struct ChainCallStorage1 {
 
 请参考相关文档规范，做相应适配整改，LocalStorage实例对象的赋值优先级高于本地默认值。
 
-[@LocalStorageProp初始化规则](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/arkts-localstorage.md)
+[@LocalStorageProp初始化规则](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-localstorage.md)
 
 ## cl.arkui.7 RichEditor处于获焦时调用addTextSpan，addImageSpan，addBuilderSpan，addSymbolSpan，光标位置变更
 

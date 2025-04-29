@@ -9,6 +9,7 @@
 
 **相关模块：**[RDB](_r_d_b.md)
 
+**所在头文件：**[oh_predicates.h](oh__predicates_8h.md)
 
 ## 汇总
 

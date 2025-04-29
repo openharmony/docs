@@ -304,7 +304,7 @@ FFRT任务的调度和执行过程中，利用了OH系统的Trace打点能力，
     }
     ```
 
-4. 设置任务属性值，包括QoS等级、任务名称等，具体可以参考接口文档。
+4. 设置任务属性值，包括QoS等级、任务名称等。
 
     ```cpp
     // ******初始化并行任务属性******
@@ -340,10 +340,11 @@ FFRT任务的调度和执行过程中，利用了OH系统的Trace打点能力，
     int a = 0;
     // ******并行任务******
     // 提交不带handle返回值的并行任务
-    ffrt_submit_base(ffrt_create_function_wrapper(OnePlusForTest, NULL, &a), NULL, NULL, &attr);
+    ffrt_submit_base(
+        ffrt_create_function_wrapper(OnePlusForTest, NULL, &a, ffrt_function_kind_general), NULL, NULL, &attr);
     // 提交带handle返回值的并行任务
     ffrt_task_handle_t task = ffrt_submit_h_base(
-        ffrt_create_function_wrapper(OnePlusForTest, NULL, &a), NULL, NULL, &attr);
+        ffrt_create_function_wrapper(OnePlusForTest, NULL, &a, ffrt_function_kind_general), NULL, NULL, &attr);
 
     // ******串行任务******
     // 提交不返回handle的串行队列任务
@@ -454,6 +455,11 @@ FFRT任务中使用标准库的互斥锁可能发生死锁，需要更换为FFRT
 - 使用`ffrt_submit_h_base`接口进行任务提交时，每个任务的输入依赖和输出依赖的数量之和不能超过7个。
 - 参数既作为输入依赖又作为输出依赖的时候，统计依赖数量时只统计一次，如输入依赖是`{&x}`，输出依赖也是`{&x}`，实际依赖的数量是1。
 
+### 进程或者线程退出时的限制
+
+- 进程退出时，FFRT内部的线程池等进程内共享的资源已经释放，禁止调用FFRT任务提交等接口。
+- 线程退出时，FFRT内部的thread local资源已经释放，正在退出的线程禁止调用FFRT任务提交等接口。
+
 ## 常见反模式
 
 ### C API中初始化FFRT对象后，对象的置空与销毁由用户负责
@@ -462,10 +468,14 @@ FFRT任务中使用标准库的互斥锁可能发生死锁，需要更换为FFRT
 - 错误示例1，重复调用销毁函数可能造成不可预知的数据损坏：
 
     ```cpp
-    #include "ffrt.h"
+    #include <stdio.h>
+    #include "ffrt/cpp/task.h"
+
     void abnormal_case_1()
     {
-        ffrt_task_handle_t h = ffrt_submit_h([](){printf("Test task running...\n");}, NULL, NULL, NULL, NULL, NULL);
+        ffrt_task_handle_t h = ffrt_submit_h_base(
+            ffrt::create_function_wrapper(std::function<void()>([](){ printf("Test task running...\n"); })),
+            NULL, NULL, NULL);
         // ...
         ffrt_task_handle_destroy(h);
         ffrt_task_handle_destroy(h); // 重复释放
@@ -475,10 +485,14 @@ FFRT任务中使用标准库的互斥锁可能发生死锁，需要更换为FFRT
 - 错误示例2，未调用销毁函数会造成内存泄漏：
 
     ```cpp
-    #include "ffrt.h"
+    #include <stdio.h>
+    #include "ffrt/cpp/task.h"
+
     void abnormal_case_2()
     {
-        ffrt_task_handle_t h = ffrt_submit_h([](){printf("Test task running...\n");}, NULL, NULL, NULL, NULL, NULL);
+        ffrt_task_handle_t h = ffrt_submit_h_base(
+            ffrt::create_function_wrapper(std::function<void()>([](){ printf("Test task running...\n"); })),
+            NULL, NULL, NULL);
         // ...
         // 内存泄露
     }
@@ -487,10 +501,14 @@ FFRT任务中使用标准库的互斥锁可能发生死锁，需要更换为FFRT
 - 建议示例，仅调用一次销毁函数，如有必要可进行置空：
 
     ```cpp
-    #include "ffrt.h"
+    #include <stdio.h>
+    #include "ffrt/cpp/task.h"
+
     void normal_case()
     {
-        ffrt_task_handle_t h = ffrt_submit_h([](){printf("Test task running...\n");}, NULL, NULL, NULL, NULL, NULL);
+        ffrt_task_handle_t h = ffrt_submit_h_base(
+            ffrt::create_function_wrapper(std::function<void()>([](){ printf("Test task running...\n"); })),
+            NULL, NULL, NULL);
         // ...
         ffrt_task_handle_destroy(h);
         h = nullptr; // 必要时置空任务句柄变量
@@ -503,7 +521,9 @@ FFRT任务中使用标准库的互斥锁可能发生死锁，需要更换为FFRT
 - 错误示例1，变量生命周期已结束导致的UAF问题：
 
     ```cpp
-    #include "ffrt.h"
+    #include <unistd.h>
+    #include "ffrt/cpp/task.h"
+
     void abnormal_case_3()
     {
         int x = 0;
@@ -517,7 +537,10 @@ FFRT任务中使用标准库的互斥锁可能发生死锁，需要更换为FFRT
 - 错误示例2，互斥锁生命周期已结束继续使用导致功能异常：
 
     ```cpp
-    #include "ffrt.h"
+    #include <unistd.h>
+    #include "ffrt/cpp/mutex.h"
+    #include "ffrt/cpp/task.h"
+
     void abnormal_case_4()
     {
         ffrt::mutex lock;
@@ -538,13 +561,14 @@ NDK（Native Development Kit）是HarmonyOS SDK提供的Native API的集合，�
 FFRT C API已集成在NDK中，在DevEco IDE中可以直接使用对应的接口。
 
 ```cpp
-#include "ffrt/task.h"
 #include "ffrt/type_def.h"
-#include "ffrt/condition_variable.h"
-#include "ffrt/loop.h"
-#include "ffrt/mutex.h"
+#include "ffrt/task.h"
 #include "ffrt/queue.h"
+#include "ffrt/condition_variable.h"
+#include "ffrt/mutex.h"
+#include "ffrt/shared_mutex.h"
 #include "ffrt/sleep.h"
+#include "ffrt/loop.h"
 #include "ffrt/timer.h"
 ```
 
@@ -574,8 +598,9 @@ target_link_libraries(<target_name> PUBLIC libffrt.z.so ffrt::ffrtapi)
 
 ```cpp
 #include "ffrt/cpp/task.h"
+#include "ffrt/cpp/queue.h"
 #include "ffrt/cpp/condition_variable.h"
 #include "ffrt/cpp/mutex.h"
-#include "ffrt/cpp/queue.h"
+#include "ffrt/cpp/shared_mutex.h"
 #include "ffrt/cpp/sleep.h"
 ```

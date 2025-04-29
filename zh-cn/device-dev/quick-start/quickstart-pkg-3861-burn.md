@@ -22,7 +22,7 @@
 1. 准备烧录相关文件。
    1. 在客户端新建用于保存烧录文件的文件夹，例如“D:\hi3861”。
    2. 将编译完成的源码包下载至客户端并解压，将烧录相关文件拷贝至步骤1中新建的文件夹。
-      烧写所需文件为：Hi3861_wifiiot_app_burn.bin、Hi3861_loader_signed.bin
+      烧写所需文件为：Hi3861_wifiiot_app_burn.bin、Hi3861_loader_signed.bin。
 
 2. 使用HiBurn烧录。
    1. 打开HiBurn。

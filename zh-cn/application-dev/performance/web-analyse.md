@@ -19,18 +19,29 @@
 
 响应时延类问题首先确认响应起止点，确定这一段区域在哪里，大概是在干什么。
 
-1. 确认起点：如果为点击触发，则首先先找到应用侧的ispatchTouchEvent Type = 1，如图二红线所示：  
+1. 确认起点：如果为点击触发，则首先先找到应用侧的ispatchTouchEvent Type = 1，如图二红线所示：
+
     图二 Trace起点
+
     ![alt text](./figures/web-analyse-1.png)
-2. 确认终点：一般以render_service侧的第一帧为终点，如图三蓝线所示：  
+
+2. 确认终点：一般以render_service侧的第一帧为终点，如图三蓝线所示：
+
     图三 Trace终点
+
     ![alt text](./figures/web-analyse-2.png)
-    可以发现，后续动画已经达到最大帧率，说明无响应是红线到蓝线阶段。
-3. 分析中途出现的H:ReceiveVsync信号可以发现，在无响应阶段出现出现过几帧，但是每帧的耗时并没有过大。应用侧也如此，说明在UI绘制过程并没有高负载。  
+
+    可以发现后续动画已经达到最大帧率，说明无响应是红线到蓝线阶段。
+
+3. 分析中途出现的H:ReceiveVsync信号可以发现，在无响应阶段出现出现过几帧，但是每帧的耗时并没有过大。应用侧也如此，说明在UI绘制过程并没有高负载。
+
     图四 Trace帧率分析
+
     ![alt text](./figures/web-analyse-3.png)
-4. 同时可以发现在此过程中，应用长时间占用CPU，因此可能是产生了大量的计算。  
+4. 同时可以发现在此过程中，应用长时间占用CPU，因此可能是产生了大量的计算。
+
     图五 可能耗时原因
+
     ![alt text](./figures/web-analyse-4.png)
 
 经过前面的分析，应用侧发现可能是H5侧产生了大量的计算，此时需要使用Devtools工具进一步分析。
@@ -41,7 +52,8 @@
 
 抓取的DevTools泳道图如图六所示，本文把可能发生的异常区域进行分析： 
 
-图六：DevTools泳道图区域划分  
+图六：DevTools泳道图区域划分
+
 ![alt text](./figures/web-analyse-5.png)
 
 - 区域1: 该处为起点，输入Event搜索点击事件。

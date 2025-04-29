@@ -84,7 +84,7 @@ type RecentPhotoCheckResultCallback = (recentPhotoExists: boolean) => void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| recentPhotoExists | boolean | 是 | 查询最近图片是否存在。 |
+| recentPhotoExists | boolean | 是 | 查询最近图片是否存在，true为存在，false为不存在，默认为true。 |
 
 ## RecentPhotoClickCallback
 
@@ -106,7 +106,7 @@ type RecentPhotoClickCallback = (recentPhotoInfo: BaseItemInfo) => boolean
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| boolean | 应用回调中处理最近图片的结果返回。 |
+| boolean | 应用回调中处理最近图片的结果返回。true表示处理完成。 |
 
 ## RecentPhotoCheckInfoCallback<sup>13+</sup>
 
@@ -122,7 +122,7 @@ type RecentPhotoCheckInfoCallback = (recentPhotoExists: boolean, info: RecentPho
 
 | 参数名               | 类型                                    | 必填 | 说明          |
 |-------------------|---------------------------------------| -------- |-------------|
-| recentPhotoExists | boolean                               | 是 | 查询最近图片是否存在。 |
+| recentPhotoExists | boolean                               | 是 | 查询最近图片是否存在，true为存在，false为不存在，默认为true。 |
 | info              | [RecentPhotoInfo](#recentphotoinfo13) | 是 | 最近图片相关信息。   |
 
 ## PhotoSource
@@ -183,7 +183,7 @@ struct PickerDemo {
     return true;
   }
 
-  private onRecentPhotoCheckResult(recentPhotoExists: boolean, info: RecentPhotoInfo): void {
+  private onRecentPhotoCheckInfo(recentPhotoExists: boolean, info: RecentPhotoInfo): void {
     // 是否存在符合条件的照片或视频，若存在则可以拿到该照片或视频的相关信息。
   }
 

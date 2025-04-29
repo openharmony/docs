@@ -2,6 +2,45 @@
 
 When users wish to save images, videos, or similar files to Gallery, it is not necessary for the application to request the ohos.permission.WRITE_IMAGEVIDEO permission. Instead, the application can use the [SaveButton](#creating-a-media-asset-using-savebutton) or [authorization pop-up](#saving-a-media-asset-using-an-authorization-pop-up) to save the media assets to Gallery.
 
+## Obtaining Supported Resource Formats for Saving
+
+The following describes how to obtain image resource formats that can be saved.
+
+**How to Develop**
+
+Call [phAccessHelper.getSupportedPhotoFormats](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getsupportedphotoformats18) to obtain the supported image formats that can be saved.
+
+```ts
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+
+let context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+@Entry
+@Component
+
+struct Index {
+  @State outputText: string = 'Supported formats:\n';
+
+  async function example(){
+    try {
+      this.outputText = 'Supported formats:\n';
+      // The value 1 means the supported image formats, and 2 means the supported video formats.
+      let imageFormat  = await phAccessHelper.getSupportedPhotoFormats(1);
+      let result = "";
+      for (let i = 0; i < imageFormat.length; i++) {
+        result += imageFormat[i];
+        if (i !== imageFormat.length - 1) {
+          result += ', ';
+        }
+      }
+      this.outputText += result;
+      console.info('getSupportedPhotoFormats success, data is ' + outputText);
+    } catch (error) {
+      console.error('getSupportedPhotoFormats failed, errCode is', error);
+    }
+  }
+```
+
 ## Creating a Media Asset Using SaveButton
 
 For details about the **SaveButton** component, see [SaveButton](../../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md).
@@ -24,12 +63,12 @@ struct Index {
     icon: SaveIconStyle.FULL_FILLED,
     text: SaveDescription.SAVE_IMAGE,
     buttonType: ButtonType.Capsule
-  } // Set the attributes of the security component.
+  } // Set properties of SaveButton.
 
   build() {
     Row() {
       Column() {
-        SaveButton(this.saveButtonOptions) // Create a security component.
+        SaveButton(this.saveButtonOptions) // Create a button with SaveButton.
           .onClick(async (event, result: SaveButtonOnClickResult) => {
              if (result == SaveButtonOnClickResult.SUCCESS) {
                try {

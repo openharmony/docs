@@ -56,8 +56,8 @@ Represents the parameters for obtaining a widget ID (**formId**) when querying o
 | Name   | Type                       | Mandatory| Description                                                               |
 | --------- | ------------------------------- | ---- | ----------------------------------------------------------------------- |
 | id        | number                 | Yes  | Widget ID of the number type.<br>**NOTE**<br>If the obtained ID is **-1**, the ID is greater than or equal to 2^53. In this case, you need to use **idString** to obtain the ID.                                       |
-| idString      | string                          | Yes  | Widget ID of the string type.                                                             |
-| isLocked<sup>16+</sup>  |boolean  | Yes          | Whether the widget is [locked](../../apis-form-kit/js-apis-app-form-formHost-sys.md#updateformlockedstate16). The value **true** means that the widget is locked, and **false** means the opposite.    |
+| idString      | string            | Yes          | Widget ID of the string type.                            |
+| isLocked<sup>18+</sup>  |boolean  | Yes          | Whether the widget is [locked](../../apis-form-kit/js-apis-app-form-formHost-sys.md#updateformlockedstate18). The value **true** means that the widget is locked, and **false** means the opposite.    |
 
 ## FormDimension
 
@@ -70,8 +70,8 @@ Represents the parameters for obtaining a widget ID (**formId**) when querying o
 | Dimension_2_1<sup>9+</sup> | 2 x 1 widget.|
 | Dimension_1_1<sup>11+</sup> | 1 x 1 widget.|
 | Dimension_6_4<sup>12+</sup> | 6 x 4 widget.|
-| Dimension_2_3<sup>14+</sup> | 2 x 3 widget. Available for wearable devices.|
-| Dimension_3_3<sup>14+</sup> | 3 x 3 widget. Available for wearable devices.|
+| Dimension_2_3<sup>18+</sup> | 2 x 3 widget. Available for wearable devices.|
+| Dimension_3_3<sup>18+</sup> | 3 x 3 widget. Available for wearable devices.|
 
 ## FormRenderingMode<sup>11+</sup>
 | Name                      | Description    |
@@ -285,4 +285,3 @@ struct CardExample {
 ```
 
 ![Form](figures/form.png)
-<!--no_check-->

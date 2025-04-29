@@ -157,7 +157,7 @@ makeCall\(phoneNumber: string, callback: AsyncCallback\<void\>\): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-
+// 从API15开始支持tel格式电话号码，如："tel:13xxxx"
 call.makeCall("138xxxxxxxx", (err: BusinessError) => {
     if (err) {
         console.error(`makeCall fail, err->${JSON.stringify(err)}`);
@@ -206,7 +206,7 @@ makeCall\(phoneNumber: string\): Promise\<void\>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-
+// 从API15开始支持tel格式电话号码，如："tel:13xxxx"
 call.makeCall("138xxxxxxxx").then(() => {
     console.log(`makeCall success`);
 }).catch((err: BusinessError) => {
@@ -228,7 +228,7 @@ makeCall\(context: Context, phoneNumber: string\): Promise\<void\>
 
 | 参数名      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| context | Context | 是   | 应用上下文Context |
+| context | Context | 是   | 应用上下文Context。 |
 | phoneNumber | string | 是   | 电话号码。 |
 
 **返回值：**
@@ -252,7 +252,8 @@ makeCall\(context: Context, phoneNumber: string\): Promise\<void\>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 // 获取context
-let context = getContext(this) as Context;
+let context = this.getUIContext().getHostContext() as Context;
+// 从API15开始支持tel格式电话号码，如："tel:13xxxx"
 call.makeCall(context, "138xxxxxxxx").then(() => {
     console.log(`makeCall success`);
 }).catch((err: BusinessError) => {

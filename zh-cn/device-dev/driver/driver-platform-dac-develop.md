@@ -115,9 +115,9 @@ static const struct DacLockMethod g_dacLockOpsDefault = {
 
 | 函数成员 | 入参 | 出参 | 返回值 | 功能 |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ | -------------- |
-| write | device：结构体指针，核心层DAC控制器<br>channel：uint32_t类型，传入的通道号<br>val：uint32_t类型，要传入的数据 | 无 | HDF_STATUS相关状态 | 写入DA的目标值 |
-| start | device：结构体指针，核心层DAC控制器 | 无 | HDF_STATUS相关状态 | 开启DAC设备 |
-| stop | device：结构体指针，核心层DAC控制器 | 无 | HDF_STATUS相关状态 | 关闭DAC设备 |
+| write | device：结构体指针，核心层DAC控制器。<br>channel：uint32_t类型，传入的通道号。<br>val：uint32_t类型，要传入的数据。 | 无 | HDF_STATUS相关状态 | 写入DA的目标值 |
+| start | device：结构体指针，核心层DAC控制器。 | 无 | HDF_STATUS相关状态 | 开启DAC设备 |
+| stop | device：结构体指针，核心层DAC控制器。 | 无 | HDF_STATUS相关状态 | 关闭DAC设备 |
 
 **表 2** DacLockMethod结构体成员函数功能说明
 
@@ -190,7 +190,7 @@ DAC模块适配包含以下四个步骤：
 
         从第二个节点开始配置具体DAC控制器信息，此节点并不表示某一路DAC控制器，而是代表一个资源性质设备，用于描述一类DAC控制器的信息。本例只有一个DAC设备，如有多个设备，则需要在device_info.hcs文件增加deviceNode信息，以及在dac_config.hcs文件中增加对应的器件属性。
 
-    - device_info.hcs配置参考
+    - device_info.hcs配置参考。
 
         ```hcs
         root {
@@ -353,7 +353,7 @@ DAC模块适配包含以下四个步骤：
         ![](../public_sys-resources/icon-note.gif) **说明：**<br>
          DacDevice成员DacMethod的定义和成员说明见[接口说明](#接口说明)。
     
-    - Init函数开发参考
+    - Init函数开发参考。
     
         入参：
     
@@ -482,7 +482,7 @@ DAC模块适配包含以下四个步骤：
         }
         ```
     
-    - Release函数开发参考
+    - Release函数开发参考。
         
         入参：
         

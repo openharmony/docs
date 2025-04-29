@@ -1,6 +1,11 @@
 # （可选）使用canOpenLink判断应用是否可访问
 ## 使用场景
 在应用A想要拉起应用B的场景中，应用A可先调用canOpenLink接口判断应用B是否可访问，如果可访问，再拉起应用B。
+
+> **说明：**
+> 
+> canOpenLink接口不支持判断以App Linking方式跳转的目标应用是否安装。
+
 ## 约束限制
 在entry模块的module.json5文件中的[querySchemes](../quick-start/module-configuration-file.md)字段中，最多允许配置50个URL scheme。
 ## 接口说明
@@ -51,6 +56,8 @@ canOpenLink是[bundleManager](../reference/apis-ability-kit/js-apis-bundleManage
         //...
         "skills": [
           {
+            // actions不能为空，actions为空会造成目标方匹配失败。
+            "actions": ["ohos.want.action.home"],
             "uris": [
               {
                 "scheme": "app1Scheme",

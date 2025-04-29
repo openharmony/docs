@@ -114,13 +114,13 @@ Triggered when a dragged item is dropped on a valid drop target. If **event.setR
 | ----------- | ------------------------------- | ---- | ------------------------------ |
 | event    | (event: [DragEvent](#dragevent7), extraParams?: string) => void   | Yes  | Callback function.<br>**NOTE**<br> **event**: information about the drag event, including the coordinates of the item that is being dragged.<br> **extraParams**: additional information about the drag event. The value needs to be parsed into the JSON format. For details, see [extraParams](#extraparams).|
 
-## onDrop<sup>16+</sup>
+## onDrop<sup>15+</sup>
 
 onDrop(eventCallback: OnDragEventCallback, dropOptions?: DropOptions)
 
 Triggered when a dragged item is dropped on a valid drop target. If you do not explicitly call **event.setResult()** in **onDrop** to set the result of the drag reception, the system handles it as follows:<br>- If the component being dragged is one that supports drop actions by default, the system's actual data processing result is used.<br>- For other components, the system assumes that the data is received successfully.
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -129,7 +129,7 @@ Triggered when a dragged item is dropped on a valid drop target. If you do not e
 | Name     | Type                           | Mandatory| Description                          |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
 | eventCallback  | (event: DragEvent, extraParams?: string) => void   | Yes  | Callback function.<br>**NOTE**<br> **event**: information about the drag event, including the coordinates of the item that is being dragged.<br> **extraParams**: additional information about the drag event. The value needs to be parsed into the JSON format. For details, see [extraParams](#extraparams).|
-| dropOptions  | bool   | No  | Whether to fetch data early during the drag operation.<br>**NOTE**<br> Set this parameter to **true** when using **startDataLoading** to prevent early data fetching.|
+| dropOptions  | bool   | No  | Whether to enable data prefetching for the drop and drop operation.<br>**NOTE**<br> Set this parameter to **true** when using **startDataLoading** to enable data prefetching.|
 
 ## onDragEnd<sup>10+</sup>
 
@@ -175,11 +175,11 @@ Invoked when the component enters a state prior to a drop and drop operation.
 | builder   | [CustomBuilder](ts-types.md#custombuilder8) | No   | Custom component to display during dragging. If **pixelMap** is set, this parameter is ignored.<br> **NOTE**<br>Global builder definition is not supported. If the [Image](ts-basic-components-image.md) component is used in the builder, enable synchronous loading whenever possible, that is, set the [syncLoad](ts-basic-components-image.md#syncload8) attribute of the component to **true**. The builder is used only to generate the image displayed during the current dragging. Changes to the builder, if any, apply to the next dragging, but not to the current dragging.|
 | extraInfo | string                                   | No   | Extra information of the dragged item.                          |
 
-## PreviewConfiguration<sup>16+</sup>
+## PreviewConfiguration<sup>15+</sup>
 
 Defines the preview image style during a drag operation.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -203,7 +203,7 @@ Defines the preview image style during a drag operation.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### Attributes
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -233,10 +233,10 @@ Defines the preview image style during a drag operation.
 | getWindowY()<sup>10+</sup> | number | Y coordinate of the drag position relative to the upper left corner of the window, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | getDisplayX()<sup>10+</sup> | number | X coordinate of the drag position relative to the upper left corner of the screen, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | getDisplayY()<sup>10+</sup> | number | Y coordinate of the drag position relative to the upper left corner of the screen, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| getModifierKeyState<sup>12+</sup> | (Array&lt;string&gt;) => bool | Obtains the pressed status of modifier keys. For details about the error message, see the following error codes. The following modifier keys are supported: 'Ctrl'\|'Alt'\|'Shift'\|'Fn'. This API does not work for the Fn key on an externally connected keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| startDataLoading(options: [DataSyncOptions](#datasyncoptions15))<sup>15+</sup> | string | Asynchronously obtains drag data and notifies you of the current data synchronization progress. This API is only supported during the **onDrop** phase. Data transfer can be canceled using the [cancelDataLoading](../js-apis-arkui-UIContext.md#canceldataloading15) API.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 | getX()<sup>(deprecated)</sup> | number | X coordinate of the drag position relative to the upper left corner of the window, in vp.<br>This API is deprecated since API version 10. You are advised to use **getWindowX()** instead.|
 | getY()<sup>(deprecated)</sup> | number | Y coordinate of the drag position relative to the upper left corner of the window, in vp.<br>This API is deprecated since API version 10. You are advised to use **getWindowY()** instead.|
-| getModifierKeyState<sup>12+</sup> | (Array&lt;string&gt;) => bool | Obtains the pressed status of modifier keys. For details about the error message, see the following error codes. The following modifier keys are supported: 'Ctrl'\|'Alt'\|'Shift'\|'Fn'. This API does not work for the Fn key on an externally connected keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
-| startDataLoading(options: GetDataParams)<sup>16+</sup> | string | Asynchronously obtains drag data and notifies you of the current data synchronization progress. This API is only supported during the **onDrop** phase. To cancel data transfer, use the [cancelDataLoading](../js-apis-arkui-UIContext.md#canceldataloading16) API.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
 
 
 **Error codes**
@@ -248,6 +248,7 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 | 401       | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
 | 190001    | Data not found.|
 | 190002    | Data error. |
+| 190003    | Operation on allowed for current pharse. |
 
 ## DragResult<sup>10+</sup>
 
@@ -291,18 +292,33 @@ Describes the drag behavior. When [DragResult](#dragresult10) is set to **DROP_E
 | PREVIEW_LANDING_STARTED | 4 | A drop animation is started. (Triggered when the drop animation starts.)|
 | PREVIEW_LANDING_FINISHED | 5 | A drop animation is finished. (Triggered when the drop animation ends.)|
 | ACTION_CANCELED_BEFORE_DRAG | 6 | A drop animation is terminated. (Triggered when the finger is lifted off the screen after the component enters the **READY_TO_TRIGGER_DRAG_ACTION** state.)|
-| PREPARING_FOR_DRAG_DETECTION<sup>16+</sup>  | 7 | The component is ready to be dragged. (Triggered when the component is long pressed for 350 ms.)|
-## executeDropAnimation<sup>16+</sup>
+| PREPARING_FOR_DRAG_DETECTION<sup>18+</sup>  | 7 | The component is ready to be dragged. (Triggered when the component is long pressed for 350 ms.)|
+
+## executeDropAnimation<sup>18+</sup>
 
 Implements a custom drop animation execution function, which is only effective when **useCustomDropAnimation** is set to **true**.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name    | Type | Description            |
 | ------ | ------ | ---------------- |
 | customDropAnimation | Callback\<void\>  |  Custom drop animation.<br> **NOTE**<br>1. This API is only effective when used in the **onDrop** callback.<br> 2. For the API to take effect, set **useCustomDropAnimation** to **true** before using this API.<br> 3. Do not implement logic unrelated to the animation in the animation callback to avoid affecting performance.|
+
+## DataSyncOptions<sup>15+</sup>
+
+type DataSyncOptions = GetDataParams
+
+Defines an input parameter for the **startDataLoading** API.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Type| Description|
+| ----- | ----------------- |
+| [GetDataParams](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#getdataparams15) | Parameters for obtaining data from UDMF, including target path, file conflict options, progress indicator type, and other relevant settings.|
 
 ## Example
 
@@ -590,3 +606,119 @@ struct DropAnimationExample {
 }
 ```
 ![executeDropAnimation](figures/executeDropAnimation.gif)
+
+### Example 3: Obtaining Data Asynchronously Through Drag-and-Drop
+
+This example demonstrates how to asynchronously obtain data using **startDataLoading** during a drag-and-drop operation.
+
+```ts
+import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
+import { fileUri, fileIo as fs } from '@kit.CoreFileKit'
+import { common } from '@kit.AbilityKit'
+
+@Entry
+@Component
+struct ImageExample {
+  @State uri: string = "";
+  @State blockArr: string[] = [];
+  udKey: string = '';
+
+  build() {
+    Column() {
+      Text('Image drag and drop')
+        .fontSize('30dp')
+      Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }) {
+        Image($r('app.media.startIcon'))
+          .width(100)
+          .height(100)
+          .border({ width: 1 })
+          .draggable(true)
+          .onDragStart((event:DragEvent) => {
+            const context: Context = getContext(this);
+            let data = context.resourceManager.getMediaContentSync($r('app.media.startIcon').id, 120);
+            const arrayBuffer: ArrayBuffer = data.buffer.slice(data.byteOffset, data.byteLength + data.byteOffset);
+            let filePath = context.filesDir + '/test.png';
+            let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+            fs.writeSync(file.fd, arrayBuffer);
+            // Obtain the image URI.
+            let uri = fileUri.getUriFromPath(filePath);
+            let image: unifiedDataChannel.Image = new unifiedDataChannel.Image();
+            image.imageUri = uri;
+            let dragData: unifiedDataChannel.UnifiedData = new unifiedDataChannel.UnifiedData(image);
+            (event as DragEvent).setData(dragData);
+          })
+      }
+      .margin({ bottom: 20 })
+      Row() {
+        Column(){
+          Text('Valid drop target')
+            .fontSize('15dp')
+            .height('10%')
+          List(){
+            ForEach(this.blockArr, (item:string, index) => {
+              ListItem() {
+                Image(item)
+                  .width(100)
+                  .height(100)
+                  .border({width: 1})
+              }
+              .margin({ left: 30 , top : 30})
+            }, (item:string) => item)
+          }
+          .border({width: 1})
+          .height('90%')
+          .width('100%')
+          .onDrop((event?: DragEvent, extraParams?: string) => {
+            console.log("enter onDrop")
+            let context = getContext(this) as common.UIAbilityContext;
+            let pathDir: string = context.distributedFilesDir;
+            let destUri = fileUri.getUriFromPath(pathDir);
+            let progressListener: unifiedDataChannel.DataProgressListener = (progress: unifiedDataChannel.ProgressInfo, dragData: UnifiedData|null) => {
+              if(dragData != null) {
+                let arr:Array<unifiedDataChannel.UnifiedRecord> = dragData.getRecords();
+                if(arr.length > 0) {
+                  if (arr[0].getType() === uniformTypeDescriptor.UniformDataType.IMAGE) {
+                    let image = arr[0] as unifiedDataChannel.Image;
+                    this.uri = image.imageUri;
+                    this.blockArr.splice(JSON.parse(extraParams as string).insertIndex, 0, this.uri);
+                  }
+                } else {
+                  console.log('dragData arr is null');
+                }
+              } else {
+                console.log('dragData is undefined');
+              }
+              console.log(`percentage: ${progress.progress}`);
+            };
+            let options: DataSyncOptions = {
+              destUri: destUri,
+              fileConflictOptions: unifiedDataChannel.FileConflictOptions.OVERWRITE,
+              progressIndicator: unifiedDataChannel.ProgressIndicator.DEFAULT,
+              dataProgressListener: progressListener,
+            }
+            try {
+              this.udKey = (event as DragEvent).startDataLoading(options);
+              console.log('udKey: ', this.udKey);
+            } catch(e) {
+              console.log(`startDataLoading errorCode: ${e.code}, errorMessage: ${e.message}`);
+            }
+          }, {disableDataPrefetch: true})
+        }
+        .height("50%")
+        .width("90%")
+        .border({ width: 1 })
+      }
+      Button('Cancel data transfer')
+        .onClick(() => {
+          try {
+            this.getUIContext().getDragController().cancelDataLoading(this.udKey);
+          } catch (e) {
+            console.log(`cancelDataLoading errorCode: ${e.code}, errorMessage: ${e.message}`);
+          }
+        })
+        .margin({top: 10})
+    }.width('100%')
+  }
+}
+```
+<!--no_check-->

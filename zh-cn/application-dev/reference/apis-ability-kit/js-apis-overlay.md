@@ -1,10 +1,17 @@
 # @ohos.bundle.overlay (overlay模块)
 
-本模块提供[overlay特征应用](#overlay特征应用介绍)的安装，overlay特征应用的[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)信息的查询以及overlay特征应用的禁用使能的能力。
+本模块提供overlay特征应用的安装，overlay特征应用的[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)信息的查询以及overlay特征应用的禁用使能的能力。
+
+overlay特征应用指应用中包含有[overlay特征](../../quick-start/resource-categories-and-access.md#overlay机制)的module。该特征module一般是为设备上存在的非overlay特征的module提供额外的资源文件，以便目标module在运行阶段可以使用这些额外的资源文件来展示不同的颜色、标签、主题等。
+
+在DevEco Studio中创建应用工程时，若module的配置文件module.json5中包含targetModuleName和targetPriority字段，该module将会在安装阶段被识别为overlay特征的module。
 
 > **说明：**
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> overlay特征仅适用于stage模型。
+
 
 ## 导入模块
 
@@ -325,11 +332,3 @@ OverlayModuleInfo信息。
 | 类型                                                         | 说明           |
 | ------------------------------------------------------------ | -------------- |
 | [_OverlayModuleInfo.OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md#overlaymoduleinfo-1) |OverlayModuleInfo信息。 |
-
-## overlay特征应用介绍
-
-**概念**
-overlay特征应用指的是应用中包含有overlay特征的module。该特征module一般是为设备上存在的非overlay特征的module提供额外的资源文件，以便于目标module在运行阶段可以使用这些额外的资源文件来展示不同的颜色，标签，主题等等。overlay特征仅适用于stage模型。
-
-**如何识别overlay特征的module**
-在DevEco Studio中创建应用工程时, module的配置文件module.json5中包含targetModuleName和targetPriority字段时，该module将会在安装阶段被识别为overlay特征的module。

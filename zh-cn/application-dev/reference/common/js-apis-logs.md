@@ -166,8 +166,8 @@ assert(value?: Object, ...arguments: Object[]): void
 
 | 参数名     | 类型     | 必填   | 说明          |
 | ------- | ------ | ---- | ----------- |
-| value | Object | 否    | 语句结果值。若value为假(false)或者省略，则输出以"Assertion failed"开头。如果 value 为真值(true)，则无打印。|
-| arguments | Object | 否    | value为假(false)的后续错误消息打印。省略则不打印。|
+| value | Object | 否    | 语句结果值。若value为假（false）或者省略，则输出以"Assertion failed"开头。如果value为真值（true），则无打印。|
+| arguments | Object | 否    | value为假（false）的后续错误消息打印。省略则不打印。|
 
 **示例：**
 
@@ -472,7 +472,7 @@ timeEnd(label?: string): void
 
 | 参数名     | 类型     | 必填   | 说明          |
 | ------- | ------ | ---- | ----------- |
-| label | string | 否    | 计时器标识。默认值为'default' |
+| label | string | 否    | 计时器标识。默认值为'default'。 |
 
 **示例：**
 
@@ -496,7 +496,7 @@ timeLog(label?: string, ...arguments: Object[]): void
 
 | 参数名     | 类型     | 必填   | 说明          |
 | ------- | ------ | ---- | ----------- |
-| label | string | 否    | 计时器标识。默认值为'default' |
+| label | string | 否    | 计时器标识。默认值为'default'。 |
 | arguments | Object | 否    | 需要打印的其他日志。 |
 
 **示例：**

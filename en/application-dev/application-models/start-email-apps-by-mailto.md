@@ -12,6 +12,9 @@ Typical development scenarios are as follows:
 - Within applications:
     - In a mobile application, touching a **Feedback** button may cause the application to activate the system's default email client, with the feedback email address and issue details preset.
     - In a mobile application, when users touch a **Share via email** button, the application can use the mailto protocol to initiate the email client, pre-populating the subject and body of the email.
+> **NOTE**
+> - To start an email application through mailto, the initiating application must first format the string according to the mailto protocol and then use this method to launch the email application. The email application parses the mailto string to populate fields like the sender, recipient, and email body.
+> - If the initiating application already has details such as the sender, recipient, and email body, you are advised to [use startAbilityByType to start an email application](start-email-apps.md).
 
 ## Format of mailto
 

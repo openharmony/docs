@@ -9,6 +9,7 @@ The Camera_TorchStatusInfo struct describes the flashlight status information.
 
 **Related module**: [OH_Camera](_o_h___camera.md)
 
+**Header file**: [camera.h](camera_8h.md)
 
 ## Summary
 
@@ -17,8 +18,8 @@ The Camera_TorchStatusInfo struct describes the flashlight status information.
 
 | Name| Description| 
 | -------- | -------- |
-| bool [isTorchAvailable](#istorchavailable) | Whether the flashlight is available. | 
-| bool [isTorchActive](#istorchactive) | Whether the flashlight is activated. | 
+| bool [isTorchAvailable](#istorchavailable) | Whether the flashlight is available. The value **true** means that the flashlight is available, and **false** means the opposite. | 
+| bool [isTorchActive](#istorchactive) | Whether the flashlight is activated. The value **true** means that the flashlight is activated, and **false** means the opposite. | 
 | float [torchLevel](#torchlevel) | Flashlight level. The value range is [0, 1]. A larger value indicates a greater luminance. | 
 
 

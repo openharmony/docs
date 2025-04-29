@@ -31,22 +31,6 @@ ImageSpan(value: ResourceStr | PixelMap)
 
 The attributes inherit from [BaseSpan](ts-basic-components-span.md#basespan). Among the universal attributes, [size](ts-universal-attributes-size.md#size), [background](ts-universal-attributes-background.md#background), and [border](ts-universal-attributes-border.md#border) are supported.
 
-### alt<sup>12+</sup>
-
-alt(value: PixelMap)
-
-Sets the placeholder image displayed during loading.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name| Type                                                    | Mandatory| Description                                                        |
-| ------ | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | Yes  | Placeholder image displayed during loading. The [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) type is supported.<br>Default value: **null**|
-
 ### verticalAlign
 
 verticalAlign(value: ImageSpanAlignment)
@@ -79,9 +63,25 @@ Sets the image scale type.
 | ------ | ----------------------------------------- | ---- | ------------------------------------------- |
 | value  | [ImageFit](ts-appendix-enums.md#imagefit) | Yes  | Image scale type.<br>Default value: **ImageFit.Cover**|
 
+### alt<sup>12+</sup>
+
+alt(value: PixelMap)
+
+Sets the placeholder image displayed during loading.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                    | Mandatory| Description                                                        |
+| ------ | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | Yes  | Placeholder image displayed during loading. The [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) type is supported.<br>Default value: **null**|
+
 ### colorFilter<sup>14+</sup>
 
-colorFilter(value: ColorFilter | DrawingColorFilter)
+colorFilter(filter: ColorFilter | DrawingColorFilter)
 
 Sets the color filter for the image.
 
@@ -93,7 +93,7 @@ Sets the color filter for the image.
 
 | Name| Type                                   | Mandatory| Description                                                        |
 | ------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ColorFilter](ts-types.md#colorfilter9) \| [DrawingColorFilter](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#colorfilter) | Yes  | 1. Color filter of the image. The input parameter is a 4 x 5 RGBA transformation matrix.<br>The first row of the matrix represents a vector value of R (red), the second row represents a vector value of G (green), the third row represents a vector value of B (blue), and the fourth row represents a vector value of A (alpha). The four rows represent different RGBA vector values.<br>If the matrix contains entries of 1 on the diagonal and entries of 0 in other places, the original color of the image is retained.<br> **Calculation rule:**<br>If the input filter matrix is as follows:<br>![image-matrix-1](figures/image-matrix-1.jpg)<br>Wherein the color is [R, G, B, A].<br>Then the color after filtering is [R', G', B', A'].<br>![image-matrix-2](figures/image-matrix-2.jpg)<br>2. The ColorFilter type of **@ohos.graphics.drawing** can be used as the input parameter.<br>**NOTE**<br>The DrawingColorfilter type can be used in atomic services. The SVG image to set as the source must have the **stroke** attribute.|
+| filter  | [ColorFilter](ts-types.md#colorfilter9) \| [DrawingColorFilter](ts-basic-components-image.md#drawingcolorfilter12) | Yes  | 1. Color filter of the image. The input parameter is a 4 x 5 RGBA transformation matrix.<br>The first row of the matrix represents a vector value of R (red), the second row represents a vector value of G (green), the third row represents a vector value of B (blue), and the fourth row represents a vector value of A (alpha). The four rows represent different RGBA vector values.<br>If the matrix contains entries of 1 on the diagonal and entries of 0 in other places, the original color of the image is retained.<br> **Calculation rule:**<br>If the input filter matrix is as follows:<br>![image-matrix-1](figures/image-matrix-1.jpg)<br>Wherein the color is [R, G, B, A].<br>Then the color after filtering is [R', G', B', A'].<br>![image-matrix-2](figures/image-matrix-2.jpg)<br>2. The ColorFilter type of **@ohos.graphics.drawing** can be used as the input parameter.<br>**NOTE**<br>The DrawingColorfilter type can be used in atomic services. The SVG image to set as the source must have the **stroke** attribute.|
 
 ## Events
 
@@ -135,7 +135,7 @@ Triggered when an error occurs during image loading.
 
 type ImageCompleteCallback = (result: ImageLoadResult) => void
 
-Triggered when the image is successfully loaded.
+Defines the callback triggered when the image is successfully loaded or decoded.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -186,25 +186,25 @@ struct SpanExample {
       }.width('100%').textAlign(TextAlign.Center)
 
       Text() {
-        ImageSpan($r('app.media.icon'))
+        ImageSpan($r('app.media.app_icon'))
           .width('200px')
           .height('200px')
           .objectFit(ImageFit.Fill)
           .verticalAlign(ImageSpanAlignment.CENTER)
         Span('I am LineThrough-span')
           .decoration({ type: TextDecorationType.LineThrough, color: Color.Red }).fontSize(25)
-        ImageSpan($r('app.media.icon'))
+        ImageSpan($r('app.media.app_icon'))
           .width('50px')
           .height('50px')
           .verticalAlign(ImageSpanAlignment.TOP)
         Span('I am Underline-span')
           .decoration({ type: TextDecorationType.Underline, color: Color.Red }).fontSize(25)
-        ImageSpan($r('app.media.icon'))
+        ImageSpan($r('app.media.app_icon'))
           .size({ width: '100px', height: '100px' })
           .verticalAlign(ImageSpanAlignment.BASELINE)
         Span('I am Underline-span')
           .decoration({ type: TextDecorationType.Underline, color: Color.Red }).fontSize(25)
-        ImageSpan($r('app.media.icon'))
+        ImageSpan($r('app.media.app_icon'))
           .width('70px')
           .height('70px')
           .verticalAlign(ImageSpanAlignment.BOTTOM)
@@ -230,15 +230,18 @@ This example demonstrates the effect of setting a background style for text usin
 @Entry
 struct Index {
   build() {
-    Column() {
-      Text() {
-        ImageSpan($r('app.media.app_icon'))
-          .width('60vp')
-          .height('60vp')
-          .verticalAlign(ImageSpanAlignment.CENTER)
-          .textBackgroundStyle({color: Color.Green, radius: "5vp"})
-      }
-    }.width('100%').alignItems(HorizontalAlign.Center)
+    Row() {
+      Column() {
+        Text() {
+          ImageSpan($r('app.media.sky'))// You are advised to use a custom local image.
+            .width('60vp')
+            .height('60vp')
+            .verticalAlign(ImageSpanAlignment.CENTER)
+            .borderRadius(20)
+            .textBackgroundStyle({ color: '#7F007DFF', radius: "5vp" })
+        }
+      }.width('100%')
+    }.height('100%')
   }
 }
 ```
@@ -253,17 +256,18 @@ This example demonstrates how to add load success and load error events to the *
 @Entry
 @Component
 struct Index {
-  @State src: ResourceStr = $r('app.media.icon');
-  build(){
-    Column(){
-      Text(){
+  @State src: ResourceStr = $r('app.media.app_icon');
+
+  build() {
+    Column() {
+      Text() {
         ImageSpan(this.src)
           .width(100).height(100)
-          .onError((err)=>{
-            console.log("onError:" + err.message)
+          .onError((err) => {
+            console.log("onError: " + err.message);
           })
-          .onComplete((event)=>{
-            console.log("onComplete: " + event.loadingStatus)
+          .onComplete((event) => {
+            console.log("onComplete: " + event.loadingStatus);
           })
       }
     }.width('100%').height('100%')
@@ -276,37 +280,43 @@ This example demonstrates the effect of setting a color filter for the **ImageSp
 
 ```ts
 // xxx.ets
-import { drawing, common2D } from '@kit.ArkGraphics2D';
+import { drawing } from '@kit.ArkGraphics2D';
 
 @Entry
 @Component
 struct SpanExample {
   private ColorFilterMatrix: number[] = [0.239, 0, 0, 0, 0, 0, 0.616, 0, 0, 0, 0, 0, 0.706, 0, 0, 0, 0, 0, 1, 0];
-  @State DrawingColorFilterFirst: ColorFilter | undefined = new ColorFilter(this.ColorFilterMatrix)
+  @State DrawingColorFilterFirst: ColorFilter | undefined = new ColorFilter(this.ColorFilterMatrix);
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Text() {
-        ImageSpan($r('app.media.icon'))
-          .width('50px')
-          .height('50px')
-          .colorFilter(this.DrawingColorFilterFirst)
-      }
-      .width('50%')
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+    Row() {
+      Column({ space: 10 }) {
+        // Use a ColorFilter object to apply a color filter to the image.
         Text() {
-          ImageSpan($r('app.media.icon'))
-            .width('50px')
-            .height('50px')
-            .colorFilter(drawing.ColorFilter.createBlendModeColorFilter({ alpha: 255, red: 112, green: 112, blue: 112 }, drawing.BlendMode.SRC))
+          ImageSpan($r('app.media.sky'))// You are advised to use a custom local image.
+            .width('60vp')
+            .height('60vp')
+            .colorFilter(this.DrawingColorFilterFirst)
         }
-        .width('50%')
-      }.width('100%').height('10%')
-    }.width('200%').height('100%')
+
+        // Create a color filter using the drawing.ColorFilter API.
+        Text() {
+          ImageSpan($r('app.media.sky'))// You are advised to use a custom local image.
+            .width('60vp')
+            .height('60vp')
+            .colorFilter(drawing.ColorFilter.createBlendModeColorFilter({
+              alpha: 255,
+              red: 112,
+              green: 112,
+              blue: 112
+            }, drawing.BlendMode.SRC))
+        }
+      }.width('100%')
+    }.height('100%')
   }
 }
 ```
-![imagespan](figures/image_span_colorfilter.gif)
+![imagespan](figures/image_span_colorfilter.png)
 
 ### Example 5: Setting a Placeholder Image
 
@@ -314,9 +324,9 @@ This example shows how a placeholder image is used in the **ImageSpan** componen
 
 ```ts
 // xxx.ets
-import { http } from '@kit.NetworkKit'
-import { image } from '@kit.ImageKit'
-import { BusinessError } from '@kit.BasicServicesKit'
+import { http } from '@kit.NetworkKit';
+import { image } from '@kit.ImageKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -327,15 +337,15 @@ struct SpanExample {
     // Enter an image URL.
     http.createHttp().request("https://www.example.com/xxx.png", (error: BusinessError, data: http.HttpResponse) => {
       if (error) {
-        console.error(`http request failed with. Code: ${error.code}, message: ${error.message}`)
+        console.error(`http request failed with. Code: ${error.code}, message: ${error.message}`);
       } else {
-        console.log(`http request success.`)
-        let imageData: ArrayBuffer = data.result as ArrayBuffer
-        let imageSource: image.ImageSource = image.createImageSource(imageData)
+        console.log(`http request success.`);
+        let imageData: ArrayBuffer = data.result as ArrayBuffer;
+        let imageSource: image.ImageSource = image.createImageSource(imageData);
 
         class tmp {
-          height: number = 100
-          width: number = 100
+          height: number = 100;
+          width: number = 100;
         }
 
         let option: Record<string, number | boolean | tmp> = {
@@ -344,10 +354,10 @@ struct SpanExample {
           'pixelFormat': 3, // Pixel format.
           'scaleMode': 1, // Scale mode.
           'size': { height: 100, width: 100 }
-        }
+        };
         // Image size.
         imageSource.createPixelMap(option).then((pixelMap: PixelMap) => {
-          this.imageAlt = pixelMap
+          this.imageAlt = pixelMap;
         })
       }
     })
@@ -357,7 +367,7 @@ struct SpanExample {
     Column() {
       Button("Get Online Image")
         .onClick(() => {
-          this.httpRequest()
+          this.httpRequest();
         })
 
       Text() {

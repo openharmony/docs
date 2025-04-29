@@ -34,6 +34,8 @@ The universal attributes are supported. Currently, this component only works wit
 
 ## Example
 
+This example demonstrates how to use the **EffectComponent** component.
+
 ```ts
 //Index.ets
 @Entry

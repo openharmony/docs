@@ -7,6 +7,9 @@
 ## 开发步骤及注意事项
 
 详细的API说明请参考[AVTranscoder API参考](../../reference/apis-media-kit/js-apis-media.md#avtranscoder12)。
+> **说明：**
+>
+> 如需对转码后的文件进行转发、上传、转存等处理，应用须收到complete事件后调用系统接口await avTranscoder.release()，以保证视频文件完整性。
 
 1. 创建AVTranscoder实例。
 
@@ -14,7 +17,7 @@
    import { media } from '@kit.MediaKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    
-   let avTranscoder: media.AVTranscoder;
+   let avTranscoder: media.AVTranscoder | undefined = undefined;
    media.createAVTranscoder().then((transcoder: media.AVTranscoder) => {
      avTranscoder = transcoder;
      // 需要在avTranscoder完成赋值后，再进行其他操作。
@@ -34,9 +37,12 @@
    import { BusinessError } from '@kit.BasicServicesKit';
    
    // 转码完成回调函数。
-   avTranscoder.on('complete', () => {
+   avTranscoder.on('complete', async () => {
      console.log(`transcoder is completed`);
-     // 用户可以在此监听转码完成事件。
+     // 用户须在此监听转码完成事件，并调用release
+     // 须等待avTranscoder.release()完成之后，再对转码后的文件进行转发、上传、转存等处理
+     await avTranscoder.release();
+     avTranscoder = undefined;
    });
    
    // 错误上报回调函数。
@@ -52,14 +58,39 @@
    > 
    > - 如果使用本地资源转码，必须确认资源文件可用，并使用应用沙箱路径访问对应资源，参考[获取应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)。应用沙箱的介绍及如何向应用沙箱推送文件，请参考[文件管理](../../file-management/app-sandbox-directory.md)。
    > 
+   > - 应通过Context属性获取应用文件路径，建议使用getUIContext获取UIContext实例，并使用getHostContext调用绑定实例的getContext，请参考[获取Context](../../reference/apis-arkui/js-apis-arkui-UIContext.md#gethostcontext12)。
+   >
    > - 如果使用ResourceManager.getRawFd()打开HAP资源文件描述符，使用方法可参考[ResourceManager API参考](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9)。
+
+   ```ts
+   import {AVTranscoderDemo} from '../transcoder/AVTranscoderManager'
+
+   @Entry
+   @Component
+   struct Index {
+     private context:Context | undefined = this.getUIContext().getHostContext();
+     private avTranscoder: AVTranscoderDemo = new AVTranscoderDemo(this.context);
+     build() {
+       Column() {
+        Button('转码').onClick(() => {
+          this.avTranscoder.avTranscoderDemo();
+        })
+      }
+     }
+   }
+   ```
 
    ```ts
    import resourceManager from '@ohos.resourceManager';
    import { common } from '@kit.AbilityKit';
 
-   let context = getContext(this) as common.UIAbilityContext;
-   let fileDescriptor = await context.resourceManager.getRawFd('H264_AAC.mp4');
+   private context: Context | undefined;
+    constructor(context: Context) {
+      if (context != undefined) {
+        this.context = context; // this.getUIContext().getHostContext();
+      }
+   }
+   let fileDescriptor = await this.context.resourceManager.getRawFd('H264_AAC.mp4');
    // 设置转码的源文件属性fdSrc。
    this.avTranscoder.fdSrc = fileDescriptor;
    ```
@@ -147,6 +178,12 @@ import { common } from '@kit.AbilityKit';
 
 export class AVTranscoderDemo {
   private avTranscoder: media.AVTranscoder | undefined = undefined;
+  private context: Context | undefined;
+  constructor(context: Context) {
+    if (context != undefined) {
+      this.context = context;
+    }
+  }
   private avConfig: media.AVTranscoderConfig = {
     audioBitrate: 100000, // 音频比特率。
     audioCodec: media.CodecMimeType.AUDIO_AAC, // 音频编码格式。
@@ -185,10 +222,11 @@ export class AVTranscoderDemo {
       this.avTranscoder = await media.createAVTranscoder();
       this.setAVTranscoderCallback();
       // 2.获取转码源文件fd和目标文件fd赋予avTranscoder；参考FilePicker文档。
-      let context = getContext(this) as common.UIAbilityContext;
-      let fileDescriptor = await context.resourceManager.getRawFd('H264_AAC.mp4');
-      this.avTranscoder.fdSrc = fileDescriptor;
-      this.avTranscoder.fdDst = 55;
+      if (this.context != undefined) {
+        let fileDescriptor = await this.context.resourceManager.getRawFd('H264_AAC.mp4');
+        this.avTranscoder.fdSrc = fileDescriptor;
+        this.avTranscoder.fdDst = 55;
+      }
       // 3.配置转码参数完成准备工作。
       await this.avTranscoder.prepare(this.avConfig);
       // 4.开始转码。

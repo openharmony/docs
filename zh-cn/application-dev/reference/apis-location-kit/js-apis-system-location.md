@@ -32,7 +32,7 @@ getLocation(options?: GetLocationOption): void
 
 **系统能力：** SystemCapability.Location.Location.Lite
 
-**参数:**
+**参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |

@@ -9,11 +9,11 @@ Neural Network Runtime定义的结构体和枚举值。
 
 **库：** libneural_network_runtime.so
 
-**系统能力：**\@Syscap SystemCapability.Ai.NeuralNetworkRuntime
+**系统能力：** SystemCapability.Ai.NeuralNetworkRuntime
 
 **起始版本：** 9
 
-**相关模块：**[NeuralNeworkRuntime](_neural_network_runtime.md)
+**相关模块：**[NeuralNetworkRuntime](_neural_network_runtime.md)
 
 
 ## 汇总

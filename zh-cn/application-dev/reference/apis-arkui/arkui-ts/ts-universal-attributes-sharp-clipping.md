@@ -22,7 +22,7 @@ clip(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 参数为boolean类型，设置是否按照父容器边缘轮廓进行裁剪。<br/>默认值：false <br/>**说明：** 设置为true后，子组件超出当前组件范围外的区域将不响应绑定的手势事件。 |
+| value  | boolean | 是   | 参数为boolean类型，设置是否按照父容器边缘轮廓进行裁剪。<br/>默认值：false <br/>true表示按照父容器边缘轮廓进行裁剪，false表示不对子组件进行裁剪。 <br/>**说明：** 设置为true后，子组件超出当前组件范围外的区域将不响应绑定的手势事件。 |
 
 ## clip<sup>18+</sup>
 
@@ -40,7 +40,7 @@ clip(clip: Optional\<boolean>)
 
 | 参数名 | 类型               | 必填                                                         | 说明 |
 | ------ | ------------------ | ------------------------------------------------------------ | ---- |
-| clip   | Optional\<boolean> | 参数为boolean类型，设置是否按照父容器边缘轮廓进行裁剪。<br/>默认值：false <br/>**说明：** 设置为true后，子组件超出当前组件范围外的区域将不响应绑定的手势事件。<br/>当clip的值为undefined时，恢复为不对子组件超出当前组件范围外的区域进行裁剪。 |      |
+| clip   | Optional\<boolean> | 是 |  参数为boolean类型，设置是否按照父容器边缘轮廓进行裁剪。<br/>默认值：false <br/>**说明：** 设置为true后，子组件超出当前组件范围外的区域将不响应绑定的手势事件。<br/>当clip的值为undefined时，恢复为不对子组件超出当前组件范围外的区域进行裁剪。    |
 
 ## clip<sup>(deprecated)</sup>
 
@@ -128,7 +128,7 @@ mask(mask: Optional\<ProgressMask>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                             |
 | ------ | ------------------------------------------------------------ | ---- | -------------------------------- |
-| mask | Optional\<[ProgressMask](#progressmask10)> | 在当前组件上加上可动态设置进度、最大值和颜色的遮罩。<br/>当mask的值为undefined时，恢复为无进度遮罩效果。 |      |
+| mask | Optional\<[ProgressMask](#progressmask10)> | 是 | 在当前组件上加上可动态设置进度、最大值和颜色的遮罩。<br/>当mask的值为undefined时，恢复为无进度遮罩效果。     |
 
 ## mask<sup>(deprecated)</sup>
 
@@ -208,8 +208,8 @@ constructor(value: number, total: number, color: ResourceColor)
 
 | 参数名 | 参数类型                                   | 必填 | 参数描述           |
 | ------ | ------------------------------------------ | ---- | ------------------ |
-| value  | number                                     | 是   | 进度遮罩的当前值。 |
-| total  | number                                     | 是   | 进度遮罩的最大值。 |
+| value  | number                                     | 是   | 进度遮罩的当前值。<br/> 取值范围：[0.0, +∞) |
+| total  | number                                     | 是   | 进度遮罩的最大值。<br/> 取值范围：[0.0, +∞) |
 | color  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 进度遮罩的颜色。   |
 
 ### updateProgress<sup>10+</sup>
@@ -267,6 +267,8 @@ enableBreathingAnimation(value: boolean): void
 
 ```ts
 // xxx.ets
+import { CircleShape, RectShape } from '@kit.ArkUI'
+
 @Entry
 @Component
 struct ClipAndMaskExample {
@@ -281,18 +283,18 @@ struct ClipAndMaskExample {
 
       // 用一个280px直径的圆对图片进行裁剪
       Image($r('app.media.testImg'))
-        .clipShape(new Circle({ width: '280px', height: '280px' }))
+        .clipShape(new CircleShape({ width: '280px', height: '280px' }))
         .width('500px').height('280px')
 
       Text('mask').fontSize(12).width('75%').fontColor('#DCDCDC')
       // 给图片添加了一个500px*280px的方形遮罩
       Image($r('app.media.testImg'))
-        .maskShape(new Rect({ width: '500px', height: '280px' }).fill(Color.Gray))
+        .maskShape(new RectShape({ width: '500px', height: '280px' }).fill(Color.Gray))
         .width('500px').height('280px')
 
       // 给图片添加了一个280px*280px的圆形遮罩
       Image($r('app.media.testImg'))
-        .maskShape(new Circle({ width: '280px', height: '280px' }).fill(Color.Gray))
+        .maskShape(new CircleShape({ width: '280px', height: '280px' }).fill(Color.Gray))
         .width('500px').height('280px')
     }
     .width('100%')

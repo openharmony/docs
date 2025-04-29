@@ -77,7 +77,7 @@ export default {
 import router from '@ohos.router';
 export default {
   launch() {
-    router.back();
+    this.getUIContext().getRouter().back();
   },
 }
 ```

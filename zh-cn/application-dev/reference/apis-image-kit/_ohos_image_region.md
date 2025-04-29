@@ -3,13 +3,15 @@
 
 ## 概述
 
-定义图像源解码的范围。 是[OhosImageDecodingOps](_ohos_image_decoding_ops.md)的成员变量。
+定义图像源解码的范围。是[OhosImageDecodingOps](_ohos_image_decoding_ops.md)的成员变量。
 
 **系统能力：** SystemCapability.Multimedia.Image
 
 **起始版本：** 10
 
 **相关模块：** [Image](image.md)
+
+**所在头文件：**[image_source_mdk.h](image__source__mdk_8h.md)
 
 
 ## 汇总

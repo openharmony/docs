@@ -1,6 +1,6 @@
 # 使用ImagePacker完成图片编码
 
-图片编码指将PixelMap编码成不同格式的存档图片，当前支持打包为JPEG、WebP、png和 HEIF(不同硬件设备支持情况不同) 格式，用于后续处理，如保存、传输等。
+图片编码指将PixelMap编码成不同格式的图片文件，当前支持编码为JPEG、WebP、PNG和 HEIF(不同硬件设备支持情况不同) 格式，用于后续处理，如保存、传输等。
 
 ## 开发步骤
 
@@ -41,8 +41,8 @@
 
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
-   imagePackerApi.packing(pixelMap, packOpts).then( (data : ArrayBuffer) => {
-     // data 为打包获取到的文件流，写入文件保存即可得到一张图片。
+   imagePackerApi.packToData(pixelMap, packOpts).then( (data : ArrayBuffer) => {
+     // data 为编码获取到的文件流，写入文件保存即可得到一张图片。
    }).catch((error : BusinessError) => { 
      console.error('Failed to pack the image. And the error is: ' + error); 
    })
@@ -52,8 +52,8 @@
 
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
-   imagePackerApi.packing(imageSource, packOpts).then( (data : ArrayBuffer) => {
-       // data 为打包获取到的文件流，写入文件保存即可得到一张图片。
+   imagePackerApi.packToData(imageSource, packOpts).then( (data : ArrayBuffer) => {
+       // data 为编码获取到的文件流，写入文件保存即可得到一张图片。
    }).catch((error : BusinessError) => { 
      console.error('Failed to pack the image. And the error is: ' + error); 
    })
@@ -72,7 +72,7 @@
    const path : string = context.cacheDir + "/pixel_map.jpg";
    let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
    imagePackerApi.packToFile(pixelMap, file.fd, packOpts).then(() => {
-       // 直接打包进文件。
+       // 直接编码进文件。
    }).catch((error : BusinessError) => { 
      console.error('Failed to pack the image. And the error is: ' + error); 
    }).finally(()=>{
@@ -89,7 +89,7 @@
    const filePath : string = context.cacheDir + "/image_source.jpg";
    let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
    imagePackerApi.packToFile(imageSource, file.fd, packOpts).then(() => {
-       // 直接打包进文件。
+       // 直接编码进文件。
    }).catch((error : BusinessError) => { 
      console.error('Failed to pack the image. And the error is: ' + error); 
    }).finally(()=>{

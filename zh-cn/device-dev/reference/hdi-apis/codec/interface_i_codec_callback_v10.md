@@ -65,7 +65,7 @@ HDF_ERR_INVALID_PARAM 表示参数无效，上报失败。
 
 HDF_FAILURE 表示执行失败。
 
-其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的OMX_ERRORTYPE。
+其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的[OMX_ERRORTYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。
 
 
 ### EventHandler()
@@ -97,7 +97,7 @@ ICodecCallback::EventHandler ([in] enum OMX_EVENTTYPE event, [in] struct EventIn
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| event | 要通知的事件类型，详见**OMX_EVENTTYPE**。  | 
+| event | 要通知的事件类型，详见[OMX_EVENTTYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。  | 
 | info | 指向事件上报携带的信息指针，详见[EventInfo](_event_info_v10.md)。 | 
 
 **返回：**
@@ -108,7 +108,7 @@ HDF_ERR_INVALID_PARAM 表示参数无效，事件上报失败。
 
 HDF_FAILURE 表示执行失败。
 
-其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的OMX_ERRORTYPE。
+其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的[OMX_ERRORTYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。
 
 
 ### FillBufferDone()
@@ -139,4 +139,4 @@ HDF_ERR_INVALID_PARAM 表示参数无效，上报失败。
 
 HDF_FAILURE 表示执行失败。
 
-其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的OMX_ERRORTYPE。
+其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的[OMX_ERRORTYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。

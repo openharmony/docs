@@ -90,7 +90,6 @@ SysCap，全称SystemCapability，即系统能力，指操作系统中每一个�
 - SystemCapability.ResourceSchedule.UsageStatistics.App
 - SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 - SystemCapability.PowerManager.DisplayPowerManager
-- SystemCapability.PowerManager.DisplayPowerManager.Lite
 - SystemCapability.BundleManager.DistributedBundleFramework
 - SystemCapability.DistributedHardware.DistributedHardwareFWK
 - SystemCapability.Notification.Notification

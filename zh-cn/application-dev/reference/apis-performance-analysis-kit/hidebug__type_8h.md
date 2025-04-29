@@ -3,7 +3,7 @@
 
 ## 概述
 
-HiDebug模块代码结构体定义。 \@kit PerformanceAnalysisKit
+HiDebug模块代码结构体定义。
 
 **库：** libohhidebug.so
 

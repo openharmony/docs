@@ -194,14 +194,14 @@ Unsubscribes from the NFC state changes. The subscriber will not receive NFC sta
 ```js
 import { nfcController } from '@kit.ConnectivityKit';
 
-// register callback to receive the nfc state changed notification
+// Register a callback for NFC status change events.
 nfcController.on("nfcStateChange", (nfcState : number)=> {
   console.log("nfcController on callback nfcState: " + nfcState);
 });
 
-// Open NFC. The caller must have the ohos.permission.MANAGE_SECURE_SETTINGS permission. This permission is available only for system applications.
+// Declare the ohos.permission.MANAGE_SECURE_SETTINGS permission for enabling NFC. This permission is available only for system applications.
 if (!nfcController.isNfcOpen()) {
-  // from api9, use 'enableNfc' to open nfc.
+  // Use enableNfc to enable NFC since API version 9.
   try {
     nfcController.enableNfc();
     console.log("nfcController enableNfc success");
@@ -212,9 +212,9 @@ if (!nfcController.isNfcOpen()) {
   console.log("nfcController NFC has been opened");
 }
 
-// Close NFC. The caller must have the ohos.permission.MANAGE_SECURE_SETTINGS permission. This permission is available only for applications.
+// Declare the ohos.permission.MANAGE_SECURE_SETTINGS permission for disabling NFC. This permission is available only for system applications.
 if (nfcController.isNfcOpen()) {
-  // from api9, use 'disableNfc' to close nfc.
+  // Use disableNfc to disable NFC since API version 9.
   try {
     nfcController.disableNfc();
     console.log("nfcController disableNfc success");
@@ -225,6 +225,6 @@ if (nfcController.isNfcOpen()) {
   console.log("nfcController NFC has been closed");
 }
 
-// unregister callback
+// Unregister the callback for NFC status change events.
 nfcController.off("nfcStateChange");
 ```

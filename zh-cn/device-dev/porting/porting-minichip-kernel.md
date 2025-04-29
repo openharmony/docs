@@ -49,6 +49,7 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
 编译框架搭建完成后，需要将芯片厂商的SDK加入OpenHarmony编译框架，从而可以编译出带SDK的烧录文件（此时编译出的是不带系统的裸机工程），以便OpenHarmony可以调用SDK中的接口。通过以下步骤将厂商SDK加入OpenHarmony编译框架中：
 
 1. 将芯片厂商sdk置于device目录下合适的位置，SDK的编译脚本/镜像打包脚本整合进编译框架中。
+   
    参考编译脚本：“device/MyDeviceCompany/MyBoard/BUILD.gn”
 
      
@@ -100,17 +101,20 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
    }
    ```
 
-     **图1** 目标的依赖执行顺序  
+     
+   **图1** 目标的依赖执行顺序 
+
    ![zh-cn_image_0000001378481233](figures/zh-cn_image_0000001378481233.png)
 
-1. 自定义芯片厂“target_config.h”文件。
+2. 自定义芯片厂“target_config.h”文件。
+
    厂商应在“device/MyDeviceCompany/MyBoard”下合适位置创建内核配置文件“target_config.h”，并根据芯片的硬件资源修改参数（具体参数介绍详见表2target_config.h文件主要配置项）。
 
    参考文件路径：“device/hisilicon/hispark_pegasus/sdk_liteos/platform/os/Huawei_LiteOS/targets/hi3861v100/include/target_config.h”
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+   >
    > 1. 若已有的配置项不能满足需求，可查看“kernel/liteos_m/kernel/include/los_config.h”，其为liteos_m内核的全量配置文件。
-   > 
    > 2. “target_config.h”文件中出现的配置将会覆盖“los_config.h”中的配置。
 
      **表2** target_config.h文件主要配置项
@@ -134,22 +138,23 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
    | LOSCFG_PLATFORM_EXC | 异常模块配置项。 | YES | 
    | LOSCFG_USE_SYSTEM_DEFINED_INTERRUPT | 是否使用OS默认的中断。 | NO | 
 
-1. 修改内核中断。
+3. 修改内核中断。
+
    内核提供了两种中断修改方式：
 
    1. 使用厂商默认中断。
 
-   将“target_config.h”中的宏"LOSCFG_USE_SYSTEM_DEFINED_INTERRUPT"置为NO (0)，但需要在xxx.s启动文件中作以下修改:
+      将“target_config.h”中的宏"LOSCFG_USE_SYSTEM_DEFINED_INTERRUPT"置为NO (0)，但需要在xxx.s启动文件中作以下修改：
 
-   - PendSV_Handler：厂商sdk自带中断入口函数，需要替换为OpenHarmony的接口HalPendSV;
-   - SysTick_Handler：厂商sdk自带时钟中断入口函数，需要替换为OpenHarmony的接口OsTickHandler。
+      - PendSV_Handler：厂商sdk自带中断入口函数，需要替换为OpenHarmony的接口HalPendSV；
+      - SysTick_Handler：厂商sdk自带时钟中断入口函数，需要替换为OpenHarmony的接口OsTickHandler。
 
-   1. 系统初始化时重定向中断。
+   2. 系统初始化时重定向中断。
 
-   将“target_config.h”中的宏"LOSCFG_USE_SYSTEM_DEFINED_INTERRUPT"和"LOSCFG_PLATFORM_HWI"置为YES (1)。
+      将“target_config.h”中的宏"LOSCFG_USE_SYSTEM_DEFINED_INTERRUPT"和"LOSCFG_PLATFORM_HWI"置为YES (1)。
 
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-   > 重定向后的中断向量表g_hwiForm需要根据arch手册要求进行字节对齐，通常0x200字节对齐。
+      > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+      > 重定向后的中断向量表g_hwiForm需要根据arch手册要求进行字节对齐，通常0x200字节对齐。
 
 
 ## 添加内核子系统
@@ -157,6 +162,7 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
 添加完内核子系统后，可以编译出带有系统的工程。通过以下步骤添加内核子系统：
 
 1. 在“config.json”中添加内核子系统。
+
    路径：“vendor/MyVendorCompany/MyProduct/config.json”
 
      修改如下：
@@ -173,6 +179,7 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
    ```
 
 2. 开启/关闭内核特性。
+
    轻量级系统的内核提供了一些特性，此步骤将指导如何查看、开启/关闭这些特性。
 
    内核特性：liteos_m提供了包括文件系统、backtrace在内的一系列内核特性开关。
@@ -244,7 +251,7 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
    ```
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-   > 内核特性开关可以在具体产品模组中配置。例如关闭fs和cppsupport特性
+   > 内核特性开关可以在具体产品模组中配置。例如关闭fs和cppsupport特性。
    > 
    > “vendor/MyVendorCompany/MyProduct/config.json”
    > 

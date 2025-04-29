@@ -919,7 +919,7 @@ on(type: 'multiProcessChange', callback: Callback&lt;string&gt;): void
 
 Subscribes to inter-process data changes. When multiple processes hold the same preference file, calling [flush](#flush) in any process (including the current process) will trigger the callback in this API.
 
-This API is provided for applications that have applied for [dataGroupId] (#options). Avoid using this API for the applications that have not applied for [dataGroupId] (#options) because calling it in multiple process may damage the persistent files and cause data loss.
+This API is provided for applications that have applied for [dataGroupId](#options). Avoid using this API for the applications that have not applied for [dataGroupId](#options) because calling it in multiple process may damage the persistent files and cause data loss.
 
   > **NOTE**
   >
@@ -1066,7 +1066,7 @@ off(type: 'multiProcessChange', callback?: Callback&lt;string&gt;): void
 
 Unsubscribes from inter-process data changes.
 
-This API is provided for applications that have applied for [dataGroupId] (#options). Avoid using this API for the applications that have not applied for [dataGroupId] (#options) because calling it in multiple process may damage the persistent files and cause data loss.
+This API is provided for applications that have applied for [dataGroupId](#options). Avoid using this API for the applications that have not applied for [dataGroupId](#options) because calling it in multiple process may damage the persistent files and cause data loss.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

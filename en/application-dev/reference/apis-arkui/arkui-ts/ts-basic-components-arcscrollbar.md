@@ -1,10 +1,10 @@
 # ArcScrollBar
 
-The **ArcScrollBar** component is designed to be used with scrollable components such as [List](ts-container-list.md), [Grid](ts-container-grid.md), and [Scroll](ts-container-scroll.md) to provide a circular scrollbar.
+The **ArcScrollBar** component is designed to be used together with scrollable components such as [ArcList](ts-container-arclist.md), [List](ts-container-list.md), [Grid](ts-container-grid.md), [Scroll](ts-container-scroll.md), and [WaterFlow](ts-container-waterflow.md) to provide a circular scrollbar.
 
 >  **NOTE**
 >
->  - This component is supported since API version 16. Updates will be marked with a superscript to indicate their earliest API version.
+>  - This component is supported since API version 18. Updates will be marked with a superscript to indicate their earliest API version.
 >  - If no width or height is set for the **ArcScrollBar** component, it will inherit the size of its parent component.
 
 
@@ -18,9 +18,9 @@ ArcScrollBar(options: ArcScrollBarOptions)
 
 Creates an instance of the **ArcScrollBar** component.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
+**System capability**: SystemCapability.ArkUI.ArkUI.Circle
 
 **Parameters**
 
@@ -32,9 +32,9 @@ Creates an instance of the **ArcScrollBar** component.
 
 Represents the parameters used to construct an **ArcScrollBar** component.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
+**System capability**: SystemCapability.ArkUI.ArkUI.Circle
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |

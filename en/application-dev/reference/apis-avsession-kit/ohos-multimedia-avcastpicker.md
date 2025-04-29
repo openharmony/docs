@@ -15,21 +15,33 @@ The **AVCastPicker** component provides a unified entry for device discovery and
 import { AVCastPicker } from '@kit.AVSessionKit';
 ```
 
+## Properties
+
+The [universal properties](../apis-arkui/arkui-ts/ts-component-general-attributes.md) are supported.
+
 ## AVCastPicker
 
-AVCastPicker()
+```
+AVCastPicker({
+  normalColor?: Color | number | string;
+  activeColor?: Color | number | string;
+  pickerStyle?: AVCastPickerStyle;
+  colorMode?: AVCastPickerColorMode;
+  sessionType?: string;
+  customPicker?: CustomBuilder;
+  onStateChange?: (state: AVCastPickerState) => void;
+})
+```
 
 Implements an **AVCastPicker** component, which can be used to cast audio and video onto other devices.
 
 This component is a custom component. Some basic knowledge of [@Component](../../quick-start/arkts-create-custom-components.md#component) will be helpful in using the component.
 
+**Decorator**: [@Component](../../quick-start/arkts-create-custom-components.md)
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
-
-## Attributes
-
-In addition to the [universal attributes](../apis-arkui/arkui-ts/ts-component-general-attributes.md), the following attributes are supported.
 
 | Name| Type| Mandatory| Decorator| Description|
 | -------- | -------- | -------- | -------- | -------- |

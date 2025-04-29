@@ -261,13 +261,14 @@ Clears all child nodes of this RenderNode.
 **Example**
 
 ```ts
-import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
+import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
+renderNode.size = { width: 200, height: 300 };
 for (let i = 0; i < 10; i++) {
   let childNode = new RenderNode();
-  childNode.size = {width: i*10 ,height : i*10};
-  childNode.position = {x: i*10 ,y : i*10};
+  childNode.size = { width: i * 10, height: i * 10 };
+  childNode.position = { x: i * 10, y: i * 10 };
   childNode.backgroundColor = 0xFF0000FF - 0X11 * i;
   renderNode.appendChild(childNode);
 }
@@ -291,6 +292,7 @@ class MyNodeController extends NodeController {
 @Component
 struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
+
   build() {
     Column() {
       NodeContainer(this.myNodeController)
@@ -298,7 +300,7 @@ struct Index {
         .width(200)
         .height(300)
       Button("clearChildren")
-        .onClick(()=>{
+        .onClick(() => {
           renderNode.clearChildren();
         })
     }.width("100%")
@@ -331,13 +333,14 @@ Obtains the child node in the specified position of this RenderNode.
 **Example**
 
 ```ts
-import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
+import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
+renderNode.size = { width: 200, height: 300 };
 for (let i = 0; i < 10; i++) {
   let childNode = new RenderNode();
-  childNode.size = {width: i*10 ,height : i*10};
-  childNode.position = {x: i*10 ,y : i*10};
+  childNode.size = { width: i * 10, height: i * 10 };
+  childNode.position = { x: i * 10, y: i * 10 };
   childNode.backgroundColor = 0xFF0000FF - 0X11 * i;
   renderNode.appendChild(childNode);
 }
@@ -361,6 +364,7 @@ class MyNodeController extends NodeController {
 @Component
 struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
+
   build() {
     Column() {
       NodeContainer(this.myNodeController)
@@ -368,10 +372,10 @@ struct Index {
         .width(200)
         .height(300)
       Button("getChild")
-        .onClick(()=>{
+        .onClick(() => {
           for (let i = 0; i < 11; i++) {
-            let childNode : RenderNode | null = renderNode.getChild(i);
-            if(childNode == null){
+            let childNode: RenderNode | null = renderNode.getChild(i);
+            if (childNode == null) {
               console.log(`the ${i} of renderNode's childNode is null`);
             } else {
               console.log(`the ${i} of renderNode's childNode has a size of {${childNode.size.width},${childNode.size.height}}`);
@@ -610,7 +614,7 @@ Sets the background color for this RenderNode.
 
 | Name| Type  | Mandatory| Description                  |
 | ------ | ------ | ---- | ---------------------- |
-| color  | number | Yes  | Background color value, in ARGB format.|
+| color  | number | Yes  | Background color value, in ARGB format, for example, **0xE5E5E5**.|
 
 get backgroundColor(): number
 
@@ -749,7 +753,7 @@ Sets the opacity for this RenderNode. If the value passed in is less than **0**,
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| value  | number | Yes  | Opacity to set.<br>Value range: [0, 1]|
+| value  | number | Yes  | Opacity to set.<br>Value range: [0, 1]. A larger value indicates lower transparency.|
 
 get opacity(): number
 
@@ -763,7 +767,7 @@ Obtains the opacity of this RenderNode.
 
 | Type  | Description                                     |
 | ------ | ----------------------------------------- |
-| number | Opacity of the current RenderNode. The default value is **1**.|
+| number | Opacity of the current RenderNode. The default value is **1** (fully opaque).|
 
 **Example**
 ```ts
@@ -1747,15 +1751,21 @@ Obtains the shadow blur radius of this RenderNode.
 **Example**
 
 ```ts
-import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
+import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
-renderNode.backgroundColor = 0xff00ff00;
-renderNode.frame = { x: 0, y: 0, width: 100, height: 100 };
+renderNode.backgroundColor = 0xff0000ff;
+renderNode.frame = {
+  x: 100,
+  y: 100,
+  width: 100,
+  height: 100
+};
 renderNode.shadowOffset = { x: 10, y: 10 };
 renderNode.shadowAlpha = 0.7
 renderNode.shadowRadius = 30;
 const shadowRadius = renderNode.shadowRadius;
+console.log(`FrameNode ${shadowRadius}`);
 
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
@@ -2585,7 +2595,7 @@ Sets whether to prioritize the drawing of this RenderNode and its childe nodes. 
 
 | Name   | Type                                              | Mandatory| Description              |
 | --------- | -------------------------------------------------- | ---- | ------------------ |
-| isNodeGroup | boolean | Yes  | Whether to prioritize the drawing of the current RenderNode and its childe nodes.|
+| isNodeGroup | boolean | Yes  | Whether to prioritize the drawing of the current RenderNode and its childe nodes.<br>The value **true** means to prioritize the drawing of the current RenderNode and its childe nodes, and **false** means the opposite.|
 
 get markNodeGroup(): boolean
 
@@ -2597,7 +2607,7 @@ Obtains whether to prioritize the drawing of this RenderNode and its childe node
 
 | Type   | Description                                       |
 | ------- | ------------------------------------------- |
-| boolean | Whether to prioritize the drawing of the current RenderNode and its childe nodes. The default value is **false**.|
+| boolean | Whether to prioritize the drawing of this RenderNode and its childe nodes.<br>The value **true** means to prioritize the drawing of the current RenderNode and its childe nodes, and **false** means the opposite.<br>Default value: **false**|
 
 **Example**
 

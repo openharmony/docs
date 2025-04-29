@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-当应用需要获取用户动作时，可以调用motion模块，例如：需要判断用户当前使用左手还是右手在操作设备屏幕。
+当应用需要获取用户动作时，可以调用motion模块，例如判断用户当前是用左手还是右手操作设备屏幕。
 
 详细的接口介绍请参考[Motion接口](../../reference/apis-multimodalawareness-kit/js-apis-awareness-motion.md)。
 
@@ -10,45 +10,74 @@
 
 | 接口名                                                       | 描述                                   |
 | ------------------------------------------------------------ | -------------------------------------- |
-| on(type:'operatingHandChanged',callback:Callback&lt;OperatingHandStatus&gt;):void; | 订阅操作手感知，结果通过callback返回。 |
+| on(type:'operatingHandChanged',callback:Callback&lt;OperatingHandStatus&gt;):void; | 订阅操作手感知，操作手结果通过callback返回。 |
 | off(type: 'operatingHandChanged', callback?: Callback&lt;OperatingHandStatus&gt;): void; | 取消订阅操作手感知。                   |
 | getRecentOperatingHandStatus(): OperatingHandStatus;         | 获取最新的操作手状态。                 |
 
 ## 约束与限制
 
-设备需要支持触控屏，并且支持特定芯片。
+ - 设备需支持触控屏并兼容特定芯片。
+
+ - 指关节操作不属于使用手操作场景。
+
+ - 窗口旋转场景，多指同时操作场景不支持。
+
+ - 能力有效范围：不包含距离屏幕边缘8mm内区域。
+
 
 
 
 ## 开发步骤
 
-```ts
-import { motion } from '@kit.MultimodalAwarenessKit';
-```
+1. 导入模块。
 
-1. 订阅操作手感知事件
-
-   ```
-   motion.on('operatingHandChanged', (data:motion.OperatingHandStatus) => {
-     console.info('on success' + data);
-   })
-   
+   ```ts
+   import { motion } from '@kit.MultimodalAwarenessKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
-2. 取消订阅操作手感知事件
+2. 定义回调函数接收操作手结果
 
    ```
-   motion.off('operatingHandChanged', (data:motion.OperatingHandStatus) => {
-     console.info('off success' + data);
-   })
-   
+   callback(data:motion.OperatingHandStatus) {
+     console.info('callback success' + data);
+   }
    ```
 
-3. 获取最新操作手状态
+3. 订阅操作手感知
 
    ```
-   let data:motion.OperatingHandStatus = motion.getRecentOperatingHandStatus();
-   console.info('get success' + data);
+   try {
+      motion.on('operatingHandChanged', this.callback);  
+      console.info("on succeeded");
+   } catch (err) {
+      let error = err as BusinessError;
+      console.error("Failed on and err code is " + error.code);
+   }
+   ```
+
+4. 取消订阅操作手感知
+
+   ```
+   try {
+      motion.off('operatingHandChanged');
+      console.info("off succeeded");
+   } catch (err) {
+      let error = err as BusinessError;
+      console.error("Failed off and err code is " + error.code);
+   }
+   ```
+
+5. 获取最新操作手状态
+
+   ```
+   try {
+      let data:motion.OperatingHandStatus = motion.getRecentOperatingHandStatus();
+      console.info('get success' + data);
+   } catch (err) {
+      let error = err as BusinessError;
+      console.error("Failed get and err code is " + error.code);
+   }
    ```
 
    

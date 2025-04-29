@@ -253,7 +253,7 @@
 
    - 取消当前有序公共事件的中止状态。
 
-     通过[OH_CommonEvent_ClearAbortCommonEvent](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_clearabortcommonevent)与[OH_CommonEvent_FinishCommonEvent](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_finishcommonevent)配合使用，可以取消当前有序公共事件的中止状态，使该公共事件继续  向下一个订阅者传递。
+     通过[OH_CommonEvent_ClearAbortCommonEvent](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_clearabortcommonevent)与[OH_CommonEvent_FinishCommonEvent](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_finishcommonevent)配合使用，可以取消当前有序公共事件的中止状态，使该公共事件继续向下一个订阅者传递。
 
      ```c++
      void ClearAbortCommonEvent(CommonEvent_Subscriber* subscriber) {

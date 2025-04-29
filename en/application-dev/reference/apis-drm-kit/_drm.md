@@ -1020,7 +1020,7 @@ Enumerates the DRM error codes.
 | DRM_ERR_NO_MEMORY | Insufficient memory.| 
 | DRM_ERR_OPERATION_NOT_PERMITTED | Operation not allowed.| 
 | DRM_ERR_INVALID_VAL | Invalid parameters.| 
-| DRM_ERR_IO | I/O error.| 
+| DRM_ERR_IO | I/O error.|
 | DRM_ERR_TIMEOUT | Network timeout.| 
 | DRM_ERR_UNKNOWN | Unknown error.| 
 | DRM_ERR_SERVICE_DIED | DRM service error.| 
@@ -1502,7 +1502,7 @@ Creates a **MediaKeySystem** instance.
 | Name| Description| 
 | -------- | -------- |
 | name | Pointer to the DRM solution name.| 
-| mediaKeySystem | Pointer to the **MediaKeySystem** instance.| 
+| mediaKeySystem | Double pointer to the **MediaKeySystem** instance.| 
 
 **Returns**
 
@@ -1561,7 +1561,7 @@ Destroys a **MediaKeySystem** instance.
 
 | Name| Description| 
 | -------- | -------- |
-| mediaKeySystem | Pointer to the **MediaKeySystem** instance.| 
+| mediaKeySystem | Double pointer to the **MediaKeySystem** instance created.| 
 
 **Returns**
 

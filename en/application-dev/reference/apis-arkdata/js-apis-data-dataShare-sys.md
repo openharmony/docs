@@ -291,7 +291,7 @@ Represents the optional parameters of [DataShareHelper](#datasharehelper).
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| isProxy | boolean | No| Whether the [DataShareHelper](#datasharehelper) is in proxy mode.<br>The default value is **false**.<br>If the value is **true**, the [DataShareHelper](#datasharehelper) to be created is in proxy mode, and all operations will not open the data provider application unless the database does not exist. If the database does not exist, [createDataShareHelper] (#datasharecreatedatasharehelper10) will start the data provider to create a database.|
+| isProxy | boolean | No| Whether the [DataShareHelper](#datasharehelper) is in proxy mode.<br>The default value is **false**.<br>If the value is **true**, the [DataShareHelper](#datasharehelper) to be created is in proxy mode, and all operations will not open the data provider application unless the database does not exist. If the database does not exist, [createDataShareHelper](#datasharecreatedatasharehelper10) will start the data provider to create a database.|
 | waitTime<sup>16+</sup> | number | No| Waiting time for starting the data provider process, in seconds.<br>The default value is **2**.|
 
 ## TemplateId<sup>10+</sup>

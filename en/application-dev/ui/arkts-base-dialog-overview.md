@@ -16,9 +16,10 @@ A dialog box is a modal window designed to temporarily display information or pe
 |[Picker dialog box (PickerDialog)](arkts-fixes-style-dialog.md#picker-dialog-box-pickerdialog)| Used when users need to select dates, time, or text.|
 | [Common dialog box (showDialog)](arkts-fixes-style-dialog.md#common-dialog-box-showdialog)| Used when processing of results returned asynchronously is required after the dialog box is closed.|
 | [Action menu (showActionMenu)](arkts-fixes-style-dialog.md#action-menu-showactionmenu)| Used when processing of results returned asynchronously is required after the action menu is closed.|
+| [Page-level dialog box](arkts-embedded-dialog.md)| Used when you expect the dialog box to switch with the navigation page during route navigation.|
+| [Dialog box layer management](arkts-dialog-levelorder.md)| Used to manage the display sequence of dialog boxes by setting the [levelOrder](../reference/apis-arkui/js-apis-promptAction.md#basedialogoptions11) parameter. Available since API version 18.|
 
-## Specifications Constraints
+## Constraints
 
-* The **UIContext.getPromptAction.showDialog**, **UIContext.getPromptAction.showActionMenu**, and **UIContext.getPromptAction.openCustomDialog** APIs are dependent on the UI execution context and should not be used in an unclear UI context. For details, see [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext).
 * Except for UI-less scenarios<!--Del--> such as [ServiceExtension](../../application-dev/application-models/serviceextensionability.md)<!--DelEnd-->, it is recommended that you use the dialog APIs provided by **UIContext**.
 * You can use the [getPromptAction](../reference/apis-arkui/js-apis-arkui-UIContext.md#getpromptaction) method in **UIContext** to obtain the [PromptAction](../reference/apis-arkui/js-apis-arkui-UIContext.md#promptaction) object associated with the current UI context.

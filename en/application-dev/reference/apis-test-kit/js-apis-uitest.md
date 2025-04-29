@@ -194,6 +194,7 @@ The APIs provided by the **On** class exhibit the following features:<br>1. Allo
 
 ```ts
 import { ON } from '@kit.TestKit';
+
 ON.text('123').type('Button');
 ```
 
@@ -237,7 +238,7 @@ let on:On = ON.text('123'); // Use the static constructor ON to create an On obj
 
 ### id<sup>9+</sup>
 
-id(id: string, pattern?: MatchPattern): On
+id(id: string): On
 
 Specifies the ID attribute of the target component.
 
@@ -247,10 +248,48 @@ Specifies the ID attribute of the target component.
 
 **Parameters**
 
+| Name| Type  | Mandatory| Description            |
+| ------ | ------ | ---- | ---------------- |
+| id     | string | Yes  | Component ID.|
+
+**Return value**
+
+| Type      | Description                            |
+| ---------- | -------------------------------- |
+| [On](#on9) | **On** object that matches the ID attribute of the target component.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**Example**
+
+```ts
+import { On, ON } from '@kit.TestKit';
+
+let on:On = ON.id('123'); // Use the static constructor ON to create an On object and specify the id attribute of the target component.
+```
+
+### id<sup>18+</sup>
+
+id(id: string, pattern?: MatchPattern): On
+
+Specifies the ID attribute of the target component.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Parameters**
+
 | Name                  | Type  | Mandatory| Description                                   |
 |-----------------------| ------ |----|---------------------------------------|
 | id                    | string | Yes | Component ID.                            |
-| pattern<sup>18+</sup> | [MatchPattern](#matchpattern) | No | Match pattern. The default value is [EQUALS](#matchpattern).|
+| pattern | [MatchPattern](#matchpattern) | No | Match pattern. The default value is [EQUALS](#matchpattern).|
 
 **Return value**
 
@@ -275,7 +314,7 @@ let on:On = ON.id('id', MatchPattern.REG_EXP_ICASE) // Use case-insensitive regu
 
 ### type<sup>9+</sup>
 
-type(tp: string, pattern?: MatchPattern): On
+type(tp: string): On
 
 Specifies the type attribute of the target component.
 
@@ -289,10 +328,51 @@ Specifies the type attribute of the target component.
 
 **Parameters**
 
+| Name| Type  | Mandatory| Description          |
+| ------ | ------ | ---- | -------------- |
+| tp     | string | Yes  | Component type.|
+
+**Return value**
+
+| Type      | Description                                    |
+| ---------- | ---------------------------------------- |
+| [On](#on9) | **On** object that matches the type attribute of the target component.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**Example**
+
+```ts
+import { On, ON } from '@kit.TestKit';
+let on:On = ON.type('Button'); // Use the static constructor ON to create an On object and specify the type attribute of the target component.
+```
+
+### type<sup>18+</sup>
+
+type(tp: string, pattern?: MatchPattern): On
+
+Specifies the type attribute of the target component.
+
+>**NOTE**
+>
+>You can define the type of the component. In addition, you can use [DevEco Testing](https://developer.huawei.com/consumer/cn/download) to query the type information of the component.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Parameters**
+
 | Name                  | Type  | Mandatory| Description                                   |
 |-----------------------| ------ | ---- |---------------------------------------|
 | tp                    | string | Yes  | Component type.                              |
-| pattern<sup>18+</sup> | [MatchPattern](#matchpattern) | No | Match pattern. The default value is [EQUALS](#matchpattern).|
+| pattern | [MatchPattern](#matchpattern) | No | Match pattern. The default value is [EQUALS](#matchpattern).|
 
 **Return value**
 
@@ -838,6 +918,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
  import { MatchPattern, On, ON } from '@kit.TestKit';
+ 
  let on:On = ON.hint('welcome', MatchPattern.EQUALS); // Use the static constructor ON to create an On object with the hint text attribute of the target component specified.
 ```
 
@@ -1441,7 +1522,7 @@ async function demo() {
 
 inputText(text: string): Promise\<void>
 
-Inputs text into the component. This API is applicable to text box components.
+Inputs text to a component after the original text in the component is cleared. This API is applicable to text box components.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1505,11 +1586,55 @@ async function demo() {
 
 ### scrollSearch<sup>9+</sup>
 
-scrollSearch(on: On, vertical?: boolean, offset?: number): Promise\<Component>
+scrollSearch(on: On): Promise\<Component>
 
-Scrolls on this component to search for the target component. This API is applicable to components that support scrolling.
+Scrolls on this component to search for the target component. This API is applicable to components that support scrolling and uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Parameters**
+
+| Name| Type      | Mandatory| Description                |
+| ------ | ---------- | ---- | -------------------- |
+| on     | [On](#on9) | Yes  | Attributes of the target component.|
+
+**Return value**
+
+| Type                              | Description                                 |
+| ---------------------------------- | ------------------------------------- |
+| Promise\<[Component](#component9)> | Promise used to return the target component.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                              |
+| -------- | ---------------------------------------- |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**Example**
+
+```ts
+import { Component, Driver, ON } from '@kit.TestKit';
+
+async function demo() {
+  let driver: Driver = Driver.create();
+  let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
+  let button = await scrollBar.scrollSearch(ON.text('next page'));
+}
+```
+
+### scrollSearch<sup>18+</sup>
+
+scrollSearch(on: On, vertical?: boolean, offset?: number): Promise\<Component>
+
+Scrolls on this component to search for the target component. This API is applicable to components that support scrolling and uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -1518,8 +1643,8 @@ Scrolls on this component to search for the target component. This API is applic
 | Name                   | Type      | Mandatory| Description                               |
 |------------------------| ---------- | ---- |-----------------------------------|
 | on                     | [On](#on9) | Yes  | Attributes of the target component.                       |
-| vertical<sup>18+</sup> |    boolean | No| Whether the search direction is vertical. The default value **true** indicates that the search direction is vertical. **false** indicates that the search direction is horizontal.|
-| offset<sup>18+</sup>   | number| No| Offset from the scrolling start point or end point to the component border, in pixels. The default value is **80**.   |
+| vertical |    boolean | No| Whether the search direction is vertical. The default value **true** indicates that the search direction is vertical. **false** indicates that the search direction is horizontal.|
+| offset   | number| No| Offset from the scrolling start point or end point to the component border, in pixels. The default value is **80**.   |
 
 **Return value**
 
@@ -3145,7 +3270,7 @@ Moves the mouse pointer from the start point to the end point.
 | ------ | ---------------- | ---- |--------------------------------------------------------|
 | from   | [Point](#point9) | Yes  | Coordinates of the start point.                                                |
 | to     | [Point](#point9) | Yes  | Coordinates of the end point.                                                 |
-| speed  | number           | No  | Moving speed, in px/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value **600** is used.|
+| speed  | number           | No  | Move speed, in px/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value **600** is used.|
 
 **Error codes**
 
@@ -3211,7 +3336,7 @@ async function demo() {
 
 inputText(p: Point, text: string): Promise\<void>
 
-Enters text at the specified point.
+Inputs text at a specified coordinate without clearing the original text in the component.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3434,7 +3559,7 @@ Simulates a pen swipe. This API uses a promise to return the result.
 | ------ |-----------------------------------------------|----|--------------------------------------------------------|
 | startPoint      | [Point](#point9) | Yes | Coordinates of the start point.                                             |
 | endPoint      | [Point](#point9) | Yes | Coordinates of the end point.                                             |
-| speed      | number | No | Swipe speed, in px/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value **600** is used.|
+| speed      | number | No | Inject speed, in px/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value **600** is used.|
 | pressure      | number | No | Swipe pressure of the pen. The value ranges from 0.0 to 1.0. The default value is **1.0**.                       |
 
 **Return value**
@@ -3477,7 +3602,7 @@ Simulates a continuous multi-point pen injection. This API uses a promise to ret
 | Name| Type                                           | Mandatory| Description                                                               |
 | ------ |-----------------------------------------------|----|-------------------------------------------------------------------|
 | pointers | [PointerMatrix](#pointermatrix9) | Yes |Scroll trajectory, including the number of fingers and an array of coordinates along the trajectory. Currently, only the single-finger operation is supported. The value of **fingers** in **PointerMatrix** must be set to 1.|
-| speed      | number| No | Swipe speed, in px/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value **600** is used.           |
+| speed      | number| No | Inject speed, in px/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value **600** is used.           |
 | pressure      | number | No | Injection pressure. The value ranges from 0.0 to 1.0. The default value is **1.0**.                                |
 
 
@@ -4887,7 +5012,7 @@ async function demo() {
 
 inputText(text: string): Promise\<void>
 
-Enters text into this component (available for text boxes).
+Inputs text into a component. This API is applicable to text box components.
 
 This API is deprecated since API version 9. You are advised to use [inputText<sup>9+</sup>](#inputtext9) instead.
 

@@ -187,7 +187,7 @@ Obtains burst assets. This API uses a promise to return the result.
 
 | Name | Type               | Mandatory| Description            |
 | ------- | ------------------- | ---- | ---------------- |
-| burstKey | string   | Yes  | UUID of a set of burst photos (**BURST_KEY** of [PhotoKeys](#photokeys)).    |
+| burstKey | string   | Yes  | UUID of a set of burst photos (**BURST_KEY** of [PhotoKeys](#photokeys)). The value is a string of 36 characters.|
 | options | [FetchOptions](#fetchoptions)   | Yes  | Options for fetching the burst photos.    |
 
 **Return value**
@@ -220,7 +220,7 @@ async function example() {
     predicates: predicates
   };
   // burstKey is a 36-bit UUID, which can be obtained from photoAccessHelper.PhotoKeys.
-  let burstKey: string = "e719d696-09fa-44f8-ec3f215aa62a";
+  let burstKey: string = "e719d696-09fa-44f8-8e9e-ec3f215aa62a";
   try {
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await 
       phAccessHelper.getBurstAssets(burstKey, fetchOptions);
@@ -954,6 +954,10 @@ showAssetsCreationDialog(srcFileUris: Array&lt;string&gt;, photoCreationConfigs:
 
 Shows the dialog box for the user to confirm whether to save the photos or videos. If the user agrees to save the images or videos, a list of URIs granted with the save permission is returned. The list takes effect permanently, and the application can write the images or videos based on the URIs. If the user refuses to save the images or videos, an empty list is returned. To display the application name in the dialog box, the API relies on the configuration of **label** and **icon** under **abilities** in the **module.json5** file. If they are not configured, no application name is displayed in the dialog box.
 
+> **NOTE**
+>
+> If the passed URI is a sandbox path, photos or videos can be saved but cannot be previewed.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
@@ -1137,13 +1141,13 @@ async function example() {
 }
 ```
 
-### getSupportedPhotoFormats<sup>16+</sup>
+### getSupportedPhotoFormats<sup>18+</sup> 
 
 getSupportedPhotoFormats(photoType: PhotoType): Promise&lt;Array&lt;string&gt;&gt;
 
 Obtains the list of image or video file name extensions supported by the media library.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -1165,7 +1169,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14000011 | Internal system error. It is recommended to retry and check the logs. |
 
 **Example**
@@ -1177,6 +1181,7 @@ async function example(photoTypeNumber: number){
   console.info('getSupportedPhotoFormatsDemo.');
 
   try {
+    let outputText: string;
     if (photoTypeNumber !== 1 && photoTypeNumber !== 2) {
       outputText = 'Does not support querying formats other than images or videos';
       return;
@@ -1210,7 +1215,7 @@ Provides APIs for encapsulating file asset attributes.
 | ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
 | uri                       | string                   | Yes  | No  | Media asset URI, for example, **file://media/Photo/1/IMG_datetime_0001/displayName.jpg**. For details, see [Media File URI](../../file-management/user-file-uri-intro.md#media-file-uri).<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
 | photoType   | [PhotoType](#phototype) | Yes  | No  | Type of the file.                                              |
-| displayName               | string                   | Yes  | No  | File name, including the file name extension, to display.                                |
+| displayName               | string                   | Yes  | No  | File name, including the file name extension, to display. The value contains 1 to 255 characters.                                |
 
 ### get
 
@@ -1278,8 +1283,8 @@ Sets a **PhotoAsset** member parameter.
 
 | Name     | Type                       | Mandatory  | Description   |
 | -------- | ------------------------- | ---- | ----- |
-| member | string | Yes   | Name of the member parameter to set. For example, **[PhotoKeys](#photokeys).TITLE**.|
-| value | string | Yes   | Member parameter to set. Only the value of **[PhotoKeys](#photokeys).TITLE** can be modified.|
+| member | string | Yes   | Name of the member parameter to set. For example, **[PhotoKeys](#photokeys).TITLE**. The value contains 1 to 255 characters.|
+| value | string | Yes   | Member parameter to set. Only the value of **[PhotoKeys](#photokeys).TITLE** can be modified. The title must meet the following requirements:<br>- It does not contain a file name extension.<br>- The file name, which is in the format of title+file name extension, does not exceed 255 characters.<br>- The title does not contain any of the following characters:\ / : * ? " ' ` < > \| { } [ ]  |
 
 **Error codes**
 
@@ -1440,7 +1445,7 @@ Opens this file in read-only mode. This API uses an asynchronous callback to ret
 > **NOTE**
 >
 > - This API is supported since API version 10 and deprecated since API version 11. For security purposes, the API for obtaining the media file handle is no longer provided.
-
+>
 > - The returned FD must be closed when it is not required.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
@@ -1497,7 +1502,7 @@ Opens this file in read-only mode. This API uses a promise to return the result.
 > **NOTE**
 >
 > - This API is supported since API version 10 and deprecated since API version 11. For security purposes, the API for obtaining the media file handle is no longer provided.
-
+>
 > - The returned FD must be closed when it is not required.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
@@ -3210,7 +3215,7 @@ Use **fileUri** to specify the data source of the asset to be created. For detai
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Context of the ability instance.|
-| fileUri | string | Yes  | Data source of the image asset, which is specified by a URI in the application sandbox directory.|
+| fileUri | string | Yes  | Data source of the image asset, which is specified by a URI in the application sandbox directory. Example: **'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg'**.|
 
 **Return value**
 
@@ -3260,7 +3265,7 @@ Use **fileUri** to specify the data source of the asset to be created. For detai
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Context of the ability instance.|
-| fileUri | string | Yes  | Data source of the video asset, which is specified by a URI in the application sandbox directory.|
+| fileUri | string | Yes  | Data source of the video asset, which is specified by a URI in the application sandbox directory. Example: **'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.mp4'**.|
 
 **Return value**
 
@@ -3367,7 +3372,7 @@ Deletes media assets. This API uses a promise to return the result. The deleted 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Context of the ability instance.|
-| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Media assets to delete.|
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Array of assets to delete. |
 
 **Return value**
 
@@ -3423,7 +3428,7 @@ Deletes media assets. This API uses a promise to return the result. The deleted 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Context of the ability instance.|
-| uriList | Array&lt;string&gt; | Yes  | URIs of the media files to delete.|
+| uriList | Array&lt;string&gt; | Yes  | URIs of the media files to delete. |
 
 **Return value**
 
@@ -3634,7 +3639,7 @@ Adds a resource using **fileUri**.
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
 | type | [ResourceType](#resourcetype11) | Yes  | Type of the resource to add.|
-| fileUri | string | Yes  | Data source of the resource to be added, which is specified by a URI in the application sandbox directory.|
+| fileUri | string | Yes  | Data source of the resource to be added, which is specified by a URI in the application sandbox directory. Example: **'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg'**.|
 
 **Error codes**
 
@@ -4023,7 +4028,7 @@ Add assets to the album.
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Assets to add.|
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Array of assets to add. |
 
 **Error codes**
 
@@ -4075,7 +4080,7 @@ Removes assets from the album.
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Assets to remove.|
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Array of assets to remove. |
 
 **Error codes**
 
@@ -4305,6 +4310,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ---------------------------------------- |
 | 201      |  Permission denied         |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 801   | Capability not supported.       |
 | 14000011       | System inner fail         |
 
 **Example**
@@ -4366,7 +4372,7 @@ Requests a video and saves it to the specified sandbox directory.
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                      | Yes  | Context of the ability instance.|
 | asset | [PhotoAsset](#photoasset)                                            | Yes  | Image to request.|
 | requestOptions  | [RequestOptions](#requestoptions11)                                  | Yes  | Options for requesting the video asset.|
-| fileUri| string                                                              | Yes| URI of the sandbox directory, to which the requested video asset is to be saved.|
+| fileUri| string                                                              | Yes| URI of the sandbox directory, to which the requested video asset is to be saved. Example: **'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.mp4'**.|
 | dataHandler  | [MediaAssetDataHandler](#mediaassetdatahandler11)&lt;boolean&gt; | Yes  | Media asset handler. When the requested video is written to the specified directory, a callback is triggered.|
 
 **Return value**
@@ -4432,7 +4438,7 @@ Cancels a request for the asset, the callback of which has not been triggered ye
 | Name  | Type                                                                  | Mandatory| Description                     |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                      | Yes  | Context of the ability instance.|
-| requestId | string     | Yes  | ID of the request to cancel.|
+| requestId | string     | Yes  | ID of the request to cancel. It is a valid request ID returned by **requestImage**.|
 
 **Return value**
 
@@ -4611,7 +4617,7 @@ Information returned by **map**:
 | Name | Type| Mandatory| Description                                                                           |
 |------|---| ---- |-------------------------------------------------------------------------------|
 | data | T | Yes  | Data of the image asset that is ready. The value supports the following types: ArrayBuffer, [ImageSource](../apis-image-kit/js-apis-image.md#imagesource), [MovingPhoto](#movingphoto12), and boolean.|
-| map<sup>12+</sup> | Map<string, string> | No  | Additional information about the image asset, such as the image quality.|
+| map<sup>12+</sup> | Map<string, string> | No  | Additional information about the image asset, such as the image quality. Currently, only **quality** is supported.|
 
 **Example**
 ```ts
@@ -4677,7 +4683,7 @@ Information returned by **map**:
 |------|---| ---- |-------------------------------------------------------------------------------|
 | data | T | Yes  | Data of the image asset that is ready. It is of the T type, which supports the [Picture](../apis-image-kit/js-apis-image.md#picture13) type.|
 | imageSource | image.ImageSource | Yes  | Data of the image asset that is ready.|
-| map<sup>13+</sup> | Map<string, string> | Yes  | Additional information about the image asset, such as the image quality.|
+| map<sup>13+</sup> | Map<string, string> | Yes  | Additional information about the image asset, such as the image quality. Currently, only **quality** is supported.|
 
 **Example**
 ```ts
@@ -4780,8 +4786,8 @@ Requests the image data and video data of this moving photo and writes them to t
 
 | Name  | Type                                                                  | Mandatory| Description                     |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
-| imageFileUri | string                      | Yes  | URI to which the image data of the moving photo is to be written.|
-| videoFileUri | string                                            | Yes  | URI to which the video data of the moving photo is to be written.|
+| imageFileUri | string                      | Yes  | URI to which the image data of the moving photo is to be written. Example: **"file://com.example.temptest/data/storage/el2/base/haps/ImageFile.jpg"**.|
+| videoFileUri | string                                            | Yes  | URI to which the video data of the moving photo is to be written. Example: **"file://com.example.temptest/data/storage/el2/base/haps/VideoFile.mp4"**.|
 
 **Return value**
 
@@ -5087,6 +5093,18 @@ Enumerate the album subtypes.
 | IMAGE<sup>12+</sup>               | 1031       | Photo album.                          |
 | ANY                               | 2147483647 | Any album.                          |
 
+## PositionType<sup>16+</sup>
+
+Enumerates the file locations.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name |  Value|  Description|
+| ----- |  ---- |  ---- |
+| LOCAL |  1  |  Stored only on a local device.|
+| CLOUD |  2  |  Stored only on the cloud.|
+| LOCAL_AND_CLOUD |  3  |  Stored both on a local device and cloud.|
+
 ## PhotoKeys
 
 Defines the key information about an image or video file.
@@ -5098,7 +5116,7 @@ Defines the key information about an image or video file.
 | URI           | 'uri'                 | URI of the file.<br>**NOTE**: Only the [DataSharePredicates.equalTo](../apis-arkdata/js-apis-data-dataSharePredicates.md#equalto10) predicate can be used for this field during photo query.           |
 | PHOTO_TYPE    | 'media_type'           | Type of the file.                                             |
 | DISPLAY_NAME  | 'display_name'        | File name displayed.                                                  |
-| SIZE          | 'size'                | File size, in bytes.                                                  |
+| SIZE          | 'size'                | File size, in bytes. The size of a moving photo includes the total size of the image and video.   |
 | DATE_ADDED    | 'date_added'          | Unix timestamp when the file was created, in seconds.            |
 | DATE_MODIFIED | 'date_modified'       | Unix timestamp when the file was modified, in seconds. This value is updated when the file content is modified, but not when the file name is modified.|
 | DURATION      | 'duration'            | Duration, in ms.                                   |
@@ -5118,6 +5136,8 @@ Defines the key information about an image or video file.
 | THM_SIZE<sup>12+</sup>  | 'thm_size'  | Width and height of a thumbnail image, in the format of a **width:height** string.|
 | DETAIL_TIME<sup>13+</sup>  | 'detail_time'  | Detailed time. The value is a string of time when the image or video was taken in the time zone and does not change with the time zone.|
 | DATE_TAKEN_MS<sup>13+</sup>  | 'date_taken_ms'  | Unix timestamp when the image was captured, in milliseconds.|
+| POSITION<sup>16+</sup>  | 'position'            | File location type.                              |
+| MEDIA_SUFFIX<sup>18+</sup>  | 'media_suffix'            | File name extension.                              |
 
 ## AlbumKeys
 
@@ -5157,7 +5177,7 @@ Defines the options for fetching media files.
 
 | Name                  | Type               | Readable| Writable| Description                                             |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Names of the columns specified for query.<br>If this parameter is left blank for photos, photos are fetched by **'uri'**, **'media_type'**, **'subtype'**, and **'display_name'** by default. An error will be thrown if [get](#get) is used to obtain other attributes of this object. <br>Example: **fetchColumns: ['uri', 'title']**.<br>If this parameter is left blank for albums, albums are fetched by **'uri'** and **'album_name'** by default.|
+| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Names of the columns specified for query.<br>If this parameter is left blank for photos, photos are fetched by **'uri'**, **'media_type'**, **'subtype'**, and **'display_name'** by default. An error will be thrown if [get](#get) is used to obtain other attributes of this object. <br>Example: **fetchColumns: ['uri', 'title']**.<br>If this parameter is left blank for albums, albums are fetched by **'uri'** and **'album_name'** by default. |
 | predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Yes  | Predicates that specify the fetch criteria.|
 
 ## RequestOptions<sup>11+</sup>
@@ -5169,7 +5189,7 @@ Represents request options.
 | Name                  | Type                       | Read-Only| Optional| Description                                        |
 | ---------------------- |----------------------------| ---- | ---- | ------------------------------------------- |
 | deliveryMode           | [DeliveryMode](#deliverymode11) | No  | No  | Delivery mode of the requested asset. The value can be **FAST_MODE**, **HIGH_QUALITY_MODE**, or **BALANCE_MODE**.|
-| compatibleMode<sup>15+</sup>      | [CompatibleMode](#compatiblemode15) | No  | Yes  | HDR video transcoding policy, which can be **FAST_ORIGINAL_FORMAT_MODE** (maintaining the original HDR format) or **COMPATIBLE_FORMAT_MODE** (converting HDR content to SDR format).|
+| compatibleMode<sup>15+</sup>      | [CompatibleMode](#compatiblemode15) | No  | Yes  | HDR video transcoding policy, which can be **FAST_ORIGINAL_FORMAT_MODE** (maintaining the original HDR format) or **COMPATIBLE_FORMAT_MODE** (converting HDR content to SDR format). The default value is **FAST_ORIGINAL_FORMAT_MODE**.|
 | mediaAssetProgressHandler<sup>15+</sup> | [MediaAssetProgressHandler](#mediaassetprogresshandler15) | No  | Yes  | Callback used to return the HDR-to-SDR conversion progress.|
 
 ## MediaChangeRequest<sup>11+</sup>
@@ -5314,7 +5334,7 @@ Represents the text information about the recommended images.
 
 | Name                   | Type               | Mandatory| Description                         |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
-| text | string   | No  | Text based on which images are recommended. The text cannot exceed 250 characters.|
+| text | string   | No  | Text based on which images are recommended. The text cannot exceed 250 characters. The default value is an empty string.|
 
 **Example**
 
@@ -5401,7 +5421,7 @@ Defines information about the images or videos selected.
 | Name                   | Type               | Readable| Writable| Description                          |
 | ----------------------- | ------------------- | ---- | ---- | ------------------------------ |
 | photoUris        | Array&lt;string&gt;    | Yes  | Yes  | URIs of the images or videos selected. The URI array can be used only by calling [photoAccessHelper.getAssets](#getassets) with temporary authorization. For details about how to use the media file URI, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).|
-| isOriginalPhoto        | boolean    | Yes  | Yes  | Whether the selected media asset is the original image.|
+| isOriginalPhoto        | boolean    | Yes  | Yes  | Whether the selected media asset is the original image. The value **true** means that the selected media asset is the original image, and **false** means the opposite. The default value is **false**.|
 
 
 ## DeliveryMode<sup>11+</sup>
@@ -5426,10 +5446,10 @@ Represents the configuration for saving a media asset (image or video) to the me
 
 | Name                  | Type               | Mandatory| Description                                             |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
-| title | string | No | Title of the image or video.|
+| title | string | No | Title of the image or video. If this parameter is not passed, the system generates a title. The title must meet the following requirements:<br>- It does not contain a file name extension.<br>- The file name, which is in the format of title+file name extension, does not exceed 255 characters.<br>- The title does not contain any of the following characters:\ / : * ? " ' ` < > \| { } [ ]|
 | fileNameExtension | string | Yes | File name extension, for example, **'jpg'**.|
-| photoType | [PhotoType](#phototype) | Yes | Type of the file to create, which can be **IMAGE** or **VIDEO**.|
-| subtype | [PhotoSubtype](#photosubtype12) | No | Image or video file subtype. Currently, only **DEFAULT** is supported.|
+| photoType | [PhotoType](#phototype) | Yes | Type of the file to create, which can be **IMAGE** or **VIDEO**. See [PhotoType](#phototype).|
+| subtype | [PhotoSubtype](#photosubtype12) | No | Image or video file subtype. Currently, only **DEFAULT** is supported. See [PhotoSubtype](#photosubtype12).|
 
 ## CompatibleMode<sup>15+</sup>
 

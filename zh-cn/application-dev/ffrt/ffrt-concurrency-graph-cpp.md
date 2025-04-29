@@ -77,14 +77,19 @@ task5(OUT A);
 借助FFRT提供了图依赖并发范式，可以描述任务依赖关系，同时并行化上述视频处理流程，代码如下所示：
 
 ```cpp
+#include <iostream>
+#include "ffrt/ffrt.h"
+
 int main()
 {
-    auto handle_A = ffrt::submit_h([] () { std::cout << "视频解析\n"; });
-    auto handle_B = ffrt::submit_h([] () { std::cout << "视频转码\n"; }, {handle_A});
-    auto handle_C = ffrt::submit_h([] () { std::cout << "视频生成缩略图\n"; }, {handle_A});
-    auto handle_D = ffrt::submit_h([] () { std::cout << "视频添加水印\n"; }, {handle_B, handle_C});
-    ffrt::submit([] () { std::cout << "视频发布\n"; }, {handle_D});
+    // 提交任务
+    auto handle_A = ffrt::submit_h([] () { std::cout << "视频解析" << std::endl; });
+    auto handle_B = ffrt::submit_h([] () { std::cout << "视频转码" << std::endl; }, {handle_A});
+    auto handle_C = ffrt::submit_h([] () { std::cout << "视频生成缩略图" << std::endl; }, {handle_A});
+    auto handle_D = ffrt::submit_h([] () { std::cout << "视频添加水印" << std::endl; }, {handle_B, handle_C});
+    ffrt::submit([] () { std::cout << "视频发布" << std::endl; }, {handle_D});
 
+    // 等待所有任务完成
     ffrt::wait();
     return 0;
 }
@@ -105,14 +110,21 @@ int main()
 斐波那契数列中每个数字是前两个数字之和，计算斐波那契数的过程可以很好地通过数据对象来表达任务依赖关系。使用FFRT并发编程框架计算斐波那契数的代码如下所示：
 
 ```cpp
+#include <iostream>
+#include "ffrt/cpp/task.h"
+
 void Fib(int x, int& y)
 {
     if (x <= 1) {
         y = x;
     } else {
         int y1, y2;
+
+        // 提交任务并构建数据依赖
         ffrt::submit([&]() { Fib(x - 1, y1); }, {&x}, {&y1});
         ffrt::submit([&]() { Fib(x - 2, y2); }, {&x}, {&y2});
+
+        // 等待任务完成
         ffrt::wait({&y1, &y2});
         y = y1 + y2;
     }
@@ -150,7 +162,8 @@ Fibonacci(5) is 5
 
 > **说明：**
 >
-> 如何使用FFRT C++ API详见：[C++接口使用指导](ffrt-development-guideline.md#using-ffrt-c-api-1)
+> - 如何使用FFRT C++ API详见：[FFRT C++接口三方库使用指导](ffrt-development-guideline.md#using-ffrt-c-api-1)。
+> - 使用FFRT C接口或C++接口时，都可以通过FFRT C++接口三方库简化头文件包含，即使用`#include "ffrt/ffrt.h"`头文件包含语句。
 
 ## 约束限制
 

@@ -204,7 +204,7 @@ EffectErrorCode OH_Filter_Brighten (OH_Filter* filter, float brightness )
 | 名称 | 描述 | 
 | -------- | -------- |
 | filter | 滤镜指针。 | 
-| brightness | 提亮效果的亮度值, 取值范围在0-1之间，取值为0时图像保持不变。 | 
+| brightness | 提亮效果的亮度值，取值范围在0-1之间，取值为0时图像保持不变。 | 
 
 **返回：**
 
@@ -345,7 +345,7 @@ EffectErrorCode OH_Filter_SetColorMatrix (OH_Filter* filter, OH_Filter_ColorMatr
 | 名称 | 描述 | 
 | -------- | -------- |
 | filter | 滤镜指针。 | 
-| matrix | 用来创建滤镜的自定义矩阵 [OH_Filter_ColorMatrix](_o_h___filter___color_matrix.md)。 | 
+| matrix | 用来创建滤镜的自定义矩阵[OH_Filter_ColorMatrix](_o_h___filter___color_matrix.md)。 | 
 
 **返回：**
 

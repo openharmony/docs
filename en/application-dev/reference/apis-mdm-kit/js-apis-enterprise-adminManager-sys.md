@@ -4,11 +4,11 @@ The **adminManager** module provides enterprise device management capabilities s
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> - The APIs of this module are available only to [device administrator applications](../../mdm/mdm-kit-guide.md#introduction).
+> The APIs of this module are available only to [device administrator applications](../../mdm/mdm-kit-guide.md#introduction).
 > 
-> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.enterprise.adminManager](js-apis-enterprise-adminManager.md).
+> This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.enterprise.adminManager](js-apis-enterprise-adminManager.md).
 
 ## Modules to Import
 
@@ -34,7 +34,7 @@ Enables a device administrator application for the current user. The super devic
 
 | Name           | Type                                 | Mandatory  | Description                |
 | -------------- | ----------------------------------- | ---- | ------------------ |
-| admin          | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application to enable.           |
+| admin          | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.     |
 | enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | Yes   | Enterprise information of the device administrator application.     |
 | type           | [AdminType](#admintype)             | Yes   | Type of the device administrator application to enable.        |
 | callback       | AsyncCallback\<void>                | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
@@ -92,7 +92,7 @@ Enables a device administrator application for the specified user. The super dev
 
 | Name           | Type                                 | Mandatory  | Description                          |
 | -------------- | ----------------------------------- | ---- | ---------------------------- |
-| admin          | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application to enable.                     |
+| admin          | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.               |
 | enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | Yes   | Enterprise information of the device administrator application.                |
 | type           | [AdminType](#admintype)             | Yes   | Type of the device administrator application to enable.                 |
 | userId         | number                              | Yes   | User ID, which must be greater than or equal to 0.<br>The default value is the user ID of the caller. |
@@ -151,7 +151,7 @@ Enables a device administrator application for the current or specified user. Th
 
 | Name           | Type                                 | Mandatory  | Description                          |
 | -------------- | ----------------------------------- | ---- | ---------------------------- |
-| admin          | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application to enable.                     |
+| admin          | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.               |
 | enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | Yes   | Enterprise information of the device administrator application.                |
 | type           | [AdminType](#admintype)             | Yes   | Type of the device administrator application to enable.                  |
 | userId         | number                              | No   | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, this API applies to the specified user.<br> - If **userId** is not passed in, this API applies to the current user.|
@@ -213,7 +213,7 @@ Disables a common administrator application for the current user. This API uses 
 
 | Name     | Type                                 | Mandatory  | Description                 |
 | -------- | ----------------------------------- | ---- | ------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Common administrator application to disable.          |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
 | callback | AsyncCallback\<void>                | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -232,8 +232,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 adminManager.disableAdmin(wantTemp, (err) => {
@@ -263,7 +263,7 @@ Disables a common administrator application for the specified user. This API use
 
 | Name     | Type                                 | Mandatory  | Description                          |
 | -------- | ----------------------------------- | ---- | ---------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Common administrator application to disable.                   |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.             |
 | userId   | number                              | Yes   | User ID, which must be greater than or equal to 0.<br>The default value is the user ID of the caller. |
 | callback | AsyncCallback\<void>                | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.       |
 
@@ -283,8 +283,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 adminManager.disableAdmin(wantTemp, 100, (err) => {
@@ -408,7 +408,7 @@ Checks whether a device administrator application of the current user is enabled
 
 | Name     | Type                                 | Mandatory  | Description                  |
 | -------- | ----------------------------------- | ---- | -------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application to check.            |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.      |
 | callback | AsyncCallback\<boolean>             | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is a Boolean value (**true** means that the device administrator application is enabled; and **false** means the opposite). If the operation fails, **err** is an error object.|
 
 **Error codes**
@@ -425,8 +425,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 adminManager.isAdminEnabled(wantTemp, (err, result) => {
@@ -454,7 +454,7 @@ Checks whether a device administrator application of the specified user is enabl
 
 | Name     | Type                                 | Mandatory  | Description                          |
 | -------- | ----------------------------------- | ---- | ---------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application to check.                     |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.               |
 | userId   | number                              | Yes   | User ID, which must be greater than or equal to 0.<br> The default value is the user ID of the caller. |
 | callback | AsyncCallback\<boolean>             | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is a Boolean value (**true** means that the device administrator application is enabled; and **false** means the opposite). If the operation fails, **err** is an error object.     |
 
@@ -472,8 +472,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 adminManager.isAdminEnabled(wantTemp, 100, (err, result) => {
@@ -499,10 +499,10 @@ Checks whether a device administrator application of the current or specified us
 
 **Parameters**
 
-| Name   | Type                                 | Mandatory  | Description                          |
-| ------ | ----------------------------------- | ---- | ---------------------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application to check.                     |
-| userId | number                              | No   | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, this API applies to the specified user.<br> - If **userId** is not passed in, this API applies to the current user.|
+| Name| Type                                                   | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                      |
+| userId | number                                                  | No  | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, this API applies to the specified user.<br> - If **userId** is not passed in, this API applies to the current user.|
 
 **Return value**
 
@@ -525,8 +525,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 adminManager.isAdminEnabled(wantTemp, 100).then((result) => {
@@ -668,7 +668,7 @@ adminManager.getSuperAdmin().then((result) => {
 
 setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCallback\<void>): void
 
-Sets enterprise information for a device administrator application. This API uses an asynchronous callback to return the result.
+Sets the enterprise information of the device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.SET_ENTERPRISE_INFO
 
@@ -682,7 +682,7 @@ Sets enterprise information for a device administrator application. This API use
 
 | Name           | Type                                 | Mandatory  | Description                    |
 | -------------- | ----------------------------------- | ---- | ---------------------- |
-| admin          | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application to enable.               |
+| admin          | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.         |
 | enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | Yes   | Enterprise information to set.          |
 | callback       | AsyncCallback\<void>              | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
@@ -723,7 +723,7 @@ adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo, (err) => {
 
 setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise\<void>
 
-Sets enterprise information for a device administrator application. This API uses a promise to return the result.
+Set the enterprise information of the device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.SET_ENTERPRISE_INFO
 
@@ -737,8 +737,8 @@ Sets enterprise information for a device administrator application. This API use
 
 | Name           | Type                                 | Mandatory  | Description          |
 | -------------- | ----------------------------------- | ---- | ------------ |
-| admin          | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.     |
-| enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | Yes   | Enterprise information to set.|
+| admin          | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
+| enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | Yes   | Enterprise information of the device administrator application.|
 
 **Return value**
 
@@ -780,7 +780,7 @@ adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo).catch((err: BusinessErr
 
 getEnterpriseInfo(admin: Want, callback: AsyncCallback&lt;EnterpriseInfo&gt;): void
 
-Obtains the enterprise information of a device administrator application. This API uses an asynchronous callback to return the result.
+Obtains the enterprise information of the device administrator application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -792,7 +792,7 @@ Obtains the enterprise information of a device administrator application. This A
 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | Yes   | Device administrator application.                 |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | Yes   | EnterpriseAdminExtensionAbility.          |
 | callback | AsyncCallback&lt;[EnterpriseInfo](#enterpriseinfo)&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the enterprise information of the device administrator application obtained. If the operation fails, **err** is an error object.|
 
 **Error codes**
@@ -827,7 +827,7 @@ adminManager.getEnterpriseInfo(wantTemp, (err, result) => {
 
 getEnterpriseInfo(admin: Want): Promise&lt;EnterpriseInfo&gt;
 
-Obtains the enterprise information of a device administrator application. This API uses a promise to return the result.
+Obtains the enterprise information of the device administrator application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -839,13 +839,13 @@ Obtains the enterprise information of a device administrator application. This A
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
 
 **Return value**
 
 | Type                                      | Description                       |
 | ---------------------------------------- | ------------------------- |
-| Promise&lt;[EnterpriseInfo](#enterpriseinfo)&gt; | Promise used to return the enterprise information obtained.|
+| Promise&lt;[EnterpriseInfo](#enterpriseinfo)&gt; | Promise used to return the enterprise information of the device administrator application.|
 
 **Error codes**
 
@@ -878,7 +878,7 @@ adminManager.getEnterpriseInfo(wantTemp).then((result) => {
 
 subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback: AsyncCallback\<void>): void
 
-Subscribes to system management events of a device administrator application. This API uses an asynchronous callback to return the result.
+Subscribes to system management events. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
@@ -892,7 +892,7 @@ Subscribes to system management events of a device administrator application. Th
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
 | managedEvents  | Array\<[ManagedEvent](js-apis-enterprise-adminManager.md#managedevent)> | Yes| Array of events to subscribe to.|
 | callback | AsyncCallback\<void> | Yes| Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
@@ -913,8 +913,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED, adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
 
@@ -931,7 +931,7 @@ adminManager.subscribeManagedEvent(wantTemp, events, (err) => {
 
 subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise\<void>
 
-Subscribes to system management events of a device administrator application. This API uses a promise to return the result.
+Subscribes to system management events. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
@@ -945,14 +945,14 @@ Subscribes to system management events of a device administrator application. Th
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
 | managedEvents  | Array\<[ManagedEvent](js-apis-enterprise-adminManager.md#managedevent)> | Yes| Array of events to subscribe to.|
 
 **Return value**
 
 | Type  | Description                                 |
 | ----- | ----------------------------------- |
-| Promise\<void> | Promise that returns no value. If the operation fails, an error object will be thrown.|
+| Promise\<void> | Promise that returns no value. When a system event fails to be subscribed to, an error object is thrown.|
 
 **Error codes**
 
@@ -972,8 +972,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED, adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
 
@@ -987,7 +987,7 @@ adminManager.subscribeManagedEvent(wantTemp, events).then(() => {
 
 unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback: AsyncCallback\<void>): void
 
-Unsubscribes from system management events of a device administrator application. This API uses an asynchronous callback to return the result.
+Unsubscribes from system management events. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
@@ -1001,7 +1001,7 @@ Unsubscribes from system management events of a device administrator application
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
 | managedEvents  | Array\<[ManagedEvent](js-apis-enterprise-adminManager.md#managedevent)> | Yes| Array of events to unsubscribe from.|
 | callback | AsyncCallback\<void> | Yes| Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
@@ -1022,8 +1022,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED, adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
 
@@ -1040,7 +1040,7 @@ adminManager.unsubscribeManagedEvent(wantTemp, events, (err) => {
 
 unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise\<void>
 
-Unsubscribes from system management events of a device administrator application. This API uses a promise to return the result.
+Unsubscribes from system management events. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
@@ -1054,14 +1054,14 @@ Unsubscribes from system management events of a device administrator application
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
 | managedEvents  | Array\<[ManagedEvent](js-apis-enterprise-adminManager.md#managedevent)> | Yes| Array of events to unsubscribe from.|
 
 **Return value**
 
 | Type  | Description                                 |
 | ----- | ----------------------------------- |
-| Promise\<void> | Promise that returns no value. If the operation fails, an error object will be thrown.|
+| Promise\<void> | Promise that returns no value. An error object is thrown when the unsubscription of system management events fails.|
 
 **Error codes**
 
@@ -1081,8 +1081,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED, adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
 
@@ -1096,7 +1096,7 @@ adminManager.unsubscribeManagedEvent(wantTemp, events).then(() => {
 
 authorizeAdmin(admin: Want, bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 
-Authorizes the administrator rights to an application through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Authorizes the administrator permission to a specified application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -1110,7 +1110,7 @@ Authorizes the administrator rights to an application through the specified devi
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
 | bundleName  | string | Yes| Bundle name of the application to be authorized with the administrator rights.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
@@ -1132,8 +1132,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let bundleName: string = "com.example.application";
 
@@ -1150,7 +1150,7 @@ adminManager.authorizeAdmin(wantTemp, bundleName, (err) => {
 
 authorizeAdmin(admin: Want, bundleName: string): Promise&lt;void&gt;
 
-Authorizes the administrator rights to an application through the specified device administrator application. This API uses a promise to return the result.
+Authorizes the administrator permission to a specified application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -1164,14 +1164,14 @@ Authorizes the administrator rights to an application through the specified devi
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
 | bundleName  | string | Yes| Bundle name of the application to be authorized with the administrator rights.|
 
 **Return value**
 
 | Type  | Description                                 |
 | ----- | ----------------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. When the device management application fails to grant the administrator rights to a specified application, an error object is thrown.|
+| Promise&lt;void&gt; | Promise that returns no value. An error object is thrown when the permissions of a specified application administrator fail to be granted.|
 
 **Error codes**
 
@@ -1192,8 +1192,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let bundleName: string = "com.example.application";
 
@@ -1283,12 +1283,12 @@ import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let oldAdmin: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let newAdmin: Want = {
-  bundleName: 'newBundleName',
-  abilityName: 'newAbilityName',
+  bundleName: 'com.example.myapplication_new',
+  abilityName: 'NewEntryAbility',
 };
 try {
   adminManager.replaceSuperAdmin(oldAdmin, newAdmin, false);

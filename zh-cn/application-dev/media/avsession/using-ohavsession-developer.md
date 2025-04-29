@@ -102,7 +102,7 @@ target_link_libraries(entry PUBLIC libohavsession.so)
 
    > **说明：**
    >
-   > 媒体会话提供方在注册相关固定播控命令事件监听时，监听的事件会在媒体会话控制方的getValidCommands()方法中体现，即  体会话控制方会认为对应的方法有效，进而根据需要触发相应暂不使用时的事件。为了 保证媒体会话控制方下发的播控命令可以被正常执行，媒体会话提供方请勿进行无逻辑的空实现监听。
+   > 媒体会话提供方在注册相关固定播控命令事件监听时，监听的事件会在媒体会话控制方的getValidCommands()方法中体现，即媒体会话控制方认为该方法有效，因此在需要时会触发相应的事件。为了保证媒体会话控制方下发的播控命令可以被正常执行，媒体会话提供方请勿进行无逻辑的空实现监听。
  
    Session侧目前支持的播控命令包括：
    - 播放
@@ -142,11 +142,11 @@ target_link_libraries(entry PUBLIC libohavsession.so)
   
    | 接口                                                         | 说明         |
    | ------------------------------------------------------------ | ------------ |
-   |OH_AVSession_RegisterCommandCallback(OH_AVSession* avsession, AVSession_ControlCommand   command, OH_AVSessionCallback_OnCommand callback, void* userData);| 注册通用播控的回调，支持：播  放、暂停、停止、上一首、下一首回调。     |
-   |OH_AVSession_RegisterForwardCallback(OH_AVSession* avsession,   OH_AVSessionCallback_OnFastForward callback, void* userData); | 注册快进的回调。   |
-   |OH_AVSession_RegisterRewindCallback(OH_AVSession* avsession, OH_AVSessionCallback_OnRewind   callback, void* userData); | 注册快退的回调。     |
-   |OH_AVSession_RegisterSeekCallback(OH_AVSession* avsession, OH_AVSessionCallback_OnSeek   callback, void* userData); | 注册跳转的回调。  |
-   |OH_AVSession_RegisterToggleFavoriteCallback(OH_AVSession* avsession,   OH_AVSessionCallback_OnToggleFavorite callback, void* userData)| 注册收藏的回调。  |
+   |OH_AVSession_RegisterCommandCallback(OH_AVSession* avsession, AVSession_ControlCommand   command, OH_AVSessionCallback_OnCommand callback, void* userData) | 注册通用播控的回调，支持：播放、暂停、停止、上一首、下一首回调。     |
+   |OH_AVSession_RegisterForwardCallback(OH_AVSession* avsession,   OH_AVSessionCallback_OnFastForward callback, void* userData) | 注册快进的回调。   |
+   |OH_AVSession_RegisterRewindCallback(OH_AVSession* avsession, OH_AVSessionCallback_OnRewind   callback, void* userData) | 注册快退的回调。     |
+   |OH_AVSession_RegisterSeekCallback(OH_AVSession* avsession, OH_AVSessionCallback_OnSeek   callback, void* userData) | 注册跳转的回调。  |
+   |OH_AVSession_RegisterToggleFavoriteCallback(OH_AVSession* avsession,   OH_AVSessionCallback_OnToggleFavorite callback, void* userData) | 注册收藏的回调。  |
 5. 音视频应用在退出，并且不需要继续播放时，及时取消监听以及销毁媒体会话释放资源。示例代码如下所示 ：
  
    ```c++

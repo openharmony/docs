@@ -12,7 +12,7 @@
 1. 导入NDK接口，接口中提供了相机相关的属性和方法，导入方法如下。
 
    ```c++
-    // 导入NDK接口头文件。
+   // 导入NDK接口头文件。
    #include <cstdint>
    #include <cstdlib>
    #include <cstring>
@@ -20,7 +20,9 @@
    #include <memory>
    #include "hilog/log.h"
    #include "napi/native_api.h"
-   #include "camera_manager.h"
+   #include <ohcamera/camera.h>
+   #include <ohcamera/photo_output.h>
+   #include <ohcamera/camera_manager.h>
    #include <multimedia/media_library/media_asset_manager_capi.h>
    #include <multimedia/media_library/media_asset_change_request_capi.h>
    #include <multimedia/media_library/media_access_helper_capi.h>
@@ -61,14 +63,16 @@
 
    ```c++
    // 方式一：调用媒体库落盘图片。
-   void mediaLibSavePhoto(OH_MediaAsset *mediaAsset) {
+   void mediaLibSavePhoto(OH_MediaAsset* mediaAsset) {
        if (mediaAsset == nullptr) {
            OH_LOG_ERROR(LOG_APP, "mediaAsset is nullptr!");
+           return;
        }
        // 创建媒体资产更改请求对象。
-       OH_MediaAssetChangeRequest *changeRequest = OH_MediaAssetChangeRequest_Create(mediaAsset);
+       OH_MediaAssetChangeRequest* changeRequest = OH_MediaAssetChangeRequest_Create(mediaAsset);
        if (changeRequest == nullptr) {
            OH_LOG_ERROR(LOG_APP, "changeRequest is nullptr!");
+           return;
        }
        // 请求保存图片。
        MediaLibrary_ErrorCode errCode =
@@ -81,22 +85,22 @@
    
    // 方式二：调用媒体库接口请求图像资源。
    // 图像源准备就绪时调用。
-   OH_MediaAsset *g_mediaAsset_;
+   OH_MediaAsset* g_mediaAsset_;
    void OnImageDataPrepared(MediaLibrary_ErrorCode result, MediaLibrary_RequestId requestId,
                             MediaLibrary_MediaQuality mediaQuality, MediaLibrary_MediaContentType type,
-                            OH_ImageSourceNative *imageSourceNative) {
+                            OH_ImageSourceNative* imageSourceNative) {
        if (imageSourceNative == nullptr) {
            OH_LOG_ERROR(LOG_APP, "OnImageDataPrepared: imageSourceNative is nullptr!");
            return;
        }
-      if (mediaQuality == MediaLibrary_MediaQuality::MEDIA_LIBRARY_QUALITY_FAST) {
+       if (mediaQuality == MediaLibrary_MediaQuality::MEDIA_LIBRARY_QUALITY_FAST) {
            OH_LOG_INFO(LOG_APP, "OnImageDataPrepared: Using fast media quality.");
        } else if (mediaQuality == MediaLibrary_MediaQuality::MEDIA_LIBRARY_QUALITY_FULL) {
            OH_LOG_INFO(LOG_APP, "OnImageDataPrepared: Using full media quality.");
        }
        // 通过OH_ImageSourceNative创建OH_PixelmapNative。
-       OH_PixelmapNative *pixelmapNative = nullptr;
-       OH_DecodingOptions *decodingOptions = nullptr;
+       OH_PixelmapNative* pixelmapNative = nullptr;
+       OH_DecodingOptions* decodingOptions = nullptr;
        Image_ErrorCode imageErr = IMAGE_SUCCESS;
        imageErr = OH_ImageSourceNative_CreatePixelmap(imageSourceNative, decodingOptions, &pixelmapNative);
        if (imageErr != IMAGE_SUCCESS) {
@@ -104,9 +108,9 @@
            return;
        }
        // 创建Image Packer并设置打包选项。
-       OH_ImagePackerNative *imagePacker;
+       OH_ImagePackerNative* imagePacker;
        OH_ImagePackerNative_Create(&imagePacker);
-       OH_PackingOptions *options;
+       OH_PackingOptions* options;
        OH_PackingOptions_Create(&options);
        char format[] = "image/jpeg";
        Image_MimeType image_MimeType = {format, strlen(format)};
@@ -119,9 +123,10 @@
        OH_LOG_INFO(LOG_APP, "OnImageDataPrepared: packToData ret code:%{public}u outsize:%{public}zu", imageErr, bufferSize);
        if (g_mediaAsset_ == nullptr) {
            OH_LOG_ERROR(LOG_APP,  "OnImageDataPrepared: get current mediaAsset failed!");
+           return;
        }
        // 调用媒体库接口通过buffer存图。
-       OH_MediaAssetChangeRequest *changeRequest = OH_MediaAssetChangeRequest_Create(g_mediaAsset_);
+       OH_MediaAssetChangeRequest* changeRequest = OH_MediaAssetChangeRequest_Create(g_mediaAsset_);
        MediaLibrary_ErrorCode mediaErr = OH_MediaAssetChangeRequest_AddResourceWithBuffer(changeRequest,
            MEDIA_LIBRARY_IMAGE_RESOURCE, buffer.get(), bufferSize);
        OH_LOG_INFO(LOG_APP,  "OnImageDataPrepared: AddResourceWithBuffer get errCode:%{public}d", mediaErr);
@@ -131,17 +136,16 @@
        OH_LOG_INFO(LOG_APP,  "OnImageDataPrepared: ApplyChanges get errCode:%{public}d", mediaErr);
    }
    
-   void mediaLibRequestBuffer(Camera_PhotoOutput *photoOutput, OH_MediaAsset *mediaAsset) {
-       if (photoOutput == nullptr) {
-           OH_LOG_ERROR(LOG_APP, "photoOutput is nullptr!");
-       }
+   void mediaLibRequestBuffer(OH_MediaAsset* mediaAsset) {
        if (mediaAsset == nullptr) {
            OH_LOG_ERROR(LOG_APP, "mediaAsset is nullptr!");
+           return;
        }
        // 创建媒体资产管理器。
-       OH_MediaAssetManager *mediaAssetManager = OH_MediaAssetManager_Create();
+       OH_MediaAssetManager* mediaAssetManager = OH_MediaAssetManager_Create();
        if (mediaAssetManager == nullptr) {
            OH_LOG_ERROR(LOG_APP, "mediaAssetManager is nullptr!");
+           return;
        }
        // 配置请求媒体图片参数。
        MediaLibrary_RequestOptions requestOptions;
@@ -159,26 +163,26 @@
    }
    
    // 分段式拍照回调函数。
-   void OnPhotoAssetAvailable(Camera_PhotoOutput *photoOutput, OH_MediaAsset *mediaAsset) {
+   void OnPhotoAssetAvailable(Camera_PhotoOutput* photoOutput, OH_MediaAsset* mediaAsset) {
        OH_LOG_INFO(LOG_APP, "OnPhotoAssetAvailable start!");
        if (mediaAsset == nullptr) {
            OH_LOG_ERROR(LOG_APP, "OnPhotoAssetAvailable mediaAsset nullptr!");
+           return;
        }
        // 处理方式一：调用媒体库接口落盘图片，先保存一阶段图，二阶段图就绪后媒体库会主动帮应用替换落盘图片。
-       //     mediaLibSavePhoto(mediaAsset);
+       // mediaLibSavePhoto(mediaAsset);
        // 处理方式二：调用媒体库接口请求图像资源，获取一阶段图或二阶段图buffer，业务处理后通过buffer存图。
        g_mediaAsset_ = mediaAsset;
-       mediaLibRequestBuffer(photoOutput, mediaAsset);
+       mediaLibRequestBuffer(mediaAsset);
    }
    
    // 注册分段式拍照回调。
-   Camera_ErrorCode PhotoOutputRegisterPhotoAssetAvailableCallback(Camera_PhotoOutput *photoOutput) {
+   Camera_ErrorCode PhotoOutputRegisterPhotoAssetAvailableCallback(Camera_PhotoOutput* photoOutput) {
        Camera_ErrorCode ret = OH_PhotoOutput_RegisterPhotoAssetAvailableCallback(photoOutput, OnPhotoAssetAvailable);
        if (ret != CAMERA_OK) {
-           OH_LOG_ERROR("OH_PhotoOutput_RegisterPhotoAssetAvailableCallback failed.");
+           OH_LOG_ERROR(LOG_APP, "OH_PhotoOutput_RegisterPhotoAssetAvailableCallback failed.");
        }
        return ret;
    }
    ```
-
 

@@ -35,6 +35,8 @@ NetConnection常用接口如下表所示，详细的接口说明请参考[NetCon
 
 本文以实现获取默认激活的数据网络为例，给出具体的开发指导。
 
+其他接口开发请参考：[完整示例代码](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/NetConnection_Exploitation_case)。
+
 ### 添加开发依赖
 
 **添加动态链接库**
@@ -193,7 +195,7 @@ struct Index {
 
 6、配置`CMakeLists.txt`，本模块需要用到的共享库是`libnet_connection.so`，在工程自动生成的`CMakeLists.txt`中的`target_link_libraries`中添加此共享库。
 
-注意：如图所示，在`add_library`中的`entry`是工程自动生成的`modename`，若要做修改，需和步骤3中`.nm_modname`保持一致；
+注意：如图所示，在`add_library`中的`entry`是工程自动生成的`modename`，若要做修改，需和步骤3中`.nm_modname`保持一致。
 
 ![netmanager-4.png](./figures/netmanager-4.png)
 

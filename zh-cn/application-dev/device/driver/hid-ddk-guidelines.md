@@ -28,11 +28,11 @@ HID DDK（HID Driver Develop Kit）是为开发者提供的HID设备驱动程序
 
 ## 约束与限制
 
-* HID DDK开放API支持非标HID类外设扩展驱动开发场景。
+- HID DDK开放API支持非标HID类外设扩展驱动开发场景。
 
-* HID DDK开放API仅允许DriverExtensionAbilit生命周期内使用。
+- HID DDK开放API仅允许DriverExtensionAbility生命周期内使用。
 
-* 使用HID DDK开放API需要在module.json5中声明匹配的ACL权限，例如ohos.permission.ACCESS_DDK_HID。
+- 使用HID DDK开放API需要在module.json5中声明匹配的ACL权限，例如ohos.permission.ACCESS_DDK_HID。
 
 ## 接口说明
 

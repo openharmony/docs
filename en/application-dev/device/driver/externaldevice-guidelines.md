@@ -14,15 +14,11 @@ The following table describes the basic peripheral management capabilities. For 
 
 **Table 1** APIs for basic peripheral management
 
-| Name                                                                                                                                                      | Description                                                                                   |
-| -----------------------------------------------------------------------------------------------------------------------------------------------------------  | --------------------------------------------------------------------------------------- |
-| queryDevices(busType?: number): Array&lt;Readonly&lt;Device&gt;&gt;                                                                                          | Queries the peripheral list.                                                                      |
-| bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;, callback: AsyncCallback&lt;{deviceId: number; remote: rpc.IRemoteObject;}&gt;): void | Binds a peripheral device. This API uses an asynchronous callback to return the result. If the peripheral device is bound, the **IRemoteObject** of the device driver is returned for subsequent interaction with the device driver.|
-| bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise&lt;{deviceId: number; remote: rpc.IRemoteObject;}&gt;                       | Binds a peripheral. This API uses a promise to return the result.                                                                 |
-| bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;, callback: AsyncCallback&gt;RemoteDeviceDriver&gt;): void;                                  | Binds a peripheral. This API uses an asynchronous callback to return the result. It is supported since API version 11.                                                                |
-| bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise&lt;RemoteDeviceDriver&gt;;                                                        | Binds a peripheral. This API uses a promise to return the result. It is supported since API version 11.   
-| unbindDevice(deviceId: number, callback: AsyncCallback&lt;number&gt;): void                                                                                  | Unbinds a peripheral device. This API uses an asynchronous callback to return the result.                                                                             |
-| unbindDevice(deviceId: number): Promise&lt;number&gt;                                                                                                        | Unbinds a peripheral device. This API uses a promise to return the result.                                                                             |
+| Name                                                      | Description                                                        |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| queryDevices(busType?: number): Array&lt;Readonly&lt;Device&gt;&gt; | Queries the peripheral list.                                          |
+| bindDriverWithDeviceId(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise&lt;RemoteDeviceDriver&gt;; | Binds a peripheral. This API uses a promise to return the result. It is supported since API version 18.                      |
+| unbindDriverWithDeviceId(deviceId: number): Promise&lt;number&gt; | Unbinds a peripheral device. This API uses a promise to return the result. It is supported since API version 18.                      |
 
 <!--Del-->
 The following table lists the APIs for extended peripheral management. For details, see [deviceManager API Reference](../../reference/apis-driverdevelopment-kit/js-apis-driver-deviceManager-sys.md).
@@ -41,7 +37,7 @@ You can use the APIs to query and bind peripheral devices so as to use the custo
 
 The following sample code is a demo that illustrates how to develop both the client and server and implement IPC.
 
-1. Create an OpenHarmony project. For details, see [Creating a Project] (https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-create-new-project-V13).
+1. Create an OpenHarmony project. For details, see [Creating a Project] (https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-create-new-project).
 
     **NOTE**
 
@@ -104,18 +100,18 @@ The following sample code is a demo that illustrates how to develop both the cli
     }
     ```
 
-5. Define the **bindDeviceDriver** API, and use it to obtain the remote driver object.
+5. Define the **bindDriverWithDeviceId** API, and use it to obtain the remote driver object.
 
     ```ts
     private async getDriverRemote(deviceId: number): Promise<rpc.IRemoteObject | null> {
     try {
-      let remoteDeviceDriver: deviceManager.RemoteDeviceDriver = await deviceManager.bindDeviceDriver(deviceId,
+      let remoteDeviceDriver: deviceManager.RemoteDeviceDriver = await deviceManager.bindDriverWithDeviceId(deviceId,
         (err: BusinessError, id: number) => {
         hilog.info(0, 'testTag', `device[${id}] id disconnect, err: ${JSON.stringify(err)}}`);
       });
       return remoteDeviceDriver.remote;
     } catch (error) {
-      hilog.error(0, 'testTag', `bindDeviceDriver failed, err: ${JSON.stringify(error)}`);
+      hilog.error(0, 'testTag', `bindDriverWithDeviceId failed, err: ${JSON.stringify(error)}`);
     }
       return null;
     }
@@ -215,13 +211,30 @@ System applications can query detailed information about peripherals and drivers
     }
     ```
 <!--DelEnd-->
-
+<!--RP1-->
 ## Application Signing
 
 **NOTE**<br>Configure the permission before enabling automatic signing.
 
-You need to configure a signature file for your application to run on a device. Besides, to develop a peripheral driver client, you need to declare the **ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER** permission for the peripheral.
+You need to configure a signature file for your application to run on a device. Besides, to develop a peripheral driver client, you need to declare the **ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER** and **ohos.permission.ACCESS_DDK_DRIVERS** permissions for the peripheral.
+- ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER (This permission is required for API version 10 or later.)
+
+  To obtain authorization on this access permission, [declare it](../../security/AccessToken/declare-permissions.md) in the **requestPermissions** field in the **module.json5** file.
+
+- ohos.permission.ACCESS_DDK_DRIVERS (This permission is required for API version 18 or later.)
+
+  1. [Declare the required permissions](../../security/AccessToken/declare-permissions.md) in the **requestPermissions** field in the **module.json5** file.
+  2. Modify the **acls** field in the **HarmonyAppProvision** configuration file to request permissions via ACL. For details, see [Requesting Restricted Permissions](../../security/AccessToken/declare-permissions-in-acl.md).
+  3. In the **HarmonyAppProvision** configuration file (that is, **Sdk/openharmony/_{Version} _/toolchains /lib/UnsgnedReleasedProfileTemplate.json** file), configure the bundle name of the driver server to connect. If there are multiple servers, separate their bundle names with a comma.
+
+      The configuration procedure is as follows:
+
+      Add the **app-services-capabilities** node to the root node of the file and configure the node as follows:
+      ```json
+      "app-services-capabilities": {
+        "ohos.permission.ACCESS_DDK_DRIVERS": {"bundleNames": "bundleName0,bundleName1,bundleName2"}
+      }
+      ```
 
 Automatic signing: [Signing Your App/Service Automatically](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-signing-V13#section18815157237)
-
-Permission configuration: [Requesting ACL Permissions and Signing Your App/Service](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-signing-V13#section157591551175916).
+<!--RP1End-->

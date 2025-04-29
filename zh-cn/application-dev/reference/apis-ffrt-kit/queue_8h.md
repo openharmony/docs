@@ -30,7 +30,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ffrt_queue_type_t](_f_f_r_t.md#ffrt_queue_type_t) { [ffrt_queue_serial](_f_f_r_t.md), [ffrt_queue_concurrent](_f_f_r_t.md), [ffrt_queue_max](_f_f_r_t.md) } | 队列类型。  | 
+| [ffrt_queue_type_t](_f_f_r_t.md#ffrt_queue_type_t) {<br/>ffrt_queue_serial,<br/>ffrt_queue_concurrent,<br/>ffrt_queue_max<br/>} | 队列类型。  | 
 
 
 ### 函数

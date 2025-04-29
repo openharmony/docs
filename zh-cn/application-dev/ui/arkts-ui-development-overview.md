@@ -14,7 +14,7 @@
 
 - **组件**
 
-  组件是UI的必要元素，形成了在界面中的样子，由框架直接提供的称为**系统组件**，由开发者定义的称为**自定义组件**。系统内置组件包括按钮、单选框、进度条、文本等。开发者可以通过链式调用的方式设置系统内置组件的渲染效果。开发者可以将系统内置组件组合为自定义组件，通过这种方式将页面组件化为一个个独立的UI单元，实现页面不同单元的独立创建、开发和复用，具有更强的工程性。
+  组件是UI的必要元素，形成了在界面中的样子，由框架直接提供的称为**系统组件**，由开发者定义的称为**自定义组件**。系统组件包括按钮、单选框、进度条、文本等。开发者可以通过链式调用的方式设置系统组件的渲染效果。开发者可以将系统组件组合为自定义组件，通过这种方式将页面组件化为一个个独立的UI单元，实现页面不同单元的独立创建、开发和复用，具有更强的工程性。
 
 - **页面路由和组件导航**
 
@@ -82,9 +82,9 @@
 
 | 任务          | 简介                                  | 相关指导                                     |
 | ----------- | ----------------------------------- | ---------------------------------------- |
-| 学习ArkTS     | 介绍了ArkTS的基本语法、状态管理和渲染控制的场景。         | - [基本语法](../quick-start/arkts-basic-syntax-overview.md)<br>- [状态管理](../quick-start/arkts-state-management-overview.md)<br>- [渲染控制](../quick-start/arkts-rendering-control-ifelse.md) |
+| 学习ArkTS     | 介绍了ArkTS的基本语法、状态管理和渲染控制的场景。         | - [基本语法](../ui/state-management/arkts-basic-syntax-overview.md)<br>- [状态管理](../ui/state-management/arkts-state-management-overview.md)<br>- [渲染控制](../ui/state-management/arkts-rendering-control-ifelse.md) |
 | 开发布局        | 介绍了几种常用的布局方式。             | -&nbsp;[常用布局](arkts-layout-development-overview.md)<br/> |
-| 添加组件        | 介绍了几种常用的系统组件使用方法。 | -&nbsp;[常用组件](arkts-common-components-button.md)<br/>- [自定义组件](../quick-start/arkts-create-custom-components.md) |
+| 添加组件        | 介绍了几种常用的系统组件使用方法。 | -&nbsp;[常用组件](arkts-common-components-button.md)<br/>- [自定义组件](../ui/state-management/arkts-create-custom-components.md) |
 | 设置组件导航和页面路由 | 介绍了如何设置组件间的导航以及页面路由。                | -&nbsp;[组件导航（推荐）](arkts-navigation-navigation.md)<br/>-&nbsp;[页面路由](arkts-routing.md)|
 | 使用文本 | 介绍了输入框、富文本和属性字符串等文本组件的使用方法。                | -&nbsp;[文本显示](arkts-common-components-text-display.md) <br/>- [文本输入](arkts-common-components-text-input.md)<br/>- [富文本](arkts-common-components-richeditor.md)<br/>- [图标小符号](arkts-common-components-symbol.md)<br/>- [属性字符串](arkts-styled-string.md)|
 | 使用弹窗 | 介绍了弹窗的应用场景与使用方法。 | -&nbsp;[弹出框](arkts-base-dialog-overview.md)<br/>-&nbsp;[菜单控制](arkts-popup-and-menu-components-menu.md)<br/>-&nbsp;[气泡提示](arkts-popup-and-menu-components-popup.md)<br/>-&nbsp;[绑定模态页面](arkts-modal-overview.md)<br/>-&nbsp;[即时反馈](arkts-create-toast.md)<br/>-&nbsp;[设置浮层](arkts-create-overlaymanager.md) |
@@ -97,7 +97,7 @@
 | 主题设置       | 介绍了应用级和页面级的主题设置能力。       | -&nbsp;[应用深浅色适配](ui-dark-light-color-adaptation.md)<br/>-&nbsp;[设置应用内主题换肤](theme_skinning.md) |
 | 使用UI上下文接口操作界面       | 介绍了如何使用UIContext中对应的接口获取与实例绑定的对象。       | -&nbsp;[使用UI上下文接口操作界面](arkts-global-interface.md) |
 | 跨进程拉起页面 | 介绍了全屏方式拉起原子化服务的方法。 | - [全屏启动原子化服务组件](arkts-FullScreenComponent.md) |
-| 使用NDK接口构建UI | 介绍了ArkUI NDK接口提供的能力，以及如何通过NDK接口创建UI界面。       | -&nbsp;[接入ArkTS页面](ndk-access-the-arkts-page.md)<br/>-&nbsp;[监听组件事件](ndk-listen-to-component-events.md)<br/>-&nbsp;[使用动画](ndk-use-animation.md)<br/>-&nbsp;[使用懒加载开发长列表界面](ndk-loading-long-list.md)<br/>-&nbsp;[构建弹窗](ndk-build-pop-up-window.md)<br/>-&nbsp;[构建自定义组件](ndk-build-custom-components.md)<br/>-&nbsp;[嵌入ArkTS组件](ndk-embed-arkts-components.md)<br/>-&nbsp;[通过XComponent接入无障碍](ndk-accessibility-xcomponent.md)|
+| 使用NDK接口构建UI | 介绍了ArkUI NDK接口提供的能力，以及如何通过NDK接口创建UI界面。       | -&nbsp;[接入ArkTS页面](ndk-access-the-arkts-page.md)<br/>-&nbsp;[监听组件事件](ndk-listen-to-component-events.md)<br/>-&nbsp;[使用动画](ndk-use-animation.md)<br/>-&nbsp;[使用列表](ndk-loading-long-list.md)<br/>-&nbsp;[构建弹窗](ndk-build-pop-up-window.md)<br/>-&nbsp;[构建自定义组件](ndk-build-custom-components.md)<br/>-&nbsp;[嵌入ArkTS组件](ndk-embed-arkts-components.md)<br/>-&nbsp;[通过XComponent接入无障碍](ndk-accessibility-xcomponent.md)|
 
 ## 通用规则
 

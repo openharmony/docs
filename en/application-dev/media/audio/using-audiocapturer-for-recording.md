@@ -33,8 +33,8 @@ You can call **on('stateChange')** to listen for state changes of the AudioCaptu
     };
     
     let audioCapturerInfo: audio.AudioCapturerInfo = {
-      source: audio.SourceType.SOURCE_TYPE_MIC,
-      capturerFlags: 0
+      source: audio.SourceType.SOURCE_TYPE_MIC, // Audio source type: microphone. Set this parameter based on the service scenario.
+      capturerFlags: 0 // Flag indicating an AudioCapturer.
     };
     
     let audioCapturerOptions: audio.AudioCapturerOptions = {
@@ -146,7 +146,7 @@ let audioStreamInfo: audio.AudioStreamInfo = {
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // Encoding format.
 };
 let audioCapturerInfo: audio.AudioCapturerInfo = {
-  source: audio.SourceType.SOURCE_TYPE_MIC, // Audio source type.
+  source: audio.SourceType.SOURCE_TYPE_MIC, // Audio source type: microphone. Set this parameter based on the service scenario.
   capturerFlags: 0 // Flag indicating an AudioCapturer.
 };
 let audioCapturerOptions: audio.AudioCapturerOptions = {

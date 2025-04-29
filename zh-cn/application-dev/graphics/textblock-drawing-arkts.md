@@ -5,23 +5,19 @@
 
 字块（TextBlob）是指文本的集合。无论是单个的文字还是大块的文本，都可以通过字块来绘制。
 
+本节聚焦于文字的绘制效果，更多关于文本测量、排版的场景指导，可见[文本开发概述](text-overview.md)。
 
-本节聚焦于文字的绘制效果，除了基本的字块绘制之外，还可以给文字添加各种绘制效果。常见的字块绘制场景包括[文字描边](#文字描边)、[文字渐变](#文字渐变)等，更多效果请见[绘制效果](drawing-effect-overview.md)。
-
+除了基本的字块绘制之外，还可以给文字添加各种绘制效果。常见的字块绘制场景包括[文字描边](#文字描边)、[文字渐变](#文字渐变)等，更多效果请见[绘制效果](drawing-effect-overview.md)。
 
 ## 基本字块绘制
 
 Canvas通过drawTextBlob()来绘制字块。函数接受三个参数：TextBlob字块对象，以及文字基线左端点的x坐标和y坐标。
 
-
 画布Canvas对象具体可见[画布的获取与绘制结果的显示（ArkTS）](canvas-get-result-draw-arkts.md)。
-
 
 字块对象可以通过多种方式创建得到，详细的字块创建方式和接口使用请参考[TextBlob](../reference/apis-arkgraphics2d/js-apis-graphics-drawing.md#textblob)。
 
-
 此处以使用makeFromString()接口创建字块为例，接口接受3个参数，分别为：
-
 
 - 需要显示的字符串text。
 
@@ -33,9 +29,7 @@ Canvas通过drawTextBlob()来绘制字块。函数接受三个参数：TextBlob�
   - TEXT_ENCODING_UTF32：使用4个字节表示全部unicode；
   - TEXT_ENCODING_GLYPH_ID：使用2个字节表示glyph index。
 
-
 基本效果的示例代码和效果图如下：
-
 
 ```ts
 // 创建字型对象
@@ -48,9 +42,7 @@ const textBlob = drawing.TextBlob.makeFromString("Hello world", font, drawing.Te
 canvas.drawTextBlob(textBlob, 200, 300);
 ```
 
-
 ![Screenshot_20241225151030139](figures/Screenshot_20241225151030139.jpg)
-
 
 ## 文字描边
 
@@ -83,7 +75,6 @@ canvas.detachPen();
 
 ![Screenshot_20241225152446749](figures/Screenshot_20241225152446749.jpg)
 
-
 ## 文字渐变
 
 基于基本字块绘制，还可以通过着色器实现文字渐变的效果，着色器的更多介绍请参考[着色器效果](complex-drawing-effect-arkts.md#着色器效果)。
@@ -115,3 +106,11 @@ canvas.detachBrush();
 ```
 
 ![Screenshot_20241225155707415](figures/Screenshot_20241225155707415.jpg)
+
+<!--RP1-->
+## 相关实例
+
+针对Drawing(ArkTS)的开发，有以下相关实例可供参考：
+
+- [ArkTSGraphicsDraw (API14)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/ArkTSGraphicsDraw)
+<!--RP1End-->

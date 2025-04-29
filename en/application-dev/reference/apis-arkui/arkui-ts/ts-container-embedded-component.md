@@ -24,16 +24,18 @@ EmbeddedComponent(loader: Want, type: EmbeddedType)
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name               | Type                                                  | Mandatory| Description                            |
+| Name               | Type                         | Mandatory|Description  |
 | --------------------- | ---------------------------------------------------------- | ---- | ------------------------------------ |
 | loader                | [Want](../../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EmbeddedUIExtensionAbility to load.|
 | type                  | [EmbeddedType](ts-appendix-enums.md#embeddedtype12)                              | Yes  | Type of the provider.                      |
 
 ## Attributes
 
-The [universal attributes](ts-universal-attributes-size.md) are supported.
+The [universal attributes](ts-component-general-attributes.md) are supported.
 
 > **NOTE**
 >
@@ -43,7 +45,7 @@ The [universal attributes](ts-universal-attributes-size.md) are supported.
 
 Event information related to screen coordinates is converted based on the position, width, and height of the **EmbeddedComponent**, before being transferred to the EmbeddedUIExtensionAbility for processing.
 
-The [universal events](ts-universal-events-click.md) are not supported. Only the following events are supported.
+Universal events, such as the [click event](ts-universal-events-click.md), are not supported. Only the following events are supported.
 
 ### onTerminated
 
@@ -53,11 +55,13 @@ Called when the started EmbeddedUIExtensionAbility is terminated by calling **te
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name  | Type  | Description                                                                                    |
-| -------  | ------ | ---------------------------------------------------------------------------------------- |
-| callback | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[TerminationInfo](#terminationinfo)> | Callback used to return the result from the EmbeddedUIExtensionAbility.|
+| Name  | Type  | Mandatory| Description    |
+| -------  | ------ | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| callback | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[TerminationInfo](#terminationinfo)> | Yes| Callback used to return the result from the EmbeddedUIExtensionAbility.|
 
 > **NOTE**
 >
@@ -72,11 +76,13 @@ Called when an error occurs during the running of the started EmbeddedUIExtensio
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name| Type                                                                        | Description     |
-| ------ | ---------------------------------------------------------------------------- | --------- |
-| callback    | [ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback) | Callback used to return the error information of the [BusinessError](../../apis-basic-services-kit/js-apis-base.md#businesserror) type. The error information can be obtained and processed based on the **code**, **name**, and **message** parameters.|
+| Name| Type                                                                        | Mandatory                                                                      | Description     |
+| ------ | ---------------------------------------------------------------------------- | --------- | --------- |
+| callback    | [ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback) | Yes| Callback used to return the error information of the [BusinessError](../../apis-basic-services-kit/js-apis-base.md#businesserror) type. The error information can be obtained and processed based on the **code**, **name**, and **message** parameters.|
 
 > **NOTE**
 >
@@ -93,19 +99,22 @@ Provides the result returned by the started **EmbeddedUIExtensionAbility**.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| Name | Type  | Description                                                |
-| ------- | ------ | ---------------------------------------------------  |
-| code    | number | Result code returned when the EmbeddedUIExtensionAbility exits.|
-| want    | [Want](../../apis-ability-kit/js-apis-app-ability-want.md)   | Data returned when the EmbeddedUIExtensionAbility exits.  |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-## Example
+### Properties
 
-This example shows the basic usage of the **EmbeddedComponent** and EmbeddedUIExtensionAbility. The bundle name of the sample application is **com.example.embeddeddemo**, and the started EmbeddedUIExtensionAbility is ExampleEmbeddedAbility.
+| Name| Type                                                      | Mandatory| Description                                                |
+| ---- | ---------------------------------------------------------- | ---- | ---------------------------------------------------- |
+| code | number                                                     | Yes  | Result code returned when the EmbeddedUIExtensionAbility exits.|
+| want | [Want](../../apis-ability-kit/js-apis-app-ability-want.md) | No| Data returned when the EmbeddedUIExtensionAbility exits.  |
 
-- The EntryAbility (UIAbility) of the sample application loads the **pages/Index.ets** file, whose content is as follows:
+## Example: Loading an EmbeddedComponent Component
+
+This example shows the basic usage of the **EmbeddedComponent** and EmbeddedUIExtensionAbility. The bundle name of the sample application is **com.example.embeddeddemo**, and the started EmbeddedUIExtensionAbility in the same application is ExampleEmbeddedAbility. This example only supports devices with multi-process permissions, such as 2-in-1 devices.
+
+- The EntryAbility (UIAbility) of the sample application loads the **ets/pages/Index.ets** file, whose content is as follows:
 
   ```ts
-  // The UIAbility loads pages/Index.ets when started.
   import { Want } from '@kit.AbilityKit';
 
   @Entry
@@ -124,10 +133,12 @@ This example shows the basic usage of the **EmbeddedComponent** and EmbeddedUIEx
           EmbeddedComponent(this.want, EmbeddedType.EMBEDDED_UI_EXTENSION)
             .width('100%')
             .height('90%')
-            .onTerminated((info)=>{
+            .onTerminated((info) => {
+              // Triggered when the terminateSelfWithResult button is clicked in the extension page.
               this.message = 'Termination: code = ' + info.code + ', want = ' + JSON.stringify(info.want);
             })
-            .onError((error)=>{
+            .onError((error) => {
+              // Triggered on failure or exception.
               this.message = 'Error: code = ' + error.code;
             })
         }
@@ -138,14 +149,14 @@ This example shows the basic usage of the **EmbeddedComponent** and EmbeddedUIEx
   }
   ```
 
-- The EmbeddedUIExtensionAbility started by the **EmbeddedComponent** is implemented in the **ets/extensionAbility/ExampleEmbeddedAbility** file. The file content is as follows:
+- The EmbeddedUIExtensionAbility (**ExampleEmbeddedAbility**) to start by the **EmbeddedComponent** is implemented in the **ets/extensionAbility/ExampleEmbeddedAbility.ets** file. The file content is as follows:
 
   ```ts
   import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 
   const TAG: string = '[ExampleEmbeddedAbility]'
+
   export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
-    
     onCreate() {
       console.log(TAG, `onCreate`);
     }
@@ -168,6 +179,7 @@ This example shows the basic usage of the **EmbeddedComponent** and EmbeddedUIEx
         'session': session
       };
       let storage: LocalStorage = new LocalStorage(param);
+      // Load the pages/extension.ets content.
       session.loadContent('pages/extension', storage);
     }
 
@@ -177,7 +189,7 @@ This example shows the basic usage of the **EmbeddedComponent** and EmbeddedUIEx
   }
   ```
 
-- The entry page file of the EmbeddedUIExtensionAbility is **pages/extension.ets**, whose content is as follows:
+- The entry page file **ets/pages/extension.ets** for **ExampleEmbeddedAbility** (EmbeddedUIExtensionAbility) is as follows. The path to this page must also be configured in the **resources/base/profile/main_pages.json** file.
 
   ```ts
   import { UIExtensionContentSession } from '@kit.AbilityKit';
@@ -196,19 +208,21 @@ This example shows the basic usage of the **EmbeddedComponent** and EmbeddedUIEx
           .fontSize(20)
           .fontWeight(FontWeight.Bold)
         Button("terminateSelfWithResult").fontSize(20).onClick(() => {
+          // Call terminateSelfWithResult to exit when the button is clicked.
           this.session?.terminateSelfWithResult({
             resultCode: 1,
             want: {
               bundleName: "com.example.embeddeddemo",
               abilityName: "ExampleEmbeddedAbility",
-            }});
+            }
+          });
         })
       }.width('100%').height('100%')
     }
   }
   ```
 
-- Add an item to **extensionAbilities** in the **module.json5** file of the sample application. The details are as follows:
+- Add the configuration for **ExampleEmbeddedAbility** under the **extensionAbilities** tag in the **module.json5** file. The type is set to **embeddedUI**, as shown below:
   ```json
   {
     "name": "ExampleEmbeddedAbility",

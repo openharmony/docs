@@ -1,6 +1,6 @@
 # 媒体子系统Changelog
 
-## cl.media.1 应用创建SoundPool时调用media.createSoundPool接口变更
+## cl.media.1 应用创建SoundPool时调用media.createSoundPool接口行为变更
 
 **访问级别**
 
@@ -14,13 +14,13 @@
 
 此变更不涉及应用适配。
 
-变更前：API 18以下版本(build-profile.json5文件中targetSdkVersion配置为5.1.0(18)以下)，创建的SoundPool对象底层为单实例模式，一个应用进程只能够创建1个SoundPool实例。
+变更前：创建的SoundPool对象底层为单实例模式，一个应用进程只能够创建1个SoundPool实例。
 
-变更后：API 18及API 18以上版本(build-profile.json5文件中targetSdkVersion配置为5.1.0(18)及以上)，创建的SoundPool对象底层为多实例模式，一个应用进程最多能够创建128个SoundPool实例。
+变更后：创建的SoundPool对象底层为多实例模式，一个应用进程最多能够创建128个SoundPool实例。
 
 **起始API Level**
 
-API 18
+API 10
 
 **变更发生版本**
 

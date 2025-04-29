@@ -66,7 +66,7 @@
 ## 配置示例
 
 
-下面以授权登录场景举例说明：
+### 授权登录场景
 
 ```json
 "uris": [
@@ -78,3 +78,44 @@
     }
 ]
 ```
+
+### 清理应用沙箱缓存数据场景
+
+通过“设置 > 存储”可以选择进入某个应用的应用详情页，该页面默认会包含“清空缓存”选项，用于清除当前应用的所有缓存数据。
+
+如果开发者实现了自定义数据清理页面，并希望能够在应用详情页提供跳转入口，可以通过配置linkFeature字段进行接入。
+
+1. 在[module.json5配置文件](../quick-start/module-configuration-file.md)中，对实现了数据清理功能的Ability添加如下skills配置。 
+
+   其中，linkFeature字段必须配置为AppStorageMgmt，其他字段取值请根据实际情况修改为实际值。
+
+    ```json
+    {
+      "name": "ClearAbility",
+      "srcEntry": "./ets/clearability/ClearAbility.ets",
+      "description": "$string:ClearAbility_desc",
+      "icon": "$media:layered_image",
+      "label": "$string:ClearAbility_label",
+      "skills": [
+        {
+          "uris": [
+            {
+              "scheme": "storage",
+              "host": "developer.huawei.com",
+              "path": "clearcache",
+              "linkFeature": "AppStorageMgmt"
+            }
+          ]
+        }
+      ]
+    }
+    ```
+
+2. 功能验证。
+
+   1. 在手机的“设置 > 存储”页面，选择当前应用，进入应用详情页。
+   2. 点击“前往xx清理数据”的选项，即可跳转至对应的缓存数据清理页面。
+
+效果图如下：
+
+![app-uri-config_storage](figures/app_uri_config_storage.png)

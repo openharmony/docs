@@ -68,6 +68,7 @@ import certificateManagerDialog from '@ohos.security.certManagerDialog';
 | ERROR_OPERATION_CANCELED<sup>14+</sup>  | 29700002      | 表示调用接口时用户取消操作。 |
 | ERROR_OPERATION_FAILED<sup>14+</sup>  | 29700003      | 表示调用接口时安装证书失败。 |
 | ERROR_DEVICE_NOT_SUPPORTED<sup>14+</sup>  | 29700004      | 表示调用接口时设备类型不支持。 |
+| ERROR_NOT_COMPLY_SECURITY_POLICY<sup>18+</sup>  | 29700005      | 表示调用接口时不符合设备安全策略。 |
 
 ## CertificateDialogProperty<sup>18+</sup>
 
@@ -121,9 +122,10 @@ openCertificateManagerDialog(context: common.Context, pageType: CertificateDialo
 import { certificateManagerDialog } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
+import { UIContext } from '@kit.ArkUI';
 
 /* context为应用的上下文信息，调用方自行获取，此处仅为示例 */
-let context: common.Context = getContext(this);
+let context: common.Context = new UIContext().getHostContext() as common.Context;
 /* pageType为页面类型，此处赋值PAGE_MAIN，即拉起证书管理主界面 */
 let pageType: certificateManagerDialog.CertificateDialogPageType = certificateManagerDialog.CertificateDialogPageType.PAGE_MAIN;
 try {
@@ -184,9 +186,10 @@ openInstallCertificateDialog(context: common.Context, certType: CertificateType,
 import { certificateManagerDialog } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
+import { UIContext } from '@kit.ArkUI';
 
 /* context为应用的上下文信息，调用方自行获取，此处仅为示例 */
-let context: common.Context = getContext(this);
+let context: common.Context = new UIContext().getHostContext() as common.Context;
 /* certificateType为证书类型，此处赋值CA_CERT，即安装CA证书 */
 let certificateType: certificateManagerDialog.CertificateType = certificateManagerDialog.CertificateType.CA_CERT;
 /* certificateScope为证书使用范围，此处赋值CURRENT_USER，即当前用户下可用 */
@@ -253,9 +256,10 @@ openUninstallCertificateDialog(context: common.Context, certType: CertificateTyp
 import { certificateManagerDialog } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
+import { UIContext } from '@kit.ArkUI';
 
 /* context为应用的上下文信息，调用方自行获取，此处仅为示例 */
-let context: common.Context = getContext(this);
+let context: common.Context = new UIContext().getHostContext() as common.Context;
 /* certificateType为证书类型，此处赋值CA_CERT，即安装CA证书 */
 let certificateType: certificateManagerDialog.CertificateType = certificateManagerDialog.CertificateType.CA_CERT;
 /* certUri为业务安装证书返回的唯一标识符，此处仅为示例 */
@@ -316,9 +320,10 @@ openCertificateDetailDialog(context: common.Context, cert: Uint8Array, property:
 import { certificateManagerDialog } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
+import { UIContext } from '@kit.ArkUI';
 
 /* context为应用的上下文信息，调用方自行获取，此处仅为示例 */
-let context: common.Context = getContext(this);
+let context: common.Context = new UIContext().getHostContext() as common.Context;
 /* 安装的CA证书数据需要业务赋值，本例数据非CA证书数据 */
 let caCert: Uint8Array = new Uint8Array([
   0x30, 0x82, 0x0b, 0xc1, 0x02, 0x01,

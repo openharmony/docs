@@ -112,7 +112,7 @@ cache rejected: 0
 ## 注意事项
 
 上述代码中使用了 code cache 进行编译: `OH_JSVM_CompileScript(env, jsSrc, dataPtr, length, true, &cacheRejected, &script);`
-这个接口的传入参数中包含了 cacheRejected，其作用是接收实际的编译过程中，code cache 是否被拒绝的状态，这里包含了多种情况：
+这个接口的传入参数中包含 cacheRejected，用于接收实际编译过程中 code cache 是否被拒绝的状态，具体包括多种情况：
 
 - code cache 校验失败
 - code cache 校验成功

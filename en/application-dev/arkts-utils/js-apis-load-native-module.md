@@ -14,7 +14,7 @@ loadNativeModule(moduleName: string): Object;
 
 > **NOTE**
 >
-> **moduleName** must be set to the module name configured in the **module.json5** file in the HAP to which the module to load belongs.
+> The name of the module loaded by **loadNativeModule** is the name provided in **dependencies** in the **oh-package.json5** file of the dependency.
 >
 > **loadNativeModule** can be used only to load modules in the UI main thread.
 >
@@ -22,9 +22,9 @@ loadNativeModule(moduleName: string): Object;
 
 ## Supported Scenarios
 
-| Scenario           | Example          |
-| :------------- | :----------------------------- |
-| System library module       | Load **@ohos.** or **@system.**.       |
+| Scenario           | Example          | 
+| :------------- | :----------------------------- | 
+| System library module       | Load **@ohos.** or **@system.**.       | 
 | Native module in an application| Load **libNativeLibrary.so**.|
 
 ## Usage Example

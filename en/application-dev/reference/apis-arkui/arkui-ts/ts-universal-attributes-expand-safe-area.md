@@ -34,7 +34,7 @@ Sets the safe area to be expanded to.
 
 >  **NOTE**
 >
->  To set the **expandSafeArea** attribute for a component, this component cannot have its width and height fixed (except to a percentage).
+>  When using **expandSafeArea** to expand the drawing of a component, avoid setting a fixed width or height for the component (except for percentages). If a fixed width or height is set, the edges for the expanded safe area can only be [SafeAreaEdge.TOP, SafeAreaEdge.START], and the size of the component remains unchanged after the expansion.
 >
 >  The safe area does not restrict the layout or size of components inside, nor does it clip the components.
 >
@@ -48,7 +48,7 @@ Sets the safe area to be expanded to.
 >   
 >  When the component extends to the safe area, the system may intercept events in the safe area to preferentially respond to events of system components, such as the status bar.
 >  
->  Avoid setting the **expandSafeArea** attribute for components within scrollable containers. If you do set it, you must apply the **expandSafeArea** attribute to all direct nodes from the current node to the scrollable ancestor container, following the component nesting relationship. Otherwise, the **expandSafeArea** attribute may become ineffective after scrolling. For the correct implementation, see [Example 6]](#example-6-expanding-the-safe-area-in-scrollable-containers).
+>  Avoid setting the **expandSafeArea** attribute for components within scrollable containers. If you do set it, you must apply the **expandSafeArea** attribute to all direct nodes from the current node to the scrollable ancestor container, following the component nesting relationship. Otherwise, the **expandSafeArea** attribute may become ineffective after scrolling. For the correct implementation, see [Example 7](#example-7-expanding-the-safe-area-in-scrollable-containers).
 > 
 >  The **expandSafeArea** attribute only affects the current component and does not propagate to parent or child components. Therefore, all relevant components must be configured individually.
 > 
@@ -70,7 +70,7 @@ Sets the avoidance mode for the virtual keyboard.
 
 | Name| Type                                                | Mandatory| Description                                                        |
 | ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [KeyboardAvoidMode](ts-types.md#keyboardavoidmode11) | Yes  | Avoidance mode of the virtual keyboard.<br>Default value: **KeyboardAvoidMode.OFFSET**, which means that the page moves up when the keyboard is displayed.|
+| value  | [KeyboardAvoidMode](../js-apis-arkui-UIContext.md#keyboardavoidmode11) | Yes  | Avoidance mode of the virtual keyboard.<br>Default value: **KeyboardAvoidMode.OFFSET**, which means that the page moves up when the keyboard is displayed.|
 
 >  **NOTE**
 >
@@ -92,7 +92,7 @@ Obtains the avoidance mode of the virtual keyboard.
 
 | Name                                                | Description                              |
 | ---------------------------------------------------- | ---------------------------------- |
-| [KeyboardAvoidMode](ts-types.md#keyboardavoidmode11) | Avoidance mode of the virtual keyboard.|
+| [KeyboardAvoidMode](../js-apis-arkui-UIContext.md#keyboardavoidmode11) | Avoidance mode of the virtual keyboard.|
 
 ## Example
 
@@ -121,7 +121,40 @@ struct SafeAreaExample1 {
 
 ![expandSafeArea1](figures/expandSafeArea1.png)
 
-### Example 2: Fixing the Background Image Position During Keyboard Avoidance
+### Example 2: Setting a Fixed Width or Height with expandSafeArea
+
+This example demonstrates the effect of setting both a fixed width or height and the **expandSafeArea** attribute.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct SafeAreaExample2 {
+  @State text: string = ''
+  controller: TextInputController = new TextInputController()
+
+  build() {
+    Column() {
+      TextInput({ text: this.text, placeholder: 'input your word...', controller: this.controller })
+        .placeholderFont({ size: 14, weight: 400 })
+        .width(320).height(40).offset({y: 120})
+        .fontSize(14).fontColor(Color.Black)
+        .backgroundColor(Color.White)
+    }
+    .height('780')
+    .width('100%')
+    .backgroundColor('rgb(179,217,235)')
+    .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM])
+  }
+}
+```
+
+As shown in the figure below, the **Column** component expands to the top status bar ([SafeAreaEdge.TOP]) but does not expand to the bottom navigation bar ([SafeAreaEdge.BOTTOM]). The height of the component after expansion remains consistent with the set height.
+
+![expandSafeArea2](figures/expandSafeArea2.png)
+
+
+### Example 3: Fixing the Background Image Position During Keyboard Avoidance
 
 This example shows how to set the **expandSafeArea** attribute for the background image to keep it fixed when the keyboard is displayed and the layout is adjusted.
 
@@ -129,7 +162,7 @@ This example shows how to set the **expandSafeArea** attribute for the backgroun
 // xxx.ets
 @Entry
 @Component
-struct SafeAreaExample2 {
+struct SafeAreaExample3 {
   @State text: string = ''
   controller: TextInputController = new TextInputController()
 
@@ -157,9 +190,9 @@ struct SafeAreaExample2 {
 }
 ```
 
-![expandSafeArea2](figures/expandSafeArea2.png)
+![expandSafeArea3](figures/expandSafeArea3.png)
 
-### Example 3: Setting the Keyboard Avoidance Mode to Resize
+### Example 4: Setting the Keyboard Avoidance Mode to Resize
 
 This example demonstrates how to use **setKeyboardAvoidMode** to set the keyboard avoidance mode to **RESIZE**, which resizes the page when the keyboard is displayed.
 
@@ -193,7 +226,7 @@ struct KeyboardAvoidExample1 {
     Column() {
       Row().height("30%").width("100%").backgroundColor(Color.Gray)
       TextArea().width("100%").borderWidth(1)
-      Text("I can see the bottom of the page").width("100%").textAlign(TextAlign.Center).backgroundColor(Color.Pink).layoutWeight(1)
+      Text("I can see the bottom of the page").width("100%").textAlign(TextAlign.Center).backgroundColor('rgb(179,217,235)').layoutWeight(1)
     }.width('100%').height("100%")
   }
 }
@@ -201,7 +234,7 @@ struct KeyboardAvoidExample1 {
 
 ![keyboardAvoidMode1](figures/keyboardAvoidMode1.jpg)
 
-### Example 4: Setting Keyboard Avoidance Mode to Offset
+### Example 5: Setting Keyboard Avoidance Mode to Offset
 
 This example demonstrates how to use **setKeyboardAvoidMode** to set the keyboard avoidance mode to **OFFSET**, which lifts the page when the keyboard is displayed. However, if the input cursor is positioned more than the keyboard's height from the bottom of the screen, the page will not be lifted, as demonstrated in this example.
 
@@ -235,7 +268,7 @@ struct KeyboardAvoidExample2 {
     Column() {
       Row().height("30%").width("100%").backgroundColor(Color.Gray)
       TextArea().width("100%").borderWidth(1)
-      Text("I can see the bottom of the page").width("100%").textAlign(TextAlign.Center).backgroundColor(Color.Pink).layoutWeight(1)
+      Text("I can see the bottom of the page").width("100%").textAlign(TextAlign.Center).backgroundColor('rgb(179,217,235)').layoutWeight(1)
     }.width('100%').height("100%")
   }
 }
@@ -243,7 +276,7 @@ struct KeyboardAvoidExample2 {
 
 ![keyboardAvoidMode1](figures/keyboardAvoidMode2.jpg)
 
-### Example 5: Switching Avoidance Modes
+### Example 6: Switching Avoidance Modes
 
 This example demonstrates how to switch between **OFFSET**, **RESIZE**, and **NONE** modes using **setKeyboardAvoidMode** to achieve three different keyboard avoidance effects.
 
@@ -287,7 +320,7 @@ struct KeyboardAvoidExample3 {
       Text("I can see the bottom of the page")
         .width("100%")
         .textAlign(TextAlign.Center)
-        .backgroundColor(Color.Pink)
+        .backgroundColor('rgb(179,217,235)')
         .layoutWeight(1)
       
       TextArea()
@@ -311,7 +344,7 @@ NONE mode
 
 ![keyboardAvoidMode3-3](figures/keyboardAvoidMode3-3.jpg)
 
-### Example 6: Expanding the Safe Area in Scrollable Containers
+### Example 7: Expanding the Safe Area in Scrollable Containers
 
 This example demonstrates how to use the **expandSafeArea** attribute within a scrollable container to achieve an immersive effect.
 
@@ -374,4 +407,4 @@ struct ExpandSafeAreaTest {
   }
 }
 ```
-![expandSafeArea3](figures/expandSafeArea3.jpg)
+![expandSafeArea4](figures/expandSafeArea4.png)

@@ -24,7 +24,7 @@ Implement the capability of the [FenceExtensionAbility](../../reference/apis-loc
 To manually create a FenceExtensionAbility in a project in DevEco Studio, perform the following steps:
 
 1. In the **ets** directory of a module in the project, right-click and choose **New > Directory** to create a directory named **fenceextensionability**.
-2. Right-click the **fenceextensionability** directory, and choose **New > File** to create a file named **MyFenceExtensionAbility.ets**.
+2. Right-click the **fenceextensionability** directory, and choose **New** > **File** to create a file named **MyFenceExtensionAbility.ets**.
 3. Open the **MyFenceExtensionAbility.ets** file and import its dependencies. Customize a class that inherits from **FenceExtensionAbility** and implement the **onFenceStatusChange** and **onDestroy** APIs.
 
 The sample code is as follows:

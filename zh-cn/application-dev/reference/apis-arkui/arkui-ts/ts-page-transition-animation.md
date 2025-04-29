@@ -115,8 +115,8 @@ onExit(event: PageTransitionCallback): PageTransitionExitInterface
 | 名称     | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [RouteType](#routetype枚举说明)                              | 否   | 页面转场效果生效的路由类型。<br/>默认值：RouteType.None。    |
-| duration | number                                                       | 否   | 动画的时长。<br/>单位：毫秒<br/>默认值：1000                 |
-| curve    | [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[ICurve](../js-apis-curve.md#icurve)<sup>10+</sup> | 否   | 动画曲线。string类型的取值支持"ease"、"ease-in"、"ease-out"、"ease-in-out"、"extreme-deceleration"、"fast-out-linear-in"、"fast-out-slow-in"、"friction"、"linear"、"linear-out-slow-in"、"rhythm"、"sharp"、"smooth"。<br/>默认值：Curve.Linear |
+| duration | number                                                       | 否   | 动画的时长。<br/>单位：毫秒<br/>默认值：1000<br/>取值范围：[0, +∞)                 |
+| curve    | [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[ICurve](../js-apis-curve.md#icurve)<sup>10+</sup> | 否   | 动画曲线。<br/>推荐以Curve或ICurve形式指定。<br/>当类型为string时，为动画插值曲线，取值参考[AnimateParam](./ts-explicit-animation.md#animateparam对象说明)的curve参数。<br/>默认值：Curve.Linear |
 | delay    | number                                                       | 否   | 动画延迟时长。<br/>单位：毫秒<br/>默认值：0<br/>**说明：** <br/>没有匹配时使用系统默认的页面转场效果(根据设备可能会有差异)，如需禁用系统默认页面转场效果，可以指定duration为0。 |
 
 ## CommonTransition
@@ -199,7 +199,7 @@ opacity(value: number): T
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   | number | 是   | 设置入场的起点透明度值或者退场的终点透明度值。 |
+| value   | number | 是   | 设置入场的起点透明度值或者退场的终点透明度值。<br/>取值范围：[0, 1] |
 
 ## PageTransitionCallback<sup>14+</sup>
 
@@ -251,9 +251,7 @@ type PageTransitionCallback = (type: RouteType, progress: number) => void
 自定义方式1：通过不同的退入场类型配置不同的退场，入场动画。
 
 ```ts
-// index.ets
-import { router } from '@kit.ArkUI';
-
+// Index.ets
 @Entry
 @Component
 struct Index {
@@ -269,7 +267,7 @@ struct Index {
     .scale({ x: this.scale1 })
     .opacity(this.opacity1)
     .onClick(() => {
-      router.pushUrl({ url: 'pages/Page1' })
+      this.getUIContext().getRouter().pushUrl({ url: 'pages/Page1' })
     })
   }
 
@@ -293,9 +291,7 @@ struct Index {
 ```
 
 ```ts
-// page1.ets
-import { router } from '@kit.ArkUI';
-
+// Page1.ets
 @Entry
 @Component
 struct Page1 {
@@ -311,7 +307,7 @@ struct Page1 {
     .scale({ x: this.scale2 })
     .opacity(this.opacity2)
     .onClick(() => {
-      router.pushUrl({ url: 'pages/Index' })
+      this.getUIContext().getRouter().pushUrl({ url: 'pages/Index' })
     })
   }
 
@@ -339,16 +335,17 @@ struct Page1 {
 自定义方式2：配置了当前页面的入场动画为从左侧滑入，退场为平移加透明度变化。
 
 ```ts
-// index.ets 
+// Index.ets 
 @Entry
 @Component
-struct PageTransitionExample {
+struct Index {
   build() {
     Column() {
-      Navigator({ target: 'pages/page1', type: NavigationType.Push }) {
-        Image($r('app.media.bg1')).width('100%').height('100%') // 图片存放在media文件夹下
-      }
+      Image($r('app.media.bg1')).width('100%').height('100%') // 图片存放在media文件夹下
     }
+    .onClick(() => {
+      this.getUIContext().getRouter().pushUrl({ url: 'pages/Page1' })
+    })
   }
 
   // 自定义方式2：使用系统提供的多种默认效果(平移、缩放、透明度等)
@@ -365,16 +362,17 @@ struct PageTransitionExample {
 ```
 
 ```ts
-// page1.ets
+// Page1.ets
 @Entry
 @Component
-struct PageTransitionExample1 {
+struct Page1 {
   build() {
     Column() {
-      Navigator({ target: 'pages/index', type: NavigationType.Push }) {
-        Image($r('app.media.bg2')).width('100%').height('100%') // 图片存放在media文件夹下
-      }
+      Image($r('app.media.bg2')).width('100%').height('100%') // 图片存放在media文件夹下
     }
+    .onClick(() => {
+      this.getUIContext().getRouter().pushUrl({ url: 'pages/Index' })
+    })
   }
 
   // 自定义方式2：使用系统提供的多种默认效果(平移、缩放、透明度等)
@@ -397,20 +395,18 @@ struct PageTransitionExample1 {
 自定义方式1：配置提供的不同退入场平移效果，将系统语言排版模式改为RTL。
 
 ```ts
-// index.ets
-import { router } from '@kit.ArkUI'
-
+// Index.ets
 @Entry
 @Component
-struct PageTransitionExample {
+struct Index {
   @State scale1: number = 1
   @State opacity1: number = 1
 
   build() {
     Column() {
       Button("页面1").onClick(() => {
-        router.pushUrl({
-          url: "pages/page1"
+        this.getUIContext().getRouter().pushUrl({
+          url: "pages/Page1"
         })
       })
         .width(200)
@@ -440,19 +436,17 @@ struct PageTransitionExample {
 ```
 
 ```ts
-// page1.ets
-import { router } from '@kit.ArkUI'
-
+// Page1.ets
 @Entry
 @Component
-struct PageTransitionExample {
+struct Page1 {
   @State scale1: number = 1
   @State opacity1: number = 1
 
   build() {
     Column() {
       Button("页面2").onClick(() => {
-        router.pushUrl({
+        this.getUIContext().getRouter().pushUrl({
           url: "pages/Index"
         })
       })
@@ -486,20 +480,18 @@ struct PageTransitionExample {
 自定义方式2：使用系统默认的退入场效果，将系统语言排版模式改为RTL。
 
 ```ts
-// index.ets
-import { router } from '@kit.ArkUI'
-
+// Index.ets
 @Entry
 @Component
-struct PageTransitionExample {
+struct Index {
   @State scale1: number = 1
   @State opacity1: number = 1
 
   build() {
     Column() {
       Button("页面1").onClick(() => {
-        router.pushUrl({
-          url: "pages/page1"
+        this.getUIContext().getRouter().pushUrl({
+          url: "pages/Page1"
         })
       })
         .width(200)
@@ -516,19 +508,17 @@ struct PageTransitionExample {
 ```
 
 ```ts
-// page1.ets
-import { router } from '@kit.ArkUI'
-
+// Page1.ets
 @Entry
 @Component
-struct PageTransitionExample {
+struct Page1 {
   @State scale1: number = 1
   @State opacity1: number = 1
 
   build() {
     Column() {
       Button("页面2").onClick(() => {
-        router.pushUrl({
+        this.getUIContext().getRouter().pushUrl({
           url: "pages/Index"
         })
       })

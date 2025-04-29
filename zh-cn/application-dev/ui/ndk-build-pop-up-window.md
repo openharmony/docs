@@ -165,3 +165,42 @@
    ```
 
    ![zh-cn_image_0000001902966196](figures/zh-cn_image_0000001902966196.gif)
+
+
+## 弹窗的生命周期
+
+在弹窗显示前后和弹窗关闭前后，存在registerOnWillAppear、registerOnDidAppear、registerOnWillDisappear、registerOnDidDisappear这四个生命周期。
+这些生命周期方法需要在调用show方法之前调用，生命周期的时序如下：
+registerOnWillAppear -> 弹窗显示动画开始 -> 弹窗显示动画结束 ->registerOnDidAppear -> 弹窗显示完成 ->
+registerOnWillDisappear -> 弹窗关闭动画开始 ->  弹窗关闭动画结束 -> registerOnDidDisappear -> 弹窗关闭完成。
+
+创建一个弹窗，弹窗显示和关闭时会触发生命周期的回调函数。其中 ArkUI_NodeContentHandle 类型节点的获取与使用可参考[接入ArkTS页面](ndk-access-the-arkts-page.md)。
+   ```
+    void OnWillAppearCallBack(void* userdata) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "CustomDialogContentTest", "OnWillAppearCallBack");
+    }
+    void OnDidAppearCallBack(void* userdata) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "CustomDialogContentTest", "OnDidAppearCallBack");
+    }
+    void OnWillDisappearCallBack(void* userdata) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "CustomDialogContentTest", "OnWillDisappearCallBack");
+    }
+    void OnDidDisappearCallBack(void* userdata) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "CustomDialogContentTest", "OnDidDisappearCallBack");
+    }
+    void ShowDialog() {
+        ArkUI_NativeDialogAPI_3 *dialogAPI = reinterpret_cast<ArkUI_NativeDialogAPI_3 *>(
+            OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_DIALOG, "ArkUI_NativeDialogAPI_3"));
+        if (!dialogController) {
+           dialogController = dialogAPI->create();
+        }
+       auto contentNode = CreateDialogContent();
+       dialogAPI->setContent(dialogController, contentNode);
+       dialogAPI->setAutoCancel(dialogController, true);
+       dialogAPI->registerOnWillAppear(customDialog, nullptr, OnWillAppearCallBack);
+       dialogAPI->registerOnDidAppear(customDialog, nullptr, OnDidAppearCallBack);
+       dialogAPI->registerOnWillDisappear(customDialog, nullptr, OnWillDisappearCallBack);
+       dialogAPI->registerOnDidDisappear(customDialog, nullptr, OnDidDisappearCallBack);
+       dialogAPI->show(dialogController, false);
+    }
+   ```

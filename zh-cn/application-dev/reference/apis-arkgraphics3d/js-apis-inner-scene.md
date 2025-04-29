@@ -1,5 +1,5 @@
 # Scene
-本模块作为ArkGraphics 3D基础模块，提供SceneResourceParamters、SceneNodeParamters等通用数据类型。同时提供glTF模型加载，场景元素、资源创建等基础方法。
+本模块作为ArkGraphics 3D基础模块，提供SceneResourceParameters、SceneNodeParameters等通用数据类型。同时提供glTF模型加载，场景元素、资源创建等基础方法。
 
 > **说明：** 
 > - 本模块首批接口从API version 12开始支持，后续版本的新增接口，采用上角标标记接口的起始版本。
@@ -328,7 +328,7 @@ function createEnvironmentPromise() : Promise<Environment> {
 }
 ```
 
-### createGeometry<sup>16+</sup>
+### createGeometry<sup>18+</sup>
 createGeometry(params: SceneNodeParameters, mesh:MeshResource): Promise\<Geometry>
 
 根据场景结点参数和网格数据创建几何对象，使用Promise异步回调。
@@ -339,7 +339,7 @@ createGeometry(params: SceneNodeParameters, mesh:MeshResource): Promise\<Geometr
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
 | params | [SceneNodeParameters](#scenenodeparameters) | 是 | 场景结点参数。 |
-| mesh | [MeshResource](js-apis-inner-scene-resources.md#meshresource16) | 是 | 网格数据参数。 |
+| mesh | [MeshResource](js-apis-inner-scene-resources.md#meshresource18) | 是 | 网格数据参数。 |
 
 **返回值：**
 | 类型 | 说明 |
@@ -370,7 +370,7 @@ function createGeometryPromise() : Promise<Geometry> {
 }
 ```
 
-### createMesh<sup>16+</sup>
+### createMesh<sup>18+</sup>
 createMesh(params: SceneResourceParameters, geometry: GeometryDefinition): Promise\<MeshResource>
 
 根据场景资源参数和几何定义创建网格，使用Promise异步回调。
@@ -386,7 +386,7 @@ createMesh(params: SceneResourceParameters, geometry: GeometryDefinition): Promi
 **返回值：**
 | 类型 | 说明 |
 | ---- | ---- |
-| Promise\<[MeshResource](js-apis-inner-scene-resources.md#meshresource16)> | Promise对象，返回网格资源对象。 |
+| Promise\<[MeshResource](js-apis-inner-scene-resources.md#meshresource18)> | Promise对象，返回网格资源对象。 |
 
 **示例：**
 ```ts
@@ -411,7 +411,7 @@ function createMeshPromise() : Promise<MeshResource> {
 }
 ```
 
-### createScene<sup>16+</sup>
+### createScene<sup>18+</sup>
 createScene(uri?: ResourceStr): Promise\<Scene>
 
 根据资源参数创建场景，使用Promise异步回调。
@@ -448,7 +448,7 @@ function createScenePromise() : Promise<Scene> {
 }
 ```
 
-## RenderParameters<sup>16+</sup>
+## RenderParameters<sup>15+</sup>
 渲染参数接口。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
@@ -584,7 +584,7 @@ function destroy() : void {
 }
 ```
 
-### importNode<sup>16+</sup>
+### importNode<sup>18+</sup>
 importNode(name: string, node: Node, parent: Node | null): Node
 
 一般用于从其他场景导入结点。
@@ -626,7 +626,7 @@ function ImportNodeTest() {
 }
 ```
 
-### importScene<sup>16+</sup>
+### importScene<sup>18+</sup>
 importScene(name: string, scene: Scene, parent: Node | null): Node
 
 在当前场景中导入其他场景。
@@ -662,7 +662,7 @@ function ImportSceneTest() {
 }
 ```
 
-### renderFrame<sup>16+</sup>
+### renderFrame<sup>15+</sup>
 renderFrame(params?: RenderParameters): boolean
 
 通过该接口可以实现按需渲染，例如控制渲染帧率。
@@ -672,7 +672,7 @@ renderFrame(params?: RenderParameters): boolean
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| params | [RenderParameters](#renderparameters16) | 否 | 渲染参数，默认值为undefined。|
+| params | [RenderParameters](#renderparameters15) | 否 | 渲染参数，默认值为undefined。|
 
 **返回值：**
 | 类型 | 说明 |

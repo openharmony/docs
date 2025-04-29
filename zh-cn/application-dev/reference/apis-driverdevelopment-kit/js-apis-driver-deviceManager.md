@@ -60,7 +60,7 @@ try {
 ## deviceManager.bindDevice<sup>(deprecated)</sup>
 
 bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
-  callback: AsyncCallback&lt;{deviceId: number; remote: rpc.IRemoteObject;}&gt;): void;
+  callback: AsyncCallback&lt;{deviceId: number; remote: rpc.IRemoteObject;}&gt;): void
 
 根据queryDevices()返回的设备信息绑定设备。
 
@@ -119,7 +119,7 @@ try {
 
 ## deviceManager.bindDeviceDriver<sup>(deprecated)</sup>
 bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
-  callback: AsyncCallback&lt;RemoteDeviceDriver&gt;): void;
+  callback: AsyncCallback&lt;RemoteDeviceDriver&gt;): void
 
 根据queryDevices()返回的设备信息绑定设备。
 
@@ -412,9 +412,8 @@ bindDriverWithDeviceId(deviceId: number, onDisconnect: AsyncCallback&lt;number&g
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
 | 201      | The permission check failed.             |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 26300001  | ExternalDeviceManager service exception. |
-| 26300002  | Service not allowed. |
+| 26300002  | The driver service does not allow any client to bind. |
 
 **示例：**
 
@@ -464,7 +463,6 @@ unbindDriverWithDeviceId(deviceId: number): Promise&lt;number&gt;
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
 | 201      | The permission check failed.             |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 26300001 | ExternalDeviceManager service exception. |
 | 26300003 | There is no binding relationship. |
 

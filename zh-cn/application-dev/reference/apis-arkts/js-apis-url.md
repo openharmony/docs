@@ -539,7 +539,7 @@ URL的构造函数。
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | url | string | 是 | 一个表示绝对URL或相对URL的字符串。 <br/>如果 url 是相对URL，则需要指定 base，用于解析最终的URL。 <br/>如果 url 是绝对URL，则给定的 base 将不会生效。 |
-| base | string \| URL | 否 | 入参字符串或者对象，默认值是undefined。<br/>- string：字符串。<br/>- URL：URL对象。<br/>- 在url是相对URL时使用。 |
+| base | string \| URL | 否 | 入参字符串或者对象，默认值是undefined。<br/>- string：字符串。<br/>- URL：URL对象。|
 
 **示例：**
 
@@ -583,7 +583,7 @@ URL静态成员函数。
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | url | string | 是 | 一个表示绝对URL或相对URL的字符串。 <br/>如果 url 是相对URL，则需要指定 base，用于解析最终的URL。 <br/>如果 url 是绝对URL，则给定的 base 将不会生效。 |
-| base | string \| URL | 否 | 入参字符串或者对象，默认值是undefined。<br/>- string：字符串。<br/>- URL：URL对象。<br/>- 在url是相对URL时使用。 |
+| base | string \| URL | 否 | 入参字符串或者对象，默认值是undefined。<br/>- string：字符串。当第一个参数是相对URL时，该参数需符合URL标准。<br/>- URL：URL对象。<br/>- 在url是相对URL时使用。 |
 
 > **说明：**
 >
@@ -629,7 +629,7 @@ toString(): string
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | 用于返回网址的字符串序列化。 |
+| string | 转化后的字符串。 |
 
 **示例：**
 
@@ -652,7 +652,7 @@ toJSON(): string
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | 用于返回网址的字符串序列化。 |
+| string | 转化后的JSON字符串。 |
 
 **示例：**
 ```ts
@@ -680,7 +680,7 @@ URLSearchParams的构造函数。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| init | string[][] \| Record&lt;string, string&gt; \| string \| URLSearchParams | 否 | 入参对象。<br/>- string[][]：字符串二维数组。<br/>- Record&lt;string, string&gt;：对象列表。<br/>- string：字符串。<br/>- URLSearchParams：对象。<br/>- 默认值：null。 |
+| init | string[][] \| Record&lt;string, string&gt; \| string \| URLSearchParams | 否 | 入参对象。<br/>- string[][]：字符串二维数组。<br/>- Record&lt;string, string&gt;：对象列表。<br/>- string：字符串。<br/>- URLSearchParams：对象。<br/>- 默认值：undefined。 |
 
 **示例：**
 

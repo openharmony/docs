@@ -22,7 +22,7 @@ Defines a file metadata object, which includes the application name and file URI
 | Name      | Type  | Mandatory| Description                                                                                               |
 | ---------- | ------ | ---- | --------------------------------------------------------------------------------------------------- |
 | bundleName | string | Yes  | Application name, which can be obtained from [bundleManager.BundleInfo](../apis-ability-kit/js-apis-bundleManager-bundleInfo.md).|
-| uri        | string | Yes  | URI of the file in the application sandbox.<br>Currently, the URI is not in the standard format. It can consist of digits (0–9), letters (a–z and A–Z), underscores (_), and period (.) only.     |
+| uri        | string | Yes  | URI of the file in the application sandbox.<br>Currently, the URI is not in the uniform data format. It can consist of digits (0–9), letters (a–z and A–Z), underscores (_), and period (.) only.     |
 
 ## FileData
 
@@ -47,6 +47,7 @@ Defines a file data object, which includes the file descriptor (FD) of the file 
 > For details about how to close **FileManifestData**, see [fs.closeSync](js-apis-file-fs.md#fsclosesync).
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
+
 | Name      | Type  | Mandatory| Description                                    |
 | ---------- | ------ | ---- | ---------------------------------------- |
 | manifestFd | number | Yes  | FD, which can be obtained through the backup service.|
@@ -70,7 +71,7 @@ Represents optional parameters in JSON strings for backup and restore.
 
 | Name      | Type  | Mandatory| Description                                              |
 | ---------- | ------ | ---- | -------------------------------------------------- |
-| parameters | string | No  | Optional parameters for backup or restore, in JSON strings.|
+| parameters | string | No  | Optional parameters for backup or restore, in JSON strings. It is empty by default.|
 
 ## BackupPriority<sup>12+</sup>
 
@@ -80,7 +81,7 @@ Represents the backup priority.
 
 | Name    | Type  | Mandatory| Description                                                  |
 | -------- | ------ | ---- | ------------------------------------------------------ |
-| priority | number | No  | Backup priority. A larger value indicates a higher priority. If the priorities are the same, the API called first is executed first.|
+| priority | number | No  | Backup priority. A larger value indicates a higher priority. If the priorities are the same, the API called first is executed first. The default value is **0**.|
 
 ## IncrementalBackupData<sup>12+</sup>
 
@@ -103,7 +104,7 @@ inherits [FileMeta](#filemeta) and [FileData](#filedata).
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
 
-## File <sup>12+</sup>
+## File<sup>12+</sup>
 
 Defines a file object, which
 inherits from [FileMeta](#filemeta), [FileData](#filedata), and [FileManifestData](#filemanifestdata12).
@@ -126,7 +127,7 @@ Provides callbacks to be used in the backup or restore process. The backup servi
 
 | Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| onBackupSizeReport<sup>16+</sup>  | [OnBackupSizeReport](#onbackupsizereport16) | No| Yes|  Size of the data to be backed up.|
+| onBackupSizeReport<sup>18+</sup>  | [OnBackupSizeReport](#onbackupsizereport18) | No| Yes|  Size of the data to be backed up.|
 
 ### onFileReady
 
@@ -146,12 +147,12 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 13600001 | IPC error               |
-| 13900005 | I/O error               |
-| 13900011 | Out of memory           |
-| 13900020 | Invalid argument        |
-| 13900025 | No space left on device |
-| 13900042 | Unknown error           |
+| 13600001 | IPC error.               |
+| 13900005 | I/O error.               |
+| 13900011 | Out of memory.           |
+| 13900020 | Invalid argument.        |
+| 13900025 | No space left on device. |
+| 13900042 | Unknown error.           |
 
 **Example**
 
@@ -190,15 +191,15 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID| Error Message                                             |
 | -------- | ----------------------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
-| 13500001 | The application is not added to the backup or restore |
-| 13500002 | Failed to start application extension Procedure       |
-| 13600001 | IPC error                                             |
-| 13900005 | I/O error                                             |
-| 13900011 | Out of memory                                         |
-| 13900020 | Invalid argument                                      |
-| 13900025 | No space left on device                               |
-| 13900042 | Unknown error                                         |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild.|
+| 13500001 | The application is not added to the backup or restore. |
+| 13500002 | Failed to start application extension Procedure.       |
+| 13600001 | IPC error.                                             |
+| 13900005 | I/O error.                                             |
+| 13900011 | Out of memory.                                         |
+| 13900020 | Invalid argument.                                     |
+| 13900025 | No space left on device.                               |
+| 13900042 | Unknown error.                                         |
 
 **Example**
 
@@ -247,15 +248,15 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID| Error Message                       |
 | -------- | ------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
-| 13500003 | Backup or restore timed out     |
-| 13500004 | Application extension death     |
-| 13600001 | IPC error                       |
-| 13900005 | I/O error                       |
-| 13900011 | Out of memory                   |
-| 13900020 | Invalid argument                |
-| 13900025 | No space left on device         |
-| 13900042 | Unknown error                   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild.|
+| 13500003 | Backup or restore timed out.     |
+| 13500004 | Application extension death.     |
+| 13600001 | IPC error.                       |
+| 13900005 | I/O error.                      |
+| 13900011 | Out of memory.                   |
+| 13900020 | Invalid argument.                |
+| 13900025 | No space left on device.         |
+| 13900042 | Unknown error.                   |
 
 **Example**
 
@@ -297,12 +298,12 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 13600001 | IPC error               |
-| 13900005 | I/O error               |
-| 13900011 | Out of memory           |
-| 13900020 | Invalid argument        |
-| 13900025 | No space left on device |
-| 13900042 | Unknown error           |
+| 13600001 | IPC error.               |
+| 13900005 | I/O error.               |
+| 13900011 | Out of memory.           |
+| 13900020 | Invalid argument.        |
+| 13900025 | No space left on device. |
+| 13900042 | Unknown error.           |
 
 **Example**
 
@@ -334,7 +335,7 @@ Called when the backup service is suspended. If this callback fails to be invoke
   }
   ```
 
-### onResultReport
+### onResultReport<sup>12+</sup>
 
 onResultReport (bundleName: string, result: string)
 
@@ -360,7 +361,7 @@ Called when the backup or restore is complete. If the callback is invoked succes
   }
   ```
 
-### onProcess
+### onProcess<sup>12+</sup>
 
 onProcess (bundleName: string, process: string)
 
@@ -386,7 +387,7 @@ Called to report the backup or restore progress information. If the callback is 
   }
   ```
 
-## backup.getBackupVersion<sup>16+</sup>
+## backup.getBackupVersion<sup>18+</sup>
 
 getBackupVersion(): string;
 
@@ -456,11 +457,11 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 13600001 | IPC error               |
-| 13900005 | I/O error               |
-| 13900011 | Out of memory           |
-| 13900025 | No space left on device |
-| 13900042 | Unknown error           |
+| 13600001 | IPC error.               |
+| 13900005 | I/O error.               |
+| 13900011 | Out of memory.           |
+| 13900025 | No space left on device. |
+| 13900042 | Unknown error.          |
 
 **Example**
 
@@ -525,11 +526,11 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 13600001 | IPC error               |
-| 13900005 | I/O error               |
-| 13900011 | Out of memory           |
-| 13900025 | No space left on device |
-| 13900042 | Unknown error           |
+| 13600001 | IPC error.               |
+| 13900005 | I/O error.               |
+| 13900011 | Out of memory.           |
+| 13900025 | No space left on device. |
+| 13900042 | Unknown error.           |
 
 **Example**
 
@@ -580,6 +581,7 @@ Obtains local capabilities. The local capabilities of an application are queried
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
 
 **Parameters**
+
 | Name  | Type                                                          | Mandatory| Description                                          |
 | -------- | -------------------------------------------------------------- | ---- | ---------------------------------------------- |
 | dataList | Array&lt;[IncrementalBackupTime](#incrementalbackuptime12)&gt; | Yes  | List of the files involved in the incremental backup.|
@@ -598,13 +600,13 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
-| 13600001 | IPC error                                                                                      |
-| 13900005 | I/O error                                                                                      |
-| 13900011 | Out of memory                                                                                  |
-| 13900020 | Invalid argument                                                                               |
-| 13900025 | No space left on device                                                                        |
-| 13900042 | Unknown error                                                                                  |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild.|
+| 13600001 | IPC error.                                                                                      |
+| 13900005 | I/O error.                                                                                      |
+| 13900011 | Out of memory.                                                                                  |
+| 13900020 | Invalid argument.                                                                               |
+| 13900025 | No space left on device.                                                                        |
+| 13900042 | Unknown error.                                                                                  |
 
 **Example**
 
@@ -629,7 +631,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   }
   ```
 
-## backup.getBackupInfo
+## backup.getBackupInfo<sup>12+</sup>
 
 getBackupInfo(bundleToBackup: string): string;
 
@@ -657,13 +659,13 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 13600001 | IPC error               |
-| 13900001 | Operation not permitted |
-| 13900005 | I/O error               |
-| 13900011 | Out of memory           |
-| 13900020 | Invalid argument        |
-| 13900025 | No space left on device |
-| 13900042 | Unknown error           |
+| 13600001 | IPC error.               |
+| 13900001 | Operation not permitted. |
+| 13900005 | I/O error.               |
+| 13900011 | Out of memory.           |
+| 13900020 | Invalid argument.        |
+| 13900025 | No space left on device. |
+| 13900042 | Unknown error.           |
 
 **Example**
 
@@ -684,7 +686,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   }
   ```
 
-## backup.updateTimer
+## backup.updateTimer<sup>12+</sup>
 
 updateTimer(bundleName: string, timeout: number): void;
 
@@ -738,7 +740,7 @@ Called after **onBundleBegin** and before **onBundleEnd** to set the backup or r
   }
   ```
 
-## backup.updateSendRate
+## backup.updateSendRate<sup>12+</sup>
 
 updateSendRate(bundleName: string, sendRate: number): boolean;
 
@@ -792,7 +794,7 @@ Called after **onBundleBegin** and before **onBundleEnd** to set the backup or r
   }
   ```
 
-## OnBackupSizeReport<sup>16+</sup>
+## OnBackupSizeReport<sup>18+</sup>
 
 type OnBackupSizeReport = (reportInfo: string) => void;
 
@@ -884,7 +886,7 @@ A constructor used to create a **SessionBackup** instance.
   let sessionBackup = new backup.SessionBackup(generalCallbacks); // Create a backup process.
   ```
 
-### getLocalCapabilities<sup>16+</sup>
+### getLocalCapabilities<sup>18+</sup>
 
 getLocalCapabilities(): Promise&lt;FileData&gt;
 
@@ -908,12 +910,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission verification failed, usually the result returned by VerifyAccessToken |
-| 202      | Permission verification failed, application which is not a system application uses system API |
-| 13600001 | IPC error                                                    |
-| 13900001 | Operation not permitted                                      |
-| 13900020 | Invalid argument                                             |
-| 13900042 | Internal error                                                |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+| 13600001 | IPC error.                                                    |
+| 13900001 | Operation not permitted.                                      |
+| 13900020 | Invalid argument.                                             |
+| 13900042 | Internal error.                                                |
 
 **Example**
 
@@ -1040,12 +1042,11 @@ The capability file can be obtained by using [fs.stat](js-apis-file-fs.md#fsstat
  }
  ```
 
-### getBackupDataSize<sup>16+</sup>
+### getBackupDataSize<sup>18+</sup>
 
 getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime\>): Promise&lt;void&gt;
 
 Obtains the amount of data to be backed up. This method is called before **appendBundles**. The scanning result is returned at a fixed interval of 5 seconds by calling the general callback **onBackupSizeReport** asynchronously until all application data in the datalist is returned.
-
 
 **Required permissions**: ohos.permission.BACKUP
 
@@ -1057,7 +1058,7 @@ Obtains the amount of data to be backed up. This method is called before **appen
 
 | Name       | Type                                                    | Mandatory| Description                                                        |
 | ------------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| isPreciseScan | boolean                                                  | Yes  | Whether to perform accurate scanning. Inaccurate scanning is fast and is used to estimate the data size. Accurate scanning is slow and returns more accurate result. However, the data to be backed up may change. Therefore, the precise scanning result may not match the actual backup data size.|
+| isPreciseScan | boolean                                                  | Yes  | Whether to perform accurate scanning. The value **true** means to perform accurate scanning; the value **false** means to perform inaccurate scanning. Inaccurate scanning is fast and is used to estimate the data size. Accurate scanning is slow and returns more accurate result. However, the data to be backed up may change. Therefore, the precise scanning result may not match the actual backup data size.|
 | dataList      | Array<[IncrementalBackupTime](#incrementalbackuptime12)> | Yes  | Backup application list, which describes the application whose data size is to be obtained and the last backup time. For a full backup, set this parameter to **0**.|
 
 **Error codes**
@@ -1066,13 +1067,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission verification failed, usually the result returned by VerifyAccessToken |
-| 202      | Permission verification failed, application which is not a system application uses system API |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild |
-| 13600001 | IPC error                                                    |
-| 13900001 | Operation not permitted                                      |
-| 13900020 | Invalid argument                                             |
-| 13900042 | Internal error                                                |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild. |
+| 13600001 | IPC error.                                                    |
+| 13900001 | Operation not permitted.                                      |
+| 13900020 | Invalid argument.                                             |
+| 13900042 | Internal error.                                                |
 
 **Example**
 
@@ -1165,7 +1166,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 {
  "scaned" :[ // Scanned application. The result will not be returned in the next callback.
      {
-         "name": "com.example.hiworld," // Application name.
+         "name": "com.example.hiworld", // Application name.
          "dataSize": 1006060, // Data size.
          "incDataSize":-1 // Incremental data size. The value is -1 for full scan and inaccurate scan, and is the actual incremental data size for incremental accurate scan.
      },
@@ -1291,7 +1292,7 @@ From API version 12, the optional parameter **infos** is added to carry informat
 | Name         | Type    | Mandatory| Description                      |
 | --------------- | -------- | ---- | -------------------------- |
 | bundlesToBackup | string[] | Yes  | Array of the application names to append.|
-| infos           | string[] | No  | Array of the information about each application to be backed up. The mappings between **infos** and **bundlesToBackup** are identified by index. This parameter is supported since API version 12.|
+| infos           | string[] | No  | Array of the information about each application to be backed up. The mappings between **infos** and **bundlesToBackup** are identified by index. It is left blank by default. This parameter is supported since API version 12.|
 
 **Return value**
 
@@ -1442,11 +1443,11 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
-| 13600001 | IPC error                                                                                      |
-| 13900001 | Operation not permitted                                                                        |
-| 13900005 | I/O error                                                                                      |
-| 13900042 | Unknown error                                                                                  |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild.|
+| 13600001 | IPC error.                                                                                      |
+| 13900001 | Operation not permitted.                                                                        |
+| 13900005 | I/O error.                                                                                      |
+| 13900042 | Unknown error.                                                                                  |
 
 **Example**
 
@@ -1506,7 +1507,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   }
   ```
 
-### cancel<sup>16+</sup>
+### cancel<sup>18+</sup>
 
 cancel(bundleName: string): number;
 
@@ -1536,7 +1537,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild.|
 
 **Example**
 
@@ -1662,7 +1663,7 @@ A constructor used to create a **SessionRestore** instance.
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // Create a restore process.
   ```
 
-### getLocalCapabilities<sup>16+</sup>
+### getLocalCapabilities<sup>18+</sup>
 
 getLocalCapabilities(): Promise&lt;FileData&gt;
 
@@ -1686,12 +1687,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission verification failed, usually the result returned by VerifyAccessToken |
-| 202      | Permission verification failed, application which is not a system application uses system API |
-| 13600001 | IPC error                                                    |
-| 13900001 | Operation not permitted                                      |
-| 13900020 | Invalid argument                                             |
-| 13900042 | Internal error                                                |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+| 13600001 | IPC error.                                                    |
+| 13900001 | Operation not permitted.                                      |
+| 13900020 | Invalid argument.                                             |
+| 13900042 | Internal error.                                                |
 
 **Example**
 
@@ -1822,7 +1823,7 @@ The capability file can be obtained by using [fs.stat](js-apis-file-fs.md#fsstat
 
 appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], callback: AsyncCallback&lt;void&gt;): void
 
-Appends the applications whose data needs to be restored. Currently, the obtained **SessionRestore** instance can be called only once in the entire restore process.
+Appends the applications whose data needs to be restored. Currently, the obtained **SessionRestore** instance can be called only once in the entire restore process. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -1847,13 +1848,13 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 13600001 | IPC error               |
-| 13900001 | Operation not permitted |
-| 13900005 | I/O error               |
-| 13900011 | Out of memory           |
-| 13900020 | Invalid argument        |
-| 13900025 | No space left on device |
-| 13900042 | Unknown error           |
+| 13600001 | IPC error.               |
+| 13900001 | Operation not permitted. |
+| 13900005 | I/O error.               |
+| 13900011 | Out of memory.          |
+| 13900020 | Invalid argument.        |
+| 13900025 | No space left on device. |
+| 13900042 | Unknown error.           |
 
 **Example**
 
@@ -1951,7 +1952,7 @@ Currently, the obtained **SessionRestore** instance can be called only once in t
 | -------------------- | -------- | ---- | ---------------------------------- |
 | remoteCapabilitiesFd | number   | Yes  | FD of the file containing the capabilities to be restored.|
 | bundlesToBackup      | string[] | Yes  | Array of the application names to append.      |
-| infos<sup>12+</sup>  | string[] | No  | Array of the information about each application to be restored. The mappings between **infos** and **bundlesToBackup** are identified by index. This parameter is supported since API version 12.|
+| infos<sup>12+</sup>  | string[] | No  | Array of the information about each application to be restored. The mappings between **infos** and **bundlesToBackup** are identified by index. It is left blank by default. This parameter is supported since API version 12.|
 
 **Return value**
 
@@ -1965,13 +1966,13 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 13600001 | IPC error               |
-| 13900001 | Operation not permitted |
-| 13900005 | I/O error               |
-| 13900011 | Out of memory           |
-| 13900020 | Invalid argument        |
-| 13900025 | No space left on device |
-| 13900042 | Unknown error           |
+| 13600001 | IPC error.               |
+| 13900001 | Operation not permitted. |
+| 13900005 | I/O error.               |
+| 13900011 | Out of memory.           |
+| 13900020 | Invalid argument.        |
+| 13900025 | No space left on device. |
+| 13900042 | Unknown error.           |
 
 **Example**
 
@@ -2070,7 +2071,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 getFileHandle(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
 
-Obtains the handle of the shared file from the service. This API uses an asynchronous callback to return the result.
+Obtains the handle to the shared file from the service. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -2097,10 +2098,10 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 13600001 | IPC error               |
-| 13900001 | Operation not permitted |
-| 13900020 | Invalid argument        |
-| 13900042 | Unknown error           |
+| 13600001 | IPC error.               |
+| 13900001 | Operation not permitted. |
+| 13900020 | Invalid argument.        |
+| 13900042 | Unknown error.           |
 
 **Example**
 
@@ -2165,7 +2166,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 getFileHandle(fileMeta: FileMeta): Promise&lt;void&gt;
 
-Obtains the handle of the shared file from the service. This API uses a promise to return the result.
+Obtains the handle to the shared file from the service. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -2197,10 +2198,10 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 13600001 | IPC error               |
-| 13900001 | Operation not permitted |
-| 13900020 | Invalid argument        |
-| 13900042 | Unknown error           |
+| 13600001 | IPC error.              |
+| 13900001 | Operation not permitted. |
+| 13900020 | Invalid argument.        |
+| 13900042 | Unknown error.          |
 
 **Example**
 
@@ -2293,10 +2294,10 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 13600001 | IPC error               |
-| 13900001 | Operation not permitted |
-| 13900020 | Invalid argument        |
-| 13900042 | Unknown error           |
+| 13600001 | IPC error.               |
+| 13900001 | Operation not permitted. |
+| 13900020 | Invalid argument.        |
+| 13900042 | Unknown error.           |
 
 **Example**
 
@@ -2407,10 +2408,10 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 13600001 | IPC error               |
-| 13900001 | Operation not permitted |
-| 13900020 | Invalid argument        |
-| 13900042 | Unknown error           |
+| 13600001 | IPC error.               |
+| 13900001 | Operation not permitted. |
+| 13900020 | Invalid argument.        |
+| 13900042 | Unknown error.           |
 
 **Example**
 
@@ -2509,11 +2510,11 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
-| 13600001 | IPC error                                                                                      |
-| 13900001 | Operation not permitted                                                                        |
-| 13900005 | I/O error                                                                                      |
-| 13900042 | Unknown error                                                                                  |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild.|
+| 13600001 | IPC error.                                                                                      |
+| 13900001 | Operation not permitted.                                                                        |
+| 13900005 | I/O error.                                                                                      |
+| 13900042 | Unknown error.                                                                                  |
 
 **Example**
 
@@ -2592,7 +2593,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   console.info('release success');
   ```
 
-### cancel<sup>16+</sup>
+### cancel<sup>18+</sup>
 
 cancel(bundleName: string): number;
 
@@ -2622,7 +2623,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild.|
 
 **Example**
 
@@ -2707,7 +2708,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild.|
 
 **Example**
 
@@ -2758,7 +2759,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // Create a session for an incremental backup.
   ```
 
-### getLocalCapabilities<sup>16+</sup>
+### getLocalCapabilities<sup>18+</sup>
 
 getLocalCapabilities(): Promise&lt;FileData&gt;
 
@@ -2782,12 +2783,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission verification failed, usually the result returned by VerifyAccessToken |
-| 202      | Permission verification failed, application which is not a system application uses system API |
-| 13600001 | IPC error                                                    |
-| 13900001 | Operation not permitted                                      |
-| 13900020 | Invalid argument                                             |
-| 13900042 | Internal error                                                |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+| 13600001 | IPC error.                                                    |
+| 13900001 | Operation not permitted.                                      |
+| 13900020 | Invalid argument.                                             |
+| 13900042 | Internal error.                                                |
 
 **Example**
 
@@ -2868,7 +2869,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
         fs.mkdirSync(basePath);
         console.info('creat success' + basePath);
       }
-      fs.copyFileSync (fileData.fd, path); // Save the obtained local capability file to the local host.
+      fs.copyFileSync(fileData.fd, path); // Save the obtained local capability file to the local host.
       fs.closeSync(fileData.fd);
     }
   } catch (error) {
@@ -2914,11 +2915,11 @@ The capability file can be obtained by using [fs.stat](js-apis-file-fs.md#fsstat
  }
  ```
 
-### getBackupDataSize<sup>16+</sup>
+### getBackupDataSize<sup>18+</sup>
 
 getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime\>): Promise&lt;void&gt;
 
-Called to obtain the amount of data to be backed up. This method is called before **appendBundles**. The scanning result is returned at a fixed interval of 5 seconds by calling the general callback **onBackupSizeReport** asynchronously until all application data in the datalist is returned.
+Obtains the amount of data to be backed up. This method is called before **appendBundles**. The scanning result is returned at a fixed interval of 5 seconds by calling the general callback **onBackupSizeReport** asynchronously until all application data in the datalist is returned.
 
 **Required permissions**: ohos.permission.BACKUP
 
@@ -2930,7 +2931,7 @@ Called to obtain the amount of data to be backed up. This method is called befor
 
 | Name       | Type                                                    | Mandatory| Description                                                        |
 | ------------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| isPreciseScan | boolean                                                  | Yes  | Whether to perform accurate scanning. Inaccurate scanning is fast and is used to estimate the data size. Accurate scanning is slow and returns more acurate result. However, the data to be backed up may change. Therefore, the accurate scanning result may not match the actual backup data size.|
+| isPreciseScan | boolean                                                  | Yes  | Whether to perform accurate scanning. Inaccurate scanning is fast and is used to estimate the data size. Accurate scanning is slow and returns more accurate result. However, the data to be backed up may change. Therefore, the precise scanning result may not match the actual backup data size.|
 | dataList      | Array<[IncrementalBackupTime](#incrementalbackuptime12)> | Yes  | Backup application list, which describes the application whose data size is to be obtained and the last backup time. For a full backup, set this parameter to **0**.|
 
 **Error codes**
@@ -2939,13 +2940,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission verification failed, usually the result returned by VerifyAccessToken |
-| 202      | Permission verification failed, application which is not a system application uses system API |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild |
-| 13600001 | IPC error                                                    |
-| 13900001 | Operation not permitted                                      |
-| 13900020 | Invalid argument                                             |
-| 13900042 | Internal error                                                |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild. |
+| 13600001 | IPC error.                                                    |
+| 13900001 | Operation not permitted.                                      |
+| 13900020 | Invalid argument.                                             |
+| 13900042 | Internal error.                                                |
 
 **Example**
 
@@ -3083,14 +3084,14 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
-| 13600001 | IPC error                                                                                      |
-| 13900001 | Operation not permitted                                                                        |
-| 13900005 | I/O error                                                                                      |
-| 13900011 | Out of memory                                                                                  |
-| 13900020 | Invalid argument                                                                               |
-| 13900025 | No space left on device                                                                        |
-| 13900042 | Unknown error                                                                                  |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild.|
+| 13600001 | IPC error.                                                                                      |
+| 13900001 | Operation not permitted.                                                                        |
+| 13900005 | I/O error.                                                                                      |
+| 13900011 | Out of memory.                                                                                  |
+| 13900020 | Invalid argument.                                                                               |
+| 13900025 | No space left on device.                                                                        |
+| 13900042 | Unknown error.                                                                                  |
 
 **Example**
 
@@ -3154,7 +3155,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 ### appendBundles<sup>12+</sup>
 
-appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt, infos: string[]): Promise&lt;void&gt;
+appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt;, infos: string[]): Promise&lt;void&gt;
 
 Appends applications that require incremental backup. In the current process, **appendBundles** can be called before **Release()** is called. This API uses a promise to return the result.
 
@@ -3183,14 +3184,14 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
-| 13600001 | IPC error                                                                                      |
-| 13900001 | Operation not permitted                                                                        |
-| 13900005 | I/O error                                                                                      |
-| 13900011 | Out of memory                                                                                  |
-| 13900020 | Invalid argument                                                                               |
-| 13900025 | No space left on device                                                                        |
-| 13900042 | Unknown error                                                                                  |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild.|
+| 13600001 | IPC error.                                                                                      |
+| 13900001 | Operation not permitted.                                                                        |
+| 13900005 | I/O error.                                                                                      |
+| 13900011 | Out of memory.                                                                                  |
+| 13900020 | Invalid argument.                                                                               |
+| 13900025 | No space left on device.                                                                        |
+| 13900042 | Unknown error.                                                                                  |
 
 **Example**
 
@@ -3316,12 +3317,12 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
-| 13600001 | IPC error                                                                                      |
-| 13900001 | Operation not permitted                                                                        |
-| 13900005 | I/O error                                                                                      |
-| 13900020 | Invalid argument                                                                               |
-| 13900042 | Unknown error                                                                                  |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild.|
+| 13600001 | IPC error.                                                                                      |
+| 13900001 | Operation not permitted.                                                                        |
+| 13900005 | I/O error.                                                                                      |
+| 13900020 | Invalid argument.                                                                               |
+| 13900042 | Unknown error.                                                                                  |
 
 **Example**
 
@@ -3374,7 +3375,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   console.info('release success');
   ```
 
-### cancel<sup>16+</sup>
+### cancel<sup>18+</sup>
 
 cancel(bundleName: string): number;
 
@@ -3404,7 +3405,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild.|
 
 **Example**
 

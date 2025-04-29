@@ -4,29 +4,9 @@
 
 >  **说明：**
 >
-> 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](../js-apis-arkui-UIContext.md#uicontext)说明。
->
-> 从API version 10开始，可以通过使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showAlertDialog](../js-apis-arkui-UIContext.md#showalertdialog)来明确UI的执行上下文。
-
-## AlertDialog
-
-### show
-
-static show(value: AlertDialogParamWithConfirm | AlertDialogParamWithButtons | AlertDialogParamWithOptions)
-
-定义警告弹窗并弹出。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名   | 类型  | 必填 | 说明 |
-| ---- | --------------- | -------- | -------- |
-| value | [AlertDialogParamWithConfirm](#alertdialogparamwithconfirm对象说明)&nbsp;\|&nbsp;[AlertDialogParamWithButtons](#alertdialogparamwithbuttons对象说明)&nbsp;\|&nbsp;[AlertDialogParamWithOptions](#alertdialogparamwithoptions10对象说明)<sup>10+</sup> | 是 | 定义并显示AlertDialog组件。 |
 
 ## AlertDialogParam对象说明
 
@@ -61,14 +41,28 @@ static show(value: AlertDialogParamWithConfirm | AlertDialogParamWithButtons | A
 | textStyle<sup>12+</sup>              | [TextStyle](#textstyle12对象说明) | 否   | 设置弹窗message内容的文本样式。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | enableHoverMode<sup>14+</sup>     | boolean | 否   | 是否响应悬停态。<br />默认值：false，默认不响应。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 | hoverModeArea<sup>14+</sup>       | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype14) | 否   | 悬停态下弹窗默认展示区域。<br />默认值：HoverModeAreaType.BOTTOM_SCREEN。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
-| onWillAppear<sup>18+</sup> | [VoidCallback](ts-types.md#voidcallback12) | 否 | 弹窗显示动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br />2.在onWillAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
-| onDidAppear<sup>18+</sup> | [VoidCallback](ts-types.md#voidcallback12) | 否 | 弹窗弹出时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br />2.在onDidAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。<br />3.弹窗入场动效未完成时关闭弹窗，动效打断，onDidAppear不会触发。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
-| onWillDisappear<sup>18+</sup> | [VoidCallback](ts-types.md#voidcallback12) | 否 | 弹窗退出动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br /> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
-| onDidDisappear<sup>18+</sup> | [VoidCallback](ts-types.md#voidcallback12) | 否 | 弹窗消失时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| onWillAppear<sup>18+</sup> | Callback&lt;void&gt; | 否 | 弹窗显示动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br />2.在onWillAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+| onDidAppear<sup>18+</sup> | Callback&lt;void&gt; | 否 | 弹窗弹出时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br />2.在onDidAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。<br />3.快速点击弹出，关闭弹窗时，onWillDisappear在onDidAppear前生效。<br/>4.弹窗入场动效未完成时彻底关闭弹窗，动效打断，onDidAppear不会触发。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| onWillDisappear<sup>18+</sup> | Callback&lt;void&gt; | 否 | 弹窗退出动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br /> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+| onDidDisappear<sup>18+</sup> | Callback&lt;void&gt; | 否 | 弹窗消失时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | levelMode<sup>15+</sup>       | [LevelMode](../js-apis-promptAction.md#levelmode15枚举说明) | 否   | 设置弹窗显示层级。<br />**说明：**<br />- 默认值：LevelMode.OVERLAY。<br />- 当且仅当showInSubWindow属性设置为false时生效。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 | levelUniqueId<sup>15+</sup>       | number | 否   | 设置页面级弹窗需要显示的层级下的[节点 uniqueId](../js-apis-arkui-frameNode.md#getuniqueid12)。<br />**说明：**<br />- 当且仅当levelMode属性设置为LevelMode.EMBEDDED时生效。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 | immersiveMode<sup>15+</sup>       | [ImmersiveMode](../js-apis-promptAction.md#immersivemode15枚举说明) | 否   | 设置页面内弹窗蒙层效果。<br />**说明：**<br />- 默认值：ImmersiveMode.DEFAULT <br />- 当且仅当levelMode属性设置为LevelMode.EMBEDDED时生效。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
-| levelOrder<sup>18+</sup>       | [LevelOrder](../js-apis-promptAction.md#levelorder18) | 否   | 设置弹窗显示的顺序。<br />**说明：**<br />- 默认值：LevelOrder.clamp(0) <br />- 不支持动态刷新顺序。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+| levelOrder<sup>18+</sup>       | [LevelOrder](#levelorder18) | 否   | 设置弹窗显示的顺序。<br />**说明：**<br />- 默认值：LevelOrder.clamp(0) <br />- 不支持动态刷新顺序。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+
+## LevelOrder<sup>18+</sup>
+
+type LevelOrder = LevelOrder
+
+弹窗的显示顺序。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                                                  | 说明                 |
+| ----------------------------------------------------- | -------------------- |
+| [LevelOrder](../js-apis-promptAction.md#levelorder18) | 设置弹窗的显示顺序。 |
 
 ## AlertDialogParamWithConfirm对象说明
 
@@ -138,19 +132,19 @@ confirm参数优先级：fontColor、backgroundColor  > style > defaultFocus
 
 ## AlertDialogButtonBaseOptions<sup>18+</sup>对象说明
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称             | 类型                | 必填     | 说明                    |
 | ------------------| ---------------------- | ------------ | --------------------- |
-| enabled           | boolean | 否     | 点击Button是否响应，默认值true。 |
-| defaultFocus           | boolean | 否     | 设置Button是否是默认焦点，默认值false。 |
-| style           | [DialogButtonStyle](ts-appendix-enums.md#dialogbuttonstyle10) | 否     | 设置Button的风格样式，默认值DialogButtonStyle.DEFAULT。 |
-| value           | [ResourceStr](ts-types.md#resourcestr) | 是     | Button的文本内容，若值为null，则该按钮不显示。 |
-| fontColor           | [ResourceColor](ts-types.md#resourcecolor) | 否     | Button的文本颜色。 |
-| backgroundColor           | [ResourceColor](ts-types.md#resourcecolor) | 否     | Button背景颜色。 |
-| action           | [VoidCallback](ts-types.md#voidcallback12) | 是     | Button选中时的回调。 |
+| enabled<sup>10+</sup> | boolean | 否     | 点击Button是否响应，默认值true。<br/>值为true时，Button可以响应。值为false时，Button不可以响应。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| defaultFocus<sup>10+</sup> | boolean | 否     | 设置Button是否是默认焦点，默认值false。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| style<sup>10+</sup> | [DialogButtonStyle](ts-appendix-enums.md#dialogbuttonstyle10) | 否     | 设置Button的风格样式，默认值DialogButtonStyle.DEFAULT。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| value<sup>10+</sup> | [ResourceStr](ts-types.md#resourcestr) | 是     | Button的文本内容，若值为null，则该按钮不显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| fontColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 否     | Button的文本颜色。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| backgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 否     | Button背景颜色。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| action<sup>10+</sup> | [VoidCallback](ts-types.md#voidcallback12) | 是     | Button选中时的回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## DialogButtonDirection<sup>10+</sup>枚举说明
 
@@ -233,13 +227,37 @@ Dialog关闭的信息。
 |--------|------------------------------|----|-----------------------------------|
 | wordBreak      | [WordBreak](ts-appendix-enums.md#wordbreak11) | 否  | 弹窗message内容的文本截断方式。<br/>默认值：WordBreak.BREAK_ALL |
 
-## 示例
+## AlertDialog
 
-### 示例1（弹出多个按钮的弹窗）
+### show<sup>(deprecated)</sup>
+
+static show(value: AlertDialogParamWithConfirm | AlertDialogParamWithButtons | AlertDialogParamWithOptions)
+
+定义警告弹窗并弹出。
+
+> **说明：**
+> 
+> 从API version 18开始废弃，建议使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showAlertDialog](../js-apis-arkui-UIContext.md#showalertdialog)替代。
+>
+> 从API version 10开始，可以通过使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showAlertDialog](../js-apis-arkui-UIContext.md#showalertdialog)来明确UI的执行上下文。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型  | 必填 | 说明 |
+| ---- | --------------- | -------- | -------- |
+| value | [AlertDialogParamWithConfirm](#alertdialogparamwithconfirm对象说明)&nbsp;\|&nbsp;[AlertDialogParamWithButtons](#alertdialogparamwithbuttons对象说明)&nbsp;\|&nbsp;[AlertDialogParamWithOptions](#alertdialogparamwithoptions10对象说明)<sup>10+</sup> | 是 | 定义并显示AlertDialog组件。 |
+
+## 示例
 
 > **说明：**
 > 
 > 直接使用AlertDialog可能导致实例不明确的问题，建议使用[getUIContext](../js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[showAlertDialog](../js-apis-arkui-UIContext.md#showalertdialog)调用绑定实例的AlertDialog.show()。
+
+### 示例1（弹出多个按钮的弹窗）
 
 该示例实现了分别弹出一、二、三个按钮的弹窗。
 
@@ -252,8 +270,7 @@ struct AlertDialogExample {
     Column({ space: 5 }) {
       Button('one button dialog')
         .onClick(() => {
-          // 建议使用this.getUIContext().showAlertDialog()
-          AlertDialog.show(
+          this.getUIContext().showAlertDialog(
             {
               title: 'title',
               message: 'text',
@@ -264,20 +281,20 @@ struct AlertDialogExample {
               confirm: {
                 value: 'button',
                 action: () => {
-                  console.info('Button-clicking callback')
+                  console.info('Button-clicking callback');
                 }
               },
               cancel: () => {
-                console.info('Closed callbacks')
+                console.info('Closed callbacks');
               },
-              onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
-                console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
-                console.log("dialog onWillDismiss")
-                if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-                  dismissDialogAction.dismiss()
+              onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
+                console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
+                console.log("dialog onWillDismiss");
+                if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
+                  dismissDialogAction.dismiss();
                 }
-                if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-                  dismissDialogAction.dismiss()
+                if (dismissDialogAction.reason === DismissReason.TOUCH_OUTSIDE) {
+                  dismissDialogAction.dismiss();
                 }
               }
             }
@@ -286,8 +303,7 @@ struct AlertDialogExample {
         .backgroundColor(0x317aff)
       Button('two button dialog')
         .onClick(() => {
-          // 建议使用this.getUIContext().showAlertDialog()
-          AlertDialog.show(
+          this.getUIContext().showAlertDialog(
             {
               title: 'title',
               subtitle: 'subtitle',
@@ -299,7 +315,7 @@ struct AlertDialogExample {
               primaryButton: {
                 value: 'cancel',
                 action: () => {
-                  console.info('Callback when the first button is clicked')
+                  console.info('Callback when the first button is clicked');
                 }
               },
               secondaryButton: {
@@ -308,29 +324,28 @@ struct AlertDialogExample {
                 style: DialogButtonStyle.HIGHLIGHT,
                 value: 'ok',
                 action: () => {
-                  console.info('Callback when the second button is clicked')
+                  console.info('Callback when the second button is clicked');
                 }
               },
               cancel: () => {
-                console.info('Closed callbacks')
+                console.info('Closed callbacks');
               },
-              onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
-                console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
-                console.log("dialog onWillDismiss")
-                if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-                  dismissDialogAction.dismiss()
+              onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
+                console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
+                console.log("dialog onWillDismiss");
+                if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
+                  dismissDialogAction.dismiss();
                 }
-                if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-                  dismissDialogAction.dismiss()
+                if (dismissDialogAction.reason === DismissReason.TOUCH_OUTSIDE) {
+                  dismissDialogAction.dismiss();
                 }
               }
             }
           )
         }).backgroundColor(0x317aff)
-        Button('three button dialog')
+      Button('three button dialog')
         .onClick(() => {
-          // 建议使用this.getUIContext().showAlertDialog()
-          AlertDialog.show(
+          this.getUIContext().showAlertDialog(
             {
               title: 'title',
               subtitle: 'subtitle',
@@ -344,13 +359,13 @@ struct AlertDialogExample {
                 {
                   value: '按钮',
                   action: () => {
-                    console.info('Callback when button1 is clicked')
+                    console.info('Callback when button1 is clicked');
                   }
                 },
                 {
                   value: '按钮',
                   action: () => {
-                    console.info('Callback when button2 is clicked')
+                    console.info('Callback when button2 is clicked');
                   }
                 },
                 {
@@ -359,21 +374,21 @@ struct AlertDialogExample {
                   defaultFocus: true,
                   style: DialogButtonStyle.HIGHLIGHT,
                   action: () => {
-                    console.info('Callback when button3 is clicked')
+                    console.info('Callback when button3 is clicked');
                   }
                 },
               ],
               cancel: () => {
-                console.info('Closed callbacks')
+                console.info('Closed callbacks');
               },
-              onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
-                console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
-                console.log("dialog onWillDismiss")
-                if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-                  dismissDialogAction.dismiss()
+              onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
+                console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
+                console.log("dialog onWillDismiss");
+                if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
+                  dismissDialogAction.dismiss();
                 }
-                if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-                  dismissDialogAction.dismiss()
+                if (dismissDialogAction.reason === DismissReason.TOUCH_OUTSIDE) {
+                  dismissDialogAction.dismiss();
                 }
               }
             }
@@ -390,10 +405,6 @@ struct AlertDialogExample {
 
 在2in1设备上设置showInSubWindow为true时，可以弹出在主窗外显示的弹窗。
 
-> **说明：**
-> 
-> 直接使用AlertDialog可能导致实例不明确的问题，建议使用[getUIContext](../js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[showAlertDialog](../js-apis-arkui-UIContext.md#showalertdialog)调用绑定实例的AlertDialog.show()。
-
 ```ts
 // xxx.ets
 @Entry
@@ -403,8 +414,7 @@ struct AlertDialogExample {
     Column({ space: 5 }) {
       Button('one button dialog')
         .onClick(() => {
-          // 建议使用this.getUIContext().showAlertDialog()
-          AlertDialog.show(
+          this.getUIContext().showAlertDialog(
             {
               title: 'title',
               subtitle: 'subtitle',
@@ -420,13 +430,13 @@ struct AlertDialogExample {
                 {
                   value: '按钮',
                   action: () => {
-                    console.info('Callback when button1 is clicked')
+                    console.info('Callback when button1 is clicked');
                   }
                 },
                 {
                   value: '按钮',
                   action: () => {
-                    console.info('Callback when button2 is clicked')
+                    console.info('Callback when button2 is clicked');
                   }
                 },
                 {
@@ -435,26 +445,26 @@ struct AlertDialogExample {
                   defaultFocus: true,
                   style: DialogButtonStyle.HIGHLIGHT,
                   action: () => {
-                    console.info('Callback when button3 is clicked')
+                    console.info('Callback when button3 is clicked');
                   }
                 },
               ],
               cancel: () => {
-                console.info('Closed callbacks')
+                console.info('Closed callbacks');
               },
               onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
-                console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
-                console.log("dialog onWillDismiss")
-                if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-                  dismissDialogAction.dismiss()
+                console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
+                console.log("dialog onWillDismiss");
+                if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
+                  dismissDialogAction.dismiss();
                 }
-                if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-                  dismissDialogAction.dismiss()
+                if (dismissDialogAction.reason === DismissReason.TOUCH_OUTSIDE) {
+                  dismissDialogAction.dismiss();
                 }
               }
             })
         })
-    }.width('100%').margin({ top: 5 }).backgroundColor(0x317aff)
+    }.width('100%').margin({ top: 5 })
   }
 }
 ```
@@ -462,11 +472,8 @@ struct AlertDialogExample {
 ![zh-cn_image_alert_showinsubwindow](figures/zh-cn_image_alert_showinsubwindow.jpg)
 
 ### 示例3（设置弹窗的动画）
-该示例通过配置transition实现弹窗的显示和消失动画。
 
-> **说明：**
-> 
-> 直接使用AlertDialog可能导致实例不明确的问题，建议使用[getUIContext](../js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[showAlertDialog](../js-apis-arkui-UIContext.md#showalertdialog)调用绑定实例的AlertDialog.show()。
+该示例通过配置transition实现弹窗的显示和消失动画。
 
 ```ts
 // xxx.ets
@@ -476,31 +483,32 @@ struct AlertDialogExample {
   build() {
     Column({ space: 5 }) {
       Button('AlertDialog Set Duration')
-        .onClick(()=>{
-            // 建议使用this.getUIContext().showAlertDialog()
-            AlertDialog.show(
-              {
-                title: 'AlertDialog 1',
-                message: 'Set Animation Duration open 3 second, close 100ms',
-                autoCancel: true,
-                alignment: DialogAlignment.Top,
-                offset: { dx: 0, dy: -20 },
-                gridCount: 3,
-                transition:TransitionEffect.asymmetric(TransitionEffect.OPACITY
-                  .animation({ duration: 3000, curve: Curve.Sharp }).combine(TransitionEffect.scale({x: 1.5, y: 1.5}).animation({duration: 3000, curve: Curve.Sharp})),
-                  TransitionEffect.OPACITY.animation({ duration: 100, curve: Curve.Smooth })
-                    .combine(TransitionEffect.scale({x: 0.5, y: 0.5}).animation({duration: 100, curve: Curve.Smooth}))),
-                confirm: {
-                  value: 'button',
-                  action: () => {
-                    console.info('Button-clicking callback')
-                  }
-                },
-                cancel: () => {
-                  console.info('Closed callbacks')
+        .onClick(() => {
+          this.getUIContext().showAlertDialog(
+            {
+              title: 'AlertDialog 1',
+              message: 'Set Animation Duration open 3 second, close 100ms',
+              autoCancel: true,
+              alignment: DialogAlignment.Top,
+              offset: { dx: 0, dy: -20 },
+              gridCount: 3,
+              transition: TransitionEffect.asymmetric(TransitionEffect.OPACITY
+                .animation({ duration: 3000, curve: Curve.Sharp })
+                .combine(TransitionEffect.scale({ x: 1.5, y: 1.5 }).animation({ duration: 3000, curve: Curve.Sharp })),
+                TransitionEffect.OPACITY.animation({ duration: 100, curve: Curve.Smooth })
+                  .combine(TransitionEffect.scale({ x: 0.5, y: 0.5 })
+                    .animation({ duration: 100, curve: Curve.Smooth }))),
+              confirm: {
+                value: 'button',
+                action: () => {
+                  console.info('Button-clicking callback');
                 }
+              },
+              cancel: () => {
+                console.info('Closed callbacks');
               }
-            )
+            }
+          )
         })
         .backgroundColor(0x317aff).height("88px")
     }.width('100%').margin({ top: 5 })
@@ -511,11 +519,8 @@ struct AlertDialogExample {
 ![zh-cn_image_alert_animation](figures/zh-cn_image_alert_animation.gif)
 
 ### 示例4（设置弹窗的样式）
-该示例定义了AlertDialog的样式，如宽度、高度、背景色、阴影等等。
 
-> **说明：**
-> 
-> 直接使用AlertDialog可能导致实例不明确的问题，建议使用[getUIContext](../js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[showAlertDialog](../js-apis-arkui-UIContext.md#showalertdialog)调用绑定实例的AlertDialog.show()。
+该示例定义了AlertDialog的样式，如宽度、高度、背景色、阴影等等。
 
 ```ts
 // xxx.ets
@@ -526,8 +531,7 @@ struct AlertDialogExample {
     Column({ space: 5 }) {
       Button('one button dialog')
         .onClick(() => {
-          // 建议使用this.getUIContext().showAlertDialog()
-          AlertDialog.show(
+          this.getUIContext().showAlertDialog(
             {
               title: 'title',
               message: 'text',
@@ -539,28 +543,33 @@ struct AlertDialogExample {
               height: 200,
               cornerRadius: 20,
               borderWidth: 1,
-              borderStyle: BorderStyle.Dashed,//使用borderStyle属性，需要和borderWidth属性一起使用
-              borderColor: Color.Blue,//使用borderColor属性，需要和borderWidth属性一起使用
+              borderStyle: BorderStyle.Dashed, //使用borderStyle属性，需要和borderWidth属性一起使用
+              borderColor: Color.Blue, //使用borderColor属性，需要和borderWidth属性一起使用
               backgroundColor: Color.White,
-              shadow: ({ radius: 20, color: Color.Grey, offsetX: 50, offsetY: 0}),
+              shadow: ({
+                radius: 20,
+                color: Color.Grey,
+                offsetX: 50,
+                offsetY: 0
+              }),
               textStyle: { wordBreak: WordBreak.BREAK_ALL },
               confirm: {
                 value: 'button',
                 action: () => {
-                  console.info('Button-clicking callback')
+                  console.info('Button-clicking callback');
                 }
               },
               cancel: () => {
-                console.info('Closed callbacks')
+                console.info('Closed callbacks');
               },
-              onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
-                console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
-                console.log("dialog onWillDismiss")
-                if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-                  dismissDialogAction.dismiss()
+              onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
+                console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
+                console.log("dialog onWillDismiss");
+                if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
+                  dismissDialogAction.dismiss();
                 }
-                if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-                  dismissDialogAction.dismiss()
+                if (dismissDialogAction.reason === DismissReason.TOUCH_OUTSIDE) {
+                  dismissDialogAction.dismiss();
                 }
               }
             }
@@ -579,6 +588,7 @@ struct AlertDialogExample {
 该示例展示了在折叠屏悬停态下设置dialog布局区域的效果。
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct AlertDialogExample {
@@ -586,7 +596,7 @@ struct AlertDialogExample {
     Column({ space: 5 }) {
       Button('one button dialog')
         .onClick(() => {
-          AlertDialog.show(
+          this.getUIContext().showAlertDialog(
             {
               title: 'title',
               message: 'text',
@@ -596,19 +606,19 @@ struct AlertDialogExample {
               confirm: {
                 value: 'button',
                 action: () => {
-                  console.info('Button-clicking callback')
+                  console.info('Button-clicking callback');
                 }
               },
               cancel: () => {
-                console.info('Closed callbacks')
+                console.info('Closed callbacks');
               },
-              onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
+              onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
                 console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
                 console.log("dialog onWillDismiss");
-                if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
+                if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
                   dismissDialogAction.dismiss();
                 }
-                if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
+                if (dismissDialogAction.reason === DismissReason.TOUCH_OUTSIDE) {
                   dismissDialogAction.dismiss();
                 }
               },

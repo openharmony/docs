@@ -48,7 +48,7 @@ ListItemGroup(options?: ListItemGroupOptions)
 
 ### divider
 
-divider(value: [ListDividerOptions](ts-container-list.md#listdivideroptions14) | null)
+divider(value: [ListDividerOptions](ts-container-list.md#listdivideroptions18) | null)
 
 Sets the style of the divider for the list items. By default, there is no divider.
 
@@ -64,7 +64,7 @@ When a list item has [polymorphic styles](ts-universal-attributes-polymorphic-st
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ListDividerOptions](ts-container-list.md#listdivideroptions14) \| null | Yes  | Style of the divider for the list items.<br> Default value: **null**|
+| value  | [ListDividerOptions](ts-container-list.md#listdivideroptions18) \| null | Yes  | Style of the divider for the list items.<br> Default value: **null**|
 
 ### childrenMainSize<sup>12+</sup>
 
@@ -277,7 +277,7 @@ function itemHead(params: HeadBuilderParams) {
 
 @Builder
 function itemFoot(params: FootBuilderParams) {
-  Text('Total lessons:' + params.num)
+  Text('Total lessons: ' + params.num)
     .fontSize(20)
     .height('48vp')
     .width("100%")

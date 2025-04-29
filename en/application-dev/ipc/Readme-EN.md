@@ -1,4 +1,4 @@
-# IPC Kit (Inter-Process Communication Service)
+# IPC Kit<!--ipc-kit-->
 
 - [Introduction to IPC Kit](ipc-rpc-overview.md)
 - [IPC and RPC Development](ipc-rpc-development-guideline.md)

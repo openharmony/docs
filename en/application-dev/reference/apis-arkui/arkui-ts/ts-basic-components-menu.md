@@ -36,7 +36,7 @@ Creates a fixed container for a menu. This API does not have any parameters.
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### fontSize<sup>(deprecated)</sup>
 
@@ -99,7 +99,7 @@ Sets the radius of the menu border corners.
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Dimension](ts-types.md#dimension10) \| [BorderRadiuses](ts-types.md#borderradiuses9) | Yes  | Radius of the menu border corners.<br>Default value: **8vp** for 2-in-1 devices and **20vp** for other devices<br><br> Since API version 12, if the sum of the two maximum corner radii in the horizontal direction exceeds the menu width, or if the sum of the two maximum corner radii in the vertical direction exceeds the menu height, the default corner radius will be used for all four corners of the menu.|
+| value  | [Dimension](ts-types.md#dimension10) \| [BorderRadiuses](ts-types.md#borderradiuses9) | Yes  | Radius of the menu border corners.<br>Default value: **8vp** for 2-in-1 devices and **20vp** for other devices<br> Since API version 12, if the sum of the two maximum corner radii in the horizontal direction exceeds the menu width, or if the sum of the two maximum corner radii in the vertical direction exceeds the menu height, the default corner radius will be used for all four corners of the menu.|
 
 ### menuItemDivider<sup>12+</sup>
 
@@ -117,7 +117,7 @@ If the sum of **startMargin** and **endMargin** exceeds the component width, bot
 
 | Name    | Type                                                    | Mandatory        | Description          |
 |---------|--------------------------------------------------------|------------| -------------- |
-| options | [DividerStyleOptions](ts-types.md#dividerstyleoptions12) \|  undefined | Yes  | Style of the menu item divider.<br>- **strokeWidth**: stroke width of the divider.<br>- **color**: color of the divider.<br>- **startMargin**: distance between the divider and the start edge of the menu item.<br>- **endMargin**: distance between the divider and the end edge of the menu item.|
+| options | [DividerStyleOptions](ts-types.md#dividerstyleoptions12) \|  undefined | Yes  | Style of the menu item divider.<br>- **strokeWidth**: stroke width of the divider.<br>- **color**: color of the divider.<br>- **startMargin**: distance between the divider and the start edge of the menu item.<br>- **endMargin**: distance between the divider and the end edge of the menu item.<br>- **mode**: mode of the divider, which is **FLOATING_ABOVE_MENU** by default.|
 
 ### menuItemGroupDivider<sup>12+</sup>
 
@@ -133,7 +133,7 @@ Sets the style of the top and bottom dividers for the menu item group. If this a
 
 | Name    | Type                                                    | Mandatory        | Description          |
 |---------|--------------------------------------------------------|------------| -------------- |
-| options | [DividerStyleOptions](ts-types.md#dividerstyleoptions12) \|  undefined | Yes  | Style of the top and bottom dividers for the menu item group.<br>- **strokeWidth**: stroke width of the divider. The default value is 1 px.<br>- **color**: color of the divider. The default value is **#33000000**.<br>- **startMargin**: distance between the divider and the start edge of the menu item group. The default value is **16**.<br>- **endMargin**: distance between the divider and the end edge of the menu item group. The default value is **16**.|
+| options | [DividerStyleOptions](ts-types.md#dividerstyleoptions12) \|  undefined | Yes  | Style of the top and bottom dividers for the menu item group.<br>- **strokeWidth**: stroke width of the divider. The default value is 1 px.<br>- **color**: color of the divider. The default value is **#33000000**.<br>- **startMargin**: distance between the divider and the start edge of the menu item group. The default value is **16**.<br>- **endMargin**: distance between the divider and the end edge of the menu item group. The default value is **16**.<br>- **mode**: mode of the divider, which is **FLOATING_ABOVE_MENU** by default.|
 
 ### subMenuExpandingMode<sup>12+</sup>
 
@@ -159,15 +159,17 @@ Enumerates the submenu expanding modes.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name           | Description                                      |
-| --------------- | ------------------------------------------ |
-| SIDE_EXPAND     | Default mode. Submenus are expanded on the side on the same plane.|
-| EMBEDDED_EXPAND | Embedded mode. Submenus are expanded while embedded within the main menu.    |
-| STACK_EXPAND    | Stack mode. Submenus are expanded above the main menu.      |
+| Name           | Value| Description                                      |
+| --------------- | - | ------------------------------------------ |
+| SIDE_EXPAND     | 0 | Default mode. Submenus are expanded on the side on the same plane.|
+| EMBEDDED_EXPAND | 1 | Embedded mode. Submenus are expanded while embedded within the main menu.    |
+| STACK_EXPAND    | 2 | Stack mode. Submenus are expanded above the main menu.      |
 
 ## Example
 
-### Example 1
+### Example 1: Implementing a Multi-Level Menu
+
+This example demonstrates how to implement a multi-level menu by configuring the **builder** parameter in **MenuItem**.
 
 ```ts
 @Entry
@@ -235,9 +237,9 @@ struct Index {
 
 ![menu](figures/menu.png)
 
-### Example 2
+### Example 2: Setting the Symbol Icon
 
-This example demonstrates a regular menu (using symbol-type icons).
+This example demonstrates how to implement a menu with symbol icons by configuring **symbolStartIcon** and **symbolEndIcon**.
 
 ```ts
 // xxx.ets
@@ -307,4 +309,4 @@ struct Index {
 }
 ```
 
-![en-us_image_0000001174582862](figures/normal-symbol.jpg)
+![en-us_image_0000001174582862](figures/normal-symbol.png)

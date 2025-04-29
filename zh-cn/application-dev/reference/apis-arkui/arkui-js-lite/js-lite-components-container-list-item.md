@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> 该组件从从API version 4 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 4 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -50,4 +50,4 @@
 
 ## 示例
 
-参考 [list示例](js-lite-components-container-list.md)
+参考 [list示例](js-lite-components-container-list.md#示例)。

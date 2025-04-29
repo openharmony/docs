@@ -75,7 +75,7 @@ base目录是默认存在的目录，二级子目录element用于存放字符串
 
 #### resfile目录
 
-支持创建多层子目录，子目录名称可以自定义，文件夹内可以自由放置各类资源文件。<br/>目录中的资源文件会被直接打包进应用，不经过编译，也不会被赋予资源文件ID。应用安装后，resfile资源会被解压到应用沙箱路径，通过Context属性[resourceDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#属性)获取到resfile资源目录后，可通过文件路径访问。
+支持创建多层子目录，子目录名称可以自定义，文件夹内可以自由放置各类资源文件。<br/>目录中的资源文件会被直接打包进应用，不经过编译，也不会被赋予资源文件ID。应用安装后，resfile资源会被解压到应用沙箱路径，通过Context属性[resourceDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#属性)获取到resfile资源目录后，可通过文件路径访问，且该路径仅能以只读方式访问。
 
 ### 资源组目录
 
@@ -213,7 +213,7 @@ plural.json文件的内容如下：
 
 ### 创建资源文件
 
-在资源目录（element、media、profile）的右键菜单选择“New > XXX Resource File”，即可创建对应资源组目录的资源文件。例如，在element目录下可新建Element Resource File。
+在资源组目录（element、media、profile）的右键菜单选择“New > XXX Resource File”，即可创建对应资源组目录的资源文件。例如，在element目录下可新建Element Resource File。
 
   ![create-resource-file-3](figures/create-resource-file-3.png)
 
@@ -470,6 +470,8 @@ Image($r('sys.media.ohos_app_icon'))
 在Index.ets中，分别获取三种语言的资源并显示在文本框中，运行设备当前系统语言为中文，entry/src/main/ets/pages/Index.ets的代码如下：
 
 ```ts
+import { common } from '@kit.AbilityKit'
+
 @Entry
 @Component
 struct Index {
@@ -477,7 +479,8 @@ struct Index {
   @State germanString: string = ""
 
   getString(): string {
-    let resMgr = getContext().resourceManager
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext
+    let resMgr = context.resourceManager
     let resId = $r('app.string.greetings').id
 
     //获取符合当前系统语言地区、颜色模式、分辨率等配置的资源
@@ -592,8 +595,9 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
 ```
 <!--DelEnd-->
 > **说明：**
+<!--Del-->>
 > - targetBundleName: 字符串类型，指定要overlay的bundleName。
->
+<!--DelEnd-->>
 > - targetModuleName: 字符串类型，指定要overlay的应用中的目标module。
 >
 > - targetPriority： 整数类型，指定overlay优先级。

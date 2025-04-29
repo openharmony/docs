@@ -84,7 +84,7 @@ struct WebHeightPage {
         <ul>
             <li><p>Web page loading: Declarative loading and off-screen loading of web pages. </p></li>
             <li><p>Lifecycle management: Managing the lifecycle of components and notifying web pages of loading status changes. </p></li>
-            <li><p>Common attributes and events: UserAgent management, cookie and storage management, font and dark mode management, and permission management. </p>
+            <li><p>Common attributes and events: User-Agent management, cookie and storage management, font and dark mode management, and permission management. </p>
             </li>
             <li><p>
                 Interaction with the application UI: The text selection menu, context menu, and file upload page can be customized to interact with the application UI. </p>
@@ -109,4 +109,4 @@ struct WebHeightPage {
 ```
 
 
-
+![web-fit-content](figures/web-fit-content.gif)

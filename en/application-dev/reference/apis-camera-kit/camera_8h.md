@@ -67,7 +67,7 @@ The **camera.h** file declares the basic concepts of the camera.
 | typedef enum [Camera_SmoothZoomMode](_o_h___camera.md#camera_smoothzoommode) [Camera_SmoothZoomMode](_o_h___camera.md#camera_smoothzoommode) | Defines an enum for the smooth zoom modes.| 
 | typedef enum [Camera_PreconfigType](_o_h___camera.md#camera_preconfigtype) [Camera_PreconfigType](_o_h___camera.md#camera_preconfigtype) | Defines an enum for the preconfigured photo resolution types.| 
 | typedef enum [Camera_PreconfigRatio](_o_h___camera.md#camera_preconfigratio) [Camera_PreconfigRatio](_o_h___camera.md#camera_preconfigratio) | Defines an enum for the preconfigured photo aspect ratios.| 
-| typedef enum [Camera_HostDeviceType](_o_h___camera.md#camera_hostdevicetype)[Camera_HostDeviceType](_o_h___camera.md#camera_hostdevicetype) | Defines an enum for the remote device types.| 
+| typedef enum [Camera_HostDeviceType](_o_h___camera.md#camera_hostdevicetype) [Camera_HostDeviceType](_o_h___camera.md#camera_hostdevicetype) | Defines an enum for the remote device types.| 
 | typedef struct [Camera_Size](_camera___size.md) [Camera_Size](_o_h___camera.md#camera_size) | Defines a struct for the parameters related to the size.| 
 | typedef struct [Camera_Profile](_camera___profile.md) [Camera_Profile](_o_h___camera.md#camera_profile) | Defines a struct for the profile of the camera stream.| 
 | typedef struct [Camera_FrameRateRange](_camera___frame_rate_range.md) [Camera_FrameRateRange](_o_h___camera.md#camera_frameraterange) | Defines a struct for the frame rate range.| 

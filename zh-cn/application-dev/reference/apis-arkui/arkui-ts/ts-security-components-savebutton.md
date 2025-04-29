@@ -110,9 +110,9 @@ SaveButton(options: SaveButtonOptions)
 | SUCCESS | 0 | 保存按钮点击成功。 |
 | TEMPORARY_AUTHORIZATION_FAILED | 1 | 保存按钮点击后权限授权失败。 |
 
-## SaveButtonCallback
+## SaveButtonCallback<sup>18+</sup>
 
-SaveButtonCallback = (event: ClickEvent, result: SaveButtonOnClickResult, error?: BusinessError&lt;void&gt;) =&gt; void
+type SaveButtonCallback = (event: ClickEvent, result: SaveButtonOnClickResult, error?: BusinessError&lt;void&gt;) =&gt; void
 
 点击保存按钮触发该回调。
 
@@ -148,7 +148,7 @@ onClick(event: SaveButtonCallback)
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| event | [SaveButtonCallback](#savebuttoncallback) |是 |见SaveButtonCallback。<br>在API10-17时，参数类型为：(event: [ClickEvent](ts-universal-events-click.md#clickevent对象说明), result: [SaveButtonOnClickResult](#savebuttononclickresult枚举说明)) => void。<br>从API18开始，变更为SaveButtonCallback。|
+| event | [SaveButtonCallback](#savebuttoncallback18) |是 |见SaveButtonCallback。<br>在API10-17时，参数类型为：(event: [ClickEvent](ts-universal-events-click.md#clickevent对象说明), result: [SaveButtonOnClickResult](#savebuttononclickresult枚举说明)) => void。<br>从API18开始，变更为SaveButtonCallback。|
 
 ## 示例
 
@@ -165,7 +165,7 @@ struct Index {
     async (event: ClickEvent, result: SaveButtonOnClickResult, error: BusinessError<void>) => {
       if (result == SaveButtonOnClickResult.SUCCESS) {
         try {
-          const context = getContext(this);
+          const context = this.getUIContext().getHostContext();
           let helper = photoAccessHelper.getPhotoAccessHelper(context);
           // onClick触发后10秒内通过createAsset接口创建图片文件，10秒后createAsset权限收回。
           let uri = await helper.createAsset(photoAccessHelper.PhotoType.IMAGE, 'png');

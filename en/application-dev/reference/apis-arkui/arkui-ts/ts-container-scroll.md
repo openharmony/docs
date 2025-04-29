@@ -18,6 +18,8 @@ This component supports only one child component.
 
 Scroll(scroller?: Scroller)
 
+Creates a **Scroll** component.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -30,7 +32,7 @@ Scroll(scroller?: Scroller)
 
 ## Attributes
 
-In addition to [universal attributes](ts-universal-attributes-size.md) and [scrollable component common attributes](ts-container-scrollable-common.md#attributes), the following attributes are also supported.
+In addition to [universal attributes](ts-component-general-attributes.md) and [scrollable component common attributes](ts-container-scrollable-common.md#attributes), the following attributes are also supported.
 
 ### scrollable
 
@@ -169,7 +171,7 @@ Sets the nested scrolling options. You can set the nested scrolling mode in the 
 
 friction(value: number | Resource)
 
-Sets the friction coefficient. It applies only to gestures in the scrolling area, and it affects only indirectly the scroll chaining during the inertial scrolling process. A value less than or equal to 0 evaluates to the default value.
+Sets the friction coefficient. It applies only to gestures in the scrolling area, and it affects only indirectly the scroll chaining during the inertial scrolling process. If this attribute is set to a value less than or equal to 0, the default value is used.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -215,6 +217,8 @@ Sets the initial scrolling offset. This attribute takes effect only during the i
 
 ## ScrollDirection
 
+Enumerates the scrolling directions.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name      | Description                  |
@@ -226,6 +230,8 @@ Sets the initial scrolling offset. This attribute takes effect only during the i
 
 ## ScrollSnapOptions<sup>10+</sup>
 
+Defines a scroll snapping mode object.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -233,13 +239,16 @@ Sets the initial scrolling offset. This attribute takes effect only during the i
 | Name      | Type   | Mandatory  | Description      |
 | ---------- | --------------------|-------------------- | -------- |
 | snapAlign  | [ScrollSnapAlign](ts-container-list.md#scrollsnapalign10)   | Yes| Alignment mode for the scroll snap position.<br>**NOTE**<br>1. Default value: **ScrollSnapAlign.NONE**|
-| snapPagination | [Dimension](ts-types.md#dimension10) \| Array\<Dimension\> | No| Snap points for the **Scroll** component. Each snap point defines the offset from an edge to which the **Scroll** component can scroll.<br>**NOTE**<br>1. A value of the **Dimension** type indicates the size per page. The system automatically works out the position of each snap point based on the value. For example, if the value is **500**, the position of the snap point is [0,500,1000,1500, ...].<br>2. A value of the **Array\<Dimension\>** type indicates an array of snap point positions defined by **Dimension**. The range of each dimension is [0, scrollable distance]. Point 0 and the bottom of the scrollable distance automatically become the snap points.<br>3. If this attribute is not set or **Dimension** is set to a value less than or equal to 0, the value is regarded as an abnormal value. In this case, there is no scroll snapping. When the value is of the **Array\<Dimension\>** type, the items in the array must be monotonically increasing.<br>4. When the value is a percentage, the actual size is the product of the viewport of the **Scroll** component and the percentage value.|
-| enableSnapToStart | boolean   | No| Whether to enable the snap to start feature. When scroll snapping is defined for the **Scroll** component, setting this attribute to **false** enables the component to scroll between the start edge and the first snap point.<br>**NOTE**<br>1. Default value: **true**<br>2. This attribute takes effect only when **snapPagination** is set to a value of the **Array\<Dimension\>** type; it does not work with values of the **Dimension** type.|
-| enableSnapToEnd | boolean   | No| Whether to enable the snap to end feature. When scroll snapping is defined for the **Scroll** component, setting this attribute to **false** enables the component to scroll between the end edge and the last snap point.<br>**NOTE**<br>1. Default value: **true**<br>2. This attribute takes effect only when **snapPagination** is set to a value of the **Array\<Dimension\>** type; it does not work with values of the **Dimension** type.|
+| snapPagination | [Dimension](ts-types.md#dimension10) \| Array\<Dimension\> | No| Pagination points for scroll snapping.<br>**NOTE**<br>1. If the value is of the Dimension type, it indicates the size of each page, and the system will paginate based on this size.<br>2. If the value is of the Array\<Dimension\> type, each **Dimension** represents a pagination point, and the system will paginate accordingly. Each **Dimension** value must be within the [0, scrollable distance] range.<br>3. If this parameter is not set or **Dimension** is set to a value less than or equal to 0, the value is regarded as an invalid value. In this case, there is no scroll snapping. When the value is of the Array\<Dimension\> type, the items in the array must be monotonically increasing.<br>4. When the value is a percentage, the actual size is the product of the viewport of the **Scroll** component and the percentage value.|
+| enableSnapToStart | boolean   | No| Whether to enable the snap to start feature. When scroll snapping is defined for the **Scroll** component, setting this parameter to **false** enables the component to scroll between the start and the first page.<br>**NOTE**<br>1. Default value: **true**<br>2. This attribute takes effect only when **snapPagination** is set to a value of the **Array\<Dimension\>** type; it does not work with values of the **Dimension** type.|
+| enableSnapToEnd | boolean   | No| Whether to enable the snap to end feature. When scroll snapping is defined for the **Scroll** component, setting this parameter to **false** enables the component to scroll between the end and the last page.<br>**NOTE**<br>1. Default value: **true**<br>2. This attribute takes effect only when **snapPagination** is set to a value of the **Array\<Dimension\>** type; it does not work with values of the **Dimension** type.|
 
 ## Events
 
-In addition to [universal events](ts-universal-events-click.md) and [scrollable component common events](ts-container-scrollable-common.md#events), the following events are also supported.
+In addition to [universal events](ts-component-general-events.md) and [scrollable component common events](ts-container-scrollable-common.md#events), the following events are also supported.
+>  **NOTE**
+>
+>  The [onWillScroll](ts-container-scrollable-common.md#onwillscroll12) and [onDidScroll](ts-container-scrollable-common.md#ondidscroll12) events are not supported.
 
 ### onScrollFrameBegin<sup>9+</sup>
 
@@ -510,7 +519,7 @@ Represents the callback triggered before each frame scrolling starts.
 
 ## Scroller
 
-Implements a controller for a scrollable container component. You can bind this component to a container component and use it to control the scrolling of that component. One controller can control only one container component. The supported container components are **List**, **Scroll**, **ScrollBar**, **Grid**, and **WaterFlow**.
+Defines a controller for scrollable container components. It can be bound to a container component to control its scrolling behavior. A single **Scroller** instance cannot control multiple container components simultaneously. Currently, it can be bound to the following components: **ArcList**, **ArcScrollBar**, **List**, **Scroll**, **ScrollBar**, **Grid**, and **WaterFlow**.
 
 >**NOTE**
 >
@@ -537,7 +546,7 @@ A constructor used to create a **Scroller** object.
 
 ### scrollTo
 
-scrollTo(value: [ScrollOptions](#scrolloptions16))
+scrollTo(options: [ScrollOptions](#scrolloptions16))
 
 
 Scrolls to the specified position.
@@ -550,12 +559,11 @@ Scrolls to the specified position.
 
 | Name  | Type| Mandatory  | Description     |
 | ----- | ---- | ---- | --------- |
-| value | [ScrollOptions](#scrolloptions16) | Yes   | Parameters for scrolling to the specified position.
+| options | [ScrollOptions](#scrolloptions16) | Yes   | Parameters for scrolling to the specified position.
 
 ### scrollEdge
 
 scrollEdge(value: Edge, options?: ScrollEdgeOptions)
-
 
 Scrolls to the edge of the container, regardless of the scroll axis direction. **Edge.Top** and **Edge.Start** produce the same effect, and **Edge.Bottom** and **Edge.End** produce the same effect.
 By default, the **Scroll** component comes with an animation, while the **Grid**, **List**, and **WaterFlow** components do not.
@@ -584,11 +592,11 @@ Performs inertial scrolling based on the initial velocity passed in.
 
 | Name  | Type| Mandatory| Description                                                    |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| velocity | number   | Yes  | Initial velocity of inertial scrolling. Unit: vp/s<br>**NOTE**<br>If the value specified is 0, it is considered as invalid, and the scrolling for this instance will not take effect. If the value is positive, the scroll will move downward; if the value is negative, the scroll will move upward.|
+| velocity | number   | Yes  | Initial velocity of inertial scrolling. Unit: vp/s<br>**NOTE**<br>If the value specified is 0, it is considered as invalid, and the scrolling for this instance will not take effect. A positive value indicates scrolling towards the top, while a negative value indicates scrolling towards the bottom.|
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../../errorcode-universal.md) and [Scrollable Component Error Codes](../errorcode-scroll.md).
 
 | ID| Error Message|
 | ------- | -------- |
@@ -609,7 +617,7 @@ Scrolls to the next or previous page.
 
 | Name| Type                                          | Mandatory| Description      |
 | ------ | -------------------------------------------------- | ---- | -------------- |
-| value  | [ScrollPageOptions](#scrollpageoptions14) | Yes  | Set the Home screen mode|
+| value  | [ScrollPageOptions](#scrollpageoptions14) | Yes  | Page turning mode.|
 
 ### scrollPage<sup>(deprecated)</sup>
 
@@ -630,13 +638,15 @@ Scrolls to the next or previous page. This API is deprecated since API version 9
 
 currentOffset(): OffsetResult
 
+Obtains the current scrolling offset.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Type | Description|
 | -------- | -------- |
-|  [OffsetResult<sup>11+</sup>](#offsetresult11) | Scrolling offset.<br>**NOTE**<br>If **Scroller** is not bound to a container component or the container component is released abnormally, the return value for **currentOffset** is null.|
+|  [OffsetResult<sup>11+</sup>](#offsetresult11) | Obtains the scrolling offset.<br>**NOTE**<br>If **Scroller** is not bound to a container component or the container component is released abnormally, the return value for **currentOffset** is null.|
 
 ### scrollToIndex
 
@@ -649,7 +659,7 @@ When **smooth** is set to **true**, all passed items are loaded and counted in l
 
 >  **NOTE**
 >
->  This API only works for the **Grid**, **List**, and **WaterFlow** components.
+>  This API only works for the **ArcList**, **Grid**, **List**, and **WaterFlow** components.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -674,7 +684,7 @@ Scrolls by the specified amount.
 
 >  **NOTE**
 >
->  This API is available for the **Scroll**, **List**, **Grid**, and **WaterFlow** components.
+>  This API is available for the **ArcList**, **Scroll**, **List**, **Grid**, and **WaterFlow** components.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -695,7 +705,7 @@ Checks whether the component has scrolled to the bottom.
 
 >  **NOTE**
 >
->  This API is available for the **Scroll**, **List**, **Grid**, and **WaterFlow** components.
+>  This API is available for the **ArcList**, **Scroll**, **List**, **Grid**, and **WaterFlow** components.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -715,7 +725,7 @@ Obtains the size and position of a child component relative to its container.
 
 >  **NOTE**
 >
->  This API is available for the **Scroll**, **List**, **Grid**, and **WaterFlow** components.
+>  This API is available for the **ArcList**, **Scroll**, **List**, **Grid**, and **WaterFlow** components.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -740,7 +750,7 @@ Obtains the size and position of a child component relative to its container.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../../errorcode-universal.md) and [Scrollable Component Error Codes](../errorcode-scroll.md).
 
 | ID| Error Message|
 | ------- | -------- |
@@ -779,14 +789,16 @@ Obtains the index of a child component based on coordinates.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../../errorcode-universal.md) and [Scrollable Component Error Codes](../errorcode-scroll.md).
 
 | ID| Error Message|
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 100004   | Controller not bound to component.                               |
+| 100004   |The controller not bound to component.                              |
 
 ## OffsetResult<sup>11+</sup>
+
+Represents the offset values resulting from a scroll operation.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -799,6 +811,8 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 
 ## ScrollAnimationOptions<sup>12+</sup>
 
+Provides parameters for customizing scroll animations.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -810,6 +824,8 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 | canOverScroll | boolean | No| Whether to enable overscroll.<br>Default value: **false**<br>**NOTE**<br> Scrolling can exceed the boundary and initiate a bounce animation when this parameter is set to **true**, and the component's **edgeEffect** attribute is set to [EdgeEffect.Spring](ts-appendix-enums.md#edgeeffect).|
 
 ## ScrollAlign<sup>10+</sup>
+
+Enumerates alignment modes.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -824,6 +840,8 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 
 ## ScrollToIndexOptions<sup>12+</sup>
 
+Provides parameters for scrolling to a specific index.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -833,6 +851,8 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 | extraOffset | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No| Extra offset for scrolling to a specified index.|
 
 ## ScrollPageOptions<sup>14+</sup>
+
+Provides parameters for page scrolling behavior.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -845,6 +865,8 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 
 ## OffsetOptions<sup>12+</sup>
 
+Provides parameters for setting the initial scrolling offset.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -856,6 +878,8 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 
 ## ScrollEdgeOptions<sup>12+</sup>
 
+Provides parameters for scrolling to the edge of a scrollable container.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -865,6 +889,8 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 | velocity      | number  | No  | Fixed velocity for scrolling to the edge of the container. If the value specified is less than or equal to 0, the parameter will not take effect.<br>Default value: **0**<br>  Unit: vp/s         |
 
 ## ScrollOptions<sup>16+</sup>
+
+Provides parameters for scrolling to a specific position in a scrollable container.
 
 **Atomic service API**: This API can be used in atomic services since API version 16.
 
@@ -1346,7 +1372,7 @@ struct ScrollExample {
 
 ![fadingEdge_scroll](figures/fadingEdge_scroll.gif)
 
-### Example 9: Setting the Single-Side Edge Effect
+### Example 8: Setting the Single-Side Edge Effect
 
 This example demonstrates how to set a single-side edge effect for the **Scroll** component using the **edgeEffect** API.
 

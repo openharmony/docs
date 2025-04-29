@@ -39,7 +39,7 @@ static connect<T extends object>(
 
 | connect      | Description                                                 |
 | ------------ | ----------------------------------------------------- |
-| Parameter        | **type**: specified type. If no **key** is specified, the name of the **type** is used as the **key**.<br> **keyOrDefaultCreater**: specified key or default constructor.<br> **defaultCreator**: default constructor.                                         |
+| Parameter        | **type**: specified type. If no **key** is specified, the name of the **type** is used as the **key**.<br> **keyOrDefaultCreator**: specified key or default constructor.<br> **defaultCreator**: default constructor.                                         |
 | Return value      | After creating or obtaining data, value is returned. Otherwise, **undefined** is returned.|
 
 >**NOTE**
@@ -87,7 +87,7 @@ class ConnectOptions<T extends object> {
 |        type        | **TypeConstructorWithArgs\<T\>**: (mandatory) specified type.        |
 |        key         | Input key of the string type. If no value is passed in, the type name is used as the key.            |
 |   defaultCreator   | **StorageDefaultCreator\<T\>**: default constructor. It is recommended that this parameter be passed in. If **globalConnect** is connected to the key for the first time, an error is reported if no parameter is passed in.|
-|      areaMode      | **contextConstant.AreaMode**: encryption level, ranging from EL1 to EL5 (corresponding to the value from 0 to 4). For details, see [Encryption Levels](../application-models/application-context-stage.md). If no value is passed in, EL2 is used by default. Storage paths vary based on the encryption levels. If the input value of encryption level is not in the range of **0** to **4**, a crash occurs.|
+|      areaMode      | **contextConstant.AreaMode**: encryption level, ranging from EL1 to EL5 (corresponding to the value from 0 to 4). For details, see [Encryption Levels](../application-models/application-context-stage.md#obtaining-and-modifying-encryption-levels). If no value is passed in, EL2 is used by default. Storage paths vary based on the encryption levels. If the input value of encryption level is not in the range of **0** to **4**, a crash occurs.|
 
 > **NOTE**
 >
@@ -346,7 +346,7 @@ When using **Navigation**, you need to add the **route_map.json** file to the **
       "pageSourceFile": "src/main/ets/pages/Page2.ets",
       "buildFunction": "Page2Builder",
       "data": {
-        "description" : "AppStorageV2 example"
+        "description" : "PersistenceV2 example"
       }
     }
   ]

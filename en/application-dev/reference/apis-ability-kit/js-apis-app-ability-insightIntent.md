@@ -30,13 +30,11 @@ Enumerates the InsightIntent call execution modes.
 
 Defines the InsightIntent call execution result.
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| code | number | No| No| Error code returned.|
-| result | Record<string, Object> | No| Yes| Execution result returned.|
-| uris<sup>16+</sup> | Array&lt;string&gt; | No| Yes| List of URIs authorized by the InsightIntent executor to the InsightIntent caller during the call.|
-| flags<sup>16+</sup> | number | No| Yes| [Flags](js-apis-app-ability-wantConstant.md#flags) of the URIs authorized by the InsightIntent executor to the InsightIntent caller during the call.<br>**NOTE**<br>This parameter supports only **FLAG_AUTH_READ_URI_PERMISSION**, **FLAG_AUTH_WRITE_URI_PERMISSION**, and **FLAG_AUTH_READ_URI_PERMISSION\|FLAG_AUTH_WRITE_URI_PERMISSION**. |
+| code | number | No| No| Error code returned.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| result | Record<string, Object> | No| Yes| Execution result returned.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| uris<sup>18+</sup> | Array&lt;string&gt; | No| Yes| List of URIs authorized by the InsightIntent executor to the InsightIntent caller during the call.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| flags<sup>18+</sup> | number | No| Yes| [Flags](js-apis-app-ability-wantConstant.md#flags) of the URIs authorized by the InsightIntent executor to the InsightIntent caller during the call.<br>**Atomic service API**: This API can be used in atomic services since API version 18.<br>**NOTE**<br>This parameter supports only **FLAG_AUTH_READ_URI_PERMISSION**, **FLAG_AUTH_WRITE_URI_PERMISSION**, and FLAG_AUTH_READ_URI_PERMISSION\|FLAG_AUTH_WRITE_URI_PERMISSION.|

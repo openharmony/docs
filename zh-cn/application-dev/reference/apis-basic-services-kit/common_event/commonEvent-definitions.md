@@ -78,7 +78,7 @@
 
 
 * COMMON_EVENT_TIME_CHANGED
-提示系统时间被被重新设置。
+提示系统时间被重新设置。
   - 值：usual.event.TIME_CHANGED
   - 订阅者所需权限：无
 
@@ -352,9 +352,8 @@
 
 
 * COMMON_EVENT_WIFI_MPLINK_STATE_CHANGE
-提示MPLink（增强Wi-Fi功能）状态已更改。
+提示MPLink（增强Wi-Fi功能）状态已更改（暂不支持）。
   - 值：usual.event.wifi.mplink.STATE_CHANGE
-  - 订阅者所需权限：ohos.permission.MPLINK_CHANGE_STATE
 
 
 * COMMON_EVENT_WIFI_P2P_CONN_STATE

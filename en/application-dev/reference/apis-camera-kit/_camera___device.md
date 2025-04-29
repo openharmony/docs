@@ -9,6 +9,8 @@ The Camera_Device struct describes the camera device.
 
 **Related module**: [OH_Camera](_o_h___camera.md)
 
+**Header file**: [camera.h](camera_8h.md)
+
 
 ## Summary
 
@@ -33,7 +35,7 @@ char* Camera_Device::cameraId
 ```
 **Description**
 
-Camera ID.
+Pointer to the camera ID.
 
 
 ### cameraPosition

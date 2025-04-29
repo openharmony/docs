@@ -42,7 +42,7 @@ int GetClirResult::clirStat
 ```
 **描述**
 
-CLIR业务在网络的签约状态。
+CLIR业务在网络的签约状态
 
 - 0：CLIR业务未提供
 

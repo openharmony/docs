@@ -114,7 +114,7 @@ However, Chrome cannot directly access the domain socket on the device. Therefor
 ### Opening the Debugging Tool Page in Chrome
   1. Input **chrome://inspect/\#devices** in the address box of Chrome on the PC and open the page. 
   2. Configure the Chrome debugging tool. 
-     The web page to be debugged needs to be discovered from the local TCP port 9222. Therefore, ensure that **Discovery network targets** is selected. Then, configure the network. 
+     The web page to be debugged needs to be discovered from the local TCP port 9222. Therefore, ensure that **Discover network targets** is selected. Then, configure the network. 
      (1) Click the **Configure** button. 
      (2) Add **localhost:9222** to **Target discovery settings**.
 
@@ -211,6 +211,7 @@ Copy the following information to create a .bat file, enable application debuggi
    ```
 ### On Linux or macOS
 Copy the following information to create an .sh file. Note that you need to run the **chmod** command and convert the file format. Enable the application debugging and run the file.
+This script will delete all port forwarding. If other tools (such as DevEco Studio) are using port forwarding, they will be affected.
    ```
    #!/bin/bash
 

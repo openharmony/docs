@@ -3,12 +3,13 @@
 
 ## 概述
 
-手势模块接口集合。
+新增手势模块接口集合，支持设置手势中断事件的回调函数。
 
 **起始版本：** 18
 
 **相关模块：**[ArkUI_NativeModule](_ark_u_i___native_module.md)
 
+**所在头文件：** [native_gesture.h](native__gesture_8h.md)
 
 ## 汇总
 

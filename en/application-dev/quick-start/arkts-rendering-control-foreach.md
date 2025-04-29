@@ -343,7 +343,7 @@ The following figure shows the initial screen (on the left) and the screen after
 
 In this example, the **ArticleCard** component functions as a child component of the **ArticleListView** component and receives an **Article** object through the @Prop decorator to render article widgets.
 
-1. When the list scrolls to the bottom, if the distance of finger movement exceeds the threshold 80, the **loadMoreArticle()** function is triggered. This function adds a new data item to the tail of the **articleList** data source, increasing the length of the data source.
+1. When the list scrolls to the bottom, if the distance of finger movement exceeds the threshold 80, the **loadMoreArticles()** function is triggered. This function adds a new data item to the tail of the **articleList** data source, increasing the length of the data source.
 2. Because the data source is decorated by @State, the ArkUI framework can detect the change of the data source length and trigger **ForEach** for re-rendering.
 
 ### Properties of Data Source Array Items Changed

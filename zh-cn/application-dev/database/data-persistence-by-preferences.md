@@ -1,4 +1,4 @@
-# 通过用户首选项实现数据持久化
+# 通过用户首选项实现数据持久化 (ArkTS)
 
 
 ## 场景介绍
@@ -60,14 +60,14 @@ GSKV是从API version 18起提供的一种存储模式，该模式的优点是�
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | getPreferencesSync(context: Context, options: Options): Preferences | 获取Preferences实例。该接口存在异步接口。                    |
 | putSync(key: string, value: ValueType): void                 | 将数据写入Preferences实例，可通过flush将Preferences实例持久化。该接口存在异步接口。 |
-| hasSync(key: string): boolean                                | 检查Preferences实例是否包含名为给定Key的存储键值对。给定的Key值不能为空。该接口存在异步接口。 |
+| hasSync(key: string): boolean                                | 检查Preferences实例是否包含名为给定Key的存储键值对，true表示包含，false表示不包含。给定的Key值不能为空。该接口存在异步接口。 |
 | getSync(key: string, defValue: ValueType): ValueType         | 获取键对应的值，如果值为null或者非默认值类型，返回默认数据defValue。该接口存在异步接口。 |
 | deleteSync(key: string): void                                | 从Preferences实例中删除名为给定Key的存储键值对。该接口存在异步接口。 |
 | flush(callback: AsyncCallback&lt;void&gt;): void             | 将当前Preferences实例的数据异步存储到用户首选项持久化文件中。 |
 | on(type: 'change', callback: Callback&lt;string&gt;): void   | 订阅数据变更，订阅的数据发生变更后，在执行flush方法后，触发callback回调。 |
 | off(type: 'change', callback?: Callback&lt;string&gt;): void | 取消订阅数据变更。                                           |
 | deletePreferences(context: Context, options: Options, callback: AsyncCallback&lt;void&gt;): void | 从内存中移除指定的Preferences实例。若Preferences实例有对应的持久化文件，则同时删除其持久化文件。 |
-| isStorageTypeSupported(type: StorageType): boolean           | 判断当前平台是否支持希望使用的存储模式。|
+| isStorageTypeSupported(type: StorageType): boolean           | 判断当前平台是否支持希望使用的存储模式。true表示支持，false表示不支持。|
 
 
 ## 开发步骤

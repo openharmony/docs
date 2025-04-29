@@ -18,7 +18,7 @@ import { AbilityLifecycleCallback } from '@kit.AbilityKit';
 
 onAbilityCreate(ability: UIAbility): void
 
-Called when an ability is created.
+Called when the ability is created.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -122,7 +122,7 @@ See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
 
 onAbilityDestroy(ability: UIAbility): void
 
-Called when an ability is destroyed.
+Called when the ability is destroyed.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

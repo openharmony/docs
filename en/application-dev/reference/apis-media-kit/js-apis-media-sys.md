@@ -150,6 +150,98 @@ try {
 }
 ```
 
+## media.getScreenCaptureMonitor<sup>18+</sup>
+
+getScreenCaptureMonitor(): Promise\<ScreenCaptureMonitor>
+
+Obtains a **ScreenCaptureMonitor** instance. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Type                                     | Description                                                        |
+| ----------------------------------------- | ------------------------------------------------------------ |
+| Promise<[ScreenCaptureMonitor](#screencapturemonitor18)> | Promise used to return the result. The instance can be used to query and monitor the status of the system screen recorder.<br>If the operation is successful, a **ScreenCaptureMonitor** instance is returned; otherwise, **null** is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](errorcode-media.md).
+
+| ID| Error Message                     |
+| -------- | ----------------------------- |
+| 202  | Not System App. |
+| 5400101  | No memory. Return by promise. |
+
+**Example**
+
+```ts
+let screenCaptureMonitor: media.ScreenCaptureMonitor;
+try {
+  screenCaptureMonitor = await media.getScreenCaptureMonitor();
+} catch (err) {
+  console.error(`getScreenCaptureMonitor failed, error message:${err.message}`);
+}
+```
+
+## media.createParallelSoundPool<sup>18+</sup>
+
+createParallelSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo): Promise\<SoundPool>
+
+Creates a **SoundPool** instance. This API uses a promise to return the result.
+
+If a **SoundPool** instance created using [createSoundPool](js-apis-media.md#mediacreatesoundpool10) is used to play the same sound again, it stops the current audio and restarts the audio. However, if the instance is created using **createParallelSoundPool**, it keeps playing the first audio and starts the new one alongside it.
+
+**System capability**: SystemCapability.Multimedia.Media.SoundPool
+
+**Parameters**
+
+| Name  | Type                                           | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
+| maxStreams | number | Yes  | Maximum number of streams that can be played by the **SoundPool** instance. The value is an integer ranging from 1 to 32.|
+| audioRenderInfo | [audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8)  | Yes  | Audio renderer parameters.|
+
+**Return value**
+
+| Type                                     | Description                                                        |
+| ----------------------------------------- | ------------------------------------------------------------ |
+| Promise<[SoundPool](js-apis-inner-multimedia-soundPool.md)> | Promise used to return the result. If the operation is successful, a **SoundPool** instance is returned; otherwise, **null** is returned. The instance is used for loading and playback.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](errorcode-media.md).
+
+| ID| Error Message                     |
+| -------- | ----------------------------- |
+| 5400101  | No memory. Return by promise. |
+| 202| System API error. Return by promise. |
+
+**Example**
+
+```js
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags : 0
+}
+
+media.createParallelSoundPool(5, audioRendererInfo).then((soundpool_: media.SoundPool) => {
+  if (soundpool_ != null) {
+    soundPool = soundpool_;
+    console.info('Succceeded in creating SoundPool');
+  } else {
+    console.error('Failed to create SoundPool');
+  }
+}, (error: BusinessError) => {
+  console.error(`soundpool catchCallback, error message:${error.message}`);
+});
+```
+
 ## PixelMapParams<sup>11+</sup>
 
 Defines the format parameters of the video thumbnail to be obtained.
@@ -173,51 +265,6 @@ Enumerates the color formats supported by the video thumbnail.
 | RGB_565       | 2   | RGB_565.                      |
 | RGBA_8888        | 3    | RGBA_8888.|
 | RGB_888        | 5    | RGB_888.                |
-
-## AvPlayer<sup>9+</sup>
-
-A playback management class that provides APIs to manage and play media assets. Before calling any API in **AVPlayer**, you must use [createAVPlayer()](js-apis-media.md#mediacreateavplayer9) to create an [AVPlayer](js-apis-media.md#avplayer9) instance.
-
-### setPlaybackRange<sup>12+</sup>
-
-setPlaybackRange(startTimeMs: number, endTimeMs: number, mode?: SeekMode) : Promise\<void>
-
-Sets the playback range and seeks to the start position of the range based on the specified [SeekMode](js-apis-media.md#seekmode8). After the setting, only the content in the specified range of the audio or video file is played. This API uses a promise to return the result. It can be used when the AVPlayer is in the initialized, prepared, paused, stopped, or completed state.
-
-**System capability**: SystemCapability.Multimedia.Media.AvPlayer
-
-**System API**: This is a system API.
-
-**Parameters**
-
-| Name  | Type                  | Mandatory| Description                       |
-| -------- | ---------------------- | ---- | --------------------------- |
-| startTimeMs | number | Yes  | Start position of the range, in ms. The value range is [0, duration). If **-1** is passed in, the system starts playing from position 0.|
-| endTimeMs | number | Yes  | End position of the range, in ms. The value range is (startTimeMs, duration]. If **-1** is passed in, the system plays the content until it reaches the final part of the asset.|
-| mode | [SeekMode](js-apis-media.md#seekmode8) | No  | Seek mode, which can be **SeekMode.SEEK_PREV_SYNC** or **SeekMode.SEEK_CLOSEST**.<br>The default value is **SeekMode.SEEK_PREV_SYNC**.|
-
-**Error codes**
-
-For details about the error codes, see [Media Error Codes](errorcode-media.md).
-
-| ID| Error Message                                  |
-| -------- | ------------------------------------------ |
-| 202  | Called from Non-System applications. Return by promise. |
-| 401  | The parameter check failed. Return by promise. |
-| 5400102  | Operation not allowed. Return by promise. |
-
-**Example**
-
-```ts
-import { media } from '@kit.MediaKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-avPlayer.setPlaybackRange(0, 6000, media.SeekMode.SEEK_CLOSEST).then(() => {
-  console.info('Succeeded setPlaybackRange');
-}).catch((err: BusinessError) => {
-  console.error('Failed to setPlaybackRange' + err.message);
-});
-```
 
 ## AVMetadataExtractor<sup>11+</sup>
 
@@ -321,7 +368,7 @@ A recording management class that provides APIs to record media assets. Before c
 >
 > To use the camera to record videos, the camera module is required. For details about how to use the APIs provided by the camera module, see [Camera Management](../apis-camera-kit/js-apis-camera.md).
 
-### isWatermarkSupported<sup>12+</sup>
+### isWatermarkSupported<sup>13+</sup>
 
 isWatermarkSupported(): Promise\<boolean>
 
@@ -351,7 +398,7 @@ avRecorder.isWatermarkSupported().then((isWatermarkSupported: boolean) => {
 });
 ```
 
-### setWatermark<sup>12+</sup>
+### setWatermark<sup>13+</sup>
 
 setWatermark(watermark: image.PixelMap, config: WatermarkConfig): Promise\<void>
 
@@ -367,8 +414,8 @@ This API can be called only after the [prepare()](js-apis-media.md#prepare9-3) e
 
 | Name  | Type                 | Mandatory| Description                        |
 | -------- | -------------------- | ---- | --------------------------- |
-| watermark | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)      | Yes  | PixelMap data.<br>Currently, the following specifications are supported:<br>- Only RGBA8888 is supported.<br>- If the original image is 8 KB, the watermark resolution is 3072 x 288; if the original image is 4 KB, the watermark resolution is 1536 x 144.|
-| config    | [WatermarkConfig](#watermarkconfig12)   | Yes  | Watermark configuration.|
+| watermark | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)      | Yes  | PixelMap data.<br>Currently, the following specifications are supported:<br>- Only RGBA8888 is supported.<br>- If the original image is 8K, the watermark resolution should be limited to a size of 3072 x 288; if the original image is 4K, the watermark resolution should be limited to a size of 1536 x 144.|
+| config    | [WatermarkConfig](#watermarkconfig13)   | Yes  | Watermark configuration.|
 
 **Return value**
 
@@ -391,7 +438,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
-let watermark: image.PixelMap|undefined = undefined; // need data
+let watermark: image.PixelMap|undefined = undefined; // need data.
 let watermarkConfig: media.WatermarkConfig = { top: 100, left: 100 }
 
 avRecorder.setWatermark(watermark, watermarkConfig).then(() => {
@@ -408,7 +455,7 @@ avRecorder.setWatermark(watermark, watermarkConfig).then(() => {
 
 Implements video recording. Before calling any API in the **VideoRecorder** class, you must use [createVideoRecorder()](#mediacreatevideorecorder9) to create a [VideoRecorder](#videorecorder9) instance.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -476,7 +523,7 @@ let videoConfig: media.VideoRecorderConfig = {
   location : { latitude : 30, longitude : 130 }
 }
 
-// asyncallback
+// asyncallback.
 videoRecorder.prepare(videoConfig, (err: BusinessError) => {
   if (err == null) {
     console.info('prepare success');
@@ -549,7 +596,7 @@ let videoConfig: media.VideoRecorderConfig = {
   location : { latitude : 30, longitude : 130 }
 }
 
-// promise
+// promise.
 videoRecorder.prepare(videoConfig).then(() => {
   console.info('prepare success');
 }).catch((err: BusinessError) => {
@@ -592,7 +639,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// asyncallback
+// asyncallback.
 let surfaceID: string; // Surface ID passed to the external system.
 videoRecorder.getInputSurface((err: BusinessError, surfaceId: string) => {
   if (err == null) {
@@ -639,7 +686,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// promise
+// promise.
 let surfaceID: string; // Surface ID passed to the external system.
 videoRecorder.getInputSurface().then((surfaceId: string) => {
   console.info('getInputSurface success');
@@ -682,7 +729,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// asyncallback
+// asyncallback.
 videoRecorder.start((err: BusinessError) => {
   if (err == null) {
     console.info('start videorecorder success');
@@ -725,7 +772,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// promise
+// promise.
 videoRecorder.start().then(() => {
   console.info('start videorecorder success');
 }).catch((err: BusinessError) => {
@@ -766,7 +813,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// asyncallback
+// asyncallback.
 videoRecorder.pause((err: BusinessError) => {
   if (err == null) {
     console.info('pause videorecorder success');
@@ -809,7 +856,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// promise
+// promise.
 videoRecorder.pause().then(() => {
   console.info('pause videorecorder success');
 }).catch((err: BusinessError) => {
@@ -848,7 +895,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// asyncallback
+// asyncallback.
 videoRecorder.resume((err: BusinessError) => {
   if (err == null) {
     console.info('resume videorecorder success');
@@ -889,7 +936,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// promise
+// promise.
 videoRecorder.resume().then(() => {
   console.info('resume videorecorder success');
 }).catch((err: BusinessError) => {
@@ -930,7 +977,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// asyncallback
+// asyncallback.
 videoRecorder.stop((err: BusinessError) => {
   if (err == null) {
     console.info('stop videorecorder success');
@@ -973,7 +1020,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// promise
+// promise.
 videoRecorder.stop().then(() => {
   console.info('stop videorecorder success');
 }).catch((err: BusinessError) => {
@@ -1010,7 +1057,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// asyncallback
+// asyncallback.
 videoRecorder.release((err: BusinessError) => {
   if (err == null) {
     console.info('release videorecorder success');
@@ -1049,7 +1096,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// promise
+// promise.
 videoRecorder.release().then(() => {
   console.info('release videorecorder success');
 }).catch((err: BusinessError) => {
@@ -1089,7 +1136,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// asyncallback
+// asyncallback.
 videoRecorder.reset((err: BusinessError) => {
   if (err == null) {
     console.info('reset videorecorder success');
@@ -1131,7 +1178,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// promise
+// promise.
 videoRecorder.reset().then(() => {
   console.info('reset videorecorder success');
 }).catch((err: BusinessError) => {
@@ -1233,7 +1280,7 @@ Describes the video recording profile.
 | videoFrameHeight | number                                       | Yes  | Height of the recorded video frame.|
 | videoFrameRate   | number                                       | Yes  | Video frame rate.  |
 
-## WatermarkConfig<sup>12+</sup>
+## WatermarkConfig<sup>13+</sup>
 
 Describes the watermark configuration set for the AVRecorder. The start point is the upper left corner of the image.
 
@@ -1245,3 +1292,97 @@ Describes the watermark configuration set for the AVRecorder. The start point is
 | --------- | ------ | ---- | ---------------- |
 | top       | number | Yes  | Pixel offset from the top edge of the image.|
 | left      | number | Yes  | Pixel offset from the left edge of the image.|
+
+## ScreenCaptureMonitor<sup>18+</sup>
+
+A class that provides APIs to query and monitor the system screen recorder status. Before calling any API, you must use [getScreenCaptureMonitor()](#mediagetscreencapturemonitor18) to obtain a [ScreenCaptureMonitor](#screencapturemonitor18) instance.
+
+### Properties
+
+**System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
+
+**System API**: This is a system API.
+
+| Name              | Type                                  | Readable| Writable| Description            |
+| ------------------ | -------------------------------------- | ---- | ---- | ---------------- |
+| isSystemScreenRecorderWorking<sup>18+</sup> | bool | Yes  | No  | Whether the system screen recorder is working.|
+
+### on('systemScreenRecorder')<sup>18+</sup>
+
+on(type: 'systemScreenRecorder', callback: Callback\<ScreenCaptureEvent>): void
+
+Subscribes to state change events of the system screen recorder. From the ScreenCaptureEvent event reported, you can determine whether the system screen recorder is working.
+
+**System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type         | Mandatory| Description                                                        |
+| -------- | ------------- | ---- | ------------------------------------------------------------ |
+| type     | string        | Yes  | Event type, which is **'systemScreenRecorder'** in this case.<br>This event is triggered when the state of the system screen recorder changes.|
+| callback | function | Yes  | Callback invoked when the event is triggered, where [ScreenCaptureEvent](#screencaptureevent18) indicates the new state.                                      |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                         |
+| -------- | --------------------------------- |
+| 202  | Not System App.    |
+
+**Example**
+
+```ts
+
+// This event is reported when the state of the system screen recorder changes.
+screenCaptureMonitor.on('systemScreenRecorder', (event: media.ScreenCaptureEvent) => { 
+  // Set the 'systemScreenRecorder' event callback.
+  console.info(`system ScreenRecorder event: ${event}`);
+})
+```
+
+### off('systemScreenRecorder')<sup>18+</sup>
+
+off(type: 'systemScreenRecorder', callback?: Callback\<ScreenCaptureEvent>): void
+
+Unsubscribes from state change events of the system screen recorder.
+
+**System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type         | Mandatory| Description                                                        |
+| -------- | ------------- | ---- | ------------------------------------------------------------ |
+| type     | string        | Yes  | Event type, which is **'systemScreenRecorder'** in this case.<br>This event is triggered when the state of the system screen recorder changes.|
+| callback | function | No  | Callback invoked when the event is triggered, where [ScreenCaptureEvent](#screencaptureevent18) indicates the new state. If this parameter is not specified, the last subscription event is canceled.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                         |
+| -------- | --------------------------------- |
+| 202  | Not System App.    |
+
+**Example**
+
+```ts
+screenCaptureMonitor.off('systemScreenRecorder');   
+```
+
+## ScreenCaptureEvent<sup>18+</sup>
+
+Enumerates the states available for the system screen recorder.
+
+**System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
+
+**System API**: This is a system API.
+
+| Name                    | Value             | Description                                                        |
+| ------------------------ | --------------- | ------------------------------------------------------------ |
+| SCREENCAPTURE_STARTED       | 0   | The system screen recorder starts screen capture.                      |
+| SCREENCAPTURE_STOPPED        | 1    | The system screen recorder stops screen capture.|

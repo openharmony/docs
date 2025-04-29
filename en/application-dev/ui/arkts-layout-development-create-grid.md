@@ -81,7 +81,7 @@ A common application with an uneven grid layout is the calculator. As shown in t
 
 In the grid, use the **onGetRectByIndex** callback to return the array [rowStart, columnStart, rowSpan, columnSpan] to achieve a layout that spans rows and columns, wherein **rowStart** and **rowEnd** indicate the start and end row numbers of the current element, and **columnStart** and **columnEnd** indicate the start and end column numbers of the current element.
 
-To make the **0** key span across the first and second columns, and the **=** key span across the fifth and sixth rows, set **onGetRectByIndex** for **0** and **=** as follows: for **0**, set **rowStart** and **columnStart** at **5** and **0**, and **rowSpan** and **columnSpan** at **1** and **2**; for **=**, set **rowStart** and **columnStart** at **4** and **3**, and **rowSpan** and **columnSpan** at **2** and **1**.
+To make the **0** key span across the first and second columns, and the **=** key span across the fifth and sixth rows, set **onGetRectByIndex** for **0** and **=** as follows: for **0**, set **rowStart** and **columnStart** at **6** and **0**, and **rowSpan** and **columnSpan** at **1** and **2**; for **=**, set **rowStart** and **columnStart** at **5** and **3**, and **rowSpan** and **columnSpan** at **2** and **1**.
 
 
 ```ts
@@ -89,9 +89,9 @@ layoutOptions: GridLayoutOptions = {
   regularSize: [1, 1],
   onGetRectByIndex: (index: number) => {
     if (index = = key1) { // key1 is the index of the 0 key.
-      return [5, 0, 1, 2]
+      return [6, 0, 1, 2];
     } else if (index == key2) { // key2 is the index of the = key.
-      return [4, 3, 2, 1]
+      return [5, 3, 2, 1];
     }
     // ...
     // Here, you need to return the positions of other items based on the specific layout.
@@ -102,7 +102,7 @@ Grid(undefined, this.layoutOptions) {
   // ...
 }
 .columnsTemplate('1fr 1fr 1fr 1fr')
-.rowsTemplate('2fr 1fr 1fr 1fr 1fr 1fr')
+.rowsTemplate('1fr 1fr 1fr 1fr 1fr 1fr 1fr')
 ```
 
 
@@ -156,12 +156,12 @@ Grid() {
   }
 
   GridItem() {
-    Text ('Vote')
+    Text('Vote')
       // ...
   }
 
   GridItem() {
-    Text ('Print')
+    Text('Print')
       // ...
   }
 }
@@ -293,6 +293,40 @@ Column({ space: 5 }) {
 }
 ```
 
+
+## Adding an External Scrollbar
+
+To add an external scrollbar to a [Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md) component, you can use the [ScrollBar](../reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md) component. By binding both the **Grid** and **ScrollBar** components to the same [Scroller](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scroller) object, you can ensure they stay synchronized.
+
+1. Create a [Scroller](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scroller) object named **gridScroller**.
+
+   ```ts
+   private gridScroller: Scroller = new Scroller();
+   ```
+
+2. Bind the **gridScroller** object to the **Grid** component using the [scroller](../reference/apis-arkui/arkui-ts/ts-container-grid.md#apis) parameter.
+
+   ```ts
+   // Use gridScroller to initialize the scroller parameter to bind it with the Grid component.
+   Grid({ scroller: this.gridScroller }) {
+   // ...
+   }
+   ```
+
+3. Bind the **gridScroller** object to the **ScrollBar** component using the [scroller](../reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md#scrollbaroptions) parameter.
+
+   ```ts
+   // Use gridScroller to initialize the scroller parameter to bind it with the ScrollBar component.
+   ScrollBar({ scroller: this.gridScroller })
+   ```
+
+  **Figure 11** External scrollbar of the Grid component
+
+![ScrollBar](figures/grid_scrollbar.gif)
+
+>**NOTE**
+>- The [ScrollBar](../reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md) component can also be used with other scrollable components such as [ArcList](../reference/apis-arkui/arkui-ts/ts-container-arclist.md), [List](../reference/apis-arkui/arkui-ts/ts-container-list.md), [Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md), and [WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md).
+>- On devices with circular screens, you can use the [Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md) component with the [ArcScrollBar](../reference/apis-arkui/arkui-ts/ts-basic-components-arcscrollbar.md) component to add an arc scrollbar to your grid layout. For details, see [Adding an External Scrollbar: ArcScrollBar](./arkts-layout-development-create-arclist.md#adding-an-external-scrollbar-arcscrollbar).
 
 ## Performance Optimization
 

@@ -20,7 +20,7 @@ Plugin组件模板参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数    | 类型   | 必填 | 说明                        |
+| 名称    | 类型   | 必填 | 说明                        |
 | ------- | ------ | ---- | --------------------------- |
 | source  | string | 是   | 组件模板名。                |
 | ability | string | 是   | 提供方Ability的bundleName。 |
@@ -39,15 +39,9 @@ type KVObject = { [key: string]: number | string | boolean | [] | KVObject }
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-
-| 取值范围              | 说明                                     |
-| --------------------- | ---------------------------------------- |
-| [key: string]         | 关键字，数据类型为字符串，可取空字符串。 |
-| number                | 键值，表示值类型为数字。                 |
-| string                | 键值，表示值类型为字符串，可取空字符串。 |
-| boolean               | 键值，表示值类型为布尔值。               |
-| []                    | 键值，可取值为[]。                       |
-| [KVObject](#kvobject) | 键值，表示值类型为KVObject。             |
+| 名称    | 类型   | 必填 | 说明                        |
+| ------- | ------ | ---- | --------------------------- |
+|  [key: string]  | number \| string \| boolean \| [] \| [KVObject](#kvobject)  | 是   | 键值对形式存储。<br/>number：键值，表示值类型为数字。<br/> string：键值，表示值类型为字符串，可取空字符串。<br/> boolean：键值，表示值类型为布尔值。<br/> []：键值，可取值为[]。<br/>[KVObject](#kvobject)：键值，表示值类型为KVObject。            |
 
 
 ### PushParameters
@@ -161,7 +155,13 @@ type OnRequestEventCallback = (source: Want, name: string, data: KVObject) => Re
 | --------- | ----------------------------------- | ---- | ----------------- |
 | source    | [Want](../apis-ability-kit/js-apis-application-want.md) | 是    | request请求发送方相关信息。 |
 | name      | string                              | 是    | 模板名称。             |
-| extraData | [KVObject](#kvobject)               | 是    | 附加数据。             |
+| data | [KVObject](#kvobject)               | 是    | 附加数据。             |
+
+**返回值：**
+
+| 类型                                       | 说明                                                       |
+| ---------------------------------------- | --------------------------------------------------------- |
+| [RequestEventResult](#requesteventresult) | 注册Request监听方法后，接受到的请求事件时候回应请求的数据类型。 |
 
 **示例：**
 

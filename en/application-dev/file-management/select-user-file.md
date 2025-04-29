@@ -39,8 +39,8 @@ You can use [FilePicker](../reference/apis-core-file-kit/js-apis-file-picker.md)
    documentSelectOptions.authMode = false;
    // Whether to enable the batch authorization mode. The value true means to enable the batch authorization mode, and the value false (default) means the opposite. When multAuthMode is set to true, only the multiUriArray parameter takes effect. Only mobile phones are supported.
    documentSelectOptions.multiAuthMode = false;
-   // Wherther to pass the URIs for batch authorization. (Only files are supported and folders are not supported.) This parameter does not take effect when multAuthMode is set to false. Only mobile phones are supported.
-   documentSelectOptions.multiAuthMode = ["file://docs/storage/Users/currentUser/test", "file://docs/storage/Users/currentUser/2test"];
+   // Whether to pass the URIs for batch authorization. (Only files are supported and folders are not supported.) This parameter does not take effect when multAuthMode is set to false. Only mobile phones are supported.
+   documentSelectOptions.multiUriArray = ["file://docs/storage/Users/currentUser/test", "file://docs/storage/Users/currentUser/2test"];
    // Whether to enable the aggregation view mode to launch the file management application. The value DEFAULT means that this parameter does not take effect and the aggregation view mode is disabled. Values other than DEFAULT means that other parameters do not take effect. Only mobile phones are supported.
    documentSelectOptions.mergeMode = picker.MergeTypeMode.DEFAULT;
    // Whether to support encryption (only files are supported). The default value is false. If this parameter is set to true, files can be encrypted on the picker page.

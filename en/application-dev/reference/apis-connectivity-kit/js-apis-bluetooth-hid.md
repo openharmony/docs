@@ -19,7 +19,7 @@ import { hid } from '@kit.ConnectivityKit';
 
 type BaseProfile = baseProfile.BaseProfile
 
-Defines **BaseProfile** APIs.
+**BaseProfile** API definition.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -44,7 +44,7 @@ Creates a **HidHostProfile** instance.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |

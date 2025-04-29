@@ -2,13 +2,13 @@
 
 ## 简介
 
-Disassembler是ArkTS反汇编工具，如果开发者需要分析方舟字节码文件（\*.abc）相关问题，可使用Disassembler将字节数据反汇编成可阅读的汇编指令。
+Disassembler是ArkTS反汇编工具。如果需要分析方舟字节码文件（\*.abc）相关问题，开发者可以使用Disassembler将字节数据反编译为可读的汇编指令。
 
-工具随DevEco Studio SDK发布，以windows平台为例，Disassembler工具位置为：[DevEco Studio安装目录]\sdk\[SDK版本]\openharmony\toolchains\ark_disasm.exe。
+工具随DevEco Studio SDK发布。以Windows平台为例，Disassembler工具位于DevEco Studio/sdk/default/openharmony/toolchains/ark_disasm.exe。
 
 ## 命令行说明
 
-反汇编命令：
+反汇编命令如下：
 
 ```
 ark_disasm.exe [options] input_file output_file
@@ -16,23 +16,23 @@ ark_disasm.exe [options] input_file output_file
 
 参数说明：
 
-| 参数 | 是否可缺省 | 描述 | 
+| 参数 | 是否可缺省 | 描述 |
 | -------- | -------- | -------- |
-| [options] | 可缺省 | 命令选项，详见下文options选项说明。 | 
-| input_file | 不可缺省 | 待反汇编的方舟字节码文件路径。 | 
-| output_file | 不可缺省 | 反汇编内容的输出文件路径。 | 
+| [options] | 可缺省 | 命令选项，详见下文options选项说明。 |
+| input_file | 不可缺省 | 待反汇编的方舟字节码文件路径。 |
+| output_file | 不可缺省 | 反汇编内容的输出文件路径。 |
 
 options选项说明：
 
-| 选项 | 是否可缺省 | 是否存在入参 | 描述 | 
+| 选项 | 必填 | 存在入参 | 描述 |
 | -------- | -------- | -------- | -------- |
-| --debug | 可缺省 | 不带参数 | 使能输出调试信息，默认输出到屏幕。 | 
-| --debug-file | 可缺省 | 带参数 | 如果使能了--debug，指定调试信息的输出文件。 | 
-| --help | 可缺省 | 不带参数 | 打印帮助提示。 | 
-| --skip-string-literals | 可缺省 | 不带参数 | 跳过对字符串字面量的反汇编。 | 
-| --quiet | 可缺省 | 不带参数 | 使能所有'--skip-'开头的选项。 | 
-| --verbose | 可缺省 | 不带参数 | 使能输出额外信息（字节位置、方舟字节码格式、操作码）。 | 
-| --version | 可缺省 | 不带参数 | 显示配套方舟字节码文件版本号以及最低支持的方舟字节码文件版本。 | 
+| --debug | 否  | 否  | 使能输出调试信息，默认输出到屏幕。 |
+| --debug-file | 否 | 是 | 如果使能了--debug，指定调试信息的输出文件。 |
+| --help | 否 | 否 | 打印帮助提示。 |
+| --skip-string-literals | 否 | 否 | 跳过对字符串字面量的反汇编。 |
+| --quiet | 否 | 否 | 使能所有'--skip-'开头的选项。 |
+| --verbose | 否 | 否 | 使能输出额外信息（字节位置、方舟字节码格式、操作码）。 |
+| --version | 否 | 否 | 显示配套方舟字节码文件版本号以及最低支持的方舟字节码文件版本。 |
 
 ## 使用示例
 
@@ -45,7 +45,7 @@ show();
 ```
 
 
-执行如下命令，就能生成反汇编文件：test.txt。生成的反汇编文件内带有操作码及格式等信息。
+执行如下命令生成反汇编文件：test.txt，文件内包含操作码及格式等信息。
 
 ```
 ark_disasm.exe test.abc test.txt
@@ -58,7 +58,7 @@ ark_disasm.exe test.abc test.txt
 cat test.txt
 ```
 
-内容如下
+内容如下：
 
 ```
 # source binary: test.abc                                                    // 反汇编的方舟字节码文件

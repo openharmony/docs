@@ -160,7 +160,7 @@ contentModifier(modifier:ContentModifier\<ProgressConfiguration\>)
 **参数：**
 | 参数名 | 类型   | 必填 | 说明         |
 | ------ | ------ | ---- | ------------ |
-| modifier | [ContentModifier\<ProgressConfiguration\>](#progressconfiguration12) | 是   | 在progress组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
+| modifier | [ContentModifier\<ProgressConfiguration\>](#progressconfiguration12) | 是   | 在progress组件上，定制内容区的方法。<br/>modifier： 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
 
 ### privacySensitive<sup>12+</sup>
 
@@ -178,7 +178,7 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 | 参数名 | 类型                                                      | 必填 | 说明                                                  |
 | ------ | --------------------------------------------------------- | ---- | ----------------------------------------------------- |
-| isPrivacySensitiveMode  | [Optional\<boolean\>] | 是   | 设置隐私敏感，隐私模式下进度清零，文字将被遮罩。<br/>**说明：** <br/>设置null则不敏感。<br/>[需要卡片框架支持。](./ts-universal-attributes-obscured.md) |
+| isPrivacySensitiveMode  | [Optional\<boolean\>] | 是   | 设置隐私敏感，隐私模式下进度清零，文字将被遮罩。true表示打开隐私敏感，false表示关闭隐私敏感。<br/>**说明：** <br/>设置null则不敏感。<!--Del--><br/>需要在卡片中使用Progress，并用[FormComponent](./ts-basic-components-formcomponent-sys.md)组件设置[隐私遮罩](./ts-universal-attributes-obscured.md)属性显示卡片时才有隐私遮罩效果。<!--DelEnd--> |
 
 ## ProgressConfiguration<sup>12+</sup>
 
@@ -189,7 +189,7 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 | 名称 | 类型  | 必填 |说明         |
 | ------ | ------ | ------- |------------|
 | value  | number | 是 | 当前进度值。当设置的数值小于0时，将其置为0。当设置的数值大于total时，将其置为total。<br/>默认值：0<br/>取值范围：[0, total] |
-| total  | number | 是 | 进度总长。<br/>取值范围：[0, +∞]   |
+| total  | number | 是 | 进度总长。<br/>取值范围：[0, +∞)   |
 
 ## CommonProgressStyleOptions<sup>10+</sup>
 
@@ -199,7 +199,7 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 | 名称          | 类型                      | 必填 | 说明                                                                                        |
 | ------------ | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
-| enableSmoothEffect | boolean | 否 | 进度平滑动效的开关。开启平滑动效后设置进度，进度会从当前值渐变至设定值，否则进度从当前值突变至设定值。<br/>默认值：true |
+| enableSmoothEffect | boolean | 否 | 进度平滑动效的开关。开启平滑动效后设置进度，进度会从当前值渐变至设定值，否则进度从当前值突变至设定值。<br/>默认值：true，true表示开启进度平滑动效，false表示关闭进度平滑动效。 |
 
 ## ScanEffectOptions<sup>10+</sup>
 
@@ -209,7 +209,7 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 | 名称          | 类型 | 必填 | 说明 |
 | ------------- | ------- | ---- | -------- |
-| enableScanEffect | boolean | 否 | 扫光效果的开关。<br/>默认值：false |
+| enableScanEffect | boolean | 否 | 扫光效果的开关。<br/>默认值：false，false表示关闭扫光效果，true表示开启扫光效果。 |
 
 ## ProgressStyleOptions<sup>8+</sup>
 
@@ -242,7 +242,7 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 | content | string | 否 | 文本内容，应用可自定义。 |
 | font | [Font](ts-types.md#font) | 否 | 文本样式。<br/>默认值：<br/>- 文本大小（不支持百分比设置）：12fp <br/>其他文本参数跟随text组件的主题值。|
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 文本颜色。<br/>默认值：'\#ff182431' |
-| showDefaultPercentage | boolean | 否 | 显示百分比文本的开关，开启后会在进度条上显示当前进度的百分比。设置了content属性时该属性不生效。<br/>默认值：false |
+| showDefaultPercentage | boolean | 否 | 显示百分比文本的开关，开启后会在进度条上显示当前进度的百分比。设置了content属性时该属性不生效。<br/>默认值：false，false表示不显示百分比文本，true表示显示百分比文本。 |
 | borderRadius<sup>18+</sup> |  [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | Capsule进度条圆角半径（不支持百分比设置）。<br/>取值范围：[0, height/2]。默认值：height / 2。<br/>设置非法数值时，按照默认值处理。 |
 
 ## RingStyleOptions<sup>10+</sup>
@@ -256,7 +256,7 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 | 名称           | 类型                      | 必填 | 说明                                                                                        |
 | ------------- | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
 | strokeWidth   | [Length](ts-types.md#length) | 否   | 设置进度条宽度（不支持百分比设置），宽度大于等于半径时，默认修改宽度至半径值的二分之一。<br/>默认值：4.0vp |
-| shadow        | boolean                      | 否   | 进度条阴影开关。<br/>默认值：false                                                             |
+| shadow        | boolean                      | 否   | 进度条阴影开关。<br/>默认值：false，false表示关闭进度条阴影，true表示打开进度条阴影。                                                             |
 | status        | [ProgressStatus<sup>10+</sup>](#progressstatus10枚举说明) | 否 | 进度条状态，当设置为LOADING时会开启检查更新动效，此时设置进度值不生效。当从LOADING设置为PROGRESSING，检查更新动效会执行到终点再停止。<br/>默认值： ProgressStatus.PROGRESSING |
 
 ## LinearStyleOptions<sup>10+</sup>
@@ -570,7 +570,7 @@ struct Index {
           this.currentValue += 1
         }
       }).width('30%')
-      Button('addProgress--').onClick(() => {
+      Button('Progress--').onClick(() => {
         if (this.currentValue > 0) {
           this.currentValue -= 1
         }
@@ -591,21 +591,26 @@ struct Index {
 @Component
 struct ProgressExample {
   build() {
-    Scroll() {
+    Row() {
       Column({ space: 15 }) {
-        Row() {
-          Progress({ value: 50, total: 100, type: ProgressType.Capsule }).width(100).height(50)
-            .style({
-              borderColor: Color.Blue,
-              borderWidth: 1,
-              content: 'Installing...',
-              font: { size: 13, style: FontStyle.Normal },
-              fontColor: Color.Gray,
-              enableScanEffect: false,
-              showDefaultPercentage: true
-            })
-            .privacySensitive(true)
-        }
+        Progress({ value: 33, total: 100, type: ProgressType.Capsule }).width(300).height(50)
+          .color(Color.Blue)
+          .style({
+            borderWidth: 5,
+            font: { size: 13, style: FontStyle.Normal },
+            enableScanEffect: false,
+            showDefaultPercentage: true
+          })
+          .privacySensitive(true)
+        Progress({ value: 33, total: 100, type: ProgressType.Capsule }).width(300).height(50)
+          .color(Color.Blue)
+          .style({
+            borderWidth: 5,
+            content: 'Installing...',
+            font: { size: 13, style: FontStyle.Normal },
+            enableScanEffect: false,
+          })
+          .privacySensitive(true)
       }
     }
   }

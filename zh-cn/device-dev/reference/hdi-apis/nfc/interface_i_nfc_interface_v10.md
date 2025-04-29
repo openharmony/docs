@@ -3,7 +3,7 @@
 
 ## 概述
 
-声明操作nfc芯片的API，包括关闭、打开nfc，初始化nfc，读写数据、配置RF参数、发送nci指令。
+声明操作Nfc芯片的API，包括关闭、打开Nfc，初始化Nfc，读写数据、配置RF参数、发送nci指令。
 
 **起始版本：** 3.2
 
@@ -17,14 +17,14 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [Open](#open) ([in] [INfcCallback](interface_i_nfc_callback_v10.md) callbackObj, [out] enum [NfcStatus](_hdi_nfc_v10.md#nfcstatus) status) | 打开NFC，对NFC初始化。 | 
-| [CoreInitialized](#coreinitialized) ([in] List&lt; unsigned char &gt; data, [out] enum [NfcStatus](_hdi_nfc_v10.md#nfcstatus) status) | NFC初始化。 | 
+| [Open](#open) ([in] [INfcCallback](interface_i_nfc_callback_v10.md) callbackObj, [out] enum [NfcStatus](_hdi_nfc_v10.md#nfcstatus) status) | 打开Nfc，对Nfc初始化。 | 
+| [CoreInitialized](#coreinitialized) ([in] List&lt; unsigned char &gt; data, [out] enum [NfcStatus](_hdi_nfc_v10.md#nfcstatus) status) | Nfc初始化。 | 
 | [Prediscover](#prediscover) ([out] enum [NfcStatus](_hdi_nfc_v10.md#nfcstatus) status) | 启动RF discover之前对芯片进行预配置。 | 
-| [Write](#write) ([in] List&lt; unsigned char &gt; data, [out] enum [NfcStatus](_hdi_nfc_v10.md#nfcstatus) status) | 发送数据给NFC控制器。 | 
+| [Write](#write) ([in] List&lt; unsigned char &gt; data, [out] enum [NfcStatus](_hdi_nfc_v10.md#nfcstatus) status) | 发送数据给Nfc控制器。 | 
 | [ControlGranted](#controlgranted) ([out] enum [NfcStatus](_hdi_nfc_v10.md#nfcstatus) status) | 允许HDF层发送NCI指令。 | 
-| [PowerCycle](#powercycle) ([out] enum [NfcStatus](_hdi_nfc_v10.md#nfcstatus) status) | 周期性重启NFC。 | 
-| [Close](#close) ([out] enum [NfcStatus](_hdi_nfc_v10.md#nfcstatus) status) | 关闭NFC。 | 
-| [Ioctl](#ioctl) ([in] enum [NfcCommand](_hdi_nfc_v10.md#nfccommand) cmd, [in] List&lt; unsigned char &gt; data, [out] enum [NfcStatus](_hdi_nfc_v10.md#nfcstatus) status) | NFC协议栈通过IO控制指令和数据发送给HDI。 | 
+| [PowerCycle](#powercycle) ([out] enum [NfcStatus](_hdi_nfc_v10.md#nfcstatus) status) | 周期性重启Nfc。 | 
+| [Close](#close) ([out] enum [NfcStatus](_hdi_nfc_v10.md#nfcstatus) status) | 关闭Nfc。 | 
+| [Ioctl](#ioctl) ([in] enum [NfcCommand](_hdi_nfc_v10.md#nfccommand) cmd, [in] List&lt; unsigned char &gt; data, [out] enum [NfcStatus](_hdi_nfc_v10.md#nfcstatus) status) | Nfc协议栈通过IO控制指令和数据发送给HDI。 | 
 
 
 ## 成员函数说明
@@ -39,7 +39,7 @@ INfcInterface::Close ([out] enum NfcStatus status)
 **描述**
 
 
-关闭NFC。
+关闭Nfc。
 
 **起始版本：** 3.2
 
@@ -69,13 +69,13 @@ INfcInterface::ControlGranted ([out] enum NfcStatus status)
 ### CoreInitialized()
 
 ```
-INfcInterface::CoreInitialized ([in] List< unsigned char > data, [out] enum NfcStatus status )
+INfcInterface::CoreInitialized ([in] List< unsigned char > data, [out] enum NfcStatus status)
 ```
 
 **描述**
 
 
-NFC初始化。
+Nfc初始化。
 
 **起始版本：** 3.2
 
@@ -83,7 +83,7 @@ NFC初始化。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| callbackObj | NFC芯片发送给NFC协议栈的数据和事件的回调对象。 | 
+| callbackObj | Nfc芯片发送给Nfc协议栈的数据和事件的回调对象。 | 
 
 **返回：**
 
@@ -93,13 +93,13 @@ NFC初始化。
 ### Ioctl()
 
 ```
-INfcInterface::Ioctl ([in] enum NfcCommand cmd, [in] List< unsigned char > data, [out] enum NfcStatus status )
+INfcInterface::Ioctl ([in] enum NfcCommand cmd, [in] List< unsigned char > data, [out] enum NfcStatus status)
 ```
 
 **描述**
 
 
-NFC协议栈通过IO控制指令和数据发送给HDI。
+Nfc协议栈通过IO控制指令和数据发送给HDI。
 
 **起始版本：** 3.2
 
@@ -118,13 +118,13 @@ NFC协议栈通过IO控制指令和数据发送给HDI。
 ### Open()
 
 ```
-INfcInterface::Open ([in] INfcCallback callbackObj, [out] enum NfcStatus status )
+INfcInterface::Open ([in] INfcCallback callbackObj, [out] enum NfcStatus status)
 ```
 
 **描述**
 
 
-打开NFC，对NFC初始化。
+打开Nfc，对Nfc初始化。
 
 **起始版本：** 3.2
 
@@ -132,7 +132,7 @@ INfcInterface::Open ([in] INfcCallback callbackObj, [out] enum NfcStatus status 
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| callbackObj | NFC芯片发送给NFC协议栈的数据和事件的回调对象 | 
+| callbackObj | Nfc芯片发送给Nfc协议栈的数据和事件的回调对象 | 
 
 **返回：**
 
@@ -148,7 +148,7 @@ INfcInterface::PowerCycle ([out] enum NfcStatus status)
 **描述**
 
 
-周期性重启NFC。
+周期性重启Nfc。
 
 **起始版本：** 3.2
 
@@ -178,13 +178,13 @@ INfcInterface::Prediscover ([out] enum NfcStatus status)
 ### Write()
 
 ```
-INfcInterface::Write ([in] List< unsigned char > data, [out] enum NfcStatus status )
+INfcInterface::Write ([in] List< unsigned char > data, [out] enum NfcStatus status)
 ```
 
 **描述**
 
 
-发送数据给NFC控制器。
+发送数据给Nfc控制器。
 
 **起始版本：** 3.2
 
@@ -192,7 +192,7 @@ INfcInterface::Write ([in] List< unsigned char > data, [out] enum NfcStatus stat
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| data | 待写入NFC控制器的数据。 | 
+| data | 待写入Nfc控制器的数据。 | 
 
 **返回：**
 

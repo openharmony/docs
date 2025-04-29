@@ -1,4 +1,4 @@
-# Using Image to Encode Images
+# Image Encoding
 
 You can call the native APIs provided by the **ImagePacker** module to encode images, that is, to compress a **PixelMap** object into an image in the desired format.
 

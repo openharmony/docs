@@ -31,7 +31,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | int32_t [OH_BatteryInfo_GetCapacity](#oh_batteryinfo_getcapacity) () | 返回当前电池容量。 | 
-| [BatteryInfo_BatteryPluggedType](#batteryinfo_batterypluggedtype)[OH_BatteryInfo_GetPluggedType](#oh_batteryinfo_getpluggedtype) () | 返回当前插入的类型。 | 
+| [BatteryInfo_BatteryPluggedType](#batteryinfo_batterypluggedtype) [OH_BatteryInfo_GetPluggedType](#oh_batteryinfo_getpluggedtype) () | 返回当前插入的类型。 | 
 
 
 ### 变量

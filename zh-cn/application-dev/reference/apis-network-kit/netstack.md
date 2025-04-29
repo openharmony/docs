@@ -15,7 +15,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [net_ssl_c.h](net__ssl__c_8h.md) | 为SSL/TLS证书链校验模块定义C接口。<br>**引用文件：** \<network\/netstack\/net_ssl\/net_ssl_c.h\> | 
+| [net_ssl_c.h](net__ssl__c_8h.md) | 为SSL/TLS证书链校验模块定义C接口。**引用文件：** \<network\/netstack\/net_ssl\/net_ssl_c.h\> | 
 | [net_ssl_c_type.h](net__ssl__c__type_8h.md) | 定义SSL/TLS证书链校验模块的C接口需要的数据结构。**引用文件：** \<network\/netstack\/net_ssl\/net_ssl_c_type.h\> | 
 | [net_websocket.h](net__websocket_8h.md) | 为websocket客户端模块定义C接口。**引用文件：** \<network\/netstack\/net_websocket.h\> | 
 | [net_websocket_type.h](net__websocket__type_8h.md) | 定义websocket客户端模块的C接口需要的数据结构。**引用文件：** \<network\/net_websocket_type.h\> | 
@@ -109,7 +109,7 @@
 typedef void(* WebSocket_OnCloseCallback) (struct WebSocket *client, WebSocket_CloseResult closeResult)
 ```
 **描述**
-websocket客户端接收close消息的回调函数定义
+websocket客户端接收close消息的回调函数定义。
 
 **起始版本：** 11
 
@@ -117,8 +117,8 @@ websocket客户端接收close消息的回调函数定义
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| client | websocket客户端  | 
-| closeResult | websocket客户端接收关闭消息的内容  | 
+| client | websocket客户端。  | 
+| closeResult | websocket客户端接收关闭消息的内容。  | 
 
 
 ### WebSocket_OnErrorCallback
@@ -127,7 +127,7 @@ websocket客户端接收close消息的回调函数定义
 typedef void(* WebSocket_OnErrorCallback) (struct WebSocket *client, WebSocket_ErrorResult errorResult)
 ```
 **描述**
-websocket客户端接收error错误消息的回调函数定义
+websocket客户端接收error错误消息的回调函数定义。
 
 **起始版本：** 11
 
@@ -135,8 +135,8 @@ websocket客户端接收error错误消息的回调函数定义
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| client | websocket客户端  | 
-| errorResult | websocket客户端接收连接错误消息的内容  | 
+| client | websocket客户端。  | 
+| errorResult | websocket客户端接收连接错误消息的内容。  | 
 
 
 ### WebSocket_OnMessageCallback
@@ -145,7 +145,7 @@ websocket客户端接收error错误消息的回调函数定义
 typedef void(* WebSocket_OnMessageCallback) (struct WebSocket *client, char *data, uint32_t length)
 ```
 **描述**
-websocket客户端接收数据的回调函数定义
+websocket客户端接收数据的回调函数定义。
 
 **起始版本：** 11
 
@@ -153,9 +153,9 @@ websocket客户端接收数据的回调函数定义
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| client | websocket客户端  | 
-| data | websocket客户端接收的数据  | 
-| length | websocket客户端接收的数据长度  | 
+| client | websocket客户端。  | 
+| data | websocket客户端接收的数据。  | 
+| length | websocket客户端接收的数据长度。  | 
 
 
 ### WebSocket_OnOpenCallback
@@ -164,7 +164,7 @@ websocket客户端接收数据的回调函数定义
 typedef void(* WebSocket_OnOpenCallback) (struct WebSocket *client, WebSocket_OpenResult openResult)
 ```
 **描述**
-websocket客户端接收open消息的回调函数定义
+websocket客户端接收open消息的回调函数定义。
 
 **起始版本：** 11
 
@@ -172,8 +172,8 @@ websocket客户端接收open消息的回调函数定义
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| client | websocket客户端  | 
-| openResult | websocket客户端接收建立连接消息的内容  | 
+| client | websocket客户端。 | 
+| openResult | websocket客户端接收建立连接消息的内容。  | 
 
 
 
@@ -422,7 +422,7 @@ int OH_WebSocketClient_AddHeader (struct WebSocket * client, struct WebSocket_He
 
 **返回：**
 
-返回值为0表示执行成功。返回错细信息可以查看**OH_Websocket_ErrCode**。
+返回值为0表示执行成功。返回错误信息可以查看[OH_WebSocket_ErrCode](#websocket_errcode)。
 
 
 
@@ -448,7 +448,7 @@ int OH_WebSocketClient_Close (struct WebSocket * client, struct WebSocket_CloseO
 
 **返回：**
 
-返回值为0表示执行成功。返回错细信息可以查看**OH_Websocket_ErrCode**。
+返回值为0表示执行成功。返回错误信息可以查看[OH_WebSocket_ErrCode](#websocket_errcode)。
 
 **Permission：**
 
@@ -477,7 +477,7 @@ int OH_WebSocketClient_Connect (struct WebSocket * client, const char * url, str
 
 **返回：**
 
-返回值为0表示执行成功。返回错细信息可以查看**OH_Websocket_ErrCode**。
+返回值为0表示执行成功。返回错误信息可以查看[OH_WebSocket_ErrCode](#websocket_errcode)。
 
 **Permission：**
 
@@ -531,7 +531,7 @@ int OH_WebSocketClient_Destroy (struct WebSocket * client)
 
 **返回：**
 
-返回值为0表示执行成功。返回错细信息可以查看**OH_Websocket_ErrCode**。
+返回值为0表示执行成功。返回错误信息可以查看[OH_WebSocket_ErrCode](#websocket_errcode)。
 
 **Permission：**
 
@@ -562,7 +562,7 @@ int OH_WebSocketClient_Send (struct WebSocket * client, char * data, size_t leng
 
 0 - 成功.
 
-返回值为0表示执行成功。返回错细信息可以查看**OH_Websocket_ErrCode**。
+返回值为0表示执行成功。返回错误信息可以查看[OH_WebSocket_ErrCode](#websocket_errcode)。
 
 **Permission：**
 

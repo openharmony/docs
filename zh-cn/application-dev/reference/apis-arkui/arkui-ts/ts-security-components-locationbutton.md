@@ -112,9 +112,9 @@ LocationButton(options: LocationButtonOptions)
 | SUCCESS | 0 | 位置按钮点击成功。 |
 | TEMPORARY_AUTHORIZATION_FAILED | 1 | 位置按钮点击后位置权限授权失败。 |
 
-## LocationButtonCallback
+## LocationButtonCallback<sup>18+</sup>
 
-LocationButtonCallback = (event: ClickEvent, result: LocationButtonOnClickResult, error?: BusinessError&lt;void&gt;) =&gt; void
+type LocationButtonCallback = (event: ClickEvent, result: LocationButtonOnClickResult, error?: BusinessError&lt;void&gt;) =&gt; void
 
 点击位置按钮触发该回调。
 
@@ -150,7 +150,7 @@ onClick(event: LocationButtonCallback)
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| event | [LocationButtonCallback](#locationbuttoncallback) |是 |见LocationButtonCallback。<br>在API10-17时，参数类型为：(event: [ClickEvent](ts-universal-events-click.md#clickevent对象说明), result: [LocationButtonOnClickResult](#locationbuttononclickresult枚举说明)) => void。<br>从API18开始，变更为LocationButtonCallback。|
+| event | [LocationButtonCallback](#locationbuttoncallback18) |是 |见LocationButtonCallback。<br>在API10-17时，参数类型为：(event: [ClickEvent](ts-universal-events-click.md#clickevent对象说明), result: [LocationButtonOnClickResult](#locationbuttononclickresult枚举说明)) => void。<br>从API18开始，变更为LocationButtonCallback。|
 
 ## 示例
 

@@ -45,8 +45,8 @@ HiCollie模块对外提供检测业务线程卡死、卡顿，以及上报卡死
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [HiCollie_ErrorCode](_hi_collie.md#hicollie_errorcode) {<br/>[HICOLLIE_SUCCESS](_hi_collie.md) = 0, [HICOLLIE_INVALID_ARGUMENT](_hi_collie.md) = 401, [HICOLLIE_WRONG_THREAD_CONTEXT](_hi_collie.md) = 29800001, [HICOLLIE_REMOTE_FAILED](_hi_collie.md) = 29800002,<br/>[HICOLLIE_INVALID_TIMER_NAME](_hi_collie.md) = 29800003, [HICOLLIE_INVALID_TIMEOUT_VALUE](_hi_collie.md) = 29800004, [HICOLLIE_WRONG_PROCESS_CONTEXT](_hi_collie.md) = 29800005, [HICOLLIE_WRONG_TIMER_ID_OUTPUT_PARAM](_hi_collie.md) = 29800006<br/>} | 错误码定义。  | 
-| [HiCollie_Flag](_hi_collie.md#hicollie_flag) { [HICOLLIE_FLAG_DEFAULT](_hi_collie.md) = (~0), [HICOLLIE_FLAG_NOOP](_hi_collie.md) = (0), [HICOLLIE_FLAG_LOG](_hi_collie.md) = (1 &lt;&lt; 0), [HICOLLIE_FLAG_RECOVERY](_hi_collie.md) = (1 &lt;&lt; 1) } | 定义函数执行超时时发生的动作。  | 
+| [HiCollie_ErrorCode](_hi_collie.md#hicollie_errorcode) {<br/>HICOLLIE_SUCCESS = 0, <br/>HICOLLIE_INVALID_ARGUMENT = 401, <br/>HICOLLIE_WRONG_THREAD_CONTEXT = 29800001, <br/>HICOLLIE_REMOTE_FAILED = 29800002, <br/>HICOLLIE_INVALID_TIMER_NAME = 29800003, <br/>HICOLLIE_INVALID_TIMEOUT_VALUE = 29800004, <br/>HICOLLIE_WRONG_PROCESS_CONTEXT = 29800005, <br/>HICOLLIE_WRONG_TIMER_ID_OUTPUT_PARAM = 29800006<br/>} | 错误码定义。  | 
+| [HiCollie_Flag](_hi_collie.md#hicollie_flag) {<br/>HICOLLIE_FLAG_DEFAULT = (~0), <br/>HICOLLIE_FLAG_NOOP = (0), <br/>HICOLLIE_FLAG_LOG = (1 &lt;&lt; 0), <br/>HICOLLIE_FLAG_RECOVERY = (1 &lt;&lt; 1)<br/>} | 定义函数执行超时时发生的动作。  | 
 
 
 ### 函数

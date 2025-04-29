@@ -83,7 +83,7 @@ Installs a user certificate. This API uses a promise to return the result.
 | Name     | Type                                                   | Mandatory| Description          |
 | ----------- | ------------------------------------------------------- | ---- | -------------- |
 | admin       | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.|
-| certificate | [CertBlob](#certblob)                                   | Yes  | Information about the certificate to install. The certificate file must be stored in a path that can be accessed by the application, such as the application sandbox path.    |
+| certificate | [CertBlob](#certblob)                                   | Yes  | Certificate information. The certificate file must be stored in a path that can be accessed by the application, such as the application sandbox path.    |
 
 **Return value**
 
@@ -144,7 +144,7 @@ Installs a user certificate based on the system account.
 | Name     | Type                                                   | Mandatory| Description          |
 | ----------- | ------------------------------------------------------- | ---- | -------------- |
 | admin       | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.|
-| certificate | [CertBlob](#certblob)                                   | Yes  | Information about the certificate to install. The certificate file must be stored in a path that can be accessed by the application, such as the application sandbox path.    |
+| certificate | [CertBlob](#certblob)                                   | Yes  | Certificate information. The certificate file must be stored in a path that can be accessed by the application, such as the application sandbox path.    |
 | accountId   | number                                                  | Yes  | User ID, which must be greater than or equal to 0. You can call [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1) of **@ohos.account.osAccount** to obtain the user ID.|
 
 **Return value**
@@ -456,7 +456,7 @@ Obtains the device clipboard policy.
 
 | Type                  | Description                     |
 | --------------------- | ------------------------- |
-| [ClipboardPolicy](#clipboardpolicy) | Device clipboard policy obtained.|
+| string | Device clipboard policy in JSON format.|
 
 **Error codes**
 
@@ -486,11 +486,114 @@ try {
 }
 ```
 
+## securityManager.setAppClipboardPolicy<sup>18+</sup>
+
+setAppClipboardPolicy(admin: Want, bundleName: string, accountId: number, policy: ClipboardPolicy): void
+
+Sets the device clipboard policy with a specified bundle name and user ID. Currently, a maximum of 100 policies can be saved.
+
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SECURITY
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**Parameters**
+
+| Name    | Type                                                     | Mandatory | Description                                                                                                                                                       |
+| -------    | ------------------------------------------------------- | --- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| admin      | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                                                                                                                         |
+| bundleName | string                                                  | Yes  | Bundle name of the application for which the device clipboard policy is set.                                                                                                                                     |
+| accountId  | number                                                  | Yes  | User ID, which must be greater than or equal to 0. You can call [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1) of **@ohos.account.osAccount** to obtain the user ID.|
+| policy     | [ClipboardPolicy](#clipboardpolicy)                     | Yes  | Clipboard policy to set.                                                                                                                                                   |
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID  | Error Message                                                                                                                                           |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| 9200001 | The application is not an administrator application of the device.                                                                              |
+| 9200002 | The administrator application does not have permission to manage the device.                                                                    |
+| 201     | Permission verification failed. The application does not have the permission required to call the API.                                          |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let bundleName: string = 'com.example.myapplication';
+let accountId: number = 100;
+try {
+    securityManager.setAppClipboardPolicy(wantTemp, bundleName, accountId, securityManager.ClipboardPolicy.IN_APP);
+    console.info(`Succeeded in setting clipboard policy.`);
+} catch(err) {
+    console.error(`Failed to set clipboard policy. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## securityManager.getAppClipboardPolicy<sup>18+</sup>
+
+getAppClipboardPolicy(admin: Want, bundleName: string, accountId: number): string
+
+Obtains the device clipboard policy with the specified bundle name and user ID.
+
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SECURITY
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**Parameters**
+
+| Name    | Type                                                     | Mandatory | Description                                                                                                                                                       |
+| -------    | ------------------------------------------------------- | --- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| admin      | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                                                                                                                              |
+| bundleName | string                                                  | Yes  | Bundle name of the application for which the device clipboard policy is set.                                                                                                                           |
+| accountId  | number                                                  | Yes  | User ID, which must be greater than or equal to 0. You can call [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1) of **@ohos.account.osAccount** to obtain the user ID.|
+
+**Return value**
+
+| Type                                 | Description      |
+| ----------------------------------- | -------- |
+| string | Device clipboard policy in JSON format.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID  | Error Message                                                                                                                                           |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| 9200001 | The application is not an administrator application of the device.                                                                              |
+| 9200002 | The administrator application does not have permission to manage the device.                                                                    |
+| 201     | Permission verification failed. The application does not have the permission required to call the API.                                          |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let bundleName: string = 'com.example.myapplication';
+let accountId: number = 100;
+try {
+    let result: string = securityManager.getAppClipboardPolicy(wantTemp, bundleName, accountId);
+    console.info(`Succeeded in getting password policy, result : ${result}`);
+} catch(err) {
+    console.error(`Failed to set clipboard policy. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
 ## securityManager.setWatermarkImage<sup>14+</sup>
 
 setWatermarkImage(admin: Want, bundleName: string, source: string | image.PixelMap, accountId: number): void
 
-Sets the watermark policy. Currently, this feature is available only for 2-in-1 devices.
+Sets the watermark policy. Currently, only 2-in-1 devices are supported.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -539,7 +642,7 @@ try {
 
 cancelWatermarkImage(admin: Want, bundleName: string, accountId: number): void
 
-Cancels the watermark policy. Currently, this feature is available only for 2-in-1 devices.
+Cancels the watermark policy. Currently, only 2-in-1 devices are supported.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SECURITY
 

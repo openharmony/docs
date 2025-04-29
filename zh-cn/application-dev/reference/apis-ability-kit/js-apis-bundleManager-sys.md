@@ -114,7 +114,7 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 
 ## AppDistributionType<sup>12+</sup>
 
-标识应用分发类型。
+标识应用[分发类型](../../security/app-provision-structure.md)。
 
  **系统能力:** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -2078,7 +2078,7 @@ cleanBundleCacheFiles(bundleName: string, appIndex: number): Promise\<void>
 | 参数名     | 类型   | 必填 | 说明                                       |
 | ---------- | ------ | ---- | ------------------------------------------ |
 | bundleName | string | 是   | 表示要清理其缓存数据的应用程序的bundleName。 |
-| appIndex | number | 是   | 表示要清理其缓存数据的应用程序的分身应用索引。<br>appIndex为0时，清理主应用缓存数据。 |
+| appIndex | number | 是   | 表示要清理其缓存数据的应用程序的分身应用索引。<br>appIndex为0时，表示清理主应用缓存数据。appIndex大于0时，表示清理指定分身应用缓存数据。 |
 
 **返回值：**
 
@@ -2246,7 +2246,7 @@ setApplicationEnabled(bundleName: string, appIndex: number, isEnabled: boolean):
 | 参数名      | 类型    | 必填 | 说明                                  |
 | ---------- | ------- | ---- | ------------------------------------- |
 | bundleName | string  | 是   | 表示应用程序的bundleName。            |
-| appIndex   | number  | 是   | 表示分身应用的索引。<br> appIndex为0时，表示设置指定应用的禁用或使能状态。              |
+| appIndex   | number  | 是   | 表示分身应用的索引。<br> appIndex为0时，表示设置主应用的禁用或使能状态。appIndex大于0时，表示设置指定分身应用的禁用或使能状态。              |
 | isEnabled  | boolean | 是   | 值为true表示使能，值为false表示禁用。 |
 
 **返回值：**
@@ -2488,7 +2488,7 @@ setAbilityEnabled(info: AbilityInfo, appIndex: number, isEnabled: boolean): Prom
 | 参数名    | 类型        | 必填 | 说明                                  |
 | -------- | ----------- | ---- | ------------------------------------- |
 | info     | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | 是   | 需要被设置的组件。                   |
-| appIndex   | number    | 是   | 表示分身应用的索引。<br> appIndex为0时，表示设置指定应用组件的禁用或使能状态。            |
+| appIndex   | number    | 是   | 表示分身应用的索引。<br> appIndex为0时，表示设置主应用组件的禁用或使能状态。appIndex大于0时，表示设置指定分身应用组件的禁用或使能状态。            |
 | isEnabled| boolean     | 是   | 值为true表示使能，值为false表示禁用。 |
 
 **返回值：**
@@ -2725,7 +2725,7 @@ isApplicationEnabled(bundleName: string, appIndex: number): Promise\<boolean>
 | 参数名      | 类型   | 必填 | 说明                       |
 | ---------- | ------ | ---- | -------------------------- |
 | bundleName | string | 是   | 表示应用程序的bundleName。  |
-| appIndex   | number  | 是   | 表示分身应用的索引。<br> appIndex为0时，表示获取指定应用的禁用或使能状态。            |
+| appIndex   | number  | 是   | 表示分身应用的索引。<br> appIndex为0时，表示获取主应用的禁用或使能状态。appIndex大于0时，表示获取指定分身应用的禁用或使能状态。            |
 
 **返回值：**
 
@@ -2957,7 +2957,7 @@ isAbilityEnabled(info: AbilityInfo, appIndex: number): Promise\<boolean>
 | 参数名 | 类型        | 必填 | 说明                        |
 | ---- | ----------- | ---- | --------------------------- |
 | info | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | 是   | 表示关于检查ability的信息。 |
-| appIndex   | number  | 是   | 表示分身应用的索引。 <br> appIndex为0时，表示获取指定应用组件的禁用或使能状态。           |
+| appIndex   | number  | 是   | 表示分身应用的索引。 <br> appIndex为0时，表示获取主应用组件的禁用或使能状态。appIndex大于0时，表示获取指定分身应用组件的禁用或使能状态。           |
 
 **返回值：**
 
@@ -4338,7 +4338,7 @@ try {
 ## bundleManager.getSpecifiedDistributionType<sup>10+</sup>
 getSpecifiedDistributionType(bundleName: string): string
 
-以同步的方法查询指定bundleName的分发类型，该返回值是在调用install接口时传入的[InstallParam](./js-apis-installer-sys.md#installparam)中的specifiedDistributionType字段。
+以同步的方法查询指定bundleName的[分发类型](../../security/app-provision-structure.md)，该返回值是在调用install接口时传入的[InstallParam](./js-apis-installer-sys.md#installparam)中的specifiedDistributionType字段。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4356,7 +4356,7 @@ getSpecifiedDistributionType(bundleName: string): string
 
 | 类型          | 说明                                   |
 | ------------- | -------------------------------------- |
-| string | 返回指定bundleName的分发类型。 |
+| string | 返回指定bundleName的[分发类型](../../security/app-provision-structure.md)。 |
 
 **错误码：**
 
@@ -4606,7 +4606,7 @@ getRecoverableApplicationInfo(callback: AsyncCallback\<Array\<RecoverableApplica
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<Array\<[RecoverableApplicationInfo](js-apis-bundleManager-recoverableApplicationInfo-sys.md)\>\> | 是   | 回调函数，当获取成功时，err为null，data为获取到的所有可恢复的预置应用信息 |
+| callback | AsyncCallback\<Array\<[RecoverableApplicationInfo](js-apis-bundleManager-recoverableApplicationInfo-sys.md)\>\> | 是   | 回调函数，当获取成功时，err为null，data为获取到的所有可恢复的预置应用信息。 |
 
 **错误码：**
 
@@ -4911,7 +4911,7 @@ try {
 
 getDeveloperIds(appDistributionType?: number): Array\<String>
 
-根据给定的应用分发类型获取当前用户下的所有的开发者ID列表。
+根据给定的应用[分发类型](#appdistributiontype12)获取当前用户下的所有的开发者ID列表。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4923,7 +4923,7 @@ getDeveloperIds(appDistributionType?: number): Array\<String>
 
 | 参数名                | 类型      | 必填 | 说明                     |
 | --------------------- | ---------| ---- | --------------------- |
-| appDistributionType  | [number](#appdistributiontype12)   | 否   | 表示应用的分发类型，当该参数缺省时，会返回所有应用的开发者ID列表。       |
+| [appDistributionType](#appdistributiontype12)  | number   | 否   | 表示应用的分发类型，当该参数缺省时，会返回所有应用的开发者ID列表。       |
 
 **返回值：**
 
@@ -5002,6 +5002,81 @@ try {
 } catch (err) {
     let message = (err as BusinessError).message;
     hilog.error(0x0000, 'testTag', 'switchUninstallState failed: %{public}s', message);
+}
+```
+
+## bundleManager.getAllPluginInfo<sup>18+</sup>
+
+function getAllPluginInfo(hostBundleName: string, userId?: number): Promise<Array\<PluginBundleInfo>>
+
+根据给定的hostBundleName和userId获取所有的PluginBundleInfo，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| hostBundleName | string | 是   | 表示安装插件的应用包名。 |
+| userId         | number   | 否   | 表示用户ID，默认值：调用方所在用户ID。取值范围：大于等于0。 |
+
+**返回值：**
+
+| 类型                                                         | 说明                                   |
+| ------------------------------------------------------------ | -------------------------------------- |
+| Promise<Array\<[PluginBundleInfo](js-apis-bundleManager-pluginBundleInfo-sys.md)>> | Promise对象，返回Array\<PluginBundleInfo>。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 17700001 | The specified bundleName is not found.  |
+| 17700004 | The specified user ID is not found.      |
+
+**示例：**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+let hostBundleName = 'com.ohos.demo';
+let userId = 100;
+
+try {
+    bundleManager.getAllPluginInfo(hostBundleName, userId).then((data) => {
+        hilog.info(0x0000, 'testTag', 'getAllPluginInfo successfully. Data: %{public}s', JSON.stringify(data));
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'getAllPluginInfo failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getAllPluginInfo failed. Cause: %{public}s', message);
+}
+```
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+let hostBundleName = 'com.ohos.demo';
+
+try {
+    bundleManager.getAllPluginInfo(hostBundleName).then((data) => {
+        hilog.info(0x0000, 'testTag', 'getAllPluginInfo successfully. Data: %{public}s', JSON.stringify(data));
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'getAllPluginInfo failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getAllPluginInfo failed. Cause: %{public}s', message);
 }
 ```
 
@@ -5303,7 +5378,7 @@ getAppCloneBundleInfo(bundleName: string, appIndex: number, bundleFlags: number,
 | 参数名     | 类型   | 必填 | 说明                       |
 | ---------- | ------ | ---- | ---------------------------|
 |    bundleName     | number |  是  |       表示要查询的应用Bundle名称。      |
-|    appIndex     | number |  是  |       表示要查询的分身应用索引。<br>appIndex为0时，可以查询主应用信息。      |
+|    appIndex     | number |  是  |       表示要查询的分身应用索引。<br>appIndex为0时，表示查询主应用信息。appIndex大于0时，表示查询指定分身应用信息。      |
 |    [bundleFlags](js-apis-bundleManager.md#bundleflag)     | number |  是  |       表示用于指定要返回的BundleInfo对象中包含的信息的标志。    |
 |    userId     | number |  否  |       表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。      |
 
@@ -5498,7 +5573,6 @@ migrateData(sourcePaths: Array&lt;string&gt;, destinationPath: string): Promise&
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 17700080 | The source paths are invalid. |
 | 17700081 | The destination path is invalid. |
 | 17700082 | User authentication failed. |
@@ -5510,14 +5584,14 @@ migrateData(sourcePaths: Array&lt;string&gt;, destinationPath: string): Promise&
 **示例：**
 
 ```ts
-import { bundleManager, common } from '@kit.AbilityKit';
+import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 开发者需将source1、source2、dest内容更新为实际文件路径或目录路径。
-  let source1: string = this.context.tempDir;
-  let source2: string = "/xxxx/xxxx/xxxx/xxxx/log.txt";
-  let dest: string = this.context.cacheDir;
+  let source1: string = "/data/app/el2/100/base/com.example.myapplication/";
+  let source2: string = "/data/app/el2/101/base/com.example.myapplication/log.txt";
+  let dest: string = "/data/local/tmp";
   let sourcePaths: Array<string> = [source1, source2];
 
   bundleManager.migrateData(sourcePaths, dest)
@@ -5644,3 +5718,27 @@ try {
   hilog.error(0x0000, 'testTag', 'deleteAbc failed. Cause: %{public}s', message);
 }
 ```
+
+## PluginBundleInfo<sup>18+</sup>
+
+type PluginBundleInfo = _PluginBundleInfo
+
+插件信息。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_PluginBundleInfo](js-apis-bundleManager-pluginBundleInfo-sys.md#pluginbundleinfo) |插件信息。 |
+
+## PluginModuleInfo<sup>18+</sup>
+
+type PluginModuleInfo = _PluginModuleInfo
+
+插件的模块信息。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_PluginModuleInfo](js-apis-bundleManager-pluginBundleInfo-sys.md#pluginmoduleinfo) |插件的模块信息。 |

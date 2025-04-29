@@ -47,6 +47,7 @@ activateOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
+| 12300010 | Service busy. Possible causes: The target account is being operated. |
 | 12300016 | The number of logged in accounts reaches the upper limit. |
 
 **示例：** 激活ID为100的系统账号
@@ -102,6 +103,7 @@ activateOsAccount(localId: number): Promise&lt;void&gt;
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
+| 12300010 | Service busy. Possible causes: The target account is being operated. |
 | 12300016 | The number of logged in accounts reaches the upper limit. |
 
 **示例：** 激活ID为100的系统账号
@@ -154,6 +156,7 @@ deactivateOsAccount(localId: number): Promise&lt;void&gt;
 | 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
+| 12300010 | Service busy. Possible causes: The target account is being operated. |
 
 **示例：** 注销ID为100的系统账号
   ```ts
@@ -2591,7 +2594,7 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 | 12300002 | Invalid challenge, authType or authTrustLevel. |
 | 12300013 | Network exception. |
 | 12300101 | The credential is incorrect. |
-| 12300102 | Credential not enrolled. |
+| 12300102 | The credential does not exist. |
 | 12300105 | The trust level is not supported. |
 | 12300106 | The authentication type is not supported. |
 | 12300109 | The authentication, enrollment, or update operation is canceled. |
@@ -2661,7 +2664,7 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
 | 12300101 | The credential is incorrect. |
-| 12300102 | Credential not enrolled. |
+| 12300102 | The credential does not exist. |
 | 12300105 | The trust level is not supported. |
 | 12300106 | The authentication type is not supported. |
 | 12300109 | The authentication, enrollment, or update operation is canceled. |
@@ -2734,7 +2737,7 @@ authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLev
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
 | 12300101 | The credential is incorrect. |
-| 12300102 | Credential not enrolled. |
+| 12300102 | The credential does not exist. |
 | 12300105 | The trust level is not supported. |
 | 12300106 | The authentication type is not supported. |
 | 12300109 | The authentication, enrollment, or update operation is canceled. |
@@ -2781,7 +2784,7 @@ cancelAuth(contextID: Uint8Array): void
 
 | 参数名    | 类型       | 必填  | 说明                                        |
 | ----------| ---------- | ---- | ------------------------------------------ |
-| contextId | Uint8Array | 是   | 指示身份验证上下文ID，此ID动态生成没有具体值。 |
+| contextID | Uint8Array | 是   | 指示身份验证上下文ID，此ID动态生成没有具体值。 |
 
 **错误码：**
 
@@ -3505,7 +3508,8 @@ static registerPlugin(plugin: DomainPlugin): void
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
-| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
 | 12300201 | The domain plugin has been registered. |
 
 **示例：**
@@ -3555,6 +3559,7 @@ static unregisterPlugin(): void
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
+| 801 | Capability not supported.|
 
 **示例：**
   ```ts
@@ -3767,7 +3772,7 @@ hasAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;bool
 | 12300002 | Invalid domainAccountInfo. |
 | 12300013 | Network exception. |
 | 12300014 | Not authenticated. |
-| 12300111 | The authentication time out. |
+| 12300111 | The operation time out. |
 | 12300114 | The authentication service works abnormally. |
 | 12300211 | Server unreachable. |
 
@@ -3827,7 +3832,7 @@ hasAccount(domainAccountInfo: DomainAccountInfo): Promise&lt;boolean&gt;
 | 12300002 | Invalid domainAccountInfo. |
 | 12300013 | Network exception. |
 | 12300014 | Not authenticated. |
-| 12300111 | The authentication time out. |
+| 12300111 | The operation time out. |
 | 12300114 | The authentication service works abnormally. |
 | 12300211 | Server unreachable. |
 
@@ -3989,7 +3994,7 @@ getAccountInfo(options: GetDomainAccountInfoOptions, callback: AsyncCallback&lt;
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
 | 12300014 | Not authenticated. |
-| 12300111 | The authentication time out. |
+| 12300111 | The operation time out. |
 | 12300114 | The authentication service works abnormally. |
 | 12300211 | Server unreachable. |
 
@@ -4050,7 +4055,7 @@ getAccountInfo(options: GetDomainAccountInfoOptions): Promise&lt;DomainAccountIn
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
 | 12300014 | Not authenticated. |
-| 12300111 | The authentication time out. |
+| 12300111 | The operation time out. |
 | 12300114 | The authentication service works abnormally. |
 | 12300211 | Server unreachable. |
 
@@ -4102,7 +4107,7 @@ getAccessToken(businessParams: Record<string, Object>, callback: AsyncCallback&l
 | 12300003 | Domain account not found. |
 | 12300013 | Network exception. |
 | 12300014 | The domain account is not authenticated. |
-| 12300111 | The authentication time out. |
+| 12300111 | The operation time out. |
 | 12300114 | The authentication service works abnormally. |
 | 12300211 | Server unreachable. |
 
@@ -4161,7 +4166,7 @@ getAccessToken(businessParams: Record<string, Object>): Promise&lt;Uint8Array&gt
 | 12300003 | Domain account not found. |
 | 12300013 | Network exception. |
 | 12300014 | The domain account is not authenticated. |
-| 12300111 | The authentication time out. |
+| 12300111 | The operation time out. |
 | 12300114 | The authentication service works abnormally. |
 | 12300211 | Server unreachable. |
 
@@ -4387,7 +4392,7 @@ addCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void
 | 12300101 | The token is invalid. |
 | 12300106 | The authentication type is not supported. |
 | 12300109 | The authentication, enrollment, or update operation is canceled. |
-| 12300111 | The authentication time out. |
+| 12300111 | The operation time out. |
 | 12300115 | The number of credentials reaches the upper limit. |
 | 12300116 | Credential complexity verification failed. |
 
@@ -4448,13 +4453,13 @@ updateCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | The system service works abnormally. |
-| 12300002 | Invalid credentialInfo, i.e. authType or authSubType or token. |
+| 12300002 | Invalid credentialInfo, i.e. authType or authSubType. |
 | 12300003 | Account not found. |
 | 12300101 | The token is invalid. |
-| 12300102 | Credential not enrolled.|
+| 12300102 | The credential does not exist. |
 | 12300106 | The authentication type is not supported. |
 | 12300109 | The authentication, enrollment, or update operation is canceled. |
-| 12300111 | The authentication time out. |
+| 12300111 | The operation time out. |
 | 12300116 | Credential complexity verification failed. |
 
 **示例：**
@@ -4648,7 +4653,7 @@ delCred(credentialId: Uint8Array, token: Uint8Array, callback: IIdmCallback): vo
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid credentialId. |
 | 12300101 | The token is invalid. |
-| 12300102 | Credential not enrolled. |
+| 12300102 | The credential does not exist. |
 
 **示例：**
   ```ts
@@ -4890,7 +4895,7 @@ getEnrolledId(authType: AuthType, accountId?: number): Promise&lt;Uint8Array&gt;
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid authType. |
 | 12300003 | Account not found. |
-| 12300102 | Credential not enrolled. |
+| 12300102 | The credential does not exist. |
 | 12300106 | The authentication type is not supported. |
 
 **示例：**
@@ -5534,8 +5539,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
 | shortName | string | 是   | 表示账号短名称（用作个人文件夹目录）。 <br/>**约束：** <br>1）不允许出现的字符：\< \> \| : " * ? / \\<br>2）不允许独立出现的字符串：.或..<br>3）长度不超过255个字符。|
-| disallowedPreinstalledBundles<sup>18+</sup> | Array&lt;string&gt; | 否   | 表示预置应用禁止名单，名单中的应用不可被安装在设备上。|
-| allowedPreinstalledBundles<sup>18+</sup> | Array&lt;string&gt; | 否   | 表示预置应用允许名单，仅名单中的应用可以被安装在设备上。|
+| disallowedPreinstalledBundles<sup>19+</sup> | Array&lt;string&gt; | 否   | 表示预置应用禁止名单，名单中的应用不可被安装在设备上。|
+| allowedPreinstalledBundles<sup>19+</sup> | Array&lt;string&gt; | 否   | 表示预置应用允许名单，仅名单中的应用可以被安装在设备上。|
 
 ## CreateOsAccountForDomainOptions<sup>12+</sup>
 

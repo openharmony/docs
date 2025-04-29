@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **OH_Drawing_Point3D** struct describes a three-dimensional coordinate point.
+The OH_Drawing_Point3D struct describes a three-dimensional coordinate point.
 
 **Since**: 12
 

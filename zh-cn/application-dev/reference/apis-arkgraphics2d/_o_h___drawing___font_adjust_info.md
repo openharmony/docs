@@ -9,6 +9,7 @@
 
 **相关模块：**[Drawing](_drawing.md)
 
+**所在头文件：**[drawing_text_typography.h](drawing__text__typography_8h.md)
 
 ## 汇总
 
@@ -17,8 +18,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| int [weight](#weight) | 字体原本的字重值  | 
-| int [to](#to) | 字体在应用中显示的字重值  | 
+| int [weight](#weight) | 字体原本的字重值。  | 
+| int [to](#to) | 字体在应用中显示的字重值。  | 
 
 
 ## 结构体成员变量说明
@@ -31,7 +32,7 @@ int OH_Drawing_FontAdjustInfo::to
 ```
 **描述**
 
-字体在应用中显示的字重值
+字体在应用中显示的字重值。
 
 
 ### weight
@@ -41,4 +42,4 @@ int OH_Drawing_FontAdjustInfo::weight
 ```
 **描述**
 
-字体原本的字重值
+字体原本的字重值。

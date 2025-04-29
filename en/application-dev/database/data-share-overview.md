@@ -1,4 +1,4 @@
-# Cross-Application Data Sharing
+# Overview of Cross-Application Data Sharing
 
 ## Introduction
 

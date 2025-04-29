@@ -124,7 +124,7 @@ Provides APIs related to MindSpore Lite model inference. The APIs in this module
 | [OH_AI_DeviceInfoSetPriority](#oh_ai_deviceinfosetpriority) ([OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info, [OH_AI_Priority](#oh_ai_priority) priority) | Sets the priority of an NNRt task. This function is available only for NNRt devices.|
 | [OH_AI_DeviceInfoGetPriority](#oh_ai_deviceinfogetpriority) (const [OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info) | Obtains the priority of an NNRt task. This function is available only for NNRt devices.|
 | [OH_AI_DeviceInfoAddExtension](#oh_ai_deviceinfoaddextension) ([OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info, const char \*name, const char \*value, size_t value_size) | Adds extended configuration in the form of key/value pairs to the device information. This function is available only for NNRt devices.|
-| [OH_AI_ModelCreate](#oh_ai_modelcreate) () | Creates a model object.|
+| [OH_AI_ModelCreate](#oh_ai_modelcreate) (void) | Creates a model object.|
 | [OH_AI_ModelDestroy](#oh_ai_modeldestroy) ([OH_AI_ModelHandle](#oh_ai_modelhandle) \*model) | Destroys a model object.|
 | [OH_AI_ModelBuild](#oh_ai_modelbuild) ([OH_AI_ModelHandle](#oh_ai_modelhandle) model, const void \*model_data, size_t data_size, [OH_AI_ModelType](#oh_ai_modeltype) model_type, const [OH_AI_ContextHandle](#oh_ai_contexthandle) model_context) | Loads and builds a MindSpore model from the memory buffer.|
 | [OH_AI_ModelBuildFromFile](#oh_ai_modelbuildfromfile) ([OH_AI_ModelHandle](#oh_ai_modelhandle) model, const char \*model_path, [OH_AI_ModelType](#oh_ai_modeltype) model_type, const [OH_AI_ContextHandle](#oh_ai_contexthandle) model_context) | Loads and builds a MindSpore model from a model file.|
@@ -151,7 +151,7 @@ Provides APIs related to MindSpore Lite model inference. The APIs in this module
 | [OH_AI_ModelSetTrainMode](#oh_ai_modelsettrainmode) ([OH_AI_ModelHandle](#oh_ai_modelhandle) model, bool train) | Sets the training mode. This API is used only for on-device training.|
 | [OH_AI_ModelSetupVirtualBatch](#oh_ai_modelsetupvirtualbatch) ([OH_AI_ModelHandle](#oh_ai_modelhandle) model, int virtual_batch_multiplier, float lr, float momentum) | OH_AI_API [OH_AI_Status](#oh_ai_status)<br>Sets the virtual batch for training. This API is used only for on-device training.|
 | [OH_AI_ExportModel](#oh_ai_exportmodel) ([OH_AI_ModelHandle](#oh_ai_modelhandle) model, [OH_AI_ModelType](#oh_ai_modeltype) model_type, const char \*model_file, [OH_AI_QuantizationType](#oh_ai_quantizationtype) quantization_type, bool export_inference_only, char \*\*output_tensor_name, size_t num) | Exports a training model. This API is used only for on-device training.|
-| [OH_AI_ExportModelBuffer](#oh_ai_exportmodelbuffer) ([OH_AI_ModelHandle](#oh_ai_modelhandle) model, [OH_AI_ModelType](#oh_ai_modeltype) model_type, char \*\*model_data, size_t \*data_size, [OH_AI_QuantizationType](#oh_ai_quantizationtype) quantization_type, bool export_inference_only, char \*\*output_tensor_name, size_t num) | Exports the memory cache of the training model. This API is used only for on-device training. |
+| [OH_AI_ExportModelBuffer](#oh_ai_exportmodelbuffer) ([OH_AI_ModelHandle](#oh_ai_modelhandle) model, [OH_AI_ModelType](#oh_ai_modeltype) model_type, void \*model_data, size_t \*data_size, [OH_AI_QuantizationType](#oh_ai_quantizationtype) quantization_type, bool export_inference_only, char \*\*output_tensor_name, size_t num) | Exports the memory cache of the training model. This API is used only for on-device training. |
 | [OH_AI_ExportWeightsCollaborateWithMicro](#oh_ai_exportweightscollaboratewithmicro) ([OH_AI_ModelHandle](#oh_ai_modelhandle) model, [OH_AI_ModelType](#oh_ai_modeltype) model_type, const char \*weight_file, bool is_inference, bool enable_fp16, char \*\*changeable_weights_name, size_t num) | Exports the weight file of the training model for micro inference. This API is used only for on-device training.|
 | [OH_AI_TensorCreate](#oh_ai_tensorcreate) (const char \*name, [OH_AI_DataType](#oh_ai_datatype) type, const int64_t \*shape, size_t shape_num, const void \*data, size_t data_len) | Creates a tensor object.|
 | [OH_AI_TensorDestroy](#oh_ai_tensordestroy) ([OH_AI_TensorHandle](#oh_ai_tensorhandle) \*tensor) | Destroys a tensor object.|
@@ -185,7 +185,7 @@ Provides APIs related to MindSpore Lite model inference. The APIs in this module
 
 **Description**
 
-Defines dimension information. The maximum dimension is set by **OH_AI_MAX_SHAPE_NUM**.
+Maximum number of shapes. The maximum value reserved is **32**, and the maximum number currently supported is **8**.
 
 **Since**: 9
 
@@ -502,8 +502,8 @@ Defines the supported device types.
 | Value| Description|
 | -------- | -------- |
 | OH_AI_DEVICETYPE_CPU | Device type: CPU|
-| OH_AI_DEVICETYPE_GPU | GPU.<br>This configuration is open for upstream open source projects and is not supported by OpenHarmony.|
-| OH_AI_DEVICETYPE_KIRIN_NPU | Kirin NPU.<br>This configuration is open for upstream open source projects and is not supported by OpenHarmony.<br>To use KIRIN_NPU, set **OH_AI_DEVICETYPE_NNRT**.|
+| OH_AI_DEVICETYPE_GPU | Device type: GPU<br>This configuration is open for upstream open source projects and is not supported by OpenHarmony.|
+| OH_AI_DEVICETYPE_KIRIN_NPU | Device type: Kirin NPU<br>This configuration is open for upstream open source projects and is not supported by OpenHarmony.<br>To use KIRIN_NPU, set **OH_AI_DEVICETYPE_NNRT**.|
 | OH_AI_DEVICETYPE_NNRT | NNRt, a cross-chip inference and computing runtime oriented to the AI field.<br>OHOS device range: [60, 80)|
 | OH_AI_DEVICETYPE_INVALID | Invalid device type.|
 
@@ -1429,7 +1429,7 @@ Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_STATU
 ### OH_AI_ExportModelBuffer()
 
 ```
-OH_AI_API OH_AI_Status OH_AI_ExportModelBuffer (OH_AI_ModelHandle model, OH_AI_ModelType model_type, char ** model_data, size_t * data_size, OH_AI_QuantizationType quantization_type, bool export_inference_only, char ** output_tensor_name, size_t num )
+OH_AI_API OH_AI_Status OH_AI_ExportModelBuffer (OH_AI_ModelHandle model, OH_AI_ModelType model_type, void * model_data, size_t * data_size, OH_AI_QuantizationType quantization_type, bool export_inference_only, char ** output_tensor_name, size_t num )
 ```
 **Description**
 Exports the memory cache of the training model. This API is used only for on-device training.
@@ -1659,7 +1659,7 @@ Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_STATU
 ### OH_AI_ModelCreate()
 
 ```
-OH_AI_API OH_AI_ModelHandle OH_AI_ModelCreate ()
+OH_AI_API OH_AI_ModelHandle OH_AI_ModelCreate (void)
 ```
 
 **Description**
@@ -1924,6 +1924,7 @@ Sets the learning rate for model training. This API is used only for on-device t
 
 | Name| Description|
 | -------- | -------- |
+| model | Pointer to the model object.|
 | learning_rate | Learning rate.|
 
 **Returns**
@@ -1997,6 +1998,7 @@ Updates the weight tensors of a model. This API is used only for on-device train
 
 | Name| Description|
 | -------- | -------- |
+| model | Pointer to the model object.|
 | new_weights | Weight tensors to be updated.|
 
 **Returns**

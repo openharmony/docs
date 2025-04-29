@@ -38,14 +38,14 @@ struct WebComponent {
               // Unique ID of a download task.
               console.log("download update guid: " + webDownloadItem.getGuid());
               // Download progress.
-              console.log("download update guid: " + webDownloadItem.getPercentComplete());
+              console.log("download update percent complelte: " + webDownloadItem.getPercentComplete());
               // Current download speed.
               console.log("download update speed: " + webDownloadItem.getCurrentSpeed())
             })
             this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // Error code of a download task failure.
-              console.log("download failed guid: " + webDownloadItem.getLastErrorCode());
+              console.log("download failed last error code: " + webDownloadItem.getLastErrorCode());
             })
             this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -147,6 +147,85 @@ struct WebComponent {
 }
 ```
 
+Use [DocumentViewPicker()](../reference/apis-core-file-kit/js-apis-file-picker.md#documentviewpicker) to obtain the default download directory and set it as the download directory.
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { picker, fileUri } from  '@kit.CoreFileKit';
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+  delegate: webview.WebDownloadDelegate = new webview.WebDownloadDelegate();
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // Use DocumentViewPicker() to obtain the default download directory and set it as the download directory.
+              getDownloadPathFromPicker().then((downloadPath) => {
+                webDownloadItem.start(downloadPath + '/' + webDownloadItem.getSuggestedFileName());
+              });
+
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
+              // Unique ID of a download task.
+              console.log("download update guid: " + webDownloadItem.getGuid());
+              // Download progress.
+              console.log("download update percent complelte: " + webDownloadItem.getPercentComplete());
+              // Current download speed.
+              console.log("download update speed: " + webDownloadItem.getCurrentSpeed())
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+              // Error code of a download task failure.
+              console.log("download failed last error code: " + webDownloadItem.getLastErrorCode());
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+    }
+  }
+
+}
+function getDownloadPathFromPicker(): Promise<string> {
+  return new Promise<string>(resolve => {
+    try {
+      const documentSaveOptions = new picker.DocumentSaveOptions();
+      documentSaveOptions.pickerMode = picker.DocumentPickerMode.DOWNLOAD
+      const documentPicker = new picker.DocumentViewPicker();
+      documentPicker.save(documentSaveOptions).then(async (documentSaveResult: Array<string>) => {
+        if (documentSaveResult.length <= 0) {
+          resolve('');
+          return;
+        }
+        const uriString = documentSaveResult[0];
+        if (!uriString) {
+          resolve('');
+          return;
+        }
+        const uri = new fileUri.FileUri(uriString);
+        resolve(uri.path);
+      }).catch((err: BusinessError) => {
+        console.error(`ErrorCode: ${err.code},  Message: ${err.message}`);
+        resolve('');
+      });
+    } catch (error) {
+      resolve('');
+    }
+  })
+}
+```
 
 ## Resuming Unfinished Download Tasks Due to Process Exit
 When the **Web** component is started, you can resume the unfinished download task through the [resumeDownload()](../reference/apis-arkweb/js-apis-webview.md#resumedownload11) API.

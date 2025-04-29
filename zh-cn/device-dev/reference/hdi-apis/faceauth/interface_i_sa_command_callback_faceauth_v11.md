@@ -30,7 +30,7 @@ ISaCommandCallback::OnSaCommands ([in] struct SaCommand[] commands)
 ```
 **描述**
 
-定义进程中sa命令的函数。
+定义进程中SA命令的函数。
 
 **起始版本：** 4.0
 

@@ -10,7 +10,7 @@
 - [SingleKVStore](#singlekvstore)：单版本分布式键值数据库，不对数据所属设备进行区分，提供查询数据和同步数据的方法。
 - [DeviceKVStore](#devicekvstore)：设备协同数据库，继承自[SingleKVStore](#singlekvstore)，以设备维度对数据进行区分，提供查询数据和同步数据的方法。
 
-> **说明：** 
+> **说明：**
 >
 > - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
@@ -74,7 +74,7 @@ try {
   let bucket1: ValuesBucket = {key:"name", value: "LiSi"};
   let bucket2: ValuesBucket = {key:"age", value: 20};
   let bucket3: ValuesBucket = {key:"deposits", value: 12.34};
-  let people: Array<ValuesBucket> = new Array(bucket1, bucket2, bucket3)
+  let people: Array<ValuesBucket> = new Array(bucket1, bucket2, bucket3);
   kvStore.putBatch(people, (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
@@ -139,7 +139,7 @@ try {
   let bucket1: ValuesBucket = {key:"name", value: "LiSi"};
   let bucket2: ValuesBucket = {key:"age", value: 20};
   let bucket3: ValuesBucket = {key:"deposits", value: 12.34};
-  let people: Array<ValuesBucket> = new Array(bucket1, bucket2, bucket3)
+  let people: Array<ValuesBucket> = new Array(bucket1, bucket2, bucket3);
   kvStore.putBatch(people).then(() => {
     console.info(`Succeeded in putting patch`);
   }).catch((err: BusinessError) => {
@@ -315,7 +315,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: Asyn
 | ------------ | -------------------------------------- |
 | 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 202          | Permission verification failed, application which is not a system application uses system API.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -384,7 +384,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KV
 | ------------ | -------------------------------------- |
 | 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 202          | Permission verification failed, application which is not a system application uses system API.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -455,7 +455,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: Asyn
 | ------------ | -------------------------------------- |
 | 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 202          | Permission verification failed, application which is not a system application uses system API.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -524,7 +524,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KV
 | ------------ | -------------------------------------- |
 | 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 202          | Permission verification failed, application which is not a system application uses system API.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -562,7 +562,7 @@ try {
 getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;KVStoreResultSet&gt;): void
 
 获取与指定Predicate对象匹配的KVStoreResultSet对象，使用callback异步回调。
-> **说明：** 
+> **说明：**
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](js-apis-distributedKVStore.md#sync)。
@@ -589,7 +589,7 @@ getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicat
 | ------------ | -------------------------------------- |
 | 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 202          | Permission verification failed, application which is not a system application uses system API.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -631,7 +631,7 @@ try {
 getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KVStoreResultSet&gt;
 
 获取与指定Predicate对象匹配的KVStoreResultSet对象，使用Promise异步回调。
-> **说明：** 
+> **说明：**
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](js-apis-distributedKVStore.md#sync)。
@@ -663,7 +663,7 @@ getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicat
 | ------------ | -------------------------------------- |
 | 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 202          | Permission verification failed, application which is not a system application uses system API.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 

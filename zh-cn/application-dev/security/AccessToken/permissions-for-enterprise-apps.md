@@ -6,6 +6,10 @@
 
 企业类应用可参考[声明权限](declare-permissions.md)，申请以下权限。
 
+> **注意：**
+> 
+> 以下权限不支持自动签名，因此在调试和发布阶段，均需参照[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section297715173233)的步骤，完成手动签名。
+
 ## ohos.permission.SET_FILE_GUARD_POLICY
 
 允许应用下发文件管控策略。
@@ -100,6 +104,8 @@
 
 允许应用获取Wi-Fi的配置信息。
 
+当前仅PC/2in1设备应用可申请此权限。
+
 **权限级别**：system_basic
 
 **授权方式**：系统授权（system_grant）
@@ -170,6 +176,21 @@
 **起始版本**：12
 
 **变更信息**：API 7-13该权限仅向系统应用开放；从API 14开始，开放范围从系统应用变更为企业普通应用。
+
+### ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
+
+允许系统应用和运营商应用设置eSIM昵称和激活eSIM。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**起始版本**：14
+
+**变更信息**：从API 14开始，权限级别变更为system_basic，开发范围从所有应用变更为企业普通应用。
 
 ## ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION
 

@@ -47,16 +47,16 @@ Provides HID driver development kit (DDK) functions, including those for creatin
 
 | Name| Description| 
 | -------- | -------- |
-| typedef struct [Hid_EmitItem](_hid___emit_item.md)[Hid_EmitItem](#hid_emititem) | Defines event information.| 
-| typedef struct [Hid_Device](_hid___device.md)[Hid_Device](#hid_device) | Defines basic device information.| 
-| typedef struct [Hid_EventTypeArray](_hid___event_type_array.md)[Hid_EventTypeArray](#hid_eventtypearray) | Defines an array of event types.| 
-| typedef struct [Hid_KeyCodeArray](_hid___key_code_array.md)[Hid_KeyCodeArray](#hid_keycodearray) | Defines an array of key codes.| 
-| typedef struct [Hid_AbsAxesArray](_hid___abs_axes_array.md)[Hid_AbsAxesArray](#hid_absaxesarray) | Defines an array of absolute coordinates.| 
-| typedef struct [Hid_RelAxesArray](_hid___rel_axes_array.md)[Hid_RelAxesArray](#hid_relaxesarray) | Defines an array of relative coordinates.| 
-| typedef struct [Hid_MscEventArray](_hid___msc_event_array.md)[Hid_MscEventArray](#hid_msceventarray) | Defines an array of miscellaneous events.| 
-| typedef struct [Hid_EventProperties](_hid___event_properties.md)[Hid_EventProperties](#hid_eventproperties) | Defines the event properties of a device.| 
-| typedef struct [Hid_DeviceHandle](#hid_devicehandle)[Hid_DeviceHandle](#hid_devicehandle) | Defines the opaque USB HID device structure.| 
-| typedef struct [Hid_RawDevInfo](_hid___raw_dev_info.md)[Hid_RawDevInfo](#hid_rawdevinfo) | Defines the raw device information.| 
+| typedef struct [Hid_EmitItem](_hid___emit_item.md) [Hid_EmitItem](#hid_emititem) | Defines event information.| 
+| typedef struct [Hid_Device](_hid___device.md) [Hid_Device](#hid_device) | Defines basic device information.| 
+| typedef struct [Hid_EventTypeArray](_hid___event_type_array.md) [Hid_EventTypeArray](#hid_eventtypearray) | Defines an array of event types.| 
+| typedef struct [Hid_KeyCodeArray](_hid___key_code_array.md) [Hid_KeyCodeArray](#hid_keycodearray) | Defines an array of key codes.| 
+| typedef struct [Hid_AbsAxesArray](_hid___abs_axes_array.md) [Hid_AbsAxesArray](#hid_absaxesarray) | Defines an array of absolute coordinates.| 
+| typedef struct [Hid_RelAxesArray](_hid___rel_axes_array.md) [Hid_RelAxesArray](#hid_relaxesarray) | Defines an array of relative coordinates.| 
+| typedef struct [Hid_MscEventArray](_hid___msc_event_array.md) [Hid_MscEventArray](#hid_msceventarray) | Defines an array of miscellaneous events.| 
+| typedef struct [Hid_EventProperties](_hid___event_properties.md) [Hid_EventProperties](#hid_eventproperties) | Defines the event properties of a device.| 
+| typedef struct [Hid_DeviceHandle](#hid_devicehandle) [Hid_DeviceHandle](#hid_devicehandle) | Defines the opaque USB HID device structure.| 
+| typedef struct [Hid_RawDevInfo](_hid___raw_dev_info.md) [Hid_RawDevInfo](#hid_rawdevinfo) | Defines the raw device information.| 
 
 
 ### Enums
@@ -102,30 +102,30 @@ Provides HID driver development kit (DDK) functions, including those for creatin
 
 | Name| Description| 
 | -------- | -------- |
-| uint16_t [Hid_EmitItem::type](#type) | Event type.| 
+| uint16_t [Hid_EmitItem::type](#type) | Enumerates the event types.| 
 | uint16_t [Hid_EmitItem::code](#code) | Event code.| 
 | uint32_t [Hid_EmitItem::value](#value) | Event value.| 
 | const char \* [Hid_Device::deviceName](#devicename) | Device name.| 
 | uint16_t [Hid_Device::vendorId](#vendorid) | Vendor ID.| 
 | uint16_t [Hid_Device::productId](#productid) | Product ID.| 
-| uint16_t [Hid_Device::version](#version) | Version number.| 
+| uint16_t [Hid_Device::version](#version) | Version.| 
 | uint16_t [Hid_Device::bustype](#bustype) | Bus type.| 
 | [Hid_DeviceProp](#hid_deviceprop) \* [Hid_Device::properties](#properties) | Device properties.| 
 | uint16_t [Hid_Device::propLength](#proplength) | Number of device properties.| 
 | [Hid_EventType](#hid_eventtype) \* [Hid_EventTypeArray::hidEventType](#hideventtype) | Event type.| 
-| uint16_t [Hid_EventTypeArray::length](#length-15) | Array length.| 
-| [Hid_KeyCode](#hid_keycode) \* [Hid_KeyCodeArray::hidKeyCode](#hidkeycode) | key code.| 
-| uint16_t [Hid_KeyCodeArray::length](#length-25) | Array length.| 
+| uint16_t [Hid_EventTypeArray::length](#length-15) | Size of the array.| 
+| [Hid_KeyCode](#hid_keycode) \* [Hid_KeyCodeArray::hidKeyCode](#hidkeycode) | Enumerates the key codes.| 
+| uint16_t [Hid_KeyCodeArray::length](#length-25) | Size of the array.| 
 | [Hid_AbsAxes](#hid_absaxes) \* [Hid_AbsAxesArray::hidAbsAxes](#hidabsaxes) | Array of absolute coordinates.| 
-| uint16_t [Hid_AbsAxesArray::length](#length-35) | Array length.| 
-| [Hid_RelAxes](#hid_relaxes) \* [Hid_RelAxesArray::hidRelAxes](#hidrelaxes) | Array of relative coordinates.| 
-| uint16_t [Hid_RelAxesArray::length](#length-45) | Array length.| 
+| uint16_t [Hid_AbsAxesArray::length](#length-35) | Size of the array.| 
+| [Hid_RelAxes](#hid_relaxes) \* [Hid_RelAxesArray::hidRelAxes](#hidrelaxes) | Relative coordinate.| 
+| uint16_t [Hid_RelAxesArray::length](#length-45) | Size of the array.| 
 | [Hid_MscEvent](#hid_mscevent) \* [Hid_MscEventArray::hidMscEvent](#hidmscevent) | Miscellaneous event.| 
-| uint16_t [Hid_MscEventArray::length](#length-55) | Array length.| 
+| uint16_t [Hid_MscEventArray::length](#length-55) | Size of the array.| 
 | struct [Hid_EventTypeArray](_hid___event_type_array.md)[Hid_EventProperties::hidEventTypes](#hideventtypes) | Array of event types.| 
 | struct [Hid_KeyCodeArray](_hid___key_code_array.md)[Hid_EventProperties::hidKeys](#hidkeys) | Array of key codes.| 
-| struct [Hid_AbsAxesArray](_hid___abs_axes_array.md)[Hid_EventProperties::hidAbs](#hidabs) | Array of absolute coordinate properties.| 
-| struct [Hid_RelAxesArray](_hid___rel_axes_array.md)[Hid_EventProperties::hidRelBits](#hidrelbits) | Array of relative coordinate properties.| 
+| struct [Hid_AbsAxesArray](_hid___abs_axes_array.md)[Hid_EventProperties::hidAbs](#hidabs) | Array of absolute coordinates.| 
+| struct [Hid_RelAxesArray](_hid___rel_axes_array.md)[Hid_EventProperties::hidRelBits](#hidrelbits) | Array of relative coordinates.| 
 | struct [Hid_MscEventArray](_hid___msc_event_array.md)[Hid_EventProperties::hidMiscellaneous](#hidmiscellaneous) | Array of miscellaneous events.| 
 | int32_t [Hid_EventProperties::hidAbsMax](#hidabsmax) [64] | Maximum values of the absolute coordinates.| 
 | int32_t [Hid_EventProperties::hidAbsMin](#hidabsmin) [64] | Minimum values of the absolute coordinates.| 
@@ -149,7 +149,7 @@ Provides HID driver development kit (DDK) functions, including those for creatin
 
 Defines the maximum size of the report buffer.
 
-**Since**: 16
+**Since**: 18
 
 
 ## Type Description
@@ -158,7 +158,7 @@ Defines the maximum size of the report buffer.
 ### Hid_AbsAxesArray
 
 ```
-typedef struct Hid_AbsAxesArrayHid_AbsAxesArray
+typedef struct Hid_AbsAxesArray Hid_AbsAxesArray
 ```
 
 **Description**
@@ -171,7 +171,7 @@ Defines a struct for an array of absolute coordinates.
 ### Hid_Device
 
 ```
-typedef struct Hid_DeviceHid_Device
+typedef struct Hid_Device Hid_Device
 ```
 
 **Description**
@@ -184,20 +184,20 @@ Defines a struct for basic device information.
 ### Hid_DeviceHandle
 
 ```
-typedef struct Hid_DeviceHandleHid_DeviceHandle
+typedef struct Hid_DeviceHandle Hid_DeviceHandle
 ```
 
 **Description**
 
 Defines the opaque USB HID device structure.
 
-**Since**: 16
+**Since**: 18
 
 
 ### Hid_EmitItem
 
 ```
-typedef struct Hid_EmitItemHid_EmitItem
+typedef struct Hid_EmitItem Hid_EmitItem
 ```
 
 **Description**
@@ -210,7 +210,7 @@ Defines a struct for event information.
 ### Hid_EventProperties
 
 ```
-typedef struct Hid_EventPropertiesHid_EventProperties
+typedef struct Hid_EventProperties Hid_EventProperties
 ```
 
 **Description**
@@ -223,7 +223,7 @@ Defines a struct for the event properties of a device.
 ### Hid_EventTypeArray
 
 ```
-typedef struct Hid_EventTypeArrayHid_EventTypeArray
+typedef struct Hid_EventTypeArray Hid_EventTypeArray
 ```
 
 **Description**
@@ -236,7 +236,7 @@ Defines a struct for an array of event types.
 ### Hid_KeyCodeArray
 
 ```
-typedef struct Hid_KeyCodeArrayHid_KeyCodeArray
+typedef struct Hid_KeyCodeArray Hid_KeyCodeArray
 ```
 
 **Description**
@@ -249,7 +249,7 @@ Defines a struct for an array of key codes.
 ### Hid_MscEventArray
 
 ```
-typedef struct Hid_MscEventArrayHid_MscEventArray
+typedef struct Hid_MscEventArray Hid_MscEventArray
 ```
 
 **Description**
@@ -262,20 +262,20 @@ Defines a struct for an array of miscellaneous events.
 ### Hid_RawDevInfo
 
 ```
-typedef struct Hid_RawDevInfoHid_RawDevInfo
+typedef struct Hid_RawDevInfo Hid_RawDevInfo
 ```
 
 **Description**
 
 Defines the raw device information.
 
-**Since**: 16
+**Since**: 18
 
 
 ### Hid_RelAxesArray
 
 ```
-typedef struct Hid_RelAxesArrayHid_RelAxesArray
+typedef struct Hid_RelAxesArray Hid_RelAxesArray
 ```
 
 **Description**
@@ -313,14 +313,14 @@ Enumerates the absolute coordinates.
 | HID_ABS_WHEEL | Scroll wheel.| 
 | HID_ABS_GAS | Gas.| 
 | HID_ABS_BRAKE | Brake.| 
-| HID_ABS_HAT0X | HAT0X | 
-| HID_ABS_HAT0Y | HAT0Y | 
-| HID_ABS_HAT1X | HAT1X | 
-| HID_ABS_HAT1Y | HAT1Y | 
-| HID_ABS_HAT2X | HAT2X | 
-| HID_ABS_HAT2Y | HAT2Y | 
-| HID_ABS_HAT3X | HAT3X | 
-| HID_ABS_HAT3Y | HAT3Y | 
+| HID_ABS_HAT0X | HAT0X.| 
+| HID_ABS_HAT0Y | HAT0Y.| 
+| HID_ABS_HAT1X | HAT1X.| 
+| HID_ABS_HAT1Y | HAT1Y.| 
+| HID_ABS_HAT2X | HAT2X.| 
+| HID_ABS_HAT2Y | HAT2Y.| 
+| HID_ABS_HAT3X | HAT3X.| 
+| HID_ABS_HAT3Y | HAT3Y.| 
 | HID_ABS_PRESSURE | Pressure.| 
 | HID_ABS_DISTANCE | Distance.| 
 | HID_ABS_TILT_X | Tilt of X axis.| 
@@ -416,116 +416,116 @@ Enumerates the key codes.
 
 | Value| Description| 
 | -------- | -------- |
-| HID_KEY_A | Key A.| 
-| HID_KEY_B | Key B.| 
-| HID_KEY_C | Key C.| 
-| HID_KEY_D | Key D.| 
-| HID_KEY_E | Key E.| 
-| HID_KEY_F | Key F.| 
-| HID_KEY_G | Key G.| 
-| HID_KEY_H | Key H.| 
-| HID_KEY_I | Key I.| 
-| HID_KEY_J | Key J.| 
-| HID_KEY_K | Key K.| 
-| HID_KEY_L | Key L.| 
-| HID_KEY_M | Key M.| 
-| HID_KEY_N | Key N.| 
-| HID_KEY_O | Key O.| 
-| HID_KEY_P | Key P.| 
-| HID_KEY_Q | Key Q.| 
-| HID_KEY_R | Key R.| 
-| HID_KEY_S | Key S.| 
-| HID_KEY_T | Key T.| 
-| HID_KEY_U | Key U.| 
-| HID_KEY_V | Key V.| 
-| HID_KEY_W | Key W.| 
-| HID_KEY_X | Key X.| 
-| HID_KEY_Y | Key Y.| 
-| HID_KEY_Z | Key Z.| 
-| HID_KEY_ESC | Key Esc.| 
-| HID_KEY_0 | Key 0.| 
-| HID_KEY_1 | Key 1.| 
-| HID_KEY_2 | Key 2.| 
-| HID_KEY_3 | Key 3.| 
-| HID_KEY_4 | Key 4.| 
-| HID_KEY_5 | Key 5.| 
-| HID_KEY_6 | Key 6.| 
-| HID_KEY_7 | Key 7.| 
-| HID_KEY_8 | Key 8.| 
-| HID_KEY_9 | Key 9.| 
-| HID_KEY_GRAVE | Key grave (`).| 
-| HID_KEY_MINUS | Key minus (-).| 
-| HID_KEY_EQUALS | Key equals (=).| 
-| HID_KEY_BACKSPACE | key Backspace.| 
-| HID_KEY_LEFT_BRACKET | Key left bracket ([).| 
-| HID_KEY_RIGHT_BRACKET | Key right bracket (]).| 
-| HID_KEY_ENTER | Key Enter.| 
-| HID_KEY_LEFT_SHIFT | Left Shift.| 
-| HID_KEY_BACKSLASH | Key backslash (\).| 
-| HID_KEY_SEMICOLON | Key semicolon (;).| 
-| HID_KEY_APOSTROPHE | Key apostrophe (').| 
-| HID_KEY_SPACE | Key Space.| 
-| HID_KEY_SLASH | Key slash (/).| 
-| HID_KEY_COMMA | Key comma (,).| 
-| HID_KEY_PERIOD | Key period (.).| 
-| HID_KEY_RIGHT_SHIFT | Right Shift.| 
-| HID_KEY_NUMPAD_0 | Numeral 0 on the numeric keypad.| 
-| HID_KEY_NUMPAD_1 | Numeral 1 on the numeric keypad.| 
-| HID_KEY_NUMPAD_2 | Numeral 2 on the numeric keypad.| 
-| HID_KEY_NUMPAD_3 | Numeral 3 on the numeric keypad.| 
-| HID_KEY_NUMPAD_4 | Numeral 4 on the numeric keypad.| 
-| HID_KEY_NUMPAD_5 | Numeral 5 on the numeric keypad.| 
-| HID_KEY_NUMPAD_6 | Numeral 6 on the numeric keypad.| 
-| HID_KEY_NUMPAD_7 | Numeral 7 on the numeric keypad.| 
-| HID_KEY_NUMPAD_8 | Numeral 8 on the numeric keypad.| 
-| HID_KEY_NUMPAD_9 | Numeral 9 on the numeric keypad.| 
-| HID_KEY_NUMPAD_DIVIDE | Arithmetic operator / (division) on the numeric keypad.| 
-| HID_KEY_NUMPAD_MULTIPLY | Arithmetic operator * (multiplication) on the numeric keypad.| 
-| HID_KEY_NUMPAD_SUBTRACT | Arithmetic operator - (subtraction) on the numeric keypad.| 
-| HID_KEY_NUMPAD_ADD | Arithmetic operator + (addition) on the numeric keypad.| 
-| HID_KEY_NUMPAD_DOT | Decimal point (.) on the numeric keypad. | 
-| HID_KEY_SYSRQ | SYSRQ key.|
-| HID_KEY_DELETE | Delete key.|
-| HID_KEY_MUTE | Mute key.| 
-| HID_KEY_VOLUME_DOWN | Volume Down key.| 
-| HID_KEY_VOLUME_UP | Volume Up key.| 
-| HID_KEY_BRIGHTNESS_DOWN | Brightness Down key.| 
-| HID_KEY_BRIGHTNESS_UP | Brightness Up key.| 
-| HID_BTN_0 | Button 0.| 
+| HID_KEY_A | Key A| 
+| HID_KEY_B | Key B| 
+| HID_KEY_C | Key C| 
+| HID_KEY_D | Key D| 
+| HID_KEY_E | Key E| 
+| HID_KEY_F | Key F| 
+| HID_KEY_G | Key G| 
+| HID_KEY_H | Key H| 
+| HID_KEY_I | Key I| 
+| HID_KEY_J | Key J| 
+| HID_KEY_K | Key K| 
+| HID_KEY_L | Key L| 
+| HID_KEY_M | Key M| 
+| HID_KEY_N | Key N| 
+| HID_KEY_O | Key O| 
+| HID_KEY_P | Key P| 
+| HID_KEY_Q | Key Q| 
+| HID_KEY_R | Key R| 
+| HID_KEY_S | Key S| 
+| HID_KEY_T | Key T| 
+| HID_KEY_U | Key U| 
+| HID_KEY_V | Key V| 
+| HID_KEY_W | Key W| 
+| HID_KEY_X | Key X| 
+| HID_KEY_Y | Key Y| 
+| HID_KEY_Z | Key Z| 
+| HID_KEY_ESC | Key Esc| 
+| HID_KEY_0 | Key 0| 
+| HID_KEY_1 | Key 1| 
+| HID_KEY_2 | Key 2| 
+| HID_KEY_3 | Key 3| 
+| HID_KEY_4 | Key 4| 
+| HID_KEY_5 | Key 5| 
+| HID_KEY_6 | Key 6| 
+| HID_KEY_7 | Key 7| 
+| HID_KEY_8 | Key 8| 
+| HID_KEY_9 | Key 9| 
+| HID_KEY_GRAVE | Key `| 
+| HID_KEY_MINUS | Key -| 
+| HID_KEY_EQUALS | Key =| 
+| HID_KEY_BACKSPACE | key Backspace| 
+| HID_KEY_LEFT_BRACKET | Key [| 
+| HID_KEY_RIGHT_BRACKET | Key ]| 
+| HID_KEY_ENTER | Key Enter| 
+| HID_KEY_LEFT_SHIFT | Left Shift| 
+| HID_KEY_BACKSLASH | Key \| 
+| HID_KEY_SEMICOLON | Key ;| 
+| HID_KEY_APOSTROPHE | Key '| 
+| HID_KEY_SPACE | Key Space| 
+| HID_KEY_SLASH | Key /| 
+| HID_KEY_COMMA | Key ,| 
+| HID_KEY_PERIOD | Key .| 
+| HID_KEY_RIGHT_SHIFT | Right Shift| 
+| HID_KEY_NUMPAD_0 | Numeral 0 on the numeric keypad| 
+| HID_KEY_NUMPAD_1 | Numeral 1 on the numeric keypad| 
+| HID_KEY_NUMPAD_2 | Numeral 2 on the numeric keypad| 
+| HID_KEY_NUMPAD_3 | Numeral 3 on the numeric keypad| 
+| HID_KEY_NUMPAD_4 | Numeral 4 on the numeric keypad| 
+| HID_KEY_NUMPAD_5 | Numeral 5 on the numeric keypad| 
+| HID_KEY_NUMPAD_6 | Numeral 6 on the numeric keypad| 
+| HID_KEY_NUMPAD_7 | Numeral 7 on the numeric keypad| 
+| HID_KEY_NUMPAD_8 | Numeral 8 on the numeric keypad| 
+| HID_KEY_NUMPAD_9 | Numeral 9 on the numeric keypad| 
+| HID_KEY_NUMPAD_DIVIDE | Key / on the numeric keypad| 
+| HID_KEY_NUMPAD_MULTIPLY | Key * on the numeric keypad| 
+| HID_KEY_NUMPAD_SUBTRACT | Key - on the numeric keypad| 
+| HID_KEY_NUMPAD_ADD | Key + on the numeric keypad| 
+| HID_KEY_NUMPAD_DOT | Key . on the numeric keypad| 
+| HID_KEY_SYSRQ | SYSRQ key|
+| HID_KEY_DELETE | Delete key|
+| HID_KEY_MUTE | Mute key| 
+| HID_KEY_VOLUME_DOWN | Volume Down key| 
+| HID_KEY_VOLUME_UP | Volume Down key| 
+| HID_KEY_BRIGHTNESS_DOWN | Brightness Down key| 
+| HID_KEY_BRIGHTNESS_UP | Brightness Up key| 
+| HID_BTN_0 | Button 0| 
 | HID_BTN_1 | Button 1| 
-| HID_BTN_2 | Button 2.| 
-| HID_BTN_3 | Button 3.| 
-| HID_BTN_4 | Button 4.| 
-| HID_BTN_5 | Button 5.| 
-| HID_BTN_6 | Button 6.| 
-| HID_BTN_7 | Button 7.| 
-| HID_BTN_8 | Button 8.| 
-| HID_BTN_9 | Button 9.| 
-| HID_BTN_LEFT | Left mouse button.| 
-| HID_BTN_RIGHT | Right mouse button.| 
-| HID_BTN_MIDDLE | Middle mouse button.| 
-| HID_BTN_SIDE | Side mouse button.| 
-| HID_BTN_EXTRA | Extra mouse button.| 
-| HID_BTN_FORWARD | Mouse forward button.| 
-| HID_BTN_BACKWARD | Mouse backward button.| 
-| HID_BTN_TASK | Mouse task button.| 
-| HID_BTN_TOOL_PEN | Pen.| 
-| HID_BTN_TOOL_RUBBER | Eraser.| 
-| HID_BTN_TOOL_BRUSH | Brush.| 
-| HID_BTN_TOOL_PENCIL | Pencil.| 
-| HID_BTN_TOOL_AIRBRUSH | Air brush.| 
-| HID_BTN_TOOL_FINGER | Finger.| 
-| HID_BTN_TOOL_MOUSE | Mouse.| 
-| HID_BTN_TOOL_LENS | Lens.| 
-| HID_BTN_TOOL_QUINT_TAP | Five-finger touch.| 
-| HID_BTN_STYLUS3 | Stylus 3.| 
-| HID_BTN_TOUCH | Touch.| 
-| HID_BTN_STYLUS | Stylus.| 
-| HID_BTN_STYLUS2 | Stylus 2.| 
-| HID_BTN_TOOL_DOUBLE_TAP | Two-finger touch.| 
-| HID_BTN_TOOL_TRIPLE_TAP | Three-finger touch.| 
-| HID_BTN_TOOL_QUAD_TAP | Four-finger touch.| 
-| HID_BTN_WHEEL | Scroll wheel.| 
+| HID_BTN_2 | Button 2| 
+| HID_BTN_3 | Button 3| 
+| HID_BTN_4 | Button 4| 
+| HID_BTN_5 | Button 5| 
+| HID_BTN_6 | Button 6| 
+| HID_BTN_7 | Button 7| 
+| HID_BTN_8 | Button 8| 
+| HID_BTN_9 | Button 9| 
+| HID_BTN_LEFT | Left mouse button| 
+| HID_BTN_RIGHT | Right mouse button| 
+| HID_BTN_MIDDLE | Middle mouse button| 
+| HID_BTN_SIDE | Side mouse button| 
+| HID_BTN_EXTRA | Extra mouse button| 
+| HID_BTN_FORWARD | Mouse forward button| 
+| HID_BTN_BACKWARD | Mouse backward button| 
+| HID_BTN_TASK | Mouse task button| 
+| HID_BTN_TOOL_PEN | Pen| 
+| HID_BTN_TOOL_RUBBER | Rubber| 
+| HID_BTN_TOOL_BRUSH | Brush| 
+| HID_BTN_TOOL_PENCIL | Pencil| 
+| HID_BTN_TOOL_AIRBRUSH | Air brush| 
+| HID_BTN_TOOL_FINGER | Finger| 
+| HID_BTN_TOOL_MOUSE | Mouse| 
+| HID_BTN_TOOL_LENS | Lens| 
+| HID_BTN_TOOL_QUINT_TAP | Five-finger touch| 
+| HID_BTN_STYLUS3 | Stylus 3| 
+| HID_BTN_TOUCH | Touch| 
+| HID_BTN_STYLUS | Stylus| 
+| HID_BTN_STYLUS2 | Stylus 2| 
+| HID_BTN_TOOL_DOUBLE_TAP | Two-finger touch| 
+| HID_BTN_TOOL_TRIPLE_TAP | Three-finger touch| 
+| HID_BTN_TOOL_QUAD_TAP | Four-finger touch| 
+| HID_BTN_WHEEL | Scroll wheel| 
 
 
 ### Hid_MscEvent
@@ -542,12 +542,12 @@ Enumerates miscellaneous input events.
 
 | Value| Description| 
 | -------- | -------- |
-| HID_MSC_SERIAL | Serial number.| 
-| HID_MSC_PULSE_LED | Pulse.| 
-| HID_MSC_GESTURE | Gesture.| 
-| HID_MSC_RAW | Start event.| 
-| HID_MSC_SCAN | Scan.| 
-| HID_MSC_TIMESTAMP | Timestamp.| 
+| HID_MSC_SERIAL | Serial number| 
+| HID_MSC_PULSE_LED | Pulse| 
+| HID_MSC_GESTURE | Gesture| 
+| HID_MSC_RAW | Start event| 
+| HID_MSC_SCAN | Scan| 
+| HID_MSC_TIMESTAMP | Timestamp| 
 
 
 ### Hid_RelAxes
@@ -566,17 +566,17 @@ Enumerates the relative coordinates.
 | -------- | -------- |
 | HID_REL_X | X axis.| 
 | HID_REL_Y | Y axis.| 
-| HID_REL_Z | Z axis.| 
-| HID_REL_RX | X axis of the right analog stick.| 
-| HID_REL_RY | Y axis of the right analog stick.| 
-| HID_REL_RZ | Z axis of the right analog stick.| 
-| HID_REL_HWHEEL | Horizontal scroll wheel.| 
-| HID_REL_DIAL | Scale.| 
-| HID_REL_WHEEL | Scroll wheel.| 
-| HID_REL_MISC | Others.| 
-| HID_REL_RESERVED | Reserved.| 
-| HID_REL_WHEEL_HI_RES | High-resolution scroll wheel.| 
-| HID_REL_HWHEEL_HI_RES | High-resolution horizontal scroll wheel.| 
+| HID_REL_Z | Z axis| 
+| HID_REL_RX | X axis of the right analog stick| 
+| HID_REL_RY | Y axis of the right analog stick| 
+| HID_REL_RZ | Z axis of the right analog stick| 
+| HID_REL_HWHEEL | Horizontal scroll wheel| 
+| HID_REL_DIAL | Scale| 
+| HID_REL_WHEEL | Scroll wheel| 
+| HID_REL_MISC | Others| 
+| HID_REL_RESERVED | Reserved| 
+| HID_REL_WHEEL_HI_RES | High-resolution scroll wheel| 
+| HID_REL_HWHEEL_HI_RES | High-resolution horizontal scroll wheel| 
 
 
 ### Hid_ReportType
@@ -589,7 +589,7 @@ enum Hid_ReportType
 
 Defines the report (data packets exchanged between the HID device and the host) type.
 
-**Since**: 16
+**Since**: 18
 
 | Value| Description| 
 | -------- | -------- |
@@ -612,10 +612,10 @@ Enumerates sync events.
 
 | Value| Description| 
 | -------- | -------- |
-| HID_SYN_REPORT | Indicates the end of an event.| 
-| HID_SYN_CONFIG | Indicates configuration synchronization.| 
-| HID_SYN_MT_REPORT | Indicates the end of a multi-touch ABS data packet.| 
-| HID_SYN_DROPPED | Indicates that the event is discarded.| 
+| HID_SYN_REPORT | End of an event.| 
+| HID_SYN_CONFIG | Configuration synchronization.| 
+| HID_SYN_MT_REPORT | End of a multi-touch ABS data packet.| 
+| HID_SYN_DROPPED | Event discarded.| 
 
 
 ## Function Description
@@ -631,7 +631,7 @@ int32_t OH_Hid_Close (Hid_DeviceHandle ** dev)
 
 Closes an HID device.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -661,7 +661,7 @@ ohos.permission.ACCESS_DDK_HID
 ### OH_Hid_CreateDevice()
 
 ```
-int32_t OH_Hid_CreateDevice (Hid_Device * hidDevice, Hid_EventProperties * hidEventProperties )
+int32_t OH_Hid_CreateDevice (Hid_Device * hidDevice, Hid_EventProperties * hidEventProperties)
 ```
 
 **Description**
@@ -730,7 +730,7 @@ ohos.permission.ACCESS_DDK_HID
 ### OH_Hid_EmitEvent()
 
 ```
-int32_t OH_Hid_EmitEvent (int32_t deviceId, const Hid_EmitItem items[], uint16_t length )
+int32_t OH_Hid_EmitEvent (int32_t deviceId, const Hid_EmitItem items[], uint16_t length)
 ```
 
 **Description**
@@ -769,14 +769,14 @@ ohos.permission.ACCESS_DDK_HID
 ### OH_Hid_GetPhysicalAddress()
 
 ```
-int32_t OH_Hid_GetPhysicalAddress (Hid_DeviceHandle * dev, char * data, uint32_t bufSize )
+int32_t OH_Hid_GetPhysicalAddress (Hid_DeviceHandle * dev, char * data, uint32_t bufSize)
 ```
 
 **Description**
 
 Obtains the physical address of the HID device.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -810,14 +810,14 @@ ohos.permission.ACCESS_DDK_HID
 ### OH_Hid_GetRawInfo()
 
 ```
-int32_t OH_Hid_GetRawInfo (Hid_DeviceHandle * dev, Hid_RawDevInfo * rawDevInfo )
+int32_t OH_Hid_GetRawInfo (Hid_DeviceHandle * dev, Hid_RawDevInfo * rawDevInfo)
 ```
 
 **Description**
 
 Obtains the original device information.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -850,14 +850,14 @@ ohos.permission.ACCESS_DDK_HID
 ### OH_Hid_GetRawName()
 
 ```
-int32_t OH_Hid_GetRawName (Hid_DeviceHandle * dev, char * data, uint32_t bufSize )
+int32_t OH_Hid_GetRawName (Hid_DeviceHandle * dev, char * data, uint32_t bufSize)
 ```
 
 **Description**
 
 Obtains the original device name.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -891,14 +891,14 @@ ohos.permission.ACCESS_DDK_HID
 ### OH_Hid_GetRawUniqueId()
 
 ```
-int32_t OH_Hid_GetRawUniqueId (Hid_DeviceHandle * dev, uint8_t * data, uint32_t bufSize )
+int32_t OH_Hid_GetRawUniqueId (Hid_DeviceHandle * dev, uint8_t * data, uint32_t bufSize)
 ```
 
 **Description**
 
 Obtains the original unique identifier of a device.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -932,14 +932,14 @@ ohos.permission.ACCESS_DDK_HID
 ### OH_Hid_GetReport()
 
 ```
-int32_t OH_Hid_GetReport (Hid_DeviceHandle * dev, Hid_ReportType reportType, uint8_t * data, uint32_t bufSize )
+int32_t OH_Hid_GetReport (Hid_DeviceHandle * dev, Hid_ReportType reportType, uint8_t * data, uint32_t bufSize)
 ```
 
 **Description**
 
 Obtains reports from the HID device.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -976,14 +976,14 @@ ohos.permission.ACCESS_DDK_HID
 ### OH_Hid_GetReportDescriptor()
 
 ```
-int32_t OH_Hid_GetReportDescriptor (Hid_DeviceHandle * dev, uint8_t * buf, uint32_t bufSize, uint32_t * bytesRead )
+int32_t OH_Hid_GetReportDescriptor (Hid_DeviceHandle * dev, uint8_t * buf, uint32_t bufSize, uint32_t * bytesRead)
 ```
 
 **Description**
 
 Obtains the report descriptor of the HID device.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -1020,14 +1020,14 @@ ohos.permission.ACCESS_DDK_HID
 ### OH_Hid_Init()
 
 ```
-int32_t OH_Hid_Init (void )
+int32_t OH_Hid_Init (void)
 ```
 
 **Description**
 
 Initializes an HID DDK.
 
-**Since**: 16
+**Since**: 18
 
 **Required Permissions**
 
@@ -1047,14 +1047,14 @@ ohos.permission.ACCESS_DDK_HID
 ### OH_Hid_Open()
 
 ```
-int32_t OH_Hid_Open (uint64_t deviceId, uint8_t interfaceIndex, Hid_DeviceHandle ** dev )
+int32_t OH_Hid_Open (uint64_t deviceId, uint8_t interfaceIndex, Hid_DeviceHandle ** dev)
 ```
 
 **Description**
 
 Opens the device specified by **deviceId** and **interfaceIndex**.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -1090,14 +1090,14 @@ ohos.permission.ACCESS_DDK_HID
 ### OH_Hid_Read()
 
 ```
-int32_t OH_Hid_Read (Hid_DeviceHandle * dev, uint8_t * data, uint32_t bufSize, uint32_t * bytesRead )
+int32_t OH_Hid_Read (Hid_DeviceHandle * dev, uint8_t * data, uint32_t bufSize, uint32_t * bytesRead)
 ```
 
 **Description**
 
 Reads reports from the HID device. The blocking mode (that is, blocking remains active until data can be read) is used by default. You can call [OH_Hid_SetNonBlocking](#oh_hid_setnonblocking) to change the mode.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -1134,14 +1134,14 @@ ohos.permission.ACCESS_DDK_HID
 ### OH_Hid_ReadTimeout()
 
 ```
-int32_t OH_Hid_ReadTimeout (Hid_DeviceHandle * dev, uint8_t * data, uint32_t bufSize, int timeout, uint32_t * bytesRead )
+int32_t OH_Hid_ReadTimeout (Hid_DeviceHandle * dev, uint8_t * data, uint32_t bufSize, int timeout, uint32_t * bytesRead)
 ```
 
 **Description**
 
 Reads reports from the HID device within the specified timeout interval.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -1179,14 +1179,14 @@ ohos.permission.ACCESS_DDK_HID
 ### OH_Hid_Release()
 
 ```
-int32_t OH_Hid_Release (void )
+int32_t OH_Hid_Release (void)
 ```
 
 **Description**
 
 Releases an HID DDK.
 
-**Since**: 16
+**Since**: 18
 
 **Required Permissions**
 
@@ -1206,14 +1206,14 @@ ohos.permission.ACCESS_DDK_HID
 ### OH_Hid_SendReport()
 
 ```
-int32_t OH_Hid_SendReport (Hid_DeviceHandle * dev, Hid_ReportType reportType, const uint8_t * data, uint32_t length )
+int32_t OH_Hid_SendReport (Hid_DeviceHandle * dev, Hid_ReportType reportType, const uint8_t * data, uint32_t length)
 ```
 
 **Description**
 
 Sends reports to the HID device.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -1248,14 +1248,14 @@ ohos.permission.ACCESS_DDK_HID
 ### OH_Hid_SetNonBlocking()
 
 ```
-int32_t OH_Hid_SetNonBlocking (Hid_DeviceHandle * dev, int nonBlock )
+int32_t OH_Hid_SetNonBlocking (Hid_DeviceHandle * dev, int nonBlock)
 ```
 
 **Description**
 
 Sets the device read mode to non-blocking mode.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -1284,14 +1284,14 @@ ohos.permission.ACCESS_DDK_HID
 ### OH_Hid_Write()
 
 ```
-int32_t OH_Hid_Write (Hid_DeviceHandle * dev, uint8_t * data, uint32_t length, uint32_t * bytesWritten )
+int32_t OH_Hid_Write (Hid_DeviceHandle * dev, uint8_t * data, uint32_t length, uint32_t * bytesWritten)
 ```
 
 **Description**
 
 Writes reports to an HID device.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 

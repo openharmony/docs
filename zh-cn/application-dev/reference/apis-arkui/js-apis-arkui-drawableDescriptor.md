@@ -37,8 +37,8 @@ getPixelMap(): image.PixelMap
 **示例：**
   ```ts
 import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI'
-let resManager = getContext().resourceManager
-let pixmap: DrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.icon')
+let resManager = this.getUIContext().getHostContext()?.resourceManager
+let pixmap: DrawableDescriptor = (resManager?.getDrawableDescriptor($r('app.media.icon')
     .id)) as DrawableDescriptor;
 let pixmapNew: object = pixmap.getPixelMap()
   ```
@@ -93,13 +93,13 @@ drawable.json位于项目工程entry/src/main/resources/base/media目录下。�
     @Entry
     @Component
     struct Index {
-      private resManager = getContext().resourceManager
+      private resManager = this.getUIContext().getHostContext()?.resourceManager
  
       build() {
         Row() {
           Column() {
-            Image((this.resManager.getDrawableDescriptor($r('app.media.drawable').id) as LayeredDrawableDescriptor))
-            Image(((this.resManager.getDrawableDescriptor($r('app.media.drawable')
+            Image((this.resManager?.getDrawableDescriptor($r('app.media.drawable').id) as LayeredDrawableDescriptor))
+            Image(((this.resManager?.getDrawableDescriptor($r('app.media.drawable')
             .id) as LayeredDrawableDescriptor).getForeground()).getPixelMap())
           }.height('50%')
         }.width('50%')
@@ -145,12 +145,12 @@ drawable.json位于项目工程entry/src/main/resources/base/media目录下。�
       }
       // 根据资源，通过图片框架获取pixelMap
       private async getPixmapFromMedia(resource: Resource) {
-        let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+        let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
           bundleName: resource.bundleName,
           moduleName: resource.moduleName,
           id: resource.id
         })
-        let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+        let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength))
         let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
           desiredPixelFormat: image.PixelMapFormat.BGRA_8888
         })
@@ -162,7 +162,7 @@ drawable.json位于项目工程entry/src/main/resources/base/media目录下。�
 
 ### constructor<sup>12+</sup>
 
-constructor(foreground?: DrawableDescriptor, background?: DrawableDescriptor, mask?: DrawableDescriptor);
+constructor(foreground?: DrawableDescriptor, background?: DrawableDescriptor, mask?: DrawableDescriptor)
 
 LayeredDrawableDescriptor的构造函数。
 
@@ -179,7 +179,7 @@ LayeredDrawableDescriptor的构造函数。
 | mask | [DrawableDescriptor](#drawabledescriptor) | 否 | 分层图标的遮罩选项。 |
 
 ### getForeground
-getForeground(): DrawableDescriptor;
+getForeground(): DrawableDescriptor
 
 获取前景的DrawableDescriptor对象。
 
@@ -196,15 +196,15 @@ getForeground(): DrawableDescriptor;
 **示例：**
   ```ts
 import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI'
-let resManager = getContext().resourceManager
-let drawable: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.drawable')
+let resManager = this.getUIContext().getHostContext()?.resourceManager
+let drawable: LayeredDrawableDescriptor = (resManager?.getDrawableDescriptor($r('app.media.drawable')
     .id)) as LayeredDrawableDescriptor;
 let drawableNew: object = drawable.getForeground()
   ```
 
 ### getBackground
 
-getBackground(): DrawableDescriptor;
+getBackground(): DrawableDescriptor
 
 获取背景的DrawableDescriptor对象。
 
@@ -221,8 +221,8 @@ getBackground(): DrawableDescriptor;
 **示例：**
   ```ts
 import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI'
-let resManager = getContext().resourceManager
-let drawable: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.drawable')
+let resManager = this.getUIContext().getHostContext()?.resourceManager
+let drawable: LayeredDrawableDescriptor = (resManager?.getDrawableDescriptor($r('app.media.drawable')
     .id)) as LayeredDrawableDescriptor;
 let drawableNew: object = drawable.getBackground()
   ```
@@ -246,8 +246,8 @@ getMask(): DrawableDescriptor
 **示例：**
   ```ts
 import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI'
-let resManager = getContext().resourceManager
-let drawable: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.drawable')
+let resManager = this.getUIContext().getHostContext()?.resourceManager
+let drawable: LayeredDrawableDescriptor = (resManager?.getDrawableDescriptor($r('app.media.drawable')
     .id)) as LayeredDrawableDescriptor;
 let drawableNew: object = drawable.getMask()
   ```
@@ -302,8 +302,8 @@ PixelMap 数组通过Image组件显示时用来控制动画的播放。
 
 | 名称      | 类型    | 必填  | 说明                                    |
 | ---------- | ------ | -----| --------------------------------------- |
-| duration   | number | 否   | 设置图片数组播放总时间。默认每张图片1秒。      |
-| iterations | number | 否   | 设置图片数组播放次数。默认为1，为-1时无限播放。 |
+| duration   | number | 否   | 设置图片数组播放总时间。默认每张图片1秒。<br/> 取值范围：[0, +∞)      |
+| iterations | number | 否   | 设置图片数组播放次数。默认为1，为-1时无限播放，大于0时为播放次数。 |
 
 **示例：**
 
@@ -363,12 +363,12 @@ struct Example {
     }
   }
   private async getPixmapFromMedia(resource: Resource) {
-    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
       bundleName: resource.bundleName,
       moduleName: resource.moduleName,
       id: resource.id
     })
-    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+    let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength))
     let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
     })

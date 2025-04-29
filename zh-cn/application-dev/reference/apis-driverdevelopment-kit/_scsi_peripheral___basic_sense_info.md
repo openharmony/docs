@@ -9,6 +9,8 @@ sense data的基本信息。
 
 **相关模块：**[SCSI Peripheral DDK](_s_c_s_i.md)
 
+**所在头文件：** [scsi_peripheral_types.h](scsi__peripheral__types_8h.md)
+
 
 ## 汇总
 

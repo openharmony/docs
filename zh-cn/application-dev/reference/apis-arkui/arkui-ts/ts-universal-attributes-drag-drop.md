@@ -1,6 +1,6 @@
 # 拖拽控制
 
-设置组件是否可以响应拖拽事件。
+组件提供了一些属性和接口，可用于配置组件对拖拽事件的响应行为，或影响系统对拖拽事件的处理方式，包括是否允许被拖拽，自定义拖拽跟手图的外观等。
 
 > **说明：**
 > 
@@ -113,17 +113,15 @@ dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 
 ## DragPreviewMode<sup>11+</sup>枚举说明
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 | 名称 | 枚举值 | 描述 |
 | -------- | ------- | -------- |
-| AUTO  | 1 | 系统根据拖拽场景自动改变跟手点位置，根据规则自动对拖拽背板图进行缩放变换等。 |
-| DISABLE_SCALE  | 2 | 禁用系统对拖拽背板图的缩放行为。 |
-| ENABLE_DEFAULT_SHADOW<sup>12+</sup> | 3 | 启用非文本类组件默认阴影效果。 |
-| ENABLE_DEFAULT_RADIUS<sup>12+</sup> | 4 | 启用非文本类组件统一圆角效果，默认值12vp。当应用自身设置的圆角值大于默认值或modifier设置的圆角时，则显示应用自定义圆角效果。 |
-| ENABLE_DRAG_ITEM_GRAY_EFFECT<sup>18+</sup> | 5 | 启用支持原拖拽对象灰显（透明度）效果，对文本内容拖拽不生效。用户拖起时原对象显示灰显效果，释放时原对象恢复原有效果。开启默认灰显效果后，不建议在拖拽开始后自行修改透明度，如果开发者在拖拽发起后自行修改应用透明度，则灰显效果将被覆盖，且在结束拖拽时无法正确恢复原始透明度效果。 |
-| ENABLE_MULTI_TILE_EFFECT<sup>18+</sup> | 6 | 启用支持多选对象鼠标拖拽不聚拢效果，当满足多选的情况下isMultiSelectionEnabled为true且生效时该参数才生效。不聚拢效果优先级高于[dragPreview](#dragpreview11)。不支持二次拖拽、圆角和缩放设置。 |
-| ENABLE_TOUCH_POINT_CALCULATION_BASED_ON_FINAL_PREVIEW<sup>18+</sup> | 7 | 启用支持以拖拽预览图初始尺寸计算跟手点位置，设置DragPreviewMode.ENABLE_MULTI_TILE_EFFECT时不生效。 |
+| AUTO  | 1 | 系统根据拖拽场景自动改变跟手点位置，根据规则自动对拖拽背板图进行缩放变换等。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
+| DISABLE_SCALE  | 2 | 禁用系统对拖拽背板图的缩放行为。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
+| ENABLE_DEFAULT_SHADOW<sup>12+</sup> | 3 | 启用非文本类组件默认阴影效果。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
+| ENABLE_DEFAULT_RADIUS<sup>12+</sup> | 4 | 启用非文本类组件统一圆角效果，默认值12vp。当应用自身设置的圆角值大于默认值或modifier设置的圆角时，则显示应用自定义圆角效果。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
+| ENABLE_DRAG_ITEM_GRAY_EFFECT<sup>18+</sup> | 5 | 启用支持原拖拽对象灰显（透明度）效果，对文本内容拖拽不生效。用户拖起时原对象显示灰显效果，释放时原对象恢复原有效果。开启默认灰显效果后，不建议在拖拽开始后自行修改透明度，如果开发者在拖拽发起后自行修改应用透明度，则灰显效果将被覆盖，且在结束拖拽时无法正确恢复原始透明度效果。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
+| ENABLE_MULTI_TILE_EFFECT<sup>18+</sup> | 6 | 启用支持多选对象鼠标拖拽不聚拢效果，当满足多选的情况下isMultiSelectionEnabled为true且生效时该参数才生效。不聚拢效果优先级高于[dragPreview](#dragpreview11)。不支持二次拖拽、圆角和缩放设置。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
+| ENABLE_TOUCH_POINT_CALCULATION_BASED_ON_FINAL_PREVIEW<sup>18+</sup> | 7 | 启用支持以拖拽预览图初始尺寸计算跟手点位置，鼠标拖拽，设置DragPreviewMode.ENABLE_MULTI_TILE_EFFECT时不生效。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## DraggingSizeChangeEffect<sup>18+</sup>
 
@@ -136,21 +134,19 @@ dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 | 名称 | 值 | 说明 |
 | -------- | ------- | -------- |
 | DEFAULT | 0 | 发起拖拽时直接从菜单预览图切换为最终尺寸的拖拽跟手图。 |
-| SIZE_TRANSITION | 1 | 发起拖拽时，由菜单预览图直接切换为拖拽跟手图，但尺寸逐步从菜单预览图尺寸过渡到最终跟手图尺寸。这在长按浮起预览图与拖拽跟手图相同时使用。 |
-| SIZE_CONTENT_TRANSITION | 2 | 发起拖拽时，由菜单预览图逐步过渡切换为最终拖拽跟手图。这常用于菜单预览图与拖拽跟手图差异较大时使用，过渡效果包含内容透明度及尺寸变化。 |
+| SIZE_TRANSITION | 1 | 发起拖拽时，由菜单预览图直接切换为拖拽跟手图，但尺寸逐步从菜单预览图尺寸过渡到最终跟手图尺寸，设置DragPreviewMode.DISABLE_SCALE时尺寸过渡不生效。这在长按浮起预览图与拖拽跟手图相同时使用。 |
+| SIZE_CONTENT_TRANSITION | 2 | 发起拖拽时，由菜单预览图逐步过渡切换为最终拖拽跟手图，设置DragPreviewMode.DISABLE_SCALE时尺寸过渡不生效。这常用于菜单预览图与拖拽跟手图差异较大时使用，过渡效果包含内容透明度及尺寸变化。 |
 
 
 ## DragInteractionOptions<sup>12+</sup>
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 | 名称 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
-| isMultiSelectionEnabled | boolean | 否 | 表示拖拽过程中背板图是否支持多选聚拢效果。true表示支持多选聚拢效果，false表示不支持多选聚拢效果。该参数只在[Grid](ts-container-grid.md)和[List](ts-container-list.md)组件中的[GridItem](ts-container-griditem.md)组件和[ListItem](ts-container-listitem.md)组件生效。<br/>当一个item组件设置为多选拖拽时，该组件的子组件不可拖拽。聚拢组件预览图设置的优先级为[dragPreview](#dragpreview11)中的string，dragPreview中的PixelMap，组件自截图，不支持dragPreview中的Builder形式。<br/>不支持组件绑定[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu12)中参数存在isShown的模式。<br/>默认值：false<br/> |
-| defaultAnimationBeforeLifting | boolean | 否 | 表示是否启用长按浮起阶段组件自身的默认点按效果（缩小）。true表示启用默认点按效果，false表示不启用默认点按效果。<br/>默认值：false <br/> |
-| isLiftingDisabled<sup>15+</sup> | boolean | 否 | 表示长按拖拽时，是否禁用浮起效果。true表示禁用浮起效果，false表示不禁用浮起效果。<br/>如果设置为true，当组件支持拖拽并同时设置[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8)时，仅弹出配置的自定义菜单预览。 <br/>默认值：false |
-| enableEdgeAutoScroll<sup>18+</sup> | boolean | 否 | 设置在拖拽至可滚动组件边缘时是否触发自动滚屏。true表示触发自动滚屏，false表示不触发自动滚屏。<br />默认值：true |
-| enableHapticFeedback<sup>18+</sup> | boolean | 否 | 表示拖拽时是否启用震动。true表示启用震动，false表示不启用震动。仅在存在蒙层的预览（通过[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu12)）场景生效。<br/>默认值：false |
+| isMultiSelectionEnabled | boolean | 否 | 表示拖拽过程中背板图是否支持多选聚拢效果。true表示支持多选聚拢效果，false表示不支持多选聚拢效果。该参数只在[Grid](ts-container-grid.md)和[List](ts-container-list.md)组件中的[GridItem](ts-container-griditem.md)组件和[ListItem](ts-container-listitem.md)组件生效。<br/>当一个item组件设置为多选拖拽时，该组件的子组件不可拖拽。聚拢组件预览图设置的优先级为[dragPreview](#dragpreview11)中的string，dragPreview中的PixelMap，组件自截图，不支持dragPreview中的Builder形式。<br/>不支持组件绑定[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu12)中参数存在isShown的模式。<br/>默认值：false<br/>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
+| defaultAnimationBeforeLifting | boolean | 否 | 表示是否启用长按浮起阶段组件自身的默认点按效果（缩小）。true表示启用默认点按效果，false表示不启用默认点按效果。<br/>默认值：false <br/>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
+| isLiftingDisabled<sup>15+</sup> | boolean | 否 | 表示长按拖拽时，是否禁用浮起效果。true表示禁用浮起效果，false表示不禁用浮起效果。<br/>如果设置为true，当组件支持拖拽并同时设置[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8)时，仅弹出配置的自定义菜单预览。 <br/>默认值：false<br/>**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。 |
+| enableEdgeAutoScroll<sup>18+</sup> | boolean | 否 | 设置在拖拽至可滚动组件边缘时是否触发自动滚屏。true表示触发自动滚屏，false表示不触发自动滚屏。<br />默认值：true<br/>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
+| enableHapticFeedback<sup>18+</sup> | boolean | 否 | 表示拖拽时是否启用震动。true表示启用震动，false表示不启用震动。仅在存在蒙层的预览（通过[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu12)）场景生效。<br/>**注意：** 仅当应用具备 ohos.permission.VIBRATE 权限，且用户启用了触感反馈时才会生效。<br/>默认值：false<br/>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## 示例
 ### 示例1（允许拖拽和落入）
@@ -523,8 +519,8 @@ struct ImageDrag {
   @State targetImage1: string | PixelMap | null = null;
   @State targetImage2: string | PixelMap | null = null;
   @State targetImage3: string | PixelMap | null = null;
-  context = getContext(this) as common.UIAbilityContext;
-  filesDir = this.context.filesDir;
+  context: Context|undefined = this.getUIContext().getHostContext();
+  filesDir = this.context?.filesDir;
 
   public async createPixelMap(pixelMap: unifiedDataChannel.SystemDefinedPixelMap): Promise<image.PixelMap | null> {
     let mWidth: number = (pixelMap.details?.width ?? -1) as number;
@@ -577,7 +573,7 @@ struct ImageDrag {
         // PixelMap拖出
         Column() {
           Text('PixelMap').fontSize(14)
-          Image(this.context.resourceManager.getDrawableDescriptor($r('app.media.example').id).getPixelMap())
+          Image(this.context?.resourceManager.getDrawableDescriptor($r('app.media.example').id).getPixelMap())
             .objectFit(ImageFit.Contain).draggable(true)
             .onDragStart(() => {})
             .width(100).height(100)
@@ -657,7 +653,7 @@ struct ImageDrag {
               // 落盘到本地
               const imagePackerApi = image.createImagePacker();
               let packOpts : image.PackingOption = { format: "image/jpeg", quality:98 };
-              const path : string = this.context.cacheDir + "/pixel_map.jpg";
+              const path : string = this.context?.cacheDir + "/pixel_map.jpg";
               let file = fileIo.openSync(path, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
               imagePackerApi.packToFile(this.targetImage3, file.fd, packOpts).then(() => {
                 // 直接打包进文件
@@ -823,3 +819,170 @@ struct LiftingExampleDemo {
 自定义预览图禁用浮起效果。
 
 ![isLiftingDisabled.gif](figures/isLiftingDisabled.gif)
+
+### 示例10（以拖拽预览图初始尺寸计算跟手点位置）
+该示例通过配置DragPreviewMode.ENABLE_TOUCH_POINT_CALCULATION_BASED_ON_FINAL_PREVIEW实现以拖拽预览图初始尺寸计算跟手点位置，设置DragPreviewMode.ENABLE_MULTI_TILE_EFFECT时不生效。
+```ts
+@Entry
+@Component
+struct Index {
+  private iconStr: ResourceStr = $r("app.media.app_icon")
+
+  @Builder
+  MyPreview() {
+    Image($r('app.media.image'))
+      .width(100)
+      .height(100)
+  }
+
+  @Builder
+  MyMenuPreview() {
+    Column() {
+      Image($r('app.media.image'))
+        .width(100)
+        .height(100)
+    }
+    .backgroundColor(Color.Green)
+    .width(300)
+    .height(300)
+  }
+
+  @Builder
+  MyMenu() {
+    Menu() {
+      MenuItem({ startIcon: this.iconStr, content: "菜单选项" })
+      MenuItem({ startIcon: this.iconStr, content: "菜单选项" })
+    }
+  }
+
+  @Builder
+  SubMenu() {
+    Menu() {
+      MenuItem({ content: "复制", labelInfo: "Ctrl+C" })
+      MenuItem({ content: "粘贴", labelInfo: "Ctrl+V" })
+    }
+  }
+
+  build() {
+    NavDestination() {
+      Scroll() {
+        Column() {
+          Text("no ENABLE_TOUCH_POINT_CALCULATION_BASED_ON_FINAL_PREVIEW")
+          Image($r('app.media.image'))
+            .width(200)
+            .height(200)
+            .bindContextMenu(this.MyMenu, ResponseType.LongPress, {
+              preview: this.MyPreview
+            })
+            .dragPreview(this.MyMenuPreview)
+            .draggable(true)
+
+          Text("ENABLE_TOUCH_POINT_CALCULATION_BASED_ON_FINAL_PREVIEW")
+          Image($r('app.media.image'))
+            .width(200)
+            .height(200)
+            .bindContextMenu(this.MyMenu, ResponseType.LongPress, {
+              preview: this.MyPreview
+            })
+            .dragPreview(this.MyMenuPreview)
+            .draggable(true)
+            .dragPreviewOptions({
+              mode: [DragPreviewMode.ENABLE_TOUCH_POINT_CALCULATION_BASED_ON_FINAL_PREVIEW]
+            })
+        }.width('100%')
+      }
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+![touchPointer.gif](figures/touchPointer.gif)
+
+### 示例11（长按浮起预览图与拖拽跟手图过渡动效）
+该示例通过配置DraggingSizeChangeEffect实现不同拖拽过渡效果。
+```ts
+@Entry
+@Component
+struct Index {
+  private iconStr: ResourceStr = $r("app.media.app_icon")
+
+  @Builder
+  MyPreview() {
+    Image($r('app.media.image'))
+      .width(200)
+      .height(200)
+  }
+
+  @Builder
+  MyMenuPreviewSame() {
+    Column() {
+      Image($r('app.media.image'))
+        .width(300)
+        .height(300)
+    }
+  }
+
+  @Builder
+  MyMenuPreview() {
+    Column() {
+      Image($r('app.media.startIcon'))
+        .width(300)
+        .height(300)
+    }
+  }
+
+  @Builder
+  MyMenu() {
+    Menu() {
+      MenuItem({ startIcon: this.iconStr, content: "菜单选项" })
+      MenuItem({ startIcon: this.iconStr, content: "菜单选项" })
+    }
+  }
+
+  @Builder
+  SubMenu() {
+    Menu() {
+      MenuItem({ content: "复制", labelInfo: "Ctrl+C" })
+      MenuItem({ content: "粘贴", labelInfo: "Ctrl+V" })
+    }
+  }
+
+  build() {
+    Column() {
+      Text("sizeChangeEffect: SIZE_TRANSITION，长按弹出菜单，拖拽移动后菜单预览图过渡到跟手图，有缩放无叠加效果")
+        .margin({ top: 10 })
+      Image($r('app.media.image'))
+        .width(200)
+        .height(200)
+        .bindContextMenu(this.MyMenu, ResponseType.LongPress, {
+          preview: this.MyMenuPreviewSame
+        })
+        .dragPreview(this.MyPreview)
+        .dragPreviewOptions({
+          sizeChangeEffect: DraggingSizeChangeEffect.SIZE_TRANSITION
+        })
+        .draggable(true)
+
+      Text("sizeChangeEffect: SIZE_CONTENT_TRANSITION，长按弹出菜单，拖拽移动后菜单预览图和拖拽跟手图两层叠加过渡")
+        .margin({ top: 10 })
+      Image($r('app.media.image'))
+        .width(200)
+        .height(200)
+        .bindContextMenu(this.MyMenu, ResponseType.LongPress, {
+          preview: this.MyMenuPreview
+        })
+        .dragPreview(this.MyPreview)
+        .dragPreviewOptions({
+          sizeChangeEffect: DraggingSizeChangeEffect.SIZE_CONTENT_TRANSITION
+        })
+        .draggable(true)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+![sizeChangeEffect.gif](figures/sizeChangeEffect.gif)

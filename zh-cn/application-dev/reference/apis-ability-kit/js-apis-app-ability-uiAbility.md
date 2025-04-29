@@ -214,11 +214,80 @@ class MyUIAbility extends UIAbility {
 }
 ```
 
+
+## UIAbility.onWillForeground<sup>20+</sup>
+
+onWillForeground(): void
+
+UIAbility生命周期回调，应用转到前台前触发，在[onForeground](#uiabilityonforeground)前被调用。可在该回调中实现采集应用开始进入前台的时间。如果与[onDidForeground](#uiabilityondidforeground20)配合使用，还可以统计出从应用开始进入前台到切换至前台状态的耗时。
+
+同步接口，不支持异步回调。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**示例：**
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+
+  onWillForeground(): void {
+    // 应用开始进入前台事件打点
+    let eventParams: Record<string, number> = { 'xxxx': 100 };
+    let eventInfo: hiAppEvent.AppEventInfo = {
+      // 事件领域定义
+      domain: "lifecycle",
+      // 事件名称定义
+      name: "onwillforeground",
+      // 事件类型定义
+      eventType: hiAppEvent.EventType.BEHAVIOR,
+      // 事件参数定义
+      params: eventParams,
+    };
+    hiAppEvent.write(eventInfo).then(() => {
+      hilog.info(0x0000, 'testTag', `HiAppEvent success to write event`)
+    }).catch((err: BusinessError) => {
+      hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`)
+    });
+  }
+  // ...
+
+  onDidForeground(): void {
+    // 应用进入前台后事件打点
+    let eventParams: Record<string, number> = { 'xxxx': 100 };
+    let eventInfo: hiAppEvent.AppEventInfo = {
+      // 事件领域定义
+      domain: "lifecycle",
+      // 事件名称定义
+      name: "ondidforeground",
+      // 事件类型定义
+      eventType: hiAppEvent.EventType.BEHAVIOR,
+      // 事件参数定义
+      params: eventParams,
+    };
+    hiAppEvent.write(eventInfo).then(() => {
+      hilog.info(0x0000, 'testTag', `HiAppEvent success to write event`)
+    }).catch((err: BusinessError) => {
+      hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`)
+    });
+  }
+}
+```
+
+
 ## UIAbility.onForeground
 
 onForeground(): void
 
-UIAbility生命周期回调，当应用从后台转到前台时触发。同步接口，不支持异步回调。
+UIAbility生命周期回调，应用从后台转到前台时触发，在[onWillForeground](#uiabilityonwillbackground20)与[onDidForeground](#uiabilityondidforeground20)之间被调用。可在该回调中实现系统所需资源的申请，如应用转到前台时申请定位服务等。
+
+同步接口，不支持异步回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -237,11 +306,73 @@ class MyUIAbility extends UIAbility {
 ```
 
 
+## UIAbility.onDidForeground<sup>20+</sup>
+
+onDidForeground(): void
+
+UIAbility生命周期回调，应用转到前台后触发，在[onForeground](#uiabilityonforeground)后被调用，可在该回调中实现应用切换到前台后的时间打点。如果与[onWillForeground](#uiabilityonwillforeground20)配合使用，还可以统计出从应用开始进入前台到切换至前台状态的耗时。
+
+同步接口，不支持异步回调。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**示例：**
+
+参考[onWillForeground](#uiabilityonwillforeground20)。
+
+
+## UIAbility.onWillBackground<sup>20+</sup>
+
+onWillBackground(): void
+
+UIAbility生命周期回调，当应用从前台转到后台前触发，在[onBackground](#uiabilityonbackground)前被调用。可在该回调中实现数据打点，例如，打点应用运行过程中发生的故障信息、统计信息、安全信息、用户行为信息等。
+
+同步接口，不支持异步回调。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**示例：**
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+class MyUIAbility extends UIAbility {
+  onWillBackground(): void {
+    let eventParams: Record<string, number | string> = {
+      "int_data": 100,
+      "str_data": "strValue",
+    };
+    // 打点应用故障信息
+    hiAppEvent.write({
+      domain: "test_domain",
+      name: "test_event",
+      eventType: hiAppEvent.EventType.FAULT,
+      params: eventParams,
+    }, (err: BusinessError) => {
+      if (err) {
+        hilog.error(0x0000, 'hiAppEvent', `code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      hilog.info(0x0000, 'hiAppEvent', `success to write event`);
+    });
+  }
+}
+```
+
+
 ## UIAbility.onBackground
 
 onBackground(): void
 
-UIAbility生命周期回调，当应用从前台转到后台时触发。同步接口，不支持异步回调。
+UIAbility生命周期回调，当应用从前台转到后台时触发，在[onWillBackground](#uiabilityonwillbackground20)与[onDidBackground](#uiabilityondidbackground20)之间被调用。可在该回调中实现UI不可见时的资源释放操作，如停止定位功能等。
+
+同步接口，不支持异步回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -259,6 +390,51 @@ class MyUIAbility extends UIAbility {
 }
 ```
 
+
+## UIAbility.onDidBackground<sup>20+</sup>
+
+onDidBackground(): void
+
+UIAbility生命周期回调，当应用从前台转到后台后触发，在[onBackground](#uiabilityonbackground)之后被调用。可在该回调中实现应用进入后台之后的资源释放操作，如进入后台后停止音频播放等。
+
+同步接口，不支持异步回调。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**示例：**
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+class MyUIAbility extends UIAbility {
+  static audioRenderer: audio.AudioRenderer;
+  // ...
+  onForeground(): void {
+    // 在前台时申请audioRenderer，用于播放PCM（Pulse Code Modulation）音频数据
+    audio.createAudioRenderer(audioRendererOptions).then((data) => {
+      EntryAbility.audioRenderer = data;
+      console.info('AudioRenderer Created : Success : Stream Type: SUCCESS');
+    }).catch((err: BusinessError) => {
+      console.error(`AudioRenderer Created : ERROR : ${err}`);
+    });
+  }
+
+  onDidBackground() {
+    // 转到后台后，释放audioRenderer资源
+    audioRenderer.release((err: BusinessError) => {
+      if (err) {
+        console.error('AudioRenderer release failed');
+      } else {
+        console.info('AudioRenderer released.');
+      }
+    });
+  }
+}
+```
 
 ## UIAbility.onContinue
 
@@ -1260,7 +1436,7 @@ export default class MainUIAbility extends UIAbility {
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | ----- | --- | -------- |
 | msg | string | 是 | 用于传递释放消息。 | 
- 
+
 ## OnRemoteStateChangeCallback<sup>10+</sup>
 
 ### (msg: string)
@@ -1276,7 +1452,7 @@ export default class MainUIAbility extends UIAbility {
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | ----- | --- | -------- |
 | msg | string | 是 | 用于传递释放消息。 | 
- 
+
 ## CalleeCallback
 
 ### (indata: rpc.MessageSequence)

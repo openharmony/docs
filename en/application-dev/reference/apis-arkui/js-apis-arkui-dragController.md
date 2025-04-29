@@ -268,9 +268,9 @@ Defines the attributes required for initiating a drag action and information car
 
 | Name       | Type                                                  | Mandatory| Description                                    |
 | ----------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
-| pointerId   | number                                                 | Yes  | ID of the touch point on the screen when dragging is started.        |
+| pointerId   | number                                                 | Yes  | ID of the touch point on the screen when dragging is started. The value is an integer ranging from 0 to 9.        |
 | data        | [unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | No  | Data carried in the dragging process.              |
-| extraParams | string                                                 | No  | Additional information about the drag action. Not supported currently.|
+| extraParams | string                                                 | No  | Additional information about the drag action. Not supported currently. The default value is null.|
 | touchPoint<sup>11+</sup>    | [TouchPoint](arkui-ts/ts-types.md#touchpoint11)  | No  | Coordinates of the touch point. If this parameter is not set, the touch point is centered horizontally and shifted downward by 20% from the top.|
 | previewOptions<sup>11+</sup>| [DragPreviewOptions](arkui-ts/ts-universal-attributes-drag-drop.md#dragpreviewoptions11)                                | No  | Processing mode of the drag preview and the display of the number badge during dragging.|
 
@@ -666,8 +666,8 @@ Provides the data reported when the state changes during dragging.
 | Name         | Type                                                  | Mandatory| Description                                    |
 | -----------   | ------------------------------------------------------ | ---- | ---------------------------------------- |
 | status       | [DragStatus](#dragstatus11)                                                 | Yes  | Current dragging state (started or ended).        |
-| event        | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent) | Yes  | Drag event corresponding to the current state. The drag event initiated by **dragController** only supports the APIs for obtaining the result and behavior, and is used exclusively for the dragging end state.|
-| extraParams| string                                                 | No  | Additional information about the drag action. Not supported currently.|
+| event        | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent7) | Yes  | Drag event corresponding to the current state. The drag event initiated by **dragController** only supports the APIs for obtaining the result and behavior, and is used exclusively for the dragging end state.|
+| extraParams| string                                                 | No  | Additional information about the drag action. Not supported currently. The default value is null.|
 
 ## DragStatus<sup>11+</sup>
 
@@ -705,7 +705,7 @@ Represents the callback used to return the result after a drag ends.
 
 | Name       | Type                                                        | Mandatory| Description                          |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------ |
-| event       | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent) | Yes  | Drag event information that includes only the drag result.|
+| event       | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent7) | Yes  | Drag event information that includes only the drag result.|
 | extraParams | string                                                       | Yes  | Additional information about the drag event.            |
 
 ## dragController.getDragPreview<sup>11+</sup>
@@ -920,11 +920,11 @@ struct DragControllerPage {
   ```
   ![en-us_executeDrag5](figures/executeDrag5.gif)
 
-## DragStartRequestStatus<sup>16+</sup>
+## DragStartRequestStatus<sup>18+</sup>
 
 Enumerates the states defining whether an application can initiate a drag operation.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

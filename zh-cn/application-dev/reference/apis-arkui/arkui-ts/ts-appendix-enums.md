@@ -33,12 +33,12 @@
 
 | 名称        | 值    | 说明                              |
 | --------- | ----- | ------------------------------- |
-| Contain   | 0  | 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples01](figures/image_fit_contain.png) |
-| Cover     | 1  | 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples02](figures/image_fit_cover.png) |
-| Auto      | 2  | 图像会根据其自身尺寸和组件的尺寸进行适当缩放，以在保持比例的同时填充视图。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples03](figures/image_fit_auto.png) |
-| Fill      | 3  | 不保持宽高比进行放大缩小，使得图片充满显示边界。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples04](figures/image_fit_fill.png) |
-| ScaleDown | 4  | 保持宽高比显示，图片缩小或者保持不变。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples05](figures/image_fit_scaleDown.png) |
-| None      | 5  | 保持原有尺寸显示。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples06](figures/image_fit_none.png) |
+| Contain   | 0  | 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内，对齐方式为水平居中。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples01](figures/image_fit_contain.png) |
+| Cover     | 1  | 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界，对齐方式为水平居中。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples02](figures/image_fit_cover.png) |
+| Auto      | 2  | 图像会根据其自身尺寸和组件的尺寸进行适当缩放，以在保持比例的同时填充视图，对齐方式为水平居中。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples03](figures/image_fit_auto.png) |
+| Fill      | 3  | 不保持宽高比进行放大缩小，使得图片充满显示边界，对齐方式为水平居中。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples04](figures/image_fit_fill.png) |
+| ScaleDown | 4  | 保持宽高比显示，图片缩小或者保持不变，对齐方式为水平居中。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples05](figures/image_fit_scaleDown.png) |
+| None      | 5  | 保持原有尺寸显示，对齐方式为水平居中。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples06](figures/image_fit_none.png) |
 | TOP_START<sup>12+</sup> | 7  | 图像显示在Image组件的顶部起始端，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples07](figures/image_fit_top_start.png) |
 | TOP<sup>12+</sup>       | 8  | 图像显示在Image组件的顶部横向居中，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples08](figures/image_fit_top.png)  |
 | TOP_END<sup>12+</sup>   | 9  | 图像显示在Image组件的顶部尾端，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples09](figures/image_fit_top_end.png) |
@@ -108,17 +108,15 @@
 
 ## MouseAction<sup>8+</sup>
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称      | 说明      |
 | ------- | ------- |
-| Press   | 鼠标按键按下。 |
-| Release | 鼠标按键松开。 |
-| Move    | 鼠标移动。   |
-| Hover   | 鼠标悬浮。<br/>**说明：** 该枚举值无效。   |
-| Cancel<sup>18+</sup>  | 鼠标按键被取消。 |
+| Press   | 鼠标按键按下。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Release | 鼠标按键松开。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Move    | 鼠标移动。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
+| Hover   | 鼠标悬浮。<br/>**说明：** 该枚举值无效。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
+| CANCEL<sup>18+</sup>  | 鼠标按键被取消。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## ModifierKey<sup>10+</sup>
 
@@ -628,6 +626,19 @@
 | Ellipsis              | 文本超长时显示不下的文本用省略号代替。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | MARQUEE<sup>10+</sup> | 文本超长时以跑马灯的方式展示。 |
 
+## MaxLinesMode<sup>20+</sup>
+
+TextArea组件在文本超长时显示效果。默认值为Clip，按最大行截断显示。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                   | 值  | 说明                  |
+| --------------------- | -------  | ------------------- |
+| CLIP                  | 0  | 文本超长时按最大行截断显示。 |
+| SCROLL                | 1  | 文本超长时可滚动显示。 |
+
 ## TextDecorationType
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
@@ -846,7 +857,7 @@ type Nullable\<T> = T | undefined;
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 说明                       |
+| 类型 | 说明                       |
 | ---- | -------------------------- |
 | T \| undefined | 该类型申明的对象可以是自定义类型，也可以是undefined。 |
 
@@ -1039,8 +1050,8 @@ type Nullable\<T> = T | undefined;
 | -------------------------------- | ------------------------------------------------------------ |
 | SURFACE                          | 用于EGL/OpenGLES和媒体数据写入，开发者定制的绘制内容单独展示到屏幕上。背景色设置为黑色时会走显示子系统（DSS）。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | COMPONENT<sup>(deprecated)</sup> | XComponent将变成一个容器组件，并可在其中执行非UI逻辑以动态加载显示内容。<br/>**说明：**<br/>从API version 12 开始，该接口废弃，建议使用其他容器组件替代。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| TEXTURE                          | 用于EGL/OpenGLES和媒体数据写入，开发者定制的绘制内容会和XComponent组件的内容合成后展示到屏幕上。1、保持帧同步，保持在同一帧将图形处理器（GPU）纹理和ArkUI其他的绘制指令统一发给渲染服务(RenderService)。2、动效和原生组件统一。3、走图形处理器（GPU）合成，相比surface可能走显示子系统（DSS）功耗更高。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| NODE<sup>12+</sup>            | 用于Native UI节点的占位容器，开发者通过Native API 开发的页面组件可展示在此容器区域内。<br/>**说明：**<br/>该类型不再演进，推荐使用[ContentSlot](../../../quick-start/arkts-rendering-control-contentslot.md)占位组件管理Native API创建的组件，ContentSlot在内存和性能方面都优于NODE类型的XComponent。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| TEXTURE                          | 用于EGL/OpenGLES和媒体数据写入，开发者定制的绘制内容会和XComponent组件的内容合成后展示到屏幕上。1、保持帧同步，保持在同一帧将图形处理器（GPU）纹理和ArkUI其他的绘制指令统一发给渲染服务(RenderService)。2、动效和系统组件统一。3、走图形处理器（GPU）合成，相比surface可能走显示子系统（DSS）功耗更高。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| NODE<sup>12+</sup>            | 用于Native UI节点的占位容器，开发者通过Native API 开发的页面组件可展示在此容器区域内。<br/>**说明：**<br/>该类型不再演进，推荐使用[ContentSlot](../../../ui/state-management/arkts-rendering-control-contentslot.md)占位组件管理Native API创建的组件，ContentSlot在内存和性能方面都优于NODE类型的XComponent。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## HoverModeAreaType<sup>14+</sup>
 
@@ -1108,6 +1119,8 @@ type Nullable\<T> = T | undefined;
 
 表示鼠标滚轮翻页模式。
 
+**卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
@@ -1121,28 +1134,30 @@ type Nullable\<T> = T | undefined;
 
 表示宽高动画过程中组件内容的填充方式。
 
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                          | 说明                                                                              |
-| --------------------------- | ---------------------------------------------------------------------------------- |
-| CENTER                      | 保持动画终态的内容大小，并且内容始终与组件保持中心对齐。               ![renderfit_center](figures/renderfit_center.png) |
-| TOP                         | 保持动画终态的内容大小，并且内容始终与组件保持顶部中心对齐。             ![renderfit_top](figures/renderfit_top.png) |
-| BOTTOM                      | 保持动画终态的内容大小，并且内容始终与组件保持底部中心对齐。             ![renderfit_bottom](figures/renderfit_bottom.png) |
-| LEFT                        | 保持动画终态的内容大小，并且内容始终与组件保持左侧对齐。               ![renderfit_left](figures/renderfit_left.png) |
-| RIGHT                       | 保持动画终态的内容大小，并且内容始终与组件保持右侧对齐。              ![renderfit_right](figures/renderfit_right.png) |
-| TOP_LEFT                    | 保持动画终态的内容大小，并且内容始终与组件保持左上角对齐。              ![renderfit_top_left](figures/renderfit_top_left.png) |
-| TOP_RIGHT                   | 保持动画终态的内容大小，并且内容始终与组件保持右上角对齐。             ![renderfit_top_right](figures/renderfit_top_right.png) |
-| BOTTOM_LEFT                 | 保持动画终态的内容大小，并且内容始终与组件保持左下角对齐。              ![renderfit_bottom_left](figures/renderfit_bottom_left.png) |
-| BOTTOM_RIGHT                | 保持动画终态的内容大小，并且内容始终与组件保持右下角对齐。              ![renderfit_bottom_right](figures/renderfit_bottom_right.png) |
-| RESIZE_FILL                 | 不考虑动画终态内容的宽高比，并且内容始终缩放到组件的大小。              ![renderfit_resize_fill](figures/renderfit_resize_fill.png) |
-| RESIZE_CONTAIN              | 保持动画终态内容的宽高比进行缩小或放大，使内容完整显示在组件内，且与组件保持中心对齐。   ![renderfit_resize_contain](figures/renderfit_resize_contain.png) |
-| RESIZE_CONTAIN_TOP_LEFT     | 保持动画终态内容的宽高比进行缩小或放大，使内容完整显示在组件内。当组件宽方向有剩余时，内容与组件保持左侧对齐，当组件高方向有剩余时，内容与组件保持顶部对齐。   ![renderfit_resize_contain_top_left](figures/renderfit_resize_contain_top_left.png) |
-| RESIZE_CONTAIN_BOTTOM_RIGHT | 保持动画终态内容的宽高比进行缩小或放大，使内容完整显示在组件内。当组件宽方向有剩余时，内容与组件保持右侧对齐，当组件高方向有剩余时，内容与组件保持底部对齐。   ![renderfit_resize_contain_bottom_right](figures/renderfit_resize_contain_bottom_right.png) |
-| RESIZE_COVER                | 保持动画终态内容的宽高比进行缩小或放大，使内容两边都大于或等于组件两边，且与组件保持中心对齐，显示内容的中间部分。   ![renderfit_resize_cover](figures/renderfit_resize_cover.png) |
-| RESIZE_COVER_TOP_LEFT       | 保持动画终态内容的宽高比进行缩小或放大，使内容的两边都恰好大于或等于组件两边。当内容宽方向有剩余时，内容与组件保持左侧对齐，显示内容的左侧部分。当内容高方向有剩余时，内容与组件保持顶部对齐，显示内容的顶侧部分。   ![renderfit_resize_cover_top_left](figures/renderfit_resize_cover_top_left.png) |
-| RESIZE_COVER_BOTTOM_RIGHT   | 保持动画终态内容的宽高比进行缩小或放大，使内容的两边都恰好大于或等于组件两边。当内容宽方向有剩余时，内容与组件保持右侧对齐，显示内容的右侧部分。当内容高方向有剩余时，内容与组件保持底部对齐，显示内容的底侧部分。   ![renderfit_resize_cover_bottom_right](figures/renderfit_resize_cover_bottom_right.png) |
+| 名称                          | 值                          | 说明                                                                              |
+| --------------------------- | -- | ---------------------------------------------------------------------------------- |
+| CENTER                      | 0                           | 保持动画终态的内容大小，并且内容始终与组件保持中心对齐。               ![renderfit_center](figures/renderfit_center.png) |
+| TOP                         | 1                           | 保持动画终态的内容大小，并且内容始终与组件保持顶部中心对齐。             ![renderfit_top](figures/renderfit_top.png) |
+| BOTTOM                      | 2                           | 保持动画终态的内容大小，并且内容始终与组件保持底部中心对齐。             ![renderfit_bottom](figures/renderfit_bottom.png) |
+| LEFT                        | 3                           | 保持动画终态的内容大小，并且内容始终与组件保持左侧对齐。               ![renderfit_left](figures/renderfit_left.png) |
+| RIGHT                       | 4                           | 保持动画终态的内容大小，并且内容始终与组件保持右侧对齐。              ![renderfit_right](figures/renderfit_right.png) |
+| TOP_LEFT                    | 5                           | 保持动画终态的内容大小，并且内容始终与组件保持左上角对齐。              ![renderfit_top_left](figures/renderfit_top_left.png) |
+| TOP_RIGHT                   | 6                           | 保持动画终态的内容大小，并且内容始终与组件保持右上角对齐。             ![renderfit_top_right](figures/renderfit_top_right.png) |
+| BOTTOM_LEFT                 | 7                           | 保持动画终态的内容大小，并且内容始终与组件保持左下角对齐。              ![renderfit_bottom_left](figures/renderfit_bottom_left.png) |
+| BOTTOM_RIGHT                | 8                           | 保持动画终态的内容大小，并且内容始终与组件保持右下角对齐。              ![renderfit_bottom_right](figures/renderfit_bottom_right.png) |
+| RESIZE_FILL                 | 9                           | 不考虑动画终态内容的宽高比，并且内容始终缩放到组件的大小。              ![renderfit_resize_fill](figures/renderfit_resize_fill.png) |
+| RESIZE_CONTAIN              | 10                          | 保持动画终态内容的宽高比进行缩小或放大，使内容完整显示在组件内，且与组件保持中心对齐。   ![renderfit_resize_contain](figures/renderfit_resize_contain.png) |
+| RESIZE_CONTAIN_TOP_LEFT     | 11                          | 保持动画终态内容的宽高比进行缩小或放大，使内容完整显示在组件内。当组件宽方向有剩余时，内容与组件保持左侧对齐，当组件高方向有剩余时，内容与组件保持顶部对齐。   ![renderfit_resize_contain_top_left](figures/renderfit_resize_contain_top_left.png) |
+| RESIZE_CONTAIN_BOTTOM_RIGHT | 12                          | 保持动画终态内容的宽高比进行缩小或放大，使内容完整显示在组件内。当组件宽方向有剩余时，内容与组件保持右侧对齐，当组件高方向有剩余时，内容与组件保持底部对齐。   ![renderfit_resize_contain_bottom_right](figures/renderfit_resize_contain_bottom_right.png) |
+| RESIZE_COVER                | 13                          | 保持动画终态内容的宽高比进行缩小或放大，使内容两边都大于或等于组件两边，且与组件保持中心对齐，显示内容的中间部分。   ![renderfit_resize_cover](figures/renderfit_resize_cover.png) |
+| RESIZE_COVER_TOP_LEFT       | 14                          | 保持动画终态内容的宽高比进行缩小或放大，使内容的两边都恰好大于或等于组件两边。当内容宽方向有剩余时，内容与组件保持左侧对齐，显示内容的左侧部分。当内容高方向有剩余时，内容与组件保持顶部对齐，显示内容的顶侧部分。   ![renderfit_resize_cover_top_left](figures/renderfit_resize_cover_top_left.png) |
+| RESIZE_COVER_BOTTOM_RIGHT   | 15                          | 保持动画终态内容的宽高比进行缩小或放大，使内容的两边都恰好大于或等于组件两边。当内容宽方向有剩余时，内容与组件保持右侧对齐，显示内容的右侧部分。当内容高方向有剩余时，内容与组件保持底部对齐，显示内容的底侧部分。   ![renderfit_resize_cover_bottom_right](figures/renderfit_resize_cover_bottom_right.png) |
 
 
 > **说明：**
@@ -1158,7 +1173,7 @@ type Nullable\<T> = T | undefined;
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-|名称	            | 值 | 描述                                   |
+|名称	            | 值 | 说明                                   |
 |-------------------| -- | ------------------------------------- |
 | BEGIN             | 0  | 表冠开始转动。                          |
 | UPDATE	        | 1  | 表冠转动中。                            |
@@ -1172,17 +1187,17 @@ type Nullable\<T> = T | undefined;
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称           | 值  | 描述                                      |
+| 名称           | 值  | 说明                                      |
 | -------------- | -- | ---------------------------------------- |
 | LOW 	         | 0   | 低灵敏度。                                 |
 | MEDIUM         | 1   | 中灵敏度。                                 |
 | HIGH 	         | 2   | 高灵敏度。                                 |
 
-## AxisAction<sup>18+</sup>
+## AxisAction<sup>17+</sup>
 
 定义轴事件的轴动作类型。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -1222,3 +1237,35 @@ type Nullable\<T> = T | undefined;
 | -------------- | -- | ---------------------------------------- |
 | SELF  	     | 0   | 获焦框绘制在节点自身层级。                                 |
 | TOP            | 1   | 获焦框绘制在当前实例Z序的最上层。                                 |
+
+## EventQueryType<sup>18+</sup>
+
+要查询的交互事件类型。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| ON_CLICK  | 0 | 点击事件。 |
+
+## PixelRoundMode<sup>18+</sup>
+
+指定像素取整模式。
+
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    |  值   | 说明                   |
+| ------  |---- | -------------------- |
+| PIXEL_ROUND_ON_LAYOUT_FINISH | 0 | 在组件测量大小和位置后进行像素取整，默认值为0。 |
+| PIXEL_ROUND_AFTER_MEASURE |  1 | 在组件测量大小结束后进行像素取整。 |
+
+>  **说明：**
+> - 建议在出现[像素取整常见问题](./ts-universal-attributes-pixelRound.md#常见问题)时，尝试采用PIXEL_ROUND_AFTER_MEASURE模式解决。
+> - 在PIXEL_ROUND_AFTER_MEASURE模式下，组件会在测量大小结束时进行一次取整，即最终大小相比于PIXEL_ROUND_ON_LAYOUT_FINISH模式可能扩大1px。
+

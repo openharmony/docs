@@ -37,7 +37,7 @@ Enables wear detection for a device. This API uses an asynchronous callback to r
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -89,7 +89,7 @@ Enables wear detection for a device. This API uses a promise to return the resul
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -134,7 +134,7 @@ Disables wear detection for a device. This API uses an asynchronous callback to 
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -186,7 +186,7 @@ Disables wear detection for a device. This API uses a promise to return the resu
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -231,7 +231,7 @@ Checks whether a device supports wear detection. This API uses an asynchronous c
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -281,7 +281,7 @@ Checks whether a device supports wear detection. This API uses a promise to retu
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -326,7 +326,7 @@ Checks whether wear detection is enabled for a device. This API uses an asynchro
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -376,7 +376,7 @@ Checks whether wear detection is enabled for a device. This API uses a promise t
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |

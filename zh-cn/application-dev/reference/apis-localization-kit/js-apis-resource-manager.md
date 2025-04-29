@@ -44,7 +44,7 @@ getResourceManager(callback: AsyncCallback&lt;ResourceManager&gt;): void
 
 | 参数名      | 类型                                       | 必填   | 说明                            |
 | -------- | ---------------------------------------- | ---- | ----------------------------- |
-| callback | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | 是    |返回资源管理ResourceManager对象。 |
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;[ResourceManager](#resourcemanager)&gt; | 是    |返回资源管理ResourceManager对象。 |
 
 **示例：** 
   <!--code_no_check_fa-->
@@ -79,7 +79,7 @@ getResourceManager(bundleName: string, callback: AsyncCallback&lt;ResourceManage
 | 参数名        | 类型                                       | 必填   | 说明                            |
 | ---------- | ---------------------------------------- | ---- | ----------------------------- |
 | bundleName | string                                   | 是    | 应用的Bundle名称。                 |
-| callback   | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | 是    | 返回资源管理ResourceManager对象。 |
+| callback   | [AsyncCallback](#asynccallbackdeprecated)&lt;[ResourceManager](#resourcemanager)&gt; | 是    | 返回资源管理ResourceManager对象。 |
 
 **示例：** 
   <!--code_no_check_fa-->
@@ -633,7 +633,7 @@ getStringByNameSync(resName: string, ...args: Array<string | number>): string
 
 ### getStringValue<sup>9+</sup>
 
-getStringValue(resId: number, callback: AsyncCallback&lt;string&gt;): void
+getStringValue(resId: number, callback: _AsyncCallback&lt;string&gt;): void
 
 用户获取指定资源ID对应的字符串，使用callback异步回调。
 
@@ -646,7 +646,7 @@ getStringValue(resId: number, callback: AsyncCallback&lt;string&gt;): void
 | 参数名      | 类型                          | 必填   | 说明              |
 | -------- | --------------------------- | ---- | --------------- |
 | resId    | number                      | 是    | 资源ID值。           |
-| callback | AsyncCallback&lt;string&gt; | 是    | 返回获取的字符串。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | 是    | 返回获取的字符串。 |
 
 **错误码：**
 
@@ -730,7 +730,7 @@ getStringValue(resId: number): Promise&lt;string&gt;
 
 ### getStringValue<sup>9+</sup>
 
-getStringValue(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
+getStringValue(resource: Resource, callback: _AsyncCallback&lt;string&gt;): void
 
 用户获取指定resource对象对应的字符串，使用callback异步回调。
 
@@ -745,7 +745,7 @@ getStringValue(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 | 参数名      | 类型                          | 必填   | 说明              |
 | -------- | --------------------------- | ---- | --------------- |
 | resource | [Resource](#resource9)      | 是    | 资源信息。            |
-| callback | AsyncCallback&lt;string&gt; | 是    | 返回获取的字符串。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | 是    | 返回获取的字符串。 |
 
 **错误码：**
 
@@ -843,7 +843,7 @@ getStringValue(resource: Resource): Promise&lt;string&gt;
 
 ### getStringByName<sup>9+</sup>
 
-getStringByName(resName: string, callback: AsyncCallback&lt;string&gt;): void
+getStringByName(resName: string, callback: _AsyncCallback&lt;string&gt;): void
 
 用户获取指定资源名称对应的字符串，使用callback异步回调。
 
@@ -856,7 +856,7 @@ getStringByName(resName: string, callback: AsyncCallback&lt;string&gt;): void
 | 参数名      | 类型                          | 必填   | 说明              |
 | -------- | --------------------------- | ---- | --------------- |
 | resName  | string                      | 是    | 资源名称。            |
-| callback | AsyncCallback&lt;string&gt; | 是    |返回获取的字符串。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | 是    |返回获取的字符串。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
@@ -1083,7 +1083,7 @@ getStringArrayByNameSync(resName: string): Array&lt;string&gt;
 
 ### getStringArrayValue<sup>9+</sup>
 
-getStringArrayValue(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
+getStringArrayValue(resId: number, callback: _AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 用户获取指定资源ID对应的字符串数组，使用callback异步回调。
 
@@ -1096,7 +1096,7 @@ getStringArrayValue(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt
 | 参数名      | 类型                                       | 必填   | 说明                |
 | -------- | ---------------------------------------- | ---- | ----------------- |
 | resId    | number                                   | 是    | 资源ID值。             |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 返回获取的字符串数组。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Array&lt;string&gt;&gt; | 是    | 返回获取的字符串数组。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
@@ -1178,7 +1178,7 @@ getStringArrayValue(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 ### getStringArrayValue<sup>9+</sup>
 
-getStringArrayValue(resource: Resource, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
+getStringArrayValue(resource: Resource, callback: _AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 用户获取指定resource对象对应的字符串数组，使用callback异步回调。
 
@@ -1193,7 +1193,7 @@ getStringArrayValue(resource: Resource, callback: AsyncCallback&lt;Array&lt;stri
 | 参数名      | 类型                                       | 必填   | 说明                |
 | -------- | ---------------------------------------- | ---- | ----------------- |
 | resource | [Resource](#resource9)                   | 是    | 资源信息。              |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 返回获取的字符串数组。|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Array&lt;string&gt;&gt; | 是    | 返回获取的字符串数组。|
 
 **错误码：**
 
@@ -1291,7 +1291,7 @@ getStringArrayValue(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
 
 ### getStringArrayByName<sup>9+</sup>
 
-getStringArrayByName(resName: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
+getStringArrayByName(resName: string, callback: _AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 用户获取指定资源名称对应的字符串数组，使用callback异步回调。
 
@@ -1304,7 +1304,7 @@ getStringArrayByName(resName: string, callback: AsyncCallback&lt;Array&lt;string
 | 参数名      | 类型                                       | 必填   | 说明                |
 | -------- | ---------------------------------------- | ---- | ----------------- |
 | resName  | string                                   | 是    | 资源名称。              |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 返回获取的字符串数组。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Array&lt;string&gt;&gt; | 是    | 返回获取的字符串数组。 |
 
 **错误码：**
 
@@ -1420,7 +1420,6 @@ getIntPluralStringValueSync(resId: number, num: number, ...args: Array<string | 
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
 | 9001001  | Invalid resource ID.                                         |
 | 9001002  | No matching resource is found based on the resource ID.      |
 | 9001006  | The resource is referenced cyclically.                       |
@@ -1477,7 +1476,6 @@ getIntPluralStringValueSync(resource: Resource, num: number, ...args: Array<stri
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
 | 9001001  | Invalid resource ID.                                         |
 | 9001002  | No matching resource is found based on the resource ID.      |
 | 9001006  | The resource is referenced cyclically.                       |
@@ -1538,7 +1536,6 @@ getIntPluralStringByNameSync(resName: string, num: number, ...args: Array<string
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
 | 9001003  | Invalid resource name.                                       |
 | 9001004  | No matching resource is found based on the resource name.    |
 | 9001006  | The resource is referenced cyclically.                       |
@@ -1593,7 +1590,6 @@ getDoublePluralStringValueSync(resId: number, num: number, ...args: Array<string
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
 | 9001001  | Invalid resource ID.                                         |
 | 9001002  | No matching resource is found based on the resource ID.      |
 | 9001006  | The resource is referenced cyclically.                       |
@@ -1650,7 +1646,6 @@ getDoublePluralStringValueSync(resource: Resource, num: number, ...args: Array<s
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
 | 9001001  | Invalid resource ID.                                         |
 | 9001002  | No matching resource is found based on the resource ID.      |
 | 9001006  | The resource is referenced cyclically.                       |
@@ -1711,7 +1706,6 @@ getDoublePluralStringByNameSync(resName: string, num: number, ...args: Array<str
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
 | 9001003  | Invalid resource name.                                       |
 | 9001004  | No matching resource is found based on the resource name.    |
 | 9001006  | The resource is referenced cyclically.                       |
@@ -1904,7 +1898,7 @@ getMediaByNameSync(resName: string, density?: number): Uint8Array
 
 ### getMediaContent<sup>9+</sup>
 
-getMediaContent(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
+getMediaContent(resId: number, callback: _AsyncCallback&lt;Uint8Array&gt;): void
 
 用户获取指定资源ID对应的媒体文件内容，使用callback异步回调。
 
@@ -1917,7 +1911,7 @@ getMediaContent(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 | 参数名      | 类型                              | 必填   | 说明                 |
 | -------- | ------------------------------- | ---- | ------------------ |
 | resId    | number                          | 是    | 资源ID值。              |
-| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 返回获取的媒体文件内容。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | 是    | 返回获取的媒体文件内容。 |
 
 **错误码：**
 
@@ -1950,7 +1944,7 @@ getMediaContent(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 ### getMediaContent<sup>10+</sup>
 
-getMediaContent(resId: number, density: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
+getMediaContent(resId: number, density: number, callback: _AsyncCallback&lt;Uint8Array&gt;): void
 
 用户获取指定资源ID对应的指定屏幕密度媒体文件内容，使用callback异步回调。
 
@@ -1964,7 +1958,7 @@ getMediaContent(resId: number, density: number, callback: AsyncCallback&lt;Uint8
 | -------- | ------------------------------- | ---- | ------------------ |
 | resId    | number                          | 是    | 资源ID值。              |
 | [density](#screendensity)  | number                          | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度。    |
-| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 返回获取的媒体文件内容。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | 是    | 返回获取的媒体文件内容。 |
 
 **错误码：**
 
@@ -2096,7 +2090,7 @@ getMediaContent(resId: number, density: number): Promise&lt;Uint8Array&gt;
 
 ### getMediaContent<sup>9+</sup>
 
-getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): void
+getMediaContent(resource: Resource, callback: _AsyncCallback&lt;Uint8Array&gt;): void
 
 用户获取指定resource对象对应的媒体文件内容，使用callback异步回调。
 
@@ -2111,7 +2105,7 @@ getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): 
 | 参数名      | 类型                              | 必填   | 说明                 |
 | -------- | ------------------------------- | ---- | ------------------ |
 | resource | [Resource](#resource9)          | 是    | 资源信息。               |
-| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 返回获取的媒体文件内容。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | 是    | 返回获取的媒体文件内容。 |
 
 **错误码：**
 
@@ -2150,7 +2144,7 @@ getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): 
 
 ### getMediaContent<sup>10+</sup>
 
-getMediaContent(resource: Resource, density: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
+getMediaContent(resource: Resource, density: number, callback: _AsyncCallback&lt;Uint8Array&gt;): void
 
 用户获取指定resource对象对应的指定屏幕密度媒体文件内容，使用callback异步回调。
 
@@ -2166,7 +2160,7 @@ getMediaContent(resource: Resource, density: number, callback: AsyncCallback&lt;
 | -------- | ------------------------------- | ---- | ------------------ |
 | resource | [Resource](#resource9)          | 是    | 资源信息。               |
 | [density](#screendensity)  | number        | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度。    |
-| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 返回获取的媒体文件内容。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | 是    | 返回获取的媒体文件内容。 |
 
 **错误码：**
 
@@ -2320,7 +2314,7 @@ getMediaContent(resource: Resource, density: number): Promise&lt;Uint8Array&gt;
 
 ### getMediaByName<sup>9+</sup>
 
-getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
+getMediaByName(resName: string, callback: _AsyncCallback&lt;Uint8Array&gt;): void
 
 用户获取指定资源名称对应的媒体文件内容，使用callback异步回调。
 
@@ -2333,7 +2327,7 @@ getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 | 参数名      | 类型                              | 必填   | 说明                 |
 | -------- | ------------------------------- | ---- | ------------------ |
 | resName  | string                          | 是    | 资源名称。               |
-| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 返回获取的媒体文件内容。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | 是    | 返回获取的媒体文件内容。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
@@ -2365,7 +2359,7 @@ getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 ### getMediaByName<sup>10+</sup>
 
-getMediaByName(resName: string, density: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
+getMediaByName(resName: string, density: number, callback: _AsyncCallback&lt;Uint8Array&gt;): void
 
 用户获取指定资源名称对应的指定屏幕密度媒体文件内容，使用callback异步回调。
 
@@ -2379,7 +2373,7 @@ getMediaByName(resName: string, density: number, callback: AsyncCallback&lt;Uint
 | -------- | ------------------------------- | ---- | ------------------ |
 | resName  | string                          | 是    | 资源名称。               |
 | [density](#screendensity)  | number        | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度。    |
-| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 返回获取的媒体文件内容。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | 是    | 返回获取的媒体文件内容。 |
 
 **错误码：**
 
@@ -2681,7 +2675,7 @@ getMediaBase64ByNameSync(resName: string, density?: number): string
 
 ### getMediaContentBase64<sup>9+</sup>
 
-getMediaContentBase64(resId: number, callback: AsyncCallback&lt;string&gt;): void
+getMediaContentBase64(resId: number, callback: _AsyncCallback&lt;string&gt;): void
 
 用户获取指定资源ID对应的图片资源Base64编码，使用callback异步回调。
 
@@ -2694,7 +2688,7 @@ getMediaContentBase64(resId: number, callback: AsyncCallback&lt;string&gt;): voi
 | 参数名      | 类型                          | 必填   | 说明                       |
 | -------- | --------------------------- | ---- | ------------------------ |
 | resId    | number                      | 是    | 资源ID值。                    |
-| callback | AsyncCallback&lt;string&gt; | 是    | 返回获取的图片资源Base64编码。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | 是    | 返回获取的图片资源Base64编码。 |
 
 **错误码：**
 
@@ -2727,7 +2721,7 @@ getMediaContentBase64(resId: number, callback: AsyncCallback&lt;string&gt;): voi
 
 ### getMediaContentBase64<sup>10+</sup>
 
-getMediaContentBase64(resId: number, density: number, callback: AsyncCallback&lt;string&gt;): void
+getMediaContentBase64(resId: number, density: number, callback: _AsyncCallback&lt;string&gt;): void
 
 用户获取指定资源ID对应的指定屏幕密度图片资源Base64编码，使用callback异步回调。
 
@@ -2741,7 +2735,7 @@ getMediaContentBase64(resId: number, density: number, callback: AsyncCallback&lt
 | -------- | --------------------------- | ---- | ------------------------ |
 | resId    | number                      | 是    | 资源ID值。                    |
 | [density](#screendensity)  | number        | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度。    |
-| callback | AsyncCallback&lt;string&gt; | 是    | 获取的图片资源Base64编码。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | 是    | 获取的图片资源Base64编码。 |
 
 **错误码：**
 
@@ -2873,7 +2867,7 @@ getMediaContentBase64(resId: number, density: number): Promise&lt;string&gt;
 
 ### getMediaContentBase64<sup>9+</sup>
 
-getMediaContentBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
+getMediaContentBase64(resource: Resource, callback: _AsyncCallback&lt;string&gt;): void
 
 用户获取指定resource对象对应的图片资源Base64编码，使用callback异步回调。
 
@@ -2888,7 +2882,7 @@ getMediaContentBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;)
 | 参数名      | 类型                          | 必填   | 说明                       |
 | -------- | --------------------------- | ---- | ------------------------ |
 | resource | [Resource](#resource9)      | 是    | 资源信息。                     |
-| callback | AsyncCallback&lt;string&gt; | 是    | 返回获取的图片资源Base64编码。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | 是    | 返回获取的图片资源Base64编码。 |
 
 **错误码：**
 
@@ -2927,7 +2921,7 @@ getMediaContentBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;)
 
 ### getMediaContentBase64<sup>10+</sup>
 
-getMediaContentBase64(resource: Resource, density: number, callback: AsyncCallback&lt;string&gt;): void
+getMediaContentBase64(resource: Resource, density: number, callback: _AsyncCallback&lt;string&gt;): void
 
 用户获取指定resource对象对应的指定屏幕密度图片资源Base64编码，使用callback异步回调。
 
@@ -2943,7 +2937,7 @@ getMediaContentBase64(resource: Resource, density: number, callback: AsyncCallba
 | -------- | --------------------------- | ---- | ------------------------ |
 | resource | [Resource](#resource9)      | 是    | 资源信息。                     |
 | [density](#screendensity)  | number        | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度。    |
-| callback | AsyncCallback&lt;string&gt; | 是    | 获取的图片资源Base64编码。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | 是    | 获取的图片资源Base64编码。 |
 
 **错误码：**
 
@@ -3097,7 +3091,7 @@ getMediaContentBase64(resource: Resource, density: number): Promise&lt;string&gt
 
 ### getMediaBase64ByName<sup>9+</sup>
 
-getMediaBase64ByName(resName: string, callback: AsyncCallback&lt;string&gt;): void
+getMediaBase64ByName(resName: string, callback: _AsyncCallback&lt;string&gt;): void
 
 用户获取指定资源名称对应的图片资源Base64编码，使用callback异步回调。
 
@@ -3110,7 +3104,7 @@ getMediaBase64ByName(resName: string, callback: AsyncCallback&lt;string&gt;): vo
 | 参数名      | 类型                          | 必填   | 说明                       |
 | -------- | --------------------------- | ---- | ------------------------ |
 | resName  | string                      | 是    | 资源名称。                     |
-| callback | AsyncCallback&lt;string&gt; | 是    | 返回获取的图片资源Base64编码。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | 是    | 返回获取的图片资源Base64编码。 |
 
 **错误码：**
 
@@ -3143,7 +3137,7 @@ getMediaBase64ByName(resName: string, callback: AsyncCallback&lt;string&gt;): vo
 
 ### getMediaBase64ByName<sup>10+</sup>
 
-getMediaBase64ByName(resName: string, density: number, callback: AsyncCallback&lt;string&gt;): void
+getMediaBase64ByName(resName: string, density: number, callback: _AsyncCallback&lt;string&gt;): void
 
 用户获取指定资源名称对应的指定屏幕密度图片资源Base64编码，使用callback异步回调。
 
@@ -3157,7 +3151,7 @@ getMediaBase64ByName(resName: string, density: number, callback: AsyncCallback&l
 | -------- | --------------------------- | ---- | ------------------------ |
 | resName  | string                      | 是    | 资源名称。                     |
 | [density](#screendensity)  | number        | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度。    |
-| callback | AsyncCallback&lt;string&gt; | 是    | 返回获取的图片资源Base64编码。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | 是    | 返回获取的图片资源Base64编码。 |
 
 **错误码：**
 
@@ -3940,7 +3934,7 @@ getColorByNameSync(resName: string) : number;
 
 ### getColor<sup>10+</sup>
 
-getColor(resId: number, callback: AsyncCallback&lt;number&gt;): void;
+getColor(resId: number, callback: _AsyncCallback&lt;number&gt;): void;
 
 用户获取指定资源ID对应的颜色值，使用callback异步回调。
 
@@ -3953,7 +3947,7 @@ getColor(resId: number, callback: AsyncCallback&lt;number&gt;): void;
 | 参数名      | 类型                          | 必填   | 说明              |
 | -------- | --------------------------- | ---- | --------------- |
 | resId    | number                      | 是    | 资源ID值。           |
-| callback | AsyncCallback&lt;number&gt; | 是    | 返回获取的颜色值（十进制）。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;number&gt; | 是    | 返回获取的颜色值（十进制）。 |
 
 **错误码：**
 
@@ -4037,7 +4031,7 @@ getColor(resId: number): Promise&lt;number&gt;
 
 ### getColor<sup>10+</sup>
 
-getColor(resource: Resource, callback: AsyncCallback&lt;number&gt;): void;
+getColor(resource: Resource, callback: _AsyncCallback&lt;number&gt;): void;
 
 用户获取指定resource对象对应的颜色值，使用callback异步回调。
 
@@ -4052,7 +4046,7 @@ getColor(resource: Resource, callback: AsyncCallback&lt;number&gt;): void;
 | 参数名      | 类型                          | 必填   | 说明              |
 | -------- | --------------------------- | ---- | --------------- |
 | resource | [Resource](#resource9)      | 是    | 资源信息。            |
-| callback | AsyncCallback&lt;number&gt; | 是    | 返回获取的颜色值（十进制）。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;number&gt; | 是    | 返回获取的颜色值（十进制）。 |
 
 **错误码：**
 
@@ -4150,7 +4144,7 @@ getColor(resource: Resource): Promise&lt;number&gt;;
 
 ### getColorByName<sup>10+</sup>
 
-getColorByName(resName: string, callback: AsyncCallback&lt;number&gt;): void
+getColorByName(resName: string, callback: _AsyncCallback&lt;number&gt;): void
 
 用户获取指定资源名称对应的颜色值，使用callback异步回调。
 
@@ -4163,7 +4157,7 @@ getColorByName(resName: string, callback: AsyncCallback&lt;number&gt;): void
 | 参数名      | 类型                          | 必填   | 说明              |
 | -------- | --------------------------- | ---- | --------------- |
 | resName  | string                      | 是    | 资源名称。            |
-| callback | AsyncCallback&lt;number&gt; | 是    | 异步回调，用于返回获取的颜色值（十进制）。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;number&gt; | 是    | 异步回调，用于返回获取的颜色值（十进制）。 |
 
 **错误码：**
 
@@ -4291,7 +4285,7 @@ getRawFileContentSync(path: string): Uint8Array
 
 ### getRawFileContent<sup>9+</sup>
 
-getRawFileContent(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
+getRawFileContent(path: string, callback: _AsyncCallback&lt;Uint8Array&gt;): void
 
 用户获取resources/rawfile目录下对应的rawfile文件内容，使用callback异步回调。
 
@@ -4304,7 +4298,7 @@ getRawFileContent(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 | 参数名      | 类型                              | 必填   | 说明                      |
 | -------- | ------------------------------- | ---- | ----------------------- |
 | path     | string                          | 是    | rawfile文件路径。             |
-| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 返回获取的rawfile文件内容。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | 是    | 返回获取的rawfile文件内容。 |
 
 **错误码：**
 
@@ -4431,7 +4425,7 @@ getRawFileListSync(path: string): Array\<string>
 
 ### getRawFileList<sup>10+</sup>
 
-getRawFileList(path: string, callback: AsyncCallback&lt;Array\<string\>&gt;): void;
+getRawFileList(path: string, callback: _AsyncCallback&lt;Array\<string\>&gt;): void;
 
 用户获取resources/rawfile目录下文件夹及文件列表，使用callback异步回调。
 
@@ -4448,7 +4442,7 @@ getRawFileList(path: string, callback: AsyncCallback&lt;Array\<string\>&gt;): vo
 | 参数名      | 类型                              | 必填   | 说明                      |
 | -------- | ------------------------------- | ---- | ----------------------- |
 | path     | string                          | 是    | rawfile文件夹路径。             |
-| callback | AsyncCallback&lt;Array\<string\>&gt; | 是 | rawfile文件目录下的文件夹及文件列表。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Array\<string\>&gt; | 是 | rawfile文件目录下的文件夹及文件列表。 |
 
 **错误码：**
 
@@ -4576,7 +4570,7 @@ getRawFdSync(path: string): RawFileDescriptor
 
 ### getRawFd<sup>9+</sup>
 
-getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
+getRawFd(path: string, callback: _AsyncCallback&lt;RawFileDescriptor&gt;): void
 
 用户获取resources/rawfile目录下对应rawfile文件所在hap的descriptor信息，使用callback异步回调。
 
@@ -4589,7 +4583,7 @@ getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 | 参数名      | 类型                                       | 必填   | 说明                               |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | path     | string                                   | 是    | rawfile文件路径。                      |
-| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | 是    | 返回获取的rawfile文件所在hap的descriptor信息。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | 是    | 返回获取的rawfile文件所在hap的descriptor信息。 |
 
 **错误码：**
 
@@ -4713,7 +4707,7 @@ closeRawFdSync(path: string): void
 
 ### closeRawFd<sup>9+</sup>
 
-closeRawFd(path: string, callback: AsyncCallback&lt;void&gt;): void
+closeRawFd(path: string, callback: _AsyncCallback&lt;void&gt;): void
 
 用户关闭resources/rawfile目录下rawfile文件所在hap的descriptor信息，使用callback异步回调。
 
@@ -4726,7 +4720,7 @@ closeRawFd(path: string, callback: AsyncCallback&lt;void&gt;): void
 | 参数名      | 类型                        | 必填   | 说明          |
 | -------- | ------------------------- | ---- | ----------- |
 | path     | string                    | 是    | rawfile文件路径。 |
-| callback | AsyncCallback&lt;void&gt; | 是    | 异步回调。        |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;void&gt; | 是    | 异步回调。        |
 
 **错误码：**
 
@@ -4827,7 +4821,7 @@ getConfigurationSync(): Configuration
 
 ### getConfiguration
 
-getConfiguration(callback: AsyncCallback&lt;Configuration&gt;): void
+getConfiguration(callback: _AsyncCallback&lt;Configuration&gt;): void
 
 用户获取设备的Configuration，使用callback异步回调。
 
@@ -4839,7 +4833,7 @@ getConfiguration(callback: AsyncCallback&lt;Configuration&gt;): void
 
 | 参数名      | 类型                                       | 必填   | 说明                        |
 | -------- | ---------------------------------------- | ---- | ------------------------- |
-| callback | AsyncCallback&lt;[Configuration](#configuration)&gt; | 是    | 返回设备的Configuration。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[Configuration](#configuration)&gt; | 是    | 返回设备的Configuration。 |
 
 **示例：** 
   ```ts
@@ -4921,7 +4915,7 @@ getDeviceCapabilitySync(): DeviceCapability
 
 ### getDeviceCapability
 
-getDeviceCapability(callback: AsyncCallback&lt;DeviceCapability&gt;): void
+getDeviceCapability(callback: _AsyncCallback&lt;DeviceCapability&gt;): void
 
 用户获取设备的DeviceCapability，使用callback异步回调。
 
@@ -4933,7 +4927,7 @@ getDeviceCapability(callback: AsyncCallback&lt;DeviceCapability&gt;): void
 
 | 参数名      | 类型                                       | 必填   | 说明                           |
 | -------- | ---------------------------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback&lt;[DeviceCapability](#devicecapability)&gt; | 是    | 返回设备的DeviceCapability。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[DeviceCapability](#devicecapability)&gt; | 是    | 返回设备的DeviceCapability。 |
 
 **示例：** 
   ```ts
@@ -5015,7 +5009,7 @@ addResource(path: string) : void
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let path = getContext().bundleCodeDir + "/library1-default-signed.hsp";
+  let path = this.context.bundleCodeDir + "/library1-default-signed.hsp";
   try {
     this.context.resourceManager.addResource(path);
   } catch (error) {
@@ -5054,7 +5048,7 @@ removeResource(path: string) : void
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let path = getContext().bundleCodeDir + "/library1-default-signed.hsp";
+  let path = this.context.bundleCodeDir + "/library1-default-signed.hsp";
   try {
     this.context.resourceManager.removeResource(path);
   } catch (error) {
@@ -5458,7 +5452,7 @@ getString(resId: number, callback: AsyncCallback&lt;string&gt;): void
 | 参数名      | 类型                          | 必填   | 说明              |
 | -------- | --------------------------- | ---- | --------------- |
 | resId    | number                      | 是    | 资源ID值。           |
-| callback | AsyncCallback&lt;string&gt; | 是    | 返回获取的字符串。 |
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;string&gt; | 是    | 返回获取的字符串。 |
 
 **示例：**
   ```ts
@@ -5525,7 +5519,7 @@ getStringArray(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;
 | 参数名      | 类型                                       | 必填   | 说明                |
 | -------- | ---------------------------------------- | ---- | ----------------- |
 | resId    | number                                   | 是    | 资源ID值。             |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 返回获取的字符串数组。 |
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;Array&lt;string&gt;&gt; | 是    | 返回获取的字符串数组。 |
 
 **示例：** 
   ```ts
@@ -5592,7 +5586,7 @@ getMedia(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 | 参数名      | 类型                              | 必填   | 说明                 |
 | -------- | ------------------------------- | ---- | ------------------ |
 | resId    | number                          | 是    | 资源ID值。              |
-| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 返回获取的媒体文件内容。 |
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;Uint8Array&gt; | 是    | 返回获取的媒体文件内容。 |
 
 **示例：** 
   ```ts
@@ -5658,7 +5652,7 @@ getMediaBase64(resId: number, callback: AsyncCallback&lt;string&gt;): void
 | 参数名      | 类型                          | 必填   | 说明                       |
 | -------- | --------------------------- | ---- | ------------------------ |
 | resId    | number                      | 是    | 资源ID值。                    |
-| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的图片资源Base64编码。 |
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;string&gt; | 是    | 异步回调，用于返回获取的图片资源Base64编码。 |
 
 **示例：** 
   ```ts
@@ -5881,7 +5875,7 @@ getPluralStringByNameSync(resName: string, num: number): string
 
 ### getPluralStringValue<sup>(deprecated)</sup>
 
-getPluralStringValue(resId: number, num: number, callback: AsyncCallback&lt;string&gt;): void
+getPluralStringValue(resId: number, num: number, callback: _AsyncCallback&lt;string&gt;): void
 
 获取指定资源ID，指定资源数量的单复数字符串，使用callback异步回调。
 
@@ -5901,7 +5895,7 @@ getPluralStringValue(resId: number, num: number, callback: AsyncCallback&lt;stri
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | resId    | number                      | 是   | 资源ID值。                                                   |
 | num      | number                      | 是   | 数量值。根据当前语言的复数规则获取该数量值对应的字符串数字，语言的复数规则参见[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。 |
-| callback | AsyncCallback&lt;string&gt; | 是   | 根据指定数量，获取指定ID字符串表示的单复数字符串。           |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | 是   | 根据指定数量，获取指定ID字符串表示的单复数字符串。           |
 
 **错误码：**
 
@@ -5994,7 +5988,7 @@ getPluralStringValue(resId: number, num: number): Promise&lt;string&gt;
 
 ### getPluralStringValue<sup>(deprecated)</sup>
 
-getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt;string&gt;): void
+getPluralStringValue(resource: Resource, num: number, callback: _AsyncCallback&lt;string&gt;): void
 
 获取指定资源信息，指定资源数量的单复数字符串，使用callback异步回调。
 
@@ -6016,7 +6010,7 @@ getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | resource | [Resource](#resource9)      | 是   | 资源信息。                                                   |
 | num      | number                      | 是   | 数量值。根据当前语言的复数规则获取该数量值对应的字符串数字，语言的复数规则参见[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。 |
-| callback | AsyncCallback&lt;string&gt; | 是   | 根据指定数量，获取指定resource对象表示的单复数字符串。       |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | 是   | 根据指定数量，获取指定resource对象表示的单复数字符串。       |
 
 **错误码：**
 
@@ -6123,7 +6117,7 @@ getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
 
 ### getPluralStringByName<sup>(deprecated)</sup>
 
-getPluralStringByName(resName: string, num: number, callback: AsyncCallback&lt;string&gt;): void
+getPluralStringByName(resName: string, num: number, callback: _AsyncCallback&lt;string&gt;): void
 
 获取指定资源名称，指定资源数量的单复数字符串，使用callback异步回调。
 
@@ -6143,7 +6137,7 @@ getPluralStringByName(resName: string, num: number, callback: AsyncCallback&lt;s
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | resName  | string                      | 是   | 资源名称。                                                   |
 | num      | number                      | 是   | 数量值。根据当前语言的复数规则获取该数量值对应的字符串数字，语言的复数规则参见[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。 |
-| callback | AsyncCallback&lt;string&gt; | 是   | 根据传入的数量值，获取资源名称对应的字符串资源。             |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | 是   | 根据传入的数量值，获取资源名称对应的字符串资源。             |
 
 **错误码：**
 
@@ -6296,7 +6290,7 @@ getPluralString(resId: number, num: number, callback: AsyncCallback&lt;string&gt
 | -------- | --------------------------- | ---- | ------------------------------- |
 | resId    | number                      | 是    | 资源ID值。                           |
 | num      | number                      | 是    | 数量值。根据当前语言的复数规则获取该数量值对应的字符串数字，语言的复数规则参见[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。 |
-| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，返回根据指定数量获取指定ID字符串表示的单复数字符串。 |
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;string&gt; | 是    | 异步回调，返回根据指定数量获取指定ID字符串表示的单复数字符串。 |
 
 **示例：** 
 
@@ -6319,7 +6313,9 @@ getRawFile(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 用户获取resources/rawfile目录下对应的rawfile文件内容，使用callback异步回调。
 
-从API version 9开始不再维护，建议使用[getRawFileContent](#getrawfilecontent9)代替。
+> **说明**
+>
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[getRawFileContent](#getrawfilecontent9)替代。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -6328,7 +6324,7 @@ getRawFile(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 | 参数名      | 类型                              | 必填   | 说明                      |
 | -------- | ------------------------------- | ---- | ----------------------- |
 | path     | string                          | 是    | rawfile文件路径。             |
-| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的rawfile文件内容。 |
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的rawfile文件内容。 |
 
 **示例：** 
   ```ts
@@ -6350,7 +6346,9 @@ getRawFile(path: string): Promise&lt;Uint8Array&gt;
 
 用户获取resources/rawfile目录下对应的rawfile文件内容，使用Promise异步回调。
 
-从API version 9开始不再维护，建议使用[getRawFileContent](#getrawfilecontent9-1)代替。
+> **说明**
+>
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[getRawFileContent](#getrawfilecontent9-1)替代。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -6386,7 +6384,9 @@ getRawFileDescriptor(path: string, callback: AsyncCallback&lt;RawFileDescriptor&
 
 用户获取resources/rawfile目录下对应rawfile文件的descriptor，使用callback异步回调。
 
-从API version 9开始不再维护，建议使用[getRawFd](#getrawfd9)代替。
+> **说明**
+>
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[getRawFd](#getrawfd9)替代。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -6395,7 +6395,7 @@ getRawFileDescriptor(path: string, callback: AsyncCallback&lt;RawFileDescriptor&
 | 参数名      | 类型                                       | 必填   | 说明                               |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | path     | string                                   | 是    | rawfile文件路径。                      |
-| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | 是    | 异步回调，用于返回获取的rawfile文件的descriptor。 |
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | 是    | 异步回调，用于返回获取的rawfile文件的descriptor。 |
 
 **示例：** 
   ```ts
@@ -6420,7 +6420,9 @@ getRawFileDescriptor(path: string): Promise&lt;RawFileDescriptor&gt;
 
 用户获取resources/rawfile目录下对应rawfile文件的descriptor，使用Promise异步回调。
 
-从API version 9开始不再维护，建议使用[getRawFd](#getrawfd9-1)代替。
+> **说明**
+>
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[getRawFd](#getrawfd9-1)替代。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -6457,7 +6459,9 @@ closeRawFileDescriptor(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 用户关闭resources/rawfile目录下rawfile文件的descriptor，使用callback异步回调。
 
-从API version 9开始不再维护，建议使用[closeRawFd](#closerawfd9)代替。
+> **说明**
+>
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[closeRawFd](#closerawfd9)替代。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -6468,7 +6472,7 @@ closeRawFileDescriptor(path: string, callback: AsyncCallback&lt;void&gt;): void
 | 参数名      | 类型                        | 必填   | 说明          |
 | -------- | ------------------------- | ---- | ----------- |
 | path     | string                    | 是    | rawfile文件路径。 |
-| callback | AsyncCallback&lt;void&gt; | 是    | 异步回调。        |
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;void&gt; | 是    | 异步回调。        |
 
 **示例：** 
   ```ts
@@ -6487,7 +6491,9 @@ closeRawFileDescriptor(path: string): Promise&lt;void&gt;
 
 用户关闭resources/rawfile目录下rawfile文件的descriptor，使用Promise异步回调。
 
-从API version 9开始不再维护，建议使用[closeRawFd](#closerawfd9-1)代替。
+> **说明**
+>
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[closeRawFd](#closerawfd9-1)替代。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -6510,29 +6516,50 @@ closeRawFileDescriptor(path: string): Promise&lt;void&gt;
   });
   ```
 
-### 附录
+## AsyncCallback<sup>(deprecated)</sup>
+
+```
+AsyncCallback<T> {
+  (err: Error, data: T): void;
+}
+```
+
+异步回调函数，携带错误参数和异步返回值。
+
+> **说明**
+>
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)替代。
+
+**系统能力：** SystemCapability.Global.ResourceManager
+
+| 参数名 | 类型                                                         | 必填 | 说明                         |
+| ---- | ------------------------------------------------------------ | ---- | ---------------------------- |
+| err  | Error | 是   | 接口调用失败的错误信息。 |
+| data | T     | 是   | 接口调用时的回调信息。|
+
+## 附录
 
 - 示例代码中用到的'app.string.test'文件内容如下：
 
     ```json
     {
-    "string": [
+      "string": [
         {
-        "name": "test",
-        "value": "10"
+          "name": "test",
+          "value": "10"
         }
-    ]
+      ]
     }
     ```
 
     ```json
     {
-    "string": [
-     {
-        "name": "test",
-        "value": "%s %d %f"
+      "string": [
+        {
+          "name": "test",
+          "value": "%s %d %f"
         }
-    ]
+      ]
     }
     ```
 
@@ -6540,16 +6567,16 @@ closeRawFileDescriptor(path: string): Promise&lt;void&gt;
 
     ```json
     {
-    "strarray": [
+      "strarray": [
         {
-        "name": "test",
-        "value": [
-          {
-            "value": "strarray_test"
-          }
-        ]
+          "name": "test",
+          "value": [
+            {
+              "value": "strarray_test"
+            }
+          ]
         }
-    ]
+      ]
     }
     ```
 
@@ -6558,53 +6585,53 @@ closeRawFileDescriptor(path: string): Promise&lt;void&gt;
     {
       "plural": [
         {
-        "name": "test",
-        "value": [
+          "name": "test",
+          "value": [
             {
-            "quantity": "one",
-            "value": "%d apple"
+              "quantity": "one",
+              "value": "%d apple"
             },
             {
-            "quantity": "other",
-            "value": "%d apples"
+              "quantity": "other",
+              "value": "%d apples"
             }
-        ]
+          ]
         }
-    ]
+      ]
     }
     ```
 
 - 示例代码中用到的'app.plural.format_test'文件内容如下：
 
-    ```
+    ```json
     {
       "plural": [
         {
-        "name": "format_test",
-        "value": [
+          "name": "format_test",
+          "value": [
             {
-            "quantity": "one",
-            "value": "%d apple, %s, %f"
+              "quantity": "one",
+              "value": "%d apple, %s, %f"
             },
             {
-            "quantity": "other",
-            "value": "%d apples, %s, %f"
+              "quantity": "other",
+              "value": "%d apples, %s, %f"
             }
-        ]
+          ]
         }
-    ]
+      ]
     }
     ```
 
 - 示例代码中用到的'app.boolean.boolean_test'文件内容如下：
     ```json
     {
-        "boolean": [
-            {
-                "name": "boolean_test",
-                "value": true
-            }
-        ]
+      "boolean": [
+        {
+          "name": "boolean_test",
+          "value": true
+        }
+      ]
     }
     ```
 
@@ -6637,7 +6664,7 @@ closeRawFileDescriptor(path: string): Promise&lt;void&gt;
         {
           "name": "test",
           "value": "#FFFFFF"
-       }
+        }
       ]
     }
     ```

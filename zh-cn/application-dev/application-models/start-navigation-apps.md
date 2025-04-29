@@ -14,33 +14,33 @@ startAbilityByType接口中type字段为navigation，支持路线规划、导航
 
     | 参数名               | 类型                   | 必填 | 说明                                                 |
     | -------------------- | ---------------------- | ---- | ---------------------------------------------------- |
-    | sceneType            | number                 | 否   | 意图场景，表明本次请求对应的操作意图。默认为1，路线规划场景填1或不填                   |
-    | originName           | string                 | 否   | 起点名称                                             |
-    | originLatitude       | number                 | 否   | 起点纬度                                             |
-    | originLongitude      | number                 | 否   | 起点经度                                             |
-    | originPoiIds         | Record<number, string> | 否   | 起点POI ID列表，当前仅支持传入花瓣地图和高德地图的POI ID|
-    | destinationName      | string                 | 否   | 终点名称                                             |
-    | destinationLatitude  | number                 | 是   | 终点纬度                                             |
-    | destinationLongitude | number                 | 是   | 终点经度                                             |
-    | destinationPoiIds    | Record<number, string> | 否   | 终点POI ID列表，当前仅支持传入花瓣地图和高德地图的POI ID|
-    | vehicleType          | number                 | 否   | 交通出行工具，取值：0-驾车，1-步行，2-骑行，3-公交； |
+    | sceneType            | number                 | 否   | 意图场景，表明本次请求对应的操作意图。默认为1，路线规划场景填1或不填。                   |
+    | originName           | string                 | 否   | 起点名称。                                             |
+    | originLatitude       | number                 | 否   | 起点纬度。                                             |
+    | originLongitude      | number                 | 否   | 起点经度。                                             |
+    | originPoiIds         | Record<number, string> | 否   | 起点POI ID列表，当前仅支持传入花瓣地图和高德地图的POI ID。|
+    | destinationName      | string                 | 否   | 终点名称。                                             |
+    | destinationLatitude  | number                 | 是   | 终点纬度。                                             |
+    | destinationLongitude | number                 | 是   | 终点经度。                                             |
+    | destinationPoiIds    | Record<number, string> | 否   | 终点POI ID列表，当前仅支持传入花瓣地图和高德地图的POI ID。|
+    | vehicleType          | number                 | 否   | 交通出行工具，取值：0-驾车，1-步行，2-骑行，3-公交。 |
 
 - 导航场景
 
     | 参数名               | 类型                   | 必填 | 说明              |
     | -------------------- | ---------------------- | ---- | ----------------- |
-    | sceneType            | number                 | 是   | 意图场景，表明本次请求对应的操作意图。导航场景填2 |
-    | destinationName      | string                 | 否   | 终点名称          |
-    | destinationLatitude  | number                 | 是   | 终点纬度          |
-    | destinationLongitude | number                 | 是   | 终点经度          |
-    | destinationPoiIds    | Record<number, string> | 否   | 终点POI ID列表，当前仅支持传入花瓣地图和高德地图的POI ID|
+    | sceneType            | number                 | 是   | 意图场景，表明本次请求对应的操作意图。导航场景填2。 |
+    | destinationName      | string                 | 否   | 终点名称。          |
+    | destinationLatitude  | number                 | 是   | 终点纬度。          |
+    | destinationLongitude | number                 | 是   | 终点经度。          |
+    | destinationPoiIds    | Record<number, string> | 否   | 终点POI ID列表，当前仅支持传入花瓣地图和高德地图的POI ID。|
 
 - 位置搜索场景
 
     | 参数名          | 类型   | 必填 | 说明                  |
     | --------------- | ------ | ---- | --------------------- |
-    | sceneType       | number | 是   | 意图场景，表明本次请求对应的操作意图。位置搜索场景填3 |
-    | destinationName | string | 是   | 地点名称              |
+    | sceneType       | number | 是   | 意图场景，表明本次请求对应的操作意图。位置搜索场景填3。 |
+    | destinationName | string | 是   | 地点名称。              |
 
 
 ## 拉起方开发步骤
@@ -55,42 +55,61 @@ startAbilityByType接口中type字段为navigation，支持路线规划、导航
 
 
     ```ts
-    let context = getContext(this) as common.UIAbilityContext;
-    let wantParam: Record<string, Object> = {
-      'sceneType': 1,
-      'destinationLatitude': 32.060844,
-      'destinationLongitude': 118.78315,
-      'destinationName': 'xx市xx路xx号',
-      'destinationPoiIds': {
-          1: '1111',  // key为1代表花瓣地图，value需为花瓣地图POI
-          2: '2222'   // key为2代表高德地图，value需为高德地图POI
-      } as Record<number, string>,
-      'originName': 'xx市xx公园',
-      'originLatitude': 31.060844,
-      'originLongitude': 120.78315,
-      'originPoiIds': {
-          1: '3333',  // key为1代表花瓣地图，value需为花瓣地图POI
-          2: '4444'   // key为2代表高德地图，value需为高德地图POI
-      } as Record<number, string>,
-      'vehicleType': 0
-    };
-    let abilityStartCallback: common.AbilityStartCallback = {
-      onError: (code: number, name: string, message: string) => {
-        console.log(`onError code ${code} name: ${name} message: ${message}`);
-      },
-      onResult: (result)=>{
-        console.log(`onResult result: ${JSON.stringify(result)}`);
-      }
-    }
-    
-    context.startAbilityByType("navigation", wantParam, abilityStartCallback, 
-        (err) => {
-            if (err) {
-                console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
-            } else {
-                console.log(`success`);
-            }
-    });
+	@Entry
+	@Component
+	struct Index {
+	@State hideAbility: string = 'hideAbility'
+
+		build() {
+			Row() {
+				Column() {
+					Text(this.hideAbility)
+						.fontSize(30)
+						.fontWeight(FontWeight.Bold)
+						.onClick(() => {
+							let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+							let wantParam: Record<string, Object> = {
+								'sceneType': 1,
+								'destinationLatitude': 32.060844,
+								'destinationLongitude': 118.78315,
+								'destinationName': 'xx市xx路xx号',
+								'destinationPoiIds': {
+									1: '1111', // key为1代表花瓣地图，value需为花瓣地图POI
+									2: '2222'   // key为2代表高德地图，value需为高德地图POI
+								} as Record<number, string>,
+								'originName': 'xx市xx公园',
+								'originLatitude': 31.060844,
+								'originLongitude': 120.78315,
+								'originPoiIds': {
+									1: '3333', // key为1代表花瓣地图，value需为花瓣地图POI
+									2: '4444'   // key为2代表高德地图，value需为高德地图POI
+								} as Record<number, string>,
+								'vehicleType': 0
+							};
+							let abilityStartCallback: common.AbilityStartCallback = {
+								onError: (code: number, name: string, message: string) => {
+									console.log(`onError code ${code} name: ${name} message: ${message}`);
+								},
+								onResult: (result) => {
+									console.log(`onResult result: ${JSON.stringify(result)}`);
+								}
+							}
+
+							context.startAbilityByType("navigation", wantParam, abilityStartCallback,
+								(err) => {
+									if (err) {
+										console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
+									} else {
+										console.log(`success`);
+									}
+								});
+						});
+				}
+				.width('100%')
+			}
+			.height('100%')
+		}
+	}
     ```
     效果示例图：
 
@@ -153,30 +172,30 @@ startAbilityByType接口中type字段为navigation，支持路线规划、导航
     
         | 参数名               | 类型   | 必填 | 说明                                                 |
         | -------------------- | ------ | ---- | ---------------------------------------------------- |
-        | originName           | string | 否   | 起点名称                                             |
-        | originLatitude       | number | 否   | 起点纬度                                             |
-        | originLongitude      | number | 否   | 起点经度                                             |
-        | originPoiId          | string | 否   | 起点POI ID，当前仅支持花瓣地图和高德地图获取此参数      |
-        | destinationName      | string | 否   | 终点名称                                             |
-        | destinationLatitude  | number | 是   | 终点纬度                                             |
-        | destinationLongitude | number | 是   | 终点经度                                             |
-        | destinationPoiId     | string | 否   | 终点POI ID，当前仅支持花瓣地图和高德地图获取此参数      |
-        | vehicleType          | number | 否   | 交通出行工具，取值：0-驾车，1-步行，2-骑行，3-公交； |
+        | originName           | string | 否   | 起点名称。                                             |
+        | originLatitude       | number | 否   | 起点纬度。                                             |
+        | originLongitude      | number | 否   | 起点经度。                                             |
+        | originPoiId          | string | 否   | 起点POI ID，当前仅支持花瓣地图和高德地图获取此参数。      |
+        | destinationName      | string | 否   | 终点名称。                                             |
+        | destinationLatitude  | number | 是   | 终点纬度。                                             |
+        | destinationLongitude | number | 是   | 终点经度。                                             |
+        | destinationPoiId     | string | 否   | 终点POI ID，当前仅支持花瓣地图和高德地图获取此参数。      |
+        | vehicleType          | number | 否   | 交通出行工具，取值：0-驾车，1-步行，2-骑行，3-公交。 |
     
     - 导航场景
     
         | 参数名               | 类型   | 必填 | 说明       |
         | -------------------- | ------ | ---- | ---------- |
-        | destinationName      | string | 否   | 终点名称   |
-        | destinationLatitude  | number | 是   | 终点纬度   |
-        | destinationLongitude | number | 是   | 终点经度   |
-        | destinationPoiId     | string | 否   | 终点POI ID，当前仅支持花瓣地图和高德地图获取此参数|
+        | destinationName      | string | 否   | 终点名称。   |
+        | destinationLatitude  | number | 是   | 终点纬度。   |
+        | destinationLongitude | number | 是   | 终点经度。   |
+        | destinationPoiId     | string | 否   | 终点POI ID，当前仅支持花瓣地图和高德地图获取此参数。|
 
     - 位置搜索场景
     
         | 参数名          | 类型   | 必填 | 说明     |
         | --------------- | ------ | ---- | -------- |
-        | destinationName | string | 是   | 地点名称 |
+        | destinationName | string | 是   | 地点名称。 |
 
     应用可根据[linkFeature](../quick-start/module-configuration-file.md#skills标签)中定义的特性功能，比如路线规划、导航和位置搜索，结合接收到的uri和参数开发不同的样式页面。
 

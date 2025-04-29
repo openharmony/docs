@@ -13,6 +13,8 @@ Defines the device ID list, which is used to store the device IDs and device qua
 
 [USB DDK](_usb_ddk.md)
 
+**Header file**: [usb_ddk_types.h](usb__ddk__types_8h.md)
+
 
 ## Summary
 

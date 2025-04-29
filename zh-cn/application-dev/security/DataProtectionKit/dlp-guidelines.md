@@ -20,7 +20,7 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
 | -------- | -------- | -------- | -------- |
 | ohos.permission.USE_BLUETOOTH | 允许应用使用蓝牙。 | 禁止 | 禁止 |
 | ohos.permission.INTERNET |允许应用访问网络。 |  禁止 | 禁止 |
-| ohos.permission.DISTRIBUTED_DATASYNC | 允许应用与远程设备交换用户数据（如图片、音乐、视频、及应用数据等）。 | 禁止 | 禁止 |
+| ohos.permission.DISTRIBUTED_DATASYNC | 允许应用与远程设备交换用户数据（如图片、音乐、视频、应用数据等）。 | 禁止 | 禁止 |
 | ohos.permission.WRITE_MEDIA | 应用读写用户媒体文件，如视频、音频、图片等，需要申请此权限。 | 禁止 | 允许 |
 | ohos.permission.NFC_TAG | 允许应用使用NFC。 | 禁止 | 允许 |
 
@@ -58,9 +58,10 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
     ```ts
     import { common, Want } from '@kit.AbilityKit';
     import { BusinessError } from '@kit.BasicServicesKit';
+    import { UIContext } from '@kit.ArkUI';
 
     function OpenDlpFile(dlpUri: string, fileName: string, fd: number) {
-      let want:Want = {
+      let want: Want = {
         "action": "ohos.want.action.viewData",
         "bundleName": "com.example.example_bundle_name",
         "abilityName": "exampleAbility",
@@ -76,7 +77,7 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
         }
       }
 
-      let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext。
+      let context = new UIContext().getHostContext() as common.UIAbilityContext; // 获取当前UIAbilityContext。
 
       try {
         console.log('openDLPFile:' + JSON.stringify(want));
@@ -107,7 +108,7 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
 
 3. 生成DLP文件。
 
-    [该功能云端对接模块当前需要开发者自行搭建。](../DataProtectionKit/dlp-overview.md)
+    [该功能云端对接模块当前需要开发者自行搭建](../DataProtectionKit/dlp-overview.md)，并且该功能需要配置域账号环境。
 
     3.1 当前支持生成DLP文件的原文件类型: ".doc", ".docm", ".docx", ".dot", ".dotm", ".dotx", ".odp", ".odt", ".pdf", ".pot", ".potm", ".potx", ".ppa", ".ppam", ".pps", ".ppsm", ".ppsx", ".ppt", ".pptm", ".pptx", ".rtf", ".txt", ".wps", ".xla", ".xlam", ".xls", ".xlsb", ".xlsm", ".xlsx", ".xlt", ".xltm", ".xltx", ".xlw", ".xml", ".xps"。
 
@@ -119,11 +120,12 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
     import { dlpPermission } from '@kit.DataProtectionKit';
     import { common, Want } from '@kit.AbilityKit';
     import { BusinessError } from '@kit.BasicServicesKit';
+    import { UIContext } from '@kit.ArkUI';
 
     try {
       let fileUri: string = "file://docs/storage/Users/currentUser/test.txt";
       let fileName: string = "test.txt";
-      let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext。
+      let context = new UIContext().getHostContext() as common.UIAbilityContext; // 获取当前UIAbilityContext。
       let want: Want = {
         'uri': fileUri,
         'parameters': {
@@ -309,11 +311,11 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
 
     ```ts
     import { dlpPermission } from '@kit.DataProtectionKit';
-    import { common, UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
-    import { BusinessError } from '@kit.BasicServicesKit';
+    import { common, Want } from '@kit.AbilityKit';
+    import { UIContext } from '@kit.ArkUI';
 
     try {
-      let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext。
+      let context = new UIContext().getHostContext() as common.UIAbilityContext; // 获取当前UIAbilityContext。
       let want: Want = {
         "uri": "file://docs/storage/Users/currentUser/Desktop/1.txt",
         "parameters": {
