@@ -917,7 +917,7 @@ function unregisterDepthDataOutputError(depthDataOutput: camera.DepthDataOutput)
 
 ### isDepthFusionSupported<sup>14+</sup>
 
-isDepthFusionSupported(): boolean;
+isDepthFusionSupported(): boolean
 
 查询是否支持深度融合，通过返回值获取结果。
 
@@ -929,7 +929,7 @@ isDepthFusionSupported(): boolean;
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| boolean | 返回true表示支持深度融合，返回false表示不支持深度融合。 |
+| boolean | 表示是否支持深度融合。true表示支持深度融合，false表示不支持深度融合。 |
 
 **错误码：**
 
@@ -938,7 +938,7 @@ isDepthFusionSupported(): boolean;
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 202             | Not System Application. |
-| 7400103         |  Session not config.      |
+| 7400103         | Session not config, only throw in session usage.     |
 
 **示例：**
 ```ts
@@ -956,7 +956,7 @@ function isDepthFusionSupported(DepthFusionQuery: camera.DepthFusionQuery): void
 ```
 ### getDepthFusionThreshold<sup>14+</sup>
 
-getDepthFusionThreshold(): Array<number>;
+getDepthFusionThreshold(): Array\<number\>
 
 获取深度融合阈值，通过返回值获取结果。
 
@@ -968,7 +968,7 @@ getDepthFusionThreshold(): Array<number>;
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Array<number> | 深度融合的阈值范围。       |
+| Array\<number\> | 深度融合的阈值范围。       |
 
 **错误码：**
 
@@ -977,7 +977,7 @@ getDepthFusionThreshold(): Array<number>;
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 202             | Not System Application. |
-| 7400103         |  Session not config.      |
+| 7400103         | Session not config, only throw in session usage.      |
 
 **示例：**
 ```ts
@@ -994,11 +994,11 @@ function getDepthFusionThreshold(DepthFusionQuery: camera.DepthFusionQuery): voi
 ```
 ## DepthFusion<sup>14+</sup>
 
-深度融合类。继承[DepthFusionQuery](js-apis-camera.md#DepthFusionQuery)。
+深度融合类。继承[DepthFusionQuery](js-apis-camera-sys.md#DepthFusionQuery)。
 
 ### isDepthFusionEnabled<sup>14+</sup>
 
-isDepthFusionEnabled(): boolean;
+isDepthFusionEnabled(): boolean
 
 检测深度融合功能是否已启用，通过返回值获取结果。
 
@@ -1010,7 +1010,7 @@ isDepthFusionEnabled(): boolean;
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| boolean | 返回true表示开启深度融合，返回false表示未开启深度融合。 |
+| boolean | 表示是否开启深度融合。true表示开启深度融合，false表示未开启深度融合。 |
 
 **错误码：**
 
@@ -1037,7 +1037,7 @@ function isDepthFusionEnabled(DepthFusion: camera.DepthFusion): void {
 
 ### enableDepthFusion<sup>14+</sup>
 
-enableDepthFusion(enabled: boolean): void;
+enableDepthFusion(enabled: boolean): void
 
 启用深度融合功能。
 
@@ -1049,7 +1049,7 @@ enableDepthFusion(enabled: boolean): void;
 
 | 参数名     | 类型      | 必填 | 说明                                  |
 | -------- | ---------- | --- | ------------------------------------ |
-| enabled  | boolean    | 是   | 使能深度融合，true表示使能，false表示不使能 |
+| enabled  | boolean    | 是   | 使能深度融合。true表示使能，false表示不使能。 |
 
 **错误码：**
 
