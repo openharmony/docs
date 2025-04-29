@@ -694,7 +694,7 @@ lineSpacing(value: LengthMetrics)
 
 lineSpacing(value: LengthMetrics, options?: LineSpacingOptions)
 
-设置文本的行间距。当不配置LineSpacingOptions时，首行上方默认会有行间距。
+设置文本的行间距。当不配置LineSpacingOptions时，首行上方和尾行下方默认会有行间距。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -1010,7 +1010,7 @@ marqueeOptions(options: Optional\<TextMarqueeOptions>)
 
 | 参数名 | 类型                                                         | 必填 | 说明             |
 | ------ | ------------------------------------------------------------ | ---- | ---------------- |
-| onlyBetweenLines  | boolean | 否   | 文本的行间距是否仅在行与行之间生效。<br/>当设置为true时，行间距仅适用于行与行之间，首行上方无额外的行间距。当设置为false时，首行上方也会存在行间距。<br/>默认值：false |
+| onlyBetweenLines  | boolean | 否   | 文本的行间距是否仅在行与行之间生效。<br/>当设置为true时，行间距仅适用于行与行之间，首行上方和尾行下方无额外的行间距。当设置为false时，首行上方和尾行下方均会存在行间距。<br/>默认值：false |
 
 ## 事件
 
