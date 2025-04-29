@@ -463,7 +463,7 @@ ABILITY_RUNTIME_ERROR_CODE_NO_ERROR - 查询成功。
 
 ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID - 入参buffer或者writeLength为空，或者缓冲区大小小于需要写入的大小。
 
-ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST - 当前环境的上下文不存在，如在应用创建的[子进程](c-apis-ability-childprocess.md)中应用级别上下文不存在。
+ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST - 应用级别上下文不存在，如在应用创建的[子进程](c-apis-ability-childprocess.md)中应用级别上下文不存在。
 
 ### OH_AbilityRuntime_ApplicationContextGetResourceDir
 
@@ -482,9 +482,9 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetResourceDir(cons
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
 | moduleName  | 模块名。                                                     |
-| buffer      | 缓冲区，缓存目录字符串写入该区域。                           |
-| bufferSize  | 缓冲区大小。                                                 |
-| writeLength | 在返回ABILITY_RUNTIME_ERROR_CODE_NO_ERROR时，表示实际写入到缓冲区的字符串长度。 |
+| buffer      | 缓冲区字节数组，缓存目录字符串写入该区域。                           |
+| bufferSize  | 缓冲区字节数组长度。                                                 |
+| writeLength | 实际写入到缓冲区的字符串长度。 |
 
 **返回：**
 
