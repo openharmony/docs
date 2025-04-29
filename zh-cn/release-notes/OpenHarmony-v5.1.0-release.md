@@ -3,147 +3,11 @@
 
 ## 版本概述
 
-OpenHarmony 5.1.0 Release版本内囊括了3个API版本，分别为API 16、17、18。相比前一个Release版本（OpenHarmony 5.0.3，即API 15），重点做出了如下特性新增或增强：
+OpenHarmony 5.1.0 Release版本正式推出API 18。相比前一个Release版本（OpenHarmony 5.0.3，即API 15），重点做出了如下特性新增或增强：
 
 进一步增强ArkUI，提供更丰富的组件属性设置，支持更多精致动效，持续补充组件通过C API调用的能力；进一步增强媒体能力，提供更丰富的编解码能力、播控能力、媒体会话管理能力；进一步丰富了应用启动的细节设置能力；进一步增强分布式数据管理的UDMF、RDB的数据处理能力；进一步完善了标准Web能力；等等。
 
 更详细的特性新增与增强的说明如下，将按照API版本顺序分别进行列举：
-
-
-## API 16
-
-
-### 应用框架
-
-新增一批C API函数，用于获取应用级别沙箱内文件目录。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-ability-kit/_ability_runtime.md)）
-
-
-### ArkUI
-
-文本组件新增支持设置文本选择菜单显示在独立窗口。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-UIContext.md#textmenucontroller16)）
-
-
-### 窗口管理
-
-窗口管理新增支持创建虚拟屏幕。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/js-apis-display.md#displaycreatevirtualscreen16)）
-
-
-### 媒体
-
-**媒体库**
-
-新增文件位置的枚举定义，用于标记文件处于本地或云端。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-photoAccessHelper.md#positiontype16)）
-
-
-### 图形图像
-
-新增一批C API函数和枚举，用于支持直接绘制到屏幕buffer的gpu渲染能力。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkgraphics2d/drawing__path__effect_8h.md)）
-
-
-### 基础通信
-
-- 新增支持获取对端蓝牙设备的名称。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-connection.md#connectiongetremotedevicename16)）
-
-- 新增支持连接远端设备所有允许连接的profiles。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-connection.md#connectionconnectallowedprofiles16-1)）
-
-- 新增支持持久化存储所获取的对端设备的MAC地址。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-access.md#accessaddpersistentdeviceid16)）
-
-
-### 网络管理
-
-新增支持获取TLSSocket的文件描述符。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-network-kit/js-apis-socket.md#getsocketfd16)）
-
-
-### 多模输入
-
-新增支持设置处于前台的应用操作指定按键的回调。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-input-kit/js-apis-inputconsumer.md#inputconsumeronkeypressed16)）
-
-
-### Web
-
-新增支持以固定宽高设置同层渲染的元素。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkweb/ts-basic-components-web.md#nativeembedoptions16)）
-
-
-## API 17
-
-
-### 应用框架
-
-- 新增支持通过startAbility的属性startOptions来指定创建新窗口的大小（minWindowWidth、minWindowHeight、maxWindowWidth、maxWindowHeight）。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-startOptions.md#%E5%B1%9E%E6%80%A7)）
-
-- C API新增支持启动Ability时传递startOptions。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-ability-kit/start__options_8h.md)）
-
-- C API新增支持获取子进程启动参数。（[指南](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/application-models/capi_nativechildprocess_development_guideline.md#%E5%AD%90%E8%BF%9B%E7%A8%8B%E8%8E%B7%E5%8F%96%E5%90%AF%E5%8A%A8%E5%8F%82%E6%95%B0)、[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_getcurrentchildprocessargs)）
-
-- C API新增支持设置启动Ability时窗口和dock栏图标的显示模式。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-ability-kit/_ability_runtime.md#oh_abilityruntime_setstartoptionsstartvisibility)）
-
-
-### ArkUI
-
-- 新增鼠标轴事件相关接口。（[API参考-ArkTS](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-events-axis.md)、[API参考-C API](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/_ark_u_i___event_module.md#oh_arkui_axisevent_setpropagation)）
-
-- NavDestination新增OnActive和OnInActive生命周期。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md#onactive17)）
-
-- C API的事件能力增强，新增支持获取事件命中的组件的宽度、高度、X坐标、Y坐标等能力。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/_ark_u_i___event_module.md#oh_arkui_uiinputevent_geteventtargetwidth)）
-
-- 基础类型定义新增支持清除当前的预上屏文本内容。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-types.md#clearpreviewtext17)）
-
-- UIContext新增支持创建不依赖窗口的UI实例。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-UIContext.md#createuicontextwithoutwindow17)）
-
-- 组件可见区域变化事件新增支持设置事件的回调参数，限制它的执行间隔。（[API参考-ArkTS](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-component-visible-area-change-event.md#onvisibleareaapproximatechange17)、[API参考-C API](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_visibleareaeventoptions_create)）
-
-- ImageAnimator组件支持设置是否通过系统onVisibleAreaChange的可见性来判断组件的暂停和播放。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-imageanimator.md#monitorinvisiblearea17)）
-
-
-### 窗口管理
-
-- 画中画窗口支持通过创建参数LocalStorage实现页面级别的UI状态存储单元，多实例下可用来跟踪主窗实例。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/js-apis-pipWindow.md#pipconfiguration)）
-
-- 针对2in1设备的窗口管理新增支持主窗的尺寸记忆功能。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/js-apis-window.md#setwindowrectautosave17)）
-
-- 针对2in1设备的窗口管理新增支持设置子窗或悬浮窗窗口边缘阴影的模糊半径。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/js-apis-window.md#setwindowshadowradius17)）
-
-- 针对2in1设备的窗口管理新增支持设置子窗口在其父窗口处于拖拽移动或拖拽缩放过程时，该子窗口是否支持跨多个屏幕同时显示。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/js-apis-window.md#setfollowparentmultiscreenpolicy17)）
-
-
-### 应用包管理
-
-配置文件module.json5新增Hook配置：通过abilitySrcEntryDelegator可标识当前Module需要Hook的UIAbility的名称，通过abilityStageSrcEntryDelegator可标识当前Module需要Hook的AbilityStage（其值配置为对应Module的名称），两者组合使用，共同指定Hook的目标对象。
-
-
-### 分布式数据管理
-
-UDMF新增支持将传入的data转换成多样式数据结构的能力。若原data使用多个record去承载同一份数据的不同样式，则可以使用此接口将原data转换为多样式数据结构。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddatachannelconvertrecordstoentries17)）
-
-
-### 媒体
-
-音频管理新增支持Float32音频流采样格式。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-audio-kit/_o_h_audio.md#oh_audiostream_sampleformat)）
-
-视频解码新增支持MPEG2、MPEG4、H.263的软件解码。（[指南](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/media/avcodec/avcodec-support-formats.md)）
-
-音频会话新增支持单句/单条歌词展示的属性singleLyricText。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-avsession-kit/js-apis-avsession.md#avmetadata10)）
-
-调用媒体播放器AVPlayer设置播放策略时，新增支持Prepare之后显示视频起播首帧（showFirstFrameOnPrepare）。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-media-kit/js-apis-media.md#playbackstrategy12)）
-
-
-### 基础通信
-
-蓝牙socket模块新增支持通过clientSocket获取对端设备地址的能力。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-socket.md#socketgetdeviceid17)）
-
-
-### 输入法
-
-输入法框架新增支持设置显示预览文本时的回调（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-ime-kit/js-apis-inputmethod.md#setpreviewtextcallback17)），支持订阅输入法应用操作文本预览内容的事件（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-ime-kit/js-apis-inputmethod.md#onsetpreviewtext17)）。
-
-
-### 资源调度
-
-新增后台子进程管理模块，提供应用对子进程进行压制、解压制的能力，避免子进程过多占用系统资源，导致系统使用卡顿。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-backgroundProcessManager.md)）
-
-
-## API 18
-
 
 ### 应用框架
 
@@ -161,17 +25,32 @@ UDMF新增支持将传入的data转换成多样式数据结构的能力。若原
 
 - 新增支持设置UIAbility的颜色模式。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetcolormode18)）
 
+- 新增支持通过startAbility的属性startOptions来指定创建新窗口的大小（minWindowWidth、minWindowHeight、maxWindowWidth、maxWindowHeight）。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-startOptions.md#%E5%B1%9E%E6%80%A7)）
+
+- C API新增支持启动Ability时传递startOptions。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-ability-kit/start__options_8h.md)）
+
+- C API新增支持在2in设备场景下获取子进程启动参数。（[指南](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/application-models/capi_nativechildprocess_development_guideline.md#%E5%AD%90%E8%BF%9B%E7%A8%8B%E8%8E%B7%E5%8F%96%E5%90%AF%E5%8A%A8%E5%8F%82%E6%95%B0)、[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_getcurrentchildprocessargs)）
+
+- C API新增支持设置启动Ability时窗口和dock栏图标的显示模式。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-ability-kit/_ability_runtime.md#oh_abilityruntime_setstartoptionsstartvisibility)）
+
+- 新增一批C API函数，用于获取应用级别沙箱内文件目录。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-ability-kit/_ability_runtime.md)）
+
+### 应用包管理
+
+配置文件module.json5新增重定向配置：通过abilitySrcEntryDelegator标识当前Module需要重定向到的UIAbility的名称，通过abilityStageSrcEntryDelegator标识当前Module需要重定向到的UIAbility对应的Module名称（不可为当前Module名称），两者组合使用，共同指定重定向的目标对象。 （[指南](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/quick-start/module-configuration-file.md#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%A0%87%E7%AD%BE)）
 
 ### ArkUI
 
 - 文本与输入组件能力增强。包括：
   - 文本组件支持通过NODE_IMMUTABLE_FONT_WEIGHT属性，设置文字粗细不会跟随系统字体粗细而变化。（[API参考-C API](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeattributetype)）
   - 文本组件支持对选中的文本提供分享服务（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-text-common.md#%E5%B1%9E%E6%80%A7)）、支持按音节连字符换行（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-appendix-enums.md#wordbreak11)）。
+  - 文本组件新增支持设置文本选择菜单显示在独立窗口。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-UIContext.md#textmenucontroller16)）
   - 富文本（RichEditor）组件支持设置最大行数。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#maxlength18)）
   - TextInput组件支持设置文本省略位置。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md#ellipsismode18)）
   - TextInput/TextArea/Search/RichEditor组件支持将文本行间距平分至行的顶部与底部。（[API参考-TextInput](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md#halfleading18)、[API参考-TextArea](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md#halfleading18)、[API参考-Search](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-search.md#halfleading18)、[API参考-RichEditor](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditortextstyleresult)）
   - TextInput/TextArea组件扩展自动填充类型，包含：车牌号、护照号等。（[API参考-ArkTS](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md#contenttype12%E6%9E%9A%E4%B8%BE%E8%AF%B4%E6%98%8E)、[API参考-C](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/_ark_u_i___native_module.md#arkui_textinputcontenttype)）
   - 富文本（RichEditor）组件在长按预览菜单时支持振动效果。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#previewmenuoptions18)）
+  - 基础类型定义新增支持清除当前的预上屏文本内容。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-types.md#clearpreviewtext17)）
 
 - 新增适配圆形屏幕的能力。包括：
   - 新增旋转表冠事件，组件获焦后扭动表冠可获取时间戳、旋转角速度、旋转角度和表冠动作信息。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-events-crown.md)、[指南](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/ui/arkts-common-events-crown-event.md)）
@@ -194,6 +73,7 @@ UDMF新增支持将传入的data转换成多样式数据结构的能力。若原
   - 模态转场和MenuItem支持!!双向绑定变量。（[API参考-半模态转场](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)、[API参考-全屏模态转场](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover)、[API参考-MenuItem](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-menuitem.md#selected)）
   - 自定义弹窗支持避让键盘后，通过keyboardAvoidDistance设置弹窗和键盘之间的最小距离。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontrolleroptions%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)、[API参考-C](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/_ark_u_i___native_dialog_a_p_i__2.md)）
   - 支持通过showInSubWindow设置半模态是否在子窗中显示、支持通过effectEdge设置半模态面板边缘滚动的效果。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions)）
+  - 菜单（Menu）在弹出时支持振动效果。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#hapticfeedbackmode18)）
 
 - 表单选择类组件能力增强。包括：
   - 新增SegmentButtonV2组件，可创建页签型、单选或多选的胶囊型分段按钮。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SegmentButtonV2.md)）
@@ -227,14 +107,38 @@ UDMF新增支持将传入的data转换成多样式数据结构的能力。若原
 
 - 支持对ComponentContent构建的UI组件进行截图。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-UIContext.md#createfromcomponent18)）
 
-- 菜单（Menu）在弹出时支持振动效果。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#hapticfeedbackmode18)）
+- 新增鼠标轴事件相关接口。（[API参考-ArkTS](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-events-axis.md)、[API参考-C API](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/_ark_u_i___event_module.md#oh_arkui_axisevent_setpropagation)）
 
+- NavDestination新增OnActive和OnInActive生命周期。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md#onactive17)）
+
+- C API的事件能力增强，新增支持获取事件命中的组件的宽度、高度、X坐标、Y坐标等能力。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/_ark_u_i___event_module.md#oh_arkui_uiinputevent_geteventtargetwidth)）
+
+- UIContext新增支持创建不依赖窗口的UI实例。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-UIContext.md#createuicontextwithoutwindow17)）
+
+- 组件可见区域变化事件新增支持设置事件的回调参数，限制它的执行间隔。（[API参考-ArkTS](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-component-visible-area-change-event.md#onvisibleareaapproximatechange17)、[API参考-C API](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_visibleareaeventoptions_create)）
+
+- ImageAnimator组件支持设置是否通过系统onVisibleAreaChange的可见性来判断组件的暂停和播放。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-imageanimator.md#monitorinvisiblearea17)）
 
 ### 窗口管理
 
 - 新增软键盘弹出动画完成的监听回调。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/js-apis-window.md#onkeyboarddidshow18)）
 
 - 新增支持设置当前子窗口（未设置模态属性）的层级级别。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/js-apis-window.md#setsubwindowzlevel18)）
+
+- 画中画窗口支持通过创建参数LocalStorage实现页面级别的UI状态存储单元，多实例下可用来跟踪主窗实例。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/js-apis-pipWindow.md#pipconfiguration)）
+
+- 窗口管理新增支持创建虚拟屏幕。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/js-apis-display.md#displaycreatevirtualscreen16)）
+
+- 针对2in1设备的窗口管理新增支持主窗的尺寸记忆功能。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/js-apis-window.md#setwindowrectautosave17)）
+
+- 针对2in1设备的窗口管理新增支持设置子窗或悬浮窗窗口边缘阴影的模糊半径。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/js-apis-window.md#setwindowshadowradius17)）
+
+- 针对2in1设备的窗口管理新增支持设置子窗口在其父窗口处于拖拽移动或拖拽缩放过程时，该子窗口是否支持跨多个屏幕同时显示。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/js-apis-window.md#setfollowparentmultiscreenpolicy17)）
+
+
+### 图形图像
+
+新增一批C API函数和枚举，用于支持直接绘制到屏幕buffer的gpu渲染能力。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkgraphics2d/drawing__path__effect_8h.md)）
 
 
 ### 分布式数据管理
@@ -245,8 +149,11 @@ UDMF新增支持将传入的data转换成多样式数据结构的能力。若原
 
 - 关系型数据库新增支持根据指定的列索引或列名称获取列数据类型。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkdata/js-apis-data-relationalStore.md#getcolumntype18)）
 
+- UDMF新增支持将传入的data转换成多样式数据结构的能力。若原data使用多个record去承载同一份数据的不同样式，则可以使用此接口将原data转换为多样式数据结构。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddatachannelconvertrecordstoentries17)）
+
 
 ### 媒体
+
 
 **音频**
 
@@ -272,7 +179,11 @@ UDMF新增支持将传入的data转换成多样式数据结构的能力。若原
 
 - 能力增强：支持应用创建多个SoundPool实例。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-media-kit/js-apis-media.md#mediacreatesoundpool10)）
 
+-调用媒体播放器AVPlayer设置播放策略时，新增支持Prepare之后显示视频起播首帧（showFirstFrameOnPrepare）。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-media-kit/js-apis-media.md#playbackstrategy12)）
+
 - 新增支持通过AV会话命令传递设置目标循环模式（setTargetLoopMode）的能力（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-avsession-kit/js-apis-avsession.md#avcontrolcommandtype10)），并提供对设置动作的事件监听回调（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-avsession-kit/js-apis-avsession.md#onsettargetloopmode18)）。
+
+- 音频会话新增支持单句/单条歌词展示的属性singleLyricText。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-avsession-kit/js-apis-avsession.md#avmetadata10)）
 
 **图片**
 
@@ -289,6 +200,8 @@ UDMF新增支持将传入的data转换成多样式数据结构的能力。若原
 - 相册管理单选模式增强，新增支持多种相册内图片在单选时的呈现模式类型。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-photoAccessHelper.md#singleselectionmode18)）
 
 - 相册管理的推荐类型新增支持推荐风格的枚举COLOR_STYLE_PHOTO。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-photoAccessHelper.md#recommendationtype11)）
+
+- 新增文件位置的枚举定义，用于标记文件处于本地或云端。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-photoAccessHelper.md#positiontype16)）
 
 
 ### 语言编译器运行时
@@ -325,11 +238,29 @@ UDMF新增支持将传入的data转换成多样式数据结构的能力。若原
 
 - 新增支持订阅账号的新增、删除、切换系统事件。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-adminManager.md#managedevent)）
 
+### 基础通信
+
+- 蓝牙socket模块新增支持通过clientSocket获取对端设备地址的能力。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-socket.md#socketgetdeviceid17)）
+
+- 新增支持获取对端蓝牙设备的名称。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-connection.md#connectiongetremotedevicename16)）
+
+- 新增支持连接远端设备所有允许连接的profiles。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-connection.md#connectionconnectallowedprofiles16-1)）
+
+- 新增支持持久化存储所获取的对端设备的MAC地址。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-access.md#accessaddpersistentdeviceid16)）
+
+
+### 网络管理
+
+新增支持获取TLSSocket的文件描述符。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-network-kit/js-apis-socket.md#getsocketfd16)）
 
 ### 剪贴板
 
 剪贴板支持获取剪贴板的内容变化的次数。（[API参考-ArkTS API](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-pasteboard.md#getchangecount18)、[API参考-C API](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-basic-services-kit/_pasteboard.md#oh_pasteboard_getchangecount)）
 
+
+### 输入法
+
+输入法框架新增支持设置显示预览文本时的回调（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-ime-kit/js-apis-inputmethod.md#setpreviewtextcallback17)），支持订阅输入法应用操作文本预览内容的事件（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-ime-kit/js-apis-inputmethod.md#onsetpreviewtext17)）。
 
 ### Web
 
@@ -343,6 +274,11 @@ UDMF新增支持将传入的data转换成多样式数据结构的能力。若原
 
 - 提供静态方法，清除应用中的资源缓存文件。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkweb/js-apis-webview.md#removeallcache18)）
 
+- 新增支持以固定宽高设置同层渲染的元素。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkweb/ts-basic-components-web.md#nativeembedoptions16)）
+
+### 多模输入
+
+新增支持设置处于前台的应用操作指定按键的回调。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-input-kit/js-apis-inputconsumer.md#inputconsumeronkeypressed16)）
 
 ### 上传下载
 
@@ -351,9 +287,18 @@ UDMF新增支持将传入的data转换成多样式数据结构的能力。若原
 - 上传下载agent接口支持设置任务最高限速（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request.md#setmaxspeed18)），支持设置待上传文件在表单中的content-type字段（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request.md#filespec10)）。
 
 
+### 资源调度
+
+- 新增后台子进程管理模块，提供应用对子进程进行压制、解压制的能力，避免子进程过多占用系统资源，导致系统使用卡顿。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-backgroundProcessManager.md)）
+
+- 新增长时任务车钥匙子类型CAR_KEY。新增长时任务车钥匙子类型CAR_KEY。（[指南](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/task-management/continuous-task.md#stage%E6%A8%A1%E5%9E%8B )、[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundsubmode16)）
+
+- 后台代理提醒中提醒标题、提醒内容等字段支持设置资源ID，用于全球化适配。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager.md#reminderrequest)）
+
+
 ### 全球化
 
-- 新增支持获取用户偏好温度单位和周起始日的能力，新增支持获取语言的最简表示的能力。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-localization-kit/js-apis-i18n.md#gettemperaturetype18)）
+- 新增支持获取用户偏好温度单位和周起始日的能力。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-localization-kit/js-apis-i18n.md#gettemperaturetype18)）
 
 - 新增支持时间日期/数字精细化格式化的能力，便于更灵活的使用格式化能力。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-localization-kit/js-apis-i18n.md#i18ngetsimpledatetimeformatbypattern18)）
 
@@ -368,7 +313,7 @@ UDMF新增支持将传入的data转换成多样式数据结构的能力。若原
 
 - 新增支持获取控件提示文本（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-test-kit/js-apis-uitest.md#gethint18)），并根据控件提示文本查找控件（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-test-kit/js-apis-uitest.md#hint18)）。
 
-- 新增支持横向滑动查找控件，仅适用于支持滑动的控件。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-test-kit/js-apis-uitest.md#scrollsearch18)）
+- 新增支持横向纵向查找控件，仅适用于支持滑动的控件。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-test-kit/js-apis-uitest.md#scrollsearch18)）
 
 - 新增支持模拟触摸板多指滑动手势操作，仅支持2in1设备。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-test-kit/js-apis-uitest.md#touchpadmultifingerswipe18)）
 
