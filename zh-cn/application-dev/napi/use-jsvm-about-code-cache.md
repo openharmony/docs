@@ -102,9 +102,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
     {"UseCodeCache", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 // JS测试样例
-const char *srcCallNative = R"JS(
-   globalThis.UseCodeCache();
-)JS";
+const char *srcCallNative = R"JS(globalThis.UseCodeCache();)JS";
 ```
 
 预期输出结果
