@@ -72,7 +72,7 @@ Function not enabled.
 
 **错误信息**
 
-Invalid cookie value.The cookie format must follow defined in RFC 6265.
+The provided cookie value is invalid. It must follow the format specified in RFC 6265.
 
 **错误描述**
 
