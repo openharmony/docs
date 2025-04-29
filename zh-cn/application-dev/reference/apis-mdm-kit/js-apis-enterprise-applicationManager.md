@@ -161,7 +161,7 @@ let wantTemp: Want = {
 };
 
 try {
-  let result: Array<string> = applicationManager.getDisallowedRunningBundlesSync(wantTemp)
+  let result: Array<string> = applicationManager.getDisallowedRunningBundlesSync(wantTemp);
   console.info(`Succeeded in getting disallowed running bundles, result : ${JSON.stringify(result)}`);
 } catch (err) {
   console.error(`Failed to get disallowed running bundles. Code is ${err.code}, message is ${err.message}`);
