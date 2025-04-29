@@ -267,7 +267,7 @@ enableBreathingAnimation(value: boolean): void
 
 ```ts
 // xxx.ets
-import { CircleShape, RectShape } from '@kit.ArkUI'
+import { CircleShape, RectShape } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -353,7 +353,7 @@ struct ProgressMaskExample {
       // 开关呼吸光晕动画
       Button('enableBreathingAnimation:' + this.enableBreathingAnimation)
         .onClick((event?: ClickEvent) => {
-          this.enableBreathingAnimation = !this.enableBreathingAnimation
+          this.enableBreathingAnimation = !this.enableBreathingAnimation;
           this.progress.enableBreathingAnimation(this.enableBreathingAnimation);
         }).width(200).height(50).margin(20)
 

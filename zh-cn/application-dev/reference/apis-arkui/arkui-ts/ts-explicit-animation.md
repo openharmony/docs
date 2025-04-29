@@ -92,10 +92,10 @@ animateTo(value: AnimateParam, event: () => void): void
 @Entry
 @Component
 struct AnimateToExample {
-  @State widthSize: number = 250
-  @State heightSize: number = 100
-  @State rotateAngle: number = 0
-  private flag: boolean = true
+  @State widthSize: number = 250;
+  @State heightSize: number = 100;
+  @State rotateAngle: number = 0;
+  private flag: boolean = true;
 
   build() {
     Column() {
@@ -112,20 +112,20 @@ struct AnimateToExample {
               iterations: 3,
               playMode: PlayMode.Normal,
               onFinish: () => {
-                console.info('play end')
+                console.info('play end');
               }
             }, () => {
-              this.widthSize = 150
-              this.heightSize = 60
+              this.widthSize = 150;
+              this.heightSize = 60;
             })
           } else {
             // 建议使用this.getUIContext()?.animateTo()
             this.getUIContext()?.animateTo({}, () => {
-              this.widthSize = 250
-              this.heightSize = 100
+              this.widthSize = 250;
+              this.heightSize = 100;
             })
           }
-          this.flag = !this.flag
+          this.flag = !this.flag;
         })
       Button('stop rotating')
         .margin(50)
@@ -145,14 +145,14 @@ struct AnimateToExample {
               expected: 60,
             }
           }, () => {
-            this.rotateAngle = 90
+            this.rotateAngle = 90;
           })
         })
         .onClick(() => {
           // 建议使用this.getUIContext()?.animateTo()
           this.getUIContext()?.animateTo({ duration: 0 }, () => {
             // this.rotateAngle之前为90，在duration为0的动画中修改属性，可以停止该属性之前的动画，按新设置的属性显示
-            this.rotateAngle = 0
+            this.rotateAngle = 0;
           })
         })
     }.width('100%').margin({ top: 5 })

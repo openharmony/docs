@@ -303,13 +303,13 @@ minContentWidth优先于侧边栏的maxSideBarWidth与sideBarWidth属性，minCo
 | top | number | 否 | 设置侧边栏控制按钮距离容器上界限的间距。<br/>默认值：48vp<br/>单位：vp<br/>取值范围：[0, +∞) |
 | width | number | 否 | 设置侧边栏控制按钮的宽度。<br/>默认值：<br/>API version 9及之前版本：32vp<br/>从API version 10开始：24vp<br/>单位：vp<br/>取值范围：[0, +∞) |
 | height | number | 否 | 设置侧边栏控制按钮的高度。<br/>默认值：<br/>API version 9及之前版本：32vp<br/>从API version 10开始：24vp<br/>单位：vp<br/>取值范围：[0, +∞) |
-| icons | [ButtonIconOptions<sup>14+</sup>](#buttoniconoptions14对象说明) | 否 | 设置侧边栏控制按钮的图标。 |
+| icons | [ButtonIconOptions<sup>18+</sup>](#buttoniconoptions18对象说明) | 否 | 设置侧边栏控制按钮的图标。 |
 
-## ButtonIconOptions<sup>14+</sup>对象说明
+## ButtonIconOptions<sup>18+</sup>对象说明
 
 设置侧边栏控制按钮的图标。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

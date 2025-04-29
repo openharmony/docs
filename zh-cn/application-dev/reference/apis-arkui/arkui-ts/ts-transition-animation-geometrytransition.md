@@ -60,7 +60,7 @@ geometryTransition(id: string, options?: GeometryTransitionOptions)
 @Entry
 @Component
 struct Index {
-  @State isShow: boolean = false
+  @State isShow: boolean = false;
 
   build() {
     Stack({ alignContent: Alignment.Center }) {
@@ -95,8 +95,8 @@ struct Index {
     }
     .onClick(() => {
       this.getUIContext().animateTo({ duration: 1000 }, () => {
-        this.isShow = !this.isShow
-      })
+        this.isShow = !this.isShow;
+      });
     })
   }
 }

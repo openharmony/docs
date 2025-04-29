@@ -82,9 +82,9 @@ import { uiEffect } from '@kit.ArkGraphics2D';
 @Entry
 @Component
 struct FilterEffectExample {
-  @State filterTest1: uiEffect.Filter = uiEffect.createFilter().blur(10)
-  @State filterTest2: uiEffect.Filter = uiEffect.createFilter().blur(10)
-  @State filterTest3: uiEffect.Filter = uiEffect.createFilter().blur(10)
+  @State filterTest1: uiEffect.Filter = uiEffect.createFilter().blur(10);
+  @State filterTest2: uiEffect.Filter = uiEffect.createFilter().blur(10);
+  @State filterTest3: uiEffect.Filter = uiEffect.createFilter().blur(10);
 
   build() {
     Column({ space: 15 }) {

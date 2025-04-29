@@ -147,7 +147,7 @@ source_page包含顶部内容以及卡片列表，点击卡片可以跳转到tar
 
 ```js
 // xxx.js
-import router from '@ohos.router'
+import router from '@ohos.router';
 export default {
   data: { list: [] },
   onInit() {
