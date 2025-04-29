@@ -133,6 +133,7 @@ checkNewVersion(callback: AsyncCallback\<CheckResult>): void
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 11500104 | IPC error.               |
 
 **示例：**
@@ -168,6 +169,7 @@ checkNewVersion(): Promise\<CheckResult>
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 11500104 | IPC error.               |
 
 **示例：**
