@@ -1019,7 +1019,7 @@ isDepthFusionEnabled(): boolean
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 202             | Not System Application. |
-| 7400103         |  Session not config.      |
+| 7400103         | Session not config.      |
 
 **示例：**
 ```ts
