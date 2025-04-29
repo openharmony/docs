@@ -2567,7 +2567,7 @@ async function testListAliases() {
 
 ## HuksExceptionErrCode<sup>9+</sup>
 
-表示错误码的枚举以及对应的错误信息， 错误码表示错误类型，错误信息展示错误详情。
+表示错误码的枚举以及对应的错误信息，错误码表示错误类型，错误信息展示错误详情。
 
 关于错误码的具体信息，可在[错误码参考文档](errorcode-huks.md)中查看。
 
