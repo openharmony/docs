@@ -892,6 +892,22 @@ enableHapticFeedback(isEnabled: boolean)
 > ]
 > ```
 
+### optimizeTrailingSpace<sup>20+</sup>
+
+optimizeTrailingSpace(optimize: boolean)
+
+设置是否在文本布局过程中优化每行末尾的空格。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名           | 类型             | 必填 | 说明                                            |
+| ---------------- | ------- | ---- | ----------------------------------------------- |
+| optimize         | boolean | 是   | 是否优化每行末尾的空格。<br/>true表示优化末尾空格，false则不优化。<br/>默认值：false |
+
 ### caretColor<sup>14+</sup>
 
 caretColor(color: ResourceColor)
