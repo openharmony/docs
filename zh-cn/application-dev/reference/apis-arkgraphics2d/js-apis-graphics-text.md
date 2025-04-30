@@ -826,11 +826,11 @@ let paragraphStyle: text.ParagraphStyle = {
   textStyle: textStyle,
 };
 let fontCollection: text.FontCollection = new text.FontCollection();
-let paragraphGraphBuilder = new text.ParagraphBuilder(paragraphStyle, fontCollection);
+let paragraphBuilder = new text.ParagraphBuilder(paragraphStyle, fontCollection);
 // 添加文本字符串
-paragraphGraphBuilder.addText("test");
+paragraphBuilder.addText("test");
 // 生成排版对象
-let paragraph = paragraphGraphBuilder.build();
+let paragraph = paragraphBuilder.build();
 
 function textFunc(pixelmap: PixelMap) {
   // 通过图片对象构造画布
