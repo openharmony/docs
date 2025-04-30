@@ -690,7 +690,8 @@ struct XComponentExample {
   }
 }
 ```
-<!--RP2--><!--RP2End-->
+![AI示例运行图](./figures/AIXComponent.gif)
+
 
 ### 示例2（在surface旋转过程中锁定）
 
