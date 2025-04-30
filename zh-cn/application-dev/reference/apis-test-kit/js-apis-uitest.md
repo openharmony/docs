@@ -22,8 +22,18 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 ## 导入模块
 
 ```ts
-import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, UiDirection, MouseButton, UIElementInfo, UIEventObserver } from '@kit.TestKit';
+import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, UiDirection, MouseButton, UIElementInfo, UIEventObserver, loadAndSetupUiTest } from '@kit.TestKit';
 ```
+
+## loadAndSetupUiTest<sup>20+</sup>
+loadAndSetupUiTest(): void;
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**ArkTS版本**：该接口仅适用于ArkTS1.2。
+
 
 ## MatchPattern
 
@@ -2009,7 +2019,8 @@ async function demo() {
 
 ### findComponent<sup>9+</sup>
 
-findComponent(on: On): Promise\<Component>
+ArkTS1.1: findComponent(on: On): Promise\<Component> <br>
+ArkTS1.2: findComponent(on: On): Promise\<Component\|null>
 
 在Driver对象中，根据给出的目标控件属性要求查找目标控件。
 
@@ -2027,7 +2038,8 @@ findComponent(on: On): Promise\<Component>
 
 | 类型                               | 说明                              |
 | ---------------------------------- | --------------------------------- |
-| Promise\<[Component](#component9)> | 以Promise形式返回找到的控件对象。 |
+|ArkTS1.1: Promise\<[Component](#component9)> | 以Promise形式返回找到的控件对象。 |
+|ArkTS1.2: Promise\<[Component](#component9)\|null> | 以Promise形式返回找到的控件对象,<br>或在未找到对象时以Promise形式返回null。 |
 
 **错误码：**
 
@@ -2044,13 +2056,17 @@ findComponent(on: On): Promise\<Component>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.text('next page'));
+  let button = await driver.findComponent(ON.text('next page'));
+  if (button) {
+    button.click();
+  }
 }
 ```
 
 ### findComponents<sup>9+</sup>
 
-findComponents(on: On): Promise\<Array\<Component>>
+ArkTS1.1: findComponents(on: On): Promise\<Array\<Component>>
+ArkTS1.2: findComponents(on: On): Promise\<Array\<Component>\|null>
 
 在Driver对象中，根据给出的目标控件属性要求查找出所有匹配控件，以列表保存。
 
@@ -2068,7 +2084,8 @@ findComponents(on: On): Promise\<Array\<Component>>
 
 | 类型                                       | 说明                                    |
 | ------------------------------------------ | --------------------------------------- |
-| Promise\<Array\<[Component](#component9)>> | 以Promise形式返回找到的控件对象的列表。 |
+| ArkTS1.1: Promise\<Array\<[Component](#component9)>> | 以Promise形式返回找到的控件对象的列表。 |
+| ArkTS1.2: Promise\<Array\<[Component](#component9)>|null> | 以Promise形式返回找到的控件对象的列表, 或在未找到对象时以Promise形式返回null。 |
 
 **错误码：**
 
@@ -2085,7 +2102,10 @@ findComponents(on: On): Promise\<Array\<Component>>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let buttonList: Array<Component> = await driver.findComponents(ON.text('next page'));
+  let buttonList: Array<Component>|null = await driver.findComponents(ON.text('next page'));
+  if (buttonList) {
+    buttonList[0].click();
+  }
 }
 ```
 
