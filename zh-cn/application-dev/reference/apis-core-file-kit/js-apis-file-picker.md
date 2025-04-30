@@ -85,6 +85,7 @@ constructor(context: Context, window: window.Window)
 应用自行创建窗口中，可用通过该构造函数创建DocumentViewPicker对象。一般场景推荐使用constructor(context: Context)方法创建DocumentViewPicker对象。
 
 **参数：**
+
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
 | context | Context| 是   | 应用上下文（仅支持UIAbilityContext）。Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
@@ -437,6 +438,7 @@ async function exampleIndex(context: common.Context) { // 需确保 context 由 
   }
 }
 ```
+
 ## AudioViewPicker
 
 音频选择器对象，用来支撑选择和保存音频类文件等用户场景。在使用前，需要先创建AudioViewPicker实例。
@@ -454,6 +456,7 @@ constructor(context: Context)
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **参数：**
+
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
 | context | Context| 是   | 应用上下文（仅支持UIAbilityContext）。Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
@@ -485,6 +488,7 @@ struct Index {
   }
 }
 ```
+
 ### constructor<sup>12+</sup>
 
 constructor()
@@ -841,6 +845,7 @@ async function example18(context: common.Context) { // 需确保 context 由 UIA
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
+
 | 名称                    | 类型                                          | 必填 | 说明                                       |
 | :---------------------- |---------------------------------------------| ---- |------------------------------------------|
 | maxSelectNumber<sup>12+</sup>       | number                                      | 否   | 选择文件最大个数，默认值为1，上限500，有效值范围1-500 |
