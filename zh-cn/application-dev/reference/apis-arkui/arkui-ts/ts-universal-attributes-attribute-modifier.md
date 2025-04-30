@@ -315,7 +315,7 @@ struct Index {
 
 ### 示例5（组件绑定Modifier获焦样式）
 
-该示例通过 Button 绑定 Modifier 实现了组件在获得焦点时的样式效果。点击 Button2 后，Button 会显示获得焦点后的样式。
+该示例通过Button绑定Modifier实现了组件在获得焦点时的样式效果。点击Button2后，Button会显示获得焦点后的样式。
 
 ```ts
 class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
@@ -358,7 +358,7 @@ struct attributeDemo {
 
 ### 示例6（组件绑定Modifier禁用状态的样式）
 
-该示例通过 Button 绑定 Modifier 实现了组件禁用时的样式效果。点击 Button2 后，Button 会显示禁用状态的样式。
+该示例通过Button绑定Modifier实现了组件禁用时的样式效果。点击Button2后，Button会显示禁用状态的样式。
 
 ```ts
 class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
