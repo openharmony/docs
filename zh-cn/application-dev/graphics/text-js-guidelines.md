@@ -73,7 +73,7 @@ import { common2D } from '@kit.ArkGraphics2D'
     canvas.attachBrush(brush)
     ```
 
-3. **绘制文本**。使用`TextStyle`接口创建一个文本样式实例myTextStyle，示例只设置了文本颜色，使用`ParagraphStyle`接口创建一个段落样式实例myParagraphStyle，并设置文本样式等属性，使用`FontCollection`接口创建一个字体管理器实例fontCollection，使用`ParagraphBuilder`的接口，以myParagraphStyle和fontCollection为参数创建一个段落生成器实例ParagraphGraphBuilder，并调用其接口使文本样式更新以及添加段落文本，在调用build()接口生成段落实例paragraph，最后调用paint接口在屏幕上显示。
+3. **绘制文本**。使用`TextStyle`接口创建一个文本样式实例myTextStyle，示例只设置了文本颜色，使用`ParagraphStyle`接口创建一个段落样式实例myParagraphStyle，并设置文本样式等属性，使用`FontCollection`接口创建一个字体管理器实例fontCollection，使用`ParagraphBuilder`的接口，以myParagraphStyle和fontCollection为参数创建一个段落生成器实例paragraphBuilder，并调用其接口使文本样式更新以及添加段落文本，在调用build()接口生成段落实例paragraph，最后调用paint接口在屏幕上显示。
 
     ```js
     //字体颜色，字重，字体大小等属性由此设置
@@ -87,13 +87,13 @@ import { common2D } from '@kit.ArkGraphics2D'
         //wordBreak:text.WordBreak.NORMAL 文本断词类型
     };
     let fontCollection = new text.FontCollection();
-    let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+    let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
     //更新文本样式
-    ParagraphGraphBuilder.pushStyle(myTextStyle);
+    paragraphBuilder.pushStyle(myTextStyle);
     //添加文本
-    ParagraphGraphBuilder.addText("0123456789");
+    paragraphBuilder.addText("0123456789");
     //生成段落
-    let paragraph = ParagraphGraphBuilder.build();
+    let paragraph = paragraphBuilder.build();
     // 布局
     paragraph.layoutSync(600);
     //绘制文本
