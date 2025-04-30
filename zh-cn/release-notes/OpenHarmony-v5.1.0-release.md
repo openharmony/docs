@@ -312,22 +312,88 @@ OpenHarmony 5.1.0 Release版本正式推出API 18。相比前一个Release版本
 | 软件 | 版本 | 备注 | 
 | -------- | -------- | -------- |
 | OpenHarmony | 5.1.0 Release | NA | 
-| Public SDK | Ohos_sdk_public 5.1.0.160 (API Version 18 Release) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。通过DevEco Studio默认获取的SDK为Public SDK。 | 
-| HUAWEI DevEco Studio（可选） | 5.1.0 Release | OpenHarmony应用开发推荐使用。 | 
+| Public SDK | Ohos_sdk_public 5.1.0.165 (API Version 15 Release) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。通过DevEco Studio默认获取的SDK为Public SDK。 | 
+| HUAWEI DevEco Studio（可选） | 5.1.0 Release | OpenHarmony应用开发推荐使用。<br/>*待发布* | 
 | HUAWEI DevEco Device Tool（可选） | 4.0 Release | OpenHarmony智能设备集成开发环境推荐使用。 | 
 
 
 ## 源码获取
 
 
+### 前提条件
+
+1. 注册码云gitee帐号。
+
+2. 注册码云SSH公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)。
+
+3. 安装[git客户端](https://gitee.com/link?target=https%3A%2F%2Fgit-scm.com%2Fbook%2Fzh%2Fv2%2F%25E8%25B5%25B7%25E6%25AD%25A5-%25E5%25AE%2589%25E8%25A3%2585-Git)和[git-lfs](https://gitee.com/vcs-all-in-one/git-lfs?_from=gitee_search#downloading)并配置用户信息。
+   ```
+   git config --global user.name "yourname"
+   git config --global user.email "your-email-address"
+   git config --global credential.helper store
+   ```
+
+4. 安装码云repo工具，可以执行如下命令。
+   ```
+   curl -s https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 > /usr/local/bin/repo  #如果没有权限，可下载至其他目录，并将其配置到环境变量中chmod a+x /usr/local/bin/repo
+   pip3 install -i https://repo.huaweicloud.com/repository/pypi/simple requests
+   ```
+
+
+### 通过repo获取
+
+**方式一（推荐）**
+
+通过repo + ssh 下载（需注册公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)）。
+
+- 从版本分支获取源码。可获取该版本分支的最新源码，包括版本发布后在该分支的合入。
+   ```
+   repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-5.1.o-Release --no-repo-verify
+   repo sync -c
+   repo forall -c 'git lfs pull'
+   ```
+   
+- 从版本发布Tag节点获取源码。可获取与版本发布时完全一致的源码。
+   ```
+   repo init -u git@gitee.com:openharmony/manifest.git -b refs/tags/OpenHarmony-v5.1.0-Release --no-repo-verify
+   repo sync -c
+   repo forall -c 'git lfs pull'
+   ```
+
+**方式二**
+
+通过repo + https 下载。
+
+- 从版本分支获取源码。可获取该版本分支的最新源码，包括版本发布后在该分支的合入。
+   ```
+   repo init -u https://gitee.com/openharmony/manifest -b OpenHarmony-5.1.0-Release --no-repo-verify
+   repo sync -c
+   repo forall -c 'git lfs pull'
+   ```
+   
+- 从版本发布Tag节点获取源码。可获取与版本发布时完全一致的源码。
+   ```
+   repo init -u https://gitee.com/openharmony/manifest -b refs/tags/OpenHarmony-v5.1.0-Release --no-repo-verify
+   repo sync -c
+   repo forall -c 'git lfs pull'
+   ```
+
+
 ### 从镜像站点获取
+
 
 **表2** 获取源码路径
 
-| 版本源码 | **版本信息** | **下载站点** | **SHA256校验码** | 
-| -------- | -------- | -------- | -------- |
-|  |  |  |  | 
-|  |  |  |  | 
+| 版本源码                                | **版本信息** | **下载站点**                                                 | **SHA256校验码**                                             | **软件包容量** |
+| --------------------------------------- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | -------- |
+| 全量代码（标准、轻量和小型系统）        | 5.1.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/code-v5.1.0-Release.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/code-v5.1.0-Release.tar.gz.sha256) | 43.3 GB |
+| Hi3861解决方案（二进制）        | 5.1.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/hispark_pegasus.tar.gz.sha256) | 27.2 MB |
+| Hi3516解决方案-LiteOS（二进制） | 5.1.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/hispark_taurus_LiteOS.tar.gz.sha256) | 328.7 MB |
+| Hi3516解决方案-Linux（二进制）  | 5.1.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/hispark_taurus_Linux.tar.gz.sha256) | 221.4 MB |
+| RK3568标准系统解决方案（二进制）        | 5.1.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/dayu200_standard_arm32.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/dayu200_standard_arm32.tar.gz.sha256) | 13.2 GB |
+| 标准系统Public SDK包（Mac）             | 5.1.0.165 | [站点](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/ohos-sdk-mac-public.tar.gz.sha256) | 1.3 GB |
+| 标准系统Public SDK包（Mac-M1）             | 5.1.0.165  | [站点](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) | 1.2 GB |
+| 标准系统Public SDK包（Windows/Linux）   | 5.1.0.165   | [站点](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/ohos-sdk-windows_linux-public.tar.gz.sha256) | 4.3 GB |
 
 
 ## 修复缺陷列表
@@ -335,19 +401,10 @@ OpenHarmony 5.1.0 Release版本正式推出API 18。相比前一个Release版本
 **表3** 修复缺陷ISSUE列表
 
 | ISSUE单 | 问题描述 | 
-| -------- | -------- |
-|  |  | 
-|  |  | 
-|  |  | 
-|  |  | 
-|  |  | 
-|  |  | 
-|  |  | 
-|  |  | 
-|  |  | 
-|  |  | 
-|  |  | 
-
+| ------- | ------- |
+| IBTXFK | 从图库删除多张图片的完整用时可能稍长（1000+ ms）。 |
+| IBTCJQ | FWX图片放大缩小的移动帧率不足60帧。 |
+| IBINUK | 进程com.ohos.camera有一定概率出现因LIFECYCLE_TIMEOUT卡在libcamera_framework.z.so导致的sysfreeze。 |
 
 ## 遗留缺陷列表
 
@@ -355,17 +412,7 @@ OpenHarmony 5.1.0 Release版本正式推出API 18。相比前一个Release版本
 
 | ISSUE | 问题描述 | 影响 | 计划解决日期 | 
 | -------- | -------- | -------- | -------- |
-|  |  |  |  | 
-|  |  |  |  | 
-|  |  |  |  | 
-|  |  |  |  | 
-|  |  |  |  | 
-|  |  |  |  | 
-|  |  |  |  | 
-|  |  |  |  | 
-|  |  |  |  | 
-|  |  |  |  | 
-|  |  |  |  | 
-|  |  |  |  | 
-|  |  |  |  | 
-|  |  |  |  | 
+| IBTCKR | SystemUI状态栏下拉到内容渲染耗完成时的完整用时可能稍长（160+ ms）。 | 轻微影响使用体验。 | 2025年4月30日 |
+| IBBZPS | 进程com.ohos.systemui下的OS_IPC_0_1067线程小概率出现cppcrash，崩溃栈：ld-musl-arm.so.1(__libc_free+172) | 系统异常，用户无感知。 | 2025年4月30日 | 
+| IBE36X</br>IBO3MF | 进程render_service小概率出现因SERVICE_BLOCK导致的的sysfreeze问题。 | 桌面无响应后黑屏，自动恢复后回到桌面。 | 2025年4月30日 |
+
