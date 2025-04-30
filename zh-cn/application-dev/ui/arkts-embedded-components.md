@@ -1,8 +1,14 @@
-# EmbeddedComponent 组件
+# EmbeddedComponent组件
 
-EmbeddedComponent的作用是在当前页面中嵌入来自本应用内其他EmbeddedUIExtensionAbility所提供的用户界面。这些EmbeddedUIExtensionAbility在独立的进程中执行，负责页面的布局和渲染工作。
+## 基本概念
 
-这种做法通常适用于需要进程隔离的模块化开发场景。
+- [EmbeddedComponent](../reference/apis-arkui/arkui-ts/ts-container-embedded-component.md)组件
+
+  EmbeddedComponent 组件用于在当前页面嵌入本应用内其他 EmbeddedUIExtensionAbility 提供的 UI。它允许开发者将应用的某些功能或界面嵌入到另一个界面中，实现更灵活的用户界面设计，通常用于需要进程隔离的模块化开发场景。
+
+- [EmbeddedUIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md)组件
+
+  提供方应用中定义使用，用于实现跨进程界面嵌入功能，仅能被同应用的UIAbility拉起，并需在拥有多进程权限的场景下使用。
 
 ## 导入模块
 
