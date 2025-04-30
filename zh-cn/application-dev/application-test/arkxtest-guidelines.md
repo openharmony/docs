@@ -69,7 +69,7 @@ export default function abilityTest() {
   describe('ActsAbilityTest', () =>{
     it('testUiExample',0, async (done: Function) => {
       console.info("uitest: TestUiExample begin");
-       await sleep(1000);
+      await sleep(1000);
       const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
       //start tested ability
       const want: Want = {
@@ -138,7 +138,7 @@ export default function abilityTest() {
     describe('ActsAbilityTest', () => {
        it('testUiExample',0, async (done: Function) => {
           console.info("uitest: TestUiExample begin");
-           await sleep(1000);
+          await sleep(1000);
           const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
           //start tested ability
           const want: Want = {
