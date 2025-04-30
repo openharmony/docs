@@ -87,13 +87,13 @@ import { common2D } from '@kit.ArkGraphics2D'
         //wordBreak:text.WordBreak.NORMAL 文本断词类型
     };
     let fontCollection = new text.FontCollection();
-    let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+    let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
     //更新文本样式
-    ParagraphGraphBuilder.pushStyle(myTextStyle);
+    paragraphBuilder.pushStyle(myTextStyle);
     //添加文本
-    ParagraphGraphBuilder.addText("0123456789");
+    paragraphBuilder.addText("0123456789");
     //生成段落
-    let paragraph = ParagraphGraphBuilder.build();
+    let paragraph = paragraphBuilder.build();
     // 布局
     paragraph.layoutSync(600);
     //绘制文本
