@@ -2966,7 +2966,7 @@ struct Index {
               style:
               {
                 fontColor: Color.Blue,
-                fontSize: 50,
+                fontSize: 50
               },
               gesture:
               {
@@ -4392,7 +4392,7 @@ struct Index {
     fontFamily: 'HarmonyOS Sans',
     fontColor: Color.Green,
     fontSize: LengthMetrics.vp(30),
-    fontStyle: FontStyle.Normal,
+    fontStyle: FontStyle.Normal
   })
   fontStyle1: TextStyle = new TextStyle({ fontColor: Color.Blue });
   fontStyle2: TextStyle = new TextStyle({
@@ -4400,7 +4400,7 @@ struct Index {
     fontFamily: 'Arial',
     fontColor: Color.Orange,
     fontSize: LengthMetrics.vp(30),
-    fontStyle: FontStyle.Italic,
+    fontStyle: FontStyle.Italic
   })
 
   controller1: RichEditorController = new RichEditorController();
