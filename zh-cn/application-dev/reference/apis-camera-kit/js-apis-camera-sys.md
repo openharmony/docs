@@ -933,7 +933,7 @@ isDepthFusionSupported(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Camera错误码](errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -973,7 +973,7 @@ getDepthFusionThreshold(): Array\<number\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Camera错误码](errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -996,7 +996,7 @@ function getDepthFusionThreshold(DepthFusionQuery: camera.DepthFusionQuery): voi
 ```
 ## DepthFusion<sup>14+</sup>
 
-深度融合类。继承[DepthFusionQuery](js-apis-camera-sys.md#DepthFusionQuery)。
+深度融合类。继承[DepthFusionQuery](js-apis-camera-sys.md#depthfusionquery14)。
 
 ### isDepthFusionEnabled<sup>14+</sup>
 
@@ -1016,7 +1016,7 @@ isDepthFusionEnabled(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Camera错误码](errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1056,7 +1056,7 @@ enableDepthFusion(enabled: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Camera错误码](errorcode-camera.md)。
 
 | 错误码ID   | 错误信息                                           |
 |---------|------------------------------------------------|
