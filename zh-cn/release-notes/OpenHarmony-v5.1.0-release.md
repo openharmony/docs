@@ -123,17 +123,9 @@ OpenHarmony 5.1.0 Release版本正式推出API 18。相比前一个Release版本
 
 - 新增软键盘弹出动画完成的监听回调。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/js-apis-window.md#onkeyboarddidshow18)）
 
-- 新增支持设置当前子窗口（未设置模态属性）的层级级别。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/js-apis-window.md#setsubwindowzlevel18)）
-
 - 画中画窗口支持通过创建参数LocalStorage实现页面级别的UI状态存储单元，多实例下可用来跟踪主窗实例。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/js-apis-pipWindow.md#pipconfiguration)）
 
 - 窗口管理新增支持创建虚拟屏幕。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/js-apis-display.md#displaycreatevirtualscreen16)）
-
-- 针对2in1设备的窗口管理新增支持主窗的尺寸记忆功能。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/js-apis-window.md#setwindowrectautosave17)）
-
-- 针对2in1设备的窗口管理新增支持设置子窗或悬浮窗窗口边缘阴影的模糊半径。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/js-apis-window.md#setwindowshadowradius17)）
-
-- 针对2in1设备的窗口管理新增支持设置子窗口在其父窗口处于拖拽移动或拖拽缩放过程时，该子窗口是否支持跨多个屏幕同时显示。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/js-apis-window.md#setfollowparentmultiscreenpolicy17)）
 
 
 ### 图形图像
@@ -179,7 +171,7 @@ OpenHarmony 5.1.0 Release版本正式推出API 18。相比前一个Release版本
 
 - 能力增强：支持应用创建多个SoundPool实例。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-media-kit/js-apis-media.md#mediacreatesoundpool10)）
 
--调用媒体播放器AVPlayer设置播放策略时，新增支持Prepare之后显示视频起播首帧（showFirstFrameOnPrepare）。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-media-kit/js-apis-media.md#playbackstrategy12)）
+- 调用媒体播放器AVPlayer设置播放策略时，新增支持Prepare之后显示视频起播首帧（showFirstFrameOnPrepare）。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-media-kit/js-apis-media.md#playbackstrategy12)）
 
 - 新增支持通过AV会话命令传递设置目标循环模式（setTargetLoopMode）的能力（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-avsession-kit/js-apis-avsession.md#avcontrolcommandtype10)），并提供对设置动作的事件监听回调（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-avsession-kit/js-apis-avsession.md#onsettargetloopmode18)）。
 
@@ -196,10 +188,6 @@ OpenHarmony 5.1.0 Release版本正式推出API 18。相比前一个Release版本
 - 音视频录制配置文件新增支持配置稳定录制模式enableStableQualityMode18。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-media-kit/js-apis-media.md#avrecorderprofile9)）
 
 **媒体库**
-
-- 相册管理单选模式增强，新增支持多种相册内图片在单选时的呈现模式类型。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-photoAccessHelper.md#singleselectionmode18)）
-
-- 相册管理的推荐类型新增支持推荐风格的枚举COLOR_STYLE_PHOTO。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-photoAccessHelper.md#recommendationtype11)）
 
 - 新增文件位置的枚举定义，用于标记文件处于本地或云端。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-photoAccessHelper.md#positiontype16)）
 
