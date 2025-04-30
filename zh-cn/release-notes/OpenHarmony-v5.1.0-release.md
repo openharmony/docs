@@ -29,8 +29,6 @@ OpenHarmony 5.1.0 Release版本正式推出API 18。相比前一个Release版本
 
 - C API新增支持启动Ability时传递startOptions。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-ability-kit/start__options_8h.md)）
 
-- C API新增支持在2in设备场景下获取子进程启动参数。（[指南](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/application-models/capi_nativechildprocess_development_guideline.md#%E5%AD%90%E8%BF%9B%E7%A8%8B%E8%8E%B7%E5%8F%96%E5%90%AF%E5%8A%A8%E5%8F%82%E6%95%B0)、[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_getcurrentchildprocessargs)）
-
 - C API新增支持设置启动Ability时窗口和dock栏图标的显示模式。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-ability-kit/_ability_runtime.md#oh_abilityruntime_setstartoptionsstartvisibility)）
 
 - 新增一批C API函数，用于获取应用级别沙箱内文件目录。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-ability-kit/_ability_runtime.md)）
@@ -165,8 +163,6 @@ OpenHarmony 5.1.0 Release版本正式推出API 18。相比前一个Release版本
 
 - 播放器新增支持播放预下载的视频数据。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-media-kit/js-apis-media.md#setmediaresourceloaderdelegate18)）
 
-- 播放器新增支持动态开启视频超分算法。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-media-kit/js-apis-media.md#setsuperresolution18)）
-
 - 调用媒体播放器AVPlayer设置播放策略时，新增支持智能追帧水线（thresholdForAutoQuickPlay）。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-media-kit/js-apis-media.md#playbackstrategy12)）
 
 - 能力增强：支持应用创建多个SoundPool实例。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-media-kit/js-apis-media.md#mediacreatesoundpool10)）
@@ -186,10 +182,6 @@ OpenHarmony 5.1.0 Release版本正式推出API 18。相比前一个Release版本
 - 新增屏幕录制时视频填充模式的枚举。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-media-kit/js-apis-media.md#avscreencapturefillmode18)）
 
 - 音视频录制配置文件新增支持配置稳定录制模式enableStableQualityMode18。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-media-kit/js-apis-media.md#avrecorderprofile9)）
-
-**媒体库**
-
-- 新增文件位置的枚举定义，用于标记文件处于本地或云端。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-photoAccessHelper.md#positiontype16)）
 
 
 ### 语言编译器运行时
@@ -311,10 +303,6 @@ OpenHarmony 5.1.0 Release版本正式推出API 18。相比前一个Release版本
 - 新增支持获取控件提示文本（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-test-kit/js-apis-uitest.md#gethint18)），并根据控件提示文本查找控件（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-test-kit/js-apis-uitest.md#hint18)）。
 
 - 新增支持横向纵向查找控件，仅适用于支持滑动的控件。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-test-kit/js-apis-uitest.md#scrollsearch18)）
-
-- 新增支持模拟触摸板多指滑动手势操作，仅支持2in1设备。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-test-kit/js-apis-uitest.md#touchpadmultifingerswipe18)）
-
-- 新增支持模拟手写笔的点击、长按、双击、滑动操作。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-test-kit/js-apis-uitest.md#penclick18)）
 
 
 ## 配套关系
