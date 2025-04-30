@@ -308,7 +308,6 @@ struct Index {
 }
 ```
 执行结果
-=======
 在LOG中输出：
 ```ts
 Test JSVM RunVMSnapshot read file blobSize = : 300064
