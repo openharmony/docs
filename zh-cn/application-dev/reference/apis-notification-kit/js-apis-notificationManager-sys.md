@@ -2236,6 +2236,7 @@ notificationManager.getDoNotDisturbDate(userId).then((data: notificationManager.
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -3702,8 +3703,6 @@ on(type: 'checkNotification', callback: (checkInfo: NotificationCheckInfo) => No
 
 系统中每个[SlotType](./js-apis-notificationManager.md#slottype)只允许存在一个注册者。
 
-该接口不支持wearable设备。
-
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 和 ohos.permission.NOTIFICATION_AGENT_CONTROLLER
@@ -3725,7 +3724,6 @@ on(type: 'checkNotification', callback: (checkInfo: NotificationCheckInfo) => No
 | -------- | ----------------------------------- | 
 | 202      | Not system application.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
-| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 
 **示例：**
