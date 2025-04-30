@@ -50,18 +50,18 @@
 
    ```ts
    let fontCollection = text.FontCollection.getGlobalInstance();
-   let paragraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+   let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
    // 更新文本样式
-   paragraphGraphBuilder.pushStyle(myTextStyle);
+   paragraphBuilder.pushStyle(myTextStyle);
    // 添加文本
-   paragraphGraphBuilder.addText("Hello World");
+   paragraphBuilder.addText("Hello World");
    ```
 
 5. 排版段落并进行文本绘制。
 
    ```ts
    // 生成段落
-   let paragraph = paragraphGraphBuilder.build();
+   let paragraph = paragraphBuilder.build();
    // 布局
    paragraph.layoutSync(1250);
    // 绘制文本
