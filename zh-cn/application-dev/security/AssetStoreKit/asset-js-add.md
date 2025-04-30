@@ -15,10 +15,10 @@
 | SECRET                | 类型为Uint8Array，长度为1-1024字节。                           | 必选     | 关键资产明文。                                              |
 | ALIAS                 | 类型为Uint8Array，长度为1-256字节。                            | 必选     | 关键资产别名，每条关键资产的唯一索引。                        |
 | ACCESSIBILITY         | 类型为number，取值范围详见[Accessibility](../../reference/apis-asset-store-kit/js-apis-asset.md#accessibility)。 | 可选     | 基于锁屏状态的访问控制，默认值为DEVICE_FIRST_UNLOCKED，即首次解锁后可访问。      |
-| REQUIRE_PASSWORD_SET  | 类型为boolean。                                                   | 可选     | 是否仅在设置了锁屏密码的情况下，可访问关键资产，默认值为false。为true时表示仅在设置了锁屏密码的情况下，可访问关键资产，为false时表示在设置或不设置锁屏密码的情况下，都可访问关键资产。              |
+| REQUIRE_PASSWORD_SET  | 类型为boolean。                                                   | 可选     | 是否仅在设置了锁屏密码的情况下，可访问关键资产，默认值为false。为true时，表示仅在用户设置了锁屏密码的情况下，关键资产才允许被访问；为false时，表示无论用户是否设置锁屏密码，关键资产均允许被访问。              |
 | AUTH_TYPE             | 类型为number，取值范围详见[AuthType](../../reference/apis-asset-store-kit/js-apis-asset.md#authtype)。 | 可选     | 访问关键资产所需的用户认证类型，默认值为NONE，即访问关键资产前无需用户认证。         |
 | SYNC_TYPE             | 类型为number，取值范围详见[SyncType](../../reference/apis-asset-store-kit/js-apis-asset.md#synctype)。 | 可选     | 关键资产支持的同步类型，默认值为NEVER，即不允许同步该关键资产。                |
-| IS_PERSISTENT         | 类型为boolean。                                                   | 可选     | 在应用卸载时是否需要保留关键资产，默认值为false。为true时表示在应用卸载时保留关键资产，为false表示在应用卸载时删除关键资产。<br>**注意：** 设置此属性时，需[申请权限](../AccessToken/declare-permissions.md)ohos.permission.STORE_PERSISTENT_DATA。 |
+| IS_PERSISTENT         | 类型为boolean。                                                   | 可选     | 在应用卸载时是否需要保留关键资产，默认值为false。为true时表示应用卸载后，应用存储的关键资产将被保留；为false时表示应用卸载后，应用存储的关键资产将被删除。<br>**注意：** 设置此属性时，需[申请权限](../AccessToken/declare-permissions.md)ohos.permission.STORE_PERSISTENT_DATA。 |
 | DATA_LABEL_CRITICAL_1 | 类型为Uint8Array，长度为1-2048字节。                         | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。<br/>**说明：** API12前长度为1-512字节。 |
 | DATA_LABEL_CRITICAL_2 | 类型为Uint8Array，长度为1-2048字节。                       | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。<br/>**说明：** API12前长度为1-512字节。 |
 | DATA_LABEL_CRITICAL_3 | 类型为Uint8Array，长度为1-2048字节。                        | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。<br/>**说明：** API12前长度为1-512字节。 |
