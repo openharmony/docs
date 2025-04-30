@@ -1436,4 +1436,3 @@ struct ListExample {
 ```
 
 ![fadingEdge_list](figures/fadingEdge_list.gif)
-
