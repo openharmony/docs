@@ -6,10 +6,12 @@
 
 ## 创建并应用StyledString和MutableStyledString
 
-  可以通过TextController提供的[setStyledString](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#setstyledstring12)方法，将属性字符串附加到文本组件，并推荐在[onPageShow](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)中触发绑定。
+  可以通过TextController提供的[setStyledString](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#setstyledstring12)方法，将属性字符串附加到文本组件，并推荐在[onPageShow](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)或者文本组件的[onAppear](../reference/apis-arkui/arkui-ts/ts-universal-events-show-hide.md#onappear)回调中触发绑定。
   > **说明：**
   >
   > 在aboutToAppear中调用setStyledString方法时，由于该方法运行阶段组件尚未完成创建并成功挂载节点树，因此无法在页面初始化时显示属性字符串。
+  >
+  > 从API version 15开始，在aboutToAppear中调用setStyledString方法，在页面初始化时可以显示属性字符串。
 
   ```ts
   @Entry
@@ -21,8 +23,8 @@
     controller2: TextController = new TextController();
 
     async onPageShow() {
+      // 在生命周期onPageShow回调中绑定属性字符串
       this.controller1.setStyledString(this.styledString1);
-      this.controller2.setStyledString(this.mutableStyledString1);
     }
 
     build() {
@@ -30,6 +32,10 @@
         // 显示属性字符串
         Text(undefined, { controller: this.controller1 })
         Text(undefined, { controller: this.controller2 })
+          .onAppear(() => {
+            // 在组件onAppear回调中绑定属性字符串
+            this.controller2.setStyledString(this.mutableStyledString1);
+          })
       }
       .width('100%')
     }
@@ -490,6 +496,8 @@
   ```ts
   import { drawing } from '@kit.ArkGraphics2D';
 
+  let gUIContext: UIContext;
+
   class MyCustomSpan extends CustomSpan {
     constructor(word: string, width: number, height: number, fontSize: number) {
       super();
@@ -501,7 +509,7 @@
 
     onMeasure(measureInfo: CustomSpanMeasureInfo): CustomSpanMetrics {
       return { width: this.width, height: this.height };
-    } 
+    }
 
     onDraw(context: DrawContext, options: CustomSpanDrawInfo) {
       let canvas = context.canvas;
@@ -514,12 +522,13 @@
         blue: 0
       });
       const font = new drawing.Font();
-      font.setSize(vp2px(this.fontSize));
+      font.setSize(gUIContext.vp2px(this.fontSize));
       const textBlob =
         drawing.TextBlob.makeFromString(this.word.substring(0, 5), font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
       canvas.attachBrush(brush);
 
-      this.onDrawRectByRadius(context, options.x, options.x + vp2px(this.width), options.lineTop, options.lineBottom, 20);
+      this.onDrawRectByRadius(context, options.x, options.x + gUIContext.vp2px(this.width), options.lineTop,
+        options.lineBottom, 20);
       brush.setColor({
         alpha: 255,
         red: 255,
@@ -537,7 +546,7 @@
       canvas.attachBrush(brush);
       const textBlob1 =
         drawing.TextBlob.makeFromString(this.word.substring(5), font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
-      canvas.drawTextBlob(textBlob1, options.x + vp2px(100), options.lineBottom - 30);
+      canvas.drawTextBlob(textBlob1, options.x + gUIContext.vp2px(100), options.lineBottom - 30);
 
       canvas.detachBrush();
     }
@@ -579,6 +588,10 @@
     textController: TextController = new TextController();
     isPageShow: boolean = true;
 
+    aboutToAppear() {
+      gUIContext = this.getUIContext();
+    }
+
     async onPageShow() {
       if (!this.isPageShow) {
         return;
@@ -604,7 +617,9 @@
 
 ## 格式转换
 
-可以通过toHtml、fromHtml接口实现属性字符串与HTML格式字符串的相关转换。
+可以通过[toHtml](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#tohtml14)、[fromHtml](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#fromhtml)接口实现属性字符串与HTML格式字符串的相关转换，当前支持转换的HTML标签范围：\<p>、\<span>、\<img>。
+
+以下示例展示了如何将属性字符串转换成HTML格式，并展示了如何从HTML格式转换回属性字符串。
 ```ts
 // xxx.ets
 import { image } from '@kit.ImageKit';

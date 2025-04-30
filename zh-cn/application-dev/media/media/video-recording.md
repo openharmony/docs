@@ -88,7 +88,7 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
    ```ts
    import { media } from '@kit.MediaKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-   import { fileIo as fs } form '@kit.CoreFileKit';
+   import { fileIo as fs } from '@kit.CoreFileKit';
 
    let avProfile: media.AVRecorderProfile = {
      fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4。
@@ -99,7 +99,7 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
      videoFrameRate : 30 // 视频帧率。
    };
 
-   const context: Context = getContext(this); // 参考应用文件访问与管理。
+   const context: Context = this.getUIContext().getHostContext()!; // 参考应用文件访问与管理。
    let filePath: string = context.filesDir + '/example.mp4';
    let videoFile: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
    let fileFd = videoFile.fd; // 获取文件fd。
@@ -160,10 +160,11 @@ import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 
 const TAG = 'VideoRecorderDemo:';
-export class VideoRecorderDemo {
+export class VideoRecorderDemo extends CustomComponent {
   private context: Context;
   constructor() {
-    this.context = getContext(this);
+    super();
+    this.context = this.getUIContext().getHostContext()!;
   }
   private avRecorder: media.AVRecorder | undefined = undefined;
   private videoOutSurfaceId: string = "";

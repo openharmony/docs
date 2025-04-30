@@ -111,14 +111,14 @@ struct AppearExample {
       if (this.isShow) {
         Text(this.myText).fontSize(26).fontWeight(FontWeight.Bold)
           .onAttach(() => {
-            promptAction.showToast({
+            this.getUIContext().getPromptAction().showToast({
               message: 'The text is shown',
               duration: 2000,
               bottom: 500
             })
           })
           .onDetach(() => {
-            promptAction.showToast({
+            this.getUIContext().getPromptAction().showToast({
               message: 'The text is hidden',
               duration: 2000,
               bottom: 500

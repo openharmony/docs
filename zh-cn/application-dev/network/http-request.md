@@ -42,11 +42,15 @@ HTTP数据请求功能主要由http模块提供。
 6. 调用该对象的off()方法，取消订阅http响应头事件。
 7. 当该请求使用完毕时，调用destroy()方法主动销毁。
 
+**注意：** 关于示例代码中this的说明：在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
 // 引入包名
 import { http } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // 每一个httpRequest对应一个HTTP请求任务，不可复用
 let httpRequest = http.createHttp();
 // 用于订阅HTTP响应头，此接口会比request请求先返回。可以根据业务需要订阅此消息
@@ -89,7 +93,7 @@ httpRequest.request(
         name: "Part2", // 数据名，自API 11开始支持该属性
         contentType: 'text/plain', // 数据类型，自API 11开始支持该属性
         // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.txt
-        filePath: `${getContext(this).filesDir}/fileName.txt`, // 可选，传入文件路径，自API 11开始支持该属性
+        filePath: `${context.filesDir}/fileName.txt`, // 可选，传入文件路径，自API 11开始支持该属性
         remoteFileName: 'fileName.txt' // 可选，自API 11开始支持该属性
       }
     ]
@@ -268,7 +272,7 @@ openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
 }
 ```
 
-预置证书公钥哈希值的配置例子如下:
+预置证书公钥哈希值的配置例子如下：
 ```
 {
   "network-security-config": {
@@ -304,7 +308,7 @@ openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
 |domain-config              | array           |指示每个域的安全配置。可以包含任意个item。item必须包含1个domains，可以包含0或者1个trust-anchors，可以包含0个或者1个pin-set。|
 |trust-anchors              | array           |受信任的CA。可以包含任意个item。item必须包含1个certificates。|
 |certificates               | string          |CA证书路径。 |
-|domains                    | array           |域。可以包含任意个item。item必须包含1个name(string:指示域名)，可以包含0或者1个include-subdomains。|
+|domains                    | array           |域。可以包含任意个item。item必须包含1个name(string：指示域名)，可以包含0或者1个include-subdomains。|
 |include-subdomains         | boolean         |指示规则是否适用于子域。 |
 |pin-set                    | object          |证书公钥哈希设置。必须包含1个pin，可以包含0或者1个expiration。|
 |expiration                 | string          |指示证书公钥哈希的过期时间。 |

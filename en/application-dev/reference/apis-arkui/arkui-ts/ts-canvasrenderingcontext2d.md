@@ -46,7 +46,7 @@ Configures the settings of a **CanvasRenderingContext2D** object, including whet
 
 | Name      | Type   | Mandatory  | Description                         |
 | --------- | ------- | ---- | ----------------------------- |
-| antialias | boolean | No   | Whether to enable antialiasing.<br>Default value: **false**<br>|
+| antialias | boolean | No   | Whether to enable antialiasing.<br>Default value: **false** |
 
 ### LengthMetricsUnit<sup>12+</sup>
 
@@ -1340,7 +1340,7 @@ Strokes (outlines) this path.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
- **Example**
+**Example**
 
   ```ts
   // xxx.ets

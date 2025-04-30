@@ -40,14 +40,14 @@ isWifiActive(): boolean
 **示例：**
 
 ```ts
-	import { wifiManager } from '@kit.ConnectivityKit';
+  import { wifiManager } from '@kit.ConnectivityKit';
 
-	try {
-		let isWifiActive = wifiManager.isWifiActive();
-		console.info("isWifiActive:" + isWifiActive);
-	}catch(error){
-		console.error("failed:" + JSON.stringify(error));
-	}
+  try {
+    let isWifiActive = wifiManager.isWifiActive();
+    console.info("isWifiActive:" + isWifiActive);
+  }catch(error){
+    console.error("failed:" + JSON.stringify(error));
+  }
 ```
 
 ## wifiManager.enableWifi<sup>15+</sup>
@@ -473,7 +473,7 @@ WLAN配置信息。
 | bssid | string | 是 | 否 | 热点的BSSID，例如：00:11:22:33:44:55。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | bssidType<sup>10+</sup> | [DeviceAddressType](#deviceaddresstype10) | 是 | 否 | 热点的BSSID类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | preSharedKey | string | 是 | 否 | 热点的密钥，最大长度为64字节。<br>当securityType为WIFI_SEC_TYPE_OPEN时该字段需为空串，其他加密类型不能为空串。<br>当securityType为WIFI_SEC_TYPE_WEP时，该字段长度只允许为5、10、13、26、16和32字节其中之一，并且当字段长度为偶数时，该字段必须为纯十六进制数字构成。<br>当securityType为WIFI_SEC_TYPE_SAE时，该字段最小长度为1字节。<br>当securityType为WIFI_SEC_TYPE_PSK时，该字段最小长度为8字节。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| isHiddenSsid | boolean | 是 | 否 | 是否是隐藏网络。 |
+| isHiddenSsid | boolean | 是 | 否 | 是否是隐藏网络。true:是隐藏网络，false:不是隐藏网络。 |
 | securityType | [WifiSecurityType](#wifisecuritytype9)| 是 | 否 | 加密类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | eapConfig<sup>10+</sup> | [WifiEapConfig](#wifieapconfig10) | 是 | 否 | 可扩展身份验证协议配置。只有securityType为WIFI_SEC_TYPE_EAP时需要填写。 |
 | wapiConfig<sup>12+</sup> | [WifiWapiConfig](#wifiwapiconfig12) | 是 | 否 | WAPI身份验证协议配置。只有securityType为WIFI_SEC_TYPE_WAPI_CERT或WIFI_SEC_TYPE_WAPI_PSK时需要填写。 |
@@ -490,12 +490,12 @@ WLAN配置信息。
 | phase2Method | [Phase2Method](#phase2method10) | 是 | 否 | 第二阶段认证方式。只有eapMethod为EAP_PEAP或EAP_TTLS时需要填写。 |
 | identity | string | 是 | 否 | 身份信息。当eapMethod为EAP_PEAP、EAP_TLS或EAP_PWD时，该字段不能为空串。 |
 | anonymousIdentity | string | 是 | 否 | 匿名身份。暂未使用。 |
-| password | string | 是 | 否 | 密码。当eapMethod为EAP_PEAP或EAP_PWD时，该字段不能为空串。 |
+| password | string | 是 | 否 | 密码。当eapMethod为EAP_PEAP或EAP_PWD时，该字段不能为空串，最大长度为128字节。 |
 | caCertAlias | string | 是 | 否 | CA 证书别名。 |
 | caPath | string | 是 | 否 | CA 证书路径。 |
 | clientCertAlias | string | 是 | 否 | 客户端证书别名。 |
 | certEntry | Uint8Array | 是 | 是 | CA 证书内容。当eapMethod为EAP_TLS时，如果该字段为空，则clientCertAlias不能为空。 |
-| certPassword | string | 是 | 是 | CA证书密码。 |
+| certPassword | string | 是 | 是 | CA证书密码，最大长度为128字节。 |
 | altSubjectMatch | string | 是 | 否 | 替代主题匹配。 |
 | domainSuffixMatch | string | 是 | 否 | 域后缀匹配。 |
 | realm | string | 是 | 否 | 通行证凭证的领域。 |
@@ -1292,6 +1292,22 @@ getLinkedInfoSync(): WifiLinkedInfo;
 | wifiStandard<sup>10+</sup> | [WifiStandard](#wifistandard10) | 是 | 否 | 当前连接热点的Wi-Fi标准。 |
 | supportedWifiCategory<sup>12+</sup> | [WifiCategory](#wificategory12) | 是 | 否 | 热点支持的最高Wi-Fi级别。 |
 | isHiLinkNetwork<sup>12+</sup> | boolean | 是 | 否| 热点是否支持hilink，true:支持，&nbsp;false:不支持。 |
+| wifiLinkType<sup>18+</sup> | [WifiLinkType](#wifilinktype18) | 是 | 否|  Wi-Fi7连接类型。  |
+
+
+## WifiLinkType<sup>18+</sup>
+
+枚举，Wi-Fi7连接类型。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| DEFAULT_LINK | 0 | 默认连接类型。 |
+| WIFI7_SINGLE_LINK | 1 | Wi-Fi7单链连接。 |
+| WIFI7_MLSR | 2 | Wi-Fi7 MLSR（multi-link single-radio，多链路多天线）连接。 |
+| WIFI7_EMLSR | 3 | Wi-Fi7 EMLSR（enhanced multi-link single-radio, 增强型多链路单天线）连接。 |
+| WIFI7_STR | 4 | Wi-Fi7 STR（Simultaneous Tx and Rx， 同时发送和接收）连接。 |
 
 ## ConnState<sup>9+</sup>
 
@@ -1814,7 +1830,7 @@ getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | connectState | [P2pConnectState](#p2pconnectstate9) | 是 | 否 | P2P连接状态。 |
-| isGroupOwner | boolean | 是 | 否 | true:是GO，false:不是GO。|
+| isGroupOwner | boolean | 是 | 否 | true:是群主，false:不是群主。|
 | groupOwnerAddr | string | 是 | 否 | 群组IP地址。| 
 
 
@@ -2382,7 +2398,48 @@ stopDiscoverDevices(): void
 	}
 ```
 
+## wifiManager.getMultiLinkedInfo<sup>18+</sup>
 
+getMultiLinkedInfo(): &nbsp;Array&lt;WifiLinkedInfo&gt;
+
+获取MLO(Multi-Link Operation，多链路操作) Wi-Fi连接信息。
+
+**需要权限：** ohos.permission.GET_WIFI_INFO
+
+> **注意：**
+> - 当macType是1（设备MAC地址），获取 macAddress 还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限（该权限仅系统应用可申请），无该权限时，macAddress 返回为空。
+> - 如果应用申请了ohos.permission.GET_WIFI_PEERS_MAC权限（该权限仅系统应用可申请），则返回结果中的bssid为真实mac地址，否则为随机设备地址。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**返回值：**
+
+  | **类型** | **说明** |
+  | -------- | -------- |
+  | &nbsp;Array&lt;[WifiLinkedInfo](#wifilinkedinfo9)&gt; | Wi-Fi连接信息。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[WIFI错误码](errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+| -------- | -------- |
+| 201 | Permission denied. |
+| 801 | Capability not supported. |
+| 2501000  | Operation failed. |
+| 2501001  | Wi-Fi STA disabled. |
+
+**示例：**
+```ts
+import { wifiManager } from '@kit.ConnectivityKit';
+
+  try {
+    let linkedInfo = wifiManager.getMultiLinkedInfo();
+    console.info("linkedInfo:" + JSON.stringify(linkedInfo));
+  }catch(error){
+    console.error("failed:" + JSON.stringify(error));
+  }
+```
 
 ## WifiP2pGroupInfo<sup>9+</sup>
 
@@ -2392,7 +2449,7 @@ stopDiscoverDevices(): void
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| isP2pGo | boolean | 是 | 否 | 是否是群主。 |
+| isP2pGo | boolean | 是 | 否 | 是否是群主。true:是群主，false:不是群主。 |
 | ownerInfo | [WifiP2pDevice](#wifip2pdevice9) | 是 | 否 | 群组的设备信息。 |
 | passphrase | string | 是 | 否 | 群组密钥。 |
 | interface | string | 是 | 否 | 接口名称。 |

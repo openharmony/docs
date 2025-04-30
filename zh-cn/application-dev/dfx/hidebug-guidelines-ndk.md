@@ -1,6 +1,6 @@
 # 使用HiDebug获取调试信息（C/C++）
 
-HiDebug模块对外提供应用调试功能。
+本模块可用于应用进程的内存、CPU、GPU等相关数据的获取，开启进程trace采集等。由于该模块的接口大多比较耗费性能，接口调用较为耗时，且基于HiDebug模块定义，该模块内的接口仅建议在应用调试，调优阶段使用。若需要在其他场景使用时，请认真评估所需调用的接口对应用性能的影响。
 
 ## 接口说明
 | 接口名                          | 描述                              |
@@ -19,7 +19,7 @@ HiDebug模块对外提供应用调试功能。
 API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[HiDebug](../reference/apis-performance-analysis-kit/_hi_debug.md)。
 
 ## 开发步骤
-下文将展示如何在应用内增加一个按钮，并单击该按钮以调用Hidebug Ndk接口。
+下文将展示如何在应用内增加一个按钮，并单击该按钮以调用HiDebug Ndk接口。
 
 1. 新建Native C++工程，目录结构如下：
 
@@ -59,7 +59,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    #undef LOG_TAG
    #define LOG_TAG "testTag"
    
-   static napi_value TestHidebugNdk(napi_env env, napi_callback_info info)
+   static napi_value TestHiDebugNdk(napi_env env, napi_callback_info info)
    {
        double cpuUsage = OH_HiDebug_GetSystemCpuUsage();
        OH_LOG_INFO(LogType::LOG_APP, "GetSystemCpuUsage: %{public}f", cpuUsage);
@@ -67,15 +67,15 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    }
    ```
 
-4. 将TestHidebugNdk注册为ArkTS接口：
+4. 将TestHiDebugNdk注册为ArkTS接口：
 
-   编辑"napi_init.cpp"文件，将TestHidebugNdk注册为ArkTS接口：
+   编辑"napi_init.cpp"文件，将TestHiDebugNdk注册为ArkTS接口：
 
    ```c++
    static napi_value Init(napi_env env, napi_value exports)
    {
        napi_property_descriptor desc[] = {
-           { "testHidebugNdk", nullptr, TestHidebugNdk, nullptr, nullptr, nullptr, napi_default, nullptr }
+           { "testHiDebugNdk", nullptr, TestHiDebugNdk, nullptr, nullptr, nullptr, napi_default, nullptr }
        };
        napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
        return exports;
@@ -85,7 +85,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    编辑"index.d.ts"文件，定义ArkTS接口：
 
    ```typescript
-   export const testHidebugNdk: () => void;
+   export const testHiDebugNdk: () => void;
    ```
 
 5. 编辑"Index.ets"文件，给文本Text组件添加一个点击事件，示例代码如下：
@@ -104,7 +104,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
            Text(this.message)
              .fontSize(50)
              .fontWeight(FontWeight.Bold)
-             .onClick(testNapi.testHidebugNdk);//添加点击事件，触发testHidebugNdk方法。
+             .onClick(testNapi.testHiDebugNdk);//添加点击事件，触发testHiDebugNdk方法。
          }
          .width('100%')
        }

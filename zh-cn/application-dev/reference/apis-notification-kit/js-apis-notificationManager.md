@@ -47,6 +47,7 @@ publish(request: NotificationRequest, callback: AsyncCallback\<void\>): void
 | 1600014  | No permission.                                       |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
+| 1600020  | The application is not allowed to publish notifications due to permission control settings. |
 | 2300007  | Network unreachable.                                 |
 
 **示例：**
@@ -117,6 +118,7 @@ publish(request: NotificationRequest): Promise\<void\>
 | 1600014  | No permission.                                       |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
+| 1600020  | The application is not allowed to publish notifications due to permission control settings. |
 | 2300007  | Network unreachable.                                 |
 
 **示例：**
@@ -1707,3 +1709,207 @@ class MyAbility extends UIAbility {
 | LIVE_VIEW<sup>11+</sup>            | 4 | 实况窗。不支持三方应用直接创建该渠道类型通知，可以由系统代理创建后，三方应用发布同ID的通知来更新指定内容。该类型对应[SlotLevel](#slotlevel)为LEVEL_DEFAULT。 |
 | CUSTOMER_SERVICE<sup>11+</sup>     | 5 | 客服消息。该类型用于用户与商家之间的客服消息，需由用户主动发起。该类型对应[SlotLevel](#slotlevel)为LEVEL_DEFAULT。  |
 | OTHER_TYPES          | 0xFFFF | 其他。该类型对应[SlotLevel](#slotlevel)为LEVEL_MIN。 |
+
+## BundleOption
+
+type BundleOption = _BundleOption
+
+描述BundleOption信息，即指定应用的包信息。
+
+**系统能力：** SystemCapability.Notification.Notification
+
+| 类型 | 说明 |
+| --- | --- |
+| [_BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 描述BundleOption信息，即指定应用的包信息。 |
+
+## NotificationActionButton
+
+type NotificationActionButton = _NotificationActionButton
+
+描述通知中显示的操作按钮。
+
+**系统能力：** SystemCapability.Notification.Notification
+
+| 类型 | 说明 |
+| --- | --- |
+| [_NotificationActionButton](js-apis-inner-notification-notificationActionButton.md) | 描述通知中显示的操作按钮。 |
+
+## NotificationBasicContent
+
+type NotificationBasicContent = _NotificationBasicContent
+
+描述普通文本通知。
+
+**系统能力：** SystemCapability.Notification.Notification
+
+| 类型 | 说明 |
+| --- | --- |
+| [_NotificationBasicContent](js-apis-inner-notification-notificationContent.md#notificationbasiccontent) | 描述普通文本通知。 |
+
+## NotificationContent
+
+type NotificationContent = _NotificationContent
+
+描述通知内容。
+
+**系统能力：** SystemCapability.Notification.Notification
+
+| 类型 | 说明 |
+| --- | --- |
+| [_NotificationContent](js-apis-inner-notification-notificationContent.md#notificationcontent) | 描述通知内容。 |
+
+## NotificationLongTextContent
+
+type NotificationLongTextContent = _NotificationLongTextContent
+
+描述长文本通知。
+
+**系统能力：** SystemCapability.Notification.Notification
+
+| 类型 | 说明 |
+| --- | --- |
+| [_NotificationLongTextContent](js-apis-inner-notification-notificationContent.md#notificationlongtextcontent) | 描述长文本通知。 |
+
+## NotificationMultiLineContent
+
+type NotificationMultiLineContent = _NotificationMultiLineContent
+
+描述多行文本通知。
+
+**系统能力：** SystemCapability.Notification.Notification
+
+| 类型 | 说明 |
+| --- | --- |
+| [_NotificationMultiLineContent](js-apis-inner-notification-notificationContent.md#notificationmultilinecontent) | 描述多行文本通知。 |
+
+## NotificationPictureContent
+
+type NotificationPictureContent = _NotificationPictureContent
+
+描述附有图片的通知。
+
+**系统能力：** SystemCapability.Notification.Notification
+
+| 类型 | 说明 |
+| --- | --- |
+| [_NotificationPictureContent](js-apis-inner-notification-notificationContent.md#notificationpicturecontent) | 描述附有图片的通知。 |
+
+## NotificationSystemLiveViewContent<sup>11+</sup>
+
+type NotificationSystemLiveViewContent = _NotificationSystemLiveViewContent
+
+描述系统实况窗通知内容。
+
+**系统能力：** SystemCapability.Notification.Notification
+
+| 类型 | 说明 |
+| --- | --- |
+| [_NotificationSystemLiveViewContent](js-apis-inner-notification-notificationContent.md#notificationsystemliveviewcontent) | 描述系统实况窗通知内容。 |
+
+## NotificationRequest
+
+type NotificationRequest = _NotificationRequest
+
+描述通知的请求。
+
+**系统能力：** SystemCapability.Notification.Notification
+
+| 类型 | 说明 |
+| --- | --- |
+| [_NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 描述通知的请求。 |
+
+## DistributedOptions
+
+type DistributedOptions = _DistributedOptions
+
+描述分布式选项。
+
+**系统能力：** SystemCapability.Notification.Notification
+
+| 类型 | 说明 |
+| --- | --- |
+| [_DistributedOptions](js-apis-inner-notification-notificationRequest.md#distributedoptions8) | 描述分布式选项。 |
+
+## NotificationSlot
+
+type NotificationSlot = _NotificationSlot
+
+描述通知槽。
+
+**系统能力：** SystemCapability.Notification.Notification
+
+| 类型 | 说明 |
+| --- | --- |
+| [_NotificationSlot](js-apis-inner-notification-notificationSlot.md) | 描述通知槽。 |
+
+## NotificationTemplate
+
+type NotificationTemplate = _NotificationTemplate
+
+通知模板。
+
+**系统能力：** SystemCapability.Notification.Notification
+
+| 类型 | 说明 |
+| --- | --- |
+| [_NotificationTemplate](js-apis-inner-notification-notificationTemplate.md) | 通知模板。 |
+
+## NotificationUserInput
+
+type NotificationUserInput = _NotificationUserInput
+
+保存用户输入的通知消息。
+
+**系统能力：** SystemCapability.Notification.Notification
+
+| 类型 | 说明 |
+| --- | --- |
+| [_NotificationUserInput](js-apis-inner-notification-notificationUserInput.md) | 保存用户输入的通知消息。 |
+
+## NotificationCapsule<sup>11+</sup>
+
+type NotificationCapsule = _NotificationCapsule
+
+描述通知胶囊。
+
+**系统能力：** SystemCapability.Notification.Notification
+
+| 类型 | 说明 |
+| --- | --- |
+| [_NotificationCapsule](js-apis-inner-notification-notificationContent.md#notificationcapsule11) | 描述通知胶囊。 |
+
+## NotificationButton<sup>11+</sup>
+
+type NotificationButton = _NotificationButton
+
+描述通知按钮。
+
+**系统能力：** SystemCapability.Notification.Notification
+
+| 类型 | 说明 |
+| --- | --- |
+| [_NotificationButton](js-apis-inner-notification-notificationContent.md#notificationbutton11) | 描述通知按钮。 |
+
+## NotificationTime<sup>11+</sup>
+
+type NotificationTime = _NotificationTime
+
+描述通知计时信息。
+
+**系统能力：** SystemCapability.Notification.Notification
+
+| 类型 | 说明 |
+| --- | --- |
+| [_NotificationTime](js-apis-inner-notification-notificationContent.md#notificationtime11) | 描述通知计时信息。 |
+
+## NotificationProgress<sup>11+</sup>
+
+type NotificationProgress = _NotificationProgress
+
+描述通知进度。
+
+**系统能力：** SystemCapability.Notification.Notification
+
+| 类型 | 说明 |
+| --- | --- |
+| [_NotificationProgress](js-apis-inner-notification-notificationContent.md#notificationprogress11) | 描述通知进度。 |

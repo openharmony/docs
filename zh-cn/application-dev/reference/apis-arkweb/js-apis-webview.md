@@ -1777,10 +1777,6 @@ runJavaScript(script: string, callback : AsyncCallback\<string>): void
 
 异步执行JavaScript脚本，并通过回调方式返回脚本执行的结果。runJavaScript需要在loadUrl完成后，比如onPageEnd中调用。
 
-> **说明：**
->
-> 离屏组件不会触发runJavaScript接口。
-
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
@@ -2049,7 +2045,7 @@ struct WebComponent {
 ```
 
 ```ts
-// 使用ArrayBuffer入参，从文件中获取JavaScript脚本数据
+// 使用ArrayBuffer入参，从文件中获取JavaScript脚本数据。
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo } from '@kit.CoreFileKit';
@@ -2069,16 +2065,17 @@ struct WebComponent {
       Button('runJavaScriptExt')
         .onClick(() => {
           try {
-            let context = getContext(this) as common.UIAbilityContext;
-            let filePath = context.filesDir + 'test.txt';
-            // 新建并打开文件
+            let uiContext : UIContext = this.getUIContext();
+            let context : Context | undefined = uiContext.getHostContext() as common.UIAbilityContext;
+            let filePath = context!.filesDir + 'test.txt';
+            // 新建并打开文件。
             let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
-            // 写入一段内容至文件
+            // 写入一段内容至文件。
             fileIo.writeSync(file.fd, "test()");
-            // 从文件中读取内容
+            // 从文件中读取内容。
             let arrayBuffer: ArrayBuffer = new ArrayBuffer(6);
             fileIo.readSync(file.fd, arrayBuffer, { offset: 0, length: arrayBuffer.byteLength });
-            // 关闭文件
+            // 关闭文件。
             fileIo.closeSync(file);
             this.controller.runJavaScriptExt(
               arrayBuffer,
@@ -2255,7 +2252,7 @@ struct WebComponent {
 ```
 
 ```ts
-// 使用ArrayBuffer入参，从文件中获取JavaScript脚本数据
+// 使用ArrayBuffer入参，从文件中获取JavaScript脚本数据。
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo } from '@kit.CoreFileKit';
@@ -2275,16 +2272,17 @@ struct WebComponent {
       Button('runJavaScriptExt')
         .onClick(() => {
           try {
-            let context = getContext(this) as common.UIAbilityContext;
-            let filePath = context.filesDir + 'test.txt';
-            // 新建并打开文件
+            let uiContext : UIContext = this.getUIContext();
+            let context : Context | undefined = uiContext.getHostContext() as common.UIAbilityContext;
+            let filePath = context!.filesDir + 'test.txt';
+            // 新建并打开文件。
             let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
-            // 写入一段内容至文件
+            // 写入一段内容至文件。
             fileIo.writeSync(file.fd, "test()");
-            // 从文件中读取内容
+            // 从文件中读取内容。
             let arrayBuffer: ArrayBuffer = new ArrayBuffer(6);
             fileIo.readSync(file.fd, arrayBuffer, { offset: 0, length: arrayBuffer.byteLength });
-            // 关闭文件
+            // 关闭文件。
             fileIo.closeSync(file);
             this.controller.runJavaScriptExt(arrayBuffer)
               .then((result) => {
@@ -5722,7 +5720,7 @@ enableSafeBrowsing(enable: boolean): void
 
 | 参数名   | 类型    |  必填  | 说明                       |
 | --------| ------- | ---- | ---------------------------|
-|  enable | boolean | 是   | 是否启用检查网站安全风险的功能。 |
+|  enable | boolean | 是   | 是否启用检查网站安全风险的功能。<br>true表示启用检查网站安全风险的功能，false表示不启用检查网站安全风险的功能。<br>默认值：false。 |
 
 **错误码：**
 
@@ -5811,9 +5809,13 @@ enableIntelligentTrackingPrevention(enable: boolean): void
 
 | 参数名   | 类型    |  必填  | 说明                       |
 | --------| ------- | ---- | ---------------------------|
-|  enable | boolean | 是   | 是否启用智能防跟踪功能。 |
+|  enable | boolean | 是   | 是否启用智能防跟踪功能。<br>true表示启用启用智能防跟踪功能，false表示不启用启用智能防跟踪功能。<br>默认值：false。 |
 
 **错误码：**
+
+> **说明：**
+>
+> 从API Version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -5821,6 +5823,7 @@ enableIntelligentTrackingPrevention(enable: boolean): void
 | -------- | ----------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 |  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|  801 | Capability not supported. |
 
 **示例：**
 
@@ -5867,11 +5870,16 @@ isIntelligentTrackingPreventionEnabled(): boolean
 
 **错误码：**
 
+> **说明：**
+>
+> 从API Version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
+
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+|  801 | Capability not supported. |
 
 **示例：**
 
@@ -5918,11 +5926,16 @@ static addIntelligentTrackingPreventionBypassingList(hostList: Array\<string>): 
 
 **错误码：**
 
+> **说明：**
+>
+> 从API Version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
+
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID  | 错误信息                  |
 | -------- | ------------------------ |
 |  401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|  801     | Capability not supported. |
 
 **示例：**
 
@@ -5969,11 +5982,16 @@ static removeIntelligentTrackingPreventionBypassingList(hostList: Array\<string>
 
 **错误码：**
 
+> **说明：**
+>
+> 从API Version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
+
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID  | 错误信息                  |
 | -------- | ------------------------ |
 |  401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|  801     | Capability not supported. |
 
 **示例：**
 
@@ -6011,6 +6029,18 @@ static clearIntelligentTrackingPreventionBypassingList(): void
 删除通过addIntelligentTrackingPreventionBypassingList接口添加的所有域名。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**错误码：**
+
+> **说明：**
+>
+> 从API Version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID  | 错误信息                  |
+| -------- | ------------------------ |
+|  801     | Capability not supported. |
 
 **示例：**
 
@@ -6080,12 +6110,17 @@ enableAdsBlock(enable: boolean): void
 
 **错误码：**
 
+> **说明：**
+>
+> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 |  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Parameter string is too long. 3.Parameter verification failed. |
+|  801 | Capability not supported. |
 
 **示例：**
 
@@ -6130,6 +6165,18 @@ isAdsBlockEnabled() : boolean
 | ------------------------------------------------------------ | ---------------------- |
 | boolean | 返回true代表广告过滤功能已开启，返回false代表广告过滤功能关闭。 |
 
+**错误码：**
+
+> **说明：**
+>
+> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+|  801 | Capability not supported. |
+
 **示例：**
 
 ```ts
@@ -6173,6 +6220,18 @@ isAdsBlockEnabledForCurPage() : boolean
 | 类型                                                         | 说明                   |
 | ------------------------------------------------------------ | ---------------------- |
 | boolean | 返回true代表此网页已开启广告过滤，返回false代表当前网页已关闭广告过滤。 |
+
+**错误码：**
+
+> **说明：**
+>
+> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+|  801 | Capability not supported. |
 
 **示例：**
 
@@ -6457,7 +6516,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let webPrintDocadapter = this.controller.createWebPrintDocumentAdapter('example.pdf');
-            print.print('example_jobid', webPrintDocadapter, null, getContext());
+            print.print('example_jobid', webPrintDocadapter, null, this.getUIContext().getHostContext());
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -7483,21 +7542,21 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { abilityAccessCtrl, PermissionRequestResult, common } from '@kit.AbilityKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-try {
-  let context: Context = getContext(this) as common.UIAbilityContext;
-  atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA'], (err: BusinessError, data: PermissionRequestResult) => {
-    console.info('data:' + JSON.stringify(data));
-    console.info('data permissions:' + data.permissions);
-    console.info('data authResults:' + data.authResults);
-  })
-} catch (error) {
-  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-}
 
 @Entry
 @Component
 struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
+  uiContext: UIContext = this.getUIContext();
+
+  aboutToAppear(): void {
+    let context: Context | undefined = this.uiContext.getHostContext() as common.UIAbilityContext;
+    atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA'], (err: BusinessError, data: PermissionRequestResult) => {
+      console.info('data:' + JSON.stringify(data));
+      console.info('data permissions:' + data.permissions);
+      console.info('data authResults:' + data.authResults);
+    })
+  }
 
   build() {
     Column() {
@@ -7525,7 +7584,7 @@ struct WebComponent {
       Web({ src: $rawfile('index.html'), controller: this.controller })
         .onPermissionRequest((event) => {
           if (event) {
-            AlertDialog.show({
+            this.uiContext.showAlertDialog({
               title: 'title',
               message: 'text',
               primaryButton: {
@@ -7549,7 +7608,6 @@ struct WebComponent {
     }
   }
 }
-
 ```
 加载的html文件。
  ```html
@@ -7693,15 +7751,17 @@ precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: Cac
    export interface BuilderData {
      url: string;
      controller: WebviewController;
+     context: UIContext;
    }
 
-   const storage = LocalStorage.getShared();
+   let storage : LocalStorage | undefined = undefined;
 
    export class NodeControllerImpl extends NodeController {
      private rootNode: BuilderNode<BuilderData[]> | null = null;
      private wrappedBuilder: WrappedBuilder<BuilderData[]> | null = null;
 
-     constructor(wrappedBuilder: WrappedBuilder<BuilderData[]>) {
+     constructor(wrappedBuilder: WrappedBuilder<BuilderData[]>, context: UIContext) {
+       storage = context.getSharedLocalStorage();
        super();
        this.wrappedBuilder = wrappedBuilder;
      }
@@ -7718,7 +7778,7 @@ precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: Cac
          return;
        }
 
-       const uiContext: UIContext = storage.get<UIContext>("uiContext") as UIContext;
+       const uiContext: UIContext = storage!.get<UIContext>("uiContext") as UIContext;
        if (!uiContext) {
          return;
        }
@@ -7728,7 +7788,7 @@ precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: Cac
    }
 
    export const createNode = (wrappedBuilder: WrappedBuilder<BuilderData[]>, data: BuilderData) => {
-     const baseNode = new NodeControllerImpl(wrappedBuilder);
+     const baseNode = new NodeControllerImpl(wrappedBuilder, data.context);
      baseNode.initWeb(data.url, data.controller);
      return baseNode;
    }
@@ -7746,16 +7806,16 @@ precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: Cac
    function WebBuilder(data: BuilderData) {
      Web({ src: data.url, controller: data.controller })
        .onControllerAttached(() => {
-         precompile(data.controller, configs);
+         precompile(data.controller, configs, data.context);
        })
        .fileAccess(true)
    }
 
    export const precompileWebview = wrapBuilder<BuilderData[]>(WebBuilder);
 
-   export const precompile = async (controller: WebviewController, configs: Array<Config>) => {
+   export const precompile = async (controller: WebviewController, configs: Array<Config>, context: UIContext) => {
      for (const config of configs) {
-       let content = await readRawFile(config.localPath);
+       let content = await readRawFile(config.localPath, context);
 
        try {
          controller.precompileJavaScript(config.url, content, config.options)
@@ -7770,9 +7830,9 @@ precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: Cac
      }
    }
 
-   async function readRawFile(path: string) {
+   async function readRawFile(path: string, context: UIContext) {
      try {
-       return await getContext().resourceManager.getRawFileContent(path);;
+       return await context.getHostContext()!.resourceManager.getRawFileContent(path);;
      } catch (err) {
        return new Uint8Array(0);
      }
@@ -7847,7 +7907,7 @@ JavaScript资源的获取方式也可通过[网络请求](../apis-network-kit/js
      aboutToAppear(): void {
        // 初始化用于注入本地资源的Web组件
        this.precompileNode = createNode(precompileWebview,
-         { url: "https://www.example.com/empty.html", controller: this.precompileController});
+         { url: "https://www.example.com/empty.html", controller: this.precompileController, context: this.getUIContext()});
      }
 
      build() {
@@ -7857,7 +7917,8 @@ JavaScript资源的获取方式也可通过[网络请求](../apis-network-kit/js
            .onClick(() => {
              this.businessNode = createNode(businessWebview, {
                url:  "https://www.example.com/business.html",
-               controller: this.businessController
+               controller: this.businessController,
+               context: this.getUIContext()
              });
            })
          // 用于业务的Web组件
@@ -8245,15 +8306,17 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
    export interface BuilderData {
      url: string;
      controller: WebviewController;
+     context: UIContext;
    }
 
-   const storage = LocalStorage.getShared();
+   let storage : LocalStorage | undefined = undefined;
 
    export class NodeControllerImpl extends NodeController {
      private rootNode: BuilderNode<BuilderData[]> | null = null;
      private wrappedBuilder: WrappedBuilder<BuilderData[]> | null = null;
 
-     constructor(wrappedBuilder: WrappedBuilder<BuilderData[]>) {
+     constructor(wrappedBuilder: WrappedBuilder<BuilderData[]>, context: UIContext) {
+       storage = context.getSharedLocalStorage();
        super();
        this.wrappedBuilder = wrappedBuilder;
      }
@@ -8270,7 +8333,7 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
          return;
        }
 
-       const uiContext: UIContext = storage.get<UIContext>("uiContext") as UIContext;
+       const uiContext: UIContext = storage!.get<UIContext>("uiContext") as UIContext;
        if (!uiContext) {
          return;
        }
@@ -8280,7 +8343,7 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
    }
 
    export const createNode = (wrappedBuilder: WrappedBuilder<BuilderData[]>, data: BuilderData) => {
-     const baseNode = new NodeControllerImpl(wrappedBuilder);
+     const baseNode = new NodeControllerImpl(wrappedBuilder, data.context);
      baseNode.initWeb(data.url, data.controller);
      return baseNode;
    }
@@ -8300,7 +8363,7 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
      Web({ src: data.url, controller: data.controller })
        .onControllerAttached(async () => {
          try {
-           data.controller.injectOfflineResources(await getData ());
+           data.controller.injectOfflineResources(await getData (data.context));
          } catch (err) {
            console.error("error: " + err.code + " " + err.message);
          }
@@ -8310,14 +8373,14 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
 
    export const injectWebview = wrapBuilder<BuilderData[]>(WebBuilder);
 
-   export async function getData() {
+   export async function getData(context: UIContext) {
      const resourceMapArr: Array<webview.OfflineResourceMap> = [];
 
      // 读取配置，从rawfile目录中读取文件内容
      for (let config of resourceConfigs) {
        let buf: Uint8Array = new Uint8Array(0);
        if (config.localPath) {
-         buf = await readRawFile(config.localPath);
+         buf = await readRawFile(config.localPath, context);
        }
 
        resourceMapArr.push({
@@ -8331,9 +8394,9 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
      return resourceMapArr;
    }
 
-   export async function readRawFile(url: string) {
+   export async function readRawFile(url: string, context: UIContext) {
      try {
-       return await getContext().resourceManager.getRawFileContent(url);
+       return await context.getHostContext()!.resourceManager.getRawFileContent(url);
      } catch (err) {
        return new Uint8Array(0);
      }
@@ -8420,7 +8483,7 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
      aboutToAppear(): void {
        // 初始化用于注入本地资源的Web组件, 提供一个空的html页面作为url即可
        this.injectNode = createNode(injectWebview,
-           { url: "https://www.example.com/empty.html", controller: this.injectController});
+           { url: "https://www.example.com/empty.html", controller: this.injectController, context: this.getUIContext()});
      }
 
      build() {
@@ -8430,7 +8493,8 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
            .onClick(() => {
              this.businessNode = createNode(businessWebview, {
                url: "https://www.example.com/business.html",
-               controller: this.businessController
+               controller: this.businessController,
+               context: this.getUIContext()
              });
            })
          // 用于业务的Web组件
@@ -8733,6 +8797,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct WebComponent {
   controller: WebviewController = new webview.WebviewController();
+  uiContext: UIContext = this.getUIContext();
 
   build() {
     Row() {
@@ -8741,10 +8806,10 @@ struct WebComponent {
           try {
             // 设置允许可以跨域访问的路径列表
             this.controller.setPathAllowingUniversalAccess([
-              getContext().resourceDir,
-              getContext().filesDir + "/example"
+              this.uiContext.getHostContext()!.resourceDir,
+              this.uiContext.getHostContext()!.filesDir + "/example"
             ])
-            this.controller.loadUrl("file://" + getContext().resourceDir + "/index.html")
+            this.controller.loadUrl("file://" + this.getUIContext().getHostContext()!.resourceDir + "/index.html")
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -8758,7 +8823,7 @@ struct WebComponent {
 
 ```
 
-加载的html文件，位于应用资源目录resource/rawfile/index.html。
+加载的html文件，位于应用资源目录resource/resfile/index.html。
 ```html
 <!-- index.html -->
 <!DOCTYPE html>
@@ -8804,7 +8869,7 @@ struct WebComponent {
 </html>
 ```
 
-html中使用file协议通过XMLHttpRequest跨域访问本地js文件，js文件位于resource/rawfile/js/script.js。
+html中使用file协议通过XMLHttpRequest跨域访问本地js文件，js文件位于resource/resfile/js/script.js。
 <!--code_no_check-->
 ```javascript
 const body = document.body;
@@ -9016,7 +9081,7 @@ struct Index {
             (error, result: webview.PdfData) => {
               try {
                 // 获取组件上下文
-                let context = getContext(this) as common.UIAbilityContext;
+                let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
                 // 获取沙箱路径，设置pdf文件名
                 let filePath = context.filesDir + "/test.pdf";
                 let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
@@ -9098,7 +9163,7 @@ struct Index {
             .then((result: webview.PdfData) => {
               try {
                 // 获取组件上下文
-                let context = getContext(this) as common.UIAbilityContext;
+                let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
                 // 获取沙箱路径，设置pdf文件名
                 let filePath = context.filesDir + "/test.pdf";
                 let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
@@ -9139,7 +9204,6 @@ getScrollOffset(): ScrollOffset
 
 ```ts
 import { webview } from '@kit.ArkWeb';
-import { componentUtils } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -9165,11 +9229,11 @@ struct WebComponent {
       Web({ src: $rawfile("scrollByTo.html"), controller: this.controller })
         .key("web_01")
         .overScrollMode(this.mode)
-        .onTouch((event) => {
+        .onTouch(() => {
           this.controllerX = this.controller.getScrollOffset().x;
           this.controllerY = this.controller.getScrollOffset().y;
-          let componentInfo = componentUtils.getRectangleById("web_01");
-          let webHeight = px2vp(componentInfo.size.height);
+          let componentInfo = this.getUIContext().getComponentUtils().getRectangleById("web_01");
+          let webHeight = this.getUIContext().px2vp(componentInfo.size.height);
           let pageHeight = this.controller.getPageHeight();
           if (this.controllerY < 0) {
             // case1：网页向下过滚动时，可直接使用ScrollOffset.y
@@ -10178,7 +10242,7 @@ static putAcceptThirdPartyCookieEnabled(accept: boolean): void
 
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | :----------------------------------------- |
-| accept | boolean | 是   | 设置是否拥有发送和接收第三方cookie的权限，默认为false。 |
+| accept | boolean | 是   | 设置是否拥有发送和接收第三方cookie的权限。<br>true表示设置拥有发送和接收第三方cookie的权限，false表示设置无发送和接收第三方cookie的权限。<br>默认值：false。 |
 
 **错误码：**
 
@@ -12472,14 +12536,14 @@ struct WebComponent {
 | 名称           | 类型       | 可读 | 可写 | 说明                         |
 | -------------- | --------- | ---- | ---- | ---------------------------- |
 | schemeName     | string    | 是   | 是   | 自定义协议名称。最大长度为32，其字符仅支持小写字母、数字、'.'、'+'、'-', 同时需要以字母开头。        |
-| isSupportCORS  | boolean   | 是   | 是   | 是否支持跨域请求。    |
-| isSupportFetch | boolean   | 是   | 是   | 是否支持fetch请求。           |
-| isStandard<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将作为标准scheme进行处理。标准scheme需要符合RFC 1738第3.1节中定义的URL规范化和解析规则。           |
-| isLocal<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将使用与应用于“FILE”的安全规则相同的安全规则来处理。           |
-| isDisplayIsolated<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme的内容是否只能从相同scheme的其他内容中显示或访问。           |
-| isSecure<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将使用与应用于“https”的安全规则相同的安全规则来处理。           |
-| isCspBypassing<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme可以绕过内容安全策略（CSP）检查。在大多数情况下，当设置isStandard为true时，不应设置此值。         |
-| isCodeCacheSupported<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme的js资源是否支持生成code cache。默认值：false。         |
+| isSupportCORS  | boolean   | 是   | 是   | 是否支持跨域请求。<br>true表示支持跨域请求，false表示不支持跨域请求。<br>默认值：true。    |
+| isSupportFetch | boolean   | 是   | 是   | 是否支持fetch请求。<br>true表示支持fetch请求，false表示不支持fetch请求。<br>默认值：true。           |
+| isStandard<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将作为标准scheme进行处理。标准scheme需要符合RFC 1738第3.1节中定义的URL规范化和解析规则。<br>true表示设置了该选项的scheme将作为标准scheme进行处理，false表示设置了该选项的scheme不作为标准scheme进行处理。<br>默认值：true。           |
+| isLocal<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将使用与“file”协议相同的安全规则来处理。<br>true表示设置了该选项的scheme将使用与“file”协议相同的安全规则来处理，false表示设置了该选项的scheme不使用与“file”协议相同的安全规则来处理。<br>默认值：true。           |
+| isDisplayIsolated<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme的内容是否只能从相同scheme的其他内容中显示或访问。<br>true表示设置了该选项的scheme的内容只能从相同scheme的其他内容中显示或访问，false表示设置了该选项的scheme的内容不是只能从相同scheme的其他内容中显示或访问。<br>默认值：true。           |
+| isSecure<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将使用与应用于“https”的安全规则相同的安全规则来处理。true表示设置了该选项的scheme将使用与应用于“https”的安全规则相同的安全规则来处理，false表示设置了该选项的scheme不使用与应用于“https”的安全规则相同的安全规则来处理。<br>默认值：true。           |
+| isCspBypassing<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme可以绕过内容安全策略（CSP）检查。<br>true表示设置了该选项的scheme可以绕过内容安全策略（CSP）检查，false表示设置了该选项的scheme不可以绕过内容安全策略（CSP）检查。<br>默认值：true。<br>在大多数情况下，当设置isStandard为true时，不应设置此值。         |
+| isCodeCacheSupported<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme的js资源是否支持生成code cache。<br>true表示设置了该选项的scheme的js资源支持生成code，false表示设置了该选项的scheme的js资源不支持生成code。<br>默认值：false。         |
 
 ## SecureDnsMode<sup>10+</sup>
 
@@ -16034,7 +16098,7 @@ handleMutedChanged(muted: boolean): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| muted | boolean | 是 | 当前播放器是否静音。 |
+| muted | boolean | 是 | 当前播放器是否静音。<br>true表示当前播放器静音，false表示当前播放器未静音。 |
 
 **示例：**
 
@@ -16172,7 +16236,7 @@ handleFullscreenChanged(fullscreen: boolean): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| fullscreen | boolean | 是 | 是否全屏。 |
+| fullscreen | boolean | 是 | 是否全屏。<br>true表示全屏，false表示未全屏。 |
 
 **示例：**
 
@@ -16352,7 +16416,7 @@ setMuted(muted: boolean): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| muted | boolean | 是 | 是否静音。 |
+| muted | boolean | 是 | 是否静音。<br>true表示静音，false表示未静音。 |
 
 **示例：**
 
@@ -16513,9 +16577,9 @@ suspendPlayer?(type: SuspendType): void
 | mediaType | [MediaType](#mediatype12) | 是 | 媒体的类型。 |
 | mediaSrcList | [MediaSourceInfo](#mediasourceinfo12)[] | 是 | 媒体的源。可能有多个源，应用需要选择一个支持的源来播放。 |
 | surfaceInfo | [NativeMediaPlayerSurfaceInfo](#nativemediaplayersurfaceinfo12) | 是 | 用于同层渲染的 surface 信息。 |
-| controlsShown | boolean | 是 | `<video>` 或 `<audio>` 中是否有 `controls`属性。 |
+| controlsShown | boolean | 是 | `<video>` 或 `<audio>` 中是否有 `controls`属性。<br>true表示有，false表示没有。 |
 | controlList | string[] | 是 | `<video>` 或 `<audio>` 中的 `controlslist` 属性的值。 |
-| muted | boolean | 是 | 是否要求静音播放。 |
+| muted | boolean | 是 | 是否要求静音播放。<br>true表示静音播放，false表示未静音播放。 |
 | posterUrl | string | 是 | 海报的地址。 |
 | preload | [Preload](#preload12) | 是 | 是否需要预加载。 |
 | headers | Record\<string, string\> | 是 | 播放器请求媒体资源时，需要携带的 HTTP 头。 |
@@ -16624,8 +16688,8 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 
 | 名称 | 类型 | 必填 | 说明 |
 |------|------|------|------|
-| nativeEmbed | boolean | 是 | 是否允许使用同层渲染的页面进入前进后退缓存，默认不允许。如果设置为允许，需要维护为同层渲染元素创建的原生控件的生命周期，避免造成泄漏。 |
-| mediaTakeOver | boolean | 是 | 是否允许使用视频托管的页面进入前进后退缓存，默认不允许。如果设置为允许，需要维护为视频元素创建的原生控件的生命周期，避免造成泄漏。|
+| nativeEmbed | boolean | 是 | 是否允许使用同层渲染的页面进入前进后退缓存。<br>如果设置为允许，需要维护为同层渲染元素创建的系统控件的生命周期，避免造成泄漏。<br>true：允许，false：不允许。<br>默认值：false。 |
+| mediaTakeOver | boolean | 是 | 是否允许使用视频托管的页面进入前进后退缓存。<br>如果设置为允许，需要维护为视频元素创建的系统控件的生命周期，避免造成泄漏。<br>true：允许，false：不允许。<br>默认值：false。|
 
 ### constructor<sup>12+</sup>
 
@@ -16679,11 +16743,16 @@ static setAdsBlockRules(rulesFile: string, replace: boolean): void
 
 **错误码：**
 
+> **说明：**
+>
+> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
 |  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|  801 | Capability not supported. |
 
 **示例：**
 
@@ -16747,11 +16816,16 @@ static addAdsBlockDisallowedList(domainSuffixes: Array\<string\>): void
 
 **错误码：**
 
+> **说明：**
+>
+> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
 |  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|  801 | Capability not supported. |
 
 **示例：**
 
@@ -16824,11 +16898,16 @@ static removeAdsBlockDisallowedList(domainSuffixes: Array\<string\>): void
 
 **错误码：**
 
+> **说明：**
+>
+> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
 |  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|  801 | Capability not supported. |
 
 **示例：**
 
@@ -16888,6 +16967,18 @@ static clearAdsBlockDisallowedList(): void
 清空AdsBlockManager的DisallowedList。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**错误码：**
+
+> **说明：**
+>
+> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+|  801 | Capability not supported. |
 
 **示例：**
 
@@ -16958,11 +17049,16 @@ static addAdsBlockAllowedList(domainSuffixes: Array\<string\>): void
 
 **错误码：**
 
+> **说明：**
+>
+> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
 |  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|  801 | Capability not supported. |
 
 **示例：**
 
@@ -17038,11 +17134,16 @@ static removeAdsBlockAllowedList(domainSuffixes: Array\<string\>): void
 
 **错误码：**
 
+> **说明：**
+>
+> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
 |  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|  801 | Capability not supported. |
 
 **示例：**
 
@@ -17102,6 +17203,18 @@ static clearAdsBlockAllowedList(): void
 清空AdsBlockManager的AllowedList。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**错误码：**
+
+> **说明：**
+>
+> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+|  801 | Capability not supported. |
 
 **示例：**
 

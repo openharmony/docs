@@ -9,7 +9,7 @@
 1. 导入NDK接口，接口中提供了相机相关的属性和方法，导入方法如下。
 
    ```c++
-    // 导入NDK接口头文件。
+   // 导入NDK接口头文件。
    #include <cstdlib>
    #include <hilog/log.h>
    #include <memory>
@@ -42,7 +42,7 @@
 
    ```c++
    void InitImageReceiver() {
-       OH_ImageReceiverOptions *options = nullptr;
+       OH_ImageReceiverOptions* options = nullptr;
        // 注意捕获错误码处理异常及对象判空，当前示例仅展示调用流程。
        // 设置图片参数。
        Image_ErrorCode errCode = OH_ImageReceiverOptions_Create(&options);
@@ -53,12 +53,12 @@
        errCode = OH_ImageReceiverOptions_SetSize(options, imgSize);
        errCode = OH_ImageReceiverOptions_SetCapacity(options, capacity);
        // 创建OH_ImageReceiverNative对象。
-       OH_ImageReceiverNative *receiver = nullptr;
+       OH_ImageReceiverNative* receiver = nullptr;
        errCode = OH_ImageReceiverNative_Create(options, &receiver);
        // 获取OH_ImageReceiverNative对象的SurfaceId。
        uint64_t receiverSurfaceID = 0;
        errCode = OH_ImageReceiverNative_GetReceivingSurfaceId(receiver, &receiverSurfaceID);
-       OH_LOG_INFO(LOG_APP, "receiver surfaceID:%{public}%llu", receiverSurfaceID);
+       OH_LOG_INFO(LOG_APP, "receiver surfaceID:%{public}lu", receiverSurfaceID);
    }
    ```
 
@@ -69,13 +69,13 @@
 6. 注册ImageReceiver图片接收器的回调，监听获取每帧上报图像内容。
 
    ```c++
-   OH_ImageReceiverNative *receiver; // 步骤3创建的实例。
+   OH_ImageReceiverNative* receiver; // 步骤3创建的实例。
 
    // 图像回调函数，参考媒体/Image Kit（图片处理服务）。
-   static void OnCallback(OH_ImageReceiverNative *receiver) {
+   static void OnCallback(OH_ImageReceiverNative* receiver) {
        OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest buffer available.");
        // 注意捕获错误码处理异常及对象判空，当前示例仅展示调用流程。
-       OH_ImageNative *image = nullptr;
+       OH_ImageNative* image = nullptr;
        // 从bufferQueue中获取图像。
        Image_ErrorCode errCode = OH_ImageReceiverNative_ReadNextImage(receiver, &image);
        // 读取图像宽高。
@@ -91,7 +91,7 @@
        OH_ImageNative_GetComponentTypes(image, &types, &typeSize);
        uint32_t component = types[0];
        // 获取图像buffer。
-       OH_NativeBuffer *imageBuffer = nullptr;
+       OH_NativeBuffer* imageBuffer = nullptr;
        errCode = OH_ImageNative_GetByteBuffer(image, component, &imageBuffer);
        size_t bufferSize = 0;
        errCode = OH_ImageNative_GetBufferSize(image, component, &bufferSize);
@@ -111,7 +111,7 @@
            // 去除stride数据示例:将byteBuffer中的数据去除stride，拷贝得到新的dstBuffer数据。
            size_t dstBufferSize = size.width * size.height * 1.5; // 相机预览流返回NV21格式。
            std::unique_ptr<uint8_t[]> dstBuffer = std::make_unique<uint8_t[]>(dstBufferSize);
-           uint8_t *dstPtr = dstBuffer.get();
+           uint8_t* dstPtr = dstBuffer.get();
            for (int j = 0; j < size.height * 1.5; j++) {
                memcpy(dstPtr, srcBuffer, size.width);
                dstPtr += size.width;

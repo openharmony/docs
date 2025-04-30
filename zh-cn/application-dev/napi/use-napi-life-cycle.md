@@ -215,12 +215,7 @@ static napi_value CreateReference(napi_env env, napi_callback_info info)
     napi_create_string_utf8(env, "CreateReference", NAPI_AUTO_LENGTH, &value);
     // 将键值对添加到对象中
     napi_set_named_property(env, obj, "key", value);
-    // 创建对ArkTS对象的引用
-    napi_status status = napi_create_reference(env, obj, 1, &g_ref);
-    if (status != napi_ok) {
-        napi_throw_error(env, nullptr, "napi_create_reference fail");
-        return nullptr;
-    }
+
     // 添加终结器
     void *data = {};
     napi_add_finalizer(env, obj, data, Finalizer, nullptr, &g_ref);

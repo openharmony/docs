@@ -221,7 +221,7 @@ anonymous enum
 | UI_MOUSE_EVENT_ACTION_PRESS  | 鼠标按键按下。  | 
 | UI_MOUSE_EVENT_ACTION_RELEASE  | 鼠标按键松开。  | 
 | UI_MOUSE_EVENT_ACTION_MOVE  | 鼠标移动。  | 
-| UI_MOUSE_EVENT_ACTION_CANCEL  | 鼠标按键被取消。  | 
+| UI_MOUSE_EVENT_ACTION_CANCEL  | 鼠标按键被取消。<br/>**起始版本：** 18  | 
 
 
 ### anonymous enum
@@ -1060,7 +1060,7 @@ int32_t OH_ArkUI_PointerEvent_GetRollAngle (const ArkUI_UIInputEvent * event, do
 
 从带有指向性的输入事件（如触摸事件）中获取手写笔与设备平面的夹角。
 
-**起始版本：** 18
+**起始版本：** 17
 
 **参数:**
 
@@ -1517,11 +1517,11 @@ double OH_ArkUI_FocusAxisEvent_GetAxisValue (const ArkUI_UIInputEvent * event，
 | 名称 | 描述 | 
 | -------- | -------- |
 | event | 表示指向当前UI输入事件的指针。  | 
-| axis | 焦点轴事件的轴类型。  | 
+| [axis](#anonymous-enum-5) | 焦点轴事件的轴类型。  | 
 
 **返回：**
 
-返回焦点轴事件的轴值，如果参数异常则返回0.0。
+返回焦点轴事件的轴值，表示手柄上摇杆推动或按键按下的程度，如果参数异常则返回0.0。
 
 
 ### OH_ArkUI_FocusAxisEvent_SetStopPropagation()

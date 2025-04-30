@@ -59,7 +59,7 @@ int32_t (*setLevelOrder)(ArkUI_NativeDialogHandle handle, double levelOrder)
 | 名称 | 描述 | 
 | -------- | -------- |
 | handle | 指向自定义弹窗控制器的指针。  | 
-| levelOrder | 自定义弹窗显示的顺序。<br />默认值：0  | 
+| levelOrder | 自定义弹窗显示的顺序。<br />默认值：0<br/>取值范围：[-100000.0, 100000.0]  | 
 
 **注解：**
 

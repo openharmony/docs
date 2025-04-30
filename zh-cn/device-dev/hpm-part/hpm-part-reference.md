@@ -118,7 +118,7 @@ bundle.json文件是对当前Part的元数据描述，每个Part中必须包含�
 
 bundle.json文件具有如下功能：
 
-- name：定义Part的名称，放到组织下， 以\@开头，/分割，如：\@myorg/mybundle
+- name：定义Part的名称，放到组织下，以`\@`开头，`/`分割，如：`\@myorg/mybundle`。
 
 - version：定义Part版本号，如1.0.0，需满足semver的标准。
 
@@ -132,7 +132,7 @@ bundle.json文件具有如下功能：
 
 - publishAs：定义Part的发布类型（source：源码，binary：二进制，distribution：发行版，code-segment：代码片段）。
 
-- segment: 仅针对code-segment类型的Part，定义Part的目标路径（即安装后，Part包中包含的文件复制到的目标路径）。
+- segment：仅针对code-segment类型的Part，定义Part的目标路径（即安装后，Part包中包含的文件复制到的目标路径）。
 
 - dirs：定义发布时打包的目录结构（如头文件）。
 

@@ -113,7 +113,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let webPrintDocadapter = this.controller.createWebPrintDocumentAdapter('example.pdf');
-            print.print('example_jobid', webPrintDocadapter, null, getContext());
+            print.print('example_jobid', webPrintDocadapter, null, this.getUIContext().getHostContext());
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }

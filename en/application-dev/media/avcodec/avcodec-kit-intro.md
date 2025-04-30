@@ -1,5 +1,5 @@
 # Introduction to AVCodec Kit
-Audio and Video Codec (AVCodec) Kit provides capabilities such as audio/video encoding and decoding, media file muxing and demuxing, and media data input.
+Audio and Video Codec (AVCodec) Kit provides capabilities such as audio/video encoding and decoding, media file multiplexing and demultiplexing, and media data input.
 For performance reasons, AVCodec Kit provides only C APIs.
 
 ## Capability Scope
@@ -9,8 +9,8 @@ For performance reasons, AVCodec Kit provides only C APIs.
 - Video encoding: Video applications (such as video calling and video recording applications) can send uncompressed video data to the video encoder for encoding. The applications can set parameters such as the encoding format, bit rate, and frame rate to obtain compressed video files in desired formats.
 - Audio decoding: Audio applications (such as audio calling application and audio player) can send audio streams to the audio decoder for decoding. The decoded data can be sent to audio devices for playback.
 - Video decoding: Video applications (such as video calling application and video player) can send video streams to the video decoder for decoding. The decoded image data can be sent to display devices for display.
-- Media file demuxing: Media applications (such as audio and video players) can parse media files stored locally or received from the Internet to obtain audio and video streams, presentation time, encoding formats, and basic file attributes.
-- Media file muxing: Media applications (such as audio and video recording application) can mux stream data encoded by the encoder into media files (in MP4 or M4A format), and write the audio and video streams, presentation time, encoding format, and basic file attributes into the specified file in a certain format.
+- Media file demultiplexing: Media applications (such as audio and video players) can parse media files stored locally or received from the Internet to obtain audio and video streams, presentation time, encoding formats, and basic file attributes.
+- Media file multiplexing: Media applications (such as audio and video recording application) can multiplex stream data encoded by the encoder into media files (in MP4 or M4A format), and write the audio and video streams, presentation time, encoding format, and basic file attributes into the specified file in a certain format.
 
 ## Highlights
 - Zero copy of internal data: During video decoding, the AVCodec provides an AVBuffer through a callback function. The application writes the sample data to be decoded to the AVBuffer. In this way, data in the AVCodec is directly sent to the decoder, rather than being copied from the memory.
@@ -22,8 +22,8 @@ For performance reasons, AVCodec Kit provides only C APIs.
 - Streaming media: media transmission mode that supports simultaneous download and playback. The supported download protocols include HTTP/HTTPS and HLS.
 - Audio and video encoding: process of converting uncompressed audio and video data into another format, such as H.264 and AAC.
 - Audio and video decoding: process of converting a data format into an uncompressed original sequence of audio or video data, such as YUV and PCM.
-- Media file muxing: process of writing media data (such as audio, video, and subtitles) and description information to a file in a given format, for example, .mp4.
-- Media file demuxing: process of reading media data (such as audio, video, and subtitles) from a file and parsing the description information.
+- Media file multiplexing: process of writing media data (such as audio, video, and subtitles) and description information to a file in a given format, for example, .mp4.
+- Media file demultiplexing: process of reading media data (such as audio, video, and subtitles) from a file and parsing the description information.
 - sample: a group of data with the same timing attributes.
 
   In the case of audio and video, a sample typically means compressed data that has the same decoding timestamp.
@@ -58,13 +58,13 @@ For performance reasons, AVCodec Kit provides only C APIs.
   For details about the development guide, see [Audio Decoding](audio-decoding.md) and [Audio Encoding](audio-encoding.md).
 
 
-- File muxing and demuxing
+- File multiplexing and demultiplexing
 
-  During file muxing, an application sends an AVBuffer to the corresponding codec interface for muxing. The AVBuffer can be that output in the preceding encoding process or an AVBuffer created by the application. The AVBuffer must carry valid stream data and related time description.
-  During file demuxing, the application obtains the AVBuffer that carries stream data from the corresponding codec interface. The AVBuffer can be sent to the decoder for decoding.
+  During file multiplexing, an application sends an AVBuffer to the corresponding codec interface for multiplexing. The AVBuffer can be that output in the preceding encoding process or an AVBuffer created by the application. The AVBuffer must carry valid stream data and related time description.
+  During file demultiplexing, the application obtains the AVBuffer that carries stream data from the corresponding codec interface. The AVBuffer can be sent to the decoder for decoding.
 
-  The following figure shows the file muxing and demuxing logic.
+  The following figure shows the file multiplexing and demultiplexing logic.
 
   ![](figures/avcodec-muxer-demuxer-logic.png)
 
-  For details about the development guide, see [Media Data Demuxing](audio-video-demuxer.md) and [Media Data Muxing](audio-video-muxer.md).
+  For details about the development guide, see [Media Data Demultiplexing](audio-video-demuxer.md) and [Media Data Multiplexing](audio-video-muxer.md).

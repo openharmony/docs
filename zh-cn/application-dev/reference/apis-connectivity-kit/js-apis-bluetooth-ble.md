@@ -3,8 +3,8 @@
 ble模块提供了对蓝牙操作和管理的方法。
 
 > **说明：**
->
-> 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 接口中涉及的UUID服务，可以通过工具函数[util.generateRandomUUID](../apis-arkts/js-apis-util.md#utilgeneraterandomuuid9)生成。
 
 
 
@@ -30,7 +30,7 @@ type ProfileConnectionState = constant.ProfileConnectionState
 | [constant.ProfileConnectionState](js-apis-bluetooth-constant.md#profileconnectionstate) | 蓝牙设备的profile连接状态。 |
 
 
-## ble.createGattServer<a name="createGattServer"></a>
+## ble.createGattServer
 
 createGattServer(): GattServer
 
@@ -54,7 +54,7 @@ console.info('gatt success');
 ```
 
 
-## ble.createGattClientDevice<a name="createGattClientDevice"></a>
+## ble.createGattClientDevice
 
 createGattClientDevice(deviceId: string): GattClientDevice
 
@@ -97,7 +97,7 @@ try {
 ```
 
 
-## ble.getConnectedBLEDevices<a name="getConnectedBLEDevices"></a>
+## ble.getConnectedBLEDevices
 
 getConnectedBLEDevices(): Array&lt;string&gt;
 
@@ -137,11 +137,15 @@ try {
 ```
 
 
-## ble.startBLEScan<a name="startBLEScan"></a>
+## ble.startBLEScan
 
 startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 
 发起BLE扫描流程。
+> **说明：**
+> - 该接口只能扫描BLE设备。
+> - 该接口只支持单路扫描，即应用同时只能调用一次，下一次调用前，需要先调用[ble.stopBLEScan](#blestopblescan)。
+> - 若需要使用多路扫描，可使用[BleScanner](#blescanner15)。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -195,7 +199,7 @@ try {
 ```
 
 
-## ble.stopBLEScan<a name="stopBLEScan"></a>
+## ble.stopBLEScan
 
 stopBLEScan(): void
 
@@ -231,7 +235,7 @@ try {
 ```
 
 
-## ble.startAdvertising<a name="startAdvertising"></a>
+## ble.startAdvertising
 
 startAdvertising(setting: AdvertiseSetting, advData: AdvertiseData, advResponse?: AdvertiseData): void
 
@@ -312,7 +316,7 @@ try {
 ```
 
 
-## ble.stopAdvertising<a name="stopAdvertising"></a>
+## ble.stopAdvertising
 
 stopAdvertising(): void
 
@@ -348,7 +352,7 @@ try {
 ```
 
 
-## ble.startAdvertising<sup>11+</sup><a name="startAdvertising"></a>
+## ble.startAdvertising<sup>11+</sup>
 
 startAdvertising(advertisingParams: AdvertisingParams, callback: AsyncCallback&lt;number&gt;): void
 
@@ -440,7 +444,7 @@ try {
 ```
 
 
-## ble.startAdvertising<sup>11+</sup><a name="startAdvertising"></a>
+## ble.startAdvertising<sup>11+</sup>
 
 startAdvertising(advertisingParams: AdvertisingParams): Promise&lt;number&gt;
 
@@ -533,7 +537,7 @@ try {
 ```
 
 
-## ble.enableAdvertising<sup>11+</sup><a name="enableAdvertising"></a>
+## ble.enableAdvertising<sup>11+</sup>
 
 enableAdvertising(advertisingEnableParams: AdvertisingEnableParams, callback: AsyncCallback&lt;void&gt;): void
 
@@ -637,7 +641,7 @@ try {
 ```
 
 
-## ble.enableAdvertising<sup>11+</sup><a name="enableAdvertising"></a>
+## ble.enableAdvertising<sup>11+</sup>
 
 enableAdvertising(advertisingEnableParams: AdvertisingEnableParams): Promise&lt;void&gt;
 
@@ -745,7 +749,7 @@ try {
 ```
 
 
-## ble.disableAdvertising<sup>11+</sup><a name="disableAdvertising"></a>
+## ble.disableAdvertising<sup>11+</sup>
 
 disableAdvertising(advertisingDisableParams: AdvertisingDisableParams, callback: AsyncCallback&lt;void&gt;): void
 
@@ -846,7 +850,7 @@ try {
 ```
 
 
-## ble.disableAdvertising<sup>11+</sup><a name="disableAdvertising"></a>
+## ble.disableAdvertising<sup>11+</sup>
 
 disableAdvertising(advertisingDisableParams: AdvertisingDisableParams): Promise&lt;void&gt;
 
@@ -950,7 +954,7 @@ try {
 }
 ```
 
-## ble.stopAdvertising<sup>11+</sup><a name="stopAdvertising"></a>
+## ble.stopAdvertising<sup>11+</sup>
 
 stopAdvertising(advertisingId: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1048,7 +1052,7 @@ try {
 ```
 
 
-## ble.stopAdvertising<sup>11+</sup><a name="stopAdvertising"></a>
+## ble.stopAdvertising<sup>11+</sup>
 
 stopAdvertising(advertisingId: number): Promise&lt;void&gt;
 
@@ -3146,6 +3150,8 @@ try {
 setBLEMtuSize(mtu: number): void
 
 client协商远端蓝牙低功耗设备的最大传输单元(Maximum Transmission Unit, MTU)，调用[connect](#connect)接口连接成功后才能使用。
+> **说明：**
+> - 该接口通过[on('BLEMtuChange')](#onblemtuchange-1)，订阅client端MTU状态变化事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -3757,7 +3763,7 @@ startScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): Promise&lt;v
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth disabled.                 |
-|2900009 | Fails to start scan as it is out of hardware.                 |
+|2900009 | Fails to start scan as it is out of hardware resources.                 |
 |2900099 | Operation failed.                        |
 |2902050 | Failed to start scan as Ble scan is already started by the app.|
 
@@ -3939,340 +3945,338 @@ try {
 
 ## BLECharacteristic
 
-描述characteristic的接口参数定义 。
+GATT特征值结构定义，是服务[GattService](#gattservice)的核心数据单元。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称                  | 类型                                     | 可读   | 可写   | 说明                                 |
+| 名称                  | 类型                                     | 只读 | 可选   | 说明                                 |
 | ------------------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| serviceUuid         | string                                   | 是    | 是    | 特定服务(service)的UUID。例如：00001888-0000-1000-8000-00805f9b34fb。 |
-| characteristicUuid  | string                  | 是    | 是    | 特定特征(characteristic)的UUID。例如：00002a11-0000-1000-8000-00805f9b34fb。 |
-| characteristicValue | ArrayBuffer                              | 是    | 是    | 特征对应的二进制值。                      |
-| descriptors         | Array&lt;[BLEDescriptor](#bledescriptor)&gt; | 是    | 是    | 特定特征的描述符列表。                |
-| properties  | [GattProperties](#gattproperties) |   是   | 是     | 特定特征的属性描述。     |
+| serviceUuid         | string                                   | 否 | 否    | 特征值所属的服务UUID。例如：00001888-0000-1000-8000-00805f9b34fb。 |
+| characteristicUuid  | string                  | 否 | 否    | 特征值UUID。例如：00002a11-0000-1000-8000-00805f9b34fb。 |
+| characteristicValue | ArrayBuffer                              | 否 | 否    | 特征值的数据内容。                      |
+| descriptors         | Array&lt;[BLEDescriptor](#bledescriptor)&gt; | 否 | 否    | 特征值包含的描述符列表。                |
+| properties  | [GattProperties](#gattproperties) | 否 | 是     | 特征值支持的属性。     |
 
 
 ## BLEDescriptor
 
-描述descriptor的接口参数定义。
+GATT描述符结构定义，是特征值[BLECharacteristic](#blecharacteristic)的数据单元，用于描述特征值的附加信息和属性。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称                 | 类型        | 可读   | 可写   | 说明                                       |
+| 名称                 | 类型        | 只读 | 可选   | 说明                                       |
 | ------------------ | ----------- | ---- | ---- | ---------------------------------------- |
-| serviceUuid        | string      | 是    | 是    | 特定服务(service)的UUID。例如：00001888-0000-1000-8000-00805f9b34fb。 |
-| characteristicUuid | string      | 是    | 是    | 特定特征(characteristic)的UUID。例如：00002a11-0000-1000-8000-00805f9b34fb。 |
-| descriptorUuid     | string      | 是    | 是    | 描述符(descriptor)的UUID。例如：00002902-0000-1000-8000-00805f9b34fb。 |
-| descriptorValue    | ArrayBuffer | 是    | 是    | 描述符对应的二进制值。                              |
+| serviceUuid        | string      | 否 | 否    | 特征值所属的服务UUID。例如：00001888-0000-1000-8000-00805f9b34fb。 |
+| characteristicUuid | string      | 否 | 否    | 描述符所属的特征值UUID。例如：00002a11-0000-1000-8000-00805f9b34fb。 |
+| descriptorUuid     | string      | 否 | 否    | 描述符UUID。例如：00002902-0000-1000-8000-00805f9b34fb。 |
+| descriptorValue    | ArrayBuffer | 否 | 否    | 描述符的数据内容。                              |
 
 
 ## NotifyCharacteristic
 
-描述server端特征值变化时发送的特征通知参数定义。
+描述server端特征值发生变化时，server端发送特征值通知的参数结构。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称                  | 类型        | 可读   | 可写   | 说明                                       |
+| 名称                  | 类型        | 只读 | 可选   | 说明                                       |
 | ------------------- | ----------- | ---- | ---- | ---------------------------------------- |
-| serviceUuid         | string      | 是    | 是    | 特定服务(service)的UUID。例如：00001888-0000-1000-8000-00805f9b34fb。 |
-| characteristicUuid  | string      | 是    | 是    | 特定特征(characteristic)的UUID。例如：00002a11-0000-1000-8000-00805f9b34fb。 |
-| characteristicValue | ArrayBuffer | 是    | 是    | 特征对应的二进制值。                               |
-| confirm             | boolean     | 是    | 是    | 如果是indication，对端需要回复确认，则设置为true。<br>如果是notification，对端不需要回复确认，则设置为false。 |
+| serviceUuid         | string      | 否 | 否    | 特征值所属的服务UUID。例如：00001888-0000-1000-8000-00805f9b34fb。 |
+| characteristicUuid  | string      | 否 | 否    | 内容发生变化的特征值UUID。例如：00002a11-0000-1000-8000-00805f9b34fb。 |
+| characteristicValue | ArrayBuffer | 否 | 否    | 特征值对应的数据内容。                               |
+| confirm             | boolean     | 否 | 否    | true表示发送的是指示，需要client端回复确认。false表示发送的是通知，不需要client端回复确认。 |
 
 
 ## CharacteristicReadRequest
 
-描述server端订阅后收到的特征值读请求事件参数结构。
+描述server端订阅client端读特征值请求事件后，接收到的事件参数结构。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称                 | 类型   | 可读   | 可写   | 说明                                       |
+| 名称                 | 类型   | 只读 | 可选   | 说明                                       |
 | ------------------ | ------ | ---- | ---- | ---------------------------------------- |
-| deviceId           | string | 是    | 否    | 表示发送特征值读请求的远端设备地址。例如："XX:XX:XX:XX:XX:XX"。 |
-| transId            | number | 是    | 否    | 表示读请求的传输ID，server端回复响应时需填写相同的传输ID。       |
-| offset             | number | 是    | 否    | 表示读特征值数据的起始位置。例如：k表示从第k个字节开始读，server端回复响应时需填写相同的offset。 |
-| characteristicUuid | string | 是    | 否    | 特定特征(characteristic)的UUID。例如：00002a11-0000-1000-8000-00805f9b34fb。 |
-| serviceUuid        | string | 是    | 否    | 特定服务(service)的UUID。例如：00001888-0000-1000-8000-00805f9b34fb。 |
+| deviceId           | string | 否 | 否    | client端蓝牙设备地址。例如："XX:XX:XX:XX:XX:XX"。 |
+| transId            | number | 否 | 否    | client端读请求的标识符，server端回复时需填写相同的transId。       |
+| offset             | number | 否 | 否    | client端读数据的偏移值。例如：k表示从第k个字节开始读。<br>server端回复响应时需填写相同的offset。 |
+| characteristicUuid | string | 否 | 否    | client端需要读取的特征值UUID。例如：00002a11-0000-1000-8000-00805f9b34fb。 |
+| serviceUuid        | string | 否 | 否    | 特征值所属的服务UUID。例如：00001888-0000-1000-8000-00805f9b34fb。 |
 
 
 ## CharacteristicWriteRequest
 
-描述server端订阅后收到的特征值写请求事件参数结构。
+描述server端订阅client端写特征值请求事件后，接收到的事件参数结构。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称                 | 类型   | 可读   | 可写   | 说明                                       |
+| 名称                 | 类型   | 只读 | 可选   | 说明                                       |
 | ------------------ | ------ | ---- | ---- | ---------------------------------------- |
-| deviceId           | string | 是    | 否    | 表示发送特征值写请求的远端设备地址。例如："XX:XX:XX:XX:XX:XX"。 |
-| transId            | number | 是    | 否    | 表示写请求的传输ID，server端回复响应时需填写相同的传输ID。       |
-| offset             | number | 是    | 否    | 表示写特征值数据的起始位置。例如：k表示从第k个字节开始写，server端回复响应时需填写相同的offset。 |
-| isPrepared             | boolean | 是    | 否    | 表示写请求是否立即执行。true表示立即执行。 |
-| needRsp             | boolean | 是    | 否    | 表示是否要给client端回复响应。true表示需要回复。 |
-| value             | ArrayBuffer | 是    | 否    | 表示写入的描述符二进制数据。 |
-| characteristicUuid | string | 是    | 否    | 特定特征(characteristic)的UUID。例如：00002a11-0000-1000-8000-00805f9b34fb。 |
-| serviceUuid        | string | 是    | 否    | 特定服务(service)的UUID。例如：00001888-0000-1000-8000-00805f9b34fb。 |
+| deviceId           | string | 否 | 否    | client端蓝牙设备地址。例如："XX:XX:XX:XX:XX:XX"。 |
+| transId            | number | 否 | 否    | client端写请求的标识符，server端回复时需填写相同的transId。       |
+| offset             | number | 否 | 否    | client端写数据的偏移值。例如：k表示从第k个字节开始写。<br>server端回复时需填写相同的offset。 |
+| isPrepared             | boolean | 否 | 否    | 收到client端写请求后，是否立即回复。<br>true表示稍后回复，false表示立即回复。 |
+| needRsp             | boolean | 否 | 否    | 是否需要回复client端。<br>true表示需要回复，false表示不需要回复。 |
+| value             | ArrayBuffer | 否 | 否    | client端需要给特征值写入的数据。 |
+| characteristicUuid | string | 否 | 否    | client端需要写入的特征值UUID。例如：00002a11-0000-1000-8000-00805f9b34fb。 |
+| serviceUuid        | string | 否 | 否    | 特征值所属的服务UUID。例如：00001888-0000-1000-8000-00805f9b34fb。 |
 
 
 ## DescriptorReadRequest
 
-描述server端订阅后收到的描述符读请求事件参数结构。
+描述server端订阅client端读描述符请求事件后，接收到的事件参数结构。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称                 | 类型   | 可读   | 可写   | 说明                                       |
+| 名称                 | 类型   | 只读 | 可选   | 说明                                       |
 | ------------------ | ------ | ---- | ---- | ---------------------------------------- |
-| deviceId           | string | 是    | 否    | 表示发送描述符读请求的远端设备地址。例如："XX:XX:XX:XX:XX:XX"。 |
-| transId            | number | 是    | 否    | 表示读请求的传输ID，server端回复响应时需填写相同的传输ID。       |
-| offset             | number | 是    | 否    | 表示读描述符数据的起始位置。例如：k表示从第k个字节开始读，server端回复响应时需填写相同的offset。 |
-| descriptorUuid     | string | 是    | 否    | 表示描述符(descriptor)的UUID。例如：00002902-0000-1000-8000-00805f9b34fb。 |
-| characteristicUuid | string | 是    | 否    | 特定特征(characteristic)的UUID。例如：00002a11-0000-1000-8000-00805f9b34fb。 |
-| serviceUuid        | string | 是    | 否    | 特定服务(service)的UUID。例如：00001888-0000-1000-8000-00805f9b34fb。 |
+| deviceId           | string | 否 | 否    | client端蓝牙设备地址。例如："XX:XX:XX:XX:XX:XX"。 |
+| transId            | number | 否 | 否    | client端读请求的标识符，server端回复时需填写相同的transId。       |
+| offset             | number | 否 | 否    | client端读数据的偏移值。例如：k表示从第k个字节开始读。<br>server端回复响应时需填写相同的offset。 |
+| descriptorUuid     | string | 否 | 否    | client端需要读取的描述符UUID。例如：00002902-0000-1000-8000-00805f9b34fb。 |
+| characteristicUuid | string | 否 | 否    | 描述符所属的特征值UUID。例如：00002a11-0000-1000-8000-00805f9b34fb。 |
+| serviceUuid        | string | 否 | 否    | 特征值所属的服务UUID。例如：00001888-0000-1000-8000-00805f9b34fb。 |
 
 
 ## DescriptorWriteRequest
 
-描述server端订阅后收到的描述符写请求事件参数结构。
+描述server端订阅client端写描述符请求事件后，接收到的事件参数结构。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称                 | 类型        | 可读   | 可写   | 说明                                       |
+| 名称                 | 类型        | 只读 | 可选   | 说明                                       |
 | ------------------ | ----------- | ---- | ---- | ---------------------------------------- |
-| deviceId           | string      | 是    | 否    | 表示发送描述符写请求的远端设备地址。例如："XX:XX:XX:XX:XX:XX"。 |
-| transId            | number      | 是    | 否    | 表示写请求的传输ID，server端回复响应时需填写相同的传输ID。       |
-| offset             | number      | 是    | 否    | 表示写描述符数据的起始位置。例如：k表示从第k个字节开始写，server端回复响应时需填写相同的offset。 |
-| isPrepared             | boolean     | 是    | 否    | 表示写请求是否立即执行。                             |
-| needRsp            | boolean     | 是    | 否    | 表示是否要给client端回复响应。                       |
-| value              | ArrayBuffer | 是    | 否    | 表示写入的描述符二进制数据。                           |
-| descriptorUuid     | string      | 是    | 否    | 表示描述符(descriptor)的UUID。例如：00002902-0000-1000-8000-00805f9b34fb。 |
-| characteristicUuid | string      | 是    | 否    | 特定特征(characteristic)的UUID。例如：00002a11-0000-1000-8000-00805f9b34fb。 |
-| serviceUuid        | string      | 是    | 否    | 特定服务(service)的UUID。例如：00001888-0000-1000-8000-00805f9b34fb。 |
+| deviceId           | string      | 否 | 否    | client端蓝牙设备地址。例如："XX:XX:XX:XX:XX:XX"。 |
+| transId            | number      | 否 | 否    | client端写请求的标识符，server端回复时需填写相同的transId。       |
+| offset             | number      | 否 | 否    | client端写数据的偏移值。例如：k表示从第k个字节开始写。<br>server端回复时需填写相同的offset。 |
+| isPrepared         | boolean     | 否 | 否    | 收到client端写请求后，是否立即回复。<br>true表示稍后回复，false表示立即回复。                             |
+| needRsp            | boolean     | 否 | 否    | 是否需要回复client端。<br>true表示需要回复，false表示不需要回复。                       |
+| value              | ArrayBuffer | 否 | 否    | client端需要给描述符写入的数据。                           |
+| descriptorUuid     | string      | 否 | 否    | client端需要写入的描述符UUID。例如：00002902-0000-1000-8000-00805f9b34fb。 |
+| characteristicUuid | string      | 否 | 否    | 描述符所属的特征值UUID。例如：00002a11-0000-1000-8000-00805f9b34fb。 |
+| serviceUuid        | string      | 否 | 否    | 特征值所属的服务UUID。例如：00001888-0000-1000-8000-00805f9b34fb。 |
 
 
 ## ServerResponse
 
-描述server端回复client端读/写请求的响应参数结构。
+描述server端回复client端读或者写请求的响应参数结构。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称       | 类型        | 可读   | 可写   | 说明                                     |
-| -------- | ----------- | ---- | ---- | -------------------------------------- |
-| deviceId | string      | 是    | 否    | 表示远端设备地址。例如："XX:XX:XX:XX:XX:XX"。       |
-| transId  | number      | 是    | 否    | 表示请求的传输ID，与订阅的读/写请求事件携带的ID保持一致。        |
-| status   | number      | 是    | 否    | 表示响应的状态，设置为0即可，表示正常。                   |
-| offset   | number      | 是    | 否    | 表示请求的读/写起始位置，与订阅的读/写请求事件携带的offset保持一致。 |
-| value    | ArrayBuffer | 是    | 否    | 表示回复响应的二进制数据。                          |
+| 名称       | 类型        | 只读 | 可选   | 说明                                     |
+| -------- | ----------- | ---- |  ---- | -------------------------------------- |
+| deviceId | string      | 否 | 否    | client端蓝牙设备地址。例如："XX:XX:XX:XX:XX:XX"。       |
+| transId  | number      | 否 | 否    | 收到client端请求的标识符，与订阅client端读或者写请求事件携带的transId保持一致。        |
+| status   | number      | 否 | 否    | 响应的状态，设置为0即可，表示正常。                   |
+| offset   | number      | 否 | 否    | client端读或者写请求的数据偏移值，与订阅client端读或者写请求事件携带的offset保持一致。 |
+| value    | ArrayBuffer | 否 | 否    | 回复的数据。                          |
 
 
 ## BLEConnectionChangeState
 
-描述Gatt profile连接状态。
+描述GATT profile协议连接状态。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称     | 类型                                          | 可读 | 可写 | 说明                                          |
+| 名称     | 类型                                          | 只读 | 可选 | 说明                                          |
 | -------- | ------------------------------------------------- | ---- | ---- | --------------------------------------------- |
-| deviceId | string                                            | 是   | 否   | 表示远端设备地址。例如："XX:XX:XX:XX:XX:XX"。 |
-| state    | [ProfileConnectionState](js-apis-bluetooth-constant.md#profileconnectionstate) | 是   | 是   | 表示BLE连接状态的枚举。                       |
+| deviceId | string                                            | 否 | 否   | 对端蓝牙设备地址。例如："XX:XX:XX:XX:XX:XX"。 |
+| state    | [ProfileConnectionState](js-apis-bluetooth-constant.md#profileconnectionstate) | 否 | 否   | GATT profile连接状态。                       |
 
 
 ## ScanResult
 
-扫描结果上报数据。
+扫描到符合过滤条件的广播报文后，上报的扫描数据。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称       | 类型        | 可读   | 可写   | 说明                                 |
+| 名称       | 类型        | 只读 | 可选   | 说明                                 |
 | -------- | ----------- | ---- | ---- | ---------------------------------- |
-| deviceId | string      | 是    | 否    | 表示扫描到的设备地址。例如："XX:XX:XX:XX:XX:XX"。<br>基于信息安全考虑，此处获取的设备地址为随机MAC地址。<br>- 配对成功后，该地址不会变更。<br>- 已配对设备取消配对后重新扫描或蓝牙服务下电时，该随机地址会变更。 |
-| rssi     | number      | 是    | 否    | 表示扫描到的设备的rssi值。                    |
-| data     | ArrayBuffer | 是    | 否    | 表示扫描到的设备发送的广播包。                    |
-| deviceName | string | 是    | 否    | 表示扫描到的设备名称。                    |
-| connectable  | boolean | 是    | 否    | 表示扫描到的设备是否可连接。true表示可连接，false表示不可连接。                    |
+| deviceId | string      | 否 | 否    | 扫描到的蓝牙设备地址。例如："XX:XX:XX:XX:XX:XX"。<br>基于信息安全考虑，此处获取的设备地址为虚拟MAC地址。<br>- 配对成功后，该地址不会变更。<br>- 取消配对该设备后或蓝牙服务重启后，若重新发起扫描，该虚拟地址会变更。 |
+| rssi     | number      | 否 | 否    | 扫描到的设备信号强度，单位dBm。                    |
+| data     | ArrayBuffer | 否 | 否    | 扫描到的设备发送的广播报文内容。                    |
+| deviceName | string | 否 | 否    | 扫描到的设备名称。                    |
+| connectable  | boolean | 否 | 否    | 扫描到的设备是否可连接。true表示可连接，false表示不可连接。                    |
 
 
 ## AdvertiseSetting
 
-描述蓝牙低功耗设备发送广播的参数。
+描述BLE广播的发送参数。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称          | 类型    | 可读   | 可写   | 说明                                       |
+| 名称          | 类型    | 只读 | 可选   | 说明                                       |
 | ----------- | ------- | ---- | ---- | ---------------------------------------- |
-| interval    | number  | 是    | 是    | 表示广播间隔。<br>最小值设置32个slot表示20ms，最大值设置16777215个slot，默认值设置为1600个slot表示1s。(传统广播模式下最大值为16384个slot表示10.24s) |
-| txPower     | number  | 是    | 是    | 表示发送功率。<br>最小值设置-127，最大值设置1，默认值设置-7，单位dbm。<br>推荐值：高档(1)，中档(-7)，低档(-15)。   |
-| connectable | boolean | 是    | 是    | 表示是否是可连接广播。<br>默认值设置为true，表示可连接。false表示不可连接。                   |
+| interval    | number  | 否 | 是    | 广播发送间隔。<br>取值范围是[32, 16777215]，单位是slot（时间槽），一个slot代表0.625毫秒，默认值为1600。<br>其中传统广播的最大值是16384。 |
+| txPower     | number  | 否 | 是    | 广播发送功率。取值范围是[-127, 1]，单位是dBm，默认值为-7。<br>考虑到发送广播的性能和功耗，建议高档取值为1，中档取为-7，低档取值为-15。   |
+| connectable | boolean | 否 | 是    | 是否是可连接广播。true表示发送可连接广播，默认值为true。                   |
 
 
 ## AdvertiseData
 
-描述BLE广播数据包的内容，广播包数据长度为31个字节。
+描述BLE广播报文数据内容，也可以用作回复扫描请求的广播报文数据内容。当前只支持传统广播，因此报文最大长度为31个字节。若超出最大长度（31个字节）限制，会导致启动广播失败。若携带了所有参数，尤其是携带了蓝牙设备名称，需要注意广播报文长度。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称              | 类型                                     | 可读   | 可写   | 说明                          |
+| 名称              | 类型                                     | 只读 | 可选   | 说明                          |
 | --------------- | ---------------------------------------- | ---- | ---- | --------------------------- |
-| serviceUuids    | Array&lt;string&gt;                      | 是    | 是    | 表示要广播的服务&nbsp;UUID&nbsp;列表。 |
-| manufactureData | Array&lt;[ManufactureData](#manufacturedata)&gt; | 是    | 是    | 表示要广播的广播的制造商信息列表。           |
-| serviceData     | Array&lt;[ServiceData](#servicedata)&gt; | 是    | 是    | 表示要广播的服务数据列表。               |
-| includeDeviceName | boolean     | 是    | 是    | 表示是否携带设备名，可选参数。<br>true表示携带，false或未设置此参数表示不携带。<br>注意：带上设备名时广播包长度不能超出31个字节。        |
+| serviceUuids    | Array&lt;string&gt;                      | 否 | 否    | 要携带的服务UUID。 |
+| manufactureData | Array&lt;[ManufactureData](#manufacturedata)&gt; | 否 | 否    | 要携带的制造商数据内容。           |
+| serviceData     | Array&lt;[ServiceData](#servicedata)&gt; | 否 | 否    | 要携带的服务数据内容。               |
+| includeDeviceName | boolean     | 否 | 是    | 是否携带蓝牙设备名称。true表示携带，false表示不携带，默认值为false。        |
 
 ## AdvertisingParams<sup>11+</sup>
 
-描述首次启动广播设置的参数。
+首次启动BLE广播时设置的参数。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称                | 类型                             | 可读  | 可写  | 说明                      |
+| 名称                | 类型                             | 只读 | 可选  | 说明                      |
 | ------------------- | ------------------------------- | ----- | ----- | ------------------------ |
-| advertisingSettings<sup>11+</sup> | [AdvertiseSetting](#advertisesetting) | 是    | 是    | 表示发送广播的相关参数。    |
-| advertisingData<sup>11+</sup>    | [AdvertiseData](#advertisedata) | 是    | 是    | 表示广播的数据包内容。      |
-| advertisingResponse<sup>11+</sup> | [AdvertiseData](#advertisedata) | 是    | 是    | 表示回复扫描请求的响应内容。 |
-| duration<sup>11+</sup>    | number   | 是    | 是    | 表示发送广播持续的时间。<br>单位为10ms，有效范围为1(10ms)~65535(655350ms)。<br>如果未指定此参数或者将其设置为0，则会连续发送广播。    |
+| advertisingSettings<sup>11+</sup> | [AdvertiseSetting](#advertisesetting) | 否 | 否    | 广播的发送参数。    |
+| advertisingData<sup>11+</sup>    | [AdvertiseData](#advertisedata) | 否 | 否    | 需要发送的广播报文数据内容。      |
+| advertisingResponse<sup>11+</sup> | [AdvertiseData](#advertisedata) | 否 | 是    | 回复扫描请求的广播报文数据内容。 |
+| duration<sup>11+</sup>    | number   | 否 | 是    | 发送广播的持续时间。有效的取值范围为[1, 65535]，单位为10毫秒。<br>如果未指定此参数或者将其设置为0，则会持续发送广播。    |
 
 ## AdvertisingEnableParams<sup>11+</sup>
 
-描述临时启动广播设置的参数。
+启动指定标识的BLE广播时设置的参数。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称                | 类型                   | 可读  | 可写  | 说明                      |
+| 名称                | 类型                   | 只读 | 可选  | 说明                      |
 | ------------------- | --------------------- | ----- | ----- | ------------------------ |
-| advertisingId<sup>11+</sup>       | number                | 是    | 是    | 表示当前广播的ID标识。     |
-| duration<sup>11+</sup>            | number                | 是    | 是    | 表示发送广播持续的时间。<br>单位为10ms，有效范围为1(10ms)~65535(655350ms)。<br>如果未指定此参数或者将其设置为0，则会连续发送广播。   |
+| advertisingId       | number                | 否 | 否    | 需要启动的广播标识。     |
+| duration            | number                | 否 | 是    | 发送广播的持续时间。有效的取值范围为[1, 65535]，单位为10毫秒。<br>如果未指定此参数或者将其设置为0，则会持续发送广播。   |
 
 ## AdvertisingDisableParams<sup>11+</sup>
 
-描述临时停止广播设置的参数。
+停止指定标识的BLE广播时设置的参数。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称                | 类型                   | 可读  | 可写  | 说明                      |
+| 名称                | 类型                   | 只读 | 可选  | 说明                      |
 | ------------------- | --------------------- | ----- | ----- | ------------------------ |
-| advertisingId<sup>11+</sup>       | number                | 是    | 是    | 表示当前广播的ID标识。     |
+| advertisingId       | number                | 否 | 否    | 需要停止的广播标识。     |
 
 ## AdvertisingStateChangeInfo<sup>11+</sup>
 
-描述广播启动、停止等状态信息。
+描述BLE广播启动、停止的状态信息。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称                | 类型                                     | 可读  | 可写  | 说明                      |
+| 名称                | 类型                                     | 只读 | 可选   | 说明                      |
 | ------------------- | --------------------------------------- | ----- | ----- | ------------------------ |
-| advertisingId<sup>11+</sup>       | number                                  | 是    | 是    | 表示广播ID标识。           |
-| state<sup>11+</sup>               | [AdvertisingState](#advertisingstate11)   | 是    | 是    | 表示广播状态。             |
+| advertisingId       | number                                  | 否 | 否    |首次启动广播时会分配该值，后续用于标识当前操作的广播。           |
+| state               | [AdvertisingState](#advertisingstate11)   | 否 | 否    | 操作广播后，收到的BLE广播状态。             |
 
 ## ManufactureData
 
-描述BLE广播数据包的内容。
+描述BLE广播报文中制造商数据内容。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称               | 类型                | 可读   | 可写   | 说明                 |
+| 名称               | 类型                | 只读 | 可选   | 说明                 |
 | ---------------- | ------------------- | ---- | ---- | ------------------ |
-| manufactureId    | number  | 是    | 是    | 表示制造商的ID，由蓝牙SIG分配。 |
-| manufactureValue | ArrayBuffer         | 是    | 是    | 表示制造商发送的制造商数据。     |
+| manufactureId    | number  | 否 | 否    | 制造商的标识，由蓝牙技术联盟分配。 |
+| manufactureValue | ArrayBuffer         | 否 | 否    | 制造商特定的数据。     |
 
 
 ## ServiceData
 
-描述广播包中服务数据内容。
+描述BLE广播报文中的服务数据内容。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称           | 类型        | 可读   | 可写   | 说明         |
+| 名称           | 类型        | 只读 | 可选   | 说明         |
 | ------------ | ----------- | ---- | ---- | ---------- |
-| serviceUuid  | string      | 是    | 是    | 表示服务的UUID。 |
-| serviceValue | ArrayBuffer | 是    | 是    | 表示服务数据。    |
+| serviceUuid  | string      | 否  | 否    | 服务UUID。 |
+| serviceValue | ArrayBuffer | 否  | 否    | 服务数据。    |
 
 
 ## ScanFilter
 
-扫描过滤参数。
+扫描BLE广播的过滤条件，只有符合该条件的广播报文才会上报。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称                                     | 类型    | 必填  | 说明                                                         |
-| ------------------------------------------ | -------- | ---- | ------------------------------------------------------------ |
-| deviceId                                 | string      | 否    | 表示过滤的BLE设备地址。例如："XX:XX:XX:XX:XX:XX"。           |
-| name                                     | string      | 否    | 表示过滤的BLE设备名。                                        |
-| serviceUuid                              | string      | 否    | 表示过滤包含该UUID服务的设备。例如：00001888-0000-1000-8000-00805f9b34fb。 |
-| serviceUuidMask             | string      | 否     | 表示过滤包含该UUID服务掩码的设备。例如：FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF。 |
-| serviceSolicitationUuid     | string      | 否     | 表示过滤包含该UUID服务请求的设备。例如：00001888-0000-1000-8000-00805F9B34FB。 |
-| serviceSolicitationUuidMask | string      | 否     | 表示过滤包含该UUID服务请求掩码的设备。例如：FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF。 |
-| serviceData                 | ArrayBuffer | 否     | 表示过滤包含该服务相关数据的设备。例如：[0x90,0x00,0xF1,0xF2]。 |
-| serviceDataMask             | ArrayBuffer | 否     | 表示过滤包含该服务相关数据掩码的设备。例如：[0xFF,0xFF,0xFF,0xFF]。 |
-| manufactureId               | number      | 否     | 表示过滤包含该制造商ID的设备。例如：0x0006。                 |
-| manufactureData             | ArrayBuffer | 否     | 表示过滤包含该制造商相关数据的设备。例如：[0x1F,0x2F,0x3F]。 |
-| manufactureDataMask         | ArrayBuffer | 否     | 表示过滤包含该制造商相关数据掩码的设备。例如：[0xFF,0xFF,0xFF]。 |
+| 名称                                     | 类型    | 只读 | 可选  | 说明                                                         |
+| ------------------------------------------ | -------- | ---- | ---- | ------------------------------------------------------------ |
+| deviceId                                 | string      | 否 | 是    | 过滤该BLE设备地址的广播报文。例如："XX:XX:XX:XX:XX:XX"。           |
+| name                                     | string      | 否 | 是    | 过滤该BLE设备名称的广播报文。                                        |
+| serviceUuid                              | string      | 否 | 是    | 过滤包含该服务UUID的广播报文。例如：00001888-0000-1000-8000-00805f9b34fb。 |
+| serviceUuidMask             | string      | 否 | 是     | 搭配serviceUuid过滤器使用，可设置过滤部分服务UUID。例如：FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF。 |
+| serviceSolicitationUuid     | string      | 否 | 是     | 过滤包含该服务请求UUID的广播报文。例如：00001888-0000-1000-8000-00805F9B34FB。 |
+| serviceSolicitationUuidMask | string      | 否 | 是     | 搭配serviceSolicitationUuid过滤器使用，可设置过滤部分服务请求UUID。例如：FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF。 |
+| serviceData                 | ArrayBuffer | 否 | 是     | 过滤包含该服务数据的广播报文。例如：[0x90,0x00,0xF1,0xF2]。 |
+| serviceDataMask             | ArrayBuffer | 否 | 是     | 搭配serviceData过滤器使用，可设置过滤部分服务数据。例如：[0xFF,0xFF,0xFF,0xFF]。 |
+| manufactureId               | number      | 否 | 是     | 过滤包含该制造商标识符的广播报文。例如：0x0006。                 |
+| manufactureData             | ArrayBuffer | 否 | 是     | 搭配manufactureId过滤器使用，过滤包含该制造商数据的广播报文。例如：[0x1F,0x2F,0x3F]。 |
+| manufactureDataMask         | ArrayBuffer | 否 | 是     | 搭配manufactureData过滤器使用，可设置过滤部分制造商数据。例如：[0xFF,0xFF,0xFF]。 |
 
 
 ## ScanOptions
 
-扫描的配置参数。
-
-**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+BLE扫描的配置参数。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称        | 类型                    | 可读   | 可写   | 说明                                     |
+| 名称        | 类型                    | 只读 | 可选   | 说明                                     |
 | --------- | ----------------------- | ---- | ---- | -------------------------------------- |
-| interval  | number                  | 是    | 是    | 表示扫描结果上报延迟时间，默认值为0。                    |
-| dutyMode  | [ScanDuty](#scanduty)   | 是    | 是    | 表示扫描模式，默认值为SCAN_MODE_LOW_POWER。        |
-| matchMode | [MatchMode](#matchmode) | 是    | 是    | 表示硬件的过滤匹配模式，默认值为MATCH_MODE_AGGRESSIVE。 |
-| phyType<sup>12+</sup> | [PhyType](#phytype12) | 是    | 是    | 表示扫描中使用的PHY类型。 |
-| reportMode<sup>15+</sup> | [ScanReportMode](#scanreportmode15) | 是    | 是    | 表示扫描结果数据上报模式。 |
+| interval  | number                  | 否 | 是    | 扫描结果上报的延迟时间，默认值为0。<br>- 如果该值是0，扫描到符合条件的广播报文后，会立刻上报。<br>- 如果该值大于0，扫描到符合条件的广播报文后，会放入缓存队列，延时上报。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                    |
+| dutyMode  | [ScanDuty](#scanduty)   | 否 | 是    | 扫描模式，默认值为SCAN_MODE_LOW_POWER。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。        |
+| matchMode | [MatchMode](#matchmode) | 否 | 是    | 硬件的过滤匹配模式，默认值为MATCH_MODE_AGGRESSIVE。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
+| phyType<sup>12+</sup> | [PhyType](#phytype12) | 否 | 是    | 扫描中使用的物理通道类型，默认值为PHY_LE_1M。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
+| reportMode<sup>15+</sup> | [ScanReportMode](#scanreportmode15) | 否 | 是    | 扫描结果数据上报模式，默认值为NORMAL。<br>**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。 |
 
 
-## GattProperties<a name="GattProperties"></a>
+## GattProperties
 
-描述gatt characteristic的属性。
+描述GATT特征值支持的属性。决定了特征值内容和描述符如何被使用和访问。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称       | 类型  | 必填   | 说明          |
-| -------- | ------ |---- | ----------- |
-| write    | boolean | 否  | 表示该特征支持写操作，true表示需要对端设备的回复。 |
-| writeNoResponse | boolean | 否    | true表示该特征支持写操作，无需对端设备回复。 |
-| read | boolean   |  否    | true表示该特征支持读操作。 |
-| notify | boolean   | 否    | true表示该特征可通知对端设备。 |
-| indicate | boolean   | 否    | true表示该特征可通知对端设备，需要对端设备的回复。 |
+| 名称       | 类型  | 只读 | 可选   | 说明          |
+| -------- | ------ |---- |---- | ----------- |
+| write    | boolean | 否 | 是  | 该特征值是否支持写入操作。<br>true表示支持，且被写入时需要回复对端设备，false表示不支持。默认值为true。 |
+| writeNoResponse | boolean | 否 | 是   | 该特征值是否支持写入操作。<br>true表示支持，且被写入时无需回复对端设备，false表示不支持。默认值为true。 |
+| read | boolean   | 否 |  是    | 该特征值是否支持读取操作。<br>true表示支持，false表示不支持。默认值为true。 |
+| notify | boolean   | 否 | 是    | 该特征值是否支持主动向对端设备通知特征值内容。<br>true表示支持，且对端设备不需要回复确认，false表示不支持。默认值为false。 |
+| indicate | boolean   | 否 | 是    | 该特征值是否支持向对端设备指示特征值内容。<br>true表示支持，对端设备需要回复确认，false表示不支持。默认值为false。 |
 
 
-## GattWriteType<a name="GattWriteType"></a>
+## GattWriteType
 
-枚举，表示gatt写入类型。
+枚举，写入特征值的方式（不同的取值，对端蓝牙设备的表现不一样）。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4280,13 +4284,13 @@ try {
 
 | 名称                                   | 值    | 说明              |
 | ------------------------------------| ------ | --------------- |
-| WRITE               | 1 | 表示写入特征值，需要对端设备的回复。   |
-| WRITE_NO_RESPONSE   | 2 | 表示写入特征值，不需要对端设备的回复。  |
+| WRITE               | 1 | 写入特征值后，对端蓝牙设备需要回复确认。   |
+| WRITE_NO_RESPONSE   | 2 | 写入特征值后，对端蓝牙设备不需要回复。  |
 
 
 ## ScanDuty
 
-枚举，扫描模式。
+枚举，扫描模式，表示不同的扫描性能和功耗情况。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4294,9 +4298,9 @@ try {
 
 | 名称                    | 值  | 说明           |
 | --------------------- | ---- | ------------ |
-| SCAN_MODE_LOW_POWER   | 0    | 表示低功耗模式，默认值。 |
-| SCAN_MODE_BALANCED    | 1    | 表示均衡模式。      |
-| SCAN_MODE_LOW_LATENCY | 2    | 表示低延迟模式。     |
+| SCAN_MODE_LOW_POWER   | 0    | 低功耗模式，扫描性能较低，功耗也较低。 |
+| SCAN_MODE_BALANCED    | 1    | 均衡模式，平衡扫描性能和功耗。      |
+| SCAN_MODE_LOW_LATENCY | 2    | 低延迟模式，扫描性能较高，但功耗也较高。     |
 
 
 ## MatchMode
@@ -4309,25 +4313,25 @@ try {
 
 | 名称                    | 值  | 说明                                       |
 | --------------------- | ---- | ---------------------------------------- |
-| MATCH_MODE_AGGRESSIVE | 1    | 表示硬件上报扫描结果门限较低，比如扫描到的功率较低或者一段时间扫描到的次数较少也触发上报，默认值。 |
-| MATCH_MODE_STICKY     | 2    | 表示硬件上报扫描结果门限较高，更高的功率门限以及扫描到多次才会上报。       |
+| MATCH_MODE_AGGRESSIVE | 1    | 当广播报文信号强度较低或者短时间内广播报文的发送次数较少时，可以更快地上报。 |
+| MATCH_MODE_STICKY     | 2    | 广播报文信号强度较高或者短时间内广播报文的发送次数较多时，才会上报。       |
 
 ## AdvertisingState<sup>11+</sup>
 
-枚举，广播状态。
+枚举，不同操作对应的BLE广播状态。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称      | 值    | 说明                           |
 | --------  | ---- | ------------------------------ |
-| STARTED<sup>11+</sup>   | 1    | 表示首次启动广播后的状态。       |
-| ENABLED<sup>11+</sup>   | 2    | 表示临时启动广播后的状态。       |
-| DISABLED<sup>11+</sup>  | 3    | 表示临时停止广播后的状态。       |
-| STOPPED<sup>11+</sup>    | 4    | 表示完全停止广播后的状态。       |
+| STARTED<sup>11+</sup>   | 1    | 调用[startAdvertising](#blestartadvertising11)方法后，广播首次启动成功，且会分配相关资源。       |
+| ENABLED<sup>11+</sup>   | 2    | 调用[enableAdvertising](#bleenableadvertising11)方法后，广播启动成功。       |
+| DISABLED<sup>11+</sup>  | 3    | 调用[disableAdvertising](#bledisableadvertising11)方法后，广播停止成功。       |
+| STOPPED<sup>11+</sup>    | 4    | 调用[stopAdvertising](#blestopadvertising11)方法后，广播停止成功，且会释放首次启动广播时分配的相关资源。       |
 
 ## PhyType<sup>12+</sup>
 
-枚举，扫描中使用的PHY类型。
+枚举，指定扫描过程中接收BLE广播报文的物理通道。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4335,25 +4339,25 @@ try {
 
 | 名称      | 值    | 说明                           |
 | --------  | ---- | ------------------------------ |
-| PHY_LE_1M<sup>12+</sup>   | 1    | 表示扫描中使用1M PHY。       |
-| PHY_LE_ALL_SUPPORTED<sup>12+</sup>   | 255    | 表示扫描中使用蓝牙协议支持的PHY模式。    |
+| PHY_LE_1M<sup>12+</sup>   | 1    | 使用1M PHY类型扫描。       |
+| PHY_LE_ALL_SUPPORTED<sup>12+</sup>   | 255    | 使用所有支持的PHY类型扫描。    |
 
 ## ScanReport<sup>15+</sup>
 
-扫描结果数据上报。
+上报的扫描数据。
 
 **原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称      | 类型                  | 只读   | 可选   | 说明                                     |
+| 名称      | 类型                  |只读   |可选   | 说明                                     |
 | --------- | ----------------------- | ---- | ---- | ------------------------------ |
-| reportType  | [ScanReportType](#scanreporttype15)        | 否 | 否 | 表示扫描报告类型。    |
-| scanResult  | Array&lt;[ScanResult](#scanresult)&gt;    | 否 | 否 |扫描结果数据。        |
+| reportType  | [ScanReportType](#scanreporttype15)        | 否 | 否 | 扫描结果上报类型。    |
+| scanResult  | Array&lt;[ScanResult](#scanresult)&gt;    | 否 | 否 | 扫描到符合过滤条件的BLE广播报文后，上报的扫描数据。        |
 
 ## ScanReportType<sup>15+</sup>
 
-枚举，扫描结果数据上报类型。
+枚举，扫描结果上报类型。
 
 **原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -4361,12 +4365,12 @@ try {
 
 | 名称      | 值    | 说明                           |
 | --------  | ---- | ------------------------------ |
-| ON_FOUND  | 1    | 表示发现广播包。       |
-| ON_LOST | 2    | 表示丢失广播包。    |
+| ON_FOUND  | 1    | 扫描到符合过滤条件的BLE广播报文时，触发上报，可搭配常规和围栏上报模式使用。       |
+| ON_LOST | 2    | 当不再扫描到符合过滤条件的BLE广播报文时，触发上报，只搭配围栏上报模式使用。    |
 
 ## ScanReportMode<sup>15+</sup>
 
-枚举，扫描结果数据上报模式。
+枚举，扫描结果上报模式。
 
 **原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -4374,6 +4378,6 @@ try {
 
 | 名称      | 值    | 说明                           |
 | --------  | ---- | ------------------------------ |
-| NORMAL  | 1    | 表示常规扫描上报模式。       |
-| FENCE_SENSITIVITY_LOW<sup>18+</sup>  | 10    | 表示低灵敏度围栏上报模式。只在首次收到广播包和丢失广播包时上报，灵敏度低。    |
-| FENCE_SENSITIVITY_HIGH<sup>18+</sup>  | 11    | 表示高灵敏度围栏上报模式。只在首次收到广播包和丢失广播包时上报，灵敏度高。    |
+| NORMAL  | 1    | 常规扫描上报模式，扫描到符合过滤条件的BLE广播报文后就会立刻上报。       |
+| FENCE_SENSITIVITY_LOW<sup>18+</sup>  | 10    | 低灵敏度围栏上报模式。首次扫描到或扫描不到BLE广播报文时，触发上报。对广播信号强度、短时间内广播报文的发送次数要求高。    |
+| FENCE_SENSITIVITY_HIGH<sup>18+</sup>  | 11    | 高灵敏度围栏上报模式。首次扫描到或扫描不到BLE广播报文时，触发上报。对广播信号强度、短时间内广播报文的发送次数要求低。    |

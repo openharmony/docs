@@ -109,7 +109,7 @@ sendDialogResult(dialogSessionId: string, targetWant: Want, isAllowed: boolean, 
   | -------- | -------- | -------- | -------- |
   | dialogSessionId | string | 是 | 用户请求会话ID。 |
   | targetWant | Want | 是 | 用户请求目标。 |
-  | isAllowed | boolean | 是 | 用户请求结果。 |
+  | isAllowed | boolean | 是 | 是否允许拉起目标Ability。true表示允许，false表示不允许。 |
   | callback | AsyncCallback\<void\> | 是 | 回调函数。当发送用户请求成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
@@ -173,7 +173,7 @@ sendDialogResult(dialogSessionId: string, targetWant: Want, isAllowed: boolean):
   | -------- | -------- | -------- | -------- |
   | dialogSessionId | string | 是 | 用户请求会话ID。 |
   | targetWant | Want | 是 | 用户请求目标。 |
-  | isAllowed | boolean | 是 | 用户请求结果。 |
+  | isAllowed | boolean | 是 | 是否允许拉起目标Ability。true表示允许，false表示不允许。 |
 
 **返回值：**
 

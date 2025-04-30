@@ -24,7 +24,7 @@ attributeModifier(modifier:&nbsp;AttributeModifier\<T>)
 
 | 参数名   | 类型                                         | 必填 | 说明                                                                                                                             |
 | -------- | -------------------------------------------- | ---- | -------------------------------------------------------------------------------------------------------------------------------- |
-| modifier | [AttributeModifier\<T>](#attributemodifiert) | 是   | 在当前组件上，动态设置属性方法，支持使用if/else语法。<br/>modifier: 属性修改器，开发者需要自定义class实现AttributeModifier接口。 |
+| modifier | [AttributeModifier\<T>](#attributemodifiert) | 是   | 在当前组件上，动态设置属性方法，支持使用if/else语法。<br/>modifier：属性修改器，开发者需要自定义class实现AttributeModifier接口。 |
 
 ## AttributeModifier\<T>
 
@@ -91,11 +91,11 @@ applySelectedAttribute(instance: T) : void
 | -------- | ------------------------------------------------------------------------------------------------------------ |
 | instance | 组件的属性类，用来标识进行属性设置的组件的类型，比如Button组件的ButtonAttribute，Text组件的TextAttribute等。 |
 
-**instance参数支持范围:**
+**instance参数支持范围：**
 
 AlphabetIndexerAttribute、BadgeAttribute、BlankAttribute、ButtonAttribute、CalendarPickerAttribute、CanvasAttribute、CheckboxAttribute、CheckboxGroupAttribute、CircleAttribute、ColumnAttribute、ColumnSplitAttribute、ShapeAttribute、CommonAttribute、CounterAttribute、DataPanelAttribute、DatePickerAttribute、DividerAttribute、EllipseAttribute、FlexAttribute、FlowItemAttribute、FormLinkAttribute、GaugeAttribute、GridAttribute、GridColAttribute、ColumnAttribute、GridItemAttribute、GridRowAttribute、HyperlinkAttribute、IndicatorComponentAttribute、ImageAttribute、ImageAnimatorAttribute、ImageSpanAttribute、LineAttribute、LinearIndicatorAttribute、ListAttribute、ListItemAttribute、ListItemGroupAttribute、LoadingProgressAttribute、MarqueeAttribute、MenuAttribute、MenuItemAttribute、MenuItemGroupAttribute、NavDestinationAttribute、NavigationAttribute、NavigatorAttribute、NavRouterAttribute、PanelAttribute、PathAttribute、PatternLockAttribute、PolygonAttribute、PolylineAttribute、ProgressAttribute、QRCodeAttribute、RadioAttribute、RatingAttribute、RectAttribute、RefreshAttribute、RelativeContainerAttribute、RichEditorAttribute、RichTextAttribute、RowAttribute、RowSplitAttribute、ScrollAttribute、ScrollBarAttribute、SearchAttribute、SelectAttribute、ShapeAttribute、SideBarContainerAttribute、SliderAttribute、SpanAttribute、StackAttribute、StepperAttribute、StepperItemAttribute、SwiperAttribute、SymbolGlyphAttribute、TabContentAttribute、TabsAttribute、TextAttribute、TextAreaAttribute、TextClockAttribute、TextInputAttribute、TextPickerAttribute、TextTimerAttribute、TimePickerAttribute、ToggleAttribute、VideoAttribute、WaterFlowAttribute、XComponentAttribute、ParticleAttribute<!--Del-->、EffectComponentAttribute、FormComponentAttribute、PluginComponentAttribute、RemoteWindowAttribute、UIExtensionComponentAttribute<!--DelEnd-->。
 
-**属性支持范围:**
+**属性支持范围：**
 
 1. 不支持入参或者返回值为[CustomBuilder](ts-types.md#custombuilder8)的属性。
 2. 不支持入参为[modifier](../../../ui/arkts-user-defined-modifier.md)类型的属性，具体为以下属性方法：[attributeModifier](#attributemodifier)，[drawModifier](./ts-universal-attributes-draw-modifier.md)和[gestureModifier](./ts-universal-attributes-gesture-modifier.md)。
@@ -111,7 +111,7 @@ AlphabetIndexerAttribute、BadgeAttribute、BlankAttribute、ButtonAttribute、C
 ## 自定义Modifier
 从API version 12开始，开发者可使用自定义Modifier构建组件并配置属性，通过此自定义的Modifier可调用所封装组件的属性和样式接口。 
 
-**自定义Modifier支持范围:**  
+**自定义Modifier支持范围：**  
 
 CommonModifier、ColumnModifier、ColumnSplitModifier、RowModifier、RowSplitModifier、SideBarContainerModifier、BlankModifier、DividerModifier、GridColModifier、GridRowModifier、NavDestinationModifier、NavigatorModifier、StackModifier、NavigationModifier、NavRouterModifier、StepperItemModifier、TabsModifier、GridModifier、GridItemModifier、ListModifier、ListItemModifier、ListItemGroupModifier、ScrollModifier、SwiperModifier、WaterFlowModifier、ButtonModifier、CounterModifier、TextPickerModifier、TimePickerModifier、ToggleModifier、CalendarPickerModifier、CheckboxModifier、CheckboxGroupModifier、DatePickerModifier、RadioModifier、RatingModifier、SelectModifier、SliderModifier、PatternLockModifier、SpanModifier、RichEditorModifier、RefreshModifier、SearchModifier、TextAreaModifier、TextModifier、TextInputModifier、ImageSpanModifier、ImageAnimatorModifier、ImageModifier、VideoModifier、DataPanelModifier、GaugeModifier、LoadingProgressModifier、MarqueeModifier、ProgressModifier、QRCodeModifier、TextClockModifier、TextTimerModifier、LineModifier、PathModifier、PolygonModifier、PolylineModifier、RectModifier、ShapeModifier、AlphabetIndexerModifier、FormComponentModifier、HyperlinkModifier、MenuModifier、MenuItemModifier、PanelModifier、SymbolGlyphModifier、ParticleModifier。  
 未暴露的组件Modifier可以使用CommonModifier。 
@@ -121,7 +121,7 @@ CommonModifier、ColumnModifier、ColumnSplitModifier、RowModifier、RowSplitMo
 2. 自定义Modifier属性值变化，组件对应属性也会变化。自定义Modifier类型为基类，构造的对象为子类对象，使用时要通过as进行类型断言为子类。  
 3. 一个自定义Modifier设置给两个组件，Modifier属性变化的时候对两个组件同时生效。  
 4. 一个Modifier设置了属性A和属性B，再设置属性C和属性D，4个属性同时在组件上生效。  
-5. 自定义Modifier不支持@State标注的状态数据的变化感知，见示例2。  
+5. 自定义Modifier不支持@State标注的状态数据的变化感知，见[示例3（自定义Modifier不支持感知@State装饰的状态数据变化）](#示例3自定义modifier不支持感知state装饰的状态数据变化)。  
 6. 多次通过attributeModifier设置属性时，生效的属性为所有属性的并集，相同属性按照设置顺序生效。   
 
 ## 示例
@@ -167,7 +167,7 @@ struct attributeDemo {
 
 ### 示例2（组件绑定Modifier实现按压态效果）
 
-该示例通过Button绑定Modifier实现了按压态的效果。如果配合状态管理V2使用，详情见：[Modifier与makeObserved](../../../quick-start/arkts-v1-v2-migration.md#modifier)。
+该示例通过Button绑定Modifier实现了按压态的效果。如果配合状态管理V2使用，详情见：[Modifier与makeObserved](../../../ui/state-management/arkts-v1-v2-migration.md#modifier)。
 
 ```ts
 // xxx.ets
@@ -316,6 +316,130 @@ struct Index {
 }
 ```
 ![attributeModifier](figures/attributeModifier.gif)
+
+### 示例5（组件绑定Modifier获焦样式）
+
+该示例通过Button绑定Modifier实现了组件在获得焦点时的样式效果。点击Button2后，Button会显示获得焦点后的样式。
+
+```ts
+class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
+
+  applyNormalAttribute(instance: ButtonAttribute): void {
+    instance.backgroundColor(Color.Blue)
+  }
+  applyFocusedAttribute(instance: ButtonAttribute): void {
+    instance.backgroundColor(Color.Green)
+  }
+}
+
+@Entry
+@Component
+struct attributeDemo {
+  @State modifier: MyButtonModifier = new MyButtonModifier()
+  @State isDisable: boolean = true;
+
+  build() {
+    Row() {
+      Column() {
+        Button("Button")
+          .attributeModifier(this.modifier)
+          .enabled(this.isDisable)
+          .id("app")
+        Divider().vertical(false).strokeWidth(15).color(Color.Transparent)
+        Button("Button2")
+          .onClick(() => {
+            this.getUIContext().getFocusController().activate(true)
+            this.getUIContext().getFocusController().requestFocus("app")
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+![applyFocusedAttribute](figures/applyFocusedAttribute.gif)
+
+### 示例6（组件绑定Modifier禁用状态的样式）
+
+该示例通过Button绑定Modifier实现了组件禁用时的样式效果。点击Button2后，Button会显示禁用状态的样式。
+
+```ts
+class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
+  applyDisabledAttribute(instance: ButtonAttribute): void {
+    instance.width(200)
+  }
+}
+
+@Entry
+@Component
+struct attributeDemo {
+  @State modifier: MyButtonModifier = new MyButtonModifier()
+  @State isDisable: boolean = true
+
+  build() {
+    Row() {
+      Column() {
+        Button("Button")
+          .attributeModifier(this.modifier)
+          .enabled(this.isDisable)
+        Divider().vertical(false).strokeWidth(15).color(Color.Transparent)
+        Button("Button2")
+          .onClick(() => {
+            this.isDisable = !this.isDisable
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+![applyDisabledAttribute](figures/applyDisabledAttribute.gif)
+
+### 示例7（组件绑定Modifier选中状态样式）
+
+该示例通过Radio绑定Modifier实现了展示组件选中时样式的效果。
+
+```ts
+class MyRadioModifier implements AttributeModifier<RadioAttribute> {
+  applyNormalAttribute(instance: RadioAttribute): void {
+    instance.backgroundColor(Color.Blue)
+  }
+  applySelectedAttribute(instance: RadioAttribute): void {
+    instance.backgroundColor(Color.Red)
+    instance.borderWidth(2)
+  }
+}
+
+@Entry
+@Component
+struct attributeDemo {
+  @State modifier: MyRadioModifier = new MyRadioModifier()
+  @State value: boolean = false
+  @State value2: boolean = false
+
+  build() {
+    Row() {
+      Column() {
+        Radio({ value: 'Radio1', group: 'radioGroup1' })
+          .checked(this.value)
+          .height(50)
+          .width(50)
+          .borderWidth(0)
+          .borderRadius(30)
+          .onClick(() => {
+            this.value = !this.value
+          })
+          .attributeModifier(this.modifier)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+![applySelectedAttribute](figures/applySelectedAttribute.gif)
 
 ## Attribute支持范围
 

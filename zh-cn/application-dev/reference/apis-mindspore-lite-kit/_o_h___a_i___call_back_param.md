@@ -5,6 +5,8 @@
 
 回调函数中传入的算子信息。
 
+**系统能力：** SystemCapability.Ai.MindSpore
+
 **起始版本：** 9
 
 **相关模块：**[MindSpore](_mind_spore.md)

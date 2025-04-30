@@ -182,7 +182,7 @@ accessibilityChecked(isCheck: boolean)
 
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
-| isCheck | boolean | 是   | 用于表示组件是否被选中。<br/>支持的值为:<br/>true:当前组件被选中。<br/>false:当前组件未被选中。<br/>undefined:由组件自行确定选中状态。<br/>默认值:undefined。<br/>**说明：**<br/>1. 使用该接口设置true或false后，会默认修改该组件的checkable属性为true。<br/>2. 使用该接口设置true或false后，如果需要同时使用accessibilitySelected接口则需要将accessibilitySelected接口的参数设置为undefined。 |
+| isCheck | boolean | 是   | 用于表示组件是否被选中。<br/>支持的值为：<br/>true：当前组件被选中。<br/>false：当前组件未被选中。<br/>undefined：由组件自行确定选中状态。<br/>默认值：undefined <br/>**说明：**<br/>1. 使用该接口设置true或false后，会默认修改该组件的checkable属性为true。<br/>2. 使用该接口设置true或false后，如果需要同时使用accessibilitySelected接口则需要将accessibilitySelected接口的参数设置为undefined。 |
 
 ## accessibilitySelected<sup>13+</sup>
 
@@ -200,7 +200,7 @@ accessibilitySelected(isSelect: boolean)
 
 | 参数名   | 类型    | 必填 | 说明                                                         |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| isSelect | boolean | 是   | 用于表示组件是否被选中。<br/>支持的值为:<br/>true:当前组件被选中。<br/>false:当前组件未被选中。<br/>undefined:由组件自行确定选中状态。<br/>默认值:undefined。<br/>**说明：**<br/>1. 使用该接口设置true或false后，如果需要同时使用accessibilityChecked接口则需要将accessibilityChecked接口的参数设置为undefined。 |
+| isSelect | boolean | 是   | 用于表示组件是否被选中。<br/>支持的值为：<br/>true：当前组件被选中。<br/>false：当前组件未被选中。<br/>undefined：由组件自行确定选中状态。<br/>默认值：undefined <br/>**说明：**<br/>1. 使用该接口设置true或false后，如果需要同时使用accessibilityChecked接口则需要将accessibilityChecked接口的参数设置为undefined。 |
 
 ## accessibilityRole<sup>18+</sup>
 
@@ -252,7 +252,7 @@ type AccessibilityFocusCallback = (isFocus: boolean) => void
 
 | 参数名  | 类型    | 必填 | 说明              |
 | ------ | ------ | ---- | ---------------- |
-| isFocus | boolean | 是 | 是否获焦、失焦。 |
+| isFocus | boolean | 是 | 用于表示组件是否获焦。<br/>true：当前组件获焦。<br/>false：当前组件失焦。|
 
 ## AccessibilityRoleType<sup>18+</sup>枚举说明
 
@@ -473,7 +473,7 @@ accessibilityScrollTriggerable(isTriggerable: boolean)
 
 | 参数名         |  类型    | 必填 | 说明                                                         |
 | -------------- | ------- | ---- | ------------------------------------------------------------ |
-| isTriggerable  | boolean | 是   | 用于表示组件是否支持该能力。<br/>支持的值为：<br/>true：屏幕朗读焦点切换而容器内当前页面无可聚焦的组件时，需要自动滚动操作。<br/>false：屏幕朗读焦点切换而容器内当前页面无可聚焦的组件时，不需要自动滚动操作。<br/>undefined：还原默认值。<br/>默认值：true。<br/>**说明：**<br/>1. 该属性不影响原先无障碍节点属性中的scrollable。<br/>2. 组件最终在屏幕朗读下的滚动逻辑由屏幕朗读最终根据该属性和组件是否支持scroll来决定。<br/>3. 该属性为通用属性，所有基础组件均可配置。建议配置的滚动组件类型，如List，Grid，Scroll，Waterflow，Swiper等。|
+| isTriggerable  | boolean | 是   | 用于表示组件是否支持该能力。<br/>支持的值为：<br/>true：屏幕朗读焦点切换而容器内当前页面无可聚焦的组件时，需要自动滚动操作。<br/>false：屏幕朗读焦点切换而容器内当前页面无可聚焦的组件时，不需要自动滚动操作。<br/>undefined：还原默认值。<br/>默认值：true。<br/>**说明：**<br/>1. 该属性不影响原先无障碍节点属性中的scrollable。<br/>2. 组件最终在屏幕朗读下的滚动逻辑由屏幕朗读最终根据该属性和组件是否支持scroll来决定。<br/>3. 该属性为通用属性，所有基础组件均可配置。建议配置的滚动组件类型，如List，Grid，Scroll，Waterflow等。|
 
 ## accessibilityTextHint<sup>12+</sup>
 
@@ -521,7 +521,7 @@ accessibilityFocusDrawLevel(drawLevel: FocusDrawLevel)
 
 该示例主要演示accessibilityText无障碍文本和accessibilityDescription无障碍说明的播报内容。
 
-```
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -563,7 +563,7 @@ struct Index {
 
 该示例主要演示优先使用子组件的无障碍文本进行朗读。
 
-```
+```ts
 // xxx.ets
 @Entry
 @Component

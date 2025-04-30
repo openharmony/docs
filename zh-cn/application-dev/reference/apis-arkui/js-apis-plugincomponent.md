@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import { pluginComponentManager } from '@kit.ArkUI'
+import { pluginComponentManager } from '@kit.ArkUI';
 ```
 
 ## PluginComponentTemplate
@@ -39,15 +39,9 @@ type KVObject = { [key: string]: number | string | boolean | [] | KVObject }
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-
-| 类型              | 说明                                     |
-| --------------------- | ---------------------------------------- |
-| [key: string]         | 关键字，数据类型为字符串，可取空字符串。 |
-| number                | 键值，表示值类型为数字。                 |
-| string                | 键值，表示值类型为字符串，可取空字符串。 |
-| boolean               | 键值，表示值类型为布尔值。               |
-| []                    | 键值，可取值为[]。                       |
-| [KVObject](#kvobject) | 键值，表示值类型为KVObject。             |
+| 名称    | 类型   | 必填 | 说明                        |
+| ------- | ------ | ---- | --------------------------- |
+|  [key: string]  | number \| string \| boolean \| [] \| [KVObject](#kvobject)  | 是   | 键值对形式存储。<br/>number：键值，表示值类型为数字。<br/> string：键值，表示值类型为字符串，可取空字符串。<br/> boolean：键值，表示值类型为布尔值。<br/> []：键值，可取值为[]。<br/>[KVObject](#kvobject)：键值，表示值类型为KVObject。            |
 
 
 ### PushParameters
@@ -132,15 +126,15 @@ type OnPushEventCallback = (source: Want, template: PluginComponentTemplate, dat
 **示例：**
 
 ```ts
-import { pluginComponentManager, PluginComponentTemplate } from '@kit.ArkUI'
+import { pluginComponentManager, PluginComponentTemplate } from '@kit.ArkUI';
 import { Want } from '@kit.AbilityKit';
 
 function onPushListener(source: Want, template: PluginComponentTemplate, data: pluginComponentManager.KVObject, extraData: pluginComponentManager.KVObject) {
-  console.log("onPushListener template.source=" + template.source)
-  console.log("onPushListener source=" + JSON.stringify(source))
-  console.log("onPushListener template=" + JSON.stringify(template))
-  console.log("onPushListener data=" + JSON.stringify(data))
-  console.log("onPushListener extraData=" + JSON.stringify(extraData))
+  console.log("onPushListener template.source=" + template.source);
+  console.log("onPushListener source=" + JSON.stringify(source));
+  console.log("onPushListener template=" + JSON.stringify(template));
+  console.log("onPushListener data=" + JSON.stringify(data));
+  console.log("onPushListener extraData=" + JSON.stringify(extraData));
 }
 ```
 
@@ -172,7 +166,7 @@ type OnRequestEventCallback = (source: Want, name: string, data: KVObject) => Re
 **示例：**
 
 ```ts
-import { pluginComponentManager } from '@kit.ArkUI'
+import { pluginComponentManager } from '@kit.ArkUI';
 import { Want } from '@kit.AbilityKit';
 
 function onRequestListener(source: Want, name: string, data: pluginComponentManager.KVObject) {
@@ -182,7 +176,7 @@ function onRequestListener(source: Want, name: string, data: pluginComponentMana
   console.log("onRequestListener data=" + JSON.stringify(data));
   let RtnData: Record<string, string | pluginComponentManager.KVObject> = {
     'template': "ets/pages/plugin.js",
-    'data': data
+    'data': data,
   }
   return RtnData;
 }
@@ -207,7 +201,7 @@ push(param: PushParameters , callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { pluginComponentManager } from '@kit.ArkUI'
+import { pluginComponentManager } from '@kit.ArkUI';
 pluginComponentManager.push(
   {
     want: {
@@ -217,10 +211,10 @@ pluginComponentManager.push(
     name: "plugintemplate",
     data: {
       "key_1": "plugin component test",
-      "key_2": 34234
+      "key_2": 34234,
     },
     extraData: {
-      "extra_str": "this is push event"
+      "extra_str": "this is push event",
     },
     jsonPath: "",
   },
@@ -251,7 +245,7 @@ request(param: RequestParameters, callback: AsyncCallback&lt;RequestCallbackPara
 **示例：**
 
 ```ts
-import { pluginComponentManager } from '@kit.ArkUI'
+import { pluginComponentManager } from '@kit.ArkUI';
 pluginComponentManager.request(
   {
     want: {
@@ -261,15 +255,15 @@ pluginComponentManager.request(
     name: "plugintemplate",
     data: {
       "key_1": "plugin component test",
-      "key_2": 1111111
+      "key_2": 1111111,
     },
     jsonPath: "",
   },
   (err, data) => {
-    console.log("request_callback: componentTemplate.ability=" + data.componentTemplate.ability)
-    console.log("request_callback: componentTemplate.source=" + data.componentTemplate.source)
-    console.log("request_callback: data=" + JSON.stringify(data.data))
-    console.log("request_callback: extraData=" + JSON.stringify(data.extraData))
+    console.log("request_callback: componentTemplate.ability=" + data.componentTemplate.ability);
+    console.log("request_callback: componentTemplate.source=" + data.componentTemplate.source);
+    console.log("request_callback: data=" + JSON.stringify(data.data));
+    console.log("request_callback: extraData=" + JSON.stringify(data.extraData));
   }
 )
 ```
@@ -294,25 +288,25 @@ on(eventType: string, callback: OnPushEventCallback | OnRequestEventCallback ): 
 **示例：**
 
 ```ts
-import { pluginComponentManager, PluginComponentTemplate } from '@kit.ArkUI'
+import { pluginComponentManager, PluginComponentTemplate } from '@kit.ArkUI';
 import { Want } from '@kit.AbilityKit';
 function onPushListener(source:Want, template:PluginComponentTemplate, data:pluginComponentManager.KVObject, extraData:pluginComponentManager.KVObject) {
-  console.log("onPushListener template.source=" + template.source)
-  console.log("onPushListener source=" + JSON.stringify(source))
-  console.log("onPushListener template=" + JSON.stringify(template))
-  console.log("onPushListener data=" + JSON.stringify(data))
-  console.log("onPushListener extraData=" + JSON.stringify(extraData))
+  console.log("onPushListener template.source=" + template.source);
+  console.log("onPushListener source=" + JSON.stringify(source));
+  console.log("onPushListener template=" + JSON.stringify(template));
+  console.log("onPushListener data=" + JSON.stringify(data));
+  console.log("onPushListener extraData=" + JSON.stringify(extraData));
 }
 function onRequestListener(source:Want, name:string, data:pluginComponentManager.KVObject) {
   console.error("onRequestListener");
   console.log("onRequestListener source=" + JSON.stringify(source));
   console.log("onRequestListener name=" + name);
   console.log("onRequestListener data=" + JSON.stringify(data));
-  let RtnData:Record<string,string|pluginComponentManager.KVObject> = { 'template': "ets/pages/plugin.js", 'data': data }
+  let RtnData:Record<string,string|pluginComponentManager.KVObject> = { 'template': "ets/pages/plugin.js", 'data': data };
   return RtnData;
 }
-pluginComponentManager.on("push", onPushListener)
-pluginComponentManager.on("request", onRequestListener)
+pluginComponentManager.on("push", onPushListener);
+pluginComponentManager.on("request", onRequestListener);
 ```
 
 ## external.json文件说明

@@ -813,8 +813,8 @@ enum OH_AudioDevice_Type
 | AUDIO_DEVICE_TYPE_USB_HEADSET | USB音频耳机。 | 
 | AUDIO_DEVICE_TYPE_DISPLAY_PORT | 显示端口（DisplayPort）设备。 | 
 | AUDIO_DEVICE_TYPE_REMOTE_CAST | 音频被系统应用投送到其他远程的设备。 | 
-| AUDIO_DEVICE_TYPE_HDMI | HDMI设备（例如HDMI、ARC、eARC等）。 | 
-| AUDIO_DEVICE_TYPE_LINE_DIGITAL | 有线数字设备（例如S/PDIF等）。 | 
+| AUDIO_DEVICE_TYPE_HDMI | HDMI设备（例如HDMI、ARC、eARC等）。<br>**起始版本：** 19 | 
+| AUDIO_DEVICE_TYPE_LINE_DIGITAL | 有线数字设备（例如S/PDIF等）。<br>**起始版本：** 19 | 
 | AUDIO_DEVICE_TYPE_DEFAULT | 默认设备类型。 | 
 
 
@@ -1111,7 +1111,7 @@ enum OH_AudioStream_SampleFormat
 | AUDIOSTREAM_SAMPLE_S16LE  | Short 16位小端。   | 
 | AUDIOSTREAM_SAMPLE_S24LE  | Short 24位小端。   | 
 | AUDIOSTREAM_SAMPLE_S32LE  | Short 32位小端。   | 
-| AUDIOSTREAM_SAMPLE_F32LE  | Float 32位小端。<br>**起始版本：** 18   | 
+| AUDIOSTREAM_SAMPLE_F32LE  | Float 32位小端。<br>**起始版本：** 17   | 
 
 
 ### OH_AudioStream_SourceType

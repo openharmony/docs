@@ -951,6 +951,44 @@ The extension can not start the ability due to extension control.
 
 查看对应类型ExtensionAbility的使用约束限制，确保接口使用符合约束限制。
 
+## 16000084 只允许DelegatorAbility单次调用
+
+**错误信息**
+
+Only allow DelegatorAbility to call the method once.
+
+**错误描述**
+
+系统只允许DelegatorAbility调用该接口一次。
+
+**可能原因**
+
+1. 调用方不是DelegatorAbility。
+2. 调用方是DelegatorAbility，但是重复调用接口。
+
+**处理步骤**
+
+1. 检查调用方是否DelegatorAbility。
+2. 检查是否重复调用。
+
+## 16000085 元能力与窗口的交互流程发生错误
+
+**错误信息**
+
+The interaction process between Ability and Window encountered an error.
+
+**错误描述**
+
+元能力与窗口的交互流程发生错误。
+
+**可能原因**
+
+窗口业务流程出现异常。
+
+**处理步骤**
+
+系统错误，尝试重新调用。
+
 ## 16000100 监听Ability生命周期变化的AbilityMonitor方法执行失败
 
 **错误信息**

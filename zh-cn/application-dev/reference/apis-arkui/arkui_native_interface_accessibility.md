@@ -2,7 +2,7 @@
 
 ## 概述
 
-描述三方平台通过XComponent接入ArkUI无障碍框架的接口说明。
+描述三方平台通过XComponent接入ArkUI无障碍框架的接口说明。更多详细介绍请参考[通过XComponent接入无障碍](../../ui/ndk-accessibility-xcomponent.md)。
 
 描述了三方平台需要实现的接口以及相关的结构、枚举定义说明。
 

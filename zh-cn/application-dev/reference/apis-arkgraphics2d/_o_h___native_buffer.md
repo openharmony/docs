@@ -732,7 +732,7 @@ int32_t OH_NativeBuffer_GetMetadataValue (OH_NativeBuffer *buffer, OH_NativeBuff
 | buffer | 一个指向OH_NativeBuffer实例的指针。 | 
 | metadataKey | OH_NativeBuffer的元数据类型，其值从[OH_NativeBuffer_MetadataKey](#oh_nativebuffer_metadatakey)获取。 | 
 | size | uint8_t向量的大小，其取值范围见[OH_NativeBuffer_MetadataKey](#oh_nativebuffer_metadatakey)。 | 
-| metaDate | 指向uint8_t向量的二级指针。 | 
+| metaData | 指向uint8_t向量的二级指针。 | 
 
 **返回：**
 
@@ -897,7 +897,7 @@ int32_t OH_NativeBuffer_SetMetadataValue (OH_NativeBuffer *buffer, OH_NativeBuff
 | buffer | 一个指向OH_NativeBuffer实例的指针。 | 
 | metadataKey | OH_NativeBuffer的元数据类型，其值从[OH_NativeBuffer_MetadataKey](#oh_nativebuffer_metadatakey-1)获取。 | 
 | size | uint8_t向量的大小，其取值范围见[OH_NativeBuffer_MetadataKey](#oh_nativebuffer_metadatakey-1)。 | 
-| metaDate | 指向uint8_t向量的指针。 | 
+| metaData | 指向uint8_t向量的指针。 | 
 
 **返回：**
 

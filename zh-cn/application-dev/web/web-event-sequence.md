@@ -32,7 +32,7 @@ Web组件的状态主要包括：Controller绑定到Web组件、网页加载开�
 
 - [onPageVisible](../reference/apis-arkweb/ts-basic-components-web.md#onpagevisible9)事件：Web回调事件。渲染流程中当HTTP响应的主体开始加载，新页面即将可见时触发该回调。此时文档加载还处于早期，因此链接的资源比如在线CSS、在线图片等可能尚不可用。
 
-- [onRenderExited](../reference/apis-arkweb/ts-basic-components-web.md#onrenderexited9)事件：应用渲染进程异常退出时触发该回调，可以在此回调中进行系统资源的释放、数据的保存等操作。如果应用希望异常恢复，需要调用[loadUrl](../reference/apis-arkweb/js-apis-webview.md#loadurl)接口重新加载页面。
+- [onRenderExited](../reference/apis-arkweb/ts-basic-components-web.md#onrenderexited9)事件：应用渲染进程异常退出时触发该回调，可以在此回调中进行系统资源的释放、数据的保存等操作。如果应用希望异常恢复，需要调用[loadUrl](../reference/apis-arkweb/js-apis-webview.md#loadurl)接口重新加载页面。详细用法参考[应用如何避免Web组件渲染子进程异常退出导致的页面卡死问题](#应用如何避免web组件渲染子进程异常退出导致的页面卡死问题)。
 
 - [onDisAppear](../reference/apis-arkui/arkui-ts/ts-universal-events-show-hide.md#ondisappear)事件：组件卸载消失时触发此回调。该事件为通用事件，指组件从组件树上卸载时触发的事件。
 
@@ -42,7 +42,6 @@ Web组件的状态主要包括：Controller绑定到Web组件、网页加载开�
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
-  import { promptAction } from '@kit.ArkUI';
 
   @Entry
   @Component
@@ -104,8 +103,10 @@ Web组件的状态主要包括：Controller绑定到Web组件、网页加载开�
               headerKey: "Cache-Control",
               headerValue: "no-cache"
             }
+            // 将新元素追加到数组的末尾，并返回数组的新长度。
             let length = this.heads.push(head1);
             length = this.heads.push(head2);
+            console.log('The response header result length is :' + length);
             this.responseWeb.setResponseHeader(this.heads);
             this.responseWeb.setResponseData(this.webData);
             this.responseWeb.setResponseEncoding('utf-8');
@@ -147,7 +148,7 @@ Web组件的状态主要包括：Controller绑定到Web组件、网页加载开�
             }
           })
           .onDisAppear(() => {
-            promptAction.showToast({
+            this.getUIContext().getPromptAction().showToast({
               message: 'The web is hidden',
               duration: 2000
             })
@@ -181,3 +182,73 @@ Web组件的状态主要包括：Controller绑定到Web组件、网页加载开�
 - [onFirstMeaningfulPaint](../reference/apis-arkweb/ts-basic-components-web.md#onfirstmeaningfulpaint12)事件：网页绘制页面主要内容的回调函数。首次绘制页面主要内容的时间点。
 
 - [onLargestContentfulPaint](../reference/apis-arkweb/ts-basic-components-web.md#onlargestcontentfulpaint12)事件：网页绘制页面最大内容的回调函数。可视区域内容最大的可见元素开始出现在页面上的时间点。
+
+## 应用如何避免Web组件渲染子进程异常退出导致的页面卡死问题
+
+ArkWeb（方舟Web）是一个Web组件平台，旨在为应用程序提供展示Web页面内容的功能，并向开发者提供一系列的能力，如页面加载、交互和调试等功能。使用ArkWeb相关应用时，可能因各种原因（例如前端偶现异常导致ArkWeb渲染子进程崩溃，或是打开的应用较多，系统资源紧张导致后台ArkWeb渲染子进程被终止）而出现页面卡死的问题，这时需要重新打开页面或重启应用来解决。
+
+在ArkWeb渲染子进程异常退出导致页面卡死后，应用可通过监听[onRenderExited](../reference/apis-arkweb/ts-basic-components-web.md#onrenderexited9)事件来获取具体的退出原因[RenderExitReason](../reference/apis-arkweb/ts-basic-components-web.md#renderexitreason9枚举说明)，并在异常回调中根据退出的具体原因，执行相应的异常处理。
+
+**开发实践案例**
+```ts
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct WebComponent {
+  needReloadWhenVisible: boolean = false ;  // Web组件不可见时render退出后阻止重新加载页面，在可见时重新加载页面。
+  webIsVisible: boolean = false;            // 判断Web组件是否可见。
+
+  // 此处是将子进程异常崩溃和其它异常原因做了区分，应用开发者可根据实际业务特点，细化对应异常的处理策略。
+  renderReloadMaxForCrashed: number = 5;    // 设置因为异常崩溃后重新加载的最大重试次数，应用可根据业务特点，自行设置试错上限。
+  renderReloadCountForCrashed: number = 0;  // 异常崩溃后重新加载的次数。
+  renderReloadMaxForOthers: number = 10;    // 设置因为其它异常原因退出的最大重试次数，应用可根据业务特点，自行设置试错上限。
+  renderReloadCountForOthers: number = 0;   // 其它异常原因退出后重新加载的次数。
+
+  // 创建Web组件。
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  // 指定加载的页面。
+  url: string = "www.example.com";
+  build() {
+    Column() {
+      Web({ src: this.url, controller: this.controller })
+        .onVisibleAreaChange([0, 1.0], (isVisible) => {
+          this.webIsVisible = isVisible;
+          if (isVisible && this.needReloadWhenVisible) { // Web组件可见时重新加载页面。
+            this.needReloadWhenVisible = false;
+            this.controller.loadUrl(this.url);
+          }
+        })
+        // 应用监听渲染子进程异常退出回调，并进行异常处理。
+        .onRenderExited((event) => {
+          if (!event) {
+            return;
+          }
+          if (event.renderExitReason == RenderExitReason.ProcessCrashed) {
+            if (this.renderReloadCountForCrashed >= this.renderReloadMaxForCrashed) {
+              // 设置重试次数上限保护，避免必现问题导致页面被循环加载。
+              return;
+            }
+            console.log('renderReloadCountForCrashed: ' + this.renderReloadCountForCrashed);
+            this.renderReloadCountForCrashed++;
+          } else {
+            if (this.renderReloadCountForOthers >= this.renderReloadMaxForOthers) {
+              // 设置重试次数上限保护, 避免必现问题导致页面被循环加载。
+              return;
+            }
+            console.log('renderReloadCountForOthers: ' + this.renderReloadCountForOthers);
+            this.renderReloadCountForOthers++;
+          }
+          if (this.webIsVisible) {
+            // Web组件可见则立即重新加载。
+            this.controller.loadUrl(this.url);
+            return;
+          }
+          // Web组件不可见时不立即重新加载。
+          this.needReloadWhenVisible = true;
+        })
+    }
+  }
+}
+```

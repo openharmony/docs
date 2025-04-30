@@ -9,7 +9,7 @@
 - [使用MovingPhotoView播放动态照片](movingphotoview-guidelines.md)
 - [读取动态照片资源](#读取动态照片资源)
 
-拍摄动态照片的能力由Camera Kit提供，开发者可参考[Camera Kit-动态照片](../camera/camera-moving-photo.md)。
+拍摄动态照片的能力由Camera Kit提供，可参考[Camera Kit-动态照片](../camera/camera-moving-photo.md)。
 
 ## 保存动态照片资源
 
@@ -34,6 +34,7 @@
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
@@ -55,7 +56,7 @@ struct Index {
           .onClick(async (event, result: SaveButtonOnClickResult) => {
              if (result == SaveButtonOnClickResult.SUCCESS) {
                try {
-                 let context = getContext();
+                 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
                  let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
                  // 需要确保imageFileUri和videoFileUri对应的资源存在，分别表示待创建到媒体库的动态照片的图片和视频。
                  let imageFileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/create_moving_photo.jpg';
@@ -100,7 +101,10 @@ struct Index {
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { dataSharePredicates } from '@kit.ArkData';
-let context = getContext(this);
+import { common } from '@kit.AbilityKit';
+
+// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
@@ -146,7 +150,10 @@ async function example() {
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-let context = getContext(this);
+import { common } from '@kit.AbilityKit';
+
+// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 async function example() {
   try {

@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > 为了实现更好的转场效果，推荐使用[Navigation组件](../../../ui/arkts-navigation-navigation.md)和[模态转场](../../../ui/arkts-modal-transition.md)。
 
@@ -251,9 +251,7 @@ type PageTransitionCallback = (type: RouteType, progress: number) => void
 自定义方式1：通过不同的退入场类型配置不同的退场，入场动画。
 
 ```ts
-// index.ets
-import { router } from '@kit.ArkUI';
-
+// Index.ets
 @Entry
 @Component
 struct Index {
@@ -269,7 +267,7 @@ struct Index {
     .scale({ x: this.scale1 })
     .opacity(this.opacity1)
     .onClick(() => {
-      router.pushUrl({ url: 'pages/Page1' })
+      this.getUIContext().getRouter().pushUrl({ url: 'pages/Page1' })
     })
   }
 
@@ -293,9 +291,7 @@ struct Index {
 ```
 
 ```ts
-// page1.ets
-import { router } from '@kit.ArkUI';
-
+// Page1.ets
 @Entry
 @Component
 struct Page1 {
@@ -311,7 +307,7 @@ struct Page1 {
     .scale({ x: this.scale2 })
     .opacity(this.opacity2)
     .onClick(() => {
-      router.pushUrl({ url: 'pages/Index' })
+      this.getUIContext().getRouter().pushUrl({ url: 'pages/Index' })
     })
   }
 
@@ -339,16 +335,17 @@ struct Page1 {
 自定义方式2：配置了当前页面的入场动画为从左侧滑入，退场为平移加透明度变化。
 
 ```ts
-// index.ets 
+// Index.ets 
 @Entry
 @Component
-struct PageTransitionExample {
+struct Index {
   build() {
     Column() {
-      Navigator({ target: 'pages/page1', type: NavigationType.Push }) {
-        Image($r('app.media.bg1')).width('100%').height('100%') // 图片存放在media文件夹下
-      }
+      Image($r('app.media.bg1')).width('100%').height('100%') // 图片存放在media文件夹下
     }
+    .onClick(() => {
+      this.getUIContext().getRouter().pushUrl({ url: 'pages/Page1' })
+    })
   }
 
   // 自定义方式2：使用系统提供的多种默认效果(平移、缩放、透明度等)
@@ -365,16 +362,17 @@ struct PageTransitionExample {
 ```
 
 ```ts
-// page1.ets
+// Page1.ets
 @Entry
 @Component
-struct PageTransitionExample1 {
+struct Page1 {
   build() {
     Column() {
-      Navigator({ target: 'pages/index', type: NavigationType.Push }) {
-        Image($r('app.media.bg2')).width('100%').height('100%') // 图片存放在media文件夹下
-      }
+      Image($r('app.media.bg2')).width('100%').height('100%') // 图片存放在media文件夹下
     }
+    .onClick(() => {
+      this.getUIContext().getRouter().pushUrl({ url: 'pages/Index' })
+    })
   }
 
   // 自定义方式2：使用系统提供的多种默认效果(平移、缩放、透明度等)
@@ -397,20 +395,18 @@ struct PageTransitionExample1 {
 自定义方式1：配置提供的不同退入场平移效果，将系统语言排版模式改为RTL。
 
 ```ts
-// index.ets
-import { router } from '@kit.ArkUI'
-
+// Index.ets
 @Entry
 @Component
-struct PageTransitionExample {
+struct Index {
   @State scale1: number = 1
   @State opacity1: number = 1
 
   build() {
     Column() {
       Button("页面1").onClick(() => {
-        router.pushUrl({
-          url: "pages/page1"
+        this.getUIContext().getRouter().pushUrl({
+          url: "pages/Page1"
         })
       })
         .width(200)
@@ -440,19 +436,17 @@ struct PageTransitionExample {
 ```
 
 ```ts
-// page1.ets
-import { router } from '@kit.ArkUI'
-
+// Page1.ets
 @Entry
 @Component
-struct PageTransitionExample {
+struct Page1 {
   @State scale1: number = 1
   @State opacity1: number = 1
 
   build() {
     Column() {
       Button("页面2").onClick(() => {
-        router.pushUrl({
+        this.getUIContext().getRouter().pushUrl({
           url: "pages/Index"
         })
       })
@@ -486,20 +480,18 @@ struct PageTransitionExample {
 自定义方式2：使用系统默认的退入场效果，将系统语言排版模式改为RTL。
 
 ```ts
-// index.ets
-import { router } from '@kit.ArkUI'
-
+// Index.ets
 @Entry
 @Component
-struct PageTransitionExample {
+struct Index {
   @State scale1: number = 1
   @State opacity1: number = 1
 
   build() {
     Column() {
       Button("页面1").onClick(() => {
-        router.pushUrl({
-          url: "pages/page1"
+        this.getUIContext().getRouter().pushUrl({
+          url: "pages/Page1"
         })
       })
         .width(200)
@@ -516,19 +508,17 @@ struct PageTransitionExample {
 ```
 
 ```ts
-// page1.ets
-import { router } from '@kit.ArkUI'
-
+// Page1.ets
 @Entry
 @Component
-struct PageTransitionExample {
+struct Page1 {
   @State scale1: number = 1
   @State opacity1: number = 1
 
   build() {
     Column() {
       Button("页面2").onClick(() => {
-        router.pushUrl({
+        this.getUIContext().getRouter().pushUrl({
           url: "pages/Index"
         })
       })

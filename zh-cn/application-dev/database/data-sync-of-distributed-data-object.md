@@ -382,7 +382,6 @@ export default class EntryAbility extends UIAbility {
       console.error(TAG + 'call remote already');
       return;
     }
-    let context = getContext(this) as common.UIAbilityContext;
 
     // 1.1 调用genSessionId接口创建一个sessionId，通过分布式设备管理接口获取对端设备networkId
     sessionId = distributedDataObject.genSessionId();
@@ -406,7 +405,7 @@ export default class EntryAbility extends UIAbility {
     }
     try {
       // 1.3 调用startAbilityByCall接口拉起对端Ability
-      context.startAbilityByCall(want).then((res) => {
+      this.context.startAbilityByCall(want).then((res) => {
         if (!res) {
           console.error(TAG + 'startAbilityByCall failed');
         }
@@ -428,11 +427,10 @@ export default class EntryAbility extends UIAbility {
       console.error(TAG + 'create dataObject already');
       return;
     }
-    let context = getContext(this) as common.UIAbilityContext;
 
     // 2.1 创建分布式数据对象实例
     let data = new Data('The title', 'The text');
-    dataObject = distributedDataObject.create(context, data);
+    dataObject = distributedDataObject.create(this.context, data);
 
     // 2.2 注册数据变更监听
     dataObject.on('change', (sessionId: string, fields: Array<string>) => {

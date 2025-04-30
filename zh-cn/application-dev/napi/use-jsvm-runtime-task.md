@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-开发者通过createJsCore方法来创建一个新的JS基础运行时环境，并通过该方法获得一个CoreID，通过evaluateJS方法使用CoreID对应的运行环境来运行JS代码，在JS代码中创建promise并异步执行函数，最后使用releaseJsCore方法来释放CoreID对应的运行环境。
+开发者通过createJsCore方法来创建一个新的JS运行时环境，并通过该方法获得一个CoreID。然后，通过evaluateJS方法使用CoreID对应的运行环境来运行JS代码，在JS代码中创建promise并异步执行函数。最后，使用releaseJsCore方法来释放CoreID对应的运行环境。
 
 ## 使用示例
 
@@ -192,10 +192,10 @@ static int CreateJsCore(uint32_t *result) {
 
 // 对外提供释放JSVM环境接口，通过envId释放对应环境
 static int ReleaseJsCore(uint32_t coreEnvId) {
+    std::lock_guard<std::mutex> lock_guard(envMapLock);
+    
     OH_LOG_INFO(LOG_APP, "JSVM ReleaseJsCore START");
     CHECK_COND(g_envMap.count(coreEnvId) != 0 && g_envMap[coreEnvId] != nullptr);
-
-    std::lock_guard<std::mutex> lock_guard(envMapLock);
 
     CHECK(OH_JSVM_DestroyEnv(*g_envMap[coreEnvId]));
     g_envMap[coreEnvId] = nullptr;
@@ -328,4 +328,38 @@ static int32_t TestJSVM() {
 
     return 0;
 }
-  ```
+```
+预计的输出结果：
+```
+JSVM CreateJsCore START
+JSVM CreateJsCore END
+TEST coreId: 0
+JSVM EvaluateJS START
+JSVM API TEST: hello World
+JSVM API TEST: CreatePromise start
+JSVM API TEST: CreatePromise end
+JSVM API TEST type: 4
+JSVM API TEST: CreatePromise 0
+JSVM API TEST RESULT: PASS
+JSVM EvaluateJS END
+TEST evaluateJS: hello World
+JSVM CreateJsCore START
+JSVM CreateJsCore END
+TEST coreId: 1
+JSVM EvaluateJS START
+JSVM API TEST: second hello
+JSVM API TEST RESULT: PASS
+JSVM API TEST RESULT: PASS
+JSVM API TEST: CreatePromise start
+JSVM API TEST: CreatePromise end
+JSVM API TEST type: 4
+JSVM API TEST: CreatePromise 1
+JSVM API TEST RESULT: PASS
+JSVM EvaluateJS END
+TEST evaluateJS: second hello
+JSVM ReleaseJsCore START
+JSVM ReleaseJsCore END
+JSVM ReleaseJsCore START
+JSVM ReleaseJsCore END
+Test NAPI end
+```

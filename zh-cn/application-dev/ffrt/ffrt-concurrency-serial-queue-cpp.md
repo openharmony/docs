@@ -24,7 +24,7 @@ FFRT串行队列基于协程调度模型实现，提供高效的消息队列功�
 #include <fstream>
 #include <iostream>
 #include <thread>
-#include "ffrt/cpp/queue.h"
+#include "ffrt/ffrt.h"
 
 class Logger {
 public:
@@ -90,7 +90,8 @@ int main()
 
 > **说明：**
 >
-> 如何使用FFRT C++ API详见：[C++接口使用指导](ffrt-development-guideline.md#using-ffrt-c-api-1)
+> - 如何使用FFRT C++ API详见：[FFRT C++接口三方库使用指导](ffrt-development-guideline.md#using-ffrt-c-api-1)。
+> - 使用FFRT C接口或C++接口时，都可以通过FFRT C++接口三方库简化头文件包含，即使用`#include "ffrt/ffrt.h"`头文件包含语句。
 
 ## 约束限制
 

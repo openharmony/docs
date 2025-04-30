@@ -5,6 +5,8 @@
 
 张量数组结构体，用于存储张量数组指针和张量数组长度。
 
+**系统能力：** SystemCapability.Ai.MindSpore
+
 **起始版本：** 9
 
 **相关模块：**[MindSpore](_mind_spore.md)

@@ -54,7 +54,7 @@ Defines the default or custom style parameters for the **ArcButton** component.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Circle
 
-### Attributes
+### Properties
 
 | Name            | Type                                                        | Mandatory| Description                                                        |
 | ---------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |

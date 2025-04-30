@@ -47,7 +47,7 @@ addContact(context: Context, contact: Contact, callback: AsyncCallback&lt;number
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.addContact(
     context,
     {
@@ -146,7 +146,7 @@ addContact(context: Context, contact: Contact): Promise<number&gt;
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.addContact(
     context,
     {
@@ -239,7 +239,7 @@ deleteContact(context: Context, key: string, callback: AsyncCallback&lt;void&gt;
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context; 
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.deleteContact(context, 'xxx', (err: BusinessError) => {
       if (err) {
           console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
@@ -318,7 +318,7 @@ deleteContact(context: Context,  key: string): Promise&lt;void&gt;
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.deleteContact(context, 'xxx');
   promise.then(() => {
       console.info(`Succeeded in deleting Contact.`);
@@ -395,7 +395,7 @@ updateContact(context: Context, contact: Contact, callback: AsyncCallback&lt;voi
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.updateContact(context, {
       id: 1,
       name: {
@@ -486,7 +486,7 @@ updateContact(context: Context,  contact: Contact, attrs: ContactAttributes, cal
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.updateContact(context, {
       id: 1,
       name: {
@@ -587,7 +587,7 @@ updateContact(context: Context,  contact: Contact, attrs?: ContactAttributes): P
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.updateContact(context, {
       id: 1,
       name: {
@@ -687,7 +687,7 @@ isLocalContact(context: Context,  id: number, callback: AsyncCallback&lt;boolean
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.isLocalContact(context, /*id*/1, (err: BusinessError, data) => {
       if (err) {
           console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
@@ -768,7 +768,7 @@ isLocalContact(context: Context,  id: number): Promise&lt;boolean&gt;
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.isLocalContact(context, /*id*/1);
   promise.then((data) => {
       console.info(`Succeeded in isLocalContact. data->${JSON.stringify(data)}`);
@@ -847,7 +847,7 @@ isMyCard(context: Context,  id: number, callback: AsyncCallback&lt;boolean&gt;):
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.isMyCard(context, /*id*/1, (err: BusinessError, data) => {
       if (err) {
           console.error(`Failed to isMyCard. Code: ${err.code}, message: ${err.message}`);
@@ -928,7 +928,7 @@ isMyCard(context: Context,  id: number): Promise&lt;boolean&gt;
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.isMyCard(context, /*id*/1);
   promise.then((data) => {
       console.info(`Succeeded in isMyCard. data->${JSON.stringify(data)}`);
@@ -1006,7 +1006,7 @@ queryMyCard(context: Context,  callback: AsyncCallback&lt;Contact&gt;): void
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryMyCard(context, (err: BusinessError, data) => {
       if (err) {
           console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
@@ -1081,7 +1081,7 @@ queryMyCard(context: Context,  attrs: ContactAttributes, callback: AsyncCallback
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryMyCard(context, {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
@@ -1166,7 +1166,7 @@ queryMyCard(context: Context,  attrs?: ContactAttributes): Promise&lt;Contact&gt
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryMyCard(context, {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
@@ -1458,7 +1458,7 @@ queryContact(context: Context,  key: string,  callback: AsyncCallback&lt;Contact
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContact(context, 'xxx', (err: BusinessError, data) => {
       if (err) {
           console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
@@ -1535,7 +1535,7 @@ queryContact(context: Context,  key: string, holder: Holder, callback: AsyncCall
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContact(context, 'xxx', {
       holderId: 1,
       bundleName: "",
@@ -1621,7 +1621,7 @@ queryContact(context: Context,  key: string,  attrs: ContactAttributes, callback
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContact(context, 'xxx', {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
@@ -1704,7 +1704,7 @@ queryContact(context: Context,  key: string, holder: Holder, attrs: ContactAttri
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContact(context, 'xxx', {
       holderId: 1,
       bundleName: "",
@@ -1801,7 +1801,7 @@ queryContact(context: Context,  key: string, holder?: Holder, attrs?: ContactAtt
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryContact(context, 'xxx', {
       holderId: 1,
       bundleName: "",
@@ -1893,7 +1893,7 @@ queryContacts(context: Context,  callback: AsyncCallback&lt;Array&lt;Contact&gt;
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContacts(context, (err: BusinessError, data) => {
       if (err) {
           console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
@@ -1968,7 +1968,7 @@ queryContacts(context: Context,  holder: Holder, callback: AsyncCallback&lt;Arra
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContacts(context, {
       holderId: 1,
       bundleName: "",
@@ -2052,7 +2052,7 @@ queryContacts(context: Context,  attrs: ContactAttributes, callback: AsyncCallba
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContacts(context, {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
@@ -2133,7 +2133,7 @@ queryContacts(context: Context,  holder: Holder, attrs: ContactAttributes, callb
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContacts(context, {
       holderId: 1,
       bundleName: "",
@@ -2228,7 +2228,7 @@ queryContacts(context: Context,  holder?: Holder, attrs?: ContactAttributes): Pr
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryContacts(context, {
       holderId: 1,
       bundleName: "",
@@ -2320,7 +2320,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, callback: Asy
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', (err: BusinessError, data) => {
       if (err) {
           console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
@@ -2397,7 +2397,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
       holderId: 1,
       bundleName: "",
@@ -2483,7 +2483,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, attrs: Contac
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
@@ -2566,7 +2566,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
       holderId: 1,
       bundleName: "",
@@ -2663,7 +2663,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder?: Hold
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
       holderId: 1,
       bundleName: "",
@@ -2756,7 +2756,7 @@ queryContactsByEmail(context: Context,  email: string, callback: AsyncCallback&l
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByEmail(context, 'xxx@email.com', (err: BusinessError, data) => {
       if (err) {
           console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
@@ -2833,7 +2833,7 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, callback:
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByEmail(context, 'xxx@email.com', {
       holderId: 1,
       bundleName: "",
@@ -2919,7 +2919,7 @@ queryContactsByEmail(context: Context,  email: string, attrs: ContactAttributes,
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByEmail(context, 'xxx@email.com', {
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
@@ -3002,7 +3002,7 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, attrs: Co
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByEmail(context, 'xxx@email.com', {
       holderId: 1,
       bundleName: "",
@@ -3099,7 +3099,7 @@ queryContactsByEmail(context: Context,  email: string, holder?: Holder, attrs?: 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryContactsByEmail(context, 'xxx@email.com', {
       holderId: 1,
       bundleName: "",
@@ -3189,7 +3189,7 @@ queryGroups(context: Context,  callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryGroups(context, (err: BusinessError, data) => {
       if (err) {
           console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
@@ -3264,7 +3264,7 @@ queryGroups(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryGroups(context, {
       holderId: 1,
       bundleName: "",
@@ -3353,7 +3353,7 @@ queryGroups(context: Context,  holder?: Holder): Promise&lt;Array&lt;Group&gt;&g
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryGroups(context, {
       holderId: 1,
       bundleName: "",
@@ -3439,7 +3439,7 @@ queryHolders(context: Context, callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryHolders(context, (err: BusinessError, data) => {
       if (err) {
           console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
@@ -3518,7 +3518,7 @@ queryHolders(context: Context): Promise&lt;Array&lt;Holder&gt;&gt;
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryHolders(context);
   promise.then((data) => {
       console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
@@ -3591,7 +3591,7 @@ queryKey(context: Context,  id: number, callback: AsyncCallback&lt;string&gt;): 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryKey(context, /*id*/1, (err: BusinessError, data) => {
       if (err) {
           console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
@@ -3668,7 +3668,7 @@ queryKey(context: Context,  id: number, holder: Holder, callback: AsyncCallback&
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryKey(context, /*id*/1, {
       holderId: 1,
       bundleName: "",
@@ -3759,7 +3759,7 @@ queryKey(context: Context,  id: number, holder?: Holder): Promise&lt;string&gt;
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryKey(context, /*id*/1, {
       holderId: 1,
       bundleName: "",
@@ -3855,7 +3855,15 @@ addContactViaUI(context: Context, contact: Contact): Promise&lt;number&gt;
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
 // 获取context。
-let context = getContext(this) as Context;
+let contactInfo: contact.Contact = {
+    name: {
+        fullName: 'xxx'
+    },
+    phoneNumbers: [{
+        phoneNumber: '138xxxxxx'
+    }]
+}
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let promise = contact.addContactViaUI(context, contactInfo);
 ```
 
@@ -3900,7 +3908,16 @@ saveToExistingContactViaUI(context: Context, contact: Contact): Promise&lt;numbe
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
 // 获取context。
-let context = getContext(this) as Context;
+let contactInfo: contact.Contact = {
+    id: 1,
+    name: {
+        fullName: 'xxx'
+    },
+    phoneNumbers: [{
+        phoneNumber: '138xxxxxx'
+    }]
+}
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let promise = contact.saveToExistingContactViaUI(context, contactInfo);
 ``` 
 
@@ -3927,10 +3944,10 @@ let promise = contact.saveToExistingContactViaUI(context, contactInfo);
 
 **系统能力**：SystemCapability.Applications.Contacts
 
-|                名称               |                  类型                 | 必填  |        说明      |
-| --------------------------------- | ------------------------------------- | ---- | ---------------- |
-| filterClause        | [FilterClause](#filterclause15) | 是   | 过滤条件。     |
-| filterType        | [FilterType](#filtertype15) | 是   | 过滤类型。     |
+|                名称               |                  类型                 |  只读  | 可选    |        说明      |
+| --------------------------------- | ------------------------------------- | ---- | ---- | ---------------- |
+| filterClause        | [FilterClause](#filterclause15) |  否  |  否   |  过滤条件。     |
+| filterType        | [FilterType](#filtertype15) |  否  |  否    | 过滤类型。     |
 
 ## FilterType<sup>15+</sup>
 
@@ -3940,11 +3957,11 @@ let promise = contact.saveToExistingContactViaUI(context, contactInfo);
 
 **系统能力**：SystemCapability.Applications.Contacts
 
-| 名称                  | 值 | 说明                               |
-| --------------------- | ---- | ---------------------------------- |
-| SHOW_FILTER    | 0 | 仅展示符合过滤条件的联系人。 |
-| DEFAULT_SELECT            | 1 | 默认勾选符合过滤条件的联系人。                 |
-| SHOW_FILTER_AND_DEFAULT_SELECT | 2 | 默认勾选仅展示符合过滤条件联系人。                     |
+| 名称                  | 类型 | 值 | 说明                               |
+| --------------------- | ---- | ---- | ---------------------------------- |
+| SHOW_FILTER    | number  | 0 | 仅展示符合过滤条件的联系人。 |
+| DEFAULT_SELECT            | number  | 1 | 默认勾选符合过滤条件的联系人。                 |
+| SHOW_FILTER_AND_DEFAULT_SELECT | number  | 2 | 默认勾选仅展示符合过滤条件的联系人。                     |
 
 ## FilterClause<sup>15+</sup>
 
@@ -3954,12 +3971,12 @@ let promise = contact.saveToExistingContactViaUI(context, contactInfo);
 
 **系统能力**：SystemCapability.Applications.Contacts
 
-|                名称               |                  类型                 | 必填  |        说明      |
-| --------------------------------- | ------------------------------------- | ---- | ---------------- |
-| id         | Array<[FilterOptions](#filteroptions15)> | 否   | 联系人id。     |
-| name         | Array<[FilterOptions](#filteroptions15)>  | 否   | 联系人姓名。     |
-| dataItem         | [DataFilter](#datafilter15) | 否   | 联系人数据过滤项。     |
-| focusModeList        | Array<[FilterOptions](#filteroptions15)>  | 否   | 专注模式。     |
+|                名称               |                  类型                 |   只读  | 可选     |        说明      |
+| --------------------------------- | ------------------------------------- | ---- | ---- | ---------------- |
+| id         | Array\<[FilterOptions](#filteroptions15)> | 否   | 是   | 联系人id。     |
+| name         | Array\<[FilterOptions](#filteroptions15)>  | 否   | 是   | 联系人姓名。     |
+| dataItem         | [DataFilter](#datafilter15) | 否   | 是   | 联系人数据过滤项。     |
+| focusModeList        | Array\<[FilterOptions](#filteroptions15)>  | 否   | 是   | 专注模式。     |
 
 ## FilterOptions<sup>15+</sup>
 
@@ -3969,10 +3986,10 @@ let promise = contact.saveToExistingContactViaUI(context, contactInfo);
 
 **系统能力**：SystemCapability.Applications.Contacts
 
-|                名称               |                  类型                 | 必填  |        说明      |
-| --------------------------------- | ------------------------------------- | ---- | ---------------- |
-| filterCondition         | [FilterCondition](#filtercondition15) | 是   | 过滤条件。     |
-| value        | string \| ValueType[] | 否   | 过滤值，默认为undefined。     |
+|                名称               |                  类型                 |  只读  | 可选    |        说明      |
+| --------------------------------- | ------------------------------------- | ---- | ---- | ---------------- |
+| filterCondition         | [FilterCondition](#filtercondition15) | 否    |   否   | 过滤条件。     |
+| value        | string \| ValueType[] |  否    |   是   | 过滤值，默认为undefined。     |
 
 ## FilterCondition<sup>15+</sup>
 
@@ -3982,14 +3999,14 @@ let promise = contact.saveToExistingContactViaUI(context, contactInfo);
 
 **系统能力**：SystemCapability.Applications.Contacts
 
-| 名称                  | 值 | 说明                               |
-| --------------------- | ---- | ---------------------------------- |
-| IS_NOT_NULL    | 0 |对应字段不为空。 |
-| EQUAL_TO            | 1 | 对应字段等于某值。                 |
-| NOT_EQUAL_TO | 2 | 对应字段不等于某值。                     |
-| IN | 3 | 对应字段值在某数组中。                     |
-| NOT_IN | 4 | 对应字段值不在某数组中。                     |
-| CONTAINS | 5 | 对应字段值包含某值。                     |
+| 名称                  | 类型 | 值 | 说明                               |
+| --------------------- | ---- | ---- | ---------------------------------- |
+| IS_NOT_NULL    | number  | 0 | 对应字段不为空。 |
+| EQUAL_TO            | number  | 1 | 对应字段等于某值。                 |
+| NOT_EQUAL_TO | number  | 2 | 对应字段不等于某值。                     |
+| IN | number  | 3 | 对应字段值在某数组中。                     |
+| NOT_IN | number  | 4 | 对应字段值不在某数组中。                     |
+| CONTAINS | number  | 5 | 对应字段值包含某值。                     |
 
 ## DataFilter<sup>15+</sup>
 
@@ -3999,10 +4016,10 @@ let promise = contact.saveToExistingContactViaUI(context, contactInfo);
 
 **系统能力**：SystemCapability.Applications.Contacts
 
-|                名称               |                  类型                 | 必填  |        说明      |
-| --------------------------------- | ------------------------------------- | ---- | ---------------- |
-| field         | [DataField](#datafield15) | 是   | 联系人数据字段。     |
-| options         | Array<[FilterOptions](#filteroptions15)> | 是   | 过滤参数。     |
+|                名称               |                  类型                 |  只读  | 可选   |        说明      |
+| --------------------------------- | ------------------------------------- | ---- | ---- | ---------------- |
+| field         | [DataField](#datafield15) | 否  | 否  | 联系人数据字段。     |
+| options         | Array\<[FilterOptions](#filteroptions15)> | 否  | 否  | 过滤参数。     |
 
 ## DataField<sup>15+</sup>
 
@@ -4012,11 +4029,11 @@ let promise = contact.saveToExistingContactViaUI(context, contactInfo);
 
 **系统能力**：SystemCapability.Applications.Contacts
 
-| 名称                  | 值 | 说明                               |
-| --------------------- | --- | ---------------------------------- |
-| EMAIL    | 0 |联系人邮箱。 |
-| PHONE            | 1 | 联系人电话。                 |
-| ORGANIZATION | 2 | 联系人单位。                     |
+| 名称                  | 类型 | 值 | 说明                               |
+| --------------------- | ---- | --- | ---------------------------------- |
+| EMAIL    | number | 0 | 联系人邮箱。 |
+| PHONE            | number | 1 | 联系人电话。                 |
+| ORGANIZATION | number | 2 | 联系人单位。                     |
 
 ## Contact
 
@@ -4153,12 +4170,12 @@ let attributes = [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME, con
 
 ### 属性
 
-| 名称        |   类型   | 可读 | 可写 | 说明             |
+| 名称        |   类型   | 只读 | 可选 | 说明             |
 | ----------- | -------- | ---- | ---- | ---------------- |
-| email       | string   | 是   | 是   | 邮箱地址。       |
-| labelName   | string   | 是   | 是   | 邮箱的类型名称。 |
-| displayName | string   | 是   | 是   | 邮箱的显示名称。 |
-| labelId     | number   | 是   | 是   | 邮箱的类型。     |
+| email       | string   | 否   | 否   | 邮箱地址。       |
+| labelName   | string   | 否   | 是   | 邮箱的类型名称。 |
+| displayName | string   | 否   | 是   | 邮箱的显示名称。 |
+| labelId     | number   | 否   | 是   | 邮箱的类型。     |
 
 **对象创建示例：**
 
@@ -4185,11 +4202,11 @@ email.email = "xxx@email.com";
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
-| 名称        | 类型   | 可读 | 可写 | 说明         |
+| 名称        | 类型   | 只读 | 可选 | 说明         |
 | ----------- | ------ | ---- | ---- | ------------ |
 | bundleName  | string | 是   | 否   | Bundle名称，值为com.ohos.contacts。 |
-| displayName | string | 是   | 否   | 应用名称。   |
-| holderId    | number | 是   | 是   | 应用Id。     |
+| displayName | string | 是   | 是   | 应用名称。   |
+| holderId    | number | 否   | 是   | 应用Id。     |
 
 **对象创建示例：**
 
@@ -4213,21 +4230,21 @@ let holder: contact.Holder = {
 
 ### 常量
 
-| 名称              | 值   | 说明               |
-| ----------------- | ---- | ------------------ |
-| CUSTOM_LABEL      | 0    | 自定义事件类型。   |
-| EVENT_ANNIVERSARY | 1    | 周年纪念事件类型。 |
-| EVENT_OTHER       | 2    | 其它事件类型。     |
-| EVENT_BIRTHDAY    | 3    | 生日事件类型。     |
-| INVALID_LABEL_ID  | -1   | 无效事件类型。     |
+| 名称              |   类型   |  值   | 说明               |
+| ----------------- | ---- | ---- | ------------------ |
+| CUSTOM_LABEL      | number   | 0    | 自定义事件类型。   |
+| EVENT_ANNIVERSARY | number   | 1    | 周年纪念事件类型。 |
+| EVENT_OTHER       | number   | 2    | 其它事件类型。     |
+| EVENT_BIRTHDAY    | number   | 3    | 生日事件类型。     |
+| INVALID_LABEL_ID  | number   | -1   | 无效事件类型。     |
 
 ### 属性
 
-|    名称   |   类型   | 可读 | 可写 | 说明           |
+|    名称   |   类型   | 只读 | 可选 | 说明           |
 | --------- | -------- | ---- | ---- | -------------- |
-| eventDate | string   | 是   | 是   | 事件的日期。   |
-| labelName | string   | 是   | 是   | 事件类型名称。 |
-| labelId   | number   | 是   | 是   | 事件类型。     |
+| eventDate | string   | 否   | 否   | 事件的日期。   |
+| labelName | string   | 否   | 是   | 事件类型名称。 |
+| labelId   | number   | 否   | 是   | 事件类型。     |
 
 **对象创建示例：**
 
@@ -4254,10 +4271,10 @@ event.eventDate = "xxxxxx";
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
-| 名称    |   类型   | 可读 | 可写 | 说明               |
+| 名称    |   类型   | 只读 | 可选 | 说明               |
 | ------- | -------- | ---- | ---- | ------------------ |
-| groupId | number   | 是   | 是   | 联系人群组的Id。   |
-| title   | string   | 是   | 是   | 联系人群组的名称。 |
+| groupId | number   | 否   | 是   | 联系人群组的Id。   |
+| title   | string   | 否   | 否   | 联系人群组的名称。 |
 
 **对象创建示例：**
 
@@ -4280,25 +4297,25 @@ let group: contact.Group = {
 
 ### 常量
 
-| 名称             | 值   | 说明                 |
-| ---------------- | ---- | -------------------- |
-| CUSTOM_LABEL     | -1   | 自定义即时消息类型。 |
-| IM_AIM           | 0    | AIM即时消息类型。    |
-| IM_MSN           | 1    | MSN即时消息类型。    |
-| IM_YAHOO         | 2    | YAHOO即时消息类型。  |
-| IM_SKYPE         | 3    | SKYPE即时消息类型。  |
-| IM_QQ            | 4    | QQ即时消息类型。     |
-| IM_ICQ           | 6    | ICQ即时消息类型。    |
-| IM_JABBER        | 7    | JABBER即时消息类型。 |
-| INVALID_LABEL_ID | -2   | 无效的即时消息类型。 |
+| 名称             |   类型   | 值   | 说明                 |
+| ---------------- | ---- | ---- | -------------------- |
+| CUSTOM_LABEL     | number   | -1   | 自定义即时消息类型。 |
+| IM_AIM           | number   | 0    | AIM即时消息类型。    |
+| IM_MSN           | number   | 1    | MSN即时消息类型。    |
+| IM_YAHOO         | number   | 2    | YAHOO即时消息类型。  |
+| IM_SKYPE         | number   | 3    | SKYPE即时消息类型。  |
+| IM_QQ            | number   | 4    | QQ即时消息类型。     |
+| IM_ICQ           | number   | 6    | ICQ即时消息类型。    |
+| IM_JABBER        | number   | 7    | JABBER即时消息类型。 |
+| INVALID_LABEL_ID | number   | -2   | 无效的即时消息类型。 |
 
 ### 属性
 
-| 名称      |   类型   | 可读 | 可写 | 说明               |
+| 名称      |   类型   | 只读 | 可选 | 说明               |
 | --------- | -------- | ---- | ---- | ------------------ |
-| imAddress | string   | 是   | 是   | 即时消息地址。     |
-| labelName | string   | 是   | 是   | 即时消息类型名称。 |
-| labelId   | number   | 是   | 是   | 即时消息类型。     |
+| imAddress | string   | 否   | 否   | 即时消息地址。     |
+| labelName | string   | 否   | 是   | 即时消息类型名称。 |
+| labelId   | number   | 否   | 是   | 即时消息类型。     |
 
 **对象创建示例：**
 
@@ -4327,17 +4344,17 @@ imAddress.imAddress = "imAddress";
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
-| 名称               |   类型   | 可读 | 可写 | 说明                        |
+| 名称               |   类型   | 只读 | 可选 | 说明                        |
 | ------------------ | -------- | ---- | ---- | --------------------------- |
-| familyName         | string   | 是   | 是   | 联系人的家庭姓名。          |
-| familyNamePhonetic | string   | 是   | 是   | 联系人的家庭姓名拼音。      |
-| fullName           | string   | 是   | 是   | 联系人的全名。              |
-| givenName          | string   | 是   | 是   | 联系人的名称(firstName)。 |
-| givenNamePhonetic  | string   | 是   | 是   | 联系人的名称拼音。          |
-| middleName         | string   | 是   | 是   | 联系人的中间名。            |
-| middleNamePhonetic | string   | 是   | 是   | 联系人的中间名拼音。        |
-| namePrefix         | string   | 是   | 是   | 联系人的姓名前缀。          |
-| nameSuffix         | string   | 是   | 是   | 联系人的姓名后缀。          |
+| familyName         | string   | 否   | 是   | 联系人的家庭姓名。          |
+| familyNamePhonetic | string   | 否   | 是   | 联系人的家庭姓名拼音。      |
+| fullName           | string   | 否   | 否   | 联系人的全名。              |
+| givenName          | string   | 否   | 是   | 联系人的名称(firstName)。 |
+| givenNamePhonetic  | string   | 否   | 是   | 联系人的名称拼音。          |
+| middleName         | string   | 否   | 是   | 联系人的中间名。            |
+| middleNamePhonetic | string   | 否   | 是   | 联系人的中间名拼音。        |
+| namePrefix         | string   | 否   | 是   | 联系人的姓名前缀。          |
+| nameSuffix         | string   | 否   | 是   | 联系人的姓名后缀。          |
 
 **对象创建示例：**
 
@@ -4358,9 +4375,9 @@ let name: contact.Name = {
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
-| 名称     |   类型   | 可读 | 可写 | 说明           |
+| 名称     |   类型   | 只读 | 可选 | 说明           |
 | -------- | -------- | ---- | ---- | -------------- |
-| nickName | string   | 是   | 是   | 联系人的昵称。 |
+| nickName | string   | 否   | 是   | 联系人的昵称。 |
 
 **对象创建示例：**
 
@@ -4380,9 +4397,9 @@ let nickName: contact.NickName = {
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
-| 名称        |   类型   | 可读 | 可写 | 说明               |
+| 名称        |   类型   | 只读 | 可选 | 说明               |
 | ----------- | -------- | ---- | ---- | ------------------ |
-| noteContent | string   | 是   | 是   | 联系人的备注内容。 |
+| noteContent | string   | 否   | 否   | 联系人的备注内容。 |
 
 **对象创建示例：**
 
@@ -4402,10 +4419,10 @@ let note: contact.Note = {
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
-| 名称  |   类型   | 可读 | 可写 | 说明       |
+| 名称  |   类型   | 只读 | 可选 | 说明       |
 | ----- | -------- | ---- | ---- | ---------- |
-| name  | string   | 是   | 是   | 单位名称。 |
-| title | string   | 是   | 是   | 职位名称。 |
+| name  | string   | 否   | 否   | 单位名称。 |
+| title | string   | 否   | 是   | 职位名称。 |
 
 **对象创建示例：**
 
@@ -4428,38 +4445,38 @@ let organization: contact.Organization = {
 
 ### 常量
 
-| 名称             | 值   | 说明                                             |
-| ---------------- | ---- | ------------------------------------------------ |
-| CUSTOM_LABEL     | 0    | 自定义电话类型。                                 |
-| NUM_HOME         | 1    | 家庭电话类型。                                   |
-| NUM_MOBILE       | 2    | 移动电话类型。                                   |
-| NUM_WORK         | 3    | 工作电话类型。                                   |
-| NUM_FAX_WORK     | 4    | 工作传真电话类型。                               |
-| NUM_FAX_HOME     | 5    | 家庭传真电话类型。                               |
-| NUM_PAGER        | 6    | 寻呼机电话类型。                                 |
-| NUM_OTHER        | 7    | 其它电话类型。                                   |
-| NUM_CALLBACK     | 8    | 回呼电话类型。                                   |
-| NUM_CAR          | 9    | 车机电话类型。                                   |
-| NUM_COMPANY_MAIN | 10   | 公司电话类型。                                   |
-| NUM_ISDN         | 11   | 综合业务数字网(ISDN)电话类型。                 |
-| NUM_MAIN         | 12   | 主电话类型。                                     |
-| NUM_OTHER_FAX    | 13   | 其它传真类型。                                   |
-| NUM_RADIO        | 14   | 无线电话类型。                                   |
-| NUM_TELEX        | 15   | 电传电话类型。                                   |
-| NUM_TTY_TDD      | 16   | 电传打字机(TTY)或测试驱动开发(TDD)电话类型。 |
-| NUM_WORK_MOBILE  | 17   | 工作移动电话类型。                               |
-| NUM_WORK_PAGER   | 18   | 工作寻呼机电话类型。                             |
-| NUM_ASSISTANT    | 19   | 助理电话类型。                                   |
-| NUM_MMS          | 20   | 彩信电话类型。                                   |
-| INVALID_LABEL_ID | -1   | 无效电话类型。                                   |
+| 名称             |  类型  | 值   | 说明                                             |
+| ---------------- | ---- | ---- | ------------------------------------------------ |
+| CUSTOM_LABEL     |  number  | 0    | 自定义电话类型。                                 |
+| NUM_HOME         |  number  | 1    | 家庭电话类型。                                   |
+| NUM_MOBILE       |  number  | 2    | 移动电话类型。                                   |
+| NUM_WORK         |  number  | 3    | 工作电话类型。                                   |
+| NUM_FAX_WORK     |  number  | 4    | 工作传真电话类型。                               |
+| NUM_FAX_HOME     |  number  | 5    | 家庭传真电话类型。                               |
+| NUM_PAGER        |  number  | 6    | 寻呼机电话类型。                                 |
+| NUM_OTHER        |  number  | 7    | 其它电话类型。                                   |
+| NUM_CALLBACK     |  number  | 8    | 回呼电话类型。                                   |
+| NUM_CAR          |  number  | 9    | 车机电话类型。                                   |
+| NUM_COMPANY_MAIN |  number  | 10   | 公司电话类型。                                   |
+| NUM_ISDN         |  number  | 11   | 综合业务数字网(ISDN)电话类型。                 |
+| NUM_MAIN         |  number  | 12   | 主电话类型。                                     |
+| NUM_OTHER_FAX    |  number  | 13   | 其它传真类型。                                   |
+| NUM_RADIO        |  number  | 14   | 无线电话类型。                                   |
+| NUM_TELEX        |  number  | 15   | 电传电话类型。                                   |
+| NUM_TTY_TDD      |  number  | 16   | 电传打字机(TTY)或测试驱动开发(TDD)电话类型。 |
+| NUM_WORK_MOBILE  |  number  | 17   | 工作移动电话类型。                               |
+| NUM_WORK_PAGER   |  number  | 18   | 工作寻呼机电话类型。                             |
+| NUM_ASSISTANT    |  number  | 19   | 助理电话类型。                                   |
+| NUM_MMS          |  number  | 20   | 彩信电话类型。                                   |
+| INVALID_LABEL_ID |  number  | -1   | 无效电话类型。                                   |
 
 ### 属性
 
-| 名称        |   类型   | 可读 | 可写 | 说明               |
+| 名称        |   类型   | 只读 | 可选 | 说明               |
 | ----------- | -------- | ---- | ---- | ------------------ |
-| labelName   | string   | 是   | 是   | 电话号码类型名称。 |
-| phoneNumber | string   | 是   | 是   | 电话号码。         |
-| labelId     | number   | 是   | 是   | 电话号码类型。     |
+| labelName   | string   | 否   | 是   | 电话号码类型名称。 |
+| phoneNumber | string   | 否   | 否   | 电话号码。         |
+| labelId     | number   | 否   | 是   | 电话号码类型。     |
 
 **对象创建示例：**
 
@@ -4487,9 +4504,9 @@ phoneNumber.phoneNumber = "138xxxxxxxx";
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
-| 名称 |   类型   | 可读 | 可写 | 说明           |
+| 名称 |   类型   | 只读 | 可选 | 说明           |
 | ---- | -------- | ---- | ---- | -------------- |
-| uri  | string   | 是   | 是   | 联系人的头像。 |
+| uri  | string   | 否   | 否   | 联系人的头像。 |
 
 **对象创建示例：**
 
@@ -4511,28 +4528,28 @@ let portrait: contact.Portrait = {
 
 ### 常量
 
-| 名称             | 值   | 说明                 |
-| ---------------- | ---- | -------------------- |
-| CUSTOM_LABEL     | 0    | 自定义邮政地址类型。 |
-| ADDR_HOME        | 1    | 家庭地址类型。       |
-| ADDR_WORK        | 2    | 工作地址类型。       |
-| ADDR_OTHER       | 3    | 其它地址类型。       |
-| INVALID_LABEL_ID | -1   | 无效地址类型。       |
+| 名称             |   类型   | 值   | 说明                 |
+| ---------------- | ---- | ---- | -------------------- |
+| CUSTOM_LABEL     | number   | 0    | 自定义邮政地址类型。 |
+| ADDR_HOME        | number   | 1    | 家庭地址类型。       |
+| ADDR_WORK        | number   | 2    | 工作地址类型。       |
+| ADDR_OTHER       | number   | 3    | 其它地址类型。       |
+| INVALID_LABEL_ID | number   | -1   | 无效地址类型。       |
 
 ### 属性
 
-| 名称          |   类型   | 可读 | 可写 | 说明                       |
+| 名称          |   类型   | 只读 | 可选 | 说明                       |
 | ------------- | -------- | ---- | ---- | -------------------------- |
-| city          | string   | 是   | 是   | 联系人所在的城市。         |
-| country       | string   | 是   | 是   | 联系人所在的国家。         |
-| labelName     | string   | 是   | 是   | 邮政地址类型名称。         |
-| neighborhood  | string   | 是   | 是   | 联系人的邻居。             |
-| pobox         | string   | 是   | 是   | 联系人的邮箱。             |
-| postalAddress | string   | 是   | 是   | 联系人的邮政地址。         |
-| postcode      | string   | 是   | 是   | 联系人所在区域的邮政编码。 |
-| region        | string   | 是   | 是   | 联系人所在的区域。         |
-| street        | string   | 是   | 是   | 联系人所在的街道。         |
-| labelId       | number   | 是   | 是   | 邮政地址类型。             |
+| city          | string   | 否   | 是   | 联系人所在的城市。         |
+| country       | string   | 否   | 是   | 联系人所在的国家。         |
+| labelName     | string   | 否   | 是   | 邮政地址类型名称。         |
+| neighborhood  | string   | 否   | 是   | 联系人的邻居。             |
+| pobox         | string   | 否   | 是   | 联系人的邮箱。             |
+| postalAddress | string   | 否   | 否   | 联系人的邮政地址。         |
+| postcode      | string   | 否   | 是   | 联系人所在区域的邮政编码。 |
+| region        | string   | 否   | 是   | 联系人所在的区域。         |
+| street        | string   | 否   | 是   | 联系人所在的街道。         |
+| labelId       | number   | 否   | 是   | 邮政地址类型。             |
 
 **对象创建示例：**
 
@@ -4563,32 +4580,32 @@ postalAddress.postalAddress = "postalAddress";
 
 ### 常量
 
-| 名称                      | 值   | 说明               |
-| ------------------------- | ---- | ------------------ |
-| CUSTOM_LABEL              | 0    | 自定义关系类型。   |
-| RELATION_ASSISTANT        | 1    | 助手关系类型。     |
-| RELATION_BROTHER          | 2    | 兄弟关系类型。     |
-| RELATION_CHILD            | 3    | 子女关系类型。     |
-| RELATION_DOMESTIC_PARTNER | 4    | 同居同伴关系类型。 |
-| RELATION_FATHER           | 5    | 父亲关系类型。     |
-| RELATION_FRIEND           | 6    | 朋友关系类型。     |
-| RELATION_MANAGER          | 7    | 管理者关系类型。   |
-| RELATION_MOTHER           | 8    | 母亲关系类型。     |
-| RELATION_PARENT           | 9    | 父母关系类型。     |
-| RELATION_PARTNER          | 10   | 合作伙伴关系类型。 |
-| RELATION_REFERRED_BY      | 11   | 推荐人关系类型。   |
-| RELATION_RELATIVE         | 12   | 亲属关系类型。     |
-| RELATION_SISTER           | 13   | 姐妹关系类型。     |
-| RELATION_SPOUSE           | 14   | 配偶关系类型。     |
-| INVALID_LABEL_ID          | -1   | 无效的关系类型。   |
+| 名称                      |  类型   | 值   | 说明               |
+| ------------------------- | ---- | ---- | ------------------ |
+| CUSTOM_LABEL              | number   | 0    | 自定义关系类型。   |
+| RELATION_ASSISTANT        | number   | 1    | 助手关系类型。     |
+| RELATION_BROTHER          | number   | 2    | 兄弟关系类型。     |
+| RELATION_CHILD            | number   | 3    | 子女关系类型。     |
+| RELATION_DOMESTIC_PARTNER | number   | 4    | 同居同伴关系类型。 |
+| RELATION_FATHER           | number   | 5    | 父亲关系类型。     |
+| RELATION_FRIEND           | number   | 6    | 朋友关系类型。     |
+| RELATION_MANAGER          | number   | 7    | 管理者关系类型。   |
+| RELATION_MOTHER           | number   | 8    | 母亲关系类型。     |
+| RELATION_PARENT           | number   | 9    | 父母关系类型。     |
+| RELATION_PARTNER          | number   | 10   | 合作伙伴关系类型。 |
+| RELATION_REFERRED_BY      | number   | 11   | 推荐人关系类型。   |
+| RELATION_RELATIVE         | number   | 12   | 亲属关系类型。     |
+| RELATION_SISTER           | number   | 13   | 姐妹关系类型。     |
+| RELATION_SPOUSE           | number   | 14   | 配偶关系类型。     |
+| INVALID_LABEL_ID          | number   | -1   | 无效的关系类型。   |
 
 ### 属性
 
-| 名称         |   类型   | 可读 | 可写 | 说明           |
+| 名称         |   类型   | 只读 | 可选 | 说明           |
 | ------------ | -------- | ---- | ---- | -------------- |
-| labelName    | string   | 是   | 是   | 关系类型名称。 |
-| relationName | string   | 是   | 是   | 关系名称。     |
-| labelId      | number   | 是   | 是   | 关系类型。     |
+| labelName    | string   | 否   | 是   | 关系类型名称。 |
+| relationName | string   | 否   | 否   | 关系名称。     |
+| labelId      | number   | 否   | 是   | 关系类型。     |
 
 **对象创建示例：**
 
@@ -4619,21 +4636,21 @@ relation.labelId = contact.Relation.RELATION_ASSISTANT;
 
 ### 常量
 
-| 名称             | 值   | 说明                                |
-| ---------------- | ---- | ----------------------------------- |
-| CUSTOM_LABEL     | 0    | 自定义会话发起协议(SIP)地址类型。 |
-| SIP_HOME         | 1    | 家庭会话发起协议(SIP)地址类型。   |
-| SIP_WORK         | 2    | 工作会话发起协议(SIP)地址类型。   |
-| SIP_OTHER        | 3    | 其它会话发起协议(SIP)地址类型。   |
-| INVALID_LABEL_ID | -1   | 无效会话发起协议(SIP)地址类型。   |
+| 名称             |   类型   | 值   | 说明                                |
+| ---------------- | ---- | ---- | ----------------------------------- |
+| CUSTOM_LABEL     | number   | 0    | 自定义会话发起协议(SIP)地址类型。 |
+| SIP_HOME         | number   | 1    | 家庭会话发起协议(SIP)地址类型。   |
+| SIP_WORK         | number   | 2    | 工作会话发起协议(SIP)地址类型。   |
+| SIP_OTHER        | number   | 3    | 其它会话发起协议(SIP)地址类型。   |
+| INVALID_LABEL_ID | number   | -1   | 无效会话发起协议(SIP)地址类型。   |
 
 ### 属性
 
-| 名称       |   类型   | 可读 | 可写 | 说明                              |
+| 名称       |   类型   | 只读 | 可选 | 说明                              |
 | ---------- | -------- | ---- | ---- | --------------------------------- |
-| labelName  | string   | 是   | 是   | 会话发起协议(SIP)地址类型名称。 |
-| sipAddress | string   | 是   | 是   | 会话发起协议(SIP)地址。         |
-| labelId    | number   | 是   | 是   | 会话发起协议(SIP)地址类型。     |
+| labelName  | string   | 否   | 是   | 会话发起协议(SIP)地址类型名称。 |
+| sipAddress | string   | 否   | 否   | 会话发起协议(SIP)地址。         |
+| labelId    | number   | 否   | 是   | 会话发起协议(SIP)地址类型。     |
 
 **对象创建示例：**
 
@@ -4660,9 +4677,9 @@ sipAddress.sipAddress = "sipAddress";
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
-| 名称    |   类型   | 可读 | 可写 | 说明               |
+| 名称    |   类型   | 只读 | 可选 | 说明               |
 | ------- | -------- | ---- | ---- | ------------------ |
-| website | string   | 是   | 是   | 联系人的网站信息。 |
+| website | string   | 否   | 否   | 联系人的网站信息。 |
 
 **对象创建示例：**
 

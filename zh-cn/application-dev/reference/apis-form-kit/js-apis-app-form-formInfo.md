@@ -12,7 +12,7 @@ formInfo模块提供了卡片信息和状态等相关类型和枚举。
 import { formInfo } from '@kit.FormKit';
 ```
 
-## formInfo.FormInfo
+## FormInfo
 
 卡片配置信息。
 
@@ -43,9 +43,9 @@ import { formInfo } from '@kit.FormKit';
 | isDynamic<sup>10+</sup>      | boolean               | 是    | 否     | 卡片是否为动态卡片。<br/>仅ArkTS卡片区分动静态卡片，JS卡片均为动态卡片。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | transparencyEnabled<sup>11+</sup>      | boolean               | 是    | 否     | 卡片是否支持设置背景透明度。<br/>ArkTS卡片由用户配置决定是否支持，JS卡片均不支持。  <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | supportedShapes<sup>12+</sup>    | Array&lt;number&gt;      | 是    | 否     | 卡片支持的形状。具体可选形状参考[FormShape<sup>12+</sup>](#formshape12) <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
-| <!--DelRow-->previewImages<sup>18+</sup> | Array&lt;number&gt; | 是 | 否 | 卡片预览图资源ID。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+| <!--DelRow-->previewImages<sup>18+</sup> | Array&lt;number&gt; | 是 | 否 | 卡片预览图资源ID。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 | <!--DelRow-->enableBlurBackground<sup>18+</sup>  | boolean               | 是    | 否     | 卡片是否使用模糊背板。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
-| <!--DelRow-->renderingMode<sup>18+</sup>|[RenderingMode](#renderingmode18)|是|否|卡片渲染模式。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+| <!--DelRow-->renderingMode<sup>18+</sup>|[RenderingMode](./js-apis-app-form-formInfo-sys.md#renderingmode18)|是|否|卡片渲染模式。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
 ## FormType
 
@@ -122,7 +122,7 @@ import { formInfo } from '@kit.FormKit';
 | PARAM_FORM_CUSTOMIZE_KEY<sup>10+</sup>    | 'ohos.extra.param.key.form_customize'   | 自定义数据。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | FORM_RENDERING_MODE_KEY<sup>11+</sup>    | 'ohos.extra.param.key.form_rendering_mode'   | 卡片渲染模式。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | HOST_BG_INVERSE_COLOR_KEY<sup>12+</sup>    | 'ohos.extra.param.key.host_bg_inverse_color'   | 卡片使用方的背景反色颜色值。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| FORM_LOCATION_KEY<sup>12+</sup>    | 'ohos.extra.param.key.form_location'   | 卡片位置。 <br>OTHER                         -1    (其他位置) <br>DESKTOP                       0     (桌面) <br>FORM_CENTER                   1     (桌面的卡片中心) <br>FORM_MANAGER                  2     (桌面的卡片管理器) <br>NEGATIVE_SCREEN               3     (负一屏) <br>FORM_CENTER_NEGATIVE_SCREEN   4     (负一屏的服务中心) <br>FORM_MANAGER_NEGATIVE_SCREEN  5     (负一屏的卡片管理器) <br>SCREEN_LOCK                   6     (锁屏) <br>AI_SUGGESTION                 7     (小艺建议推荐区)
+| FORM_LOCATION_KEY<sup>12+</sup>    | 'ohos.extra.param.key.form_location'   | 卡片位置。 <br>OTHER                         -1    （其他位置） <br>DESKTOP                       0     （桌面） <br>FORM_CENTER                   1     （桌面的卡片中心） <br>FORM_MANAGER                  2     （桌面的卡片管理器） <br>NEGATIVE_SCREEN               3     （负一屏） <br>FORM_CENTER_NEGATIVE_SCREEN   4     （负一屏的服务中心） <br>FORM_MANAGER_NEGATIVE_SCREEN  5     （负一屏的卡片管理器） <br>SCREEN_LOCK                   6     （锁屏） <br>AI_SUGGESTION                 7     （小艺建议推荐区）|
 | FORM_PERMISSION_NAME_KEY<sup>12+</sup> | 'ohos.extra.param.key.permission_name' | 用户授权权限名称。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | FORM_PERMISSION_GRANTED_KEY<sup>12+</sup> | 'ohos.extra.param.key.permission_granted' | 用户是否授权。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
@@ -197,16 +197,3 @@ import { formInfo } from '@kit.FormKit';
 | FORM_DEFAULT | 1   | 表示卡片创建原因为默认创建。 |
 | FORM_SHARE   | 2   | 表示卡片创建原因为共享创建。 |
 
-## RenderingMode<sup>18+</sup>
-
-卡片支持的渲染模式枚举。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Ability.Form
-
-| 名称        | 值   | 说明         |
-| ----------- | ---- | ------------ |
-| AUTO_COLOR    | 0    | 表示自动模式。   |
-| FULL_COLOR     | 1   | 表示全色模式。   |
-| SINGLE_COLOR      | 2   | 表示单色模式。   |

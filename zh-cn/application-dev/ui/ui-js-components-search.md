@@ -169,17 +169,6 @@ export default {
 
 ![zh-cn_image_0000001182187434](figures/zh-cn_image_0000001182187434.gif)
 
-## 选中菜单
-
-search组件内容区文字被选中时会弹出包含剪切、复制、翻译、分享的菜单。
-```js
-Search({ value: '这是一段文本,用来测试选中菜单' })
-  .searchButton('SEARCH')
-  .width('70%')
-  .height(40)
-```
-
-![Search_select_menu](figures/Search_select_menu.jpg)
 
 ## 场景示例
 

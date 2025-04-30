@@ -106,7 +106,7 @@ Called when the latest image or video is selected.
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Processing result of the latest image or video.|
+| boolean | Processing result of the latest image or video. The value **true** means that the processing is complete.|
 
 ## RecentPhotoCheckInfoCallback<sup>13+</sup>
 
@@ -183,7 +183,7 @@ struct PickerDemo {
     return true;
   }
 
-  private onRecentPhotoCheckResult(recentPhotoExists: boolean, info: RecentPhotoInfo): void {
+  private onRecentPhotoCheckInfo(recentPhotoExists: boolean, info: RecentPhotoInfo): void {
     // Check whether a photo or video that meets the conditions exists. If yes, obtain information about the photo or video.
   }
 

@@ -14,7 +14,7 @@
 
 3. 解析证书吊销列表信息。
 
-   此处以获取证书吊销列表版本、证书吊销列表类型为例，更多字段信息获取接口请查看[API参考文档](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509crl11)。
+   此处以获取证书吊销列表版本、证书吊销列表类型、证书吊销列表颁发者名称、证书吊销列表对象的字符串类型数据为例，更多字段信息获取接口请查看[API参考文档](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509crl11)。
 
 4. 基于已有公钥信息，创建PublicKey公钥对象。
 
@@ -116,8 +116,18 @@ function crlSample(): void {
 
     // 获取CRL的版本。
     let version = x509Crl.getVersion();
+    // 获取证书吊销列表类型。
     let revokedType = x509Crl.getType();
     console.log(`X509 CRL version: ${version}, type :${revokedType}`);
+
+    // 获取证书吊销列表颁发者名称。
+    let issuerName = x509Crl.getIssuerName(cert.EncodingType.ENCODING_UTF8);
+    console.log(`X509 CRL issuerName: ${issuerName}`);
+
+    // 获取证书吊销列表对象的字符串类型数据。
+    let crlString = x509Crl.toString(cert.EncodingType.ENCODING_UTF8);
+    console.log(`X509 CRL crlString: ${crlString}`);
+
 
     // 公钥的二进制数据需要传入@ohos.security.cryptoFramework的convertKey()方法去获取公钥对象。
     try {

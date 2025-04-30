@@ -2,7 +2,7 @@
 
 ## 使用场景
 
-除区域设置和应用偏好语言设置外，系统还可以设置用户偏好，当前支持是否使用本地数字、是否使用12/24小时制两种偏好。用户偏好设置会保存到系统区域标识及应用偏好语言中，最终体现在用户界面的国际化特性上。
+除区域设置和应用偏好语言设置外，系统还可以设置用户偏好，当前支持是否使用本地数字、是否使用12/24小时制两种偏好。用户偏好设置会保存到系统区域及应用偏好语言中，最终体现在用户界面的国际化特性上。
 
 ## 开发步骤
 
@@ -32,7 +32,7 @@
    let date: Date = new Date(2023, 9, 25); // 时间日期为2023.10.25
    let appPreferredLanguage: string = 'ar';
    let dateTimeFmt: intl.DateTimeFormat = new intl.DateTimeFormat(appPreferredLanguage);
-   let formattedTime: string = dateTimeFmt.format(date); // formattedTime = '٢٠٢٣/١٠/٢٥'（采用阿语本地数字表示）
+   let formattedTime: string = dateTimeFmt.format(date); // formattedTime = '٢٠٢٣/١٠/٢٥'（使用阿拉伯语本地数字表示）
    ```
 
 4. 设置格式化的24小时制。

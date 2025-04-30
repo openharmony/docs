@@ -6,7 +6,9 @@
 
 >  **说明：**
 >
->  该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+>  该组件不支持在Wearable设备上使用。
 
 
 ## 导入模块
@@ -27,6 +29,8 @@ import { GridObjectSortComponent, GridObjectSortComponentItem, GridObjectSortCom
 
 GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Array\<GridObjectSortComponentItem>, onSave: (select: Array\<GridObjectSortComponentItem>, unselect: Array\<GridObjectSortComponentItem>) => void, onCancel: () => void })
 
+网格对象排序组件。
+
 **装饰器类型：**\@Component
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -43,20 +47,24 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 ##  GridObjectSortComponentOptions
 
+网格对象排序组件的组件配置信息。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称           | 类型                      | 必填 | 说明                                                          |
 | -------------- | ------------------------- | ---- |-------------------------------------------------------------|
-| type           | [GridObjectSortComponentType](#gridobjectsortcomponenttype) | 否   | 组件展示形态：文字\|图片+文字。<br />默认：GridObjectSortComponentType.text。 |
-| imageSize      | number \| [Resource](ts-types.md#resource) | 否   | 图片的尺寸，单位vp。<br />取值范围：大于等于0。<br />默认值：56vp。                 |
+| type           | [GridObjectSortComponentType](#gridobjectsortcomponenttype) | 否   | 组件展示形态：文字\|图片+文字。<br />默认：GridObjectSortComponentType.text |
+| imageSize      | number \| [Resource](ts-types.md#resource) | 否   | 图片的尺寸，单位vp。<br />取值范围：大于等于0。<br />默认值：56vp                 |
 | normalTitle | [ResourceStr](ts-types.md#resourcestr)     | 否   | 未编辑状态下显示的标题。<br />默认值：频道。                                   |
 | showAreaTitle | [ResourceStr](ts-types.md#resourcestr)     | 否   | 展示区域标题，第一个子标题。<br />默认值：长按拖动排序。                              |
 | addAreaTitle | [ResourceStr](ts-types.md#resourcestr)     | 否   | 添加区域标题，第二个子标题。<br />默认值：点击添加。                                |
 | editTitle      | [ResourceStr](ts-types.md#resourcestr)     | 否   | 编辑状态下头部标题显示。<br />默认值：编辑。                                    |
 
 ## GridObjectSortComponentType
+
+配置网格对象排序组件节点的类型，配置名称 IMAGE_TEXT 为图片文字类型，TEXT 为文字类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -69,6 +77,8 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 ## GridObjectSortComponentItem
 
+网格对象排序组件的组件数据配置信息。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 类型                                   | 必填 | 说明                                                                                                                       |
@@ -78,7 +88,7 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 | selected | boolean                                | 是   | 是否已经被添加，添加：true，未添加：false。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                           |
 | url      | [ResourceStr](ts-types.md#resourcestr) | 否   | GridObjectSortComponentType类型为IMAGE_TEXT时，需要传入图片地址。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                  |
 | symbolStyle<sup>18+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | GridObjectSortComponentType类型为IMAGE_TEXT时，需要传入Symbol图标资源。配置优先级高于url。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
-| order    | number                                 | 是   | 顺序序号。<br />取值范围：大于等于0。<br />默认值：0。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                   |
+| order    | number                                 | 是   | 顺序序号。<br />取值范围：大于等于0。<br />默认值：0 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                   |
 
 ##  事件
 
@@ -93,7 +103,7 @@ import { GridObjectSortComponent, GridObjectSortComponentItem, GridObjectSortCom
 @Entry
 @Component
 struct Index {
-  // 组件数据初始化
+  // 组件数据初始化。
   @State dataList: GridObjectSortComponentItem[] = [
     {
       id: 0,
@@ -125,7 +135,7 @@ struct Index {
     }
   ]
 
-  // 组件配置信息初始化
+  // 组件配置信息初始化。
   @State option: GridObjectSortComponentOptions = {
     type: GridObjectSortComponentType.IMAGE_TEXT,
     imageSize: 45,

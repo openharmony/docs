@@ -67,7 +67,7 @@ OpenHarmony 5.0.3 Release版本对标准系统的能力进行持续完善，以�
   - 新增C API支持控制焦点以及处理焦点事件的能力。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.3-Release/zh-cn/application-dev/reference/apis-arkui/native__interface__focus_8h.md)）
   - 新增C API支持克隆事件的转发。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.3-Release/zh-cn/application-dev/reference/apis-arkui/_ark_u_i___event_module.md#oh_arkui_pointerevent_postclonedevent)）
   - 通用事件新增C API支持获取当前触摸事件触发的ID。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.3-Release/zh-cn/application-dev/reference/apis-arkui/_ark_u_i___event_module.md#oh_arkui_pointerevent_getchangedpointerid)）
-  - 支持C API组件截图能力。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.3-Release/zh-cn/application-dev/reference/apis-arkui/_ark_u_i___node_component_snapshot.md)）
+  - 支持C API组件截图能力。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.3-Release/zh-cn/application-dev/reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_getnodesnapshot)）
   - 新增支持NODE_CHECKBOX_GROUP相关能力。可在API参考中搜索该关键字。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.3-Release/zh-cn/application-dev/reference/apis-arkui/_ark_u_i___native_module.md)）
 
 - 新增支持获取触摸相关的事件来自左手还是右手，涉及多个数据对象：
@@ -253,9 +253,9 @@ OpenHarmony 5.0.3 Release版本对标准系统的能力进行持续完善，以�
 
 ### 企业定制
 
-- 新增支持为指定的浏览器设置浏览器托管策略。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.3-Release/zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-browser.md#browsersetmanagedbrowserpolicy15)）
+- 新增支持为指定的浏览器设置浏览器策略。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.3-Release/zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-browser.md#browsersetmanagedbrowserpolicy15)）
 
-- 新增支持设置指定用户下的网络代理（仅限2in1设备）。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.3-Release/zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-browser.md#browsersetmanagedbrowserpolicy15)）
+- 新增支持设置指定用户下的网络代理（仅限2in1设备）。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.3-Release/zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-networkManager.md#networkmanagersetglobalproxyforaccount15)）
 
 
 ### 输入法
@@ -286,8 +286,6 @@ OpenHarmony 5.0.3 Release版本对标准系统的能力进行持续完善，以�
 - 上传下载新增支持使用单个上传请求上传多文件，该能力通过Config的multipart参数配置。（[API参考](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request.md#config10)）
 
 - 上传下载新增支持自定义通知栏的信息。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.3-Release/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request.md#notification15)）
-
-- 上传下载新增支持使用单个上传请求上传多文件，该能力通过Config的multipart参数配置。（[API参考](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request.md#config10)）
 
 
 ### 全球化

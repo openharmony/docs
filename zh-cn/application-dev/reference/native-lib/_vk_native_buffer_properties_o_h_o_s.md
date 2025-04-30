@@ -3,7 +3,7 @@
 
 ## 概述
 
-包含了NaitveBuffer的属性。
+包含了NativeBuffer的属性。
 
 **起始版本：**
 

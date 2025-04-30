@@ -11,6 +11,8 @@ The VideoProcessing_ColorSpaceInfo struct describes the color space information 
 
 **Related module**: [VideoProcessing](_video_processing.md)
 
+**Header file**: [video_processing_types.h](video__processing__types_8h.md)
+
 
 ## Summary
 

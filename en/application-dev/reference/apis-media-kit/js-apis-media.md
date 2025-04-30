@@ -526,6 +526,8 @@ Enumerates the [media error codes](errorcode-media.md).
 | AVERR_IO_SSL_SERVER_CERT_UNTRUSTED<sup>14+</sup> | 5411010 | The client fails to verify the server certificate.<br>**Atomic service API**: This API can be used in atomic services since API version 14.       |
 | AVERR_IO_UNSUPPORTED_REQUEST<sup>14+</sup> | 5411011 | The request is not supported due to a network protocol error.<br>**Atomic service API**: This API can be used in atomic services since API version 14.       |
 | AVERR_SEEK_CONTINUOUS_UNSUPPORTED<sup>18+</sup> | 5410002 | The seek operation in SEEK_CONTINUOUS mode is not supported.<br>**Atomic service API**: This API can be used in atomic services since API version 18.       |
+| AVERR_SUPER_RESOLUTION_UNSUPPORTED<sup>18+</sup> | 5410003 | Super resolution is not supported.<br>**Atomic service API**: This API can be used in atomic services since API version 18.       |
+| AVERR_SUPER_RESOLUTION_NOT_ENABLED<sup>18+</sup> | 5410004 | Super resolution is not enabled.<br>**Atomic service API**: This API can be used in atomic services since API version 18.       |
 
 ## MediaType<sup>8+</sup>
 
@@ -645,7 +647,7 @@ For details about the audio and video playback demo, see [Audio Playback](../../
 | Name                                               | Type                                                        | Read-Only| Optional| Description                                                        |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | url<sup>9+</sup>                                    | string                                                       | No  | Yes  | URL of the media asset. It can be set only when the AVPlayer is in the idle state. <br>The video formats MP4, MPEG-TS, and MKV are supported.<br>The audio formats M4A, AAC, MP3, OGG, WAV, FLAC, and AMR are supported.<br>**Example of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http\://xx<br>3. HTTPS: https\://xx<br>4. HLS: http\://xx or https\://xx<br>**NOTE**<br>- To set a network playback path, you must declare the [ohos.permission.INTERNET](../../security/AccessToken/permissions-for-all.md#ohospermissioninternet) permission by following the instructions provided in [Declaring Permissions](../../security/AccessToken/declare-permissions.md). The error code [201](../errorcode-universal.md) may be reported.<br>- WebM is no longer supported since API version 11.<br> - After the resource handle (FD) is transferred to an **AVPlayer** instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other **AVPlayer**, **AVMetadataExtractor**, **AVImageGenerator**, or **AVTranscoder** instance. Competition occurs when multiple AVPlayers use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| fdSrc<sup>9+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | No  | Yes  | FD of the media asset. It can be set only when the AVPlayer is in the idle state.<br>This attribute is required when media assets of an application are continuously stored in a file.<br>The video formats MP4, MPEG-TS, and MKV are supported.<br>The audio formats M4A, AAC, MP3, OGG, WAV, FLAC, and AMR are supported.<br>**Example:**<br>Assume that a media file that stores continuous assets consists of the following:<br>Video 1 (address offset: 0, byte length: 100)<br>Video 2 (address offset: 101; byte length: 50)<br>Video 3 (address offset: 151, byte length: 150)<br>1. To play video 1: AVFileDescriptor {fd = resource handle; offset = 0; length = 100; }<br>2. To play video 2: AVFileDescriptor {fd = resource handle; offset = 101; length = 50; }<br>3. To play video 3: AVFileDescriptor {fd = resource handle; offset = 151; length = 150; }<br>To play an independent media file, use **src=fd://xx**.<br>**NOTE**<br>WebM is no longer supported since API version 11.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| fdSrc<sup>9+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | No  | Yes  | FD of the media asset. It can be set only when the AVPlayer is in the idle state.<br>This attribute is required when media assets of an application are continuously stored in a file.<br>The video formats MP4, MPEG-TS, and MKV are supported.<br>The audio formats M4A, AAC, MP3, OGG, WAV, FLAC, and AMR are supported.<br>**Example:**<br>Assume that a media file that stores continuous assets consists of the following:<br>Video 1 (address offset: 0, byte length: 100)<br>Video 2 (address offset: 101; byte length: 50)<br>Video 3 (address offset: 151, byte length: 150)<br>1. To play video 1: AVFileDescriptor { fd = resource handle; offset = 0; length = 100; }<br>2. To play video 2: AVFileDescriptor { fd = resource handle; offset = 101; length = 50; }<br>3. To play video 3: AVFileDescriptor { fd = resource handle; offset = 151; length = 150; }<br>To play an independent media file, use **src=fd://xx**.<br>**NOTE**<br>WebM is no longer supported since API version 11.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | dataSrc<sup>10+</sup>                               | [AVDataSrcDescriptor](#avdatasrcdescriptor10)                | No  | Yes  | Descriptor of a streaming media asset. It can be set only when the AVPlayer is in the idle state.<br>Use scenario: An application starts playing a media file while the file is still being downloaded from the remote to the local host.<br>The video formats MP4, MPEG-TS, and MKV are supported.<br>The audio formats M4A, AAC, MP3, OGG, WAV, FLAC, and AMR are supported.<br>**Example:**<br>A user is obtaining an audio and video file from a remote server and wants to play the downloaded file content. To implement this scenario, do as follows:<br>1. Obtain the total file size, in bytes. If the total size cannot be obtained, set **fileSize** to **-1**.<br>2. Implement the **func** callback to fill in data. If **fileSize** is **-1**, the format of **func** is **func(buffer: ArrayBuffer, length: number)**, and the AVPlayer obtains data in sequence; otherwise, the format is **func(buffer: ArrayBuffer, length: number, pos: number)**, and the AVPlayer seeks and obtains data in the required positions.<br>3. Set **AVDataSrcDescriptor {fileSize = size, callback = func}**.<br>**Notes:**<br>If the media file to play is in MP4/M4A format, ensure that the **moov** field (specifying the media information) is before the **mdat** field (specifying the media data) or the fields before the **moov** field is less than 10 MB. Otherwise, the parsing fails and the media file cannot be played.<br>**NOTE**<br>WebM is no longer supported since API version 11.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | surfaceId<sup>9+</sup>                              | string                                                       | No  | Yes  | Video window ID. By default, there is no video window.<br>This parameter can be set when the AVPlayer is in the initialized state.<br>It can be set again when the AVPlayer is in the prepared, playing, paused, completed, or stopped state, in the prerequisite that the video window ID has been set in the initialized state. After the new setting is performed, the video is played in the new window.<br>It is used to render the window for video playback and therefore is not required in audio-only playback scenarios.<br>**Example:**<br>[Create a surface ID through XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | loop<sup>9+</sup>                                   | boolean                                                      | No  | No  | Whether to loop playback. The value **true** means to loop playback, and **false** (default) means the opposite. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.<br>This setting is not supported in live mode.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -857,8 +859,14 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 let player = await media.createAVPlayer();
 let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
 let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  headers);
-let playStrategy : media.PlaybackStrategy = {preferredWidth: 1, preferredHeight: 2, preferredBufferDuration: 3, preferredHdr: false,
-  preferredBufferDurationForPlaying: 1};
+let playStrategy : media.PlaybackStrategy = {
+  preferredWidth: 1,
+  preferredHeight: 2,
+  preferredBufferDuration: 3,
+  preferredHdr: false,
+  preferredBufferDurationForPlaying: 1,
+  thresholdForAutoQuickPlay: 5
+};
 player.setMediaSource(mediaSource, playStrategy);
 ```
 
@@ -899,13 +907,26 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { common } from '@kit.AbilityKit';
 
+private context: Context | undefined;
+constructor(context: Context) {
+  this.context = context; // this.getUIContext().getHostContext();
+}
+
 let player = await media.createAVPlayer();
-let context = getContext(this) as common.UIAbilityContext
-let fileDescriptor = await context.resourceManager.getRawFd('xxx.mp4')
+let context = getContext(this) as common.UIAbilityContext;
+let fileDescriptor = await this.context.resourceManager.getRawFd('xxx.mp4');
 player.fdSrc = fileDescriptor
-let playStrategy : media.PlaybackStrategy = {preferredWidth: 1, preferredHeight: 2, preferredBufferDuration: 3,
-  preferredHdr: false, mutedMediaType: media.MediaType.MEDIA_TYPE_AUD, preferredBufferDurationForPlaying: 1};
+let playStrategy : media.PlaybackStrategy = {
+  preferredWidth: 1,
+  preferredHeight: 2,
+  preferredBufferDuration: 3,
+  preferredHdr: false,
+  mutedMediaType: media.MediaType.MEDIA_TYPE_AUD,
+  preferredBufferDurationForPlaying: 1,
+  thresholdForAutoQuickPlay: 5
+};
 player.setPlaybackStrategy(playStrategy);
+
 ```
 
 ### setPlaybackRange<sup>18+</sup>
@@ -992,6 +1013,8 @@ avPlayer.prepare((err: BusinessError) => {
 prepare(): Promise\<void>
 
 Prepares for audio and video playback. This API can be called only when the AVPlayer is in the initialized state. The state changes can be detected by subscribing to the [stateChange](#onstatechange9) event. This API uses a promise to return the result.
+
+If your application frequently switches between short videos, you can create multiple AVPlayer objects to prepare the next video in advance, thereby improving the switching performance. For details, see [Smooth Switchover Between Online Short Videos](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-smooth-switching).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1527,7 +1550,7 @@ Obtains the indexes of the selected audio or video tracks. This API can be calle
 
 | Type                                                  | Description                                             |
 | ------------------------------------------------------ | ------------------------------------------------- |
-| Promise<Array<[number]>> | Promise used to return the index array.|
+| Promise\<Array\<number>> | Promise used to return the index array.|
 
 **Error codes**
 
@@ -2660,8 +2683,11 @@ Adds an external subtitle to a video based on the FD. Currently, the external su
 ```ts
 import { common } from '@kit.AbilityKit'
 
-let context = getContext(this) as common.UIAbilityContext
-let fileDescriptor = await context.resourceManager.getRawFd('xxx.srt')
+private context: Context | undefined;
+constructor(context: Context) {
+  this.context = context; // this.getUIContext().getHostContext();
+}
+let fileDescriptor = await this.context.resourceManager.getRawFd('xxx.srt');
 
 avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length)
 ```
@@ -2929,7 +2955,9 @@ Subscribes to events indicating that a Supplemental Enhancement Information (SEI
 **Example**
 
 ```ts
-this.avPlayer.on('seiMessageReceived', [5], (messages: Array<media.SeiMessage>, playbackPosition?: number) =>
+import util from '@ohos.util';
+
+avPlayer.on('seiMessageReceived', [5], (messages: Array<media.SeiMessage>, playbackPosition?: number) =>
 {
   console.info('seiMessageReceived playbackPosition ' + playbackPosition)
 
@@ -2937,7 +2965,7 @@ this.avPlayer.on('seiMessageReceived', [5], (messages: Array<media.SeiMessage>, 
     console.info('seiMessageReceived messages payloadType ' + messages[key].payloadType + ' payload size ' + messages[key].payload.byteLength)
 
     let textDecoder = util.TextDecoder.create("utf-8",{ignoreBOM: true})
-    let ab = messages[key].payload.slice(16, messages[key].payload.byteLength)
+    let ab = messages[key]?.payload?.slice(16, messages[key].payload.byteLength)
     let result: Uint8Array = new Uint8Array(ab)
     let retStr: string = textDecoder.decodeToString(result)
     console.info('seiMessageReceived messages payload ' + retStr)
@@ -2967,6 +2995,136 @@ Unsubscribes from the events indicating that an SEI message is received.
 
 ```ts
 avPlayer.off('seiMessageReceived')
+```
+
+### setSuperResolution<sup>18+</sup>
+
+setSuperResolution(enabled: boolean) : Promise\<void>
+
+Enables or disables super resolution. This API can be called when the AVPlayer is in the initialized, prepared, playing, paused, completed, or stopped state. This API uses a promise to return the result.
+
+Before calling [prepare()](#prepare9), enable super resolution by using [PlaybackStrategy](#playbackstrategy12).
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| enabled    | boolean | Yes  | Whether to enable or disable super resolution. The value **true** means to enable it, and **false** means to disable it.|
+
+**Return value**
+
+| Type          | Description                                      |
+| -------------- | ------------------------------------------ |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](errorcode-media.md).
+
+| ID| Error Message                                  |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5410003  | Super-resolution not supported. Return by promise. |
+| 5410004  | Missing enable super-resolution feature in [PlaybackStrategy](#playbackstrategy12). Return by promise. |
+
+**Example**
+
+```ts
+avPlayer.setSuperResolution(true)
+```
+
+### setVideoWindowSize<sup>18+</sup>
+
+setVideoWindowSize(width: number, height: number) : Promise\<void>
+
+Sets the resolution of the output video after super resolution. This API can be called when the AVPlayer is in the initialized, prepared, playing, paused, completed, or stopped state. This API uses a promise to return the result. The input parameter values s must be in the range of 320 x 320 to 1920 x 1080 (in px).
+
+Before calling [prepare()](#prepare9), enable super resolution by using [PlaybackStrategy](#playbackstrategy12).
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| width    | number | Yes  | Target width of the output video after super resolution. The value range is [320-1920], in px.|
+| height    | number | Yes  | Target height of the output video after super resolution. The value range is [320-1080], in px.|
+
+**Return value**
+
+| Type          | Description                                      |
+| -------------- | ------------------------------------------ |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](errorcode-media.md).
+
+| ID| Error Message                                  |
+| -------- | ------------------------------------------ |
+| 401      | Parameter error. Return by promise. |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5410003  | Super-resolution not supported. Return by promise. |
+| 5410004  | Missing enable super-resolution feature in [PlaybackStrategy](#playbackstrategy12). Return by promise. |
+
+**Example**
+
+```ts
+avPlayer.setVideoWindowSize(1920, 1080)
+```
+
+### on('superResolutionChanged')<sup>18+</sup>
+
+on(type:'superResolutionChanged', callback: OnSuperResolutionChanged): void
+
+Subscribes to the event indicating that super resolution is enabled or disabled.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string | Yes| Event type, which is **'superResolutionChanged'** in this case. The event is triggered when super resolution is enabled or disabled.|
+| callback | [OnSuperResolutionChanged](#onsuperresolutionchanged-18) | Yes| Callback used to listen for super resolution status changes.|
+
+**Example**
+
+```ts
+avPlayer.on('superResolutionChanged', (enabled: boolean) => {
+  console.info('superResolutionChanged called, and enabled is:' + enabled)
+})
+```
+
+### off('superResolutionChanged')<sup>18+</sup>
+
+off(type:'superResolutionChanged', callback?: OnSuperResolutionChanged): void
+
+Unsubscribes from the event indicating that super resolution is enabled or disabled.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string | Yes| Event type, which is **'superResolutionChanged'** in this case. The event is triggered when super resolution is enabled or disabled.|
+| callback | [OnSuperResolutionChanged](#onsuperresolutionchanged-18) | No| Callback used to listen for super resolution status changes.|
+
+**Example**
+
+```ts
+avPlayer.off('superResolutionChanged')
 ```
 
 ## AVPlayerState<sup>9+</sup>
@@ -3048,8 +3206,43 @@ Describes the callback invoked for the video size change event.
 
 | Name  | Type  | Mandatory| Description                                                        |
 | ------ | ------ | ------ | ------------------------------------------------------------ |
-| width  | number | Yes| Video width.    |
-| height | number | Yes| Video height.|
+| width  | number | Yes| Video width, in px.|
+| height | number | Yes| Video height, in px.|
+
+## OnSeiMessageHandle<sup>18+</sup>
+
+type OnSeiMessageHandle = (messages: Array\<SeiMessage>, playbackPosition?: number) => void
+
+Describes the handle used to obtain SEI messages. This is used when in subscriptions to SEI message events, and the callback returns detailed SEI information.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Parameters**
+
+| Name  |   Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| messages | Array\<[SeiMessage](#seimessage18)> | Yes | Array of SEI messages.|
+| playbackPosition | number | No | Current playback position, in milliseconds.|
+
+## OnSuperResolutionChanged <sup>18+</sup>
+
+type OnSuperResolutionChanged = (enabled: boolean) => void
+
+Describes the callback used to listen for video super resolution status changes. If super resolution is enabled by using [PlaybackStrategy](#playbackstrategy12), this callback is invoked to report the super resolution status changes. It is also invoked to report the initial status when the video starts. However, this callback is not invoked when super resolution is not enabled.
+
+Super resolution is automatically disabled in either of the following cases:
+* The current super resolution algorithm only works with videos that have a frame rate of 30 fps or lower. If the video frame rate exceeds 30 fps, or if the input frame rate exceeds the processing capability of the super resolution algorithm in scenarios such as fast playback, super resolution is automatically disabled.
+* The current super resolution algorithm supports input resolutions from 320 x 320 to 1920 x 1080, in px. If the input video resolution exceeds the range during playback, super resolution is automatically disabled.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+| Name  | Type  | Mandatory| Description                                                        |
+| ------ | ------ | ------ | ------------------------------------------------------------ |
+| enabled  | boolean | Yes| Whether super resolution is enabled. The value **true** means that it is enabled, and **false** means the opposite.    |
 
 ## AVFileDescriptor<sup>9+</sup>
 
@@ -3104,23 +3297,6 @@ Describes the information of an SEI message.
 | ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
 | payloadType | number | No | No | Payload type of the SEI message.|
 | payload | ArrayBuffer | No | No | Payload data of the SEI message.|
-
-## OnSeiMessageHandle<sup>18+</sup>
-
-type OnSeiMessageHandle = (messages: Array\<SeiMessage>, playbackPosition?: number) => void
-
-Describes the handle used to obtain SEI messages. This is used when in subscriptions to SEI message events, and the callback returns detailed SEI information.
-
-**Atomic service API**: This API can be used in atomic services since API version 18.
-
-**System capability**: SystemCapability.Multimedia.Media.Core
-
-**Parameters**
-
-| Name   |   Type  | Mandatory| Description                                                        |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| messages | Array\<[SeiMessage](#seimessage18)> | Yes | Array of SEI messages.|
-| playbackPosition | number | No | Current playback position, in milliseconds.|
 
 ## SeekMode<sup>8+</sup>
 
@@ -4573,7 +4749,10 @@ When the application initiates multiple subscriptions to this event, the last su
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit'
 let photoAsset: photoAccessHelper.PhotoAsset;
-let context = getContext(this) as common.UIAbilityContext
+private context: Context | undefined;
+constructor(context: Context) {
+  this.context = context; // this.getUIContext().getHostContext();
+}
 
 // Example: Process the photoAsset callback and save the video.
 async function saveVideo(asset: photoAccessHelper.PhotoAsset) {
@@ -4682,7 +4861,6 @@ The **audioSourceType** and **videoSourceType** parameters are used to distingui
 Describes the audio and video recording profile.
 
 > **NOTE**
->
 > The following table lists the audio parameters. For details about each parameter, see the field description below.
 >
 > | Encoding Format | Container Format | Sampling Rate | Bit Rate | Audio Channel Count |
@@ -4813,7 +4991,7 @@ For details about the AVTranscoder demo, see [Using AVTranscoder for Transcoding
 
 | Name   | Type                                | Read-Only| Optional| Description              |
 | ------- | ------------------------------------ | ---- | ---- | ------------------ |
-| fdSrc<sup>12+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       |  No | No  | Source media file descriptor, which specifies the data source.<br>**Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor {fd = resourceHandle; offset = 0; length = 100; }**.<br>**NOTE**<br> - After the resource handle (FD) is transferred to an **AVTranscoder** instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other **AVPlayer**, **AVMetadataExtractor**, **AVImageGenerator**, or **AVTranscoder** instance. Competition occurs when multiple AVTranscoders use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.|
+| fdSrc<sup>12+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       |  No | No  | Source media file descriptor, which specifies the data source.<br>**Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor { fd = resourceHandle; offset = 0; length = 100; }**.<br>**NOTE**<br> - After the resource handle (FD) is transferred to an **AVTranscoder** instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other **AVPlayer**, **AVMetadataExtractor**, **AVImageGenerator**, or **AVTranscoder** instance. Competition occurs when multiple AVTranscoders use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.|
 | fdDst<sup>12+</sup>                               | number                 |  No | No  | Destination media file descriptor, which specifies the data source. After creating an **AVTranscoder** instance, you must set both **fdSrc** and **fdDst**.<br>**NOTE**<br> - After the resource handle (FD) is transferred to an **AVTranscoder** instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other **AVPlayer**, **AVMetadataExtractor**, **AVImageGenerator**, or **AVTranscoder** instance. Competition occurs when multiple AVTranscoders use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.|
 
 ### prepare<sup>12+</sup>
@@ -5072,7 +5250,7 @@ Subscribes to transcoding progress updates. An application can subscribe to only
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | Yes  | Event type, which is **'progressUpdate'** in this case. This event is triggered by the system during transcoding.|
-| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback) | Yes  | Callback invoked when the event is triggered. **progress** is a number that indicates the current transcoding progress.|
+| callback | [Callback\<number>](../apis-basic-services-kit/js-apis-base.md#callback) | Yes  | Callback invoked when the event is triggered. **progress** is a number that indicates the current transcoding progress.|
 
 **Example**
 
@@ -5095,7 +5273,7 @@ Unsubscribes from transcoding progress updates.
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | Yes  | Event type, which is **'progressUpdate'** in this case. This event can be triggered by both user operations and the system.|
-| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback) | No  | Called that has been registered to listen for progress updates. You are advised to use the default value because only the last registered callback is retained in the current callback mechanism.|
+| callback | [Callback\<number>](../apis-basic-services-kit/js-apis-base.md#callback) | No  | Called that has been registered to listen for progress updates. You are advised to use the default value because only the last registered callback is retained in the current callback mechanism.|
 
 **Example**
 
@@ -5172,7 +5350,7 @@ on(type: 'complete', callback: Callback\<void>): void
 
 Subscribes to the event indicating that transcoding is complete. An application can subscribe to only one transcoding completion event. When the application initiates multiple subscriptions to this event, the last subscription is applied.
 
-When this event is reported, the current transcoding operation is complete. You can call [release()](#release12) to exit the transcoding.
+When this event is reported, the current transcoding operation is complete. You need to call [release()](#release12) to exit the transcoding.
 
 **System capability**: SystemCapability.Multimedia.Media.AVTranscoder
 
@@ -5181,13 +5359,17 @@ When this event is reported, the current transcoding operation is complete. You 
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | Yes  | Event type, which is **'complete'** in this case. This event is triggered by the system during transcoding.|
-| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback) | Yes  | Callback that has been registered to listen for transcoding completion events.|
+| callback | [Callback\<void>](../apis-basic-services-kit/js-apis-base.md#callback) | Yes  | Callback that has been registered to listen for transcoding completion events.|
 
 **Example**
 
 ```ts
-avTranscoder.on('complete', () => {
+avTranscoder.on('complete', async () => {
   console.info('avTranscoder complete');
+  // Listen for transcoding completion events.
+  // Wait until avTranscoder.release() is complete and then forward, upload, or save the transcoded file.
+  await avTranscoder.release();
+  avTranscoder = undefined;
 });
 ```
 
@@ -5204,7 +5386,7 @@ Unsubscribes from the event indicating that transcoding is complete.
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | Yes  | Event type, which is **'complete'** in this case. This event can be triggered by both user operations and the system.|
-| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback) | No  | Callback that has been registered to listen for transcoding completion events.|
+| callback | [Callback\<void>](../apis-basic-services-kit/js-apis-base.md#callback) | No  | Callback that has been registered to listen for transcoding completion events.|
 
 **Example**
 
@@ -5220,13 +5402,13 @@ Describes the video transcoding parameters.
 
 | Name           | Type                                   | Read-Only| Optional| Description                                                        |
 | --------------- | ---------------------------------------- |---- | ---- | ------------------------------------------------------------ |
-| audioBitrate | number     | No| Yes| Bit rate of the output audio, in bit/s. The default value is 48 kbit/s.|
-| audioCodec | [CodecMimeType](#codecmimetype8)     | No| Yes | Encoding format of the output audio. Currently, only AAC is supported.                  |
+| audioBitrate | number     | No| Yes| Bit rate of the output audio, in bit/s. The value range is [1-500000]. The default value is 48 kbit/s. |
+| audioCodec | [CodecMimeType](#codecmimetype8)     | No| Yes | Encoding format of the output audio. Currently, only AAC is supported. The default value is **AAC**.                  |
 | fileFormat         | [ContainerFormatType](#containerformattype8) | No| No  | Container format of the output video file. Currently, only MP4 is supported.|
 | videoBitrate         | number | No|  Yes | Bit rate of the output video, in bit/s. The default bit rate depends on the resolution of the output video. The default bit rate is 1 Mbit/s for the resolution in the range [240p, 480P], 2 Mbit/s for the range (480P,720P], 4 Mbit/s for the range (720P,1080P], and 8 Mbit/s for 1080p or higher.|
-| videoCodec        | [CodecMimeType](#codecmimetype8) | No| Yes  | Encoding format of the output video. Currently, only AVC and HEVC are supported.|
-| videoFrameWidth        | number | No|  Yes  | Width of the output video frame, in px. If this parameter is unspecified, the width of the source video frame is used.|
-| videoFrameHeight        | number | No|  Yes  | Height of the output video frame, in px. If this parameter is unspecified, the height of the source video frame is used.|
+| videoCodec        | [CodecMimeType](#codecmimetype8) | No| Yes  | Encoding format of the output video. Currently, only AVC and HEVC are supported. If the source video is in HEVC format, the default value is **HEVC**. Otherwise, the default value is **AVC**.|
+| videoFrameWidth        | number | No|  Yes  | Width of the output video frame, in px. The value range is [240 - 3840]. The default value is the width of the source video frame.|
+| videoFrameHeight        | number | No|  Yes  | Height of the output video frame, in px. The value range is [240 - 2160]. The default value is the height of the source video frame.|
 
 
 
@@ -5242,7 +5424,7 @@ For details about the demo for obtaining audio or video metadata, see [Obtaining
 
 | Name                                               | Type                                                        | Readable| Writable| Description                                                        |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| fdSrc<sup>11+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | Yes  | Yes  | Media file descriptor, which specifies the data source. Before obtaining metadata, you must set the data source through either **fdSrc** or **dataSrc**.<br>**Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor {fd = resourceHandle; offset = 0; length = 100; }**.<br>**NOTE**<br> - After the resource handle (FD) is transferred to an **AVMetadataExtractor** instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other **AVPlayer**, **AVMetadataExtractor**, **AVImageGenerator**, or **AVTranscoder** instance. Competition occurs when multiple AVMetadataExtractor use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.|
+| fdSrc<sup>11+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | Yes  | Yes  | Media file descriptor, which specifies the data source. Before obtaining metadata, you must set the data source through either **fdSrc** or **dataSrc**.<br>**Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor { fd = resourceHandle; offset = 0; length = 100; }**.<br>**NOTE**<br> - After the resource handle (FD) is transferred to an **AVMetadataExtractor** instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other **AVPlayer**, **AVMetadataExtractor**, **AVImageGenerator**, or **AVTranscoder** instance. Competition occurs when multiple AVMetadataExtractor use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.|
 | dataSrc<sup>11+</sup>                               | [AVDataSrcDescriptor](#avdatasrcdescriptor10)                | Yes  | Yes  | Streaming media resource descriptor, which specifies the data source. Before obtaining metadata, you must set the data source through either **fdSrc** or **dataSrc**.<br> When an application obtains a media file from the remote, you can set **dataSrc** to obtain the metadata before the application finishes the downloading.|
 
 ### fetchMetadata<sup>11+</sup>
@@ -5663,7 +5845,7 @@ Provides APIs to manage and play audio. Before calling any API in **AudioPlayer*
 | Name                           | Type                                                  | Read-Only| Optional| Description                                                        |
 | ------------------------------- | ------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | src                             | string                                                 | No  | No  | Audio file URI. The mainstream audio formats (M4A, AAC, MP3, OGG, WAV, and AMR) are supported.<br>**Example of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http\://xx<br>3. HTTPS: https\://xx<br>4. HLS: http\://xx or https\://xx<br>**Required permissions**: ohos.permission.READ_MEDIA or ohos.permission.INTERNET|
-| fdSrc<sup>9+</sup>              | [AVFileDescriptor](#avfiledescriptor9)                 | No  | No  | Description of the audio file. This attribute is required when audio assets of an application are continuously stored in a file.<br>**Example:**<br>Assume that a music file that stores continuous music assets consists of the following:<br>Music 1 (address offset: 0, byte length: 100)<br>Music 2 (address offset: 101; byte length: 50)<br>Music 3 (address offset: 151, byte length: 150)<br>1. To play music 1: AVFileDescriptor {fd = resource handle; offset = 0; length = 100; }<br>2. To play music 2: AVFileDescriptor {fd = resource handle; offset = 101; length = 50; }<br>3. To play music 3: AVFileDescriptor {fd = resource handle; offset = 151; length = 150; }<br>To play an independent music file, use **src=fd://xx**.<br>|
+| fdSrc<sup>9+</sup>              | [AVFileDescriptor](#avfiledescriptor9)                 | No  | No  | Description of the audio file. This attribute is required when audio assets of an application are continuously stored in a file.<br>**Example:**<br>Assume that a music file that stores continuous music assets consists of the following:<br>Music 1 (address offset: 0, byte length: 100)<br>Music 2 (address offset: 101; byte length: 50)<br>Music 3 (address offset: 151, byte length: 150)<br>1. To play music 1: AVFileDescriptor { fd = resource handle; offset = 0; length = 100; }<br>2. To play music 2: AVFileDescriptor { fd = resource handle; offset = 101; length = 50; }<br>3. To play music 3: AVFileDescriptor { fd = resource handle; offset = 151; length = 150; }<br>To play an independent music file, use **src=fd://xx**.<br>|
 | loop                            | boolean                                                | No  | No | Whether to loop audio playback. The value **true** means to loop audio playback, and **false** means the opposite.                |
 | audioInterruptMode<sup>9+</sup> | [audio.InterruptMode](../apis-audio-kit/js-apis-audio.md#interruptmode9) | Yes  | Yes  | Audio interruption mode.                                              |
 | currentTime                     | number                                                 | Yes  | No  | Current audio playback position, in ms.                      |
@@ -6125,7 +6307,7 @@ Provides APIs to manage and play video. Before calling any API of **VideoPlayer*
 | Name                           | Type                                                  | Read-Only| Optional| Description                                                        |
 | ------------------------------- | ------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | url<sup>8+</sup>                | string                                                 | No  | No  | Video URL. The video formats MP4, MPEG-TS, and MKV are supported.<br>**Example of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http\://xx<br>3. HTTPS: https\://xx<br>4. HLS: http\://xx or https\://xx<br>5. File type: file\://xx<br>**NOTE**<br>WebM is no longer supported since API version 11.|
-| fdSrc<sup>9+</sup>              | [AVFileDescriptor](#avfiledescriptor9)                 | No  | No  | Description of a video file. This attribute is required when video assets of an application are continuously stored in a file.<br>**Example:**<br>Assume that a music file that stores continuous music assets consists of the following:<br>Video 1 (address offset: 0, byte length: 100)<br>Video 2 (address offset: 101; byte length: 50)<br>Video 3 (address offset: 151, byte length: 150)<br>1. To play video 1: AVFileDescriptor {fd = resource handle; offset = 0; length = 100; }<br>2. To play video 2: AVFileDescriptor {fd = resource handle; offset = 101; length = 50; }<br>3. To play video 3: AVFileDescriptor {fd = resource handle; offset = 151; length = 150; }<br>To play an independent video file, use **src=fd://xx**.<br>|
+| fdSrc<sup>9+</sup>              | [AVFileDescriptor](#avfiledescriptor9)                 | No  | No  | Description of a video file. This attribute is required when video assets of an application are continuously stored in a file.<br>**Example:**<br>Assume that a music file that stores continuous music assets consists of the following:<br>Video 1 (address offset: 0, byte length: 100)<br>Video 2 (address offset: 101; byte length: 50)<br>Video 3 (address offset: 151, byte length: 150)<br>1. To play video 1: AVFileDescriptor { fd = resource handle; offset = 0; length = 100; }<br>2. To play video 2: AVFileDescriptor { fd = resource handle; offset = 101; length = 50; }<br>3. To play video 3: AVFileDescriptor { fd = resource handle; offset = 151; length = 150; }<br>To play an independent video file, use **src=fd://xx**.<br>|
 | loop<sup>8+</sup>               | boolean                                                | No  | No  | Whether to loop video playback. The value **true** means to loop video playback, and **false** means the opposite.                |
 | videoScaleType<sup>9+</sup>     | [VideoScaleType](#videoscaletype9)                     | No  | Yes  | Video scale type. The default value is **VIDEO_SCALE_TYPE_FIT**.                                              |
 | audioInterruptMode<sup>9+</sup> | [audio.InterruptMode](../apis-audio-kit/js-apis-audio.md#interruptmode9) | No  | Yes  | Audio interruption mode.                                              |
@@ -7577,7 +7759,7 @@ For details about the demo for obtaining video thumbnails, see [Obtaining Video 
 
 | Name                                               | Type                                                        | Readable| Writable| Description                                                        |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| fdSrc<sup>12+</sup>                                  | [AVFileDescriptor](js-apis-media.md#avfiledescriptor9)                       | Yes  | Yes  | Media file descriptor, which specifies the data source.<br>**Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor {fd = resourceHandle; offset = 0; length = 100; }**.<br>**NOTE**<br> - After the resource handle (FD) is transferred to an **AVImageGenerator** instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other **AVPlayer**, **AVMetadataExtractor**, **AVImageGenerator**, or **AVTranscoder** instance. Competition occurs when multiple AVImageGenerator use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.|
+| fdSrc<sup>12+</sup>                                  | [AVFileDescriptor](js-apis-media.md#avfiledescriptor9)                       | Yes  | Yes  | Media file descriptor, which specifies the data source.<br>**Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor { fd = resourceHandle; offset = 0; length = 100; }**.<br>**NOTE**<br> - After the resource handle (FD) is transferred to an **AVImageGenerator** instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other **AVPlayer**, **AVMetadataExtractor**, **AVImageGenerator**, or **AVTranscoder** instance. Competition occurs when multiple AVImageGenerator use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.|
 
 ### fetchFrameByTime<sup>12+</sup>
 
@@ -7737,7 +7919,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 
-// Release the instance.
+// Release the resources.
 media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
   if(generator != null){
     avImageGenerator = generator;
@@ -7872,8 +8054,11 @@ let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx
 import { common } from '@kit.AbilityKit';
 import { resourceManager } from '@kit.LocalizationKit';
 
-let context = getContext(this) as common.UIAbilityContext;
-let mgr = context.resourceManager;
+private context: Context | undefined;
+constructor(context: Context) {
+  this.context = context; // this.getUIContext().getHostContext();
+}
+let mgr = this.context.resourceManager;
 let fileDescriptor = await mgr.getRawFd("xxx.m3u8");
 
 let fd:string = fileDescriptor.fd.toString();
@@ -7888,6 +8073,59 @@ let mimeType : media.AVMimeTypes = media.AVMimeTypes.APPLICATION_M3U8;
 mediaSource.setMimeType(mimeType);
 
 ```
+## media.createMediaSourceWithStreamData<sup>18+</sup>
+
+createMediaSourceWithStreamData(streams: Array\<MediaStream>): MediaSource
+
+Creates a multi-bitrate media source for streaming media. Currently, only the HTTP-FLV multi-bitrate media source is supported.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+**Parameters**
+
+| Name | Type                                | Read-Only| Optional| Description                                                 |
+| ------- | ------------------------------------ | --- | ---- | ----------------------------------------------------- |
+| streams | Array<[MediaStream](#mediastream18)> | No| No  | Array of **MediaStream** objects. The supported streaming media format is HTTP-FLV.|
+
+**Return value**
+
+| Type                         | Description               |
+| ----------------------------- | ------------------- |
+| [MediaSource](#mediasource12) | **MediaSource** instance.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](errorcode-media.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 5400101  | No memory.                                                   |
+
+**Example 1**
+
+```ts
+let streams : Array<media.MediaStream> = [];
+streams.push({url: "http://xxx/480p.flv", width: 854, height: 480, bitrate: 800000});
+streams.push({url: "http:/xxx/720p.flv", width: 1280, height: 720, bitrate: 2000000});
+streams.push({url: "http:/xxx/1080p.flv", width: 1280, height: 720, bitrate: 2000000});
+let mediaSource : media.MediaSource = media.createMediaSourceWithStreamData(streams);
+```
+
+## MediaStream<sup>18+</sup>
+
+Defines the media stream data information.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+| Name | Type  | Read-Only| Optional| Description                                                        |
+| ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| url     | string | No  | No  | URL of the media resource. Only HTTP and HTTPS are supported.                                                |
+| width   | number | No  | No  | Video width of the media resource. If the video width is unknown, set it to **0**. In this case, [PlaybackStrategy](#playbackstrategy12) cannot be used for optimal matching.|
+| height  | number | No  | No  | Video height of the media resource. If the video width is unknown, set it to **0**. In this case, [PlaybackStrategy](#playbackstrategy12) cannot be used for optimal matching.|
+| bitrate | number | No  | No  | Bit rate of media resources, in bit/s.                                       |
 
 ## MediaSource<sup>12+</sup>
 
@@ -7911,6 +8149,331 @@ Sets the MIME type to help the player process extended media sources.
 | -------- | -------- | ---- | -------------------- |
 | mimeType | [AVMimeTypes](#mediasource12) | Yes  | MIME type.|
 
+### setMediaResourceLoaderDelegate<sup>18+</sup>
+
+setMediaResourceLoaderDelegate(resourceLoader: MediaSourceLoader): void
+
+Sets a **MediaSourceLoader** object, which is used to help the player request media data.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                |
+| -------- | -------- | ---- | -------------------- |
+| resourceLoader | [MediaSourceLoader](#mediasourceloader18) | Yes  | **MediaSourceLoader** object used to obtain media data for the player.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
+let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  headers);
+
+// Implemented by applications as required.
+let resourceLoader: media.MediaSourceLoader = {
+  open: SourceOpenCallback,
+  read: SourceReadCallback,
+  close: SourceCloseCallback
+};
+
+mediaSource.setMediaResourceLoaderDelegate(resourceLoader);
+```
+
+## SourceOpenCallback<sup>18+</sup>
+
+type SourceOpenCallback = (request: MediaSourceLoadingRequest) => number
+
+This callback function is implemented by applications to handle resource open requests and return a unique handle for the opened resource.
+
+> **NOTE**
+>
+> The client must return the handle immediately after processing the request.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                |
+| -------- | -------- | ---- | -------------------- |
+| request | [MediaSourceLoadingRequest](#mediasourceloadingrequest18) | Yes | 	Parameters for the resource open request, including detailed information about the requested resource and the data push method.|
+
+**Return value**
+
+| Type  | Description                |
+| -------- | -------------------- |
+| number  | Handle for the current resource open request. A value greater than 0 means the request is successful, whereas a value less than or equal to 0 means it fails.<br> - The handle for the request object is unique.|
+
+**Example**
+
+```ts
+import HashMap from '@ohos.util.HashMap';
+
+let uuid: number = 1;
+let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
+
+let sourceOpenCallback: media.SourceOpenCallback = (request: media.MediaSourceLoadingRequest) => {
+  console.log(`Opening resource: ${request.url}`);
+  // Open the resource and return a unique handle, ensuring the mapping between the UUID and request.
+  uuid += 1;
+  requests.set(uuid, request);
+  return uuid;
+}
+```
+
+## SourceReadCallback<sup>18+</sup>
+
+type SourceReadCallback = (uuid: number, requestedOffset: number, requestedLength: number) => void
+
+This callback function is implemented by applications to handle resource read requests. When data is available, applications should push it to the player using the [respondData](#responddata18) API of the corresponding **MediaSourceLoadingRequest** object.
+
+> **NOTE**
+>
+> The client must return the handle immediately after processing the request.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                |
+| -------- | -------- | ---- | -------------------- |
+| uuid | number | Yes | 	ID for the resource handle.|
+| requestedOffset | number | Yes | 	Offset of the current media data relative to the start of the resource.|
+| requestedLength | number | Yes | 	Length of the current request. The value **-1** indicates reaching the end of the resource. After pushing the data, call [finishLoading](#finishloading18) to notify the player that the push is complete.|
+
+**Example**
+
+```ts
+let sourceReadCallback: media.SourceReadCallback = (uuid: number, requestedOffset: number, requestedLength: number) => {
+  console.log(`Reading resource with handle ${uuid}, offset: ${requestedOffset}, length: ${requestedLength}`);
+  // Check whether the UUID is valid and store the read request. Avoid blocking the request while pushing data and header information.
+}
+```
+
+## SourceCloseCallback<sup>18+</sup>
+
+type SourceCloseCallback = (uuid: number) => void
+
+This callback function is implemented by applications to release related resources.
+
+> **NOTE**
+>
+> The client must return the handle immediately after processing the request.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                |
+| -------- | -------- | ---- | -------------------- |
+| uuid      | number | Yes | 	ID for the resource handle.|
+
+**Example**
+
+```ts
+import HashMap from '@ohos.util.HashMap';
+
+let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
+
+let sourceCloseCallback: media.SourceCloseCallback = (uuid: number) => {
+  console.log(`Closing resource with handle ${uuid}`);
+  // Clear resources related to the current UUID.
+  requests.remove(uuid);
+}
+```
+
+## MediaSourceLoader<sup>18+</sup>
+
+Defines a media data loader, which needs to be implemented by applications.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+| Name  | Type    | Mandatory| Description                |
+| -------- | -------- | ---- | -------------------- |
+| open | [SourceOpenCallback](#sourceopencallback18) | Yes | Callback function implemented by applications to handle resource open requests.|
+| read | [SourceReadCallback](#sourcereadcallback18) | Yes | Callback function implemented by applications to handle resource read requests.|
+| close | [SourceCloseCallback](#sourceclosecallback18) | Yes | Callback function implemented by applications to handle resource close requests.|
+
+**Example**
+
+```ts
+import HashMap from '@ohos.util.HashMap';
+
+let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
+let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  headers);
+let uuid: number = 1;
+let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
+let mediaSourceLoader: media.MediaSourceLoader = {
+  open: (request: media.MediaSourceLoadingRequest) => {
+    console.log(`Opening resource: ${request.url}`);
+    // Open the resource and return a unique handle, ensuring the mapping between the UUID and request.
+    uuid += 1;
+    requests.set(uuid, request);
+    return uuid;
+  },
+  read: (uuid: number, requestedOffset: number, requestedLength: number) => {
+    console.log(`Reading resource with handle ${uuid}, offset: ${requestedOffset}, length: ${requestedLength}`);
+    // Check whether the UUID is valid and store the read request. Avoid blocking the request while pushing data and header information.
+  },
+  close: (uuid: number) => {
+    console.log(`Closing resource with handle ${uuid}`);
+    // Clear resources related to the current UUID.
+    requests.remove(uuid);
+  }
+};
+
+mediaSource.setMediaResourceLoaderDelegate(mediaSourceLoader);
+let playStrategy : media.PlaybackStrategy = {
+  preferredBufferDuration: 20,
+};
+let player = await media.createAVPlayer();
+player.setMediaSource(mediaSource, playStrategy);
+```
+
+## MediaSourceLoadingRequest<sup>18+</sup>
+
+Defines a loading request object. Applications use this object to obtain the location of the requested resource and to interact with the player for data exchange.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+### Attributes
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+| Name  | Type   | Read-Only  | Optional  | Description               |
+| --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
+| url<sup>18+</sup>        | string                        | No  | No  | Resource URL, which is the path to the resource that the application needs to open.|
+| header<sup>18+</sup>     | Record<string, string>        | No  | Yes  | HTTP request header. If the header exists, the application should set the header information in the HTTP request when downloading data.|
+
+### respondData<sup>18+</sup>
+
+respondData(uuid: number, offset: number, buffer: ArrayBuffer): number
+
+Sends data to the player.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                |
+| -------- | -------- | ---- | -------------------- |
+| uuid | number | Yes | 	ID for the resource handle.|
+| offset | number | Yes | 	Offset of the current media data relative to the start of the resource.|
+| buffer | ArrayBuffer | Yes | 	Media data sent to the player.<br>**Note**: Do not transmit irrelevant data, as it can affect normal data parsing and playback.|
+
+**Return value**
+
+| Type          | Description                               |
+| -------------- | ----------------------------------- |
+| number | Number of bytes received by the server.<br>- A return value less than 0 indicates failure.<br>- A return value of -2 indicates that the player no longer needs the current data, and the client should stop the current read process.<br>- A return value of -3 indicates that the player's buffer is full, and the client should wait for the next read.|
+
+**Example**
+
+```ts
+let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
+let uuid = 1;
+
+let request = requests.get(uuid);
+let num = request.respondData(uuid, offset, buf);
+```
+
+### respondHeader<sup>18+</sup>
+
+respondHeader(uuid: number, header?: Record<string, string>, redirectUrl?: string): void
+
+Sends response header information to the player. This API must be called before the first call to [respondData](#responddata18).
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                |
+| -------- | -------- | ---- | -------------------- |
+| uuid | number | Yes | 	ID for the resource handle.|
+| header | Record<string, string> | No | Header information in the HTTP response. The application can intersect the header fields with the fields supported by the underlying layer for parsing or directly pass in all corresponding header information.<br> - The following fields need to be parsed by the underlying player: Transfer-Encoding, Location, Content-Type, Content-Range, Content-Encode, Accept-Ranges, and content-length.|
+| redirectUrl | string | No | 	Redirect URL in the HTTP response.|
+
+**Example**
+
+```ts
+let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
+let uuid = 1;
+
+// The application fills this in as needed.
+let header:Record<string, string> = {
+  'Transfer-Encoding':'xxx',
+  'Location' : 'xxx',
+  'Content-Type' : 'xxx',
+  'Content-Range' : 'xxx',
+  'Content-Encode' : 'xxx',
+  'Accept-Ranges' : 'xxx',
+  'content-length' : 'xxx'
+};
+let request = requests.get(uuid);
+request.respondHeader(uuid, header);
+```
+
+### finishLoading<sup>18+</sup>
+
+finishLoading(uuid: number, state: LoadingRequestError): void
+
+Notifies the player of the current request status. After pushing all the data for a single resource, the application should send the **LOADING_ERROR_SUCCESS** state to notify the player that the resource push is complete.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                |
+| -------- | -------- | ---- | -------------------- |
+| uuid | number | Yes | 	ID for the resource handle.|
+| state  | [LoadingRequestError](#loadingrequesterror18) | Yes | Request status.|
+
+**Example**
+
+```ts
+let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
+let uuid = 1;
+
+let request = requests.get(uuid);
+let loadingError = media.LoadingRequestError.LOADING_ERROR_SUCCESS;
+request.finishLoading(uuid, loadingError);
+```
+
+## LoadingRequestError<sup>18+</sup>
+
+Enumerates the reasons for data loading status changes.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+| Name                | Value  | Description                          |
+| -------------------- | ---- | ------------------------------ |
+| LOADING_ERROR_SUCCESS | 0    | Returned by the client to indicate that the end of the resource.|
+| LOADING_ERROR_NOT_READY | 1    | Returned by the client to indicate that the resource is not ready for access.|
+| LOADING_ERROR_NO_RESOURCE | 2    | Returned by the client to indicate that the requested resource URL does not exist.|
+| LOADING_ERROR_INVAID_HANDLE | 3    | Returned by the client to indicate that the ID of the requested resource handle (specified by **uuid**) is invalid.|
+| LOADING_ERROR_ACCESS_DENIED | 4    | Returned by the client to indicate that the client does not have permission to request the resource.|
+| LOADING_ERROR_ACCESS_TIMEOUT | 5    | Returned by the client to indicate that the access to the resource times out.|
+| LOADING_ERROR_AUTHORIZE_FAILED | 6    | Returned by the client to indicate that authorization fails.|
+
 ## AVMimeTypes<sup>12+</sup>
 
 Enumerates the MIME type, which is set by using [setMimeType](#setmimetype12).
@@ -7933,15 +8496,17 @@ Describes the playback strategy.
 
 | Name | Type    | Mandatory| Description                |
 | -------- | -------- | ---- | -------------------- |
-| preferredWidth| number | No  | Preferred width, which is of the int type, for example, **1080**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| preferredHeight | number | No  | Preferred height, which is of the int type, for example, **1920**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| preferredWidth| number | No  | Preferred width, in px. The value is an integer greater than 0, for example, 1080.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| preferredHeight | number | No  | Preferred height, in px. The value is an integer greater than 0, for example, 1920.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | preferredBufferDuration | number | No | Preferred buffer duration, in seconds. The value ranges from 1 to 20.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | preferredHdr | boolean | No  | Whether HDR is preferred. The value **true** means that HDR is preferred, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| showFirstFrameOnPrepare<sup>18+</sup> | boolean | No  | Whether to show the first frame after **prepare** is called. The value **true** means to show the first frame after **prepare** is called, and **false** means the opposite. The default value is **false**.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| enableSuperResolution<sup>18+</sup> | boolean | No  | Whether to enable super resolution. The value **true** means to enable it, and **false** (default) means to disable it.<br>If super resolution is disabled, super resolution APIs cannot be called. If super resolution is enabled, the default target resolution is 1920 x 1080, in px.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| showFirstFrameOnPrepare<sup>17+</sup> | boolean | No  | Whether to show the first frame after **prepare** is called. The value **true** means to show the first frame after **prepare** is called, and **false** means the opposite. The default value is **false**.<br>**Atomic service API**: This API can be used in atomic services since API version 17.|
 | mutedMediaType | [MediaType](#mediatype8) | No| Media type for muted playback. Only **MediaType.MEDIA_TYPE_AUD** can be set.|
 | preferredAudioLanguage<sup>13+</sup> | string | No| Preferred audio track language. Set this parameter based on service requirements in DASH scenarios. In non-DASH scenarios, this parameter is not supported, and you are advised to retain the default value.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
 | preferredSubtitleLanguage<sup>13+</sup> | string | No| Preferred subtitle language. Set this parameter based on service requirements in DASH scenarios. In non-DASH scenarios, this parameter is not supported, and you are advised to retain the default value.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
 | preferredBufferDurationForPlaying<sup>18+</sup> | number | No| Preferred buffer duration for playback. The playback starts once the buffering time exceeds this value. The value ranges from 0 to 20, in seconds.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| thresholdForAutoQuickPlay<sup>18+</sup> | number | No| Thread for starting smart frame catching, in seconds. The value must be greater than or equal to 2s and greater than **preferredBufferDurationForPlaying**. The default value is 5s.     <br>You can use the playback strategy to maintain the real-time quality of live streams by adjusting the smart frame-catch threshold. For FLV live streams, you can set this parameter based on service requirements. This parameter is not supported for non-FLV live streams yet. Fluctuations in network conditions can cause the player to build up a lot of data over time. The player periodically checks the gap between the current playback time and the timestamp of the latest frame in the cache. If this gap is too big, the player starts catching up at 1.2x speed. Once the gap falls below **preferredBufferDurationForPlaying**, the player stops catching up and resumes the normal playback speed.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 ## AVScreenCaptureRecordPreset<sup>12+</sup>
 

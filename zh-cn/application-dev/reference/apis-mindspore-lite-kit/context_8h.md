@@ -5,14 +5,15 @@
 
 提供了Context相关的接口，可以配置运行时信息，该接口是非线程安全的。
 
-**起始版本：**
+**引用文件：** <mindspore/context.h>
 
-9
+**库：** libmindspore_lite_ndk.so
 
-**相关模块：**
+**系统能力：** SystemCapability.Ai.MindSpore
 
-[MindSpore](_mind_spore.md)
+**起始版本：** 9
 
+**相关模块：** [MindSpore](_mind_spore.md)
 
 ## 汇总
 

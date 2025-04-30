@@ -215,15 +215,15 @@ class MyUIAbility extends UIAbility {
 ```
 
 
-## UIAbility.onWillForeground<sup>18+</sup>
+## UIAbility.onWillForeground<sup>20+</sup>
 
 onWillForeground(): void
 
-UIAbility生命周期回调，应用转到前台前触发，在[onForeground](#uiabilityonforeground)前被调用。可在该回调中实现采集应用开始进入前台的时间。如果与[onDidForeground](#uiabilityondidforeground18)配合使用，还可以统计出从应用开始进入前台到切换至前台状态的耗时。
+UIAbility生命周期回调，应用转到前台前触发，在[onForeground](#uiabilityonforeground)前被调用。可在该回调中实现采集应用开始进入前台的时间。如果与[onDidForeground](#uiabilityondidforeground20)配合使用，还可以统计出从应用开始进入前台到切换至前台状态的耗时。
 
 同步接口，不支持异步回调。
 
-**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -285,7 +285,7 @@ export default class EntryAbility extends UIAbility {
 
 onForeground(): void
 
-UIAbility生命周期回调，应用从后台转到前台时触发，在[onWillForeground](#uiabilityonwillbackground18)与[onDidForeground](#uiabilityondidforeground18)之间被调用。可在该回调中实现系统所需资源的申请，如应用转到前台时申请定位服务等。
+UIAbility生命周期回调，应用从后台转到前台时触发，在[onWillForeground](#uiabilityonwillbackground20)与[onDidForeground](#uiabilityondidforeground20)之间被调用。可在该回调中实现系统所需资源的申请，如应用转到前台时申请定位服务等。
 
 同步接口，不支持异步回调。
 
@@ -306,24 +306,24 @@ class MyUIAbility extends UIAbility {
 ```
 
 
-## UIAbility.onDidForeground<sup>18+</sup>
+## UIAbility.onDidForeground<sup>20+</sup>
 
 onDidForeground(): void
 
-UIAbility生命周期回调，应用转到前台后触发，在[onForeground](#uiabilityonforeground)后被调用，可在该回调中实现应用切换到前台后的时间打点。如果与[onWillForeground](#uiabilityonwillforeground18)配合使用，还可以统计出从应用开始进入前台到切换至前台状态的耗时。
+UIAbility生命周期回调，应用转到前台后触发，在[onForeground](#uiabilityonforeground)后被调用，可在该回调中实现应用切换到前台后的时间打点。如果与[onWillForeground](#uiabilityonwillforeground20)配合使用，还可以统计出从应用开始进入前台到切换至前台状态的耗时。
 
 同步接口，不支持异步回调。
 
-**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **示例：**
 
-参考[onWillForeground](#uiabilityonwillforeground18)。
+参考[onWillForeground](#uiabilityonwillforeground20)。
 
 
-## UIAbility.onWillBackground<sup>18+</sup>
+## UIAbility.onWillBackground<sup>20+</sup>
 
 onWillBackground(): void
 
@@ -331,7 +331,7 @@ UIAbility生命周期回调，当应用从前台转到后台前触发，在[onBa
 
 同步接口，不支持异步回调。
 
-**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -370,7 +370,7 @@ class MyUIAbility extends UIAbility {
 
 onBackground(): void
 
-UIAbility生命周期回调，当应用从前台转到后台时触发，在[onWillBackground](#uiabilityonwillbackground18)与[onDidBackground](#uiabilityondidbackground18)之间被调用。可在该回调中实现UI不可见时的资源释放操作，如停止定位功能等。
+UIAbility生命周期回调，当应用从前台转到后台时触发，在[onWillBackground](#uiabilityonwillbackground20)与[onDidBackground](#uiabilityondidbackground20)之间被调用。可在该回调中实现UI不可见时的资源释放操作，如停止定位功能等。
 
 同步接口，不支持异步回调。
 
@@ -391,7 +391,7 @@ class MyUIAbility extends UIAbility {
 ```
 
 
-## UIAbility.onDidBackground<sup>18+</sup>
+## UIAbility.onDidBackground<sup>20+</sup>
 
 onDidBackground(): void
 
@@ -399,7 +399,7 @@ UIAbility生命周期回调，当应用从前台转到后台后触发，在[onBa
 
 同步接口，不支持异步回调。
 
-**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 

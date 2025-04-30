@@ -2,13 +2,13 @@
 
 ## 使用场景
 
-在不同的国家和文化中，数字、货币和度量衡的表示方法有所不同，包括什么符号作为小数分隔符、分隔符后显示几位数字、使用什么样的货币和度量衡单位等。例如，开发者需要在应用界面显示数字“1,000”（一千），用于表示一件商品的价格。若采用固定格式“1,000”，由于在欧洲某些国家（如德国）使用逗号表示小数点，用户会理解为“1”。为了使界面呈现格式符合当地人的使用习惯，需要对数字、货币和度量衡进行格式化，格式化后会根据用户当前设置的语言和地区进行显示。
+在不同的国家和文化中，数字、货币和度量衡的表示方法不同，包括小数分隔符、小数位数、货币和度量衡单位等。例如，应用界面需要显示数字“1,000”（一千）表示商品价格。若采用固定格式“1,000”，在欧洲某些国家（如德国）用户会将其理解为“1”，因为这些国家使用逗号作为小数分隔符。为了确保界面符合当地习惯，需要对数字、货币和度量衡进行格式化。格式化后，界面会根据用户的语言和地区设置显示数字。
 
 ## 开发步骤
 
 ### 数字格式化
 
-数字格式化通过[NumberFormat](../reference/apis-localization-kit/js-apis-intl.md#numberformat)的[format](../reference/apis-localization-kit/js-apis-intl.md#format-1)接口实现，具体开发步骤如下。
+数字格式化通过[NumberFormat](../reference/apis-localization-kit/js-apis-intl.md#numberformat)的[format](../reference/apis-localization-kit/js-apis-intl.md#format-1)接口实现，具体开发步骤如下：
 
 1. 导入模块。
    ```ts
@@ -16,7 +16,7 @@
    ```
 
 2. 创建NumberFormat对象。
-   传入locale列表时，使用第一个有效的locale创建对象。不传入locale参数时，使用系统当前的locale创建对象。
+   传入区域ID列表时，使用第一个有效的区域ID创建对象。不传入区域参数时，使用系统当前的区域ID创建对象。
    构造函数支持通过NumberOptions设置不同的数字格式化格式，具体请参考表1-表8。
 
    ```ts
@@ -35,9 +35,9 @@
 
 **数字格式化选项**
 
-对于数字，通过[NumberOptions](../reference/apis-localization-kit/js-apis-intl.md#numberoptions)参数可以设置最小整数位数、最小小数位数、最大小数位数、最低有效位数、最大有效位数、是否分组显示、数字的格式化规格、紧凑型的显示格式、舍入模式、舍入优先级、舍入增量，以及数字的显示格式和数字系统。其中，数字的显示格式包括decimal(十进制)、percent(百分数)、currency(货币)、unit(单位)。
+通过[NumberOptions](../reference/apis-localization-kit/js-apis-intl.md#numberoptions)参数，可以设置数字的格式化选项，包括最小整数位数、最小小数位数、最大小数位数、最小有效位数、最大有效位数、是否分组显示、数字的表示方法、紧凑显示格式、舍入模式、舍入优先级、舍入增量以及数字的显示格式和数字系统。其中，数字的显示格式包括decimal(十进制)、percent(百分数)、currency(货币)和unit(单位)。
 
-以123000.123为例，各属性参数取值和显示效果如下表所示。
+以123000.123为例，各选项取值和显示效果如下表所示：
 
 **表1** 最小整数位数(minimumIntegerDigits)
 
@@ -60,7 +60,7 @@
 | 3 | 123,000.123 | 
 | 2 | 123,000.12 | 
 
-**表4** 最低有效位数(minimumSignificantDigits)
+**表4** 最小有效位数(minimumSignificantDigits)
 
 | 取值 | 显示效果 | 
 | -------- | -------- |
@@ -81,7 +81,7 @@
 | true | 123,000.123 | 
 | false | 123000.123 | 
 
-**表7** 数字的格式化规格(notation)
+**表7** 数字的表示方法(notation)
 
 | 取值 | 显示效果 | 
 | -------- | -------- |
@@ -90,7 +90,7 @@
 | engineering | 123.000123E3 | 
 | compact | 123K | 
 
-**表8** 紧凑型的显示格式(compactDisplay)
+**表8** 紧凑显示格式(compactDisplay)
 
 | 取值 | 显示效果 | 
 | -------- | -------- |
@@ -160,7 +160,7 @@ formattedNumber = halfCeilFormat.format(11.21); // formattedNumber = '$11.20'
 
 ### 数字范围格式化
 
-数字范围格式化通过[NumberFormat](../reference/apis-localization-kit/js-apis-intl.md#numberformat)的[formatRange](../reference/apis-localization-kit/js-apis-intl.md#formatrange-1)接口实现，具体开发步骤如下。
+数字范围格式化通过[NumberFormat](../reference/apis-localization-kit/js-apis-intl.md#numberformat)的[formatRange](../reference/apis-localization-kit/js-apis-intl.md#formatrange-1)接口实现，具体开发步骤如下：
 
 1. 导入模块。
    ```ts
@@ -168,7 +168,7 @@ formattedNumber = halfCeilFormat.format(11.21); // formattedNumber = '$11.20'
    ```
 
 2. 创建NumberFormat对象。
-   传入locale列表时，使用第一个有效的locale创建对象。不传入locale参数时，使用系统当前的locale创建对象。
+   传入区域ID列表时，使用第一个有效的区域ID创建对象。不传入区域参数时，使用系统当前的区域ID创建对象。
    构造函数支持通过NumberOptions设置不同的数字格式化格式，具体请参考表1-表8。
 
    ```ts
@@ -200,11 +200,11 @@ formattedRange = numberRangeFormat.formatRange(2.9, 3.1); // formattedRange = '~
 
 ### 货币和单位格式化
 
-货币和单位的格式化基于数字格式化，在创建货币和单元格式化对象时，将数字的显示风格分别设置为“currency(货币)”和“unit(单位)”。同样，货币和单位的构造函数也支持通过[NumberOptions](../reference/apis-localization-kit/js-apis-intl.md#numberoptions)设置不同的格式，各属性参数取值和显示效果如下表所示。
+货币和单位的格式化基于数字格式化，在创建货币和单位格式化对象时，将数字的显示风格分别设置为“currency(货币)”和“unit(单位)”。同样，对货币和度量衡进行格式化时也支持通过[NumberOptions](../reference/apis-localization-kit/js-apis-intl.md#numberoptions)设置不同的格式，各属性参数取值和显示效果如下表所示：
 
 **货币格式化选项**
 
-以货币单位: USD，数值: -12300为例。
+以货币单位USD，数字大小-12300为例。
 
 **表9** 货币单位的符号(currencySign)
 
@@ -224,7 +224,7 @@ formattedRange = numberRangeFormat.formatRange(2.9, 3.1); // formattedRange = '~
 
 **单位格式化选项**
 
-以单位名称：hectare，数字大小：-12300为例。
+以单位hectare，数字大小-12300为例。
 
 **表11** 单位的显示格式(unitDisplay)
 
@@ -238,7 +238,7 @@ formattedRange = numberRangeFormat.formatRange(2.9, 3.1); // formattedRange = '~
 
 | 取值 | 显示效果 | 
 | -------- | -------- |
-| 不设置 | -12,300 ha | 
+| 未设置 | -12,300 ha | 
 | default | -47.491 sq mi | 
 | area-land-agricult | -30,393.962 ac | 
 
@@ -278,23 +278,23 @@ formattedNumber = unitUsageFormat.format(123400); // formattedNumber = '304,928.
 
 ### 度量衡转换
 
-单位转换并根据区域和风格进行格式化，通过[I18NUtil](../reference/apis-localization-kit/js-apis-i18n.md#i18nutil9)类的[unitConvert](../reference/apis-localization-kit/js-apis-i18n.md#unitconvert9)接口实现，具体开发步骤如下。
+单位转换并根据区域和风格进行格式化，通过[I18NUtil](../reference/apis-localization-kit/js-apis-i18n.md#i18nutil9)类的[unitConvert](../reference/apis-localization-kit/js-apis-i18n.md#unitconvert9)接口实现，具体开发步骤如下：
 
 1. 导入模块。
    ```ts
    import { i18n } from '@kit.LocalizationKit';
    ```
 
-2. 度量衡转换。
+2. 将度量衡从一个单位转换到另一个单位。
 
-   将度量衡从fromUnit转换到toUnit，数值为value，并根据区域和风格进行格式化。style可取不同的值，显示不用效果，具体请参考表13。
+   将度量衡从fromUnit转换到toUnit，数值为value，并根据区域和风格进行格式化。style可取不同的值，显示不同效果，具体请参考表13。
    ```ts
    let convertedUnit: string = i18n.I18NUtil.unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string);
    ```
 
 **格式化风格**
 
-以fromUnit为美制单位cup，toUnit为公制单位liter，数字大小：1000为例。
+以fromUnit为美制单位cup，toUnit为公制单位liter，数字大小1000为例。
 
 **表13** 格式化使用的风格(style)
 
@@ -314,7 +314,7 @@ import { i18n } from '@kit.LocalizationKit';
 let fromUnit: i18n.UnitInfo = {unit: 'cup', measureSystem: 'US'};
 let toUnit: i18n.UnitInfo = {unit: 'liter', measureSystem: 'SI'};
 
-// 以en-US区域参数转换度量衡
+// 以en-US区域ID转换度量衡
 let convertedUnit: string = i18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, 'en-US'); // convertedUnit = '236.588 L'
 
 // 显示完整的度量衡

@@ -95,7 +95,7 @@ The VideoProcessing module provides the APIs for video processing. It provides v
 ### OH_AVFormat
 
 ```
-typedef struct OH_AVFormatOH_AVFormat
+typedef struct OH_AVFormat OH_AVFormat
 ```
 
 **Description**
@@ -108,7 +108,7 @@ Defines a struct for the OH_AVFormat object.
 ### OH_VideoProcessing
 
 ```
-typedef struct OH_VideoProcessingOH_VideoProcessing
+typedef struct OH_VideoProcessing OH_VideoProcessing
 ```
 
 **Description**
@@ -213,7 +213,7 @@ Defines a struct for the NativeWindow object.
 ### VideoDetailEnhancer_QualityLevel
 
 ```
-typedef enum VideoDetailEnhancer_QualityLevelVideoDetailEnhancer_QualityLevel
+typedef enum VideoDetailEnhancer_QualityLevel VideoDetailEnhancer_QualityLevel
 ```
 
 **Description**
@@ -230,7 +230,7 @@ For details about the enumerated values, see [VIDEO_DETAIL_ENHANCER_PARAMETER_KE
 ### VideoProcessing_Callback
 
 ```
-typedef struct VideoProcessing_CallbackVideoProcessing_Callback
+typedef struct VideoProcessing_Callback VideoProcessing_Callback
 ```
 
 **Description**
@@ -245,7 +245,7 @@ Define a null pointer to **VideoProcessing_Callback**. Before [OH_VideoProcessin
 ### VideoProcessing_ColorSpaceInfo
 
 ```
-typedef struct VideoProcessing_ColorSpaceInfoVideoProcessing_ColorSpaceInfo
+typedef struct VideoProcessing_ColorSpaceInfo VideoProcessing_ColorSpaceInfo
 ```
 
 **Description**
@@ -260,7 +260,7 @@ Defines a struct for the color space information of video processing.
 ### VideoProcessing_ErrorCode
 
 ```
-typedef enum VideoProcessing_ErrorCodeVideoProcessing_ErrorCode
+typedef enum VideoProcessing_ErrorCode VideoProcessing_ErrorCode
 ```
 
 **Description**
@@ -273,7 +273,7 @@ Defines an enum for the video processing error codes.
 ### VideoProcessing_State
 
 ```
-typedef enum VideoProcessing_StateVideoProcessing_State
+typedef enum VideoProcessing_State VideoProcessing_State
 ```
 
 **Description**

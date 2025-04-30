@@ -199,7 +199,7 @@ adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_
 
 disableAdmin(admin: Want, callback: AsyncCallback\<void>): void
 
-将当前用户下指定的普通设备管理应用去激活。使用callback异步回调。
+将当前用户下指定的普通设备管理应用解除激活。使用callback异步回调。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -249,7 +249,7 @@ adminManager.disableAdmin(wantTemp, (err) => {
 
 disableAdmin(admin: Want, userId: number, callback: AsyncCallback\<void>): void
 
-将指定用户（通过userId指定）下指定的普通管理应用去激活。使用callback异步回调。
+将指定用户（通过userId指定）下指定的普通管理应用解除激活。使用callback异步回调。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -300,7 +300,7 @@ adminManager.disableAdmin(wantTemp, 100, (err) => {
 
 disableSuperAdmin(bundleName: String, callback: AsyncCallback\<void>): void
 
-根据bundleName将管理员用户下的超级设备管理应用去激活。使用callback异步回调。
+根据bundleName将超级设备管理应用解除激活。使用callback异步回调。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -347,7 +347,7 @@ adminManager.disableSuperAdmin(bundleName, (err) => {
 
 disableSuperAdmin(bundleName: String): Promise\<void>
 
-根据bundleName将管理员用户下的超级设备管理应用去激活。使用promise异步回调。
+根据bundleName将超级设备管理应用解除激活。使用promise异步回调。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -367,7 +367,7 @@ disableSuperAdmin(bundleName: String): Promise\<void>
 
 | 类型                | 说明                |
 | ----------------- | ----------------- |
-| Promise\<void>    | 无返回结果的Promise对象。当去激活超级设备管理应用失败时，会抛出错误对象。 |
+| Promise\<void>    | 无返回结果的Promise对象。当解除激活超级设备管理应用失败时，会抛出错误对象。 |
 
 **错误码**:
 
@@ -1274,7 +1274,6 @@ replaceSuperAdmin(oldAdmin: Want, newAdmin: Want, isKeepPolicy: boolean): void
 | 9200011 | Failed to replace the administrator application of the device. |
 | 201  | Permission verification failed. The application does not have the permission required to call the API. |
 | 202  | Permission verification failed. A non-system application calls a system API. |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1295,6 +1294,58 @@ try {
   console.info(`Succeeded in replace super admin.`);
 } catch(err) {
   console.error(`Failed to replace super admin. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## adminManager.setAdminRunningMode<sup>19+</sup>
+
+setAdminRunningMode(admin: Want, mode: RunningMode): void
+
+设置设备管理应用的运行模式。
+
+该接口仅在PC设备上生效。
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**模型约束**: 此接口仅可在Stage模型下使用。
+
+**参数**：
+
+| 参数名            | 类型                                  | 必填   | 说明                           |
+| -------------- | ----------------------------------- | ---- | ---------------------------- |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。       |
+| mode | [RunningMode](#runningmode19) | 是    | 运行模式。取值为DEFAULT表示默认用户运行模式，即应用在首次开机后的用户下运行。取值为MULTI_USER表示多用户运行模式，即应用能够在多个用户下同时运行。 |
+
+
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                               |
+| ------- | ----------------------------------------------------- |
+| 9200001 | The application is not an administrator application of the device. |
+| 201  | Permission verification failed. The application does not have the permission required to call the API. |
+| 202  | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { adminManager } from '@kit.MDMKit'
+
+let admin: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+try {
+  adminManager.setAdminRunningMode(admin, adminManager.RunningMode.MULTI_USER);
+  console.info(`Succeeded in set admin running mode.`);
+} catch(err) {
+  console.error(`Failed to set admin running mode. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -1323,3 +1374,17 @@ try {
 | ----------------- | ---- | ----- |
 | ADMIN_TYPE_NORMAL | 0x00 | 普通设备管理应用。 |
 | ADMIN_TYPE_SUPER  | 0x01 | 超级设备管理应用。 |
+
+## RunningMode<sup>19+</sup>
+
+设备管理的运行模式。 
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+| 名称                | 值  | 说明    |
+| ----------------- | ---- | ----- |
+| DEFAULT  | 0 | 默认用户运行模式，表示应用在首次开机后的用户下运行。 |
+| MULTI_USER   | 1 | 多用户运行模式，表示应用能够在多个用户下同时运行。 |
+

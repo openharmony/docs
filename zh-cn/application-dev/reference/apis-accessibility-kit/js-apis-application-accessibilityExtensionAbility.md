@@ -220,7 +220,7 @@ onConnect(): void;
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。替代接口仅面向系统应用开放。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -244,7 +244,7 @@ onDisconnect(): void;
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。替代接口仅面向系统应用开放。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -268,7 +268,7 @@ onAccessibilityEvent(event: AccessibilityEvent): void;
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。替代接口仅面向系统应用开放。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -301,7 +301,7 @@ onKeyEvent(keyEvent: KeyEvent): boolean;
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。替代接口仅面向系统应用开放。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 

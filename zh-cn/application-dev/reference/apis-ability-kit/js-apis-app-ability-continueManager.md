@@ -80,7 +80,7 @@ export default class MigrationAbility extends UIAbility {
 
 ## continueManager.off
 
-off(type: 'prepareContinue', context: Context, callback: AsyncCallback&lt;ContinueResultInfo&gt;): void
+off(type: 'prepareContinue', context: Context, callback?: AsyncCallback&lt;ContinueResultInfo&gt;): void
 
 在应用快速拉起时，注销回调函数，不再获取快速拉起结果。使用callback异步回调。
 
@@ -96,7 +96,7 @@ off(type: 'prepareContinue', context: Context, callback: AsyncCallback&lt;Contin
   | -------- |------------------------------------| -------- |--------------------------------------|
 | type | string                             | 是 | 固定值：prepareContinue。                 |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-baseContext.md)                            | 是 | Ability的Context。                     |
-| callback | AsyncCallback&lt;[ContinueResultInfo](js-apis-app-ability-continueManager.md#continueresultinfo)&gt; | 是 | 回调函数。当回调函数注销成功，err为undefined，ContinueResultInfo为获回调函数注销结果。否则为错误对象。 |
+| callback | AsyncCallback&lt;[ContinueResultInfo](js-apis-app-ability-continueManager.md#continueresultinfo)&gt; | 否 | 回调函数。当回调函数注销成功，err为undefined，ContinueResultInfo为获回调函数注销结果。否则为错误对象。 |
 
 **错误码：**
 

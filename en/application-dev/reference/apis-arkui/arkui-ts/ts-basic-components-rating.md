@@ -260,7 +260,7 @@ You need a custom class to implement the **ContentModifier** API.
 | Name | Type   |    Read Only   |    Optional     |  Description             |
 | ------ | ------ | ------ |-------------------------------- |-------------------------------- |
 | rating    | number  | No| No| Value to rate.<br>Default value: **0**<br>Value range: [0, stars]<br>Values less than 0 are treated as **0**, and values greater than the value of [stars](#stars) are treated as the value of **stars**.<br>This parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).<br>This parameter supports two-way binding through [!!](../../../quick-start/arkts-new-binding.md).|
-| indicator | boolean | No| No| Whether the rating bar is used as an indicator. **true**: The rating bar is used as an indicator.<br>**false**: The rating bar is not used as an indicator.<br>Default value: **false**|
+| indicator | boolean | No| No| Whether the rating bar is used as an indicator.<br>**true**: The rating bar is used as an indicator.<br>**false**: The rating bar is not used as an indicator.<br>Default value: **false**|
 | stars | number | No| No|Total number of ratings.<br>Default value: **5**|
 | stepSize | number | No| No|Step of an operation.<br>Default value: **0.5**|
 | triggerChange | Callback\<number> | No| No|Callback triggered when the rating value changes.|

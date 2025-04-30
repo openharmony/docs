@@ -45,14 +45,16 @@ Web组件在对接运动和方向传感器时，需配置[onPermissionRequest](.
    @Entry
    @Component
    struct WebComponent {
-     controller: webview.WebviewController = new webview.WebviewController()
+     controller: webview.WebviewController = new webview.WebviewController();
+     uiContext: UIContext = this.getUIContext();
+
      aboutToAppear() {
        // 配置Web开启调试模式
        webview.WebviewController.setWebDebuggingAccess(true);
        // 访问控制管理, 获取访问控制模块对象。
        let atManager = abilityAccessCtrl.createAtManager();
        try {
-         atManager.requestPermissionsFromUser(getContext(this), ['ohos.permission.ACCELEROMETER', 'ohos.permission.GYROSCOPE']
+         atManager.requestPermissionsFromUser(this.uiContext.getHostContext(), ['ohos.permission.ACCELEROMETER', 'ohos.permission.GYROSCOPE']
            , (err: BusinessError, data: PermissionRequestResult) => {
            console.info('data:' + JSON.stringify(data));
            console.info('data permissions:' + data.permissions);
@@ -68,7 +70,7 @@ Web组件在对接运动和方向传感器时，需配置[onPermissionRequest](.
          Web({ src: $rawfile('index.html'), controller: this.controller })
            .onPermissionRequest((event) => {
              if (event) {
-               AlertDialog.show({
+                this.uiContext.showAlertDialog({
                  title: 'title',
                  message: 'text',
                  primaryButton: {

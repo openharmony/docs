@@ -86,6 +86,10 @@ const char *srcCallNative = R"JS(
   testCreateArray();
 )JS";
 ```
+预计的输出结果：
+```
+JSVM CreateArray success
+```
 ### OH_JSVM_CreateArrayWithLength
 
 创建一个指定长度的 JavaScript 数组对象。
@@ -141,7 +145,10 @@ function testCreateArrayWithLength(num){
 testCreateArrayWithLength(num);
 )JS";
 ```
-
+预计的输出结果：
+```
+JSVM CreateArrayWithLength success
+```
 ### OH_JSVM_CreateTypedarray
 
 在现有的 ArrayBuffer上 创建一个 JavaScript TypedArray 对象,TypedArray 对象在底层数据缓冲区上提供类似数组的视图，其中每个元素都具有相同的底层二进制标量数据类型。
@@ -240,7 +247,11 @@ createTypedArray(type.INT8_ARRAY);
 createTypedArray(type.INT32_ARRAY);
 )JS";
 ```
-
+预计的输出结果：
+```
+JSVM CreateTypedArray success
+JSVM CreateTypedArray success
+```
 ### OH_JSVM_CreateDataview
 
 在现有的 ArrayBuffer 上创建一个 JavaScript DataView 对象，DataView 对象在底层数据缓冲区上提供类似数组的视图。
@@ -341,7 +352,12 @@ const char *srcCallNative = R"JS(
  createDataView(new ArrayBuffer(16), BYTE_OFFSET);
 )JS";
 ```
-
+预计的输出结果：
+```
+CreateDataView success, returnLength: 12
+JSVM CreateDataView success, isArraybuffer: 1
+JSVM CreateDataView success, returnOffset: 4
+```
 ### OH_JSVM_GetArrayLength
 
 返回 Array 对象的长度。
@@ -359,7 +375,8 @@ static JSVM_Value GetArrayLength(JSVM_Env env, JSVM_CallbackInfo info)
     size_t argc = 1;
     JSVM_Value args[1] = {nullptr};
     JSVM_Value result = nullptr;
-    uint32_t length;
+    // 这里要对length进行初始化
+    uint32_t length = 0;
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
     // 检查参数是否为数组
     bool isArray = false;
@@ -368,10 +385,17 @@ static JSVM_Value GetArrayLength(JSVM_Env env, JSVM_CallbackInfo info)
         OH_LOG_INFO(LOG_APP, "JSVM Argument must be an array");
         return nullptr;
     }
-    OH_JSVM_GetArrayLength(env, args[0], &length);
-    // 创建返回值
-    OH_JSVM_CreateInt32(env, length, &result);
-    OH_LOG_INFO(LOG_APP, "JSVM length: %{public}d", length);
+    /*
+     * 当成功获取数组长度时，length会被赋值成实际JSArray的长度，接口返回JSVM_OK状态码；
+     * 当args[0]不是一个JSArray类型。例如，当args[0]是一个proxy对象时，无法获取长度。
+     * 此时，length维持原值不变，接口返回JSVM_ARRAY_EXPECTED状态码。
+     */
+    JSVM_Status status = OH_JSVM_GetArrayLength(env, args[0], &length);
+    if (status == JSVM_OK) {
+        // 创建返回值
+        OH_JSVM_CreateInt32(env, length, &result);
+        OH_LOG_INFO(LOG_APP, "JSVM length: %{public}d", length);
+    }
     return result;
 }
 // GetArrayLength注册回调
@@ -389,7 +413,10 @@ let data = [0, 1, 2, 3, 4, 5];
 getArrayLength(data);
 )JS";
 ```
-
+预计的输出结果：
+```
+JSVM length: 6
+```
 ### OH_JSVM_GetTypedarrayInfo
 
 获取 TypedArray（类型化数组）对象的信息。
@@ -495,7 +522,13 @@ getTypedArrayInfo(new Int8Array(5), 2);
 getTypedArrayInfo(new Int8Array(1), 3);
 )JS";
 ```
-
+预计的输出结果：
+```
+JSVM GetTypedArrayInfo success, JSVM_INT8_ARRAY: 1
+JSVM GetTypedArrayInfo success, length: 5
+JSVM GetTypedArrayInfo success, isArrayBuffer: 1
+JSVM GetTypedArrayInfo success, byteOffset: 0
+```
 ### OH_JSVM_GetDataviewInfo
 
 获取 Dataview 对象的信息。
@@ -594,7 +627,13 @@ isarraybuffer = 2;
 getDataViewInfo(data, isarraybuffer);
 )JS";
 ```
-
+预计的输出结果：
+```
+JSVM GetDataViewInfo success, byteLength: 2
+JSVM GetDataViewInfo fail
+JSVM GetDataViewInfo success, isArrayBuffer: 1
+JSVM GetDataViewInfo success, byteOffset: 0
+```
 ### OH_JSVM_IsArray
 
 判断一个 JavaScript 对象是否为 Array 类型对象。
@@ -638,7 +677,10 @@ let data = [1, 2, 3, 4, 5];
 isArray(data);
 )JS";
 ```
-
+预计的输出结果：
+```
+JSVM IsArray success, IsArray: 1
+```
 ### OH_JSVM_SetElement
 
 在给定对象的指定索引处设置元素。
@@ -680,7 +722,10 @@ const char *srcCallNative = R"JS(
 setElement(3);
 )JS";
 ```
-
+预计的输出结果：
+```
+JSVM SetElement success
+```
 ### OH_JSVM_GetElement
 
 获取给定对象指定索引处的元素。
@@ -726,7 +771,10 @@ let arr = [10, 'hello', null, true];
 getElement(arr, 3);
 )JS";
 ```
-
+预计的输出结果：
+```
+JSVM GetElement success
+```
 ### OH_JSVM_HasElement
 
 若给定对象的指定索引处拥有属性，获取该元素。
@@ -777,7 +825,11 @@ hasElement(arr, 0);
 hasElement(arr, 4);
 )JS";
 ```
-
+预计的输出结果：
+```
+JSVM hasElement: 1
+JSVM hasElement: 0
+```
 ### OH_JSVM_DeleteElement
 
 尝试删除给定对象的指定索引处的元素。
@@ -826,7 +878,10 @@ let arr = [10, 'hello', null, true];
 deleteElement(arr, 0);
 )JS";
 ```
-
+预计的输出结果：
+```
+JSVM DeleteElement: 1
+```
 ### OH_JSVM_IsDataview
 
 判断一个 JavaScript 对象是否为 Dataview类型对象。
@@ -871,7 +926,10 @@ let dataView = new DataView(buffer);
 isDataView(dataView);
 )JS";
 ```
-
+预计的输出结果：
+```
+JSVM IsDataView: 1
+```
 ### OH_JSVM_IsTypedarray
 
 判断一个 JavaScript 对象是否为 Typedarray 类型对象。
@@ -912,4 +970,8 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char *srcCallNative = R"JS(
 isTypedarray(new Uint16Array([1, 2, 3, 4]));
 )JS";
+```
+预计的输出结果：
+```
+JSVM IsTypedarray: 1
 ```

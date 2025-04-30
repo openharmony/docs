@@ -172,7 +172,7 @@ struct KeyboardAvoidExample {
     Column() {
       Row().height("50%").width("100%").backgroundColor(Color.Gray)
       Web({ src: $rawfile("index.html"),controller: this.controller})
-        .keyboardAvoidMode(WebKeyboardAvoidMode.OVERLAYS_CONTENT) //此时ArkWeb组件不会调整任何视口的大小大小
+        .keyboardAvoidMode(WebKeyboardAvoidMode.OVERLAYS_CONTENT) //此时ArkWeb组件不会调整任何视口的大小。
       Text("I can see the bottom of the page").width("100%").textAlign(TextAlign.Center).backgroundColor(Color.Pink).layoutWeight(1)
     }.width('100%').height("100%")
   }
@@ -188,7 +188,7 @@ struct KeyboardAvoidExample {
 
 | 交叉场景         | 规格                                       |
 | ------------ | ---------------------------------------- |
-| 同层渲染         | 同层Web：软键盘避让行为与普通场景行为一致  同层原生组件：由ArkUI负责软键盘避让模式。 |
+| 同层渲染         | 同层Web：软键盘避让行为与普通场景行为一致  同层系统组件：由ArkUI负责软键盘避让模式。 |
 | 离屏创建组件       | 默认使用与非离屏创建一致的软键盘避让模式 在上树前设置其他避让模式可需生效。   |
 | customDialog | customDialog自身避让。                        |
 | 折叠屏          | 软键盘避让行为与普通场景行为一致 软件键盘需跟随屏幕开合状态进展开合变化。    |

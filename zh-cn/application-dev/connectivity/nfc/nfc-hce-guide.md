@@ -59,6 +59,16 @@ NFC卡模拟完整的JS API说明以及实例代码请参考：[NFC卡模拟接�
               "ohos.nfc.cardemulation.action.HOST_APDU_SERVICE"
             ]
           }
+        ],
+        "metadata": [
+          {
+            "name": "payment-aid",
+            "value": "A0000000031010" // 修改为正确的aid
+          },
+          {
+            "name": "other-aid",
+            "value": "A0000000031011" // 修改为正确的aid
+          }
         ]
       }
     ],

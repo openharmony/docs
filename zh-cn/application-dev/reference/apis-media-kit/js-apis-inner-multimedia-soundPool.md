@@ -268,32 +268,34 @@ import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-//创建soundPool实例。
-let soundPool: media.SoundPool;
-let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
-  rendererFlags: 1
-}
-let soundID: number = 0;
-media.createSoundPool(5, audioRendererInfo, async (error: BusinessError, soundPool_: media.SoundPool) => {
-  if (error) {
-    console.error(`Failed to createSoundPool`)
-    return;
-  } else {
-    soundPool = soundPool_;
-    console.info(`Succeeded in createSoundPool`)
-    //test_01.mp3为rawfile目录资源下面的音频。
-    let fileDescriptor = await getContext().resourceManager.getRawFd('test_01.mp3');
-    soundPool.load(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length, (error: BusinessError, soundId_: number) => {
-      if (error) {
-        console.error(`Failed to load soundPool: errCode is ${error.code}, errMessage is ${error.message}`)
-      } else {
-        soundID = soundId_;
-        console.info('Succeeded in loading soundId:' + soundId_);
-      }
-    });
+function create(context: Context) {
+  //创建soundPool实例。
+  let soundPool: media.SoundPool;
+  let audioRendererInfo: audio.AudioRendererInfo = {
+    usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+    rendererFlags: 1
   }
-});
+  let soundID: number = 0;
+  media.createSoundPool(5, audioRendererInfo, async (error: BusinessError, soundPool_: media.SoundPool) => {
+    if (error) {
+      console.error(`Failed to createSoundPool`)
+      return;
+    } else {
+      soundPool = soundPool_;
+      console.info(`Succeeded in createSoundPool`)
+      //test_01.mp3为rawfile目录资源下面的音频。
+      let fileDescriptor = await context.resourceManager.getRawFd('test_01.mp3');
+      soundPool.load(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length, (error: BusinessError, soundId_: number) => {
+        if (error) {
+          console.error(`Failed to load soundPool: errCode is ${error.code}, errMessage is ${error.message}`)
+        } else {
+          soundID = soundId_;
+          console.info('Succeeded in loading soundId:' + soundId_);
+        }
+      });
+    }
+  });
+}
 
 ```
 
@@ -381,30 +383,32 @@ import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-//创建soundPool实例。
-let soundPool: media.SoundPool;
-let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
-  rendererFlags: 1
-}
-let soundID: number = 0;
-media.createSoundPool(5, audioRendererInfo, async (error: BusinessError, soundPool_: media.SoundPool) => {
-  if (error) {
-    console.error(`Failed to createSoundPool`)
-    return;
-  } else {
-    soundPool = soundPool_;
-    console.info(`Succeeded in createSoundPool`)
-    //test_01.mp3为rawfile目录资源下面的音频。
-    let fileDescriptor = await getContext().resourceManager.getRawFd('test_01.mp3');
-    soundPool.load(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length).then((soundId: number) => {
-      console.info('Succeeded in loading soundpool');
-      soundID = soundId;
-    }, (err: BusinessError) => {
-      console.error('Failed to load soundpool and catch error is ' + err.message);
-    });
+function create(context: Context) {
+  //创建soundPool实例。
+  let soundPool: media.SoundPool;
+  let audioRendererInfo: audio.AudioRendererInfo = {
+    usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+    rendererFlags: 1
   }
-});
+  let soundID: number = 0;
+  media.createSoundPool(5, audioRendererInfo, async (error: BusinessError, soundPool_: media.SoundPool) => {
+    if (error) {
+      console.error(`Failed to createSoundPool`)
+      return;
+    } else {
+      soundPool = soundPool_;
+      console.info(`Succeeded in createSoundPool`)
+      //test_01.mp3为rawfile目录资源下面的音频。
+      let fileDescriptor = await context.resourceManager.getRawFd('test_01.mp3');
+      soundPool.load(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length).then((soundId: number) => {
+        console.info('Succeeded in loading soundpool');
+        soundID = soundId;
+      }, (err: BusinessError) => {
+        console.error('Failed to load soundpool and catch error is ' + err.message);
+      });
+    }
+  });
+}
 
 ```
 

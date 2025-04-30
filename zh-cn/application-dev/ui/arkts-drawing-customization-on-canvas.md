@@ -66,7 +66,7 @@ Canvas提供画布组件，用于自定义绘制图形，开发者使用CanvasRe
             let offContext = this.offCanvas.getContext("2d", this.settings)
             //可以在这里绘制内容
             offContext.strokeRect(50, 50, 200, 150);
-            //将离屏绘值渲染的图像在普通画布上显示
+            //将离屏绘制渲染的图像在普通画布上显示
             let image = this.offCanvas.transferToImageBitmap();
             this.context.transferFromImageBitmap(image);
           })

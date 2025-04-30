@@ -128,8 +128,8 @@
     @Component
     struct Index {
       @State message: string = 'ContinuousTask';
-     // 通过getContext方法，来获取page所在的UIAbility上下文。
-      private context: Context = getContext(this);
+     // 通过getUIContext().getHostContet()方法，来获取page所在的UIAbility上下文
+      private context: Context | undefined = this.getUIContext().getHostContet();
 
       OnContinuousTaskCancel() {
         try {

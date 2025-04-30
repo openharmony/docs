@@ -1,7 +1,7 @@
 # 文本显示 (Text/Span)
 
 
-Text是文本组件，通常用于展示用户视图，如显示文章的文字内容。Span则用于呈现显示行内文本。  
+Text是文本组件，通常用于展示用户视图，如显示文章的文字内容，支持绑定自定义文本选择菜单，用户可根据需要选择不同功能，同时还可以扩展自定义菜单，丰富可用选项，进一步提升用户体验。Span则用于呈现显示行内文本。  
 
 具体用法请参考[Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md)和[Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md)组件的使用说明。
 
@@ -23,8 +23,18 @@ Text可通过以下两种方式来创建：
 
 - 引用Resource资源。
 
-  资源引用类型可以通过$r创建Resource类型对象，文件位置为/resources/base/element/string.json。
+  资源引用类型可以通过$r创建Resource类型对象，文件位置为/resources/base/element/string.json，具体内容如下：
 
+  ```json
+  {
+    "string": [
+      {
+        "name": "module_desc",
+        "value": "模块描述"
+      }
+    ]
+  }
+  ```
 
   ```ts
   Text($r('app.string.module_desc'))
@@ -358,15 +368,100 @@ Text('点我')
 
 ## 选中菜单
 
-Text被选中时会弹出包含复制、翻译、分享的菜单。
+- Text被选中时会弹出包含复制、翻译、搜索的菜单。
 
-Text组件需要设置[copyOption](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#copyoption9)属性才可以被选中。
-```ts
-Text("这是一段文本,用来测试选中菜单")
-  .fontSize(30)
-  .copyOption(CopyOptions.InApp)
-```
-![Text_select_menu](figures/Text_select_menu.jpg)
+  Text组件需要设置[copyOption](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#copyoption9)属性才可以被选中。
+
+  ```ts
+  Text("这是一段文本，用来展示选中菜单")
+    .fontSize(30)
+    .copyOption(CopyOptions.InApp)
+  ```
+  ![Text_select_menu](figures/Text_select_menu.jpg)
+
+- Text组件通过设置[bindSelectionMenu](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#bindselectionmenu11)属性绑定自定义选择菜单。
+
+  ```ts
+  Text("这是一段文本，用来展示选中菜单", this.options)
+    .fontSize(30)
+    .copyOption(CopyOptions.InApp)
+    .bindSelectionMenu(TextSpanType.TEXT, this.RightClickTextCustomMenu, TextResponseType.RIGHT_CLICK, {
+      onAppear: () => {
+        console.info('自定义选择菜单弹出时触发该回调');
+      },
+      onDisappear: () => {
+        console.info('自定义选择菜单关闭时触发该回调');
+      }
+    })
+  ```
+
+  ```ts
+  // 定义菜单项
+  @Builder
+  RightClickTextCustomMenu() {
+    Column() {
+      Menu() {
+        MenuItemGroup() {
+          MenuItem({ startIcon: $r('app.media.app_icon'), content: "CustomMenu One", labelInfo: "" })
+            .onClick(() => {
+              // 使用closeSelectionMenu接口关闭菜单
+              this.controller.closeSelectionMenu();
+            })
+          MenuItem({ startIcon: $r('app.media.app_icon'), content: "CustomMenu Two", labelInfo: "" })
+          MenuItem({ startIcon: $r('app.media.app_icon'), content: "CustomMenu Three", labelInfo: "" })
+        }
+      }.backgroundColor('#F0F0F0')
+    }
+  }
+  ```
+  ![text_bindselectionmenu](figures/text_bindselectionmenu.gif)
+
+- Text组件通过设置[editMenuOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#editmenuoptions12)属性扩展自定义选择菜单，可以设置扩展项的文本内容、图标以及回调方法。
+
+  ```ts
+  Text('这是一段文本，用来展示选中菜单')
+    .fontSize(20)
+    .copyOption(CopyOptions.LocalDevice)
+    .editMenuOptions({
+      onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick
+    })
+  ```
+
+  ```ts
+  // 定义onCreateMenu，onMenuItemClick
+  onCreateMenu = (menuItems: Array<TextMenuItem>) => {
+    let item1: TextMenuItem = {
+      content: 'customMenu1',
+      icon: $r('app.media.app_icon'),
+      id: TextMenuItemId.of('customMenu1'),
+    };
+    let item2: TextMenuItem = {
+      content: 'customMenu2',
+      id: TextMenuItemId.of('customMenu2'),
+      icon: $r('app.media.app_icon'),
+    };
+    menuItems.push(item1);
+    menuItems.unshift(item2);
+    return menuItems;
+  }
+  
+  onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
+    if (menuItem.id.equals(TextMenuItemId.of("customMenu2"))) {
+      console.log("拦截 id: customMenu2 start:" + textRange.start + "; end:" + textRange.end);
+      return true;
+    }
+    if (menuItem.id.equals(TextMenuItemId.COPY)) {
+      console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end);
+      return true;
+    }
+    if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
+      console.log("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end);
+      return false;
+    }
+    return false;
+  };
+  ```
+  ![text_editmenuoptions](figures/text_editmenuoptions.gif)
 
 ## 场景示例
 

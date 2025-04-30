@@ -22,6 +22,6 @@
 | 名称 | 描述 |
 | -------- | -------- |
 | [OH_NetStack_CertVerification](netstack.md#oh_netstack_certverification) (const struct [NetStack_CertBlob](_net_stack___cert_blob.md) \*cert, const struct [NetStack_CertBlob](_net_stack___cert_blob.md) \*caCert) | 证书链校验接口。 |
-| [OH_NetStack_GetPinSetForHostName](netstack.md#OH_NetStack_GetPinSetForHostName)(const char \*hostname, [NetStack_CertificatePinning](_net_stack___certificate_pinning.md) \*pin) | 获取证书锁定信息。 |
-| [OH_NetStack_GetCertificatesForHostName](netstack.md#OH_NetStack_GetCertificatesForHostName)(const char \*hostname, [NetStack_Certificates](_net_stack___certificates.md) \*certs) | 获取证书信息。 |
-| [OH_Netstack_DestroyCertificatesContent](netstack.md#OH_Netstack_DestroyCertificatesContent)([NetStack_Certificates](_net_stack___certificates.md) \*certs) | 释放证书内容。 |
+| [OH_NetStack_GetPinSetForHostName](netstack.md#oh_netstack_getpinsetforhostname)(const char \*hostname, [NetStack_CertificatePinning](_net_stack___certificate_pinning.md) \*pin) | 获取证书锁定信息。 |
+| [OH_NetStack_GetCertificatesForHostName](netstack.md#oh_netstack_getcertificatesforhostname)(const char \*hostname, [NetStack_Certificates](_net_stack___certificates.md) \*certs) | 获取证书信息。 |
+| [OH_Netstack_DestroyCertificatesContent](netstack.md#oh_netstack_destroycertificatescontent)([NetStack_Certificates](_net_stack___certificates.md) \*certs) | 释放证书内容。 |

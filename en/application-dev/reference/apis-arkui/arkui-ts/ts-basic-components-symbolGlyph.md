@@ -216,7 +216,7 @@ Inherits from **SymbolEffect**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### Attributes
+### Properties
 
 | Name| Type| Mandatory| Description |
 | ---- | ---- | ---- | ---- |
@@ -252,7 +252,7 @@ Inherits from **SymbolEffect**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### Attributes
+### Properties
 
 | Name| Type| Mandatory| Description |
 | ---- | ---- | ---- | ---- |
@@ -286,7 +286,7 @@ Inherits from **SymbolEffect**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### Attributes
+### Properties
 
 | Name| Type| Mandatory| Description |
 | ---- | ---- | ---- | ---- |
@@ -320,7 +320,7 @@ Inherits from **SymbolEffect**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### Attributes
+### Properties
 
 | Name| Type| Mandatory| Description |
 | ---- | ---- | ---- | ---- |
@@ -354,7 +354,7 @@ Inherits from **SymbolEffect**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### Attributes
+### Properties
 
 | Name| Type| Mandatory| Description |
 | ---- | ---- | ---- | ---- |
@@ -390,7 +390,7 @@ Inherits from **SymbolEffect**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### Attributes
+### Properties
 
 | Name| Type| Mandatory| Description |
 | ---- | ---- | ---- | ---- |

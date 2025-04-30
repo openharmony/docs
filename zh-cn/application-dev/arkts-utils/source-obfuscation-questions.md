@@ -6,23 +6,23 @@
 1. 先在obfuscation-rules.txt配置-disable-obfuscation选项关闭混淆，确认问题是否由混淆引起。
 2. 若确认是开启混淆后功能出现异常，请先阅读文档了解[-enable-property-obfuscation](source-obfuscation.md#-enable-property-obfuscation)、[-enable-toplevel-obfuscation](source-obfuscation.md#-enable-toplevel-obfuscation)、[-enable-filename-obfuscation](source-obfuscation.md#-enable-filename-obfuscation)、[-enable-export-obfuscation](source-obfuscation.md#-enable-export-obfuscation)等混淆规则的能力以及哪些语法场景需要配置白名单来保证应用功能正常。下文简要介绍默认开启的四项选项功能，细节还请阅读对应选项的完整描述。  
     1. [-enable-toplevel-obfuscation](source-obfuscation.md#-enable-toplevel-obfuscation)为顶层作用域名称混淆开关。
-    2. [-enable-property-obfuscation](source-obfuscation.md#-enable-property-obfuscation)为属性混淆开关，配置白名单的主要场景为网络数据访问、json字段访问、动态属性访问、调用so库接口等不能混淆场景，需要使用[-keep-property-name](source-obfuscation.md#-keep-property-name)来保留指定的属性名称。
+    2. [-enable-property-obfuscation](source-obfuscation.md#-enable-property-obfuscation)为属性混淆开关，配置白名单的主要场景包括网络数据访问、json字段访问、动态属性访问、调用so库接口等不能混淆的场景，需要使用[-keep-property-name](source-obfuscation.md#-keep-property-name)来保留指定的属性名称。
     3. [-enable-export-obfuscation](source-obfuscation.md#-enable-export-obfuscation)为导出名称混淆，一般与`-enable-toplevel-obfuscation`和`-enable-property-obfuscation`选项配合使用；配置白名单的主要场景为模块对外接口不能混淆，需要使用[-keep-global-name](source-obfuscation.md#-keep-global-name)来指定保留导出/导入名称。
     4. [-enable-filename-obfuscation](source-obfuscation.md#-enable-filename-obfuscation)为文件名混淆，配置白名单的主要场景为动态import或运行时直接加载的文件路径，需要使用[-keep-file-name](source-obfuscation.md#-keep-file-name)来保留这些文件路径及名称。
-3. 参考下文常见报错案例，若是相似场景可参考对应的解决方法快速解决。
+3. 参考常见报错案例，若遇到相似场景，可参照对应解决方法快速处理。
 4. 若常见案例中未找到相似案例，建议依据各项配置功能正向定位（若不需要相应功能，可删除对应配置项）。
 5. 应用运行时崩溃分析方法：
-    1.打开应用运行日志或者点击DevEco Studio中出现的Crash弹窗，找到运行时崩溃栈。
-    2.应用运行时崩溃栈中的行号为[编译产物](source-obfuscation-guide.md#查看混淆效果)的行号，方法名也可能为混淆后名称；因此排查时建议直接根据崩溃栈查看编译产物，进而分析哪些名称不能被混淆，然后将其配置进白名单中。
-6. 应用在运行时未崩溃但出现功能异常的分析方法（比如白屏）：
+    1.打开应用运行日志，或点击DevEco Studio中出现的Crash弹窗，找到运行时崩溃栈。
+    2.应用运行时崩溃栈中的行号为[编译产物](source-obfuscation-guide.md#查看混淆效果)的行号，方法名也可能为混淆后名称；因此排查时建议直接根据崩溃栈查看编译产物，进而分析哪些名称不能被混淆，然后将其配置到白名单中。
+6. 应用在运行时未崩溃但出现功能异常（如白屏）的分析方法：：
     1.打开应用运行日志：选择HiLog，检索与功能异常直接相关的日志，定位问题发生的上下文。
-    2.定位异常代码段：通过分析日志，找到导致功能异常的具体代码块。
-    3.增强日志输出：在疑似异常的功能代码中，对处理的数据字段增加日志记录。
-    4.分析并确定关键字段：通过对新增日志输出的分析，识别是否由于混淆导致该字段的数据异常。
-    5.配置白名单保护关键字段：将确认在混淆后对应用功能产生直接影响的关键字段添加到白名单中。
+    2.定位异常代码段：分析日志，找到导致功能异常的具体代码块。
+    3.增强日志输出：在疑似异常的功能代码中，对处理的数据字段添加日志记录。
+    4.分析并确定关键字段：通过分析新增的日志输出，判断数据异常是否由混淆引起。
+    5.配置白名单以保护关键字段：将确认在混淆后对应用功能产生直接影响的关键字段添加到白名单中。
 
 #### 排查非预期的混淆能力
-若出现预期外的混淆效果，检查是否是依赖的本地模块/三方库开启了某些混淆选项。
+若出现预期外的混淆效果，检查是否由于依赖的本地模块或三方库开启了某些混淆选项。
 
 示例：
 假设当前模块未配置`-compact`，但是混淆的中间产物中代码都被压缩成一行，可按照以下步骤排查混淆选项：
@@ -34,7 +34,7 @@
 
 > **说明**：
 > 
-> 三方库中obfuscation.txt不建议配置如下开关选项，这些选项会在主模块开启混淆时生效，进而出现预期外的混淆效果，甚至会出现应用运行时崩溃。因此建议联系发布此三方库方删除这些选项并重新出包。  
+> 三方库中的`consumer-rules.txt`不建议配置以下开关选项。这些选项在主模块开启混淆时会生效，可能导致意外的混淆效果，甚至应用运行时崩溃。如果发现三方库的`obfuscation.txt`文件中包含以下开关选项，建议联系发布该三方库的团队删除这些选项并重新打包发布。  
 > -enable-property-obfuscation  
 > -enable-string-property-obfuscation  
 > -enable-toplevel-obfuscation  
@@ -149,7 +149,7 @@ const person: MyInfo = {
 
 **问题原因**
 
-`-keep`选项保留`file1.ts`文件时，`file1.ts`中代码不会被混淆。对于导出属性（如address）所属类型内的属性，不会被自动收集在属性白名单中。因此，该类型内的属性在其他文件中被使用时，会被混淆。
+使用`-keep`选项保留`file1.ts`文件时，该文件中的代码不会被混淆。导出属性（如address）所属类型内的属性不会自动收集到白名单中。因此，这些属性在其他文件中使用时会被混淆。
 
 **解决方案**
 
@@ -189,11 +189,11 @@ person["b"] = 22;
 
 **问题原因**
 
-主工程的依赖模块中开启了开启了字符串属性名混淆，其混淆规则导出合并至主模块中。
+主工程的依赖模块中开启了字符串属性名混淆，其混淆规则导出合并至主模块中。
 
 **解决方案**
 
-方案一：确认是否有依赖的模块开启了字符串属性名混淆，若开启了，则会影响主工程，需将其关闭。   
+方案一：确认依赖模块是否开启了字符串属性名混淆。若开启，会影响主工程，需将其关闭。参考[排查非预期的混淆能力](source-obfuscation-questions.md#排查非预期的混淆能力)。  
 方案二：若工程复杂无法找到开启了该混淆配置选项的模块，可以将属性名直接配置到白名单中。
 
 ## 导入导出名称不一致的问题
@@ -262,8 +262,8 @@ namespace里的 "person1" 属于export元素，当通过 "ns1.person1" 调用时
 
 **解决方案**
 
-方案一：开启`-enable-property-obfuscation`选项。   
-方案二：将namespace里导出的方法使用`-keep-global-name`选项添加到白名单。
+方案一：开启`-enable-property-obfuscation`选项。  
+方案二：使用`-keep-global-name`选项将namespace中导出的方法添加到白名单。
 
 ## 模块间相互依赖的问题
 
@@ -271,7 +271,7 @@ namespace里的 "person1" 属于export元素，当通过 "ns1.person1" 调用时
 
 **问题现象**
 
-主模块中，使用的HSP导出接口被错误的混淆。
+主模块中，使用的HSP导出接口被错误混淆。
 
 ```
 //混淆前
@@ -297,7 +297,7 @@ new t().a1();
 
 **解决方案**
 
-为了让其他模块能够正常调用HSP模块的方法，需要在混淆配置中添加白名单。由于主模块和HSP模块需要保持相同的白名单配置，建议采用以下步骤：
+为了确保其他模块能正常调用HSP模块的方法，需在混淆配置中添加白名单。主模块和HSP模块应保持相同的白名单配置，建议按以下步骤操作：
 
 1. 在HSP模块的混淆配置文件（如 hsp-white-list.txt）中添加白名单。
 2. 在依赖HSP的其他模块的混淆配置中，通过files字段引入该配置文件。
@@ -309,7 +309,7 @@ new t().a1();
 
 **问题现象**
 
-* 若开启文件名混淆，会出现以下问题：
+* 若开启文件名混淆，将导致以下问题：
   * 问题一：单例功能异常问题。原因是HAP与HSP独立执行构建与混淆流程，本地源码HAR模块在HAP与HSP的包中可能会出现相同的文件名被混淆成不同文件名的情况。
   * 问题二：接口调用失败问题。原因是HAP与HSP独立执行构建与混淆流程，本地源码HAR模块在HAP与HSP的包中可能会出现不同的文件名被混淆成相同的文件名的情况。
 * 若开启`-enable-export-obfuscation`和`-enable-toplevel-obfuscation`选项，在应用运行时会出现加载接口失败的问题。
@@ -320,5 +320,5 @@ HAP与HSP独立执行构建与混淆流程，本地源码HAR模块中暴露的�
 
 **解决方案**
 
-方案一：将HAP与HSP共同依赖的本地源码HAR改造为[字节码HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section179161312181613)，这样此HAR在被依赖时不会被二次混淆。    
-方案二：将HAP与HSP共同依赖的本地源码HAR以[release模式构建打包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section19788284410)，这样此HAR在被依赖时，其文件名与对外接口不会被混淆。
+方案一：将HAP与HSP共同依赖的本地源码HAR改造为[字节码HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-har#section16598338112415)，这样此HAR在被依赖时不会被二次混淆。    
+方案二：将HAP与HSP共同依赖的本地源码HAR以[release模式构建打包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-har#section19788284410)，这样此HAR在被依赖时，其文件名与对外接口不会被混淆。

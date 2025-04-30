@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## rotate
 
@@ -173,9 +173,9 @@ transform(transform: Optional\<object>)
 
 | 名称 | 类型                       | 必填 | 说明            |
 | ---- | -------------------------- | ---- | --------------- |
-| x    | number&nbsp;\|&nbsp;string | 否   | x轴的平移距离。<br/>类型为number时，单位为VP，取值范围为(-∞, +∞)。<br/>类型为string时，形式参考[Length](ts-types.md#length)的string类型。 |
-| y    | number&nbsp;\|&nbsp;string | 否   | y轴的平移距离。<br/>类型为number时，单位为VP，取值范围为(-∞, +∞)。<br/>类型为string时，形式参考[Length](ts-types.md#length)的string类型。 |
-| z    | number&nbsp;\|&nbsp;string | 否   | z轴的平移距离。<br/>类型为number时，单位为VP，取值范围为(-∞, +∞)。<br/>类型为string时，形式参考[Length](ts-types.md#length)的string类型。 |
+| x    | number&nbsp;\|&nbsp;string | 否   | x轴的平移距离。<br/>类型为number时，单位为vp，取值范围为(-∞, +∞)。<br/>类型为string时，形式参考[Length](ts-types.md#length)的string类型。 |
+| y    | number&nbsp;\|&nbsp;string | 否   | y轴的平移距离。<br/>类型为number时，单位为vp，取值范围为(-∞, +∞)。<br/>类型为string时，形式参考[Length](ts-types.md#length)的string类型。 |
+| z    | number&nbsp;\|&nbsp;string | 否   | z轴的平移距离。<br/>类型为number时，单位为vp，取值范围为(-∞, +∞)。<br/>类型为string时，形式参考[Length](ts-types.md#length)的string类型。 |
 
 ## ScaleOptions对象说明
 
@@ -275,7 +275,7 @@ struct Index {
         Button('change prep')
           .margin({ top: 100 })
           .onClick(() => {
-            animateTo({
+            this.getUIContext()?.animateTo({
               duration: 2000,
               curve: Curve.EaseIn,
               iterations: 1,
@@ -340,8 +340,8 @@ struct MatrixExample {
             // 此次变换相当于绕(100vp,60vp)旋转，和"Hello2"实现同样的旋转效果
             z: 1,
             angle: 90,
-            centerX: vp2px(50),
-            centerY: vp2px(30)
+            centerX: this.getUIContext().vp2px(50),
+            centerY: this.getUIContext().vp2px(30)
           }))
 
       Text('Hello4')

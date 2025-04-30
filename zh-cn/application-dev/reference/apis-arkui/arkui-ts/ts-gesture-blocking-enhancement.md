@@ -182,6 +182,38 @@ isValid(): boolean;
 | ------ | --------- |
 | boolean | 当前手势识别器是否有效。当该识别器绑定的组件被析构或者该识别器不在响应链上时返回false。 |
 
+### getFingerCount<sup>18+</sup>
+
+getFingerCount(): number
+
+返回预设手指识别数阈值。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| number | 预设手指识别数阈值。<br/>取值范围：[1, 10], 整数。 |
+
+### isFingerCountLimit<sup>18+</sup>
+
+isFingerCountLimit(): boolean
+
+返回预设手势是否会检测触摸屏幕上手指识别数量。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| boolean | 预设手势是否会检测触摸屏幕上手指识别数量。当绑定手势事件且会检测触摸屏幕上手指的数量时，返回true。当绑定手势事件且不会检测触摸屏幕上手指的数量时，返回false。 |
+
 ## GestureRecognizerState
 
 定义手势识别器状态。
@@ -255,38 +287,6 @@ isEnd(): boolean
 | ------ | --------- |
 | boolean | 当前滚动类容器组件是否在底部。true表示组件在底部，false表示组件不在底部。 |
 
-### getFingerCount<sup>18+</sup>
-
-getFingerCount(): number
-
-返回预设手指识别数阈值。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**返回值：**
-
-| 类型     | 说明        |
-| ------ | --------- |
-| number | 预设手指识别数阈值。<br/>取值范围：[1, 10], 整数。 |
-
-### isFingerCountLimit<sup>18+</sup>
-
-isFingerCountLimit(): boolean
-
-返回预设手势是否会检测触摸屏幕上手指识别数量。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**返回值：**
-
-| 类型     | 说明        |
-| ------ | --------- |
-| boolean | 预设手势是否会检测触摸屏幕上手指识别数量。当绑定手势事件且会检测触摸屏幕上手指的数量时，返回true。当绑定手势事件且不会检测触摸屏幕上手指的数量时，返回false。 |
-
 ## PanRecognizer
 
 拖动手势识别器对象，继承于[GestureRecognizer](#gesturerecognizer)。
@@ -306,6 +306,54 @@ getPanGestureOptions(): PanGestureOptions
 | 类型     | 说明        |
 | ------ | --------- |
 | [PanGestureOptions](./ts-basic-gestures-pangesture.md#pangestureoptions) | 当前拖动手势识别器的属性。 |
+
+### getDirection<sup>18+</sup>
+
+getDirection(): PanDirection
+
+返回当前拖动手势识别器的方向。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| [PanDirection](./ts-basic-gestures-pangesture.md#pandirection枚举说明) | 当前拖动手势识别器的方向。 |
+
+### getDistance<sup>18+</sup>
+
+getDistance(): number
+
+返回当前拖动手势识别器触发的最小滑动距离。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| number | 当前拖动手势识别器触发的最小滑动距离。 |
+
+### getDistanceMap<sup>18+</sup>
+
+getDistanceMap(): Map\<SourceTool, number\>
+
+返回不同输入源的拖动手势识别器触发的最小滑动距离。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| Map<[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9), number> | 不同输入源的拖动手势识别器触发的最小滑动距离。 |
 
 ## TapRecognizer<sup>18+</sup>
 
@@ -445,8 +493,8 @@ onGestureRecognizerJudgeBegin(callback: GestureRecognizerJudgeBeginCallback, exp
 
 给组件绑定自定义手势识别器判定回调。
 
-新增exposeInnerGesture参数作为是否将回调暴露给ArkUI原生组合组件的内置组件的标识，当该标识置为true时，将回调暴露给ArkUI原生组合组件的内置组件。<br>
-对于不需要将回调暴露给ArkUI原生组合组件内置组件的场景，建议采用原有[onGestureRecognizerJudgeBegin](#ongesturerecognizerjudgebegin)接口。若要求将回调暴露给ArkUI原生组合组件的内置组件，建议使用该接口并将exposeInnerGesture设置为true。
+新增exposeInnerGesture参数作为是否将回调暴露给ArkUI系统组合组件的内置组件的标识，当该标识置为true时，将回调暴露给ArkUI系统组合组件的内置组件。<br>
+对于不需要将回调暴露给ArkUI系统组合组件内置组件的场景，建议采用原有[onGestureRecognizerJudgeBegin](#ongesturerecognizerjudgebegin)接口。若要求将回调暴露给ArkUI系统组合组件的内置组件，建议使用该接口并将exposeInnerGesture设置为true。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 

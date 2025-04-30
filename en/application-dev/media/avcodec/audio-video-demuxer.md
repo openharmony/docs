@@ -1,24 +1,24 @@
-# Media Data Demuxing
+# Media Data Demultiplexing
 
-You can call the native APIs provided by the AVDemuxer module to demux media data. The demuxing involves extracting media samples such as audio, video, and subtitles from bit stream data, and obtaining information related to Digital Rights Management (DRM).
+You can call the native APIs provided by the AVDemuxer module to demultiplex media data. The demultiplexing involves extracting media samples such as audio, video, and subtitles from bit stream data, and obtaining information related to Digital Rights Management (DRM).
 
 Currently, two data input types are supported: remote connection (over HTTP) and File Descriptor (FD).
 
-For details about the supported demuxing formats, see [AVCodec Supported Formats](avcodec-support-formats.md#media-data-demuxing).
+For details about the supported demultiplexing formats, see [AVCodec Supported Formats](avcodec-support-formats.md#media-data-demultiplexing).
 
 **Usage Scenario**
 
 - Audio and video playback
   
-  Demux media streams, decode the samples obtained through demuxing, and play the samples.
+  Demultiplex media streams, decode the samples obtained through demultiplexing, and play the samples.
 
 - Audio and video editing
   
-  Demux media streams, and edit the specified samples.
+  Demultiplex media streams, and edit the specified samples.
 
 - Media file format conversion
 
-  Demux media streams, and encapsulate them into a new file format.
+  Demultiplex media streams, and encapsulate them into a new file format.
 
 ## How to Develop
 
@@ -63,7 +63,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    When using **open** to obtain the FD, convert the value of **filepath** to a [sandbox path](../../file-management/app-sandbox-directory.md#mappings-between-application-sandbox-paths-and-physical-paths) to obtain sandbox resources.
 
    ```c++
-   // Create the FD. You must have the read permission on the file instance to open the file. (filePath indicates the path of the file to be demuxed. The file must exist.)
+   // Create the FD. You must have the read permission on the file instance to open the file. (filePath indicates the path of the file to be demultiplexed. The file must exist.)
    std::string filePath = "test.mp4";
    int fd = open(filePath.c_str(), O_RDONLY);
    struct stat fileStatus {};
@@ -74,7 +74,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
       printf("get stat failed");
       return;
    }
-   // Create a source resource instance for the FD resource file. If offset is not the start position of the file or size is not the actual file size, the data obtained may be incomplete. Consequently, the source resource object may fail to create or subsequent demuxing may fail.
+   // Create a source resource instance for the FD resource file. If offset is not the start position of the file or size is not the actual file size, the data obtained may be incomplete. Consequently, the source resource object may fail to create or subsequent demultiplexing may fail.
    OH_AVSource *source = OH_AVSource_CreateWithFD(fd, 0, fileSize);
    if (source == nullptr) {
       printf("create source failed");
@@ -187,12 +187,12 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
       return;
    }
    // Precautions:
-   // 1. customKey must exactly match the key used during muxing (including the complete naming hierarchy).
+   // 1. customKey must exactly match the key used during multiplexing (including the complete naming hierarchy).
    //    The example key is for demonstration only. Replace it with the actual custom string.
-   //    For example, if the key used during muxing is com.openharmony.custom.meta.abc.efg,
+   //    For example, if the key used during multiplexing is com.openharmony.custom.meta.abc.efg,
    //       you must use the full key. Using a truncated key like com.openharmony.custom.meta.abc will fail.
-   // 2. The type of value must match the data type used during muxing. (The example uses a string type. For int or float, use the corresponding interface.)
-   const char *customKey = "com.openharmony.custom.meta.string"; // Replace it with the actual key used during muxing.
+   // 2. The type of value must match the data type used during multiplexing. (The example uses a string type. For int or float, use the corresponding interface.)
+   const char *customKey = "com.openharmony.custom.meta.string"; // Replace it with the actual key used during multiplexing.
    const char *customValue;
    if (!OH_AVFormat_GetStringValue(customMetadataFormat, customKey, &customValue)) {
       printf("get custom metadata from custom metadata format failed");
@@ -268,7 +268,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 8. (Optional) Seek to the specified time for the selected track.
 
    ```c++
-   // Demuxing is performed from this time.
+   // Demultiplexing is performed from this time.
    // Note:
    // 1. If OH_AVDemuxer_SeekToTime is called for an MPEG TS or MPG file, the target position may be a non-key frame. You can then call OH_AVDemuxer_ReadSampleBuffer to check whether the current frame is a key frame based on the obtained OH_AVCodecBufferAttr. If it is a non-key frame, which causes display issues on the application side, cyclically read the frames until you reach the first key frame, where you can perform processing such as decoding.
    // 2. If OH_AVDemuxer_SeekToTime is called for an OGG file, the file seeks to the start of the time interval (second) where the input parameter millisecond is located, which may cause a certain number of frame errors.
@@ -276,12 +276,12 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    OH_AVDemuxer_SeekToTime(demuxer, 0, OH_AVSeekMode::SEEK_MODE_CLOSEST_SYNC);
    ```
 
-9. Start demuxing and cyclically obtain samples. The code snippet below uses a file that contains audio and video tracks as an example.
+9. Start demultiplexing and cyclically obtain samples. The code snippet below uses a file that contains audio and video tracks as an example.
 
    A **BufferAttr** object contains the following attributes.
    - **size**: sample size.
    - **offset**: offset of the data in the AVBuffer. The value is generally 0.
-   - **pts**: timestamp when the file is muxed.
+   - **pts**: timestamp when the file is multiplexed.
    - **flags**: sample attributes.
 
    | flag | Description|
@@ -294,7 +294,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    | AVCODEC_BUFFER_FLAGS_DISCARD  | Frames that can be discarded.|
 
    ```c++
-   // Create a buffer based on the specified size to store the data obtained after demuxing.
+   // Create a buffer based on the specified size to store the data obtained after demultiplexing.
    // It is recommended that the buffer size be greater than the size of the stream to be obtained. In the example, the buffer size is set to the size of a single frame.
    OH_AVBuffer *buffer = OH_AVBuffer_Create(w * h * 3 >> 1);
    if (buffer == nullptr) {
@@ -308,7 +308,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    while (!audioIsEnd || !videoIsEnd) {
       // Before calling OH_AVDemuxer_ReadSampleBuffer, call OH_AVDemuxer_SelectTrackByID to select the track from which the demuxer reads data.
       // Note:
-      // For AVI format, since the container standard does not support encapsulating timestamp information, the demuxed frames do not contain PTS information. The caller needs to calculate display timestamps based on the frame rate and the display order of the decoded frames.
+      // For AVI format, since the container standard does not support encapsulating timestamp information, the demultiplexed frames do not contain PTS information. The caller needs to calculate display timestamps based on the frame rate and the display order of the decoded frames.
       // Obtain the audio sample.
       if(!audioIsEnd) {
          ret = OH_AVDemuxer_ReadSampleBuffer(demuxer, audioTrackIndex, buffer);

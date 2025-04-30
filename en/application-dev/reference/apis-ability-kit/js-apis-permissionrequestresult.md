@@ -1,6 +1,6 @@
 # PermissionRequestResult
 
-The **PermissionRequestResult** module defines the result of a permission request. The result is returned when [requestPermissionsFromUser](js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) is called to request permissions.
+The **PermissionRequestResult** module defines the permission request result returned by [requestPermissionsFromUser](js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9).
 
 > **NOTE**
 >
@@ -13,9 +13,10 @@ The **PermissionRequestResult** module defines the result of a permission reques
 
 | Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| permissions | Array&lt;string&gt; | Yes| No| Permissions requested.<br> **Atomic service API**: This API can be used in atomic services since API version 11.|
-| authResults | Array&lt;number&gt; | Yes| No| Result of the permission request.<br>- **-1**: The permission is not granted. If **dialogShownResults** is **true**, it is the first time that the user requests the permission. If **dialogShownResults** is **false**, the permission has been set and no dialog box is displayed. The user can modify the permission settings in **Settings**.<br>- **0**: The permission is granted.<br>- **2**: The permission is not granted due to an invalid request. The possible causes are as follows:<br>- The permission is not declared in the configuration file.<br>- The permission name is invalid.<br>- Conditions for requesting the permission are not met. For details, see [ohos.permission.LOCATION](../../security/AccessToken/permissions-for-all.md#ohospermissionlocation) and [ohos.permission.APPROXIMATELY_LOCATION](../../security/AccessToken/permissions-for-all.md#ohospermissionapproximately_location).<br> **Atomic service API**: This API can be used in atomic services since API version 11. |
-| dialogShownResults<sup>12+</sup> | Array&lt;boolean&gt; | Yes| Yes| Whether to display a dialog box.<br>The value **true** means to display a dialog box; the value **false** means the opposite.<br> **Atomic service API**: This API can be used in atomic services since API version 12. |
+| permissions | Array&lt;string&gt; | Yes| No| Permissions requested.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| authResults | Array&lt;number&gt; | Yes| No| Result of the permission request.<br>- **-1**: The permission is not granted. If **dialogShownResults** is **true**, it is the first time that the user requests the permission. If **dialogShownResults** is **false**, the permission has been set and no dialog box is displayed. The user can modify the permission settings in **Settings**.<br>- **0**: The permission is granted.<br>- **2**: The permission request is invalid. The possible causes are as follows: 1. The permission is not declared in the configuration file. 2. The permission name is invalid. 3. The conditions for requesting the permission are not met. For details, see [ohos.permission.LOCATION](../../security/AccessToken/permissions-for-all-user.md#ohospermissionlocation) and [ohos.permission.APPROXIMATELY_LOCATION](../../security/AccessToken/permissions-for-all-user.md#ohospermissionapproximately_location).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| dialogShownResults<sup>12+</sup> | Array&lt;boolean&gt; | Yes| Yes| Whether to display a dialog box.<br>The value **true** means to display a dialog box; the value **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
+| errorReasons<sup>18+</sup> | Array&lt;number&gt; | Yes| Yes| Return value.<br>- **0**: The request is valid.<br>- **1**: The permission name is invalid.<br>- **2**: The permission is not declared in the configuration file.<br>- **3**: The conditions for requesting the permission are not met. For details, see the permission description in [Permission List](../../security/AccessToken/permissions-for-all-user.md). Currently, only the location permissions are involved.<br>- **4**: The user does not agree to the privacy statement.<br>- **5**: This permission cannot be requested via a dialog box.<br>- **12**: The service is abnormal.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 ## Usage
 
@@ -32,12 +33,13 @@ import common from '@ohos.app.ability.common';
 
 let atManager = abilityAccessCtrl.createAtManager();
 try {
-  let context: Context = getContext(this) as common.UIAbilityContext;
+  let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   atManager.requestPermissionsFromUser(context, ["ohos.permission.CAMERA"]).then((data) => {
       console.info("data:" + JSON.stringify(data));
       console.info("data permissions:" + data.permissions);
       console.info("data authResults:" + data.authResults);
       console.info("data dialogShownResults:" + data.dialogShownResults);
+      console.info("data errorReasons:" + data.errorReasons);
   }).catch((err: BusinessError) => {
       console.error("data:" + JSON.stringify(err));
   })

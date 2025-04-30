@@ -1,6 +1,6 @@
-# @ohos.enterprise.adminManager (企业设备管理)
+# @ohos.enterprise.adminManager (admin权限管理)
 
-本模块提供企业设备管理能力，使设备具备企业场景下所需的定制能力。
+本模块为企业MDM应用提供admin权限管理能力，包括激活/解除激活admin权限、事件订阅、委托授权等。
 
 > **说明：**
 >
@@ -18,7 +18,7 @@ import { adminManager } from '@kit.MDMKit';
 
 disableAdmin(admin: Want, userId?: number): Promise\<void>
 
-将当前设备指定用户的设备管理应用去激活。使用promise异步回调。
+将当前设备指定用户的设备管理应用解除激活。使用promise异步回调。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -26,20 +26,20 @@ disableAdmin(admin: Want, userId?: number): Promise\<void>
 
 
 
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数**：
 
 | 参数名 | 类型                                                    | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
-| userId | number                                                  | 否   | 用户ID， 取值范围：大于等于0。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。 |
+| userId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。 |
 
 **返回值：**
 
 | 类型           | 说明                                                         |
 | -------------- | ------------------------------------------------------------ |
-| Promise\<void> | 无返回结果的Promise对象。当去激活设备管理应用失败时，会抛出错误对象。 |
+| Promise\<void> | 无返回结果的Promise对象。当解除激活设备管理应用失败时，会抛出错误对象。 |
 
 **错误码**:
 
@@ -78,7 +78,7 @@ subscribeManagedEventSync(admin: Want, managedEvents: Array\<ManagedEvent>): voi
 
 
 
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -128,7 +128,7 @@ unsubscribeManagedEventSync(admin: Want, managedEvents: Array\<ManagedEvent>): v
 
 
 
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -178,14 +178,14 @@ setDelegatedPolicies(admin: Want, bundleName: string, policies: Array&lt;string&
 
 
 
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
 | 参数名        | 类型                                                    | 必填 | 说明               |
 | ------------- | ------------------------------------------------------- | ---- | ------------------ |
 | admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
-| bundleName | string                   | 是   | 被委托应用包名。被委托应用仅支持enterprise_mdm和enterprise_normal两种类型，应用的分发类型具体请参考[指南](https://gitee.com/nezha-father/docs/blob/master/zh-cn/application-dev/security/app-provision-structure.md)。 |
+| bundleName | string                   | 是   | 被委托应用包名。被委托应用仅支持分发类型为enterprise_normal（企业普通应用）和enterprise_mdm（企业MDM应用）两种类型，开发者可在[Profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中查询分发类型字段app-distribution-type。 |
 | policies |  Array&lt;string&gt;                   | 是   | [委托策略列表](#可委托策略列表)。 |
 
 **错误码**：
@@ -230,14 +230,14 @@ getDelegatedPolicies(admin: Want, bundleName: string): Array&lt;string&gt;
 
 
 
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
 | 参数名     | 类型                                                    | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin      | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
-| bundleName | string                                                  | 是   | 被委托应用包名。被委托应用仅支持enterprise_mdm和enterprise_normal两种类型，应用的分发类型具体请参考[指南](https://gitee.com/nezha-father/docs/blob/master/zh-cn/application-dev/security/app-provision-structure.md)。 |
+| bundleName | string                                                  | 是   | 被委托应用包名。被委托应用仅支持分发类型为enterprise_normal（企业普通应用）和enterprise_mdm（企业MDM应用）两种类型，开发者可在[Profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中查询分发类型字段app-distribution-type。 |
 
 
 **返回值：**
@@ -286,7 +286,7 @@ getDelegatedBundleNames(admin: Want, policy: string): Array&lt;string&gt;
 
 
 
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -342,7 +342,7 @@ startAdminProvision(admin: Want, type: AdminType, context: common.Context, param
 
 
 
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -366,16 +366,15 @@ startAdminProvision(admin: Want, type: AdminType, context: common.Context, param
 
 ```ts
 import { common, Want } from '@kit.AbilityKit';
-import adminManager from '@ohos.enterprise.adminManager';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let context = getContext(this) as common.UIAbilityContext;
 let recordParameters: Record<string, string> = {
   "activateId": "activateId testValue",
   "customizedInfo": "customizedInfo testValue"
-}
+};
+const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 try {
   console.info('context:' + JSON.stringify(context));
   adminManager.startAdminProvision(wantTemp, adminManager.AdminType.ADMIN_TYPE_BYOD, context, recordParameters);
@@ -426,7 +425,7 @@ try {
 |set_browser_policies|[browser.setPolicySync](js-apis-enterprise-browser.md#browsersetpolicysync)<br>[browser.getPoliciesSync](js-apis-enterprise-browser.md#browsergetpoliciessync)|为指定的浏览器设置浏览器子策略。<br>获取指定浏览器的策略。|
 |allowed_install_bundles|[bundleManager.addAllowedInstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanageraddallowedinstallbundlessync)<br>[bundleManager.removeAllowedInstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanagerremoveallowedinstallbundlessync)<br>[bundleManager.getAllowedInstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanagergetallowedinstallbundlessync)|添加应用至包安装白名单，添加至白名单的应用允许在当前/指定用户下安装，否则不允许安装。<br>从包安装白名单中移除应用。<br>获取当前/指定用户下的包安装白名单。|
 |disallowed_install_bundles|[bundleManager.addDisallowedInstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanageradddisallowedinstallbundlessync)<br>[bundleManager.removeDisallowedInstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanagerremoveallowedinstallbundlessync)<br>[bundleManager.getDisallowedInstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanagergetdisallowedinstallbundlessync)|添加应用至包安装黑名单，添加至黑名单的应用不允许在当前/指定用户下安装。<br>从包安装黑名单中移除应用。<br>获取当前/指定用户下的包安装黑名单。|
-|disallowed_uninstall_bundles|[bundleManager.addDisallowedUninstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanageradddisalloweduninstallbundlessync)<br>[bundleManager.removeDisallowedUninstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanagerremovedisalloweduninstallbundlessync)<br>[bundleManager.getDisallowedUninstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanagergetdisalloweduninstallbundlessync)|添添加应用至包卸载黑名单，添加至黑名单的应用不允许在当前/指定用户下卸载。<br>从包卸载黑名单中移除应用。<br>获取当前/指定用户下包卸载黑名单接口。|
+|disallowed_uninstall_bundles|[bundleManager.addDisallowedUninstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanageradddisalloweduninstallbundlessync)<br>[bundleManager.removeDisallowedUninstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanagerremovedisalloweduninstallbundlessync)<br>[bundleManager.getDisallowedUninstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanagergetdisalloweduninstallbundlessync)|添加应用至包卸载黑名单，添加至黑名单的应用不允许在当前/指定用户下卸载。<br>从包卸载黑名单中移除应用。<br>获取当前/指定用户下包卸载黑名单接口。|
 |get_device_info|[deviceInfo.getDeviceInfo](js-apis-enterprise-deviceInfo.md#deviceinfogetdeviceinfo)|获取设备信息。|
 |location_policy|[locationManager.setLocationPolicy](js-apis-enterprise-locationManager.md#locationmanagersetlocationpolicy)<br>[locationManager.getLocationPolicy](js-apis-enterprise-locationManager.md#locationmanagergetlocationpolicy)|设置位置服务管理策略。<br>查询位置服务策略。|
 |disabled_network_interface|[networkManager.setNetworkInterfaceDisabledSync](js-apis-enterprise-networkManager.md#networkmanagersetnetworkinterfacedisabledsync)<br>[networkManager.isNetworkInterfaceDisabledSync](js-apis-enterprise-networkManager.md#networkmanagerisnetworkinterfacedisabledsync)|禁止设备使用指定网络。<br>查询指定网络接口是否被禁用。|

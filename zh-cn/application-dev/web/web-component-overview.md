@@ -27,11 +27,17 @@ Web组件为开发者提供了丰富的控制Web页面能力。包括：
 
 - 维测能力：[DevTools工具](web-debugging-with-devtools.md)调试能力，使用crashpad收集Web组件崩溃信息。
 
-- 其他高阶能力：与原生组件同层渲染、Web组件的网络托管、Web组件的媒体播放托管、Web组件输入框拉起自定义输入法、<!--RP1--><!--RP1End-->等。
+- 其他高阶能力：与系统组件同层渲染、Web组件的网络托管、Web组件的媒体播放托管、Web组件输入框拉起自定义输入法、<!--RP1--><!--RP1End-->等。
 
 ## 约束与限制
 
-- Web内核版本：ArkWeb基于谷歌Chromium内核开发，使用的Chromium版本为M114。
+- Web内核版本：ArkWeb基于谷歌Chromium内核开发，使用的Chromium版本为：
+
+| 系统版本 | Chromium版本 |
+|  ---|---|
+| OpenHarmony 4.0及之前 | M99 |
+| OpenHarmony 4.1-5.1 | M114 |
+| OpenHarmony 6.0 | M132 |
 
 ## 相关实例
 

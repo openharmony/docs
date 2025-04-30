@@ -1,38 +1,40 @@
 # 订阅崩溃事件（ArkTS）
 
-## 接口说明
+## 接口描述
 
-API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[应用事件打点API文档](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md)。
+本文介绍如何使用HiAppEvent提供的ArkTs接口订阅应用崩溃事件。接口的详细使用说明（参数限制、取值范围等）请参考[应用事件打点API文档](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md)。
 
 > **说明：**
 >
-> 使用ArkTS接口订阅崩溃事件，包含JsError和NativeCrash两种崩溃类型。
+> 使用ArkTS接口可以订阅JsError和NativeCrash两种崩溃事件。
 
-**事件自定义参数设置接口功能介绍：**
+### 自定义参数设置接口描述
 
 | 接口名                                              | 描述                                         |
 | --------------------------------------------------- | -------------------------------------------- |
 | setEventParam(params: Record&lt;string, ParamType&gt;, domain: string, name?: string): Promise&lt;void&gt; | 事件自定义参数设置方法。 |
 
-**订阅接口功能介绍：**
+### 订阅接口描述
 
 | 接口名                                              | 描述                                         |
 | --------------------------------------------------- | -------------------------------------------- |
 | addWatcher(watcher: Watcher): AppEventPackageHolder | 添加应用事件观察者，以添加对应用事件的订阅。 |
 | removeWatcher(watcher: Watcher): void               | 移除应用事件观察者，以移除对应用事件的订阅。 |
 
-## 开发步骤
+## 接口使用示例
 
-以实现对用户点击按钮触发崩溃场景生成的崩溃事件订阅为例，说明开发步骤。
+### 添加事件观察者
 
-1. 新建一个ArkTS应用工程，编辑工程中的“entry > src > main > ets  > entryability > EntryAbility.ets”文件，导入依赖模块：
+以订阅用户点击按钮触发崩溃生成的崩溃事件为例，说明开发步骤。
+
+1. 新建ArkTS应用工程，编辑“entry > src > main > ets > entryability > EntryAbility.ets”文件，导入依赖模块，示例代码如下：
 
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
    import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
    ```
 
-2. 编辑工程中的“entry > src > main > ets  > entryability > EntryAbility.ets”文件，在onCreate函数中设置事件的自定义参数，示例代码如下：
+2. 编辑工程中的“entry > src > main > ets  > entryability > EntryAbility.ets”文件，在`onCreate`函数中设置事件的自定义参数，示例代码如下：
 
    ```ts
     // 开发者完成参数键值对赋值
@@ -41,16 +43,16 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     };
     // 开发者可以设置崩溃事件的自定义参数
     hiAppEvent.setEventParam(params, hiAppEvent.domain.OS, hiAppEvent.event.APP_CRASH).then(() => {
-      hilog.info(0x0000, 'testTag', `HiAppEvent success to set svent param`);
+      hilog.info(0x0000, 'testTag', `HiAppEvent success to set event param`);
     }).catch((err: BusinessError) => {
       hilog.error(0x0000, 'testTag', `HiAppEvent code: ${err.code}, message: ${err.message}`);
     });
    ```
 
-3. 编辑工程中的“entry > src > main > ets  > entryability > EntryAbility.ets”文件，在onCreate函数中添加系统事件的订阅，示例代码如下：
+3. 编辑工程中的“entry > src > main > ets > entryability > EntryAbility.ets”文件，在 `onCreate` 函数中添加系统事件的订阅，示例代码如下：
 
    ```ts
-    hiAppEvent.addWatcher({
+    let watcher: hiAppEvent.Watcher = {
       // 开发者可以自定义观察者名称，系统会使用名称来标识不同的观察者
       name: "watcher",
       // 开发者可以订阅感兴趣的系统事件，此处是订阅了崩溃事件
@@ -97,10 +99,11 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
           }
         }
       }
-    });
+    };
+    hiAppEvent.addWatcher(watcher);
    ```
 
-4. 编辑工程中的“entry > src > main > ets  > pages > Index.ets”文件，添加按钮并在其onClick函数构造崩溃场景，以触发崩溃事件，示例代码如下：
+4. 编辑工程中的“entry > src > main > ets > pages > Index.ets”文件，添加按钮并在其 `onClick` 函数中构造崩溃场景，以触发崩溃事件。示例代码如下：
 
    ```ts
     Button("appCrash").onClick(()=>{
@@ -109,33 +112,55 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     })
    ```
 
-5. 点击DevEco Studio界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“appCrash”，触发一次崩溃事件。崩溃事件发生后，系统会根据崩溃类型（JsError或NativeCrash）采用不同的栈回溯方式生成崩溃日志，然后再进行回调。其中NativeCrash栈回溯耗时约2秒，实际耗时与业务线程数量、进程间通信耗时有关。JsError触发进程内栈回溯，NativeCrash触发进程外栈回溯，因此NativeCrash栈回溯会比JsError栈回溯更耗时。用户可以订阅崩溃事件，栈回溯完成后会异步上报，不会阻塞当前业务。
+5. 点击DevEco Studio界面的运行按钮，启动应用工程。在应用界面中点击“appCrash”按钮，触发崩溃事件。系统根据崩溃类型（JsError或NativeCrash）生成相应的崩溃日志并进行回调。
 
-6. 若应用未捕获崩溃异常，则系统处理崩溃后应用退出，应用下次启动后HiAppEvent将崩溃事件上报给应用已注册的监听，完成回调。
-<br>若应用主动捕获崩溃异常，如下两种场景，HiAppEvent事件将会在应用退出前回调。
-<br>&emsp;&emsp;场景1：异常处理中未主动退出，应用发生崩溃后将不会退出。例如采用[errorManger.on](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md#errormanageronerror)方法捕获JsError崩溃；应用主动注册NativeCrash崩溃信号处理函数未主动退出。<br>&emsp;&emsp;场景2：异常处理耗时太久，应用退出时机延后。
-<br>HiAppEvent上报事件完成回调后，可以在Log窗口看到对系统事件数据的处理日志：
+JsError通过进程内采集故障信息的方式触发回调迅速，而NativeCrash采取进程外采集故障信息，平均耗时约2秒，具体耗时受业务线程数量和进程间通信耗时影响。开发者可以订阅崩溃事件，故障信息采集完成后会异步上报，不会阻塞当前业务。
 
-   ```text
-   HiAppEvent onReceive: domain=OS
-   HiAppEvent eventName=APP_CRASH
-   HiAppEvent eventInfo.domain=OS
-   HiAppEvent eventInfo.name=APP_CRASH
-   HiAppEvent eventInfo.eventType=1
-   HiAppEvent eventInfo.params.time=1711440614001
-   HiAppEvent eventInfo.params.crash_type=JsError
-   HiAppEvent eventInfo.params.foreground=true
-   HiAppEvent eventInfo.params.bundle_version=1.0.0
-   HiAppEvent eventInfo.params.bundle_name=com.example.myapplication
-   HiAppEvent eventInfo.params.pid=2043
-   HiAppEvent eventInfo.params.uid=20010043
-   HiAppEvent eventInfo.params.uuid=b1e953ba0022c112e4502e28e8b3ad6d95cf3c87bae74068038f03b38ce7f66a
-   HiAppEvent eventInfo.params.exception={"message":"Unexpected Text in JSON","name":"SyntaxError","stack":"at anonymous (entry/src/main/ets/pages/Index.ets:55:34)"}
-   HiAppEvent eventInfo.params.hilog.size=90
-   HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/hiappevent/APP_CRASH_1711440614112_2043.log"]
-   HiAppEvent eventInfo.params.log_over_limit=false
-   HiAppEvent eventInfo.params.test_data=100
-   ```
+### 验证观察者是否订阅到崩溃事件
 
+在应用未主动捕获崩溃异常和主动捕获崩溃异常的场景中，崩溃事件会在不同时机得到回调，开发者需要在不同时机验证是否订阅到崩溃事件。
+
+#### 应用未主动捕获崩溃异常场景
+
+若应用未主动捕获崩溃异常，系统处理崩溃后应用将退出，**应用下次启动时**，HiAppEvent将崩溃事件上报给应用已注册的监听，完成回调。
+
+#### 应用主动捕获崩溃异常场景
+
+若应用主动捕获崩溃异常，崩溃事件将在**应用退出前**回调，例如以下两种情况：
+
+1. 异常处理中未主动退出，应用崩溃后将不会退出。
+采用[errorManger.on](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md#errormanageronerror)方法捕获异常会导致JsError类型的崩溃事件在应用退出前回调。若应用主动注册[崩溃异常信号](cppcrash-guidelines#哪些信号会生成cppcrash日志)处理函数但未主动退出，会导致NativeCrash类型的崩溃事件在应用退出前回调。
+
+2. 异常处理耗时过长，导致应用退出时间延迟。
+
+在开发调试阶段，HiAppEvent上报事件完成回调后，可以在DevEco Studio的HiLog窗口查看订阅到的崩溃事件内容：
+
+```text
+HiAppEvent onReceive: domain=OS
+HiAppEvent eventName=APP_CRASH
+HiAppEvent eventInfo.domain=OS
+HiAppEvent eventInfo.name=APP_CRASH
+HiAppEvent eventInfo.eventType=1
+HiAppEvent eventInfo.params.time=1711440614001
+HiAppEvent eventInfo.params.crash_type=JsError
+HiAppEvent eventInfo.params.foreground=true
+HiAppEvent eventInfo.params.bundle_version=1.0.0
+HiAppEvent eventInfo.params.bundle_name=com.example.myapplication
+HiAppEvent eventInfo.params.pid=2043
+HiAppEvent eventInfo.params.uid=20010043
+HiAppEvent eventInfo.params.uuid=b1e953ba0022c112e4502e28e8b3ad6d95cf3c87bae74068038f03b38ce7f66a
+HiAppEvent eventInfo.params.exception={"message":"Unexpected Text in JSON","name":"SyntaxError","stack":"at anonymous (entry/src/main/ets/pages/Index.ets:55:34)"}
+HiAppEvent eventInfo.params.hilog.size=90
+HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/hiappevent/APP_CRASH_1711440614112_2043.log"]
+HiAppEvent eventInfo.params.log_over_limit=false
+HiAppEvent eventInfo.params.test_data=100
+```
+
+### 移除并销毁事件观察者
+
+  ```ts
+  // 移除该应用事件观察者以取消订阅事件
+  hiAppEvent.removeWatcher(watcher);
+  ```
 <!--RP1-->
 <!--RP1End-->

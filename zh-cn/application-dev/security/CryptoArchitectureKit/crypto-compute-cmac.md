@@ -127,7 +127,7 @@ CMAC通过使用分组密码（如AES）和一个密钥来生成认证码，确�
     };
     let mac = cryptoFramework.createMac(spec);
     // 假设信息总共43字节，根据utf-8解码后，也是43字节。
-    let messageText = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee";
+    let messageText = "aaaaa......bbbbb......ccccc......ddddd......eee";
     let messageData = new Uint8Array(buffer.from(messageText, 'utf-8').buffer);
     let updateLength = 20; // 假设以20字节为单位进行分段update，实际并无要求。
     await mac.init(key);

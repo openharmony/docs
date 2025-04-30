@@ -38,7 +38,7 @@ OpenHarmony 5.0.0 Release版本为API Level 12的正式Release版本。
 
 - 统一DeepLink和AppLinking跳转技术方案，降低开发者使用成本，提高跳转安全性。
 
-- 提供安全的应用重启应用能力。
+- 提供安全的应用重启能力。
 
 - 系统环境新增字体大小和粗细变化通知。
 

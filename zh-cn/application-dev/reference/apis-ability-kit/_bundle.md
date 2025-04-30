@@ -83,7 +83,7 @@ char* OH_NativeBundle_GetAppIdentifier()
 
 **描述**
 
-获取自身应用的appIdentifier信息。appIdentifier指应用的唯一标识，是AppGallery Connect创建应用时分配的APP ID，为云端统一分配的随机字符串。该ID在应用全生命周期中不会发生变化，包括版本升级、证书变更、开发者公私钥变更、应用转移等。
+获取自身应用的appIdentifier信息。appIdentifier指应用的唯一标识，是AppGallery Connect创建应用时分配的[APP ID](https://developer.huawei.com/consumer/cn/doc/app/agc-help-createharmonyapp-0000001945392297)，为云端统一分配的随机字符串。该ID在应用全生命周期中不会发生变化，包括版本升级、证书变更、开发者公私钥变更、应用转移等。如果您使用多台调试设备，或在断网情况下调试，或需要和其他应用交互，推荐使用[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section297715173233)。
 
 **起始版本：** 11
 

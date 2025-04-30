@@ -224,7 +224,7 @@ try {
 
 > **说明：**
 >
-> 从API version 12开始，sendable class的内部支持使用top level的sendable class对象。
+> 从API version 12开始，Sendable class的内部支持使用top level的Sendable class对象。
 
 **正例：**
 
@@ -291,7 +291,7 @@ let b = new B();
 
 ## Sendable class和Sendable function不能使用除了\@Sendable的其它装饰器
 
-如果类装饰器定义在ts文件中，产生修改类的布局的行为，那么会造成运行时的错误。
+如果类装饰器定义在ts文件中，可能修改类的布局，会造成运行时的错误。
 
 **正例：**
 
@@ -338,7 +338,7 @@ let arr4: number[] = new collections.Array<number>(1, 2, 3); // 编译报错
 
 ## 非Sendable类型不可以as成Sendable类型
 
-除了Object类型，非Sendable类型不可以as成Sendable类型。非Sendable类型通过as强转成Sendable类型后实际是非Sendable的类型数据，会导致错误使用。Sendable类型在不违反Sendable规则的前提下需要和非Sendable类型行为兼容，因此Sendable类型可以as成非Sendable类型。
+除了Object类型，非Sendable类型不可以as成Sendable类型。非Sendable类型通过as强转成Sendable类型后，实际数据仍为非Sendable类型，会导致错误使用。Sendable类型在不违反Sendable规则的前提下需要和非Sendable类型行为兼容，因此Sendable类型可以as成非Sendable类型。
 
 **正例：**
 
@@ -470,4 +470,4 @@ type D = C; // 编译报错
 
 ## 与UI交互的规则
 
-Sendable数据需要与[makeObserved](../quick-start/arkts-new-makeObserved.md)联用，才可以观察Sendable对象的数据变化，具体使用请参考[makeObserved和@Sendable装饰的class配合文档](../quick-start/arkts-new-makeObserved.md#makeobserved和sendable装饰的class配合使用)。
+Sendable数据需要与[makeObserved](../ui/state-management/arkts-new-makeObserved.md)联用，才可以观察Sendable对象的数据变化，具体使用请参考[makeObserved和@Sendable装饰的class配合文档](../ui/state-management/arkts-new-makeObserved.md#makeobserved和sendable装饰的class配合使用)。

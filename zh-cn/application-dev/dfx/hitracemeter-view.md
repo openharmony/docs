@@ -2,13 +2,13 @@
 
 ## 通过DevEco Studio可视化界面查看
 
-开发者可使用DevEco Studio Profiler的CPU Insight功能，可视化展示HiTraceMeter日志内容，分析应用/服务的CPU使用率和线程的运行状态，查看指定时间段内程序在CPU上的执行耗时情况，具体使用指导请参考[CPU活动分析：CPU分析](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-insight-session-cpu-V5)。
+使用DevEco Studio Profiler的CPU Insight功能，可视化展示HiTraceMeter日志内容，分析应用或服务的CPU使用率和线程运行状态，查看指定时间段内程序在CPU上的执行耗时。具体使用指导请参考[CPU活动分析：CPU分析](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-insight-session-cpu)。
 
 ## 通过命令行工具查看
 
-1. 根据hdc命令行工具指导，完成[环境准备](hdc.md#环境准备)，可以使用 `hdc shell` 命令正常连接设备。
+1. 根据hdc命令行工具指导，完成[环境准备](hdc.md#环境准备)，确保可以使用 `hdc shell` 命令正常连接设备。
 
-2. 在DevEco Studio的Terminal窗口或主机命令行窗口执行 `hdc shell` 命令连接设备，在设备上执行[hitrace](hitrace.md)命令开启HiTraceMeter日志抓取服务。
+2. 在DevEco Studio的Terminal窗口或主机命令行窗口执行 `hdc shell` 命令连接设备，然后在设备上执行[hitrace](hitrace.md)命令，开启HiTraceMeter日志抓取服务。
 
    ```shell
    PS D:\xxx\xxx> hdc shell
@@ -17,7 +17,7 @@
 
 3. 在设备上运行包含HiTraceMeter打点的相关程序。
 
-4. 转储HiTraceMeter文本日志，该日志中包含步骤3中的HiTraceMeter打点信息。
+4. 转储HiTraceMeter文本日志，该日志包含步骤3中生成的HiTraceMeter打点信息。
 
    - 默认将日志打印在窗口中。
 
@@ -31,29 +31,31 @@
    $ hitrace --trace_dump -o /data/local/tmp/trace.ftrace
    ```
 
-5. 在设备上执行hitrace命令结束HiTraceMeter日志抓取服务。
+5. 在设备上执行hitrace命令，停止HiTraceMeter日志抓取服务。
 
    ```shell
    $ hitrace --trace_finish
    ```
 
-6. 退出设备，进入主机，将设备中HiTraceMeter文本日志导出到当前目录。
+6. 退出设备，进入主机，导出设备中的HiTraceMeter文本日志到当前目录。
 
    ```shell
    $ exit
    PS D:\xxx\xxx> hdc file recv /data/local/tmp/trace.ftrace ./
    ```
 
-7. 可在HiTraceMeter文本日志中搜索打点名称等关键字查看打点是否成功。
+7. 搜索HiTraceMeter文本日志中的打点名称等关键字，查看打点是否成功。
 
-8. HiTraceMeter文本日志可视化分析。
+8. HiTraceMeter支持文本日志的可视化分析。
 
-   - 导入DevEco Studio进行分析，具体参考[CPU活动分析：CPU分析](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-insight-session-cpu-V5)文档，在DevEco Studio Profiler的会话区选择“Open File”，将HiTraceMeter文本日志导入DevEco Studio进行分析。
+   - 导入DevEco Studio进行分析。
+     在DevEco Studio Profiler的会话区选择“Open File”，将HiTraceMeter文本日志导入DevEco Studio。
+     具体分析可参考[CPU活动分析：CPU分析](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-insight-session-cpu)文档。
    - 通过[HiSmartPerf](https://gitee.com/openharmony/developtools_smartperf_host)工具进行分析，工具下载链接[developtools_smartperf_host 发行版](https://gitee.com/openharmony/developtools_smartperf_host/releases)。
 
 ## 用户态trace格式说明
 
-### API 18前用户态trace格式
+### API 19前用户态trace格式
 
 | 打点类型          | 开启HiTraceChain时格式                              | 未开启HiTraceChain时格式 |
 | ----------------- | --------------------------------------------------- | ------------------------ |
@@ -63,7 +65,11 @@
 | 结束异步trace打点 | F\|PID\|H:[ChainId,SpanId,ParentSpanId]#name taskId | F\|PID\|H:name taskId    |
 | 整数trace打点     | C\|PID\|H:[ChainId,SpanId,ParentSpanId]#name count  | C\|PID\|H:name count     |
 
-#### 格式中的参数说明
+> **说明：**
+>
+> 用户态trace总长度限制512字符，超过部分将被截断。
+
+#### 格式中的字段说明
 
 - **B/E/S/F/C**
 
@@ -79,7 +85,7 @@
 
 - **[ChainId,SpanId,ParentSpanId]#**
 
-  开启HiTraceChain时，会将HiTraceId记录在trace打点中，结尾使用#分隔符与name字段区分。
+  开启HiTraceChain时，会将HiTraceId记录在trace打点中，结尾使用#分隔符与`name`字段区分。
 
   未开启HiTraceChain时，打点不包含该字段。
 
@@ -89,21 +95,21 @@
 
 - **name**
 
-  通过打点接口传入的name参数，表示打点名称或整数变量名。
+  `name`字段表示打点名称或整数变量名。
 
 - **taskId**
 
-  通过打点接口传入的taskId参数，表示异步跟踪id，用于和name字段一起，匹配taskId与name相同的异步开始与结束打点。
+  `taskId`字段表示异步跟踪id，和`name`字段一起用于匹配相同的异步开始与结束打点。
 
-  taskId与name字段之间使用空格进行分隔。
+  `taskId`与`name`字段之间使用空格进行分隔。
 
 - **count**
 
-  通过打点接口传入的count参数，整数值。
+  `count`字段为整数值。
 
-  count与name字段之间使用空格进行分隔。
+  `count`与`name`字段之间使用空格进行分隔。
 
-### API 18后用户态trace格式
+### API 19后用户态trace格式
 
 各字段均使用竖线作为分隔符，对后续新增字段，均以**竖线+字段**的方式，追加在当前用户态trace格式的末尾。
 
@@ -115,7 +121,11 @@
 | 结束异步trace打点 | F\|PID\|H:[ChainId,SpanId,ParentSpanId]#name\|taskId\|%level%tag | F\|PID\|H:name\|taskId\|%level%tag                           |
 | 整数trace打点     | C\|PID\|H:[ChainId,SpanId,ParentSpanId]#name\|count\|%level%tag | C\|PID\|H:name\|count\|%level%tag                            |
 
-#### 格式中的参数说明
+> **说明：**
+>
+> 用户态trace总长度限制512字符，建议`name`、`customCategory`和`customArgs`总长度不超过420字符，避免被截断。
+
+#### 格式中的字段说明
 
 - **B/E/S/F/C**
 
@@ -131,7 +141,7 @@
 
 - **[ChainId,SpanId,ParentSpanId]#**
 
-  开启HiTraceChain时，会将HiTraceId记录在trace打点中，结尾使用#分隔符与name字段区分。
+  开启HiTraceChain时，会将HiTraceId记录在trace打点中，结尾使用#分隔符与`name`字段区分。
 
   未开启HiTraceChain时，打点不包含该字段。
 
@@ -141,69 +151,64 @@
 
 - **name**
 
-  通过打点接口传入的name参数，表示打点名称或整数变量名。
-
-  **该字段限制320字符，超出部分字符会被截断。**
+  `name`字段表示打点名称或整数变量名。
 
 - **taskId**
 
-  通过打点接口传入的taskId参数，表示异步跟踪id，用于和name字段一起，匹配taskId与name相同的异步开始与结束打点。
+  `taskId`字段表示异步跟踪id，和`name`字段一起用于匹配相同的异步开始与结束打点。
 
 - **count**
 
-  通过打点接口传入的count参数，表示整数值。
+  `count`字段为整数值。
 
 - **%level**
 
-  通过打点接口传入的level参数，表示打点级别，该字段为以下字符之一：D、I、C、M。
+  通过打点接口传入的`level`字段，表示打点级别，该字段为以下字符之一：D、I、C、M。
 
-  level参数与%level映射关系参考[HiTraceOutputLevel](#hitraceoutputlevel)。
+  `level`字段与%level映射关系参考[HiTraceOutputLevel](#hitraceoutputlevel)。
 
   > **说明：**
   >
-  > API 18前的trace打点接口没有level参数，这些trace打点默认为COMMERCIAL级别打点。
+  > API 19前的trace打点接口没有`level`字段，这些trace打点默认为COMMERCIAL级别打点。
 
 - **%tag**
 
-  表示该条trace打点所属tag类别，每一类用两位数字表示，一条trace打点可对应多个tag类别，即%tag可包含多个从小到大排列的两位数字。例如 `B|1314|H:TestFunction|I3062`，表示该条打点属于HITRACE_TAG_OHOS及HITRACE_TAG_APP两类tag下的打点。
+  %tag字段表示trace打点所属tag类别，每类用两位数字表示，可包含多个从小到大排列的两位数字。例如 `B|1314|H:TestFunction|I3062`，表示该条打点属于HITRACE_TAG_OHOS及HITRACE_TAG_APP两类tag下的打点。
 
   tag名称、tag值与%tag映射关系参考[HiTraceMeter Tag](#hitracemeter-tag)。
 
   > **说明：**
   >
-  > NDK C/C++和ArkTs/JS的HiTraceMeter性能打点接口并没有参数与%tag对应，这些打点接口均属于应用打点，对应的tag名称为HITRACE_TAG_APP，用户态trace中的%tag字段为62。
+  > NDK C/C++和ArkTs/JS的HiTraceMeter性能打点接口并没有字段与%tag对应，这些打点接口均属于应用打点，对应的tag名称为HITRACE_TAG_APP，用户态trace中的%tag字段值为62。
 
 - **customCategory**
 
-  通过打点接口传入的customCategory参数，表示自定义聚类名称。
+  `customCategory`字段表示自定义聚类名称。
 
   在trace可视化工具中，同一进程中相同聚类名称的异步打点放在同一泳道上进行展示。
 
-  **该字段限制64字符，超出部分字符会被截断。**
-
 - **customArgs**
 
-  通过打点接口传入的customCategory参数，表示自定义键值对，格式为”key=value“，可以传递多个键值对，使用逗号分隔，例如”key1=value1,key2=value2“。
+  `customArgs`字段表示自定义键值对，格式为“key=value”，多个键值对使用逗号分隔，例如“key1=value1,key2=value2”。
 
-  在trace可视化工具中，对满足格式要求的customArgs以键值对形式展示解析结果。
-
-  **因内核对trace输出的限制，用户态trace总长度不能超过512字符，超过的部分将会被截断，而customArgs字段在打点的最后，若name、customCategory字段占用过多字符，可能造成customArgs参数被截断。**
+  在trace可视化工具中，对满足格式要求的`customArgs`以键值对形式展示解析结果。
 
 #### 特殊情况说明
 
-customCategory和customArgs参数在一些开发场景下可能并不需要，传递的参数值为空字符串，针对这两个参数是否为空字符串的情况，以未开启HiTraceChain时格式为例，予以说明（仅有开始同步trace打点和开始异步trace打点两类接口涉及这两个参数）。
+实际开发中，如`customCategory`和`customArgs`字段不需要，则传入空字符串（仅开始同步trace打点接口和开始异步trace打点接口涉及这两个字段）。
+针对这两个字段是否为空字符串的情况，以未开启HiTraceChain时的格式为例，进行说明。HiTraceChain具体使用指导请参考[使用HiTraceChain打点](hitracechain-guidelines-arkts.md)。
 
-API 18前的trace打点接口没有这两个参数，默认将这两个参数视为空字符串。
+API 19前的trace打点接口默认将这两个字段视为空字符串。
 
 - 开始同步trace打点接口
 
-  - customArgs不为空字符串
+  - `customArgs`字段不为空字符串
 
     ```text
     B|PID|H:name|%level%tag|customArgs
     ```
 
-  - customArgs为空字符串
+  - `customArgs`字段为空字符串
 
     ```text
     B|PID|H:name|%level%tag
@@ -211,25 +216,25 @@ API 18前的trace打点接口没有这两个参数，默认将这两个参数视
 
 - 开始异步trace打点接口
 
-  - customCategory和customArgs均不为空字符串
+  - `customCategory`和`customArgs`字段均不为空字符串
 
     ```text
     S|PID|H:name|taskId|%level%tag|customCategory|customArgs
     ```
 
-  - customCategory为空字符串，customArgs不为空字符串
+  - `customCategory`字段为空字符串，`customArgs`字段不为空字符串
 
     ```text
     S|PID|H:name|taskId|%level%tag||customArgs
     ```
 
-  - customCategory不为空字符串，customArgs为空字符串
+  - `customCategory`字段不为空字符串，`customArgs`字段为空字符串
 
     ```text
     S|PID|H:name|taskId|%level%tag|customCategory
     ```
 
-  - customCategory和customArgs均为空字符串
+  - `customCategory`和`customArgs`字段均为空字符串
 
     ```text
     S|PID|H:name|taskId|%level%tag

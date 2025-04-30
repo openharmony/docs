@@ -108,6 +108,6 @@ dump(filePath: string): Array&lt;string&gt;
 **示例：**
 
 ```js
-let context = getContext(this);
-let files:Array<string> = jsLeakWatcher.dump(context.filesDir);
+let context = this.getUIContext().getHostContext();
+let files: Array<string> = jsLeakWatcher.dump(context?.filesDir);
 ```

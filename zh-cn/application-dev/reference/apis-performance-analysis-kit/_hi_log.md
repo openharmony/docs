@@ -342,6 +342,7 @@ int OH_LOG_Print (LogType type, LogLevel level, unsigned int domain, const char 
 **返回：**
 
 大于等于0表示成功；小于0表示失败。
+失败原因：LogLevel传入的级别低于当前允许打印的级别、domain超出范围、tag为空指针、以及CPU高负载、低内存、整机日志量过大等场景下日志写入socket失败。
 
 
 ### OH_LOG_PrintMsg()
@@ -367,6 +368,7 @@ int OH_LOG_PrintMsg (LogType type, LogLevel level, unsigned int domain, const ch
 **返回：**
 
 大于等于0表示成功；小于0表示失败。
+失败原因：LogLevel传入的级别低于当前允许打印的级别、domain超出范围、tag为空指针、以及CPU高负载、低内存、整机日志量过大等场景下日志写入socket失败。
 
 
 ### OH_LOG_PrintMsgByLen()
@@ -394,6 +396,7 @@ int OH_LOG_PrintMsgByLen (LogType type, LogLevel level, unsigned int domain, con
 **返回：**
 
 大于等于0表示成功；小于0表示失败。
+失败原因：LogLevel传入的级别低于当前允许打印的级别、domain超出范围、tag为空指针、以及CPU高负载、低内存、整机日志量过大等场景下日志写入socket失败。
 
 ### OH_LOG_VPrint()
 
@@ -421,9 +424,8 @@ int OH_LOG_VPrint(LogType type, LogLevel level, unsigned int domain, const char 
 
 **返回：**
 
-| 类型 | 说明 |
-| -- | -- |
-| int | 大于等于0表示成功；小于0表示失败。 |
+大于等于0表示成功；小于0表示失败。
+失败原因：LogLevel传入的级别低于当前允许打印的级别、domain超出范围、tag为空指针、以及CPU高负载、低内存、整机日志量过大等场景下日志写入socket失败。
 
 ### OH_LOG_SetCallback()
 

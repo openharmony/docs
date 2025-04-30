@@ -5,56 +5,16 @@
 通常开发者使用相机功能需要创建相机会话，并持续接收处理预览流、拍照流、录像流等从而实现相关相机功能，这些密集型操作如果都放在主线程即UI线程，可能会阻塞UI绘制，推荐开发者在worker线程中实现相机功能。
 
 ## 开发步骤
-
-1. 创建worker线程文件，配置worker。
-
-   DevEco Studio支持一键生成Worker，在对应的{moduleName}目录下任意位置，点击鼠标右键 > New > Worker，即可自动生成Worker的模板文件及配置信息，无需再手动在build-profile.json5中进行相关配置 。
-
-   CameraWorker.ets实现参考：
-
-   ```ts
-   import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
-   import CameraService from '../CameraService';
-   
-   const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
-   
-   // 自定义消息格式。
-   interface MessageInfo {
-     hasResolve: boolean;
-     type: string;
-     context: Context; // 注意worker线程中无法使用getContext()直接获取宿主线程context，需要通过消息从宿主线程通信到worker线程使用。
-     surfaceId: string;
-   }
-   
-   workerPort.onmessage = async (e: MessageEvents) => {
-     const messageInfo: MessageInfo = e.data;
-     console.info(`worker onmessage type:${messageInfo.type}`)
-     if ('initCamera' === messageInfo.type) {
-       // 在worker线程中收到宿主线程初始化相机的消息。
-       console.info(`worker initCamera surfaceId:${messageInfo.surfaceId}`)
-       // 在worker线程中初始化相机。
-       await CameraService.initCamera(messageInfo.context, messageInfo.surfaceId);
-     } else if ('releaseCamera' === messageInfo.type) {
-       // 在worker线程中收到宿主线程释放相机的消息。
-       console.info('worker releaseCamera.');
-       // 在worker线程中释放相机。
-       await CameraService.releaseCamera();
-     }
-   }
-   
-   workerPort.onmessageerror = (e: MessageEvents) => {
-   }
-   
-   workerPort.onerror = (e: ErrorEvent) => {
-   }
-   ```
-   
-2. 创建相机服务代理类，调用CameraKit方法都放在这个类里执行。
-
+1. 导入依赖，本篇文档需要用到worker和相机框架等相关依赖包。
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
    import { camera } from '@kit.CameraKit';
-   
+   import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
+   ```
+
+2. 创建相机服务代理类，调用CameraKit方法都放在这个类里执行。
+
+   ```ts
    class CameraService {
      private imageWidth: number = 1920;
      private imageHeight: number = 1080;
@@ -125,7 +85,7 @@
          await this.session.start();
        } catch (error) {
          let err = error as BusinessError;
-         console.error(`initCamera fail: ${JSON.stringify(err)}`);
+         console.error(`initCamera fail: ${err}`);
        }
      }
    
@@ -139,7 +99,7 @@
          await this.cameraInput?.close();
        } catch (error) {
          let err = error as BusinessError;
-         console.error(`releaseCamera fail: error: ${JSON.stringify(err)}`);
+         console.error(`releaseCamera fail: error: ${err}`);
        } finally {
          this.previewOutput = undefined;
          this.photoOutput = undefined;
@@ -150,15 +110,52 @@
        console.info('releaseCamera success');
      }
    }
-   
-   export default new CameraService();
    ```
 
-3. 创建组件，用于显示预览流，在页面相关生命周期中构造ThreadWorker实例，在worker线程中完成相机初始化和释放。
+3. 创建worker线程文件，配置worker。
+
+   DevEco Studio支持一键生成Worker，在对应的{moduleName}目录下任意位置，点击鼠标右键 > New > Worker，即可自动生成Worker的模板文件及配置信息，无需再手动在build-profile.json5中进行相关配置 。
+
+   CameraWorker.ets实现参考：
 
    ```ts
-   import { worker } from '@kit.ArkTS';
+   let cameraService = new CameraService();
+   const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
    
+   // 自定义消息格式。
+   interface MessageInfo {
+     hasResolve: boolean;
+     type: string;
+     context: Context; // 注意worker线程中无法使用getContext()直接获取宿主线程context，需要通过消息从宿主线程通信到worker线程使用。
+     surfaceId: string;
+   }
+   
+   workerPort.onmessage = async (e: MessageEvents) => {
+     const messageInfo: MessageInfo = e.data;
+     console.info(`worker onmessage type:${messageInfo.type}`)
+     if ('initCamera' === messageInfo.type) {
+       // 在worker线程中收到宿主线程初始化相机的消息。
+       console.info(`worker initCamera surfaceId:${messageInfo.surfaceId}`)
+       // 在worker线程中初始化相机。
+       await cameraService.initCamera(messageInfo.context, messageInfo.surfaceId);
+     } else if ('releaseCamera' === messageInfo.type) {
+       // 在worker线程中收到宿主线程释放相机的消息。
+       console.info('worker releaseCamera.');
+       // 在worker线程中释放相机。
+       await cameraService.releaseCamera();
+     }
+   }
+   
+   workerPort.onmessageerror = (e: MessageEvents) => {
+   }
+   
+   workerPort.onerror = (e: ErrorEvent) => {
+   }
+   ```
+
+4. 创建组件，用于显示预览流，在页面相关生命周期中构造ThreadWorker实例，在worker线程中完成相机初始化和释放。
+
+   ```ts
    @Entry
    @Component
    struct Index {
@@ -168,13 +165,15 @@
      @State imageHeight: number = 1080;
      // 创建ThreadWorker对象获取worker实例。
      private workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/CameraWorker.ets');
+     private uiContext: UIContext = this.getUIContext();
+     private context: Context | undefined = this.uiContext.getHostContext();
    
      onPageShow(): void {
        if ('' !== this.surfaceId) {
          // 通过worker实例向worker线程发送消息初始化相机。
          this.workerInstance.postMessage({
            type: 'initCamera',
-           context: getContext(this),
+           context: this.context,
            surfaceId: this.surfaceId,
          })
        }
@@ -212,12 +211,12 @@
                // 宿主线程向worker线程发送初始化相机消息。
                this.workerInstance.postMessage({
                  type: 'initCamera',
-                 context: getContext(this), // 将宿主线程的context传给worker线程使用。
+                 context: this.context, // 将宿主线程的context传给worker线程使用。
                  surfaceId: this.surfaceId, // 将surfaceId传给worker线程使用。
                })
              })// The width and height of the surface are opposite to those of the XComponent.
-             .width(px2vp(this.imageHeight))
-             .height(px2vp(this.imageWidth))
+             .width(this.uiContext.px2vp(this.imageHeight))
+             .height(this.uiContext.px2vp(this.imageWidth))
    
          }.justifyContent(FlexAlign.Center)
          .height('90%')
@@ -234,10 +233,10 @@
 
 ## trace对比
 
-不使用worker：
+不使用Worker：
 
 ![camera-in-ui-thread](figures/camera-in-ui-thread.png)
 
-使用woker：
+使用Worker：
 
 ![camera-in-worker-thread](figures/camera-in-worker-thread.png)

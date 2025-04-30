@@ -244,7 +244,6 @@
    ```ts
    // Index.ets
    // 导入页面路由模块
-   import { router } from '@kit.ArkUI';
    import { BusinessError } from '@kit.BasicServicesKit';
    
    @Entry
@@ -274,6 +273,9 @@
            // 跳转按钮绑定onClick事件，点击时跳转到第二页
            .onClick(() => {
              console.info(`Succeeded in clicking the 'Next' button.`)
+             // 获取UIContext
+             let uiContext : UIContext = this.getUIContext();
+             let router = uiContext.getRouter();
             // 跳转到第二页
               router.pushUrl({ url: 'pages/Second' }).then(() => {
                 console.info('Succeeded in jumping to the second page.')
@@ -296,7 +298,6 @@
    ```ts
    // Second.ets
    // 导入页面路由模块
-   import { router } from '@kit.ArkUI';
    import { BusinessError } from '@kit.BasicServicesKit';
    
    @Entry
@@ -325,6 +326,9 @@
            // 返回按钮绑定onClick事件，点击按钮时返回到第一页
            .onClick(() => {
              console.info(`Succeeded in clicking the 'Back' button.`)
+             // 获取UIContext
+             let uiContext : UIContext = this.getUIContext();
+             let router = uiContext.getRouter();
              try {
                // 返回第一页
                router.back()

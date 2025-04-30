@@ -48,8 +48,8 @@ OpenHarmony为开发者提供了用于创建VPN的API解决方案。本文将指
 
 接下来您需要在创建的VpnExtensionAbility中实现VPN的配置、启动和停止操作：
 
-- 建立一个VPN的网络隧道，以TCP隧道为例（参考本文下方VPN Demo示例工程文件[vpn_client](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Connectivity/VPN/entry/src/main/cpp/vpn_client.cpp)的TcpConnect()方法）；
-- 通过VpnConnection.[protect](../reference/apis-network-kit/js-apis-net-vpnExtension.md#protect)保护前一步建立的TCP隧道；
+- 建立一个VPN的网络隧道，以UDP隧道为例（参考本文下方VPN Demo示例工程文件[napi_init](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/VPNControl_Case/entry/src/main/cpp/napi_init.cpp)的UdpConnect()方法）；
+- 通过VpnConnection.[protect](../reference/apis-network-kit/js-apis-net-vpnExtension.md#protect)保护前一步建立的UDP隧道；
 - 构建VPN Config参数，参考[VPN Config参数说明](#vpn-config参数说明)；
 - 通过VpnConnection.[create](../reference/apis-network-kit/js-apis-net-vpnExtension.md#create)建立VPN网络连接；
 - 处理虚拟网卡的数据，如：读写操作。
@@ -63,7 +63,6 @@ OpenHarmony为开发者提供了用于创建VPN的API解决方案。本文将指
 import { common, Want } from '@kit.AbilityKit';
 import { vpnExtension } from '@kit.NetworkKit';
 
-let context = getContext(this) as common.VpnExtensionContext;
 let want: Want = {
   deviceId: "",
   bundleName: "com.example.myvpndemo",
@@ -107,7 +106,6 @@ struct Index {
 import { common, Want } from '@kit.AbilityKit';
 import { vpnExtension } from '@kit.NetworkKit';
 
-let context = getContext(this) as common.VpnExtensionContext;
 let want: Want = {
   deviceId: "",
   bundleName: "com.example.myvpndemo",
@@ -176,7 +174,7 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
 | routes              | Array\<[RouteInfo](../reference/apis-network-kit/js-apis-net-connection.md#routeinfo)\> | 否   | VPN虚拟网卡的路由信息(目前最多可配置1024条路由)。            |
 | dnsAddresses        | Array\<string\>                                              | 否   | DNS服务器地址信息。配置后VPN白名单的应用访问网络时使用这些DNS服务器，不配置则使用系统分配的DNS服务器地址。 |
 | searchDomains       | Array\<string\>                                              | 否   | DNS的搜索域列表。                                            |
-| mtu                 | number                                                       | 否   | 最大传输单元MTU值(单位:字节)。                               |
+| mtu                 | number                                                       | 否   | 最大传输单元MTU值(单位：字节)。                               |
 | isIPv4Accepted      | boolean                                                      | 否   | 是否支持IPV4，默认值为true。                                 |
 | isIPv6Accepted      | boolean                                                      | 否   | 是否支持IPV6，默认值为false。                                |
 | isInternal          | boolean                                                      | 否   | 是否支持内置VPN，默认值为false。                             |
@@ -241,7 +239,7 @@ function vpnCreate(){
 
 ## VPN Demo示例
 
-OpenHarmony开源项目包含一个名为[VPN](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/VPN)的示例应用。此应用展示了如何设置和连接 VPN 服务。
+OpenHarmony开源项目包含一个名为[VPN](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/VPNControl_Case)的示例应用。此应用展示了如何设置和连接 VPN 服务。
 
 
 

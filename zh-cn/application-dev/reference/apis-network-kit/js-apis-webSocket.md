@@ -5,9 +5,7 @@
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
-使用WebSocket建立服务器与客户端的双向连接，需要先通过[createWebSocket](#websocketcreatewebsocket6)方法创建[WebSocket](#websocket6)对象，然后通过[connect](#connect6)方法连接到服务器。
-当连接成功后，客户端会收到[open](#onopen6)事件的回调，之后客户端就可以通过[send](#send6)方法与服务器进行通信。
-当服务器发信息给客户端时，客户端会收到[message](#onmessage6)事件的回调。当客户端不要此连接时，可以通过调用[close](#close6)方法主动断开连接，之后客户端会收到[close](#onclose6)事件的回调。
+使用WebSocket建立服务器与客户端的双向连接，需要先通过[createWebSocket](#websocketcreatewebsocket6)方法创建[WebSocket](#websocket6)对象，然后通过[connect](#connect6)方法连接到服务器。当连接成功后，客户端会收到[open](#onopen6)事件的回调，之后客户端就可以通过[send](#send6)方法与服务器进行通信。当服务器发信息给客户端时，客户端会收到[message](#onmessage6)事件的回调。当客户端不要此连接时，可以通过调用[close](#close6)方法主动断开连接，之后客户端会收到[close](#onclose6)事件的回调。
 
 若在上述任一过程中发生错误，客户端会收到[error](#onerror6)事件的回调。
 
@@ -134,7 +132,7 @@ connect(url: string, callback: AsyncCallback\<boolean\>): void
 | 参数名   | 类型                     | 必填 | 说明                         |
 | -------- | ------------------------ | ---- | ---------------------------- |
 | url      | string                   | 是   | 建立WebSocket连接的URL地址。 |
-| callback | AsyncCallback\<boolean\> | 是   | 回调函数。                   |
+| callback | AsyncCallback\<boolean\> | 是   | 回调函数。true:连接请求创建成功；false:连接请求创建失败。                   |
 
 **错误码：**
 
@@ -191,7 +189,7 @@ connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<
 | -------- | ------------------------ | ---- | ------------------------------------------------------- |
 | url      | string                   | 是   | 建立WebSocket连接的URL地址。                            |
 | options  | WebSocketRequestOptions  | 是   | 参考[WebSocketRequestOptions](#websocketrequestoptions)。 |
-| callback | AsyncCallback\<boolean\> | 是   | 回调函数。                                              |
+| callback | AsyncCallback\<boolean\> | 是   | 回调函数。true:连接请求创建成功；false:连接请求创建失败。                                              |
 
 **错误码：**
 
@@ -262,7 +260,7 @@ connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 
 | 类型               | 说明                              |
 | :----------------- | :-------------------------------- |
-| Promise\<boolean\> | 以Promise形式返回建立连接的结果。 |
+| Promise\<boolean\> | 以Promise形式返回建立连接的结果。true:连接请求创建成功；false:连接请求创建失败。 |
 
 **错误码：**
 
@@ -311,7 +309,7 @@ send(data: string | ArrayBuffer, callback: AsyncCallback\<boolean\>): void
 | 参数名   | 类型                     | 必填 | 说明         |
 | -------- | ------------------------ | ---- | ------------ |
 | data     | string \| ArrayBuffer | 是   | 发送的数据。<br>API 6及更早版本仅支持string类型。API 8起同时支持string和ArrayBuffer类型。 |
-| callback | AsyncCallback\<boolean\> | 是   | 回调函数。   |
+| callback | AsyncCallback\<boolean\> | 是   | 回调函数。true:发送请求创建成功；false:发送请求创建失败。   |
 
 **错误码：**
 
@@ -377,7 +375,7 @@ send(data: string | ArrayBuffer): Promise\<boolean\>
 
 | 类型               | 说明                              |
 | :----------------- | :-------------------------------- |
-| Promise\<boolean\> | 以Promise形式返回发送数据的结果。 |
+| Promise\<boolean\> | 以Promise形式返回发送数据的结果。true:发送请求创建成功；false:发送请求创建失败。 |
 
 **错误码：**
 
@@ -437,7 +435,7 @@ close(callback: AsyncCallback\<boolean\>): void
 
 | 参数名   | 类型                     | 必填 | 说明       |
 | -------- | ------------------------ | ---- | ---------- |
-| callback | AsyncCallback\<boolean\> | 是   | 回调函数。 |
+| callback | AsyncCallback\<boolean\> | 是   | 回调函数。true:关闭请求创建成功；false:关闭请求创建失败。 |
 
 **错误码：**
 
@@ -479,7 +477,7 @@ close(options: WebSocketCloseOptions, callback: AsyncCallback\<boolean\>): void
 | 参数名   | 类型                     | 必填 | 说明                                                  |
 | -------- | ------------------------ | ---- | ----------------------------------------------------- |
 | options  | WebSocketCloseOptions    | 是   | 参考[WebSocketCloseOptions](#websocketcloseoptions)。 |
-| callback | AsyncCallback\<boolean\> | 是   | 回调函数。                                            |
+| callback | AsyncCallback\<boolean\> | 是   | 回调函数。true:关闭请求创建成功；false:关闭请求创建失败。                                            |
 
 **错误码：**
 
@@ -532,7 +530,7 @@ close(options?: WebSocketCloseOptions): Promise\<boolean\>
 
 | 类型               | 说明                              |
 | :----------------- | :-------------------------------- |
-| Promise\<boolean\> | 以Promise形式返回关闭连接的结果。 |
+| Promise\<boolean\> | 以Promise形式返回关闭连接的结果。true:关闭请求创建成功；false:关闭请求创建失败。 |
 
 **错误码：**
 
@@ -925,7 +923,7 @@ ws.off('headerReceive');
 | 名称 | 类型 |  只读  | 可选 | 说明                                                         |
 | ------ | ------ |------ | ---- | ------------------------------------------------------------ |
 | header | Object |  否  |  是   | 建立WebSocket连接可选参数，代表建立连接时携带的HTTP头信息。参数内容自定义，也可以不指定。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| caPath<sup>11+</sup> | string |  否  |  是  | 如果设置了此参数，系统将使用用户指定路径的CA证书，(开发者需保证该路径下CA证书的可访问性)，否则将使用系统预设CA证书，系统预设CA证书位置：/etc/ssl/certs/cacert.pem。证书路径为沙箱映射路径（开发者可通过Global.getContext().filesDir获取应用沙箱路径）。目前仅支持格式为pem的文本证书。 |
+| caPath<sup>11+</sup> | string |  否  |  是  | 如果设置了此参数，系统将使用用户指定路径的CA证书，(开发者需保证该路径下CA证书的可访问性)，否则将使用系统预设CA证书，系统预设CA证书位置：/etc/ssl/certs/cacert.pem。证书路径为沙箱映射路径（开发者可通过UIAbilityContext提供的能力获取应用沙箱路径）。目前仅支持格式为pem的文本证书。 |
 | clientCert<sup>11+</sup> | [ClientCert](#clientcert11) |   否  |  是   | 支持传输客户端证书。 |
 | proxy<sup>12+</sup> | ProxyConfiguration |  否  | 是 | 通信过程中的代理信息，默认使用系统网络代理。 |
 | protocol<sup>12+</sup> | string |  否  | 是 | 自定义Sec-WebSocket-Protocol字段，默认为""。              |
@@ -965,7 +963,7 @@ type ProxyConfiguration = 'system' | 'no-proxy' | HttpProxy
 
 | 名称 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| code   | number | 否   | 错误码，关闭WebSocket连接时的可选参数，可根据实际情况来填。默认值为1000。 |
+| code   | number | 否   | 错误码，关闭WebSocket连接时的可选参数，可根据实际情况来填。传入值需为正整数，默认值为1000。 |
 | reason | string | 否   | 原因值，关闭WebSocket连接时的可选参数，可根据实际情况来填。默认值为空字符串（""）。 |
 
 ## CloseResult<sup>10+</sup>

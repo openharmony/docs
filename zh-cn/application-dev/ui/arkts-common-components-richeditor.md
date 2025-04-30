@@ -2,36 +2,7 @@
 RichEditor是支持图文混排和文本交互式编辑的组件，通常用于响应用户对图文混合内容的输入操作，例如可以输入图文的评论区。具体用法参考[RichEditor](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md)。
 
 ## 创建RichEditor组件
-开发者可以创建[不使用属性字符串](#创建不使用属性字符串构建的richeditor组件)和[使用属性字符串](#创建使用属性字符串构建的richeditor组件)构建的RichEditor组件。
-
-### 创建不使用属性字符串构建的RichEditor组件
-使用RichEditor(value: [RichEditorOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditoroptions))接口创建非属性字符串构建的RichEditor组件，一般用于展示简单的图文信息，例如展示联系人的信息，也可以用于内容要求格式统一的场景，例如一些代码编辑器。
-
-```ts
-@Entry
-@Component
-struct create_rich_editor {
-  controller: RichEditorController = new RichEditorController()
-  options: RichEditorOptions = { controller: this.controller }
-
-  build() {
-    Column() {
-      Column() {
-        RichEditor(this.options)
-          .onReady(() => {
-            this.controller.addTextSpan('创建不使用属性字符串构建的RichEditor组件。', {
-              style: {
-                fontColor: Color.Black,
-                fontSize: 15
-              }
-            })
-          })
-      }.width('100%')
-    }.height('100%')
-  }
-}
-```
-![alt text](figures/richeditor_image_options.gif)
+开发者可以创建[使用属性字符串](#创建使用属性字符串构建的richeditor组件)和[不使用属性字符串](#创建不使用属性字符串构建的richeditor组件)构建的RichEditor组件。
 
 ### 创建使用属性字符串构建的RichEditor组件
 使用RichEditor(options: [RichEditorStyledStringOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorstyledstringoptions12))接口创建属性字符串构建的RichEditor组件，是基于属性字符串（[StyledString/MutableStyledString](arkts-styled-string.md)）构建的，通常应用于需要界面美化和内容强调的场景，通过设置重要功能特性文本的样式来突出显示，从而吸引用户注意。
@@ -62,6 +33,35 @@ RichEditor(this.options)
   })
 ```
 ![alt text](figures/richeditor_image_stylestringoptions.gif)
+
+### 创建不使用属性字符串构建的RichEditor组件
+使用RichEditor(value: [RichEditorOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditoroptions))接口创建非属性字符串构建的RichEditor组件，一般用于展示简单的图文信息，例如展示联系人的信息，也可以用于内容要求格式统一的场景，例如一些代码编辑器。
+
+```ts
+@Entry
+@Component
+struct create_rich_editor {
+  controller: RichEditorController = new RichEditorController()
+  options: RichEditorOptions = { controller: this.controller }
+
+  build() {
+    Column() {
+      Column() {
+        RichEditor(this.options)
+          .onReady(() => {
+            this.controller.addTextSpan('创建不使用属性字符串构建的RichEditor组件。', {
+              style: {
+                fontColor: Color.Black,
+                fontSize: 15
+              }
+            })
+          })
+      }.width('100%')
+    }.height('100%')
+  }
+}
+```
+![alt text](figures/richeditor_image_options.gif)
 
 ## 设置属性
 
@@ -253,8 +253,14 @@ RichEditor(this.options)
 
 ```ts
 RichEditor(this.options)
-  .placeholder('这是一段用来测试选中菜单的文字')
-  .onReady(() => {})
+  .onReady(() => {
+    this.controller.addTextSpan('这是一段文本,用来展示选中菜单', {
+      style: {
+        fontColor: Color.Black,
+        fontSize: 15
+      }
+    })
+  })
 ```
 
 ![RichEditor_select_menu](figures/RichEditor_select_menu.jpg)
@@ -364,11 +370,11 @@ RichEditor(this.options1)
 ![alt text](figures/richeditor_image_ondid.gif)
 
 ### 添加输入法输入内容前和完成输入后可触发的回调
-在添加输入法输入内容前，可以通过[aboutToIMEInput](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#abouttoimeinput)触发回调。在输入法完成输入后，可以通过[onIMEInputComplete](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#onimeinputcomplete)触发回调。
+在添加输入法输入内容前，可以通过[aboutToIMEInput](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#abouttoimeinput)触发回调。在输入法完成输入后，可以通过[onIMEInputComplete](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#onimeinputcomplete)或者[onDidIMEInput](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#ondidimeinput12)触发回调。
 
-这两种回调机制适用于智能输入辅助。例如：在用户开始输入文本前，利用回调进行词汇联想的提供，在用户完成输入后，利用回调执行自动化纠错或格式转换。
+这三种回调机制适用于智能输入辅助。例如：在用户开始输入文本前，利用回调进行词汇联想的提供，在用户完成输入后，利用回调执行自动化纠错或格式转换。三种回调的时序依次为：aboutToIMEInput、onIMEInputComplete、onDidIMEInput。
 
-使用[RichEditorStyledStringOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorstyledstringoptions12)构建的组件并不支持上述两种回调功能。
+使用[RichEditorStyledStringOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorstyledstringoptions12)构建的组件并不支持上述三种回调功能。
 
 ```ts
 RichEditor(this.options)
@@ -381,7 +387,7 @@ RichEditor(this.options)
     })
   })
   .aboutToIMEInput((value: RichEditorInsertValue) => {
-    this.controller1.addTextSpan('输入法输入内容前，触发回调：\n' + JSON.stringify(value), {
+    this.controller1.addTextSpan('输入法输入内容前，触发aboutToIMEInput回调：\n' + JSON.stringify(value), {
       style: {
         fontColor: Color.Gray,
         fontSize: 10
@@ -390,7 +396,7 @@ RichEditor(this.options)
     return true;
   })
   .onIMEInputComplete((value: RichEditorTextSpanResult) => {
-    this.controller1.addTextSpan('输入法完成输入后，触发回调：\n' + JSON.stringify(value), {
+    this.controller1.addTextSpan('输入法完成输入后，触发onIMEInputComplete回调：\n' + JSON.stringify(value), {
       style: {
         fontColor: Color.Gray,
         fontSize: 10
@@ -398,6 +404,14 @@ RichEditor(this.options)
     })
     return true;
   })
+  .onDidIMEInput((value: TextRange) => {
+    this.controller1.addTextSpan('输入法完成输入后，触发onDidIMEInput回调：\n' + JSON.stringify(value), {
+      style: {
+        fontColor: Color.Gray,
+        fontSize: 10
+      }
+    })
+        })
   .width(300)
   .height(50)
 Text('查看回调内容：').fontSize(10).fontColor(Color.Gray).width(300)
@@ -406,7 +420,7 @@ RichEditor(this.options1)
   .height(70)
 ```
 
-![alt text](figures/richeditor_image_aboutToIMEInput2.0.gif)
+![alt text](figures/richeditor_image_aboutToIMEInput3.0.gif)
 
 ### 添加完成粘贴前可触发的回调
 通过[onPaste](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#onpaste11)添加完成粘贴前可触发的回调。

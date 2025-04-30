@@ -214,6 +214,18 @@ Failed to install the HAP since the version of the HAP to install is too early.
 **处理步骤**<br/>
 确认新安装的应用版本号是否不低于已安装的同应用版本号。
 
+1. 已安装应用版本号查询，依赖[hdc工具](../../dfx/hdc.md#环境准备)。
+```
+// 取dump出来的最后一个字段
+hdc shell bm dump -n com.xxx.demo |grep versionCode
+```
+
+![示例图](figures/installed_hap_verisonCode.PNG)
+
+2. 新安装的应用查看版本，HAP或者HSP用IDE打开，查看里面module.json文件中的versionCode字段配置。
+
+![示例图](figures/hap_verisonCode.PNG)
+
 ## 17700018 安装失败，依赖的模块不存在
 
 **错误信息**<br/>
@@ -628,7 +640,7 @@ Failed to install the HAP because the VersionCode to be updated is not greater t
 2. installFlag被设置为NORMAL，此时待更新的应用的版本号必须大于当前已安装的版本。
 
 **处理步骤**<br/>
-1. 设置应用的版本号大于当前版本。
+1. 设置应用的版本号大于当前版本，查看版本号的方法请参考[17700017错误码](#17700017-新安装的应用版本号低于已安装的版本号导致应用安装失败)的操作步骤。
 2. 如果希望应用更新但版本号不升级，需要设置installFlag为REPLACE_EXISTING。
 
 ## 17700048 代码签名校验失败
@@ -673,17 +685,17 @@ Failed to install the HAP because an enterprise normal/MDM bundle cannot be inst
 
 **处理步骤**<br/>
 1. 检查安装设备是否为企业设备。
-2. 检查设备参数const.bms.allowenterprisebundle是否为true
+2. 检查设备参数const.bms.allowenterprisebundle是否为true。
 
-## 17700051 应用自升级时调用方的分发类型不是企业mdm
+## 17700051 应用自升级时调用方的签名证书profile文件中的类型不是企业mdm
 **错误信息**<br/>
 Failed to install the HAP because the distribution type of the caller application is not enterprise_mdm.
 
 **错误描述**<br/>
-企业mdm应用自升级时，调用方的分发类型不是企业mdm。
+企业mdm应用自升级时，调用方[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中的类型不是企业mdm。
 
 **可能原因**<br/>
-调用方的分发类型不是企业mdm。
+调用方签名证书profile文件中的类型不是企业mdm。
 
 **处理步骤**<br/>
 检查应用的签名文件是否正确配置。
@@ -983,18 +995,18 @@ The specified bundleName of want is not the same with caller.
 **处理步骤**<br/>
 修改want指定的bundleName与调用方相同。
 
-## 17700076 签名文件中的分发类型被限制，不允许安装到当前设备中，导致安装失败
+## 17700076 签名证书profile文件中的类型被限制，不允许安装到当前设备中，导致安装失败
 **错误信息**<br/>
 Failed to install the HAP or HSP because the app distribution type is not allowed.
 
 **错误描述**<br/>
-签名文件中的分发类型不允许安装的限制，导致安装失败。
+签名证书profile文件中的类型被限制，不允许安装到当前设备中。
 
 **可能原因**<br/>
-该签名的分发类型被限制，禁止安装到当前设备中。
+该[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中的类型被限制，禁止安装到当前设备中。
 
 **处理步骤**<br/>
-更换签名文件的分发类型。
+更换签名证书profile文件中的类型。
 
 <!--Del-->
 ## 17700077 安装应用失败，但安装对应的预置应用成功

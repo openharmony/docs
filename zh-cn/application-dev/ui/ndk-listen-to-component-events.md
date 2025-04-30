@@ -5,19 +5,67 @@ NDK接口针对UI组件的事件，提供了监听函数的方式。首先，可
 
 
 > **说明：**
-> - 事件注册需要声明addNodeEventReceiver监听器注册和registerNodeEvent事件类型，监听器只能监听已声明的事件。
+> - 事件注册需要声明[addNodeEventReceiver](../reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md#addnodeeventreceiver)监听器注册和[registerNodeEvent](../reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md#registernodeevent)事件类型，监听器只能监听已声明的事件。
 > 
 > - 需要关注事件的反注册逻辑，如在组件销毁前调用[removeNodeEventReceiver](../reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md#removenodeeventreceiver)移除事件监听器，[unregisterNodeEvent](../reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md#unregisternodeevent)通知ArkUI框架已监听的事件不再需要监听。
 > 
-> - addNodeEventReceiver可以添加多个函数指针，每个函数指针都会在对应事件触发时触发，对应的removeNodeEventReceiver需要传递对应的函数指针用于移除监听。
+> - [addNodeEventReceiver](../reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md#addnodeeventreceiver)可以添加多个函数指针，每个函数指针都会在对应事件触发时触发，对应的[removeNodeEventReceiver](../reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md#removenodeeventreceiver)需要传递对应的函数指针用于移除监听。
 > 
-> - [registerNodeEventReceiver](../reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md#registernodeeventreceiver)是全局监听函数，不同于addNodeEventReceiver，registerEventReceiver能够监听所有Native组件的事件触发，但只能传递一个函数指针，多次调用使用最后一次的函数指针进行回调，释放时使用[ungisterNodeEventReceiver](../reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md#unregisternodeeventreceiver)进行释放。
+> - [registerNodeEventReceiver](../reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md#registernodeeventreceiver)是全局监听函数，不同于[addNodeEventReceiver](../reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md#addnodeeventreceiver)，[registerNodeEventReceiver](../reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md#registernodeeventreceiver)能够监听所有Native组件的事件触发，但只能传递一个函数指针，多次调用使用最后一次的函数指针进行回调，释放时使用[ungisterNodeEventReceiver](../reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md#unregisternodeeventreceiver)进行释放。
 
 
 以下示例基于[接入ArkTS页面](ndk-access-the-arkts-page.md)章节，补充相关事件监听。
 
 
+- 事件注册和事件解注册
+
+  通过addNodeEventReceiver对节点绑定事件处理函数，接着通过调用registerNodeEvent注册对应的事件。
+
+  > 说明：
+  > 
+  > 事件监听函数的入参ArkUI_NodeEvent* event的生命周期只在函数回调周期内生效，不推荐对该指针进行缓存或者进行异步处理。
+
+  ```
+  ArkUI_NativeNodeAPI_1 *nodeAPI = nullptr;
+  OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, nodeAPI);
+  void NodeEventReceiver(ArkUI_NodeEvent *event) {
+    // 设置对应的事件类型触发时进行的操作，如NODE_ON_CLICK
+  };
+  auto button = nodeAPI->createNode(ARKUI_NODE_BUTTON);
+  nodeAPI->addNodeEventReceiver(button, NodeEventReceiver);
+  nodeAPI->registerNodeEvent(button, NODE_ON_CLICK, 0, nullptr);
+  ```
+  详细的事件类型请参考[ArkUI_NodeEventType](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeeventtype)。
+
+  通过unregisterNodeEvent解注册对应的事件类型，再通过removeNodeEventReceiver卸载事件处理函数。
+
+  ```
+  nodeAPI->unregisterNodeEvent(button, NODE_ON_CLICK);
+  nodeAPI->removeNodeEventReceiver(button, NodeEventReceiver);
+  ```
+
+- 全局事件监听
+
+  使用registerNodeEventReceiver注册全局的事件处理函数，对事件进行统一的处理，结束后可使用ungisterNodeEventReceiver进行释放。
+
+  ```
+  nodeAPI->registerNodeEventReceiver([](ArkUI_NodeEvent *event){
+    auto *inputEvent = OH_ArkUI_NodeEvent_GetInputEvent(event);
+    auto eventType = OH_ArkUI_NodeEvent_GetEventType(event);
+    case NODE_ON_CLICK: {
+        // 触发点击事件所进行的操作
+    }
+    default: {
+        break;
+    }
+  })
+  nodeAPI->unregisterNodeEventReceiver();
+  ```
+
+**完整示例：**
+
 1. 在ArkUINode基类对象中实现通用事件注册逻辑。
+
    ```c
    // ArkUINode.h
    // 提供通用属性和事件的封装。
@@ -50,10 +98,10 @@ NDK接口针对UI组件的事件，提供了监听函数的方式。首先，可
            if (onTouch_) {
                nativeModule_->unregisterNodeEvent(handle_, NODE_TOUCH_EVENT);
            }
-           if (onDisappear) {
+           if (onDisappear_) {
                nativeModule_->unregisterNodeEvent(handle_, NODE_EVENT_ON_DISAPPEAR);
            }
-           if (onAppear) {
+           if (onAppear_) {
                nativeModule_->unregisterNodeEvent(handle_, NODE_EVENT_ON_APPEAR);
            }
            nativeModule_->removeNodeEventReceiver(handle_, ArkUINode::NodeEventReceiver);

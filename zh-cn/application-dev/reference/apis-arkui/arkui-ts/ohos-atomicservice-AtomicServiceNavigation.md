@@ -51,18 +51,18 @@ AtomicServiceNavigation({
 | --------------- | ------ | ---- | ----|----------|
 | navPathStack | [NavPathStack](ts-basic-components-navigation.md#navpathstack10) | 否 | @State | 路由栈信息。 |
 | navigationContent | Callback\<void\> | 否 | @BuilderParam | Navigation容器内容。 |
-| title | [ResourceStr](ts-types.md#resourcestr) | 否 |@Prop | 设置页面标题。|
-| titleOptions | [TitleOptions](#titleoptions) | 否 | @Prop | 标题栏选项。|
+| title | [ResourceStr](ts-types.md#resourcestr) | 否 |@Prop | 设置页面标题。默认值为空字符串。当titleOptions的titleBarType字段设置为[TitleBarType](#titlebartype18).ROUND_ICON或者[TitleBarType](#titlebartype18).SQUARED_ICON，且设置了titleIcon时，title标题内容将不会显示。 |
+| titleOptions | [TitleOptions](#titleoptions) | 否 | @Prop | 标题栏选项。当titleBarType字段设置为[TitleBarType](#titlebartype18).ROUND_ICON或者[TitleBarType](#titlebartype18).SQUARED_ICON，且设置了titleIcon时，title标题内容将不会显示。 |
 | gradientBackground<sup>18+</sup> | [GradientBackground](#gradientbackground18) | 否 | @Prop | 背景色选项。|
-| hideTitleBar | boolean | 否 | @Prop | 设置是否隐藏标题栏。|
-| navBarWidth | [Length](ts-types.md#length)| 否 | @Prop | 设置导航栏宽度。<br>仅在Navigation组件分栏时生效。|
+| hideTitleBar | boolean | 否 | @Prop | 设置是否隐藏标题栏。默认为false。<br>false表示显示标题栏，true表示隐藏标题栏。|
+| navBarWidth | [Length](ts-types.md#length)| 否 | @Prop | 设置导航栏宽度。默认值为240vp。<br>仅在Navigation组件分栏时生效。|
 | mode| [NavigationMode](ts-basic-components-navigation.md#navigationmode9枚举说明) | 否 | @Prop |设置导航栏的显示模式。<br>支持Stack、Split与Auto模式。|
 | navDestinationBuilder | [NavDestinationBuilder](#navdestinationbuilder) | 否 | @BuilderParam | 创建[NavDestination](ts-basic-components-navdestination.md)组件所需要的Builder数据。 |
-| navBarWidthRange | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 否 | @Prop |设置导航栏最小和最大宽度（双栏模式下生效）。|
+| navBarWidthRange | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 否 | @Prop |设置导航栏最小和最大宽度（双栏模式下生效）。默认值：最小默认值为240vp，最大默认值为组件宽度的40%，且不大于432vp，如果只设置一个值，则未设置的值按照默认值计算。单位：vp。 |
 | minContentWidth | [Dimension](ts-types.md#dimension10) | 否 | @Prop | 设置导航栏内容区最小宽度（双栏模式下生效）。|
 | sideBarOptions<sup>18+</sup> | [SideBarOptions](#sidebaroptions18) | 否 | @Prop | 侧边栏的功能选项。|
 | sideBarContent<sup>18+</sup> | Callback\<void\> | 否 | @BuilderParam | 侧边栏的内容。|
-| menus<sup>18+</sup> | [CustomBuilder](ts-types.md#custombuilder8) \| Array\<[NavigationMenuItem](ts-basic-components-navigation.md#navigationmenuitem)\> | 否 | @BuilderParam | 宽屏场景下用户自定义插入的布局样式。默认为空，不显示任何样式。 |
+| menus<sup>18+</sup> | [CustomBuilder](ts-types.md#custombuilder8) \| Array\<[NavigationMenuItem](ts-basic-components-navigation.md#navigationmenuitem)\> | 否 | @BuilderParam | 宽屏场景下用户自定义插入的布局样式。默认为空，不显示任何样式。屏幕宽度低于600vp为非宽屏场景，大于等于600vp为宽屏场景。 |
 | stateChangeCallback | Callback\<boolean\> | 否 | - | 导航栏显示状态切换时触发该回调。|
 | modeChangeCallback | Callback\<[NavigationMode](ts-basic-components-navigation.md#navigationmode9枚举说明)\> | 否 | - | 当Navigation首次显示或者单双栏状态发生变化时触发该回调。|
 
@@ -259,8 +259,8 @@ struct Index {
             isBlurEnabled: false
           },
           gradientBackground: {
-            primaryColor: 'red',
-            secondaryColor: 'green',
+            primaryColor: '#FF0000',
+            secondaryColor: '#00FF00',
             backgroundTheme: BackgroundTheme.LIGHT,
             mixMode: MixMode.AVERAGE,
             alpha: GradientAlpha.OPACITY_100

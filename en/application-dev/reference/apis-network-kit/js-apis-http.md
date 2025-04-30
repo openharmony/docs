@@ -1121,6 +1121,9 @@ Specifies the type and value range of the optional parameters in the HTTP reques
 | multiFormDataList<sup>11+</sup> | Array<[MultiFormData](#multiformdata11)> | No| Form data list. This field is valid when **content-Type** is set to **multipart/form-data**.|
 | certificatePinning<sup>12+</sup> | [CertificatePinning](#certificatepinning12) \| CertificatePinning[] | No| Dynamic configuration of certificate pinning. One or more certificate PINs can be specified.|
 | addressFamily<sup>15+</sup> | [AddressFamily](#addressfamily15) | No| IP address family. You can specify an address type for domain name resolution.|
+| remoteValidation<sup>18+</sup> | [RemoteValidation](#remotevalidation18)                             | No| Certificate authority (CA), which is used to verify the identity of a remote server. If the parameter is not set, the default value is used. The options are as follows:<br>**Atomic service API**: This API can be used in atomic services since API version 18.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| tlsOptions<sup>18+</sup> | [TlsOptions](#tlsoptions18)                                         | No| TLS configuration.<br>**Atomic service API**: This API can be used in atomic services since API version 18.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| serverAuthentication<sup>18+</sup> | [ServerAuthentication](#serverauthentication18)                     | No| Indicates whether to verify the server identity during a secure connection. The identity is not verified by default.<br>**Atomic service API**: This API can be used in atomic services since API version 18.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
 ## RequestMethod
 
@@ -1573,3 +1576,254 @@ Enumerates the address types for domain name resolution.
 | DEFAULT | Automatically selects the IPv4 or IPv6 address of the target domain name.    |
 | ONLY_V4 | Resolves only the IPv4 address of the target domain name and ignores the IPv6 address.    |
 | ONLY_V6 | Resolves only the IPv6 address of the target domain name and ignores the IPv4 address.    |
+
+## RemoteValidation<sup>18+</sup>
+
+type RemoteValidation = 'system' | 'skip'
+
+Certificate authority (CA), which is used to verify the identity of a remote server. You can configure **RemoteValidation** to use the system CA or skip CA verification.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Type      | Description           |
+| ---------------- |---------------|
+| 'system' | Use of the system CA for verification.|
+| 'skip' | Skipping of CA verification. |
+
+## Credential<sup>18+</sup>
+
+Represents the credential used for server identity verification in a session, including the user name and password.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|  Name |  Type |  Read Only | Optional |Description    |
+| ------------------  |---- |-- | -- |----------- |
+| username       | string | No|No|User name used for verification. The default value is **''**.|
+| password        | string |  No |No|Password used for verification. The default value is **''**.|
+
+## ServerAuthentication<sup>18+</sup>
+
+Defines HTTP server identity verification information.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|  Name              |  Type                                           | Read Only   |    Optional    |Description    |
+| ------------------  |-------------------------------------------------|-------- |------------ |---------------|
+| credential          | [Credential](#credential18)                     | No     | No        |Server credential. The default value is **undefined**.    |
+| authenticationType  | [AuthenticationType](#authenticationtype18)     | No     | Yes       | Server identity verification type. If the type is not set, negotiation with the server is required.    |
+
+
+## TlsConfig<sup>18+</sup>
+
+Defines the the TLS configuration, including the version and cipher suite.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|  Name              |  Type                           | Read Only   |    Optional    |Description    |
+| ------------------  |---------------------------------|-------- |-------- |---------------|
+| tlsVersionMin       | [TlsVersion](#tlsversion18)     | No     |No      | Earliest TLS version.    |
+| tlsVersionMax        | [TlsVersion](#tlsversion18)    | No     |No      | Latest TLS version.    |
+| cipherSuites        | [CipherSuite](#ciphersuite18)[] | No     |Yes      | Array of cipher suite types.|
+
+## TlsVersion<sup>18+</sup>
+
+Enumerates TLS versions.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+| Name       | Value| Description        |
+|:----------|:--|:-----------|
+| TLS_V_1_0 | 4 | TLS version 1.0.|
+| TLS_V_1_1 | 5 | TLS version 1.1.|
+| TLS_V_1_2 | 6 | TLS version 1.2.|
+| TLS_V_1_3 | 7 | TLS version 1.3.|
+
+## TlsOptions<sup>18+</sup>
+
+type TlsOptions = 'system' | TlsConfig
+
+Defines the TLS configuration.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+| Type                        | Description                                                                                |
+|-------------------------------|------------------------------------------------------------------------------------|
+| 'system'  | TLS version of the system. This field is defaulted to **system** when the value is not set.|
+| TlsOptions | Custom TLS version and cipher suites.|
+
+## RemoteValidation<sup>18+</sup>
+
+type RemoteValidation = 'system' | 'skip'
+
+Enumerates the identity verification modes of the remote server.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+| Type                        | Description                                                                                |
+|-------------------------------|------------------------------------------------------------------------------------|
+| 'system'  | Use of the system CA. This field is defaulted to **system** when the value is not set.|
+| 'skip'   | Skipping of CA verification. This field has a fixed value of **skip**.|
+
+## AuthenticationType<sup>18+</sup>
+
+type AuthenticationType = 'basic' | 'ntlm' | 'digest'
+
+Enumerates server authentication modes in a session.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|Type                         | Description                                                                                                |
+|-------------------------------|----------------------------------------------------------------------------------------------------|
+| 'basic'  | Basic authentication mode. This field has a fixed value of **basic**.|
+| 'ntlm'   | NTLM authentication mode. This field has a fixed value of **ntlm**.|
+| 'digest' | Digest authentication mode. This field has a fixed value of **digest**.|
+
+## CipherSuite<sup>18+</sup>
+
+type CipherSuite = TlsV13CipherSuite
+
+Declares the cipher suite.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Type      | Description                                                               |
+| ---------------- |-------------------------------------------------------------------|
+| TlsV13CipherSuite | Cipher suite defined in [TlsV13CipherSuite](#tlsv13ciphersuite18).                |
+
+## TlsV13CipherSuite<sup>18+</sup>
+
+type TlsV13CipherSuite = TlsV12CipherSuite | TlsV13SpecificCipherSuite
+
+Declares the cipher suite for TLS 1.3, which is also compatible with TLS 1.2.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Type      | Description                                                               |
+| ---------------- |-------------------------------------------------------------------|
+| TlsV12CipherSuite | [TlsV12CipherSuite](#tlsv12ciphersuite18).                |
+| TlsV13SpecificCipherSuite | [TlsV13SpecificCipherSuite](#tlsv13specificciphersuite18).|
+
+## TlsV12CipherSuite<sup>18+</sup>
+
+type TlsV12CipherSuite = TlsV11CipherSuite | TlsV12SpecificCipherSuite
+
+Declares the cipher suite for TLS 1.2, which is also compatible with TLS 1.1.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Type      | Description                                                               |
+| ---------------- |-------------------------------------------------------------------|
+| TlsV11CipherSuite | [TlsV11CipherSuite](#tlsv11ciphersuite18).                |
+| TlsV12SpecificCipherSuite | [TlsV12SpecificCipherSuite](#tlsv12specificciphersuite18).|
+
+## TlsV11CipherSuite<sup>18+</sup>
+
+type TlsV11CipherSuite = TlsV10CipherSuite
+
+Declares the cipher suite for TLS 1.1, which is the same as that for TLS1.0.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Type      | Description                                               |
+| ---------------- |---------------------------------------------------|
+| TlsV10CipherSuite | [TlsV10CipherSuite](#tlsv10ciphersuite18).|
+
+## TlsV10CipherSuite<sup>18+</sup>
+
+type TlsV10CipherSuite = TlsV10SpecificCipherSuite
+
+Declares the cipher suite for TLS 1.0.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Type      | Description                                                               |
+| ---------------- |-------------------------------------------------------------------|
+| TlsV10SpecificCipherSuite | [TlsV10SpecificCipherSuite](#tlsv10specificciphersuite18).|
+
+## TlsV13SpecificCipherSuite<sup>18+</sup>
+
+type TlsV13SpecificCipherSuite = 'TLS_AES_128_GCM_SHA256' | 'TLS_AES_256_GCM_SHA384' | 'TLS_CHACHA20_POLY1305_SHA256'
+
+Enumerates cipher suites supported by TLS 1.3 or later.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Type      | Description  |
+| ---------------- |------|
+| 'TLS_AES_128_GCM_SHA256' | Supported cipher suite: TLS_AES_128_GCM_SHA256. The value is a string.|
+| 'TLS_AES_256_GCM_SHA384' | Supported cipher suite: TLS_AES_256_GCM_SHA384. The value is a string.|
+| 'TLS_CHACHA20_POLY1305_SHA256' | Supported cipher suite: TLS_CHACHA20_POLY1305_SHA256. The value is a string.|
+
+## TlsV12SpecificCipherSuite<sup>18+</sup>
+
+type TlsV12SpecificCipherSuite = 'TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256' | 'TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256' |
+'TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384' | 'TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384' |
+'TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256' | 'TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256' |
+'TLS_RSA_WITH_AES_128_GCM_SHA256' | 'TLS_RSA_WITH_AES_256_GCM_SHA384'
+
+Enumerates cipher suites supported by TLS 1.2 or later.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Type      | Description  |
+| ---------------- |------|
+| 'TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256' | Supported cipher suite: TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256. The value is a string.|
+| 'TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256' | Supported cipher suite: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256. The value is a string.|
+| 'TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384' | Supported cipher suite: TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384. The value is a string.|
+| 'TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384' | Supported cipher suite: TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384. The value is a string.|
+| 'TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256' | Supported cipher suite: TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256. The value is a string.|
+| 'TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256' | Supported cipher suite: TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256. The value is a string.|
+| 'TLS_RSA_WITH_AES_128_GCM_SHA256' | Supported cipher suite: TLS_RSA_WITH_AES_128_GCM_SHA256. The value is a string.|
+| 'TLS_RSA_WITH_AES_256_GCM_SHA384' | Supported cipher suite: TLS_RSA_WITH_AES_256_GCM_SHA384. The value is a string.|
+
+## TlsV10SpecificCipherSuite<sup>18+</sup>
+
+type TlsV10SpecificCipherSuite = 'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA' | 'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA' |
+'TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA' | 'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA' | 'TLS_RSA_WITH_AES_128_CBC_SHA' |
+'TLS_RSA_WITH_AES_256_CBC_SHA' | 'TLS_RSA_WITH_3DES_EDE_CBC_SHA'
+
+Enumerates cipher suites supported by TLS 1.0 or later.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Type      | Description  |
+| ---------------- |------|
+| 'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA' | Supported cipher suite: TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA. The value is a string.|
+| 'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA' | Supported cipher suite: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA. The value is a string.|
+| 'TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA' | Supported cipher suite: TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA. The value is a string.|
+| 'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA' | Supported cipher suite: TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA. The value is a string.|
+| 'TLS_RSA_WITH_AES_128_CBC_SHA' | Supported cipher suite: TLS_RSA_WITH_AES_128_CBC_SHA. The value is a string.|
+| 'TLS_RSA_WITH_AES_256_CBC_SHA' | Supported cipher suite: TLS_RSA_WITH_AES_256_CBC_SHA. The value is a string.|
+| 'TLS_RSA_WITH_3DES_EDE_CBC_SHA' | Supported cipher suite: TLS_RSA_WITH_3DES_EDE_CBC_SHA. The value is a string.|

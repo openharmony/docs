@@ -32,7 +32,7 @@ cpp部分代码
 #include <hilog/log.h>
 #include <fstream>
 
-#define LOG_DEMAIN 0x0202
+#define LOG_DOMAIN 0x0202
 #define LOG_TAG "TEST_TAG"
 
 static int g_aa = 0;
@@ -308,4 +308,18 @@ struct Index {
 }
 ```
 执行结果
-在LOG中输出：Test JSVM RunVMSnapshot read file blobSize = : 300064
+在LOG中输出：
+```ts
+Test JSVM RunVMSnapshot read file blobSize = : 300064
+```
+多次点击屏幕,LOG中输出:
+```ts
+Test JSVM RunVMSnapshot read file blobSize = : 300176
+Test JSVM RunVMSnapshot read file blobSize = : 300064
+Test JSVM RunVMSnapshot read file blobSize = : 300160
+Test JSVM RunVMSnapshot read file blobSize = : 300032
+Test JSVM RunVMSnapshot read file blobSize = : 300176
+Test JSVM RunVMSnapshot read file blobSize = : 300048
+```
+这是因为，在读取快照文件时，blobSize 是通过 file.tellg() 获取的文件大小。因此，快照文件的大小直接决定了 blobSize 的值。
+

@@ -10,7 +10,7 @@
   <!--DelEnd-->
   - 接口依赖的元素及定义<!--ads-api-interface-depend-->
     - advertising<!--ads-advertising-->
-      - [Advertisement](js-apis-inner-advertising-advertisement.md)
+      - [advertisement (广告内容)](js-apis-inner-advertising-advertisement.md)
 - ArkTS组件<!--ads-comp-->
   - [@ohos.advertising.AdComponent (非全屏广告展示组件)](js-apis-adcomponent.md)
   - [@ohos.advertising.AutoAdComponent (轮播广告展示组件)](js-apis-autoadcomponent.md)

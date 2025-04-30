@@ -1094,7 +1094,7 @@ compress(dest: ArrayBuffer, source: ArrayBuffer, sourceLen?: number): Promise&lt
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800007 | Buffer error.                                                |
+| 17800007 | The input buffer is incorrect, and the output buffer is too small to accommodate the compressed or decompressed data. |
 
 **示例：**
 
@@ -1151,8 +1151,8 @@ compress2(dest: ArrayBuffer, source: ArrayBuffer, level: CompressLevel, sourceLe
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
-| 17800007 | Buffer error.                                                |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
+| 17800007 | The input buffer is incorrect, and the output buffer is too small to accommodate the compressed or decompressed data. |
 
 **示例：**
 
@@ -1208,8 +1208,8 @@ uncompress(dest:ArrayBuffer, source: ArrayBuffer, sourceLen?: number): Promise&l
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800005 | Data error.                                                  |
-| 17800007 | Buffer error.                                                |
+| 17800005 | The input data is incorrect. For example, the data does not conform to the zlib compression format, the compressed data is corrupted, or the data is not compressed. |
+| 17800007 | The input buffer is incorrect, and the output buffer is too small to accommodate the compressed or decompressed data. |
 
 **示例：**
 
@@ -1269,8 +1269,8 @@ uncompress2(dest: ArrayBuffer, source: ArrayBuffer, sourceLen?: number): Promise
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800005 | Data error.                                                  |
-| 17800007 | Buffer error.                                                |
+| 17800005 | The input data is incorrect. For example, the data does not conform to the zlib compression format, the compressed data is corrupted, or the data is not compressed. |
+| 17800007 | The input buffer is incorrect, and the output buffer is too small to accommodate the compressed or decompressed data. |
 
 **示例：**
 
@@ -1381,7 +1381,7 @@ inflateValidate(strm: ZStream, check: number): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -1440,7 +1440,7 @@ inflateSyncPoint(strm: ZStream): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -1499,9 +1499,9 @@ inflateSync(strm: ZStream): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
-| 17800005 | Data error.                                                  |
-| 17800007 | Buffer error.                                                |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
+| 17800005 | The input data is incorrect. For example, the data does not conform to the zlib compression format, the compressed data is corrupted, or the data is not compressed. |
+| 17800007 | The input buffer is incorrect, and the output buffer is too small to accommodate the compressed or decompressed data. |
 
 **示例：**
 
@@ -1591,7 +1591,7 @@ inflateResetKeep(strm: ZStream): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -1651,8 +1651,8 @@ inflateSetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;ReturnS
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
-| 17800005 | Data error.                                                  |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
+| 17800005 | The input data is incorrect. For example, the data does not conform to the zlib compression format, the compressed data is corrupted, or the data is not compressed. |
 
 **示例：**
 
@@ -1749,7 +1749,7 @@ inflateReset2(strm: ZStream, windowBits: number): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -1808,7 +1808,7 @@ inflateReset(strm: ZStream): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -1869,7 +1869,7 @@ inflatePrime(strm: ZStream, bits: number, value: number): Promise&lt;ReturnStatu
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -1987,7 +1987,7 @@ inflateInit2(strm: ZStream, windowBits: number): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -2097,7 +2097,7 @@ inflateGetHeader(strm: ZStream, header: GzHeader): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -2157,7 +2157,7 @@ inflateGetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;Diction
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -2216,7 +2216,7 @@ inflateEnd(strm: ZStream): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -2280,7 +2280,7 @@ inflateCopy(source: Zip): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -2399,7 +2399,7 @@ inflateBackInit(strm: ZStream, windowBits: number, window: ArrayBuffer): Promise
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -2434,7 +2434,7 @@ inflateBackInit()函数分配的所有内存都被释放，使用Promise异步�
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -2473,7 +2473,7 @@ inflateBack(strm: ZStream, backIn: InflateBackInputCallback, inDesc: object, bac
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified. <br />2. Incorrect parameter types. <br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -2688,8 +2688,8 @@ inflate(strm: ZStream, flush: CompressFlushMode): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
-| 17800005 | Data error.                                                  |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
+| 17800005 | The input data is incorrect. For example, the data does not conform to the zlib compression format, the compressed data is corrupted, or the data is not compressed. |
 
 **示例：**
 
@@ -2775,7 +2775,7 @@ deflateInit(strm: ZStream, level: CompressLevel): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -2839,7 +2839,7 @@ deflateInit2(strm: ZStream, level: CompressLevel, method: CompressMethod, window
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -2900,8 +2900,8 @@ deflate(strm: ZStream, flush: CompressFlushMode): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
-| 17800007 | Buffer error.                                                |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
+| 17800007 | The input buffer is incorrect, and the output buffer is too small to accommodate the compressed or decompressed data. |
 
 **示例：**
 
@@ -2965,7 +2965,7 @@ deflateEnd(strm: ZStream): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -3099,7 +3099,7 @@ deflateSetHeader(strm: ZStream, head: GzHeader): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -3164,7 +3164,7 @@ deflateCopy(source: Zip): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -3229,7 +3229,7 @@ deflateSetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;ReturnS
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -3294,7 +3294,7 @@ deflateGetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;Diction
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -3367,7 +3367,7 @@ deflateTune(strm: ZStream, goodLength: number, maxLazy: number, niceLength: numb
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -3431,7 +3431,7 @@ deflateReset(strm: ZStream): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -3495,7 +3495,7 @@ deflateResetKeep(strm: ZStream): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -3559,7 +3559,7 @@ deflatePending(strm: ZStream): Promise&lt;DeflatePendingOutputInfo&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -3625,7 +3625,7 @@ deflateParams(strm: ZStream, level: CompressLevel, strategy: CompressStrategy): 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -3691,7 +3691,7 @@ deflatePrime(strm: ZStream, bits: number, value: number): Promise&lt;ReturnStatu
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -4028,9 +4028,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzdopenDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzdopenDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4075,7 +4076,7 @@ gzbuffer(size: number):Promise&lt;number&gt;
 
 ```ts
 import { fileIo as fs } from '@kit.CoreFileKit';
-import { zlib } from '@kit.BasicServicesKit'
+import { zlib } from '@kit.BasicServicesKit';
 
 async function gzbufferDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzbuffer");
@@ -4099,9 +4100,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzbufferDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzbufferDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4168,9 +4170,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzopenDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzopenDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4232,9 +4235,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzeofDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzeofDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4286,9 +4290,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzdirectDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzdirectDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4302,7 +4307,7 @@ struct Index {
 
 gzclose(): Promise&lt;ReturnStatus&gt;
 
-清除文件的所有挂起输出，如有必要，关闭文件和释放(解)压缩状态。
+清除文件的所有挂起输出，如有必要，关闭文件和释放（解）压缩状态。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4320,7 +4325,7 @@ gzclose(): Promise&lt;ReturnStatus&gt;
 
 | 错误码ID | 错误信息                  |
 | -------- | ------------------------- |
-| 17800004 | ZStream error.            |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 | 17800006 | Memory allocation failed. |
 
 **示例：**
@@ -4348,9 +4353,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzcloseDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzcloseDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4414,9 +4420,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzclearerrDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzclearerrDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4448,7 +4455,7 @@ gzerror(): Promise&lt;GzErrorOutputInfo&gt;
 
 | 错误码ID | 错误信息       |
 | -------- | -------------- |
-| 17800004 | ZStream error. |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -4488,9 +4495,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzerrorDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzerrorDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4553,9 +4561,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzgetcDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzgetcDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4594,7 +4603,7 @@ gzflush(flush: CompressFlushMode): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -4622,9 +4631,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzflushDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzflushDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4698,9 +4708,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzfwriteDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzfwriteDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4778,9 +4789,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzfreadDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzfreadDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4812,7 +4824,7 @@ gzclosew(): Promise&lt;ReturnStatus&gt;
 
 | 错误码ID | 错误信息                  |
 | -------- | ------------------------- |
-| 17800004 | ZStream error.            |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 | 17800006 | Memory allocation failed. |
 
 **示例：**
@@ -4840,9 +4852,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzclosewDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzclosewDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4856,7 +4869,7 @@ struct Index {
 
 gzcloser(): Promise&lt;ReturnStatus&gt;
 
-与gzclose（）功能相同，仅适用于读取时。
+与gzclose()功能相同，仅适用于读取时。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4874,7 +4887,7 @@ gzcloser(): Promise&lt;ReturnStatus&gt;
 
 | 错误码ID | 错误信息       |
 | -------- | -------------- |
-| 17800004 | ZStream error. |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -4903,9 +4916,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzcloserDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzcloserDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4976,9 +4990,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzwriteDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzwriteDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5046,9 +5061,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzungetcDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzungetcDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5108,9 +5124,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gztellDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gztellDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5150,7 +5167,7 @@ gzsetparams(level: CompressLevel, strategy: CompressStrategy): Promise&lt;Return
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -5179,9 +5196,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzsetparamsDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzsetparamsDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5249,9 +5267,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzseekDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzseekDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5313,9 +5332,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzrewindDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzrewindDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5391,9 +5411,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzreadDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzreadDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5460,9 +5481,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzputsDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzputsDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5529,9 +5551,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzputcDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzputcDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5571,7 +5594,7 @@ gzprintf(format: string, ...args: Array&lt;string | number&gt;): Promise&lt;numb
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 | 17800009 | Internal structure error.                                    |
 
 **示例：**
@@ -5600,9 +5623,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzprintfDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzprintfDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5662,9 +5686,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzoffsetDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzoffsetDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5735,9 +5760,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzgetsDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzgetsDemo(pathDir);
+            }
           })
       }
       .width('100%')

@@ -184,6 +184,62 @@ try {
 }
 ```
 
+## media.createParallelSoundPool<sup>18+</sup>
+
+createParallelSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo): Promise\<SoundPool>
+
+创建音频池实例，通过Promise获取返回值。
+
+使用[createSoundPool](js-apis-media.md#mediacreatesoundpool10)创建的音频池实例，在重复播放相同音频时，会停止之前的播放并重新开始；而使用createParallelSoundPool创建的实例，在重复播放相同音频时，不会停止之前的音频，而是并行播放。
+
+**系统能力：** SystemCapability.Multimedia.Media.SoundPool
+
+**参数：**
+
+| 参数名   | 类型                                            | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
+| maxStreams | number | 是   | soundPool实例的最大播放的流数，设置范围为1-32的正整数。 |
+| audioRenderInfo | [audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8)  | 是   | 音频播放参数信息。 |
+
+**返回值：**
+
+| 类型                                      | 说明                                                         |
+| ----------------------------------------- | ------------------------------------------------------------ |
+| Promise<[SoundPool](js-apis-inner-multimedia-soundPool.md)> | Promise对象。异步返回SoundPool实例，失败时返回null。用于音频池实例的加载播放功能。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息                      |
+| -------- | ----------------------------- |
+| 5400101  | No memory. Return by promise. |
+| 202| System API error. Return by promise. |
+
+**示例：**
+
+```js
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags : 0
+}
+
+media.createParallelSoundPool(5, audioRendererInfo).then((soundpool_: media.SoundPool) => {
+  if (soundpool_ != null) {
+    soundPool = soundpool_;
+    console.info('Succceeded in creating SoundPool');
+  } else {
+    console.error('Failed to create SoundPool');
+  }
+}, (error: BusinessError) => {
+  console.error(`soundpool catchCallback, error message:${error.message}`);
+});
+```
+
 ## PixelMapParams<sup>11+</sup>
 
 获取视频缩略图时，输出缩略图的格式参数。
@@ -326,7 +382,7 @@ isWatermarkSupported(): Promise\<boolean>
 
 | 类型             | 说明                             |
 | ---------------- | -------------------------------- |
-| Promise\<boolean> | 获取是否支持水印的Promise返回值。 |
+| Promise\<boolean> | 获取是否支持水印的Promise返回值，支持水印：true，不支持水印：false。 |
 
 **示例：**
 
@@ -389,6 +445,60 @@ avRecorder.setWatermark(watermark, watermarkConfig).then(() => {
   console.error(`Failed to setWatermark and catch error is ${error.message}`);
 });
 ```
+
+### setMetadata<sup>18+</sup>
+setMetadata(metadata: Record\<string, string\>): void
+
+给AVRecorder的录制文件中设置自定义meta数据。
+
+只有当[prepare()](js-apis-media.md#prepare9-3)事件成功触发后，并在调用[stop()](js-apis-media.md#stop9-3)方法之前，才能调用setMetadata方法。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+**系统接口：** 该接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明                                                                |
+| -------- | -------------------- | ---- |-------------------------------------------------------------------|
+| metadata | [Record<string, string>]  | 是   | 以键值对形式设置meta数据的tag和value。<br>- 第一个string为meta tag。<br>- 第二个string为meta value。 |
+
+**返回值：**
+
+| 类型            | 说明        |
+| --------------- |-----------|
+| void | 无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息            |
+|-------|-----------------|
+| 202   | Not System App. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let meta : Record<string, string> = {
+   'com.openharmony.userdefine':'10',
+   'com.openharmony.userdefine2':'20'
+};
+
+avRecorder.setMetadata(meta);
+```
+
+## AVRecorderProfile<sup>9+</sup>
+
+音视频录制的配置文件。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+| 名称             | 类型                                         | 必填 | 说明                                                         |
+| ---------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| enableStableQualityMode<sup>18+</sup>            | boolean                        | 否   | 视频录制是否选择稳定质量模式，选择视频录制时选填，enableStableQualityMode默认为false。设置为true时，启用视频编码策略以实现质量稳定的编码。<br>**系统接口：** 该接口为系统接口。|
 
 ## VideoRecorder<sup>9+</sup>
 

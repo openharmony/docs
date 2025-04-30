@@ -7,6 +7,9 @@ This topic describes how to use the AVTranscoder to implement video transcoding,
 ## How to Develop
 
 Read [AVTranscoder](../../reference/apis-media-kit/js-apis-media.md#avtranscoder12) for the API reference.
+> **NOTE**
+>
+> To forward, upload, or save the transcoded file, the application must call the system API **await avTranscoder.release()** after receiving the complete event. This ensures the integrity of the video file.
 
 1. Create an **avTranscoder** instance.
 
@@ -25,18 +28,21 @@ Read [AVTranscoder](../../reference/apis-media-kit/js-apis-media.md#avtranscoder
 
 2. Set the events to listen for.
 
-   | Event Type| Description| 
+   | Event Type| Description|
    | -------- | -------- |
-   | complete | Mandatory; used to listen for the completion of transcoding.| 
+   | complete | Mandatory; used to listen for the completion of transcoding.|
    | error | Mandatory; used to listen for AVTranscoder errors.|
 
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
    
    // Callback function for the completion of transcoding.
-   avTranscoder.on('complete', () => {
+   avTranscoder.on('complete', async () => {
      console.log(`transcoder is completed`);
-     // Listen for transcoding completion events.
+     // Listen for the transcoding completion event and call release.
+     // Wait until avTranscoder.release() is complete before forwarding, uploading, or saving the transcoded file.
+     await avTranscoder.release();
+     avTranscoder = undefined;
    });
    
    // Callback function for errors.
@@ -80,7 +86,7 @@ Read [AVTranscoder](../../reference/apis-media-kit/js-apis-media.md#avtranscoder
    >
    > Only transcoding-related parameters are set in the input parameter **avConfig** of the **prepare()** API.
    >
-   > Only the supported [transcoding formats](media-kit-intro.md#avtranscoder) can be used due to the limited demuxing, muxing, encoding, and decoding capabilities.
+   > Only the supported [transcoding formats](media-kit-intro.md#avtranscoder) can be used due to the limited demultiplexing, multiplexing, encoding, and decoding capabilities.
 
    ```ts
    import { media } from '@kit.MediaKit';
@@ -140,7 +146,7 @@ Read [AVTranscoder](../../reference/apis-media-kit/js-apis-media.md#avtranscoder
 ## Sample Code
 
   Refer to the sample code below to implement transcoding, covering the process of starting, pausing, resuming, and exiting transcoding.
-  
+
 ```ts
 import { media } from '@kit.MediaKit';
 import { BusinessError } from '@kit.BasicServicesKit';

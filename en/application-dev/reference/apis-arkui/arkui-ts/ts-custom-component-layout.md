@@ -315,7 +315,7 @@ Provides the child component layout information.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### Name
+### Properties
 
 | Name        | Type      | Read-Only|Optional|  Description                                                     |
 |--------------|---------------------------------- | ------|-----------------------------------------------------|---------------------|

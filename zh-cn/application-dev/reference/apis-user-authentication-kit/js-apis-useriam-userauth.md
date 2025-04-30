@@ -55,8 +55,7 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 表示复用设备解锁结果。
 > **说明**：
 >
-> 如果锁屏解锁后，在有效时间内凭据发生了变化，锁屏认证结果依然可以复用，认证结果中返回当前实际的EnrolledState。若复用锁屏认证结果
-> 时，凭据已经被完全删除，则返回的EnrolledState中credentialCount和credentialDigest均为0。
+> 如果锁屏解锁后，在有效时间内凭据发生了变化，锁屏认证结果依然可以复用，认证结果中返回当前实际的EnrolledState。若复用锁屏认证结果时，凭据已经被完全删除，则返回的EnrolledState中credentialCount和credentialDigest均为0。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -373,31 +372,48 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { userAuth } from '@kit.UserAuthenticationKit';
 
-try {
-  const rand = cryptoFramework.createRandom();
-  const len: number = 16;
-  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
-  const authParam: userAuth.AuthParam = {
-    challenge: randData,
-    authType: [userAuth.UserAuthType.PIN],
-    authTrustLevel: userAuth.AuthTrustLevel.ATL3,
-  };
-  const widgetParam: userAuth.WidgetParam = {
-    title: '请输入密码',
-    uiContext: getContext(),
-  };
-  const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
-  console.info('get userAuth instance success');
-  // 需要调用UserAuthInstance的start()接口，启动认证后，才能通过onResult获取到认证结果。
-  userAuthInstance.on('result', {
-    onResult (result) {
-      console.info(`userAuthInstance callback result = ${JSON.stringify(result)}`);
+@Entry
+@Component
+struct Index {
+  modelApplicationAuth(): void {
+    try {
+      const rand = cryptoFramework.createRandom();
+      const len: number = 16;
+      const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+      const authParam: userAuth.AuthParam = {
+        challenge: randData,
+        authType: [userAuth.UserAuthType.PIN],
+        authTrustLevel: userAuth.AuthTrustLevel.ATL3,
+      };
+      const uiContext: UIContext = this.getUIContext();
+      const context: Context | undefined = uiContext.getHostContext();
+      const widgetParam: userAuth.WidgetParam = {
+        title: '请输入密码',
+        uiContext: context,
+      };
+      const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+      console.info('get userAuth instance success');
+      // 需要调用UserAuthInstance的start()接口，启动认证后，才能通过onResult获取到认证结果。
+      userAuthInstance.on('result', {
+        onResult (result) {
+          console.info(`userAuthInstance callback result = ${JSON.stringify(result)}`);
+        }
+      });
+      console.info('auth on success');
+    } catch (error) {
+      const err: BusinessError = error as BusinessError;
+      console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
     }
-  });
-  console.info('auth on success');
-} catch (error) {
-  const err: BusinessError = error as BusinessError;
-  console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+  }
+
+  build() {
+    Column() {
+      Button('start auth')
+        .onClick(() => {
+          this.modelApplicationAuth();
+        })
+    }
+  }
 }
 ```
 
@@ -473,7 +489,9 @@ start(): void
 > **说明：**
 > 每个UserAuthInstance只能进行一次认证，若需要再次进行认证则需重新获取UserAuthInstance。
 
-**需要权限**：ohos.permission.ACCESS_BIOMETRIC
+**需要权限**：ohos.permission.ACCESS_BIOMETRIC 或 ohos.permission.USER_AUTH_FROM_BACKGROUND（仅向系统应用开放）
+
+从API 20开始，仅系统应用可以通过申请ohos.permission.USER_AUTH_FROM_BACKGROUND，从后台发起认证。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

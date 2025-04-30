@@ -47,7 +47,7 @@ import { window } from '@kit.ArkUI';
 | TYPE_HANDWRITE<sup>12+</sup>        | 21      | 表示手写笔窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.Window.SessionManager |
 | TYPE_WALLET_SWIPE_CARD<sup>15+</sup>| 22      | 表示钱包刷卡窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.Window.SessionManager |
 | TYPE_SCREEN_CONTROL<sup>15+</sup>   | 23      | 表示锁定触控的顶层窗口，用于拦截屏幕触摸和点击事件。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.Window.SessionManager |
-| TYPE_FLOAT_NAVIGATION<sup>16+</sup> | 24      | 表示悬浮的三键导航窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.Window.SessionManager |
+| TYPE_FLOAT_NAVIGATION<sup>17+</sup> | 24      | 表示悬浮的三键导航窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.Window.SessionManager |
 
 ## WindowMode<sup>7+</sup>
 
@@ -167,23 +167,6 @@ import { window } from '@kit.ArkUI';
 | x    | number   | 否   | 是  | X轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
 | y    | number   | 否   | 是  | Y轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
 | z    | number   | 否   | 是  | Z轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
-
-## WindowInfo<sup>12+</sup>
-
-当前窗口的详细信息。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：**  SystemCapability.Window.SessionManager
-
-| 名称   | 类型   | 只读 | 可选 | 说明                                       |
-| ------ | ------ | ---- | ---- | ------------------------------------------ |
-| rect  | [Rect](js-apis-window.md#rect7)   | 是   | 否   | 窗口内可绘制区域尺寸，其中左边界上边界是相对窗口计算。 |
-| bundleName  | string   | 是   | 否   | 应用Bundle的名称。          |
-| abilityName | string   | 是   | 否   | Ability的名称。               |
-| windowId | number | 是   | 否   | 窗口ID。   |
-| windowStatusType | [WindowStatusType](js-apis-window.md#windowstatustype11) | 是   | 否   | 窗口模式枚举。   |
-| isFocused<sup>14+</sup> | boolean | 是   | 是   | 窗口是否获焦。true表示窗口获焦；false表示窗口未获焦。   |
 
 ## window.minimizeAll<sup>9+</sup>
 minimizeAll(id: number, callback: AsyncCallback&lt;void&gt;): void
@@ -975,57 +958,6 @@ try {
 }
 ```
 
-## window.getVisibleWindowInfo<sup>12+</sup>
-
-getVisibleWindowInfo(): Promise&lt;Array&lt;WindowInfo&gt;&gt;
-
-获取当前屏幕的可见窗口（未退至后台的窗口）信息。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-
-**返回值：**
-
-| 类型 | 说明 |
-| ------------------- | ----------------------- |
-| Promise&lt;[WindowInfo](#windowinfo12)&gt; | Promise对象，返回当前可见窗口的相关信息。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | ------------------------------ |
-| 202     | Permission verification failed, non-system application uses system API. |
-| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300003 | This window manager service works abnormally. |
-
-**示例：**
-
-```ts
-import { window } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let promise = window.getVisibleWindowInfo();
-promise.then((data) => {
-  data.forEach(windowInfo=>{
-    console.info(`left:${windowInfo.rect.left}`);
-    console.info(`top:${windowInfo.rect.top}`);
-    console.info(`width:${windowInfo.rect.width}`);
-    console.info(`height:${windowInfo.rect.height}`);
-    console.info(`windowId:${windowInfo.windowId}`);
-    console.info(`windowStatusType:${windowInfo.windowStatusType}`);
-    console.info(`abilityName:${windowInfo.abilityName}`);
-    console.info(`bundleName:${windowInfo.bundleName}`);
-    console.info(`isFocused:${windowInfo.isFocused}`);
-  })
-}).catch((err: BusinessError) => {
-  console.error('Failed to getWindowInfo. Cause: ' + JSON.stringify(err));
-});
-```
-
 ## Window
 
 当前窗口实例，窗口管理器管理的基本单元。
@@ -1768,7 +1700,9 @@ try {
 ### setSnapshotSkip<sup>9+</sup>
 setSnapshotSkip(isSkip: boolean): void
 
-截屏录屏是否忽略当前窗口。此接口一般用于禁止截屏/录屏的场景。
+截屏录屏或投屏是否忽略当前窗口。此接口一般用于禁止截屏/录屏/投屏的场景。
+
+若要实现窗口始终在前台忽略截屏/录屏或投屏，在窗口从后台回到前台时，需要通过[on('windowEvent')](js-apis-window.md#onwindowevent10)监听窗口生命周期变化，在后台状态时设置为false，而在前台状态时设置为true。
 
 **系统接口：** 此接口为系统接口。
 

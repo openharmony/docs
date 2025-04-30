@@ -266,7 +266,7 @@ setAudioVolumeScale(scale: number): void
 | 202      | Caller is not a system application.                                                                         |
 | 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 5400102  | Operation not allowed.                                                                                      |
-| 20700002 | Parameter check error, For example, value is out side [0, 1]                                                |
+| 20700002 | Parameter check error, For example, value is out side [0, 1].                                                |
 
 **示例：**
 
@@ -281,7 +281,7 @@ try {
 
 ### getAudioVolumeScale<sup>13+</sup>
 
-getAudioVolumeScale(): number;
+getAudioVolumeScale(): number
 
 获取当前音频音量大小，同步返回当前音量。
 
@@ -410,7 +410,7 @@ getHapticsFeature(): systemSoundManager.ToneHapticsFeature
 
 | 类型                                                                                              | 说明     |
 |-------------------------------------------------------------------------------------------------| -------- |
-| [systemSoundManager.ToneHapticsFeature](js-apis-systemSoundManager-sys.md#tonehapticsfeature13) | 振动风格 |
+| [systemSoundManager.ToneHapticsFeature](js-apis-systemSoundManager-sys.md#tonehapticsfeature13) | 振动风格。 |
 
 **错误码：**
 

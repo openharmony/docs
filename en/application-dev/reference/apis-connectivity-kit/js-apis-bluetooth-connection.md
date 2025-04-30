@@ -288,7 +288,7 @@ try {
 
 getRemoteDeviceClass(deviceId: string): DeviceClass
 
-Obtains the class of a remote Bluetooth device. Since API version 16, the **ohos.permission.ACCESS_BLUETOOTH** permission is no longer verified.
+Obtains the class of a remote Bluetooth device. Since API version 18, the **ohos.permission.ACCESS_BLUETOOTH** permission is no longer verified.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1707,7 +1707,7 @@ import { commonEventManager, AsyncCallback, BusinessError } from '@kit.BasicServ
 import { connection } from '@kit.ConnectivityKit';
 // Define a subscriber to save the created subscriber object for subsequent subscription and unsubscription.
 let subscriber: commonEventManager.CommonEventSubscriber;
-// Subscriber information
+// Subscriber information.
 let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
   events: ["usual.event.bluetooth.remotedevice.UUID_VALUE"]
 };
@@ -1746,7 +1746,7 @@ function createCB(err: BusinessError, commonEventSubscriber: commonEventManager.
   }
 }
 
-// Create a subscriber and subscribe to common event callbacks.
+// Create a subscriber and subscribe to the common event callbacks.
 try {
   commonEventManager.createSubscriber(subscribeInfo, createCB);
 } catch (error) {

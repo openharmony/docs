@@ -39,6 +39,8 @@
     - Buffer模式下，开发者通过OH_VideoEncoder_PushInputBuffer接口输入数据；Surface模式下，开发者应在编码器就绪前调用OH_VideoEncoder_GetSurface接口，获取OHNativeWindow用于传递视频数据。
     - Buffer模式下，开发者通过OH_AVBuffer中的attr传入结束flag，编码器读取到尾帧后，停止编码；Surface模式下，需要调用OH_VideoEncoder_NotifyEndOfStream接口通知编码器输入流结束。
 
+4. Surface模式的数据流转性能优于Buffer模式。
+
 两种模式的开发步骤详细说明请参考：[Surface模式](#surface模式)和[Buffer模式](#buffer模式)。
 
 ## 状态机调用关系
@@ -245,7 +247,6 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     示例如下所示：
 
-    <!--RP5-->
     ```c++
     // 设置OH_AVCodecOnError 回调函数，编码异常。
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
@@ -256,8 +257,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         (void)userData;
     }
     ```
-    <!--RP5End-->
-
+    
     <!--RP12-->
     ```c++
     // 设置OH_AVCodecOnStreamChanged 回调函数，编码数据流变化。
@@ -841,12 +841,12 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     以NV12图像为例，width、height、wStride、hStride图像排布参考下图：
 
-    - OH_MD_KEY_VIDEO_PIC_WIDTH表示width；
-    - OH_MD_KEY_VIDEO_PIC_HEIGHT表示height；
+    - OH_MD_KEY_WIDTH表示width；
+    - OH_MD_KEY_HEIGHT表示height；
     - OH_MD_KEY_VIDEO_STRIDE表示wStride；
     - OH_MD_KEY_VIDEO_SLICE_HEIGHT表示hStride。
 
-    ![copy by line](figures/copy-by-line.png)
+    ![copy by line](figures/copy-by-line-encoder.png)
 
     添加头文件。
 

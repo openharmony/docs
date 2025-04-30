@@ -2,7 +2,7 @@
 
 OHAudio是系统在API version 10中引入的一套C API，此API在设计上实现归一，同时支持普通音频通路和低时延通路。仅支持PCM格式，适用于依赖Native层实现音频输入功能的场景。
 
-OHAudio音频频录状态变化示意图：
+OHAudio音频录制状态变化示意图：
 ![OHAudioCapturer status change](figures/ohaudiocapturer-status-change.png)
 
 ## 使用入门

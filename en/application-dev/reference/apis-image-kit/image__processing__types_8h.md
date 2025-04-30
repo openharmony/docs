@@ -7,6 +7,8 @@ The **image_processing_types.h** file declares the image processing types.
 
 **Library**: libimage_processing.so
 
+**File to include**: &lt;multimedia/video_processing_engine/image_processing_types.h&gt;
+
 **System capability**: SystemCapability.Multimedia.VideoProcessingEngine
 
 **Since**: 13

@@ -112,7 +112,7 @@
 | [Rdb_DBType](#rdb_dbtype-1) { RDB_SQLITE = 1, RDB_CAYLEY = 2, DBTYPE_BUTT = 64 } | 描述数据库的内核类型。 |
 | [OH_OrderType](#oh_ordertype-1) { ASC = 0, DESC = 1 } | 排序方式。 |
 | [OH_Rdb_SecurityLevel](#oh_rdb_securitylevel-1) { S1 = 1, S2, S3, S4 } | 数据库的安全级别枚举。 |
-| [Rdb_SecurityArea](#rdb_securityarea-1) { RDB_SECURITY_AREA_EL1 = 1, RDB_SECURITY_AREA_EL2, RDB_SECURITY_AREA_EL3, RDB_SECURITY_AREA_EL4 } | 描述数据库的安全区域等级。 |
+| [Rdb_SecurityArea](#rdb_securityarea-1) { RDB_SECURITY_AREA_EL1 = 1, RDB_SECURITY_AREA_EL2, RDB_SECURITY_AREA_EL3, RDB_SECURITY_AREA_EL4, RDB_SECURITY_AREA_EL5 } | 描述数据库的安全区域等级。 |
 | [Rdb_DistributedType](#rdb_distributedtype-1) { RDB_DISTRIBUTED_CLOUD } | 描述表的分布式类型的枚举。 |
 | [Rdb_ChangeType](#rdb_changetype-1) { RDB_DATA_CHANGE, RDB_ASSET_CHANGE } | 描述数据变更类型。 |
 | [Rdb_SubscribeType](#rdb_subscribetype-1) { RDB_SUBSCRIBE_TYPE_CLOUD, RDB_SUBSCRIBE_TYPE_CLOUD_DETAILS, RDB_SUBSCRIBE_TYPE_LOCAL_DETAILS } | 描述订阅类型。 |
@@ -226,8 +226,8 @@
 | int [OH_Rdb_BeginTransWithTrxId](#oh_rdb_begintranswithtrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t \*trxId) | 在开始执行SQL语句之前，开始事务，并获得该事务的ID，仅支持向量数据库。 |
 | int [OH_Rdb_RollBackByTrxId](#oh_rdb_rollbackbytrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t trxId) | 使用指定的事务ID，回滚已经执行的SQL语句，仅支持向量数据库。 |
 | int [OH_Rdb_CommitByTrxId](#oh_rdb_commitbytrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t trxId) | 使用指定的事务ID，提交已经执行的SQL语句，仅支持向量数据库。 |
-| [OH_VBucket_PutAsset](#oh_vbucket_putasset) ([OH_VBucket](_o_h___v_bucket.md) \*bucket, const char \*field, OH_Asset \*value) | 将**OH_Asset**类型的对象放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。 |
-| [OH_VBucket_PutAssets](#oh_vbucket_putassets) ([OH_VBucket](_o_h___v_bucket.md) \*bucket, const char \*field, OH_Asset \*\*value, int count) | 将**OH_Asset**类型的对象数组放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。 |
+| [OH_VBucket_PutAsset](#oh_vbucket_putasset) ([OH_VBucket](_o_h___v_bucket.md) \*bucket, const char \*field, Data_Asset \*value) | 将**Data_Asset**类型的对象放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。 |
+| [OH_VBucket_PutAssets](#oh_vbucket_putassets) ([OH_VBucket](_o_h___v_bucket.md) \*bucket, const char \*field, Data_Asset \*\*value, int count) | 将**Data_Asset**类型的对象数组放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。 |
 | [OH_Rdb_CreateValueObject](#oh_rdb_createvalueobject) () | 创建[OH_VObject](_o_h___v_object.md)实例。 |
 | [OH_Rdb_CreateValuesBucket](#oh_rdb_createvaluesbucket) () | 创建[OH_VBucket](_o_h___v_bucket.md)实例。 |
 | [OH_Rdb_CreatePredicates](#oh_rdb_createpredicates) (const char \*table) | 创建[OH_Predicates](_o_h___predicates.md)实例。 |
@@ -252,7 +252,7 @@
 | [OH_Rdb_Subscribe](#oh_rdb_subscribe) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SubscribeType](#rdb_subscribetype) type, const [Rdb_DataObserver](_rdb___data_observer.md) \*observer) | 为数据库注册观察者。当分布式数据库中的数据发生更改时，将调用回调。 |
 | [OH_Rdb_Unsubscribe](#oh_rdb_unsubscribe) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SubscribeType](#rdb_subscribetype) type, const [Rdb_DataObserver](_rdb___data_observer.md) \*observer) | 从数据库中删除指定类型的指定观察者。 |
 | [OH_Rdb_GetTableDetails](#oh_rdb_gettabledetails) ([Rdb_ProgressDetails](_rdb___progress_details.md) \*progress, int32_t version) | 从端云同步任务的统计信息中获取数据库表的统计信息。 |
-| [OH_Rdb_CloudSync](#oh_rdb_cloudsync) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SyncMode](#rdb_syncmode) mode, const char \*tables, int count, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 进行端云同步。 |
+| [OH_Rdb_CloudSync](#oh_rdb_cloudsync) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SyncMode](#rdb_syncmode) mode, const char \*tables[], uint32_t count, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 进行端云同步。 |
 | [OH_Rdb_SubscribeAutoSyncProgress](#oh_rdb_subscribeautosyncprogress) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 订阅RDB存储的自动同步进度。当收到自动同步进度的通知时，将调用回调。 |
 | [OH_Rdb_UnsubscribeAutoSyncProgress](#oh_rdb_unsubscribeautosyncprogress) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 取消订阅RDB存储的自动同步进程。 |
 | int [OH_Rdb_LockRow](#oh_rdb_lockrow) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_Predicates](_o_h___predicates.md) \*predicates) | 根据指定的条件锁定数据库中的数据，锁定数据不执行端云同步。 |
@@ -515,7 +515,7 @@ typedef enum Rdb_Tokenizer Rdb_Tokenizer
 
 描述数据库的分词器类型。
 
-**起始版本：** 18
+**起始版本：** 17
 
 ### OH_Rdb_ConfigV2
 
@@ -1093,13 +1093,13 @@ enum Rdb_Tokenizer
 
 描述数据库的分词器类型。
 
-**起始版本：** 18
+**起始版本：** 17
 
 | 枚举值 | 描述 |
 | -------- | -------- |
 | RDB_NONE_TOKENIZER | 表示不使用分词器。 |
 | RDB_ICU_TOKENIZER | 表示使用原生ICU分词器。 |
-| RDB_CUSTOM_TOKENIZER | 表示使用CUSTOM分词器。 |
+| RDB_CUSTOM_TOKENIZER<sup>18+</sup> | 表示使用CUSTOM分词器。 |
 
 ### Rdb_DBType
 
@@ -1234,7 +1234,7 @@ enum Rdb_SecurityArea
 | RDB_SECURITY_AREA_EL2 | 安全区域等级为2。 |
 | RDB_SECURITY_AREA_EL3 | 安全区域等级为3。 |
 | RDB_SECURITY_AREA_EL4 | 安全区域等级为4。 |
-
+| RDB_SECURITY_AREA_EL5<sup>12+</sup> | 安全区域等级为5。 |
 
 ### Rdb_SubscribeType
 
@@ -1700,7 +1700,7 @@ int OH_Rdb_SetTokenizer (OH_Rdb_ConfigV2 *config, Rdb_Tokenizer tokenizer )
 
 给指定的数据库文件配置设置分词器类型。
 
-**起始版本：** 18
+**起始版本：** 17
 
 **参数：**
 
@@ -4529,7 +4529,7 @@ RDB_E_INVALID_ARGS 表示无效参数。
 ### OH_Rdb_CloudSync()
 
 ```
-int OH_Rdb_CloudSync (OH_Rdb_Store *store, Rdb_SyncMode mode, const char *tables, int count, const Rdb_ProgressObserver *observer )
+int OH_Rdb_CloudSync (OH_Rdb_Store *store, Rdb_SyncMode mode, const char *tables[], uint32_t count, const Rdb_ProgressObserver *observer )
 ```
 
 **描述**
@@ -5323,12 +5323,12 @@ int OH_Rdb_Update (OH_Rdb_Store *store, OH_VBucket *valuesBucket, OH_Predicates 
 ### OH_VBucket_PutAsset()
 
 ```
-int OH_VBucket_PutAsset (OH_VBucket *bucket, const char *field, OH_Asset *value )
+int OH_VBucket_PutAsset (OH_VBucket *bucket, const char *field, Data_Asset *value )
 ```
 
 **描述**
 
-将**OH_Asset** 类型的对象放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。
+将**Data_Asset**类型的对象放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。
 
 **起始版本：** 11
 
@@ -5352,12 +5352,12 @@ int OH_VBucket_PutAsset (OH_VBucket *bucket, const char *field, OH_Asset *value 
 ### OH_VBucket_PutAssets()
 
 ```
-int OH_VBucket_PutAssets (OH_VBucket *bucket, const char *field, OH_Asset **value, int count )
+int OH_VBucket_PutAssets (OH_VBucket *bucket, const char *field, Data_Asset **value, int count )
 ```
 
 **描述**
 
-将**OH_Asset** 类型的对象数组放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。
+将**Data_Asset**类型的对象数组放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。
 
 **起始版本：** 11
 
@@ -5368,7 +5368,7 @@ int OH_VBucket_PutAssets (OH_VBucket *bucket, const char *field, OH_Asset **valu
 | bucket | 表示指向[OH_VBucket](_o_h___v_bucket.md)实例的指针。 |
 | field | 数据库表中的列名。 |
 | value | 数据库表中指定列名对应的值。 |
-| count | 表示传入的**OH_Asset**对象数组元素的个数。 |
+| count | 表示传入的**Data_Asset**对象数组元素的个数。 |
 
 **返回：**
 

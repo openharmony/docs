@@ -101,7 +101,7 @@
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import { Want, common } from '@kit.AbilityKit';
     import { distributedDeviceManager } from '@kit.DistributedServiceKit';
-    import { promptAction } from '@kit.ArkUI';
+    import { PromptAction } from '@kit.ArkUI';
 
     const TAG: string = '[Page_CollaborateAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
@@ -129,8 +129,8 @@
     @Entry
     @Component
     struct Page_CollaborateAbility {
-      private context = getContext(this) as common.UIAbilityContext;
-
+      private context = this.getUIContext().getHostContext();
+      let promptAction: promptAction = uiContext.getPromptAction;
       build() {
         Column() {
           //...
@@ -200,7 +200,7 @@
     @Entry
     @Component
     struct Page_CollaborateAbility {
-      private context = getContext(this) as common.UIAbilityContext;
+      private context = this.getUIContext().getHostContext();
 
       build() {
         // ...
@@ -252,7 +252,7 @@
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import { Want, common } from '@kit.AbilityKit';
     import { distributedDeviceManager } from '@kit.DistributedServiceKit';
-    import { promptAction } from '@kit.ArkUI';
+    import { PromptAction } from '@kit.ArkUI';
 
     const DOMAIN_NUMBER: number = 0xFF00;
     const TAG: string = '[Page_CollaborateAbility]';
@@ -280,8 +280,8 @@
     @Entry
     @Component
     struct Page_CollaborateAbility {
-      private context = getContext(this) as common.UIAbilityContext;
-
+      private context = this.getUIContext().getHostContext();
+      let promptAction: promptAction = uiContext.getPromptAction;
       build() {
         Column() {
           //...
@@ -331,7 +331,7 @@
     @Entry
     @Component
     struct Page_CollaborateAbility {
-      private context = getContext(this) as common.UIAbilityContext;
+      private context = this.getUIContext().getHostContext();
 
       build() {
         Column() {
@@ -378,7 +378,7 @@
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import { Want, common } from '@kit.AbilityKit';
     import { distributedDeviceManager } from '@kit.DistributedServiceKit';
-    import { promptAction } from '@kit.ArkUI';
+    import { PromptAction } from '@kit.ArkUI';
 
     const TAG: string = '[Page_CollaborateAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
@@ -406,8 +406,8 @@
     @Entry
     @Component
     struct Page_CollaborateAbility {
-      private context = getContext(this) as common.UIAbilityContext;
-
+      private context = this.getUIContext().getHostContext();
+      let promptAction: promptAction = uiContext.getPromptAction;
       build() {
         Column() {
           //...
@@ -554,7 +554,7 @@
     @Entry
     @Component
     struct Page_CollaborateAbility {
-      private context = getContext(this) as common.UIAbilityContext;
+      private context = this.getUIContext().getHostContext();
 
       build() {
         Column() {
@@ -592,7 +592,7 @@
     import { BusinessError } from '@kit.BasicServicesKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import { common } from '@kit.AbilityKit';
-    import { promptAction } from '@kit.ArkUI';
+    import { PromptAction } from '@kit.ArkUI';
 
     let connectionId: number;
     const TAG: string = '[Page_CollaborateAbility]';
@@ -601,8 +601,8 @@
     @Entry
     @Component
     struct Page_CollaborateAbility {
-      private context = getContext(this) as common.UIAbilityContext;
-
+      private context = this.getUIContext().getHostContext();
+      let promptAction: promptAction = uiContext.getPromptAction;
       build() {
         Column() {
           //...
@@ -830,7 +830,7 @@
         import { Caller, common } from '@kit.AbilityKit';
         import { hilog } from '@kit.PerformanceAnalysisKit';
         import { distributedDeviceManager } from '@kit.DistributedServiceKit';
-        import { promptAction } from '@kit.ArkUI';
+        import { PromptAction } from '@kit.ArkUI';
 
 
         const TAG: string = '[Page_CollaborateAbility]';
@@ -860,8 +860,8 @@
         @Entry
         @Component
         struct Page_CollaborateAbility {
-          private context = getContext(this) as common.UIAbilityContext;
-
+          private context = this.getUIContext().getHostContext();
+          let promptAction: promptAction = uiContext.getPromptAction;
           build() {
             Column() {
               //...

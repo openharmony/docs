@@ -23,12 +23,12 @@ AutoAdComponent(adParam: advertising.AdRequestParams, adOptions: advertising.AdO
 
 **参数：**
 
-| 参数名                 | 类型                                                                                | 必填 | 说明        | 
-|---------------------|-----------------------------------------------------------------------------------|----|-----------|
-| adParam             | advertising.[AdRequestParams](js-apis-advertising.md#adrequestparams)             | 是  | 广告请求参数。   | 
-| adOptions           | advertising.[AdOptions](js-apis-advertising.md#adoptions)                         | 是  | 广告配置。     | 
-| displayOptions      | advertising.[AdDisplayOptions](js-apis-advertising.md#addisplayoptions)           | 是  | 广告展示参数。   | 
-| interactionListener | advertising.[AdInteractionListener](js-apis-advertising.md#adinteractionlistener) | 是  | 广告状态变化回调。 | 
+| 参数名              | 类型                                                                              | 必填 | 说明              |
+|---------------------|-----------------------------------------------------------------------------------|-----|-----------------|
+| adParam             | advertising.[AdRequestParams](js-apis-advertising.md#adrequestparams)             | 是   | 广告请求参数。     |
+| adOptions           | advertising.[AdOptions](js-apis-advertising.md#adoptions)                         | 是   | 广告配置。         |
+| displayOptions      | advertising.[AdDisplayOptions](js-apis-advertising.md#addisplayoptions)           | 是   | 广告展示参数。     |
+| interactionListener | advertising.[AdInteractionListener](js-apis-advertising.md#adinteractionlistener) | 是   | 广告状态变化回调。 |
 
 **示例：**
 

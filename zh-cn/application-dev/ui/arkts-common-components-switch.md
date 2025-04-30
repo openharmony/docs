@@ -108,11 +108,13 @@ Toggle用于切换蓝牙开关状态。
 ```ts
 // xxx.ets
 import { promptAction } from '@kit.ArkUI';
+
 @Entry
 @Component
 struct ToggleExample {
-  @State BOnSt:promptAction.ShowToastOptions = {'message': 'Bluetooth is on.'}
-  @State BOffSt:promptAction.ShowToastOptions = {'message': 'Bluetooth is off.'}
+  @State BOnSt: promptAction.ShowToastOptions = { 'message': 'Bluetooth is on.' };
+  @State BOffSt: promptAction.ShowToastOptions = { 'message': 'Bluetooth is off.' };
+
   build() {
     Column() {
       Row() {
@@ -120,20 +122,21 @@ struct ToggleExample {
           .height(50)
           .fontSize(16)
       }
+
       Row() {
         Text("Bluetooth")
           .height(50)
-          .padding({left: 10})
+          .padding({ left: 10 })
           .fontSize(16)
           .textAlign(TextAlign.Start)
           .backgroundColor(0xFFFFFF)
         Toggle({ type: ToggleType.Switch })
-          .margin({left: 200, right: 10})
+          .margin({ left: 200, right: 10 })
           .onChange((isOn: boolean) => {
-            if(isOn) {
-              promptAction.showToast(this.BOnSt)
+            if (isOn) {
+              this.getUIContext().getPromptAction().showToast(this.BOnSt);
             } else {
-              promptAction.showToast(this.BOffSt)
+              this.getUIContext().getPromptAction().showToast(this.BOffSt);
             }
           })
       }

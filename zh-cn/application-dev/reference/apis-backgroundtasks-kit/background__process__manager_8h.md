@@ -9,7 +9,7 @@
 
 **系统能力：** SystemCapability.Resourceschedule.BackgroundProcessManager
 
-**起始版本：** 15
+**起始版本：** 17
 
 **相关模块：**[BackgroundProcessManager](_background_process_manager.md)
 

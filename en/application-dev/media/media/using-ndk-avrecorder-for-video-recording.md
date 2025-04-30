@@ -35,7 +35,34 @@ Before your development, configure the following permissions for your applicatio
 > For details about how to create and save a file, see [Accessing Application Files](../../file-management/app-file-access.md). By default, files are saved in the sandbox path of the application. To save them to Gallery, use the [security components](../medialibrary/photoAccessHelper-savebutton.md).
 
 
+You can use C/C++ APIs related to video recording by including the header files [avrecorder.h](../../reference/apis-media-kit/avrecorder_8h.md), [avrecorder_base.h](../../reference/apis-media-kit/avrecorder__base_8h.md), and [native_averrors.h](../../reference/apis-avcodec-kit/native__averrors_8h.md).
+
 Read [AVRecorder](../../reference/apis-media-kit/_a_v_recorder.md) for the API reference.
+
+Link the dynamic library in the CMake script.
+```
+target_link_libraries(entry PUBLIC libavrecorder.so)
+```
+
+To use [OH_AVFormat](../../reference/apis-avcodec-kit/_core.md#oh_avformat) APIs, include the following header file:
+```
+#include <multimedia/player_framework/native_avformat.h>
+```
+
+In addition, link the following dynamic link library in the CMake script:
+```
+target_link_libraries(entry PUBLIC libnative_media_core.so)
+```
+
+To use system logging, include the following header file:
+```
+#include <hilog/log.h>
+```
+
+In addition, link the following dynamic link library in the CMake script:
+```
+target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+```
 
 1. Create an AVRecorder instance. The AVRecorder is in the **idle** state.
 
@@ -102,7 +129,7 @@ Read [AVRecorder](../../reference/apis-media-kit/_a_v_recorder.md) for the API r
            errorCode, errorMsg);
    }
 
-   // Set a callback to listen for the generation of media files. (This operation is required when AUTO_CREATE is selected.)
+   // Set a callback to listen for the generation of media files. (This operation is required when AUTO_CREATE is selected for fileGenerationMode.)
    void OnUri(OH_AVRecorder *recorder, OH_MediaAsset *asset, void *userData) {
        (void)recorder;
        (void)userData;
@@ -188,7 +215,7 @@ Read [AVRecorder](../../reference/apis-media-kit/_a_v_recorder.md) for the API r
         
         SetConfig(*config);
     
-        // 1. Set the URL. (This operation is required when APP_CREATE is selected.)
+        // 1. Set the URL. (This operation is required when APP_CREATE is selected for fileGenerationMode.)
         const std::string AVREORDER_ROOT = "/data/storage/el2/base/files/";
         int32_t outputFd = open((AVREORDER_ROOT + "avrecorder01.mp4").c_str(), O_RDWR | O_CREAT, 0777); // Set the file name.
         std::string fileUrl = "fd://" + std::to_string(outputFd);
@@ -202,7 +229,7 @@ Read [AVRecorder](../../reference/apis-media-kit/_a_v_recorder.md) for the API r
         // Callback triggered when an error occurs.
         OH_AVRecorder_SetErrorCallback(g_avRecorder, OnError, nullptr);
 
-        // Callback triggered when a media file is generated. (This operation is required when AUTO_CREATE is selected.)
+        // Callback triggered when a media file is generated. (This operation is required when AUTO_CREATE is selected for fileGenerationMode.)
         OH_AVErrCode ret = OH_AVRecorder_SetUriCallback(g_avRecorder, OnUri, nullptr);
         if (ret == AV_ERR_OK) {
             OH_LOG_INFO(LOG_APP, "==NDKDemo==  OH_AVRecorder_SetUriCallback succeed!");
@@ -260,16 +287,13 @@ Read [AVRecorder](../../reference/apis-media-kit/_a_v_recorder.md) for the API r
    OH_AVRecorder_Stop(g_avRecorder);
    ```
 10. Call **OH_AVRecorder_Reset()** to reset the resources. The AVRecorder enters the **idle** state. In this case, you can reconfigure the recording parameters.
-
-       ```
-    OH_AVRecorder_Reset(g_avRecorder);
-       ```
-
+   ```
+   OH_AVRecorder_Reset(g_avRecorder);
+   ```
 11. Call **OH_AVRecorder_Release()** to release the resources. The AVRecorder enters the **released** state. In addition, release the video data input source resources (camera resources in this example).
-
-       ```
-    OH_AVRecorder_Release(g_avRecorder);
-       ```
+   ```
+   OH_AVRecorder_Release(g_avRecorder);
+   ```
 
 
 ## Sample Code
@@ -337,7 +361,7 @@ Refer to the sample code below to complete the process of creating a recorder in
                   errorCode, errorMsg);
    }
 
-   // Set a callback to listen for the generation of media files. (This operation is required when AUTO_CREATE is selected.)
+   // Set a callback to listen for the generation of media files. (This operation is required when AUTO_CREATE is selected for fileGenerationMode.)
    void OnUri(OH_AVRecorder *recorder, OH_MediaAsset *asset, void *userData)
    {
       (void)recorder;
@@ -410,7 +434,7 @@ Refer to the sample code below to complete the process of creating a recorder in
 
       SetConfig(*config);
 
-      // 1.1 Set the URL. (This operation is required when APP_CREATE is selected.)
+      // 1.1 Set the URL. (This operation is required when APP_CREATE is selected for fileGenerationMode.)
       const std::string AVREORDER_ROOT = "/data/storage/el2/base/files/";
       int32_t outputFd = open((AVREORDER_ROOT + "avrecorder01.mp4").c_str(), O_RDWR | O_CREAT, 0777); // Set the file name.
       std::string fileUrl = "fd://" + std::to_string(outputFd);
@@ -423,7 +447,7 @@ Refer to the sample code below to complete the process of creating a recorder in
       // Callback triggered when an error occurs.
       OH_AVRecorder_SetErrorCallback(g_avRecorder, OnError, nullptr);
 
-      // Callback triggered when a media file is generated. (This operation is required when AUTO_CREATE is selected.)
+      // Callback triggered when a media file is generated. (This operation is required when AUTO_CREATE is selected for fileGenerationMode.)
       OH_AVErrCode ret = OH_AVRecorder_SetUriCallback(g_avRecorder, OnUri, nullptr);
       if (ret == AV_ERR_OK) {
          OH_LOG_INFO(LOG_APP, "==NDKDemo==  OH_AVRecorder_SetUriCallback succeed!");
@@ -448,40 +472,23 @@ Refer to the sample code below to complete the process of creating a recorder in
       OH_LOG_INFO(LOG_APP, "==NDKDemo== AVRecorder PrepareCamera");
       (void)info;
 
-      // 2.1 Initialize the camera.
+      OHNativeWindow *window = nullptr;
+      int resultCode = OH_AVRecorder_GetInputSurface(g_avRecorder, &window);
+      if (resultCode != AV_ERR_OK || window == nullptr) {
+          OH_LOG_INFO(LOG_APP, "==NDKDemo== AVRecorder OH_AVRecorder_GetInputSurface failed!");
+          napi_value errorResult;
+          napi_create_int32(env, -1, &errorResult); // -1 indicates an error.
+          return errorResult;
+      }
+      uint64_t surfaceId = 0;
+      OH_NativeWindow_GetSurfaceId(window, &surfaceId);
 
-      size_t argc = 6;
-      napi_value args[6] = {nullptr};
-      size_t typeLen = 0;
-      napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+      // Pass the surface ID to the data collection module. For details, see the camera module.
 
-      int32_t focusMode;
-      napi_get_value_int32(env, args[0], &focusMode);
-
-      uint32_t cameraDeviceIndex;
-      napi_get_value_uint32(env, args[1], &cameraDeviceIndex);
-
-      uint32_t sceneMode;
-      napi_get_value_uint32(env, args[2], &sceneMode);
-
-      char *previewId = nullptr;
-      napi_get_value_string_utf8(env, args[3], nullptr, 0, &typeLen);
-      previewId = new char[typeLen + 1];
-      napi_get_value_string_utf8(env, args[3], previewId, typeLen + 1, &typeLen);
-
-      char *photoId = nullptr;
-      napi_get_value_string_utf8(env, args[4], nullptr, 0, &typeLen);
-      photoId = new char[typeLen + 1];
-      napi_get_value_string_utf8(env, args[4], photoId, typeLen + 1, &typeLen);
-
-      uint32_t previewWidth;
-      napi_get_value_uint32(env, args[5], &previewWidth);
-
-      int ret = OH_AVRecorder_PrepareCamera(g_avRecorder, cameraDeviceIndex, sceneMode, focusMode, previewId, photoId);
-      OH_LOG_INFO(LOG_APP, "==NDKDemo== OH_AVRecorder_PrepareCamera result: %d", ret);
-      napi_value result;
-      napi_create_int32(env, ret, &result);
-      return result;
+      int result = 0;
+      napi_value res;
+      napi_create_int32(env, result, &res);
+      return res;
    }
 
    // 3. Start recording.

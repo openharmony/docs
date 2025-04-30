@@ -176,6 +176,57 @@ try {
 ```
 
 
+## socket.getDeviceId<sup>17+</sup>
+
+getDeviceId(clientSocket: number): string
+
+Obtains the address of the peer device over a client socket. This API is applicable both to the server and client. However, the API call fails if an invalid **clientSocket** is passed.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name     | Type                         | Mandatory  | Description                            |
+| -------- | ------------------------------- | ---- | ------------------------------ |
+| clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept** or **sppConnect**.|
+
+**Return value**
+
+| Type                                      | Description                        |
+| ---------------------------------------- | -------------------------- |
+| string | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+
+**Example**
+
+```js
+import { socket } from '@kit.ConnectivityKit';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+// The server obtains the address of the client.
+let clientSocket = -1; // clientSocket is obtained from the sppAccept callback. Before calling getDeviceId, update the clientSocket.
+try {
+    let deviceAddr: string = socket.getDeviceId(clientSocket);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+
+// The client obtains the address of the server.
+// clientSocket is obtained from the sppAccept callback. Before calling getDeviceId, update the clientSocket.
+try {
+    let deviceAddr: string = socket.getDeviceId(clientSocket);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
 ## socket.sppCloseServerSocket
 
 sppCloseServerSocket(socket: number): void

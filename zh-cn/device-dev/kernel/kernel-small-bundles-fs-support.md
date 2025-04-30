@@ -144,7 +144,7 @@ OpenHarmony LiteOS-A内核的NFS文件系统指的是NFS的客户端，NFS客户
 
 ### 开发指导
 
-1. 搭建NFS服务器
+1. 搭建NFS服务器。
 
    这里以Ubuntu操作系统为例，说明服务器端设置步骤。
 

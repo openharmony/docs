@@ -71,17 +71,17 @@ closeDialog(): void
 | 名称| 类型 | 必填 | 说明 |
 | - | - | - | - |
 | uiContext | [UIContext](../js-apis-arkui-UIContext.md#uicontext) | 是 | UI上下文实例。 |
-| bottomOffsetType | [BottomOffset](#bottomoffset) | 否 | 弹框距离底部偏移类型。 |
-| title | [ResourceStr](ts-types.md#resourcestr) | 否 | 弹框标题文本。 |
-| subtitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 弹框副标题文本。 |
-| titleColor | [ResourceStr](ts-types.md#resourcestr) \| [Color](ts-appendix-enums.md#color) | 否 | 弹框标题文本颜色。 |
-| subtitleColor | [ResourceStr](ts-types.md#resourcestr) \| [Color](ts-appendix-enums.md#color) | 否 | 弹框副标题文本颜色。 |
-| backgroundImage | [Resource](ts-types.md#resource) | 否 | 弹框背景图片。 |
-| foregroundImage | [Resource](ts-types.md#resource) | 否 | 弹框前景图片。 |
+| bottomOffsetType | [BottomOffset](#bottomoffset) | 否 | 弹框距离底部偏移类型。默认值为[BottomOffset](#bottomoffset).OFFSET_FOR_BAR。 |
+| title | [ResourceStr](ts-types.md#resourcestr) | 否 | 弹框标题文本。默认为空字符串。 |
+| subtitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 弹框副标题文本。默认为空字符串。 |
+| titleColor | [ResourceStr](ts-types.md#resourcestr) \| [Color](ts-appendix-enums.md#color) | 否 | 弹框标题文本颜色。默认为$r('sys.color.ohos_id_color_text_primary_contrary')。 |
+| subtitleColor | [ResourceStr](ts-types.md#resourcestr) \| [Color](ts-appendix-enums.md#color) | 否 | 弹框副标题文本颜色。默认为$r('sys.color.ohos_id_color_text_secondary_contrary')。 |
+| backgroundImage | [Resource](ts-types.md#resource) | 否 | 弹框背景图片。默认为纯色背景，颜色值为#EBEEF5。 |
+| foregroundImage | [Resource](ts-types.md#resource) | 否 | 弹框前景图片。默认为空，即不显示前景图片。 |
 | iconStyle | [IconStyle](#iconstyle) | 否 | 关闭按钮图标的样式（亮调或者暗调）。<br>默认值：[IconStyle](#iconstyle).Light |
 | titlePosition | [TitlePosition](#titleposition) | 否 | 标题在弹框中的位置，在副标题的上方或者在副标题的下方。<br>默认值：[TitlePosition](#titleposition).Top |
-| onDialogClick | Callback\<void\> | 否 | 点击弹框任意位置后触发的用户自定义动作。 |
-| onDialogClose | Callback\<void\> | 否 | 点击关闭按钮后触发的用户自定义动作。|
+| onDialogClick | Callback\<void\> | 否 | 点击弹框任意位置后触发的用户自定义动作。默认为“执行关闭弹框的函数”，即仅关闭弹框。 |
+| onDialogClose | Callback\<void\> | 否 | 点击关闭按钮后触发的用户自定义动作。默认为“执行关闭弹框的函数”，即仅关闭弹框。 |
 
 ## IconStyle
 
@@ -132,6 +132,7 @@ closeDialog(): void
 为可选属性设置相应值，用两种不同参数类型分别为主标题、副标题设置颜色值，关闭按钮设置为暗色调，
 主副标题相对位置设置为主标题在副标题上方，底部距离类型设置为不存在菜单栏情况下的距离。
 
+<!--code_no_check-->
 ```ts
 // ../entryability/EntryAbility
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
@@ -255,6 +256,7 @@ struct Index {
 
 为可选属性设置相应值，用两种不同参数类型分别为主标题，副标题设置颜色值，关闭按钮设置为亮色调，主副标题相对位置设置为主标题在副标题下方，底部距离类型设置为存在菜单栏情况下的距离。
 
+<!--code_no_check-->
 ```ts
 // ../entryability/EntryAbility
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';

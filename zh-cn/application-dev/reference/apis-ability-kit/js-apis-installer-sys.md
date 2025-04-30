@@ -1652,7 +1652,7 @@ try {
 }
 ```
 
-## BundleInstaller.installPlugin<sup>18+</sup>
+## BundleInstaller.installPlugin<sup>19+</sup>
 
 installPlugin(hostBundleName: string, pluginFilePaths: Array\<string\>, pluginParam?: PluginParam): Promise\<void\> 
 
@@ -1670,7 +1670,7 @@ installPlugin(hostBundleName: string, pluginFilePaths: Array\<string\>, pluginPa
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | hostBundleName   | string                        | 是   | 待安装插件的应用包名。                                           |
 | pluginFilePaths  | Array\<string\>                  | 是   | 存储插件程序包的路径。当传入多个文件路径或者一个目录时，需确保这些文件是同一插件程序的HSP，且这些HSP的签名需要保持一致。  |
-| pluginParam  | [PluginParam](#pluginparam18)      | 否   | 指定安装插件所需的参数，默认值：参照 [PluginParam](#pluginparam18) 的默认值。 |
+| pluginParam  | [PluginParam](#pluginparam19)      | 否   | 指定安装插件所需的参数，默认值：参照 [PluginParam](#pluginparam19) 的默认值。 |
 
 **返回值：**
 
@@ -1686,7 +1686,6 @@ installPlugin(hostBundleName: string, pluginFilePaths: Array\<string\>, pluginPa
 | -------- | ----------------------------------- |
 | 201 | Calling interface without permission 'ohos.permission.INSTALL_PLUGIN_BUNDLE'. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName cannot be found. |
 | 17700004 | The userId is invalid. |
 | 17700010 | Failed to install the plugin because the plugin fails to be parsed. |
@@ -1731,7 +1730,7 @@ try {
 }
 ```
 
-## BundleInstaller.uninstallPlugin<sup>18+</sup>
+## BundleInstaller.uninstallPlugin<sup>19+</sup>
 
 uninstallPlugin(hostBundleName: string, pluginBundleName: string, pluginParam?: PluginParam): Promise\<void\>
 
@@ -1749,7 +1748,7 @@ uninstallPlugin(hostBundleName: string, pluginBundleName: string, pluginParam?: 
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | hostBundleName   | string                        | 是   | 待卸载插件的应用包名。                       |
 | pluginBundleName  | string                  | 是   |   插件的包名。 |
-| pluginParam  | [PluginParam](#pluginparam18)      | 否   | 指定卸载插件所需的参数，默认值：参照 [PluginParam](#pluginparam18) 的默认值。 |
+| pluginParam  | [PluginParam](#pluginparam19)      | 否   | 指定卸载插件所需的参数，默认值：参照 [PluginParam](#pluginparam19) 的默认值。 |
 
 **返回值：**
 
@@ -1765,7 +1764,6 @@ uninstallPlugin(hostBundleName: string, pluginBundleName: string, pluginParam?: 
 | -------- | ----------------------------------- |
 | 201 | Calling interface without permission 'ohos.permission.UNINSTALL_PLUGIN_BUNDLE'. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName cannot be found. |
 | 17700004 | The userId is invalid. |
 | 17700092 | Failed to uninstall the plugin because the specified plugin is not found. |
@@ -1912,7 +1910,7 @@ PGO（Profile-guided Optimization）配置文件参数信息。
 | userId      | number | 否   | 指定删除分身应用所在的用户id。默认值：调用方所在用户。            |
 | parameters  | Array<[Parameters](#parameters15)> | 否   | 指定删除分身应用扩展参数，默认值为空。            |
 
-## PluginParam<sup>18+</sup>
+## PluginParam<sup>19+</sup>
 
 插件应用安装、卸载的参数信息。
 

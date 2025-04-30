@@ -41,16 +41,14 @@ pick(context: Context, mediaTypes: Array\<PickerMediaType\>, pickerProfile: Pick
 ```ts
 import { cameraPicker as picker } from '@kit.CameraKit';
 import { camera } from '@kit.CameraKit';
-import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-let mContext = getContext(this) as common.Context;
 
-async function demo() {
+async function demo(context: Context) {
   try {
     let pickerProfile: picker.PickerProfile = {
       cameraPosition: camera.CameraPosition.CAMERA_POSITION_BACK
     };
-    let pickerResult: picker.PickerResult = await picker.pick(mContext,
+    let pickerResult: picker.PickerResult = await picker.pick(context,
       [picker.PickerMediaType.PHOTO, picker.PickerMediaType.VIDEO], pickerProfile);
     console.log("the pick pickerResult is:" + JSON.stringify(pickerResult));
   } catch (error) {

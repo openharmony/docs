@@ -189,7 +189,7 @@ on(type: 'enableChange', callback: Callback&lt;boolean&gt;): void;
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。系统不再开放相关功能。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Hearing
 
@@ -227,7 +227,7 @@ on(type: 'styleChange', callback: Callback&lt;CaptionsStyle&gt;): void;
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。系统不再开放相关功能。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Hearing
 
@@ -266,7 +266,7 @@ off(type: 'enableChange', callback?: Callback&lt;boolean&gt;): void;
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。系统不再开放相关功能。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Hearing
 
@@ -305,7 +305,7 @@ off(type: 'styleChange', callback?: Callback&lt;CaptionsStyle&gt;): void;
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。系统不再开放相关功能。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Hearing
 
@@ -344,8 +344,8 @@ captionsManager.off('styleChange', (data: accessibility.CaptionsStyle) => {
 
 ### 属性
 
-| 名称               | 类型                                    | 必填  | 说明                    |
-| ---------------- | ------------------------------------- |-----|-----------------------|
+| 名称             | 类型                                   | 必填  | 说明                 |
+| ---------------- | ------------------------------------- |----- |-----------------------|
 | type             | [EventType](#eventtype)               | 是   | 无障碍事件类型；不可缺省。         |
 | windowUpdateType | [WindowUpdateType](#windowupdatetype) | 否   | 窗口变化类型。               |
 | bundleName       | string                                | 是   | 目标应用名；不可缺省。           |
@@ -356,12 +356,12 @@ captionsManager.off('styleChange', (data: accessibility.CaptionsStyle) => {
 | textMoveUnit     | [TextMoveUnit](#textmoveunit)         | 否   | 文本移动粒度。      |
 | contents         | Array&lt;string&gt;                   | 否   | 内容列表。                 |
 | lastContent      | string                                | 否   | 最新内容。                 |
-| beginIndex       | number                                | 否   | 画面显示条目的开始序号。 |
-| currentIndex     | number                                | 否   | 当前条目序号。      |
-| endIndex         | number                                | 否   | 画面显示条目的结束序号。 |
-| itemCount        | number                                | 否   | 条目总数。        |
-| elementId<sup>12+</sup>        | number                                | 否   | 组件elementId。        |
-| textAnnouncedForAccessibility<sup>12+</sup>        | string                                | 否   | 主动播报的内容。        |
+| beginIndex       | number                                | 否   | 画面显示条目的开始序号。默认值为0。 |
+| currentIndex     | number                                | 否   | 当前条目序号。默认值为0。      |
+| endIndex         | number                                | 否   | 画面显示条目的结束序号。默认值为0。 |
+| itemCount        | number                                | 否   | 条目总数。默认值为0。        |
+| elementId<sup>12+</sup>        | number                  | 否   | 组件elementId。默认值为0。        |
+| textAnnouncedForAccessibility<sup>12+</sup>        | string     | 否   | 主动播报的内容。        |
 | textResourceAnnouncedForAccessibility<sup>18+</sup>        | Resource      | 否   | 主动播报的内容支持传入Resource类型，Resource类型只支持传入string。  |
 | customId<sup>12+</sup>        | string                                | 否   | 主动聚焦的组件ID。        |
 
@@ -694,7 +694,7 @@ getCaptionsManager(): CaptionsManager
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。系统不再开放相关功能。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Hearing
 

@@ -907,33 +907,6 @@ type SetPreviewTextCallback = (text: string, range: Range) => void
 | text    | string            | 是   | 预览文本内容。                 |
 | range   | [Range](#range10) | 是   | 文本的选中范围。 |
 
-**示例：**
-
-```ts
-let setPreviewTextCallback1: inputMethod.SetPreviewTextCallback = (text: string, range: inputMethod.Range) => {
-  console.info(`SetPreviewTextCallback1: Received text - ${text}, Received range - start: ${range.start}, end: ${range.end}`);
-};
-
-let setPreviewTextCallback2: inputMethod.SetPreviewTextCallback = (text: string, range: inputMethod.Range) => {
-  console.info(`setPreviewTextCallback2: Received text - ${text}, Received range - start: ${range.start}, end: ${range.end}`);
-};
-
-try {
-  inputMethodController.on('setPreviewText', setPreviewTextCallback1);
-  console.log(`SetPreviewTextCallback1 subscribed to setPreviewText`);
-  inputMethodController.on('setPreviewText', setPreviewTextCallback2);
-  console.log(`SetPreviewTextCallback2 subscribed to setPreviewText`);
-  // 仅取消setPreviewText的callback1的回调。
-  inputMethodController.off('setPreviewText', setPreviewTextCallback1);
-  console.log(`SetPreviewTextCallback1 unsubscribed from setPreviewText`);
-  // 取消setPreviewText的所有回调。
-  inputMethodController.off('setPreviewText');
-  console.log(`All callbacks unsubscribed from setPreviewText`);
-} catch(err) {
-  console.error(`Failed to operate on setPreviewText: ${JSON.stringify(err)}`);
-}
-```
-
 ## InputMethodController
 
 下列API示例中都需使用[getController](#inputmethodgetcontroller9)获取到InputMethodController实例，再通过实例调用对应方法。
@@ -3028,7 +3001,7 @@ on(type: 'setPreviewText', callback: SetPreviewTextCallback): void
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 
 **示例：**
 
@@ -3101,7 +3074,7 @@ try {
 
 ### on('finishTextPreview')<sup>17+</sup>
 
-on(type: 'finishTextPreview', callback: Callback&gt;void&gt;): void
+on(type: 'finishTextPreview', callback: Callback&lt;void&gt;): void
 
 订阅结束文本预览事件。使用callback异步回调。
 
@@ -3124,7 +3097,7 @@ on(type: 'finishTextPreview', callback: Callback&gt;void&gt;): void
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 
 **示例：**
 
@@ -3154,7 +3127,7 @@ try {
 
 ### off('finishTextPreview')<sup>17+</sup>
 
-off(type: 'finishTextPreview', callback?: Callback&gt;void&gt;): void
+off(type: 'finishTextPreview', callback?: Callback&lt;void&gt;): void
 
 取消订阅结束文本预览事件。使用callback异步回调。
 
@@ -3691,11 +3664,14 @@ try {
 }
 ```
 
-### showOptionalInputMethods<sup>9+</sup>
+### showOptionalInputMethods<sup>(deprecated)</sup>
 
 showOptionalInputMethods(callback: AsyncCallback&lt;boolean&gt;): void
 
 显示输入法选择对话框。使用callback异步回调。
+> **说明：**
+>
+> 从API version 9开始支持，从API version 18开始废弃。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -3731,11 +3707,15 @@ try {
 }
 ```
 
-### showOptionalInputMethods<sup>9+</sup>
+### showOptionalInputMethods<sup>(deprecated)</sup>
 
 showOptionalInputMethods(): Promise&lt;boolean&gt;
 
 显示输入法选择对话框。使用promise异步回调。
+
+> **说明：**
+>
+> 从API version 9开始支持，从API version 18开始废弃。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -3835,7 +3815,7 @@ displayOptionalInputMethod(callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[showOptionalInputMethods()](#showoptionalinputmethods9)替代。
+> 从API version 8开始支持，从API version 9开始废弃。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -3867,7 +3847,7 @@ displayOptionalInputMethod(): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[showOptionalInputMethods()](#showoptionalinputmethods9-1)替代。
+> 从API version 8开始支持，从API version 9开始废弃。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 

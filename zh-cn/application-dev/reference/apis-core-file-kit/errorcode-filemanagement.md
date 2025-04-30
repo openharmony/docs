@@ -842,7 +842,7 @@ Incorrect volume state
 
 **错误信息**
 
-Failed to create the drectory or node
+Failed to create the directory or node
 
 **可能原因**
 
@@ -856,7 +856,7 @@ Failed to create the drectory or node
 
 **错误信息**
 
-Failed to delete the drectory or node
+Failed to delete the directory or node
 
 **可能原因**
 

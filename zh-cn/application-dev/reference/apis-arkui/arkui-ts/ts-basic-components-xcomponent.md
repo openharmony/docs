@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> 该组件从API Version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -32,7 +32,7 @@ XComponent(params: NativeXComponentParameters)
 
 XComponent(options: XComponentOptions)
 
-在ArkTS侧获取SurfaceId、注册XComponent持有的Surface的生命周期回调和触摸、鼠标、按键等组件事件回调。
+创建XComponent组件，支持在ArkTS侧获取SurfaceId、注册XComponent持有的Surface的生命周期回调和触摸、鼠标、按键等组件事件回调，支持AI分析。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -47,6 +47,8 @@ XComponent(options: XComponentOptions)
 ### XComponent<sup>10+</sup>
 
 XComponent(value: {id: string, type: XComponentType, libraryname?: string, controller?: XComponentController})
+
+创建XComponent组件，支持Native侧触发XComponent生命周期回调。
 
 该接口从API version 12开始不再演进，推荐使用[XComponent(options: XComponentOptions)](#xcomponent12)。
 
@@ -118,8 +120,8 @@ XComponent(value: {id: string, type: string, libraryname?: string, controller?: 
   >
   > 对于TEXTURE和SURFACE类型的XComponent组件，当不设置[renderFit](./ts-universal-attributes-renderfit.md)属性时，取默认值为RenderFit.RESIZE_FILL。
   > 
-  > 对于SURFACE类型的XComponent组件，当组件背景色为不透明的纯黑色时，其[renderFit](./ts-universal-attributes-renderfit.md)通用属性仅支持设置为RenderFit.RESIZE_FILL，不推荐设置为其他的RenderFit枚举值。
-  >
+  > 对于SURFACE类型的XComponent组件，背景色设置为不透明的纯黑色，在API version 18之前，其[renderFit](./ts-universal-attributes-renderfit.md)通用属性仅支持设置为RenderFit.RESIZE_FILL；在API version 18及之后，支持所有的RenderFit枚举值。
+  > 
   > 对于使用[ArkUI NDK接口](../../../ui/ndk-access-the-arkts-page.md)创建的XComponent组件，不支持使用属性获取函数[getAttribute](../_ark_u_i___native_node_a_p_i__1.md#getattribute)获取其renderFit属性值。
   
 ### enableAnalyzer<sup>12+</sup>
@@ -196,8 +198,6 @@ hdrBrightness(brightness: number)
 >
 > 当配置libraryname参数时，[点击事件](ts-universal-events-click.md)、[触摸事件](ts-universal-events-touch.md)、[挂载卸载事件](ts-universal-events-show-hide.md)、[按键事件](ts-universal-events-key.md)、[焦点事件](ts-universal-focus-event.md)、[鼠标事件](ts-universal-mouse-key.md)仅响应C-API侧事件接口。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 仅type为SURFACE或TEXTURE时以下事件有效：
 
 ### onLoad
@@ -215,6 +215,10 @@ onLoad(callback: OnNativeLoadCallback )
 | 参数名   | 类型   | 必填   | 说明                                       |
 | ----- | ------ | ---- | ---------------------------------------- |
 | callback | [OnNativeLoadCallback](#onnativeloadcallback18) | 是    | XComponent持有的Surface创建后回调事件。 |
+
+> **说明：**
+> 
+> 使用自定义组件节点创建XComponent组件时，因为onLoad回调触发时机早于[onSurfaceCreated](#onsurfacecreated12),所以在onLoad回调中调用[getXComponentSurfaceId](#getxcomponentsurfaceid9)获取surfaceId会失败，建议在[onSurfaceCreated](#onsurfacecreated12)回调中获取。
 
 ### onDestroy
 
@@ -256,12 +260,6 @@ XComponent组件的控制器，可以将此对象绑定至XComponent组件，然
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-### 创建对象
-
-```
-xcomponentController: XComponentController = new XComponentController()
-```
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ### constructor
@@ -269,6 +267,10 @@ xcomponentController: XComponentController = new XComponentController()
 constructor()
 
 XComponentController的构造函数。
+
+```ts
+xcomponentController: XComponentController = new XComponentController()
+```
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -297,7 +299,7 @@ setXComponentSurfaceSize(value: {surfaceWidth: number, surfaceHeight: number}): 
 
 设置XComponent持有Surface的宽度和高度，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
 
-该接口从API Version 12开始废弃，建议使用[setXComponentSurfaceRect](#setxcomponentsurfacerect12)替代。
+该接口从API version 12开始废弃，建议使用[setXComponentSurfaceRect](#setxcomponentsurfacerect12)替代。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -562,11 +564,11 @@ getXComponentSurfaceRotation(): Required\<SurfaceRotationOptions>
 
 使用enableAnalyzer属性开启图像AI分析功能。可通过XComponentController控制开始、停止图形AI分析。
 
-<!--Del-->
+<!--RP1-->
 > **说明：**
 >
 > 本示例画图逻辑具体实现（和nativeRender相关的函数实现）可以参考[ArkTSXComponent示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/ArkTSXComponent)
-<!--DelEnd-->
+<!--RP1End-->
 
 ```ts
 // xxx.ets
@@ -602,51 +604,25 @@ struct XComponentExample {
     types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT],
     aiController: this.aiController
   };
-  @State xcWidth: string = "320px";
-  @State xcHeight: string = "480px";
+  @State xcWidth: string = "720px";
+  @State xcHeight: string = "720px";
   @State currentStatus: string = "index";
 
   build() {
     Column({ space: 5 }) {
-      Button("change size")
-        .onClick(() => {
-          this.xcWidth = "640px";
-          this.xcHeight = "720px";
-        })
-      Button('start AI analyze')
-        .onClick(() => {
-          this.xComponentController.startImageAnalyzer(this.config)
-            .then(() => {
-              console.log("analysis complete");
-            })
-            .catch((error: BusinessError) => {
-              console.log("error code: " + error.code);
-            })
-        })
-      Button('stop AI analyze')
-        .onClick(() => {
-          this.xComponentController.stopImageAnalyzer();
-        })
-      Button('get analyzer types')
-        .onClick(() => {
-          this.aiController.getImageAnalyzerSupportTypes();
-        })
-      Button('Draw Star')
-        .fontSize('16fp')
-        .fontWeight(500)
-        .margin({ bottom: 24 })
-        .onClick(() => {
-          let surfaceId = this.xComponentController.getXComponentSurfaceId();
-          this.xComponentController.getXComponentSurfaceRect();
-          nativeRender.DrawPattern(BigInt(surfaceId));
-          let hasDraw: boolean = false;
-          if (nativeRender.GetXComponentStatus(BigInt(surfaceId))) {
-            hasDraw = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasDraw;
-          }
-          if (hasDraw) {
-            this.currentStatus = "draw star";
-          }
-        })
+      Row() {
+        Text('Native XComponent Sample')
+          .fontSize('24fp')
+          .fontWeight(500)
+          .margin({
+            left: 24,
+            top: 12
+          })
+      }
+      .margin({ top: 24 })
+      .width('100%')
+      .height(56)
+
       XComponent({
         type: XComponentType.SURFACE,
         controller: this.xComponentController,
@@ -655,15 +631,67 @@ struct XComponentExample {
         .width(this.xcWidth)
         .height(this.xcHeight)
         .enableAnalyzer(true)
+        .onClick(() => {
+          let surfaceId = this.xComponentController.getXComponentSurfaceId();
+          nativeRender.ChangeColor(BigInt(surfaceId));
+          let hasChangeColor: boolean = false;
+          if (nativeRender.GetXComponentStatus(BigInt(surfaceId))) {
+            hasChangeColor = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasChangeColor;
+          }
+          if (hasChangeColor) {
+            this.currentStatus = "change color";
+          }
+        })
       Text(this.currentStatus)
         .fontSize('24fp')
         .fontWeight(500)
+      Column() {
+        Button('start AI analyze')
+          .onClick(() => {
+            this.xComponentController.startImageAnalyzer(this.config)
+              .then(() => {
+                console.log("analysis complete");
+              })
+              .catch((error: BusinessError) => {
+                console.log("error code: " + error.code);
+              })
+          })
+          .margin(2)
+        Button('stop AI analyze')
+          .onClick(() => {
+            this.xComponentController.stopImageAnalyzer();
+          })
+          .margin(2)
+        Button('get analyzer types')
+          .onClick(() => {
+            this.aiController.getImageAnalyzerSupportTypes();
+          })
+          .margin(2)
+        Button('Draw Star')
+          .fontSize('16fp')
+          .fontWeight(500)
+          .margin({ bottom: 24 })
+          .onClick(() => {
+            let surfaceId = this.xComponentController.getXComponentSurfaceId();
+            this.xComponentController.getXComponentSurfaceRect();
+            nativeRender.DrawPattern(BigInt(surfaceId));
+            let hasDraw: boolean = false;
+            if (nativeRender.GetXComponentStatus(BigInt(surfaceId))) {
+              hasDraw = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasDraw;
+            }
+            if (hasDraw) {
+              this.currentStatus = "draw star";
+            }
+          })
+          .margin(2)
+      }.justifyContent(FlexAlign.Center)
     }
     .width("100%")
   }
 }
 ```
-<!--RP1--><!--RP1End-->
+![AI示例运行图](./figures/AIXComponent.gif)
+
 
 ### 示例2（在surface旋转过程中锁定）
 

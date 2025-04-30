@@ -28,6 +28,7 @@ JSVM 提供了生成并使用 code cache 加速编译过程的方法，其获取
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
+#include <string>
 
 JSVM_Value UseCodeCache(JSVM_Env env, JSVM_CallbackInfo info) {
     // 编译参数准备
@@ -100,6 +101,9 @@ static JSVM_CallbackStruct *method = param;
 static JSVM_PropertyDescriptor descriptor[] = {
     {"UseCodeCache", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
+
+// 样例测试js
+const char* srcCallNative = R"JS(globalThis.UseCodeCache)JS";
 ```
 
 预期输出结果
@@ -112,7 +116,7 @@ cache rejected: 0
 ## 注意事项
 
 上述代码中使用了 code cache 进行编译: `OH_JSVM_CompileScript(env, jsSrc, dataPtr, length, true, &cacheRejected, &script);`
-这个接口的传入参数中包含了 cacheRejected，其作用是接收实际的编译过程中，code cache 是否被拒绝的状态，这里包含了多种情况：
+这个接口的传入参数中包含 cacheRejected，用于接收实际编译过程中 code cache 是否被拒绝的状态，具体包括多种情况：
 
 - code cache 校验失败
 - code cache 校验成功

@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 属性
@@ -45,18 +45,15 @@
 @Entry
 @Component
 struct SharedTransitionExample {
-  @State active: boolean = false
 
   build() {
     Column() {
-      Navigator({ target: 'pages/PageB', type: NavigationType.Push }) {
-        Image($r('app.media.ic_health_heart')).width(50).height(50)
-          .sharedTransition('sharedImage', { duration: 800, curve: Curve.Linear, delay: 100 })
-      }.padding({ left: 20, top: 20 })
-      .onClick(() => {
-        this.active = true
-      })
-    }
+      Image($r('app.media.ic_health_heart')).width(50).height(50).margin({ left: 20, top: 20 })
+        .sharedTransition('sharedImage', { duration: 800, curve: Curve.Linear, delay: 100 }) 
+    }.width('100%').height('100%').alignItems(HorizontalAlign.Start)
+    .onClick(() => {
+      this.getUIContext().getRouter().pushUrl({ url: 'pages/PageB' })
+    })
   }
 }
 ```

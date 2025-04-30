@@ -1,6 +1,6 @@
 # 选择用户文件
 
-用户需要分享文件、保存图片、视频等用户文件时，开发者可以通过系统预置的[文件选择器（FilePicker）](../reference/apis-core-file-kit/js-apis-file-picker.md)，实现该能力。通过Picker访问相关文件，将拉起对应的应用，引导用户完成界面操作，接口本身无需申请权限。picker获取的uri只具有临时权限，获取持久化权限需要通过[FilePicker设置永久授权](file-persistPermission.md#通过picker获取临时授权并进行授权持久化)方式获取。
+用户需要分享文件、保存图片、视频等用户文件时，开发者可以通过系统预置的[文件选择器（FilePicker）](../reference/apis-core-file-kit/js-apis-file-picker.md)，实现该能力。通过Picker访问相关文件，将拉起对应的应用，引导用户完成界面操作，接口本身无需申请权限。Picker获取的URI只具有临时权限，获取持久化权限需要通过[FilePicker设置永久授权](file-persistPermission.md#通过picker获取临时授权并进行授权持久化)方式获取。
 
 根据用户文件的常见类型，选择器（FilePicker）分别提供以下选项：
 
@@ -43,19 +43,20 @@
    documentSelectOptions.multiUriArray = ["file://docs/storage/Users/currentUser/test", "file://docs/storage/Users/currentUser/2test"];
    //开启聚合视图模式，支持拉起文件管理应用的聚合视图。默认为DEFAULT，表示该参数不生效，非聚合视图。当该参数置为非DEFAULT时，其他参数不生效。仅支持手机设备。
    documentSelectOptions.mergeMode = picker.MergeTypeMode.DEFAULT;
-   //是否支持加密（仅支持文件，文件夹不生效），默认为false。该参数为true时，在picker界面可以选择对文件进行加密。
+   //是否支持加密（仅支持文件，文件夹不生效），默认为false。该参数为true时，在Picker界面可以选择对文件进行加密。
    documentSelectOptions.isEncryptionSupported = false;
    ```
 
 3. 创建[文件选择器DocumentViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#documentviewpicker)实例。调用[select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-3)接口拉起FilePicker应用界面进行文件选择。
-   
+
    ```ts
    let uris: Array<string> = [];
-   let context = getContext(this) as common.Context; // 请确保 getContext(this) 返回结果为 UIAbilityContext
+   // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
    // 创建文件选择器实例
    const documentViewPicker = new picker.DocumentViewPicker(context);
    documentViewPicker.select(documentSelectOptions).then((documentSelectResult: Array<string>) => {
-     //文件选择成功后，返回被选中文档的uri结果集。
+     //文件选择成功后，返回被选中文档的URI结果集。
      uris = documentSelectResult;
      console.info('documentViewPicker.select to file succeed and uris are:' + uris);
    }).catch((err: BusinessError) => {
@@ -63,14 +64,14 @@
    })
    ```
 
-  > **注意：**
-  >
-  > **1**、使用picker获取的[select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-3)返回的uri权限是临时只读权限,待退出应用后台后，获取的临时权限就会失效。<br>
-  > **2**、如果想要获取持久化权限(仅在2in1设备上生效)，请参考[文件持久化授权访问](file-persistPermission.md#通过picker获取临时授权并进行授权持久化)。<br>
-  > **3**、开发者可以根据结果集中uri做进一步的处理。建议定义一个全局变量保存uri。<br>
-  > **4**、如有获取元数据需求，可以通过[基础文件API](../reference/apis-core-file-kit/js-apis-file-fs.md)和[文件URI](../reference/apis-core-file-kit/js-apis-file-fileuri.md)根据uri获取部分文件属性信息，比如文件大小、访问时间、修改时间、文件名、文件路径等。
+   > **注意：**
+   >
+   > **1**、使用Picker获取的[select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-3)返回的URI权限是临时只读权限,待退出应用后台后，获取的临时权限就会失效。<br>
+   > **2**、如果想要获取持久化权限，请参考[文件持久化授权访问](file-persistPermission.md#通过picker获取临时授权并进行授权持久化)。<br>
+   > **3**、开发者可以根据结果集中URI做进一步的处理。建议定义一个全局变量保存URI。<br>
+   > **4**、如有获取元数据需求，可以通过[基础文件API](../reference/apis-core-file-kit/js-apis-file-fs.md)和[文件URI](../reference/apis-core-file-kit/js-apis-file-fileuri.md)根据URI获取部分文件属性信息，比如文件大小、访问时间、修改时间、文件名、文件路径等。
 
-4. 待界面从FilePicker返回后，使用[基础文件API的fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口通过uri打开这个文件得到文件描述符(fd)。
+4. 待界面从FilePicker返回后，使用[基础文件API的fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口通过URI打开这个文件得到文件描述符（fd）。
 
    ```ts
    let uri: string = '';
@@ -111,14 +112,14 @@
    ```
 
 3. 创建[音频选择器AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker)实例。调用[select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-5)接口拉起FilePicker应用界面进行文件选择。
-   
+
    ```ts
    let uris: string = '';
-   // 请确保 getContext(this) 返回结果为 UIAbilityContext
-   let context = getContext(this) as common.Context; 
+   // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
    const audioViewPicker = new picker.AudioViewPicker(context);
    audioViewPicker.select(audioSelectOptions).then((audioSelectResult: Array<string>) => {
-     //文件选择成功后，返回被选中音频的uri结果集。
+     //文件选择成功后，返回被选中音频的URI结果集。
      uris = audioSelectResult[0];
      console.info('audioViewPicker.select to file succeed and uri is:' + uris);
    }).catch((err: BusinessError) => {
@@ -126,13 +127,13 @@
    })
    ```
 
-  > **注意：**
-  >
-  > **1**、使用picker获取的[select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-3)返回的uri权限是临时只读权限,待退出应用后台后，获取的临时权限就会失效。<br>
-  > **2**、如果想要获取持久化权限(仅在2in1设备上生效)，请参考[文件持久化授权访问](file-persistPermission.md#通过picker获取临时授权并进行授权持久化)。<br>
-  > **3**、开发者可以根据结果集中的uri做读取文件数据操作。建议定义一个全局变量保存uri。例如通过[基础文件API](../reference/apis-core-file-kit/js-apis-file-fs.md)根据uri拿到音频资源的文件描述符(fd)，再配合媒体服务实现音频播放的开发，具体请参考[音频播放开发指导](../media/audio/audio-playback-overview.md)。
+   > **注意：**
+   >
+   > **1**、使用Picker获取的[select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-3)返回的URI权限是临时只读权限,待退出应用后台后，获取的临时权限就会失效。<br>
+   > **2**、如果想要获取持久化权限，请参考[文件持久化授权访问](file-persistPermission.md#通过picker获取临时授权并进行授权持久化)。<br>
+   > **3**、开发者可以根据结果集中的URI做读取文件数据操作。建议定义一个全局变量保存URI。例如通过[基础文件API](../reference/apis-core-file-kit/js-apis-file-fs.md)根据URI拿到音频资源的文件描述符（fd），再配合媒体服务实现音频播放的开发，具体请参考[音频播放开发指导](../media/audio/audio-playback-overview.md)。
 
-4. 待界面从FilePicker返回后，可以使用[基础文件API的fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口通过uri打开这个文件得到文件描述符(fd)。
+4. 待界面从FilePicker返回后，可以使用[基础文件API的fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口通过URI打开这个文件得到文件描述符（fd）。
 
    ```ts
    let uri: string = '';

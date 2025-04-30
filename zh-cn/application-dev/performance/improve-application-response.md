@@ -324,58 +324,58 @@ struct MyComponent7 {
 
 ```typescript
 class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = []
+  private listeners: DataChangeListener[] = [];
 
   public totalCount(): number {
-    return 0
+    return 0;
   }
 
   public getData(index: number): string {
-    return ''
+    return '';
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
     if (this.listeners.indexOf(listener) < 0) {
-      console.info('add listener')
-      this.listeners.push(listener)
+      console.info('add listener');
+      this.listeners.push(listener);
     }
   }
 
   unregisterDataChangeListener(listener: DataChangeListener): void {
     const pos = this.listeners.indexOf(listener);
     if (pos >= 0) {
-      console.info('remove listener')
-      this.listeners.splice(pos, 1)
+      console.info('remove listener');
+      this.listeners.splice(pos, 1);
     }
   }
 
   notifyDataReload(): void {
     this.listeners.forEach(listener => {
-      listener.onDataReloaded()
+      listener.onDataReloaded();
     })
   }
 
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataAdd(index)
+      listener.onDataAdd(index);
     })
   }
 
   notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataChange(index)
+      listener.onDataChange(index);
     })
   }
 
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataDelete(index)
+      listener.onDataDelete(index);
     })
   }
 
   notifyDataMove(from: number, to: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataMove(from, to)
+      listener.onDataMove(from, to);
     })
   }
 }
@@ -384,28 +384,28 @@ class MyDataSource extends BasicDataSource {
   private dataArray: string[] = Array.from(Array<number>(10000), (v, k) => k.toString());
 
   public totalCount(): number {
-    return this.dataArray.length
+    return this.dataArray.length;
   }
 
   public getData(index: number): string  {
-    return this.dataArray[index]
+    return this.dataArray[index];
   }
 
   public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data)
-    this.notifyDataAdd(index)
+    this.dataArray.splice(index, 0, data);
+    this.notifyDataAdd(index);
   }
 
   public pushData(data: string): void {
-    this.dataArray.push(data)
-    this.notifyDataAdd(this.dataArray.length - 1)
+    this.dataArray.push(data);
+    this.notifyDataAdd(this.dataArray.length - 1);
   }
 }
 
 @Entry
 @Component
 struct MyComponent {
-  private data: MyDataSource = new MyDataSource()
+  private data: MyDataSource = new MyDataSource();
 
   build() {
     List() {
@@ -547,13 +547,13 @@ struct Index {
       Button("普通页面")
         .type(ButtonType.Capsule)
         .onClick(() => {
-          router.pushUrl({ url: 'pages/CommonPage' })
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/CommonPage' });
         })
       // 进入预加载页面
       Button("预加载页面")
         .type(ButtonType.Capsule)
         .onClick(() => {
-          router.pushUrl({ url: 'pages/PreloadedPage' })
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/PreloadedPage' });
         })
     }.height('100%')
     .width('100%')
@@ -615,7 +615,7 @@ export function MyBuilder(numbers: string[]) {
 export const getNumbers = (): string[] => {
   const numbers: string[] = [];
   for (let i = 0; i < 100; i++) {
-    numbers.push('' + i)
+    numbers.push('' + i);
   }
   return numbers;
 }
@@ -713,9 +713,9 @@ export class MyNodeController extends NodeController {
       return;
     }
     // 创建节点，需要uiContext
-    this.rootNode = new BuilderNode(uiContext)
+    this.rootNode = new BuilderNode(uiContext);
     // 创建组件
-    this.rootNode.build(this.wrapBuilder, this.numbers)
+    this.rootNode.build(this.wrapBuilder, this.numbers);
   }
 }
 
@@ -869,7 +869,7 @@ struct ArticleSkeletonView { // 自定义骨架图
 ```ts
 // 相机页面每次隐藏时触发一次
 onPageHide() {
-  this.service.release()
+  this.service.release();
 }
 
 // 释放资源
@@ -882,22 +882,22 @@ public async release() {
       // 拍照模式会话类释放
       await this.captureSession?.release();
     } catch (e) {
-      logger.error("release session error:",JSON.stringify(e))
+      logger.error("release session error:",JSON.stringify(e));
     }
     this.isSessionStart = false;
     this.isSessionCapture = false;
     try {
       // 拍照输入对象类关闭
-      await this.cameraInput?.close()
+      await this.cameraInput?.close();
       // 预览输出对象类释放
-      await this.previewOutput?.release()
+      await this.previewOutput?.release();
       // 拍照输出对象类释放
-      await this.cameraOutput?.release()
+      await this.cameraOutput?.release();
     } catch (e) {
-     logger.error('release input output error:',JSON.stringify(e))
+     logger.error('release input output error:',JSON.stringify(e));
     }
     // 相机管理对象置空
-    this.cameraManager = null
+    this.cameraManager = null;
   }
 }
 ```
@@ -915,7 +915,7 @@ public async release() {
 ```ts
 // 相机页面每次隐藏时触发一次
 onPageHide() {
-  setTimeout(this.service.release, 200)
+  setTimeout(this.service.release, 200);
 }
 
 // 释放资源
@@ -929,22 +929,22 @@ public async release() {
       // 拍照模式会话类释放
       this.captureSession?.release();
     } catch (e) {
-      logger.error("release session error:",JSON.stringify(e))
+      logger.error("release session error:",JSON.stringify(e));
     }
     this.isSessionStart = false;
     this.isSessionCapture = false;
     try {
       // 拍照输入对象类关闭
-      await this.cameraInput?.close()
+      await this.cameraInput?.close();
       // 预览输出对象类释放
-      this.previewOutput?.release()
+      this.previewOutput?.release();
       // 拍照输出对象类释放
-      this.cameraOutput?.release()
+      this.cameraOutput?.release();
     } catch (e) {
-     logger.error('release input output error:',JSON.stringify(e))
+     logger.error('release input output error:',JSON.stringify(e));
     }
     // 相机管理对象置空
-    this.cameraManager = null
+    this.cameraManager = null;
   }
 }
 ```
@@ -975,16 +975,16 @@ public async release() {
 指定触发拖动手势事件的最小拖动距离为100vp。
 
 ```ts
-import { hiTraceMeter } from '@kit.PerformanceAnalysisKit'
+import { hiTraceMeter } from '@kit.PerformanceAnalysisKit';
 
 @Entry
 @Component
 struct PanGestureExample {
-  @State offsetX: number = 0
-  @State offsetY: number = 0
-  @State positionX: number = 0
-  @State positionY: number = 0
-  private panOption: PanGestureOptions = new PanGestureOptions({ direction: PanDirection.Left | PanDirection.Right })
+  @State offsetX: number = 0;
+  @State offsetY: number = 0;
+  @State positionX: number = 0;
+  @State positionY: number = 0;
+  private panOption: PanGestureOptions = new PanGestureOptions({ direction: PanDirection.Left | PanDirection.Right });
 
   build() {
     Column() {
@@ -1001,26 +1001,26 @@ struct PanGestureExample {
       .gesture(
         PanGesture(this.panOption)
           .onActionStart((event: GestureEvent) => {
-            console.info('Pan start')
-            hiTraceMeter.startTrace("PanGesture", 1)
+            console.info('Pan start');
+            hiTraceMeter.startTrace("PanGesture", 1);
           })
           .onActionUpdate((event: GestureEvent) => {
             if (event) {
-              this.offsetX = this.positionX + event.offsetX
-              this.offsetY = this.positionY + event.offsetY
+              this.offsetX = this.positionX + event.offsetX;
+              this.offsetY = this.positionY + event.offsetY;
             }
           })
           .onActionEnd(() => {
-            this.positionX = this.offsetX
-            this.positionY = this.offsetY
-            console.info('Pan end')
-            hiTraceMeter.finishTrace("PanGesture", 1)
+            this.positionX = this.offsetX;
+            this.positionY = this.offsetY;
+            console.info('Pan end');
+            hiTraceMeter.finishTrace("PanGesture", 1);
           })
       )
 
       Button('修改PanGesture触发条件')
         .onClick(() => {
-          this.panOption.setDistance(100)
+          this.panOption.setDistance(100);
         })
     }
   }
@@ -1044,16 +1044,16 @@ struct PanGestureExample {
 指定触发拖动手势事件的最小拖动距离为4vp。
 
 ```ts
-import { hiTraceMeter } from '@kit.PerformanceAnalysisKit'
+import { hiTraceMeter } from '@kit.PerformanceAnalysisKit';
 
 @Entry
 @Component
 struct PanGestureExample {
-  @State offsetX: number = 0
-  @State offsetY: number = 0
-  @State positionX: number = 0
-  @State positionY: number = 0
-  private panOption: PanGestureOptions = new PanGestureOptions({ direction: PanDirection.Left | PanDirection.Right })
+  @State offsetX: number = 0;
+  @State offsetY: number = 0;
+  @State positionX: number = 0;
+  @State positionY: number = 0;
+  private panOption: PanGestureOptions = new PanGestureOptions({ direction: PanDirection.Left | PanDirection.Right });
 
   build() {
     Column() {
@@ -1070,26 +1070,26 @@ struct PanGestureExample {
       .gesture(
         PanGesture(this.panOption)
           .onActionStart((event: GestureEvent) => {
-            console.info('Pan start')
-            hiTraceMeter.startTrace("PanGesture", 1)
+            console.info('Pan start');
+            hiTraceMeter.startTrace("PanGesture", 1);
           })
           .onActionUpdate((event: GestureEvent) => {
             if (event) {
-              this.offsetX = this.positionX + event.offsetX
-              this.offsetY = this.positionY + event.offsetY
+              this.offsetX = this.positionX + event.offsetX;
+              this.offsetY = this.positionY + event.offsetY;
             }
           })
           .onActionEnd(() => {
-            this.positionX = this.offsetX
-            this.positionY = this.offsetY
-            console.info('Pan end')
-            hiTraceMeter.finishTrace("PanGesture", 1)
+            this.positionX = this.offsetX;
+            this.positionY = this.offsetY;
+            console.info('Pan end');
+            hiTraceMeter.finishTrace("PanGesture", 1);
           })
       )
 
       Button('修改PanGesture触发条件')
         .onClick(() => {
-          this.panOption.setDistance(4)
+          this.panOption.setDistance(4);
         })
     }
   }

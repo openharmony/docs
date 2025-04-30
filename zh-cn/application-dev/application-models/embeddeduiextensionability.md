@@ -78,15 +78,14 @@ EmbeddedUIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-k
 
     ```ts
     import { UIExtensionContentSession } from '@kit.AbilityKit';
-    
-    let storage = LocalStorage.getShared()
-    
-    @Entry(storage)
+
+    @Entry()
     @Component
     struct Extension {
       @State message: string = 'EmbeddedUIExtensionAbility Index';
-      private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-    
+      localStorage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
+      private session: UIExtensionContentSession | undefined = this.localStorage?.get<UIExtensionContentSession>('session');
+
       build() {
         Column() {
           Text(this.message)
@@ -157,7 +156,7 @@ struct Index {
           .width('100%')
           .height('90%')
           .onTerminated((info: TerminationInfo) => {
-            this.message = 'Terminarion: code = ' + info.code + ', want = ' + JSON.stringify(info.want);
+            this.message = 'Termination: code = ' + info.code + ', want = ' + JSON.stringify(info.want);
           })
           .onError((error: BusinessError) => {
             this.message = 'Error: code = ' + error.code;

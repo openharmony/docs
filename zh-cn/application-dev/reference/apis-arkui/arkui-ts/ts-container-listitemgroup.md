@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> - 该组件从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 > - 该组件的父组件只能是[List](ts-container-list.md)。
 > - ListItemGroup组件不支持设置[通用属性aspectRatio](ts-universal-attributes-layout-constraints.md)。
 > - 当ListItemGroup的父组件List的listDirection属性为Axis.Vertical时，设置[通用属性height](ts-universal-attributes-size.md)属性不生效。ListItemGroup的高度为header高度、footer高度和所有ListItem布局后总高度之和。
@@ -21,6 +21,8 @@
 
 ListItemGroup(options?: ListItemGroupOptions)
 
+创建ListItemGroup组件。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -33,16 +35,18 @@ ListItemGroup(options?: ListItemGroupOptions)
 
 ## ListItemGroupOptions对象说明
 
+ListItemGroup组件参数。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称              | 类型                                            | 必填 | 说明                                                     |
 | ------------------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | header              | [CustomBuilder](ts-types.md#custombuilder8) &nbsp;   | 否   | 设置ListItemGroup头部组件。<br/>**说明：**<br/>可以放单个子组件或不放子组件。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。               |
-| headerComponent<sup>13+</sup>              | [ComponentContent](../js-apis-arkui-ComponentContent.md)       | 否   | 使用ComponentContent类型参数设置ListItemGroup头部组件。<br/>**说明：**<br/>可以放单个子组件或不放子组件。 该参数的优先级高于参数header。即同时设置header和headerComponent时，以headerComponent设置的值为准。<br/>同一个headerComponent不推荐同时给不同的ListItemGroup使用,否则会导致显示问题。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。              |
+| headerComponent<sup>13+</sup>              | [ComponentContent](../js-apis-arkui-ComponentContent.md)       | 否   | 使用ComponentContent类型参数设置ListItemGroup头部组件。<br/>**说明：**<br/>可以放单个子组件或不放子组件。 该参数的优先级高于参数header。即同时设置header和headerComponent时，以headerComponent设置的值为准。<br/>同一个headerComponent不推荐同时给不同的ListItemGroup使用，否则会导致显示问题。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。              |
 | footer              | [CustomBuilder](ts-types.md#custombuilder8) &nbsp;     | 否   | 设置ListItemGroup尾部组件。<br/>**说明：**<br/>可以放单个子组件或不放子组件。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。               |
-| footerComponent<sup>13+</sup>              | [ComponentContent](../js-apis-arkui-ComponentContent.md)       | 否   | 使用ComponentContent类型参数设置ListItemGroup尾部组件。<br/>**说明：**<br/>可以放单个子组件或不放子组件。该参数的优先级高于参数footer。 即同时设置footer和footerComponent时，以footerComponent设置的值为准。<br/>同一个footerComponent不推荐同时给不同的ListItemGroup使用,否则会导致显示问题。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。                           |
+| footerComponent<sup>13+</sup>              | [ComponentContent](../js-apis-arkui-ComponentContent.md)       | 否   | 使用ComponentContent类型参数设置ListItemGroup尾部组件。<br/>**说明：**<br/>可以放单个子组件或不放子组件。该参数的优先级高于参数footer。 即同时设置footer和footerComponent时，以footerComponent设置的值为准。<br/>同一个footerComponent不推荐同时给不同的ListItemGroup使用，否则会导致显示问题。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。                           |
 | space               | number&nbsp;\|&nbsp;string                          | 否   | 列表项间距。只作用于ListItem与ListItem之间，不作用于header与ListItem、footer与ListItem之间。<br/>默认值：0<br/>单位：vp <br/>**说明：**<br/>设置为负数或者大于等于List内容区长度时，按默认值显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| style<sup>10+</sup> | [ListItemGroupStyle](#listitemgroupstyle10枚举说明) | 否   | 设置List组件卡片样式。<br/>默认值: ListItemGroupStyle.NONE<br/>设置为ListItemGroupStyle.NONE时无样式。<br/>设置为ListItemGroupStyle.CARD时，建议配合[ListItem](ts-container-listitem.md)的ListItemStyle.CARD同时使用，显示默认卡片样式。 <br/>卡片样式下，ListItemGroup默认规格：左右外边距12vp，上下左右内边距4vp。<br/>卡片样式下, 为卡片内的列表选项提供了默认的focus、hover、press、selected和disable样式。<br/>**说明：**<br/>当前卡片模式下，使用默认Axis.Vertical排列方向，如果listDirection属性设置为Axis.Horizontal，会导致显示混乱;List属性alignListItem默认为ListItemAlign.Center，居中对齐显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| style<sup>10+</sup> | [ListItemGroupStyle](#listitemgroupstyle10枚举说明) | 否   | 设置List组件卡片样式。<br/>默认值：ListItemGroupStyle.NONE<br/>设置为ListItemGroupStyle.NONE时无样式。<br/>设置为ListItemGroupStyle.CARD时，建议配合[ListItem](ts-container-listitem.md)的ListItemStyle.CARD同时使用，显示默认卡片样式。 <br/>卡片样式下，ListItemGroup默认规格：左右外边距12vp，上下左右内边距4vp。<br/>卡片样式下，为卡片内的列表选项提供了默认的focus、hover、press、selected和disable样式。<br/>**说明：**<br/>当前卡片模式下，使用默认Axis.Vertical排列方向，如果listDirection属性设置为Axis.Horizontal，会导致显示混乱;List属性alignListItem默认为ListItemAlign.Center，居中对齐显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## 属性
 
@@ -72,6 +76,10 @@ childrenMainSize(value: ChildrenMainSize)
 
 设置ListItemGroup组件的子组件在主轴方向的大小信息。
 
+**说明：**
+>
+> - 必须同时给所在的List组件设置childrenMainSize属性才可以正常生效。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -80,9 +88,11 @@ childrenMainSize(value: ChildrenMainSize)
 
 | 参数名     | 类型   | 必填 | 说明                            |
 | ---------- | ------ | ---- | ------------------------------- |
-| value | [ChildrenMainSize](ts-container-scrollable-common.md#childrenmainsize12对象说明) | 是   | 1.通过ChildrenMainSize对象向ListItemGroup组件准确提供所有ListItem在主轴方向的大小信息。<br/>2.提供的主轴方向大小必须与子组件实际在主轴方向的大小一致。<br/>3. 必须同时设置List的childrenMainSize属性使用。<br/>4.子组件主轴方向大小变化或者增删子组件时都必须通过ChildrenMainSize对象方法通知ListItemGroup组件。|
+| value | [ChildrenMainSize](ts-container-scrollable-common.md#childrenmainsize12对象说明) | 是   | 该对象用来维护子组件在主轴方向的大小信息。|
 
 ## ListItemGroupStyle<sup>10+</sup>枚举说明
+
+List组件卡片样式枚举。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -101,29 +111,110 @@ childrenMainSize(value: ChildrenMainSize)
 
 该示例通过stick实现了Header吸顶和Footer吸底的效果。
 
+<!--code_no_check-->
+```ts
+// ListDataSource.ets
+export class TimeTableDataSource implements IDataSource {
+  private list: TimeTable[] = [];
+  private listeners: DataChangeListener[] = [];
+
+  constructor(list: TimeTable[]) {
+    this.list = list;
+  }
+
+  totalCount(): number {
+    return this.list.length;
+  }
+
+  getData(index: number): TimeTable {
+    return this.list[index];
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener);
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1);
+    }
+  }
+
+  // 通知控制器数据变化
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChange(index);
+    })
+  }
+
+  // 修改第一个元素
+  public change1stItem(temp: TimeTable): void {
+    this.list[0] = temp;
+    this.notifyDataChange(0);
+  }
+}
+
+export class ProjectsDataSource implements IDataSource {
+  private list: string[] = [];
+
+  constructor(list: string[]) {
+    this.list = list;
+  }
+
+  totalCount(): number {
+    return this.list.length;
+  }
+
+  getData(index: number): string {
+    return this.list[index];
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+  }
+}
+
+export interface TimeTable {
+  title: string;
+  projects: string[];
+}
+```
+
+<!--code_no_check-->
 ```ts
 // xxx.ets
+import { TimeTable, ProjectsDataSource, TimeTableDataSource } from './ListDataSource';
 @Entry
 @Component
 struct ListItemGroupExample {
-  private timeTable: TimeTable[] = [
-    {
-      title: '星期一',
-      projects: ['语文', '数学', '英语']
-    },
-    {
-      title: '星期二',
-      projects: ['物理', '化学', '生物']
-    },
-    {
-      title: '星期三',
-      projects: ['历史', '地理', '政治']
-    },
-    {
-      title: '星期四',
-      projects: ['美术', '音乐', '体育']
-    }
-  ]
+  itemGroupArray: TimeTableDataSource = new TimeTableDataSource([]);
+
+  aboutToAppear(): void {
+    let timeTable: TimeTable[] = [
+      {
+        title: '星期一',
+        projects: ['语文', '数学', '英语']
+      },
+      {
+        title: '星期二',
+        projects: ['物理', '化学', '生物']
+      },
+      {
+        title: '星期三',
+        projects: ['历史', '地理', '政治']
+      },
+      {
+        title: '星期四',
+        projects: ['美术', '音乐', '体育']
+      }
+    ]
+    this.itemGroupArray = new TimeTableDataSource(timeTable);
+  }
 
   @Builder
   itemHead(text: string) {
@@ -146,9 +237,9 @@ struct ListItemGroupExample {
   build() {
     Column() {
       List({ space: 20 }) {
-        ForEach(this.timeTable, (item: TimeTable) => {
+        LazyForEach(this.itemGroupArray, (item: TimeTable) => {
           ListItemGroup({ header: this.itemHead(item.title), footer: this.itemFoot(item.projects.length) }) {
-            ForEach(item.projects, (project: string) => {
+            LazyForEach(new ProjectsDataSource(item.projects), (project: string) => {
               ListItem() {
                 Text(project)
                   .width("100%")
@@ -167,11 +258,6 @@ struct ListItemGroupExample {
       .scrollBar(BarState.Off)
     }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 })
   }
-}
-
-interface TimeTable {
-  title: string;
-  projects: string[];
 }
 ```
 
@@ -242,14 +328,11 @@ interface ArrObject {
 
 该示例通过ComponentContent设置Header/Footer。
 
+<!--code_no_check-->
 ```ts
 // xxx.ets
 import { ComponentContent } from '@kit.ArkUI';
-
-interface TimeTable {
-  title: string;
-  projects: string[];
-}
+import { TimeTable, ProjectsDataSource, TimeTableDataSource } from './ListDataSource';
 
 class HeadBuilderParams {
   text: string | Resource;
@@ -292,10 +375,12 @@ struct MyItemGroup {
   footer?: ComponentContent<FootBuilderParams> = undefined
   headerParam = new HeadBuilderParams(this.item.title)
   footerParam = new FootBuilderParams(this.item.projects.length)
+  itemArr: ProjectsDataSource = new ProjectsDataSource([]);
 
   aboutToAppear(): void {
     this.header = new ComponentContent(this.getUIContext(), wrapBuilder(itemHead), this.headerParam)
     this.footer = new ComponentContent(this.getUIContext(), wrapBuilder(itemFoot), this.footerParam)
+    this.itemArr = new ProjectsDataSource(this.item.projects);
   }
   GetHeader() {
     this.header?.update(new HeadBuilderParams(this.item.title));
@@ -312,7 +397,7 @@ struct MyItemGroup {
       headerComponent: this.GetHeader(),
       footerComponent: this.GetFooter()
     }) {
-      ForEach(this.item.projects, (project: string) => {
+      LazyForEach(this.itemArr, (project: string) => {
         ListItem() {
           Text(project)
             .width("100%")
@@ -329,37 +414,41 @@ struct MyItemGroup {
 @Entry
 @Component
 struct ListItemGroupExample {
-  @State timeTable: TimeTable[] = [
-    {
-      title: '星期一',
-      projects: ['语文', '数学', '英语']
-    },
-    {
-      title: '星期二',
-      projects: ['物理', '化学', '生物']
-    },
-    {
-      title: '星期三',
-      projects: ['历史', '地理', '政治', '体育']
-    },
-    {
-      title: '星期四',
-      projects: ['美术', '音乐']
-    }
-  ]
+  itemGroupArray: TimeTableDataSource = new TimeTableDataSource([]);
+  aboutToAppear(): void {
+    let timeTable: TimeTable[] = [
+      {
+        title: '星期一',
+        projects: ['语文', '数学', '英语']
+      },
+      {
+        title: '星期二',
+        projects: ['物理', '化学', '生物']
+      },
+      {
+        title: '星期三',
+        projects: ['历史', '地理', '政治', '体育']
+      },
+      {
+        title: '星期四',
+        projects: ['美术', '音乐']
+      }
+    ]
+    this.itemGroupArray = new TimeTableDataSource(timeTable);
+  }
 
   build() {
     Column() {
       Button("update").width(100).height(50).onClick(() => {
-        this.timeTable[0] = {
+        this.itemGroupArray.change1stItem({
           title: '更新后的星期一',
           projects: ['语文', '物理', '历史', '美术']
-        }
+        });
       })
       List({ space: 20 }) {
-        ForEach(this.timeTable, (item: TimeTable) => {
+        LazyForEach(this.itemGroupArray, (item: TimeTable) => {
           MyItemGroup({ item: item })
-        })
+        }, (item: TimeTable) => item.title) // LazyForEach依赖键值判断是否刷新子组件
       }
       .layoutWeight(1)
       .sticky(StickyStyle.Header | StickyStyle.Footer)

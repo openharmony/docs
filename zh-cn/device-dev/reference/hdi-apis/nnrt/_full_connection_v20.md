@@ -65,7 +65,7 @@ boolean FullConnection::hasBias
 
 **描述**
 
-是否使用bias。
+hasBias为true使用bias，反之不使用。
 
 ### useAxis
 
@@ -75,4 +75,4 @@ boolean FullConnection::useAxis
 
 **描述**
 
-是否使用轴。
+useAxis为true使用轴，反之不使用。

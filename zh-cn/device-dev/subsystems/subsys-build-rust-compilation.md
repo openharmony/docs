@@ -4,7 +4,7 @@
 
 Rust是一门静态强类型语言，具有更安全的内存管理、更好的运行性能、原生支持多线程开发等优势。Rust官方也使用Cargo工具来专门为Rust代码创建工程和构建编译。
 OpenHarmony为了集成C/C++代码和提升编译速度，使用了GN + Ninja的编译构建系统。GN的构建语言简洁易读，Ninja的汇编级编译规则直接高效。
-为了在OpenHarmony中集成Rust代码，并最大程度发挥Rust和OpenHarmony中原有C/C++代码的交互性，采用GN作为统一构建工具，即通过GN构建Rust源码文件(xxx.rs)，并增加与C/C++互操作、编译时lint、测试、IDL转换、三方库集成、IDE等功能。同时扩展gn框架，支持接口自动化转换，最大程度简化开发。
+为了在OpenHarmony中集成Rust代码，并最大程度发挥Rust和OpenHarmony中原有C/C++代码的交互性，采用GN作为统一构建工具，即通过GN构建Rust源码文件（xxx.rs），并增加与C/C++互操作、编译时lint、测试、IDL转换、三方库集成、IDE等功能。同时扩展gn框架，支持接口自动化转换，最大程度简化开发。
 
 ### 基本概念
 
@@ -307,8 +307,8 @@ rust三方库的BUILD.gn文件可通过cargo2gn工具自动生成。参见：[Ca
 |----------------------------------------------|----------------------------------------------------------|
 | build/rust/tests/test_bin_crate              | 用ohos_rust_executable模板在host平台编译可执行文件，在target平台上运行可执行文件。 |
 | build/rust/tests/test_static_link            | 测试可执行文件对标准库的静态链接。                                        |
-| build/rust/tests/test_dylib_crate            | 测试对动态库的编译和动态链接功能                                         |
-| build/rust/tests/test_rlib_crate             | 测试对静态库的编译和静态链接功能                                         |
+| build/rust/tests/test_dylib_crate            | 测试对动态库的编译和动态链接功能。                                         |
+| build/rust/tests/test_rlib_crate             | 测试对静态库的编译和静态链接功能。                                         |
 | build/rust/tests/test_proc_macro_crate       | 测试对Rust过程宏的编译和链接功能。提供对不同类型的宏的测试用例。                       |
 | build/rust/tests/test_cdylib_crate           | 测试将Rust代码编译成C/C++动态库。                                    |
 | build/rust/tests/test_staticlib_crate        | 测试将Rust代码编译成C/C++静态库。                                    |

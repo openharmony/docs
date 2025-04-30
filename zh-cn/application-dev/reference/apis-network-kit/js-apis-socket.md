@@ -170,8 +170,19 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',  // 本端地址
+  port: 1234
+}
+udp.bind(bindAddr, (err: BusinessError) => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
+});
 let netAddress: socket.NetAddress = {
-  address: '192.168.xx.xxx',
+  address: '192.168.xx.xxx',  // 对端地址
   port: 8080
 }
 let sendOptions: socket.UDPSendOptions = {
@@ -194,8 +205,19 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',  // 本端地址
+  port: 1234
+}
+udp.bind(bindAddr, (err: BusinessError) => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
+});
 let netAddress: socket.NetAddress = {
-  address: '192.168.xx.xxx',
+  address: '192.168.xx.xxx',  // 对端地址
   port: 8080
 }
 let socks5Server: socket.NetAddress = {
@@ -267,8 +289,18 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx', // 本端地址
+  port: 8080
+}
+udp.bind(bindAddr).then(() => {
+  console.log('bind success');
+}).catch((err: BusinessError) => {
+  console.log('bind fail');
+  return;
+});
 let netAddress: socket.NetAddress = {
-  address: '192.168.xx.xxx',
+  address: '192.168.xx.xxx', // 对端地址
   port: 8080
 }
 let sendOptions: socket.UDPSendOptions = {
@@ -289,8 +321,18 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx', // 本端地址
+  port: 8080
+}
+udp.bind(bindAddr).then(() => {
+  console.log('bind success');
+}).catch((err: BusinessError) => {
+  console.log('bind fail');
+  return;
+});
 let netAddress: socket.NetAddress = {
-  address: '192.168.xx.xxx',
+  address: '192.168.xx.xxx', // 对端地址
   port: 8080
 }
 let socks5Server: socket.NetAddress = {
@@ -923,7 +965,7 @@ UDPSocket连接的其他属性。继承自[ExtraOptionsBase](#extraoptionsbase7)
 
 | 名称            | 类型    | 必填 | 说明                             |
 | ----------------- | ------- | ---- | -------------------------------- |
-| broadcast         | boolean | 否   | 是否可以发送广播。默认为false。  |
+| broadcast         | boolean | 否   | 是否可以发送广播。默认为false。true：可发送广播；false：不可发送广播。  |
 
 ## SocketMessageInfo<sup>11+</sup>
 
@@ -944,9 +986,9 @@ Socket的状态信息。
 
 | 名称      | 类型    | 必填 | 说明       |
 | ----------- | ------- | ---- | ---------- |
-| isBound     | boolean | 是   | 是否绑定。 |
-| isClose     | boolean | 是   | 是否关闭。 |
-| isConnected | boolean | 是   | 是否连接。 |
+| isBound     | boolean | 是   | 是否绑定。true：绑定；false：不绑定。 |
+| isClose     | boolean | 是   | 是否关闭。true：关闭；false：打开。 |
+| isConnected | boolean | 是   | 是否连接。true：连接；false：断开。 |
 
 ## SocketRemoteInfo
 
@@ -993,7 +1035,7 @@ MulticastSocket连接。在调用MulticastSocket的方法前，需要先通过[s
 
 ### addMembership<sup>11+</sup>
 
-addMembership(multicastAddress: NetAddress, callback: AsyncCallback\<void\>): void;
+addMembership(multicastAddress: NetAddress, callback: AsyncCallback\<void\>): void
 
 加入多播组。使用callback方法作为异步方法。
 
@@ -1043,9 +1085,9 @@ multicast.addMembership(addr, (err: Object) => {
 
 ### addMembership<sup>11+</sup>
 
-addMembership(multicastAddress: NetAddress): Promise\<void\>;
+addMembership(multicastAddress: NetAddress): Promise\<void\>
 
-加入多播组。使用Promise方法作为异步方法。。
+加入多播组。使用Promise方法作为异步方法。
 
 > **说明：**
 > 多播使用的IP地址属于特定的范围（例如224.0.0.0到239.255.255.255）。
@@ -1095,7 +1137,7 @@ multicast.addMembership(addr).then(() => {
 
 ### dropMembership<sup>11+</sup>
 
-dropMembership(multicastAddress: NetAddress, callback: AsyncCallback\<void\>): void;
+dropMembership(multicastAddress: NetAddress, callback: AsyncCallback\<void\>): void
 
 退出多播组。使用callback方法作为异步方法。
 
@@ -1144,9 +1186,9 @@ multicast.dropMembership(addr, (err: Object) => {
 
 ### dropMembership<sup>11+</sup>
 
-dropMembership(multicastAddress: NetAddress): Promise\<void\>;
+dropMembership(multicastAddress: NetAddress): Promise\<void\>
 
-退出多播组。使用Promise方法作为异步方法。。
+退出多播组。使用Promise方法作为异步方法。
 
 > **说明：**
 > 多播使用的IP地址属于特定的范围（例如224.0.0.0到239.255.255.255）。
@@ -1196,7 +1238,7 @@ multicast.dropMembership(addr).then(() => {
 
 ### setMulticastTTL<sup>11+</sup>
 
-setMulticastTTL(ttl: number, callback: AsyncCallback\<void\>): void;
+setMulticastTTL(ttl: number, callback: AsyncCallback\<void\>): void
 
 设置多播通信时数据包在网络传输过程中路由器最大跳数。使用callback方法作为异步方法。
 
@@ -1241,9 +1283,9 @@ multicast.setMulticastTTL(ttl, (err: Object) => {
 
 ### setMulticastTTL<sup>11+</sup>
 
-setMulticastTTL(ttl: number): Promise\<void\>;
+setMulticastTTL(ttl: number): Promise\<void\>
 
-设置多播通信时数据包在网络传输过程中路由器最大跳数。使用Promise方法作为异步方法。。
+设置多播通信时数据包在网络传输过程中路由器最大跳数。使用Promise方法作为异步方法。
 
 > **说明：**
 > 用于限制数据包在网络中传输时能够经过的最大路由器跳数的字段，TTL (Time to live)。
@@ -1288,7 +1330,7 @@ multicast.setMulticastTTL(8).then(() => {
 
 ### getMulticastTTL<sup>11+</sup>
 
-getMulticastTTL(callback: AsyncCallback\<number\>): void;
+getMulticastTTL(callback: AsyncCallback\<number\>): void
 
 获取数据包在网络传输过程中路由器最大跳数(TTL)的值。使用callback方法作为异步方法。
 
@@ -1330,7 +1372,7 @@ multicast.getMulticastTTL((err: Object, value: Number) => {
 
 ### getMulticastTTL<sup>11+</sup>
 
-getMulticastTTL(): Promise\<number\>;
+getMulticastTTL(): Promise\<number\>
 
 获取数据包在网络传输过程中路由器最大跳数(TTL)的值。使用Promise方法作为异步方法。
 
@@ -1370,7 +1412,7 @@ multicast.getMulticastTTL().then((value: Number) => {
 
 ### setLoopbackMode<sup>11+</sup>
 
-setLoopbackMode(flag: boolean, callback: AsyncCallback\<void\>): void;
+setLoopbackMode(flag: boolean, callback: AsyncCallback\<void\>): void
 
 设置多播通信中的环回模式标志位。使用callback方法作为异步方法。
 
@@ -1412,7 +1454,7 @@ multicast.setLoopbackMode(false, (err: Object) => {
 
 ### setLoopbackMode<sup>11+</sup>
 
-setLoopbackMode(flag: boolean): Promise\<void\>;
+setLoopbackMode(flag: boolean): Promise\<void\>
 
 设置多播通信中的环回模式标志位。使用callback方法作为异步方法。
 
@@ -1457,7 +1499,7 @@ multicast.setLoopbackMode(false).then(() => {
 
 ### getLoopbackMode<sup>11+</sup>
 
-getLoopbackMode(callback: AsyncCallback\<boolean\>): void;
+getLoopbackMode(callback: AsyncCallback\<boolean\>): void
 
 获取多播通信中的环回模式状态。使用Promise方法作为异步方法。
 
@@ -1498,7 +1540,7 @@ multicast.getLoopbackMode((err: Object, value: Boolean) => {
 
 ### getLoopbackMode<sup>11+</sup>
 
-getLoopbackMode(): Promise\<boolean\>;
+getLoopbackMode(): Promise\<boolean\>
 
 获取多播通信中的环回模式状态。使用Promise方法作为异步方法。
 
@@ -2754,9 +2796,9 @@ TCPSocket连接的其他属性。继承自[ExtraOptionsBase](#extraoptionsbase7)
 
 | 名称            | 类型    | 必填 | 说明                                                         |
 | ----------------- | ------- | ---- | ------------------------------------------------------------ |
-| keepAlive         | boolean | 否   | 是否保持连接。默认为false。                                  |
-| OOBInline         | boolean | 否   | 是否为OOB内联。默认为false。                                 |
-| TCPNoDelay        | boolean | 否   | TCPSocket连接是否无时延。默认为false。                       |
+| keepAlive         | boolean | 否   | 是否保持连接。默认为false。true：保持连接；false：断开连接。                                  |
+| OOBInline         | boolean | 否   | 是否为OOB内联。默认为false。true：是OOB内联；false：不是OOB内联。                                 |
+| TCPNoDelay        | boolean | 否   | TCPSocket连接是否无时延。默认为false。true：无时延；false：有时延。                       |
 | socketLinger      | \{on:boolean, linger:number\}  | 否   | socket是否继续逗留。<br />- on：是否逗留（true：逗留；false：不逗留）。<br />- linger：逗留时长，单位毫秒（ms），取值范围为0~65535。<br />当入参on设置为true时，才需要设置。 |
 
 ## socket.constructTCPSocketServerInstance<sup>10+</sup>
@@ -4038,11 +4080,15 @@ bind(address: LocalAddress): Promise\<void\>;
 
 **示例：**
 
+**注意：** 关于示例代码中this的说明：在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance()
-let sandboxPath: string = getContext().filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let address : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4088,11 +4134,15 @@ connect(options: LocalConnectOptions): Promise\<void\>
 
 **示例：**
 
+**注意：** 关于示例代码中this的说明：在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let localAddress : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4139,11 +4189,15 @@ send(options: LocalSendOptions): Promise\<void\>
 
 **示例：**
 
+**注意：** 关于示例代码中this的说明：在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance()
-let sandboxPath: string = getContext().filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let localAddress : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4219,11 +4273,15 @@ getState(): Promise\<SocketStateBase\>
 
 **示例：**
 
+**注意：** 关于示例代码中this的说明：在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let localAddress : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4263,11 +4321,15 @@ getSocketFd(): Promise\<number\>
 
 **示例：**
 
+**注意：** 关于示例代码中this的说明：在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let localAddress : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4319,11 +4381,15 @@ setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
 
 **示例：**
 
+**注意：** 关于示例代码中this的说明：在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let localAddress : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4373,11 +4439,15 @@ getExtraOptions(): Promise\<ExtraOptionsBase\>;
 
 **示例：**
 
+**注意：** 关于示例代码中this的说明：在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let localAddress : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4424,9 +4494,14 @@ getLocalAddress(): Promise\<string\>
 
 **示例：**
 
+**注意：** 关于示例代码中this的说明：在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
+import { common } from '@kit.AbilityKit';
+
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket';
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let address : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4523,7 +4598,7 @@ client.off('message');
 
 ### on('connect')<sup>11+</sup>
 
-on(type: 'connect', callback: Callback\<void\>): void;
+on(type: 'connect', callback: Callback\<void\>): void
 
 订阅LocalSocket的连接事件。使用callback方式作为异步方法。
 
@@ -4555,7 +4630,7 @@ client.on('connect', () => {
 
 ### off('connect')<sup>11+</sup>
 
-off(type: 'connect', callback?: Callback\<void\>): void;
+off(type: 'connect', callback?: Callback\<void\>): void
 
 取消订阅LocalSocket的连接事件。使用callback方式作为异步方法。
 
@@ -4591,7 +4666,7 @@ client.off('connect');
 
 ### on('close')<sup>11+</sup>
 
-on(type: 'close', callback: Callback\<void\>): void;
+on(type: 'close', callback: Callback\<void\>): void
 
 订阅LocalSocket的关闭事件。使用callback方式作为异步方法。
 
@@ -4624,7 +4699,7 @@ client.on('close', callback);
 
 ### off('close')<sup>11+</sup>
 
-off(type: 'close', callback?: Callback\<void\>): void;
+off(type: 'close', callback?: Callback\<void\>): void
 
 订阅LocalSocket的关闭事件。使用callback方式作为异步方法。
 
@@ -4692,7 +4767,7 @@ client.on('error', (err: Object) => {
 
 ### off('error')<sup>11+</sup>
 
-off(type: 'error', callback?: ErrorCallback): void;
+off(type: 'error', callback?: ErrorCallback): void
 
 取消订阅LocalSocket连接的error事件。使用callback方式作为异步方法。
 
@@ -4780,7 +4855,7 @@ Socket套接字的基础属性。
 | ----------------- | ------- | ---- | ----------------------------- |
 | receiveBufferSize | number  | 否   | 接收缓冲区大小（单位：Byte）。     |
 | sendBufferSize    | number  | 否   | 发送缓冲区大小（单位：Byte）。     |
-| reuseAddress      | boolean | 否   | 是否重用地址。                   |
+| reuseAddress      | boolean | 否   | 是否重用地址。true：重用地址；false：不重用地址。                   |
 | socketTimeout     | number  | 否   | 套接字超时时间，单位毫秒（ms）。    |
 
 ## socket.constructLocalSocketServerInstance<sup>11+</sup>
@@ -4843,11 +4918,15 @@ listen(address: LocalAddress): Promise\<void\>
 
 **示例：**
 
+**注意：** 关于示例代码中this的说明：在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let addr: socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4877,11 +4956,16 @@ getState(): Promise\<SocketStateBase\>
 
 **示例：**
 
+**注意：** 关于示例代码中this的说明：在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
+
 
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let listenAddr: socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4929,11 +5013,15 @@ setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
 
 **示例：**
 
+**注意：** 关于示例代码中this的说明：在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let listenAddr: socket.NetAddress = {
   address: sandboxPath
 }
@@ -4980,11 +5068,15 @@ getExtraOptions(): Promise\<ExtraOptionsBase\>;
 
 **示例：**
 
+**注意：** 关于示例代码中this的说明：在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let listenAddr: socket.LocalAddress = {
   address: sandboxPath
 }
@@ -5027,9 +5119,14 @@ getLocalAddress(): Promise\<string\>
 
 **示例：**
 
+**注意：** 关于示例代码中this的说明：在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
+import { common } from '@kit.AbilityKit';
+
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket';
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let listenAddr: socket.LocalAddress = {
   address: sandboxPath
 }
@@ -5316,9 +5413,14 @@ getLocalAddress(): Promise\<string\>
 
 **示例：**
 
+**注意：** 关于示例代码中this的说明：在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
+import { common } from '@kit.AbilityKit';
+
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket';
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let localAddr: socket.LocalAddress = {
   address: sandboxPath
 }
@@ -5343,7 +5445,7 @@ server.listen(localAddr).then(() => {
 
 ### on('message')<sup>11+</sup>
 
-on(type: 'message', callback: Callback\<LocalSocketMessageInfo\>): void;
+on(type: 'message', callback: Callback\<LocalSocketMessageInfo\>): void
 
 订阅LocalSocketConnection连接的接收消息事件。使用callback方式作为异步方法。
 
@@ -5364,11 +5466,15 @@ on(type: 'message', callback: Callback\<LocalSocketMessageInfo\>): void;
 
 **示例：**
 
+**注意：** 关于示例代码中this的说明：在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let listenAddr: socket.LocalAddress = {
   address: sandboxPath
 }
@@ -6002,7 +6108,7 @@ tls.setExtraOptions(tcpExtraOptions).then(() => {
 
 ### on('message')<sup>9+</sup>
 
-on(type: 'message', callback: Callback\<SocketMessageInfo\>): void;
+on(type: 'message', callback: Callback\<SocketMessageInfo\>): void
 
 订阅TLSSocket连接的接收消息事件。使用callback方式作为异步方法。
 
@@ -6769,7 +6875,7 @@ import { util } from '@kit.ArkTS';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getCertificate().then((data: socket.X509CertRawData) => {
   const decoder = util.TextDecoder.create();
-  const str = decoder.decodeWithStream(data.data);
+  const str = decoder.decodeToString(data.data);
   console.log("getCertificate: " + str);
 }).catch((err: BusinessError) => {
   console.error("failed" + err);
@@ -6810,7 +6916,7 @@ tls.getRemoteCertificate((err: BusinessError, data: socket.X509CertRawData) => {
     console.log("getRemoteCertificate callback error = " + err);
   } else {
     const decoder = util.TextDecoder.create();
-    const str = decoder.decodeWithStream(data.data);
+    const str = decoder.decodeToString(data.data);
     console.log("getRemoteCertificate callback = " + str);
   }
 });
@@ -6847,7 +6953,7 @@ import { util } from '@kit.ArkTS';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getRemoteCertificate().then((data: socket.X509CertRawData) => {
   const decoder = util.TextDecoder.create();
-  const str = decoder.decodeWithStream(data.data);
+  const str = decoder.decodeToString(data.data);
   console.log("getRemoteCertificate:" + str);
 }).catch((err: BusinessError) => {
   console.error("failed" + err);
@@ -7291,7 +7397,7 @@ TLS连接的操作。
 | address        | [NetAddress](#netaddress)             | 是  |  网关地址。       |
 | secureOptions  | [TLSSecureOptions](#tlssecureoptions9) | 是 | TLS安全相关操作。|
 | ALPNProtocols  | Array\<string\>                         | 否 | ALPN协议，支持["spdy/1", "http/1.1"]，默认为[]。      |
-| skipRemoteValidation<sup>12+</sup>  | boolean                         | 否 | 是否跳过对服务端进行证书认证，默认为false。      |
+| skipRemoteValidation<sup>12+</sup>  | boolean                         | 否 | 是否跳过对服务端进行证书认证，默认为false。true：跳过对服务端进行证书认证；false：不跳过对服务端进行证书认证。      |
 | proxy<sup>18+</sup>   | [ProxyOptions](#proxyoptions18) | 否   | 使用的代理信息，默认不使用代理。 |
 
 ## TLSSecureOptions<sup>9+</sup>
@@ -7307,10 +7413,10 @@ TLS安全相关操作。当本地证书cert和私钥key不为空时，开启双�
 | key                   | string                                                  | 否 | 本地数字证书的私钥。                   |
 | password                | string                                                  | 否 | 读取私钥的密码。                      |
 | protocols             | [Protocol](#protocol9) \|Array\<[Protocol](#protocol9)\> | 否 | TLS的协议版本，默认为"TLSv1.2"。                  |
-| useRemoteCipherPrefer | boolean                                                 | 否 | 优先使用对等方的密码套件。        |
+| useRemoteCipherPrefer | boolean                                                 | 否 | 优先使用对等方的密码套件。true：优先使用对等方的密码套件；false：不优先使用对等方的密码套件。        |
 | signatureAlgorithms   | string                                                 | 否 | 通信过程中的签名算法，默认为"" 。              |
 | cipherSuite           | string                                                 | 否 | 通信过程中的加密套件，默认为"" 。              |
-| isBidirectionalAuthentication<sup>12+</sup>           | boolean                                                 | 否 | 用于设置双向认证，默认为false。              |
+| isBidirectionalAuthentication<sup>12+</sup>           | boolean                                                 | 否 | 用于设置双向认证，默认为false。true：设置双向认证；false：不设置双向认证。              |
 
 ## Protocol<sup>9+</sup>
 
@@ -7860,7 +7966,7 @@ tlsServer.getCertificate((err: BusinessError, data: socket.X509CertRawData) => {
     console.log("getCertificate callback error = " + err);
   } else {
     const decoder = util.TextDecoder.create();
-    const str = decoder.decodeWithStream(data.data);
+    const str = decoder.decodeToString(data.data);
     console.log("getCertificate callback: " + str);
   }
 });
@@ -7925,7 +8031,7 @@ tlsServer.listen(tlsConnectOptions).then(() => {
 });
 tlsServer.getCertificate().then((data: socket.X509CertRawData) => {
   const decoder = util.TextDecoder.create();
-  const str = decoder.decodeWithStream(data.data);
+  const str = decoder.decodeToString(data.data);
   console.log("getCertificate: " + str);
 }).catch((err: BusinessError) => {
   console.error("failed" + err);
@@ -8823,7 +8929,7 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
       console.log("getRemoteCertificate callback error: " + err);
     } else {
       const decoder = util.TextDecoder.create();
-      const str = decoder.decodeWithStream(data.data);
+      const str = decoder.decodeToString(data.data);
       console.log("getRemoteCertificate callback: " + str);
     }
   });
@@ -8886,7 +8992,7 @@ tlsServer.listen(tlsConnectOptions).then(() => {
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getRemoteCertificate().then((data: socket.X509CertRawData) => {
     const decoder = util.TextDecoder.create();
-    const str = decoder.decodeWithStream(data.data);
+    const str = decoder.decodeToString(data.data);
     console.log("getRemoteCertificate success: " + str);
   }).catch((err: BusinessError) => {
     console.error("failed" + err);

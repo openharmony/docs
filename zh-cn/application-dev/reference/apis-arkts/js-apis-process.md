@@ -31,7 +31,7 @@ import { process } from '@kit.ArkTS';
 
 type EventListener = (evt: Object) => void
 
-用户存储的事件
+用户存储的事件信息。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -47,7 +47,7 @@ type EventListener = (evt: Object) => void
 
 isIsolatedProcess(): boolean
 
-判断进程是否被隔离。
+检查进程是否已被隔离。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -70,7 +70,7 @@ let result = process.isIsolatedProcess();
 
 is64Bit(): boolean
 
-判断运行环境是否64位。
+检查运行环境是否为64位。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -93,7 +93,7 @@ let result = process.is64Bit();
 
 getStartRealtime(): number
 
-获取从系统启动到进程启动所经过的实时时间（以毫秒为单位）。
+获取系统启动到进程启动的实时时间（以毫秒为单位）。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -155,7 +155,7 @@ process.abort();
 
 uptime(): number
 
-获取当前系统已运行的秒数。
+获取当前系统已运行的时间（以秒为单位）。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -165,7 +165,7 @@ uptime(): number
 
 | 类型   | 说明                   |
 | ------ | ---------------------- |
-| number | 当前系统已运行的秒数。 |
+| number | 当前系统已运行的时间。单位：秒。|
 
 **示例：**
 
@@ -178,7 +178,7 @@ let time = process.uptime();
 
 kill(signal: number, pid: number): boolean
 
-发送signal到指定的进程，结束指定进程。
+发送信号到指定进程，结束该进程。
 
 > **说明：**
 >
@@ -195,9 +195,9 @@ kill(signal: number, pid: number): boolean
 
 **返回值：**
 
-| 类型    | 说明                                                         |
-| ------- | ------------------------------------------------------------ |
-| boolean | 信号是否发送成功。如果信号发送成功则返回true，否则返回false。 |
+| 类型    | 说明 |
+| ------- | -----------------------------------|
+| boolean | 信号发送成功返回true，失败返回false。 |
 
 **示例：**
 
@@ -213,7 +213,7 @@ exit(code: number): void
 
 终止程序。
 
-请谨慎使用此接口，此接口调用后应用会退出，如果入参非0会产生数据丢失或者异常情况。
+请谨慎使用此接口。调用此接口后应用将退出。如果输入参数非0，可能会导致数据丢失或出现异常。
 
 > **说明：**
 >
@@ -238,7 +238,7 @@ process.exit(0);
 
 getUidForName(v: string): number
 
-根据指定的用户名，从系统的用户数据库中获取该用户uid。
+根据指定的用户名，从系统的用户数据库中获取该用户的uid。
 
 > **说明：**
 >
@@ -364,7 +364,7 @@ let pres = process.getSystemConfig(_SC_ARG_MAX);
 
 getEnvironmentVar(name: string): string
 
-获取环境变量对应的值。
+获取环境变量名对应的值。
 
 > **说明：**
 >
@@ -382,7 +382,7 @@ getEnvironmentVar(name: string): string
 
 | 类型   | 说明                        |
 | ------ | --------------------------- |
-| string | 返回环境变量名对应的value。 |
+| string | 返回环境变量名对应的值。 |
 
 **示例：**
 
@@ -395,7 +395,7 @@ let pres = process.getEnvironmentVar("PATH");
 
 提供用于新增进程的抛异常接口。
 
-通过自身的构造来获取ProcessManager对象。
+构造ProcessManager对象。
 
 ### isAppUid<sup>9+</sup>
 
@@ -458,7 +458,7 @@ getUidForName(v: string): number
 
 | 类型   | 说明          |
 | ------ | ------------- |
-| number | 返回用户uid，当获取的用户不存在时，返回-1。|
+| number | 获取用户uid，如果用户不存在则返回-1。|
 
 **错误码：**
 
@@ -472,7 +472,7 @@ getUidForName(v: string): number
 
 ```js
 let pro = new process.ProcessManager();
-let pres = pro .getUidForName("tool");
+let pres = pro.getUidForName("tool");
 ```
 
 
@@ -535,7 +535,7 @@ getSystemConfig(name: number): number
 
 | 类型   | 说明               |
 | ------ | ------------------ |
-| number | 返回系统配置信息，当获取的系统配置不存在时，返回-1。 |
+| number | 返回系统配置信息。如果配置不存在，返回-1。 |
 
 **错误码：**
 
@@ -562,7 +562,7 @@ getEnvironmentVar(name: string): string
 
 > **说明：**
 >
-> 该接口是获取环境变量对应的值。当环境变量不存在时，返回undefined。
+> 获取环境变量对应的值。如果环境变量不存在，返回undefined。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -644,7 +644,7 @@ kill(signal: number, pid: number): boolean
 
 | 参数名 | 类型   | 必填 | 说明         |
 | ------ | ------ | ---- | ------------ |
-| signal | number | 是   | 发送特定的信号给目标进程。 |
+| signal | number | 是   | 发送特定的信号给目标进程。 取值范围：1 <= signal <= 64。|
 | pid    | number | 是   | 进程的id。   |
 
 **返回值：**

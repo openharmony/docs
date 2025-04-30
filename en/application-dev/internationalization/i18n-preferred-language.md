@@ -2,13 +2,11 @@
 
 ## Use Cases
 
-In most cases, multi-language users may set the system language to one language (for example, Chinese) and the language of a specific application to another language (for example, English). When application resources are loaded on the UI, it is expected that the resources be displayed in the language set for the application. To address this issue, you can set a preferred language in locale settings so that resources are loaded in the preferred language when the application is launched. Currently, only one preferred language can be set for an application.
+Multi-language users usually set the system language to one language (for example, Chinese) and the language of a specific application to another language (for example, English). When application resources are loaded on the UI, it is expected that the resources be displayed in the language set for the application. To address this issue, you can set a preferred language in locale settings so that resources are loaded in the preferred language when the application is launched. Currently, only one preferred language can be set for an application.
 
 ## How to Develop
 
 For details about how to use related APIs, see [getAppPreferredLanguage](../reference/apis-localization-kit/js-apis-i18n.md#getapppreferredlanguage9).
-
-The following uses date and time formatting as an example to illustrate how the preferred language works.
 
 1. Import the **i18n** and **intl** modules.
    ```ts
@@ -21,7 +19,7 @@ The following uses date and time formatting as an example to illustrate how the 
    let appPreferredLanguage: string = i18n.System.getAppPreferredLanguage(); // Obtain the preferred language of the application.
    ```
    
-3. Set the preferred language of the application. After the preferred language of the application is set to the target language, the application UI is switched to the target language. The setting affects only the application, but not the system language settings.
+3. Set the preferred language of the application. After the preferred language of the application is set to the target language, the application UI is switched to the target language. The setting is subject only to the application. It does not affect the system language settings.
    ```ts
    try {
      i18n.System.setAppPreferredLanguage('zh-Hans'); // Set the preferred language of the application to zh-Hans.

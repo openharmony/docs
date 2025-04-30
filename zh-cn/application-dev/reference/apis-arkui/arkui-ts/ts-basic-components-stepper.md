@@ -5,7 +5,7 @@
 
 >  **说明：**
 >
-> 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -27,7 +27,7 @@ Stepper(value?: { index?: number })
 
 | 参数名 | 类型 | 必填  | 说明 |
 | ------| -------- | --------------- | -------- |
-| value | { index?: number }   | 否 | 设置步骤导航器当前显示StepperItem的索引值。<br/>默认值：0<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| value | { index?: number }   | 否 | 设置步骤导航器当前显示StepperItem的索引值。<br/>默认值：0<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。 |
 
 
 ## 属性
@@ -70,8 +70,8 @@ onChange(callback:&nbsp;(prevIndex:&nbsp;number,&nbsp;index:&nbsp;number)&nbsp;=
 
 | 参数名    | 类型   | 必填 | 说明                                       |
 | --------- | ------ | ---- | ------------------------------------------ |
-| prevIndex | number | 是   | 切换前的步骤页索引值。<br/>取值范围：[0, +∞)。 |
-| index     | number | 是   | 切换后的步骤页（前一页或者下一页）索引值。<br/>取值范围：[0, +∞)。 |
+| prevIndex | number | 是   | 切换前的步骤页索引值。<br/>取值范围：[0, +∞) |
+| index     | number | 是   | 切换后的步骤页（前一页或者下一页）索引值。<br/>取值范围：[0, +∞) |
 
 ### onNext
 

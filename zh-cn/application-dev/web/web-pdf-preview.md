@@ -29,7 +29,7 @@ struct WebComponent {
       Web({ 
       	src: 
       	"https://www.example.com/test.pdf", 					// 方式一 加载网络PDF文档
-      	// getContext(this).filesDir + "/test.pdf", // 方式二 加载本地应用沙箱内PDF文档
+      	// this.getUIContext().getHostContext()!.filesDir + "/test.pdf", // 方式二 加载本地应用沙箱内PDF文档
       	// "resource://rawfile/test.pdf", 						// 方式三 应用内resource资源PDF文档
       	// $rawfile('test.pdf'), 								// 方式四 应用内resource资源PDF文档
       	controller: this.controller 
@@ -62,7 +62,7 @@ struct WebComponent {
 
   ```ts
   Web({ 
-    src: getContext(this).filesDir + "/test.pdf",
+    src: this.getUIContext().getHostContext()!.filesDir + "/test.pdf",
     controller: this.controller 
   })
     .domStorageAccess(true)

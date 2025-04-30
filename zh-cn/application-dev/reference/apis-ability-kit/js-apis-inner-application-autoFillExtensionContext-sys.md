@@ -101,13 +101,14 @@ export default class AutoFillAbility extends AutoFillExtensionAbility {
 import { autoFillManager, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let storage: LocalStorage = LocalStorage.getShared();
-let viewData: autoFillManager.ViewData | undefined = storage.get<autoFillManager.ViewData>('viewData');
-let context: common.AutoFillExtensionContext | undefined = storage.get<common.AutoFillExtensionContext>('autoFillExtensionContext');
-
 @Entry
 @Component
 struct AccountPage {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
+  viewData: autoFillManager.ViewData | undefined = this.storage?.get<autoFillManager.ViewData>('viewData');
+  context: common.AutoFillExtensionContext | undefined = this.storage?.get<common.AutoFillExtensionContext>('autoFillExtensionContext');
+
+
   build() {
     Row() {
       Column() {
@@ -121,9 +122,9 @@ struct AccountPage {
               .borderRadius(5)
           }
           .onClick(() => {
-            if (viewData != undefined) {
-              if (context != undefined) {
-                context.reloadInModal({ data: { viewData: 20, text: 'HelloWorld789456' } }).then(() => {
+            if (this.viewData != undefined) {
+              if (this.context != undefined) {
+                this.context.reloadInModal({ data: { viewData: 20, text: 'HelloWorld789456' } }).then(() => {
                   console.info('reloadInModal successfully.')
                 }).catch((err: BusinessError) => {
                   console.error('reloadInModal failed.')

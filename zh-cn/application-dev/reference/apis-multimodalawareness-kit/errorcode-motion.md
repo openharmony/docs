@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Service exception.
+Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception; 2. N-API invocation exception, invalid N-API status.
 
 **错误描述**
 
@@ -29,7 +29,7 @@ Service exception.
 
 **错误信息**
 
-Subscribe Failed.
+Subscribe Failed. Possible causes: 1. Callback registration failure; 2. Failed to bind native object to js wrapper; 3. N-API invocation exception, invalid N-API status; 4. IPC request exception.
 
 **错误描述**
 
@@ -50,7 +50,7 @@ Subscribe Failed.
 
 **错误信息**
 
-UnSubscribe Failed.
+Unsubscribe Failed. Possible causes: 1. Callback removal failure; 2. N-API invocation exception, invalid N-API status; 3. IPC request exception.
 
 **错误描述**
 

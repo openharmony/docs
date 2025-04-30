@@ -24,7 +24,7 @@
 
 ### OHOS 固定值参数的适配
 
-- OHOS 固定值参数:
+- OHOS 固定值参数：
 
   ```
   const.ohos.version.security_patch

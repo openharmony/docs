@@ -27,12 +27,12 @@ Conversion between px and other pixel units is supported.
 
 | API                                               | Description                                                        |
 | --------------------------------------------------- | ------------------------------------------------------------ |
-| vp2px(value : number) : number  | Converts a value in units of vp to a value in units of px.<br> **NOTE**<br> By default, the virtual pixel ratio of the screen where the current UI instance is located is used for conversion. If no UI instance is available, the virtual pixel ratio of the default screen is used instead.|
-| px2vp(value : number) : number  | Converts a value in units of px to a value in units of vp.<br> **NOTE**<br> By default, the virtual pixel ratio of the screen where the current UI instance is located is used for conversion. If no UI instance is available, the virtual pixel ratio of the default screen is used instead.|
-| fp2px(value : number) : number  | Converts a value in units of fp to a value in units of px.                      |
-| px2fp(value : number) : number  | Converts a value in units of px to a value in units of fp.                      |
-| lpx2px(value : number) : number | Converts a value in units of lpx to a value in units of px.                     |
-| px2lpx(value : number) : number | Converts a value in units of px to a value in units of lpx.                     |
+| vp2px(value : number) : number  | Converts a value in units of vp to a value in units of px.<br>Value range of **value**: (-∞, +∞).<br>Value range of the return value: (-∞, +∞).<br> **NOTE**<br> By default, the virtual pixel ratio of the screen where the current UI instance is located is used for conversion. If no UI instance is available, the virtual pixel ratio of the default screen is used instead.|
+| px2vp(value : number) : number  | Converts a value in units of px to a value in units of vp.<br>Value range of **value**: (-∞, +∞).<br>Value range of the return value: (-∞, +∞).<br> **NOTE**<br> By default, the virtual pixel ratio of the screen where the current UI instance is located is used for conversion. If no UI instance is available, the virtual pixel ratio of the default screen is used instead.|
+| fp2px(value : number) : number  | Converts a value in units of fp to a value in units of px.<br>Value range of **value**: (-∞, +∞).<br>Value range of the return value: (-∞, +∞).                      |
+| px2fp(value : number) : number  | Converts a value in units of px to a value in units of fp.<br>Value range of **value**: (-∞, +∞).<br>Value range of the return value: (-∞, +∞).                      |
+| lpx2px(value : number) : number | Converts a value in units of lpx to a value in units of px.<br>Value range of **value**: (-∞, +∞).<br>Value range of the return value: (-∞, +∞).                     |
+| px2lpx(value : number) : number | Converts a value in units of px to a value in units of lpx.<br>Value range of **value**: (-∞, +∞).<br>Value range of the return value: (-∞, +∞).                     |
 
 
 ## Example

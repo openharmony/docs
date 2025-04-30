@@ -25,7 +25,7 @@ createPixelMap(colors: ArrayBuffer, options: image.InitializationOptions): Promi
 | 参数名  | 类型                                             | 必填 | 说明                                                             |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
 | colors  | ArrayBuffer                                      | 是   | 默认按照BGRA_8888格式处理的颜色数组。                                        |
-| options | [InitializationOptions](js-apis-image.md#initializationoptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
+| options | [image.InitializationOptions](js-apis-image.md#initializationoptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
 
 **返回值：**
 
@@ -159,7 +159,7 @@ createPixelMapFromSurface(surfaceId: string, region: image.Region): Promise\<Pix
 | 参数名                 | 类型                 | 必填 | 说明                                     |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
 | surfaceId              | string              | 是   | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件获取的surfaceId。|
-| region                 | [Region](../apis-image-kit/js-apis-image.md#region8)  | 是   | 裁剪的尺寸。                         |
+| region                 | [image.Region](../apis-image-kit/js-apis-image.md#region8)  | 是   | 裁剪的尺寸。                         |
 
 **返回值：**
 | 类型                             | 说明                  |
@@ -205,7 +205,7 @@ createPixelMapSync(colors: ArrayBuffer, options: image.InitializationOptions): P
 | 参数名  | 类型                                             | 必填 | 说明                                                             |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
 | colors  | ArrayBuffer                                      | 是   | BGRA_8888格式的颜色数组。                                        |
-| options | [InitializationOptions](js-apis-image.md#initializationoptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
+| options | [image.InitializationOptions](js-apis-image.md#initializationoptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
 
 **返回值：**
 | 类型                             | 说明                  |
@@ -428,7 +428,7 @@ readPixels(area: image.PositionArea): Promise\<void>
 
 | 参数名 | 类型                           | 必填 | 说明                     |
 | ------ | ------------------------------ | ---- | ------------------------ |
-| area   | [PositionArea](js-apis-image.md#positionarea7) | 是   | 区域大小，根据区域读取。 |
+| area   | [image.PositionArea](js-apis-image.md#positionarea7) | 是   | 区域大小，根据区域读取。 |
 
 **返回值：**
 
@@ -473,7 +473,7 @@ readPixelsSync(area: image.PositionArea): void
 
 | 参数名 | 类型                           | 必填 | 说明                     |
 | ------ | ------------------------------ | ---- | ------------------------ |
-| area   | [PositionArea](js-apis-image.md#positionarea7) | 是   | 区域大小，根据区域读取。 |
+| area   | [image.PositionArea](js-apis-image.md#positionarea7) | 是   | 区域大小，根据区域读取。 |
 
 **错误码：**
 
@@ -517,7 +517,7 @@ writePixels(area: image.PositionArea): Promise\<void>
 
 | 参数名 | 类型                           | 必填 | 说明                 |
 | ------ | ------------------------------ | ---- | -------------------- |
-| area   | [PositionArea](js-apis-image.md#positionarea7) | 是   | 区域，根据区域写入。 |
+| area   | [image.PositionArea](js-apis-image.md#positionarea7) | 是   | 区域，根据区域写入。 |
 
 **返回值：**
 
@@ -566,7 +566,7 @@ writePixelsSync(area: image.PositionArea): void
 
 | 参数名 | 类型                           | 必填 | 说明                 |
 | ------ | ------------------------------ | ---- | -------------------- |
-| area   | [PositionArea](js-apis-image.md#positionarea7) | 是   | 区域，根据区域写入。 |
+| area   | [image.PositionArea](js-apis-image.md#positionarea7) | 是   | 区域，根据区域写入。 |
 
 **错误码：**
 
@@ -1748,7 +1748,8 @@ createImageSource(uri: string): ImageSource
 **示例：**
 
 ```ts
-const context: Context = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 const path: string = context.cacheDir + "/test.jpg";
 const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createImageSource(path);
 ```
@@ -1780,7 +1781,8 @@ createImageSource(fd: number): ImageSource
 ```ts
 import { fileIo as fs } from '@kit.CoreFileKit';
 
-const context: Context = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 const path: string = context.cacheDir + "/test.jpg";
 let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
 const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createImageSource(file.fd);
@@ -1894,7 +1896,8 @@ createPixelMap(options?: image.DecodingOptions): Promise\<PixelMap>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const context: Context = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 const path: string = context.cacheDir + "/test.jpg";
 const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createImageSource(path);
 sendableImageSourceApi.createPixelMap().then((pixelMap: sendableImage.PixelMap) => {
@@ -1923,7 +1926,8 @@ release(): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const context: Context = getContext(this);
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 const path: string = context.cacheDir + "/test.jpg";
 const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createImageSource(path);
 sendableImageSourceApi.release().then(() => {

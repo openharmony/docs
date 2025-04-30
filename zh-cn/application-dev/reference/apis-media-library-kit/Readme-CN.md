@@ -12,6 +12,9 @@
   - [@ohos.file.PhotoPickerComponent (PhotoPicker组件)](ohos-file-PhotoPickerComponent.md)
   - [@ohos.file.RecentPhotoComponent (最近图片组件)](ohos-file-RecentPhotoComponent.md)
   - [@ohos.multimedia.movingphotoview (动态照片)](ohos-multimedia-movingphotoview.md)
+  <!--Del-->
+  - [@ohos.multimedia.movingphotoview (动态照片)(系统接口)](ohos-multimedia-movingphotoview-sys.md)
+  <!--DelEnd-->
 - C API<!--media-library-c-->
   - 模块<!--media-library-module-->
     - [MediaAssetManager](_media_asset_manager.md)

@@ -1,11 +1,21 @@
-# 使用懒加载开发长列表界面
+# 使用列表
 
 
-针对List、Grid、WaterFlow、Swiper组件，提供[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeadapterhandle)对象替代ArkTS侧的LazyForEach功能，用于按需生成子组件，其中List组件的属性枚举值为NODE_LIST_NODE_ADAPTER，Grid组件的属性枚举值为NODE_GRID_NODE_ADAPTER，WaterFlow组件的属性枚举值为NODE_WATER_FLOW_NODE_ADAPTER，Swiper组件的属性枚举值为NODE_SWIPER_NODE_ADAPTER。
+ArkUI开发框架在NDK接口提供了列表组件，使用列表可以轻松高效地显示结构化、可滚动的信息。列表组件支持控制滚动位置、支持分组显示内容、持使用NodeAdapter实现懒加载以提升列表创建性能。
 
+## 创建列表
 
-虽然都用于按需生成组件，但不同于ArkTS的LazyForEach，NodeAdapter对象的规格如下：
+参考[接入ArkTS页面章节](../ui/ndk-access-the-arkts-page.md)实现列表创建。 
 
+## 监听滚动事件 
+
+参考监听组件事件章节实现列表滚动事件监听。 
+
+## 使用懒加载 
+
+### NodeAdapter介绍 
+
+NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeadapterhandle)对象替代ArkTS侧的LazyForEach功能，用于按需生成子组件，NodeAdapter支持在List/ListItemGroup、Gird、WaterFlow、Swiper组件中使用。
 
 - 设置了NodeAdapter属性的节点，不再支持addChild等直接添加子组件的接口。子组件完全由NodeAdapter管理，使用属性方法设置NodeAdapter时，会判断父组件是否已经存在子节点，如果父组件已经存在子节点，则设置NodeAdapter操作失败，返回错误码。
 
@@ -13,13 +23,11 @@
   ![zh-cn_image_0000001949769409](figures/zh-cn_image_0000001949769409.png)
 
 
-以下示例代码针对[接入ArkTS页面](ndk-access-the-arkts-page.md)章节代码进行优化，引入懒加载机制实现文本列表：
+### 实现懒加载适配器
 
+使用ArkUListItemAdapter类来管理懒加载适配器，在类的构造中创建NodeAdapter对象，并给NodeAdapter对象设置事件监听器，在类的析构函数中，销毁NodeAdapter对象。
 
-1. 接入ArkTS，参考[接入ArkTS页面](ndk-access-the-arkts-page.md)。
-
-2. 懒加载适配器相关功能实现。
-   ```
+   ```c++
    // ArkUIListItemAdapter
    // 用于文本列表懒加载功能代码。
    
@@ -195,8 +203,10 @@
    #endif // MYAPPLICATION_ARKUILISTITEMADAPTER_H
    ```
 
-3. 针对[接入ArkTS页面](ndk-access-the-arkts-page.md)章节使用的列表封装类对象，添加额外懒加载能力。
-   ```
+### 在列表中应用懒加载适配器 
+
+1. 在ArkUIListNode中添加SetLazyAdapter函数，给列表节设置NODE_LIST_NODE_ADAPTER属性，并将NodeAdapter作为属性入参传入。
+   ```c++
    // ArkUIListNode.h
    // 列表封装对象。
    
@@ -269,9 +279,9 @@
    #endif // MYAPPLICATION_ARKUILISTNODE_H
    ```
 
-4. 创建列表懒加载的示例代码。
-   ```
-   // ArkUILazyTextListExample
+2. 创建List使用懒加载的示例代码，调用List节点的SetLazyAdapter接口设置懒加载适配器。
+   ```c++
+   // LazyTextListExample
    // 懒加载列表示例代码。
    
    #ifndef MYAPPLICATION_LAZYTEXTLISTEXAMPLE_H
@@ -279,9 +289,7 @@
    
    #include "ArkUIBaseNode.h"
    #include "ArkUIListNode.h"
-   #include "UITimer.h"
-   #include <thread>
-   #include <uv.h>
+   
    
    namespace NativeModule {
    
@@ -294,47 +302,6 @@
        // 2：创建ListItem懒加载组件并挂载到List上。
        auto adapter = std::make_shared<ArkUIListItemAdapter>();
        list->SetLazyAdapter(adapter);
-   
-       // 3：模拟相关懒加载操作。
-       CreateNativeTimer(env, adapter.get(), 4, [](void *userdata, int32_t count) {
-           auto adapter = reinterpret_cast<ArkUIListItemAdapter *>(userdata);
-           switch (count) {
-           case 0: {
-               // 删除第0个元素。
-               adapter->RemoveItem(0);
-               break;
-           }
-           case 1: {
-               // 插入第0个元素。
-               adapter->InsertItem(0, "0");
-               break;
-           }
-           case 2: {
-               // 移到元素位置。
-               adapter->MoveItem(0, 2);
-               break;
-           }
-           case 3: {
-               // 重载元素。
-               adapter->ReloadItem(0, "1112");
-               break;
-           }
-           case 4: {
-               // 全量重载。
-               adapter->ReloadAllItem();
-               break;
-           }
-           default: {
-           }
-           }
-       });
-   
-       // 3：注册List相关监听事件.
-       list->RegisterOnScrollIndex([](int32_t index) { OH_LOG_INFO(LOG_APP, "on list scroll index: %{public}d", index); });
-       // 4: 注册挂载事件。
-       list->RegisterOnAppear([]() { OH_LOG_INFO(LOG_APP, "on list mount to tree"); });
-       // 4: 注册卸载事件。
-       list->RegisterOnDisappear([]() { OH_LOG_INFO(LOG_APP, "on list unmount from tree"); });
        return list;
    }
    } // namespace NativeModule
@@ -342,83 +309,8 @@
    #endif // MYAPPLICATION_LAZYTEXTLISTEXAMPLE_H
    ```
 
-5. 定时器模块相关简单实现。
-   ```
-   // UITimer.h
-   // 定时器模块。
-   
-   #ifndef MYAPPLICATION_UITIMER_H
-   #define MYAPPLICATION_UITIMER_H
-   
-   #include <hilog/log.h>
-   #include <js_native_api.h>
-   #include <js_native_api_types.h>
-   #include <node_api.h>
-   #include <node_api_types.h>
-   #include <string>
-   #include <thread>
-   #include <uv.h>
-   
-   namespace NativeModule {
-   
-   struct UIData {
-       void *userData = nullptr;
-       int32_t count = 0;
-       int32_t totalCount = 0;
-       void (*func)(void *userData, int32_t count) = nullptr;
-   };
-   
-   napi_threadsafe_function threadSafeFunction = nullptr;
-   
-   void CreateNativeTimer(napi_env env, void *userData, int32_t totalCount, void (*func)(void *userData, int32_t count)) {
-       napi_value name;
-       std::string str = "UICallback";
-       napi_create_string_utf8(env, str.c_str(), str.size(), &name);
-       // UI主线程回调函数。
-       napi_create_threadsafe_function(
-           env, nullptr, nullptr, name, 0, 1, nullptr, nullptr, nullptr,
-           [](napi_env env, napi_value value, void *context, void *data) {
-               auto userdata = reinterpret_cast<UIData *>(data);
-               userdata->func(userdata->userData, userdata->count);
-               delete userdata;
-           },
-           &threadSafeFunction);
-       // 启动定时器，模拟数据变化。
-       std::thread timerThread([data = userData, totalCount, func]() {
-           uv_loop_t *loop = uv_loop_new();
-           uv_timer_t *timer = new uv_timer_t();
-           uv_timer_init(loop, timer);
-           timer->data = new UIData{data, 0, totalCount, func};
-           uv_timer_start(
-               timer,
-               [](uv_timer_t *handle) {
-                   OH_LOG_INFO(LOG_APP, "on timeout");
-                   napi_acquire_threadsafe_function(threadSafeFunction);
-                   auto *customData = reinterpret_cast<UIData *>(handle->data);
-                   // 创建回调数据。
-                   auto *callbackData =
-                       new UIData{customData->userData, customData->count, customData->totalCount, customData->func};
-                   napi_call_threadsafe_function(threadSafeFunction, callbackData, napi_tsfn_blocking);
-                   customData->count++;
-                   if (customData->count > customData->totalCount) {
-                       uv_timer_stop(handle);
-                       delete handle;
-                       delete customData;
-                   }
-               },
-               4000, 4000);
-           uv_run(loop, UV_RUN_DEFAULT);
-           uv_loop_delete(loop);
-       });
-       timerThread.detach();
-   }
-   } // namespace NativeModule
-   
-   #endif // MYAPPLICATION_UITIMER_H
-   ```
-
-6. 按照[接入ArkTS页面](ndk-access-the-arkts-page.md)章节将懒加载相关示例代码挂载到ContentSlot上显示。
-   ```
+3. 在NativeEntry.cpp中调用List使用懒加载的示例代码。
+   ```c++
    // NDK接口入口挂载文件。
    
    #include "NativeEntry.h"
@@ -434,11 +326,7 @@
    #include <uv.h>
    
    namespace NativeModule {
-   namespace {
-   napi_env g_env;
-   }
    
-   napi_env GetNapiEnv() { return g_env; }
    
    napi_value CreateNativeRoot(napi_env env, napi_callback_info info) {
        size_t argc = 1;
@@ -468,3 +356,270 @@
    
    } // namespace NativeModule
    ```
+## 控制列表滚动位置
+
+1. 控制列表滚动到指定偏移量位置。
+    ```c++
+    //ArkUIListNode.h
+    //列表封装对象。
+    class ArkUIListNode: public ArkUINode {
+        //...
+        void ScrollTo(float offset) {
+            ArkUI_NumberValue value[] = {{.f32 =0},{.f32 = offset},{.f32 = 0}};
+            ArkUI_AttributeItem Item = {.value = value,.size = 3};
+            nativeModule_->setAttribute(handle_, NODE_SCROLL_OFFSET, &Item);
+        }
+    };
+    ```
+2. 控制列表滚动到指定元素。 
+    ```c++
+    //ArkUIListNode.h
+    //列表封装对象。
+    class ArkUIListNode : public ArkUINode {
+        //...
+        void ScrollToIndex(int32_t index) {
+            ArkUI_NumberValue value[] = {{.i32 = index}};
+            ArkUI_AttributeItem Item = {.value = value, .size = 1};
+            nativeModule_->setAttribute(handle_, NODE_LIST_SCROLL_TO_INDEX, &Item);
+        }
+    };
+    ```
+
+3. 控制列表滚动指定偏移量。
+    ```c++
+   //ArkUIListNode.h
+    //列表封装对象。
+    class ArkUIListNode : public ArkUINode {
+        void ScrollBy(float offset) {
+            ArkUI_NumberValue value[] = {{.f32 =0},{.f32 = offset}};
+            ArkUI_AttributeItem Item = {.value = value, .size = 2};
+            nativeModule_->setAttribute(handle_, NODE_SCROLL_BY, &Item);
+        }
+    };
+    ```
+## ListItem横划删除 
+
+1. ListItem设置NODE_LIST_ITEM_SWIPE_ACTION属性，将ArkUI_ListItemSwipeActionOption对象作为属性参数传入。
+    ```c++
+    // ArkUIListItemNode.h 
+    //提供列表项的封装类。 
+    #ifndef MYAPPLICATION ARKUISTACKNODE_H 
+    #define MYAPPLICATION ARKUISTACKNODE_H 
+    #include "ArkUINode.h" 
+    namespace NativeModule{ 
+    class ArkUIListItemNode : public ArkUINode { 
+    public: 
+        ArkUIListItemNode() 
+            : ArkUINode((NativeModuleInstance::GetInstance()->GetNativeNodeAPI())->createNode(ARKUI_NODE_LIST_ITEM)) {}
+        ~ArkUIListItemNode() { 
+            if(swipeAction_) { 
+                OH_ArkUI_ListItemSwipeActionOption_Dispose(swipeAction_); 
+            }
+            if (swipeItem_) { 
+                OH_ArkUI_ListItemSwipeActionItem_Dispose(swipeItem_); 
+            }
+        } 
+        void SetSwiperAction(std::shared_ptr<ArkUINode> node) { 
+            swipeContent_ = node; 
+            swipeItem_ = OH_ArkUI_ListItemSwipeActionItem_Create(); 
+            OH_ArkUI_ListItemSwipeActionItem_SetContent(swipeItem_, node->GetHandle()); 
+            swipeAction_ = OH_ArkUI_ListItemSwipeActionOption_Create(); 
+            OH_ArkUI_ListItemSwipeActionOption_SetEnd(swipeAction_, swipeItem_); 
+            ArkUI_AttributeItem Item = {.object= swipeAction_ }; 
+            nativeModule_->setAttribute(handle_,NODE_LIST_ITEM_SWIPE_ACTION, &Item); 
+        } 
+        std::shared_ptr<ArkUINode> GetSwipeContent() const { 
+            return swipeContent_; 
+        }
+    private: 
+        ArkUI_ListItemSwipeActionOption* swipeAction_ = nullptr; 
+        ArkUI_ListItemSwipeActionItem* swipeItem_ = nullptr;
+        std::shared_ptr<ArkUINode> swipeContent_ = nullptr; 
+    }; 
+    }// namespace NativeModule 
+    #endif// MYAPPLICATION_ARKUISTACKNODE_H
+    ```
+
+2. 创建ListItem时，创建ListItem的划出组件，并绑定点击事件，在点击事件中执行删除数据源操作。ListItem复用时，更新划出组件的绑定事件。
+    ```c++
+    // ArkUIListItemAdapter.h 
+    class ArkUIListItemAdapter { 
+        //...
+        //需要新的Item显示在可见区域。 
+        void OnNewItemAttached(ArkUI_NodeAdapterEvent *event) { 
+            auto index = OH_ArkUI_NodeAdapterEvent_GetItemIndex(event); 
+            ArkUI_NodeHandle handle = nullptr; 
+            if (!cachedItems_.empty()) { 
+                //使用并更新回收复用的缓存。 
+                auto recycledItem = cachedItems_.top(); 
+                auto textItem = std::dynamic_pointer_cast<ArkUITextNode>(recycledItem->GetChildren().back()); 
+                textItem->SetTextContent(data_[index]); 
+                handle = recycledItem->GetHandle(); 
+                auto swipeContent = recycledItem->GetSwipeContent(); 
+                swipeContent->RegisterOnClick([this, data = data_[index]]() { 
+                    auto it = std::find(data_.begin(), data_.end(), data); 
+                    if (it != data_.end()) { 
+                        auto index = std::distance(data_.begin(), it); 
+                        RemoveItem(index); 
+                    } 
+                }); 
+                //释放缓存池的引用。 
+                cachedItems_.pop(); 
+            } else { 
+                //创建新的元素。 
+                auto listItem = std::make_shared<ArkUIListItemNode>(); 
+                auto textNode = std::make_shared<ArkUITextNode>();
+                textNode->SetTextContent(data_[index]); 
+                textNode->SetFontSize(16); 
+                textNode->SetPercentWidth(1); 
+                textNode->SetHeight(100); 
+                textNode->SetBackgroundColor(0xFFfffacd); 
+                textNode->SetTextAlign(ARKUI_TEXT_ALIGNMENT_CENTER);
+                listItem->AddChild(textNode); 
+                //创建ListItem划出菜单。 
+                auto swipeNode = std::make_shared<ArkUITextNode>(); 
+                swipeNode->SetTextContent("del"); 
+                swipeNode->SetFontSize(16); 
+                swipeNode->SetFontColor(0xFFFFFFFF); 
+                swipeNode->SetWidth(100); 
+                swipeNode->SetHeight(100); 
+                swipeNode->SetBackgroundColor(0xFFFF0000); 
+                swipeNode->SetTextAlign(ARKUI_TEXT_ALIGNMENT_CENTER); 
+                swipeNode->RegisterOnClick([this, data = data_[index]]() { 
+                    auto it = std::find(data_.begin(), data_.end(), data); 
+                    if (it != data_.end()) { 
+                        auto index = std::distance(data_.begin(), it); 
+                        RemoveItem(index); 
+                    } 
+                }); 
+                listItem->SetSwiperAction(swipeNode); 
+                handle = listItem->GetHandle(); 
+                //保持文本列表项的引用。 
+                items_.emplace(handle, listItem); 
+            }
+            //设置需要展示的元素。 
+            OH_ArkUI_NodeAdapterEvent_SetItem(event, handle); 
+        } 
+    }
+    ```
+3. ArkUIListItemAdapter中新增RemoveItem，用于删除数据源并且调用OH_ArkUI_NodeAdapter_RemoveItem接口通知框架刷新UI。
+    ```c++
+    // ArkUIListItemAdapter.h 
+    class ArkUIListItemAdapter { 
+        //...
+        void RemoveItem(size_t index) { 
+            //删除第index个数据。 
+            data_.erase(data_.begin() + index); 
+            //如果index会导致可视区域元素发生可见性变化，则会回调NODE_ADAPTER_EVENT_ON_REMOVE_NODE_FROM_DAPTER事件删除元素， 
+            //根据是否有新增元素回调NODE_ADAPTER_EVENT_ON_GET_NODE_ID和NODE_ADAPTER_EVENT_ON_ADD_NODE_TO_ADAPTER事件。 
+            OH_ArkUI_NodeAdapter_RemoveItem(handle_, index, 1); 
+            //更新新的数量。 
+            OH_ArkUI_NodeAdapter_SetTotalNodeCount(handle_, data_.size()); 
+        } 
+    };
+    ```
+## 使用分组列表 
+1. 分组列表使用ListItemGroup组件实现，ListItemGroup支持添加header、footer设置函数，支持使用懒加载。
+    ```c++
+    // ArkUIListItemGroupNode.h 
+
+    #ifndef MYAPPLICATION_ARKUILISTITEMGROUPNODE_H 
+    #define MYAPPLICATION_ARKUILISTITEMGROUPNODE_H 
+    #include "ArkUINode.h" 
+    #include "ArkUIListItemAdapter.h" 
+    namespace NativeModule{ 
+    class ArkUIListItemGroupNode : public ArkUINode { 
+    public: 
+        ArkUIListItemGroupNode() 
+            : ArkUINode((NativeModuleInstance::GetInstance()->GetNativeNodeAPI())->createNode(ARKUI_NODE_LIST_ITEM_GROUP)) {} 
+        void SetHeader(std::shared_ptr<ArkUINode> node) { 
+            if (node) { 
+                ArkUI_AttributeItem Item = {.object = node->GetHandle()}; 
+                nativeModule_->setAttribute(handle_, NODE_LIST_ITEM_GROUP_SET_HEADER, &Item); 
+            } else { 
+                nativeModule_->resetAttribute(handle_, NODE_LIST_ITEM_GROUP_SET_HEADER); 
+            } 
+        } 
+        void SetFooter(std::shared_ptr<ArkUINode> node) { 
+            if (node) { 
+                ArkUI_AttributeItem Item = {.object= node->GetHandle()}; 
+                nativeModule_->setAttribute(handle_, NODE_LIST_ITEM_GROUP_SET_FOOTER, &Item); 
+            } else { 
+                nativeModule_->resetAttribute(handle_, NODE_LIST_ITEM_GROUP_SET_FOOTER); 
+            } 
+        } 
+        std::shared_ptr<ArkUINode> GetHeader() const { 
+            return header_; 
+        }
+        std::shared_ptr<ArkUINode> GetFooter() const { 
+            return footer_; 
+        }
+        //引入懒加载模块。 
+        void SetLazyAdapter(const std::shared_ptr<ArkUIListItemAdapter> &adapter) { 
+            assert(handle_); 
+            ArkUI_AttributeItem item{nullptr,0, nullptr, adapter->GetHandle()}; 
+            nativeModule_->setAttribute(handle_, NODE_LIST_ITEM_GROUP_NODE_ADAPTER, &item); 
+            adapter_ = adapter; 
+        } 
+    private: 
+        std::shared_ptr<ArkUINode> header_; 
+        std::shared_ptr<ArkUINode> footer_; 
+        std::shared_ptr<ArkUIListItemAdapter> adapter_; 
+    }; 
+    }// namespace NativeModule 
+    #endif//MYAPPLICATION_ARKUILISTITEMGROUPNODE_H
+    ```
+2. List组件设置吸顶。
+    ```c++
+    // ArkUIListNode.h 
+    //列表封装对象。 
+    class ArkUIListNode : public ArkUINode{ 
+        //...
+        void SetSticky(ArkUI_StickyStyle style) { 
+            assert(handle_); 
+            ArkUI_NumberValue value[] = {{.i32 = style}}; 
+            ArkUI_AttributeItem item = {value, 1}; 
+            nativeModule_->setAttribute(handle_, NODE_LIST_STICKY, &item); 
+        }
+    };
+    ```
+3. List组件下使用ListItemGroup实现分组列表界面。
+    ```c++
+    // LazyTextListExample.h 
+    //懒加载列表示例代码。 
+    #ifndef MYAPPLICATION_LAZYTEXTLISTEXAMPLE_H
+    #define MYAPPLICATION_LAZYTEXTLISTEXAMPLE_H 
+    #include "ArkUIBaseNode.h" 
+    #include "ArkUIListNode.h" 
+    #include "ArkUIListItemGroupNode.h" 
+    namespace NativeModule { 
+    std::shared_ptr<ArkUIBaseNode> CreateLazyTextListExample() { 
+    //创建组件并挂载 
+    //1: 创建List组件。 
+        auto list = std::make_shared<ArkUIListNode>(); 
+        list->SetPercentWidth(1); 
+        list->SetPercentHeight(1); 
+        //设置吸顶 
+        list->SetSticky(ARKUI_STICKY_STYLE_BOTH); 
+        //2: 创建ListItemGroup并挂载到List上。 
+        for (int32_t i = 0; i < 3; i++) { 
+            auto header = std::make_shared<ArkUITextNode>(); 
+            header->SetTextContent("header"); 
+            header->SetFontSize(16); 
+            header->SetPercentWidth(1); 
+            header->SetHeight(50); 
+            header->SetBackgroundColor(0xFFDCDCDC); 
+            header->SetTextAlign(ARKUI_TEXT_ALIGNMENT_CENTER);
+            auto listItemGroup = std::make_shared<ArkUIListItemGroupNode>(); 
+            listItemGroup->SetHeader(header); 
+            auto adapter = std::make_shared<ArkUIListItemAdapter>(4); 
+            listItemGroup->SetLazyAdapter(adapter); 
+            list->AddChild(listItemGroup); 
+        }
+        return list; 
+    }
+    }// namespace NativeModule 
+    #endif// MYAPPLICATION_LAZYTEXTLISTEXAMPLE_H
+    ```
+
+

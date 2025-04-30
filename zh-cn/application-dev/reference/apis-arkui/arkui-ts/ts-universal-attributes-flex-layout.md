@@ -75,7 +75,7 @@ alignSelf(value: ItemAlign)
 
 | 参数名 | 类型                                        | 必填 | 说明                                                         |
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ItemAlign](ts-appendix-enums.md#itemalign) | 是   | 子组件在父容器交叉轴的对齐格式，会覆盖[Flex](ts-container-flex.md)、[Column](ts-container-column.md)、[Row](ts-container-row.md)、[GridRow](ts-container-gridrow.md)布局容器中的alignItems设置。<br/>[GridCol](./ts-container-gridcol.md)可以绑定alignsSelf属性来改变它自身在交叉轴方向上的布局。<br/>默认值：ItemAlign.Auto |
+| value  | [ItemAlign](ts-appendix-enums.md#itemalign) | 是   | 子组件在父容器交叉轴的对齐格式，会覆盖[Flex](ts-container-flex.md)、[Column](ts-container-column.md)、[Row](ts-container-row.md)、[GridRow](ts-container-gridrow.md)布局容器中的alignItems设置。<br/>[GridCol](./ts-container-gridcol.md)可以绑定alignSelf属性来改变它自身在交叉轴方向上的布局。<br/>默认值：ItemAlign.Auto |
 
 
 ## 示例
@@ -91,7 +91,7 @@ struct FlexExample {
     Column({ space: 5 }) {
       Text('flexBasis').fontSize(9).fontColor(0xCCCCCC).width('90%')
       // 基于主轴的基准尺寸
-      // flexBasis()值可以是字符串'auto',表示基准尺寸是元素本来的大小,也可以是长度设置，相当于.width()/.height()
+      // flexBasis()值可以是字符串'auto'，表示基准尺寸是元素本来的大小，也可以是长度设置，相当于.width()/.height()
       Flex() {
         Text('flexBasis(100)')
           .flexBasis(100) // 这里表示宽度为100vp
@@ -123,7 +123,7 @@ struct FlexExample {
 
       Text('flexShrink').fontSize(9).fontColor(0xCCCCCC).width('90%')
       // flexShrink()表示该元素的压缩比例，基于超出的总尺寸进行计算
-      // 第一个text压缩比例是0,另外两个都是1,因此放不下时等比例压缩后两个,第一个不压缩
+      // 第一个text压缩比例是0，另外两个都是1，因此放不下时等比例压缩后两个，第一个不压缩
       Flex({ direction: FlexDirection.Row }) {
         Text('flexShrink(0)')
           .flexShrink(0)

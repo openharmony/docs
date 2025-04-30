@@ -599,7 +599,7 @@ import { fileUri } from '@kit.CoreFileKit';
 
 //传入文件的uri
 let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
-let context = getContext(this);
+let context = this.getUIContext().getHostContext();
 print.print([fileUri.getUriFromPath(filePath)], context, (err: BusinessError, printTask: print.PrintTask) => {
     if (err) {
         console.log('print err ' + JSON.stringify(err));
@@ -651,7 +651,7 @@ import { fileUri } from '@kit.CoreFileKit';
 
 //传入文件的uri
 let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
-let context = getContext(this);
+let context = this.getUIContext().getHostContext();
 print.print([fileUri.getUriFromPath(filePath)], context).then((printTask: print.PrintTask) => {
     printTask.on('succeed', () => {
         console.log('print state is succeed');
@@ -714,7 +714,7 @@ let printAttributes : print.PrintAttributes = {
     colorMode: print.PrintColorMode.COLOR_MODE_MONOCHROME,
     duplexMode: print.PrintDuplexMode.DUPLEX_MODE_NONE
 }
-let context = getContext();
+let context = this.getUIContext().getHostContext();
 
 print.print(jobName, printAdapter, printAttributes, context).then((printTask: print.PrintTask) => {
     printTask.on('succeed', () => {

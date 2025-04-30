@@ -1,6 +1,6 @@
 # SymbolGlyph
 
-显示图标小符号的组件。
+显示图标小符号的组件。<!--RP1--><!--RP1End-->
 
 >  **说明：**
 >
@@ -24,7 +24,7 @@ SymbolGlyph(value?: Resource)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | [Resource](ts-types.md#resource)| 否 | SymbolGlyph组件的资源名,如 $r('sys.symbol.ohos_wifi')。 |
+| value | [Resource](ts-types.md#resource)| 否 | SymbolGlyph组件的资源名，如 $r('sys.symbol.ohos_wifi')。 |
 
 >  **说明：**
 >
@@ -70,7 +70,7 @@ fontSize(value: number | string | Resource)
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------ | ---- | ---- | ----- |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | SymbolGlyph组件大小。<br/>默认值：16fp<br/>单位：fp<br/>不支持设置百分比字符串。|
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | SymbolGlyph组件大小。<br/>默认值：16fp<br/>单位：[fp](ts-pixel-units.md#像素单位)<br/>不支持设置百分比字符串。|
 
 ### fontWeight
 

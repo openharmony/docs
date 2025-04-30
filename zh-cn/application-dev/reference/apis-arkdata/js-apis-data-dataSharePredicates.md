@@ -149,8 +149,8 @@ limit(total: number, offset: number): DataSharePredicates
 
 | 参数名   | 类型   | 必填 | 说明           |
 | -------- | ------ | ---- | -------------- |
-| total    | number | 是   | 指定结果数，取值为正整数。传入值小于等于0时，不会限制记录数量。   |
-| offset | number | 是   | 指示起始位置，取值为正整数。传入值小于等于0时，查询结果将从第一个元素位置返回。 |
+| total    | number | 是   | 表示最大数据记录数，取值为正整数。传入值小于0时，不会限制记录数量。传入值等于0时，KVDB(schema)会限制记录数为0，而RDB则在传入值等于0时不会限制记录数量。|
+| offset | number | 是   | 指定查询结果的起始位置，默认初始位置为结果集的最前端。当offset为负数时，起始位置为结果集的最前端。当offset超出结果集最后位置时，查询结果为空。|
 
 **返回值：**
 
@@ -169,7 +169,7 @@ predicates.equalTo("NAME", "Rose").limit(10, 3)
 
 in(field: string, value: Array&lt;ValueType&gt;): DataSharePredicates
 
-该接口用于配置谓词以匹配值在指范围内的字段。
+该接口用于配置谓词以匹配值在指定范围内的字段。
 
 目前仅RDB及KVDB(schema)支持该谓词。
 

@@ -24,7 +24,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [OH_AudioCaptureInfo](_o_h___audio_capture_info.md) [micCapInfo](#miccapinfo) | 音频麦克风采样信息。 | 
-| [OH_AudioCaptureInfo](_o_h___audio_capture_info.md) [innerCapInfo](#innercapinfo) | 音频内录采样信息 。 | 
+| [OH_AudioCaptureInfo](_o_h___audio_capture_info.md) [innerCapInfo](#innercapinfo) | 音频内录采样信息。 | 
 | [OH_AudioEncInfo](_o_h___audio_enc_info.md) [audioEncInfo](#audioencinfo) | 音频编码信息，原始码流时不需要设置。 | 
 
 
@@ -51,7 +51,7 @@ OH_AudioCaptureInfo OH_AudioInfo::innerCapInfo
 
 **描述**
 
-音频内录采样信息 。
+音频内录采样信息。
 
 
 ### micCapInfo

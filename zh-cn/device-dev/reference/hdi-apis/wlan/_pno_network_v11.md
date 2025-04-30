@@ -42,7 +42,7 @@ boolean PnoNetwork::isHidden
 ```
 **描述**
 
-是否扫描隐藏网络
+isHidden为true支持扫描隐藏网络，反之为false则不支持扫描隐藏网络
 
 
 ### ssid

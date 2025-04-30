@@ -55,29 +55,32 @@ Web组件提供位置权限管理能力。开发者可以通过[onGeolocationSho
   import { BusinessError } from '@kit.BasicServicesKit';
   import { abilityAccessCtrl, common } from '@kit.AbilityKit';
 
-  let context = getContext(this) as common.UIAbilityContext;
   let atManager = abilityAccessCtrl.createAtManager();
-
-  // 向用户请求位置权限设置。
-  atManager.requestPermissionsFromUser(context, ["ohos.permission.APPROXIMATELY_LOCATION"]).then((data) => {
-    console.info('data:' + JSON.stringify(data));
-    console.info('data permissions:' + data.permissions);
-    console.info('data authResults:' + data.authResults);
-  }).catch((error: BusinessError) => {
-    console.error(`Failed to request permissions from user. Code is ${error.code}, message is ${error.message}`);
-  })
 
   @Entry
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
+    uiContext: UIContext = this.getUIContext();
+
+    aboutToAppear(): void {
+      let context : Context | undefined = this.uiContext.getHostContext() as common.UIAbilityContext;
+      // 向用户请求位置权限设置。
+      atManager.requestPermissionsFromUser(context, ["ohos.permission.APPROXIMATELY_LOCATION"]).then((data) => {
+        console.info('data:' + JSON.stringify(data));
+        console.info('data permissions:' + data.permissions);
+        console.info('data authResults:' + data.authResults);
+      }).catch((error: BusinessError) => {
+        console.error(`Failed to request permissions from user. Code is ${error.code}, message is ${error.message}`);
+      })  
+    }
 
     build() {
       Column() {
         Web({ src: $rawfile('getLocation.html'), controller: this.controller })
           .geolocationAccess(true)
           .onGeolocationShow((event) => { // 地理位置权限申请通知
-            AlertDialog.show({
+             this.uiContext.showAlertDialog({
               title: '位置权限请求',
               message: '是否允许获取位置信息',
               primaryButton: {

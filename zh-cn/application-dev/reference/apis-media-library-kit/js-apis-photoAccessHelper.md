@@ -1,6 +1,6 @@
 # @ohos.file.photoAccessHelper (相册管理模块)
 
-该模块提供相册管理模块能力，包括创建相册以及访问、修改相册中的媒体数据信息等。
+该模块提供相册管理能力，包括创建相册、访问和修改相册中的媒体数据。
 
 > **说明：**
 >
@@ -28,7 +28,7 @@ getPhotoAccessHelper(context: Context): PhotoAccessHelper
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 传入Ability实例的上下文。 |
 
 **返回值：**
 
@@ -47,8 +47,10 @@ getPhotoAccessHelper(context: Context): PhotoAccessHelper
 **示例：**
 
 ```ts
-//此处获取的phAccessHelper实例为全局对象，后续使用到phAccessHelper的地方默认为使用此处获取的对象，如未添加此段代码报phAccessHelper未定义的错误请自行添加。
-let context = getContext(this);
+// 此处获取的phAccessHelper实例为全局对象，后续使用到phAccessHelper的地方默认为使用此处获取的对象，如未添加此段代码报phAccessHelper未定义的错误请自行添加。
+// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
+import { common } from '@kit.AbilityKit';
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 ```
 
@@ -85,6 +87,8 @@ getAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Photo
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -148,6 +152,8 @@ getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -208,6 +214,8 @@ getBurstAssets(burstKey: string, options: FetchOptions): Promise&lt;FetchResult&
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { dataSharePredicates } from '@kit.ArkData';
@@ -241,9 +249,9 @@ async function example() {
 
 createAsset(photoType: PhotoType, extension: string, options: CreateOptions, callback: AsyncCallback&lt;string&gt;): void
 
-指定待创建的文件类型、后缀和创建选项，创建图片或视频资源，使用callback方式返回结果。
+指定文件类型、后缀和创建选项，创建图片或视频资源。使用callback方式返回结果。
 
-此接口在未申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'时，可以使用安全控件创建媒体资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-savebutton.md)。
+在未申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'时，可以使用安全控件创建媒体资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-savebutton.md)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -273,6 +281,8 @@ createAsset(photoType: PhotoType, extension: string, options: CreateOptions, cal
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 async function example() {
   console.info('createAssetDemo');
@@ -296,9 +306,9 @@ async function example() {
 
 createAsset(photoType: PhotoType, extension: string, callback: AsyncCallback&lt;string&gt;): void
 
-指定待创建的文件类型和后缀，创建图片或视频资源，使用callback方式返回结果。
+指定文件类型和后缀，创建图片或视频资源，使用callback方式返回结果。
 
-此接口在未申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'时，可以使用安全控件创建媒体资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-savebutton.md)。
+在未申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'时，可以使用安全控件创建媒体资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-savebutton.md)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -327,6 +337,8 @@ createAsset(photoType: PhotoType, extension: string, callback: AsyncCallback&lt;
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 async function example() {
   console.info('createAssetDemo');
@@ -347,9 +359,9 @@ async function example() {
 
 createAsset(photoType: PhotoType, extension: string, options?: CreateOptions): Promise&lt;string&gt;
 
-指定待创建的文件类型、后缀和创建选项，创建图片或视频资源，使用Promise方式返回结果。
+指定文件类型、后缀和创建选项，创建图片或视频资源，以Promise方式返回结果。
 
-此接口在未申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'时，可以使用安全控件创建媒体资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-savebutton.md)。
+在未申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'时，可以使用安全控件创建媒体资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-savebutton.md)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -384,6 +396,8 @@ createAsset(photoType: PhotoType, extension: string, options?: CreateOptions): P
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 async function example() {
   console.info('createAssetDemo');
@@ -408,7 +422,7 @@ getAlbums(type: AlbumType, subtype: AlbumSubtype, options: FetchOptions, callbac
 
 根据检索选项和相册类型获取相册，使用callback方式返回结果。
 
-获取相册前需先保证相册存在。
+获取相册前，确保相册已存在。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -435,6 +449,8 @@ getAlbums(type: AlbumType, subtype: AlbumSubtype, options: FetchOptions, callbac
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -497,6 +513,8 @@ getAlbums(type: AlbumType, subtype: AlbumSubtype, callback: AsyncCallback&lt;Fet
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 async function example() {
   // 示例代码中为获取统相册VIDEO，默认已预置。
@@ -523,7 +541,7 @@ getAlbums(type: AlbumType, subtype: AlbumSubtype, options?: FetchOptions): Promi
 
 根据检索选项和相册类型获取相册，使用Promise方式返回结果。
 
-获取相册前需先保证相册存在。
+在获取相册之前，确保相册已存在。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -556,6 +574,8 @@ getAlbums(type: AlbumType, subtype: AlbumSubtype, options?: FetchOptions): Promi
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -587,7 +607,7 @@ async function example() {
 
 registerChange(uri: string, forChildUris: boolean, callback: Callback&lt;ChangeData&gt;) : void
 
-注册对指定uri的监听，使用callback方式返回异步结果。
+注册指定uri的监听，并通过callback方式返回异步结果。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -610,6 +630,8 @@ registerChange(uri: string, forChildUris: boolean, callback: Callback&lt;ChangeD
 | 13900020     | Invalid argument.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -669,6 +691,8 @@ unRegisterChange(uri: string, callback?: Callback&lt;ChangeData&gt;): void
 | 13900020     | Invalid argument.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -734,6 +758,8 @@ createDeleteRequest(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;voi
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -804,6 +830,8 @@ createDeleteRequest(uriList: Array&lt;string&gt;): Promise&lt;void&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -837,7 +865,7 @@ applyChanges(mediaChangeRequest: MediaChangeRequest): Promise&lt;void&gt;
 
 **需要权限**：ohos.permission.WRITE_IMAGEVIDEO
 
-在提交创建资产的变更请求时，用安全控件的方式调用该接口来创建媒体资源，不需要申请'ohos.permission.WRITE_IMAGEVIDEO'权限，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-savebutton.md)。
+提交创建资产的变更请求时，使用安全控件调用接口创建媒体资源，无需申请'ohos.permission.WRITE_IMAGEVIDEO'权限，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-savebutton.md)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -896,6 +924,8 @@ release(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 async function example() {
   console.info('releaseDemo');
@@ -936,6 +966,8 @@ release(): Promise&lt;void&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 async function example() {
   console.info('releaseDemo');
@@ -966,13 +998,13 @@ showAssetsCreationDialog(srcFileUris: Array&lt;string&gt;, photoCreationConfigs:
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
 | srcFileUris | Array&lt;string&gt; | 是 | 需保存到媒体库中的图片/视频文件对应的[媒体库uri](../../file-management/user-file-uri-intro.md#媒体文件uri)。<br>**注意：**<br>- 仅支持处理图片、视频uri。<br>- 不支持手动拼接的uri，需调用接口获取，获取方式参考[媒体文件uri获取方式](../../file-management/user-file-uri-intro.md#媒体文件uri获取方式)。  |
-| photoCreationConfigs | Array&lt;[PhotoCreationConfig](#photocreationconfig12)&gt; | 是 | 保存图片/视频到媒体库的配置，包括保存的文件名等，与srcFileUris保持一一对应。 |
+| photoCreationConfigs | Array&lt;[PhotoCreationConfig](#photocreationconfig12)&gt; | 是 | 保存图片或视频到媒体库的配置，包括文件名等，与srcFileUris保持一一对应。 |
 
 **返回值：**
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回给应用的媒体库文件uri列表。Uri已对应用授权，支持应用写入数据。如果生成uri异常，则返回批量创建错误码。<br>返回-3006表示不允许出现非法字符；返回-2004表示图片类型和后缀不符；返回-203表示文件操作异常。 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回给应用的媒体库文件uri列表。uri已对应用授权，支持应用写入数据。如果生成uri异常，则返回批量创建错误码。<br>返回-3006表示不允许出现非法字符；返回-2004表示图片类型和后缀不符；返回-203表示文件操作异常。 |
 
 **错误码：**
 
@@ -984,6 +1016,8 @@ showAssetsCreationDialog(srcFileUris: Array&lt;string&gt;, photoCreationConfigs:
 | 14000011 |  Internal system error. |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -1034,7 +1068,7 @@ createAssetWithShortTermPermission(photoCreationConfig: PhotoCreationConfig): Pr
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| Promise&lt;string&gt; | Promise对象，返回给应用的媒体库文件uri。Uri已对应用授权，支持应用写入数据。如果生成uri异常，则返回批量创建错误码。<br>返回-3006表不允许出现非法字符；返回-2004表示图片类型和后缀不符；返回-203表示文件操作异常。 |
+| Promise&lt;string&gt; | Promise对象，返回给应用的媒体库文件uri。Uri已对应用授权，支持应用写入数据。如果生成uri异常，则返回批量创建错误码。<br>返回-3006表示不允许出现非法字符；返回-2004表示图片类型和后缀不符；返回-203表示文件操作异常。 |
 
 **错误码：**
 
@@ -1047,6 +1081,8 @@ createAssetWithShortTermPermission(photoCreationConfig: PhotoCreationConfig): Pr
 | 14000011 |  Internal system error |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { fileIo } from '@kit.CoreFileKit';
@@ -1119,6 +1155,8 @@ requestPhotoUrisReadPermission(srcFileUris: Array&lt;string&gt;): Promise&lt;Arr
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -1173,6 +1211,8 @@ getSupportedPhotoFormats(photoType: PhotoType): Promise&lt;Array&lt;string&gt;&g
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
@@ -1220,7 +1260,7 @@ async function example(photoTypeNumber: number){
 
 get(member: string): MemberType
 
-获取PhotoAsset成员参数。
+获取PhotoAsset成员参数的值。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -1228,7 +1268,7 @@ get(member: string): MemberType
 
 | 参数名      | 类型                        | 必填   | 说明    |
 | -------- | ------------------------- | ---- | ----- |
-| member | string | 是    | 成员参数名称，在get时，除了'uri'、'media_type'、'subtype'和'display_name'四个属性之外，其他的属性都需要在fetchColumns中填入需要get的[PhotoKeys](#photokeys)，例如：get title属性fetchColumns: ['title']。 |
+| member | string | 是    | 成员参数名称，在get时，除了'uri'、'media_type'、'subtype'和'display_name'四个属性之外，其他的属性都需要在fetchColumns中填入需要获取的[PhotoKeys](#photokeys)，例如：get title属性fetchColumns: ['title']。 |
 
 **返回值：**
 
@@ -1247,6 +1287,8 @@ get(member: string): MemberType
 | 14000014     | Member is not a valid PhotoKey.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -1296,6 +1338,8 @@ set(member: string, value: string): void
 | 14000014     | Member is not a valid PhotoKey.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -1349,6 +1393,8 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -1409,6 +1455,8 @@ commitModify(): Promise&lt;void&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -1445,7 +1493,7 @@ getReadOnlyFd(callback: AsyncCallback&lt;number&gt;): void
 >
 > 从API version 10开始支持，从API version 11开始废弃。出于安全考量，不再提供获取正式媒体文件句柄的接口。
 
-**注意**：返回的文件描述符在使用完毕后需要调用close进行释放。
+**注意**：使用完毕后调用close释放文件描述符。
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
@@ -1469,6 +1517,8 @@ getReadOnlyFd(callback: AsyncCallback&lt;number&gt;): void
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 async function example() {
@@ -1527,6 +1577,8 @@ getReadOnlyFd(): Promise&lt;number&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 async function example() {
   console.info('getReadOnlyFdDemo');
@@ -1582,6 +1634,8 @@ close(fd: number, callback: AsyncCallback&lt;void&gt;): void
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -1647,6 +1701,8 @@ close(fd: number): Promise&lt;void&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -1698,6 +1754,8 @@ getThumbnail(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -1751,6 +1809,8 @@ getThumbnail(size: image.Size, callback: AsyncCallback&lt;image.PixelMap&gt;): v
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -1812,6 +1872,8 @@ getThumbnail(size?: image.Size): Promise&lt;image.PixelMap&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
@@ -1840,7 +1902,7 @@ async function example() {
 
 clone(title: string): Promise&lt;PhotoAsset&gt;
 
-将一个资产进行克隆，支持设置文件名，不支持修改文件类型。
+克隆资产。可设置文件名，但不支持修改文件类型。
 
 **需要权限**：ohos.permission.WRITE\_IMAGEVIDEO
 
@@ -1870,6 +1932,8 @@ clone(title: string): Promise&lt;PhotoAsset&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { systemDateTime } from '@kit.BasicServicesKit';
@@ -1894,7 +1958,7 @@ async function example() {
 
 ## PhotoViewPicker
 
-图库选择器对象，用来支撑选择图片/视频等用户场景。在使用前，需要先创建PhotoViewPicker实例。
+图库选择器对象用于支持选择图片、视频等用户场景。使用前，需先创建PhotoViewPicker实例。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1910,7 +1974,7 @@ let photoPicker = new photoAccessHelper.PhotoViewPicker();
 
 select(option?: PhotoSelectOptions) : Promise&lt;PhotoSelectResult&gt;
 
-通过选择模式拉起photoPicker界面，用户可以选择一个或多个图片/视频。接口采用promise异步返回形式，传入可选参数PhotoSelectOptions对象，返回PhotoSelectResult对象。
+通过选择模式拉起photoPicker界面，用户可以选择一个或多个图片/视频。接口采用Promise异步返回形式，传入可选参数PhotoSelectOptions对象，返回PhotoSelectResult对象。
 
 **注意**：此接口返回的PhotoSelectResult对象中的photoUris具有永久授权，可通过调用[photoAccessHelper.getAssets接口](#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。
 
@@ -2091,6 +2155,8 @@ getCount(): number
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -2133,6 +2199,8 @@ isAfterLast(): boolean
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -2158,7 +2226,7 @@ async function example() {
 
 close(): void
 
-释放FetchResult实例并使其失效。无法调用其他方法。
+释放FetchResult实例并使其失效，无法再调用其他方法。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -2173,6 +2241,8 @@ close(): void
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2206,7 +2276,7 @@ getFirstObject(callback: AsyncCallback&lt;T&gt;): void
 
 | 参数名   | 类型                                          | 必填 | 说明                                        |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------- |
-| callback | AsyncCallback&lt;T&gt; | 是   | 异步获取结果集中的第一个完成后的回调。 |
+| callback | AsyncCallback&lt;T&gt; | 是   | 异步获取结果集中的第一个文件资产完成后的回调。 |
 
 **错误码：**
 
@@ -2219,6 +2289,8 @@ getFirstObject(callback: AsyncCallback&lt;T&gt;): void
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2267,6 +2339,8 @@ getFirstObject(): Promise&lt;T&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -2296,7 +2370,7 @@ getNextObject(callback: AsyncCallback&lt;T&gt;): void
 
 | 参数名    | 类型                                          | 必填 | 说明                                      |
 | --------- | --------------------------------------------- | ---- | ----------------------------------------- |
-| callback | AsyncCallback&lt;T&gt; | 是   | 异步返回结果集中下一个之后的回调。 |
+| callback | AsyncCallback&lt;T&gt; | 是   | 异步获取结果集中的下一个完成后的回调。 |
 
 **错误码：**
 
@@ -2309,6 +2383,8 @@ getNextObject(callback: AsyncCallback&lt;T&gt;): void
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2361,6 +2437,8 @@ getNextObject(): Promise&lt;T&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -2384,7 +2462,7 @@ async function example() {
 
 getLastObject(callback: AsyncCallback&lt;T&gt;): void
 
-获取文件检索结果中的最后一个文件资产。此方法使用callback回调来返回。
+获取文件检索结果中的最后一个文件资产。此方法使用callback方式来返回。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -2405,6 +2483,8 @@ getLastObject(callback: AsyncCallback&lt;T&gt;): void
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2439,7 +2519,7 @@ getLastObject(): Promise&lt;T&gt;
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| Promise&lt;T&gt; | Promise对象，返回结果集中最后一个对象。 |
+| Promise&lt;T&gt; | Promise对象，返回结果集中的最后一个对象。 |
 
 **错误码：**
 
@@ -2452,6 +2532,8 @@ getLastObject(): Promise&lt;T&gt;
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2496,6 +2578,8 @@ getObjectByPosition(index: number, callback: AsyncCallback&lt;T&gt;): void
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -2521,7 +2605,7 @@ async function example() {
 
 getObjectByPosition(index: number): Promise&lt;T&gt;
 
-获取文件检索结果中具有指定索引的文件资产。此方法使用Promise形式返回文件Asset。
+获取文件检索结果中指定索引的文件资产。此方法返回Promise形式的文件Asset。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -2548,6 +2632,8 @@ getObjectByPosition(index: number): Promise&lt;T&gt;
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2577,7 +2663,7 @@ getAllObjects(callback: AsyncCallback&lt;Array&lt;T&gt;&gt;): void
 
 | 参数名   | 类型                                          | 必填 | 说明                                        |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;T&gt;&gt; | 是   | 异步获取结果集中的所有文件资产完成后的回调。 |
+| callback | AsyncCallback&lt;Array&lt;T&gt;&gt; | 是   | 异步获取结果集中的所有文件资产的回调。 |
 
 **错误码：**
 
@@ -2590,6 +2676,8 @@ getAllObjects(callback: AsyncCallback&lt;Array&lt;T&gt;&gt;): void
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2624,7 +2712,7 @@ getAllObjects(): Promise&lt;Array&lt;T&gt;&gt;
 
 | 类型                                    | 说明                       |
 | --------------------------------------- | -------------------------- |
-| Promise&lt;Array&lt;T&gt;&gt; | Promise对象，返回结果集中所有文件资产数组。 |
+| Promise&lt;Array&lt;T&gt;&gt; | Promise对象，返回所有文件资产的数组。 |
 
 **错误码：**
 
@@ -2637,6 +2725,8 @@ getAllObjects(): Promise&lt;Array&lt;T&gt;&gt;
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2666,10 +2756,10 @@ async function example() {
 | ------------ | ------ | ---- | ---- | ------- |
 | albumType | [AlbumType](#albumtype) | 是    | 否    | 相册类型。    |
 | albumSubtype | [AlbumSubtype](#albumsubtype) | 是    | 否   | 相册子类型。    |
-| albumName | string | 是    | 用户相册可写，预置相册不可写   | 相册名称。    |
-| albumUri | string | 是    | 否    | 相册Uri。   |
+| albumName | string | 是    | 预置相册不可写，用户相册可写   | 相册名称。    |
+| albumUri | string | 是    | 否    | 相册uri。   |
 | count | number | 是    | 否    |  相册中文件数量。 |
-| coverUri | string | 是    | 否    | 封面文件Uri。 |
+| coverUri | string | 是    | 否    | 封面文件uri。 |
 | imageCount<sup>11+</sup> | number | 是   | 否   | 相册中图片数量。|
 | videoCount<sup>11+</sup> | number | 是   | 否   | 相册中视频数量。|
 
@@ -2677,7 +2767,7 @@ async function example() {
 
 getAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;PhotoAsset&gt;&gt;): void
 
-获取相册中的文件。该方法使用callback形式来返回文件。
+获取相册中的文件。该方法使用callback形式来返回。
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
@@ -2702,6 +2792,8 @@ getAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Photo
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2733,7 +2825,7 @@ async function example() {
 
 getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
-获取相册中的文件。该方法使用Promise来返回文件。
+获取相册中的文件。该方法使用Promise来返回。
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
@@ -2763,6 +2855,8 @@ getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2818,6 +2912,8 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -2870,6 +2966,8 @@ commitModify(): Promise&lt;void&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -2896,7 +2994,7 @@ async function example() {
 
 addAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-往相册中添加图片或者视频，需要先预置相册和文件资源。该方法使用callback形式来返回结果。
+往相册中添加图片或视频前，需预置相册和文件资源。此方法通过callback方式返回结果。
 
 > **说明：** 
 >
@@ -2925,6 +3023,8 @@ addAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;):
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2958,7 +3058,7 @@ async function example() {
 
 addAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
-往相册中添加图片或者视频，需要先预置相册和文件资源。该方法使用Promise来返回结果。
+向相册添加图片或视频前，需预置相册和文件资源。此方法通过Promise返回结果。
 
 > **说明：** 
 >
@@ -2993,6 +3093,8 @@ addAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -3024,7 +3126,7 @@ async function example() {
 
 removeAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-从相册中移除图片或者视频，需要先预置相册和文件资源。该方法使用callback形式来返回结果。
+从相册移除图片或视频前，需预置相册和文件资源。该方法以callback形式返回结果。
 
 > **说明：** 
 >
@@ -3053,6 +3155,8 @@ removeAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3086,7 +3190,7 @@ async function example() {
 
 removeAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
-从相册中移除图片或者视频，需要先预置相册和文件资源。该方法使用Promise来返回结果。
+从相册中移除图片或视频前，需预置相册和文件资源。此方法通过Promise返回结果。
 
 > **说明：** 
 >
@@ -3120,6 +3224,8 @@ removeAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3158,7 +3264,7 @@ async function example() {
 
 constructor(asset: PhotoAsset)
 
-构造函数。
+构造函数，用于初始化资产变更请求。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3180,6 +3286,8 @@ constructor(asset: PhotoAsset)
 | 14000011       | System inner fail.          |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3203,7 +3311,7 @@ static createImageAssetRequest(context: Context, fileUri: string): MediaAssetCha
 
 创建图片资产变更请求。
 
-通过fileUri指定待创建资产的数据来源，可参考[FileUri](../apis-core-file-kit/js-apis-file-fileuri.md)。
+指定待创建资产的数据来源，可参考[FileUri](../apis-core-file-kit/js-apis-file-fileuri.md)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3213,8 +3321,8 @@ static createImageAssetRequest(context: Context, fileUri: string): MediaAssetCha
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
-| fileUri | string | 是   | 图片资产的数据来源，在应用沙箱下的uri。示例fileUri为：'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg'。 |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 传入Ability实例的上下文。 |
+| fileUri | string | 是   | 图片资产的数据来源，在应用沙箱下的uri。示例fileUri：'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg'。 |
 
 **返回值：**
 
@@ -3233,6 +3341,8 @@ static createImageAssetRequest(context: Context, fileUri: string): MediaAssetCha
 | 14000011   | System inner fail.        |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 async function example() {
@@ -3255,7 +3365,7 @@ static createVideoAssetRequest(context: Context, fileUri: string): MediaAssetCha
 
 创建视频资产变更请求。
 
-通过fileUri指定待创建资产的数据来源，可参考[FileUri](../apis-core-file-kit/js-apis-file-fileuri.md)。
+指定待创建资产的数据来源，可参考[FileUri](../apis-core-file-kit/js-apis-file-fileuri.md)。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -3263,8 +3373,8 @@ static createVideoAssetRequest(context: Context, fileUri: string): MediaAssetCha
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
-| fileUri | string | 是   | 视频资产的数据来源，在应用沙箱下的uri。示例fileUri为：'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.mp4'。 |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 传入Ability实例的上下文。 |
+| fileUri | string | 是   | 视频资产的数据来源，在应用沙箱下的uri。示例fileUri：'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.mp4'。 |
 
 **返回值：**
 
@@ -3283,6 +3393,8 @@ static createVideoAssetRequest(context: Context, fileUri: string): MediaAssetCha
 | 14000011   | System inner fail.        |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 async function example() {
@@ -3303,7 +3415,7 @@ async function example() {
 
 static createAssetRequest(context: Context, photoType: PhotoType, extension: string, options?: CreateOptions): MediaAssetChangeRequest
 
-指定待创建的文件类型和扩展名，创建资产变更请求。
+指定文件类型和扩展名，创建资产变更请求。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3313,7 +3425,7 @@ static createAssetRequest(context: Context, photoType: PhotoType, extension: str
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 传入Ability实例的上下文。 |
 | photoType  | [PhotoType](#phototype)        | 是   | 待创建的文件类型，IMAGE或者VIDEO类型。              |
 | extension  | string        | 是   | 文件扩展名，例如：'jpg'。              |
 | options  | [CreateOptions](#createoptions)        | 否   | 创建选项，例如：{title: 'testPhoto'}。              |
@@ -3334,6 +3446,8 @@ static createAssetRequest(context: Context, photoType: PhotoType, extension: str
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 async function example() {
@@ -3370,14 +3484,14 @@ static deleteAssets(context: Context, assets: Array&lt;PhotoAsset&gt;): Promise&
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 传入Ability实例的上下文。 |
 | assets | Array&lt;[PhotoAsset](#photoasset)&gt; | 是   | 待删除的媒体文件数组。 |
 
 **返回值：**
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| Promise&lt;void&gt;| Promise对象，返回void。 |
+| Promise&lt;void&gt;| 返回void的Promise对象。 |
 
 **错误码：**
 
@@ -3390,6 +3504,8 @@ static deleteAssets(context: Context, assets: Array&lt;PhotoAsset&gt;): Promise&
 | 14000011 |  System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3426,14 +3542,14 @@ static deleteAssets(context: Context, uriList: Array&lt;string&gt;): Promise&lt;
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 传入Ability实例的上下文。 |
 | uriList | Array&lt;string&gt; | 是   | 待删除的媒体文件uri数组。 |
 
 **返回值：**
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| Promise&lt;void&gt;| Promise对象，返回void。 |
+| Promise&lt;void&gt;| 返回void的Promise对象。 |
 
 **错误码：**
 
@@ -3447,6 +3563,8 @@ static deleteAssets(context: Context, uriList: Array&lt;string&gt;): Promise&lt;
 | 14000011 |  System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3498,6 +3616,8 @@ getAsset(): PhotoAsset
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 async function example() {
   console.info('getAssetDemo');
@@ -3545,6 +3665,8 @@ title参数规格为：
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3601,6 +3723,8 @@ getWriteCacheHandler(): Promise&lt;number&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { fileIo } from '@kit.CoreFileKit';
 
@@ -3627,7 +3751,7 @@ addResource(type: ResourceType, fileUri: string): void
 
 通过fileUri从应用沙箱添加资源。
 
-**注意**：对于同一个资产变更请求，不支持在成功添加资源后，重复调用该接口。对于动态照片，可调用两次该接口分别添加图片和视频资源。
+**注意**：对于同一个资产变更请求，成功添加资源后不支持重复调用该接口。对于动态照片，可调用两次该接口分别添加图片和视频资源。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3638,7 +3762,7 @@ addResource(type: ResourceType, fileUri: string): void
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
 | type | [ResourceType](#resourcetype11) | 是   | 待添加资源的类型。 |
-| fileUri | string | 是   | 待添加资源的数据来源，在应用沙箱下的uri。示例fileUri为：'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg'。 |
+| fileUri | string | 是   | 待添加资源的数据来源，在应用沙箱下的uri。示例fileUri：'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg'。 |
 
 **错误码：**
 
@@ -3652,6 +3776,8 @@ addResource(type: ResourceType, fileUri: string): void
 | 14000016 |  Operation Not Support.     |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 async function example() {
@@ -3677,7 +3803,7 @@ addResource(type: ResourceType, data: ArrayBuffer): void
 
 通过ArrayBuffer数据添加资源。
 
-**注意**：对于同一个资产变更请求，不支持在成功添加资源后，重复调用该接口。对于动态照片，可调用两次该接口分别添加图片和视频资源。
+**注意**：对于同一个资产变更请求，成功添加资源后不支持重复调用该接口。对于动态照片，可调用两次该接口分别添加图片和视频资源。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3701,6 +3827,8 @@ addResource(type: ResourceType, data: ArrayBuffer): void
 | 14000016 |  Operation Not Support.     |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 async function example() {
@@ -3737,6 +3865,8 @@ saveCameraPhoto(): void
 | 14000016 |  Operation Not Support.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 async function example(asset: photoAccessHelper.PhotoAsset) {
@@ -3777,6 +3907,8 @@ saveCameraPhoto(imageFileType: ImageFileType): void
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3800,7 +3932,7 @@ async function example(asset: photoAccessHelper.PhotoAsset) {
 
 discardCameraPhoto(): void
 
-丢弃相机拍摄的照片。
+删除相机拍摄的照片。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -3814,6 +3946,8 @@ discardCameraPhoto(): void
 | 14000016 |  Operation Not Support.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 async function example(asset: photoAccessHelper.PhotoAsset) {
@@ -3854,6 +3988,8 @@ setOrientation(orientation: number): void
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -3887,7 +4023,7 @@ async function example() {
 
 constructor(album: Album)
 
-构造函数。
+构造函数用于初始化新创建的对象。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -3907,6 +4043,8 @@ constructor(album: Album)
 | 14000011       | System inner fail.          |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3951,6 +4089,8 @@ getAlbum(): Album
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 async function example() {
   console.info('getAlbumDemo');
@@ -3973,7 +4113,7 @@ setAlbumName(name: string): void
 
 设置相册名称。
 
-相册名的参数规格为：
+相册名参数规格：
 - 相册名字符串长度为1~255。
 - 不允许出现非法字符，包括：<br> . \ / : * ? " ' ` < > | { } [ ]
 - 英文字符大小写不敏感。
@@ -3997,6 +4137,8 @@ setAlbumName(name: string): void
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 async function example() {
@@ -4040,6 +4182,8 @@ addAssets(assets: Array&lt;PhotoAsset&gt;): void
 | 14000016 |  Operation Not Support.     |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -4093,6 +4237,8 @@ removeAssets(assets: Array&lt;PhotoAsset&gt;): void
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -4121,7 +4267,7 @@ async function example() {
 
 ## MediaAssetManager<sup>11+</sup>
 
-媒体资产管理类，管理各种媒体资源的读取操作。
+媒体资产管理类，管理媒体资源读取。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -4142,10 +4288,10 @@ static requestImage(context: Context, asset: PhotoAsset, requestOptions: Request
 
 | 参数名            | 类型                                                                                                        | 必填 | 说明                      |
 |----------------|-----------------------------------------------------------------------------------------------------------| ---- | ------------------------- |
-| context        | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                                                           | 是   | 传入Ability实例的Context。 |
+| context        | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                                                           | 是   | 传入Ability实例的上下文。 |
 | asset         | [PhotoAsset](#photoasset)                                                                                | 是   | 待请求的的媒体文件对象。 |
 | requestOptions | [RequestOptions](#requestoptions11)                                                                        | 是   | 图片请求策略模式配置项。|       
-| dataHandler    | [MediaAssetDataHandler](#mediaassetdatahandler11)&lt;[image.ImageSource](../apis-image-kit/js-apis-image.md#imagesource)&gt; | 是   | 媒体资源处理器，当所请求的图片资源准备完成时会触发回调。|
+| dataHandler    | [MediaAssetDataHandler](#mediaassetdatahandler11)&lt;[image.ImageSource](../apis-image-kit/js-apis-image.md#imagesource)&gt; | 是   | 媒体资源处理器，请求完成时触发回调。|
 
 **返回值：**
 
@@ -4164,6 +4310,8 @@ static requestImage(context: Context, asset: PhotoAsset, requestOptions: Request
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -4217,7 +4365,7 @@ static requestImageData(context: Context, asset: PhotoAsset, requestOptions: Req
 
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
-| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                      | 是   | 传入Ability实例的Context。 |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                      | 是   | 传入Ability实例的上下文。 |
 | asset | [PhotoAsset](#photoasset)                                            | 是   | 待请求的的媒体文件对象。 |
 | requestOptions  | [RequestOptions](#requestoptions11)                                  | 是   | 图片请求策略模式配置项。 |      
 | dataHandler  | [MediaAssetDataHandler](#mediaassetdatahandler11)&lt;ArrayBuffer&gt; | 是   | 媒体资源处理器，当所请求的图片资源准备完成时会触发回调。|
@@ -4239,6 +4387,8 @@ static requestImageData(context: Context, asset: PhotoAsset, requestOptions: Req
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -4290,7 +4440,7 @@ static requestMovingPhoto(context: Context, asset: PhotoAsset, requestOptions: R
 
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
-| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                      | 是   | 传入Ability实例的Context。 |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                      | 是   | 传入Ability实例的上下文。 |
 | asset | [PhotoAsset](#photoasset)                                            | 是   | 待请求的的媒体文件对象。 |
 | requestOptions  | [RequestOptions](#requestoptions11)                                  | 是   | 图片请求策略模式配置项。|       
 | dataHandler  | [MediaAssetDataHandler](#mediaassetdatahandler11)&lt;[MovingPhoto](#movingphoto12)&gt; | 是   | 媒体资源处理器，当所请求的图片资源准备完成时会触发回调。|
@@ -4313,6 +4463,8 @@ static requestMovingPhoto(context: Context, asset: PhotoAsset, requestOptions: R
 | 14000011       | System inner fail         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -4368,10 +4520,10 @@ static requestVideoFile(context: Context, asset: PhotoAsset, requestOptions: Req
 
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
-| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                      | 是   | 传入Ability实例的Context。|
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                      | 是   | 传入Ability实例的上下文。|
 | asset | [PhotoAsset](#photoasset)                                            | 是   | 待请求的的媒体文件对象。 |
 | requestOptions  | [RequestOptions](#requestoptions11)                                  | 是   | 视频请求策略模式配置项。|
-| fileUri| string                                                              | 是 | 目标写入沙箱路径Uri。示例fileUri为：'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.mp4'。 |
+| fileUri| string                                                              | 是 | 目标写入沙箱路径uri。示例fileUri：'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.mp4'。 |
 | dataHandler  | [MediaAssetDataHandler](#mediaassetdatahandler11)&lt;boolean&gt; | 是   | 媒体资源处理器，当所请求的视频资源写入完成时会触发回调。|
 
 **返回值：**
@@ -4392,6 +4544,8 @@ static requestVideoFile(context: Context, asset: PhotoAsset, requestOptions: Req
 | 14000011       | System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -4426,7 +4580,7 @@ async function example() {
 
 static cancelRequest(context: Context, requestId: string): Promise\<void>
 
-取消尚未触发回调的资产内容请求。
+取消未触发回调的资产内容请求。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -4436,8 +4590,8 @@ static cancelRequest(context: Context, requestId: string): Promise\<void>
 
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
-| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                      | 是   | 传入Ability实例的Context。 |
-| requestId | string     | 是   | 需要取消的请求id，requestImage等接口返回的有效requestId。 |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                      | 是   | 传入Ability实例的上下文。 |
+| requestId | string     | 是   | 需要取消的请求id，requestImage等接口返回的有效请求id。 |
 
 **返回值：**
 
@@ -4536,7 +4690,7 @@ static quickRequestImage(context: Context, asset: PhotoAsset, requestOptions: Re
 
 | 参数名            | 类型                                                                                                        | 必填 | 说明                      |
 |----------------|-----------------------------------------------------------------------------------------------------------| ---- | ------------------------- |
-| context        | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                                                           | 是   | 传入Ability实例的Context。 |
+| context        | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                                                           | 是   | 传入Ability实例的上下文。 |
 | asset         | [PhotoAsset](#photoasset)                                                                                | 是   | 待请求的的媒体文件对象。 |
 | requestOptions | [RequestOptions](#requestoptions11)                                                                        | 是   | 图片请求策略模式配置项。|
 | dataHandler    | [QuickImageDataHandler](#quickimagedatahandler13)&lt;[image.Picture](../apis-image-kit/js-apis-image.md#picture13)&gt; | 是   | 媒体资源处理器，当所请求的图片资源准备完成时会触发回调。|
@@ -4558,6 +4712,8 @@ static quickRequestImage(context: Context, asset: PhotoAsset, requestOptions: Re
 | 14000011       | Internal system error.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -4601,7 +4757,7 @@ async function example() {
 
 onDataPrepared(data: T, map?: Map<string, string>): void
 
-媒体资源就绪通知，当所请求的资源准备就绪时系统会回调此方法。如果资源准备出错，则回调的data为undefined。每个资源请求与回调一一对应。
+媒体资源就绪通知，系统在资源准备就绪时回调此方法。若资源准备出错，回调的data为undefined。资源请求与回调一一对应。
 T支持ArrayBuffer, [ImageSource](../apis-image-kit/js-apis-image.md#imagesource), [MovingPhoto](#movingphoto12)和boolean四种数据类型。其中，ArrayBuffer表示图片/视频资源数据，[ImageSource](../apis-image-kit/js-apis-image.md#imagesource)表示图片源，[MovingPhoto](#movingphoto12)表示动态照片对象，boolean表示图片/视频资源是否成功写入应用沙箱。
 
 map支持返回的信息：
@@ -4666,8 +4822,7 @@ class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<phot
 
 onDataPrepared(data: T, imageSource: image.ImageSource, map: Map<string, string>): void
 
-媒体资源就绪通知，当所请求的图片资源准备就绪时系统会回调此方法。如果资源准备出错，则回调的data为undefined。
-T支持Picture数据类型。
+当请求的图片资源准备就绪时，系统会回调媒体资源就绪通知方法。如果资源准备出错，回调的data将为undefined。
 
 map支持返回的信息：
 | map键名  | 值说明 |
@@ -4682,7 +4837,7 @@ map支持返回的信息：
 |------|---| ---- |-------------------------------------------------------------------------------|
 | data | T | 是   | 已就绪的图片资源数据。泛型，支持[Picture](../apis-image-kit/js-apis-image.md#picture13)数据类型。 |
 | imageSource | image.ImageSource | 是   | 已就绪的图片资源数据。 |
-| map<sup>13+</sup> | Map<string, string> | 是   | 用于获取图片资源的额外信息，如图片质量。当前仅支持'quality'。 |
+| map<sup>13+</sup> | Map<string, string> | 是   | 用于获取图片资源的额外信息，如图片质量。仅支持'quality'。 |
 
 **示例**
 ```ts
@@ -4729,6 +4884,8 @@ getUri(): string
 | 14000011 |  System inner fail.         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -4806,6 +4963,8 @@ requestContent(imageFileUri: string, videoFileUri: string): Promise\<void>
 
 **示例：**
 
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -4862,7 +5021,7 @@ requestContent(resourceType: ResourceType, fileUri: string): Promise\<void>
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
-- 通过picker的方式调用该接口来请求动态照片对象并读取内容，不需要申请'ohos.permission.READ_IMAGEVIDEO'权限，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-movingphoto.md)。
+- 通过picker调用接口请求动态照片对象并读取内容，不需要申请'ohos.permission.READ_IMAGEVIDEO'权限，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-movingphoto.md)。
 - 对于本应用保存到媒体库的动态照片资源，应用无需额外申请'ohos.permission.READ_IMAGEVIDEO'权限即可访问。
 
 **参数：**
@@ -4889,6 +5048,8 @@ requestContent(resourceType: ResourceType, fileUri: string): Promise\<void>
 | 14000011 |  System inner fail         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -4945,7 +5106,7 @@ requestContent(resourceType: ResourceType): Promise\<ArrayBuffer>
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
-- 通过picker的方式调用该接口来请求动态照片对象并读取内容，不需要申请'ohos.permission.READ_IMAGEVIDEO'权限，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-movingphoto.md)。
+- 使用picker调用该接口请求动态照片对象并读取内容时，不需要申请'ohos.permission.READ_IMAGEVIDEO'权限，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-movingphoto.md)。
 - 对于本应用保存到媒体库的动态照片资源，应用无需额外申请'ohos.permission.READ_IMAGEVIDEO'权限即可访问。
 
 **参数：**
@@ -4971,6 +5132,8 @@ requestContent(resourceType: ResourceType): Promise\<ArrayBuffer>
 | 14000011 |  System inner fail         |
 
 **示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -5019,7 +5182,7 @@ type MemberType = number | string | boolean
 
 PhotoAsset的成员类型。
 
-成员类型为下表类型中的并集。
+成员类型为下表类型的并集。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -5044,7 +5207,7 @@ PhotoAsset的成员类型。
 
 ## PhotoSubtype<sup>12+</sup>
 
-枚举，不同[PhotoAsset](#photoasset)的类型。
+PhotoSubtype是不同[PhotoAsset](#photoasset)类型的枚举。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5153,7 +5316,7 @@ PhotoAsset的成员类型。
 
 图片或视频的创建选项。
 
-title参数规格为：
+title参数的规格如下：
 - 不应包含扩展名。
 - 文件名字符串长度为1~255。
 - 文件名中不允许出现的非法英文字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
@@ -5195,7 +5358,7 @@ title参数规格为：
 
 媒体变更请求，资产变更请求和相册变更请求的父类型。
 
-**注意**：媒体变更请求需要在调用[applyChanges](#applychanges11)后才会提交生效。
+**注意**：媒体变更请求必须在调用[applyChanges](#applychanges11)后才会生效。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -5225,7 +5388,7 @@ title参数规格为：
 
 ## ChangeData
 
-监听器回调函数的值。
+监听器回调函数的返回值。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -5233,7 +5396,7 @@ title参数规格为：
 | ------- | --------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | type    | [NotifyType](#notifytype) | 是   | 否   | ChangeData的通知类型。                                       |
 | uris    | Array&lt;string&gt;         | 是   | 否   | 相同[NotifyType](#notifytype)的所有uri，可以是PhotoAsset或Album。 |
-| extraUris | Array&lt;string&gt;         | 是   | 否   | 相册中变动文件的uri数组。                                    |
+| extraUris | Array&lt;string&gt;         | 是   | 否   | 相册中变动文件的uri数组。可能为undefined，使用前需要检查是否为undefined。                           |
 
 ## NotifyType
 
@@ -5257,8 +5420,8 @@ title参数规格为：
 
 | 名称              | 值                      | 说明                                                         |
 | ----------------- | ----------------------- | ------------------------------------------------------------ |
-| DEFAULT_PHOTO_URI | 'file://media/Photo'      | 默认PhotoAsset的Uri，与forSubUri{true}一起使用，将接收所有PhotoAsset的更改通知。 |
-| DEFAULT_ALBUM_URI | 'file://media/PhotoAlbum' | 默认相册的Uri，与forSubUri{true}一起使用，将接收所有相册的更改通知。 |
+| DEFAULT_PHOTO_URI | 'file://media/Photo'      | 默认PhotoAsset的uri，与forSubUri{true}一起使用，将接收所有PhotoAsset的更改通知。 |
+| DEFAULT_ALBUM_URI | 'file://media/PhotoAlbum' | 默认相册的uri，与forSubUri{true}一起使用，将接收所有相册的更改通知。 |
 
 ## PhotoViewMIMETypes
 
@@ -5295,6 +5458,7 @@ title参数规格为：
 | DRIVER_LICENSE<sup>12+</sup> |  8 | 驾驶证。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | DRIVING_LICENSE<sup>12+</sup> |  9 | 行驶证。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | FEATURED_SINGLE_PORTRAIT<sup>12+</sup> |  10 | 推荐人像。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| COLOR_STYLE_PHOTO<sup>18+</sup> |  12 | 推荐风格。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 **示例：**
 
@@ -5378,6 +5542,20 @@ async function example() {
 | recommendationType | [RecommendationType](#recommendationtype11)   | 否   | 如果需要根据枚举值推荐相应的图片，则配置此参数。 |
 | textContextInfo<sup>12+</sup> | [TextContextInfo](#textcontextinfo12)   | 否   | 如果需要根据文本信息推荐相应的图片，则配置此参数(如果同时配置了recommendationType，则仅textContextInfo生效)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
+## SingleSelectionMode<sup>18+</sup>
+
+枚举，单选模式类型。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                                    |  值 | 说明       |
+|---------------------------------------|  ---- |----------|
+| BROWSER_MODE                          |  0 | 大图预览模式。    |
+| SELECT_MODE                           |  1 | 直接选中模式。    |
+| BROWSER_AND_SELECT_MODE               |  2 | 兼容模式，点击右下角区域为直接选中模式，点击其他区域进入大图预览模式。 |
+
 ## BaseSelectOptions<sup>12+</sup>
 
 图库选择选项基类。
@@ -5392,7 +5570,8 @@ async function example() {
 | isSearchSupported<sup>11+</sup> | boolean  | 否   | 是否支持搜索，true表示支持，false表示不支持，默认为true。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | recommendationOptions<sup>11+</sup>       | [RecommendationOptions](#recommendationoptions11)   | 否   | 图片推荐相关配置参数。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | preselectedUris<sup>11+</sup> | Array&lt;string&gt;  | 否   | 预选择图片的uri数据。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| isPreviewForSingleSelectionSupported<sup>12+</sup> | boolean  | 否   | 单选模式下是否需要进大图预览，true表示需要，false表示不需要，默认为true。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| isPreviewForSingleSelectionSupported<sup>(deprecated)</sup> | boolean  | 否   | 单选模式下是否需要进大图预览，true表示需要，false表示不需要，默认为true。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>从API version 12开始支持，从API version 18开始废弃。 |
+| singleSelectionMode<sup>18+</sup> | [SingleSelectionMode](#singleselectionmode18) | 否   | 单选模式类型。默认为大图预览模式（SingleSelectionMode.BROWSER_MODE）。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## PhotoSelectOptions
 
@@ -5405,7 +5584,7 @@ async function example() {
 | 名称                    | 类型                | 必填 | 说明                          |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
 | isEditSupported<sup>11+</sup>       | boolean | 否   | 是否支持编辑照片，true表示支持，false表示不支持，默认为true。     |
-| isOriginalSupported<sup>12+</sup>       | boolean | 否   | 是否显示选择原图按钮，true表示显示，false表示不显示，默认为false。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
+| isOriginalSupported<sup>12+</sup>       | boolean | 否   | 是否显示选择原图按钮，true表示显示，false表示不显示，默认为true。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
 | subWindowName<sup>12+</sup>       | string | 否   | 子窗窗口名称。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
 | completeButtonText<sup>14+</sup>       | [CompleteButtonText](#completebuttontext14) | 否   | 完成按钮显示的内容。<br>完成按钮指在界面右下方，用户点击表示图片选择已完成的按钮。 <br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。     |
 

@@ -57,13 +57,13 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer: errorManager.ErrorObserver = {
   onUnhandledException(errorMsg) {
-    console.log('onUnhandledException, errorMsg: ', errorMsg);
+    console.info('onUnhandledException, errorMsg: ', errorMsg);
   },
   onException(errorObj) {
-    console.log('onException, name: ', errorObj.name);
-    console.log('onException, message: ', errorObj.message);
+    console.info('onException, name: ', errorObj.name);
+    console.info('onException, message: ', errorObj.message);
     if (typeof(errorObj.stack) === 'string') {
-      console.log('onException, stack: ', errorObj.stack);
+      console.info('onException, stack: ', errorObj.stack);
     }
   }
 };
@@ -111,11 +111,11 @@ import { errorManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function errorFunc(observer: errorManager.GlobalError) {
-    console.log("result name :" + observer.name);
-    console.log("result message :" + observer.message);
-    console.log("result stack :" + observer.stack);
-    console.log("result instanceName :" + observer.instanceName);
-    console.log("result instaceType :" + observer.instanceType);
+    console.info("result name :" + observer.name);
+    console.info("result message :" + observer.message);
+    console.info("result stack :" + observer.stack);
+    console.info("result instanceName :" + observer.instanceName);
+    console.info("result instaceType :" + observer.instanceType);
 }
 
 try {
@@ -133,6 +133,8 @@ off(type: 'globalErrorOccurred', observer?: GlobalObserver): void
 
 注销错误观测器，即取消以前注册的callback监听，取消之后无法实现全局监听。
 
+如果传入的回调不在通过on方法注册的回调队列中，将抛出16300004错误码，因此建议使用try-catch逻辑进行处理。
+
 **原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -142,7 +144,7 @@ off(type: 'globalErrorOccurred', observer?: GlobalObserver): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 填写'globalErrorOccurred'，表示错误观察器。 |
-| observer | [GlobalObserver](#globalobserver18) | 否 | 由on方法注册的callback。 |
+| observer | [GlobalObserver](#globalobserver18) | 否 | 由on方法注册的callback。建议使用该参数，缺省时默认清除所有通过on注册的相同env的callback，否则删除指定callback。  |
 
 **错误码**：
 
@@ -161,11 +163,11 @@ import { errorManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function errorFunc(observer: errorManager.GlobalError) {
-    console.log("result name :" + observer.name);
-    console.log("result message :" + observer.message);
-    console.log("result stack :" + observer.stack);
-    console.log("result instanceName :" + observer.instanceName);
-    console.log("result instaceType :" + observer.instanceType);
+    console.info("result name :" + observer.name);
+    console.info("result message :" + observer.message);
+    console.info("result stack :" + observer.stack);
+    console.info("result instanceName :" + observer.instanceName);
+    console.info("result instaceType :" + observer.instanceType);
 }
 
 try {
@@ -270,7 +272,7 @@ let observerId = 100;
 try {
   errorManager.off('error', observerId)
     .then((data) => {
-      console.log('----------- unregisterErrorObserver success ----------', data);
+      console.info('----------- unregisterErrorObserver success ----------', data);
     })
     .catch((err: BusinessError) => {
       console.error('----------- unregisterErrorObserver fail ----------', err);
@@ -315,7 +317,7 @@ import { errorManager } from '@kit.AbilityKit';
 
 let observer: errorManager.LoopObserver = {
   onLoopTimeOut(timeout: number) {
-    console.log('Duration timeout: ' + timeout);
+    console.info('Duration timeout: ' + timeout);
   }
 };
 
@@ -354,11 +356,11 @@ on(type: 'globalUnhandledRejectionDetected', observer: GlobalObserver): void
 import { errorManager } from '@kit.AbilityKit';
 
 function promiseFunc(observer: errorManager.GlobalError) {
-  console.log("result name :" + observer.name);
-  console.log("result message :" + observer.message);
-  console.log("result stack :" + observer.stack);
-  console.log("result instanceName :" + observer.instanceName);
-  console.log("result instaceType :" + observer.instanceType);
+  console.info("result name :" + observer.name);
+  console.info("result message :" + observer.message);
+  console.info("result stack :" + observer.stack);
+  console.info("result instanceName :" + observer.instanceName);
+  console.info("result instaceType :" + observer.instanceType);
 }
 
 errorManager.on("globalUnhandledRejectionDetected", promiseFunc);
@@ -405,12 +407,12 @@ import { errorManager } from '@kit.AbilityKit';
 
 let observer: errorManager.UnhandledRejectionObserver = (reason: Error, promise: Promise<void>) => {
   if (promise === promise1) {
-    console.log("promise1 is rejected");
+    console.info("promise1 is rejected");
   }
-  console.log("reason.name: ", reason.name);
-  console.log("reason.message: ", reason.message);
+  console.info("reason.name: ", reason.name);
+  console.info("reason.message: ", reason.message);
   if (reason.stack) {
-    console.log("reason.stack: ", reason.stack);
+    console.info("reason.stack: ", reason.stack);
   }
 };
 
@@ -456,7 +458,7 @@ on(type: 'freeze', observer: FreezeObserver): void
 import { errorManager } from '@kit.AbilityKit';
 
 function freezeCallback() {
-    console.log("freezecallback");
+    console.info("freezecallback");
 }
 errorManager.on("freeze", freezeCallback);
 ```
@@ -500,6 +502,8 @@ off(type: 'globalUnhandledRejectionDetected', observer?: GlobalObserver): void
 
 注销被拒绝promise监听器，注销后无法监听进程中的promise异常。
 
+如果传入的回调不在通过on方法注册的回调队列中，将抛出16300004错误码，因此建议使用try-catch逻辑进行处理。
+
 **原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -509,7 +513,7 @@ off(type: 'globalUnhandledRejectionDetected', observer?: GlobalObserver): void
 | 参数名                   | 类型                              | 必填 | 说明                                           |
 |-----------------------|---------------------------------|----|----------------------------------------------|
 | type                  | string                          | 是  | 填写'globalUnhandledRejectionDetected'，表示注册被拒绝promise监听器。 |
-| observer              | [GlobalObserver](#globalobserver18) | 否  | 由on接口注册的被拒绝promise的callback。                        |
+| observer              | [GlobalObserver](#globalobserver18) | 否  | 由on接口注册的被拒绝promise的callback。建议使用该参数，缺省时默认清除所有通过on注册的相同env的callback，否则删除指定callback。 |
 
 **错误码**：
 
@@ -527,11 +531,11 @@ off(type: 'globalUnhandledRejectionDetected', observer?: GlobalObserver): void
 import { errorManager } from '@kit.AbilityKit';
 
 function promiseFunc(observer: errorManager.GlobalError) {
-  console.log("result name :" + observer.name);
-  console.log("result message :" + observer.message);
-  console.log("result stack :" + observer.stack);
-  console.log("result instanceName :" + observer.instanceName);
-  console.log("result instaceType :" + observer.instanceType);
+  console.info("result name :" + observer.name);
+  console.info("result message :" + observer.message);
+  console.info("result stack :" + observer.stack);
+  console.info("result instanceName :" + observer.instanceName);
+  console.info("result instaceType :" + observer.instanceType);
 }
 
 errorManager.on("globalUnhandledRejectionDetected", promiseFunc);
@@ -562,7 +566,7 @@ off(type: 'unhandledRejection', observer?: UnhandledRejectionObserver): void
 | 参数名                   | 类型                              | 必填 | 说明                                           |
 |-----------------------|---------------------------------|----|----------------------------------------------|
 | type                  | string                          | 是  | 填写'unhandledRejection'，表示注册被拒绝promise监听器。 |
-| observer              | [UnhandledRejectionObserver](#unhandledrejectionobserver12) | 否  | 注册了被拒绝promise监听器。                        |
+| observer              | [UnhandledRejectionObserver](#unhandledrejectionobserver12) | 否  | 注册了被拒绝promise监听器。建议使用该参数，缺省时默认清除所有通过on注册的相同env的observer，否则删除指定observer。                        |
 
 **错误码**：
 
@@ -581,12 +585,12 @@ import { errorManager } from '@kit.AbilityKit';
 
 let observer: errorManager.UnhandledRejectionObserver = (reason: Error, promise: Promise<void>) => {
   if (promise === promise1) {
-    console.log("promise1 is rejected");
+    console.info("promise1 is rejected");
   }
-  console.log("reason.name: ", reason.name);
-  console.log("reason.message: ", reason.message);
+  console.info("reason.name: ", reason.name);
+  console.info("reason.message: ", reason.message);
   if (reason.stack) {
-    console.log("reason.stack: ", reason.stack);
+    console.info("reason.stack: ", reason.stack);
   }
 };
 
@@ -604,12 +608,12 @@ import { errorManager } from '@kit.AbilityKit';
 
 let observer: errorManager.UnhandledRejectionObserver = (reason: Error, promise: Promise<void>) => {
   if (promise === promise1) {
-    console.log("promise1 is rejected");
+    console.info("promise1 is rejected");
   }
-  console.log("reason.name: ", reason.name);
-  console.log("reason.message: ", reason.message);
+  console.info("reason.name: ", reason.name);
+  console.info("reason.message: ", reason.message);
   if (reason.stack) {
-    console.log("reason.stack: ", reason.stack);
+    console.info("reason.stack: ", reason.stack);
   }
 };
 
@@ -628,6 +632,8 @@ off(type: 'freeze', observer?: FreezeObserver): void
 
 取消以前注册的应用主线程freeze监听。只能在主线程调用。
 
+如果传入的回调与通过on方法注册回调不一致，将抛出16300004错误码，因此建议使用try-catch逻辑进行处理。
+
 **原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -637,7 +643,7 @@ off(type: 'freeze', observer?: FreezeObserver): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 填写'freeze'，表示应用主线程freeze观察器。 |
-| observer | [FreezeObserver](#freezeobserver18) | 否 | 由on接口注册的freeze监听的callback。如果参数不填会直接清空callback否则删除指定的callback。 |
+| observer | [FreezeObserver](#freezeobserver18) | 否 | 由on接口注册的freeze监听的callback。建议使用该参数，如果参数不填会直接清空callback，否则删除指定的callback。 |
 
 **错误码**：
 
@@ -654,7 +660,7 @@ off(type: 'freeze', observer?: FreezeObserver): void
 import { errorManager } from '@kit.AbilityKit';
 
 function freezeCallback() {
-    console.log("freezecallback");
+    console.info("freezecallback");
 }
 errorManager.on("freeze", freezeCallback);
 errorManager.off("freeze", freezeCallback);
@@ -751,7 +757,7 @@ type GlobalObserver = (reason: GlobalError) => void
 
 **原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 | 名称  | 值  | 说明   |
 | ---- | --- | ------ |

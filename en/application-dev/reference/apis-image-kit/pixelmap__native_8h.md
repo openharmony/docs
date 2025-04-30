@@ -7,6 +7,8 @@ The **pixelmap_native.h** file declares the APIs for accessing a PixelMap.
 
 **Library**: libpixelmap.so
 
+**File to include**: &lt;multimedia/image_framework/image/pixelmap_native.h&gt;
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 **Since**: 12
@@ -47,7 +49,7 @@ The **pixelmap_native.h** file declares the APIs for accessing a PixelMap.
 | Name| Description| 
 | -------- | -------- |
 | [PIXELMAP_ALPHA_TYPE](_image___native_module.md#pixelmap_alpha_type) {<br>PIXELMAP_ALPHA_TYPE_UNKNOWN = 0,<br>PIXELMAP_ALPHA_TYPE_OPAQUE = 1,<br>PIXELMAP_ALPHA_TYPE_PREMULTIPLIED = 2, <br>PIXELMAP_ALPHA_TYPE_UNPREMULTIPLIED = 3 } | Enumerates the alpha types of a PixelMap.| 
-| [PIXEL_FORMAT](_image___native_module.md#pixel_format) {<br>PIXEL_FORMAT_UNKNOWN = 0, PIXEL_FORMAT_RGB_565 = 2,<br>PIXEL_FORMAT_RGBA_8888 = 3, PIXEL_FORMAT_BGRA_8888 = 4,<br>PIXEL_FORMAT_RGB_888 = 5, PIXEL_FORMAT_ALPHA_8 = 6,<br>PIXEL_FORMAT_RGBA_F16 = 7, PIXEL_FORMAT_NV21 = 8,<br>PIXEL_FORMAT_NV12 = 9<br>} | Enumerates the image pixel formats.| 
+| [PIXEL_FORMAT](_image___native_module.md#pixel_format) {<br>PIXEL_FORMAT_UNKNOWN = 0, PIXEL_FORMAT_ARGB_8888 = 1, <br>PIXEL_FORMAT_RGB_565 = 2, PIXEL_FORMAT_RGBA_8888 = 3, <br>PIXEL_FORMAT_BGRA_8888 = 4, PIXEL_FORMAT_RGB_888 = 5, <br>PIXEL_FORMAT_ALPHA_8 = 6, PIXEL_FORMAT_RGBA_F16 = 7, <br>PIXEL_FORMAT_NV21 = 8, PIXEL_FORMAT_NV12 = 9,  <br>PIXEL_FORMAT_RGBA_1010102 = 10, PIXEL_FORMAT_YCBCR_P010 = 11, <br>PIXEL_FORMAT_YCRCB_P010 = 12<br>} | Enumerates the image pixel formats.| 
 | [OH_PixelmapNative_AntiAliasingLevel](_image___native_module.md#oh_pixelmapnative_antialiasinglevel) { <br>OH_PixelmapNative_AntiAliasing_NONE = 0, <br>OH_PixelmapNative_AntiAliasing_LOW = 1, <br>OH_PixelmapNative_AntiAliasing_MEDIUM = 2, <br>OH_PixelmapNative_AntiAliasing_HIGH = 3 <br>} | Enumerates the antialiasing levels used for scaling PixelMaps. | 
 | [OH_Pixelmap_HdrMetadataKey](_image___native_module.md#oh_pixelmap_hdrmetadatakey) { <br>HDR_METADATA_TYPE = 0, <br>HDR_STATIC_METADATA = 1, <br>HDR_DYNAMIC_METADATA = 2, <br>HDR_GAINMAP_METADATA = 3 <br>} | Enumerates the keys of the HDR related metadata information used by the PixelMap. It is used in [OH_PixelmapNative_SetMetadata](_image___native_module.md#oh_pixelmapnative_setmetadata) and [OH_PixelmapNative_GetMetadata](_image___native_module.md#oh_pixelmapnative_getmetadata). | 
 | [OH_Pixelmap_HdrMetadataType](_image___native_module.md#oh_pixelmap_hdrmetadatatype) { <br>HDR_METADATA_TYPE_NONE = 0, <br>HDR_METADATA_TYPE_BASE = 1, <br>HDR_METADATA_TYPE_GAINMAP = 2, <br>HDR_METADATA_TYPE_ALTERNATE = 3 <br>} | Enumerates the HDR metadata types, which are the values of **HDR_METADATA_TYPE**. | 

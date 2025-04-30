@@ -44,7 +44,7 @@ uri类型可以归纳为文档类uri和媒体文件uri两类
 
 ### 文档类uri的使用方式
 
-normal等级的应用使用此类uri的方式只能通过[fs模块](../reference/apis-core-file-kit/js-apis-file-fs.md)进行进一步处理，其他模块使用此uri是会报没有权限的错误。示例代码参见picker中的[选择文档类文件](./select-user-file.md#选择文档类文件)和[保存文档类文件](./save-user-file.md#保存文档类文件)。<!--Del-->
+normal等级的应用使用此类uri的方式只能通过[fs模块](../reference/apis-core-file-kit/js-apis-file-fs.md)进行进一步处理，其他模块使用此uri时会报没有权限的错误。示例代码参见picker中的[选择文档类文件](./select-user-file.md#选择文档类文件)和[保存文档类文件](./save-user-file.md#保存文档类文件)。<!--Del-->
 
 system_basic等级及以上的应用使用此类uri的方式除了上述通过fs模块外还可以通过[fileAccess模块](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md)进行进一步处理，使用此模块需要在配置文件module.json5中声明ohos.permission.FILE_ACCESS_MANAGER 和 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 权限，此权限为system_basic权限，仅供系统应用使用。其他模块使用此uri会报没有权限的错误。下面示例为使用fileAccess模块创建文件得到uri后对其进行重命名操作：
 
@@ -56,10 +56,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { Want } from '@kit.AbilityKit';
 import { common } from '@kit.AbilityKit';
 import { fileAccess } from '@kit.CoreFileKit';
-// context 是EntryAbility 传过来的context
-let context = getContext(this) as common.UIAbilityContext;
+// context 是EntryAbility 传过来的context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
 
-async function example() {
+async function example(context: common.UIAbilityContext) {
     let fileAccessHelper: fileAccess.FileAccessHelper;
     // wantInfos 从getFileAccessAbilityInfo()获取
     let wantInfos: Array<Want> = [
@@ -145,12 +145,12 @@ async function example() {
 
 ### 媒体文件uri的使用方式
 
-normal等级的应用使用此类uri可以通过[photoAccessHelper模块](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md)进行进一步处理。示例代码参见媒体资源使用指导中的[指定URI获取图片或视频资源](../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。此接口需要申请相册管理模块读权限'ohos.permission.READ_IMAGEVIDEO'，在使用中需要注意应用是否有此权限。<!--Del-->
+normal等级的应用使用此类uri可以通过[photoAccessHelper模块](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md)进行进一步处理。示例代码参见媒体资源使用指导中的[指定URI获取图片或视频资源](../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。此接口需要申请相册管理模块读权限（ohos.permission.READ_IMAGEVIDEO），在使用中需要注意应用是否有此权限。<!--Del-->
 
 system_basic等级及以上的应用使用此类uri的方式除了上述通过photoAccessHelper模块外还可以通过[userFileManager模块](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md)进行进一步处理，接口详细使用方式见接口文档。
 <!--DelEnd-->
 
-若normal等级的应用不想申请权限也可以通过临时授权的方式使用[PhotoAccessHelper的PhotoViewPicker](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photoviewpicker)得到的uri使用[photoAccessHelper.getAssets接口](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets)获取对应uri的PhotoAsset对象。这种方式获取的对象可以调用[getThumbnail](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getthumbnail)获取缩略图和使用[get接口](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#get)读取[PhotoKeys](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photokeys)中的部分信息。
+若normal等级的应用不想申请权限也可以通过临时授权的方式使用[PhotoAccessHelper的PhotoViewPicker](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photoviewpicker)得到的uri使用[photoAccessHelper.getAssets接口](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets)获取对应uri的PhotoAsset对象。通过此方式获取的PhotoAsset对象可调用[getThumbnail](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getthumbnail)方法获取缩略图，并通过[get接口](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#get)方法读取[PhotoKeys](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photokeys)中的部分信息。
 
 以下为PhotoKeys中支持临时授权方式可以读取的信息：
 
@@ -178,10 +178,11 @@ import { dataSharePredicates } from '@kit.ArkData';
 
 // 定义一个uri数组，用于接收PhotoViewPicker选择图片返回的uri
 let uris: Array<string> = [];
-const context = getContext(this);
+// context 是EntryAbility 传过来的context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
 
 // 调用PhotoViewPicker.select选择图片
-async function photoPickerGetUri() {
+async function photoPickerGetUri(context: common.UIAbilityContext) {
   try {  
     let PhotoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
     PhotoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
@@ -248,15 +249,15 @@ try {
 
 复制文件代码示例：
 
-```
+```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { Want } from '@kit.AbilityKit';
 import { common } from '@kit.AbilityKit';
 import { fileAccess } from '@kit.CoreFileKit';
 
-// context 是EntryAbility 传过来的context
-let context = getContext(this) as common.UIAbilityContext;
-async function example() {
+// context 是EntryAbility 传过来的context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
+async function example(context: common.UIAbilityContext) {
     let fileAccessHelper: fileAccess.FileAccessHelper;
     // wantInfos 从getFileAccessAbilityInfo()获取
     let wantInfos: Array<Want> = [

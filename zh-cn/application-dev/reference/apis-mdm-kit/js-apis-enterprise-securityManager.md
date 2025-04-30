@@ -106,16 +106,17 @@ installUserCertificate(admin: Want, certificate: CertBlob): Promise&lt;string&gt
 **示例：**
 
 ```ts
-import { Want } from '@kit.AbilityKit';
+import { common, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 let certFileArray: Uint8Array = new Uint8Array();
-// 在MainAbility的onCreate回调函数中初始化Context变量
-// 把测试文件test.cer放入rawfile目录
-getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
+// The variable context needs to be initialized in MainAbility's onCreate callback function
+// test.cer needs to be placed in the rawfile directory
+const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+context.resourceManager.getRawFileContent("test.cer").then((value) => {
   certFileArray = value;
   securityManager.installUserCertificate(wantTemp, { inData: certFileArray, alias: "cert_alias_xts" })
     .then((result) => {
@@ -125,7 +126,7 @@ getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
   })
 }).catch((err: BusinessError) => {
   console.error(`Failed to get row file content. message: ${err.message}`);
-  return
+  return;
 });
 ```
 
@@ -163,21 +164,21 @@ installUserCertificate(admin: Want, certificate: CertBlob, accountId: number): s
 | 9200002  | The administrator application does not have permission to manage the device. |
 | 9201001  | Failed to manage the certificate.                            |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { Want } from '@kit.AbilityKit';
+import { common, Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 let certFileArray: Uint8Array = new Uint8Array();
 let accountId: number = 100;
-// 在MainAbility的onCreate回调函数中初始化Context变量
-// 把测试文件test.cer放入rawfile目录
-getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
+// The variable context needs to be initialized in MainAbility's onCreate callback function
+// test.cer needs to be placed in the rawfile directory
+const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+context.resourceManager.getRawFileContent("test.cer").then((value) => {
   certFileArray = value;
   try {
     let result: string = securityManager.installUserCertificate(wantTemp, { inData: certFileArray, alias: "cert_alias_xts" }, accountId);
@@ -219,7 +220,6 @@ getUserCertificates(admin: Want, accountId: number): Array&lt;string&gt;
 | 9200001  | The application is not an administrator application of the device. |
 | 9200002  | The administrator application does not have permission to manage the device. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -310,7 +310,7 @@ setPasswordPolicy(admin: Want, policy: PasswordPolicy): void
 
 以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                                                       |          
+| 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                        |
 | 9200002 | The administrator application does not have permission to manage the device. |
@@ -365,7 +365,7 @@ getPasswordPolicy(admin: Want): PasswordPolicy
 
 以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                                                       |          
+| 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                        |
 | 9200002 | The administrator application does not have permission to manage the device. |
@@ -411,7 +411,7 @@ setAppClipboardPolicy(admin: Want, tokenId: number, policy: ClipboardPolicy): vo
 
 以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                                                       |          
+| 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                        |
 | 9200002 | The administrator application does not have permission to manage the device. |
@@ -462,7 +462,7 @@ getAppClipboardPolicy(admin: Want, tokenId?: number): string
 
 以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                                                       |          
+| 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                        |
 | 9200002 | The administrator application does not have permission to manage the device. |
@@ -514,7 +514,6 @@ setAppClipboardPolicy(admin: Want, bundleName: string, accountId: number, policy
 | 9200001 | The application is not an administrator application of the device.                                                                              |
 | 9200002 | The administrator application does not have permission to manage the device.                                                                    |
 | 201     | Permission verification failed. The application does not have the permission required to call the API.                                          |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -568,7 +567,6 @@ getAppClipboardPolicy(admin: Want, bundleName: string, accountId: number): strin
 | 9200001 | The application is not an administrator application of the device.                                                                              |
 | 9200002 | The administrator application does not have permission to manage the device.                                                                    |
 | 201     | Permission verification failed. The application does not have the permission required to call the API.                                          |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -612,7 +610,7 @@ setWatermarkImage(admin: Want, bundleName: string, source: string | image.PixelM
 
 以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                                                       |          
+| 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                        |
 | 9200002 | The administrator application does not have permission to manage the device. |
@@ -660,7 +658,7 @@ cancelWatermarkImage(admin: Want, bundleName: string, accountId: number): void
 
 以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                                                       |          
+| 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                        |
 | 9200002 | The administrator application does not have permission to manage the device. |

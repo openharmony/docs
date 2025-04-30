@@ -1,4 +1,5 @@
-# 分段式拍照实现方案(ArkTS)
+# 分段式拍照实践(ArkTS)
+
 在开发相机应用时，需要先参考开发准备[申请相关权限](camera-preparation.md)。
 
 当前示例提供完整的分段式拍照流程介绍，方便开发者了解完整的接口调用顺序。
@@ -18,17 +19,19 @@ Context获取方式请参考：[获取UIAbility的上下文信息](../../applica
 ```ts
 import { camera } from '@kit.CameraKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
+import { abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-
-let context = getContext(this);
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 let photoSession: camera.PhotoSession | undefined = undefined;
 let cameraInput: camera.CameraInput | undefined = undefined;
 let previewOutput: camera.PreviewOutput | undefined = undefined;
 let photoOutput: camera.PhotoOutput | undefined = undefined;
 
+function getPhotoAccessHelper(context: Context): photoAccessHelper.PhotoAccessHelper {
+  let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+  return phAccessHelper;
+}
+   
 class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
   onDataPrepared(data: ArrayBuffer) {
     if (data === undefined) {
@@ -41,7 +44,7 @@ class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayB
   }
 }
 
-async function mediaLibRequestBuffer(photoAsset: photoAccessHelper.PhotoAsset) {
+async function mediaLibRequestBuffer(photoAsset: photoAccessHelper.PhotoAsset, context: Context) {
   let requestOptions: photoAccessHelper.RequestOptions = {
     deliveryMode: photoAccessHelper.DeliveryMode.FAST_MODE,
   }
@@ -50,7 +53,8 @@ async function mediaLibRequestBuffer(photoAsset: photoAccessHelper.PhotoAsset) {
   console.info('requestImageData successfully');
 }
 
-async function mediaLibSavePhoto(photoAsset: photoAccessHelper.PhotoAsset): Promise<void> {
+async function mediaLibSavePhoto(photoAsset: photoAccessHelper.PhotoAsset,
+  phAccessHelper: photoAccessHelper.PhotoAccessHelper): Promise<void> {
   try {
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest =
       new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
@@ -62,7 +66,7 @@ async function mediaLibSavePhoto(photoAsset: photoAccessHelper.PhotoAsset): Prom
   }
 }
 
-function setPhotoOutputCb(photoOutput: camera.PhotoOutput): void {
+function setPhotoOutputCb(photoOutput: camera.PhotoOutput, context: Context): void {
   //监听回调之后，调用photoOutput的capture方法，低质量图上报后触发回调。
   photoOutput.on('photoAssetAvailable', (err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset): void => {
     console.info('getPhotoAsset start');
@@ -72,15 +76,15 @@ function setPhotoOutputCb(photoOutput: camera.PhotoOutput): void {
       return;
     }
     // 调用媒体库落盘接口保存一阶段低质量图，二阶段真图就绪后媒体库会主动帮应用替换落盘图片。
-    mediaLibSavePhoto(photoAsset);
+    mediaLibSavePhoto(photoAsset, getPhotoAccessHelper(context));
     // 调用媒体库接口注册低质量图或高质量图buffer回调，自定义处理。
-    mediaLibRequestBuffer(photoAsset);
+    mediaLibRequestBuffer(photoAsset, context);
   });
 }
 
-async function deferredCaptureCase(baseContext: common.BaseContext, surfaceId: string): Promise<void> {
+async function deferredCaptureCase(context: Context, surfaceId: string): Promise<void> {
   // 创建CameraManager对象。
-  let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
+  let cameraManager: camera.CameraManager = camera.getCameraManager(context);
   if (!cameraManager) {
     console.error('camera.getCameraManager error');
     return;
@@ -183,7 +187,7 @@ async function deferredCaptureCase(baseContext: common.BaseContext, surfaceId: s
   }
 
   //注册监听photoAssetAvailable回调。
-  setPhotoOutputCb(photoOutput);
+  setPhotoOutputCb(photoOutput, context);
 
   //创建会话。
   try {
@@ -348,25 +352,50 @@ async function releaseCamSession() {
 @Component
 struct Index {
   @State message: string = 'PhotoAssetDemo';
+  @State isShow: boolean = false;
   private mXComponentController: XComponentController = new XComponentController();
   private surfaceId = '';
+  private uiContext: UIContext = this.getUIContext();
+  private context: Context | undefined = this.uiContext.getHostContext();
+  private cameraPermission: Permissions = 'ohos.permission.CAMERA'; // 申请权限相关问题可参考本篇开头的申请相关权限文档
+
+  async requestPermissionsFn(): Promise<void> {
+    let atManager = abilityAccessCtrl.createAtManager();
+    if (this.context) {
+      let res = await atManager.requestPermissionsFromUser(this.context, [this.cameraPermission]);
+      for (let i =0; i < res.permissions.length; i++) {
+        if (this.cameraPermission.toString() === res.permissions[i] && res.authResults[i] === 0) {
+          this.isShow = true;
+        }
+      }
+    }
+  }
+
+  aboutToAppear(): void {
+    this.requestPermissionsFn();
+  }
 
   build() {
     Column() {
       Column() {
-        XComponent({
-          id: 'componentId',
-          type: XComponentType.SURFACE,
-          controller: this.mXComponentController
-        })
+        if (this.isShow) {
+          XComponent({
+            id: 'componentId',
+            type: XComponentType.SURFACE,
+            controller: this.mXComponentController
+          })
           .onLoad(async () => {
             console.info('onLoad is called');
-            this.surfaceId = this.mXComponentController.getXComponentSurfaceId();
-            console.info(`onLoad surfaceId: ${this.surfaceId}`);
-            deferredCaptureCase(context, this.surfaceId);
+            if (this.context) {
+              this.surfaceId = this.mXComponentController.getXComponentSurfaceId();
+              console.info(`onLoad surfaceId: ${this.surfaceId}`);
+              deferredCaptureCase(this.context, this.surfaceId);
+            }
           })// The width and height of the surface are opposite to those of the XComponent.
           .renderFit(RenderFit.RESIZE_CONTAIN)
-      }.height('95%')
+        }
+      }
+      .height('95%')
       .justifyContent(FlexAlign.Center)
 
       Text(this.message)

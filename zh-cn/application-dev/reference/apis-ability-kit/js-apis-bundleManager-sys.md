@@ -5005,7 +5005,7 @@ try {
 }
 ```
 
-## bundleManager.getAllPluginInfo<sup>18+</sup>
+## bundleManager.getAllPluginInfo<sup>19+</sup>
 
 function getAllPluginInfo(hostBundleName: string, userId?: number): Promise<Array\<PluginBundleInfo>>
 
@@ -5038,7 +5038,6 @@ function getAllPluginInfo(hostBundleName: string, userId?: number): Promise<Arra
 | -------- | -------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found.  |
 | 17700004 | The specified user ID is not found.      |
 
@@ -5574,7 +5573,6 @@ migrateData(sourcePaths: Array&lt;string&gt;, destinationPath: string): Promise&
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 17700080 | The source paths are invalid. |
 | 17700081 | The destination path is invalid. |
 | 17700082 | User authentication failed. |
@@ -5721,7 +5719,7 @@ try {
 }
 ```
 
-## PluginBundleInfo<sup>18+</sup>
+## PluginBundleInfo<sup>19+</sup>
 
 type PluginBundleInfo = _PluginBundleInfo
 
@@ -5733,7 +5731,7 @@ type PluginBundleInfo = _PluginBundleInfo
 | ------------------------------------------------------------ | -------------- |
 | [_PluginBundleInfo](js-apis-bundleManager-pluginBundleInfo-sys.md#pluginbundleinfo) |插件信息。 |
 
-## PluginModuleInfo<sup>18+</sup>
+## PluginModuleInfo<sup>19+</sup>
 
 type PluginModuleInfo = _PluginModuleInfo
 

@@ -413,7 +413,7 @@ OHOS Which product do you need?  neptune_iotlink_demo
 
 由于Neptune100开发板的芯片架构为OpenHarmony不支持的ck804ef架构，需要进行ck804ef架构移植。适配 `kernel\liteos_m\arch\include`中定义的通用的文件以及函数列表，并放在了 `kernel\liteos_m\arch\csky\v2\ck804\gcc`文件夹下。
 
-内核初始化示例如下:
+内核初始化示例如下：
 
    ```
    osStatus_t ret = osKernelInitialize();                    --- 内核初始化

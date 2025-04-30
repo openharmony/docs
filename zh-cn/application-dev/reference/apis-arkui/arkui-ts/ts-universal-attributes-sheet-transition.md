@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 >  不支持路由跳转。
 
@@ -22,7 +22,7 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 
 | 参数名  | 类型                                        | 必填 | 说明                                                         |
 | ------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| isShow  | Optional\<boolean\>                          | 是   | 是否显示半模态页面。<br/>从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br />从API version 18开始，该参数支持[!!](../../../quick-start/arkts-new-binding.md#组件参数双向绑定)双向绑定变量。|
+| isShow  | Optional\<boolean\>                          | 是   | 是否显示半模态页面。<br/>从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />从API version 18开始，该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#组件参数双向绑定)双向绑定变量。|
 | builder | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 配置半模态页面内容。                                         |
 | options | [SheetOptions](#sheetoptions)               | 否   | 配置半模态页面的可选属性。                                   |
 
@@ -30,7 +30,7 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 >
 > 1. 在非双向绑定情况下，以拖拽方式关闭半模态页面不会改变isShow参数的值。
 >
-> 2. 为了使isShow参数值与半模态界面的状态同步，建议使用[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定isShow参数。从API version 18开始，该参数支持[!!](../../../quick-start/arkts-new-binding.md#组件参数双向绑定)双向绑定变量。
+> 2. 为了使isShow参数值与半模态界面的状态同步，建议使用[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定isShow参数。从API version 18开始，该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#组件参数双向绑定)双向绑定变量。
 >
 > 3. 在半模态单挡位向上拖拽或是多挡位上滑换挡情况下，内容在拖拽结束或换挡结束后更新显示区域。
 >
@@ -77,7 +77,7 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 | placement<sup>18+</sup> | [Placement](ts-appendix-enums.md#placement8) | 否 | 设置半模态popup样式弹窗相对于目标的显示位置。<br />默认值：Placement.Bottom<br />**说明：** <br /> 1. popup样式弹窗在确保指定位置能容纳弹窗尺寸的前提下，优先依据设定的placement展示弹窗。若不可行，则遵循先垂直翻转，后尝试90°水平旋转的规则调整显示位置，以预设方向为下方为例，调整顺序依次为：下、上、右、左。<br />2. 如果设置的对齐方式导致组件布局超出窗口范围，将根据该对齐方式在水平或垂直方向上进行位移，直至组件完全显示在窗口内。<br />3. 如果在四个方向上均无法容纳当前的popup样式弹窗，处理方式遵循开发者设置的placementOnTarget属性：<br />1）若属性值为true，将依据设定的placement，向其镜像方向平移，直至弹窗能够完全显示。<br />2）若属性值为false，则在四个方向中，选择能够完全展示弹窗宽度且剩余高度最大的方向，通过调整半模态高度以适应当前方向，确保弹窗能够放下，同时保持预设placement对应的对齐方式不变。 <br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | placementOnTarget<sup>18+</sup> | Boolean | 否 | 半模态popup样式弹窗在当前窗口下，四个方向均无法容纳该弹窗大小时，设置是否允许其覆盖在目标节点上。<br /> 默认值：true <br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 | effectEdge<sup>18+</sup> | number | 否 | 设置半模态面板边缘滚动，支持单边生效。<br/>**默认值**：默认双边生效，即[EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).START \| [EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).END（即数值3）。<br />**说明：**<br />1. 仅上边缘生效：[EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).START。<br/>2. 仅下边缘生效：[EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).END。<br/>3. 双边生效：[EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).START \| [EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).END（即数值3）。<br/>4. 双边不生效：[EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).START & [EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).END（即数值0）。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
-| showInSubWindow<sup>18+</sup> | boolean                                  | 否    | 半模态是否在子窗中显示。<br>默认值：false，半模态显示在应用内，而非独立子窗口。<br>**说明**：<br>1. showInSubWindow为true的弹窗无法触发显示另一个showInSubWindow为true的弹窗。<br>2. 不建议在showInSubWindow为true的弹窗中使用CalendarPicker、CalendarPickerDialog、DatePickerDialog、TextPickerDialog、TimePickerDialog等picker组件，半模态会影响上述组件行为。<br>3. 半模态显示期间该属性不支持动态切换。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| showInSubWindow<sup>18+</sup> | boolean                                  | 否    | 半模态是否在独立子窗中显示。<br>默认值：false<br>**说明**：<br>1.若属性值为true，半模态可以在独立子窗口中展示，并且可以超过应用窗口范围。<br>2.若属性值为false，半模态只能在应用窗口范围内展示。<br>3. 不建议在showInSubWindow为true的弹窗嵌套显示另一个showInSubWindow为true的弹窗，半模态可能会影响其他组件行为。<br>4. 不建议在showInSubWindow为true的弹窗中使用CalendarPicker、CalendarPickerDialog、DatePickerDialog、TextPickerDialog、TimePickerDialog等picker组件，半模态会影响上述组件行为。<br>5. 半模态显示期间该属性不支持动态切换。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## SheetSize枚举说明
 
@@ -87,7 +87,7 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 | ------------------------- | ---- | -------------------------------- |
 | MEDIUM                    | 0    | 指定半模态高度为屏幕高度一半。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
 | LARGE                     | 1    | 指定半模态高度几乎为屏幕高度。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
-| FIT_CONTENT<sup>11+</sup> | 2    | 指定半模态高度为适应内容的高度。<br />**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| FIT_CONTENT<sup>11+</sup> | 2    | 指定半模态高度为适应内容的高度。<br />**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br />**说明：**<br />FIT_CONTENT是半模态容器高度去适应孩子builder根节点的布局。此场景下builder根节点的高度不能使用百分比，两者不能相互依赖彼此的布局。 |
 
 ## BindOptions
 
@@ -192,7 +192,7 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 @Entry
 @Component
 struct SheetTransitionExample {
-  @State isShow: boolean = false
+  @State isShow: boolean = false;
   @State sheetHeight: number = 300;
 
   @Builder
@@ -227,7 +227,7 @@ struct SheetTransitionExample {
     Column() {
       Button("transition modal 1")
         .onClick(() => {
-          this.isShow = true
+          this.isShow = true;
         })
         .fontSize(20)
         .margin(10)
@@ -235,16 +235,16 @@ struct SheetTransitionExample {
           height: this.sheetHeight,
           backgroundColor: Color.Green,
           onWillAppear: () => {
-            console.log("BindSheet onWillAppear.")
+            console.log("BindSheet onWillAppear.");
           },
           onAppear: () => {
-            console.log("BindSheet onAppear.")
+            console.log("BindSheet onAppear.");
           },
           onWillDisappear: () => {
-            console.log("BindSheet onWillDisappear.")
+            console.log("BindSheet onWillDisappear.");
           },
           onDisappear: () => {
-            console.log("BindSheet onDisappear.")
+            console.log("BindSheet onDisappear.");
           }
         })
     }
@@ -269,7 +269,7 @@ struct SheetTransitionExample {
 @Entry
 @Component
 struct SheetTransitionExample {
-  @State isShow: boolean = false
+  @State isShow: boolean = false;
 
   @Builder
   myBuilder() {
@@ -289,13 +289,12 @@ struct SheetTransitionExample {
     Column() {
       Button("transition modal 1")
         .onClick(() => {
-          this.isShow = true
+          this.isShow = true;
         })
         .fontSize(20)
         .margin(10)
         .bindSheet($$this.isShow, this.myBuilder(), {
           detents: [SheetSize.MEDIUM, SheetSize.LARGE, 200],
-          backgroundColor: Color.Gray,
           blurStyle: BlurStyle.Thick,
           showClose: true,
           title: { title: "title", subtitle: "subtitle" },
@@ -316,12 +315,12 @@ bindSheet属性的borderWidth、borderColor属性值使用LocalizedEdgeWidths类
 
 ```ts
 // xxx.ets
-import { LengthMetrics } from '@kit.ArkUI'
+import { LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct SheetTransitionExample {
-  @State isShow: boolean = false
+  @State isShow: boolean = false;
 
   @Builder
   myBuilder() {
@@ -341,7 +340,7 @@ struct SheetTransitionExample {
     Column() {
       Button("transition modal 1")
         .onClick(() => {
-          this.isShow = true
+          this.isShow = true;
         })
         .fontSize(20)
         .margin(10)
@@ -384,9 +383,9 @@ struct bindSheetExample {
   @Builder
   myBuilder() {
     Column() {
-      Button() {
-        Text("CONTEXT")
-      }.height(50)
+      Button("CONTEXT")
+        .margin(10)
+        .fontSize(20)
     }
   }
 
@@ -394,7 +393,7 @@ struct bindSheetExample {
     Column() {
       Button("NoRegisterSpringback")
         .onClick(() => {
-          this.isShow = true
+          this.isShow = true;
         })
         .fontSize(20)
         .margin(10)
@@ -405,16 +404,15 @@ struct bindSheetExample {
           title: { title: "title", subtitle: "subtitle" },
           preferType: SheetType.CENTER,
 
-
           onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
             if (DismissSheetAction.reason == DismissReason.SLIDE_DOWN) {
-              DismissSheetAction.dismiss() //注册dismiss行为
+              DismissSheetAction.dismiss(); //注册dismiss行为
             }
           }),
 
           onWillSpringBackWhenDismiss: ((SpringBackAction: SpringBackAction) => {
-            //没有注册springBack, 下拉半模态页面无回弹行为
-            //SpringBackAction.springBack()
+            //没有注册springBack，下拉半模态页面无回弹行为
+            //SpringBackAction.springBack();
           }),
         })
     }
@@ -498,7 +496,7 @@ struct ListenKeyboardHeightChange {
 
   aboutToAppear(): void {
     try {
-      window.getLastWindow(getContext(this), (err: BusinessError, data) => {
+      window.getLastWindow(this.getUIContext().getHostContext(), (err: BusinessError, data) => {
         const errCode: number = err.code;
         if (errCode) {
           console.error(`Failed to obtain the top window, Cause code: ${err.code}, message: ${err.message}`);
@@ -606,7 +604,7 @@ import { LengthMetrics } from '@kit.ArkUI';
 @Entry
 @Component
 struct SheetTransitionExample {
-  @State isShow: boolean = false
+  @State isShow: boolean = false;
 
   @Builder
   myBuilder() {
@@ -626,7 +624,7 @@ struct SheetTransitionExample {
     Column() {
       Button("transition modal 1")
         .onClick(() => {
-          this.isShow = true
+          this.isShow = true;
         })
         .fontSize(20)
         .margin(10)

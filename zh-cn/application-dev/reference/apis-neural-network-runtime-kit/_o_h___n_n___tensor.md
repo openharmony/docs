@@ -13,7 +13,7 @@
 
 **替代：** 推荐使用[NN_TensorDesc](_neural_network_runtime.md#nn_tensordesc)。
 
-**相关模块：**[NeuralNeworkRuntime](_neural_network_runtime.md)
+**相关模块：**[NeuralNetworkRuntime](_neural_network_runtime.md)
 
 **所在头文件：**[neural_network_runtime_type.h](neural__network__runtime__type_8h.md)
 

@@ -27,13 +27,13 @@ TextClock(options?: TextClockOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options |  [TextClockOptions](#textclockoptions14对象说明)| 否 | 通过文本显示当前系统时间的组件参数。 |
+| options |  [TextClockOptions](#textclockoptions18对象说明)| 否 | 通过文本显示当前系统时间的组件参数。 |
 
-## TextClockOptions<sup>14+</sup>对象说明
+## TextClockOptions<sup>18+</sup>对象说明
 
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -48,7 +48,7 @@ TextClock(options?: TextClockOptions)
 
 ### format
 
-format(value: string)
+format(value: ResourceStr)
 
 设置显示时间格式，如“yyyy/MM/dd”、“yyyy-MM-dd”。
 
@@ -74,7 +74,7 @@ y：年（yyyy表示完整年份，yy表示年份后两位）<br />M：月（若
 
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
-| value  | string | 是   | 显示时间格式。 |
+| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 显示时间格式。  <br>从API version 20开始，支持Resource类型。|
 
 以下是format输入的格式样式及对应的显示效果：
 
@@ -258,7 +258,7 @@ contentModifier(modifier: ContentModifier\<TextClockConfiguration>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                             |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
-| modifier  | [ContentModifier\<TextClockConfiguration>](#textclockconfiguration12对象说明) | 是   | 在TextClock组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
+| modifier  | [ContentModifier\<TextClockConfiguration>](#textclockconfiguration12对象说明) | 是   | 在TextClock组件上，定制内容区的方法。<br/>modifier： 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
 
 ### dateTimeOptions<sup>12+</sup>
 

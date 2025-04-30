@@ -935,6 +935,7 @@ tabIndex(index: number)
 >  **说明：**
 >
 > 不能同时设置tabIndex与focusScopeId属性。
+> 不建议在页面中通过单独设置组件的tabIndex属性为负数来控制获焦能力，可以使用focusable属性代替。
 
 ```ts
 @Entry

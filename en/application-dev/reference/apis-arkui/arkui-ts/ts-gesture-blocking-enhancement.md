@@ -100,7 +100,7 @@ Obtains whether this gesture recognizer is a built-in gesture.
 
 | Type    | Description       |
 | ------ | --------- |
-| boolean | Whether this gesture recognizer is a built-in gesture.|
+| boolean | Whether the current gesture recognizer is a built-in gesture. The value **true** means that the gesture recognizer is a built-in gesture, and **false** means the opposite.|
 
 ### setEnabled
 
@@ -237,7 +237,7 @@ Checks whether this scrollable container component is scrolled to the top. If it
 
 | Type    | Description       |
 | ------ | --------- |
-| boolean | Whether the current scrollable container component is scrolled to the top.|
+| boolean | Whether the current scrollable container component is scrolled to the top. The value **true** means that the component is scrolled to the top, and **false** means the opposite.|
 
 ### isEnd
 
@@ -253,7 +253,7 @@ Checks whether this scrollable container component is scrolled to the bottom. If
 
 | Type    | Description       |
 | ------ | --------- |
-| boolean | Whether the current scrollable container component is scrolled to the bottom.|
+| boolean | Whether the current scrollable container component is scrolled to the bottom. The value **true** means that the component is scrolled to the bottom, and **false** means the opposite.|
 
 ### getFingerCount<sup>18+</sup>
 
@@ -269,7 +269,7 @@ Obtains the number of fingers required to trigger the preset gesture.
 
 | Type    | Description       |
 | ------ | --------- |
-| number | Number of fingers required to trigger the preset gesture.|
+| number | Number of fingers required to trigger the preset gesture.<br>Value range: an integer from 1 to 10.|
 
 ### isFingerCountLimit<sup>18+</sup>
 
@@ -325,7 +325,7 @@ Obtains the number of consecutive taps required for the tap gesture to be recogn
 
 | Type    | Description       |
 | ------ | --------- |
-| number | Number of consecutive taps required for the tap gesture to be recognized.|
+| number | Number of consecutive taps required for the tap gesture to be recognized.<br>Value range: [0, +∞).|
 
 ## LongPressRecognizer<sup>18+</sup>
 
@@ -361,7 +361,7 @@ Obtains the minimum duration required for the long press gesture to be recognize
 
 | Type    | Description       |
 | ------ | --------- |
-| number | Minimum duration required for the long press gesture to be recognized.|
+| number | Minimum duration required for the long press gesture to be recognized, in ms.<br>Value range: [0, +∞).|
 
 ## SwipeRecognizer<sup>18+</sup>
 
@@ -381,7 +381,7 @@ Obtains the minimum velocity required for the swipe gesture to be recognized.
 
 | Type    | Description       |
 | ------ | --------- |
-| number | Minimum velocity required for the swipe gesture to be recognized.|
+| number | Minimum velocity required for the swipe gesture to be recognized, in vp/s.<br>Value range: [0, +∞).|
 
 ### getDirection<sup>18+</sup>
 
@@ -417,7 +417,7 @@ Obtains the minimum distance required for the pinch gesture to be recognized.
 
 | Type    | Description       |
 | ------ | --------- |
-| number | Minimum distance required for the pinch gesture to be recognized.|
+| number | Minimum distance required for the pinch gesture to be recognized, in vp.<br>Value range: [0, +∞).|
 
 ## RotationRecognizer<sup>18+</sup>
 
@@ -437,7 +437,7 @@ Obtains the minimum angle change required for the rotation gesture to be recogni
 
 | Type    | Description       |
 | ------ | --------- |
-| number | Minimum angle change required for the rotation gesture to be recognized.<br>**NOTE**<br>If the provided angle is less than or equal to 0 or greater than 360, it is converted to the default value **1**.|
+| number | Minimum angle change required for the rotation gesture to be recognized, in degrees (deg).<br>Value range: [0, +∞).<br>**NOTE**<br>If the provided angle is less than or equal to 0 or greater than 360, it is converted to the default value **1**.|
 
 ## onGestureRecognizerJudgeBegin<sup>13+</sup>
 
@@ -723,24 +723,14 @@ struct Index {
               let target = current.getEventTargetInfo();
               if (target && current.isBuiltIn() && current.getType() == GestureControl.GestureType.PAN_GESTURE) {
                 console.info('ets onGestureRecognizerJudgeBegin child PAN_GESTURE')
-                let swiperTaget = target as ScrollableTargetInfo
-                if (swiperTaget instanceof ScrollableTargetInfo) {
-                  console.info('ets onGestureRecognizerJudgeBegin child PAN_GESTURE isEnd: ' + swiperTaget.isEnd() + ' isBegin: ' + swiperTaget.isBegin())
+                let panEvent = event as PanGestureEvent;
+                if (panEvent && panEvent.velocityX < 0 && this.innerSelectedIndex === 1) { // The inner Tabs component has reached the end.
+                  console.info('ets onGestureRecognizerJudgeBegin child reject end')
+                  return GestureJudgeResult.REJECT;
                 }
-                if (swiperTaget instanceof ScrollableTargetInfo && 
-                  ((swiperTaget.isEnd() || this.innerSelectedIndex === 1) || // This condition checks whether the inner Tabs container has scrolled to the end.
-                    (swiperTaget.isBegin() || this.innerSelectedIndex === 0))) { // This condition checks whether the inner Tabs container has scrolled to the beginning.
-                  let panEvent = event as PanGestureEvent;
-                  console.log('pan direction:' + panEvent.offsetX + ' begin:' + swiperTaget.isBegin() + ' end:' +
-                  swiperTaget.isEnd() + ' index:' + this.innerSelectedIndex)
-                  if (panEvent && panEvent.offsetX < 0 && (swiperTaget.isEnd() || this.innerSelectedIndex === 1)) {
-                    console.info('ets onGestureRecognizerJudgeBegin child reject end')
-                    return GestureJudgeResult.REJECT;
-                  }
-                  if (panEvent && panEvent.offsetX > 0 && (swiperTaget.isBegin() || this.innerSelectedIndex === 0)) {
-                    console.info('ets onGestureRecognizerJudgeBegin child reject begin')
-                    return GestureJudgeResult.REJECT;
-                  }
+                if (panEvent && panEvent.velocityX > 0 && this.innerSelectedIndex === 0) { // The inner Tabs component has reached the beginning.
+                  console.info('ets onGestureRecognizerJudgeBegin child reject begin')
+                  return GestureJudgeResult.REJECT;
                 }
               }
             }

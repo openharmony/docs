@@ -106,7 +106,7 @@ type RecentPhotoClickCallback = (recentPhotoInfo: BaseItemInfo) => boolean
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| boolean | 应用回调中处理最近图片的结果返回。 |
+| boolean | 应用回调中处理最近图片的结果返回。true表示处理完成。 |
 
 ## RecentPhotoCheckInfoCallback<sup>13+</sup>
 
@@ -183,7 +183,7 @@ struct PickerDemo {
     return true;
   }
 
-  private onRecentPhotoCheckResult(recentPhotoExists: boolean, info: RecentPhotoInfo): void {
+  private onRecentPhotoCheckInfo(recentPhotoExists: boolean, info: RecentPhotoInfo): void {
     // 是否存在符合条件的照片或视频，若存在则可以拿到该照片或视频的相关信息。
   }
 

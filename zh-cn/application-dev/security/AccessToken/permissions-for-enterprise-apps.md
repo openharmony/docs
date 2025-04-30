@@ -6,6 +6,10 @@
 
 企业类应用可参考[声明权限](declare-permissions.md)，申请以下权限。
 
+> **注意：**
+> 
+> 以下权限不支持自动签名，因此在调试和发布阶段，均需参照[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section297715173233)的步骤，完成手动签名。
+
 ## ohos.permission.SET_FILE_GUARD_POLICY
 
 允许应用下发文件管控策略。
@@ -99,6 +103,8 @@
 ## ohos.permission.GET_WIFI_CONFIG
 
 允许应用获取Wi-Fi的配置信息。
+
+当前仅PC/2in1设备应用可申请此权限。
 
 **权限级别**：system_basic
 

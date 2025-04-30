@@ -295,7 +295,7 @@ AbilityBase_ErrorCode OH_AbilityBase_SetWantUri(AbilityBase_Want* want, const ch
 
 设置Want中URI字符串。URI可参考[Want中URI描述](js-apis-app-ability-want.md)。
 
-**起始版本**：18
+**起始版本**：17
 
 **参数：**
 
@@ -319,7 +319,7 @@ AbilityBase_ErrorCode OH_AbilityBase_GetWantUri(AbilityBase_Want* want, char* ur
 
 获取Want中URI字符串。URI可参考[Want中URI描述](js-apis-app-ability-want.md)。
 
-**起始版本**：18
+**起始版本**：17
 
 **参数：**
 
@@ -344,7 +344,7 @@ AbilityBase_ErrorCode OH_AbilityBase_SetWantInt32Param(AbilityBase_Want* want, c
 
 设置Want中int32_t类型的值。
 
-**起始版本**：18
+**起始版本**：17
 
 **参数：**
 
@@ -369,7 +369,7 @@ AbilityBase_ErrorCode OH_AbilityBase_GetWantInt32Param(AbilityBase_Want* want, c
 
 获取Want中int32_t类型的值。
 
-**起始版本**：18
+**起始版本**：17
 
 **参数：**
 
@@ -395,7 +395,7 @@ AbilityBase_ErrorCode OH_AbilityBase_SetWantBoolParam(AbilityBase_Want* want, co
 
 设置Want中bool类型的值。
 
-**起始版本**：18
+**起始版本**：17
 
 **参数：**
 
@@ -420,7 +420,7 @@ AbilityBase_ErrorCode OH_AbilityBase_GetWantBoolParam(AbilityBase_Want* want, co
 
 获取Want中bool类型的值。
 
-**起始版本**：18
+**起始版本**：17
 
 **参数：**
 
@@ -445,7 +445,7 @@ AbilityBase_ErrorCode OH_AbilityBase_SetWantDoubleParam(AbilityBase_Want* want, 
 
 设置Want中double类型的值。
 
-**起始版本**：18
+**起始版本**：17
 
 **参数：**
 
@@ -470,7 +470,7 @@ AbilityBase_ErrorCode OH_AbilityBase_GetWantDoubleParam(AbilityBase_Want* want, 
 
 获取Want中double类型的值。
 
-**起始版本**：18
+**起始版本**：17
 
 **参数：**
 

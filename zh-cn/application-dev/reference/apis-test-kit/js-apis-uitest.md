@@ -66,10 +66,10 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 
 **系统能力**：SystemCapability.Test.UiTest
 
-| 名称 | 类型   | 可读 | 可写 | 说明             |
-| ---- | ------ | ---- | ---- | ---------------- |
-| x    | number | 是   | 否   | 坐标点的横坐标。 |
-| y    | number | 是   | 否   | 坐标点的纵坐标。 |
+| 名称 | 类型   | 可读 | 可写 | 说明        |
+| ---- | ------ | ---- | ---- |-----------|
+| x    | number | 是   | 否   | 坐标点的横坐标，取值大于0。 |
+| y    | number | 是   | 否   | 坐标点的纵坐标，取值大于0。  |
 
 ## Rect<sup>9+</sup>
 
@@ -81,10 +81,10 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 
 | 名称   | 类型   | 可读 | 可写 | 说明                      |
 | ------ | ------ | ---- | ---- | ------------------------- |
-| left   | number | 是   | 否   | 控件边框的左上角的X坐标。 |
-| top    | number | 是   | 否   | 控件边框的左上角的Y坐标。 |
-| right  | number | 是   | 否   | 控件边框的右下角的X坐标。 |
-| bottom | number | 是   | 否   | 控件边框的右下角的Y坐标。 |
+| left   | number | 是   | 否   | 控件边框的左上角的X坐标，取值大于0。 |
+| top    | number | 是   | 否   | 控件边框的左上角的Y坐标，取值大于0。 |
+| right  | number | 是   | 否   | 控件边框的右下角的X坐标，取值大于0。 |
+| bottom | number | 是   | 否   | 控件边框的右下角的Y坐标，取值大于0。 |
 
 ## WindowMode<sup>9+</sup>
 
@@ -122,13 +122,13 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 
 **系统能力**：SystemCapability.Test.UiTest
 
-| 名称                 | 类型    | 可读 | 可写 | 说明                                                         |
-| -------------------- | ------- | ---- | ---- | ------------------------------------------------------------ |
-| bundleName           | string  | 是   | 否   | 窗口归属应用的包名。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| title                | string  | 是   | 否   | 窗口的标题信息。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| focused              | boolean | 是   | 否   | 窗口是否处于获焦状态。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| actived(deprecated)  | boolean | 是   | 否   | 窗口是否正与用户进行交互。<br>从API11开始，名称变更为active。 |
-| active<sup>11+</sup> | boolean | 是   | 否   | 窗口是否正与用户进行交互。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| 名称                 | 类型    | 可读 | 可写 | 说明                                                                                     |
+| -------------------- | ------- | ---- | ---- |----------------------------------------------------------------------------------------|
+| bundleName           | string  | 是   | 否   | 窗口归属应用的包名。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                        |
+| title                | string  | 是   | 否   | 窗口的标题信息。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                          |
+| focused              | boolean | 是   | 否   | 窗口是否处于获焦状态，true：获焦状态，false：未获焦状态。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| actived(deprecated)  | boolean | 是   | 否   | 窗口是否正与用户进行交互，true：交互状态，false：未交互状态。<br>从API version 11开始，名称变更为active。                                                 |
+| active<sup>11+</sup> | boolean | 是   | 否   | 窗口是否正与用户进行交互，true：交互状态，false：未交互状态。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                     |
 
 ## UiDirection<sup>10+</sup>
 
@@ -182,10 +182,10 @@ UI事件的相关信息。
 
 **系统能力**：SystemCapability.Test.UiTest
 
-| 名称       | 类型   | 可读 | 可写 | 说明                                                       |
-| ---------- | ------ |----|----|----------------------------------------------------------|
-| stay | boolean | 否  | 是  | 触摸板多指滑动结束是否停留1s后再抬起，默认为false（不停留1s）。                     |
-| speed       | number | 否  | 是  | 滑动速率，取值范围为200-40000，默认值为2000，不在范围内设为默认值为2000，单位：px/s。 |
+| 名称       | 类型   | 可读 | 可写 | 说明                                                     |
+| ---------- | ------ |----|----|--------------------------------------------------------|
+| stay | boolean | 否  | 是  | 触摸板多指滑动结束是否停留1s后再抬起，默认为false（不停留1s），true：停留，false：不停留。 |
+| speed       | number | 否  | 是  | 滑动速率，取值范围为200-40000，默认值为2000，不在范围内设为默认值为2000，单位：px/s。  |
 
 ## On<sup>9+</sup>
 
@@ -409,7 +409,7 @@ clickable(b?: boolean): On
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | 否   | 指定控件可点击状态，true：可点击，false：不可点击。默认为true。 |
+| b      | boolean | 否   | 指定控件可点击状态。true：可点击。false：不可点击。默认为true。 |
 
 **返回值：**
 
@@ -446,7 +446,7 @@ longClickable(b?: boolean): On
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | 否   | 指定控件可长按点击状态，true：可长按点击，false：不可长按点击。默认为true。 |
+| b      | boolean | 否   | 指定控件可长按点击状态。true：可长按点击。false：不可长按点击。默认为true。 |
 
 **返回值：**
 
@@ -484,7 +484,7 @@ scrollable(b?: boolean): On
 
 | 参数名 | 类型    | 必填 | 说明                                                        |
 | ------ | ------- | ---- | ----------------------------------------------------------- |
-| b      | boolean | 否   | 控件可滑动状态，true：可滑动，false：不可滑动。默认为true。 |
+| b      | boolean | 否   | 控件可滑动状态。true：可滑动。false：不可滑动。默认为true。 |
 
 **返回值：**
 
@@ -521,7 +521,7 @@ enabled(b?: boolean): On
 
 | 参数名 | 类型    | 必填 | 说明                                                      |
 | ------ | ------- | ---- | --------------------------------------------------------- |
-| b      | boolean | 否   | 指定控件使能状态，true：使能，false：未使能。默认为true。 |
+| b      | boolean | 否   | 指定控件使能状态。true：使能。false：未使能。默认为true。 |
 
 **返回值：**
 
@@ -558,7 +558,7 @@ focused(b?: boolean): On
 
 | 参数名 | 类型    | 必填 | 说明                                                  |
 | ------ | ------- | ---- | ----------------------------------------------------- |
-| b      | boolean | 否   | 控件获焦状态，true：获焦，false：未获焦。默认为true。 |
+| b      | boolean | 否   | 控件获焦状态。true：获焦。false：未获焦。默认为true。 |
 
 **返回值：**
 
@@ -595,7 +595,7 @@ selected(b?: boolean): On
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | 否   | 指定控件被选中状态，true：被选中，false：未被选中。默认为true。 |
+| b      | boolean | 否   | 指定控件被选中状态。true：被选中。false：未被选中。默认为true。 |
 
 **返回值：**
 
@@ -632,7 +632,7 @@ checked(b?: boolean): On
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | 否   | 指定控件被勾选状态，true：被勾选，false：未被勾选。默认为false。 |
+| b      | boolean | 否   | 指定控件被勾选状态。true：被勾选。false：未被勾选。默认为false。 |
 
 **返回值：**
 
@@ -669,7 +669,7 @@ checkable(b?: boolean): On
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | 否   | 指定控件能否被勾选状态，true：能被勾选，false：不能被勾选。默认为false。 |
+| b      | boolean | 否   | 指定控件能否被勾选状态。true：能被勾选。false：不能被勾选。默认为false。 |
 
 **返回值：**
 
@@ -1211,7 +1211,7 @@ isClickable(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回控件对象是否可点击，true：可点击，false：不可点击。 |
+| Promise\<boolean> | 以Promise形式返回控件对象是否可点击。true：可点击。false：不可点击。 |
 
 **错误码：**
 
@@ -1251,7 +1251,7 @@ isLongClickable(): Promise\<boolean>
 
 | 类型              | 说明                                               |
 | ----------------- |--------------------------------------------------|
-| Promise\<boolean> | 以Promise形式返回控件对象是否可长按点击，true：可长按点击，false：不可长按点击。 |
+| Promise\<boolean> | 以Promise形式返回控件对象是否可长按点击。true：可长按点击。false：不可长按点击。 |
 
 **错误码：**
 
@@ -1291,7 +1291,7 @@ isChecked(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回控件对象被勾选状态，true：被勾选，false：未被勾选。 |
+| Promise\<boolean> | 以Promise形式返回控件对象被勾选状态。true：被勾选。false：未被勾选。 |
 
 **错误码：**
 
@@ -1331,7 +1331,7 @@ isCheckable(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回控件对象能否可被勾选属性，true：可被勾选，false：不可被勾选。 |
+| Promise\<boolean> | 以Promise形式返回控件对象能否可被勾选属性。true：可被勾选。false：不可被勾选。 |
 
 **错误码：**
 
@@ -1371,7 +1371,7 @@ isScrollable(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回控件对象是否可滑动，true：可滑动，false：不可滑动。 |
+| Promise\<boolean> | 以Promise形式返回控件对象是否可滑动。true：可滑动。false：不可滑动。 |
 
 **错误码：**
 
@@ -1412,7 +1412,7 @@ isEnabled(): Promise\<boolean>
 
 | 类型              | 说明                                                       |
 | ----------------- | ---------------------------------------------------------- |
-| Promise\<boolean> | 以Promise形式返回控件使能状态，true：使能，false：未使能。 |
+| Promise\<boolean> | 以Promise形式返回控件使能状态。true：使能。false：未使能。 |
 
 **错误码：**
 
@@ -1452,7 +1452,7 @@ isFocused(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回控件对象获焦状态，true：获焦，false：未获焦。 |
+| Promise\<boolean> | 以Promise形式返回控件对象获焦状态。true：获焦。false：未获焦。 |
 
 **错误码：**
 
@@ -1492,7 +1492,7 @@ isSelected(): Promise\<boolean>
 
 | 类型              | 说明                                                |
 | ----------------- | --------------------------------------------------- |
-| Promise\<boolean> | 以Promise形式返回控件对象被选中状态，true：被选中，false：未被选中。 |
+| Promise\<boolean> | 以Promise形式返回控件对象被选中状态。true：被选中。false：未被选中。 |
 
 **错误码：**
 
@@ -1559,7 +1559,7 @@ async function demo() {
 
 clearText(): Promise\<void>
 
-清除控件的文本信息(适用于文本框控件)。
+清除控件的文本信息（适用于文本框控件）。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1644,7 +1644,7 @@ scrollSearch(on: On, vertical?: boolean, offset?: number): Promise\<Component>
 |------------------------| ---------- | ---- |-----------------------------------|
 | on                     | [On](#on9) | 是   | 目标控件的属性要求。                        |
 | vertical |    boolean | 否 | 默认为true，表示查找方向是纵向。false表示查找方向为横向。 |
-| offset   | number| 否 | 滑动起点/终点到组件边框的偏移, 默认80，单位：px。    |
+| offset   | number| 否 | 滑动起点/终点到组件边框的偏移, 默认80，单位：px，取值大于等于0。    |
 
 **返回值：**
 
@@ -1677,7 +1677,7 @@ async function demo() {
 
 scrollToTop(speed?: number): Promise\<void>
 
-在控件上滑动到顶部(适用支持滑动的控件)。
+在控件上滑动到顶部（适用支持滑动的控件）。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1714,7 +1714,7 @@ async function demo() {
 
 scrollToBottom(speed?: number): Promise\<void>
 
-在控件上滑动到底部(适用支持滑动的控件)。
+在控件上滑动到底部（适用支持滑动的控件）。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2250,7 +2250,7 @@ Driver对象采取如下操作：传入key值实现模拟点击对应按键的�
 
 | 参数名  | 类型   | 必填 | 说明          |
 | ------- | ------ | ---- | ------------- |
-| keyCode | number | 是   | 指定的key值。 |
+| keyCode | number | 是   | 指定的key值，取值大于等于0。 |
 
 **错误码：**
 
@@ -2285,9 +2285,9 @@ Driver对象通过给定的key值，找到对应组合键并点击。例如，Ke
 
 | 参数名 | 类型   | 必填 | 说明                           |
 | ------ | ------ | ---- | ------------------------------ |
-| key0   | number | 是   | 指定的第一个key值。            |
-| key1   | number | 是   | 指定的第二个key值。            |
-| key2   | number | 否   | 指定的第三个key值。默认值为0。 |
+| key0   | number | 是   | 指定的第一个key值，取值大于等于0。            |
+| key1   | number | 是   | 指定的第二个key值，取值大于等于0。            |
+| key2   | number | 否   | 指定的第三个key值。默认值为0，取值大于等于0。 |
 
 **错误码：**
 
@@ -2631,7 +2631,7 @@ setDisplayRotationEnabled(enabled: boolean): Promise\<void>
 
 | 参数名  | 类型    | 必填 | 说明                                                    |
 | ------- | ------- | ---- | ------------------------------------------------------- |
-| enabled | boolean | 是   | 能否旋转屏幕的标识，true：可以旋转，false：不可以旋转。 |
+| enabled | boolean | 是   | 能否旋转屏幕的标识。true：可以旋转。false：不可以旋转。 |
 
 **错误码：**
 
@@ -3008,8 +3008,8 @@ mouseClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise\
 | ------ | ----------------------------- | ---- | ------------------------------ |
 | p      | [Point](#point9)              | 是   | 鼠标点击的坐标。               |
 | btnId  | [MouseButton](#mousebutton10) | 是   | 按下的鼠标按钮。               |
-| key1   | number                        | 否   | 指定的第一个key值。默认值为0。 |
-| key2   | number                        | 否   | 指定的第二个key值。默认值为0。 |
+| key1   | number                        | 否   | 指定的第一个key值。默认值为0，取值大于等于0。 |
+| key2   | number                        | 否   | 指定的第二个key值。默认值为0，取值大于等于0。 |
 
 **错误码：**
 
@@ -3045,10 +3045,10 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): P
 | 参数名 | 类型             | 必填 | 说明                                                        |
 | ------ | ---------------- | ---- | ----------------------------------------------------------- |
 | p      | [Point](#point9) | 是   | 鼠标点击的坐标。                                            |
-| down   | boolean          | 是   | 滚轮滑动方向是否向下，true表示向下滑动，false表示向上滚动。 |
-| d      | number           | 是   | 鼠标滚轮滚动的格数，每格对应目标点位移120px。         |
-| key1   | number           | 否   | 指定的第一个key值。默认值为0。                              |
-| key2   | number           | 否   | 指定的第二个key值。默认值为0。                              |
+| down   | boolean          | 是   | 滚轮滑动方向是否向下。true表示向下滑动。false表示向上滚动。 |
+| d      | number           | 是   | 鼠标滚轮滚动的格数，每格对应目标点位移120px，取值大于等于0。         |
+| key1   | number           | 否   | 指定的第一个key值。默认值为0，取值大于等于0。                              |
+| key2   | number           | 否   | 指定的第二个key值。默认值为0，取值大于等于0。                              |
 
 **错误码：**
 
@@ -3153,10 +3153,10 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number, sp
 | 参数名 | 类型             | 必填 | 说明                                                         |
 | ------ | ---------------- | ---- | ------------------------------------------------------------ |
 | p      | [Point](#point9) | 是   | 鼠标点击的坐标。                                             |
-| down   | boolean          | 是   | 滚轮滑动方向是否向下，true表示向下滑动，false表示向上滚动。  |
-| d      | number           | 是   | 鼠标滚轮滚动的格数，每格对应目标点位移120px。          |
-| key1   | number           | 否   | 指定的第一个key值。默认值为0。                               |
-| key2   | number           | 否   | 指定的第二个key值。默认值为0。                               |
+| down   | boolean          | 是   | 滚轮滑动方向是否向下。true表示向下滑动。false表示向上滚动。  |
+| d      | number           | 是   | 鼠标滚轮滚动的格数，每格对应目标点位移120px，取值大于等于0。          |
+| key1   | number           | 否   | 指定的第一个key值。默认值为0，取值大于等于0。                               |
+| key2   | number           | 否   | 指定的第二个key值。默认值为0，取值大于等于0。                               |
 | speed  | number           | 否   | 鼠标滚轮滚动的速度，范围：1-500，不在范围内设为默认值为20，单位：格/秒。 |
 
 **错误码：**
@@ -3194,8 +3194,8 @@ mouseDoubleClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Pr
 | ------ | ----------------------------- | ---- | ------------------------------ |
 | p      | [Point](#point9)              | 是   | 鼠标双击的坐标。               |
 | btnId  | [MouseButton](#mousebutton10) | 是   | 按下的鼠标按钮。               |
-| key1   | number                        | 否   | 指定的第一个key值。默认值为0。 |
-| key2   | number                        | 否   | 指定的第二个key值。默认值为0。 |
+| key1   | number                        | 否   | 指定的第一个key值。默认值为0，取值大于等于0。 |
+| key2   | number                        | 否   | 指定的第二个key值。默认值为0，取值大于等于0。 |
 
 **错误码：**
 
@@ -3232,8 +3232,8 @@ mouseLongClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Prom
 | ------ | ----------------------------- | ---- | ------------------------------ |
 | p      | [Point](#point9)              | 是   | 鼠标长按的坐标。               |
 | btnId  | [MouseButton](#mousebutton10) | 是   | 按下的鼠标按钮。               |
-| key1   | number                        | 否   | 指定的第一个key值。默认值为0。 |
-| key2   | number                        | 否   | 指定的第二个key值。默认值为0。 |
+| key1   | number                        | 否   | 指定的第一个key值。默认值为0，取值大于等于0。 |
+| key2   | number                        | 否   | 指定的第二个key值。默认值为0，取值大于等于0。 |
 
 **错误码：**
 
@@ -3405,7 +3405,7 @@ touchPadMultiFingerSwipe(fingers: number, direction: UiDirection, options?: Touc
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17000002 | The async function is not called with await.             |
-| 17000005 | This device can not support this action.        |
+| 17000005 | This operation is not supported.        |
 | 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
@@ -3888,7 +3888,7 @@ isFocused(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回窗口对象是否获取获焦状态，true：获焦，false：未获焦。 |
+| Promise\<boolean> | 以Promise形式返回窗口对象是否获取获焦状态。true：获焦。false：未获焦。 |
 
 **错误码：**
 
@@ -3924,7 +3924,7 @@ isActived(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回窗口对象是否为用户正在交互窗口，true表示是交互窗口，false表示非交互窗口。 |
+| Promise\<boolean> | 以Promise形式返回窗口对象是否为用户正在交互窗口。true表示是交互窗口。false表示非交互窗口。 |
 
 **错误码：**
 
@@ -4029,8 +4029,8 @@ resize(wide: number, height: number, direction: ResizeDirection): Promise\<void>
 
 | 参数名    | 类型                                 | 必填 | 说明                                                         |
 | --------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
-| wide      | number                               | 是   | 以number的形式传入调整后窗口的宽度。                         |
-| height    | number                               | 是   | 以number的形式传入调整后窗口的高度。                         |
+| wide      | number                               | 是   | 以number的形式传入调整后窗口的宽度，取值大于等于0。                         |
+| height    | number                               | 是   | 以number的形式传入调整后窗口的高度，取值大于等于0。                         |
 | direction | [ResizeDirection](#resizedirection9) | 是   | 以[ResizeDirection](#resizedirection9)的形式传入窗口调整的方向。 |
 
 **错误码：**
@@ -4224,7 +4224,7 @@ isActive(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回窗口对象是否为用户正在交互窗口，true：交互窗口，false：非交互窗口。 |
+| Promise\<boolean> | 以Promise形式返回窗口对象是否为用户正在交互窗口。true：交互窗口。false：非交互窗口。 |
 
 **错误码：**
 
@@ -4305,8 +4305,8 @@ once(type: 'dialogShow', callback: Callback\<UIElementInfo>): void;
 
 | 参数名   | 类型                                         | 必填 | 说明                               |
 | -------- | -------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                       | 是   | 订阅的事件类型，取值为'dialogShow' |
-| callback | Callback\<[UIElementInfo](#uielementinfo10)> | 是   | 事件发生时执行的回调函数           |
+| type     | string                                       | 是   | 订阅的事件类型，取值为'dialogShow'。 |
+| callback | Callback\<[UIElementInfo](#uielementinfo10)> | 是   | 事件发生时执行的回调函数。           |
 
 **错误码：**
 
@@ -4479,7 +4479,7 @@ clickable(b?: boolean): By
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | 否   | 指定控件可点击状态，true：可点击，false：不可点击。默认为true。 |
+| b      | boolean | 否   | 指定控件可点击状态。true：可点击。false：不可点击。默认为true。 |
 
 **返回值：**
 
@@ -4509,7 +4509,7 @@ scrollable(b?: boolean): By
 
 | 参数名 | 类型    | 必填 | 说明                                                        |
 | ------ | ------- | ---- | ----------------------------------------------------------- |
-| b      | boolean | 否   | 控件可滑动状态，true：可滑动，false：不可滑动。默认为true。 |
+| b      | boolean | 否   | 控件可滑动状态。true：可滑动。false：不可滑动。默认为true。 |
 
 **返回值：**
 
@@ -4538,7 +4538,7 @@ enabled(b?: boolean): By
 
 | 参数名 | 类型    | 必填 | 说明                                                      |
 | ------ | ------- | ---- | --------------------------------------------------------- |
-| b      | boolean | 否   | 指定控件使能状态，true：使能，false：未使能。默认为true。 |
+| b      | boolean | 否   | 指定控件使能状态。true：使能。false：未使能。默认为true。 |
 
 **返回值：**
 
@@ -4567,7 +4567,7 @@ focused(b?: boolean): By
 
 | 参数名 | 类型    | 必填 | 说明                                                  |
 | ------ | ------- | ---- | ----------------------------------------------------- |
-| b      | boolean | 否   | 控件获焦状态，true：获焦，false：未获焦。默认为true。 |
+| b      | boolean | 否   | 控件获焦状态。true：获焦。false：未获焦。默认为true。 |
 
 **返回值：**
 
@@ -4596,7 +4596,7 @@ selected(b?: boolean): By
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | 否   | 指定控件被选中状态，true：被选中，false：未被选中。默认为true。 |
+| b      | boolean | 否   | 指定控件被选中状态。true：被选中。false：未被选中。默认为true。 |
 
 **返回值：**
 
@@ -4865,7 +4865,7 @@ isClickable(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回控件对象可点击状态，true：可点击，false：不可点击。 |
+| Promise\<boolean> | 以Promise形式返回控件对象可点击状态。true：可点击。false：不可点击。 |
 
 **示例：**
 
@@ -4896,7 +4896,7 @@ isScrollable(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回控件对象可滑动状态，true：可滑动，false：不可滑动。 |
+| Promise\<boolean> | 以Promise形式返回控件对象可滑动状态。true：可滑动。false：不可滑动。 |
 
 **示例：**
 
@@ -4928,7 +4928,7 @@ isEnabled(): Promise\<boolean>
 
 | 类型              | 说明                                                       |
 | ----------------- | ---------------------------------------------------------- |
-| Promise\<boolean> | 以Promise形式返回控件使能状态，true：使能，false：未使能。 |
+| Promise\<boolean> | 以Promise形式返回控件使能状态。true：使能。false：未使能。 |
 
 **示例：**
 
@@ -4960,7 +4960,7 @@ isFocused(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回控件对象是否获焦，true：获焦，false：未获焦。 |
+| Promise\<boolean> | 以Promise形式返回控件对象是否获焦。true：获焦。false：未获焦。 |
 
 **示例：**
 
@@ -4991,7 +4991,7 @@ isSelected(): Promise\<boolean>
 
 | 类型              | 说明                                                  |
 | ----------------- | ----------------------------------------------------- |
-| Promise\<boolean> | 以Promise形式返回控件对象被选中的状态，true：被选中，false：未被选中。 |
+| Promise\<boolean> | 以Promise形式返回控件对象被选中的状态。true：被选中。false：未被选中。 |
 
 **示例：**
 
@@ -5012,7 +5012,7 @@ async function demo() {
 
 inputText(text: string): Promise\<void>
 
-向控件中输入文本(适用于文本框控件)。
+向控件中输入文本（适用于文本框控件）。
 
 从API version 9开始不再维护，建议使用[inputText<sup>9+</sup>](#inputtext9)。
 
@@ -5039,7 +5039,7 @@ async function demo() {
 
 scrollSearch(by: By): Promise\<UiComponent>
 
-在控件上滑动查找目标控件(适用于List等支持滑动的控件)。
+在控件上滑动查找目标控件（适用于List等支持滑动的控件）。
 
 从API version 9开始不再维护，建议使用[scrollSearch<sup>9+</sup>](#scrollsearch9)。
 

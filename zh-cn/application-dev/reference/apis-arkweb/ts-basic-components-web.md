@@ -134,6 +134,8 @@ Web组件指定共享渲染进程。
   ```
 
 通过resources协议加载，适用Webview加载带有"#"路由的链接。
+
+使用 `resource://rawfile/` 协议前缀可以避免常规 `$rawfile` 方式在处理带有"#"路由链接时的局限性。当URL中包含"#"号时，"#"后面的内容会被视为锚点（fragment）。
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -146,11 +148,41 @@ Web组件指定共享渲染进程。
     build() {
       Column() {
         // 通过resource协议加载本地资源文件。
-        Web({ src: "resource://rawfile/index.html", controller: this.controller })
+        Web({ src: "resource://rawfile/index.html#home", controller: this.controller })
       }
     }
   }
   ```
+
+在“src\main\resources\rawfile”文件夹下创建index.html：
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<body>
+<div id="content"></div>
+
+<script>
+	function loadContent() {
+	  var hash = window.location.hash;
+	  var contentDiv = document.getElementById('content');
+
+	  if (hash === '#home') {
+		contentDiv.innerHTML = '<h1>Home Page</h1><p>Welcome to the Home Page!</p>';
+	  } else {
+		contentDiv.innerHTML = '<h1>Default Page</h1><p>This is the default content.</p>';
+	  }
+	}
+
+	// 加载界面
+	window.addEventListener('load', loadContent);
+
+	// 当hash变化时，更新界面
+	window.addEventListener('hashchange', loadContent);
+</script>
+</body>
+</html>
+```
 
 加载沙箱路径下的本地资源文件，需要开启应用中文件系统的访问[fileAccess](#fileaccess)权限。
 
@@ -275,7 +307,7 @@ domStorageAccess(domStorageAccess: boolean)
 
 | 参数名              | 类型    | 必填   | 说明                                 |
 | ---------------- | ------- | ---- | ------------------------------------ |
-| domStorageAccess | boolean | 是    | ture表示设置开启文档对象模型存储接口（DOM Storage API）权限，false表示不设置开启文档对象模型存储接口（DOM Storage API）权限。默认值：false。 |
+| domStorageAccess | boolean | 是    | 设置是否开启文档对象模型存储接口（DOM Storage API）权限。<br>true表示开启，false表示未开启。<br>默认值：false。 |
 
 **示例：**
 
@@ -345,7 +377,7 @@ imageAccess(imageAccess: boolean)
 
 | 参数名         | 类型    | 必填   | 说明            |
 | ----------- | ------- | ---- | --------------- |
-| imageAccess | boolean | 是    | 设置是否允许自动加载图片资源。默认值：true。 |
+| imageAccess | boolean | 是    | 设置是否允许自动加载图片资源。<br>true表示设置允许自动加载图片资源，false表示设置不允许自动加载图片资源。<br>默认值：true。 |
 
 **示例：**
   ```ts
@@ -370,11 +402,14 @@ imageAccess(imageAccess: boolean)
 
 javaScriptProxy(javaScriptProxy: JavaScriptProxy)
 
-注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。所有参数不支持更新。注册对象时，同步与异步方法列表请至少选择一项不为空，可同时注册两类方法。同一方法在同步与异步列表中重复注册，将默认异步调用。此接口只支持注册一个对象，若需要注册多个对象请使用[registerJavaScriptProxy<sup>9+</sup>](js-apis-webview.md#registerjavascriptproxy)。
+注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。
 
 > **说明：**
 >
-> javaScriptProxy需要和deleteJavaScriptRegister接口配合使用，防止内存泄漏。
+> javaScriptProxy接口需要和deleteJavaScriptRegister接口配合使用，防止内存泄漏。
+> javaScriptProxy对象的所有参数不支持更新。
+> 注册对象时，同步与异步方法列表请至少选择一项不为空，可同时注册两类方法。
+> 此接口只支持注册一个对象，若需要注册多个对象请使用[registerJavaScriptProxy<sup>9+</sup>](js-apis-webview.md#registerjavascriptproxy)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -451,7 +486,7 @@ javaScriptAccess(javaScriptAccess: boolean)
 
 | 参数名              | 类型    | 必填   | 说明                |
 | ---------------- | ------- | ---- | ------------------- |
-| javaScriptAccess | boolean | 是    | 是否允许执行JavaScript脚本。默认值：true。 |
+| javaScriptAccess | boolean | 是    | 是否允许执行JavaScript脚本。<br>true表示允许执行JavaScript脚本，false表示不允许执行JavaScript脚本。<br>默认值：true。 |
 
 **示例：**
 
@@ -552,7 +587,7 @@ onlineImageAccess(onlineImageAccess: boolean)
 
 | 参数名               | 类型    | 必填   | 说明             |
 | ----------------- | ------- | ---- | ---------------- |
-| onlineImageAccess | boolean | 是    | 设置是否允许从网络加载图片资源。默认值：true。 |
+| onlineImageAccess | boolean | 是    | 设置是否允许从网络加载图片资源。<br>true表示设置允许从网络加载图片资源，false表示设置不允许从网络加载图片资源。<br>默认值：true。 |
 
 **示例：**
 
@@ -586,7 +621,7 @@ zoomAccess(zoomAccess: boolean)
 
 | 参数名        | 类型    | 必填   | 说明          |
 | ---------- | ------- | ---- | ------------- |
-| zoomAccess | boolean | 是    | 设置是否支持手势进行缩放。默认值：true。 |
+| zoomAccess | boolean | 是    | 设置是否支持手势进行缩放。<br>true表示设置支持手势进行缩放，false表示设置不支持手势进行缩放。<br>默认值：true。 |
 
 **示例：**
 
@@ -620,7 +655,7 @@ overviewModeAccess(overviewModeAccess: boolean)
 
 | 参数名                | 类型    | 必填   | 说明            |
 | ------------------ | ------- | ---- | --------------- |
-| overviewModeAccess | boolean | 是    | 设置是否使用概览模式加载网页。默认值：true。 |
+| overviewModeAccess | boolean | 是    | 设置是否使用概览模式加载网页。<br>true表示设置使用概览模式加载网页，false表示设置不使用概览模式加载网页。<br>默认值：true。 |
 
 **示例：**
 
@@ -654,7 +689,7 @@ databaseAccess(databaseAccess: boolean)
 
 | 参数名            | 类型    | 必填   | 说明              |
 | -------------- | ------- | ---- | ----------------- |
-| databaseAccess | boolean | 是    | 设置是否开启数据库存储API权限。默认值：false。 |
+| databaseAccess | boolean | 是    | 设置是否开启数据库存储API权限。<br>true表示设置开启数据库存储API权限，false表示设置不开启数据库存储API权限。<br>默认值：false。 |
 
 **示例：**
 
@@ -688,7 +723,7 @@ geolocationAccess(geolocationAccess: boolean)
 
 | 参数名               | 类型    | 必填   | 说明            |
 | ----------------- | ------- | ---- | --------------- |
-| geolocationAccess | boolean | 是    | 设置是否开启获取地理位置权限。默认值：true。 |
+| geolocationAccess | boolean | 是    | 设置是否开启获取地理位置权限。<br>true表示设置开启获取地理位置权限，false表示设置不开启获取地理位置权限。<br>默认值：true。 |
 
 **示例：**
 
@@ -722,7 +757,7 @@ mediaPlayGestureAccess(access: boolean)
 
 | 参数名    | 类型    | 必填   | 说明                |
 | ------ | ------- | ---- | ------------------- |
-| access | boolean | 是    | 设置有声视频播放是否需要用户手动点击。默认值：true。 |
+| access | boolean | 是    | 设置有声视频播放是否需要用户手动点击。<br>true表示设置有声视频播放需要用户手动点击，false表示设置有声视频播放不需要用户手动点击。<br>默认值：true。 |
 
 **示例：**
 
@@ -758,7 +793,7 @@ multiWindowAccess(multiWindow: boolean)
 
 | 参数名         | 类型    | 必填   | 说明         |
 | ----------- | ------- | ---- | ------------ |
-| multiWindow | boolean | 是    | 设置是否开启多窗口权限。默认值：false。 |
+| multiWindow | boolean | 是    | 设置是否开启多窗口权限。<br>true表示设置开启多窗口权限，false表示设置不开启多窗口权限。<br>默认值：false。 |
 
 **示例：**
 
@@ -797,7 +832,7 @@ horizontalScrollBarAccess(horizontalScrollBar: boolean)
 
 | 参数名                 | 类型    | 必填   | 说明         |
 | ------------------- | ------- | ---- | ------------ |
-| horizontalScrollBar | boolean | 是    | 设置是否显示横向滚动条。默认值：true。 |
+| horizontalScrollBar | boolean | 是    | 设置是否显示横向滚动条。<br>true表示设置显示横向滚动条，false表示设置不显示横向滚动条。<br>默认值：true。 |
 
 **示例：**
 
@@ -879,7 +914,7 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
 
 | 参数名               | 类型    | 必填   | 说明         |
 | ----------------- | ------- | ---- | ------------ |
-| verticalScrollBar | boolean | 是    | 设置是否显示纵向滚动条。默认值：true。 |
+| verticalScrollBar | boolean | 是    | 设置是否显示纵向滚动条。<br>true表示设置显示纵向滚动条，false表示设置不显示纵向滚动条。<br>默认值：true。 |
 
 **示例：**
 
@@ -1070,7 +1105,7 @@ textZoomRatio(textZoomRatio: number)
 
 | 参数名           | 类型   | 必填   | 说明                             |
 | ------------- | ------ | ---- | -------------------------------- |
-| textZoomRatio | number | 是    | 要设置的页面的文本缩放百分比。取值为整数，范围为(0, 2147483647]。默认值：100。 |
+| textZoomRatio | number | 是    | 要设置的页面的文本缩放百分比。<br>取值为整数，范围为(0, 2147483647]。默认值：100。 |
 
 **示例：**
 
@@ -1179,7 +1214,7 @@ blockNetwork(block: boolean)
 
 | 参数名   | 类型    | 必填   | 说明                |
 | ----- | ------- | ---- | ------------------- |
-| block | boolean | 是    | 设置Web组件是否阻止从网络加载资源。默认值：false。 |
+| block | boolean | 是    | 设置Web组件是否阻止从网络加载资源。<br>true表示设置Web组件阻止从网络加载资源，false表示设置Web组件不阻止从网络加载资源。<br>默认值：false。 |
 
 **示例：**
 
@@ -1598,7 +1633,7 @@ forceDarkAccess(access: boolean)
 
 | 参数名    | 类型    | 必填   | 说明            |
 | ------ | ------- | ---- | --------------- |
-| access | boolean | 是    | 设置网页是否开启强制深色模式。默认值：false。 |
+| access | boolean | 是    | 设置网页是否开启强制深色模式。<br>true表示设置网页开启强制深色模式，false表示设置网页不开启强制深色模式。<br>默认值：false。 |
 
 **示例：**
 
@@ -1659,7 +1694,7 @@ pinchSmooth(isEnabled: boolean)
 
 | 参数名       | 类型    | 必填   | 说明          |
 | --------- | ------- | ---- | ------------- |
-| isEnabled | boolean | 是    | 网页是否开启捏合流畅模式。默认值：false。 |
+| isEnabled | boolean | 是    | 网页是否开启捏合流畅模式。<br>true表示设置网页开启捏合流畅模式，false表示设置网页不开启捏合流畅模式。<br>默认值：false。 |
 
 **示例：**
 
@@ -1706,7 +1741,7 @@ allowWindowOpenMethod(flag: boolean)
 
 | 参数名  | 类型    | 必填    | 说明                      |
 | ---- | ------- | ---- | ------------------------- |
-| flag | boolean | 是    | 网页是否可以通过JavaScript自动打开窗口。默认值与系统参数关联，当系统参数persist.web.allowWindowOpenMethod.enabled为true时，默认值为true, 否则为false。 |
+| flag | boolean | 是    | 网页是否可以通过JavaScript自动打开窗口。<br>true表示网页可以通过JavaScript自动打开窗口，false表示网页不可以通过JavaScript自动打开窗口。<br>默认值与系统参数关联，当系统参数persist.web.allowWindowOpenMethod.enabled为true时，默认值为true，否则为false。 |
 
 **示例：**
 
@@ -1828,7 +1863,7 @@ javaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 
 | 参数名     | 类型                                | 必填   | 说明               |
 | ------- | ----------------------------------- | ---- | ------------------ |
-| scripts | Array\<[ScriptItem](#scriptitem11)> | 是    | 需要注入的ScriptItem数组 |
+| scripts | Array\<[ScriptItem](#scriptitem11)> | 是    | 需要注入的ScriptItem数组。 |
 
 **ets示例：**
 
@@ -2336,7 +2371,7 @@ enableNativeEmbedMode(mode: boolean)
 
 | 参数名   | 类型                      | 必填   | 说明             |
 | ----- | ---------------------------------------- | ---- | ---------------- |
-| mode |  boolean | 是    | 是否开启同层渲染功能。默认值：false。 |
+| mode |  boolean | 是    | 是否开启同层渲染功能。<br>true表示开启同层渲染功能，false表示不开启同层渲染功能。<br>默认值：false。 |
 
 **示例：**
 
@@ -2371,7 +2406,7 @@ forceDisplayScrollBar(enabled: boolean)
 
 | 参数名  | 类型 | 必填 | 说明           |
 | ------- | -------- | ---- | ------------------ |
-| enabled | boolean  | 是   | 滚动条是否常驻。默认值：false。 |
+| enabled | boolean  | 是   | 滚动条是否常驻。<br>true表示滚动条常驻，false表示滚动条不常驻。<br>默认值：false。 |
 
 
 **示例：**
@@ -2527,7 +2562,7 @@ metaViewport(enabled: boolean)
 
 | 参数名 | 类型 | 必填 | 说明                         |
 | ------ | -------- | ---- | -------------------------------- |
-| enabled | boolean  | 是   | 是否支持meta标签的viewport属性。默认值：true。 |
+| enabled | boolean  | 是   | 是否支持meta标签的viewport属性。<br>true表示支持meta标签的viewport属性，false表示不支持meta标签的viewport属性。<br>默认值：true。 |
 
 **示例：**
 
@@ -2573,7 +2608,7 @@ textAutosizing(textAutosizing: boolean)
 
 | 参数名  | 类型   | 必填   | 说明                                     |
 | ---- | ------ | ---- | ---------------------------------------- |
-| textAutosizing | boolean | 是    | 文本自动调整大小。默认值：true。 |
+| textAutosizing | boolean | 是    | 文本自动调整大小。<br>true表示文本自动调整大小，false表示文本不自动调整大小。<br>默认值：true。 |
 
   **示例：**
 
@@ -2628,13 +2663,17 @@ enableNativeMediaPlayer(config: NativeMediaPlayerConfig)
   }
   ```
 
-### selectionMenuOptions<sup>12+</sup>
+### selectionMenuOptions<sup>(deprecated)</sup>
 
 selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
 
 Web组件自定义菜单扩展项接口，允许用户设置扩展项的文本内容、图标、回调方法。
 
 该接口只支持选中纯文本，当选中内容包含图片及其他非文本内容时，action信息中会显示乱码。
+
+> **说明：**
+>
+> 从API version 12开始支持，从API version 20开始废弃。建议使用[editMenuOptions<sup>12+</sup>](#editmenuoptions12)替代。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2792,7 +2831,7 @@ Web组件自定义文本选择菜单。
 
 在[onMenuItemClick](../apis-arkui/arkui-ts/ts-text-common.md#onmenuitemclick)中，可以自定义菜单选项的回调函数。该函数在菜单选项被点击后触发，并根据返回值决定是否执行系统默认的回调。返回true不执行系统回调，返回false继续执行系统回调。
 
-本接口在与[selectionMenuOptions](#selectionmenuoptions12)同时使用时，会使selectionMenuOptions不生效。
+本接口在与[selectionMenuOptions<sup>(deprecated)</sup>](#selectionmenuoptionsdeprecated)同时使用时，会使selectionMenuOptions<sup>(deprecated)</sup>不生效。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2897,7 +2936,7 @@ enableHapticFeedback(enabled: boolean)
 
 | 参数名     | 类型        | 必填   | 说明 |
 | --------- | ---------   | ------ | ------------- |
-| enabled   | boolean | 是  | 是否开启振动。默认值：true。 |
+| enabled   | boolean | 是  | 是否开启振动。<br>true表示开启振动，false表示不开启振动。<br>默认值：true。 |
 
 **示例：**
 
@@ -3914,7 +3953,7 @@ onProgressChange(callback: Callback\<OnProgressChangeEvent\>)
 
 | 参数名         | 类型   | 必填   | 说明                  |
 | ----------- | ------ | ---- | --------------------- |
-| callback | Callback\<[OnProgressChangeEvent](#onprogresschangeevent12)\> | 是    | 页面加载进度变化时触发的功能。 |
+| callback | Callback\<[OnProgressChangeEvent](#onprogresschangeevent12)\> | 是    | 页面加载进度变化时触发的回调。 |
 
 **示例：**
 
@@ -4260,9 +4299,8 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
    import { BusinessError } from '@kit.BasicServicesKit';
    import { common } from '@kit.AbilityKit';
 
-   let mContext = getContext(this) as common.Context;
-
-   async function openCamera(callback: Callback<string>) {
+   async function openCamera(callback: Callback<string>, uiContext: UIContext) {
+    let mContext = uiContext.getHostContext() as common.Context;
      try {
        let pickerProfile: cameraPicker.PickerProfile = {
          cameraPosition: camera.CameraPosition.CAMERA_POSITION_BACK
@@ -4279,7 +4317,7 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
    @Entry
    @Component
    struct WebComponent {
-     controller: webview.WebviewController = new webview.WebviewController()
+     controller: webview.WebviewController = new webview.WebviewController();
 
      build() {
        Column() {
@@ -4294,7 +4332,7 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
                  console.log('Mime types are ' + event.fileSelector.getMimeTypes());
                  event.result.handleFileList([result]);
                }
-             })
+             }, this.getUIContext())
              return true;
            })
        }
@@ -4957,12 +4995,13 @@ onPermissionRequest(callback: Callback\<OnPermissionRequestEvent\>)
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
+    uiContext: UIContext = this.getUIContext();
 
     aboutToAppear() {
       // 配置Web开启调试模式
       webview.WebviewController.setWebDebuggingAccess(true);
       let atManager = abilityAccessCtrl.createAtManager();
-      atManager.requestPermissionsFromUser(getContext(this), ['ohos.permission.CAMERA', 'ohos.permission.MICROPHONE'])
+      atManager.requestPermissionsFromUser(this.uiContext.getHostContext(), ['ohos.permission.CAMERA', 'ohos.permission.MICROPHONE'])
         .then((data) => {
           console.info('data:' + JSON.stringify(data));
           console.info('data permissions:' + data.permissions);
@@ -4977,7 +5016,7 @@ onPermissionRequest(callback: Callback\<OnPermissionRequestEvent\>)
         Web({ src: $rawfile('index.html'), controller: this.controller })
           .onPermissionRequest((event) => {
             if (event) {
-              AlertDialog.show({
+              this.uiContext.showAlertDialog({
                 title: 'title',
                 message: 'text',
                 primaryButton: {
@@ -7168,7 +7207,7 @@ type WebKeyboardCallback = (keyboardCallbackInfo: WebKeyboardCallbackInfo) => We
 
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ------- | ---- | ---------------------------------------- |
-| useSystemKeyboard | boolean  | 是    | 是否使用系统默认软键盘。 |
+| useSystemKeyboard | boolean  | 是    | 是否使用系统默认软键盘。<br>true表示使用系统默认软键盘，false表示不使用系统默认软键盘。<br>默认值：true。 |
 | enterKeyType | number | 否    | 指定系统软键盘enter键的类型，取值范围见输入框架的定义[EnterKeyType](../apis-ime-kit/js-apis-inputmethod.md#enterkeytype10)，该参数为可选参数，当useSystemKeyboard为true，并且设置了有效的enterKeyType时候，才有效。|
 | customKeyboard | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8) | 否    | 指定自定义键盘组件builder，可选参数，当useSystemKeyboard为false时，需要设置该参数，然后Web组件会拉起该自定义键盘。
 
@@ -7510,7 +7549,7 @@ isMainFrame(): boolean
 
 | 类型      | 说明               |
 | ------- | ---------------- |
-| boolean | 返回资源请求是否为主frame。 |
+| boolean | 返回资源请求是否为主frame。<br>true表示返回资源请求为主frame，false表示返回资源请求不为主frame。 |
 
 ### isRedirect
 
@@ -7524,7 +7563,7 @@ isRedirect(): boolean
 
 | 类型      | 说明               |
 | ------- | ---------------- |
-| boolean | 返回资源请求是否被服务端重定向。 |
+| boolean | 返回资源请求是否被服务端重定向。<br>true表示返回资源请求被服务端重定向，false表示返回资源请求未被服务端重定向。 |
 
 ### isRequestGesture
 
@@ -7538,7 +7577,7 @@ isRequestGesture(): boolean
 
 | 类型      | 说明                   |
 | ------- | -------------------- |
-| boolean | 返回资源请求是否与手势（如点击）相关联。 |
+| boolean | 返回资源请求是否与手势（如点击）相关联。<br>true表示返回资源请求与手势（如点击）相关联，false表示返回资源请求与手势（如点击）不相关联。 |
 
 ### getRequestMethod<sup>9+</sup>
 
@@ -7789,7 +7828,7 @@ setResponseIsReady(IsReady: boolean): void
 
 | 参数名   | 类型    | 必填  | 说明          |
 | ------- | ------- | ---- | ------------- |
-| IsReady | boolean | 是   | 资源响应数据是否已经就绪。默认值：true。 |
+| IsReady | boolean | 是   | 资源响应数据是否已经就绪。<br>true表示资源响应数据已经就绪，false表示资源响应数据未就绪。默认值：true。 |
 
 ## FileSelectorResult<sup>9+</sup>
 
@@ -7883,7 +7922,7 @@ isCapture(): boolean
 
 | 类型      | 说明           |
 | ------- | ------------ |
-| boolean | 返回是否调用多媒体能力。 |
+| boolean | 返回是否调用多媒体能力。<br>true表示返回调用多媒体能力，false表示返回未调用多媒体能力。 |
 
 ### getMimeTypes<sup>18+</sup>
 
@@ -8181,7 +8220,7 @@ setGestureEventResult(result: boolean): void
 
 | 参数名          | 类型 | 必填  | 说明             |
 | --------------- | -------- | ----  |------- |
-| result          | boolean  | 是    | 是否消费该手势事件。默认值为true。 |
+| result          | boolean  | 是    | 是否消费该手势事件。<br>true表示消费该手势事件，false表示不消费该手势事件。默认值为true。 |
 
 **示例：**
 
@@ -8199,8 +8238,8 @@ setGestureEventResult(result: boolean, stopPropagation: boolean): void
 
 | 参数名          | 类型 | 必填  | 说明             |
 | --------------- | -------- | ----  |------- |
-| result          | boolean  | 是    | 是否消费该手势事件。默认值为true。 |
-| stopPropagation | boolean  | 是   | 是否阻止冒泡，在result为true时生效。默认值为true。 |
+| result          | boolean  | 是    | 是否消费该手势事件。<br>true表示消费该手势事件，false表示不消费该手势事件。<br>默认值为true。 |
+| stopPropagation | boolean  | 是   | 是否阻止冒泡，在result为true时生效。<br>true表示阻止冒泡，false表示不阻止冒泡。<br>默认值为true。 |
 
 **示例：**
 
@@ -8549,8 +8588,8 @@ invoke(origin: string, allow: boolean, retain: boolean): void
 | 参数名    | 类型    | 必填  | 说明                                     |
 | ------ | ------- | ---- | ---------------------------------------- |
 | origin | string  | 是   | 指定源的字符串索引。                               |
-| allow  | boolean | 是   | 设置的地理位置权限状态。                             |
-| retain | boolean | 是   | 是否允许将地理位置权限状态保存到系统中。可通过[GeolocationPermissions<sup>9+</sup>](js-apis-webview.md#geolocationpermissions)接口管理保存到系统的地理位置权限。 |
+| allow  | boolean | 是   | 设置的地理位置权限状态。<br>true表示开启地理位置权限，false表示不开启地理位置权限。                             |
+| retain | boolean | 是   | 是否允许将地理位置权限状态保存到系统中。可通过[GeolocationPermissions<sup>9+</sup>](js-apis-webview.md#geolocationpermissions)接口管理保存到系统的地理位置权限。<br>true表示允许，false表示不允许。 |
 
 ## MessageLevel枚举说明
 
@@ -8693,7 +8732,7 @@ Web媒体策略的配置。
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ------- | ---- | ---------------------------------------- |
 | resumeInterval | number  | 否    | 被暂停的Web音频能够自动续播的有效期，单位：秒。有效期范围0~60秒，如若超过60秒，按照60s处理，由于近似值原因，该有效期可能存在一秒内的误差。 |
-| audioExclusive | boolean | 否    | 应用内多个Web实例的音频是否独占。                       |
+| audioExclusive | boolean | 否    | 应用内多个Web实例的音频是否独占。<br>true表示独占，false表示不独占。                       |
 
 ## ScreenCaptureConfig<sup>10+</sup>
 
@@ -9643,9 +9682,9 @@ saveCookie()
 
 | 名称             | 类型                                  | 必填   | 说明                    |
 | -----------     | ------------------------------------ | ---- | --------------------- |
-| isMainFrame     | boolean                              | 是    | 是否是主文档。 |
-| isSameDocument  | boolean                              | 是    | 是否在不更改文档的情况下进行的网页跳转。在同文档跳转的示例：1.参考片段跳转；2.pushState或replaceState触发的跳转；3.同一页面历史跳转。  |
-| didReplaceEntry | boolean                              | 是    | 是否提交的新节点替换了已有的节点。另外在一些子文档跳转的场景，虽然没有实际替换已有节点，但是有一些属性发生了变更。  |
+| isMainFrame     | boolean                              | 是    | 是否是主文档。<br>true表示是主文档，false表示不是主文档。 |
+| isSameDocument  | boolean                              | 是    | 是否在不更改文档的情况下进行的网页跳转。<br>true表示在不更改文档的情况下进行的网页跳转，false表示在更改文档的情况下进行的网页跳转。<br>在同文档跳转的示例：1.参考片段跳转；2.pushState或replaceState触发的跳转；3.同一页面历史跳转。  |
+| didReplaceEntry | boolean                              | 是    | 是否提交的新节点替换了已有的节点。<br>true表示提交的新节点替换了已有的节点，false表示提交的新节点未替换已有的节点。<br>另外在一些子文档跳转的场景，虽然没有实际替换已有节点，但是有一些属性发生了变更。  |
 | navigationType  | [WebNavigationType](#webnavigationtype11)  | 是    | 网页跳转的类型。       |
 | url             | string                               | 是    | 当前跳转网页的URL。          |
 
@@ -9729,8 +9768,8 @@ Web组件进入全屏时触发的回调。
 | url   | string                                 | 是    | url地址。           |
 | originalUrl   | string                         | 是    | 请求的原始url地址。           |
 | referrer   | string                            | 是    | referrer url地址。           |
-| isFatalError   | boolean                       | 是    | 是否是致命错误。           |
-| isMainFrame   | boolean                        | 是    | 是否是主资源。           |
+| isFatalError   | boolean                       | 是    | 是否是致命错误。<br>true表示致命错误，false表示非致命错误。           |
+| isMainFrame   | boolean                        | 是    | 是否是主资源。<br>true表示主资源，false表示非主资源。           |
 
 
 ## OnSslErrorEventCallback<sup>12+</sup>
@@ -10285,7 +10324,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | -------------- | ---- | ---- | ---------------------------------------- |
 | activeMatchOrdinal | number  | 是 | 当前匹配的查找项的序号（从0开始）。                       |
 | numberOfMatches    | number  | 是 | 所有匹配到的关键词的个数。                            |
-| isDoneCounting     | boolean | 是 | 当次页内查找操作是否结束。该方法可能会回调多次，直到isDoneCounting为true为止。 |
+| isDoneCounting     | boolean | 是 | 当次页内查找操作是否结束。<br>true表示当次页内查找操作结束，false表示当次页内查找操作未结束。<br>该方法可能会回调多次，直到isDoneCounting为true为止。 |
 
 ## OnScrollEvent<sup>12+</sup>
 
@@ -10346,7 +10385,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ---- | ---- | ---------------------------------------- |
 | url         | string  | 是 | 接收到的apple-touch-icon url地址。 |
-| precomposed | boolean | 是 | 对应apple-touch-icon是否为预合成。   |
+| precomposed | boolean | 是 | 对应apple-touch-icon是否为预合成。<br>true表示对应apple-touch-icon为预合成，false表示对应apple-touch-icon不是预合成。   |
 
 ## OnFaviconReceivedEvent<sup>12+</sup>
 
@@ -10468,7 +10507,7 @@ type OnAdsBlockedCallback = (details: AdsBlockedDetails) => void
 
 | 名称           | 类型                                | 必填   | 说明              |
 | -------------  | ------------------------------------| ----- | ------------------ |
-| visibility     | boolean                             | 是     | 可见性。         |
+| visibility     | boolean                             | 是     | 可见性。<br>true表示可见，false表示不可见。         |
 | embedId        | string                              | 是     | 同层渲染标签的唯一id。  |
 
 ## OnNativeEmbedVisibilityChangeCallback<sup>12+</sup>
@@ -10521,6 +10560,15 @@ type OnNativeEmbedVisibilityChangeCallback = (nativeEmbedVisibilityInfo: NativeE
 | onDisappear | Callback\<void\>  | 否     | 自定义选择菜单关闭时回调。     |
 | preview    | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8)          | 否     | 自定义选择菜单的预览内容样式, 未配置时无预览内容。|
 | menuType   | [MenuType](../apis-arkui/arkui-ts/ts-text-common.md#menutype13枚举说明)      | 否     | 自定义选择菜单类型。<br>默认值：MenuType.SELECTION_MENU     |
+| previewMenuOptions<sup>20+</sup> | [PreviewMenuOptions](#previewmenuoptions20) | 否     | 自定义选择预览菜单选项。 |
+
+## PreviewMenuOptions<sup>20+</sup>
+预览菜单选项。
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称           | 类型                                             | 必填    | 说明             |
+| ---------- | -----------------------------------------------------| ------ | ---------------- |
+| hapticFeedbackMode   | [HapticFeedbackMode](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#hapticfeedbackmode18)   | 否     | 菜单弹出时振动效果。需配置"ohos.permission.VIBRATE"权限<br/>默认值：HapticFeedbackMode.DISABLED，菜单弹出时不振动。     |
 
 ## BlurOnKeyboardHideMode<sup>14+</sup>枚举说明
 

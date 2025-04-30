@@ -11,7 +11,7 @@ Character rules vary greatly in different languages, and it is usually difficult
 
 Character attributes are used to determine the character type, for example, digit, letter, or space, and check whether a character is of the right-to-left (RTL) language or whether a character is an ideographic character (for example, Chinese, Japanese, or Korean).
 
-These functions are implemented by APIs of the **Unicode** class. For example, you can use [isDigit](../reference/apis-localization-kit/js-apis-i18n.md#isdigit9) to check whether a character is a digit. The development procedure is as follows:
+You can implement these functions by using APIs of the Unicode class. For example, you can use [isDigit](../reference/apis-localization-kit/js-apis-i18n.md#isdigit9) to check whether a character is a digit. The development procedure is as follows:
 
 1. Import the **i18n** module.
 
@@ -25,7 +25,7 @@ These functions are implemented by APIs of the **Unicode** class. For example, y
    let isDigit: boolean = i18n.Unicode.isDigit(char: string);
    ```
 
-3. Obtain the character type. The following code snippet uses the common type as an example. For details, see the **getType** API reference.
+3. Obtain the character type. The following code snippet uses the common type as an example.
 
    ```ts
    let unicodeType: string = i18n.Unicode.getType(char: string);
@@ -52,10 +52,10 @@ let unicodeType: string = i18n.Unicode.getType('a'); // unicodeType = 'U_LOWERCA
 
 ### Transliteration
 
-Transliteration means to use content with similar pronunciation in the local language to replace the original content. This function is implemented through the [transform](../reference/apis-localization-kit/js-apis-i18n.md#transform9) API of the **Transliterator** class. The development procedure is as follows:
+Transliteration means to use content with similar pronunciation in the local language to replace the original content. You can implement this function by using the [transform](../reference/apis-localization-kit/js-apis-i18n.md#transform9) API of the **Transliterator** class. The development procedure is as follows:
 
 > **NOTE**
-> This module supports the transliteration from Chinese characters to pinyin. However, it does not guaranteed that polyphonic characters are effectively processed based on the context.
+> This module supports the transliteration from Chinese characters to pinyin. However, it does not guaranteed that polyphonic characters are correctly processed.
 
 1. Import the **i18n** module.
    ```ts
@@ -98,16 +98,16 @@ let ids: string[] = i18n.Transliterator.getAvailableIDs(); // ids = ['ASCII-Lati
 ```
 
 
-### Character Normalization
+### Text Normalization
 
-Character normalization means to the standardize characters according to the specified paradigm. This function is implemented through the [normalize](../reference/apis-localization-kit/js-apis-i18n.md#normalize10) API of the **Normalizer** class. The development procedure is as follows:
+Text normalization means to the normalize text according to the specified paradigm. You can implement this function by using the [normalize](../reference/apis-localization-kit/js-apis-i18n.md#normalize10) API of the **Normalizer** class. The development procedure is as follows:
 
 1. Import the **i18n** module.
    ```ts
    import { i18n } from '@kit.LocalizationKit';
    ```
 
-2. Create a **Normalizer** object. Pass in the text normalization paradigm to create a **Normalizer** object. The text normalization paradigm can be NFC, NFD, NFKC, or NFKD. For details, see [Unicode Normalization Forms](https://www.unicode.org/reports/tr15/#Norm_Forms).
+2. Pass in the text normalization paradigm to create a **Normalizer** object. The text normalization paradigm can be NFC, NFD, NFKC, or NFKD. For details, see [Unicode Normalization Forms](https://www.unicode.org/reports/tr15/#Norm_Forms).
    ```ts
    let normalizer: i18n.Normalizer = i18n.Normalizer.getInstance(mode: NormalizerMode);
    ```
@@ -122,7 +122,7 @@ Character normalization means to the standardize characters according to the spe
 // Import the i18n module.
 import { i18n } from '@kit.LocalizationKit';
 
-// Normalize characters in the NFC form.
+// Normalize text according to the NFC paradigm.
 let normalizer: i18n.Normalizer = i18n.Normalizer.getInstance(i18n.NormalizerMode.NFC);
 let normalizedText: string = normalizer.normalize('\u1E9B\u0323'); // normalizedText = 'ẛ̣'
 ```
@@ -130,15 +130,14 @@ let normalizedText: string = normalizer.normalize('\u1E9B\u0323'); // normalized
 
 ### Line Wrapping
 
-Line wrapping means to obtain the text break position based on the specified text boundary and wrap the line. It is implemented by using the APIs of the [BreakIterator](../reference/apis-localization-kit/js-apis-i18n.md#breakiterator8) class. The development procedure is as follows:
+Line wrapping means to obtain the text break position based on the specified text boundary and wrap the line. You can implement this function by using APIs of the [BreakIterator](../reference/apis-localization-kit/js-apis-i18n.md#breakiterator8) class. The development procedure is as follows:
 
 1. Import the **i18n** module.
    ```ts
    import { i18n } from '@kit.LocalizationKit';
    ```
 
-2. Create a **BreakIterator** object.
-   Pass a valid locale to create a **BreakIterator** object. This object wraps lines based on the rules specified by the locale.
+2. Create a **BreakIterator** object. Pass a valid locale to create a **BreakIterator** object. This object wraps lines based on the rules specified by the locale.
 
    ```ts
    let iterator: i18n.BreakIterator = i18n.getLineInstance(locale: string);
@@ -185,14 +184,14 @@ let breakText: string = iterator.getLineBreakText(); // breakText = 'Apple is my
 
 ### Performs file path mirroring.
 
-File path mirroring means to localize the input file paths. This function is implemented through the [getUnicodeWrappedFilePath](../reference/apis-localization-kit/js-apis-i18n.md#getunicodewrappedfilepath18) API of the **I18NUtil** class. The development procedure is as follows:
+File path mirroring is a process of localizing the input file path directions. It is performed when **mirrorPath** is passed. You can implement this function by using the [getUnicodeWrappedFilePath](../reference/apis-localization-kit/js-apis-i18n.md#getunicodewrappedfilepath18) API of the **I18NUtil** class. The development procedure is as follows:
 
 1. Import the **i18n** module.
    ```ts
    import { i18n, intl } from '@kit.LocalizationKit';
    ```
 
-2. Call the file path mirroring API.
+2. Perform file path mirroring.
    ```ts
    let mirrorPath: string = i18n.I18NUtil.getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: intl.Locale);
    ```

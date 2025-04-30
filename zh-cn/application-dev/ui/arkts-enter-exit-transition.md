@@ -78,10 +78,10 @@ struct TransitionEffectDemo {
   @State isPresent: boolean = false;
   // 第一步，创建TransitionEffect
   private effect: TransitionEffect =
-    // 创建默认透明度转场效果,并指定了springMotion(0.6, 0.8)曲线
+    // 创建默认透明度转场效果，并指定了springMotion(0.6, 0.8)曲线
     TransitionEffect.OPACITY.animation({
       curve: curves.springMotion(0.6, 0.8)
-    })// 通过combine方法,这里的动画参数会跟随上面的TransitionEffect，也就是springMotion(0.6, 0.8)
+    })// 通过combine方法，这里的动画参数会跟随上面的TransitionEffect，也就是springMotion(0.6, 0.8)
       .combine(TransitionEffect.scale({
         x: 0,
         y: 0
@@ -89,7 +89,7 @@ struct TransitionEffectDemo {
       .combine(TransitionEffect.rotate({ angle: 90 }))// 添加平移转场效果，这里的动画参数使用指定的springMotion()
       .combine(TransitionEffect.translate({ y: 150 })
         .animation({ curve: curves.springMotion() }))// 添加move转场效果，这里的动画参数会跟随上面的TransitionEffect，也就是springMotion()
-      .combine(TransitionEffect.move(TransitionEdge.END))
+      .combine(TransitionEffect.move(TransitionEdge.END));
 
   build() {
     Stack() {

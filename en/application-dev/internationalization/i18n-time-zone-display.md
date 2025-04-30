@@ -2,7 +2,7 @@
 
 ## Use Cases
 
-In a multi-language environment, time zones may be addressed by users in different regions in different ways. Therefore, your application needs to localize time zone names to adapt to local user habits.
+In a multi-language environment, time zones may be addressed by users in different regions in different ways. To this end, your application needs to localize time zone names to adapt to local user habits.
 
 ## How to Develop
 

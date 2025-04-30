@@ -58,7 +58,7 @@ AtomicServiceSearch中“选择区”的可选属性。
 | selected                | number| 否 | 设置下拉菜单初始选项的索引。第一项的索引为0。当不设置selected属性时，默认选择值为-1，菜单项不选中。 |
 | selectValue             | [ResourceStr](ts-types.md#resourcestr) | 否 | 设置下拉按钮本身的文本内容。默认值为`undefined`。 |
 | onSelect                | [OnSelectCallback](#onselectcallback) | 否 | 下拉菜单选中某一项的回调。默认值为`undefined`。 |
-| menuItemContentModifier | [ContentModifier&lt;MenuItemConfiguration&gt;](ts-basic-components-select.md#menuitemconfiguration12对象说明) | 否 | 	在Select组件上，定制下拉菜单项内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。默认值为`undefined`。 |
+| menuItemContentModifier | [ContentModifier&lt;MenuItemConfiguration&gt;](ts-basic-components-select.md#menuitemconfiguration12对象说明) | 否 | 	在Select组件上，定制下拉菜单项内容区的方法。在应用了该属性后，下拉菜单的内容将完全由开发者自定义，此时为选择区设置的下拉菜单分割线、背景色及字体样式等属性将不再生效。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。默认值为`undefined`。 |
 | divider                 | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;[DividerOptions](ts-basic-components-textpicker.md#divideroptions12对象说明)&gt; \| null | 否 | 1.设置DividerOptions，则按设置的样式显示分割线。默认值：`{strokeWidth: '1px', color: '#33182431'}`。<br/>2.设置为null时，不显示分割线。<br/>3.strokeWidth设置过宽时，会覆盖文字。分割线会从每一个Item底部开始，同时向上向下画分割线。<br/>4.startMargin和endMargin的默认值与不设置divider属性时的分割线样式保持一致。startMargin和endMargin的和与optionWidth的值相等时，不显示分割线。 startMargin和endMargin的和超过optionWidth的值时，按照默认样式显示分割线。 |
 | font                    | [Font](ts-types.md#font) | 否 | 下拉按钮本身的文本样式。默认值：`{size: $r('sys.float.ohos_id_text_size_body1')}`。 |
 | fontColor               | [ResourceColor](ts-types.md#resourcecolor) | 否 | 下拉菜单选中项的文本颜色。默认值：`{fontColor: $r('sys.color.ohos_id_color_text_primary')}`。   |
@@ -72,7 +72,7 @@ AtomicServiceSearch中“选择区”的可选属性。
 | optionHeight            | [Dimension](ts-types.md#dimension10) | 否 | 设置下拉菜单显示的最大高度，不支持设置百分比。下拉菜单的默认最大高度是屏幕可用高度的80%，设置的菜单最大高度不能超过默认最大高度。 |
 | space                   | [Length](ts-types.md#length) | 否 | 下拉菜单项的文本与箭头之间的间距。默认值：`8`。 |
 | arrowPosition           | [ArrowPosition](ts-basic-components-select.md#arrowposition10枚举说明) | 否 | 下拉菜单项的文本与箭头之间的对齐方式。默认值：`ArrowPosition.END`。 |
-| menuAlign               | [MenuAlignParams](#menualignparams) | 否 | 设置下拉按钮与下拉菜单间的对齐方式。默认值：`{alignType：MenuAlignType.START,   offset: {dx: 0, dy: 0}}`。 |
+| menuAlign               | [MenuAlignParams](#menualignparams) | 否 | 设置下拉按钮与下拉菜单间的对齐方式。默认值：`{alignType: MenuAlignType.START,   offset: {dx: 0, dy: 0}}`。 |
 | menuBackgroundColor     | [ResourceColor](ts-types.md#resourcecolor) | 否 | 下拉菜单的背景色。默认值：`Color.Transparent`。   |
 | menuBackgroundBlurStyle | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 否 | 下拉菜单的背景模糊材质。默认值：`BlurStyle.COMPONENT_ULTRA_THICK`。 |
 
@@ -106,7 +106,7 @@ AtomicServiceSearch中“搜索区”的可选属性。
 | maxLength                | number | 否 | 设置文本的最大输入字符数。默认不设置最大输入字符数限制。到达文本最大字符限制，将无法继续输入字符。默认值：`-1`;   |
 | enterKeyType             | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype枚举说明) | 否 | 输入法回车键类型。默认值：`EnterKeyType.Search`。   |
 | decoration               | [TextDecorationOptions](ts-types.md#textdecorationoptions12对象说明) | 否 |  文本装饰线对象。默认值：`{type: TextDecorationType.None, color: Color.Black, style: TextDecorationStyle.SOLID}`。   |
-| letterSpacing            | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否 | 设置文本字符间距。设置该值为百分比时，按默认值显示。设置该值为0时，按默认值显示。当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示。默认值：`0`;  |
+| letterSpacing            | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否 | 设置文本字符间距。正数拉开字符距离，负数则拉近字符距离。浮点数默认值为0.0，单位为物理像素px。若输入类型非number且无法解析为数字，则使用默认值。  |
 | fontFeature              | [ResourceStr](ts-types.md#resourcestr) | 否 | 设置文字特性效果，比如数字等宽的特性。<br />格式为：normal \| \<feature-tag-value\><br />\<feature-tag-value\>的格式为：\<string\> \[ \<integer\> \| on \| off ]<br />\<feature-tag-value\>的个数可以有多个，中间用','隔开。<br />例如，使用等宽数字的输入格式为："ss01" on。默认值为`undefined`。   |
 | selectedBackgroundColor  | [ResourceColor](ts-types.md#resourcecolor) | 否 | 文本选中底板颜色。默认为20%不透明度。 |
 | inputFilter              | [InputFilterParams](#inputfilterparams) | 否 | 通过正则表达式设置输入过滤器。匹配表达式的输入允许显示，不匹配的输入将被过滤。仅支持单个字符匹配，不支持字符串匹配。默认值为`undefined`。<br /> -value: 正则表达式。 <br /> -error: 正则匹配失败时，返回被过滤的内容。 |
@@ -124,11 +124,10 @@ AtomicServiceSearch中“搜索区”的可选属性。
 | onTextSelectionChange    | [OnTextSelectionChangeCallback](#ontextselectionchangecallback) | 否 | 文本选择的位置发生变化或编辑状态下光标位置发生变化时，触发该回调。默认值为`undefined`。   |
 | onContentScroll          | [OnContentScrollCallback](#oncontentscrollcallback) | 否 | 文本内容滚动时，触发该回调。默认值为`undefined`。   |
 | onEditChange             | Callback&lt;boolean&gt; | 否 | 输入状态变化时，触发该回调。有光标时为编辑态，无光标时为非编辑态。isEditing为true表示正在输入。默认值为`undefined`。   |
-| onWillInsert             | Callback&lt;InsertValue, boolean&gt; | 否 | 在将要输入时，触发该回调。默认值为`undefined`。   |
-| onDidInsert              | Callback&lt;InsertValue&gt; | 否 | 在输入完成时，触发该回调。默认值为`undefined`。   |
-| onWillDelete             | Callback&lt;DeleteValue, boolean&gt; | 否 | 在将要删除时，触发该回调。默认值为`undefined`。   |
-| onDidDelete              | Callback&lt;DeleteValue&gt; | 否 | 在删除完成时，触发该回调。默认值为`undefined`。   |
-
+| onWillInsert             | Callback&lt;[InsertValue](ts-text-common.md#insertvalue12对象说明), boolean&gt; | 否 | 在将要输入时，触发该回调。默认值为`undefined`。   |
+| onDidInsert              | Callback&lt;[InsertValue](ts-text-common.md#insertvalue12对象说明)&gt; | 否 | 在输入完成时，触发该回调。默认值为`undefined`。   |
+| onWillDelete             | Callback&lt;[DeleteValue](ts-text-common.md#deletevalue12对象说明), boolean&gt; | 否 | 在将要删除时，触发该回调。默认值为`undefined`。   |
+| onDidDelete              | Callback&lt;[DeleteValue](ts-text-common.md#deletevalue12对象说明)&gt; | 否 | 在删除完成时，触发该回调。默认值为`undefined`。   |
 
 ## OperationParams
 
@@ -199,7 +198,7 @@ type OnSelectCallback = (index: number, selectValue: string) => void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
-| index | number | 是 | 选中项的索引。 |
+| index | number | 是 | 选中项的索引，索引从0开始。 |
 | selectValue | string | 是 | 选中项的值。 |
 
 
@@ -253,8 +252,8 @@ type OnContentScrollCallback = (totalOffsetX: number, totalOffsetY: number) => v
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
-| totalOffsetX | number | 是 | 文本在内容区的横坐标偏移量。 |
-| totalOffsetY | number | 是 | 文本在内容区的纵坐标偏移量。 |
+| totalOffsetX | number | 是 | 文本左上角横坐标相较于整个内容输入区左上角横坐标的偏移量。 |
+| totalOffsetY | number | 是 | 文本左上角纵坐标相较于整个内容输入区左上角纵坐标的偏移量。 |
 
 
 ## 示例
@@ -303,9 +302,7 @@ struct Index {
   }
 
   private alert(message: string): void {
-    AlertDialog.show({
-      message: message
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -353,9 +350,7 @@ struct Index {
   }
 
   private alert(message: string): void {
-    AlertDialog.show({
-      message: message
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -422,9 +417,7 @@ struct Index {
   }
 
   private alert(message: string): void {
-    AlertDialog.show({
-      message: message
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -556,9 +549,7 @@ struct Index {
   }
 
   private alert(message: string): void {
-    AlertDialog.show({
-      message: message
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -570,7 +561,7 @@ struct Index {
 该示例通过search、select、value、placeholder参数实现了AtomicServiceSearch组件样式的自定义。
 
 ```ts
-import { AtomicServiceSearch } from '@kit.ArkUI';
+import { AtomicServiceSearch, SearchParams, SelectParams } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -679,9 +670,7 @@ struct Index {
   }
 
   private alert(message: string): void {
-    AlertDialog.show({
-      message: message
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -737,9 +726,7 @@ struct Index {
   }
 
   public alert(message: string): void {
-    AlertDialog.show({
-      message: message,
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -784,9 +771,7 @@ struct Index {
   }
 
   public alert(message: string): void {
-    AlertDialog.show({
-      message: message,
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -829,9 +814,7 @@ struct Index {
   }
 
   public alert(message: string): void {
-    AlertDialog.show({
-      message: message,
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -872,9 +855,7 @@ struct Index {
   }
 
   public alert(message: string): void {
-    AlertDialog.show({
-      message: message,
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -946,9 +927,7 @@ struct Index {
   }
 
   public alert(message: string): void {
-    AlertDialog.show({
-      message: message,
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -988,9 +967,7 @@ struct Index {
   }
 
   public alert(message: string): void {
-    AlertDialog.show({
-      message: message,
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -1034,9 +1011,7 @@ struct Index {
   }
 
   public alert(message: string): void {
-    AlertDialog.show({
-      message: message,
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```

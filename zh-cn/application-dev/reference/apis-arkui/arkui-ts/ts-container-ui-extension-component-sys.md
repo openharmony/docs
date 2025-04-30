@@ -113,7 +113,7 @@ onRelease(callback: [Callback](../../apis-basic-services-kit/js-apis-base.md#cal
 
 onError(callback:[ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback))
 
-被拉起的Ability扩展在运行过程中发生异常时触发本回调。可通过回调参数中的code、name和message获取错误信息并做处理。
+被拉起的Ability扩展在运行过程中发生异常时触发本回调。可通过回调参数中的code、name和message获取错误信息并做处理，业务错误码详细介绍请参见[UIExtension错误码](../errorcode-uiextension.md)。
 
 **参数：**
 
@@ -240,10 +240,11 @@ sendSync(data: Record\<string, Object\>): Record\<string, Object\>
 
 **错误码：**
 
-| 错误号 | 描述 |
-| ---- | ----|
-| 100011 | 扩展Ability未注册同步回调 |
-| 100012 | 数据发送失败 |
+以下错误码的详细介绍请参见[UIExtension错误码](../errorcode-uiextension.md)。
+| 错误码ID | 错误描述 | 说明 |
+| ------- | --------| --------|
+| 100011 | No callback has been registered to respond to this request. | 扩展Ability未注册同步回调 |
+| 100012 | Transferring data failed. | 数据发送失败 |
 
 ### on('asyncReceiverRegister')<sup>11+</sup>
 
@@ -336,12 +337,12 @@ function AreaChangePlaceholderBuilder(params: Params) {
 @Entry
 @Component
 struct Second {
-  @State message1: string = 'Hello World 1'
-  @State message2: string = 'Hello World 2'
-  @State message3: string = 'Hello World 3'
-  @State visible: Visibility = Visibility.Hidden
-  @State wid: number = 300
-  @State hei: number = 300
+  @State message1: string = 'Hello World 1';
+  @State message2: string = 'Hello World 2';
+  @State message3: string = 'Hello World 3';
+  @State visible: Visibility = Visibility.Hidden;
+  @State wid: number = 300;
+  @State hei: number = 300;
   @State windowStrategy: WindowModeFollowStrategy = WindowModeFollowStrategy.FOLLOW_UI_EXTENSION_ABILITY_WINDOW_MODE;
   private proxy: UIExtensionProxy | null = null;
   private initPlaceholder = new ComponentContent(this.getUIContext(), wrapBuilder(LoadingBuilder), new Params);
@@ -371,15 +372,15 @@ struct Second {
           .height(this.hei)
           .border({width: 5, color: Color.Blue})
           .onReceive((data) => {
-            console.info('Lee onReceive, for test')
-            this.message3 = JSON.stringify(data['data'])
+            console.info('Lee onReceive, for test');
+            this.message3 = JSON.stringify(data['data']);
           })
           .onTerminated((info) => {
             console.info('onTerminated: code =' + info.code + ', want = ' + JSON.stringify(info.want));
           })
           .onRemoteReady((proxy) => {
-            console.info('onRemoteReady, for test')
-            this.proxy = proxy
+            console.info('onRemoteReady, for test');
+            this.proxy = proxy;
 
             this.proxy.on("syncReceiverRegister", syncRegisterCallback1);
 
@@ -390,10 +391,10 @@ struct Second {
 
         Button("点击向UIExtensionAbility发送数据").onClick(() => {
           if (this.proxy != undefined) {
-            this.proxy.send({data: "你好1"})
+            this.proxy.send({data: "你好1"});
 
             try {
-              let re = this.proxy.sendSync({data: "你好2"})
+              let re = this.proxy.sendSync({data: "你好2"});
               console.info("for test, re=" + JSON.stringify(re));
             } catch (err) {
               console.error(`sendSync failed for test. errCode=${err.code}, msg=${err.message}`);
@@ -426,23 +427,23 @@ const TAG: string = '[UIExtAbility]'
 export default class UIExtAbility extends UIExtensionAbility {
 
   onCreate() {
-    console.log(TAG, `UIExtAbility onCreate`)
+    console.log(TAG, `UIExtAbility onCreate`);
   }
 
   onForeground() {
-    console.log(TAG, `UIExtAbility onForeground`)
+    console.log(TAG, `UIExtAbility onForeground`);
   }
 
   onBackground() {
-    console.log(TAG, `UIExtAbility onBackground`)
+    console.log(TAG, `UIExtAbility onBackground`);
   }
 
   onDestroy() {
-    console.log(TAG, `UIExtAbility onDestroy`)
+    console.log(TAG, `UIExtAbility onDestroy`);
   }
 
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
-    console.log(TAG, `UIExtAbility onSessionCreate, want: ${JSON.stringify(want)}`)
+    console.log(TAG, `UIExtAbility onSessionCreate, want: ${JSON.stringify(want)}`);
     let param: Record<string, UIExtensionContentSession> = {
       'session': session
     };
@@ -451,7 +452,7 @@ export default class UIExtAbility extends UIExtensionAbility {
   }
 
   onSessionDestroy(session: UIExtensionContentSession) {
-    console.log(TAG, `UIExtAbility onSessionDestroy`)
+    console.log(TAG, `UIExtAbility onSessionDestroy`);
   }
 }
 ```
@@ -460,31 +461,31 @@ export default class UIExtAbility extends UIExtensionAbility {
 ```ts
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 
-let storage = LocalStorage.getShared()
-AppStorage.setOrCreate('message', 'UIExtensionAbility')
+let storage = new LocalStorage();
+AppStorage.setOrCreate('message', 'UIExtensionAbility');
 
 @Entry(storage)
 @Component
 struct Extension {
   @StorageLink('message') storageLink: string = '';
   private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-  pathStack: NavPathStack = new NavPathStack()
+  pathStack: NavPathStack = new NavPathStack();
 
   @Builder
   PageMap(name: string) {
     if (name === "hello") {
-      pageOneTmp()
+      pageOneTmp();
     }
   }
 
   onPageShow() {
     if (this.session != undefined) {
       this.session.setReceiveDataCallback((data)=> {
-        this.storageLink = JSON.stringify(data)
+        this.storageLink = JSON.stringify(data);
         console.info("invoke for test, handle callback set by setReceiveDataCallback successfully");
       })
 
-      this.session.setReceiveDataForResultCallback(func1)
+      this.session.setReceiveDataForResultCallback(func1);
     }
   }
 
@@ -497,15 +498,15 @@ struct Extension {
             .fontWeight(FontWeight.Bold)
           Button("点击向Component发送数据").onClick(()=>{
             if (this.session != undefined) {
-              this.session.sendData({"data": 543321})
-              console.info('send 543321, for test')
+              this.session.sendData({"data": 543321});
+              console.info('send 543321, for test');
             }
           })
           Button("terminate").onClick(()=> {
             if (this.session != undefined) {
               this.session.terminateSelf();
             }
-            storage.clear()
+            storage.clear();
           })
           Button("terminate with result").onClick(()=>{
             if (this.session != undefined) {
@@ -515,13 +516,13 @@ struct Extension {
                   bundleName: "myBundleName",
                   parameters: { "result": 123456 }
                 }
-              })
+              });
             }
-            storage.clear()
+            storage.clear();
           })
 
           Button("点击跳转").onClick(()=> {
-            this.pathStack.pushPath({ name: "hello"})
+            this.pathStack.pushPath({ name: "hello"});
           })
         }
       }
@@ -543,19 +544,19 @@ export struct pageOneTmp {
       }.width('100%').height('100%')
     }.title("pageOne")
     .onBackPressed(() => {
-      const popDestinationInfo = this.pathStack.pop() // 弹出路由栈栈顶元素
-      console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo))
-      return true
+      const popDestinationInfo = this.pathStack.pop(); // 弹出路由栈栈顶元素
+      console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo));
+      return true;
     })
     .onReady((context: NavDestinationContext) => {
-      this.pathStack = context.pathStack
+      this.pathStack = context.pathStack;
     })
   }
 }
 
 function func1(data: Record<string, Object>): Record<string, Object> {
   let linkToMsg: SubscribedAbstractProperty<string> = AppStorage.link('message');
-  linkToMsg.set(JSON.stringify(data))
+  linkToMsg.set(JSON.stringify(data));
   console.info("invoke for test, handle callback set by setReceiveDataForResultCallback successfully");
   return data;
 }
@@ -593,14 +594,14 @@ function func1(data: Record<string, Object>): Record<string, Object> {
 @Entry
 @Component
 struct Second {
-  @State message1: string = 'Hello World 1'
-  @State message2: string = 'Hello World 2'
-  @State message3: string = 'Hello World 3'
-  @State visible: Visibility = Visibility.Hidden
-  @State wid: number = 300
-  @State hei: number = 300
+  @State message1: string = 'Hello World 1';
+  @State message2: string = 'Hello World 2';
+  @State message3: string = 'Hello World 3';
+  @State visible: Visibility = Visibility.Hidden;
+  @State wid: number = 300;
+  @State hei: number = 300;
   private scroller: Scroller = new Scroller();
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6]
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6];
 
   build() {
     Column() {
@@ -624,18 +625,18 @@ struct Second {
               .height(this.hei)
                // 设置手势拦截，UEC外部组件不响应滚动
               .gesture(PanGesture().onActionStart(() => {
-                console.info('UIExtensionComponent PanGesture onAction')
+                console.info('UIExtensionComponent PanGesture onAction');
               }))
               .border({ width: 5, color: Color.Blue })
               .onReceive((data) => {
-                console.info('Lee onReceive, for test')
-                this.message3 = JSON.stringify(data['data'])
+                console.info('Lee onReceive, for test');
+                this.message3 = JSON.stringify(data['data']);
               })
               .onTerminated((info) => {
                 console.info('onTerminated: code =' + info.code + ', want = ' + JSON.stringify(info.want));
               })
               .onRemoteReady((proxy) => {
-                console.info('onRemoteReady, for test')
+                console.info('onRemoteReady, for test');
               })
             }, (item: string) => item)
         }
@@ -648,13 +649,13 @@ struct Second {
       .friction(0.6)
       .edgeEffect(EdgeEffect.None)
       .onWillScroll((xOffset: number, yOffset: number, scrollState: ScrollState) => {
-        console.info(xOffset + ' ' + yOffset)
+        console.info(xOffset + ' ' + yOffset);
       })
       .onScrollEdge((side: Edge) => {
-        console.info('To the edge')
+        console.info('To the edge');
       })
       .onScrollStop(() => {
-        console.info('Scroll Stop')
+        console.info('Scroll Stop');
       })
     }
     .height('100%')
@@ -669,7 +670,7 @@ struct Second {
 struct Extension {
   @StorageLink('message') storageLink: string = '';
   private scroller: Scroller = new Scroller();
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
   build() {
     Column() {

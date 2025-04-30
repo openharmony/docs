@@ -250,7 +250,7 @@
     align-items: center;
     justify-content: center;
 }
-/* react4 react5 翻转形成眼睛 */
+/* rect4 rect5 翻转形成眼睛 */
 .rect4 {
     width: 100px;
     height: 100px;
@@ -312,7 +312,7 @@
 
 设置scale样式属性实现涟漪动画，先使用定位确定元素的位置，确定坐标后创建多个组件实现重合效果，再设置opacity属性改变组件不透明度实现组件隐藏与显示，同时设置scale值使组件可以一边放大一边隐藏，最后设置两个组件不同的动画执行时间，实现扩散的效果。
 
-设置sacle3d中X轴、Y轴、Z轴的缩放参数实现动画。
+设置scale3d中X轴、Y轴、Z轴的缩放参数实现动画。
 
 ```html
 <!-- xxx.hml -->

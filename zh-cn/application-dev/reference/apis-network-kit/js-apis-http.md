@@ -13,11 +13,15 @@ import { http } from '@kit.NetworkKit';
 
 ## 完整示例 
 
+**注意：** 关于示例代码中this的说明：在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
 // 引入包名
 import { http } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // 每一个httpRequest对应一个HTTP请求任务，不可复用。
 let httpRequest = http.createHttp();
 // 用于订阅HTTP响应头，此接口会比request请求先返回。可以根据业务需要订阅此消息。
@@ -67,10 +71,10 @@ httpRequest.request(// 填写HTTP请求的URL地址，可以带参数也可以�
         name: "Part2", // 数据名，自API 11开始支持该属性。
         contentType: 'text/plain', // 数据类型，自API 11开始支持该属性。
         // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.txt
-        filePath: `${getContext(this).filesDir}/fileName.txt`, // 可选，传入文件路径，自API 11开始支持该属性。
+        filePath: `${context.filesDir}/fileName.txt`, // 可选，传入文件路径，自API 11开始支持该属性。
         remoteFileName: 'fileName.txt' // 可选，自API 11开始支持该属性。
       }
-    ]
+    ],
     addressFamily: http.AddressFamily.DEFAULT // 可选，系统默认选择目标域名的IPv4地址或IPv6地址，自API 15开始支持该属性。
   },
   (err: BusinessError, data: http.HttpResponse) => {
@@ -1104,14 +1108,14 @@ httpRequest.off("dataSendProgress");
 | method         | [RequestMethod](#requestmethod)               | 否   | 请求方式，默认为GET。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                   |
 | extraData      | string \| Object \| ArrayBuffer | 否   | 发送请求的额外数据，默认无此字段。<br />1. 当HTTP请求为POST、PUT等方法时，此字段为HTTP请求的content，以UTF-8编码形式作为请求体。<br />(1) 当'content-Type'为'application/x-www-form-urlencoded'时，请求提交的信息主体数据必须在key和value进行URL转码后(encodeURIComponent/encodeURI)，按照键值对"key1=value1&key2=value2&key3=value3"的方式进行编码，该字段对应的类型通常为String。<br />(2) 当'content-Type'为'text/xml'时，该字段对应的类型通常为String。<br />(3) 当'content-Type'为'application/json'时，该字段对应的类型通常为Object。<br />(4) 当'content-Type'为'application/octet-stream'时，该字段对应的类型通常为ArrayBuffer。<br />(5) 当'content-Type'为'multipart/form-data'且需上传的字段为文件时，该字段对应的类型通常为ArrayBuffer。<br>以上信息仅供参考，并可能根据具体情况有所不同。<br />2. 当HTTP请求为GET、OPTIONS、DELETE、TRACE、CONNECT等方法时，此字段为HTTP请求参数的补充。开发者需传入Encode编码后的string类型参数，Object类型的参数无需预编码，参数内容会拼接到URL中进行发送。ArrayBuffer类型的参数不会做拼接处理。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | expectDataType<sup>9+</sup>  | [HttpDataType](#httpdatatype9)  | 否   | 指定返回数据的类型，默认无此字段。如果设置了此参数，系统将优先返回指定的类型。当指定其类型为Object时，最大长度为65536。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| usingCache<sup>9+</sup>      | boolean                         | 否   | 是否使用缓存，默认为true，请求时优先读取缓存。 缓存跟随当前进程生效。新缓存会替换旧缓存。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| usingCache<sup>9+</sup>      | boolean                         | 否   | 是否使用缓存，默认为true，请求时优先读取缓存。 缓存跟随当前进程生效。新缓存会替换旧缓存；false：不使用缓存。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | priority<sup>9+</sup>        | number                          | 否   | http/https请求并发优先级，值越大优先级越高，范围[1,1000]，默认为1。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                           |
-| header                       | Object                          | 否   | HTTP请求头字段。当请求方式为"POST" "PUT" "DELETE" 或者""时，默认{'content-Type': 'application/json'}， 否则默认{'content-Type': 'application/x-www-form-urlencoded'}。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
-| readTimeout                  | number                          | 否   | 读取超时时间。单位为毫秒(ms)，默认为60000ms。<br />设置为0表示不会出现超时情况。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| connectTimeout               | number                          | 否   | 连接超时时间。单位为毫秒(ms)，默认为60000ms。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。              |
+| header                       | Object                          | 否   | HTTP请求头字段。当请求方式为"POST" "PUT" "DELETE" 或者""时，默认{'content-Type': 'application/json'}， 否则默认{'content-Type': 'application/x-www-form-urlencoded'}。<br />如果head中包含number类型的字段，最大支持int64的整数。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
+| readTimeout                  | number                          | 否   | 读取超时时间。单位为毫秒(ms)，默认为60000ms。传入值需为uint32_t范围内的整数。<br />设置为0表示不会出现超时情况。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| connectTimeout               | number                          | 否   | 连接超时时间。单位为毫秒(ms)，默认为60000ms。传入值需为uint32_t范围内的整数。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。              |
 | usingProtocol<sup>9+</sup>   | [HttpProtocol](#httpprotocol9)  | 否   | 使用协议。默认值由系统自动指定。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                             |
-| usingProxy<sup>10+</sup>     | boolean \| [HttpProxy](js-apis-net-connection.md#httpproxy10)               | 否   | 是否使用HTTP代理，默认为false，不使用代理。<br />- 当usingProxy为布尔类型true时，使用默认网络代理。<br />- 当usingProxy为HttpProxy类型时，使用指定网络代理。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| caPath<sup>10+</sup>     | string               | 否   | 如果设置了此参数，系统将使用用户指定路径的CA证书，(开发者需保证该路径下CA证书的可访问性)，否则将使用系统预设CA证书。<br />系统预设CA证书位置：/etc/ssl/certs/cacert.pem。证书路径为沙箱映射路径(开发者可通过getContext().filesDir获取应用沙箱路径)。目前仅支持后缀名为.pem的文本格式证书。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                             |
+| usingProxy<sup>10+</sup>     | boolean \| [HttpProxy](js-apis-net-connection.md#httpproxy10)               | 否   | 是否使用HTTP代理，默认为false，不使用代理；true：使用HTTP代理。<br />- 当usingProxy为布尔类型true时，使用默认网络代理。<br />- 当usingProxy为HttpProxy类型时，使用指定网络代理。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| caPath<sup>10+</sup>     | string               | 否   | 如果设置了此参数，系统将使用用户指定路径的CA证书，(开发者需保证该路径下CA证书的可访问性)，否则将使用系统预设CA证书。<br />系统预设CA证书位置：/etc/ssl/certs/cacert.pem。证书路径为沙箱映射路径(开发者可通过UIAbilityContext提供的能力获取应用沙箱路径)。目前仅支持后缀名为.pem的文本格式证书。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                             |
 | resumeFrom<sup>11+</sup> | number | 否 | 用于设置下载起始位置，该参数只能用于GET方法，不要用于其他。HTTP标准(RFC 7233第3.1节)允许服务器忽略范围请求。<br />- 使用HTTP PUT时，不应使用该选项，因为该选项可能与其他选项冲突。<br />- 取值范围是:1~4294967296(4GB)，超出范围则不生效。 |
 | resumeTo<sup>11+</sup> | number | 否 | 用于设置下载结束位置，该参数只能用于GET方法，不要用于其他。HTTP标准(RFC 7233第3.1节)允许服务器忽略范围请求。<br />- 使用HTTP PUT时，不应使用该选项，因为该选项可能与其他选项冲突。<br />- 取值范围是:1~4294967296(4GB)，超出范围则不生效。 |
 | clientCert<sup>11+</sup> | [ClientCert](#clientcert11) | 否 | 支持传输客户端证书。 |
@@ -1212,10 +1216,10 @@ request方法回调函数的返回值类型。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------| --- | ----------- |
-| certPath | string | 是 | 证书路径 |
-| certType | [CertType](#certtype11) | 否 | 证书类型，默认是PEM |
-| keyPath | string | 是 | 证书秘钥的路径 |
-| keyPassword | string | 否  | 证书秘钥的密码 |
+| certPath | string | 是 | 证书路径。 |
+| certType | [CertType](#certtype11) | 否 | 证书类型，默认是PEM。 |
+| keyPath | string | 是 | 证书秘钥的路径。 |
+| keyPassword | string | 否  | 证书秘钥的密码。 |
 
 ## PerformanceTiming<sup>11+</sup>
 
@@ -1238,7 +1242,7 @@ request方法回调函数的返回值类型。
 
 ## DataReceiveProgressInfo<sup>11+</sup>
 
-数据接收信息
+数据接收信息。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -1249,7 +1253,7 @@ request方法回调函数的返回值类型。
 
 ## DataSendProgressInfo<sup>11+</sup>
 
-数据发送信息
+数据发送信息。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -1270,7 +1274,7 @@ request方法回调函数的返回值类型。
 
 | 名称 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| name        | string | 是  | 数据名称                                                                      |
+| name        | string | 是  | 数据名称。                                                                      |
 | contentType | string | 是 | 数据类型，如'text/plain'，'image/png', 'image/jpeg', 'audio/mpeg', 'video/mp4'等。 |
 | remoteFileName | string | 否 | 上传到服务器保存为文件的名称。                                                 |
 | data | string \| Object \| ArrayBuffer | 否 | 表单数据内容。                                                 |
@@ -1536,9 +1540,9 @@ http协议版本。
 
 | 名称 | 说明       |
 | --- | ---------- |
-| PEM | 证书类型PEM |
-| DER | 证书类型DER |
-| P12 | 证书类型P12 |
+| PEM | 证书类型PEM。 |
+| DER | 证书类型DER。 |
+| P12 | 证书类型P12。 |
 
 ## CertificatePinning<sup>12+</sup>
 

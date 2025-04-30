@@ -1,6 +1,6 @@
 # 拖拽事件
 
-拖拽事件指组件被长按后拖拽时触发的事件。
+拖拽事件是指在用户界面中，当用户拖动某个对象（如文件、控件或元素）时触发的一系列事件。这些事件允许开发者自定义拖拽行为，实现诸如拖放、调整位置等功能。
 
 >  **说明：**
 >
@@ -102,7 +102,7 @@ onDragLeave(event: (event: DragEvent, extraParams?: string) => void)
 
 onDrop(event: (event: DragEvent, extraParams?: string) => void)
 
-绑定此事件的组件可作为拖放目标。当在本组件范围内停止拖放行为时，将触发回调。如果开发者未在onDrop中主动调用event.setResult()来设置拖拽接收的结果，对于系统支持的默认可拖入组件，处理结果将依据系统实际处理的数据。对于其他组件，系统将默认视为数据接收成功。
+绑定此事件的组件可作为释放目标。当在本组件范围内停止拖放行为时，将触发回调。如果开发者未在onDrop中主动调用event.setResult()来设置拖拽接收的结果，对于系统支持的默认可拖入组件，处理结果将依据系统实际处理的数据。对于其他组件，系统将默认视为数据接收成功。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -211,7 +211,7 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 | 名称     | 类型  | 描述             |
 | ------ | ------ | ---------------- |
-| useCustomDropAnimation<sup>10+</sup> | boolean | 当拖拽结束时，是否使能并使用系统默认落位动效。<br/>应用可将该值设定为true来禁用系统默认落位动效，并实现自己的自定义落位动效。<br/>当不配置或设置为false时，系统默认落位动效生效，当松手位置的控件可接收拖拽的数据时，落位为缩小消失动效，若不可接收数据，则为放大消失动效。<br/>当未禁用系统默认落位动效情况下，应用不应再实现自定义动效，以避免动效上的冲突。|
+| useCustomDropAnimation<sup>10+</sup> | boolean | 当拖拽结束时，是否禁用系统默认落位动效。<br/>应用可将该值设定为true来禁用系统默认落位动效，并实现自己的自定义落位动效。<br/>当不配置或设置为false时，系统默认落位动效生效，当松手位置的控件可接收拖拽的数据时，落位为缩小消失动效，若不可接收数据，则为放大消失动效。<br/>当未禁用系统默认落位动效情况下，应用不应再实现自定义动效，以避免动效上的冲突。|
 |dragBehavior<sup>10+</sup> | [DragBehavior](#dragbehavior10) | 切换复制和剪贴模式的角标显示状态。 |
 
 ### 方法
@@ -266,7 +266,7 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 ## DragBehavior<sup>10+</sup>
 
-当设置[DragResult](#dragresult10枚举说明)为DROP_ENABLED后，可设置DragBehavior为复制（copy）或剪切（move）。DragBehavior用来向开发者描述数据的处理方式是复制（copy）还是剪切（move），但无法最终决定对数据的实际处理方式。DragBehavior会通过onDragEnd带回给数据拖出方，发起拖拽的一方可通过DragBehavior来区分做出的是复制还是剪切数据的不同行为。
+当设置[DragResult](#dragresult10枚举说明)为DROP_ENABLED后，可设置DragBehavior为复制（COPY）或剪切（MOVE）。DragBehavior用来向开发者描述数据的处理方式是复制（COPY）还是剪切（MOVE），但无法最终决定对数据的实际处理方式。DragBehavior会通过onDragEnd带回给数据拖出方，发起拖拽的一方可通过DragBehavior来区分做出的是复制还是剪切数据的不同行为。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -408,9 +408,9 @@ struct Index {
           .onDragEnd((event) => {
             // onDragEnd里取到的result值在接收方onDrop设置
             if (event.getResult() === DragResult.DRAG_SUCCESSFUL) {
-              promptAction.showToast({ duration: 100, message: 'Drag Success' });
+              this.getUIContext().getPromptAction().showToast({ duration: 100, message: 'Drag Success' });
             } else if (event.getResult() === DragResult.DRAG_FAILED) {
-              promptAction.showToast({ duration: 100, message: 'Drag failed' });
+              this.getUIContext().getPromptAction().showToast({ duration: 100, message: 'Drag failed' });
             }
           })
         Text('test drag event')
@@ -525,8 +525,6 @@ struct Index {
 通过自定义接口executeDropAnimation，实现落位动效。
 ```ts
 import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
-import { promptAction } from '@kit.ArkUI';
-
 
 @Entry
 @Component
@@ -564,9 +562,9 @@ struct DropAnimationExample {
           })
           .onDragEnd((event) => {
             if (event.getResult() === DragResult.DRAG_SUCCESSFUL) {
-              promptAction.showToast({ duration: 100, message: 'Drag Success' });
+              console.info('Drag Success');
             } else if (event.getResult() === DragResult.DRAG_FAILED) {
-              promptAction.showToast({ duration: 100, message: 'Drag failed' });
+              console.error('Drag failed');
             }
           })
       }.width('45%')
@@ -597,6 +595,8 @@ struct DropAnimationExample {
           dragEvent.useCustomDropAnimation = true;
           dragEvent.executeDropAnimation(this.customDropAnimation)
         })
+        .width(this.imageWidth)
+        .height(this.imageHeight)
       }.width('45%')
       .height('100%')
       .margin({ left: '5%' })
@@ -621,6 +621,7 @@ import { common } from '@kit.AbilityKit'
 struct ImageExample {
   @State uri: string = "";
   @State blockArr: string[] = [];
+  uiContext = this.getUIContext();
   udKey: string = '';
 
   build() {
@@ -634,18 +635,20 @@ struct ImageExample {
           .border({ width: 1 })
           .draggable(true)
           .onDragStart((event:DragEvent) => {
-            const context: Context = getContext(this);
-            let data = context.resourceManager.getMediaContentSync($r('app.media.startIcon').id, 120);
-            const arrayBuffer: ArrayBuffer = data.buffer.slice(data.byteOffset, data.byteLength + data.byteOffset);
-            let filePath = context.filesDir + '/test.png';
-            let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-            fs.writeSync(file.fd, arrayBuffer);
-            //获取图片的uri
-            let uri = fileUri.getUriFromPath(filePath);
-            let image: unifiedDataChannel.Image = new unifiedDataChannel.Image();
-            image.imageUri = uri;
-            let dragData: unifiedDataChannel.UnifiedData = new unifiedDataChannel.UnifiedData(image);
-            (event as DragEvent).setData(dragData);
+            const context: Context|undefined = this.uiContext.getHostContext();
+            if(context) {
+              let data = context.resourceManager.getMediaContentSync($r('app.media.startIcon').id, 120);
+              const arrayBuffer: ArrayBuffer = data.buffer.slice(data.byteOffset, data.byteLength + data.byteOffset);
+              let filePath = context.filesDir + '/test.png';
+              let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+              fs.writeSync(file.fd, arrayBuffer);
+              //获取图片的uri
+              let uri = fileUri.getUriFromPath(filePath);
+              let image: unifiedDataChannel.Image = new unifiedDataChannel.Image();
+              image.imageUri = uri;
+              let dragData: unifiedDataChannel.UnifiedData = new unifiedDataChannel.UnifiedData(image);
+              (event as DragEvent).setData(dragData);
+            }
           })
       }
       .margin({ bottom: 20 })
@@ -670,7 +673,7 @@ struct ImageExample {
           .width('100%')
           .onDrop((event?: DragEvent, extraParams?: string) => {
             console.log("enter onDrop")
-            let context = getContext(this) as common.UIAbilityContext;
+            let context = this.uiContext.getHostContext() as common.UIAbilityContext;
             let pathDir: string = context.distributedFilesDir;
             let destUri = fileUri.getUriFromPath(pathDir);
             let progressListener: unifiedDataChannel.DataProgressListener = (progress: unifiedDataChannel.ProgressInfo, dragData: UnifiedData|null) => {

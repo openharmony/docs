@@ -255,7 +255,7 @@ on(type: 'cameraMute', callback: AsyncCallback\<boolean\>): void
 
 | 参数名     | 类型             | 必填 | 说明       |
 | -------- | --------------- | ---- | --------- |
-| type     | string          | 是   | 监听事件，固定为'cameraMute'，系统相机摄像头开关，cameraManager对象获取成功后可监听。系统设置打开或禁用相机会触发该事件并返回状态。 |
+| type     | string          | 是   | 监听事件，固定为'cameraMute'，系统相机开关，cameraManager对象获取成功后可监听。系统设置打开或禁用相机会触发该事件并返回状态。 |
 | callback | AsyncCallback\<boolean> | 是   | 回调函数，用于获取禁用状态变化信息，返回true为开启状态，返回false为禁用状态。               |
 
 **示例：**
@@ -291,7 +291,7 @@ off(type: 'cameraMute', callback?: AsyncCallback\<boolean\>): void
 
 | 参数名     | 类型             | 必填 | 说明                                                      |
 | -------- | --------------- | ---- |---------------------------------------------------------|
-| type     | string          | 是   | 监听事件，固定为'cameraMute'，系统相机摄像头开关，cameraManager对象获取成功后可监听。 |
+| type     | string          | 是   | 监听事件，固定为'cameraMute'，系统相机开关，cameraManager对象获取成功后可监听。 |
 | callback | AsyncCallback\<boolean> | 否   | 回调函数，可选参数，返回true为开启状态，返回false为禁用状态，有就是匹配on('cameraMute') callback（callback对象不可是匿名函数）。                  |
 
 **示例：**
@@ -485,7 +485,7 @@ function getDeferredPreviewOutput(context: common.BaseContext, previewProfile: c
 
 preSwitchCamera(cameraId: string): void
 
-预切换摄像头，提升摄像头启动速度。
+预切换相机，提升相机启动速度。
 
 **系统接口：** 此接口为系统接口。
 
@@ -525,7 +525,7 @@ function preSwitch(cameraDevice: camera.CameraDevice, context: common.BaseContex
 ```
 
 ## CameraOcclusionDetectionResult<sup>12+</sup>
-摄像头模组被遮挡状态。
+相机模组被遮挡状态。
 
 **系统接口：** 此接口为系统接口。
 
@@ -908,6 +908,176 @@ off(type: 'error', callback?: ErrorCallback): void
 ```ts
 function unregisterDepthDataOutputError(depthDataOutput: camera.DepthDataOutput): void {
   depthDataOutput.off('error');
+}
+```
+
+## DepthFusionQuery<sup>14+</sup>
+
+深度融合查询类。
+
+### isDepthFusionSupported<sup>14+</sup>
+
+isDepthFusionSupported(): boolean
+
+查询是否支持深度融合，通过返回值获取结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型            | 说明                     |
+| -------------- | ----------------------- |
+| boolean | 表示是否支持深度融合。true表示支持深度融合，false表示不支持深度融合。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202             | Not System Application. |
+| 7400103         | Session not config, only throw in session usage.     |
+
+**示例：**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function isDepthFusionSupported(DepthFusionQuery: camera.DepthFusionQuery): void {
+  try {
+    let isSupperted: boolean = DepthFusionQuery.isDepthFusionSupported();
+    console.info('Promise returned to indicate that isDepthFusionSupported method execution success.');
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to depth fusion query  isDepthFusionSupported, error code: ${err.code}.`);
+  }
+}
+
+```
+### getDepthFusionThreshold<sup>14+</sup>
+
+getDepthFusionThreshold(): Array\<number\>
+
+获取深度融合阈值，通过返回值获取结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型            | 说明                     |
+| -------------- | ----------------------- |
+| Array\<number\> | 深度融合的阈值范围。       |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202             | Not System Application. |
+| 7400103         | Session not config, only throw in session usage.      |
+
+**示例：**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getDepthFusionThreshold(DepthFusionQuery: camera.DepthFusionQuery): void {
+  try {
+    let threshold: Array<number> = DepthFusionQuery.getDepthFusionThreshold();
+    console.info('Promise returned to indicate that getDepthFusionThreshold method execution success.');
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to depth fusion query  getDepthFusionThreshold, error code: ${err.code}.`);
+  }
+}
+```
+## DepthFusion<sup>14+</sup>
+
+深度融合类。继承[DepthFusionQuery](js-apis-camera-sys.md#depthfusionquery14)。
+
+### isDepthFusionEnabled<sup>14+</sup>
+
+isDepthFusionEnabled(): boolean
+
+检测深度融合功能是否已启用，通过返回值获取结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型            | 说明                     |
+| -------------- | ----------------------- |
+| boolean | 表示是否开启深度融合。true表示开启深度融合，false表示未开启深度融合。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202             | Not System Application. |
+| 7400103         | Session not config.      |
+
+**示例：**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function isDepthFusionEnabled(DepthFusion: camera.DepthFusion): void {
+  try {
+    let isEnable: boolean = DepthFusion.isDepthFusionEnabled();
+    console.info('Promise returned to indicate that isDepthFusionEnabled method execution success.');
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to depth fusion isDepthFusionEnabled, error code: ${err.code}.`);
+  };
+}
+```
+
+### enableDepthFusion<sup>14+</sup>
+
+enableDepthFusion(enabled: boolean): void
+
+启用深度融合功能。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型      | 必填 | 说明                                  |
+| -------- | ---------- | --- | ------------------------------------ |
+| enabled  | boolean    | 是   | 使能深度融合。true表示使能，false表示不使能。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息                                           |
+|---------|------------------------------------------------|
+| 202     | Not System Application.                        |
+| 7400101 | Parameter missing or parameter type incorrect. |
+| 7400103 | Session not config.                            |
+| 7400201 | Camera service fatal error.                    |
+
+**示例：**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function enableDepthFusion(DepthFusion: camera.DepthFusion): void {
+  try {
+    let enabled: boolean = true;
+    DepthFusion.enableDepthFusion(enabled);
+    console.info('Promise returned to indicate that enableDepthFusion method execution success.');
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to depth fusion enableDepthFusion, error code: ${err.code}.`);
+  };
 }
 ```
 
@@ -2455,7 +2625,7 @@ function enableMacro(photoSession: camera.PhotoSessionForSys): void {
 |-------------------------------|-----|---------------------------|
 | MOON_CAPTURE_BOOST            | 0   | 月亮场景。**系统接口：** 此接口为系统接口。  |
 | TRIPOD_DETECTION<sup>13+</sup> | 1   | 使用脚架拍摄的场景。**系统接口：** 此接口为系统接口。  |
-| LOW_LIGHT_BOOST<sup>13+</sup> | 1   | 长曝光场景。**系统接口：** 此接口为系统接口。 |
+| LOW_LIGHT_BOOST<sup>13+</sup> | 2   | 长曝光场景。**系统接口：** 此接口为系统接口。 |
 
 ## SceneFeatureDetectionResult<sup>12+</sup>
 

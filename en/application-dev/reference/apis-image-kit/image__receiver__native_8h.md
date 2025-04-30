@@ -7,6 +7,8 @@ The **image_receiver_native.h** file declares the APIs used to obtain image data
 
 **Library**: libimage_receiver.so
 
+**File to include**: &lt;multimedia/image_framework/image/image_receiver_native.h&gt;
+
 **System capability**: SystemCapability.Multimedia.Image.ImageReceiver
 
 **Since**: 12

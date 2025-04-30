@@ -168,7 +168,7 @@ RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、�
 
 ## EncodingType<sup>12+</sup>
 
- 表示获取X509证书主体名称编码格式的枚举。
+ 表示获取编码格式的枚举。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -574,7 +574,8 @@ createX509Cert(inStream : EncodingBlob, callback : AsyncCallback\<X509Cert>) : v
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
-| 19020001 | memory error. |
+| 19020001 | memory malloc failed. |
+| 19030001 | crypto operation error.      |
 
 **示例：**
 
@@ -646,7 +647,8 @@ createX509Cert(inStream : EncodingBlob) : Promise\<X509Cert>
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
-| 19020001 | memory error. |
+| 19020001 | memory malloc failed. |
+| 19030001 | crypto operation error.      |
 
 **示例：**
 
@@ -880,8 +882,8 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **示例：**
@@ -954,8 +956,8 @@ getEncoded() : Promise\<EncodingBlob>
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **示例：**
@@ -1024,7 +1026,7 @@ getPublicKey() : cryptoFramework.PubKey
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory error.                                     |
+| 19020001 | memory malloc failed.                                     |
 | 19030001 | crypto operation error.|
 
 **示例：**
@@ -1097,7 +1099,7 @@ checkValidityWithDate(date: string) : void
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.                                     |
+| 19020001 | memory malloc failed.                                     |
 | 19030001 | crypto operation error.|
 | 19030003 | the certificate has not taken effect.                                     |
 | 19030004 | the certificate has expired.|
@@ -1289,7 +1291,7 @@ getCertSerialNumber() : bigint
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020002 | runtime error.                                    |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 
 **示例：**
 
@@ -1364,8 +1366,8 @@ getIssuerName() : DataBlob
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **示例：**
@@ -1415,6 +1417,99 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
 });
 ```
 
+### getIssuerName<sup>20+</sup>
+
+getIssuerName(encodingType: EncodingType): string
+
+根据编码类型获取X509证书颁发者名称。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名   | 类型                                  | 必填 | 说明                           |
+| -------- | ------------------------------------- | ---- | ------------------------------ |
+| encodingType | [EncodingType](#encodingtype12)     | 是   |  表示编码类型。  |
+
+**返回值**：
+
+| 类型                  | 说明                   |
+| --------------------- | ---------------------- |
+| string  | 表示X509证书颁发者名称，使用逗号分隔相对可分辨名称。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息                                          |
+| -------- | ------------------------------------------------- |
+| 401 | Parameter error.  Possible causes: <br>1. Incorrect parameter types;<br>2. Parameter verification failed.           |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
+| 19030001 | crypto operation error.|
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// string转Uint8Array。
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+// 证书二进制数据，需业务自行赋值。
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+    'MIIDgTCCAmmgAwIBAgIGAXKnJjrAMA0GCSqGSIb3DQEBCwUAMFcxCzAJBgNVBAYT\n' +
+    'AkNOMQ8wDQYDVQQIDAbpmZXopb8xDzANBgNVBAcMBuilv+WuiTEPMA0GA1UECgwG\n' +
+    '5rWL6K+VMRUwEwYDVQQDDAzkuK3mlofmtYvor5UwHhcNMjUwMzA1MDk1MTIzWhcN\n' +
+    'MzUwMzAzMDk1MTIzWjBXMQswCQYDVQQGEwJDTjEPMA0GA1UECAwG6ZmV6KW/MQ8w\n' +
+    'DQYDVQQHDAbopb/lrokxDzANBgNVBAoMBua1i+ivlTEVMBMGA1UEAwwM5Lit5paH\n' +
+    '5rWL6K+VMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkonJ4UIuxRzX\n' +
+    'gr8fLU1PjadDWJp/GrxkYGe30TXqQHDh7O14Rc0xxacj3aLMNffzj+rhxUzl3C9p\n' +
+    'wLzIVO2e3iC3Fx2csRzOSIdbimR8879/3uaW8CPkgqlKQw8FDwrGk0S26sdDV8of\n' +
+    '8AAHlrnUO2yyL53rAunn4ZKo4EyxHrvHmZKuv006onj0SByu8RNHx97v+4KaaY7p\n' +
+    'HngTC55F0KVALiNGygJHeKP7GGxS7kpYV/CvBuABpA00WMqc7nmo2vCa4yC/mIk2\n' +
+    '5CF7l860rQ50HLjrmlDYJHpc8p88NJ2BEyHQWiN4YkSKDAKNr+SssD3Tf2wHSYxA\n' +
+    'UwdgsatGlwIDAQABo1MwUTAdBgNVHQ4EFgQUMFEfTXLVm7D6fsC7LYtTMhIgVQUw\n' +
+    'HwYDVR0jBBgwFoAUMFEfTXLVm7D6fsC7LYtTMhIgVQUwDwYDVR0TAQH/BAUwAwEB\n' +
+    '/zANBgkqhkiG9w0BAQsFAAOCAQEABCr9+iK30OSp67ksK1qhkKCzwKYDH2E5KEF4\n' +
+    '1E1/o4haXIR14V+5DGcX/1OH3Znd863TecQdNnCFMGArWygq8j7O0uStbWMb3Rhu\n' +
+    '+7RJ9GOCbBSeR3v2fC6+T3LI0Sm1G77xIYADmHGt33IW0DRKr44iOalwi6IbcqzD\n' +
+    's9XlNO8e6ht2apeL656fjv1gCo/PA7e+A0QHn6zapggzEccEwKdFixCsw5ZMZaHm\n' +
+    'adGz3lBCK+0QKYXYL1CtX/6wcDgQ9PuZSgdQgrudLKRN+843m3LJSUJ7AIyL1kQW\n' +
+    'kY1ah7eSx4wwaKrLOM06ZkzORMnY5GAy8Aup+UCh6mWU3dPv3w==\n' +
+    '-----END CERTIFICATE-----\n';
+
+let encodingBlob: cert.EncodingBlob = {
+  data: stringToUint8Array(certData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
+};
+
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error) {
+    console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Cert success');
+    try {
+      let issuerName = x509Cert.getIssuerName(cert.EncodingType.ENCODING_UTF8);
+      console.info('issuerName output is ' + issuerName);
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('getIssuerName failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+  }
+});
+```
+
 ### getSubjectName
 
 getSubjectName(encodingType?: EncodingType) : DataBlob
@@ -1439,7 +1534,7 @@ getSubjectName(encodingType?: EncodingType) : DataBlob
 
 | 类型                  | 说明                 |
 | --------------------- | -------------------- |
-| [DataBlob](#datablob) | 表示X509证书主体名称。 |
+| [DataBlob](#datablob) | 表示X509证书主体名称，转化成字符串后使用逗号分隔相对可分辨名称。 |
 
 **错误码：**
 
@@ -1448,8 +1543,8 @@ getSubjectName(encodingType?: EncodingType) : DataBlob
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
 | 401 | invalid parameters.  Possible causes: <br>1. Incorrect parameter types;<br>2. Parameter verification failed.           |
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **示例：**
@@ -1527,8 +1622,8 @@ getNotBeforeTime() : string
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **示例：**
@@ -1600,8 +1695,8 @@ getNotAfterTime() : string
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **示例：**
@@ -1674,8 +1769,8 @@ getSignature() : DataBlob
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **示例：**
@@ -1748,8 +1843,8 @@ getSignatureAlgName() : string
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **示例：**
@@ -1814,7 +1909,7 @@ getSignatureAlgOid() : string
 
 | 类型   | 说明                              |
 | ------ | --------------------------------- |
-| string | 表示X509证书签名算法对象标志符OID。 |
+| string | 表示X509证书签名算法对象标志符OID。若OID长度超过128字节，则会被截断。 |
 
 **错误码：**
 
@@ -1822,8 +1917,8 @@ getSignatureAlgOid() : string
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **示例：**
@@ -1896,8 +1991,8 @@ getSignatureAlgParams() : DataBlob
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
 | 801 | this operation is not supported. |
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **示例：**
@@ -1969,7 +2064,7 @@ getKeyUsage() : DataBlob
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory error.                                    |
+| 19020001 | memory malloc failed.                                    |
 | 19030001 | crypto operation error.|
 
 **示例：**
@@ -2041,8 +2136,8 @@ getExtKeyUsage() : DataArray
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **示例：**
@@ -2175,8 +2270,8 @@ getSubjectAltNames() : DataArray
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **示例：**
@@ -2252,8 +2347,8 @@ getIssuerAltNames() : DataArray
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **示例：**
@@ -2332,8 +2427,8 @@ getItem(itemType: CertItemType) : DataBlob
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -2412,7 +2507,7 @@ match(param: X509CertMatchParameters): boolean
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error. |
+| 19020001 | memory malloc failed. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -2508,8 +2603,8 @@ getCRLDistributionPoint(): DataArray
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -2583,8 +2678,8 @@ getIssuerX500DistinguishedName(): X500DistinguishedName
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -2668,8 +2763,8 @@ getSubjectX500DistinguishedName(): X500DistinguishedName
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -2753,8 +2848,8 @@ toString(): string
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -2816,6 +2911,96 @@ async function certToString() {
 }
 ```
 
+### toString<sup>20+</sup>
+
+toString(encodingType: EncodingType): string
+
+根据编码类型获取对象的字符串类型数据。  
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名   | 类型                                  | 必填 | 说明                           |
+| -------- | ------------------------------------- | ---- | ------------------------------ |
+| encodingType | [EncodingType](#encodingtype12)     | 是   | 表示编码类型。                |
+
+**返回值**：
+
+| 类型                  | 说明                                      |
+| --------------------- | ----------------------------------------- |
+| string | 表示对象的字符串类型数据。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | Parameter error.  Possible causes: <br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// string转Uint8Array。
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+    'MIIDgTCCAmmgAwIBAgIGAXKnJjrAMA0GCSqGSIb3DQEBCwUAMFcxCzAJBgNVBAYT\n' +
+    'AkNOMQ8wDQYDVQQIDAbpmZXopb8xDzANBgNVBAcMBuilv+WuiTEPMA0GA1UECgwG\n' +
+    '5rWL6K+VMRUwEwYDVQQDDAzkuK3mlofmtYvor5UwHhcNMjUwMzA1MDk1MTIzWhcN\n' +
+    'MzUwMzAzMDk1MTIzWjBXMQswCQYDVQQGEwJDTjEPMA0GA1UECAwG6ZmV6KW/MQ8w\n' +
+    'DQYDVQQHDAbopb/lrokxDzANBgNVBAoMBua1i+ivlTEVMBMGA1UEAwwM5Lit5paH\n' +
+    '5rWL6K+VMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkonJ4UIuxRzX\n' +
+    'gr8fLU1PjadDWJp/GrxkYGe30TXqQHDh7O14Rc0xxacj3aLMNffzj+rhxUzl3C9p\n' +
+    'wLzIVO2e3iC3Fx2csRzOSIdbimR8879/3uaW8CPkgqlKQw8FDwrGk0S26sdDV8of\n' +
+    '8AAHlrnUO2yyL53rAunn4ZKo4EyxHrvHmZKuv006onj0SByu8RNHx97v+4KaaY7p\n' +
+    'HngTC55F0KVALiNGygJHeKP7GGxS7kpYV/CvBuABpA00WMqc7nmo2vCa4yC/mIk2\n' +
+    '5CF7l860rQ50HLjrmlDYJHpc8p88NJ2BEyHQWiN4YkSKDAKNr+SssD3Tf2wHSYxA\n' +
+    'UwdgsatGlwIDAQABo1MwUTAdBgNVHQ4EFgQUMFEfTXLVm7D6fsC7LYtTMhIgVQUw\n' +
+    'HwYDVR0jBBgwFoAUMFEfTXLVm7D6fsC7LYtTMhIgVQUwDwYDVR0TAQH/BAUwAwEB\n' +
+    '/zANBgkqhkiG9w0BAQsFAAOCAQEABCr9+iK30OSp67ksK1qhkKCzwKYDH2E5KEF4\n' +
+    '1E1/o4haXIR14V+5DGcX/1OH3Znd863TecQdNnCFMGArWygq8j7O0uStbWMb3Rhu\n' +
+    '+7RJ9GOCbBSeR3v2fC6+T3LI0Sm1G77xIYADmHGt33IW0DRKr44iOalwi6IbcqzD\n' +
+    's9XlNO8e6ht2apeL656fjv1gCo/PA7e+A0QHn6zapggzEccEwKdFixCsw5ZMZaHm\n' +
+    'adGz3lBCK+0QKYXYL1CtX/6wcDgQ9PuZSgdQgrudLKRN+843m3LJSUJ7AIyL1kQW\n' +
+    'kY1ah7eSx4wwaKrLOM06ZkzORMnY5GAy8Aup+UCh6mWU3dPv3w==\n' +
+    '-----END CERTIFICATE-----\n';
+
+  // 证书二进制数据，需业务自行赋值。
+  let encodingBlob: cert.EncodingBlob = {
+    data: stringToUint8Array(certData),
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
+  };
+
+async function certToString() {
+  let x509Cert: cert.X509Cert = {} as cert.X509Cert;
+  try {
+    x509Cert = await cert.createX509Cert(encodingBlob);
+    console.log('createX509Cert success');
+    console.info('certToString success: ' + JSON.stringify(x509Cert.toString(cert.EncodingType.ENCODING_UTF8)));
+  } catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
 ### hashCode<sup>12+</sup>
 
 hashCode(): Uint8Array
@@ -2838,8 +3023,8 @@ hashCode(): Uint8Array
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -2923,8 +3108,8 @@ getExtensionsObject(): CertExtension
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -3011,7 +3196,8 @@ createCertExtension(inStream : EncodingBlob, callback : AsyncCallback\<CertExten
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
-| 19020001 | memory error. |
+| 19020001 | memory malloc failed. |
+| 19030001 | crypto operation error.      |
 
 **示例：**
 
@@ -3076,7 +3262,8 @@ createCertExtension(inStream : EncodingBlob) : Promise\<CertExtension>
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
-| 19020001 | memory error. |
+| 19020001 | memory malloc failed. |
+| 19030001 | crypto operation error.      |
 
 **示例：**
 
@@ -3136,8 +3323,8 @@ getEncoded() : EncodingBlob
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -3209,8 +3396,8 @@ getOidList(valueType : ExtensionOidType) : DataArray
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -3283,8 +3470,8 @@ getEntry(valueType: ExtensionEntryType, oid : DataBlob) : DataBlob
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -3354,8 +3541,8 @@ checkCA() : number
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -3419,8 +3606,8 @@ hasUnsupportedCriticalExtension(): boolean
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -3481,7 +3668,7 @@ createX509Crl(inStream : EncodingBlob, callback : AsyncCallback\<X509Crl>) : voi
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
-| 19020001 | memory error. |
+| 19020001 | memory malloc failed. |
 
 **示例：**
 
@@ -3554,7 +3741,7 @@ createX509Crl(inStream : EncodingBlob) : Promise\<X509Crl>
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
-| 19020001 | memory error. |
+| 19020001 | memory malloc failed. |
 
 **示例：**
 
@@ -3608,7 +3795,7 @@ createX509CRL(inStream : EncodingBlob, callback : AsyncCallback\<X509CRL>) : voi
 
 | 参数名   | 类型                                  | 必填 | 说明                           |
 | -------- | ------------------------------------- | ---- | ------------------------------ |
-| inStream | [EncodingBlob](#encodingblob)         | 是   | 表示证书吊销列表序列化数据。     |
+| inStream | [EncodingBlob](#encodingblob)         | 是   | 表示证书吊销列表序列化数据。当前支持的数据长度不超过8192字节。     |
 | callback | AsyncCallback\<[X509CRL](#x509crl11)> | 是   | 回调函数，表示证书吊销列表对象。 |
 
 **错误码：**
@@ -3619,7 +3806,7 @@ createX509CRL(inStream : EncodingBlob, callback : AsyncCallback\<X509CRL>) : voi
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
-| 19020001 | memory error. |
+| 19020001 | memory malloc failed. |
 
 **示例：**
 
@@ -3674,7 +3861,7 @@ createX509CRL(inStream : EncodingBlob) : Promise\<X509CRL>
 
 | 参数名   | 类型                          | 必填 | 说明                       |
 | -------- | ----------------------------- | ---- | -------------------------- |
-| inStream | [EncodingBlob](#encodingblob) | 是   | 表示证书吊销列表序列化数据。 |
+| inStream | [EncodingBlob](#encodingblob) | 是   | 表示证书吊销列表序列化数据。当前支持的数据长度不超过8192字节。 |
 
 **返回值**：
 
@@ -3690,7 +3877,7 @@ createX509CRL(inStream : EncodingBlob) : Promise\<X509CRL>
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
-| 19020001 | memory error. |
+| 19020001 | memory malloc failed. |
 
 **示例：**
 
@@ -3922,8 +4109,8 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -3997,8 +4184,8 @@ getEncoded() : Promise\<EncodingBlob>
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -4434,8 +4621,8 @@ getIssuerName() : DataBlob
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -4508,8 +4695,8 @@ getLastUpdate() : string
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -4582,8 +4769,8 @@ getNextUpdate() : string
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -4663,7 +4850,7 @@ getRevokedCert(serialNumber : number) : X509CrlEntry
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -4744,7 +4931,7 @@ getRevokedCertWithCert(cert : X509Cert) : X509CrlEntry
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -4855,7 +5042,7 @@ getRevokedCerts(callback : AsyncCallback<Array\<X509CrlEntry>>) : void
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -4930,7 +5117,7 @@ getRevokedCerts() : Promise<Array\<X509CrlEntry>>
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -5000,8 +5187,8 @@ getTbsInfo() : DataBlob
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -5074,8 +5261,8 @@ getSignature() : DataBlob
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -5148,8 +5335,8 @@ getSignatureAlgName() : string
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -5222,8 +5409,8 @@ getSignatureAlgOid() : string
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -5297,8 +5484,8 @@ getSignatureAlgParams() : DataBlob
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 801 | this operation is not supported. |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -5528,8 +5715,8 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -5600,8 +5787,8 @@ getEncoded() : Promise\<EncodingBlob>
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -6033,8 +6220,8 @@ getIssuerName() : DataBlob
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -6083,6 +6270,89 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
 });
 ```
 
+### getIssuerName<sup>20+</sup>
+
+getIssuerName(encodingType: EncodingType): string
+
+根据编码类型获取X509证书吊销列表颁发者名称。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名   | 类型                                  | 必填 | 说明                           |
+| -------- | ------------------------------------- | ---- | ------------------------------ |
+| encodingType | [EncodingType](#encodingtype12)     | 是   |  表示编码类型。  |
+
+**返回值**：
+
+| 类型   | 说明                 |
+| ------ | -------------------- |
+| string | 表示X509证书吊销列表颁发者名称，使用逗号分隔相对可分辨名称。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息                                          |
+| -------- | ------------------------------------------------- |
+| 401 | Parameter error.  Possible causes: <br>1. Incorrect parameter types;<br>2. Parameter verification failed.           |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// string转Uint8Array。
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIIByzCBtAIBATANBgkqhkiG9w0BAQsFADBXMQswCQYDVQQGEwJDTjEPMA0GA1UE\n' +
+  'CAwG6ZmV6KW/MQ8wDQYDVQQHDAbopb/lrokxDzANBgNVBAoMBua1i+ivlTEVMBMG\n' +
+  'A1UEAwwM5Lit5paH5rWL6K+VFw0yNDEwMTYwODUwMDlaFw0yNDExMTUwODUwMDla\n' +
+  'MBkwFwIGAXKnJjrAFw0yNDEwMTYwODQ5NDBaoA4wDDAKBgNVHRQEAwIBADANBgkq\n' +
+  'hkiG9w0BAQsFAAOCAQEAU0JPK/DnGmjCi5lKyun506JE+FVDuQsEWuF5CZPqE2um\n' +
+  'hA04Qffi+8AfwLpG2KPBaAYTteU4fx30y8Wm0kLutalk32FgrbQX0VQ7EaCOmkMU\n' +
+  '2dnQMmFmaFiVcOTaRzgqDOYKuzSAptCo6hqtk9kgjbda5HnsNiVC7dNMRp1Jlzwr\n' +
+  'k/42mqZ3fFIy3wYLaxRlq368BX3u94J9Cx754V2V/XEApiRI/FsiSRzRX+jfUBa4\n' +
+  '+wwu3WhWxisQj6z3bBkQD4RTg3S+ic8hhP44wt/1MmSLG946Dc9uVYJKUVZqTco9\n' +
+  'QDoDwYfBJBzcXjManSkPsGCb7RfTAr5HqcEtIHsK+w==\n' +
+  '-----END X509 CRL-----\n';
+// 证书吊销列表二进制数据，需业务自行赋值。
+let encodingBlob: cert.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
+};
+
+cert.createX509CRL(encodingBlob, (error, x509CRL) => {
+  if (error) {
+    console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509CRL success');
+    try {
+      let issuerName = x509CRL.getIssuerName(cert.EncodingType.ENCODING_UTF8);
+      console.info('issuerName output is ' + issuerName);
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('getIssuerName failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+  }
+});
+```
+
 ### getLastUpdate<sup>11+</sup>
 
 getLastUpdate() : string
@@ -6105,8 +6375,8 @@ getLastUpdate() : string
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -6177,8 +6447,8 @@ getNextUpdate() : string
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -6256,7 +6526,7 @@ getRevokedCert(serialNumber : bigint) : X509CRLEntry
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -6335,7 +6605,7 @@ getRevokedCertWithCert(cert : X509Cert) : X509CRLEntry
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -6444,7 +6714,7 @@ getRevokedCerts(callback : AsyncCallback<Array\<X509CRLEntry>>) : void
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -6517,7 +6787,7 @@ getRevokedCerts() : Promise<Array\<X509CRLEntry>>
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -6585,8 +6855,8 @@ getSignature() : DataBlob
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -6657,8 +6927,8 @@ getSignatureAlgName() : string
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -6729,8 +6999,8 @@ getSignatureAlgOid() : string
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -6802,8 +7072,8 @@ getSignatureAlgParams() : DataBlob
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 801 | this operation is not supported. |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -6874,8 +7144,8 @@ getTBSInfo() : DataBlob
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -6946,8 +7216,8 @@ getExtensions(): DataBlob
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -7028,7 +7298,7 @@ match(param: X509CRLMatchParameters): boolean
 | 错误码ID | 错误信息       |
 | -------- | -------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.  |
+| 19020001 | memory malloc failed.  |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -7136,8 +7406,8 @@ getIssuerX500DistinguishedName(): X500DistinguishedName
 
 | 错误码ID | 错误信息       |
 | -------- | -------------- |
-| 19020001 | memory error.  |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed.  |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -7206,8 +7476,8 @@ toString(): string
 
 | 错误码ID | 错误信息       |
 | -------- | -------------- |
-| 19020001 | memory error.  |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed.  |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -7254,6 +7524,86 @@ async function crlToString() {
 }
 ```
 
+### toString<sup>20+</sup>
+
+toString(encodingType: EncodingType): string
+
+根据编码类型获取对象的字符串类型数据。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名   | 类型                                  | 必填 | 说明                           |
+| -------- | ------------------------------------- | ---- | ------------------------------ |
+| encodingType | [EncodingType](#encodingtype12)     | 是   |  表示编码类型。  |
+
+**返回值**：
+
+| 类型   | 说明                 |
+| ------ | -------------------- |
+| string | 表示对象的字符串类型数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息                                          |
+| -------- | ------------------------------------------------- |
+| 401 | Parameter error.  Possible causes: <br>1. Incorrect parameter types;<br>2. Parameter verification failed.           |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// string转Uint8Array。
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIIByzCBtAIBATANBgkqhkiG9w0BAQsFADBXMQswCQYDVQQGEwJDTjEPMA0GA1UE\n' +
+  'CAwG6ZmV6KW/MQ8wDQYDVQQHDAbopb/lrokxDzANBgNVBAoMBua1i+ivlTEVMBMG\n' +
+  'A1UEAwwM5Lit5paH5rWL6K+VFw0yNDEwMTYwODUwMDlaFw0yNDExMTUwODUwMDla\n' +
+  'MBkwFwIGAXKnJjrAFw0yNDEwMTYwODQ5NDBaoA4wDDAKBgNVHRQEAwIBADANBgkq\n' +
+  'hkiG9w0BAQsFAAOCAQEAU0JPK/DnGmjCi5lKyun506JE+FVDuQsEWuF5CZPqE2um\n' +
+  'hA04Qffi+8AfwLpG2KPBaAYTteU4fx30y8Wm0kLutalk32FgrbQX0VQ7EaCOmkMU\n' +
+  '2dnQMmFmaFiVcOTaRzgqDOYKuzSAptCo6hqtk9kgjbda5HnsNiVC7dNMRp1Jlzwr\n' +
+  'k/42mqZ3fFIy3wYLaxRlq368BX3u94J9Cx754V2V/XEApiRI/FsiSRzRX+jfUBa4\n' +
+  '+wwu3WhWxisQj6z3bBkQD4RTg3S+ic8hhP44wt/1MmSLG946Dc9uVYJKUVZqTco9\n' +
+  'QDoDwYfBJBzcXjManSkPsGCb7RfTAr5HqcEtIHsK+w==\n' +
+  '-----END X509 CRL-----\n';
+// 证书吊销列表二进制数据，需业务自行赋值。
+let crlEncodingBlob: cert.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
+};
+
+async function crlToString() {
+  let x509Crl: cert.X509CRL = {} as cert.X509CRL;
+  try {
+    x509Crl = await cert.createX509CRL(crlEncodingBlob);
+    console.log('createX509CRL success');
+    console.info('crlToString success: ' + JSON.stringify(x509Crl.toString(cert.EncodingType.ENCODING_UTF8)));
+  } catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
 ### hashCode<sup>12+</sup>
 
 hashCode(): Uint8Array
@@ -7276,8 +7626,8 @@ hashCode(): Uint8Array
 
 | 错误码ID | 错误信息       |
 | -------- | -------------- |
-| 19020001 | memory error.  |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed.  |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -7346,8 +7696,8 @@ getExtensionsObject(): CertExtension
 
 | 错误码ID | 错误信息       |
 | -------- | -------------- |
-| 19020001 | memory error.  |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed.  |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -7429,8 +7779,8 @@ createCertChainValidator(algorithm :string) : CertChainValidator
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -7451,8 +7801,6 @@ try {
 
 证书链校验器对象。
 
-
-### 属性
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -7488,8 +7836,8 @@ validate(certChain : CertChainData, callback : AsyncCallback\<void>) : void
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.                           |
 | 19030002 | the certificate signature verification failed.    |
 | 19030003 | the certificate has not taken effect.             |
@@ -7620,8 +7968,8 @@ validate(certChain : CertChainData) : Promise\<void>
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.                           |
 | 19030002 | the certificate signature verification failed.    |
 | 19030003 | the certificate has not taken effect.             |
@@ -7753,8 +8101,8 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -7836,8 +8184,8 @@ getEncoded() : Promise\<EncodingBlob>
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -7983,8 +8331,8 @@ getCertIssuer() : DataBlob
 | 错误码ID | 错误信息       |
 | -------- | -------------- |
 | 801 | this operation is not supported. |
-| 19020001 | memory error.  |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed.  |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 
 **示例：**
 
@@ -8058,8 +8406,8 @@ getRevocationDate() : string
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -8137,8 +8485,8 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -8218,8 +8566,8 @@ getEncoded() : Promise\<EncodingBlob>
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -8296,8 +8644,8 @@ getSerialNumber() : bigint
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -8375,8 +8723,8 @@ getCertIssuer() : DataBlob
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 801 | this operation is not supported. |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -8427,11 +8775,95 @@ cert.createX509CRL(encodingBlob, (err, x509CRL) => {
 })
 ```
 
+### getCertIssuer<sup>20+</sup>
+
+getCertIssuer(encodingType: EncodingType): string
+
+根据编码类型获取被吊销证书的颁发者信息。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名   | 类型                                  | 必填 | 说明                           |
+| -------- | ------------------------------------- | ---- | ------------------------------ |
+| encodingType | [EncodingType](#encodingtype12)     | 是   |  表示编码类型。  |
+
+**返回值**：
+
+| 类型   | 说明                 |
+| ------ | -------------------- |
+| string | 表示被吊销证书的颁发者信息，使用逗号分隔相对可分辨名称。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息                                          |
+| -------- | ------------------------------------------------- |
+| 401 | Parameter error.  Possible causes: <br>1. Incorrect parameter types;<br>2. Parameter verification failed.           |
+| 801 | this operation is not supported. |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// string转Uint8Array。
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+ let crlData = '-----BEGIN X509 CRL-----\n' +
+    'MIIBTDCBtgIBATANBgkqhkiG9w0BAQsFADBZMQswCQYDVQQGEwJDTjEPMA0GA1UE\n' +
+    'CAwG6ZmV6KW/MQ8wDQYDVQQHDAbopb/lrokxDzANBgNVBAoMBua1i+ivlTEXMBUG\n' +
+    'A1UEAwwO5Lit5paH5rWL6K+VIyMXDTI1MDMyNDA5MTExNVoXDTI1MDQyMzA5MTEx\n' +
+    'NVowGTAXAgYBcqcmOsAXDTI1MDIyMDA2MTMwM1qgDjAMMAoGA1UdFAQDAgECMA0G\n' +
+    'CSqGSIb3DQEBCwUAA4GBACedFnn4unfYLiRCl1ZAFXx6LFdX6U+IZ/buW44xKAWi\n' +
+    'fyvcSxKIeGtMVjmQSs4HeNfNujIjaDN1+/J2nLSmHPiQ/c0LAc47zefVt2VnFuR4\n' +
+    'TMUJEDUlnekYfDMxQqtihAO/Bpw33twK6otDvaAPm9vJoCu8JmGXxt6g+8vbYuNT\n' +
+    '-----END X509 CRL-----\n';
+
+let encodingBlob: cert.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
+};
+
+cert.createX509CRL(encodingBlob, (err, x509CRL) => {
+  if (err) {
+    console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+  } else {
+    console.log('create x509 CRL success');
+
+    try {
+      let serialNumber = BigInt(1591942200000);
+      let crlEntry = x509CRL.getRevokedCert(serialNumber);
+      let issuer = crlEntry.getCertIssuer(cert.EncodingType.ENCODING_UTF8);
+      console.info('issuer output is ' + issuer);
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error('getRevokedCert or getCertIssuer failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+  }
+})
+```
+
 ### getRevocationDate<sup>11+</sup>
 
 getRevocationDate() : string
 
-表示获取证书被吊销的日期，日期为ASN.1时间格式。
+表示获取证书被吊销的日期。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -8441,7 +8873,7 @@ getRevocationDate() : string
 
 | 类型   | 说明                 |
 | ------ | -------------------- |
-| string | 表示证书被吊销的日期，日期为ASN.1时间格式。 |
+| string | 表示证书被吊销的日期。 |
 
 **错误码：**
 
@@ -8449,8 +8881,8 @@ getRevocationDate() : string
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -8523,8 +8955,8 @@ getExtensions(): DataBlob
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -8600,8 +9032,8 @@ hasExtensions(): boolean
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -8674,8 +9106,8 @@ getCertIssuerX500DistinguishedName(): X500DistinguishedName
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -8743,8 +9175,8 @@ toString(): string
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -8812,8 +9244,8 @@ hashCode(): Uint8Array
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -8881,8 +9313,8 @@ getExtensionsObject(): CertExtension
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -9025,7 +9457,7 @@ createCertCRLCollection(certs: Array\<X509Cert>, crls?: Array\<X509CRL>): CertCR
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 
 **示例：**
 
@@ -9140,7 +9572,7 @@ selectCerts(param: X509CertMatchParameters): Promise\<Array\<X509Cert>>
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -9229,7 +9661,7 @@ selectCerts(param: X509CertMatchParameters, callback: AsyncCallback\<Array\<X509
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -9324,7 +9756,7 @@ selectCRLs(param: X509CRLMatchParameters): Promise\<Array\<X509CRL>>
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -9444,7 +9876,7 @@ selectCRLs(param: X509CRLMatchParameters, callback: AsyncCallback\<Array\<X509CR
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -9570,7 +10002,7 @@ createX509CertChain(inStream: EncodingBlob): Promise\<X509CertChain>
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error. |
+| 19020001 | memory malloc failed. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -9687,7 +10119,7 @@ createX509CertChain(inStream: EncodingBlob, callback: AsyncCallback\<X509CertCha
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error. |
+| 19020001 | memory malloc failed. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -9804,7 +10236,7 @@ createX509CertChain(certs: Array\<X509Cert>): X509CertChain
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error. |
+| 19020001 | memory malloc failed. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -9879,7 +10311,7 @@ buildX509CertChain(param: [CertChainBuildParameters](#certchainbuildparameters12
 
 | 参数名   | 类型                  | 必填 | 说明                       |
 | -------- | -------------------- | ---- | -------------------------- |
-| param | [CertChainBuildParameters](#certchainbuildparameters12) | 是   | 构建证书链的参数对象。 |
+| param | [CertChainBuildParameters](#certchainbuildparameters12) | 是   | 构建证书链的参数对象。  <br> [CertChainBuildParameters](#certchainbuildparameters12)中的maxLength要小于证书集合中证书数量。|
 
 **返回值：**
 
@@ -9894,8 +10326,8 @@ buildX509CertChain(param: [CertChainBuildParameters](#certchainbuildparameters12
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.                           |
 | 19030002 | the certificate signature verification failed.    |
 | 19030003 | the certificate has not taken effect.             |
@@ -10035,8 +10467,8 @@ parsePkcs12(data: Uint8Array, config: Pkcs12ParsingConfig): Pkcs12Data
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.                           |
 | 19030008 | maybe wrong password.            |
 
@@ -10247,8 +10679,8 @@ createTrustAnchorsWithKeyStore(keystore: Uint8Array, pwd: string): Promise<Array
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.                           |
 | 19030002 | the certificate signature verification failed.    |
 | 19030003 | the certificate has not taken effect.             |
@@ -10303,7 +10735,7 @@ getCertList(): Array\<X509Cert>
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -10427,8 +10859,8 @@ validate(param: CertChainValidationParameters): Promise\<CertChainValidationResu
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error.           |
 | 19030002 | the certificate signature verification failed. |
 | 19030003 | the certificate has not taken effect.           |
@@ -10571,8 +11003,8 @@ validate(param: CertChainValidationParameters, callback: AsyncCallback\<CertChai
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error.           |
 | 19030002 | the certificate signature verification failed. |
 | 19030003 | the certificate has not taken effect.           |
@@ -10704,8 +11136,8 @@ toString(): string
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -10831,8 +11263,8 @@ hashCode(): Uint8Array
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -10967,8 +11399,8 @@ generateCsr(keyInfo: PrivateKeyInfo, config: CsrGenerationConfig): string | Uint
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 | 19030008 | maybe wrong password. |
 
@@ -11065,8 +11497,8 @@ createX500DistinguishedName(nameStr: string): Promise\<X500DistinguishedName>
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 | 19030002 | the certificate signature verification failed. |
 | 19030003 | the certificate has not taken effect. |
@@ -11136,8 +11568,8 @@ createX500DistinguishedName(nameDer: Uint8Array): Promise\<X500DistinguishedName
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 | 19030002 | the certificate signature verification failed. |
 | 19030003 | the certificate has not taken effect. |
@@ -11194,8 +11626,8 @@ getName(): string
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -11251,8 +11683,8 @@ getName(type: string): Array\<string>
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -11268,6 +11700,63 @@ async function getName() {
       .then((data) => {
         console.log('createX500DistinguishedName success');
         console.info('createX500DistinguishedName getName: ' + JSON.stringify(data.getName("CN")))
+      })
+      .catch((err: BusinessError) => {
+        console.error('createX500DistinguishedName catch, errCode: ' + err.code + ', errMsg: ' + err.message);
+      })
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error('createX500DistinguishedName catch, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+### getName<sup>20+</sup>
+
+getName(encodingType: EncodingType): string
+
+根据指定的编码类型获取可分辨名的字符串。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数：**
+
+| 参数名       | 类型          | 必填 | 说明           |
+| ------------ | ------------- | ---- | -------------- |
+| encodingType | [EncodingType](#encodingtype12) | 是 | 表示编码类型。|
+
+**返回值**：
+
+| 类型    | 说明                                              |
+| ------- | ------------------------------------------------- |
+| string | 表示可分辨名的字符串，使用逗号分隔相对可分辨名称。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | Parameter error.  Possible causes: <br>1. Incorrect parameter types;<br>2. Parameter verification failed.|
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let nameStr = '/CN=陕西@西安/OU=IT Department/O=ACME Inc./L=San Francisco/ST=California/C=US/CN=ALN C/CN=XTS';
+async function getName() {
+  try {
+    cert.createX500DistinguishedName(nameStr)
+      .then((data) => {
+        console.log('createX500DistinguishedName success');
+        console.info('createX500DistinguishedName getName: ' + JSON.stringify(data.getName(cert.EncodingType.ENCODING_UTF8)))
       })
       .catch((err: BusinessError) => {
         console.error('createX500DistinguishedName catch, errCode: ' + err.code + ', errMsg: ' + err.message);
@@ -11301,8 +11790,8 @@ getEncoded(): EncodingBlob
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -11358,8 +11847,8 @@ createCmsGenerator(contentType: CmsContentType): CmsGenerator
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -11450,8 +11939,8 @@ addSigner(cert: X509Cert, keyInfo: PrivateKeyInfo, config: CmsSignerConfig): voi
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401      | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 | 19030008 | maybe wrong password. |
 
@@ -11564,8 +12053,8 @@ addCert(cert: X509Cert): void
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401      | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -11655,8 +12144,8 @@ doFinal(data: Uint8Array, options?: CmsGeneratorOptions): Promise<Uint8Array | s
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401      | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -11788,8 +12277,8 @@ doFinalSync(data: Uint8Array, options?: CmsGeneratorOptions): Uint8Array | strin
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401      | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**

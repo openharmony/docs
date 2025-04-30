@@ -590,7 +590,7 @@ A constructor used to create a **SwiperController** object.
 
 showNext()
 
-Turns to the next page. Swiping occurs with the animation, whose duration is specified by **duration**.
+Turns to the next page. Page turning occurs with the animation, whose duration is specified by **duration**.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 10.
 
@@ -602,7 +602,7 @@ Turns to the next page. Swiping occurs with the animation, whose duration is spe
 
 showPrevious()
 
-Turns to the previous page. Swiping occurs with the animation, whose duration is specified by **duration**.
+Turns to the previous page. Page turning occurs with the animation, whose duration is specified by **duration**.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 10.
 
@@ -1635,7 +1635,7 @@ Implements the proxy object returned during the execution of the custom switchin
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### Attributes
+### Properties
 
 | Name| Type| Read Only| Optional| Description|
 | ---- | ---- | --- | ---- | --- |

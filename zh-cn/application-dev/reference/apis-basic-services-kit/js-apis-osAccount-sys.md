@@ -47,6 +47,7 @@ activateOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
+| 12300010 | Service busy. Possible causes: The target account is being operated. |
 | 12300016 | The number of logged in accounts reaches the upper limit. |
 
 **示例：** 激活ID为100的系统账号
@@ -102,6 +103,7 @@ activateOsAccount(localId: number): Promise&lt;void&gt;
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
+| 12300010 | Service busy. Possible causes: The target account is being operated. |
 | 12300016 | The number of logged in accounts reaches the upper limit. |
 
 **示例：** 激活ID为100的系统账号
@@ -154,6 +156,7 @@ deactivateOsAccount(localId: number): Promise&lt;void&gt;
 | 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
+| 12300010 | Service busy. Possible causes: The target account is being operated. |
 
 **示例：** 注销ID为100的系统账号
   ```ts
@@ -5536,8 +5539,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
 | shortName | string | 是   | 表示账号短名称（用作个人文件夹目录）。 <br/>**约束：** <br>1）不允许出现的字符：\< \> \| : " * ? / \\<br>2）不允许独立出现的字符串：.或..<br>3）长度不超过255个字符。|
-| disallowedPreinstalledBundles<sup>18+</sup> | Array&lt;string&gt; | 否   | 表示预置应用禁止名单，名单中的应用不可被安装在设备上。|
-| allowedPreinstalledBundles<sup>18+</sup> | Array&lt;string&gt; | 否   | 表示预置应用允许名单，仅名单中的应用可以被安装在设备上。|
+| disallowedPreinstalledBundles<sup>19+</sup> | Array&lt;string&gt; | 否   | 表示预置应用禁止名单，名单中的应用不可被安装在设备上。|
+| allowedPreinstalledBundles<sup>19+</sup> | Array&lt;string&gt; | 否   | 表示预置应用允许名单，仅名单中的应用可以被安装在设备上。|
 
 ## CreateOsAccountForDomainOptions<sup>12+</sup>
 

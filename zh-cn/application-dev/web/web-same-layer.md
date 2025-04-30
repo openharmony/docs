@@ -1,10 +1,10 @@
 # 同层渲染
 
-在系统中，应用可以使用Web组件加载Web网页。在非原生框架的UI组件功能或性能不如原生组件时，可使用同层渲染，使用ArkUI组件渲染这些组件（简称为同层组件）。
+在系统中，应用可以使用Web组件加载Web网页。在非系统框架的UI组件功能或性能不如系统组件时，可使用同层渲染，使用ArkUI组件渲染这些组件（简称为同层组件）。
 
 ## 使用场景
 ### Web网页
-小程序的地图组件，可以使用ArkUI的XComponent组件渲染来提升性能。小程序的输入框组件，可以使用ArkUI的TextInput组件渲染，达到与原生应用一致的输入体验。
+小程序的地图组件，可以使用ArkUI的XComponent组件渲染来提升性能。小程序的输入框组件，可以使用ArkUI的TextInput组件渲染，达到与系统应用一致的输入体验。
 - 在网页侧，应用开发者可将&lt;embed&gt;、&lt;object&gt;的网页UI组件（简称为同层标签），按一定规则进行同层渲染，详细规格见同层渲染规格小节。
 
 - 在应用侧，应用开发者可以通过Web组件的同层渲染事件上报接口，感知到H5同层标签的生命周期以及输入事件，进行同层渲染组件的相应业务逻辑处理。
@@ -12,7 +12,7 @@
 - 在应用侧，应用开发者可以使用ArkUI的NodeContainer等接口，构建H5同层标签对应的同层渲染组件。可支持同层渲染的ArkUI常用组件包括：[TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md), [XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md), [Canvas](../reference/apis-arkui/arkui-ts/ts-components-canvas-canvas.md), [Video](../reference/apis-arkui/arkui-ts/ts-media-components-video.md), [Web](../reference/apis-arkweb/ts-basic-components-web.md)。具体规格可参见[同层渲染规格小节](#规格约束)。
 
 ### 三方UI框架
-Flutter提供了PlatformView与Texture抽象组件，这些组件可使用原生组件渲染，用来支持Flutter组件功能不足的部分。Weex2.0框架的Camera、Video、Canvas组件。
+Flutter提供了PlatformView与Texture抽象组件，这些组件可使用系统组件渲染，用来支持Flutter组件功能不足的部分。Weex2.0框架的Camera、Video、Canvas组件。
 
 - 在三方框架页面侧，由于Flutter、Weex等三方框架不在操作系统范围，本文不列举可被同层渲染的三方框架UI组件的范围与使用方式。
 
@@ -111,7 +111,7 @@ background-color，background-image，width，height，padding，padding-left，
   ![web-same-layer-develop](figures/web-same-layer-develop-textinput2.png)
 
 ## Web页面中同层渲染输入框
-在Web页面中，可以使用ArkUI原生的TextInput组件进行同层渲染。此处利用同层渲染展示三个输入框，渲染效果图如下：
+在Web页面中，可以使用ArkUI系统的TextInput组件进行同层渲染。此处利用同层渲染展示三个输入框，渲染效果图如下：
 
 **图4** 同层渲染输入框
 
@@ -204,7 +204,7 @@ background-color，background-image，width，height，padding，padding-left，
 
 3. 创建自定义组件。
 
-   同层渲染功能开启后，展示在对应区域的原生组件。
+   同层渲染功能开启后，展示在对应区域的系统组件。
 
    ```ts
    @Component
@@ -348,14 +348,14 @@ background-color，background-image，width，height，padding，padding-left，
                     type : embed.info?.type as string,
                     renderType : NodeRenderType.RENDER_TYPE_TEXTURE,
                     embedId : embed.embedId as string,
-                    width : px2vp(embed.info?.width),
-                    height : px2vp(embed.info?.height)})
+                    width : this.uiContext.px2vp(embed.info?.width),
+                    height : this.uiContext.px2vp(embed.info?.height)})
                   this.edges = {left: `${embed.info?.position?.x as number}px`, top: `${embed.info?.position?.y as number}px`}
                   nodeController.setDestroy(false);
                   //根据web传入的embed的id属性作为key，将nodeController存入Map
                   this.nodeControllerMap.set(componentId, nodeController);
-                  this.widthMap.set(componentId, px2vp(embed.info?.width));
-                  this.heightMap.set(componentId, px2vp(embed.info?.height));
+                  this.widthMap.set(componentId, this.uiContext.px2vp(embed.info?.width));
+                  this.heightMap.set(componentId, this.uiContext.px2vp(embed.info?.height));
                   this.positionMap.set(componentId, this.edges);
                   // 将web传入的embed的id属性存入@State状态数组变量中，用于动态创建nodeContainer节点容器,需要将push动作放在set之后
                   this.componentIdArr.push(componentId)
@@ -364,9 +364,9 @@ background-color，background-image，width，height，padding，padding-left，
                   console.log("NativeEmbed update" + JSON.stringify(embed));
                   this.edges = {left: `${embed.info?.position?.x as number}px`, top: `${embed.info?.position?.y as number}px`}
                   this.positionMap.set(componentId, this.edges);
-                  this.widthMap.set(componentId, px2vp(embed.info?.width));
-                  this.heightMap.set(componentId, px2vp(embed.info?.height));
-                  nodeController?.updateNode({textOne: 'update', width: px2vp(embed.info?.width), height: px2vp(embed.info?.height)} as ESObject)
+                  this.widthMap.set(componentId, this.uiContext.px2vp(embed.info?.width));
+                  this.heightMap.set(componentId, this.uiContext.px2vp(embed.info?.height));
+                  nodeController?.updateNode({textOne: 'update', width: this.uiContext.px2vp(embed.info?.width), height: this.uiContext.px2vp(embed.info?.height)} as ESObject)
                 } else if (embed.status == NativeEmbedStatus.DESTROY) {
                   console.log("NativeEmbed destroy" + JSON.stringify(embed));
                   let nodeController = this.nodeControllerMap.get(componentId);
@@ -582,6 +582,7 @@ background-color，background-image，width，height，padding，padding-left，
     @State heightMap: Map<string, number> = new Map();
     @State positionMap: Map<string, Edges> = new Map();
     @State edges: Edges = {};
+    uiContext: UIContext = this.getUIContext();
 
     build() {
       Row() {
@@ -611,14 +612,14 @@ background-color，background-image，width，height，padding，padding-left，
                      type : embed.info?.type as string,
                      renderType : NodeRenderType.RENDER_TYPE_TEXTURE,
                      embedId : embed.embedId as string,
-                     width : px2vp(embed.info?.width),
-                     height : px2vp(embed.info?.height)})
-                   this.edges = {left: `${embed.info?.position?.x as number}px`, top: `${embed.info?.position?.y as number}px`}
+                     width : this.uiContext.px2vp(embed.info?.width),
+                     height : this.uiContext.px2vp(embed.info?.height)})
+                   this.edges = {left: `${embed.info?.position?.x as number}px`, top: `${embed.info?.position?.y as number}px`}
                    nodeController.setDestroy(false);
                    //根据web传入的embed的id属性作为key，将nodeController存入Map
                    this.nodeControllerMap.set(componentId, nodeController);
-                   this.widthMap.set(componentId, px2vp(embed.info?.width));
-                   this.heightMap.set(componentId, px2vp(embed.info?.height));
+                   this.widthMap.set(componentId, this.uiContext.px2vp(embed.info?.width));
+                   this.heightMap.set(componentId, this.uiContext.px2vp(embed.info?.height));
                    this.positionMap.set(componentId, this.edges);
                    // 将web传入的embed的id属性存入@State状态数组变量中，用于动态创建nodeContainer节点容器,需要将push动作放在set之后
                    this.componentIdArr.push(componentId)
@@ -627,9 +628,9 @@ background-color，background-image，width，height，padding，padding-left，
                    console.log("NativeEmbed update" + JSON.stringify(embed));
                    this.edges = {left: `${embed.info?.position?.x as number}px`, top: `${embed.info?.position?.y as number}px`}
                    this.positionMap.set(componentId, this.edges);
-                   this.widthMap.set(componentId, px2vp(embed.info?.width));
-                   this.heightMap.set(componentId, px2vp(embed.info?.height));
-                   nodeController?.updateNode({textOne: 'update', width: px2vp(embed.info?.width), height: px2vp(embed.info?.height)} as ESObject)
+                   this.widthMap.set(componentId, this.uiContext.px2vp(embed.info?.width));
+                   this.heightMap.set(componentId, this.uiContext.px2vp(embed.info?.height));
+                   nodeController?.updateNode({textOne: 'update', width: this.uiContext.px2vp(embed.info?.width), height: this.uiContext.px2vp(embed.info?.height)} as ESObject)
                  } else if (embed.status == NativeEmbedStatus.DESTROY) {
                    console.log("NativeEmbed destroy" + JSON.stringify(embed));
                    let nodeController = this.nodeControllerMap.get(componentId);
@@ -804,6 +805,7 @@ background-color，background-image，width，height，padding，padding-left，
     browserTabController: WebviewController = new webview.WebviewController()
     private nodeControllerMap: Map<string, MyNodeController> = new Map();
     @State componentIdArr: Array<string> = [];
+    uiContext: UIContext = this.getUIContext();
 
     aboutToAppear() {
       // 配置web开启调试模式。
@@ -833,7 +835,7 @@ background-color，background-image，width，height，padding，padding-left，
                   // 1. embed.info.width和embed.info.height单位是px格式，需要转换成ets侧的默认单位vp
                   nodeController.setRenderOption({surfaceId : embed.surfaceId as string, type : embed.info?.type as string,
                     renderType : NodeRenderType.RENDER_TYPE_TEXTURE, embedId : embed.embedId as string,
-                    width : px2vp(embed.info?.width), height : px2vp(embed.info?.height)})
+                    width : this.uiContext.px2vp(embed.info?.width), height : this.uiContext.px2vp(embed.info?.height)})
                   nodeController.setDestroy(false);
                   // 根据web传入的embed的id属性作为key，将nodeController存入map。
                   this.nodeControllerMap.set(componentId, nodeController)
@@ -841,7 +843,7 @@ background-color，background-image，width，height，padding，padding-left，
                   this.componentIdArr.push(componentId)
                 } else if (embed.status == NativeEmbedStatus.UPDATE) {
                   let nodeController = this.nodeControllerMap.get(componentId)
-                  nodeController?.updateNode({textOne: 'update', width: px2vp(embed.info?.width), height: px2vp(embed.info?.height)} as ESObject)
+                  nodeController?.updateNode({textOne: 'update', width: this.uiContext.px2vp(embed.info?.width), height: this.uiContext.px2vp(embed.info?.height)} as ESObject)
                 } else {
                   let nodeController = this.nodeControllerMap.get(componentId);
                   nodeController?.setDestroy(true)

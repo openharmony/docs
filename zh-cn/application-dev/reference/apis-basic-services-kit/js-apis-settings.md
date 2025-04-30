@@ -223,9 +223,10 @@ setValue(context: Context, name: string, value: string, callback: AsyncCallback\
 
 ```js
 import settings from '@ohos.settings';
+import { common } from '@kit.AbilityKit';
 
 // 更新数据项亮度的值(该数据项在数据库中已存在，故setValue方法将更新该数据项的值)。
-const context: Context =  getContext(this);
+const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', (status) => {
   console.log('Callback return whether value is set.');
 });
@@ -261,9 +262,10 @@ setValue(context: Context, name: string, value: string): Promise\<boolean>
 
 ```js
 import settings from '@ohos.settings';
+import { common } from '@kit.AbilityKit';
 
 // 更新数据项亮度的值(该数据项在数据库中已存在，故setValue方法将更新该数据项的值)。
-const context: Context =  getContext(this);
+const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100').then((status) => {
   console.log('Callback return whether value is set.');
 });
@@ -310,9 +312,10 @@ setValue(context: Context, name: string, value: string, domainName: string): Pro
 
 ```js
 import settings from '@ohos.settings';
+import { common } from '@kit.AbilityKit';
 
 // 更新数据项亮度的值(该数据项在数据库中已存在，故setValue方法将更新该数据项的值)。
-const context: Context =  getContext(this);
+const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', settings.domainName.DEVICE_SHARED).then((status) => {
   console.log(`callback:return whether value is set.`)
 });
@@ -340,7 +343,9 @@ getValue(context: Context, name: string, callback: AsyncCallback\<string>): void
 
 ```js
 import settings from '@ohos.settings';
-const context: Context =  getContext(this);
+import { common } from '@kit.AbilityKit';
+
+const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, (err, value) => {
   if (err) {
     console.error(`Failed to get the setting. ${err.message} `);
@@ -377,7 +382,9 @@ getValue(context: Context, name: string): Promise\<string>
 
 ```js
 import settings from '@ohos.settings';
-const context: Context =  getContext(this);
+import { common } from '@kit.AbilityKit';
+
+const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS).then((value) => {
   console.log(`promise:value -> ${value}`)
 });
@@ -414,9 +421,10 @@ getValue(context: Context, name: string, domainName: string): Promise\<string>;
 
 ```js
 import settings from '@ohos.settings';
+import { common } from '@kit.AbilityKit';
 
 // 更新数据项亮度的值(该数据项在数据库中已存在，故getValue方法将更新该数据项的值)。
-const context: Context =  getContext(this);
+const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, settings.domainName.DEVICE_SHARED).then((value) => {
   console.log(`Promise:value -> ${value}`);
 });
@@ -450,9 +458,10 @@ getValueSync(context: Context, name: string, defValue: string): string;
 
 ```js
 import settings from '@ohos.settings';
+import { common } from '@kit.AbilityKit';
 
 // 获取数据项亮度的值(该数据项在数据库中已存在)。
-const context: Context =  getContext(this);
+const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let value = settings.getValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '10');
 ```
 
@@ -489,9 +498,10 @@ getValueSync(context: Context, name: string, defValue: string, domainName: strin
 
 ```js
 import settings from '@ohos.settings';
+import { common } from '@kit.AbilityKit';
 
 // 更新数据项亮度的值(该数据项在数据库中已存在)。
-const context: Context =  getContext(this);
+const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let value = settings.getValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100',  settings.domainName.DEVICE_SHARED);
 ```
 
@@ -528,9 +538,10 @@ setValueSync(context: Context, name: string, value: string): boolean
 
 ```js
 import settings from '@ohos.settings';
+import { common } from '@kit.AbilityKit';
 
 // 更新数据项亮度的值(该数据项在数据库中已存在，故setValueSync方法将更新该数据项的值)。
-const context: Context =  getContext(this);
+const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let ret = settings.setValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100');
 ```
 
@@ -578,9 +589,10 @@ setValueSync(context: Context, name: string, value: string, domainName: string):
 
 ```js
 import settings from '@ohos.settings';
+import { common } from '@kit.AbilityKit';
 
 // 更新数据项亮度的值(该数据项在数据库中已存在，故setValueSync方法将更新该数据项的值)。
-const context: Context =  getContext(this);
+const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let ret = settings.setValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', settings.domainName.DEVICE_SHARED);
 ```
 
@@ -613,8 +625,9 @@ registerKeyObserver(context: Context, name: string, domainName: string, observer
 
 ```js
 import settings from '@ohos.settings';
+import { common } from '@kit.AbilityKit';
 
-const context: Context =  getContext(this);
+const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 settings.registerKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS, settings.domainName.DEVICE_SHARED, (err, val) => {
   if (err) {
     console.error(`Failed to get the setting. ${err.message} `);
@@ -652,8 +665,9 @@ unregisterKeyObserver(context: Context, name: string, domainName: string): boole
 
 ```js
 import settings from '@ohos.settings';
+import { common } from '@kit.AbilityKit';
 
-const context: Context =  getContext(this);
+const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let ret = settings.unregisterKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS,  settings.domainName.DEVICE_SHARED);
 ```
 
@@ -692,9 +706,10 @@ openNetworkManagerSettings(context: Context): Promise\<boolean>
 
 ```js
 import settings from '@ohos.settings';
+import { common } from '@kit.AbilityKit';
 
 // 跳转网络管理器设置页面。
-const context: Context =  getContext(this);
+const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 settings.openNetworkManagerSettings(context).then((status) => {
   console.log(`callback:return whether setings is open.`)
 });

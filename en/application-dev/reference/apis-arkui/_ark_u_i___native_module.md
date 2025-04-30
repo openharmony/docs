@@ -7838,28 +7838,6 @@ Obtains the baseline offset of the custom span relative to the mounted component
 
 Returns the baseline offset. If a parameter error occurs, **0.0f** is returned. A possible cause is that mandatory parameters are left unspecified.
 
-### OH_ArkUI_NodeUtils_GetAttachedNodeHandleById()
-
-```
-int32_t OH_ArkUI_NodeUtils_GetAttachedNodeHandleById(const char* id, ArkUI_NodeHandle* node)
-```
-**Description**
-
-Obtains the target node based on the provided user ID.
-
-**Since**: 15
-
-**Parameters**
-
-| Name| Description| 
-| -------- | -------- |
-| id | ID of the target node.|
-| node | Pointer to the target node.|
-
-**Returns**
-
-Returns the result code. Returns **ARKUI_ERROR_CODE_NO_ERROR** if the operation is successful; returns **ARKUI_ERROR_CODE_PARAM_INVALID** if a parameter error occurs.
-
 ### OH_ArkUI_NodeUtils_GetWindowInfo()
 
 ```

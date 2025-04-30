@@ -8,7 +8,7 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-资源引用类型，用于设置组件属性的值。
+资源引用类型，用于设置组件属性的值。各类资源文件，需要放入特定子目录中存储管理，资源目录的示例请参考[资源分类](../../../quick-start/resource-categories-and-access.md#资源分类)。
 
 可以通过`$r`或者`$rawfile`创建Resource类型对象，不可以修改Resource中的各属性的值。
 
@@ -218,7 +218,7 @@
 | ----------------------------------- | ------------------------------------------------------------ |
 | [Color](ts-appendix-enums.md#color) | 颜色枚举值。                                                 |
 | number                              | HEX格式颜色，支持rgb或者argb。示例：0xffffff，0xffff0000。number无法识别传入位数，格式选择依据值的大小，例如0x00ffffff作rgb格式解析 |
-| string                              | rgb或者argb格式颜色。示例：'#ffffff', '#ff000000', 'rgb(255, 100, 255)', 'rgba(255, 100, 255, 0.5)'。 |
+| string                              | rgb或者argb格式颜色。示例：'#ffffff'，'#ff000000'，'rgb(255, 100, 255)'，'rgba(255, 100, 255, 0.5)'。 |
 | [Resource](#resource)               | 使用引入资源的方式，引入系统资源或者应用资源中的颜色。       |
 
 ## LengthConstrain
@@ -349,7 +349,7 @@
 
 | 名称          | 类型       | 必填   | 描述                                       |
 | ----------- | -------- | ---- | ---------------------------------------- |
-| constructor | number[] | 是    | 创建具有4\*5矩阵的颜色过滤器, 入参为[m\*n]位于m行和n列中矩阵值, 矩阵是行优先的。 |
+| constructor | number[] | 是    | 创建具有4\*5矩阵的颜色过滤器，入参为[m\*n]位于m行和n列中矩阵值，矩阵是行优先的。 |
 
 
 ## CustomBuilder<sup>8+</sup>
@@ -358,7 +358,7 @@
 
 | 名称            | 类型定义                   | 描述                                       |
 | ------------- | ---------------------- | ---------------------------------------- |
-| CustomBuilder | ()&nbsp;=&gt;&nbsp;any \| void | 生成用户自定义组件，在使用时结合@Builder使用。具体用法见[@Builder](../../../quick-start/arkts-builder.md#builder)。 |
+| CustomBuilder | ()&nbsp;=&gt;&nbsp;any \| void | 生成用户自定义组件，在使用时结合@Builder使用。具体用法见[@Builder](../../../ui/state-management/arkts-builder.md#builder)。 |
 
 ## MarkStyle<sup>10+</sup>对象说明
 
@@ -688,6 +688,8 @@ addText(text: string, textOperationOptions?: TextContentControllerOptions): numb
 在已编辑文本的指定位置插入文本，默认插入至文本末尾。
 拖拽文本的状态下不生效。
 
+`addText`仅影响应用内部的UI表现，不影响输入法应用的内部逻辑，不推荐在预上屏状态下调用。
+
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -705,6 +707,8 @@ deleteText(range?: TextRange): void
 
 删除已编辑文本的指定区域的内容。
 拖拽文本的状态下不生效。
+
+`deleteText`仅影响应用内部的UI表现，不影响输入法应用的内部逻辑，不推荐在预上屏状态下调用。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -770,7 +774,7 @@ getText(range?: TextRange): string
 
 | 名称    | 参数类型                                                    | 必填 | 描述                                                         |
 | ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 设置文本装饰线样式。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 设置文本装饰线类型。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | color  | &nbsp;[ResourceColor](#resourcecolor) | 否   | 设置文本装饰线颜色。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | 否   | 设置文本装饰线样式。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
@@ -823,6 +827,19 @@ setTextSelection选中文字时的配置。
 | thresholdPercentage | number  | thresholdPercentage是可输入字符数占最大字符限制的百分比值。字符计数器显示的样式为当前输入字符数/最大字符数。当输入字符数大于最大字符数乘百分比值时，显示字符计数器。thresholdPercentage值的有效值区间为[1,100]，数值为小数时，向下取整，如果设置的number超出有效值区间内，不显示字符计数器。thresholdPercentage设置为undefined，显示字符计数器，但此参数不生效。 |
 | highlightBorder     | boolean | 如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数达到最大字符数时，边框和计数器下标将变为红色。如果用户设置显示字符计数器同时thresholdPercentage参数数值在有效区间内，那么当输入字符数超过最大字符数时，边框和计数器下标将变成红色。如果此参数为true，则显示红色边框。计数器默认显示红色边框。 |
 
+
+## MaxLinesOptions<sup>20+</sup>对象说明
+
+配置TextArea组件，文本超长时显示效果。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名              | 类型    | 必填  | 说明                                                         |
+| ------------------- | ------- | ------- | ------------------------------------------------------------ |
+| overflowMode |[MaxLinesMode](ts-appendix-enums.md#maxlinesmode20)  | 否  | overflowMode 可配置 TextArea组件的非内联模式。当超出设置的 maxLines 最大行数时，会启用滚动效果。需同时配置[textOverflow](ts-basic-components-textarea.md#textoverflow12)，且仅当 [textOverflow](ts-basic-components-textarea.md#textoverflow12)为None或Clip 时，MaxLinesMode 才能生效。默认情况下，MaxLinesMode的值为Clip，超出 maxLines 后文本会被截断。 |
+
 ## ChainWeightOptions<sup>14+</sup>对象说明
 
 链中组件的布局权重。
@@ -861,17 +878,17 @@ setTextSelection选中文字时的配置。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 类型   | 只读 | 说明 |
-| --------- | ------ | ---- |---------- |
-| MATCH_PARENT | LayoutPolicy | 是 | 适应父组件布局。 |
+| 名称      | 类型   | 只读 | 可选 | 说明 |
+| --------- | ------ | ---- | ---- |---------- |
+| matchParent | LayoutPolicy | 是 | 否 |适应父组件布局。 |
 
 >  **说明：**
 >
 >  - 当线性布局组件的父容器设定了长度，组件将以父容器的尺寸为基准，自动调整以适应父组件的布局。若父容器未设定长度，线性布局组件则会等待所有子组件完成布局后，再进行自身调整以适应父组件布局。
 > 
->  - 若同一父组件下有多个设置MATCH_PARENT的子组件，则多个子组件均会被设置为父组件大小，也即会产生溢出现象。
+>  - 若同一父组件下有多个设置matchParent的子组件，则多个子组件均会被设置为父组件大小，也即会产生溢出现象。
 > 
->  - MATCH_PARENT会强制将自身大小设置成父组件大小，因此其设置的其他约束大小的属性将会失效。
+>  - matchParent会强制将自身大小设置成父组件大小，因此其设置的其他约束大小的属性将会失效。
 
 ## TextContentControllerOptions<sup>15+</sup>
 

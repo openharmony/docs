@@ -129,14 +129,13 @@ on(type: 'mouse', rect: display.Rect[], receiver: Callback&lt;MouseEvent&gt;): v
 
 ```js
 import { MouseEvent } from '@kit.InputKit';
-import { promptAction } from '@kit.ArkUI';
 import { display } from '@kit.ArkUI';
 
 /**
  * 鼠标在矩形区域内时，触发的回调任务。
  */
-function callback(mouseEvent : MouseEvent) {
-  promptAction.showToast({
+let callback = (mouseEvent : MouseEvent) => {
+  this.getUIContext().getPromptAction().showToast({
     message: `监听成功：${JSON.stringify(mouseEvent)}`
   })
   console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);

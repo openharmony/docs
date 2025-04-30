@@ -748,7 +748,7 @@ Defines the delegate function for custom transition animations of the **NavDesti
 
 | Type     | Description       |
 |---------|-----------|
-| Array<[NavDestinationTransition](#navdestinationtransition15)> \| undefined | Array of custom animations for the **NavDestination** page. If **undefined** is returned, the system default animation is used.|
+| Array<[NavDestinationTransition](#navdestinationtransition15)> \| undefined | Array of custom animations for the **NavDestination** page. If **undefined** is returned, the default system animation is used.|
 
 ## Example
 

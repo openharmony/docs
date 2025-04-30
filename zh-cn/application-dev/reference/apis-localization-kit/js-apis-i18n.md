@@ -34,7 +34,7 @@ static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean
 | 参数名          | 类型      | 必填   | 说明               |
 | ------------ | ------- | ---- | ---------------- |
 | country      | string  | 是    | 用于指定国家，要求是合法的国家码。            |
-| locale       | string  | 是    | [表示区域信息的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。     |
+| locale       | string  | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。     |
 | sentenceCase | boolean | 否    | true表示按照首字母大写的格式显示文本，false表示按照区域默认的大小写格式显示文本。默认值：true。 |
 
 **返回值：**
@@ -83,7 +83,7 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
 | 参数名          | 类型      | 必填   | 说明               |
 | ------------ | ------- | ---- | ---------------- |
 | language     | string  | 是    | 指定语言，要求是合法的语言ID。            |
-| locale       | string  | 是    | [表示区域信息的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。     |
+| locale       | string  | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。     |
 | sentenceCase | boolean | 否    | true表示按照首字母大写的格式显示文本，false表示按照区域默认的大小写格式显示文本。默认值：true。 |
 
 **返回值：**
@@ -283,7 +283,7 @@ static getSystemRegion(): string
 
 static getSystemLocale(): string
 
-获取系统区域。
+获取系统区域ID。
 
 **原子化服务API**： 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -293,7 +293,7 @@ static getSystemLocale(): string
 
 | 类型     | 说明      |
 | ------ | ------- |
-| string | 区域信息的字符串。 |
+| string | 表示区域ID的字符串。 |
 
 **示例：**
   ```ts
@@ -537,11 +537,10 @@ static getTemperatureName(type: TemperatureType): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 
@@ -630,7 +629,7 @@ isRTL(locale: string): boolean
 
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
-| locale | string | 是    | [表示区域信息的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。  |
+| locale | string | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。  |
 
 **返回值：**
 
@@ -658,8 +657,8 @@ getCalendar(locale: string, type? : string): Calendar
 
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------ | ------ | ---- | ---------------------------------------- |
-| locale | string | 是    | [表示区域信息的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成，例如zh-Hans-CN。                 |
-| type   | string | 否    | 合法的日历类型，取值包括：buddhist,&nbsp;chinese,&nbsp;coptic,&nbsp;ethiopic,&nbsp;hebrew,&nbsp;gregory,&nbsp;indian,&nbsp;islamic_civil,&nbsp;islamic_tbla,&nbsp;islamic_umalqura,&nbsp;japanese,&nbsp;persian。<br>默认值：区域默认的日历类型。不同取值代表的含义和不同场景下取值请参考[设置日历和历法](../../internationalization/i18n-calendar.md)。 |
+| locale | string | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成，例如zh-Hans-CN。                 |
+| type   | string | 否    | 表示历法，取值包括：buddhist,&nbsp;chinese,&nbsp;coptic,&nbsp;ethiopic,&nbsp;hebrew,&nbsp;gregory,&nbsp;indian,&nbsp;islamic_civil,&nbsp;islamic_tbla,&nbsp;islamic_umalqura,&nbsp;japanese,&nbsp;persian。<br>默认值：区域默认的历法。不同取值代表的含义和不同场景下取值请参考[设置日历和历法](../../internationalization/i18n-calendar.md)。 |
 
 **返回值：**
 
@@ -688,7 +687,7 @@ constructor(locale?: string)
 
 | 参数名  | 类型   | 必填   | 说明                |
 | ---- | ---- | ---- | ----------------- |
-| locale | string | 否    | [表示区域信息的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成，例如zh-Hans-CN。<br>默认值：系统当前locale。 |
+| locale | string | 否    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成，例如zh-Hans-CN。<br>默认值：系统当前区域ID。 |
 
 **错误码：**
 
@@ -1048,7 +1047,7 @@ get(field: string): number
 
 getDisplayName(locale: string): string
 
-获取日历对象在某区域的名字。
+获取日历对象在某语言下的显示名称。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1058,13 +1057,13 @@ getDisplayName(locale: string): string
 
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------ | ------ | ---- | ---------------------------------------- |
-| locale | string | 是    | [表示区域信息的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。 |
+| locale | string | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。 |
 
 **返回值：**
 
 | 类型     | 说明                  |
 | ------ | ------------------- |
-| string | 日历在locale所指示区域的名字。如buddhist在en-US上显示的名称为“Buddhist&nbsp;Calendar”。|
+| string | 日历的显示名称。如buddhist在en-US上显示的名称为“Buddhist&nbsp;Calendar”。|
 
 **示例：**
   ```ts
@@ -1328,7 +1327,7 @@ getLocationName(number: string, locale: string): string
 | 参数名    | 类型     | 必填   | 说明   |
 | ------ | ------ | ---- | ---- |
 | number | string | 是    | 电话号码。获取其他地区号码的归属地时，需要在号码前加00+国际区号。 |
-| locale | string | 是    | [表示区域信息的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。 |
+| locale | string | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。 |
 
 **返回值：**
 
@@ -1385,13 +1384,13 @@ getInstance(locale?: string): IndexUtil
 
 | 参数名    | 类型     | 必填   | 说明                           |
 | ------ | ------ | ---- | ---------------------------- |
-| locale | string | 否    | [表示区域信息的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。<br>默认值：系统Locale。 |
+| locale | string | 否    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。<br>默认值：系统当前区域ID。 |
 
 **返回值：**
 
 | 类型                       | 说明                    |
 | ------------------------ | --------------------- |
-| [IndexUtil](#indexutil8) | locale对应的IndexUtil对象。 |
+| [IndexUtil](#indexutil8) | 根据区域ID创建的IndexUtil对象。 |
 
 **示例：**
   ```ts
@@ -1442,7 +1441,7 @@ addLocale(locale: string): void
 
 | 参数名    | 类型     | 必填   | 说明                           |
 | ------ | ------ | ---- | ---------------------------- |
-| locale | string | 是    | [表示区域信息的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。 |
+| locale | string | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。 |
 
 **示例：**
   ```ts
@@ -1483,7 +1482,7 @@ getIndex(text: string): string
 
 getLineInstance(locale: string): BreakIterator
 
-获取一个用于断句的[BreakIterator](#breakiterator8)对象。
+获取一个用于获取可换行点的[BreakIterator](#breakiterator8)对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1493,13 +1492,13 @@ getLineInstance(locale: string): BreakIterator
 
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------ | ------ | ---- | ---------------------------------------- |
-| locale | string | 是    | [表示区域信息的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。<br>生成的[BreakIterator](#breakiterator8)将按照locale所指定的区域规则进行断句。 |
+| locale | string | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。<br>生成的[BreakIterator](#breakiterator8)将按照指定区域的规则计算可换行点的位置。 |
 
 **返回值：**
 
 | 类型                               | 说明          |
 | -------------------------------- | ----------- |
-| [BreakIterator](#breakiterator8) | 断句处理器。 |
+| [BreakIterator](#breakiterator8) | 可换行点处理器。 |
 
 **示例：**
   ```ts
@@ -1524,12 +1523,12 @@ setLineBreakText(text: string): void
 
 | 参数名  | 类型     | 必填   | 说明                      |
 | ---- | ------ | ---- | ----------------------- |
-| text | string | 是    | 指定BreakIterator进行断句的文本。 |
+| text | string | 是    | 指定BreakIterator获取可换行点的文本。 |
 
 **示例：**
   ```ts
   let iterator: i18n.BreakIterator = i18n.getLineInstance('en');
-  iterator.setLineBreakText('Apple is my favorite fruit.'); // 设置短句文本
+  iterator.setLineBreakText('Apple is my favorite fruit.'); // 设置处理文本
   ```
 
 
@@ -1585,7 +1584,7 @@ current(): number
 
 first(): number
 
-将BreakIterator移动到第一个可断句的分割点。第一个分割点总是在被处理文本的起始位置。
+将BreakIterator移动到第一个可换行点。第一个可换行点总是在被处理文本的起始位置。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1595,7 +1594,7 @@ first(): number
 
 | 类型     | 说明                |
 | ------ | ----------------- |
-| number | 被处理文本的第一个分割点的偏移量。 |
+| number | 被处理文本的第一个可换行点的偏移量。 |
 
 **示例：**
   ```ts
@@ -1609,7 +1608,7 @@ first(): number
 
 last(): number
 
-将BreakIterator移动到最后一个可断句的分割点。最后一个分割点总是在被处理文本末尾的下一个位置。
+将BreakIterator移动到最后一个可换行点。最后一个可换行点总是在被处理文本末尾的下一个位置。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1619,7 +1618,7 @@ last(): number
 
 | 类型     | 说明                 |
 | ------ | ------------------ |
-| number | 被处理文本的最后一个分割点的偏移量。 |
+| number | 被处理文本的最后一个可换行点的偏移量。 |
 
 **示例：**
   ```ts
@@ -1633,7 +1632,7 @@ last(): number
 
 next(index?: number): number
 
-将BreakIterator向后移动相应个分割点。
+将BreakIterator向后移动相应个可换行点。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1643,13 +1642,13 @@ next(index?: number): number
 
 | 参数名   | 类型     | 必填   | 说明                                       |
 | ----- | ------ | ---- | ---------------------------------------- |
-| index | number | 否    | BreakIterator将要移动的分割点数。<br>正数代表向后移动，即将BreakIterator向后移动number个可断句的分割点；负数代表向前移动，即向前移动相应个分割点。<br>默认值：1。 |
+| index | number | 否    | BreakIterator将要移动的可换行点数。<br>正数代表向后移动，即将BreakIterator向后移动index个可换行点；负数代表向前移动，即向前移动相应个可换行点。<br>默认值：1。 |
 
 **返回值：**
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
-| number | 移动了index个分割点后，当前BreakIterator在文本中的位置。<br>若移动index个分割点后超出了所处理的文本的长度范围，返回-1。 |
+| number | 移动了index个可换行点后，当前BreakIterator在文本中的位置。<br>若移动index个可换行点后超出了所处理的文本的长度范围，返回-1。 |
 
 **示例：**
   ```ts
@@ -1665,7 +1664,7 @@ next(index?: number): number
 
 previous(): number
 
-将BreakIterator向前移动一个分割点。
+将BreakIterator向前移动一个可换行点。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1675,7 +1674,7 @@ previous(): number
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
-| number | 移动到前一个分割点后，当前BreakIterator在文本中的位置。<br>若移动index个分割点后超出了所处理的文本的长度范围，返回-1。 |
+| number | 移动到前一个可换行点后，当前BreakIterator在文本中的位置。<br>若移动index个可换行点后超出了所处理的文本的长度范围，返回-1。 |
 
 **示例：**
   ```ts
@@ -1691,7 +1690,7 @@ previous(): number
 
 following(offset: number): number
 
-将BreakIterator移动到指定位置后面一个分割点。
+将BreakIterator移动到指定位置后面一个可换行点。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1701,13 +1700,13 @@ following(offset: number): number
 
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------ | ------ | ---- | ---------------------------------------- |
-| offset | number | 是    | 将BreakIterator移动到指定位置的后面一个分割点。 |
+| offset | number | 是    | 将BreakIterator移动到指定位置的后面一个可换行点。 |
 
 **返回值：**
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
-| number | BreakIterator移动后的位置。若offset所指定位置的下一个分割点超出了文本的范围，则返回-1。 |
+| number | BreakIterator移动后的位置。若offset所指定位置的下一个可换行点超出了文本的范围，则返回-1。 |
 
 **示例：**
   ```ts
@@ -1723,7 +1722,7 @@ following(offset: number): number
 
 isBoundary(offset: number): boolean
 
-判断指定位置是否为分割点。
+判断指定位置是否为可换行点。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1739,7 +1738,7 @@ isBoundary(offset: number): boolean
 
 | 类型      | 说明                              |
 | ------- | ------------------------------- |
-| boolean | true表示offset指定的文本位置是一个分割点，false表示offset指定的文本位置不是一个分割点。<br>返回true时，会将BreakIterator对象移动到offset指定的位置，否则相当于调用following。 |
+| boolean | true表示offset指定的文本位置是一个可换行点，false表示offset指定的文本位置不是一个可换行点。<br>返回true时，会将BreakIterator对象移动到offset指定的位置，否则相当于调用following。 |
 
 **示例：**
   ```ts
@@ -1816,7 +1815,7 @@ getDisplayName(locale?: string, isDST?: boolean): string
 
 | 参数名    | 类型      | 必填   | 说明                   |
 | ------ | ------- | ---- | -------------------- |
-| locale | string  | 否    | [表示区域信息的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。默认值：系统Locale。                |
+| locale | string  | 否    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。默认值：系统当前区域ID。                |
 | isDST  | boolean | 否    | true表示时区对象本地化时考虑夏令时，false表示时区对象本地化时不考虑夏令时。默认值：false。 |
 
 **返回值：**
@@ -1944,7 +1943,7 @@ static getCityDisplayName(cityID: string, locale: string): string
 | 参数名    | 类型     | 必填   | 说明     |
 | ------ | ------ | ---- | ------ |
 | cityID | string | 是    | 时区城市ID。 |
-| locale | string | 是    | [表示区域信息的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。  |
+| locale | string | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。  |
 
 **返回值：**
 
@@ -2042,7 +2041,7 @@ static getTimezonesByLocation(longitude: number, latitude: number): Array&lt;Tim
 
 static getAvailableIDs(): string[]
 
-获取音译支持的ID列表。
+获取音译支持的转换ID列表。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2052,11 +2051,11 @@ static getAvailableIDs(): string[]
 
 | 类型       | 说明         |
 | -------- | ---------- |
-| string[] | 音译支持的ID列表。 |
+| string[] | 音译支持的转换ID列表。 |
 
 **示例：**
   ```ts
-  // ids共支持742个。每一个id由使用中划线分割的两部分组成，格式为 source-destination。例如ids = ['Han-Latin','Latin-ASCII', 'Amharic-Latin/BGN','Accents-Any', ...]，Han-Latin表示汉语转为译拉丁文，Amharic-Latin表示阿姆哈拉语转为拉丁文。
+  // 共支持742个ID。每一个ID由使用中划线分割的两部分组成，格式为 source-destination。例如ids = ['Han-Latin','Latin-ASCII', 'Amharic-Latin/BGN','Accents-Any', ...]，Han-Latin表示汉语转为译拉丁文，Amharic-Latin表示阿姆哈拉语转为拉丁文。
   // 更多使用信息可以参考ISO-15924。
   let ids: string[] = i18n.Transliterator.getAvailableIDs();
   ```
@@ -2076,7 +2075,7 @@ static getInstance(id: string): Transliterator
 
 | 参数名  | 类型     | 必填   | 说明       |
 | ---- | ------ | ---- | -------- |
-| id   | string | 是    | 音译支持的ID。 |
+| id   | string | 是    | 音译支持的转换ID。 |
 
 **返回值：**
 
@@ -2443,7 +2442,7 @@ static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: 
 | fromUnit | [UnitInfo](#unitinfo8) | 是    | 需要转换的单位。                                 |
 | toUnit   | [UnitInfo](#unitinfo8) | 是    | 转换成的目标单位。                                 |
 | value    | number                 | 是    | 需要转换的单位的数量值。                             |
-| locale   | string                 | 是    | [表示区域信息的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成，如：zh-Hans-CN。                |
+| locale   | string                 | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成，如：zh-Hans-CN。                |
 | style    | string                 | 否    | 格式化使用的风格，取值包括：'long',&nbsp;'short',&nbsp;'narrow'。默认值：short。<br>不同取值显示效果请参考[数字与度量衡国际化](../../internationalization/i18n-numbers-weights-measures.md)。 |
 
 **返回值：**
@@ -2474,7 +2473,7 @@ static getDateOrder(locale: string): string
 
 | 参数名    | 类型     | 必填   | 说明                        |
 | ------ | ------ | ---- | ------------------------- |
-| locale | string | 是    | [表示区域信息的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成，如：zh-Hans-CN。 |
+| locale | string | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成，如：zh-Hans-CN。 |
 
 **返回值：**
 
@@ -2503,7 +2502,7 @@ static getTimePeriodName(hour:number, locale?: string): string
 | 参数名    | 类型     | 必填   | 说明                        |
 | ------ | ------ | ---- | ------------------------- |
 | hour | number | 是    | 指定的时间，如：16。 |
-| locale | string | 否    | [表示区域信息的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。如：zh-Hans-CN。<br>默认是当前区域。|
+| locale | string | 否    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。如：zh-Hans-CN。<br>默认值：系统当前区域ID。|
 
 **返回值：**
 
@@ -2546,8 +2545,8 @@ static getBestMatchLocale(locale: string, localeList: string[]): string
 
 | 参数名    | 类型     | 必填   | 说明                        |
 | ------ | ------ | ---- | ------------------------- |
-| locale | string | 是    | 待匹配的[区域信息字符串](../../internationalization/i18n-locale-culture.md#实现原理)，如：zh-Hans-CN。 |
-| localeList | string[] | 是   | 被指定的区域字符串列表。 |
+| locale | string | 是    | 待匹配的[区域ID字符串](../../internationalization/i18n-locale-culture.md#实现原理)，如：zh-Hans-CN。 |
+| localeList | string[] | 是   | 被指定的区域ID字符串列表。 |
 
 **返回值：**
 
@@ -2594,6 +2593,12 @@ static getThreeLetterLanguage(locale: string): string
 | ------ | ------ | ---- | ------------------------ |
 | locale | string | 是   | 待转换的语言二字母代码，如：zh。 |
 
+**返回值：**
+
+| 类型     | 说明                  |
+| ------ | ------------------- |
+| string | 返回待转换语言二字母代码对应的三字母代码。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
@@ -2631,6 +2636,12 @@ static getThreeLetterRegion(locale: string): string
 | 参数名 | 类型   | 必填 | 说明                     |
 | ------ | ------ | ---- | ------------------------ |
 | locale | string | 是   | 待转换的地区二字母代码，如：CN。 |
+
+**返回值：**
+
+| 类型     | 说明                  |
+| ------ | ------------------- |
+| string | 返回待转换地区二字母代码对应的三字母代码。 |
 
 **错误码：**
 
@@ -2670,15 +2681,20 @@ static getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: intl
 | ------ | ------ | ---- | ------------------------ |
 | path | string | 是   | 待处理的路径，如：/data/out/tmp。 |
 | delimiter | string | 否   | 路径分隔符，默认值：/。 |
-| locale | [intl.Locale](./js-apis-intl.md#locale) | 否   | intl.Locale对象，默认值：new intl.Locale([i18n.System.getSystemLocale()](#getsystemlocale9))。 |
+| locale | [intl.Locale](./js-apis-intl.md#locale) | 否   | 区域对象，默认值：new intl.Locale([i18n.System.getSystemLocale()](#getsystemlocale9))。 |
+
+**返回值：**
+
+| 类型     | 说明                  |
+| ------ | ------------------- |
+| string | 返回镜像处理后的文件路径。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001   | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
@@ -2706,7 +2722,7 @@ static getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: intl
 
 static getInstance(mode: NormalizerMode): Normalizer
 
-获取文本正则化对象。
+获取文本标准化对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2716,13 +2732,13 @@ static getInstance(mode: NormalizerMode): Normalizer
 
 | 参数名    | 类型     | 必填   | 说明                        |
 | ------ | ------ | ---- | ------------------------- |
-| mode | [NormalizerMode](#normalizermode10) | 是    | 文本正则化范式。 |
+| mode | [NormalizerMode](#normalizermode10) | 是    | 文本标准化范式。 |
 
 **返回值：**
 
 | 类型     | 说明                  |
 | ------ | ------------------- |
-| [Normalizer](#normalizer10) | 返回指定范式的文本正则化对象。 |
+| [Normalizer](#normalizer10) | 返回指定范式的文本标准化对象。 |
 
 **错误码：**
 
@@ -2749,7 +2765,7 @@ static getInstance(mode: NormalizerMode): Normalizer
 
 normalize(text: string): string
 
-对字符串进行正则化。
+对字符串进行标准化处理。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2759,13 +2775,13 @@ normalize(text: string): string
 
 | 参数名    | 类型     | 必填   | 说明                        |
 | ------ | ------ | ---- | ------------------------- |
-| text | string | 是    | 待正则化的字符串。 |
+| text | string | 是    | 待标准化处理的字符串。 |
 
 **返回值：**
 
 | 类型     | 说明                  |
 | ------ | ------------------- |
-| string | 正则化后的字符串。 |
+| string | 标准化处理后的字符串。 |
 
 **错误码：**
 
@@ -2790,7 +2806,7 @@ normalize(text: string): string
 
 ## NormalizerMode<sup>10+</sup>
 
-文本正则化范式的枚举。
+文本标准化范式的枚举。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2980,7 +2996,7 @@ getSimpleDateTimeFormatByPattern(pattern: string, locale?: intl.Locale): SimpleD
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------- | ----------- | ----- | ---------------------------------------- |
 | pattern | string      | 是    | 合法的模式字符串，支持的字符及含义请参考[日期字段符号表](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table)。同时，pattern支持传入自定义文本，文本内容以''标识。 |
-| locale  | [intl.Locale](./js-apis-intl.md#locale) | 否    | 合法的区域对象。默认值：系统区域。 |
+| locale  | [intl.Locale](./js-apis-intl.md#locale) | 否    | 区域对象。默认值：系统区域对象。 |
 
 **返回值：**
 
@@ -2990,11 +3006,10 @@ getSimpleDateTimeFormatByPattern(pattern: string, locale?: intl.Locale): SimpleD
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
@@ -3026,7 +3041,7 @@ getSimpleDateTimeFormatBySkeleton(skeleton: string, locale?: intl.Locale): Simpl
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------- | ----------- | ----- | ---------------------------------------- |
 | skeleton | string      | 是    | 合法的框架字符串，支持的字符及含义请参考[日期字段符号表](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table)。skeleton不支持传入自定义文本。 |
-| locale  | [intl.Locale](./js-apis-intl.md#locale) | 否    | 合法的区域对象。默认值：系统区域。 |
+| locale  | [intl.Locale](./js-apis-intl.md#locale) | 否    | 区域对象。默认值：系统区域对象。 |
 
 **返回值：**
 
@@ -3036,11 +3051,10 @@ getSimpleDateTimeFormatBySkeleton(skeleton: string, locale?: intl.Locale): Simpl
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
@@ -3080,14 +3094,6 @@ format(date: Date): string
 | 类型                     | 说明    |
 | ---------------------- | ----- |
 | string | 格式化后的时间、日期字符串。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID  | 错误信息                   |
-| ------ | ---------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
   ```ts
@@ -3129,7 +3135,7 @@ getSimpleNumberFormatBySkeleton(skeleton: string, locale?: intl.Locale): SimpleN
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------- | ----------- | ----- | ---------------------------------------- |
 | skeleton | string      | 是    | 合法的框架字符串，支持的字符及含义请参考[Number Skeletons](https://unicode-org.github.io/icu/userguide/format_parse/numbers/skeletons.html#number-skeletons)。 |
-| locale  | [intl.Locale](./js-apis-intl.md#locale) | 否    | 合法的区域对象。默认值：系统区域。 |
+| locale  | [intl.Locale](./js-apis-intl.md#locale) | 否    | 区域对象。默认值：系统区域对象。 |
 
 **返回值：**
 
@@ -3139,11 +3145,10 @@ getSimpleNumberFormatBySkeleton(skeleton: string, locale?: intl.Locale): SimpleN
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
@@ -3183,14 +3188,6 @@ format(value: number): string
 | 类型                     | 说明    |
 | ---------------------- | ----- |
 | string | 格式化后的数字字符串。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID  | 错误信息                   |
-| ------ | ---------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
   ```ts
@@ -3283,15 +3280,6 @@ format(value: number): StyledString
 | ----------------- | ----------------------|
 | [StyledString](../apis-arkui/arkui-ts/ts-universal-styled-string.md#styledstring) | 返回格式化后的富文本对象。 |
 
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID  | 错误信息                   |
-| ------ | ---------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-
 **示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -3361,7 +3349,7 @@ getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): stri
 | 参数名          | 类型      | 必填   | 说明               |
 | ------------ | ------- | ---- | ---------------- |
 | country      | string  | 是    | 指定国家。            |
-| locale       | string  | 是    | [表示区域信息的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。      |
+| locale       | string  | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。      |
 | sentenceCase | boolean | 否    | true表示按照首字母大写的格式显示文本，false表示按照区域默认的大小写格式显示文本。默认值：true。 |
 
 **返回值：**
@@ -3391,7 +3379,7 @@ getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): stri
 | 参数名          | 类型      | 必填   | 说明               |
 | ------------ | ------- | ---- | ---------------- |
 | country      | string  | 是    | 指定国家。            |
-| locale       | string  | 是    | [表示区域信息的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。      |
+| locale       | string  | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。      |
 | sentenceCase | boolean | 否    | true表示按照首字母大写的格式显示文本，false表示按照区域默认的大小写格式显示文本。默认值：true。 |
 
 **返回值：**
@@ -3422,7 +3410,7 @@ getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): st
 | 参数名          | 类型      | 必填   | 说明               |
 | ------------ | ------- | ---- | ---------------- |
 | language     | string  | 是    | 指定语言。            |
-| locale       | string  | 是    | [表示区域信息的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。      |
+| locale       | string  | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。      |
 | sentenceCase | boolean | 否    | true表示按照首字母大写的格式显示文本，false表示按照区域默认的大小写格式显示文本。默认值：true。 |
 
 **返回值：**
@@ -3486,7 +3474,7 @@ getSystemRegion(): string
 
 getSystemLocale(): string
 
-获取系统区域。
+获取系统区域ID。
 
 从API version 9开始不再维护，建议使用[System.getSystemLocale](#getsystemlocale9)代替。
 
@@ -3687,7 +3675,7 @@ unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string,
 | fromUnit | [UnitInfo](#unitinfo8) | 是    | 要被转换的单位。                                 |
 | toUnit   | [UnitInfo](#unitinfo8) | 是    | 要转换为的单位。                                 |
 | value    | number                 | 是    | 要被转换的单位的数量值。                             |
-| locale   | string                 | 是    | 格式化时使用的区域参数，如：zh-Hans-CN。                |
+| locale   | string                 | 是    | 格式化时使用的区域ID，如：zh-Hans-CN。                |
 | style    | string                 | 否    | 格式化使用的风格，取值包括：'long',&nbsp;'short',&nbsp;'narrow'。默认值：short。 |
 
 **返回值：**
