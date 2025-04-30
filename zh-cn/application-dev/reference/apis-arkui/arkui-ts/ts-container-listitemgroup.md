@@ -133,7 +133,7 @@ struct ListItemGroupExample {
       title: '星期四',
       projects: ['美术', '音乐', '体育']
     }
-  ]
+  ];
 
   @Builder
   itemHead(text: string) {
@@ -213,7 +213,7 @@ struct ListItemGroupExample2 {
       style: ListItemGroupStyle.NONE,
       itemStyles: [ListItemStyle.CARD, ListItemStyle.CARD, ListItemStyle.NONE]
     }
-  ]
+  ];
 
   build() {
     Column() {
@@ -297,15 +297,15 @@ function itemFoot(params: FootBuilderParams) {
 
 @Component
 struct MyItemGroup {
-  item: TimeTable = { title: "", projects: [] }
-  header?: ComponentContent<HeadBuilderParams> = undefined
-  footer?: ComponentContent<FootBuilderParams> = undefined
-  headerParam = new HeadBuilderParams(this.item.title)
-  footerParam = new FootBuilderParams(this.item.projects.length)
+  item: TimeTable = { title: "", projects: [] };
+  header?: ComponentContent<HeadBuilderParams> = undefined;
+  footer?: ComponentContent<FootBuilderParams> = undefined;
+  headerParam = new HeadBuilderParams(this.item.title);
+  footerParam = new FootBuilderParams(this.item.projects.length);
 
   aboutToAppear(): void {
-    this.header = new ComponentContent(this.getUIContext(), wrapBuilder(itemHead), this.headerParam)
-    this.footer = new ComponentContent(this.getUIContext(), wrapBuilder(itemFoot), this.footerParam)
+    this.header = new ComponentContent(this.getUIContext(), wrapBuilder(itemHead), this.headerParam);
+    this.footer = new ComponentContent(this.getUIContext(), wrapBuilder(itemFoot), this.footerParam);
   }
   GetHeader() {
     this.header?.update(new HeadBuilderParams(this.item.title));
@@ -356,7 +356,7 @@ struct ListItemGroupExample {
       title: '星期四',
       projects: ['美术', '音乐']
     }
-  ]
+  ];
 
   build() {
     Column() {
@@ -364,7 +364,7 @@ struct ListItemGroupExample {
         this.timeTable[0] = {
           title: '更新后的星期一',
           projects: ['语文', '物理', '历史', '美术']
-        }
+        };
       })
       List({ space: 20 }) {
         ForEach(this.timeTable, (item: TimeTable) => {
