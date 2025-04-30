@@ -113,7 +113,7 @@ onRelease(callback: [Callback](../../apis-basic-services-kit/js-apis-base.md#cal
 
 onError(callback:[ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback))
 
-被拉起的Ability扩展在运行过程中发生异常时触发本回调。可通过回调参数中的code、name和message获取错误信息并做处理。
+被拉起的Ability扩展在运行过程中发生异常时触发本回调。可通过回调参数中的code、name和message获取错误信息并做处理，业务错误码详细介绍请参见[UIExtension错误码](../errorcode-uiextension.md)。
 
 **参数：**
 
@@ -206,10 +206,11 @@ sendSync(data: Record\<string, Object\>): Record\<string, Object\>
 
 **错误码：**
 
-| 错误号 | 描述 |
-| ---- | ----|
-| 100011 | 扩展Ability未注册同步回调 |
-| 100012 | 数据发送失败 |
+以下错误码的详细介绍请参见[UIExtension错误码](../errorcode-uiextension.md)。
+| 错误码ID | 错误描述 | 说明 |
+| ------- | --------| --------|
+| 100011 | No callback has been registered to respond to this request. | 扩展Ability未注册同步回调 |
+| 100012 | Transferring data failed. | 数据发送失败 |
 
 ### on('asyncReceiverRegister')<sup>11+</sup>
 
