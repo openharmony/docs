@@ -27,6 +27,7 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 
 ## loadAndSetupUiTest<sup>20+</sup>
 loadAndSetupUiTest(): void;
+在测试启动前调用一次, 用于初始化测试环境。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -34,6 +35,29 @@ loadAndSetupUiTest(): void;
 
 **ArkTS版本**：该接口仅适用于ArkTS1.2。
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                               |
+| -------- | ---------------------------------------- |
+| 17000001 | Initialization failed. |
+
+**示例：**
+
+```ts
+import { loadAndSetupUiTest } from '@kit.TestKit';
+
+export default function demo() {
+  describe('uitestDemo', (): void => {
+    beforeAll(async () : Promise<void> => {
+      hilog.info(domain, tag, "uitestDriverTest loadup start!!!!!")
+      await loadAndSetupUiTest();
+      hilog.info(domain, tag, "uitestDriverTest loadup over!!!!!")
+    })
+  }
+}
+```
 
 ## MatchPattern
 
@@ -962,8 +986,8 @@ click(): Promise\<void>
 import { Driver, ON, Component } from '@kit.TestKit';
 async function demo() {
   let driver:Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.type('Button'));
-  await button.click();
+  let button: Component|null = await driver.findComponent(ON.type('Button'));
+  await button?.click();
 }
 ```
 
@@ -992,8 +1016,8 @@ doubleClick(): Promise\<void>
 import {Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.type('Button'));
-  await button.doubleClick();
+  let button: Component|null = await driver.findComponent(ON.type('Button'));
+  await button?.doubleClick();
 }
 ```
 
@@ -1022,8 +1046,8 @@ longClick(): Promise\<void>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.type('Button'));
-  await button.longClick();
+  let button: Component|null = await driver.findComponent(ON.type('Button'));
+  await button?.longClick();
 }
 ```
 
@@ -1058,8 +1082,8 @@ getId(): Promise\<string>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.type('Button'));
-  let id = await button.getId();
+  let button: Component|null = await driver.findComponent(ON.type('Button'));
+  let id = await button?.getId();
 }
 ```
 
@@ -1094,8 +1118,8 @@ getText(): Promise\<string>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.type('Button'));
-  let text = await button.getText();
+  let button: Component|null = await driver.findComponent(ON.type('Button'));
+  let text = await button?.getText();
 }
 ```
 
@@ -1130,8 +1154,8 @@ getType(): Promise\<string>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.type('Button'));
-  let type = await button.getType();
+  let button: Component|null = await driver.findComponent(ON.type('Button'));
+  let type = await button?.getType();
 }
 ```
 
@@ -1166,8 +1190,8 @@ getBounds(): Promise\<Rect>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.type('Button'));
-  let rect = await button.getBounds();
+  let button: Component|null = await driver.findComponent(ON.type('Button'));
+  let rect = await button?.getBounds();
 }
 ```
 
@@ -1202,8 +1226,8 @@ getBoundsCenter(): Promise\<Point>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.type('Button'));
-  let point = await button.getBoundsCenter();
+  let button: Component|null = await driver.findComponent(ON.type('Button'));
+  let point = await button?.getBoundsCenter();
 }
 ```
 
@@ -1238,8 +1262,8 @@ isClickable(): Promise\<boolean>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.type('Button'));
-  if(await button.isClickable()) {
+  let button: Component|null = await driver.findComponent(ON.type('Button'));
+  if (await button?.isClickable()) {
     console.info('This button can be Clicked');
   } else {
     console.info('This button can not be Clicked');
@@ -1278,8 +1302,8 @@ isLongClickable(): Promise\<boolean>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.type('Button'));
-  if(await button.isLongClickable()) {
+  let button: Component|null = await driver.findComponent(ON.type('Button'));
+  if (await button?.isLongClickable()) {
     console.info('This button can longClick');
   } else {
     console.info('This button can not longClick');
@@ -1318,8 +1342,8 @@ isChecked(): Promise\<boolean>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let checkBox: Component = await driver.findComponent(ON.type('Checkbox'));
-  if(await checkBox.isChecked()) {
+  let checkBox: Component|null = await driver.findComponent(ON.type('Checkbox'));
+  if (await checkBox?.isChecked()) {
     console.info('This checkBox is checked');
   } else {
     console.info('This checkBox is not checked');
@@ -1358,8 +1382,8 @@ isCheckable(): Promise\<boolean>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let checkBox: Component = await driver.findComponent(ON.type('Checkbox'));
-  if(await checkBox.isCheckable()) {
+  let checkBox: Component|null = await driver.findComponent(ON.type('Checkbox'));
+  if (await checkBox?.isCheckable()) {
     console.info('This checkBox is checkable');
   } else {
     console.info('This checkBox is not checkable');
@@ -1398,8 +1422,8 @@ isScrollable(): Promise\<boolean>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let scrollBar: Component = await driver.findComponent(ON.scrollable(true));
-  if(await scrollBar.isScrollable()) {
+  let scrollBar: Component|null = await driver.findComponent(ON.scrollable(true));
+  if (await scrollBar?.isScrollable()) {
     console.info('This scrollBar can be operated');
   } else {
     console.info('This scrollBar can not be operated');
@@ -1439,8 +1463,8 @@ isEnabled(): Promise\<boolean>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.type('Button'));
-  if(await button.isEnabled()) {
+  let button: Component|null = await driver.findComponent(ON.type('Button'));
+  if (await button?.isEnabled()) {
     console.info('This button can be operated');
   } else {
     console.info('This button can not be operated');
@@ -1479,8 +1503,8 @@ isFocused(): Promise\<boolean>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.type('Button'));
-  if(await button.isFocused()) {
+  let button: Component|null = await driver.findComponent(ON.type('Button'));
+  if (await button?.isFocused()) {
     console.info('This button is focused');
   } else {
     console.info('This button is not focused');
@@ -1519,8 +1543,8 @@ isSelected(): Promise\<boolean>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.type('Button'));
-  if(await button.isSelected()) {
+  let button: Component|null = await driver.findComponent(ON.type('Button'));
+  if (await button?.isSelected()) {
     console.info('This button is selected');
   } else {
     console.info('This button is not selected');
@@ -1560,8 +1584,8 @@ inputText(text: string): Promise\<void>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let text: Component = await driver.findComponent(ON.text('hello world'));
-  await text.inputText('123');
+  let text: Component|null = await driver.findComponent(ON.text('hello world'));
+  await text?.inputText('123');
 }
 ```
 
@@ -1589,14 +1613,16 @@ clearText(): Promise\<void>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let text: Component = await driver.findComponent(ON.text('hello world'));
-  await text.clearText();
+  let text: Component|null = await driver.findComponent(ON.text('hello world'));
+  await text?.clearText();
 }
 ```
 
 ### scrollSearch<sup>9+</sup>
 
-scrollSearch(on: On): Promise\<Component>
+ArkTS1.1: scrollSearch(on: On): Promise\<Component>
+
+ArkTS1.2: scrollSearch(on: On): Promise\<Component|null>
 
 在控件上滑动查找目标控件（适用支持滑动的控件），使用Promise异步回调。
 
@@ -1614,7 +1640,8 @@ scrollSearch(on: On): Promise\<Component>
 
 | 类型                               | 说明                                  |
 | ---------------------------------- | ------------------------------------- |
-| Promise\<[Component](#component9)> | 以Promise形式返回找到的目标控件对象。 |
+| ArkTS1.1:Promise\<[Component](#component9)> | 以Promise形式返回找到的目标控件对象。 |
+| ArkTS1.2:Promise\<[Component](#component9)|null> | 以Promise形式返回找到的目标控件对象,<br> 或在未找到目标对象时以Promise形式返回null。 |
 
 **错误码：**
 
@@ -1633,14 +1660,19 @@ import { Component, Driver, ON } from '@kit.TestKit';
 
 async function demo() {
   let driver: Driver = Driver.create();
-  let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
-  let button = await scrollBar.scrollSearch(ON.text('next page'));
+  let scrollBar: Component|null = await driver.findComponent(ON.type('Scroll'));
+  let button = await scrollBar?.scrollSearch(ON.text('next page'));
+  if (button) {
+    await button?.click();
+  }
 }
 ```
 
 ### scrollSearch<sup>18+</sup>
 
-scrollSearch(on: On, vertical?: boolean, offset?: number): Promise\<Component>
+ArkTS1.1: scrollSearch(on: On, vertical?: boolean, offset?: number): Promise\<Component>
+
+ArkTS1.2: scrollSearch(on: On, vertical?: boolean, offset?: number): Promise\<Component|null>
 
 在控件上滑动查找目标控件（适用支持滑动的控件），使用Promise异步回调。
 
@@ -1660,7 +1692,8 @@ scrollSearch(on: On, vertical?: boolean, offset?: number): Promise\<Component>
 
 | 类型                               | 说明                                  |
 | ---------------------------------- | ------------------------------------- |
-| Promise\<[Component](#component9)> | 以Promise形式返回找到的目标控件对象。 |
+| ArkTS1.1: Promise\<[Component](#component9)> | 以Promise形式返回找到的目标控件对象。 |
+| ArkTS1.2: Promise\<[Component](#component9)|null> | 以Promise形式返回找到的目标控件对象,<br>或在未找到对象时以Promise形式返回null。 |
 
 **错误码：**
 
@@ -1678,8 +1711,11 @@ scrollSearch(on: On, vertical?: boolean, offset?: number): Promise\<Component>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
-  let button = await scrollBar.scrollSearch(ON.text('next page'));
+  let scrollBar: Component|null = await driver.findComponent(ON.type('Scroll'));
+  let button = await scrollBar?.scrollSearch(ON.text('next page'));
+  if (button) {
+    await button?.click();
+  }
 }
 ```
 
@@ -1715,8 +1751,10 @@ scrollToTop(speed?: number): Promise\<void>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
-  await scrollBar.scrollToTop();
+  let scrollBar: Component|null = await driver.findComponent(ON.type('Scroll'));
+  if (scrollBar) {
+    await scrollBar.scrollToTop();
+  }
 }
 ```
 
@@ -1752,7 +1790,7 @@ scrollToBottom(speed?: number): Promise\<void>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
+  let scrollBar: Component|null = await driver.findComponent(ON.type('Scroll'));
   await scrollBar.scrollToBottom();
 }
 ```
@@ -1793,9 +1831,11 @@ dragTo(target: Component): Promise\<void>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.type('Button'));
-  let text: Component = await driver.findComponent(ON.text('hello world'));
-  await button.dragTo(text);
+  let button: Component|null = await driver.findComponent(ON.type('Button'));
+  let text: Component|null = await driver.findComponent(ON.text('hello world'));
+  if (button && text) {
+    await button?.dragTo(text);
+  }
 }
 ```
 
@@ -1831,8 +1871,10 @@ pinchOut(scale: number): Promise\<void>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let image: Component = await driver.findComponent(ON.type('Image'));
-  await image.pinchOut(1.5);
+  let image: Component|null = await driver.findComponent(ON.type('Image'));
+  if (image) {
+    await image.pinchOut(1.5);
+  }
 }
 ```
 
@@ -1868,8 +1910,10 @@ pinchIn(scale: number): Promise\<void>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let image: Component = await driver.findComponent(ON.type('Image'));
-  await image.pinchIn(0.5);
+  let image: Component|null = await driver.findComponent(ON.type('Image'));
+  if (image) {
+    await image.pinchIn(0.5);
+  }
 }
 ```
 
@@ -1904,8 +1948,10 @@ getDescription(): Promise\<string>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.type('Button'));
-  let description = await button.getDescription();
+  let button: Component|null = await driver.findComponent(ON.type('Button'));
+  if (button) {
+    let description = await button?.getDescription();
+  }
 }
 ```
 ### getHint<sup>18+</sup>
@@ -1939,8 +1985,10 @@ getHint(): Promise\<string>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.type('TextInput'));
-  let hints = await button.getHint();
+  let button: Component|null = await driver.findComponent(ON.type('TextInput'));
+  if (button) {
+    let hints = await button?.getHint();
+  }
 }
 ```
 
@@ -2056,16 +2104,15 @@ ArkTS1.2: findComponent(on: On): Promise\<Component\|null>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let button = await driver.findComponent(ON.text('next page'));
-  if (button) {
-    button.click();
-  }
+  let button: Component|null = await driver.findComponent(ON.text('next page'));
+  await button?.click();
 }
 ```
 
 ### findComponents<sup>9+</sup>
 
 ArkTS1.1: findComponents(on: On): Promise\<Array\<Component>>
+
 ArkTS1.2: findComponents(on: On): Promise\<Array\<Component>\|null>
 
 在Driver对象中，根据给出的目标控件属性要求查找出所有匹配控件，以列表保存。
@@ -2085,7 +2132,7 @@ ArkTS1.2: findComponents(on: On): Promise\<Array\<Component>\|null>
 | 类型                                       | 说明                                    |
 | ------------------------------------------ | --------------------------------------- |
 | ArkTS1.1: Promise\<Array\<[Component](#component9)>> | 以Promise形式返回找到的控件对象的列表。 |
-| ArkTS1.2: Promise\<Array\<[Component](#component9)>|null> | 以Promise形式返回找到的控件对象的列表, 或在未找到对象时以Promise形式返回null。 |
+| ArkTS1.2: Promise\<Array\<[Component](#component9)>\|null\> | 以Promise形式返回找到的控件对象的列表, <br>或在未找到对象时以Promise形式返回null。 |
 
 **错误码：**
 
@@ -2104,14 +2151,16 @@ async function demo() {
   let driver: Driver = Driver.create();
   let buttonList: Array<Component>|null = await driver.findComponents(ON.text('next page'));
   if (buttonList) {
-    buttonList[0].click();
+    await buttonList[0].click();
   }
 }
 ```
 
 ### findWindow<sup>9+</sup>
 
-findWindow(filter: WindowFilter): Promise\<UiWindow>
+ArkTS1.1:findWindow(filter: WindowFilter): Promise\<UiWindow>
+
+ArkTS1.2:findWindow(filter: WindowFilter): Promise\<UiWindow|null>
 
 通过指定窗口的属性来查找目标窗口。
 
@@ -2129,7 +2178,9 @@ findWindow(filter: WindowFilter): Promise\<UiWindow>
 
 | 类型                             | 说明                                  |
 | -------------------------------- | ------------------------------------- |
-| Promise\<[UiWindow](#uiwindow9)> | 以Promise形式返回找到的目标窗口对象。 |
+|ArkTS1.1: Promise\<[UiWindow](#uiwindow9)> | 以Promise形式返回找到的目标窗口对象。 |
+|ArkTS1.2: Promise\<[UiWindow](#uiwindow9)|null> | 以Promise形式返回找到的目标窗口对象，<br> 或在未找到目标窗口对象时以Promise形式返回null。 |
+
 
 **错误码：**
 
@@ -2146,13 +2197,18 @@ findWindow(filter: WindowFilter): Promise\<UiWindow>
 import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let window: UiWindow = await driver.findWindow({actived: true});
+  let window: UiWindow|null = await driver.findWindow({actived: true});
+  if (window) {
+    let name: string = window.getBundleName();
+  }
 }
 ```
 
 ### waitForComponent<sup>9+</sup>
 
-waitForComponent(on: On, time: number): Promise\<Component>
+ArkTS1.1:waitForComponent(on: On, time: number): Promise\<Component>
+
+ArkTS1.2:waitForComponent(on: On, time: number): Promise\<Component|null>
 
 在Driver对象中，在用户给定的时间内，持续查找满足控件属性要求的目标控件。
 
@@ -2171,7 +2227,8 @@ waitForComponent(on: On, time: number): Promise\<Component>
 
 | 类型                              | 说明                              |
 | --------------------------------- | --------------------------------- |
-| Promise\<[Component](#component9)> | 以Promise形式返回找到的控件对象。 |
+| ArkTS1.1:Promise\<[Component](#component9)> | 以Promise形式返回找到的控件对象。 |
+| ArkTS1.2:Promise\<[Component](#component9)|null> | 以Promise形式返回找到的控件对象,<br> 或在未找到目标对象时以Promise形式返回null。 |
 
 **错误码：**
 
@@ -2188,7 +2245,10 @@ waitForComponent(on: On, time: number): Promise\<Component>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let button: Component = await driver.waitForComponent(ON.text('next page'),500);
+  let button: Component|null = await driver.waitForComponent(ON.text('next page'),500);
+  if (button) {
+    let buttonId: string = button.id();
+  }
 }
 ```
 
@@ -3383,9 +3443,9 @@ inputText(p: Point, text: string): Promise\<void>
 ```ts
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
-  let driver:Driver = Driver.create();
-  let text: Component = await driver.findComponent(ON.type('TextInput'));
-  let point = await text.getBoundsCenter();
+  let driver: Driver = Driver.create();
+  let text: Component|null = await driver.findComponent(ON.type('TextInput'));
+  let point = await text?.getBoundsCenter();
   await driver.inputText(point, '123');
 }
 ```
@@ -3782,7 +3842,7 @@ import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
-  let name: string = await window.getBundleName();
+  let name: string = await window?.getBundleName();
 }
 ```
 
@@ -3818,7 +3878,7 @@ import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
-  let rect = await window.getBounds();
+  let rect = await window?.getBounds();
 }
 ```
 
@@ -3854,7 +3914,7 @@ import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
-  let rect = await window.getTitle();
+  let rect = await window?.getTitle();
 }
 ```
 
@@ -3890,7 +3950,7 @@ import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
-  let mode = await window.getWindowMode();
+  let mode = await window?.getWindowMode();
 }
 ```
 
@@ -3926,7 +3986,7 @@ import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
-  let focused = await window.isFocused();
+  let focused = await window?.isFocused();
 }
 ```
 
@@ -3962,7 +4022,7 @@ import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
-  let focused = await window.isActived();
+  let focused = await window?.isActived();
 }
 ```
 
@@ -3992,7 +4052,7 @@ import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
-  await window.focus();
+  await window?.focus();
 }
 ```
 
@@ -4031,7 +4091,7 @@ import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
-  await window.moveTo(100, 100);
+  await window?.moveTo(100, 100);
 }
 ```
 
@@ -4071,7 +4131,7 @@ import { Driver, ResizeDirection, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
-  await window.resize(100, 100, ResizeDirection.LEFT);
+  await window?.resize(100, 100, ResizeDirection.LEFT);
 }
 ```
 
@@ -4102,7 +4162,7 @@ import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
-  await window.split();
+  await window?.split();
 }
 ```
 
@@ -4133,7 +4193,7 @@ import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
-  await window.maximize();
+  await window?.maximize();
 }
 ```
 
@@ -4164,7 +4224,7 @@ import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
-  await window.minimize();
+  await window?.minimize();
 }
 ```
 
@@ -4195,7 +4255,7 @@ import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
-  await window.resume();
+  await window?.resume();
 }
 ```
 
@@ -4226,7 +4286,7 @@ import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver:Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
-  await window.close();
+  await window?.close();
 }
 ```
 
@@ -4262,7 +4322,7 @@ import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({active: true});
-  let focused = await window.isActive();
+  let focused = await window?.isActive();
 }
 ```
 
@@ -4894,7 +4954,7 @@ import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let button: UiComponent = await driver.findComponent(BY.type('Button'));
-  if(await button.isClickable()) {
+  if (await button.isClickable()) {
     console.info('This button can be Clicked');
   } else {
     console.info('This button can not be Clicked');
@@ -4925,7 +4985,7 @@ import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let scrollBar: UiComponent = await driver.findComponent(BY.scrollable(true));
-  if(await scrollBar.isScrollable()) {
+  if (await scrollBar.isScrollable()) {
     console.info('This scrollBar can be operated');
   } else {
     console.info('This scrollBar can not be operated');
@@ -4957,7 +5017,7 @@ import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let button: UiComponent = await driver.findComponent(BY.type('Button'));
-  if(await button.isEnabled()) {
+  if (await button.isEnabled()) {
     console.info('This button can be operated');
   } else {
     console.info('This button can not be operated');
@@ -4989,7 +5049,7 @@ import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let button: UiComponent = await driver.findComponent(BY.type('Button'));
-  if(await button.isFocused()) {
+  if (await button.isFocused()) {
     console.info('This button is focused');
   } else {
     console.info('This button is not focused');
@@ -5020,7 +5080,7 @@ import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let button: UiComponent = await driver.findComponent(BY.type('Button'));
-  if(await button.isSelected()) {
+  if (await button.isSelected()) {
     console.info('This button is selected');
   } else {
     console.info('This button is not selected');
