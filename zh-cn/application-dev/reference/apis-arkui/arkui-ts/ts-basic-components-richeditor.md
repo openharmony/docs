@@ -415,9 +415,9 @@ onReady(callback:Callback\<void\>)
 
 onSelect(callback:Callback\<[RichEditorSelection](#richeditorselection)\>)
 
-鼠标左键双击选中内容触发回调;松开鼠标左键再次触发回调。
+鼠标左键双击选中内容触发回调；松开鼠标左键再次触发回调。
 
-手指长按选中内容触发回调;松开手指再次触发回调。
+手指长按选中内容触发回调；松开手指再次触发回调。
 
 使用[RichEditorStyledStringOptions](#richeditorstyledstringoptions12)构建的RichEditor组件不支持该回调。
 
@@ -604,7 +604,7 @@ onWillChange(callback: Callback\<[RichEditorChangeValue](#richeditorchangevalue1
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
-| callback | Callback\<[RichEditorChangeValue](#richeditorchangevalue12) , boolean\> | 是    | [RichEditorChangeValue](#richeditorchangevalue12)为图文变化信息;boolean表示当前图文是否允许被更改，true：允许图文被更改;false：不允许图文被更改。 |
+| callback | Callback\<[RichEditorChangeValue](#richeditorchangevalue12) , boolean\> | 是    | [RichEditorChangeValue](#richeditorchangevalue12)为图文变化信息；boolean表示当前图文是否允许被更改，true：允许图文被更改；false：不允许图文被更改。 |
 
 ### onDidChange<sup>12+</sup>
 
@@ -1096,7 +1096,7 @@ RichEditor组件的控制器，继承自[RichEditorBaseController](#richeditorba
 ### 导入对象
 
 ```
-controller: RichEditorController = new RichEditorController();
+controller: RichEditorController = new RichEditorController()；
 ```
 
 ### addTextSpan
@@ -1393,7 +1393,7 @@ toStyledString(value: RichEditorRange): StyledString
 ### 导入对象
 
 ```
-controller: RichEditorStyledStringController = new RichEditorStyledStringController();
+controller: RichEditorStyledStringController = new RichEditorStyledStringController()；
 ```
 
 ### getSelection<sup>12+</sup>
@@ -1430,7 +1430,7 @@ setStyledString(styledString: StyledString): void
 
 ### getStyledString<sup>12+</sup>
 
-getStyledString(): MutableStyledString;
+getStyledString(): MutableStyledString
 
 获取富文本组件显示的属性字符串。
 
@@ -1603,7 +1603,7 @@ SymbolSpan样式选项。
 
 | 名称                           | 类型                                       | 必填   | 说明                         |
 | ---------------------------- | ---------------------------------------- | ---- | -------------------------- |
-| offset                       | number                                   | 否    | 添加文本的位置。省略时，添加到所有内容的最后。<br/>当值小于0时，放在所有内容最前面;当值大于所有内容长度时，放在所有内容最后面。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| offset                       | number                                   | 否    | 添加文本的位置。省略时，添加到所有内容的最后。<br/>当值小于0时，放在所有内容最前面；当值大于所有内容长度时，放在所有内容最后面。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | style                        | [RichEditorTextStyle](#richeditortextstyle) | 否    | 文本样式信息。省略时，使用系统默认文本信息。     <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | paragraphStyle<sup>11+</sup> | [RichEditorParagraphStyle](#richeditorparagraphstyle11) | 否    | 段落样式。                     <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | gesture<sup>11+</sup>        | [RichEditorGesture](#richeditorgesture11) | 否    | 行为触发回调。省略时，仅使用系统默认行为。      <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
@@ -1651,7 +1651,7 @@ SymbolSpan样式选项。
 
 | 名称                    | 类型                                       | 必填   | 说明                         |
 | --------------------- | ---------------------------------------- | ---- | -------------------------- |
-| offset                | number                                   | 否    | 添加图片的位置。省略时，添加到所有内容的末尾。<br/>当值小于0时，设置在所有内容最前面;当值大于所有内容长度时，设置在所有内容最后面。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| offset                | number                                   | 否    | 添加图片的位置。省略时，添加到所有内容的末尾。<br/>当值小于0时，设置在所有内容最前面；当值大于所有内容长度时，设置在所有内容最后面。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | imageStyle            | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | 否    | 图片样式信息。省略时，使用系统默认图片信息。     <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | gesture<sup>11+</sup> | [RichEditorGesture](#richeditorgesture11) | 否    | 行为触发回调。省略时，仅使用系统默认行为。      <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | onHover<sup>14+</sup> | [OnHoverCallback](#onhovercallback14) | 否    | 鼠标悬停触发回调。省略时，不执行相关行为。     <br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
@@ -1679,7 +1679,7 @@ SymbolSpan样式选项。
 
 | 名称     | 类型                                       | 必填   | 说明                         |
 | ------ | ---------------------------------------- | ---- | -------------------------- |
-| offset | number                                   | 否    | 添加组件的位置。省略时，添加到所有内容的最后。<br/>如果值小于0，添加到所有内容的最前面;如果值大于所有内容的长度，添加到所有内容的最后面。 |
+| offset | number                                   | 否    | 添加组件的位置。省略时，添加到所有内容的最后。<br/>如果值小于0，添加到所有内容的最前面；如果值大于所有内容的长度，添加到所有内容的最后面。 |
 | style  | [RichEditorSymbolSpanStyle](#richeditorsymbolspanstyle11) | 否    | 组件样式信息。省略时，使用系统默认样式信息。     |
 
 ## RichEditorSymbolSpanStyle<sup>11+</sup>
@@ -1811,7 +1811,7 @@ RichEditor span信息。
 
 | 名称            | 类型              | 必填   | 说明                               |
 | --------------- | ---------------  |---- | ------------------------------------  |
-| supportAvoidance | boolean | 否 | 设置自定义键盘是否支持避让功能。默认值为 `false`，表示不支持避让;`true` 表示支持避让。 |
+| supportAvoidance | boolean | 否 | 设置自定义键盘是否支持避让功能。默认值为 `false`，表示不支持避让；`true` 表示支持避让。 |
 
 ## SubmitCallback<sup>12+</sup>
 
