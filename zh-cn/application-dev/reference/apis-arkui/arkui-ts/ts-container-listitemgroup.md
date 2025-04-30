@@ -52,7 +52,7 @@ ListItemGroup组件参数。
 
 ### divider
 
-divider(value: {strokeWidth: Length; color?: ResourceColor; startMargin?: Length; endMargin?: Length;} | null,)
+divider(value: [ListDividerOptions](ts-container-list.md#listdivideroptions18对象说明) | null)
 
 设置ListItem分割线样式，默认无分割线。
 
@@ -68,7 +68,7 @@ ListItem设置[多态样式](ts-universal-attributes-polymorphic-style.md)时，
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | {<br/>strokeWidth:&nbsp;[Length](ts-types.md#length),<br/>color?:[ResourceColor](ts-types.md#resourcecolor),<br/>startMargin?:&nbsp;[Length](ts-types.md#length),<br/>endMargin?:&nbsp;[Length](ts-types.md#length)<br/>}&nbsp;\|&nbsp;null | 是   | ListItem分割线样式。<br/>- strokeWidth:&nbsp;分割线的线宽。<br/>- color:&nbsp;分割线的颜色。<br/> 默认值：0x08000000<br/>- startMargin:&nbsp;分割线与列表侧边起始端的距离。<br/>默认值：0，单位：vp<br/>- endMargin:&nbsp;分割线与列表侧边结束端的距离。<br/>默认值：0，单位：vp |
+| value  | [ListDividerOptions](ts-container-list.md#listdivideroptions18对象说明)&nbsp;\|&nbsp;null | 是   | ListItem分割线样式。<br/> 默认值：null |
 
 ### childrenMainSize<sup>12+</sup>
 
@@ -133,7 +133,7 @@ struct ListItemGroupExample {
       title: '星期四',
       projects: ['美术', '音乐', '体育']
     }
-  ]
+  ];
 
   @Builder
   itemHead(text: string) {
@@ -213,7 +213,7 @@ struct ListItemGroupExample2 {
       style: ListItemGroupStyle.NONE,
       itemStyles: [ListItemStyle.CARD, ListItemStyle.CARD, ListItemStyle.NONE]
     }
-  ]
+  ];
 
   build() {
     Column() {
@@ -297,15 +297,15 @@ function itemFoot(params: FootBuilderParams) {
 
 @Component
 struct MyItemGroup {
-  item: TimeTable = { title: "", projects: [] }
-  header?: ComponentContent<HeadBuilderParams> = undefined
-  footer?: ComponentContent<FootBuilderParams> = undefined
-  headerParam = new HeadBuilderParams(this.item.title)
-  footerParam = new FootBuilderParams(this.item.projects.length)
+  item: TimeTable = { title: "", projects: [] };
+  header?: ComponentContent<HeadBuilderParams> = undefined;
+  footer?: ComponentContent<FootBuilderParams> = undefined;
+  headerParam = new HeadBuilderParams(this.item.title);
+  footerParam = new FootBuilderParams(this.item.projects.length);
 
   aboutToAppear(): void {
-    this.header = new ComponentContent(this.getUIContext(), wrapBuilder(itemHead), this.headerParam)
-    this.footer = new ComponentContent(this.getUIContext(), wrapBuilder(itemFoot), this.footerParam)
+    this.header = new ComponentContent(this.getUIContext(), wrapBuilder(itemHead), this.headerParam);
+    this.footer = new ComponentContent(this.getUIContext(), wrapBuilder(itemFoot), this.footerParam);
   }
   GetHeader() {
     this.header?.update(new HeadBuilderParams(this.item.title));
@@ -356,7 +356,7 @@ struct ListItemGroupExample {
       title: '星期四',
       projects: ['美术', '音乐']
     }
-  ]
+  ];
 
   build() {
     Column() {
@@ -364,7 +364,7 @@ struct ListItemGroupExample {
         this.timeTable[0] = {
           title: '更新后的星期一',
           projects: ['语文', '物理', '历史', '美术']
-        }
+        };
       })
       List({ space: 20 }) {
         ForEach(this.timeTable, (item: TimeTable) => {
