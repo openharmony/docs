@@ -1061,7 +1061,7 @@ getMimeTypes(): Array&lt;string&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Array&lt;string&gt; | 剪贴板内容条目的数据类型，非重复的类型列表。（去重后的数据列表？） |
+| Array&lt;string&gt; | 剪贴板内容条目的数据类型，非重复的类型列表。 |
 
 **示例：**
 
