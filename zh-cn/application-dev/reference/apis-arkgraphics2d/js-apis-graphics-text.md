@@ -1282,7 +1282,7 @@ function textFunc() {
     align: text.TextAlign.END,
   };
   let fontCollection = new text.FontCollection();
-  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
 }
 
 @Entry
@@ -1335,8 +1335,8 @@ function textFunc() {
     align: text.TextAlign.CENTER,
   };
   let fontCollection = new text.FontCollection();
-  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
-  ParagraphGraphBuilder.pushStyle(myTextStyle);
+  let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  paragraphBuilder.pushStyle(myTextStyle);
 }
 
 @Entry
@@ -1379,9 +1379,9 @@ function textFunc() {
     align: text.TextAlign.END,
   };
   let fontCollection = new text.FontCollection();
-  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
-  ParagraphGraphBuilder.pushStyle(myTextStyle);
-  ParagraphGraphBuilder.popStyle();
+  let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  paragraphBuilder.pushStyle(myTextStyle);
+  paragraphBuilder.popStyle();
 }
 
 @Entry
@@ -1430,8 +1430,8 @@ function textFunc() {
     align: text.TextAlign.END,
   };
   let fontCollection = new text.FontCollection();
-  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
-  ParagraphGraphBuilder.addText("123666");
+  let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  paragraphBuilder.addText("123666");
 }
 
 @Entry
@@ -1482,8 +1482,8 @@ function textFunc() {
     baselineOffset: 100000
   };
   let fontCollection = new text.FontCollection();
-  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
-  ParagraphGraphBuilder.addPlaceholder(myPlaceholderSpan);
+  let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  paragraphBuilder.addPlaceholder(myPlaceholderSpan);
 }
 
 @Entry
@@ -1529,9 +1529,9 @@ function textFunc() {
     textStyle : myTextStyle,
   };
   let fontCollection = new text.FontCollection();
-  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
-  ParagraphGraphBuilder.addText("123456789");
-  let paragraph = ParagraphGraphBuilder.build();
+  let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  paragraphBuilder.addText("123456789");
+  let paragraph = paragraphBuilder.build();
   paragraph.layoutSync(200);
 }
 
@@ -1578,9 +1578,9 @@ function textFunc() {
     align: text.TextAlign.END,
   };
   let fontCollection = new text.FontCollection();
-  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
-  ParagraphGraphBuilder.addSymbol(0xF0000);
-  let paragraph = ParagraphGraphBuilder.build();
+  let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  paragraphBuilder.addSymbol(0xF0000);
+  let paragraph = paragraphBuilder.build();
 }
 
 @Entry
