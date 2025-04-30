@@ -66,4 +66,4 @@ ArkTS卡片与JS卡片具备不同的实现原理及特征，在场景能力上�
 
 ## 相关实例
 
-- [基于Form Kit实现音乐服务卡片](gttps://gitee.com/harmonyos_samples/MusicCard)
+- [基于Form Kit实现音乐服务卡片](https://gitee.com/harmonyos_samples/MusicCard)
