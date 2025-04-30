@@ -76,7 +76,7 @@ listDirection(value: Axis)
 
 ### divider
 
-divider(value: [ListDividerOptions](#listdivideroptions18对象说明) | null)
+divider(value: {strokeWidth: Length; color?: ResourceColor; startMargin?: Length; endMargin?: Length;} | null,)
 
 设置ListItem分割线样式，默认无分割线。
 
@@ -314,6 +314,7 @@ scrollSnapAlign(value: ScrollSnapAlign)
 
 设置列表项滚动结束对齐效果。
 
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -510,7 +511,6 @@ ListItemGroup吸顶或吸底效果枚举。
 | 名称     | 类型     | 必填 | 说明                   |
 | ------- | -------- | ---- | ---------------------- |
 | onFinish | ()=>void | 否   | 在收起动画完成后触发。 |
-
 
 ## 事件
 

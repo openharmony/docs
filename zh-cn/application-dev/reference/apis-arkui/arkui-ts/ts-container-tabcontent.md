@@ -1737,4 +1737,3 @@ struct Index {
 ```
 
 ![tabContent8](figures/tabBarSymbol.gif)
-

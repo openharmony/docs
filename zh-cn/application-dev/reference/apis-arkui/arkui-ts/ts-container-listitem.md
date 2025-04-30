@@ -411,4 +411,3 @@ struct ListItemExample3 {
 }
 ```
 ![ListItemStyle](figures/listItem3.jpeg)
-
