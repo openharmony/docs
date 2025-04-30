@@ -599,7 +599,7 @@
 | int32_t [OH_ArkUI_WaterFlowSectionOption_GetItemCount](#oh_arkui_waterflowsectionoption_getitemcount) ([ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) \*option, int32_t index) | 通过FlowItem分组配置信息获取对应索引下的FlowItem数量。  | 
 | void [OH_ArkUI_WaterFlowSectionOption_SetCrossCount](#oh_arkui_waterflowsectionoption_setcrosscount) ([ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) \*option, int32_t index, int32_t crossCount) | 设置布局栅格，纵向布局时为列数，横向布局时为行数。  | 
 | int32_t [OH_ArkUI_WaterFlowSectionOption_GetCrossCount](#oh_arkui_waterflowsectionoption_getcrosscount) ([ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) \*option, int32_t index) | 通过FlowItem分组配置信息获取对应索引下的布局栅格数。  | 
-| void [OH_ArkUI_WaterFlowSectionOption_SetColumnGap](#oh_arkui_waterflowsectionoption_setcolumngap) ([ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) \*, int32_t index, float columnGap) | 设置分组的列间距。  | 
+| void [OH_ArkUI_WaterFlowSectionOption_SetColumnGap](#oh_arkui_waterflowsectionoption_setcolumngap) ([ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) \*option, int32_t index, float columnGap) | 设置分组的列间距。  | 
 | float [OH_ArkUI_WaterFlowSectionOption_GetColumnGap](#oh_arkui_waterflowsectionoption_getcolumngap) ([ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) \*option, int32_t index) | 通过FlowItem分组配置信息获取对应索引下的分组的列间距。  | 
 | void [OH_ArkUI_WaterFlowSectionOption_SetRowGap](#oh_arkui_waterflowsectionoption_setrowgap) ([ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) \*option, int32_t index, float rowGap) | 设置分组的行间距。  | 
 | float [OH_ArkUI_WaterFlowSectionOption_GetRowGap](#oh_arkui_waterflowsectionoption_getrowgap) ([ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) \*option, int32_t index) | 通过FlowItem分组配置信息获取对应索引下的分组的行间距。  | 
@@ -12317,7 +12317,7 @@ void OH_ArkUI_ListItemSwipeActionOption_SetEnd (ArkUI_ListItemSwipeActionOption 
 | 名称 | 描述 | 
 | -------- | -------- |
 | option | ListItemSwipeActionItem实例。  | 
-| builder | 布局信息。  | 
+| item | 布局信息。  | 
 
 
 ### OH_ArkUI_ListItemSwipeActionOption_SetOnOffsetChange()
@@ -12375,7 +12375,7 @@ void OH_ArkUI_ListItemSwipeActionOption_SetStart (ArkUI_ListItemSwipeActionOptio
 | 名称 | 描述 | 
 | -------- | -------- |
 | option | ListItemSwipeActionItem实例。  | 
-| builder | 布局信息。  | 
+| item | 布局信息。  | 
 
 
 ### OH_ArkUI_LongPress_GetRepeatCount()
@@ -16243,7 +16243,7 @@ void OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndexWithU
 ### OH_ArkUI_WaterFlowSectionOption_SetColumnGap()
 
 ```
-void OH_ArkUI_WaterFlowSectionOption_SetColumnGap (ArkUI_WaterFlowSectionOption * , int32_t index, float columnGap )
+void OH_ArkUI_WaterFlowSectionOption_SetColumnGap (ArkUI_WaterFlowSectionOption * option, int32_t index, float columnGap )
 ```
 **描述：**
 
