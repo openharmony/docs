@@ -1619,7 +1619,7 @@ getGlyphCount(): number
 **示例：**
 
 ```ts
-let GlyphCount = lines[0].getGlyphCount();
+let glyphCount = lines[0].getGlyphCount();
 ```
 
 ### getTextRange
