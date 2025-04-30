@@ -80,6 +80,10 @@ export class AVPlayerDemo {
   private isSeek: boolean = true; // 用于区分模式是否支持seek操作。
   private fileSize: number = -1;
   private fd: number = 0;
+  private context: Context | undefined;
+  constructor(context: Context) {
+    this.context = context; // this.getUIContext().getHostContext();
+  }
   // 注册avplayer回调函数。
   setAVPlayerCallback(avPlayer: media.AVPlayer) {
     // seek操作结果回调函数。
@@ -161,9 +165,10 @@ export class AVPlayerDemo {
     this.setAVPlayerCallback(avPlayer);
     let fdPath = 'fd://';
     // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例。
-    let context = getContext(this) as common.UIAbilityContext;
-    let pathDir = context.filesDir;
-    let path = pathDir + '/01.mp3';
+    if (this.context != undefined) {
+      let pathDir = this.context.filesDir;
+      let path = pathDir + '/01.mp3';
+    }
     // 打开相应的资源文件地址获取fd，并为url赋值触发initialized状态机上报。
     let file = await fs.open(path);
     fdPath = fdPath + '' + file.fd;
@@ -179,11 +184,12 @@ export class AVPlayerDemo {
     this.setAVPlayerCallback(avPlayer);
     // 通过UIAbilityContext的resourceManager成员的getRawFd接口获取媒体资源播放地址。
     // 返回类型为{fd,offset,length},fd为HAP包fd地址，offset为媒体资源偏移量，length为播放长度。
-    let context = getContext(this) as common.UIAbilityContext;
-    let fileDescriptor = await context.resourceManager.getRawFd('01.mp3');
-    let avFileDescriptor: media.AVFileDescriptor =
-      { fd: fileDescriptor.fd, offset: fileDescriptor.offset, length: fileDescriptor.length };
-    this.isSeek = true; // 支持seek操作。
+    if (this.context != undefined) {
+      let fileDescriptor = await this.context.resourceManager.getRawFd('01.mp3');
+      let avFileDescriptor: media.AVFileDescriptor =
+        { fd: fileDescriptor.fd, offset: fileDescriptor.offset, length: fileDescriptor.length };
+      this.isSeek = true; // 支持seek操作。
+    }
     // 为fdSrc赋值触发initialized状态机上报。
     avPlayer.fdSrc = avFileDescriptor;
   }
@@ -209,13 +215,14 @@ export class AVPlayerDemo {
         return -1;
       }
     };
-    let context = getContext(this) as common.UIAbilityContext;
     // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例。
-    let pathDir = context.filesDir;
-    let path = pathDir  + '/01.mp3';
-    await fs.open(path).then((file: fs.File) => {
-      this.fd = file.fd;
-    });
+    if (this.context != undefined) {
+      let pathDir = this.context.filesDir;
+      let path = pathDir  + '/01.mp3';
+      await fs.open(path).then((file: fs.File) => {
+        this.fd = file.fd;
+      });
+    }
     // 获取播放文件的大小。
     this.fileSize = fs.statSync(path).size;
     src.fileSize = this.fileSize;
@@ -229,7 +236,6 @@ export class AVPlayerDemo {
     let avPlayer: media.AVPlayer = await media.createAVPlayer();
     // 创建状态机变化回调函数。
     this.setAVPlayerCallback(avPlayer);
-    let context = getContext(this) as common.UIAbilityContext;
     let src: media.AVDataSrcDescriptor = {
       fileSize: -1,
       callback: (buf: ArrayBuffer, length: number) => {
@@ -245,13 +251,15 @@ export class AVPlayerDemo {
       }
     };
     // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例。
-    let pathDir = context.filesDir;
-    let path = pathDir  + '/01.mp3';
-    await fs.open(path).then((file: fs.File) => {
-      this.fd = file.fd;
-    });
-    this.isSeek = false; // 不支持seek操作。
-    avPlayer.dataSrc = src;
+    if (this.context != undefined) {
+        let pathDir = this.context.filesDir;
+        let path = pathDir  + '/01.mp3';
+        await fs.open(path).then((file: fs.File) => {
+          this.fd = file.fd;
+        });
+        this.isSeek = false; // 不支持seek操作。
+        avPlayer.dataSrc = src;
+      }
   }
 
   // 以下demo为通过url设置网络地址来实现播放直播码流的demo。

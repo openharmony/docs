@@ -42,7 +42,6 @@ Web组件的状态主要包括：Controller绑定到Web组件、网页加载开�
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
-  import { promptAction } from '@kit.ArkUI';
 
   @Entry
   @Component
@@ -104,8 +103,10 @@ Web组件的状态主要包括：Controller绑定到Web组件、网页加载开�
               headerKey: "Cache-Control",
               headerValue: "no-cache"
             }
+            // 将新元素追加到数组的末尾，并返回数组的新长度。
             let length = this.heads.push(head1);
             length = this.heads.push(head2);
+            console.log('The response header result length is :' + length);
             this.responseWeb.setResponseHeader(this.heads);
             this.responseWeb.setResponseData(this.webData);
             this.responseWeb.setResponseEncoding('utf-8');
@@ -147,7 +148,7 @@ Web组件的状态主要包括：Controller绑定到Web组件、网页加载开�
             }
           })
           .onDisAppear(() => {
-            promptAction.showToast({
+            this.getUIContext().getPromptAction().showToast({
               message: 'The web is hidden',
               duration: 2000
             })
@@ -189,62 +190,63 @@ ArkWeb（方舟Web）是一个Web组件平台，旨在为应用程序提供展�
 在ArkWeb渲染子进程异常退出导致页面卡死后，应用可通过监听[onRenderExited](../reference/apis-arkweb/ts-basic-components-web.md#onrenderexited9)事件来获取具体的退出原因[RenderExitReason](../reference/apis-arkweb/ts-basic-components-web.md#renderexitreason9枚举说明)，并在异常回调中根据退出的具体原因，执行相应的异常处理。
 
 **开发实践案例**
-```
-import { webview } from '@kit.ArkWeb'
+```ts
+import { webview } from '@kit.ArkWeb';
+
 @Entry
 @Component
 struct WebComponent {
-  needReloadWhenVisible: boolean = false   // Web组件不可见时render退出后阻止重新加载页面，在可见时重新加载页面。
-  webIsVisible: boolean = false            // 判断Web组件是否可见。
+  needReloadWhenVisible: boolean = false ;  // Web组件不可见时render退出后阻止重新加载页面，在可见时重新加载页面。
+  webIsVisible: boolean = false;            // 判断Web组件是否可见。
 
   // 此处是将子进程异常崩溃和其它异常原因做了区分，应用开发者可根据实际业务特点，细化对应异常的处理策略。
-  renderReloadMaxForCrashed: number = 5    // 设置因为异常崩溃后重新加载的最大重试次数，应用可根据业务特点，自行设置试错上限。
-  renderReloadCountForCrashed: number = 0  // 异常崩溃后重新加载的次数。
-  renderReloadMaxForOthers: number = 10    // 设置因为其它异常原因退出的最大重试次数，应用可根据业务特点，自行设置试错上限。
-  renderReloadCountForOthers: number = 0   // 其它异常原因退出后重新加载的次数。
+  renderReloadMaxForCrashed: number = 5;    // 设置因为异常崩溃后重新加载的最大重试次数，应用可根据业务特点，自行设置试错上限。
+  renderReloadCountForCrashed: number = 0;  // 异常崩溃后重新加载的次数。
+  renderReloadMaxForOthers: number = 10;    // 设置因为其它异常原因退出的最大重试次数，应用可根据业务特点，自行设置试错上限。
+  renderReloadCountForOthers: number = 0;   // 其它异常原因退出后重新加载的次数。
 
   // 创建Web组件。
-  controller: webview.WebviewController = new webview.WebviewController()
+  controller: webview.WebviewController = new webview.WebviewController();
 
   // 指定加载的页面。
-  url: string = "www.example.com"
+  url: string = "www.example.com";
   build() {
     Column() {
       Web({ src: this.url, controller: this.controller })
         .onVisibleAreaChange([0, 1.0], (isVisible) => {
-          this.webIsVisible = isVisible
+          this.webIsVisible = isVisible;
           if (isVisible && this.needReloadWhenVisible) { // Web组件可见时重新加载页面。
-            this.needReloadWhenVisible = false
-            this.controller.loadUrl(this.url)
+            this.needReloadWhenVisible = false;
+            this.controller.loadUrl(this.url);
           }
         })
         // 应用监听渲染子进程异常退出回调，并进行异常处理。
         .onRenderExited((event) => {
           if (!event) {
-            return
+            return;
           }
           if (event.renderExitReason == RenderExitReason.ProcessCrashed) {
             if (this.renderReloadCountForCrashed >= this.renderReloadMaxForCrashed) {
               // 设置重试次数上限保护，避免必现问题导致页面被循环加载。
-              return
+              return;
             }
-            console.log('renderReloadCountForCrashed: ' + this.renderReloadCountForCrashed)
-            this.renderReloadCountForCrashed++
+            console.log('renderReloadCountForCrashed: ' + this.renderReloadCountForCrashed);
+            this.renderReloadCountForCrashed++;
           } else {
             if (this.renderReloadCountForOthers >= this.renderReloadMaxForOthers) {
               // 设置重试次数上限保护, 避免必现问题导致页面被循环加载。
-              return
+              return;
             }
-            console.log('renderReloadCountForOthers: ' + this.renderReloadCountForOthers)
-            this.renderReloadCountForOthers++
+            console.log('renderReloadCountForOthers: ' + this.renderReloadCountForOthers);
+            this.renderReloadCountForOthers++;
           }
           if (this.webIsVisible) {
             // Web组件可见则立即重新加载。
-            this.controller.loadUrl(this.url)
-            return
+            this.controller.loadUrl(this.url);
+            return;
           }
           // Web组件不可见时不立即重新加载。
-          this.needReloadWhenVisible = true
+          this.needReloadWhenVisible = true;
         })
     }
   }

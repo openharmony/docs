@@ -4,9 +4,9 @@ Navigation组件是路由导航的根视图容器，一般作为Page页面的根
 
 > **说明：**
 >
-> - 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> - 该组件从API Version 11开始默认支持安全区避让特性(默认值为：expandSafeArea([SafeAreaType.SYSTEM, SafeAreaType.KEYBOARD, SafeAreaType.CUTOUT], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM]))，开发者可以重写该属性覆盖默认行为，API Version 11之前的版本需配合[expandSafeArea](ts-universal-attributes-expand-safe-area.md)属性实现安全区避让。
+> - 该组件从API version 11开始默认支持安全区避让特性(默认值为：expandSafeArea([SafeAreaType.SYSTEM, SafeAreaType.KEYBOARD, SafeAreaType.CUTOUT], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM]))，开发者可以重写该属性覆盖默认行为，API version 11之前的版本需配合[expandSafeArea](ts-universal-attributes-expand-safe-area.md)属性实现安全区避让。
 >
 > - [NavBar](#navbar12)嵌套使用Navigation时，内层Navigation的生命周期不和外层Navigation以及[全模态](ts-universal-attributes-modal-transition.md#全屏模态转场)的生命周期进行联动。
 >
@@ -17,9 +17,9 @@ Navigation组件是路由导航的根视图容器，一般作为Page页面的根
 
 可以包含子组件。
 
-从API Version 9开始，推荐与[NavRouter](ts-basic-components-navrouter.md)组件搭配使用。
+从API version 9开始，推荐与[NavRouter](ts-basic-components-navrouter.md)组件搭配使用。
 
-从API Version 10开始，推荐使用[NavPathStack](#navpathstack10)配合[navDestination](#navdestination10)属性进行页面路由。
+从API version 10开始，推荐使用[NavPathStack](#navpathstack10)配合[navDestination](#navdestination10)属性进行页面路由。
 
 ## 接口
 
@@ -332,7 +332,7 @@ hideNavBar(value: boolean)
 
 设置是否隐藏导航栏。设置为true时，隐藏Navigation的导航栏，包括标题栏、内容区和工具栏。如果此时路由栈中存在NavDestination页面，则直接显示栈顶NavDestination页面，反之显示空白。
 
-从API Version 9开始到API Version 10仅在双栏模式下生效。从API Version 11开始在单栏、双栏与自适应模式均生效。
+从API version 9开始到API version 10仅在双栏模式下生效。从API version 11开始在单栏、双栏与自适应模式均生效。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -530,7 +530,7 @@ subTitle(value: string)
 
 设置页面副标题。
 
-从API Version 9开始废弃，建议使用[title](#title)代替。
+从API version 9开始废弃，建议使用[title](#title)代替。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1594,7 +1594,7 @@ Navigation首页名字。
 
 | 名称     | 类型            | 必填   | 说明              |
 | ------ | ------------- | ---- | --------------- |
-| value  | string \| [Resource<sup>14+<sup>](ts-types.md#resource)       | 是    | API Version 9：显示菜单栏单个选项的文本。<br> 从API Version 10开始，不显示菜单栏单个选项的文本。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| value  | string \| [Resource<sup>14+<sup>](ts-types.md#resource)       | 是    | API version 9：显示菜单栏单个选项的文本。<br> 从API version 10开始，不显示菜单栏单个选项的文本。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | icon   | string \| [Resource<sup>14+<sup>](ts-types.md#resource)       | 否    | 菜单栏单个选项的图标资源路径。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | isEnabled<sup>12+</sup>   | boolean        | 否    | 使能状态，默认使能（false未使能，true使能）。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | action | () =&gt; void | 否    | 当前选项被选中的事件回调。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -1839,15 +1839,15 @@ type SystemBarStyle = SystemBarStyle
 ```ts
 // xxx.ets
 class A {
-  text: string = ''
-  num: number = 0
+  text: string = '';
+  num: number = 0;
 }
 
 @Entry
 @Component
 struct NavigationExample {
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-  @State currentIndex: number = 0
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  @State currentIndex: number = 0;
 
   @Builder
   NavigationTitle() {
@@ -1950,7 +1950,7 @@ struct NavigationExample {
 @Entry
 @Component
 struct NavigationExample {
-  pageInfos: NavPathStack = new NavPathStack()
+  pageInfos: NavPathStack = new NavPathStack();
   isUseInterception: boolean = false;
 
   registerInterception() {
@@ -1981,7 +1981,7 @@ struct NavigationExample {
         if (typeof from === "string") {
           console.log("current transition is from navigation home");
         } else {
-          console.log(`current transition is from  ${(from as NavDestinationContext).pathInfo.name}`)
+          console.log(`current transition is from  ${(from as NavDestinationContext).pathInfo.name}`);
         }
         if (typeof to === "string") {
           console.log("current transition to is navBar");
@@ -2007,7 +2007,7 @@ struct NavigationExample {
           .height(40)
           .margin(20)
           .onClick(() => {
-            this.pageInfos.pushPath({ name: 'pageOne' }) //将name指定的NavDestination页面信息入栈
+            this.pageInfos.pushPath({ name: 'pageOne' }); //将name指定的NavDestination页面信息入栈
           })
         Button('use interception', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
@@ -2029,7 +2029,7 @@ struct NavigationExample {
 ```ts
 // PageOne.ets
 class TmpClass {
-  count: number = 10
+  count: number = 10;
 }
 
 @Builder
@@ -2039,7 +2039,7 @@ export function PageOneBuilder(name: string, param: Object) {
 
 @Component
 export struct PageOne {
-  pageInfos: NavPathStack = new NavPathStack()
+  pageInfos: NavPathStack = new NavPathStack();
 
   build() {
     NavDestination() {
@@ -2049,8 +2049,8 @@ export struct PageOne {
           .height(40)
           .margin(20)
           .onClick(() => {
-            let tmp = new TmpClass()
-            this.pageInfos.pushPathByName('pageTwo', tmp) //将name指定的NavDestination页面信息入栈，传递的数据为param
+            let tmp = new TmpClass();
+            this.pageInfos.pushPathByName('pageTwo', tmp); //将name指定的NavDestination页面信息入栈，传递的数据为param
           })
         Button('singletonLaunchMode', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
@@ -2058,72 +2058,72 @@ export struct PageOne {
           .margin(20)
           .onClick(() => {
             this.pageInfos.pushPath({ name: 'pageOne' },
-              { launchMode: LaunchMode.MOVE_TO_TOP_SINGLETON }) //从栈底向栈顶查找，如果指定的名称已经存在，则将对应的NavDestination页面移到栈顶
+              { launchMode: LaunchMode.MOVE_TO_TOP_SINGLETON }); //从栈底向栈顶查找，如果指定的名称已经存在，则将对应的NavDestination页面移到栈顶
           })
         Button('popToname', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
           .height(40)
           .margin(20)
           .onClick(() => {
-            this.pageInfos.popToName('pageTwo') //回退路由栈到第一个名为name的NavDestination页面
+            this.pageInfos.popToName('pageTwo'); //回退路由栈到第一个名为name的NavDestination页面
             console.log('popToName' + JSON.stringify(this.pageInfos),
-              '返回值' + JSON.stringify(this.pageInfos.popToName('pageTwo')))
+              '返回值' + JSON.stringify(this.pageInfos.popToName('pageTwo')));
           })
         Button('popToIndex', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
           .height(40)
           .margin(20)
           .onClick(() => {
-            this.pageInfos.popToIndex(1) // 回退路由栈到index指定的NavDestination页面
-            console.log('popToIndex' + JSON.stringify(this.pageInfos))
+            this.pageInfos.popToIndex(1); // 回退路由栈到index指定的NavDestination页面
+            console.log('popToIndex' + JSON.stringify(this.pageInfos));
           })
         Button('moveToTop', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
           .height(40)
           .margin(20)
           .onClick(() => {
-            this.pageInfos.moveToTop('pageTwo') // 将第一个名为name的NavDestination页面移到栈顶
+            this.pageInfos.moveToTop('pageTwo'); // 将第一个名为name的NavDestination页面移到栈顶
             console.log('moveToTop' + JSON.stringify(this.pageInfos),
-              '返回值' + JSON.stringify(this.pageInfos.moveToTop('pageTwo')))
+              '返回值' + JSON.stringify(this.pageInfos.moveToTop('pageTwo')));
           })
         Button('moveIndexToTop', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
           .height(40)
           .margin(20)
           .onClick(() => {
-            this.pageInfos.moveIndexToTop(1) // 将index指定的NavDestination页面移到栈顶
-            console.log('moveIndexToTop' + JSON.stringify(this.pageInfos))
+            this.pageInfos.moveIndexToTop(1); // 将index指定的NavDestination页面移到栈顶
+            console.log('moveIndexToTop' + JSON.stringify(this.pageInfos));
           })
         Button('clear', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
           .height(40)
           .margin(20)
           .onClick(() => {
-            this.pageInfos.clear() //清除栈中所有页面
+            this.pageInfos.clear(); //清除栈中所有页面
           })
         Button('get', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
           .height(40)
           .margin(20)
           .onClick(() => {
-            console.log('-------------------')
-            console.log('获取栈中所有NavDestination页面的名称', JSON.stringify(this.pageInfos.getAllPathName()))
+            console.log('-------------------');
+            console.log('获取栈中所有NavDestination页面的名称', JSON.stringify(this.pageInfos.getAllPathName()));
             console.log('获取index指定的NavDestination页面的参数信息',
-              JSON.stringify(this.pageInfos.getParamByIndex(1)))
+              JSON.stringify(this.pageInfos.getParamByIndex(1)));
             console.log('获取全部名为name的NavDestination页面的参数信息',
-              JSON.stringify(this.pageInfos.getParamByName('pageTwo')))
+              JSON.stringify(this.pageInfos.getParamByName('pageTwo')));
             console.log('获取全部名为name的NavDestination页面的位置索引',
-              JSON.stringify(this.pageInfos.getIndexByName('pageOne')))
-            console.log('获取栈大小', JSON.stringify(this.pageInfos.size()))
+              JSON.stringify(this.pageInfos.getIndexByName('pageOne')));
+            console.log('获取栈大小', JSON.stringify(this.pageInfos.size()));
           })
       }.width('100%').height('100%')
     }.title('pageOne')
     .onBackPressed(() => {
-      const popDestinationInfo = this.pageInfos.pop() // 弹出路由栈栈顶元素
-      console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo))
-      return true
+      const popDestinationInfo = this.pageInfos.pop(); // 弹出路由栈栈顶元素
+      console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo));
+      return true;
     }).onReady((context: NavDestinationContext) => {
-      this.pageInfos = context.pathStack
+      this.pageInfos = context.pathStack;
     })
   }
 }
@@ -2137,7 +2137,7 @@ export function PageTwoBuilder(name: string, param: Object) {
 
 @Component
 export struct PageTwo {
-  pathStack: NavPathStack = new NavPathStack()
+  pathStack: NavPathStack = new NavPathStack();
   private menuItems: Array<NavigationMenuItem> = [
     {
       value: "1",
@@ -2153,7 +2153,7 @@ export struct PageTwo {
       icon: 'resources/base/media/ic_public_ok.svg',
       isEnabled: true,
     }
-  ]
+  ];
 
   build() {
     NavDestination() {
@@ -2163,18 +2163,18 @@ export struct PageTwo {
           .height(40)
           .margin(20)
           .onClick(() => {
-            this.pathStack.pushPathByName('pageOne', null)
+            this.pathStack.pushPathByName('pageOne', null);
           })
       }.width('100%').height('100%')
     }.title('pageTwo')
     .menus(this.menuItems)
     .onBackPressed(() => {
-      this.pathStack.pop()
-      return true
+      this.pathStack.pop();
+      return true;
     })
     .onReady((context: NavDestinationContext) => {
       this.pathStack = context.pathStack;
-      console.log("current page config info is " + JSON.stringify(context.getConfigInRouteMap()))
+      console.log("current page config info is " + JSON.stringify(context.getConfigInRouteMap()));
     })
   }
 }
@@ -2261,7 +2261,7 @@ struct NavigationExample {
       }
       let customAnimation: NavigationAnimatedTransition = {
         onTransitionEnd: (isSuccess: boolean) => {
-          console.log(`current transition result is ${isSuccess}`)
+          console.log(`current transition result is ${isSuccess}`);
         },
         timeout: 7000,
         // 转场开始时系统调用该方法，并传入转场上下文代理对象
@@ -2447,7 +2447,7 @@ export struct PageTwo {
       if (isPush) {
         this.translateX = '0';
       } else {
-        this.translateX = '100%'
+        this.translateX = '100%';
       }
     }, (isPush: boolean, isExit: boolean) => {
       this.translateX = '0';
@@ -2459,13 +2459,13 @@ export struct PageTwo {
             this.translateX = '0';
           }
         }, () => {
-          this.translateX = '0'
+          this.translateX = '0';
         })
       } else {
         this.translateX = '0';
         this.getUIContext()?.animateTo({
           duration: 500, onFinish: () => {
-            this.translateX = "0"
+            this.translateX = "0";
           }
         }, () => {
           this.translateX = '100%';
@@ -2483,7 +2483,7 @@ export struct PageTwo {
           .margin(20)
           .onClick(() => {
             //将name指定的NavDestination页面信息入栈，传递的数据为param
-            this.pageInfos.pushPath({ name: 'pageOne', param: CustomTransition.getInstance().getAnimationId() })
+            this.pageInfos.pushPath({ name: 'pageOne', param: CustomTransition.getInstance().getAnimationId() });
           })
       }
       .size({ width: '100%', height: '100%' })
@@ -2542,7 +2542,7 @@ export class CustomTransition {
   interactive: boolean = false;
   proxy: NavigationTransitionProxy | undefined = undefined;
   private animationId: number = 0;
-  operation: NavigationOperation = NavigationOperation.PUSH
+  operation: NavigationOperation = NavigationOperation.PUSH;
 
   static getInstance() {
     return CustomTransition.delegate;
@@ -2694,7 +2694,7 @@ export class CustomTransition {
 @Entry
 @Component
 struct NavigationExample {
-  pageInfo: NavPathStack = new NavPathStack()
+  pageInfo: NavPathStack = new NavPathStack();
 
   build() {
     Navigation(this.pageInfo) {
@@ -2716,12 +2716,12 @@ struct NavigationExample {
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class TmpClass {
-  count: number = 10
+  count: number = 10;
 }
 
 class ParamWithOp {
-  operation: number = 1
-  count: number = 10
+  operation: number = 1;
+  count: number = 10;
 }
 
 @Builder
@@ -2732,7 +2732,7 @@ export function PageOneBuilder(name: string, param: Object) {
 @Component
 export struct PageOne {
   pageInfo: NavPathStack = new NavPathStack();
-  @State message: string = 'Hello World'
+  @State message: string = 'Hello World';
 
   build() {
     NavDestination() {
@@ -2760,7 +2760,7 @@ export struct PageOne {
           .height(40)
           .margin(10)
           .onClick(() => {
-            let tmp = new TmpClass()
+            let tmp = new TmpClass();
             this.pageInfo.pushPathByName('pageTwo', tmp, (popInfo) => {
               this.message =
                 '[pushPathByName]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
@@ -2772,7 +2772,7 @@ export struct PageOne {
           .height(40)
           .margin(10)
           .onClick(() => {
-            let tmp = new TmpClass()
+            let tmp = new TmpClass();
             // 将name指定的NavDestination页面信息入栈，传递的数据为param，添加接收处理结果的onPop回调。
             this.pageInfo.pushDestination({
               name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo) => {
@@ -2791,7 +2791,7 @@ export struct PageOne {
           .height(40)
           .margin(10)
           .onClick(() => {
-            let tmp = new TmpClass()
+            let tmp = new TmpClass();
             // 将name指定的NavDestination页面信息入栈，传递的数据为param，添加接收处理结果的onPop回调。
             this.pageInfo.pushDestinationByName('pageTwo', tmp, (popInfo) => {
               this.message = '[pushDestinationByName]last page is: ' + popInfo.info.name + ', result: ' +
@@ -2816,7 +2816,7 @@ export struct PageOne {
           .height(40)
           .margin(10)
           .onClick(() => {
-            let tmp = new TmpClass()
+            let tmp = new TmpClass();
             this.pageInfo.pushPathByName('pageTwo', tmp); // 将name指定的NavDestination页面信息入栈，传递的数据为param。
           })
 
@@ -2825,7 +2825,7 @@ export struct PageOne {
           .height(40)
           .margin(10)
           .onClick(() => {
-            let tmp = new TmpClass()
+            let tmp = new TmpClass();
             // 将name指定的NavDestination页面信息入栈，传递的数据为param，添加接收处理结果的onPop回调。
             this.pageInfo.pushDestination({ name: 'pageTwo', param: new ParamWithOp() })
               .catch((error: BusinessError) => {
@@ -2840,7 +2840,7 @@ export struct PageOne {
           .height(40)
           .margin(10)
           .onClick(() => {
-            let tmp = new TmpClass()
+            let tmp = new TmpClass();
             // 将name指定的NavDestination页面信息入栈，传递的数据为param。
             this.pageInfo.pushDestinationByName('pageTwo', tmp)
               .catch((error: BusinessError) => {
@@ -2860,8 +2860,8 @@ export struct PageOne {
       }.width('100%').height('100%')
     }.title('pageOne')
     .onBackPressed(() => {
-      this.pageInfo.pop({ number: 1 }) // 弹出路由栈栈顶元素。
-      return true
+      this.pageInfo.pop({ number: 1 }); // 弹出路由栈栈顶元素。
+      return true;
     }).onReady((context: NavDestinationContext) => {
       this.pageInfo = context.pathStack;
     })
@@ -2875,17 +2875,17 @@ class resultClass {
     this.count = count;
   }
 
-  count: number = 10
+  count: number = 10;
 }
 
 @Builder
 export function PageTwoBuilder() {
-  PageTwo()
+  PageTwo();
 }
 
 @Component
 export struct PageTwo {
-  pathStack: NavPathStack = new NavPathStack()
+  pathStack: NavPathStack = new NavPathStack();
 
   build() {
     NavDestination() {
@@ -2944,7 +2944,7 @@ export struct PageTwo {
       this.pathStack.pop(new resultClass(0)); // 回退到上一个页面，将处理结果传入push的onPop回调。
       return true;
     }).onReady((context: NavDestinationContext) => {
-      this.pathStack = context.pathStack
+      this.pathStack = context.pathStack;
     })
   }
 }
@@ -3248,7 +3248,7 @@ struct NavigationExample1 {
             .onClick(() => {
               // 可以获取父NavPathStack
               let parentStack = this.childNavStack.getParent();
-              parentStack?.pushPath({ name: "pageOne" })
+              parentStack?.pushPath({ name: "pageOne" });
             })
         }
         .clip(true)
@@ -3314,7 +3314,7 @@ class PageParam {
 
 @Builder
 export function PageOneBuilder(name: string, param: Object) {
-  PageOne()
+  PageOne();
 }
 
 @Component
@@ -3342,7 +3342,7 @@ struct PageOne {
           .height(40)
           .margin(20)
           .onClick(() => {
-            this.stack?.pop()
+            this.stack?.pop();
           })
       }
       .width('100%')
@@ -3356,7 +3356,7 @@ struct PageOne {
         this.paramNum = (ctx?.pathInfo?.param as PageParam)?.num;
         this.stack = ctx.pathStack;
       } catch (e) {
-        console.log(`testTag onReady catch exception: ${JSON.stringify(e)}`)
+        console.log(`testTag onReady catch exception: ${JSON.stringify(e)}`);
       }
     })
   }
@@ -3376,7 +3376,7 @@ struct NavigationExample2 {
           .margin(20)
           .onClick(() => {
             let p = new PageParam(1);
-            this.stack.pushPath({ name: "pageOne", param: p })
+            this.stack.pushPath({ name: "pageOne", param: p });
           })
       }
       .width('100%')
@@ -3413,7 +3413,7 @@ struct NavigationExample2 {
 ```ts
 @Builder
 export function PageOneBuilder(name: string, param: Object) {
-  PageOneComponent()
+  PageOneComponent();
 }
 
 @Component
@@ -3439,7 +3439,7 @@ struct PageOneComponent {
           .height(40)
           .margin(20)
           .onClick(() => {
-            this.stack?.pop()
+            this.stack?.pop();
           })
       }
       .width('100%')
@@ -3476,7 +3476,7 @@ struct PageOneComponent {
         this.eventStr += "<onReady>";
         this.stack = ctx.pathStack;
       } catch (e) {
-        console.log(`testTag onReady catch exception: ${JSON.stringify(e)}`)
+        console.log(`testTag onReady catch exception: ${JSON.stringify(e)}`);
       }
     })
   }
@@ -3495,7 +3495,7 @@ struct NavigationExample3 {
           .height(40)
           .margin(20)
           .onClick(() => {
-            this.stack.pushPath({ name: "pageOne" })
+            this.stack.pushPath({ name: "pageOne" });
           })
       }
       .width('100%')
@@ -3604,7 +3604,7 @@ struct NavigationExample {
 ```ts
 class DerivedNavPathStack extends NavPathStack {
   // usr defined property 'id'
-  id: string = "__default__"
+  id: string = "__default__";
 
   // new function in derived class
   setId(id: string) {
@@ -3613,7 +3613,7 @@ class DerivedNavPathStack extends NavPathStack {
 
   // new function in derived class
   getInfo(): string {
-    return "this page used Derived NavPathStack, id: " + this.id
+    return "this page used Derived NavPathStack, id: " + this.id;
   }
 
   // overwrite function of NavPathStack
@@ -3643,7 +3643,7 @@ class param {
   info: string = "__default_param__";
 
   constructor(info: string) {
-    this.info = info
+    this.info = info;
   }
 }
 
@@ -3658,7 +3658,7 @@ struct Index {
 
   @Builder
   pageMap(name: string) {
-    PageOne()
+    PageOne();
   }
 
   build() {
@@ -3744,7 +3744,7 @@ struct NavigationExample {
       value: 'menuItem3',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
     },
-  ]
+  ];
   @State toolItems: Array<ToolbarItem> = [
     {
       value: 'toolItem1',
@@ -3772,7 +3772,7 @@ struct NavigationExample {
       action: () => {
       }
     }
-  ]
+  ];
 
   @Builder
   myRouter(name: string, param?: Object) {
@@ -3821,7 +3821,7 @@ export struct NavigationMenu {
       action: () => {
       }
     },
-  ]
+  ];
 
   build() {
     NavDestination() {
@@ -3856,19 +3856,19 @@ class MainTitleTextModfier extends TextModifier {
   applyNormalAttribute(instance: TextModifier): void {
     if (this.useStyle1) {
       console.log(`testTag mainTitle use style1`);
-      instance.fontColor('#FFFFC000')
-      instance.fontSize(35)
-      instance.fontWeight(FontWeight.Bolder)
-      instance.fontStyle(FontStyle.Normal)
-      instance.textShadow({ radius: 5, offsetX: 9 })
+      instance.fontColor('#FFFFC000');
+      instance.fontSize(35);
+      instance.fontWeight(FontWeight.Bolder);
+      instance.fontStyle(FontStyle.Normal);
+      instance.textShadow({ radius: 5, offsetX: 9 });
     } else {
       console.log(`testTag mainTitle use style2`);
-      instance.fontColor('#FF23A98D')
-      instance.fontSize(20)
-      instance.heightAdaptivePolicy(TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST)
-      instance.fontWeight(FontWeight.Lighter)
-      instance.fontStyle(FontStyle.Italic)
-      instance.textShadow({ radius: 3, offsetX: 3 })
+      instance.fontColor('#FF23A98D');
+      instance.fontSize(20);
+      instance.heightAdaptivePolicy(TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST);
+      instance.fontWeight(FontWeight.Lighter);
+      instance.fontStyle(FontStyle.Italic);
+      instance.textShadow({ radius: 3, offsetX: 3 });
     }
   }
 }
@@ -3879,18 +3879,18 @@ class SubTitleTextModfier extends TextModifier {
   applyNormalAttribute(instance: TextModifier): void {
     if (this.useStyle1) {
       console.log(`testTag subTitle use style1`);
-      instance.fontColor('#FFFFC000')
-      instance.fontSize(15)
-      instance.fontWeight(FontWeight.Bolder)
-      instance.fontStyle(FontStyle.Normal)
-      instance.textShadow({ radius: 5, offsetX: 9 })
+      instance.fontColor('#FFFFC000');
+      instance.fontSize(15);
+      instance.fontWeight(FontWeight.Bolder);
+      instance.fontStyle(FontStyle.Normal);
+      instance.textShadow({ radius: 5, offsetX: 9 });
     } else {
       console.log(`testTag subTitle use style2`);
-      instance.fontColor('#FF23A98D')
-      instance.fontSize(10)
-      instance.fontWeight(FontWeight.Lighter)
-      instance.fontStyle(FontStyle.Italic)
-      instance.textShadow({ radius: 3, offsetX: 3 })
+      instance.fontColor('#FF23A98D');
+      instance.fontSize(10);
+      instance.fontWeight(FontWeight.Lighter);
+      instance.fontStyle(FontStyle.Italic);
+      instance.textShadow({ radius: 3, offsetX: 3 });
     }
   }
 }
@@ -3937,7 +3937,7 @@ struct NavigationExample {
           .width(180)
         Button('pushPage')
           .onClick(() => {
-            this.navPathStack.pushPath({ name: 'NavDestinationExample' })
+            this.navPathStack.pushPath({ name: 'NavDestinationExample' });
           })
           .margin({ top: 40 })
           .width(180)
@@ -3992,7 +3992,7 @@ export struct NavDestinationExample {
       action: () => {
       }
     }
-  ]
+  ];
   @State paddingStart: LengthMetrics = LengthMetrics.vp(0);
   @State paddingEnd: LengthMetrics = LengthMetrics.vp(0);
   // 主标题样式修改器
@@ -4155,13 +4155,13 @@ struct NavigationCustomTransitionExample {
 // PageOne
 @Builder
 export function PageOneBuilder() {
-  PageContainer({ title: "PageOne" })
+  PageContainer({ title: "PageOne" });
 }
 
 // PageTwo
 @Builder
 export function PageTwoBuilder() {
-  PageContainer({ title: "PageTwo" })
+  PageContainer({ title: "PageTwo" });
 }
 
 @Component
@@ -4215,7 +4215,7 @@ export struct PageContainer {
           .height(40)
           .margin(20)
           .onClick(() => {
-            this.pageInfos.pushPath({ name: this.title == 'PageOne' ? "PageTwo" : "PageOne" })
+            this.pageInfos.pushPath({ name: this.title == 'PageOne' ? "PageTwo" : "PageOne" });
           })
       }
       .size({ width: '100%', height: '100%' })
@@ -4244,7 +4244,7 @@ export struct PageContainer {
 // 自定义接口，用来保存某个页面相关的转场动画回调和参数
 export interface AnimateCallback {
   start: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
-  finish: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined
+  finish: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
 }
 
 const customTransitionMap: Map<string, AnimateCallback> = new Map();

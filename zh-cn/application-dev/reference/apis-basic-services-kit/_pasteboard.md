@@ -484,12 +484,20 @@ bool OH_Pasteboard_HasType (OH_Pasteboard * pasteboard, const char * type )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| pasteboard | 表示指向剪贴板[OH_Pasteboard](#oh_pasteboard)实例的指针。  |
-| type | 表示要检查的数据类型。  |
+| pasteboard | 表示指向剪贴板[OH_Pasteboard](#oh_pasteboard)实例的指针。 |
+| type | 表示要检查的数据类型。包含剪贴板基础数据类型与自定义数据类型，其中剪贴板基础数据类型有：`"text/plain"`、`"text/html"`、`"text/uri"`、`"text/want"`和`"pixelMap"`。 |
 
 **返回：**
 
 返回剪贴板中是否有指定类型的数据。返回true表示剪贴板中包含指定类型的数据，返回false表示剪贴板中没有指定类型的数据。
+
+**示例：**
+
+```C
+OH_Pasteboard* pasteboard = OH_Pasteboard_Create();
+bool hasType = OH_Pasteboard_HasType(pasteboard, "text/plain");
+OH_Pasteboard_Destory(pasteboard);
+```
 
 **参见：**
 

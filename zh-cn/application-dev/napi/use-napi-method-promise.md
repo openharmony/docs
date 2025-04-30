@@ -16,27 +16,27 @@
     #include "napi/native_api.h"
     #include <napi/common.h>
     #include <pthread.h>
-
+    
     //解析Promise结果的回调
     static napi_value ResolvedCallback(napi_env env, napi_callback_info info)
     {
         size_t argc = 1;
         napi_value args[1];
         napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-
+    
         int result;
         napi_get_value_int32(env, args[0], &result);
         OH_LOG_INFO(LOG_APP, "Promise resolved with result:%{public}d", result);
         return nullptr;
     }
-
+    
     //拒绝Promise的回调
     static napi_value RejectedCallback(napi_env env, napi_callback_info info)
     {
         size_t argc = 1;
         napi_value args[1];
         napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-
+    
         napi_value error;
         napi_coerce_to_string(env, args[0], &error);
         char errorMsg[1024];
@@ -45,7 +45,7 @@
         OH_LOG_ERROR(LOG_APP, "Promise rejected with error:%{public}s", errorMsg);
         return nullptr;
     }
-
+    
     static napi_value CallArkTSAsync(napi_env env, napi_callback_info info)
     {
         size_t argc = 1;
@@ -53,22 +53,22 @@
         napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
         napi_value promise = nullptr;
         napi_call_function(env, nullptr, argv[0], 0, nullptr, &promise);
-
+    
         napi_value thenFunc = nullptr;
         if (napi_get_named_property(env, promise, "then", &thenFunc) != napi_ok) {
             return nullptr;
         }
-
+    
         napi_value onResolve = nullptr;
         napi_value onReject = nullptr;
         napi_create_function(env, "onResolve", NAPI_AUTO_LENGTH, ResolvedCallback, nullptr, &onResolve);
         napi_create_function(env, "onReject", NAPI_AUTO_LENGTH, RejectedCallback, nullptr, &onReject);
         napi_value argv1[2] = {onResolve, onReject};
         napi_call_function(env, promise, thenFunc, 2, argv1, nullptr);
-
+    
         return nullptr;
     }
-
+    
     // 注册模块接口
     EXTERN_C_START
     static napi_value Init(napi_env env, napi_value exports)
@@ -80,7 +80,7 @@
         return exports;
     }
     EXTERN_C_END
-
+    
     static napi_module nativeModule = {
         .nm_version = 1,
         .nm_flags = 0,
@@ -90,7 +90,7 @@
         .nm_priv = nullptr,
         .reserved = { 0 },
     };
-
+    
     extern "C" __attribute__((constructor)) void RegisterEntryModule()
     {
         napi_module_register(&nativeModule);
@@ -110,13 +110,13 @@
     # the minimum version of CMake.
     cmake_minimum_required(VERSION 3.4.1)
     project(myapplication)
-
+    
     set(NATIVERENDER_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
-
+    
     if(DEFINED PACKAGE_FIND_FILE)
         include(${PACKAGE_FIND_FILE})
     endif()
-
+    
     include_directories(${NATIVERENDER_ROOT_PATH}
                         ${NATIVERENDER_ROOT_PATH}/include)
     add_library(entry SHARED hello.cpp)
@@ -139,13 +139,13 @@
 - ArkTS代码示例
     ```ts
     // index.ets
-    import testNapi from 'libentry.so'
-
+    import testNapi from 'libentry.so';
+    
     export function SetTimeout() : Promise<number> {
         return new Promise((resolve) => {
             setTimeout(() => {
                 resolve(42);
-            }, 1000)
+            }, 1000);
         })
     }
     testNapi.callArkTSAsync(SetTimeout);

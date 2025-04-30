@@ -410,7 +410,7 @@ getHapticsFeature(): systemSoundManager.ToneHapticsFeature
 
 | 类型                                                                                              | 说明     |
 |-------------------------------------------------------------------------------------------------| -------- |
-| [systemSoundManager.ToneHapticsFeature](js-apis-systemSoundManager-sys.md#tonehapticsfeature13) | 振动风格 |
+| [systemSoundManager.ToneHapticsFeature](js-apis-systemSoundManager-sys.md#tonehapticsfeature13) | 振动风格。 |
 
 **错误码：**
 

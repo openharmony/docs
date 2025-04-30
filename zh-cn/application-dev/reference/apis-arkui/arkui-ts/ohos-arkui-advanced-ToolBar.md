@@ -6,7 +6,7 @@
 
 > **说明：**
 >
-> 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > 该组件不支持在Wearable设备上使用。
 
@@ -93,6 +93,12 @@ backgroundColor(backgroundColor: ResourceColor): ToolBarModifier
 | ------- | ------------------------------------------------------ | ---- |------------------------------------------------------------------|
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 是   | 工具栏背景色。<br/>默认背景色为$r('sys.color.ohos_id_color_toolbar_bg')。 |
 
+**返回值：**
+
+| 类型                                    | 说明                                    |
+|---------------------------------------|---------------------------------------|
+| [ToolBarModifier](#toolbarmodifier13) | 设置backgroundColor后的ToolBarModifier对象。 |
+
 ### padding
 
 padding(padding: LengthMetrics): ToolBarModifier
@@ -108,6 +114,12 @@ padding(padding: LengthMetrics): ToolBarModifier
 | 参数名  | 类型     | 必填 | 说明                                                                                  |
 | ------- |--------| ---- |-------------------------------------------------------------------------------------|
 | padding | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 是   | 工具栏左右内边距，仅在item小于5个时生效。<br/>工具栏默认在item小于5个时padding为24vp，大于等于5个时为0。 |
+
+**返回值：**
+
+| 类型                                    | 说明                                    |
+|---------------------------------------|---------------------------------------|
+| [ToolBarModifier](#toolbarmodifier13) | 设置padding后的ToolBarModifier对象。 |
 
 ### height
 
@@ -125,6 +137,13 @@ height(height: LengthMetrics): ToolBarModifier
 | ------- |---------------------------------| ---- |------------------------------------|
 | height | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 是   | 工具栏高度。<br/>工具栏高度默认为56vp（不包含分割线）。 |
 
+**返回值：**
+
+| 类型                                    | 说明                                    |
+|---------------------------------------|---------------------------------------|
+| [ToolBarModifier](#toolbarmodifier13) | 设置height后的ToolBarModifier对象。 |
+
+
 ### stateEffect
 
 stateEffect(stateEffect: boolean): ToolBarModifier
@@ -140,6 +159,12 @@ stateEffect(stateEffect: boolean): ToolBarModifier
 | 参数名  | 类型                             | 必填 | 说明                                                       |
 | ------- |--------------------------------| ---- |----------------------------------------------------------|
 | stateEffect | boolean | 是   | 工具栏是否显示按压态效果。<br/>true为显示按压态效果，false为移除按压态效果，默认为true。 |
+
+**返回值：**
+
+| 类型                                    | 说明                                    |
+|---------------------------------------|---------------------------------------|
+| [ToolBarModifier](#toolbarmodifier13) | 设置stateEffect后的ToolBarModifier对象。 |
 
 ## ItemState
 
