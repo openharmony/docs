@@ -536,11 +536,11 @@ It is not allowed to access this domain.
 
 **错误信息**
 
-Unknown error.
+Internal error.
 
 **错误描述**
 
-未知错误。
+内部错误。
 
 **可能原因**
 
