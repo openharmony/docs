@@ -4,7 +4,7 @@
 ## 概述
 
 提供ArkUI在Native侧的通用拖拽及主动发起拖拽能力。更多详细介绍请参考[拖拽事件](../../ui/ndk-drag-event.md)。
-障碍组属性, 支持属性设置，属性重置
+
 提供ArkUI在Native侧的通用按键事件能力。
 
 提供ArkUI在Native侧的注册手势回调的能力。更多详细介绍请参考[绑定手势事件](../../ui/ndk-bind-gesture-events.md)。
