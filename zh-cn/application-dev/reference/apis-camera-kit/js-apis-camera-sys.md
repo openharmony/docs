@@ -2694,8 +2694,8 @@ isSceneFeatureSupported(type: SceneFeatureType): boolean
 **示例：**
 
 ```ts
-function isSceneFeatureSupported(photoSession: camera.PhotoSession, featureType: camera.SceneFeatureType): boolean {
-  let isSupported: boolean = photoSession.isSceneFeatureSupported(featureType);
+function isSceneFeatureSupported(photoSessionForSys: camera.PhotoSessionForSys, featureType: camera.SceneFeatureType): boolean {
+  let isSupported: boolean = photoSessionForSys.isSceneFeatureSupported(featureType);
   return isSupported;
 }
 ```
@@ -2804,9 +2804,9 @@ getZoomPointInfos(): Array\<ZoomPointInfo\>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-function getZoomPointInfos(): Array<ZoomPointInfo> {
+function getZoomPointInfos(photoSessionForSys: camera.PhotoSessionForSys): Array<camera.ZoomPointInfo> {
   try {
-    let zoomPointInfos: Array<ZoomPointInfo> = sessionExtendsZoom.getZoomPointInfos();
+    let zoomPointInfos: Array<ZoomPointInfo> = photoSessionForSys.getZoomPointInfos();
 	return zoomPointInfos;
   } catch (error) {
     // 失败返回错误码error.code并处理。
@@ -5492,7 +5492,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 function isExposureMeteringModeSupported(professionalPhotoSession: camera.ProfessionalPhotoSession): boolean {
   let isSupported: boolean = false;
   try {
-    isSupported = professionalPhotoSession.isExposureModeSupported(camera.ExposureMeteringMode.CENTER);
+    isSupported = professionalPhotoSession.isExposureMeteringModeSupported(camera.ExposureMeteringMode.CENTER);
   } catch (error) {
     // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
