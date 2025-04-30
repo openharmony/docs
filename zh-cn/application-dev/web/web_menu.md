@@ -37,7 +37,7 @@ struct WebComponent {
       icon: $r('app.media.startIcon')
     };
     let customItem2: TextMenuItem = {
-      content: $r('app.string.customItem2'),
+      content: $r('app.string.EntryAbility_label'),
       id: TextMenuItemId.of('customItem2'),
       icon: $r('app.media.startIcon')
     };
@@ -64,7 +64,7 @@ struct WebComponent {
       // 用户自定义行为
       console.log("拦截 id：customItem1")
       return true;// 用户自定义菜单选项返回true时点击后不关闭菜单，返回false时关闭菜单
-    } else if (menuItem.id.equals((TextMenuItemId.of($r('app.string.customItem2'))))){
+    } else if (menuItem.id.equals((TextMenuItemId.of($r('app.string.EntryAbility_label'))))){
       // 用户自定义行为
       console.log("拦截 id：app.string.customItem2")
       return true;
