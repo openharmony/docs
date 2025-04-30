@@ -1349,7 +1349,7 @@ function getCameraConcurrentInfos(cameraManager: camera.CameraManager, cameraDev
 | 名称              | 类型       | 只读 | 可选 | 说明        |
 | ---------------- | ---------- | ---- | ---- | ----------- |
 | isTorchAvailable | boolean    | 是   | 否   | 手电筒是否可用。true表示手电筒可用，false表示手电筒不可用。|
-| isTorchActive    | boolean    | 是   | 否   | 手电筒是否被激活。true表示手电筒被激活，false表示手电筒未激活。   |
+| isTorchActive    | boolean    | 是   | 否   | 手电筒是否被激活。true表示手电筒被激活，false表示手电筒未被激活。   |
 | torchLevel       | number     | 是   | 否   | 手电筒亮度等级。取值范围为[0,1]，越靠近1，亮度越大。    |
 
 ## Size
@@ -2775,7 +2775,7 @@ isMovingPhotoSupported(): boolean
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| boolean | 返回是否支持动态照片拍照，true表示支持，false表示不支持。 |
+| boolean | 返回是否支持动态照片拍照。true表示支持，false表示不支持。 |
 
 **错误码：**
 
@@ -2817,7 +2817,7 @@ enableMovingPhoto(enabled: boolean): void
 
 | 参数名      | 类型                    | 必填 | 说明                                       |
 | -------- | ---------------------- | ---- | ------------------------------------------ |
-| enabled  | boolean                | 是   | true为开启动态照片，false为关闭动态照片。     |
+| enabled  | boolean                | 是   | 使能动态照片拍照。true为开启动态照片，false为关闭动态照片。     |
 
 **错误码：**
 
@@ -2944,7 +2944,7 @@ enableMirror(enabled: boolean): void
 
 | 参数名      | 类型                    | 必填 | 说明                        |
 |----------| ---------------------- | ---- |---------------------------|
-| enabled | boolean                | 是   | true为开启动态照片镜像拍照，false为关闭动态照片镜像拍照。 |
+| enabled | boolean                | 是   | 是否启用动态照片镜像拍照。true为开启动态照片镜像拍照，false为关闭动态照片镜像拍照。 |
 
 **错误码：**
 
@@ -3592,8 +3592,8 @@ function testGetPhotoRotation(photoOutput: camera.PhotoOutput, deviceDegree : nu
 
 | 名称       | 类型      | 只读 | 可选 | 说明                      |
 | ---------- |---------| ---- | ---- |-------------------------|
-| isDeviceSwitched  | boolean | 否   | 否   | 自动切换镜头是否成功。             |
-| isDeviceCapabilityChanged | boolean  | 否   | 否   | 自动切换镜头成功后，其镜头能力值是否发生改变。 |
+| isDeviceSwitched  | boolean | 否   | 否   | 自动切换镜头是否成功。true表示成功，false表示失败。       |
+| isDeviceCapabilityChanged | boolean  | 否   | 否   | 自动切换镜头成功后，其镜头能力值是否发生改变。true表示发生变化，false表示未发生变化。 |
 
 ## VideoOutput
 
@@ -4069,7 +4069,7 @@ enableMirror(enabled: boolean): void
 
 | 参数名      | 类型                    | 必填 | 说明                        |
 |----------| ---------------------- | ---- |---------------------------|
-| enabled | boolean                | 是   | true为开启镜像录像，false为关闭镜像录像。 |
+| enabled | boolean                | 是   | 启用/关闭镜像录像。true为开启镜像录像，false为关闭镜像录像。 |
 
 **错误码：**
 
@@ -4661,7 +4661,7 @@ canAddInput(cameraInput: CameraInput): boolean
 
 | 类型            | 说明                     |
 | -------------- | ------------------------ |
-| boolean | 返回true表示支持添加当前cameraInput，返回false表示不支持添加。 |
+| boolean | 判断当前cameraInput是否可以添加到session中。true表示支持添加当前cameraInput，false表示不支持添加。 |
 
 **示例：**
 
@@ -5196,7 +5196,7 @@ hasFlash(): boolean
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean    | 返回true表示设备支持闪光灯，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| boolean    | 设备是否支持闪光灯。true表示支持，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -5242,7 +5242,7 @@ isFlashModeSupported(flashMode: FlashMode): boolean
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean    | 返回true表示支持该闪光灯模式，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| boolean    | 检测表示支持该闪光灯模式。true表示支持，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -5877,7 +5877,7 @@ isFocusModeSupported(afMode: FocusMode): boolean
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean    | 返回true表示支持该焦距模式，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| boolean    | 检测对焦模式是否支持。true表示支持，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -6195,7 +6195,7 @@ isVideoStabilizationModeSupported(vsMode: VideoStabilizationMode): boolean
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean    | 返回视频防抖模式是否支持，true表示支持，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| boolean    | 返回视频防抖模式是否支持。true表示支持，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -6773,7 +6773,7 @@ hasFlash(): boolean
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean    | 返回true表示设备支持闪光灯，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| boolean    | 设备支持闪光灯。true表示支持，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -6822,7 +6822,7 @@ isFlashModeSupported(flashMode: FlashMode): boolean
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean    | 返回true表示支持该闪光灯模式，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| boolean    | 检测闪光灯模式是否支持。true表示支持，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -6960,7 +6960,7 @@ isExposureModeSupported(aeMode: ExposureMode): boolean
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean    | 获取是否支持曝光模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| boolean    | 获取是否支持曝光模式。true表示支持，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -7314,7 +7314,7 @@ isFocusModeSupported(afMode: FocusMode): boolean
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean    | 返回true表示支持该焦距模式，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| boolean    | 检测对焦模式是否支持。true表示支持，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -7713,7 +7713,7 @@ isVideoStabilizationModeSupported(vsMode: VideoStabilizationMode): boolean
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean    | 返回视频防抖模式是否支持，true表示支持，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| boolean    | 返回视频防抖模式是否支持。true表示支持，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -8143,7 +8143,7 @@ enableAutoDeviceSwitch(enabled: boolean): void
 
 | 参数名         | 类型  | 必填 | 说明  |
 | ----------- |---------------------- |---| -------------------------- |
-| enabled | boolean  | 是 | 使能或去使能自动切换镜头。   |
+| enabled | boolean  | 是 | 使能或去使能自动切换镜头。true表示使能，false表示不使能。   |
 
 **错误码：**
 
