@@ -372,7 +372,7 @@ RichEditor(this.options1)
 ### 添加输入法输入内容前和完成输入后可触发的回调
 在添加输入法输入内容前，可以通过[aboutToIMEInput](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#abouttoimeinput)触发回调。在输入法完成输入后，可以通过[onIMEInputComplete](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#onimeinputcomplete)或者[onDidIMEInput](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#ondidimeinput12)触发回调。
 
-这三种回调机制适用于智能输入辅助。例如：在用户开始输入文本前，利用回调进行词汇联想的提供，在用户完成输入后，利用回调执行自动化纠错或格式转换。三种回调的时序依次为：aboutToIMEInput、onIMEInputComplete、onDidIMEInput
+这三种回调机制适用于智能输入辅助。例如：在用户开始输入文本前，利用回调进行词汇联想的提供，在用户完成输入后，利用回调执行自动化纠错或格式转换。三种回调的时序依次为：aboutToIMEInput、onIMEInputComplete、onDidIMEInput。
 
 使用[RichEditorStyledStringOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorstyledstringoptions12)构建的组件并不支持上述三种回调功能。
 
