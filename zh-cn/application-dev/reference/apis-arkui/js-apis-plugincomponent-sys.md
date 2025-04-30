@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import { pluginComponentManager } from '@kit.ArkUI'
+import { pluginComponentManager } from '@kit.ArkUI';
 ```
 
 ### PushParameterForStage
@@ -70,12 +70,12 @@ push(param: PushParameterForStage, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { pluginComponentManager } from '@kit.ArkUI'
+import { pluginComponentManager } from '@kit.ArkUI';
 pluginComponentManager.push(
   {
     owner: {
       bundleName: "com.example.provider",
-      abilityName: "com.example.provider.MainAbility"
+      abilityName: "com.example.provider.MainAbility",
     },
     target: {
       bundleName: "com.example.user",
@@ -119,12 +119,12 @@ request(param: RequestParameterForStage, callback: AsyncCallback&lt;RequestCallb
 **示例：**
 
 ```ts
-import { pluginComponentManager } from '@kit.ArkUI'
+import { pluginComponentManager } from '@kit.ArkUI';
 pluginComponentManager.request(
   {
     owner: {
       bundleName: "com.example.user",
-      abilityName: "com.example.user.MainAbility"
+      abilityName: "com.example.user.MainAbility",
     },
     target: {
       bundleName: "com.example.provider",
@@ -137,8 +137,8 @@ pluginComponentManager.request(
     jsonPath: "",
   },
   (err, data) => {
-    console.log("request_callback: componentTemplate.ability=" + data.componentTemplate.ability)
-    console.log("request_callback: componentTemplate.source=" + data.componentTemplate.source)
+    console.log("request_callback: componentTemplate.ability=" + data.componentTemplate.ability);
+    console.log("request_callback: componentTemplate.source=" + data.componentTemplate.source);
   }
 )
 ```

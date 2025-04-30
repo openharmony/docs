@@ -244,8 +244,7 @@ getPointerStyle(windowId: number, callback: AsyncCallback&lt;PointerStyle&gt;): 
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
-let context = getContext(this);
-window.getLastWindow(context, (error: BusinessError, win: window.Window) => {
+window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
   if (error.code) {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
     return;
@@ -299,8 +298,7 @@ getPointerStyle(windowId: number): Promise&lt;PointerStyle&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
-let context = getContext(this);
-window.getLastWindow(context, (error: BusinessError, win: window.Window) => {
+window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
   if (error.code) {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
     return;
@@ -392,7 +390,7 @@ setPointerStyle(windowId: number, pointerStyle: PointerStyle, callback: AsyncCal
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
-window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
+window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
   if (error.code) {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
     return;
@@ -446,7 +444,7 @@ setPointerStyle(windowId: number, pointerStyle: PointerStyle): Promise&lt;void&g
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
-window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
+window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
   if (error.code) {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
     return;
@@ -494,7 +492,7 @@ setPointerStyleSync(windowId: number, pointerStyle: PointerStyle): void
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
-window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
+window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
   if (error.code) {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
     return;
@@ -627,12 +625,12 @@ setCustomCursor(windowId: number, pixelMap: image.PixelMap, focusX?: number, foc
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
-getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
+this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
   const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
   let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
   let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
   svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
-    window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
+    window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
       let windowId = win.getWindowProperties().id;
         try {
           pointer.setCustomCursor(windowId, pixelMap).then(() => {
@@ -696,7 +694,7 @@ setCustomCursor(windowId: number, cursor: CustomCursor, config: CursorConfig): P
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 401  | Parameter error. Possible causes: 1. Abnormal windowId parameter passed in. 2. Abnormal pixelMap parameter passed in; 3. Abnormal focusX parameter passed in.4. Abnormal focusY parameter passed in. |
-| 26500001 | Invalid windowId. |
+| 26500001 | Invalid windowId. Possible causes: The window id does not belong to the current process. |
 
 **示例**：
 
@@ -704,12 +702,12 @@ setCustomCursor(windowId: number, cursor: CustomCursor, config: CursorConfig): P
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
-getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
+this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
   const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
   let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
   let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
   svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
-    window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
+    window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
       let windowId = win.getWindowProperties().id;
         try {
           pointer.setCustomCursor(windowId, {pixelMap: pixelMap, focusX: 25, focusY: 25}, {followSystem: false}).then(() => {
@@ -754,12 +752,12 @@ setCustomCursorSync(windowId: number, pixelMap: image.PixelMap, focusX?: number,
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
-const svgFileData = getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
+const svgFileData = this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
   const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
   let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
   let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
   svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
-    window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
+    window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
       let windowId = win.getWindowProperties().id;
         try {
           pointer.setCustomCursorSync(windowId, pixelMap, 25, 25);

@@ -5,6 +5,7 @@
 > **说明：**
 >
 > 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 如果在处理大量子组件时遇到卡顿问题，请考虑采用懒加载、缓存列表项、动态预加载、组件复用和布局优化等方法来进行优化。最佳实践请参考[优化长列表加载慢丢帧问题](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-best-practices-long-list)。
 
 
 ## 子组件
@@ -159,6 +160,11 @@ cachedCount(count: number, show: boolean)
 设置列表中ListItem/ListItemGroup的预加载数量，并配置是否显示预加载节点。
 
 List设置cachedCount后，显示区域外上下各会预加载并布局cachedCount行ListItem。计算ListItem行数时，会计算ListItemGroup内部的ListItem行数。如果ListItemGroup内没有ListItem，则整个ListItemGroup算一行。配合[裁剪](ts-universal-attributes-sharp-clipping.md#clip12)或[内容裁剪](ts-container-scrollable-common.md#clipcontent14)属性可以显示出预加载节点。
+
+> **说明：**
+>
+> 通常建议设置cachedCount=n/2（n代表一屏显示的列表项数量），同时需考虑其他因素以实现体验和内存使用的平衡。最佳实践请参考[优化长列表加载慢丢帧问题-缓存列表项](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-best-practices-long-list#section11667144010222)。
+
 
 **卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
 
@@ -465,6 +471,7 @@ maintainVisibleContentPosition(enabled: boolean)
 
 > **说明：** 
 > - 只有使用LazyForEach在显示区域外插入或删除数据时，才能保持可见内容位置不变。使用ForEach插入或删除数据或使用LazyForEach重新加载数据时，即使maintainVisibleContentPosition属性设置为true，可见区内容位置也会跟随变化。
+> - 从API version 20开始，使用[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)在virtualScroll模式下，显示区域外插入或删除数据时，保持可见内容位置不变。
 > - maintainVisibleContentPosition属性设置为true后，在显示区域上方插入或删除数据，会触发onDidScroll、onScrollIndex事件。
 > - maintainVisibleContentPosition属性设置为true后，在多列场景下，一次插入或删除整行数据，可以保持可见内容位置不变，如果不是插入或删除整行数据，可见内容位置还是会发生变化。
 

@@ -615,7 +615,7 @@ class MyNodeController extends NodeController {
   }
 
   // 坐标转换示例
-  postTouchEvent(event: TouchEvent): boolean {
+  postTouchEvent(event: TouchEvent, uiContext: UIContext): boolean {
     if (this.rootNode == null) {
       return false;
     }
@@ -626,8 +626,8 @@ class MyNodeController extends NodeController {
     let changedTouchLen = event.changedTouches.length;
     for (let i = 0; i < changedTouchLen; i++) {
       if (offsetX != null && offsetY != null && offsetX != undefined && offsetY != undefined) {
-        event.changedTouches[i].x = vp2px(offsetX + event.changedTouches[i].x);
-        event.changedTouches[i].y = vp2px(offsetY + event.changedTouches[i].y);
+        event.changedTouches[i].x = uiContext.vp2px(offsetX + event.changedTouches[i].x);
+        event.changedTouches[i].y = uiContext.vp2px(offsetY + event.changedTouches[i].y);
       }
     }
     let result = this.rootNode.postTouchEvent(event);
@@ -653,7 +653,7 @@ struct MyComponent {
         .backgroundColor(Color.Pink)
         .onTouch((event) => {
           if (event != undefined) {
-            this.nodeController.postTouchEvent(event);
+            this.nodeController.postTouchEvent(event, this.getUIContext());
           }
         })
     }

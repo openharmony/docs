@@ -423,7 +423,7 @@ zh-cn/application-dev/device/stationary-guidelines.md @mayunteng_1 @hu-zhiqiong 
 
 
 [开发-Network Kit]
-zh-cn/application-dev/network/ @zhang_yixin13 @lbch_hw
+zh-cn/application-dev/network/ @zhang_yixin13 
 
 
 [开发-Neural NetWork Runtime Kit]
@@ -432,9 +432,8 @@ zh-cn/application-dev/napi/neural-network-runtime-guidelines.md @ge-yafang @prin
 
 [开发-NDK]
 zh-cn/application-dev/napi/  @fang-jinxu
-zh-cn/application-dev/napi/rawfile-guidelines.md @Brilliantry_Rui @Buda-Liu @budda-wang @yangqing3
+zh-cn/application-dev/napi/rawfile-guidelines.md @Brilliantry_Rui @Buda-Liu @budda-wang @lpw_work
 zh-cn/application-dev/napi/usb-ddk-guidelines.md @li-yan339 @Kevin-Lau @liuhonggang123
-zh-cn/application-dev/napi/rawfile-guidelines.md @Brilliantry_Rui @budda-wang @yangqing3
 
 
 [开发-Notification Kit]
@@ -824,9 +823,6 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-lazyfor
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md @jiyujia926 @seaside_wu @s10021109 @zhang_yixin13
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-state-management-sys.md @jiyujia926 @seaside_wu @s10021109 @zhang_yixin13
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SegmentButtonV2.md @jiyujia926 @seaside_wu @s10021109 
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ProgressButtonV2.md @jiyujia926 @seaside_wu @s10021109 
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ToolBarV2.md @jiyujia926 @seaside_wu @s10021109 
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SubHeaderV2.md @jiyujia926 @seaside_wu @s10021109 
 zh-cn/application-dev/reference/apis-arkui/js-apis-StateManagement.md @jiyujia926 @seaside_wu @s10021109 @zhang_yixin13
  
 [API参考-ArkUI-ArkTS]
@@ -1153,7 +1149,7 @@ zh-cn/application-dev/reference/apis-multimodalawareness-kit/js-apis-stationary.
 
 
 [API参考-Network Kit]
-zh-cn/application-dev/reference/apis-network-kit/ @lbch_hw @zhang_yixin13 
+zh-cn/application-dev/reference/apis-network-kit/ @zhang_yixin13 
 
 
 [API参考-Neural NetWork Runtime Kit]

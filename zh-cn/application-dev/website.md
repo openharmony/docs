@@ -250,6 +250,7 @@
           - [XML解析](arkts-utils/xml-parsing.md)
           - [XML转换](arkts-utils/xml-conversion.md)
         - [Buffer介绍](arkts-utils/buffer.md)
+        - [JSON扩展库](arkts-utils/arkts-json.md)
         - ArkTS容器类库<!--containers-->
           - [容器类库概述](arkts-utils/container-overview.md)
           - [线性容器](arkts-utils/linear-container.md)
@@ -309,6 +310,8 @@
             - [ArkUI瀑布流渲染场景](arkts-utils/taskpool-waterflow.md)
             - [获取最近访问列表场景](arkts-utils/sendablelrucache-recent-list.md)
             - [多线程取消TaskPool任务场景](arkts-utils/multi-thread-cancel-task.md)
+            - [ArkTS多线程间操作Native对象场景](arkts-utils/napi-coerce-to-native-binding-object.md)
+            - [Worker常驻线程通过TaskPool进行多任务并发处理](arkts-utils/worker-and-taskpool.md)
       - [ArkTS跨语言交互](arkts-utils/arkts-cross-language-interaction.md)
       - ArkTS运行时<!--arkts-runtime-->
         - [ArkTS运行时概述](arkts-utils/arkts-runtime-overview.md)
@@ -1316,7 +1319,7 @@
           - [使用HiTraceChain打点（C/C++）](dfx/hitracechain-guidelines-ndk.md)
         - HiChecker使用指导<!--hichecker-->
           - [使用HiChecker检测问题（ArkTS/JS）](dfx/hichecker-guidelines-arkts.md)
-        - Hidebug使用指导<!--hidebug-->
+        - HiDebug使用指导<!--hidebug-->
           - [使用HiDebug获取调试信息（ArkTS）](dfx/hidebug-guidelines-arkts.md)
           - [使用HiDebug获取调试信息（C/C++）](dfx/hidebug-guidelines-ndk.md)
         - HiCollie使用指导<!--hicollie-->
@@ -1555,6 +1558,7 @@
         - 视频转码<!--media-transcoder-arkts-->
           - [使用AVTranscoder实现视频转码(ArkTS)](media/media/using-avtranscoder-for-transcodering.md)
           - [创建异步线程执行AVTranscoder视频转码(ArkTS)](media/media/avtranscoder-practice.md)
+          - [转码常见问题](media/media/avtranscoder-faq.md)
       - 媒体开发指导(C/C++)<!--media-kit-dev--c-->
         - 播放<!--media-playback-c-->
           - [使用AVPlayer播放音频(C/C++)](media/media/using-ndk-avplayer-for-playback.md)
@@ -1813,6 +1817,8 @@
               - [使用JSVM-API接口创建多个引擎执行JS代码并销毁](napi/use-jsvm-runtime-task.md)
               - [使用 code cache 加速编译](napi/use-jsvm-about-code-cache.md)
               - [JSVM 通用调优实践](napi/jsvm-optimizations.md)
+        - JSVM性能调试指导<!--jsvm-performance-->
+            - [使用HiSmartPerf采集V8 trace](napi/use-jsvm-about-v8-trace.md)
       - OpenMP支持<!--openmp-->
         - [OpenMP简介](napi/openmp-overview.md)
         - [OpenMP应用构建和运行指南](napi/openmp-guideline.md)
@@ -3702,6 +3708,7 @@
             - [os_account.h](reference/apis-basic-services-kit/os__account_8h.md)
             - [os_account_common.h](reference/apis-basic-services-kit/os__account__common_8h.md)
             - [ohprint.h](reference/apis-basic-services-kit/ohprint_8h.md)
+            - [ohscan.h](reference/apis-basic-services-kit/c-apis-scan.md)
             - [time_service.h](reference/apis-basic-services-kit/time__service_8h.md)
           - 结构体<!--basic-services-struct-->
             - [Print_Margin](reference/apis-basic-services-kit/_print___margin.md)
@@ -3978,8 +3985,8 @@
         - 错误码<!--performance-analysis-errcode-->
           - [Faultlogger错误码](reference/apis-performance-analysis-kit/errorcode-faultlogger.md)
           - [应用事件打点错误码](reference/apis-performance-analysis-kit/errorcode-hiappevent.md)
-          - [Hidebug错误码](reference/apis-performance-analysis-kit/errorcode-hiviewdfx-hidebug.md)
-          - [Hidebug CpuUsage错误码](reference/apis-performance-analysis-kit/errorcode-hiviewdfx-hidebug-cpuusage.md)
+          - [HiDebug错误码](reference/apis-performance-analysis-kit/errorcode-hiviewdfx-hidebug.md)
+          - [HiDebug CpuUsage错误码](reference/apis-performance-analysis-kit/errorcode-hiviewdfx-hidebug-cpuusage.md)
           - [HiCollie错误码](reference/apis-performance-analysis-kit/errorcode-hiviewdfx-hicollie.md)
           <!--Del-->
           - [系统事件错误码](reference/apis-performance-analysis-kit/errorcode-hisysevent-sys.md)

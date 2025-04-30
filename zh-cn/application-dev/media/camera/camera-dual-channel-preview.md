@@ -375,7 +375,7 @@ struct Index {
       }
       // 打开相机。
       await this.cameraInput.open().catch((err: BusinessError) => {
-        console.error(`initCamera open fail: ${JSON.stringify(err)}`);
+        console.error(`initCamera open fail: ${err}`);
       })
       // 获取相机device支持的profile。
       let capability: camera.CameraOutputCapability =
@@ -416,7 +416,7 @@ struct Index {
       // 开始启动已配置的输入输出流。
       await this.session.start();
     } catch (error) {
-      console.error(`initCamera fail: ${JSON.stringify(error)}`);
+      console.error(`initCamera fail: ${error}`);
     }
   }
 
@@ -435,7 +435,7 @@ struct Index {
       // 释放会话。
       await this.session?.release();
     } catch (error) {
-      console.error(`initCamera fail: ${JSON.stringify(error)}`);
+      console.error(`initCamera fail: ${error}`);
     }
   }
 }

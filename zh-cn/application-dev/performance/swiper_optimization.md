@@ -176,7 +176,7 @@ import { MyDataSource } from './Index';
 export struct PhotoItem { //Swiper的子组件
   myIndex: number = 0;
   private dataSource: MyDataSource = new MyDataSource([]);
-  context = getContext(this);
+  context = this.getUIContext().getHostContext();
   @State imageContent: image.PixelMap | undefined = undefined;
 
   aboutToAppear(): void {
@@ -185,10 +185,10 @@ export struct PhotoItem { //Swiper的子组件
     if (!this.imageContent) { // 先判断dataSource中该index的数据是否有数据，若无数据则先进行资源加载
       try {
         // 获取resourceManager资源管理器
-        const resourceMgr = this.context.resourceManager;
+        const resourceMgr = this.context?.resourceManager;
         // 获取rawfile文件夹下item.jpg的ArrayBuffer
         let str = "item" + (this.myIndex + 1) + ".jpg";
-        resourceMgr.getRawFileContent(str).then((value) => {
+        resourceMgr?.getRawFileContent(str).then((value) => {
           // 创建imageSource
           const imageSource = image.createImageSource(value.buffer);
           imageSource.createPixelMap().then((value) => {
@@ -257,7 +257,7 @@ struct Index {
   cacheCount: number = 1
   swiperController: SwiperController = new SwiperController();
   private data: MyDataSource = new MyDataSource([]);
-  context = getContext(this);
+  context = this.getUIContext().getHostContext();
 
   aboutToAppear() {
     let list: MyObject[] = []
@@ -287,10 +287,10 @@ struct Index {
       if (targetIndex !== index) {
         try {
           // 获取resourceManager资源管理器
-          const resourceMgr = this.context.resourceManager;
+          const resourceMgr = this.context?.resourceManager;
           // 获取rawfile文件夹下item.jpg的ArrayBuffer
           let str = "item" + (targetIndex + this.cacheCount + 2) + ".jpg";
-          resourceMgr.getRawFileContent(str).then((value) => {
+          resourceMgr?.getRawFileContent(str).then((value) => {
             // 创建imageSource
             const imageSource = image.createImageSource(value.buffer);
             imageSource.createPixelMap().then((value) => {

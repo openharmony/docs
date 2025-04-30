@@ -38,22 +38,6 @@ Menu()
 
 除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
-### fontSize<sup>(deprecated)</sup>
-
-fontSize(value: Length)
-
-统一设置Menu中所有文本的尺寸。
-
-从API Version 10开始废弃，建议使用[font](#font10)代替。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型                         | 必填 | 说明                                                     |
-| ------ | ---------------------------- | ---- | -------------------------------------------------------- |
-| value  | [Length](ts-types.md#length) | 是   | Menu中所有文本的尺寸，Length为number类型时，使用fp单位。 |
-
 ### font<sup>10+</sup>
 
 font(value: Font)
@@ -150,6 +134,22 @@ subMenuExpandingMode(mode: SubMenuExpandingMode)
 | 参数名 | 类型                         | 必填 | 说明           |
 | ------ | ---------------------------- | ---- |--------------|
 | mode  | [SubMenuExpandingMode](#submenuexpandingmode12枚举说明) | 是   | Menu子菜单展开样式。<br/>默认值：SubMenuExpandingMode.SIDE_EXPAND  |
+
+### fontSize<sup>(deprecated)</sup>
+
+fontSize(value: Length)
+
+统一设置Menu中所有文本的尺寸。
+
+从API Version 10开始废弃，建议使用[font](#font10)代替。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                         | 必填 | 说明                                                         |
+| ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Length](ts-types.md#length) | 是   | Menu中所有文本的尺寸，Length为number类型时，使用fp单位。不支持设置百分比。 |
 
 ## SubMenuExpandingMode<sup>12+</sup>枚举说明
 

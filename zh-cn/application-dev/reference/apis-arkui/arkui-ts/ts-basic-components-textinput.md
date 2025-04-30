@@ -200,7 +200,7 @@ fontStyle(value: FontStyle)
 
 ### fontWeight
 
-fontWeight(value: number | FontWeight | string)
+fontWeight(value: number | FontWeight | ResourceStr)
 
 设置文本的字体粗细，设置过大可能会在不同字体下有截断。
 
@@ -212,7 +212,7 @@ fontWeight(value: number | FontWeight | string)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | number&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;string | 是   | 文本的字体粗细，number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal |
+| value  | number&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr) | 是   | 文本的字体粗细，number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal <br>从API version 20开始，支持Resource类型。|
 
 ### fontFamily
 
@@ -945,7 +945,7 @@ enableHapticFeedback(isEnabled: boolean)
 
 >  **说明：**
 >
->  开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
+>  开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段以开启振动权限，配置如下：
 > ```json
 > "requestPermissions": [
 >  {
@@ -1288,7 +1288,7 @@ onPaste(callback: OnPasteCallback)
 
 onTextSelectionChange(callback: OnTextSelectionChangeCallback)
 
-文本选择的位置发生变化或编辑状态下光标位置发生变化时，触发该回调。
+文本选择的位置或编辑状态下光标位置发生变化时，触发该回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
