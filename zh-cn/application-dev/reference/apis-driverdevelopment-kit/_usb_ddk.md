@@ -37,7 +37,7 @@
 | [UsbDdkConfigDescriptor](_usb_ddk_config_descriptor.md) | 配置描述符。 |
 | [UsbRequestPipe](_usb_request_pipe.md) | 请求管道。 |
 | [UsbDeviceMemMap](_usb_device_mem_map.md) | 设备内存映射，通过[OH_Usb_CreateDeviceMemMap()](#oh_usb_createdevicememmap)创建设备内存映射，使用内存映射后的缓冲区，获得更好的性能。 |
-| [Usb_DeviceArray](_usb_device_array.md) | 设备ID清单，用于存放[OH_Usb_GetDevices()](#oh_usb_getdevices16)接口获取到的设备ID列表和设备数量。 |
+| [Usb_DeviceArray](_usb_device_array.md) | 设备ID清单，用于存放[OH_Usb_GetDevices()](#oh_usb_getdevices18)接口获取到的设备ID列表和设备数量。 |
 
 ### 枚举
 
@@ -52,7 +52,7 @@
 | -------- | -------- |
 | [OH_Usb_Init](#oh_usb_init) (void) | 初始化DDK。 |
 | [OH_Usb_Release](#oh_usb_release) (void) | 释放DDK。 |
-| [OH_Usb_ReleaseResource](#oh_usb_releaseresource14) (void) | 释放DDK。 |
+| [OH_Usb_ReleaseResource](#oh_usb_releaseresource18) (void) | 释放DDK。 |
 | [OH_Usb_GetDeviceDescriptor](#oh_usb_getdevicedescriptor) (uint64_t deviceId, struct [UsbDeviceDescriptor](_usb_device_descriptor.md) \*desc) | 获取设备描述符。 |
 | [OH_Usb_GetConfigDescriptor](#oh_usb_getconfigdescriptor) (uint64_t deviceId, uint8_t configIndex, struct [UsbDdkConfigDescriptor](_usb_ddk_config_descriptor.md) \*\*const config) | 获取配置描述符。请在描述符使用完后使用[OH_Usb_FreeConfigDescriptor()](#oh_usb_freeconfigdescriptor)释放描述符，否则会造成内存泄露。 |
 | [OH_Usb_FreeConfigDescriptor](#oh_usb_freeconfigdescriptor) (const struct [UsbDdkConfigDescriptor](_usb_ddk_config_descriptor.md) \*const config) | 释放配置描述符，请在描述符使用完后释放描述符，否则会造成内存泄露。 |
@@ -405,7 +405,7 @@ void OH_Usb_Release (void)
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
 
-### OH_Usb_ReleaseResource()<sup>14+</sup>
+### OH_Usb_ReleaseResource()<sup>18+</sup>
 
 ```
 int32_t OH_Usb_ReleaseResource (void)
@@ -604,7 +604,7 @@ int32_t OH_Usb_SendPipeRequestWithAshmem(const struct UsbRequestPipe *pipe, DDK_
 - [USB_DDK_IO_FAILED](#usbddkerrcode)：表示设备I/O操作失败。
 - [USB_DDK_TIMEOUT](#usbddkerrcode)：表示请求超时。
 
-### OH_Usb_GetDevices()<sup>16+</sup>
+### OH_Usb_GetDevices()<sup>18+</sup>
 
 
 ```
