@@ -89,6 +89,7 @@ cpp部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
+#include <fstream>
 // OH_JSVM_CreateObject的样例方法
 static JSVM_Value CreateObject(JSVM_Env env, JSVM_CallbackInfo info)
 {
