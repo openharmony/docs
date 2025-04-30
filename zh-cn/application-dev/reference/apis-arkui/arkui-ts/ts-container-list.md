@@ -30,7 +30,7 @@
 
 ## 接口
 
-List(options?: [ListOptions](#listoptions18对象说明))
+List(value?:{initialIndex?: number, space?: number&nbsp;|&nbsp;string, scroller?: Scroller})
 
 创建List列表容器。
 
@@ -42,25 +42,11 @@ List(options?: [ListOptions](#listoptions18对象说明))
 
 **参数：**
 
-| 参数名  | 类型 | 必填 | 说明 |
-| ------ | ---- | ---- | ---- |
-| options    | [ListOptions](#listoptions18对象说明)  | 否   | 设置List组件参数。 |
-
-## ListOptions<sup>18+</sup>对象说明
-
-用于设置List组件参数。
-
-**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称       | 类型                                    | 必填 | 说明                                                     |
+| 参数名       | 类型                                    | 必填 | 说明                                                     |
 | ------------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| initialIndex<sup>7+</sup> | number | 否 | 设置当前List初次加载时显示区域起始位置的item索引值。<br/>默认值：0<br/>**说明：** <br/>设置为负数或超过了当前List最后一个item的索引值时视为无效取值，无效取值按默认值显示。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| space<sup>7+</sup>        | number&nbsp;\|&nbsp;string                  | 否   | 子组件主轴方向的间隔。<br/>默认值：0<br/>参数类型为number时单位为vp。<br/>**说明：** <br/>设置为负数或者大于等于List内容区长度时，按默认值显示。<br/>space参数值小于List分割线宽度时，子组件主轴方向的间隔取分割线宽度。<br/> List子组件的visibility属性设置为None时不显示，但该子组件上下的space还是会生效。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| scroller<sup>7+</sup>      | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器。用于与可滚动组件进行绑定。<br/>**说明：** <br/>不允许和其他滚动类组件，如：[ArcList](ts-container-arclist.md)、[List](ts-container-list.md)、[Grid](ts-container-grid.md)、[Scroll](ts-container-scroll.md)和[WaterFlow](ts-container-waterflow.md)绑定同一个滚动控制对象。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| initialIndex | number | 否 | 设置当前List初次加载时显示区域起始位置的item索引值。<br/>默认值：0<br/>**说明：** <br/>设置为负数或超过了当前List最后一个item的索引值时视为无效取值，无效取值按默认值显示。 |
+| space        | number&nbsp;\|&nbsp;string                  | 否   | 子组件主轴方向的间隔。<br/>默认值：0<br/>参数类型为number时单位为vp。<br/>**说明：** <br/>设置为负数或者大于等于List内容区长度时，按默认值显示。<br/>space参数值小于List分割线宽度时，子组件主轴方向的间隔取分割线宽度。<br/> List子组件的visibility属性设置为None时不显示，但该子组件上下的space还会生效。|
+| scroller     | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器。用于与可滚动组件进行绑定。<br/>**说明：** <br/>不允许和其他滚动类组件，如：[List](ts-container-list.md)、[Grid](ts-container-grid.md)、[Scroll](ts-container-scroll.md)和[WaterFlow](ts-container-waterflow.md)绑定同一个滚动控制对象。 |
 
 ## 属性
 
@@ -110,7 +96,7 @@ ListItem设置[多态样式](ts-universal-attributes-polymorphic-style.md)时，
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ListDividerOptions](#listdivideroptions18对象说明) \|&nbsp;null | 是   | ListItem分割线样式。<br/>默认值：null |
+| value  | {<br/>strokeWidth:&nbsp;[Length](ts-types.md#length),<br/>color?:[ResourceColor](ts-types.md#resourcecolor),<br/>startMargin?:&nbsp;[Length](ts-types.md#length),<br/>endMargin?:&nbsp;[Length](ts-types.md#length)<br/>}&nbsp;\|&nbsp;null | 是   | ListItem分割线样式。<br/>- strokeWidth:&nbsp;分割线的线宽。<br/>**说明：** <br/>设置为负数或者大于等于List内容区长度时，按0处理。<br/>- color:&nbsp;分割线的颜色。<br/>默认值：0x08000000<br/>- startMargin:&nbsp;分割线与列表侧边起始端的距离。<br/>默认值：0，单位：vp<br/>**说明：** <br/>设置为负数时，按默认值处理。<br/>- endMargin:&nbsp;分割线与列表侧边结束端的距离。<br/>默认值：0，单位：vp<br/> **说明：** <br/>设置为负数时，按默认值处理。 |
 
 ### scrollBar
 
@@ -170,7 +156,7 @@ List设置cachedCount后，显示区域外上下各会预加载并布局cachedCo
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| count  | number | 是   | 预加载的ListItem的数量。<br/>默认值：根据屏幕内显示的节点个数设置，最大值为16。 <br/>取值范围：[0, +∞) |
+| count  | number | 是   | 预加载的ListItem的数量。<br/>默认值：根据屏幕内显示的节点个数设置，最大值为16。<br/>取值范围：[0, +∞) |
 | show  | boolean | 是   | 被预加载的ListItem是否需要显示。设置为true时显示预加载的ListItem，设置为false时不显示预加载的ListItem。 <br/> 默认值：false |
 
 ### editMode<sup>(deprecated)</sup>
@@ -327,8 +313,6 @@ sticky(value: StickyStyle)
 scrollSnapAlign(value: ScrollSnapAlign)
 
 设置列表项滚动结束对齐效果。
-
-对齐动画期间onWillScroll事件上报的滚动操作来源类型为ScrollSource.FLING。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -527,22 +511,6 @@ ListItemGroup吸顶或吸底效果枚举。
 | ------- | -------- | ---- | ---------------------- |
 | onFinish | ()=>void | 否   | 在收起动画完成后触发。 |
 
-## ListDividerOptions<sup>18+</sup>对象说明
-
-用于设置List或ListItemGroup组件的分割线样式。
-
-**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称     | 类型     | 必填 | 说明                   |
-| ------- | -------- | ---- | ---------------------- |
-| strokeWidth<sup>7+</sup> | [Length](ts-types.md#length) | 是   | 分割线的线宽。<br/>**说明：** <br/>设置为负数，百分比，或者大于等于List内容区长度时，按0处理。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| color<sup>7+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 否   | 分割线颜色。<br/>默认值：0x08000000<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| startMargin<sup>7+</sup> | [Length](ts-types.md#length) | 否   | 分割线与列表侧边起始端的距离。<br/>默认值：0 <br/>单位：vp<br/>**说明：** <br/>设置为负数或者百分比时，按默认值处理。<br/>endMargin + startMargin 超过列宽度后startMargin和endMargin均会被置0。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| endMargin<sup>7+</sup> | [Length](ts-types.md#length) | 否   | 分割线与列表侧边结束端的距离。<br/>默认值：0 <br/>单位：vp<br/> **说明：** <br/>设置为负数或者百分比时，按默认值处理。<br/>endMargin + startMargin 超过列宽度后startMargin和endMargin均会被置0。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 
 ## 事件
 
@@ -645,7 +613,7 @@ onScrollFrameBegin(event: (offset: number, state: ScrollState) => { offsetRemain
 | 参数名 | 类型                                | 必填 | 说明                       |
 | ------ | ----------------------------------- | ---- | -------------------------- |
 | offset | number                              | 是   | 即将发生的滑动量，单位vp。 |
-| state  | [ScrollState](#scrollstate枚举说明) | 是   | List组件当前的滑动状态。             |
+ state  | [ScrollState](#scrollstate枚举说明) | 是   | List组件当前的滑动状态。             |
 
 **返回值：** 
 
@@ -1469,37 +1437,3 @@ struct ListExample {
 
 ![fadingEdge_list](figures/fadingEdge_list.gif)
 
-### 示例8（单边边缘效果）
-
-该示例通过edgeEffect接口，实现了List组件设置单边边缘效果。
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct ListExample {
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-  scrollerForList: Scroller = new Scroller();
-  build() {
-    Column() {
-      List({ space: 20, initialIndex: 0, scroller: this.scrollerForList }) {
-        ForEach(this.arr, (item: number) => {
-          ListItem() {
-            Text('' + item)
-              .width('100%').height(100).fontSize(16)
-              .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
-          }
-        }, (item: string) => item)
-      }
-      .edgeEffect(EdgeEffect.Spring,{alwaysEnabled:true,effectEdge:EffectEdge.START})
-      .width('90%').height('90%')
-    }
-    .width('100%')
-    .height('100%')
-    .backgroundColor(0xDCDCDC)
-    .padding({ top: 5 })
-  }
-}
-```
-
-![edgeEffect_list](figures/edgeEffect_list.gif)
