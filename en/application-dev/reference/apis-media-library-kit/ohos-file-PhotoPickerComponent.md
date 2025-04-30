@@ -44,7 +44,7 @@ Allows the application to access images or videos in the user directory without 
 
 > **NOTE**
 >
-> If **PhotoPickerComponent** is used with the **Tabs** component, the swipe gestures of the **Tabs** component conflict with those of the photo browser page. To prevent this problem, you can disable the swipe operation for the **Tabs** component in **onEnterPhotoBrowser()** and enable it in **onExitPhotoBrowser()**. This conflict will be resolved in later versions.
+> If the **PhotoPickerComponent** is used with the **Tabs** component, the swipe gestures of the **Tabs** component conflict with those of the photo browser page. To prevent this problem, you can disable the swipe operation for the **Tabs** component in **onEnterPhotoBrowser()** and enable it in **onExitPhotoBrowser()**. This conflict will be resolved in later versions.
 
 **Decorator**: @Component
 
@@ -66,7 +66,7 @@ Allows the application to access images or videos in the user directory without 
 | onPhotoBrowserChanged   | (browserItemInfo: [BaseItemInfo](#baseiteminfo)) => boolean                      | No  | - | Callback to be invoked when the photo browser page is swiped left or right. The callback returns photo browser information to the application.                                                                                                                                                                                                                                                                                                                                    |
 | onSelectedItemsDeleted<sup>13+</sup>  | [ItemsDeletedCallback](#itemsdeletedcallback13)                                  | No  | - | Callback to be invoked when the selected items are deleted. This callback returns information about the deleted items to the application.                                                                                                                                                                                                                                                                                                                             |
 | onExceedMaxSelected<sup>13+</sup>     | [ExceedMaxSelectedCallback](#exceedmaxselectedcallback13)                          | No  | - | Callback to be invoked when the number of selected media assets exceeds the limit (maximum number of selected images, selected videos, or selected items).<br>- If the number of selected images reaches the maximum but does not reach the maximum count of selected items, **exceedMaxCountType** in the callback is [MaxCountType](#maxcounttype).PHOTO_MAX_COUNT.<br>- If the number of selected videos reaches the maximum but does not reach the maximum count of selected items, **exceedMaxCountType** in the callback is [MaxCountType](#maxcounttype).VIDEO_MAX_COUNT.<br>- If the number of selected media assets reaches the maximum count of selected items, **exceedMaxCountType** in the callback is [MaxCountType](#maxcounttype).TOTAL_MAX_COUNT.|
-| onCurrentAlbumDeleted<sup>13+</sup>   | [CurrentAlbumDeletedCallback](#currentalbumdeletedcallback13)                    | No  | - | Callback to be invoked when the current album is deleted.<br>The album is specified by **currentAlbumUri** in pickerContorller.[setData](#setdata)([DataType](#datatype).SET_ALBUM_URI, currentAlbumUri).<br>To refresh the grid page to display the default album after the current album is deleted, you can set the title bar name to the default album name, for example, **Photos and videos**, **Photos**, or **Videos**, and call pickerContorller.[setData](#setdata)([DataType](#datatype).SET_ALBUM_URI, '') with an empty string.                                 |
+| onCurrentAlbumDeleted<sup>13+</sup>   | [CurrentAlbumDeletedCallback](#currentalbumdeletedcallback13)                    | No  | - | Callback to be invoked when the current album is deleted.<br>The album is specified by **currentAlbumUri** in pickerController.[setData](#setdata)([DataType](#datatype).SET_ALBUM_URI, currentAlbumUri).<br>To refresh the grid page to display the default album after the current album is deleted, you can set the title bar name to the default album name, for example, **Photos and videos**, **Photos**, or **Videos**, and call pickerController.[setData](#setdata)([DataType](#datatype).SET_ALBUM_URI, '') with an empty string.                                 |
 | onVideoPlayStateChanged<sup>14+</sup>   | [videoPlayStateChangedCallback](#videoplaystatechangedcallback14)                    | No  | - | Callback to be invoked when the video playback state on a photo browser page changes.                                 |
 | pickerController        | [PickerController](#pickercontroller)                                            | No  | @ObjectLink | Instance used to send data to the **PhotoPickerComponent**.                                                                                                                                                                                                                                                                                                                            |
 
@@ -84,16 +84,16 @@ Defines the configuration of Picker. It inherits from [BaseSelectOptions](js-api
 |---------------------------------|-----------------------------------------|-----|--------------------------------------------------------------------------|
 | checkBoxColor                   | string                                  | No  | Background color of the check box. The value is an 8-digit hexadecimal color code.                                                  |
 | backgroundColor                 | string                                  | No  | Background color of the Picker grid page. The value is an 8-digit hexadecimal color code.                                            |
-| isRepeatSelectSupported         | boolean                                 | No  | Whether to support repeat selection of a single image. The value **true** means a single image can be repeatedly selected.                                                  |
+| isRepeatSelectSupported         | boolean                                 | No  | Whether to support repeat selection of a single image. The value **true** means that a single image can be repeatedly selected. The default value is **false**.                                                  |
 | checkboxTextColor               | string                                  | No  | Text color in the check box. The value is an 8-digit hexadecimal color code. (This capability is not supported currently.)                                       |
 | photoBrowserBackgroundColorMode | [PickerColorMode](#pickercolormode)     | No  | Background color of the photo browser page. The options are **AUTO**, **LIGHT**, and **DARK**. The default value is **AUTO**.                                       |
 | maxSelectedReminderMode         | [ReminderMode](#remindermode)           | No  | Mode of the reminder when the number of selected items reaches the maximum. The options are **NONE**, **TOAST**, and **MASK**. The default value **TOAST**.                        |
 | orientation                     | [PickerOrientation](#pickerorientation) | No  | Sliding preview direction of the grid page. The options are **HORIZONTAL** and **VERTICAL**. The default value is **VERTICAL**. (This capability is not supported currently.)                                |
 | selectMode                      | [SelectMode](#selectmode)               | No  | Select mode, which can be **SINGLE_SELECT** or **MULTI_SELECT**. The default value is **MULTI_SELECT**.                                                     |
-| maxPhotoSelectNumber            | number                                  | No  | Maximum number of images that can be selected. The maximum value is **500**, which is limited by **MaxSelected**.                                          |
-| maxVideoSelectNumber            | number                                  | No  | Maximum number of videos that can be selected. The maximum value is **500**, which is limited by **MaxSelected**.                                          |
-| isSlidingSelectionSupported<sup>13+</sup>     | boolean                                 | No  | Whether sliding selection (selecting multiple items by sliding finger across the screen) is supported. The value **true** means that sliding selection is supported, and **false** means the opposite. The default value is **false**. This parameter is not available for repeat selection.                                           |
-| photoBrowserCheckboxPosition<sup>13+</sup>    | [number, number]                        | No  | Position of the check box on the photo browser page. The first parameter specifies the offset in the X direction, and the second parameter specifies the offset in the Y direction. The value range is 0-1, which indicates the offset (from 0% to 100%) to the upper left corner of the component.|
+| maxPhotoSelectNumber            | number                                  | No  | Maximum number of images that can be selected. The maximum value is **500**, which is limited by **MaxSelected**. The default value is **500**.                                          |
+| maxVideoSelectNumber            | number                                  | No  | Maximum number of videos that can be selected. The maximum value is **500**, which is limited by **MaxSelected**. The default value is **500**.                                          |
+| isSlidingSelectionSupported<sup>13+</sup>     | boolean                                 | No  | Whether sliding selection (selecting multiple items by sliding finger across the screen) is supported. The value **true** means that sliding selection is supported. By default, it is not supported. This parameter is not available for repeat selection.                                           |
+| photoBrowserCheckboxPosition<sup>13+</sup>    | [number, number]                        | No  | Position of the check box on the photo browser page. The first parameter specifies the offset in the X direction, and the second parameter specifies the offset in the Y direction. The value range is 0-1, which indicates the offset (from 0% to 100%) to the upper left corner of the component. The default value is [0, 0].|
 | gridMargin<sup>14+</sup>        | [Margin](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin)                        | No  | Margin of the component on a grid page.|
 | photoBrowserMargin<sup>14+</sup>    | [Margin](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin)                        | No  | Margin of the component on a photo browser page.|
 
@@ -234,7 +234,7 @@ Sets whether other UI elements are visible on the photo browser page. By default
 | Name        | Type                                                            | Mandatory | Description               |
 |-------------|----------------------------------------------------------------| ----- |-------------------|
 | elements    | Array&lt;[PhotoBrowserUIElement](#photobrowseruielement13)&gt; | Yes| Other UI elements on the photo browser page.|
-| isVisible | boolean                                                        | Yes| Whether the specified UI elements are visible.            |
+| isVisible | boolean                                                        | Yes| Whether the specified UI elements are visible. The value **true** means that they are visible. The default value is **false**.            |
 
 ### replacePhotoPickerPreview<sup>15+</sup>
 
@@ -352,7 +352,7 @@ Enumerates the types of data sent from **PickerController** to the **PhotoPicker
 | Name               | Value  | Description                                                                                                                |
 |-------------------|-----|--------------------------------------------------------------------------------------------------------------------|
 | SET_SELECTED_URIS | 1   | Send a list of selected items to instruct the **PhotoPickerComponent** to refresh the selection status. A string array needs to be passed in.<br>For example, after an image is deleted from an application's page, the application calls **setData()** to notify the **PhotoPickerComponent** of the remaining selected items. Then, the **PhotoPickerComponent** refreshes the check box status.|
-| SET_ALBUM_URI | 2   | Maximum number of images, videos, and total media assets that can be selected.|
+| SET_ALBUM_URI | 2   | Send the selected album to instruct the **PhotoPickerComponent** to refresh the album data. A string array needs to be passed in.<br>For example, after an album is selected from an application's page, the application calls **setData** to notify the **PhotoPickerComponent** of the URI of the selected album. Then, the **PhotoPickerComponent** refreshes the album data.|
 
 ## ItemType
 
@@ -529,7 +529,8 @@ import {
   ItemsDeletedCallback,
   ExceedMaxSelectedCallback,
   CurrentAlbumDeletedCallback,
-  videoPlayStateChangedCallback
+  videoPlayStateChangedCallback,
+  VideoPlayerState
 } from '@ohos.file.PhotoPickerComponent';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
@@ -546,7 +547,8 @@ struct PickerDemo {
   private exceedMaxSelectedCallback: ExceedMaxSelectedCallback =
     (exceedMaxCountType: MaxCountType) => this.onExceedMaxSelected(exceedMaxCountType);
   private currentAlbumDeletedCallback: CurrentAlbumDeletedCallback = () => this.onCurrentAlbumDeleted();
-  private videoPlayStateChangedCallback: videoPlayStateChangedCallback = () => this.videoPlayStateChanged();
+  private videoPlayStateChangedCallback: videoPlayStateChangedCallback =
+    (state: VideoPlayerState) => this.videoPlayStateChanged(state);
 
   aboutToAppear() {
     this.pickerOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
@@ -638,7 +640,7 @@ struct PickerDemo {
     // Callback to be invoked when the current album is deleted.
   }
 
-  private videoPlayStateChanged(stata: videoPlayerState): void {
+  private videoPlayStateChanged(state: VideoPlayerState): void {
     // Called when the video playback state changes.
   }
   build() {

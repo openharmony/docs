@@ -1,6 +1,6 @@
 # Editing EXIF Data
 
-The image tool provides the capabilities of reading and editing Exchangeable Image File Format (EXIF) data of an image.
+Image Kit provides the capabilities of reading and editing Exchangeable Image File Format (EXIF) data.
 
 EXIF is a file format dedicated for photos taken by digital cameras and is used to record attributes and shooting data of the photos. Currently, the image tool supports images in JPEG format only.
 
@@ -12,7 +12,7 @@ Currently, OpenHarmony allows you to view and modify part of EXIF data. For deta
 
 Read [Image](../../reference/apis-image-kit/js-apis-image.md#getimageproperty11) for APIs used to read and edit EXIF data.
 
-1. Obtain the image and create an **ImageSource** object.
+1. Obtain the image and create an ImageSource object.
 
    ```ts
    // Import the required module.
