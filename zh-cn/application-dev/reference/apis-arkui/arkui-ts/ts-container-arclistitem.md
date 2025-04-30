@@ -78,9 +78,9 @@ import { ArcList, ArcListItem, ArcListAttribute, ArcListItemAttribute } from '@k
 @Entry
 @Component
 struct ArcListItemExample {
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-  private watchSize: string = '466px' // 手表默认宽高：466*466
-  private itemSize: string = '414px' // item宽度
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  private watchSize: string = '466px'; // 手表默认宽高：466*466
+  private itemSize: string = '414px'; // item宽度
 
   @Builder
   buildList() {
@@ -113,7 +113,7 @@ struct ArcListItemExample {
 
   build() {
     Column() {
-      this.buildList()
+      this.buildList();
     }
     .width('100%')
     .height('100%')

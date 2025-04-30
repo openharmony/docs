@@ -5,11 +5,12 @@
 > **说明：**
 >
 > 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 如果在处理大量子组件时遇到卡顿问题，请考虑采用懒加载、缓存列表项、动态预加载、组件复用和布局优化等方法来进行优化。最佳实践请参考[优化长列表加载慢丢帧问题](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-best-practices-long-list)。
 
 
 ## 子组件
 
-仅支持[ListItem](ts-container-listitem.md)、[ListItemGroup](ts-container-listitemgroup.md)子组件，支持渲染控制类型（[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)、[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)）。
+仅支持[ListItem](ts-container-listitem.md)、[ListItemGroup](ts-container-listitemgroup.md)子组件，支持通过渲染控制类型（[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)、[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)）动态生成子组件，更推荐使用LazyForEach或Repeat以优化性能。
 
 > **说明：**
 >
@@ -160,6 +161,11 @@ cachedCount(count: number, show: boolean)
 
 List设置cachedCount后，显示区域外上下各会预加载并布局cachedCount行ListItem。计算ListItem行数时，会计算ListItemGroup内部的ListItem行数。如果ListItemGroup内没有ListItem，则整个ListItemGroup算一行。配合[裁剪](ts-universal-attributes-sharp-clipping.md#clip12)或[内容裁剪](ts-container-scrollable-common.md#clipcontent14)属性可以显示出预加载节点。
 
+> **说明：**
+>
+> 通常建议设置cachedCount=n/2（n代表一屏显示的列表项数量），同时需考虑其他因素以实现体验和内存使用的平衡。最佳实践请参考[优化长列表加载慢丢帧问题-缓存列表项](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-best-practices-long-list#section11667144010222)。
+
+
 **卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
@@ -217,6 +223,7 @@ edgeEffect(value: EdgeEffect, options?: EdgeEffectOptions)
 chainAnimation(value: boolean)
 
 设置当前List是否启用链式联动动效。
+
 
 > **说明：**
 >
@@ -466,6 +473,27 @@ maintainVisibleContentPosition(enabled: boolean)
 > - 只有使用LazyForEach在显示区域外插入或删除数据时，才能保持可见内容位置不变。使用ForEach插入或删除数据或使用LazyForEach重新加载数据时，即使maintainVisibleContentPosition属性设置为true，可见区内容位置也会跟随变化。
 > - maintainVisibleContentPosition属性设置为true后，在显示区域上方插入或删除数据，会触发onDidScroll、onScrollIndex事件。
 > - maintainVisibleContentPosition属性设置为true后，在多列场景下，一次插入或删除整行数据，可以保持可见内容位置不变，如果不是插入或删除整行数据，可见内容位置还是会发生变化。
+
+### stackFromEnd<sup>18+</sup>
+
+stackFromEnd(enabled: boolean)
+
+设置List组件是否从末尾开始布局。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| enabled  | boolean | 是   | 设置List组件是否从末尾开始布局。<br/>默认值：false，List从顶部开始布局。 true：List组件从末尾开始布局。|
+
+> **说明：** 
+> - stackFromEnd属性设置为true后，当List内容小于List组件高度时，内容底部对齐。
+> - stackFromEnd属性设置为true后，显示区域内有ListItem变高，或有插入ListItem，内容上方的ListItem往上移动。
+> - stackFromEnd属性设置为true后，initialIndex参数默认值为总item个数-1。
 
 ## ListItemAlign<sup>9+</sup>枚举说明
 
@@ -787,7 +815,7 @@ onItemDrop(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number, 
 | event       | [ItemDragInfo](ts-container-scrollable-common.md#itemdraginfo对象说明) | 是   | 拖拽点的信息。 |
 | itemIndex   | number                                                    | 是   | 拖拽起始位置。 |
 | insertIndex | number                                                    | 是   | 拖拽插入位置。 |
-| isSuccess   | boolean                                                   | 是   | 是否成功释放   |
+| isSuccess   | boolean                                                   | 是   | 是否成功释放。返回值为true时列表元素成功释放，返回值为false时列表元素没有成功释放。  |
 
 
 ### onScroll<sup>(deprecated)</sup>
@@ -858,7 +886,7 @@ List组件的滚动控制器，通过它控制List组件的滚动，仅支持一
 ### 导入对象
 
 ```
-listScroller: ListScroller = new ListScroller()
+listScroller: ListScroller = new ListScroller();
 ```
 
 
@@ -1043,21 +1071,164 @@ type OnScrollVisibleContentChangeCallback = (start: VisibleListContentInfo, end:
 | IN_HEADER_AREA |  2  | ListItemGroup内部header区域。 |
 | IN_FOOTER_AREA |  3  | ListItemGroup内部footer区域。 |
 
+## UIListEvent<sup>18+</sup>
+frameNode中[getEvent('List')](../js-apis-arkui-frameNode.md#geteventlist18)方法的返回值，可用于给List节点设置滚动事件。
+
+UIListEvent继承于[UIScrollableCommonEvent](./ts-container-scrollable-common.md#uiscrollablecommonevent18)。
+
+### setOnWillScroll<sup>18+</sup>
+
+setOnWillScroll(callback:  OnWillScrollCallback | undefined): void
+
+设置[onWillScroll](./ts-container-scrollable-common.md#onwillscroll12)事件的回调。
+
+方法入参为undefined时，会重置事件回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| callback  | [OnWillScrollCallback](./ts-container-scrollable-common.md#onwillscrollcallback12)&nbsp;\|&nbsp;undefined | 是   | onWillScroll事件的回调函数。 |
+
+### setOnDidScroll<sup>18+</sup>
+
+setOnDidScroll(callback: OnScrollCallback | undefined): void
+
+设置[onDidScroll](./ts-container-scrollable-common.md#ondidscroll12)事件的回调。
+
+方法入参为undefined时，会重置事件回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| callback  | [OnScrollCallback](./ts-container-scrollable-common.md#onscrollcallback12)&nbsp;\|&nbsp;undefined | 是   | onDidScroll事件的回调函数。 |
+
+### setOnScrollIndex<sup>18+</sup>
+
+setOnScrollIndex(callback: OnListScrollIndexCallback | undefined): void
+
+设置[onScrollIndex](#onscrollindex)事件的回调。
+
+方法入参为undefined时，会重置事件回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| callback  | [OnListScrollIndexCallback](#onlistscrollindexcallback18)&nbsp;\|&nbsp;undefined | 是   | onScrollIndex事件的回调函数。 |
+
+### setOnScrollVisibleContentChange<sup>18+</sup>
+
+setOnScrollVisibleContentChange(callback: OnScrollVisibleContentChangeCallback | undefined): void
+
+设置[onScrollVisibleContentChange](#onscrollvisiblecontentchange12)事件的回调。
+
+方法入参为undefined时，会重置事件回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| callback  |  [OnScrollVisibleContentChangeCallback](./ts-container-list.md#onscrollvisiblecontentchangecallback12)&nbsp;\|&nbsp;undefined | 是   | onScrollVisibleContentChange事件的回调函数。 |
+
+## OnListScrollIndexCallback<sup>18+</sup>
+type OnListScrollIndexCallback = (start: number, end: number, center: number) => void
+
+List组件可见区域item变化事件的回调类型。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名               | 类型   | 必填 | 说明                                   |
+| -------------------- | ------ | ---- | -------------------------------------- |
+| start   | number | 是   | List显示区域内第一个子组件的索引值。     |
+| end     | number | 是   | List显示区域内最后一个子组件的索引值。 |
+| center  | number | 是   | List显示区域内中间位置子组件的索引值。 |
+
 ## 示例
 
 ### 示例1（添加滚动事件）
 该示例实现了设置纵向列表，并在当前显示界面发生改变时回调索引。
+
+<!--code_no_check-->
+```ts
+// ListDataSource.ets
+export class ListDataSource implements IDataSource {
+  private list: number[] = [];
+  private listeners: DataChangeListener[] = [];
+
+  constructor(list: number[]) {
+    this.list = list;
+  }
+
+  totalCount(): number {
+    return this.list.length;
+  }
+
+  getData(index: number): number {
+    return this.list[index];
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener);
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1);
+    }
+  }
+
+  // 通知控制器数据删除
+  notifyDataDelete(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataDelete(index);
+    });
+  }
+
+  // 在指定索引位置删除一个元素
+  public deleteItem(index: number): void {
+    this.list.splice(index, 1);
+    this.notifyDataDelete(index);
+  }
+}
+```
+
+<!--code_no_check-->
 ```ts
 // xxx.ets
+import { ListDataSource } from './ListDataSource';
+
 @Entry
 @Component
 struct ListExample {
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  private arr: ListDataSource = new ListDataSource([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
 
   build() {
     Column() {
       List({ space: 20, initialIndex: 0 }) {
-        ForEach(this.arr, (item: number) => {
+        LazyForEach(this.arr, (item: number) => {
           ListItem() {
             Text('' + item)
               .width('100%').height(100).fontSize(16)
@@ -1071,20 +1242,20 @@ struct ListExample {
       .divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 20, endMargin: 20 }) // 每行之间的分界线
       .edgeEffect(EdgeEffect.Spring) // 边缘效果设置为Spring
       .onScrollIndex((firstIndex: number, lastIndex: number, centerIndex: number) => {
-        console.info('first' + firstIndex)
-        console.info('last' + lastIndex)
-        console.info('center' + centerIndex)
+        console.info('first' + firstIndex);
+        console.info('last' + lastIndex);
+        console.info('center' + centerIndex);
       })
       .onScrollVisibleContentChange((start: VisibleListContentInfo, end: VisibleListContentInfo) => {
         console.log(' start index: ' + start.index +
                     ' start item group area: ' + start.itemGroupArea +
-                    ' start index in group: ' + start.itemIndexInGroup)
+                    ' start index in group: ' + start.itemIndexInGroup);
         console.log(' end index: ' + end.index +
                     ' end item group area: ' + end.itemGroupArea +
-                    ' end index in group: ' + end.itemIndexInGroup)
+                    ' end index in group: ' + end.itemIndexInGroup);
       })
       .onDidScroll((scrollOffset: number, scrollState: ScrollState) => {
-        console.info(`onScroll scrollState = ScrollState` + scrollState + `, scrollOffset = ` + scrollOffset)
+        console.info(`onScroll scrollState = ScrollState` + scrollState + `, scrollOffset = ` + scrollOffset);
       })
       .width('90%')
     }
@@ -1102,18 +1273,21 @@ struct ListExample {
 ### 示例2（设置子元素对齐）
 该示例展示了不同ListItemAlign枚举值下，List组件交叉轴方向子元素对齐效果。
 
+<!--code_no_check-->
 ```ts
 // xxx.ets
+import { ListDataSource } from './ListDataSource';
+
 @Entry
 @Component
 struct ListLanesExample {
-  @State arr: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"]
-  @State alignListItem: ListItemAlign = ListItemAlign.Start
+  arr: ListDataSource = new ListDataSource([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]);
+  @State alignListItem: ListItemAlign = ListItemAlign.Start;
 
   build() {
     Column() {
       List({ space: 20, initialIndex: 0 }) {
-        ForEach(this.arr, (item: string) => {
+        LazyForEach(this.arr, (item: string) => {
           ListItem() {
             Text('' + item)
               .width('100%')
@@ -1136,11 +1310,11 @@ struct ListLanesExample {
 
       Button("点击更改alignListItem:" + this.alignListItem).onClick(() => {
         if (this.alignListItem == ListItemAlign.Start) {
-          this.alignListItem = ListItemAlign.Center
+          this.alignListItem = ListItemAlign.Center;
         } else if (this.alignListItem == ListItemAlign.Center) {
-          this.alignListItem = ListItemAlign.End
+          this.alignListItem = ListItemAlign.End;
         } else {
-          this.alignListItem = ListItemAlign.Start
+          this.alignListItem = ListItemAlign.Start;
         }
       })
     }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 })
@@ -1154,19 +1328,22 @@ struct ListLanesExample {
 ### 示例3（设置编辑模式）
 该示例展示了如何设置当前List组件是否处于可编辑模式。
 
+<!--code_no_check-->
 ```ts
 // xxx.ets
+import { ListDataSource } from './ListDataSource';
+
 @Entry
 @Component
 struct ListExample {
-  @State arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-  @State editFlag: boolean = false
+  arr: ListDataSource=new ListDataSource([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
+  @State editFlag: boolean = false;
 
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
       Column() {
         List({ space: 20, initialIndex: 0 }) {
-          ForEach(this.arr, (item: number, index?: number) => {
+          LazyForEach(this.arr, (item: number, index?: number) => {
             ListItem() {
               Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
                 Text('' + item)
@@ -1183,10 +1360,10 @@ struct ListExample {
                   }.width('30%').height(40)
                   .onClick(() => {
                     if (index != undefined) {
-                      console.info(this.arr[index] + 'Delete')
-                      this.arr.splice(index, 1)
-                      console.info(JSON.stringify(this.arr))
-                      this.editFlag = false
+                      console.info(this.arr.getData(index) + 'Delete');
+                      this.arr.deleteItem(index);
+                      console.info(JSON.stringify(this.arr));
+                      this.editFlag = false;
                     }
                   }).stateEffect(true)
                 }
@@ -1200,7 +1377,7 @@ struct ListExample {
 
       Button('edit list')
         .onClick(() => {
-          this.editFlag = !this.editFlag
+          this.editFlag = !this.editFlag;
         }).margin({ top: 5, left: 20 })
     }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 })
   }
@@ -1212,24 +1389,29 @@ struct ListExample {
 ### 示例4（设置限位对齐）
 该示例展示了List组件设置居中限位的实现效果。
 
+<!--code_no_check-->
 ```ts
 // xxx.ets
+import { ListDataSource } from './ListDataSource';
+
 @Entry
 @Component
 struct ListExample {
-  private arr: number[] = []
-  private scrollerForList: Scroller = new Scroller()
+  private arr: ListDataSource=new ListDataSource([]);
+  private scrollerForList: Scroller = new Scroller();
 
   aboutToAppear() {
+    let list: number[] = [];
     for (let i = 0; i < 20; i++) {
-      this.arr.push(i)
+      list.push(i);
     }
+    this.arr = new ListDataSource(list);
   }
   build() {
     Column() {
       Row() {
         List({ space: 20, initialIndex: 3, scroller: this.scrollerForList }) {
-          ForEach(this.arr, (item: number) => {
+          LazyForEach(this.arr, (item: number) => {
             ListItem() {
               Text('' + item)
                 .width('100%').height(100).fontSize(16)
@@ -1265,27 +1447,33 @@ struct ListExample {
 该示例通过设置childrenMainSize属性，实现了List在子组件高度不一致时调用scrollTo接口也可以跳转准确。
 
 如果配合状态管理V2使用，详情见：[List与makeObserved](../../../ui/state-management/arkts-v1-v2-migration.md#list)。
+
+<!--code_no_check-->
 ```ts
 // xxx.ets
+import { ListDataSource } from './ListDataSource';
+
 @Entry
 @Component
 struct ListExample {
-  private arr: number[] = []
-  private scroller: ListScroller = new ListScroller()
-  @State listSpace: number = 10
-  @State listChildrenSize: ChildrenMainSize = new ChildrenMainSize(100)
+  private arr: ListDataSource = new ListDataSource([]);
+  private scroller: ListScroller = new ListScroller();
+  @State listSpace: number = 10;
+  @State listChildrenSize: ChildrenMainSize = new ChildrenMainSize(100);
   aboutToAppear(){
     // 初始化数据源。
+    let list: number[] = [];
     for (let i = 0; i < 10; i++) {
-      this.arr.push(i)
+      list.push(i);
     }
+    this.arr = new ListDataSource(list);
     // 前5个item的主轴大小不是默认大小100，因此需要通过ChildrenMainSize通知List。
-    this.listChildrenSize.splice(0, 5, [300, 300, 300, 300, 300])
+    this.listChildrenSize.splice(0, 5, [300, 300, 300, 300, 300]);
   }
   build() {
     Column() {
       List({ space: this.listSpace, initialIndex: 4, scroller: this.scroller }) {
-        ForEach(this.arr, (item: number) => {
+        LazyForEach(this.arr, (item: number) => {
           ListItem() {
             Text('item-' + item)
               .height( item < 5 ? 300 : this.listChildrenSize.childDefaultSize)
@@ -1304,13 +1492,13 @@ struct ListExample {
       .alignListItem(ListItemAlign.Center)
       Row(){
         Button() { Text('item size + 50') }.onClick(()=>{
-          this.listChildrenSize.childDefaultSize += 50
+          this.listChildrenSize.childDefaultSize += 50;
         }).height('50%').width('30%')
         Button() { Text('item size - 50') }.onClick(()=>{
           if (this.listChildrenSize.childDefaultSize === 0) {
-            return
+            return;
           }
-          this.listChildrenSize.childDefaultSize -= 50
+          this.listChildrenSize.childDefaultSize -= 50;
         }).height('50%').width('30%')
         Button() { Text('scrollTo (0, 310)') }.onClick(()=>{
           // 310: 跳转到item 1顶部与List顶部平齐的位置。
@@ -1330,31 +1518,75 @@ struct ListExample {
 该示例展示了含有group时，获得List组件的Item索引相关信息。
 ```ts
 // xxx.ets
+class TimeTableDataSource implements IDataSource {
+  private list: TimeTable[] = [];
+
+  constructor(list: TimeTable[]) {
+    this.list = list;
+  }
+
+  totalCount(): number {
+    return this.list.length;
+  }
+
+  getData(index: number): TimeTable {
+    return this.list[index];
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+  }
+}
+
+class ProjectsDataSource implements IDataSource {
+  private list: string[] = [];
+
+  constructor(list: string[]) {
+    this.list = list;
+  }
+
+  totalCount(): number {
+    return this.list.length;
+  }
+
+  getData(index: number): string {
+    return this.list[index];
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+  }
+}
+
 @Entry
 @Component
 struct ListItemGroupExample {
   private timeTable: TimeTable[] = [
-    {
-      title: '星期一',
-      projects: ['语文', '数学', '英语']
-    },
-    {
-      title: '星期二',
-      projects: ['物理', '化学', '生物']
-    },
-    {
-      title: '星期三',
-      projects: ['历史', '地理', '政治']
-    },
-    {
-      title: '星期四',
-      projects: ['美术', '音乐', '体育']
-    }
-  ]
-  private scroller: ListScroller = new ListScroller()
-  @State listIndexInfo: VisibleListContentInfo = {index: -1}
-  @State mess:string = "null"
-  @State itemBackgroundColorArr: boolean[] = [false]
+  {
+    title: '星期一',
+    projects: ['语文', '数学', '英语']
+  },
+  {
+    title: '星期二',
+    projects: ['物理', '化学', '生物']
+  },
+  {
+    title: '星期三',
+    projects: ['历史', '地理', '政治']
+  },
+  {
+    title: '星期四',
+    projects: ['美术', '音乐', '体育']
+  }
+];
+  private scroller: ListScroller = new ListScroller();
+  @State listIndexInfo: VisibleListContentInfo = {index: -1};
+  @State mess:string = "null";
+  @State itemBackgroundColorArr: boolean[] = [false];
   @Builder
   itemHead(text: string) {
     Text(text)
@@ -1376,9 +1608,9 @@ struct ListItemGroupExample {
   build() {
     Column() {
       List({ space: 20, scroller: this.scroller}) {
-        ForEach(this.timeTable, (item: TimeTable, index: number) => {
+        LazyForEach(new TimeTableDataSource(this.timeTable), (item: TimeTable, index: number) => {
           ListItemGroup({ header: this.itemHead(item.title), footer: this.itemFoot(item.projects.length) }) {
-            ForEach(item.projects, (project: string, subIndex: number) => {
+            LazyForEach(new ProjectsDataSource(item.projects), (project: string, subIndex: number) => {
               ListItem() {
                 Text(project)
                   .width("100%")
@@ -1399,16 +1631,16 @@ struct ListItemGroupExample {
         PanGesture()
           .onActionUpdate((event: GestureEvent) => {
             if (event.fingerList[0] != undefined && event.fingerList[0].localX != undefined && event.fingerList[0].localY != undefined) {
-              this.listIndexInfo  = this.scroller.getVisibleListContentInfo(event.fingerList[0].localX, event.fingerList[0].localY)
+              this.listIndexInfo  = this.scroller.getVisibleListContentInfo(event.fingerList[0].localX, event.fingerList[0].localY);
               let itemIndex:string = 'undefined';
               if (this.listIndexInfo.itemIndexInGroup != undefined ) {
-                itemIndex = this.listIndexInfo.itemIndexInGroup.toString()
+                itemIndex = this.listIndexInfo.itemIndexInGroup.toString();
                 if (this.listIndexInfo.index != undefined && this.listIndexInfo.index >= 0 &&
                   this.listIndexInfo.itemIndexInGroup >= 0 ) {
                   this.itemBackgroundColorArr[this.listIndexInfo.index * 3 + this.listIndexInfo.itemIndexInGroup] = true;
                 }
               }
-              this.mess = 'index:' + this.listIndexInfo.index.toString() + ' itemIndex:' + itemIndex
+              this.mess = 'index:' + this.listIndexInfo.index.toString() + ' itemIndex:' + itemIndex;
             }
           }))
       .gesture(
@@ -1438,18 +1670,20 @@ interface TimeTable {
 ### 示例7（设置边缘渐隐）
 该示例实现了List组件开启边缘渐隐效果并设置边缘渐隐长度。
 
+<!--code_no_check-->
 ```ts
 import { LengthMetrics } from '@kit.ArkUI'
+import { ListDataSource } from './ListDataSource';
 @Entry
 @Component
 struct ListExample {
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-  scrollerForList: Scroller = new Scroller()
+  private arr: ListDataSource=new ListDataSource([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
+  scrollerForList: Scroller = new Scroller();
   build() {
     Column() {
 
       List({ space: 20, initialIndex: 0, scroller: this.scrollerForList }) {
-        ForEach(this.arr, (item: number) => {
+        LazyForEach(this.arr, (item: number) => {
           ListItem() {
             Text('' + item)
               .width('100%').height(100).fontSize(16)
@@ -1473,17 +1707,20 @@ struct ListExample {
 
 该示例通过edgeEffect接口，实现了List组件设置单边边缘效果。
 
+<!--code_no_check-->
 ```ts
 // xxx.ets
+import { ListDataSource } from './ListDataSource';
+
 @Entry
 @Component
 struct ListExample {
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-  scrollerForList: Scroller = new Scroller()
+  private arr: ListDataSource = new ListDataSource([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
+  scrollerForList: Scroller = new Scroller();
   build() {
     Column() {
       List({ space: 20, initialIndex: 0, scroller: this.scrollerForList }) {
-        ForEach(this.arr, (item: number) => {
+        LazyForEach(this.arr, (item: number) => {
           ListItem() {
             Text('' + item)
               .width('100%').height(100).fontSize(16)
