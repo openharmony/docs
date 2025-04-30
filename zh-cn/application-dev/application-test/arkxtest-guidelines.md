@@ -29,7 +29,7 @@
 
 ### 搭建环境
 
-DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.com/cn/develop/deveco-studio#download)，并进行相关的配置动作。
+DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.com/cn/develop/deveco-studio)，并进行相关的配置动作。
 
 ### 新建和编写测试脚本
 
@@ -558,11 +558,11 @@ hdc shell uitest uiInput text hello
 
 #### uiInput keyEvent使用示例
 
-| 配置参数             | 必填       | 描述                                                                     |                
-|------|------|------------------------------------------------------------------------|
-| keyID1   | 是    | 实体按键对应ID，取值范围：Back/Home/Power 或 [KeyCode键码值](../reference/apis-input-kit/js-apis-keycode.md)。<br>当取Back/Home/Power时，不支持输入组合键。 | 
-| keyID2    | 否    | 实体按键对应ID，取值范围：[KeyCode键码值](../reference/apis-input-kit/js-apis-keycode.md)，默认值为空。                                                       |
-| keyID3    | 否    | 实体按键对应ID，取值范围：[KeyCode键码值](../reference/apis-input-kit/js-apis-keycode.md)，默认值为空。                                                                 |
+| 配置参数             | 必填       | 描述                                                                                                                              |                
+|------|------|---------------------------------------------------------------------------------------------------------------------------------|
+| keyID1   | 是    | 实体按键对应ID，取值范围：Back、Home、Power、或[KeyCode键码值](../reference/apis-input-kit/js-apis-keycode.md#keycode)。<br>当取值为Back、Home或Power时，不支持输入组合键。 | 
+| keyID2    | 否    | 实体按键对应ID，取值范围：[KeyCode键码值](../reference/apis-input-kit/js-apis-keycode.md#keycode)，默认值为空。                                               |
+| keyID3    | 否    | 实体按键对应ID，取值范围：[KeyCode键码值](../reference/apis-input-kit/js-apis-keycode.md#keycode)，默认值为空。                                               |
 
 ```shell  
 # 返回主页。
