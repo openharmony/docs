@@ -69,7 +69,8 @@
             - [ArkUI瀑布流渲染场景](taskpool-waterflow.md)
             - [获取最近访问列表场景](sendablelrucache-recent-list.md)
             - [多线程取消TaskPool任务场景](multi-thread-cancel-task.md)
-            - [ArkTS多线程间操作Native对象场景](napi-coerce-to-native-binding-object.md)
+            - [自定义Native Transferable对象的多线程操作场景](napi-coerce-to-native-binding-object.md)
+            - [自定义Native Sendable对象的多线程操作场景](napi-define-sendable-object.md)
             - [Worker常驻线程通过TaskPool进行多任务并发处理](worker-and-taskpool.md)
 - [ArkTS跨语言交互](arkts-cross-language-interaction.md)
 - ArkTS运行时<!--arkts-runtime-->
