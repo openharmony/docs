@@ -72,11 +72,11 @@ It is not allowed to access this domain.
 
 **错误信息**
 
-Websocket other unknown error.
+Internal error.
 
 **错误描述**
 
-Websocket其他错误。
+内部错误。
 
 **可能原因**
 
