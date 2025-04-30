@@ -48,7 +48,7 @@ type ValueType = string | image.PixelMap | Want | ArrayBuffer
 
 createData(mimeType: string, value: ValueType): PasteData
 
-构建一个自定义类型的剪贴板内容对象。
+构建一个指定类型的剪贴板内容对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -99,9 +99,9 @@ createData(data: Record&lt;string, ValueType&gt;): PasteData
 
 **参数：**
 
-| 参数名 | 类型                                             | 必填 | 说明                                                                                                                                                                                                                                                                                          |
-| -------- |------------------------------------------------| -------- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| data | [Record](../../quick-start/introduction-to-arkts.md#record类型的对象字面量)&lt;string, [ValueType](#valuetype9)&gt; | 是 | Record的key为剪贴板数据对应的MIME类型。可以是[常量](#常量)中已定义的类型，包括HTML类型，WANT类型，纯文本类型，URI类型，PIXELMAP类型。也可以是自定义的MIME类型，可自定义此参数值，mimeType长度不能超过1024字节。<br/>Record的value为key中指定MIME类型对应的自定义数据。<br/>Record中的首个key-value指定的MIME类型，会作为剪贴板内容对象中首个PasteDataRecord的默认MIME类型，非默认类型的数据在粘贴时只能使用[getData](#getdata14)接口读取。 |
+| 参数名 | 类型 | 必填 | 说明  |
+| -------- |------------------------------------------------| -------- |-----------|
+| data | [Record](../../quick-start/introduction-to-arkts.md#record类型的对象字面量)&lt;string, [ValueType](#valuetype9)&gt; | 是 | Record的key为剪贴板数据对应的MIME类型。可以是[常量](#常量)中已定义的类型，包括HTML类型，WANT类型，纯文本类型，URI类型，PIXELMAP类型。也可以是自定义的MIME类型，可自定义此参数值，mimeType长度不能超过1024字节。<br/>Record的value为key中指定MIME类型对应的数据。<br/>Record中的首个key-value指定的MIME类型，会作为剪贴板内容对象中首个PasteDataRecord的默认MIME类型，非默认类型的数据在粘贴时只能使用[getData](#getdata14)接口读取。 |
 
 **返回值：**
 
@@ -139,7 +139,7 @@ let pasteData: pasteboard.PasteData = pasteboard.createData(record);
 
 createRecord(mimeType: string, value: ValueType):PasteDataRecord
 
-创建一条自定义数据内容条目。
+创建一条指定类型的数据内容条目。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -150,13 +150,13 @@ createRecord(mimeType: string, value: ValueType):PasteDataRecord
 | 参数名 | 类型 | 必填 | 说明                |
 | -------- | -------- | -------- |-------------------|
 | mimeType | string | 是 | 剪贴板数据对应的MIME类型，可以是[常量](#常量)中已定义的类型，包括HTML类型，WANT类型，纯文本类型，URI类型，PIXELMAP类型；也可以是自定义的MIME类型，开发者可自定义此参数值，mimeType长度不能超过1024个字节。  |
-| value | [ValueType](#valuetype9) | 是 | 自定义数据内容。          |
+| value | [ValueType](#valuetype9) | 是 | 指定类型对应的数据内容。          |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [PasteDataRecord](#pastedatarecord7) | 一条新建的自定义数据内容条目。 |
+| [PasteDataRecord](#pastedatarecord7) | 一条新建的指定类型的数据内容条目。 |
 
 **错误码：**
 
@@ -213,8 +213,8 @@ let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboa
 | 名称                               | 值  | 说明                                                                                  |
 | ---------------------------------- | --- | ------------------------------------------------------------------------------------- |
 | INAPP                              | 0   | 表示仅允许同应用内粘贴。                                                              |
-| LOCALDEVICE                        | 1   | 表示允许在此设备中任何应用内粘贴。                                                    |
-| CROSSDEVICE<sup>(deprecated)</sup> | 2   | 表示允许跨设备在任何应用内粘贴。<br/>从API Version 12开始废弃，无替代接口和替代方法，后续由用户在“设置-多设备协同-跨设备剪切板开关”选项中控制是否允许跨设备粘贴。 |
+| LOCALDEVICE                        | 1   | 表示允许在此设备中任何应用内粘贴。用户在“设置-多设备协同-跨设备剪贴板开关”选项中控制允许跨设备粘贴，表示允许跨设备在任何应用内粘贴。 |
+| CROSSDEVICE<sup>(deprecated)</sup> | 2   | 表示允许跨设备在任何应用内粘贴。<br/>从API Version 12开始废弃，无替代接口和替代方法，后续由用户在“设置-多设备协同-跨设备剪贴板开关”选项中控制是否允许跨设备粘贴。 |
 
 ## pasteboard.createHtmlData<sup>(deprecated)</sup>
 
@@ -464,21 +464,20 @@ let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability
 
 ## PasteDataProperty<sup>7+</sup>
 
-定义了剪贴板中所有内容条目的属性，包含时间戳、数据类型、粘贴范围以及一些附加数据等，
-该属性必须通过[setProperty](#setproperty9)方法，才能设置到剪贴板中。
+定义了剪贴板中所有内容条目的属性，包含时间戳、数据类型、粘贴范围以及一些附加数据等，该属性必须通过[setProperty](#setproperty9)方法，才能设置到剪贴板中。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
-| 名称 | 类型 | 可读 | 可写 | 说明                                                                                                                                                                                                                                       |
-| -------- | -------- | -------- | -------- |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| additions<sup>7+</sup> | {[key:string]:object} | 是 | 是 | 设置其他附加属性数据。不支持动态追加属性，只能通过重新赋值的方式修改附加值，具体见相关示例setProperty。                                                                                                                                                                                                                              |
-| mimeTypes<sup>7+</sup> | Array&lt;string&gt; | 是 | 否 | 剪贴板内容条目的数据类型，非重复的类型列表。                                                                                                                                                                                                                   |
-| tag<sup>7+</sup> | string | 是 | 是 | 用户自定义标签。                                                                                                                                                                                                                                 |
-| timestamp<sup>7+</sup> | number | 是 | 否 | 剪贴板数据的写入时间戳（单位：ms）。                                                                                                                                                                                                                      |
-| localOnly<sup>7+</sup> | boolean | 是 | 是 | 配置剪贴板内容是否为“仅在本地”，默认值为false。其值会被shareOption属性覆盖，推荐使用shareOption属性。ShareOption.INAPP、ShareOption.LOCALDEVICE会将localOnly设置为true，ShareOption.CROSSDEVICE会将localOnly设置为false。<br/>- 配置为true时，表示内容仅在本地，不会在设备之间传递。<br/>- 配置为false时，表示内容将在设备间传递。 |
-| shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | 是 | 是 | 指示剪贴板数据可以粘贴到的范围，如果未设置或设置不正确，则默认值为CROSSDEVICE。                                                                                                                                                                                            |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- |-------------------------------|
+| additions<sup>7+</sup> | {[key:string]:object} | 是 | 是 | 设置其他附加属性数据。不支持动态追加属性，只能通过重新赋值的方式修改附加值，具体见相关示例setProperty。 |
+| mimeTypes<sup>7+</sup> | Array&lt;string&gt; | 是 | 否 | 剪贴板内容条目的数据类型，非重复的类型列表。 |
+| tag<sup>7+</sup> | string | 是 | 是 | 用户自定义标签。 |
+| timestamp<sup>7+</sup> | number | 是 | 否 | 剪贴板数据的写入时间戳（单位：ms）。 |
+| localOnly<sup>7+</sup> | boolean | 是 | 是 | 配置剪贴板内容是否为“仅在本地”，默认值为false。其值会被shareOption属性覆盖，推荐使用[ShareOption](#shareoption9)属性。 |
+| shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | 是 | 是 | 指示剪贴板数据可以粘贴到的范围。 |
 
 ## FileConflictOptions<sup>15+</sup>
 
@@ -580,7 +579,7 @@ struct PasteboardTest {
                 console.error('getDataWithProgress succ');
               }).catch((err: BusinessError) => {
                 console.error('Failed to get PasteData. Cause: ' + err.message);
-              })   
+              })
           })
         }
       }
@@ -619,7 +618,7 @@ struct PasteboardTest {
 | -------- | -------- | -------- | -------- | -------- |
 | htmlText<sup>7+</sup> | string | 是 | 否 | HTML内容。 |
 | want<sup>7+</sup> | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是 | 否 | Want内容。 |
-| mimeType<sup>7+</sup> | string | 是 | 否 | 数据类型。 |
+| mimeType<sup>7+</sup> | string | 是 | 否 | 默认数据类型。 |
 | plainText<sup>7+</sup> | string | 是 | 否 | 纯文本内容。 |
 | uri<sup>7+</sup> | string | 是 | 否 | URI内容。 |
 | pixelMap<sup>9+</sup> | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是 | 否 | PixelMap内容。 |
@@ -858,7 +857,7 @@ record.convertToText().then((data: string) => {
 
 getPrimaryText(): string
 
-获取首个条目的纯文本内容。
+获取第一条纯文本内容。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -868,7 +867,7 @@ getPrimaryText(): string
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | 纯文本内容。 |
+| string | 纯文本内容。pasteData中没有纯文本内容时，该接口返回undefined。 |
 
 **示例：**
 
@@ -881,7 +880,7 @@ let plainText: string = pasteData.getPrimaryText();
 
 getPrimaryHtml(): string
 
-获取首个条目的HTML内容。
+获取第一条的HTML内容。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -891,7 +890,7 @@ getPrimaryHtml(): string
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | HTML内容。 |
+| string | HTML内容。pasteData中没有内容时，该接口返回undefined。 |
 
 **示例：**
 
@@ -905,7 +904,7 @@ let htmlText: string = pasteData.getPrimaryHtml();
 
 getPrimaryWant(): Want
 
-获取首个条目的Want对象内容。
+获取第一条的Want对象内容。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -915,7 +914,7 @@ getPrimaryWant(): Want
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Want对象内容。 |
+| [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Want对象内容。pasteData中没有内容时，该接口返回undefined。 |
 
 **示例：**
 
@@ -934,7 +933,7 @@ let want: Want = pasteData.getPrimaryWant();
 
 getPrimaryUri(): string
 
-获取首个条目的URI内容。
+获取第一条的URI内容。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -944,7 +943,7 @@ getPrimaryUri(): string
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | URI内容。 |
+| string | URI内容。pasteData中没有内容时，该接口返回undefined。 |
 
 **示例：**
 
@@ -957,7 +956,7 @@ let uri: string = pasteData.getPrimaryUri();
 
 getPrimaryPixelMap(): image.PixelMap
 
-获取首个条目的PixelMap内容。
+获取第一条的PixelMap内容。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -967,7 +966,7 @@ getPrimaryPixelMap(): image.PixelMap
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | PixelMap内容。 |
+| [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | PixelMap内容。pasteData中没有内容时，该接口返回undefined。 |
 
 **示例：**
 
@@ -1019,7 +1018,7 @@ pasteData.addRecord(htmlRecord);
 
 addRecord(mimeType: string, value: ValueType): void
 
-向当前剪贴板内容中添加一条自定义数据内容条目，同时也会将自定义数据类型添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
+向当前剪贴板内容中添加一条数据内容条目，同时也会将数据类型添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1029,8 +1028,8 @@ addRecord(mimeType: string, value: ValueType): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| mimeType | string | 是 | 自定义数据的MIME类型， 其长度不能超过1024个字节。 |
-| value | [ValueType](#valuetype9) | 是 | 自定义数据内容。 |
+| mimeType | string | 是 | 数据的MIME类型， 其长度不能超过1024个字节。 |
+| value | [ValueType](#valuetype9) | 是 | 数据内容。 |
 
 **错误码：**
 
@@ -1062,7 +1061,7 @@ getMimeTypes(): Array&lt;string&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Array&lt;string&gt; | 剪贴板内容条目的数据类型，非重复的类型列表。 |
+| Array&lt;string&gt; | 剪贴板内容条目的数据类型，非重复的类型列表。（去重后的数据列表？） |
 
 **示例：**
 
@@ -1296,7 +1295,7 @@ hasType(mimeType: string): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| mimeType | string | 是 | 待查询的数据类型。可以是[常量](#常量)中已定义的类型，包括HTML类型，WANT类型，纯文本类型，URI类型，PIXELMAP类型；也可以是自定义的MIME类型，开发者可自定义此参数值, mimeType长度不能超过1024字节。 |
+| mimeType | string | 是 | 待查询的数据类型。可以是[常量](#常量)中已定义的类型，包括HTML类型，WANT类型，纯文本类型，URI类型，PIXELMAP类型；也可以是自定义的MIME类型。 |
 
 **返回值：**
 
@@ -1366,7 +1365,7 @@ replaceRecord(index: number, record: PasteDataRecord): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | index | number | 是 | 指定的下标。 |
-| record | [PasteDataRecord](#pastedatarecord7) | 是 | 新条目的内容。 |
+| record | [PasteDataRecord](#pastedatarecord7) | 是 | 被替换后的条目数据内容。 |
 
 **错误码：**
 
@@ -2398,7 +2397,7 @@ getDataSource(): string
 
 | 类型   | 说明   |
 | ------ | ------ |
-| string | 数据来源的应用包名。|
+| string | 数据来源的应用包名。 |
 
 **错误码：**
 
@@ -3033,7 +3032,7 @@ struct PasteboardTest {
                 console.error('getDataWithProgress succ');
               }).catch((err: BusinessError) => {
                 console.error('Failed to get PasteData. Cause: ' + err.message);
-              })   
+              })
           })
         }
       }
