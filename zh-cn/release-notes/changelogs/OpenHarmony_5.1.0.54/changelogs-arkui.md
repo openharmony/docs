@@ -277,4 +277,4 @@ SheetType.POPUP
 
 **适配指导**
 
-默认行为变更，开发者无需适配。若API version 18前希望实现的效果为位于弹出节点底部并且同弹出节点左对齐或者右对齐，可以通过设置placement值为BottomLeft或BottomRight来实现对应显示效果。
+默认行为变更，开发者无需适配。若API version 18前希望实现的效果为位于弹出节点底部并且同弹出节点左对齐或者右对齐，在API version 18后可以通过设置placement值为BottomLeft或BottomRight来实现对应显示效果。
