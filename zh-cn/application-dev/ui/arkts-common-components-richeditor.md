@@ -327,7 +327,7 @@ RichEditor(this.options1)
 
 这三种回调机制适用于智能输入辅助。例如：在用户开始输入文本前，利用回调进行词汇联想的提供，在用户完成输入后，利用回调执行自动化纠错或格式转换。三种回调的时序依次为：aboutToIMEInput、onIMEInputComplete、onDidIMEInput。
 
-使用[RichEditorStyledStringOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorstyledstringoptions12)构建的组件并不支持上述两种回调功能。
+使用[RichEditorStyledStringOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorstyledstringoptions12)构建的组件并不支持上述三种回调功能。
 
 ```ts
 RichEditor(this.options)
