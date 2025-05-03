@@ -75,14 +75,14 @@ libnative_display_soloist.so
      build() {
        Column() {
          Row() {
-           XComponent({ id: 'xcomponentId30', type: 'surface', libraryname: 'entry' })
+           XComponent({ id: 'xcomponentId30', type: XComponentType.SURFACE, libraryname: 'entry' })
              .onLoad((xComponentContext) => {
                this.xComponentContext1 = xComponentContext as XComponentContext;
              }).width('640px')
          }.height('40%')
    
          Row() {
-           XComponent({ id: 'xcomponentId120', type: 'surface', libraryname: 'entry' })
+           XComponent({ id: 'xcomponentId120', type: XComponentType.SURFACE, libraryname: 'entry' })
              .onLoad((xComponentContext) => {
                this.xComponentContext2 = xComponentContext as XComponentContext;
              }).width('640px') // 64的倍数
