@@ -24,7 +24,7 @@
 1. 设置安全控件按钮属性。
 2. 创建安全控件按钮。
 3. 调用[MediaAssetChangeRequest.createAssetRequest](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#createassetrequest11)接口新建一个创建资产的变更请求，指定待创建资产的子类型为动态照片。
-4. 调用[MediaAssetChangeRequest.addResource](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#addresource11)接口指定动态照片的图片和视频内容。
+4. 调用[MediaAssetChangeRequest.addResource](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#addresource11)接口指定动态照片的图片和视频内容，动态照片的视频时长不能超过10s。
    
    以下示例以从应用沙箱的[应用文件](../../file-management/app-file-access.md)fileUri指定动态照片的图片和视频内容为例。
    
