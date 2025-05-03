@@ -6,7 +6,7 @@
 >
 > 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 
-> 该模块应在支持SystemCapability.Window.SessionManager能力的系统上使用该模块，<!--RP1-->参考[系统能力SystemCapability使用指南](../syscap.md)<!--RP1End-->。
+> 该模块应在支持SystemCapability.Window.SessionManager能力的系统上使用，<!--RP1-->参考[系统能力SystemCapability使用指南](../syscap.md)<!--RP1End-->。
 
 ## 导入模块
 
@@ -266,7 +266,8 @@ struct Index {
 | contentHeight       | number                                                                     | 否   | 原始内容高度，单位为px。用于确定画中画窗口比例。当[使用typeNode的方式](#pipwindowcreate12)创建PiPController时，不传值则默认为1080。当[不使用typeNode的方式](#pipwindowcreate)创建PiPController时，不传值则默认为[XComponent](arkui-ts/ts-basic-components-xcomponent.md)组件的高度。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                 |
 | controlGroups<sup>12+</sup>       | Array<[PiPControlGroup](#pipcontrolgroup12)>                               | 否   | 画中画控制面板的可选控件组列表，应用可以对此进行配置以决定是否显示。应用未配置时，面板显示基础控件（如视频播放控件组的播放/暂停控件）；应用选择配置时，则最多可以选择三个控件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                 |
 | customUIController<sup>12+</sup>      | [NodeController](js-apis-arkui-nodeController.md)           | 否   | 用于实现在画中画界面内容上方展示自定义UI功能，不传值则默认不使用自定义UI功能。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                           |
-| localStorage<sup>17+</sup>      | [LocalStorage](../../ui/state-management/arkts-localstorage.md)           | 否   | 页面级别的UI状态存储单元，多实例下可用来跟踪主窗实例，不传值则默认不跟踪localStorage。<br/>**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                           |
+| localStorage<sup>17+</sup>      | [LocalStorage](../../ui/state-management/arkts-localstorage.md)           | 否   | 页面级别的UI状态存储单元，多实例下可用来跟踪主窗实例，不传值则主窗实例由系统自行推导。多实例下结果不可信，建议多实例场景下传入此参数。<br/>**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                           |
+| defaultWindowSizeType<sup>18+</sup>| number                                                                     | 否   |  画中画第一次拉起窗口大小。<br/>0：代表不设置大小。按照上次画中画关闭前的大小启动；<br/>1：代表小窗；<br/>2：代表大窗；<br/>不传值则为默认值0。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                                 |
 
 ## PiPWindowSize<sup>15+</sup>
 
@@ -847,7 +848,7 @@ try {
 
 on(type: 'stateChange', callback: (state: PiPState, reason: string) => void): void
 
-开启画中画生命周期状态的监听，建议在不需要使用时解注册回调，否则可能存在内存泄漏。
+开启画中画生命周期状态的监听，建议在不需要使用时关闭监听，否则可能存在内存泄漏。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -917,7 +918,7 @@ pipController.off('stateChange');
 
 on(type: 'controlPanelActionEvent', callback: ControlPanelActionEventCallback): void
 
-开启画中画控制面板控件动作事件的监听，建议在不需要使用时解注册回调，否则可能存在内存泄漏。推荐使用[on('controlEvent')](#oncontrolevent12)来开启画中画控制面板控件动作事件的监听。
+开启画中画控制面板控件动作事件的监听，建议在不需要使用时关闭监听，否则可能存在内存泄漏。推荐使用[on('controlEvent')](#oncontrolevent12)来开启画中画控制面板控件动作事件的监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -965,7 +966,7 @@ pipController.on('controlPanelActionEvent', (event: PiPWindow.PiPActionEventType
 
 on(type: 'controlEvent', callback: Callback&lt;ControlEventParam&gt;): void
 
-开启画中画控制面板控件动作事件的监听，建议在不需要使用时解注册回调，否则可能存在内存泄漏。
+开启画中画控制面板控件动作事件的监听，建议在不需要使用时关闭监听，否则可能存在内存泄漏。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1058,7 +1059,7 @@ pipController.off('controlEvent', () => {});
 
 on(type: 'pipWindowSizeChange', callback: Callback&lt;PiPWindowSize&gt;): void
 
-开启画中画窗口尺寸变化事件的监听，建议在不需要使用时解注册回调，否则可能存在内存泄漏。
+开启画中画窗口尺寸变化事件的监听，建议在不需要使用时关闭监听，否则可能存在内存泄漏。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
