@@ -74,7 +74,7 @@ Column() {
 
 ### 在支持多选的情况下，设置无障碍节点是否被选中
 
-accessibilityChecked属性，用于表示组件是否被勾选（如复选框、开关按钮等二态或三态组件），适用于需要明确“选中/未选中”语义的场景，支持以下值：
+accessibilityChecked属性，用于表示组件在支持多选的情况下是否被勾选（如复选框、开关按钮等二态或三态组件），适用于需要明确“选中/未选中”语义的场景，支持以下值：
 
 - undefined（默认）：由系统自动判断（依赖组件自身的状态，如 Toggle 组件的 isOn 属性）。
 
@@ -96,7 +96,15 @@ Column() {
 
 ### 在支持单选的情况下，设置无障碍节点是否被选中
 
-在支持单选的情况下，设置 Column 组件自行确定选中状态
+accessibilitySelected属性，用于表示组件在支持单选的情况下是否被选择（如单选列表项、标签页等），适用于需要区分“当前选中项”的场景（如单选组、导航菜单），支持以下值：
+
+- undefined（默认）：由系统自动判断。
+
+- false：表示未选中。
+
+- true：表示当前选中。
+
+这里以Column组件为例，设置其在支持单选的情况下被选中：
 
 ```ts
 Column() {
@@ -107,6 +115,14 @@ Column() {
 .accessibilityDescription("Column组件可以被选中，播报的内容是“分组”")
 .accessibilitySelected(undefined)
 ```
+
+### accessibilityChecked与accessibilitySelected属性的关键区别
+
+| 属性    | accessibilityChecked     | accessibilitySelected |
+| 常见场景 | 复选框、开关等二态/三态组件 | 单选列表、标签页等互斥选择场景 |
+| 语义    | “勾选”状态                | 	“焦点选中”状态 |
+| 自动播报 | 通常自动触发             | 可能需要手动通知事件 |
+| 典型组件 | Checkbox，Toggle，Switch | Radio，Tabs，列表项 |
 
 ## 场景示例
 
