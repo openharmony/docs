@@ -36,7 +36,9 @@ EmbeddedComponent组件允许在当前页面中嵌入同一应用内其他Embedd
 
 - 属性限制
 
-  EmbeddedComponent组件支持[通用属性](../reference/apis-arkui/arkui-js/js-components-common-attributes.md)，且宽高默认值和最小值均为10vp；不支持如下与宽高相关的属性："constraintSize"、"aspectRatio"、"layoutWeight"、"flexBasis"、"flexGrow"和"flexShrink"。
+  EmbeddedComponent组件支持[通用属性](../reference/apis-arkui/arkui-js/js-components-common-attributes.md)，且宽高默认值和最小值均为10vp；
+  
+  不支持如下与宽高相关的属性："constraintSize"、"aspectRatio"、"layoutWeight"、"flexBasis"、"flexGrow"和"flexShrink"。
 
 ## 场景示例
 
