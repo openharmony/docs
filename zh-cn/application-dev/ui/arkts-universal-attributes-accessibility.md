@@ -70,7 +70,13 @@ Column() {
 .accessibilityDescription("Column组件可以被选中，播报的内容是“分组”")
 ```
 
+## 设置无障碍虚拟子节点
+
+accessibilityVirtualNode属性，用于为自绘制组件添加虚拟无障碍节点，辅助工具会读取这些节点的信息而非实际显示内容。
+
 ## 设置无障碍节点是否被选中
+
+accessibilityChecked和accessibilitySelected是两个用于增强无障碍体验的属性，它们主要用于向屏幕朗读等辅助工具传达组件的选中状态。
 
 ### 在支持多选的情况下，设置无障碍节点是否被选中
 
@@ -100,9 +106,9 @@ accessibilitySelected属性，用于表示组件在支持单选的情况下是�
 
 - undefined（默认）：由系统自动判断。
 
-- false：表示未选中。
-
 - true：表示当前选中。
+
+- false：表示未选中。
 
 这里以Column组件为例，设置其在支持单选的情况下被选中：
 
@@ -124,6 +130,20 @@ Column() {
 | 语义    | “勾选”状态                | 	“焦点选中”状态 |
 | 自动播报 | 通常自动触发             | 可能需要手动通知事件 |
 | 典型组件 | Checkbox，Toggle，Switch | Radio，Tabs，列表项 |
+
+## 使用建议
+
+- 优先级控制
+
+通过accessibilityLevel确保关键操作可被识别。
+
+- 语义化描述
+
+为图标、图片等非文本元素添加accessibilityText和accessibilityDescription。
+
+- 分组优化
+
+对复杂布局使用accessibilityGroup减少冗余播报。
 
 ## 场景示例
 
