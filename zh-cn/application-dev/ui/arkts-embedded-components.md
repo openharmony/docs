@@ -20,13 +20,13 @@ ArkTS的EmbeddedComponent组件是一个用于在应用中嵌入其他应用或�
 
 ## 场景示例
 
-该示例简单展示了 EmbeddedComponent 组件和 EmbeddedUIExtensionAbility 的基础使用方式。
+该示例简单展示了EmbeddedComponent组件和EmbeddedUIExtensionAbility的基础使用方式。
 
 ### 预期效果
 
 1. 启动应用，出现报错信息；
 
-2. 手机测试开启多进程后重启手机，参考命令如下：
+2. 手机测试开启多进程后重启手机，开启多进程的hdc命令如下：
 
 ```bash
 hdc shell param set persist.sys.abilityms.multi_process_model true
@@ -73,7 +73,7 @@ struct Index {
 }
 ```
 
-### EmbeddedComponent 拉起的 ExampleEmbeddedAbility 实现代码
+### EmbeddedComponent拉起的ExampleEmbeddedAbility实现代码
 
 ```ts
 import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
@@ -113,7 +113,7 @@ export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
 }
 ```
 
-### ExampleEmbeddedAbility 的入口页面文件实现代码
+### ExampleEmbeddedAbility的入口页面文件实现代码
 
 该代码文件需要在 main_pages.json 中配置该页面路径
 
