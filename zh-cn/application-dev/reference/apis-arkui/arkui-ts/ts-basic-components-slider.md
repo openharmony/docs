@@ -283,7 +283,7 @@ trackBorderRadius(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                             |
 | ------ | ---------------------------- | ---- | -------------------------------- |
-| value  | [Length](ts-types.md#length) | 是   | 底板圆角半径。<br/>默认值：<br/>style值为SliderStyle.OutSet默认值为'2vp'<br/>style值为SliderStyle.InSet默认值为'10vp'。<br/>**说明**：设置string类型时，不支持百分比。设定值小于0时取默认值。 |
+| value  | [Length](ts-types.md#length) | 是   | 底板圆角半径。<br/>默认值：<br/>style值为SliderStyle.OutSet默认值为'2vp'。<br/>style值为SliderStyle.InSet默认值为'10vp'。<br/>**说明**：设置string类型时，不支持百分比。设定值小于0时取默认值。 |
 
 ### selectedBorderRadius<sup>12+</sup>
 
