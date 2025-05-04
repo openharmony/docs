@@ -97,11 +97,11 @@ onError(callback: ErrorCallback)
 
 - 错误处理
 
-  实现onError回调以处理可能的异常情况
+  实现onTerminated、onError事件回调以处理可能的异常情况
 
 - 通信机制
 
-  考虑使用Want等机制在UIAbility和EmbeddedUIExtensionAbility间传递数据
+  考虑使用[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)等机制在UIAbility和EmbeddedUIExtensionAbility间传递数据
 
 - 资源管理
 
