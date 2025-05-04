@@ -135,15 +135,15 @@ Column() {
 
 - 优先级控制
 
-通过accessibilityLevel确保关键操作可被识别。
+  通过accessibilityLevel确保关键操作可被识别。
 
 - 语义化描述
 
-为图标、图片等非文本元素添加accessibilityText和accessibilityDescription。
+  为图标、图片等非文本元素添加accessibilityText和accessibilityDescription。
 
 - 分组优化
 
-对复杂布局使用accessibilityGroup减少冗余播报。
+  对复杂布局使用accessibilityGroup减少冗余播报。
 
 ## 场景示例
 
