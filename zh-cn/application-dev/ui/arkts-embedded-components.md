@@ -89,6 +89,28 @@ onError(callback: ErrorCallback)
 > - 提供方EmbeddedUIExtensionAbility异常退出。
 > - 在EmbeddedUIExtensionAbility中嵌套使用EmbeddedComponent。
 
+## 使用建议
+
+- 合理拆分模块
+
+  将需要隔离的敏感或易崩溃功能模块拆分为独立的EmbeddedUIExtensionAbility
+
+- 错误处理
+
+  实现onError回调以处理可能的异常情况
+
+- 通信机制
+
+  考虑使用Want等机制在UIAbility和EmbeddedUIExtensionAbility间传递数据
+
+- 资源管理
+
+  注意独立进程的资源占用，及时释放不需要的资源
+
+- 生命周期
+
+  理解并正确处理EmbeddedUIExtensionAbility的生命周期回调
+
 ## 场景示例
 
 该示例简单展示了EmbeddedComponent组件和EmbeddedUIExtensionAbility的基础使用方式。
