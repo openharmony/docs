@@ -2,6 +2,8 @@
 
 EmbeddedComponent组件是一个用于在应用中嵌入其他应用或服务的组件，主要用于在应用中实现跨模块、跨进程的嵌入式界面集成，其核心目的是通过模块化设计提升应用灵活性和用户体验。
 
+EmbeddedComponent组件允许在当前页面中嵌入同一应用内其他EmbeddedUIExtensionAbility提供的UI内容，这些UI运行在独立进程中，提供了更高的安全性和稳定性。
+
 ## 基本概念
 
 - [EmbeddedComponent](../reference/apis-arkui/arkui-ts/ts-container-embedded-component.md)组件
@@ -14,9 +16,11 @@ EmbeddedComponent组件是一个用于在应用中嵌入其他应用或服务的
 
 ## 使用约束
 
-- EmbeddedComponent仅支持在拥有多进程权限的设备上使用。
+- 设备要求
+  EmbeddedComponent仅支持在拥有多进程权限的设备上使用。
 
-- EmbeddedComponent只能在UIAbility中使用，且被拉起的EmbeddedUIExtensionAbility需与UIAbility属于同一应用。
+- 应用范围
+  EmbeddedComponent只能在UIAbility中使用，且被拉起的EmbeddedUIExtensionAbility需与UIAbility属于同一应用。
 
 ## 场景示例
 

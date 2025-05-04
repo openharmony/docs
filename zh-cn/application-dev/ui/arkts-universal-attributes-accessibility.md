@@ -110,7 +110,7 @@ accessibilitySelected属性，用于表示组件在支持单选的情况下是�
 
 - false：表示未选中。
 
-这里以Column组件为例，设置其在支持单选的情况下被选中：
+这里以Column组件为例，设置在支持单选的情况下由系统自行确定其选中状态：
 
 ```ts
 Column() {
@@ -122,7 +122,7 @@ Column() {
 .accessibilitySelected(undefined)
 ```
 
-### accessibilityChecked与accessibilitySelected属性的关键区别
+### accessibilityChecked属性与accessibilitySelected属性的关键区别
 
 | 属性    | accessibilityChecked     | accessibilitySelected |
 | ------- | ------------------------ | --------------------- |
