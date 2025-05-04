@@ -558,7 +558,7 @@ showToast(options: ShowToastOptions): void
 **示例：**
 
 ```ts
-import { promptAction } from '@kit.ArkUI'
+import { promptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
@@ -574,8 +574,8 @@ struct toastExample {
               duration: 2000
             });
           } catch (error) {
-            let message = (error as BusinessError).message
-            let code = (error as BusinessError).code
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
             console.error(`showToast args error code is ${code}, message is ${message}`);
           };
         })
@@ -632,7 +632,7 @@ showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
 **示例：**
 
 ```ts
-import { promptAction } from '@kit.ArkUI'
+import { promptAction } from '@kit.ArkUI';
 
 promptAction.showDialog({
   title: 'Title Info',
@@ -718,8 +718,8 @@ try {
     console.info('showDialog success callback, click button: ' + data.index);
   });
 } catch (error) {
-  let message = (error as BusinessError).message
-  let code = (error as BusinessError).code
+  let message = (error as BusinessError).message;
+  let code = (error as BusinessError).code;
   console.error(`showDialog args error code is ${code}, message is ${message}`);
 };
 ```
@@ -756,8 +756,8 @@ try {
     console.info('showDialog success callback, click button: ' + data.index);
   });
 } catch (error) {
-  let message = (error as BusinessError).message
-  let code = (error as BusinessError).code
+  let message = (error as BusinessError).message;
+  let code = (error as BusinessError).code;
   console.error(`showDialog args error code is ${code}, message is ${message}`);
 };
 ```
@@ -944,13 +944,13 @@ openCustomDialog(options: CustomDialogOptions): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { promptAction } from '@kit.ArkUI'
-import { BusinessError } from '@kit.BasicServicesKit'
+import { promptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct Index {
-  private customDialogComponentId: number = 0
+  private customDialogComponentId: number = 0;
 
   @Builder
   customDialogComponent() {
@@ -990,20 +990,20 @@ struct Index {
                 this.customDialogComponent()
               },
               onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
-                console.info("reason" + JSON.stringify(dismissDialogAction.reason))
-                console.log("dialog onWillDismiss")
+                console.info("reason" + JSON.stringify(dismissDialogAction.reason));
+                console.log("dialog onWillDismiss");
                 if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-                  dismissDialogAction.dismiss()
+                  dismissDialogAction.dismiss();
                 }
                 if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-                  dismissDialogAction.dismiss()
+                  dismissDialogAction.dismiss();
                 }
               }
             }).then((dialogId: number) => {
-              this.customDialogComponentId = dialogId
+              this.customDialogComponentId = dialogId;
             })
               .catch((error: BusinessError) => {
-                console.error(`openCustomDialog error code is ${error.code}, message is ${error.message}`)
+                console.error(`openCustomDialog error code is ${error.code}, message is ${error.message}`);
               })
           })
       }
@@ -1022,7 +1022,7 @@ struct Index {
 > 直接使用openCustomDialog可能导致实例不明确的问题，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[openCustomDialog](js-apis-arkui-UIContext.md#opencustomdialog12-1)。
 
 ```ts
-import { LevelMode, ImmersiveMode } from '@kit.ArkUI'
+import { LevelMode, ImmersiveMode } from '@kit.ArkUI';
 
 let customDialogId: number = 0;
 
@@ -1032,11 +1032,11 @@ function customDialogBuilder(uiContext: UIContext) {
     Text('Custom dialog Message').fontSize(10)
     Row() {
       Button("确认").onClick(() => {
-        uiContext.getPromptAction().closeCustomDialog(customDialogId)
+        uiContext.getPromptAction().closeCustomDialog(customDialogId);
       })
       Blank().width(50)
       Button("取消").onClick(() => {
-        uiContext.getPromptAction().closeCustomDialog(customDialogId)
+        uiContext.getPromptAction().closeCustomDialog(customDialogId);
       })
     }
   }
@@ -1106,7 +1106,7 @@ struct Index {
 
 ```ts
 // Index.ets
-import { LevelMode, ImmersiveMode } from '@kit.ArkUI'
+import { LevelMode, ImmersiveMode } from '@kit.ArkUI';
 
 let customDialogId: number = 0;
 
@@ -1116,11 +1116,11 @@ function customDialogBuilder(uiContext: UIContext) {
     Text('Custom dialog Message').fontSize(10).height(100)
     Row() {
       Button("Next").onClick(() => {
-        uiContext.getRouter().pushUrl({ url: 'pages/Next' })
+        uiContext.getRouter().pushUrl({ url: 'pages/Next' });
       })
       Blank().width(50)
       Button("Close").onClick(() => {
-        uiContext.getPromptAction().closeCustomDialog(customDialogId)
+        uiContext.getPromptAction().closeCustomDialog(customDialogId);
       })
     }
   }.padding(20)
@@ -1176,7 +1176,7 @@ struct Next {
       Column() {
         Button(this.message)
           .onClick(() => {
-            this.getUIContext().getRouter().back()
+            this.getUIContext().getRouter().back();
           })
       }
       .width('100%')
