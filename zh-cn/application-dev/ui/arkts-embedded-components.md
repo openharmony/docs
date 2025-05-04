@@ -50,7 +50,7 @@ EmbeddedComponent组件不支持[点击](../reference/apis-arkui/arkui-ts/ts-uni
 ### onTerminated事件
 
 ```ts
-onTerminated(callback: Callback&lt;TerminationInfo&gt;)
+onTerminated(callback: Callback<TerminationInfo>)
 ```
 
 被拉起的EmbeddedUIExtensionAbility通过调用`terminateSelfWithResult`或者`terminateSelf`正常退出时，触发本回调函数。
