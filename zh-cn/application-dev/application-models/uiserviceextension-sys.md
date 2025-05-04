@@ -21,7 +21,8 @@
 
 [UIServiceExtension](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md)提供了[onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#uiserviceextensionabilityoncreate)、[onWindowWillCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#uiserviceextensionabilityonwindowwillcreate)、[onWindowDidCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#uiserviceextensionabilityonwindowdidcreate)、[onRequest()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#uiserviceextensionabilityonrequest)、[onConnect()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#uiserviceextensionabilityonconnect)、[onDisconnect()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#uiserviceextensionabilityondisconnect)、[onData()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#uiserviceextensionabilityondata)和[onDestroy()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#uiserviceextensionabilityondestroy)生命周期接口函数，根据需要重写对应的回调方法。下图展示了[UIServiceExtension](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md)的生命周期。
 
-  **图1** [UIServiceExtension](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md)生命周期
+**图1** [UIServiceExtension](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md)生命周期
+
 ![UIServiceExtensionAbility-lifecycle](figures/UIServiceExtension-lifecycle.png)
 
 
@@ -44,7 +45,7 @@
 
 - **onWindowDidCreate**
 
-  创建窗口回调接口，开发者通过[Window](../reference/apis-arkui/js-apis-window-sys.md#window)对象操作窗口。通过[window.on('windowVisibilityChange')](../reference/apis-arkui/js-apis-window.md#onwindowvisibilitychange11))方法绑定窗口事件，处理各种窗口事件，如窗口显示、窗口隐藏、窗口销毁等。
+  创建窗口回调接口，开发者通过[Window](../reference/apis-arkui/js-apis-window-sys.md#window)对象操作窗口。通过[window.on('windowVisibilityChange')](../reference/apis-arkui/js-apis-window.md#onwindowvisibilitychange11)方法绑定窗口事件，处理各种窗口事件，如窗口显示、窗口隐藏、窗口销毁等。
 
 - **onConnect**
 

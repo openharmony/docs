@@ -90,7 +90,7 @@ try {
     if (error) {
       console.error( `applyQuickFix failed with error: ${error}`);
     } else {
-      console.info( 'applyQuickFix success');
+      console.info(`applyQuickFix success`);
     }
   });
 } catch (paramError) {
@@ -146,7 +146,7 @@ let hapModuleQuickFixFiles = ['/data/storage/el2/base/entry.hqf'];
 
 try {
   quickFixManager.applyQuickFix(hapModuleQuickFixFiles).then(() => {
-    console.info('applyQuickFix success');
+    console.info(`applyQuickFix success`);
   }).catch((error: BusinessError) => {
     console.error(`applyQuickFix err: ${error}`);
   });
@@ -298,10 +298,12 @@ revokeQuickFix(bundleName: string, callback: AsyncCallback\<void>): void;
 ```ts
 import { quickFixManager } from '@kit.AbilityKit';
 
-let bundleName = "com.example.myapplication";
+let bundleName = 'com.example.myapplication';
 
 quickFixManager.revokeQuickFix(bundleName, (err) => {
-  console.info("revokeQuickFix " + bundleName + " " + JSON.stringify(err));
+  if (err.code) {
+    console.error(`revokeQuickFix ${bundleName} failed, err code: ${err.code}, err msg: ${err.message}.`);
+  }
 });
 ```
 
@@ -349,11 +351,11 @@ revokeQuickFix(bundleName: string): Promise\<void>;
 import { quickFixManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let bundleName = "com.example.myapplication";
+let bundleName = 'com.example.myapplication';
 
 quickFixManager.revokeQuickFix(bundleName).then(() => {
-  console.info("revokeQuickFix " + bundleName +" ok");
+  console.info(`revokeQuickFix ${bundleName} success.`);
 }).catch((err: BusinessError) => {
-  console.info("revokeQuickFix " + bundleName +" failed, error code is ", JSON.stringify((err)));
+  console.error(`revokeQuickFix ${bundleName} failed, err code: ${err.code}, err msg: ${err.message}.`);
 });
 ```

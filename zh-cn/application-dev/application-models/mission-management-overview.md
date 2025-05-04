@@ -89,9 +89,12 @@
     ```ts
     // 2.获取系统最近20个任务
     missionManager.getMissionInfos('', 20, (error: BusinessError, missions: Array<missionManager.MissionInfo>) => {
-      hilog.info(DOMAIN_NUMBER, TAG, 'getMissionInfos is called, error = ' + JSON.stringify(error));
-      hilog.info(DOMAIN_NUMBER, TAG, 'size = ' + missions.length);
-      hilog.info(DOMAIN_NUMBER, TAG, 'missions = ' + JSON.stringify(missions));
+      if (error.code) {
+        hilog.error(DOMAIN_NUMBER, TAG, `getMissionInfos is called, error code: ${error.code}, err msg: ${error.message}.`);
+        return;
+      }
+      hilog.info(DOMAIN_NUMBER, TAG, `size = ${missions.length}.`);
+      hilog.info(DOMAIN_NUMBER, TAG, `missions = ${JSON.stringify(missions)}.`);
       
       // 判断系统最近任务中是否包含etsclock
       for (let i = 0;i < missions.length; i++) {
@@ -128,8 +131,8 @@
           message: 'obtain_snapshot_success_toast'
         });
       }
-      hilog.info(DOMAIN_NUMBER, TAG, 'getMissionSnapShot is called, error = ' + JSON.stringify(error));
-      hilog.info(DOMAIN_NUMBER, TAG, 'bundleName = ' + snapshot.ability.bundleName);
+      hilog.info(DOMAIN_NUMBER, TAG, `getMissionSnapShot is called, error code: ${error.code}, error msg: ${error.message}.`);
+      hilog.info(DOMAIN_NUMBER, TAG, `bundleName = ${snapshot.ability.bundleName}.`);
     })
     ```
     ```ts
@@ -140,8 +143,8 @@
           message: 'obtain_low_snapshot_success_toast'
         });
       }
-      hilog.info(DOMAIN_NUMBER, TAG, 'getLowResolutionMissionSnapShot is called, error = ' + JSON.stringify(error));
-      hilog.info(DOMAIN_NUMBER, TAG, 'bundleName = ' + snapshot.ability.bundleName);
+      hilog.info(DOMAIN_NUMBER, TAG, `getLowResolutionMissionSnapShot is called, error code: ${error.code}, error msg: ${error.message}.`);
+      hilog.info(DOMAIN_NUMBER, TAG, `bundleName = ${snapshot.ability.bundleName}.`);
     })
     ```
     ```ts
