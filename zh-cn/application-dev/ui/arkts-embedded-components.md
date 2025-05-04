@@ -91,6 +91,17 @@ onError(callback: ErrorCallback)
 > - 提供方EmbeddedUIExtensionAbility异常退出。
 > - 在EmbeddedUIExtensionAbility中嵌套使用EmbeddedComponent。
 
+### TerminationInfo
+
+用于表示被拉起的EmbeddedUIExtensionAbility的返回结果。
+
+**属性：**
+
+| 名称 | 类型                                                       | 必填 | 说明                                                 |
+| ---- | ---------------------------------------------------------- | ---- | ---------------------------------------------------- |
+| code | number                                                     | 是   | 被拉起EmbeddedUIExtensionAbility退出时返回的结果码。 |
+| want | [Want](../reference/apis-ability-kit/js-apis-app-ability-want.md) | 否 | 被拉起EmbeddedUIExtensionAbility退出时返回的数据。   |
+
 ## 使用建议
 
 - 合理拆分模块
