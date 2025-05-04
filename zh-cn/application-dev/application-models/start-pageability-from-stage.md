@@ -142,7 +142,7 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
       this.context.startAbility(wantFA).then(() => {
         hilog.info(DOMAIN_NUMBER, TAG, 'Start Ability successfully.');
       }).catch((error: BusinessError) => {
-        hilog.info(DOMAIN_NUMBER, TAG, `Ability failed: ${JSON.stringify(error)}`);
+        hilog.error(DOMAIN_NUMBER, TAG, `Ability failed: ${JSON.stringify(error)}`);
       });
     }
   };
