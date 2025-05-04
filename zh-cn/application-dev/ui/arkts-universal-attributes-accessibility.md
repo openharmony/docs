@@ -119,6 +119,7 @@ Column() {
 ### accessibilityChecked与accessibilitySelected属性的关键区别
 
 | 属性    | accessibilityChecked     | accessibilitySelected |
+| ------- | ------------------------ | --------------------- |
 | 常见场景 | 复选框、开关等二态/三态组件 | 单选列表、标签页等互斥选择场景 |
 | 语义    | “勾选”状态                | 	“焦点选中”状态 |
 | 自动播报 | 通常自动触发             | 可能需要手动通知事件 |
