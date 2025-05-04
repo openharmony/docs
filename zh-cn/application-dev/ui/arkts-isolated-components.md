@@ -1,8 +1,39 @@
-# IsolatedComponent
+# IsolatedComponent组件
+
+IsolatedComponent组件是一个用于构建隔离组件的工具。它可以帮助开发者创建独立的、可重用的组件，这些组件可以在不同的应用程序中使用，而不会与其他组件发生冲突。
+
+## 基本概念
 
 IsolatedComponent旨在在本页面中嵌入并展示由独立Abc（即.abc文件）所提供的UI，其展示内容在受限的worker线程中执行。
 
 该组件通常应用于那些需要Abc热更新的模块化开发场景。
+
+## 约束与限制
+
+### 规格约束
+
+1、本组件不支持预览。
+
+2、Abc需要[VerifyAbc](../reference/apis-ability-kit/js-apis-bundleManager-sys.md#bundlemanagerverifyabc11)校验通过之后才可以使用于当前组件。
+
+3、不支持构造参数更新，仅首次传入有效。
+
+4、不支持IsolatedComponent组件嵌套场景。
+
+### 体验约束
+
+1、创建IsolatedComponent组件时，受限worker线程加载Abc布局渲染存在一定耗时，在此等待期间显示IsolatedComponent组件的背景色。
+
+2、主线程与受限worker线程之间布局渲染是异步处理，布局变化、旋转等导致的页面变化存在不同步现象。
+
+3、主线程与受限worker线程之间事件传递是异步处理，不支持线程之间的事件冒泡，线程之间的UI交互存在事件冲突现象。
+
+### 安全约束
+
+1、独立Abc通过IsolatedComponent组件嵌入式显示在宿主进程，即可说明其Abc内容完全向宿主开放，宿主有权操作独立Abc的内容，对此安全敏感场景禁用。
+
+2、独立Abc运行在受限worker可保证相对安全，独立Abc内容不影响主线程。
+
 
 ## 导入模块
 
