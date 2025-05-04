@@ -14,12 +14,24 @@ EmbeddedComponent组件允许在当前页面中嵌入同一应用内其他Embedd
 
   提供方应用中定义使用，用于实现跨进程界面嵌入功能，仅能被同应用的UIAbility拉起，并需在拥有多进程权限的场景下使用。
 
+## 主要特性
+
+- 进程隔离
+
+  被嵌入的UI运行在独立进程，与主UIAbility进程隔离，提高了应用稳定性。
+
+- 模块化开发
+
+  可以将功能模块拆分为独立的EmbeddedUIExtensionAbility，便于团队协作和维护
+
 ## 使用约束
 
 - 设备要求
+
   EmbeddedComponent仅支持在拥有多进程权限的设备上使用。
 
 - 应用范围
+
   EmbeddedComponent只能在UIAbility中使用，且被拉起的EmbeddedUIExtensionAbility需与UIAbility属于同一应用。
 
 ## 场景示例
