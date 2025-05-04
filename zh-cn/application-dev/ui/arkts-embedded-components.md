@@ -1,20 +1,22 @@
 # EmbeddedComponent组件
 
+ArkTS的EmbeddedComponent组件是一个用于在应用中嵌入其他应用或服务的组件，主要用于在应用中实现跨模块、跨进程的嵌入式界面集成，其核心目的是通过模块化设计提升应用灵活性和用户体验。
+
 ## 基本概念
 
 - [EmbeddedComponent](../reference/apis-arkui/arkui-ts/ts-container-embedded-component.md)组件
 
-  EmbeddedComponent 组件用于在当前页面嵌入本应用内其他 EmbeddedUIExtensionAbility 提供的 UI。它允许开发者将应用的某些功能或界面嵌入到另一个界面中，实现更灵活的用户界面设计，通常用于需要进程隔离的模块化开发场景。
+  EmbeddedComponent组件用于在当前页面嵌入本应用内其他EmbeddedUIExtensionAbility提供的UI。它允许开发者将应用的某些功能或界面嵌入到另一个界面中，实现更灵活的用户界面设计，通常用于需要进程隔离的模块化开发场景。
 
 - [EmbeddedUIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md)组件
 
   提供方应用中定义使用，用于实现跨进程界面嵌入功能，仅能被同应用的UIAbility拉起，并需在拥有多进程权限的场景下使用。
 
-## 导入模块
+## 使用约束
 
-```ts
-import { UIExtensionContentSession } from '@kit.AbilityKit';
-```
+- EmbeddedComponent仅支持在拥有多进程权限的设备上使用。
+
+- EmbeddedComponent只能在UIAbility中使用，且被拉起的EmbeddedUIExtensionAbility需与UIAbility属于同一应用。
 
 ## 场景示例
 
