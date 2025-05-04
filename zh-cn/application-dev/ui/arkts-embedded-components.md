@@ -22,7 +22,7 @@ EmbeddedComponent组件允许在当前页面中嵌入同一应用内其他Embedd
 
 - 模块化开发
 
-  可以将功能模块拆分为独立的EmbeddedUIExtensionAbility，便于团队协作和维护
+  可以将功能模块拆分为独立的EmbeddedUIExtensionAbility，便于团队协作和维护。
 
 ## 使用约束
 
@@ -34,13 +34,17 @@ EmbeddedComponent组件允许在当前页面中嵌入同一应用内其他Embedd
 
   EmbeddedComponent只能在UIAbility中使用，且被拉起的EmbeddedUIExtensionAbility需与UIAbility属于同一应用。
 
+- 属性限制
+
+  EmbeddedComponent组件支持[通用属性](../reference/apis-arkui/arkui-js/js-components-common-attributes.md)，且宽高默认值和最小值均为10vp；不支持如下与宽高相关的属性："constraintSize"、"aspectRatio"、"layoutWeight"、"flexBasis"、"flexGrow"和"flexShrink"。
+
 ## 场景示例
 
 该示例简单展示了EmbeddedComponent组件和EmbeddedUIExtensionAbility的基础使用方式。
 
 ### 预期效果
 
-1. 启动应用，出现报错信息；
+1. 启动应用，由于手机默认未开启多进程，会出现报错信息；
 
 2. 手机测试开启多进程后重启手机，开启多进程的hdc命令如下：
 
