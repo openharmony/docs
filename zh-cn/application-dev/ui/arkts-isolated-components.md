@@ -30,7 +30,7 @@ IsolatedComponent旨在在本页面中嵌入并展示由独立Abc（即.abc文�
 
 ### 规格约束
 
-1、本组件不支持预览。
+1、IsolatedComponent组件不支持预览。
 
 2、Abc需要[VerifyAbc](../reference/apis-ability-kit/js-apis-bundleManager-sys.md#bundlemanagerverifyabc11)校验通过之后才可以使用于当前组件。
 
