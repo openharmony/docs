@@ -28,11 +28,11 @@ EmbeddedComponent组件允许在当前页面中嵌入同一应用内其他Embedd
 
 - 设备要求
 
-  EmbeddedComponent仅支持在拥有多进程权限的设备上使用。
+  EmbeddedComponent组件仅支持在拥有多进程权限的设备上使用。
 
 - 应用范围
 
-  EmbeddedComponent只能在UIAbility中使用，且被拉起的EmbeddedUIExtensionAbility需与UIAbility属于同一应用。
+  EmbeddedComponent组件只能在UIAbility中使用，且被拉起的EmbeddedUIExtensionAbility需与UIAbility属于同一应用。
 
 - 属性限制
 
@@ -40,6 +40,54 @@ EmbeddedComponent组件允许在当前页面中嵌入同一应用内其他Embedd
   
   不支持如下与宽高相关的属性：
   "constraintSize"、"aspectRatio"、"layoutWeight"、"flexBasis"、"flexGrow"和"flexShrink"。
+
+## 事件调用
+
+与屏幕坐标相关的事件信息会基于EmbeddedComponent的位置宽高进行坐标转换后传递给被拉起的EmbeddedUIExtensionAbility处理。
+
+EmbeddedComponent组件不支持[点击](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md)等通用事件。仅支持onTerminated事件和onError事件。
+
+### onTerminated事件
+
+```ts
+onTerminated(callback: Callback&lt;TerminationInfo&gt;)
+```
+
+被拉起的EmbeddedUIExtensionAbility通过调用`terminateSelfWithResult`或者`terminateSelf`正常退出时，触发本回调函数。
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明     |
+| -------  | ------ | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| callback | [Callback](../reference/apis-basic-services-kit/js-apis-base.md#callback)\<[TerminationInfo](#terminationinfo)> | 是 | 回调函数，入参用于接收EmbeddedUIExtensionAbility的返回结果，类型为[TerminationInfo](#terminationinfo)。 |
+
+> **说明：**
+>
+> - 若EmbeddedUIExtensionAbility通过调用`terminateSelfWithResult`退出，其携带的信息会传给回调函数的入参；
+> - 若EmbeddedUIExtensionAbility通过调用`terminateSelf`退出，上述回调函数的入参中，"code"取默认值"0"，"want"为"undefined"。
+
+### onError事件
+
+```ts
+onError(callback: ErrorCallback)
+```
+
+被拉起的EmbeddedUIExtensionAbility在运行过程中发生异常时触发本回调。
+
+**参数：**
+
+| 参数名 | 类型                                                                         | 必填                                                                       | 说明      |
+| ------ | ---------------------------------------------------------------------------- | --------- | --------- |
+| callback    | [ErrorCallback](../reference/apis-basic-services-kit/js-apis-base.md#errorcallback) | 是 | 回调函数，入参用于接收异常信息，类型为[BusinessError](../reference/apis-basic-services-kit/js-apis-base.md#businesserror)，可通过参数中的`code`、`name`和`message`获取错误信息并做处理。 |
+
+> **说明：**
+>
+> 如下情形会触发本回调：
+> - 通知提供方拉起EmbeddedUIExtensionAbility失败。
+> - 通知提供方EmbeddedUIExtensionAbility切后台失败。
+> - 通知提供方销毁EmbeddedUIExtensionAbility失败。
+> - 提供方EmbeddedUIExtensionAbility异常退出。
+> - 在EmbeddedUIExtensionAbility中嵌套使用EmbeddedComponent。
 
 ## 场景示例
 
