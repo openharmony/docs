@@ -152,6 +152,8 @@ Column() {
 
 ### accessibilityChecked属性与accessibilitySelected属性的关键区别
 
+在ArkUI无障碍属性中，accessibilityChecked和accessibilitySelected虽然都用于表示组件的状态，但它们的应用场景和语义含义有本质区别。以下是两者的关键对比：
+
 | 属性    | accessibilityChecked     | accessibilitySelected |
 | ------- | ------------------------ | --------------------- |
 | 常见场景 | 复选框、开关等二态/三态组件 | 单选列表、标签页等互斥选择场景 |
