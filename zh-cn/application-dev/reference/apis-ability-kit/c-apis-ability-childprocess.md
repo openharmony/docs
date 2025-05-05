@@ -30,7 +30,7 @@
 | typedef struct [NativeChildProcess_Fd](#nativechildprocess_fdlist) | 定义子进程文件描述符记录。 |
 | typedef struct [NativeChildProcess_FdList](#nativechildprocess_fdlist) | 定义子进程文件描述符记录链表。 |
 | typedef struct [NativeChildProcess_Args](#nativechildprocess_args) | 定义启动子进程入参。 |
-| typedef void(\* [OH_Ability_OnNativeChildProcessExit](#oh_ability_onnativechildprocessexit)) (int32_t pid, int32_t signal) | 定义通知Native子进程退出的回调函数。 |
+| typedef void(\* [OH_Ability_OnNativeChildProcessExit](#oh_ability_onnativechildprocessexit)) (int32_t pid, int32_t signal) | 定义感知Native子进程退出的回调函数。 |
 
 ### 枚举
 
@@ -84,7 +84,7 @@ typedef void (*OH_Ability_OnNativeChildProcessExit)(int32_t pid, int32_t signal)
 
 **描述**
 
-通知Native子进程退出的回调函数。
+感知Native子进程退出的回调函数。
 
 **起始版本**：20
 
@@ -217,7 +217,7 @@ enum Ability_NativeChildProcess_ErrCode
 | NCP_ERR_MAX_CHILD_PROCESSES_REACHED | 到达最大Native子进程数量限制，不能再创建子进程。                     |
 | NCP_ERR_LIB_LOADING_FAILED          | 子进程加载动态库失败，文件不存在或者未实现对应的方法并导出。                  |
 | NCP_ERR_CONNECTION_FAILED           | 子进程调用动态库的OnConnect方法失败，可能返回了无效的IPC对象指针。         |
-| NCP_ERR_CALLBACK_NOT_EXIST          | 子进程调用反注册Native子进程退出回调，未找到注册的回调函数。         |
+| NCP_ERR_CALLBACK_NOT_EXIST          | 子进程调用解注册Native子进程退出回调，未找到注册的回调函数。         |
 
 ### NativeChildProcess_IsolationMode
 
@@ -353,7 +353,7 @@ Ability_NativeChildProcess_ErrCode OH_Ability_RegisterNativeChildProcessExitCall
 
 **描述**：
 
-注册Native子进程异常退出回调函数，当通过[OH_Ability_StartNativeChildProcess](#oh_ability_startnativechildprocess)和[@ohos.app.ability.childProcessManager的startNativeChildProcess](js-apis-app-ability-childProcessManager.md#childprocessmanagerstartnativechildprocess13)启动的子进程异常退出时，调用入口参数的回调函数。
+注册Native子进程异常退出回调函数，当通过[OH_Ability_StartNativeChildProcess](#oh_ability_startnativechildprocess)和[@ohos.app.ability.childProcessManager的startNativeChildProcess](js-apis-app-ability-childProcessManager.md#childprocessmanagerstartnativechildprocess13)启动的子进程异常退出时，调用入口参数的回调函数。当重复注册同一个回调函数时，子进程退出时只会执行一次回调函数。
 
 参数必须实现[OH_Ability_OnNativeChildProcessExit](#oh_ability_onnativechildprocessexit)入口函数。详见[注册Native子进程退出回调](../../application-models/capi-nativechildprocess-exit-info.md)。
 
