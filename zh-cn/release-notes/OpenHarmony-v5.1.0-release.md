@@ -50,13 +50,6 @@ OpenHarmony 5.1.0 Release版本正式推出API 18。相比前一个Release版本
   - 富文本（RichEditor）组件在长按预览菜单时支持振动效果。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#previewmenuoptions18)）
   - 基础类型定义新增支持清除当前的预上屏文本内容。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-types.md#clearpreviewtext17)）
 
-- 新增适配圆形屏幕的能力。包括：
-  - 新增旋转表冠事件，组件获焦后扭动表冠可获取时间戳、旋转角速度、旋转角度和表冠动作信息。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-events-crown.md)、[指南](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/ui/arkts-common-events-crown-event.md)）
-  - 新增弧形列表组件ArcList和ArcListItem，可呈现连续、多行的同类数据。（[API参考-ArcList](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-arclist.md)、[API参考-ArcListItem](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-arclistitem.md)、[指南](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/ui/arkts-layout-development-create-arclist.md)）
-  - 新增弧形索引条组件ArcAlphabetIndexer，可按字母顺排序进行快速定位。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-arc-alphabet-indexer.md)、[指南](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/ui/arkts-layout-development-create-arclist.md#%E4%B8%8E%E5%BC%A7%E5%BD%A2%E7%B4%A2%E5%BC%95%E6%9D%A1arcalphabetindexer%E8%81%94%E5%8A%A8)）
-  - 新增弧形滚动条组件ArcScrollBar，可为弧形列表添加外置滚动条。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-arcscrollbar.md)、[指南](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/ui/arkts-layout-development-create-arclist.md#%E6%B7%BB%E5%8A%A0%E5%A4%96%E7%BD%AE%E6%BB%9A%E5%8A%A8%E6%9D%A1arcscrollbar)）
-  - 新增弧形按钮组件ArcButton，可提供强调、普通、警告等样式按钮。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ArcButton.md)、[指南](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/ui/arkts-advanced-components-arcbutton.md)）
-
 - 通用拖拽能力增强。包括：
   - 支持封装自定义落位动效。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-UIContext.md#notifydragstartrequest18)，[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#executedropanimation18)）
 
@@ -280,8 +273,6 @@ OpenHarmony 5.1.0 Release版本正式推出API 18。相比前一个Release版本
 
 - 新增后台子进程管理模块，提供应用对子进程进行压制、解压制的能力，避免子进程过多占用系统资源，导致系统使用卡顿。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-backgroundProcessManager.md)）
 
-- 新增长时任务车钥匙子类型CAR_KEY。新增长时任务车钥匙子类型CAR_KEY。（[指南](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/task-management/continuous-task.md#stage%E6%A8%A1%E5%9E%8B )、[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundsubmode16)）
-
 - 后台代理提醒中提醒标题、提醒内容等字段支持设置资源ID，用于全球化适配。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager.md#reminderrequest)）
 
 
@@ -416,3 +407,4 @@ OpenHarmony 5.1.0 Release版本正式推出API 18。相比前一个Release版本
 | IBBZPS | 进程com.ohos.systemui下的OS_IPC_0_1067线程小概率出现cppcrash，崩溃栈：ld-musl-arm.so.1(__libc_free+172) | 系统异常，用户无感知。 | 2025年4月30日 | 
 | IBE36X</br>IBO3MF | 进程render_service小概率出现因SERVICE_BLOCK导致的的sysfreeze问题。 | 桌面无响应后黑屏，自动恢复后回到桌面。 | 2025年4月30日 |
 
+<!--no_check-->
