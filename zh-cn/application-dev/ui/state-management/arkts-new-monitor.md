@@ -40,10 +40,10 @@ struct Index {
   @State @Watch('onNumArrChange') numArr: number[] = [1,2,3,4,5];
 
   onInfoChange() {
-    console.log(`info after change name: ${this.info.name}, age: ${this.info.age} `);
+    console.info(`info after change name: ${this.info.name}, age: ${this.info.age} `);
   }
   onNumArrChange() {
-    console.log(`numArr after change ${JSON.stringify(this.numArr)}`);
+    console.info(`numArr after change ${this.numArr}`);
   }
   build() {
     Row() {
@@ -120,8 +120,8 @@ IMonitorValue\<T\>类型保存了属性变化的信息，包括属性名、变�
     @Monitor("message", "name")
     onStrChange(monitor: IMonitor) {
       monitor.dirty.forEach((path: string) => {
-        console.log(`${path} changed from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`)
-      })
+        console.info(`${path} changed from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
+      });
     }
     build() {
       Column() {
@@ -152,11 +152,11 @@ IMonitorValue\<T\>类型保存了属性变化的信息，包括属性名、变�
     @Local info: Info = new Info("Tom", 25);
     @Monitor("info")
     infoChange(monitor: IMonitor) {
-      console.log(`info change`);
+      console.info(`info change`);
     }
     @Monitor("info.name")
     infoPropertyChange(monitor: IMonitor) {
-      console.log(`info name change`);
+      console.info(`info name change`);
     }
     build() {
       Column() {
@@ -190,18 +190,18 @@ class Info {
   // name被@Trace装饰，能够监听变化
   @Monitor("name")
   onNameChange(monitor: IMonitor) {
-    console.log(`name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    console.info(`name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
   // age未被@Trace装饰，不能监听变化
   @Monitor("age")
   onAgeChange(monitor: IMonitor) {
-    console.log(`age change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    console.info(`age change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
   // region与job均被@Trace装饰，能够监听变化
   @Monitor("region", "job")
   onChange(monitor: IMonitor) {
     monitor.dirty.forEach((path: string) => {
-      console.log(`${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
+      console.info(`${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
     })
   }
 }
@@ -244,7 +244,7 @@ class Outer {
   inner: Inner = new Inner();
   @Monitor("inner.num")
   onChange(monitor: IMonitor) {
-    console.log(`inner.num change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    console.info(`inner.num change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 }
 @Entry
@@ -271,7 +271,7 @@ class Base {
   // 基类监听name属性
   @Monitor("name")
   onBaseNameChange(monitor: IMonitor) {
-    console.log(`Base Class name change`);
+    console.info(`Base Class name change`);
   }
   constructor(name: string) {
     this.name = name;
@@ -282,7 +282,7 @@ class Derived extends Base {
   // 继承类监听name属性
   @Monitor("name")
   onDerivedNameChange(monitor: IMonitor) {
-    console.log(`Derived Class name change`);
+    console.info(`Derived Class name change`);
   }
   constructor(name: string) {
     super(name);
@@ -329,32 +329,32 @@ class ArrMonitor {
   @Monitor("dimensionTwo.0.0", "dimensionTwo.1.1")
   onDimensionTwoChange(monitor: IMonitor) {
     monitor.dirty.forEach((path: string) => {
-      console.log(`dimensionTwo path: ${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
+      console.info(`dimensionTwo path: ${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
     })
   }
   // dimensionThree为三维简单类型数组，且被@Trace装饰，能够观测里面的元素变化
   @Monitor("dimensionThree.0.0.0", "dimensionThree.1.1.0")
   onDimensionThreeChange(monitor: IMonitor) {
     monitor.dirty.forEach((path: string) => {
-      console.log(`dimensionThree path: ${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
+      console.info(`dimensionThree path: ${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
     })
   }
   // Info类中属性name、age均被@Trace装饰，能够监听到变化
   @Monitor("infoArr.0.name", "infoArr.1.age")
   onInfoArrPropertyChange(monitor: IMonitor) {
     monitor.dirty.forEach((path: string) => {
-      console.log(`infoArr path:${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
+      console.info(`infoArr path:${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
     })
   }
   // infoArr被@Trace装饰，能够监听到infoArr整体赋值的变化
   @Monitor("infoArr")
   onInfoArrChange(monitor: IMonitor) {
-    console.log(`infoArr whole change`);
+    console.info(`infoArr whole change`);
   }
   // 能够监听到infoArr的长度变化
   @Monitor("infoArr.length")
   onInfoArrLengthChange(monitor: IMonitor) {
-    console.log(`infoArr length change`);
+    console.info(`infoArr length change`);
   }
 }
 @Entry
@@ -408,11 +408,11 @@ class Info {
   @Trace person: Person;
   @Monitor("person.name")
   onNameChange(monitor: IMonitor) {
-    console.log(`name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    console.info(`name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
   @Monitor("person.age")
   onAgeChange(monitor: IMonitor) {
-    console.log(`age change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    console.info(`age change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
   constructor(name: string, age: number) {
     this.person = new Person(name, age);
@@ -458,7 +458,7 @@ class Frequence {
   @Trace count: number = 0;
   @Monitor("count")
   onCountChange(monitor: IMonitor) {
-    console.log(`count change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    console.info(`count change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 }
 @Entry
@@ -499,11 +499,11 @@ class Info {
   @Trace name: string = "Tom";
   @Monitor("name")
   onNameChange(monitor: IMonitor) {
-    console.log(`onNameChange`);
+    console.info(`onNameChange`);
   }
   @Monitor("name")
   onNameChangeDuplicate(monitor: IMonitor) {
-    console.log(`onNameChangeDuplicate`);
+    console.info(`onNameChangeDuplicate`);
   }
 }
 @Entry
@@ -538,19 +538,19 @@ class Info {
   @Trace t5: number = 0;
   @Monitor("t1") // 字符串字面量
   onT1Change(monitor: IMonitor) {
-    console.log(`t1 change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    console.info(`t1 change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
   @Monitor(t2)
   onT2Change(monitor: IMonitor) {
-    console.log(`t2 change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    console.info(`t2 change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
   @Monitor(ENUM.T3)
   onT3Change(monitor: IMonitor) {
-    console.log(`t3 change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    console.info(`t3 change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
   @Monitor(t4)
   onT4Change(monitor: IMonitor) {
-    console.log(`t4 change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    console.info(`t4 change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 }
 @Entry
@@ -685,7 +685,7 @@ class Info {
   @Trace message: string = "not initialized";
 
   constructor() {
-    console.log("in constructor message change to initialized");
+    console.info("in constructor message change to initialized");
     this.message = "initialized";
   }
 }
@@ -694,13 +694,13 @@ struct Child {
   @Param info: Info = new Info();
   @Monitor("info.message")
   onMessageChange(monitor: IMonitor) {
-    console.log(`Child message change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    console.info(`Child message change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
   aboutToAppear(): void {
     this.info.message = "Child aboutToAppear";
   }
   aboutToDisappear(): void {
-    console.log("Child aboutToDisappear");
+    console.info("Child aboutToDisappear");
     this.info.message = "Child aboutToDisappear";
   }
   build() {
@@ -723,7 +723,7 @@ struct Index {
   @Local flag: boolean = false;
   @Monitor("info.message")
   onMessageChange(monitor: IMonitor) {
-    console.log(`Index message change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    console.info(`Index message change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 
   build() {
@@ -769,7 +769,7 @@ class Info {
   }
   @Monitor("message")
   onMessageChange(monitor: IMonitor) {
-    console.log(`message change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    console.info(`message change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 }
 
@@ -811,7 +811,7 @@ class InfoWrapper {
   }
   @Monitor("info.age")
   onInfoAgeChange(monitor: IMonitor) {
-    console.log(`age change from ${monitor.value()?.before} to ${monitor.value()?.now}`)
+    console.info(`age change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 }
 @ObservedV2
@@ -825,7 +825,7 @@ class Info {
 struct Child {
   @Param @Require infoWrapper: InfoWrapper;
   aboutToDisappear(): void {
-    console.log("Child aboutToDisappear", this.infoWrapper.info?.age)
+    console.info("Child aboutToDisappear", this.infoWrapper.info?.age);
   }
   build() {
     Column() {
@@ -851,10 +851,10 @@ struct Index {
         })
       Button("change number")
         .onClick(() => {
-          console.log("click to change age")
+          console.info("click to change age");
           this.dataArray.forEach((info: Info) => {
             info.age += 100;
-          })
+          });
         })
       if (this.showFlag) {
         Column() {
@@ -897,10 +897,10 @@ struct Child {
   @Param @Require infoWrapper: InfoWrapper;
   @Monitor("infoWrapper.info.age")
   onInfoAgeChange(monitor: IMonitor) {
-    console.log(`age change from ${monitor.value()?.before} to ${monitor.value()?.now}`)
+    console.info(`age change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
   aboutToDisappear(): void {
-    console.log("Child aboutToDisappear", this.infoWrapper.info?.age)
+    console.info("Child aboutToDisappear", this.infoWrapper.info?.age);
   }
   build() {
     Column() {
@@ -926,7 +926,7 @@ struct Index {
         })
       Button("change number")
         .onClick(() => {
-          console.log("click to change age")
+          console.info("click to change age");
           this.dataArray.forEach((info: Info) => {
             info.age += 100;
           })
@@ -957,7 +957,7 @@ class InfoWrapper {
   }
   @Monitor("info.age")
   onInfoAgeChange(monitor: IMonitor) {
-    console.log(`age change from ${monitor.value()?.before} to ${monitor.value()?.now}`)
+    console.info(`age change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 }
 @ObservedV2
@@ -971,7 +971,7 @@ class Info {
 struct Child {
   @Param @Require infoWrapper: InfoWrapper;
   aboutToDisappear(): void {
-    console.log("Child aboutToDisappear", this.infoWrapper.info?.age)
+    console.info("Child aboutToDisappear", this.infoWrapper.info?.age);
     this.infoWrapper.info = undefined; // 使InfoWrapper对info.age的监听失效
   }
   build() {
@@ -998,7 +998,7 @@ struct Index {
         })
       Button("change number")
         .onClick(() => {
-          console.log("click to change age")
+          console.info("click to change age");
           this.dataArray.forEach((info: Info) => {
             info.age += 100;
           })
@@ -1032,7 +1032,7 @@ class Info {
   @Monitor("age", "name") // 同时监听状态变量age和非状态变量name
   onPropertyChange(monitor: IMonitor) {
     monitor.dirty.forEach((path: string) => {
-      console.log(`property path:${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
+      console.info(`property path:${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
     })
   }
 }
@@ -1071,7 +1071,7 @@ class Info {
   @Monitor("age") // 仅监听状态变量age
   onPropertyChange(monitor: IMonitor) {
     monitor.dirty.forEach((path: string) => {
-      console.log(`property path:${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
+      console.info(`property path:${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
     })
   }
 }
@@ -1103,7 +1103,7 @@ class Info {
   }
   @Monitor("myAge") // 监听非@Computed装饰的getter访问器
   onPropertyChange() {
-    console.log("age changed");
+    console.info("age changed");
   }
 }
 @Entry
@@ -1138,7 +1138,7 @@ class Info {
   }
   @Monitor("myAge") // 监听@Computed装饰的getter访问器
   onPropertyChange() {
-    console.log("age changed");
+    console.info("age changed");
   }
 }
 @Entry
@@ -1165,7 +1165,7 @@ class Info {
   @Trace age: number = 24;
   @Monitor("age") // 监听状态变量age
   onPropertyChange() {
-    console.log("age changed");
+    console.info("age changed");
   }
 }
 @Entry

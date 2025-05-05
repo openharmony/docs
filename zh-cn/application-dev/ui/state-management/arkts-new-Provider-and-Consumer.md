@@ -127,7 +127,7 @@ struct Child {
 
 ### \@Provider和\@Consumer双向同步
 #### 建立双向绑定
-1. 自定义组件Parent和Child初始化:
+1. 自定义组件Parent和Child初始化：
     - Child中`@Consumer() str: string = 'world'`向上查找，查找到Parent中声明的`@Provider() str: string = 'hello'`。
     - `@Consumer() str: string = 'world'`初始化为其查找到的`@Provider`的值，即‘hello’。
     - 两者建立双向同步关系。
@@ -169,7 +169,7 @@ struct Child {
 #### 未建立双向绑定
 
 下面的例子中，\@Provider和\@Consumer由于aliasName值不同，无法建立双向同步关系。
-1. 自定义组件Parent和Child初始化:
+1. 自定义组件Parent和Child初始化：
     - Child中`@Consumer() str: string = 'world'`向上查找，未查找到其数据提供方@Provider。
     - `@Consumer() str: string = 'world'`使用其本地默认值为‘world’。
     - 两者未建立双向同步关系。
