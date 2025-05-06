@@ -408,7 +408,7 @@ import { window } from '@kit.ArkUI';
 | beginRect | [Rect](#rect7)  | 是 | 动画开始前软键盘的位置和大小。 |
 | endRect | [Rect](#rect7)  | 是 | 动画结束后软键盘的位置和大小。 |
 | animated | boolean  | 否 | 当前显示/隐藏是否有动画。 |
-| config | [WindowAnimationConfig](#WindowAnimationConfig20)  | 否 | 动画信息。 |
+| config | [WindowAnimationConfig](#windowanimationconfig20)  | 否 | 动画信息。 |
 
 ## WindowAnimationCurve<sup>20+</sup>
 
@@ -420,8 +420,8 @@ import { window } from '@kit.ArkUI';
 
 | 名称                | 值   | 说明                                                         |
 | ------------------- | ---- | ------------------------------------------------------------ |
-| LINEAR              | 0    | 表示动画从头到尾的速度都是相同的。<br />使用该曲线类型时[WindowAnimationConfig](#WindowAnimationConfig20)中duration必填。<br />使用该曲线类型时[WindowAnimationConfig](#WindowAnimationConfig20)中param选填，且不生效。 |
-| INTERPOLATINGSPRING | 1    | 表示插值器弹簧曲线，一条从0到1的动画曲线，实际动画值根据曲线进行插值计算。动画时间由曲线参数决定，不受[WindowAnimationConfig](#WindowAnimationConfig20)中的duration参数控制。<br />使用该曲线类型时[WindowAnimationConfig](#WindowAnimationConfig20)中duration选填且不生效。 |
+| LINEAR              | 0    | 表示动画从头到尾的速度都是相同的。<br />使用该曲线类型时[WindowAnimationConfig](#windowanimationconfig20)中duration必填。<br />使用该曲线类型时[WindowAnimationConfig](#windowanimationconfig20)中param选填，且不生效。 |
+| INTERPOLATINGSPRING | 1    | 表示插值器弹簧曲线，一条从0到1的动画曲线，实际动画值根据曲线进行插值计算。动画时间由曲线参数决定，不受[WindowAnimationConfig](#windowanimationconfig20)中的duration参数控制。<br />使用该曲线类型时[WindowAnimationConfig](#windowanimationconfig20)中duration选填且不生效。 |
 
 ## WindowAnimationConfig<sup>20+</sup>
 
@@ -433,15 +433,15 @@ import { window } from '@kit.ArkUI';
 
 | 名称     | 类型                                                      | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| curve    | [WindowAnimationCurve](#WindowAnimationCurve20)           | 是   | 动画曲线类型。                                               |
+| curve    | [WindowAnimationCurve](#windowanimationcurve20)           | 是   | 动画曲线类型。                                               |
 | duration | number                                                    | 否   | 动画播放的时长，单位毫秒。<br />默认值：0，最大值：3000。<br />根据动画曲线类型决定是否必填。 |
-| param    | [WindowAnimationCurveParam](#WindowAnimationCurveParam20) | 否   | 动画曲线参数，根据动画曲线类型决定是否必填。                 |
+| param    | [WindowAnimationCurveParam](#windowanimationcurveparam20) | 否   | 动画曲线参数，根据动画曲线类型决定是否必填。                 |
 
 ## WindowAnimationCurveParam<sup>20+</sup>
 
 type WindowAnimationCurveParam = Array&lt;number&gt;
 
-动画曲线参数。不同曲线类型[WindowAnimationCurve](#WindowAnimationCurve20)，对应的WindowAnimationCurveParam参数含义不同。
+动画曲线参数。不同曲线类型[WindowAnimationCurve](#windowanimationcurve20)，对应的WindowAnimationCurveParam参数含义不同。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -495,7 +495,7 @@ type WindowAnimationCurveParam = Array&lt;number&gt;
 
 | 名称    | 类型                                              | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| config  | [WindowAnimationConfig](#WindowAnimationConfig20) | 是   | 本次转场动画配置。                                           |
+| config  | [WindowAnimationConfig](#windowanimationconfig20) | 是   | 本次转场动画配置。                                           |
 | opacity | number                                            | 否   | 不透明度。转场动画作用的窗口属性。当动画类型为WindowTransitionType.DESTROY时，代表动画终点的不透明度。 |
 
 ## WindowInfo<sup>18+</sup>
