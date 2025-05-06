@@ -115,7 +115,7 @@ void MyHiLog(const LogType type, const LogLevel level, const unsigned int domain
 static void Test(void)
 {
    // 1.注册回调接口
-    OH_LOG_SetCallback(MyHiLog);
+   OH_LOG_SetCallback(MyHiLog);
     
    // 2.调用hilog接口打印日志，日志内容会输出到hilog，同时通过回调返回给MyHiLog，开发者可以在MyHiLog中自行处理日志
    OH_LOG_INFO(LOG_APP, "hello world");
