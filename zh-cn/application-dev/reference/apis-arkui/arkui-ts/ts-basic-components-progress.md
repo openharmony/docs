@@ -467,7 +467,7 @@ struct ProgressExample {
 @Entry
 @Component
 struct Index {
-  @State value: number = 0
+  @State value: number = 0;
 
   build() {
     Column({ space: 10 }) {
@@ -485,7 +485,7 @@ struct Index {
         .style({ strokeWidth: 10, enableSmoothEffect: false })
 
       Button('value +10').onClick(() => {
-        this.value += 10
+        this.value += 10;
       })
         .width(75)
         .height(15)
@@ -507,14 +507,14 @@ struct Index {
 ```ts
 // xxx.ets
 class MyProgressModifier implements ContentModifier<ProgressConfiguration> {
-  color: Color = Color.White
+  color: Color = Color.White;
 
   constructor(color: Color) {
-    this.color = color
+    this.color = color;
   }
 
   applyContent(): WrappedBuilder<[ProgressConfiguration]> {
-    return wrapBuilder(myProgress)
+    return wrapBuilder(myProgress);
   }
 }
 
@@ -557,21 +557,21 @@ function myProgress(config: ProgressConfiguration) {
 @Entry
 @Component
 struct Index {
-  @State currentValue: number = 0
-  modifier = new MyProgressModifier(Color.Red)
-  @State myModifier: (MyProgressModifier | undefined) = this.modifier
+  @State currentValue: number = 0;
+  modifier = new MyProgressModifier(Color.Red);
+  @State myModifier: (MyProgressModifier | undefined) = this.modifier;
 
   build() {
     Column() {
       Progress({ value: this.currentValue, total: 3, type: ProgressType.Ring }).contentModifier(this.modifier)
       Button('Progress++').onClick(() => {
         if (this.currentValue < 3) {
-          this.currentValue += 1
+          this.currentValue += 1;
         }
       }).width('30%')
       Button('Progress--').onClick(() => {
         if (this.currentValue > 0) {
-          this.currentValue -= 1
+          this.currentValue -= 1;
         }
       }).width('30%')
     }.width('100%').height('100%')
