@@ -280,6 +280,7 @@
 | [ArkUI_RouterPageState](#arkui_routerpagestate) {<br/>ARKUI_ROUTER_PAGE_STATE_ABOUT_TO_APPEAR = 0, ARKUI_ROUTER_PAGE_STATE_ABOUT_TO_DISAPPEAR = 1, ARKUI_ROUTER_PAGE_STATE_ON_SHOW = 2, ARKUI_ROUTER_PAGE_STATE_ON_HIDE = 3,<br/>ARKUI_ROUTER_PAGE_STATE_ON_BACK_PRESS = 4<br/>} | 定义Router Page的状态。  |
 | [ArkUI_DatePickerMode](#arkui_datepickermode) {<br/>ARKUI_DATEPICKER_MODE_DATE = 0, ARKUI_DATEPICKER_YEAR_AND_MONTH = 1, ARKUI_DATEPICKER_MONTH_AND_DAY = 2<br/> } | 定义要显示的日期选项列样式。  |
 | [ArkUI_ExpandMode](#arkui_expandmode) { <br/>ARKUI_NOT_EXPAND = 0, ARKUI_EXPAND = 1, ARKUI_LAZY_EXPAND = 2 <br/>} | 定义子节点展开模式枚举值。 |
+| [ArkUI_UIState](#arkui_uistate) { <br/>UI_STATE_NORMAL = 0,  UI_STATE_PRESSED = 1 << 0, UI_STATE_FOCUSED = 1 << 1, UI_STATE_DISABLED = 1 << 2, UI_STATE_SELECTED = 1 << 3 <br/>} | 组件的UI状态枚举，用于处理状态样式。 |
 
 
 ### 函数
@@ -869,6 +870,8 @@
 | float [OH_ArkUI_ProgressLinearStyleOption_GetStrokeWidth](#oh_arkui_progresslinearstyleoption_getstrokewidth)([ArkUI_ProgressLinearStyleOption](#arkui_progresslinearstyleoption)\* option) | 获取线性进度条宽度。 |
 | float [OH_ArkUI_ProgressLinearStyleOption_GetStrokeRadius](#oh_arkui_progresslinearstyleoption_getstrokeradius)([ArkUI_ProgressLinearStyleOption](#arkui_progresslinearstyleoption)\* option) | 获取线性进度条圆角半径值。 |
 | int32_t [OH_ArkUI_NodeUtils_GetPositionToParent](#oh_arkui_nodeutils_getpositiontoparent) ([ArkUI_NodeHandle](#arkui_nodehandle) node, [ArkUI_IntOffset](_ark_u_i___int_offset.md)\* globalOffset) | 获取目标节点相对于父节点的偏移值。  |
+| [ArkUI_ErrorCode](#arkui_errorcode) [OH_ArkUI_AddSupportedUIStates](#oh_arkui_addsupporteduistates) ([ArkUI_NodeHandle](#arkui_nodehandle) node, int32_t uiStates, void (statesChangeHandler)(int32_t currentStates, void* userData), bool excludeInner, void* userData) | 设置组件支持的多态样式状态。 |
+| [ArkUI_ErrorCode](#arkui_errorcode) [OH_ArkUI_RemoveSupportedUIStates](#oh_arkui_removesupporteduistates) ([ArkUI_NodeHandle](#arkui_nodehandle) node, int32_t uiStates) | 删除注册的状态。 |
 | int32_t [OH_ArkUI_GetGestureParam_DirectMask](#oh_arkui_getgestureparam_directmask) (ArkUI_GestureRecognizer \*recognizer, [ArkUI_GestureDirectionMask](#arkui_gesturedirectionmask)\* directMask) | 获取手势识别器的滑动方向。 |
 | int32_t [OH_ArkUI_GetGestureParam_FingerCount](#oh_arkui_getgestureparam_fingercount) (ArkUI_GestureRecognizer \*recognizer, int\* finger) | 获取手势识别器的手指数。 |
 | int32_t [OH_ArkUI_GetGestureParam_limitFingerCount](#oh_arkui_getgestureparam_limitfingercount) (ArkUI_GestureRecognizer \*recognizer, bool\* isLimited) | 获取手势识别器是否有手指数限制。  |
@@ -5114,6 +5117,25 @@ enum ArkUI_ExpandMode
 | ARKUI_NOT_EXPAND   | 不展开。  |
 | ARKUI_EXPAND   | 展开。  |
 | ARKUI_LAZY_EXPAND   | 懒展开，按需展开当前节点的子节点。  |
+
+### ArkUI_UIState
+
+```
+enum ArkUI_UIState
+```
+**描述：**
+
+组件的UI状态枚举，用于处理状态样式。
+
+**起始版本：** 20
+
+| 枚举值 | 描述 |
+| -------- | -------- |
+| UI_STATE_NORMAL | 正常状态。 |
+| UI_STATE_PRESSED | 按压状态。 |
+| UI_STATE_FOCUSED | 获焦状态。 |
+| UI_STATE_DISABLED | 禁用状态。 |
+| UI_STATE_SELECTED | 选中状态。此状态仅由某些特定类型的组件支持，分别是Checkbox、Radio、Toggle、List、Grid和MenuItem。 |
 
 ## 函数说明
 
@@ -18029,6 +18051,65 @@ int32_t OH_ArkUI_NodeUtils_GetPositionToParent (ArkUI_NodeHandle node, ArkUI_Int
 
 ARKUI_ERROR_CODE_NO_ERROR 成功。
 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+
+### OH_ArkUI_AddSupportedUIStates()
+
+```
+ArkUI_ErrorCode OH_ArkUI_AddSupportedUIStates(ArkUI_NodeHandle node, int32_t uiStates, void (statesChangeHandler)(int32_t currentStates, void* userData), bool excludeInner, void* userData)
+```
+**描述：**
+
+设置组件支持的多态样式状态。为了更高效地处理，需传入所关注的状态值及对应的状态处理函数，当关注的状态发生时，处理函数会被执行。
+
+可在回调中根据当前状态调整UI样式。当在同一个节点上多次调用该方法时，将以最后一次传入的状态及处理函数为准。
+
+有些类型的组件节点，系统内部已有对某些状态的默认处理。例如，Button组件默认具备对PRESSED状态的样式变化，当在此类组件上使用此方法自定义状态处理时，
+会先应用系统默认样式变化，再执行自定义的样式处理，最终效果为两者叠加。
+
+可以通过指定excludeInner为true来禁用系统内部的默认样式效果，但这通常取决于系统内部实现规范是否允许。
+
+当调用该函数时，传入的statesChangeHandler函数会立即执行一次，且无需特意注册对NORMAL状态的监听，只要注册了非NORMAL状态，当状态从任意状态变化回NORMAL时，系统都会进行回调，以便应用进行样式复原。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| node | 目标节点。  |
+| uiStates | 目标节点需要处理的目标UI状态。<br>所有目标UI状态的组合结果可以通过“&nbsp;\|&nbsp;”操作来计算。例如：targetUIStates = ArkUI_UIState::PRESSED &nbsp;\|&nbsp; ArkUI_UIState::FOCUSED。  |
+| statesChangeHandler | UI状态改变处理函数。<br>返回当前UI状态，该值是所有当前状态枚举值“&nbsp;\|&nbsp;”计算的结果，可以通过执行“&”操作来确定状态。例如：if (currentStates & ArkUI_UIState::PRESSED == ArkUI_UIState::PRESSED)。但是，对于正常状态检查，应直接使用等号。例如：if (currentStates == ArkUI_UIState::NORMAL)。  |
+| excludeInner | 禁止内部默认状态样式的标志。  |
+| userData | onDrawCompleted回调函数中使用的自定义数据。  |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 函数参数异常。
+
+### OH_ArkUI_RemoveSupportedUIStates()
+
+```
+ArkUI_ErrorCode OH_ArkUI_RemoveSupportedUIStates(ArkUI_NodeHandle node, int32_t uiStates)
+```
+**描述：**
+
+删除注册的状态处理。当通过OH_ArkUI_AddSupportedUIStates注册的状态都被删除时，所注册的stateChangeHandler也不会再被执行。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| node | 目标节点。  |
+| uiStates | 节点需要删除的目标UI状态。  |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 函数参数异常。
 
 ### OH_ArkUI_GetGestureParam_DirectMask()
 
