@@ -339,7 +339,7 @@ OpenHarmony 5.1.0 Release版本正式推出API 18。相比前一个Release版本
 
 - 从版本分支获取源码。可获取该版本分支的最新源码，包括版本发布后在该分支的合入。
    ```
-   repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-5.1.o-Release --no-repo-verify
+   repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-5.1.0-Release --no-repo-verify
    repo sync -c
    repo forall -c 'git lfs pull'
    ```
