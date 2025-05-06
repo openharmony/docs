@@ -1663,7 +1663,7 @@ async function demo() {
   let scrollBar: Component|null = await driver.findComponent(ON.type('Scroll'));
   let button = await scrollBar?.scrollSearch(ON.text('next page'));
   if (button) {
-    await button?.click();
+    await button.click();
   }
 }
 ```
@@ -1714,7 +1714,7 @@ async function demo() {
   let scrollBar: Component|null = await driver.findComponent(ON.type('Scroll'));
   let button = await scrollBar?.scrollSearch(ON.text('next page'));
   if (button) {
-    await button?.click();
+    await button.click();
   }
 }
 ```
@@ -1834,7 +1834,7 @@ async function demo() {
   let button: Component|null = await driver.findComponent(ON.type('Button'));
   let text: Component|null = await driver.findComponent(ON.text('hello world'));
   if (button && text) {
-    await button?.dragTo(text);
+    await button.dragTo(text);
   }
 }
 ```
@@ -1950,7 +1950,7 @@ async function demo() {
   let driver: Driver = Driver.create();
   let button: Component|null = await driver.findComponent(ON.type('Button'));
   if (button) {
-    let description = await button?.getDescription();
+    let description = await button.getDescription();
   }
 }
 ```
@@ -1987,7 +1987,7 @@ async function demo() {
   let driver: Driver = Driver.create();
   let button: Component|null = await driver.findComponent(ON.type('TextInput'));
   if (button) {
-    let hints = await button?.getHint();
+    let hints = await button.getHint();
   }
 }
 ```
