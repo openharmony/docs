@@ -29,7 +29,7 @@
 
 ### 搭建环境
 
-DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.com/cn/develop/deveco-studio#download)，并进行相关的配置动作。
+DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.com/cn/develop/deveco-studio)，并进行相关的配置动作。
 
 ### 新建和编写测试脚本
 
@@ -61,8 +61,7 @@ import { describe, it, expect } from '@ohos/hypium';
 import { abilityDelegatorRegistry } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 
-const delegator = abilityDelegatorRegistry.getAbilityDelegator()
-const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
+const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 function sleep(time: number) {
   return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
 }
@@ -70,6 +69,8 @@ export default function abilityTest() {
   describe('ActsAbilityTest', () =>{
     it('testUiExample',0, async (done: Function) => {
       console.info("uitest: TestUiExample begin");
+      await sleep(1000);
+      const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
       //start tested ability
       const want: Want = {
         bundleName: bundleName,
@@ -97,7 +98,7 @@ export default function abilityTest() {
   @Entry
   @Component
   struct Index {
-    @State message: string = 'Hello World'
+    @State message: string = 'Hello World';
 
     build() {
       Row() {
@@ -129,8 +130,7 @@ export default function abilityTest() {
   import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
   import { UIAbility, Want } from '@kit.AbilityKit';
 
-  const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
-  const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
+  const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
   function sleep(time: number) {
     return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
   }
@@ -138,6 +138,8 @@ export default function abilityTest() {
     describe('ActsAbilityTest', () => {
        it('testUiExample',0, async (done: Function) => {
           console.info("uitest: TestUiExample begin");
+          await sleep(1000);
+          const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
           //start tested ability
           const want: Want = {
              bundleName: bundleName,
@@ -556,15 +558,11 @@ hdc shell uitest uiInput text hello
 
 #### uiInput keyEvent使用示例
 
-| 配置参数             | 必填       | 描述 |                
-|------|------|----------|
-| keyID1   | 是    | 实体按键对应ID，取值范围：KeyCode/Back/Home/Power。<br>当取Back/Home/Power时，不支持输入组合键。 | 
-| keyID2    | 否    | 实体按键对应ID。 |
-| keyID3    | 否    | 实体按键对应ID。 |
-
->**说明**
->
-> 最多支持传入是三个键值，<!--RP3-->键值的具体取值请参考[KeyCode](../reference/apis-input-kit/js-apis-keycode.md)<!--RP3End-->。
+| 配置参数             | 必填       | 描述                                                                                                                              |                
+|------|------|---------------------------------------------------------------------------------------------------------------------------------|
+| keyID1   | 是    | 实体按键对应ID，取值范围：Back、Home、Power、或[KeyCode键码值](../reference/apis-input-kit/js-apis-keycode.md#keycode)。<br>当取值为Back、Home或Power时，不支持输入组合键。 | 
+| keyID2    | 否    | 实体按键对应ID，取值范围：[KeyCode键码值](../reference/apis-input-kit/js-apis-keycode.md#keycode)，默认值为空。                                               |
+| keyID3    | 否    | 实体按键对应ID，取值范围：[KeyCode键码值](../reference/apis-input-kit/js-apis-keycode.md#keycode)，默认值为空。                                               |
 
 ```shell  
 # 返回主页。
