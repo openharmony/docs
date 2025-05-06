@@ -204,7 +204,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetCacheDir(char* b
 | 名称 | 描述 |
 | -------- | -------- |
 | buffer | 缓冲区，缓存目录字符串写入该区域。 |
-| bufferSize | 缓冲区大小（单位：字节，Bytes）。 |
+| bufferSize | 缓冲区大小（单位：字节）。 |
 | writeLength | 实际写入到缓冲区的字符串长度。 |
 
 **返回：**
@@ -258,7 +258,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetBundleName(char*
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
 | buffer      | 缓冲区，应用包名字符串写入该区域。                           |
-| bufferSize  | 缓冲区大小（单位：字节，Bytes）。                                                 |
+| bufferSize  | 缓冲区大小（单位：字节）。                                                 |
 | writeLength | 实际写入到缓冲区的字符串长度。 |
 
 **返回：**
@@ -286,7 +286,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetTempDir(char* bu
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
 | buffer      | 缓冲区，缓存目录字符串写入该区域。                           |
-| bufferSize  | 缓冲区大小（单位：字节，Bytes）。                                                 |
+| bufferSize  | 缓冲区大小（单位：字节）。                                                 |
 | writeLength | 实际写入到缓冲区的字符串长度。 |
 
 **返回：**
@@ -314,7 +314,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetFilesDir(char* b
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
 | buffer      | 缓冲区，缓存目录字符串写入该区域。                           |
-| bufferSize  | 缓冲区大小（单位：字节，Bytes）。                                                 |
+| bufferSize  | 缓冲区大小（单位：字节）。                                                 |
 | writeLength | 实际写入到缓冲区的字符串长度。 |
 
 **返回：**
@@ -342,7 +342,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetDatabaseDir(char
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
 | buffer      | 缓冲区，缓存目录字符串写入该区域。                           |
-| bufferSize  | 缓冲区大小（单位：字节，Bytes）。                                                 |
+| bufferSize  | 缓冲区大小（单位：字节）。                                                 |
 | writeLength | 实际写入到缓冲区的字符串长度。 |
 
 **返回：**
@@ -370,7 +370,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetPreferencesDir(c
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
 | buffer      | 缓冲区，缓存目录字符串写入该区域。                           |
-| bufferSize  | 缓冲区大小（单位：字节，Bytes）。                                                 |
+| bufferSize  | 缓冲区大小（单位：字节）。                                                 |
 | writeLength | 实际写入到缓冲区的字符串长度。 |
 
 **返回：**
@@ -398,7 +398,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetBundleCodeDir(ch
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
 | buffer      | 缓冲区，缓存目录字符串写入该区域。                           |
-| bufferSize  | 缓冲区大小（单位：字节，Bytes）。                                                 |
+| bufferSize  | 缓冲区大小（单位：字节）。                                                 |
 | writeLength | 实际写入到缓冲区的字符串长度。 |
 
 **返回：**
@@ -426,7 +426,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetDistributedFiles
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
 | buffer      | 缓冲区，缓存目录字符串写入该区域。                           |
-| bufferSize  | 缓冲区大小（单位：字节，Bytes）。                                                 |
+| bufferSize  | 缓冲区大小（单位：字节）。                                                 |
 | writeLength | 实际写入到缓冲区的字符串长度。 |
 
 **返回：**
@@ -454,7 +454,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetCloudFileDir(cha
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
 | buffer      | 缓冲区，缓存目录字符串写入该区域。                           |
-| bufferSize  | 缓冲区大小（单位：字节，Bytes）。                                                 |
+| bufferSize  | 缓冲区大小（单位：字节）。                                                 |
 | writeLength | 实际写入到缓冲区的字符串长度。 |
 
 **返回：**
@@ -483,7 +483,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetResourceDir(cons
 | ----------- | ------------------------------------------------------------ |
 | moduleName  | 模块名。                                                     |
 | buffer      | 缓冲区，缓存目录字符串写入该区域。                           |
-| bufferSize  | 缓冲区大小（单位：字节，Bytes）。                                                 |
+| bufferSize  | 缓冲区大小（单位：字节）。                                                 |
 | writeLength | 实际写入到缓冲区的字符串长度。 |
 
 **返回：**
