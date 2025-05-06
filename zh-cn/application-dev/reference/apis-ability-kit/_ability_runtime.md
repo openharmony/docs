@@ -259,7 +259,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetBundleName(char*
 | ----------- | ------------------------------------------------------------ |
 | buffer      | 缓冲区，应用包名字符串写入该区域。                           |
 | bufferSize  | 缓冲区大小（单位：字节，Bytes）。                                                 |
-| writeLength | 写入到缓冲区的字符串长度。 |
+| writeLength | 实际写入到缓冲区的字符串长度。 |
 
 **返回：**
 
