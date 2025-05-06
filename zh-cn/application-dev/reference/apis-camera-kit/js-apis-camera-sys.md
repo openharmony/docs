@@ -132,7 +132,7 @@ createDepthDataOutput(profile: DepthProfile): DepthDataOutput
 
 | 参数名     | 类型                                             | 必填 | 说明                              |
 | -------- | ----------------------------------------------- | ---- | ------------------------------- |
-| profile  | [Profile](js-apis-camera.md#profile)                             | 是   | 支持的预览配置信息，通过[getSupportedOutputCapability](js-apis-camera.md#getsupportedoutputcapability11)接口获取。|
+| profile  | [DepthProfile](#depthprofile13)                             | 是   | 支持的预览配置信息，通过[getSupportedOutputCapability](js-apis-camera.md#getsupportedoutputcapability11)接口获取。|
 
 **返回值：**
 
@@ -458,7 +458,7 @@ createDeferredPreviewOutput(profile?: Profile): PreviewOutput
 
 | 参数名     | 类型             | 必填 | 说明       |
 | -------- | --------------- | ---- | --------- |
-| profile | [Profile](js-apis-camera.md#profile) | 是 | 相机预览流的配置文件。 |
+| profile | [Profile](js-apis-camera.md#profile) | 否 | 相机预览流的配置文件。 |
 
 **返回值：**
 
