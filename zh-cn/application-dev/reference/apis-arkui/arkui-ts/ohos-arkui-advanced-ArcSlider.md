@@ -20,7 +20,7 @@ import {
   ArcSliderLayoutOptionsConstructorOptions,
   ArcSliderStyleOptionsConstructorOptions,
   ArcSliderOptionsConstructorOptions
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 ```
 
 ## 子组件
@@ -323,7 +323,7 @@ import {
   ArcSliderLayoutOptionsConstructorOptions,
   ArcSliderStyleOptionsConstructorOptions,
   ArcSliderOptionsConstructorOptions
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -332,22 +332,22 @@ struct ArcSliderExample {
     progress: 60,
     min: 10,
     max: 110
-  }
+  };
 
   layoutOptionsConstructorOptions: ArcSliderLayoutOptionsConstructorOptions = {
     reverse: true,
     position: ArcSliderPosition.RIGHT
-  }
+  };
   styleOptionsConstructorOptions: ArcSliderStyleOptionsConstructorOptions = {
     trackThickness: 8,
     activeTrackThickness: 30,
     trackColor: '#ffd5d5d5',
     selectedColor: '#ff2787d9',
     trackBlur: 20
-  }
-  valueOptions: ArcSliderValueOptions = new ArcSliderValueOptions(this.valueOptionsConstructorOptions)
-  layoutOptions: ArcSliderLayoutOptions = new ArcSliderLayoutOptions(this.layoutOptionsConstructorOptions)
-  styleOptions: ArcSliderStyleOptions = new ArcSliderStyleOptions(this.styleOptionsConstructorOptions)
+  };
+  valueOptions: ArcSliderValueOptions = new ArcSliderValueOptions(this.valueOptionsConstructorOptions);
+  layoutOptions: ArcSliderLayoutOptions = new ArcSliderLayoutOptions(this.layoutOptionsConstructorOptions);
+  styleOptions: ArcSliderStyleOptions = new ArcSliderStyleOptions(this.styleOptionsConstructorOptions);
   arcSliderOptionsConstructorOptions: ArcSliderOptionsConstructorOptions = {
     valueOptions: this.valueOptions,
     layoutOptions: this.layoutOptions,
@@ -359,8 +359,8 @@ struct ArcSliderExample {
     },
     onEnlarge: (isEnlarged: boolean) => {
     }
-  }
-  arcSliderOptions: ArcSliderOptions = new ArcSliderOptions(this.arcSliderOptionsConstructorOptions)
+  };
+  arcSliderOptions: ArcSliderOptions = new ArcSliderOptions(this.arcSliderOptionsConstructorOptions);
 
   build() {
     Column() {
