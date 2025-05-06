@@ -68,7 +68,7 @@ Register a listener for an album. When the observed album changes, the registere
 **Prerequisites**
 
 - A **PhotoAccessHelper** instance is obtained.
-- The application has the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
+- The application has the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions. For details, see [Requesting Album Management Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
 The following example describes how to register a listener for a user album and then rename the album. A callback will be invoked when the album is renamed.
 

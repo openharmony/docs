@@ -67,6 +67,7 @@ When a user needs to share files such as images and videos, use **Picker** to st
 The media library allows **Picker** to select a [media file URI](../../file-management/user-file-uri-intro.md#media-file-uri) and obtain the corresponding image or video. The following describes how to query a URI named **'file://media/Photo/1/IMG_datetime_0001/displayName.jpg'**.
 
 ```ts
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { dataSharePredicates } from '@kit.ArkData';
 
 const context = getContext(this);
