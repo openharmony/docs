@@ -1616,7 +1616,7 @@ struct TabBarStyleExample {
 
 ```ts
 // xxx.ets
-import { ComponentContent, UIContext } from "@kit.ArkUI";
+import { ComponentContent, UIContext } from '@kit.ArkUI';
 
 class Params {
   text: string = "";
@@ -1779,7 +1779,7 @@ struct Index {
 
 ```ts
 // xxx.ets
-import { ComponentContent, UIContext } from "@kit.ArkUI";
+import { ComponentContent, UIContext } from '@kit.ArkUI';
 
 class Params {
   text: string = "";
