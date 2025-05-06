@@ -102,6 +102,29 @@ Column() {
 
 accessibilityVirtualNode属性，用于为自绘制组件添加虚拟无障碍节点，辅助工具会读取这些节点的信息而非实际显示内容。
 
+```ts
+@Entry
+@Component
+struct VirtualNodeExample {
+  @Builder customAccessibilityNode() {
+    Text("文本2")
+      .fontSize(50)
+      .fontWeight(FontWeight.Bold)
+  }
+
+  build() {
+    Column() {
+      Text("文本1")
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
+    }
+    .accessibilityGroup(true)
+    .accessibilityLevel("yes")
+    .accessibilityVirtualNode(this.customAccessibilityNode)
+  }
+}
+```
+
 ## 设置无障碍节点是否被选中
 
 accessibilityChecked和accessibilitySelected是两个用于增强无障碍体验的属性，它们主要用于向屏幕朗读等辅助工具传达组件的选中状态。
