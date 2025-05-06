@@ -144,6 +144,8 @@ hdc shell param set persist.sys.abilityms.multi_process_model true
 
 ### 加载项首页
 
+加载项首页是 EmbeddedComponent 组件的宿主页面，负责加载和展示嵌入式UI扩展能力的内容。以下是一个完整的加载项首页实现示例：
+
 ```ts
 import { Want } from '@kit.AbilityKit';
 
@@ -179,9 +181,29 @@ struct Index {
 }
 ```
 
+在ArkTS项目中，EmbeddedUIExtensionAbility的实现代码通常位于项目的ets/extensionAbility目录下。例如，ExampleEmbeddedAbility.ets文件位于./ets/extensionAbility/目录中。
+
+在实现加载项首页时，开发者需要注意以下几点：
+
+- 多进程模型检测
+
+  在应用启动时，建议检测设备是否已开启多进程模型。如果未开启，应提供明确的错误提示或引导用户开启。
+
+- 异常处理
+
+  通过onError事件处理加载或运行嵌入式能力时可能出现的错误，提升用户体验。
+
+- 生命周期管理
+
+  了解并管理好嵌入式组件的生命周期，确保资源的正确释放和回收。
+
+- 样式配置
+
+  合理配置EmbeddedComponent组件的大小和位置，确保嵌入式界面能够以期望的尺寸和位置显示。
+
 ### 提供方应用生命周期实现
 
-以下是EmbeddedComponent组件拉起ExampleEmbeddedAbility实现示例：
+提供方应用是指提供嵌入式UI扩展能力的应用。以下是提供方应用生命周期实现的代码示例：
 
 ```ts
 import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
@@ -278,9 +300,33 @@ struct Extension {
 }
 ```
 
+在实现入口页面时，开发者需要注意以下几点：
+
+1、会话管理
+
+正确获取并使用 UIExtensionContentSession 会话对象，确保与宿主应用的通信正常。
+
+2、结果返回
+
+通过 terminateSelfWithResult 方法向宿主应用返回结果时，需要指定：
+
+- resultCode：结果代码；
+
+- want：目标意图，指定结果的接收方。
+
+3、页面生命周期
+
+了解并管理好入口页面的生命周期，确保资源的正确释放和回收。
+
+4、样式配置
+
+合理配置页面元素的样式，确保界面显示效果符合预期。
+
 ### 添加配置项
 
-在module.json5配置文件的"extensionAbilities"标签下增加ExampleEmbeddedAbility配置，以注册ExampleEmbeddedAbility嵌入式UI扩展能力
+为了使嵌入式UI扩展能力正常工作，需要在应用的配置文件中进行相应的设置。
+
+在module.json5配置文件的"extensionAbilities"标签下增加ExampleEmbeddedAbility配置，以注册ExampleEmbeddedAbility嵌入式UI扩展能力。
 
 ```json
 {
