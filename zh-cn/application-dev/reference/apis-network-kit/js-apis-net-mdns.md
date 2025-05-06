@@ -147,7 +147,7 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: As
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**: SystemCapability.Communication.NetManager.MDNS
+**系统能力**： SystemCapability.Communication.NetManager.MDNS
 
 **参数**
 
@@ -205,11 +205,11 @@ mdns.removeLocalService(context, localServiceInfo, (error: BusinessError, data: 
 
 removeLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<LocalServiceInfo>
 
-移除一个mDNS服务. 使用Promise方式作为异步方法。
+移除一个mDNS服务，使用Promise方式作为异步方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**: SystemCapability.Communication.NetManager.MDNS
+**系统能力**： SystemCapability.Communication.NetManager.MDNS
 
 **参数**
 
@@ -321,7 +321,7 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: A
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**: SystemCapability.Communication.NetManager.MDNS
+**系统能力**： SystemCapability.Communication.NetManager.MDNS
 
 **参数：**
 
@@ -383,7 +383,7 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<L
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**: SystemCapability.Communication.NetManager.MDNS
+**系统能力**： SystemCapability.Communication.NetManager.MDNS
 
 **参数：**
 
