@@ -2524,15 +2524,15 @@ enum OH_Drawing_FontWeight
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| FONT_WEIGHT_100 | 字重为thin | 
-| FONT_WEIGHT_200 | 字重为extra-light | 
-| FONT_WEIGHT_300 | 字重为light | 
-| FONT_WEIGHT_400 | 字重为normal/regular | 
-| FONT_WEIGHT_500 | 字重为medium | 
-| FONT_WEIGHT_600 | 字重为semi-bold | 
-| FONT_WEIGHT_700 | 字重为bold | 
-| FONT_WEIGHT_800 | 字重为extra-bold | 
-| FONT_WEIGHT_900 | 字重为black | 
+| FONT_WEIGHT_100 | 字重为thinz。 |
+| FONT_WEIGHT_200 | 字重为extra-light。 |
+| FONT_WEIGHT_300 | 字重为light。 |
+| FONT_WEIGHT_400 | 字重为normal/regular。 |
+| FONT_WEIGHT_500 | 字重为medium。 |
+| FONT_WEIGHT_600 | 字重为semi-bold。 |
+| FONT_WEIGHT_700 | 字重为bold。 |
+| FONT_WEIGHT_800 | 字重为extra-bold。 |
+| FONT_WEIGHT_900 | 字重为black。 |
 
 
 ### OH_Drawing_FontWidth
