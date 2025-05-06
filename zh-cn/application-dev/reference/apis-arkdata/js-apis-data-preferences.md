@@ -1074,11 +1074,11 @@ class EntryAbility extends UIAbility {
 
 removePreferencesFromCacheSync(context: Context, options: Options):void
 
-从缓存中移出指定的Preferences实例，此为同步接口。
+从缓存中移除指定的Preferences实例，此为同步接口。
 
-应用首次调用[getPreferences](#preferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#preferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
+应用首次调用[getPreferences](#preferencesgetpreferences)接口获取某个Preferences实例后，该实例会被缓存起来，后续调用[getPreferences](#preferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移除缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
 
-调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会导致数据一致性问题，应将Preferences实例置为null，系统会统一回收。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
