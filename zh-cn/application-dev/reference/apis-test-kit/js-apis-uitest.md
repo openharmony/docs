@@ -30,7 +30,8 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 ```
 
 ## loadAndSetupUiTest<sup>20+</sup>
-loadAndSetupUiTest(): void;
+loadAndSetupUiTest(): void
+
 在测试启动前调用一次, 用于初始化测试环境。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
@@ -41,7 +42,7 @@ loadAndSetupUiTest(): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
