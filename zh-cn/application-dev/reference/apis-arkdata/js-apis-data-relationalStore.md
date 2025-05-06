@@ -7901,7 +7901,7 @@ rekey(cryptoParam?: CryptoParam): Promise<void>;
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
 | 801          | Capability not supported                                     |
-| 14800001     | Invalid args.                                                 |
+| 14800001     | Invalid args.                                                |
 | 14800011     | Database corrupted.                                          |
 | 14800014     | Already closed.                                              |
 | 14800015     | The database does not respond.                               |
@@ -10625,6 +10625,7 @@ executeSync(sql: string, args?: Array&lt;ValueType&gt;): ValueType
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801       | Capability not supported the sql(attach,begin,commit,rollback etc.). |
 | 14800000     | Inner error.                                                 |
 | 14800011     | Database corrupted.                                          |
 | 14800014     | Already closed.                                              |
