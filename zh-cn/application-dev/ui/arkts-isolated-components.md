@@ -53,15 +53,21 @@ IsolatedComponent旨在在本页面中嵌入并展示由独立Abc（即.abc文�
 2、独立Abc运行在受限worker可保证相对安全，独立Abc内容不影响主线程。
 
 
-## 导入模块
+## 导入核心模块
+
+在使用IsolatedComponent组件时，首先需要导入@kit.AbilityKit模块，该模块提供了构建隔离组件所需的必要功能，包括bundleManager等关键API。
+
+bundleManager作为AbilityKit的核心组件，提供了管理应用包的能力，是构建IsolatedComponent的基础。通过导入这个模块，我们能够使用其提供的API来创建和管理隔离组件，确保不同组件之间的数据和资源隔离，从而提高应用的安全性。
 
 ```ts
 import { bundleManager } from '@kit.AbilityKit'
 ```
 
-## 增加 requestPermissions 标签
+## 权限管理
 
-在module.json5配置文件中增加requestPermissions标签，允许在受限模式下执行动态下发的方舟字节码：
+使用IsolatedComponent组件时，合理配置[requestPermissions标签](../security/AccessToken/declare-permissions.md)是确保组件在受限环境中安全运行的关键步骤。通过这个配置，可以明确指定组件需要的权限，实现权限的精细化管理。
+
+在受限模式下，IsolatedComponent组件默认是不具备执行动态代码的能力的。通过在module.json5配置文件中增加requestPermissions标签，可以允许组件在特定条件下执行动态下发的方舟字节码。
 
 ```json
 "requestPermissions": [
@@ -79,7 +85,7 @@ import { bundleManager } from '@kit.AbilityKit'
 
 ## 受限 worker
 
-受限[Worker](../reference/apis-arkts/js-apis-worker.md)是一个在隔离环境中运行的Worker线程。这种隔离特性确保了受限Worker与其他线程或组件之间实现内存隔离，避免它们之间的相互干扰或安全问题。
+受限[worker](../reference/apis-arkts/js-apis-worker.md)是一个在隔离环境中运行的worker线程。这种隔离特性确保了受限worker与其他线程或组件之间实现内存隔离，避免它们之间的相互干扰或安全问题。
 
 在IsolatedComponent场景中，组件常需动态加载外部hap资源。受限worker通过以下机制保障安全：
 
@@ -107,7 +113,7 @@ workerPort.onerror = (e: ErrorEvent) => {}
 
 ## 设置属性
 
-IsolatedComponent通过want和worker属性实现动态组件加载与隔离执行，二者共同构成安全边界。
+IsolatedComponent通过want和worker属性实现动态组件加载与隔离执行，二者共同构成安全边界。合理设置这些属性是确保组件能够安全运行的关键。
 
 ```ts
 IsolatedComponent({
@@ -125,7 +131,7 @@ IsolatedComponent({
 })
 ```
 
-其中，在受限 worker 线程中运行的入口页面文件 ets/pages/extension.ets 参考内容如下：
+其中，在受限worker线程中运行的入口页面文件 ets/pages/extension.ets 参考内容如下：
 
 ```ts
 @Entry
