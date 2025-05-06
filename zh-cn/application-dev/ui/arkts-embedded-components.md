@@ -181,7 +181,7 @@ struct Index {
 
 ### 提供方应用生命周期实现
 
-EmbeddedComponent组件拉起ExampleEmbeddedAbility
+以下是EmbeddedComponent组件拉起ExampleEmbeddedAbility实现示例：
 
 ```ts
 import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
@@ -221,9 +221,31 @@ export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
 }
 ```
 
-### ExampleEmbeddedAbility的入口页面文件实现代码
+关键实现说明：
 
-该代码文件需要在 main_pages.json 中配置该页面路径
+- 生命周期阶段
+
+  onCreate → onForeground：组件初始化到可见的完整流程；
+
+  onBackground → onForeground：前后台切换时的状态迁移；
+
+  onDestroy：组件被宿主主动销毁时的资源回收点。
+
+- 会话管理：
+
+  onSessionCreate：创建独立存储上下文并加载UI界面；
+
+  onSessionDestroy：处理会话结束时（如用户主动关闭）的清理操作。
+
+- 上下文传递：
+
+  通过LocalStorage实现UIExtensionContentSession的跨组件传递；
+
+  使用loadContent方法绑定ArkTS页面与扩展能力上下文。
+
+### 入口页面
+
+以下代码作为UIExtensionComponent的入口组件实现，展示了如何使用UIExtensionContentSession会话以及如何通过按钮点击事件退出嵌入式页面并返回结果，该代码文件需要在main_pages.json配置文件中声明使用：
 
 ```ts
 import { UIExtensionContentSession } from '@kit.AbilityKit';
@@ -258,7 +280,7 @@ struct Extension {
 
 ### 添加配置项
 
-在 module.json5 配置文件的 "extensionAbilities" 标签下增加 ExampleEmbeddedAbility 配置
+在module.json5配置文件的"extensionAbilities"标签下增加ExampleEmbeddedAbility配置，以注册ExampleEmbeddedAbility嵌入式UI扩展能力
 
 ```json
 {
