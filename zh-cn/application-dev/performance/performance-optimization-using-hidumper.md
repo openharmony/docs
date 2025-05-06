@@ -108,7 +108,7 @@ struct ConditionComponent {
     Column() {
       Button("显隐切换")
         .onClick(() => {
-          this.isShow = !this.isShow
+          this.isShow = !this.isShow;
         })
       if (this.isShow) {
         Row()
@@ -157,15 +157,15 @@ struct VisibilityComponent {
     Column() {
       Button("Visible")
         .onClick(() => {
-          this.isVisible = Visibility.Visible
+          this.isVisible = Visibility.Visible;
         })
       Button("Hidden")
         .onClick(() => {
-          this.isVisible = Visibility.Hidden
+          this.isVisible = Visibility.Hidden;
         })
       Button("None")
         .onClick(() => {
-          this.isVisible = Visibility.None
+          this.isVisible = Visibility.None;
         })
       Row().visibility(this.isVisible)
         .width(720).height(300).backgroundColor(Color.Pink)

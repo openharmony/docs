@@ -10,9 +10,7 @@ Node-API中的napi_load_module接口的功能是在主线程中进行模块的�
 ## 函数说明
 
 ```cpp
-napi_status napi_load_module(napi_env env,
-                             const char* path,
-                             napi_value* result);
+napi_status napi_load_module(napi_env env, const char* path, napi_value* result);
 ```
 
 | 参数            | 说明          |
@@ -65,28 +63,28 @@ static napi_value loadModule(napi_env env, napi_callback_info info) {
 
 当加载文件中的模块时，如以下ArkTS代码：
 
-```javascript
-//./src/main/ets/Test.ets
-let value = 123;
-function test() {
-  console.log("Hello OpenHarmony");
-}
-export {value, test};
-```
+    ```javascript
+    //./src/main/ets/Test.ets
+    let value = 123;
+    function test() {
+      console.log("Hello OpenHarmony");
+    }
+    export {value, test};
+    ```
 
 1. 需要在工程的build-profile.json5文件中进行以下配置：
 
     ```json
     {
-        "buildOption" : {
-            "arkOptions" : {
-                "runtimeOnly" : {
-                    "sources": [
-                        "./src/main/ets/Test.ets"
-                    ]
-                }
-            }
+      "buildOption" : {
+        "arkOptions" : {
+          "runtimeOnly" : {
+            "sources": [
+              "./src/main/ets/Test.ets"
+            ]
+          }
         }
+      }
     }
     ```
 
