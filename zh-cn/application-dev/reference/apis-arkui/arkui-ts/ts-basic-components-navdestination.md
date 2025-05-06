@@ -990,7 +990,7 @@ struct Fade {
   build() {
     NavDestination() {
       DestBody({
-        name: this.name;
+        name: this.name
       })
     }
     .title(this.name)
@@ -1009,7 +1009,7 @@ struct Explode {
   build() {
     NavDestination() {
       DestBody({
-        name: this.name;
+        name: this.name
       })
     }
     .title(this.name)
@@ -1028,7 +1028,7 @@ struct SlideRight {
   build() {
     NavDestination() {
       DestBody({
-        name: this.name;
+        name: this.name
       })
     }
     .title(this.name)
@@ -1047,7 +1047,7 @@ struct SlideBottom {
   build() {
     NavDestination() {
       DestBody({
-        name: this.name;
+        name: this.name
       })
     }
     .title(this.name)
