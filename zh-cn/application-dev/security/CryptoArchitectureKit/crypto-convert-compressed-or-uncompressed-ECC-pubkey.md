@@ -22,6 +22,6 @@ async function eccPubUncompressedToCompressed() {
   let generator = cryptoFramework.createAsyKeyGenerator('ECC_BrainPoolP256r1');
   let keyPair = await generator.convertKey(pubKeyBlob, null);
   let returnBlob = keyPair.pubKey.getEncodedDer('X509|COMPRESSED');
-  console.info('returnBlob data：' + returnBlob.data);
+  console.info('returnBlob data:' + returnBlob.data);
 }
 ```
