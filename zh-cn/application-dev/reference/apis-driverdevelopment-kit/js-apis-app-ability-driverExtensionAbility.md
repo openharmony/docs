@@ -215,7 +215,7 @@ onDump(params: Array\<string>): Array\<string>;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Array\<string> | 转存的信息数组。 |
+| Array\<string> | 一个string类型的数组，用于转存客户端信息。 |
 
 **示例：**
     
