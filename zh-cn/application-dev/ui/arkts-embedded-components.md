@@ -264,5 +264,3 @@ hdc shell param set persist.sys.abilityms.multi_process_model true
 ![zh-cn_image_0000001502261065](figures/zh-cn_image_0000001502261065.jpg)
 
 4. 点击 terminateSelfWithResult 按钮，提供方内容消失，页面显示 onTerminated 信息。
-
-![zh-cn_image_0000001502263453](figures/zh-cn_image_0000001502263453.jpg)
