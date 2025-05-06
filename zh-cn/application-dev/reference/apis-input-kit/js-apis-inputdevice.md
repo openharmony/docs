@@ -857,8 +857,8 @@ type ChangedType = 'add' | 'remove'
 
 | 类型        | 说明      |
 | --------- | ------- |
-| 'add'    | 表示输入设备插入。 |
-| 'remove' | 表示输入设备删除。 |
+| 'add'    | 插入输入设备。 |
+| 'remove' | 移除输入设备。 |
 
 ## KeyboardType<sup>9+</sup>
 
