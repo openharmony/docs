@@ -3916,6 +3916,19 @@ function unregisterLcdFlashStatus(photoSession: camera.PhotoSession): void {
 | trackingMode   | [FocusTrackingMode](#focustrackingmode15) | 否   | 否   | 跟踪模式。 |
 | trackingRegion | [Rect](js-apis-camera.md#rect)            | 否   | 否   | 跟踪区域。 |
 
+## LightStatus<sup>18+</sup>
+
+枚举，相机光线状态（通过VideoSessionForSys.[on('lightStatusChange')](#onlightstatuschange18)接口获取）。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称           | 值   | 说明    |
+|--------------| ---- |-------|
+| NORMAL       | 0    | 光线正常。 |
+| INSUFFICIENT | 1    | 光线偏暗。 |
+
 ## VideoSessionForSys<sup>11+</sup>
 
 VideoSessionForSys extends VideoSession, Beauty, ColorEffect, ColorManagement, Macro, Aperture, ColorReservation
@@ -4157,6 +4170,98 @@ off(type: 'focusTrackingInfoAvailable', callback?: Callback\<FocusTrackingInfo\>
 function unregisterFocusTrakingInfoChanged(session: camera.VideoSessionForSys): void {
   session.off('focusTrackingInfoAvailable');
 }
+```
+
+### on('lightStatusChange')<sup>18+</sup>
+
+on(type: 'lightStatusChange', callback: AsyncCallback\<LightStatus\>): void
+
+监听相机获取光线状态。使用Callback方式返回结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数**：
+
+| 参数名   | 类型                                             | 必填 | 说明                                                                              |
+| -------- |------------------------------------------------| ---- |---------------------------------------------------------------------------------|
+| type     | string                                         | 是   | 监听事件，固定为'lightStatusChange'。<br>'lightStatusChange'：VideoSessionForSys创建成功时可监听。 |
+| callback | AsyncCallback\<[LightStatus](#lightstatus18)\> | 是   | 回调函数，用于获取当前光线状态信息。                                                              |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 202      | Not System Application. |
+
+**示例**：
+
+```ts
+    private handleLightStatusCallback: AsyncCallback<camera.LightStatus> =
+    (err, data: camera.LightStatus) => {
+      if (err) {
+        Logger.error(TAG, `handleLightStatusOff err: ${simpleStringify(err)}}`);
+        return;
+      }
+      Logger.info(TAG, `lightStatusCallback: ${data}`);
+    };
+    public handleLightStatusOn(): void {
+        Logger.info(TAG, 'handleLightStatusOn');
+        try {
+          this.mSession?.on('lightStatusChange', this.handleLightStatusCallback);
+        } catch (e) {
+          Logger.error(TAG, `handleLightStatusOn err:${e}`);
+        }
+    }
+```
+
+### off('lightStatusChange')<sup>18+</sup>
+
+off(type: 'lightStatusChange', callback?: AsyncCallback\<LightStatus\>): void
+
+注销监听相机获取光线状态。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数**：
+
+| 参数名   | 类型                                             | 必填 | 说明                                                                               |
+| -------- |------------------------------------------------|----|----------------------------------------------------------------------------------|
+| type     | string                                         | 是  | 监听事件，固定为'lightStatusChange'。<br>'lightStatusChange'：当VideoSessionForSys创建成功时，可监听。 |
+| callback | AsyncCallback\<[LightStatus](#lightstatus18)\> | 否  | 回调函数，可选，有就是匹配on('lightStatusChange') callback（callback对象不可是匿名函数）。                |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 202      | Not System Application. |
+
+**示例**：
+
+```ts
+    private handleLightStatusCallback: AsyncCallback<camera.LightStatus> =
+    (err, data: camera.LightStatus) => {
+      if (err) {
+        Logger.error(TAG, `handleLightStatusOff err: ${simpleStringify(err)}}`);
+        return;
+      }
+      Logger.info(TAG, `lightStatusCallback: ${data}`);
+    };
+    public handleLightStatusOff(): void {
+        Logger.info(TAG, 'handleLightStatusOff');
+        try {
+          this.mSession?.off('lightStatusChange');
+        } catch (e) {
+          Logger.error(TAG, `handleLightStatusOff err:${e}`);
+        }
+  }
 ```
 
 ## PortraitPhotoSession<sup>11+</sup>
