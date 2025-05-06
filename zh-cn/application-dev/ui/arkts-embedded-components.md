@@ -132,6 +132,8 @@ onError(callback: ErrorCallback)
 
 1. 启动应用，由于设备默认未开启多进程，会出现报错信息；
 
+![zh-cn_image_0000001502261185](figures/zh-cn_image_0000001502261185.jpg)
+
 2. 设备测试开启多进程后重启设备，开启多进程的hdc命令如下：
 
 ```bash
@@ -140,7 +142,11 @@ hdc shell param set persist.sys.abilityms.multi_process_model true
 
 3. 启动应用，界面显示正常；
 
+![zh-cn_image_0000001502261065](figures/zh-cn_image_0000001502261065.jpg)
+
 4. 点击 terminateSelfWithResult 按钮，提供方内容消失，页面显示 onTerminated 信息。
+
+![zh-cn_image_0000001502263453](figures/zh-cn_image_0000001502263453.jpg)
 
 ### 加载项首页
 
@@ -335,8 +341,3 @@ struct Extension {
   "type": "embeddedUI"
 }
 ```
-
-![zh-cn_image_0000001502261185](figures/zh-cn_image_0000001502261185.jpg)
-![zh-cn_image_0000001502261065](figures/zh-cn_image_0000001502261065.jpg)
-![zh-cn_image_0000001502263453](figures/zh-cn_image_0000001502263453.jpg)
-<!--RP1--><!--RP1End-->
