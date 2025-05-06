@@ -16,10 +16,10 @@ import { wifiManagerExt } from '@kit.ConnectivityKit';
 
 enableHotspot(): void
 
-使能WLAN热点。
+启用WLAN热点功能。
 
 > **说明：**
-> 从 API version 9开始支持，从API version 10开始废弃。
+> 从API version 9开始支持，从API version 10开始废弃。
 
 **需要权限：** ohos.permission.MANAGE_WIFI_HOTSPOT_EXT
 
@@ -51,10 +51,10 @@ enableHotspot(): void
 
 disableHotspot(): void
 
-去使能WLAN热点。
+去启用WLAN热点功能。
 
 > **说明：**
-> 从 API version 9开始支持，从API version 10开始废弃。
+> 从API version 9开始支持，从API version 10开始废弃。
 
 **需要权限：** ohos.permission.MANAGE_WIFI_HOTSPOT_EXT
 
@@ -173,7 +173,7 @@ getPowerMode(): Promise&lt;PowerMode&gt;
 获取功率模式，使用Promise异步回调。
 
 > **说明：**
-> 从 API version 9开始支持，从API version 10开始废弃。
+> 从API version 9开始支持，从API version 10开始废弃。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
@@ -261,7 +261,7 @@ setPowerMode(mode: PowerMode) : void
  设置功率模式。
 
 > **说明：**
-> 从 API version 9开始支持，从API version 10开始废弃。
+> 从API version 9开始支持，从API version 10开始废弃。
 
 **需要权限：** ohos.permission.MANAGE_WIFI_HOTSPOT_EXT
 
