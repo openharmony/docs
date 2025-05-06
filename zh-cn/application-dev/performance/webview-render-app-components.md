@@ -83,7 +83,7 @@ export struct SearchComponent {
       .borderRadius(18)
       .onClick(() => {
         // 点击搜索框提示
-        promptAction.showToast({
+        this.getUIContext().getPromptAction().showToast({
           message: "仅演示"
         });
       })
@@ -154,7 +154,7 @@ export struct SearchComponent {
               case webview.WebMessageType.STRING: {
                 if (result.getString() === 'shop_search_click') {
                   // 点击搜索框提示
-                  promptAction.showToast({
+                  this.getUIContext().getPromptAction().showToast({
                     message: $r("app.string.nativeembed_prompt_text")
                   });
                 }
@@ -280,8 +280,8 @@ export struct SearchComponent {
             height: number
           }
           let embedSize = JSON.parse(result) as EmbedSize;
-          this.searchWidth = px2vp(embedSize.width);
-          this.searchHeight = px2vp(embedSize.height);
+          this.searchWidth = this.getUIContext().px2vp(embedSize.width);
+          this.searchHeight = this.getUIContext().px2vp(embedSize.height);
           this.isWebInit = true;
         }
       });
@@ -390,8 +390,8 @@ export struct SearchComponent {
         type: embed.info?.type as string,
         renderType: NodeRenderType.RENDER_TYPE_TEXTURE,
         embedId: embed.embedId as string,
-        width: px2vp(embed.info?.width),
-        height: px2vp(embed.info?.height)
+        width: this.getUIContext().px2vp(embed.info?.width),
+        height: this.getUIContext().px2vp(embed.info?.height)
       });
     }
     this.searchNodeController.rebuild();

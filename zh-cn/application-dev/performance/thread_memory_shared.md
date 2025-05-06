@@ -173,7 +173,7 @@ unlock(): void {
 @Component
 export struct LockUsage {
   taskNum: number = 10; // 任务数，实际并行线程数依设备而定
-  baseDir: string = getContext().filesDir + '/TextDir'; // 文件写入的应用沙箱路径
+  baseDir: string = (this.getUIContext().getHostContext() as Context).filesDir + '/TextDir'; // 文件写入的应用沙箱路径
   sabInLock: SharedArrayBuffer = new SharedArrayBuffer(4); // 在主线程，初始化子线程锁标志位，所使用的共享内存
   sabForLine: SharedArrayBuffer = new SharedArrayBuffer(4); // 在主线程，初始化子线程偏移位，所使用的共享内存
   @State result: string = "";
@@ -211,7 +211,8 @@ export struct LockUsage {
   }
   startWrite(useLock: boolean): void {
     // 指明运行状态为“写入文件开始”
-    this.result = getContext().resourceManager.getStringSync($r('app.string.write_file_start'));  
+    this.result = (this.getUIContext()
+      .getHostContext() as Context).resourceManager.getStringSync($r('app.string.write_file_start'));  
     // 初始化写入时的偏移量
     let whichLineToWrite: Int32Array = new Int32Array(this.sabForLine);
     Atomics.store(whichLineToWrite, 0, 0);
@@ -224,10 +225,12 @@ export struct LockUsage {
     }
     taskpool.execute(taskPoolGroup).then(() => {
       // 指明运行状态为“写入文件成功”
-      this.result = this.result = getContext().resourceManager.getStringSync($r('app.string.write_file_success'));  
+      this.result = (this.getUIContext()
+        .getHostContext() as Context).resourceManager.getStringSync($r('app.string.write_file_success'));
     }).catch(() => {
       // 指明运行状态为“写入文件失败”
-      this.result = getContext().resourceManager.getStringSync($r('app.string.write_file_failed'));  
+      this.result = (this.getUIContext()
+        .getHostContext() as Context).resourceManager.getStringSync($r('app.string.write_file_failed'));
     })
   }
 }
