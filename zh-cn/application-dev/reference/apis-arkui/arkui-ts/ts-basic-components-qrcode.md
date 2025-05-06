@@ -101,7 +101,7 @@ contentOpacity(value: number | Resource)
 @Entry
 @Component
 struct QRCodeExample {
-  private value: string = 'hello world'
+  private value: string = 'hello world';
 
   build() {
     Column({ space: 5 }) {

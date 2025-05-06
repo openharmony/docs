@@ -143,7 +143,7 @@ static show(options?: DatePickerDialogOptions)
 @Entry
 @Component
 struct DatePickerDialogExample {
-  selectedDate: Date = new Date("2010-1-1")
+  selectedDate: Date = new Date("2010-1-1");
 
   build() {
     Column() {
@@ -198,7 +198,7 @@ struct DatePickerDialogExample {
 @Entry
 @Component
 struct DatePickerDialogExample {
-  selectedDate: Date = new Date("2010-1-1")
+  selectedDate: Date = new Date("2010-1-1");
 
   build() {
     Column() {
@@ -238,28 +238,28 @@ struct DatePickerDialogExample {
             },
             onDateAccept: (value: Date) => {
               // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
-              this.selectedDate = value
-              console.info("DatePickerDialog:onDateAccept()" + value.toString())
+              this.selectedDate = value;
+              console.info("DatePickerDialog:onDateAccept()" + value.toString());
             },
             onCancel: () => {
-              console.info("DatePickerDialog:onCancel()")
+              console.info("DatePickerDialog:onCancel()");
             },
             onDateChange: (value: Date) => {
-              console.info("DatePickerDialog:onDateChange()" + value.toString())
+              console.info("DatePickerDialog:onDateChange()" + value.toString());
             },
             onDidAppear: () => {
-              console.info("DatePickerDialog:onDidAppear()")
+              console.info("DatePickerDialog:onDidAppear()");
             },
             onDidDisappear: () => {
-              console.info("DatePickerDialog:onDidDisappear()")
+              console.info("DatePickerDialog:onDidDisappear()");
             },
             onWillAppear: () => {
-              console.info("DatePickerDialog:onWillAppear()")
+              console.info("DatePickerDialog:onWillAppear()");
             },
             onWillDisappear: () => {
-              console.info("DatePickerDialog:onWillDisappear()")
+              console.info("DatePickerDialog:onWillDisappear()");
             }
-          })
+          });
         })
     }.width('100%')
   }
@@ -321,7 +321,7 @@ struct DatePickerDialogExample {
             },
             enableHoverMode: true,
             hoverModeArea: HoverModeAreaType.TOP_SCREEN
-          })
+          });
         })
     }.width('100%')
   }
@@ -339,7 +339,7 @@ struct DatePickerDialogExample {
 @Entry
 @Component
 struct DatePickerDialogExample {
-  selectedDate: Date = new Date("2010-1-1")
+  selectedDate: Date = new Date("2010-1-1");
 
   build() {
     Column() {
@@ -354,10 +354,10 @@ struct DatePickerDialogExample {
             offset: { dx: 20, dy: 0 },
             onDateAccept: (value: Date) => {
               // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
-              this.selectedDate = value
-              console.info("DatePickerDialog:onDateAccept()" + value.toString())
+              this.selectedDate = value;
+              console.info("DatePickerDialog:onDateAccept()" + value.toString());
             }
-          })
+          });
         })
     }.width('100%')
   }
@@ -375,7 +375,7 @@ struct DatePickerDialogExample {
 @Entry
 @Component
 struct DatePickerDialogExample {
-  selectedDate: Date = new Date("2010-1-1")
+  selectedDate: Date = new Date("2010-1-1");
 
   build() {
     Column() {
@@ -394,10 +394,10 @@ struct DatePickerDialogExample {
             },
             onDateAccept: (value: Date) => {
               // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
-              this.selectedDate = value
-              console.info("DatePickerDialog:onDateAccept()" + value.toString())
+              this.selectedDate = value;
+              console.info("DatePickerDialog:onDateAccept()" + value.toString());
             }
-          })
+          });
         })
     }.width('100%')
   }
@@ -415,7 +415,7 @@ struct DatePickerDialogExample {
 @Entry
 @Component
 struct DatePickerDialogExample {
-  selectedDate: Date = new Date("2010-1-1")
+  selectedDate: Date = new Date("2010-1-1");
 
   build() {
     Column() {
@@ -431,10 +431,10 @@ struct DatePickerDialogExample {
             shadow: ShadowStyle.OUTER_FLOATING_SM,
             onDateAccept: (value: Date) => {
               // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
-              this.selectedDate = value
-              console.info("DatePickerDialog:onDateAccept()" + value.toString())
+              this.selectedDate = value;
+              console.info("DatePickerDialog:onDateAccept()" + value.toString());
             }
-          })
+          });
         })
     }.width('100%')
   }
@@ -452,7 +452,7 @@ struct DatePickerDialogExample {
 @Entry
 @Component
 struct DatePickerDialogExample {
-  selectedDate: Date = new Date("2010-1-1")
+  selectedDate: Date = new Date("2010-1-1");
 
   build() {
     Column() {
@@ -466,10 +466,10 @@ struct DatePickerDialogExample {
             lunar: false,
             onDateAccept: (value: Date) => {
               // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
-              this.selectedDate = value
-              console.info("DatePickerDialog:onDateAccept()" + value.toString())
+              this.selectedDate = value;
+              console.info("DatePickerDialog:onDateAccept()" + value.toString());
             }
-          })
+          });
         })
 
       Button("Lunar DatePickerDialog")
@@ -482,10 +482,10 @@ struct DatePickerDialogExample {
             lunar: true,
             lunarSwitch: true,
             onDateAccept: (value: Date) => {
-              this.selectedDate = value
-              console.info("DatePickerDialog:onDateAccept()" + value.toString())
+              this.selectedDate = value;
+              console.info("DatePickerDialog:onDateAccept()" + value.toString());
             }
-          })
+          });
         })
     }.width('100%')
   }
@@ -503,7 +503,7 @@ struct DatePickerDialogExample {
 @Entry
 @Component
 struct DatePickerDialogExample {
-  selectedDate: Date = new Date("2010-1-1")
+  selectedDate: Date = new Date("2010-1-1");
 
   build() {
     Column() {
@@ -517,10 +517,10 @@ struct DatePickerDialogExample {
             mode: DatePickerMode.MONTH_AND_DAY,
             onDateAccept: (value: Date) => {
               // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
-              this.selectedDate = value
-              console.info("DatePickerDialog:onDateAccept()" + value.toString())
+              this.selectedDate = value;
+              console.info("DatePickerDialog:onDateAccept()" + value.toString());
             }
-          })
+          });
         })
     }.width('100%')
   }

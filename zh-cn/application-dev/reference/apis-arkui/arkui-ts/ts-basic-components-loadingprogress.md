@@ -147,25 +147,25 @@ struct LoadingProgressExample {
 
 ```ts
 // xxx.ets
-import { UIContext } from '@kit.ArkUI'
+import { UIContext } from '@kit.ArkUI';
 
 class MyLoadingProgressStyle implements ContentModifier<LoadingProgressConfiguration> {
-  enableLoading: boolean = false
-  ctx: UIContext | undefined = undefined
+  enableLoading: boolean = false;
+  ctx: UIContext | undefined = undefined;
 
   constructor(enableLoading: boolean, ctx: UIContext) {
-    this.enableLoading = enableLoading
-    this.ctx = ctx
+    this.enableLoading = enableLoading;
+    this.ctx = ctx;
   }
 
   applyContent(): WrappedBuilder<[LoadingProgressConfiguration]> {
-    return wrapBuilder(buildLoadingProgress)
+    return wrapBuilder(buildLoadingProgress);
   }
 }
 
 let arr1: string[] =
-  ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"]
-let arr2: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+  ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"];
+let arr2: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
 @Builder
 function buildLoadingProgress(config: LoadingProgressConfiguration) {
@@ -186,7 +186,7 @@ function buildLoadingProgress(config: LoadingProgressConfiguration) {
             if (uiContext) {
               uiContext.getPromptAction().showToast({
                 message: ((config.contentModifier as MyLoadingProgressStyle).enableLoading) + ''
-              })
+              });
             }
           })
           .fontColor(Color.White)
@@ -261,11 +261,11 @@ function buildLoadingProgress(config: LoadingProgressConfiguration) {
 @Entry
 @Component
 struct LoadingProgressDemoExample {
-  @State loadingProgressList: (boolean | undefined | null)[] = [undefined, true, null, false]
-  @State widthList: (number | string)[] = ['110%', 220, '40%', 80]
-  @State loadingProgressIndex: number = 0
-  @State clickFlag: number = 0
-  scroller: Scroller = new Scroller()
+  @State loadingProgressList: (boolean | undefined | null)[] = [undefined, true, null, false];
+  @State widthList: (number | string)[] = ['110%', 220, '40%', 80];
+  @State loadingProgressIndex: number = 0;
+  @State clickFlag: number = 0;
+  scroller: Scroller = new Scroller();
 
   build() {
     Column() {
@@ -281,9 +281,9 @@ struct LoadingProgressDemoExample {
       }.height('85%')
 
       Button('点击切换config.enableloading').onClick(() => {
-        this.clickFlag++
-        this.loadingProgressIndex = (this.loadingProgressIndex + 1) % this.loadingProgressList.length
-        console.log('enableLoading:' + this.loadingProgressList[this.loadingProgressIndex])
+        this.clickFlag++;
+        this.loadingProgressIndex = (this.loadingProgressIndex + 1) % this.loadingProgressList.length;
+        console.log('enableLoading:' + this.loadingProgressList[this.loadingProgressIndex]);
       }).margin(20)
     }
 
