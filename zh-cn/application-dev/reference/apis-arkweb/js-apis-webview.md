@@ -9995,7 +9995,7 @@ static saveCookieSync(): void
 
 > **说明：**
 >
-> saveCookieSync用于强制将需要持久化的cookies写入磁盘。默认情况下，2in1和Tablet设备不会持久化session cookie。
+> saveCookieSync用于强制将需要持久化的cookies写入磁盘。PC/2in1和Tablet设备不会持久化session cookie，即使调用saveCookieSync，也不会将session cookie写入磁盘。
 
 **示例：**
 
