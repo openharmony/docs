@@ -144,7 +144,7 @@ allowScale(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                 |
 | ------ | ------- | ---- | ------------------------------------ |
-| value  | boolean | 是   | 是否允许文本缩放。<br/>默认值：false<br/>**说明：**<br/>仅当fontSize为fp单位时生效。 |
+| value  | boolean | 是   | 是否允许文本缩放。<br/>true表示允许文本缩放，false表示不允许文本缩放。<br/>默认值：false<br/>**说明：**<br/>仅当fontSize为fp单位时生效。 |
 
 ### marqueeUpdateStrategy<sup>12+</sup>
 

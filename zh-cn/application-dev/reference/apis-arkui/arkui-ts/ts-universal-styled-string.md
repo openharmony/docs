@@ -1239,9 +1239,9 @@ struct styled_string_demo1 {
   controller3: TextController = new TextController();
 
   async onPageShow() {
-    this.controller1.setStyledString(this.styledString2)
-    this.controller2.setStyledString(this.mutableStyledString1)
-    this.controller3.setStyledString(this.mutableStyledString2)
+    this.controller1.setStyledString(this.styledString2);
+    this.controller2.setStyledString(this.mutableStyledString1);
+    this.controller3.setStyledString(this.mutableStyledString2);
   }
 
   build() {
@@ -1266,7 +1266,7 @@ struct styled_string_demo1 {
             Span("span and styledString test")
               .fontColor(Color.Yellow)
               .decoration({ type: TextDecorationType.LineThrough })
-            ImageSpan($r('app.media.icon'))
+            ImageSpan($r('app.media.app_icon'))
           }
           .key('styledString2')
           .fontColor(this.fontColor1)
@@ -1275,7 +1275,12 @@ struct styled_string_demo1 {
           .fontWeight(600)
           .fontStyle(FontStyle.Italic)
           .lineHeight(30)
-          .textShadow({ radius: 5, color: Color.Blue, offsetX: 5, offsetY: 5 })
+          .textShadow({
+            radius: 5,
+            color: Color.Blue,
+            offsetX: 5,
+            offsetY: 5
+          })
           .textCase(TextCase.UpperCase)
           .decoration({ type: TextDecorationType.LineThrough, color: Color.Yellow })
           .baselineOffset(2)
@@ -1288,7 +1293,7 @@ struct styled_string_demo1 {
             Span(this.string1)
               .fontColor(this.color1)
               .decoration({ type: TextDecorationType.LineThrough })
-            ImageSpan($r('app.media.icon'))
+            ImageSpan($r('app.media.app_icon'))
               .width(50).height(50)
           }
           .letterSpacing(10)
@@ -1296,7 +1301,12 @@ struct styled_string_demo1 {
           .fontWeight(600)
           .fontStyle(FontStyle.Italic)
           .lineHeight(30)
-          .textShadow({ radius: 5, color: Color.Blue, offsetX: 5, offsetY: 5 })
+          .textShadow({
+            radius: 5,
+            color: Color.Blue,
+            offsetX: 5,
+            offsetY: 5
+          })
           .textCase(TextCase.UpperCase)
           .decoration({ type: TextDecorationType.LineThrough, color: Color.Yellow })
           .baselineOffset(2)
@@ -1308,29 +1318,29 @@ struct styled_string_demo1 {
                 length: 2,
                 styledKey: StyledStringKey.FONT,
                 styledValue: this.fontStyleAttr1
-              })
-              this.mutableStyledString1.insertString(0, "压力85偏高，")
+              });
+              this.mutableStyledString1.insertString(0, "压力85偏高，");
               this.mutableStyledString1.setStyle({
                 start: 2,
                 length: 2,
                 styledKey: StyledStringKey.FONT,
                 styledValue: this.fontStyleAttr2
-              })
-              this.controller2.setStyledString(this.mutableStyledString1)
+              });
+              this.controller2.setStyledString(this.mutableStyledString1);
             })
             .margin({ top: 10 })
 
           Button('查询样式及清空样式')
             .onClick(() => {
-              let styles = this.mutableStyledString1.getStyles(0, this.mutableStyledString1.length)
+              let styles = this.mutableStyledString1.getStyles(0, this.mutableStyledString1.length);
               if (styles.length == 2) {
                 for (let i = 0; i < styles.length; i++) {
-                  console.info('StyledString style object start:' + styles[i].start)
-                  console.info('StyledString style object length:' + styles[i].length)
-                  console.info('StyledString style object key:' + styles[i].styledKey)
+                  console.info('StyledString style object start:' + styles[i].start);
+                  console.info('StyledString style object length:' + styles[i].length);
+                  console.info('StyledString style object key:' + styles[i].styledKey);
                   if (styles[i].styledKey === 0) {
                     let fontAttr = styles[i].styledValue as TextStyle;
-                    console.info('StyledString fontColor:' + fontAttr.fontColor)
+                    console.info('StyledString fontColor:' + fontAttr.fontColor);
                   }
                 }
               }
@@ -1373,22 +1383,22 @@ struct styled_string_demo2 {
   private uiContext: UIContext = this.getUIContext();
   clickGestureAttr: GestureStyle = new GestureStyle({
     onClick: () => {
-      this.uiContext.getPromptAction().showToast({ message: 'clickGestureAttr object trigger click event' })
-      this.backgroundColor1 = Color.Yellow
+      this.uiContext.getPromptAction().showToast({ message: 'clickGestureAttr object trigger click event' });
+      this.backgroundColor1 = Color.Yellow;
     }
   })
   gestureStyleAttr: GestureStyle = new GestureStyle({
     onClick: () => {
-      this.uiContext.getPromptAction().showToast({ message: 'gestureStyleAttr object trigger click event' })
-      this.backgroundColor1 = Color.Green
+      this.uiContext.getPromptAction().showToast({ message: 'gestureStyleAttr object trigger click event' });
+      this.backgroundColor1 = Color.Green;
     },
     onLongPress: () => {
-      this.uiContext.getPromptAction().showToast({ message: 'gestureStyleAttr object trigger long press event' })
-      this.backgroundColor1 = Color.Orange
+      this.uiContext.getPromptAction().showToast({ message: 'gestureStyleAttr object trigger long press event' });
+      this.backgroundColor1 = Color.Orange;
     },
     onTouch: () => {
-      this.uiContext.getPromptAction().showToast({ message: 'gestureStyleAttr object trigger touch event' })
-      this.backgroundColor1 = Color.Red
+      this.uiContext.getPromptAction().showToast({ message: 'gestureStyleAttr object trigger touch event' });
+      this.backgroundColor1 = Color.Red;
     }
   });
   // 创建事件的对象mutableStyledString3
@@ -1421,7 +1431,7 @@ struct styled_string_demo2 {
   controller3: TextController = new TextController();
 
   async onPageShow() {
-    this.controller3.setStyledString(this.mutableStyledString3)
+    this.controller3.setStyledString(this.mutableStyledString3);
   }
 
   build() {
@@ -1456,7 +1466,7 @@ struct styled_string_demo2 {
 
 ```ts
 // xxx.ets
-import { LengthMetrics, LengthUnit } from '@kit.ArkUI'
+import { LengthMetrics, LengthUnit } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -1540,8 +1550,8 @@ struct styled_string_demo3 {
   };
 
   async onPageShow() {
-    this.controller.setStyledString(this.mutableStyledString1)
-    this.controller2.setStyledString(this.mutableStyledString2)
+    this.controller.setStyledString(this.mutableStyledString1);
+    this.controller2.setStyledString(this.mutableStyledString2);
   }
 
   build() {
@@ -1566,19 +1576,19 @@ struct styled_string_demo3 {
           })
         Button('查询字体样式')
           .onClick(() => {
-            let styles = this.mutableStyledString1.getStyles(0, this.mutableStyledString1.length)
+            let styles = this.mutableStyledString1.getStyles(0, this.mutableStyledString1.length);
             if (styles.length !== 0) {
               for (let i = 0; i < styles.length; i++) {
-                console.info('mutableStyledString1 style object start:' + styles[i].start)
-                console.info('mutableStyledString1 style object length:' + styles[i].length)
-                console.info('mutableStyledString1 style object key:' + styles[i].styledKey)
+                console.info('mutableStyledString1 style object start:' + styles[i].start);
+                console.info('mutableStyledString1 style object length:' + styles[i].length);
+                console.info('mutableStyledString1 style object key:' + styles[i].styledKey);
                 if (styles[i].styledKey === 0) {
                   let fontAttr = styles[i].styledValue as TextStyle;
-                  console.info('mutableStyledString1 fontColor:' + fontAttr.fontColor)
-                  console.info('mutableStyledString1 fontSize:' + fontAttr.fontSize)
-                  console.info('mutableStyledString1 fontWeight:' + fontAttr.fontWeight)
-                  console.info('mutableStyledString1 fontStyle:' + fontAttr.fontStyle)
-                  console.info('mutableStyledString1 fontStyle:' + fontAttr.fontFamily)
+                  console.info('mutableStyledString1 fontColor:' + fontAttr.fontColor);
+                  console.info('mutableStyledString1 fontSize:' + fontAttr.fontSize);
+                  console.info('mutableStyledString1 fontWeight:' + fontAttr.fontWeight);
+                  console.info('mutableStyledString1 fontStyle:' + fontAttr.fontStyle);
+                  console.info('mutableStyledString1 fontStyle:' + fontAttr.fontFamily);
                 }
               }
             }
@@ -1586,24 +1596,24 @@ struct styled_string_demo3 {
           .margin({ top: 10 })
         Button('查询其他文本样式')
           .onClick(() => {
-            let styles = this.mutableStyledString2.getStyles(0, this.mutableStyledString2.length)
+            let styles = this.mutableStyledString2.getStyles(0, this.mutableStyledString2.length);
             if (styles.length !== 0) {
               for (let i = 0; i < styles.length; i++) {
-                console.info('mutableStyledString2 style object start:' + styles[i].start)
-                console.info('mutableStyledString2 style object length:' + styles[i].length)
-                console.info('mutableStyledString2 style object key:' + styles[i].styledKey)
+                console.info('mutableStyledString2 style object start:' + styles[i].start);
+                console.info('mutableStyledString2 style object length:' + styles[i].length);
+                console.info('mutableStyledString2 style object key:' + styles[i].styledKey);
                 if (styles[i].styledKey === 1) {
                   let decoAttr = styles[i].styledValue as DecorationStyle;
-                  console.info('mutableStyledString2 decoration type:' + decoAttr.type)
-                  console.info('mutableStyledString2 decoration color:' + decoAttr.color)
+                  console.info('mutableStyledString2 decoration type:' + decoAttr.type);
+                  console.info('mutableStyledString2 decoration color:' + decoAttr.color);
                 }
                 if (styles[i].styledKey === 2) {
                   let baselineAttr = styles[i].styledValue as BaselineOffsetStyle;
-                  console.info('mutableStyledString2 baselineOffset:' + baselineAttr.baselineOffset)
+                  console.info('mutableStyledString2 baselineOffset:' + baselineAttr.baselineOffset);
                 }
                 if (styles[i].styledKey === 3) {
                   let letterAttr = styles[i].styledValue as LetterSpacingStyle;
-                  console.info('mutableStyledString2 letterSpacing:' + letterAttr.letterSpacing)
+                  console.info('mutableStyledString2 letterSpacing:' + letterAttr.letterSpacing);
                 }
                 if (styles[i].styledKey === 4) {
                   let textShadowAttr = styles[i].styledValue as TextShadowStyle;
@@ -1624,8 +1634,8 @@ struct styled_string_demo3 {
           .margin({ top: 10 })
         Button('更新mutableStyledString1样式')
           .onClick(() => {
-            this.mutableStyledString1.setStyle(this.spanStyle1)
-            this.controller.setStyledString(this.mutableStyledString1)
+            this.mutableStyledString1.setStyle(this.spanStyle1);
+            this.controller.setStyledString(this.mutableStyledString1);
           })
           .margin({ top: 10 })
       }.width('100%')
@@ -1642,15 +1652,15 @@ struct styled_string_demo3 {
 
 ```ts
 // xxx.ets
-import { image } from '@kit.ImageKit'
-import { LengthMetrics } from '@kit.ArkUI'
+import { image } from '@kit.ImageKit';
+import { LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct styled_string_demo4 {
   @State message: string = 'Hello World';
-  imagePixelMap: image.PixelMap | undefined = undefined
-  @State imagePixelMap3: image.PixelMap | undefined = undefined
+  imagePixelMap: image.PixelMap | undefined = undefined;
+  @State imagePixelMap3: image.PixelMap | undefined = undefined;
   mutableStr: MutableStyledString = new MutableStyledString('123');
   controller: TextController = new TextController();
   private uiContext: UIContext = this.getUIContext();
@@ -1663,11 +1673,11 @@ struct styled_string_demo4 {
       color: Color.Orange,
       style: TextDecorationStyle.DOUBLE
     })
-  }])
+  }]);
 
   async aboutToAppear() {
-    console.info("aboutToAppear initial imagePixelMap")
-    this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.app_icon'))
+    console.info("aboutToAppear initial imagePixelMap");
+    this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.app_icon'));
   }
 
   private async getPixmapFromMedia(resource: Resource) {
@@ -1675,13 +1685,13 @@ struct styled_string_demo4 {
       bundleName: resource.bundleName,
       moduleName: resource.moduleName,
       id: resource.id
-    })
-    let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength))
+    });
+    let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength));
     let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
-    })
-    await imageSource.release()
-    return createPixelMap
+    });
+    await imageSource.release();
+    return createPixelMap;
   }
 
   build() {
@@ -1700,8 +1710,8 @@ struct styled_string_demo4 {
                 layoutStyle: { borderRadius: LengthMetrics.vp(10) },
                 verticalAlign: ImageSpanAlignment.BASELINE,
                 objectFit: ImageFit.Contain
-              }))
-              this.controller.setStyledString(this.mutableStr)
+              }));
+              this.controller.setStyledString(this.mutableStr);
             }
           })
         Button('设置资源类型图片')
@@ -1714,28 +1724,28 @@ struct styled_string_demo4 {
                 verticalAlign: ImageSpanAlignment.BASELINE,
                 objectFit: ImageFit.Contain,
                 syncLoad: true
-              }))
-              this.controller.setStyledString(this.mutableStr)
+              }));
+              this.controller.setStyledString(this.mutableStr);
             }
           })
         Button('Image之Get')
           .onClick(() => {
-            let imageArray = this.mutableStr.getStyles(0, 1, StyledStringKey.IMAGE)
+            let imageArray = this.mutableStr.getStyles(0, 1, StyledStringKey.IMAGE);
             for (let i = 0; i < imageArray.length; ++i) {
               console.info('mutableStr start ' + imageArray[i].start + ' length ' + imageArray[i].length + ' type ' +
-              imageArray[i].styledKey)
+              imageArray[i].styledKey);
               if (imageArray[i].styledKey === 300) {
-                let attachment = imageArray[i].styledValue as ImageAttachment
-                this.imagePixelMap3 = attachment.value
-                console.info('mutableStr value ' + JSON.stringify(attachment.value))
+                let attachment = imageArray[i].styledValue as ImageAttachment;
+                this.imagePixelMap3 = attachment.value;
+                console.info('mutableStr value ' + JSON.stringify(attachment.value));
                 if (attachment.size !== undefined) {
-                  console.info('mutableStr size width ' + attachment.size.width + ' height ' + attachment.size.height)
+                  console.info('mutableStr size width ' + attachment.size.width + ' height ' + attachment.size.height);
                 }
-                console.info('mutableStr vertical ' + attachment.verticalAlign)
-                console.info('mutableStr fit ' + attachment.objectFit)
+                console.info('mutableStr vertical ' + attachment.verticalAlign);
+                console.info('mutableStr fit ' + attachment.objectFit);
                 if (attachment.layoutStyle !== undefined) {
-                  let radius = attachment.layoutStyle.borderRadius as BorderRadiuses
-                  console.info('mutableStr radius ' + JSON.stringify(radius))
+                  let radius = attachment.layoutStyle.borderRadius as BorderRadiuses;
+                  console.info('mutableStr radius ' + JSON.stringify(radius));
                 }
               }
             }
@@ -1743,24 +1753,24 @@ struct styled_string_demo4 {
         Image(this.imagePixelMap3).width(50).height(50)
         Button('Image之Append')
           .onClick(() => {
-            let str = new StyledString('123')
-            this.mutableStr.appendStyledString(str)
-            this.controller.setStyledString(this.mutableStr)
+            let str = new StyledString('123');
+            this.mutableStr.appendStyledString(str);
+            this.controller.setStyledString(this.mutableStr);
           })
         Button('Image之Insert 前')
           .onClick(() => {
-            this.mutableStr.insertString(0, '123')
-            this.controller.setStyledString(this.mutableStr)
+            this.mutableStr.insertString(0, '123');
+            this.controller.setStyledString(this.mutableStr);
           })
         Button('Image之Insert 后')
           .onClick(() => {
-            this.mutableStr.insertString(1, '123')
-            this.controller.setStyledString(this.mutableStr)
+            this.mutableStr.insertString(1, '123');
+            this.controller.setStyledString(this.mutableStr);
           })
         Button('Image之replace')
           .onClick(() => {
-            this.mutableStr.replaceString(2, 5, "789")
-            this.controller.setStyledString(this.mutableStr)
+            this.mutableStr.replaceString(2, 5, "789");
+            this.controller.setStyledString(this.mutableStr);
           })
       }
       .width('100%')
@@ -1777,109 +1787,122 @@ struct styled_string_demo4 {
 该示例通过LineHeightStyle、ParagraphStyle接口实现属性字符串设置文本行高和段落样式。
 
 ```ts
-import { LengthMetrics } from '@kit.ArkUI'
-const canvasWidth = 1000
-const canvasHeight = 100
+import { LengthMetrics } from '@kit.ArkUI';
+
+const canvasWidth = 1000;
+const canvasHeight = 100;
+
 class LeadingMarginCreator {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private offscreenCanvas: OffscreenCanvas = new OffscreenCanvas(canvasWidth, canvasHeight)
-  private offContext: OffscreenCanvasRenderingContext2D = this.offscreenCanvas.getContext("2d", this.settings)
-  public static instance: LeadingMarginCreator = new LeadingMarginCreator()
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private offscreenCanvas: OffscreenCanvas = new OffscreenCanvas(canvasWidth, canvasHeight);
+  private offContext: OffscreenCanvasRenderingContext2D = this.offscreenCanvas.getContext("2d", this.settings);
+  public static instance: LeadingMarginCreator = new LeadingMarginCreator();
 
   public genSquareMark(fontSize: number): PixelMap {
-    this.offContext = this.offscreenCanvas.getContext("2d", this.settings)
-    this.clearCanvas()
-    const coordinate = fontSize * (1 - 1 / 1.5) / 2
-    const sideLength = fontSize / 1.5
-    this.offContext.fillRect(coordinate, coordinate, sideLength, sideLength)
-    return this.offContext.getPixelMap(0, 0, fontSize, fontSize)
+    this.offContext = this.offscreenCanvas.getContext("2d", this.settings);
+    this.clearCanvas();
+    const coordinate = fontSize * (1 - 1 / 1.5) / 2;
+    const sideLength = fontSize / 1.5;
+    this.offContext.fillRect(coordinate, coordinate, sideLength, sideLength);
+    return this.offContext.getPixelMap(0, 0, fontSize, fontSize);
   }
 
   private clearCanvas() {
-    this.offContext.clearRect(0, 0, canvasWidth, canvasHeight)
+    this.offContext.clearRect(0, 0, canvasWidth, canvasHeight);
   }
 }
+
 @Entry
 @Component
 struct Index {
-  private leadingMarkCreatorInstance = LeadingMarginCreator.instance
+  private leadingMarkCreatorInstance = LeadingMarginCreator.instance;
   leadingMarginPlaceholder1: LeadingMarginPlaceholder = {
     pixelMap: this.leadingMarkCreatorInstance.genSquareMark(24),
-    size:[15, 15]
-  }
-  titleParagraphStyleAttr: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.Center, paragraphSpacing: LengthMetrics.px(10)});
+    size: [15, 15]
+  };
+  titleParagraphStyleAttr: ParagraphStyle =
+    new ParagraphStyle({ textAlign: TextAlign.Center, paragraphSpacing: LengthMetrics.px(10) });
   //第一段落首行缩进15vp
   paragraphStyleAttr1: ParagraphStyle = new ParagraphStyle({ textIndent: LengthMetrics.vp(15) });
   //第二段落缩进15vp且首行有placeholder占位显示
-  paragraphStyleAttr2: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.Start, leadingMargin:  this.leadingMarginPlaceholder1 });
+  paragraphStyleAttr2: ParagraphStyle =
+    new ParagraphStyle({ textAlign: TextAlign.Start, leadingMargin: this.leadingMarginPlaceholder1 });
   //第三段落不设置缩进配置最大行数及超长显示方式
-  paragraphStyleAttr3: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.End, maxLines: 1, wordBreak: WordBreak.BREAK_ALL, overflow: TextOverflow.Ellipsis});
+  paragraphStyleAttr3: ParagraphStyle = new ParagraphStyle({
+    textAlign: TextAlign.End,
+    maxLines: 1,
+    wordBreak: WordBreak.BREAK_ALL,
+    overflow: TextOverflow.Ellipsis
+  });
   //行高样式对象
-  lineHeightStyle1: LineHeightStyle= new LineHeightStyle(new LengthMetrics(24));
+  lineHeightStyle1: LineHeightStyle = new LineHeightStyle(new LengthMetrics(24));
   //创建含段落样式的对象paragraphStyledString1
-  paragraphStyledString1: StyledString = new StyledString("段落标题\n正文第一段落开始0123456789正文第一段落结束\n正文第二段落开始hello world正文第二段落结束\n正文第三段落ABCDEFGHIJKLMNOPQRSTUVWXYZ。", [
-    {
-      start: 0,
-      length: 4,
-      styledKey: StyledStringKey.PARAGRAPH_STYLE,
-      styledValue: this.titleParagraphStyleAttr
-    },
-    {
-      start: 0,
-      length: 4,
-      styledKey: StyledStringKey.LINE_HEIGHT,
-      styledValue: new LineHeightStyle(new LengthMetrics(50))
-    },{
-    start: 0,
-    length: 4,
-    styledKey: StyledStringKey.FONT,
-    styledValue: new TextStyle({ fontSize: LengthMetrics.vp(24), fontWeight: FontWeight.Bolder })
-  },
-    {
-      start: 5,
-      length: 3,
-      styledKey: StyledStringKey.PARAGRAPH_STYLE,
-      styledValue: this.paragraphStyleAttr1
-    },
-    {
-      start: 5,
-      length: 20,
-      styledKey: StyledStringKey.LINE_HEIGHT,
-      styledValue: this.lineHeightStyle1
-    },
-    {
-      start: 32,
-      length: 5,
-      styledKey: StyledStringKey.PARAGRAPH_STYLE,
-      styledValue: this.paragraphStyleAttr2
-    },
-    {
-      start: 32,
-      length: 20,
-      styledKey: StyledStringKey.LINE_HEIGHT,
-      styledValue: this.lineHeightStyle1
-    },
-    {
-      start: 60,
-      length: 5,
-      styledKey: StyledStringKey.PARAGRAPH_STYLE,
-      styledValue: this.paragraphStyleAttr3
-    },
-    {
-      start: 60,
-      length: 5,
-      styledKey: StyledStringKey.LINE_HEIGHT,
-      styledValue: this.lineHeightStyle1
-    }
-  ]);
+  paragraphStyledString1: StyledString =
+    new StyledString("段落标题\n正文第一段落开始0123456789正文第一段落结束\n正文第二段落开始hello world正文第二段落结束\n正文第三段落ABCDEFGHIJKLMNOPQRSTUVWXYZ。",
+      [
+        {
+          start: 0,
+          length: 4,
+          styledKey: StyledStringKey.PARAGRAPH_STYLE,
+          styledValue: this.titleParagraphStyleAttr
+        },
+        {
+          start: 0,
+          length: 4,
+          styledKey: StyledStringKey.LINE_HEIGHT,
+          styledValue: new LineHeightStyle(new LengthMetrics(50))
+        }, {
+        start: 0,
+        length: 4,
+        styledKey: StyledStringKey.FONT,
+        styledValue: new TextStyle({ fontSize: LengthMetrics.vp(24), fontWeight: FontWeight.Bolder })
+      },
+        {
+          start: 5,
+          length: 3,
+          styledKey: StyledStringKey.PARAGRAPH_STYLE,
+          styledValue: this.paragraphStyleAttr1
+        },
+        {
+          start: 5,
+          length: 20,
+          styledKey: StyledStringKey.LINE_HEIGHT,
+          styledValue: this.lineHeightStyle1
+        },
+        {
+          start: 32,
+          length: 5,
+          styledKey: StyledStringKey.PARAGRAPH_STYLE,
+          styledValue: this.paragraphStyleAttr2
+        },
+        {
+          start: 32,
+          length: 20,
+          styledKey: StyledStringKey.LINE_HEIGHT,
+          styledValue: this.lineHeightStyle1
+        },
+        {
+          start: 60,
+          length: 5,
+          styledKey: StyledStringKey.PARAGRAPH_STYLE,
+          styledValue: this.paragraphStyleAttr3
+        },
+        {
+          start: 60,
+          length: 5,
+          styledKey: StyledStringKey.LINE_HEIGHT,
+          styledValue: this.lineHeightStyle1
+        }
+      ]);
   controller: TextController = new TextController();
+
   async onPageShow() {
-    this.controller.setStyledString(this.paragraphStyledString1)
+    this.controller.setStyledString(this.paragraphStyledString1);
   }
 
   build() {
     Row() {
-      Column( { space : 5 }) {
+      Column({ space: 5 }) {
         Text(undefined, { controller: this.controller })
           .width(240)
           .borderWidth(1)
@@ -1889,20 +1912,20 @@ struct Index {
         //查询段落样式
         Text()
           .onClick(() => {
-            let styles = this.paragraphStyledString1.getStyles(0, this.paragraphStyledString1.length)
+            let styles = this.paragraphStyledString1.getStyles(0, this.paragraphStyledString1.length);
             if (styles.length !== 0) {
               for (let i = 0; i < styles.length; i++) {
-                console.info('paragraphStyledString1 style object start:' + styles[i].start)
-                console.info('paragraphStyledString1 style object length:' + styles[i].length)
-                console.info('paragraphStyledString1 style object key:' + styles[i].styledKey)
+                console.info('paragraphStyledString1 style object start:' + styles[i].start);
+                console.info('paragraphStyledString1 style object length:' + styles[i].length);
+                console.info('paragraphStyledString1 style object key:' + styles[i].styledKey);
                 if (styles[i].styledKey === 200) {
                   let paraAttr = styles[i].styledValue as ParagraphStyle;
-                  console.info('paragraphStyledString1 textAlign:' + paraAttr.textAlign)
-                  console.info('paragraphStyledString1 textIndent:' + paraAttr.textIndent)
-                  console.info('paragraphStyledString1 maxLines:' + paraAttr.maxLines)
-                  console.info('paragraphStyledString1 wordBreak:' + paraAttr.wordBreak)
-                  console.info('paragraphStyledString1 leadingMargin:' + paraAttr.leadingMargin)
-                  console.info('paragraphStyledString1 overflow:' + paraAttr.overflow)
+                  console.info('paragraphStyledString1 textAlign:' + paraAttr.textAlign);
+                  console.info('paragraphStyledString1 textIndent:' + paraAttr.textIndent);
+                  console.info('paragraphStyledString1 maxLines:' + paraAttr.maxLines);
+                  console.info('paragraphStyledString1 wordBreak:' + paraAttr.wordBreak);
+                  console.info('paragraphStyledString1 leadingMargin:' + paraAttr.leadingMargin);
+                  console.info('paragraphStyledString1 overflow:' + paraAttr.overflow);
                 }
               }
             }
@@ -1924,8 +1947,8 @@ struct Index {
 
 ```ts
 // xxx.ets
-import { drawing } from '@kit.ArkGraphics2D'
-import { LengthMetrics } from '@kit.ArkUI'
+import { drawing } from '@kit.ArkGraphics2D';
+import { LengthMetrics } from '@kit.ArkUI';
 
 let gUIContext: UIContext;
 
@@ -1998,7 +2021,7 @@ struct styled_string_demo6 {
 
   async onPageShow() {
     if (!this.isPageShow) {
-      return
+      return;
     }
     this.isPageShow = false;
 
@@ -2019,15 +2042,15 @@ struct styled_string_demo6 {
       styledKey: StyledStringKey.FONT,
       styledValue: new TextStyle({ fontColor: Color.Green, fontWeight: FontWeight.Bold })
     }
-    ]))
-    this.style.appendStyledString(new StyledString(this.customSpan2))
+    ]));
+    this.style.appendStyledString(new StyledString(this.customSpan2));
     this.style.appendStyledString(new StyledString("自定义绘制", [{
       start: 0,
       length: 5,
       styledKey: StyledStringKey.FONT,
       styledValue: new TextStyle({ fontColor: Color.Green, fontSize: LengthMetrics.px(50) })
-    }]))
-    this.textController.setStyledString(this.style)
+    }]));
+    this.textController.setStyledString(this.style);
   }
 
   build() {
@@ -2038,8 +2061,8 @@ struct styled_string_demo6 {
           .fontSize(30)
 
         Button("invalidate").onClick(() => {
-          this.customSpan1.setWord("你好")
-          this.customSpan1.invalidate()
+          this.customSpan1.setWord("你好");
+          this.customSpan1.invalidate();
         })
       }
       .width('100%')
@@ -2059,40 +2082,40 @@ struct styled_string_demo6 {
 // xxx.ets
 class MyUserDateSpan extends UserDataSpan {
   constructor(name: string, age: number) {
-    super()
-    this.name = name
-    this.age = age
+    super();
+    this.name = name;
+    this.age = age;
   }
 
-  name: string
-  age: number
+  name: string;
+  age: number;
 }
 
 @Entry
 @Component
 struct styled_string_demo7 {
-  @State name: string = "world"
-  @State age: number = 10
-  controller: TextController = new TextController()
+  @State name: string = "world";
+  @State age: number = 10;
+  controller: TextController = new TextController();
   styleString: MutableStyledString = new MutableStyledString("hello world", [{
     start: 0,
     length: 11,
     styledKey: StyledStringKey.USER_DATA,
     styledValue: new MyUserDateSpan("hello", 21)
-  }])
+  }]);
 
   onPageShow(): void {
-    this.controller.setStyledString(this.styleString)
+    this.controller.setStyledString(this.styleString);
   }
 
   build() {
     Column() {
       Text(undefined, { controller: this.controller })
       Button("get user data").onClick(() => {
-        let arr = this.styleString.getStyles(0, this.styleString.length)
-        let userDataSpan = arr[0].styledValue as MyUserDateSpan
-        this.name = userDataSpan.name
-        this.age = userDataSpan.age
+        let arr = this.styleString.getStyles(0, this.styleString.length);
+        let userDataSpan = arr[0].styledValue as MyUserDateSpan;
+        this.name = userDataSpan.name;
+        this.age = userDataSpan.age;
       })
       Text("name:" + this.name + "  age: " + this.age)
     }.width('100%').height(250).padding({ left: 35, right: 35, top: 35 })
@@ -2109,35 +2132,36 @@ struct styled_string_demo7 {
 
 ```ts
 // xxx.ets
-import { image } from '@kit.ImageKit'
-import { LengthMetrics } from '@kit.ArkUI'
+import { image } from '@kit.ImageKit';
+import { LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct styled_string_demo8 {
-  imagePixelMap: image.PixelMap | undefined = undefined
-  @State html : string | undefined = undefined
-  @State styledString : StyledString | undefined = undefined
-  controller1 : TextController = new TextController
-  controller2 : TextController = new TextController
+  imagePixelMap: image.PixelMap | undefined = undefined;
+  @State html: string | undefined = undefined;
+  @State styledString: StyledString | undefined = undefined;
+  controller1: TextController = new TextController;
+  controller2: TextController = new TextController;
+  private uiContext: UIContext = this.getUIContext();
 
   async aboutToAppear() {
-    console.info("aboutToAppear initial imagePixelMap")
-    this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.icon'))
+    console.info("aboutToAppear initial imagePixelMap");
+    this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.app_icon'));
   }
 
   private async getPixmapFromMedia(resource: Resource) {
-    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+    let unit8Array = await this.uiContext.getHostContext()?.resourceManager?.getMediaContent({
       bundleName: resource.bundleName,
       moduleName: resource.moduleName,
       id: resource.id
-    })
-    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+    });
+    let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength));
     let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
-    })
-    await imageSource.release()
-    return createPixelMap
+    });
+    await imageSource.release();
+    return createPixelMap;
   }
 
   build() {
@@ -2155,20 +2179,21 @@ struct styled_string_demo8 {
             let mutableStyledString2 = new MutableStyledString(new ImageAttachment({
               value: this.imagePixelMap,
               size: { width: 50, height: 50 },
-            }))
-            mutableStyledString1.appendStyledString(mutableStyledString2)
+            }));
+            mutableStyledString1.appendStyledString(mutableStyledString2);
           }
-          this.styledString = mutableStyledString1
-          this.controller1.setStyledString(mutableStyledString1)
+          this.styledString = mutableStyledString1;
+          this.controller1.setStyledString(mutableStyledString1);
         }).margin(5)
         Button("toHtml").onClick(() => {
-          this.html = StyledString.toHtml(this.styledString)
+          this.html = StyledString.toHtml(this.styledString);
         }).margin(5)
         Button("fromHtml").onClick(async () => {
-          let styledString = await StyledString.fromHtml(this.html)
-          this.controller2.setStyledString(styledString)
+          let styledString = await StyledString.fromHtml(this.html);
+          this.controller2.setStyledString(styledString);
         }).margin(5)
       }
+
       Text(undefined, { controller: this.controller2 }).height(100)
       Text(this.html)
     }.width("100%")
@@ -2187,8 +2212,8 @@ struct styled_string_demo8 {
 // xxx.ets
 @Entry
 @Component
-struct styled_string {
-  urlString: StyledStringValue = new UrlStyle( "https://www.example.com" );
+struct styled_string_demo9 {
+  urlString: StyledStringValue = new UrlStyle("https://www.example.com");
   mutableStyledString: MutableStyledString = new MutableStyledString("Hello World", [{
     start: 0,
     length: "Hello".length,
@@ -2196,9 +2221,11 @@ struct styled_string {
     styledValue: this.urlString
   }]);
   controller: TextController = new TextController();
+
   async onPageShow() {
-    this.controller.setStyledString(this.mutableStyledString)
+    this.controller.setStyledString(this.mutableStyledString);
   }
+
   build() {
     Column() {
       Column() {
@@ -2218,17 +2245,24 @@ struct styled_string {
 
 ``` ts
 // xxx.ets
-import { LengthMetrics } from '@kit.ArkUI'
+import { LengthMetrics } from '@kit.ArkUI';
 import { drawing, common2D } from '@kit.ArkGraphics2D';
+
 @Entry
 @Component
-struct styled_string_demo4 {
-  @State message: string = 'Hello World'
+struct styled_string_demo10 {
+  @State message: string = 'Hello World';
   mutableStr: MutableStyledString = new MutableStyledString('origin image:');
   mutableStr2: MutableStyledString = new MutableStyledString('with filter:');
   controller: TextController = new TextController();
   controller2: TextController = new TextController();
-  private color: common2D.Color = { alpha: 125, red: 125, green: 125, blue: 255 };
+  private color: common2D.Color = {
+    alpha: 125,
+    red: 125,
+    green: 125,
+    blue: 255
+  };
+
   build() {
     Row() {
       Column({ space: 5 }) {
@@ -2244,8 +2278,8 @@ struct styled_string_demo4 {
               verticalAlign: ImageSpanAlignment.BASELINE,
               objectFit: ImageFit.Contain,
               syncLoad: true
-            }))
-            this.controller.setStyledString(this.mutableStr)
+            }));
+            this.controller.setStyledString(this.mutableStr);
           })
         Text(undefined, { controller: this.controller2 })
           .copyOption(CopyOptions.InApp)
@@ -2261,8 +2295,8 @@ struct styled_string_demo4 {
               objectFit: ImageFit.Contain,
               colorFilter: drawing.ColorFilter.createBlendModeColorFilter(this.color, drawing.BlendMode.SRC_IN),
               syncLoad: true
-            }))
-            this.controller2.setStyledString(this.mutableStr2)
+            }));
+            this.controller2.setStyledString(this.mutableStr2);
           })
       }
       .width('100%')
@@ -2282,22 +2316,23 @@ struct styled_string_demo4 {
 // xxx.ets
 @Entry
 @Component
-struct styled_string_demo4 {
-  @State message: string = 'Hello World'
+struct styled_string_demo11 {
+  @State message: string = 'Hello World';
   mutableStr: MutableStyledString = new MutableStyledString('123456', [{
     start: 0,
     length: 2,
     styledKey: StyledStringKey.FONT,
-    styledValue: new TextStyle({fontColor: Color.Red})
+    styledValue: new TextStyle({ fontColor: Color.Red })
   }, {
     start: 0,
     length: 3,
     styledKey: StyledStringKey.DECORATION,
-    styledValue: new DecorationStyle({type: TextDecorationType.LineThrough})
+    styledValue: new DecorationStyle({ type: TextDecorationType.LineThrough })
   }]);
   mutableStr2: MutableStyledString = new MutableStyledString('with filter:');
   controller: TextController = new TextController();
   controller2: TextController = new TextController();
+
   build() {
     Row() {
       Column({ space: 5 }) {
@@ -2306,39 +2341,39 @@ struct styled_string_demo4 {
           .draggable(true)
           .fontSize(30)
           .onAppear(() => {
-            this.controller.setStyledString(this.mutableStr)
+            this.controller.setStyledString(this.mutableStr);
           })
         Text(undefined, { controller: this.controller2 })
           .copyOption(CopyOptions.InApp)
           .draggable(true)
           .fontSize(30)
         Button('GetSubStyledString (0,3)').onClick(() => {
-          this.controller2.setStyledString(this.mutableStr.subStyledString(0, 3))
+          this.controller2.setStyledString(this.mutableStr.subStyledString(0, 3));
         })
         Button('RemoveStyle (0,1,Decoration)').onClick(() => {
-          this.mutableStr.removeStyle(0, 1, StyledStringKey.DECORATION)
-          this.controller.setStyledString(this.mutableStr)
+          this.mutableStr.removeStyle(0, 1, StyledStringKey.DECORATION);
+          this.controller.setStyledString(this.mutableStr);
         })
         Button('RemoveString (5,1)').onClick(() => {
-          this.mutableStr.removeString(5, 1)
-          this.controller.setStyledString(this.mutableStr)
+          this.mutableStr.removeString(5, 1);
+          this.controller.setStyledString(this.mutableStr);
         })
         Button('ClearStyles').onClick(() => {
-          this.mutableStr.clearStyles()
-          this.controller.setStyledString(this.mutableStr)
+          this.mutableStr.clearStyles();
+          this.controller.setStyledString(this.mutableStr);
         })
         Button('replaceStyledString').onClick(() => {
           this.mutableStr.replaceStyledString(3, 1, new StyledString("abc", [{
             start: 0,
             length: 3,
             styledKey: StyledStringKey.FONT,
-            styledValue: new TextStyle({fontColor: Color.Blue})
-          }]))
-          this.controller.setStyledString(this.mutableStr)
+            styledValue: new TextStyle({ fontColor: Color.Blue })
+          }]));
+          this.controller.setStyledString(this.mutableStr);
         })
         Button('insertStyledString').onClick(() => {
-          this.mutableStr.insertStyledString(4, new StyledString("A"))
-          this.controller.setStyledString(this.mutableStr)
+          this.mutableStr.insertStyledString(4, new StyledString("A"));
+          this.controller.setStyledString(this.mutableStr);
         })
       }
       .width('100%')

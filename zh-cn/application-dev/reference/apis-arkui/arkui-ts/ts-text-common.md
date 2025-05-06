@@ -26,8 +26,8 @@
 
 ### 导入对象
 以Text组件为例
-```
-controller: TextController = new TextController()
+```ts
+controller: TextController = new TextController();
 let layoutManager: LayoutManager = this.controller.getLayoutManager();
 ```
 
@@ -593,7 +593,7 @@ setCaretOffset(offset: number): boolean
 
 | 类型      | 说明        |
 | ------- | --------- |
-| boolean | 光标是否设置成功。 |
+| boolean | 光标是否设置成功。<br/>true表示光标设置成功，false表示设置失败。 |
 
 ### getPreviewText<sup>12+</sup>
 
