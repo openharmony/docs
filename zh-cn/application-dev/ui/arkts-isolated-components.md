@@ -79,6 +79,22 @@ import { bundleManager } from '@kit.AbilityKit'
 
 ## 受限 worker
 
+受限[Worker](../reference/apis-arkts/js-apis-worker.md)是一个在隔离环境中运行的Worker线程。这种隔离特性确保了受限Worker与其他线程或组件之间实现内存隔离，避免它们之间的相互干扰或安全问题。
+
+在IsolatedComponent场景中，组件常需动态加载外部hap资源。受限worker通过以下机制保障安全：
+
+- [沙箱路径](../file-management/app-sandbox-directory.md)校验
+
+  abcPath指向经系统校验的安全目录，防止恶意代码注入。
+
+- 通信管控
+
+  主线程与worker间仅允许通过规范化的消息事件通信，禁止直接数据共享。
+
+- 异常隔离
+
+  worker内错误不会导致主应用崩溃，通过onerror事件可控处理。
+
 ```ts
 // OhCardWorker.ets
 import { worker, ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@kit.ArkTS';
@@ -90,6 +106,8 @@ workerPort.onerror = (e: ErrorEvent) => {}
 ```
 
 ## 设置属性
+
+IsolatedComponent通过want和worker属性实现动态组件加载与隔离执行，二者共同构成安全边界。
 
 ```ts
 IsolatedComponent({
@@ -137,9 +155,13 @@ struct Extension {
 该示例展示IsolatedComponent组件的基础使用方式，示例应用的bundleName为"com.example.isolateddemo"，并使用本应用的Abc文件和extension页面作为嵌入展示的内容。
 
 ### 预期效果
+
 1. 在DevEco Studio上编译构建生成hap包，并安装到设备上；
+
 2. 将本应用构建生成的modules.abc文件通过DevEco Studio或hdc工具上传至应用沙箱路径/data/app/el2/100/base/com.example.isolateddemo/haps/entry/files下；
+
 3. 打开应用页面，点击"verifyAbc"按钮进行校验，输出"VerifyAbc successfully"日志；
+
 4. 点击"showIsolatedComponent"按钮，显示IsolatedComponent组件，内容为"Hello World"。
 
 ```ts
