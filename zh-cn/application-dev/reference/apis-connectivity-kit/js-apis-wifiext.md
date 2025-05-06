@@ -35,7 +35,7 @@ enableHotspot(): boolean;
 
 disableHotspot(): boolean;
 
-去启用WLAN热点功能。
+启用WLAN热点功能。
 
 **需要权限：** ohos.permission.MANAGE_WIFI_HOTSPOT_EXT
 
