@@ -7,9 +7,7 @@ Node-API中的napi_load_module接口的功能是在主线程中进行模块的�
 ## 函数说明
 
 ```cpp
-napi_status napi_load_module(napi_env env,
-                             const char* path,
-                             napi_value* result);
+napi_status napi_load_module(napi_env env, const char* path, napi_value* result);
 ```
 
 | 参数            | 说明          |
@@ -79,7 +77,7 @@ napi_status napi_load_module(napi_env env,
     //./src/main/ets/Test.ets
     let value = 123;
     function test() {
-    console.log("Hello OpenHarmony");
+      console.log("Hello OpenHarmony");
     }
     export {value, test};
     ```
@@ -88,15 +86,15 @@ napi_status napi_load_module(napi_env env,
 
     ```json
     {
-        "buildOption" : {
-            "arkOptions" : {
-                "runtimeOnly" : {
-                    "sources": [
-                        "./src/main/ets/Test.ets"
-                    ]
-                }
-            }
+      "buildOption" : {
+        "arkOptions" : {
+          "runtimeOnly" : {
+            "sources": [
+              "./src/main/ets/Test.ets"
+            ]
+          }
         }
+      }
     }
     ```
 
@@ -134,7 +132,7 @@ napi_status napi_load_module(napi_env env,
     //./src/main/ets/Test.ets
     let value = 123;
     function test() {
-    console.log("Hello OpenHarmony");
+      console.log("Hello OpenHarmony");
     }
     export {value, test};
     ```
@@ -143,15 +141,15 @@ napi_status napi_load_module(napi_env env,
 
     ```json
     {
-        "buildOption" : {
-            "arkOptions" : {
-                "runtimeOnly" : {
-                    "sources": [
-                        "./src/main/ets/Test.ets"
-                    ]
-                }
-            }
+      "buildOption" : {
+        "arkOptions" : {
+          "runtimeOnly" : {
+            "sources": [
+              "./src/main/ets/Test.ets"
+            ]
+          }
         }
+      }
     }
     ```
 
@@ -190,7 +188,7 @@ napi_status napi_load_module(napi_env env,
     //library Index.ets
     let value = 123;
     function test() {
-    console.log("Hello OpenHarmony");
+      console.log("Hello OpenHarmony");
     }
     export {value, test};
     ```
@@ -199,9 +197,9 @@ napi_status napi_load_module(napi_env env,
 
     ```json
     {
-        "dependencies": {
-            "library": "file:../library"
-        }
+      "dependencies": {
+        "library": "file:../library"
+      }
     }
     ```
 
@@ -209,15 +207,15 @@ napi_status napi_load_module(napi_env env,
 
     ```json
     {
-        "buildOption" : {
-            "arkOptions" : {
-                "runtimeOnly" : {
-                    "packages": [
-                        "library"
-                    ]
-                }
-            }
+      "buildOption" : {
+        "arkOptions" : {
+          "runtimeOnly" : {
+            "packages": [
+              "library"
+            ]
+          }
         }
+      }
     }
     ```
 
@@ -256,7 +254,7 @@ napi_status napi_load_module(napi_env env,
     //sharedlibrary Index.ets
     let value = 123;
     function test() {
-    console.log("Hello OpenHarmony");
+      console.log("Hello OpenHarmony");
     }
     export {value, test};
     ```
@@ -265,9 +263,9 @@ napi_status napi_load_module(napi_env env,
 
     ```json
     {
-        "dependencies": {
-            "sharedlibrary": "file:../sharedlibrary"
-        }
+      "dependencies": {
+        "sharedlibrary": "file:../sharedlibrary"
+      }
     }
     ```
 
@@ -275,15 +273,15 @@ napi_status napi_load_module(napi_env env,
 
     ```json
     {
-        "buildOption" : {
-            "arkOptions" : {
-                "runtimeOnly" : {
-                    "packages": [
-                        "sharedlibrary"
-                    ]
-                }
-            }
+      "buildOption" : {
+        "arkOptions" : {
+          "runtimeOnly" : {
+            "packages": [
+              "sharedlibrary"
+            ]
+          }
         }
+      }
     }
     ```
 
@@ -320,9 +318,9 @@ napi_status napi_load_module(napi_env env,
 
     ```json
     {
-        "dependencies": {
-            "@ohos/hypium": "1.0.16"
-        }
+      "dependencies": {
+        "@ohos/hypium": "1.0.16"
+      }
     }
     ```
 
@@ -330,15 +328,15 @@ napi_status napi_load_module(napi_env env,
 
     ```json
     {
-        "buildOption" : {
-            "arkOptions" : {
-                "runtimeOnly" : {
-                    "packages": [
-                        "@ohos/hypium"
-                    ]
-                }
-            }
+      "buildOption" : {
+        "arkOptions" : {
+          "runtimeOnly" : {
+            "packages": [
+              "@ohos/hypium"
+            ]
+          }
         }
+      }
     }
     ```
 
@@ -369,9 +367,9 @@ napi_status napi_load_module(napi_env env,
 
     ```json
     {
-        "dependencies": {
-            "@ohos/axios": "2.2.4",
-        }
+      "dependencies": {
+        "@ohos/axios": "2.2.4",
+      }
     }
     ```
 
@@ -379,15 +377,15 @@ napi_status napi_load_module(napi_env env,
 
     ```json
     {
-        "buildOption" : {
-            "arkOptions" : {
-                "runtimeOnly" : {
-                    "packages": [
-                        "@ohos/axios"
-                    ]
-                }
-            }
+      "buildOption" : {
+        "arkOptions" : {
+          "runtimeOnly" : {
+            "packages": [
+              "@ohos/axios"
+            ]
+          }
         }
+      }
     }
     ```
 
@@ -425,9 +423,9 @@ napi_status napi_load_module(napi_env env,
 
     ```json
     {
-        "dependencies": {
-            "libentry.so": "file:../src/main/cpp/types/libentry"
-        }
+      "dependencies": {
+        "libentry.so": "file:../src/main/cpp/types/libentry"
+      }
     }
     ```
 
@@ -435,15 +433,15 @@ napi_status napi_load_module(napi_env env,
 
     ```json
     {
-        "buildOption" : {
-            "arkOptions" : {
-                "runtimeOnly" : {
-                    "packages": [
-                        "libentry.so"
-                    ]
-                }
-            }
+      "buildOption" : {
+        "arkOptions" : {
+          "runtimeOnly" : {
+            "packages": [
+              "libentry.so"
+            ]
+          }
         }
+      }
     }
     ```
 
@@ -482,7 +480,7 @@ napi_status napi_load_module(napi_env env,
     //har2 Index.ets
     let value = 123;
     function test() {
-    console.log("Hello OpenHarmony");
+      console.log("Hello OpenHarmony");
     }
     export {value, test};
     ```
@@ -491,9 +489,9 @@ napi_status napi_load_module(napi_env env,
 
     ```json
     {
-        "dependencies": {
-            "har2": "file:../har2"
-        }
+      "dependencies": {
+        "har2": "file:../har2"
+      }
     }
     ```
 
@@ -501,15 +499,15 @@ napi_status napi_load_module(napi_env env,
 
     ```json
     {
-        "buildOption" : {
-            "arkOptions" : {
-                "runtimeOnly" : {
-                    "packages": [
-                        "har2"
-                    ]
-                }
-            }
+      "buildOption" : {
+        "arkOptions" : {
+          "runtimeOnly" : {
+            "packages": [
+              "har2"
+            ]
+          }
         }
+      }
     }
     ```
 3. 在har1中用napi_load_module加载har2，调用函数test以及获取变量value：
