@@ -1,4 +1,4 @@
-# IsolatedComponent组件
+# 隔离组件 (IsolatedComponent)
 
 IsolatedComponent组件是一个用于构建隔离组件的工具，它可以帮助开发者创建独立的、可重用的组件，这些组件可以在不同的应用程序中使用，而不会与其他组件发生冲突。
 
@@ -62,23 +62,7 @@ import { bundleManager } from '@kit.AbilityKit'
 ]
 ```
 
-**受限 worker**
-
-受限[worker](../reference/apis-arkts/js-apis-worker.md)是一个在隔离环境中运行的worker线程。这种隔离特性确保了受限worker与其他线程或组件之间实现内存隔离，避免它们之间的相互干扰或安全问题。
-
-在IsolatedComponent场景中，组件常需动态加载外部hap资源。受限worker通过以下机制保障安全：
-
-- [沙箱路径](../file-management/app-sandbox-directory.md)校验
-
-  abcPath指向经系统校验的安全目录，防止恶意代码注入。
-
-- 通信管控
-
-  主线程与worker间仅允许通过规范化的消息事件通信，禁止直接数据共享。
-
-- 异常隔离
-
-  worker内错误不会导致主应用崩溃，通过onerror事件可控处理。
+**受限[worker](../reference/apis-arkts/js-apis-worker.md)**
 
 ```ts
 // OhCardWorker.ets
