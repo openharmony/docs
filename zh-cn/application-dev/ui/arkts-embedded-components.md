@@ -178,7 +178,7 @@ export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
 
 **入口页面**
 
-以下代码作为UIExtensionComponent的入口组件实现，展示了如何使用UIExtensionContentSession会话以及如何通过按钮点击事件退出嵌入式页面并返回结果，该代码文件需要在main_pages.json配置文件中声明使用：
+以下提供方应用的入口组件实现，展示了如何使用UIExtensionContentSession会话以及如何通过按钮点击事件退出嵌入式页面并返回结果，该代码文件需要在main_pages.json配置文件中声明使用：
 
 ```ts
 import { UIExtensionContentSession } from '@kit.AbilityKit';
@@ -215,11 +215,11 @@ struct Extension {
 
 1、会话管理
 
-正确获取并使用 UIExtensionContentSession 会话对象，确保与宿主应用的通信正常。
+正确获取并使用UIExtensionContentSession会话对象，确保与宿主应用的通信正常。
 
 2、结果返回
 
-通过 terminateSelfWithResult 方法向宿主应用返回结果时，需要指定：
+通过terminateSelfWithResult方法向宿主应用返回结果时，需要指定：
 
 - resultCode：结果代码；
 
