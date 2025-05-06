@@ -1374,6 +1374,10 @@ vp2px(value : number) : number
 
 将vp单位的数值转换为以px为单位的数值。
 
+转换公式为：px值 = vp值 × 像素密度
+
+像素密度：当前窗口生效的像素密度值，即屏幕物理像素密度[VirtualScreenConfig.density](js-apis-display.md#virtualscreenconfig16)。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1402,6 +1406,10 @@ uiContext.vp2px(200);
 px2vp(value : number) : number
 
 将px单位的数值转换为以vp为单位的数值。
+
+转换公式为：vp值 = px值 ÷ 像素密度
+
+像素密度：当前窗口生效的像素密度值，即屏幕物理像素密度[VirtualScreenConfig.density](js-apis-display.md#virtualscreenconfig16)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1432,6 +1440,12 @@ fp2px(value : number) : number
 
 将fp单位的数值转换为以px为单位的数值。
 
+转换公式为：px值 = fp值 × 像素密度 × 字体缩放比例
+
+像素密度：当前窗口生效的像素密度值，即屏幕物理像素密度[VirtualScreenConfig.density](js-apis-display.md#virtualscreenconfig16)。
+
+字体缩放比例：系统设置的字体缩放系数，对应 [Configuration.fontScale](arkui-ts/ts-types.md#configuration)。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1460,6 +1474,12 @@ uiContext.fp2px(200);
 px2fp(value : number) : number
 
 将px单位的数值转换为以fp为单位的数值。
+
+转换公式为：fp值 = px值 ÷ 像素密度 ÷ 字体缩放比例
+
+像素密度：当前窗口生效的像素密度值，通常就是屏幕物理像素密度[VirtualScreenConfig.density](js-apis-display.md#virtualscreenconfig16)。
+
+字体缩放比例：系统设置的字体缩放系数，对应 [Configuration.fontScale](arkui-ts/ts-types.md#configuration)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1490,6 +1510,8 @@ lpx2px(value : number) : number
 
 将lpx单位的数值转换为以px为单位的数值。
 
+转换公式为：px值 = lpx值 × 实际屏幕宽度与逻辑宽度（通过[designWidth](../../quick-start/module-configuration-file.md#pages标签)配置）的比值
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1518,6 +1540,8 @@ uiContext.lpx2px(200);
 px2lpx(value : number) : number
 
 将px单位的数值转换为以lpx为单位的数值。
+
+转换公式为：px值 = lpx值 ÷ 实际屏幕宽度与逻辑宽度（通过[designWidth](../../quick-start/module-configuration-file.md#pages标签)配置）的比值
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -6465,7 +6489,7 @@ struct DragControllerPage {
                 extraParams:string = ''
               }
               let eve:tmp = new tmp()
-              dragController.executeDrag(()=>{this.DraggingBuilder()}, dragInfo, (err, eve) => {
+              this.getUIContext().getDragController().executeDrag(()=>{this.DraggingBuilder()}, dragInfo, (err, eve) => {
                 if(eve.event){
                   if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
                   // ...
@@ -6516,7 +6540,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 **示例：**
 
 ```ts
-import { dragController, componentSnapshot } from "@kit.ArkUI"
+import { dragController } from "@kit.ArkUI"
 import { image } from '@kit.ImageKit';
 import { unifiedDataChannel } from '@kit.ArkData';
 
@@ -6558,7 +6582,7 @@ struct DragControllerPage {
                 extraParams: ''
               }
               let pb:CustomBuilder = ():void=>{this.PixmapBuilder()}
-              componentSnapshot.createFromBuilder(pb).then((pix: image.PixelMap) => {
+              this.getUIContext().getComponentSnapshot().createFromBuilder(pb).then((pix: image.PixelMap) => {
                 this.pixmap = pix;
                 let dragItemInfo: DragItemInfo = {
                   pixelMap: this.pixmap,
@@ -6571,7 +6595,7 @@ struct DragControllerPage {
                   extraParams:string = ''
                 }
                 let eve:tmp = new tmp()
-                dragController.executeDrag(dragItemInfo, dragInfo)
+                this.getUIContext().getDragController().executeDrag(dragItemInfo, dragInfo)
                   .then((eve) => {
                     if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
                       // ...
@@ -6647,10 +6671,9 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability
-    let storage: LocalStorage = new LocalStorage();
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
-    windowStage.loadContent('pages/Index', storage, (err, data) => {
+    windowStage.loadContent('pages/Index', this.storage, (err, data) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
@@ -6686,20 +6709,20 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
-2.通过LocalStorage.getShared()获取上下文，进而获取DragController对象实施后续操作。
+2.通过this.getUIContext().getSharedLocalStorage()获取上下文，进而获取DragController对象实施后续操作。
 ```ts
 import { dragController, componentSnapshot, UIContext, DragController } from "@kit.ArkUI"
 import { image } from '@kit.ImageKit';
 import { unifiedDataChannel } from '@kit.ArkData';
 
-let storages = LocalStorage.getShared();
-
-@Entry(storages)
+@Entry()
 @Component
 struct DragControllerPage {
   @State pixmap: image.PixelMap|null = null
   private dragAction: dragController.DragAction|null = null;
   customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
+  storages = this.getUIContext().getSharedLocalStorage()
+
   @Builder DraggingBuilder() {
     Column() {
       Text("DraggingBuilder")
@@ -6734,7 +6757,7 @@ struct DragControllerPage {
               extraParams: ''
             }
             try{
-              let uiContext: UIContext = storages.get<UIContext>('uiContext') as UIContext;
+              let uiContext: UIContext = this.storages?.get<UIContext>('uiContext') as UIContext;
               this.dragAction = uiContext.getDragController().createDragAction(this.customBuilders, dragInfo)
               if(!this.dragAction){
                 console.info("listener dragAction is null");
@@ -7945,6 +7968,8 @@ struct Index {
 ## ComponentSnapshot<sup>12+</sup>
 
 以下API需先使用UIContext中的[getComponentSnapshot()](js-apis-arkui-UIContext.md#getcomponentsnapshot12)方法获取ComponentSnapshot对象，再通过此实例调用对应方法。
+
+缩放、平移、旋转等图形变换属性只对被截图组件的子组件生效；对目标组件本身应用图形变换属性不生效，显示的是还是图形变换前的效果。
 
 ### get<sup>12+</sup>
 

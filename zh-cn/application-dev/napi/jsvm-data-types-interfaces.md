@@ -4,9 +4,9 @@
 
 ### `JSVM_Status`
 
-    是一个枚举数据类型，表示 JSVM-API 接口返回的状态信息。
+    这是一个枚举数据类型，用来表示 JSVM-API 接口返回的状态信息。
 
-    每当调用一个 JSVM-API 函数，都会返回该值，表示操作成功与否的相关信息。
+    每调用一次 JSVM-API 函数，都会返回一个值，用来表示操作成功与否的相关信息。
 
 ```c++
     typedef enum {
@@ -848,7 +848,8 @@ int main(int argc, char *argv[]) {
 
 #### 场景介绍
 
-JSVM-API WebAssembly 接口提供了 wasm 字节码编译、wasm 函数优化、wasm cache 序列化和反序列化的能力。
+JSVM-API WebAssembly 接口提供了 WebAssembly 字节码编译、WebAssembly 函数优化、WebAssembly cache 序列化和反序列化的能力。
+详见[使用 JSVM-API WebAssembly 接口](use-jsvm-about-wasm.md)。
 
 #### 接口说明
 

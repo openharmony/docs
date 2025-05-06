@@ -6,13 +6,13 @@
 
 > **说明：**
 >
-> 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 导入模块
 
 ```
-import { TabTitleBar } from '@kit.ArkUI'
+import { TabTitleBar } from '@kit.ArkUI';
 ```
 
 
@@ -75,7 +75,7 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 该示例实现了带有左侧页签和右侧菜单列表的页签型标题栏。
 
 ```ts
-import { TabTitleBar, promptAction, TabTitleBarTabItem, TabTitleBarMenuItem } from '@kit.ArkUI'
+import { TabTitleBar, promptAction, TabTitleBarTabItem, TabTitleBarMenuItem } from '@kit.ArkUI';
 
 @Entry
 @Component

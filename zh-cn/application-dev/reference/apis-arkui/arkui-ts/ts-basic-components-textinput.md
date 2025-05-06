@@ -701,7 +701,7 @@ letterSpacing(value: number | string | Resource)
 
 | 参数名 | 类型                       | 必填 | 说明           |
 | ------ | -------------------------- | ---- | -------------- |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本字符间距。<br/>单位：fp |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本字符间距。<br/>单位：[fp](ts-pixel-units.md#像素单位) |
 
 ### fontFeature<sup>12+</sup>
 
@@ -811,7 +811,7 @@ minFontSize(value: number | string | Resource)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最小显示字号。<br/>单位：fp |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最小显示字号。<br/>单位：[fp](ts-pixel-units.md#像素单位) |
 
 ### maxFontSize<sup>12+</sup>
 
@@ -831,7 +831,7 @@ maxFontSize(value: number | string | Resource)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。<br/>单位：fp |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。<br/>单位：[fp](ts-pixel-units.md#像素单位) |
 
 ### heightAdaptivePolicy<sup>12+</sup>
 
@@ -949,7 +949,7 @@ enableHapticFeedback(isEnabled: boolean)
 
 >  **说明：**
 >
->  开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
+>  开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段以开启振动权限，配置如下：
 > ```json
 > "requestPermissions": [
 >  {
@@ -1202,7 +1202,7 @@ onPaste(callback:&nbsp;(value:&nbsp;string, event:&nbsp;PasteEvent)&nbsp;=&gt;&n
 
 onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)
 
-文本选择的位置发生变化或编辑状态下光标位置发生变化时，触发该回调。
+文本选择的位置或编辑状态下光标位置发生变化时，触发该回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2412,3 +2412,43 @@ struct TextInputExample {
 ```
 
 ![TextInputEditChange](figures/TextInputEditChange.png)
+
+### 示例16（设置选中指定区域的文本内容）
+
+该示例通过setTextSelection方法展示如何设置选中指定区域的文本内容以及菜单的显隐策略。
+
+```ts
+// xxx.ets
+
+@Entry
+@Component
+struct TextInputExample {
+  controller: TextInputController = new TextInputController()
+  @State startIndex: number = 0
+  @State endIndex: number = 0
+
+  build() {
+    Column({ space: 3 }) {
+      Text('Selection start:' + this.startIndex + ' end:' + this.endIndex)
+      TextInput({ text: 'Hello World', controller: this.controller })
+        .width('95%')
+        .height(40)
+        .defaultFocus(true)
+        .enableKeyboardOnFocus(true)
+        .onTextSelectionChange((selectionStart: number, selectionEnd: number) => {
+          this.startIndex = selectionStart
+          this.endIndex = selectionEnd
+        })
+
+      Button('setTextSelection [0,3], set menuPolicy is MenuPolicy.SHOW')
+        .onClick(() => {
+          this.controller.setTextSelection(0, 3, { menuPolicy: MenuPolicy.SHOW })
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![textInputSetTextSelection](figures/textInputSetTextSelection.gif)

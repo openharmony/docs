@@ -32,7 +32,7 @@ import { insightIntentDriver } from '@kit.AbilityKit';
 | moduleName | string | 是 | 意图调用Ability所属的模块名称。 |
 | abilityName | string | 是 | 意图调用Ability名称。 |
 | insightIntentName | string | 是 | 意图调用名称。 |
-| insightIntentParam | string | 是 | 意图调用参数。 |
+| insightIntentParam | Record\<string, Object> | 是 | 意图调用参数。 |
 | executeMode | [insightIntent.ExecuteMode](js-apis-app-ability-insightIntent.md#executemode) | 是 | 意图调用执行模式。 |
 | displayId<sup>12+</sup> | number | 否 | 意图调用时指定的物理屏幕id，该参数应为整数，仅在executeMode为UI_ABILITY_FOREGROUND时生效。 |
 

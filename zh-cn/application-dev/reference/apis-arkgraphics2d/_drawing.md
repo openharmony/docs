@@ -2524,15 +2524,15 @@ enum OH_Drawing_FontWeight
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| FONT_WEIGHT_100 | 字重为thin | 
-| FONT_WEIGHT_200 | 字重为extra-light | 
-| FONT_WEIGHT_300 | 字重为light | 
-| FONT_WEIGHT_400 | 字重为normal/regular | 
-| FONT_WEIGHT_500 | 字重为medium | 
-| FONT_WEIGHT_600 | 字重为semi-bold | 
-| FONT_WEIGHT_700 | 字重为bold | 
-| FONT_WEIGHT_800 | 字重为extra-bold | 
-| FONT_WEIGHT_900 | 字重为black | 
+| FONT_WEIGHT_100 | 字重为thinz。 |
+| FONT_WEIGHT_200 | 字重为extra-light。 |
+| FONT_WEIGHT_300 | 字重为light。 |
+| FONT_WEIGHT_400 | 字重为normal/regular。 |
+| FONT_WEIGHT_500 | 字重为medium。 |
+| FONT_WEIGHT_600 | 字重为semi-bold。 |
+| FONT_WEIGHT_700 | 字重为bold。 |
+| FONT_WEIGHT_800 | 字重为extra-bold。 |
+| FONT_WEIGHT_900 | 字重为black。 |
 
 
 ### OH_Drawing_FontWidth
@@ -12633,7 +12633,7 @@ void OH_Drawing_SetTextStyleDecoration (OH_Drawing_TextStyle* , int  )
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 | 
-| int | 设置装饰，设置1为下划线，设置2为上划线，设置3为删除线，设置0或其它为无装饰，具体可见[OH_Drawing_TextDecoration](#oh_drawing_textdecoration)枚举。 | 
+| int | 设置装饰，设置1为下划线，设置2为上划线，设置4为删除线，设置0或其它为无装饰，具体可见[OH_Drawing_TextDecoration](#oh_drawing_textdecoration)枚举。 | 
 
 
 ### OH_Drawing_SetTextStyleDecorationColor()

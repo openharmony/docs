@@ -118,6 +118,8 @@ AV_ERR_INVALID_STATE：本接口必须在OH_VideoDecoder_Prepare接口前调用�
 
 AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION：不支持色彩空间转换功能。
 
+AV_ERR_UNSUPPORT：未支持的功能。
+
 
 ### OH_VideoDecoder_CreateByMime()
 
@@ -284,7 +286,7 @@ OH_AVFormat* OH_VideoDecoder_GetOutputDescription (OH_AVCodec *codec)
 **描述**
 获取解码器输出数据的OH_AVFormat信息，请参阅[OH_AVFormat](_core.md#oh_avformat)。 
 
-需要注意的是，返回值指向的OH_AVFormat实例的生命周期需要调用者通过调用接口[OH_AVFormat_Destroy](_core.md#oh_avformat_destroy)释放。
+需要注意的是，返回值指向的OH_AVFormat实例的生命周期需要开发者通过调用接口[OH_AVFormat_Destroy](_core.md#oh_avformat_destroy)释放。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoDecoder
 

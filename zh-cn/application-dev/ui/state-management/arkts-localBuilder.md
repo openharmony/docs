@@ -1,6 +1,6 @@
-# \@LocalBuilder装饰器： 维持组件父子关系
+# \@LocalBuilder装饰器： 维持组件关系
 
-当开发者使用@Builder做引用数据传递时，会考虑组件的父子关系，使用了bind(this)之后，组件的父子关系和状态管理的父子关系并不一致。为了解决组件的父子关系和状态管理的父子关系保持一致的问题，引入@LocalBuilder装饰器。@LocalBuilder拥有和局部@Builder相同的功能，且比局部@Builder能够更好的确定组件的父子关系和状态管理的父子关系。
+开发者跨组件传递局部@Builder时， `this` 指向可能发生偏移，导致访问到的组件关系错误。为了纠正组件的错误关系，会使用特定函数来修正执行上下文，组件间关系维护起来变得复杂。为了解决this指向问题，ArkUI引入了@LocalBuilder装饰器。@LocalBuilder不仅具备局部@Builder的功能，还能更精确的确定组件间的关系。
 
 在阅读本文档前，建议提前阅读：[\@Builder](./arkts-builder.md)。
 
@@ -43,8 +43,13 @@ this.MyBuilderFunction()
 
 ## @LocalBuilder和局部@Builder使用区别
 
-@Builder方法引用传参时，为了改变this指向，使用bind(this)后，会导致组件的父子关系和状态管理的父子关系不一致，但是@LocalBuilder是否使用bind(this)，都不会改变组件的父子关系。[@LocalBuilder和@Builder区别说明](arkts-localBuilder.md#localbuilder和builder区别说明)。
+跨组件传递局部@Builder方法时，会使用一些函数来改变this的指向，比如bind(this)，使用bind(this)之后，当前组件的和子组件关系会改变。但是@LocalBuilder是否使用bind(this)，都不会改变组件间的关系。 详细请参考[@LocalBuilder和@Builder区别说明](arkts-localBuilder.md#localbuilder和builder区别说明)。
 
+ ![zh-cn_image_compatible_localBuilder](figures/zh-cn_image_compatible_localBuilder.png) 
+
+> **说明：**
+>
+> bind()方法创建一个新的函数，称为绑定函数，当调用者绑定bind()时，该绑定函数会以创建时传入的第一个this作为原函数的this。
 ## 参数传递规则
 
 @LocalBuilder函数的参数传递有[按值传递](#按值传递参数)和[按引用传递](#按引用传递参数)两种，均需遵守以下规则：
@@ -387,8 +392,8 @@ struct ParentPage {
         .backgroundColor('#000000').margin(10)
       Button("change info1&info2")
         .onClick(() => {
-          this.info1 = { name: "Cat", age: 18} // Text1不会刷新，原因是没有装饰器修饰监听不到值的改变。
-          this.info2 = { name: "Cat", age: 18} // Text2会刷新，原因是有装饰器修饰，可以监听到值的改变。
+          this.info1 = { name: "Cat", age: 18}; // Text1不会刷新，原因是没有装饰器修饰监听不到值的改变。
+          this.info2 = { name: "Cat", age: 18}; // Text2会刷新，原因是有装饰器修饰，可以监听到值的改变。
         })
     }
   }

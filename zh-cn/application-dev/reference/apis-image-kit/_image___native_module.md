@@ -61,7 +61,6 @@
 | typedef struct [OH_ImageNative](#oh_imagenative) [OH_ImageNative](#oh_imagenative) | 为图像接口定义native层图像对象的别名。  | 
 | typedef struct [OH_ImagePackerNative](#oh_imagepackernative) [OH_ImagePackerNative](#oh_imagepackernative) | ImagePacker结构体类型，用于执行ImagePacker相关操作。  | 
 | typedef struct [OH_PackingOptions](#oh_packingoptions) [OH_PackingOptions](#oh_packingoptions) | 图像编码选项。  | 
-| typedef struct [OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) [OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) | 图像序列编码选项。  | 
 | typedef struct [OH_ImageReceiverNative](#oh_imagereceivernative) [OH_ImageReceiverNative](#oh_imagereceivernative) | 用于定义OH_ImageReceiverNative数据类型名称。  | 
 | typedef struct [OH_ImageReceiverOptions](#oh_imagereceiveroptions) [OH_ImageReceiverOptions](#oh_imagereceiveroptions) | 用于定义OH_ImageReceiverOptions数据类型名称。  | 
 | typedef void(\* [OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback)) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver) | 定义native层图片的回调方法。  | 
@@ -124,25 +123,13 @@
 | [Image_ErrorCode](#image_errorcode) [OH_PackingOptions_GetDesiredDynamicRange](#oh_packingoptions_getdesireddynamicrange) ([OH_PackingOptions](#oh_packingoptions) \*options, int32_t \*desiredDynamicRange) | 获取编码时期望的图片动态范围。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PackingOptions_SetDesiredDynamicRange](#oh_packingoptions_setdesireddynamicrange) ([OH_PackingOptions](#oh_packingoptions) \*options, int32_t desiredDynamicRange) | 设置编码时期望的图片动态范围。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PackingOptions_Release](#oh_packingoptions_release) ([OH_PackingOptions](#oh_packingoptions) \*options) | 释放OH_PackingOptions指针。  | 
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptionsForSequence_Create](#oh_packingoptionsforsequence_create) ([OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) \*\*options) | 创建OH_PackingOptionsForSequence结构体的指针。  | 
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptionsForSequence_SetFrameCount](#oh_packingoptionsforsequence_setframecount) ([OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) \*options, uint32_t frameCount) | 设置编码时指定的帧数。  | 
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptionsForSequence_GetFrameCount](#oh_packingoptionsforsequence_getframecount) ([OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) \*options, uint32_t \*frameCount) | 获取编码时指定的帧数。  | 
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptionsForSequence_SetDelayTimeList](#oh_packingoptionsforsequence_setdelaytimelist) ([OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) \*options, int32_t \*delayTimeList, size_t delayTimeListLength) | 设定编码时图片的延迟时间数组。  | 
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptionsForSequence_GetDelayTimeList](#oh_packingoptionsforsequence_getdelaytimelist) ([OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) \*options, int32_t \*delayTimeList, size_t delayTimeListLength) | 获取编码时图片的延迟时间数组。  | 
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptionsForSequence_SetDisposalTypes](#oh_packingoptionsforsequence_setdisposaltypes) ([OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) \*options, uint32_t \*disposalTypes, size_t disposalTypesLength) | 设定编码时图片的过渡帧模式数组。  | 
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptionsForSequence_GetDisposalTypes](#oh_packingoptionsforsequence_getdisposaltypes) ([OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) \*options, uint32_t \*disposalTypes, size_t disposalTypesLength) | 获取编码时图片的过渡帧模式数组。  | 
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptionsForSequence_SetLoopCount](#oh_packingoptionsforsequence_setloopcount) ([OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) \*options, uint32_t loopCount) | 设定编码时图片循环播放次数。  | 
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptionsForSequence_GetLoopCount](#oh_packingoptionsforsequence_getloopcount) ([OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) \*options, uint32_t \*loopCount) | 获取编码时图片循环播放次数。  | 
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptionsForSequence_Release](#oh_packingoptionsforsequence_release) ([OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) \*options) | 释放OH_PackingOptionsForSequence指针。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_Create](#oh_imagepackernative_create) ([OH_ImagePackerNative](#oh_imagepackernative) \*\*imagePacker) | 创建OH_ImagePackerNative指针。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_PackToDataFromImageSource](#oh_imagepackernative_packtodatafromimagesource) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker, [OH_PackingOptions](#oh_packingoptions) \*options, [OH_ImageSourceNative](#oh_imagesourcenative) \*imageSource, uint8_t \*outData, size_t \*size) | 将ImageSource编码为指定格式的数据。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_PackToDataFromPixelmap](#oh_imagepackernative_packtodatafrompixelmap) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker, [OH_PackingOptions](#oh_packingoptions) \*options, [OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, uint8_t \*outData, size_t \*size) | 将Pixelmap编码为指定格式的数据。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_PackToDataFromPicture](#oh_imagepackernative_packtodatafrompicture) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker, [OH_PackingOptions](#oh_packingoptions) \*options, [OH_PictureNative](#oh_picturenative) \*picture, uint8_t \*outData, size_t \*size) | 将Picture编码为指定格式的数据。  | 
-| [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_PackToDataFromPixelmapSequence](#oh_imagepackernative_packtodatafrompixelmapsequence) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker, [OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) \*options, [OH_ImagePackerNative](#oh_imagepackernative) \*\*pixelmapSequence, size_t sequenceLength, uint8_t \*outData, size_t \*outDataSize) | 将Pixelmap序列编码为数据。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_PackToFileFromImageSource](#oh_imagepackernative_packtofilefromimagesource) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker, [OH_PackingOptions](#oh_packingoptions) \*options, [OH_ImageSourceNative](#oh_imagesourcenative) \*imageSource, int32_t fd) | 将一个ImageSource编码到文件中。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_PackToFileFromPixelmap](#oh_imagepackernative_packtofilefrompixelmap) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker, [OH_PackingOptions](#oh_packingoptions) \*options, [OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, int32_t fd) | 将一个Pixelmap编码到文件中。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_PackToFileFromPicture](#oh_imagepackernative_packtofilefrompicture) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker, [OH_PackingOptions](#oh_packingoptions) \*options, [OH_PictureNative](#oh_picturenative) \*picture, int32_t fd) | 将一个Picture编码到文件中。  | 
-| [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_PackToFileFromPixelmapSequence](#oh_imagepackernative_packtofilefrompixelmapsequence) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker, [OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) \*options, [OH_ImagePackerNative](#oh_imagepackernative) \*\*pixelmapSequence, size_t sequenceLength, int32_t fd) | 将一个Pixelmap序列编码到文件中。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_Release](#oh_imagepackernative_release) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker) | 释放OH_ImagePackerNative指针。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverOptions_Create](#oh_imagereceiveroptions_create) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*\*options) | 创建应用层 OH_ImageReceiverOptions 对象。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverOptions_GetSize](#oh_imagereceiveroptions_getsize) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*options, [Image_Size](_image___size.md) \*size) | 获取 [OH_ImageReceiverOptions](#oh_imagereceiveroptions) 对象的 [Image_Size](_image___size.md) 信息。  | 
@@ -151,7 +138,7 @@
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverOptions_SetCapacity](#oh_imagereceiveroptions_setcapacity) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*options, int32_t capacity) | 设置 [OH_ImageReceiverOptions](#oh_imagereceiveroptions) 对象的图片缓存容量的信息。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverOptions_Release](#oh_imagereceiveroptions_release) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*options) | 释放 [OH_ImageReceiverOptions](#oh_imagereceiveroptions) 对象。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_Create](#oh_imagereceivernative_create) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*options, [OH_ImageReceiverNative](#oh_imagereceivernative) \*\*receiver) | 创建应用层 OH_ImageReceiverNative 对象。  | 
-| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_GetReceivingSurfaceId](#oh_imagereceivernative_getreceivingsurfaceid) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, uint64_t \*surfaceId) | 通过[OH_ImageReceiverNative](#oh_imagereceivernative)获取receiver的id。  | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_GetReceivingSurfaceId](#oh_imagereceivernative_getreceivingsurfaceid) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, uint64_t \*surfaceId) | 通过[OH_ImageReceiverNative](#oh_imagereceivernative)获取SurfaceId。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_ReadLatestImage](#oh_imagereceivernative_readlatestimage) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, [OH_ImageNative](#oh_imagenative) \*\*image) | 通过[OH_ImageReceiverNative](#oh_imagereceivernative)获取最新的一张图片。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_ReadNextImage](#oh_imagereceivernative_readnextimage) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, [OH_ImageNative](#oh_imagenative) \*\*image) | 通过[OH_ImageReceiverNative](#oh_imagereceivernative)获取下一张图片。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_On](#oh_imagereceivernative_on) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, [OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback) callback) | 注册一个[OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback)回调事件。  | 
@@ -601,7 +588,7 @@ OH_ImageReceiverNative是native层封装的图片接收器结构体，OH_ImageRe
 OH_ImageReceiverNative结构体内容和操作方式如下：
 | 字段类型| 字段名称 | 字段描述 |操作函数 | 函数描述 |
 | -------- | -------- | -------- | -------- | -------- |
-| uint64_t | surfaceId | 接收器的surfaceId | [OH_ImageReceiverNative_GetReceivingSurfaceId](#oh_imagereceivernative_getreceivingsurfaceid) |通过OH_ImageReceiverNative获取receiver的id。|
+| uint64_t | surfaceId | 接收器的surfaceId | [OH_ImageReceiverNative_GetReceivingSurfaceId](#oh_imagereceivernative_getreceivingsurfaceid) |通过OH_ImageReceiverNative获取SurfaceId。|
 | OH_ImageNative | image | native层的image | [OH_ImageReceiverNative_ReadLatestImage](#oh_imagereceivernative_readlatestimage) | 通过OH_ImageReceiverNative获取最新的一张图片。|
 | OH_ImageNative | image | native层的image | [OH_ImageReceiverNative_ReadNextImage](#oh_imagereceivernative_readnextimage) |通过OH_ImageReceiverNative获取下一张图片。|
 | OH_ImageReceiver_OnCallback | callback| 图片接收器回调函数 | [OH_ImageReceiverNative_On](#oh_imagereceivernative_on) |注册一个OH_ImageReceiver_OnCallback回调事件。|
@@ -726,17 +713,6 @@ OH_PackingOptions结构体内容和操作方式如下：
 | int32_t | desiredDynamicRange | 图片动态范围 | [OH_PackingOptions_SetDesiredDynamicRange](#oh_packingoptions_setdesireddynamicrange) | 设置编码时期望的图片动态范围。|
 
 **起始版本：** 12
-
-
-### OH_PackingOptionsForSequence
-
-```
-typedef struct OH_PackingOptionsForSequence OH_PackingOptionsForSequence
-```
-**描述**
-图像序列编码选项。
-
-**起始版本：** 13
 
 
 ### OH_PictureMetadata
@@ -2223,32 +2199,6 @@ Image_ErrorCode OH_ImagePackerNative_PackToDataFromPixelmap(OH_ImagePackerNative
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 如果解码失败返回 IMAGE_DECODE_FAILED，如果申请内存失败返回 IMAGE_ALLOC_FAILED， 如果数据或图片过大返回 IMAGE_TOO_LARGE，如果未知错误返回 IMAGE_UNKNOWN_ERROR， 具体请参考 [Image_ErrorCode](#image_errorcode)。
 
 
-### OH_ImagePackerNative_PackToDataFromPixelmapSequence()
-
-```
-Image_ErrorCode OH_ImagePackerNative_PackToDataFromPixelmapSequence(OH_ImagePackerNative *imagePacker, OH_PackingOptionsForSequence *options, OH_PixelmapNative **pixelmapSequence, size_t sequenceLength, uint8_t *outData, size_t *outDataSize)
-```
-**描述**
-将Pixelmap序列编码为数据。
-
-**起始版本：** 13
-
-**参数：**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| imagePacker | 被操作的OH_ImagePackerNative指针。  | 
-| options | 编码选项参数 [OH_PackingOptionsForSequence](#oh_packingoptionsforsequence)。  | 
-| pixelmapSequence | 用于编码的Pixelmap序列指针。  | 
-| sequenceLength | 用于编码的Pixelmap序列长度。  | 
-| outData | 用于存储编码后图像输出数据的缓冲区。  | 
-| outDataSize | 用于存储编码后图像输出数据的缓冲区大小。  | 
-
-**返回：**
-
-如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，如果解码失败返回 IMAGE_DECODE_FAILED， 具体请参考[Image_ErrorCode](#image_errorcode)。
-
-
 ### OH_ImagePackerNative_PackToFileFromImageSource()
 
 ```
@@ -2319,31 +2269,6 @@ Image_ErrorCode OH_ImagePackerNative_PackToFileFromPixelmap(OH_ImagePackerNative
 **返回：**
 
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 如果解码失败返回 IMAGE_DECODE_FAILED，如果未知错误返回 IMAGE_UNKNOWN_ERROR， 具体请参考 [Image_ErrorCode](#image_errorcode)。
-
-
-### OH_ImagePackerNative_PackToFileFromPixelmapSequence()
-
-```
-Image_ErrorCode OH_ImagePackerNative_PackToFileFromPixelmapSequence(OH_ImagePackerNative *imagePacker, OH_PackingOptionsForSequence *options, OH_PixelmapNative **pixelmapSequence, size_t sequenceLength, int32_t fd)
-```
-**描述**
-将一个Pixelmap序列编码到文件中。
-
-**起始版本：** 13
-
-**参数：**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| imagePacker | 被操作的OH_ImagePackerNative指针。  | 
-| options | 编码选项参数 [OH_PackingOptionsForSequence](#oh_packingoptionsforsequence)。  | 
-| pixelmapSequence | 用于编码的Pixelmap序列指针。  | 
-| sequenceLength | 用于编码的Pixelmap序列长度。  | 
-| fd | 可写的文件描述符。  | 
-
-**返回：**
-
-如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，如果解码失败返回 IMAGE_DECODE_FAILED， 具体请参考[Image_ErrorCode](#image_errorcode)。
 
 
 ### OH_ImagePackerNative_Release()
@@ -2421,7 +2346,7 @@ Image_ErrorCode OH_ImageReceiverNative_GetCapacity(OH_ImageReceiverNative* recei
 Image_ErrorCode OH_ImageReceiverNative_GetReceivingSurfaceId(OH_ImageReceiverNative* receiver, uint64_t* surfaceId)
 ```
 **描述**
-通过[OH_ImageReceiverNative](#oh_imagereceivernative)获取receiver的id。
+通过[OH_ImageReceiverNative](#oh_imagereceivernative)获取SurfaceId。
 
 **起始版本：** 12
 
@@ -2963,7 +2888,7 @@ Image_ErrorCode OH_ImageSourceNative_CreatePicture(OH_ImageSourceNative *source,
 ### OH_ImageSourceNative_CreatePixelmap()
 
 ```
-Image_ErrorCode OH_ImageSourceNative_CreatePixelmap(OH_ImageSourceNative *source, OH_DecodingOptions *options, OH_PixelmapNative **pixelmap)
+Image_ErrorCode OH_ImageSourceNative_CreatePixelmap(OH_ImageSourceNative *source, OH_DecodingOptions *options, OH_PixelmapNative **resPixMap)
 ```
 **描述**
 通过图片解码参数创建OH_PixelmapNative指针。
@@ -2976,7 +2901,7 @@ Image_ErrorCode OH_ImageSourceNative_CreatePixelmap(OH_ImageSourceNative *source
 | -------- | -------- |
 | source | 被操作的OH_ImageSourceNative指针。  | 
 | options | 解码参数。  | 
-| resPixMap | 指向c++本地层创建的OH_PixelmapNative对象的指针。  | 
+| resPixMap | 指向c++本地层创建的OH_PixelmapNative对象指针的指针。  | 
 
 **返回：**
 
@@ -3365,228 +3290,6 @@ Image_ErrorCode OH_PackingOptions_SetQuality(OH_PackingOptions *options, uint32_
 **返回：**
 
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
-
-
-### OH_PackingOptionsForSequence_Create()
-
-```
-Image_ErrorCode OH_PackingOptionsForSequence_Create(OH_PackingOptionsForSequence **options)
-```
-**描述**
-创建OH_PackingOptionsForSequence结构体的指针。
-
-**起始版本：** 13
-
-**参数：**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| options | 用于操作的OH_PackingOptionsForSequence指针。  | 
-
-**返回：**
-
-如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER。具体请参考[Image_ErrorCode](#image_errorcode)。
-
-
-### OH_PackingOptionsForSequence_GetDelayTimeList()
-
-```
-Image_ErrorCode OH_PackingOptionsForSequence_GetDelayTimeList(OH_PackingOptionsForSequence *options, int32_t *delayTimeList, size_t delayTimeListLength)
-```
-**描述**
-获取编码时图片的延迟时间数组。
-
-**起始版本：** 13
-
-**参数：**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| options | 用于操作的OH_PackingOptionsForSequence指针。  | 
-| delayTimeList | 图片延迟时间数组的指针。  | 
-| delayTimeListLength | 图片延迟时间数组的长度。  | 
-
-**返回：**
-
-如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER。具体请参考[Image_ErrorCode](#image_errorcode)。
-
-
-### OH_PackingOptionsForSequence_GetDisposalTypes()
-
-```
-Image_ErrorCode OH_PackingOptionsForSequence_GetDisposalTypes(OH_PackingOptionsForSequence *options, uint32_t *disposalTypes, size_t disposalTypesLength)
-```
-**描述**
-获取编码时图片的过渡帧模式数组。
-
-**起始版本：** 13
-
-**参数：**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| options | 用于操作的OH_PackingOptionsForSequence指针。  | 
-| disposalTypes | 图片过渡帧模式数组的指针。  | 
-| disposalTypesLength | 图片过渡帧模式数组的长度。  | 
-
-**返回：**
-
-如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER。具体请参考[Image_ErrorCode](#image_errorcode)。
-
-
-### OH_PackingOptionsForSequence_GetFrameCount()
-
-```
-Image_ErrorCode OH_PackingOptionsForSequence_GetFrameCount(OH_PackingOptionsForSequence *options, uint32_t *frameCount)
-```
-**描述**
-获取编码时指定的帧数。
-
-**起始版本：** 13
-
-**参数：**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| options | 用于操作的OH_PackingOptionsForSequence指针。  | 
-| frameCount | 图片的帧数。  | 
-
-**返回：**
-
-如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER。具体请参考[Image_ErrorCode](#image_errorcode)。
-
-
-### OH_PackingOptionsForSequence_GetLoopCount()
-
-```
-Image_ErrorCode OH_PackingOptionsForSequence_GetLoopCount(OH_PackingOptionsForSequence *options, uint32_t *loopCount)
-```
-**描述**
-获取编码时图片循环播放次数。
-
-**起始版本：** 13
-
-**参数：**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| options | 用于操作的OH_PackingOptionsForSequence指针。  | 
-| loopCount | 图片循环播放次数。  | 
-
-**返回：**
-
-如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER。具体请参考[Image_ErrorCode](#image_errorcode)。
-
-
-### OH_PackingOptionsForSequence_Release()
-
-```
-Image_ErrorCode OH_PackingOptionsForSequence_Release(OH_PackingOptionsForSequence *options)
-```
-**描述**
-释放OH_PackingOptionsForSequence指针。
-
-**起始版本：** 13
-
-**参数：**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| options | 用于操作的OH_PackingOptionsForSequence指针。  | 
-
-**返回：**
-
-如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER。具体请参考[Image_ErrorCode](#image_errorcode)。
-
-
-### OH_PackingOptionsForSequence_SetDelayTimeList()
-
-```
-Image_ErrorCode OH_PackingOptionsForSequence_SetDelayTimeList(OH_PackingOptionsForSequence *options, int32_t *delayTimeList, size_t delayTimeListLength)
-```
-**描述**
-设定编码时图片的延迟时间数组。
-
-**起始版本：** 13
-
-**参数：**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| options | 用于操作的OH_PackingOptionsForSequence指针。  | 
-| delayTimeList | 图片延迟时间数组的指针。  | 
-| delayTimeListLength | 图片延迟时间数组的长度。  | 
-
-**返回：**
-
-如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER。具体请参考[Image_ErrorCode](#image_errorcode)。
-
-
-### OH_PackingOptionsForSequence_SetDisposalTypes()
-
-```
-Image_ErrorCode OH_PackingOptionsForSequence_SetDisposalTypes(OH_PackingOptionsForSequence *options, uint32_t *disposalTypes, size_t disposalTypesLength)
-```
-**描述**
-设定编码时图片的过渡帧模式数组。
-
-**起始版本：** 13
-
-**参数：**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| options | 用于操作的OH_PackingOptionsForSequence指针。  | 
-| disposalTypes | 图片过渡帧模式数组的指针。  | 
-| disposalTypesLength | 图片过渡帧模式数组的长度。  | 
-
-**返回：**
-
-如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER。具体请参考[Image_ErrorCode](#image_errorcode)。
-
-
-### OH_PackingOptionsForSequence_SetFrameCount()
-
-```
-mage_ErrorCode OH_PackingOptionsForSequence_SetFrameCount(OH_PackingOptionsForSequence *options, uint32_t frameCount)
-```
-**描述**
-设置编码时指定的帧数。
-
-**起始版本：** 13
-
-**参数：**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| options | 用于操作的OH_PackingOptionsForSequence指针。  | 
-| frameCount | 图片的帧数。  | 
-
-**返回：**
-
-如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER。具体请参考[Image_ErrorCode](#image_errorcode)。
-
-
-### OH_PackingOptionsForSequence_SetLoopCount()
-
-```
-Image_ErrorCode OH_PackingOptionsForSequence_SetLoopCount(OH_PackingOptionsForSequence *options, uint32_t loopCount)
-```
-**描述**
-设定编码时图片循环播放次数。
-
-**起始版本：** 13
-
-**参数：**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| options | 用于操作的OH_PackingOptionsForSequence指针。  | 
-| loopCount | 图片循环播放次数。  | 
-
-**返回：**
-
-如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER。具体请参考[Image_ErrorCode](#image_errorcode)。
 
 
 ### OH_PictureMetadata_Clone()

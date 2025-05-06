@@ -90,7 +90,7 @@ struct Index {
 }
 ```
 
-针对上述问题，可使用组件内置方法[`getUIContext`](../reference/apis-arkui/arkui-ts/ts-custom-component-api.md#getuicontext)直接获取当前组件所在的UIContext，并使用[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)中的的getPromptAction接口获取与实例绑定的对象，使得Toast绑定到具体的实例。
+针对上述问题，可使用组件内置方法[`getUIContext`](../reference/apis-arkui/arkui-ts/ts-custom-component-api.md#getuicontext)直接获取当前组件所在的UIContext，并使用[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)中的getPromptAction接口获取与实例绑定的对象，使得Toast绑定到具体的实例。
 ```ts
 @Entry
 @Component
@@ -113,7 +113,7 @@ struct Index {
 }
 ```
 
-对于UIContext中没有提供替代的接口（例如，CalendarPickerDialog和animateToImmediately），或者开发者自定义实现的业务行为与多实例相关，需要和实例绑定事（例如，一个代码段），可以使用[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)的runScopedTask方法将接口或一段代码段包裹起来。
+对于UIContext中没有提供替代的接口（例如，CalendarPickerDialog和animateToImmediately），或者开发者自定义实现的业务行为与多实例相关，需要和实例绑定时（例如，一个代码段），可以使用[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)的runScopedTask方法将接口或一段代码段包裹起来。
 
 | UIContext接口 | 说明                 |
 | ------------- | -------------------- |

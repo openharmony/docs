@@ -1,6 +1,6 @@
 # Saving Media Assets
 
-When users wish to save images, videos, or similar files to Gallery, it is not necessary for the application to request the ohos.permission.WRITE_IMAGEVIDEO permission. Instead, the application can use the [SaveButton](#creating-a-media-asset-using-savebutton) or [authorization pop-up](#saving-a-media-asset-using-an-authorization-pop-up) to save the media assets to Gallery.
+To save images, videos, or similar files to Gallery, it is not necessary for the application to request the ohos.permission.WRITE_IMAGEVIDEO permission. Instead, the application can use the [SaveButton](#creating-a-media-asset-using-savebutton) or [authorization pop-up](#saving-a-media-asset-using-an-authorization-pop-up) to save the media assets to Gallery.
 
 ## Creating a Media Asset Using SaveButton
 
@@ -24,12 +24,12 @@ struct Index {
     icon: SaveIconStyle.FULL_FILLED,
     text: SaveDescription.SAVE_IMAGE,
     buttonType: ButtonType.Capsule
-  } // Set the attributes of the security component.
+  } // Set properties of SaveButton.
 
   build() {
     Row() {
       Column() {
-        SaveButton(this.saveButtonOptions) // Create a security component.
+        SaveButton(this.saveButtonOptions) // Create a button with SaveButton.
           .onClick(async (event, result: SaveButtonOnClickResult) => {
              if (result == SaveButtonOnClickResult.SUCCESS) {
                try {

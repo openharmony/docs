@@ -1,11 +1,12 @@
 # Observing Media Assets
 
-The **photoAccessHelper** module provides APIs for listening for media asset (image, video, and album) changes.
+The photoAccessHelper module provides APIs to listen for changes of specified media assets.
 
 > **NOTE**
 >
-> - Before you get started, obtain a **PhotoAccessHelper** instance and apply for required permissions. For details, see [Before You Start](photoAccessHelper-preparation.md).
-> - Unless otherwise specified, the **PhotoAccessHelper** instance obtained in the **Before You Start** section is used to call **photoAccessHelper** APIs. If the code for obtaining the **PhotoAccessHelper** instance is missing, an error will be reported to indicate that **photoAccessHelper** is not defined.
+> Before you get started, obtain a **PhotoAccessHelper** instance and apply for required permissions. For details, see [Before You Start](photoAccessHelper-preparation.md).
+>
+> Unless otherwise specified, the **PhotoAccessHelper** instance obtained in the **Before You Start** section is used to call **photoAccessHelper** APIs. If the code for obtaining the **PhotoAccessHelper** instance is missing, an error will be reported to indicate that **photoAccessHelper** is not defined.
 
 The APIs related to media asset change notifications can be called asynchronously only in callback mode. This topic covers only some of these APIs. For details about all available APIs, see [Album Management](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md).
 
@@ -114,11 +115,15 @@ async function example() {
 
 ## Fuzzy Listening
 
-You can set **forChildUris** to **true** to enable fuzzy listening.<br>If **uri** is an album URI, the value **true** of **forChildUris** enables listening for the changes of the files in the album, and the value **false** enables listening for only the changes of the album itself. <br>If **uri** is the URI of a **photoAsset**, there is no difference between **true** and **false** for **forChildUris**.<br>If **uri** is **DefaultChangeUri**, **forChildUris** must be set to **true**. If **forChildUris** is **false**, the URI cannot be found and no notification can be received.
+You can set **forChildUris** to **true** to enable fuzzy listening.
+
+- If **uri** is an album URI, the value **true** of **forChildUris** enables listening for the changes of the files in the album, and the value **false** enables listening for only the changes of the album itself.
+- If **uri** is **photoAsset**, there is no difference whether **forChildUris** is **true** or **false**.
+- If **uri** is **DefaultChangeUri**, **forChildUris** must be **true**. If **forChildUris** is set to **false**, the URI cannot be found and no message can be received.
 
 ### Listening for All PhotoAssets
 
-Register a listener for all **PhotoAssets**. When a **PhotoAsset** object changes, the registered callback will be invoked.
+Register a listener for all **PhotoAsset** objects. When a **PhotoAsset** object changes, the registered callback will be invoked.
 
 **Prerequisites**
 

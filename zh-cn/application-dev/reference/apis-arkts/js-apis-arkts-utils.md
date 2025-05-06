@@ -161,7 +161,7 @@ static query(name: string): AsyncLockState
 
 | 类型                              | 说明                               |
 | --------------------------------- | ---------------------------------- |
-| [AsyncLockState](#asynclockstate) | 一个包含状态描述的异步锁状态实例。 |
+| [AsyncLockState](#asynclockstate) | 包含状态描述的异步锁状态实例。 |
 
 **错误码：**
 
@@ -205,7 +205,7 @@ static queryAll(): AsyncLockState[]
 
 ```ts
 let states: ArkTSUtils.locks.AsyncLockState[] = ArkTSUtils.locks.AsyncLock.queryAll();
-if (states.length == 0) {
+if (states.length === 0) {
     throw new Error('测试失败：期望至少有1个状态，但得到的是 ' + states.length);
 }
 ```
@@ -214,7 +214,7 @@ if (states.length == 0) {
 
 lockAsync\<T>(callback: AsyncLockCallback\<T>): Promise\<T>
 
-在获取的锁下独占执行操作。该方法首先获取锁，然后调用回调，最后释放锁。回调在调用[lockAsync](#lockasync)的同一线程中以异步方式执行。
+在获取的锁下执行操作。该方法首先获取锁，然后调用回调，最后释放锁。回调在调用[lockAsync](#lockasync)的同一线程中以异步方式执行。
 
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
@@ -425,7 +425,7 @@ options.signal = s;
 | ----------- | ------------------------------------- | ---- | ---- | ------------------------------------------------------------------------------------------------------------------------- |
 | isAvailable | boolean                               | 是   | 是   | 当前锁是否可用。取值为true，则只有在尚未持有锁定请求时才会授予该锁定请求；为false则表示将等待当前锁被释放。默认为 false。 |
 | signal      | [AbortSignal\<T>](#abortsignal)\|null | 是   | 是   | 用于中止异步操作的对象。当signal.aborted为true时，锁请求将被丢弃；当signal.aborted为false时，请求会继续等待获取锁；当signal为null时，请求正常排队运行。默认为 null。               |
-| timeout     | number                                | 是   | 是   | 锁操作的超时时间（毫秒）。如果该值大于零，且运行超过该时间，[lockAsync](#lockasync)将返回被拒绝的Promise。默认为 0。      |
+| timeout     | number                                | 是   | 是   | 锁操作的超时时间，单位为毫秒。若该值大于零，且操作运行时间超过该时间，[lockAsync](#lockasync)将返回被拒绝的Promise。默认为 0。      |
 
 ### AsyncLockState
 
@@ -475,7 +475,7 @@ options.signal = s;
 
 ## ArkTSUtils.ASON
 
-为支持将JSON字符串解析成共享数据，即[Sendable支持的数据类型](../../arkts-utils/arkts-sendable.md#sendable支持的数据类型)，ArkTS语言基础库新增了ASON工具。ASON支持开发者解析JSON字符串，并生成共享数据进行跨并发域传输，同时ASON也支持将共享数据转换成JSON字符串。
+为支持将JSON字符串解析为共享数据，即[Sendable支持的数据类型](../../arkts-utils/arkts-sendable.md#sendable支持的数据类型)，ArkTS语言基础库新增了ASON工具。ASON工具支持解析JSON字符串并生成共享数据，用于跨并发域传输，同时也支持将共享数据转换为JSON字符串。
 
 ### ISendable
 
@@ -542,7 +542,7 @@ type Transformer = (this: ISendable, key: string, value: ISendable | undefined |
 
 ### ParseOptions
 
-解析的选项，可定义处理BigInt的模式与解析结果的返回类型。
+解析的选项，可定义处理BigInt的模式和解析结果的返回类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -575,7 +575,7 @@ parse(text: string, reviver?: Transformer, options?: ParseOptions): ISendable | 
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [ISendable](#isendable) \| null | 返回ISendable数据或null。当入参是null时，返回null。|
+| [ISendable](#isendable) \| null | 返回ISendable数据或null。入参为null时，返回null。|
 
 **示例：**
 

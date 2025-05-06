@@ -22,7 +22,7 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| show   | boolean                                                      | 是   | 弹窗显示状态，默认值为false，隐藏弹窗。popup弹窗必须等待页面全部构建完成才能展示，因此show不能在页面构建中设置为true，否则会导致popup弹窗显示位置及形状错误。该参数从API version 13开始支持[!!语法](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。 |
+| show   | boolean                                                      | 是   | 弹窗显示状态，默认值为false，隐藏弹窗。Popup弹窗必须等待页面全部构建完成才能展示，因此show不能在页面构建中设置为true，否则会导致Popup弹窗显示位置及形状错误。该参数从API version 13开始支持[!!语法](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。 |
 | popup  | [PopupOptions](#popupoptions类型说明)&nbsp;\|&nbsp;[CustomPopupOptions](#custompopupoptions8类型说明)<sup>8+</sup> | 是   | 配置弹出弹窗的参数。                                         |
 
 ## PopupOptions类型说明
@@ -53,8 +53,8 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 | radius<sup>11+</sup>             | [Dimension](ts-types.md#dimension10)                  | 否   | 设置气泡圆角半径。<br/>默认值：20<br/>单位：vp<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                          |
 | shadow<sup>11+</sup>             | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)    | 否   | 设置气泡阴影。<br/>默认值：ShadowStyle.OUTER_DEFAULT_MD <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
 | backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 否 | 设置气泡模糊背景参数。<br />默认值：BlurStyle.COMPONENT_ULTRA_THICK<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| transition<sup>12+</sup> | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明) | 否 | 自定义设置popup弹窗显示和退出的动画效果。<br/>**说明：**<br/>1.如果不设置，则使用默认的显示/退出动效。<br/>2.显示动效中按back键，打断显示动效，执行退出动效，动画效果为显示动效与退出动效的曲线叠加后的效果。<br/>3.退出动效中按back键，不会打断退出动效，退出动效继续执行，back键不被响应。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| onWillDismiss<sup>12+</sup>           | boolean \| Callback\<([DismissPopupAction](#dismisspopupaction12类型说明))> | 否   | 设置popup交互式关闭拦截开关及拦截回调函数，默认值为true，popup响应点击、左滑/右滑、三键back。<br />1.当为boolean类型时，如果设置为false，则不响应点击、左滑/右滑、三键back或键盘ESC退出事件，仅当设置“弹窗显示状态”参数show值为false时才退出；如果设置为true，则正常响应退出事件；<br />2.如果设置为函数类型，则拦截退出事件且执行回调函数。<br />**说明：**<br />在onWillDismiss回调中，不能再做onWillDismiss拦截。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| transition<sup>12+</sup> | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明) | 否 | 自定义设置Popup弹窗显示和退出的动画效果。<br/>**说明：**<br/>1.如果不设置，则使用默认的显示/退出动效。<br/>2.显示动效中按back键，打断显示动效，执行退出动效，动画效果为显示动效与退出动效的曲线叠加后的效果。<br/>3.退出动效中按back键，不会打断退出动效，退出动效继续执行，back键不被响应。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| onWillDismiss<sup>12+</sup>           | boolean \| Callback\<([DismissPopupAction](#dismisspopupaction12类型说明))> | 否   | 设置Popup交互式关闭拦截开关及拦截回调函数，默认值为true，Popup响应点击、左滑/右滑、三键back。<br />1.当为boolean类型时，如果设置为false，则不响应点击、左滑/右滑、三键back或键盘ESC退出事件，仅当设置“弹窗显示状态”参数show值为false时才退出；如果设置为true，则正常响应退出事件；<br />2.如果设置为函数类型，则拦截退出事件且执行回调函数。<br />**说明：**<br />在onWillDismiss回调中，不能再做onWillDismiss拦截。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | followTransformOfTarget<sup>13+</sup>          | boolean | 否   | 气泡绑定的宿主组件或其宿主组件的父容器添加了旋转、缩放等变换时，气泡是否能显示在对应变化后的位置上。<br/>默认值：false <br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 | keyboardAvoidMode<sup>15+</sup>          | [KeyboardAvoidMode](../js-apis-promptAction.md#keyboardavoidmode12枚举说明) | 否   | 气泡是否避让软键盘，默认不避让。设置为避让后，气泡显示空间不足时，由原先居中覆盖父组件的方式改为平移覆盖父组件，且气泡箭头不指向宿主时，不再显示箭头。<br/>默认值：KeyboardAvoidMode.NONE <br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
@@ -77,8 +77,8 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 
 | 名称    | 类型                                      | 必填 | 说明                                                       |
 | ------- | ----------------------------------------- | ---- | --------------------------------------------------------------- |
-| dismiss | function                                  | 是   | popup关闭回调函数。开发者需要退出时调用，不需要退出时无需调用。 |
-| reason  | [DismissReason](#dismissreason12枚举说明) | 是   | 关闭原因，返回本次拦截popup消失的事件原因。                       |
+| dismiss | function                                  | 是   | Popup关闭回调函数。开发者需要退出时调用，不需要退出时无需调用。 |
+| reason  | [DismissReason](#dismissreason12枚举说明) | 是   | 关闭原因，返回本次拦截Popup消失的事件原因。                       |
 
 ## DismissReason<sup>12+</sup>枚举说明
 
@@ -115,8 +115,8 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 | shadow<sup>11+</sup>             | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)    | 否   | 设置气泡阴影。<br/>默认值：ShadowStyle.OUTER_DEFAULT_MD <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
 | backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 否 | 设置气泡模糊背景参数。<br />默认值：BlurStyle.COMPONENT_ULTRA_THICK <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | focusable<sup>11+</sup> | boolean | 否 | 设置气泡弹出后是否获焦。<br />默认值：false <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| transition<sup>12+</sup> | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明) | 否 | 自定义设置popup弹窗显示和退出的动画效果。<br/>**说明：**<br/>如果不设置，则使用默认的显示/退出动效。<br/>2.显示动效中按back键，打断显示动效，执行退出动效，动画效果为显示动效与退出动效的曲线叠加后的效果。<br/>3.退出动效中按back键，不会打断退出动效，退出动效继续执行，back键不被响应。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| onWillDismiss<sup>12+</sup>           | boolean \| Callback\<([DismissPopupAction](#dismisspopupaction12类型说明))> | 否   | 设置popup交互式关闭拦截开关及拦截回调函数，默认值为true，popup响应点击、左滑/右滑、三键back。<br />1.当为boolean类型时，如果设置为false，则不响应点击、左滑/右滑、三键back或键盘ESC退出事件，仅当设置“弹窗显示状态”参数show值为false时才退出；如果设置为true，则正常响应退出事件；<br />2.如果设置为函数类型，则拦截退出事件且执行回调函数。<br />**说明：**<br />在onWillDismiss回调中，不能再做onWillDismiss拦截。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| transition<sup>12+</sup> | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明) | 否 | 自定义设置Popup弹窗显示和退出的动画效果。<br/>**说明：**<br/>如果不设置，则使用默认的显示/退出动效。<br/>2.显示动效中按back键，打断显示动效，执行退出动效，动画效果为显示动效与退出动效的曲线叠加后的效果。<br/>3.退出动效中按back键，不会打断退出动效，退出动效继续执行，back键不被响应。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| onWillDismiss<sup>12+</sup>           | boolean \| Callback\<([DismissPopupAction](#dismisspopupaction12类型说明))> | 否   | 设置Popup交互式关闭拦截开关及拦截回调函数，默认值为true，Popup响应点击、左滑/右滑、三键back。<br />1.当为boolean类型时，如果设置为false，则不响应点击、左滑/右滑、三键back或键盘ESC退出事件，仅当设置“弹窗显示状态”参数show值为false时才退出；如果设置为true，则正常响应退出事件；<br />2.如果设置为函数类型，则拦截退出事件且执行回调函数。<br />**说明：**<br />在onWillDismiss回调中，不能再做onWillDismiss拦截。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | followTransformOfTarget<sup>13+</sup>          | boolean | 否   | 气泡绑定的宿主组件或其宿主组件的父容器添加了旋转、缩放等变换时，气泡是否能显示在对应变化后的位置上。<br/>默认值：false <br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 | keyboardAvoidMode<sup>15+</sup>          | [KeyboardAvoidMode](../js-apis-promptAction.md#keyboardavoidmode12枚举说明) | 否   | 气泡是否避让软键盘，默认不避让。设置为避让后，气泡显示空间不足时，由原先居中覆盖父组件的方式改为平移覆盖父组件，且气泡箭头不指向宿主时，不再显示箭头。<br/>默认值：KeyboardAvoidMode.NONE <br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
@@ -124,7 +124,7 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 
 ### 示例1（弹出不同类型的气泡）
 
-该示例为bindPopup通过配置popup弹出PopupOptions、CustomPopupOptions类型的气泡。
+该示例为bindPopup通过配置Popup弹出PopupOptions、CustomPopupOptions类型的气泡。
 
 ```ts
 // xxx.ets
@@ -134,7 +134,7 @@ struct PopupExample {
   @State handlePopup: boolean = false
   @State customPopup: boolean = false
 
-  // popup构造器定义弹框内容
+  // Popup构造器定义弹框内容
   @Builder popupBuilder() {
     Row({ space: 2 }) {
       Image($r("app.media.icon")).width(24).height(24).margin({ left: -5 })
@@ -311,7 +311,7 @@ struct PopupExample {
   @State handlePopup: boolean = false
   @State customPopup: boolean = false
 
-  // popup构造器定义弹框内容
+  // Popup构造器定义弹框内容
   @Builder popupBuilder() {
     Row() {
       Text('Custom Popup with transitionEffect').fontSize(10)

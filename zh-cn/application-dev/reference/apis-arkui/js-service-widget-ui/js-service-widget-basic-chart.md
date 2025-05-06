@@ -22,7 +22,7 @@
 | options           | ChartOptions                       | -      | 否   | 图表参数设置，用于设置x轴、y轴的最小值、最大值、刻度数、是否显示，线条宽度、是否平滑等。（不支持动态修改）,量规图不生效。 |
 | datasets          | Array\<ChartDataset>               | -      | 否   | 数据集合，用于设置多条数据集及其背景色，量规图不生效。       |
 | segments          | DataSegment \| Array\<DataSegment> |        | 否   | 进度类、加载类和占比类圆形图表使用的数据结构。<br/>DataSegment针对进度类和加载类圆形图表使用，Array\<DataSegment>针对占比类图标使用，DataSegment最多9个。 |
-| effects           | boolean                            | true   | 否   | 是否开启占比类、进度类圆形图表特效。                         |
+| effects           | boolean                            | true   | 否   | 是否开启占比类、进度类圆形图表特效。<br/>默认值：true，表示开启占比类、进度类圆形图表特效。                         |
 | animationduration | number                             | 3000   | 否   | 设置占比类圆形图表展开动画时长，单位为ms。                   |
 
   **表1** ChartOptions
@@ -40,7 +40,7 @@
 | strokeColor | &lt;color&gt;                            | \#ff6384 | 否    | 线条颜色，仅线形图支持。         |
 | fillColor   | &lt;color&gt;                            | \#ff6384 | 否    | 填充颜色，线形图表示填充的渐变颜色。   |
 | data        | Array&lt;number&gt;&nbsp;\|&nbsp;Array\<Point&gt; | -        | 是    | 设置绘制线或柱中的点集。         |
-| gradient    | boolean                                  | false    | 否    | 设置是否显示填充渐变颜色，仅线形图支持。 |
+| gradient    | boolean                                  | false    | 否    | 设置是否显示填充渐变颜色，仅线形图支持。<br/>默认值：false，表示设置不显示填充渐变颜色。 |
 
   **表3** ChartAxis
 
@@ -49,7 +49,7 @@
 | min      | number        | 0        | 否    | 轴的最小值，不支持负数，仅线形图支持。                      |
 | max      | number        | 100      | 否    | 轴的最大值，不支持负数，仅线形图支持。                      |
 | axisTick | number        | 10       | 否    | 轴显示的刻度数量。<br/>仅支持1~20，且具体显示的效果与如下计算值有关（图的宽度所占的像素/（max-min））。在柱状图中，每组数据显示的柱子数量与刻度数量一致，且柱子显示在刻度处。 |
-| display  | boolean       | false    | 否    | 是否显示轴。                                   |
+| display  | boolean       | false    | 否    | 是否显示轴。<br/>默认值：false，表示不显示轴。                                   |
 | color    | &lt;color&gt; | \#c0c0c0 | 否    | 轴颜色。                                     |
 
   **表4** ChartSeries
@@ -67,7 +67,7 @@
 | 名称     | 类型             | 默认值   | 必填   | 描述    |
 | ------ | -------------- | ----- | ---- | ----- |
 | width  | &lt;length&gt; | 1px   | 否    | 线宽设置。 |
-| smooth | boolean        | false | 否    | 是否平滑。 |
+| smooth | boolean        | false | 否    | 是否平滑。<br/>默认值：false，表示不做平滑处理。 |
 
   **表6** PointStyle
 
@@ -84,7 +84,7 @@
 | 名称       | 类型             | 默认值   | 必填   | 描述                                       |
 | -------- | -------------- | ----- | ---- | ---------------------------------------- |
 | margin   | &lt;length&gt; | 1     | 否    | 擦除点的个数（最新绘制的点与最老的点之间的横向距离）。<br>margin和topPoint/bottomPoint/headPoint同时使用时，有概率出现point正好位于擦除区域的情况，导致point不可见，因此不建议同时使用。 |
-| gradient | boolean        | false | 否    | 是否需要渐变擦除。                                |
+| gradient | boolean        | false | 否    | 是否需要渐变擦除。<br/>默认值：false，表示不需要渐变擦除。                                |
 
   **表8** Point
 

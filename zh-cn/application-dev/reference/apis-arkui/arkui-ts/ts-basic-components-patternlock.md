@@ -194,7 +194,7 @@ activateCircleStyle(options: Optional\<CircleStyleOptions\>)
 | ------------- | ------- | ---- | -------- |
 | color | [ResourceColor](ts-types.md#resourcecolor) | 否 | 背景圆环颜色。 <br/>默认值：与pathColor值相同<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | radius  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 背景圆环的半径。<br/>默认值：circleRadius的11/6<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
-| enableWaveEffect | boolean | 否 | 波浪效果开关。<br/>默认值：true<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
+| enableWaveEffect | boolean | 否 | 波浪效果开关。<br/>默认值：true，表示波浪效果开关打开，显示波浪效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
 | enableForeground<sup>15+</sup> | boolean | 否 | 背景圆环是否在前景显示。<br/>默认值：false，背景圆环不在前景显示。 <br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
 ### skipUnselectedPoint<sup>15+</sup>
@@ -311,9 +311,9 @@ setChallengeResult(result: PatternLockChallengeResult): void
 @Entry
 @Component
 struct PatternLockExample {
-  @State passwords: Number[] = []
-  @State message: string = 'please input password!'
-  private patternLockController: PatternLockController = new PatternLockController()
+  @State passwords: Number[] = [];
+  @State message: string = 'please input password!';
+  private patternLockController: PatternLockController = new PatternLockController();
 
   build() {
     Column() {
@@ -328,7 +328,7 @@ struct PatternLockExample {
         .backgroundColor('#F5F5F5')
         .autoReset(true)
         .onDotConnect((index: number) => {
-          console.log("onDotConnect index: " + index)
+          console.log("onDotConnect index: " + index);
         })
     }.width('100%').height('100%')
   }
@@ -347,14 +347,14 @@ struct PatternLockExample {
 
 ```ts
 // xxx.ets
-import { LengthUnit } from '@kit.ArkUI'
+import { LengthUnit } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct PatternLockExample {
-  @State passwords: Number[] = []
-  @State message: string = 'please input password!'
-  private patternLockController: PatternLockController = new PatternLockController()
+  @State passwords: Number[] = [];
+  @State message: string = 'please input password!';
+  private patternLockController: PatternLockController = new PatternLockController();
 
   build() {
     Column() {
@@ -374,36 +374,36 @@ struct PatternLockExample {
           enableWaveEffect: true
         })
         .onDotConnect((index: number) => {
-          console.log("onDotConnect index: " + index)
+          console.log("onDotConnect index: " + index);
         })
         .onPatternComplete((input: Array<number>) => {
           // 输入的密码长度小于5时，提示重新输入
           if (input.length < 5) {
-            this.message = 'The password length needs to be greater than 5, please enter again.'
-            return
+            this.message = 'The password length needs to be greater than 5, please enter again.';
+            return;
           }
           // 判断密码长度是否大于0
           if (this.passwords.length > 0) {
             // 判断两次输入的密码是否相同，相同则提示密码设置成功，否则提示重新输入
             if (this.passwords.toString() === input.toString()) {
-              this.passwords = input
-              this.message = 'Set password successfully: ' + this.passwords.toString()
-              this.patternLockController.setChallengeResult(PatternLockChallengeResult.CORRECT)
+              this.passwords = input;
+              this.message = 'Set password successfully: ' + this.passwords.toString();
+              this.patternLockController.setChallengeResult(PatternLockChallengeResult.CORRECT);
             } else {
-              this.message = 'Inconsistent passwords, please enter again.'
-              this.patternLockController.setChallengeResult(PatternLockChallengeResult.WRONG)
+              this.message = 'Inconsistent passwords, please enter again.';
+              this.patternLockController.setChallengeResult(PatternLockChallengeResult.WRONG);
             }
           } else {
             // 提示第二次输入密码
-            this.passwords = input
-            this.message = "Please enter again."
+            this.passwords = input;
+            this.message = "Please enter again.";
           }
         })
       Button('Reset PatternLock').margin(30).onClick(() => {
         // 重置密码锁
-        this.patternLockController.reset()
-        this.passwords = []
-        this.message = 'Please input password'
+        this.patternLockController.reset();
+        this.passwords = [];
+        this.message = 'Please input password';
       })
     }.width('100%').height('100%')
   }
