@@ -358,7 +358,7 @@ on(type: 'pinch', receiver: Callback&lt;[Pinch](js-apis-multimodalinput-gesturee
 **示例：**
 
 ```js
-import type { Pinch } from '@kit.InputKit';
+import { Pinch } from '@kit.InputKit';
 
 try {
   inputMonitor.on('pinch', (pinchEvent) => {
@@ -670,7 +670,7 @@ on(type: 'rotate', fingers: number, receiver: Callback&lt;Rotate&gt;): void
 **示例：**
 
 ```js
-import type { Rotate } from '@kit.InputKit';
+import { Rotate } from '@kit.InputKit';
 
 try {
   inputMonitor.on('rotate', 2, (rotateEvent: Rotate) => {
@@ -777,7 +777,7 @@ on(type: 'pinch', fingers: number, receiver: Callback&lt;Pinch&gt;): void
 **示例：**
 
 ```js
-import type { Pinch } from '@kit.InputKit';
+import { Pinch } from '@kit.InputKit';
 
 try {
   inputMonitor.on('pinch', 2, (pinchEvent: Pinch) => {
