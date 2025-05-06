@@ -867,7 +867,7 @@ getPrimaryText(): string
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | 纯文本内容。pasteData中没有纯文本内容时，该接口返回undefined。 |
+| string | 纯文本内容。剪贴板内容对象中没有纯文本内容时，默认返回为undefined。 |
 
 **示例：**
 
@@ -890,7 +890,7 @@ getPrimaryHtml(): string
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | HTML内容。pasteData中没有内容时，该接口返回undefined。 |
+| string | HTML内容。剪贴板内容对象中没有HTML内容时，默认返回为undefined。 |
 
 **示例：**
 
@@ -914,7 +914,7 @@ getPrimaryWant(): Want
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Want对象内容。pasteData中没有内容时，该接口返回undefined。 |
+| [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Want对象内容。剪贴板内容对象中没有Want内容时，默认返回为undefined。 |
 
 **示例：**
 
@@ -943,7 +943,7 @@ getPrimaryUri(): string
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | URI内容。pasteData中没有内容时，该接口返回undefined。 |
+| string | URI内容。剪贴板内容对象中没有URI内容时，默认返回为undefined。 |
 
 **示例：**
 
@@ -966,7 +966,7 @@ getPrimaryPixelMap(): image.PixelMap
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | PixelMap内容。pasteData中没有内容时，该接口返回undefined。 |
+| [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | PixelMap内容。剪贴板内容对象中没有PixelMap内容时，默认返回为undefined。 |
 
 **示例：**
 
