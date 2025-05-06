@@ -90,7 +90,7 @@ deleteStore(context: Context, config: StoreConfig): Promise&lt;void&gt;
 
 使用指定的数据库文件配置删除数据库，使用Promise异步回调。
 
-删除前，如果数据库未关闭，建议使用[close](#close)接口关闭数据后再进行删除。删除成功后，打开的数据库句柄已无效，建议将数据库对象置为null，不再使用。
+删除前，如果数据库未关闭，建议使用[close](#close)接口关闭数据库后再进行删除。删除成功后，打开的数据库句柄已无效，建议将数据库对象置为null，不再使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
@@ -508,8 +508,6 @@ read(gql: string): Promise&lt;Result&gt;
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-
-let store: graphStore.GraphStore | null = null;
 
 const QUERY_PATH_GQL = "MATCH path=(a:Person {name : \'name_1\'})-[]->{2, 2}(b:Person {name : \'name_3\'}) RETURN path;";
 if(store != null) {
