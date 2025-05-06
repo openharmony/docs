@@ -1,6 +1,6 @@
 # @ohos.vibrator (振动)
 
-vibrator模块提供控制马达振动启、停的能力。
+vibrator模块提供控制设备马达振动的能力。包括启动指定时长、预置效果、自定义文件等模式的振动；停止指定时长、预置效果或所有模式的振动。
 
 > **说明：**
 >
@@ -29,9 +29,9 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: Asy
 
 | 参数名    | 类型                                   | 必填 | 说明                                                         |
 | --------- | -------------------------------------- | ---- | :----------------------------------------------------------- |
-| effect    | [VibrateEffect](#vibrateeffect9)       | 是   | 马达振动效果，支持四种：<br>1、[VibrateTime](#vibratetime9)：按照指定持续时间触发马达振动；<br>2、[VibratePreset](#vibratepreset9)：按照预置振动效果触发马达振动；<br>3、[VibrateFromFile](#vibratefromfile10)：按照自定义振动配置文件触发马达振动；<br/>4、[VibrateFromPattern<sup>18+</sup>](#vibratefrompattern18)：按照自定义振动效果触发马达振动。 |
+| effect    | [VibrateEffect](#vibrateeffect9)       | 是   | 马达振动效果，支持四种：<br>1、[VibrateTime](#vibratetime9)：按照指定时长触发马达振动，无起振/无刹车，不推荐使用此振动类型；<br>2、[VibratePreset](#vibratepreset9)：按照预置振动效果触发马达振动，适用于短振场景下调用；<br>3、[VibrateFromFile](#vibratefromfile10)：按照自定义振动效果触发马达振动，适用于短振场景下调用；<br/>4、[VibrateFromPattern<sup>18+</sup>](#vibratefrompattern18)：按照自定义振动效果触发马达振动。 |
 | attribute | [VibrateAttribute](#vibrateattribute9) | 是   | 马达振动属性。                                               |
-| callback  | AsyncCallback&lt;void&gt;              | 是   | 回调函数，当马达振动成功，err为undefined，否则为错误对象。   |
+| callback  | AsyncCallback&lt;void&gt;              | 是   | 回调函数。当马达振动成功，err为undefined；否则为错误对象，包含错误码和错误信息。 |
 
 **错误码**：
 
@@ -46,7 +46,99 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: Asy
 
 **示例**：
 
-按照指定持续时间触发马达振动：
+1、按照预置振动效果触发马达振动：
+
+```ts
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  // 查询是否支持'haptic.clock.timer'
+  vibrator.isSupportEffect('haptic.clock.timer', (err: BusinessError, state: boolean) => {
+    if (err) {
+      console.error(`Failed to query effect. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info('Succeed in querying effect');
+    if (state) {
+      try {
+        vibrator.startVibration({
+          type: 'preset',
+          effectId: 'haptic.clock.timer',
+          count: 1,
+        }, {
+          usage: 'alarm' // 根据实际选择类型归属不同的开关管控
+        }, (error: BusinessError) => {
+          if (error) {
+            console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+			return;
+          }
+          console.info('Succeed in starting vibration');
+          
+        });
+      } catch (err) {
+        let e: BusinessError = err as BusinessError;
+		console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+      }
+    }
+  })
+} catch (error) {
+  let e: BusinessError = error as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
+2、按照自定义振动配置文件触发马达振动：
+
+```ts
+import { vibrator } from '@kit.SensorServiceKit';
+import { resourceManager } from '@kit.LocalizationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+const fileName: string = 'xxx.json';
+
+@Entry
+@Component
+struct Index {
+  uiContext = this.getUIContext();
+
+  build() {
+    Row() {
+      Column() {
+        Button('alarm-file')
+          .onClick(() => {
+            let rawFd: resourceManager.RawFileDescriptor | undefined = this.uiContext.getHostContext()?.resourceManager.getRawFdSync(fileName);
+            if (rawFd != undefined) {
+              try {
+                vibrator.startVibration({
+                  type: "file",
+                  hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
+                }, {
+                  id: 0,
+                  usage: 'alarm' // 根据实际选择类型归属不同的开关管控
+                }, (error: BusinessError) => {
+                  if (error) {
+                    console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+                    return;
+                  }
+                  console.info('Succeed in starting vibration');
+                });
+              } catch (err) {
+                let e: BusinessError = err as BusinessError;
+                console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+              }
+            }
+            this.uiContext.getHostContext()?.resourceManager.closeRawFdSync(fileName);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+3、按照指定时长触发马达振动：
 
 ```ts
 import { vibrator } from '@kit.SensorServiceKit';
@@ -72,34 +164,87 @@ try {
 }
 ```
 
-按照预置振动效果触发马达振动：
+## vibrator.startVibration<sup>9+</sup>
+
+startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;void&gt;
+
+根据指定的振动效果和振动属性触发马达振动。使用promise异步回调。
+
+**需要权限**：ohos.permission.VIBRATE
+
+**原子化服务API**：从API Version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Sensors.MiscDevice
+
+**参数**：
+
+| 参数名    | 类型                                   | 必填 | 说明                                                         |
+| --------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| effect    | [VibrateEffect](#vibrateeffect9)       | 是   | 马达振动效果，支持四种：<br>1、[VibrateTime](#vibratetime9)：按照指定时长触发马达振动，无起振/无刹车，不推荐使用此振动类型；<br>2、[VibratePreset](#vibratepreset9)：按照预置振动效果触发马达振动，适用于短振场景下调用；<br>3、[VibrateFromFile](#vibratefromfile10)：按照自定义振动配置文件触发马达振动；<br/>4、[VibrateFromPattern<sup>18+</sup>](#vibratefrompattern18)：按照自定义振动效果触发马达振动。 |
+| attribute | [VibrateAttribute](#vibrateattribute9) | 是   | 马达振动属性。                                               |
+
+**返回值**：
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 801      | Capability not supported.                                    |
+| 14600101 | Device operation failed.                                     |
+
+**示例**：
+
+1、按照预置振动效果触发马达振动：
 
 ```ts
 import { vibrator } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  vibrator.startVibration({
-    type: 'preset',
-    effectId: 'haptic.clock.timer',
-    count: 1,
-  }, {
-    id: 0,
-    usage: 'alarm' // 根据实际选择类型归属不同的开关管控
-  }, (error: BusinessError) => {
-    if (error) {
-      console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+  // 查询是否支持'haptic.clock.timer'
+  vibrator.isSupportEffect('haptic.clock.timer', (err: BusinessError, state: boolean) => {
+    if (err) {
+      console.error(`Failed to query effect. Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info('Succeed in starting vibration');
-  });
-} catch (err) {
-  let e: BusinessError = err as BusinessError;
+    console.info('Succeed in querying effect');
+    if (state) {
+      try {
+        vibrator.startVibration({
+          type: 'preset',
+          effectId: 'haptic.clock.timer',
+          count: 1,
+        }, {
+          usage: 'alarm' // 根据实际选择类型归属不同的开关管控
+        }, (error: BusinessError) => {
+          if (error) {
+            console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+			return;
+          }
+          console.info('Succeed in starting vibration');
+          
+        });
+      } catch (err) {
+        let e: BusinessError = err as BusinessError;
+		console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+      }
+    }
+  })
+} catch (error) {
+  let e: BusinessError = error as BusinessError;
   console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
-按照自定义振动配置文件触发马达振动：
+2、按照自定义振动配置文件触发马达振动：
 
 ```ts
 import { vibrator } from '@kit.SensorServiceKit';
@@ -149,45 +294,7 @@ struct Index {
 }
 ```
 
-## vibrator.startVibration<sup>9+</sup>
-
-startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;void&gt;
-
-根据指定的振动效果和振动属性触发马达振动。使用promise异步回调。
-
-**需要权限**：ohos.permission.VIBRATE
-
-**原子化服务API**：从API Version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.Sensors.MiscDevice
-
-**参数**：
-
-| 参数名    | 类型                                   | 必填 | 说明                                                         |
-| --------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| effect    | [VibrateEffect](#vibrateeffect9)       | 是   | 马达振动效果，支持四种：<br>1、[VibrateTime](#vibratetime9)：按照指定持续时间触发马达振动；<br>2、[VibratePreset](#vibratepreset9)：按照预置振动效果触发马达振动；<br>3、[VibrateFromFile](#vibratefromfile10)：按照自定义振动配置文件触发马达振动；<br/>4、[VibrateFromPattern<sup>18+</sup>](#vibratefrompattern18)：按照自定义振动效果触发马达振动。 |
-| attribute | [VibrateAttribute](#vibrateattribute9) | 是   | 马达振动属性。                                               |
-
-**返回值**：
-
-| 类型                | 说明                                   |
-| ------------------- | -------------------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)和[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 201      | Permission denied.                                           |
-| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 801      | Capability not supported.                                    |
-| 14600101 | Device operation failed.                                     |
-
-**示例**：
-
-按照指定持续时间触发马达振动：
+3、按照指定时长触发马达振动：
 
 ```ts
 import { vibrator } from '@kit.SensorServiceKit';
@@ -208,81 +315,6 @@ try {
 } catch (err) {
   let e: BusinessError = err as BusinessError;
   console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-}
-```
-
-按照预置振动效果触发马达振动：
-
-```ts
-import { vibrator } from '@kit.SensorServiceKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-try {
-  vibrator.startVibration({
-    type: 'preset',
-    effectId: 'haptic.clock.timer',
-    count: 1,
-  }, {
-    id: 0,
-    usage: 'alarm' // 根据实际选择类型归属不同的开关管控
-  }).then(() => {
-    console.info('Succeed in starting vibration');
-  }, (error: BusinessError) => {
-    console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
-  });
-} catch (err) {
-  let e: BusinessError = err as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-}
-```
-
-按照自定义振动配置文件触发马达振动：
-
-```ts
-import { vibrator } from '@kit.SensorServiceKit';
-import { resourceManager } from '@kit.LocalizationKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-const fileName: string = 'xxx.json';
-
-@Entry
-@Component
-struct Index {
-  uiContext = this.getUIContext();
-
-  build() {
-    Row() {
-      Column() {
-        Button('alarm-file')
-          .onClick(() => {
-            let rawFd: resourceManager.RawFileDescriptor | undefined = this.uiContext.getHostContext()?.resourceManager.getRawFdSync(fileName);
-            if (rawFd != undefined) {
-              try {
-                vibrator.startVibration({
-                  type: "file",
-                  hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
-                }, {
-                  id: 0,
-                  usage: 'alarm' // 根据实际选择类型归属不同的开关管控
-                }, (error: BusinessError) => {
-                  if (error) {
-                    console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
-                    return;
-                  }
-                  console.info('Succeed in starting vibration');
-                });
-              } catch (err) {
-                let e: BusinessError = err as BusinessError;
-                console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-              }
-            }
-            this.uiContext.getHostContext()?.resourceManager.closeRawFdSync(fileName);
-          })
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
 }
 ```
 
@@ -314,14 +346,14 @@ stopVibration(stopMode: VibratorStopMode, callback: AsyncCallback&lt;void&gt;): 
 
 **示例**：
 
-停止固定时长振动：
+停止指定时长振动：
 
 ```ts
 import { vibrator } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  // 按照固定时长振动
+  // 按照指定时长振动
   vibrator.startVibration({
     type: 'time',
     duration: 1000,
@@ -409,14 +441,14 @@ stopVibration(stopMode: VibratorStopMode): Promise&lt;void&gt;
 
 **参数**：
 
-| 参数名   | 类型                                  | 必填 | 说明                     |
-| -------- | ------------------------------------- | ---- | ------------------------ |
-| stopMode | [VibratorStopMode](#vibratorstopmode) | 是   | 指定的停止振动模式，支持两种：<br>VIBRATOR_STOP_MODE_TIME：停止固定时长振动；<br>VIBRATOR_STOP_MODE_PRESET：停止预置振动。<br>此接口无法停止自定义振动，请使用[vibrator.stopVibration<sup>10+</sup>](#vibratorstopvibration10-1)。 |
+| 参数名   | 类型                                  | 必填 | 说明                                                         |
+| -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
+| stopMode | [VibratorStopMode](#vibratorstopmode) | 是   | 支持停止两种指定的振动模式：<br>VIBRATOR_STOP_MODE_TIME：停止指定时长振动；<br>VIBRATOR_STOP_MODE_PRESET：停止预置振动。<br>此接口无法停止自定义振动，请使用[vibrator.stopVibration<sup>10+</sup>](#vibratorstopvibration10-1)。 |
 
 **返回值**：
 
-| 类型                | 说明                                   |
-| ------------------- | -------------------------------------- |
+| 类型                | 说明          |
+| ------------------- | ------------- |
 | Promise&lt;void&gt; | Promise对象。 |
 
 **错误码**：
@@ -430,14 +462,14 @@ stopVibration(stopMode: VibratorStopMode): Promise&lt;void&gt;
 
 **示例**：
 
-停止固定时长振动：
+停止指定时长振动：
 
 ```ts
 import { vibrator } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  // 按照固定时长振动
+  // 按照指定时长振动
   vibrator.startVibration({
     type: 'time',
     duration: 1000,
@@ -644,10 +676,10 @@ isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 **参数**：
 
-| 参数名   | 类型                         | 必填 | 说明                                                   |
-| -------- | ---------------------------- | ---- | ------------------------------------------------------ |
-| effectId | string                       | 是   | 预置的振动效果。                                           |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，当返回true则表示支持该effectId，否则不支持。 |
+| 参数名   | 类型                         | 必填 | 说明                                                        |
+| -------- | ---------------------------- | ---- | ----------------------------------------------------------- |
+| effectId | string                       | 是   | 预置的振动效果。                                            |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，当返回true则表示支持该effectId，返回false不支持。 |
 
 **错误码**：
 
@@ -710,15 +742,15 @@ isSupportEffect(effectId: string): Promise&lt;boolean&gt;
 
 **参数**：
 
-| 参数名   | 类型   | 必填 | 说明         |
-| -------- | ------ | ---- | ------------ |
+| 参数名   | 类型   | 必填 | 说明             |
+| -------- | ------ | ---- | ---------------- |
 | effectId | string | 是   | 预置的振动效果。 |
 
 **返回值**： 
 
-| 类型                   | 说明                                                      |
-| ---------------------- | --------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise对象。当返回true则表示支持该effectId，否则不支持。 |
+| 类型                   | 说明                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| Promise&lt;boolean&gt; | Promise对象。当返回true则表示支持该effectId，返回false不支持。 |
 
 **错误码**：
 
@@ -782,9 +814,9 @@ isSupportEffectSync(effectId: string): boolean
 
 **返回值**：
 
-| 类型    | 说明                                                   |
-| ------- | ------------------------------------------------------ |
-| boolean | 返回对象。当返回true则表示支持该effectId，否则不支持。 |
+| 类型    | 说明                                                        |
+| ------- | ----------------------------------------------------------- |
+| boolean | 返回对象。当返回true则表示支持该effectId，返回false不支持。 |
 
 **错误码**：
 
@@ -821,9 +853,9 @@ isHdHapticSupported(): boolean
 
 **返回值**：
 
-| 类型    | 说明                                               |
-| ------- | -------------------------------------------------- |
-| boolean | 返回对象，当返回true表示支持高清振动，否则不支持。 |
+| 类型    | 说明                                                      |
+| ------- | --------------------------------------------------------- |
+| boolean | 返回对象，当返回true表示支持高清振动，返回false不支持。。 |
 
 **错误码**：
 
@@ -1021,17 +1053,19 @@ try {
 
 ## EffectId
 
-预置的振动效果。
+预置的振动效果。在调用[vibrator.startVibration9+](#vibratorstartvibration9)或[vibrator.stopVibration9+](#vibratorstopvibration9-1)接口下发[VibratePreset](#vibratepreset9)形式振动的时候需要使用此参数类型。此参数值种类多样，'haptic.clock.timer'为其中一种。
+
+注意：由于设备存在多样性，不同的设备可能预置不同的效果，建议使用预置效果前先使用[vibrator.isSupportEffect](#vibratorissupporteffect10-1)<sup>10+</sup>接口查询当前设备是否支持该预置效果。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
 | 名称               | 值                   | 说明                             |
 | ------------------ | -------------------- | -------------------------------- |
-| EFFECT_CLOCK_TIMER | 'haptic.clock.timer' | 描述用户调整计时器时的振动效果。|
+| EFFECT_CLOCK_TIMER | 'haptic.clock.timer' | 描述用户调整计时器时的振动效果。 |
 
 ## HapticFeedback<sup>12+</sup>
 
-简单而通用的振动效果。
+简单而通用的振动效果。根据各设备的马达器件不同，同一振动效果的频率会有差异，但效果的频率趋向是统一的。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -1040,70 +1074,70 @@ try {
 | EFFECT_SOFT                         | 'haptic.effect.soft'    | 较松散的振动效果，频率偏低。 |
 | EFFECT_HARD                         | 'haptic.effect.hard'    | 较沉重的振动效果，频率居中。 |
 | EFFECT_SHARP                        | 'haptic.effect.sharp'   | 较尖锐的振动效果，频率偏高。 |
-| EFFECT_NOTICE_SUCCESS<sup>18+</sup> | 'haptic.notice.success' | 描述成功通知的振动效果。     |
-| EFFECT_NOTICE_FAILURE<sup>18+</sup> | 'haptic.notice.fail'    | 描述失败通知的振动效果。     |
-| EFFECT_NOTICE_WARNING<sup>18+</sup> | 'haptic.notice.warning' | 描述警告通知的振动效果。     |
+| EFFECT_NOTICE_SUCCESS<sup>18+</sup> | 'haptic.notice.success' | 表达成功通知的振动效果。     |
+| EFFECT_NOTICE_FAILURE<sup>18+</sup> | 'haptic.notice.fail'    | 表达失败通知的振动效果。     |
+| EFFECT_NOTICE_WARNING<sup>18+</sup> | 'haptic.notice.warning' | 表达警告通知的振动效果。     |
 
 ## VibratorStopMode
 
-停止振动的模式。
+停止振动的模式。在调用[vibrator.stopVibration9+](#vibratorstopvibration9)或[vibrator.stopVibration9+](#vibratorstopvibration9-1)接口时，需要使用此参数类型指定停止的振动模式。停止模式和[VibrateEffect9+](#vibrateeffect9)中下发的模式为对应关系。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
-| 名称                      | 值       | 说明                           |
-| ------------------------- | -------- | ------------------------------ |
+| 名称                      | 值       | 说明                     |
+| ------------------------- | -------- | ------------------------ |
 | VIBRATOR_STOP_MODE_TIME   | 'time'   | 停止duration模式的振动。 |
-| VIBRATOR_STOP_MODE_PRESET | 'preset' | 停止预置EffectId的振动。|
+| VIBRATOR_STOP_MODE_PRESET | 'preset' | 停止预置EffectId的振动。 |
 
 ## VibrateEffect<sup>9+</sup>
 
-马达振动效果，支持以下三种。
+马达振动效果，支持以下三种。在调用[vibrator.startVibration9+](#vibratorstartvibration9)或[vibrator.startVibration9+](#vibratorstartvibration9-1)接口时，此参数的三种类型表示以三种不同的形式触发振动。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
-| 类型                             | 说明                           |
-| -------------------------------- | ------------------------------ |
-| [VibrateTime](#vibratetime9) | 按照指定持续时间触发马达振动。<br/>**原子化服务API：** 从API Version 11开始，该接口支持在原子化服务中使用。 |
-| [VibratePreset](#vibratepreset9) | 按照预置振动类型触发马达振动。 |
-| [VibrateFromFile](#vibratefromfile10) | 按照自定义振动配置文件触发马达振动。 |
-| VibrateFromPattern<sup>18+</sup> | 按照自定义振动效果触发马达振动。 |
+| 类型                                  | 说明                                                         |
+| ------------------------------------- | ------------------------------------------------------------ |
+| [VibrateTime](#vibratetime9)          | 按照指定时长触发马达振动。<br/>**原子化服务API：** 从API Version 11开始，该接口支持在原子化服务中使用。 |
+| [VibratePreset](#vibratepreset9)      | 按照预置振动类型触发马达振动。                               |
+| [VibrateFromFile](#vibratefromfile10) | 按照自定义振动配置文件触发马达振动。                         |
+| VibrateFromPattern<sup>18+</sup>      | 按照自定义振动效果触发马达振动。                             |
 
 ## VibrateTime<sup>9+</sup>
 
-固定时长振动类型。
+指定时长振动类型。
 
 **原子化服务API**：从API Version 11开始，该接口在支持原子化服务中使用。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
-| 名称     | 类型    | 必填 | 说明                           |
-| -------- | ------ | ----- | ------------------------------ |
-| type     | 'time' |  是   | 值为'time'，按照指定持续时间触发马达振动。 |
-| duration | number |  是   | 马达持续振动时长, 单位ms。         |
+| 名称     | 类型   | 必填 | 说明                                   |
+| -------- | ------ | ---- | -------------------------------------- |
+| type     | 'time' | 是   | 值为'time'，按照指定时长触发马达振动。 |
+| duration | number | 是   | 马达持续振动时长, 单位ms。             |
 
 ## VibratePreset<sup>9+</sup>
 
-预置振动类型。
+预置振动类型。当调用[vibrator.startVibration9+](#vibratorstartvibration9)或[vibrator.startVibration9+](#vibratorstartvibration9-1)时，[VibrateEffect9+](#vibrateeffect9)参数的值可以为VibratePreset，表示触发预置振动类型。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
-| 名称     | 类型      | 必填 | 说明                           |
-| -------- | -------- | ---- |------------------------------ |
-| type     | 'preset' |  是  | 值为'preset'，按照预置振动效果触发马达振动。 |
-| effectId | string   |  是  | 预置的振动效果ID。             |
-| count    | number   |  否  | 可选参数，振动的重复次数，默认值为1。 |
-| intensity<sup>12+</sup> | number | 否 | 可选参数，振动调节强度，范围为0到100，默认值为100。若振动效果不支持强度调节或设备不支持时，则按默认强度振动。 |
+| 名称                    | 类型     | 必填 | 说明                                                         |
+| ----------------------- | -------- | ---- | ------------------------------------------------------------ |
+| type                    | 'preset' | 是   | 值为'preset'，按照预置振动效果触发马达振动。                 |
+| effectId                | string   | 是   | 预置的振动效果ID。                                           |
+| count                   | number   | 否   | 可选参数，振动的重复次数，默认值为1。                        |
+| intensity<sup>12+</sup> | number   | 否   | 可选参数，振动调节强度，范围为0到100，默认值为100。若振动效果不支持强度调节或设备不支持时，则按默认强度振动。 |
 
 ## VibrateFromFile<sup>10+</sup>
 
-自定义振动类型，仅部分设备支持，当设备不支持此振动类型时，返回[设备不支持错误码](../errorcode-universal.md)。
+自定义振动类型。仅部分设备支持。当设备不支持此振动类型时，返回设备不支持错误码。当调用[vibrator.startVibration9+](#vibratorstartvibration9)或[vibrator.startVibration9+](#vibratorstartvibration9-1)时，[VibrateEffect9+](#vibrateeffect9)参数的值可以为VibrateFromFile，表示触发自定义振动类型。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
-| 名称     | 类型       | 必填 | 说明                           |
-| -------- | --------  | ---- | ------------------------------ |
-| type     | 'file' |  是  | 值为'file'，按照振动配置文件触发马达振动。 |
-| hapticFd | [HapticFileDescriptor](#hapticfiledescriptor10)<sup>10+</sup> | 是 | 振动配置文件的描述符。|
+| 名称     | 类型                                                         | 必填 | 说明                                       |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
+| type     | 'file'                                                       | 是   | 值为'file'，按照振动配置文件触发马达振动。 |
+| hapticFd | [HapticFileDescriptor](#hapticfiledescriptor10)<sup>10+</sup> | 是   | 振动配置文件的描述符。                     |
 
 ## HapticFileDescriptor<sup>10+</sup>
 
@@ -1111,11 +1145,11 @@ try {
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
-| 名称     | 类型      |  必填  | 说明                           |
-| -------- | -------- |--------| ------------------------------|
-| fd       | number   |  是    | 资源文件描述符。                |
-| offset   | number   |  否    | 距文件起始位置的偏移量，单位为字节，默认为文件起始位置，不可超出文件有效范围。|
-| length   | number   |  否    | 资源长度，单位为字节，默认值为从偏移位置至文件结尾的长度，不可超出文件有效范围。|
+| 名称   | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| fd     | number | 是   | 资源文件描述符。                                             |
+| offset | number | 否   | 距文件起始位置的偏移量，单位为字节，默认为文件起始位置，不可超出文件有效范围。 |
+| length | number | 否   | 资源长度，单位为字节，默认值为从偏移位置至文件结尾的长度，不可超出文件有效范围。 |
 
 ## VibratorEventType<sup>18+</sup>
 
@@ -1211,10 +1245,10 @@ try {
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
-| 名称  | 类型 | 必填 | 说明           |
-| ----- | ------ | ---- | -------------- |
-| id    | number      |  否 | 振动器id， 默认值为0。    |
-| usage | [Usage](#usage9) | 是 | 马达振动的使用场景。 |
+| 名称  | 类型             | 必填 | 说明                   |
+| ----- | ---------------- | ---- | ---------------------- |
+| id    | number           | 否   | 振动器ID， 默认值为0。 |
+| usage | [Usage](#usage9) | 是   | 马达振动的使用场景。   |
 
 ## Usage<sup>9+</sup>
 
@@ -1227,17 +1261,18 @@ type Usage = 'unknown' | 'alarm' | 'ring' | 'notification' | 'communication' | '
 **系统能力**：SystemCapability.Sensors.MiscDevice
 <!--RP1-->
 
-| 类型     | 说明                           |
-| ---------------- | ------------------------------ |
-| 'unknown'     | 没有明确使用场景，最低优先级，值固定为'unknown'字符串。 |
-| 'alarm'      | 用于警报场景，值固定为'alarm'字符串。 |
-| 'ring'         | 用于铃声场景，值固定为'ring'字符串。 |
-| 'notification' | 用于通知场景，值固定为'notification'字符串。 |
-| 'communication' | 用于通信场景，值固定为'communication'字符串。 |
-| 'touch'        | 用于触摸场景，值固定为'touch'字符串。 |
-| 'media'        | 用于多媒体场景，值固定为'media'字符串。 |
-| 'physicalFeedback' | 用于物理反馈场景，值固定为'physicalFeedback'字符串。 |
-| 'simulateReality' | 用于模拟现实场景，值固定为'simulateReality'字符串。 |
+| 类型               | 说明                                                    |
+| ------------------ | ------------------------------------------------------- |
+| 'unknown'          | 没有明确使用场景，最低优先级，值固定为'unknown'字符串。 |
+| 'alarm'            | 用于警报场景，值固定为'alarm'字符串。                   |
+| 'ring'             | 用于铃声场景，值固定为'ring'字符串。                    |
+| 'notification'     | 用于通知场景，值固定为'notification'字符串。            |
+| 'communication'    | 用于通信场景，值固定为'communication'字符串。           |
+| 'touch'            | 用于触摸场景，值固定为'touch'字符串。                   |
+| 'media'            | 用于多媒体场景，值固定为'media'字符串。                 |
+| 'physicalFeedback' | 用于物理反馈场景，值固定为'physicalFeedback'字符串。    |
+| 'simulateReality'  | 用于模拟现实场景，值固定为'simulateReality'字符串。     |
+
 <!--RP1End-->
 
 ## vibrator.vibrate<sup>(deprecated)</sup>
@@ -1260,8 +1295,8 @@ vibrate(duration: number): Promise&lt;void&gt;
 
 **返回值**： 
 
-| 类型                | 说明                                   |
-| ------------------- | -------------------------------------- |
+| 类型                | 说明          |
+| ------------------- | ------------- |
 | Promise&lt;void&gt; | Promise对象。 |
 
 **示例**：
@@ -1332,8 +1367,8 @@ vibrate(effectId: EffectId): Promise&lt;void&gt;
 
 **返回值**：
 
-| 类型                | 说明                                   |
-| ------------------- | -------------------------------------- |
+| 类型                | 说明          |
+| ------------------- | ------------- |
 | Promise&lt;void&gt; | Promise对象。 |
 
 **示例**：
@@ -1404,8 +1439,8 @@ stop(stopMode: VibratorStopMode): Promise&lt;void&gt;
 
 **返回值**：
 
-| 类型                | 说明                                   |
-| ------------------- | -------------------------------------- |
+| 类型                | 说明          |
+| ------------------- | ------------- |
 | Promise&lt;void&gt; | Promise对象。 |
 
 **示例**：
