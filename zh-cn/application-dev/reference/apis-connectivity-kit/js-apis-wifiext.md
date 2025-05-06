@@ -18,7 +18,7 @@ import wifiext from '@ohos.wifiext';
 
 enableHotspot(): boolean;
 
-启用WLAN热点功能。
+使能WLAN热点。
 
 **需要权限：** ohos.permission.MANAGE_WIFI_HOTSPOT_EXT
 
@@ -35,7 +35,7 @@ enableHotspot(): boolean;
 
 disableHotspot(): boolean;
 
-去启用WLAN热点功能。
+去使能WLAN热点。
 
 **需要权限：** ohos.permission.MANAGE_WIFI_HOTSPOT_EXT
 
