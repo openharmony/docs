@@ -7913,13 +7913,32 @@ rekey(cryptoParam?: CryptoParam): Promise<void>;
 | 14800028     | SQLite: Some kind of disk I/O error occurred.                |
 | 14800029     | SQLite: The database is full.                                |
 
-**示例：**
+**示例1：**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let cryptoParam: relationalStore.CryptoParam = {
     encryptionKey: new Uint8Array(),
+};
+
+if(store != undefined) {
+  try {
+    (store as relationalStore.RdbStore).rekey(cryptoParam);
+    console.info(`rekey is successful`);
+  } catch (err) {
+    console.error(`rekey is failed, code is ${err.code},message is ${err.message}`);
+  }
+}
+```
+
+**示例2：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let cryptoParam: relationalStore.CryptoParam = {
+    encryptionKey: new Uint8Array([6, 5, 4, 3, 2, 1]),
 };
 
 if(store != undefined) {
