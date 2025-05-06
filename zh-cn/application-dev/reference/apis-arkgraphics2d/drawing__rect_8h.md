@@ -36,3 +36,11 @@
 | void [OH_Drawing_RectSetBottom](_drawing.md#oh_drawing_rectsetbottom) ([OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*rect, float bottom) | 用于设置矩形右下角的纵坐标。  | 
 | void [OH_Drawing_RectCopy](_drawing.md#oh_drawing_rectcopy) ([OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*sRect, [OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*dRect) | 用于将源矩形对象复制到目标矩形对象。  | 
 | void [OH_Drawing_RectDestroy](_drawing.md#oh_drawing_rectdestroy) ([OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*) | 用于销毁矩形对象并回收该对象占有的内存。  | 
+
+<!--RP1-->
+## 相关实例
+
+针对Drawing(C/C++)的开发，有以下相关实例可供参考：
+
+- [NDKAPIDrawing (API14)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/NDKAPIDrawing)
+<!--RP1End-->
