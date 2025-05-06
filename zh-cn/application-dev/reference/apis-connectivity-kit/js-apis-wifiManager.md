@@ -1182,7 +1182,9 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 
 **需要权限：** ohos.permission.GET_WIFI_INFO 。 
 
-当macType是1 - 设备MAC地址时，获取 macAddress 还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限（该权限仅系统应用可申请），无该权限时，macAddress 返回随机MAC地址。
+> **注意：**
+> - 当macType是1（设备MAC地址），获取macAddress还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限（该权限仅系统应用可申请），无该权限时，macAddress返回为空。
+> - 如果应用申请了ohos.permission.GET_WIFI_PEERS_MAC权限（该权限仅系统应用可申请），则返回结果中的bssid为真实BSSID地址，否则为随机设备地址。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -1231,7 +1233,9 @@ getLinkedInfoSync(): WifiLinkedInfo;
 
 **需要权限：** ohos.permission.GET_WIFI_INFO 。 
 
-当macType是1 - 设备MAC地址时，获取 macAddress 还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限（该权限仅系统应用可申请），无该权限时，macAddress 返回随机MAC地址。
+> **注意：**
+> - 当macType是1（设备MAC地址），获取macAddress还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限（该权限仅系统应用可申请），无该权限时，macAddress返回为空。
+> - 如果应用申请了ohos.permission.GET_WIFI_PEERS_MAC权限（该权限仅系统应用可申请），则返回结果中的bssid为真实BSSID地址，否则为随机设备地址。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -2408,7 +2412,7 @@ getMultiLinkedInfo(): &nbsp;Array&lt;WifiLinkedInfo&gt;
 
 > **注意：**
 > - 当macType是1（设备MAC地址），获取macAddress还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限（该权限仅系统应用可申请），无该权限时，macAddress返回为空。
-> - 如果应用申请了ohos.permission.GET_WIFI_PEERS_MAC权限（该权限仅系统应用可申请），则返回结果中的bssid为真实mac地址，否则为随机设备地址。
+> - 如果应用申请了ohos.permission.GET_WIFI_PEERS_MAC权限（该权限仅系统应用可申请），则返回结果中的bssid为真实BSSID地址，否则为随机设备地址。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
