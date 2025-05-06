@@ -288,9 +288,9 @@ type OnRatingChangeCallback = (rating: number) => void
 
 | 名称                       | 类型   | 必填 | 说明                                                         |
 | -------------------------- | ------ | ---- | ------------------------------------------------------------ |
-| backgroundUri<sup>7+</sup> | string | 是   | 未选中的星级的图片链接，可由用户自定义或使用系统默认图片。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| foregroundUri<sup>7+</sup> | string | 是   | 选中的星级的图片路径，可由用户自定义或使用系统默认图片。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| secondaryUri<sup>7+</sup>  | string | 否   | 部分选中的星级的图片路径，可由用户自定义或使用系统默认图片。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| backgroundUri<sup>7+</sup> | ResourceStr | 是   | 未选中的星级的图片链接，可由用户自定义或使用系统默认图片。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>从API version 20开始，该接口支持设置Resource资源。 |
+| foregroundUri<sup>7+</sup> | ResourceStr | 是   | 选中的星级的图片路径，可由用户自定义或使用系统默认图片。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>从API version 20开始，该接口支持设置Resource资源。 |
+| secondaryUri<sup>7+</sup>  | ResourceStr | 否   | 部分选中的星级的图片路径，可由用户自定义或使用系统默认图片。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>从API version 20开始，该接口支持设置Resource资源。 |
 
 ## 示例
 
@@ -586,3 +586,39 @@ struct ratingExample {
 ```
 
 ![rating2](figures/rating2.gif)
+
+### 示例4（通过Resource资源设置评分的样式）
+
+该示例通过Resource资源配置starStyle，实现自定义星级图片链接。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct RatingExample {
+  @State rating: number = 3.5;
+
+  build() {
+    Column() {
+      Rating({ rating: this.rating, indicator: false })
+        .stars(5)
+        .stepSize(0.5)
+        .starStyle({
+          backgroundUri: $r('app.media.imag1'),
+          foregroundUri: $r('app.media.imag2'),
+          secondaryUri: $r('app.media.imag3')
+        })
+        .margin({ top: 24 })
+        .onChange((value: number) => {
+          this.rating = value;
+        })
+      Text('current score is ' + this.rating)
+        .fontSize(16)
+        .fontColor('rgba(24,36,49,0.60)')
+        .margin({ top: 16 })
+    }.width('100%').height('100%').backgroundColor('#F1F3F5')
+  }
+}
+```
+
+![rating1](figures/rating1.gif)
