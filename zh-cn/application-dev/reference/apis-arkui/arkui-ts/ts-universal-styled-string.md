@@ -608,14 +608,13 @@ constructor(value?: GestureStyleInterface)
 
 ## GestureStyleInterface对象说明
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| onClick | Callback\<[ClickEvent](ts-universal-events-click.md#clickevent对象说明)> | 否   | 设置点击事件。 |
-| onLongPress | Callback\<[GestureEvent](./ts-gesture-settings.md#gestureevent对象说明)> | 否   | 设置长按事件。 |
+| onClick | Callback\<[ClickEvent](ts-universal-events-click.md#clickevent对象说明)> | 否   | 设置点击事件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| onLongPress | Callback\<[GestureEvent](./ts-gesture-settings.md#gestureevent对象说明)> | 否   | 设置长按事件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| onTouch<sup>20+</sup> | Callback\<[TouchEvent](ts-universal-events-touch.md#touchevent对象说明)> | 否   | 设置触摸事件。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 ## DecorationOptions<sup>20+</sup>
 
@@ -1386,6 +1385,10 @@ struct styled_string_demo2 {
     onLongPress: () => {
       this.uiContext.getPromptAction().showToast({ message: 'gestureStyleAttr object trigger long press event' })
       this.backgroundColor1 = Color.Orange
+    },
+    onTouch: () => {
+      this.uiContext.getPromptAction().showToast({ message: 'gestureStyleAttr object trigger touch event' })
+      this.backgroundColor1 = Color.Red
     }
   });
   // 创建事件的对象mutableStyledString3
