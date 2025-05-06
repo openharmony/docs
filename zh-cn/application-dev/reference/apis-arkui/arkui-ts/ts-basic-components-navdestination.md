@@ -908,9 +908,9 @@ struct Index {
   @Builder
   MyPageMap(name: string) {
     if (name === 'myPageOne') {
-      MyPageOne()
+      MyPageOne();
     } else {
-      MyPageTwo()
+      MyPageTwo();
     }
   }
 
@@ -918,10 +918,10 @@ struct Index {
     Navigation(this.stack) {
       Column() {
         Button('push PageOne').onClick(() => {
-          this.stack.pushPath({ name: 'myPageOne' })
+          this.stack.pushPath({ name: 'myPageOne' });
         })
         Button('push PageTwo').onClick(() => {
-          this.stack.pushPath({ name: 'myPageTwo' })
+          this.stack.pushPath({ name: 'myPageTwo' });
         })
       }.height('40%').justifyContent(FlexAlign.SpaceAround)
     }.width('100%')
@@ -941,17 +941,17 @@ struct Index {
 @Entry
 @Component
 struct NavDestinationCustomTransition {
-  stack: NavPathStack = new NavPathStack()
+  stack: NavPathStack = new NavPathStack();
 
   @Builder
   pageMap(name: string) {
     if (name) {
-      NavDest()
+      NavDest();
     }
   }
 
   aboutToAppear(): void {
-    this.stack.pushPath({name: 'dest0'})
+    this.stack.pushPath({name: 'dest0'});
   }
 
   build() {
@@ -969,9 +969,9 @@ declare type voidFunc = () => void;
 
 @Component
 struct NavDest {
-  @State name: string = 'NA'
-  @State destWidth: string = '100%'
-  stack: NavPathStack = new NavPathStack()
+  @State name: string = 'NA';
+  @State destWidth: string = '100%';
+  stack: NavPathStack = new NavPathStack();
   @State y: string = '0';
 
   build() {
@@ -982,7 +982,7 @@ struct NavDest {
           .height(40)
           .margin(20)
           .onClick(() => {
-            this.stack.pushPath({ name: this.name == 'PageOne' ? "PageTwo" : "PageOne" })
+            this.stack.pushPath({ name: this.name == 'PageOne' ? "PageTwo" : "PageOne" });
           })
       }
       .size({ width: '100%', height: '100%' })
@@ -1017,7 +1017,7 @@ struct NavDest {
               console.log('[NavDestinationTransition]', 'transitionOne, push & !isEnter');
               this.y = '0';
             }
-            transitionOneDuration = 450
+            transitionOneDuration = 450;
           }
         } else if (op === NavigationOperation.POP) {
           if (isEnter) {
@@ -1080,20 +1080,20 @@ struct NavDestinationSystemTransition {
   @Builder
   pageMap(name: string) {
     if (name === 'Fade') {
-      Fade()
+      Fade();
     } else if (name === 'Explode') {
-      Explode()
+      Explode();
     } else if (name === 'SlideRight') {
-      SlideRight()
+      SlideRight();
     } else if (name === 'SlideBottom') {
-      SlideBottom()
+      SlideBottom();
     } else {
-      Dest()
+      Dest();
     }
   }
 
   aboutToAppear(): void {
-    this.stack.pushPath({name: 'Dest'})
+    this.stack.pushPath({name: 'Dest'});
   }
 
   build() {
@@ -1113,11 +1113,11 @@ struct Dest {
 
   build() {
     NavDestination() {
-      HomeBody()
+      HomeBody();
     }
     .title('Navigation System Animation')
     .onReady((context) => {
-      this.name = context.pathInfo.name
+      this.name = context.pathInfo.name;
     })
     .systemTransition(this.homePageTransitionType)
   }
@@ -1136,7 +1136,7 @@ struct Fade {
     }
     .title(this.name)
     .onReady((context) => {
-      this.name = context.pathInfo.name
+      this.name = context.pathInfo.name;
     })
     .systemTransition(NavigationSystemTransitionType.FADE)
   }
@@ -1155,7 +1155,7 @@ struct Explode {
     }
     .title(this.name)
     .onReady((context) => {
-      this.name = context.pathInfo.name
+      this.name = context.pathInfo.name;
     })
     .systemTransition(NavigationSystemTransitionType.EXPLODE)
   }
@@ -1174,7 +1174,7 @@ struct SlideRight {
     }
     .title(this.name)
     .onReady((context) => {
-      this.name = context.pathInfo.name
+      this.name = context.pathInfo.name;
     })
     .systemTransition(NavigationSystemTransitionType.SLIDE_RIGHT)
   }
@@ -1193,7 +1193,7 @@ struct SlideBottom {
     }
     .title(this.name)
     .onReady((context) => {
-      this.name = context.pathInfo.name
+      this.name = context.pathInfo.name;
     })
     .systemTransition(NavigationSystemTransitionType.SLIDE_BOTTOM)
   }
@@ -1201,14 +1201,14 @@ struct SlideBottom {
 
 @Component
 struct DestBody {
-  name: string = 'NA'
+  name: string = 'NA';
 
-  columnTextSize: number = 22
-  columnTextFontWeight: FontWeight = FontWeight.Bolder
-  columnWidth: string = '65%'
-  columnPadding: number = 22
-  columnMargin: number = 10
-  columnBorderRadius: number = 10
+  columnTextSize: number = 22;
+  columnTextFontWeight: FontWeight = FontWeight.Bolder;
+  columnWidth: string = '65%';
+  columnPadding: number = 22;
+  columnMargin: number = 10;
+  columnBorderRadius: number = 10;
 
   build() {
     Column() {
@@ -1235,13 +1235,13 @@ struct HomeBody {
   @Consume stack: NavPathStack;
   @Consume homePageTransitionType: NavigationSystemTransitionType;
 
-  columnTextSize: number = 22
-  columnTextFontWeight: FontWeight = FontWeight.Bolder
-  columnWidth: string = '85%'
-  columnPadding: number = 22
-  columnMargin: number = 10
-  columnBorderRadius: number = 10
-  columnShadow: ShadowStyle = ShadowStyle.OUTER_DEFAULT_MD
+  columnTextSize: number = 22;
+  columnTextFontWeight: FontWeight = FontWeight.Bolder;
+  columnWidth: string = '85%';
+  columnPadding: number = 22;
+  columnMargin: number = 10;
+  columnBorderRadius: number = 10;
+  columnShadow: ShadowStyle = ShadowStyle.OUTER_DEFAULT_MD;
 
   build() {
     Column() {
@@ -1259,8 +1259,8 @@ struct HomeBody {
       .borderRadius(this.columnBorderRadius)
       .shadow(this.columnShadow)
       .onClick(() => {
-        this.homePageTransitionType = NavigationSystemTransitionType.FADE
-        this.stack.pushPath({name: 'Fade'})
+        this.homePageTransitionType = NavigationSystemTransitionType.FADE;
+        this.stack.pushPath({name: 'Fade'});
       })
 
       Column() {
@@ -1274,8 +1274,8 @@ struct HomeBody {
       .borderRadius(this.columnBorderRadius)
       .shadow(this.columnShadow)
       .onClick(() => {
-        this.homePageTransitionType = NavigationSystemTransitionType.EXPLODE
-        this.stack.pushPath({name: 'Explode'})
+        this.homePageTransitionType = NavigationSystemTransitionType.EXPLODE;
+        this.stack.pushPath({name: 'Explode'});
       })
 
       Column() {
@@ -1289,8 +1289,8 @@ struct HomeBody {
       .borderRadius(this.columnBorderRadius)
       .shadow(this.columnShadow)
       .onClick(() => {
-        this.homePageTransitionType = NavigationSystemTransitionType.SLIDE_RIGHT
-        this.stack.pushPath({name: 'SlideRight'})
+        this.homePageTransitionType = NavigationSystemTransitionType.SLIDE_RIGHT;
+        this.stack.pushPath({name: 'SlideRight'});
       })
 
       Column() {
@@ -1304,8 +1304,8 @@ struct HomeBody {
       .borderRadius(this.columnBorderRadius)
       .shadow(this.columnShadow)
       .onClick(() => {
-        this.homePageTransitionType = NavigationSystemTransitionType.SLIDE_BOTTOM
-        this.stack.pushPath({name: 'SlideBottom'})
+        this.homePageTransitionType = NavigationSystemTransitionType.SLIDE_BOTTOM;
+        this.stack.pushPath({name: 'SlideBottom'});
       })
     }
   }
@@ -1330,7 +1330,7 @@ struct PortraitPage {
     NavDestination() {
       Stack({alignContent: Alignment.Center}) {
         Button('push LANDSCAPE page').onClick(() => {
-          this.stack?.pushPath({name: 'landscape'})
+          this.stack?.pushPath({name: 'landscape'});
         })
       }.width('100%').height('100%')
     }
@@ -1353,7 +1353,7 @@ struct LandscapePage {
     NavDestination() {
       Stack({alignContent: Alignment.Center}) {
         Button('push PORTRAIT page').onClick(() => {
-          this.stack?.pushPath({name: 'portrait'})
+          this.stack?.pushPath({name: 'portrait'});
         })
       }.width('100%').height('100%')
     }
@@ -1376,15 +1376,15 @@ struct ExamplePage {
   private stack: NavPathStack = new NavPathStack();
 
   aboutToAppear(): void {
-    this.stack.pushPath({name: "portrait"})
+    this.stack.pushPath({name: "portrait"});
   }
 
   @Builder
   MyPageMap(name: string) {
     if (name === 'portrait') {
-      PortraitPage()
+      PortraitPage();
     } else {
-      LandscapePage()
+      LandscapePage();
     }
   }
 

@@ -79,7 +79,7 @@ struct NavigationDemo {
             }
             .width('100%')
             .onClick(() => {
-              this.pathInfos.pushPathByName(`${item}`, '详情页面参数')//将name指定的NaviDestination页面信息入栈,传递的参数为param
+              this.pathInfos.pushPathByName(`${item}`, '详情页面参数'); // 将name指定的NaviDestination页面信息入栈,传递的参数为param
             })
           }, (item: string): string => item)
         }
@@ -111,7 +111,7 @@ struct NavigationDemo {
 
 @Builder
 export function MyCommonPageBuilder(name: string, param: string) {
-  MyCommonPage({ name: name, value: param })
+  MyCommonPage({ name: name, value: param });
 }
 
 @Component
@@ -153,7 +153,7 @@ export struct MyCommonPage {
       .size({ width: '100%', height: '100%' })
     }.title(`${this.name}`)
     .onReady((ctx: NavDestinationContext) => {
-      //NavDestinationContext获取当前所在的页面栈
+      // NavDestinationContext获取当前所在的页面栈
       this.pathInfos = ctx.pathStack;
     }) 
 
@@ -173,7 +173,7 @@ export struct MyCommonPage {
 //PageTwo.ets
 @Builder
 export function MySharePageBuilder(name: string, param: string) {
-  MySharePage({ name: name })
+  MySharePage({ name: name });
 }
 
 @Component
@@ -230,7 +230,7 @@ export struct MySharePage {
             }
             .width('100%')
             .onClick(() => {
-              this.pathInfos.pushPathByName(`${item}`, '页面设置参数')
+              this.pathInfos.pushPathByName(`${item}`, '页面设置参数');
             })
           }, (item: string): string => item)
         }
@@ -242,7 +242,7 @@ export struct MySharePage {
       .size({ width: '100%', height: '100%' })
     }.title(`${this.name}`)
     .onReady((ctx: NavDestinationContext) => {
-      //NavDestinationContext获取当前所在的页面栈
+      // NavDestinationContext获取当前所在的页面栈
       this.pathInfos = ctx.pathStack;
     }) 
   }
