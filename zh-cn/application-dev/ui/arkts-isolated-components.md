@@ -90,8 +90,6 @@ workerPort.onmessageerror = (e: MessageEvents) => {}
 workerPort.onerror = (e: ErrorEvent) => {}
 ```
 
-IsolatedComponent通过want和worker属性实现动态组件加载与隔离执行，二者共同构成安全边界。合理设置这些属性是确保组件能够安全运行的关键。
-
 ```ts
 IsolatedComponent({
   want: {
@@ -108,6 +106,8 @@ IsolatedComponent({
   worker: new worker.RestrictedWorker("entry/ets/workers/OhCardWorker.ets")
 })
 ```
+
+IsolatedComponent通过want和worker属性实现动态组件加载与隔离执行，二者共同构成安全边界。合理设置这些属性是确保组件能够安全运行的关键。
 
 其中，在受限worker线程中运行的入口页面文件ets/pages/extension.ets参考内容如下：
 
