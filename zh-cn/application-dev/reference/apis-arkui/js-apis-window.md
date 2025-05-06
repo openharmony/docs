@@ -1660,7 +1660,6 @@ destroyWindow(callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -1700,7 +1699,6 @@ destroyWindow(): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -3430,7 +3428,6 @@ setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -3481,7 +3478,6 @@ setUIContent(path: string): Promise&lt;void&gt;
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -3528,7 +3524,6 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Invalid path parameter.|
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -3580,7 +3575,6 @@ loadContent(path: string, storage: LocalStorage): Promise&lt;void&gt;
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Invalid path parameter.|
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -3625,7 +3619,6 @@ loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&l
 | -------- | --------------------------------------------- |
 | 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002  | This window state is abnormal.                |
-| 1300003  | This window manager service works abnormally. |
 
 **示例：**
 <!--code_no_check-->
@@ -3698,7 +3691,6 @@ loadContentByName(name: string, callback: AsyncCallback&lt;void&gt;): void
 | -------- | --------------------------------------------- |
 | 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002  | This window state is abnormal.                |
-| 1300003  | This window manager service works abnormally. |
 
 **示例：**
 <!--code_no_check-->
@@ -3774,7 +3766,6 @@ loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;
 | -------- | --------------------------------------------- |
 | 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002  | This window state is abnormal.                |
-| 1300003  | This window manager service works abnormally. |
 
 **示例：**
 <!--code_no_check-->
@@ -11920,7 +11911,6 @@ createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: Incorrect parameter types. |
 | 1300002 | This window state is abnormal. |
-| 1300005 | This window stage is abnormal. |
 
 **示例：**
 
@@ -11990,7 +11980,6 @@ createSubWindow(name: string): Promise&lt;Window&gt;
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: Incorrect parameter types. |
 | 1300002 | This window state is abnormal. |
-| 1300005 | This window stage is abnormal. |
 
 **示例：**
 
@@ -12112,7 +12101,7 @@ getSubWindow(callback: AsyncCallback&lt;Array&lt;Window&gt;&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 1300005 | This window stage is abnormal. |
+| 1300002 | This window state is abnormal. |
 
 **示例：**
 <!--code_no_check-->
@@ -12164,7 +12153,7 @@ getSubWindow(): Promise&lt;Array&lt;Window&gt;&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 1300005 | This window stage is abnormal. |
+| 1300002 | This window state is abnormal. |
 
 **示例：**
 <!--code_no_check-->
@@ -12218,7 +12207,6 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Invalid path parameter.|
 | 1300002 | This window state is abnormal. |
-| 1300005 | This window stage is abnormal. |
 
 **示例：**
 
@@ -12284,7 +12272,6 @@ loadContent(path: string, storage?: LocalStorage): Promise&lt;void&gt;
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Invalid path parameter.|
 | 1300002 | This window state is abnormal. |
-| 1300005 | This window stage is abnormal. |
 
 **示例：**
 
@@ -12343,7 +12330,6 @@ loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Invalid path parameter.|
 | 1300002 | This window state is abnormal. |
-| 1300005 | This window stage is abnormal. |
 
 **示例：**
 
@@ -12401,7 +12387,6 @@ loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&l
 | -------- | --------------------------------------------- |
 | 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002  | This window state is abnormal.                |
-| 1300003  | This window manager service works abnormally. |
 
 **示例：**
 
@@ -12484,7 +12469,6 @@ loadContentByName(name: string, callback: AsyncCallback&lt;void&gt;): void
 | -------- | --------------------------------------------- |
 | 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002  | This window state is abnormal.                |
-| 1300003  | This window manager service works abnormally. |
 
 **示例：**
 
@@ -12564,7 +12548,6 @@ loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;;
 | -------- | --------------------------------------------- |
 | 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002  | This window state is abnormal.                |
-| 1300003  | This window manager service works abnormally. |
 
 **示例：**
 
