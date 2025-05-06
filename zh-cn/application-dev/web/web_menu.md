@@ -92,7 +92,7 @@ struct WebComponent {
 3. 创建一个[EditMenuOptions](../../application-dev/reference/apis-arkui/arkui-ts/ts-text-common.md#editmenuoptions)对象，包含onCreateMenu和onMenuItemClick两个方法，通过Web组件的[editMenuOptions](../../application-dev/reference/apis-arkweb/ts-basic-components-web.md#editmenuoptions12)方法与Web组件绑定。
 
 ## 上下文菜单
-上下文菜单是一种用户通过特定操作（如右键点击或长按富文本）触发的快捷菜单，用于提供与当前操作对象或界面元素相关的功能选项，菜单项竖向排列。系统不提供默认实现，如果应用为实现则不显示上下文菜单。要应用通过[Menu](../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-menu.md#menu)组件创建一个菜单子窗口与Web绑定，通过菜单弹出时的[onContextMenuShow](../../application-dev/reference/apis-arkweb/ts-basic-components-web.md#oncontextmenushow)接口获取到上下文菜单详细信息，包含点击位置的HTML元素信息，点击位置信息等。
+上下文菜单是一种用户通过特定操作（如右键点击或长按富文本）触发的快捷菜单，用于提供与当前操作对象或界面元素相关的功能选项，菜单项竖向排列。系统不提供默认实现，如果应用为实现则不显示上下文菜单。要应用通过[Menu](../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-menu.md#menu)组件创建一个菜单子窗口与Web绑定，通过菜单弹出时的[onContextMenuShow](../../application-dev/reference/apis-arkweb/ts-basic-components-web.md#oncontextmenushow9)接口获取到上下文菜单详细信息，包含点击位置的HTML元素信息，点击位置信息等。
 
 ![onContextMenuShow](./figures/onContextMenuShow.gif)
 ```ts
@@ -223,8 +223,7 @@ struct WebComponent {
 <html lang="en">
 <body>
   <h1>onContextMenuShow</h1>
-  <a href="http://www.example.com" style="font-size:27px">链接www.example.com</a>
-  // rawfile下放任意一张图片命名为example.png
+  <a href="http://www.example.com" style="font-size:27px">超链接www.example.com</a>
   <div><img src="example.png"></div>
   <p>选中文字鼠标右键弹出菜单</p>
 </body>
@@ -232,15 +231,15 @@ struct WebComponent {
 ```
 1. [Menu](../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-menu.md#menu)组件作为弹出的菜单，包含所有菜单项行为与样式。
 2. 使用bindPopup方法将Menu组件与Web组件绑定。当上下文菜单弹出时，将显示创建的Menu组件。
-3. 在onContextMenuShow回调中获取菜单事件信息，[onContextMenuShowEvent](../../application-dev/reference/apis-arkweb/ts-basic-components-web.md#oncontextmenushowevent12)。其中param为[WebContextMenuParam](../../application-dev/reference/apis-arkweb/ts-basic-components-web.md#webcontextmenuparam9)类型包括点击位置对应HTML元素信息和位置信息，result为[WebContextMenuResult](../../application-dev/reference/apis-arkweb/ts-basic-components-web.md#webcontextmenuresult9)提供常见的菜单能力。
+3. 在onContextMenuShow回调中获取上下文菜单事件信息[onContextMenuShowEvent](../../application-dev/reference/apis-arkweb/ts-basic-components-web.md#oncontextmenushowevent12)。其中param为[WebContextMenuParam](../../application-dev/reference/apis-arkweb/ts-basic-components-web.md#webcontextmenuparam9)类型，包含点击位置对应HTML元素信息和位置信息，result为[WebContextMenuResult](../../application-dev/reference/apis-arkweb/ts-basic-components-web.md#webcontextmenuresult9)类型，提供常见的菜单能力。
 
 ## 自定义菜单
 自定义菜单赋予开发者灵活调整菜单触发时机与视觉呈现的能力，使应用能够根据用户操作场景动态匹配功能入口，既简化了开发流程中的界面适配工作，又让应用交互更贴合用户直觉习惯。自定义菜单允许应用通过[bindSelectionMenu](../../application-dev/reference/apis-arkweb/ts-basic-components-web.md#bindselectionmenu13)根据事件类型与元素类型弹出自定义菜单，目前支持响应长按图片。bindSelectionMenu入参和说明：
 |  参数名  | 类型  |  必填  |  说明  |
 |  ----  | ----  | ----  | ----  |
-| elementType  | [WebElementType](../../application-dev/reference/apis-arkweb/ts-basic-components-web.md#webelementtype13) |  是  |  网页元素信息。  |
+| elementType  | [WebElementType](../../application-dev/reference/apis-arkweb/ts-basic-components-web.md#webelementtype13枚举说明) |  是  |  网页元素信息。  |
 | content  | [CustomBuilder](../../application-dev/reference/apis-arkui/arkui-ts/ts-types.md#custombuilder8) |  是  |  菜单弹窗。  |
-| responseType  | [WebResponseType](../../application-dev/reference/apis-arkweb/ts-basic-components-web.md#webresponsetype13) |  是  |  菜单的响应事件类型。  |
+| responseType  | [WebResponseType](../../application-dev/reference/apis-arkweb/ts-basic-components-web.md#webresponsetype13枚举说明) |  是  |  菜单的响应事件类型。  |
 | options  | [SelectionMenuOptionsExt](../../application-dev/reference/apis-arkweb/ts-basic-components-web.md#selectionmenuoptionsext13) |  是  |  自定义菜单扩展项。  |
 
 
@@ -339,7 +338,7 @@ struct WebComponent {
 </html>
 ```
 1. 创建[Menu](../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-menu.md#menu)组件作为菜单弹窗。
-2. 通过Web组件的[bindSelectionMenu](../../application-dev/reference/apis-arkweb/ts-basic-components-web.md#bindselectionmenu13)方法绑定MenuBuilder菜单弹窗。将[elementType](../../application-dev/reference/apis-arkweb/ts-basic-components-web.md#webelementtype13)设置为WebElementType.IMAGE，[responseType](../../application-dev/reference/apis-arkweb/ts-basic-components-web.md#webresponsetype13)设置为WebResponseType.LONG_PRESS，表示长按图片时弹出菜单。在[options](../../application-dev/reference/apis-arkweb/ts-basic-components-web.md#selectionmenuoptionsext13)中定义菜单显示回调onAppear、菜单消失回调onDisappear、预览窗口preview和菜单类型menuType。
+2. 通过Web组件的[bindSelectionMenu](../../application-dev/reference/apis-arkweb/ts-basic-components-web.md#bindselectionmenu13)方法绑定MenuBuilder菜单弹窗。将[elementType](../../application-dev/reference/apis-arkweb/ts-basic-components-web.md#webelementtype13枚举说明)设置为WebElementType.IMAGE，[responseType](../../application-dev/reference/apis-arkweb/ts-basic-components-web.md#webresponsetype13枚举说明)设置为WebResponseType.LONG_PRESS，表示长按图片时弹出菜单。在[options](../../application-dev/reference/apis-arkweb/ts-basic-components-web.md#selectionmenuoptionsext13)中定义菜单显示回调onAppear、菜单消失回调onDisappear、预览窗口preview和菜单类型menuType。
 ## 常见问题
 ### 如何禁用长按选择时弹出菜单
 ![emptyEditMenuOption](./figures/emptyEditMenuOption.gif)
