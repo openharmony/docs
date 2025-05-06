@@ -1521,7 +1521,7 @@ struct TabBarStyleExample {
         .scrollable(true)
         .barMode(BarMode.Fixed)
         .onChange((index: number) => {
-          console.info(index.toString())
+          console.info(index.toString());
         })
         .width('100%')
         .backgroundColor(0xF1F3F5)
@@ -1563,7 +1563,7 @@ struct TabBarStyleExample {
         .scrollable(true)
         .barMode(BarMode.Fixed)
         .onChange((index: number) => {
-          console.info(index.toString())
+          console.info(index.toString());
         })
         .width('100%')
         .backgroundColor(0xF1F3F5)
@@ -1581,7 +1581,7 @@ struct TabBarStyleExample {
 
 ```ts
 // xxx.ets
-import { ComponentContent, UIContext } from "@kit.ArkUI";
+import { ComponentContent, UIContext } from '@kit.ArkUI';
 
 class Params {
   text: string = "";
