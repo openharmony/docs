@@ -1692,6 +1692,7 @@ installPlugin(hostBundleName: string, pluginFilePaths: Array\<string\>, pluginPa
 | 17700011 | Failed to install the plugin because the plugin signature fails to be verified. |
 | 17700012 | Failed to install the plugin because the HSP path is invalid or the HSP is too large. |
 | 17700015 | Failed to install the plugin because they have different configuration information. |
+| 17700016 | Failed to install the plugin because of insufficient system disk space. |
 | 17700017 | Failed to install the plugin since the version of the plugin to install is too early. |
 | 17700048 | Failed to install the plugin because the code signature verification is failed. |
 | 17700052 | Failed to install the plugin because debug bundle cannot be installed under non-developer mode. |
