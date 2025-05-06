@@ -16,7 +16,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libpixelmap.so)
 
 For details about the APIs, see [Image_NativeModule](../../reference/apis-image-kit/_image___native_module.md).
 
-Implement the C APIs in **hello.cpp**. Refer to the sample code below.
+Create a native C++ application in DevEco Studio. The project created by default contains the **index.ets** file, and a **hello.cpp** or **napi_init.cpp** file is generated in the **entry\src\main\cpp** directory. In this example, the generated file is **hello.cpp**. Implement the C APIs in **hello.cpp**. Refer to the sample code below.
 
 **Example of Using the Pixelmap APIs**
 

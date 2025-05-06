@@ -564,11 +564,11 @@ getXComponentSurfaceRotation(): Required\<SurfaceRotationOptions>
 
 使用enableAnalyzer属性开启图像AI分析功能。可通过XComponentController控制开始、停止图形AI分析。
 
-<!--Del-->
+<!--RP1-->
 > **说明：**
 >
 > 本示例画图逻辑具体实现（和nativeRender相关的函数实现）可以参考[ArkTSXComponent示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/ArkTSXComponent)
-<!--DelEnd-->
+<!--RP1End-->
 
 ```ts
 // xxx.ets
@@ -604,51 +604,25 @@ struct XComponentExample {
     types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT],
     aiController: this.aiController
   };
-  @State xcWidth: string = "320px";
-  @State xcHeight: string = "480px";
+  @State xcWidth: string = "720px";
+  @State xcHeight: string = "720px";
   @State currentStatus: string = "index";
 
   build() {
     Column({ space: 5 }) {
-      Button("change size")
-        .onClick(() => {
-          this.xcWidth = "640px";
-          this.xcHeight = "720px";
-        })
-      Button('start AI analyze')
-        .onClick(() => {
-          this.xComponentController.startImageAnalyzer(this.config)
-            .then(() => {
-              console.log("analysis complete");
-            })
-            .catch((error: BusinessError) => {
-              console.log("error code: " + error.code);
-            })
-        })
-      Button('stop AI analyze')
-        .onClick(() => {
-          this.xComponentController.stopImageAnalyzer();
-        })
-      Button('get analyzer types')
-        .onClick(() => {
-          this.aiController.getImageAnalyzerSupportTypes();
-        })
-      Button('Draw Star')
-        .fontSize('16fp')
-        .fontWeight(500)
-        .margin({ bottom: 24 })
-        .onClick(() => {
-          let surfaceId = this.xComponentController.getXComponentSurfaceId();
-          this.xComponentController.getXComponentSurfaceRect();
-          nativeRender.DrawPattern(BigInt(surfaceId));
-          let hasDraw: boolean = false;
-          if (nativeRender.GetXComponentStatus(BigInt(surfaceId))) {
-            hasDraw = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasDraw;
-          }
-          if (hasDraw) {
-            this.currentStatus = "draw star";
-          }
-        })
+      Row() {
+        Text('Native XComponent Sample')
+          .fontSize('24fp')
+          .fontWeight(500)
+          .margin({
+            left: 24,
+            top: 12
+          })
+      }
+      .margin({ top: 24 })
+      .width('100%')
+      .height(56)
+
       XComponent({
         type: XComponentType.SURFACE,
         controller: this.xComponentController,
@@ -657,15 +631,67 @@ struct XComponentExample {
         .width(this.xcWidth)
         .height(this.xcHeight)
         .enableAnalyzer(true)
+        .onClick(() => {
+          let surfaceId = this.xComponentController.getXComponentSurfaceId();
+          nativeRender.ChangeColor(BigInt(surfaceId));
+          let hasChangeColor: boolean = false;
+          if (nativeRender.GetXComponentStatus(BigInt(surfaceId))) {
+            hasChangeColor = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasChangeColor;
+          }
+          if (hasChangeColor) {
+            this.currentStatus = "change color";
+          }
+        })
       Text(this.currentStatus)
         .fontSize('24fp')
         .fontWeight(500)
+      Column() {
+        Button('start AI analyze')
+          .onClick(() => {
+            this.xComponentController.startImageAnalyzer(this.config)
+              .then(() => {
+                console.log("analysis complete");
+              })
+              .catch((error: BusinessError) => {
+                console.log("error code: " + error.code);
+              })
+          })
+          .margin(2)
+        Button('stop AI analyze')
+          .onClick(() => {
+            this.xComponentController.stopImageAnalyzer();
+          })
+          .margin(2)
+        Button('get analyzer types')
+          .onClick(() => {
+            this.aiController.getImageAnalyzerSupportTypes();
+          })
+          .margin(2)
+        Button('Draw Star')
+          .fontSize('16fp')
+          .fontWeight(500)
+          .margin({ bottom: 24 })
+          .onClick(() => {
+            let surfaceId = this.xComponentController.getXComponentSurfaceId();
+            this.xComponentController.getXComponentSurfaceRect();
+            nativeRender.DrawPattern(BigInt(surfaceId));
+            let hasDraw: boolean = false;
+            if (nativeRender.GetXComponentStatus(BigInt(surfaceId))) {
+              hasDraw = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasDraw;
+            }
+            if (hasDraw) {
+              this.currentStatus = "draw star";
+            }
+          })
+          .margin(2)
+      }.justifyContent(FlexAlign.Center)
     }
     .width("100%")
   }
 }
 ```
-<!--RP1--><!--RP1End-->
+![AI示例运行图](./figures/AIXComponent.gif)
+
 
 ### 示例2（在surface旋转过程中锁定）
 

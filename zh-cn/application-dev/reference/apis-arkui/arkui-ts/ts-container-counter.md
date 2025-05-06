@@ -108,7 +108,7 @@ onDec(event:&nbsp;VoidCallback)
 @Entry
 @Component
 struct CounterExample {
-  @State value: number = 0
+  @State value: number = 0;
 
   build() {
     Column() {
@@ -116,10 +116,10 @@ struct CounterExample {
         Text(this.value.toString())
       }.margin(100)
       .onInc(() => {
-        this.value++
+        this.value++;
       })
       .onDec(() => {
-        this.value--
+        this.value--;
       })
     }.width("100%")
   }

@@ -26,6 +26,8 @@
   - [Web页面显示内容滚动](web-content-scrolling.md)
   - [Web组件对接软键盘](web-docking-softkeyboard.md)
   - [Web组件焦点管理](web-focus.md)
+  - [Web组件手势事件](web-gesture.md)
+  - [Web组件缩放功能](web-scale-zoom.md)
 - 管理Web组件的网络安全与隐私<!--web-manage-cyber-security-privacy-->
   - [解决Web组件本地资源跨域问题](web-cross-origin.md)
   - [使用智能防跟踪功能](web-intelligent-tracking-prevention.md)

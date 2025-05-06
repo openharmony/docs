@@ -8,7 +8,7 @@
 
 > **说明：**
 >
-> 当前上传应用文件功能，仅支持上传应用缓存文件路径（cacheDir）下的文件。
+> 当前上传应用文件功能。request.uploadFile方式仅支持上传应用缓存文件路径（cacheDir）下的文件，request.agent方式支持上传用户公共文件和应用缓存文件路径下的文件。
 >
 > 使用上传下载模块，需[声明权限](../../security/AccessToken/declare-permissions.md)：ohos.permission.INTERNET。
 

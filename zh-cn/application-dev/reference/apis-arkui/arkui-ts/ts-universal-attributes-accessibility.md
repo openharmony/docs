@@ -252,7 +252,7 @@ type AccessibilityFocusCallback = (isFocus: boolean) => void
 
 | 参数名  | 类型    | 必填 | 说明              |
 | ------ | ------ | ---- | ---------------- |
-| isFocus | boolean | 是 | 是否获焦、失焦。 |
+| isFocus | boolean | 是 | 用于表示组件是否获焦。<br/>true：当前组件获焦。<br/>false：当前组件失焦。|
 
 ## AccessibilityRoleType<sup>18+</sup>枚举说明
 
@@ -521,7 +521,7 @@ accessibilityFocusDrawLevel(drawLevel: FocusDrawLevel)
 
 该示例主要演示accessibilityText无障碍文本和accessibilityDescription无障碍说明的播报内容。
 
-```
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -563,7 +563,7 @@ struct Index {
 
 该示例主要演示优先使用子组件的无障碍文本进行朗读。
 
-```
+```ts
 // xxx.ets
 @Entry
 @Component
