@@ -1556,7 +1556,7 @@ struct TabBarStyleExample {
         .scrollable(true)
         .barMode(BarMode.Fixed)
         .onChange((index: number) => {
-          console.info(index.toString())
+          console.info(index.toString());
         })
         .width('100%')
         .backgroundColor(0xF1F3F5)
@@ -1598,7 +1598,7 @@ struct TabBarStyleExample {
         .scrollable(true)
         .barMode(BarMode.Fixed)
         .onChange((index: number) => {
-          console.info(index.toString())
+          console.info(index.toString());
         })
         .width('100%')
         .backgroundColor(0xF1F3F5)
@@ -1988,7 +1988,7 @@ struct TabsPreloadItems {
       .height(296)
       .backgroundColor('#F1F3F5')
       .onChange((index: number) => {
-        this.currentIndex = index
+        this.currentIndex = index;
       })
 
       Button('preload items: [1,2,3]')
@@ -1997,10 +1997,10 @@ struct TabsPreloadItems {
           // 预加载第0个子节点
           this.tabsController.preloadItems([1, 2, 3])
             .then(() => {
-              console.info('preloadItems success.')
+              console.info('preloadItems success.');
             })
             .catch((error: BusinessError) => {
-              console.error('preloadItems failed, error code: ' + error.code + ', error message: ' + error.message)
+              console.error('preloadItems failed, error code: ' + error.code + ', error message: ' + error.message);
             });
         })
 
@@ -2010,10 +2010,10 @@ struct TabsPreloadItems {
           // 预加载第0个子节点
           this.tabsController.preloadItems([1])
             .then(() => {
-              console.info('preloadItems success.')
+              console.info('preloadItems success.');
             })
             .catch((error: BusinessError) => {
-              console.error('preloadItems failed, error code: ' + error.code + ', error message: ' + error.message)
+              console.error('preloadItems failed, error code: ' + error.code + ', error message: ' + error.message);
             });
         })
       Button('preload items: [3]')
@@ -2022,10 +2022,10 @@ struct TabsPreloadItems {
           // 预加载第0个子节点
           this.tabsController.preloadItems([3])
             .then(() => {
-              console.info('preloadItems success.')
+              console.info('preloadItems success.');
             })
             .catch((error: BusinessError) => {
-              console.error('preloadItems failed, error code: ' + error.code + ', error message: ' + error.message)
+              console.error('preloadItems failed, error code: ' + error.code + ', error message: ' + error.message);
             });
         })
     }
