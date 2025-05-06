@@ -7879,6 +7879,59 @@ if(store != undefined) {
 }
 ```
 
+### rekey<sup>20+</sup>
+
+rekey(cryptoParam?: CryptoParam): Promise<void>;
+
+手动更新加密数据库的密钥。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名       | 类型                                      | 必填 | 说明                         |
+| ------------ | ----------------------------------------- | ---- | -------------------------- |
+| cryptoParam  | CryptoParam                               | 否   | 数据库加密参数。             |
+
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 801          | Capability not supported                                     |
+| 14800001     | Invalid args.                                                 |
+| 14800011     | Database corrupted.                                          |
+| 14800014     | Already closed.                                              |
+| 14800015     | The database does not respond.                               |
+| 14800021     | SQLite: Generic error.                                       |
+| 14800023     | SQLite: Access permission denied.                            |
+| 14800024     | SQLite: The database file is locked.                         |
+| 14800026     | SQLite: The database is out of memory.                       |
+| 14800027     | SQLite: Attempt to write a readonly database.                |
+| 14800028     | SQLite: Some kind of disk I/O error occurred.                |
+| 14800029     | SQLite: The database is full.                                |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let cryptoParam: relationalStore.CryptoParam = {
+    encryptionKey: new Uint8Array(),
+};
+
+if(store != undefined) {
+  try {
+    (store as relationalStore.RdbStore).rekey(cryptoParam);
+    console.info(`rekey is successful`);
+  } catch (err) {
+    console.error(`rekey is failed, code is ${err.code},message is ${err.message}`);
+  }
+}
+```
+
 ## ResultSet
 
 提供通过查询数据库生成的数据库结果集的访问方法。结果集是指用户调用关系型数据库查询接口之后返回的结果集合，提供了多种灵活的数据访问方式，以便用户获取各项数据。
@@ -10572,7 +10625,6 @@ executeSync(sql: string, args?: Array&lt;ValueType&gt;): ValueType
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 801       | Capability not supported the sql(attach,begin,commit,rollback etc.). |
 | 14800000     | Inner error.                                                 |
 | 14800011     | Database corrupted.                                          |
 | 14800014     | Already closed.                                              |
