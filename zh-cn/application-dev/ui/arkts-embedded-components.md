@@ -1,4 +1,4 @@
-# EmbeddedComponent组件
+# 容器 (EmbeddedComponent)
 
 EmbeddedComponent组件是一个用于在应用中嵌入其他应用或服务的组件，主要用于在应用中实现跨模块、跨进程的嵌入式界面集成，其核心目的是通过模块化设计提升应用灵活性和用户体验。
 
@@ -55,7 +55,7 @@ EmbeddedComponent组件不支持[点击](../reference/apis-arkui/arkui-ts/ts-uni
 
 **加载项首页**
 
-加载项首页是 EmbeddedComponent 组件的宿主页面，负责加载和展示嵌入式UI扩展能力的内容。以下是一个完整的加载项首页实现示例：
+加载项首页是EmbeddedComponent组件的宿主页面，负责加载和展示嵌入式UI扩展能力的内容。以下是一个完整的加载项首页实现示例：
 
 ```ts
 import { Want } from '@kit.AbilityKit';
