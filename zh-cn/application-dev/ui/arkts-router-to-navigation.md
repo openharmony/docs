@@ -96,7 +96,7 @@ struct pageOne {
 @Entry
 @Component
 struct Index {
-  pathStack: NavPathStack = new NavPathStack()
+  pathStack: NavPathStack = new NavPathStack();
 
   build() {
     Navigation(this.pathStack) {
@@ -106,7 +106,7 @@ struct Index {
           .height(40)
           .margin(20)
           .onClick(() => {
-            this.pathStack.pushPathByName('pageOne', null)
+            this.pathStack.pushPathByName('pageOne', null);
           })
       }.width('100%').height('100%')
     }
@@ -122,12 +122,12 @@ struct Index {
 
 @Builder
 export function PageOneBuilder() {
-  PageOne()
+  PageOne();
 }
 
 @Component
 export struct PageOne {
-  pathStack: NavPathStack = new NavPathStack()
+  pathStack: NavPathStack = new NavPathStack();
 
   build() {
     NavDestination() {
@@ -137,12 +137,12 @@ export struct PageOne {
           .height(40)
           .margin(20)
           .onClick(() => {
-            this.pathStack.clear()
+            this.pathStack.clear();
           })
       }.width('100%').height('100%')
     }.title('PageOne')
     .onReady((context: NavDestinationContext) => {
-      this.pathStack = context.pathStack
+      this.pathStack = context.pathStack;
     })
   }
 }
@@ -173,22 +173,22 @@ Router通过`@ohos.router`模块提供的方法来操作页面，建议使用[UI
 
 ```ts
 // push page
-router.pushUrl({ url:"pages/pageOne", params: null })
+router.pushUrl({ url:"pages/pageOne", params: null });
 
 // pop page
-this.getUIContext().getRouter().back({ url: "pages/pageOne" })
+this.getUIContext().getRouter().back({ url: "pages/pageOne" });
 
 // replace page
-router.replaceUrl({ url: "pages/pageOne" })
+router.replaceUrl({ url: "pages/pageOne" });
 
 // clear all page
-this.getUIContext().getRouter().clear()
+this.getUIContext().getRouter().clear();
 
 // 获取页面栈大小
-let size = this.getUIContext().getRouter().getLength()
+let size = this.getUIContext().getRouter().getLength();
 
 // 获取页面状态
-let pageState = this.getUIContext().getRouter().getState()
+let pageState = this.getUIContext().getRouter().getState();
 ```
 
 Navigation通过页面栈对象[NavPathStack](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10)提供的方法来操作页面，需要创建一个栈对象并传入Navigation中。
@@ -197,7 +197,7 @@ Navigation通过页面栈对象[NavPathStack](../reference/apis-arkui/arkui-ts/t
 @Entry
 @Component
 struct Index {
-  pathStack: NavPathStack = new NavPathStack()
+  pathStack: NavPathStack = new NavPathStack();
 
   build() {
     // 设置NavPathStack并传入Navigation
@@ -211,39 +211,39 @@ struct Index {
 
 
 // push page
-this.pathStack.pushPath({ name: 'pageOne' })
+this.pathStack.pushPath({ name: 'pageOne' });
 
 // pop page
-this.pathStack.pop()
-this.pathStack.popToIndex(1)
-this.pathStack.popToName('pageOne')
+this.pathStack.pop();
+this.pathStack.popToIndex(1);
+this.pathStack.popToName('pageOne');
 
 // replace page
-this.pathStack.replacePath({ name: 'pageOne' })
+this.pathStack.replacePath({ name: 'pageOne' });
 
 // clear all page
-this.pathStack.clear()
+this.pathStack.clear();
 
 // 获取页面栈大小
-let size: number = this.pathStack.size()
+let size: number = this.pathStack.size();
 
 // 删除栈中name为PageOne的所有页面
-this.pathStack.removeByName("pageOne")
+this.pathStack.removeByName("pageOne");
 
 // 删除指定索引的页面
-this.pathStack.removeByIndexes([1, 3, 5])
+this.pathStack.removeByIndexes([1, 3, 5]);
 
 // 获取栈中所有页面name集合
-this.pathStack.getAllPathName()
+this.pathStack.getAllPathName();
 
 // 获取索引为1的页面参数
-this.pathStack.getParamByIndex(1)
+this.pathStack.getParamByIndex(1);
 
 // 获取PageOne页面的参数
-this.pathStack.getParamByName("pageOne")
+this.pathStack.getParamByName("pageOne");
 
 // 获取PageOne页面的索引集合
-this.pathStack.getIndexByName("pageOne")
+this.pathStack.getIndexByName("pageOne");
 // ...
 ```
 
@@ -257,7 +257,7 @@ Router作为全局通用模块，可以在任意页面中调用，Navigation作�
 @Component
 struct Index {
   // Navigation创建一个Provide修饰的NavPathStack
- @Provide('pathStack') pathStack: NavPathStack = new NavPathStack()
+ @Provide('pathStack') pathStack: NavPathStack = new NavPathStack();
 
   build() {
     Navigation(this.pathStack) {
@@ -288,14 +288,14 @@ export struct PageOne {
 ```ts
 @Component
 export struct PageOne {
-  pathStack: NavPathStack = new NavPathStack()
+  pathStack: NavPathStack = new NavPathStack();
 
   build() {
     NavDestination() {
       // ...
     }.title('PageOne')
     .onReady((context: NavDestinationContext) => {
-      this.pathStack = context.pathStack
+      this.pathStack = context.pathStack;
     })
   }
 }
@@ -307,11 +307,11 @@ export struct PageOne {
 @Entry
 @Component
 struct Index {
-  pathStack: NavPathStack = new NavPathStack()
+  pathStack: NavPathStack = new NavPathStack();
 
   // 全局设置一个NavPathStack
   aboutToAppear(): void {
-     AppStorage.setOrCreate("PathStack", this.pathStack)
+     AppStorage.setOrCreate("PathStack", this.pathStack);
    }
 
   build() {
@@ -326,7 +326,7 @@ struct Index {
 @Component
 export struct PageOne {
   // 子页面中获取全局的NavPathStack
-  pathStack: NavPathStack = AppStorage.get("PathStack") as NavPathStack
+  pathStack: NavPathStack = AppStorage.get("PathStack") as NavPathStack;
 
   build() {
     NavDestination() {
@@ -343,11 +343,11 @@ export struct PageOne {
 // 子页面中的自定义组件
 @Component
 struct CustomNode {
-  pathStack: NavPathStack = new NavPathStack()
+  pathStack: NavPathStack = new NavPathStack();
 
   aboutToAppear() {
     // query navigation info
-    let navigationInfo: NavigationInfo = this.queryNavigationInfo() as NavigationInfo
+    let navigationInfo: NavigationInfo = this.queryNavigationInfo() as NavigationInfo;
     this.pathStack = navigationInfo.pathStack;
   }
 
@@ -355,7 +355,7 @@ struct CustomNode {
     Row() {
       Button('跳转到PageTwo')
         .onClick(() => {
-          this.pathStack.pushPath({ name: 'pageTwo' })
+          this.pathStack.pushPath({ name: 'pageTwo' });
         })
     }
   }
@@ -536,12 +536,12 @@ Navigation作为路由组件，默认支持跨包跳转。
    @Entry
    @Component
    struct mainPage {
-    pageStack: NavPathStack = new NavPathStack()
+    pageStack: NavPathStack = new NavPathStack();
    
     @Builder pageMap(name: string) {
       if (name === 'PageInHSP') {
    	    // 2.定义路由映射表
-   	    PageInHSP()
+   	    PageInHSP();
       }
     }
 
@@ -606,7 +606,7 @@ Router可以通过observer实现注册监听，接口定义请参考Router无感
 import { uiObserver } from '@kit.ArkUI';
 
 function callBackFunc(info: uiObserver.RouterPageInfo) {
-    console.info("RouterPageInfo is : " + JSON.stringify(info))
+    console.info("RouterPageInfo is : " + JSON.stringify(info));
 }
 
 // used in ability context.
@@ -698,7 +698,7 @@ import { uiObserver } from '@kit.ArkUI';
 export struct NavDestinationExample {
   build() {
     NavDestination() {
-      MyComponent()
+      MyComponent();
     }
   }
 }
