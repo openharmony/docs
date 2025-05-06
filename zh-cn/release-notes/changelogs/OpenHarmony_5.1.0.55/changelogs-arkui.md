@@ -291,36 +291,3 @@ struct Index {
   }
 }
 ```
-
-## cl.arkui.4 窗口getWindowProperties接口返回的windowType修改
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-主窗调用getWindowProperties接口，返回的windowType为TYPE_SYSTEM_ALERT
-
-**变更影响**
-此变更涉及应用适配。
-
-| 变更前                           |           变更后 |
-|---------------------------------|------------------|
-|主窗调用getWindowProperties接口，返回的windowType为TYPE_SYSTEM_ALERT。| 主窗调用getWindowProperties接口，返回的windowType为TYPE_MAIN。|
-
-
-**起始API Level**
-
-API 9
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.1.0.55开始。
-
-**变更的接口/组件**
-
-@ohos.window.d.ts#getWindowProperties
-
-**适配指导**
-
-应用在主窗调用getWindowProperties获取windowtype时，要适配返回值的变化。
