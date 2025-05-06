@@ -62,7 +62,23 @@ import { bundleManager } from '@kit.AbilityKit'
 ]
 ```
 
-**受限[worker](../reference/apis-arkts/js-apis-worker.md)**
+**受限worker**
+
+受限[worker](../reference/apis-arkts/js-apis-worker.md)是一个在隔离环境中运行的worker线程。这种隔离特性确保了受限worker与其他线程或组件之间实现内存隔离，避免它们之间的相互干扰或安全问题。
+
+在IsolatedComponent场景中，组件常需动态加载外部hap资源。受限worker通过以下机制保障安全：
+
+- [沙箱路径](../file-management/app-sandbox-directory.md)校验
+
+  abcPath指向经系统校验的安全目录，防止恶意代码注入。
+
+- 通信管控
+
+  主线程与worker间仅允许通过规范化的消息事件通信，禁止直接数据共享。
+
+- 异常隔离
+
+  worker内错误不会导致主应用崩溃，通过onerror事件可控处理。
 
 ```ts
 // OhCardWorker.ets
@@ -73,8 +89,6 @@ workerPort.onmessage = (e: MessageEvents) => {}
 workerPort.onmessageerror = (e: MessageEvents) => {}
 workerPort.onerror = (e: ErrorEvent) => {}
 ```
-
-**设置属性**
 
 IsolatedComponent通过want和worker属性实现动态组件加载与隔离执行，二者共同构成安全边界。合理设置这些属性是确保组件能够安全运行的关键。
 
@@ -90,11 +104,12 @@ IsolatedComponent({
       "entryPoint": `${this.bundleName}/entry/ets/pages/extension`,
     }
   },
+  // 受限worker
   worker: new worker.RestrictedWorker("entry/ets/workers/OhCardWorker.ets")
 })
 ```
 
-其中，在受限worker线程中运行的入口页面文件 ets/pages/extension.ets 参考内容如下：
+其中，在受限worker线程中运行的入口页面文件ets/pages/extension.ets参考内容如下：
 
 ```ts
 @Entry
