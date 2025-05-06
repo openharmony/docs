@@ -94,7 +94,7 @@ Extension生命周期回调，如果是connectAbility拉起的服务，会在onC
 
 | 类型 | 说明 |
 | -------- | -------- |
-| rpc.RemoteObject | 一个RemoteObject对象，用于客户端和服务端进行通信。 |
+| rpc.RemoteObject \| Promise<rpc.RemoteObject> | 一个RemoteObject对象，用于客户端和服务端进行通，或通过Promise对象返回。|
 
 **示例：**
 
@@ -136,7 +136,7 @@ Extension生命周期回调，如果是connectAbility拉起的服务，会在onC
   }
   async function getDescriptor() {
       // 调用异步函数...
-      return "asyncTest"
+      return "asyncTest";
   }
   class DriverExt extends DriverExtensionAbility {
     async onConnect(want : Want) {
@@ -162,6 +162,12 @@ Extension的生命周期回调，客户端执行断开连接服务时回调。
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want |[Want](../apis-ability-kit/js-apis-app-ability-want.md)| 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<void> | 返回值可能为空，或通过Promise对象返回。 |
 
 **示例：**
 
@@ -204,6 +210,12 @@ onDump(params: Array\<string>): Array\<string>;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | params | Array\<string> | 是 | 表示命令形式的参数。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Array\<string> | 转存的信息数组。 |
 
 **示例：**
     

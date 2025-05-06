@@ -147,7 +147,7 @@ DDK_RetCode OH_DDK_UnmapAshmem(DDK_Ashmem *ashmem);
 - [DDK_NULL_PTR](#ddk_retcode) 表示入参ashmem为空指针。
 - [DDK_FAILURE](#ddk_retcode) 表示共享内存的文件描述符无效。
 
-### OH_DDK_DestoryAshmem()
+### OH_DDK_DestroyAshmem()
 
 
 ```
