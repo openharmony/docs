@@ -179,7 +179,9 @@ struct Index {
 }
 ```
 
-### EmbeddedComponent拉起的ExampleEmbeddedAbility实现代码
+### 提供方应用生命周期实现
+
+EmbeddedComponent组件拉起ExampleEmbeddedAbility
 
 ```ts
 import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
