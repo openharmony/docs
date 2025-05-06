@@ -62,7 +62,7 @@ let audioHapticManagerInstance: audioHaptic.AudioHapticManager = audioHaptic.get
 
 registerSource(audioUri: string, hapticUri: string): Promise&lt;number&gt;
 
-注册音频和振动资源的Uri，使用Promise方式异步返回结果。
+注册音频和振动资源的Uri。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.AudioHaptic.Core
 
@@ -77,7 +77,7 @@ registerSource(audioUri: string, hapticUri: string): Promise&lt;number&gt;
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| Promise&lt;number&gt; | Promise回调返回注册资源的source id。 |
+| Promise&lt;number&gt; | Promise对象，返回注册资源的source id。 |
 
 **错误码：**
 
@@ -108,7 +108,7 @@ audioHapticManagerInstance.registerSource(audioUri, hapticUri).then((value: numb
 
 unregisterSource(id: number): Promise&lt;void&gt;
 
-取消注册音频和振动资源，使用Promise方式异步返回结果。
+取消注册音频和振动资源。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.AudioHaptic.Core
 
@@ -117,6 +117,12 @@ unregisterSource(id: number): Promise&lt;void&gt;
 | 参数名   | 类型                                      | 必填 | 说明                     |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
 | id       | number                                   | 是   | 已注册资源的source id。    |
+
+**返回值：**
+
+| 类型                  | 说明                         |
+| --------------------- | --------------------------- |
+| Promise&lt;void&gt;   | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -244,7 +250,7 @@ audioHapticManagerInstance.setStreamUsage(id, usage);
 
 createPlayer(id: number, options?: AudioHapticPlayerOptions): Promise&lt;AudioHapticPlayer&gt;
 
-创建音振播放器，使用Promise方式异步返回结果。
+创建音振播放器。使用Promise异步回调。
 
 **需要权限：** ohos.permission.VIBRATE
 
@@ -263,7 +269,7 @@ createPlayer(id: number, options?: AudioHapticPlayerOptions): Promise&lt;AudioHa
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| Promise&lt;[AudioHapticPlayer](#audiohapticplayer)&gt; | Promise回调返回创建的音振播放器。 |
+| Promise&lt;[AudioHapticPlayer](#audiohapticplayer)&gt; |Promise对象，返回创建的音振播放器。 |
 
 **错误码：**
 
@@ -359,15 +365,15 @@ let result: boolean = audioHapticPlayerInstance.isMuted(audioHapticType);
 
 start(): Promise&lt;void&gt;
 
-开始播放，使用Promise方式异步返回结果。
+开始播放。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.AudioHaptic.Core
 
 **返回值：**
 
-| 类型                | 说明                              |
-| ------------------- | -------------------------------- |
-| Promise&lt;void&gt; | Promise回调返回开始播放成功或失败。 |
+| 类型                  | 说明                         |
+| --------------------- | --------------------------- |
+| Promise&lt;void&gt;   | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -378,7 +384,6 @@ start(): Promise&lt;void&gt;
 | 5400102 | Operate not permit. |
 | 5400103 | IO error. |
 | 5400105 | Service died. |
-
 
 **示例：**
 
@@ -396,7 +401,7 @@ audioHapticPlayerInstance.start().then(() => {
 
 stop(): Promise&lt;void&gt;
 
-停止播放，使用Promise方式异步返回结果。
+停止播放。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.AudioHaptic.Core
 
@@ -404,7 +409,7 @@ stop(): Promise&lt;void&gt;
 
 | 类型                | 说明                              |
 | ------------------- | -------------------------------- |
-| Promise&lt;void&gt; | Promise回调返回停止播放成功或失败。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -431,7 +436,7 @@ audioHapticPlayerInstance.stop().then(() => {
 
 release(): Promise&lt;void&gt;
 
-释放音振播放器，使用Promise方式异步返回结果。
+释放音振播放器。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.AudioHaptic.Core
 
@@ -439,7 +444,7 @@ release(): Promise&lt;void&gt;
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise回调返回释放成功或失败。   |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -465,7 +470,7 @@ audioHapticPlayerInstance.release().then(() => {
 
 on(type: 'endOfStream', callback: Callback&lt;void&gt;): void
 
-监听流结束事件（音频流播放结束时触发），使用callback方式返回结果。
+监听流结束事件（音频流播放结束时触发）。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.AudioHaptic.Core
 
@@ -473,7 +478,7 @@ on(type: 'endOfStream', callback: Callback&lt;void&gt;): void
 
 | 参数名   | 类型                     | 必填 | 说明                                                                       |
 | -------- | ----------------------- | ---- | -------------------------------------------------------------------------- |
-| type     | string                  | 是   | 事件回调类型，支持的事件为：'endOfStream'（流结束事件）。 |
+| type     | string                  | 是   | 事件回调类型，支持的事件为'endOfStream'，当音频流播放结束时，触发该事件。 |
 | callback | Callback&lt;void&gt;    | 是   | 回调函数，无返回结果。 |
 
 **示例：**
@@ -488,7 +493,7 @@ audioHapticPlayerInstance.on('endOfStream', () => {
 
 off(type: 'endOfStream', callback?: Callback&lt;void&gt;): void
 
-取消监听流结束事件，使用callback方式返回结果。
+取消监听流结束事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.AudioHaptic.Core
 
@@ -496,7 +501,7 @@ off(type: 'endOfStream', callback?: Callback&lt;void&gt;): void
 
 | 参数名 | 类型   | 必填 | 说明                                              |
 | ----- | ----- | ---- | ------------------------------------------------ |
-| type   | string | 是   | 要取消订阅事件的类型。支持的事件为：'endOfStream'。 |
+| type   | string | 是   | 事件回调类型，支持的事件为'endOfStream'，当取消监听流结束事件时，触发该事件。 |
 | callback | Callback&lt;void&gt;    | 否   | 回调函数，无返回结果。 |
 
 **示例：**
@@ -519,7 +524,7 @@ audioHapticPlayerInstance.off('endOfStream', endOfStreamCallback);
 
 on(type: 'audioInterrupt', callback: Callback&lt;audio.InterruptEvent&gt;): void
 
-监听音频中断事件（当音频焦点发生变化时触发），使用callback方式返回结果。
+监听音频中断事件（当音频焦点发生变化时触发）。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.AudioHaptic.Core
 
@@ -527,8 +532,8 @@ on(type: 'audioInterrupt', callback: Callback&lt;audio.InterruptEvent&gt;): void
 
 | 参数名   | 类型                     | 必填 | 说明                                                                       |
 | -------- | ----------------------- | ---- | -------------------------------------------------------------------------- |
-| type     | string                  | 是   | 事件回调类型，支持的事件为：'audioInterrupt'（音频中断事件）。                     |
-| callback | Callback&lt;[audio.InterruptEvent](js-apis-audio.md#interruptevent9)&gt; | 是   | 回调函数，返回播放中断时，应用接收的中断事件信息。 |
+| type     | string                  | 是   | 事件回调类型，支持的事件为'audioInterrupt'，当音频焦点状态发生变化时，触发该事件。 |
+| callback | Callback&lt;[audio.InterruptEvent](js-apis-audio.md#interruptevent9)&gt; | 是   | 回调函数，返回中断事件信息。 |
 
 **示例：**
 
@@ -589,7 +594,7 @@ audioHapticPlayerInstance.on('audioInterrupt', (interruptEvent: audio.InterruptE
 
 off(type: 'audioInterrupt', callback?: Callback&lt;audio.InterruptEvent&gt;): void
 
-取消监听音频中断事件，使用callback方式返回结果。
+取消监听音频中断事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.AudioHaptic.Core
 
@@ -597,8 +602,8 @@ off(type: 'audioInterrupt', callback?: Callback&lt;audio.InterruptEvent&gt;): vo
 
 | 参数名 | 类型   | 必填 | 说明                                              |
 | ----- | ----- | ---- | ------------------------------------------------- |
-| type   | string | 是   | 要取消订阅事件的类型。支持的事件为：'audioInterrupt'。 |
-| callback | Callback&lt;[audio.InterruptEvent](js-apis-audio.md#interruptevent9)&gt; | 否   | 回调函数，取消监听时，返回应用中断事件信息。 |
+| type   | string | 是   | 事件回调类型，支持的事件为'audioInterrupt'，当取消监听音频中断事件时，触发该事件。 |
+| callback | Callback&lt;[audio.InterruptEvent](js-apis-audio.md#interruptevent9)&gt; | 否   | 回调函数，返回中断事件信息。 |
 
 **示例：**
 

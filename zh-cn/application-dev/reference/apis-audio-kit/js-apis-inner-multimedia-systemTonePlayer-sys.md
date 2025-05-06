@@ -36,7 +36,7 @@ import { systemSoundManager } from '@kit.AudioKit';
 
 getTitle(): Promise&lt;string&gt;
 
-获取提示音标题，使用Promise方式异步返回结果。
+获取提示音标题。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -46,7 +46,7 @@ getTitle(): Promise&lt;string&gt;
 
 | 类型    | 说明                                  |
 | ------- | ------------------------------------- |
-| Promise&lt;string&gt; | Promise回调返回获取的系统提示音标题。 |
+| Promise&lt;string&gt; | Promise对象，返回获取的系统提示音标题。 |
 
 **错误码：**
 
@@ -73,7 +73,7 @@ systemTonePlayer.getTitle().then((value: string) => {
 
 prepare(): Promise&lt;void&gt;
 
-准备播放提示音，使用Promise方式异步返回结果。
+准备播放提示音。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -83,7 +83,7 @@ prepare(): Promise&lt;void&gt;
 
 | 类型    | 说明                            |
 | ------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise回调返回准备成功或失败。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -111,7 +111,7 @@ systemTonePlayer.prepare().then(() => {
 
 start(toneOptions?: SystemToneOptions): Promise&lt;number&gt;
 
-开始播放提示音，使用Promise方式异步返回结果。
+开始播放提示音。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -129,7 +129,7 @@ start(toneOptions?: SystemToneOptions): Promise&lt;number&gt;
 
 | 类型    | 说明                      |
 | ------- | ------------------------- |
-| Promise&lt;number&gt; | Promise回调返回streamID。 |
+| Promise&lt;number&gt; | Promise对象，返回streamID。 |
 
 **错误码：**
 
@@ -164,7 +164,7 @@ systemTonePlayer.start(systemToneOptions).then((value: number) => {
 
 stop(id: number): Promise&lt;void&gt;
 
-停止播放提示音，使用Promise方式异步返回结果。
+停止播放提示音。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -174,7 +174,7 @@ stop(id: number): Promise&lt;void&gt;
 
 | 参数名 | 类型   | 必填 | 说明                      |
 | ------ | ------ | ---- | ------------------------- |
-| id     | number | 是   | start方法返回的streamID。 |
+| id     | number | 是   | Promise对象，返回streamID。 |
 
 **返回值：**
 
@@ -209,7 +209,7 @@ systemTonePlayer.stop(streamID).then(() => {
 
 release(): Promise&lt;void&gt;
 
-释放提示音播放器，使用Promise方式异步返回结果。
+释放提示音播放器。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -219,7 +219,7 @@ release(): Promise&lt;void&gt;
 
 | 类型    | 说明                            |
 | ------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise回调返回释放成功或失败。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -319,7 +319,7 @@ try {
 
 getSupportedHapticsFeatures(): Promise&lt;Array&lt;systemSoundManager.ToneHapticsFeature&gt;&gt;
 
-获取当前支持的振动风格，使用Promise方式异步返回支持的振动风格列表。
+获取当前支持的振动风格。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -327,10 +327,9 @@ getSupportedHapticsFeatures(): Promise&lt;Array&lt;systemSoundManager.ToneHaptic
 
 **返回值：**
 
-
 | 类型                                                                                                                          | 说明                                                                                                                  |
 |-----------------------------------------------------------------------------------------------------------------------------| --------------------------------------------------------------------------------------------------------------------- |
-| Promise&lt;Array&lt;[systemSoundManager.ToneHapticsFeature](js-apis-systemSoundManager-sys.md#tonehapticsfeature13)&gt;&gt; | Promise回调返回当前支持的振动风格。 |
+| Promise&lt;Array&lt;[systemSoundManager.ToneHapticsFeature](js-apis-systemSoundManager-sys.md#tonehapticsfeature13)&gt;&gt; | Promise对象，返回当前支持的振动风格。 |
 
 **错误码：**
 
@@ -363,8 +362,8 @@ setHapticsFeature(hapticsFeature: systemSoundManager.ToneHapticsFeature): void
 **系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
-**参数：**
 
+**参数：**
 
 | 参数名         | 类型                                                                                              | 必填 | 说明             |
 | -------------- |-------------------------------------------------------------------------------------------------| ---- | ---------------- |
@@ -408,7 +407,6 @@ getHapticsFeature(): systemSoundManager.ToneHapticsFeature
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
 **返回值：**
-
 
 | 类型                                                                                              | 说明     |
 |-------------------------------------------------------------------------------------------------| -------- |

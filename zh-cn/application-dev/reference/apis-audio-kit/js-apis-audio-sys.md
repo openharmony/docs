@@ -28,7 +28,7 @@ import { audio } from '@kit.AudioKit';
 
 createTonePlayer(options: AudioRendererInfo, callback: AsyncCallback&lt;TonePlayer&gt;): void
 
-创建DTMF播放器。使用callback方式异步返回结果。
+创建DTMF播放器。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Tone
 
@@ -67,7 +67,7 @@ audio.createTonePlayer(audioRendererInfo, (err, data) => {
 
 createTonePlayer(options: AudioRendererInfo): Promise&lt;TonePlayer&gt;
 
-创建DTMF播放器。使用Promise方式异步返回结果。
+创建DTMF播放器。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Tone
 
@@ -400,7 +400,7 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 
 setExtraParameters(mainKey: string, kvpairs: Record<string, string\>): Promise&lt;void&gt;
 
-音频扩展参数设置，使用Promise方式异步返回结果。
+音频扩展参数设置。使用Promise异步回调。
 
 **需要权限：** ohos.permission.MODIFY_AUDIO_SETTINGS
 
@@ -419,7 +419,7 @@ setExtraParameters(mainKey: string, kvpairs: Record<string, string\>): Promise&l
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -453,7 +453,7 @@ audioManager.setExtraParameters('key_example', kvpairs).then(() => {
 
 getExtraParameters(mainKey: string, subKeys?: Array\<string>): Promise\<Record\<string, string>>
 
-获取指定音频参数值，使用Promise方式异步返回结果。
+获取指定音频参数值。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -499,7 +499,7 @@ audioManager.getExtraParameters('key_example', subKeys).then((value: Record<stri
 
 setAudioScene\(scene: AudioScene, callback: AsyncCallback<void\>\): void
 
-设置音频场景模式，使用callback方式异步返回结果。
+设置音频场景模式。使用callback异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -530,7 +530,7 @@ audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL, (err: Busine
 
 setAudioScene\(scene: AudioScene\): Promise<void\>
 
-设置音频场景模式，使用Promise方式返回异步结果。
+设置音频场景模式。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -546,7 +546,7 @@ setAudioScene\(scene: AudioScene\): Promise<void\>
 
 | 类型           | 说明                 |
 | :------------- | :------------------- |
-| Promise<void\> | Promise对象，无返回结果。 |
+| Promise<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -596,7 +596,7 @@ let audioSpatializationManager: audio.AudioSpatializationManager = audioManager.
 
 disableSafeMediaVolume(): Promise&lt;void&gt;
 
-设置安全音量为非激活状态。使用Promise方式异步返回结果。
+设置安全音量为非激活状态。使用Promise异步回调。
 
 设置为非激活状态后，当设备长时间高音量播放时，不再自动提醒用户降低到安全音量。
 
@@ -610,7 +610,7 @@ disableSafeMediaVolume(): Promise&lt;void&gt;
 
 | 类型                                       | 说明                          |
 |------------------------------------------| ----------------------------- |
-| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -640,7 +640,7 @@ on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 > **说明：**
 > 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeManager中的[on('volumeChange')](js-apis-audio.md#onvolumechange9)替代。
 
-监听系统音量变化事件（当系统音量发生变化时触发），使用callback方式返回结果。
+监听系统音量变化事件（当系统音量发生变化时触发）。使用callback异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -652,7 +652,7 @@ on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                 | 是   | 监听事件，固定为：'volumeChange'。 |
+| type     | string                                 | 是   | 事件回调类型，支持的事件为'volumeChange'，当系统音量发生变化时，触发该事件。 |
 | callback | Callback<[VolumeEvent](#volumeevent9)> | 是   | 回调函数，返回变化后的音量信息。 |
 
 **示例：**
@@ -669,7 +669,7 @@ audioManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
 
 on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
 
-监听铃声模式变化事件（当[铃声模式](js-apis-audio.md#audioringmode)发生改变时触发），使用callback方式返回结果。
+监听铃声模式变化事件（当[铃声模式](js-apis-audio.md#audioringmode)发生改变时触发）。使用callback异步回调。
 
 > **说明：**
 > 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[on('ringerModeChange')](js-apis-audio.md#onringermodechange9)替代。
@@ -682,7 +682,7 @@ on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
 
 | 参数名   | 类型                                      | 必填 | 说明                                                         |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                    | 是   | 监听事件，固定为：'ringerModeChange'。 |
+| type     | string                                    | 是   | 事件回调类型，支持的事件为'ringerModeChange'，当铃声模式发生改变时，触发该事件。 |
 | callback | Callback<[AudioRingMode](js-apis-audio.md#audioringmode)> | 是   | 回调函数，返回变化后的铃音模式。                                                   |
 
 **示例：**
@@ -701,7 +701,7 @@ audioManager.on('ringerModeChange', (ringerMode: audio.AudioRingMode) => {
 
 getVolumeGroupInfos(networkId: string, callback: AsyncCallback<VolumeGroupInfos\>\): void
 
-获取音量组信息列表，使用callback方式异步返回结果。
+获取音量组信息列表。使用callback异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -731,7 +731,7 @@ audioVolumeManager.getVolumeGroupInfos(audio.LOCAL_NETWORK_ID, (err: BusinessErr
 
 getVolumeGroupInfos(networkId: string\): Promise<VolumeGroupInfos\>
 
-获取音量组信息列表，使用Promise方式异步返回结果。
+获取音量组信息列表。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -811,7 +811,7 @@ try {
 
 setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&lt;void&gt;): void
 
-设置指定流的音量，使用callback方式异步返回结果。
+设置指定流的音量。使用callback异步回调。
 
 **需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -847,7 +847,7 @@ audioVolumeGroupManager.setVolume(audio.AudioVolumeType.MEDIA, 10, (err: Busines
 
 setVolume(volumeType: AudioVolumeType, volume: number): Promise&lt;void&gt;
 
-设置指定流的音量，使用Promise方式异步返回结果。
+设置指定流的音量。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -868,7 +868,7 @@ setVolume(volumeType: AudioVolumeType, volume: number): Promise&lt;void&gt;
 
 | 类型                | 说明                          |
 | ------------------- | ----------------------------- |
-| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -882,7 +882,7 @@ audioVolumeGroupManager.setVolume(audio.AudioVolumeType.MEDIA, 10).then(() => {
 
 setVolumeWithFlag(volumeType: AudioVolumeType, volume: number, flags: number): Promise&lt;void&gt;
 
-设置指定流的音量，同时指定本次修改音量是否要显示系统音量条，使用Promise方式异步返回结果。
+设置指定流的音量，同时指定本次修改音量是否要显示系统音量条。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -904,7 +904,7 @@ setVolumeWithFlag(volumeType: AudioVolumeType, volume: number, flags: number): P
 
 | 类型                | 说明                          |
 | ------------------- | ----------------------------- |
-| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -927,7 +927,7 @@ audioVolumeGroupManager.setVolumeWithFlag(audio.AudioVolumeType.MEDIA, 10, 1).th
 
 mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置指定音量流静音，使用callback方式异步返回结果。
+设置指定音量流静音。使用callback异步回调。
 
 **需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -963,7 +963,7 @@ audioVolumeGroupManager.mute(audio.AudioVolumeType.MEDIA, true, (err: BusinessEr
 
 mute(volumeType: AudioVolumeType, mute: boolean): Promise&lt;void&gt;
 
-设置指定音量流静音，使用Promise方式异步返回结果。
+设置指定音量流静音。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -984,7 +984,7 @@ mute(volumeType: AudioVolumeType, mute: boolean): Promise&lt;void&gt;
 
 | 类型                | 说明                          |
 | ------------------- | ----------------------------- |
-| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -998,7 +998,7 @@ audioVolumeGroupManager.mute(audio.AudioVolumeType.MEDIA, true).then(() => {
 
 setRingerMode(mode: AudioRingMode, callback: AsyncCallback&lt;void&gt;): void
 
-设置铃声模式，使用callback方式异步返回结果。
+设置铃声模式。使用callback异步回调。
 
 **需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -1033,7 +1033,7 @@ audioVolumeGroupManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL, (e
 
 setRingerMode(mode: AudioRingMode): Promise&lt;void&gt;
 
-设置铃声模式，使用Promise方式异步返回结果。
+设置铃声模式。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -1053,7 +1053,7 @@ setRingerMode(mode: AudioRingMode): Promise&lt;void&gt;
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -1067,7 +1067,7 @@ audioVolumeGroupManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL).th
 
 setMicMute(mute: boolean): Promise&lt;void&gt;
 
-设置麦克风静音状态，使用Promise方式异步返回结果。
+设置麦克风静音状态。使用Promise异步回调。
 
 **需要权限：** ohos.permission.MANAGE_AUDIO_CONFIG
 
@@ -1085,7 +1085,7 @@ setMicMute(mute: boolean): Promise&lt;void&gt;
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1110,7 +1110,7 @@ audioVolumeGroupManager.setMicMute(true).then(() => {
 
 adjustVolumeByStep(adjustType: VolumeAdjustType, callback: AsyncCallback&lt;void&gt;): void
 
-调节当前最高优先级的流的音量，使音量值按步长加或减，使用callback方式异步返回结果。
+调节当前最高优先级的流的音量，使音量值按步长加或减。使用callback异步回调。
 
 **需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -1156,7 +1156,7 @@ audioVolumeGroupManager.adjustVolumeByStep(audio.VolumeAdjustType.VOLUME_UP, (er
 
 adjustVolumeByStep(adjustType: VolumeAdjustType): Promise&lt;void&gt;
 
-单步设置当前最高优先级的流的音量，使用Promise方式异步返回结果。
+单步设置当前最高优先级的流的音量。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -1176,7 +1176,7 @@ adjustVolumeByStep(adjustType: VolumeAdjustType): Promise&lt;void&gt;
 
 | 类型                | 说明                          |
 | ------------------- | ----------------------------- |
-| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1205,7 +1205,7 @@ audioVolumeGroupManager.adjustVolumeByStep(audio.VolumeAdjustType.VOLUME_UP).the
 
 adjustSystemVolumeByStep(volumeType: AudioVolumeType, adjustType: VolumeAdjustType, callback: AsyncCallback&lt;void&gt;): void
 
-单步设置指定流的音量，使用callback方式异步返回结果。
+单步设置指定流的音量。使用callback异步回调。
 
 **需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -1251,7 +1251,7 @@ audioVolumeGroupManager.adjustSystemVolumeByStep(audio.AudioVolumeType.MEDIA, au
 
 adjustSystemVolumeByStep(volumeType: AudioVolumeType, adjustType: VolumeAdjustType): Promise&lt;void&gt;
 
-单步设置指定流的音量，使用Promise方式异步返回结果。
+单步设置指定流的音量。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -1272,14 +1272,14 @@ adjustSystemVolumeByStep(volumeType: AudioVolumeType, adjustType: VolumeAdjustTy
 
 | 类型                | 说明                          |
 | ------------------- | ----------------------------- |
-| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
+| -------- | --------------------------------------------|
 | 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. Return by promise.                     |
@@ -1305,7 +1305,7 @@ audioVolumeGroupManager.adjustSystemVolumeByStep(audio.AudioVolumeType.MEDIA, au
 
 selectInputDevice(inputAudioDevices: AudioDeviceDescriptors, callback: AsyncCallback&lt;void&gt;): void
 
-选择音频输入设备，当前只能选择一个输入设备，使用callback方式异步返回结果。
+选择音频输入设备，当前只能选择一个输入设备。使用callback异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -1355,7 +1355,7 @@ selectInputDevice(inputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&gt
 
 **系统接口：** 该接口为系统接口
 
-选择音频输入设备，当前只能选择一个输入设备，使用Promise方式异步返回结果。
+选择音频输入设备，当前只能选择一个输入设备。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -1369,7 +1369,7 @@ selectInputDevice(inputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&gt
 
 | 类型                  | 说明                         |
 | --------------------- | --------------------------- |
-| Promise&lt;void&gt;   | Promise对象，无返回结果。 |
+| Promise&lt;void&gt;   | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -1405,7 +1405,7 @@ async function getRoutingManager(){
 
 selectOutputDevice(outputAudioDevices: AudioDeviceDescriptors, callback: AsyncCallback&lt;void&gt;): void
 
-选择音频输出设备，当前只能选择一个输出设备，使用callback方式异步返回结果。
+选择音频输出设备，当前只能选择一个输出设备。使用callback异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -1454,7 +1454,7 @@ selectOutputDevice(outputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&
 
 **系统接口：** 该接口为系统接口
 
-选择音频输出设备，当前只能选择一个输出设备，使用Promise方式异步返回结果。
+选择音频输出设备，当前只能选择一个输出设备。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -1468,7 +1468,7 @@ selectOutputDevice(outputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&
 
 | 类型                  | 说明                         |
 | --------------------- | --------------------------- |
-| Promise&lt;void&gt;   | Promise对象，无返回结果。 |
+| Promise&lt;void&gt;   | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -1506,7 +1506,7 @@ selectOutputDeviceByFilter(filter: AudioRendererFilter, outputAudioDevices: Audi
 
 **系统接口：** 该接口为系统接口
 
-根据过滤条件，选择音频输出设备，当前只能选择一个输出设备，使用callback方式异步返回结果。
+根据过滤条件，选择音频输出设备，当前只能选择一个输出设备。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -1563,7 +1563,7 @@ selectOutputDeviceByFilter(filter: AudioRendererFilter, outputAudioDevices: Audi
 
 **系统接口：** 该接口为系统接口
 
-根据过滤条件，选择音频输出设备，当前只能选择一个输出设备，使用Promise方式异步返回结果。
+根据过滤条件，选择音频输出设备，当前只能选择一个输出设备。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -1578,7 +1578,7 @@ selectOutputDeviceByFilter(filter: AudioRendererFilter, outputAudioDevices: Audi
 
 | 类型                  | 说明                         |
 | --------------------- | --------------------------- |
-| Promise&lt;void&gt;   | Promise对象，无返回结果。 |
+| Promise&lt;void&gt;   | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -1900,7 +1900,7 @@ try {
 
 setSpatializationEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-根据输入指令，开启/关闭空间音频渲染效果，使用callback方式异步返回结果。
+根据输入指令，开启/关闭空间音频渲染效果。使用callback异步回调。
 
 > **说明：**
 > 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[setSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boolean): Promise\<void>](#setspatializationenabled12)替代。
@@ -1916,7 +1916,7 @@ setSpatializationEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): 
 | 参数名                       | 类型                                                         | 必填 | 说明                      |
 | --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
 | enable                      | boolean                                                      | 是   | 表示开启/关闭空间音频渲染。true为开启，false为关闭。  |
-| callback                    | AsyncCallback&lt;void&gt;                                    | 是   | AsyncCallback对象，无返回结果。 |
+| callback                    | AsyncCallback&lt;void&gt;                                    | 是   | 回调函数。当开启/关闭空间音频渲染效果成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -1949,7 +1949,7 @@ audioSpatializationManager.setSpatializationEnabled(enable, (err: BusinessError)
 
 setSpatializationEnabled(enable: boolean): Promise&lt;void&gt;
 
-根据输入指令，开启/关闭空间音频渲染效果，使用Promise方式异步返回结果。
+根据输入指令，开启/关闭空间音频渲染效果。使用Promise异步回调。
 
 > **说明：**
 > 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[setSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boolean): Promise\<void>](#setspatializationenabled12)替代。
@@ -1970,7 +1970,7 @@ setSpatializationEnabled(enable: boolean): Promise&lt;void&gt;
 
 | 类型                  | 说明                         |
 | --------------------- | --------------------------- |
-| Promise&lt;void&gt;   | Promise对象，无返回结果。 |
+| Promise&lt;void&gt;   | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -2000,7 +2000,7 @@ audioSpatializationManager.setSpatializationEnabled(enable).then(() => {
 
 setSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boolean): Promise&lt;void&gt;
 
-根据输入指令，开启/关闭指定设备的空间音频渲染效果，使用Promise方式异步返回结果。
+根据输入指令，开启/关闭指定设备的空间音频渲染效果。使用Promise异步回调。
 
 **需要权限：** ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
 
@@ -2019,7 +2019,7 @@ setSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boole
 
 | 类型                  | 说明                         |
 | --------------------- | --------------------------- |
-| Promise&lt;void&gt;   | Promise对象，无返回结果。 |
+| Promise&lt;void&gt;   | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -2170,7 +2170,7 @@ try {
 
 on(type: 'spatializationEnabledChange', callback: Callback<boolean\>): void
 
-监听空间音频渲染开关状态变化事件（当空间音频渲染开关状态发生变化时触发），使用callback方式返回结果。
+监听空间音频渲染开关状态变化事件（当空间音频渲染开关状态发生变化时触发）。使用callback异步回调。
 
 > **说明：**
 > 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[on(type: 'spatializationEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnabledStateForDevice\>): void](#onspatializationenabledchangeforanydevice12)替代。
@@ -2183,8 +2183,8 @@ on(type: 'spatializationEnabledChange', callback: Callback<boolean\>): void
 
 | 参数名   | 类型                                                 | 必填 | 说明                                           |
 | :------- | :--------------------------------------------------- | :--- |:---------------------------------------------|
-| type     | string                                               | 是   | 监听事件，固定为：'spatializationEnabledChange'。 |
-| callback | Callback<boolean\> | 是   | 回调函数，返回空间音频渲染开关状态，true为打开，false为关闭。    |
+| type     | string | 是   | 事件回调类型，支持的事件为'spatializationEnabledChange'，当空间音频渲染开关状态发生变化时，触发该事件。 |
+| callback | Callback<boolean\> | 是   | 回调函数。返回true表示音频渲染已打开；返回false表示音频渲染已关闭。 |
 
 **错误码：**
 
@@ -2210,7 +2210,7 @@ audioSpatializationManager.on('spatializationEnabledChange', (isSpatializationEn
 
 on(type: 'spatializationEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnabledStateForDevice\>): void
 
-监听空间音频渲染开关状态变化事件（当空间音频渲染开关状态发生变化时触发），使用callback方式返回结果。
+监听空间音频渲染开关状态变化事件（当空间音频渲染开关状态发生变化时触发）。使用callback异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -2220,8 +2220,8 @@ on(type: 'spatializationEnabledChangeForAnyDevice', callback: Callback<AudioSpat
 
 | 参数名   | 类型                                                 | 必填 | 说明                                           |
 | :------- | :--------------------------------------------------- | :--- |:---------------------------------------------|
-| type     | string                                               | 是   | 监听事件，固定为：'spatializationEnabledChangeForAnyDevice'。 |
-| callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | 是   | Callback对象，返回设备信息和空间音频渲染开关状态。   |
+| type     | string | 是   | 事件回调类型，支持的事件为'spatializationEnabledChangeForAnyDevice'，当空间音频渲染开关状态发生变化时，触发该事件。 |
+| callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | 是   | 回调函数，返回设备信息和空间音频渲染开关状态。    |
 
 **错误码：**
 
@@ -2248,7 +2248,7 @@ audioSpatializationManager.on('spatializationEnabledChangeForAnyDevice', (audioS
 
 off(type: 'spatializationEnabledChange', callback?: Callback<boolean\>): void
 
-取消监听空间音频渲染开关状态变化事件，使用callback方式返回结果。
+取消监听空间音频渲染开关状态变化事件。使用callback异步回调。
 
 > **说明：**
 > 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[off(type: 'spatializationEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnabledStateForDevice\>): void](#offspatializationenabledchangeforanydevice12)替代。
@@ -2261,8 +2261,8 @@ off(type: 'spatializationEnabledChange', callback?: Callback<boolean\>): void
 
 | 参数名   | 类型                                                | 必填 | 说明                                       |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
-| type     | string                                              | 是   | 监听事件，固定为：'spatializationEnabledChange'。 |
-| callback | Callback<boolean\> | 否   | 回调函数，返回空间音频渲染开关状态，true为打开，false为关闭。 |
+| type     | string | 是   | 事件回调类型，支持的事件为'spatializationEnabledChange'，当取消监听空间音频渲染开关状态变化事件时，触发该事件。 |
+| callback | Callback<boolean\> | 否   | 回调函数。返回true表示音频渲染已打开；返回false表示音频渲染已关闭。 |
 
 **错误码：**
 
@@ -2294,7 +2294,7 @@ audioSpatializationManager.off('spatializationEnabledChange', spatializationEnab
 
 off(type: 'spatializationEnabledChangeForAnyDevice', callback?: Callback<AudioSpatialEnabledStateForDevice\>): void
 
-取消监听空间音频渲染开关状态变化事件，使用callback方式返回结果。
+取消监听空间音频渲染开关状态变化事件。使用callback异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -2304,7 +2304,7 @@ off(type: 'spatializationEnabledChangeForAnyDevice', callback?: Callback<AudioSp
 
 | 参数名   | 类型                                                 | 必填 | 说明                                           |
 | :------- | :--------------------------------------------------- | :--- |:---------------------------------------------|
-| type     | string                                               | 是   | 监听事件，固定为：'spatializationEnabledChangeForAnyDevice'。 |
+| type     | string | 是   | 事件回调类型，支持的事件为'spatializationEnabledChangeForAnyDevice'，当取消监听空间音频渲染开关状态变化事件时，触发该事件。 |
 | callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | 是   | 回调函数，返回设备信息和空间音频渲染开关状态。 |
 
 **错误码：**
@@ -2340,7 +2340,7 @@ audioSpatializationManager.off('spatializationEnabledChangeForAnyDevice', spatia
 
 setHeadTrackingEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-根据输入指令，开启/关闭头动跟踪效果，使用callback方式异步返回结果。
+根据输入指令，开启/关闭头动跟踪效果。使用callback异步回调。
 
 > **说明：**
 > 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[setHeadTrackingEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boolean): Promise\<void>](#setheadtrackingenabled12)替代。
@@ -2356,7 +2356,7 @@ setHeadTrackingEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 | 参数名                       | 类型                                                         | 必填 | 说明                      |
 | --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
 | enable                      | boolean                                                      | 是   | 表示开启/关闭头动跟踪。true为开启，false为关闭。  |
-| callback                    | AsyncCallback&lt;void&gt;                                    | 是   | AsyncCallback对象，无返回结果。 |
+| callback                    | AsyncCallback&lt;void&gt;                                    | 是   | 回调函数。当开启/关闭头动跟踪效果成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -2389,7 +2389,7 @@ audioSpatializationManager.setHeadTrackingEnabled(enable, (err: BusinessError) =
 
 setHeadTrackingEnabled(enable: boolean): Promise&lt;void&gt;
 
-根据输入指令，开启/关闭头动跟踪效果，使用Promise方式异步返回结果。
+根据输入指令，开启/关闭头动跟踪效果。使用Promise异步回调。
 
 > **说明：**
 > 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[setHeadTrackingEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boolean): Promise\<void>](#setheadtrackingenabled12)替代。
@@ -2410,7 +2410,7 @@ setHeadTrackingEnabled(enable: boolean): Promise&lt;void&gt;
 
 | 类型                  | 说明                         |
 | --------------------- | --------------------------- |
-| Promise&lt;void&gt;   | Promise对象，无返回结果。 |
+| Promise&lt;void&gt;   | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -2441,7 +2441,7 @@ audioSpatializationManager.setHeadTrackingEnabled(enable).then(() => {
 
 setHeadTrackingEnabled(enable: boolean): Promise&lt;void&gt;
 
-根据输入指令，开启/关闭指定设备的头动跟踪效果，使用Promise方式异步返回结果。
+根据输入指令，开启/关闭指定设备的头动跟踪效果。使用Promise异步回调。
 
 **需要权限：** ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
 
@@ -2460,7 +2460,7 @@ setHeadTrackingEnabled(enable: boolean): Promise&lt;void&gt;
 
 | 类型                  | 说明                         |
 | --------------------- | --------------------------- |
-| Promise&lt;void&gt;   | Promise对象，无返回结果。 |
+| Promise&lt;void&gt;   | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -2610,7 +2610,7 @@ try {
 
 on(type: 'headTrackingEnabledChange', callback: Callback<boolean\>): void
 
-监听头动跟踪开关状态变化事件（当动跟踪开关状态发生变化时触发），使用callback方式返回结果。
+监听头动跟踪开关状态变化事件（当动跟踪开关状态发生变化时触发）。使用callback异步回调。
 
 > **说明：**
 > 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[on(type: 'headTrackingEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnabledStateForDevice\>): void](#onheadtrackingenabledchangeforanydevice12)替代。
@@ -2623,8 +2623,8 @@ on(type: 'headTrackingEnabledChange', callback: Callback<boolean\>): void
 
 | 参数名   | 类型                                                 | 必填 | 说明                                       |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
-| type     | string                                               | 是   | 监听事件，固定为：'headTrackingEnabledChange'。 |
-| callback | Callback<boolean\> | 是   | Callback对象，返回头动跟踪开关状态，true为打开，false为关闭。 |
+| type     | string | 是   | 事件回调类型，支持的事件为'headTrackingEnabledChange'，当动跟踪开关状态发生变化时，触发该事件。 |
+| callback | Callback<boolean\> | 是   | 回调函数。返回true表示头动跟踪已打开；返回false表示头动跟踪已关闭。 |
 
 **错误码：**
 
@@ -2650,7 +2650,7 @@ audioSpatializationManager.on('headTrackingEnabledChange', (isHeadTrackingEnable
 
 on(type: 'headTrackingEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnabledStateForDevice\>): void
 
-监听头动跟踪开关状态变化事件（当动跟踪开关状态发生变化时触发），使用callback方式返回结果。
+监听头动跟踪开关状态变化事件（当动跟踪开关状态发生变化时触发）。使用callback异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -2660,8 +2660,8 @@ on(type: 'headTrackingEnabledChangeForAnyDevice', callback: Callback<AudioSpatia
 
 | 参数名   | 类型                                                 | 必填 | 说明                                       |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
-| type     | string                                               | 是   | 监听事件，固定为：'headTrackingEnabledChangeForAnyDevice'。 |
-| callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | 是   | Callback对象，返回设备信息和空间音频头动开关状态。    |
+| type     | string | 是   | 事件回调类型，支持的事件为'headTrackingEnabledChangeForAnyDevice'，当动跟踪开关状态发生变化时，触发该事件。 |
+| callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | 是   | 回调函数。返回true表示头动跟踪已打开；返回false表示头动跟踪已关闭。 |
 
 **错误码：**
 
@@ -2688,7 +2688,7 @@ audioSpatializationManager.on('headTrackingEnabledChangeForAnyDevice', (audioSpa
 
 off(type: 'headTrackingEnabledChange', callback?: Callback<boolean\>): void
 
-取消监听头动跟踪开关状态变化事件，使用callback方式返回结果。
+取消监听头动跟踪开关状态变化事件。使用callback异步回调。
 
 > **说明：**
 > 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[off(type: 'headTrackingEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnabledStateForDevice\>): void](#offheadtrackingenabledchangeforanydevice12)替代。
@@ -2701,8 +2701,8 @@ off(type: 'headTrackingEnabledChange', callback?: Callback<boolean\>): void
 
 | 参数名   | 类型                                                | 必填 | 说明                                       |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
-| type     | string                                              | 是   | 监听事件，固定为：'headTrackingEnabledChange'。 |
-| callback | Callback<boolean\> | 否   | 回调函数，返回头动跟踪开关状态，true为打开，false为关闭。 |
+| type     | string | 是   | 事件回调类型，支持的事件为'headTrackingEnabledChange'，当取消监听头动跟踪开关状态变化事件时，触发该事件。 |
+| callback | Callback<boolean\> | 否   | 回调函数。返回true表示头动跟踪已打开；返回false表示头动跟踪已关闭。 |
 
 **错误码：**
 
@@ -2736,7 +2736,7 @@ audioSpatializationManager.off('headTrackingEnabledChange', headTrackingEnabledC
 
 off(type: 'headTrackingEnabledChangeForAnyDevice', callback?: Callback<AudioSpatialEnabledStateForDevice\>): void
 
-取消监听头动跟踪开关状态变化事件，使用callback方式返回结果。
+取消监听头动跟踪开关状态变化事件。使用callback异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -2746,8 +2746,8 @@ off(type: 'headTrackingEnabledChangeForAnyDevice', callback?: Callback<AudioSpat
 
 | 参数名   | 类型                                                | 必填 | 说明                                       |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
-| type     | string                                              | 是   | 监听事件，固定为：'headTrackingEnabledChangeForAnyDevice'。 |
-| callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | 是   | 回调函数，返回设备信息和空间音频头动开关状态。 |
+| type     | string | 是   | 事件回调类型，支持的事件为'headTrackingEnabledChangeForAnyDevice'，当取消监听头动跟踪开关状态变化事件时，触发该事件。 |
+| callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | 是   | 回调函数。返回true表示头动跟踪已打开；返回false表示头动跟踪已关闭。 |
 
 **错误码：**
 
@@ -3021,7 +3021,7 @@ let spatialDeviceState: audio.AudioSpatialDeviceState = {
 
 load(type: ToneType, callback: AsyncCallback&lt;void&gt;): void
 
-加载DTMF音调配置。使用callback方式异步返回结果。
+加载DTMF音调配置。使用callback异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -3053,7 +3053,7 @@ tonePlayer.load(audio.ToneType.TONE_TYPE_DIAL_5, (err: BusinessError) => {
 
 load(type: ToneType): Promise&lt;void&gt;
 
-加载DTMF音调配置。使用Promise方式异步返回结果。
+加载DTMF音调配置。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -3069,7 +3069,7 @@ load(type: ToneType): Promise&lt;void&gt;
 
 | 类型            | 说明                        |
 | :--------------| :-------------------------- |
-| Promise<void\> | Promise对象，无返回结果。 |
+| Promise<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -3085,7 +3085,7 @@ tonePlayer.load(audio.ToneType.TONE_TYPE_DIAL_1).then(() => {
 
 start(callback: AsyncCallback&lt;void&gt;): void
 
-启动DTMF音调播放。使用callback方式异步返回结果。
+启动DTMF音调播放。使用callback异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -3116,7 +3116,7 @@ tonePlayer.start((err: BusinessError) => {
 
 start(): Promise&lt;void&gt;
 
-启动DTMF音调播放。使用Promise方式异步返回结果。
+启动DTMF音调播放。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -3126,7 +3126,7 @@ start(): Promise&lt;void&gt;
 
 | 类型           | 说明                          |
 | :------------- | :---------------------------- |
-| Promise<void\> | Promise对象，无返回结果。 |
+| Promise<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -3142,7 +3142,7 @@ tonePlayer.start().then(() => {
 
 stop(callback: AsyncCallback&lt;void&gt;): void
 
-停止当前正在播放的音调。使用callback方式异步返回结果。
+停止当前正在播放的音调。使用callback异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -3173,7 +3173,7 @@ tonePlayer.stop((err: BusinessError) => {
 
 stop(): Promise&lt;void&gt;
 
-停止当前正在播放的音调。使用Promise方式异步返回结果。
+停止当前正在播放的音调。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -3183,7 +3183,7 @@ stop(): Promise&lt;void&gt;
 
 | 类型           | 说明                          |
 | :------------- | :---------------------------- |
-| Promise<void\> | Promise对象，无返回结果。 |
+| Promise<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -3199,7 +3199,7 @@ tonePlayer.stop().then(() => {
 
 release(callback: AsyncCallback&lt;void&gt;): void
 
-释放与此TonePlayer对象关联的资源。使用callback方式异步返回结果。
+释放与此TonePlayer对象关联的资源。使用callback异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -3230,7 +3230,7 @@ tonePlayer.release((err: BusinessError) => {
 
 release(): Promise&lt;void&gt;
 
-释放与此TonePlayer对象关联的资源。使用Promise方式异步返回结果。
+释放与此TonePlayer对象关联的资源。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -3240,7 +3240,7 @@ release(): Promise&lt;void&gt;
 
 | 类型           | 说明                          |
 | :------------- | :---------------------------- |
-| Promise<void\> | Promise对象，无返回结果。 |
+| Promise<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -3523,8 +3523,8 @@ setAsrVoiceControlMode(mode: AsrVoiceControlMode, enable: boolean): boolean
 
 **返回值：**
 
-| 类型 | 说明                                                             |
-|-------|----------------------------------------------------------------|
+| 类型 | 说明                                                            |
+|-------|---------------------------------------------------------------|
 | boolean | 返回设置在系统通话中上报mode及通话录音的上行通路的ASR音频通路选择的结果。true为设置成功，false为设置失败。 |
 
 **错误码：**
