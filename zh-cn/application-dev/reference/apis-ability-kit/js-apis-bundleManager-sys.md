@@ -1252,7 +1252,7 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType
 | 参数名                | 类型                                                         | 必填 | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | want                  | Want                                                         | 是   | 表示包含要查询的应用Bundle名称的Want。                       |
-| extensionAbilityType  | [ExtensionAbilityType](js-apis-bundleManager-sys.md#extensionabilitytype)                | 是   | 标识extensionAbility的类型。                                 |
+| extensionAbilityType  | [ExtensionAbilityType](js-apis-bundleManager.md#extensionabilitytype)                | 是   | 标识extensionAbility的类型。                                 |
 | extensionAbilityFlags | [number](#extensionabilityflag)                              | 是   | 表示用于指定将返回的ExtensionInfo对象中包含的信息的标志。    |
 | userId                | number                                                       | 是   | 表示用户ID。                                                 |
 | callback              | AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>> | 是   | 回调函数，当获取成功时，err为null，data为获取到Array\<ExtensionAbilityInfo>；否则为错误对象。 |
@@ -1317,7 +1317,7 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType
 | 参数名                | 类型                                                         | 必填 | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | want                  | Want                                                         | 是   | 表示包含要查询的应用Bundle名称的Want。                       |
-| extensionAbilityType  | [ExtensionAbilityType](js-apis-bundleManager-sys.md#extensionabilitytype)                | 是   | 标识extensionAbility的类型。                                 |
+| extensionAbilityType  | [ExtensionAbilityType](js-apis-bundleManager.md#extensionabilitytype)                | 是   | 标识extensionAbility的类型。                                 |
 | extensionAbilityFlags | [number](#extensionabilityflag)                              | 是   | 表示用于指定将返回的ExtensionInfo对象中包含的信息的标志。    |
 | callback              | AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>> | 是   | 回调函数，当获取成功时，err为null，data为获取到Array\<ExtensionAbilityInfo>；否则为错误对象。 |
 
@@ -1379,7 +1379,7 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType
 | 参数名                | 类型                                          | 必填 | 说明                                                      |
 | --------------------- | --------------------------------------------- | ---- | --------------------------------------------------------- |
 | want                  | Want                                          | 是   | 表示包含要查询的应用Bundle名称的Want。                    |
-| extensionAbilityType  | [ExtensionAbilityType](js-apis-bundleManager-sys.md#extensionabilitytype) | 是   | 标识extensionAbility的类型。                              |
+| extensionAbilityType  | [ExtensionAbilityType](js-apis-bundleManager.md#extensionabilitytype) | 是   | 标识extensionAbility的类型。                              |
 | extensionAbilityFlags | [number](#extensionabilityflag)               | 是   | 表示用于指定将返回的ExtensionInfo对象中包含的信息的标志。 |
 | userId                | number                                        | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。                                              |
 
@@ -1472,7 +1472,7 @@ queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: ExtensionAbility
 | 参数名                | 类型                                          | 必填 | 说明                                                      |
 | --------------------- | --------------------------------------------- | ---- | --------------------------------------------------------- |
 | want                  | Want                                          | 是   | 表示包含要查询的应用Bundle名称的Want。                    |
-| extensionAbilityType  | [ExtensionAbilityType](js-apis-bundleManager-sys.md#extensionabilitytype) | 是   | 标识extensionAbility的类型。                              |
+| extensionAbilityType  | [ExtensionAbilityType](js-apis-bundleManager.md#extensionabilitytype) | 是   | 标识extensionAbility的类型。                              |
 | extensionAbilityFlags | [number](#extensionabilityflag)               | 是   | 表示用于指定将返回的ExtensionInfo对象中包含的信息的标志。 |
 | userId                | number                                        | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。                                              |
 
