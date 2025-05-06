@@ -53,7 +53,7 @@ EmbeddedComponent组件不支持[点击](../reference/apis-arkui/arkui-ts/ts-uni
 
 该示例简单展示了EmbeddedComponent组件和EmbeddedUIExtensionAbility的基础使用方式。
 
-### 加载项首页
+**加载项首页**
 
 加载项首页是 EmbeddedComponent 组件的宿主页面，负责加载和展示嵌入式UI扩展能力的内容。以下是一个完整的加载项首页实现示例：
 
@@ -112,7 +112,7 @@ struct Index {
 
   合理配置EmbeddedComponent组件的大小和位置，确保嵌入式界面能够以期望的尺寸和位置显示。
 
-### 提供方应用生命周期实现
+**提供方应用生命周期实现**
 
 提供方应用是指提供嵌入式UI扩展能力的应用。以下是提供方应用生命周期实现的代码示例：
 
@@ -176,7 +176,7 @@ export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
 
   使用loadContent方法绑定ArkTS页面与扩展能力上下文。
 
-### 入口页面
+**入口页面**
 
 以下代码作为UIExtensionComponent的入口组件实现，展示了如何使用UIExtensionContentSession会话以及如何通过按钮点击事件退出嵌入式页面并返回结果，该代码文件需要在main_pages.json配置文件中声明使用：
 
@@ -233,7 +233,7 @@ struct Extension {
 
 合理配置页面元素的样式，确保界面显示效果符合预期。
 
-### 添加配置项
+**添加配置项**
 
 为了使嵌入式UI扩展能力正常工作，需要在应用的配置文件中进行相应的设置。
 
@@ -247,7 +247,7 @@ struct Extension {
 }
 ```
 
-### 预期效果
+**预期效果**
 
 1. 启动应用，由于设备默认未开启多进程，会出现报错信息；
 
