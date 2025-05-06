@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```
-import { ProgressButton } from '@kit.ArkUI'
+import { ProgressButton } from '@kit.ArkUI';
 ```
 
 ## 属性
