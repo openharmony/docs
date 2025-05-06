@@ -1857,11 +1857,11 @@ avPlayer.seek(seekTime, media.SeekMode.SEEK_PREV_SYNC)
 
 ```ts
 // SEEK_CONTINUOUS 可以结合Slider的onChange回调方法进行对应处理，当slideMode为Moving时，触发拖动过程的SeekContinuous。
-let slideMovingTime: number = 2000;
-avPlayer.seek(slideMovingTime, media.SeekMode.SEEK_CONTINUOUS);
+let slideMovingTime: number = 2000
+avPlayer.seek(slideMovingTime, media.SeekMode.SEEK_CONTINUOUS)
 
 // 当slideMode为End时，调用seek(-1, media.SeekMode.SEEK_CONTINUOUS)结束seek。
-avPlayer.seek(-1, media.SeekMode.SEEK_CONTINUOUS);
+avPlayer.seek(-1, media.SeekMode.SEEK_CONTINUOUS)
 ```
 
 ### isSeekContinuousSupported<sup>18+</sup>
