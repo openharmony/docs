@@ -1856,16 +1856,12 @@ avPlayer.seek(seekTime, media.SeekMode.SEEK_PREV_SYNC)
 ```
 
 ```ts
-// SEEK_CONTINUOUS 可以结合seekBar/slider的回调方法进行对应处理。
-async onSlideMoving(position : number) : Promise<void> {
-  // seekBar/slider移动过程中回调触发，调用seek(position, media.SeekMode.SEEK_CONTINUOUS)进行seek。
-  this.avPlayer.seek(position, media.SeekMode.SEEK_CONTINUOUS)
-}
+// SEEK_CONTINUOUS 可以结合Slider的onChange回调方法进行对应处理，当slideMode为Moving时，触发拖动过程的SeekContinuous。
+let slideMovingTime: number = 2000;
+avPlayer.seek(slideMovingTime, media.SeekMode.SEEK_CONTINUOUS);
 
-async onSlideEnd(position : number) : Promise<void> {
-  // seekBar/slider移动结束回调触发，调用seek(-1, media.SeekMode.SEEK_CONTINUOUS)结束seek。
-  this.avPlayer.seek(-1, media.SeekMode.SEEK_CONTINUOUS)
-}
+// 当slideMode为End时，调用seek(-1, media.SeekMode.SEEK_CONTINUOUS)结束seek。
+avPlayer.seek(-1, media.SeekMode.SEEK_CONTINUOUS);
 ```
 
 ### isSeekContinuousSupported<sup>18+</sup>
