@@ -4,7 +4,7 @@ The security capabilities vary with devices. For example, small embedded devices
 
 ## Available APIs
 
-For details about the APIs, see [ohos.file.securityLabel](../reference/apis-core-file-kit/js-apis-file-securityLabel.md).
+For details about APIs, see [ohos.file.securityLabel](../reference/apis-core-file-kit/js-apis-file-securityLabel.md).
 
 **Table 1** Security level APIs
 
@@ -35,7 +35,7 @@ let context = getContext(this) as common.UIAbilityContext; // Obtain UIAbilityCo
 let pathDir = context.filesDir;
 let filePath = pathDir + '/test.txt';
 
-// Open the file.
+// Open a file.
 let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
 // Set the data level of the file to S0.
 securityLabel.setSecurityLabel(filePath, 's0').then(() => {

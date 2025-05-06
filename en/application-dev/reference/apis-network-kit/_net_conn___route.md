@@ -9,6 +9,7 @@ Defines the route configuration.
 
 **Related module**: [NetConnection](_net_connection.md)
 
+**Header file**: [net_connection_type.h](net__connection__type_8h.md#net_connection_typeh)
 
 ## Summary
 

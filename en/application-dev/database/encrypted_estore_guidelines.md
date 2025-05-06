@@ -14,9 +14,7 @@ Both the KV store and RDB store can be used as an EL5 database.
 The following classes are encapsulated to implement the data operations and transfer between EL2 and EL5 databases:
 
 - **Mover** class: provides APIs for moving data from an EL2 database to an EL5 database after the screen is unlocked.
-
 - **Store** class: provides APIs for obtaining a database instance, adding, deleting, and updating data, and obtaining the data count in the database.
-
 - **SecretKeyObserver** class: provides APIs for obtaining the key status. After the key is destroyed, the EL5 database will be closed.
 
 - **ECStoreManager** class: provides APIs for managing the EL2 and EL5 databases.
@@ -388,7 +386,7 @@ export default class EntryAbility extends UIAbility {
         autoSync: false,
         // If kvStoreType is left empty, a device KV store is created by default.
         kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-        // kvStoreType is distributedKVStore.KVStoreType.DEVICE_COLLABORATION for a device KV store.
+        // The value distributedKVStore.KVStoreType.DEVICE_COLLABORATION indicates a device KV store.
         securityLevel: distributedKVStore.SecurityLevel.S3
       }
     }
@@ -407,7 +405,7 @@ export default class EntryAbility extends UIAbility {
         autoSync: false,
         // If kvStoreType is left empty, a device KV store is created by default.
         kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-        // kvStoreType is distributedKVStore.KVStoreType.DEVICE_COLLABORATION for a device KV store.
+        // The value distributedKVStore.KVStoreType.DEVICE_COLLABORATION indicatates a device KV store.
         securityLevel: distributedKVStore.SecurityLevel.S3
       }
     }

@@ -29,8 +29,8 @@ Provides C APIs for the radio module.
 
 | Name                              | Description|
 | ---------------------------------- | ---- |
-| **TELEPHONY_MAX_OPERATOR_LEN**     | 64   |
-| **TELEPHONY_MAX_PLMN_NUMERIC_LEN** | 6    |
+| TELEPHONY_MAX_OPERATOR_LEN     | 64   |
+| TELEPHONY_MAX_PLMN_NUMERIC_LEN | 6    |
 
 ### Enums
 

@@ -5,7 +5,8 @@ The **Preferences** module allows quick access to data in KV pairs and storage o
 
 
 ## Constraints
-The C APIs and ArkTS APIs of the **Preferences** module cannot be used together.
+- The C APIs and ArkTS APIs of the **Preferences** module cannot be used together.
+- The maximum key length is 1024 bytes, and the maximum value length is 16 MB.
 
 
 ## Available APIs
@@ -27,7 +28,7 @@ For details about the APIs, see [Preferences](../reference/apis-arkdata/_prefere
 | int OH_Preferences_RegisterDataObserver (OH_Preferences \*preference, void \*context, OH_PreferencesDataObserver observer, const char \*keys[], uint32_t keyCount) | Subscribes to data changes of the specified keys. If the value of the specified key changes, a callback will be invoked after **OH_Preferences_Close()** is called.|
 | int OH_Preferences_UnregisterDataObserver (OH_Preferences \*preference, void \*context, OH_PreferencesDataObserver observer, const char \*keys[], uint32_t keyCount) | Unsubscribes from data changes of the specified keys.|
 | OH_PreferencesOption \* OH_PreferencesOption_Create (void) | Creates an **OH_PreferencesOption** instance and a pointer to it. If this pointer is no longer required, use **OH_PreferencesOption_Destroy** to destroy it. Otherwise, memory leaks may occur.|
-| int OH_PreferencesOption_SetFileName (OH_PreferencesOption \*option, const char \*fileName) | Sets the file name for an **OH_PreferencesOption** instance.|
+| int OH_PreferencesOption_SetFileName (OH_PreferencesOption \*option, const char \*fileName) | Sets the file name for an **OH_PreferencesOption** instance. The name must be longer than 0 bytes and less than or equal to 255 bytes, and cannot contain or end with slashes (/).|
 | int OH_PreferencesOption_SetBundleName (OH_PreferencesOption \*option, const char \*bundleName) | Sets the bundle name for an OH_PreferencesOption instance.|
 | int OH_PreferencesOption_SetDataGroupId (OH_PreferencesOption \*option, const char \*dataGroupId) | Sets the application group ID for an **OH_PreferencesOption** instance.|
 | int OH_PreferencesOption_Destroy (OH_PreferencesOption \*option) | Destroys an **OH_PreferencesOption** instance.|
@@ -143,7 +144,7 @@ if (ret != PREFERENCES_OK) {
     // Error handling.
 }
 
-// 4. Set the KV data in the Preferences instance.
+// 4. Set KV data in the Preferences instance.
 ret = OH_Preferences_SetInt(preference, keys[0], 0);
 if (ret != PREFERENCES_OK) {
     (void)OH_Preferences_Close(preference);
@@ -160,7 +161,7 @@ if (ret != PREFERENCES_OK) {
     // Error handling.
 }
 
-// 5. Obtain the KV data from the Preferences instance.
+// 5. Obtain KV data from the Preferences instance.
 int intValue = 0;
 ret = OH_Preferences_GetInt(preference, keys[0], &intValue);
 if (ret == PREFERENCES_OK) {

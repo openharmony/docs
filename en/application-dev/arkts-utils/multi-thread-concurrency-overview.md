@@ -182,6 +182,61 @@ struct Index {
 }
 ```
 
+You can also wait until all the producer's tasks are complete, and then pass the results to the UI thread through serialization. After the UI thread receives the results, the consumer can handle them all together.
+
+```ts
+import { taskpool } from '@kit.ArkTS';
+
+// Cross-thread concurrent tasks
+@Concurrent
+async function produce(): Promise<number> {
+  // Add production logic here.
+  console.info("producing...");
+  return Math.random();
+}
+
+class Consumer {
+  public consume(value: Object) {
+    // Add consumption logic here.
+    console.info("consuming value: " + value);
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World'
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        Button() {
+          Text("start")
+        }.onClick(async () => {
+          let dataArray = new Array<number>();
+          let produceTask: taskpool.Task = new taskpool.Task(produce);
+          let consumer: Consumer = new Consumer();
+          for (let index: number = 0; index < 10; index++) {
+            // Execute the asynchronous concurrent production task.
+            let result = await taskpool.execute(produceTask) as number;
+            dataArray.push(result);
+          }
+          for (let index: number = 0; index < dataArray.length; index++) {
+            consumer.consume(dataArray[index]);
+          }
+        })
+        .width('20%')
+        .height('20%')
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
 
 ## TaskPool and Worker
 

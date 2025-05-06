@@ -5,13 +5,9 @@
 
 Provides file management functions for the **rawfile** directory. You can use the **ResourceManager** to open a rawfile and perform operations such as data search and reading.
 
-**System capability**: SystemCapability.Global.ResourceManager
-
-**Library**: librawfile.z.so
-
 **Since**: 8
 
-**Related module**: [Rawfile](rawfile.md)
+**Related module**: [Rawfile] (rawfile.md)
 
 
 ## Summary
@@ -21,7 +17,7 @@ Provides file management functions for the **rawfile** directory. You can use th
 
 | Name| Description| 
 | -------- | -------- |
-| typedef struct [NativeResourceManager](rawfile.md#nativeresourcemanager)[NativeResourceManager](rawfile.md#nativeresourcemanager) | Represents the native **ResourceManager**. | 
+| typedef struct [NativeResourceManager](rawfile.md#nativeresourcemanager) [NativeResourceManager](rawfile.md#nativeresourcemanager) | Represents the native **ResourceManager**. | 
 
 
 ### Function

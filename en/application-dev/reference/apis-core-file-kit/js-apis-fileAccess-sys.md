@@ -416,7 +416,7 @@ Provides APIs for managing the device's root attribute information.
 
 listFile(filter?: Filter) : FileIterator
 
-Obtains a **FileIterator** object that lists the first-level files (directories) matching the specified conditions from the device root directory. This API returns the result synchronously. [FileInfo](#fileinfo) is return by [next()](#next-1). Currently, only built-in storage devices support the file filter.
+Obtains a **FileIterator** object that lists the first-level files (directories) matching the specified conditions from the device root directory. This API returns the result synchronously. [FileInfo](#fileinfo) is return by [next](#next). Currently, only built-in storage devices support the file filter.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -476,7 +476,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 scanFile(filter?: Filter) : FileIterator
 
-Obtains a **FileIterator** object that recursively retrieves the files matching the specified conditions from the device root directory. This API returns the result synchronously. [FileInfo](#fileinfo) is returned by [next()](#next-1). Currently, this API supports only built-in storage devices.
+Obtains a **FileIterator** object that recursively retrieves the files matching the specified conditions from the device root directory. This API returns the result synchronously. [FileInfo](#fileinfo) is returned by [next](#next). Currently, this API supports only built-in storage devices.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -1655,7 +1655,7 @@ Copies a file or folder. This API uses a promise to return the result.
 | --------- | ------- | ---- | ------------------------------------------------------------ |
 | sourceUri | string  | Yes  | URI of the file or directory to copy, for example, **file://docs/storage/Users/currentUser/Download/1.txt**. |
 | destUri   | string  | Yes  | URI of the destination directory, to which the file or directory is moved. For example, **file://docs/storage/Users/currentUser/Download/test**.       |
-| force     | boolean | No  | Whether to forcibly overwrite the file with the same name. If **force** is **true**, the file with the same name will be overwritten. If **force** is **false** or not specified, the file with the same name will not be overwritten.|
+| force     | boolean | No  | Whether to forcibly overwrite the file with the same name. If **force** is **true**, the file with the same name will be overwritten. If **force** is **false** or not specified, the file with the same name will not be overwritten. The default value is **false**.|
 
 **Return value**
 
@@ -1744,7 +1744,7 @@ Copies a file or folder. This API uses an asynchronous callback to return the re
 | Name   | Type                                            | Mandatory| Description                                                        |
 | --------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | sourceUri | string                                           | Yes  | URI of the file or directory to copy, for example, **file://docs/storage/Users/currentUser/Download/1.txt**. |
-| destUri   | string                                           | Yes  | URI of the destination directory, to which the file or folder is moved. For example, **file://docs/storage/Users/currentUser/Download/test**.        |
+| destUri   | string                                           | Yes  | URI of the destination directory, to which the file or directory is moved. For example, **file://docs/storage/Users/currentUser/Download/test**.        |
 | callback  | AsyncCallback&lt;Array&lt;[CopyResult](#copyresult10)&gt;&gt; | Yes  | Callback invoked to return the result. If the file or folder is copied successfully, no information is returned. If the file copy fails, a **copyResult** array is returned.|
 
 **Example**
@@ -1796,8 +1796,8 @@ Copies a file or folder. This API uses an asynchronous callback to return the re
 
 | Name   | Type                                            | Mandatory| Description                                                        |
 | --------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| sourceUri | string                                           | Yes  | URI of the file or folder to copy, for example, **file://docs/storage/Users/currentUser/Download/1.txt**. |
-| destUri   | string                                           | Yes  | URI of the destination directory, to which the file is moved. For example, **file://docs/storage/Users/currentUser/Download/test**.        |
+| sourceUri | string                                           | Yes  | URI of the file or directory to copy, for example, **file://docs/storage/Users/currentUser/Download/1.txt**. |
+| destUri   | string                                           | Yes  | URI of the destination directory, to which the file or directory is moved. For example, **file://docs/storage/Users/currentUser/Download/test**.        |
 | force     | boolean                                          | Yes  | Whether to forcibly overwrite the file with the same name. If **force** is **true**, the file with the same name will be overwritten. If **force** is **false** or not specified, the file with the same name will not be overwritten.|
 | callback  | AsyncCallback&lt;Array&lt;[CopyResult](#copyresult10)&gt;&gt; | Yes  | Callback invoked to return the result. If the file or folder is copied successfully, no information is returned. If the file copy fails, a **copyResult** array is returned.|
 
@@ -1852,8 +1852,8 @@ Copies a file with an alternative file name. This API uses a promise to return t
 
 | Name   | Type   | Mandatory| Description                                                        |
 | --------- | ------- | ---- | ------------------------------------------------------------ |
-| sourceUri | string  | Yes  | URI of the file or folder to copy, for example, **file://docs/storage/Users/currentUser/Download/1.txt**. |
-| destUri   | string  | Yes  | URI of the destination directory, to which the file is moved. For example, **file://docs/storage/Users/currentUser/Download/test**.       |
+| sourceUri | string  | Yes  | URI of the file or directory to copy, for example, **file://docs/storage/Users/currentUser/Download/1.txt**. |
+| destUri   | string  | Yes  | URI of the destination directory, to which the file or directory is moved. For example, **file://docs/storage/Users/currentUser/Download/test**.       |
 | fileName  | string  | Yes  | File name to use if there is a file with the same name as the source file in the destination directory.|
 
 **Return value**
@@ -1903,8 +1903,8 @@ Copies a file with an alternative file name. This API uses an asynchronous callb
 
 | Name   | Type                                            | Mandatory| Description                                                        |
 | --------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| sourceUri | string                                           | Yes  | URI of the file or folder to copy, for example, **file://docs/storage/Users/currentUser/Download/1.txt**. |
-| destUri   | string                                           | Yes  | URI of the destination directory, to which the file is moved. For example, **file://docs/storage/Users/currentUser/Download/test**.        |
+| sourceUri | string                                           | Yes  | URI of the file or directory to copy, for example, **file://docs/storage/Users/currentUser/Download/1.txt**. |
+| destUri   | string                                           | Yes  | URI of the destination directory, to which the file or directory is moved. For example, **file://docs/storage/Users/currentUser/Download/test**.        |
 | fileName  | string                                           | Yes  | File name to use if there is a file with the same name as the source file in the destination directory.|
 | callback  | AsyncCallback&lt;string&gt; | Yes  | URI of the file generated.|
 
@@ -2437,7 +2437,7 @@ Currently, this API does not support move of files or folders across devices.
 | sourceUri | string                                                       | Yes  | URI of the file or folder to move.                                   |
 | destUri   | string                                                       | Yes  | URI of the destination directory, to which the file or folder is moved.                                           |
 | force     | boolean                                                      | Yes  | Whether to forcibly overwrite the file with the same name. The value **true** means to overwrite the file forcibly; the value **false** means the opposite. The default value is **false**.|
-| callback  | AsyncCallback&lt;Array&lt;[MoveResult](#moveresult11)&gt;&gt; | Yes  | Callback invoked to return the result. If the operation is successful, no information is returned. If the operation fails, a **moveResult** array is returned.|
+| callback  | AsyncCallback&lt;Array&lt;[MoveResult](#moveresult11)&gt;&gt; | Yes  | Callback invoked to return the result. If the operation is successful, no information is returned. If the operation fails, a **MoveResult** array is returned.|
 
 **Example**
 
@@ -2679,7 +2679,7 @@ Represents the information returned when the move operation fails. If the operat
 
 | Name     | Type  | Read-Only| Writable| Description                                                        |
 | --------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| sourceUri | string | Yes  | No  | URI of the source file or directory.                                              |
+| sourceUri | string | Yes  | No  | URI of the source file or folder.                                              |
 | destUri   | string | Yes  | No  | URI of the conflicting file. If the error is not caused by a file conflict, **destUri** is empty.    |
 | errCode   | number | Yes  | No  | Error code. For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).|
 | errMsg    | string | Yes  | No  | Error message.                                                  |

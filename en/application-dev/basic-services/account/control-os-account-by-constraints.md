@@ -48,8 +48,7 @@ The user can set constraints to restrict the system account behaviors. For examp
 
 ## Checking Whether a Constraint Can be Enabled for a System Account
 
-Before a constraint is enabled for a system account, the application needs to check whether the constraint can be enabled.
-You can use [isOsAccountConstraintEnabled](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#isosaccountconstraintenabled11) to implement this operation.
+Before a constraint is enabled for a system account, the application needs to check whether the constraint can be enabled. You can use [isOsAccountConstraintEnabled](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#isosaccountconstraintenabled11) to implement this operation.
 
 **Procedure**
 

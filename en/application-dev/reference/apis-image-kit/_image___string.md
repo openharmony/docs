@@ -9,8 +9,6 @@ The Image_String struct describes an image string.
 
 **Related module**: [Image_NativeModule](_image___native_module.md)
 
-**Header file**: [image_common.h](image__common_8h.md)
-
 
 ## Summary
 
