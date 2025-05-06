@@ -872,7 +872,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 
 connectToCandidateConfig(networkId: number): void
 
-应用使用该接口连接到自己添加的候选网络（如果当前已经连接到热点，需要先断开连接）。
+应用使用该接口连接到自己添加的候选网络。
 
 **需要权限：** ohos.permission.SET_WIFI_INFO
 
