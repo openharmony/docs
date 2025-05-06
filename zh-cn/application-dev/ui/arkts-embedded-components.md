@@ -130,9 +130,9 @@ onError(callback: ErrorCallback)
 
 ### 预期效果
 
-1. 启动应用，由于手机默认未开启多进程，会出现报错信息；
+1. 启动应用，由于设备默认未开启多进程，会出现报错信息；
 
-2. 手机测试开启多进程后重启手机，开启多进程的hdc命令如下：
+2. 设备测试开启多进程后重启设备，开启多进程的hdc命令如下：
 
 ```bash
 hdc shell param set persist.sys.abilityms.multi_process_model true
@@ -140,7 +140,7 @@ hdc shell param set persist.sys.abilityms.multi_process_model true
 
 3. 启动应用，界面显示正常；
 
-4. 点击 terminateSelfWithResult 按钮，提供方内容小时，页面显示 onTerminated 信息。
+4. 点击 terminateSelfWithResult 按钮，提供方内容消失，页面显示 onTerminated 信息。
 
 ### 加载项首页
 
