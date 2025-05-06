@@ -108,7 +108,7 @@ try {
 
 日历选择器弹窗提供日历视图，包含年、月和星期信息，通过[CalendarPickerDialog](../reference/apis-arkui/arkui-ts/ts-methods-calendarpicker-dialog.md)接口实现。开发者可调用show函数，定义并弹出日历选择器弹窗。
 
-日历选择器弹窗的弹出依赖UI的执行上下文，不可在UI上下文不明确的地方使用，具体约束参见[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)说明。
+日历选择器弹窗的弹出依赖UI的执行上下文，不可在[UI上下文不明确](./arkts-global-interface.md)的地方使用，具体约束参见[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)说明。
 
 通过配置 acceptButtonStyle、cancelButtonStyle可以实现自定义按钮样式。
 

@@ -274,7 +274,7 @@ import { router } from '@kit.ArkUI';
 
 > **说明：**
 > 
-> 直接使用router可能导致实例不明确的问题，建议使用[getUIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getRouter](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
+> 直接使用router可能导致[UI上下文不明确](./arkts-global-interface.md)的问题，建议使用[getUIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getRouter](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
 
 ```ts
 @Entry
