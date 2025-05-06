@@ -4,7 +4,6 @@
 ## 文本选中菜单
 Web组件的文本选中菜单是一种通过自定义元素实现的上下文交互控件，当用户选中文本时动态浮现，提供复制、分享、标注等语义化操作，兼具标准化功能与可扩展性，是移动端文本操作的核心功能。文本选中菜单在用户手势长按选中文本或编辑态长按出现单手柄弹出，菜单项横向排列。系统提供默认的菜单实现。应用可通过[editMenuOptions](../../application-dev/reference/apis-arkweb//ts-basic-components-web.md#editmenuoptions12)或[selectionMenuOptions](../../application-dev/reference/apis-arkweb/ts-basic-components-web.md#selectionmenuoptionsdeprecated)（不建议，editMenuOptions接口功能可以完全覆盖selectionMenuOptions，该接口将在API20废弃）对文本选中菜单进行自定义操作。当两个接口同时使用时，selectionMenuOptions接口不生效。
 
-### 创建一个自定义的文本选择菜单
 ![editMenuOption](./figures/editMenuOption.gif)
   ```ts
 // xxx.ets
@@ -95,7 +94,6 @@ struct WebComponent {
 ## 上下文菜单
 上下文菜单是一种用户通过特定操作（如右键点击或长按富文本）触发的快捷菜单，用于提供与当前操作对象或界面元素相关的功能选项，菜单项竖向排列。系统不提供默认实现，如果应用为实现则不显示上下文菜单。要应用通过[Menu](../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-menu.md#menu)组件创建一个菜单子窗口与Web绑定，通过菜单弹出时的[onContextMenuShow](../../application-dev/reference/apis-arkweb/ts-basic-components-web.md#oncontextmenushow)接口获取到上下文菜单详细信息，包含点击位置的HTML元素信息，点击位置信息等。
 
-### 创建一个上下文菜单
 ![onContextMenuShow](./figures/onContextMenuShow.gif)
 ```ts
 // xxx.ets
@@ -245,7 +243,7 @@ struct WebComponent {
 | responseType  | [WebResponseType](../../application-dev/reference/apis-arkweb/ts-basic-components-web.md#webresponsetype13) |  是  |  菜单的响应事件类型。  |
 | options  | [SelectionMenuOptionsExt](../../application-dev/reference/apis-arkweb/ts-basic-components-web.md#selectionmenuoptionsext13) |  是  |  自定义菜单扩展项。  |
 
-### 创建一个自定义菜单
+
 ![bindSelectionMenu](./figures/bindSelectionMenu.gif)
 ```ts
 // xxx.ets
