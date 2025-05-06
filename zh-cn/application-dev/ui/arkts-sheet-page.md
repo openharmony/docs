@@ -10,7 +10,7 @@
 
  - 半模态内嵌[UIExtension](../reference/apis-arkui/js-apis-arkui-uiExtension.md)时，不支持再在UIExtension内拉起半模态/弹窗。
 
- - 若无二次确认或者自定义关闭行为的场景，不建议使用[shouldDismiss/onWilDismiss](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions)接口。
+ - 若无二次确认或者自定义关闭行为的场景，不建议使用[shouldDismiss/onWillDismiss](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions)接口。
 
 ## 生命周期
 
@@ -123,7 +123,7 @@ struct SheetDemo {
 // 第一步：声明onWillDismiss回调
 onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
 // 第二步：确认二次回调交互能力，此处用AlertDialog提示 "是否需要关闭半模态"
-  AlertDialog.show(
+  this.getUIContext().showAlertDialog(
     {
       message: '是否选择关闭半模态',
       autoCancel: true,

@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 属性
@@ -67,7 +67,7 @@ TransitionEffect以函数的形式指定转场效果。提供了以下接口：
 >  3. 如果未使用animateTo触发转场动画且TransitionEffect中也无animation参数，则该组件直接出现或者消失。
 >  4. TransitionEffect中指定的属性值如与默认值相同，则该属性不会产生转场动画。如TransitionEffect.opacity(1).animation({duration:1000})，由于opacity默认值也为1，未产生透明度动画，该组件直接出现或者消失。
 >  5. 更详细的关于scale、rotate效果的介绍可参考[图形变换](ts-universal-attributes-transformation.md)。
->  6. 如果在动画范围([animateTo](ts-explicit-animation.md)、[animation](ts-animatorproperty.md))内触发组件的上下树或可见性([Visibility](ts-universal-attributes-visibility.md))改变，而根组件没有配置transition，会给该组件加上默认透明度转场，即TransitionEffect.OPACITY，动画参数跟随所处动画环境的参数。如不需要可通过主动配置TransitionEffect.IDENTITY来禁用，使该组件直接出现或消失。
+>  6. 如果在动画范围([animateTo](../js-apis-arkui-UIContext.md#animateto)、[animation](ts-animatorproperty.md))内触发组件的上下树或可见性([Visibility](ts-universal-attributes-visibility.md))改变，而根组件没有配置transition，会给该组件加上默认透明度转场，即TransitionEffect.OPACITY，动画参数跟随所处动画环境的参数。如不需要可通过主动配置TransitionEffect.IDENTITY来禁用，使该组件直接出现或消失。
 >  7. 当通过删除整棵子树的方式触发消失转场，如需看到完整的消失转场过程，需要保证被删除子树的根组件的有充足的消失转场时间，见示例3。
 
 ## TransitionFinishCallback<sup>12+</sup>
@@ -106,7 +106,7 @@ TransitionOptions通过指定结构体内的参数来指定转场效果。
 
 >  **说明：**
 >
->  1. 当使用TransitionOptions类型的入参指定转场效果时，**必须**配合[animateTo](ts-explicit-animation.md)使用才有动画效果，动效时长、曲线、延时跟随animateTo中的配置。
+>  1. 当使用TransitionOptions类型的入参指定转场效果时，**必须**配合[animateTo](../js-apis-arkui-UIContext.md#animateto)使用才有动画效果，动效时长、曲线、延时跟随animateTo中的配置。
 >  2. 当使用TransitionOptions作为入参，且不指定除type外的任何参数时，此时相当于指定了透明度的转场效果。例如，指定{type: TransitionType.Insert}相当于指定了{type: TransitionType.Insert, opacity: 0}的转场效果。而指定了具体效果时，则不会添加默认的透明度转场效果。
 
 ## 示例
@@ -171,7 +171,7 @@ struct TransitionEffectExample2 {
           } else {
             this.show = 'show';
           }
-          animateTo({ duration: 2000 }, () => {
+          this.getUIContext().animateTo({ duration: 2000 }, () => {
             // 第一张图的TransitionEffect包含了animation，transition的动画参数由TransitionEffect指定
             // 第二张图的TransitionEffect不包含animation，transition的动画参数由animateTo指定
             this.flag = !this.flag;

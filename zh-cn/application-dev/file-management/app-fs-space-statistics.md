@@ -11,10 +11,10 @@ API的详细介绍请参见[ohos.file.statvfs](../reference/apis-core-file-kit/j
 | 模块 | 接口名 | 功能 |
 | -------- | -------- | -------- |
 | \@ohos.file.storageStatistics | getCurrentBundleStats | 获取当前应用的存储空间大小（单位为Byte）。 |
-| \@ohos.file.storageStatistics | getFreeSize | 异步获取内置存储的总空间大小（单位为Byte）。 |
-| \@ohos.file.storageStatistics | getFreeSizeSync | 同步获取内置存储的总空间大小（单位为Byte）。 |
-| \@ohos.file.storageStatistics | getTotalSize | 异步获取内置存储的可用空间大小（单位为Byte）。 |
-| \@ohos.file.storageStatistics | getTotalSizeSync | 同步获取内置存储的可用空间大小（单位为Byte）。 |
+| \@ohos.file.storageStatistics | getFreeSize | 异步获取内置存储的可用空间大小（单位为Byte）。 |
+| \@ohos.file.storageStatistics | getFreeSizeSync | 同步获取内置存储的可用空间大小（单位为Byte）。 |
+| \@ohos.file.storageStatistics | getTotalSize | 异步获取内置存储的总空间大小（单位为Byte）。 |
+| \@ohos.file.storageStatistics | getTotalSizeSync | 同步获取内置存储的总空间大小（单位为Byte）。 |
 | \@ohos.file.statvfs | getFreeSize | 获取指定文件系统的剩余空间大小（单位为Byte）。 |
 | \@ohos.file.statvfs | getTotalSize | 获取指定文件系统的总空间大小（单位为Byte）。 |
 
@@ -35,7 +35,8 @@ API的详细介绍请参见[ohos.file.statvfs](../reference/apis-core-file-kit/j
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
   
-  let context = getContext(this) as common.UIAbilityContext;
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
   let path = context.filesDir;
   statfs.getFreeSize(path, (err: BusinessError, number: number) => {
     if (err) {

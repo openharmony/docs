@@ -55,8 +55,7 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 表示复用设备解锁结果。
 > **说明**：
 >
-> 如果锁屏解锁后，在有效时间内凭据发生了变化，锁屏认证结果依然可以复用，认证结果中返回当前实际的EnrolledState。若复用锁屏认证结果
-> 时，凭据已经被完全删除，则返回的EnrolledState中credentialCount和credentialDigest均为0。
+> 如果锁屏解锁后，在有效时间内凭据发生了变化，锁屏认证结果依然可以复用，认证结果中返回当前实际的EnrolledState。若复用锁屏认证结果时，凭据已经被完全删除，则返回的EnrolledState中credentialCount和credentialDigest均为0。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

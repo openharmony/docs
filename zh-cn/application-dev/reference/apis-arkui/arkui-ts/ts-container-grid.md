@@ -71,7 +71,7 @@ columnsTemplate(value: string)
 
 设置当前网格布局列的数量、固定列宽或最小列宽值，不设置时默认1列。
 
-例如,&nbsp;'1fr&nbsp;1fr&nbsp;2fr'&nbsp;是将父组件分3列，将父组件允许的宽分为4等份，第一列占1份，第二列占1份，第三列占2份。
+例如，&nbsp;'1fr&nbsp;1fr&nbsp;2fr'&nbsp;是将父组件分3列，将父组件允许的宽分为4等份，第一列占1份，第二列占1份，第三列占2份。
 
 columnsTemplate('repeat(auto-fit, track-size)')是设置最小列宽值为track-size，自动计算列数和实际列宽。
 
@@ -82,7 +82,7 @@ columnsTemplate('repeat(auto-stretch, track-size)')是设置固定列宽值为tr
 其中repeat、auto-fit、auto-fill、auto-stretch为关键字。track-size为列宽，支持的单位包括px、vp、%或有效数字，默认单位为vp，track-size至少包括一个有效列宽。<br/>
 auto-stretch模式只支持track-size为一个有效列宽值，并且track-size只支持px、vp和有效数字，不支持%。
 
-使用效果可以参考示[示例8](#示例8设置自适应列数)。
+使用效果可以参考[示例8](#示例8设置自适应列数)。
 
 设置为'0fr'时，该列的列宽为0，不显示GridItem。设置为其他非法值时，GridItem显示为固定1列。
 
@@ -102,7 +102,7 @@ rowsTemplate(value: string)
 
 设置当前网格布局行的数量、固定行高或最小行高值，不设置时默认1行。
 
-例如,&nbsp;'1fr&nbsp;1fr&nbsp;2fr'是将父组件分3行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。
+例如，&nbsp;'1fr&nbsp;1fr&nbsp;2fr'是将父组件分3行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。
 
 rowsTemplate('repeat(auto-fit, track-size)')是设置最小行高值为track-size，自动计算行数和实际行高。
 
@@ -1285,7 +1285,7 @@ struct GridExample {
 
 ### 示例6（自适应Grid）
 
-layoutDirection、maxcount、minCount、cellLength的使用。
+layoutDirection、maxCount、minCount、cellLength的使用。
 
 ```ts
 @Entry
@@ -1303,7 +1303,7 @@ struct GridExample {
     Scroll() {
       Column({ space: 5 }) {
         Blank()
-        Text('rowsTemplate、columnsTemplate都不设置layoutDirection、maxcount、minCount、cellLength才生效')
+        Text('rowsTemplate、columnsTemplate都不设置layoutDirection、maxCount、minCount、cellLength才生效')
           .fontSize(15).fontColor(0xCCCCCC).width('90%')
         Grid() {
           ForEach(this.numbers, (day: string) => {

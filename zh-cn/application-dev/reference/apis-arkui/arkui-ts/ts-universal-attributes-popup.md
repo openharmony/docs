@@ -22,7 +22,7 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| show   | boolean                                                      | 是   | 弹窗显示状态，默认值为false，隐藏弹窗。popup弹窗必须等待页面全部构建完成才能展示，因此show不能在页面构建中设置为true，否则会导致popup弹窗显示位置及形状错误。该参数从API version 13开始支持[!!语法](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。 |
+| show   | boolean                                                      | 是   | 弹窗显示状态，默认值为false，隐藏弹窗。Popup弹窗必须等待页面全部构建完成才能展示，因此show不能在页面构建中设置为true，否则会导致Popup弹窗显示位置及形状错误。该参数从API version 13开始支持[!!语法](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。 |
 | popup  | [PopupOptions](#popupoptions类型说明)&nbsp;\|&nbsp;[CustomPopupOptions](#custompopupoptions8类型说明)<sup>8+</sup> | 是   | 配置弹出弹窗的参数。                                         |
 
 ## PopupOptions类型说明
@@ -78,8 +78,8 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 
 | 名称    | 类型                                      | 必填 | 说明                                                       |
 | ------- | ----------------------------------------- | ---- | --------------------------------------------------------------- |
-| dismiss | function                                  | 是   | popup关闭回调函数。开发者需要退出时调用，不需要退出时无需调用。 |
-| reason  | [DismissReason](#dismissreason12枚举说明) | 是   | 关闭原因，返回本次拦截popup消失的事件原因。                       |
+| dismiss | function                                  | 是   | Popup关闭回调函数。开发者需要退出时调用，不需要退出时无需调用。 |
+| reason  | [DismissReason](#dismissreason12枚举说明) | 是   | 关闭原因，返回本次拦截Popup消失的事件原因。                       |
 
 ## DismissReason<sup>12+</sup>枚举说明
 
@@ -199,7 +199,7 @@ type PopupStateChangeCallback = (event: PopupStateChangeParam) => void;
 
 ### 示例1（弹出不同类型的气泡）
 
-该示例为bindPopup通过配置popup弹出PopupOptions、CustomPopupOptions类型的气泡。
+该示例为bindPopup通过配置Popup弹出PopupOptions、CustomPopupOptions类型的气泡。
 
 ```ts
 // xxx.ets
@@ -209,7 +209,7 @@ struct PopupExample {
   @State handlePopup: boolean = false;
   @State customPopup: boolean = false;
 
-  // popup构造器定义弹框内容
+  // Popup构造器定义弹框内容
   @Builder popupBuilder() {
     Row({ space: 2 }) {
       Image($r("app.media.icon")).width(24).height(24).margin({ left: -5 })
@@ -390,7 +390,7 @@ struct PopupExample {
   @State handlePopup: boolean = false;
   @State customPopup: boolean = false;
 
-  // popup构造器定义弹框内容
+  // Popup构造器定义弹框内容
   @Builder popupBuilder() {
     Row() {
       Text('Custom Popup with transitionEffect').fontSize(10)

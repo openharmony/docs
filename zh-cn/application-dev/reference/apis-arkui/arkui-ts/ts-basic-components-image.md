@@ -4,7 +4,7 @@ Image为图片组件，常用于在应用中显示图片。Image支持加载[Pix
 
 > **说明：**
 >
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > 使用快捷组合键对Image组件复制时，Image组件必须处于[获焦状态](../../../ui/arkts-common-events-focus-event.md#设置组件是否可获焦)。Image组件默认不获焦，需将[focusable](ts-universal-attributes-focus.md#focusable)属性设置为true，即可使用TAB键将焦点切换到组件上，再将[focusOnTouch](ts-universal-attributes-focus.md#focusontouch9)属性设置为true，即可实现点击获焦。
 >
@@ -364,7 +364,7 @@ syncLoad(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false，fasle表示异步加载图片，true表示同步加载图片。 |
+| value  | boolean | 是   | 是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false，false表示异步加载图片，true表示同步加载图片。 |
 
 ### copyOption<sup>9+</sup>
 
@@ -984,12 +984,12 @@ struct ImageExample4 {
     }
   }
   private async getPixmapFromMedia(resource: Resource) {
-    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
       bundleName: resource.bundleName,
       moduleName: resource.moduleName,
       id: resource.id
     })
-    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+    let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength))
     let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
     })
@@ -1154,12 +1154,12 @@ struct ImageExample {
   }
 
   private async getPixmapListFromMedia(resource: Resource) {
-    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
       bundleName: resource.bundleName,
       moduleName: resource.moduleName,
       id: resource.id
     })
-    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+    let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength))
     let createPixelMap: Array<image.PixelMap> = await imageSource.createPixelMapList({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
     })
@@ -1168,12 +1168,12 @@ struct ImageExample {
   }
 
   private async getPixmapFromMedia(resource: Resource) {
-    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
       bundleName: resource.bundleName,
       moduleName: resource.moduleName,
       id: resource.id
     })
-    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+    let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength))
     let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
     })
@@ -1354,7 +1354,7 @@ import { curves } from '@kit.ArkUI';
 @Entry
 @Component
 struct ImageExample11 {
-  private curve = curves.cubicBezier(0.33, 0, 0.67, 1);
+  private curve = curves.cubicBezierCurve(0.33, 0, 0.67, 1);
   @State moveImg: string[] = ['imageScanEffect'];
   @State moveImgVisible: Visibility = Visibility.Visible;
   @State durationTime: number = 1500;
@@ -1373,7 +1373,7 @@ struct ImageExample11 {
     setTimeout(() => {
       this.imgResource = $r('app.media.img');
     }, 3000);
-    animateTo({
+    this.getUIContext()?.animateTo({
       duration: this.durationTime,
       curve: this.curve,
       tempo: 1,

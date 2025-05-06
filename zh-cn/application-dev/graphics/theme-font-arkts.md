@@ -62,11 +62,11 @@
 
    ```ts
    // 在段落生成器中设置文本样式
-   paragraphGraphBuilder.pushStyle(myTextStyle);
+   paragraphBuilder.pushStyle(myTextStyle);
    // 在段落生成器中设置文本内容
-   paragraphGraphBuilder.addText("Custom font test");
+   paragraphBuilder.addText("Custom font test");
    // 通过段落生成器生成段落
-   let paragraph = paragraphGraphBuilder.build();
+   let paragraph = paragraphBuilder.build();
    ```
 
 6. 创建渲染节点，并保存到数组。（此处示例代码为简化逻辑，采用数组作为容器，实际开发中应结合应用情况选择更恰当的容器来保证节点的添加与删除对应。）
@@ -112,7 +112,7 @@
        }
      }
    }
-   let paragraph = paragraphGraphBuilder.build();
+   let paragraph = paragraphBuilder.build();
    ```
 
 7. 创建渲染节点更新函数，并导出函数，供其他文件（如：EntryAbility.ets）使用；重绘制节点目的为更新排版中字体信息，若不更新字体信息，使用之前残留结果，可能造成文字乱码。
@@ -174,13 +174,13 @@ class MyRenderNode extends RenderNode {
     // 获取字体管理器全局FontCollection实例
     let fontCollection = text.FontCollection.getGlobalInstance() //获取Arkui全局FC
     // 创建一个段落生成器
-    let paragraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection)
+    let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection)
     // 在段落生成器中设置文本样式
-    paragraphGraphBuilder.pushStyle(myTextStyle);
+    paragraphBuilder.pushStyle(myTextStyle);
     // 在段落生成器中设置文本内容
-    paragraphGraphBuilder.addText("Hello World. \nThis is the theme font.");
+    paragraphBuilder.addText("Hello World. \nThis is the theme font.");
     // 通过段落生成器生成段落
-    let paragraph = paragraphGraphBuilder.build();
+    let paragraph = paragraphBuilder.build();
     // 布局
     paragraph.layoutSync(1500);
     paragraph.paint(canvas, 200, 800);

@@ -175,7 +175,7 @@ struct CompA {
           .backgroundColor("#FF007DFF")
           .margin({ bottom: 10 })
           .onClick(() => {
-            animateTo({
+            this.getUIContext().animateTo({
               duration: 500
             },() => {
               this.uiStyle.translateY = (this.uiStyle.translateY + 180) % 250;
@@ -554,7 +554,7 @@ struct CompA {
           .backgroundColor("#FF007DFF")
           .margin({ bottom: 10 })
           .onClick(() => {
-            animateTo({
+            this.getUIContext().animateTo({
               duration: 500
             }, () => {
               this.needRenderTranslate.translateY = (this.needRenderTranslate.translateY + 180) % 250;

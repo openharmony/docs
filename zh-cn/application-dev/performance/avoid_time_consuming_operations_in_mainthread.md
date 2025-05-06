@@ -38,7 +38,7 @@
   async mockRequestData(): Promise<ModelDetailVO[]> {
     let result: modelDetailDTO[] = [];
     // data.json是存在本地的json数据，大小大约20M,模拟从网络端获取数据
-    await getContext().resourceManager.getRawFileContent("data.json").then((data: Uint8Array) => {
+    await this.getUIContext().getHostContext()?.resourceManager.getRawFileContent("data.json").then((data: Uint8Array) => {
       // 耗时回调函数
       let jsonData = buffer.from(data).toString();
       let res: responseData = JSON.parse(jsonData);
@@ -72,7 +72,8 @@
             // 即将触底时提前增加数据
             if (item.id + 10 === this.dataSource.totalCount()) {
               // 通过子线程获取数据，传入当前的数据长度，用于赋给数据的ID值
-              taskpoolExecute(this.dataSource.totalCount()).then((data: ModelDetailVO[]) => {
+              taskpoolExecute(this.dataSource.totalCount(),
+                this.getUIContext().getHostContext() as common.UIAbilityContext).then((data: ModelDetailVO[]) => {
                 for (let i = 0; i < data.length; i++) {
                   this.dataSource.addLastItem(data[i]);
                 }
@@ -85,9 +86,9 @@
   }
 
   // 注意：以下方法和类声明均在组件外声明
-  async function taskpoolExecute(index: number): Promise<ModelDetailVO[]> {
+  async function taskpoolExecute(index: number, context: Context): Promise<ModelDetailVO[]> {
     // context需要手动传入子线程
-    let task: taskpool.Task = new taskpool.Task(mockRequestData, index, getContext());
+    let task: taskpool.Task = new taskpool.Task(mockRequestData, index, context);
     return await taskpool.execute(task) as ModelDetailVO[];
   }
 
@@ -126,9 +127,10 @@
           }
           .onAppear(() => {
             // 即将触底时提前增加数据
-            if (item.id + 10 === this.dataSource.totalCount()) {
+            if (item.id + 10 === this.dataSource.totalCount(), ) {
               // 通过子线程获取数据，传入当前的数据长度，用于赋给数据的ID值
-              taskpoolExecute(this.dataSource.totalCount()).then((data: ModelDetailVO[]) => {
+              taskpoolExecute(this.dataSource.totalCount(),
+                this.getUIContext().getHostContext() as common.UIAbilityContext).then((data: ModelDetailVO[]) => {
                 for (let i = 0; i < data.length; i++) {
                   this.dataSource.addLastItem(data[i]);
                 }
@@ -141,9 +143,9 @@
   }
 
   // 注意：以下方法和类声明均在组件外声明
-  async function taskpoolExecute(index: number): Promise<ModelDetailVO[]> {
+  async function taskpoolExecute(index: number, context: Context): Promise<ModelDetailVO[]> {
     // context需要手动传入子线程
-    let task: taskpool.Task = new taskpool.Task(mockRequestData, index, getContext());
+    let task: taskpool.Task = new taskpool.Task(mockRequestData, index, context);
     return await taskpool.execute(task) as ModelDetailVO[];
   }
 

@@ -1,5 +1,5 @@
 # 启动远程PageAbility（仅对系统应用开放）
-
+<!--deprecated_code_no_check-->
 
 启动远程PageAbility同样通过featureAbility中的startAbility接口实现。
 

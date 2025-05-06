@@ -152,7 +152,7 @@
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverOptions_SetCapacity](#oh_imagereceiveroptions_setcapacity) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*options, int32_t capacity) | 设置 [OH_ImageReceiverOptions](#oh_imagereceiveroptions) 对象的图片缓存容量的信息。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverOptions_Release](#oh_imagereceiveroptions_release) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*options) | 释放 [OH_ImageReceiverOptions](#oh_imagereceiveroptions) 对象。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_Create](#oh_imagereceivernative_create) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*options, [OH_ImageReceiverNative](#oh_imagereceivernative) \*\*receiver) | 创建应用层 OH_ImageReceiverNative 对象。  | 
-| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_GetReceivingSurfaceId](#oh_imagereceivernative_getreceivingsurfaceid) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, uint64_t \*surfaceId) | 通过[OH_ImageReceiverNative](#oh_imagereceivernative)获取receiver的id。  | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_GetReceivingSurfaceId](#oh_imagereceivernative_getreceivingsurfaceid) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, uint64_t \*surfaceId) | 通过[OH_ImageReceiverNative](#oh_imagereceivernative)获取SurfaceId。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_ReadLatestImage](#oh_imagereceivernative_readlatestimage) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, [OH_ImageNative](#oh_imagenative) \*\*image) | 通过[OH_ImageReceiverNative](#oh_imagereceivernative)获取最新的一张图片。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_ReadNextImage](#oh_imagereceivernative_readnextimage) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, [OH_ImageNative](#oh_imagenative) \*\*image) | 通过[OH_ImageReceiverNative](#oh_imagereceivernative)获取下一张图片。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_On](#oh_imagereceivernative_on) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, [OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback) callback) | 注册一个[OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback)回调事件。  | 
@@ -611,7 +611,7 @@ OH_ImageReceiverNative是native层封装的图片接收器结构体，OH_ImageRe
 OH_ImageReceiverNative结构体内容和操作方式如下：
 | 字段类型| 字段名称 | 字段描述 |操作函数 | 函数描述 |
 | -------- | -------- | -------- | -------- | -------- |
-| uint64_t | surfaceId | 接收器的surfaceId | [OH_ImageReceiverNative_GetReceivingSurfaceId](#oh_imagereceivernative_getreceivingsurfaceid) |通过OH_ImageReceiverNative获取receiver的id。|
+| uint64_t | surfaceId | 接收器的surfaceId | [OH_ImageReceiverNative_GetReceivingSurfaceId](#oh_imagereceivernative_getreceivingsurfaceid) |通过OH_ImageReceiverNative获取SurfaceId。|
 | OH_ImageNative | image | native层的image | [OH_ImageReceiverNative_ReadLatestImage](#oh_imagereceivernative_readlatestimage) | 通过OH_ImageReceiverNative获取最新的一张图片。|
 | OH_ImageNative | image | native层的image | [OH_ImageReceiverNative_ReadNextImage](#oh_imagereceivernative_readnextimage) |通过OH_ImageReceiverNative获取下一张图片。|
 | OH_ImageReceiver_OnCallback | callback| 图片接收器回调函数 | [OH_ImageReceiverNative_On](#oh_imagereceivernative_on) |注册一个OH_ImageReceiver_OnCallback回调事件。|
@@ -746,7 +746,7 @@ typedef struct OH_PackingOptionsForSequence OH_PackingOptionsForSequence
 **描述**
 图像序列编码选项。
 
-**起始版本：** 13
+**起始版本：** 18
 
 
 ### OH_PictureMetadata
@@ -2306,7 +2306,7 @@ Image_ErrorCode OH_ImagePackerNative_PackToDataFromPixelmapSequence(OH_ImagePack
 **描述**
 将Pixelmap序列编码为数据。
 
-**起始版本：** 13
+**起始版本：** 18
 
 **参数：**
 
@@ -2404,7 +2404,7 @@ Image_ErrorCode OH_ImagePackerNative_PackToFileFromPixelmapSequence(OH_ImagePack
 **描述**
 将一个Pixelmap序列编码到文件中。
 
-**起始版本：** 13
+**起始版本：** 18
 
 **参数：**
 
@@ -2496,7 +2496,7 @@ Image_ErrorCode OH_ImageReceiverNative_GetCapacity(OH_ImageReceiverNative* recei
 Image_ErrorCode OH_ImageReceiverNative_GetReceivingSurfaceId(OH_ImageReceiverNative* receiver, uint64_t* surfaceId)
 ```
 **描述**
-通过[OH_ImageReceiverNative](#oh_imagereceivernative)获取receiver的id。
+通过[OH_ImageReceiverNative](#oh_imagereceivernative)获取SurfaceId。
 
 **起始版本：** 12
 
@@ -3038,7 +3038,7 @@ Image_ErrorCode OH_ImageSourceNative_CreatePicture(OH_ImageSourceNative *source,
 ### OH_ImageSourceNative_CreatePixelmap()
 
 ```
-Image_ErrorCode OH_ImageSourceNative_CreatePixelmap(OH_ImageSourceNative *source, OH_DecodingOptions *options, OH_PixelmapNative **pixelmap)
+Image_ErrorCode OH_ImageSourceNative_CreatePixelmap(OH_ImageSourceNative *source, OH_DecodingOptions *options, OH_PixelmapNative **resPixMap)
 ```
 **描述**
 通过图片解码参数创建OH_PixelmapNative指针。
@@ -3051,7 +3051,7 @@ Image_ErrorCode OH_ImageSourceNative_CreatePixelmap(OH_ImageSourceNative *source
 | -------- | -------- |
 | source | 被操作的OH_ImageSourceNative指针。  | 
 | options | 解码参数。  | 
-| resPixMap | 指向c++本地层创建的OH_PixelmapNative对象的指针。  | 
+| resPixMap | 指向c++本地层创建的OH_PixelmapNative对象指针的指针。  | 
 
 **返回：**
 
@@ -3450,7 +3450,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_Create(OH_PackingOptionsForSequence
 **描述**
 创建OH_PackingOptionsForSequence结构体的指针。
 
-**起始版本：** 13
+**起始版本：** 18
 
 **参数：**
 
@@ -3471,7 +3471,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetDelayTimeList(OH_PackingOptionsF
 **描述**
 获取编码时图片的延迟时间数组。
 
-**起始版本：** 13
+**起始版本：** 18
 
 **参数：**
 
@@ -3494,7 +3494,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetDisposalTypes(OH_PackingOptionsF
 **描述**
 获取编码时图片的过渡帧模式数组。
 
-**起始版本：** 13
+**起始版本：** 18
 
 **参数：**
 
@@ -3517,7 +3517,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetFrameCount(OH_PackingOptionsForS
 **描述**
 获取编码时指定的帧数。
 
-**起始版本：** 13
+**起始版本：** 18
 
 **参数：**
 
@@ -3539,7 +3539,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetLoopCount(OH_PackingOptionsForSe
 **描述**
 获取编码时图片循环播放次数。
 
-**起始版本：** 13
+**起始版本：** 18
 
 **参数：**
 
@@ -3561,7 +3561,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_Release(OH_PackingOptionsForSequenc
 **描述**
 释放OH_PackingOptionsForSequence指针。
 
-**起始版本：** 13
+**起始版本：** 18
 
 **参数：**
 
@@ -3582,14 +3582,14 @@ Image_ErrorCode OH_PackingOptionsForSequence_SetDelayTimeList(OH_PackingOptionsF
 **描述**
 设定编码时图片的延迟时间数组。
 
-**起始版本：** 13
+**起始版本：** 18
 
 **参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
 | options | 用于操作的OH_PackingOptionsForSequence指针。  | 
-| delayTimeList | 图片延迟时间数组的指针。  | 
+| delayTimeList | 图片延迟时间数组的指针，每帧输出图像的延迟时间，取值需大于0。<br>- 单位为10毫秒。例如，取值为10时，实际单帧延迟是100毫秒。<br>- 如果长度小于frameCount，不足的部分将使用delayTimeList中的最后一个值进行填充。| 
 | delayTimeListLength | 图片延迟时间数组的长度。  | 
 
 **返回：**
@@ -3605,14 +3605,14 @@ Image_ErrorCode OH_PackingOptionsForSequence_SetDisposalTypes(OH_PackingOptionsF
 **描述**
 设定编码时图片的过渡帧模式数组。
 
-**起始版本：** 13
+**起始版本：** 18
 
 **参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
 | options | 用于操作的OH_PackingOptionsForSequence指针。  | 
-| disposalTypes | 图片过渡帧模式数组的指针。  | 
+| disposalTypes | 图片过渡帧模式数组的指针，图片帧过渡模式的参数，如果长度小于frameCount，不足的部分将使用disposalTypes中的最后一个值进行填充，可取值如下：<br>- 0：不需要任何操作。<br>- 1：保持图形不变。<br>- 2：恢复背景色。<br>- 3：恢复到之前的状态。| 
 | disposalTypesLength | 图片过渡帧模式数组的长度。  | 
 
 **返回：**
@@ -3628,7 +3628,7 @@ mage_ErrorCode OH_PackingOptionsForSequence_SetFrameCount(OH_PackingOptionsForSe
 **描述**
 设置编码时指定的帧数。
 
-**起始版本：** 13
+**起始版本：** 18
 
 **参数：**
 
@@ -3648,9 +3648,9 @@ mage_ErrorCode OH_PackingOptionsForSequence_SetFrameCount(OH_PackingOptionsForSe
 Image_ErrorCode OH_PackingOptionsForSequence_SetLoopCount(OH_PackingOptionsForSequence *options, uint32_t loopCount)
 ```
 **描述**
-设定编码时图片循环播放次数。
+设定编码时图片循环播放次数，取值范围为[0，65535]，<br>0表示无限循环；若无此字段，则表示不循环播放。
 
-**起始版本：** 13
+**起始版本：** 18
 
 **参数：**
 

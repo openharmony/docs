@@ -81,7 +81,7 @@ placeholderColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明                                         |
 | ------ | ------------------------------------------ | ---- | -------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | placeholder文本颜色。<br/>默认值：跟随主题。<br/>wearable设备上默认值为：'#99ffffff' |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | placeholder文本颜色。<br/>默认值：跟随主题。<br/>Wearable设备上默认值为：'#99ffffff' |
 
 ### placeholderFont
 
@@ -97,7 +97,7 @@ placeholderFont(value?: Font)
 
 | 参数名 | 类型                     | 必填 | 说明                  |
 | ------ | ------------------------ | ---- | --------------------- |
-| value  | [Font](ts-types.md#font) | 否   | placeholder文本样式。<br/>wearable设备上默认值为：18fp |
+| value  | [Font](ts-types.md#font) | 否   | placeholder文本样式。<br/>Wearable设备上默认值为：18fp |
 
 ### enterKeyType
 
@@ -164,7 +164,7 @@ fontColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明       |
 | ------ | ------------------------------------------ | ---- | ---------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 字体颜色。<br/>wearable设备上默认值为：'#dbffffff' |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 字体颜色。<br/>Wearable设备上默认值为：'#dbffffff' |
 
 ### fontSize
 
@@ -180,7 +180,7 @@ fontSize(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                                                         |
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Length](ts-types.md#length) | 是   | 字体大小。fontSize为number类型时，使用fp单位。字体默认大小16fp。不支持设置百分比字符串。<br/>wearable设备上默认值为：18fp |
+| value  | [Length](ts-types.md#length) | 是   | 字体大小。fontSize为number类型时，使用fp单位。字体默认大小16fp。不支持设置百分比字符串。<br/>Wearable设备上默认值为：18fp |
 
 ### fontStyle
 
@@ -399,7 +399,7 @@ showError(value?: ResourceStr | undefined)
 
 | 参数名 | 类型                          | 必填 | 说明                                                         |
 | ------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ResourceStr](ts-types.md#resourcestr)&nbsp;\|&nbsp;undefined | 否   | 错误状态下提示的错误文本或者不显示错误状态。<br/>默认不显示错误状态。<br/>wearable设备上字体大小为：13fp，对齐方式为：居中对齐<br/>**说明：** <br/>从API version 12开始，value支持Resource类型。 |
+| value  | [ResourceStr](ts-types.md#resourcestr)&nbsp;\|&nbsp;undefined | 否   | 错误状态下提示的错误文本或者不显示错误状态。<br/>默认不显示错误状态。<br/>Wearable设备上字体大小为：13fp，对齐方式为：居中对齐<br/>**说明：** <br/>从API version 12开始，value支持Resource类型。 |
 
 ### showUnderline<sup>10+</sup>
 
@@ -433,7 +433,7 @@ passwordIcon(value: PasswordIcon)
 
 | 参数名 | 类型                                    | 必填 | 说明                                                         |
 | ------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [PasswordIcon](#passwordicon10对象说明) | 是   | 密码输入模式时，输入框末尾的图标。<br/>默认为系统提供的密码图标。<br/>该图标的固定尺寸为24vp，wearable设备上默认值为28vp，若引用的图标过大或过小，均显示为固定尺寸。 |
+| value  | [PasswordIcon](#passwordicon10对象说明) | 是   | 密码输入模式时，输入框末尾的图标。<br/>默认为系统提供的密码图标。<br/>该图标的固定尺寸为24vp，Wearable设备上默认值为28vp，若引用的图标过大或过小，均显示为固定尺寸。 |
 
 ### enableKeyboardOnFocus<sup>10+</sup>
 
@@ -578,7 +578,7 @@ cancelButton(options: CancelButtonOptions)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| options  | [CancelButtonOptions](ts-basic-components-search.md#cancelbuttonoptions12对象说明) | 是   | 右侧清除按钮样式选项。<br />默认值：<br />{<br />style: CancelButtonStyle.INPUT<br />}<br/>wearable设备上默认值为：28vp |
+| options  | [CancelButtonOptions](ts-basic-components-search.md#cancelbuttonoptions12对象说明) | 是   | 右侧清除按钮样式选项。<br />默认值：<br />{<br />style: CancelButtonStyle.INPUT<br />}<br/>Wearable设备上默认值为：28vp |
 
 ### selectAll<sup>11+</sup>
 
@@ -697,7 +697,7 @@ letterSpacing(value: number | string | Resource)
 
 | 参数名 | 类型                       | 必填 | 说明           |
 | ------ | -------------------------- | ---- | -------------- |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本字符间距。<br/>单位：fp |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本字符间距。<br/>单位：[fp](ts-pixel-units.md#像素单位) |
 
 ### fontFeature<sup>12+</sup>
 
@@ -807,7 +807,7 @@ minFontSize(value: number | string | Resource)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最小显示字号。<br/>单位：fp |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最小显示字号。<br/>单位：[fp](ts-pixel-units.md#像素单位) |
 
 ### maxFontSize<sup>12+</sup>
 
@@ -827,7 +827,7 @@ maxFontSize(value: number | string | Resource)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。<br/>单位：fp |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。<br/>单位：[fp](ts-pixel-units.md#像素单位) |
 
 ### heightAdaptivePolicy<sup>12+</sup>
 
@@ -945,7 +945,7 @@ enableHapticFeedback(isEnabled: boolean)
 
 >  **说明：**
 >
->  开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
+>  开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段以开启振动权限，配置如下：
 > ```json
 > "requestPermissions": [
 >  {
@@ -1287,7 +1287,7 @@ onPaste(callback: OnPasteCallback)
 
 onTextSelectionChange(callback: OnTextSelectionChangeCallback)
 
-文本选择的位置发生变化或编辑状态下光标位置发生变化时，触发该回调。
+文本选择的位置或编辑状态下光标位置发生变化时，触发该回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2703,3 +2703,43 @@ struct TextInputExample {
   }
 }
 ```
+
+### 示例19（设置选中指定区域的文本内容）
+
+该示例通过setTextSelection方法展示如何设置选中指定区域的文本内容以及菜单的显隐策略。
+
+```ts
+// xxx.ets
+
+@Entry
+@Component
+struct TextInputExample {
+  controller: TextInputController = new TextInputController()
+  @State startIndex: number = 0
+  @State endIndex: number = 0
+
+  build() {
+    Column({ space: 3 }) {
+      Text('Selection start:' + this.startIndex + ' end:' + this.endIndex)
+      TextInput({ text: 'Hello World', controller: this.controller })
+        .width('95%')
+        .height(40)
+        .defaultFocus(true)
+        .enableKeyboardOnFocus(true)
+        .onTextSelectionChange((selectionStart: number, selectionEnd: number) => {
+          this.startIndex = selectionStart
+          this.endIndex = selectionEnd
+        })
+
+      Button('setTextSelection [0,3], set menuPolicy is MenuPolicy.SHOW')
+        .onClick(() => {
+          this.controller.setTextSelection(0, 3, { menuPolicy: MenuPolicy.SHOW })
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![textInputSetTextSelection](figures/textInputSetTextSelection.gif)

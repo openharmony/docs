@@ -1,6 +1,6 @@
 # @ohos.xml (XML解析与生成)
 
-本模块提供了将XML文本转换为JavaScript对象、以及XML文件生成和解析的一系列接口。
+本模块提供XML生成和解析的接口。
 
 > **说明：**
 >
@@ -25,7 +25,7 @@ XmlSerializer的构造函数。
 
 > **说明：**
 >
-> buffer是一个用户根据需要自定义大小的缓存区域，用于临时存储生成的XML文本。在使用过程中务必确保所设置的缓存区足够大，使其可以容纳生成文本的所有内容。
+> buffer是开发者根据需要自定义大小的缓存区域，用于临时存储生成的XML文本。在使用过程中必须确保缓存区域足以容纳生成的文本内容。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -57,11 +57,11 @@ let thatSer = new xml.XmlSerializer(arrayBuffer, "utf-8");
 
 setAttributes(name: string, value: string): void
 
-写入元素的属性和属性值。
+添加元素的属性和属性值。
 
 > **说明：**
 >
-> 该接口对所添加数据不做标准XML校验处理，请确保所添加的数据符合标准XML规范。比如不允许添加数字开头的属性名称以及添加多个同名的属性名称。
+> 该接口对所添加数据不做标准XML校验处理，确保所添加的数据符合标准XML规范。例如不允许添加数字开头的属性名称以及添加多个同名的属性名称。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -101,11 +101,11 @@ console.log(result); // <note importance="high"/>
 
 addEmptyElement(name: string): void
 
-写入一个空元素。
+添加一个空元素。
 
 > **说明：**
 >
-> 该接口对所添加数据不做标准XML校验处理，请确保所添加的数据符合标准XML规范。比如不允许添加数字开头的元素名称。
+> 该接口对所添加数据不做标准XML校验处理，确保所添加的数据符合标准XML规范。例如不允许添加数字开头的元素名称。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -115,7 +115,7 @@ addEmptyElement(name: string): void
 
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
-| name   | string | 是   | 该空元素的元素名。 |
+| name   | string | 是   | 元素的名称。 |
 
 **错误码：**
 
@@ -142,7 +142,7 @@ console.log(result); // <d/>
 
 setDeclaration(): void
 
-编写带有编码的文件声明。
+添加带有编码的文件声明。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -166,7 +166,7 @@ console.log(result);
 
 startElement(name: string): void
 
-根据给定名称写入元素开始标记。
+根据给定名称添加元素开始标记。
 
 > **说明：**
 >
@@ -212,7 +212,7 @@ console.log(result);
 
 endElement(): void
 
-写入元素结束标记。
+添加元素结束标记。
 
 > **说明：**
 >
@@ -242,11 +242,11 @@ console.log(result);
 
 setNamespace(prefix: string, namespace: string): void
 
-写入当前元素标记的命名空间。
+添加当前元素标记的命名空间。
 
 > **说明：**
 >
-> 该接口对所添加数据不做标准XML校验处理，请确保所添加的数据符合标准XML规范。比如不允许添加数字开头的前缀以及对同一个元素设置多个命名空间。
+> 该接口对所添加数据不做标准XML校验处理，请确保所添加的数据符合标准XML规范。例如禁止添加数字开头的前缀以及为同一个元素设置多个命名空间。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -287,7 +287,7 @@ console.log(result);
 
 setComment(text: string): void
 
-写入注释内容。
+添加注释内容。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -365,7 +365,7 @@ console.log(result); // <![CDATA[root SYSTEM]]>
 
 setText(text: string): void
 
-写入标签值。
+添加标签值。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -405,7 +405,7 @@ console.log(result); // <note importance="high">Happy</note>
 
 setDocType(text: string): void
 
-写入文档类型。
+添加文档类型。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -456,7 +456,7 @@ constructor(buffer: ArrayBuffer | DataView, encoding?: string)
 
 | 参数名   | 类型                              | 必填 | 说明                                       |
 | -------- | --------------------------------- | ---- | ------------------------------------------ |
-| buffer   | ArrayBuffer \| DataView | 是   | 需要解析的XML文本信息。 |
+| buffer   | ArrayBuffer \| DataView | 是   | 用于解析的XML文本信息。|
 | encoding | string                            | 否   | 编码格式，默认'utf-8'（目前仅支持'utf-8'）。         |
 
 **错误码：**
@@ -531,7 +531,7 @@ pullParser.parseXml(options);
 
 parse(option: ParseOptions): void
 
-该接口用于解析xml。
+该接口用于解析XML。
 
 > **说明：**
 >
@@ -545,7 +545,7 @@ parse(option: ParseOptions): void
 
 | 参数名 | 类型                          | 必填 | 说明                             |
 | ------ | ----------------------------- | ---- | -------------------------------- |
-| option | [ParseOptions](#parseoptions) | 是   | 用户控制以及获取解析信息的选项。 |
+| option | [ParseOptions](#parseoptions) | 是   | XML解析选项。 |
 
 **错误码：**
 
@@ -593,16 +593,16 @@ XML解析选项。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang
+**系统能力：** SystemCapability.Utils.Lang。
 
 
 | 名称                           | 类型                                                         | 必填 | 说明                                    |
 | ------------------------------ | ------------------------------------------------------------ | ---- | --------------------------------------- |
-| supportDoctype                 | boolean                                                      | 否   | 是否解析文档类型，false表示不解析文档类型，true表示解析文档类型，默认false。 |
-| ignoreNameSpace                | boolean                                                      | 否   | 是否忽略命名空间，忽略命名空间后，将不会对其进行解析。true表示忽略命名空间，false表示不忽略命名空间，默认false。 |
-| tagValueCallbackFunction       | (name: string, value: string) =&gt; boolean | 否   | 解析开始标签、标签值和结束标签，默认undefined，表示不解析。 |
-| attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | 否   | 解析属性和属性值，默认undefined，表示不解析。 |
-| tokenValueCallbackFunction     | (eventType: [EventType](#eventtype), value: [ParseInfo](#parseinfo)) =&gt; boolean | 否   | 解析元素事件类型([EventType](#eventtype))和[ParseInfo](#parseinfo)属性，默认undefined，表示不解析。 |
+| supportDoctype                 | boolean                                                      | 否   | 是否解析文档类型，false表示不解析文档类型，true表示解析文档类型，默认值false。 |
+| ignoreNameSpace                | boolean                                                      | 否   | 是否忽略命名空间，忽略命名空间后，将不会对其进行解析。true表示忽略命名空间，false表示不忽略命名空间，默认值false。 |
+| tagValueCallbackFunction       | (name: string, value: string) =&gt; boolean | 否   | 解析开始标签、标签值和结束标签，默认值undefined，表示不解析。 |
+| attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | 否   | 解析属性和属性值，默认值undefined，表示不解析。 |
+| tokenValueCallbackFunction     | (eventType: [EventType](#eventtype), value: [ParseInfo](#parseinfo)) =&gt; boolean | 否   | 解析元素事件类型([EventType](#eventtype))和[ParseInfo](#parseinfo)属性，默认值undefined，表示不解析。 |
 
 ## ParseInfo
 
@@ -613,7 +613,7 @@ XML解析选项。
 
 getColumnNumber(): number
 
-获取当前列号，从1开始。
+获取当前列号，从1开始计数。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -927,7 +927,7 @@ isWhitespace(): boolean
 
 | 类型    | 说明                                   |
 | ------- | -------------------------------------- |
-| boolean | 返回true，当前文本事件仅包含空格字符。 |
+| boolean | 返回true，表示当前文本事件仅包含空格字符。 |
 
 **示例：**
 
@@ -993,7 +993,7 @@ console.log(str);
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称             | 值   | 说明                  |
 | ---------------- | ---- | --------------------- |

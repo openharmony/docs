@@ -2,7 +2,7 @@
 
 分布式键值数据库为应用程序提供不同设备间数据库的分布式协同能力。通过调用分布式键值数据库各个接口，应用程序可将数据保存到分布式键值数据库中，并可对分布式键值数据库中的数据进行增加、删除、修改、查询、端端同步等操作。
 
-该模块提供以下分布式键值数据库相关的常用功能：
+该模块提供以下常用功能：
 
 - [KVManager](#kvmanager)：分布式键值数据库管理实例，用于获取数据库的相关信息。
 - [KVStoreResultSet](#kvstoreresultset)：提供获取数据库结果集的相关方法，包括查询和移动数据读取位置等。
@@ -10,7 +10,7 @@
 - [SingleKVStore](#singlekvstore)：单版本分布式键值数据库，不对数据所属设备进行区分，提供查询数据和端端同步数据的方法。
 - [DeviceKVStore](#devicekvstore)：设备协同数据库，继承自[SingleKVStore](#singlekvstore)，以设备维度对数据进行区分，提供查询数据和端端同步数据的方法。
 
-> **说明：** 
+> **说明：**
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -134,10 +134,10 @@ import { distributedKVStore } from '@kit.ArkData';
 数据库的安全级别枚举。
 > **说明**：
 >
-> 在单设备使用场景下，KV数据库支持修改securityLevel开库参数进行安全等级升级。数据库安全等级升级操作需要注意以下几点：
-> * 该操作不支持需要进行跨设备同步的数据库，不同安全等级的数据库之间不能进行数据同步，需要跨设备同步的数据库如果要升级安全等级，建议重新创建更高安全等级的数据库。
-> * 该操作需在关闭当前数据库之后，通过修改securityLevel开库参数重新设置数据库的安全等级，再进行开库操作。
-> * 该操作只支持升级，不支持降级。例如支持S2->S3的升级，不支持S3->S2的降级。
+> 在单设备使用场景下，KV数据库支持修改securityLevel参数进行安全等级升级。升级操作需要注意以下几点：
+> * 该操作不支持跨设备同步的数据库。不同安全等级的数据库之间不能进行数据同步。若需升级数据库的安全等级，建议重新创建更高安全等级的数据库。
+> * 关闭当前数据库后，修改securityLevel参数以重新设置数据库的安全等级，然后重新打开数据库。
+> * 该操作仅支持升级，例如从S2到S3，不支持降级，例如从S3到S2。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -175,9 +175,9 @@ import { distributedKVStore } from '@kit.ArkData';
 | mode    | number                  | 是   | 是   | Schema的模式，可以取值0或1，0表示COMPATIBLE模式，1表示STRICT模式。|
 | skip    | number                  | 是   | 是   | 支持在检查Value时，跳过skip指定的字节数，且取值范围为[0, 4 * 1024 * 1024 - 2]字节。|
 
-STRICT：意味着严格模式，在此模式用户插入的Value格式与Schema定义必须严格匹配，字段不能多也不能少，如果不匹配则插入数据时数据库会返回错误。
+STRICT：STRICT模式要求用户插入的值必须与Schema定义严格匹配，字段数量和格式都不能有差异。如果不匹配，数据库将在插入数据时返回错误。
 
-COMPATIBLE：选择为COMPATIBLE模式则数据库检查Value格式时比较宽松，只需要Value具有Schema描述的特征即可，允许有多出的字段，例如：定义了id、name字段可以插入id、name、age等多个字段。
+COMPATIBLE：选择为COMPATIBLE模式时，数据库在检查Value格式时较为宽松，只要Value具有Schema描述的特征即可，允许存在额外字段。例如，定义了id、name字段时，可以插入id、name、age等多个字段。
 
 ### constructor
 
@@ -217,7 +217,7 @@ schema.skip = 0;
 | 名称     | 类型    | 可读 | 可写 | 说明                           |
 | -------- | ------- | ---- | ---- | ------------------------------ |
 | nullable | boolean | 是   | 是   | 表示数据库字段是否可以为空。true表示此节点数据可以为空，false表示此节点数据不能为空。|
-| default  | string  | 是   | 是   | 表示Fieldnode的默认值。        |
+| default  | string  | 是   | 是   | 表示FieldNode的默认值。        |
 | type     | number  | 是   | 是   | 表示指定节点对应的数据类型，取值为[ValueType](#valuetype)对应的枚举值。暂不支持BYTE_ARRAY，使用此类型会导致[getKVStore](#getkvstore)失败。|
 
 ### constructor
@@ -232,7 +232,7 @@ constructor(name: string)
 
 | 参数名 | 类型 | 必填 | 说明            |
 | ------ | -------- | ---- | --------------- |
-| name   | string   | 是   | FieldNode的值， 不能为空。 |
+| name   | string   | 是   | FieldNode的值，不能为空。 |
 
 **错误码：**
 
@@ -332,11 +332,11 @@ let kvManager: distributedKVStore.KVManager;
 
 export default class EntryAbility extends UIAbility {
   onCreate() {
-    console.info("MyAbilityStage onCreate")
-    let context = this.context
+    console.info("MyAbilityStage onCreate");
+    let context = this.context;
     const kvManagerConfig: distributedKVStore.KVManagerConfig = {
       context: context,
-      bundleName: 'com.example.datamanagertest',
+      bundleName: 'com.example.datamanagertest'
     }
     try {
       kvManager = distributedKVStore.createKVManager(kvManagerConfig);
@@ -362,10 +362,10 @@ import { featureAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let kvManager: distributedKVStore.KVManager;
-let context = featureAbility.getContext()
+let context = featureAbility.getContext();
 const kvManagerConfig: distributedKVStore.KVManagerConfig = {
   context: context,
-  bundleName: 'com.example.datamanagertest',
+  bundleName: 'com.example.datamanagertest'
 }
 try {
   kvManager = distributedKVStore.createKVManager(kvManagerConfig);
@@ -393,7 +393,7 @@ getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&l
 
 > 注意：
 >
-> 在获取已有的分布式键值数据库时，若该数据库文件已无法打开（例如文件头损坏），将触发自动重建逻辑，并返回新创建的分布式键值数据库实例。对于重要且无法重新生成的数据推荐使用备份恢复功能，防止数据丢失，备份恢复使用方法可见[数据库备份与恢复](../../database/data-backup-and-restore.md)。
+> 在获取已有的分布式键值数据库时，如果数据库文件无法打开（例如文件头损坏），将触发自动重建逻辑，并返回新创建的分布式键值数据库实例。建议对重要且无法重新生成的数据使用备份恢复功能，以防止数据丢失。有关备份恢复的使用方法，请参阅[数据库备份与恢复](../../database/data-backup-and-restore.md)。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -428,7 +428,7 @@ try {
     backup: false,
     autoSync: false,
     kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-    securityLevel: distributedKVStore.SecurityLevel.S3,
+    securityLevel: distributedKVStore.SecurityLevel.S3
   };
   kvManager.getKVStore('storeId', options, (err: BusinessError, store: distributedKVStore.SingleKVStore) => {
     if (err) {
@@ -453,11 +453,11 @@ if (kvStore !== null) {
 
 getKVStore&lt;T&gt;(storeId: string, options: Options): Promise&lt;T&gt;
 
-通过指定options和storeId，创建并获取分布式键值数据库，使用Promise异步回调。
+指定options和storeId，创建并获取分布式键值数据库，使用Promise回调。
 
 > 注意：
 >
-> 在获取已有的分布式键值数据库时，若该数据库文件已无法打开（例如文件头损坏），将触发自动重建逻辑，并返回新创建的分布式键值数据库实例。对于重要且无法重新生成的数据推荐使用备份恢复功能，防止数据丢失，备份恢复使用方法可见[数据库备份与恢复](../../database/data-backup-and-restore.md)。
+> 获取已有的分布式键值数据库时，如果数据库文件无法打开（如文件头损坏），将触发自动重建逻辑，并返回新创建的分布式键值数据库实例。建议对重要且无法重新生成的数据使用备份恢复功能，防止数据丢失。备份恢复的使用方法详见[数据库备份与恢复](../../database/data-backup-and-restore.md)。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -472,7 +472,7 @@ getKVStore&lt;T&gt;(storeId: string, options: Options): Promise&lt;T&gt;
 
 | 类型             | 说明                                                         |
 | ---------------- | ------------------------------------------------------------ |
-| Promise&lt;T&gt; | Promise对象。返回创建的分布式键值数据库实例（根据kvStoreType的不同，可以创建SingleKVStore实例和DeviceKVStore实例。 |
+| Promise&lt;T&gt; | Promise对象。返回创建的分布式键值数据库实例（根据kvStoreType的不同，可以创建SingleKVStore实例和DeviceKVStore实例）。 |
 
 **错误码：**
 
@@ -497,7 +497,7 @@ try {
     backup: false,
     autoSync: false,
     kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-    securityLevel: distributedKVStore.SecurityLevel.S3,
+    securityLevel: distributedKVStore.SecurityLevel.S3
   };
   kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options).then((store: distributedKVStore.SingleKVStore) => {
     console.info("Succeeded in getting KVStore");
@@ -548,7 +548,7 @@ const options: distributedKVStore.Options = {
   autoSync: false,
   kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
   schema: undefined,
-  securityLevel: distributedKVStore.SecurityLevel.S3,
+  securityLevel: distributedKVStore.SecurityLevel.S3
 }
 try {
   kvManager.getKVStore('storeId', options, async (err: BusinessError, store: distributedKVStore.SingleKVStore | null) => {
@@ -617,7 +617,7 @@ const options: distributedKVStore.Options = {
   autoSync: false,
   kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
   schema: undefined,
-  securityLevel: distributedKVStore.SecurityLevel.S3,
+  securityLevel: distributedKVStore.SecurityLevel.S3
 }
 try {
   kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options).then(async (store: distributedKVStore.SingleKVStore | null) => {
@@ -678,7 +678,7 @@ const options: distributedKVStore.Options = {
   autoSync: false,
   kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
   schema: undefined,
-  securityLevel: distributedKVStore.SecurityLevel.S3,
+  securityLevel: distributedKVStore.SecurityLevel.S3
 }
 try {
   kvManager.getKVStore('store', options, async (err: BusinessError, store: distributedKVStore.SingleKVStore | null) => {
@@ -748,7 +748,7 @@ const options: distributedKVStore.Options = {
   autoSync: false,
   kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
   schema: undefined,
-  securityLevel: distributedKVStore.SecurityLevel.S3,
+  securityLevel: distributedKVStore.SecurityLevel.S3
 }
 try {
   kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options).then(async (store: distributedKVStore.SingleKVStore | null) => {
@@ -1492,7 +1492,7 @@ equalTo(field: string, value: number|string|boolean): Query
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| field  | string  | 是    |表示指定字段，不能包含'^'。包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| field  | string  | 是    |表示指定字段，不能包含'^'。包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 | value  | number\|string\|boolean  | 是    | 表示指定的值。|
 
 **返回值：**
@@ -1537,7 +1537,7 @@ notEqualTo(field: string, value: number|string|boolean): Query
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| field  | string  | 是    |表示指定字段，不能包含'^'。包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。  |
+| field  | string  | 是    |表示指定字段，不能包含'^'。包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。  |
 | value  | number\|string\|boolean  | 是    | 表示指定的值。|
 
 **返回值：**
@@ -1581,7 +1581,7 @@ greaterThan(field: string, value: number|string|boolean): Query
 **参数：**
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| field  | string  | 是    |表示指定字段，不能包含'^'。包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。  |
+| field  | string  | 是    |表示指定字段，不能包含'^'。包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。  |
 | value  | number\|string\|boolean  | 是    | 表示指定的值。|
 
 **返回值：**
@@ -1627,7 +1627,7 @@ lessThan(field: string, value: number|string): Query
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| field  | string  | 是    |表示指定字段，不能包含'^'。包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。  |
+| field  | string  | 是    |表示指定字段，不能包含'^'。包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。  |
 | value  | number\|string  | 是    | 表示指定的值。|
 
 **返回值：**
@@ -1673,7 +1673,7 @@ greaterThanOrEqualTo(field: string, value: number|string): Query
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| field  | string  | 是    |表示指定字段，不能包含'^'。包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。  |
+| field  | string  | 是    |表示指定字段，不能包含'^'。包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。  |
 | value  | number\|string  | 是    | 表示指定的值。|
 
 **返回值：**
@@ -1719,7 +1719,7 @@ lessThanOrEqualTo(field: string, value: number|string): Query
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| field  | string  | 是    |表示指定字段，不能包含'^'。包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。  |
+| field  | string  | 是    |表示指定字段，不能包含'^'。包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。  |
 | value  | number\|string  | 是    | 表示指定的值。|
 
 **返回值：**
@@ -1764,7 +1764,7 @@ isNull(field: string): Query
 
 | 参数名 | 类型 | 必填 | 说明                          |
 | ------ | -------- | ---- | ----------------------------- |
-| field  | string   | 是   | 表示指定字段，不能包含'^'。包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| field  | string   | 是   | 表示指定字段，不能包含'^'。包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 
 **返回值：**
 
@@ -1808,7 +1808,7 @@ inNumber(field: string, valueList: number[]): Query
 
 | 参数名    | 类型 | 必填 | 说明                          |
 | --------- | -------- | ---- | ----------------------------- |
-| field     | string   | 是   | 表示指定字段，不能包含'^'。包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| field     | string   | 是   | 表示指定字段，不能包含'^'。包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 | valueList | number[] | 是   | 表示指定的值列表。            |
 
 **返回值：**
@@ -1853,7 +1853,7 @@ inString(field: string, valueList: string[]): Query
 
 | 参数名    | 类型 | 必填 | 说明                          |
 | --------- | -------- | ---- | ----------------------------- |
-| field     | string   | 是   | 表示指定字段，不能包含'^'。包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| field     | string   | 是   | 表示指定字段，不能包含'^'。包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 | valueList | string[] | 是   | 表示指定的字符串值列表。      |
 
 **返回值：**
@@ -1898,7 +1898,7 @@ notInNumber(field: string, valueList: number[]): Query
 
 | 参数名    | 类型 | 必填 | 说明                          |
 | --------- | -------- | ---- | ----------------------------- |
-| field     | string   | 是   | 表示指定字段，不能包含'^'。包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| field     | string   | 是   | 表示指定字段，不能包含'^'。包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 | valueList | number[] | 是   | 表示指定的值列表。            |
 
 **返回值：**
@@ -1943,7 +1943,7 @@ notInString(field: string, valueList: string[]): Query
 
 | 参数名    | 类型 | 必填 | 说明                          |
 | --------- | -------- | ---- | ----------------------------- |
-| field     | string   | 是   | 表示指定字段，不能包含'^'。包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| field     | string   | 是   | 表示指定字段，不能包含'^'。包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 | valueList | string[] | 是   | 表示指定的字符串值列表。      |
 
 **返回值：**
@@ -1988,7 +1988,7 @@ like(field: string, value: string): Query
 
 | 参数名 | 类型 | 必填 | 说明                          |
 | ------ | -------- | ---- | ----------------------------- |
-| field  | string   | 是   | 表示指定字段，不能包含'^'。包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| field  | string   | 是   | 表示指定字段，不能包含'^'。包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 | value  | string   | 是   | 表示指定的字符串值。          |
 
 **返回值：**
@@ -2033,7 +2033,7 @@ unlike(field: string, value: string): Query
 
 | 参数名 | 类型 | 必填 | 说明                          |
 | ------ | -------- | ---- | ----------------------------- |
-| field  | string   | 是   | 表示指定字段，不能包含'^'。包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| field  | string   | 是   | 表示指定字段，不能包含'^'。包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 | value  | string   | 是   | 表示指定的字符串值。          |
 
 **返回值：**
@@ -2140,7 +2140,7 @@ orderByAsc(field: string): Query
 
 | 参数名 | 类型 | 必填 | 说明                          |
 | ------ | -------- | ---- | ----------------------------- |
-| field  | string   | 是   | 表示指定字段，不能包含'^'。包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| field  | string   | 是   | 表示指定字段，不能包含'^'。包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 
 **返回值：**
 
@@ -2185,7 +2185,7 @@ orderByDesc(field: string): Query
 
 | 参数名 | 类型 | 必填 | 说明                          |
 | ------ | -------- | ---- | ----------------------------- |
-| field  | string   | 是   | 表示指定字段，不能包含'^'。包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| field  | string   | 是   | 表示指定字段，不能包含'^'。包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 
 **返回值：**
 
@@ -2230,7 +2230,7 @@ limit(total: number, offset: number): Query
 
 | 参数名 | 类型 | 必填 | 说明               |
 | ------ | -------- | ---- | ------------------ |
-| total  | number   | 是   | 表示指定的结果数。 |
+| total  | number   | 是   | 表示最大数据记录数，取值应为非负整数，传入值小于0时，不会限制记录数量。 |
 | offset | number   | 是   | 指定查询结果的起始位置，默认初始位置为结果集的最前端。当offset为负数时，起始位置为结果集的最前端。当offset超出结果集最后位置时，查询结果为空。|
 
 **返回值：**
@@ -2278,7 +2278,7 @@ isNotNull(field: string): Query
 
 | 参数名 | 类型 | 必填 | 说明                          |
 | ------ | -------- | ---- | ----------------------------- |
-| field  | string   | 是   | 表示指定字段，不能包含'^'。包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| field  | string   | 是   | 表示指定字段，不能包含'^'。包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 
 **返回值：**
 
@@ -2384,7 +2384,7 @@ prefixKey(prefix: string): Query
 
 | 参数名 | 类型 | 必填 | 说明               |
 | ------ | -------- | ---- | ------------------ |
-| prefix | string   | 是   | 表示指定的键前缀，不能包含'^'。包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| prefix | string   | 是   | 表示指定的键前缀，不能包含'^'。包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 
 **返回值：**
 
@@ -2429,7 +2429,7 @@ setSuggestIndex(index: string): Query
 
 | 参数名 | 类型 | 必填 | 说明               |
 | ------ | -------- | ---- | ------------------ |
-| index  | string   | 是   | 指示要设置的索引，不能包含'^'。包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| index  | string   | 是   | 指示要设置的索引，不能包含'^'。包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 
 **返回值：**
 
@@ -2467,10 +2467,10 @@ try {
 deviceId(deviceId:string):Query
 
 添加设备ID作为Key的前缀。
-> **说明：** 
+> **说明：**
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
-> deviceId具体获取方式请参考[sync接口示例](#sync)
+> deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3078,7 +3078,7 @@ try {
 removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
 删除指定设备的数据，使用callback异步回调。
-> **说明：** 
+> **说明：**
 >
 > 其中deviceId为[DeviceBasicInfo](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#devicebasicinfo)中的networkId，通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)
@@ -3138,7 +3138,7 @@ try {
 removeDeviceData(deviceId: string): Promise&lt;void&gt;
 
 删除指定设备的数据，使用Promise异步回调。
-> **说明：** 
+> **说明：**
 >
 > 其中deviceId为[DeviceBasicInfo](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#devicebasicinfo)中的networkId，通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)
@@ -3323,7 +3323,7 @@ getEntries(keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 | 参数名    | 类型                               | 必填 | 说明                                     |
 | --------- | -------------------------------------- | ---- | ---------------------------------------- |
-| keyPrefix | string                                 | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| keyPrefix | string                                 | 是   | 表示要匹配的键前缀。不能包含'^'，包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 | callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | 是   | 回调函数。返回匹配指定前缀的键值对列表。 |
 
 **错误码：**
@@ -3391,7 +3391,7 @@ getEntries(keyPrefix: string): Promise&lt;Entry[]&gt;
 
 | 参数名    | 类型 | 必填 | 说明                 |
 | --------- | -------- | ---- | -------------------- |
-| keyPrefix | string   | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| keyPrefix | string   | 是   | 表示要匹配的键前缀。不能包含'^'，包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 
 **返回值：**
 
@@ -3598,7 +3598,7 @@ getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;)
 
 | 参数名    | 类型                                                   | 必填 | 说明                                 |
 | --------- | ---------------------------------------------------------- | ---- | ------------------------------------ |
-| keyPrefix | string                                                     | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。                 |
+| keyPrefix | string                                                     | 是   | 表示要匹配的键前缀。不能包含'^'，包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。                 |
 | callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | 是   | 回调函数。返回具有指定前缀的结果集。 |
 
 **错误码：**
@@ -3676,7 +3676,7 @@ getResultSet(keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
 
 | 参数名    | 类型 | 必填 | 说明                 |
 | --------- | -------- | ---- | -------------------- |
-| keyPrefix | string   | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| keyPrefix | string   | 是   | 表示要匹配的键前缀。不能包含'^'，包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 
 **返回值：**
 
@@ -4955,7 +4955,7 @@ try {
 sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
 在手动同步方式下，触发数据库端端同步。关于键值型数据库的端端同步方式说明，请见[键值型数据库跨设备数据同步](../../database/data-sync-of-kv-store.md)。
-> **说明：** 
+> **说明：**
 >
 > 其中deviceIds为[DeviceBasicInfo](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#devicebasicinfo)中的networkId, 通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 
@@ -5041,7 +5041,7 @@ export default class EntryAbility extends UIAbility {
 sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 
 在手动同步方式下，触发数据库端端同步，此方法为同步方法。关于键值型数据库的端端同步方式说明，请见[键值型数据库跨设备数据同步](../../database/data-sync-of-kv-store.md)。
-> **说明：** 
+> **说明：**
 >
 > 其中deviceIds为[DeviceBasicInfo](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#devicebasicinfo)中的networkId, 通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 
@@ -5055,7 +5055,7 @@ sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 | --------- | --------------------- | ---- | ---------------------------------------------- |
 | deviceIds | string[]              | 是   | 同一组网环境下，需要同步的设备的networkId列表。 |
 | mode      | [SyncMode](#syncmode) | 是   | 同步模式。                                     |
-| query     | [Query](#query)        | 是   | 表示数据库的查询谓词条件                       |
+| query     | [Query](#query)        | 是   | 表示数据库的查询谓词条件。                      |
 | delayMs   | number                | 否   | 可选参数，允许延时时间，单位：ms（毫秒），默认为0。设置delayMs后，调用sync接口时延时时间为delayMs。未设置时以[setSyncParam](#setsyncparam)设置的时长为准。|
 
 **错误码：**
@@ -5536,7 +5536,7 @@ try {
 get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean | string | number | Uint8Array&gt;): void
 
 获取与指定设备ID和Key匹配的string值，使用callback异步回调。
-> **说明：** 
+> **说明：**
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
@@ -5597,7 +5597,7 @@ try {
 get(deviceId: string, key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 
 获取与指定设备ID和Key匹配的string值，使用Promise异步回调。
-> **说明：** 
+> **说明：**
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
@@ -5666,7 +5666,7 @@ getEntries(keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 | 参数名    | 类型                                   | 必填 | 说明                                     |
 | --------- | -------------------------------------- | ---- | ---------------------------------------- |
-| keyPrefix | string                                 | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| keyPrefix | string                                 | 是   | 表示要匹配的键前缀。不能包含'^'，包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 | callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | 是   | 回调函数。返回匹配指定前缀的键值对列表。 |
 
 **错误码：**
@@ -5734,7 +5734,7 @@ getEntries(keyPrefix: string): Promise&lt;Entry[]&gt;
 
 | 参数名    | 类型   | 必填 | 说明                 |
 | --------- | ------ | ---- | -------------------- |
-| keyPrefix | string | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| keyPrefix | string | 是   | 表示要匹配的键前缀。不能包含'^'，包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 
 **返回值：**
 
@@ -5795,7 +5795,7 @@ try {
 getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 获取与指定设备ID和Key前缀匹配的所有键值对，使用callback异步回调。
-> **说明：** 
+> **说明：**
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
@@ -5807,7 +5807,7 @@ getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;Entry
 | 参数名    | 类型                               | 必填 | 说明                                           |
 | --------- | -------------------------------------- | ---- | ---------------------------------------------- |
 | deviceId  | string                                 | 是   | 标识要查询其数据的设备。                       |
-| keyPrefix | string                                 | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| keyPrefix | string                                 | 是   | 表示要匹配的键前缀。不能包含'^'，包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 | callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | 是   | 回调函数，返回满足给定条件的所有键值对的列表。 |
 
 **错误码：**
@@ -5868,7 +5868,7 @@ try {
 getEntries(deviceId: string, keyPrefix: string): Promise&lt;Entry[]&gt;
 
 获取与指定设备ID和Key前缀匹配的所有键值对，使用Promise异步回调。
-> **说明：** 
+> **说明：**
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
@@ -5880,7 +5880,7 @@ getEntries(deviceId: string, keyPrefix: string): Promise&lt;Entry[]&gt;
 | 参数名    | 类型 | 必填 | 说明                     |
 | --------- | -------- | ---- | ------------------------ |
 | deviceId  | string   | 是   | 标识要查询其数据的设备。 |
-| keyPrefix | string   | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。|
+| keyPrefix | string   | 是   | 表示要匹配的键前缀。不能包含'^'，包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。|
 
 **返回值：**
 
@@ -6083,7 +6083,7 @@ try {
 getEntries(deviceId: string, query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 获取与指定设备ID和Query对象匹配的键值对列表，使用callback异步回调。
-> **说明：** 
+> **说明：**
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
@@ -6161,7 +6161,7 @@ try {
 getEntries(deviceId: string, query: Query): Promise&lt;Entry[]&gt;
 
 获取与指定设备ID和Query对象匹配的键值对列表，使用Promise异步回调。
-> **说明：** 
+> **说明：**
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
@@ -6246,7 +6246,7 @@ getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;)
 
 | 参数名    | 类型                                                       | 必填 | 说明                                 |
 | --------- | ---------------------------------------------------------- | ---- | ------------------------------------ |
-| keyPrefix | string                                                     | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| keyPrefix | string                                                     | 是   | 表示要匹配的键前缀。不能包含'^'，包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 | callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | 是   | 回调函数。返回具有指定前缀的结果集。 |
 
 **错误码：**
@@ -6323,7 +6323,7 @@ getResultSet(keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
 
 | 参数名    | 类型   | 必填 | 说明                 |
 | --------- | ------ | ---- | -------------------- |
-| keyPrefix | string | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| keyPrefix | string | 是   | 表示要匹配的键前缀。不能包含'^'，包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 
 **返回值：**
 
@@ -6390,7 +6390,7 @@ try {
 getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;): void
 
 获取与指定设备ID和Key前缀匹配的KVStoreResultSet对象，使用callback异步回调。
-> **说明：** 
+> **说明：**
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
@@ -6402,7 +6402,7 @@ getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KVS
 | 参数名    | 类型                                                     | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | deviceId  | string                                                       | 是   | 标识要查询其数据的设备。                                     |
-| keyPrefix | string                                                       | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| keyPrefix | string                                                       | 是   | 表示要匹配的键前缀。不能包含'^'，包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 | callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | 是   | 回调函数。返回与指定设备ID和Key前缀匹配的KVStoreResultSet对象。 |
 
 **错误码：**
@@ -6451,7 +6451,7 @@ try {
 getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
 
 获取与指定设备ID和Key前缀匹配的KVStoreResultSet对象，使用Promise异步回调。
-> **说明：** 
+> **说明：**
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
@@ -6463,7 +6463,7 @@ getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KVStoreResultSet&g
 | 参数名    | 类型 | 必填 | 说明                     |
 | --------- | -------- | ---- | ------------------------ |
 | deviceId  | string   | 是   | 标识要查询其数据的设备。 |
-| keyPrefix | string   | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| keyPrefix | string   | 是   | 表示要匹配的键前缀。不能包含'^'，包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 
 **返回值：**
 
@@ -6514,7 +6514,7 @@ try {
 getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KVStoreResultSet&gt;): void
 
 获取与指定设备ID和Query对象匹配的KVStoreResultSet对象，使用callback异步回调。
-> **说明：** 
+> **说明：**
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
@@ -6598,7 +6598,7 @@ try {
 getResultSet(deviceId: string, query: Query): Promise&lt;KVStoreResultSet&gt;
 
 获取与指定设备ID和Query对象匹配的KVStoreResultSet对象，使用Promise异步回调。
-> **说明：** 
+> **说明：**
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
@@ -6754,7 +6754,7 @@ try {
 getResultSet(query: Query, callback:AsyncCallback&lt;KVStoreResultSet&gt;): void
 
 获取与本设备指定Query对象匹配的KVStoreResultSet对象，使用callback异步回调。
-> **说明：** 
+> **说明：**
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
@@ -6967,7 +6967,7 @@ try {
 getResultSize(deviceId: string, query: Query, callback: AsyncCallback&lt;number&gt;): void;
 
 获取与指定设备ID和Query对象匹配的结果数，使用callback异步回调。
-> **说明：** 
+> **说明：**
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
@@ -7039,7 +7039,7 @@ try {
 getResultSize(deviceId: string, query: Query): Promise&lt;number&gt;
 
 获取与指定设备ID和Query对象匹配的结果数，使用Promise异步回调。
-> **说明：** 
+> **说明：**
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。

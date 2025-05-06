@@ -596,7 +596,7 @@ on(type: 'securityModeChange', callback: Callback< SecurityMode>): void
 | 参数名   | 类型                                        | 必填 | 说明                                           |
 | -------- | ------------------------------------------- | ---- | ---------------------------------------------- |
 | type     | string                                      | 是   | 设置监听类型，固定取值为'securityModeChange'。 |
-| callback | Callback\<[SecurityMode](#securitymode11))> | 是   | 回调函数，返回当前输入法应用的安全模式。       |
+| callback | Callback\<[SecurityMode](#securitymode11)> | 是   | 回调函数，返回当前输入法应用的安全模式。       |
 
 **示例：**
 
@@ -623,7 +623,7 @@ off(type: 'securityModeChange', callback?: Callback< SecurityMode>): void
 | 参数名   | 类型                                        | 必填 | 说明                                                         |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                      | 是   | 设置监听类型，固定取值为'securityModeChange'。               |
-| callback | Callback\<[SecurityMode](#securitymode11))> | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
+| callback | Callback\<[SecurityMode](#securitymode11)> | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
@@ -3618,7 +3618,7 @@ getEditorAttributeSync(): EditorAttribute
 
 | 类型                                | 说明           |
 | ----------------------------------- | -------------- |
-| [EditorAttribute](#editorattribute) | 编辑框属性对象 |
+| [EditorAttribute](#editorattribute) | 编辑框属性对象。 |
 
 **错误码：**
 
@@ -4526,7 +4526,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let msgId: string = "testMsgId";
 let msgParam: ArrayBuffer = new ArrayBuffer(128);
-inputMethodController.sendMessage(msgId, msgParam).then(() => {
+inputClient.sendMessage(msgId, msgParam).then(() => {
   console.log('Succeeded send message.');
 }).catch((err: BusinessError) => {
   console.error(`Failed to send message: ${JSON.stringify(err)}`);

@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## rotate
 
@@ -275,7 +275,7 @@ struct Index {
         Button('change prep')
           .margin({ top: 100 })
           .onClick(() => {
-            animateTo({
+            this.getUIContext()?.animateTo({
               duration: 2000,
               curve: Curve.EaseIn,
               iterations: 1,
