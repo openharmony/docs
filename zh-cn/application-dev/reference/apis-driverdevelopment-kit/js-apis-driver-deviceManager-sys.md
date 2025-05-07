@@ -29,7 +29,7 @@ queryDeviceInfo(deviceId?: number): Array&lt;Readonly&lt;DeviceInfo&gt;&gt;
 
 | 参数名      | 类型     | 必填  | 说明                     |
 |----------|--------|-----|------------------------|
-| deviceId | number | 否   | 设备ID，通过queryDevices获得。 |
+| deviceId | number | 否   | 设备ID，通过[queryDevices](js-apis-driver-deviceManager.md#devicemanagerquerydevices)获得。如果不传入设备ID，则默认获取所有的设备信息；如果没有外接设备，且没有传入设备ID则会返回空数组。 |
 
 **返回值：**
 
