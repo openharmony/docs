@@ -115,7 +115,7 @@ List() {
 @Entry
 @Component
 struct EgLanes {
-  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 }
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
   build() {
     List() {
       // ...
@@ -220,7 +220,7 @@ ArkTS通过[ForEach](../ui/state-management/arkts-rendering-control-foreach.md)�
 
 
 ```ts
-import { util } from '@kit.ArkTS'
+import { util } from '@kit.ArkTS';
 
 class Contact {
   key: string = util.generateRandomUUID(true);
@@ -239,7 +239,7 @@ struct SimpleContacts {
   private contacts: Array<object> = [
     new Contact('小明', $r("app.media.iconA")),
     new Contact('小红', $r("app.media.iconB")),
-  ]
+  ];
 
   build() {
     List() {
@@ -295,22 +295,22 @@ startMargin和endMargin属性分别用于设置分隔线距离列表侧边起始
 
 ```ts
 class DividerTmp {
-  strokeWidth: Length = 1
-  startMargin: Length = 60
-  endMargin: Length = 10
-  color: ResourceColor = '#ffe9f0f0'
+  strokeWidth: Length = 1;
+  startMargin: Length = 60;
+  endMargin: Length = 10;
+  color: ResourceColor = '#ffe9f0f0';
 
   constructor(strokeWidth: Length, startMargin: Length, endMargin: Length, color: ResourceColor) {
-    this.strokeWidth = strokeWidth
-    this.startMargin = startMargin
-    this.endMargin = endMargin
-    this.color = color
+    this.strokeWidth = strokeWidth;
+    this.startMargin = startMargin;
+    this.endMargin = endMargin;
+    this.color = color;
   }
 }
 @Entry
 @Component
 struct EgDivider {
-  @State egDivider: DividerTmp = new DividerTmp(1, 60, 10, '#ffe9f0f0')
+  @State egDivider: DividerTmp = new DividerTmp(1, 60, 10, '#ffe9f0f0');
   build() {
     List() {
       // ...
@@ -442,7 +442,7 @@ List组件的sticky属性配合ListItemGroup组件使用，用于设置ListItemG
 
 
 ```ts
-import { util } from '@kit.ArkTS'
+import { util } from '@kit.ArkTS';
 class Contact {
   key: string = util.generateRandomUUID(true);
   name: string;
@@ -454,9 +454,9 @@ class Contact {
   }
 }
 class ContactsGroup {
-  title: string = ''
-  contacts: Array<object> | null = null
-  key: string = ""
+  title: string = '';
+  contacts: Array<object> | null = null;
+  key: string = "";
 }
 export let contactsGroups: object[] = [
   {
@@ -543,7 +543,7 @@ Stack({ alignContent: Alignment.Bottom }) {
   }
   .onClick(() => {
     // 点击按钮时，指定跳转位置，返回列表顶部
-    this.listScroller.scrollToIndex(0)
+    this.listScroller.scrollToIndex(0);
   })
 }
 ```
@@ -709,7 +709,7 @@ ListItem() {
 
    ```ts
    //ToDo.ets
-   import { util } from '@kit.ArkTS'
+   import { util } from '@kit.ArkTS';
 
    export class ToDo {
      key: string = util.generateRandomUUID(true);
@@ -728,8 +728,8 @@ ListItem() {
    import { ToDo } from './ToDo';
    @Component
    export struct ToDoListItem {
-     @Link isEditMode: boolean
-     @Link selectedItems: ToDo[]
+     @Link isEditMode: boolean;
+     @Link selectedItems: ToDo[];
      private toDoItem: ToDo = new ToDo("");
 
      build() {
@@ -763,14 +763,14 @@ ListItem() {
    @Entry
    @Component
    struct ToDoList {
-     @State toDoData: ToDo[] = []
-     @Watch('onEditModeChange') @State isEditMode: boolean = false
-     @State selectedItems: ToDo[] = []
-    private availableThings: string[] = ['读书', '运动', '旅游', '听音乐', '看电影', '唱歌']
+     @State toDoData: ToDo[] = [];
+     @Watch('onEditModeChange') @State isEditMode: boolean = false;
+     @State selectedItems: ToDo[] = [];
+    private availableThings: string[] = ['读书', '运动', '旅游', '听音乐', '看电影', '唱歌'];
    
      onEditModeChange() {
        if (!this.isEditMode) {
-         this.selectedItems = []
+         this.selectedItems = [];
        }
     }
    
@@ -867,7 +867,7 @@ ListItem() {
 
     ```ts
    // 结构参考
-   import { util } from '@kit.ArkTS'
+   import { util } from '@kit.ArkTS';
    export class ToDo {
      key: string = util.generateRandomUUID(true);
      name: string;
@@ -884,11 +884,11 @@ ListItem() {
       Checkbox()
         .onChange((isSelected) => {
           if (isSelected) {
-            this.selectedItems.push(toDoList.toDoItem) // this.selectedItems为勾选时，记录选中的列表项，可根据实际场景构造
+            this.selectedItems.push(toDoList.toDoItem); // this.selectedItems为勾选时，记录选中的列表项，可根据实际场景构造
           } else {
-            let index = this.selectedItems.indexOf(toDoList.toDoItem)
+            let index = this.selectedItems.indexOf(toDoList.toDoItem);
             if (index !== -1) {
-              this.selectedItems.splice(index, 1) // 取消勾选时，则将此项从selectedItems中删除
+              this.selectedItems.splice(index, 1); // 取消勾选时，则将此项从selectedItems中删除
             }
           }
         })
@@ -899,7 +899,7 @@ ListItem() {
 
     ```ts
     // 结构参考
-    import { util } from '@kit.ArkTS'
+    import { util } from '@kit.ArkTS';
     export class ToDo {
       key: string = util.generateRandomUUID(true);
       name: string;
@@ -965,6 +965,7 @@ List() {
 1. 定义列表项数据结构。
 
     ```ts
+    import { curves } from '@kit.ArkUI';
     interface ItemInfo {
       index: number,
       name: string,
@@ -1118,7 +1119,7 @@ List() {
       .onClick(() => {
         if (itemGroup.children.length) {
           this.getUIContext()?.animateTo({ curve: curves.interpolatingSpring(0, 1, 528, 39) }, () => {
-            this.expandedItems[itemGroup.index] = !this.expandedItems[itemGroup.index]
+            this.expandedItems[itemGroup.index] = !this.expandedItems[itemGroup.index];
           })
         }
       })

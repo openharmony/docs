@@ -101,7 +101,7 @@ initialIndex(index: number)
 
 loop(isLoop: boolean)
 
-设置是否开启循环。设置为true时表示开启循环。
+设置是否开启循环。
 
 单独导航点组件和Swiper绑定的时候，该属性不生效。
 
@@ -115,7 +115,7 @@ loop(isLoop: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                            |
 | ------ | ------- | ---- | ------------------------------- |
-| isLoop  | boolean | 是   | 是否开启循环。<br/>默认值：true。 |
+| isLoop  | boolean | 是   | 是否开启循环。true为开启循环，false为不开启循环。<br/>默认值：true。 |
 
 ### vertical
 
