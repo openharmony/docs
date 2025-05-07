@@ -194,8 +194,8 @@
       - [属性更新器 (AttributeUpdater)](arkts-user-defined-extension-attributeUpdater.md)
   - [使用镜像能力](arkts-mirroring-display.md)
   - 无障碍与适老化<!--arkts-support-->
-    - [支持适老化](arkui-support-for-aging-adaptation.md)
     - [支持无障碍](arkts-universal-attributes-accessibility.md)
+    - [支持适老化](arkui-support-for-aging-adaptation.md)
   - 主题设置<!--arkts-theme-->
     - [应用深浅色适配](ui-dark-light-color-adaptation.md)
     - [设置应用内主题换肤](theme_skinning.md)
