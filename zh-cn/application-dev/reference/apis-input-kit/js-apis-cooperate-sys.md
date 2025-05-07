@@ -65,7 +65,6 @@ enable(enable: boolean): Promise&lt;void&gt;
 
 开启、关闭键鼠穿越，使用Promise异步方式返回结果。
 
-
 **系统能力**： SystemCapability.MultimodalInput.Input.Cooperator
 
 **参数**：
@@ -396,7 +395,7 @@ on(type: 'cooperation', callback: AsyncCallback<{ deviceDescriptor: string, even
 ```ts
 import { inputDeviceCooperate } from '@kit.InputKit';
 
-function callback(msg: object) {
+let callback = (msg: object) => {
   console.log(`Keyboard mouse crossing event: ${JSON.stringify(msg)}`);
   return false;
 }
@@ -437,11 +436,11 @@ off(type: 'cooperation', callback?: AsyncCallback\<void>): void
 import { inputDeviceCooperate } from '@kit.InputKit';
 
 // 取消注册单个回调函数
-function callbackOn(msg: object) {
+let callbackOn = (msg: object) => {
   console.log(`Keyboard mouse crossing event: ${JSON.stringify(msg)}`);
   return false;
 }
-function callbackOff() {
+let callbackOff = () => {
   console.log(`Keyboard mouse crossing event`);
   return false;
 }
@@ -456,7 +455,7 @@ try {
 import { inputDeviceCooperate } from '@kit.InputKit';
 
 // 取消注册所有回调函数
-function callback(msg: object) {
+let callback = (msg: object) => {
   console.log(`Keyboard mouse crossing event: ${JSON.stringify(msg)}`);
   return false;
 }
