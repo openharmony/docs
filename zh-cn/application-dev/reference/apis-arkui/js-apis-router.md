@@ -68,20 +68,20 @@ pushUrl(options: RouterOptions): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
@@ -138,20 +138,20 @@ pushUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
@@ -215,20 +215,20 @@ pushUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
@@ -286,20 +286,20 @@ pushUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;voi
 
 ```ts
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
@@ -362,10 +362,10 @@ replaceUrl(options: RouterOptions): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
@@ -421,10 +421,10 @@ replaceUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
@@ -489,10 +489,10 @@ replaceUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
-  data1:string
+  data1:string;
 
   constructor(str:string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
@@ -549,10 +549,10 @@ replaceUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;
 
 ```ts
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
@@ -616,20 +616,20 @@ pushNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
@@ -688,20 +688,20 @@ pushNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&gt;)
 
 ```ts
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
@@ -765,16 +765,16 @@ pushNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;void&g
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
     this.data1 = str
@@ -836,20 +836,20 @@ pushNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: AsyncCal
 
 ```ts
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
@@ -912,10 +912,10 @@ replaceNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
@@ -971,10 +971,10 @@ replaceNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&g
 
 ```ts
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
@@ -1039,10 +1039,10 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;voi
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
@@ -1099,10 +1099,10 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: Async
 
 ```ts
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
@@ -1542,20 +1542,20 @@ import { BusinessError } from '@kit.BasicServicesKit'
 
 // 定义传递参数的类
 class innerParams {
-  array: number[]
+  array: number[];
 
   constructor(tuple: number[]) {
-    this.array = tuple
+    this.array = tuple;
   }
 }
 
 class routerParams {
-  text: string
-  data: innerParams
+  text: string;
+  data: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.text = str
-    this.data = new innerParams(tuple)
+    this.text = str;
+    this.data = new innerParams(tuple);
   }
 }
 
@@ -1604,31 +1604,31 @@ struct Index {
 import { router } from '@kit.ArkUI';
 
 class innerParams {
-  array: number[]
+  array: number[];
 
   constructor(tuple: number[]) {
-    this.array = tuple
+    this.array = tuple;
   }
 }
 
 class routerParams {
-  text: string
-  data: innerParams
+  text: string;
+  data: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.text = str
-    this.data = new innerParams(tuple)
+    this.text = str;
+    this.data = new innerParams(tuple);
   }
 }
 
 @Entry
 @Component
 struct Second {
-  private content: string = "这是第二页"
+  private content: string = "这是第二页";
   // 建议使用this.getUIContext().getRouter().getParams()
-  @State text: string = (this.getUIContext().getRouter().getParams() as routerParams).text
-  @State data: object = (this.getUIContext().getRouter().getParams() as routerParams).data
-  @State secondData: string = ''
+  @State text: string = (this.getUIContext().getRouter().getParams() as routerParams).text;
+  @State data: object = (this.getUIContext().getRouter().getParams() as routerParams).data;
+  @State secondData: string = '';
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1638,7 +1638,7 @@ struct Second {
       Text(this.text)
         .fontSize(30)
         .onClick(() => {
-          this.secondData = (this.data['array'][1]).toString()
+          this.secondData = (this.data['array'][1]).toString();
         })
         .margin({ top: 20 })
       Text(`第一页传来的数值:${this.secondData}`)
@@ -1673,20 +1673,20 @@ push(options: RouterOptions): void
 
 ```ts
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
@@ -1716,10 +1716,10 @@ replace(options: RouterOptions): void
 
 ```ts
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 

@@ -571,7 +571,7 @@ struct ListenKeyboardHeightChange {
     Column() {
       Button("transition modal 1")
         .onClick(() => {
-          this.isShow = true
+          this.isShow = true;
         })
         .fontSize(20)
         .margin(10)
