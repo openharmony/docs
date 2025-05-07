@@ -12,7 +12,7 @@ IsolatedComponent旨在在本页面中嵌入并展示由独立Abc（即.abc文�
 
 ## 约束与限制
 
-1. Abc需要[verifyAbc](../reference/apis-ability-kit/js-apis-bundleManager-sys.md#bundlemanagerverifyabc11)校验通过之后才可以使用于当前组件。
+1. Abc需要[bundleManager.verifyAbc](../reference/apis-ability-kit/js-apis-bundleManager-sys.md#bundlemanagerverifyabc11)校验通过之后才可以使用于当前组件。
 
 2. 不支持构造参数更新，仅首次传入有效。
 
