@@ -1174,6 +1174,31 @@ hdc server和hdc daemon启动后，默认会互相发送心跳数据包，收到
 
 设置为"1"表示关闭心跳功能；设置为其它数字表示开启心跳功能。
 
+### OHOS_HDC_CMD_RECORD
+默认：hdc命令录制关闭。
+
+用于设置hdc命令录制功能开关。此功能仅记录hdc shell执行的命令，不记录命令的执行结果。
+设置为"1"表示开启命令录制功能；不设置或者设置为其它数字表示关闭命令录制功能。
+
+收集到的会话录制日志存放路径：
+
+| 平台 | 路径 | 备注 |
+| -------- | -------- | -------- |
+| Windows | %temp%\hdc_cmd\ | 实际路径参考：`C:\Users\用户名\AppData\Local\Temp\hdc_cmd\` <br/>（实际使用请替换用户名变量）。 |
+| Linux | /tmp/hdc_cmd/ | - |
+| MacOS | $TMPDIR/hdc_cmd/ | - |
+
+
+环境变量配置方法：
+
+以下通过配置OHOS_HDC_CMD_RECORD环境变量为例，配置环境变量值为：1，介绍环境变量配置方法。
+
+| 操作系统 | 配置方法 |
+|---|---|
+| Windows  | 在**此电脑 &gt; 属性 &gt; 高级系统设置 &gt; 高级 &gt; 环境变量**中，添加环境变量名称为OHOS_HDC_CMD_RECORD，变量值为1。配置完毕后点击确认。环境变量配置完成后，关闭并重启命令行或其他使用到OpenHarmony SDK的软件，以生效新配置的环境变量。  |
+| Linux  | 在~/.bash_profile文件末尾追加内容export OHOS_HDC_CMD_RECORD=1并保存后，执行`source ~/.bash_profile`生效当前环境变量。 |
+| MacOS  | 在~/.zshrc文件末尾追加内容export OHOS_HDC_CMD_RECORDL=1并保存后，执行`source ~/.zshrc`生效当前环境变量。环境变量配置完成后，关闭并重启命令行或其他使用到OpenHarmony SDK的软件，以生效新配置的环境变量。 |
+
 ## 常见问题
 
 ### 设备无法识别
