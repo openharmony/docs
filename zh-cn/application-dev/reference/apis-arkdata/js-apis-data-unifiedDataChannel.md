@@ -1893,7 +1893,7 @@ setAppShareOptions(intention: Intention, shareOptions: ShareOptions): void
 | ------------ | ------------------------------------------------------------ |
 | 201          | Permission denied. Interface caller does not have permission "ohos.permission.MANAGE_UDMF_APP_SHARE_OPTION". |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 20400001     | Settings already exist.                                      |
+| 20400001     | Settings already exist, if need to reconfigure, please remove the previous share options.       |
 
 **示例：**
 

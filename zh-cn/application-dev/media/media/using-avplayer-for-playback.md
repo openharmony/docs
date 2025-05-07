@@ -168,12 +168,12 @@ export class AVPlayerDemo {
     if (this.context != undefined) {
       let pathDir = this.context.filesDir;
       let path = pathDir + '/01.mp3';
+      // 打开相应的资源文件地址获取fd，并为url赋值触发initialized状态机上报。
+      let file = await fs.open(path);
+      fdPath = fdPath + '' + file.fd;
+      this.isSeek = true; // 支持seek操作。
+      avPlayer.url = fdPath;
     }
-    // 打开相应的资源文件地址获取fd，并为url赋值触发initialized状态机上报。
-    let file = await fs.open(path);
-    fdPath = fdPath + '' + file.fd;
-    this.isSeek = true; // 支持seek操作。
-    avPlayer.url = fdPath;
   }
 
   // 以下demo为使用资源管理接口获取打包在HAP内的媒体资源文件并通过fdSrc属性进行播放示例。
@@ -189,9 +189,9 @@ export class AVPlayerDemo {
       let avFileDescriptor: media.AVFileDescriptor =
         { fd: fileDescriptor.fd, offset: fileDescriptor.offset, length: fileDescriptor.length };
       this.isSeek = true; // 支持seek操作。
+      // 为fdSrc赋值触发initialized状态机上报。
+      avPlayer.fdSrc = avFileDescriptor;
     }
-    // 为fdSrc赋值触发initialized状态机上报。
-    avPlayer.fdSrc = avFileDescriptor;
   }
 
   // 以下demo为使用fs文件系统打开沙箱地址获取媒体文件地址并通过dataSrc属性进行播放(seek模式)示例。

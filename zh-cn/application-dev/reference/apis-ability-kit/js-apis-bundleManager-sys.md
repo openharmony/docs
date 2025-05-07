@@ -5005,7 +5005,7 @@ try {
 }
 ```
 
-## bundleManager.getAllPluginInfo<sup>18+</sup>
+## bundleManager.getAllPluginInfo<sup>19+</sup>
 
 function getAllPluginInfo(hostBundleName: string, userId?: number): Promise<Array\<PluginBundleInfo>>
 
@@ -5719,7 +5719,7 @@ try {
 }
 ```
 
-## PluginBundleInfo<sup>18+</sup>
+## PluginBundleInfo<sup>19+</sup>
 
 type PluginBundleInfo = _PluginBundleInfo
 
@@ -5731,7 +5731,7 @@ type PluginBundleInfo = _PluginBundleInfo
 | ------------------------------------------------------------ | -------------- |
 | [_PluginBundleInfo](js-apis-bundleManager-pluginBundleInfo-sys.md#pluginbundleinfo) |插件信息。 |
 
-## PluginModuleInfo<sup>18+</sup>
+## PluginModuleInfo<sup>19+</sup>
 
 type PluginModuleInfo = _PluginModuleInfo
 

@@ -14,33 +14,33 @@
 @Entry
 @Component
 struct AttrAnimationExample0 {
-  @State widthSize: number = 200
-  @State heightSize: number = 100
-  @State flag: boolean = true
+  @State widthSize: number = 200;
+  @State heightSize: number = 100;
+  @State flag: boolean = true;
 
   computeSize() {
-    let duration = 2000
-    let period = 16
-    let widthSizeEnd = 0
-    let heightSizeEnd = 0
+    let duration = 2000;
+    let period = 16;
+    let widthSizeEnd = 0;
+    let heightSizeEnd = 0;
     if (this.flag) {
-      widthSizeEnd = 100
-      heightSizeEnd = 50
+      widthSizeEnd = 100;
+      heightSizeEnd = 50;
     } else {
-      widthSizeEnd = 200
-      heightSizeEnd = 100
+      widthSizeEnd = 200;
+      heightSizeEnd = 100;
     }
-    let doTimes = duration / period
-    let deltaHeight = (heightSizeEnd - this.heightSize) / doTimes
-    let deltaWeight = (widthSizeEnd - this.widthSize) / doTimes
+    let doTimes = duration / period;
+    let deltaHeight = (heightSizeEnd - this.heightSize) / doTimes;
+    let deltaWeight = (widthSizeEnd - this.widthSize) / doTimes;
     for (let i = 1; i <= doTimes; i++) {
       let t = period * (i);
       setTimeout(() => {
-        this.heightSize = this.heightSize + deltaHeight
-        this.widthSize = this.widthSize + deltaWeight
+        this.heightSize = this.heightSize + deltaHeight;
+        this.widthSize = this.widthSize + deltaWeight;
       }, t)
     }
-    this.flag = !this.flag
+    this.flag = !this.flag;
   }
 
   build() {
@@ -48,7 +48,7 @@ struct AttrAnimationExample0 {
       Button('click me')
         .onClick(() => {
           let delay = 500
-          setTimeout(() => { this.computeSize() }, delay)
+          setTimeout(() => { this.computeSize(); }, delay);
         })
         .width(this.widthSize).height(this.heightSize).backgroundColor(0x317aff)
     }.width('100%').margin({ top: 5 })
@@ -66,22 +66,22 @@ struct AttrAnimationExample0 {
 @Entry
 @Component
 struct AttrAnimationExample1 {
-  @State widthSize: number = 200
-  @State heightSize: number = 100
-  @State flag: boolean = true
+  @State widthSize: number = 200;
+  @State heightSize: number = 100;
+  @State flag: boolean = true;
 
   build() {
     Column() {
       Button('click me')
         .onClick((event?: ClickEvent | undefined) => {
           if (this.flag) {
-            this.widthSize = 100
-            this.heightSize = 50
+            this.widthSize = 100;
+            this.heightSize = 50;
           } else {
-            this.widthSize = 200
-            this.heightSize = 100
+            this.widthSize = 200;
+            this.heightSize = 100;
           }
-          this.flag = !this.flag
+          this.flag = !this.flag;
         })
         .width(this.widthSize).height(this.heightSize).backgroundColor(0x317aff)
         .animation({
@@ -126,7 +126,7 @@ struct AnimateToExample2 {
             }, () => {
               this.widthSize = 100;
               this.heightSize = 50;
-            })
+            });
           } else {
             this.getUIContext().animateTo({
               duration: 2000, // 动画时长
@@ -137,7 +137,7 @@ struct AnimateToExample2 {
             }, () => {
               this.widthSize = 200;
               this.heightSize = 100;
-            })
+            });
           }
           this.flag = !this.flag;
         })

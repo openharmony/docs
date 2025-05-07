@@ -259,8 +259,8 @@ static JSVM_PropertyDescriptor descriptor[] = {
     {"getBoolean", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 // 样例测试js
-const char *srcCallNative1 = R"JS(getBoolean(1, 2))JS";
-const char *srcCallNative2 = R"JS(getBoolean(1, 1))JS";
+const char *srcCallNative = R"JS(getBoolean(1, 2);
+                                 getBoolean(1, 1))JS";
 ```
 
 预期结果
@@ -310,9 +310,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
     {"getValueBool", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 // 样例测试js
-const char *srcCallNative = R"JS(getValueBool("abc"))JS";
-const char *srcCallNative = R"JS(getValueBool(true))JS";
-const char *srcCallNative = R"JS(getValueBool(false))JS";
+const char *srcCallNative = R"JS(getValueBool("abc");
+                                getValueBool(true);
+                                getValueBool(false);)JS";
 ```
 
 预期结果

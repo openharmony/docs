@@ -17,7 +17,7 @@
 
 2. 创建PhoneNumberFormat对象。
 
-   构造函数支通过PhoneNumberFormatOptions设置不同的电话号码格式，具体请参考表1。
+   构造函数支持通过PhoneNumberFormatOptions设置不同的电话号码格式，具体请参考表1。
 
    ```ts
    let phoneNumberFormat: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat(country: string, options?: PhoneNumberFormatOptions);

@@ -90,7 +90,7 @@ struct OH_Huks_Result OH_Huks_BuildParamSet (struct OH_Huks_ParamSet ** paramSet
 struct OH_Huks_Result OH_Huks_CheckParamMatch (const struct OH_Huks_Param * baseParam, const struct OH_Huks_Param * param )
 ```
 **描述**
-比较两个参数是否相同
+比较两个参数是否相同。
 
 **起始版本：** 9
 

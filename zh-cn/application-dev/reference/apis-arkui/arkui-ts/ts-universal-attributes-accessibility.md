@@ -252,7 +252,7 @@ type AccessibilityFocusCallback = (isFocus: boolean) => void
 
 | 参数名  | 类型    | 必填 | 说明              |
 | ------ | ------ | ---- | ---------------- |
-| isFocus | boolean | 是 | 是否获焦、失焦。 |
+| isFocus | boolean | 是 | 用于表示组件是否获焦。<br/>true：当前组件获焦。<br/>false：当前组件失焦。|
 
 ## AccessibilityRoleType<sup>18+</sup>枚举说明
 
@@ -493,7 +493,7 @@ accessibilityTextHint(value: string)
 | -------------- | ------- | ---- | ------------------------------------------------------------ |
 | value  | string | 是   | 组件的文本提示信息，供无障碍辅助应用查询。 |
 
-## accessibilityFocusDrawLevel<sup>18+</sup>
+## accessibilityFocusDrawLevel<sup>19+</sup>
 
 accessibilityFocusDrawLevel(drawLevel: FocusDrawLevel)
 
@@ -505,9 +505,9 @@ accessibilityFocusDrawLevel(drawLevel: FocusDrawLevel)
 > 2、在Z序顶层绘制绿框情况下，可以避免由于组件遮挡、裁切导致无障碍绿框被裁切遮挡。但由于具备较高的绘制层级，如果需要交互过程中，需要遮挡当前获焦的组件，并且不希望显示无障碍绿框则不适合使用这种配置。
 
 
-**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 19开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -515,13 +515,13 @@ accessibilityFocusDrawLevel(drawLevel: FocusDrawLevel)
 
 | 参数名   | 类型    | 必填 | 说明                                                         |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| drawLevel | [FocusDrawLevel](ts-appendix-enums.md#focusdrawlevel18) | 是   | 无障碍绘制能力，默认绘制聚焦节点本身。 |
+| drawLevel | [FocusDrawLevel](ts-appendix-enums.md#focusdrawlevel19) | 是   | 无障碍绘制能力，默认绘制聚焦节点本身。 |
 
 ## 示例1（设置无障碍文本和无障碍说明）
 
 该示例主要演示accessibilityText无障碍文本和accessibilityDescription无障碍说明的播报内容。
 
-```
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -563,7 +563,7 @@ struct Index {
 
 该示例主要演示优先使用子组件的无障碍文本进行朗读。
 
-```
+```ts
 // xxx.ets
 @Entry
 @Component
