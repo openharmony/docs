@@ -507,7 +507,7 @@ try {
 | 名称         | 类型     | 必填 | 说明                            |
 | ----------- | --------| ----- | ------------------------------- |
 | powerPolicyAction | [PowerPolicyAction](#powerpolicyaction11) | 是 | 执行电源策略的动作。 |
-| delayTime | number | 是 | 延迟时间。 |
+| delayTime | number | 是 | 延迟时间（单位：毫秒）。 |
 
 ## PowerScene<sup>11+</sup>
 
