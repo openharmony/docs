@@ -1287,7 +1287,7 @@ function getCameraDevice(cameraManager: camera.CameraManager, position: camera.C
 
 getCameraConcurrentInfos(cameras: Array\<CameraDevice\>): Array\<CameraConcurrentInfo\>
 
-获取指定相机设备的并发信息。返回空表示不支持并发。
+获取指定相机设备的并发信息。返回空数组表示不支持并发。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
