@@ -11,8 +11,11 @@
 1. 使用视频播放的AVPlayer实例设置外挂字幕资源。
 
    ```ts
-   let context = getContext(this) as common.UIAbilityContext;
-   let fileDescriptor = await context.resourceManager.getRawFd('xxx.srt');
+   private context: Context | undefined;
+   constructor(context: Context) {
+     this.context = context; // this.getUIContext().getHostContext();
+   }
+   let fileDescriptor = await this.context.resourceManager.getRawFd('xxx.srt');
 
    avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length);
 
