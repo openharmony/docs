@@ -61,8 +61,8 @@ getGlyphPositionAtCoordinate(x: number, y: number): PositionWithAffinity
 
 | 参数名    | 类型   | 必填   | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| x | number | 是    | 相对于组件的横坐标。<br/>单位：px |
-| y | number | 是    | 相对于组件的纵坐标。<br/>单位：px |
+| x | number | 是    | 相对于组件的横坐标。<br/>单位：[px](ts-pixel-units.md#像素单位) |
+| y | number | 是    | 相对于组件的纵坐标。<br/>单位：[px](ts-pixel-units.md#像素单位) |
 
 **返回值：**
 
@@ -382,7 +382,7 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText, o
 | types   | [TextDataDetectorType](ts-text-common.md#textdatadetectortype11枚举说明)[] | 是   | 设置文本识别的实体类型。设置types为null或者[]时，识别所有类型的实体，否则只识别指定类型的实体。 |
 | onDetectResultUpdate   | (result: string) => void | 否   | 文本识别成功后，触发onDetectResultUpdate回调。<br/>-&nbsp;result：文本识别的结果，Json格式。 |
 | color<sup>12+</sup>   | [ResourceColor](ts-types.md#resourcecolor) | 否   | 设置文本识别成功后的实体颜色。<br/>默认值：'#ff0a59f7' |
-| decoration<sup>12+</sup>  | [DecorationStyleInterface](ts-universal-styled-string.md#decorationstyleinterface对象说明)| 否   | 设置文本识别成功后的实体装饰线样式。<br/>默认值：<br/>{<br/>&nbsp;type:&nbsp;TextDecorationType.Underline,<br/>&nbsp;color:&nbsp;与实体颜色一致,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>} |
+| decoration<sup>12+</sup>  | [DecorationStyleInterface](ts-universal-styled-string.md#decorationstyleinterface)| 否   | 设置文本识别成功后的实体装饰线样式。<br/>默认值：<br/>{<br/>&nbsp;type:&nbsp;TextDecorationType.Underline,<br/>&nbsp;color:&nbsp;与实体颜色一致,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>} |
 
 ## PreviewText<sup>12+</sup>
 

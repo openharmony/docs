@@ -8,7 +8,8 @@
   - [Prebuilt UTDs](uniform-data-type-list.md)
 - Application Data Persistence<!--app-data-persistence-->
   - [Application Data Persistence Overview](app-data-persistence-overview.md)
-  - [Persisting Preferences Data](data-persistence-by-preferences.md)
+  - [Persisting User Preferences (ArkTS)](data-persistence-by-preferences.md)
+  - [Persisting User Preferences (C/C++)](preferences-guidelines.md)
   - [Persisting KV Store Data](data-persistence-by-kv-store.md)
   - [Persisting RDB Store Data](data-persistence-by-rdb-store.md)
   - [Persisting Vector Store Data (ArkTS)](data-persistence-by-vector-store.md)
@@ -40,6 +41,4 @@
   - [AIP Overview](aip-data-intelligence-overview.md)
   - [Application Data Vectorization](aip-data-intelligence-embedding.md)
 - [RelationalStore Development (C/C++)](native-relational-store-guidelines.md)
-- [UDMF Development Guide (C/C++)](native-unified-data-management-framework-guidelines.md)
-- [Persisting User Preferences (C/C++)](preferences-guidelines.md)
-
+- [UDMF Development (C/C++)](native-unified-data-management-framework-guidelines.md)

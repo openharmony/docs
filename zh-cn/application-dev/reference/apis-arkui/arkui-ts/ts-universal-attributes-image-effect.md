@@ -784,7 +784,7 @@ FractionStop = [ number, number ]
 
 | 名称            |  类型                                           | 必填  | 说明                                                     |
 | -------------- | ------------------------------------------------| ----- | --------------------------------------------------------|
-| syncLoad       | boolean                                         | 否    | 设置背景图片的同步或异步加载模式。<br/>默认值：false  <br/>true时为同步加载模式，false时为异步加载模式。      |
+| syncLoad       | boolean                                         | 否    | 是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false，fasle表示异步加载图片，true表示同步加载图片。      |
 | repeat         | [ImageRepeat](ts-appendix-enums.md#imagerepeat) | 否    | 设置背景图片的重复样式。                                   |
 
 ## freeze<sup>12+</sup>

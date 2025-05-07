@@ -550,7 +550,7 @@ TextShadowStyle | GestureStyle | ImageAttachment | ParagraphStyle | LineHeightSt
 | ------------ |---------------------| ---- | ---- | ------ |
 | fontColor  | [ResourceColor](ts-types.md#resourcecolor) |  是  |  是  | 获取属性字符串的文本颜色。 |
 | fontFamily | string   | 是    | 是   | 获取属性字符串的文本字体。<br/>默认返回undefined。 |
-| fontSize   | number   | 是    | 是    | 获取属性字符串的文本字体大小。<br/>单位：fp |
+| fontSize   | number   | 是    | 是    | 获取属性字符串的文本字体大小。<br/>单位：[fp](ts-pixel-units.md#像素单位) |
 | fontWeight   | number   | 是    | 是    | 获取属性字符串的文本字体粗细。 |
 | fontStyle   | [FontStyle](ts-appendix-enums.md#fontstyle) | 是    | 是    | 获取属性字符串的文本字体样式。 |
 
@@ -580,7 +580,7 @@ constructor(value?: TextStyleInterface)
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 字体颜色。 |
 | fontFamily | [ResourceStr](ts-types.md#resourcestr) | 否   | 文本字体。 |
-| fontSize | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 字体大小。如果LengthMetrics的unit值是percent，当前设置不生效，处理为16fp。<br/>单位：fp |
+| fontSize | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 字体大小。如果LengthMetrics的unit值是percent，当前设置不生效，处理为16fp。<br/>单位：[fp](ts-pixel-units.md#像素单位) |
 | fontWeight | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string | 否   | 字体粗细。<br/>number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。 |
 | fontStyle | [FontStyle](ts-appendix-enums.md#fontstyle) | 否   | 字体样式。 |
 
@@ -608,14 +608,13 @@ constructor(value?: GestureStyleInterface)
 
 ## GestureStyleInterface对象说明
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| onClick | Callback\<[ClickEvent](ts-universal-events-click.md#clickevent对象说明)> | 否   | 设置点击事件。 |
-| onLongPress | Callback\<[GestureEvent](./ts-gesture-settings.md#gestureevent对象说明)> | 否   | 设置长按事件。 |
+| onClick | Callback\<[ClickEvent](ts-universal-events-click.md#clickevent对象说明)> | 否   | 设置点击事件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| onLongPress | Callback\<[GestureEvent](./ts-gesture-settings.md#gestureevent对象说明)> | 否   | 设置长按事件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| onTouch<sup>20+</sup> | Callback\<[TouchEvent](ts-universal-events-touch.md#touchevent对象说明)> | 否   | 设置触摸事件。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 ## DecorationOptions<sup>20+</sup>
 
@@ -707,7 +706,7 @@ constructor(value: DecorationStyleInterface, options?: DecorationOptions)
 
 | 名称           | 类型              | 只读   | 可选   | 说明     |
 | ------------ |---------------------| ---- | ---- | ------ |
-| baselineOffset  | number |  是  |  否 | 获取属性字符串的文本基线偏移量。<br/>单位：vp |
+| baselineOffset  | number |  是  |  否 | 获取属性字符串的文本基线偏移量。<br/>单位：[vp](ts-pixel-units.md#像素单位) |
 
 ### constructor
 
@@ -739,7 +738,7 @@ constructor(value: LengthMetrics)
 
 | 名称           | 类型              | 只读   | 可选   | 说明     |
 | ------------ |---------------------| ---- | ---- | ------ |
-| letterSpacing  | number |  是  |  否  | 获取属性字符串的文本字符间距。<br/>单位：vp |
+| letterSpacing  | number |  是  |  否  | 获取属性字符串的文本字符间距。<br/>单位：[vp](ts-pixel-units.md#像素单位) |
 
 ### constructor
 
@@ -771,7 +770,7 @@ constructor(value: LengthMetrics)
 
 | 名称           | 类型              | 只读   | 可选   | 说明     |
 | ------------ |---------------------| ---- | ---- | ------ |
-| lineHeight  | number |  是  |  否  | 获取属性字符串的文本行高。<br/>单位：vp |
+| lineHeight  | number |  是  |  否  | 获取属性字符串的文本行高。<br/>单位：[vp](ts-pixel-units.md#像素单位) |
 
 ### constructor
 
@@ -925,9 +924,9 @@ type ColorFilterType = ColorFilter | DrawingColorFilter
 
 | 名称  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| margin | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [Margin](ts-types.md#margin) | 否   | 设置图片外边距。<br/>默认值：0<br/>单位：vp |
-| padding | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [Padding](ts-types.md#padding) | 否   | 设置图片内边距。<br/>默认值：0<br/>单位：vp |
-| borderRadius | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [BorderRadiuses](ts-types.md#borderradiuses9) | 否   | 设置圆角。<br/>默认值：0<br/>单位：vp |
+| margin | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [Margin](ts-types.md#margin) | 否   | 设置图片外边距。<br/>默认值：0<br/>单位：[vp](ts-pixel-units.md#像素单位) |
+| padding | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [Padding](ts-types.md#padding) | 否   | 设置图片内边距。<br/>默认值：0<br/>单位：[vp](ts-pixel-units.md#像素单位) |
+| borderRadius | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [BorderRadiuses](ts-types.md#borderradiuses9) | 否   | 设置圆角。<br/>默认值：0<br/>单位：[vp](ts-pixel-units.md#像素单位) |
 
 ## ResourceImageAttachmentOptions<sup>15+</sup>
 
@@ -1012,7 +1011,7 @@ invalidate(): void
 
 | 名称  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| fontSize | number |  是  | 设置文本字体大小。<br/>单位：fp |
+| fontSize | number |  是  | 设置文本字体大小。<br/>单位：[fp](ts-pixel-units.md#像素单位) |
 
 ## CustomSpanMetrics对象说明
 
@@ -1022,8 +1021,8 @@ invalidate(): void
 
 | 名称  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| width | number |  是  | 自定义绘制Span的宽。<br/>单位：vp |
-| height | number |  否  | 自定义绘制Span的高。<br/>单位：vp |
+| width | number |  是  | 自定义绘制Span的宽。<br/>单位：[vp](ts-pixel-units.md#像素单位) |
+| height | number |  否  | 自定义绘制Span的高。<br/>单位：[vp](ts-pixel-units.md#像素单位) |
 
 ## CustomSpanDrawInfo对象说明
 
@@ -1033,10 +1032,10 @@ invalidate(): void
 
 | 名称  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| x | number |  是  | 自定义绘制Span相对于挂载组件的偏移。<br/>单位：px |
-| lineTop | number |  是  | 自定义绘制Span相对于Text组件的上边距。<br/>单位：px |
-| lineBottom | number |  是  | 自定义绘制Span相对于Text组件的下边距。<br/>单位：px |
-| baseline | number |  是  | 自定义绘制Span的所在行的基线偏移量。<br/>单位：px |
+| x | number |  是  | 自定义绘制Span相对于挂载组件的偏移。<br/>单位：[px](ts-pixel-units.md#像素单位) |
+| lineTop | number |  是  | 自定义绘制Span相对于Text组件的上边距。<br/>单位：[px](ts-pixel-units.md#像素单位) |
+| lineBottom | number |  是  | 自定义绘制Span相对于Text组件的下边距。<br/>单位：[px](ts-pixel-units.md#像素单位) |
+| baseline | number |  是  | 自定义绘制Span的所在行的基线偏移量。<br/>单位：[px](ts-pixel-units.md#像素单位) |
 
 ## ParagraphStyle
 
@@ -1386,6 +1385,10 @@ struct styled_string_demo2 {
     onLongPress: () => {
       this.uiContext.getPromptAction().showToast({ message: 'gestureStyleAttr object trigger long press event' })
       this.backgroundColor1 = Color.Orange
+    },
+    onTouch: () => {
+      this.uiContext.getPromptAction().showToast({ message: 'gestureStyleAttr object trigger touch event' })
+      this.backgroundColor1 = Color.Red
     }
   });
   // 创建事件的对象mutableStyledString3

@@ -210,7 +210,7 @@ onChange(callback: Optional\<Callback\<Date>>)
 @Entry
 @Component
 struct CalendarPickerExample {
-  private selectedDate: Date = new Date('2024-03-05')
+  private selectedDate: Date = new Date('2024-03-05');
 
   build() {
     Column() {
@@ -220,7 +220,7 @@ struct CalendarPickerExample {
           .textStyle({ color: "#ff182431", font: { size: 20, weight: FontWeight.Normal } })
           .margin(10)
           .onChange((value) => {
-            console.info("CalendarPicker onChange:" + JSON.stringify(value))
+            console.info("CalendarPicker onChange:" + JSON.stringify(value));
           })
       }.alignItems(HorizontalAlign.End).width("100%")
 
@@ -241,9 +241,9 @@ struct CalendarPickerExample {
 @Entry
 @Component
 struct CalendarPickerExample {
-  private selectedDate: Date = new Date('2025-01-15')
-  private startDate: Date = new Date('2025-01-05')
-  private endDate: Date = new Date('2025-01-25')
+  private selectedDate: Date = new Date('2025-01-15');
+  private startDate: Date = new Date('2025-01-05');
+  private endDate: Date = new Date('2025-01-25');
 
   build() {
     Column() {
@@ -253,7 +253,7 @@ struct CalendarPickerExample {
           .textStyle({ color: "#ff182431", font: { size: 20, weight: FontWeight.Normal } })
           .margin(10)
           .onChange((value) => {
-            console.info("CalendarPicker onChange:" + JSON.stringify(value))
+            console.info("CalendarPicker onChange:" + JSON.stringify(value));
           })
       }.alignItems(HorizontalAlign.End).width("100%")
     }.width('100%').margin({ top: 350 })
@@ -278,7 +278,7 @@ struct CalendarPickerExample {
     { start: new Date('2025-01-15'), end: new Date('2025-01-16') },
     { start: new Date('2025-01-19'), end: new Date('2025-01-19') },
     { start: new Date('2025-01-22'), end: new Date('2025-01-25') }
-  ]
+  ];
 
   build() {
     Column() {
@@ -286,7 +286,7 @@ struct CalendarPickerExample {
         .margin(10)
         .markToday(true)
         .onChange((value) => {
-          console.info("CalendarPicker onChange:" + JSON.stringify(value))
+          console.info("CalendarPicker onChange:" + JSON.stringify(value));
         })
     }.alignItems(HorizontalAlign.End).width('100%')
   }

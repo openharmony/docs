@@ -6,7 +6,7 @@
 
 API详细介绍请参见[ohos.file.securityLabel](../reference/apis-core-file-kit/js-apis-file-securityLabel.md)。
 
-**表1** 设置文件数据等级
+**表1** 设置文件数据等级，其中“√”表示支持。
 
 | 接口名 | 功能 | 接口类型 | 支持同步 | 支持异步 |
 | -------- | -------- | -------- | -------- | -------- |

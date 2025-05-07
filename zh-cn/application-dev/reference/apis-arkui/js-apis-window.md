@@ -449,11 +449,11 @@ import { window } from '@kit.ArkUI';
 | -------------------------------- | ------------------------------------ |
 | V | 回调函数需要返回V类型的返回值。 |
 
-## RotationChangeType<sup>18+</sup>
+## RotationChangeType<sup>19+</sup>
 
 窗口旋转类型。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.Window.SessionManager
 
@@ -462,11 +462,11 @@ import { window } from '@kit.ArkUI';
 | WINDOW_WILL_ROTATE| 0 | number | 窗口即将旋转。 |
 | WINDOW_DID_ROTATE | 1 | number | 窗口旋转结束。 |
 
-## RectType<sup>18+</sup>
+## RectType<sup>19+</sup>
 
 窗口矩形区域坐标系类型。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.Window.SessionManager
 
@@ -475,33 +475,33 @@ import { window } from '@kit.ArkUI';
 | RELATIVE_TO_SCREEN | 0 | number | 窗口矩形区域相对于屏幕坐标系。 |
 | RELATIVE_TO_PARENT_WINDOW | 1 | number | 窗口矩形区域相对于父窗口坐标系。 |
 
-## RotationChangeInfo<sup>18+</sup>
+## RotationChangeInfo<sup>19+</sup>
 
 窗口旋转变化时的窗口信息。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.Window.SessionManager
 
 | 名称   | 类型 | 只读  | 可写 | 说明                    |
 | ------ | ---- | ----- | ---- | ----------------------- |
-| type | [RotationChangeType](#rotationchangetype18) | 是 | 否 | 窗口旋转类型。 |
+| type | [RotationChangeType](#rotationchangetype19) | 是 | 否 | 窗口旋转类型。 |
 | orientation | number | 是 | 否 | 窗口旋转方向。<br>- 0表示竖屏。<br>- 1表示横屏。<br>- 2表示反向竖屏。<br>- 3表示反向竖屏。 |
 | displayId | number | 是 | 否 | 窗口所在屏幕Id。 |
 | displayRect | [Rect](#rect7) | 是 | 否 | 窗口所在屏幕旋转后的矩形区域大小。 |
 
-## RotationChangeResult<sup>18+</sup>
+## RotationChangeResult<sup>19+</sup>
 
 应用在窗口旋转变化时返回的信息，系统会根据此信息改变当前窗口矩形区域大小。当返回主窗口旋转变化的信息时，系统不改变主窗口的大小。
 应用窗口与系统窗口大小存在限制，具体限制与相关规则可见[resize](#resize9)。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.Window.SessionManager
 
 | 名称   | 类型 | 只读  | 可写 | 说明                    |
 | ------ | ---- | ----- | ---- | ----------------------- |
-| rectType | [RectType](#recttype18) | 否 | 是 | 窗口矩形区域坐标系类型。 |
+| rectType | [RectType](#recttype19) | 否 | 是 | 窗口矩形区域坐标系类型。 |
 | windowRect | [Rect](#rect7) | 否 | 是 | 相对于屏幕或父窗坐标系的窗口矩形区域信息。|
 
 ## window.createWindow<sup>9+</sup>
@@ -5535,17 +5535,17 @@ try {
 }
 ```
 
-### on('rotationChange')<sup>18+</sup>
+### on('rotationChange')<sup>19+</sup>
 
 on(type: 'rotationChange', callback: RotationChangeCallback&lt;info: RotationChangeInfo, RotationChangeResult | void&gt;): void
 
-开启窗口旋转变化的监听。[RotationChangeInfo](#rotationchangeinfo18)中窗口旋转类型为窗口即将旋转时，必须返回[RotationChangeResult](#rotationchangeresult18)。窗口旋转类型为窗口旋转结束时返回[RotationChangeResult](#rotationchangeresult18)不生效。
+开启窗口旋转变化的监听。[RotationChangeInfo](#rotationchangeinfo19)中窗口旋转类型为窗口即将旋转时，必须返回[RotationChangeResult](#rotationchangeresult19)。窗口旋转类型为窗口旋转结束时返回[RotationChangeResult](#rotationchangeresult19)不生效。
 
-同一个窗口多次注册同类型回调函数，只生效最新注册的同类型回调函数返回值。系统提供了超时保护机制，若20ms内窗口未返回[RotationChangeResult](#rotationchangeresult18)，系统不处理该返回值。
+同一个窗口多次注册同类型回调函数，只生效最新注册的同类型回调函数返回值。系统提供了超时保护机制，若20ms内窗口未返回[RotationChangeResult](#rotationchangeresult19)，系统不处理该返回值。
 
 <!--RP10-->此接口在2in1设备上调用不生效。<!--RP10End-->
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -5554,7 +5554,7 @@ on(type: 'rotationChange', callback: RotationChangeCallback&lt;info: RotationCha
 | 参数名   | 类型                           | 必填 | 说明                                                     |
 | -------- | ------------------------------ | ---- | -------------------------------------------------------- |
 | type     | string                         | 是   | 监听事件，固定为'rotationChange'，即窗口旋转变化事件。 |
-| callback | RotationChangeCallback&lt;[RotationChangeInfo](#rotationchangeinfo18), [RotationChangeResult](#rotationchangeresult18) \| void&gt; | 是 | 回调函数。返回窗口旋转信息[RotationChangeInfo](#rotationchangeinfo18)，应用返回当前窗口变化结果[RotationChangeResult](#rotationchangeresult18)。   |
+| callback | RotationChangeCallback&lt;[RotationChangeInfo](#rotationchangeinfo19), [RotationChangeResult](#rotationchangeresult19) \| void&gt; | 是 | 回调函数。返回窗口旋转信息[RotationChangeInfo](#rotationchangeinfo19)，应用返回当前窗口变化结果[RotationChangeResult](#rotationchangeresult19)。   |
 
 **错误码：**
 
@@ -5562,7 +5562,6 @@ on(type: 'rotationChange', callback: RotationChangeCallback&lt;info: RotationCha
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
@@ -5608,7 +5607,7 @@ try {
 }
 ```
 
-### off('rotationChange')<sup>18+</sup>
+### off('rotationChange')<sup>19+</sup>
 
 off(type: 'rotationChange', callback?: RotationChangeCallback&lt;info: RotationChangeInfo, RotationChangeResult | void&gt;): void
 
@@ -5616,7 +5615,7 @@ off(type: 'rotationChange', callback?: RotationChangeCallback&lt;info: RotationC
 
 <!--RP10-->此接口在2in1设备上调用不生效。<!--RP10End-->
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -5625,7 +5624,7 @@ off(type: 'rotationChange', callback?: RotationChangeCallback&lt;info: RotationC
 | 参数名   | 类型                           | 必填 | 说明                                                         |
 | -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                         | 是   | 监听事件，固定为'rotationChange'，即窗口旋转变化事件。     |
-| callback | RotationChangeCallback&lt;info: [RotationChangeInfo](#rotationchangeinfo18), [RotationChangeResult](#rotationchangeresult18) \| void&gt; | 否   | 回调函数。如果传入参数，则关闭该监听。如果未传入参数，则关闭该窗口的所有监听。 |
+| callback | RotationChangeCallback&lt;info: [RotationChangeInfo](#rotationchangeinfo19), [RotationChangeResult](#rotationchangeresult19) \| void&gt; | 否   | 回调函数。如果传入参数，则关闭该监听。如果未传入参数，则关闭该窗口的所有监听。 |
 
 **错误码：**
 
@@ -5633,7 +5632,6 @@ off(type: 'rotationChange', callback?: RotationChangeCallback&lt;info: RotationC
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
