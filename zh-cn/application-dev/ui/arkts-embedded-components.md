@@ -37,7 +37,7 @@ EmbeddedComponent组件允许在当前页面中嵌入同一应用内其他Embedd
 
 与屏幕坐标相关的事件信息会基于EmbeddedComponent的位置宽高进行坐标转换后传递给被拉起的EmbeddedUIExtensionAbility处理。
 
-EmbeddedComponent组件不支持[点击](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md)等通用事件，仅支持[onTerminated](../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md#onterminated12)事件和[onError](../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md#onError)事件。
+EmbeddedComponent组件不支持[点击](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md)等通用事件，仅支持[onTerminated](../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md#onterminated12)事件和[onError](../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md#onerror)事件。
 
 ## 场景示例
 
