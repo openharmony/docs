@@ -31,13 +31,13 @@ Querying data from a large amount of data may take time or even cause applicatio
 
 - The default logging mode is Write Ahead Log (WAL), and the default flushing mode is **FULL** mode.
 
-- The RDB store supports a maximum of four read connections and one write connection. A thread performs the read operation when acquiring a read connection. When there is no read connection available but the write connection is idle, the write connection can be used to perform the read operation.
+- The RDB store supports a maximum of four read connections and one write connection. A thread performs the read operation when acquiring a read connection. When there is no read connection available but the write connection is idle, the write connection can be used to read data.
 
 - To ensure data accuracy, only one write operation is allowed at a time.
 
 - Once an application is uninstalled, related database files and temporary files on the device are automatically deleted.
 
-- ArkTS supports the following basic data types: number, string, binary data, and boolean.
+- ArkTS supports the following basic data types: number, string, binary, and boolean.
 
 - The maximum size of a data record is 2 MB. If a data record exceeds 2 MB, it can be inserted successfully but cannot be read.
 
@@ -59,7 +59,7 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
 ## How to Develop
 Unless otherwise specified, the sample code without "stage model" or "FA model" applies to both models.
 
-If error code 14800011 is reported, the RDB store is corrupted and needs to be rebuilt. For details, see [Rebuilding an RDB Store](data-backup-and-restore.md#rebuilding-an-rdb-store).
+If error 14800011 is thrown, you need to rebuild the database and restore data to ensure normal application development. For details, see [Rebuilding an RDB Store](data-backup-and-restore.md#rebuilding-an-rdb-store).
 
 1. Obtain an **RdbStore** instance, which includes operations of creating an RDB store and tables, and upgrading or downgrading the RDB store. <br>Example:
 
@@ -74,7 +74,7 @@ If error code 14800011 is reported, the RDB store is corrupted and needs to be r
    // In this example, Ability is used to obtain an RdbStore instance. You can use other implementations as required.
    class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
-       const STORE_CONFIG :relationalStore.StoreConfig= {
+       const STORE_CONFIG: relationalStore.StoreConfig= {
          name: 'RdbTest.db', // Database file name.
          securityLevel: relationalStore.SecurityLevel.S3, // Database security level.
          encrypt: false, // Whether to encrypt the database. This parameter is optional. By default, the database is not encrypted.
@@ -95,28 +95,40 @@ If error code 14800011 is reported, the RDB store is corrupted and needs to be r
 
          // When the RDB store is created, the default version is 0.
          if (store.version === 0) {
-           store.executeSql(SQL_CREATE_TABLE); // Create a data table.
-           // Set the RDB store version, which must be an integer greater than 0.
-           store.version = 3;
+           store.executeSql(SQL_CREATE_TABLE); // Create a table.
+             .then(() => {
+               // Set the RDB store version, which must be an integer greater than 0.
+               store.version = 3;
+             })
+             .catch((err: BusinessError) => {
+               console.error(`Failed to executeSql. Code:${err.code}, message:${err.message}`);
+             });
          }
 
          // If the RDB store version is not 0 and does not match the current version, upgrade or downgrade the RDB store.
          // For example, upgrade the RDB store from version 1 to version 2.
          if (store.version === 1) {
            // Upgrade the RDB store from version 1 to version 2, and change the table structure from EMPLOYEE (NAME, SALARY, CODES, ADDRESS) to EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS).
-           (store as relationalStore.RdbStore).executeSql('ALTER TABLE EMPLOYEE ADD COLUMN AGE INTEGER');
-           store.version = 2;
+           store.executeSql('ALTER TABLE EMPLOYEE ADD COLUMN AGE INTEGER')
+             .then(() => {
+               store.version = 2;
+             }).catch((err: BusinessError) => {
+               console.error(`Failed to executeSql. Code:${err.code}, message:${err.message}`);
+             });
          }
 
          // For example, upgrade the RDB store from version 2 to version 3.
          if (store.version === 2) {
            // Upgrade the RDB store from version 2 to version 3, and change the table structure from EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS) to EMPLOYEE (NAME, AGE, SALARY, CODES).
-           (store as relationalStore.RdbStore).executeSql('ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS TEXT');
-           store.version = 3;
+           store.executeSql('ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS')
+             .then(() => {
+               store.version = 3;
+             }).catch((err: BusinessError) => {
+               console.error(`Failed to executeSql. Code:${err.code}, message:${err.message}`);
+             });
          }
+         // Before adding, deleting, modifying, and querying data in an RDB store, obtain an RdbStore instance and create a table.
        });
-
-       // Before performing data operations on the database, obtain an RdbStore instance.
      }
    }
    ```
@@ -130,7 +142,7 @@ If error code 14800011 is reported, the RDB store is corrupted and needs to be r
    
    let context = featureAbility.getContext();
 
-   const STORE_CONFIG :relationalStore.StoreConfig = {
+   const STORE_CONFIG: relationalStore.StoreConfig = {
      name: 'RdbTest.db', // Database file name.
      securityLevel: relationalStore.SecurityLevel.S3 // Database security level.
    };
@@ -147,28 +159,41 @@ If error code 14800011 is reported, the RDB store is corrupted and needs to be r
 
      // When the RDB store is created, the default version is 0.
      if (store.version === 0) {
-       store.executeSql(SQL_CREATE_TABLE); // Create a data table.
-       // Set the RDB store version, which must be an integer greater than 0.
-       store.version = 3;
+       store.executeSql(SQL_CREATE_TABLE); // Create a table.
+         .then(() => {
+           // Set the RDB store version, which must be an integer greater than 0.
+           store.version = 3;
+         })
+         .catch((err: BusinessError) => {
+           console.error(`Failed to executeSql. Code:${err.code}, message:${err.message}`);
+         });
      }
 
      // If the RDB store version is not 0 and does not match the current version, upgrade or downgrade the RDB store.
      // For example, upgrade the RDB store from version 1 to version 2.
      if (store.version === 1) {
        // Upgrade the RDB store from version 1 to version 2, and change the table structure from EMPLOYEE (NAME, SALARY, CODES, ADDRESS) to EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS).
-       store.executeSql('ALTER TABLE EMPLOYEE ADD COLUMN AGE INTEGER');
-       store.version = 2;
+       store.executeSql('ALTER TABLE EMPLOYEE ADD COLUMN AGE INTEGER')
+         .then(() => {
+           store.version = 2;
+         }).catch((err: BusinessError) => {
+           console.error(`Failed to executeSql. Code:${err.code}, message:${err.message}`);
+         });
      }
 
      // For example, upgrade the RDB store from version 2 to version 3.
      if (store.version === 2) {
        // Upgrade the RDB store from version 2 to version 3, and change the table structure from EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS) to EMPLOYEE (NAME, AGE, SALARY, CODES).
-       store.executeSql('ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS TEXT');
-       store.version = 3;
+       store.executeSql('ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS')
+         .then(() => {
+           store.version = 3;
+         }).catch((err: BusinessError) => {
+           console.error(`Failed to executeSql. Code:${err.code}, message:${err.message}`);
+         });
      }
+     // Before adding, deleting, modifying, and querying data in an RDB store, obtain an RdbStore instance and create a table.
    });
 
-   // Before performing data operations on the database, obtain an RdbStore instance.
    ```
 
    > **NOTE**
@@ -179,7 +204,7 @@ If error code 14800011 is reported, the RDB store is corrupted and needs to be r
    > 
    > - For details about the error codes, see [Universal Error Codes](../reference/errorcode-universal.md) and [RDB Store Error Codes](../reference/apis-arkdata/errorcode-data-rdb.md).
 
-2. Use **insert()** to insert data to the RDB store. <br>Example:
+2. Call **insert()** to insert data. <br>Example:
      
    ```ts
    let store: relationalStore.RdbStore | undefined = undefined;
@@ -229,7 +254,7 @@ If error code 14800011 is reported, the RDB store is corrupted and needs to be r
 
 3. Modify or delete data based on the specified **Predicates** instance.
 
-   Use **update()** to modify data and **delete()** to delete data. <br>Example:
+   Call **update()** to modify data and **delete()** to delete data. <br>Example:
 
    ```ts
    let value6 = 'Rose';
@@ -289,7 +314,7 @@ If error code 14800011 is reported, the RDB store is corrupted and needs to be r
 
 4. Query data based on the conditions specified by **Predicates**.
 
-   Use **query()** to query data. The data obtained is returned in a **ResultSet** object. <br>Example:
+   Call **query()** to query data. The data obtained is returned in a **ResultSet** object. <br>Example:
 
    ```ts
    let predicates2 = new relationalStore.RdbPredicates('EMPLOYEE');
@@ -320,9 +345,7 @@ If error code 14800011 is reported, the RDB store is corrupted and needs to be r
    >
    > Use **close()** to close the **ResultSet** that is no longer used in a timely manner so that the memory allocated can be released.
 
-5. Back up the database in the same directory. 
-
-   Two backup modes are available: manual backup and automatic backup (available only for system applications). For details, see [Backing Up an RDB Store](data-backup-and-restore.md#backing-up-an-rdb store).
+5. Back up the database in the same directory. <br>Two backup modes are available: manual backup and automatic backup (available only for system applications). For details, see [Backing Up an RDB Store](data-backup-and-restore.md#backing-up-an-rdb store).
 
    Example: Perform manual backup of an RDB store.
 
@@ -339,9 +362,7 @@ If error code 14800011 is reported, the RDB store is corrupted and needs to be r
    }
    ```
 
-6. Restore data from the database backup. 
-
-   You can restore an RDB store from the manual backup data or automatic backup data (available only for system applications). For details, see [Restoring RDB Store Data](data-backup-and-restore.md#restoring-rdb-store-data).
+6. Restore data from the database backup. <br>You can restore an RDB store from the manual backup data or automatic backup data (available only for system applications). For details, see [Restoring RDB Store Data](data-backup-and-restore.md#restoring-rdb-store-data).
 
    Example: Call [restore](../reference/apis-arkdata/js-apis-data-relationalStore.md#restore) to restore an RDB store from the data that is manually backed up.
 
@@ -359,7 +380,7 @@ If error code 14800011 is reported, the RDB store is corrupted and needs to be r
 
 7. Delete the RDB store.
 
-   Use **deleteRdbStore()** to delete the RDB store and related database files. <br>Example:
+   Call **deleteRdbStore()** to delete the RDB store and related database files. <br>Example:
 
    Stage model:
 
