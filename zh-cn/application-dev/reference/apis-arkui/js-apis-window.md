@@ -452,7 +452,7 @@ type WindowAnimationCurveParam = Array&lt;number&gt;
 >下表中的索引x表示WindowAnimationCurveParam中的第x项。
 >
 
-**INTERPOLATINGSPRING曲线：**
+**INTERPOLATION_SPRING曲线：**
 
 | 索引 | 类型   | 必填 | 说明                                                         |
 | ---- | ------ | ---- | ------------------------------------------------------------ |
