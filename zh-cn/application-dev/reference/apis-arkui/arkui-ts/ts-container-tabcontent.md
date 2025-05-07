@@ -875,7 +875,7 @@ struct TabContentExample {
 struct TabBarStyleExample {
   build() {
     Column({ space: 5 }) {
-      Text("子页签样式")
+      Text('子页签样式')
       Column() {
         Tabs({ barPosition: BarPosition.Start }) {
           TabContent() {
@@ -927,7 +927,7 @@ struct TabBarStyleExample {
         .width('100%')
         .backgroundColor(0xF1F3F5)
       }.width('100%').height(200)
-      Text("底部页签样式")
+      Text('底部页签样式')
       Column() {
         Tabs({ barPosition: BarPosition.End }) {
           TabContent() {
@@ -979,7 +979,7 @@ struct TabBarStyleExample {
         .width('100%')
         .backgroundColor(0xF1F3F5)
       }.width('100%').height(200)
-      Text("侧边页签样式")
+      Text('侧边页签样式')
       Column() {
         Tabs({ barPosition: BarPosition.Start }) {
           TabContent() {
@@ -1061,7 +1061,7 @@ struct TabsAttr {
 
   build() {
     Column() {
-      Button("下划线颜色变化").width('100%').margin({ bottom: '12vp' })
+      Button('下划线颜色变化').width('100%').margin({ bottom: '12vp' })
         .onClick((event?: ClickEvent) => {
           // 对Button组件的宽高属性进行动画配置
           if (this.colorFlag) {
@@ -1093,7 +1093,7 @@ struct TabsAttr {
           }
           this.colorFlag = !this.colorFlag;
         })
-      Button("下划线高度变化").width('100%').margin({ bottom: '12vp' })
+      Button('下划线高度变化').width('100%').margin({ bottom: '12vp' })
         .onClick((event?: ClickEvent) => {
           // 对Button组件的宽高属性进行动画配置
           if (this.heightFlag) {
@@ -1125,7 +1125,7 @@ struct TabsAttr {
           }
           this.heightFlag = !this.heightFlag;
         })
-      Button("下划线宽度变化").width('100%').margin({ bottom: '12vp' })
+      Button('下划线宽度变化').width('100%').margin({ bottom: '12vp' })
         .onClick((event?: ClickEvent) => {
           // 对Button组件的宽高属性进行动画配置
           if (this.widthFlag) {
@@ -1157,7 +1157,7 @@ struct TabsAttr {
           }
           this.widthFlag = !this.widthFlag;
         })
-      Button("下划线圆角半径变化").width('100%').margin({ bottom: '12vp' })
+      Button('下划线圆角半径变化').width('100%').margin({ bottom: '12vp' })
         .onClick((event?: ClickEvent) => {
           // 对Button组件的宽高属性进行动画配置
           if (this.borderFlag) {
@@ -1189,7 +1189,7 @@ struct TabsAttr {
           }
           this.borderFlag = !this.borderFlag;
         })
-      Button("下划线间距变化").width('100%').margin({ bottom: '12vp' })
+      Button('下划线间距变化').width('100%').margin({ bottom: '12vp' })
         .onClick((event?: ClickEvent) => {
           // 对Button组件的宽高属性进行动画配置
           if (this.spaceFlag) {
@@ -1374,7 +1374,7 @@ struct TabsTextOverflow {
 @Component
 struct TabContentExample6 {
   private controller: TabsController = new TabsController();
-  @State text: string = "2";
+  @State text: string = '2';
   @State tabPadding: number = 0;
   @State symmetricExtensible: boolean = false;
   @State layoutMode: LayoutMode = LayoutMode.VERTICAL;
@@ -1383,7 +1383,7 @@ struct TabContentExample6 {
   build() {
     Column() {
       Row() {
-        Button("padding+10 " + this.tabPadding)
+        Button('padding+10 ' + this.tabPadding)
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -1391,7 +1391,7 @@ struct TabContentExample6 {
             this.tabPadding += 10;
           })
           .margin({ right: '6%', bottom: '12vp' })
-        Button("padding-10 " + this.tabPadding)
+        Button('padding-10 ' + this.tabPadding)
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -1402,7 +1402,7 @@ struct TabContentExample6 {
       }
 
       Row() {
-        Button("文本增加 ")
+        Button('文本增加 ')
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -1410,18 +1410,18 @@ struct TabContentExample6 {
             this.text += '文本增加';
           })
           .margin({ right: '6%', bottom: '12vp' })
-        Button("文本重置")
+        Button('文本重置')
           .width('47%')
           .height(50)
           .margin({ top: 5 })
           .onClick((event?: ClickEvent) => {
-            this.text = "2";
+            this.text = '2';
           })
           .margin({ bottom: '12vp' })
       }
 
       Row() {
-        Button("symmetricExtensible改变 " + this.symmetricExtensible)
+        Button('symmetricExtensible改变 ' + this.symmetricExtensible)
           .width('100%')
           .height(50)
           .margin({ top: 5 })
@@ -1432,7 +1432,7 @@ struct TabContentExample6 {
       }
 
       Row() {
-        Button("layoutMode垂直 ")
+        Button('layoutMode垂直 ')
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -1440,7 +1440,7 @@ struct TabContentExample6 {
             this.layoutMode = LayoutMode.VERTICAL;
           })
           .margin({ right: '6%', bottom: '12vp' })
-        Button("layoutMode水平 ")
+        Button('layoutMode水平 ')
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -1451,7 +1451,7 @@ struct TabContentExample6 {
       }
 
       Row() {
-        Button("verticalAlign朝上")
+        Button('verticalAlign朝上')
           .width('100%')
           .height(50)
           .margin({ top: 5 })
@@ -1462,7 +1462,7 @@ struct TabContentExample6 {
       }
 
       Row() {
-        Button("verticalAlign居中")
+        Button('verticalAlign居中')
           .width('100%')
           .height(50)
           .margin({ top: 5 })
@@ -1473,7 +1473,7 @@ struct TabContentExample6 {
       }
 
       Row() {
-        Button("verticalAlign朝下")
+        Button('verticalAlign朝下')
           .width('100%')
           .height(50)
           .margin({ top: 5 })
@@ -1487,11 +1487,11 @@ struct TabContentExample6 {
       Tabs({ barPosition: BarPosition.End, controller: this.controller }) {
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Pink)
-        }.tabBar(BottomTabBarStyle.of($r("sys.media.ohos_app_icon"), "1"))
+        }.tabBar(BottomTabBarStyle.of($r('sys.media.ohos_app_icon'), '1'))
 
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Green)
-        }.tabBar(BottomTabBarStyle.of($r("sys.media.ohos_app_icon"), this.text)
+        }.tabBar(BottomTabBarStyle.of($r('sys.media.ohos_app_icon'), this.text)
           .padding(this.tabPadding)
           .verticalAlign(this.verticalAlign)
           .layoutMode(this.layoutMode)
@@ -1499,7 +1499,7 @@ struct TabContentExample6 {
 
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Blue)
-        }.tabBar(BottomTabBarStyle.of($r("sys.media.ohos_app_icon"), "3"))
+        }.tabBar(BottomTabBarStyle.of($r('sys.media.ohos_app_icon'), '3'))
       }
       .animationDuration(300)
       .height('60%')
@@ -1528,7 +1528,7 @@ struct TabContentExample6 {
 struct TabBarStyleExample {
   build() {
     Column({ space: 5 }) {
-      Text("子页签样式")
+      Text('子页签样式')
       Column() {
         Tabs({ barPosition: BarPosition.Start }) {
           TabContent() {
@@ -1562,7 +1562,7 @@ struct TabBarStyleExample {
         .backgroundColor(0xF1F3F5)
       }.width('100%').height(200)
 
-      Text("底部页签样式")
+      Text('底部页签样式')
       Column() {
         Tabs({ barPosition: BarPosition.End }) {
           TabContent() {
@@ -1619,7 +1619,7 @@ struct TabBarStyleExample {
 import { ComponentContent, UIContext } from '@kit.ArkUI';
 
 class Params {
-  text: string = "";
+  text: string = '';
 
   constructor(text: string) {
     this.text = text;
@@ -1639,8 +1639,8 @@ function buildText(params: Params) {
 @Entry
 @Component
 struct Index {
-  @State message1: string = "tabBar1";
-  @State message2: string = "tabBar2";
+  @State message1: string = 'tabBar1';
+  @State message2: string = 'tabBar2';
   context: UIContext = this.getUIContext();
   private count1 = 0;
   private count2 = 0;
@@ -1651,16 +1651,16 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Button("更新tabBar1").width('90%').margin(20)
+        Button('更新tabBar1').width('90%').margin(20)
           .onClick((event?: ClickEvent) => {
             this.count1 += 1;
-            const message1 = "Update 1_" + this.count1.toString();
+            const message1 = 'Update 1_' + this.count1.toString();
             this.tabBar1.update(new Params(message1));
           })
-        Button("更新tabBar2").width('90%').margin(20)
+        Button('更新tabBar2').width('90%').margin(20)
           .onClick((event?: ClickEvent) => {
             this.count2 += 1;
-            const message2 = "Update 2_" + this.count2.toString();
+            const message2 = 'Update 2_' + this.count2.toString();
             this.tabBar2.update(new Params(message2));
           })
         Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
@@ -1706,7 +1706,7 @@ struct Index {
   @State symbolModifier4: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.exposure'));
   build() {
     Column({space: 5}) {
-      Text("底部页签样式")
+      Text('底部页签样式')
       Column(){
         Tabs({barPosition: BarPosition.End}) {
           TabContent() {
@@ -1782,8 +1782,8 @@ struct Index {
 import { ComponentContent, UIContext } from '@kit.ArkUI';
 
 class Params {
-  text: string = "";
-  fontColor: string = "";
+  text: string = '';
+  fontColor: string = '';
 
   constructor(text: string, fontColor: string) {
     this.text = text;
@@ -1806,8 +1806,8 @@ function buildText(params: Params) {
 @Component
 struct Index {
   @State currentIndex: number = 0;
-  @State message1: string = "tabBar1";
-  @State message2: string = "tabBar2";
+  @State message1: string = 'tabBar1';
+  @State message2: string = 'tabBar2';
   unselectedFontColor: string = '#182431';
   selectedFontColor: string = '#007DFF';
   context: UIContext = this.getUIContext();
@@ -1837,16 +1837,16 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Button("更新tabBar1").width('90%').margin(20)
+        Button('更新tabBar1').width('90%').margin(20)
           .onClick((event?: ClickEvent) => {
             this.count1 += 1;
-            this.message1 = "Update 1_" + this.count1.toString();
+            this.message1 = 'Update 1_' + this.count1.toString();
             this.tabBar1.update(new Params(this.message1, this.unselectedFontColor));
           })
-        Button("更新tabBar2").width('90%').margin(20)
+        Button('更新tabBar2').width('90%').margin(20)
           .onClick((event?: ClickEvent) => {
             this.count2 += 1;
-            this.message2 = "Update 2_" + this.count2.toString();
+            this.message2 = 'Update 2_' + this.count2.toString();
             this.tabBar2.update(new Params(this.message2, this.unselectedFontColor));
           })
         Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
@@ -1889,8 +1889,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
-  text: string = "";
-  fontColor: string = "";
+  text: string = '';
+  fontColor: string = '';
 
   constructor(text: string, fontColor: string) {
     this.text = text;
@@ -1901,7 +1901,7 @@ class Params {
 @Component
 struct imageCom {
   build() {
-    Image($r("app.media.startIcon"))
+    Image($r('app.media.startIcon'))
       .alt($r('app.media.background'))
       .width(15)
       .height(15)
@@ -2034,7 +2034,7 @@ struct TabsPreloadItems {
 
 @Component
 struct MyComponent {
-  private color: string = "";
+  private color: string = '';
 
   aboutToAppear(): void {
     console.info('aboutToAppear backgroundColor:' + this.color);

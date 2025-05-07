@@ -227,7 +227,7 @@ struct ListItemGroupExample {
 
   @Builder
   itemFoot(num: number) {
-    Text('共' + num + "节课")
+    Text('共' + num + '节课')
       .fontSize(16)
       .backgroundColor(0xAABBCC)
       .width('100%')
@@ -293,13 +293,13 @@ struct ListItemGroupExample2 {
 
   build() {
     Column() {
-      List({ space: "4vp", initialIndex: 0 }) {
+      List({ space: '4vp', initialIndex: 0 }) {
         ForEach(this.arr, (item: ArrObject, index?: number) => {
           ListItemGroup({ style: item.style }) {
             ForEach(item.itemStyles, (itemStyle: number, itemIndex?: number) => {
               ListItem({ style: itemStyle }) {
                 if (index != undefined && itemIndex != undefined) {
-                  Text("第" + (index + 1) + "个Group中第" + (itemIndex + 1) + "个item")
+                  Text('第' + (index + 1) + '个Group中第' + (itemIndex + 1) + '个item')
                     .width('100%')
                     .textAlign(TextAlign.Center)
                 }
@@ -370,7 +370,7 @@ function itemFoot(params: FootBuilderParams) {
 
 @Component
 struct MyItemGroup {
-  item: TimeTable = { title: "", projects: [] };
+  item: TimeTable = { title: '', projects: [] };
   header?: ComponentContent<HeadBuilderParams> = undefined;
   footer?: ComponentContent<FootBuilderParams> = undefined;
   headerParam = new HeadBuilderParams(this.item.title);
@@ -439,7 +439,7 @@ struct ListItemGroupExample {
 
   build() {
     Column() {
-      Button("update").width(100).height(50).onClick(() => {
+      Button('update').width(100).height(50).onClick(() => {
         this.itemGroupArray.change1stItem({
           title: '更新后的星期一',
           projects: ['语文', '物理', '历史', '美术']
