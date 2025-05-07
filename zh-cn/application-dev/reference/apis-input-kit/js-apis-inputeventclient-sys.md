@@ -233,7 +233,6 @@ try {
 catch (error) {
   console.log(`Failed to inject MouseEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
-
 ```
 
 ## inputEventClient.injectTouchEvent<sup>11+</sup>
