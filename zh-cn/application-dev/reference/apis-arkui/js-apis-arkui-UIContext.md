@@ -3804,7 +3804,7 @@ off(type: 'navDestinationSwitch', observerOptions: observer.NavDestinationSwitch
 
 on(type: 'willClick', callback: GestureEventListenerCallback): void
 
-监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
+监听点击事件指令下发情况。从API version 20开始支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3833,7 +3833,7 @@ observer.on('willClick', callback);
 
 off(type: 'willClick', callback?: GestureEventListenerCallback): void
 
-取消监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
+取消监听点击事件指令下发情况。从API version 20开始支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3862,7 +3862,7 @@ observer.off('willClick', callback);
 
 on(type: 'didClick', callback: GestureEventListenerCallback): void
 
-监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
+监听点击事件指令下发情况。从API version 20开始支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3891,7 +3891,7 @@ observer.on('didClick', callback);
 
 off(type: 'didClick', callback?: GestureEventListenerCallback): void
 
-取消监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
+取消监听点击事件指令下发情况。从API version 20开始，支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3920,7 +3920,7 @@ observer.off('didClick', callback);
 
 on(type: 'willClick', callback: ClickEventListenerCallback): void
 
-监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
+监听点击事件指令下发情况。从API version 20开始支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3949,7 +3949,7 @@ observer.on('willClick', callback);
 
 off(type: 'willClick', callback?: ClickEventListenerCallback): void
 
-取消监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
+取消监听点击事件指令下发情况。从API version 20开始，支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3978,7 +3978,7 @@ observer.off('willClick', callback);
 
 on(type: 'didClick', callback: ClickEventListenerCallback): void
 
-监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
+监听点击事件指令下发情况。从API version 20开始支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4007,7 +4007,7 @@ observer.on('didClick', callback);
 
 off(type: 'didClick', callback?: ClickEventListenerCallback): void
 
-取消监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
+取消监听点击事件指令下发情况。从API version 20开始支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
