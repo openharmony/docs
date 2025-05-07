@@ -5606,6 +5606,113 @@ struct WebComponent {
 }
 ```
 
+### setAppCustomUserAgent<sup>20+</sup>
+
+static setAppCustomUserAgent(userAgent: string): void
+
+设置应用级自定义用户代理，会覆盖系统的用户代理，应用内所有Web组件生效。
+
+当需要设置应用级自定义用户代理时，建议在Web组件创建前调用setAppCustomUserAgent方法设置User-Agent，再创建指定src的Web组件或通过[loadUrl](#loadurl)加载具体页面。
+
+默认User-Agent定义与使用场景，及相关User-Agent接口定义优先级请参考[User-Agent开发指导](../../web/web-default-userAgent.md)
+
+**系统能力：**  SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型    |  必填  | 说明 |
+| ---------------| ------- | ---- | ------------- |
+| userAgent      | string  | 是   | 用户自定义代理信息。建议先使用[getDefaultUserAgent](#getdefaultuseragent14)获取当前默认用户代理，在此基础上追加自定义用户代理信息。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  aboutToAppear(): void {
+    try {
+      webview.WebviewController.initializeWebEngine();
+      let defaultUserAgent = webview.WebviewController.getDefaultUserAgent();
+      let appUA = defaultUserAgent + " appUA";
+      webview.WebviewController.setAppCustomUserAgent(appUA);
+    } catch (error) {
+      console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+    }
+  }
+
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### setUserAgentForHosts<sup>20+</sup>
+
+static setUserAgentForHosts(userAgent: string, hosts: Array): void
+
+针对特定网站设置自定义用户代理，会覆盖系统的用户代理，应用内所有Web组件生效。
+
+当需要对特定网站设置自定义用户代理时，建议在Web组件创建前调用setUserAgentForHosts方法设置User-Agent，再创建指定src的Web组件或通过[loadUrl](#loadurl)加载具体页面。
+
+
+
+默认User-Agent定义与使用场景，及相关User-Agent接口定义优先级请参考[User-Agent开发指导](../../web/web-default-userAgent.md)
+
+**系统能力：**  SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型    |  必填  | 说明 |
+| ---------------| ------- | ---- | ------------- |
+| userAgent      | string  | 是   | 用户自定义代理信息。建议先使用[getDefaultUserAgent](#getdefaultuseragent14)获取当前默认用户代理，在此基础上追加自定义用户代理信息。 |
+| hosts      | Array  | 是   | 用户自定义代理的相关域名列表，每次调用时仅保留最新传入的列表，并限制最大条目数为两万，超出部分自动截断。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  aboutToAppear(): void {
+    try {
+      webview.WebviewController.initializeWebEngine();
+      let defaultUserAgent = webview.WebviewController.getDefaultUserAgent();
+      let appUA = defaultUserAgent + " appUA";
+      webview.WebviewController.setUserAgentForHosts(
+        appUA,
+        [
+          "www.example.com",
+          "www.baidu.com"
+        ]
+      );
+    } catch (error) {
+      console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+    }
+  }
+
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ### setConnectionTimeout<sup>11+</sup>
 
 static setConnectionTimeout(timeout: number): void
