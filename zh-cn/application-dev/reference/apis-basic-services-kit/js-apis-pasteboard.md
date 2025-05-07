@@ -645,9 +645,9 @@ toPlainText(): string
 **示例：**
 
 ```ts
-let record: pasteboard.PasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_HTML, 'hello');
+let record: pasteboard.PasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_HTML, '<html>hello<html>');
 let text: string = record.toPlainText();
-console.info(Succeeded in converting to text. Text: ${text});
+console.info(`Succeeded in converting to text. Text: ${text}`);
 ```
 
 ### addEntry<sup>14+</sup>
@@ -2652,7 +2652,7 @@ systemPasteboard.getUnifiedData().then((data) => {
     for (let j = 0; j < records.length; j++) {
         if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
             let text = records[j].getValue() as uniformDataStruct.PlainText;
-            console.info(${j + 1}.${text.textContent});
+            console.info(`${j + 1}.${text.textContent}`);
         }
     }
 }).catch((err: BusinessError) => {
@@ -2752,7 +2752,7 @@ let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboa
 systemPasteboard.setUnifiedData(data).then((data: void) => {
     console.info('Succeeded in setting UnifiedData.');
 }).catch((err: BusinessError) => {
-    console.erro('Failed to setUnifiedData. Cause: ' + err.message);
+    console.error('Failed to setUnifiedData. Cause: ' + err.message);
 });
 ```
 
