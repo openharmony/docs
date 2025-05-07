@@ -221,7 +221,7 @@ struct ListItemGroupExample {
     Text(text)
       .fontSize(20)
       .backgroundColor(0xAABBCC)
-      .width("100%")
+      .width('100%')
       .padding(10)
   }
 
@@ -230,7 +230,7 @@ struct ListItemGroupExample {
     Text('共' + num + "节课")
       .fontSize(16)
       .backgroundColor(0xAABBCC)
-      .width("100%")
+      .width('100%')
       .padding(5)
   }
 
@@ -242,7 +242,7 @@ struct ListItemGroupExample {
             LazyForEach(new ProjectsDataSource(item.projects), (project: string) => {
               ListItem() {
                 Text(project)
-                  .width("100%")
+                  .width('100%')
                   .height(100)
                   .fontSize(20)
                   .textAlign(TextAlign.Center)
@@ -300,7 +300,7 @@ struct ListItemGroupExample2 {
               ListItem({ style: itemStyle }) {
                 if (index != undefined && itemIndex != undefined) {
                   Text("第" + (index + 1) + "个Group中第" + (itemIndex + 1) + "个item")
-                    .width("100%")
+                    .width('100%')
                     .textAlign(TextAlign.Center)
                 }
               }
@@ -353,7 +353,7 @@ function itemHead(params: HeadBuilderParams) {
   Text(params.text)
     .fontSize(20)
     .height('48vp')
-    .width("100%")
+    .width('100%')
     .padding(10)
     .backgroundColor($r('sys.color.background_tertiary'))
 }
@@ -363,7 +363,7 @@ function itemFoot(params: FootBuilderParams) {
   Text('共' + params.num + '节课')
     .fontSize(20)
     .height('48vp')
-    .width("100%")
+    .width('100%')
     .padding(10)
     .backgroundColor($r('sys.color.background_tertiary'))
 }
@@ -400,7 +400,7 @@ struct MyItemGroup {
       LazyForEach(this.itemArr, (project: string) => {
         ListItem() {
           Text(project)
-            .width("100%")
+            .width('100%')
             .height(100)
             .fontSize(20)
             .textAlign(TextAlign.Center)

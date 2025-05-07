@@ -1301,7 +1301,7 @@ struct ListLanesExample {
         }, (item: string) => item)
       }
       .height(300)
-      .width("90%")
+      .width('90%')
       .friction(0.6)
       .border({ width: 3, color: Color.Red })
       .lanes({ minLength: 40, maxLength: 40 })
@@ -1592,7 +1592,7 @@ struct ListItemGroupExample {
     Text(text)
       .fontSize(20)
       .backgroundColor(0xAABBCC)
-      .width("100%")
+      .width('100%')
       .padding(10)
   }
 
@@ -1601,7 +1601,7 @@ struct ListItemGroupExample {
     Text('共' + num + "节课")
       .fontSize(16)
       .backgroundColor(0xAABBCC)
-      .width("100%")
+      .width('100%')
       .padding(5)
   }
 
@@ -1613,7 +1613,7 @@ struct ListItemGroupExample {
             LazyForEach(new ProjectsDataSource(item.projects), (project: string, subIndex: number) => {
               ListItem() {
                 Text(project)
-                  .width("100%")
+                  .width('100%')
                   .height(100)
                   .fontSize(20)
                   .textAlign(TextAlign.Center)
