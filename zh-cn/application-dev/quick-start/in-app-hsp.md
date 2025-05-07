@@ -17,7 +17,8 @@ HSP（Harmony Shared Package）是动态共享包，可以包含代码、C++库�
 ## 约束限制
 
 - HSP不支持在设备上单独安装/运行，需要与依赖该HSP的HAP一起安装/运行。HSP的版本号必须与HAP版本号一致。
-- HSP不支持在配置文件中声明[ExtensionAbility](../application-models/extensionability-overview.md)组件，但支持在[配置文件中声明UIAbility](../application-models/uiability-overview.md#声明配置)（除入口ability外）组件。
+- HSP不支持在配置文件中声明[ExtensionAbility](../application-models/extensionability-overview.md)组件。
+- 从API version 14开始HSP支持在配置文件中声明[UIAbility](../application-models/uiability-overview.md#声明配置)组件，但不支持具有入口能力的UIAbility（即skill标签配置了entity.system.home和ohos.want.action.home）。API version 13及之前版本，不支持在配置文件中声明[UIAbility](../application-models/uiability-overview.md#声明配置)组件。
 - HSP可以依赖其他HAR或HSP，但不支持循环依赖，也不支持依赖传递。
 
 > **说明：**
