@@ -20,11 +20,11 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 
 
 ## 导入模块
-ArkTS1.1示例: 
+ArkTS1.1: 
 ```ts
 import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, UiDirection, MouseButton, UIElementInfo, UIEventObserver } from '@kit.TestKit';
 ```
-ArkTS1.2示例: 
+ArkTS1.2: 
 ```ts
 import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, UiDirection, MouseButton, UIElementInfo, UIEventObserver, loadAndSetupUiTest } from '@kit.TestKit';
 ```
@@ -1645,8 +1645,8 @@ ArkTS1.2: scrollSearch(on: On): Promise\<Component|null>
 
 | 类型                               | 说明                                  |
 | ---------------------------------- | ------------------------------------- |
-| ArkTS1.1:Promise\<[Component](#component9)> | 以Promise形式返回找到的目标控件对象。 |
-| ArkTS1.2:Promise\<[Component](#component9)\|null> | 以Promise形式返回找到的目标控件对象,<br> 或在未找到目标对象时以Promise形式返回null。 |
+| ArkTS1.1: Promise\<[Component](#component9)> | 以Promise形式返回找到的目标控件对象。 |
+| ArkTS1.2: Promise\<[Component](#component9)\|null> | 以Promise形式返回找到的目标控件对象,<br> 或在未找到目标对象时以Promise形式返回null。 |
 
 **错误码：**
 
@@ -2164,9 +2164,9 @@ async function demo() {
 
 ### findWindow<sup>9+</sup>
 
-ArkTS1.1:findWindow(filter: WindowFilter): Promise\<UiWindow>
+ArkTS1.1: findWindow(filter: WindowFilter): Promise\<UiWindow>
 
-ArkTS1.2:findWindow(filter: WindowFilter): Promise\<UiWindow|null>
+ArkTS1.2: findWindow(filter: WindowFilter): Promise\<UiWindow|null>
 
 通过指定窗口的属性来查找目标窗口。
 
@@ -2212,9 +2212,9 @@ async function demo() {
 
 ### waitForComponent<sup>9+</sup>
 
-ArkTS1.1:waitForComponent(on: On, time: number): Promise\<Component>
+ArkTS1.1: waitForComponent(on: On, time: number): Promise\<Component>
 
-ArkTS1.2:waitForComponent(on: On, time: number): Promise\<Component|null>
+ArkTS1.2: waitForComponent(on: On, time: number): Promise\<Component|null>
 
 在Driver对象中，在用户给定的时间内，持续查找满足控件属性要求的目标控件。
 
@@ -2233,8 +2233,8 @@ ArkTS1.2:waitForComponent(on: On, time: number): Promise\<Component|null>
 
 | 类型                              | 说明                              |
 | --------------------------------- | --------------------------------- |
-| ArkTS1.1:Promise\<[Component](#component9)> | 以Promise形式返回找到的控件对象。 |
-| ArkTS1.2:Promise\<[Component](#component9)\|null> | 以Promise形式返回找到的控件对象,<br> 或在未找到目标对象时以Promise形式返回null。 |
+| ArkTS1.1: Promise\<[Component](#component9)> | 以Promise形式返回找到的控件对象。 |
+| ArkTS1.2: Promise\<[Component](#component9)\|null> | 以Promise形式返回找到的控件对象,<br> 或在未找到目标对象时以Promise形式返回null。 |
 
 **错误码：**
 
