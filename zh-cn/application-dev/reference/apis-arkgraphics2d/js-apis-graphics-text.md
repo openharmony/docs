@@ -1418,6 +1418,57 @@ getLineMetrics(lineNumber: number): LineMetrics | undefined
 let lineMetrics =  paragraph.getLineMetrics(0);
 ```
 
+### updateColor<sup>20+</sup>
+
+updateColor(color: common2D.Color): void;
+
+更新文本段落的颜色。需要在layout接口后使用，并且更新的是整个文本段落的颜色。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型                                                  | 必填 | 说明                    |
+| ------ | ---------------------------------------------------- | ---- | ---------------------- |
+| color  | [common2D.Color](js-apis-graphics-common2D.md#color) | 是   | 更新后的字体色。|
+
+**示例：**
+
+```ts
+paragraph.layoutSync(100);
+paragraph.updateColor(color: { alpha: 255, red: 255, green: 0, blue: 0 });
+let canvas = new drawing.Canvas(pixelMap);
+paragraph.paint(canvas, 0, 0);
+```
+
+### updateDecoration<sup>20+</sup>
+
+updateDecoration(decoration: Decoration): void;
+
+更新文本段落的装饰线。需要在layout接口后使用，并且更新的是整个文本段落的装饰线。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型                                                  | 必填 | 说明                    |
+| ------ | ---------------------------------------------------- | ---- | ---------------------- |
+| decoration | [Decoration](#decoration)                        | 是 | 更新后的装饰线。|
+
+**示例：**
+
+```ts
+paragraph.layoutSync(100);
+paragraph.updateDecoration({
+  textDecoration: text.TextDecorationType.OVERLINE,
+  color: { alpha: 255, red: 255, green: 0, blue: 0 },
+  decorationStyle: text.TextDecorationStyle.WAVY,
+  decorationThicknessScale: 2.0,
+});
+let canvas = new drawing.Canvas(pixelMap);
+paragraph.paint(canvas, 0, 0);
+```
+
 ## LineTypeset<sup>18+</sup>
 
 保存着文本内容以及样式的载体，可以用于计算单行排版信息。
