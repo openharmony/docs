@@ -421,7 +421,7 @@ import { window } from '@kit.ArkUI';
 | 名称                | 值   | 说明                                                         |
 | ------------------- | ---- | ------------------------------------------------------------ |
 | LINEAR              | 0    | 表示动画从头到尾的速度都是相同的。<br />使用该曲线类型时[WindowAnimationConfig](#windowanimationconfig20)中duration必填。<br />使用该曲线类型时[WindowAnimationConfig](#windowanimationconfig20)中param选填，且不生效。 |
-| INTERPOLATINGSPRING | 1    | 表示插值器弹簧曲线，一条从0到1的动画曲线，实际动画值根据曲线进行插值计算。动画时间由曲线参数决定，不受[WindowAnimationConfig](#windowanimationconfig20)中的duration参数控制。<br />使用该曲线类型时[WindowAnimationConfig](#windowanimationconfig20)中duration选填且不生效。 |
+| INTERPOLATION_SPRING | 1    | 表示插值器弹簧曲线，一条从0到1的动画曲线，实际动画值根据曲线进行插值计算。动画时间由曲线参数决定，不受[WindowAnimationConfig](#windowanimationconfig20)中的duration参数控制。<br />使用该曲线类型时[WindowAnimationConfig](#windowanimationconfig20)中duration选填且不生效。 |
 
 ## WindowAnimationConfig<sup>20+</sup>
 
@@ -3010,8 +3010,8 @@ setWindowTransitionAnimation(transitionType: WindowTransitionType, animation: Tr
 
 | 参数名         | 类型                                            | 必填 | 说明                                   |
 | -------------- | ----------------------------------------------- | ---- | -------------------------------------- |
-| transitionType | [WindowTransitionType](#WindowTranistionType20) | 是   | 本次转场动画场景。当前只支持销毁场景。 |
-| animation      | [TransitionAnimation](#TransitionAnimation20)   | 是   | 本次转场动画配置。                     |
+| transitionType | [WindowTransitionType](#windowtransitiontype20) | 是   | 本次转场动画场景。当前只支持销毁场景。 |
+| animation      | [TransitionAnimation](#transitionanimation20)   | 是   | 本次转场动画配置。                     |
 
 **返回值：**
 
@@ -3074,13 +3074,13 @@ getWindowTransitionAnimation(transitionType: WindowTransitionType): TransitionAn
 
 | 参数名         | 类型                                            | 必填 | 说明                                   |
 | -------------- | ----------------------------------------------- | ---- | -------------------------------------- |
-| transitionType | [WindowTransitionType](#WindowTranistionType20) | 是   | 本次转场动画场景。当前只支持销毁场景。 |
+| transitionType | [WindowTransitionType](#windowtransitiontype20) | 是   | 本次转场动画场景。当前只支持销毁场景。 |
 
 **返回值：**
 
 | 类型                                          | 说明                       |
 | --------------------------------------------- | -------------------------- |
-| [TransitionAnimation](#TransitionAnimation20) \| undefined | 对应场景下的转场动画配置。 当未使用过[setWindowTransitionAnimation](#setWindowTransitionAnimation20)接口时，返回undefined。|
+| [TransitionAnimation](#transitionanimation20) \| undefined | 对应场景下的转场动画配置。 当未使用过[setWindowTransitionAnimation](#setwindowtransitionanimation20)接口时，返回undefined。|
 
 **错误码：**
 
