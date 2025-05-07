@@ -7951,25 +7951,6 @@ if(store != undefined) {
 }
 ```
 
-**示例2：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let cryptoParam: relationalStore.CryptoParam = {
-    encryptionKey: new Uint8Array([6, 5, 4, 3, 2, 1]),
-};
-
-if(store != undefined) {
-  try {
-    (store as relationalStore.RdbStore).rekey(cryptoParam);
-    console.info(`rekey is successful`);
-  } catch (err) {
-    console.error(`rekey is failed, code is ${err.code},message is ${err.message}`);
-  }
-}
-```
-
 ## ResultSet
 
 提供通过查询数据库生成的数据库结果集的访问方法。结果集是指用户调用关系型数据库查询接口之后返回的结果集合，提供了多种灵活的数据访问方式，以便用户获取各项数据。
