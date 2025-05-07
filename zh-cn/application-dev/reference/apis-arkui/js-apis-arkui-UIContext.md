@@ -1266,7 +1266,7 @@ getFilteredInspectorTree(filters?: Array\<string\>): string
 
 | 参数名  | 类型            | 必填 | 说明                                                         |
 | ------- | --------------- | ---- | ------------------------------------------------------------ |
-| filters | Array\<string\> | 否   | 需要获取的组件属性的过滤列表。目前仅支持过滤字段：<br/>"id"：组件唯一标识。<br/>"src"：资源来源。 <br/>"content"：元素、组件或对象所包含的信息或数据。<br/>"editable"：是否可编辑。<br/>"scrollable"：是否可滚动。<br/>"selectable"：是否可选择。<br/>"focusable"：是否可聚焦。<br/>"focused"：是否已聚焦。<br/>"isLayoutInspector"：是否显示自定义组件的属性。<br/>其余字段仅供测试场景使用。 |
+| filters | Array\<string\> | 否   | 需要获取的组件属性的过滤列表。目前仅支持过滤字段：<br/>"id"：组件唯一标识。<br/>"src"：资源来源。 <br/>"content"：元素、组件或对象所包含的信息或数据。<br/>"editable"：是否可编辑。<br/>"scrollable"：是否可滚动。<br/>"selectable"：是否可选择。<br/>"focusable"：是否可聚焦。<br/>"focused"：是否已聚焦。<br/>从API version 20开始，支持该过滤字段：<br/>"isLayoutInspector"：是否显示自定义组件的属性。<br/>其余字段仅供测试场景使用。 |
 
 **返回值：** 
 
@@ -1340,7 +1340,7 @@ InsTree ---| type: Button, ID: 16
 InsTree ---| type: Button, ID: 18
 ```
 
-当传入"isLayoutInspector"过滤字段时，返回的JSON字符串结构新增外层结构"type"与"content"，其中"content"包含未增加该字段时的原有JSON字符串结构；同时，返回值结构中增添自定义组件。返回的JSON字符串结构如下：
+从API version 20开始，当传入"isLayoutInspector"过滤字段时，返回的JSON字符串结构新增外层结构"type"与"content"，其中"content"包含未增加该字段时的原有JSON字符串结构；同时，返回值结构中增添自定义组件。返回的JSON字符串结构如下：
 
 <!--code_no_check-->
 ```ts
