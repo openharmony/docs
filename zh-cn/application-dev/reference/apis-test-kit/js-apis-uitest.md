@@ -1676,7 +1676,7 @@ ArkTS1.1:
 
 ArkTS1.2: 
 | 类型                               | 说明                                  |
-| Promise\<[Component](#component9)\|null> | 以Promise形式返回找到的目标控件对象，或在未找到目标对象时以Promise形式返回null。 |
+| Promise\<[Component](#component9)\|null> | 以Promise形式返回找到的目标控件对象，在未找到目标对象时以Promise形式返回null。 |
 
 **错误码：**
 
@@ -1734,7 +1734,7 @@ ArkTS1.1:
 
 ArkTS1.2: 
 | 类型                               | 说明                                  |
-| Promise\<[Component](#component9)\|null> | 以Promise形式返回找到的目标控件对象，或在未找到目标对象时以Promise形式返回null。 |
+| Promise\<[Component](#component9)\|null> | 以Promise形式返回找到的目标控件对象，在未找到目标对象时以Promise形式返回null。 |
 
 **错误码：**
 
@@ -2135,7 +2135,7 @@ ArkTS1.1:
 
 ArkTS1.2: 
 | 类型                               | 说明                                  |
-| Promise\<[Component](#component9)\|null> | 以Promise形式返回找到的目标控件对象，或在未找到目标对象时以Promise形式返回null。 |
+| Promise\<[Component](#component9)\|null> | 以Promise形式返回找到的目标控件对象，在未找到目标对象时以Promise形式返回null。 |
 
 **错误码：**
 
@@ -2186,7 +2186,7 @@ ArkTS1.1:
 
 ArkTS1.2: 
 | 类型                               | 说明                                  |
-| Promise\<Array\<[Component](#component9)>\|null\> | 以Promise形式返回找到的控件对象的列表, <br>或在未找到对象时以Promise形式返回null。 |
+| Promise\<Array\<[Component](#component9)>\|null\> | 以Promise形式返回找到的控件对象的列表, <br>在未找到对象时以Promise形式返回null。 |
 
 **错误码：**
 
@@ -2237,7 +2237,7 @@ ArkTS1.1:
 
 ArkTS1.2: 
 | 类型                               | 说明                                  |
-| Promise\<[UiWindow](#uiwindow9)\|null> | 以Promise形式返回找到的目标窗口对象，<br> 或在未找到目标窗口对象时以Promise形式返回null。 |
+| Promise\<[UiWindow](#uiwindow9)\|null> | 以Promise形式返回找到的目标窗口对象，<br> 在未找到目标窗口对象时以Promise形式返回null。 |
 
 
 **错误码：**
@@ -2290,7 +2290,7 @@ ArkTS1.1:
 
 ArkTS1.2: 
 | 类型                               | 说明                                  |
-| Promise\<[Component](#component9)\|null> | 以Promise形式返回找到的控件对象，<br> 或在未找到目标对象时以Promise形式返回null。 |
+| Promise\<[Component](#component9)\|null> | 以Promise形式返回找到的控件对象，<br> 在未找到目标对象时以Promise形式返回null。 |
 
 **错误码：**
 
