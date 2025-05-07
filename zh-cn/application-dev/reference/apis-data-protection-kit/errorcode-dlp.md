@@ -30,7 +30,7 @@ Invalid parameter.
 
 7. 包名为空。
 
-8. appinde小于0。
+8. appIndex小于0。
 
 9. userId小于0。
 
