@@ -35,7 +35,7 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 
 loadAndSetupUiTest(): void
 
-在测试启动前调用一次, 用于初始化测试环境。
+在测试启动前调用一次，用于初始化测试环境。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -169,7 +169,7 @@ export default function demo() {
 | bundleName           | string  | 是   | 否   | 窗口归属应用的包名。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | title                | string  | 是   | 否   | 窗口的标题信息。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | focused              | boolean | 是   | 否   | 窗口是否处于获焦状态，true：获焦状态，false：未获焦状态。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| actived(deprecated)  | boolean | 是   | 否   | 窗口是否正与用户进行交互，true：交互状态，false：未交互状态。<br>从API version 11开始，名称变更为active。                                                 |
+| actived(deprecated)  | boolean | 是   | 否   | 窗口是否正与用户进行交互，true：交互状态，false：未交互状态。<br>从API version 11开始，建议使用active替代。
 | active<sup>11+</sup> | boolean | 是   | 否   | 窗口是否正与用户进行交互，true：交互状态，false：未交互状态。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                     |
 
 ## UiDirection<sup>10+</sup>
@@ -1594,7 +1594,7 @@ inputText(text: string): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -1669,11 +1669,11 @@ ArkTS1.2: scrollSearch(on: On): Promise\<Component|null>
 | 类型                               | 说明                                  |
 | ---------------------------------- | ------------------------------------- |
 | ArkTS1.1: Promise\<[Component](#component9)> | 以Promise形式返回找到的目标控件对象。 |
-| ArkTS1.2: Promise\<[Component](#component9)\|null> | 以Promise形式返回找到的目标控件对象,<br> 或在未找到目标对象时以Promise形式返回null。 |
+| ArkTS1.2: Promise\<[Component](#component9)\|null> | 以Promise形式返回找到的目标控件对象，或在未找到目标对象时以Promise形式返回null。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -1716,18 +1716,18 @@ ArkTS1.2: scrollSearch(on: On, vertical?: boolean, offset?: number): Promise\<Co
 |------------------------| ---------- | ---- |-----------------------------------|
 | on                     | [On](#on9) | 是   | 目标控件的属性要求。                        |
 | vertical |    boolean | 否 | 默认为true，表示查找方向是纵向。false表示查找方向为横向。 |
-| offset   | number| 否 | 滑动起点/终点到组件边框的偏移, 默认80，单位：px，取值大于等于0。    |
+| offset   | number| 否 | 滑动起点/终点到组件边框的偏移， 默认80，单位：px，取值大于等于0。    |
 
 **返回值：**
 
 | 类型                               | 说明                                  |
 | ---------------------------------- | ------------------------------------- |
 | ArkTS1.1: Promise\<[Component](#component9)> | 以Promise形式返回找到的目标控件对象。 |
-| ArkTS1.2: Promise\<[Component](#component9)\|null> | 以Promise形式返回找到的目标控件对象,<br>或在未找到对象时以Promise形式返回null。 |
+| ArkTS1.2: Promise\<[Component](#component9)\|null> | 以Promise形式返回找到的目标控件对象，<br>或在未找到对象时以Promise形式返回null。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -1769,7 +1769,7 @@ scrollToTop(speed?: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -1808,7 +1808,7 @@ scrollToBottom(speed?: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -1849,7 +1849,7 @@ dragTo(target: Component): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -1889,7 +1889,7 @@ pinchOut(scale: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -1928,7 +1928,7 @@ pinchIn(scale: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2080,7 +2080,7 @@ Driver对象在给定的时间内延时。
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2120,11 +2120,11 @@ ArkTS1.2: findComponent(on: On): Promise\<Component\|null>
 | 类型                               | 说明                              |
 | ---------------------------------- | --------------------------------- |
 |ArkTS1.1: Promise\<[Component](#component9)> | 以Promise形式返回找到的控件对象。 |
-|ArkTS1.2: Promise\<[Component](#component9)\|null> | 以Promise形式返回找到的控件对象,<br>或在未找到对象时以Promise形式返回null。 |
+|ArkTS1.2: Promise\<[Component](#component9)\|null> | 以Promise形式返回找到的控件对象，<br>或在未找到对象时以Promise形式返回null。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2171,7 +2171,7 @@ ArkTS1.2: findComponents(on: On): Promise\<Array\<Component>\|null>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2219,7 +2219,7 @@ ArkTS1.2: findWindow(filter: WindowFilter): Promise\<UiWindow|null>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2263,11 +2263,11 @@ ArkTS1.2: waitForComponent(on: On, time: number): Promise\<Component|null>
 | 类型                              | 说明                              |
 | --------------------------------- | --------------------------------- |
 | ArkTS1.1: Promise\<[Component](#component9)> | 以Promise形式返回找到的控件对象。 |
-| ArkTS1.2: Promise\<[Component](#component9)\|null> | 以Promise形式返回找到的控件对象,<br> 或在未找到目标对象时以Promise形式返回null。 |
+| ArkTS1.2: Promise\<[Component](#component9)\|null> | 以Promise形式返回找到的控件对象，<br> 或在未找到目标对象时以Promise形式返回null。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2305,7 +2305,7 @@ assertComponentExist(on: On): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2369,7 +2369,7 @@ Driver对象采取如下操作：传入key值实现模拟点击对应按键的�
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2406,7 +2406,7 @@ Driver对象通过给定的key值，找到对应组合键并点击。例如，Ke
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2443,7 +2443,7 @@ Driver对象采取如下操作：在目标坐标点单击。
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2479,7 +2479,7 @@ Driver对象采取如下操作：在目标坐标点双击。
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2515,7 +2515,7 @@ Driver对象采取如下操作：在目标坐标点长按。
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2554,7 +2554,7 @@ Driver对象采取如下操作：从起始坐标点滑向目的坐标点。
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2567,7 +2567,7 @@ Driver对象采取如下操作：从起始坐标点滑向目的坐标点。
 import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  await driver.swipe(100,100,200,200,600);
+  await driver.swipe(100, 100, 200, 200, 600);
 }
 ```
 
@@ -2597,7 +2597,7 @@ Driver对象采取如下操作：从起始坐标点拖拽至目的坐标点。
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2610,7 +2610,7 @@ Driver对象采取如下操作：从起始坐标点拖拽至目的坐标点。
 import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  await driver.drag(100,100,200,200,600);
+  await driver.drag(100, 100, 200, 200, 600);
 }
 ```
 
@@ -2638,7 +2638,7 @@ Driver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的�
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2677,7 +2677,7 @@ setDisplayRotation(rotation: DisplayRotation): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2750,7 +2750,7 @@ setDisplayRotationEnabled(enabled: boolean): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2921,7 +2921,7 @@ waitForIdle(idleTime: number, timeout: number): Promise\<boolean>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2959,7 +2959,7 @@ fling(from: Point, to: Point, stepLen: number, speed: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2972,7 +2972,7 @@ fling(from: Point, to: Point, stepLen: number, speed: number): Promise\<void>
 import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  await driver.fling({x: 500, y: 480},{x: 450, y: 480},5,600);
+  await driver.fling({x: 500, y: 480},{x: 450, y: 480}, 5, 600);
 }
 ```
 
@@ -3001,7 +3001,7 @@ injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<bool
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -3014,17 +3014,17 @@ injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<bool
 import { Driver, PointerMatrix } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let pointers: PointerMatrix = PointerMatrix.create(2,5);
-  pointers.setPoint(0,0,{x:250,y:480});
-  pointers.setPoint(0,1,{x:250,y:440});
-  pointers.setPoint(0,2,{x:250,y:400});
-  pointers.setPoint(0,3,{x:250,y:360});
-  pointers.setPoint(0,4,{x:250,y:320});
-  pointers.setPoint(1,0,{x:250,y:480});
-  pointers.setPoint(1,1,{x:250,y:440});
-  pointers.setPoint(1,2,{x:250,y:400});
-  pointers.setPoint(1,3,{x:250,y:360});
-  pointers.setPoint(1,4,{x:250,y:320});
+  let pointers: PointerMatrix = PointerMatrix.create(2, 5);
+  pointers.setPoint(0, 0, {x:250, y:480});
+  pointers.setPoint(0, 1, {x:250, y:440});
+  pointers.setPoint(0, 2, {x:250, y:400});
+  pointers.setPoint(0, 3, {x:250, y:360});
+  pointers.setPoint(0, 4, {x:250, y:320});
+  pointers.setPoint(1, 0, {x:250, y:480});
+  pointers.setPoint(1, 1, {x:250, y:440});
+  pointers.setPoint(1, 2, {x:250, y:400});
+  pointers.setPoint(1, 3, {x:250, y:360});
+  pointers.setPoint(1, 4, {x:250, y:320});
   await driver.injectMultiPointerAction(pointers);
 }
 ```
@@ -3048,7 +3048,7 @@ fling(direction: UiDirection, speed: number): Promise\<void>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3090,7 +3090,7 @@ screenCapture(savePath: string, rect?: Rect): Promise\<boolean>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3128,7 +3128,7 @@ mouseClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise\
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3167,7 +3167,7 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): P
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3202,7 +3202,7 @@ mouseMoveTo(p: Point): Promise\<void>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3276,7 +3276,7 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number, sp
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3289,7 +3289,7 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number, sp
 import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  await driver.mouseScroll({x:360, y:640}, true, 30, 2072,20);
+  await driver.mouseScroll({x:360, y:640}, true, 30, 2072, 20);
 }
 ```
 
@@ -3314,7 +3314,7 @@ mouseDoubleClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Pr
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3352,7 +3352,7 @@ mouseLongClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Prom
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3389,7 +3389,7 @@ mouseMoveWithTrack(from: Point, to: Point, speed?: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3402,7 +3402,7 @@ mouseMoveWithTrack(from: Point, to: Point, speed?: number): Promise\<void>
 import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  await driver.mouseMoveWithTrack({x:100, y:100},{x:200, y:200},600);
+  await driver.mouseMoveWithTrack({x:100, y:100}, {x:200, y:200}, 600);
 }
 ```
 
@@ -3430,7 +3430,7 @@ mouseDrag(from: Point, to: Point, speed?: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3443,7 +3443,7 @@ mouseDrag(from: Point, to: Point, speed?: number): Promise\<void>
 import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  await driver.mouseDrag({x:100, y:100},{x:200, y:200},600);
+  await driver.mouseDrag({x:100, y:100},{x:200, y:200}, 600);
 }
 ```
 
@@ -3466,7 +3466,7 @@ inputText(p: Point, text: string): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3517,7 +3517,7 @@ touchPadMultiFingerSwipe(fingers: number, direction: UiDirection, options?: Touc
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3559,7 +3559,7 @@ penClick(point: Point): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3601,7 +3601,7 @@ penLongClick(point: Point, pressure?: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3643,7 +3643,7 @@ penDoubleClick(point: Point): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3687,7 +3687,7 @@ penSwipe(startPoint: Point, endPoint: Point, speed?: number, pressure?: number):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3731,7 +3731,7 @@ injectPenPointerAction(pointers: PointerMatrix, speed?: number, pressure?: numbe
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3744,7 +3744,7 @@ injectPenPointerAction(pointers: PointerMatrix, speed?: number, pressure?: numbe
 import { Driver, PointerMatrix } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let pointer = PointerMatrix.create(1,8);
+  let pointer = PointerMatrix.create(1, 8);
   for (let step = 0; step < 8; step++) {
     pointer.setPoint(0, step, {x: 500, y: 1100 - 100 *step});
   }
@@ -3770,8 +3770,8 @@ static create(fingers: number, steps: number): PointerMatrix
 
 | 参数名  | 类型   | 必填 | 说明                                       |
 | ------- | ------ | ---- | ------------------------------------------ |
-| fingers | number | 是   | 多指操作中注入的手指数，取值范围：[1,10]。 |
-| steps   | number | 是   | 每根手指操作的步骤数，取值范围：[1,1000]。 |
+| fingers | number | 是   | 多指操作中注入的手指数，取值范围：[1, 10]。 |
+| steps   | number | 是   | 每根手指操作的步骤数，取值范围：[1, 1000]。 |
 
 **返回值：**
 
@@ -3792,7 +3792,7 @@ static create(fingers: number, steps: number): PointerMatrix
 ```ts
 import { PointerMatrix } from '@kit.TestKit';
 async function demo() {
-  let pointerMatrix: PointerMatrix = PointerMatrix.create(2,3);
+  let pointerMatrix: PointerMatrix = PointerMatrix.create(2, 3);
 }
 ```
 
@@ -3827,17 +3827,17 @@ setPoint(finger: number, step: number, point: Point): void
 ```ts
 import { PointerMatrix } from '@kit.TestKit';
 async function demo() {
-  let pointers: PointerMatrix = PointerMatrix.create(2,5);
-  pointers.setPoint(0,0,{x:250,y:480});
-  pointers.setPoint(0,1,{x:250,y:440});
-  pointers.setPoint(0,2,{x:250,y:400});
-  pointers.setPoint(0,3,{x:250,y:360});
-  pointers.setPoint(0,4,{x:250,y:320});
-  pointers.setPoint(1,0,{x:250,y:480});
-  pointers.setPoint(1,1,{x:250,y:440});
-  pointers.setPoint(1,2,{x:250,y:400});
-  pointers.setPoint(1,3,{x:250,y:360});
-  pointers.setPoint(1,4,{x:250,y:320});
+  let pointers: PointerMatrix = PointerMatrix.create(2, 5);
+  pointers.setPoint(0, 0, {x:250, y:480});
+  pointers.setPoint(0, 1, {x:250, y:440});
+  pointers.setPoint(0, 2, {x:250, y:400});
+  pointers.setPoint(0, 3, {x:250, y:360});
+  pointers.setPoint(0, 4, {x:250, y:320});
+  pointers.setPoint(1, 0, {x:250, y:480});
+  pointers.setPoint(1, 1, {x:250, y:440});
+  pointers.setPoint(1, 2, {x:250, y:400});
+  pointers.setPoint(1, 3, {x:250, y:360});
+  pointers.setPoint(1, 4, {x:250, y:320});
 }
 ```
 
@@ -4126,7 +4126,7 @@ moveTo(x: number, y: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -4168,7 +4168,7 @@ resize(wide: number, height: number, direction: ResizeDirection): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -5443,7 +5443,7 @@ UiDriver对象采取如下操作：在目标坐标点单击。
 import { UiDriver } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
-  await driver.click(100,100);
+  await driver.click(100, 100);
 }
 ```
 
@@ -5470,7 +5470,7 @@ UiDriver对象采取如下操作：在目标坐标点双击。
 import { UiDriver } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
-  await driver.doubleClick(100,100);
+  await driver.doubleClick(100, 100);
 }
 ```
 
@@ -5497,7 +5497,7 @@ UiDriver对象采取如下操作：在目标坐标点长按下鼠标左键。
 import { UiDriver } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
-  await driver.longClick(100,100);
+  await driver.longClick(100, 100);
 }
 ```
 
@@ -5526,7 +5526,7 @@ UiDriver对象采取如下操作：从给出的起始坐标点滑向给出的目
 import { UiDriver } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
-  await driver.swipe(100,100,200,200);
+  await driver.swipe(100, 100, 200, 200);
 }
 ```
 
