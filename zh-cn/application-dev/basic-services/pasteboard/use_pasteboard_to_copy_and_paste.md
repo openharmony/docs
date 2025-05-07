@@ -92,9 +92,8 @@ export default class EntryAbility extends UIAbility {
 
 ### 示例代码
 ```ts
-import { pasteboard } from '@kit.BasicServicesKit';
+import {BusinessError, pasteboard} from '@kit.BasicServicesKit';
 import { unifiedDataChannel, uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 // 构造一条PlainText数据
 let plainText : uniformDataStruct.PlainText = {
@@ -122,7 +121,7 @@ systemPasteboard.getUnifiedData().then((data) => {
     for (let j = 0; j < records.length; j++) {
         if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
             let text = records[j].getValue() as uniformDataStruct.PlainText;
-            console.info(${j + 1}.${text.textContent});
+            console.info(`${j + 1}.${text.textContent}`);
         }
     }
 }).catch((err: BusinessError) => {
