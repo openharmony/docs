@@ -6,7 +6,7 @@
 >
 > 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](../js-apis-arkui-UIContext.md#uicontext)说明。
+> 本模块功能依赖UI的执行上下文，不可在[UI上下文不明确](../../../ui/arkts-global-interface.md)的地方使用，参见[UIContext](../js-apis-arkui-UIContext.md#uicontext)说明。
 >
 > 该组件不支持在Wearable设备上使用。
 
@@ -95,7 +95,7 @@ static show(options?: TimePickerDialogOptions)
 @Entry
 @Component
 struct TimePickerDialogExample {
-  private selectTime: Date = new Date('2020-12-25T08:30:00')
+  private selectTime: Date = new Date('2020-12-25T08:30:00');
 
   build() {
     Column() {
@@ -110,29 +110,29 @@ struct TimePickerDialogExample {
             onAccept: (value: TimePickerResult) => {
               // 设置selectTime为按下确定按钮时的时间，这样当弹窗再次弹出时显示选中的为上一次确定的时间
               if (value.hour != undefined && value.minute != undefined) {
-                this.selectTime.setHours(value.hour, value.minute)
-                console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
+                this.selectTime.setHours(value.hour, value.minute);
+                console.info("TimePickerDialog:onAccept()" + JSON.stringify(value));
               }
             },
             onCancel: () => {
-              console.info("TimePickerDialog:onCancel()")
+              console.info("TimePickerDialog:onCancel()");
             },
             onChange: (value: TimePickerResult) => {
-              console.info("TimePickerDialog:onChange()" + JSON.stringify(value))
+              console.info("TimePickerDialog:onChange()" + JSON.stringify(value));
             },
             onDidAppear: () => {
-              console.info("TimePickerDialog:onDidAppear()")
+              console.info("TimePickerDialog:onDidAppear()");
             },
             onDidDisappear: () => {
-              console.info("TimePickerDialog:onDidDisappear()")
+              console.info("TimePickerDialog:onDidDisappear()");
             },
             onWillAppear: () => {
-              console.info("TimePickerDialog:onWillAppear()")
+              console.info("TimePickerDialog:onWillAppear()");
             },
             onWillDisappear: () => {
-              console.info("TimePickerDialog:onWillDisappear()")
+              console.info("TimePickerDialog:onWillDisappear()");
             }
-          })
+          });
         })
       Button("TimePickerDialog 24小时制")
         .margin(20)
@@ -143,8 +143,8 @@ struct TimePickerDialogExample {
             useMilitaryTime: true,
             onAccept: (value: TimePickerResult) => {
               if (value.hour != undefined && value.minute != undefined) {
-                this.selectTime.setHours(value.hour, value.minute)
-                console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
+                this.selectTime.setHours(value.hour, value.minute);
+                console.info("TimePickerDialog:onAccept()" + JSON.stringify(value));
               }
             },
           })
@@ -166,7 +166,7 @@ struct TimePickerDialogExample {
 @Entry
 @Component
 struct TimePickerDialogExample {
-  private selectTime: Date = new Date('2020-12-25T08:30:00')
+  private selectTime: Date = new Date('2020-12-25T08:30:00');
 
   build() {
     Column() {
@@ -203,11 +203,11 @@ struct TimePickerDialogExample {
             },
             onAccept: (value: TimePickerResult) => {
               if (value.hour != undefined && value.minute != undefined) {
-                this.selectTime.setHours(value.hour, value.minute)
-                console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
+                this.selectTime.setHours(value.hour, value.minute);
+                console.info("TimePickerDialog:onAccept()" + JSON.stringify(value));
               }
             }
-          })
+          });
         })
     }.width('100%')
   }
@@ -263,7 +263,7 @@ struct TimePickerDialogExample {
             },
             enableHoverMode: true,
             hoverModeArea: HoverModeAreaType.TOP_SCREEN
-          })
+          });
         })
     }.width('100%')
   }
@@ -281,7 +281,7 @@ struct TimePickerDialogExample {
 @Entry
 @Component
 struct TimePickerDialogExample {
-  private selectTime: Date = new Date('2020-12-25T08:30:00')
+  private selectTime: Date = new Date('2020-12-25T08:30:00');
 
   build() {
     Column() {
@@ -294,11 +294,11 @@ struct TimePickerDialogExample {
             onAccept: (value: TimePickerResult) => {
               // 设置selectTime为按下确定按钮时的时间，这样当弹窗再次弹出时显示选中的为上一次确定的时间
               if (value.hour != undefined && value.minute != undefined) {
-                this.selectTime.setHours(value.hour, value.minute)
-                console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
+                this.selectTime.setHours(value.hour, value.minute);
+                console.info("TimePickerDialog:onAccept()" + JSON.stringify(value));
               }
             }
-          })
+          });
         })
     }.width('100%')
   }
@@ -316,7 +316,7 @@ struct TimePickerDialogExample {
 @Entry
 @Component
 struct TimePickerDialogExample {
-  private selectTime: Date = new Date('2020-12-25T08:30:00')
+  private selectTime: Date = new Date('2020-12-25T08:30:00');
 
   build() {
     Column() {
@@ -328,11 +328,11 @@ struct TimePickerDialogExample {
             onAccept: (value: TimePickerResult) => {
               // 设置selectTime为按下确定按钮时的时间，这样当弹窗再次弹出时显示选中的为上一次确定的时间
               if (value.hour != undefined && value.minute != undefined) {
-                this.selectTime.setHours(value.hour, value.minute)
-                console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
+                this.selectTime.setHours(value.hour, value.minute);
+                console.info("TimePickerDialog:onAccept()" + JSON.stringify(value));
               }
             }
-          })
+          });
         })
     }.width('100%')
   }
@@ -350,7 +350,7 @@ struct TimePickerDialogExample {
 @Entry
 @Component
 struct TimePickerDialogExample {
-  private selectTime: Date = new Date('2020-12-25T08:30:00')
+  private selectTime: Date = new Date('2020-12-25T08:30:00');
 
   build() {
     Column() {
@@ -364,11 +364,11 @@ struct TimePickerDialogExample {
             onAccept: (value: TimePickerResult) => {
               // 设置selectTime为按下确定按钮时的时间，这样当弹窗再次弹出时显示选中的为上一次确定的时间
               if (value.hour != undefined && value.minute != undefined) {
-                this.selectTime.setHours(value.hour, value.minute)
-                console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
+                this.selectTime.setHours(value.hour, value.minute);
+                console.info("TimePickerDialog:onAccept()" + JSON.stringify(value));
               }
             }
-          })
+          });
         })
     }.width('100%')
   }
@@ -385,7 +385,7 @@ struct TimePickerDialogExample {
 @Entry
 @Component
 struct TimePickerDialogExample {
-  private selectTime: Date = new Date('2022-07-22T08:50:00')
+  private selectTime: Date = new Date('2022-07-22T08:50:00');
 
   build() {
     Column() {
@@ -400,11 +400,11 @@ struct TimePickerDialogExample {
             onAccept: (value: TimePickerResult) => {
               // 设置selectTime为按下确定按钮时的时间，这样当弹窗再次弹出时显示选中的为上一次确定的时间
               if (value.hour != undefined && value.minute != undefined) {
-                this.selectTime.setHours(value.hour, value.minute)
-                console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
+                this.selectTime.setHours(value.hour, value.minute);
+                console.info("TimePickerDialog:onAccept()" + JSON.stringify(value));
               }
             }
-          })
+          });
         })
     }.width('100%')
   }
@@ -421,7 +421,7 @@ struct TimePickerDialogExample {
 @Entry
 @Component
 struct TimePickerDialogExample {
-  private selectTime: Date = new Date('2022-07-22T08:50:00')
+  private selectTime: Date = new Date('2022-07-22T08:50:00');
 
   build() {
     Column() {
@@ -436,11 +436,11 @@ struct TimePickerDialogExample {
             onAccept: (value: TimePickerResult) => {
               // 设置selectTime为按下确定按钮时的时间，这样当弹窗再次弹出时显示选中的为上一次确定的时间
               if (value.hour != undefined && value.minute != undefined) {
-                this.selectTime.setHours(value.hour, value.minute)
-                console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
+                this.selectTime.setHours(value.hour, value.minute);
+                console.info("TimePickerDialog:onAccept()" + JSON.stringify(value));
               }
             }
-          })
+          });
         })
     }.width('100%')
   }
@@ -457,7 +457,7 @@ struct TimePickerDialogExample {
 @Entry
 @Component
 struct TimePickerDialogExample {
-  private selectTime: Date = new Date('2022-07-22T08:00:00')
+  private selectTime: Date = new Date('2022-07-22T08:00:00');
 
   build() {
     Column() {
@@ -471,11 +471,11 @@ struct TimePickerDialogExample {
             onAccept: (value: TimePickerResult) => {
               // 设置selectTime为按下确定按钮时的时间，这样当弹窗再次弹出时显示选中的为上一次确定的时间
               if (value.hour != undefined && value.minute != undefined) {
-                this.selectTime.setHours(value.hour, value.minute)
-                console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
+                this.selectTime.setHours(value.hour, value.minute);
+                console.info("TimePickerDialog:onAccept()" + JSON.stringify(value));
               }
             }
-          })
+          });
         })
     }.width('100%')
   }

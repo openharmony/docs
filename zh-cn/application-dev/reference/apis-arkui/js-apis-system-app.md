@@ -9,7 +9,7 @@
 
 
 ```ts
-import app, { AppResponse } from '@system.app'
+import app, { AppResponse } from '@system.app';
 ```
 
 ## App
@@ -35,11 +35,11 @@ static getInfo(): AppResponse
 **示例：**
 
 ```ts
-import app, { AppResponse } from '@system.app'
+import app, { AppResponse } from '@system.app';
 export default class Info {
   getInfo() {
-    let info:AppResponse = app.getInfo()
-    console.log(JSON.stringify(info))
+    let info:AppResponse = app.getInfo();
+    console.log(JSON.stringify(info));
   }
 }
 ```
@@ -59,10 +59,10 @@ static terminate(): void
 **示例：**
 
 ```ts
-import app, { AppResponse } from '@system.app'
+import app, { AppResponse } from '@system.app';
 export default class TerM {
   terminate() {
-    app.terminate()
+    app.terminate();
   }
 }
 ```
@@ -90,18 +90,18 @@ setImageCacheCount、setImageRawDataCacheSize、和setImageFileCacheSize并不�
 
 ```ts
 // xxx.ets
-import app, { AppResponse } from '@system.app'
+import app, { AppResponse } from '@system.app';
 
 @Entry
 @Component
 struct Index {
   onPageShow() {
     // 设置解码后图片内存缓存上限为100张
-    app.setImageCacheCount(100) 
-    console.info('Application onPageShow')
+    app.setImageCacheCount(100);
+    console.info('Application onPageShow');
   }
   onDestroy() {
-    console.info('Application onDestroy')
+    console.info('Application onDestroy');
   }
 
   build() {
@@ -137,18 +137,18 @@ setImageRawDataCacheSize方法需要在@Entry标记的页面，[onPageShow](../a
 
 ```ts
 // xxx.ets
-import app, { AppResponse } from '@system.app'
+import app, { AppResponse } from '@system.app';
 
 @Entry
 @Component
 struct Index {
   onPageShow() {
     // 设置解码前图片数据内存缓存上限为100MB (100MB=100*1024*1024B=104857600B)
-    app.setImageRawDataCacheSize(104857600) 
-    console.info('Application onPageShow')
+    app.setImageRawDataCacheSize(104857600); 
+    console.info('Application onPageShow');
   }
   onDestroy() {
-    console.info('Application onDestroy')
+    console.info('Application onDestroy');
   }
 
   build() {
@@ -182,16 +182,16 @@ static setImageFileCacheSize(value: number): void
 
 ```ts
 // app.ets
-import app, { AppResponse } from '@system.app'
+import app, { AppResponse } from '@system.app';
 
 export default class OnC {
   onCreate() {
-    app.setImageFileCacheSize(209715200)
+    app.setImageFileCacheSize(209715200);
     // 设置图片文件数据缓存上限为200MB (200MB=200*1024*1024B=209715200B) 
-    console.info('Application onCreate')
+    console.info('Application onCreate');
   }
   onDestroy() {
-    console.info('Application onDestroy')
+    console.info('Application onDestroy');
   }
 }
 ```
@@ -229,12 +229,12 @@ static requestFullWindow(options?: RequestFullWindowOptions): void
 **示例：**
 
 ```ts
-import app, { AppResponse } from '@system.app'
+import app, { AppResponse } from '@system.app';
 export default class Req {
   requestFullWindow() {
     app.requestFullWindow({
       duration: 200
-    })
+    });
   }
 } 
 ```

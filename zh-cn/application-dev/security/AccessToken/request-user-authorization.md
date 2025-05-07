@@ -179,7 +179,7 @@
       @Component
       struct Index {
         aboutToAppear() {
-          const context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+          const context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
           reqPermissionsFromUser(permissions, context);
         }
       

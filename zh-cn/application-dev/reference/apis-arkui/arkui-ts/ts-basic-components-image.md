@@ -4,7 +4,7 @@ Image为图片组件，常用于在应用中显示图片。Image支持加载[Pix
 
 > **说明：**
 >
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > 使用快捷组合键对Image组件复制时，Image组件必须处于[获焦状态](../../../ui/arkts-common-events-focus-event.md#设置组件是否可获焦)。Image组件默认不获焦，需将[focusable](ts-universal-attributes-focus.md#focusable)属性设置为true，即可使用TAB键将焦点切换到组件上，再将[focusOnTouch](ts-universal-attributes-focus.md#focusontouch9)属性设置为true，即可实现点击获焦。
 >
@@ -121,7 +121,7 @@ alt(value:&nbsp;string&nbsp;|&nbsp;Resource &nbsp;|&nbsp;PixelMap)
 
 | 参数名 | 类型                                                     | 必填 | 说明                                                         |
 | ------ | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)&nbsp;\|&nbsp;[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)<sup>12+</sup> | 是   | 加载时显示的占位图，支持本地图片（png、jpg、bmp、svg、gif和heif类型）,支持[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)类型图片，不支持网络图片。<br/>默认值：null |
+| value  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)&nbsp;\|&nbsp;[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)<sup>12+</sup> | 是   | 加载时显示的占位图，支持本地图片（png、jpg、bmp、svg、gif和heif类型），支持[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)类型图片，不支持网络图片。<br/>默认值：null |
 
 ### objectFit
 
@@ -367,7 +367,7 @@ syncLoad(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false，fasle表示异步加载图片，true表示同步加载图片。 |
+| value  | boolean | 是   | 是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false，false表示异步加载图片，true表示同步加载图片。 |
 
 ### copyOption<sup>9+</sup>
 
@@ -887,7 +887,7 @@ struct ImageExample2 {
   @State pixelMapImg: PixelMap | undefined = undefined;
 
   aboutToAppear() {
-    this.requestImageUrl('https://www.example.com/xxx.png');// 请填写一个具体的网络图片地址
+    this.requestImageUrl('https://www.example.com/xxx.png'); // 请填写一个具体的网络图片地址
   }
 
   requestImageUrl(url: string) {
@@ -899,8 +899,8 @@ struct ImageExample2 {
         console.info(`request image success, size: ${imgData.byteLength}`);
         let imgSource: image.ImageSource = image.createImageSource(imgData);
         class sizeTmp {
-          height: number = 100
-          width: number = 100
+          height: number = 100;
+          width: number = 100;
         }
         let options: Record<string, number | boolean | sizeTmp> = {
           'alphaType': 0,
@@ -943,8 +943,8 @@ struct ImageExample3 {
   private imageOne: Resource = $r('app.media.earth');
   private imageTwo: Resource = $r('app.media.star');
   private imageThree: Resource = $r('app.media.moveStar');
-  @State src: Resource = this.imageOne
-  @State src2: Resource = this.imageThree
+  @State src: Resource = this.imageOne;
+  @State src2: Resource = this.imageThree;
   build(){
     Column(){
       // 为图片添加点击事件，点击完成后加载特定图片
@@ -952,7 +952,7 @@ struct ImageExample3 {
         .width(100)
         .height(100)
         .onClick(() => {
-          this.src = this.imageTwo
+          this.src = this.imageTwo;
         })
 
       // 当加载图片为SVG格式时
@@ -961,7 +961,7 @@ struct ImageExample3 {
         .height(100)
         .onFinish(() => {
           // SVG动效播放完成时加载另一张图片
-          this.src2 = this.imageOne
+          this.src2 = this.imageOne;
         })
     }.width('100%').height('100%')
   }
@@ -975,20 +975,20 @@ struct ImageExample3 {
 使用enableAnalyzer接口开启图像AI分析。
 
 ```ts
-import { image } from '@kit.ImageKit'
+import { image } from '@kit.ImageKit';
 
 @Entry
 @Component
 struct ImageExample4 {
-  @State imagePixelMap: image.PixelMap | undefined = undefined
-  private aiController: ImageAnalyzerController = new ImageAnalyzerController()
+  @State imagePixelMap: image.PixelMap | undefined = undefined;
+  private aiController: ImageAnalyzerController = new ImageAnalyzerController();
   private options: ImageAIOptions = {
     types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT],
     aiController: this.aiController
-  }
+  };
 
   async aboutToAppear() {
-    this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.app_icon'))
+    this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.app_icon'));
   }
 
   build() {
@@ -1002,7 +1002,7 @@ struct ImageExample4 {
         .width(80)
         .height(80)
         .onClick(() => {
-          this.aiController.getImageAnalyzerSupportTypes()
+          this.aiController.getImageAnalyzerSupportTypes();
         })
     }
   }
@@ -1011,13 +1011,13 @@ struct ImageExample4 {
       bundleName: resource.bundleName,
       moduleName: resource.moduleName,
       id: resource.id
-    })
-    let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength))
+    });
+    let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength));
     let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
-    })
-    await imageSource.release()
-    return createPixelMap
+    });
+    await imageSource.release();
+    return createPixelMap;
   }
 }
 ```
@@ -1032,10 +1032,10 @@ struct ImageExample4 {
 @Entry
 @Component
 struct Index {
-  @State top: number = 10
-  @State bottom: number = 10
-  @State left: number = 10
-  @State right: number = 10
+  @State top: number = 10;
+  @State bottom: number = 10;
+  @State left: number = 10;
+  @State right: number = 10;
 
   build() {
     Column({ space: 5 }) {
@@ -1063,22 +1063,22 @@ struct Index {
       Row() {
         Button("add top to " + this.top).fontSize(10)
           .onClick(() => {
-            this.top += 10
+            this.top += 10;
           })
         Button("add bottom to " + this.bottom).fontSize(10)
           .onClick(() => {
-            this.bottom += 10
+            this.bottom += 10;
           })
       }
 
       Row() {
         Button("add left to " + this.left).fontSize(10)
           .onClick(() => {
-            this.left += 10
+            this.left += 10;
           })
         Button("add right to " + this.right).fontSize(10)
           .onClick(() => {
-            this.right += 10
+            this.right += 10;
           })
       }
 
@@ -1095,17 +1095,17 @@ struct Index {
 使用矩形网格对象对图片进行拉伸。
 
 ```ts
-import { drawing } from '@kit.ArkGraphics2D'
+import { drawing } from '@kit.ArkGraphics2D';
 
 @Entry
 @Component
 struct drawingLatticeTest {
-  private xDivs: Array<number> = [1, 2, 200]
-  private yDivs: Array<number> = [1, 2, 200]
-  private fXCount: number = 3
-  private fYCount: number = 3
+  private xDivs: Array<number> = [1, 2, 200];
+  private yDivs: Array<number> = [1, 2, 200];
+  private fXCount: number = 3;
+  private fYCount: number = 3;
   private DrawingLatticeFirst: DrawingLattice =
-    drawing.Lattice.createImageLattice(this.xDivs, this.yDivs, this.fXCount, this.fYCount)
+    drawing.Lattice.createImageLattice(this.xDivs, this.yDivs, this.fXCount, this.fYCount);
 
   build() {
     Scroll() {
@@ -1139,8 +1139,8 @@ struct drawingLatticeTest {
 该示例通过[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)播放PixelMap数组动画。
 
 ```ts
-import {AnimationOptions, AnimatedDrawableDescriptor} from '@kit.ArkUI'
-import { image } from '@kit.ImageKit'
+import {AnimationOptions, AnimatedDrawableDescriptor} from '@kit.ArkUI';
+import { image } from '@kit.ImageKit';
 
 @Entry
 @Component
@@ -1160,7 +1160,7 @@ struct ImageExample {
         Image(this.animated)
           .width('500px').height('500px')
           .onFinish(() => {
-            console.info("finish")
+            console.info("finish");
           })
       }.height('50%')
       Row() {
@@ -1181,13 +1181,13 @@ struct ImageExample {
       bundleName: resource.bundleName,
       moduleName: resource.moduleName,
       id: resource.id
-    })
-    let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength))
+    });
+    let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength));
     let createPixelMap: Array<image.PixelMap> = await imageSource.createPixelMapList({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
-    })
-    await imageSource.release()
-    return createPixelMap
+    });
+    await imageSource.release();
+    return createPixelMap;
   }
 
   private async getPixmapFromMedia(resource: Resource) {
@@ -1195,20 +1195,20 @@ struct ImageExample {
       bundleName: resource.bundleName,
       moduleName: resource.moduleName,
       id: resource.id
-    })
-    let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength))
+    });
+    let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength));
     let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
-    })
-    await imageSource.release()
-    return createPixelMap
+    });
+    await imageSource.release();
+    return createPixelMap;
   }
 
   private async getPixelMaps() {
-    let Mypixelmaps:Array<PixelMap> = await this.getPixmapListFromMedia($r('app.media.mountain'))//添加图片
-    Mypixelmaps.push(await this.getPixmapFromMedia($r('app.media.sky')))
-    Mypixelmaps.push(await this.getPixmapFromMedia($r('app.media.clouds')))
-    Mypixelmaps.push(await this.getPixmapFromMedia($r('app.media.landscape')))
+    let Mypixelmaps:Array<PixelMap> = await this.getPixmapListFromMedia($r('app.media.mountain')); //添加图片
+    Mypixelmaps.push(await this.getPixmapFromMedia($r('app.media.sky')));
+    Mypixelmaps.push(await this.getPixmapFromMedia($r('app.media.clouds')));
+    Mypixelmaps.push(await this.getPixmapFromMedia($r('app.media.landscape')));
     return Mypixelmaps;
   }
 }
@@ -1228,13 +1228,13 @@ import { drawing, common2D } from '@kit.ArkGraphics2D';
 struct ImageExample3 {
   private imageOne: Resource = $r('app.media.1');
   private imageTwo: Resource = $r('app.media.2');
-  @State src: Resource = this.imageOne
-  @State src2: Resource = this.imageTwo
-  private ColorFilterMatrix: number[] = [1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0]
+  @State src: Resource = this.imageOne;
+  @State src2: Resource = this.imageTwo;
+  private ColorFilterMatrix: number[] = [1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0];
   private color: common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
-  @State DrawingColorFilterFirst: ColorFilter | undefined = undefined
-  @State DrawingColorFilterSecond: ColorFilter | undefined = undefined
-  @State DrawingColorFilterThird: ColorFilter | undefined = undefined
+  @State DrawingColorFilterFirst: ColorFilter | undefined = undefined;
+  @State DrawingColorFilterSecond: ColorFilter | undefined = undefined;
+  @State DrawingColorFilterThird: ColorFilter | undefined = undefined;
 
   build() {
     Column() {
@@ -1323,7 +1323,7 @@ struct ImageExample{
 @Component
 struct ImageContentExample {
   @State imageSrcIndex: number = 0;
-  @State imageSrcList: (ResourceStr | ImageContent)[] = [$r('app.media.app_icon'), ImageContent.EMPTY]
+  @State imageSrcList: (ResourceStr | ImageContent)[] = [$r('app.media.app_icon'), ImageContent.EMPTY];
 
   build() {
     Column({ space: 10 }) {
@@ -1333,7 +1333,7 @@ struct ImageContentExample {
       Button('点击切换Image的src')
         .padding(20)
         .onClick(() => {
-          this.imageSrcIndex = (this.imageSrcIndex + 1) % this.imageSrcList.length
+          this.imageSrcIndex = (this.imageSrcIndex + 1) % this.imageSrcList.length;
         })
     }.width('100%')
     .padding(20)
@@ -1460,7 +1460,7 @@ struct ImageExample11 {
 该示例通过[imageMatrix](#imagematrix15)和[objectFit](#objectfit)属性，为图片添加旋转和平移的效果。
 
 ```ts
-import { matrix4 } from '@kit.ArkUI'
+import { matrix4 } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -1689,7 +1689,7 @@ struct Index {
           // 动画过渡，切换亮度值
           this.getUIContext()?.animateTo({}, () => {
             this.bright = 1.0 - this.bright;
-          })
+          });
         })
     }
     .height('100%')

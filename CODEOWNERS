@@ -190,7 +190,7 @@ zh-cn/application-dev/ui/arkts-layout-development-media-query.md	@laigerendaqiu	
 zh-cn/application-dev/ui/arkts-layout-development-create-list.md	@yeyinglong_admin	@cc520bf	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/ui/arkts-layout-development-create-grid.md	@zcdqs	@cc520bf	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/ui/arkts-layout-development-create-looping.md	@yan-shuifeng	@cc520bf	@fredyuan0912	@HelloCrease
-zh-cn/application-dev/ui/arkts-common-components-button.md			@li-xinlei007	@HelloCrease @firminly
+zh-cn/application-dev/ui/arkts-common-components-button.md			@li-xinlei007	@HelloCrease @liyi0309
 zh-cn/application-dev/ui/arkts-common-components-radio-button.md	@houguobiao		@li-xinlei007	@HelloCrease
 zh-cn/application-dev/ui/arkts-common-components-switch.md			@li-xinlei007	@HelloCrease @houguobiao
 zh-cn/application-dev/ui/arkts-common-components-progress-indicator.md	@yeyinglong_admin	@cc520bf	@fredyuan0912	@HelloCrease
@@ -199,8 +199,8 @@ zh-cn/application-dev/ui/arkts-common-components-text-input.md	@crazyracing0726	
 zh-cn/application-dev/ui/arkts-common-components-custom-dialog.md			@li-xinlei007	@HelloCrease @houguobiao
 zh-cn/application-dev/ui/arkts-common-components-video-player.md	@keerecles	@ZhangYu-Home	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/ui/arkts-common-components-xcomponent.md	@keerecles	@ZhangYu-Home		@HelloCrease
-zh-cn/application-dev/ui/arkts-popup-and-menu-components-popup.md			@li-xinlei007	@HelloCrease @firminly
-zh-cn/application-dev/ui/arkts-popup-and-menu-components-uicontext-popup.md			@li-xinlei007	@HelloCrease @firminly
+zh-cn/application-dev/ui/arkts-popup-and-menu-components-popup.md			@li-xinlei007	@HelloCrease @liyi0309
+zh-cn/application-dev/ui/arkts-popup-and-menu-components-uicontext-popup.md			@li-xinlei007	@HelloCrease @liyi0309
 zh-cn/application-dev/ui/arkts-popup-and-menu-components-menu.md			@li-xinlei007	@HelloCrease @zhanghaibo0
 zh-cn/application-dev/ui/arkts-popup-and-menu-components-uicontext-menu.md			@li-xinlei007	@HelloCrease @zhanghaibo0
 zh-cn/application-dev/ui/arkts-popup-overview.md			@li-xinlei007	@HelloCrease @zhanghaibo0
@@ -268,7 +268,7 @@ zh-cn/application-dev/application-models/windowextensionability.md @zhangqiang18
 
 
 [开发-Arkweb]
-zh-cn/application-dev/web/ @bigpumpkin @HelloCrease @litao33 @GHiker
+zh-cn/application-dev/web/ @bigpumpkin @HelloCrease @patrickrubystar @GHiker
 
 [开发-Background Tasks Kit]
 zh-cn/application-dev/task-management/ @Brilliantry_Rui @zhouben25 @cooffee10 @cheng-shichang
@@ -658,7 +658,7 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-gesture-customize-judge.m
 
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md	@cc520bf	@yeyinglong_admin	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-blank.md	@laigerendaqiu	@fredyuan0912	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-button.md		@firminly	@li-xinlei007	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-button.md		@liyi0309	@li-xinlei007	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-calendarpicker.md	@jinweiliu	@lexiaoyao2	@li-xinlei007	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-checkbox.md		@houguobiao	@li-xinlei007	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-checkboxgroup.md		@houguobiao	@li-xinlei007	@HelloCrease
@@ -683,13 +683,13 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-patternl
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-progress.md	@ileft201	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-qrcode.md	@ileft201	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-radio.md		@houguobiao @li-xinlei007	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-rating.md		@firminly	@li-xinlei007	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-rating.md		@liyi0309	@li-xinlei007	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md		@vviinnoo24	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-richtext.md	@bigpumpkin @HelloCrease @litao33 @GHiker
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-richtext.md	@bigpumpkin @HelloCrease @patrickrubystar @GHiker
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md	@cc520bf	@yeyinglong_admin	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-search.md		@jyj-0306 @fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-select.md		@zhanghaibo0	@li-xinlei007	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-slider.md		@firminly	@li-xinlei007	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-slider.md		@liyi0309	@li-xinlei007	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-span.md	@jyj-0306	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-stepper.md	@raulnaruto_admin	@jiangdayuan	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-stepperitem.md	@raulnaruto_admin	@jiangdayuan	@fredyuan0912	@HelloCrease
@@ -775,7 +775,7 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Exceptio
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Filter.md    @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-GridObjectSortComponent.md    @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ProgressButton.md    @HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Popup.md   @firminly @li-xinlei007 @HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Popup.md   @liyi0309 @li-xinlei007 @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SegmentButton.md   @youzhi92 @fredyuan0912 @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SelectionMenu.md  @jyj-0306 @fredyuan0912 @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SelectTitleBar.md    @HelloCrease
@@ -879,10 +879,10 @@ zh-cn/application-dev/reference/apis-arkui/errorcode-display.md @ge-yafang @acha
 
 
 [API参考-ArkWeb]
-zh-cn/application-dev/reference/apis-arkweb/js-apis-webview.md @bigpumpkin @HelloCrease @litao33 @GHiker
-zh-cn/application-dev/reference/apis-arkweb/ts-basic-components-web.md @bigpumpkin @HelloCrease @litao33 @GHiker
-zh-cn/application-dev/reference/apis-arkweb/native_interface_arkweb.md @bigpumpkin @HelloCrease @litao33 @GHiker
-zh-cn/application-dev/reference/apis-arkweb/errorcode-webview.md @bigpumpkin @HelloCrease @litao33 @GHiker
+zh-cn/application-dev/reference/apis-arkweb/js-apis-webview.md @bigpumpkin @HelloCrease @patrickrubystar @GHiker
+zh-cn/application-dev/reference/apis-arkweb/ts-basic-components-web.md @bigpumpkin @HelloCrease @patrickrubystar @GHiker
+zh-cn/application-dev/reference/apis-arkweb/native_interface_arkweb.md @bigpumpkin @HelloCrease @patrickrubystar @GHiker
+zh-cn/application-dev/reference/apis-arkweb/errorcode-webview.md @bigpumpkin @HelloCrease @patrickrubystar @GHiker
 
 
 [API参考-Background Tasks Kit]
