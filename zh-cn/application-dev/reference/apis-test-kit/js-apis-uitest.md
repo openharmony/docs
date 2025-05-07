@@ -59,9 +59,12 @@ import { loadAndSetupUiTest } from '@kit.TestKit';
 export default function demo() {
   describe('uitestDemo', (): void => {
     beforeAll(async () : Promise<void> => {
-      hilog.info(domain, tag, "uitestDriverTest loadup start!!!!!")
-      loadAndSetupUiTest();
-      hilog.info(domain, tag, "uitestDriverTest loadup over!!!!!")
+      try {
+        loadAndSetupUiTest();
+        hilog.info(domain, tag, "uitestDemo loadup over!!!!!")
+      } catch(error: Error) {
+        hilog.info(domain, tag, `uitestDemo, start abilityFailed: ${JSON.stringify(error)}`);
+      }
     })
   }
 }
@@ -981,7 +984,7 @@ click(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -1013,7 +1016,7 @@ doubleClick(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -1045,7 +1048,7 @@ longClick(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -1083,7 +1086,7 @@ getId(): Promise\<string>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -1121,7 +1124,7 @@ getText(): Promise\<string>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -1159,7 +1162,7 @@ getType(): Promise\<string>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -1197,7 +1200,7 @@ getBounds(): Promise\<Rect>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -1235,7 +1238,7 @@ getBoundsCenter(): Promise\<Point>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -1273,7 +1276,7 @@ isClickable(): Promise\<boolean>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -1313,7 +1316,7 @@ isLongClickable(): Promise\<boolean>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -1353,7 +1356,7 @@ isChecked(): Promise\<boolean>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -1393,7 +1396,7 @@ isCheckable(): Promise\<boolean>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -1433,7 +1436,7 @@ isScrollable(): Promise\<boolean>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -1474,7 +1477,7 @@ isEnabled(): Promise\<boolean>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -1514,7 +1517,7 @@ isFocused(): Promise\<boolean>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -1554,7 +1557,7 @@ isSelected(): Promise\<boolean>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -1626,7 +1629,7 @@ clearText(): Promise\<void>
 **系统能力**：SystemCapability.Test.UiTest
 
 **错误码：**
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -1975,7 +1978,7 @@ getDescription(): Promise\<string>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2012,7 +2015,7 @@ getHint(): Promise\<string>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -2055,7 +2058,7 @@ static create(): Driver
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -2359,7 +2362,7 @@ Driver对象进行点击BACK键的操作。
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2736,7 +2739,7 @@ getDisplayRotation(): Promise\<DisplayRotation>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2809,7 +2812,7 @@ getDisplaySize(): Promise\<Point>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2844,7 +2847,7 @@ getDisplayDensity(): Promise\<Point>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2872,7 +2875,7 @@ wakeUpDisplay(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2904,7 +2907,7 @@ pressHome(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -3261,7 +3264,7 @@ createUIEventObserver(): UIEventObserver;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -3888,7 +3891,7 @@ getBundleName(): Promise\<string>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -3927,7 +3930,7 @@ getBounds(): Promise\<Rect>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -3965,7 +3968,7 @@ getTitle(): Promise\<string>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -4003,7 +4006,7 @@ getWindowMode(): Promise\<WindowMode>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -4041,7 +4044,7 @@ isFocused(): Promise\<boolean>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -4079,7 +4082,7 @@ isActived(): Promise\<boolean>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -4111,7 +4114,7 @@ focus(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -4226,7 +4229,7 @@ split(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -4259,7 +4262,7 @@ maximize(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -4292,7 +4295,7 @@ minimize(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -4325,7 +4328,7 @@ resume(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -4358,7 +4361,7 @@ close(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -4397,7 +4400,7 @@ isActive(): Promise\<boolean>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                         |
 | -------- | ------------------------------------------------ |
@@ -5379,7 +5382,7 @@ assertComponentExist(by: By): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                         |
 | -------- | ------------------------------------------------ |
