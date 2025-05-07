@@ -72,7 +72,7 @@ swipeAction(options: Optional\<SwipeActionOptions>)
 
 ```ts
 // xxx.ets
-import { LengthMetrics, CircleShape } from "@kit.ArkUI";
+import { LengthMetrics, CircleShape } from '@kit.ArkUI';
 import { ArcList, ArcListItem, ArcListAttribute, ArcListItemAttribute } from '@kit.ArkUI';
 
 @Entry
