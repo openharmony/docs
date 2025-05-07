@@ -641,6 +641,11 @@ let inputMethodSetting = inputMethod.getInputMethodSetting();
 | URL  | 6 |链接类型。 |
 | VISIBLE_PASSWORD  | 7 |密码类型。 |
 | NUMBER_PASSWORD<sup>11+</sup> | 8 |数字密码类型。 |
+| SCREEN_LOCK_PASSWORD<sup>20+</sup> | 9 |锁屏密码类型。 |
+| USER_NAME<sup>20+</sup> | 10 |用户名类型。 |
+| NEW_PASSWORD<sup>20+</sup> | 11 |新密码类型。 |
+| NUMBER_DECIMAL<sup>20+</sup> | 12 |带小数点的数字类型。 |
+| ONE_TIME_CODE<sup>20+</sup> | 13 |验证码类型。 |
 
 ## EnterKeyType<sup>10+</sup>
 
@@ -718,6 +723,8 @@ Enter键的功能类型。
 | -------- | -------- | -------- | -------- | -------- |
 | textInputType<sup>10+</sup>  | [TextInputType](#textinputtype10) | 否 | 否 | 文本输入类型。|
 | enterKeyType<sup>10+</sup>  | [EnterKeyType](#enterkeytype10) | 否 | 否 | Enter键功能类型。|
+| placeholder<sup>20+</sup> | string | 否 | 是 | 编辑框设置的占位符信息。 <br/>- 编辑框设置占位符信息时，字符长度不超过255个字符(如果超出将会自动截断为为最大字符数)，用于提示或引导用户输入临时性文本或符号。（例如：提示输入项为"必填"或"非必填"的输入结果反馈。）<br/>- 编辑框没有设置占位符信息时，默认为空字符串。<br/>- 该字段在调用[attach](#attach10)时提供给输入法应用。|
+| abilityName<sup>20+</sup> | string | 否 | 是 | 编辑框设置的ability名称。<br/>- 编辑框设置ability名称时，字符长度不超过127个字符(如果超出将会自动截断为最大字符数)。<br/>- 编辑框未设置ability名称时，默认为空字符串。<br/>- 该字段在调用绑定[attach](#attach10)时提供给输入法应用。|
 
 ## TextConfig<sup>10+</sup>
 
@@ -1081,6 +1088,46 @@ try {
 } catch(err) {
   console.error(`Failed to attach: ${JSON.stringify(err)}`);
 }
+```
+
+### discardTypingText<sup>20+</sup>
+
+discardTypingText(): Promise&lt;void&gt;
+
+编辑框应用发送“清空正在输入的文字”命令到输入法。使用promise异步回调。
+
+> **说明：**
+>
+> 编辑框与输入法绑定成功后，编辑框应用可调用该接口发送“清空正在输入的文字”命令到输入法。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | -------------------------------------- |
+| 12800003 | input method client error. |
+| 12800009 | input method client detached. |
+| 12800015 | the other side does not accept the request. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+inputMethodController.discardTypingText().then(() => {
+  console.log('Succeeded discardTypingText.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to discardTypingText: ${JSON.stringify(err)}`);
+});
 ```
 
 ### showTextInput<sup>10+</sup>
