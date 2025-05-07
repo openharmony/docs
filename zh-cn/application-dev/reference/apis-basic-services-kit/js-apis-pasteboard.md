@@ -176,8 +176,9 @@ let pasteDataRecord: pasteboard.PasteDataRecord = pasteboard.createRecord('app/x
 **示例2：**
 
   ```ts
-let dataUri = 'dataability:///com.example.myapplication1/user.txt';
-let record: pasteboard.PasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_URI, dataUri);
+let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
+let record: pasteboard.PasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_URI, 'file://com.example.myapplication1/data/storage/el2/base/files/file.txt');
+pasteData.replaceRecord(0, record);
   ```
 
 ## pasteboard.getSystemPasteboard
@@ -1581,8 +1582,9 @@ getRecordAt(index: number): PasteDataRecord
 **示例：**
 
 ```ts
+let pasteData: pasteboard.PasteData = pasteboard.createPlainTextData('hello');
 let fileUri = 'file://com.example.myapplication1/data/storage/el2/base/files/file.txt';
-let record: pasteboard.PasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_URI, fileUri);
+let record: pasteboard.PasteDataRecord = pasteData.getRecordAt(0);
 ```
 
 ### hasMimeType<sup>(deprecated)</sup>
@@ -2736,23 +2738,22 @@ setUnifiedData(data: unifiedDataChannel.UnifiedData): Promise&lt;void&gt;
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { unifiedDataChannel } from '@kit.ArkData';
+import { unifiedDataChannel, uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
 
-let plainTextData = new unifiedDataChannel.UnifiedData();
-let plainText = new unifiedDataChannel.PlainText();
-plainText.details = {
-    Key: 'delayPlaintext',
-    Value: 'delayPlaintext',
-};
-plainText.textContent = 'delayTextContent';
-plainText.abstract = 'delayTextContent';
-plainTextData.addRecord(plainText);
+let plainText : uniformDataStruct.PlainText = {
+    uniformDataType: uniformTypeDescriptor.UniformDataType.PLAIN_TEXT,
+    textContent : 'PLAINTEXT_CONTENT',
+    abstract : 'PLAINTEXT_ABSTRACT',
+}
+let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
+let data = new unifiedDataChannel.UnifiedData();
+data.addRecord(record);
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.setUnifiedData(plainTextData).then((data: void) => {
+systemPasteboard.setUnifiedData(data).then((data: void) => {
     console.info('Succeeded in setting UnifiedData.');
 }).catch((err: BusinessError) => {
-    console.error('Failed to set UnifiedData. Cause: ' + err.message);
+    .error('Failed to set UnifiedData. Cause: ' + err.message);
 });
 ```
 
@@ -2784,24 +2785,25 @@ setUnifiedDataSync(data: unifiedDataChannel.UnifiedData): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { unifiedDataChannel, uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
+import { unifiedDataChannel } from '@kit.ArkData';
 
-let plainText : uniformDataStruct.PlainText = {
-    uniformDataType: uniformTypeDescriptor.UniformDataType.PLAIN_TEXT,
-    textContent : 'PLAINTEXT_CONTENT',
-    abstract : 'PLAINTEXT_ABSTRACT',
-}
-let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
-let data = new unifiedDataChannel.UnifiedData();
-data.addRecord(record);
+let plainTextData = new unifiedDataChannel.UnifiedData();
+let plainText = new unifiedDataChannel.PlainText();
+plainText.details = {
+    Key: 'delayPlaintext',
+    Value: 'delayPlaintext',
+};
+plainText.textContent = 'delayTextContent';
+plainText.abstract = 'delayTextContent';
+plainTextData.addRecord(plainText);
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.setUnifiedData(data).then((data: void) => {
+try {
+    systemPasteboard.setUnifiedDataSync(plainTextData);
     console.info('Succeeded in setting UnifiedData.');
-}).catch((err: BusinessError) => {
-c   onsole.error('Failed to set UnifiedData. Cause: ' + err.message);
-});
+} catch (err) {
+    console.error('Failed to set UnifiedData. Cause:' + err.message);
+};
 ```
 
 ### setAppShareOptions<sup>14+</sup>
