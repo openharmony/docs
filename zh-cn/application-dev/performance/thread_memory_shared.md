@@ -225,10 +225,12 @@ export struct LockUsage {
     }
     taskpool.execute(taskPoolGroup).then(() => {
       // 指明运行状态为“写入文件成功”
-      this.result = this.result = getContext().resourceManager.getStringSync($r('app.string.write_file_success'));  
+      this.result = (this.getUIContext()
+        .getHostContext() as Context).resourceManager.getStringSync($r('app.string.write_file_success'));
     }).catch(() => {
       // 指明运行状态为“写入文件失败”
-      this.result = getContext().resourceManager.getStringSync($r('app.string.write_file_failed'));  
+      this.result = (this.getUIContext()
+        .getHostContext() as Context).resourceManager.getStringSync($r('app.string.write_file_failed'));
     })
   }
 }

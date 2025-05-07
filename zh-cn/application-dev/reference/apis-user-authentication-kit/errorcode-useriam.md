@@ -192,7 +192,6 @@ Operation failed because of authToken has expired.
 **处理步骤**
 
 重新发起认证，签发有效token。
-<!--DelEnd-->
 
 ## 12700001 人脸服务不可用
 
@@ -210,3 +209,4 @@ The service is unavailable.
 **处理步骤**
 
 系统服务内部工作异常，请稍后重新调用接口，或者重启设备尝试。
+<!--DelEnd-->
