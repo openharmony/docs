@@ -203,7 +203,7 @@
     - [全屏启动原子化服务 (FullScreenLaunchComponent)](arkts-FullScreenComponent.md)
     <!--Del-->
     - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](arkts-ui-extension-components.md)
-    - [同应用线程嵌入组件 (IsolatedComponent)](arkts-isolated-components.md)
+    - [跨线程嵌入式组件 (IsolatedComponent)](arkts-isolated-components.md)
     - [同应用进程嵌入式组件 (EmbeddedComponent)](arkts-embedded-components.md)
     <!--DelEnd-->
   - 使用NDK接口构建UI<!--arkts-use-ndk-->
