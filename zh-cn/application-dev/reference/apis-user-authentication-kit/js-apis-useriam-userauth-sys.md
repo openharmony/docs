@@ -274,7 +274,9 @@ try {
 
 ### sendCommand<sup>10+</sup>
 
-sendCommand(cmdData: string): void
+ArkTS1.1: sendCommand(cmdData: string): void
+
+ArkTS1.2: sendCommand: (cmdData: string) => void
 
 回调函数，用于用户认证框架向组件发送命令。
 
@@ -290,6 +292,8 @@ sendCommand(cmdData: string): void
 
 **示例：**
 
+ArkTS1.1示例：
+
 ```ts
 import { userAuth } from '@kit.UserAuthenticationKit';
 
@@ -299,6 +303,26 @@ try {
   console.info('get userAuthWidgetMgr instance success');
   userAuthWidgetMgr.on('command', {
     sendCommand(cmdData) {
+      console.info(`The cmdData is ${cmdData}`);
+    }
+  })
+  console.info('subscribe authentication event success');
+} catch (error) {
+  console.error(`userAuth widgetMgr catch error: ${JSON.stringify(error)}`);
+}
+```
+
+ArkTS1.2示例：
+
+```ts
+import { userAuth } from '@kit.UserAuthenticationKit';
+
+const userAuthWidgetMgrVersion = 1;
+try {
+  let userAuthWidgetMgr = userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
+  console.info('get userAuthWidgetMgr instance success');
+  userAuthWidgetMgr.on('command', {
+    sendCommand: (cmdData) => {
       console.info(`The cmdData is ${cmdData}`);
     }
   })
