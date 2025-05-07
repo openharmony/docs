@@ -20,16 +20,19 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 
 
 ## 导入模块
+
 ArkTS1.1: 
 ```ts
 import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, UiDirection, MouseButton, UIElementInfo, UIEventObserver } from '@kit.TestKit';
 ```
+
 ArkTS1.2: 
 ```ts
 import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, UiDirection, MouseButton, UIElementInfo, UIEventObserver, loadAndSetupUiTest } from '@kit.TestKit';
 ```
 
 ## loadAndSetupUiTest<sup>20+</sup>
+
 loadAndSetupUiTest(): void
 
 在测试启动前调用一次, 用于初始化测试环境。
