@@ -597,7 +597,7 @@ JavaScript资源的获取方式也可通过[网络请求](../reference/apis-netw
        ],
        type: webview.OfflineResourceType.CLASSIC_JS,
        responseHeaders: [
-         // 以<script crossorigin="anoymous" />方式使用，提供额外的响应头
+         // 以<script crossorigin="anonymous" />方式使用，提供额外的响应头
          { headerKey: "Cross-Origin", headerValue:"anonymous" }
        ]
      },
