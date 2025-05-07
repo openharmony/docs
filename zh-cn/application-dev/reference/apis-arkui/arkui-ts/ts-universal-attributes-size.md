@@ -94,7 +94,7 @@ height(heightValue: Length | LayoutPolicy)
 
 >  **说明：**
 > 
->  [Row](./ts-container-row.md)和[Column](./ts-container-column.md)组件的width、height属性支持设置[LayoutPolicy](ts-types.md#layoutpolicy15)类型参数。
+>  [Flex](./ts-container-flex.md)、[Row](./ts-container-row.md)、[Column](./ts-container-column.md)、[RelativeContainer](./ts-container-relativecontainer.md)、[Stack](./ts-container-stack.md)、[FolderStack](./ts-container-folderstack.md)、[Divider](./ts-basic-components-divider.md)以及[Blank](./ts-basic-components-blank.md)组件的width、height属性支持设置[LayoutPolicy](ts-types.md#layoutpolicy15)类型参数。
 
 ## size
 
