@@ -7,7 +7,7 @@ OH_AVCodec中所有异步回调函数指针的集合。将该结构体的实例�
 
 使用指导请参见[视频编码](../../media/avcodec/video-encoding.md)中的“Surface模式步骤-4或Buffer模式步骤-3”。
 
-**系统能力：**SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
 **起始版本：** 11
 
