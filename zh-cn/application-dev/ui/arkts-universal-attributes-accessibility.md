@@ -63,7 +63,7 @@ Column() {
 
 accessibilityDescription属性用于提供更详细的组件说明，播报时紧随文本内容之后。
 
-这里以Column组件为例，设置其无障碍说明为“分组”，用于为用户进一步说明当前组件：
+这里以Column组件为例，设置其无障碍说明为“分组”：
 
 ```ts
 Column() {
@@ -103,7 +103,7 @@ struct VirtualNodeExample {
 
 ## 设置无障碍节点是否被选中
 
-accessibilityChecked和accessibilitySelected是两个用于增强无障碍体验的属性，它们主要用于向屏幕朗读等辅助工具传达组件的选中状态。
+accessibilityChecked和accessibilitySelected是两个用于增强无障碍体验的属性，主要用于向屏幕朗读等辅助工具传达组件的选中状态。
 
 ### 在支持多选的情况下，设置无障碍节点是否被选中
 
