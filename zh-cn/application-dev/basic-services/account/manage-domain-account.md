@@ -38,7 +38,11 @@
 2. 调用[hasAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#hasaccount10)接口。
 
    ```ts
-   let isAccountExisted: boolean = await osAccount.DomainAccountManager.hasAccount(domainAccountInfo);
+   osAccount.DomainAccountManager.hasAccount(domainAccountInfo).then((isAccountExisted: boolean)=>{
+     console.log('execute hasAccount successfully, isAccountExisted:' + JSON.stringify(isAccountExisted));
+   }).catch((err: BusinessError)=>{
+     console.error('execute hasAccount err:' + JSON.stringify(err));
+   });
    ```
 
 ## 添加域账号

@@ -2361,31 +2361,33 @@ getPropertyByCredentialId(credentialId: Uint8Array, keys: Array&lt;GetPropertyTy
   import { BusinessError } from '@kit.BasicServicesKit';
   let userIDM = new osAccount.UserIdentityManager();
   let credInfo: osAccount.EnrolledCredInfo[] = [];
-  try {
-    credInfo = await userIDM.getAuthInfo(osAccount.AuthType.PRIVATE_PIN);
-  } catch (e) {
-    console.log('getAuthInfo exception = ' + JSON.stringify(e));
-    return;
-  }
-  if (credInfo.length == 0) {
-    console.log('no credential infos');
-    return;
-  }
-  let testCredentialId: Uint8Array = credInfo[0].credentialId;
-  let keys: Array<osAccount.GetPropertyType> = [
-    osAccount.GetPropertyType.AUTH_SUB_TYPE,
-    osAccount.GetPropertyType.REMAIN_TIMES,
-    osAccount.GetPropertyType.FREEZING_TIME
-  ];
-  try {
-    let userAuth = new osAccount.UserAuth();
-    userAuth.getPropertyByCredentialId(testCredentialId, keys).then((result: osAccount.ExecutorProperty) => {
-      console.log('getPropertyByCredentialId result = ' + JSON.stringify(result));
-    }).catch((err: BusinessError) => {
-      console.log('getPropertyByCredentialId error = ' + JSON.stringify(err));
-    });
-  } catch (e) {
-    console.log('getPropertyByCredentialId exception = ' + JSON.stringify(e));
+  async function getProperty() {
+    try {
+      credInfo = await userIDM.getAuthInfo(osAccount.AuthType.PRIVATE_PIN);
+    } catch (e) {
+      console.log('getAuthInfo exception = ' + JSON.stringify(e));
+      return;
+    }
+    if (credInfo.length == 0) {
+      console.log('no credential infos');
+      return;
+    }
+    let testCredentialId: Uint8Array = credInfo[0].credentialId;
+    let keys: Array<osAccount.GetPropertyType> = [
+      osAccount.GetPropertyType.AUTH_SUB_TYPE,
+      osAccount.GetPropertyType.REMAIN_TIMES,
+      osAccount.GetPropertyType.FREEZING_TIME
+    ];
+    try {
+      let userAuth = new osAccount.UserAuth();
+      userAuth.getPropertyByCredentialId(testCredentialId, keys).then((result: osAccount.ExecutorProperty) => {
+        console.log('getPropertyByCredentialId result = ' + JSON.stringify(result));
+      }).catch((err: BusinessError) => {
+        console.log('getPropertyByCredentialId error = ' + JSON.stringify(err));
+      });
+    } catch (e) {
+      console.log('getPropertyByCredentialId exception = ' + JSON.stringify(e));
+    }
   }
   ```
 
