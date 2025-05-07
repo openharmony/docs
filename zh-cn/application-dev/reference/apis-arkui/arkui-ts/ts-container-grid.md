@@ -901,10 +901,10 @@ struct GridExample {
               .fontSize(16)
               .backgroundColor(0xF9CF93)
               .width('100%')
-              .height('100%')
+              .height("100%")
               .textAlign(TextAlign.Center)
           }
-          .height('100%')
+          .height("100%")
           .width('100%')
         }, (day: string) => day)
       }
@@ -1031,7 +1031,7 @@ struct GridExample {
         console.info(last.toString())
       })
       .onScrollBarUpdate((index: number, offset: number) => {
-        console.info('XXX' + 'Grid onScrollBarUpdate,index : ' + index.toString() + ',offset' + offset.toString())
+        console.info("XXX" + 'Grid onScrollBarUpdate,index : ' + index.toString() + ",offset" + offset.toString())
         return { totalOffset: (index / 5) * (80 + 10) - offset, totalLength: 80 * 5 + 10 * 4 }
       })  //只适用于当前示例代码数据源，如果数据源有变化，则需要修改该部分代码，或者删掉此属性
       .onDidScroll((scrollOffset: number, scrollState: ScrollState) => {
@@ -1039,18 +1039,18 @@ struct GridExample {
         console.info(scrollState.toString())
       })
       .onScrollStart(() => {
-        console.info('XXX' + 'Grid onScrollStart')
+        console.info("XXX" + "Grid onScrollStart")
       })
       .onScrollStop(() => {
-        console.info('XXX' + 'Grid onScrollStop')
+        console.info("XXX" + "Grid onScrollStop")
       })
       .onReachStart(() => {
         this.gridPosition = 0
-        console.info('XXX' + 'Grid onReachStart')
+        console.info("XXX" + "Grid onReachStart")
       })
       .onReachEnd(() => {
         this.gridPosition = 2
-        console.info('XXX' + 'Grid onReachEnd')
+        console.info("XXX" + "Grid onReachEnd")
       })
 
       Button('next page')
