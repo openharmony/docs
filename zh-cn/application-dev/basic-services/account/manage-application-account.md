@@ -38,12 +38,11 @@
 2. 调用[createAccount](../../reference/apis-basic-services-kit/js-apis-appAccount.md#createaccount9)接口，根据名称和选项创建应用账号。
 
    ```ts
-   try {
-     await appAccountManager.createAccount(name, options);
-     console.log('createAccount successfully');
-   } catch (err) {
-     console.log('createAccount failed, error: ' + JSON.stringify(err));
-   }
+   appAccountManager.createAccount(name, options).then(()=>{
+    console.log('createAccount successfully');
+  }).catch((err: BusinessError)=>{
+    console.error('createAccount failed, error: ' + JSON.stringify(err));
+  });
    ```
 
 ## 查询应用账号列表

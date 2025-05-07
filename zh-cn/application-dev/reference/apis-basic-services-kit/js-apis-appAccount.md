@@ -5277,6 +5277,12 @@ getRemoteObject(): rpc.RemoteObject;
 
 **系统能力：** SystemCapability.Account.AppAccount
 
+**返回值：**
+
+| 类型             | 说明                                                   |
+| ---------------- | ----------------------------------------------------- |
+| rpc.RemoteObject | 认证器Authenticator的远程对象。用于跨进程通信。          |
+
 **示例：**
 
   <!--code_no_check-->
