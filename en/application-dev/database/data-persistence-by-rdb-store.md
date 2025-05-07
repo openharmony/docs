@@ -350,7 +350,7 @@ If error 14800011 is thrown, you need to rebuild the database and restore data t
 
    > **NOTE**
    >
-   > Use **close()** to close the **ResultSet** that is no longer used in a timely manner so that the memory allocated can be released.
+   > Call **close()** to close the **ResultSet** that is no longer used in a timely manner so that the memory allocated can be released.
 
    The RDB store also supports full-text search (FTS) in Chinese or English. The ICU tokenizer is supported.
 

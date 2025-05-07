@@ -306,7 +306,7 @@ You can use **backup()** to [perform manual backup](#manual-backup) and use **re
 
 The following example contains only the code snippet for the restore process. The complete code must also contain the code for backing up data and rebuilding an RDB store.
 
-1. Throws an error code to indicate a database exception.
+1. Throw an error code to indicate a database exception.
 
    ```ts
    let predicates = new relationalStore.RdbPredicates("EMPLOYEE");

@@ -143,7 +143,7 @@ The following table lists the APIs used for KV data persistence. Most of the API
    }
    ```
 
-3. Use **put()** to add data to the KV store. <br>Example:
+3. Call **put()** to add data to the KV store. <br>Example:
 
    ```js
    kvStore = kvStore as distributedKVStore.SingleKVStore;
@@ -167,7 +167,7 @@ The following table lists the APIs used for KV data persistence. Most of the API
    >
    > The **put()** method adds a KV pair if the specified key does not exists and changes the value if the the specified key already exists.
 
-4. Use **get()** to obtain the value of a key. <br>Example:
+4. Call **get()** to obtain the value of a key. <br>Example:
 
    ```js
    try {
@@ -193,7 +193,7 @@ The following table lists the APIs used for KV data persistence. Most of the API
    }
    ```
 
-5. Use **delete()** to delete the data of the specified key. <br>Example:
+5. Call **delete()** to delete the data of the specified key. <br>Example:
 
    ```js
    try {
