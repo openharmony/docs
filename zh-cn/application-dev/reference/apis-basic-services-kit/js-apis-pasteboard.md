@@ -1583,7 +1583,6 @@ getRecordAt(index: number): PasteDataRecord
 
 ```ts
 let pasteData: pasteboard.PasteData = pasteboard.createPlainTextData('hello');
-let fileUri = 'file://com.example.myapplication1/data/storage/el2/base/files/file.txt';
 let record: pasteboard.PasteDataRecord = pasteData.getRecordAt(0);
 ```
 
@@ -2753,7 +2752,7 @@ let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboa
 systemPasteboard.setUnifiedData(data).then((data: void) => {
     console.info('Succeeded in setting UnifiedData.');
 }).catch((err: BusinessError) => {
-    .error('Failed to set UnifiedData. Cause: ' + err.message);
+    console.erro('Failed to setUnifiedData. Cause: ' + err.message);
 });
 ```
 
