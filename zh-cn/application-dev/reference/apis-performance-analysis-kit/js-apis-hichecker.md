@@ -218,7 +218,7 @@ getRule(): bigint
 
 ```ts
 // 添加一条规则
-hichecker.addRule(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS);
+hichecker.addCheckRule(hichecker.RULE_CAUTION_PRINT_LOG);
 
 // 获取已添加的规则
 hichecker.getRule();   // return 1n;
