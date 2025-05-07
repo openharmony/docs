@@ -40,7 +40,7 @@ TokenId does not exist.
 
 **处理步骤**
 
-检查入参，修正参数值为有效值。
+检查入参，修正参数值为有效值，有效值请参考[权限列表](../../security/AccessToken/app-permissions.md)。
 
 
 ## 12100003 权限名不存在
