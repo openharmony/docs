@@ -1,4 +1,4 @@
-# 同应用进程嵌入式组件 (EmbeddedComponent)
+# 同应用进程嵌入式组件(EmbeddedComponent)
 
 EmbeddedComponent组件是一个用于在应用中嵌入其他应用或服务的组件，主要用于在应用中实现跨模块、跨进程的嵌入式界面集成，其核心目的是通过模块化设计提升应用灵活性和用户体验。
 
@@ -154,13 +154,13 @@ export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
 
   onDestroy：组件被宿主主动销毁时的资源回收点。
 
-- 会话管理：
+- 会话管理
 
   onSessionCreate：创建独立存储上下文并加载UI界面；
 
   onSessionDestroy：处理会话结束时（如用户主动关闭）的清理操作。
 
-- 上下文传递：
+- 上下文传递
 
   通过LocalStorage实现UIExtensionContentSession的跨组件传递；
 
@@ -168,7 +168,7 @@ export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
 
 **入口页面**
 
-以下提供方应用的入口组件实现，展示了如何使用UIExtensionContentSession会话以及如何通过按钮点击事件退出嵌入式页面并返回结果，该代码文件需要在main_pages.json配置文件中声明使用：
+以下提供方应用的入口组件实现，展示了如何使用UIExtensionContentSession会话以及如何通过按钮点击事件退出嵌入式页面并返回结果，该代码文件需要在main_pages.json配置文件中声明使用。
 
 ```ts
 import { UIExtensionContentSession } from '@kit.AbilityKit';
@@ -253,4 +253,4 @@ hdc shell param set persist.sys.abilityms.multi_process_model true
 
 ![zh-cn_image_0000001502261065](figures/zh-cn_image_0000001502261065.jpg)
 
-4. 点击 terminateSelfWithResult 按钮，提供方内容消失，页面显示 onTerminated 信息。
+4. 点击terminateSelfWithResult按钮，提供方内容消失，页面显示onTerminated信息。
