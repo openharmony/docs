@@ -465,7 +465,7 @@ Allows a device administrator application to obtain information about all applic
 
 **Authorization mode**：system_grant
 
-**Support device**：Phone | PC/2in1 | Tablet
+**Supported devices**：Phone | PC/2in1 | Tablet
 
 **Valid since**：20
 
@@ -477,7 +477,7 @@ Allows a device administrator application to restrict users from modifying syste
 
 **Authorization mode**：system_grant
 
-**Support device**：Phone | PC/2in1 | Tablet
+**Supported devices**：Phone | PC/2in1 | Tablet
 
 **Valid since**：20
 
@@ -489,7 +489,7 @@ Allows a device administrator application to manage device APN policies.
 
 **Authorization mode**：system_grant
 
-**Support device**：Phone | PC/2in1 | Tablet
+**Supported devices**：Phone | PC/2in1 | Tablet
 
 **Valid since**：20
 
@@ -501,7 +501,7 @@ Allows a device administrator application to manage device telephony policies.
 
 **Authorization mode**：system_grant
 
-**Support device**：Phone | PC/2in1 | Tablet
+**Supported devices**：Phone | PC/2in1 | Tablet
 
 **Valid since**：20
 
@@ -513,7 +513,7 @@ Allows a device administrator application to set the Kiosk mode.
 
 **Authorization mode**：system_grant
 
-**Support device**：Phone | PC/2in1 | Tablet
+**Supported devices**：Phone | PC/2in1 | Tablet
 
 **Valid since**：20
 
@@ -525,6 +525,6 @@ Allows a device administrator application to set wallpapers.
 
 **Authorization mode**：system_grant
 
-**Support device**：Phone | PC/2in1 | Tablet
+**Supported devices**：Phone | PC/2in1 | Tablet
 
 **Valid since**：20
