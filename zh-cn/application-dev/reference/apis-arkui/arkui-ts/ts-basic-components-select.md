@@ -751,6 +751,22 @@ menuOutline(outline: MenuOutlineOptions)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | outline  | [MenuOutlineOptions](#menuoutlineoptions20对象说明) | 是   | 下拉菜单框的外描边样式。 |
 
+### showDefaultSelectedIcon<sup>20+</sup>
+
+showDefaultSelectedIcon(show: boolean)
+
+设置是否显示默认选择的图标。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| show  | boolean | 是   | 是否显示默认选定的图标。<br>默认值为false，true代表显示默认选择的图标，false代表不显示默认选择的图标。<br>当show为true，并且通过selectedOptionBgColor设置选中项的背景色时，同时显示所设置的选中项的背景色和默认选定的图标；当show为true，但未通过selectedOptionBgColor设置选中项的背景色时，不突出显示背景色，只显示默认选定的图标。false代表不显示默认选定的图标，通过突出显示背景色来表示选中。 |
+
 ### textModifier<sup>20+</sup>
 
 textModifier(modifier: Optional\<[TextModifier](ts-universal-attributes-attribute-modifier.md)>)
@@ -936,6 +952,22 @@ type OnSelectCallback = (index: number, selectStr: string) => void
 | ------ | ------ | ---- | -------------- |
 | index  | number | 是   | 选中项的索引，索引值从0开始。 |
 | selectStr | string | 是   | 选中项的值。   |
+
+## showInSubWindow<sup>20+</sup>
+
+showInSubWindow(showInSubWindow:Optional\<boolean>)
+
+设置Select的Menu是否显示在子窗中。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| showInSubWindow  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 设置Select的Menu是否显示在子窗中。<br>true代表Select的Menu显示在子窗中，仅对2in1设备生效。<br>false代表Select的Menu不显示在子窗中。<br>默认值：2in1设备为true，其他设备为false。 |
 
 ##  示例1（设置下拉菜单）
 
