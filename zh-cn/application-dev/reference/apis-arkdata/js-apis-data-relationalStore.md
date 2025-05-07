@@ -6908,12 +6908,12 @@ try {
 const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
   "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL)";
 try {
-  let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+  let value = new Uint8Array([1, 2, 3, 4, 5]);
   const valueBucket: relationalStore.ValuesBucket = {
     'name': "Lisa",
     'age': 18,
     'salary': 100.5,
-    'codes': value4,
+    'codes': value,
   };
   await store.executeSql(CREATE_TABLE_TEST);
   if (store != undefined) {
