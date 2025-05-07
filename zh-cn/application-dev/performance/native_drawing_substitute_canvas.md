@@ -26,7 +26,7 @@ Canvas 的 CanvasRenderingContext2D 绘制使用 [globalCompositeOperation](../r
 
 ```ts
 //  \entry\src\main\ets\pages\Index.ets
-import GlassCoverView from '../view/GlassCoverView'
+import GlassCoverView from '../view/GlassCoverView';
 
 @Entry
 @Component
@@ -92,7 +92,7 @@ export default struct GlassCoverView {
         .width('100%')
         .height('100%')
         .onAreaChange((_: Area, newValue: Area) => {
-          this.handleAreaChange(newValue)
+          this.handleAreaChange(newValue);
         })
     }
     .height('100%')

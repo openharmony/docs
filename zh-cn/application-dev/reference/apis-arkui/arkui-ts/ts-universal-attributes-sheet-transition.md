@@ -192,7 +192,7 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 @Entry
 @Component
 struct SheetTransitionExample {
-  @State isShow: boolean = false
+  @State isShow: boolean = false;
   @State sheetHeight: number = 300;
 
   @Builder
@@ -227,7 +227,7 @@ struct SheetTransitionExample {
     Column() {
       Button("transition modal 1")
         .onClick(() => {
-          this.isShow = true
+          this.isShow = true;
         })
         .fontSize(20)
         .margin(10)
@@ -235,16 +235,16 @@ struct SheetTransitionExample {
           height: this.sheetHeight,
           backgroundColor: Color.Green,
           onWillAppear: () => {
-            console.log("BindSheet onWillAppear.")
+            console.log("BindSheet onWillAppear.");
           },
           onAppear: () => {
-            console.log("BindSheet onAppear.")
+            console.log("BindSheet onAppear.");
           },
           onWillDisappear: () => {
-            console.log("BindSheet onWillDisappear.")
+            console.log("BindSheet onWillDisappear.");
           },
           onDisappear: () => {
-            console.log("BindSheet onDisappear.")
+            console.log("BindSheet onDisappear.");
           }
         })
     }
@@ -269,7 +269,7 @@ struct SheetTransitionExample {
 @Entry
 @Component
 struct SheetTransitionExample {
-  @State isShow: boolean = false
+  @State isShow: boolean = false;
 
   @Builder
   myBuilder() {
@@ -289,7 +289,7 @@ struct SheetTransitionExample {
     Column() {
       Button("transition modal 1")
         .onClick(() => {
-          this.isShow = true
+          this.isShow = true;
         })
         .fontSize(20)
         .margin(10)
@@ -315,12 +315,12 @@ bindSheet属性的borderWidth、borderColor属性值使用LocalizedEdgeWidths类
 
 ```ts
 // xxx.ets
-import { LengthMetrics } from '@kit.ArkUI'
+import { LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct SheetTransitionExample {
-  @State isShow: boolean = false
+  @State isShow: boolean = false;
 
   @Builder
   myBuilder() {
@@ -340,7 +340,7 @@ struct SheetTransitionExample {
     Column() {
       Button("transition modal 1")
         .onClick(() => {
-          this.isShow = true
+          this.isShow = true;
         })
         .fontSize(20)
         .margin(10)
@@ -383,9 +383,9 @@ struct bindSheetExample {
   @Builder
   myBuilder() {
     Column() {
-      Button() {
-        Text("CONTEXT")
-      }.height(50)
+      Button("CONTEXT")
+        .margin(10)
+        .fontSize(20)
     }
   }
 
@@ -393,7 +393,7 @@ struct bindSheetExample {
     Column() {
       Button("NoRegisterSpringback")
         .onClick(() => {
-          this.isShow = true
+          this.isShow = true;
         })
         .fontSize(20)
         .margin(10)
@@ -404,16 +404,15 @@ struct bindSheetExample {
           title: { title: "title", subtitle: "subtitle" },
           preferType: SheetType.CENTER,
 
-
           onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
             if (DismissSheetAction.reason == DismissReason.SLIDE_DOWN) {
-              DismissSheetAction.dismiss() //注册dismiss行为
+              DismissSheetAction.dismiss(); //注册dismiss行为
             }
           }),
 
           onWillSpringBackWhenDismiss: ((SpringBackAction: SpringBackAction) => {
-            //没有注册springBack, 下拉半模态页面无回弹行为
-            //SpringBackAction.springBack()
+            //没有注册springBack，下拉半模态页面无回弹行为
+            //SpringBackAction.springBack();
           }),
         })
     }
@@ -605,7 +604,7 @@ import { LengthMetrics } from '@kit.ArkUI';
 @Entry
 @Component
 struct SheetTransitionExample {
-  @State isShow: boolean = false
+  @State isShow: boolean = false;
 
   @Builder
   myBuilder() {
@@ -625,7 +624,7 @@ struct SheetTransitionExample {
     Column() {
       Button("transition modal 1")
         .onClick(() => {
-          this.isShow = true
+          this.isShow = true;
         })
         .fontSize(20)
         .margin(10)

@@ -121,7 +121,7 @@ preload() {
           Text("Hello" + item)
             .fontSize(50)
             .onAppear(() => {
-              console.info("appear:" + item)
+              console.info("appear:" + item);
             })
         }
       })
@@ -206,7 +206,7 @@ struct MyComponent {
 @Reusable
 @Component
 struct ReusableChildComponent {
-  @State item: string = ''
+  @State item: string = '';
   // 复用时触发的生命周期
   aboutToReuse(params: ESObject) {
     this.item = params.item;
@@ -236,8 +236,8 @@ import { IconItem } from './IconItem';
 
 // IconItem相关数据
 class IconItemSource {
-  image: string | Resource = ''
-  text: string | Resource = ''
+  image: string | Resource = '';
+  text: string | Resource = '';
   // ...
 }
 
@@ -800,7 +800,7 @@ struct Page {
           this.getUIContext().animateTo({
             duration: 50
           }, () => {
-            this.translateObj.translateX = (this.translateObj.translateX + 50) % 150
+            this.translateObj.translateX = (this.translateObj.translateX + 50) % 150;
           })
         })
     }
@@ -838,7 +838,7 @@ struct Page1 {
           this.getUIContext().animateTo({
             duration: 50
           }, () => {
-            this.translateObj.translateX = (this.translateObj.translateX + 50) % 150
+            this.translateObj.translateX = (this.translateObj.translateX + 50) % 150;
           })
         })
     }
@@ -1376,7 +1376,7 @@ struct NegativeOfOnClick {
     Button('Click', { type: ButtonType.Normal, stateEffect: true })
       .onClick(() => {
         hitrace.startTrace("ButtonClick", 1004);
-        hilog.info(1004, 'Click', 'ButtonType.Normal')
+        hilog.info(1004, 'Click', 'ButtonType.Normal');
         hitrace.finishTrace("ButtonClick", 1004);
         // 业务代码
         // ...
@@ -1400,6 +1400,7 @@ struct PositiveOfOnClick {
         // ...
       })
   }
+}
 ```
 
 ## 使用性能工具分析和定位问题

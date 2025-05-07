@@ -1,7 +1,6 @@
 # ArkUI子系统Changelog
 
-
-## cl.arkui.1 width和height支持的matchParent接口规格变更
+## cl.arkui.1 TextPicker、Progress、QRCode、TextClock、TextTimer接口支持Resource类型
 
 **访问级别**
 
@@ -9,17 +8,52 @@
 
 **变更原因**
 
-修正接口规格，保证接口与竞品保持一致。
+基础能力增强，TextPicker、Progress、QRCode、TextClock、TextTimer接口支持Resource类型，可以使用资源对象设置默认选项的值。
 
 **变更影响**
 
 此变更不涉及应用适配。
 
-变更前：线性容器子组件matchParent时，会将其大小设置为父组件包含padding、border以及safeAreaPadding后的大小。
+- 变更前：TextPickerOptions、Progress、QRCode、TextClock、TextTimer中部分接口不支持Resource类型。
 
-变更后：线性容器子组件matchParent时，会将其大小设置为父组件不包含padding、border以及safeAreaPadding后的大小，即与父组件内容区大小保持一致。
+- 变更后：TextPickerOptions、Progress、QRCode、TextClock、TextTimer中部分接口支持Resource类型。
 
-eg. 运行下面的Demo示例，进入页面后，观察matchParent的最终结果。
+
+**起始API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 6.0.0.32开始。
+
+**变更的接口/组件**
+
+TextPicker.TextPickerOptions.value、Progress.CapsuleStyleOptions.content、QRCode.value、TextClock.format、TextTimer.fontWeight
+
+**适配指导**
+
+默认行为变更，无需适配。
+
+## cl.arkui.2 width和height支持的matchParent接口规格变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+接口能力增强，使能Row和Column在设置matchParent时仅适应父组件内容区大小。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+变更前：Row和Column的子组件matchParent时，会将其大小设置为父组件包含padding、border以及safeAreaPadding后的大小。
+
+变更后：Row和Column的子组件matchParent时，会将其大小设置为父组件不包含padding、border以及safeAreaPadding后的大小，即与父组件内容区大小保持一致。
+
+例如：运行以下示例，进入页面后，观察matchParent的最终结果。
 
 ```ts
 @Entry
@@ -27,8 +61,8 @@ eg. 运行下面的Demo示例，进入页面后，观察matchParent的最终结�
 struct Demo {
   build() {
     Column(){
-      Row().width(LayoutPolicy.matchParent).height(LayoutPolicy.matchParent).backgroundColor(Color.Blue)
-    }.width(200).height(200).padding(20).backgroundColor(Color.Yellow)
+      Row().width(LayoutPolicy.matchParent).height(LayoutPolicy.matchParent).backgroundColor('rgb(0, 74, 175)')
+    }.width(200).height(200).padding(20).backgroundColor('rgb(39, 135, 217)')
   }
 }
 ```
@@ -37,19 +71,20 @@ struct Demo {
 
 |变更前|变更后|
 |--|--|
-|![变更前效果](figures/match_parent_before.png)|![变更后效果](figures/match_parent_after.png)|
+|![变更前效果](figures/match_parent_before.jpeg)|![变更后效果](figures/match_parent_after.jpeg)|
 
 **起始API Level**
 
-API 15
+15
 
 **变更发生版本**
 
-从OpenHarmony SDK 6.0.0.32开始
+从OpenHarmony SDK 6.0.0.32开始。
 
 **变更的接口/组件**
 
 width(widthValue: Length | LayoutPolicy): T
+
 height(heightValue: Length | LayoutPolicy): T
 
 **适配指导**

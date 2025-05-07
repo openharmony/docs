@@ -445,6 +445,8 @@ async function example() {
 
 ### 属性
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | 名称        | 类型                    | 只读 | 可选 | 说明                                                         |
@@ -1123,8 +1125,6 @@ async function example() {
 convertToPhotoAlbum(): photoAccessHelper.Album
 
 将Sendable类型Album转换为非Sendable类型Album。
-
-**需要权限**：ohos.permission.READ_IMAGEVIDEO
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 

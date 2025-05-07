@@ -32,8 +32,6 @@ JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开�
 // hello.cpp
 #include <iostream>
 
-#include "jsvmtest.h"
-
 static bool before_flag1 = false;
 static bool before_flag2 = false;
 static bool after_flag1 = false;

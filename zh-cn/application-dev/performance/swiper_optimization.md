@@ -110,7 +110,7 @@ struct SwiperExample {
   private dataSrc: MyDataSource = new MyDataSource([]);
 
   aboutToAppear(): void {
-    let list: Array<number> = []
+    let list: Array<number> = [];
     for (let i = 1; i <= 10; i++) {
       list.push(i);
     }
@@ -192,8 +192,8 @@ export struct PhotoItem { //Swiper的子组件
           // 创建imageSource
           const imageSource = image.createImageSource(value.buffer);
           imageSource.createPixelMap().then((value) => {
-            console.info("aboutToAppear push" + this.myIndex)
-            this.dataSource.addData(this.myIndex, { description: "" + this.myIndex, image: value })
+            console.info("aboutToAppear push" + this.myIndex);
+            this.dataSource.addData(this.myIndex, { description: "" + this.myIndex, image: value });
             this.imageContent = value;
           })
         })
@@ -216,27 +216,27 @@ export struct PhotoItem { //Swiper的子组件
 Swiper 主页面的代码如下：
 ```TypeScript
 import Curves from '@ohos.curves';
-import { PhotoItem } from './PhotoItem'
+import { PhotoItem } from './PhotoItem';
 import image from '@ohos.multimedia.image';
 
 interface MyObject {
   description: string,
   image: image.PixelMap,
-};
+}
 
 export class MyDataSource implements IDataSource {
-  private list: MyObject[] = []
+  private list: MyObject[] = [];
 
   constructor(list: MyObject[]) {
-    this.list = list
+    this.list = list;
   }
 
   totalCount(): number {
-    return this.list.length
+    return this.list.length;
   }
 
   getData(index: number): MyObject {
-    return this.list[index]
+    return this.list[index];
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -254,17 +254,17 @@ export class MyDataSource implements IDataSource {
 @Component
 struct Index {
   @State currentIndex: number = 0;
-  cacheCount: number = 1
+  cacheCount: number = 1;
   swiperController: SwiperController = new SwiperController();
   private data: MyDataSource = new MyDataSource([]);
   context = this.getUIContext().getHostContext();
 
   aboutToAppear() {
-    let list: MyObject[] = []
+    let list: MyObject[] = [];
     for (let i = 0; i < 6; i++) {
-      list.push({ description: "", image: this.data.getData(this.currentIndex)?.image })
+      list.push({ description: "", image: this.data.getData(this.currentIndex)?.image });
     }
-    this.data = new MyDataSource(list)
+    this.data = new MyDataSource(list);
   }
 
   build() {
@@ -297,8 +297,8 @@ struct Index {
               this.data.addData(targetIndex + this.cacheCount + 1, {
                 description: "" + (targetIndex + this.cacheCount + 1),
                 image: value
-              })
-            })
+              });
+            });
           })
         } catch (err) {
           console.error("error code" + err);
