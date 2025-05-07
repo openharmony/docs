@@ -271,7 +271,7 @@ TabContent() {
 @Entry
 @Component
 struct TabsExample1 {
-  @State currentIndex: number = 2
+  @State currentIndex: number = 2;
 
   @Builder tabBuilder(title: string, targetIndex: number) {
     Column() {
@@ -302,7 +302,7 @@ struct TabsExample1 {
       .animationDuration(0)
       .backgroundColor('#F1F3F5')
       .onChange((index: number) => {
-        this.currentIndex = index
+        this.currentIndex = index;
       })
     }.width('100%')
   }
@@ -314,9 +314,9 @@ struct TabsExample1 {
 
 若希望不滑动内容页和点击页签也能实现内容页和页签的切换，可以将currentIndex传给Tabs的index参数，通过改变currentIndex来实现跳转至指定索引值对应的TabContent内容。也可以使用TabsController，TabsController是Tabs组件的控制器，用于控制Tabs组件进行内容页切换。通过TabsController的changeIndex方法来实现跳转至指定索引值对应的TabContent内容。
 ```ts
-@State currentIndex: number = 2
-@State currentAnimationMode: AnimationMode = AnimationMode.CONTENT_FIRST
-private controller: TabsController = new TabsController()
+@State currentIndex: number = 2;
+@State currentAnimationMode: AnimationMode = AnimationMode.CONTENT_FIRST;
+private controller: TabsController = new TabsController();
 
 Tabs({ barPosition: BarPosition.End, index: this.currentIndex, controller: this.controller }) {
   // ...
@@ -324,33 +324,33 @@ Tabs({ barPosition: BarPosition.End, index: this.currentIndex, controller: this.
 .height(600)
 .animationMode(this.currentAnimationMode)
 .onChange((index: number) => {
-   this.currentIndex = index
+   this.currentIndex = index;
 })
 
 Button('动态修改AnimationMode').width('50%').margin({ top: 1 }).height(25)
   .onClick(()=>{
     if (this.currentAnimationMode === AnimationMode.CONTENT_FIRST) {
-      this.currentAnimationMode = AnimationMode.ACTION_FIRST
+      this.currentAnimationMode = AnimationMode.ACTION_FIRST;
     } else if (this.currentAnimationMode === AnimationMode.ACTION_FIRST) {
-      this.currentAnimationMode = AnimationMode.NO_ANIMATION
+      this.currentAnimationMode = AnimationMode.NO_ANIMATION;
     } else if (this.currentAnimationMode === AnimationMode.NO_ANIMATION) {
-      this.currentAnimationMode = AnimationMode.CONTENT_FIRST_WITH_JUMP
+      this.currentAnimationMode = AnimationMode.CONTENT_FIRST_WITH_JUMP;
     } else if (this.currentAnimationMode === AnimationMode.CONTENT_FIRST_WITH_JUMP) {
-      this.currentAnimationMode = AnimationMode.ACTION_FIRST_WITH_JUMP
+      this.currentAnimationMode = AnimationMode.ACTION_FIRST_WITH_JUMP;
     } else if (this.currentAnimationMode === AnimationMode.ACTION_FIRST_WITH_JUMP) {
-      this.currentAnimationMode = AnimationMode.CONTENT_FIRST
+      this.currentAnimationMode = AnimationMode.CONTENT_FIRST;
     }
 })
 
 Button('动态修改index').width('50%').margin({ top: 20 })
   .onClick(()=>{
-    this.currentIndex = (this.currentIndex + 1) % 4
+    this.currentIndex = (this.currentIndex + 1) % 4;
 })
 
 Button('changeIndex').width('50%').margin({ top: 20 })
   .onClick(()=>{
-    let index = (this.currentIndex + 1) % 4
-    this.controller.changeIndex(index)
+    let index = (this.currentIndex + 1) % 4;
+    this.controller.changeIndex(index);
 })
 ```
   
@@ -366,9 +366,9 @@ Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.cu
   }
   .onContentWillChange((currentIndex, comingIndex) => {
     if (comingIndex == 2) {
-      return false
+      return false;
     }
-    return true
+    return true;
   })
 ```
   **图13** 支持开发者自定义页面切换拦截事件 
@@ -402,7 +402,7 @@ struct Demo {
   @State showBuilderTab: boolean = false;
   @State fontSize: number = 15;
   private darkModeKey: string[] = Object.keys(uiAppearance.DarkMode).filter(
-    key => typeof uiAppearance.DarkMode[key] === 'number')
+    key => typeof uiAppearance.DarkMode[key] === 'number');
 
   async setFontScale(scale: number): Promise<void> {
     let configInit: Configuration = {
@@ -411,7 +411,7 @@ struct Demo {
     abilityManager.updateConfiguration(configInit, (err: BusinessError) => {
       if (err) {
         console.error(`updateConfiguration fail, err: ${JSON.stringify(err)}`);
-        promptAction.showToast({ message: `scale:${scale}, err:${JSON.stringify(err)}` })
+        promptAction.showToast({ message: `scale:${scale}, err:${JSON.stringify(err)}` });
       } else {
         this.currentFontSizeScale = String(scale);
         if (scale > 1) {
@@ -420,7 +420,7 @@ struct Demo {
           this.fontSize = 15;
         }
         console.log('updateConfiguration success.');
-        promptAction.showToast({ message: `scale:${scale}, updateConfiguration success.` })
+        promptAction.showToast({ message: `scale:${scale}, updateConfiguration success.` });
       }
     });
   }
@@ -431,12 +431,12 @@ struct Demo {
       mode = uiAppearance.DarkMode.ALWAYS_DARK;
     }
     if (mode == uiAppearance.getDarkMode()) {
-      console.info(`TitleDarkMode Set ${this.darkModeKey[mode]} successfully.`)
+      console.info(`TitleDarkMode Set ${this.darkModeKey[mode]} successfully.`);
       return;
     }
     try {
       uiAppearance.setDarkMode(mode).then(() => {
-        console.info(`TitleDarkMode Set ${this.darkModeKey[mode]} successfully.`)
+        console.info(`TitleDarkMode Set ${this.darkModeKey[mode]} successfully.`);
       }).catch((error: Error) => {
         console.error(`TitleDarkMode Set ${this.darkModeKey[mode]} failed, ${error.message}`);
       });
@@ -526,7 +526,7 @@ struct Demo {
         .scrollable(true)
         .barMode(BarMode.Fixed)
         .onChange((index: number) => {
-          console.info(index.toString())
+          console.info(index.toString());
         })
         .width('100%')
         .backgroundColor(0xF1F3F5)
