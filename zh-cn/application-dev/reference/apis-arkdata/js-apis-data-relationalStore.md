@@ -7881,7 +7881,7 @@ if(store != undefined) {
 
 ### rekey<sup>20+</sup>
 
-rekey(cryptoParam?: CryptoParam): Promise<void>;
+rekey(cryptoParam?: CryptoParam): Promise\<void>
 
 手动更新加密数据库的密钥。
 
@@ -7889,9 +7889,9 @@ rekey(cryptoParam?: CryptoParam): Promise<void>;
 
 **参数：**
 
-| 参数名       | 类型                                      | 必填 | 说明                         |
-| ------------ | ----------------------------------------- | ---- | -------------------------- |
-| cryptoParam  | CryptoParam                               | 否   | 数据库加密参数。             |
+| 参数名       | 类型                           | 必填 | 说明                                                                        |
+| ------------ | ----------------------------- | ---- | --------------------------------------------------------------------------- |
+| cryptoParam  | CryptoParam                   | 否   | 指定用户自定义的加密参数。<br/>当此参数不填时，使用默认的加密参数，见[CryptoParam]|
 
 
 **错误码：**
@@ -7900,7 +7900,7 @@ rekey(cryptoParam?: CryptoParam): Promise<void>;
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 801          | Capability not supported                                     |
+| 801          | Capability not supported.                                    |
 | 14800001     | Invalid args.                                                |
 | 14800011     | Database corrupted.                                          |
 | 14800014     | Already closed.                                              |
