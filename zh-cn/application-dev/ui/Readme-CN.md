@@ -193,7 +193,7 @@
       - [属性修改器 (AttributeModifier)](arkts-user-defined-extension-attributeModifier.md)
       - [属性更新器 (AttributeUpdater)](arkts-user-defined-extension-attributeUpdater.md)
   - [使用镜像能力](arkts-mirroring-display.md)
-  - 无障碍与适老化<!--arkts-support-->
+  - 无障碍与适老化<!--arkts-support-accessibility-friendliness-->
     - [支持无障碍](arkts-universal-attributes-accessibility.md)
     - [支持适老化](arkui-support-for-aging-adaptation.md)
   - 主题设置<!--arkts-theme-->
@@ -202,7 +202,7 @@
   - [使用UI上下文接口操作界面（UIContext）](arkts-global-interface.md)
   - 嵌入式组件<!--arkts-ui-cross-process-->
     - [全屏启动原子化服务 (FullScreenLaunchComponent)](arkts-FullScreenComponent.md)
-    - [同应用进程嵌入式组件(EmbeddedComponent)](arkts-embedded-components.md)
+    - [同应用进程嵌入式组件 (EmbeddedComponent)](arkts-embedded-components.md)
     <!--Del-->
     - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](arkts-ui-extension-components.md)
     - [跨线程嵌入式组件（IsolatedComponent，仅对系统应用开放）](arkts-isolated-components.md)

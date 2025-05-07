@@ -1,52 +1,50 @@
-# 跨线程嵌入式组件（IsolatedComponent，仅对系统应用开放）
+# 跨线程嵌入式组件 (IsolatedComponent，仅对系统应用开放)
 
-IsolatedComponent组件是一个用于构建隔离组件的工具，它可以帮助开发者创建独立的、可重用的组件，这些组件可以在不同的应用程序中使用，而不会与其他组件发生冲突。
+IsolatedComponent组件是构建隔离组件的工具，能够帮助开发者创建独立且可重用的组件。这些组件可在不同应用程序中使用，不会与其他组件产生冲突。
 
-每个IsolatedComponent组件都是独立的，有自己的作用域和生命周期，不会与其他组件共享状态或数据；可以轻松地在不同的应用程序中重用，减少重复开发的工作量。
+每个IsolatedComponent组件独立存在，具有专属的作用域和生命周期，不与其他组件共享状态或数据，能够方便地在不同应用程序中重用，降低重复开发的工作量。
 
 ## 基本概念
 
 IsolatedComponent旨在在本页面中嵌入并展示由独立Abc（即.abc文件）所提供的UI，其展示内容在受限的worker线程中执行。
 
-该组件通常应用于那些需要Abc热更新的模块化开发场景。
+该组件通常用于有Abc热更新诉求的模块化开发场景。
 
 ## 约束与限制
 
-1、Abc需要[VerifyAbc](../reference/apis-ability-kit/js-apis-bundleManager-sys.md#bundlemanagerverifyabc11)校验通过之后才可以使用于当前组件。
+1. Abc需要[verifyAbc](../reference/apis-ability-kit/js-apis-bundleManager-sys.md#bundlemanagerverifyabc11)校验通过之后才可以使用于当前组件。
 
-2、不支持构造参数更新，仅首次传入有效。
+2. 不支持构造参数更新，仅首次传入有效。
 
-3、不支持IsolatedComponent组件嵌套场景。
+3. 不支持IsolatedComponent组件嵌套场景。
 
-4、创建IsolatedComponent组件时，受限worker线程加载Abc布局渲染存在一定耗时，在此等待期间显示IsolatedComponent组件的背景色。
+4. 主线程与受限worker线程之间布局渲染是异步处理，布局变化、旋转等导致的页面变化存在不同步现象。
 
-5、主线程与受限worker线程之间布局渲染是异步处理，布局变化、旋转等导致的页面变化存在不同步现象。
+5. 主线程与受限worker线程之间事件传递是异步处理，不支持线程之间的事件冒泡，线程之间的UI交互存在事件冲突现象。
 
-6、主线程与受限worker线程之间事件传递是异步处理，不支持线程之间的事件冒泡，线程之间的UI交互存在事件冲突现象。
+6. 当独立Abc通过IsolatedComponent组件嵌入到宿主进程中显示时，即表明其内容完全向宿主开放，宿主可对独立Abc的内容进行操作。因此，涉及安全敏感的场景应禁用此功能。
 
-7、独立Abc通过IsolatedComponent组件嵌入式显示在宿主进程，即可说明其Abc内容完全向宿主开放，宿主有权操作独立Abc的内容，对此安全敏感场景禁用。
-
-8、独立Abc运行在受限worker可保证相对安全，独立Abc内容不影响主线程。
+7. 独立Abc运行在受限worker线程中可保证相对安全，并且不会影响主线程。
 
 ## 场景示例
 
-这里是一个展示IsolatedComponent组件的基础使用方式的场景，示例应用的bundleName为"com.example.isolateddemo"，并使用本应用的Abc文件和extension页面作为嵌入展示的内容。
+该场景展示IsolatedComponent组件的基础使用方式，示例应用的bundleName为"com.example.isolateddemo"，并使用本应用的Abc文件和extension页面作为嵌入展示的内容。
 
 **导入核心模块**
 
 在使用IsolatedComponent组件时，首先需要导入@kit.AbilityKit模块，该模块提供了构建隔离组件所需的必要功能，包括bundleManager等关键API。
 
-bundleManager作为AbilityKit的核心组件，提供了管理应用包的能力，是构建IsolatedComponent的基础。通过导入这个模块，我们能够使用其提供的API来创建和管理隔离组件，确保不同组件之间的数据和资源隔离，从而提高应用的安全性。
+bundleManager作为AbilityKit的核心组件，提供了管理应用包的能力，是构建IsolatedComponent的基础。通过导入此模块，能够使用其提供的API来创建和管理隔离组件，确保不同组件之间的数据和资源隔离，从而提高应用的安全性。
 
 ```ts
-import { bundleManager } from '@kit.AbilityKit'
+import { bundleManager } from '@kit.AbilityKit';
 ```
 
 **权限管理**
 
-使用IsolatedComponent组件时，合理配置[requestPermissions标签](../security/AccessToken/declare-permissions.md)是确保组件在受限环境中安全运行的关键步骤。通过这个配置，可以明确指定组件需要的权限，实现权限的精细化管理。
+使用IsolatedComponent组件时，合理配置[requestPermissions标签](../security/AccessToken/declare-permissions.md)是保障组件在受限环境中安全运行的关键步骤。通过此配置，能够准确指定组件所需的权限，实现权限的精细化管理。
 
-在受限模式下，IsolatedComponent组件默认是不具备执行动态代码的能力的。通过在module.json5配置文件中增加requestPermissions标签，可以允许组件在特定条件下执行动态下发的方舟字节码。
+在受限模式下，IsolatedComponent组件默认不具备执行动态代码的能力。通过在module.json5配置文件中添加requestPermissions标签，可以授权组件在特定条件下执行动态下发的方舟字节码。
 
 ```json
 "requestPermissions": [
@@ -96,7 +94,7 @@ IsolatedComponent({
     "parameters": {
       // 资源路径
       "resourcePath": `${getContext(this).filesDir}/${this.fileName}.hap`,
-      // abc文件校验后的沙箱路径
+      // Abc文件校验后的沙箱路径
       "abcPath": `/abcs${getContext(this).filesDir}/${this.fileName}`,
       // 需要显示页面的入口路径
       "entryPoint": `${this.bundleName}/entry/ets/pages/extension`,
@@ -136,14 +134,14 @@ struct Extension {
 
 **示例应用代码**
 
-以下是示例应用中EntryAbility(UIAbility)加载首页文件ets/pages/Index.ets的内容：
+以下示例是在应用中，EntryAbility（UIAbility）加载首页文件ets/pages/Index.ets的内容。
 
 ```ts
 import { worker } from '@kit.ArkTS';
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// 对abc文件进行校验，并拷贝到指定沙箱路径下
+// 对Abc文件进行校验，并拷贝到指定沙箱路径下
 function VerifyAbc(abcPaths: Array<string>, deleteOriginalFiles: boolean) {
   try {
     bundleManager.verifyAbc(abcPaths, deleteOriginalFiles, (err) => {
@@ -166,9 +164,9 @@ struct Index {
   @State resourcePath: string = "";
   @State abcPath: string = "";
   @State entryPoint: string = "";
-  // abc文件名
+  // Abc文件名
   private fileName: string = "modules";
-  // abc文件所属应用的bundleName
+  // Abc文件所属应用的bundleName
   private bundleName: string = "com.example.isolateddemo";
   // 受限worker
   private worker ?: worker.RestrictedWorker = new worker.RestrictedWorker("entry/ets/workers/OhCardWorker.ets");
@@ -176,7 +174,7 @@ struct Index {
   build() {
     Row() {
       Column({ space: 20 }) {
-        // 1.调用verifyAbc接口校验abc文件
+        // 1.调用verifyAbc接口校验Abc文件
         Button("verifyAbc").onClick(() => {
           let abcFilePath = `${getContext(this).filesDir}/${this.fileName}.abc`;
           console.log("abcFilePath: " + abcFilePath);
@@ -188,7 +186,7 @@ struct Index {
           if (!this.isShow) {
             // 资源路径
             this.resourcePath = `${getContext(this).filesDir}/${this.fileName}.hap`;
-            // abc文件校验后的沙箱路径
+            // Abc文件校验后的沙箱路径
             this.abcPath = `/abcs${getContext(this).filesDir}/${this.fileName}`;
             // 需要显示页面的入口路径
             this.entryPoint = `${this.bundleName}/entry/ets/pages/extension`;

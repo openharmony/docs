@@ -1,20 +1,20 @@
-# 同应用进程嵌入式组件(EmbeddedComponent)
+# 同应用进程嵌入式组件 (EmbeddedComponent)
 
-EmbeddedComponent组件是一个用于在应用中嵌入其他应用或服务的组件，主要用于在应用中实现跨模块、跨进程的嵌入式界面集成，其核心目的是通过模块化设计提升应用灵活性和用户体验。
+EmbeddedComponent组件允许当前页面嵌入同一应用内其他EmbeddedUIExtensionAbility供给的UI内容，这些UI运行在独立进程中，提供更高的安全性和稳定性。
 
-EmbeddedComponent组件允许在当前页面中嵌入同一应用内其他EmbeddedUIExtensionAbility提供的UI内容，这些UI运行在独立进程中，提供了更高的安全性和稳定性。
+EmbeddedComponent组件主要用于实现跨模块、跨进程的嵌入式界面集成，其核心目标是通过模块化设计提升应用的灵活性和用户体验。
 
-开发者在使用时需要注意其使用约束和生命周期管理，合理设计应用架构以充分发挥其优势。
+开发者在使用时需注意其使用限制和生命周期管理，合理设计应用架构以最大限度地发挥其优势。
 
 ## 基本概念
 
 - [EmbeddedComponent](../reference/apis-arkui/arkui-ts/ts-container-embedded-component.md)组件
 
-  EmbeddedComponent组件用于在当前页面嵌入本应用内其他EmbeddedUIExtensionAbility提供的UI。它允许开发者将应用的某些功能或界面嵌入到另一个界面中，实现更灵活的用户界面设计，通常用于需要进程隔离的模块化开发场景。
+  EmbeddedComponent组件用于在当前页面嵌入本应用内其他EmbeddedUIExtensionAbility提供的UI。它允许开发者将应用的某些功能或界面嵌入另一个界面中，实现更灵活的用户界面设计，适用于需要进程隔离的模块化开发场景。
 
 - [EmbeddedUIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md)组件
 
-  提供方应用中定义使用，用于实现跨进程界面嵌入功能，仅能被同应用的UIAbility拉起，并需在拥有多进程权限的场景下使用。
+  提供方应用中定义使用，用于实现跨进程界面嵌入功能，仅能被同应用的UIAbility拉起，并需在多进程权限的场景下使用。
 
 ## 使用约束
 
@@ -28,16 +28,16 @@ EmbeddedComponent组件允许在当前页面中嵌入同一应用内其他Embedd
 
 - 属性限制
 
-  EmbeddedComponent组件支持[通用属性](../reference/apis-arkui/arkui-js/js-components-common-attributes.md)，且宽高默认值和最小值均为10vp；
+  EmbeddedComponent组件支持[通用属性](../reference/apis-arkui/arkui-ts/ts-component-general-attributes.md)，且宽高默认值和最小值均为10vp；
   
   不支持如下与宽高相关的属性：
   "constraintSize"、"aspectRatio"、"layoutWeight"、"flexBasis"、"flexGrow"和"flexShrink"。
 
-## 事件调用
+- 事件调用
 
-与屏幕坐标相关的事件信息会基于EmbeddedComponent的位置宽高进行坐标转换后传递给被拉起的EmbeddedUIExtensionAbility处理。
+  与屏幕坐标相关的事件信息会基于EmbeddedComponent的位置宽高进行坐标转换后传递给被拉起的EmbeddedUIExtensionAbility处理。
 
-EmbeddedComponent组件不支持[点击](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md)等通用事件，仅支持[onTerminated](../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md#onterminated12)事件和[onError](../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md#onerror)事件。
+  EmbeddedComponent组件不支持[点击](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md)等通用事件，仅支持[onTerminated](../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md#onterminated12)事件和[onError](../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md#onerror)事件。
 
 ## 场景示例
 
@@ -92,7 +92,7 @@ struct Index {
 
 - 异常处理
 
-  通过onError事件处理加载或运行嵌入式能力时可能出现的错误，提升用户体验。
+  通过[onError](../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md#onerror)事件处理加载或运行嵌入式能力时可能出现的错误，提升用户体验。
 
 - 生命周期管理
 
@@ -203,31 +203,31 @@ struct Extension {
 
 在实现入口页面时，开发者需要注意以下几点：
 
-1、会话管理
+1. 会话管理
 
-正确获取并使用UIExtensionContentSession会话对象，确保与宿主应用的通信正常。
+  正确获取并使用UIExtensionContentSession会话对象，确保与宿主应用的通信正常。
 
-2、结果返回
+2. 结果返回
 
-通过terminateSelfWithResult方法向宿主应用返回结果时，需要指定：
+  通过terminateSelfWithResult方法向宿主应用返回结果时，需要指定：
 
-- resultCode：结果代码；
+  - resultCode：结果代码；
 
-- want：目标意图，指定结果的接收方。
+  - want：目标意图，指定结果的接收方。
 
-3、页面生命周期
+3. 页面生命周期
 
-了解并管理好入口页面的生命周期，确保资源的正确释放和回收。
+  了解并管理好入口页面的生命周期，确保资源的正确释放和回收。
 
-4、样式配置
+4. 样式配置
 
-合理配置页面元素的样式，确保界面显示效果符合预期。
+  合理配置页面元素的样式，确保界面显示效果符合预期。
 
 **添加配置项**
 
-为了使嵌入式UI扩展能力正常工作，需要在应用的配置文件中进行相应的设置。
+  为了使嵌入式UI扩展能力正常工作，需要在应用的配置文件中进行相应的设置。
 
-在module.json5配置文件的"extensionAbilities"标签下增加ExampleEmbeddedAbility配置，以注册ExampleEmbeddedAbility嵌入式UI扩展能力。
+  在module.json5配置文件的"extensionAbilities"标签下增加ExampleEmbeddedAbility配置，以注册ExampleEmbeddedAbility嵌入式UI扩展能力。
 
 ```json
 {
