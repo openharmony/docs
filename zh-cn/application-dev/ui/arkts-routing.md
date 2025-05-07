@@ -171,18 +171,18 @@ function onJumpClick(): void {
 import { router } from '@kit.ArkUI';
 
 class InfoTmp {
-  age: number = 0
+  age: number = 0;
 }
 
 class RouTmp {
   id: object = () => {
-  }
-  info: InfoTmp = new InfoTmp()
+  };
+  info: InfoTmp = new InfoTmp();
 }
 
 const params: RouTmp = router.getParams() as RouTmp; // 获取传递过来的参数对象
-const id: object = params.id // 获取id属性的值
-const age: number = params.info.age // 获取age属性的值
+const id: object = params.id; // 获取id属性的值
+const age: number = params.info.age; // 获取age属性的值
 ```
 
 
@@ -233,7 +233,7 @@ import { router } from '@kit.ArkUI';
   import { router } from '@kit.ArkUI';
 
   router.back({
-    url: 'myPage' //myPage为返回的命名路由页面别名
+    url: 'myPage' // myPage为返回的命名路由页面别名
   });
   ```
 
@@ -261,7 +261,7 @@ import { router } from '@kit.ArkUI';
   import { router } from '@kit.ArkUI';
 
   router.back({
-    url: 'myPage', //myPage为返回的命名路由页面别名
+    url: 'myPage', // myPage为返回的命名路由页面别名
     params: {
       info: '来自Home页'
     }
@@ -336,8 +336,8 @@ function onBackClick(): void {
       message: '您还没有完成支付，确定要返回吗？' // 设置询问框的内容
     });
   } catch (err) {
-    let message = (err as BusinessError).message
-    let code = (err as BusinessError).code
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
     console.error(`Invoke showAlertBeforeBackPage failed, code is ${code}, message is ${message}`);
   }
 
@@ -395,8 +395,8 @@ function onBackClick() {
       router.back();
     }
   }).catch((err: Error) => {
-    let message = (err as BusinessError).message
-    let code = (err as BusinessError).code
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
     console.error(`Invoke showDialog failed, code is ${code}, message is ${message}`);
   })
 }
@@ -469,8 +469,8 @@ struct Index {
               }
             })
           } catch (err) {
-            let message = (err as BusinessError).message
-            let code = (err as BusinessError).code
+            let message = (err as BusinessError).message;
+            let code = (err as BusinessError).code;
             console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
           }
         })

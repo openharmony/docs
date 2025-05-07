@@ -226,9 +226,9 @@ changeIndex(index: number, useAnimation?: boolean): void
 @Entry
 @Component
 struct DotIndicatorDemo {
-  private indicatorController: IndicatorComponentController = new IndicatorComponentController()
-  private swiperController: SwiperController = new SwiperController()
-  @State list: number[] = []
+  private indicatorController: IndicatorComponentController = new IndicatorComponentController();
+  private swiperController: SwiperController = new SwiperController();
+  @State list: number[] = [];
   aboutToAppear(): void {
     for (let i = 1; i <= 6; i++) {
       this.list.push(i);
@@ -257,7 +257,7 @@ struct DotIndicatorDemo {
       .itemSpace(0)
       .curve(Curve.Linear)
       .onChange((index: number) => {
-        console.info(index.toString())
+        console.info(index.toString());
       })
 
       IndicatorComponent(this.indicatorController)
@@ -274,7 +274,7 @@ struct DotIndicatorDemo {
         .count(6)
         .vertical(true)
         .onChange((index: number) => {
-          console.log("current index: " + index )
+          console.log("current index: " + index );
         })
     }
   }
@@ -290,9 +290,9 @@ struct DotIndicatorDemo {
 @Entry
 @Component
 struct DigitIndicatorDemo {
-  private indicatorController: IndicatorComponentController = new IndicatorComponentController()
-  private swiperController: SwiperController = new SwiperController()
-  @State list: number[] = []
+  private indicatorController: IndicatorComponentController = new IndicatorComponentController();
+  private swiperController: SwiperController = new SwiperController();
+  @State list: number[] = [];
   aboutToAppear(): void {
     for (let i = 1; i <= 6; i++) {
       this.list.push(i);
@@ -321,7 +321,7 @@ struct DigitIndicatorDemo {
       .itemSpace(0)
       .curve(Curve.Linear)
       .onChange((index: number) => {
-        console.info(index.toString())
+        console.info(index.toString());
       })
 
       IndicatorComponent(this.indicatorController)
@@ -335,7 +335,7 @@ struct DigitIndicatorDemo {
         .count(6)
         .vertical(true)
         .onChange((index: number) => {
-          console.log("current index: " + index )
+          console.log("current index: " + index );
         })
     }
   }
