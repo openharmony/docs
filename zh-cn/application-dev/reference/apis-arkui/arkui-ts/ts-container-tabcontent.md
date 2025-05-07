@@ -847,40 +847,40 @@ struct TabBarStyleExample {
             Column().width('100%').height('100%').backgroundColor(Color.Pink)
           }.tabBar(new SubTabBarStyle('Pink'))
           .onWillShow(() => {
-            console.info("Pink will show");
+            console.info('Pink will show');
           })
           .onWillHide(() => {
-            console.info("Pink will hide");
+            console.info('Pink will hide');
           })
 
           TabContent() {
             Column().width('100%').height('100%').backgroundColor(Color.Yellow)
           }.tabBar(new SubTabBarStyle('Yellow'))
           .onWillShow(() => {
-            console.info("Yellow will show");
+            console.info('Yellow will show');
           })
           .onWillHide(() => {
-            console.info("Yellow will hide");
+            console.info('Yellow will hide');
           })
 
           TabContent() {
             Column().width('100%').height('100%').backgroundColor(Color.Blue)
           }.tabBar(new SubTabBarStyle('Blue'))
           .onWillShow(() => {
-            console.info("Blue will show");
+            console.info('Blue will show');
           })
           .onWillHide(() => {
-            console.info("Blue will hide");
+            console.info('Blue will hide');
           })
 
           TabContent() {
             Column().width('100%').height('100%').backgroundColor(Color.Green)
           }.tabBar(new SubTabBarStyle('Green'))
           .onWillShow(() => {
-            console.info("Green will show");
+            console.info('Green will show');
           })
           .onWillHide(() => {
-            console.info("Green will hide");
+            console.info('Green will hide');
           })
         }
         .vertical(false)
@@ -899,40 +899,40 @@ struct TabBarStyleExample {
             Column().width('100%').height('100%').backgroundColor(Color.Pink)
           }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Pink'))
           .onWillShow(() => {
-            console.info("Pink will show");
+            console.info('Pink will show');
           })
           .onWillHide(() => {
-            console.info("Pink will hide");
+            console.info('Pink will hide');
           })
 
           TabContent() {
             Column().width('100%').height('100%').backgroundColor(Color.Yellow)
           }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Yellow'))
           .onWillShow(() => {
-            console.info("Yellow will show");
+            console.info('Yellow will show');
           })
           .onWillHide(() => {
-            console.info("Yellow will hide");
+            console.info('Yellow will hide');
           })
 
           TabContent() {
             Column().width('100%').height('100%').backgroundColor(Color.Blue)
           }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Blue'))
           .onWillShow(() => {
-            console.info("Blue will show");
+            console.info('Blue will show');
           })
           .onWillHide(() => {
-            console.info("Blue will hide");
+            console.info('Blue will hide');
           })
 
           TabContent() {
             Column().width('100%').height('100%').backgroundColor(Color.Green)
           }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Green'))
           .onWillShow(() => {
-            console.info("Green will show");
+            console.info('Green will show');
           })
           .onWillHide(() => {
-            console.info("Green will hide");
+            console.info('Green will hide');
           })
         }
         .vertical(false)
@@ -951,40 +951,40 @@ struct TabBarStyleExample {
             Column().width('100%').height('100%').backgroundColor(Color.Pink)
           }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Pink'))
           .onWillShow(() => {
-            console.info("Pink will show");
+            console.info('Pink will show');
           })
           .onWillHide(() => {
-            console.info("Pink will hide");
+            console.info('Pink will hide');
           })
 
           TabContent() {
             Column().width('100%').height('100%').backgroundColor(Color.Yellow)
           }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Yellow'))
           .onWillShow(() => {
-            console.info("Yellow will show");
+            console.info('Yellow will show');
           })
           .onWillHide(() => {
-            console.info("Yellow will hide");
+            console.info('Yellow will hide');
           })
 
           TabContent() {
             Column().width('100%').height('100%').backgroundColor(Color.Blue)
           }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Blue'))
           .onWillShow(() => {
-            console.info("Blue will show");
+            console.info('Blue will show');
           })
           .onWillHide(() => {
-            console.info("Blue will hide");
+            console.info('Blue will hide');
           })
 
           TabContent() {
             Column().width('100%').height('100%').backgroundColor(Color.Green)
           }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Green'))
           .onWillShow(() => {
-            console.info("Green will show");
+            console.info('Green will show');
           })
           .onWillHide(() => {
-            console.info("Green will hide");
+            console.info('Green will hide');
           })
         }
         .vertical(true).scrollable(true).barMode(BarMode.Fixed)
@@ -1680,10 +1680,10 @@ struct Index {
             normal: this.symbolModifier1,
           }, 'Pink'))
           .onWillShow(() => {
-            console.info("Pink will show");
+            console.info('Pink will show');
           })
           .onWillHide(() => {
-            console.info("Pink will hide");
+            console.info('Pink will hide');
           })
 
           TabContent() {
@@ -1692,10 +1692,10 @@ struct Index {
             normal: this.symbolModifier2,
           }, 'Orange'))
           .onWillShow(() => {
-            console.info("Orange will show");
+            console.info('Orange will show');
           })
           .onWillHide(() => {
-            console.info("Orange will hide");
+            console.info('Orange will hide');
           })
 
           TabContent() {
@@ -1704,10 +1704,10 @@ struct Index {
             normal: this.symbolModifier3,
           }, 'Blue'))
           .onWillShow(() => {
-            console.info("Blue will show");
+            console.info('Blue will show');
           })
           .onWillHide(() => {
-            console.info("Blue will hide");
+            console.info('Blue will hide');
           })
 
           TabContent() {
@@ -1716,10 +1716,10 @@ struct Index {
             normal: this.symbolModifier4,
           }, 'Green'))
           .onWillShow(() => {
-            console.info("Green will show");
+            console.info('Green will show');
           })
           .onWillHide(() => {
-            console.info("Green will hide");
+            console.info('Green will hide');
           })
         }
         .vertical(false)
