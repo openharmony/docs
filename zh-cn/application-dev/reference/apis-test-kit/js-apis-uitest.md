@@ -60,7 +60,7 @@ export default function demo() {
   describe('uitestDemo', (): void => {
     beforeAll(async () : Promise<void> => {
       hilog.info(domain, tag, "uitestDriverTest loadup start!!!!!")
-      await loadAndSetupUiTest();
+      loadAndSetupUiTest();
       hilog.info(domain, tag, "uitestDriverTest loadup over!!!!!")
     })
   }
@@ -995,7 +995,9 @@ import { Driver, ON, Component } from '@kit.TestKit';
 async function demo() {
   let driver:Driver = Driver.create();
   let button: Component|null = await driver.findComponent(ON.type('Button'));
-  await button?.click();
+  if (button) {
+    await button.click();
+  }
 }
 ```
 
@@ -1025,7 +1027,9 @@ import {Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component|null = await driver.findComponent(ON.type('Button'));
-  await button?.doubleClick();
+  if (button) {
+    await button.doubleClick();
+  }
 }
 ```
 
@@ -1055,7 +1059,9 @@ import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component|null = await driver.findComponent(ON.type('Button'));
-  await button?.longClick();
+  if (button) {
+    await button.longClick();
+  }
 }
 ```
 
@@ -1091,7 +1097,9 @@ import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component|null = await driver.findComponent(ON.type('Button'));
-  let id = await button?.getId();
+  if (button) {
+    let id = await button.getId();
+  }
 }
 ```
 
@@ -1127,7 +1135,9 @@ import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component|null = await driver.findComponent(ON.type('Button'));
-  let text = await button?.getText();
+  if (button) {
+    let text = await button.getText();
+  }
 }
 ```
 
@@ -1163,7 +1173,9 @@ import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component|null = await driver.findComponent(ON.type('Button'));
-  let type = await button?.getType();
+  if (button) {
+    let type = await button.getType();
+  }
 }
 ```
 
@@ -1199,7 +1211,9 @@ import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component|null = await driver.findComponent(ON.type('Button'));
-  let rect = await button?.getBounds();
+  if (button) {
+    let rect = await button.getBounds();
+  }
 }
 ```
 
@@ -1235,7 +1249,9 @@ import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component|null = await driver.findComponent(ON.type('Button'));
-  let point = await button?.getBoundsCenter();
+  if (button) {
+    let point = await button.getBoundsCenter();
+  }
 }
 ```
 
@@ -1271,7 +1287,7 @@ import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component|null = await driver.findComponent(ON.type('Button'));
-  if (await button?.isClickable()) {
+  if (button && await button.isClickable()) {
     console.info('This button can be Clicked');
   } else {
     console.info('This button can not be Clicked');
@@ -1311,7 +1327,7 @@ import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component|null = await driver.findComponent(ON.type('Button'));
-  if (await button?.isLongClickable()) {
+  if (button && await button.isLongClickable()) {
     console.info('This button can longClick');
   } else {
     console.info('This button can not longClick');
@@ -1351,7 +1367,7 @@ import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let checkBox: Component|null = await driver.findComponent(ON.type('Checkbox'));
-  if (await checkBox?.isChecked()) {
+  if (checkBox && await checkBox.isChecked()) {
     console.info('This checkBox is checked');
   } else {
     console.info('This checkBox is not checked');
@@ -1391,7 +1407,7 @@ import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let checkBox: Component|null = await driver.findComponent(ON.type('Checkbox'));
-  if (await checkBox?.isCheckable()) {
+  if (checkBox && await checkBox.isCheckable()) {
     console.info('This checkBox is checkable');
   } else {
     console.info('This checkBox is not checkable');
@@ -1431,7 +1447,7 @@ import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let scrollBar: Component|null = await driver.findComponent(ON.scrollable(true));
-  if (await scrollBar?.isScrollable()) {
+  if (scrollBar && await scrollBar.isScrollable()) {
     console.info('This scrollBar can be operated');
   } else {
     console.info('This scrollBar can not be operated');
@@ -1472,7 +1488,7 @@ import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component|null = await driver.findComponent(ON.type('Button'));
-  if (await button?.isEnabled()) {
+  if (button && await button.isEnabled()) {
     console.info('This button can be operated');
   } else {
     console.info('This button can not be operated');
@@ -1512,7 +1528,7 @@ import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component|null = await driver.findComponent(ON.type('Button'));
-  if (await button?.isFocused()) {
+  if (button && await button.isFocused()) {
     console.info('This button is focused');
   } else {
     console.info('This button is not focused');
@@ -1552,7 +1568,7 @@ import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component|null = await driver.findComponent(ON.type('Button'));
-  if (await button?.isSelected()) {
+  if (button && await button.isSelected()) {
     console.info('This button is selected');
   } else {
     console.info('This button is not selected');
@@ -1593,7 +1609,9 @@ import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let text: Component|null = await driver.findComponent(ON.text('hello world'));
-  await text?.inputText('123');
+  if (text) {
+    await text.inputText('123');
+  }
 }
 ```
 
@@ -1622,7 +1640,9 @@ import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let text: Component|null = await driver.findComponent(ON.text('hello world'));
-  await text?.clearText();
+  if (text) {
+    await text.clearText();
+  }
 }
 ```
 
@@ -1669,9 +1689,11 @@ import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let scrollBar: Component|null = await driver.findComponent(ON.type('Scroll'));
-  let button = await scrollBar?.scrollSearch(ON.text('next page'));
-  if (button) {
-    await button.click();
+  if (scrollBar) {
+    let button = await scrollBar.scrollSearch(ON.text('next page'));
+    if (button) {
+      await button.click();
+    }
   }
 }
 ```
@@ -1720,9 +1742,11 @@ import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let scrollBar: Component|null = await driver.findComponent(ON.type('Scroll'));
-  let button = await scrollBar?.scrollSearch(ON.text('next page'));
-  if (button) {
-    await button.click();
+  if (scrollBar) {
+    let button = await scrollBar.scrollSearch(ON.text('next page'));
+    if (button) {
+      await button.click();
+    }
   }
 }
 ```
@@ -2114,7 +2138,9 @@ import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component|null = await driver.findComponent(ON.text('next page'));
-  await button?.click();
+  if (button) {
+    await button.click();
+  }
 }
 ```
 
@@ -3454,8 +3480,10 @@ import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let text: Component|null = await driver.findComponent(ON.type('TextInput'));
-  let point = await text?.getBoundsCenter();
-  await driver.inputText(point, '123');
+  if (text) {
+    let point = await text.getBoundsCenter();
+    await driver.inputText(point, '123');
+  }
 }
 ```
 
@@ -3851,7 +3879,9 @@ import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow|null = await driver.findWindow({actived: true});
-  let name: string = await window?.getBundleName();
+  if (window) {
+    let name: string = await window.getBundleName();
+  }
 }
 ```
 
@@ -3887,7 +3917,9 @@ import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow|null = await driver.findWindow({actived: true});
-  let rect = await window?.getBounds();
+  if (window) {
+    let rect = await window.getBounds();
+  }
 }
 ```
 
@@ -3923,7 +3955,9 @@ import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow|null = await driver.findWindow({actived: true});
-  let rect = await window?.getTitle();
+  if (window) {
+    let rect = await window.getTitle();
+  }
 }
 ```
 
@@ -3959,7 +3993,9 @@ import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow|null = await driver.findWindow({actived: true});
-  let mode = await window?.getWindowMode();
+  if (window) {
+    let mode = await window.getWindowMode();
+  }
 }
 ```
 
@@ -3995,7 +4031,9 @@ import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow|null = await driver.findWindow({actived: true});
-  let focused = await window?.isFocused();
+  if (window) {
+    let focused = await window.isFocused();
+  }
 }
 ```
 
@@ -4031,7 +4069,9 @@ import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow|null = await driver.findWindow({actived: true});
-  let focused = await window?.isActived();
+  if (window) {
+    let focused = await window.isActived();
+  }
 }
 ```
 
@@ -4061,7 +4101,9 @@ import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow|null = await driver.findWindow({actived: true});
-  await window?.focus();
+  if (window) {
+    await window.focus();
+  }
 }
 ```
 
@@ -4100,7 +4142,9 @@ import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow|null = await driver.findWindow({actived: true});
-  await window?.moveTo(100, 100);
+  if (window) {
+    await window.moveTo(100, 100);  
+  }
 }
 ```
 
@@ -4140,7 +4184,9 @@ import { Driver, ResizeDirection, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow|null = await driver.findWindow({actived: true});
-  await window?.resize(100, 100, ResizeDirection.LEFT);
+  if (window) {
+    await window.resize(100, 100, ResizeDirection.LEFT);
+  }
 }
 ```
 
@@ -4171,7 +4217,9 @@ import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow|null = await driver.findWindow({actived: true});
-  await window?.split();
+  if (window) {
+    await window.split();
+  }
 }
 ```
 
@@ -4202,7 +4250,9 @@ import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow|null = await driver.findWindow({actived: true});
-  await window?.maximize();
+  if (window) {
+    await window.maximize();
+  }
 }
 ```
 
@@ -4233,7 +4283,9 @@ import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow|null = await driver.findWindow({actived: true});
-  await window?.minimize();
+  if (window) {
+    await window.minimize();
+  }
 }
 ```
 
@@ -4264,7 +4316,9 @@ import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow|null = await driver.findWindow({actived: true});
-  await window?.resume();
+  if (window) {
+    await window.resume();
+  }
 }
 ```
 
@@ -4295,7 +4349,9 @@ import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver:Driver = Driver.create();
   let window: UiWindow|null = await driver.findWindow({actived: true});
-  await window?.close();
+  if (window) {
+    await window.close();
+  }
 }
 ```
 
@@ -4331,7 +4387,9 @@ import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow|null = await driver.findWindow({active: true});
-  let focused = await window?.isActive();
+  if (window) {
+    let focused = await window.isActive();
+  }
 }
 ```
 
