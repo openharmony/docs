@@ -2666,7 +2666,7 @@
 
 **ACL使能**：true
 
-**起始版本**：18
+**起始版本**：19
 
 ## ohos.permission.ACCESS_ADVANCED_SECURITY_MODE
 

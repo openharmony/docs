@@ -377,6 +377,22 @@ maxLines(value: number, options?: MaxLinesOptions)
 | value  | number | 是   | 内联输入风格编辑态时文本可显示的最大行数。<br/>默认值：3，非内联模式下，默认值为+∞，不限制最大行数。 <br/>取值范围：(0, +∞) |
 |options | [MaxLinesOptions](ts-types.md#maxlinesoptions20对象说明) | 否   | 文本超长时显示效果。<br/>默认值：MaxLinesMode.CLIP |
 
+### minLines<sup>20+</sup>
+
+minLines(lines: Optional\<number>)
+
+设置节点显示的最小行数，若传入值小于1，则自动取值为1。如果节点设置了[constraintSize](ts-universal-attributes-size.md#constraintsize)，那么组件最后显示高度会在[constraintSize](ts-universal-attributes-size.md#constraintsize)约束内。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                      | 必填 | 说明                                                         |
+| ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| lines  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number> | 是   | 节点最小行数。 |
+
 ### customKeyboard<sup>10+</sup>
 
 customKeyboard(value: CustomBuilder, options?: KeyboardOptions)

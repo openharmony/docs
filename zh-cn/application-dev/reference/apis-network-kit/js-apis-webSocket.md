@@ -144,7 +144,7 @@ connect(url: string, callback: AsyncCallback\<boolean\>): void
 | 2302002<sup>12+</sup> | Websocket certificate file does not exist. |
 | 2302003<sup>12+</sup> | Websocket connection already exists.       |
 | 2302998<sup>12+</sup> | It is not allowed to access this domain.   |
-| 2302999<sup>10+</sup> | Websocket other unknown error.             |
+| 2302999<sup>10+</sup> | Internal error.             |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)。
@@ -201,7 +201,7 @@ connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<
 | 2302002<sup>12+</sup> | Websocket certificate file does not exist. |
 | 2302003<sup>12+</sup> | Websocket connection already exists.       |
 | 2302998<sup>12+</sup> | It is not allowed to access this domain.   |
-| 2302999<sup>10+</sup> | Websocket other unknown error.             |
+| 2302999<sup>10+</sup> | Internal error.             |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)。
@@ -272,7 +272,7 @@ connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 | 2302002<sup>12+</sup> | Websocket certificate file does not exist. |
 | 2302003<sup>12+</sup> | Websocket connection already exists.       |
 | 2302998<sup>12+</sup> | It is not allowed to access this domain.   |
-| 2302999<sup>10+</sup> | Websocket other unknown error.             |
+| 2302999<sup>10+</sup> | Internal error.             |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)。
