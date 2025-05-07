@@ -1,4 +1,4 @@
-# 容器 (EmbeddedComponent)
+# 同应用进程嵌入式组件 (EmbeddedComponent)
 
 EmbeddedComponent组件是一个用于在应用中嵌入其他应用或服务的组件，主要用于在应用中实现跨模块、跨进程的嵌入式界面集成，其核心目的是通过模块化设计提升应用灵活性和用户体验。
 

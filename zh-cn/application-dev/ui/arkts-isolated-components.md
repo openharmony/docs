@@ -1,4 +1,4 @@
-# 隔离 (IsolatedComponent)
+# 同应用线程嵌入组件 (IsolatedComponent)
 
 IsolatedComponent组件是一个用于构建隔离组件的工具，它可以帮助开发者创建独立的、可重用的组件，这些组件可以在不同的应用程序中使用，而不会与其他组件发生冲突。
 
