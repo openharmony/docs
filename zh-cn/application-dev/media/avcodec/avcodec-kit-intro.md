@@ -43,7 +43,7 @@ AVCodec Kit（Audio & Video Codec Kit，音视频编解码，封装解析）是�
   
   ![](figures/avcodec-vcodec-logic.png)
 
-  具体开发指导请参考[《视频解码Surface模式》](video-decoding.md#surface模式)[《视频编码Surface模式》](video-encoding.md#surface模式)。
+  具体开发指导请参考[视频解码Surface模式](video-decoding.md#surface模式)、[视频编码Surface模式](video-encoding.md#surface模式)。
 
 - 音频编解码
 
