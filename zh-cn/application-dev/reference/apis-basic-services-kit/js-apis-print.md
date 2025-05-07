@@ -735,7 +735,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 **属性：**
 | **名称** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| copyNumber | number | 否 | 表示文件打印份数。 |
+| copyNumber | number | 否 | 表示文件打印份数。默认值为1。 |
 | pageRange | [PrintPageRange](#printpagerange11) | 否 | 表示待打印文件的页面范围。 |
 | pageSize | [PrintPageSize](#printpagesize11) \| [PrintPageType](#printpagetype11) | 否 | 表示代打印文件的纸张类型。 |
 | directionMode | [PrintDirectionMode](#printdirectionmode11) | 否 | 表示待打印文件的方向。 |
@@ -751,9 +751,9 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 **属性：**
 | **名称** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| startPage | number | 否 | 表示起始页。 |
-| endPage | number | 否 | 表示结束页。 |
-| pages | Array&lt;number&gt; | 否 | 表示待打印的页面范围的集合。|
+| startPage | number | 否 | 表示起始页。默认值为1。 |
+| endPage | number | 否 | 表示结束页。默认值为待打印文件的最大页数。 |
+| pages | Array&lt;number&gt; | 否 | 表示待打印的页面范围的集合。默认值为空。|
 
 
 ## PrintPageSize<sup>11+</sup>
