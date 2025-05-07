@@ -57,7 +57,7 @@ Permission does not exist.
 
 **处理步骤**
 
-检查入参，修正参数值为有效值。[权限列表](../../security/AccessToken/app-permissions.md)
+检查入参，修正参数值为有效值，有效值请参考[权限列表](../../security/AccessToken/app-permissions.md)。
 
 
 ## 12100004 接口未配套使用
