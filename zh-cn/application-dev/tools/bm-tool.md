@@ -1302,18 +1302,17 @@ error: install failed due to zero user can only install singleton app.
 
 **错误描述**
 
-UserID 0用户只允许安装singleton权限应用，singleton权限应用只允许被UserID 0用户安装。
+UserID 0用户只允许安装singleton权限应用。
 
 **可能原因**
 
-singleton权限应用安装未指定UserID 0。
+UserID 0用户安装了非singleton权限的应用。
 
 **处理步骤**
 
-1. 应用是singleton权限，安装时指定UserID 0。
+1. 应用是非singleton权限的，不需要指定用户，直接安装。
 	```bash
-	# 指定userId安装命令
-	hdc install -p hap名.hap -u 0
+	hdc install -p hap名.hap
 	```
 
 
