@@ -47,7 +47,7 @@
 
 描述快捷方式配置信息中的自定义数据。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Launcher
+**系统能力:** SystemCapability.BundleManager.BundleFramework.Launcher
 
 | 名称          | 类型    | 只读 | 可选 | 说明                   |
 | ------------- | ------ | ---- | ---------------------- | ---------------------- |

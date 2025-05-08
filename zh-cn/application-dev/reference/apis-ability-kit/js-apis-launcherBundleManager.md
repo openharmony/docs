@@ -27,7 +27,7 @@ getLauncherAbilityInfoSync(bundleName: string, userId: number) : Array\<[Launche
 | 参数名     | 类型   | 必填 | 说明         |
 | ---------- | ------ | ---- | -------------- |
 | bundleName | string | 是   | 应用Bundle名称。 |
-| userId     | number | 是   | 被查询的用户id。 |
+| userId     | number | 是   | 被查询的[用户ID](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)。 |
 
 **返回值：**
 
